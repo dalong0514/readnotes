@@ -1,16 +1,8 @@
-# 
-> 2018000模板
-
-
-21. Game Theory Models Times Three
-
-
+# 21. Game Theory Models Times Three
 
 Deductive reasoning travels from the most abstract to the least abstract. It begins with a set of axioms and uses the laws of logic and mathematics to manipulate them to form predictions about the world.
 
 —Rachel Croson
-
-
 
 Game theory models strategic interactions. Many of the models that follow, including our models of cooperation, signaling, mechanisms, and collection action, involve games. We do not take up the analysis of games in much depth because entire books are devoted to the subject. Our goal will be to provide a gentle introduction. To that end, we present examples of the three main classes of games: normal-form games, in which players choose from a discrete set of actions (typically two); sequential games, in which players choose actions sequentially; and continuous-action games, in which players can choose actions of any magnitude or effect size. These examples introduce the main concepts, help us to understand later models, and add value in their own right.
 
