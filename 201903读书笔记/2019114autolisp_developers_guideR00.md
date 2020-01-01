@@ -76,6 +76,53 @@
 
 ## 0105Manipulate_AutoCAD_Objects.md
 
+You can select and handle objects, and use their extended data.
+
+Most AutoLISP ® functions that handle selection sets and objects identify a set or an object by the entity name. For selection sets, which are valid only in the current session, the volatility of names poses no problem, but it does for objects because they are saved in the drawing database. An application that must refer to the same objects in the same drawing (or drawings) at different times can use the objects' handles.
+
+1『处理的逻辑：要么是处理选择集，要么是处理特定的实体。』
+
+AutoLISP uses symbol tables to maintain lists of graphic and non-graphic data related to a drawing, such as the layers, linetypes, and block definitions. Each symbol table entry has a related entity name and handle and can be manipulated in a manner similar to the way other AutoCAD ® entities are manipulated.
+
+1『利用 symbol tables 来定位要操作的实体。』
+
+Selection sets are groups of one or more selected objects (entities).
+
+You can interactively add objects to, remove objects from, or list objects in a selection set. The following example code uses the ssget function to return a selection set containing all the objects in a drawing.
+
+AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets:
+
+1. ssget - Prompts the user to select objects (entities), and returns a selection set.
+
+2. ssadd - Adds an object (entity) to a selection set, or creates a new selection set.
+
+3. ssdel - Removes an object (entity) from a selection set.
+
+4. ssname - Returns the object (entity) name of the indexed element of a selection set.
+
+5. sslength - Returns an integer containing the number of objects (entities) in a selection set.
+
+The ssget function provides the most general means of creating a selection set. It can create a selection set in one of the following ways:
+
+1. Explicitly specifying the objects to select, using the Last, Previous, Window, Implied, Window Polygon, Crossing, Crossing Polygon, or Fence options.
+
+2. Specifying a single point.
+
+3. Selecting all objects in the database.
+
+4. Prompting the user to select objects.
+
+With any option, you can use filtering to specify a list of properties and conditions that the selected objects must match.
+
+Note: Selection set and entity names do not remain the same between drawing sessions.
+
+
+
+
+
+
+
+
 
 
 
@@ -108,7 +155,24 @@ The following table identifies the entities that do not require subentity marker
 
 1『显然，这里面有「圆」CIRCLE。』
 
-1『这个章节里的 2 个源码好好看下。怎么创建「CIRCLE」实体，怎么创建「MTEXT」实体。想着参考「MTEXT」实体来创建「TEXT」实体，发现有问题，待解决。』
+1『
+
+这个章节里的 2 个源码好好看下。怎么创建「CIRCLE」实体，怎么创建「MTEXT」实体。想着参考「MTEXT」实体来创建「TEXT」实体，发现有问题，待解决。
+
+解决办法，对象类型从 MTEXT 改为 TEXT，指定的实体从 AcDbMText 改为 AcDbText。解决办法的来源是在书籍「2019116AutoCAD_Platform_Customization.equb」里搜 AcDbText 关键词找到的。
+
+```
+(entmake '((0 . "TEXT");object style
+  (100 . "AcDbEntity");required for all post-R12 entities
+  (8 . "ALATER")	;layer
+  (100 . "AcDbText")	;identifies the entity as TEXT
+  (40 . 3.0)		;height
+  (7 . "HZTXT")		;font style
+  (10 4.0 12.0 0.0)	;insert point
+  (1 . "hello dalong")))	;content
+```
+
+』
 
 Complex entities (an old-style polyline or a block) can be created by making multiple calls to entmake, using a separate call for each subentity.
 
