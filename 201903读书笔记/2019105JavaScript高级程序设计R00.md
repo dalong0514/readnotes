@@ -1,3 +1,5 @@
+# 2019105JavaScript高级程序设计R00
+
 ## 记忆时间
 
 ## 卡片
@@ -74,6 +76,8 @@
 
 JavaScript 是基于 Java 的一种非常松散的面向对象语言，也是 Web 开发中极受欢迎的一门语言。JavaScript，尽管它的语法和编程风格与 Java 都很相似，但它却不是 Java 的「轻量级」版本。JavaScript 是一种全新的动态语言，它植根于全球数亿网民都在使用的 Web 浏览器之中，致力于增强网站和 Web 应用程序的交互性。
 
+1『JavaScript 是动态语言。』
+
 在本书中，我们将对 JavaScript 追根溯源，从它在最早的 Netscape 浏览器中诞生谈起，一直谈到今天的它对 DOM 和 Ajax 的强大支持。读者将通过本书掌握如何运用和扩展这门语言，从而更好地满足自己的需求，以及如何实现客户端与服务器的无缝通信，而又不必求助于 Java 或隐藏的网页框架（frame 元素）。一言以蔽之，本书将教会你在面对各种常见的 Web 开发问题时，如何拿出自己的 JavaScript 解决方案。
 
 本书首先介绍了 JavaScript 的起源及其发展现状，随后讨论了构成 JavaScript 实现的各个组成部分，重点讲解了 ECMAScript 和 DOM 标准。此外，还对不同 Web 浏览器的 JavaScript 实现之间存在的差异，给出了相应的说明。
@@ -82,7 +86,9 @@ JavaScript 是基于 Java 的一种非常松散的面向对象语言，也是 We
 
 第 1 章「JavaScript 简介」，讲述了 JavaScript 的起源：因何而生，如何发展，现状如何。涉及的概念主要有 JavaScript 与 ECMAScript 之间的关系、DOM（Document Object Model，文档对象模型）、BOM（Browser Object Model，浏览器对象模型）。此外，还将讨论 ECMA（European Computer Manufacturer's Association，欧洲计算机制造商协会）和 W3C（World Wide Web Consortium，万维网联盟）制定的一些相关标准。
 
-第 2 章「在 HTML 中使用 JavaScript」，介绍了如何在 HTML 中使用 JavaScript 创建动态网页。这一章不仅展示了在网页中嵌入 JavaScript 的各种方式，还讨论了 JavaScript 内容类型（content-type）及其与 script元素的关系。
+1『BOM 是一些对象的集合。是负责处理与浏览器自身有关的交互操作的对象集合，比如对象 window、document、location、navigator 和 screen。』
+
+第 2 章「在 HTML 中使用 JavaScript」，介绍了如何在 HTML 中使用 JavaScript 创建动态网页。这一章不仅展示了在网页中嵌入 JavaScript 的各种方式，还讨论了 JavaScript 内容类型（content-type）及其与 script 元素的关系。
 
 第 3 章「基本概念」，讨论了 JavaScript 语言的基本概念，包括语法和流控制语句。这一章也分析了 JavaScript 与其他基于 C 的语言在语法上的相同和不同之处，还介绍了与内置操作符有关的类型转换问题。
 
@@ -131,6 +137,12 @@ JavaScript 是基于 Java 的一种非常松散的面向对象语言，也是 We
 第 25 章「新兴的 API」，介绍了为增强浏览器中的 JavaScript 而创建的新 API。虽然这些 API 还没有得到完整或全面的支持，但它们已经崭露头角，有些浏览器也已经部分地实现了这些 API。这一章的内容主要是 Web 计时和文件 API。
 
 ## 01. JavaScript 简介
+
+### 1. 逻辑脉络
+
+JavaScript 是专为与网页（web）交互而设计的脚本语言，三大核心：ECMAScript、DOM 和 BOM。ECMAScript 提供核心语言功能；DOM 提供访问和操作网页内容的方法和接口；BOM 提供与浏览器交互的方法和接口。
+
+### 2. 摘录及评论
 
 JavaScript 是一种专为与网页交互而设计的脚本语言，由下列三个不同的部分组成：
 
@@ -251,6 +263,12 @@ Internet Explorer 3 和 Netscape Navigator 3 有一个共同的特色，那就�
 请注意，只有 Netscape/Mozilla 浏览器才遵循这种编号模式。例如，IE 的 JScript 就采用了另一种版本命名方案。换句话说，JScript 的版本号与上表中 JavaScript 的版本号之间不存在任何对应关系。而且，大多数浏览器在提及对 JavaScript 的支持情况时，一般都以 ECMAScript 兼容性和对 DOM 的支持情况为准。
 
 ## 02. 在 HTML 中使用 JavaScript
+
+### 1. 逻辑脉络
+
+用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+
+### 2. 摘录及评论
 
 把 JavaScript 插入到 HTML 页面中要使用 script元素。使用这个元素可以把 JavaScript 嵌入到 HTML 页面中，让脚本与标记混合在一起；也可以包含外部的 JavaScript 文件。而我们需要注意的地方有：
 
