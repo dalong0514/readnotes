@@ -201,6 +201,8 @@ You can define test groups with nested Boolean expressions to filter objects fro
 
 The following table lists the grouping operators that you can use to filter selection sets:
 
+![](./res/2019023.png)
+
 The grouping operators are specified by -4 dxf group codes, like the relational operators. They are paired and must be balanced correctly in the filter list or the ssget call will fail.
 
 ```
@@ -388,8 +390,6 @@ The following example code illustrates how ssadd can be used in conjunction with
 )
 ```
 
-1『上面的方法实现了，新建选择集并新增实体到这个已有的选择集。』
-
 #### About Entity Context and Coordinate Transform Data (AutoLISP)
 
 The nentsel and nentselp functions are similar to entsel, except they return two additional values to handle entities nested within block references.
@@ -502,13 +502,13 @@ Note: This is the only AutoLISP function that uses a matrix of this type. The ne
 
 Using the entity name previously obtained with nentsel, the following example illustrates how to obtain the MCS start point of a line (group code 10) contained in a block definition:
 
-Command: (setq edata (assoc 10 (entget (car ndata))))
+    (setq edata (assoc 10 (entget (car ndata))))
 
 (10 -1.0 1.0 0.0)
 
 The following statement stores the Model to World Transformation Matrix sublist in the symbol matrix.
 
-Command: (setq matrix (caddr ndata))
+    (setq matrix (caddr ndata))
 
 ```
 ((0.707107 0.707107 0.0)   ; X transformation
@@ -578,7 +578,7 @@ For entity types introduced in AutoCAD Release 13 and later releases, you must a
 
 The following table identifies the entities that do not require subentity marker entries in the list passed to entmake:
 
-![](./res/2019016.png)
+![](./res/2019024.png)
 
 #### 2.2.2 About Creating Complex Entities without Using the Command Function (AutoLISP)
 
