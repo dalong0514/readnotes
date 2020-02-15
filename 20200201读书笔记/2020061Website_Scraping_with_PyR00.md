@@ -908,6 +908,137 @@ with open('result.csv', 'w') as outfile:
 
 
 
+## 04. Using Scrapy
+
+In my opinion, this is the only viable tool available currently for Python, which can handle complex scraping tasks out of the box. You can cache web pages, and add parallelism as you wish; you only need to configure Scrapy properly and write the extraction code.
+
+In this chapter you will learn how to get the most out of Scrapy for the majority of your website scraping projects. You will write the Sainsbury’s extractor, configure Scrapy to create a website-friendly spider, and you will learn how to apply custom exporting options to the extracted information. As opposed to the previous chapter, where I introduced Beautiful Soup at the beginning and you created the project to scrape the Sainsbury’s website afterward, now you will learn the basics of Scrapy through implementing the project scraper. Toward the end of this chapter I’ll add more information and insights into the tools that we didn’t use for the project, but I think it is useful to know if you write your own scrapers in the future.
+
+Note The developers of Scrapy recommend installing the tool into a virtual environment. This is a good practice to have a clean version of your scraping tool; and this hinders you from updating a dependency of Scrapy to a noncompatible version, which will render your scraper nonworking.
+
+Configuring the Project. Before you dive into the code of the main scraper you will implement with Scrapy, you should configure your project properly. Basic configuration is required to show you are a “good citizen,” and your spider is a well-raised tool too. The basic configuration I suggest you do every time is to add the user agent and see that the robots.txt file is honored.
+
+Fortunately, the basic project skeleton of Scrapy comes with a configuration file where most of the settings are set properly or are commented out but tell you about the option and which values it accepts. You can find the configuration of the project in the settings.py file. If you take a look at it, you will see a lot of options added; most of them are commented out. The default values work perfectly fine for most scraping projects, but you can tune them if you think it gives you better performance or you need some more complexity added. The two properties I always use are: USER_AGENT and ROBOTSTXT_OBEY.
+
+The names of these properties already tell you what they are good for. For the USER_AGENT, you see a default that consists of the bot’s name (sainsburys) and an example domain. I change it mostly to a Chrome agent. You can obtain one through the DevTools of Chrome: you open the Network tab, load a web page normally in your browser, click on the request in the Network tab, and copy the value of User Agent in the Headers tab of the request. This works even if you are offline.
+
+1『这是目前知道的第二种获取客户端信息的办法，第一种是直接在 Chrome 里输入「http://httpbin.org/get?a=123&b=456」即可获得相关信息。User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36。』
+
+And to be a good citizen, leave the ROBOTSTXT_OBEY on True. With this, Scrapy takes care of handling the contents of the robots.txt file if one is present. I suggest you delete all commented-out settings. This will help you in reading the file later and you see all active configuration at once; you do not have to scroll through all the lines to see which is commented out. it is hard even in an iDe with good color coding.
+
+Besides these properties, I suggest you add CONCURRENT_REQUESTS = 1. This reduces the speed of the spider, but while testing, you will run the code quite a lot and you don’t want to get banned from the website right at the beginning — or you don’t want the website’s servers to be done just because you (and 99,999 other readers) run the scraper simultaneously and the servers cannot handle the load. If you look at the commented code, you’ll find that the default value for this is 16. I’ll add a section where I will turn up the number of parallel requests and will do a flawed microbenchmark. To summarize: my final settings.py file looks like this. Now that the basic configuration is done, we can implement the spider that will do the work for us.
+
+2『采纳了作者的意见，CONCURRENT_REQUESTS = 1。』
+
+Terminology. While setting the configuration, you have had the option to learn some of Scrapy’s terminology, like middleweare or pipeline. They are the building blocks of this scraper, where you can implement your own code and extend the functionality if it is missing something you need.
+
+Middleware. Middlewares are hooks into Scrapy; this means, you can extend the already available functionality. There are two types of middlewares in Scrapy: 1) Downloader middlewares. 2) Spider middlewares.
+
+As their names already suggest, you can either extend the downloader (add your own cache, proxy the calls, modify requests prior sending, or ignore requests, just as a few examples), or the parser functionality (filter out some responses, handle spider exceptions, call different functions based on the response, etc.).
+
+For basic scraping there’s no need to write your own middlewares, because you can get along well with the tools available — and as Scrapy is evolving, more custom code gets into the standard library. Middlewares need to be activated in the settings.py file.
+
+```
+DOWNLOADER_MIDDLEWARES = { 'yourproject.middlewares.CustomDownloader': 500 }
+SPIDER_MIDDLEWARES = { 'yourproject.middlewares.SpiderMiddleware': 211 }
+```
+
+If you have your middlewares but they don’t seem to work, you might have forgotten to activate them. Another reason could be that they are executed at the wrong position: the number you provide as the value in the dictionary tells Scrapy about the order in which the middleware should be executed: 1) For downloader middlewares, the process_request method is called in increasing order. 2) For downloader middlewares, the process_response method is called in decreasing order. 3) For spider middlewares, the process_spider_input method is called in increasing order. 4) For spider middlewares, the process_spider_output method is called in decreasing order. Therefore, it can happen that you expect something in the request / response / input / output, but it was handled by a middleware with a lower / higher priority.
+
+Pipeline. Pipelines handle the extracted data. This involves cleaning, formatting, and sometimes exporting the data. Even though Scrapy has built-in pipelines that export your data in a given format (CSV, JSON — more on these later in this chapter), sometimes you need to write your own pipeline to configure the result to meet your (your customers’) expectations. You will write more pipelines than middlewares while you’re working as a pro scraper. Nevertheless, it is not as bad as it might sound. In this chapter we will create a simple item pipeline to show you how it is done. Similar to middlewares, you have to activate your pipelines in the settings.py file.
+
+    ITEM_PIPELINES = { 'yourproject.pipelines.MongoPipeline': 418 }
+
+Extension. Extensions are singleton classes that get instantiated once at startup and contain custom code, which you can use to add some custom functionality that is not related to downloading or scraping like a middleware does. Such extensions can be used for logging, or monitoring memory consumption (these are already built-in extensions). Extensions can be loaded the same way as middlewares and pipelines in settings.py.
+
+    EXTENSIONS = { 'scrapy.extensions.memusage.CoreStats': 500 }
+
+
+2『经验证，这些配置都先别设，否者抓取不了数据，目前也不清楚问题出在哪里。』
+
+Selectors. This is the most important term you will encounter while using Scrapy. Selectors are the code parts that select certain parts of the HTML. As you can see, selectors work similar to Beautiful Soup and lxml but they are the Scrapy version, and you can use XPath or CSS expressions. I prefer XPath expressions because I worked for years with XML and XML transformations. Selectors are objects in Scrapy, and because of this they can be constructed from a text.
+
+```
+from scrapy.selector import Selector
+
+selector = Selector(text='<html><body><h1>Hello Selectors!</h1> </body></html>') 
+print(selector.xpath('//h1/text()').extract()) 
+# ['Hello Selectors!']
+```
+
+or from a response:
+
+```
+from scrapy.selector import Selector 
+
+from scrapy.http import HtmlResponse
+
+response = HtmlResponse(url='http://my.domain.com', body='<html><body><h1>Hello Selectors!</h1></body></html>', encoding='UTF-8') 
+print(Selector(response=response).css('h1::text').extract()) 
+# ['Hello Selectors!']
+```
+
+However, because selectors are the way to extract data, you can conveniently access them from your response using [response.xpath()] or [response.css()]. And this makes Scrapy a great tool in my opinion: you don’t have to bother creating selector objects, but use the available convenient method accesses. Follow the links if you want to read more about CSS selectors 2 or XPath expressions.3 
+
+[Selectors Level 4](https://www.w3.org/TR/selectors/)
+
+[xpath cover page - W3C](https://www.w3.org/TR/xpath/all/)
+
+Implementing the Sainsbury Scraper. To start working on the extraction code, you will need a spider generated. As you have seen in the previous section, where you created and configured the base of the project, you can do it with the genspider command. Let’s do it right now. First change the directory to the one where you generated your bot, and then execute the following command:
+
+    scrapy genspider sainsburys 'https://www.sainsburys.co.uk/shop/gb/groceries/meat-fish/'
+
+When executing the preceding command, you get a strange message: Cannot create a spider with the same name as your project. Well, if we cannot get a spider with the same name, let’s give it a different name. My suggestion is a name that is easy to remember for you. I use mostly "basic" because it’s easy to write and I have a basic scraper to do the extraction for me. The project already has a unique name; and with basic I can always start my spiders, regardless of the project.
+
+    scrapy genspider basic www.sainsburys.co.uk/shop/gb/groceries/meat-fish
+
+The response now is different. Created spider 'basic' using template 'basic' in module: sainsburys.spiders.basic
+
+With this command, Scrapy added a basic.py file to the project’s spiders folder. This file will be the base of your spider; here will you implement the extraction code. 
+
+What’s This allowed_domains About? If you looked at the code thoroughly, you have seen there’s a list of allowed domains. This list is used to give the spider a bound. Without setting the allowed domains, you could write a script that goes through the Internet (following every link on the pages it scrapes). For most purposes, you want to keep your scraping in one domain. However, sometimes you have to deal with internal or subdomains. In those cases, you can extend this list manually to fix such “issues.” And here you should set the domain only. When you generated the spider, it added the whole URL to this list, but you need something like this. you can find the source code for an empty project with my default configuration among the sources for this chapter in the folder 01_empty_project.
+
+    allowed_domains = ['www.sainsburys.co.uk']
+
+Preparation. This section is brief. If you followed along, you have everything configured and there is no need for any other preparation. Just a quick checklist to see if you are ready to go: 1) You’ve read the requirements of Chapter 2. 2) You’ve created a Scrapy-project. 3) You’ve configured the project as described in this chapter. 4) You’ve created a spider.
+
+Using the Shell. One function of Scrapy I like to utilize for preparation work is to use its shell, which gives us an environment to test and prepare code snippets for extraction. And because the shell behaves just like your spider code will, it is ideal for creating the building blocks of your application.
+
+With a naive approach (or similar, like we did in the previous chapter), you’d write a part of your code and run the spider. If there’s an error, you’d fix the code and rerun the spider. This is OK if the website doesn’t limit access based on requests. If there’s a limit, you may end up exceeding it and your spider (and your computer, current IP, whole company network4 ) is banned from the website. And, as I have seen, Sainsbury’s runs behind CloudFlare — you better not send parallel requests to their website!
+
+The Scrapy shell works differently: it downloads your target web page and you can create your extraction logic on this copy. If you need to move to another page, you let the shell download it and you are good to write the next chunk of code. Starting the shell is easy.
+
+scrapy shell. You can pass along a \<url> parameter, which is your target URL. For this book we will use https://www.sainsburys.co.uk/shop/gb/groceries/meat-fish/:
+
+    scrapy shell https://www.sainsburys.co.uk/shop/gb/groceries/meat-fish/
+
+Alternatively, you can also fetch the URL when you open Scrapy’s shell without any, or with a different URL.
+
+    >>> fetch('https://www.sainsburys.co.uk/shop/gb/groceries/meat-fish/')
+
+Now the shell has downloaded the web page behind the URL. This means two things: now you have access to the Meat & Fish page’s content and can try your extractors; and second, you have to download every page you want to use in the shell. Even though the second point sounds bad, it is not: getting other pages is made easy in Scrapy and therefore in the shell too. In the shell you have access to a response object (just like in the parse method, which we will write later in this chapter), and with this response you can use the available selectors.
+
+I don’t want to dig very deep into how to use the shell to prepare your scraper script. Therefore, we will do one example: we get the URLs to the next page. This will give you a good start and the feel of using the shell for further preparation.
+
+As you may remember, the links that lead to the detailed pages can be found in an unordered list (\<ul class="categories departments">). The list’s elements (\<li>) have an anchor child (\<a>), and the value of the href attribute of these anchors is the URL we are looking for. To get the list of these URLs, you can write the following code using XPath:
+
+    urls = response.xpath('//ul[@class="categories departments"]/li/a/@href').extract()
+
+Using CSS selectors, this would look like this:
+
+    urls = response.css('ul.categories.departments > li > a::attr(href)').extract()
+
+And that is it. You have all the URLs that lead to either product listings of the category or to a site containing more subcategories, just like in the previous chapter. I suggest you dig a bit deeper into XPath and CSS selectors for now, to understand the extractor code that you will write starting with the next section.
+
+1『找翻页的方法。』
+
+
+
+
+
+
+
+
 
 
 
