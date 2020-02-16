@@ -1,3 +1,5 @@
+# 2020061Website_Scraping_with_R01
+
 ## 记忆时间
 
 ## 卡片
@@ -910,6 +912,16 @@ with open('result.csv', 'w') as outfile:
 
 ## 04. Using Scrapy
 
+### 1. 逻辑脉络
+
+如何用 scrapy 框架抓取一个没有 JS 的静态网页里指定的元素。
+
+### 2. 摘录及评论
+
+In this chapter you learned about Scrapy, the tool for website scraping. You implemented the scraper for the requirements of Chapter 2 with Scrapy. You have seen that you need to write much less than when you use a homemade spider where you have to handle requests — just to mention one example. You learned some advanced topics too like writing your own middleware, pipelines, and extensions, and what the result is if you turn some knobs on the configuration panel.
+
+Now you are a full-fledged website scraper. You have the tools with which you can complete 75% of all scraping jobs. Feel free to stop reading here, but keep in mind that these 75% are decreasing with the emerging number of JavaScript-heavy websites that render data dynamically. The next chapter will cover an advanced topic I rarely use: handling web pages with JavaScript. There are different approaches, and we will go a bit deeper because I will show you options other than Selenium. If you are interested in the “Why?,” keep on reading!
+
 In my opinion, this is the only viable tool available currently for Python, which can handle complex scraping tasks out of the box. You can cache web pages, and add parallelism as you wish; you only need to configure Scrapy properly and write the extraction code.
 
 In this chapter you will learn how to get the most out of Scrapy for the majority of your website scraping projects. You will write the Sainsbury’s extractor, configure Scrapy to create a website-friendly spider, and you will learn how to apply custom exporting options to the extracted information. As opposed to the previous chapter, where I introduced Beautiful Soup at the beginning and you created the project to scrape the Sainsbury’s website afterward, now you will learn the basics of Scrapy through implementing the project scraper. Toward the end of this chapter I’ll add more information and insights into the tools that we didn’t use for the project, but I think it is useful to know if you write your own scrapers in the future.
@@ -1030,17 +1042,481 @@ Using CSS selectors, this would look like this:
 
 And that is it. You have all the URLs that lead to either product listings of the category or to a site containing more subcategories, just like in the previous chapter. I suggest you dig a bit deeper into XPath and CSS selectors for now, to understand the extractor code that you will write starting with the next section.
 
-1『找翻页的方法。』
+1『找「翻页」的方法。』
+
+def parse(self, response). Now we are good to go to write the code in the basic.py file. The parse method is the core of every spider. This method is called every time Scrapy downloads a URL, and most of the time you write your extraction code in this method. The response argument holds the response from calling the URL. It can contain the website’s content but sometimes you can get back error codes, for example, when the website is down or nonexistent.
+
+You can write a whole scraper into the parse method, but I suggest organizing your code into methods (and actually, this is the suggested practice of many developers). This helps you in the future to understand what the code wants to achieve. Therefore, the parse function will be very sparse: it extracts only the URLs to the category pages (the same from the preparation with the shell), and initiates the download and parsing of those pages.
+
+1『parse() 方法的说明，This method is called every time Scrapy downloads a URL.』
+
+```
+from scrapy import Request
+
+# some code left out...
+
+def parse(self, response):
+    urls = response.xpath('//ul[@class="categories departments"]/li/a/@href').extract()
+    for url in urls:
+        yield Request(url, callback=self.parse_department_ pages)
+```
+
+The preceding code extracts the href attributes of every anchor element of the list of the desired class. The interesting part is how the scraping is continued: you yield a new Request object with the target URL as the first parameter and the callback function that should be called if the server returns an OK-ish response for the given URL. In this case it will be the parse_department_pages method of this same class. There’s an alternative way to get to the next page with writing less code.
+
+```
+def parse(self, response):
+
+    urls = response.xpath('//ul[@class="categories departments"]/li/a')
+    for url in urls:
+        yield response.follow(url, callback=self.parse_ department_pages)
+```
+
+Here we use the syntactic sugar of Scrapy: under the hood the same code is executed, but you don’t have to bother with extracting the exact reference from the anchor tags. And sometimes you don’t get a fully qualified (absolute) URL in web page links but relative references, and you have to manually add the host (or use urljoin). By using response.follow you get this out of the box too. Therefore, I suggest you use this syntax, and I’ll use this in the book too!
+
+1『建议用语法糖，response.follow(url, callback=self.parse_ department_pages)，当要使用相对文件地址时其优势就体现出来了；\<a> 指锚标签元素（anchor tags）。』
+
+Currently, as of version 1.4.0, you have to provide a single URL or Linktype object to the follow method. I bet that someone will add a method that accepts a list (for example follow_all) too, because we like make things easier. With this, we are done with this section. Let’s move on and see how to get to the product pages. At the end of this section, your basic.py file should look like this:
+
+2『
+
+有几个正则规则要机会弄明白，作者每个源码里都有。
+
+```
+import re
+
+# what is the meaning?
+reviews_pattern = re.compile("Reviews \((\d+)\)")
+item_code_pattern = re.compile("Item code: (\d+)"
+```
+
+』
+
+Navigating Through Categories. Your first task is to navigate through the category pages of the Sainsbury’s website. You have seen in the previous chapter how complex it can get to find the page where the item details are. As you have seen in the previous chapter, each category’s link can lead either to the product listing or to a page containing subcategories and their links, which can lead to either the product listing page or a third page with sub-subcategories. Fortunately, there is no deeper layering.
+
+In this section we will handle the case wherin your code in the previous section resulted in a sub- or sub-subcategory page and not the product detail. We sent requests with Scrapy in the previous section and told the tool to handle the responses with the parse_department_pages method. To implement this method, we have to take care of the three versions of the response: 1) We get a product listing page. 2) We get a sub-category page. 3) We get a sub-sub-category page.
+
+If the response is a product listing, the idea is to forward the response to the next section’s method. However, we must take care of triggering the requests. The resulting block will look like this one:
+
+```
+product_grid = response.xpath('//ul[@class="productLister gridView"]')
+if product_grid:
+    for product in self.handle_product_listings(response):
+        yield product
+```
+
+In the preceding code, we call the handle_product_listings method with the response object. We could provide the product grid too (or just the grid) because we have it already extracted but, as you will see later, we need the response to navigate between the pages of the product grid. Then we yield the result, which is the trigger for Scrapy to scrape these URLs too.
+
+The next step is to get through the deeper layers of categories, which are represented by CSS classes like aisles (class="category aisles") and shelves (class="category shelves") — just like in your supermarket. The trick here is to check if the page’s source contains shelves and if not, then go for aisles. This is because a page containing shelves contains aisles too, and if you get the aisles links first you can end up in a neverending circle of getting the same pages over and over again if you don’t use caching. And getting the same pages means slower scraping (actually, never ending) and a lot of duplicate items in your scraping result.
+
+```
+pages = response.xpath('//ul[@class="categories shelf"]/li/a') 
+if not pages:
+    pages = response.xpath('//ul[@class="categories aisles"] /li/a') 
+if not pages:
+# here is something fishy 
+    return
+for url in pages:
+    yield response.follow(url, callback=self.parse_department_ pages)
+```
+
+The preceding code follows the approach mentioned previously: it looks for shelves and if they are not found, it looks for aisles. If nothing is found, then we are at a page from which we cannot gather more information: we have extracted the links to the product listings or there are no links to aisles or shelves on the page. At the end of this section, your basic.py file should look something like this:
+
+Navigating Through the Product Listings. Now your code leads at some point to a product listing page. In this section we will navigate through these pages if they have too many elements to display on one page, and we will request a download for the detailed item pages. We are currently in the handle_product_listings function. Let’s start with the item details.
+
+```
+urls = response.xpath('//ul[@class="productLister gridView"]//li[@class="gridItem"]//h3/a') 
+for url in urls:
+    yield response.follow(url, callback=self.parse_product_detail)
+```
+
+The preceding code extracts the URLs to the detailed pages, and these URLs are then returned to the parse_department_pages method where their scraping is triggered.
+
+```
+next_page = response.xpath('//ul[@class="pages"]/li [@class="next"]/a') 
+if next_page:
+    yield response.follow(next_page, callback=self.handle_ product_listings)
+```
+
+This code looks for the link to the next page. If one is found (on the website, it’s under the > symbol) then it is returned to the parse_ department_pages method. Note here the callback method: Because we know that we get another page of product listing, we can use the same method as a callback. After finishing this section, your basic.py file should look like this:
+
+Extracting the Data. Now that your code can handle the complex navigation and find the item details page, it’s time to extract the required information from the website. We are currently in the parse_product_detail method. Now it is time to extract all the required information from the item page. Actually, this process is the same as you did in the previous chapter (if you coded along): you can use the queries; however, you can save some lines of code on validating every find or find_all call.
+
+Without talking too much, let’s jump into the code. if you want, you can put down the book and implement the extraction logic. it is not hard, and you can use the information from the previous two chapters to go with. My solution looks like this (yours may differ):
+
+And that is it. Extracting information on a product takes up to 30 lines of code (with my custom formatting settings). And this is just great! As you can see in the code, there are some interesting code blocks. For example, every xpath call returns a list, even if you know there has to be at most one result. And some of those lists are empty because the product doesn’t have ratings or unit information. As with Beautiful Soup, you must handle such cases with Scrapy too. After this section, your basic.py file should look something like this:
+
+Where to Put the Data? OK: you have followed along, implemented the product extractor, and you have a lot of variables in your spider that contain the information for the project, but where to store them? With Scrapy, you have to store data in so-called items. These items are plain old Python classes and can be found in the items.py file. Besides this, these items behave as dictionaries: you declare them as Python classes and can fill them like dictionaries using a key-value assignment. If you have run your spider after the previous step, you might have seen entries in the console like this one:
+
+    2018-02-11 11:06:03 [scrapy.extensions.logstats] INFO: Crawled 47 pages (at 47 pages/min), scraped 0 items (at 0 items/min)
+
+Here you can see that there were no items scraped. We will fix this now. Let’s adapt the parse_product_detail method to put the data into an item. To do this, first of all we need an item, which is already there in the items.py file. This class is currently empty; we must add fields to it. Because I don’t like to write scrapy.Field() every time (even if it is just copy+paste), I like to do “static” imports (from scrapy import Item, Field). My solution looks like this; yours may differ, depending on how you named your fields.
+
+As you can see, the problem with this approach will come in the code: for the nutrition table you get strings as keys and you have to map them to these field names. This makes things complicated. Besides this, there are over 70 different fields that you must map. I don’t think it useful to include such mapping code here. If you are interested, you can give it a try, but it is not a requirement of this book or website scraping in general.
+
+1『这里作者留了一个难题待挑战。』
+
+When we export the results to files later in this chapter, we will take a closer look at how fields containing dictionaries are exported by default and what we can do to get the same results as in Chapter 2. Now to add and use items, you have to adapt the parse_product_ detail method like this:
+
+This involves defining the new item (add the import to the file: from sainsburys.items import SainsburysItem) and then use it like a dictionary. I used the variable names from the previous version as the Field names in my item definition, but it is up to you how to name your fields. You just must find the right mapping. Finally, you must yield the item, which makes Scrapy know there’s an item to handle. The current state of the spider can be found in the folder 02_basic_ spider among the sources of this chapter.
+
+1『mapping 的概念很重要，很多地方看到这个概念。』
+
+Why Items? Good question! Because items are dictionary-like objects; alternatively, you can use dictionaries to store your information. item = {} This doesn’t result in any difference in coding or handling results, although Scrapy’s items hold some extended information that some components use. For example, exporters look at which fields to export, serialization can be customized by Items metadata, and you can use them to find memory leaks. You will see later in this chapter that sometimes it is convenient to use a simple dictionary instead of an item. But for now, you should use items.
+
+Running the Spider. Now it is time to start our spider, because we finished the extractor methods and added the items to export. To start the spider, execute:
+
+    scrapy crawl basic
+
+from your crawler-projects main folder (where the scrapy.cfg file is located). In my case, this is. Depending on your logging configuration, you either see something similar to this:
+
+or a lot more information buzzing through your screen. This is because of the default logging level. If you don’t set it explicitly to INFO, you get all information Scrapy-developers thought useful. And one portion of this information is the item that was gathered. It is good to see on the console which items are processed, but for more than 3,000 entries this generates a lot of unwanted output. These first lines of the prcedimg output tell you what configuration runs Scrapy. Here you can see the middlewares, pipelines, extensions, and all the important stuff to analyze if you encounter strange results.
+
+    2018-02-11 13:53:20 [scrapy.extensions.logstats] INFO: Crawled 220 pages (at 220 pages/min), scraped 205 items (at 205 items/min)
+
+Over time, a new line like the preceding one pops up on the screen. This tells you the current progress: how many pages are scraped, how many items are extracted, and how fast the scraping is. These numbers vary on your settings: if you increase the concurrent requests and decrease the delay between requests, this will get faster (depending on the target website, of course). If you find such statistics annoying, you can disable them by adding the following to your spider’s settings.py:
+
+    EXTENSIONS = { 'scrapy.extensions.logstats.LogStats': None }
+
+When the scraping is done, you will see a similar summary to this:
+
+    2018-02-11 14:13:01 [scrapy.core.engine] INFO: Closing spider (finished) 2018-02-11 14:13:01 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+
+In these statistic dumps you can find the summary of the whole scraping process: requests, errors, different HTTP codes, number of items scraped, memory usage, and many other useful things. This can give you ideas about where to enable extensions (for example finding which outside domains were triggered or which page wasn’t found). Download finished in 20 minutes. This is way better than the run using my basic scraper from Chapter 3 (I let it run prior to this run and it took 4,009 seconds). And we didn’t have to write so much code.
+
+Exporting the Results. Now you have the extracted data, you have the items representing the information, but the results are gone as soon as the spider finishes, and the Python process is gone from the memory of your computer. Fortunately, Scrapy offers you built-in solutions, but they are very basic (you can call them primitive). But there’s a way to plug in your custom solution and make the scraper behave. In this section we will first explore the built-in options and see if they’re really so primitive. Then we will take a look at how to shape the export to our needs — and yes, this requires writing some code.
+
+Because Scrapy knows that scraping results in saving extracted information, it doesn’t require you to configure the exporter pipeline. You can tell Scrapy to export the scraped results easily via the command-line using the -o option. From this, Scrapy will figure out what type of file you want to save if you provide the right file-extension (.csv for CSV, .json for JSON), or you can add the -t option too and tell in what format you want the data in your specified output file (the value provided with -t has to be a valid feed exporter — more on those later).
+
+The only problem I encountered with these default exporters is that they append the results to the file: if the file doesn’t exist, there’s no problem. However, if the file exists and has contents (for example from a previous run) then the new data is simply appended to the file, resulting in invalid content. Besides the JSON and CSV exporters I will discuss in the next section, you can export your items in XML, Pickle, or Marshal format. They are done with built-in item exporters and use already provided functionality.
+
+1『我也发现了，如果输出的文件是存在的，输出的数据时累加进原来的文件，而不是覆盖掉。』
+
+To CSV. The first approach is to export everything to CSV. As you can see in the previous paragraph, you simply have to run the spider with the -o option providing a CSV file.
+
+    scrapy crawl basic -o sainsburys.csv
+
+If the scraper is finished, you can open the sainsburys.csv file and look at its contents. Note For Windows users, you may encounter extra blank lines in your file. This is because of a currently open bug in Scrapy but the main reason is in the line-ending differences between the operating systems. There’s already a pull-request at github 5 when i’m writing this; it has been merged and i hope it’s available with the next released Scrapy version.
+
+『[[MRG+1] Fix for #3034, CSV export unnecessary blank lines problem on Windows by ReLLL · Pull Request #3039 · scrapy/scrapy](https://github.com/scrapy/scrapy/pull/3039)』
+
+Because each line has a lot of content, I don’t want to list more here. But you can already see the interesting part: the nutrition column (in my example the second column). It has curly braces ({}) with the nutrition dictionary written out as text. This is not good; therefore, we will implement a custom item exporter to handle this case.
+
+To JSON. Exporting to JSON works similar to CSV: you provide a JSON file as output.
+
+    scrapy crawl basic -o sainsburys.json
+
+The result is a JSON file containing entries like this one. Using JSON, the nutrition dictionary fits great into the exported result. The keys could use a bit of tidying, but for now the structure looks great. There’s a little flaw in there: those nasty Unicode characters. To fix this, add the following line to your settings.py file:
+
+    FEED_EXPORT_ENCODING = 'utf-8'
+
+1『可以设置编码格式。』
+
+As an alternative to whole JSON files, you can use JSON-lines. This format exports every item as a single JSON object, which enables handling a large amount of data because you don’t have to load everything into memory and put it together into a megaobject to write to a file — or be read by your target platform. Scrapy has a built-in exporter for this result type too, and you can access it with the following command:
+
+    scrapy crawl basic -o sainsburys.jl
+
+If you look at your file system while running the spiders, you will see that JSON-lines files are written to the disk as soon as they’re processed by the item pipelines! You don’t have to wait till the scraping is done to get a valid file.
+
+To Databases. Well, for databases there’s no out of the box solution; you cannot add an extra parameter to the command line to write your results into a database. If you want your data stored in a database, then you have to write your own solution. However, because storing in a database is a use-case I often encounter, I wanted to add it into this section and not in the next one when I write about bringing your own exporter.
+
+We will take a look at two different types of databases: MongoDB and SQLite. They represent the approach to the majority of databases currently in use, although other cloud-based storage solutions are rising, but most of the clients are still using these types of databases.
+
+First let’s go and create the item pipeline. The idea while using any database is that you need a connection to the target database and you must clean up after you are finished. The pipeline above does this. open_spider is called every time the spider is started, when the scrape starts. close_spider is called when the spider finishes its work and is dismissed. And these are the two methods where you have to open and close the connection to the database. process_item processes the item, and in this case this item is stored in the database.
+
+But the most interesting method is the from_crawler. If present, it has to return a new instance of the pipeline. The crawler provided to the method should be used to access the crawler-specific settings. In the case of the example, we get the connection, database, and collection settingswhere the last two have default values and you don’t have to provide them. To have your pipeline working, you have to configure it in settings.py.
+
+    ITEM_PIPELINES = { 'sainsburys.pipelines.MongoDBPipeline': 300 }
+
+Then you need to provide the database configuration. You can do it either in the settings.py file (which makes the configuration hard-coded):
+
+    MONGO_URI = 'localhost:27017'
+
+or you can provide it through the command line when starting the spider:
+
+    scrapy crawl basic -s MONGO_URI=localhost:27017
+
+Because we’re using pymongo, we don’t even have to provide the database URI. In such cases, pymongo creates a default connection to localhost:27017. After running the spider, we can see the results in the database, as shown in Figure 4-2. you can find a spider using MongoDB to store the extracted information in the folder 03_mongodb among the sources for this chapter.
+
+SQLite. Similar to the MongoDB solution, when using a SQLite database, you have to open and close the connection when the spider is started and finished, respectively. Because handling the nutrition table gets too complex (with the 70 fields, which could be reduced), I won’t implement this part of the export. if you’re interested and want to give it a try, don’t feel intimidated by my approach! First, I defined the table DDL and the insert statement.
+
+As you can see, the class works almost the same as the MongoDB pipeline from the previous example. The interesting part comes when you insert it into the database. Because we have some nullable fields (and properties that don’t have to exist in the item), we have to ensure that we don’t encounter a Python error while saving. To test out the code, you have to add the pipeline to settings.py.
+
+```
+ITEM_PIPELINES = { 
+    'sainsburys.pipelines.MongoDBPipeline': None 
+    'sainsburys.pipelines.SQLitePipeline': 300 }
+```
+
+Now you can run the application.
+
+    scrapy crawl basic -s SQLITE_LOCATION=sainsburys.db
+
+Don’t forget to add the SQLite location with the -s settings flag. Without this you’ll get an exception. you can find a spider using sQLite to store the extracted information in the folder 04_sqlite among the sources for this chapter.
+
+Bring Your Own Exporter. This section is the most interesting if you followed along and think the default exporting solution doesn’t fit your needs. Besides item pipelines (which we implemented for database connections), you can define your own feed exporters. These work like the built-in CSV, XML, and JSON exporters but adapted to your taste. In this section we will take a look at both approaches, even though you’ve already written two item pipelines for database storage.
+
+You will now implement a CSV pipeline that will handle the nutritions field properly: instead of writing the whole dictionary as plain text, you will append the fields to the main content. This requires you to store the extracted items in a cache just like with Beautiful Soup, because you cannot know the possible fields you may encounter in all the items. Remember: The website has multiple different nutrition tables that have more or less the same fields.
+
+Filtering Duplicates. You remember the SQLite pipeline. There we defined INSERT OR REPLACE INTO when we saved an item into the database. This is because there are duplicate items that can be found from different pages on the website. With SQLite you can easily overcome this problem, but with other exports you get too much data, and duplicates are never good. Sure, the postprocessing (your customer or data mining algorithm) can fix this, but why not you? Because Scrapy is highly extensible, you will create a duplicate filter based on the item code.
+
+1『写入 SQLite 数据库的过程中可以方便的处理重复 items，还有其他的方法，即此处的主题。』
+
+```
+from scrapy.exceptions import DropItem
+
+class DuplicateItemFilter:
+    def __init__(self):
+        self.item_codes_seen = set()
+
+    def process_item(self, item, spider):
+        if item['item_code'] in self.item_codes_seen:
+            raise DropItem("Duplicate item found: %s" % item['item_code'])
+        self.item_codes_seen.add(item['item_code']) return item
+```
 
 
+The preceding code stores seen item codes in an internal set, and if the item code was seen already then it discards the item. To enable this pipeline, add the following code to your settings.py file:
 
+    ITEM_PIPELINES { 'sainsburys.pipelines.DuplicateItemFilter': 1 }
 
+Setting a low value for the pipeline ensures that duplicates are filtered as soon as they arrive, saving a lot of work for other tasks. And you can use such filter pipeline items for every possible kind of filtering. If you don’t want an item to be present in the final export, then you can create a filter pipeline, add it to your settings.py, and it handles missing values.
 
+Silently Dropping Items. If you add the item filter from the previous section and run your spider, you will see a lot of entries like this one:
 
+One solution would be to raise the LOG_LEVEL to ERROR, but with this approach you end up skipping other warnings that can be useful in analyzing not expected behavior. The other solution would be to write your own log-formatter for dropped items.
 
+```
+from scrapy import logformatter
+import logging
 
+class SilentlyDroppedFormatter(logformatter.LogFormatter):
+    def dropped(self, item, exception, response, spider):
+        return {
+            'level': logging.DEBUG,
+            'msg': logformatter.DROPPEDMSG,
+            'args': {
+                'exception': exception,
+                'item': item,
+            }
+        }
 
+```
 
+To use this formatter, you must enable it in the settings.py file.
 
+    LOG_FORMATTER = 'sainsburys.formatter.SilentlyDroppedFormatter'
 
+you can find a spider using the duplicate item filter in the folder 05_item_filter among the sources for this chapter.
 
+1『上面的类「SilentlyDroppedFormatter」，需要新建一个文件「formatter.py」，放在爬虫文件夹下，跟「pipelines.py」平行的。』
+
+Fixing the CSV File. Do you remember what problem the currently exported CSV files have? Yes, they write the nutrition information as plain text into one column of the CSV file. This is not ideal. Besides this, the order of the columns may vary between runs because they’re stored in a dictionary.6 You will implement an item pipeline that stores every item during the scraping process and exports only when the spider finishes.
+
+6 In the current version of Python, the dictionaries are ordered by their key per default. This means every time you run your spider on the same 3.6 CPython implementation, the order of the columns will stay the same.
+
+You can see that every processed item is converted to a new dictionary that contains all the fields of the original item, then nutritions and image_urls are removed, finally the original nutritions dictionary is added to this new item by combining the two dictionaries, and the result is stored in memory for later usage.
+
+When the spider finishes, all the different field names are extracted from all the items and are used as the CSV header. The order still varies between Python installations. To fix the order (at least for the standard properties that are not nutrition information) you can define a base list of properties and then add the missing values — something like this:
+
+As always, you can add this pipeline to your settings.py file.
+
+    ITEM_PIPELINES = { 'sainsburys.pipelines.CsvItemPipeline': 800, }
+
+However, using this approach, the CSV file will be written every time you run the spider, even if you export into a different format or don’t want any export. To solve this problem, let’s implement a feed exporter. you can find a spider using this CsV item pipeline in the folder 06_csv_pipeline among the sources for this chapter.
+
+CSV Item Exporter. Feed exports are similar to item pipelines, but you can write them in a general fashion and use them on-demand, without changing the settings.py file. You already used feed exporters (an alternative name for item exporters) when you saved information to CSV, JSON, or JSON-lines files using the -o output file and Scrapy could derive the exporter to use, or you can provide the -t option and tell Scrapy which exporter you want to use. The following list contains the currently built-in feed exporters:
+
+• csv: saves information as CSV.
+
+• json: saves information as JSON.
+
+• jsonlines: saves information as JSON-lines.
+
+• xml: saves information as XML.
+
+• pickle: saves information as Pickle data.
+
+• marshal: saves information in Marshal format, which is similar to Pickle (specific to Python) but doesn’t have any machine architectural issues.
+
+Because item exporters are similar to item pipelines, they process only one item at a time, we have to be tricky and save the items in memory just like for the CsvItemPipeline class. Basically, we will reuse the already written code and rename some methods. But item exporters have a problem: they don’t delete the file, they append to it. Fortunately, there is a solution: you can truncate the file to 0 bytes using the truncate() method. The extended constructor would look like this:
+
+Here you provided mycsv as the name of the feed exporter. This means, later you can call the spider using the -t option and mycsv as argument.
+
+    scrapy crawl basic -o mycsv.csv -t mycsv
+
+you can find an example spider using the just-created feed exporter in the folder 07_csv_feed_exporter among the sources for this chapter.
+
+1『新建一个文件「exporters.py」，放在爬虫文件夹下，跟「pipelines.py」平行的。』
+
+Caching with Scrapy. Even though I think using caching is an advanced configuration option, I’ve added an extra section for this topic to cover. This is because it improves your execution time by multiple times, and once you cache the website locally you can tweak your scraper script as you wish without overloading the target server. If you want to configure caching, for example while developing your scripts, there are some options in Scrapy. Naturally, you can write your own cache just like you did in the previous chapter but before you invest time, sweat, and brain cells into coding your cache, let’s see what is present, what can we utilize.
+
+Scrapy offers caching. The default configuration disables caching; this means, every page is downloaded every time you request it. But as you know, there are a lot of knobs you can turn, and you can enable caching with the HTTPCACHE_ENABLED = True setting.
+
+There are three HTTP cache options you can utilize out of the box: 1) File system storage. 1) DBM storage. 3)LevelDB storage.
+
+And as always, you can write your own solution too; however, I consider this scenario unlikely, because 90% of use-cases can be covered with the built-in solutions. My default caching configuration looks like this:
+
+```
+HTTPCACHE_ENABLED = True 
+HTTPCACHE_EXPIRATION_SECS = 0 
+HTTPCACHE_DIR = 'httpcache' 
+HTTPCACHE_IGNORE_HTTP_CODES = []
+```
+
+With this you can enable caching, and when you run your spider it stores every request-response pair on your file system in the .scrapy/httpcache folder in your project’s directory, and from now on it uses this cache when you rerun your spider. This is ideal for tweaking your script: download a snapshot of the target website and use it for fine-tuning your item extraction. 
+
+If you have any HTTP response codes that you don’t want cached, you can add them in the HTTPCACHE_IGNORE_HTTP_CODES list, for example:
+
+    HTTPCACHE_IGNORE_HTTP_CODES = [503, 418]
+
+Setting HTTPCACHE_EXPIRATION_SECS to 0 keeps files always in the cache. If you give it a positive value, older cached files are discarded. Note that this setting requires values in seconds! Let’s see what caching has to offer!
+
+Storage Solutions. In this section we will look at the different storage solutions Scrapy has to offer for caching. Out of the box you have the following options available: 1) File System Storage. 2) DBM Storage. 3) LevelDB Storage.
+
+But because you can extend Scrapy easily, you can write your own storage solution (for example to use a custom database, like MongoDB). If you ask me, I am fine with a file system–based solution. However, if you’re running on-demand (for example in the cloud or in a container environment), you may favor a remote caching service, which is most likely based on a database.
+
+File System Storage. If you enable HTTP caching, this is the default solution used. Even though it’s the default, you can add the following line to your settings.py file:
+
+    HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache. FilesystemCacheStorage'
+
+Using this storage option, all requests and responses are downloaded and stored in a folder whose name is unique for this scraper and is 40 characters long. In these folders is all the information identifying the request and the response the middleware will need to identify pages that should be served from the cache.
+
+DBM Storage. To activate the DBM 7 storage, just add (or replace if it exists).
+
+    HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache. DbmCacheStorage'
+
+The default setting is to use the anydbm module, but you can change it using the HTTPCACHE_DBM_MODULE setting.
+
+LevelDB Storage. You can also use LevelDB 8 (a fast key-value storage) for your cache, but it is not encouraged in the development phase of your project because it allows only a single process to access the database at the same time. This is OK if you just run your spider, but if you want to have the Scrapy shell open for your project and run the spider you will end up with an error. To use LevelDB you can change the HTTPCACHE_STORAGE to 'scrapy. extensions.httpcache.LeveldbCacheStorage' in the settings.py file and install LevelDB with the following command:
+
+    pip install leveldb
+
+8 [google/leveldb: LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values.](https://github.com/google/leveldb)
+
+Cache Policies. Scrapy comes with two default policies for caching: 1) Dummy policy. 2) RFC2616 policy.
+
+Dummy Policy. The Dummy policy is the default setting. Here, every request and its response are stored, and when the same request is seen again, the stored response is returned. This is useful if you are testing your spider and want to replay runs at the same. Because this is the default policy, you don’t have to add anything to your project’s settings.py file.
+
+RFC2616 Policy. This policy is aware of cache-control settings and is aimed at production use to avoid downloading unchanged pages, save bandwidth, and speed-up crawls. To enable this policy, add the following setting to your settings.py file:
+
+    HTTPCACHE_POLICY = scrapy.extensions.httpcache.RFC2616Policy 
+
+What does aware of cache-control settings mean? It means that the scraper works according to the RFC2616 caching specification. If you are lazy and don’t want to read the whole specification, here is a small excerpt of what Scrapy can do for you:
+
+Downloading Images. Even though this is not a requirement for our project, you will encounter many tasks where you must download images besides data. Fortunately, Scrapy has a built-in solution for this problem too. For this section, let’s extend our requirements to gather images along with the items. These images will be saved on your file system besides your project files, but you can configure your spider to store the downloaded files at Amazon S3 or Google Cloud. Because Scrapy uses Pillow for image resizing and thumbnail generation, you must install it before you can start gathering images.
+
+    pip install pillow
+
+To get started, first add the following to your settings.py file:
+
+    ITEM_PIPELINES = { 'scrapy.pipelines.images.ImagesPipeline': 5 }
+
+And you have to tell Scrapy where to save the downloaded images. I use the images folder inside the project.
+
+IMAGES_STORE = 'images'
+
+The folder you provide to IMAGES_STORE must exist. The combination of those two settings activates the image pipeline, which downloads the files and stores them on your computer’s hard disk. To get items into this pipeline, you must add
+
+```
+image_urls = Field() 
+images = Field()
+```
+
+to your Item. This is because the ImagesPipeline works using the image_urls field and adds the resulting images to the images field. In the case of the Sainsbury’s scraper, we must rename product_image to image_urls, add images in the SainsburysItem, and change the spider code to fill image_urls with a list instead of a URL.
+
+```
+item['image_urls'] = [response.urljoin(response.xpath('//div[@id="productImageHolder"]/img/@src').extract()[0])]
+```
+
+Now if you run your spider and save the results (for example using scrapy crawl basic -o images.jl), you will see the downloaded images in the images/full folder, similar to the one shown in Figure 4-3.
+
+The values in the images.jl file are inserted into the item’s images field. A sample value looks like this:
+
+```
+"images": [
+{ "url": "https://www.sainsburys.co.uk/wcsstore7.25.53/ ExtendedSitesCatalogAssetStore/images/catalog/product Images/23/5060084344723/5060084344723_L.jpeg", "path": "full/4ae5a3a0dfa0fac7f3728d76b788716e8a2bc9fb.jpg", "checksum": "132512348d379f8365ca02082a16adf1" }
+]
+```
+
+This tells you not only how the file is named on your file system and where it’s downloaded from, but you get a checksum too to verify that the image on your file system is really the same that Scrapy downloaded. In the preceding example, the file can be found under images/full/4ae5a3a0dfa0fac7f3728d76b788716e8a2bc9fb.jpg and is shown in Figure 4-4.
+
+Note you can find the sources for this section in the 08_image_pipeline folder among the sources for this chapter. scrapy uses its own algorithm to generate the file names. This means you can encounter different file names than me if you run the spider on your computer.
+
+Using Beautiful Soup with Scrapy. Sometimes you already have an HTML extractor ready, created with Beautiful Soup, and you don’t want to convert it to Scrapy code. Or you have a team member who is a pro at Beautiful Soup and she creates the extraction code; you only have to take care of configuring Scrapy. In such cases you use the already existing code because you can integrate Beautiful Soup and Scrapy.
+
+```
+def parse_product_details_bs(self, response):
+    item = SainsburysItem()
+    
+    from bs4 import BeautifulSoup 
+    soup = BeautifulSoup(response.text, 'lxml') 
+    h1 = soup.find('h1') 
+    if h1:
+        item['product_name'] = h1.text.strip()
+```
+
+In the preceding code you can see the integration of Beautiful Soup and Scrapy with a subset of the code from the previous chapter. I explicitly use lxml for speed while parsing but you can use any of the available parsers (and by the way, lxml is available out of the box when you install Scrapy). With this information, you can rewrite the spider to use the functionality written in Chapter 3. You can find a sample solution in the 09_beautifulsoup folder among the sources for this chapter.
+
+Logging. Sometimes you prefer to see custom messages in the console while scraping. This is useful if you cut back the log level of Scrapy to INFO but you want to see a little more of the current process. Every spider comes with a logger, which you can access right in its methods. For example, logging the response’s URL would look like this:
+
+    self.logger.info("URL: %s", response.url)
+
+The logger uses the same log levels that you configured in settings.py. If you don’t see a log output on the console, you can turn up the logging (decrease the level to DEBUG). If it still doesn’t show up, then you can be sure that the code is not reached while running.
+
+If you want to do standard logging and not use the logger in your spider (for example because you are in a different file where you don’t have access to a spider), you can either use Scrapy’s log module (which is deprecated so you shouldn’t use it) or Python’s built-in logger module. There are no considerations; logger works the same way as it would in a “standard” Python application.
+
+(A Bit) Advanced Configuration. Because there are a lot of knobs you can turn on your Scrapy project, I add a section to get you started and try out some different combinations. This book has size limitations; therefore, I won’t list every setting you can toggle, but just the most used ones. For more settings, take a look at Scrapy’s documentation: https://doc.scrapy.org.
+
+LOG_LEVEL. Working through this chapter gave you a lot of output while running the spider. However, you can restrict the information to a subset. As a default, Scrapy uses the DEBUG log-level for its output. It logs you every bit of information you can get from the code, and most of the time this is too much. However, you can restrict the log level in the settings.py file by adding the following line:
+
+    LOG_LEVEL = 'INFO'
+
+This sets the log level to log only information, and warning and error messages. This is because of how logging levels work. Each has a priority, and with the log level setting you tell the application to “log the items with this priority and above.”
+
+You can use the following list as a reference to the log-level priority: 1) CRITICAL. 2) ERROR. 3) WARNING. 4) INFO. 5) DEBUG.
+
+This list contains Scrapy’s log level settings. DEBUG is a good setting while developing, but in a running/live system I prefer INFO or sometimes WARNING as the log level. Depending on the developer, you get the right amount of information using this level.
+
+CONCURRENT_REQUESTS. You have already seen this setting at the beginning of this chapter. As its name already tells you, you can limit the number of concurrent requests to one website. Depending on the website, it makes sense to turn this number up a bit or stay with the default value. This is because network operations (downloading the website’s code) take time, and while the thread waits the process/application is hanging idle. In such cases, even with the GIL present, Python can execute multiple threads parallel, and therefore while your code is waiting for one page to load you can download more.
+
+However, you cannot turn the knob forever. Your computer has its limits too, and having 16 or 160 concurrent requests doesn’t make a difference. I suggest you start with 1 request while developing, then use the default setting of 16. This is good for you because you get the required data faster, and this is good for the targeted website too because it’s not overwhelmed by you.
+
+Moreover, sometimes it happens that the target website has request monitoring enabled. This means, requests and their interval are monitored and evaluated, and if your IP exceeds a threshold you get banned for a time from the website — sometimes forever. Therefore, be responsible with your configuration.
+
+DOWNLOAD_DELAY. Accompanying the concurrent requests, you can set the delay between two downloads too. The download delay tells the spider how many seconds it should wait between downloading another page from the same domain or IP address (if CONCURRENT_REQUESTS_PER_IP is set to a nonzero positive number). This configuration awaits seconds as value, but you can provide decimal values too.
+
+    DOWNLOAD_DELAY = 0.125 # 125 milliseconds
+
+This setting is used to not hit the target servers too hard with your requests. Sometimes this setting is useful to avoid detection and mock human-like behavior.
+
+Autothrottling. Previously, you have seen how to set hard download delays and concurrent requests, to act like a good citizen. However, with this approach you can end up with many requests waiting for completion if the server is busy. Or if the server starts to send back error messages, those are returned faster than 200 OK responses, which generate more requests per second because errors are handled faster by Scrapy. However, in case of errors, the scraper should send fewer requests to help the server to recover itself from its (hopefully temporary) failure state.
+
+A solution, and an alternative approach, is to use Scrapy’s autothrottling feature. This is not enabled by default; you must enable it with the following setting:
+
+    AUTOTHROTTLE_ENABLED = True
+
+What the algorithm behind this setting does is adjust the download delay based on the response times of the server. If the server is busy, it sends the responses later, and Scrapy adjusts the download delay to send requests less frequently. If the server has no difficulties, the download delay is reduced, and more requests are sent to the server. And most importantly: non-200-OK responses do not decrease the download delay. You can configure some settings for autothrottling too. For example, setting:
+
+    AUTOTHROTTLE_START_DELAY = 15
+
+You tell Scrapy to wait 15 seconds initially between two requests. Based on the server’s response time, Scrapy can reduce or extend this waiting time. If the latency is big, Scrapy raises this delay. However, you can give it a maximum where it won’t wait longer.
+
+    AUTOTHROTTLE_MAX_DELAY = 25 
+
+This setting tells Scrapy to wait at most 25 seconds until the next request. To have detailed information on all the requests and their responses, you can enable debugging for auto-throttling.
+
+    AUTOTHROTTLE_DEBUG = True
+
+COOKIES_ENABLED. You know cookies. They are settings stored in your browser and exchanged by every request with the server. They store information regarding your session, browsing preferences, or settings at the website. Sometimes they are required to prove you are using a browser. Sometimes you have to avoid a subset, because they tell the server you’re not using a browser. If you’re browsing in the European Union (EU), you get a notification about cookies by visiting almost every EU website. This is quite annoying, but a regulation to be aware of that websites store (let store) information about your browsing history.
+
+As you may think, sometimes it is required to use cookies (for example websites that require login), but sometimes it’s better to avoid them. The default setting in Scrapy is to use cookies. This means that every time the target web server returns an HTTP parameter Set-Cookie its value is stored internally by Scrapy and is sent back to the server with every new request. You can disable this setting by adding the following configuration to your settings.py file:
+
+    COOKIES_ENABLED = False
+
+If you want to debug which cookies are exchanged between the server and your spider, you can add the following configuration:
+
+    COOKIES_DEBUG = True
+
+This will log every sent cookie (the Cookie header in your request) and received cookie (the Set-Cookie header in the response) to the console, or the logging framework you specified.
+
+1『Cookie 还是用默认的激活，不然想豆瓣这种就抓取不了了。』
