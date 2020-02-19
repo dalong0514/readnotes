@@ -31,13 +31,13 @@ def parse(self, response):
 
 Put this in a text file, name it to something like quotes_spider.py and run the spider using the runspider command:
 
-scrapy runspider quotes_spider.py -o quotes.json
+    scrapy runspider quotes_spider.py -o quotes.json
 
 When this finishes you will have in the quotes.json file a list of the quotes in JSON format, containing text and author, looking like this (reformatted here for better readability):
 
 [{ "author": "Jane Austen", "text": "\u201cThe person, be it gentleman or lady, who has not pleasure in a good novel, must be intolerably stupid.\u201d" }, { "author": "Groucho Marx", "text": "\u201cOutside of a dog, a book is man's best friend. Inside of a dog it's too dark to read.\u201d" }, { "author": "Steve Martin", "text": "\u201cA day without sunshine is like, you know, night.\u201d" }, ...]
 
-What just happened?
+#### What just happened?
 
 When you ran the command scrapy runspider quotes_spider.py, Scrapy looked for a Spider definition inside it and ran it through its crawler engine.
 
@@ -47,11 +47,11 @@ Here you notice one of the main advantages about Scrapy: requests are scheduled 
 
 While this enables you to do very fast crawls (sending multiple concurrent requests at the same time, in a fault-tolerant way) Scrapy also gives you control over the politeness of the crawl through a few settings. You can do things like setting a download delay between each request, limiting amount of concurrent requests per domain or per IP, and even using an auto-throttling extension that tries to figure out these automatically.
 
-Note
+Note:
 
 This is using feed exports to generate the JSON file, you can easily change the export format (XML or CSV, for example) or the storage backend (FTP or Amazon S3 [https://aws.amazon.com/s3/], for example). You can also write an item pipeline to store the items in a database.
 
-What else?
+#### What else?
 
 You’ve seen how to extract and store items from a website using Scrapy, but this is just the surface. Scrapy provides a lot of powerful features for making scraping easy and efficient, such as:
 
@@ -83,13 +83,13 @@ A Telnet console for hooking into a Python console running inside your Scrapy pr
 
 Plus other goodies like reusable spiders to crawl sites from Sitemaps [https://www.sitemaps.org/index.html] and XML/CSV feeds, a media pipeline for automatically downloading images (or any other media) associated with the scraped items, a caching DNS resolver, and much more!
 
-What’s next?
+### What’s next?
 
 The next steps for you are to install Scrapy, follow through the tutorial to learn how to create a full-blown Scrapy project and join the community [https://scrapy.org/community/]. Thanks for your interest!
 
 ## 02. Installation guide
 
-Installing Scrapy
+### 1. Installing Scrapy
 
 Scrapy runs on Python 2.7 and Python 3.5 or above under CPython (default Python implementation) and PyPy (starting with PyPy 5.9).
 
@@ -97,11 +97,11 @@ If you’re using Anaconda [https://docs.anaconda.com/anaconda/] or Miniconda [h
 
 To install Scrapy using conda, run:
 
-conda install -c conda-forge scrapy
+    conda install -c conda-forge scrapy
 
 Alternatively, if you’re already familiar with installation of Python packages, you can install Scrapy and its dependencies from PyPI with:
 
-pip install Scrapy
+    pip install Scrapy
 
 Note that sometimes this may require solving compilation issues for some Scrapy dependencies depending on your operating system, so be sure to check the Platform specific installation notes.
 
@@ -109,7 +109,7 @@ We strongly recommend that you install Scrapy in a dedicated virtualenv, to avoi
 
 For more detailed and platform specifics instructions, as well as troubleshooting information, read on.
 
-Things that are good to know
+#### Things that are good to know
 
 Scrapy is written in pure Python and depends on a few key Python packages (among others):
 
@@ -141,7 +141,7 @@ lxml installation [http://lxml.de/installation.html]
 
 cryptography installation [https://cryptography.io/en/latest/installation/]
 
-Using a virtual environment (recommended)
+#### Using a virtual environment (recommended)
 
 TL;DR: We recommend installing Scrapy inside a virtual environment on all platforms.
 
@@ -155,7 +155,7 @@ To get started with virtual environments, see virtualenv installation instructio
 
 Check this user guide [https://virtualenv.pypa.io/en/stable/userguide/] on how to create your virtualenv.
 
-Note
+Note:
 
 If you use Linux or OS X, virtualenvwrapper [https://virtualenvwrapper.readthedocs.io/en/latest/install.html] is a handy tool to create virtualenvs.
 
@@ -167,7 +167,7 @@ If you want to install scrapy with Python 3, install scrapy within a Python 3 vi
 
 And if you want to install scrapy with Python 2, install scrapy within a Python 2 virtualenv.
 
-Platform specific installation notes
+#### Platform specific installation notes
 
 Windows
 
@@ -175,7 +175,7 @@ Though it’s possible to install Scrapy on Windows using pip, we recommend you 
 
 Once you’ve installed Anaconda [https://docs.anaconda.com/anaconda/] or Miniconda [https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html], install Scrapy with:
 
-conda install -c conda-forge scrapy
+    conda install -c conda-forge scrapy
 
 Ubuntu 14.04 or above
 
@@ -185,7 +185,7 @@ Don’t use the python-scrapy package provided by Ubuntu, they are typically too
 
 To install scrapy on Ubuntu (or Ubuntu-based) systems, you need to install these dependencies:
 
-sudo apt-get install python-dev python-pip libxml2-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev
+    sudo apt-get install python-dev python-pip libxml2-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev
 
 python-dev, zlib1g-dev, libxml2-dev and libxslt1-dev are required for lxml
 
@@ -197,7 +197,7 @@ sudo apt-get install python3 python3-dev
 
 Inside a virtualenv, you can install Scrapy with pip after that:
 
-pip install scrapy
+    pip install scrapy
 
 Note
 
@@ -207,7 +207,7 @@ Mac OS X
 
 Building Scrapy’s dependencies requires the presence of a C compiler and development headers. On OS X this is typically provided by Apple’s Xcode development tools. To install the Xcode command line tools open a terminal window and run:
 
-xcode-select --install
+    xcode-select --install
 
 There’s a known issue [https://github.com/pypa/pip/issues/2468] that prevents pip from updating system packages. This has to be addressed to successfully install Scrapy and its dependencies. Here are some proposed solutions:
 
@@ -249,7 +249,7 @@ Most scrapy dependencides now have binary wheels for CPython, but not for PyPy. 
 
 You can check that scrapy is installed correctly by running scrapy bench. If this command gives errors such as TypeError: ... got 2 unexpected keyword arguments, this means that setuptools was unable to pick up one PyPy-specific dependency. To fix this issue, run pip install 'PyPyDispatcher>=2.1.0'.
 
-Troubleshooting
+### 3. Troubleshooting
 
 AttributeError: ‘module’ object has no attribute ‘OP_NO_TLSv1_1’
 
@@ -265,7 +265,7 @@ pip install twisted[tls]
 
 For details, see Issue #2473 [https://github.com/scrapy/scrapy/issues/2473].
 
-Scrapy Tutorial
+## 03. Scrapy Tutorial
 
 In this tutorial, we’ll assume that Scrapy is already installed on your system. If that’s not the case, see Installation guide.
 
@@ -297,23 +297,36 @@ Learn Python 3 The Hard Way [https://learnpythonthehardway.org/python3/]
 
 You can also take a look at this list of Python resources for non-programmers [https://wiki.python.org/moin/BeginnersGuide/NonProgrammers], as well as the suggested resources in the learnpython-subreddit [https://www.reddit.com/r/learnpython/wiki/index#wiki_new_to_python.3F].
 
-Creating a project
+### 1. Creating a project
 
 Before you start scraping, you will have to set up a new Scrapy project. Enter a directory where you’d like to store your code and run:
 
-scrapy startproject tutorial
+    scrapy startproject tutorial
 
 This will create a tutorial directory with the following contents:
 
+```
 tutorial/ scrapy.cfg # deploy configuration file tutorial/ # project's Python module, you'll import your code from here __init__.py items.py # project items definition file middlewares.py # project middlewares file pipelines.py # project pipelines file settings.py # project settings file spiders/ # a directory where you'll later put your spiders __init__.py
+```
 
-Our first Spider
+### 2. Our first Spider
 
 Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass Spider and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.
 
 This is the code for our first Spider. Save it in a file named quotes_spider.py under the tutorial/spiders directory in your project:
 
-import scrapy class QuotesSpider(scrapy.Spider): name = "quotes" def start_requests(self): urls = [ 'http://quotes.toscrape.com/page/1/', 'http://quotes.toscrape.com/page/2/', ] for url in urls: yield scrapy.Request(url=url, callback=self.parse) def parse(self, response): page = response.url.split("/")[-2] filename = 'quotes-%s.html' % page with open(filename, 'wb') as f: f.write(response.body) self.log('Saved file %s' % filename)
+```
+import scrapy class QuotesSpider(scrapy.Spider): 
+name = "quotes" 
+
+def start_requests(self): urls = [ 'http://quotes.toscrape.com/page/1/', 'http://quotes.toscrape.com/page/2/', ] for url in urls: yield scrapy.Request(url=url, callback=self.parse) def parse(self, response): page = response.url.split("/")[-2] filename = 'quotes-%s.html' % page with open(filename, 'wb') as f: f.write(response.body) self.log('Saved file %s' % filename)
+```
+
+
+
+
+
+
 
 As you can see, our Spider subclasses scrapy.Spider and defines some attributes and methods:
 
@@ -333,11 +346,13 @@ scrapy crawl quotes
 
 This command runs the spider with name quotes that we’ve just added, that will send some requests for the quotes.toscrape.com domain. You will get an output similar to this:
 
+```
 ... (omitted for brevity) 2016-12-16 21:24:05 [scrapy.core.engine] INFO: Spider opened 2016-12-16 21:24:05 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 2016-12-16 21:24:05 [scrapy.extensions.telnet] DEBUG: Telnet console listening on 127.0.0.1:6023 2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://quotes.toscrape.com/robots.txt> (referer: None) 2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://quotes.toscrape.com/page/1/> (referer: None) 2016-12-16 21:24:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://quotes.toscrape.com/page/2/> (referer: None) 2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-1.html 2016-12-16 21:24:05 [quotes] DEBUG: Saved file quotes-2.html 2016-12-16 21:24:05 [scrapy.core.engine] INFO: Closing spider (finished) ...
+```
 
 Now, check the files in the current directory. You should notice that two new files have been created: quotes-1.html and quotes-2.html, with the content for the respective URLs, as our parse method instructs.
 
-Note
+Note:
 
 If you are wondering why we haven’t parsed the HTML yet, hold on, we will cover that soon.
 
@@ -577,11 +592,8 @@ You can continue from the section Basic concepts to know more about the command-
 
 ## Examples
 
-The best way to learn is with examples, and Scrapy is no exception. For this reason, there is an example Scrapy project named quotesbot [https://github.com/scrapy/quotesbot], that you can use to play and learn more about Scrapy. It contains two spiders for http://quotes.toscrape.com, one using CSS selectors and another one using XPath expressions.
+The best way to learn is with examples, and Scrapy is no exception. For this reason, there is an example Scrapy project named quotesbot [https://github.com/scrapy/quotesbot], that you can use to play and learn more about Scrapy. It contains two spiders for http://quotes.toscrape.com, one using CSS selectors and another one using XPath expressions.([scrapy/quotesbot: This is a sample Scrapy project for educational purposes](https://github.com/scrapy/quotesbot))
 
 The quotesbot [https://github.com/scrapy/quotesbot] project is available at: https://github.com/scrapy/quotesbot. You can find more information about it in the project’s README.
 
 If you’re familiar with git, you can checkout the code. Otherwise you can download the project as a zip file by clicking here [https://github.com/scrapy/quotesbot/archive/master.zip].
-
-
-

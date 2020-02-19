@@ -1,5 +1,7 @@
 # 2020061Website_Scraping_with_R01
 
+Copyright © 2018
+
 ## 记忆时间
 
 ## 卡片
@@ -122,13 +124,13 @@ Tools in This Book. In this book you will learn the basic tools you can use in P
 
 The Requests package is recommended for a higher level HTTP client interface. — Python 3 documentation
 
-1『Requests package 即为更高层的客户界面。』
+1『Requests package 即为更高层的客户接口。』
 
 Beautiful Soup is a content parser. It is not a tool for website scraping because it doesn't navigate pages automatically and it is hard to scale. But it aids in parsing content, and gives you options to extract the required information from XML and HTML structures in a friendly manner.
 
 Scrapy is a website scraping framework/library. It is much more powerful than Beautiful Soup, and it can be scaled. Therefore, you can create more complex scrapers easier with Scrapy. But on the other side, you have more options to configure. Fine-tuning Scrapy can be a problem, and you can mess up a lot if you do something wrong. But with great power comes great responsibility: you must use Scrapy with care. Even though Scrapy is the Python library created for website scraping, sometimes I just prefer a combination of requests and Beautiful Soup because it is lightweight, and I can write my scraper in a short period — and I do not need scaling or parallel execution.
 
-1『BS 是内容解析器。相比于 Python 包，作者更倾向于将 scraper 当作 requests 和 BS 的轻量工具箱。』
+1『BS 是内容解析器。相比于 Python 的 scraper 框架，作者更倾向于使用 requests 和 BS4 的组合工具，但对于复杂的抓取任务可以用 scraper 框架的同时结合 BS4。』
 
 Preparation. When starting a website scraper, even if it is a small script, you must prepare yourself for the task. There are some legal and technical considerations for you right at the beginning. In this section I will give you a short list of what you should do to be prepared for a website scraping job or task: 1) Do the website's owners allow scraping? To find out, read the Terms & Conditions and the Privacy Policy of the website. 2) Can you scrape the parts you are interested in? See the robots.txt file for more information and use a tool that can handle this information. 3) What technology does the website use? There are free tools available that can help you with this task, but you can look at the website's HTML code to find out. 4) What tools should I use? Depending on your task and the website's structure, there are different paths you can choose from. Now let's see a detailed description for each item mentioned.
 
@@ -206,6 +208,8 @@ Tool Considerations. If you are reading this book, you will write your scrapers 
 If you are dealing with a simple website — and by simple, I mean one that is not using JavaScript excessively for rendering — then you can choose between creating a crawler with Beautiful Soup + requests or use Scrapy. If you must deal with a lot of data and want to speed things up, use Scrapy. In the end, you will use Scrapy in 90% of your tasks, and you can integrate Beautiful Soup into Scrapy and use them together.
 
 If the website uses JavaScript for rendering, you can either reverse engineer the AJAX/XHR calls and use your preferred tool, or you can reach out to a tool that renders websites for you. Such tools are Selenium and Portia. I will introduce you to these approaches in this book and you can decide which fits you best, which is easier for you to use.
+
+1『上面的这段是动态抓取的原理介绍，多读几遍。』
 
 Starting to Code. After this lengthy introduction, it is time to write some code. I guess you are keen to get your fingers "dirty" and create your first scrapers. In this section we will write simple Python 3 scripts to get you started with scraping and to utilize some of the information you read previously in this chapter. These miniscripts won't be full-fledged applications, just small demos of what is awaiting you in this book.
 
@@ -307,7 +311,6 @@ If you take a close look, I modified just some variable names and the regular ex
 ### 1. 逻辑脉络
 
 you've met the requirements, analyzed the website to scrape, and identified where in the HTML code the fields of interest lay. And you implemented a simple scraper, mostly with basic Python tools, which navigates through the website.
-
 
 ### 2. 摘录及评论
 
