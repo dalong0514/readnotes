@@ -26,23 +26,22 @@
 
 ### 0203. 术语卡——
 
-### 0301. 人名卡——
+### 0301. 人名卡——Luke Welling
+
+Luke Welling
+
+Laura Thomson
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
 维基百科链接：有的话。
 
-#### 01. 出生日期
+#### 01. 基本信息
 
-用一句话描述你对这个大牛的印象。
+本书的作者，PHP 以及 web 开发的大牛。
 
-#### 02. 贡献及经历
+#### 02. 贡献及著作
 
-#### 03. 论文及书籍
-
-#### 04. 演讲汇总
-
-找一个他的 TED 演讲，有的话。
 
 ### 0401. 金句卡——
 
@@ -70,6 +69,8 @@
 
 3『与其他知识的连接』
 
+英文第 5 版的出版时间：2016 年 9 月
+
 ## 书评
 
 ### 02
@@ -84,11 +85,13 @@
 
 ### 03
 
-[PHP和MySQL Web应用开发核心技术](https://book.douban.com/subject/1824542/)
+[PHP和MySQL Web应用开发核心技术（Core Web Application Development with PHP and MySQL）](https://book.douban.com/subject/1824542/)
 
 上面这个链接的书名字叫《PHP 和 MySQL Web 应用开发核心技术》（以后我们简称「web 核心」），不管是名字还是书皮都跟这本书非常像，如果你都读过的话，会感觉里面的章节安排也是非常像的。我评论的这本书（以后简称「web 开发」，和「web 核心」区分开）由于被他的「圣经」光环所笼罩，所以当我拿到「web 核心」这本书的时候，感觉他其实就是在抄袭「web 开发」，不值得去阅读，但是当我有一次无意读了他其中的某些章节的时候，我感觉「web 核心」比「web 开发」更胜一筹，具体哪里更好，我现在已经无法细数了，现在只是留有印象：前者比后者讲的更清楚明白，项目开发中的经验讲的更多，新技术新思想也涉及的更多等等。
 
 如果还要深入研究的话，上面两本书都不够，推荐下面这本书，PHP 5 权威编程：[PHP 5权威编程](https://book.douban.com/subject/2981954/)。里面的代码优化和扩展开发部分对想深入学习的人非常有用！
+
+2『以下载原文书籍「2020087Core_Web_Application_Development_with_」以及「2020090PHP5_Power_Programming」。』
 
 ### 06
 
@@ -148,19 +151,25 @@ Some of MySQL’s Strengths. MySQL’s main competitors in the relational databa
 
 How Is This Book Organized? This book is divided into five main parts:
 
-Part I,「Using PHP,」provides an overview of the main parts of the PHP language with examples. Each example is a real-world example used in building an e-commerce site rather than「toy」code. We kick off this section with Chapter 1,「PHP Crash Course.」If you’ve already used PHP, you can whiz through this chapter. If you are new to PHP or new to programming, you might want to spend a little more time on it.
+Part I,「Using PHP」provides an overview of the main parts of the PHP language with examples. Each example is a real-world example used in building an e-commerce site rather than「toy」code. We kick off this section with Chapter 1,「PHP Crash Course.」If you’ve already used PHP, you can whiz through this chapter. If you are new to PHP or new to programming, you might want to spend a little more time on it.
 
-Part II,「Using MySQL,」discusses the concepts and design involved in using relational database systems such as MySQL, using SQL, connecting your MySQL database to the world with PHP, and advanced MySQL topics, such as security and optimization.
+Part II,「Using MySQL」discusses the concepts and design involved in using relational database systems such as MySQL, using SQL, connecting your MySQL database to the world with PHP, and advanced MySQL topics, such as security and optimization.
 
-Part III,「Web Application Security,」covers some of the general issues involved in developing a web application using any language. We then discuss how you can use PHP and MySQL to authenticate your users and securely gather, transmit, and store data.
+Part III,「Web Application Security」covers some of the general issues involved in developing a web application using any language. We then discuss how you can use PHP and MySQL to authenticate your users and securely gather, transmit, and store data.
 
-Part IV,「Advanced PHP Techniques,」offers detailed coverage of some of the major built-in functions in PHP. We have selected groups of functions that are likely to be useful when building a web application. You will learn about interaction with the server, interaction with the network, image generation, date and time manipulation, and session handling.
+Part IV,「Advanced PHP Techniques」offers detailed coverage of some of the major built-in functions in PHP. We have selected groups of functions that are likely to be useful when building a web application. You will learn about interaction with the server, interaction with the network, image generation, date and time manipulation, and session handling.
 
-Part V,「Building Practical PHP and MySQL Projects,」is our favorite section. It deals with practical real-world issues such as managing large projects and debugging, and provides sample projects that demonstrate the power and versatility of PHP and MySQL.
+Part V,「Building Practical PHP and MySQL Projects」is our favorite section. It deals with practical real-world issues such as managing large projects and debugging, and provides sample projects that demonstrate the power and versatility of PHP and MySQL.
 
 Finally. We hope you enjoy this book and enjoy learning about PHP and MySQL as much as we did when we first began using these products. They are really a pleasure to use. Soon, you’ll be able to join the many thousands of web developers who use these robust, powerful tools to easily build dynamic, real-time web applications.
 
 ## 01. PHP Crash Course
+
+### 1. 逻辑脉络
+
+用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+
+### 2. 摘录及评论
 
 This chapter gives you a quick overview of PHP syntax and language constructs. In this book, you’ll learn how to use PHP by working through lots of real-world examples taken from our experiences building real websites. Often, programming textbooks teach basic syntax with very simple examples. We have chosen not to do that. We recognize that what you do is get something up and running, and understand how the language is used, instead of plowing through yet another syntax and function reference that’s no better than the online manual.
 
@@ -168,9 +177,7 @@ Try the examples. Type them in or download them from the website, change them, b
 
 ### 02. Creating a Sample Application: Bob’s Auto Parts
 
-One of the most common applications of any server-side scripting language is processing HTML forms. You’ll start learning PHP by implementing an order form for Bob’s Auto Parts, a fictional spare parts company. You can find all the code for the examples used in this chapter in the directory called chapter01 on the CD-ROM.
-
-Creating the Order FormBob’s. HTML programmer has set up an order form for the parts that Bob sells. This relatively simple order form, shown in Figure 1.1, is similar to many you have probably seen while surfing. Bob would like to be able to know what his customers ordered, work out the total prices of their orders, and determine how much sales tax is payable on the orders.
+One of the most common applications of any server-side scripting language is processing HTML forms. You’ll start learning PHP by implementing an order form for Bob’s Auto Parts, a fictional spare parts company. Creating the Order FormBob’s. HTML programmer has set up an order form for the parts that Bob sells. This relatively simple order form, shown in Figure 1.1, is similar to many you have probably seen while surfing. Bob would like to be able to know what his customers ordered, work out the total prices of their orders, and determine how much sales tax is payable on the orders.
 
 Notice that the form’s action is set to the name of the PHP script that will process the customer’s order. (You’ll write this script next.) In general, the value of the action attribute is the URL that will be loaded when the user clicks the Submit button. The data the user has typed in the form will be sent to this URL via the HTTP method specified in the method attribute, either get (appended to the end of the URL) or post (sent as a separate message).
 
@@ -180,7 +187,7 @@ Also note the names of the form fields: tireqty, oilqty, and sparkqty. You’ll 
 
 You should consider adopting a coding standard for field names so that all field names throughout your site use the same format. This way, you can more easily remember whether, for example, you abbreviated a word in a field name or put in underscores as spaces.
 
-1『form 即表单；get (appended to the end of the URL) or post (sent as a separate message)；』
+1『form 即表单；又见这两种请求，get 和 post，get (appended to the end of the URL) or post (sent as a separate message)。』
 
 3『
 
@@ -205,7 +212,9 @@ To process the form, you need to create the script mentioned in the action attri
 </html>
 ```
 
-Embedding PHP in HTML. Under the \<h2> heading in your file, add the following lines:
+### 03. Embedding PHP in HTML
+
+Under the \<h2> heading in your file, add the following lines:
 
     <?php  echo '<p>Order processed.</p>';?>
 
@@ -263,7 +272,7 @@ and
 
 are equivalent, but the first version is easier to read.
 
-1『PHP 忽略 whitespace，whitespace 的概念：Spacing characters such as newlines (carriage returns), spaces, and tabs.』
+1『HTML 和 PHP 都忽略 whitespace，whitespace 的概念：Spacing characters such as newlines (carriage returns), spaces, and tabs.』
 
 Comments are exactly that: Comments in code act as notes to people reading the code. Comments can be used to explain the purpose of the script, who wrote it, why they wrote it the way they did, when it was last modified, and so on. You generally find comments in all but the simplest PHP scripts. The PHP interpreter ignores any text in comments. Essentially, the PHP parser skips over the comments, making them equivalent to whitespace.
 
