@@ -140,6 +140,8 @@ MySQL 和 MariaDB 的安装包带有几个程序。其中最主要的是服务�
 
 3、Mac 上安装；
 
+update user set password=password('') where user='root';
+
 Mac 上用 brew 安装 mysql；安装后在 /usr/local/var/ 里面；
 
 安装完成后 mysql 是没有启动的；命令行里输入命令 mysql.server start 来启动；同理推测关闭服务器是 mysql.server stop；
