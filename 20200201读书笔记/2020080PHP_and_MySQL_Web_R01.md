@@ -297,7 +297,28 @@ With both of these styles, everything after the comment symbol (# or //) is a co
 
     // here is a comment ?> here is not
 
+### 03. Adding Dynamic Content
 
+So far, you haven’t used PHP to do anything you couldn’t have done with plain HTML.
+
+The main reason for using a server-side scripting language is to be able to provide dynamic content to a site’s users. This is an important application because content that changes according to users’ needs or over time will keep visitors coming back to a site. PHP allows you to do this easily. Let’s start with a simple example. Replace the PHP in processorder.php with the following code: 
+
+```
+<?php  
+    echo "<p>Order processed at ";  
+    echo date('H:i, jS F Y');  
+    echo "</p>";
+?>
+```
+
+You could also write this on one line, using the concatenation operator (.), as
+
+```
+<?php  
+echo "<p>Order processed at ".date('H:i, jS F Y')."</p>";?>
+```
+
+In this code, PHP’s built-in date() function tells the customer the date and time when his order was processed. This information will be different each time the script is run. The output of running the script on one occasion is shown in Figure 1.3.
 
 
 

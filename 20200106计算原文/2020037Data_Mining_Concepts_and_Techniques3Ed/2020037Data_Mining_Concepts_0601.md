@@ -1,3 +1,5 @@
+# 06. Mining Frequent Patterns, Associations, and Correlations
+
 Basic Concepts and Methods
 
 Imagine that you are a sales manager at AllElectronics, and you are talking to a customer who recently bought a PC and a digital camera from the store. What should you recommend to her next? Information about which products are frequently purchased by your customers following their purchases of a PC and a digital camera in sequence would be very helpful in making your recommendation. Frequent patterns and association rules are the knowledge that you want to mine in such a scenario.
@@ -6,7 +8,7 @@ Frequent patterns are patterns (e.g., itemsets, subsequences, or substructures) 
 
 In this chapter, we introduce the basic concepts of frequent patterns, associations, and correlations (Section 6.1) and study how they can be mined efficiently (Section 6.2). We also discuss how to judge whether the patterns found are interesting (Section 6.3). In Chapter 7, we extend our discussion to advanced methods of frequent pattern mining, which mine more complex forms of frequent patterns and consider user preferences or constraints to speed up the mining process.
 
-6.1. Basic Concepts
+## 6.1. Basic Concepts
 
 Frequent pattern mining searches for recurring relationships in a given data set. This section introduces the basic concepts of frequent pattern mining for the discovery of interesting associations and correlations between itemsets in transactional and relational databases. We begin in Section 6.1.1 by presenting an example of market basket analysis, the earliest form of frequent pattern mining for association rules. The basic concepts of mining frequent patterns and associations are given in Section 6.1.2.
 
@@ -72,7 +74,7 @@ Closed and maximal frequent itemsets Suppose that a transaction database has onl
 
 The set of closed frequent itemsets contains complete information regarding the frequent itemsets. For example, from , we can derive, say, (1) {} since {} is a sub-itemset of the itemset {}; and (2) {} since {} is not a sub-itemset of the previous itemset but of the itemset {}. However, from the maximal frequent itemset, we can only assert that both itemsets ({} and {}) are frequent, but we cannot assert their actual support counts.
 
-6.2. Frequent Itemset Mining Methods
+## 6.2. Frequent Itemset Mining Methods
 
 In this section, you will learn methods for mining the simplest form of frequent patterns such as those discussed for market basket analysis in Section 6.1.1. We begin by presenting Apriori, the basic algorithm for finding frequent itemsets (Section 6.2.1). In Section 6.2.2, we look at how to generate strong association rules from frequent itemsets. Section 6.2.3 describes several variations to the Apriori algorithm for improved efficiency and scalability. Section 6.2.4 presents pattern-growth methods for mining frequent itemsets that confine the subsequent search space to only the data sets containing the current frequent itemsets. Section 6.2.5 presents methods for mining frequent itemsets that take advantage of the vertical data format.
 
@@ -362,7 +364,7 @@ Based on this property, a two-level hash index structure can be built for fast a
 
 This discussion illustrates methods for efficient mining of closed frequent itemsets.「Can we extend these methods for efficient mining of maximal frequent itemsets?」Because maximal frequent itemsets share many similarities with closed frequent itemsets, many of the optimization techniques developed here can be extended to mining maximal frequent itemsets. However, we leave this method as an exercise for interested readers.
 
-6.3. Which Patterns Are Interesting?—Pattern Evaluation Methods
+## 6.3. Which Patterns Are Interesting?—Pattern Evaluation Methods
 
 Most association rule mining algorithms employ a support–confidence framework. Although minimum support and confidence thresholds help weed out or exclude the exploration of a good number of uninteresting rules, many of the rules generated are still not interesting to the users. Unfortunately, this is especially true when mining at low support thresholds or mining for long patterns. This has been a major bottleneck for successful application of association rule mining.
 
@@ -514,7 +516,7 @@ For such「balanced」skewness, it could be fair to treat it as neutral, as Kulc
 
 In summary, the use of only support and confidence measures to mine associations may generate a large number of rules, many of which can be uninteresting to users. Instead, we can augment the support–confidence framework with a pattern interestingness measure, which helps focus the mining toward rules with strong pattern relationships. The added measure substantially reduces the number of rules generated and leads to the discovery of more meaningful rules. Besides those introduced in this section, many other interestingness measures have been studied in the literature. Unfortunately, most of them do not have the null-invariance property. Because large data sets typically have many null-transactions, it is important to consider the null-invariance property when selecting appropriate interestingness measures for pattern evaluation. Among the four null-invariant measures studied here, namely all_confidence, max_confidence, Kulc, and cosine, we recommend using Kulc in conjunction with the imbalance ratio.
 
-6.4. Summary
+## 6.4. Summary
 
 ■ The discovery of frequent patterns, associations, and correlation relationships among huge amounts of data is useful in selective marketing, decision analysis, and business management. A popular area of application is market basket analysis, which studies customers' buying habits by searching for itemsets that are frequently purchased together (or in sequence).
 
@@ -532,7 +534,7 @@ Variations involving hashing and transaction reduction can be used to make the p
 
 ■ Not all strong association rules are interesting. Therefore, the support–confidence framework should be augmented with a pattern evaluation measure, which promotes the mining of interesting rules. A measure is null-invariant if its value is free from the influence of null-transactions (i.e., the transactions that do not contain any of the itemsets being examined). Among many pattern evaluation measures, we examined lift, , all_confidence, max_confidence, Kulczynski, and cosine, and showed that only the latter four are null-invariant. We suggest using the Kulczynski measure, together with the imbalance ratio, to present pattern relationships among itemsets.
 
-6.5. Exercises
+## 6.5. Exercises
 
 6.1 Suppose you have the set of all frequent closed itemsets on a data set D, as well as the support count for each frequent closed itemset. Describe an algorithm to determine whether a given itemset X is frequent or not, and the support of X if it is frequent.
 
@@ -636,7 +638,7 @@ hamburgers 2000 500 2500
 
 (c) Based on the study in (a), develop a method that can roughly predict advisor and advisee relationships and the approximate period for such advisory supervision.
 
-6.6. Bibliographic Notes
+## 6.6. Bibliographic Notes
 
 Association rule mining was first proposed by Agrawal, Imielinski, and Swami [AIS93]. The Apriori algorithm discussed in Section 6.2.1 for frequent itemset mining was presented in Agrawal and Srikant [AS94b]. A variation of the algorithm using a similar pruning heuristic was developed independently by Mannila, Tiovonen, and Verkamo [MTV94]. A joint publication combining these works later appeared in Agrawal, Mannila, Srikant et al. [AMS+96]. A method for generating association rules from frequent itemsets is described in Agrawal and Srikant [AS94a].
 
