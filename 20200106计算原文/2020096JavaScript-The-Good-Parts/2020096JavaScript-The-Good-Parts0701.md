@@ -1,0 +1,758 @@
+JavaScript’s Regular Expression feature was borrowed from Perl.
+
+A regular expression is the specification of the syntax of a simple language. Regular expressions are used with methods to search, replace, and extract information from strings. The methods that work with regular expressions are regexp.exec, regexp.test, string.match, string.replace, string.search, and string.split. These will all be described in Chapter 8. Regular expressions usually have a significant performance advantage over equivalent string operations in JavaScript.
+
+Regular expressions came from the mathematical study of formal languages. Ken Thompson adapted Stephen Kleene’s theoretical work on type-3 languages into a practical pattern matcher that could be embedded in tools such as text editors and programming languages.
+
+The syntax of regular expressions in JavaScript conforms closely to the original formulations from Bell Labs, with some reinterpretation and extension adopted from Perl. The rules for writing regular expressions can be surprisingly complex because they interpret characters in some positions as operators, and in slightly different positions as literals. Worse than being hard to write, this makes regular expressions hard to read and dangerous to modify. It is necessary to have a fairly complete understanding of the full complexity of regular expressions to correctly read them.
+
+To mitigate this, I have simplified the rules a little. As presented here, regular expressions will be slightly less terse, but they will also be slightly easier to use correctly.
+
+And that is a good thing because regular expressions can be very difficult to maintain and debug.
+
+65
+
+Today’s regular expressions are not strictly regular, but they can be very useful. Regular expressions tend to be extremely terse, even cryptic. They are easy to use in their simplest form, but they can quickly become bewildering. JavaScript’s regular expressions are difficult to read in part because they do not allow comments or whitespace.
+
+All of the parts of a regular expression are pushed tightly together, making them almost indecipherable. This is a particular concern when they are used in security applications for scanning and validation. If you cannot read and understand a regular expression, how can youhave confidence that it will work correctly for all inputs?
+
+Yet, despite their obvious drawbacks, regular expressions are widely used.
+
+An Example
+
+Here is an example. It is a regular expression that matches URLs. The pages of this book are not infinitely wide, so I broke it into two lines. In a JavaScript program, the regular expression must be on a single line. Whitespace is significant: var parse_url = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+) (?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+
+var url =「http://www.ora.com:80/goodparts?q#fragment」; Let’s call parse_url’s exec method. If it successfully matches the string that we pass it, it will return an array containing pieces extracted from the url: var url = "http://www.ora.com:80/goodparts?q#fragment"; var result = parse_url.exec(url);
+
+var names = ['url', 'scheme', 'slash', 'host', 'port',
+
+'path', 'query', 'hash'];
+
+var blanks = ' ';
+
+var i;
+
+for (i = 0; i < names.length; i += 1) {
+
+document.writeln(names[i] + ':' +
+
+blanks.substring(names[i].length), result[i]);
+
+}
+
+This produces:
+
+url: http://www.ora.com:80/goodparts?q#fragment
+
+scheme: http
+
+slash: //
+
+host: www.ora.com
+
+port: 80
+
+path: goodparts
+
+query: q
+
+hash: fragment
+
+66
+
+|
+
+Chapter 7: Regular Expressions
+
+In Chapter 2, we used railroad diagrams to describe the JavaScript language. We can also use them to describe the languages defined by regular expressions. That may make it easier to see what a regular expression does. This is a railroad diagram for parse_url.
+
+parse_url
+
+scheme
+
+begin string
+
+letter
+
+:
+
+slash
+
+/
+
+/
+
+/
+
+host
+
+letter or digit
+
+or . or -
+
+port
+
+:
+
+digit
+
+path
+
+any character
+
+/
+
+except ? or #
+
+query
+
+any character
+
+?
+
+except #
+
+hash
+
+#
+
+any character
+
+except line end
+
+end string
+
+Regular expressions cannot be broken into smaller pieces the way that functions can, so the track representing parse_url is a long one.
+
+Let’s factor parse_url into its parts to see how it works:
+
+^
+
+The ^ character indicates the beginning of the string. It is an anchor that prevents exec from skipping over a non-URL-like prefix:
+
+(?:([A-Za-z]+):)?
+
+This factor matches a scheme name, but only if it is followed by a : (colon). The (?:...) indicates a noncapturing group. The suffix ? indicates that the group is optional.
+
+An Example
+
+|
+
+67
+
+It means repeat zero or one time. The (...) indicates a capturing group. A capturing group copies the text it matches and places it in the result array. Each capturing group is given a number. This first capturing group is 1, so a copy of the text matched by this capturing group will appear in result[1]. The [...] indicates a character class. This character class, A-Za-z, contains 26 uppercase letters and 26 lowercase letters. The hyphens indicate ranges, from A to Z. The suffix + indicates that the character class will be matched one or more times. The group is followed by the : character, which will be matched literally:
+
+(\/{0,3})
+
+The next factor is capturing group 2. \/ indicates that a / (slash) character should be matched. It is escaped with \ (backslash) so that it is not misinterpreted as the end of the regular expression literal. The suffix {0,3} indicates that the / will be matched 0
+
+or 1 or 2 or 3 times:
+
+([0-9.\-A-Za-z]+)
+
+The next factor is capturing group 3. It will match a host name, which is made up of one or more digits, letters, or . or –. The – was escaped as \- to prevent it from being confused with a range hyphen:
+
+(?::(\d+))?
+
+The next factor optionally matches a port number, which is a sequence of one or more digits preceded by a :. \d represents a digit character. The series of one or more digits will be capturing group 4:
+
+(?:\/([^?#]*))?
+
+We have another optional group. This one begins with a /. The character class [^?#]
+
+begins with a ^, which indicates that the class includes all characters except ? and #.
+
+The * indicates that the character class is matched zero or more times.
+
+Note that I am being sloppy here. The class of all characters except ? and # includes line-ending characters, control characters, and lots of other characters that really shouldn’t be matched here. Most of the time this will do want we want, but there is a risk that some bad text could slip through. Sloppy regular expressions are a popular source of security exploits. It is a lot easier to write sloppy regular expressions than rigorous regular expressions:
+
+(?:\?([^#]*))?
+
+Next, we have an optional group that begins with a ?. It contains capturing group 6, which contains zero or more characters that are not #: (?:#(.*))?
+
+We have a final optional group that begins with #. The . will match any character except a line-ending character:
+
+$
+
+68
+
+|
+
+Chapter 7: Regular Expressions
+
+The $ represents the end of the string. It assures us that there was no extra material after the end of the URL.
+
+Those are the factors of the regular expression parse_url.*
+
+It is possible to make regular expressions that are more complex than parse_url, bu t I wouldn’t recommend it. Regular expressions are best when they are short and simple. Only then can we have confidence that they are working correctly and that they could be successfully modified if necessary.
+
+There is a very high degree of compatibility between JavaScript language processors.
+
+The part of the language that is least portable is the implementation of regular expressions. Regular expressions that are very complicated or convoluted are more likely to have portability problems. Nested regular expressions can also suffer horrible performance problems in some implementations. Simplicity is the best strategy.
+
+Let’s look at another example: a regular expression that matches numbers. Numbers can have an integer part with an optional minus sign, an optional fractional part, and an optional exponent part:
+
+var parse_number = /^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i; var test = function (num) {
+
+document.writeln(parse_number.test(num));
+
+};
+
+test('1'); // true
+
+test('number'); // false
+
+test('98.6'); // true
+
+test('132.21.86.100'); // false
+
+test('123.45E-67'); // true
+
+test('123.45D-67'); // false
+
+parse_number successfully identified the strings that conformed to our specification and those that did not, but for those that did not, it gives us no information on why or where they failed the number test.
+
+Let’s break down parse_number:
+
+/^ $/i
+
+We again use ^ and $ to anchor the regular expression. This causes all of the characters in the text to be matched against the regular expression. If we had omitted the anchors, the regular expression would tell us if a string contains a number. With the anchors, it tells us if the string contains only a number. If we included just the ^, it would match strings starting with a number. If we included just the $, it would match strings ending with a number.
+
+* When you press them all together again, it is visually quite confusing:
+
+/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/
+
+An Example
+
+|
+
+69
+
+parse_number
+
+begin string
+
+-
+
+digit
+
+end string
+
+.
+
+digit
+
+e
+
++
+
+digit
+
+-
+
+The i flag causes case to be ignored when matching letters. The only letter in our pattern is e. We want that e to also match E. We could have written the e factor as
+
+[Ee] or (?:E|e), but we didn’t have to because we used the i flag:
+
+-?
+
+The ? suffix on the minus sign indicates that the minus sign is optional:
+
+\d+
+
+\d means the same as [0-9]. It matches a digit. The + suffix causes it to match one or more digits:
+
+(?:\.\d*)?
+
+The (?:...)? indicates an optional noncapturing group. It is usually better to use noncapturing groups instead of the less ugly capturing groups because capturing has a performance penalty. The group will match a decimal point followed by zero or more digits:
+
+(?:e[+\-]?\d+)?
+
+This is another optional noncapturing group. It matches e (or E), an optional sign, and one or more digits.
+
+Construction
+
+There are two ways to make a RegExp object. The preferred way, as we saw in the examples, is to use a regular expression literal.
+
+regexp literal
+
+regexp choice
+
+/
+
+/
+
+g
+
+i
+
+m
+
+70
+
+|
+
+Chapter 7: Regular Expressions
+
+Regular expression literals are enclosed in slashes. This can be a little tricky because slash is also used as the division operator and in comments.
+
+There are three flags that can be set on a RegExp. They are indicated by the letters g, i, and m, as listed in Table 7-1. The flags are appended directly to the end of the RegExp literal:
+
+// Make a regular expression object that matches
+
+// a JavaScript string.
+
+var my_regexp = /"(?:\\.|[^\\\"])*"/g;
+
+Table 7-1. Flags for regular expressions
+
+Flag
+
+Meaning
+
+g
+
+Global (match multiple times; the precise meaning of this varies with the method) i
+
+Insensitive (ignore character case)
+
+m
+
+Multiline (^ and $ can match line-ending characters)
+
+The other way to make a regular expression is to use the RegExp constructor. The constructor takes a string and compiles it into a RegExp object. Some care must be taken in building the string because backslashes have a somewhat different meaning in regular expressions than in string literals. It is usually necessary to double the backslashes and escape the quotes:
+
+// Make a regular expression object that matches
+
+// a JavaScript string.
+
+var my_regexp =
+
+new RegExp("\"(?:\\.|[^\\\\\\\"])*\"", 'g'); The second parameter is a string specifying the flags. The RegExp constructor is useful when a regular expression must be generated at runtime using material that is not available to the programmer.
+
+RegExp objects contain the properties listed in Table 7-2.
+
+Table 7-2. Properties of RegExp objects
+
+Property
+
+Use
+
+global
+
+true if the g flag was used.
+
+ignoreCase
+
+true if the i flag was used.
+
+lastIndex
+
+The index at which to start the next exec match. Initially it is zero.
+
+multiline
+
+true if the m flag was used.
+
+source
+
+The source text of the regular expression.
+
+Construction
+
+|
+
+71
+
+RegExp objects made by regular expression literals share a single instance: function make_a_matcher( ) {
+
+return /a/gi;
+
+}
+
+var x = make_a_matcher( );
+
+var y = make_a_matcher( );
+
+// Beware: x and y are the same object!
+
+x.lastIndex = 10;
+
+document.writeln(y.lastIndex); // 10
+
+Elements
+
+Let’s look more closely at the elements that make up regular expressions.
+
+Regexp Choice
+
+regexp choice
+
+regexp sequence
+
+|
+
+A regexp choice contains one or more regexp sequences. The sequences are separated by the | (vertical bar) character. The choice matches if any of the sequences match. It attempts to match each of the sequences in order. So:
+
+"into".match(/in|int/)
+
+matches the in in into. It wouldn’t match int because the match of in was successful.
+
+Regexp Sequence
+
+regexp sequence
+
+regexp factor
+
+regexp quantifier
+
+A regexp sequence contains one or more regexp factors. Each factor can optionally be followed by a quantifier that determines how many times the factor is allowed to appear. If there is no quantifier, then the factor will be matched one time.
+
+72
+
+|
+
+Chapter 7: Regular Expressions
+
+Regexp Factor
+
+regexp factor
+
+any Unicode character except / and \ and
+
+[ and ] and ( and ) and { and } and ? and
+
++ and * and | and control character
+
+regexp escape
+
+regexp class
+
+regexp group
+
+A regexp factor can be a character, a parenthesized group, a character class, or an escape sequence. All characters are treated literally except for the control characters and the special characters:
+
+\ / [ ] ( ) { } ? + * | . ^ $
+
+which must be escaped with a \ prefix if they are to be matched literally. When in doubt, any special character can be given a \ prefix to make it literal. The \ prefix does not make letters or digits literal.
+
+An unescaped . matches any character except a line-ending character.
+
+An unescaped ^ matches the beginning of the text when the lastIndex property is zero. It can also match line-ending characters when the m flag is specified.
+
+An unescaped $ matches the end of the text. It can also match line-ending characters when the m flag is specified.
+
+Regexp Escape
+
+The backslash character indicates escapement in regexp factors as well as in strings, but in regexp factors, it works a little differently.
+
+As in strings, \f is the formfeed character, \n is the newline character, \r is the carriage return character, \t is the tab character, and \u allows for specifying a Unicode character as a 16-bit hex constant. In regexp factors, \b is not the backspace character.
+
+\d is the same as [0-9]. It matches a digit. \D is the opposite: [^0-9].
+
+\s is the same as [\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]. This is a partial set of Unicode whitespace characters. \S is the opposite: [^\f\n\r\t\u000B\u0020\u00A0\u2028\ u2029].
+
+\w is the same as [0-9A-Z_a-z]. \W is the opposite: [^0-9A-Z_a-z]. This is supposed to represent the characters that appear in words. Unfortunately, the class it defines is useless for working with virtually any real language. If you need to match a class of letters, you must specify your own class.
+
+Elements
+
+|
+
+73
+
+regexp escape
+
+\
+
+not
+
+formfeed
+
+word boundary
+
+f
+
+B
+
+b
+
+newline
+
+digit
+
+n
+
+D
+
+d
+
+carriage
+
+whitespace
+
+r
+
+return
+
+S
+
+s
+
+tab
+
+word character
+
+t
+
+W
+
+w
+
+literal
+
+u
+
+4
+
+hexadecimal
+
+any special character
+
+digits
+
+back reference
+
+integer
+
+A simple letter class is [A-Za-z\u00C0-\u1FFF\u2800-\uFFFD]. It includes all of Unicode’s letters, but it also includes thousands of characters that are not letters. Unicode is large and complex. An exact letter class of the Basic Multilingual Plane is possible, but would be huge and inefficient. JavaScript’s regular expressions provide extremely poor support for internationalization.
+
+\b was intended to be a word-boundary anchor that would make it easier to match text on word boundaries. Unfortunately, it uses \w to find word boundaries, so it is completely useless for multilingual applications. This is not a good part.
+
+\1 is a reference to the text that was captured by group 1 so that it can be matched again. For example, you could search text for duplicated words with: var doubled_words =
+
+/[A-Za-z\u00C0-\u1FFF\u2800-\uFFFD'\-]+\s+\1/gi;
+
+doubled_words looks for occurrences of words (strings containing 1 or more letters) followed by whitespace followed by the same word.
+
+\2 is a reference to group 2, \3 is a reference to group 3, and so on.
+
+Regexp Group
+
+There are four kinds of groups:
+
+Capturing
+
+A capturing group is a regexp choice wrapped in parentheses. The characters that match the group will be captured. Every capture group is given a number.
+
+The first capturing ( in the regular expression is group 1. The second capturing (
+
+in the regular expression is group 2.
+
+74
+
+|
+
+Chapter 7: Regular Expressions
+
+regexp group
+
+capturing
+
+(
+
+regexp choice
+
+)
+
+noncapturing
+
+?
+
+:
+
+positive lookahead
+
+=
+
+negative lookahead
+
+!
+
+Noncapturing
+
+A noncapturing group has a (?: prefix. A noncapturing group simply matches; it does not capture the matched text. This has the advantage of slight faster performance. Noncapturing groups do not interfere with the numbering of capturing groups.
+
+Positive lookahead
+
+A positive lookahead group has a (?= prefix. It is like a noncapturing group except that after the group matches, the text is rewound to where the group started, effectively matching nothing. This is not a good part.
+
+Negative lookahead
+
+A negative lookahead group has a (?! prefix. It is like a positive lookahead group, except that it matches only if it fails to match. This is not a good part.
+
+Regexp Class
+
+regexp class
+
+[
+
+^
+
+any Unicode character except / and \
+
+]
+
+and [ and ] and ^ and - and
+
+control character
+
+-
+
+regexp class escape
+
+A regexp class is a convenient way of specifying one of a set of characters. For example, if we wanted to match a vowel, we could write (?:a|e|i|o|u), but it is more conveniently written as the class [aeiou].
+
+Classes provide two other conveniences. The first is that ranges of characters can be specified. So, the set of 32 ASCII special characters:
+
+! " # $ % & ' ( ) * + , - . / :
+
+; < = > ? @ [ \ ] ^ _ ` { | } ~
+
+Elements
+
+|
+
+75
+
+could be written as:
+
+(?:!|"|#|\$|%|&|'|\(|\)|\*|\+|,|-|\.|\/|:|;|<|=|>|@|\[|\\|]|\^|_|` |\{|\||\}|~) but is slightly more nicely written as:
+
+[!-\/:-@\[-`{-~]
+
+which includes the characters from ! through / and : through @ and [ through ànd
+
+{ through ~. It is still pretty nasty looking.
+
+The other convenience is the complementing of a class. If the first character after the
+
+[ is ^, then the class excludes the specified characters.
+
+So [^!-\/:-@\[-`{-~] matches any character that is not one of the ASCII special characters.
+
+Regexp Class Escape
+
+regexp class escape
+
+backspace
+
+\
+
+b
+
+not
+
+formfeed
+
+f
+
+newline
+
+digit
+
+n
+
+D
+
+d
+
+carriage
+
+whitespace
+
+r
+
+return
+
+S
+
+s
+
+tab
+
+word character
+
+t
+
+W
+
+w
+
+literal
+
+u
+
+4
+
+hexadecimal
+
+any special character
+
+digits
+
+The rules of escapement within a character class are slightly different than those for a regexp factor. [\b] is the backspace character. Here are the special characters that should be escaped in a character class:
+
+- / [ \ ] ^
+
+Regexp Quantifier
+
+A regexp factor may have a regexp quantifier suffix that determines how many times the factor should match. A number wrapped in curly braces means that the factor should match that many times. So, /www/ matches the same as /w{3}/. {3,6} will match 3, 4, 5, or 6 times. {3,} will match 3 or more times.
+
+76
+
+|
+
+Chapter 7: Regular Expressions
+
+regexp quantifier
+
+?
+
+?
+
+*
+
++
+
+{
+
+integer
+
+,
+
+integer
+
+}
+
+? is the same as {0,1}. * is the same as {0,}. + is the same as {1,}.
+
+Matching tends to be greedy, matching as many repetitions as possible up to the limit, if there is one. If the quantifier has an extra ? suffix, then matching tends to be lazy, attempting to match as few repetitions as possible. It is usually best to stick with the greedy matching.
+
+Elements
+
+|
+
+77
+
+Chapter 8
+
+CHAPTER 8
+
+Methods
+
+8
+
+Though this be madness, yet there is method in ’t.
+
+—William Shakespeare, The Tragedy of Hamlet,
+

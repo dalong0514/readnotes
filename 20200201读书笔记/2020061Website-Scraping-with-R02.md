@@ -1,3 +1,11 @@
+# 2020061Website-Scraping-with-PythonR02
+
+Copyright © 2018
+
+## 记忆时间
+
+2020-03-08/
+
 ## 04. Using Scrapy
 
 ### 1. 逻辑脉络
