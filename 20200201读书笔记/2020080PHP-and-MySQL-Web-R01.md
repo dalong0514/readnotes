@@ -299,17 +299,7 @@ With both of these styles, everything after the comment symbol (# or //) is a co
 
 ### 03. Adding Dynamic Content
 
-So far, you haven’t used PHP to do anything you couldn’t have done with plain HTML.
-
-The main reason for using a server-side scripting language is to be able to provide dynamic content to a site’s users. This is an important application because content that changes according to users’ needs or over time will keep visitors coming back to a site. PHP allows you to do this easily. Let’s start with a simple example. Replace the PHP in processorder.php with the following code: 
-
-```
-<?php  
-    echo "<p>Order processed at ";  
-    echo date('H:i, jS F Y');  
-    echo "</p>";
-?>
-```
+So far, you haven’t used PHP to do anything you couldn’t have done with plain HTML. The main reason for using a server-side scripting language is to be able to provide dynamic content to a site’s users. This is an important application because content that changes according to users’ needs or over time will keep visitors coming back to a site. PHP allows you to do this easily. Let’s start with a simple example. Replace the PHP in processorder.php with the following code: 
 
 You could also write this on one line, using the concatenation operator (.), as
 
@@ -319,6 +309,160 @@ echo "<p>Order processed at ".date('H:i, jS F Y')."</p>";?>
 ```
 
 In this code, PHP’s built-in date() function tells the customer the date and time when his order was processed. This information will be different each time the script is run. The output of running the script on one occasion is shown in Figure 1.3.
+
+Calling Functions. Look at the call to date(). This is the general form that function calls take. PHP has an  extensive library of functions you can use when developing web applications. Most of these functions need to have some data passed to them and return some data. Now look at the function call again:
+
+    date('H:i, jS F')
+
+Notice that it passes a string (text data) to the function inside a pair of parentheses. The element within the parentheses is called the function’s argument or parameter. Such  arguments are the input the function uses to output some specific results.
+
+Using the date() Function. The date() function expects the argument you pass it to be a format string, representing the style of output you would like. Each letter in the string represents one part of the date and time. H is the hour in a 24-hour format with leading zeros where required, i is the minutes with a leading zero where required, j is the day of the month without a leading zero, S  represents the ordinal suffix (in this case th), and F is the full name of the month. Note: If date() gives you a warning about not having set the timezone, you should add the date.timezone setting to your php.ini file. More information on this can be found in the sample php.ini file in Appendix A. For a full list of formats supported by date(), see Chapter 19,「Managing the Date and Time.」
+
+Form Variables. Within your PHP script, you can access each form field as a PHP variable whose name relates to the name of the form field. You can recognize variable names in PHP because they all start with a dollar sign (\$). (Forgetting the dollar sign is a common programming error.)
+
+Depending on your PHP version and setup, you can access the form data via variables in different ways.  In recent versions of PHP, all but one of these ways have been deprecated, so beware if you have used PHP in the past that this has changed. You may access the contents of the field tireqty in the following way:
+
+    $_POST['tireqty']    
+
+\$_POST is an array containing data submitted via an HTTP POST request — that is, the form method was set to POST. There are three of these arrays that may contain form data: 
+
+\$POST, \$GET, and \$REQUEST. One of the \$GET or \$POST arrays holds the details of all the form variables. Which array is used depends on whether the method used to submit the form was GET or POST, respectively. In addition, a combination of all data submitted via GET or POST is also available through \$_REQUEST.
+
+If the form was submitted via the POST method, the data entered in the tireqty box will be stored in \$POST['tireqty']. If the form was submitted via GET, the data will be in \$_GET['tireqty']. In either case, the data will also be available in \$REQUEST['tireqty']. These arrays are some of the superglobal arrays. We will revisit the superglobals when we discuss variable scope later in this chapter.
+
+1『POST、GET 和 REQUEST 三个都是 superglobal（超级全局变量）。』
+
+Let’s look at an example that creates easier-to-use copies of variables. To copy the value of one variable into another, you use the assignment operator, which in PHP is an equal sign (=). The following statement creates a new variable named \$tireqty and copies the contents of \$_POST['tireqty'] into the new variable:
+
+    $tireqty = $_POST['tireqty'];
+
+Place the following block of code at the start of the processing script. All other scripts in this book that handle data from a form contain a similar block at the start. Because this code will not produce any output, placing it above or below the \<html> and other HTML tags that start your page makes no difference. We generally place such blocks at the start of the script to make them easy to find.
+
+```
+<?php  // create short variable names  
+$tireqty = $_POST['tireqty'];  
+$oilqty = $_POST['oilqty'];  
+$sparkqty = $_POST['sparkqty'];
+?>
+```
+
+This code creates three new variables — \$tireqty, \$oilqty, and \$sparkqty — and sets them to contain the data sent via the POST method from the form. You can output the values of these variables to the browser by doing, for example:
+
+    echo $tireqty.' tires<br />';
+
+However, this approach is not recommended. At this stage, you have not checked the variable contents to make sure sensible data has been entered in each form field. Try entering deliberately wrong data and observe what happens. After you have read the rest of the chapter, you might want to try adding some data validation to this script.
+
+Taking data directly from the user and outputting it to the browser like this is an extremely risky practice from a security perspective. We do not recommend this approach. You should filter input data. We will start to cover input filtering in Chapter 4,「String Manipulation and Regular Expressions,」and discuss security in depth in Chapter 14,「Web Application Security Risks.」
+
+1『直接提取数据很不安全，超级不建议。』
+
+For now, it’s enough to know that you should echo out user data to the browser after passing it through a function called htmlspecialchars(). For example, in this case, we would do the following:
+
+To make the script start doing something visible, add the following lines to the bottom of your PHP script:   
+
+```
+<?php
+echo '<p>Order processed at '.date('H:i, JS F Y').'</p>';;
+echo '<p>your order is as follows: </p>';
+echo htmlspecialchars($tireqty).' tires<br />';
+echo htmlspecialchars($oilqty).' bottles of oil<br />';
+echo htmlspecialchars($sparkqty).' spark plugs<br />';
+?>   
+```
+
+If you now load this file in your browser, the script output should resemble what is shown in Figure 1.4. The actual values shown, of course, depend on what you typed into the form. The following sections describe a couple of interesting elements of this example.
+
+String Concatenation. In the sample script, echo prints the value the user typed in each form field, followed by some explanatory text. If you look closely at the echo statements, you can see that the variable name and following text have a period (.) between them, such as this:
+
+    echo htmlspecialchars($tireqty).' tires<br />';
+
+This period is the string concatenation operator, which adds strings (pieces of text) together. You will often use it when sending output to the browser with echo. This way, you can avoid writing multiple echo commands. You can also place simple variables inside a double-quoted string to be echoed. (Arrays are somewhat more complicated, so we look at combining arrays and strings in Chapter 4.) Consider this example: 
+
+```
+$tireqty = htmlspecialchars($tireqty);  
+echo "$tireqty tires<br />";
+```
+
+This is equivalent to the first statement shown in this section. Either format is valid, and which one you use is a matter of personal taste. This process, replacing a variable with its contents within a string, is known as interpolation. Note that interpolation is a feature of double-quoted strings only. You cannot place variable names inside a single-quoted string in this way. Running the following line of code:
+
+    echo '$tireqty tires<br />';
+
+simply sends \$tireqty tires\<br /> to the browser. Within double quotation marks, the variable name is replaced with its value. Within single quotation marks, the variable name or any other text is sent unaltered.
+
+Variables and Literals. The variables and strings concatenated together in each of the echo statements in the sample script are different types of things. Variables are symbols for data. The strings are data themselves. When we use a piece of raw data in a program like this, we call it a literal to distinguish it from a variable. \$tireqty is a variable, a symbol that represents the data the customer typed in. On the other hand, ' tires\<br />' is a literal. You can take it at face value. Well, almost. Remember the second example in the preceding section? PHP replaced the variable name \$tireqty in the string with the value stored in the variable.
+
+Remember the two kinds of strings mentioned already: ones with double quotation marks and ones with single quotation marks. PHP tries to evaluate strings in double quotation marks, resulting in the behavior shown earlier. Single-quoted strings are treated as true literals.
+
+1『如要想在字符串里直接输出变量的值，必须用双引号，解释器识别不了单引号里的变量。PHP 里双引号字符串和单引号字符串语义不一样。双引号字符串是 interpolated 的，即自动识别里面变量的值，下面将的 Heredoc strings 也是。』
+
+There is also a third way of specifying strings using the heredoc syntax (<<<), which will be familiar to Perl users. Heredoc syntax allows you to specify long strings tidily, by specifying an end marker that will be used to terminate the string. The following example creates a three-line string and echoes it:
+
+```
+echo <<<theEnd  
+line 1  
+line 2 
+line 3
+theEnd
+```
+
+The token theEnd is entirely arbitrary. It just needs to be guaranteed not to appear in the text. To close a heredoc string, place a closing token at the start of a line. Heredoc strings are interpolated, like double-quoted strings.
+
+Understanding Identifiers. Identifiers are the names of variables. (The names of functions and classes are also identifiers; we look at functions and classes in Chapter 5,「Reusing Code and Writing Functions,」and Chapter 6,「Object-Oriented PHP.」) You need to be aware of the simple rules defining valid identifiers:
+
+■ Identifiers can be of any length and can consist of letters, numbers, and underscores.
+
+■ Identifiers cannot begin with a digit.
+
+■ In PHP, identifiers are case sensitive. \$tireqty is not the same as \$TireQty. Trying to use them interchangeably is a common programming error. Function names are an exception to this rule: Their names can be used in any case.
+
+■ A variable can have the same name as a function. This usage is confusing, however, and should be avoided. Also, you cannot create a function with the same name as another function.
+
+1『识别码大小写敏感，但是函数名是个例外。』
+
+You can declare and use your own variables in addition to the variables you are passed from the HTML form. One of the features of PHP is that it does not require you to declare variables before using them. A variable is created when you first assign a value to it. See the next section for details.You assign values to variables using the assignment operator (=) as you did when copying one variable’s value to another. On Bob’s site, you want to work out the total number of items ordered and the total amount payable. You can create two variables to store these numbers. To begin with, you need to initialize each of these variables to zero by adding these lines to the bottom of your PHP script. Each of these two lines creates a variable and assigns a literal value to it. You can also assign variable values to variables, as shown in this example:
+
+```
+$totalqty = 0;
+$totalamount = 0.00;
+
+$totalqty = 0;
+$totalamount = $totalqty;
+```
+
+### 06. Examining Variable Types
+
+A variable’s type refers to the kind of data stored in it. PHP provides a set of data types. Different data can be stored in different data types. 
+
+PHP’s Data Types. PHP supports the following basic data types:
+
+ ■ Integer — Used for whole numbers.
+
+ ■ Float (also called double)—Used for real numbers.
+
+ ■ String — Used for strings of characters.
+
+ ■ Boolean — Used for true or false values.
+
+ ■ Array — Used to store multiple data items (see Chapter 3,「Using Arrays」).
+
+ ■ Object — Used for storing instances of classes (see Chapter 6).
+
+Three special types are also available: NULL, resource, and callable.
+
+Variables that have not been given a value, have been unset, or have been given the specific value NULL are of type NULL.
+
+Certain built-in functions (such as database functions) return variables that have the type resource. They represent external resources (such as database connections). You will almost certainly not directly manipulate a resource variable, but frequently they are returned by functions and must be passed as parameters to other functions.
+
+3『原来在 laravel-admin 里看到的 resources 是一种特殊的数据类型，它可以用来表示外部资源，比如数据库连接，注意通常不会直接操作 resource variable，而是作为参数在各个函数间调用。』
+
+Callables are essentially functions that are passed to other functions.
+
+2『回调函数，去深挖一下。』
+
+Type Strength. PHP is called a weakly typed or dynamically typed language. In most programming languages, variables can hold only one type of data, and that type must be declared before the variable can be used, as in C. In PHP, the type of a variable is determined by the value assigned to it. For example, when you created \$totalqty and \$totalamount, their initial types were  determined as follows:
+
+Because you assigned 0, an integer, to \$totalqty, this is now an integer type variable. Similarly, \$totalamount is now of type float. Strangely enough, you could now add a line to your script as follows. The variable \$totalamount would then be of type string. PHP changes the variable type according to what is stored in it at any given time. This ability to change types transparently on the fly can be extremely useful. Remember PHP「automagically」knows what data type you put into your variable. It returns the data with the same data type when you retrieve it from the variable.
+
 
 
 
