@@ -463,6 +463,30 @@ Type Strength. PHP is called a weakly typed or dynamically typed language. In mo
 
 Because you assigned 0, an integer, to \$totalqty, this is now an integer type variable. Similarly, \$totalamount is now of type float. Strangely enough, you could now add a line to your script as follows. The variable \$totalamount would then be of type string. PHP changes the variable type according to what is stored in it at any given time. This ability to change types transparently on the fly can be extremely useful. Remember PHP「automagically」knows what data type you put into your variable. It returns the data with the same data type when you retrieve it from the variable.
 
+Type Casting. You can pretend that a variable or value is of a different type by using a type cast. This feature works identically to the way it works in C. You simply put the temporary type in parentheses in front of the variable you want to cast. For example, you could have declared the two variables from the preceding section using a cast:
+
+```
+$totalqty = 0;
+$totalamount = (float)$totalqty;
+```
+
+The second line means「Take the value stored in \$totalqty, interpret it as a float, and store it in \$totalamount.」The \$totalamount variable will be of type float. The cast variable does not change types, so \$totalqty remains of type integer.
+
+Variable Variables. PHP provides one other type of variable: the variable variable. Variable variables enable you to change the name of a variable dynamically. As you can see, PHP allows a lot of freedom in this area. All languages enable you to change the value of a variable, but not many allow you to change the variable’s type, and even fewer allow you to change the variable’s name.  A variable variable works by using the value of one variable as the name of another. For example, you could set:
+
+    $varname = 'tireqty';
+
+You can then use \$\$varname in place of \$tireqty. For example, you can set the value of \$tireqty as follows:
+
+    $$varname = 5;
+
+This is equivalent to
+
+    $tireqty = 5;
+
+This approach might seem somewhat obscure, but we’ll revisit its use later. Instead of having to list and use each form variable separately, you can use a loop and variable variable to process them all automatically. You can find an example illustrating this in the section on for loops later in this chapter.
+
+
 
 
 

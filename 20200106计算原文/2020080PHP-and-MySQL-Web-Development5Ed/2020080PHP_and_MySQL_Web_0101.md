@@ -494,31 +494,32 @@ The variable \$totalamount would then be of type string. PHP changes the variabl
 
 ### 3. Type Casting
 
-You can pretend that a variable or value is of a different type by using a type cast. This feature works identically to the way it works in C. You simply put the temporary type in parentheses in front of the variable you want to cast.
+You can pretend that a variable or value is of a different type by using a type cast. This feature works identically to the way it works in C. You simply put the temporary type in parentheses in front of the variable you want to cast. For example, you could have declared the two variables from the preceding section using a cast:
 
-For example, you could have declared the two variables from the preceding section using a cast:
+```
+$totalqty = 0;
+$totalamount = (float)$totalqty;
+```
 
-$totalqty = 0;$totalamount = (float)$totalqty;
-
-The second line means「Take the value stored in $totalqty, interpret it as a float, and store it in $totalamount.」The $totalamount variable will be of type float. The cast variable does not change types, so $totalqty remains of type integer.
+The second line means「Take the value stored in \$totalqty, interpret it as a float, and store it in \$totalamount.」The \$totalamount variable will be of type float. The cast variable does not change types, so \$totalqty remains of type integer.
 
 You can also use built-in functions to test and set type, which you will learn about later in this chapter.
 
-Variable VariablesPHP provides one other type of variable: the variable variable. Variable variables enable you to change the name of a variable dynamically.
+### 4. Variable Variables
 
-As you can see, PHP allows a lot of freedom in this area. All languages enable you to change the value of a variable, but not many allow you to change the variable’s type, and even fewer allow you to change the variable’s name.
+PHP provides one other type of variable: the variable variable. Variable variables enable you to change the name of a variable dynamically. As you can see, PHP allows a lot of freedom in this area. All languages enable you to change the value of a variable, but not many allow you to change the variable’s type, and even fewer allow you to change the variable’s name. 
 
-A variable variable works by using the value of one variable as the name of another. For example, you could set
+A variable variable works by using the value of one variable as the name of another. For example, you could set:
 
-$varname = 'tireqty';
+    $varname = 'tireqty';
 
-You can then use $$varname in place of $tireqty. For example, you can set the value of $tireqty as follows:
+You can then use \$\$varname in place of \$tireqty. For example, you can set the value of \$tireqty as follows:
 
-$$varname = 5;
+    $$varname = 5;
 
 This is equivalent to
 
-$tireqty = 5;
+    $tireqty = 5;
 
 This approach might seem somewhat obscure, but we’ll revisit its use later. Instead of having to list and use each form variable separately, you can use a loop and variable variable to process them all automatically. You can find an example illustrating this in the section on for loops later in this chapter.
 
@@ -528,7 +529,9 @@ As you saw previously, you can readily change the value stored in a variable. Yo
 
 In the sample application, you might store the prices for each item on sale as a constant. You can define these constants using the define function:
 
+```
 define('TIREPRICE', 100);define('OILPRICE', 10);define('SPARKPRICE', 4);
+```
 
 Now add these lines of code to your script. You now have three constants that can be used to calculate the total of the customer’s order.
 
@@ -664,10 +667,6 @@ The modulus operator returns the remainder calculated by dividing the $a variabl
 
 $a = 27;$b = 10;$result = $a%$b;
 
-Using Operators
-
-29
-
 The value stored in the $result variable is the remainder when you divide 27 by 10—that is, 7.
 
 You should note that arithmetic operators are usually applied to integers or doubles. If you apply them to strings, PHP will try to convert the string to a number. If it contains an e or an E, it will be read as being in scientific notation and converted to a float; otherwise, it will be converted to an integer. PHP will look for digits at the start of the string and use them as the value; if there are none, the value of the string will be zero.
@@ -701,10 +700,6 @@ $b = 6 + ($a = 5);
 This line sets the value of the $b variable to 11. This behavior is generally true of assignments: The value of the whole assignment statement is the value that is assigned to the left operand.
 
 When working out the value of an expression, you can use parentheses to increase the  precedence of a subexpression, as shown here. This technique works exactly the same way as in mathematics.
-
-30
-
-Chapter 1  PHP Crash Course
 
 Combined Assignment OperatorsIn addition to the simple assignment, there is a set of combined assignment operators. Each of them is a shorthand way of performing another operation on a variable and assigning the result back to that variable. For example,
 
