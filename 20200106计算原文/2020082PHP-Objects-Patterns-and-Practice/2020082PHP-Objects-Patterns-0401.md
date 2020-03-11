@@ -1,4 +1,4 @@
-Advanced Features
+# 04 Advanced Features
 
 You have already seen how class type hinting and access control give you more control over a class’s interface. In this chapter, I will delve deeper into PHP’s object-oriented features.
 
@@ -34,11 +34,6 @@ In fact, it is not that simple. You can access both methods and properties in th
 
 // listing 04.01class StaticExample{    static public $aNum = 0;    public static function sayHello()    {
 
-© Matt Zandstra 2016 M. Zandstra, PHP Objects, Patterns, and Practice, DOI 10.1007/978-1-4842-1996-6_4
-
-47
-
-Chapter 4 ■ advanCed Features
 
         print "hello";    }}
 
@@ -1548,15 +1543,8 @@ Of course, if your anonymous class begins to grow in size and complexity, it bec
 
 create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
 
-Summary
+## Summary
 
 In this chapter, we came to grips with PHP’s advanced object-oriented features. Some of these will become familiar as you work through the book. In particular, I will return frequently to abstract classes, exceptions, and static methods.
 
-In the next chapter, I take a step back from built-in object features and look at classes and functions 
-
-designed to help you work with objects.
-
-97
-
-CHAPTER 5
-
+In the next chapter, I take a step back from built-in object features and look at classes and functions designed to help you work with objects.

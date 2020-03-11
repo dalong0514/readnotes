@@ -28,7 +28,9 @@ Related topics also grew in prominence. Among them was eXtreme Programming (XP),
 
 XP also dictates that projects should be broken down into small (very small) iterations. Both code and requirements should be scrutinized at all times. Architecture and design should be a shared and constant issue, leading to the frequent revision of code.
 
-### 0202. 术语卡 ——
+### 0202. 术语卡 —— PHP 本质的两块内容
+
+In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two tools developed by Rasmus Lerdorf using Perl. PHP stood for Personal Homepage Tools. FI stood for Form Interpreter. Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. 
 
 ### 0203. 术语卡 ——
 
@@ -162,7 +164,7 @@ The next morning you arrive at the office to find that a shopping basket module 
 
 This everyday tale of coding folk may seem a little over the top, but I have seen all these things happen over and over again. Many PHP projects start their life small and evolve into monsters. Because the presentation layer also contains application logic, duplication creeps in early as database queries, authentication checks, form processing, and more are copied from page to page. Every time a change is required to one of these blocks of code, it must be made everywhere that the code is found, or bugs will surely follow.
 
-1『原因在于展示层常常也包含很多其他层的东西，比如软件的逻辑层、数据库请求等。还常常没有文档系统、测试系统。』
+1『原因在于展示层常常也包含很多其他层的东西，比如软件的逻辑层、数据库请求、表单处理等等。还常常没有文档系统、测试系统。』
 
 Lack of documentation makes the code hard to read, and lack of testing allows obscure bugs to go undiscovered until deployment. The changing nature of a client’s business often means that code evolves away from its original purpose until it is performing tasks for which it is fundamentally unsuited. Because such code has often evolved as a seething, intermingled lump, it is hard, if not impossible, to switch out and rewrite parts of it to suit the new purpose.
 
@@ -214,36 +216,170 @@ PHP 7, released in December 2015, represents a continuation of this trend. In pa
 
 ### 03. About This Book
 
-This book does not attempt to break new ground in the field of object-oriented design; in that respect, it perches precariously on the shoulders of giants. Instead, I examine, in the context of PHP, some well-established design principles and some key patterns (particularly those inscribed in Design Patterns, the classic Gang of Four book). Finally, I move beyond the strict limits of code to look at tools and techniques that can help to ensure the success of a project. Aside from this introduction and a brief conclusion, the book is divided into three main parts: objects, patterns, and practice.
+Instead, I examine, in the context of PHP, some well-established design principles and some key patterns (particularly those inscribed in Design Patterns, the classic Gang of Four book). Finally, I move beyond the strict limits of code to look at tools and techniques that can help to ensure the success of a project. Aside from this introduction and a brief conclusion, the book is divided into three main parts: objects, patterns, and practice.
 
-
-
-
-
-ObjectsI begin Part 2 with a quick look at the history of PHP and objects, charting their shift from afterthought in PHP 3 to core feature in PHP 5.
-
-You can still be an experienced and successful PHP programmer with little or no knowledge of objects. 
-
-For this reason, I start from first principles to explain objects, classes, and inheritance. Even at this early stage, I look at some of the object enhancements that PHP 5 and PHP 7 introduced.
+Objects. I begin Part 2 with a quick look at the history of PHP and objects, charting their shift from afterthought in PHP 3 to core feature in PHP 5. You can still be an experienced and successful PHP programmer with little or no knowledge of objects. For this reason, I start from first principles to explain objects, classes, and inheritance. Even at this early stage, I look at some of the object enhancements that PHP 5 and PHP 7 introduced.
 
 The basics established, I delve deeper into our topic, examining PHP’s more advanced object-oriented features. I also devote a chapter to the tools that PHP provides to help you work with objects and classes.It is not enough, however, to know how to declare a class, and to use it to instantiate an object. You must first choose the right participants for your system and decide the best ways for them to interact. These choices are much harder to describe and to learn than the bald facts about object tools and syntax. I finish Part 2 with an introduction to object-oriented design with PHP.
 
-PatternsA pattern describes a problem in software design and provides the kernel of a solution.「Solution」here does not mean the kind of cut-and-paste code that you might find in a cookbook (excellent though cookbooks are as resources for the programmer). Instead, a design pattern describes an approach that can be taken to solve a problem. A sample implementation may be given, but it is less important than the concept that it serves to illustrate.
+Patterns. A pattern describes a problem in software design and provides the kernel of a solution.「Solution」here does not mean the kind of cut-and-paste code that you might find in a cookbook (excellent though cookbooks are as resources for the programmer). Instead, a design pattern describes an approach that can be taken to solve a problem. A sample implementation may be given, but it is less important than the concept that it serves to illustrate. 
+
+Part 3 begins by defining design patterns and describing their structure. I also look at some of the reasons behind their popularity. Patterns tend to promote and follow certain core design principles. An understanding of these can help in analyzing a pattern’s motivation, and can usefully be applied to all programming. I discuss some of these principles. I also examine the Unified Modeling Language (UML), a platform-independent way of describing classes and their interactions.
+
+Although this book is not a pattern catalog, I examine some of the most famous and useful patterns. I describe the problem that each pattern addresses, analyze the solution, and present an implementation example in PHP.
+
+Practice. Even a beautifully balanced architecture will fail if it is not managed correctly. In Part 4, I look at the tools available to help you create a framework that ensures the success of your project. If the rest of the book is about the practice of design and programming, Part 4 is about the practice of managing your code. The tools that I examine can form a support structure for a project, helping to track bugs as they occur, promoting collaboration among programmers, and providing ease of installation and clarity of code.
+
+I have already discussed the power of the automated test. I kick off Part 4 with an introductory chapter that gives an overview of problems and solutions in this area. Many programmers are guilty of giving in to the impulse to do everything themselves. Composer, together with Packagist, its main repository, offers access to thousands of dependency managed packages that can be stitched into projects with ease. I look at the tradeoffs between implementing a feature yourself and deploying a Composer package. While I’m on the topic of Composer, I look at the installation mechanism that makes the deployment of a package as simple as a single command.
+
+1『Composer 是 PHP 的包管理工具，类似于 Python 的 pip。』
+
+Code is about collaboration. This fact can be rewarding. It can also be a complete nightmare. Git is a version control system that enables many programmers to work together on the same codebase without overwriting one another’s work. It lets you grab snapshots of your project at any stage in development, see who has made which changes, and split the project into mergeable branches. Git will save your project one day.
+
+When people and libraries collaborate, they often bring different conventions and styles to the party. While this is healthy, it can also undermine interoperability. Words like conform and comply give me the shivers, but it is undeniable that the creativity of the Internet is underpinned by standards. By obeying certain conventions, we are freed to play in an unimaginably vast sandbox. So, in a new chapter, I explore PHP standards, how they can help us, and how and why we should, yes, comply.
+
+Two facts seem inevitable. First, bugs often recur in the same region of code, making some work days an exercise in déjà vu. Second, often improvements break as much as, or more than, they fix. Automated testing can address both of these issues, providing an early warning system for problems in your code. I introduce PHPUnit, a powerful implementation of the so-called xUnit test platform designed first for Smalltalk but ported now to many languages, notably Java. I look in particular at PHPUnit’s features and more generally at the benefits, and some of the costs, of testing.
+
+Applications are messy. They may need files to be installed in nonstandard locations, or want to set up databases, or need to patch server configuration. In short, applications need stuff to be done during installation. Phing is a faithful port of a Java tool called Ant. Phing and Ant interpret a build file and process your source files in any way you tell them to. This usually means copying them from a source directory to various target locations around your system, but, as your needs get more complex, Phing scales effortlessly to meet them.
+
+Some companies enforce development platforms — but in many cases teams end up running an array of different operating systems. Contractors arrive wielding PC laptops (hello Paul Tregoing, fifth edition tech editor), some team members evangelize endlessly for their favorite Linux distro (that’s me and my Fedora), and many hold out for yet another sexy-looking PowerBook (the coffee bar and meeting room use of which doesn’t at all make you look like just another node in a hipster Borg army). All of these will run a LAMP stack with varying degrees of ease. Ideally, though, developers should run their code in environments that closely resemble the ultimate production system. I examine Vagrant, an application which uses virtualization so that team members can keep their idiosyncratic development platforms but run project code on a production-like system.
+
+Testing and build are all very well, but you have to install and run your tests, and keep on doing so in order to reap the benefits. It’s easy to become complacent and let things slide if you don’t automate your builds and tests. I look at some tools and techniques that are lumped together in the category「continuous integration」that will help you do just that.
+
+What’s New in the Fifth Edition. PHP is a living language, and as such it’s under constant review and development. This new edition, too, has been reviewed and thoroughly updated to take account of changes and new opportunities. I cover new features such as anonymous classes, and the long-awaited scalar argument hints and return types. Examples use PHP 7 features where appropriate, so be aware that you will need to run code against the PHP 7 interpreter — or be ready to do some work to downgrade.
+
+In previous editions, I included a chapter on the PEAR package repository. Composer and the Packagist repository are plainly now the standard for PHP development, and I have rewritten the chapter accordingly. It seems that I’ve switched my version control coverage for every other edition or so of this book. I’m glad to say that I’m sticking with Git this time round. I have, however, spent some more time looking at Git repositories like GitHub since these are increasingly used by developers.
+
+I include a new chapter on the previously mentioned Vagrant. In another new chapter, I examine PHP Standards. Since I endorse the value of complying with a style guide, I have reworked every code example in the book to meet the PSR-1 and PSR-2 standards. This was a much bigger commitment than I realized, and tech editor Paul Tregoing has worked valiantly to keep me honest.
+
+## 02.  PHP and Objects
+
+### 1. 逻辑脉络
+
+PHP 各版本的特性，特别是面向对象在各个版本中的演化。
+
+### 2. 摘录及评论
+
+This short chapter placed objects in their context in the PHP language. The future for PHP is very much bound up with object-oriented design. In the next few chapters, I take a snapshot of PHP’s current support for object features, and introduce some design issues.
+
+Objects were not always a key part of the PHP project. In fact, they were once described as an afterthought by PHP’s designers. As afterthoughts go, this one has proved remarkably resilient. In this chapter, I introduce this book’s coverage of objects by summarizing the development of PHP’s object-oriented features.
+
+We will look at the following: 1) PHP/FI 2.0: PHP, but not as we know it. 3) PHP 3: Objects make their first appearance. 4) PHP 4: Object-oriented programming grows up. 5) PHP 5: Objects at the heart of the language. 6) PHP 7: Closing the gap.
+
+### 01. The Accidental Success of PHP Objects
+
+With PHP’s extensive object support and so many object-oriented PHP libraries and applications in circulation, the rise of the object in PHP may seem like the culmination of a natural and inevitable process. In fact, nothing could be further from the truth.
+
+In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two tools developed by Rasmus Lerdorf using Perl. PHP stood for Personal Homepage Tools. FI stood for Form Interpreter. Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. These tools were rewritten in C and combined under the name PHP/FI 2.0. The language at this stage looked different from the syntax we recognize today, but not that different. There was support for variables, associative arrays, and functions. Objects, however, were not even on the horizon.
+
+1『PHP 本质的东西，两大块，一是  Personal Homepage Tools，二是 Form Interpreter。Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. 』
+
+Syntactic Sugar: PHP 3. In fact, even as PHP 3 was in the planning stage, objects were off the agenda. The principal architects of PHP 3 were Zeev Suraski and Andi Gutmans. PHP 3 was a complete rewrite of PHP/FI 2.0, but objects were not deemed a necessary part of the new syntax. According to Zeev Suraski, support for classes was added almost as an afterthought (on 27 August 1997, to be precise). Classes and objects were actually just another way to define and access associative arrays.
+
+Of course, the addition of methods and inheritance made classes much more than glorified associative arrays, but there were still severe limitations on what you might do with your classes. In particular, you could not access a parent class’s overridden methods (don’t worry if you don’t know what this means yet; I will explain later). Another disadvantage that I will examine in the next section was the less than optimal way that objects were passed around in PHP scripts.
+
+1『PHP3 继承的类里面的方法无法重构，即没法覆盖掉父类里同样名称的方法。另外一个缺点： the less than optimal way that objects were passed around in PHP scripts. 』
+
+That objects were a marginal issue at this time is underlined by their lack of prominence in official documentation. The manual devoted one sentence and a code example to objects. The example did not illustrate inheritance or properties.
+
+PHP 4 and the Quiet Revolution. If PHP 4 was yet another groundbreaking step for the language, most of the core changes took place beneath the surface. The Zend Engine (its name derived from Zeev and Andi) was written from scratch to power the language. The Zend Engine is one of the main components that drive PHP. Any PHP function you might care to call is in fact part of the high-level extensions layer. These do the busy work they were named for, like talking to database APIs or juggling strings for you. Beneath that, the Zend Engine manages memory, delegates control to other components, and translates the familiar PHP syntax you work with every day into runnable bytecode. It is the Zend Engine that we have to thank for core language features like classes.
+
+From our objective perspective, the fact that PHP 4 made it possible to override parent methods and access them from child classes was a major benefit. A major drawback remained, however. Assigning an object to a variable, passing it to a function, or returning it from a method resulted in a copy being made. Consider an assignment like this:
+
+```
+$my_obj = new User('bob');
+$other = $my_obj;
+```
+
+This resulted in the existence of two User objects rather than two references to the same User object. In most object-oriented languages, you would expect assignment by reference rather than by value. This means that you would pass and assign handles that point to objects rather than copy the objects themselves. The default pass-by-value behavior resulted in many obscure bugs as programmers unwittingly modified objects in one part of a script, expecting the changes to be seen via references elsewhere. Throughout this book, you will see many examples in which I maintain multiple references to the same object.
+
+1『一定要通过引用来申明对象而非通过值，上面一段信息很重要。』
+
+Luckily, there was a way of enforcing pass-by-reference, but it meant remembering to use a clumsy construction. Here’s how you would assign by reference:
 
 
+```
+$other =& $my_obj;
+// $other and $my_obj point to same object
 
+This enforces pass by reference:
+function setSchool(& $school)    
+    {  
+    // $school is now a reference to not a copy of passed object    
+    }
 
+And here is return by reference:
+function & getSchool()    
+    {        
+    // returning a reference not a copy        
+    return $this->school;    
+    }
 
+```
 
+Although this worked fine, it was easy to forget to add the ampersand, and that meant it was all too easy for bugs to creep into object-oriented code. These were particularly hard to track down, because they rarely caused any reported errors, just plausible but broken behavior.
 
+Coverage of syntax in general, and objects in particular, was extended in the PHP manual, and object-oriented coding began to bubble up to the mainstream. Objects in PHP were not uncontroversial (then, as now, no doubt), and threads like「Do I need objects?」were common flame-bait in mailing lists. Indeed, the Zend site played host to articles that encouraged object-oriented programming side-by-side with others that sounded a warning note. Pass-by-reference issues and controversy notwithstanding, many coders just got on and peppered their code with ampersand characters. Object-oriented PHP grew in popularity. Zeev Suraski wrote this in an article for DevX.com (http://www.devx.com/webdev/Article/10007/0/page/1):
 
+One of the biggest twists in PHP’s history was that despite the very limited functionality, and despite a host of problems and limitations, object-oriented programming in PHP thrived and became the most popular paradigm for the growing numbers of off-the-shelf PHP applications. This trend, which was mostly unexpected, caught PHP in a suboptimal situation.  It became apparent that objects were not behaving like objects in other OO languages, and were instead behaving like [associative] arrays.
 
+As noted in the previous chapter, interest in object-oriented design became obvious in sites and articles online. PHP’s official software repository, PEAR, itself embraced object-oriented programming. With hindsight, it’s easy to think of PHP’s adoption of object-oriented support as a reluctant capitulation to an inevitable force. It’s important to remember that, although object-oriented programming has been around since the 1960s, it really gained ground in the mid-1990s. Java, the great popularizer, was not released until 1995. A superset of C, a procedural language, C++ has been around since 1979. After a long evolution, it arguably made the leap to the big time during the 1990s. Perl 5 was released in 1994, another revolution within a formerly procedural language that made it possible for its users to think in objects (although some argue that Perl’s object-oriented support also felt like something of an afterthought). For a small procedural language, PHP developed its object support remarkably fast, showing a real responsiveness to the requirements of its users.
 
+Change Embraced: PHP 5. PHP 5 represented an explicit endorsement of objects and object-oriented programming. That is not to say that objects were the only way to work with PHP (this book does not say that either, by the way). Objects were, however, recognized as a powerful and important means for developing enterprise systems, and PHP fully supported them in its core design.
 
+1『之前 PHP 对面向对象很不情愿，PHP 5 开始拥抱面向对象。最重要的转变是从「复制对象」升级到了「传递引用」。除了这点，还有很多其他新特性，比如 private and protected methods and properties, the static keyword, namespaces, type hints (now called type declarations), and exceptions。PHP 是服役最长的版本，差不多 20 年。』
 
+Arguably, one significant effect of the enhancements in PHP 5 was the adoption of the language by larger Internet companies. Both Yahoo! And Facebook, for example, started using PHP extensively within their platforms. With version 5, PHP became one of the standard languages for development and enterprise on the internet.
 
+Objects had moved from afterthought to language driver. Perhaps the most important change was the default pass-by-reference behavior which replaced the evils of object copying. That was only the beginning, however. Throughout this book, and particularly in this part of it, we will encounter many more enhancements, including private and protected methods and properties, the static keyword, namespaces, type hints (now called type declarations), and exceptions. PHP 5 was around for a long time (about twelve years), and important new features were released incrementally.
 
+PHP 5.3, for example, brought namespaces. These let you create a named scope for classes and functions, so that you are less likely to run into duplicate names as you include libraries and expand your system. They also rescue you from ugly but necessary naming conventions such as this:
 
+```
+class megaquiz_util_Conf
+{
+}
+```
+
+Class names such as this are one way of preventing clashes between packages, but they can make for tortuous code. We have also seen support for closures, generators, traits, and late static bindings.
+
+PHP 7: Closing the Gap. Programmers are a demanding lot. For many lovers of design patterns, there were two key features that PHP still lacked. These were scalar type declarations and enforced return types. With PHP 5 it was possible to enforce the type of an argument passed to a function or method, so long as you only needed to require an object, an array, or later, callable code. Scalar values (like integers, strings, and floats) could not be enforced at all. Furthermore, if you wanted to declare a method or a function’s return type, you were altogether out of luck.
+
+1『PHP 7 最大的改进是：scalar type declarations and enforced return types. 』
+
+As you will see, object-oriented design often uses a method declaration as a kind of contract. The method demands certain inputs and, reciprocally, it promises to give you a particular type of data back. PHP 5 programmers were forced to rely on comments, convention, and manual type checking to maintain contracts of this kind in many cases. Developers and commentators often complained about this. Here is a quote from the previous edition of this book:
+
+…there is still no commitment to provide support for hinted return types. This would allow you to declare in a method or function’s declaration the object type that it returns. This would then be enforced by the PHP engine. Hinted return types would further improve PHP’s support for pattern principles (principles such as「code to an interface, not an implementation」). I hope one day to revise this book to cover that feature!
+
+I’m pleased to write that the day has come! PHP 7 introduced scalar type declarations (previously known as type hints) and return type declarations, and you’ll see them used plenty in this edition. PHP 7 also provided other nice-to-haves, including anonymous classes and some namespace enhancements.
+
+### 02. Advocacy and Agnosticism: The Object Debate
+
+Objects and object-oriented design seem to stir passions on both sides of the enthusiasm divide. Many excellent programmers have produced excellent code for years without using objects, and PHP continues to be a superb platform for procedural web programming.
+
+This book naturally displays an object-oriented bias throughout, a bias that reflects my object-infected outlook. Because this book is a celebration of objects, and an introduction to object-oriented design, it is inevitable that the emphasis is unashamedly object-oriented. Nothing in this book is intended, however, to suggest that objects are the one true path to coding success with PHP.
+
+Whether a developer chose to work with PHP as an object-oriented language was once a matter of preference. This is still true to the extent that one can create perfectly acceptable working systems using functions and global code. Some great tools (e.g., WordPress) are still procedural in their underlying architecture (though even these may make extensive use of objects these days). It is, however, becoming increasingly hard to work as a PHP programmer without using and understanding PHP’s support for objects, not least because the third party libraries you are likely to rely upon in your projects will themselves likely be object-oriented.
+
+1『很多地方看到这种观点：面向对象和面向 function，其实没有绝对的优劣，要看具体的应用场景。』
+
+Still, as you read, it is worth bearing in mind the famous Perl motto,「There’s more than one way to do it.」This is especially true of smaller scripts, where quickly getting a working example up and running is more important than building a structure that will scale well into a larger system (scratch projects of this sort are often known as「spikes」).
+
+Code is a flexible medium. The trick is to know when your quick proof of concept is becoming the root of a larger development, and to call a halt before lasting design decisions are made for you by the sheer weight of your code. Now that you have decided to take a design-oriented approach to your growing project, I hope that this book provides the help that you need to get started building object-oriented architectures.
+
+## 03. Object Basics
+
+### 1. 逻辑脉络
+
+用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+
+### 2. 摘录及评论
+
+This chapter covered a lot of ground, taking a class from an empty implementation through to a fully featured inheritance hierarchy. You took in some design issues, particularly with regard to type and inheritance. You saw PHP’s support for visibility and explored some of its uses. In the next chapter, I will show you more of PHP’s object-oriented features.
+
+Objects and classes lie at the heart of this book and, since the introduction of PHP 5 over a decade ago, they have lain at the heart of PHP, too. In this chapter, I lay down the groundwork for more in-depth coverage of objects and design by examining PHP’s core object-oriented features. If you are new to object-oriented programming, you should read this chapter carefully.
+
+This chapter will cover the following topics: 1) Constructor methods: Automating the setup of your objects. 2) Classes and objects: Declaring classes and instantiating objects. 3) Primitive and class types: Why type matters. 4) Inheritance: Why we need inheritance and how to use it. 5) Visibility: Streamlining your object interfaces and protecting your methods and properties from meddling.
 
 
 

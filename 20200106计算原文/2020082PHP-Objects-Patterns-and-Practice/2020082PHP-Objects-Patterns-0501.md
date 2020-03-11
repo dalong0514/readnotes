@@ -1,4 +1,4 @@
-Object Tools
+# 05 Object Tools
 
 As we have seen, PHP supports object-oriented programming through language constructs such as classes and methods. The language also provides wider support through functions and classes designed to help you work with objects.
 

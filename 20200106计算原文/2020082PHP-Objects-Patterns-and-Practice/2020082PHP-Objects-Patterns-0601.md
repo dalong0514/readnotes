@@ -1,4 +1,4 @@
-Objects and Design
+# 06 Objects and Design
 
 Now that we have seen the mechanics of PHP’s object support in some detail, we will step back from the details and consider how best to use the tools that we have encountered. In this chapter, I introduce you to some of the issues surrounding objects and design. I will also look at the UML, a powerful graphical language for describing object-oriented systems.This chapter will cover the following topics:
 

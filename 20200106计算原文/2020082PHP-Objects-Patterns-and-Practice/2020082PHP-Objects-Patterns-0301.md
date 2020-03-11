@@ -1,50 +1,50 @@
-Object Basics
+# 03 Object Basics
 
 Objects and classes lie at the heart of this book and, since the introduction of PHP 5 over a decade ago, they have lain at the heart of PHP, too. In this chapter, I lay down the groundwork for more in-depth coverage of objects and design by examining PHP’s core object-oriented features. If you are new to object-oriented programming, you should read this chapter carefully.
 
 This chapter will cover the following topics:
 
-Constructor methods: Automating the setup of your objects
+- Constructor methods: Automating the setup of your objects.
 
-Classes and objects: Declaring classes and instantiating objects
+- Classes and objects: Declaring classes and instantiating objects.
 
-•	•	•	•	•	 Visibility: Streamlining your object interfaces and protecting your methods and 
+- Primitive and class types: Why type matters.
 
-Primitive and class types: Why type matters
+- Inheritance: Why we need inheritance and how to use it.
 
-Inheritance: Why we need inheritance and how to use it
+- Visibility: Streamlining your object interfaces and protecting your methods and properties from meddling.
 
-properties from meddling
-
-Classes and Objects
+## 01. Classes and Objects
 
 The first barrier to understanding object-oriented programming is the strange and wonderful relationship between the class and the object. For many people, it is this relationship that represents the first moment of revelation, the first flash of object-oriented excitement. So let’s not skimp on the fundamentals.
 
-A First ClassClasses are often described in terms of objects. This is interesting, because objects are often described in terms of classes. This circularity can make the first steps in object-oriented programming hard going. Because it’s classes that shape objects, we should begin by defining a class.
+### 1. A First Class
+
+Classes are often described in terms of objects. This is interesting, because objects are often described in terms of classes. This circularity can make the first steps in object-oriented programming hard going. Because it’s classes that shape objects, we should begin by defining a class.
 
 In short, a class is a code template used to generate one or more objects. You declare a class with the class keyword and an arbitrary class name. Class names can be any combination of numbers and letters, although they must not begin with a number. The code associated with a class must be enclosed within braces. Here I combine these elements to build a class:
 
+```
 // listing 03.01
+class ShopProduct
+    {    
+    // class body
+    }
+```
 
-class ShopProduct{    // class body}
+The ShopProduct class in the example is already a legal class, although it is not terribly useful yet. I have done something quite significant, however. I have defined a type; that is, I have created a category of data that I can use in my scripts. The power of this should become clearer as you work through the chapter.
 
-15
+### 2. A First Object (or Two)
 
-Chapter 3 ■ ObjeCt basiCs
+If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class.
 
-The ShopProduct class in the example is already a legal class, although it is not terribly useful yet. I have 
+I use the ShopProduct class as a mold for generating ShopProduct objects. To do this, I need the new operator. The new operator is used in conjunction with the name of a class, like this:
 
-done something quite significant, however. I have defined a type; that is, I have created a category of data that I can use in my scripts. The power of this should become clearer as you work through the chapter.
-
-A First Object (or Two)If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class.
-
-I use the ShopProduct class as a mold for generating ShopProduct objects. To do this, I need the new 
-
-operator. The new operator is used in conjunction with the name of a class, like this:
-
+```
 // listing 03.02
 
 $product1 = new ShopProduct();$product2 = new ShopProduct();
+```
 
 The new operator is invoked with a class name as its only operand and returns an instance of that class; 
 
@@ -68,19 +68,13 @@ object(popp\ch03\batch01\ShopProduct)#235 (0) {}object(popp\ch03\batch01\ShopPro
 
  ■ Note object to a string containing the object’s iD. From php 5.2 onward, the language no longer supports this magic, and any attempt to treat an object as a string now causes an error unless a method named __toString() is defined in the object’s class. i look at methods later in this chapter, and i cover __toString() in Chapter 4,「advanced Features.」
 
-16
-
-Chapter 3 ■ ObjeCt basiCs
-
 By passing the objects to var_dump(), I extract useful information including, after the hash sign, each 
 
 object’s internal identifier.
 
-In order to make these objects more interesting, I can amend the ShopProduct class to support special 
+In order to make these objects more interesting, I can amend the ShopProduct class to support special data fields called properties.
 
-data fields called properties.
-
-Setting Properties in a Class
+## 02. Setting Properties in a Class
 
 Classes can define special variables called properties. A property, also known as a member variable, holds data that can vary from object to object. So in the case of ShopProduct objects, you may wish to manipulate title and price fields, for example.
 
@@ -196,7 +190,7 @@ It would be nice to have the object handle such drudgery on my behalf.All of the
 
 can be used to manipulate property data from within the object context.
 
-Working with Methods
+## 03. Working with Methods
 
 Just as properties allow your objects to store data, methods allow your objects to perform tasks. Methods are special functions declared within a class. As you might expect, a method declaration resembles a function declaration. The function keyword precedes a method name, followed by an optional list of argument variables in parentheses. The method body is enclosed by braces:
 
@@ -244,10 +238,6 @@ So the getProducer() method combines and returns the $producerFirstName and $pro
 
 properties, saving me from the chore of performing this task every time I need to quote the full producer name.This has improved the class a little. I am still stuck with a great deal of unwanted flexibility, though. I rely on the client coder to change a ShopProduct object’s properties from their default values. This is problematic in two ways. First, it takes five lines to properly initialize a ShopProduct object, and no coder will thank you for that. Second, I have no way of ensuring that any of the properties are set when a ShopProduct object is initialized. What I need is a method that is called automatically when an object is instantiated from a class.
 
-20
-
-Chapter 3 ■ ObjeCt basiCs
-
 Creating a Constructor MethodA constructor method is invoked when an object is created. You can use it to set things up, ensuring that essential properties are assigned values and any necessary preliminary work is completed.
 
  ■ Note  in versions previous to php 5, a constructor method took on the name of the class that enclosed it. so the ShopProduct class would use a ShopProduct() method as its constructor. this no longer works in all circumstances and was deprecated as of php 7. Name your constructor method __construct().
@@ -294,7 +284,7 @@ This predictability is an important aspect of object-oriented programming. You s
 
 classes so that users of objects can be sure of their features. One way you can make an object safe is to render predictable the types of data it holds in its properties. One might ensure that a $name property is always made up of character data, for example. But how can you achieve this if property data is passed in from outside the class? In the next section, I examine a mechanism you can use to enforce object types in method declarations.
 
-Arguments and Types
+## 04. Arguments and Types
 
 Type determines the way data can be managed in your scripts. You use the string type to display character data, for example, and manipulate such data with string functions. Integers are used in mathematical expressions, Booleans are used in test expressions, and so on. These categories are known as primitive types. On a higher level, though, a class defines a type. A ShopProduct object, therefore, belongs to the primitive type object, but it also belongs to the ShopProduct class type. In this section, I will look at types of both kinds in relation to class methods.
 
@@ -430,10 +420,6 @@ argument or to issue a warning.
 
 Converting a string argument on the client’s behalf would be friendly but would probably present other problems. in providing a conversion mechanism, you second-guess the context and intent of the client. by enforcing the boolean data type, on the other hand, you leave the client to decide whether to map strings to boolean values and determine which word should map to true or false. the outputAddresses() method, meanwhile, concentrates on the task it is designed to perform. this emphasis on performing a specific task in deliberate ignorance of the wider context is an important principle in object-oriented programming, and i will return to it frequently throughout the book.
 
-25
-
-Chapter 3 ■ ObjeCt basiCs
-
 In fact, your strategies for dealing with argument types will depend on the seriousness of any potential 
 
 bugs on the one hand, and the benefits of flexibility on the other. PHP casts most primitive values for you, depending on context. Numbers in strings are converted to their integer or floating point equivalents when used in a mathematical expression, for example. So your code might be naturally forgiving of type errors. If you expect one of your method arguments to be an array, however, you may need to be more careful. Passing a nonarray value to one of PHP’s array functions will not produce a useful result and could cause a cascade of errors in your method.
@@ -464,13 +450,7 @@ My Antonia: Willa Cather (5.99)
 
 The ShopProductWriter class contains a single method, write(). The write() method accepts a 
 
-ShopProduct object and uses its properties and methods to construct and print a summary string. I used the name of the argument variable, $shopProduct, as a signal that the method expects a ShopProduct object, but 
-
-26
-
-Chapter 3 ■ ObjeCt basiCs
-
-I did not enforce this. That means I could be passed an unexpected object or primitive type and be none the wiser until I begin trying to work with the $shopProduct argument. By that time, my code may already have acted on the assumption that it has been passed a genuine ShopProduct object.
+ShopProduct object and uses its properties and methods to construct and print a summary string. I used the name of the argument variable, $shopProduct, as a signal that the method expects a ShopProduct object, but I did not enforce this. That means I could be passed an unexpected object or primitive type and be none the wiser until I begin trying to work with the $shopProduct argument. By that time, my code may already have acted on the assumption that it has been passed a genuine ShopProduct object.
 
  ■ Note  You might wonder why i didn't add the write() method directly to ShopProduct. the reason lies with areas of responsibility. the ShopProduct class is responsible for managing product data; the ShopProductWriter is responsible for writing it. You will begin to see why this division of labor can be useful as you read this chapter.
 
@@ -630,7 +610,7 @@ The type of a class or interface. Can default to null
 
 When I described class type declarations, I implied that types and classes are synonymous. There is a key difference between the two, however. When you define a class, you also define a type, but a type can describe an entire family of classes. The mechanism by which different classes can be grouped together under a type is called inheritance. I discuss inheritance in the next section.
 
-Inheritance
+## 05. Inheritance
 
 Inheritance is the means by which one or more classes can be derived from a base class.
 
@@ -754,10 +734,6 @@ rather than one.
 
 Remember the ShopProductWriter class? Its write() method is designed to work with a single type: ShopProduct. How can I amend this to work as before? I could remove the class type declaration from the method signature, but then I must trust to luck that write() is passed an object of the correct type. I could add my own type checking code to the body of the method:
 
-34
-
-Chapter 3 ■ ObjeCt basiCs
-
 // listing 03.34
 
 class ShopProductWriter{    public function write($shopProduct)    {        if (            ! ($shopProduct instanceof CdProduct)  &&            ! ($shopProduct instanceof BookProduct)        ) {            die("wrong type supplied");        }        $str  = "{$shopProduct->title}: "            . $shopProduct->getProducer()            . " ({$shopProduct->price})\n";        print $str;    }}
@@ -780,9 +756,6 @@ I know that the getPlayLength() and getNumberOfPages() methods do not belong tog
 
 class ShopProduct{    public $numPages;    public $playLength;    public $title;    public $producerMainName;    public $producerFirstName;    public $price;    public function __construct(        string $title,
 
-35
-
-Chapter 3 ■ ObjeCt basiCs
 
         string $firstName,        string $mainName,        float  $price,        int    $numPages = 0,        int    $playLength = 0    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;        $this->numPages          = $numPages;        $this->playLength        = $playLength;    }
 
@@ -1090,11 +1063,6 @@ There is nothing substantially new in this version of the ShopProduct family. Al
 
 private or protected, and I added a number of accessor methods to round things off.
 
-Summary
+## Summary
 
 This chapter covered a lot of ground, taking a class from an empty implementation through to a fully featured inheritance hierarchy. You took in some design issues, particularly with regard to type and inheritance. You saw PHP’s support for visibility and explored some of its uses. In the next chapter, I will show you more of PHP’s object-oriented features.
-
-46
-
-CHAPTER 4
-

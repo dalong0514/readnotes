@@ -234,15 +234,11 @@ I referred to object-capable languages earlier in this section. You could code i
 
 any classes at all. With a few notable exceptions, however, objects and object-oriented design lie at the heart of most PHP projects and libraries.
 
-Summary
+## Summary
 
 In this chapter, I introduced design patterns, showed you their structure (using the Gang of Four form), and suggested some reasons why you might want to use design patterns in your scripts.
 
 It is important to remember that design patterns are not snap-on solutions that can be combined like 
 
 components to build a project. They are suggested approaches to common problems. These solutions embody some key design principles. It is these that we will examine in the next chapter.
-
-163
-
-CHAPTER 8
 
