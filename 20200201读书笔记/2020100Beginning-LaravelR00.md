@@ -200,7 +200,330 @@ To create an API, you need controllers and models as usual. But, at the same tim
 
 1『用 laravel 的资源类把数据表单转化为 json 格式的数据，资源类是 models 和 json 数据库之间的转换层。』
 
-Let’s start from scratch. The first step is to create a fresh Laravel project.
+Let’s start from scratch. The first step is to create a fresh Laravel project. Let’s say you want to create an Article API. So, you need a model, database table, and controller.
+
+```
+php artisan make:controller ArticleController --resource
+```
+
+Next, you need an Article model and a database table, as shown here:
+
+```
+php artisan make:model Article -m
+```
+
+The database table should have two fields, title and body, as shown here:
+
+Before building an API, you should fill the Article table with some fake data with the help of a database seeder. To do this, you need to create ArticlesTableSeeder and ArticleFactory, as shown here:
+
+```
+//code 12.5 
+$ php artisan make:seeder ArticlesTable
+Seeder Seeder created successfully.
+
+//code 12.6 
+$ php artisan make:factory ArticleFactory 
+Factory created successfully
+```
+
+Let’s change the code of both ArticlesTableSeeder and ArticleFactory, as shown here:
+
+```
+<?php
+
+use App\Article;
+use Illuminate\Database\Seeder;
+
+class ArticlesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(Article::class, 30)->create();
+    }
+}
+```
+
+This will create 30 articles. Next, you need to prepare your factory class to fill up the articles table, as shown here:
+
+```
+<?php
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Model;
+use Faker\Generator as Faker;
+
+$factory->define(Model::class, function (Faker $faker) {
+    return [
+        'title' => $faker->text(50),
+        'body' => $faker->text(300)
+    ];
+});
+```
+
+The title property will have a maximum of 50 characters, and for the body you will be content with 300 characters for demonstration purposes. Let’s fill the database table, as shown here:
+
+```
+$ php artisan db:seed 
+Seeding: ArticlesTableSeeder 
+Database seeding completed successfully.
+```
+
+After the completion of database seeding, you will generate the resource class. To do that, you will use the make:resource Artisan command.
+
+```
+//code 12.10 
+$ php artisan make:resource Article 
+Resource created successfully.
+```
+
+These resources are created to transform the individual models. You may want to generate resources that are responsible for transforming collections of models. This allows you to include links and other meta information in your response.
+
+To create a resource collection, either you can use the --collection flag or you can include the word Collection in the resource name. The word Collection will indicate to Laravel that it should create a collection resource. Collection resources extend the Illuminate\Http\Resources\Json\ResourceCollection class. The relevant artisan command will look like this:
+
+```
+//code 12.13 
+$ php artisan make:resource Article --collection 
+$ php artisan make:resource ArticleCollection
+```
+
+1『就用第二条命令。』
+
+Later in this chapter I will discuss collections and show how they work. So, you have created a resource called Article. You can find it in the app/Http/ Resources directory of your application. Resources extend the Illuminate\Http\ Resources\Json\JsonResource class.
+
+
+```
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class Article extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {
+        return parent::toArray($request);
+    }
+}
+```
+
+As you can see in the previous code, every resource class defines a toArray method, which returns the array of attributes that should be converted to JSON when sending the response. Laravel takes care of that in the background.
+
+You are not ready yet. You need to register your API routes in the routes/api.php file, like this:
+
+```
+use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+// list articles
+Route::get('articles', 'ArticleController@index');
+// list single article
+Route::get('article/{id}', 'ArticleController@show');
+// create new article
+Route::post('article', 'ArticleController@store');
+// update articles
+Route::put('article', 'ArticleController@store');
+// delete articles
+Route::delete('article/{id}', 'ArticleController@destory');
+```
+
+You see the URI, method, and action parts of your routes. If you want a full list, you can issue this artisan command in your terminal:
+
+    $ php artisan route:list
+
+Now you can see the full route list (Figure 12-1).
+
+1『
+
+报错：
+
+```
+ ErrorException  : Non-static method Illuminate\Routing\Route::middleware() should not be called statically
+```
+
+把「use Illuminate\Routing\Route;」注释掉即可，但本质原因目前不理解。（2020-03-14）
+
+』
+
+After starting the local server, you can open Postman to get the response (Figure 12-2). Postman is a tool that can send requests to an API and show you the response. In other words, it is a fancy version of cURL. You can get the same output in your regular web browser also. The URL is http:// localhost:8000/api/articles. See Figure 12-3.
+
+
+1『
+
+无法显示，查找原因后发现「ArticleFactory.php」有误，之前没按书里的修改。
+
+```
+use App\Model;
+use Faker\Generator as Faker;
+
+$factory->define(Model::class, function (Faker $faker) {
+    return [
+        'title' => $faker->text(50),
+        'body' => $faker->text(300)
+    ];
+});
+```
+
+```
+use Faker\Generator as Faker;
+
+$factory->define(App\Article::class, function (Faker $faker) {
+    return [
+        'title' => $faker->text(50),
+        'body' => $faker->text(300)
+    ];
+});
+
+```
+
+api 在软件 postman 和浏览器里还是显示不出来。此问题待解决。（2020-03-14）
+
+』
+
+Let’s take a look at the ArticleController index method, as shown here:
+
+
+For demonstration purposes, I have shown only two methods here: index and show. Since I have used the paginate() method, each page shows you 15 articles. Figure 12-4 shows the second page.
+
+The URL is http://localhost:8000/api/articles?page=2.
+
+Now you may not want to give your application user every output. You may want to omit created\_at and updated\_at. Laravel allows you to customize the JSON output. In that case, you can return the selected records like this:
+
+```
+//code 12.17
+//app/Http/Resources/Article.php
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class Article extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function toArray($request)
+    {  
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'body' => $this->body
+        ];
+    }
+}
+```
+
+So, you are returning only id, title, and body and giving a customized look (Figure 12-5).
+
+You can use the show method to have one article display at a time, as shown in Figure 12-6.
+
+Notice that for the customized version, you access the model properties directly from the \$this variable.
+
+How does this work?
+
+This is because a resource class is able to automatically proxy properties and methods, and it accesses the underlying model. Once the resource is defined, it may be returned from a route or controller, as in the ArticleController show method in the example.
+
+```
+//code 12.18
+public function show($id)
+    {
+        //get article
+        $article = Article::findOrFail($id);
+        
+        //returning single article as a resource
+        return new ArticleResource($article);
+    }
+```
+
+Here you are returning a single article as a resource. Suppose, in case of the User resource, you return a new UserResource like this:
+
+```
+//code 12.19
+use App\User;
+    use App\Http\Resources\User as UserResource;
+    Route::get('/user', function () {
+        return new UserResource(User::find(1));
+    });
+```
+
+In the customized version, you can add some more elements with the help of the with method in app/Http/Resources/Article.php.
+
+The changed code looks like this:
+
+
+The JSON response changes to the screen shown in Figure 12-7 in Postman.
+
+Next, you will see how API collection works. Let’s first create a UserCollection class.
+
+```
+//code 12.21
+$ php artisan make:resource UserCollection
+Resource collection created successfully.
+```
+
+I have added a few dummy users to the application. In the resource UserCollection, when you have this line of code:
+
+```
+//code 12.22
+//app/Http/Resources/UserCollection.php
+public function toArray($request)
+    {
+        return parent::toArray($request);
+    }
+```
+
+you get this JSON response output:
+
+Once the resource collection class has been generated, you can easily define any metadata that should be included with the response. To do that, you need to change the code of UserCollection in this way:
+
+```
+//code 12.23
+//app/Http/Resources/UserCollection.php
+    public function toArray($request)
+        {
+            return [
+                'data' => $this->collection,
+                'links' => [
+                    'author_url' => 'https://sanjib.site',
+                ],
+            ];
+        }
+```
+
+Now you have added extra metadata, and in the output it has been included at the bottom of your JSON response.
+
+In your browser display, it also has been included at the bottom (Figure 12-9). To get all those new UserCollection JSON responses, you can register your route in this way:
+
+```
+//code 12.24
+//routes/api.php
+use App\User;
+use App\Http\Resources\UserCollection;
+
+Route::get('/users', function () {
+      return new UserCollection(User::all());
+});
+```
 
 
 
