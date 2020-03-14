@@ -182,6 +182,26 @@ It does not matter as long as the data flows and the pattern works. In the Larav
 
 When using the MVC framework, you must keep a separate DAO, and the model will handle the DAO as appropriate. Therefore, all SQL statements can be generated and executed in only one place. Data validation and manipulation can be applied in one place: the model. The controller will handle the request/response lifecycle, taking the input from the user interface and updating model accordingly. When the controller gets the green signal from the model, it sends the response to the view. The view is aware of only one thing: the display.
 
+## 12. Working with APIs
+
+What allows a third party to easily interact with a Laravel application’s data? The answer is an API. Usually the API is based on JSON and REST or is REST-like. You can easily work with JSON in your Laravel application, which gives Laravel a big advantage over other PHP frameworks. Without an API you cannot interact with any third-party software that is written in a different language and that works on different platforms. So, writing APIs is a common task that Laravel developers do in their jobs. Another advantage of Laravel is that its resource controllers are already structured around REST verbs and patterns. This makes Laravel developers’ lives much easier.
+
+### 01. What Is REST?
+
+Representational State Transfer (REST) is an architectural style for building APIs. There are some heated arguments over the definition of REST in the computer world. Please do not get overwhelmed by the definition or get caught in the crossfire. With Laravel, when I talk about REST-like APIs, I generally mean they have a few common characteristics; for example, they are structured around resources, and the APIs can be represented by simple URIs.
+
+The URI http://localhost:8000/articles is a representation of all articles. The URI http:://localhost:8000/article/2 represents the second article. The representation of second article goes on just like normal URI representation.
+
+The stateless condition of APIs makes a big difference. Between requests, there is no persistent session authentication, which means that each request needs to authenticate itself. Finally, the major advantage is it can return JSON, which the server understands. That is the reason why a third party can easily interact with a Laravel application. The main purpose of building an API is to enable another application to communicate with your application without any issues. The server knows XML and JSON; however, JSON is the most popular choice now. So, when you return your data in JSON, the ease of communication increases.
+
+### 02. Creating an API
+
+To create an API, you need controllers and models as usual. But, at the same time, you need to transform your models and model collections into JSON. For that, you want Laravel’s resource classes. They allow you to transform data into JSON. You can imagine your resource classes as a transformation layer that sits between your Eloquent models and the JSON responses.
+
+1『用 laravel 的资源类把数据表单转化为 json 格式的数据，资源类是 models 和 json 数据库之间的转换层。』
+
+Let’s start from scratch. The first step is to create a fresh Laravel project.
+
 
 
 
