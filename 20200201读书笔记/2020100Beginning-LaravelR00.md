@@ -398,7 +398,6 @@ api 在软件 postman 和浏览器里还是显示不出来。此问题待解决�
 
 Let’s take a look at the ArticleController index method, as shown here:
 
-
 For demonstration purposes, I have shown only two methods here: index and show. Since I have used the paginate() method, each page shows you 15 articles. Figure 12-4 shows the second page.
 
 The URL is http://localhost:8000/api/articles?page=2.

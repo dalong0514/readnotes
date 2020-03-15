@@ -401,6 +401,336 @@ This also matches the way the JSON:API specification wants us to treat collectio
 
 In the upcoming sections, we will take a deeper look at the JSON:API specification. We will touch upon conventions that the JSON:API specification states as conventions that MUST be followed and conventions the specification states as conventions that MAY be followed. However, we recommend that you follow the conventions we have picked out, whether the specification states that they MUST or MAY be implemented. We will touch upon most of the conventions given in the specification, but there are a few that we haven’t had any use for and feel that they cover more edge cases.
 
+#### 5. Document structure
+
+Let’s look at the document structure of the data for both JSON:API request and responses. The document describes how your JSON data should be formed, how members should be named, where these should be placed, and so forth.
+
+Top-level. Here, the JSON:API specification states that there must be a JSON object at the root of the document, representing the top-level. In the top-level of the document, there must be at least one of the following members:
+
+• data - which is the most important member that contains the primary data of the document.
+
+• errors - which is a member that contains all error objects.
+
+• included - which is a member that contains all resource objects that are related to the primary data and/or related to each other. We will touch more on this when we get to the section about resource objects and relationships.
+
+• jsonapi - which is a member that contains the server’s implementation of the JSON:API specification.
+
+• meta - which is a member that contains all non-standard meta information.
+
+Note that it is very important that the data and errors member never coexist in the same document. The data member should only be used in successful request and responses, where the errors member should only be used whenever there is an unsuccessful request or response. By separating these, you have a clear convention that states where to look for either data or the errors that might occur. Now that we know what the top-level structure should be, let’s take a look at what our primary data will be and also how to structure that.
+
+Primary data and Resource objects. In the section about naming conventions, we talked about how convenient it is to be thinking of our Laravel models as resources since these represent the rows of data in our database and data that we most likely will share across our APIs.
+
+In this section, we will be looking at how to structure these resources according to the JSON:API specification. Resources or resources objects, as they are called in the JSON:API specification, will be placed in the data member and therefore serve as the primary data in the JSON:API.
+
+We know that Laravel Models can be returned in a response, where Laravel will handle the whole conversion of the Model data into JSON, without you having to lift a finger. That’s great and a very convenient feature — we have certainly used it a lot in our earlier API days. But the problem is that the data returned is not consistent.
+
+1『请求返回的数据保持一致性很重要，比如都是 json 格式的。』
+
+There is no strict document layout so you know where to look for the data you need. Instead, everything is just exposed in the top-level of the returned document. One endpoint exposes a new resource with members different than the next one and you’ll quickly have to look at the documentation to find out where to look for the data. Moreover, you actually can’t see what type of model you are receiving, so you’ll have to rely on the naming of the endpoints to tell that part of the story.
+
+As a solution to the aforementioned problem, the JSON:API specification tells us to structure our resource object in this way:
+
+```
+{
+    "id": 1, 
+    "type": "books", 
+    "attributes": { 
+    }, 
+    "relationships": { 
+    } 
+}
+```
+
+In the example, you can see a clear structure. In the root of the resource object you’ll find:
+
+• id - which is the id of the resource as a string.
+
+• type - which is the type of the resource as a string.
+
+• attributes - which contains all of the attributes of our resource.
+
+• relationships - which contains all of the relationships of our resource.
+
+This structure mitigates the problem of not knowing where to look for your data, not knowing the type of the resource, and it gives us a predictable and consistent way of accessing the data of a resource. It is ok for the attributes and relationship members to be empty. In fact, these can be removed if not used. But, as an absolute minimum, you should always have the id and type members in your resource objects, and the value of both should always be a string.
+
+1『resource 对象的结构里面，id 和 type 必不可少。』
+
+Ok, so we know how to structure our resource objects, but as we talked about in the naming convention section, there is a difference between requesting a collection of resources versus requesting a single resource. The difference here is not that big, but it is important to be aware of it.
+
+1『请求单个资源和多个资源是有区别的，虽然差不不大，但要有概念。』
+
+When requesting a single resource like this:
+
+    GET: /books/1
+
+the data member of the returned document should be structured like this: (note that we are omitting the attributes and relationships for the sake of simplicity)
+
+```
+{
+    "data": { 
+        "id": "1", 
+        "type": "books" 
+    } 
+}
+```
+
+Here, the data member is the resource object itself. When requesting a collection of resources like this :
+
+    GET: /books
+
+the data member of the returned document should be structured like this: (note that we are omitting the attributes and relationships once again)
+
+```
+{
+    "data": [ 
+        { 
+        "id": "1", 
+        "type": "books" 
+        }
+     ] 
+ }
+```
+
+Here, the data member is an array containing the requested resource objects. As you can see here, it should be an array even if there is only one resource in the collection. If there weren’t any resources in the collection, an empty array should be returned. We got the basics down and it’s time to look at those attributes and relationships we have omitted in the examples. Here, we open up for the ability to create our own member names, therefore it is important to look at the naming convention for these as well to ensure consistency.
+
+Member names. The JSON:API has a clear naming convention when it comes to member names, where all member names must be treated as case sensitive by both client and servers. Other than that, there are some conditions that the member names must also follow: 1) Member names must contain at least one character. 2) Member names must contain only allowed characters. 3) Member names must start and end with globally allowed characters.
+
+We strongly recommend that you keep all your member names in lowercase and stick to a convention when picking characters like spaces, like these examples:
+
+Using underscores as space, also known as snake case:
+
+```
+{
+    "member_name": "content" 
+}
+```
+
+Using hyphens as space, also known as kebab case:
+
+```
+{
+    "member-name": "content" 
+}
+```
+
+Using a capital letter on the next word to indicate a space, also known as camel case:
+
+```
+{
+    "memberName": "content" 
+}
+```
+
+We have adopted the camel case as a naming convention when coding in PHP, but in our APIs, it’s a bit of a different story. Here, we use snake casing, mostly because that’s a convention we have used from the start, when looking at other companies’ APIs. At the time of writing, both Google, Dropbox, and Facebook use snake cases in their APIs. Also, when calling the toJson() method on your model, Laravel converts your model attributes spaces into snake case. Our recommendation is to use snake cases, especially because we will be using these in this book, but also since it comes for free with Laravel. The choice, however, is entirely yours — just make sure you are consistent and don’t suddenly change in the middle of working with this book or in your own APIs.
+
+1『snake casing 是用下划线的形式命名。』
+
+Aributes. Now that we have a naming convention for our member names, we can continue to attributes. Attributes on a resource object are just like the attributes on your model in a Laravel Application. These are data like the title of a book, the name of an author, and so forth. The JSON:API specification specifies that on a resource object, the attributes member should be an object. Any member inside this object can be whatever data that represents the object, but must never be a relationship. For relationships, we use a dedicated member in the resource object, which we will look at shortly. To make an example, let’s look at a single book again:
+
+```
+{
+    "data": {
+        "id": "1", 
+        "type": "books", 
+        "attributes": {
+            "title": "Build an API with Laravel",
+            "publication_year": "2019" }
+    } 
+}
+```
+
+Here, you see the definition of the attributes member as an object containing two members, namely title and publication_year. You also see how the naming convention of snake casing takes effect. As mentioned earlier, the attributes member can contain any information about the resource object, but cannot contain relationships or a member called relationships. Another rule is that the attributes member can never contain an id or type member, since these are reserved on the root of the resource object. But how do we define relationships then?
+
+Relationships. When it comes to data in an application, these are often related to one another. When building applications in Laravel, we are used to defining models as objects in real life and as such, these have different relations to one another:
+
+A car belongs to a brand, a bus can have many passengers, a book can have many authors, and an author can have written many books. Do you see how everything connects? Chances are that you have already written something like the sentences we just presented, since Laravel uses most of the wording in the relationships you define in models.
+
+```
+<?php
+
+namespace App;
+use Illuminate\Database\Eloquent\Model;
+
+class Car extends Model {
+    
+    /** 
+    * Get the brand of the car 
+    */ 
+    public function brand() 
+    { 
+        return $this->belongsTo('App\Brand'); 
+    }
+
+}
+```
+
+By declaring a relationship method on our model, we can fetch the brand of our car very easily, now that we have told Laravel about the relationship. But how do you tell about relationships in your APIs and how do you convey enough information, so that your consumers can easily get the data they want? Relationships in the JSON:API specification is defined as the relationships member. Like the id, type and attributes members, it should be placed at the root of the resources object and be defined as an object like this:
+
+
+```
+{
+    "data": {
+        "id": "1", 
+        "type": "books", 
+        "attributes": {
+        "title": "Build an API with Laravel",
+        "publication_year": "2019" }, 
+        "relationships": { }
+    } 
+}
+```
+
+Unlike the attributes member, where you are in charge of the members, the relationships have a more strict set of rules. A relationship member must contain at least one of the following members:
+
+• links
+
+• -self
+
+• -related
+
+• data
+
+• meta
+
+Let’s take a look at the links member. This member contains two types of links. The link for the self member is a link for the relationship itself. With this link, it is possible to manipulate the relationship between two resources without having to delete one of them. A good example here would be tagging. If a book contains one or more tags, this link can be used to remove the tag from the book without having to delete the tag or the book.
+
+1『只需要移除标签的连接即可，避免直接删除标签和书本身。』
+
+The link for the related member is a link for the relation between resources. When making a request to this link, the related resources will be queried and returned as primary data. This is very much like calling a relationship method on your Laravel models, where Laravel will make a query for the related models of that model for you.
+
+The data member is something we have seen before, yet this one is a little different. It’s called the resource linkage and instead of holding resource objects, it holds resource identifier objects. In contrast to resource objects, which hold id, type, attributes and relationships members, resource identifier objects only contain the id and type members of the related resource object.
+
+The meta member is a meta object that can contain non-standard metadata about the relationship. We haven’t had the need for this yet and thus won’t include it in the examples. Now that we’re talking about it, let’s take a look at the relationship between a book and an author:
+
+```
+{
+    "data": {
+        "id": "1", 
+        "type": "books", 
+        "attributes": { "title": "Build an API with Laravel", "publication_year": "2019" }, 
+        "relationships": { 
+            "authors": { "links": { "self": "http://example.com/books/1/relationships/authors ", "related": "http://example.com/books/1/authors" }, 
+            "data": { "id": "5", "type": "authors" }
+            }
+        }
+    } 
+}
+```
+
+If you take a look at the JSON example, you can see the author member inside the relationships object. In this example, we have the links that make it possible to easily fetch the related resource, which in this case is the author of the book. In the example above, we have a single author, as in a one-to-one relationship. In the case of a one-to-many or many-to-many relationship, an array should be used instead, just like this:
+
+The way the data attribute contains resource identifier objects is just like the primary data’s data member, which holds either an object for a single resource or an array for a collection of resources. Ok, that was a bunch of rules at once. Let’s recap on how to define a relationship. We make an object as the relationships member. Each member inside relationships defines each related resource. In the examples given above, the relationship is between books, authors and comments. All of those combined would look like this:
+
+Inside each relationship, we have at least one of the members: 1) inks. 2) data. 3) meta. In our case, we have both links and data, which we recommend that you do as well. The links members give us a consistent way of accessing either the relationship between the resources or the related resource object. The data members give us either a resource identifier object or a collection of resources.
+
+We now know how to define relationships, we even know how to provide links for manipulating relationships and how to fetch related resources. If we want the comments for the book, we can simply make a request to the link given in the related member and a response containing all the resource objects will be returned.
+
+1『这张完整的 json 数据结构好好研究琢磨。』
+
+Right now, the data member of the relationships seems a bit redundant, since it only contains id and type member instead of an entire resource object, but let’s look further into this in the next section and it will make more sense.
+
+#### 6. Compound Documents
+
+We have just looked at the relationships member and what kind of members this should contain. We left with some confusion about the data member inside the relationships object. To understand this part, we need to revisit the top-level of our document, more specifically the included member. We only touched upon this briefly in the section about Top-level, so let’s have a better look at this.
+
+When building an API or an application for that matter, you have to make some thoughts about optimization and make sure your application performs as intended. One optimization could be to reduce the number of HTTP requests as much as possible. One way to do this is to use the included member. The reason for this is that it makes it possible for you to include the related resources of the fetched resource, which will then be the resources defined in the data member in the relationships object. Instead of having to make a new request for the related resources, they can just be included in the current response.
+
+In this case, the resource objects sent in the included member will correspond to the resource identifier objects given in the relationships’ data member. Let’s build upon the previous examples to give a better idea of this:
+
+In the example, you can see how the included member, includes all of the resource objects, for the resource identifier objects given in the data member. Here, it’s important to note that the included member will always be an array that contains all of the related resource objects mixed together in a flat array. The included member can be included by default, or by an include query parameter like this:
+
+    GET: /books/1?include=comments
+
+Here, there will not be anything included before the query parameters are in the URL and if the relationship does not exist, a 400 Bad Request should be used. If you choose to support using the include query parameter, there are a few more things you should implement.
+
+First, it should be possible to specify which relationships that should be included in the response using a comma separated list:
+
+    GET: /books/1?include=authors,comments
+
+It should be possible to request resources related to other resources using a dot-separated path for each relationship name. In our example, a book has a relationship with authors and comments, but each comment also has an author, in the form of a user who created the comment. If we wanted to include the users for each comment, it should be possible to do this by adding the related resource like this:
+
+1『请求时，请求的资源如果跟另一个资源相关联，可以用逗号分隔开这两个资源。』
+
+    GET: /books/1?include=authors,comments.users
+
+Again, if it isn’t possible to fetch the related resource, you should return with a 400 Bad Request. Whether you want to use the include query param is all up to you, and the same goes for the included member in your response documents, but if you choose to do so, you must have the data members in the relationships object, for each of your relationships. If not, you can omit the data member, but you then have to have the links member, so that the related resources can be requested through the related link.
+
+Now, let’s take a step back and think about what we have been through. We now know how to structure the document for our data. We know that we must have a top-level object and that we must have a data member representing our primary data, and that the data member can be either an object or array, whether it’s a single resource or a collection we have requested. We know that a resource is represented in our document as a resource object that must contain an id and type member, both with a string datatype.
+
+We know that we can use an attributes member to give information about our resource object, which in this case would be the attributes of your Laravel models. We know how to use the proper member name convention in our attributes object and how it’s important to stick to a naming convention strategy as snake case to keep consistency. 
+
+We know how to represent a relationship between our resources through a relationship object. We know how to define a relationship as yet another object, which contains a links member with links to the relationship itself or the related resources and a data member holding resource identifier objects for use in the included top-level member. We know how to use the included top-level member to save HTTP request by sending related resources in the response.
+
+That was quite a lot and we are almost done with the JSON:API specification. Before we move on though, we just have to look at how we make requests and responses using this new document structure and also how we handle errors.
+
+#### 7. Request and responses
+
+It’s time to look at how we should make our request and responses according to the JSON:API specification. We know what to send and what we can expect to receive, but we don’t know how to request it or how these should be sent with a response yet. Of course, there are conventions and we will adhere to them. Let’s take a closer look.
+
+Requests. All requests to get data from our API must be done with a GET request. Remember the previous chapter in the section about REST and HTTP verbs, the GET request is for reading data and the same goes for the JSON:API specification. Nothing has changed here.
+
+Some interesting conventions the JSON:API specification brings along for requests is the ability for sorting and pagination of collection data. These are only optional conventions, but we are mentioning them because we have had great use of these. There are more conventions, but these are outside of the scope of this book. Now, let’s first take a closer look at sorting.
+
+1『GET 请求还可以额外添加两个功能：sorting 和 pagination。』
+
+Sorting. Sorting data is a great feature to have in an API. Think about sorting just like ORDER BY in your database. You get the ability to sort your data based on member names in a more dynamic way, instead of being limited by the way the API developer may have thought was the best way to sort the data. Sorting data is done via a query parameter. If you are unsure what a query parameter is, it is a convention in HTTP you use to send along parameters for a request, as a part of the URL like this:
+
+1『问号 ? 是查询参数，问号后面的座位一个参数传递进查询的 url 里，比如作为条件的一个参数。』
+
+    GET: http://example.com/cars?color=blue
+
+Here, the parameter we are sending along is color with a value of blue. The query parameter used by the sort feature is the sort parameter. The value of the parameter is the member name of the attribute you want to sort by. It would look something like this:
+
+    GET: /books?sort=title
+
+If you want to support multiple sort fields, these should be separated by a comma like this:
+
+    GET: /books?sort=title, publication_date
+
+When ordering a database query by a column name, we are able to tell if the ordering should be done in ascending order or descending order. The same thing goes for sorting a collection, according to the JSON:API specification. Here, a sorting is always done in ascending order unless you prefix a sort field with a minus, in which case it will be sorted in descending order. It would look something like this:
+
+    GET: /authors?sort=-age
+
+Here, you will get the oldest authors first, descending until the youngest author in the collection.
+
+Pagination
+
+Pagination is another feature that can have great benefits, especially if you have large sets of data that can be quite a strain on the system to query. You can paginate the results and do the queries in smaller chunks, letting the API consumer do the work of progressing through the pagination. The way pagination is done in the JSON:API specification is through a links object in the root of the response document. The links object must have the following members used for pagination links:
+
+• first - which is the first page of data.
+
+• last - which is the last page of data.
+
+• prev - which is the previous page of data.
+
+• next - which is the next page of data.
+
+The links object in the document would look something like this:
+
+In the example, you can see a collection of books and in the bottom of the response document you see the links member with the four members of a pagination link object. Can you guess which page we are on? Correct! We are on page two! Had we been on the first page, the JSON:API specification actually requires us to omit or set a null value for the links that are unavailable, which in that case would be the prev link, since there is no previous page, when being on the first page. Just to demonstrate, here is an example of that scenario:
+
+You see how a null value is provided for the prev member to indicate that it is unavailable. The JSON:API specification does not have any conventions when it comes to query parameters signifying which page in the pagination we are currently on. However, they state that the page query parameter can be used for this and we will recommend that as well. The good thing about this is that it’s then possible to deep link into a page of data using the page query parameter. We will support this in our API as well.
+
+Now, we know how to make a request for data and even how we can sort or paginate data provided in collections. It is time to look at responses and the conventions from the JSON:API specification we must follow.
+
+Responses. It’s time to look at the server side and which convention it must adhere to when sending responses to the client. Here, we will revisit HTTP verbs and status codes as well as look at conventions that must be followed to keep your API consistent. The first rule we will look at is making GET requests for data or fetching data, as the JSON:API specification calls it.
+
+Response guarantees. Here, the server must always support getting resource data and or relationship data for all URLs that are provided in a response. The URLs we are talking about are the URLs provided in a relationship for a resource object. It is the links given in the links object of the relationship object, more specifically the self and related links. It should always be possible to get data through these links, otherwise we are breaking the conventions from the specification. Also, it would not make a lot of sense if links we provide from the API does not work. It would lead to a lot of frustration for the consumers of the API and that’s not what we want.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
