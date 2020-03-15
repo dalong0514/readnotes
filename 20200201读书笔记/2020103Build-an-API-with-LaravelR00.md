@@ -20,7 +20,11 @@
 
 As mentioned earlier, HTTP verbs play a significant role in the intention of a request. The HTTP verb tells the server about how we, on the client side, intend to handle our data. How to handle data is often looked at from a CRUD perspective, which stands for: Create, Read, Update, Delete. As an example, imagine an application for a bookstore. The CRUD part here will be responsible for: Adding, Listing, Updating or Removing books from the bookstore.
 
-### 0202. 术语卡——
+### 0202. 术语卡——conventions
+
+You see, it’s not the development of the API on the backend that takes time and causes pain. The pain is mostly felt when you have to work with the API on the frontend, or even worse when other people or companies are working with your API. Without strict conventions, you not only have to write documentation that shows what your API can do, but you also end up teaching how to use the API. This is where following a specification like the JSON:API specification shows its worth. How to use it is already documented and as long as you follow the specification, anybody who knows how to work with the JSON:API specification, knows how to work with your API. Of course, they won’t know what your API can do — you will still have to tell them that — but how to communicate with your server through your API, will never be a problem for them.
+
+Even better, when following the conventions of the JSON:API specification, you have a strict protocol that never changes from application to application. This means that you can extract the whole client-server communication part of your frontend application and reuse it from application to application. You won’t have to write the same tedious boilerplate code over and over again, and you can focus on building the functionality of your frontend app instead. The JSON:API specification even lists available implementations, which includes implementations made for a lot of languages like Javascript as well as frameworks like VueJS and React.
 
 ### 0203. 术语卡——
 
@@ -36,9 +40,7 @@ As mentioned earlier, HTTP verbs play a significant role in the intention of a r
 
 #### 02. 贡献及著作
 
-### 0401. 金句卡——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
+### 0401. 金句卡——anybody who knows how to work with the JSON:API specification, knows how to work with your API
 
 ## 模板
 
@@ -86,7 +88,7 @@ We hope you will enjoy reading this book as much as we have enjoyed writing it. 
 
 To best describe what an API is, let’s imagine that our application or service is like a restaurant. The frontend of the application is where you sit at the table and eat, and the backend is the kitchen, where they prepare food for you. Here, an API plays the role of the menu, where you can pick what you want the kitchen to cook for you. In programming terms, an API makes it possible for a frontend developer to request a specific task or resource from the backend.
 
-1『api 如同菜单这个隐喻真棒。』
+1『api 如同菜单这个隐喻真棒。进了餐馆顾客只需看菜单就可以知道后厨可以提供哪些服务了。』
 
 If you look at a menu, you might notice that it consists of a finite predetermined set of dishes: a collection of dishes that the kitchen knows how to cook and prepare for you. The same goes for an API, but instead of having dishes to choose from, you instead select between endpoints. Through endpoints, we can order our backend to prepare and send back some data for us. It could be a list of books for a bookstore or the latest comments for a blog post, depending on the service or application that serves a solution to a problem. Like a menu being divided into starters, main course and desserts, an API is divided into resources. We’ll be touching upon resources later — right now you just have to know that they exist.
 
@@ -148,6 +150,8 @@ This is not something we recommend doing, unless you are using a wrong HTTP verb
 
 400 Bad Request. The 400, much like the 200, is a broad status code. All it does is tell the client that the server could not or would not process the request. It does not specify any reasons, and the client would have to look at the payload for further information.
 
+2『去查 payload 的概念。』
+
 401 Unauthorized. The 401 status tells the client that the request could not be fulfilled due to lacking authentication credentials.
 
 403 Forbidden. The 403 status tells the client that the request could not be fulfilled due to lacking authorization. For example, this status code could be sent back if one user tries to access or update another user’s data. The user might be authenticated to access the endpoint, but not have authorization to access the data.
@@ -164,7 +168,7 @@ Simply put, an endpoint is one end of a communication channel. When an API inter
 
 APIs work using ‘requests’ and ‘responses.’ When an API requests information from a web application or web server, it will receive a response. The place that APIs send requests and where the resource lives, is called an endpoint.
 
-1「目前的理解就是 resource 的存放点。」
+1「目前的理解，endpoint 是 resource 的存放点，即前端里请求资源时填写的 api 地址。」
 
 endpoint 在 RESTful 风格下通常看起来是这样：
 
@@ -205,6 +209,8 @@ PUT /item/{id}
 
 1『HTTP methods 对应于 REST 里的 HTTP verbs，因为 REST 不造轮子。』
 
+3『资源层如同数据（数据结构），HTTP verbs 如同操作这些数据结构的算法。可以去看看「2020017郑晔的10倍程序员工作法R00」里有关 MVC 分层的思考。』
+
 422 Unprocessable Entity. The official RFC4918 states that this status is to be used when the server understands the content of the request and the syntax of the request is correct, but was unable to process the request. An RFC stands for Request For Comments, which can be viewed as the rules for standardizing the internet. The number references the document in which the request has been documented. In Laravel, the 422 status code is used for validation errors when using REST and JSON. The JSON:API documentation says that this status is to be used when creating or updating a resource where an attribute is invalid. Based on all these examples, we can safely say that the 422 status code tells the client about invalid data sent in the request.
 
 5XX as Server errors. The 5XX range are all statuses that deal with the server, where it is aware that an error has occurred or might otherwise be unable to handle the request.
@@ -223,7 +229,7 @@ PUT /item/{id}
 
 ### 1. 逻辑脉络
 
-JSON:API specification 在 api 里最重要了，即以 JSON 数据结构编写 API 的规范（a specification for building APIs in JSON）。
+JSON:API specification 在 api 里最重要了，即以 JSON 数据结构编写 API 的规范（a specification for building APIs in JSON）。JSON:API specification 还有一个视角：endpoint 的命名约定。
 
 ### 2. 摘录及评论
 
@@ -247,9 +253,7 @@ Firstly, we will be looking at a case for this book to have something to work fr
 
 ### 01. The case
 
-As mentioned earlier, we will be using a case to establish a common ground. It makes it easier for us to give examples in a context you understand, and lets us reuse this context for planning and later implementation. By having a case that simulates a real life example, it might be easier for you to understand the concepts we will present to you and apply them into your own projects in the future. We all learn differently, but it is our experience that having a case and a context makes it easier to see the concepts applied and learn how to apply them yourself.
-
-So without further ado, let’s get into the case:
+By having a case that simulates a real life example, it might be easier for you to understand the concepts we will present to you and apply them into your own projects in the future. We all learn differently, but it is our experience that having a case and a context makes it easier to see the concepts applied and learn how to apply them yourself. So without further ado, let’s get into the case:
 
 Anna’s Bookstore has existed since the early 90s where it opened as a small cornershop in the city. It isn’t a fancy place — the floor, bookshelves and furniture make it seem a bit like your grandma’s place, but it’s cosy, welcoming and the perfect combination of a bookstore and coffee shop, where you will feel right at home. Customers come back for Anna’s personality, which is reflected in every little thing in the store, and especially the selection of books. It’s not the selection of books you’ll find in every store; these are hand-picked by Anna herself. She’ll often offer customers a cup of coffee and discuss a book, or the work of an author, when there isn’t anything to do at the cash register. You can feel that both literature and people are her passion.
 
@@ -257,13 +261,145 @@ As the years go by, new stores start emerging and Anna gets a lot more competiti
 
 Other than being able to sell books and being able to keep stock of her books, Anna wants to be able to present these books through authors. Anna has a bunch of authors that she can vouch for, who always publish good work, a key part of her having so many hidden gems.
 
+1『a key part of her having so many hidden gems. 是她的核心优势，可以理解为定制化、算法之类的。』
+
 Sometimes, Anna finds books by reading comments that other people have left on the online bookstores. She loves the helpful tips people give in the comments and it reminds her of the discussions she has been a part of in her own bookstore. She would like something like this in her online bookstore as well.
 
 There are a few things to take note of here. To some, the case might sound really simple and to others, it might seem daunting. But fear not, we won’t be building the entire solution for Anna. Instead, we will pick out parts of the online bookstore that makes sense in terms of an API, and not the entire purchase flow etc. Keep in mind that we have written this case to communicate the concepts about building an API, as easy as possible, and there is more than enough in the part about handling books and authors to do that.
 
 Now that we know more about the case and what we need to build, we could go straight to the planning, but let’s hold that thought and take a closer look at the JSON:API specification, and learn a bit more about the protocols that will be the foundation of how we communicate with our API.
 
+### 02. JSON:API specification
 
+When developing software, there are a lot of decisions to make about how to design the software in the best way — from how to design your code to the application architecture, and all the way up to the visual representation of your application on screen. With APIs this isn’t any different. Up until 2013, where the first draft of the JSON:API specification was made, there weren’t any approaches to standardization of JSON API interactions.
+
+Before adhering to the JSON:API, we at Wacky Studio even made our APIs in our own way, the way we thought was best. We drew inspiration from APIs of the services we used and made our decisions based on how they were implementing their APIs.
+
+1『Wacky Studio 是作者他们的公司。』
+
+That was a very bad idea because:
+
+• They were also in a phase of learning how to write a good API for their services.
+
+• None of them were following the same conventions.
+
+• Most of them had an API design that meant you had to make a lot of requests for data.
+
+The worst of it all was when we had to consume our own API on the frontend. Because of the lack of conventions, we had to constantly go back and forth to get the correct endpoints, to see what data each request should contain and to see what would be returned from the server. And every time we started a new project, we ended up writing all the code for communication with the server, again and again, because of inconsistency.
+
+1『重视约定（conventions）是很重要的一条编程规则。anybody who knows how to work with the JSON:API specification, knows how to work with your API. 』
+
+You see, it’s not the development of the API on the backend that takes time and causes pain. The pain is mostly felt when you have to work with the API on the frontend, or even worse when other people or companies are working with your API. Without strict conventions, you not only have to write documentation that shows what your API can do, but you also end up teaching how to use the API. This is where following a specification like the JSON:API specification shows its worth. How to use it is already documented and as long as you follow the specification, anybody who knows how to work with the JSON:API specification, knows how to work with your API. Of course, they won’t know what your API can do — you will still have to tell them that — but how to communicate with your server through your API, will never be a problem for them.
+
+Even better, when following the conventions of the JSON:API specification, you have a strict protocol that never changes from application to application. This means that you can extract the whole client-server communication part of your frontend application and reuse it from application to application. You won’t have to write the same tedious boilerplate code over and over again, and you can focus on building the functionality of your frontend app instead. The JSON:API specification even lists available implementations, which includes implementations made for a lot of languages like Javascript as well as frameworks like VueJS and React.
+
+The JSON:API specification was drafted in 2013 and had the first final v1.0 ready in 2015, where it has been used ever since. At the time of writing, a new version is about to be released, but as stated in the specification, the new version will always be backward compatible, using a “never remove - only add” strategy. So you won’t end up like us, where your inspiration is suddenly drastically changed. When implementing the JSON:API specification, you are ensured that people will always be able to use it, no matter which version of the specification they have learned and/or are using.
+
+1『never remove - only add.』
+
+As we see it, the JSON:API specification is a great approach to standardization of APIs and throughout this book, we will dive further into it and show you how to build an API in Laravel using it. Before we get ahead of ourselves, let’s commence by looking at the fundamentals of the specification.
+
+#### 1. Client / Server Responsibilities
+
+When you adopt the JSON:API specification, the first thing you have to look at are the headers sent in your request and responses. As a client, you have to send your request with:
+
+    Accept: application/vnd.api+json
+
+And
+
+    Content-Type: application/vnd.api+json
+
+These headers tell the server that what you’re sending lives up to the protocol given in the JSON:API specification, and also that you expect to receive data in the response that adhere to that same protocol.
+
+As a server, you have to deliver your response with:
+
+    Content-Type: application/vnd.api+json
+
+to tell the client that what you’re sending lives up to the protocol given in the JSON:API specification.
+
+#### 2. Endpoints
+
+Though the specification provides a strict protocol for how requests and responses are structured, it only gives a few recommendations about how to form your endpoints. In this section, we will have a look at the recommendations from the JSON:API specification and give some of our recommendations as well. It isn’t hard to define endpoints, since you are already used to it by the routes you have defined in your existing Laravel applications. The thing that can be hard is making sure that you are consistent.
+
+### 3. Naming conventions
+
+In Laravel, we are used to working with models through the Eloquent ORM. Models define the tables in our database that hold the data for our entire application. Our API should give the client the data being requested and these data are most likely to be fetched from our database. Therefore, it is also very convenient to be thinking of our models as resources.
+
+We are used to naming our tables after what they represent in the real world and often with nouns. As an example, the data for the users of our application will most likely be stored in a users table with a User model. The books of our bookstore will be placed in a books table with a Book model. The resource in this example would be “books”.
+
+The naming convention may confuse since you are used to working with model names in a singular naming convention, but the table names are made in a plural naming convention. When it comes to resource naming, there have been a lot of discussions whether to use singular or plural names. The JSON:API specification doesn’t provide a clear answer here, but gives the following example of a plural naming when having URL for a collection of resources.
+
+    GET: /photos
+
+Later on, they do give an example where they use singular naming, but here it seems like it is done when there is a one-to-one relationship between resources. We have been down both roads and have felt both the upsides and downsides to plural and singular naming conventions and especially with a combination of both. We started out with a singular naming convention because it made a lot of sense, since it’s so close to how you work with models in Laravel. If we want to get a book we write:
+
+```
+<?php
+
+$book = Book::first(); 
+// or 
+$book = Book::find(1);
+```
+
+Here, our endpoint would reflect this as:
+
+    GET: /book/1
+
+And it makes sense — if you want a single book, you write it out in singular. But what about the situation when you want a collection of books? Because of the conventions in the Laravel framework where model names are using a singular naming convention, it is not unusual to get a collection of Books when you write the following:
+
+```
+<?php
+
+$books = Book::all();
+```
+
+For us, when it came to reflecting this in endpoints, we had a little trouble. It felt wrong getting a collection of books by:
+
+    GET: /book
+
+Because of this, we came up with a solution that borrowed a bit more of how Laravel’s Eloquent ORM work, with an endpoint like this:
+
+    GET: /book/all
+
+It isn’t pretty and it would force our consumers to always remember the all when wanting to fetch collections of resource, which we also occasionally forgot, whenever we had been away from the project in some time. The next API we wrote, we wanted to change that ugly reference to all and write something that made more sense. We opted to change the resource naming for requests for collections to plural. In this way, we would write the following to get a collection of books:
+
+    GET: /books
+
+And we could then write the following to get a single book:
+
+    GET: /book/1
+
+1『这里应该是作者的笔误，GET: /books/1。』
+
+We thought this was a great and consistent way, until we stumbled upon words with irregular plurals. As a trivial example, let’s look at the word leaf. It has one spelling in singular, but the plural spelling leaves is different. Somebody whose first language isn’t English, could end up writing leafs and get an error. This could lead to confusion since you write the following to get a single leaf:
+
+    GET: /leaf/1
+
+To get a collection of leaves, you write the following:
+
+    GET: /leaves
+
+There is suddenly an introduction of inconsistency and that is not what we want. We want to have predictable behavior and one word only for a resource. The way we do it now, and the way we would recommend, is to use plural only. This might sound strange and like we would hit the same obstacles, but that is not the case. Let’s look back at the conventions by Laravel’s Eloquent ORM.
+
+Model names are in singular, but tables names are in plural. Models are in singular, because you are only interacting with a single model at a time, since a single model corresponds to a single row in the database. Here, the singular naming convention fits perfectly. If you have multiple models, these are placed in collections. It’s not an instance of a Model you get. No, here you’ll get an instance of a Collection, which contains an array of many models.
+
+A database table will contain one or more rows. It is suddenly a collection of data for the thing it represents, therefore the plural naming convention of Laravel makes sense for these. If we want a certain row in that table, we use a Primary Key, most often with the name id, to access that single row.
+
+1『解释了在 laravel 里为啥 Models 的名称用的是单数，而数据库里的表单（table）却用的是复数。』
+
+We like to take that same approach to our endpoint naming convention. We use a plural naming convention, like our table names, because we expect a collection of resources. We won’t be able to avoid irregular plurals, but by sticking to plural only, our consumers only need to remember one name and don’t have to care if that name is an irregular plural. They just have to remember the name leaves and that’s it. A request to the following will give us a resource collection of all books:
+
+    GET: /books
+
+If we want a single book, we fetch it, by giving an id to the books collection, like this:
+
+    GET: /books/1
+
+This also matches the way the JSON:API specification wants us to treat collections of resources, namely as arrays keyed by a resource ID. There is also a naming convention when it comes to relations between resources. These are a part of the protocols given by the JSON:API specification, which we will look further into in the upcoming sections.
+
+#### 4. Before we continue
+
+In the upcoming sections, we will take a deeper look at the JSON:API specification. We will touch upon conventions that the JSON:API specification states as conventions that MUST be followed and conventions the specification states as conventions that MAY be followed. However, we recommend that you follow the conventions we have picked out, whether the specification states that they MUST or MAY be implemented. We will touch upon most of the conventions given in the specification, but there are a few that we haven’t had any use for and feel that they cover more edge cases.
 
 
 

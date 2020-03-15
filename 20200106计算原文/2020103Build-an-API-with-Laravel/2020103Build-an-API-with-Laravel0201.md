@@ -26,21 +26,21 @@ There are a few things to take note of here. To some, the case might sound reall
 
 Now that we know more about the case and what we need to build, we could go straight to the planning, but let’s hold that thought and take a closer look at the JSON:API specification, and learn a bit more about the protocols that will be the foundation of how we communicate with our API.
 
-## 02. JSON:API specificaঞon
+## 02. JSON:API specification
 
-When developing software, there are a lot of decisions to make about how to design the software in the best way — from how to design your code to the application architecture, and all the way up to the visual representation of your application on screen. With APIs this isn’t any different.
-
-Up until 2013, where the first draft of the JSON:API specification was made, there weren’t any approaches to standardization of JSON API interactions.
+When developing software, there are a lot of decisions to make about how to design the software in the best way — from how to design your code to the application architecture, and all the way up to the visual representation of your application on screen. With APIs this isn’t any different. Up until 2013, where the first draft of the JSON:API specification was made, there weren’t any approaches to standardization of JSON API interactions.
 
 Before adhering to the JSON:API, we at Wacky Studio even made our APIs in our own way, the way we thought was best. We drew inspiration from APIs of the services we used and made our decisions based on how they were implementing their APIs.
 
+1『Wacky Studio 是作者他们的公司。』
+
 That was a very bad idea because:
 
-• They were also in a phase of learning how to write a good API for their services
+• They were also in a phase of learning how to write a good API for their services.
 
-• None of them were following the same conventions
+• None of them were following the same conventions.
 
-• Most of them had an API design that meant you had to make a lot of requests for data
+• Most of them had an API design that meant you had to make a lot of requests for data.
 
 The worst of it all was when we had to consume our own API on the frontend. Because of the lack of conventions, we had to constantly go back and forth to get the correct endpoints, to see what data each request should contain and to see what would be returned from the server.
 
@@ -56,233 +56,216 @@ The JSON:API specification was drafted in 2013 and had the first final v1.0 read
 
 As we see it, the JSON:API specification is a great approach to standardization of APIs and throughout this book, we will dive further into it and show you how to build an API in Laravel using it. Before we get ahead of ourselves, let’s commence by looking at the fundamentals of the specification.
 
-Client / Server Responsibiliঞes
+### 1. Client / Server Responsibilities
 
-When you adopt the JSON:API specification, the first thing you have to look at are the headers sent in your request and responses. As a client, you have to send your request with
+When you adopt the JSON:API specification, the first thing you have to look at are the headers sent in your request and responses. As a client, you have to send your request with:
 
-Accept: application/vnd.api+json
+    Accept: application/vnd.api+json
 
 And
 
-Content-Type: application/vnd.api+json
+    Content-Type: application/vnd.api+json
 
 These headers tell the server that what you’re sending lives up to the protocol given in the JSON:API specification, and also that you expect to receive data in the response that adhere to that same protocol.
 
-As a server, you have to deliver your response with
+As a server, you have to deliver your response with:
 
-Content-Type: application/vnd.api+json
+    Content-Type: application/vnd.api+json
 
 to tell the client that what you’re sending lives up to the protocol given in the JSON:API specification.
 
-Endpoints
+### 2. Endpoints
 
 Though the specification provides a strict protocol for how requests and responses are structured, it only gives a few recommendations about how to form your endpoints. In this section, we will have a look at the recommendations from the JSON:API specification and give some of our recommendations as well.
 
 It isn’t hard to define endpoints, since you are already used to it by the routes you have defined in your existing Laravel applications. The thing that can be hard is making sure that you are consistent.
 
-Naming convenࢼons
+### 3. Naming conventions
 
-In Laravel, we are used to working with models through the Eloquent ORM. Models define the tables in our database that hold the data for our entire application.
-
-Our API should give the client the data being requested and these data are most likely to be fetched from our database. Therefore, it is also very convenient to be thinking of our models as resources.
+In Laravel, we are used to working with models through the Eloquent ORM. Models define the tables in our database that hold the data for our entire application. Our API should give the client the data being requested and these data are most likely to be fetched from our database. Therefore, it is also very convenient to be thinking of our models as resources.
 
 We are used to naming our tables after what they represent in the real world and often with nouns. As an example, the data for the users of our application will most likely be stored in a users table with a User model. The books of our bookstore will be placed in a books table with a Book model. The resource in this example would be “books”.
 
-The naming convention may confuse since you are used to working with model names in a singular naming convention, but the table names are made in a plural naming convention. When it comes to resource naming, there have been a lot of discussions whether to use singular or plural names.
+The naming convention may confuse since you are used to working with model names in a singular naming convention, but the table names are made in a plural naming convention. When it comes to resource naming, there have been a lot of discussions whether to use singular or plural names. The JSON:API specification doesn’t provide a clear answer here, but gives the following example of a plural naming when having URL for a collection of resources.
 
-The JSON:API specification doesn’t provide a clear answer here, but gives the following example of a plural naming when having URL for a collection of resources.
+    GET: /photos
 
-GET: /photos
+Later on, they do give an example where they use singular naming, but here it seems like it is done when there is a one-to-one relationship between resources. We have been down both roads and have felt both the upsides and downsides to plural and singular naming conventions and especially with a combination of both. We started out with a singular naming convention because it made a lot of sense, since it’s so close to how you work with models in Laravel. If we want to get a book we write:
 
-Later on, they do give an example where they use singular naming, but here it seems like it is done when there is a one-to-one relationship between resources.
-
-We have been down both roads and have felt both the upsides and downsides to plural and singular naming conventions and especially with a combination of both. We started out with a singular naming convention because it made a lot of sense, since it’s so close to how you work with models in Laravel. If we want to get a book we write:
-
+```
 <?php
 
-$book = Book::first(); // or $book = Book::find(1);
+$book = Book::first(); 
+// or 
+$book = Book::find(1);
+```
 
 Here, our endpoint would reflect this as:
 
-GET: /book/1
+    GET: /book/1
 
-And it makes sense — if you want a single book, you write it out in singular. But what about the situation when you want a collection of books?
+And it makes sense — if you want a single book, you write it out in singular. But what about the situation when you want a collection of books? Because of the conventions in the Laravel framework where model names are using a singular naming convention, it is not unusual to get a collection of Books when you write the following:
 
-20 THE JSON:API SPECIFICATION
-
-Because of the conventions in the Laravel framework where model names are using a singular naming convention, it is not unusual to get a collection of Books when you write the following:
-
+```
 <?php
 
 $books = Book::all();
+```
 
 For us, when it came to reflecting this in endpoints, we had a little trouble. It felt wrong getting a collection of books by:
 
-GET: /book
+    GET: /book
 
 Because of this, we came up with a solution that borrowed a bit more of how Laravel’s Eloquent ORM work, with an endpoint like this:
 
-GET: /book/all
+    GET: /book/all
 
-It isn’t pretty and it would force our consumers to always remember the all when wanting to fetch collections of resource, which we also occasionally forgot, whenever we had been away from the project in some time.
+It isn’t pretty and it would force our consumers to always remember the all when wanting to fetch collections of resource, which we also occasionally forgot, whenever we had been away from the project in some time. The next API we wrote, we wanted to change that ugly reference to all and write something that made more sense. We opted to change the resource naming for requests for collections to plural. In this way, we would write the following to get a collection of books:
 
-The next API we wrote, we wanted to change that ugly reference to all and write something that made more sense. We opted to change the resource naming for requests for collections to plural. In this way, we would write the following to get a collection of books:
-
-21 BUILD AN API WITH LARAVEL
-
-GET: /books
+    GET: /books
 
 And we could then write the following to get a single book:
 
-GET: /book/1
+    GET: /book/1
 
-We thought this was a great and consistent way, until we stumbled upon words with irregular plurals. As a trivial example, let’s look at the word leaf. It has one spelling in singular, but the plural spelling leaves is different.
+1『这里应该是作者的笔误，GET: /books/1。』
 
-Somebody whose first language isn’t English, could end up writing leafs and get an error. This could lead to confusion since you write the following to get a single leaf:
+We thought this was a great and consistent way, until we stumbled upon words with irregular plurals. As a trivial example, let’s look at the word leaf. It has one spelling in singular, but the plural spelling leaves is different. Somebody whose first language isn’t English, could end up writing leafs and get an error. This could lead to confusion since you write the following to get a single leaf:
 
-GET: /leaf/1
+    GET: /leaf/1
 
 To get a collection of leaves, you write the following:
 
-GET: /leaves
+    GET: /leaves
 
-There is suddenly an introduction of inconsistency and that is not what we want. We want to have predictable behavior and one word only for a resource.
+There is suddenly an introduction of inconsistency and that is not what we want. We want to have predictable behavior and one word only for a resource. The way we do it now, and the way we would recommend, is to use plural only. This might sound strange and like we would hit the same obstacles, but that is not the case. Let’s look back at the conventions by Laravel’s Eloquent ORM.
 
-The way we do it now, and the way we would recommend, is to use plural only. This might sound strange and like we would hit the same obstacles, but that is not the case. Let’s look back at the conventions by Laravel’s Eloquent ORM.
-
-22 THE JSON:API SPECIFICATION
-
-Model names are in singular, but tables names are in plural. Models are in singular, because you are only interacting with a single model at a time, since a single model corresponds to a single row in the database. Here, the singular naming convention fits perfectly.
-
-If you have multiple models, these are placed in collections. It’s not an instance of a Model you get. No, here you’ll get an instance of a Collection, which contains an array of many models.
+Model names are in singular, but tables names are in plural. Models are in singular, because you are only interacting with a single model at a time, since a single model corresponds to a single row in the database. Here, the singular naming convention fits perfectly. If you have multiple models, these are placed in collections. It’s not an instance of a Model you get. No, here you’ll get an instance of a Collection, which contains an array of many models.
 
 A database table will contain one or more rows. It is suddenly a collection of data for the thing it represents, therefore the plural naming convention of Laravel makes sense for these. If we want a certain row in that table, we use a Primary Key, most often with the name id, to access that single row.
 
-We like to take that same approach to our endpoint naming convention. We use a plural naming convention, like our table names, because we expect a collection of resources. We won’t be able to avoid irregular plurals, but by sticking to plural only, our consumers only need to remember one name and don’t have to care if that name is an irregular plural. They just have to remember the name leaves and that’s it.
+1『解释了在 laravel 里为啥 Models 的名称用的是单数，而数据库里的表单（table）却用的是复数。』
 
-A request to the following will give us a resource collection of all books:
+We like to take that same approach to our endpoint naming convention. We use a plural naming convention, like our table names, because we expect a collection of resources. We won’t be able to avoid irregular plurals, but by sticking to plural only, our consumers only need to remember one name and don’t have to care if that name is an irregular plural. They just have to remember the name leaves and that’s it. A request to the following will give us a resource collection of all books:
 
-GET: /books
+    GET: /books
 
 If we want a single book, we fetch it, by giving an id to the books collection, like this:
 
-GET: /books/1
+    GET: /books/1
 
-23 BUILD AN API WITH LARAVEL
+This also matches the way the JSON:API specification wants us to treat collections of resources, namely as arrays keyed by a resource ID. There is also a naming convention when it comes to relations between resources. These are a part of the protocols given by the JSON:API specification, which we will look further into in the upcoming sections.
 
-This also matches the way the JSON:API specification wants us to treat collections of resources, namely as arrays keyed by a resource ID.
-
-There is also a naming convention when it comes to relations between resources. These are a part of the protocols given by the JSON:API specification, which we will look further into in the upcoming sections.
-
-Before we conࢼnue
+### 4. Before we continue
 
 In the upcoming sections, we will take a deeper look at the JSON:API specification. We will touch upon conventions that the JSON:API specification states as conventions that MUST be followed and conventions the specification states as conventions that MAY be followed. However, we recommend that you follow the conventions we have picked out, whether the specification states that they MUST or MAY be implemented. We will touch upon most of the conventions given in the specification, but there are a few that we haven’t had any use for and feel that they cover more edge cases.
 
-Document structure
+### 5. Document structure
 
 Let’s look at the document structure of the data for both JSON:API request and responses. The document describes how your JSON data should be formed, how members should be named, where these should be placed, and so forth.
 
-Top-level
+#### Top-level
 
-Here, the JSON:API specification states that there must be a JSON object at the root of the document, representing the top-level.
+Here, the JSON:API specification states that there must be a JSON object at the root of the document, representing the top-level. In the top-level of the document, there must be at least one of the following members:
 
-In the top-level of the document, there must be at least one of the following members:
-
-• data - which is the most important member that contains the primary
-
-24 THE JSON:API SPECIFICATION
-
-data of the document.
+• data - which is the most important member that contains the primary data of the document.
 
 • errors - which is a member that contains all error objects.
 
 • included - which is a member that contains all resource objects that are related to the primary data and/or related to each other. We will touch more on this when we get to the section about resource objects and relationships.
 
-• jsonapi - which is a member that contains the server’s implementation of the JSON:API specification
+• jsonapi - which is a member that contains the server’s implementation of the JSON:API specification.
 
 • meta - which is a member that contains all non-standard meta information.
 
-Note that it is very important that the data and errors member never coexist in the same document. The data member should only be used in successful request and responses, where the errors member should only be used whenever there is an unsuccessful request or response. By separating these, you have a clear convention that states where to look for either data or the errors that might occur.
+Note that it is very important that the data and errors member never coexist in the same document. The data member should only be used in successful request and responses, where the errors member should only be used whenever there is an unsuccessful request or response. By separating these, you have a clear convention that states where to look for either data or the errors that might occur. Now that we know what the top-level structure should be, let’s take a look at what our primary data will be and also how to structure that.
 
-Now that we know what the top-level structure should be, let’s take a look at what our primary data will be and also how to structure that.
-
-Primary data and Resource objects
+#### Primary data and Resource objects
 
 In the section about naming conventions, we talked about how convenient it is to be thinking of our Laravel models as resources since these represent the rows of data in our database and data that we most likely will share across our APIs.
 
 In this section, we will be looking at how to structure these resources according to the JSON:API specification. Resources or resources objects, as they are called in the JSON:API specification, will be placed in the data member and therefore serve as the primary data in the JSON:API.
 
-25 BUILD AN API WITH LARAVEL
-
 We know that Laravel Models can be returned in a response, where Laravel will handle the whole conversion of the Model data into JSON, without you having to lift a finger. That’s great and a very convenient feature — we have certainly used it a lot in our earlier API days. But the problem is that the data returned is not consistent.
+
+1『请求返回的数据保持一致性很重要，比如都是 json 格式的。』
 
 There is no strict document layout so you know where to look for the data you need. Instead, everything is just exposed in the top-level of the returned document. One endpoint exposes a new resource with members different than the next one and you’ll quickly have to look at the documentation to find out where to look for the data. Moreover, you actually can’t see what type of model you are receiving, so you’ll have to rely on the naming of the endpoints to tell that part of the story.
 
 As a solution to the aforementioned problem, the JSON:API specification tells us to structure our resource object in this way:
 
+```
 {
-
-"id": 1, "type": "books", "attributes": { }, "relationships": { } }
+    "id": 1, 
+    "type": "books", 
+    "attributes": { 
+    }, 
+    "relationships": { 
+    } 
+}
+```
 
 In the example, you can see a clear structure. In the root of the resource object you’ll find:
 
-• id - which is the id of the resource as a string
+• id - which is the id of the resource as a string.
 
-• type - which is the type of the resource as a string
+• type - which is the type of the resource as a string.
 
-• attributes - which contains all of the attributes of our resource
+• attributes - which contains all of the attributes of our resource.
 
-• relationships - which contains all of the relationships of our resource
+• relationships - which contains all of the relationships of our resource.
 
-26 THE JSON:API SPECIFICATION
+This structure mitigates the problem of not knowing where to look for your data, not knowing the type of the resource, and it gives us a predictable and consistent way of accessing the data of a resource. It is ok for the attributes and relationship members to be empty. In fact, these can be removed if not used. But, as an absolute minimum, you should always have the id and type members in your resource objects, and the value of both should always be a string.
 
-This structure mitigates the problem of not knowing where to look for your data, not knowing the type of the resource, and it gives us a predictable and consistent way of accessing the data of a resource.
+1『resource 对象的结构里面，id 和 type 必不可少。』
 
-It is ok for the attributes and relationship members to be empty. In fact, these can be removed if not used. But, as an absolute minimum, you should always have the id and type members in your resource objects, and the value of both should always be a string.
+Ok, so we know how to structure our resource objects, but as we talked about in the naming convention section, there is a difference between requesting a collection of resources versus requesting a single resource. The difference here is not that big, but it is important to be aware of it.
 
-Ok, so we know how to structure our resource objects, but as we talked about in the naming convention section, there is a difference between requesting a collection of resources versus requesting a single resource.
-
-The difference here is not that big, but it is important to be aware of it.
+1『请求单个资源和多个资源是有区别的，虽然差不不大，但要有概念。』
 
 When requesting a single resource like this:
 
-GET: /books/1
+    GET: /books/1
 
 the data member of the returned document should be structured like this: (note that we are omitting the attributes and relationships for the sake of simplicity)
 
+```
 {
+    "data": { 
+        "id": "1", 
+        "type": "books" 
+    } 
+}
+```
 
-"data": { "id": "1", "type": "books" } }
+Here, the data member is the resource object itself. When requesting a collection of resources like this :
 
-Here, the data member is the resource object itself. collection of resources like this :
-
-When requesting a
-
-27 BUILD AN API WITH LARAVEL
-
-GET: /books
+    GET: /books
 
 the data member of the returned document should be structured like this: (note that we are omitting the attributes and relationships once again)
 
+```
 {
+    "data": [ 
+        { 
+        "id": "1", 
+        "type": "books" 
+        }
+     ] 
+ }
+```
 
-"data": [ { "id": "1", "type": "books" } ] }
+Here, the data member is an array containing the requested resource objects. As you can see here, it should be an array even if there is only one resource in the collection. If there weren’t any resources in the collection, an empty array should be returned. We got the basics down and it’s time to look at those attributes and relationships we have omitted in the examples. Here, we open up for the ability to create our own member names, therefore it is important to look at the naming convention for these as well to ensure consistency.
 
-Here, the data member is an array containing the requested resource objects. As you can see here, it should be an array even if there is only one resource in the collection. If there weren’t any resources in the collection, an empty array should be returned.
-
-We got the basics down and it’s time to look at those attributes and relationships we have omitted in the examples. Here, we open up for the ability to create our own member names, therefore it is important to look at the naming convention for these as well to ensure consistency.
-
-Member names
+### Member names
 
 The JSON:API has a clear naming convention when it comes to member names, where all member names must be treated as case sensitive by both client and servers. Other than that, there are some conditions that the member names must also follow:
 
-1. Member names must contain at least one character
+1. Member names must contain at least one character.
 
-28 THE JSON:API SPECIFICATION
+2. Member names must contain only allowed characters.
 
-2. Member names must contain only allowed characters
-
-3. Member names must start and end with globally allowed characters
+3. Member names must start and end with globally allowed characters.
 
 The globally allowed characters are:
 
@@ -310,11 +293,7 @@ But it is not ok with a member name like this:
 
 "_member_name_": "content" }
 
-The above example is pretty trivial. Who would do that, right? The important thing to remember here is to have a letter in the beginning and the end and
-
-29 BUILD AN API WITH LARAVEL
-
-you’re home safe.
+The above example is pretty trivial. Who would do that, right? The important thing to remember here is to have a letter in the beginning and the end and you’re home safe.
 
 We strongly recommend that you keep all your member names in lowercase and stick to a convention when picking characters like spaces, like these examples:
 
