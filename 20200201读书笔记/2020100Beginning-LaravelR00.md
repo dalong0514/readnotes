@@ -347,6 +347,8 @@ You see the URI, method, and action parts of your routes. If you want a full lis
 
     $ php artisan route:list
 
+1『上面的命令经常用，要牢记。』
+
 Now you can see the full route list (Figure 12-1).
 
 1『
