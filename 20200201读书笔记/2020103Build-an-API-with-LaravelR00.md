@@ -239,6 +239,8 @@ Then we covered resource objects and which members we must include like id and t
 
 Afterward, it was time to look at how to use our new knowledge about data structures to properly communicate between client and servers. We covered how to get resources, and how we could use request documents to fetch the exact resource or collections of resources needed. We looked at how we could sort and paginate resource collections, through both query parameters and a links top-level member. 
 
+1『在请求里就可以传入排序、打标签参数。』
+
 We then looked at how to create resources and how to structure our request documents, how we could create a relationship through request documents for resource creation, but also how relationship links could be used to create relationships, using relationship linkages instead of resource objects.
 
 We covered how to update resources and relationships using the same principles when creating these, and how an update to a relationship would always remove the current relationship to a resource and then update with the newly given resource instead.
@@ -299,7 +301,7 @@ The JSON:API specification was drafted in 2013 and had the first final v1.0 read
 
 As we see it, the JSON:API specification is a great approach to standardization of APIs and throughout this book, we will dive further into it and show you how to build an API in Laravel using it. Before we get ahead of ourselves, let’s commence by looking at the fundamentals of the specification.
 
-#### 1. Client / Server Responsibilities
+### 03. Client / Server Responsibilities
 
 When you adopt the JSON:API specification, the first thing you have to look at are the headers sent in your request and responses. As a client, you have to send your request with:
 
@@ -317,11 +319,11 @@ As a server, you have to deliver your response with:
 
 to tell the client that what you’re sending lives up to the protocol given in the JSON:API specification.
 
-#### 2. Endpoints
+### 04. Endpoints
 
 Though the specification provides a strict protocol for how requests and responses are structured, it only gives a few recommendations about how to form your endpoints. In this section, we will have a look at the recommendations from the JSON:API specification and give some of our recommendations as well. It isn’t hard to define endpoints, since you are already used to it by the routes you have defined in your existing Laravel applications. The thing that can be hard is making sure that you are consistent.
 
-### 3. Naming conventions
+### 05. Naming conventions
 
 In Laravel, we are used to working with models through the Eloquent ORM. Models define the tables in our database that hold the data for our entire application. Our API should give the client the data being requested and these data are most likely to be fetched from our database. Therefore, it is also very convenient to be thinking of our models as resources.
 
@@ -397,11 +399,11 @@ If we want a single book, we fetch it, by giving an id to the books collection, 
 
 This also matches the way the JSON:API specification wants us to treat collections of resources, namely as arrays keyed by a resource ID. There is also a naming convention when it comes to relations between resources. These are a part of the protocols given by the JSON:API specification, which we will look further into in the upcoming sections.
 
-#### 4. Before we continue
+### 06. Before we continue
 
 In the upcoming sections, we will take a deeper look at the JSON:API specification. We will touch upon conventions that the JSON:API specification states as conventions that MUST be followed and conventions the specification states as conventions that MAY be followed. However, we recommend that you follow the conventions we have picked out, whether the specification states that they MUST or MAY be implemented. We will touch upon most of the conventions given in the specification, but there are a few that we haven’t had any use for and feel that they cover more edge cases.
 
-#### 5. Document structure
+### 07. Document structure
 
 Let’s look at the document structure of the data for both JSON:API request and responses. The document describes how your JSON data should be formed, how members should be named, where these should be placed, and so forth.
 
@@ -524,7 +526,7 @@ Using a capital letter on the next word to indicate a space, also known as camel
 
 We have adopted the camel case as a naming convention when coding in PHP, but in our APIs, it’s a bit of a different story. Here, we use snake casing, mostly because that’s a convention we have used from the start, when looking at other companies’ APIs. At the time of writing, both Google, Dropbox, and Facebook use snake cases in their APIs. Also, when calling the toJson() method on your model, Laravel converts your model attributes spaces into snake case. Our recommendation is to use snake cases, especially because we will be using these in this book, but also since it comes for free with Laravel. The choice, however, is entirely yours — just make sure you are consistent and don’t suddenly change in the middle of working with this book or in your own APIs.
 
-1『snake casing 是用下划线的形式命名。』
+1『命名约定一般有 3 种：下划线型的 snake casing、连接符的 kebab case 以及驼峰型 camel case（PHP 里用驼峰型）。API 资源对象里各成员的命名，大小写敏感，强烈建议采用下划线的 snake casing。』
 
 Aributes. Now that we have a naming convention for our member names, we can continue to attributes. Attributes on a resource object are just like the attributes on your model in a Laravel Application. These are data like the title of a book, the name of an author, and so forth. The JSON:API specification specifies that on a resource object, the attributes member should be an object. Any member inside this object can be whatever data that represents the object, but must never be a relationship. For relationships, we use a dedicated member in the resource object, which we will look at shortly. To make an example, let’s look at a single book again:
 
@@ -541,6 +543,8 @@ Aributes. Now that we have a naming convention for our member names, we can co
 ```
 
 Here, you see the definition of the attributes member as an object containing two members, namely title and publication_year. You also see how the naming convention of snake casing takes effect. As mentioned earlier, the attributes member can contain any information about the resource object, but cannot contain relationships or a member called relationships. Another rule is that the attributes member can never contain an id or type member, since these are reserved on the root of the resource object. But how do we define relationships then?
+
+1『资源里，数据对象里的「属性」对象，可以包含除了 id、type 和 relationships 之外的任何数据。』
 
 Relationships. When it comes to data in an application, these are often related to one another. When building applications in Laravel, we are used to defining models as objects in real life and as such, these have different relations to one another:
 
@@ -565,6 +569,8 @@ class Car extends Model {
 }
 ```
 
+1『larval 里通过一个函数实现资源间的连接，而在API里通过「关系」对象来实现数据的连接。』
+
 By declaring a relationship method on our model, we can fetch the brand of our car very easily, now that we have told Laravel about the relationship. But how do you tell about relationships in your APIs and how do you convey enough information, so that your consumers can easily get the data they want? Relationships in the JSON:API specification is defined as the relationships member. Like the id, type and attributes members, it should be placed at the root of the resources object and be defined as an object like this:
 
 
@@ -583,15 +589,13 @@ By declaring a relationship method on our model, we can fetch the brand of our c
 
 Unlike the attributes member, where you are in charge of the members, the relationships have a more strict set of rules. A relationship member must contain at least one of the following members:
 
-• links
-
-• -self
-
-• -related
+• links: -self, -related
 
 • data
 
 • meta
+
+1『不像属性对象，里面的成员任意，没要求，关系对象里的成员是有要求的。』
 
 Let’s take a look at the links member. This member contains two types of links. The link for the self member is a link for the relationship itself. With this link, it is possible to manipulate the relationship between two resources without having to delete one of them. A good example here would be tagging. If a book contains one or more tags, this link can be used to remove the tag from the book without having to delete the tag or the book.
 
@@ -622,25 +626,35 @@ If you take a look at the JSON example, you can see the author member inside the
 
 The way the data attribute contains resource identifier objects is just like the primary data’s data member, which holds either an object for a single resource or an array for a collection of resources. Ok, that was a bunch of rules at once. Let’s recap on how to define a relationship. We make an object as the relationships member. Each member inside relationships defines each related resource. In the examples given above, the relationship is between books, authors and comments. All of those combined would look like this:
 
-Inside each relationship, we have at least one of the members: 1) inks. 2) data. 3) meta. In our case, we have both links and data, which we recommend that you do as well. The links members give us a consistent way of accessing either the relationship between the resources or the related resource object. The data members give us either a resource identifier object or a collection of resources.
+Inside each relationship, we have at least one of the members: 1) links. 2) data. 3) meta. In our case, we have both links and data, which we recommend that you do as well. The links members give us a consistent way of accessing either the relationship between the resources or the related resource object. The data members give us either a resource identifier object or a collection of resources.
 
 We now know how to define relationships, we even know how to provide links for manipulating relationships and how to fetch related resources. If we want the comments for the book, we can simply make a request to the link given in the related member and a response containing all the resource objects will be returned.
 
-1『这张完整的 json 数据结构好好研究琢磨。』
+1『
+
+书里那张完整的 json 数据结构好好研究琢磨。整个 resource 是一个对象，这个 resource 对象的属性名是「data」，属性值又是一个对象，里面的成员有 4 个：id、type、attributes 和 relationships，其中 attributes 和 relationships 也是对象。attributes 包含书名和出版时间 2 个「键-值」，relationships 里有 author、comments 这 2 个成员（也是键值对），拿 comments 来看，它的值也是一个对象，里面有 links、data 这两个成员，再分解，links 里有 self 和 related 这两个成员。
+
+这里又体现了层层封装的思想，一个对象里很多个成员（键值对），成员的值又是对象，一层层往下嵌套。
+
+』
 
 Right now, the data member of the relationships seems a bit redundant, since it only contains id and type member instead of an entire resource object, but let’s look further into this in the next section and it will make more sense.
 
-#### 6. Compound Documents
+### 08. Compound Documents
 
 We have just looked at the relationships member and what kind of members this should contain. We left with some confusion about the data member inside the relationships object. To understand this part, we need to revisit the top-level of our document, more specifically the included member. We only touched upon this briefly in the section about Top-level, so let’s have a better look at this.
 
 When building an API or an application for that matter, you have to make some thoughts about optimization and make sure your application performs as intended. One optimization could be to reduce the number of HTTP requests as much as possible. One way to do this is to use the included member. The reason for this is that it makes it possible for you to include the related resources of the fetched resource, which will then be the resources defined in the data member in the relationships object. Instead of having to make a new request for the related resources, they can just be included in the current response.
+
+1『做 api 一个核心的思维是优化，优化的一个方式是减少请求的数量，而通过使用 the included member 是一种办法。included 成员是 relationships 的一个成员，跟 author、comments 同一个级别。它的值是一个数组，这个数组的成员是 resource 对象中除了 relationships 的其他成员（id、type、attributes）。』
 
 In this case, the resource objects sent in the included member will correspond to the resource identifier objects given in the relationships’ data member. Let’s build upon the previous examples to give a better idea of this:
 
 In the example, you can see how the included member, includes all of the resource objects, for the resource identifier objects given in the data member. Here, it’s important to note that the included member will always be an array that contains all of the related resource objects mixed together in a flat array. The included member can be included by default, or by an include query parameter like this:
 
     GET: /books/1?include=comments
+
+1『请求里，? 后面的是要传入的参数。』
 
 Here, there will not be anything included before the query parameters are in the URL and if the relationship does not exist, a 400 Bad Request should be used. If you choose to support using the include query parameter, there are a few more things you should implement.
 
@@ -650,9 +664,9 @@ First, it should be possible to specify which relationships that should be inclu
 
 It should be possible to request resources related to other resources using a dot-separated path for each relationship name. In our example, a book has a relationship with authors and comments, but each comment also has an author, in the form of a user who created the comment. If we wanted to include the users for each comment, it should be possible to do this by adding the related resource like this:
 
-1『请求时，请求的资源如果跟另一个资源相关联，可以用逗号分隔开这两个资源。』
-
     GET: /books/1?include=authors,comments.users
+
+1『请求时，请求的资源如果跟另一个资源相关联，可以用逗号分隔开这两个资源。』
 
 Again, if it isn’t possible to fetch the related resource, you should return with a 400 Bad Request. Whether you want to use the include query param is all up to you, and the same goes for the included member in your response documents, but if you choose to do so, you must have the data members in the relationships object, for each of your relationships. If not, you can omit the data member, but you then have to have the links member, so that the related resources can be requested through the related link.
 
@@ -664,7 +678,9 @@ We know how to represent a relationship between our resources through a relation
 
 That was quite a lot and we are almost done with the JSON:API specification. Before we move on though, we just have to look at how we make requests and responses using this new document structure and also how we handle errors.
 
-#### 7. Request and responses
+1『如何组织 resource 的结构；最最基本的结构有一个框架，里面至少得有：一个 id、一个 type、一个数据成员（data）包含主要的信息，可以是一个对象也可以是一个数组；』
+
+### 09. Request and responses
 
 It’s time to look at how we should make our request and responses according to the JSON:API specification. We know what to send and what we can expect to receive, but we don’t know how to request it or how these should be sent with a response yet. Of course, there are conventions and we will adhere to them. Let’s take a closer look.
 
@@ -676,9 +692,9 @@ Some interesting conventions the JSON:API specification brings along for request
 
 Sorting. Sorting data is a great feature to have in an API. Think about sorting just like ORDER BY in your database. You get the ability to sort your data based on member names in a more dynamic way, instead of being limited by the way the API developer may have thought was the best way to sort the data. Sorting data is done via a query parameter. If you are unsure what a query parameter is, it is a convention in HTTP you use to send along parameters for a request, as a part of the URL like this:
 
-1『问号 ? 是查询参数，问号后面的座位一个参数传递进查询的 url 里，比如作为条件的一个参数。』
-
     GET: http://example.com/cars?color=blue
+
+1『问号 ? 是查询参数，问号后面的作为一个参数传递进查询的 url 里，比如作为条件的一个参数。』
 
 Here, the parameter we are sending along is color with a value of blue. The query parameter used by the sort feature is the sort parameter. The value of the parameter is the member name of the attribute you want to sort by. It would look something like this:
 
@@ -694,9 +710,7 @@ When ordering a database query by a column name, we are able to tell if the orde
 
 Here, you will get the oldest authors first, descending until the youngest author in the collection.
 
-Pagination
-
-Pagination is another feature that can have great benefits, especially if you have large sets of data that can be quite a strain on the system to query. You can paginate the results and do the queries in smaller chunks, letting the API consumer do the work of progressing through the pagination. The way pagination is done in the JSON:API specification is through a links object in the root of the response document. The links object must have the following members used for pagination links:
+Pagination. Pagination is another feature that can have great benefits, especially if you have large sets of data that can be quite a strain on the system to query. You can paginate the results and do the queries in smaller chunks, letting the API consumer do the work of progressing through the pagination. The way pagination is done in the JSON:API specification is through a links object in the root of the response document. The links object must have the following members used for pagination links:
 
 • first - which is the first page of data.
 
@@ -705,6 +719,8 @@ Pagination is another feature that can have great benefits, especially if you ha
 • prev - which is the previous page of data.
 
 • next - which is the next page of data.
+
+1『Pagination 应该指打标签分组；links 对象是 resource 的一个成员，跟 data 同一个级别。』
 
 The links object in the document would look something like this:
 
@@ -717,6 +733,389 @@ Now, we know how to make a request for data and even how we can sort or paginate
 Responses. It’s time to look at the server side and which convention it must adhere to when sending responses to the client. Here, we will revisit HTTP verbs and status codes as well as look at conventions that must be followed to keep your API consistent. The first rule we will look at is making GET requests for data or fetching data, as the JSON:API specification calls it.
 
 Response guarantees. Here, the server must always support getting resource data and or relationship data for all URLs that are provided in a response. The URLs we are talking about are the URLs provided in a relationship for a resource object. It is the links given in the links object of the relationship object, more specifically the self and related links. It should always be possible to get data through these links, otherwise we are breaking the conventions from the specification. Also, it would not make a lot of sense if links we provide from the API does not work. It would lead to a lot of frustration for the consumers of the API and that’s not what we want.
+
+Resource Responses. When we make requests to a server for a specific resource or collection, it must always return a status code 200 OK. Referring back to the former chapter, we talked about how the 200 status code is the most common, which tells the client that the entire request was successful. When making such a response, the server must also ensure to send the requested resource or resources in the response documents primary data. As covered in the section about Primary data and Resource objects, the server must ensure that the primary data for a response document is either a single resource or a collection of resources.
+
+Here’s an example of a response document for a request for a single resource:
+
+```
+{
+    "data": {
+        "id": "1", 
+        "type": "books", 
+        "attributes": { "title": "Lorem ipsum" }
+    }
+}
+```
+
+Here’s an example of a response document for a request for a collection of resources:
+
+```
+{
+
+"data": [
+    {
+        "id": "1",
+        "type": "books", 
+        "attributes": { "title": "Lorem ipsum" } 
+    }, 
+    { 
+        "id": "2", 
+        "type": "books", 
+        "attributes": { "title": "Lorem ipsum" }
+    }
+] 
+}
+```
+
+If the single resource cannot be found, the primary data would have to be null. Take a look at this example with a request to the following resource:
+
+```
+GET: /books/1
+
+{
+    "data": null 
+}
+```
+
+Here, the resource with an id of the value 1 does not exist. This, however, is only a response you should use if the request warrants a 200 OK response. The JSON:API specification unfortunately doesn’t give a concrete example of this. We’re using a 404 Not Found response for this scenario since it gives a clear message about the resource not being found.
+
+If a collection of resources cannot be found, the primary data would still have to be an array, but an empty array though like this:
+
+```
+{
+    "data": [] 
+}
+```
+
+Where a request for a single, not existing resource, should trigger an error since you are trying to access something that does not exist, a collection will always exist. A collection is allowed to be empty since this can be filled with resources later on when they are being created.
+
+Relationship Responses. Relationship responses follow some of the same conventions as Resource responses. Remember though that there are two types of links in a relationship: 1) self - Which is a link to the relationship itself. 2) related - Which is a link to the related resource. Here, the link for the related member would give a response document of a resource, since you are requesting the related resource or collection of resources, depending on the relationship.
+
+For the self member, it’s a little different. Here, a request to the self link will respond with a response document, where the primary data would be the resource identifier object. Here is an example of a book resource with a relationship to an author. The relationship in this context is one-to-one, meaning that a book can only have one author.
+
+The URL for the self member is the following, and a request for this endpoint would return a response document with the primary data being the resource identifier object.
+
+    GET: /books/1/relationships/authors
+
+So a request to the URL would be something like this:
+
+```
+{
+    "data": { 
+        "id": "1", 
+        "type": "authors" 
+    } 
+}
+```
+
+Notice how the primary data has the same structure as the data of the relationship of the previous example? This is because a request to relationship endpoint returns resource identifier objects instead of resource objects. For a one-to-many scenario, where a book can have many authors, the response document would contain the following:
+
+Even though two resources can have a defined relationship, it’s not always a guarantee that they have a relation at the moment. In this case, we follow the same conventions as with resources. In the case of a one-to-one relation, a request to the self link would give a response document like this:
+
+```
+{
+    "data": null 
+}
+```
+
+In the case of a one-to-many relation, a request to the self link would give a response document like this:
+
+```
+{
+    "data": [] 
+}
+```
+
+And the pattern continues. We know the conventions for requests and responses to get data for both resources and relationships. Now, it’s time to look at how to create or modify data.
+
+### 10. Creating or modifying data
+
+As an interface for your application, an API can give your consumers the ability to create or modify data too. APIs for services like Dropbox or Google give the consumer the ability to add data into their services. This can be data like files, documents and much more. Unless you are writing an API for a service that only provides readable data, like a weather service, you most likely would like a consistent way to add data to your application through your API. Once more, we will be looking at HTTP verbs covered earlier in this book, as well as status codes required by the JSON:API specification.
+
+Creating. As mentioned earlier in this book, we use the POST HTTP verb to post data to our APIs. This is not any different with the JSON:API specification. The thing that does matter is the request document sent to the server. In this regard, we should follow the convention we’ve been through earlier about resource objects and relationships. A request to create a new book would look something like this with a request to the following endpoint.
+
+```
+POST: /books
+
+{
+    "data": {
+        "type": "books", 
+        "attributes": { 
+            "title": "Build an API with Laravel", 
+            "summary": "Learn how to build an API using the Laravel Framework", 
+            "publication_year": "2019" 
+        }
+    } 
+}
+```
+
+The primary data in this request document is a single resource object that describes the new book to be created. Note that in contrast to the response document, we do not include the id member. The JSON:API specification states that you can do that, but we recommend you don’t, unless you have a very specific scenario where it’s needed. It would be better to let the server and backend take care of this, especially if you are using incremental IDs, but even with UUIDs, it’s better to let the server take care of the generation of these. The way we see it, it is a concern that should not be placed on the client side.
+
+1『提交的数据，建议不要设置 id，id 让服务器端来设置，比如自增长的 id。』
+
+When creating a resource, you can also define a relationship. Let’s see how that looks, using that same example from before with this request:
+
+```
+POST: /books
+
+{
+    "data": { 
+        "type": "books", 
+        "attributes": { "title": "Build an API with Laravel", "summary": "Learn how to build an API using the Laravel Framework", "publication_year": "2019" } 
+    }, 
+    "relationships": { 
+        "authors": { "data": { "type": "authors", "id": "1" } }
+    } 
+}
+```
+
+Above, you can see how we reuse the convention about relationships. We give a resource identifier object through the data member and the server will take care of the rest. The example given here is of a one-to-one relationship but of course, you can also create a relationship in the case of a to-many relationship. That would look like this, again with this request:
+
+As shown in the example, you give a collection of resource identifier objects in the data member instead.
+
+Creating Relationships. If you recall the relationship links we covered earlier when talking about relationships between resource objects, the endpoint for such a relationship link could look like this:
+
+    GET: /books/1/relationships/authors
+
+You can also create, modify or delete relationships by sending a request to these endpoints, where the only difference is that the primary data of your request document becomes the new resource identifier object instead. As an example, we can create a new relationship between a book and an author like this with a request to the relationship endpoint:
+
+```
+POST: /books/1/relationships/authors
+
+{
+    "data": { 
+        "type": "authors", 
+        "id": "1" 
+    }
+}
+```
+
+As you can see, it is far less data we need to provide as the request document’s primary data. In fact, it’s only the resource identifier object we need to give. The rest of the information about which book and so forth is given in the endpoint. The same concept works for to-many relationships with a request to the same endpoint:
+
+The endpoint is reused since it’s still a relationship between a book and authors. If a request to create a relationship that already exists occurs, the server should ignore the new request and keep the relationship as it was before.
+
+Status Codes. When creating a resource, the server must respond with a 201 Created status code. Remember from the Status Codes section in the first chapter, how this status code is used to tell the client that one or more resources have been created. The JSON:API specification follows that same convention. The primary data of the response document must also contain the newly created resource objects as well as a Location header that provides the location of the new resource.
+
+If a request to create a new resource is unsupported, the server should respond with a 403 Forbidden status code. Now that we know how to create resources according to the JSON:API specification, how do we then modify these data? We will cover that in the next section.
+
+### 11. Updating
+
+As mentioned in the section about HTTP verbs, there are two methods for updating resources. PUT will replace all data in the resource whereas PATCH is only used for updating specific attributes. The JSON:API specification specifies that the PATCH verb should be used to updating resources, even if all the attributes are updated. Though a request doesn’t have to include all the attributes of a resource, the server would have to interpret the missing attributes. Let’s take a look at how to make a request to the update endpoint:
+
+```
+PATCH: /books/1
+
+{
+    "data": {
+        "id": "1", 
+        "type": "books", 
+        "attributes": {
+            "title": "Hello world",
+            "summary": "This book is about hello world."
+         }
+    } 
+}
+```
+
+If you take a look at this example and the examples of how to create a book, do we send the exact same attributes? No, we are missing the publication\_year attribute in the resource object. The server would then have the responsibility to interpret this resource object, find the existing one, and update only the attributes given here. When updating relationships, some of the same concepts repeat.
+
+Just like with creation of resources, updating a relationship can be done through the relationships member on the root of the request document. Like with attributes, where the server has to interpret which attributes you wish to update, the same goes for the relationships given in the relationships object. Only the relationships mentioned are the ones getting updated. Let’s look at an example again with a request to the same endpoint:
+
+```
+PATCH: /books/1
+
+{
+    "data": { 
+        "id": "1", 
+        "type": "books" 
+    }, 
+    "relationships": { 
+        "authors": { "data": { "type": "authors", "id": "2" } 
+    }
+    }
+}
+```
+
+Here, the relationship to authors is being updated. In this case, it’s a one-to-one so the relationship to the author before is being changed to a new author with the id of 2. Just like when creating relationships, you give a resource identifier object and the server will take care of the rest. And as with creating a resource, the way to update relationships with a tomany relation you give a collection of resource identifier objects, like this with a request to the same endpoint:
+
+In the example above, we give an array of resource identifier objects that we want to update as the new related resource. It is important to note that in this case the relationship to any earlier resources will be removed and relations to the given resources will be made instead.
+
+You can think of this kind of update as the sync method on Laravel Eloquent’s many-to-many relationships. Here, you give the sync method an array of IDs that you want to associate, and all the IDs not in that array that may already be associated, will be removed.
+
+As mentioned in the creation of resources, relationship links can also be used to create, modify or delete relationship between resources. Here’s an example with a request to update the author of a book, using the following relationship endpoint:
+
+```
+PATCH: /books/1/relationships/authors
+
+{
+    "data": { 
+        "type": "authors", 
+        "id": "1" 
+    } 
+}
+```
+
+As with relationships defined through resource objects, updating a relationship through relationship links also replaces the relationship before. You could go and delete a relationship by making the following request to the same endpoint as before:
+
+```
+PATCH: /books/1/relationships/author
+
+{
+    "data": null 
+}
+```
+
+Now, the old relationship will be removed and since an empty relationship has been given, there is nothing new to save instead. Again, the examples have been on a one-to-one relationship, but the concepts are the same for to-many relationships. A request to update authors as a many-to-many relationship would be like this, with a request to that same endpoint:
+
+And just like with the single resource object, where a request document with the primary data set as null clears a relationship, an empty array clears a to-many relationship like this:
+
+```
+{
+    "data": [] 
+}
+```
+
+Status Codes. When updating a resource, the server must send back either a 200 OK status code or a 204 No Content status code in case of an update where nothing else than the attributes provided in the request document was updated. In an attempt to update a resource that does not exist, the server should send back a response with a 404 Not Found status code to indicate that the resource is not found.
+
+### 12. Deleting
+
+Things are moving fast. We now know how to both create and update resources and relationships. We only need to know about deletion, so we are almost done. Just like requests for creating or modifying a resource, there is a dedicated HTTP verb for deletion of a resource. If you look back to the section about HTTP verbs, we discussed the DELETE verb and that it’s used to tell the server that we want to delete a resource. The JSON:API specification uses the same HTTP verb for deletion of resources.
+
+To delete a resource, you don’t need a request document since the HTTP verb says it all — at least when it comes to deletion of a resource. Here, it is enough to send a request to an endpoint for a specific resource. For example, imagine that we want to delete the book of ID 1. This can be done with a request like this:
+
+    DELETE: /books/1
+
+The same goes for relationships. If you make a DELETE request to a relationship endpoint, the server must delete the relationship between the specified resources. Say, for instance, we want to remove an author from a book. We can just send a request to the endpoint like this:
+
+    DELETE: /books/1/relationships/authors
+
+In case of a to-many relationship, you can specify which resources you no longer want to have a relation through a request document, where the primary data is a collection of resource identifier objects. Just like when we want to create or modify a relationship through relationship links. Say we have a book with five authors and we want to remove three of them. This can be done so with a request to the following endpoint:
+
+```
+DELETE: /books/1/relationships/authors
+
+{ 
+    "data": [
+        { "type": "authors", "id": "2" },
+        {"type": "authors","id": "3" }, 
+        {"type": "authors","id": "5" }
+    ]
+}
+```
+
+Now. the relationship between the book and the three authors mentioned in the request document will be deleted, while the rest will remain.
+
+This is actually all there is to requesting, creating, modifying and deleting data, which is enough for us to work with our server with conventions that ensure a consistent communication and data exchange. There is one thing we are missing though. What do we do when an error sneaks in and how do we respond to that?
+
+### 13. Errors
+
+It’s time to take a look at errors. Let’s face it, no matter how great of an application you build, errors will always be a part of it. Some are intentional, like validation rules that are not met, and some are not. In both cases, it’s crucial that they are handled in a consistent way, so both you and the consumer of your API know what went wrong.
+
+To start this section, we will take a look back at the top-level of our response document. If you recall, a document must contain at least one of the following members: 1) data. 2) errors. 3) meta.
+
+A rule we covered earlier was that the data and error members must never coexist in the same document. So from now on, whenever we talk about errors, we will never include the data member in our response document. The errors member, however, will be an array containing error objects that describe errors of the request made to the server like this:
+
+```
+{
+    "errors": [] 
+}
+```
+
+1『data 和 error 不能共存；error 返回的是一个数组对象。』
+
+We will take a look at error objects in a moment, but one thing we must cover is how the JSON:API specification states which error status codes should be used. When an error occurs in your application, you as the developer can decide whether or not the application should continue to try to fulfill the request or if it should just fail and stop.
+
+In the case of a fail and stop solution, you should use the appropriate status code. When we looked at how to get, create, modify or delete resources and relationships, we talked about the status codes that should be used. 
+
+If you choose to let your application continue trying to fulfill the request, there may be multiple errors that can happen in that single request. In that case, a more general status code should be used. 1) In the case of a 4XX category, error use a 400 Bad Request status code. 2) In the case of a 5XX category, error use a 500 Internal Server Error status code.
+
+Error Objects. Error objects are used to further specify what went wrong when trying to fulfill the request. The JSON:API specification does not have a strict protocol for how this object should be constructed, but a couple of optional members you can include. We have concluded that the following are useful to have in an error document and would recommend that you use these.
+
+• title - which should contain a short human-readable summary of the problem.
+
+• detail - which should contain a human-readable explanation of the problem.
+
+• source - which should contain an object containing references to the source of the error.
+
+The source member is a bit special here, since the JSON:API specification recommends that you use an object containing a JSON pointer member. A JSON pointer is a string syntax that can point to another value in a JSON document. If you have the following JSON document:
+
+```
+{
+    "foo": "bar", "baz": [10,20] 
+}
+```
+
+A JSON pointer described like this, /foo would then point to the value bar, where a JSON pointer like this, /baz/0 would point to the value 10 and a JSON pointer like this, /baz/1 would point to 20. You can think of JSON pointer like the dot notations Laravel provides when you, for instance, are accessing values in your config. Here, you are able to write like this:
+
+```
+<?php
+
+// Get the application name from config
+$name = config('app.name');
+```
+
+Error Objects. Error objects are used to further specify what went wrong when trying to fulfill the request. The JSON:API specification does not have a strict protocol for how this object should be constructed, but a couple of optional members you can include. We have concluded that the following are useful to have in an error document and would recommend that you use these.
+
+• title - which should contain a short human-readable summary of the problem.
+
+• detail - which should contain a human-readable explanation of the problem.
+
+• source - which should contain an object containing references to the source of the error.
+
+The source member is a bit special here, since the JSON:API specification recommends that you use an object containing a JSON pointer member. A JSON pointer is a string syntax that can point to another value in a JSON document. If you have the following JSON document:
+
+```
+{
+    "foo": "bar", "baz": [10,20] 
+}
+```
+
+A JSON pointer described like this, /foo would then point to the value bar, where a JSON pointer like this, /baz/0 would point to the value 10 and a JSON pointer like this, /baz/1 would point to 20. You can think of JSON pointer like the dot notations Laravel provides when you, for instance, are accessing values in your config. Here, you are able to write like this:
+
+```
+<?php
+
+// Get the application name from config
+$name = config('app.name');
+```
+
+This will give you the application name defined in the app.php config file. Instead of a dot notation for separating children, a slash notation is used in JSON pointers. Now that we know about JSON pointers, let’s look at how an error object could look like:
+
+```
+{
+    "errors": [
+        { 
+        "title": "Validation error", 
+        "source": { "pointer": "/data/attributes/name" }, 
+        "detail": "The name field is required."
+        }
+    ] 
+}
+```
+
+In this example, we are getting a validation error in our application like the title member describes. The source object contains a JSON pointer to an attribute in the response document sent to the server. Here, it’s the name attribute that might be empty, based on the description given in the detail member.
+
+How would it look if we had more than one error? Right out of the box, Laravel won’t continue to process a request, whenever an error occurs. It will just throw an exception and stop the execution. When handling validation though, it is possible that more than one field would fail and here you would get multiple errors returned. That would look something like this:
+
+As you can see, there’s an error for each field that did not pass the validation. Although the JSON:API specification states that you should give a more general status code when having multiple errors, in this case, it’s ok to give a 422 Unprocessable Entity status code.
+
+## 03. Planning
+
+### 1. 逻辑脉络
+
+
+### 2. 摘录及评论
+
+In this chapter we have been through a lot. First, we started the planning of our project. When developing an API, we no longer have to think about UI/UX and can focus more on our data. We began our planning phase by identifying our resources and the relationships between these resources. We saw how we can conveniently think of our resources like a mapping of our models and database table.
+
+We learned about Postman and how we can use it to document our API and how it can help us think about our resource attributes and relationships. By documenting our API early, we forced ourselves to work with the JSON:API specification and our applications data. Sometimes, it’s tedious work, plotting all of these examples into Postman, but if you have been taking some notes, you already have a good idea of where the more complex parts of the implementation lie and where the easiest parts are.
+
+We learned a bit more about the included top-level member of our response documents, and how we can leverage the include query parameter to tell our API which related resources we want included in the response. We hope that you finished your documentation and explored Postman a little more. A big win, which we also touched upon in this chapter, is that when the documentation is done, a mock server can be set up for the frontend people or other consumers of our API, which can relieve the pressure on our shoulders as backend developers. Next up, we will begin building our API. We won’t be leaving Postman yet, but we will finally start to do some coding, and isn’t that why we are all here anyway? 
+
+Now that we have the basics covered and have been through the JSON:API specification, it’s time to talk about planning. For us, this is the most important part of a project. Whether it’s a small, medium or large project, it is always beneficial to do some planning ahead of time to identify possible problems and roadblocks you can steer around. For us, time equals money so we need to be as fast and efficient as possible.
+
+The same goes for APIs. The more you can plan out ahead of time, the more it benefits you later, when you actually have to implement the API. If you are making a public API, we especially recommend planning ahead and documenting your API as early as possible. In this way, you know everything about the data and what needs to be developed ahead of time, as well as getting a good grasp of where the more complex areas of your application lie. The planning tools and methods we will be going through in this chapter are those that we use when planning out our projects. These are the methods and tools we have picked out over time, that fit most of our projects.
 
 
 
