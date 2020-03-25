@@ -215,323 +215,64 @@ An expression statement can either assign values to one or more variables or mem
 
 The simplest expressions are a literal value (such as a string or number), a variable, a built-in value (true, false, null, undefined, NaN, or Infinity), an invocation expression preceded by new, a refinement expression preceded by delete, an expression wrapped in parentheses, an expression preceded by a prefix operator, or an expression followed by:
 
+• An infix operator and another expression.
 
+• The ? ternary operator followed by another expression, then by :, and then by yet another expression.
 
+• An invocation.
 
-
-
-
-• An infix operator and another expression
-
-• The ? ternary operator followed by another expression, then by :, and then by yet another expression
-
-• An invocation
-
-• A refinement
+• A refinement.
 
 The ? ternary operator takes three operands. If the first operand is truthy, it produces the value of the second operand. But if the first operand is falsy, it produces the value of the third operand.
 
-Expressions
+The operators at the top of the operator precedence list in Table 2-1 have higher precedence. They bind the tightest. The operators at the bottom have the lowest precedence. Parentheses can be used to alter the normal precedence, so: 
 
-|
-
-15
-
-The operators at the top of the operator precedence list in Table 2-1 have higher precedence. They bind the tightest. The operators at the bottom have the lowest precedence. Parentheses can be used to alter the normal precedence, so: 2 + 3 * 5 === 17
-
+```
+2 + 3 * 5 === 17
 (2 + 3) * 5 === 25
+```
 
-Table 2-1. Operator precedence
+![](./res/2020019.png)
 
-. [] ( )
+The values produced by typeof are 'number', 'string', 'boolean', 'undefined', 'function', and 'object'. If the operand is an array or null, then the result is 'object', which is wrong. There will be more about typeof in Chapter 6 and Appendix A.
 
-Refinement and invocation
+If the operand of ! is truthy, it produces false. Otherwise, it produces true. The + operator adds or concatenates. If you want it to add, make sure both operands are numbers. The / operator can produce a noninteger result even if both operands are integers. The && operator produces the value of its first operand if the first operand is falsy. Otherwise, it produces the value of the second operand.
 
-delete new typeof + - !
+1『在编程语言中，结合性（associativity）是操作符在没有圆括号分组的情况下决定其优先的一种属性。它可能是从左向右结合（left-associative）、从右向左结合（right-associative）或无结合。比如加运算符的结合性是从左向右，而一元运算符、赋値运算将及三元条件运算特的结合性是从右向左。关于更多的运算符结合性的信息，请参阅《Javascript 权成指南》中译第 5 版。在 Javascript 语言里 % 不是通常数学意义上的模运算，而实际上是「求余」运算。两个运算数为正数时，求模运算和求余运算的值相同；两个运算数中存在负数时，求模运算和求余运算的值则不相同。』
 
-Unary operators
+![](./res/2020020.png)
 
-* / %
+The || operator produces the value of its first operand if the first operand is truthy. Otherwise, it produces the value of the second operand.
 
-Multiplication, division, modulo
+![](./res/2020021.png)
 
-+ -
+Invocation causes the execution of a function value. The invocation operator is a pair of parentheses that follow the function value. The parentheses can contain arguments that will be delivered to the function. There will be much more about functions in Chapter 4.
 
-Addition/concatenation, subtraction
+1『 Invocation 指函数调用。』
 
->= <= > <
-
-Inequality
-
-=== !==
-
-Equality
-
-&&
-
-Logical and
-
-||
-
-Logical or
-
-?:
-
-Ternary
-
-prefix operator
-
-type of
-
-typeof
-
-to number
-
-+
-
-negate
-
--
-
-logical not
-
-!
-
-The values produced by typeof are 'number', 'string', 'boolean', 'undefined',
-
-'function', and 'object'. If the operand is an array or null, then the result is
-
-'object', which is wrong. There will be more about typeof in Chapter 6 and
-
-Appendix A.
-
-If the operand of ! is truthy, it produces false. Otherwise, it produces true.
-
-The + operator adds or concatenates. If youwant it to add, make sure both operands are numbers.
-
-The / operator can produce a noninteger result even if both operands are integers.
-
-The && operator produces the value of its first operand if the first operand is falsy.
-
-Otherwise, it produces the value of the second operand.
-
-16
-
-|
-
-Chapter 2: Grammar
-
-infix operator
-
-logical or
-
-||
-
-multiply
-
-add
-
-greater or equal
-
-equal
-
-logical and
-
-*
-
-+
-
->=
-
-===
-
-&&
-
-divide
-
-subtract
-
-less or equal
-
-not equal
-
-/
-
--
-
-<=
-
-!==
-
-modulo
-
-greater
-
-%
-
->
-
-less
-
-<
-
-The || operator produces the value of its first operand if the first operand is truthy.
-
-Otherwise, it produces the value of the second operand.
-
-invocation
-
-(
-
-expression
-
-)
-
-,
-
-Invocation causes the execution of a function value. The invocation operator is a pair of parentheses that follow the function value. The parentheses can contain arguments that will be delivered to the function. There will be much more about func-
-
-tions in Chapter 4.
-
-refinement
-
-.
-
-name
-
-[
-
-expression
-
-]
+![](./res/2020022.png)
 
 A refinement is used to specify a property or element of an object or array. This will be described in detail in the next chapter.
 
-Literals
+## 07. Literals
 
 Object literals are a convenient notation for specifying new objects. The names of the properties can be specified as names or as strings. The names are treated as literal names, not as variable names, so the names of the properties of the object must be known at compile time. The values of the properties are expressions. There will be more about object literals in the next chapter.
 
-Literals
+『 Literals 即字面量。对象字面量是一种可以方便地按指定规格创建新对象的表示法。属性名可以是标识符或字符串。这些名字被当做字面量名而不是变量名来对待，所以对象的属性名在编译时才能知道。属性的值就是表达式。』
 
-|
+2『字面量的概念还是不太明白。』
 
-17
+![](./res/2020023.png)
 
-literal
+Array literals are a convenient notation for specifying new arrays. There will be more about array literals in Chapter 6.
 
-number literal
-
-string literal
-
-object literal
-
-array literal
-
-function
-
-regexp literal
-
-object literal
-
-{
-
-name
-
-:
-
-expression
-
-}
-
-string
-
-,
-
-array literal
-
-[
-
-expression
-
-]
-
-,
-
-Array literals are a convenient notation for specifying new arrays. There will be more
-
-about array literals in Chapter 6.
-
-regexp literal
-
-regexp choice
-
-/
-
-/
-
-g
-
-i
-
-m
+![](./res/2020024.png)
 
 There will be more about regular expressions in Chapter 7.
 
-18
+## 08. Functions
 
-|
+![](./res/2020025.png)
 
-Chapter 2: Grammar
-
-Functions
-
-function literal
-
-function
-
-name
-
-parameters
-
-function body
-
-parameters
-
-(
-
-name
-
-)
-
-,
-
-function body
-
-{
-
-var statements
-
-statements
-
-}
-
-A function literal defines a function value. It can have an optional name that it can use to call itself recursively. It can specify a list of parameters that will act as variables initialized by the invocation arguments. The body of the function includes vari-
-
-able definitions and statements. There will be more about functions in Chapter 4.
-
-Functions
-
-|
-
-19
-
-Chapter 3
-
-CHAPTER 3
-
-Objects
-
-3
-
-Upon a homely object Love can wink.
+A function literal defines a function value. It can have an optional name that it can use to call itself recursively. It can specify a list of parameters that will act as variables initialized by the invocation arguments. The body of the function includes variable definitions and statements. There will be more about functions in Chapter 4.
 
