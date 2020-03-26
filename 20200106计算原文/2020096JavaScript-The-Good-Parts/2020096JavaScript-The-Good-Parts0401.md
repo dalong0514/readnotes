@@ -168,171 +168,152 @@ var status = Quo.prototype.get_status.apply(statusObject);
 
 A bonus parameter that is available to functions when they are invoked is the arguments array. It gives the function access to all of the arguments that were supplied with the invocation, including excess arguments that were not assigned to parameters. This makes it possible to write functions that take an unspecified number of parameters:
 
+『当函数被调用时，会得到一个「免费」配送的参数，那就是 arguments 数组。函数可以通过此参数访问所有它被调用时传递给它的参数列表，包括那些没有被分配给函数声明时定义的形式参数的多余参数。这使得编写一个无须指定参数个数的函数成为可能。』
+
+1『印证了之前说的，函数在调用的时候额外接收 2 个参数，this 和 parameters。In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern.』
+
 ```
 // Make a function that adds a lot of stuff.
 // Note that defining the variable sum inside of
 // the function does not interfere with the sum
-// defined outside of the function. The function
-// only sees the inner one.
+// defined outside of the function. The function only sees the inner one.
 
 var sum = function ( ) {
-var i, sum = 0;
-for (i = 0; i < arguments.length; i += 1) {
-sum += arguments[i];
-}
-return sum;
+    var i, sum = 0;
+    for (i = 0; i < arguments.length; i += 1) {
+        sum += arguments[i];
+    }
+    return sum;
 };
 document.writeln(sum(4, 8, 15, 16, 23, 42)); // 108
 ```
 
 This is not a particularly useful pattern. In Chapter 6, we will see how we can add a similar method to an array.
 
-Because of a design error, arguments is not really an array. It is an array-like object.
+Because of a design error, arguments is not really an array. It is an array-like object. arguments has a length property, but it lacks all of the array methods. We will see a consequence of that design error at the end of this chapter.
 
-arguments has a length property, but it lacks all of the array methods. We will see a consequence of that design error at the end of this chapter.
+1『上面默认接收的参数 parameters 的用法很赞。』
 
 ## 05. Return
 
 When a function is invoked, it begins execution with the first statement, and ends when it hits the } that closes the function body. That causes the function to return control to the part of the program that invoked the function.
 
-The return statement can be used to cause the function to return early. When return is executed, the function returns immediately without executing the remaining statements.
-
-A function always returns a value. If the return value is not specified, then undefined is returned.
+The return statement can be used to cause the function to return early. When return is executed, the function returns immediately without executing the remaining statements. A function always returns a value. If the return value is not specified, then undefined is returned.
 
 If the function was invoked with the new prefix and the return value is not an object, then this (the new object) is returned instead.
 
-## Exceptions
+『如果函数调用时在前面加上了 new 前缀，且返回值不是一个对象，则返回 this（该新对象）。』
 
-JavaScript provides an exception handling mechanism. Exceptions are unusual (but not completely unexpected) mishaps that interfere with the normal flow of a program. When such a mishap is detected, your program should throw an exception: var add = function (a, b) {
+## 06. Exceptions
 
-if (typeof a !== 'number' || typeof b !== 'number') {
+JavaScript provides an exception handling mechanism. Exceptions are unusual (but not completely unexpected) mishaps that interfere with the normal flow of a program. When such a mishap is detected, your program should throw an exception: 
 
-throw {
-
-name: 'TypeError',
-
-message: 'add needs numbers'
-
-};
-
+```
+var add = function (a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+    throw {
+        name: 'TypeError',
+        message: 'add needs numbers'
+    };
+    }
+    return a + b;
 }
-
-return a + b;
-
-}
+```
 
 The throw statement interrupts execution of the function. It should be given an exception object containing a name property that identifies the type of the exception, and a descriptive message property. You can also add other properties.
 
 The exception object will be delivered to the catch clause of a try statement:
 
+```
 // Make a try_it function that calls the new add
-
 // function incorrectly.
-
 var try_it = function ( ) {
-
-try {
-
-add("seven");
-
-} catch (e) {
-
-document.writeln(e.name + ': ' + e.message);
-
+    try {
+        add("seven");
+    } catch (e) {
+    document.writeln(e.name + ': ' + e.message);
+    }
 }
-
-}
-
 try_it( );
+```
 
 If an exception is thrown within a try block, control will go to its catch clause.
 
 A try statement has a single catch block that will catch all exceptions. If your handling depends on the type of the exception, then the exception handler will have to inspect the name to determine the type of the exception.
 
-Augmenting Types
+1『如果在 try 代码块内抛出了一个异常，控制权就会跳转到它的 catch 从句。』
+
+## 07. Augmenting Types
 
 JavaScript allows the basic types of the language to be augmented. In Chapter 3, we saw that adding a method to Object.prototype makes that method available to all objects. This also works for functions, arrays, strings, numbers, regular expressions, and booleans.
 
 For example, by augmenting Function.prototype, we can make a method available to all functions:
 
-32
-
-|
-
-Chapter 4: Functions
-
+```
 Function.prototype.method = function (name, func) {
-
-this.prototype[name] = func;
-
-return this;
-
+    this.prototype[name] = func;
+    return this;
 };
+```
 
 By augmenting Function.prototype with a method method, we no longer have to type the name of the prototype property. That bit of ugliness can now be hidden.
 
-JavaScript does not have a separate integer type, so it is sometimes necessary to extract just the integer part of a number. The method JavaScript provides to do that is ugly. We can fix it by adding an integer method to Number.prototype. It uses either Math.ceiling or Math.floor, depending on the sign of the number: Number.method('integer', function ( ) {
+JavaScript does not have a separate integer type, so it is sometimes necessary to extract just the integer part of a number. The method JavaScript provides to do that is ugly. We can fix it by adding an integer method to Number.prototype. It uses either Math.ceiling or Math.floor, depending on the sign of the number: 
 
-return Math[this < 0 ? 'ceiling' : 'floor'](this);
-
+```
+Number.method('integer', function ( ) {
+    return Math[this < 0 ? 'ceiling' : 'floor'](this);
 });
 
 document.writeln((-10 / 3).integer( )); // -3
+```
 
 JavaScript lacks a method that removes spaces from the ends of a string. That is an easy oversight to fix:
 
+```
 String.method('trim', function ( ) {
-
-return this.replace(/^\s+|\s+$/g, '');
-
+    return this.replace(/^\s+|\s+$/g, '');
 });
 
-document.writeln('"' + " neat ".trim( ) + '"'); Our trim method uses a regular expression. We will see much more about regular
+document.writeln('"' + " neat ".trim( ) + '"'); 
+```
 
-expressions in Chapter 7.
+Our trim method uses a regular expression. We will see much more about regular expressions in Chapter 7.
 
 By augmenting the basic types, we can make significant improvements to the expressiveness of the language. Because of the dynamic nature of JavaScript’s prototypal inheritance, all values are immediately endowed with the new methods, even values that were created before the methods were created.
 
+1『扩充类型体现了 JS 动态特性。上面的 2 个例子需要反复研究。』
+
 The prototypes of the basic types are public structures, so care must be taken when mixing libraries. One defensive technique is to add a method only if the method is known to be missing:
 
+『基本类型的原型是公用结构，所以在类库混用时务必小心。一个保险的做法就是只在确定没有该方法时才添加它。』
+
+```
 // Add a method conditionally.
-
 Function.prototype.method = function (name, func) {
-
-if (!this.prototype[name]) {
-
-this.prototype[name] = func;
-
-}
-
+    if (!this.prototype[name]) {
+        this.prototype[name] = func;
+    }
 };
+```
 
 Another concern is that the for in statement interacts badly with prototypes. We saw a couple of ways to mitigate that in Chapter 3: we can use the hasOwnProperty method to screen out inherited properties, and we can look for specific types.
 
-## Augmenting Types
-
-|
-
-33
-
-## Recursion
+## 08. Recursion
 
 A recursive function is a function that calls itself, either directly or indirectly. Recursion is a powerful programming technique in which a problem is divided into a set of similar subproblems, each solved with a trivial solution. Generally, a recursive function calls itself to solve its subproblems.
 
-The Towers of Hanoi is a famous puzzle. The equipment includes three posts and a set of discs of various diameters with holes in their centers. The setup stacks all of the discs on the source post with smaller discs on top of larger discs. The goal is to move the stack to the destination post by moving one disc at a time to another post, never placing a larger disc on a smaller disc. This puzzle has a trivial recursive solution: var hanoi = function (disc, src, aux, dst) {
+1『Recursion 体现了解决问题时采用分解的思维模式。』
 
-if (disc > 0) {
+The Towers of Hanoi is a famous puzzle. The equipment includes three posts and a set of discs of various diameters with holes in their centers. The setup stacks all of the discs on the source post with smaller discs on top of larger discs. The goal is to move the stack to the destination post by moving one disc at a time to another post, never placing a larger disc on a smaller disc. This puzzle has a trivial recursive solution: 
 
-hanoi(disc - 1, src, dst, aux);
-
-document.writeln('Move disc ' + disc +
-
-' from ' + src + ' to ' + dst);
-
-hanoi(disc - 1, aux, src, dst);
-
-}
-
+```
+var hanoi = function (disc, src, aux, dst) {
+    if (disc > 0) {
+        hanoi(disc - 1, src, dst, aux);
+        document.writeln('Move disc ' + disc + ' from ' + src + ' to ' + dst);
+        hanoi(disc - 1, aux, src, dst);
+    }
 };
 
 hanoi(3, 'Src', 'Aux', 'Dst');
@@ -340,18 +321,15 @@ hanoi(3, 'Src', 'Aux', 'Dst');
 It produces this solution for three discs:
 
 Move disc 1 from Src to Dst
-
 Move disc 2 from Src to Aux
-
 Move disc 1 from Dst to Aux
-
 Move disc 3 from Src to Dst
-
 Move disc 1 from Aux to Src
-
 Move disc 2 from Aux to Dst
-
 Move disc 1 from Src to Dst
+```
+
+2『汉诺塔的代码反复去看，吃透其递归的实现方式。』
 
 The hanoi function moves a stack of discs from one post to another, using the auxiliary post if necessary. It breaks the problem into three subproblems. First, it uncovers the bottom disc by moving the substack above it to the auxiliary post. It can then move the bottom disc to the destination post. Finally, it can move the substack from the auxiliary post to the destination post. The movement of the substack is handled by calling itself recursively to work out those subproblems.
 
@@ -359,125 +337,85 @@ The hanoi function is passed the number of the disc it is to move and the three 
 
 Recursive functions can be very effective in manipulating tree structures such as the browser’s Document Object Model (DOM). Each recursive call is given a smaller piece of the tree to work on:
 
-34
+『传递给 hanoi 函数的参数包括当前移动的圆盘编号和它将要用到的 3 根柱子。当它调用自身的时候，它去处理当前正在处理的圆盘之上的圆盘。最终，它会以一个不存在的圆盘编号去调用。在这样的情况下，它不执行任何操作。由于该函数对非法值不予理会，我们也就不必担心它会导致死循环。递归函数可以非常高效地操作树形结构，比如浏览器端的文档对象模型（DOM）。每次递归调用时处理指定的树的一小段。』
 
-|
-
-Chapter 4: Functions
-
+```
 // Define a walk_the_DOM function that visits every
-
 // node of the tree in HTML source order, starting
-
 // from some given node. It invokes a function,
-
 // passing it each node in turn. walk_the_DOM calls
-
 // itself to process each of the child nodes.
 
 var walk_the_DOM = function walk(node, func) {
-
-func(node);
-
-node = node.firstChild;
-
-while (node) {
-
-walk(node, func);
-
-node = node.nextSibling;
-
-}
-
+    func(node);
+    node = node.firstChild;
+    while (node) {
+        walk(node, func);
+        node = node.nextSibling;
+    }
 };
 
 // Define a getElementsByAttribute function. It
-
 // takes an attribute name string and an optional
-
 // matching value. It calls walk_the_DOM, passing it a
-
 // function that looks for an attribute name in the
-
 // node. The matching nodes are accumulated in a
-
 // results array.
 
 var getElementsByAttribute = function (att, value) {
-
-var results = [];
-
-walk_the_DOM(document.body, function (node) {
-
-var actual = node.nodeType === 1 && node.getAttribute(att); if (typeof actual === 'string' &&
-
-(actual === value || typeof value !== 'string')) {
-
-results.push(node);
-
-}
-
-});
-
-return results;
-
+    var results = [];
+    walk_the_DOM(document.body, function (node) {
+        var actual = node.nodeType === 1 && node.getAttribute(att); 
+        if (typeof actual === 'string' && (actual === value || typeof value !== 'string')) {
+            results.push(node);
+        }
+    });
+    
+    return results;
 };
+```
 
 Some languages offer the tail recursion optimization. This means that if a function returns the result of invoking itself recursively, then the invocation is replaced with a loop, which can significantly speed things up. Unfortunately, JavaScript does not currently provide tail recursion optimization. Functions that recurse very deeply can fail by exhausting the return stack:
 
+『一些语言提供了「尾递归」优化。这意味着如果一个函数返回自身递归调用的结果，那么调用的过程会被替换为一个循环，它可以显著提高速度。遗憾的是，Javascript 当前并没有提供尾递归优化。深度递归的函数可能会因为堆栈溢出而运行失败。尾递归（(tail recursion 或 tail-end recursion）是一种在函数的最后执行递归调用语白的特殊形式的递归。』
+
+```
 // Make a factorial function with tail
-
 // recursion. It is tail recursive because
-
 // it returns the result of calling itself.
-
 // JavaScript does not currently optimize this form.
 
 var factorial = function factorial(i, a) {
-
-a = a || 1;
-
-if (i < 2) {
-
-return a;
-
-}
-
-return factorial(i - 1, a * i);
-
-Recursion
-
-|
-
-35
-
+    a = a || 1;
+    if (i < 2) {
+        return a;
+    }
+    return factorial(i - 1, a * i);
 };
 
 document.writeln(factorial(4)); // 24
+```
 
-## Scope
+## 09. Scope
 
-Scope in a programming language controls the visibility and lifetimes of variables and parameters. This is an important service to the programmer because it reduces nam-ing collisions and provides automatic memory management: var foo = function ( ) {
+Scope in a programming language controls the visibility and lifetimes of variables and parameters. This is an important service to the programmer because it reduces naming collisions and provides automatic memory management: 
 
-var a = 3, b = 5;
-
-var bar = function ( ) {
-
-var b = 7, c = 11;
-
-// At this point, a is 3, b is 7, and c is 11
-
-a += b + c;
-
-// At this point, a is 21, b is 7, and c is 11
-
+```
+var foo = function ( ) {
+    var a = 3, b = 5;
+    var bar = function ( ) {
+        var b = 7, c = 11;
+        // At this point, a is 3, b is 7, and c is 11
+        a += b + c;
+        // At this point, a is 21, b is 7, and c is 11
+    };
+    // At this point, a is 3, b is 5, and c is not defined 
+    bar( );
+    // At this point, a is 21, b is 5
 };
+```
 
-// At this point, a is 3, b is 5, and c is not defined bar( );
-
-// At this point, a is 21, b is 5
-
-};
+1『JS 里函数就是一种对象，既然是对象那么所有针对对象的操作都可以针对函数，比如当作一个参数、比如赋值给一个变量等等。而函数的声明有两大类，一是常规的函数式，一是函数表达式（就把整个函数当作一个表达式，可以用 () 把整个函数包起来）。』
 
 Most languages with C syntax have block scope. All variables defined in a block (a list of statements wrapped with curly braces) are not visible from outside of the block. The variables defined in a block can be released when execution of the block is finished. This is a good thing.
 
@@ -487,219 +425,173 @@ JavaScript does have function scope. That means that the parameters and variable
 
 In many modern languages, it is recommended that variables be declared as late as possible, at the first point of use. That turns out to be bad advice for JavaScript because it lacks block scope. So instead, it is best to declare all of the variables used in a function at the top of the function body.
 
-36
+『糟糕的是，尽管 Javascript 的代码块语法貌似支持块级作用域，但实际上 Javascript 并不支持。这个混淆之处可能成为错误之源。Javascript 确实有函数作用域。那意味着定义在函数中的参数和变量在函数外部是不可见的，而在一个函数内部任何位置定义的变量，在该函数内部任何地方都可见。很多现代语言都推荐尽可能延迟声明变量。而用在 Javascript 上的话却会成为槽糕的建议，因为它缺少块级作用域。所以，最好的做法是在函数体的顶部声明函数中可能用到的所有变量。』
 
-|
+## 10. Closure
 
-Chapter 4: Functions
+The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments). This is a very good thing. Our getElementsByAttribute function worked because it declared a results variable, and the inner function that it passed to walk\_the_DOM also had access to the results variable.
 
-## Closure
+A more interesting case is when the inner function has a longer lifetime than its outer function. Earlier, we made a myObject that had a value and an increment method. Suppose we wanted to protect the value from unauthorized changes.
 
-The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments). This is a very good thing.
+Instead of initializing myObject with an object literal, we will initialize myObject by calling a function that returns an object literal. That function defines a value variable. That variable is always available to the increment and getValue methods, but the function’s scope keeps it hidden from the rest of the program: 
 
-Our getElementsByAttribute function worked because it declared a results variable, and the inner function that it passed to walk_the_DOM also had access to the results variable.
+『我们的 getelementsbyattribute 函数可以工作，是因为它声明了一个 results 变量，而传递给 walk\ _the_DOM 的内部函数也可以访问 results 变量。一个更有趣的情形是内部函数拥有比它的外部函数更长的生命周期。之前，我们构造了一个 myObject 对象，它拥有一个 value 属性和一个 increment 方法。假定我们希望保护该值不会被非法更改。和以对象字面量形式去初始化 myObject 不同，我们通过调用一个函数的形式去初始化 myObject，该函数会返回一个对象字面量。函数里定义了一个 value 变量。该变量对 increment 和 getValue 方法总是可用的，但函数的作用域使得它对其他的程序来说是不可见的。』
 
-A more interesting case is when the inner function has a longer lifetime than its outer function.
-
-Earlier, we made a myObject that had a value and an increment method. Suppose we wanted to protect the value from unauthorized changes.
-
-Instead of initializing myObject with an object literal, we will initialize myObject by calling a function that returns an object literal. That function defines a value variable. That variable is always available to the increment and getValue methods, but the function’s scope keeps it hidden from the rest of the program: var myObject = function ( ) {
-
-var value = 0;
-
-return {
-
-increment: function (inc) {
-
-value += typeof inc === 'number' ? inc : 1;
-
-},
-
-getValue: function ( ) {
-
-return value;
-
-}
-
-};
-
+```
+var myObject = function ( ) {
+    var value = 0;
+    return {
+        increment: function (inc) {
+        value += typeof inc === 'number' ? inc : 1;
+        },
+        getValue: function ( ) {
+            return value;
+        }
+    };
 }( );
+```
 
 We are not assigning a function to myObject. We are assigning the result of invoking that function. Notice the ( ) on the last line. The function returns an object containing two methods, and those methods continue to enjoy the privilege of access to the value variable.
 
+『我们并没有把一个函数赋值给 myObject。我们是把调用该函数后返回的结果赋值给它。注意最后一行的（）。该函数返回一个包含两个方法的对象，并且这些方法继续享有访问 value 变量的特权。』
+
+1『绝妙的操作，关键点是函数后面的 ()，是把调用该函数后返回的结果赋值给这个变量，该函数返回的是一个对象，对象里包含 2 个方法，这两个方法都可以访问该函数体内定义的变量。这就理解了「通过调用一个函数的形式去初始化 myObject，该函数会返回一个对象字面量。」』
+
 The Quo constructor from earlier in this chapter produced an object with a status property and a get_status method. But that doesn’t seem very interesting. Why would you call a getter method on a property you could access directly? It would be more useful if the status property were private. So, let’s define a different kind of quo function to do that:
 
+本章之前的 Quo 构造器产生一个带有 status 属性和 get status 方法的对象。为什么要用一个 getter 方法去访问你本可以直接访问到的属性呢？如果 status 是私有属性，它才是更有意义的。所以，让我们定义另一种形式的 quo 函数来做此事：
+
+1『这其实就是 JS 里实现私有属性的绝妙方式。』
+
+```
 // Create a maker function called quo. It makes an
-
-// object with a get_status method and a private
-
-// status property.
-
-Closure
-
-|
-
-37
+// object with a get_status method and a private status property.
 
 var quo = function (status) {
-
-return {
-
-get_status: function ( ) {
-
-return status;
-
-}
-
-};
-
+    return {
+        get_status: function ( ) {
+            return status;
+        }
+    };
 };
 
 // Make an instance of quo.
 
 var myQuo = quo("amazed");
-
 document.writeln(myQuo.get_status( ));
+```
 
-This quo function is designed to be used without the new prefix, so the name is not capitalized. When we call quo, it returns a new object containing a get_status method. A reference to that object is stored in myQuo. The get_status method still has privileged access to quo’s status property even though quo has already returned.
+This quo function is designed to be used without the new prefix, so the name is not capitalized. When we call quo, it returns a new object containing a get\_status method. A reference to that object is stored in myQuo. The get\_status method still has privileged access to quo’s status property even though quo has already returned.
 
-get_status does not have access to a copy of the parameter; it has access to the parameter itself. This is possible because the function has access to the context in which it was created. This is called closure.
+get\_status does not have access to a copy of the parameter; it has access to the parameter itself. This is possible because the function has access to the context in which it was created. This is called closure.
+
+『当我们调用 quo 时，它返回包含 get\_status 方法的一个新对象。该对象的一个引用保存在 myQuo 中。即使 quo 已经返回了，但 get\_status 方法仍然享有访问 quo 对象的 status 属性的特权。get\_status 方法并不是访问该参数的一个副本，它访问的就是该参数本身。因为该函数可以访问它被创建时所处的上下文环境。这被称为闭包。』
+
+1『闭包的本质来了：该函数可以访问它被创建时所处的上下文环境，即为闭包。』
 
 Let’s look at a more useful example:
 
+```
 // Define a function that sets a DOM node's color
-
 // to yellow and then fades it to white.
 
 var fade = function (node) {
-
-var level = 1;
-
-var step = function ( ) {
-
-var hex = level.toString(16);
-
-node.style.backgroundColor = '#FFFF' + hex + hex;
-
-if (level < 15) {
-
-level += 1;
-
-setTimeout(step, 100);
-
-}
-
-};
-
-setTimeout(step, 100);
-
+    var level = 1;
+    var step = function ( ) {
+        var hex = level.toString(16);
+        node.style.backgroundColor = '#FFFF' + hex + hex;
+        if (level < 15) {
+            level += 1;
+            setTimeout(step, 100);
+        }
+    };
+    setTimeout(step, 100);
 };
 
 fade(document.body);
+```
 
-We call fade, passing it document.body (the node created by the HTML <body> tag).
-
-fade sets level to 1. It defines a step function. It calls setTimeout, passing it the step function and a time (100 milliseconds). It then returns—fade has finished.
+We call fade, passing it document.body (the node created by the HTML \<body> tag). fade sets level to 1. It defines a step function. It calls setTimeout, passing it the step function and a time (100 milliseconds). It then returns—fade has finished.
 
 Suddenly, about a 10th of a second later, the step function gets invoked. It makes a base 16 character from fade’s level. It then modifies the background color of fade’s node. It then looks at fade’s level. If it hasn’t gotten to white yet, it then increments fade’s level and uses setTimeout to schedule itself to run again.
-
-38
-
-|
-
-Chapter 4: Functions
 
 Suddenly, the step function gets invoked again. But this time, fade’s level is 2. fade returned a while ago, but its variables continue to live as long as they are needed by one or more of fade’s inner functions.
 
 It is important to understand that the inner function has access to the actual variables of the outer functions and not copies in order to avoid the following problem:
 
+『fade 函数设置 level 为 1。它定义了一个 step 函数；接着调用 settimeout，并传递 step 函数和一个时间（100 毫秒）给它。然后它返回，fade 函数结東。在大约十分之一秒后，step 函数被调用。它把 fade 函数的 1evel 变量转化为 16 位字符。接着，它修改 fade 函数得到的节点的背景颜色。然后査看 fade 函数的 level 变量。如果背景色尚未变成白色，那么它增大 fade 函数的 level 变量，接着用 settimeout 预定让它自己再次运行。step 函数很快再次被调用。但这次，fade 函数的 level 变量值变成 2。fade 函数在之前已经返回了，但只要 fade 的内部函数需要，它的変量就会持续保留。为了避免下面的问题，理解内部函数能访问外部函数的实际变量而无须复制是很重要的。』
+
+```
 // BAD EXAMPLE
-
 // Make a function that assigns event handler functions to an array of nodes the wrong way.
-
 // When you click on a node, an alert box is supposed to display the ordinal of the node.
-
 // But it always displays the number of nodes instead.
 
 var add_the_handlers = function (nodes) {
-
-var i;
-
-for (i = 0; i < nodes.length; i += 1) {
-
-nodes[i].onclick = function (e) {
-
-alert(i);
-
-};
-
-}
-
+    var i;
+    for (i = 0; i < nodes.length; i += 1) {
+        nodes[i].onclick = function (e) {
+            alert(i);
+        };
+    }
 };
 
 // END BAD EXAMPLE
+```
 
-The add_the_handlers function was intended to give each handler a unique number (i). It fails because the handler functions are bound to the variable i, not the value of the variable i at the time the function was made:
+The add\_the_handlers function was intended to give each handler a unique number (i). It fails because the handler functions are bound to the variable i, not the value of the variable i at the time the function was made:
 
+『add\_the_handlers 函数的本意是想传递给每个事件处理器一个唯一值（i）。但它未能达到目的，因为事件处理器函数绑定了变量 i 本身，而不是函数在构造时的变量的值。』
+
+```
 // BETTER EXAMPLE
-
 // Make a function that assigns event handler functions to an array of nodes the right way.
-
 // When you click on a node, an alert box will display the ordinal of the node.
 
 var add_the_handlers = function (nodes) {
-
-var i;
-
-for (i = 0; i < nodes.length; i += 1) {
-
-nodes[i].onclick = function (i) {
-
-return function (e) {
-
-alert(e);
-
+    var i;
+    for (i = 0; i < nodes.length; i += 1) {
+        nodes[i].onclick = function (i) {
+            return function (e) {
+            alert(e);
+            };
+        }(i);
+    }
 };
+```
 
-}(i);
+Now, instead of assigning a function to onclick, we define a function and immediately invoke it, passing in i. That function will return an event handler function that is bound to the value of i that was passed in, not to the i defined in add\_the_handlers. That returned function is assigned to onclick.
 
-}
+『避免在循环中创建函数，它可能只会带来无谓的计算，还会引起混淆，正如上面那个糟糕的例子。我们可以先在循环之外创建一个辅助函数，让这个辅助函数再返回一个绑定了当前立值的函数，这样就不会导致混淆了。』
 
-};
-
-Now, instead of assigning a function to onclick, we define a function and immediately invoke it, passing in i. That function will return an event handler function that is bound to the value of i that was passed in, not to the i defined in add_the_
-
-handlers. That returned function is assigned to onclick.
-
-Closure
-
-|
-
-39
-
-## Callbacks
+## 11. Callbacks
 
 Functions can make it easier to deal with discontinuous events. For example, suppose there is a sequence that begins with a user interaction, making a request of the server, and finally displaying the server’s response. The naïve way to write that would be:
 
+```
 request = prepare_the_request( );
-
 response = send_request_synchronously(request);
-
 display(response);
+```
 
 The problem with this approach is that a synchronous request over the network will leave the client in a frozen state. If either the network or the server is slow, the degradation in responsiveness will be unacceptable.
 
-A better approach is to make an asynchronous request, providing a callback function that will be invoked when the server’s response is received. An asynchronous function returns immediately, so the client isn’t blocked: request = prepare_the_request( );
+A better approach is to make an asynchronous request, providing a callback function that will be invoked when the server’s response is received. An asynchronous function returns immediately, so the client isn’t blocked: 
 
+```
+request = prepare_the_request( );
 send_request_asynchronously(request, function (response) {
-
-display(response);
-
+    display(response);
 });
+```
 
-We pass a function parameter to the send_request_asynchronously function that will be called when the response is available.
+We pass a function parameter to the send\_request_asynchronously function that will be called when the response is available.
 
-## Module
+『函数使得对不连续事件的处理变得更容易。例如，假定有这么一个序列，由用户交互行为触发，向服务器发送请求，最终显示服务器的响应。最自然的写法可能会是这样的；这种方式的问题在于，网络上的同步请求会导致客户端进入假死状态。如果网络传输或服务器很慢，响应会慢到让人不可接受。更好的方式是发起异步请求，提供一个当服务器的响应到达时随即触发的回调函数。异步函数立即返回，这样客户端就不会被阻塞。』
+
+1『回调函数目前的理解，把这个任务悬挂起来，做个标记，先干其他的事，等那边回复后再继续这个任务。』
+
+## 12. Module
 
 We can use functions and closure to make modules. A module is a function or object that presents an interface but that hides its state and implementation. By using functions to produce modules, we can almost completely eliminate our use of global variables, thereby mitigating one of JavaScript’s worst features.
 
@@ -839,7 +731,7 @@ The methods do not make use of this or that. As a result, there is no way to com
 
 If we passed seqer.gensym to a third party’s function, that function would be able to generate unique strings, but would be unable to change the prefix or seq.
 
-## Cascade
+## 13. Cascade
 
 Some methods do not have a return value. For example, it is typical for methods that set or change the state of an object to return nothing. If we have those methods return this instead of undefined, we can enable cascades. In a cascade, we can call many methods on the same object in sequence in a single statement. An Ajax library that enables cascades would allow us to write in a style like this: getElement('myBoxDiv').
 
@@ -891,7 +783,7 @@ In this example, the getElement function produces an object that gives functiona
 
 Cascading can produce interfaces that are very expressive. It can help control the tendency to make interfaces that try to do too much at once.
 
-## Curry
+## 14. Curry
 
 Functions are values, and we can manipulate function values in interesting ways.
 
@@ -1060,10 +952,4 @@ return n * shell(n - 1);
 });
 
 Memoization
-
-|
-
-45
-
-
 
