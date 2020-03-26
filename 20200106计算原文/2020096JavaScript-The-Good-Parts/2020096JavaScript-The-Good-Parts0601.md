@@ -1,3 +1,5 @@
+# 06 Arrays
+
 Thee I’ll chase hence, thou wolf in sheep’s array.
 
 —William Shakespeare, The First Part of Henry the Sixth An array is a linear allocation of memory in which elements are accessed by integers that are used to compute offsets. Arrays can be very fast data structures. Unfortunately, JavaScript does not have anything like this kind of array.

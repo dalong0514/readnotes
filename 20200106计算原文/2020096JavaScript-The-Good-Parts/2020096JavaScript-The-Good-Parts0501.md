@@ -1,7 +1,5 @@
 # 05 Inheritance
 
-5
-
 Divides one thing entire to many objects;
 
 Like perspectives, which rightly gazed upon
@@ -10,8 +8,7 @@ Show nothing but confusion...
 
 —William Shakespeare, The Tragedy of King Richard
 
-
-the Second
+## the Second
 
 Inheritance is an important topic in most programming languages.
 
@@ -663,7 +660,7 @@ Chapter 6
 
 CHAPTER 6
 
-Arrays
+
 
 6
 

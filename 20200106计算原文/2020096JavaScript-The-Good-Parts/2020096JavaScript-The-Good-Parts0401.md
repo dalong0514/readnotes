@@ -595,361 +595,254 @@ We pass a function parameter to the send\_request_asynchronously function that w
 
 We can use functions and closure to make modules. A module is a function or object that presents an interface but that hides its state and implementation. By using functions to produce modules, we can almost completely eliminate our use of global variables, thereby mitigating one of JavaScript’s worst features.
 
-For example, suppose we want to augment String with a deentityify method. Its job is to look for HTML entities in a string and replace them with their equivalents.
-
-It makes sense to keep the names of the entities and their equivalents in an object.
+For example, suppose we want to augment String with a deentityify method. Its job is to look for HTML entities in a string and replace them with their equivalents. It makes sense to keep the names of the entities and their equivalents in an object.
 
 But where should we keep the object? We could put it in a global variable, but global variables are evil. We could define it in the function itself, but that has a runtime cost because the literal must be evaluated every time the function is invoked. The ideal approach is to put it in a closure, and perhaps provide an extra method that can add additional entities:
 
+『可以把它定义在该函数的内部，但是那会带来运行时的损耗，因为每次执行该函数的时候该字面量都会被求值一次。理想的方式是把它放入一个闭包，而且也许还能提供一个增加更多字符实体的扩展方法。』
+
+1『这就是闭包的一个应用场景。』
+
+```js
 String.method('deentityify', function ( ) {
 
-// The entity table. It maps entity names to
-
-// characters.
-
-var entity = {
-
-quot: '"',
-
-40
-
-|
-
-Chapter 4: Functions
-
-lt: '<',
-
-gt: '>'
-
-};
-
-// Return the deentityify method.
-
-return function ( ) {
-
-// This is the deentityify method. It calls the string
-
-// replace method, looking for substrings that start
-
-// with '&' and end with ';'. If the characters in
-
-// between are in the entity table, then replace the
-
-// entity with the character from the table. It uses
-
-// a regular expression (Chapter 7).
-
-return this.replace(/&([^&;]+);/g,
-
-function (a, b) {
-
-var r = entity[b];
-
-return typeof r === 'string' ? r : a;
-
-}
-
-);
-
-};
-
+    // The entity table. It maps entity names to characters.
+    
+    var entity = {
+        quot: '"',
+        lt: '<',
+        gt: '>'
+    };
+    
+    // Return the deentityify method.
+    return function ( ) {
+        // This is the deentityify method. It calls the string
+        // replace method, looking for substrings that start
+        // with '&' and end with ';'. If the characters in
+        // between are in the entity table, then replace the
+        // entity with the character from the table. It uses
+        // a regular expression (Chapter 7).
+        
+        return this.replace(/&([^&;]+);/g,
+            function (a, b) {
+                var r = entity[b];
+                return typeof r === 'string' ? r : a;
+            }
+        );
+    };
 }( ));
+```
 
 Notice the last line. We immediately invoke the function we just made with the ( ) operator. That invocation creates and returns the function that becomes the deentityify method.
 
+```
 document.writeln(
+    '&lt;&quot;&gt;'.deentityify( )); // <"> 
+```
 
-'&lt;&quot;&gt;'.deentityify( )); // <"> The module pattern takes advantage of function scope and closure to create relationships that are binding and private. In this example, only the deentityify method has access to the entity data structure.
+The module pattern takes advantage of function scope and closure to create relationships that are binding and private. In this example, only the deentityify method has access to the entity data structure.
 
 The general pattern of a module is a function that defines private variables and functions; creates privileged functions which, through closure, will have access to the private variables and functions; and that returns the privileged functions or stores them in an accessible place.
 
 Use of the module pattern can eliminate the use of global variables. It promotes information hiding and other good design practices. It is very effective in encapsulat-ing applications and other singletons.
 
+『模块模式利用了函数作用域和闭包来创建被绑定对象与私有成员的关联，在这个例子中，只有 deentityify 方法有权访问字符实体表这个数据对象。模块模式的一般形式是：一个定义了私有变量和函数的函数；利用闭包创建可以访问私有变量和函数的特权函数；最后返回这个特权函数，或者把它们保存到一个可访问到的地方。使用模块模式就可以摒弃全局变量的使用。它促进了信息隐藏和其他优秀的设计实践。对于应用程序的封装，或者构造其他单例对象，模块模式非常有效。』
+
+3『模块模式通常结合单例模式（Singleton Pattern）使用。Javascript 的单例就是用对象字面量表示法创建的对象，对象的属性值可以是数值或函数，并且属性值在该对象的生命周期中不会发生变化。它通常作为工具为程序其他部分提供功能支持。』
+
 It can also be used to produce objects that are secure. Let’s suppose we want to make an object that produces a serial number:
 
+```js
 var serial_maker = function ( ) {
 
-// Produce an object that produces unique strings. A
-
-// unique string is made up of two parts: a prefix
-
-// and a sequence number. The object comes with
-
-// methods for setting the prefix and sequence
-
-Module
-
-|
-
-41
-
-// number, and a gensym method that produces unique
-
-// strings.
-
-var prefix = '';
-
-var seq = 0;
-
-return {
-
-set_prefix: function (p) {
-
-prefix = String(p);
-
-},
-
-set_seq: function (s) {
-
-seq = s;
-
-},
-
-gensym: function ( ) {
-
-var result = prefix + seq;
-
-seq += 1;
-
-return result;
-
-}
-
-};
-
+    // Produce an object that produces unique strings. A
+    // unique string is made up of two parts: a prefix
+    // and a sequence number. The object comes with
+    // methods for setting the prefix and sequence
+    // number, and a gensym method that produces unique
+    // strings.
+    
+    var prefix = '';
+    var seq = 0;
+    return {
+        set_prefix: function (p) {
+            prefix = String(p);
+        },
+        set_seq: function (s) {
+            seq = s;
+        },
+        
+        gensym: function ( ) {
+            var result = prefix + seq;
+            seq += 1;
+            return result;
+        }
+    };
 };
 
 var seqer = serial_maker( );
-
 seqer.set_prefix = ('Q';)
-
 seqer.set_seq = (1000);
-
 var unique = seqer.gensym( ); // unique is "Q1000"
+```
 
 The methods do not make use of this or that. As a result, there is no way to compromise the seqer. It isn’t possible to get or change the prefix or seq except as permitted by the methods. The seqer object is mutable, so the methods could be replaced, but that still does not give access to its secrets. seqer is simply a collection of functions, and those functions are capabilities that grant specific powers to use or modify the secret state.
 
 If we passed seqer.gensym to a third party’s function, that function would be able to generate unique strings, but would be unable to change the prefix or seq.
 
+『Seder 包含的方法都没有用到 this 或 that，因此没有办法损害 seder。除非调用对应的方法，否则没法改变 prefix 或 seq 的值。seer 对象是可变的，所以它的方法可能会被替换掉，但替换后的方法依然不能访问私有成员。seder 就是一组函数的集合，而且那些函数被授予特权，拥有使用或修改私有状态的能力。如果我们把 seqer.gensym 作为一个值传递给第三方函数，那个函数能用它产生唯一字符串，但却不能通过它来改变 prefix 或 seq 的值。』
+
 ## 13. Cascade
 
-Some methods do not have a return value. For example, it is typical for methods that set or change the state of an object to return nothing. If we have those methods return this instead of undefined, we can enable cascades. In a cascade, we can call many methods on the same object in sequence in a single statement. An Ajax library that enables cascades would allow us to write in a style like this: getElement('myBoxDiv').
+Some methods do not have a return value. For example, it is typical for methods that set or change the state of an object to return nothing. If we have those methods return this instead of undefined, we can enable cascades. In a cascade, we can call many methods on the same object in sequence in a single statement. An Ajax library that enables cascades would allow us to write in a style like this: 
 
-move(350, 150).
+『如果我们让这些方法返回 this 而不是 undefined，就可以启用级联。在一个级联中，我们可以在单独一条语句中依次调用同一个对象的很多方法。一个启用级联的 Ajax 类库可能允许我们以这样的形式去编码。』
 
-width(100).
-
-height(100).
-
-color('red').
-
-border('10px outset').
-
-padding('4px').
-
-appendText("Please stand by").
-
-42
-
-|
-
-Chapter 4: Functions
-
-on('mousedown', function (m) {
-
-this.startDrag(m, this.getNinth(m));
-
-}).
-
-on('mousemove', 'drag').
-
-on('mouseup', 'stopDrag').
-
-later(2000, function ( ) {
-
-this.
-
-color('yellow').
-
-setHTML("What hath God wraught?").
-
-slide(400, 40, 200, 200);
-
-}).
-
-tip('This box is resizeable');
+```js
+getElement('myBoxDiv')
+    .move(350, 150)
+    .width(100)
+    .height(100)
+    .color('red')
+    .border('10px outset')
+    .padding('4px')
+    .appendText("Please stand by")
+    .on('mousedown', function (m) {
+        this.startDrag(m, this.getNinth(m));
+    })
+    .on('mousemove', 'drag')
+    .on('mouseup', 'stopDrag')
+    l.ater(2000, function ( ) {
+        this
+            .color('yellow').
+            .setHTML("What hath God wraught?")
+            .slide(400, 40, 200, 200);
+    })
+    .tip('This box is resizeable');
+```
 
 In this example, the getElement function produces an object that gives functionality to the DOM element with id="myBoxDiv". The methods allow us to move the element, change its dimensions and styling, and add behavior. Each of those methods returns the object, so the result of the invocation can be used for the next invocation.
 
 Cascading can produce interfaces that are very expressive. It can help control the tendency to make interfaces that try to do too much at once.
 
+『级联技术可以产生出极富表现力的接口。它也能给那波构造「全能」接口的热潮降降温，一个接口没必要一次做太多事情。』
+
 ## 14. Curry
 
-Functions are values, and we can manipulate function values in interesting ways.
+Functions are values, and we can manipulate function values in interesting ways. Currying allows us to produce a new function by combining a function and an argument:
 
-Currying allows us to produce a new function by combining a function and an argument:
+『函数也是值，从而我们可以用有趣的方式去操作函数值。柯里化允许我们把函数与传递给它的参数相结合，产生出一个新的函数。』
 
+```js
 var add1 = add.curry(1);
-
 document.writeln(add1(6)); // 7
+```
 
-add1 is a function that was created by passing 1 to add’s curry method. The add1
+add1 is a function that was created by passing 1 to add’s curry method. The add1 function adds 1 to its argument. JavaScript does not have a curry method, but we can fix that by augmenting Function.prototype:
 
-function adds 1 to its argument. JavaScript does not have a curry method, but we can fix that by augmenting Function.prototype:
-
+```js
 Function.method('curry', function ( ) {
-
-var args = arguments, that = this;
-
-return function ( ) {
-
-return that.apply(null, args.concat(arguments));
-
-};
-
+    var args = arguments, that = this;
+    return function ( ) {
+        return that.apply(null, args.concat(arguments));
+    };
 }); // Something isn't right...
+```
 
 The curry method works by creating a closure that holds that original function and the arguments to curry. It returns a function that, when invoked, returns the result of calling that original function, passing it all of the arguments from the invocation of curry and the current invocation. It uses the Array concat method to concatenate the two arrays of arguments together.
 
 Unfortunately, as we saw earlier, the arguments array is not an array, so it does not have the concat method. To work around that, we will apply the array slice method on both of the arguments arrays. This produces arrays that behave correctly with the concat method:
 
-Curry
+『Curry 方法通过创建一个保存着原始函数和要被套用的参数的闭包来工作。它返回另一个函数，该函数被调用时，会返回调用原始函数的结果，并传递调用 curry 时的参数加上当前调用的参数。它使用 Array 的 concat 方法连接两个参数数组。糟糕的是，就像我们先前看到的那样，arguments 数组并非一个真正的数组，所以它并没有 concat 方法。要避开这个向题，我们必须在两个 arguments 数组上都应用数组的 slice 方法。这样产生出拥有 concat 方法的常规数组。』
 
-|
-
-43
-
+```js
 Function.method('curry', function ( ) {
-
-var slice = Array.prototype.slice,
-
-args = slice.apply(arguments),
-
-that = this;
-
-return function ( ) {
-
-return that.apply(null, args.concat(slice.apply(arguments)));
-
-};
-
+    var slice = Array.prototype.slice,
+    args = slice.apply(arguments),
+    that = this;
+    return function ( ) {
+        return that.apply(null, args.concat(slice.apply(arguments)));
+    };
 });
+```
 
-Memoization
+## 15. Memoization
 
-Functions can use objects to remember the results of previous operations, making it possible to avoid unnecessary work. This optimization is called memoization.
+Functions can use objects to remember the results of previous operations, making it possible to avoid unnecessary work. This optimization is called memoization. JavaScript’s objects and arrays are very convenient for this.
 
-JavaScript’s objects and arrays are very convenient for this.
+Let’s say we want a recursive function to compute Fibonacci numbers. A Fibonacci number is the sum of the two previous Fibonacci numbers. The first two are 0 and 1: 
 
-Let’s say we want a recursive function to compute Fibonacci numbers. A Fibonacci number is the sum of the two previous Fibonacci numbers. The first two are 0 and 1: var fibonacci = function (n) {
-
-return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
-
+```js
+var fibonacci = function (n) {
+    return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
 };
-
 for (var i = 0; i <= 10; i += 1) {
-
-document.writeln('// ' + i + ': ' + fibonacci(i));
-
+    document.writeln('// ' + i + ': ' + fibonacci(i));
 }
 
 // 0: 0
-
 // 1: 1
-
 // 2: 1
-
 // 3: 2
-
 // 4: 3
-
 // 5: 5
-
 // 6: 8
-
 // 7: 13
-
 // 8: 21
-
 // 9: 34
-
 // 10: 55
+```
 
 This works, but it is doing a lot of unnecessary work. The fibonacci function is called 453 times. We call it 11 times, and it calls itself 442 times in computing values that were probably already recently computed. If we memoize the function, we can significantly reduce its workload.
 
-We will keep our memoized results in a memo array that we can hide in a closure.
+We will keep our memoized results in a memo array that we can hide in a closure. When our function is called, it first looks to see if it already knows the result. If it does, it can immediately return it:
 
-When our function is called, it first looks to see if it already knows the result. If it does, it can immediately return it:
+『我们在一个名为 memo 的数组里保存我们的存储结果，存储结果可以隐藏在闭包中。当函数被调用时，这个函数首先检査结果是否已存在，如果已经存在，就立即返回这个结果。』
 
+```js
 var fibonacci = function ( ) {
-
 var memo = [0, 1];
-
 var fib = function (n) {
-
 var result = memo[n];
-
 if (typeof result !== 'number') {
-
-44
-
-|
-
-Chapter 4: Functions
-
-result = fib(n - 1) + fib(n - 2); memo[n] = result;
-
+    result = fib(n - 1) + fib(n - 2); memo[n] = result;
 }
-
 return result;
-
 };
-
 return fib;
-
 }( );
+```
 
-This function returns the same results, but it is called only 29 times. We called it 11
-
-times. It called itself 18 times to obtain the previously memoized results.
+This function returns the same results, but it is called only 29 times. We called it 11 times. It called itself 18 times to obtain the previously memoized results.
 
 We can generalize this by making a function that helps us make memoized functions. The memoizer function will take an initial memo array and the fundamental function. It returns a shell function that manages the memo store and that calls the fundamental function as needed. We pass the shell function and the function’s parameters to the fundamental function:
 
+```js
 var memoizer = function (memo, fundamental) {
-
-var shell = function (n) {
-
-var result = memo[n];
-
-if (typeof result !== 'number') {
-
-result = fundamental(shell, n);
-
-memo[n] = result;
-
-}
-
-return result;
-
+    var shell = function (n) {
+        var result = memo[n];
+        if (typeof result !== 'number') {
+            result = fundamental(shell, n);
+            memo[n] = result;
+        }
+        return result;
+    };
+    return shell;
 };
-
-return shell;
-
-};
+```
 
 We can now define fibonacci with the memoizer, providing the initial memo array and fundamental function:
 
+```js
 var fibonacci = memoizer([0, 1], function (shell, n) {
-
-return shell(n - 1) + shell(n - 2);
-
+    return shell(n - 1) + shell(n - 2);
 });
+```
 
-By devising functions that produce other functions, we can significantly reduce the amount of work we have to do. For example, to produce a memoizing factorial function, we only need to supply the basic factorial formula: var factorial = memoizer([1, 1], function (shell, n) {
+By devising functions that produce other functions, we can significantly reduce the amount of work we have to do. For example, to produce a memoizing factorial function, we only need to supply the basic factorial formula: 
 
-return n * shell(n - 1);
-
+```js
+var factorial = memoizer([1, 1], function (shell, n) {
+    return n * shell(n - 1);
 });
-
-Memoization
-
+```
