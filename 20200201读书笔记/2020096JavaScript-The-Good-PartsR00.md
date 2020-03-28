@@ -303,11 +303,11 @@ is true. Strings have methods (see Chapter 8):
 
 A compilation unit contains a set of executable statements. In web browsers, each \<script> tag delivers a compilation unit that is compiled and immediately executed. Lacking a linker, JavaScript throws them all together in a common global namespace. There is more on global variables in Appendix A.
 
-1『链接器（Linker）是编语言或操作系统提供的工具，它的工作就是解析未定义的待号引用，将目标文件中的占位待替换为科号地址。』
+1『链接器（Linker）是编程语言或操作系统提供的工具，它的工作就是解析未定义的符号引用，将目标文件中的占位符替换为符号地址。』
 
 When used inside of a function, the var statement defines the function’s private variables. The switch, while, for, and do statements are allowed to have an optional label prefix that interacts with the break statement.
 
-1『原来在函数内部用 var 申明的变量时函数的私有变量；label prefix 是指这种形式「label: expressions statement;」』
+1『原来在函数内部用 var 申明的变量是函数的私有变量；label prefix 是指这种形式「label: expressions statement;」』
 
 Statements tend to be executed in order from top to bottom. The sequence of execution can be altered by the conditional statements (if and switch), by the looping statements (while, for, and do), by the disruptive statements (break, return, and throw), and by function invocation.
 
