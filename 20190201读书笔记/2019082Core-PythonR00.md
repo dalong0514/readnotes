@@ -614,12 +614,237 @@ In the example that follows, we have multiple matches of a single group in a sin
 
 Note all the additional work that we had to do using finditer() to get its output to match that of findall(). Finally, like match() and search(), the method versions of findall() and finditer() support the optional pos and endpos parameters that control the search boundaries of the target string, as described earlier in this chapter.
 
+#### 1.3.12 Searching and Replacing with sub() and subn()
+
+There are two functions/methods for search-and-replace functionality: sub() and subn(). They are almost identical and replace all matched occurrences of the regex pattern in a string with some sort of replacement. The replacement is usually a string, but it can also be a function that returns a replacement string. subn() is exactly the same as sub(), but it also returns the total number of substitutions made—both the newly substituted string and the substitution count are returned as a 2-tuple.
+
+『用来替换的部分通常是一个字符串，但它也可能是一个函数，该函数返回一个用来替换的字符串。subn() 和 sub() 一样，但 subn() 还返回一个表示替换的总数，替换后的字符串和表示替换总数的数字一起作为一个拥有两个元素的元组返回。』
+
+```py
+>>> re.sub('X', 'Mr. Smith', 'attn: X\n\nDear X,\n')
+'attn: Mr. Smith\012\012Dear Mr. Smith,\012' 
+>>>
+
+>>> re.subn('X', 'Mr. Smith', 'attn: X\n\nDear X,\n')
+('attn: Mr. Smith\012\012Dear Mr. Smith,\012', 2) 
+>>>
+
+>>> print re.sub('X', 'Mr. Smith', 'attn: X\n\nDear X,\n')
+attn: Mr. Smith
+Dear Mr. Smith,
+
+>>> re.sub('[ae]', 'X', 'abcdef')
+'XbcdXf'
+
+>>> re.subn('[ae]', 'X’, 'abcdef')
+('XbcdXf', 2)
+```
+
+As we saw in an earlier section, in addition to being able to pull out the matching group number using the match object’s group() method, you can use \N, where N is the group number to use in the replacement string. Below, we’re just converting the American style of date presentation, MM/ DD/YY{,YY} to the format used by all other countries, DD/MM/YY{,YY}:
+
+```py
+>>> re.sub(r'(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})', r'\2/\1/\3', '2/20/91') # Yes, Python is... '20/2/91'
+
+>>> re.sub(r'(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})', r'\2/\1/\3', '2/20/1991') # ... 20+ years old! '20/2/1991'
+```
+
+#### 1.3.13 Splitting (on Delimiting Pattern) with split() 
+
+The re module and regex object method split() work similarly to its string counterpart, but rather than splitting on a fixed string, they split a string based on a regex pattern, adding some significant power to string splitting capabilities. If you do not want the string split for every occurrence of the pattern, you can specify the maximum number of splits by setting a value (other than zero) to the max argument. 
+
+If the delimiter given is not a regular expression that uses special symbols to match multiple patterns, then re.split() works in exactly the same manner as str.split(), as illustrated in the example that follows (which splits on a single colon): 
+
+基于正则表达式的模式分隔字符串，为字符串分隔功能添加些额外的威力。如果你不想为每次模式的出现都分割字符串，就可以通过为 max 参数设定个值（非零）来指定最大分割数。如果给定分隔符不是使用特殊符号来匹配多重模式的正则表达式，那么 re.split 与 str.split 的工作方式相同，如下所示（基于单引号分割）。
 
 
+```py
+>>> re.split(':', 'str1:str2:str3') 
+['str1', 'str2', 'str3'] 
+```
 
+That’s a simple example. What if we have a more complex example, such as a simple parser for a Web site like Google or Yahoo! Maps? Users can enter city and state, or city plus ZIP code, or all three? This requires more powerful processing than just a plain ’ol string split: 
 
+```py
+>>> import re 
+>>> DATA = ( 'Mountain View, CA 94040', 'Sunnyvale, CA', 'Los Altos, 94023', 'Cupertino 95014', 'Palo Alto CA',  ) 
+>>> for datum in DATA: 
+... print re.split(', |(?= (?:\d{5} | [A-Z]{2})) ', datum) 
+... 
+['Mountain View', 'CA', '94040'] ['Sunnyvale', 'CA'] ['Los Altos', '94023'] ['Cupertino', '95014'] ['Palo Alto', 'CA'] 
+```
 
+The preceding regex has a simple component, split on comma-space (“, “). The harder part is the last regex, which previews some of the extension notations that you’ll learn in the next subsection. In plain English, this is what it says: also split on a single space if that space is immediately followed by five digits (ZIP code) or two capital letters (US state abbreviation). This allows us to keep together city names that have spaces in them. 
 
+Naturally, this is just a simplistic regex that could be a starting point for an application that parses location information. It doesn’t process (or fails) 
 
+lowercase states or their full spellings, street addresses, country codes, ZIP+4 (nine-digit ZIP codes), latitude-longitude, multiple spaces, etc. It’s just meant as a simple demonstration of re.split() doing something str.split() can’t do. 
+As we just demonstrated, you benefit from much more power with a regular expression split; however, remember to always use the best tool for the job. If a string split is good enough, there’s no need to bring in the additional complexity and performance impact of regexes. 
 
+『上述正则表达式拥有一个简单的组件：使用 split 语句基于逗号分割字符串。更难的部分是最后的正则表达式，可以通过该正则表达式预览一些将在下一小节中介绍的扩展符号。在普通的英文中，通常这样说：如果空格紧跟在五个数字（ZIP 编码）或者两个大写字母（美国联邦州缩写）之后，就用 pli 语句分割该空格。这就允许我们在城市名中放置空格。通常情况下，这仅仅只是一个简单的正则表达式，可以在用来解析位置信息的应用中作为起点。该正则表达式并不能处理小写的州名或者州名的全拼、街道地址、州编码、ZIP+4  (9 位 ZIP 编码）、经纬度、多个空格等内容（或者在处理时会失败）。这仅仅意味着使用 re.split() 能够实现 str.split() 不能实现的一个简单的演示实例。我们刚刚已经证实，读者将从正则表达式 split 语句的强大能力中获益。然而，记得一定在编码过程中选择更合适的工具。如果对字符串使用 split 方法已经足够好，就不需要引入额外复杂并且影响性能的正则表达式。』
+
+1『正则的 split() 比原生字符串的更强大，原生无法解决或者解决起来很麻烦的考虑用正则分割。』
+
+#### 1.3.14 Extension Notations (?...) 
+
+There are a variety of extension notations supported by Python regular expressions. Let’s take a look at some of them now and provide some usage examples. 
+
+With the (?iLmsux) set of options, users can specify one or more flags directly into a regular expression rather than via compile() or other re module functions. Below are several examples that use re.I/IGNORECASE, with the last mixing in re.M/MULTILINE: 
+
+『通过使用 (?iLmsux) 系列选项，用户可以直接在正则表达式里面指定一个或者多个标记，而不是通过 compile() 或者其他 re 模块函数。下面为一些使用 re.I/IGNORECASE 的示例， 最后一个示例在 re.M/MULTILINE 实现多行混合。』
+
+```py
+>>> re.findall(r'(?i)yes', 'yes? Yes. YES!!') 
+['yes', 'Yes', 'YES'] 
+
+>>> re.findall(r'(?i)th\w+', 'The quickest way is through this tunnel.') 
+['The', 'through', 'this'] 
+
+>>> re.findall(r'(?im)(^th[\w ]+)', """ 
+... This line is the first, 
+... another line, 
+... that line, it's the best 
+... """) 
+['This line is the first', 'that line'] 
+```
+
+For the previous examples, the case-insensitivity should be fairly straightforward. In the last example, by using “multiline” we can perform the search across multiple lines of the target string rather than treating the entire string as a single entity. Notice that the instances of “the” are skipped because they do not appear at the beginning of their respective lines. 
+
+The next pair demonstrates the use of re.S/DOTALL. This flag indicates that the dot (.) can be used to represent \n characters (whereas normally it represents all characters except \n): 
+
+```py
+>>> re.findall(r'th.+', ''' 
+... The first line 
+... the second line 
+... the third line 
+... ''') 
+['the second line', 'the third line'] 
+
+>>> re.findall(r'(?s)th.+', ''' 
+... The first line 
+... the second line 
+... the third line ... ''')
+ ['the second line\nthe third line\n'] 
+```
+
+The re.X/VERBOSE flag is quite interesting; it lets users create more human-readable regular expressions by suppressing whitespace characters within regexes (except those in character classes or those that are backslash-escaped). Furthermore, hash/comment/octothorpe symbols (#) can also be used to start a comment, also as long as they’re not within a character class backslash-escaped: 
+
+『Re. X/VERBOSE 标记非常有趣；该标记允许用户通过抑制在正则表达式中使用空白符（除了在字符类中或者在反斜线转义中）来创建更易读的正则表达式。此外，散列、注释和井号也可以用于一个注释的起始，只要它们不在一个用反斜线转义的字符类中。』
+
+```py
+>>> re.search(r'''(?x) 
+... \((\d{3})\) # area code 
+... [ ] # space 
+... (\d{3}) # prefix 
+... - # dash .
+.. (\d{4}) # endpoint number 
+... ''', '(800) 555-1212').groups() 
+('800', '555', '1212') 
+```
+
+The (?:...) notation should be fairly popular; with it, you can group parts of a regex, but it does not save them for future retrieval or use. This comes in handy when you don’t want superfluous matches that are saved and never used: 
+
+『(?:…)符号将更流行；通过使用该符号，可以对部分正则表达式进行分组，但是并不会保存该分组用于后续的检索或者应用。当不想保存今后永远不会使用的多余匹配时，这个符号就非常有用。』
+
+```py
+>>> re.findall(r'http://(?:\w+\.)*(\w+\.com)', 
+... 'http://google.com http://www.google.com http:// code.google.com') 
+['google.com', 'google.com', 'google.com'] 
+
+>>> re.search(r'\((?P<areacode>\d{3})\) (?P<prefix>\d{3})-(?:\d{4})', 
+... '(800) 555-1212').groupdict() 
+{'areacode': '800', 'prefix': '555'} 
+```
+
+You can use the (?P<name>) and (?P=name) notations together. The former saves matches by using a name identifier rather than using increasing numbers, starting at one and going through N, which are then retrieved later by using \1, \2, ... \N. You can retrieve them in a similar manner using \g<name>: 
+
+```py
+>>> re.sub(r'\((?P<areacode>\d{3})\) (?P<prefix>\d{3})-(?:\d{4})', 
+... 
+'(\g<areacode>) 
+\g<prefix>-xxxx', 
+'(800) 
+555-1212') 
+'(800) 555-xxxx' 
+```
+
+Using the latter, you can reuse patterns in the same regex without specifying the same pattern again later on in the (same) regex, such as in this example, which presumably lets you validate normalization of phone numbers. Here are the ugly and compressed versions followed by a good use of (?x) to make things (slightly) more readable: 
+
+```py
+>>> bool(re.match(r'\((?P<areacode>\d{3})\) (?P<prefix>\d{3})-(?P<number>\d{4}) (?P=areacode)-(?P=prefix)-(?P=number) 1(?P=areacode)(?P=prefix)(?P=number)', 
+... '(800) 555-1212 800-555-1212 18005551212')) 
+True 
+
+>>> bool(re.match(r'''(?x) ... 
+... 
+# match (800) 555-1212, save areacode, prefix, no. 
+... 
+\((? P<areacode>\d{3})\)[ ](? P=prefix)-(? P<prefix>\d{3})-(? P=number) P<number>\d{4}) 
+... 
+... # space 
+... [ ] 
+... 
+... 
+# match 800-555-1212 ... 
+(? P=areacode)-(? P=prefix)-(?P=number)
+... 
+... 
+# space 
+... [ ] 
+... 
+... 
+# match 18005551212 
+... 
+1(? P=areacode)(? P=prefix)(? P=number) 
+... 
+... ''', '(800) 555-1212 800-555-1212 18005551212')) 
+True 
+```
+
+You use the (?=...) and (?!...) notations to perform a lookahead in the target string without actually consuming those characters. The first is the positive lookahead assertion, while the latter is the negative. In the examples that follow, we are only interested in the first names of the persons who have a last name of “van Rossum,” and the next example let’s us ignore e-mail addresses that begin with “noreply” or “postmaster.” 
+
+The third snippet is another demonstration of the difference between findall() and finditer(); we use the latter to build a list of e-mail addresses (in a more memory-friendly way by skipping the creation of the intermediary list that would be thrown away) using the same login names but on a different domain. 
+
+『读者可以使用 (?=...) 和 (?!…)符号在目标字符串中实现一个前视匹配，而不必实际上使用这些字符串。前者是正向前视断言，后者是负向前视断言。在后面的示例中，我们仅仅对 姓氏为 “van Rossum” 的人的名字感兴趣，下一个示例中，让我们忽略以 “noreply” 或者 “postmaster” 开头的 e-mail 地址。第三个代码片段用于演示 findall() 和 finditer() 的区别；我们使用后者来构建一个使用相同 登录名但不同域名的 e-mail 地址列表（在一个更易于记忆的方法中，通过忽略创建用完即丢弃的中间列表）。』
+
+The last examples demonstrate the use of conditional regular expression matching. Suppose that we have another specialized alphabet consisting only of the characters ‘x’ and ‘y,’ where we only want to restrict the string in such a way that two-letter strings must consist of one character followed by the other. In other words, you can’t have both letters be the same; either it’s an ‘x’ followed by a ‘y’ or vice versa: 
+
+```
+>>> bool(re.search(r'(?:(x)|y)(?(1)y|x)', 'xy')) 
+True 
+>>> bool(re.search(r'(?:(x)|y)(?(1)y|x)', 'xx')) 
+False 
+```
+
+### 1.3.15 Miscellaneous 
+
+There can be confusion between regular expression special characters and special ASCII symbols. We can use \n to represent a NEWLINE character, but we can use \d meaning a regular expression match of a single numeric digit. 
+Problems can occur if there is a symbol used by both ASCII and regular expressions, so in the following Core Note, we recommend the use of Python raw strings to prevent any problems. One more caution: the \w and \W alphanumeric character sets are affected by the re.L/LOCALE and Unicode (re.U/UNICODE) flags. 
+
+CORE NOTE: Using Python raw strings
+
+You might have seen the use of raw strings in some of the previous examples. Regular expressions were a strong motivation for the advent of raw strings. The reason lies in the conflicts between ASCII characters and regular expression special characters. As a special symbol, \b represents the ASCII character for backspace, but \b is also a regular expression special symbol, meaning “match” on a word boundary. For the regex compiler to see the two characters \b as your string and not a (single) backspace, you need to escape the backslash in the string by using another backslash, resulting in \\b. 
+
+This can get messy, especially if you have a lot of special characters in your string, adding to the confusion. We were introduced to raw strings in the Sequences chapter of Core Python Programming or Core Python Language Fundamentals, and they can be (and are often) used to help keep regexes looking somewhat manageable. In fact, many Python programmers swear by these and only use raw strings when defining regular expressions. 
+
+Here are some examples of differentiating between the backspace \b and the regular expression \b, with and without raw strings: 
+
+『读者可能在之前的一些示例中见过原始字符串的使用。正则表达式对于探索原始字符串有着强大的动力，原因就在于 ASCII 字符和正则表达式的特殊字符之间存在冲突。作为一个特殊符号，\b 表示 ASCII 字符的退格符，但是 \b 同时也是一个正则表达式的特殊符号， 表示匹配一个单词的边界。对于正则表达式编译器而言，若它把两个 \b 视为字符串内容而不是单个退格符，就需要在字符串中再使用一个反斜线转义反斜线，就像这样：\\b。
+
+这样显得略微杂乱，特别是如果在字符串中拥有很多特殊字符，就会让人感到更加困 惑。我们在 Core Python Programming 或者 Core Python Language Fundamentals 的 Sequence 章节中介绍了原始字符串，而且该原始字符串可以用于（且经常用于）帮助保持正则表达式查找某些可托管的东西。事实上，很多 Python 程序员总是抱怨这个方法，仅仅用原始字 符串来定义正则表达式。如下所示的一些示例用于说明退格符 \b 和正则表达式 \b 之间的差异，它们有的使用、 有的不使用原始字符串。』
+
+```py
+>>> m = re.match('\bblow', 'blow') # backspace, no match 
+>>> if m: m.group() 
+... 
+>>> m = re.match('\\bblow', 'blow') # escaped \, now it works 
+>>> if m: m.group() 
+... 
+'blow' 
+
+>>> m = re.match(r'\bblow', 'blow') # use raw string instead 
+>>> if m: m.group() ... 
+'blow' 
+```
+
+You might have recalled that we had no trouble using \d in our regular expressions without using raw strings. That is because there is no ASCII equivalent special character, so the regular expression compiler knew that you meant a decimal digit. 
 
