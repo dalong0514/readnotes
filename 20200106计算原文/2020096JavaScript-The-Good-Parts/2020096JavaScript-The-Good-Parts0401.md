@@ -699,26 +699,24 @@ Some methods do not have a return value. For example, it is typical for methods 
 『如果我们让这些方法返回 this 而不是 undefined，就可以启用级联。在一个级联中，我们可以在单独一条语句中依次调用同一个对象的很多方法。一个启用级联的 Ajax 类库可能允许我们以这样的形式去编码。』
 
 ```js
-getElement('myBoxDiv')
-    .move(350, 150)
-    .width(100)
-    .height(100)
-    .color('red')
-    .border('10px outset')
-    .padding('4px')
-    .appendText("Please stand by")
-    .on('mousedown', function (m) {
-        this.startDrag(m, this.getNinth(m));
-    })
-    .on('mousemove', 'drag')
-    .on('mouseup', 'stopDrag')
-    l.ater(2000, function ( ) {
-        this
-            .color('yellow').
-            .setHTML("What hath God wraught?")
-            .slide(400, 40, 200, 200);
-    })
-    .tip('This box is resizeable');
+getElement('myBoxDiv').
+    move(350, 150).
+    width(100).
+    height(100).
+    color('red').
+    border('10px outset'). padding('4px'). appendText("Please stand by").
+    on('mousedown', function (m) { 
+        this.startDrag(m, this.getNinth(m)); 
+    }).
+    on('mousemove', 'drag').
+    on('mouseup', 'stopDrag').
+    later(2000, function ( ) {
+        this.
+            color('yellow').
+            setHTML("What hath God wraught?").
+            slide(400, 40, 200, 200);
+        }).
+    tip('This box is resizeable');
 ```
 
 In this example, the getElement function produces an object that gives functionality to the DOM element with id="myBoxDiv". The methods allow us to move the element, change its dimensions and styling, and add behavior. Each of those methods returns the object, so the result of the invocation can be used for the next invocation.

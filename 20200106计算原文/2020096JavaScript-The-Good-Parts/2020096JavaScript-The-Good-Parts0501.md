@@ -6,9 +6,7 @@ Like perspectives, which rightly gazed upon
 
 Show nothing but confusion...
 
-—William Shakespeare, The Tragedy of King Richard
-
-## the Second
+—William Shakespeare, The Tragedy of King Richard the Second
 
 Inheritance is an important topic in most programming languages.
 
@@ -20,9 +18,7 @@ JavaScript provides a much richer set of code reuse patterns. It can ape the cla
 
 In classical languages, objects are instances of classes, and a class can inherit from another class. JavaScript is a prototypal language, which means that objects inherit directly from other objects.
 
-46
-
-Pseudoclassical
+## Pseudoclassical
 
 JavaScript is conflicted about its prototypal nature. Its prototype mechanism is obscured by some complicated syntactic business that looks vaguely classical.
 
@@ -148,11 +144,6 @@ return this;
 
 });
 
-48
-
-|
-
-Chapter 5: Inheritance
 
 Our inherits and method methods return this, allowing us to program in a cascade style. We can now make our Cat with one statement.
 
@@ -204,13 +195,7 @@ The pseudoclassical form can provide comfort to programmers who are unfamiliar w
 
 JavaScript has more and better options.
 
-Pseudoclassical
-
-|
-
-49
-
-Object Specifiers
+## Object Specifiers
 
 It sometimes happens that a constructor is given a very large number of parameters.
 
@@ -238,7 +223,7 @@ This can have a secondary benefit when working with JSON (see Appendix E). JSON
 
 text can only describe data, but sometimes the data represents an object, and it would be useful to associate the data with its methods. This can be done trivially if the constructor takes an object specifier because we can simply pass the JSON object to the constructor and it will return a fully constituted object.
 
-Prototypal
+## Prototypal
 
 In a purely prototypal pattern, we dispense with classes. We focus instead on the objects. Prototypal inheritance is conceptually simpler than classical inheritance: a new object can inherit the properties of an old object. This is perhaps unfamiliar, but it is really easy to understand. You start by making a useful object. You can then make many more objects that are like that one. The classification process of breaking an application down into a set of nested abstract classes can be completely avoided.
 
@@ -334,13 +319,7 @@ scope = oldScope;
 
 };
 
-Prototypal
-
-|
-
-51
-
-Functional
+## Functional
 
 One weakness of the inheritance patterns we have seen so far is that we get no privacy. All properties of an object are visible. We get no private variables and no private methods. Sometimes that doesn’t matter, but sometimes it matters a lot. In frustration, some uninformed programmers have adopted a pattern of pretend privacy. If they have a property that they wish to make private, they give it an odd-looking name, with the hope that other users of the code will pretend that they cannot see the odd looking members. Fortunately, we have a much better alternative in an application of the module pattern.
 
@@ -373,10 +352,6 @@ return that;
 };
 
 The spec object contains all of the information that the constructor needs to make an instance. The contents of the spec could be copied into private variables or transformed by other functions. Or the methods can access information from spec as they need it. (A simplification is to replace spec with a single value. This is useful when the object being constructed does not need a whole spec object.) 52
-
-|
-
-Chapter 5: Inheritance
 
 The my object is a container of secrets that are shared by the constructors in the inheritance chain. The use of the my object is optional. If a my object is not passed in, then a my object is made.
 
@@ -413,12 +388,6 @@ that.get_name = function ( ) {
 return spec.name;
 
 };
-
-Functional
-
-|
-
-53
 
 that.says = function ( ) {
 
@@ -522,7 +491,7 @@ If all of the state of an object is private, then the object is tamper-proof. Pr
 
 A durable object cannot be compromised. Access to a durable object does not give an attacker the ability to access the internal state of the object except as permitted by the methods.
 
-Parts
+## Parts
 
 We can compose objects out of sets of parts. For example, we can make a function that can add simple event processing features to any object. It adds an on method, a fire method, and a private event registry:
 
@@ -649,18 +618,3 @@ Chapter 5: Inheritance
 In this way, a constructor could assemble objects from a set of parts. JavaScript’s loose typing is a big benefit here because we are not burdened with a type system that is concerned about the lineage of classes. Instead, we can focus on the character of their contents.
 
 If we wanted eventuality to have access to the object’s private state, we could pass it the my bundle.
-
-Parts
-
-|
-
-57
-
-Chapter 6
-
-CHAPTER 6
-
-
-
-6
-

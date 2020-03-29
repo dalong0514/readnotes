@@ -1,3 +1,7 @@
+# 2020096JavaScript-The-Good-PartsR01
+
+英文版出版时间是 2008 年。
+
 ## 记忆时间
 
 ## 卡片
@@ -22,9 +26,9 @@ The prototype link is used only in retrieval. If we try to retrieve a property v
 
 ### 0202. 术语卡——this 值
 
- this 的值取决于调用模式（invocation pattern）。
-
 Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern. The patterns differ in how the bonus parameter this is initialized.
+
+this 的值取决于调用模式（invocation pattern）：1）the method invocation pattern，方法式调用，this 绑定到该方法所隶属的对象（函数作为一个对象的某个属性值的时候才被称为方法），这个绑定是在调用时发生的；2）the function invocation pattern，函数式调用，this 绑定到全局变量上（JS 公认的设计错误），这导致内部函数无法通过 this 来访问外部函数的数据，即没法帮外部函数处理一些事情了，不过可以通过「var that = this; 」来解决；3）the constructor invocation pattern，构造函数式调用。这其实是对基于类的面向对象的妥协，用「new + 构造器函数」来调用构造器函数，会创建一个连接到构造函数原型链的新对象，this 绑定到这个新对象上。new 还会改变 return 语句的行为；4）the apply invocation pattern，apply 式调用。Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。
 
 ### 0203. 术语卡——闭包
 
@@ -32,17 +36,29 @@ This quo function is designed to be used without the new prefix, so the name is 
 
 当我们调用 quo 时，它返回包含 get\_status 方法的一个新对象。该对象的一个引用保存在 myQuo 中。即使 quo 已经返回了，但 get\_status 方法仍然享有访问 quo 对象的 status 属性的特权。get\_status 方法并不是访问该参数的一个副本，它访问的就是该参数本身。因为该函数可以访问它被创建时所处的上下文环境。这被称为闭包。
 
-### 0204. 术语卡——
+### 0204. 术语卡——Function
 
-### 0205. 术语卡——
+The best thing about JavaScript is its implementation of functions. It got almost everything right. But, as you should expect with JavaScript, it didn’t get everything right. A function encloses a set of statements. Functions are the fundamental modular unit of JavaScript. They are used for code reuse, information hiding, and composition. Functions are used to specify the behavior of objects. Generally, the craft of programming is the factoring of a set of requirements into a set of functions and data structures.
+
+Functions in JavaScript are objects. Objects are collections of name/value pairs having a hidden link to a prototype object. Objects produced from object literals are linked to Object.prototype. Function objects are linked to Function.prototype (which is itself linked to Object.prototype). Every function is also created with two additional hidden properties: the function’s context and the code that implements the function’s behavior.
+
+Every function object is also created with a prototype property. Its value is an object with a constructor property whose value is the function. This is distinct from the hidden link to Function.prototype. The meaning of this convoluted construction will be revealed in the next chapter.
+
+Since functions are objects, they can be used like any other value. Functions can be stored in variables, objects, and arrays. Functions can be passed as arguments to functions, and functions can be returned from functions. Also, since functions are objects, functions can have methods. The thing that is special about functions is that they can be invoked.
+
+Javascript 创建一个函数对象时，会给该对象设置一个「调用」属性。当 Javascript 调用一个函数时，可理解为调用此函数的「调用」属性。
+
+### 0205. 术语卡——函数调用
+
+The invocation operator is a pair of parentheses that follow any expression that produces a function value. The parentheses can contain zero or more expressions, separated by commas. Each expression produces one argument value. Each of the argument values will be assigned to the function’s parameter names. There is no runtime error when the number of arguments and the number of parameters do not match. If there are too many argument values, the extra argument values will be ignored. If there are too few argument values, the undefined value will be substituted for the missing values. There is no type checking on the argument values: any type of value can be passed to any parameter.
+
+醍醐灌顶，函数调用和用字面量创建函数是两码事，调用最关键的是那对圆括号 ()，圆括号前面可以是函数名，也可以是函数字面量。而圆括号里面是要传递进函数的实参；parameter 实参，调用函数时传递进来的。argument 形参，定义函数时设定的。
 
 ### 0206. 术语卡——
 
 ### 0301. 人名卡——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
 
 #### 01. 基本信息
 
@@ -57,16 +73,6 @@ Most programming languages contain good parts and bad parts. I discovered that I
 ### 0501. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
-
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
-
-英文版出版时间是 2008 年。
 
 ## 书评
 
@@ -110,7 +116,7 @@ This is not a book for beginners. Someday I hope to write a JavaScript: The Firs
 
 ### 1. 逻辑脉络
 
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+JS 里的精华部分概述。
 
 ### 2. 摘录及评论
 
@@ -216,7 +222,7 @@ It will be explained in Chapter 4.
 
 ### 1. 逻辑脉络
 
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+JS 的语法内容，包括空白符、命令规则、各基本类型、语句、表达式、字面量和函数。
 
 ### 2. 摘录及评论
 
@@ -400,11 +406,9 @@ A refinement is used to specify a property or element of an object or array. Thi
 
 ### 07. Literals
 
-Object literals are a convenient notation for specifying new objects. The names of the properties can be specified as names or as strings. The names are treated as literal names, not as variable names, so the names of the properties of the object must be known at compile time. The values of the properties are expressions. There will be more about object literals in the next chapter.
+Object literals are a convenient notation for specifying new objects. The names of the properties can be specified as names or as strings. The names are treated as literal names, not as variable names, so the names of the properties of the object must be known at compile time. The values of the properties are expressions. There will be more about object literals in the next chapter. Array literals are a convenient notation for specifying new arrays. There will be more about array literals in Chapter 6. There will be more about regular expressions in Chapter 7.
 
 『 Literals 即字面量。对象字面量是一种可以方便地按指定规格创建新对象的表示法。属性名可以是标识符或字符串。这些名字被当做字面量名而不是变量名来对待，所以对象的属性名在编译时才能知道。属性的值就是表达式。』
-
-Array literals are a convenient notation for specifying new arrays. There will be more about array literals in Chapter 6. There will be more about regular expressions in Chapter 7.
 
 ### 08. Functions
 
@@ -414,7 +418,7 @@ A function literal defines a function value. It can have an optional name that i
 
 ### 1. 逻辑脉络
 
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+对象是一系列「属性」的集合，属性有属性名和属性值，属性名可以是字符串、空值和 symbol 类型，属性值可以是除 undefined 外的任何东西；对象是可变的，可以动态的添加属性；对象的传递是通过引用而非复制，比如「var x = stooge; 」是把 stooge 对象的引用复制给 x 变量，或者说 stooge 和 x 指向同一个对象，或者说将变量 x 绑定到 stooge 指向的对象上；所有的对象都是链接到其原型对象上的，创建的时候是从其原型对象上继承了所有属性。所有通过字面量创建的对象其原型对象都是「Object.prototype」。
 
 ### 2. 摘录及评论
 
@@ -430,6 +434,8 @@ Objects in JavaScript are class-free. There is no constraint on the names of new
 
 Object literals provide a very convenient notation for creating new object values. An object literal is a pair of curly braces surrounding zero or more name/value pairs. An object literal can appear anywhere an expression can appear: 
 
+1『字面量只是下面等号右边的部分，它是一个 notation，可以方便的创建对象、数组等。对字面量的理解又加深了一步。（2020-03-29）』
+
 ```js
 var empty_object = {};
 
@@ -439,7 +445,7 @@ var stooge = {
 };
 ```
 
-A property’s name can be any string, including the empty string. The quotes around a property’s name in an object literal are optional if the name would be a legal JavaScript name and not a reserved word. So quotes are required around "first-name", but are optional around first_name. Commas are used to separate the pairs. A property’s value can be obtained from any expression, including another object literal. Objects can nest:
+A property’s name can be any string, including the empty string. The quotes around a property’s name in an object literal are optional if the name would be a legal JavaScript name and not a reserved word. So quotes are required around "first-name", but are optional around first-name. Commas are used to separate the pairs. A property’s value can be obtained from any expression, including another object literal. Objects can nest:
 
 ```js
 var flight = {
@@ -560,6 +566,47 @@ another_stooge.profession // 'actor'
 
 We will see more about the prototype chain in Chapter 6.
 
+2『
+
+通过作者提供的方法可以阻断子对象触达父对象的原型链。做一张计算机的信息卡片。
+
+```js
+// 阻断子对象触达父对象的原型链
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        var F = function () {};
+        F.prototype = o;
+        return new F(); 
+    };
+}
+
+var stooge = {
+    "firstname": "Feng",
+    "lastname": "Dalong",
+};
+
+console.log(stooge);
+
+stooge['middlename'] = 'hahei';
+stooge.nickname = 'dalong';
+console.log(stooge);
+
+var x = stooge;
+x.height = '168cm';
+console.log(stooge);
+
+var y = Object.create(stooge);
+y.food = 'apple';
+console.log(stooge);
+
+stooge.programming = 'JS';
+console.log('x: ' + x.programming);
+console.log('y: ' + y.programming);
+```
+
+』
+
+
 ### 06. Reflection
 
 It is easy to inspect an object to determine what properties it has by attempting to retrieve the properties and examining the values obtained. The typeof operator can be very helpful in determining the type of a property: 
@@ -585,9 +632,11 @@ flight.hasOwnProperty('number') // true
 flight.hasOwnProperty('constructor') // false
 ```
 
+1『两种方法剔除掉原型链上原生的属性，一是自己写方法剔除，一是用 hasOwnProperty() 来过滤。』
+
 ### 07. Enumeration
 
-The for in statement can loop over all of the property names in an object. The enumeration will include all of the properties—including functions and prototype properties that you might not be interested in—so it is necessary to filter out the values youdon’t want. The most common filters are the hasOwnProperty method and using typeof to exclude functions:
+The for in statement can loop over all of the property names in an object. The enumeration will include all of the properties—including functions and prototype properties that you might not be interested in—so it is necessary to filter out the values you don’t want. The most common filters are the hasOwnProperty method and using typeof to exclude functions:
 
 ```js
 var name;
@@ -618,7 +667,7 @@ for (i = 0; i < properties.length; i += 1) {
 
 By using for instead of for in, we were able to get the properties we wanted without worrying about what might be dredged up from the prototype chain, and we got them in the correct order.
 
-1『使用 for 来遍历更佳。』
+1『使用 for 来遍历更佳，但前提是要有需要遍历的属性名的数组。』
 
 ### 08. Delete
 
@@ -631,7 +680,9 @@ delete another_stooge.nickname;
 another_stooge.nickname // 'Curly'
 ```
 
-## 09. Global Abatement
+1『之前用 Object.create() 封装，让子对象不能触达父对象的原型链，此时删除掉子对象的这个属性后，其父对象原型链上的属性也就暴露出来了。』
+
+### 09. Global Abatement
 
 JavaScript makes it easy to define global variables that can hold all of the assets of your application. Unfortunately, global variables weaken the resiliency of programs and should be avoided. One way to minimize the use of global variables is to create a single global variable for your application:
 
@@ -671,21 +722,21 @@ By reducing your global footprint to a single name, you significantly reduce the
 
 The best thing about JavaScript is its implementation of functions. It got almost everything right. But, as you should expect with JavaScript, it didn’t get everything right. A function encloses a set of statements. Functions are the fundamental modular unit of JavaScript. They are used for code reuse, information hiding, and composition. Functions are used to specify the behavior of objects. Generally, the craft of programming is the factoring of a set of requirements into a set of functions and data structures.
 
-1『函数是 JS 的灵魂所在，函数式编程嘛。』
+1『函数是 JS 的灵魂所在，函数式编程。』
 
 ### 01. Function Objects
 
 Functions in JavaScript are objects. Objects are collections of name/value pairs having a hidden link to a prototype object. Objects produced from object literals are linked to Object.prototype. Function objects are linked to Function.prototype (which is itself linked to Object.prototype). Every function is also created with two additional hidden properties: the function’s context and the code that implements the function’s behavior.
 
-1『 function’s context 是函数的上下文。』
+1『 function’s context 是函数的上下文；函数对象在被创建时默认有 2 个隐藏属性：函数上下文和实现函数行为的 code（目前的理解即为调用属性）。函数上下文这个隐藏属性跟闭包密切相关，甚至于就是闭包。（2020-03-29）』
 
 3『Javascript 创建一个函数对象时，会给该对象设置一个「调用」属性。当 Javascript 调用一个函数时，可理解为调用此函数的「调用」属性。详细的描述请参阅 Ecmascript 规范的「13.2 Creating Function Objects」。』
+
+2『去找规范里的「Creating Function Objects」看。』
 
 Every function object is also created with a prototype property. Its value is an object with a constructor property whose value is the function. This is distinct from the hidden link to Function.prototype. The meaning of this convoluted construction will be revealed in the next chapter.
 
 Since functions are objects, they can be used like any other value. Functions can be stored in variables, objects, and arrays. Functions can be passed as arguments to functions, and functions can be returned from functions. Also, since functions are objects, functions can have methods. The thing that is special about functions is that they can be invoked.
-
-1『 JS 里函数是一个对象，太重要了。』
 
 ### 02. Function Literal
 
@@ -713,11 +764,11 @@ A function literal can appear anywhere that an expression can appear. Functions 
 
 Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern. The patterns differ in how the bonus parameter this is initialized.
 
-2『 this 的值取决于调用模式（invocation pattern）：the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern. 做一张术语卡片。』
+2『 this 的值取决于调用模式（invocation pattern）：1）the method invocation pattern，方法式调用，this 绑定到该方法所隶属的对象（函数作为一个对象的某个属性值的时候才被称为方法），这个绑定是在调用时发生的；2）the function invocation pattern，函数式调用，this 绑定到全局变量上（JS 公认的设计错误），这导致内部函数无法通过 this 来访问外部函数的数据，即没法帮外部函数处理一些事情了，不过可以通过「var that = this; 」来解决；3）the constructor invocation pattern，构造函数式调用。这其实是对基于类的面向对象的妥协，用「new + 构造器函数」来调用构造器函数，会创建一个连接到构造函数原型链的新对象，this 绑定到这个新对象上。new 还会改变 return 语句的行为；4）the apply invocation pattern，apply 式调用。Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。做一张术语卡片。』
 
 The invocation operator is a pair of parentheses that follow any expression that produces a function value. The parentheses can contain zero or more expressions, separated by commas. Each expression produces one argument value. Each of the argument values will be assigned to the function’s parameter names. There is no runtime error when the number of arguments and the number of parameters do not match. If there are too many argument values, the extra argument values will be ignored. If there are too few argument values, the undefined value will be substituted for the missing values. There is no type checking on the argument values: any type of value can be passed to any parameter.
 
-1『 parameter 实参，调用函数时传递进来的；argument 形参，定义函数时设定的。』
+1『醍醐灌顶，函数调用和用字面量创建函数是两码事，调用最关键的是那对圆括号 ()，圆括号前面可以是函数名，也可以是函数字面量。而圆括号里面是要传递进函数的实参；parameter 实参，调用函数时传递进来的。argument 形参，定义函数时设定的。』
 
 #### 1. The Method Invocation Pattern
 
@@ -732,7 +783,7 @@ var myObject = {
     value: 0,
     increment: function (inc) {
     this.value += typeof inc === 'number' ? inc : 1;
-}
+    }
 };
 
 myObject.increment( );
@@ -757,6 +808,13 @@ When a function is invoked with this pattern, this is bound to the global object
 1『对于「函数调用模式」，this 绑定到了全局对象上，这是 JS 的设计失误。倘若语言设计正确，那么当内部函数被调用时，this 应该仍然绑定到外部函数的 this 变量。这个设计错误的后果就是方法不能利用内部函数来帮助它工作，因为内部函数的 this 被绑定了错误的值，所以不能共享该方法对对象的访问权。幸运的是，有一个很容易的解决方案：如果该方法定义一个变量并给它赋值为 this，那么内部函数就可以通过那个变量访问到 this。按照约定，我把那个变量命名为 that。』
 
 ```js
+var myObject = {
+    value: 0,
+    increment: function (inc) {
+    this.value += typeof inc === 'number' ? inc : 1;
+    }
+};
+
 // Augment myObject with a double method.
 myObject.double = function ( ) {
     var that = this; // Workaround.
@@ -771,7 +829,39 @@ myObject.double( );
 document.writeln(myObject.getValue( )); // 6
 ```
 
-1『方法模式调用，用 . 来调用；函数模式调用用 function(); 来调用；』
+1『方法模式调用，用 . 来调用；函数模式调用用 function(); 来调用（比如上面例子里的 help(); ）。』
+
+#### 3. The Constructor Invocation Pattern
+
+JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other objects. The language is class-free. This is a radical departure from the current fashion. Most languages today are classical. Prototypal inheritance is powerfully expressive, but is not widely understood.
+
+JavaScript itself is not confident in its prototypal nature, so it offers an object-making syntax that is reminiscent of the classical languages. Few classical programmers found prototypal inheritance to be acceptable, and classically inspired syntax obscures the language’s true prototypal nature. It is the worst of both worlds.
+
+If a function is invoked with the new prefix, then a new object will be created with a hidden link to the value of the function’s prototype member, and this will be bound to that new object. The new prefix also changes the behavior of the return statement. We will see more about that next.
+
+『如果在一个函数前面带上 new 来调用，那么背地里将会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上。new 也会改变 return 语句的行为。』
+
+```js
+// Create a constructor function called Quo.
+// It makes an object with a status property.
+var Quo = function (string) {
+    this.status = string;
+};
+
+// Give all instances of Quo a public method
+// called get_status.
+Quo.prototype.get_status = function ( ) {
+    return this.status;
+};
+
+// Make an instance of Quo.
+var myQuo = new Quo("confused");
+document.writeln(myQuo.get_status( )); // confused
+```
+
+Functions that are intended to be used with the new prefix are called constructors. By convention, they are kept in variables with a capitalized name. If a constructor is called without the new prefix, very bad things can happen without a compile-time or runtime warning, so the capitalization convention is really important. Use of this style of constructor functions is not recommended. We will see better alternatives in the next chapter.
+
+1『作为构造器的函数名约定首个字母大写，这样看到大写的就知道是构造器，不会漏掉 new 来构建新对象，如果漏掉的话会造成很严重的后果；不建议使用上面形式的构造器函数。』
 
 #### 4. The Apply Invocation Pattern
 
@@ -787,6 +877,10 @@ var statusObject = {
     status: 'A-OK'
 };
 
+Quo.prototype.get_status = function ( ) {
+    return this.status;
+};
+
 // statusObject does not inherit from Quo.prototype,
 // but we can invoke the get_status method on
 // statusObject even though statusObject does not have
@@ -794,6 +888,8 @@ var statusObject = {
 var status = Quo.prototype.get_status.apply(statusObject);
 // status is 'A-OK'
 ```
+
+1『 Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。』
 
 ### 04. Arguments
 
@@ -821,7 +917,7 @@ document.writeln(sum(4, 8, 15, 16, 23, 42)); // 108
 
 This is not a particularly useful pattern. In Chapter 6, we will see how we can add a similar method to an array. Because of a design error, arguments is not really an array. It is an array-like object. arguments has a length property, but it lacks all of the array methods. We will see a consequence of that design error at the end of this chapter.
 
-1『上面默认接收的参数 parameters 的用法很赞。』
+1『上面默认参数（parameters）的用法很赞。』
 
 ### 05. Return
 
@@ -994,7 +1090,7 @@ var getElementsByAttribute = function (att, value) {
 
 Some languages offer the tail recursion optimization. This means that if a function returns the result of invoking itself recursively, then the invocation is replaced with a loop, which can significantly speed things up. Unfortunately, JavaScript does not currently provide tail recursion optimization. Functions that recurse very deeply can fail by exhausting the return stack:
 
-『一些语言提供了「尾递归」优化。这意味着如果一个函数返回自身递归调用的结果，那么调用的过程会被替换为一个循环，它可以显著提高速度。遗憾的是，Javascript 当前并没有提供尾递归优化。深度递归的函数可能会因为堆栈溢出而运行失败。尾递归（(tail recursion 或 tail-end recursion）是一种在函数的最后执行递归调用语白的特殊形式的递归。』
+『一些语言提供了「尾递归」优化。这意味着如果一个函数返回自身递归调用的结果，那么调用的过程会被替换为一个循环，它可以显著提高速度。遗憾的是，Javascript 当前并没有提供尾递归优化。深度递归的函数可能会因为堆栈溢出而运行失败。尾递归（tail recursion 或 tail-end recursion）是一种在函数的最后执行递归调用语白的特殊形式的递归。』
 
 ```js
 // Make a factorial function with tail
@@ -1038,13 +1134,15 @@ Most languages with C syntax have block scope. All variables defined in a block 
 
 Unfortunately, JavaScript does not have block scope even though its block syntax suggests that it does. This confusion can be a source of errors. JavaScript does have function scope. That means that the parameters and variables defined in a function are not visible outside of the function, and that a variable defined anywhere within a function is visible everywhere within the function.
 
+1『ES6 新增的 let 和 const 拥有块级作用域；理解 JS 的函数作用域很重要。』
+
 In many modern languages, it is recommended that variables be declared as late as possible, at the first point of use. That turns out to be bad advice for JavaScript because it lacks block scope. So instead, it is best to declare all of the variables used in a function at the top of the function body.
 
 『糟糕的是，尽管 Javascript 的代码块语法貌似支持块级作用域，但实际上 Javascript 并不支持。这个混淆之处可能成为错误之源。Javascript 确实有函数作用域。那意味着定义在函数中的参数和变量在函数外部是不可见的，而在一个函数内部任何位置定义的变量，在该函数内部任何地方都可见。很多现代语言都推荐尽可能延迟声明变量。而用在 Javascript 上的话却会成为槽糕的建议，因为它缺少块级作用域。所以，最好的做法是在函数体的顶部声明函数中可能用到的所有变量。』
 
 ### 10. Closure
 
-The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments). This is a very good thing. Our getElementsByAttribute function worked because it declared a results variable, and the inner function that it passed to walk\_the_DOM also had access to the results variable.
+The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments). This is a very good thing. Our getElementsByAttribute function worked because it declared a results variable, and the inner function that it passed to walk\_the\_DOM also had access to the results variable.
 
 A more interesting case is when the inner function has a longer lifetime than its outer function. Earlier, we made a myObject that had a value and an increment method. Suppose we wanted to protect the value from unauthorized changes.
 
@@ -1070,7 +1168,7 @@ We are not assigning a function to myObject. We are assigning the result of invo
 
 『我们并没有把一个函数赋值给 myObject。我们是把调用该函数后返回的结果赋值给它。注意最后一行的（）。该函数返回一个包含两个方法的对象，并且这些方法继续享有访问 value 变量的特权。』
 
-1『绝妙的操作，关键点是函数后面的 ()，是把调用该函数后返回的结果赋值给这个变量，该函数返回的是一个对象，对象里包含 2 个方法，这两个方法都可以访问该函数体内定义的变量。这就理解了「通过调用一个函数的形式去初始化 myObject，该函数会返回一个对象字面量。」』
+1『绝妙的操作，这样可以把 value 值保护起来，不让外界直接可以修改这个值。关键点是函数后面的 ()，是把调用该函数后返回的结果赋值给这个变量，该函数返回的是一个对象，对象里包含 2 个方法，这两个方法都可以访问该函数体内定义的变量。这就理解了「通过调用一个函数的形式去初始化 myObject，该函数会返回一个对象字面量。」』
 
 The Quo constructor from earlier in this chapter produced an object with a status property and a get_status method. But that doesn’t seem very interesting. Why would you call a getter method on a property you could access directly? It would be more useful if the status property were private. So, let’s define a different kind of quo function to do that:
 
@@ -1134,7 +1232,7 @@ Suddenly, the step function gets invoked again. But this time, fade’s level is
 
 It is important to understand that the inner function has access to the actual variables of the outer functions and not copies in order to avoid the following problem:
 
-『fade 函数设置 level 为 1。它定义了一个 step 函数；接着调用 settimeout，并传递 step 函数和一个时间（100 毫秒）给它。然后它返回，fade 函数结東。在大约十分之一秒后，step 函数被调用。它把 fade 函数的 1evel 变量转化为 16 位字符。接着，它修改 fade 函数得到的节点的背景颜色。然后査看 fade 函数的 level 变量。如果背景色尚未变成白色，那么它增大 fade 函数的 level 变量，接着用 settimeout 预定让它自己再次运行。step 函数很快再次被调用。但这次，fade 函数的 level 变量值变成 2。fade 函数在之前已经返回了，但只要 fade 的内部函数需要，它的変量就会持续保留。为了避免下面的问题，理解内部函数能访问外部函数的实际变量而无须复制是很重要的。』
+『fade 函数设置 level 为 1。它定义了一个 step 函数；接着调用 settimeout，并传递 step 函数和一个时间（100 毫秒）给它。然后它返回，fade 函数结東。在大约十分之一秒后，step 函数被调用。它把 fade 函数的 1evel 变量转化为 16 位字符。接着，它修改 fade 函数得到的节点的背景颜色。然后査看 fade 函数的 level 变量。如果背景色尚未变成白色，那么它增大 fade 函数的 level 变量，接着用 settimeout 预定让它自己再次运行。step 函数很快再次被调用。但这次，fade 函数的 level 变量值变成 2。fade 函数在之前已经返回了，但只要 fade 的内部函数需要，它的变量就会持续保留。为了避免下面的问题，理解内部函数能访问外部函数的实际变量而无须复制是很重要的。』
 
 ```js
 // BAD EXAMPLE
@@ -1168,7 +1266,7 @@ var add_the_handlers = function (nodes) {
     for (i = 0; i < nodes.length; i += 1) {
         nodes[i].onclick = function (i) {
             return function (e) {
-            alert(e);
+                alert(e);
             };
         }(i);
     }
@@ -1179,9 +1277,11 @@ Now, instead of assigning a function to onclick, we define a function and immedi
 
 『避免在循环中创建函数，它可能只会带来无谓的计算，还会引起混淆，正如上面那个糟糕的例子。我们可以先在循环之外创建一个辅助函数，让这个辅助函数再返回一个绑定了当前立值的函数，这样就不会导致混淆了。』
 
+1『这里的知识点直觉删感觉很重要，目前还没弄明白。（2020-03-29）』
+
 ### 11. Callbacks
 
-Functions can make it easier to deal with discontinuous events. For example, suppose there is a sequence that begins with a user interaction, making a request of the server, and finally displaying the server’s response. The naïve way to write that would be:
+Functions can make it easier to deal with discontinuous events. For example, suppose there is a sequence that begins with a user interaction, making a request of the server, and finally displaying the server’s response. The native way to write that would be:
 
 ```js
 request = prepare_the_request( );
@@ -1243,12 +1343,12 @@ String.method('deentityify', function ( ) {
             }
         );
     };
-}( ));
+}( );
 ```
 
 Notice the last line. We immediately invoke the function we just made with the ( ) operator. That invocation creates and returns the function that becomes the deentityify method.
 
-```
+```js
 document.writeln(
     '&lt;&quot;&gt;'.deentityify( )); // <"> 
 ```
@@ -1312,26 +1412,24 @@ Some methods do not have a return value. For example, it is typical for methods 
 『如果我们让这些方法返回 this 而不是 undefined，就可以启用级联。在一个级联中，我们可以在单独一条语句中依次调用同一个对象的很多方法。一个启用级联的 Ajax 类库可能允许我们以这样的形式去编码。』
 
 ```js
-getElement('myBoxDiv')
-    .move(350, 150)
-    .width(100)
-    .height(100)
-    .color('red')
-    .border('10px outset')
-    .padding('4px')
-    .appendText("Please stand by")
-    .on('mousedown', function (m) {
-        this.startDrag(m, this.getNinth(m));
-    })
-    .on('mousemove', 'drag')
-    .on('mouseup', 'stopDrag')
-    l.ater(2000, function ( ) {
-        this
-            .color('yellow').
-            .setHTML("What hath God wraught?")
-            .slide(400, 40, 200, 200);
-    })
-    .tip('This box is resizeable');
+getElement('myBoxDiv').
+    move(350, 150).
+    width(100).
+    height(100).
+    color('red').
+    border('10px outset'). padding('4px'). appendText("Please stand by").
+    on('mousedown', function (m) { 
+        this.startDrag(m, this.getNinth(m)); 
+    }).
+    on('mousemove', 'drag').
+    on('mouseup', 'stopDrag').
+    later(2000, function ( ) {
+        this.
+            color('yellow').
+            setHTML("What hath God wraught?").
+            slide(400, 40, 200, 200);
+        }).
+    tip('This box is resizeable');
 ```
 
 In this example, the getElement function produces an object that gives functionality to the DOM element with id="myBoxDiv". The methods allow us to move the element, change its dimensions and styling, and add behavior. Each of those methods returns the object, so the result of the invocation can be used for the next invocation.
@@ -1456,7 +1554,7 @@ var factorial = memoizer([1, 1], function (shell, n) {
 });
 ```
 
-
+## 05. Inheritance
 
 
 
