@@ -592,6 +592,8 @@ The following examples highlight the positional regex operators. These apply mor
 'the'
 ```
 
+1『 \b 只能匹配单独的单词（有边界），而 /B 可以匹配嵌入到字符串里面的单词。』
+
 You will notice the appearance of raw strings here. You might want to take a look at the Core Note, “Using Python raw strings,” toward the end of this chapter for clarification on why they are here. In general, it is a good idea to use raw strings with regular expressions.
 
 1『r'\bthe' 指原始字符串（ raw strings），传参的正则表达式用原始字符串。』
@@ -730,10 +732,10 @@ That’s a simple example. What if we have a more complex example, such as a sim
 
 The preceding regex has a simple component, split on comma-space (“, “). The harder part is the last regex, which previews some of the extension notations that you’ll learn in the next subsection. In plain English, this is what it says: also split on a single space if that space is immediately followed by five digits (ZIP code) or two capital letters (US state abbreviation). This allows us to keep together city names that have spaces in them. 
 
-Naturally, this is just a simplistic regex that could be a starting point for an application that parses location information. It doesn’t process (or fails) 
-
-lowercase states or their full spellings, street addresses, country codes, ZIP+4 (nine-digit ZIP codes), latitude-longitude, multiple spaces, etc. It’s just meant as a simple demonstration of re.split() doing something str.split() can’t do. 
+Naturally, this is just a simplistic regex that could be a starting point for an application that parses location information. It doesn’t process (or fails) lowercase states or their full spellings, street addresses, country codes, ZIP+4 (nine-digit ZIP codes), latitude-longitude, multiple spaces, etc. It’s just meant as a simple demonstration of re.split() doing something str.split() can’t do. 
 As we just demonstrated, you benefit from much more power with a regular expression split; however, remember to always use the best tool for the job. If a string split is good enough, there’s no need to bring in the additional complexity and performance impact of regexes. 
+
+1『扩展表示法里，「?=XX」表示要匹配的字符紧跟在 XX 后面，比如「?=.com」如果一个字符串后面跟着“.com”才做匹配操作，并不使用任何目标字符串；「?:」是表示返回的匹配对象不会保存下来供后续的使用和数据检索，比如「?= (?:\d{5} | [A-Z]{2})」表示，如果空格紧跟在五个数字（ZIP 编码）或者两个大写字母（美国联邦州缩 写）之后，就用 split 语句分割该空格。前面的解释是书里的，但这个空格是哪冒出来的呢？目前不理解。（2020-03-30）』
 
 『上述正则表达式拥有一个简单的组件：使用 split 语句基于逗号分割字符串。更难的部分是最后的正则表达式，可以通过该正则表达式预览一些将在下一小节中介绍的扩展符号。在普通的英文中，通常这样说：如果空格紧跟在五个数字（ZIP 编码）或者两个大写字母（美国联邦州缩写）之后，就用 pli 语句分割该空格。这就允许我们在城市名中放置空格。通常情况下，这仅仅只是一个简单的正则表达式，可以在用来解析位置信息的应用中作为起点。该正则表达式并不能处理小写的州名或者州名的全拼、街道地址、州编码、ZIP+4  (9 位 ZIP 编码）、经纬度、多个空格等内容（或者在处理时会失败）。这仅仅意味着使用 re.split() 能够实现 str.split() 不能实现的一个简单的演示实例。我们刚刚已经证实，读者将从正则表达式 split 语句的强大能力中获益。然而，记得一定在编码过程中选择更合适的工具。如果对字符串使用 split 方法已经足够好，就不需要引入额外复杂并且影响性能的正则表达式。』
 
@@ -761,6 +763,8 @@ With the (?iLmsux) set of options, users can specify one or more flags directly 
 ... """) 
 ['This line is the first', 'that line'] 
 ```
+
+1『「?i」表示不区分大小写。』
 
 For the previous examples, the case-insensitivity should be fairly straightforward. In the last example, by using “multiline” we can perform the search across multiple lines of the target string rather than treating the entire string as a single entity. Notice that the instances of “the” are skipped because they do not appear at the beginning of their respective lines. 
 
@@ -796,7 +800,7 @@ The re.X/VERBOSE flag is quite interesting; it lets users create more human-read
 ('800', '555', '1212') 
 ```
 
-The (?:...) notation should be fairly popular; with it, you can group parts of a regex, but it does not save them for future retrieval or use. This comes in handy when you don’t want superfluous matches that are saved and never used: 
+The (?: ...) notation should be fairly popular; with it, you can group parts of a regex, but it does not save them for future retrieval or use. This comes in handy when you don’t want superfluous matches that are saved and never used: 
 
 『(?:…)符号将更流行；通过使用该符号，可以对部分正则表达式进行分组，但是并不会保存该分组用于后续的检索或者应用。当不想保存今后永远不会使用的多余匹配时，这个符号就非常有用。』
 
@@ -810,7 +814,7 @@ The (?:...) notation should be fairly popular; with it, you can group parts of a
 {'areacode': '800', 'prefix': '555'} 
 ```
 
-You can use the (?P<name>) and (?P=name) notations together. The former saves matches by using a name identifier rather than using increasing numbers, starting at one and going through N, which are then retrieved later by using \1, \2, ... \N. You can retrieve them in a similar manner using \g<name>: 
+You can use the (?P\<name>) and (?P=name) notations together. The former saves matches by using a name identifier rather than using increasing numbers, starting at one and going through N, which are then retrieved later by using \1, \2, ... \N. You can retrieve them in a similar manner using \g<name>: 
 
 ```py
 >>> re.sub(r'\((?P<areacode>\d{3})\) (?P<prefix>\d{3})-(?:\d{4})', 
@@ -859,21 +863,34 @@ You use the (?=...) and (?!...) notations to perform a lookahead in the target s
 
 The third snippet is another demonstration of the difference between findall() and finditer(); we use the latter to build a list of e-mail addresses (in a more memory-friendly way by skipping the creation of the intermediary list that would be thrown away) using the same login names but on a different domain. 
 
-『读者可以使用 (?=...) 和 (?!…)符号在目标字符串中实现一个前视匹配，而不必实际上使用这些字符串。前者是正向前视断言，后者是负向前视断言。在后面的示例中，我们仅仅对 姓氏为 “van Rossum” 的人的名字感兴趣，下一个示例中，让我们忽略以 “noreply” 或者 “postmaster” 开头的 e-mail 地址。第三个代码片段用于演示 findall() 和 finditer() 的区别；我们使用后者来构建一个使用相同 登录名但不同域名的 e-mail 地址列表（在一个更易于记忆的方法中，通过忽略创建用完即丢弃的中间列表）。』
+『读者可以使用 (?=...) 和 (?!…)符号在目标字符串中实现一个前视匹配，而不必实际上使用这些字符串。前者是正向前视断言，后者是负向前视断言。在后面的示例中，我们仅仅对姓氏为 “van Rossum” 的人的名字感兴趣，下一个示例中，让我们忽略以 “noreply” 或者 “postmaster” 开头的 e-mail 地址。第三个代码片段用于演示 findall() 和 finditer() 的区别；我们使用后者来构建一个使用相同登录名但不同域名的 e-mail 地址列表（在一个更易于记忆的方法中，通过忽略创建用完即丢弃的中间列表）。』
+
+```py
+>>> re.findall(r'\w+(?= van Rossum)', ... ''' ... Guido van Rossum ... Tim Peters ... Alex Martelli ... Just van Rossum ... Raymond Hettinger ... ''') ['Guido', 'Just']
+
+>>> re.findall(r'(?m)^\s+(?!noreply|postmaster)(\w+)',''' ... sales@phptr.com ... postmaster@phptr.com ... eng@phptr.com .. noreply@phptr.com ... admin@phptr.com ''') 
+['sales', 'eng', 'admin'] 
+>>> ['%s@aw.com' % e.group(1) for e in \ re.finditer(r'(?m)^\s+(?!noreply|postmaster)(\w+)', ''' ... sales@phptr.com ... postmaster@phptr.com ... eng@phptr.com ... noreply@phptr.com ... admin@phptr.com ... ''')] 
+['sales@aw.com', 'eng@aw.com', 'admin@aw.com']
+```
 
 The last examples demonstrate the use of conditional regular expression matching. Suppose that we have another specialized alphabet consisting only of the characters ‘x’ and ‘y,’ where we only want to restrict the string in such a way that two-letter strings must consist of one character followed by the other. In other words, you can’t have both letters be the same; either it’s an ‘x’ followed by a ‘y’ or vice versa: 
 
-```
+```py
 >>> bool(re.search(r'(?:(x)|y)(?(1)y|x)', 'xy')) 
 True 
 >>> bool(re.search(r'(?:(x)|y)(?(1)y|x)', 'xx')) 
 False 
 ```
 
+『展示了使用条件正则表达式匹配。假定我们拥有另一个特殊字符，它仅仅包含字母“x”和“y”， 我们此时仅仅想要这样限定字符串：两字母的字符串必须由一 个字母跟着另一个字母。换句话说， 你不能同时拥有两个相同的字母；要么由“x”跟着 “y”， 要么相反。』
+
 ### 1.3.15 Miscellaneous 
 
 There can be confusion between regular expression special characters and special ASCII symbols. We can use \n to represent a NEWLINE character, but we can use \d meaning a regular expression match of a single numeric digit. 
 Problems can occur if there is a symbol used by both ASCII and regular expressions, so in the following Core Note, we recommend the use of Python raw strings to prevent any problems. One more caution: the \w and \W alphanumeric character sets are affected by the re.L/LOCALE and Unicode (re.U/UNICODE) flags. 
+
+1『使用 Python 的原始字符串来避免与 ASCII 的特殊字符产生冲突。』
 
 CORE NOTE: Using Python raw strings
 
@@ -885,7 +902,7 @@ Here are some examples of differentiating between the backspace \b and the regul
 
 『读者可能在之前的一些示例中见过原始字符串的使用。正则表达式对于探索原始字符串有着强大的动力，原因就在于 ASCII 字符和正则表达式的特殊字符之间存在冲突。作为一个特殊符号，\b 表示 ASCII 字符的退格符，但是 \b 同时也是一个正则表达式的特殊符号， 表示匹配一个单词的边界。对于正则表达式编译器而言，若它把两个 \b 视为字符串内容而不是单个退格符，就需要在字符串中再使用一个反斜线转义反斜线，就像这样：\\b。
 
-这样显得略微杂乱，特别是如果在字符串中拥有很多特殊字符，就会让人感到更加困 惑。我们在 Core Python Programming 或者 Core Python Language Fundamentals 的 Sequence 章节中介绍了原始字符串，而且该原始字符串可以用于（且经常用于）帮助保持正则表达式查找某些可托管的东西。事实上，很多 Python 程序员总是抱怨这个方法，仅仅用原始字 符串来定义正则表达式。如下所示的一些示例用于说明退格符 \b 和正则表达式 \b 之间的差异，它们有的使用、 有的不使用原始字符串。』
+这样显得略微杂乱，特别是如果在字符串中拥有很多特殊字符，就会让人感到更加困 惑。我们在 Core Python Programming 或者 Core Python Language Fundamentals 的 Sequence 章节中介绍了原始字符串，而且该原始字符串可以用于（且经常用于）帮助保持正则表达式查找某些可托管的东西。事实上，很多 Python 程序员总是抱怨这个方法，仅仅用原始字符串来定义正则表达式。如下所示的一些示例用于说明退格符 \b 和正则表达式 \b 之间的差异，它们有的使用、 有的不使用原始字符串。』
 
 ```py
 >>> m = re.match('\bblow', 'blow') # backspace, no match 
