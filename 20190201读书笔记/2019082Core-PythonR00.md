@@ -218,11 +218,11 @@ There are also symbols and related special characters to specify searching for p
 
 Patterns that use these symbols differ from most of the others we describe in this chapter because they dictate location or position. In the previous Core Note, we noted that a distinction is made between matching (attempting matches of entire strings starting at the beginning) and searching (attempting matches from anywhere within a string). With that said, here are some examples of “edge-bound” regex search patterns:
 
-『使用这些符号的模式与本章描述的其他大多数模式是不同的，因为这些模式指定了位置 或方位。之前的「核心提示」记录了匹配（试图在字符串的开始位置进行匹配）和搜索（试 图从字符串的任何位置开始匹配）之间的差别。』
+『使用这些符号的模式与本章描述的其他大多数模式是不同的，因为这些模式指定了位置或方位。之前的「核心提示」记录了匹配（试图在字符串的开始位置进行匹配）和搜索（试 图从字符串的任何位置开始匹配）之间的差别。』
 
 Again, if you want to match either (or both) of these characters verbatim, you must use an escaping backslash. For example, if you wanted to match any string that ended with a dollar sign, one possible regex solution would be the pattern 
 
-    .*\$$.
+    .*\$$
 
 The special characters \b and \B pertain to word boundary matches. The difference between them is that \b will match a pattern to a word boundary, meaning that a pattern must be at the beginning of a word, whether there are any characters in front of it (word in the middle of a string) or not (word at the beginning of a line). And likewise, \B will match a pattern only if it appears starting in the middle of a word (i.e., not at a word boundary). Here are some examples:
 
@@ -232,7 +232,9 @@ The special characters \b and \B pertain to word boundary matches. The differenc
 
 Whereas the dot is good for allowing matches of any symbols, there might be occasions for which there are specific characters that you want to match. For this reason, the bracket symbols ([]) were invented. The regular expression will match any of the enclosed characters. Here are some examples:
 
-1『感觉 [] 匹配模式好强大，它能匹配含有 [] 里任意字符的文本，只要把想筛选的所有可能的字符塞进 [] 里即可。』
+『b[aeiu]t 是匹配 bat、bet、bit、but；[cr][23][dp][o2] 是匹配，一个包含四个字符的字符串，第一个字符是“c”或“r”，然后是“2”或“3”，后面 是“d”或“p”，最后要么是“o”要么是“2”。例如，c2do、r3p2、r2d2、c3po 等。』
+
+1『感觉 [] 匹配模式好强大，它能匹配含有 [] 里任意字符的文本，只要把想筛选的所有可能的字符塞进 [] 里即可。但注意 [] 只能匹配单个字符，里面的字符全是「逻辑或」的关系。』
 
 One side note regarding the regex [cr][23][dp][o2]—a more restrictive version of this regex would be required to allow only “r2d2” or “c3po” as valid strings. Because brackets merely imply logical OR functionality, it is not possible to use brackets to enforce such a requirement. The only solution is to use the pipe, as in r2d2|c3po.
 
@@ -246,15 +248,25 @@ In addition to single characters, the brackets also support ranges of characters
 
 『 z.[0-9] 是字母“z”后面跟着任何一个字符，然后跟着一个数字；[r-u][env-y][us] 是字母“r”、“s”、“t”或者“u”后面跟着“e”、“n”、“v”、“w”、“x”或者“y”，然后跟着“u”或者“s”；[^aeiou] 是一个非元音字符（练习：为什么我们说“非元音”而不是“辅音”？）；[^\t\n] 是不匹配制表符或者 \n；[“-a] 是在一个 ASCII 系统中，所有字符都位于“”和“a”之间，即 34~97 之间。』
 
+1『原来 [^XX] 是否定掉 [] 里的所有字符，之前的理解又偏误。（2020-03-30）』
+
 #### 1.2.6 Multiple Occurrence/Repetition Using Closure Operators (*, +, ?, {})
 
 We will now introduce the most common regex notations, namely, the special symbols \*, +, and ?, all of which can be used to match single, multiple, or no occurrences of string patterns. The asterisk or star operator (*) will match zero or more occurrences of the regex immediately to its left (in language and compiler theory, this operation is known as the Kleene Closure). The plus operator (+) will match one or more occurrences of a regex (known as Positive Closure), and the question mark operator (?) will match exactly 0 or 1 occurrences of a regex.
 
 1『Kleene Closure、Positive Closure，又见名词「闭包」。』
 
-There are also brace operators ({}) with either a single value or a comma-separated pair of values. These indicate a match of exactly N occurrences (for {N}) or a range of occurrences; for example, {M, N} will match from M to N occurrences. These symbols can also be escaped by using the backslash character; \* matches the asterisk, etc.
+There are also brace operators ({}) with either a single value or a comma-separated pair of values. These indicate a match of exactly N occurrences (for {N}) or a range of occurrences; for example, {M, N} will match from M to N occurrences. These symbols can also be escaped by using the backslash character; \\* matches the asterisk, etc.
 
 In the previous table, we notice the question mark is used more than once (overloaded), meaning either matching 0 or 1 occurrences, or its other meaning: if it follows any matching using the close operators, it will direct the regular expression engine to match as few repetitions as possible.
+
+1『
+
+目前知道 ? 有 2 个用法：一是匹配 0 或者 1 次；二是作为贪婪匹配的标识，如果问号紧跟在任何使用闭合操作符的匹配后面，它将直接要求正则表达式引擎匹配尽可能少的次数；三是扩展表示法的时候是以 ? 开头的。之前网上看到的匹配 html 标签的正则就是采用了第 2 个用法：
+
+    <div(([\s\S])*?)<\/div>
+
+』
 
 What does “as few repetitions as possible” mean? When patternmatching is employed using the grouping operators, the regular expression engine will try to “absorb” as many characters as possible that match the pattern. This is known as being greedy. The question mark tells the engine to lay off and, if possible, take as few characters as possible in the current match, leaving the rest to match as many succeeding characters of the next pattern (if applicable). Toward the end of the chapter, we will show you a great example where non-greediness is required. For now, let’s continue to look at the closure operators:
 
@@ -268,6 +280,8 @@ What does “as few repetitions as possible” mean? When patternmatching is emp
 
 We also mentioned that there are special characters that can represent character sets. Rather than using a range of “0–9,” you can simply use \d to indicate the match of any decimal digit. Another special character, \w, can be used to denote the entire alphanumeric character class, serving as a shortcut for [A-Za-z0-9_], and \s can be used for whitespace characters. Uppercase versions of these strings symbolize non-matches; for example, \D matches any non-decimal digit (same as [^0-9]), etc. Using these shortcuts, we will present a few more complex examples:
 
+1『这几个特殊字符大写表示不匹配，之前忽略了这个重要信息点，比如 re.sub('[/S]', '', string) 表示剔除 string 字符串里所有非空格字符的内容，空格字符其实不仅仅包含空格，换行符、制表符也是。』
+
 『 \w+-\d+ 是一个由字母数字组成的字符串和一串由一个连字符分隔的数字；[A-Za-z]\w* 是第一个字符是字母，其余字符（如果存在）可以是字母或者数字（几乎等价于 Python 中的有 效标识符［参见练习］；\d{3}-\d{3}-\d{4} 是美国电话号码的格式，前面是区号前缀，例如 800-555-1212；\w+@\w+\.com 是以 XXX@YYY.com 格式表示的简单电子邮件地址。）』
 
 #### 1.2.8 Designating Groups with Parentheses (())
@@ -276,7 +290,9 @@ Now, we have achieved the goal of matching a string and discarding nonmatches, b
 
 『有些时候我们可能会对之前匹配成功的数据更感兴趣。我们不仅想要知道整个字符串是否匹配我们的标准而且想要知道能否提取任何已经成功匹配的特定字符串或者子字符串。』
 
-A pair of parentheses (()) can accomplish either (or both) of the following when used with regular expressions: 1) Grouping regular expressions. 2) Matching subgroups.
+A pair of parentheses () can accomplish either (or both) of the following when used with regular expressions: 1) Grouping regular expressions. 2) Matching subgroups.
+
+1『 () 可以实现的 2 个功能：一是对正则表达式进行分组，二是匹配子组。』
 
 One good example of why you would want to group regular expressions is when you have two different regexes with which you want to compare a string. Another reason is to group a regex in order to use a repetition operator on the entire regex (as opposed to an individual character or character class).
 
@@ -288,7 +304,7 @@ If we add parentheses to both subpatterns such as (\w+)-(\d+), then we can acces
 
 『为何想要对正则表达式进行分组：一是当有两个不同的正则表达式而且想用它们来比较同一个字符串时。二是对正则表达式进行分组可以在整个正则表达式中使用重复操作符（而不是一个单独的字符或者字符集）。使用圆括号进行分组的一个作用就是，匹配模式的子字符串可以保存起来供后续使用。这些子组能够被同一次的匹配或者搜索重复调用，或者提取出来用于后续处理。为什么匹配子组这么重要呢？主要原因是在很多时候除了进行匹配操作以外，我们还想要提取所匹配的模式。例如，如果决定匹配模式 w+-d+，但是想要分别保存第一部分的字母和第二部分的数字，该如何实现？我们可能想要这样做的原因是，对于任何成功的匹配，我们可能想要看到这些匹配正则表达式模式的字符串究竟是什么？如果为两个子模式都加上圆括号，例如（w+)-(d+），然后就能够分别访问每一个匹配子组。我们更倾向于使用子组，这是因为择一匹配通过编写代码来判断是否匹配，然后执行另一个单独的程序（该程序也需要另行创建）来解析整个匹配仅仅用于提取两个部 分。为什么不让 Python 自己实现呢？这是 re 模块支持的一个特性。』
 
-『 \d+(\.\d*)? 是表示简单浮点数的字符串，也就是说，任何十进制数字，后面可以接一个小数点和零个或 者多个十进制数字，例如“0.004”、“2”、“75.”等；』
+『 \d+(\.\d*)? 是表示简单浮点数的字符串，也就是说，任何十进制数字，后面可以接一个小数点和零个或 者多个十进制数字，例如“0.004”、“2”、“75.”等。』
 
 『 (Mr?s?\.)?[A-Z][a-z]*[A-Za-z-]+ 是名字和姓氏，以及对名字的限制（如果有，首字母必须大写，后续字母小写），全名前可以有可选的“Mr.”、“Mrs.”、“Ms.”或者“M.”作为称谓，以及灵活可选的姓氏，可以有多个单词、横线以及大写字母。』
 
@@ -296,7 +312,9 @@ If we add parentheses to both subpatterns such as (\w+)-(\d+), then we can acces
 
 One final aspect of regular expressions we have not touched upon yet include the extension notations that begin with the question mark symbol (? . . .). We are not going to spend a lot of time on these as they are generally used more to provide flags, perform look-ahead (or look-behind), or check conditionally before determining a match. Also, although parentheses are used with these notations, only (?P\<name>) represents a grouping for matches. All others do not create a group. However, you should still know what they are because they might be “the right tool for the job.”
 
-『 (?:\w+\.)* 以句点作为结尾的字符串，例如“google.”、“twitter.”、“facebook.”，但是这些匹配不会保存下来 供后续的使用和数据检索；(?#comment) 此处并不做匹配，只是作为注释；(?=.com) 如果一个字符串后面跟着“.com”才做匹配操作，并不使用任何目标字符串；(?!.net) 如果一个字符串后面不是跟着“.net”才做匹配操作；(?<=800-) 如果字符串之前为“800-”才做匹配，假定为电话号码，同样，并不使用任何输入字符串；(?<!192\.168\.) 如果一个字符串之前不是“192.168.” 才做匹配操作，假定用于过滤掉一组 C 类 IP 地址；(?(1)y|x) 如果一个匹配组 1(\1) 存在，就与 y 匹配；否则，就与 x 匹配。』
+1『在扩展表示法了 () 表示的分组失效了，除了 (?P\<name>) 这种形式。』
+
+『 (?:\w+\.)* 以句点作为结尾的字符串，例如“google.”、“twitter.”、“facebook.”，但是这些匹配不会保存下来供后续的使用和数据检索；(?#comment) 此处并不做匹配，只是作为注释；(?=.com) 如果一个字符串后面跟着“.com”才做匹配操作，并不使用任何目标字符串；(?!.net) 如果一个字符串后面不是跟着“.net”才做匹配操作；(?<=800-) 如果字符串之前为“800-”才做匹配，假定为电话号码，同样，并不使用任何输入字符串；(?<!192\.168\.) 如果一个字符串之前不是“192.168.” 才做匹配操作，假定用于过滤掉一组 C 类 IP 地址；(?(1)y|x) 如果一个匹配组 1(\1) 存在，就与 y 匹配；否则，就与 x 匹配。』
 
 ### 1.3 Regexes and Python
 
@@ -326,7 +344,7 @@ Optional flags may be given as arguments for specialized compilation. These flag
 
 These flags are also available as a parameter to most re module functions. If you want to use these flags with the methods, they must already be integrated into the compiled regex objects, or you need to use the (?F) notation directly embedded in the regex itself, where F is one or more of i (for re.I/IGNORECASE), m (for re.M/MULTILINE), s (for re.S/DOTALL), etc. If more than one is desired, you place them together rather than using the bitwise OR operation; for example, (?im) for both re.IGNORECASE plus re.MULTILINE.
 
-『如果需要编译，就使用编译过的方法；如果不需要编译，就使用函数。幸运的是，不管使用函数还是方法，它们的名字都是相同的（也许你曾对此感到好奇，这就是模块函数和方法的名字相同的原因，例如，search()、match() 等）。因为这在大 多数示例中省去一个小步骤，所以我们将使用字符串替代。我们仍将会遇到几个预编译代码的对象，这样就可以知道它的过程是怎么回事。对于一些特别的正则表达式编译，可选的标记可能以参数的形式给出，这些标记允许不区分大小写的匹配，使用系统的本地化设置来匹配字母数字，等等。请参考表 1-2 中的条目以及在正式的官方文档中查询关于这些标记（re.IGNORECASE、re.MULTILINE、re.DOTALL、 re.VERBOSE 等）的更多信息。它们可以通过按位或操作符（|）合并。这些标记也可以作为参数适用于大多数 re 模块函数。如果想要在方法中使用这些标记，它们必须已经集成到已编译的正则表达式对象之中，或者需要使用直接嵌入到正则表达式本身的（?F）标记，其中 F 是一个或者多个 i（用于 re.I/IGNORECASE）、m（用于 re.M/MULTILINE）、s（用于 re.S/DOTALL）等。如果想要同时使用多个，就把它们放在一起而不是使用按位或操作， 例如，（?im）可以用于同时表示 re.IGNORECASE 和 re.MULTILINE。』
+『如果需要编译，就使用编译过的方法；如果不需要编译，就使用函数。幸运的是，不管使用函数还是方法，它们的名字都是相同的（也许你曾对此感到好奇，这就是模块函数和方法的名字相同的原因，例如，search()、match() 等）。因为这在大多数示例中省去一个小步骤，所以我们将使用字符串替代。我们仍将会遇到几个预编译代码的对象，这样就可以知道它的过程是怎么回事。对于一些特别的正则表达式编译，可选的标记可能以参数的形式给出，这些标记允许不区分大小写的匹配，使用系统的本地化设置来匹配字母数字，等等。请参考表 1-2 中的条目以及在正式的官方文档中查询关于这些标记（re.IGNORECASE、re.MULTILINE、re.DOTALL、 re.VERBOSE 等）的更多信息。它们可以通过按位或操作符（|）合并。这些标记也可以作为参数适用于大多数 re 模块函数。如果想要在方法中使用这些标记，它们必须已经集成到已编译的正则表达式对象之中，或者需要使用直接嵌入到正则表达式本身的（?F）标记，其中 F 是一个或者多个 i（用于 re.I/IGNORECASE）、m（用于 re.M/MULTILINE）、s（用于 re.S/DOTALL）等。如果想要同时使用多个，就把它们放在一起而不是使用按位或操作， 例如，（?im）可以用于同时表示 re.IGNORECASE 和 re.MULTILINE。』
 
 ### 1.3.3 Match Objects and the group() and groups() Methods
 
@@ -362,6 +380,8 @@ The preceding match fails, thus None is assigned to m, and no action is taken du
 >>> m.group() 'foo'
 ```
 
+1『 match() 的原则必须是从字符串的首部开始匹配，所以匹配模式可以用「'/w*'」。注意一点，可以去匹配比正则模式更长的字符串。』
+
 As you can see, although the string is longer than the pattern, a successful match was made from the beginning of the string. The substring “foo” represents the match, which was extracted from the larger string. We can even sometimes bypass saving the result altogether, taking advantage of Python’s object-oriented nature:
 
 ```py
@@ -371,7 +391,7 @@ As you can see, although the string is longer than the pattern, a successful mat
 
 Note from a few paragraphs above that an AttributeError will be generated on a non-match.
 
-### 1.3.5 Looking for a Pattern within a String with search() (Searching versus Matching)
+#### 1.3.5 Looking for a Pattern within a String with search() (Searching versus Matching)
 
 The chances are greater that the pattern you seek is somewhere in the middle of a string, rather than at the beginning. This is where search() comes in handy. It works exactly in the same way as match, except that it searches for the first occurrence of the given regex pattern anywhere with its string argument. Again, a match object is returned on success; None is returned otherwise. We will now illustrate the difference between match() and search(). Let’s try a longer string match attempt. This time, let’s try to match our string “foo” to “seafood”:
 
@@ -542,6 +562,41 @@ As you can see, group() is used in the normal way to show the entire match, but 
 >>> m.groups() 
 ('ab', 'b')
 ```
+
+#### 1.3.10 Matching from the Beginning and End of Strings and on Word Boundaries
+
+The following examples highlight the positional regex operators. These apply more for searching than matching because match() always starts at the beginning of a string.
+
+```py
+>>> m = re.search('^The', 'The end.')   # match
+>>> if m is not None: m.group() 
+...
+'The'
+
+>>> m = re.search('^The', 'end. The')   # not at beginning
+>>> if m is not None: m.group() 
+...
+
+>>> m = re.search(r'\bthe', 'bite the dog') # at a boundary
+>>> if m is not None: m.group() 
+...
+'the'
+
+>>> m = re.search(r'\bthe', 'bitethe dog') # no boundary
+>>> if m is not None: m.group() 
+...
+
+>>> m = re.search(r'\Bthe', 'bitethe dog') # no boundary
+>>> if m is not None: m.group() 
+...
+'the'
+```
+
+You will notice the appearance of raw strings here. You might want to take a look at the Core Note, “Using Python raw strings,” toward the end of this chapter for clarification on why they are here. In general, it is a good idea to use raw strings with regular expressions.
+
+1『r'\bthe' 指原始字符串（ raw strings），传参的正则表达式用原始字符串。』
+
+There are four other re module functions and regex object methods that we think you should be aware of: findall(), sub(), subn(), and split().
 
 #### 1.3.11 Finding Every Occurrence with findall() and finditer()
 
