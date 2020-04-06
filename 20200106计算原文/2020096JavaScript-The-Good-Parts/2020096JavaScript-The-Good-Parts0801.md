@@ -1,3 +1,9 @@
+# 08 Methods
+
+Though this be madness, yet there is method in ’t.
+
+—William Shakespeare, The Tragedy of Hamlet,
+
 Prince of Denmark
 
 JavaScript includes a small set of standard methods that are available on the standard types.

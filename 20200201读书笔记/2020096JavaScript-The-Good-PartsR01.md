@@ -28,7 +28,7 @@ The prototype link is used only in retrieval. If we try to retrieve a property v
 
 Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern. The patterns differ in how the bonus parameter this is initialized.
 
-this 的值取决于调用模式（invocation pattern）：1）the method invocation pattern，方法式调用，this 绑定到该方法所隶属的对象（函数作为一个对象的某个属性值的时候才被称为方法），这个绑定是在调用时发生的；2）the function invocation pattern，函数式调用，this 绑定到全局变量上（JS 公认的设计错误），这导致内部函数无法通过 this 来访问外部函数的数据，即没法帮外部函数处理一些事情了，不过可以通过「var that = this; 」来解决；3）the constructor invocation pattern，构造函数式调用。这其实是对基于类的面向对象的妥协，用「new + 构造器函数」来调用构造器函数，会创建一个连接到构造函数原型链的新对象，this 绑定到这个新对象上。new 还会改变 return 语句的行为；4）the apply invocation pattern，apply 式调用。Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。
+this 的值取决于调用模式（invocation pattern）：1）the method invocation pattern，方法式调用，this 绑定到该方法所隶属的对象（函数作为一个对象的某个属性值的时候才被称为方法），这个绑定是在调用时发生的；2）the function invocation pattern，函数式调用，this 绑定到全局变量上（JS 公认的设计错误），这导致内部函数无法通过 this 来访问外部函数的数据，即没法帮外部函数处理一些事情了，不过可以通过「var that = this; 」来解决；3）the constructor invocation pattern，构造函数式调用。这其实是对基于类的面向对象的妥协，用「new + 构造器函数」来调用构造器函数，会创建一个连接到构造函数原型链的新对象，this 绑定到这个新对象上。new 还会改变 return 语句的行为；4）the apply invocation pattern，apply 式调用。Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get\_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。
 
 ### 0203. 术语卡——闭包
 
@@ -1553,10 +1553,3 @@ var factorial = memoizer([1, 1], function (shell, n) {
     return n * shell(n - 1);
 });
 ```
-
-## 05. Inheritance
-
-
-
-
-

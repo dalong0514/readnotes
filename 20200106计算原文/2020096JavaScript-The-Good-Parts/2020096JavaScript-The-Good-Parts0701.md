@@ -1,5 +1,13 @@
 # 07 Regular Expressions
 
+Whereas the contrary bringeth bliss,
+
+And is a pattern of celestial peace.
+
+Whom should we match with Henry, being a king...
+
+—William Shakespeare, The First Part of Henry the Sixth
+
 Many of JavaScript’s features were borrowed from other languages. The syntax came from Java, functions came from Scheme, and prototypal inheritance came from Self. JavaScript’s Regular Expression feature was borrowed from Perl.
 
 A regular expression is the specification of the syntax of a simple language. Regular expressions are used with methods to search, replace, and extract information from strings. The methods that work with regular expressions are regexp.exec, regexp.test, string.match, string.replace, string.search, and string.split. These will all be described in Chapter 8. Regular expressions usually have a significant performance advantage over equivalent string operations in JavaScript.
@@ -617,20 +625,4 @@ integer
 Matching tends to be greedy, matching as many repetitions as possible up to the limit, if there is one. If the quantifier has an extra ? suffix, then matching tends to be lazy, attempting to match as few repetitions as possible. It is usually best to stick with the greedy matching.
 
 Elements
-
-|
-
-77
-
-Chapter 8
-
-CHAPTER 8
-
-Methods
-
-8
-
-Though this be madness, yet there is method in ’t.
-
-—William Shakespeare, The Tragedy of Hamlet,
 

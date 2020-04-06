@@ -8,7 +8,7 @@ Instead, JavaScript provides an object that has some array-like characteristics.
 
 much more useful set of built-in methods, described in Chapter 8.
 
-Array Literals
+## 01. Array Literals
 
 Array literals provide a very convenient notation for creating new array values. An array literal is a pair of square brackets surrounding zero or more values separated by commas. An array literal can appear anywhere an expression can appear. The first value will get the property name '0', the second value will get the property name
 
@@ -66,7 +66,7 @@ Infinity
 
 misc.length // 10
 
-Length
+## 02. Length
 
 Every array has a length property. Unlike most other languages, JavaScript’s array length is not an upper bound. If you store an element with a subscript that is greater than or equal to the current length, the length will increase to contain the new element. There is no array bounds error.
 
@@ -104,7 +104,7 @@ numbers.push('go');
 
 // numbers is ['zero', 'one', 'two', 'shi', 'go']
 
-Delete
+## 03. Delete
 
 Since JavaScript’s arrays are really objects, the delete operator can be used to remove elements from an array:
 
@@ -120,15 +120,9 @@ Fortunately, JavaScript arrays have a splice method. It can do surgery on an arr
 
 The property whose value is 'shi' has its key changed from '4' to '3'. Because every property after the deleted property must be removed and reinserted with a new key, this might not go quickly for large arrays.
 
-Enumeration
+## 04. Enumeration
 
 Since JavaScript’s arrays are really objects, the for in statement can be used to iter-ate over all of the properties of an array. Unfortunately, for in makes no guarantee about the order of the properties, and most array applications expect the elements to be produced in numerical order. Also, there is still the problem with unexpected properties being dredged up from the prototype chain.
-
-60
-
-|
-
-Chapter 6: Arrays
 
 Fortunately, the conventional for statement avoids these problems. JavaScript’s for statement is similar to that in most C-like languages. It is controlled by three clauses—the first initializes the loop, the second is the while condition, and the third does the increment:
 
@@ -140,7 +134,7 @@ document.writeln(myArray[i]);
 
 }
 
-Confusion
+## 05. Confusion
 
 A common error in JavaScript programs is to use an object when an array is required or an array when an object is required. The rule is simple: when the property names are small sequential integers, you should use an array. Otherwise, use an object.
 
@@ -182,13 +176,7 @@ That will be false for all arrays. This is the most reliable test for arrayness 
 
 Having such a test, it is possible to write functions that do one thing when passed a single value and lots of things when passed an array of values.
 
-Confusion
-
-|
-
-61
-
-Methods
+## 06. Methods
 
 JavaScript provides a set of methods for acting on arrays. The methods are functions stored in Array.prototype. In Chapter 3, we saw that Object.prototype can be augmented. Array.prototype can be augmented as well.
 
@@ -246,12 +234,6 @@ var product = data.reduce(mult, 1);
 
 Because an array is really an object, we can add methods directly to an individual array:
 
-62
-
-|
-
-Chapter 6: Arrays
-
 // Give the data array a total function.
 
 data.total = function ( ) {
@@ -266,7 +248,7 @@ Since the string 'total' is not an integer, adding a total property to an array 
 
 It is not useful to use the Object.create method from Chapter 3 on arrays because it produces an object, not an array. The object produced will inherit the array’s values and methods, but it will not have the special length property.
 
-Dimensions
+## 07. Dimensions
 
 JavaScript arrays usually are not initialized. If you ask for a new array with [], it will be empty. If youaccess a missing element, youwill get the undefined value. If you are aware of that, or if youwill naturally set every element before youattempt to retrieve it, then all is well. But if you are implementing algorithms that assume that every element starts with a known value (such as 0), then you must prep the array yourself.
 
@@ -371,24 +353,4 @@ return mat;
 myMatrix = Array.identity(4);
 
 document.writeln(myMatrix[3][3]); // 1
-
-64
-
-|
-
-Chapter 6: Arrays
-
-Chapter 7
-
-CHAPTER 7
-
-Regular Expressions7
-
-Whereas the contrary bringeth bliss,
-
-And is a pattern of celestial peace.
-
-Whom should we match with Henry, being a king...
-
-—William Shakespeare, The First Part of Henry the Sixth Many of JavaScript’s features were borrowed from other languages. The syntax came from Java, functions came from Scheme, and prototypal inheritance came from Self.
 
