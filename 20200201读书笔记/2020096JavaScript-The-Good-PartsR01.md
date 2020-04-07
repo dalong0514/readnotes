@@ -34,11 +34,13 @@ this 的值取决于调用模式（invocation pattern）：1）the method invoca
 
 This quo function is designed to be used without the new prefix, so the name is not capitalized. When we call quo, it returns a new object containing a get\_status method. A reference to that object is stored in myQuo. The get\_status method still has privileged access to quo’s status property even though quo has already returned. get\_status does not have access to a copy of the parameter; it has access to the parameter itself. This is possible because the function has access to the context in which it was created. This is called closure.
 
-当我们调用 quo 时，它返回包含 get\_status 方法的一个新对象。该对象的一个引用保存在 myQuo 中。即使 quo 已经返回了，但 get\_status 方法仍然享有访问 quo 对象的 status 属性的特权。get\_status 方法并不是访问该参数的一个副本，它访问的就是该参数本身。因为该函数可以访问它被创建时所处的上下文环境。这被称为闭包。
+当我们调用 quo 时，它返回包含 get\_status 方法的一个新对象（调用函数即创建一个函数对象）。该对象的一个引用保存在 myQuo 中。即使 quo 已经返回了，但 get\_status 方法仍然享有访问 quo 对象的 status 属性的特权。get\_status 方法并不是访问该参数的一个副本，它访问的就是该参数本身。因为该函数可以访问它被创建时所处的上下文环境。这被称为闭包。
 
 ### 0204. 术语卡——Function
 
 The best thing about JavaScript is its implementation of functions. It got almost everything right. But, as you should expect with JavaScript, it didn’t get everything right. A function encloses a set of statements. Functions are the fundamental modular unit of JavaScript. They are used for code reuse, information hiding, and composition. Functions are used to specify the behavior of objects. Generally, the craft of programming is the factoring of a set of requirements into a set of functions and data structures.
+
+1『the craft of programming is the factoring of a set of requirements into a set of functions and data structures. 函数式编程的思想。』
 
 Functions in JavaScript are objects. Objects are collections of name/value pairs having a hidden link to a prototype object. Objects produced from object literals are linked to Object.prototype. Function objects are linked to Function.prototype (which is itself linked to Object.prototype). Every function is also created with two additional hidden properties: the function’s context and the code that implements the function’s behavior.
 
@@ -180,6 +182,8 @@ The standard that defines JavaScript (aka JScript) is the third edition of The E
 
 Appendix C describes a programming tool called JSLint, a JavaScript parser that can analyze a JavaScript program and report on the bad parts that it contains. JSLint provides a degree of rigor that is generally lacking in JavaScript development. It can give you confidence that your programs contain only the good parts.
 
+1『附录 C 作者给了个工具可以检测出代码里，糟糕的 JS 语法内容。』
+
 JavaScript is a language of many contrasts. It contains many errors and sharp edges, so you might wonder,「Why should I use JavaScript?」There are two answers. The first is that you don’t have a choice. The Web has become an important platform for application development, and JavaScript is the only language that is found in all browsers. It is unfortunate that Java failed in that environment; if it hadn’t, there could be a choice for people desiring a strongly typed classical language. But Java did fail and JavaScript is flourishing, so there is evidence that JavaScript did something right. The other answer is that, despite its deficiencies, JavaScript is really good. It is lightweight and expressive. And once you get the hang of it, functional programming is a lot of fun.
 
 1『原来 JS 就是面向函数式的编程。』
@@ -289,6 +293,8 @@ JavaScript has a single number type. Internally, it is represented as 64-bit flo
 
 If a number literal has an exponent part, then the value of the literal is computed by multiplying the part before the e by 10 raised to the power of the part after the e. So 100 and 1e2 are the same number. Negative numbers can be formed by using the – prefix operator. The value NaN is a number value that is the result of an operation that cannot produce a normal result. NaN is not equal to any value, including itself. You can detect NaN with the isNaN (number) function. The value Infinity represents all values greater than 1.79769313486231570e+308. Numbers have methods (see Chapter 8). JavaScript has a Math object that contains a set of methods that act on numbers. For example, the Math.floor (number) method can be used to convert a number into an integer.
 
+1『 JS 里的对象 Math 包含一系列对数字处理的方法。』
+
 ### 04. Strings
 
 A string literal can be wrapped in single quotes or double quotes. It can contain zero or more characters. The \ (backslash) is the escape character. JavaScript was built at a time when Unicode was a 16-bit character set, so all characters in JavaScript are 16 bits wide. JavaScript does not have a character type. To represent a character, make a string with just one character in it.
@@ -362,6 +368,8 @@ The do statement is like the while statement except that the expression is teste
 The try statement executes a block and catches any exceptions that were thrown by the block. The catch clause defines a new variable that will receive the exception object.
 
 The throw statement raises an exception. If the throw statement is in a try block, then control goes to the catch clause. Otherwise, the function invocation is abandoned, and control goes to the catch clause of the try in the calling function. The expression is usually an object literal containing a name property and a message property. The catcher of the exception can use that information to determine what to do.
+
+Throw 语句抛出一个异常。如果 throw 语句在一个 try 代码块中，那么控制流会跳转到 catch 从句中。如果 throw 语句在函数中，则该函数调用被放弃，控制流跳转到调用该函数的 try 语句的 catch 从句中。throw 语句中的表达式通常是一个对象字面量，它包含一个 name 属性和一个 message 属性。异常捕获器可以使用这些信息去决定该做什么。
 
 The return statement causes the early return from a function. It can also specify the value to be returned. If a return expression is not specified, then the return value will be undefined. JavaScript does not allow a line end between the return and the expression.
 
@@ -546,6 +554,10 @@ if (typeof Object.create !== 'function') {
 
 var another_stooge = Object.create(stooge);
 ```
+
+3『「2019013程勋非的重学前端R01.md」里正好有这个例子：这段代码创建了一个空函数作为类，并把传入的原型挂在了它的 prototype，最后创建了一个它的实例，根据 new 的行为，这将产生一个以传入的第一个参数为原型的对象。这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型，所以放到今天意义已经不大了。ES6 以来，JavaScript 提供了一系列内置函数，以便更为直接地访问操纵原型。三个方法分别为：1）Object.create 根据指定的原型创建新对象，原型可以是 null；2）Object.getPrototypeOf 获得一个对象的原型；3）Object.setPrototypeOf 设置一个对象的原型。利用这三个方法，我们可以完全抛开类的思维，利用原型来实现抽象和复用。ES6 中加入了新特性 class，new 跟 function 搭配的怪异行为终于可以退休了（虽然运行时没有改变），在任何场景，我都推荐使用 ES6 的语法来定义类，而令 function 回归原本的函数语义。』
+
+1『注意，winter 只是建议在用使用基于类的面向对象时使用新语法 class 来定义类，有些场景下照样可以用基于原型的面向对象。』
 
 The prototype link has no effect on updating. When we make changes to an object, the object’s prototype is not touched:
 

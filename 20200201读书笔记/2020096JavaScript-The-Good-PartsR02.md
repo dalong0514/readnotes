@@ -179,6 +179,27 @@ JavaScript is conflicted about its prototypal nature. Its prototype mechanism is
 
 Javascript 的原型存在着诸多矛盾。它的某些复杂的语法看起来就像那些基于类的语言，这些语法问题掩盖了它的原型机制。它不直接让对象从其他对象继承，反而插入了一个多余的间接层：通过构造器函数产生对象。
 
+1『
+
+作者说到点子上了，JS 放着好好的基于原型的面向对象特性不用，非要模仿基于类的面向对象，得不偿失。
+
+基于原型的面向对象，老版可以采用下面方法实现。创建了一个空函数作为类，并把传入的原型挂在了它的 prototype，最后创建了一个它的实例，根据 new 的行为，这将产生一个以传入的第一个参数为原型的对象。这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型，所以放到今天意义已经不大了。ES6 以来，JavaScript 提供了一系列内置函数，以便更为直接地访问操纵原型。三个方法分别为：1）Object.create 根据指定的原型创建新对象，原型可以是 null；2）Object.getPrototypeOf 获得一个对象的原型；3）Object.setPrototypeOf 设置一个对象的原型。利用这三个方法，我们可以完全抛开类的思维，利用原型来实现抽象和复用。
+
+基于类的面向对象，老版是通过插入了一个多余的间接层：通过构造器函数产生对象。这个方法很繁琐，ES6 新增了 class 语法来定义类。
+
+```js
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+    var F = function () {};
+    F.prototype = o;
+    return new F();
+};
+}
+var another_stooge = Object.create(stooge);  // 这个 create() 方法是自己定义的，新版的 JS 里提供了该方法。
+```
+
+』
+
 When a function object is created, the Function constructor that produces the function object runs some code like this:
 
     this.prototype = {constructor: this};
@@ -189,8 +210,7 @@ When a function is invoked with the constructor invocation pattern using the new
 
 新函数对象被赋予一个 prototype 属性，它的值是一个包含 constructor 属性且属性值为该新函数的对象。这个 prototype 对象是存放继承特征的地方。因为 Javascript 语言没有提供一种方法去确定哪个函数是打算用来做构造器的，所以每个函数都会得到一个 prototype 对象。constructor 属性没什么用，重要的是 prototype 对象。当采用构造器调用模式，即用 new 前缀去调用一个函数时，函数执行的方式会被修改。如果 new 运算符是一个方法而不是一个运算符，它可能会像这样执行：
 
-1『理清了之前的困惑，函数被创建时，最重要是其原型对象。被创建的函数会被给一个原型对象，这个原型对象里有一个构造器属性，其属性值就是这个新函数的对象。』
-
+1『理清了之前的困惑，用 new 构建一个函数，等价于采用构造器来构造函数。函数被创建时，最重要是其原型对象，因为一些列要继承的方法是在原型对象里面。新创建的函数对象会自带一个原型对象，该原型对象里有一个构造器属性（对象），其属性值就是这个新函数的对象。』
 
 ```js
 Function.method('new', function ( ) {
@@ -241,7 +261,6 @@ var Cat = function (name) {
 Cat.prototype = new Mammal( );
 
 // Augment the new prototype with purr and get_name methods.
-
 Cat.prototype.purr = function (n) {
     var i, s = '';
     for (i = 0; i < n; i += 1) {
@@ -267,7 +286,7 @@ The pseudoclassical pattern was intended to look sort of object-oriented, but it
 
 伪类模式本意是想向面向对象常拢，但它看起来格格不入。我们可以隐藏一些丑陋的细节，通过使用 method 方法来定义一个 inherits 方法实现：
 
-```
+```js
 Function.method('inherits', function (Parent) {
     this.prototype = new Parent( );
     return this;
@@ -311,11 +330,13 @@ The pseudoclassical form can provide comfort to programmers who are unfamiliar w
 
 我们现在有了行为像「类」的构造器函数，但仔细看它们，你会惊讶地发现：没有私有环境，所有的属性都是公开的。无法访问 super（父类）的方法。更糟糕的是，使用构造器函数存在一个严重的危害。如果你在调用构造器函数时忘记了在前面加上 new 前缀，那么 this 将不会被绑定到一个新对象上。悲剧的是，this 将被绑定到全局对象上，所以你不但没有扩充新对象，反而破坏了全局变量环境。那真是糟透了。发生那样的情况时，既没有编译时警告，也没有运行时警告。这是一个严重的语言设计错误。为了降低这个问题帯来的风险，所有的构造器函数都约定命名成首字母大写的形式，并且不以首字母大写的形式拼写任何其他的东西。这样我们至少可以通过目视检査去发现是否缺少了 new 前级。一个更好的备选方案就是根本不使用 new。「伪类」形式可以给不熟悉 Javascript 的程序员提供便利，但它也隐藏了该语言的真实的本质。借鉴类的表示法可能误导程序员去编写过于深入与复杂的层次结构。许多复杂的类层次结构产生的原因就是静态类型检査的约束。Javascript 完全摆脱了那些约束。在基于类的语言中，类继承是代码重用的唯一方式。而 Javascript 有着更多且更好的选择。
 
+1『许多复杂的类层次结构产生的原因就是静态类型检査的约束。Javascript 完全摆脱了那些约束，这是 JS 又一大优点，弱类型。』
+
 ### 02. Object Specifiers
 
 It sometimes happens that a constructor is given a very large number of parameters. This can be troublesome because it can be very difficult to remember the order of the arguments. In such cases, it can be much friendlier if we write the constructor to accept a single object specifier instead. That object contains the specification of the object to be constructed. So, instead of:
 
-有时候，构造器要接受一大串参数。这可能令人烦恼，因为要记住参数的顺序非常困难。在这种情况下，如果我们在编写构造器时让它接受一个简单的对象说明符，可能会更加友好。那个对象包含了将要构建的对象规格说明。
+有时候，构造器要接受一大串参数。这可能令人烦恼，因为要记住参数的顺序非常困难。在这种情况下，如果我们在编写构造器时让它接受一个简单的对象说明符，可能会更加友好。
 
 ```js
 var myObject = maker(f, l, m, c, s);
@@ -359,7 +380,8 @@ var myMammal = {
 Once we have an object that we like, we can make more instances with the Object. create method from Chapter 3. We can then customize the new instances:
 
 ```js
-var myCat = Object.create(myMammal);
+var myCat = Object.create(myMammal);  // 基于 myMammal 为原型对象创建新对象
+// 下面的属性都是新对象 myCat 的属性
 myCat.name = 'Henrietta';
 myCat.saying = 'meow';
 myCat.purr = function (n) {
@@ -382,6 +404,8 @@ myCat.get_name = function ( ) {
 This is differential inheritance. By customizing a new object, we specify the differences from the object on which it is based. Sometimes is it useful for data structures to inherit from other data structures. Here is an example: Suppose we are parsing a language such as JavaScript or TEX in which a pair of curly braces indicates a scope. Items defined in a scope are not visible outside of the scope. In a sense, an inner scope inherits from its outer scope. JavaScript objects are very good at representing this relationship. The block function is called when a left curly brace is encountered. The parse function will look up symbols from scope, and augment scope when it defines new symbols:
 
 有时候，它对某些数据结构继承于其他数据结构的情形非常有用。这里就有一个例子：假定我们要解析一门类似 Javascript 或 TEX 那样用一对花括号指示作用域的语言。定义在某个作用域里定义的条目在该作用域之外是不可见的。但在某种意义上，一个内部作用域会继承它的外部作用域。Javascript 在表示这样的关系上做得非常好。当遇到一个左花括号时 block 函数被调用。parse 函数将从 scope 中寻找符号，并且当它定义了新的符号时扩充 scope。
+
+1『 JS 里强大的函数（一种特殊的对象）可以解决私有属性的问题，用闭包来解决。』
 
 ```js
 var block = function ( ) {
@@ -421,8 +445,7 @@ Here is a pseudocode template for a functional constructor (boldface text added 
 
 我们从构造一个生成对象的函数开始。我们以小写字母开头来命名它，因为它并不需要使用 new 前缀。
 
-1『这里作者说的「创建新对象」其实对应于之前重点提到的，函数调用所用的 4 种方法。』
-
+1『第 1 步里说的「创建新对象」其实对应于之前重点提到的，函数调用所用的 4 种方法；第 3 步的思想是核心，在大函数里专门定义一个用于返回的函数（对象），由于存在闭包，这个对象的函数可以访问到大函数里所有的数值和方法，可以访问等价于继承了这些数值和方法。』
 
 ```js
 var constructor = function (spec, my) {
@@ -442,7 +465,7 @@ The spec object contains all of the information that the constructor needs to ma
 
 Next, declare the private instance variables and private methods for the object. This is done by simply declaring variables. The variables and inner functions of the constructor become the private members of the instance. The inner functions have access to spec and my and that and the private variables. Next, add the shared secrets to the my object. This is done by assignment: 
 
-    my. member = value;
+    my.member = value;
 
 Now, we make a new object and assign it to that. There are lots of ways to make a new object. We can use an object literal. We can call a pseudoclassical constructor with the new operator. We can use the Object.create method on a prototype object.
 
@@ -450,7 +473,7 @@ Or, we can call another functional constructor, passing it a spec object (possib
 
 Next, we augment that, adding the privileged methods that make up the object’s interface. We can assign new functions to members of that. Or, more securely, we can define the functions first as private methods, and then assign them to that: 
 
-```
+```js
 var methodical = function ( ) {
 ...
 };
@@ -461,7 +484,7 @@ The advantage to defining methodical in two steps is that if other methods want 
 
 Let’s apply this pattern to our mammal example. We don’t need my here, so we’ll just leave it out, but we will use a spec object. The name and saying properties are now completely private. They are accessible only via the privileged get_name and says methods:
 
-spec 对象包含构造器需要枃造一个新实例的所有信息。spec 的内容可能会被复制到私有变量中，或者被其他函数改变，或者方法可以在需要的时候访问 spec 的信息。（一个简化的方式是替换 spec 为一个单一的值。当构造对象过程中并不需要整个 spec 对象的时候，这是有用的。）my 对象是一个为继承链中的构造器提供秘密共享的容器。my 对象可以选择性地使用。如果没有传入一个 my 对象，那么会创建一个 my 对象。
+spec 对象包含构造器需要构造一个新实例的所有信息。spec 的内容可能会被复制到私有变量中，或者被其他函数改变，或者方法可以在需要的时候访问 spec 的信息。（一个简化的方式是替换 spec 为一个单一的值。当构造对象过程中并不需要整个 spec 对象的时候，这是有用的。）my 对象是一个为继承链中的构造器提供秘密共享的容器。my 对象可以选择性地使用。如果没有传入一个 my 对象，那么会创建一个 my 对象。
 
 接下来，声明该对象私有的实例变量和方法。通过简单地声明变量就可以做到。构造器的变量和内部函数变成了该实例的私有成员。内部函数可以访问 spec、my、that，以及其他私有变量。接下来，给 my 对象添加共享的秘密成员。这是通过赋值语句来实现的。
 
@@ -547,7 +570,7 @@ The functional pattern has a great deal of flexibility. It requires less effort 
 
 A durable object cannot be compromised. Access to a durable object does not give an attacker the ability to access the internal state of the object except as permitted by the methods.
 
-函数化模式有很大的灵活性。它相比伪类模式不仅带来的工作更少，还让我们得到更好的封装和信息隐藏，以及访问父类方法的能力。如果对象的所有状态都是私有的，那么该对象就成为一个「防伪」（(tamper-proof）对象。该对象的属性可以被替换或删除，但该对象的完整性不会受到损害。如果我们用函数化的样式创建一个对象，并且该对象的所有方法都不使用 this 或 that，那么该对象就是持久性（durable）的。一个持久性对象就是一个简单功能函数的集合。一个持久性的对象不会被入侵。访问一个持久性的对象时，除非有方法授权，否则攻击者不能访问对象的内部状态。
+函数化模式有很大的灵活性。它相比伪类模式不仅带来的工作更少，还让我们得到更好的封装和信息隐藏，以及访问父类方法的能力。如果对象的所有状态都是私有的，那么该对象就成为一个「防伪」（tamper-proof）对象。该对象的属性可以被替换或删除，但该对象的完整性不会受到损害。如果我们用函数化的样式创建一个对象，并且该对象的所有方法都不使用 this 或 that，那么该对象就是持久性（durable）的。一个持久性对象就是一个简单功能函数的集合。一个持久性的对象不会被入侵。访问一个持久性的对象时，除非有方法授权，否则攻击者不能访问对象的内部状态。
 
 ### 05. Parts
 
@@ -618,4 +641,5 @@ We could call eventuality on any individual object, bestowing it with event hand
 In this way, a constructor could assemble objects from a set of parts. JavaScript’s loose typing is a big benefit here because we are not burdened with a type system that is concerned about the lineage of classes. Instead, we can focus on the character of their contents. If we wanted eventuality to have access to the object’s private state, we could pass it the my bundle.
 
 我们可以在任何单独的对象上调用 eventuality，授予它事件处理方法。我们也可以赶在 that 被返回前在一个构造器函数中调用它；用这种方式，一个构造器函数可以从一套部件中把对象组装出来。Javascript 的弱类型在此处是一个巨大的优势，因为我们无须花费精力去了解对象在类型系统中的继承关系。相反我们只需专注于它们的个性特征。如果我们想要 eventuality 访问该对象的私有状态，可以把私有成员集 my 传递给它。
+
 
