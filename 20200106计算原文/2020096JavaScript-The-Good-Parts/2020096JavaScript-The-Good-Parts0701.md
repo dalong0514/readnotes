@@ -179,110 +179,60 @@ There are two ways to make a RegExp object. The preferred way, as we saw in the 
 
 ![](./res/2020028.png)
 
-Regular expression literals are enclosed in slashes. This can be a little tricky because slash is also used as the division operator and in comments.
-
-
-
-
-
-
-
+Regular expression literals are enclosed in slashes. This can be a little tricky because slash is also used as the division operator and in comments. 
 
 There are three flags that can be set on a RegExp. They are indicated by the letters g, i, and m, as listed in Table 7-1. The flags are appended directly to the end of the RegExp literal:
 
+```js
 // Make a regular expression object that matches
-
 // a JavaScript string.
-
 var my_regexp = /"(?:\\.|[^\\\"])*"/g;
+```
 
-Table 7-1. Flags for regular expressions
-
-Flag
-
-Meaning
-
-g
-
-Global (match multiple times; the precise meaning of this varies with the method) i
-
-Insensitive (ignore character case)
-
-m
-
-Multiline (^ and $ can match line-ending characters)
+1) g, Global (match multiple times; the precise meaning of this varies with the method). 2) i, Insensitive (ignore character case). 3) m, Multiline (^ and \$ can match line-ending characters).
 
 The other way to make a regular expression is to use the RegExp constructor. The constructor takes a string and compiles it into a RegExp object. Some care must be taken in building the string because backslashes have a somewhat different meaning in regular expressions than in string literals. It is usually necessary to double the backslashes and escape the quotes:
 
-// Make a regular expression object that matches
+创建这个字符串时请多加小心，因为反斜杠在正则表达式和在字符串字面量中有一些不同的含义。通常需要双写反斜杠，以及对引号进行转义。
 
+```js
+// Make a regular expression object that matches
 // a JavaScript string.
 
-var my_regexp =
+var my_regexp = new RegExp("\"(?:\\.|[^\\\\\\\"])*\"", 'g'); 
+```
 
-new RegExp("\"(?:\\.|[^\\\\\\\"])*\"", 'g'); The second parameter is a string specifying the flags. The RegExp constructor is useful when a regular expression must be generated at runtime using material that is not available to the programmer.
+The second parameter is a string specifying the flags. The RegExp constructor is useful when a regular expression must be generated at runtime using material that is not available to the programmer. RegExp objects contain the properties listed in Table 7-2.
 
-RegExp objects contain the properties listed in Table 7-2.
+Table 7-2. Properties of RegExp objects (Property | Use)
 
-Table 7-2. Properties of RegExp objects
+1) global. true if the g flag was used. 2) ignoreCase. true if the i flag was used. 3) lastIndex. The index at which to start the next exec match. Initially it is zero. 4) multiline. true if the m flag was used. 5) source. The source text of the regular expression.
 
-Property
+RegExp objects made by regular expression literals share a single instance: 
 
-Use
-
-global
-
-true if the g flag was used.
-
-ignoreCase
-
-true if the i flag was used.
-
-lastIndex
-
-The index at which to start the next exec match. Initially it is zero.
-
-multiline
-
-true if the m flag was used.
-
-source
-
-The source text of the regular expression.
-
-Construction
-
-|
-
-71
-
-RegExp objects made by regular expression literals share a single instance: function make_a_matcher( ) {
-
-return /a/gi;
-
+```js
+function make\_a\_matcher( ) {
+    return /a/gi;
 }
 
 var x = make_a_matcher( );
-
 var y = make_a_matcher( );
 
 // Beware: x and y are the same object!
-
 x.lastIndex = 10;
-
 document.writeln(y.lastIndex); // 10
+```
 
-Elements
+## 03. Elements
 
 Let’s look more closely at the elements that make up regular expressions.
 
-Regexp Choice
+### 1. Regexp Choice
 
-regexp choice
+![](./res/2020031.png)
 
-regexp sequence
 
-|
+
 
 A regexp choice contains one or more regexp sequences. The sequences are separated by the | (vertical bar) character. The choice matches if any of the sequences match. It attempts to match each of the sequences in order. So:
 
@@ -290,7 +240,7 @@ A regexp choice contains one or more regexp sequences. The sequences are separat
 
 matches the in in into. It wouldn’t match int because the match of in was successful.
 
-Regexp Sequence
+### 2. Regexp Sequence
 
 regexp sequence
 
@@ -300,11 +250,6 @@ regexp quantifier
 
 A regexp sequence contains one or more regexp factors. Each factor can optionally be followed by a quantifier that determines how many times the factor is allowed to appear. If there is no quantifier, then the factor will be matched one time.
 
-72
-
-|
-
-Chapter 7: Regular Expressions
 
 Regexp Factor
 
@@ -346,11 +291,6 @@ As in strings, \f is the formfeed character, \n is the newline character, \r is 
 
 \w is the same as [0-9A-Z_a-z]. \W is the opposite: [^0-9A-Z_a-z]. This is supposed to represent the characters that appear in words. Unfortunately, the class it defines is useless for working with virtually any real language. If you need to match a class of letters, you must specify your own class.
 
-Elements
-
-|
-
-73
 
 regexp escape
 

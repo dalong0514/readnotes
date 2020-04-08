@@ -819,7 +819,7 @@ When a function is not the property of an object, then it is invoked as a functi
 
 When a function is invoked with this pattern, this is bound to the global object. This was a mistake in the design of the language. Had the language been designed correctly, when the inner function is invoked, this would still be bound to the this  variable of the outer function. A consequence of this error is that a method cannot employ an inner function to help it do its work because the inner function does not share the method’s access to the object as its this is bound to the wrong value. Fortunately, there is an easy workaround. If the method defines a variable and assigns it the value of this, the inner function will have access to this through that variable. By convention, the name of that variable is that:
 
-1『对于「函数调用模式」，this 绑定到了全局对象上，这是 JS 的设计失误。倘若语言设计正确，那么当内部函数被调用时，this 应该仍然绑定到外部函数的 this 变量。这个设计错误的后果就是方法不能利用内部函数来帮助它工作，因为内部函数的 this 被绑定了错误的值，所以不能共享该方法对对象的访问权。幸运的是，有一个很容易的解决方案：如果该方法定义一个变量并给它赋值为 this，那么内部函数就可以通过那个变量访问到 this。按照约定，我把那个变量命名为 that。』
+对于「函数调用模式」，this 绑定到了全局对象上，这是 JS 的设计失误。倘若语言设计正确，那么当内部函数被调用时，this 应该仍然绑定到外部函数的 this 变量。这个设计错误的后果就是方法不能利用内部函数来帮助它工作，因为内部函数的 this 被绑定了错误的值，所以不能共享该方法对对象的访问权。幸运的是，有一个很容易的解决方案：如果该方法定义一个变量并给它赋值为 this，那么内部函数就可以通过那个变量访问到 this。按照约定，我把那个变量命名为 that。
 
 ```js
 var myObject = {
@@ -853,7 +853,9 @@ JavaScript itself is not confident in its prototypal nature, so it offers an obj
 
 If a function is invoked with the new prefix, then a new object will be created with a hidden link to the value of the function’s prototype member, and this will be bound to that new object. The new prefix also changes the behavior of the return statement. We will see more about that next.
 
-『如果在一个函数前面带上 new 来调用，那么背地里将会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上。new 也会改变 return 语句的行为。』
+如果在一个函数前面带上 new 来调用，那么背地里将会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上。new 也会改变 return 语句的行为。
+
+1『小程序里 let DBdata = new DBdevice(); 新对象 DBdata 被创建的时候有一个隐藏的连接，这个连接连到 DBdevice 的原型对象，即通过提取字符可以方法到原型对象里的方法，比如 DBdata.gettypedata()，同时在创建的时候，this 值是绑定到 DBdata 对象上的。』
 
 ```js
 // Create a constructor function called Quo.
@@ -875,7 +877,9 @@ document.writeln(myQuo.get_status( )); // confused
 
 Functions that are intended to be used with the new prefix are called constructors. By convention, they are kept in variables with a capitalized name. If a constructor is called without the new prefix, very bad things can happen without a compile-time or runtime warning, so the capitalization convention is really important. Use of this style of constructor functions is not recommended. We will see better alternatives in the next chapter.
 
-1『作为构造器的函数名约定首个字母大写，这样看到大写的就知道是构造器，不会漏掉 new 来构建新对象，如果漏掉的话会造成很严重的后果；不建议使用上面形式的构造器函数。』
+作为构造器的函数名约定首个字母大写，这样看到大写的就知道是构造器，不会漏掉 new 来构建新对象，如果漏掉的话会造成很严重的后果；不建议使用上面形式的构造器函数。
+
+1『上面形式创建的对象没有私有属性，后面的章节是利用闭包特性来实现私有属性的。』
 
 #### 4. The Apply Invocation Pattern
 
@@ -911,7 +915,7 @@ A bonus parameter that is available to functions when they are invoked is the ar
 
 当函数被调用时，会得到一个「免费」配送的参数，那就是 arguments 数组。函数可以通过此参数访问所有它被调用时传递给它的参数列表，包括那些没有被分配给函数声明时定义的形式参数的多余参数。这使得编写一个无须指定参数个数的函数成为可能。
 
-1『印证了之前说的，函数在调用的时候额外接收 2 个参数，this 和 parameters。In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern.』
+1『印证了之前说的，函数在调用的时候额外接收 2 个参数，this 和 parameters。In addition to the declared parameters, every function receives two additional parameters: this and arguments. 印象中后面有说到，arguments 数组可以是一个键值对象（待确认）。』
 
 ```js
 // Make a function that adds a lot of stuff.
@@ -1015,7 +1019,7 @@ Our trim method uses a regular expression. We will see much more about regular e
 
 The prototypes of the basic types are public structures, so care must be taken when mixing libraries. One defensive technique is to add a method only if the method is known to be missing:
 
-『基本类型的原型是公用结构，所以在类库混用时务必小心。一个保险的做法就是只在确定没有该方法时才添加它。』
+基本类型的原型是公用结构，所以在类库混用时务必小心。一个保险的做法就是只在确定没有该方法时才添加它。
 
 ```js
 // Add a method conditionally.
@@ -1032,7 +1036,7 @@ Another concern is that the for in statement interacts badly with prototypes. We
 
 A recursive function is a function that calls itself, either directly or indirectly. Recursion is a powerful programming technique in which a problem is divided into a set of similar subproblems, each solved with a trivial solution. Generally, a recursive function calls itself to solve its subproblems.
 
-1『Recursion 体现了解决问题时采用分解的思维模式。』
+1『 Recursion 体现了解决问题时采用分解的思维模式。』
 
 The Towers of Hanoi is a famous puzzle. The equipment includes three posts and a set of discs of various diameters with holes in their centers. The setup stacks all of the discs on the source post with smaller discs on top of larger discs. The goal is to move the stack to the destination post by moving one disc at a time to another post, never placing a larger disc on a smaller disc. This puzzle has a trivial recursive solution: 
 
@@ -1104,7 +1108,7 @@ var getElementsByAttribute = function (att, value) {
 
 Some languages offer the tail recursion optimization. This means that if a function returns the result of invoking itself recursively, then the invocation is replaced with a loop, which can significantly speed things up. Unfortunately, JavaScript does not currently provide tail recursion optimization. Functions that recurse very deeply can fail by exhausting the return stack:
 
-一些语言提供了「尾递归」优化。这意味着如果一个函数返回自身递归调用的结果，那么调用的过程会被替换为一个循环，它可以显著提高速度。遗憾的是，Javascript 当前并没有提供尾递归优化。深度递归的函数可能会因为堆栈溢出而运行失败。尾递归（tail recursion 或 tail-end recursion）是一种在函数的最后执行递归调用语白的特殊形式的递归。
+一些语言提供了「尾递归」优化。这意味着如果一个函数返回自身递归调用的结果，那么调用的过程会被替换为一个循环，它可以显著提高速度。遗憾的是，Javascript 当前并没有提供尾递归优化。深度递归的函数可能会因为堆栈溢出而运行失败。尾递归（tail recursion 或 tail-end recursion）是一种在函数的最后执行递归调用语句的特殊形式的递归。
 
 ```js
 // Make a factorial function with tail
@@ -1142,7 +1146,7 @@ var foo = function ( ) {
 };
 ```
 
-1『JS 里函数就是一种对象，既然是对象那么所有针对对象的操作都可以针对函数，比如当作一个参数、比如赋值给一个变量等等。而函数的声明有两大类，一是常规的函数式，一是函数表达式（就把整个函数当作一个表达式，可以用 () 把整个函数包起来）。』
+1『 JS 里函数就是一种对象，既然是对象那么所有针对对象的操作都可以针对函数，比如当作一个参数、比如赋值给一个变量等等。而函数的声明有两大类，一是常规的函数式，一是函数表达式（就把整个函数当作一个表达式，可以用 () 把整个函数包起来）。』
 
 Most languages with C syntax have block scope. All variables defined in a block (a list of statements wrapped with curly braces) are not visible from outside of the block. The variables defined in a block can be released when execution of the block is finished. This is a good thing.
 
@@ -1162,7 +1166,7 @@ A more interesting case is when the inner function has a longer lifetime than it
 
 Instead of initializing myObject with an object literal, we will initialize myObject by calling a function that returns an object literal. That function defines a value variable. That variable is always available to the increment and getValue methods, but the function’s scope keeps it hidden from the rest of the program: 
 
-我们的 getelementsbyattribute 函数可以工作，是因为它声明了一个 results 变量，而传递给 walk\ _the_DOM 的内部函数也可以访问 results 变量。一个更有趣的情形是内部函数拥有比它的外部函数更长的生命周期。之前，我们构造了一个 myObject 对象，它拥有一个 value 属性和一个 increment 方法。假定我们希望保护该值不会被非法更改。和以对象字面量形式去初始化 myObject 不同，我们通过调用一个函数的形式去初始化 myObject，该函数会返回一个对象字面量。函数里定义了一个 value 变量。该变量对 increment 和 getValue 方法总是可用的，但函数的作用域使得它对其他的程序来说是不可见的。
+我们的 getelementsbyattribute 函数可以工作，是因为它声明了一个 results 变量，而传递给 walk\_the_DOM 的内部函数也可以访问 results 变量。一个更有趣的情形是内部函数拥有比它的外部函数更长的生命周期。之前，我们构造了一个 myObject 对象，它拥有一个 value 属性和一个 increment 方法。假定我们希望保护该值不会被非法更改。和以对象字面量形式去初始化 myObject 不同，我们通过调用一个函数的形式去初始化 myObject，该函数会返回一个对象字面量。函数里定义了一个 value 变量。该变量对 increment 和 getValue 方法总是可用的，但函数的作用域使得它对其他的程序来说是不可见的。
 
 ```js
 var myObject = function ( ) {
@@ -1291,7 +1295,7 @@ Now, instead of assigning a function to onclick, we define a function and immedi
 
 避免在循环中创建函数，它可能只会带来无谓的计算，还会引起混淆，正如上面那个糟糕的例子。我们可以先在循环之外创建一个辅助函数，让这个辅助函数再返回一个绑定了当前立值的函数，这样就不会导致混淆了。
 
-1『这里的知识点直觉删感觉很重要，目前还没弄明白。（2020-03-29）』
+1『这里的知识点感觉很重要，目前还没弄明白。（2020-03-29）』
 
 ### 11. Callbacks
 
@@ -1328,7 +1332,7 @@ But where should we keep the object? We could put it in a global variable, but g
 
 可以把它定义在该函数的内部，但是那会带来运行时的损耗，因为每次执行该函数的时候该字面量都会被求值一次。理想的方式是把它放入一个闭包，而且也许还能提供一个增加更多字符实体的扩展方法。
 
-1『这就是闭包的一个应用场景。』
+1『这又是闭包的一个应用场景。』
 
 ```js
 String.method('deentityify', function ( ) {
@@ -1454,7 +1458,7 @@ In this example, the getElement function produces an object that gives functiona
 
 Functions are values, and we can manipulate function values in interesting ways. Currying allows us to produce a new function by combining a function and an argument:
 
-『函数也是值，从而我们可以用有趣的方式去操作函数值。柯里化允许我们把函数与传递给它的参数相结合，产生出一个新的函数。』
+函数也是值，从而我们可以用有趣的方式去操作函数值。柯里化允许我们把函数与传递给它的参数相结合，产生出一个新的函数。
 
 ```js
 var add1 = add.curry(1);
@@ -1522,15 +1526,15 @@ This works, but it is doing a lot of unnecessary work. The fibonacci function is
 
 ```js
 var fibonacci = function ( ) {
-var memo = [0, 1];
-var fib = function (n) {
-var result = memo[n];
-if (typeof result !== 'number') {
-    result = fib(n - 1) + fib(n - 2); memo[n] = result;
-}
-return result;
-};
-return fib;
+    var memo = [0, 1];
+    var fib = function (n) {
+        var result = memo[n];
+        if (typeof result !== 'number') {
+            result = fib(n - 1) + fib(n - 2); memo[n] = result;
+        }
+        return result;
+        };
+    return fib;
 }( );
 ```
 

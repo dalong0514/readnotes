@@ -30,8 +30,6 @@ a.push('d');
 
 var c = a.join(''); // c is 'abcd';
 
-78
-
 array.pop( )
 
 The pop and push methods make an array work like a stack. The pop method removes and returns the last element in this array. If the array is empty, it returns undefined.
@@ -1083,16 +1081,3 @@ var a = String.fromCharCode(67, 97, 116);
 // a is 'Cat'
 
 String
-
-|
-
-93
-
-Chapter 9
-
-CHAPTER 9
-
-Style
-
-9
-

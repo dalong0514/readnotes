@@ -1,3 +1,5 @@
+# 09 Style
+
 Here is a silly stately style indeed!
 
 —William Shakespeare, The First Part of Henry the Sixth Computer programs are the most complex things that humans make. Programs are made up of a huge number of parts, expressed as functions, statements, and expressions that are arranged in sequences that must be virtually free of error. The runtime behavior has little resemblance to the program that implements it. Software is usually expected to be modified over the course of its productive life. The process of converting one correct program into a different correct program is extremely challenging.
@@ -109,22 +111,4 @@ Quality was not a motivating concern in the design, implementation, or standardi
 JavaScript provides support for large programs, but it also provides forms and idioms that work against large programs. For example, JavaScript provides conveniences for the use of global variables, but global variables become increasingly problematic as programs scale in complexity.
 
 I use a single global variable to contain an application or library. Every object has its own namespace, so it is easy to use objects to organize my code. Use of closure provides further information hiding, increasing the strength of my modules.
-
-Style
-
-|
-
-97
-
-Chapter 10
-
-CHAPTER 10
-
-Beautiful Features
-
-10
-
-Thus, expecting thy reply, I profane my lips on thy foot, my eyes on thy picture, and my heart on thy
-
-every part. Thine, in the dearest design of industry...
 
