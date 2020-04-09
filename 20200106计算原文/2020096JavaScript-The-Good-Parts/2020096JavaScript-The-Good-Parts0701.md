@@ -231,338 +231,116 @@ Let’s look more closely at the elements that make up regular expressions.
 
 ![](./res/2020031.png)
 
-
-
-
 A regexp choice contains one or more regexp sequences. The sequences are separated by the | (vertical bar) character. The choice matches if any of the sequences match. It attempts to match each of the sequences in order. So:
 
-"into".match(/in|int/)
+    "into".match(/in|int/)
 
 matches the in in into. It wouldn’t match int because the match of in was successful.
 
 ### 2. Regexp Sequence
 
-regexp sequence
-
-regexp factor
-
-regexp quantifier
+![](./res/2020032.png)
 
 A regexp sequence contains one or more regexp factors. Each factor can optionally be followed by a quantifier that determines how many times the factor is allowed to appear. If there is no quantifier, then the factor will be matched one time.
 
+### 3. Regexp Factor
 
-Regexp Factor
-
-regexp factor
-
-any Unicode character except / and \ and
-
-[ and ] and ( and ) and { and } and ? and
-
-+ and * and | and control character
-
-regexp escape
-
-regexp class
-
-regexp group
+![](./res/2020033.png)
 
 A regexp factor can be a character, a parenthesized group, a character class, or an escape sequence. All characters are treated literally except for the control characters and the special characters:
 
-\ / [ ] ( ) { } ? + * | . ^ $
+    \ / [ ] ( ) { } ? + * | . ^ $
+
+1『正则里的特殊字符就上面的几个，牢记哦。』
 
 which must be escaped with a \ prefix if they are to be matched literally. When in doubt, any special character can be given a \ prefix to make it literal. The \ prefix does not make letters or digits literal.
 
-An unescaped . matches any character except a line-ending character.
+An unescaped . matches any character except a line-ending character. An unescaped ^ matches the beginning of the text when the lastIndex property is zero. It can also match line-ending characters when the m flag is specified. An unescaped \$ matches the end of the text. It can also match line-ending characters when the m flag is specified.
 
-An unescaped ^ matches the beginning of the text when the lastIndex property is zero. It can also match line-ending characters when the m flag is specified.
+1『加上标识符 (?s) 的话，点号也可以匹配换行符 \n。』
 
-An unescaped $ matches the end of the text. It can also match line-ending characters when the m flag is specified.
+当 lastindex 属性值为 0 时，一个未转义的 ^ 会匹配文本的开始。当指定了 m 标识时，它也能匹配行结束符。一个未转义的 \$ 将匹配文本的结束。当指定了 m 标识时，它也能匹配行结束符。
 
-Regexp Escape
+### 4. Regexp Escape
 
 The backslash character indicates escapement in regexp factors as well as in strings, but in regexp factors, it works a little differently.
 
-As in strings, \f is the formfeed character, \n is the newline character, \r is the carriage return character, \t is the tab character, and \u allows for specifying a Unicode character as a 16-bit hex constant. In regexp factors, \b is not the backspace character.
-
-\d is the same as [0-9]. It matches a digit. \D is the opposite: [^0-9].
+As in strings, \f is the formfeed character, \n is the newline character, \r is the carriage return character, \t is the tab character, and \u allows for specifying a Unicode character as a 16-bit hex constant. In regexp factors, \b is not the backspace character. \d is the same as [0-9]. It matches a digit. \D is the opposite: [^0-9]. 
 
 \s is the same as [\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]. This is a partial set of Unicode whitespace characters. \S is the opposite: [^\f\n\r\t\u000B\u0020\u00A0\u2028\ u2029].
 
 \w is the same as [0-9A-Z_a-z]. \W is the opposite: [^0-9A-Z_a-z]. This is supposed to represent the characters that appear in words. Unfortunately, the class it defines is useless for working with virtually any real language. If you need to match a class of letters, you must specify your own class.
 
+像在字符串中一样，\f 是换页符，\n 是换行符，\r 是回车符，\t 是制表（tab）符，并且\ u 允许指定一个 Unicode 字符来表示一个十六进制的常量。但在正则表达式因子中，\b 不是退格（backspace）符。\w 本意是希望表示出现在话语中的字符。遗憾的是，它所定义的类实际上对任何真正的语言来说都不起作用，如果你需要匹配信件一类的文本，你必须指定自己的类。
 
-regexp escape
-
-\
-
-not
-
-formfeed
-
-word boundary
-
-f
-
-B
-
-b
-
-newline
-
-digit
-
-n
-
-D
-
-d
-
-carriage
-
-whitespace
-
-r
-
-return
-
-S
-
-s
-
-tab
-
-word character
-
-t
-
-W
-
-w
-
-literal
-
-u
-
-4
-
-hexadecimal
-
-any special character
-
-digits
-
-back reference
-
-integer
+![](./res/2020034.png)
 
 A simple letter class is [A-Za-z\u00C0-\u1FFF\u2800-\uFFFD]. It includes all of Unicode’s letters, but it also includes thousands of characters that are not letters. Unicode is large and complex. An exact letter class of the Basic Multilingual Plane is possible, but would be huge and inefficient. JavaScript’s regular expressions provide extremely poor support for internationalization.
 
 \b was intended to be a word-boundary anchor that would make it easier to match text on word boundaries. Unfortunately, it uses \w to find word boundaries, so it is completely useless for multilingual applications. This is not a good part.
 
-\1 is a reference to the text that was captured by group 1 so that it can be matched again. For example, you could search text for duplicated words with: var doubled_words =
+\1 is a reference to the text that was captured by group 1 so that it can be matched again. For example, you could search text for duplicated words with: 
 
-/[A-Za-z\u00C0-\u1FFF\u2800-\uFFFD'\-]+\s+\1/gi;
+doubled_words looks for occurrences of words (strings containing 1 or more letters) followed by whitespace followed by the same word. \2 is a reference to group 2, \3 is a reference to group 3, and so on.
 
-doubled_words looks for occurrences of words (strings containing 1 or more letters) followed by whitespace followed by the same word.
+```js
+var doubled_words =
+    /[A-Za-z\u00C0-\u1FFF\u2800-\uFFFD'\-]+\s+\1/gi;
+```
 
-\2 is a reference to group 2, \3 is a reference to group 3, and so on.
+\b 被指定为一个字边界标识，它方便用于对文本的字边界进行匹配。遗憾的是，它使用 \w 去寻找字边界，所以它对多语言应用来说是完全无用的。这并不是个好的特性。\1 是指向分组 1 所捕获到的文本的一个引用，所以它能被再次匹配。例如，你能用下面的正则表达式来搜索文本中的重复的单词。Doubled words 会寻找重复的单词（包含一个或多个字母的字符串），该单词的后面跟着个或多个空白，然后再跟着与它相同的单词。
 
-Regexp Group
+### 5. Regexp Group
 
 There are four kinds of groups:
 
-Capturing
+1) Capturing. A capturing group is a regexp choice wrapped in parentheses. The characters that match the group will be captured. Every capture group is given a number. The first capturing ( in the regular expression is group 1. The second capturing ( in the regular expression is group 2.
 
-A capturing group is a regexp choice wrapped in parentheses. The characters that match the group will be captured. Every capture group is given a number.
+![](./res/2020035.png)
 
-The first capturing ( in the regular expression is group 1. The second capturing (
+2) Noncapturing. A noncapturing group has a (?: prefix. A noncapturing group simply matches; it does not capture the matched text. This has the advantage of slight faster performance. Noncapturing groups do not interfere with the numbering of capturing groups.
 
-in the regular expression is group 2.
+3) Positive lookahead. A positive lookahead group has a (?= prefix. It is like a noncapturing group except that after the group matches, the text is rewound to where the group started, effectively matching nothing. This is not a good part. 4) Negative lookahead. A negative lookahead group has a (?! prefix. It is like a positive lookahead group, except that it matches only if it fails to match. This is not a good part.
 
-regexp group
+非捕获型分组有一个 (?: 前缀。非捕获型分组仅做简单的匹配，并不会捕获所匹配的文本。这会带来微弱的性能优势。非捕获型分组不会干扰捕获型分组的编号。向前正向匹配分组类似于非捕获型分组，但在这个组匹配后，文本会倒回到它开始的地方，实际上并不匹配任何东西。这不是一个好的特性。向前负向匹配分组类似于向前正向匹配分组，但只有当它匹配失败时它才继续向前进行匹配。这不是一个好的特性。
 
-capturing
+### 6. Regexp Class
 
-(
+![](./res/2020036.png)
 
-regexp choice
+A regexp class is a convenient way of specifying one of a set of characters. For example, if we wanted to match a vowel, we could write (?:a | e | i | o | u), but it is more conveniently written as the class [aeiou]. Classes provide two other conveniences. The first is that ranges of characters can be specified. So, the set of 32 ASCII special characters:
 
-)
-
-noncapturing
-
-?
-
-:
-
-positive lookahead
-
-=
-
-negative lookahead
-
-!
-
-Noncapturing
-
-A noncapturing group has a (?: prefix. A noncapturing group simply matches; it does not capture the matched text. This has the advantage of slight faster performance. Noncapturing groups do not interfere with the numbering of capturing groups.
-
-Positive lookahead
-
-A positive lookahead group has a (?= prefix. It is like a noncapturing group except that after the group matches, the text is rewound to where the group started, effectively matching nothing. This is not a good part.
-
-Negative lookahead
-
-A negative lookahead group has a (?! prefix. It is like a positive lookahead group, except that it matches only if it fails to match. This is not a good part.
-
-Regexp Class
-
-regexp class
-
-[
-
-^
-
-any Unicode character except / and \
-
-]
-
-and [ and ] and ^ and - and
-
-control character
-
--
-
-regexp class escape
-
-A regexp class is a convenient way of specifying one of a set of characters. For example, if we wanted to match a vowel, we could write (?:a|e|i|o|u), but it is more conveniently written as the class [aeiou].
-
-Classes provide two other conveniences. The first is that ranges of characters can be specified. So, the set of 32 ASCII special characters:
-
+```js
 ! " # $ % & ' ( ) * + , - . / :
-
 ; < = > ? @ [ \ ] ^ _ ` { | } ~
-
-Elements
-
-|
-
-75
+```
 
 could be written as:
 
-(?:!|"|#|\$|%|&|'|\(|\)|\*|\+|,|-|\.|\/|:|;|<|=|>|@|\[|\\|]|\^|_|` |\{|\||\}|~) but is slightly more nicely written as:
+    (?:!|"|#|\$|%|&|'|\(|\)|\*|\+|,|-|\.|\/|:|;|<|=|>|@|\[|\\|]|\^|_|` |\{|\||\}|~) 
 
-[!-\/:-@\[-`{-~]
+but is slightly more nicely written as:
 
-which includes the characters from ! through / and : through @ and [ through ànd
+    [!-\/:-@\[-`{-~]
 
-{ through ~. It is still pretty nasty looking.
+which includes the characters from ! through / and : through @ and [ through ànd { through ~. It is still pretty nasty looking. The other convenience is the complementing of a class. If the first character after the [ is ^, then the class excludes the specified characters. So [^!-\/:-@\[-`{-~] matches any character that is not one of the ASCII special characters.
 
-The other convenience is the complementing of a class. If the first character after the
+它包括从 ！到 /、从 ：到 、从（ 到 ` 和从 [ 到 ~ 的字符。但它看起来依旧相当难以阅读。另一个方便之处是类的求反。如果 [ 后的第一个字符是 ^，那么这个类会排除这些特殊字符，所以取反的正则会匹配任何一个非 ASCI 特殊字符的字符。
 
-[ is ^, then the class excludes the specified characters.
+### 7. Regexp Class Escape
 
-So [^!-\/:-@\[-`{-~] matches any character that is not one of the ASCII special characters.
-
-Regexp Class Escape
-
-regexp class escape
-
-backspace
-
-\
-
-b
-
-not
-
-formfeed
-
-f
-
-newline
-
-digit
-
-n
-
-D
-
-d
-
-carriage
-
-whitespace
-
-r
-
-return
-
-S
-
-s
-
-tab
-
-word character
-
-t
-
-W
-
-w
-
-literal
-
-u
-
-4
-
-hexadecimal
-
-any special character
-
-digits
+![](./res/2020037.png)
 
 The rules of escapement within a character class are slightly different than those for a regexp factor. [\b] is the backspace character. Here are the special characters that should be escaped in a character class:
 
-- / [ \ ] ^
+    - / [ \ ] ^
 
-Regexp Quantifier
+### 8. Regexp Quantifier
 
-A regexp factor may have a regexp quantifier suffix that determines how many times the factor should match. A number wrapped in curly braces means that the factor should match that many times. So, /www/ matches the same as /w{3}/. {3,6} will match 3, 4, 5, or 6 times. {3,} will match 3 or more times.
+![](./res/2020038.png)
 
-76
-
-|
-
-Chapter 7: Regular Expressions
-
-regexp quantifier
-
-?
-
-?
-
-*
-
-+
-
-{
-
-integer
-
-,
-
-integer
-
-}
-
-? is the same as {0,1}. * is the same as {0,}. + is the same as {1,}.
+A regexp factor may have a regexp quantifier suffix that determines how many times the factor should match. A number wrapped in curly braces means that the factor should match that many times. So, /www/ matches the same as /w{3}/. {3,6} will match 3, 4, 5, or 6 times. {3,} will match 3 or more times. ? is the same as {0,1}. * is the same as {0,}. + is the same as {1,}.
 
 Matching tends to be greedy, matching as many repetitions as possible up to the limit, if there is one. If the quantifier has an extra ? suffix, then matching tends to be lazy, attempting to match as few repetitions as possible. It is usually best to stick with the greedy matching.
 
-Elements
-
+如果只有一个量词，表示趋向于进行贪梦性匹配，即匹配尽可能多的副本直至达到上限。如果这个量词附加一个后缀 ?，则表示趋向于进行非贪梦匹配，即只匹配必要的副本就好。一般情况下最好坚持使用贪婪性匹配。

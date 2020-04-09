@@ -929,7 +929,6 @@ The (?:...)? indicates an optional noncapturing group. It is usually better to u
 
 This is another optional noncapturing group. It matches e (or E), an optional sign, and one or more digits.
 
-
 ## 02. Construction
 
 There are two ways to make a RegExp object. The preferred way, as we saw in the examples, is to use a regular expression literal. Regular expression literals are enclosed in slashes. This can be a little tricky because slash is also used as the division operator and in comments. There are three flags that can be set on a RegExp. They are indicated by the letters g, i, and m, as listed in Table 7-1. The flags are appended directly to the end of the RegExp literal:
@@ -972,4 +971,327 @@ x.lastIndex = 10;
 document.writeln(y.lastIndex); // 10
 ```
 
+### 03. Elements
 
+Let’s look more closely at the elements that make up regular expressions.
+
+1『正则表达式里的元素，这个概念加进自学正则表达式的知识框架内，目前的体系里有正则的结构、元素。』
+
+#### 1. Regexp Choice
+
+A regexp choice contains one or more regexp sequences. The sequences are separated by the | (vertical bar) character. The choice matches if any of the sequences match. It attempts to match each of the sequences in order. So:
+
+    "into".match(/in|int/)
+
+matches the in in into. It wouldn’t match int because the match of in was successful.
+
+#### 2. Regexp Sequence
+
+A regexp sequence contains one or more regexp factors. Each factor can optionally be followed by a quantifier that determines how many times the factor is allowed to appear. If there is no quantifier, then the factor will be matched one time.
+
+#### 3. Regexp Factor
+
+A regexp factor can be a character, a parenthesized group, a character class, or an escape sequence. All characters are treated literally except for the control characters and the special characters:
+
+    \ / [ ] ( ) { } ? + * | . ^ $
+
+1『正则里的特殊字符就上面的几个，牢记哦。』
+
+which must be escaped with a \ prefix if they are to be matched literally. When in doubt, any special character can be given a \ prefix to make it literal. The \ prefix does not make letters or digits literal.
+
+An unescaped . matches any character except a line-ending character. An unescaped ^ matches the beginning of the text when the lastIndex property is zero. It can also match line-ending characters when the m flag is specified. An unescaped \$ matches the end of the text. It can also match line-ending characters when the m flag is specified.
+
+1『加上标识符 (?s) 的话，点号也可以匹配换行符 \n。』
+
+当 lastindex 属性值为 0 时，一个未转义的 ^ 会匹配文本的开始。当指定了 m 标识时，它也能匹配行结束符。一个未转义的 \$ 将匹配文本的结束。当指定了 m 标识时，它也能匹配行结束符。
+
+#### 4. Regexp Escape
+
+The backslash character indicates escapement in regexp factors as well as in strings, but in regexp factors, it works a little differently.
+
+As in strings, \f is the formfeed character, \n is the newline character, \r is the carriage return character, \t is the tab character, and \u allows for specifying a Unicode character as a 16-bit hex constant. In regexp factors, \b is not the backspace character. \d is the same as [0-9]. It matches a digit. \D is the opposite: [^0-9]. 
+
+\s is the same as [\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]. This is a partial set of Unicode whitespace characters. \S is the opposite: [^\f\n\r\t\u000B\u0020\u00A0\u2028\ u2029].
+
+\w is the same as [0-9A-Z_a-z]. \W is the opposite: [^0-9A-Z_a-z]. This is supposed to represent the characters that appear in words. Unfortunately, the class it defines is useless for working with virtually any real language. If you need to match a class of letters, you must specify your own class.
+
+像在字符串中一样，\f 是换页符，\n 是换行符，\r 是回车符，\t 是制表（tab）符，并且\ u 允许指定一个 Unicode 字符来表示一个十六进制的常量。但在正则表达式因子中，\b 不是退格（backspace）符。\w 本意是希望表示出现在话语中的字符。遗憾的是，它所定义的类实际上对任何真正的语言来说都不起作用，如果你需要匹配信件一类的文本，你必须指定自己的类。
+
+A simple letter class is [A-Za-z\u00C0-\u1FFF\u2800-\uFFFD]. It includes all of Unicode’s letters, but it also includes thousands of characters that are not letters. Unicode is large and complex. An exact letter class of the Basic Multilingual Plane is possible, but would be huge and inefficient. JavaScript’s regular expressions provide extremely poor support for internationalization.
+
+\b was intended to be a word-boundary anchor that would make it easier to match text on word boundaries. Unfortunately, it uses \w to find word boundaries, so it is completely useless for multilingual applications. This is not a good part.
+
+\1 is a reference to the text that was captured by group 1 so that it can be matched again. For example, you could search text for duplicated words with: 
+
+doubled_words looks for occurrences of words (strings containing 1 or more letters) followed by whitespace followed by the same word. \2 is a reference to group 2, \3 is a reference to group 3, and so on.
+
+```js
+var doubled_words =
+    /[A-Za-z\u00C0-\u1FFF\u2800-\uFFFD'\-]+\s+\1/gi;
+```
+
+\b 被指定为一个字边界标识，它方便用于对文本的字边界进行匹配。遗憾的是，它使用 \w 去寻找字边界，所以它对多语言应用来说是完全无用的。这并不是个好的特性。\1 是指向分组 1 所捕获到的文本的一个引用，所以它能被再次匹配。例如，你能用下面的正则表达式来搜索文本中的重复的单词。Doubled words 会寻找重复的单词（包含一个或多个字母的字符串），该单词的后面跟着个或多个空白，然后再跟着与它相同的单词。
+
+#### 5. Regexp Group
+
+There are four kinds of groups:
+
+1) Capturing. A capturing group is a regexp choice wrapped in parentheses. The characters that match the group will be captured. Every capture group is given a number. The first capturing ( in the regular expression is group 1. The second capturing ( in the regular expression is group 2.
+
+2) Noncapturing. A noncapturing group has a (?: prefix. A noncapturing group simply matches; it does not capture the matched text. This has the advantage of slight faster performance. Noncapturing groups do not interfere with the numbering of capturing groups.
+
+3) Positive lookahead. A positive lookahead group has a (?= prefix. It is like a noncapturing group except that after the group matches, the text is rewound to where the group started, effectively matching nothing. This is not a good part. 4) Negative lookahead. A negative lookahead group has a (?! prefix. It is like a positive lookahead group, except that it matches only if it fails to match. This is not a good part.
+
+非捕获型分组有一个 (?: 前缀。非捕获型分组仅做简单的匹配，并不会捕获所匹配的文本。这会带来微弱的性能优势。非捕获型分组不会干扰捕获型分组的编号。向前正向匹配分组类似于非捕获型分组，但在这个组匹配后，文本会倒回到它开始的地方，实际上并不匹配任何东西。这不是一个好的特性。向前负向匹配分组类似于向前正向匹配分组，但只有当它匹配失败时它才继续向前进行匹配。这不是一个好的特性。
+
+#### 6. Regexp Class
+
+1『 Regexp Class 指字符集。』
+
+A regexp class is a convenient way of specifying one of a set of characters. For example, if we wanted to match a vowel, we could write (?:a | e | i | o | u), but it is more conveniently written as the class [aeiou]. Classes provide two other conveniences. The first is that ranges of characters can be specified. So, the set of 32 ASCII special characters:
+
+```js
+! " # $ % & ' ( ) * + , - . / :
+; < = > ? @ [ \ ] ^ _ ` { | } ~
+```
+
+could be written as:
+
+    (?:!|"|#|\$|%|&|'|\(|\)|\*|\+|,|-|\.|\/|:|;|<|=|>|@|\[|\\|]|\^|_|` |\{|\||\}|~) 
+
+but is slightly more nicely written as:
+
+    [!-\/:-@\[-`{-~]
+
+which includes the characters from ! through / and : through @ and [ through ànd { through ~. It is still pretty nasty looking. The other convenience is the complementing of a class. If the first character after the [ is ^, then the class excludes the specified characters. So [^!-\/:-@\[-`{-~] matches any character that is not one of the ASCII special characters.
+
+它包括从 ！到 /、从 ：到 、从（ 到 ` 和从 [ 到 ~ 的字符。但它看起来依旧相当难以阅读。另一个方便之处是类的求反。如果 [ 后的第一个字符是 ^，那么这个类会排除这些特殊字符，所以取反的正则会匹配任何一个非 ASCI 特殊字符的字符。
+
+#### 7. Regexp Class Escape
+
+The rules of escapement within a character class are slightly different than those for a regexp factor. [\b] is the backspace character. Here are the special characters that should be escaped in a character class:
+
+    - / [ \ ] ^
+
+#### 8. Regexp Quantifier
+
+A regexp factor may have a regexp quantifier suffix that determines how many times the factor should match. A number wrapped in curly braces means that the factor should match that many times. So, /www/ matches the same as /w{3}/. {3,6} will match 3, 4, 5, or 6 times. {3,} will match 3 or more times. ? is the same as {0,1}. * is the same as {0,}. + is the same as {1,}.
+
+Matching tends to be greedy, matching as many repetitions as possible up to the limit, if there is one. If the quantifier has an extra ? suffix, then matching tends to be lazy, attempting to match as few repetitions as possible. It is usually best to stick with the greedy matching.
+
+如果只有一个量词，表示趋向于进行贪梦性匹配，即匹配尽可能多的副本直至达到上限。如果这个量词附加一个后缀 ?，则表示趋向于进行非贪梦匹配，即只匹配必要的副本就好。一般情况下最好坚持使用贪婪性匹配。
+
+## 09. Style
+
+Here is a silly stately style indeed!
+
+—William Shakespeare, The First Part of Henry the Sixth Computer 
+
+programs are the most complex things that humans make. Programs are made up of a huge number of parts, expressed as functions, statements, and expressions that are arranged in sequences that must be virtually free of error. The runtime behavior has little resemblance to the program that implements it. Software is usually expected to be modified over the course of its productive life. The process of converting one correct program into a different correct program is extremely challenging.
+
+运行时行为（runtime behavior）几乎和实现它的程序没有什么相似之处。在软件的产品生命周期中，它们通常都会被修改。把一个正确的程序转化为另一个同样正确但风格不同的程序，是一个极具挑战性的过程。
+
+Good programs have a structure that anticipates—but is not overly burdened by—the possible modifications that will be required in the future. Good programs also have a clear presentation. If a program is expressed well, then we have the best chance of being able to understand it so that it can be successfully modified or repaired.
+
+优秀的程序拥有一个前瞻性的结构，它会预见到在未来才可能需要的修改，但不会让其成为过度的负担。优秀的程序还会具备一种清晰的表达方式。如果一个程序被表达得很好，那么我们就能更加容易地去理解它，以便成功地改造或修补它。这些观点适用于所有的编程语言，而对 Javascript 来说尤为如此。Javascript 的弱类型和过度的容错性导致程序质量无法在编译时获得保障，所以为了弥补，我们应该按照严格的规范进行编码。
+
+These concerns are true for all programming languages, and are especially true for JavaScript. JavaScript’s loose typing and excessive error tolerance provide little compile-time assurance of our programs’ quality, so to compensate, we should code with strict discipline.
+
+JavaScript contains a large set of weak or problematic features that can undermine our attempts to write good programs. We should obviously avoid JavaScript’s worst features. Surprisingly, perhaps, we should also avoid the features that are often useful but occasionally hazardous. Such features are attractive nuisances, and by avoiding them, a large class of potential errors is avoided.
+
+The long-term value of software to an organization is in direct proportion to the quality of the codebase. Over its lifetime, a program will be handled by many pairs of hands and eyes. If a program is able to clearly communicate its structure and characteristics, it is less likely to break when it is modified in the never-too-distant future.
+
+对于一个组织机构来说，软件的长远价值和代码库的质量成正比。在程序的生命周期里，会经历很多人的测试、使用和修改。如果一个程序能很清楚地传达它的结构和特性，那么当它在井不遥远的将来被修改时，它被破坏的可能性就小很多。
+
+JavaScript code is often sent directly to the public. It should always be of publication quality. Neatness counts. By writing in a clear and consistent style, your programs become easier to read.
+
+Programmers can debate endlessly on what constitutes good style. Most programmers are firmly rooted in what they’re used to, such as the prevailing style where they went to school, or at their first job. Some have had profitable careers with no sense of style at all. Isn’t that proof that style doesn’t matter? And even if style doesn’t matter, isn’t one style as good as any other? It turns out that style matters in programming for the same reason that it matters in writing. It makes for better reading.
+
+Javascript 代码经常被直接发布。它应该自始至终具备发布质量，要干净利落。通过在一个清晰且始终如一的风格下编写，你的程序会变得易于阅读。程序员会无休止地讨论良好的风格是由什么构成的。大多数程序员会坚持他们过去的应用经验，比如他们在学校或在他们第一份工作时学到的流行的风格。他们中的一些人拥有高薪的工作，但完全没有代码风格的意识。这是否证明了风格其实根本不重要？就算风格不重要，风格之间是否有优劣之分呢？事实证明代码风格在编程中是很重要的，就像文字风格对于写作很重要一样。好的风格让代码能更好地被阅读。
+
+Computer programs are sometimes thought of as a write-only medium, so it matters little how it is written as long as it works. But it turns out that the likelihood a program will work is significantly enhanced by our ability to read it, which also increases the likelihood that it actually works as intended. It is also the nature of software to be extensively modified over its productive life. If we can read and understand it, then we can hope to modify and improve it.
+
+电脑程序有时候被认为不是用来读的，所以只要它能工作，写成怎样是不重要的。但是结果证明，如果程序可读性强，它正常运行的可能性，以及是否准确按照我们的意图去工作的可能性也显著增强。它还决定了软件在其生命周期中能否进行扩展。如果我们能阅读并且理解程序，那么就有希望去修改和完善它。
+
+Throughout this book I have used a consistent style. My intention was to make the code examples as easy to read as possible. I used whitespace consistently to give you more cues about the meaning of my programs.
+
+I indented the contents of blocks and object literals four spaces. I placed a space between if and ( so that the if didn’t look like a function invocation. Only in invocations do I make ( adjacent with the preceding symbol. I put spaces around all infix operators except for . and [, which do not get spaces because they have higher precedence. I use a space after every comma and colon. I put at most one statement on a line. Multiple statements on a line can be misread.
+
+If a statement doesn’t fit on a line, I will break it after a comma or a binary operator. That gives more protection against copy/paste errors that are masked by semicolon insertion. (The tragedy of semicolon insertion will be revealed in Appendix A.) I indent the remainder of the statement an extra four spaces, or eight spaces if four would be ambiguous (such as a line break in the condition part of an if statement). I always use blocks with structured statements such as if and while because it is less error prone. I have seen:
+
+贯穿本书，我始终采用一致的风格。我的目的是使代码实例尽可能易于阅读。我使用一致的留白来帮助你理解我的程序的逻辑思路。我对代码块内容和对象字面量缩进 4 个空格。我放了一个空格在 if 和 ( 之间，以致 if 不会看起来像一个函数调用。只有真的是在调用时，我才使 ( 和其前面的符号相毗连。我在除了 . 和 [ 外的所有中置运算符的两边都放了空格，它们俩无须空格是因为它们有更高的优先级。我在每个逗号和冒号后面都使用一个空格。
+
+我在每行最多放一个语句，在一行里放多条语句可能会被误读。如果一个语句一行放不下，我会在一个冒号或二元运算符后拆开它，这将更好地防止自动插入分号的机制掩盖复制 / 粘贴的错误（自动插入分号带来的悲剧会在附录 A 里披露）。我给折断后的语句的其余部分多缩进 4 个空格，如果 4 个还不够明显，就缩进 8 个空格（例如在一个 if 语句的条件部分插入一个换行符的时候）。在诸如 if 和 while 这样结构化的语句里，我始终使用代码块，因为这样会减少出错的概率。
+
+2『上面的代码风格做一张信息卡片，进行刻意练习。』
+
+```js
+if (a)
+    b( );
+```
+
+become:
+
+```js
+if (a)
+    b( );
+    c( );
+```
+
+which is an error that is very difficult to spot. It looks like: 
+
+```js
+if (a) {
+    b( );
+    c( );
+}
+```
+
+but it means:
+
+```js
+if (a) {
+    b( );
+}
+c( );
+```
+
+Code that appears to mean one thing but actually means another is likely to cause bugs. A pair of braces is really cheap protection against bugs that can be expensive to find.
+
+看起来想要做一件事情但实际上却在做另一件事情的代码很可能导致 bug。一对花括号可以用很低廉的成本去防止那些需要昂贵的代价才能发现的 bug。
+
+1『指上面的代码示例。』
+
+I always use the K&R style, putting the { at the end of a line instead of the front, because it avoids a horrible design blunder in JavaScript’s return statement. I included some comments. I like to put comments in my programs to leave information that will be read at a later time by people (possibly myself) who will need to understand what I was thinking. Sometimes I think about comments as a time machine that I use to send important messages to future me. I struggle to keep comments up-to-date. Erroneous comments can make programs even harder to read and understand. I can’t afford that.
+
+我一直使用 K&R 风格，把 { 放在一行的结尾而不是下一行的开头，因为它会避免 Javascript 的 return 语句中的一个可怕的设计错误。
+
+2『 K&R 风格，因在 Kernighan 与 Ritchie 合著的 The C Programming Language 一书中广泛用而得名。它是最为遍的 C 语言代码风格。已下载书籍「2019045C程序设计语言2Ed | 2019045The-C-Programming-Language」。』
+
+I tried to not waste your time with useless comments like this: 
+
+    i = 0; // Set i to zero.
+
+In JavaScript, I prefer to use line comments. I reserve block comments for formal documentation and for commenting out. I prefer to make the structure of my programs self-illuminating, eliminating the need for comments. I am not always successful, so while my programs are awaiting perfection, I am writing comments.
+
+在 Javascript 里，我更喜欢用行注释。我把块注释用于正式的文档记录和注释。我更喜欢使我的程序结构能自我说明（self- illuminating），从而消除对注释的需要。我并非每次都能做到，所以只要我的程序还不尽完美，我就会编写注释。
+
+JavaScript has C syntax, but its blocks don’t have scope. So, the convention that variables should be declared at their first use is really bad advice in JavaScript. JavaScript has function scope, but not block scope, so I declare all of my variables at the beginning of each function. JavaScript allows variables to be declared after they are used. That feels like a mistake to me, and I don’t want to write programs that look like mistakes. I want my mistakes to stand out. Similarly, I never use an assignment expression in the condition part of an if because:
+
+    if (a = b) { ... }
+
+is probably intended to be:
+
+    if (a === b) { ... }
+
+I want to avoid idioms that look like mistakes.
+
+1『 ES6 新增的 let、const 解决了作者的难题。』
+
+I never allow switch cases to fall through to the next case. I once found a bug in my code caused by an unintended fall through immediately after having made a vigorous speech about why fall through was sometimes useful. I was fortunate in that I was able to learn from the experience. When reviewing the features of a language, I now pay special attention to features that are sometimes useful but occasionally dangerous. Those are the worst parts because it is difficult to tell whether they are being used correctly. That is a place where bugs hide.
+
+我绝不允许 switch 语句块中的条件穿越到下一个 case 语句。我曾经在我的代码里发现了一个无意识的「穿越」导致的 bug，而在此之前，我刚刚激情澎湃地做完一次关于如何妙用「穿越」有时很有用的演讲。我很幸运能够从这个教训中有所收获。当我现在评审一门语言的特性的时候，我把注意力放在那些有时很有用但偶尔很危险的特性上。那些是量糟的部分，因为我们很难辨别它们是否被正确使用。那是 bug 的藏身之地。
+
+Quality was not a motivating concern in the design, implementation, or standardization of JavaScript. That puts a greater burden on the users of the language to resist the language’s weaknesses. JavaScript provides support for large programs, but it also provides forms and idioms that work against large programs. For example, JavaScript provides conveniences for the use of global variables, but global variables become increasingly problematic as programs scale in complexity.
+
+I use a single global variable to contain an application or library. Every object has its own namespace, so it is easy to use objects to organize my code. Use of closure provides further information hiding, increasing the strength of my modules.
+
+在 Javascript 的设计、实现和标准化的过程中，质量没有被特别关注。这给使用这门语言的用户增加了避免其缺陷的难度。Javascript 为大型程序提供了支持，但它也带有不利于大型程序的形式和习惯用法。举例来说：Javascript 可以方便地使用全局变量，但随着程序的日益复杂，全局变量逐渐变得问题重重。对一个脚本应用或工具库，我只用唯一一个全局变量。每个对象都有它自己的命名空间，所以我很容易使用对象去管理代码。使用闭包能提供进一步的信息隐藏，增强我的模块的建壮性。
+
+3『
+
+作者的这个思想在 YAHOO 的 Javascript 库 YUI 中得到了底的贯彻。在 YUI 中仅用到两个全局变量：YAHO 和 YAHOO_config。YUI 的一切都是基于一种模块模式来实现的。
+
+github 上找到下面代码：[javascript 模块模式实现](https://gist.github.com/tangyangzhe/4276560)
+
+```js
+// http://dancewithnet.com/2007/12/04/a-javascript-module-pattern/
+<script type="text/javascript" src="http://yui.yahooapis.com/2.2.2/build/utilities/utilities.js"></script>
+<ul id="myList">
+    <li class="draggable">一项</li>
+    <li>二项</li>
+    <li class="draggable">三项</li>
+</ul>
+<script>
+    YAHOO.namespace("myProject");
+    YAHOO.myProject.myModule = function () {
+        var yue = YAHOO.util.Event,
+            yud = YAHOO.util.Dom;
+        //私有方法
+        var getListItems = function () {
+            var elList = yud.get("myList");
+            var aListItems = yud.getElementsByClassName("li", elList);
+            return aListItems;
+        };
+        //这个放回的对象将变成YAHOO.myProject.myModule:
+        return {
+            aDragObjects: [], //可对外访问的，存储DD对象
+            init: function () {
+                //直到DOM完全加载好，才实现列表项可拖拽：
+                yue.onDOMReady(this.makeLIsDraggable, this, true);
+            },
+            makeLIsDraggable: function () {
+                var aListItems = getListItems(); //我们可以拖拽的那些元素
+                for (var i = 0, j = aListItems.length; i < j; i++) {
+                    this.aDragObjects.push(new YAHOO.util.DD(aListItems[i]));
+                }
+            }
+        };
+    }();
+    //上面的代码已经执行，所以我们能立即访问init方法：
+    YAHOO.myProject.myModule.init();
+</script>
+```
+medium 上的一篇文章：[Module Pattern in JavaScript - Level Up Coding](https://levelup.gitconnected.com/data-hiding-with-javascript-module-pattern-62b71520bddd)
+
+』
+
+## 10. Beautiful Features
+
+Thus, expecting thy reply, I profane my lips on thy foot, my eyes on thy picture, and my heart on thy every part. Thine, in the dearest design of industry...
+
+—William Shakespeare, Love’s Labor’s Lost
+
+I was invited last year to contribute a chapter to Andy Oram’s and Greg Wilson’s Beautiful Code (O’Reilly), an anthology on the theme of beauty as expressed in computer programs. I wanted to write my chapter in JavaScript. I wanted to use it to present something abstract, powerful, and useful to show that the language was up to it. And I wanted to avoid the browser and other venues in which JavaScript is typecast. I wanted to show something respectable with some heft to it.
+
+I immediately thought of Vaughn Pratt’s Top Down Operator Precedence parser, which I use in JSLint (see Appendix C). Parsing is an important topic in computing. The ability to write a compiler for a language in itself is still a test for the complete-ness of a language.
+
+I wanted to include all of the code for a parser in JavaScript that parses JavaScript. But my chapter was just one of 30 or 40, so I felt constrained in the number of pages I could consume. A further complication was that most of my readers would have no experience with JavaScript, so I also would have to introduce the language and its peculiarities.
+
+2『已下载书籍「2020119代码之美 | 2020119Beautiful-Code」；作者的文章「Top Down Operator Precedence parser」。』
+
+So, I decided to subset the language. That way, I wouldn’t have to parse the whole language, and I wouldn’t have to describe the whole language. I called the subset Simplified JavaScript. Selecting the subset was easy: it included just the features that I needed to write a parser. This is how I described it in Beautiful Code: 
+
+1. Simplified JavaScript is just the good stuff, including: Functions as first class objects. Functions in Simplified JavaScript are lambdas with lexical scoping.
+
+2. Dynamic objects with prototypal inheritance Objects are class-free. We can add a new member to any object by ordinary assignment. An object can inherit members from another object.
+
+3. Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format.
+
+JS 的 3 大精华：1）函数是顶级对象。在精简 Javascrip 中，函数是有词法作用域的闭包（(lambda）。2）基于原型继承的动态对象。对象是无类别的。我们可以通过普通的赋值给任何对象增加一个新成员属性。一个对象可以从另一个对象继承成员属性。3）对象字面量和数组字面量。这对创建新的对象和数组来说是一种非常方便的表示法。Javascript 字面量是数据交换格式 JSON 的灵感之源。
+
+The subset contained the best of the Good Parts. Even though it was a small language, it was very expressive and powerful. JavaScript has lots of additional features that really don’t add very much, and as you’ll find in the appendixes that follow, it has a lot of features with negative value. There was nothing ugly or bad in the subset. All of that fell away.
+
+Simplified JavaScript isn’t strictly a subset. I added a few new features. The simplest was adding pi as a simple constant. I did that to demonstrate a feature of the parser. I also demonstrated a better reserved word policy and showed that reserved words are unnecessary. In a function, a word cannot be used as both a variable or parameter name and a language feature. You can use a word for one or the other, and the programmer gets to choose. That makes a language easier to learn because you don’t need to be aware of features you don’t use. And it makes the language easier to extend because it isn’t necessary to reserve more words to add new features.
+
+精简的 Javascript 不是一个严格的子集。我添加了少许新特性。最简单的是增加了 pi 作为个简单的常量。我这么做是为了证明解析器的一个特性。我也展示了一个更好的保留字策路并证明哪些保留字是多余的。在一个函数中，一个单词不能既被用做变量或参数名，又被用做一个语言特性。你可以让某个单词用在其中之一上，井允许程序员自己选择。这会使一门语言易于学习，因为你没必要知道你不会使用的特性。并且它会使这门语言易于扩展，因为它无须保留更多的保留字来增加新特性。
+
+I also added block scope. Block scope is not a necessary feature, but not having it confuses experienced programmers. I included block scope because I anticipated that my parser would be used to parse languages that are not JavaScript, and those languages would do scoping correctly. The code I wrote for the parser is written in a style that doesn’t care if block scope is available or not. I recommend that youwrite that way, too. When I started thinking about this book, I wanted to take the subset idea further, to show how to take an existing programming language and make significant improvements to it by making no changes except to exclude the low-value features.
+
+我也增加了块级作用域。块级作用域不是一个必需的特性，但没有它会让有经验的程序员感到困惑。包含块级作用城是因为我预期解析器可能会被用于解析非 Javascript 语言，并且那些语言能正确地界定作用域。我编写这个解析器的代码风格不关心块作用域是否可用我推荐你也采用这种方式来写。当开始构思本书的时候，我想进一步地发展这个子集，我想展示除了排除低价值特性外，如何通过不做任何改变来获得一个现有的编程语言，并且使它得到有效的改进。
+
+We see a lot of feature-driven product design in which the cost of features is not properly accounted. Features can have a negative value to consumers because they make the products more difficult to understand and use. We are finding that people like products that just work. It turns out that designs that just work are much harder to produce than designs that assemble long lists of features.
+
+我们看到大量的特性驱动的产品设计，其中特性的成本没有被正确计算。对于用户来说，某些特性可能有一些负面价值，因为它们使产品更加难以理解和使用。我们发现人们想要的产品其实只要能工作即可。事实证明产生恰好可以工作的设计比集合一大串特性的设计要困难得多。
+
+Features have a specification cost, a design cost, and a development cost. There is a testing cost and a reliability cost. The more features there are, the more likely one will develop problems or will interact badly with another. In software systems, there is a storage cost, which was becoming negligible, but in mobile applications is becoming significant again. There are ascending performance costs because Moore’s Law doesn’t apply to batteries.
+
+Features have a documentation cost. Every feature adds pages to the manual, increasing training costs. Features that offer value to a minority of users impose a cost on all users. So, in designing products and programming languages, we want to get the core features—the good parts—right because that is where we create most of the value.
+
+特性有规定成本、设计成本和开发成本，还有测试成本和可靠性成本。特性越多，某个特性出现问题，或者和其他特性相互干扰的可能性就越大。在软件系统中，存储成本是无足轻重的，但在移动应用中，它又变得重要了。它们抬高了电池的效能成本，因为摩尔定律并不适用于电池。特性有文档成本。每个特性都会让产品指南变得更厚，从而增加了培训成本。只对少数用户有价值的特性增加了所有用户的成本。所以在设计产品和编程语言时，我们希望直接使用核心的精华部分，因为是这些精华创造了大部分的价值。
+
+We all find the good parts in the products that we use. We value simplicity, and when simplicity isn’t offered to us, we make it ourselves. My microwave oven has tons of features, but the only ones I use are cook and the clock. And setting the clock is a struggle. We cope with the complexity of feature-driven design by finding and sticking with the good parts.
+
+It would be nice if products and programming languages were designed to have only good parts.
+
+在我们使用的产品中，总能找到好的部分。我们喜欢简单，追求简洁易用，但是当产品缺乏这种特性时，就要自己去创造它。微波炉有一大堆特性，但是我只会用烹调和定时，使用定时功能就足够麻烦的了。对于特性驱动型的设计，我们唯有靠找出它的精华并坚持使用，才能更好地应对其复杂性。如果产品和编程语言被设计得仅留下精华，那该有多好。
