@@ -2,25 +2,13 @@
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-#### 01. 常识
+### 0201. 术语卡——TDD
 
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
-
-### 0201. 术语卡——
-
-根据反常识，再补充三个证据——就产生三张术语卡。
-
-例子。
+Readers of Extreme Programming Explained will notice a difference in tone between XP and TDD. TDD isn’t an absolute like Extreme Programming. XP says, “Here are things you must be able to do to be prepared to evolve further.” TDD is a little fuzzier. TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap. “What if I do a paper design for a week, then test-drive the code? Is that TDD?” Sure, it’s TDD. You were aware of the gap between decision and feedback and you controlled the gap deliberately.
 
 ### 0202. 术语卡——
 
@@ -41,14 +29,6 @@
 ### 0401. 金句卡——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
-
-### 0501. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
-
-最后还有一张任意卡，记录个人阅读感想。
 
 ## 模板
 
@@ -200,9 +180,94 @@ If we recognize that redundancy in code is a maintenance issue then we should al
 
 正本书先从一个币种汇率转换为例子，说明 TDD 如何实施，然后说明了如何写 Test 以及如何重构。笔者觉得，TDD 除了 validation 作用外，更多的是帮助你思考如何设计以及作为永不过时的 specification，还有就是能让你更有信心的 refactor。所以，本书在介绍完 TDD 基本知识以及流程后，花了大量笔墨教读者如何写出 clean code 以及 refactor，这部分笔者直接跳过了，笔者认为写出 clean code 和如何 refactor 是 TDD 之外的领域，所以自认为这方面的知识更适合去阅读 clean code 以及 refactor 这两本书。
 
+## Preface
 
+Clean code that works, in Ron Jeffries’ pithy phrase. The goal is clean code that works, and for a whole bunch of reasons: 1) Clean code that works is a predictable way to develop. You know when you are finished, without having to worry about a long bug trail. 2) Clean code that works gives you a chance to learn all the lessons that the code has to teach you. If you only ever slap together the first thing you think of, you never have time to think of a second, better, thing. 3) Clean code that works improves the lives of users of our software. 4)Clean code that works lets your teammates count on you, and you on them. 5) Writing clean code that works feels good.
 
+But how do you get to clean code that works? Many forces drive you away from clean code, and even code that works. Without taking too much counsel of our fears, here’s what we do—drive development with automated tests, a style of development called “Test-Driven Development” (TDD for short). In Test-Driven Development, you: 1) Write new code only if you first have a failing automated test. 2) Eliminate duplication.
 
+Two simple rules, but they generate complex individual and group behavior. Some of the technical implications are: 1) You must design organically, with running code providing feedback between decisions. 2) You must write your own tests, since you can’t wait twenty times a day for someone else to write a test. 3) Your development environment must provide rapid response to small changes. 4) Your designs must consist of many highly cohesive, loosely coupled components, just to make testing easy.
 
+The two rules imply an order to the tasks of programming: 1) Red—write a little test that doesn’t work, perhaps doesn’t even compile at first. 2) Green—make the test work quickly, committing whatever sins necessary in the process. 3) Refactor—eliminate all the duplication created in just getting the test to work.
 
+Red/green/refactor. The TDDs mantra.
 
+Assuming for the moment that such a style is possible, it might be possible to dramatically reduce the defect density of code and make the subject of work crystal clear to all involved. If so, writing only code demanded by failing tests also has social implications: 1) If the defect density can be reduced enough, QA can shift from reactive to proactive work. 2) If the number of nasty surprises can be reduced enough, project managers can estimate accurately enough to involve real customers in daily development. 3) If the topics of technical conversations can be made clear enough, programmers can work in minute-by-minute collaboration instead of daily or weekly collaboration. 4) Again, if the defect density can be reduced enough, we can have shippable software with new functionality every day, leading to new business relationships with customers.
+
+1『极限编程的思想，什么东西好，就把该方面的东西推向极限。』
+
+So, the concept is simple, but what’s my motivation? Why would a programmer take on the additional work of writing automated tests? Why would a programmer work in tiny little steps when their mind is capable of great soaring swoops of design? Courage.
+
+### Courage
+
+Test-driven development is a way of managing fear during programming. I don’t mean fear in a bad way, pow widdle prwogwammew needs a pacifiew, but fear in the legitimate, this-is-a-hard-problem-and-I-can’t-see-the-end-from-the-beginning sense. If pain is nature’s way of saying “Stop!”, fear is nature’s way of saying “Be careful.” Being careful is good, but fear has a host of other effects: 1) Makes you tentative. 2) Makes you want to communicate less. 3) Makes you shy from feedback. 4) Makes you grumpy.
+
+None of these effects are helpful when programming, especially when programming something hard. So, how can you face a difficult situation and: 1) Instead of being tentative, begin learning concretely as quickly as possible. 2) Instead of clamming up, communicate more clearly. 3) Instead of avoiding feedback, search out helpful, concrete feedback. 4) You’ll have to work on grumpiness on your own.
+
+Imagine programming as turning a crank to pull a bucket of water from a well. When the bucket is small, a free-spinning crank is fine. When the bucket is big and full of water, you’re going to get tired before the bucket is all the way up. You need a ratchet mechanism to enable you to rest between bouts of cranking. The heavier the bucket, the closer the teeth need to be on the ratchet.
+
+The tests in test-driven development are the teeth of the ratchet. Once you get one test working, you know it is working, now and forever. You are one step closer to having everything working than you were when the test was broken. Now get the next one working, and the next, and the next. By analogy, the tougher the programming problem, the less ground should be covered by each test.
+
+Readers of Extreme Programming Explained will notice a difference in tone between XP and TDD. TDD isn’t an absolute like Extreme Programming. XP says, “Here are things you must be able to do to be prepared to evolve further.” TDD is a little fuzzier. TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap. “What if I do a paper design for a week, then test-drive the code? Is that TDD?” Sure, it’s TDD. You were aware of the gap between decision and feedback and you controlled the gap deliberately.
+
+2『 TDD 的定义：TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap. 做张术语卡片。』
+
+That said, most people who learn TDD find their programming practice changed for good. “Test Infected” is the phrase Erich Gamma coined to describe this shift. You might find yourself writing more tests earlier, and working in smaller steps than you ever dreamed would be sensible. On the other hand, some programmers learn TDD and go back to their earlier practices, reserving TDD for special occasions when ordinary programming isn’t making progress.
+
+There are certainly programming tasks that can’t be driven solely by tests (or at least, not yet). Security software and concurrency, for example, are two topics where TDD is not sufficient to mechanically demonstrate that the goals of the software have been met. Security relies on essentially defect-free code, true, but also on human judgement about the methods used to secure the software. Subtle concurrency problems can’t be reliably duplicated by running the code.
+
+Once you are finished reading this book, you should be ready to: 1) Start simply. 2) Write automated tests. 3) Refactor to add design decisions one at a time.
+
+This book is organized into three sections.
+
+• An example of writing typical model code using TDD. The example is one I got from Ward Cunningham years ago, and have used many times since, multi-currency arithmetic. In it you will learn to write tests before code and grow a design organically.
+
+• An example of testing more complicated logic, including reflection and exceptions, by developing a framework for automated testing. This example also serves to introduce you to the xUnit architecture that is at the heart of many programmer-oriented testing tools. In the second example you will learn to work in even smaller steps than in the first example, including the kind of self-referential hooha beloved of computer scientists.
+
+• Patterns for TDD. Included are patterns for the deciding what tests to write, how to write tests using xUnit, and a greatest hits selection of the design patterns and refactorings used in the examples.
+
+I wrote the examples imagining a pair programming session. If you like looking at the map before wandering around, you may want to go straight to the patterns in section 3 and use the examples as illustrations. If you prefer just wandering around and then looking at the map to see where you’ve been, try reading the examples through and refering to the patterns when you want more detail about a technique, then using the patterns as a reference.
+
+Several reviewers have commented they got the most out of the examples when they started up a programming environment and entered the code and ran the tests as they read.
+
+A note about the examples. Both examples, multi-currency calculation and a testing framework, appear simple. There are (and I have seen) complicated, ugly, messy ways of solving the same problems. I could have chosen one of those complicated, ugly, messy solutions, to give the book an air of “reality.” However, my goal, and I hope your goal, is to write clean code that works. Before teeing off on the examples as being too simple, spend 15 seconds imagining a programming world in which all code was this clear and direct, where there were no complicated solutions, only apparently complicated problems begging for careful thought. TDD is a practice that can help you lead yourself to exactly that careful thought.
+
+## Story Time
+
+Early one Friday the boss came to Ward to introduce him to Peter, a prospective customer for WyCash, the bond portfolio management system they were selling. Peter said, “I’m very impressed with the functionality I see. However, I notice you only handle US dollar denominated bonds. I’m starting a new bond fund and my strategy requires that I handle bonds in different currencies.” The boss turned to Ward, “Well, can we do it?”
+
+Here is the nightmare scenario for any software designer. You have been cruising along happily and successfully with a set of assumptions. Suddenly, everything changes. And the nightmare wasn’t just for Ward. The boss, an experienced hand at directing software development, wasn’t sure what the answer was going to be.
+
+WyCash had been developed over the course of a couple of years by a small team. It was able to handle most of the varieties of fixed income securities commonly found on the US market, and a few exotic new instruments, like Guaranteed Investment Contracts, that the competition couldn’t handle.
+
+WyCash had been developed all along using objects and an object database. The fundamental abstraction of computation, Dollar, had been outsourced at the beginning to a clever group of programmers. The resulting object combined formatting and calculation responsibilities.
+
+For the last six months, Ward and the rest of the team had been slowly divesting Dollar of its responsibilities. The Smalltalk numerical classes turned out to be just fine at calculation. All the tricky code for rounding to three decimal digits got in the way of producing precise answers. As the answers got more precise, the complicated mechanisms in the testing framework for comparing to within a certain tolerance were replaced by precise matching of expected and actual results.
+
+Responsibility for formatting actually belonged in the user interface classes. As the tests were written at the level of the user interface classes, in particular the report framework, these tests didn’t have to change to accomodate this refinement. After six months of careful paring, the resulting Dollar didn’t have much responsibility left.
+
+One of the most complicated algorithms in the system, weighted average, had likewise been undergoing a slow transformation. At one time there had been many different variations of weighted average code scattered throughout the system. As the report framework coalesced from the primodial object soup, it was obvious that there could be one home for the algorithm, in AveragedColumn.
+
+It was to AveragedColumn that Ward now turned. If weighted averages could be made multi-currency, the rest of the system should be possible. The heart of the algorithm was keeping a count of the money in the column. In fact, the algorithm had been abstracted enough to calculate the weighted average of any object that could act arithmetic. You could have weighted averages of dates, for example.
+
+The weekend past in the usual weekend activities. Monday morning the boss was back. “Can we do it?” “Give me another day and I’ll tell you for sure.” Since Dollar acted like a counter in weighted average, in order to calculate in multiple currencies they needed an object with a counter per currency, kind of like a polynomial. Instead of 3x^2 and 4y^3 , though, the terms would be 15 USD and 200 CHF.
+
+A quick experiment showed that it was possible to compute with a generic Currency object instead of a Dollar, and return a PolyCurrency when two un-alike currencies were added together. The trick now was to make space for the new functionality without breaking anything that already worked. What would happen if Ward just ran the tests?
+
+After adding a few un-implemented operations to Currency, the bulk of the tests passed. By the end of the day, all the tests were passing. Ward checked the code into the build and went to the boss. “We can do it,” he said confidently.
+
+Let’s think a bit about this story. In two days, the potential market was multiplied several fold, multiplying the value of WyCash several fold. The ability to create so much business value so quickly was no accident though. Several factors came into play:
+
+• Method—Ward and the WyCash team needed to have constant experience growing the design of the system little-by-little, so the mechanics of the transformation were well practiced.
+
+• Motive—Ward and team had to understand clearly from the business the importance of making WyCash multi-currency, and to have the courage to start such a seemingly impossible task.
+
+• Opportunity— The combination of comprehensive, confidence-generating tests; a well-factored program; and a programming language that made it possible to isolate design decisions meant that there were few sources of error, and those errors were easy to identify.
+
+You can’t control whether you ever get the motive to multiply the value of your project by spinning technical magic. Method and opportunity, however, are entirely under your control. Ward and his team created method and opportunity by a combination of superior talent, experience, and discipline. Does this mean that if you are not one of the ten best software engineers on the planet and you don’t have a wad of cash in the bank so you can tell your boss to take a hike, you’re going to take the time to do this right, that such moments are forever beyond your reach?
+
+No. You absolutely can place your projects in a position for you to work magic, even if you are a programmer with ordinary skills and you sometimes buckle under and take shortcuts when the pressure builds. Test-driven development is a set of techniques any programmer can follow, that encourage simple designs and test suites that inspire confidence. If you are a genius, you don’t need these rules. If you are a dolt, the rules won’t help. For the vast majority of us in between, though, following these two simple rules can lead us to work much closer to our potential: 1) Write a failing automated test before you write any code. 2) Remove duplication.
+
+1『作者反复提到的 2 个原则：编程前写自动测试、去除重复的代码。』
+
+How exactly to do this, the subtle gradations in applying these rules, and the lengths to which you can push these two simple rules are the topic of this book. We’ll start with the object Ward created in his moment of inspiration—multi-currency money.
