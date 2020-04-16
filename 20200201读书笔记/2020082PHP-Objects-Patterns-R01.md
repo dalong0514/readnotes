@@ -288,7 +288,7 @@ PHP 4 and the Quiet Revolution. If PHP 4 was yet another groundbreaking step for
 
 From our objective perspective, the fact that PHP 4 made it possible to override parent methods and access them from child classes was a major benefit. A major drawback remained, however. Assigning an object to a variable, passing it to a function, or returning it from a method resulted in a copy being made. Consider an assignment like this:
 
-```
+```php
 $my_obj = new User('bob');
 $other = $my_obj;
 ```
@@ -300,7 +300,7 @@ This resulted in the existence of two User objects rather than two references to
 Luckily, there was a way of enforcing pass-by-reference, but it meant remembering to use a clumsy construction. Here’s how you would assign by reference:
 
 
-```
+```php
 $other =& $my_obj;
 // $other and $my_obj point to same object
 
@@ -337,7 +337,7 @@ Objects had moved from afterthought to language driver. Perhaps the most importa
 
 PHP 5.3, for example, brought namespaces. These let you create a named scope for classes and functions, so that you are less likely to run into duplicate names as you include libraries and expand your system. They also rescue you from ugly but necessary naming conventions such as this:
 
-```
+```php
 class megaquiz_util_Conf
 {
 }
