@@ -1,4 +1,4 @@
-2Storing and Retrieving Data
+# 02 Storing and Retrieving Data
 
 Now that you know how to access and manipulate data entered in an HTML form, you can look at ways of storing that information for later use. In most cases, including the example from the previous chapter, you’ll want to store this data and load it later. In this case, you need to write customer orders to storage so that they can be filled later.
 
@@ -27,10 +27,6 @@ Key topics covered in this chapter include
 Saving Data for LaterYou can store data in two basic ways: in flat files or in a database.
 
 A flat file can have many formats, but in general, when we refer to a flat file, we mean a simple text file. For this chapter’s example, you will write customer orders to a text file, one order per line.
-
-54
-
-Chapter 2  Storing and Retrieving Data
 
 Writing orders this way is very simple, but also limiting, as you’ll see later in this chapter. If you’re dealing with information of any reasonable volume, you’ll probably want to use a database instead. However, flat files have their uses, and in some situations you need to know how to use them.
 
@@ -117,10 +113,6 @@ $fp = fopen("$document_root\\..\\orders\\orders.txt", 'w');
 Very few people use backslashes in paths within PHP because it means the code will work only in Windows environments. If you use forward slashes, you can often move your code between Windows and Unix machines without alteration.
 
 The second fopen() parameter is the file mode, which should be a string. This string speci-fies what you want to do with the file. In this case, we are passing 'w' to fopen(); this means「open the file for writing.」A summary of file modes is shown in Table 2.1.
-
-Opening a File
-
-57
 
 Table 2.1  Summary of File Modes for fopen()
 
@@ -602,13 +594,7 @@ are in order, you can use some kind of binary search in conjunction with a fixed
 
  ■ All the file processing you have seen so far deals with a file using sequential processing; that is, you start from the beginning of the file and read through to the end. Inserting records into or deleting records from the middle of the file (random access) can be difficult because you end up reading the whole file into memory, making the changes, and writing the whole file out again. With a large data file, having to go through all these steps becomes a significant overhead.
 
- ■ Beyond the limits offered by file permissions, there is no easy way of enforcing different 
-
-levels of access to data.
-
-74
-
-Chapter 2  Storing and Retrieving Data
+ ■ Beyond the limits offered by file permissions, there is no easy way of enforcing different levels of access to data.
 
 How RDBMSs Solve These ProblemsRelational database management systems address all these issues:
 
@@ -636,5 +622,7 @@ Further ReadingFor more information on interacting with the file system, you can
 
 You may also want to read through the file system section of the PHP online manual at http://www.php.net/filesystem.
 
-NextIn the next chapter, you learn what arrays are and how they can be used for processing data in your PHP scripts.
+## Next
+
+In the next chapter, you learn what arrays are and how they can be used for processing data in your PHP scripts.
 

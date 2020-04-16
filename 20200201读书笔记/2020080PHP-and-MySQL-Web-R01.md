@@ -20,13 +20,19 @@
 
 #### 04. 例子
 
-### 0201. 术语卡——
+### 0201. 术语卡——\$\_POST、 \$\_GET 和 \$\_REQUEST
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+\$\_POST, \$\_GET, and \$\_REQUEST. One of the \$\_GET or \_POST arrays holds the details of all the form variables. Which array is used depends on whether the method used to submit the form was GET or POST, respectively. In addition, a combination of all data submitted via GET or POST is also available through \$_REQUEST.
 
-例子。
+If the form was submitted via the POST method, the data entered in the tireqty box will be stored in \$\_POST['tireqty']. If the form was submitted via GET, the data will be in \$_GET['tireqty']. In either case, the data will also be available in \$\_REQUEST['tireqty']. These arrays are some of the superglobal arrays. We will revisit the superglobals when we discuss variable scope later in this chapter.
 
-### 0202. 术语卡——
+### 0202. 术语卡——Variable Variables
+
+Variable Variables. PHP provides one other type of variable: the variable variable. Variable variables enable you to change the name of a variable dynamically. As you can see, PHP allows a lot of freedom in this area. All languages enable you to change the value of a variable, but not many allow you to change the variable’s type, and even fewer allow you to change the variable’s name.  A variable variable works by using the value of one variable as the name of another. For example, you could set:
+
+    $varname = 'tireqty';
+
+You can then use \$\$varname in place of \$tireqty. For example, you can set the value of \$tireqty as follows:
 
 ### 0203. 术语卡——
 
@@ -307,6 +313,8 @@ Notice that it passes a string (text data) to the function inside a pair of pare
 
 Using the date() Function. The date() function expects the argument you pass it to be a format string, representing the style of output you would like. Each letter in the string represents one part of the date and time. H is the hour in a 24-hour format with leading zeros where required, i is the minutes with a leading zero where required, j is the day of the month without a leading zero, S  represents the ordinal suffix (in this case th), and F is the full name of the month. Note: If date() gives you a warning about not having set the timezone, you should add the date.timezone setting to your php.ini file. More information on this can be found in the sample php.ini file in Appendix A. For a full list of formats supported by date(), see Chapter 19,「Managing the Date and Time.」
 
+1『注意：第几天的 J 是小写的 j，之前敲的时候敲成大写的了；在 php.ini 可以改时区，默认的时区是不对的。』
+
 Form Variables. Within your PHP script, you can access each form field as a PHP variable whose name relates to the name of the form field. You can recognize variable names in PHP because they all start with a dollar sign (\$). (Forgetting the dollar sign is a common programming error.)
 
 Depending on your PHP version and setup, you can access the form data via variables in different ways.  In recent versions of PHP, all but one of these ways have been deprecated, so beware if you have used PHP in the past that this has changed. You may access the contents of the field tireqty in the following way:
@@ -315,11 +323,11 @@ Depending on your PHP version and setup, you can access the form data via variab
 
 \$_POST is an array containing data submitted via an HTTP POST request — that is, the form method was set to POST. There are three of these arrays that may contain form data: 
 
-\$POST, \$GET, and \$REQUEST. One of the \$GET or \$POST arrays holds the details of all the form variables. Which array is used depends on whether the method used to submit the form was GET or POST, respectively. In addition, a combination of all data submitted via GET or POST is also available through \$_REQUEST.
+\$\_POST, \$\_GET, and \$\_REQUEST. One of the \$\_GET or \_POST arrays holds the details of all the form variables. Which array is used depends on whether the method used to submit the form was GET or POST, respectively. In addition, a combination of all data submitted via GET or POST is also available through \$_REQUEST.
 
-If the form was submitted via the POST method, the data entered in the tireqty box will be stored in \$POST['tireqty']. If the form was submitted via GET, the data will be in \$_GET['tireqty']. In either case, the data will also be available in \$REQUEST['tireqty']. These arrays are some of the superglobal arrays. We will revisit the superglobals when we discuss variable scope later in this chapter.
+If the form was submitted via the POST method, the data entered in the tireqty box will be stored in \$\_POST['tireqty']. If the form was submitted via GET, the data will be in \$_GET['tireqty']. In either case, the data will also be available in \$\_REQUEST['tireqty']. These arrays are some of the superglobal arrays. We will revisit the superglobals when we discuss variable scope later in this chapter.
 
-1『POST、GET 和 REQUEST 三个都是 superglobal（超级全局变量）。』
+1『 \$\_POST、 \$\_GET 和 \$\_REQUEST 三个都是 superglobal（超级全局变量）。』
 
 Let’s look at an example that creates easier-to-use copies of variables. To copy the value of one variable into another, you use the assignment operator, which in PHP is an equal sign (=). The following statement creates a new variable named \$tireqty and copies the contents of \$_POST['tireqty'] into the new variable:
 
@@ -335,6 +343,8 @@ $sparkqty = $_POST['sparkqty'];
 ?>
 ```
 
+1『所有从前端获取的数据，放到代码最前面的「容器」里，养成这个习惯。』
+
 This code creates three new variables — \$tireqty, \$oilqty, and \$sparkqty — and sets them to contain the data sent via the POST method from the form. You can output the values of these variables to the browser by doing, for example:
 
     echo $tireqty.' tires<br />';
@@ -343,7 +353,7 @@ However, this approach is not recommended. At this stage, you have not checked t
 
 Taking data directly from the user and outputting it to the browser like this is an extremely risky practice from a security perspective. We do not recommend this approach. You should filter input data. We will start to cover input filtering in Chapter 4,「String Manipulation and Regular Expressions,」and discuss security in depth in Chapter 14,「Web Application Security Risks.」
 
-1『直接提取数据很不安全，超级不建议。』
+1『直接提取数据很不安全，超级不建议，提取前需要做验证。』
 
 For now, it’s enough to know that you should echo out user data to the browser after passing it through a function called htmlspecialchars(). For example, in this case, we would do the following:
 
@@ -358,6 +368,8 @@ echo htmlspecialchars($oilqty).' bottles of oil<br />';
 echo htmlspecialchars($sparkqty).' spark plugs<br />';
 ?>   
 ```
+
+1『 htmlspecialchars() 应该是 php 的一个库函数。』
 
 If you now load this file in your browser, the script output should resemble what is shown in Figure 1.4. The actual values shown, of course, depend on what you typed into the form. The following sections describe a couple of interesting elements of this example.
 
@@ -376,13 +388,15 @@ This is equivalent to the first statement shown in this section. Either format i
 
     echo '$tireqty tires<br />';
 
+1『嵌入变量可以生效的前提是用双引号包裹，以后还是都养成用双引号的习惯，对 json 数据也有好处，因为 json 格式里的属性值不支持单引号的。』
+
 simply sends \$tireqty tires\<br /> to the browser. Within double quotation marks, the variable name is replaced with its value. Within single quotation marks, the variable name or any other text is sent unaltered.
 
 Variables and Literals. The variables and strings concatenated together in each of the echo statements in the sample script are different types of things. Variables are symbols for data. The strings are data themselves. When we use a piece of raw data in a program like this, we call it a literal to distinguish it from a variable. \$tireqty is a variable, a symbol that represents the data the customer typed in. On the other hand, ' tires\<br />' is a literal. You can take it at face value. Well, almost. Remember the second example in the preceding section? PHP replaced the variable name \$tireqty in the string with the value stored in the variable.
 
 Remember the two kinds of strings mentioned already: ones with double quotation marks and ones with single quotation marks. PHP tries to evaluate strings in double quotation marks, resulting in the behavior shown earlier. Single-quoted strings are treated as true literals.
 
-1『如要想在字符串里直接输出变量的值，必须用双引号，解释器识别不了单引号里的变量。PHP 里双引号字符串和单引号字符串语义不一样。双引号字符串是 interpolated 的，即自动识别里面变量的值，下面将的 Heredoc strings 也是。』
+1『如要想在字符串里直接输出变量的值，必须用双引号，解释器识别不了单引号里的变量。PHP 里双引号字符串和单引号字符串语义不一样。双引号字符串是 interpolated 的，即自动识别里面变量的值，下面讲的 Heredoc strings 也是。』
 
 There is also a third way of specifying strings using the heredoc syntax (<<<), which will be familiar to Perl users. Heredoc syntax allows you to specify long strings tidily, by specifying an end marker that will be used to terminate the string. The following example creates a three-line string and echoes it:
 
@@ -396,7 +410,9 @@ theEnd
 
 The token theEnd is entirely arbitrary. It just needs to be guaranteed not to appear in the text. To close a heredoc string, place a closing token at the start of a line. Heredoc strings are interpolated, like double-quoted strings.
 
-Understanding Identifiers. Identifiers are the names of variables. (The names of functions and classes are also identifiers; we look at functions and classes in Chapter 5,「Reusing Code and Writing Functions,」and Chapter 6,「Object-Oriented PHP.」) You need to be aware of the simple rules defining valid identifiers:
+1『 heredoc syntax 应用于有很多行的内容，可类比于双引号，前后的起始、终结标识符可以任意定，但必须保持一致，例子里给的 endEnd 可以作为以后默认使用的标识符。』
+
+Understanding Identifiers. Identifiers are the names of variables. (The names of functions and classes are also identifiers; we look at functions and classes in Chapter 5「Reusing Code and Writing Functions,」and Chapter 6「Object-Oriented PHP.」) You need to be aware of the simple rules defining valid identifiers:
 
 ■ Identifiers can be of any length and can consist of letters, numbers, and underscores.
 
@@ -408,7 +424,7 @@ Understanding Identifiers. Identifiers are the names of variables. (The names of
 
 1『识别码大小写敏感，但是函数名是个例外。』
 
-You can declare and use your own variables in addition to the variables you are passed from the HTML form. One of the features of PHP is that it does not require you to declare variables before using them. A variable is created when you first assign a value to it. See the next section for details.You assign values to variables using the assignment operator (=) as you did when copying one variable’s value to another. On Bob’s site, you want to work out the total number of items ordered and the total amount payable. You can create two variables to store these numbers. To begin with, you need to initialize each of these variables to zero by adding these lines to the bottom of your PHP script. Each of these two lines creates a variable and assigns a literal value to it. You can also assign variable values to variables, as shown in this example:
+You can declare and use your own variables in addition to the variables you are passed from the HTML form. One of the features of PHP is that it does not require you to declare variables before using them. A variable is created when you first assign a value to it. See the next section for details. You assign values to variables using the assignment operator (=) as you did when copying one variable’s value to another. On Bob’s site, you want to work out the total number of items ordered and the total amount payable. You can create two variables to store these numbers. To begin with, you need to initialize each of these variables to zero by adding these lines to the bottom of your PHP script. Each of these two lines creates a variable and assigns a literal value to it. You can also assign variable values to variables, as shown in this example:
 
 ```php
 $totalqty = 0;
@@ -450,6 +466,8 @@ Callables are essentially functions that are passed to other functions.
 
 Type Strength. PHP is called a weakly typed or dynamically typed language. In most programming languages, variables can hold only one type of data, and that type must be declared before the variable can be used, as in C. In PHP, the type of a variable is determined by the value assigned to it. For example, when you created \$totalqty and \$totalamount, their initial types were  determined as follows:
 
+1『 php 跟 JS、python 一样，动态语言，不要要提前声明变量的数据类型，用的时候直接赋值，它会根据被赋的值自己确定该变量所绑定的数据类型。』
+
 Because you assigned 0, an integer, to \$totalqty, this is now an integer type variable. Similarly, \$totalamount is now of type float. Strangely enough, you could now add a line to your script as follows. The variable \$totalamount would then be of type string. PHP changes the variable type according to what is stored in it at any given time. This ability to change types transparently on the fly can be extremely useful. Remember PHP「automagically」knows what data type you put into your variable. It returns the data with the same data type when you retrieve it from the variable.
 
 Type Casting. You can pretend that a variable or value is of a different type by using a type cast. This feature works identically to the way it works in C. You simply put the temporary type in parentheses in front of the variable you want to cast. For example, you could have declared the two variables from the preceding section using a cast:
@@ -460,6 +478,8 @@ $totalamount = (float)$totalqty;
 ```
 
 The second line means「Take the value stored in \$totalqty, interpret it as a float, and store it in \$totalamount.」The \$totalamount variable will be of type float. The cast variable does not change types, so \$totalqty remains of type integer.
+
+1『 Type Casting 不会改变原来变量的数据类型。』
 
 Variable Variables. PHP provides one other type of variable: the variable variable. Variable variables enable you to change the name of a variable dynamically. As you can see, PHP allows a lot of freedom in this area. All languages enable you to change the value of a variable, but not many allow you to change the variable’s type, and even fewer allow you to change the variable’s name.  A variable variable works by using the value of one variable as the name of another. For example, you could set:
 
@@ -475,15 +495,528 @@ This is equivalent to
 
 This approach might seem somewhat obscure, but we’ll revisit its use later. Instead of having to list and use each form variable separately, you can use a loop and variable variable to process them all automatically. You can find an example illustrating this in the section on for loops later in this chapter.
 
+1『应用场景在哪？』
+
+### 07. Declaring and Using Constants
+
+As you saw previously, you can readily change the value stored in a variable. You can also declare constants. A constant stores a value just like a variable, but its value is set once and then cannot be changed elsewhere in the script. In the sample application, you might store the prices for each item on sale as a constant. You can define these constants using the define function:
+
+```php
+define('TIREPRICE', 100);
+define('OILPRICE', 10);
+define('SPARKPRICE', 4);
+```
+
+Notice that the names of the constants appear in uppercase. This convention, borrowed from C, makes it easy to distinguish between variables and constants at a glance. Following this convention is not required but will make your code easier to read and maintain.
+
+One important difference between constants and variables is that when you refer to a constant, it does not have a dollar sign in front of it. If you want to use the value of a constant, use its name only. For example, to use one of the constants just created, you could type:
+
+    echo TIREPRICE;
+
+As well as the constants you define, PHP sets a large number of its own. An easy way to obtain an overview of them is to run the phpinfo() function:
+
+    phpinfo();
+
+This function provides a list of PHP’s predefined variables and constants, among other useful information. We will discuss some of them as we go along. One other difference between variables and constants is that constants can store only boolean, integer, float, or string data. These types are collectively known as scalar values.
+
+### 08. Understanding Variable Scope
+
+The term scope refers to the places within a script where a particular variable is visible. The six basic scope rules in PHP are as follows:
+
+ ■ Built-in superglobal variables are visible everywhere within a script.
+
+ ■ Constants, once declared, are always visible globally; that is, they can be used inside and outside functions.
+
+ ■ Global variables declared in a script are visible throughout that script, but not inside functions.
+
+ ■ Variables inside functions that are declared as global refer to the global variables of the same name.
+
+ ■ Variables created inside functions and declared as static are invisible from outside the function but keep their value between one execution of the function and the next. (We explain this idea fully in Chapter 5.)
+
+ ■ Variables created inside functions are local to the function and cease to exist when the function terminates.
+
+The arrays \$\_GET and \$\_POST and some other special variables have their own scope rules. They are known as superglobals and can be seen everywhere, both inside and outside functions.
+
+The complete list of superglobals is as follows:
+
+ ■ \$GLOBALS—An array of all global variables (Like the global keyword, this allows you to access global variables inside a function—for example, as \$GLOBALS['myvariable'].)
+
+ ■ \$\_SERVER—An array of server environment variables.
+
+ ■ \$\_GET—An array of variables passed to the script via the GET method.
+
+ ■ \$\_POST—An array of variables passed to the script via the POST method.
+
+ ■ \$\_COOKIE—An array of cookie variables.
+
+ ■ \$\_FILES—An array of variables related to file uploads.
+
+ ■ \$\_ENV—An array of environment variables.
+
+ ■ \$\_REQUEST—An array of all user input including the contents of input including \$\_GET, \$\_POST, and \$\_COOKIE (but not including \$\_FILES)
+
+ ■ \$\_SESSION—An array of session variables.
+
+We come back to each of these superglobals throughout the book as they become relevant. We cover scope in more detail when we discuss functions and classes later in this chapter. For the time being, all the variables we use are global by default.
+
+### 09. Using Operators
+
+Operators are symbols that you can use to manipulate values and variables by performing an operation on them. You need to use some of these operators to work out the totals and tax on the customer’s order. We’ve already mentioned two operators: the assignment operator (=) and the string  concatenation operator (.). In the following sections, we describe the complete list.
+
+In general, operators can take one, two, or three arguments, with the majority taking two. For example, the assignment operator takes two: the storage location on the left side of the = symbol and an expression on the right side. These arguments are called operands—that is, the things that are being operated upon.
+
+#### 1. Arithmetic Operators
+
+Arithmetic operators are straightforward; they are just the normal mathematical operators. PHP’s arithmetic operators are shown in Table 1.1.
+
+You should note that arithmetic operators are usually applied to integers or doubles. If you apply them to strings, PHP will try to convert the string to a number. If it contains an e or an E, it will be read as being in scientific notation and converted to a float; otherwise, it will be converted to an integer. PHP will look for digits at the start of the string and use them as the value; if there are none, the value of the string will be zero.
+
+#### 2. String Operators 
+
+You’ve already seen and used the only string operator. You can use the string concatenation operator to add two strings and to generate and store a result much as you would use the addition operator to add two numbers:
+
+#### 3. Assignment Operators
+
+You’ve already seen the basic assignment operator (=). Always refer to this as the assignment operator and read it as「is set to.」For example,
+
+Values Returned from Assignment. This technique enables you to form expressions such as:
+
+    $b = 6 + ($a = 5);
+
+This line sets the value of the \$b variable to 11. This behavior is generally true of assignments: The value of the whole assignment statement is the value that is assigned to the left operand. When working out the value of an expression, you can use parentheses to increase the  precedence of a subexpression, as shown here. This technique works exactly the same way as in mathematics.
+
+Combined Assignment Operators. In addition to the simple assignment, there is a set of combined assignment operators. Each of them is a shorthand way of performing another operation on a variable and assigning the result back to that variable. For example,
+
+    $a += 5;
+
+This is equivalent to writing
+
+    $a = $a + 5;
+
+Combined assignment operators exist for each of the arithmetic operators and for the string concatenation operator. A summary of all the combined assignment operators and their effects is shown in Table 1.2.
+
+Pre- and Post-Increment and Decrement. The pre- and post-increment (++) and decrement (--) operators are similar to the += and -= operators, but with a couple of twists. All the increment operators have two effects: They increment and assign a value. Consider the following:
+
+```php
+$a=4;
+echo ++$a;
+```
+
+The second line uses the pre-increment operator, so called because the ++ appears before the \$a. This has the effect of first incrementing \$a by 1 and second, returning the incremented value. In this case, \$a is incremented to 5, and then the value 5 is returned and printed. The value of this whole expression is 5. (Notice that the actual value stored in \$a is changed: It is not just returning \$a + 1.) If the ++ is after the \$a, however, you are using the post-increment operator. It has a different effect. Consider the following:
+
+```php
+$a=4;
+echo $a++;
+```
+
+In this case, the effects are reversed. That is, first, the value of \$a is returned and printed, and second, it is incremented. The value of this whole expression is 4. This is the value that will be printed. However, the value of \$a after this statement is executed is 5. As you can probably guess, the behavior is similar for the -- (decrement) operator. However, the value of \$a is decremented instead of being incremented.
+
+Reference Operator. The reference operator (&, an ampersand) can be used in conjunction with assignment. Normally, when one variable is assigned to another, a copy is made of the first variable and stored elsewhere in memory. For example,
+
+```php
+$a = 5;
+$b = $a;
+```
+
+These code lines make a second copy of the value in \$a and store it in \$b. If you subsequently change the value of \$a, \$b will not change:
+
+```php
+$a = 7; // $b will still be 5
+```
+
+You can avoid making a copy by using the reference operator. For example,
+
+```
+$a = 5;
+$b = &$a;
+$a = 7; // $a and $b are now both 7
+```
+
+References can be a bit tricky. Remember that a reference is like an alias rather than like a pointer. Both \$a and \$b point to the same piece of memory. You can change this by unsetting one of them as follows:
+
+    unset($a);
+
+Unsetting does not change the value of \$b (7) but does break the link between \$a and the value 7 stored in memory.
+
+#### 4. Comparison Operators
+
+The comparison operators compare two values. Expressions using these operators return either of the logical values true or false depending on the result of the comparison.
+
+The Equal Operator. The equal comparison operator (==, two equal signs) enables you to test whether two values are equal. For example, you might use the expression to test whether the values stored in \$a and \$b are the same. The result returned by this  expression is true if they are equal or false if they are not. You might easily confuse == with =, the assignment operator. Using the wrong operator will work without giving an error but generally will not give you the result you wanted. In general, nonzero values evaluate to true and zero values to false. Say that you have initialized two variables as follows:
+
+```php
+$a = 5;$b = 7;
+```
+
+If you then test \$a = \$b, the result will be true. Why? The value of \$a = \$b is the value assigned to the left side, which in this case is 7. Because 7 is a nonzero value, the expression evaluates to true. If you intended to test \$a = = \$b, which evaluates to false, you have  introduced a logic error in your code that can be extremely difficult to find. Always check your use of these two operators and check that you have used the one you intended to use. Using the assignment operator rather than the equals comparison operator is an easy mistake to make, and you will probably make it many times in your programming career.
+
+Other Comparison Operators. PHP also supports a number of other comparison operators. A summary of all the comparison operators is shown in Table 1.3. One to note is the identical operator (===), which returns true only if the two operands are both equal and of the same type. 
+
+For example, 0\=='0' will be true, but 0==='0' will not because one zero is an integer and the other zero is a string.
+
+#### 5. Logical Operators
+
+The logical operators combine the results of logical conditions. For example, you might be interested in a case in which the value of a variable, \$a, is between 0 and 100. You would need to test both the conditions \$a >= 0 and \$a <= 100, using the AND operator, as follows:
+
+    $a >= 0 && $a <=100
+
+PHP supports logical AND, OR, XOR (exclusive or), and NOT. The set of logical operators and their use is summarized in Table 1.4. The and and or operators have lower precedence than the && and || operators. We cover precedence in more detail later in this chapter.
+
+#### 6. Bitwise Operators
+
+The bitwise operators enable you to treat an integer as the series of bits used to represent it. You probably will not find a lot of use for the bitwise operators in PHP, but a summary is shown in Table 1.5.
+
+#### 7. Other Operators
+
+In addition to the operators we have covered so far, you can use several others. The comma operator (,) separates function arguments and other lists of items. It is normally used incidentally. Two special operators, new and ->, are used to instantiate a class and access class members, respectively. They are covered in detail in Chapter 6. There are a few others that we discuss briefly here.
+
+The Ternary Operator. The ternary operator (?:) takes the following form:
+
+    condition ? value if true : value if false
+
+The Execution Operator. The execution operator is really a pair of operators—a pair of backticks (``) in fact. The  backtick is not a single quotation mark; it is usually located on the same key as the ~ (tilde) symbol on your keyboard. PHP attempts to execute whatever is contained between the backticks as a command at the server’s command line. The value of the expression is the output of the command. For example, under Unix-like operating systems, you can use
+
+```php
+$out = `ls -la`;
+echo '<pre>'.$out.'</pre>';
+```
+
+Or, equivalently on a Windows server, you can use
+
+```php
+$out = `dir c:`;
+echo '<pre>'.$out.'</pre>';
+```
+
+Either version obtains a directory listing and stores it in \$out. It can then be echoed to the browser or dealt with in any other way. There are other ways of executing commands on the server. We cover them in Chapter 17「Interacting with the File System and the Server.」
+
+Array Operators. There are a number of array operators. The array element operators ([]) enable you to access array elements. You can also use the => operator in some array contexts. These operators are covered in Chapter 3. You also have access to a number of other array operators. We cover them in detail in Chapter 3 as well, but we included them here in Table 1.6 for completeness.
+
+You will notice that the array operators in Table 1.6 all have equivalent operators that work on scalar variables. As long as you remember that + performs addition on scalar types and union on arrays—even if you have no interest in the set arithmetic behind that behavior—the  behaviors should make sense. You cannot usefully compare arrays to scalar types.
+
+The Type Operator. There is one type operator: instanceof. This operator is used in object-oriented programming, but we mention it here for completeness. (Object-oriented programming is covered in Chapter 6.) The instanceof operator allows you to check whether an object is an instance of a particular class, as in this example:
+
+```php
+class sampleClass{};
+$myObject = new sampleClass();
+if ($myObject instanceof sampleClass)  
+    echo  "myObject is an instance of sampleClass";
+```
+
+### 10. Working Out the Form Totals
+
+Now that you know how to use PHP’s operators, you are ready to work out the totals and tax on Bob’s order form. To do this, add the following code to the bottom of your PHP script:
+
+```php
+$totalqty = 0;
+$totalqty = $tireqty + $oilqty + $sparkqty;
+echo "<p>Items ordered: ".$totalqty."<br />";
+$totalamount = 0.00;
+
+define('TIREPRICE', 100);
+define('OILPRICE', 10);
+define('SPARKPRICE', 4);
+
+$totalamount = $tireqty * TIREPRICE
+                      + $oilqty * OILPRICE
+                      + $sparkqty * SPARKPRICE;
+
+echo "Subtotal: $".number_format($totalamount,2)."<br />";
+
+$taxrate = 0.10;  // local sales tax is 10%
+$totalamount = $totalamount * (1 + $taxrate);
+echo "Total including tax: $".number_format($totalamount,2)."</p>";
+```
+
+As you can see, this piece of code uses several operators. It uses the addition (+) and  multiplication (*) operators to work out the amounts and the string concatenation operator (.) to set up the output to the browser.
+
+It also uses the number\_format() function to format the totals as strings with two decimal places. This is a function from PHP’s Math library. If you look closely at the calculations, you might ask why the calculations were performed in the order they were. For example, consider this statement:
+
+The total amount seems to be correct, but why were the multiplications performed before the additions? The answer lies in the precedence of the operators—that is, the order in which they are evaluated.
+
+### 11. Understanding Precedence and Associativity
+
+In general, operators have a set precedence, or order, in which they are evaluated. Operators also have associativity, which is the order in which operators of the same precedence are evaluated. This order is generally left to right (called left for short), right to left (called right for short), or not relevant. Table 1.7 shows operator precedence and associativity in PHP. In this table, operators with the lowest precedence are at the top, and precedence increases as you go down the table.
+
+Table 1.7  Operator Precedence in PHP
+
+Notice that we haven’t yet covered the operator with the highest precedence: plain old parentheses. The effect of using parentheses is to raise the precedence of whatever is contained within them. This is how you can deliberately manipulate or work around the precedence rules when you need to. Remember this part of the preceding example:
+
+    $totalamount = $totalamount * (1 + $taxrate);
+
+If you had written
+
+    $totalamount = $totalamount * 1 + $taxrate;
+
+the multiplication operation, having higher precedence than the addition operation, would be performed first, giving an incorrect result. By using the parentheses, you can force the subexpression 1 + \$taxrate to be evaluated first. You can use as many sets of parentheses as you like in an expression. The innermost set of parentheses is evaluated first. Also note one other operator in this table we have not yet covered: the print language construct, which is equivalent to echo. Both constructs generate output.
+
+We generally use echo in this book, but you can use print if you find it more readable. Neither print nor echo is really a function, but both can be called as a function with parameters in parentheses. Both can also be treated as an operator: You simply place the string to work with after the keyword echo or print. Calling print as a function causes it to return a value (1). This capability might be useful if you want to generate output inside a more complex expression but does mean that print is marginally slower than echo.
+
+### 12. Using Variable Handling Functions
+
+Before we leave the world of variables and operators, let’s look at PHP’s variable handling functions. PHP provides a library of functions that enable you to manipulate and test variables in different ways.
+
+#### 1. Testing and Setting Variable Types
+
+Most of the variable functions are related to testing the type of function. The two most general are gettype() and settype(). They have the following function prototypes; that is, this is what arguments expect and what they return:
+
+```php
+string gettype(mixed var);
+bool settype(mixed var, string type);
+```
+
+To use gettype(), you pass it a variable. It determines the type and returns a string containing the type name: bool, int, double (for floats, confusingly, for historical reasons), string, array, object, resource, or NULL. It returns unknown type if it is not one of the standard types.
+
+To use settype(), you pass it a variable for which you want to change the type and a string containing the new type for that variable from the previous list.
+
+Note: This book and the php.net documentation refer to the data type「mixed.」There is no such data type, but because PHP is so flexible with type handling, many functions can take many (or any) data types as an argument. Arguments for which many types are permitted are shown with the pseudo-type「mixed.」
+
+You can use these functions as follows:
+
+```php
+$a = 56;
+echo gettype($a) . '<br />';
+settype($a, 'float');
+echo gettype($a) . '<br />';
+```
+
+When gettype() is called the first time, the type of \$a is integer. After the call to settype(), the type is changed to float, which is reported as double. (Be aware of this difference.) PHP also provides some specific type-testing functions. Each takes a variable as an argument and returns either true or false. The functions are:
+
+#### 2. Testing Variable Status
+
+PHP has several functions for testing the status of a variable. The first is isset(), which has the following prototype:
+
+    bool isset(mixed var[, mixed var[,...]])
+
+This function takes a variable name as an argument and returns true if it exists and false otherwise. You can also pass in a comma-separated list of variables, and isset() will return true if all the variables are set. You can wipe a variable out of existence by using its companion function, unset(), which has the following prototype:
+
+    void unset(mixed var[, mixed var[,...]])
+
+This function gets rid of the variable it is passed. The empty() function checks to see whether a variable exists and has a nonempty, nonzero value; it returns true or false accordingly. It has the following prototype:
+
+    bool empty(mixed var)
+
+Let’s look at an example using these three functions. Try adding the following code to your script temporarily:
+
+```php
+echo 'isset($tireqty): ' . isset($tireqty).'<br />'; 
+echo 'isset($nothere): ' . isset($nothere).'<br />';
+echo 'empty($tireqty): ' . empty($tireqty).'<br />';
+echo 'empty($nothere): ' . empty($nothere).'<br />';
+```
+
+The variable \$tireqty should return 1 (true) from isset() regardless of what value you entered in that form field and regardless of whether you entered a value at all. Whether it is empty() depends on what you entered in it. The variable \$nothere does not exist, so it generates a blank (false) result from isset() and a 1 (true) result from empty(). These functions are handy when you need to make sure that the user filled out the appropriate fields in the form.
+
+#### 3. Reinterpreting Variables
+
+You can achieve the equivalent of casting a variable by calling a function. The following three functions can be useful for this task:
+
+```php
+int intval(mixed var[, int base=10])
+float floatval(mixed var)
+string strval(mixed var)
+```
+
+Each accepts a variable as input and returns the variable’s value converted to the  appropriate type. The intval() function also allows you to specify the base for conversion when the  variable to be converted is a string. (This way, you can convert, for example, hexadecimal strings to integers.)
+
+### 12. Making Decisions with Conditionals
+
+Control structures are the structures within a language that allow you to control the flow of execution through a program or script. You can group them into conditional (or branching) structures and repetition structures (or loops). If you want to sensibly respond to your users’ input, your code needs to be able to make  decisions. The constructs that tell your program to make decisions are called conditionals.
+
+#### 1. if Statements
+
+You can use an if statement to make a decision. You should give the if statement a condition to use. If the condition is true, the following block of code will be executed. Conditions in if statements must be surrounded by parentheses ().
+
+For example, if a visitor orders no tires, no bottles of oil, and no spark plugs from Bob, it is probably because she accidentally clicked the Submit Order button before she had finished filling out the form. Rather than telling the visitor「Order processed,」the page could give her a more useful message. When the visitor orders no items, you might like to say,「You did not order anything on the previous page!」You can do this easily by using the following if statement:
+
+#### 2. Code Blocks
+
+Often you may have more than one statement you want executed according to the actions of a conditional statement such as if. You can group a number of statements together as a block. To declare a block, you enclose it in curly braces:
+
+```php
+if ($totalqty == 0) {  
+    echo '<p style="color:red">';  
+    echo 'You did not order anything on the previous page!';  
+    echo '</p>';}
+```
+
+The three lines enclosed in curly braces are now a block of code. When the condition is true, all three lines are executed. When the condition is false, all three lines are ignored.
+
+Note: As already mentioned, PHP does not care how you lay out your code. However, you should indent your code for readability purposes. Indenting is used to enable you to see at a glance which lines will be executed only if conditions are met, which statements are grouped into blocks, and which statements are parts of loops or functions. In the previous examples, you can see that the statement depending on the if statement and the statements making up the block are indented.
+
+#### 3. else Statements
+
+You may often need to decide not only whether you want an action performed, but also which of a set of possible actions you want performed. An else statement allows you to define an alternative action to be taken when the condition in an if statement is false. Say you want to warn Bob’s customers when they do not order anything. On the other hand, if they do make an order, instead of a warning, you want to show them what they ordered. If you rearrange the code and add an else statement, you can display either a warning or a summary: 
+
+You can build more complicated logical processes by nesting if statements within each other. In the following code, the summary will be displayed only if the condition \$totalqty == 0 is true, and each line in the summary will be displayed only if its own condition is met: 
+
+#### 4. elseif Statements
+
+For many of the decisions you make, you have more than two options. You can create a sequence of many options using the elseif statement, which is a combination of an else and an if statement. When you provide a sequence of conditions, the program can check each until it finds one that is true. 
+
+Note that you are free to type elseif or else if—versions with or without a space are both correct.
+
+1『原来 php 里 elseif 和 else if 都可以，python、JS 里都是 elseif。』
+
+If you are going to write a cascading set of elseif statements, you should be aware that only one of the blocks or statements will be executed. It did not matter in this example because all the conditions were mutually exclusive; only one can be true at a time. If you write conditions in a way that more than one could be true at the same time, only the block or statement following the first true condition will be executed.
+
+#### 5. switch Statements
+
+The switch statement works in a similar way to the if statement, but it allows the condition to take more than two values. In an if statement, the condition can be either true or false. In a switch statement, the condition can take any number of different values, as long as it evaluates to a simple type (integer, string, or float). You need to provide a case statement to handle each value you want to react to and, optionally, a default case to handle any that you do not provide a specific case statement for.
+
+```php
+switch($find) {  
+    case "a" :    
+        echo "<p>Regular customer.</p>";    
+        break;  
+    case "b" :   
+        echo "<p>Customer referred by TV advert.</p>";    
+        break;  
+    case "c" :    
+        echo "<p>Customer referred by phone directory.</p>";    
+        break;  
+    case "d" :    
+        echo "<p>Customer referred by word of mouth.</p>";    
+        break;  
+    default :    
+        echo "<p>We do not know how this customer found us.</p>";    
+        break;
+    }
+```
+
+(Note that both of these examples assume you have extracted \$find from the \$\_POST array.)
+
+The switch statement behaves somewhat differently from an if or elseif statement. An if statement affects only one statement unless you deliberately use curly braces to create a block of statements. A switch statement behaves in the opposite way. When a case statement in a switch is activated, PHP executes statements until it reaches a break statement. Without break statements, a switch would execute all the code following the case that was true. When a break statement is reached, the next line of code after the switch statement is executed.
+
+#### 6. Comparing the Different Conditionals
+
+If you are not familiar with the statements described in the preceding sections, you might be asking,「Which one is the best?」That is not really a question we can answer. There is nothing that you can do with one or more else, elseif, or switch statements that you cannot do with a set of if statements. You should try to use whichever conditional will be most readable in your situation. You will acquire a feel for which suits different situations as you gain experience.
+
+### 13. Repeating Actions Through Iteration
+
+One thing that computers have always been very good at is automating repetitive tasks. If you need something done the same way a number of times, you can use a loop to repeat some parts of your program.
+
+Bob wants a table displaying the freight cost that will be added to a customer’s order. With the courier Bob uses, the cost of freight depends on the distance the parcel is being shipped. This cost can be worked out with a simple formula. You want the freight table to resemble the table in Figure 1.7.
+
+Rather than requiring an easily bored human—who must be paid for his time—to type the HTML, having a cheap and tireless computer do it would be helpful. Loop statements tell PHP to execute a statement or block repeatedly.
+
+#### 1. while Loops
+
+The simplest kind of loop in PHP is the while loop. Like an if statement, it relies on a  condition. The difference between a while loop and an if statement is that an if statement executes the code that follows it only once if the condition is true. A while loop executes the block repeatedly for as long as the condition is true. You generally use a while loop when you don’t know how many iterations will be required to make the condition true. If you require a fixed number of iterations, consider using a for loop. The basic structure of a while loop is
+
+    while( condition ) expression;
+
+The following while loop will display the numbers from 1 to 5:
+
+```php
+$num = 1;
+while ($num <= 5 ){  
+    echo $num."<br />";  
+    $num++;
+}
+```
+
+At the beginning of each iteration, the condition is tested. If the condition is false, the block will not be executed and the loop will end. The next statement after the loop will then be executed. You can use a while loop to do something more useful, such as display the repetitive freight table in Figure 1.7. Listing 1.3 uses a while loop to generate the freight table.
+
+#### 2. for and foreach Loops
+
+The way that you used the while loops in the preceding section is very common. You set a counter to begin with. Before each iteration, you test the counter in a condition. And at the end of each iteration, you modify the counter. You can write this style of loop in a more compact form by using a for loop. The basic  structure of a for loop is
+
+```
+for( expression1; condition; expression2)  
+    expression3;
+```
+
+■ expression1 is executed once at the start. Here, you usually set the initial value of a counter.
+
+■ The condition expression is tested before each iteration. If the expression returns false, iteration stops. Here, you usually test the counter against a limit.
+
+■ expression2 is executed at the end of each iteration. Here, you usually adjust the value of the counter.
+
+■ expression3 is executed once per iteration. This expression is usually a block of code and contains the bulk of the loop code.
+ 
+ Both the while and for versions are functionally identical. The for loop is somewhat more compact, saving two lines. Both these loop types are equivalent; neither is better or worse than the other. In a given  situation, you can use whichever you find more intuitive.
+
+As a side note, you can combine variable variables with a for loop to iterate through a series of repetitive form fields. If, for example, you have form fields with names such as name1, name2, name3, and so on, you can process them like this:
+
+```php
+for ($i=1; $i <= $numnames; $i++){  
+    $temp= "name$i";  
+    echo htmlspecialchars($$temp).'<br />'; // or whatever processing you want to do
+}
+```
+
+By dynamically creating the names of the variables, you can access each of the fields in turn. As well as the for loop, there is a foreach loop, designed specifically for use with arrays. We discuss how to use it in Chapter 3.
+
+#### 3. do...while Loops
+
+The final loop type we describe behaves slightly differently. The general structure of a do...while statement is
+
+    do  expression;while( condition );
+
+A do...while loop differs from a while loop because the condition is tested at the end. This means that in a do...while loop, the statement or block within the loop is always executed at least once. Even if you consider this example in which the condition will be false at the start and can never become true, the loop will be executed once before checking the condition and ending:
+
+```php
+$num = 100;
+do{  
+    echo $num."<br />";
+}while ($num < 1 ) ;
+```
+
+### 14. Breaking Out of a Control Structure or Script
+
+If you want to stop executing a piece of code, you can choose from three approaches, depending on the effect you are trying to achieve. 1) If you want to stop executing a loop, you can use the break statement as previously discussed in the section on switch. If you use the break statement in a loop, execution of the script will continue at the next line of the script after the loop. 2) If you want to jump to the next loop iteration, you can instead use the continue statement. 3) If you want to finish executing the entire PHP script, you can use exit. This approach is typically useful when you are performing error checking. For example, you could modify the earlier example as follows:
+
+```php
+if($totalqty == 0){  
+    echo "You did not order anything on the previous page!<br />";  
+    exit;
+}
+```
+
+1『找错的时候经常用 exit; 退出，结合函数 var_dump() 一起用。』 
+ 
+### 15. Employing Alternative Control Structure Syntax
+
+For all the control structures we have looked at, there is an alternative form of syntax. It consists of replacing the opening brace ({) with a colon (:) and the closing brace with a new keyword, which will be endif, endswitch, endwhile, endfor, or endforeach, depending on which control structure is being used. No alternative syntax is available for do...while loops. For example, the code
+
+```php
+if ($totalqty == 0) {  
+    echo "You did not order anything on the previous page!<br />";  
+    exit;
+}
+```
+
+could be converted to this alternative syntax using the keywords if and endif:
+
+```php
+if ($totalqty == 0) :  
+    echo "You did not order anything on the previous page!<br />";  
+    exit;
+endif;
+```
+ 
+### 16. Using declare
+
+One other control structure in PHP, the declare structure, is not used as frequently in day-to-day coding as the other constructs. The general form of this control structure is as follows:
+
+```php
+declare (directive)
+{
+    // block
+}
+```
+
+This structure is used to set execution directives for the block of code—that is, rules about how the following code is to be run. Currently, only two execution directives, ticks and encoding, have been implemented. You use ticks by inserting the directive ticks=n. It allows you to run a specific function every n lines of code inside the code block, which is principally useful for profiling and debugging. The encoding directive is used to set encoding for a particular script, as follows:
+
+```
+declare(encoding='UTF-8');
+```
+
+In this case, the declare statement may not be followed by a code block if you are using namespaces. We’ll talk about namespaces more later. The declare control structure is mentioned here only for completeness. We consider some examples showing how to use tick functions in Chapters 25「Using PHP and MySQL for Large Projects,」and 26「Debugging and Logging.」
 
 
 
 
-
-
-
-
-
-
-
-
+ 
+ 
