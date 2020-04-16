@@ -2,7 +2,7 @@
 
 Now that we have seen the mechanics of PHP’s object support in some detail, we will step back from the details and consider how best to use the tools that we have encountered. In this chapter, I introduce you to some of the issues surrounding objects and design. I will also look at the UML, a powerful graphical language for describing object-oriented systems.This chapter will cover the following topics:
 
-•	 Design basics: What I mean by design, and how object-oriented design differs from 
+Design basics: What I mean by design, and how object-oriented design differs from 
 
 procedural code
 
@@ -624,15 +624,9 @@ presenting them with surprising clarity.
 
  ■ Note  Look at Figures 6-16 and 6-20. notice how the class diagram illustrates polymorphism, showing the classes derived from ShopProductWriter and ShopProduct. now notice how this detail becomes transparent when we model the communication among objects. Where possible, we want objects to work with the most general types available, so that we can hide the details of implementation.
 
-Summary
+## Summary
 
 In this chapter, I went beyond the nuts and bolts of object-oriented programming to look at some key design issues. I examined features such as encapsulation, loose coupling, and cohesion that are essential aspects of a flexible and reusable object-oriented system. I went on to look at the UML, laying groundwork that will be essential in working with patterns later in the book.
 
-153
 
-PART II
-
-Patterns
-
-CHAPTER 7
 

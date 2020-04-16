@@ -1,4 +1,4 @@
-Some Pattern Principles
+# 08 Some Pattern Principles
 
 Although design patterns simply describe solutions to problems, they tend to emphasize solutions that promote reusability and flexibility. To achieve this, they manifest some key object-oriented design principles. We will encounter some of them in this chapter and in more detail throughout the rest of the book.
 

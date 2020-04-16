@@ -1,678 +1,932 @@
-Continuous Integration
+# 19 Automated Build with Phing
 
-In previous chapters, you’ve seen a plethora of tools that are designed to support a well-managed project. Unit testing, documentation, build, and version control are all fantastically useful. But tools, and testing in particular, can be bothersome.
+If version control is one side of the coin, then automated build is the other. Version control allows multiple developers to work collaboratively on a single project. With many coders each deploying a project in her own space, automated build soon becomes essential. One developer may have her web-facing directory in /usr/local/apache/htdocs; another might use /home/bibble/public_html. Developers may use different database passwords, library directories, or mail mechanisms. A flexible codebase might easily accommodate all of these differences, but the effort of changing settings and manually copying directories around your file system to get things working would soon become tiresome—especially if you need to install code in progress several times a day (or several times an hour).
 
-Even if your tests only take a few minutes to run, you’re often too focused on coding to bother with 
+You have already seen that Composer automates package installation. You’ll almost certainly want to 
 
-them. Not only that, but you have clients and colleagues waiting for new features. The temptation to keep on coding is always there. But bugs are much easier to fix close to the time they are hatched. That’s because you’re more likely to know which change caused the problem and are better able to come up with a quick fix.In this chapter, I introduce Continuous Integration, a practice that automates test and build, and brings 
+deliver a project to an end user via a Composer or PEAR package because that mechanism is straightforward for the user and because package-management systems handle dependencies. But there’s a lot of work that might need automating before a package has been created. You may need to generate template-generated code, for example. You should run tests and provide mechanisms for creating and updating database tables. Finally, you may want to automate the creation of a production-ready package. In this chapter, I introduce you to Phing, which handles just such jobs. This chapter will cover the following:
 
-together the tools and techniques you’ve encountered in recent chapters.
+Properties: Setting and getting data
 
-This chapter will cover these topics:
+•	 Getting and installing Phing: Who builds the builder?•	•	•	•	
 
-Preparing a project for CI
+Types: Describing complex parts of a project
 
-•	 Defining Continuous Integration•	•	•	 Customizing Jenkins for PHP projects with specialized plug-ins
+Targets: Breaking a build into callable, interdependent sets of functionality
 
-Looking at Jenkins: a CI server
+Tasks: The things that get stuff done
 
-What Is Continuous Integration?
+What Is Phing?
 
-In the bad old days, integration was something you did after you’d finished the fun stuff. It was also the stage at which you realized how much work you still had to do. Integration is the process by which all of the parts of your project are bundled up into packages that can be shipped and deployed. It’s not glamorous, and it’s actually hard.
+Phing is a PHP tool for building projects. It is very closely modeled on the hugely popular (and very powerful) Java tool called Ant. Ant was so named because it is small but capable of constructing things that are very large indeed. Both Phing and Ant use an XML file (usually named build.xml) to determine what to do in order to install or otherwise work with a project.
 
-Integration is tied up also with QA. You can’t ship a product if it isn’t fit for purpose. That means tests. 
+The PHP world really needs a good build solution. Serious developers have had a number of options in the past. First, it is possible to use make, the ubiquitous Unix build tool that is still used for most C and Perl projects. However, make is extremely picky about syntax and requires quite a lot of shell knowledge, up to and including scripting—this can be challenging for some PHP programmers who have not come to programming via the Unix or Linux command line. What’s more, make provides very few built-in tools for common build operations such as transforming file names and contents. It is really just a glue for shell commands. This makes it hard to write programs that will install across platforms. Not all environments will have the same version of make, or even have it at all. Even if you have make, you may not have all the commands the makefile (the configuration file that drives make) requires.
 
-Lots of tests. If you haven’t been testing much prior to the integration stage, it probably also means nasty surprises. Lots of them.
+465
 
-You know from Chapter 18 that it’s best practice to test early and often. You know from Chapters 15 and 
+Chapter 19 ■ automated Build with phing
 
-19 that you should design with deployment in mind right from the start. Most of us accept that this is the ideal, but how often does the reality match up?
+Phing’s relationship with make is illustrated in its name: Phing stands for PHing Is Not Gnu make. This 
 
-If you practice test-oriented development (a term I prefer to test-first development, because it better 
+playful recursion is a common coder’s joke (for example, GNU itself stands for Gnu is Not Unix).
 
-reflects the reality of most good projects I’ve seen), then the writing of tests is less hard than you might think. After all, you write tests as you code anyway. Every time you develop a component, you create code fragments, perhaps at the bottom of the class file, that instantiate objects and call their methods. If you gather up those throwaway scraps of code, written to put your component through its paces during development, you’ve got yourself a test case. Stick them into a class and add them to your suite.
+Phing is a native PHP application that interprets a user-created XML file in order to perform operations 
 
-497
+on a project. Such operations would typically involve the copying of files from a distribution directory to various destination directories, but there is much more to Phing. Phing can be used to generate documentation, run tests, invoke commands, run arbitrary PHP code, create packages, replace keywords in files, strip comments, and generate tar/gzipped package releases. Even if Phing does not yet do what you need, it is designed to be easily extensible.
 
-Chapter 21 ■ Continuous integration
+Because Phing is itself a PHP application, all you need to run it is a recent PHP engine. As Phing is an 
 
-Oddly, it’s often the running of tests that people avoid. Over time, tests take longer to run. Failures 
+application for installing PHP applications, the presence of a PHP executable is a reasonably safe bet.
 
-related to known issues creep in, making it hard to diagnose new problems. Also, you suspect someone else committed code that broke the tests, and you don’t have time to hold up your own work while you fix issues that are someone else’s fault. Better to run a couple of tests related to your work than the whole suite.
+Getting and Installing Phing
 
-Failing to run tests, and therefore to fix the problems that they could reveal, makes issues harder and harder 
+If it is difficult to install an install tool, then something is surely wrong! However, assuming that you have PHP 5 or better on your system (and if you haven’t, this isn’t the book for you!), installation of Phing could not be easier.
 
-to address. The biggest overhead in hunting for bugs is usually the diagnosis and not the cure. Very often, a fix can be applied in a matter of minutes, set against perhaps hours searching for the reason a test failed. If a test fails within minutes or hours of a commit, however, you’re more likely to know where to look for the problem.
+You can acquire and install Phing with two simple commands:
 
-Software build suffers from a similar problem. If you don’t install your project often, you’re likely to find that, 
+$ pear channel-discover pear.phing.info$ pear install phing/phing
 
-although everything runs fine on your development box, an installed instance falls over with an obscure error message. The longer you’ve gone between builds, the more obscure the reason for the failure will likely be to you.
+This will install Phing as a PEAR package. You should have write permission for your PEAR directories, 
 
-It’s often something simple: an undeclared dependency upon a library on your system, or some class 
+which, on most Unix or Linux systems, will mean running the command as the root user.
 
-files you failed to check in. These are easy to fix if you’re on hand. But what if a build failure occurs when you’re out the office? Whichever unlucky team member gets the job of building and releasing the project won’t know about your setup and won’t have easy access to those missing files.
+ at the time of this writing, phing installed with pear is broken due to a namespacing issue. this problem 
 
-Integration issues are magnified by the number of people involved in a project. You may like and 
+ ■ Note will likely be resolved by the time you read this. if not, however, we have had good results using Composer.
 
-respect all of your team members, but we all know that they are much more likely than you are to leave tests unrun. And then they commit a week’s work of development at 4 p.m. on Friday, just as you’re about to declare the project good-to-go for a release.
+You can also install Phing with Composer. You should add this to your composer.json file:
 
-Continuous Integration (CI) reduces some of these problems by automating the build and test process.CI is both a set of practices and tools. As a practice, it requires frequent commits of project code (at least 
+{    "require-dev": {        "phing/phing": "2.*"    }}
 
-daily). With each commit, tests should be run and any packages should be built. You’ve already seen some of the tools required for CI, in particular PHPUnit and Phing. Individual tools aren’t enough, however. A higher-level system is required to coordinate and automate the process.
+If you run into any installation problems, you should visit the download page at http://phing.info/
 
-Without the higher system, a CI server, it’s likely that the practice of CI will simply succumb to our 
+trac/wiki/Users/Download. You will find plenty of installation instructions there.
 
-natural tendency to skip the chores. After all, we’d rather be coding.
+Composing the Build Document
 
-Having a system like this in place offers clear benefits. First, your project gets built and tested frequently. 
+You should now be ready to get cracking with Phing! Let’s test things out:
 
-That’s the ultimate aim and good of CI. That it’s automated, however, adds two further dimensions. The test and build happens in a different thread to that of development. It happens behind the scenes and doesn’t require that you stop work to run tests. Also, as with testing, CI encourages good design. In order for it to be possible to automate installation in a remote location, you’re forced to consider ease of installation from the start.
+$ phing -v
 
-I don’t know how many times I’ve come across projects where the installation procedure was an arcane 
+Phing 2.14.0
 
-secret known only to a few developers.「You mean you didn’t set up the URL rewriting?」asks one old hand with barely concealed contempt.「Honestly, the rewrite rules are in the Wiki, you know. Just paste them into the Apache config file.」Developing with CI in mind means making systems easier to test and install. This might mean a little more work up front, but it makes our lives easier down the line. Much easier.
+The -v flag to the phing command causes the script to return version information. By the time you 
 
-So, to start off, I’m going to lay down some of that expensive groundwork. In fact, you’ll find that in most 
+read this, the version number may have changed, but you should see a similar message when you run the command on your system.
 
-of the sections to come, you’ve encountered these preparatory steps already.
+466
 
-Preparing a Project for CIFirst of all, of course, I need a project to integrate continuously. Now, I’m a lazy soul, so I’ll look for some code that comes with tests already written. The obvious candidate is the project I created in Chapter 18 to illustrate PHPUnit. I’m going to name it userthing, because it’s a thing, with a User object in it.
+Chapter 19 ■ automated Build with phing
 
-First of all, here is a breakdown of my project directory:
+ if you installed phing using Composer, the runnable script file will be installed in your local  
 
-$ find src/ test/
+ ■ Note vendor/bin/ directory. to run phing you should either add this directory to your $PATH environment variable or use an explicit path to the executable.
 
-src/src/persistsrc/persist/UserStore.php
+Now I’ll run the phing command without arguments:
 
-498
+$ phing
 
-Chapter 21 ■ Continuous integration
+Buildfile: build.xml does not exist!
 
-src/utilsrc/util/Validator.phpsrc/domainsrc/domain/User.phptest/test/persisttest/persist/UserStoreTest.phptest/utiltest/util/ValidatorTest.php
+As you can see, Phing is lost without instructions. By default, it will look for a file called build.xml. Let’s 
 
-As you can see, I’ve tidied up the structure a little, adding some package directories. Within the code, 
+build a minimal document so that we can at least make that error message go away:
 
-I’ve supported the package structure with the use of namespaces.
+<?xml version="1.0"?><!-- build xml -->
 
-Now that I have a project, I should add it to a version-control system.
+<project name="megaquiz" default="main">    <target name="main"/></project>
 
-CI and Version ControlVersion control is essential for CI. A CI system needs to acquire the most recent version of a project without human intervention (at least once things have been set up).
+This is the bare minimum you can get away with in a build file. If we save the previous example as 
 
-For this example, I’ll use a repository I set up on BitBucket. I’ll configure code on my local development 
+build.xml and run phing again, we should get some more interesting output:
 
-machine, add and commit it, and then push to the remote server:
+$ phing
 
-$ cd path/to/userthing$ git init$ git remote add origin git@bitbucket.org:getinstance/userthing.git$ git add build.xml composer.json src/ test/$ git commit -m 'initial commit'$ git push -u origin master
+Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'main' has no tasks or dependencies
 
-I navigated to my development directory and initialized it. Then I added the origin remote, to which I 
-
-pushed the code. I like to confirm that everything is working by performing a fresh clone:
-
-$ git clone git@bitbucket.org:getinstance/userthing.git
-
-Cloning into 'userthing'...X11 forwarding request failed on channel 0remote: Counting objects: 16, done.remote: Compressing objects: 100% (11/11), done.remote: Total 16 (delta 0), reused 0 (delta 0)Receiving objects: 100% (16/16), done.
-
-Checking connectivity… done. Now I have a userthing repository and a local clone.Time to automate 
-
-build and test.
-
-PhingWe encountered Phing in Chapter 19. Here is one way to install the tool:
-
-$ sudo pear channel-discover pear.phing.info$ sudo pear install phing/phing
-
-499
-
-Chapter 21 ■ Continuous integration
-
-I’ll use Composer for this, however. Here’s the require-dev directive in my composer.json file:
-
-    "require-dev": {        "phing/phing": "2.*"    }
-
-I will be using this essential build tool as the glue for my project’s CI environment, so I run this install on 
-
-the server I intend to use for testing (or, of course, you could try this out on virtual server using Vagrant and VirtualBox). I will define targets for building and testing the code and for running the various other quality assurance tools you will meet in this chapter.
-
- Be sure to check the output of pear when installing a package. You may encounter error messages 
-
- ■ Note that prompt you to acquire dependencies before your target can be installed. the pear application is helpful and will tell you exactly what you need to do in order to install dependencies, but it is easy to miss the fact that more work is required on your part if you don’t check the application’s command-line output.
-
-Let’s build a sample task:
-
-<project name="userthing" default="build" basedir=".">    <property name="build" value="./build" />    <property name="test" value="./test" />    <property name="src" value="./src" />    <property name="version" value="1.1.1" />
-
-    <target name="build">        <mkdir dir="${build}" />        <copy todir="${build}/src">            <fileset dir="${src}">            </fileset>        </copy>
-
-        <copy todir="${build}/test">            <fileset dir="${test}">            </fileset>        </copy>
-
-    </target>
-
-    <target name="clean">        <delete dir="${build}" />    </target>    <!-- ... -->  </project>
-
-I set up four properties. build refers to the directory in which I might assemble my files before 
-
-generating a package. test points to the test directory. src refers to the source directory. version defines the version number for the package.
-
-500
-
-The build target copies the src and test directories into the build environment. In a more complex project, I might also perform transformations, generate configuration files, and assemble binary assets at this stage. This target is the project’s default.
-
-The clean target removes the build directory and anything it contains. Let’s run a build:
-
-Chapter 21 ■ Continuous integration
-
-$ vendor/bin/phing
-
-Buildfile: /var/popp/src/ch21/build.xmluserthing > build:
-
-    [mkdir] Created dir: /var/popp/src/ch21/build     [copy] Created 4 empty directories in /var/popp/src/ch21/build/src     [copy] Copying 3 files to /var/popp/src/ch21/build/src     [copy] Created 3 empty directories in /var/popp/src/ch21/build/test     [copy] Copying 2 files to /var/popp/src/ch21/build/test
+megaquiz > main:
 
 BUILD FINISHED
 
-Total time: 1.8206 second
+Total time: 1.3404 second
 
-Unit TestsUnit tests are the key to continuous integration. It’s no good successfully building a project that contains broken code. I covered unit testing with PHPUnit in Chapter 18. If you’re reading out of order, however, you’ll want to install this invaluable tool before proceeding. Here is one way to install PHPUnit globally:
+A lot of effort to achieve precisely nothing, you may think, but we have to start somewhere! As you can see, Phing also helpfully points out there’s nothing very useful about this build file. Look again at that build file. Because we are dealing with XML, I include an XML declaration. As you probably know, XML comments look like this:
 
-$ wget https://phar.phpunit.de/phpunit.phar$ chmod 755 phpunit.phar$ sudo mv phpunit.phar /usr/local/bin/phpunit
+<!-- this is an XML comment. OK? -->
 
-You can also install PHPUnit with Composer:
+So, because it’s a comment, the second line in my build file is ignored. You can put as many comments as you like in your build files, and as they grow, you should make full use of this fact. Large build files can be hard to follow without suitable comments.
 
-    "require-dev": {        "phing/phing": "2.*",         "phpunit/phpunit": "5.4.*"    }
+467
 
-Again, this is the approach I’ll take for my example. Because PHPUnit will be installed under the 
+Chapter 19 ■ automated Build with phing
 
-vendor/ directory, my development directory will remain independent of the wider system.
+The real start of any build file is the project element. The project element can include up to five 
 
-I’ve separated my test directory from the rest of my source code, so I’ll need to set up my autoload rules 
+attributes. Of these, name and default are compulsory. The name attribute establishes the project’s name; default defines a target to run if none are specified on the command line. An optional description attribute can provide summary information. You can specify the context directory for the build using a basedir attribute. If this is omitted, the current working directory will be assumed. Finally, you can specify the minimum version of the Phing application with which the build file should work using phingVersion. You can see these attributes summarized in Table 19-1.
 
-so that PHP can locate all the system’s classes during testing. Here’s my complete composer.json:
+Table 19-1.  The Attributes of the Project Element
 
-{    "require-dev": {        "phing/phing": "2.*",         "phpunit/phpunit": "5.4.*"    },    "autoload": {        "psr-4": {            "userthing\\": ["src/", "test/"]        }    }
+Attribute
 
-501
-
-Chapter 21 ■ Continuous integration
-
-Also in Chapter 18, I wrote tests for a version of the userthing code I’ll be working with in this chapter. Here I run them once again (from within the src directory), to make sure my reorganization has not broken anything new:
-
-$ vendor/bin/phpunit test/PHPUnit 5.4.6 by Sebastian Bergmann and contributors.
-
-...... 6 / 6 (100%)
-
-Time: 378 ms, Memory: 4.00MB
-
-OK (6 tests, 5 assertions)
-
-So this confirms that my tests work. However, I would like to invoke them with Phing.Phing provides an exec task which we might use to invoke the phpunit command. However, it’s always 
-
-best to use a specialized tool if there’s one available. There is a built-in task for this job:
-
-    <target name="test" depends="build">        <phpunit bootstrap="vendor/autoload.php" printsummary="true">            <formatter type="plain" usefile="false"/>            <batchtest>                <fileset dir="${test}">                    <include name="**/*Test.php"/>                </fileset>            </batchtest>        </phpunit>    </target>
-
-Because these are unit tests and not functional tests, we can run them against the local src/ directory rather than requiring an installed instance (with a functioning database or web server). Among many other attributes, the phpunit task accepts a printsummary attribute, which causes an overview of the test process to be output.
-
-Much of this task’s functionality is configured using nested elements. The formatter element manages 
-
-the way that test information is generated. In this case, I have opted to output basic human-readable data. batchtest lets you define multiple test files using the nested fileset element.
-
- the phpunit task is highly configurable. the phing manual provides full documentation at https://
-
- ■ Note www.phing.info/docs/guide/stable/PHPUnitTask.html.
-
-Here, I run the tests with Phing:
-
-$ vendor/bin/phing test
-
-Buildfile: /var/poppch21/build.xml
-
-userthing > build:
-
-502
-
-Chapter 21 ■ Continuous integration
-
-userthing > test:
-
-  [phpunit] Testsuite: userthing\persist\UserStoreTest  [phpunit] Tests run: 4, Failures: 0, Errors: 0, Incomplete: 0, Skipped: 0, Time elapsed: 0.01105 s  [phpunit] Testsuite: userthing\util\ValidatorTest  [phpunit] Tests run: 2, Failures: 0, Errors: 0, Incomplete: 0, Skipped: 0, Time elapsed: 0.00864 s  [phpunit] Total tests run: 6, Failures: 0, Errors: 0, Incomplete: 0, Skipped: 0, Time elapsed: 0.02641 s
-
-BUILD FINISHED
-
-Total time: 0.5815 seconds
-
-BUILD FINISHED
-
-Total time: 1.0921 second
-
-DocumentationTransparency is one of the principles of CI. When you’re looking at a build in a Continuous Integration environment, therefore, it’s important to be able to check that the documentation is up-to-date, and covers the most recent classes and methods. You can install phpDocumentor with PEAR like this:
-
-$ pear channel-discover pear.phpdoc.org$ pear install phpdoc/phpdocumentor
-
-Or, once again, you can use Composer:
-
-    "require-dev": {        "phing/phing": "2.*",        "phpunit/phpunit": "5.4.*",        "phpdocumentor/phpdocumentor": "2.*"    }
-
-I’d better invoke the tool just to be sure, this time from the build directory:
-
-$ ./vendor/bin/phpdoc --directory=src --target=docs --title=userthing
-
-This generates some pretty bare documentation. Once it’s published on a CI server, I’m sure to be 
-
-shamed into writing some real inline documentation.
-
-Once again, I want to add this to my build.xml document. There is a task named phpdoc2 that is 
-
-designed to integrate with PHPDocumentor:
-
-    <target name="doc" depends="build">        <mkdir dir="reports/docs" />
-
-503
-
-Chapter 21 ■ Continuous integration
-
-        <phpdoc2 title="API Documentation" destdir="reports/docs">           <fileset dir="${src}">              <include name="**/*.php" />           </fileset>        </phpdoc2>    </target>
-
-Again, my doc target depends upon the build target. I create the reports/docs output directory, 
-
-and then invoke the phpdoc2 task. phpdoc2 accepts a nested fileset element, which specifies the files to document.
-
- the full documentation for phpDocumentor2task is available at https://www.phing.info/docs/
-
- ■ Note guide/stable/PhpDocumentor2Task.html.
-
-Code CoverageIt’s no good relying on tests if they don’t apply to the code you have written. PHPUnit includes the ability to report on code coverage. Here’s an extract from PHPUnit’s usage information:
-
-  --coverage-html <dir>    Generate code coverage report in HTML format.  --coverage-clover <file> Write code coverage data in Clover XML format.
-
-In order to use this feature, you must have the Xdebug extension installed. You can find more about this at http://pecl.php.net/package/Xdebug (installation information is at http://xdebug.org/docs/install). You may also be able to install directly using your Linux distribution’s package-management system. This should work for you in Fedora, for example:
-
-$ yum install php-pecl-xdebug
-
-Or, if you’re using a version-specific repository, you might do something like this:
-
-$ sudo yum -y install php70w-pecl-xdebug
-
-Here I run PHPUnit from the src/ directory with code coverage enabled:
-
-504
-
-$ ./vendor/bin/phpunit --whitelist src/ --coverage-html coverage test
-
-PHPUnit 5.4.6 by Sebastian Bergmann and contributors.......                                                              6 / 6 (100%)
-
-Chapter 21 ■ Continuous integration
-
-Time: 1.84 seconds, Memory: 6.00MB
-
-OK (6 tests, 5 assertions)
-
-Generating code coverage report in HTML format ... done
-
-Now you can see the report in your browser (see Figure 21-1).
-
-Figure 21-1.  The code coverage report
-
-505
-
-Chapter 21 ■ Continuous integration
-
-It’s important to note that achieving full coverage is not the same as adequately testing a system. On the other hand, it’s good to know about any gaps in your tests. As you can see from Figure 21-2, I’ve still got some work to do.
-
-Figure 21-2.  The install screen
-
-Having confirmed that I can check coverage from the command line, I need to add this functionality to 
-
-my build document:
-
-    <target name="citest" depends="build">        <mkdir dir="reports/coverage" />
-
-        <coverage-setup database="reports/coverage.db">            <fileset dir="${src}">                <include name="**/*.php"/>            </fileset>        </coverage-setup>
-
-        <phpunit codecoverage="true" bootstrap="vendor/autoload.php" printsummary="true">            <formatter type="plain" usefile="false"/>            <formatter type="xml" outfile="testreport.xml" todir="reports" />            <formatter type="clover" outfile="cloverreport.xml" todir="reports" />
-
-506
-
-Chapter 21 ■ Continuous integration
-
-            <batchtest>                <fileset dir="${test}">                    <include name="**/*Test.php"/>                </fileset>            </batchtest>        </phpunit>
-
-        <coverage-report outfile="reports/coverage.xml">           <report todir="reports/coverage" />        </coverage-report>    </target>
-
-I have created a new task named citest. Much of it is a reproduction of the test task you have already 
-
-seen.
-
-I start by creating a reports directory and a coverage subdirectory.I use the coverage-setup task to provide configuration information for the coverage feature. I specify 
-
-where raw coverage data should be stored using the database attribute. The nested fileset element defines the files that should be subject to coverage analysis.
-
-I have added two formatter elements to the phpunit task. The formatter of type xml will generate a file 
-
-named testreport.xml, which will contain the test results. The clover formatter will generate coverage information, also in XML format. Finally, in the citest target, I deploy the coverage-report task. This takes existing coverage information, generates a new XML file, and then outputs an HTML report.
-
- the CoverageReportTask element is documented at https://www.phing.info/docs/guide/
-
- ■ Note stable/CoverageReportTask.html.
-
-Coding StandardsI discussed coding standards at length in Chapter 16. Although it can be annoying to have your individual style cramped by a shared standard, it can make a project easier to work with for the wider team. For that reason, many teams enforce a standard. It’s hard to enforce this by eye, however, so it makes sense to automate the process.
-
-Once again, I will use Composer. This time I’ll be configuring it to install PHP_CodeSniffer:
-
-    "require-dev": {        "phing/phing": "2.*",        "phpunit/phpunit": "5.4.*",        "phpdocumentor/phpdocumentor": "2.*",        "squizlabs/php_codesniffer": "2.*"    }
-
-Now I will apply the PSR2 coding standard to my code:
-
-$ vendor/bin/phpcs—standard=PSR2 src/util/Validator.php
-
-FILE: /var/poppch21/src/util/Validator.php----------------------------------------------------------------------FOUND 6 ERRORS AFFECTING 4 LINES
-
-507
-
-Chapter 21 ■ Continuous integration
-
-----------------------------------------------------------------------  8 | ERROR | [x] Opening brace of a class must be on the line after    |       |     the definition 11 | ERROR | [ ] Visibility must be declared on method "__construct" 11 | ERROR | [x] Opening brace should be on a new line 15 | ERROR | [ ] Visibility must be declared on method    |       |     "validateUser" 15 | ERROR | [x] Opening brace should be on a new line 26 | ERROR | [x] Function closing brace must go on the next line    |       |     following the body; found 1 blank lines before    |       |     brace----------------------------------------------------------------------PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY----------------------------------------------------------------------
-
-Time: 358ms; Memory: 4Mb
-
-Clearly, I need to clean up my code a little!One benefit of an automated tool is its impersonal nature. If your team does decide to impose a set of coding conventions, it’s arguably better having a humorless script correcting your style than a humorless coworker doing the same thing.
-
-As you might expect by now, I would like to add a CodeSniffer target to my build file:
-
-    <target name="sniff" depends="build">        <phpcodesniffer standard="PSR2">            <fileset dir="src">                <include name="**/*.php"/>            </fileset>            <formatter type="checkstyle" outfile="reports/checkstyle.xml"/>        </phpcodesniffer>    </target>
-
-The phpcodesniffer task will do this job for me. I use the standard attribute to specify PSR2 rules. I 
-
-define the files to check using the nested fileset element. I define a formatter element with a checkstyle type attribute. This will generate an XML file in the reports directory.
-
-So I have a lot of useful tools that I can use to monitor my project. Of course, left to myself I’d soon lose 
-
-interest in running them, even with my useful Phing build file. In fact, I’d probably revert to the old idea of an integration phase, and pull out the tools only when I’m close to a release, by which time their effectiveness as early-warning systems will be irrelevant. What I need is a CI server to run the tools for me.
-
-Jenkins (formerly named Hudson) is an open source-continuous integration server. Although it is written in Java, Jenkins is easy to use with PHP tools. That’s because the continuous-integration server stands outside of the projects it builds, kicking off and monitoring the results of various commands. Jenkins also integrates well with PHP because it is designed to support plug-ins, and there is a highly active developer community working to extend the server’s core functionality.
-
- ■ Note  Why Jenkins? Jenkins is very easy to use and extend. it is well established, and it has an active user community. it’s free and open source. plug-ins that support integration with php (and that includes most build and test tools you might think of) are available. there are many Ci server solutions out there, however. a previous version of this book focused on CruiseControl (http://cruisecontrol.sourceforge.net/), and this remains a good option.
-
-508
-
-Installing JenkinsJenkins is a Java system, so you will need to have Java installed. How you go about this will vary from system to system. On a Fedora distribution you might do something like this:
-
-Chapter 21 ■ Continuous integration
-
-$ yum install java-1.7.0
-
-Otherwise, you can get Java directly from www.java.com.You can confirm that you have Java by running it from the command line:
-
-$ java -version
-
-java version "1.7.0_101"OpenJDK Runtime Environment (rhel-2.6.6.4.el6_8-x86_64 u101-b00)OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
-
-You can get Jenkins from the project homepage at http://jenkins-ci.org/. It can be installed 
-
-via a Java Web Archive (WAR) file, or there are native packages for most distributions, all linked from the homepage. I will use the Fedora option:
-
-$ wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo$ rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key$ yum install jenkins
-
-The Jenkins site provides installation instructions for most distributions.Once Jenkins is installed you could run it directly via Java like this:
-
-$ sudo java -jar /usr/lib/jenkins/jenkins.war
-
-However, you may run in to trouble later on if you do this. It’s almost certainly better to use a startup 
-
-script, which will run Jenkins as the jenkins user. In the case of Fedora, you can start Jenkins like this:
-
-$ service jenkins start
-
-You can also find a generic startup script at https://wiki.jenkins-ci.org/display/JENKINS/
-
-JenkinsLinuxStartupScript.
-
-By default, Jenkins runs on port 8080, so you can find out whether you’re ready to proceed by firing up your browser and visiting http://yourhost:8080/. You should see something like the screen in Figure 21-2.
-
-The instructions in Figure 21-2 are pretty self-explanatory. I grab the password from /var/lib/
-
-jenkins/secrets/initialAdminPassword and enter it into the box provided. Then I’m presented with a choice: install with popular plug-ins or pick my own? I opt for the most popular plug-ins, which I know will get me support for Git among other things. If you want a slim system, you might choose to select only those plug-ins you need. After that it’s time to create a user name and password before finishing up installation.
-
-Installing Jenkins Plug-insJenkins is highly customizable, and I will need quite a few plug-ins to integrate with the features I have described so far in this chapter. From within the Jenkins web interface, I click on Manage Jenkins and then Manage Plugins. Beneath the Available tab, I find a long list. I select the checkboxes in the Install column for all plug-ins that I wish to add to Jenkins.
-
-Table 21-1 describes the plug-ins that I will be using.
-
-509
-
-Chapter 21 ■ Continuous integration
-
-Table 21-1.  Some Jenkins Plug-ins
-
-Plug-in
+Required
 
 Description
 
-Git Plug-inxUnit Plug-inPhing Plug-inClover PHP Plug-in
+Default Value
 
-HTML Publisher Plug-in
+name
 
-Allows interaction with Git repositoriesIntegration with the xUnit family of tools including PHPUnitInvoke Phing targetsAccesses clover XML file and HTML files generated by PHPUnit and generates reportIntegrates HTML reports. Used for PHPDocumentor output
+description
 
-Checkstyle Plug-in
+YesNoYesdefaultphingVersion No
 
-Accesses the XML file generated by PHPCodeSniffer and generates report
+The name of the projectA brief project summaryThe default target to runThe minimum version of Phing to run against
 
-You can see the Jenkins plug-in page in Figure 21-3.
+NoneNoneNoneNone
 
-Figure 21-3.  The Jenkins plug-in screen
+basedir
 
-Having installed these plug-ins, I’m almost ready to create and configure my project.
+No
 
-510
+The file system context in which build will run
 
-Chapter 21 ■ Continuous integration
+Current directory (.)
 
-Setting up the Git Public KeyBefore I can use the Git plug-in, I need to ensure that I have access to a Git repository. In Chapter 17 I described the process of generating a public key in order to access a remote Git repository. We need to repeat this process here. But where does Jenkins call home?
+Once I have defined a project element, I must create at least one target—the one I reference in the 
 
-This location is configurable, but naturally Jenkins will clue you in. I click on Manage Jenkins and then Configure System. I find Jenkins’ home directory listed there. Of course, I could also check the /etc/passwd file for information relating to the jenkins user. In my case, the directory is /var/lib/jenkins.
+default attribute.
 
-Now I need to configure an SSH directory:
+TargetsTargets are similar, in some senses, to functions. A target is a set of actions grouped together to achieve an objective: to copy a directory from one place another, for example, or to generate documentation.
 
-$ sudo su jenkins -s /bin/bash$ cd ~ $ mkdir .ssh$ chmod 0700 .ssh$ ssh-keygen
+In my previous example, I included a bare-minimum implementation for a target:
 
-I switch to the jenkins user, specifying the shell to use (because shell access may be deactivated by 
+<target name="main"/>
 
-default). I change to this user’s home directory. The ssh-keygen command generates the SSH keys. When prompted for a password, I just hit Return, so Jenkins will be authenticated by its key only. I make sure that the file generated at .ssh/id_rsa is neither world- nor group-readable:
+As you can see, a target must define at least a name attribute. I have made use of this in the project 
 
-$ chmod 0600 .ssh/id_rsa
+element. Because the default element points to the main target, this target will be invoked whenever Phing is run without command-line arguments. This was confirmed by the output:
 
-Now I can acquire the public key from .ssh/id_rsa.pub and add it to my remote Git repository. See 
+megaquiz > main:
 
-Chapter 17 for more on that.
+Targets can be organized to depend on one another. By setting up a dependency between one target 
 
-I’m not quite there yet. I need to ensure that my Git server is an SSH known host. I can combine setting this up with a command-line test of my Git configuration. I make sure I’m still logged in as the jenkins user when I do this:
+and another, you tell Phing that the first target should not run before the target it depends on has been run. Now, I’ll add a dependency to my build file:
 
-$ cd /tmp$ git clone git@bitbucket.org:getinstance/userthing.git
+<?xml version="1.0"?><!-- build xml -->
 
-I am prompted to confirm my Git host, and it’s then added to the jenkins user’s .ssh/known_hosts file. 
+<project name="megaquiz"         default="main">    <target name="runfirst" />    <target name="runsecond" depends="runfirst"/>    <target name="main" depends="runsecond"/></project>
 
-This prevents Jenkins from tripping over later when it makes its Git connection.
+468
 
-Installing a ProjectFrom the Jenkins dashboard page, I click on New Item. From this new screen I can, at last, create my userthing project. You can see the setup screen in Figure 21-4.
+Chapter 19 ■ automated Build with phing
 
-511
+As you can see, I have introduced a new attribute for the target element. depends tells Phing that the referenced target should be executed before the current one, so I might want a target that copies certain files to a directory to be invoked before one that runs a transformation on all files in that directory. I added two new targets in the example: runsecond, on which main depends; and runfirst, on which runsecond depends. Here’s what happens when I run Phing with this build file:
 
-Chapter 21 ■ Continuous integration
+$ phing
 
-Figure 21-4.  The project setup screen
+Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'runfirst' has no tasks or dependencies
 
-I chose Freestyle project and hit OK. That leads me to the project configuration screen. My first order 
+megaquiz > runfirst:megaquiz > runsecond:megaquiz > main:
 
-of business is to link up with the remote Git repository. I choose the Git radio button in the Source Code Manager section and add my repository. You can see this in Figure 21-5.
+BUILD FINISHED
 
-512
+Total time: 0.3029 seconds
 
-Chapter 21 ■ Continuous integration
+As you can see, the dependencies are honored. Phing encounters the main target, sees its dependency, 
 
-Figure 21-5.  Setting up the version-control repository
+and moves back to runsecond. runsecond has its own dependency, and Phing invokes runfirst. Having satisfied its dependency, Phing can invoke runsecond. Finally, main is invoked. The depends attribute can reference more than one target at a time. A comma-separated list of dependencies can be provided, and each will be honored in turn.
 
-If all has gone well, I should be able to access my source code. I can check that by saving and choosing 
+Now that I have more than one target to play with, I can override the project element’s default attribute 
 
-Build from the dashboard page. In order to see some meaningful action, however, I should also set up Phing. This is simple if you’ve installed Phing centrally. If you’re using Composer, however, things are just a little more complicated. You must tell Jenkins where to find the Phing executable. You can do this by choosing Manage Jenkins from the main menu, and then Global Tool Configuration. Because I have installed the Phing plug-in, I will find a configuration area for the tool there. In Figure 21-6, I add the path to the phing script’s location (or at least to the location it will end up once Composer has been run).
+from the command line:
 
-513
+$ phing runsecond
 
-Chapter 21 ■ Continuous integration
+Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'runfirst' has no tasks or dependencies
 
-Figure 21-6.  Specifying Phing’s location
+megaquiz > runfirst:megaquiz > runsecond:
 
-With that step complete I can configure Phing for my project. I return to the userthing project area and the Configure menu. I scroll to the Build section and choose two items from the Add build step pulldown. First, I choose Execute shell. I need to make sure that Jenkins runs composer install, or none of the tools my project depends upon will be installed. Figure 21-7 shows the configuration.
+BUILD FINISHED
 
-514
+Total time: 0.2671 seconds
 
-Chapter 21 ■ Continuous integration
+By passing in a target name, I cause the default attribute to be ignored. The target matching my 
 
-Figure 21-7.  Setting up shell execution
+argument is invoked instead (as well as the target on which it depends). This is useful for invoking specialized tasks, such as cleaning up a build directory or running post-install scripts.
 
-The next item I choose from the Add build step pulldown is Invoke Phing targets. Here can I add 
+The target element also supports an optional description attribute, to which you can assign a brief 
 
-my Phing targets to the text field. You can see this step in Figure 21-8.
+description of the target’s purpose:
 
-515
+<?xml version="1.0"?><!-- build xml -->
 
-Chapter 21 ■ Continuous integration
+<project name="megaquiz"         default="main"
 
-Figure 21-8.  Configuring Phing
+469
 
-Running the First BuildI save the configuration screen and click Build Now to run the build and test process. This is the moment of truth! A build link should appear in the Build History area of the screen. I click on that, and then on Console Output to confirm that the build went ahead as hoped. You can see the output (albeit from a later build) in Figure 21-9.
+Chapter 19 ■ automated Build with phing
 
-516
+         description="A quiz engine">    <target name="runfirst"            description="The first target" />    <target name="runsecond"            depends="runfirst"            description="The second target" />    <target name="main"            depends="runsecond"            description="The main target" /></project>
 
-Chapter 21 ■ Continuous integration
+Adding a description to your targets makes no difference to the normal build process. If the user runs 
 
-Figure 21-9.  Console output
+Phing with a -projecthelp flag, however, the descriptions will be used to summarize the project:
 
-Jenkins checks the userthing code out from the Git server, and runs all the build and test targets.
+$ phing -projecthelp
 
-Configuring the ReportsThanks to my build file, Phing saves reports into the build/reports directory and documentation into build/docs. The plug-ins that I activated can be configured from the Add post-build action pulldown in the project-configuration screen.
+Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'runfirst' has no tasks or dependenciesA quiz engineDefault target:------------------------------------------------------------------------------- main       The main target
 
-Figure 21-10 shows some of these configuration items.
+Main targets:------------------------------------------------------------------------------- main       The main target runfirst   The first target runsecond  The second target
 
-517
+Notice that I added the description attribute to the project element, too. If you want to hide a target from a listing like this, you can add a hidden attribute. This is useful for targets that provide housekeeping functionality, but which should not be invoked directly from the command line:
 
-Chapter 21 ■ Continuous integration
+    <target name="housekeeping" hidden="true">        <!-- useful things that should not be called directly -->    </target>
 
-Figure 21-10.  Configuring report plug-in items
+PropertiesPhing allows you to set such values using the property element.
 
-Rather than subject you to screenshot after screenshot, it will be clearer to compress the configuration items into a table. Table 21-2 shows some post-build action fields and the corresponding values I set up in my Phing build file.
+Properties are similar to global variables in a script. As such, they are often declared toward the top of a project to make it easy for developers to work out what’s what in the build file. Here I create a build file that works with database information:
 
-518
+<?xml version="1.0"?><!-- build xml -->
 
-Chapter 21 ■ Continuous integration
+<project name="megaquiz"         default="main">
 
-Table 21-2.  Report configuration
+470
 
-Configuration item
+Chapter 19 ■ automated Build with phing
 
-Phing Task
+    <property name="dbname" value="megaquiz" />    <property name="dbpass" value="default" />    <property name="dbhost" value="localhost" />
 
-Field
+    <target name="main">        <echo>database: ${dbname}</echo>        <echo>pass:     ${dbpass}</echo>        <echo>host:     ${dbhost}</echo>    </target></project>
 
-Value
+I introduced a new element: property. property requires name and value attributes. Notice also that 
 
-Publish Checkstyle analysis resultsPublish Clover PHP Coverage Report
+I have added this to the main target. echo is an example of a task. I will explore tasks more fully in the next section. For now, though, it’s enough to know that echo does exactly what you would expect—it causes its contents to be output. Notice the syntax used to reference the value of a property here. By using a dollar sign, and wrapping the property name in curly brackets, you tell Phing to replace the string with the property value:
 
-phpcodesniffer
+${propertyname}
 
-Checkstyle results
+All this build file achieves is to declare three properties and to print them to standard output. Here it is 
 
-reports/checkstyle.xml
+in action:
 
-phpunit
+$ phing
 
-Clover XML Location
+Buildfile: /home/bob/working/megaquiz/build.xml
 
-reports/cloverreport.xml
+megaquiz > main:
 
-Publish HTML reports
+     [echo] database: megaquiz     [echo] pass:     default     [echo] host:     localhost
 
-phpdoc2
+BUILD FINISHED
 
-Publish Junit test result report
+Total time: 0.4402 seconds
 
-phpunit
+Now that I have introduced properties, I can wrap up my exploration of targets. The target element accepts two additional attributes: if and unless. Each of these should be set with the name of a property. When you use if with a property name, the target will only be executed if the given property is set. If the property is not set, the target will exit silently. Here, I comment out the dbpass property and make the main task require it using the if attribute:
 
-Clover HTML report directoryHTML directory to archiveIndex page[s]Test report XMLs
+    <property name="dbname"  value="megaquiz" />    <!--<property name="dbpass"  value="default" />-->    <property name="dbhost" value="localhost" />
 
-reports/clovercoverage/
+    <target name="main" if="dbpass">        <echo>database: ${dbname}</echo>        <echo>pass:     ${dbpass}</echo>        <echo>host:     ${dbhost}</echo>    </target>
 
-reports/docs
+471
 
-index.html
+Chapter 19 ■ automated Build with phing
 
-reports/testreport.xml
+Let’s run phing again:
 
-E-mail Notification
+$ phing
 
-Recipients
+Buildfile: /home/bob/working/megaquiz/build.xmlmegaquiz > main:
 
-someone@somemail.com
+BUILD FINISHED
 
-You encountered all of the configuration values in Table 21-2 as I constructed the project’s build file. All, 
+Total time: 0.2628 seconds
 
-that is, apart from the last. The E-mail Notification field allows you to define a list of developers who will all receive notifications when a build fails.
+As you can see, I have raised no error, but the main task did not run. Why might I want to do this? There is another way of setting properties in a project. They can be specified on the command line. You tell Phing that you are passing it a property with the -D flag followed by a property assignment. So the argument should look like this:
 
-With all that set up, I can return to the project screen and run another build. Figure 21-11 shows my 
+-Dname=value
 
-newly enhanced output.
+In my example, I want the dbname property to be made available via the command line:
 
-519
+$ phing -Ddbpass=userset
 
-Chapter 21 ■ Continuous integration
+Buildfile: /home/bob/working/megaquiz/build.xml
 
-Figure 21-11.  The Project screen showing trend information
+megaquiz > main:
 
-Over time, the project screen will plot trends for test performance, coverage, and style compliance. There are also links to the latest API Documentation, detailed test results, and full coverage information.
+     [echo] database: megaquiz     [echo] pass:     userset     [echo] host:     localhost
 
-Triggering BuildsAll of this rich information is almost useless if someone in your team must remember to kick off each build with a manual click. Naturally, Jenkins provides mechanisms by which builds can be automatically triggered.You can set Jenkins to build at fixed intervals or to poll the version-control repository, again at specified 
+BUILD FINISHED
 
-intervals. Intervals can be set using cron format, which provides fine, although somewhat arcane, control 
+Total time: 0.4611 seconds
 
-520
+The if attribute of the main target is satisfied that the dbpass property is present, and the target is 
 
-over scheduling. Luckily, Jenkins provides good online help for the format, and there are simple aliases if you don’t require precision scheduling. The aliases include @hourly, @midnight, @daily, @weekly, and @monthly. In Figure 21-12, I configure the build to run once daily, or every time the repository changes, based upon a poll for changes that should take place once an hour.
+allowed to execute.
 
-Chapter 21 ■ Continuous integration
+As you might expect, the unless attribute is the opposite of if. If a property is set and it is referenced 
 
-Figure 21-12.  Scheduling builds
+in a target’s unless attribute, then the target will not run. This is useful if you want to make it possible to suppress a particular target from the command line. So I might add something like this to the main target:
 
-Test FailuresSo far everything seems to be going well, even if userthing won’t be winning any code-compliance badges any time soon. But tests succeed when they fail, so I’d better break something to make sure that Jenkins reports on it.
+<target name="main" unless="suppressmain">
 
-Here is a part of a class named Validate in the namespace userthing\util:
+main will be executed unless a suppressmain property is present:
 
-    public function validateUser(string $mail, string $pass): boolean    {
+$ phing -Dsuppressmain=yes
 
-521
+I have wrapped up the target element; Table 19-2 shows a summary of its attributes.
 
-Chapter 21 ■ Continuous integration
+472
 
-        // make it always fail        return false;        $user = $this->store->getUser($mail);        if (is_null($user)) {            return null;        }        if ($user->getPass() == $pass) {            return true;        }
+Chapter 19 ■ automated Build with phing
 
-        $this->store->notifyPasswordFailure($mail);
+Table 19-2.  The Attributes of the Target Element
 
-        return false;    }
+Attribute
 
-See how I’ve sabotaged the method? As it now stands, validateUser() will always return false.Here’s the test that should choke on that. It’s in test/util/ValidatorTest.php:
+Required
 
-    public function testValidateCorrectPass()    {        $this->assertTrue(            $this->validator->validateUser("bob@example.com", "12345"),            "Expecting successful validation"        );    }
+Description
 
-Having made my change, all I need do is commit, and wait. Sure enough, before long, the project status 
+name
 
-shows a build marked by a yellow icon. Once I click on the build link, I find more details. You can see the screen in Figure 21-13.
+depends
 
-522
+if
 
-Chapter 21 ■ Continuous integration
+unless
 
-Figure 21-13.  The Unstable Build
+logskipped
 
-Summary
+hidden
 
-In this chapter, I brought together many of the tools that you have seen in previous chapters and glued them in place with Jenkins. I prepared a small project for CI, applying a range of tools including PHPUnit (both for testing and code coverage), PHP_CodeSniffer, phpDocumentor, and Git. Then I set up Jenkins and showed you how to add a project to the system. I put the system through its paces and, finally, showed you how to extend Jenkins so that it can bug you with e-mails, and test both build and installation.
+description
 
-523
+YesNoNoNoNo
 
-CHAPTER 22
+No
+
+No
+
+The name of the targetTargets on which the current dependsExecute target only if given property is presentExecute target only if given property is not presentIf a target is skipped (e.g., because of if / unless), add a notification to outputHide target from lists and summaries
+
+A short summary of the target’s purpose
+
+When a property is set on the command line, it overrides any and all property declarations within the 
+
+build file. There is another condition in which a property value can be overwritten. By default, if a property is declared twice, the original value will have primacy. You can alter this behavior by setting an attribute called override in the second property element. Here’s an example:
+
+<?xml version="1.0"?><!-- build xml -->
+
+<project name="megaquiz"         default="main">
+
+    <property name="dbpass"  value="default" />
+
+    <target name="main">        <property name="dbpass" override="yes" value="specific" />        <echo>pass:     ${dbpass}</echo>    </target>
+
+</project>
+
+I set a property called dbpass, giving it the initial value "default". In the main target I set the property once again, adding an override attribute set to "yes" and providing a new value. The new value is reflected in the output:
+
+$ phing
+
+Buildfile: /home/bob/working/megaquiz/build.xml
+
+megaquiz > main:
+
+     [echo] pass:     specific
+
+BUILD FINISHED
+
+473
+
+Chapter 19 ■ automated Build with phing
+
+If I had not set the override element in the second property element, the original value of "default" 
+
+would have stayed in place. It is important to note that targets are not functions: there is no concept of local scope. If you override a property within a task, it remains overridden for all other tasks throughout the build file. You could get around this, of course, by storing a property value in a temporary property before overriding, and then resetting it when you have finished working locally.
+
+So far, I have dealt with properties that you define yourself. Phing also provides built-in properties. You 
+
+reference these in exactly the same way that you would reference properties you have declared yourself. Here’s an example:
+
+<?xml version="1.0"?><!-- build xml -->
+
+<project name="megaquiz"         default="main">
+
+    <target name="main">        <echo>name:     ${phing.project.name}</echo>        <echo>base:     ${project.basedir}</echo>        <echo>home:     ${user.home}</echo>        <echo>pass:     ${env.DBPASS}</echo>    </target>
+
+</project>
+
+I reference just a few of the built-in Phing properties. phing.project.name resolves to the name of the project as defined in the name attribute of the project element; project.basedir gives the starting directory; and user.home provides the executing user’s home directory (this is useful for providing default install locations).
+
+Finally, the env prefix in a property reference indicates an operating system environment variable. So by 
+
+specifying ${env.DBPASS}, I am looking for an environment variable called DBPASS. Here I run Phing on this file:
+
+$ phing
+
+Buildfile: /home/bob/working/megaquiz/build.xml
+
+megaquiz > main:
+
+     [echo] name:     megaquiz     [echo] base:     /home/bob/working/megaquiz     [echo] home:     /home/bob     [echo] pass:     ${env.DBPASS}
+
+BUILD FINISHED
+
+Total time: 0.1120 seconds
+
+Notice that the final property has not been translated. This is the default behavior when a property is 
+
+not found—the string referencing the property is left untransformed. If I set the DBPASS environment variable and run again, I should see the variable reflected in the output:
+
+474
+
+Chapter 19 ■ automated Build with phing
+
+$ export DBPASS=wooshpoppow$ phing
+
+Buildfile: /home/bob/working/megaquiz/build.xml
+
+megaquiz > main:     ...     [echo] pass:     whooshpoppow
+
+BUILD FINISHED
+
+Total time: 0.2852 seconds
+
+So now you have seen three ways of setting a property: the property element, a command-line 
+
+argument, and an environment variable.
+
+There is a fourth approach that complements these. You can use a separate file to specify property values. As my projects grow in complexity, I tend to favor this approach. Let’s return to a basic build file:
+
+<?xml version="1.0"?><!-- build xml -->
+
+<project name="megaquiz"         default="main">
+
+    <target name="main">        <echo>database: ${dbname}</echo>        <echo>pass:     ${dbpass}</echo>        <echo>host:     ${dbhost}</echo>    </target></project>
+
+As you can see, this build file simply outputs properties without first declaring them, or checking that 
+
+their values exist. This is what I get when I run this with no arguments:
+
+$ phing
+
+...     [echo] database: ${dbname}     [echo] pass:     ${dbpass}     [echo] host:     ${dbhost}...
+
+Now I’ll declare my properties in a separate file. I’ll call it megaquiz.properties:
+
+dbname=filedbdbpass=filepassdbhost=filehost
+
+Now I can apply this file to my build process with Phing’s propertyfile option:
+
+475
+
+Chapter 19 ■ automated Build with phing
+
+$ phing -propertyfile megaquiz.properties
+
+...     [echo] database: filedb     [echo] pass:     filepass     [echo] host:     filehost...
+
+I find this mechanism much more convenient than managing long lists of command-line options. 
+
+However, you do need to be careful not to check your property file into your version-control system!
+
+You can use targets to ensure that properties are populated. Let’s say, for example, that my project 
+
+requires a dbpass property. I would like the user to set dbpass on the command line (this always has priority over other property-assignment methods). Failing that, I should look for an environment variable. Finally, I should give up and go for a default value:
+
+<?xml version="1.0"?><!-- build xml -->
+
+<project name="megaquiz"         default="main">
+
+    <target name="setenvpass" if="env.DBPASS" unless="dbpass">        <property name="dbpass" override="yes" value="${env.DBPASS}" />    </target>
+
+    <target name="setpass" unless="dbpass" depends="setenvpass">        <property name="dbpass" override="yes" value="default" />    </target>
+
+    <target name="main" depends="setpass">        <echo>pass:     ${dbpass}</echo>    </target>
+
+</project>
+
+So, as usual, the default target main is invoked first. This has a dependency set, so Phing goes back to the 
+
+setpass target. setpass, though, depends on setenvpass, so I start there. setenvpass is configured to run only if dbpass has not been set and if env.DBPASS is present. If these conditions are met, then I set the dbpass property using the property element. At this stage then, dbpass is populated either by a command-line argument or by an environment variable. If neither of these were present, then the property would remain unset at this stage. The setpass target is now executed, but only if dbpass is not yet present. In this case, it sets the property to the default string: "default".
+
+Conditionally Setting Property Values with the Condition TaskThe previous example set up quite a complex assignment logic. More often, however, you’ll need a simple default value. The condition task allows you to set a property’s value based upon configurable conditions. Here is an example:
+
+476
+
+Chapter 19 ■ automated Build with phing
+
+<?xml version="1.0"?>
+
+<!-- build xml -->
+
+<project name="megaquiz"         default="main">
+
+    <condition property="dbpass" value="default">        <not>            <isset property="dbpass" />        </not>    </condition>
+
+    <target name="main">        <echo>pass:     ${dbpass}</echo>    </target>
+
+</project>
+
+The condition task requires a property attribute. It also optionally accepts a value attribute, which is assigned to the property if the nested test clause resolves to true. If no value attribute is provided, then the property will be set to true if the nested test resolves to true.
+
+The test clause is one of a number of tags, some of which, like not in this example, accept their own 
+
+nested elements. I used the isset element, which returns true if the referenced property is set. Because I want to assign a value to the dbpass property if it is not set, I need to negate this result by wrapping it in the not tag. This inverts the resolution of the tag it contains. So, in terms of PHP syntax, the condition task in my example is analogous to this:
+
+if (! isset($dbpass)) {    $dbpass = "default";}
+
+TypesYou may think that having looked at properties, you are now through with data. In fact, Phing supports a set of special elements called types. These encapsulate different kinds of information useful to the build process.
+
+FileSetLet’s say that you need to represent a directory in your build file. This is a common situation as you might imagine. You could use a property to represent this directory, certainly, but you’d run into problems straightaway if your developers use different platforms that support distinct directory separators. The answer is the FileSet data type. FileSet is platform independent, so if you represent a directory with forward slashes in the path, they will be automatically translated behind the scenes into backslashes when the build is run on a Windows machine. You can define a minimal fileset element like this:
+
+    <fileset dir="src/lib" />
+
+477
+
+Chapter 19 ■ automated Build with phing
+
+As you can see, I use the dir attribute to set the directory I wish to represent. You can optionally add an 
+
+id attribute, so that you can refer to the fileset later on:
+
+    <fileset dir="src/lib" id="srclib">
+
+The FileSet data type is particularly useful in specifying types of documents to include or exclude. 
+
+When installing a set of files, you may not wish those that match a certain pattern to be included. You can handle conditions like this in an excludes attribute:
+
+    <fileset dir="src/lib" id="srclib"         excludes="**/*_test.php **/*Test.php" />
+
+Notice the syntax I have used in the excludes attribute. Double asterisks represent any directory or subdirectory within src/lib. A single asterisk represents zero or more characters. So I am specifying that I would like to exclude files that end in _test.php or Test.php in all directories below the starting point defined in the dir attribute. The excludes attribute accepts multiple patterns separated by white space.I can apply the same syntax to an includes attribute. Perhaps my src/lib directories contain many 
+
+non-PHP files that are useful to developers, but which should not find their way into an installation. I could exclude those files, of course, but it might be simpler just to define the kinds of files I can include. In this case, if a file doesn’t end in .php, it isn’t going to be installed:
+
+    <fileset dir="src/lib" id="srclib"         excludes="**/*_test.php **/*Test.php"         includes="**/*.php" />
+
+As you build up include and exclude rules, your fileset element is likely to become overly long. 
+
+Luckily, you can pull out individual exclude rules and place each one in its own exclude subelement. You can do the same for include rules. I can now rewrite my FileSet like this:
+
+    <fileset dir="src/lib" id="srclib">        <exclude name="**/*_test.php" />        <exclude name="**/*Test.php" />        <include name="**/*.php" />    </fileset>
+
+You can see some of the attributes of the fileset element in Table 19-3.
+
+Table 19-3.  Some Attributes of the Fileset Element
+
+Attribute
+
+Required
+
+Description
+
+refid
+
+NoNodirexpandsymboliclinks NoNoincludes
+
+excludes
+
+No
+
+Current fileset is a reference to fileset of given IDThe starting directoryIf set to 'true' follow symbolic linksA comma-separated list of patterns—those that match will be included
+
+A comma-separated list of patterns—those that match will be excluded
+
+478
+
+Chapter 19 ■ automated Build with phing
+
+PatternSetAs you build up patterns in your fileset elements (and in others), there is a danger that you will begin to repeat groups of exclude and include elements. In my previous example, I defined patterns for test files and regular code files. I may add to these over time (perhaps I wish to include .conf and .inc extensions to my definition of code files). If I define other fileset elements that also use these patterns, I will be forced to make any adjustments across all relevant fileset elements.
+
+You can overcome this problem by grouping patterns into patternset elements. The patternset 
+
+element groups include and exclude elements so that they can be referenced later from within other types. Here I extract the include and exclude elements from my fileset example and add them to patternset elements:
+
+    <patternset id="inc_code">        <include name="**/*.php" />        <include name="**/*.inc" />        <include name="**/*.conf" />    </patternset>
+
+    <patternset id="exc_test">        <exclude name="**/*_test.php" />        <exclude name="**/*Test.php" />    </patternset>
+
+I create two patternset elements, setting their id attributes to inc_code and exc_test respectively. 
+
+inc_code contains the include elements for including code files, and exc_test contains the exclude files for excluding test files. I can now reference these patternset elements within a fileset:
+
+    <fileset dir="src/lib" id="srclib">        <patternset refid="inc_code" />        <patternset refid="exc_test" />    </fileset>
+
+To reference an existing patternset, you must use another patternset element. The second element must set a single attribute: refid. The refid attribute should refer to the id of the patternset element you wish to use in the current context. In this way, I can reuse patternset elements across different fileset elements:
+
+    <fileset dir="src/views" id="srcviews">        <patternset refid="inc_code" />    </fileset>
+
+Any changes I make to the inc_code patternset will automatically update any types that use it. As with 
+
+FileSet, you can place exclude rules either in an excludes attribute or a set of exclude subelements. The same is true of include rules.
+
+Some patternset element attributes are summarized in Table 19-4.
+
+Table 19-4.  Some Attributes of the Patternset Element
+
+Attribute
+
+Required
+
+Description
+
+id
+
+excludes
+
+includes
+
+refid
+
+NoNoNo
+
+No
+
+A unique handle for referring to the elementA list of patterns for exclusionA list of patterns for inclusion
+
+Current patternset is a reference to patternset of given ID
+
+FilterChainThe types that I have encountered so far have provided mechanisms for selecting sets of files. FilterChain, by contrast, provides a flexible mechanism for transforming the contents of text files.
+
+In common with all types, defining a filterchain element does not in itself cause any changes to take place. The element and its children must first be associated with a task—that is, an element that tells Phing to take a course of action. I will return to tasks a little later.
+
+A filterchain element groups any number of filters together. Filters operate on files like a pipeline—the first alters its file and passes its results on to the second, which makes its own alterations, and so on. By combining multiple filters in a filterchain element, you can effect flexible transformations.
+
+Here I dive straight in and create a filterchain that removes PHP comments from any text passed to it:
+
+<filterchain>    <stripphpcomments /></filterchain>
+
+The StripPhpComments task does just what the name suggests. If you have provided detailed API 
+
+documentation in your source code, you may have made life easy for developers, but you have also added a lot of dead weight to your project. Because all the work that matters takes place within your source directories, there is no reason why you should not strip out comments on installation.
+
+ if you use a build tool for your projects, ensure that no-one makes changes in the installed code. the 
+
+ ■ Note installer will copy over any altered files, and the changes will be lost. i have seen it happen.
+
+Let’s sneak a peek at the next section and place the filterchain element in a task:
+
+    <target name="main">        <copy todir="build/lib">            <fileset refid="srclib"/>            <filterchain>                <stripphpcomments />            </filterchain>        </copy>    </target>
+
+The Copy task is probably the one you get most use out of. It copies files from place to place. As you can see, I define the destination directory in the todir attribute. The source of the files is defined by the fileset element I created in the previous section. Then comes the filterchain element. Any file copied by the Copy task will have this transformation applied to it.
+
+480
+
+Chapter 19 ■ automated Build with phing
+
+Phing supports filters for many operations, including stripping new lines (StripLineBreaks) and 
+
+replacing tabs with spaces (TabToSpaces). There is even an XsltFilter for applying XSLT transformations to source files! Perhaps the most commonly used filter, however, is ReplaceTokens. This allows you to swap tokens in your source code for properties defined in your build file, whether pulled from environment variables or passed in on the command line. This is very useful for customizing an installation. It’s a good idea to centralize your tokens into a central configuration file for easy overview of the variable aspects of your project.
+
+ReplaceTokens optionally accepts two attributes, begintoken and endtoken. You can use these to define 
+
+the characters that delineate token boundaries. If you omit these, Phing will assume the default character of @. In order to recognize and replace tokens, you must add token elements to the replacetokens element. Now I’ll add a replacetokens element to my example:
+
+    <copy todir="build/lib">        <fileset refid="srclib"/>        <filterchain>            <stripphpcomments />            <replacetokens>                <token key="dbname" value="${dbname}" />                <token key="dbhost" value="${dbhost}" />                <token key="dbpass" value="${dbpass}" />            </replacetokens>        </filterchain>    </copy>
+
+As you can see, token elements require key and value attributes. Let’s see the effect of  
+
+running this task with its transformations on a file in my project. The original file lives in a source directory, src/lib/Config.php:
+
+/** * Quick and dirty Conf class**/class Config {    public $dbname ="@dbname@";    public $dbpass ="@dbpass@";    public $dbhost ="@dbhost@";}
+
+Running my main target containing the Copy task defined previously gives the following output:
+
+$ phing
+
+Buildfile: /home/bob/working/megaquiz/build.xml
+
+megaquiz > main:
+
+     [copy] Copying 8 files to /home/bob/working/megaquiz/build/lib
+
+BUILD FINISHED
+
+Total time: 0.1413 seconds
+
+The original file is untouched, of course, but thanks to the Copy task, it has been reproduced at build/
+
+lib/Config.php:
+
+481
+
+Chapter 19 ■ automated Build with phing
+
+class Config {    public $dbname ="megaquiz";    public $dbpass ="default";    public $dbhost ="localhost";}
+
+Not only has the comment been removed, but the tokens have been replaced with their property 
+
+equivalents.
+
+TasksTasks are the elements in a build file that get things done. You won’t achieve much without using a task, which is why I have cheated and used a couple already. I’ll reintroduce these.
+
+EchoThe Echo task is perfect for the obligatory「Hello World」example. In the real world, you can use it to tell the user what you are about to do or what you have done. You can also sanity-check your build process by displaying the values of properties. As you have seen, any text placed within the opening and closing tags of an echo element will be printed to the browser:
+
+<echo>The pass is '${dbpass}', shhh!</echo>
+
+Alternatively, you can add the output message to a msg attribute:
+
+<echo msg="The pass is '${dbpass}', shhh!" />
+
+This will have the identical effect of printing the following to standard output:
+
+[echo] The pass is 'default', shhh!
+
+CopyCopying is really what installation is all about. Typically, you will create one target that copies files from your source directories and assembles them in a temporary build directory. You will then have another target that copies the assembled (and transformed) files to their output locations. Breaking the installation into separate build and install phases is not absolutely necessary, but it does mean that you can check the results of the initial build before committing to overwriting production code. You can also change a property and install again to a different location without the need to run a potentially expensive copy/replace phase again.
+
+At its simplest, the Copy task allows you to specify a source file and a destination directory or file:
+
+<copy file="src/lib/Config.php" todir="build/conf" />
+
+As you can see, I specify the source file using the file attribute. You may be familiar already with the 
+
+todir attribute, which is used to specify the target directory. If the target directory does not exist, Phing will create it for you.
+
+If you need to specify a target file, rather than a containing directory, you can use the tofile attribute 
+
+instead of todir:
+
+<copy file="src/lib/Config.php" tofile="build/conf/myConfig.php" />
+
+482
+
+Once again, the build/conf directory is created if necessary, but this time, Config.php is renamed to 
+
+myConfig.php.
+
+As you have seen, to copy more than one file at a time, you need to add a fileset element to copy:
+
+Chapter 19 ■ automated Build with phing
+
+        <copy todir="build/lib">            <fileset refid="srclib"/>        </copy>
+
+The source files are defined by the srclib fileset element, so all you have to set in copy is the todir 
+
+attribute.
+
+Phing is smart enough to test whether or not your source file has been changed since the target file was created. If no change has been made, then Phing will not copy. This means that you can build many times, and only the files that have changed in the meantime will be installed. This is fine, as long as other things are not likely to change. If a file is transformed according to the configuration of a replacetokens element, for example, you may want to ensure that the file is transformed every time that the Copy task is invoked. You can do this by setting an overwrite attribute:
+
+        <copy todir="build/lib" overwrite="yes">            <fileset refid="srclib"/>            <filterchain>                <stripphpcomments />                <replacetokens>                    <token key="dbpass" value="${dbpass}" />                </replacetokens>            </filterchain>        </copy>
+
+Now whenever copy is run, the files matched by the fileset element are replaced whether or not the 
+
+source has been recently updated.
+
+You can see the copy element summarized in Table 19-5.
+
+Table 19-5.  The Attributes of the Copy Element
+
+Required
+
+Description
+
+Default Value
+
+Attribute
+
+todir
+
+tofile
+
+tstamp
+
+None
+
+None
+
+false
+
+false
+
+false755
+
+true
+
+no
+
+483
+
+Yes (if tofile not present)Yes (if todir not present)No
+
+Directory to copy into
+
+The file to copy to
+
+Match the timestamp of any file overwritten (it will appear unaltered)Match the permissions of any file overwrittenCopy empty directories overSet the (octal) modeBuild process will be stopped if an error encountered
+
+Nopreservemodeincludeemptydirs NoNomodeNo
+
+haltonerror
+
+overwrite
+
+No
+
+Overwrite target if it already exists
+
+Chapter 19 ■ automated Build with phing
+
+InputYou have seen that the echo element is used to send output to the user. To gather input from the user, I have used separate methods involving the command line and an environment variable. These mechanisms are neither very structured nor interactive, however.
+
+ one reason for allowing users to set values at build time is to allow for flexibility from build 
+
+ ■ Note environment to build environment. in the case of database passwords, another benefit is that this sensitive data is not enshrined in the build file itself. of course, once the build has been run, the password will be saved into a source file, so it is up to the developer to ensure the security of his system!
+
+The input element allows you to present the user with a prompt message. Phing then awaits input 
+
+which it assigns it to a property. Here’s an example:
+
+    <target name="setpass" unless="dbpass">        <input message="You don't seem to have set a db password"               propertyName="dbpass"               defaultValue="default"               promptChar=" >" />    </target>
+
+    <target name="main" depends="setpass">        <echo>pass:     ${dbpass}</echo>    </target>
+
+Once again, I have a default target: main. This depends on another target, setpass, which is responsible 
+
+for ensuring that the dbpass property is populated. To this end, I use the target element’s unless attribute, which ensures that it will not run if dbpass is already set.
+
+The setpass target consists of a single input task element. An input element can have a message 
+
+attribute, which should contain a prompt for the user. The propertyName attribute is required and defines the property to be populated by user input. If the user presses Enter at the prompt without setting a value, the property is given a fallback value if the defaultValue attribute is set. Finally, you can customize the prompt character using the promptChar attribute—this provides a visual cue for the user to input data. Let’s run Phing using the previous targets:
+
+$ phingBuildfile: /home/bob/working/megaquiz/build.xml
+
+megaquiz > setpass:You don't seem to have set a db password [default] > mypassmegaquiz > main:     [echo] pass:     mypass
+
+BUILD FINISHED
+
+Total time: 6.0322 seconds
+
+484
+
+Chapter 19 ■ automated Build with phing
+
+The input element is summarized in Table 19-6.
+
+Table 19-6.  The Attributes of the Input Element
+
+Attribute
+
+Required
+
+Description
+
+propertyName
+
+message
+
+defaultValue
+
+validArgs
+
+promptChar
+
+YesNoNoNo
+
+No
+
+The property to populate with user inputThe prompt messageA value to assign to the property if the user does not provide inputA list of acceptable input values separated by commas. If the user inputs a value that is not on this list Phing will re-present the prompt
+
+A visual cue that the user should provide input
+
+DeleteInstallation is generally about creating, copying, and transforming files. Deletion has its place as well, however. This is particularly the case when you wish to perform a clean install. As I have already discussed, files are generally only copied from source to destination for source files that have changed since the last build. By deleting a build directory, you ensure that the full compilation process will take place.
+
+Here I delete a directory:
+
+    <target name="clean">        <delete dir="build" />    </target>
+
+When I run phing with the argument clean (the name of the target), my delete task element is invoked. 
+
+Here’s Phing’s output:
+
+$ phing clean
+
+Buildfile: /home/bob/working/megaquiz/build.xmlmegaquiz > clean:   [delete] Deleting directory /home/bob/working/megaquiz/build
+
+BUILD FINISHED
+
+The delete element accepts an attribute, file, which can be used to point to a particular file. 
+
+Alternatively, you can fine-tune your deletions by adding a fileset subelement to delete.
+
+## Summary
+
+Serious development rarely happens all in one place. A codebase needs to be separated from its installation, so that work in progress does not pollute production code that needs to remain functional at all times. Version control allows developers to check out a project and work on it in their own space. This requires that they should be able to configure the project easily for their environments. Finally, and perhaps most importantly, the customer (even if the customer is yourself in a year’s time, when you’ve forgotten the ins-and-outs of your code) should be able to install your project after a glance at a Read Me file.
+
+485
+
+Chapter 19 ■ automated Build with phing
+
+In this chapter, I have covered some of the basics of Phing, a fantastic tool, which brings much of the 
+
+functionality of Apache Ant to the PHP world. I have only scratched the surface of Phing’s capabilities. Nevertheless, once you are up and running with the targets, tasks, types, and properties discussed here, you’ll find it easy to bolt on new elements for advanced features like creating tar/gzipped distributions, automatically generating PEAR package installations, and running PHP code directly from the build file.
+
+If Phing does not satisfy all your build needs, you will discover that, like Ant, it is designed to be 
+
+extensible—get out there and build your own tasks! Even if you don’t add to Phing, you should take some time to examine the source code. Phing is written entirely in object-oriented PHP, and its code is chock-full of design examples.
+
+
+
+
+
+
 

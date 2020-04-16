@@ -1,10 +1,10 @@
-What Are Design Patterns? Why Use Them?
+PART II Patterns
+
+# 07 What Are Design Patterns? Why Use Them?
 
 Most problems we encounter as programmers have been handled time and again by others in our community. Design patterns can provide us with the means to mine that wisdom. Once a pattern becomes a common currency, it enriches our language, making it easy to share design ideas and their consequences. Design patterns simply distill common problems, define tested solutions, and describe likely outcomes. Many books and articles focus on the details of computer languages, such as the available functions, classes and methods, and so on. Pattern catalogs concentrate instead on how you can move on from these basics (the「what」) to an understanding of the problems and potential solutions in your projects (the「why」and「how」).
 
 In this chapter, I introduce you to design patterns and look at some of the reasons for their popularity.This chapter will cover the following:
-
-•	•	•	
 
 Pattern basics: What are design patterns?
 
@@ -29,10 +29,6 @@ explained.
 Problems tend to recur, and as web programmers we must solve them time and time again. How 
 
 should we handle an incoming request? How can we translate this data into instructions for our system? How should we acquire data? Present results? Over time, we answer these questions with a greater or lesser degree of elegance and evolve an informal set of techniques that we use and reuse in our projects. These techniques are patterns of design.
-
-157
-
-Chapter 7 ■ What are Design patterns? Why Use them?
 
 Design patterns inscribe and formalize these problems and solutions, making hard-won experience 
 
@@ -70,10 +66,6 @@ Each pattern describes a problem which occurs over and over again in our environ
 
 It is significant that this definition (which applies to architectural problems and solutions) begins with the problem and its wider setting, and then proceeds to a solution. There has been some criticism in recent years that design patterns have been overused, especially by inexperienced programmers. This is often a sign that solutions have been applied where the problem and context are not present. Patterns are more than a particular organization of classes and objects, cooperating in a particular way. Patterns are structured to define the conditions in which solutions should be applied and to discuss the effects of the solution.
 
-158
-
-Chapter 7 ■ What are Design patterns? Why Use them?
-
 In this book, I will focus on a particularly influential strand in the patterns field: the form described in Design Patterns: Elements of Reusable Object-Oriented Software by the Gang of Four (Addison-Wesley Professional, 1995). It concentrates on patterns in object-oriented software development and inscribes some of the classic patterns that are present in most modern object-oriented projects.
 
 The Gang of Four book is important because it inscribes key patterns, but also because it describes the 
@@ -104,10 +96,6 @@ contextualized, often with a typical example and one or more diagrams. It is bro
 
 The SolutionThe solution is summarized initially in conjunction with the problem. It is also described in detail, often using UML class and interaction diagrams. The pattern usually includes a code example.
 
-159
-
-Chapter 7 ■ What are Design patterns? Why Use them?
-
 Although code may be presented, the solution is never cut-and-paste. The pattern describes an 
 
 approach to a problem. There may be hundreds of nuances in its implementation. Think about instructions for sowing a food crop. If you simply follow a set of steps blindly, you are likely to go hungry come harvest time. More useful would be a pattern-based approach that covers the various conditions that may apply. The basic solution to the problem (making your crop grow) will always be the same (prepare soil, plant seeds, irrigate, harvest crop), but the actual steps you take will depend on all sorts of factors, such as your soil type, your location, the orientation of your land, local pests, and so on.
@@ -134,14 +122,6 @@ Intent: A brief statement of the pattern’s purpose. You should be able to see 
 
 anecdotal approach can help make the pattern easy to grasp.
 
-•	
-
-•	
-
-•	
-
-•	
-
 Applicability: An examination of the different situations in which you might apply the pattern. While the motivation describes a typical problem, this section defines specific situations and weighs the merits of the solution in the context of each.
 
 Structure/Interaction: These sections may contain UML class and interaction diagrams describing the relationships among classes and objects in the solution.
@@ -152,11 +132,6 @@ Sample Code: I always skip ahead to this section. I find that a simple code exam
 
 •	 Known Uses: These describe real systems in which the pattern (problem, context, and solution) occurs. Some people say that for a pattern to be genuine, it must be found in at least three publicly available contexts. This is sometimes called the「rule of three.」
 
-160
-
-Chapter 7 ■ What are Design patterns? Why Use them?
-
-•	
 
 Related Patterns: Some patterns imply others. In applying one solution, you can create the context in which another becomes useful. This section examines these synergies. It may also discuss patterns that have similarities to the problem or the solution, as well as any antecedents (i.e., patterns defined elsewhere on which the current pattern builds).
 
@@ -223,10 +198,6 @@ Design Patterns are Used By Popular FrameworksThis book is primarily about desig
 PHP and Design Patterns
 
 There is little in this chapter that is specific to PHP, which is characteristic of our topic to some extent. Many patterns apply to many object-capable languages with few or no implementation issues.
-
-162
-
-Chapter 7 ■ What are Design patterns? Why Use them?
 
 This is not always the case, of course. Some enterprise patterns work well in languages in which an application process continues to run between server requests. PHP does not work that way. A new script execution is kicked off for every request. This means that some patterns need to be treated with more care. Front Controller, for example, often requires some serious initialization time. This is fine when the initialization takes place once at application startup, but it’s more of an issue when it must take place for every request. That is not to say that we can’t use the pattern; I have deployed it with very good results in the past. We must simply ensure that we take account of PHP-related issues when we discuss the pattern. PHP forms the context for all the patterns that this book examines.
 

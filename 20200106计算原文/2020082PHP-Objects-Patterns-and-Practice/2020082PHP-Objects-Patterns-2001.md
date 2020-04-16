@@ -1,298 +1,373 @@
-Objects, Patterns, Practice
+# 20 Vagrant
 
-From object basics through design pattern principles, and on to tools and techniques, this book has focused on a single objective: the successful PHP project.
+Where do you run your code?
 
-In this chapter, I recap some of the topics I have covered and points made throughout the book:
+Maybe you have a development environment you have honed to perfection with a favorite editor and 
 
-•	
+any number of useful development tools. Of course, your perfect set up for writing code is probably very different from the best system on which to run it. And that’s a challenge that Vagrant can help you with. Using Vagrant you get to work on your local machine and run your code on a system that’s all but identical to your production server. In this chapter I will show you how. We will cover the following:
 
-PHP and objects: How PHP continues to increase its support for object-oriented programming, and how to leverage these features
+Basic set up: From installation to choosing your first box
 
-•	 Objects and design: Summarizing some OO design principles•	•	
+•	•	•	 Mounting host directories: Editing code on your host machine and having it available 
 
-Patterns: What makes them cool
+Logging in: Investigating your virtual machine with ssh
 
-Pattern principles: A recap of the guiding object-oriented principles that underlie many patterns
+transparently in your Vagrant box
 
-•	
+•	•	
 
-The tools for the job: Revisiting the tools I have described, and checking out a few I haven’t
+Provisioning: Writing a script to install packages and configure Apache and MySQL
 
-Objects
+Set a hostname: Configuring your box so that you can access it using a custom hostname
 
-As you saw in Chapter 2, for a long time objects were something of an afterthought in the PHP world. Support was rudimentary, to say the least, in PHP 3, with objects barely more than associative arrays in fancy dress. Although things improved radically for the object enthusiast with PHP 4, there were still significant problems. Not the least of these was that by default, objects were assigned and passed by reference.
+The Problem
 
-The introduction of PHP 5 finally dragged objects center stage. You could still program in PHP without 
+As always, let’s spend a little time defining the problem space. It is relatively easy, these days, to configure a LAMP stack on most desktop or laptop computers. Even so, a personal computer is unlikely to match your production environment. Is it running the same version of PHP? What about Apache and MySQL? If you’re using Elasticsearch, you may need to consider Java, too. The list soon grows. Developing against one set of tools on a particular platform can sometimes be problematic if your production stack is significantly different.
 
-ever declaring a class, but the language was finally optimized for object-oriented design. PHP 7 rounded this out, introducing long-awaited features such as scalar and return type declarations. Probably for reasons of backward compatibility, a few popular frameworks remain essentially procedural in nature (notably WordPress); by-and-large, however, most new PHP projects today are object-oriented.
+You might give up and shift your development to a remote machine—there are plenty of cloud vendors who will allow you to spin up a box quickly. But that’s not a free option, and, depending upon your editor of choice, a remote system may not integrate well with the development tools you wish to use.
 
-In Chapters 3, 4, and 5, I looked at PHP’s object-oriented support in detail. Here are some of the new 
+So it may be worth the effort of matching the packages on your computer as closely as possible with 
 
-features PHP has introduced since version 5: reflection, exceptions, private and protected methods and properties, the __toString() method, the static modifier, abstract classes and methods, final methods and properties, interfaces, iterators, interceptor methods, type declarations, the const modifier, passing by reference, __clone(), the __construct() method, late static binding, namespaces, and anonymous classes. The extensive length of this incomplete list reveals the degree to which the future of PHP is bound up with object-oriented programming.
+those installed on the production system. The match won’t be perfect, but perhaps it will be good enough, and you’ll probably catch most issues on the staging server.
 
-The Zend Engine 2 and PHP 5 have made object-oriented design central to the PHP project, opening up 
+What happens, though, when you begin work on a second project with radically different requirements? 
 
-the language to a new set of developers and opening up new possibilities for existing devotees.
+We have seen that Composer does a great job of keeping dependencies separate, but there are still global packages like PHP, MySQL, and Apache to keep in line.
 
-In Chapter 6, I looked at the benefits that objects can bring to the design of your projects. Because objects 
+ ■ Note  If you decide to develop on remote systems, I recommend making the effort to learn how to use the vim editor. Despite its quirks, it is extremely powerful, and you can be 99% certain that either vim or its more basic ancestor vi will available on any Unix-like system you encounter.
 
-and design are one of the central themes of this book, it is worth recapping some conclusions in detail.
+487
 
-525
+Chapter 20 ■ Vagrant
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+Virtualization is a potential solution, and a good one. It can be a pain installing an operating system, 
 
-ChoiceThere is no law that says you have to develop with classes and objects only. Well-designed object-oriented code provides a clean interface that can be accessed from any client code, whether procedural or object-oriented. Even if you have no interest in writing objects (unlikely if you are still reading this book), you will probably find yourself using them, if only as a client of Composer packages.
+though, and there can be considerable configuration hassles.
 
-Encapsulation and DelegationObjects mind their own business and get on with their allotted tasks behind closed doors. They provide an interface through which requests and results can be passed. Any data that need not be exposed, and the dirty details of implementation, are hidden behind this front.
+If only there were a tool that made creating a production-like development environment on a local 
 
-This gives object-oriented and procedural projects different shapes. The controller in an  
+machine really simple. OK, it’s obvious that now I’m going to say that just such a tool exists. Well, one does. It’s called Vagrant, and it is truly amazing.
 
-object-oriented project is often surprisingly sparse, consisting of a handful of instantiations that acquire objects and invocations that call up data from one set and pass it on to another.
+A Little Setup
 
-A procedural project, on the other hand, tends to be much more interventionist. The controlling logic 
+It is tempting to say that Vagrant gives you a development environment with a single command. That can be true—but you do have to install the requisite software first. Given that, and a configuration file that you can check out from your project’s version-control repository, launching a new environment truly can involve a single command.
 
-descends into implementation to a greater extent, referring to variables, measuring return values, and taking turns along different pathways of operation according to circumstance.
+Let’s get started with the setup first. Vagrant requires a virtualization platform. It supports several, but I will use VirtualBox. My host machine runs Fedora, but you can install VirtualBox on any Linux distribution and on OSX or Windows. You can find the download page at https://www.virtualbox.org/wiki/Downloads, together with instructions for your platform.
 
-DecouplingTo decouple is to remove interdependence between components, so that making a change to one component does not necessitate changes to others. Well-designed objects are self-enclosed. That is, they do not need to refer outside of themselves to recall a detail they learned in a previous invocation.
+Once you have VirtualBox installed, you’ll need Vagrant, of course. The download page is at https://www.vagrantup.com/downloads.html. Once we have installed these applications, our next task will be to choose the box we’ll run our code on.
 
-By maintaining an internal representation of state, objects reduce the need for global variables—a 
+Choosing and Installing a Vagrant BoxProbably the easiest way to acquire a Vagrant box is to use the search interface at https://atlas.hashicorp.com/search. Since many production systems run CentOS, that’s what I will look for. You can see the fruits of my research in Figure 20-1.
 
-notorious cause of tight coupling. In using a global variable, you bind one part of a system to another. If a component (whether a function, a class, or a block of code) refers to a global variable, there is a risk that another component will accidentally use the same variable name and substitute its value for the first. There is a chance that a third component will come to rely on the value in the variable as set by the first. Change the way that the first component works, and you may cause the third to stop working. The aim of object-oriented design is to reduce such interdependence, making each component as self-sufficient as possible.
+Figure 20-1.  Searching for a Vagrant box
 
-Another cause of tight coupling is code duplication. When you must repeat an algorithm in different parts of your project, you will find tight coupling. What happens when you come to change the algorithm? Clearly you must remember to change it everywhere it occurs. Forget to do this, and your system is in trouble.
+488
 
-A common cause of code duplication is the parallel conditional. If your project needs to do things 
+CentOS 6.7 looks about right for my needs. I now have enough information to get a Vagrant 
 
-in one way according to a particular circumstance (e.g., running on Linux), and another according to an alternative circumstance (e.g., running on Windows), you will often find the same if/else clauses popping up in different parts of your system. If you add a new circumstance together with strategies for handling it (MacOS), you must ensure that all conditionals are updated.
+environment running. Usually when you run Vagrant, it will read a configuration file named Vagrantfile—but since I am starting from scratch, I need to ask Vagrant to generate one:
 
-Object-oriented programming provides a technique for handling this problem. You can replace 
+Chapter 20 ■ Vagrant
 
-conditionals with polymorphism. Polymorphism, also known as class switching, is the transparent use of different subclasses according to circumstance. Because each subclass supports the same interface as the common superclass, the client code neither knows nor cares which particular implementation it is using.
+$ vagrant init bento/centos-6.7
 
-Conditional code is not banished from object-oriented systems; it is merely minimized and centralized. 
+A 'Vagrantfile' has been placed in this directory. You are nowready to 'vagrant up' your first virtual environment! Please readthe comments in the Vagrantfile as well as documentation on'vagrantup.com' for more information on using Vagrant.
 
-Conditional code of some kind must be used to determine which particular subtypes are to be served up to clients. This test, though, generally takes place once, and in one place, thus reducing coupling.
+As you can see, I pass Vagrant the name of the box I want to work with, and it uses this information to 
 
-526
+generate some minimal configuration.
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+If I open up the generated Vagrantfile document, I can see this (among much other boilerplate):
 
-ReusabilityEncapsulation promotes decoupling, which promotes reuse. Components that are self-sufficient and communicate with wider systems only through their public interface can often be moved from one system and used in another without change.
+  # Every Vagrant development environment requires a box. You can search for  # boxes at https://atlas.hashicorp.com/search.  config.vm.box = "bento/centos-6.7"
 
-In fact, this is rarer than you might think. Even nicely orthogonal code can be project-specific. When 
+At this point, I have only gotten as far as generating configuration. Next, I must run the all-important 
 
-creating a set of classes for managing the content of a particular web site, for example, it is worth taking some time in the planning stage to look at those features that are specific to your client, and those that might form the foundation for future projects with content management at their heart.
+vagrant up command. If you work with Vagrant often, you will soon find this command very familiar. It kicks off your Vagrant session by downloading and provisioning your new box (if necessary), then booting it:
 
-Another tip for reuse: centralize those classes that might be used in multiple projects. Do not, in other 
+$ vagrant up
 
-words, copy a nicely reusable class into a new project. This will cause tight coupling on a macro level, as you will inevitably end up changing the class in one project and forgetting to do so in another. You would do better to manage common classes in a central repository that can be shared by your projects.
+Because I am running this command for the first time with the bento/centos-6.7 virtual machine, 
 
-AestheticsThis is not going to convince anyone who is not already convinced, but to me, object-oriented code is aesthetically pleasing. The messiness of implementation is hidden away behind clean interfaces, making an object a thing of apparent simplicity to its client.
+Vagrant starts by downloading the box:
 
-I love the neatness and elegance of polymorphism, so that an API allows you to manipulate vastly 
+Bringing machine 'default' up with 'virtualbox' provider...==> default: Box 'bento/centos-6.7' could not be found. Attempting to find and install...    default: Box Provider: virtualbox    default: Box Version: >= 0==> default: Loading metadata for box 'bento/centos-6.7'    default: URL: https://atlas.hashicorp.com/bento/centos-6.7==> default: Adding box 'bento/centos-6.7' (v2.2.7) for provider: virtualbox    default: Downloading: https://atlas.hashicorp.com/bento/boxes/centos-6.7/versions/2.2.7/providers/virtualbox.box==> default: Successfully added box 'bento/centos-6.7' (v2.2.7) for 'virtualbox'!
 
-different objects that nonetheless perform interchangeably and transparently—the way that objects can be stacked up neatly or slotted into one another like children’s blocks.
+Vagrant stores the box (under ~/.vagrant.d/boxes/ if you are running Linux) so that you won’t have to download it again on your system—even if you run multiple virtual machines. Then it configures and boots the machine (it provides lots of detail as it does so). Once it has finished running, I can test it out by logging in to my new machine:
 
-Of course, there are those who argue that the converse is true. Object-oriented code can manifest 
+$ vagrant ssh$ pwd
 
-itself as an explosion of classes all so decoupled from one another that piecing together their relationships can be a headache. This is a code smell in its own right. It is often tempting to build factories that produce factories that produce factories, until your code resembles a hall of mirrors. Sometimes it makes sense to do the simplest thing that works, and then refactor in just enough elegance for testing and flexibility. Let the problem space determine your solution, rather than a list of best practices.
+/home/vagrant
 
- the rigid application of so-called best practice is also often an issue in project management, too. 
+$ cat /etc/redhat-release
 
- ■ Note Whenever the use of a technique or a process begins to resemble ritual, applied automatically and inflexibly, it’s worth taking a moment to investigate the reasoning behind your current approach. it could be you’re drifting from the realm of tools to that of the cargo cult.
+489
 
-It is also worth mentioning that a beautiful solution is not always the best, or most efficient. It is 
+Chapter 20 ■ Vagrant
 
-tempting to use a full-blown object-oriented solution where a quick script or a few system calls might have gotten the job done.
+CentOS release 6.7 (Final)
 
-Patterns
+We’re in! So what have we won? Well, we have access to a machine that somewhat resembles our 
 
-Recently, a Java programmer applied for a job in a company with which I have some involvement. In his cover letter, he apologized for only having used patterns for a couple of years. This assumption that design patterns are a recent discovery—a transformative advance—is testament to the excitement they have generated. In fact, it is likely that this experienced coder has been using patterns for a lot longer than he thinks.
+production environment. Anything else? Quite a lot, in fact. I said earlier that I would like to edit files on my local machine but run them in a production-like space. Let’s set that up.
 
-527
+Mounting Local Directories on the Vagrant Box
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+Let’s put some sample files together. I ran my first vagrant init and vagrant up commands in a directory I named infrastructure. I will resurrect the webwoo project I used in Chapter 18 (a cut down version of the system I developed for Chapter 12). Putting all that together, my development environment looks a little like this:
 
-Patterns describe common problems and tested solutions. Patterns name, codify, and organize real-
+ch20/    infrastructure/        Vagrantfile    webwoo/         AddVenue.php         index.php         Main.php         AddSpace.php
 
-world best practice. They are not components of an invention or clauses in a doctrine. A pattern would not be valid if it did not describe practices that are already common at the time of hatching.
+Our challenge is to set up the environment so that we can work with webwoo files locally, but run them 
 
-Remember that the concept of a pattern language originated in the field of architecture. People 
+transparently using a stack installed on the CentOS box. Depending upon our configuration, Vagrant will attempt to mount directories on the host machine within the guest box. In fact, Vagrant has already mounted one directory for us. Let’s check it out:
 
-were building courtyards and arches for thousands of years before patterns were proposed as a means of describing solutions to problems of space and function.
+$ vagrant ssh
 
-Having said that, it is true that design patterns often provoke the kind of emotions associated with 
+Last login: Tue Jul  5 15:36:19 2016 from 10.0.2.2
 
-religious or political disputes. Devotees roam the corridors with an evangelistic gleam in their eye and a copy of the Gang of Four book under their arm. They accost the uninitiated and reel off pattern names like articles of faith. It is little wonder that some critics see design patterns as hype.
+$ ls -a /vagrant
 
-In languages such as Perl and PHP, patterns are also controversial because of their firm association with object-oriented programming. In a context in which objects are a design decision and not a given, associating oneself with design patterns amounts to a declaration of preference, not least because patterns beget more patterns, and objects beget more objects.
+.  ..   .vagrant  Vagrantfile
 
-What Patterns Buy UsI introduced patterns in Chapter 7. Let’s reiterate some of the benefits that patterns can buy us.
+So Vagrant has mounted the infrastructure directory as /vagrant on the box. That will come in handy 
 
-Tried and TestedFirst of all, as I’ve noted, patterns are proven solutions to particular problems. Drawing an analogy between patterns and recipes is dangerous: recipes can be followed blindly, whereas patterns are「half-baked」(Martin Fowler) by nature and need more thoughtful handling. Nevertheless, both recipes and patterns share one important characteristic: they have been tried out and tested thoroughly before inscription.
+when we write a script to provision the box. For now, though, let’s focus on mounting the webwoo directory. We can do this by editing Vagrantfile:
 
-Patterns Suggest Other PatternsPatterns have grooves and curves that fit one another. Certain patterns slot together with a satisfying click. Solving a problem using a pattern will inevitably have ramifications. These consequences can become the conditions that suggest complementary patterns. It is important, of course, to be careful that you are addressing real needs and problems when you choose related patterns, and not just building elegant but useless towers of interlocking code. It is tempting to build the programming equivalent of an architectural folly.
+    config.vm.synced_folder "../webwoo", "/var/www/poppch20"
 
-A Common VocabularyPatterns are a means of developing a common vocabulary for describing problems and solutions. Naming is important—it stands in for describing, and therefore lets us cover lots of ground very quickly. Naming, of course, also obscures meaning for those who do not yet share the vocabulary, which is one reason why patterns can be so infuriating at times.
+So with this directive, I am telling Vagrant to mount the webwoo directory on the guest box at /var/www/
 
-Patterns Promote DesignAs discussed in the next section, patterns can encourage good design when used properly. There is an important caveat, of course. Patterns are not fairy dust.
+poppch20. In order to see that in effect, I need to reboot the box. There’s a new command for this (which should be run on the host system and not within the virtual machine):
 
-528
+$ vagrant reload
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+The virtual machine shuts down and reboots cleanly. Vagrant mounts the infrastructure (/vagrant)
 
-Patterns and Principles of DesignDesign patterns are, by their nature, concerned with good design. Used well, they can help you build loosely coupled and flexible code. Pattern critics have a point, though, when they say that patterns can be overused by the newly infected. Because pattern implementations form pretty and elegant structures, it can be tempting to forget that good design always lies in fitness for purpose. Remember that patterns exist to address problems.
+and webwoo (/var/www/poppch20) directories. Here’s an extract from the command’s output:
 
-When I first started working with patterns, I found myself creating Abstract Factories all over my code. I 
+490
 
-needed to generate objects, and Abstract Factory certainly helped me to do that.
+Chapter 20 ■ Vagrant
 
-In fact, though, I was thinking lazily and making unnecessary work for myself. The sets of objects I 
+    ==> default: Mounting shared folders...    default: /vagrant => /home/mattz/ch20/infrastructure    default: /var/www/poppch20 => /home/mattz/ch20/webwoo
 
-needed to produce were indeed related, but they did not yet have alternative implementations. The classic Abstract Factory pattern is ideal for situations in which you have alternative sets of objects to generate according to circumstance. To make Abstract Factory work, you need to create factory classes for each type of object and a class to serve up the factory class. It’s exhausting just describing the process.
+I can log in quickly to confirm that /var/www/poppch20 is in place:
 
-My code would have been much cleaner had I created a basic factory class, only refactoring to 
+$ vagrant ssh
 
-implement Abstract Factory if I found myself needing to generate a parallel set of objects.
+Last login: Thu Jul  7 15:25:16 2016 from 10.0.2.2
 
-The fact that you are using patterns does not guarantee good design. When developing, it is a good idea to bear in mind two expressions of the same principle: KISS (「Keep it simple, stupid」) and「Do the simplest thing that works.」eXtreme programmers also give us another, related, acronym: YAGNI.「You aren’t going to need it,」meaning that you should not implement a feature unless it is truly required.
+$ ls /var/www/poppch20/
 
-With the warnings out of the way, I can resume my tone of breathless enthusiasm. As I laid out in Chapter 9, patterns tend to embody a set of principles that can be generalized and applied to all code.
+AddSpace.php  AddVenue.php  index.php  Main.php
 
-Favor Composition over InheritanceInheritance relationships are powerful. We use inheritance to support runtime class switching (polymorphism), which lies at the heart of many of the patterns and techniques I explored in this book. By relying on solely on inheritance in design, though, you can produce inflexible structures that are prone to duplication.
+So now I can run a sexy IDE on my local machine and have the changes it makes transparently available 
 
-Avoid Tight CouplingI have already talked about this issue in this chapter, but it is worth mentioning here for the sake of completeness. You can never escape the fact that change in one component may require changes in other parts of your project. You can, however, minimize this by avoiding both duplication (typified in our examples by parallel conditionals) and the overuse of global variables (or Singletons). You should also minimize the use of concrete subclasses when abstract types can be used to promote polymorphism. This last point leads us to another principle.
+on the guest box!
 
-Code to an Interface, Not an ImplementationDesign your software components with clearly defined public interfaces that make the responsibility of each transparent. If you define your interface in an abstract superclass and have client classes demand and work with this abstract type, you then decouple clients from specific implementations.
+Of course, placing files on a CentOS VM is not the same as running the system. A typical Vagrant box 
 
-Having said that, remember the YAGNI principle. If you start out with the need for only one 
+comes without too much pre-installed. The assumption is that the developer will want to customize the environment according to need and circumstance.
 
-implementation for a type, there is no immediate reason to create an abstract superclass. You can just as well define a clear interface in a single concrete class. As soon as you find that your single implementation is trying to do more than one thing at the same time, you can redesignate your concrete class as the abstract parent of two subclasses. Client code will be none the wiser, as it continues to work with a single type.
+The next stage is to provision our box.
 
-529
+Provisioning
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+Once again, provisioning is directed by the Vagrantfile document. Vagrant supports several tools designed for provisioning machines, including chef (https://www.chef.io/chef/), puppet (https://puppet.com), and ansible (https://www.ansible.com). They’re all worth investigating. For the purposes of this example, though, I’m going to use a good old-fashioned shell script.
 
-A classic sign that you may need to split an implementation and hide the resultant classes behind an 
+Once again I begin with Vagrantfile:
 
-abstract parent is the emergence of conditional statements in the implementation.
+config.vm.provision "shell", path: "setup.sh"
 
-Encapsulate the Concept that VariesIf you find that you are drowning in subclasses, it may be that you should be extracting the reason for all this subclassing into its own type. This is particularly the case if the reason is to achieve an end that is incidental to your type’s main purpose.
+This should be reasonably clear. I’m telling Vagrant to use a shell script to provision my box, and I 
 
-Given a type UpdatableThing, for example, you may find yourself creating FtpUpdatableThing, 
+specify setup.sh as the script which should be executed.
 
-HttpUpdatableThing, and FileSystemUpdatableThing subtypes. The responsibility of your type, though, is to be a thing that is updatable—the mechanism for storage and retrieval is incidental to this purpose. Ftp, Http, and FileSystem are the things that vary here, and they belong in their own type—let’s call it UpdateMechanism. UpdateMechanism will have subclasses for the different implementations. You can then add as many update mechanisms as you want without disturbing the UpdatableThing type, which remains focused on its core responsibility.
+What you put in your shell script depends upon your requirements, of course. I’m going to begin by 
 
-Notice also that I have replaced a static compile-time structure with a dynamic runtime arrangement 
+setting t couple of variables, and installing some packages:
 
-here, bringing us (as if by accident) back to our first principle:「Favor composition over inheritance.」
+#!/bin/bash
 
-Practice
+VAGRANTDIR=/vagrantSERVERDIR=/var/www/poppch20/
 
-The issues that I covered in this section of the book (and introduced in Chapter 14) are often ignored by texts and coders alike. In my own life as a programmer, I discovered that these tools and techniques were at least as relevant to the success of a project as design. There is little doubt that issues such as documentation and automated build are less revelatory in nature than wonders such as the Composite pattern.
+sudo rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpmsudo yum install -y patchsudo yum install -y vim
 
- Let’s just remind ourselves of the beauty of Composite: a simple inheritance tree whose objects 
+sudo yum -q -y install mysql-serversudo yum -q -y install httpd;sudo yum -q -y install php70wsudo yum -q -y install php70w-mysql
 
- ■ Note can be joined at runtime to form structures that are also trees, but are orders of magnitude more flexible and complex. Multiple objects share a single interface by which they are presented to the outside world. the interplay between simple and complex, multiple and singular, has got to get your pulse racing—that’s not just software design, it’s poetry.
+491
 
-Even if issues such as documentation and build, testing, and version control are more prosaic than 
+Chapter 20 ■ Vagrant
 
-patterns, they are no less important. In the real world, a fantastic design will not survive if multiple developers cannot easily contribute to it or understand the source. Systems become hard to maintain and extend without automated testing. Without build tools, no one is going to bother to deploy your work. As PHP’s user base widens, so does our responsibility as developers to ensure quality and ease-of-deployment.
+sudo yum -q -y install php70w-xmlsudo yum -q -y install php70w-dom
 
-A project exists in two modes. A project is its structures of code and functionality, and it is also set of 
+PHP 7 is not available by default on CentOS 6. However, installing a yum repository from webtatic.
 
-files and directories, a ground for cooperation, a set of sources and targets, and a subject for transformation. In this sense, a project is a system from the outside as much as it is within its code. Mechanisms for build, testing, documentation, and version control require the same attention to detail as the code such mechanisms support. Focus on the metasystem with as much fervor as you do on the system itself.
+com provides access to a package named php70w and a stack of related extensions. I write my script to a file named setup.sh which I place in the infrastructure directory alongside Vagrantfile.
 
-TestingAlthough testing is part of the framework that one applies to a project from the outside, it is intimately integrated into the code itself. Because total decoupling is not possible, or even desirable, test frameworks are a powerful way of monitoring the ramifications of change. Altering the return type of a method could influence 
+Now, how do I kick off the provisioning process? If the config.vm.provision directive and the setup.sh script had both been in place when I ran vagrant up, then the provisioning would have been automatic. As it is, I’ll now need to run it manually:
 
-530
+$ vagrant provision
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+This will spew an awful lot of information onto your terminal as the setup.sh script is run within the 
 
-client code elsewhere, causing bugs to emerge weeks or months after the change is made. A test framework gives you half a chance of catching errors of this kind (the better the tests, the better the odds here).
+Vagrant box. Let’s see if it worked:
 
-Testing is also a tool for improving object-oriented design. Testing first (or at least concurrently) helps 
+$ vagrant ssh$ php -v
 
-you to focus on a class’s interface and think carefully about the responsibility and behavior of every method. I introduced PHPUnit, which is used for testing, in Chapter 18.
+PHP 7.0.7 (cli) (built: May 28 2016 08:26:36) ( NTS )Copyright (c) 1997-2016 The PHP GroupZend Engine v3.0.0, Copyright (c) 1998-2016 Zend Technologies
 
-StandardsI am a contrarian by nature. I hate being told what to do. Words like compliance instantly invoke a fight-or-flight response in me. But, counter-intuitive as it may seem, standards drive innovation. That is because they drive interoperability. The rise of the Internet was fueled in part by the fact that open standards are built in to its core. Web sites can link to one another, and web servers can be reused in any domain because protocols are well-known and respected. A solution in a silo may be better than a widely accepted and applied standard, but what if the silo burns down? What if it is bought, and the new owner decides to charge for access? What happens when some people decide that the silo next door is better? In Chapter 16 I discussed PSR, PHP Standard Recommendations. I focused in particular on standards for autoloading, which have done much to clean up the way that PHP developers include classes. I also looked at PSR-2, the standard for coding style. Programmers have strong feelings about the placement of braces and the deployment of argument lists, but agreeing to abide by a common set of rules makes for readable and consistent code, and allows us to use tools to check and reformat our source files. In that spirit I have reformatted all code examples in this edition to comply with PSR-2.
+Setting Up the Web ServerOf course, even with MySQL and Apache installed, the system is not ready to be run. First of all, we should configure Apache. The easiest way to do this is to create a configuration file that can be copied into Apache’s conf.d directory. Let’s call the file poppch20.conf, and drop it into the infrastructure directory:
 
-Version ControlCollaboration is hard. Let’s face it: people are awkward. Programmers are even worse. Once you’ve sorted out the roles and tasks on your team, the last thing you want to deal with is clashes in the source code itself. As you saw in Chapter 17, Git (and similar tools such as CVS and Subversion) enable you to merge the work of multiple programmers into a single repository. Where clashes are unavoidable, Git flags the fact and points you to the source to fix the problem.
+NameVirtualHost *:80
 
-Even if you are a solo programmer, version control is a necessity. Git supports branching, so that you can maintain a software release and develop the next version at the same time, merging bug fixes from the stable release to the development branch.
+<VirtualHost *:80>    ServerAdmin matt@getinstance.com    DocumentRoot /var/www/poppch20    ServerName poppch20.vagrant.internal    ErrorLog logs/poppch20-error_log    CustomLog logs/poppch20-access_log common </VirtualHost>
 
-Git also provides a record of every commit ever made on your project. This means that you can roll back 
+<Directory /var/www/poppch20>AllowOverride all</Directory>
 
-by date or tag to any moment. This will save your project someday—believe me.
+I’ll return to that hostname a little later. Leaving aside that tantalizing detail, this is enough to tell 
 
-Automated BuildVersion control without automated build is of limited use. A project of any complexity takes work to deploy. Various files need to be moved to different places on a system, configuration files need to be transformed to have the right values for the current platform and database, and database tables need to be set up or transformed. I covered two tools designed for installation. The first, Composer (see Chapter 15), is ideal for standalone packages and small applications. The second build tool I covered was Phing (see Chapter 19), which is a tool with enough power and flexibility to automate the installation of the largest and most labyrinthine project.
+Apache about our /var/www/poppch20 directory and to set up logging. Of course, I’ll also have to update setup.sh to copy the configuration file at provision time:
 
-Automated build transforms deployment from a chore to a matter of a line or two at the command line. With little effort, you can invoke your test framework and your documentation output from your build tool. If the needs of your developers do not sway you, bear in mind the pathetically grateful cries of your users as they discover that they need no longer spend an entire afternoon copying files and changing configuration fields every time you release a new version of your project.
+sudo cp $VAGRANTDIR/poppch20.conf /etc/httpd/conf.d/sudo service httpd restartsudo /sbin/chkconfig httpd on
 
-531
+492
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+Chapter 20 ■ Vagrant
 
-Continuous IntegrationIt is not enough to be able to test and build a project; you have do it all the time. This becomes increasingly important as a project grows in complexity and you manage multiple branches. You should build and test the stable branch from which you make minor bug fix releases, an experimental development branch or two, and your main trunk. If you were to try to do all that manually, even with the aid of build and test tools, you’d never get around to any coding. Of course, all coders hate that, so build and testing inevitably get skimped on.
+I copy the configuration file into place and restart the web server so that the configuration is picked up. I 
 
-In Chapter 20, I looked at Continuous Integration, a practice and a set of tools that automate the build 
+also run chkconfig to ensure that the server will be started at boot time.
 
-and test processes as much as possible.
+After making this change, I can re-run this script:
 
-What I MissedA few tool categories I have had to omit from this book due to time and space constraints are, nonetheless, supremely useful for any project. In most cases, there is more than one good tool for the job at hand so, although I’ll suggest one or two, you may want to spend some time talking with other developers and digging around with your favorite search engine before you make your choice.
+$ vagrant provision
 
-If your project has more than one developer or even just an active client, then you will need a tool to 
+It’s important to note that those parts of the set up script we previously covered will also be re-run. When you 
 
-track bugs and tasks. Like version control, a bug tracker is one of those productivity tools that, once you have tried it on a project, you cannot imagine not using. Trackers allow users to report problems with a project, but they are just as often used as a means of describing required features and allocating their implementation to team members.
+create a provisioning script, you must design it so it can be executed repeatedly without serious repercussions. Luckily, Yum detects that my specified packages have already been installed and grumbles harmlessly, in part because I take the precaution of passing it -q flag, which keeps the complaints relatively muted.
 
-You can get a snapshot of open tasks at any time, narrowing the search according to product, task owner, version number, and priority. Each task has its own page, in which you can discuss any ongoing issues. Discussion entries and changes in task status can be copied by mail to team members, so it’s easy to keep an eye on things without going to the tracker URL all the time.
+Setting Up MySQLFor many applications you’ll need to make sure that a database is available and ready for connections. Here’s a simple addition to my setup script:
 
-There are many tools out there. Even after all this time, though, I usually return to the venerable Bugzilla 
+sudo service mysqld start/usr/bin/mysqladmin -s -u root password 'vagrant' || echo "** unable to create pass - probably already done"echo "CREATE DATABASE IF NOT EXISTS poppch20_vagrant" | mysql -u root -pvagrant# install data here if needed#echo "GRANT ALL PRIVILEGES  ON poppch20_vagrant.* TO'vagrant'@'localhost' IDENTIFIED BY 'vagrant'WITH GRANT OPTION" | mysql -u root -pvagrantecho "FLUSH PRIVILEGES" | mysql -u root -pvagrantsudo /sbin/chkconfig mysqld on
 
-(http://www.bugzilla.org). Bugzilla is free and open source, and has all the features most developers could need. It is a downloadable product, so you will have to run it on your own server. It still looks a little Web 1.0, but it’s none the worse for that. If you do not want to host your own tracker, and you have or prefer your interfaces a little prettier (and have deeper pockets), you might look at the Atlassian’s SAAS solution, Jira (https://www.atlassian.com/software/jira).
+I start MySQL. Then I run the mysqladmin command to create a root password. This will fail after the first run because the password will already be set, so I use the -s flag to suppress error messages and print a message of my own if the command fails. Then I create a database, a user, and a password. Finally, I run chkconfig to ensure that the MySQL daemon will start at boot time.
 
-For high level task tracking and project planning (especially if you’re interested in using a Kanban 
+With that in place, I can provision again, and then test my database:
 
-system), you might also look at Trello (http://www.trello.com).
+$ vagrant provision
 
-A tracker is generally just one of a suite of collaboration tools you will want to use to share information 
+# much output
 
-around a project. At a price, you can use an integrated solution such as Basecamp (https://basecamp.com/) or Atlassian tools (https://www.atlassian.com/). Or you may choose to stitch together a tools ecosystem using a variety of tools. To facilitate communication within your team, for example, you will probably need a mechanism for chat or messaging. Perhaps the most popular tool for this at the time of this writing is Slack (https://www.slack.com). Slack is a multi-roomed web-based chat environment. If you’re old school like me, you might instantly think of IRC (Internet Relay Chat)—and you’d be right: there’s little you can do with Slack that you couldn’t do with IRC. Except that Slack is browser-based, easy-to-use, and has integration with other services already built-in. Slack is free unless you need premium features.
+$ vagrant ssh$ mysql -uvagrant -pvagrant poppch20_vagrant
 
-Speaking of old school, you might also consider using a mailing list for your project. My favorite mailing list software is Mailman (http://www.gnu.org/software/mailman/), which is free, relatively easy to install, and highly configurable.
+Welcome to the MySQL monitor.  Commands end with ; or \g.Your MySQL connection id is 9Server version: 5.1.73 Source distribution
 
-For co-operatively editable text documents and spreadsheets, Google Docs (https://docs.google.
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
 
-com/) is probably the easiest solution.
+Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.
 
-Your code is not as clear as you think it is. A stranger visiting a codebase for the first time can be faced 
+493
 
-with a daunting task. Even you, as author of the code, will eventually forget how it all hangs together. For inline documentation, you should look at phpDocumentor (https://www.phpdoc.org/) which allows you to document as you go, and automatically generates hyperlinked output. The output from phpDocumentor 
+Chapter 20 ■ Vagrant
 
-532
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.mysql>
 
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
+We now have a running database and a web server. It’s time to see the code in action.
 
-is particularly useful in an object-oriented context, as it allows the user to click around from class to class. As classes are often contained in their own files, reading the source directly can involve following complex trails from source file to source file.
+Configuring a Host NameWe have logged in to our new production-like development environment several times, so networking is more or less taken care of. Even though I’ve configured a web server, I’ve yet to use it. That’s because we still need to support a hostname for our VM. So let’s add one to Vagrantfile:
 
-Although inline documentation is important, projects also generate a broiling heap of written material. This includes usage instructions, consultation on future directions, client assets, meeting minutes, and party announcements. During the lifetime of a project, such materials are very fluid, and a mechanism is often needed to allow people to collaborate in their evolution.
+config.vm.hostname = "poppch20.vagrant.internal"config.vm.network :private_network, ip: "192.168.33.148"
 
-A wiki (wiki is apparently Hawaiian for「very fast」) is the perfect tool for creating collaborative webs 
+I invent a hostname and use the config.vm.hostname directive to add it. I also configure private 
 
-of hyperlinked documents. Pages can be created or edited at the click of a button, and hyperlinks are automatically generated for words that match page names. A wiki is another one of those tools that seems so simple, essential, and obvious that you are sure you probably had the idea first, but just didn’t get around to doing anything about it. There are a number of wikis to choose from. I have had good experience with PhpWiki, which can be downloaded from http://phpwiki.sourceforge.net, and DokuWiki, which you can find at http://wiki.splitbrain.org/wiki:dokuwiki.
+networking with config.vm.network, assigning a static IP address. You should use private address space for this—an unused IP address beginning with 192.168 should work.
 
-Summary
+Because this is an invented hostname, we must configure our operating system to handle the resolution. 
 
-In this chapter I wrapped things up, revisiting the core topics that make up the book. Although I haven’t tackled any concrete issues such as individual patterns or object functions here, this chapter should serve as a reasonable summary of this book’s concerns.
+On a Unix-like system that means editing a system file, /etc/hosts. In this case, I would add the following:
 
-There is never enough room or time to cover all the material that one would like. Nevertheless, I hope 
+192.168.33.148  poppch20.vagrant.internal
 
-that this book has served to make one argument: PHP is growing up. It is now one of the most popular programming languages in the world. I hope that PHP remains the hobbyist’s favorite language, and that many new PHP programmers are delighted to discover how far they can get with just a little code. At the same time, though, more and more professional teams are building large systems with PHP. Such projects deserve more than a just-do-it approach. Through its extension layer, PHP has always been a versatile language, providing a gateway to hundreds of applications and libraries. Its object-oriented support, on the other hand, gains you access to a different set of tools. Once you begin to think in objects, you can chart the hard-won experience of other programmers. You can navigate and deploy pattern languages developed with reference, not just to PHP, but to Smalltalk, C++, C#, or Java, too. It is our responsibility to meet this challenge with careful design and good practice. The future is reusable.
+Not overly onerous, but we are working towards a one-command install for our team, so it would be good to have a way of automating this step. Fortunately, Vagrant supports plug-ins, and the hostmanager plug-in does exactly what we need.
 
-533
+You can see what plug-ins are installed with this command:
 
-CHAPTER 23
+$ vagrant plugin list
 
-Appendix A: Bibliography
+vagrant-login (1.0.1, system)vagrant-share (1.1.5, system)
 
+To add a plug-in, you simply run the vagrant plugin install command:
+
+$ vagrant plugin install vagrant-hostmanager
+
+Installing the 'vagrant-hostmanager' plugin. This can take a few minutes...Installed the plugin 'vagrant-hostmanager (1.8.2)'!
+
+Then you can explicitly tell the plug-in to update /etc/hosts, like this:
+
+$ vagrant hostmanager
+
+[default] Updating /etc/hosts file...
+
+In order to make this process automatic for our team members, we should explicitly enable hostmanger 
+
+in Vagrantfile:
+
+ config.hostmanager.enabled = true
+
+494
+
+With the configuration changes in place, we should run vagrant reload in order to apply them.  
+
+Then it’s the moment of truth! Will our system run in the browser? As you can see in Figure 20-2, the system should work just fine.
+
+Chapter 20 ■ Vagrant
+
+Figure 20-2.  Accessing a configured system on a Vagrant box
+
+Wrapping It Up
+
+So we have gone from nothing to a fully working development environment. Given that it took a chapter’s worth of effort to get here, it might seem like a bit of a cheat to say that Vagrant is quick and easy. There are two answers to that. First, once you have done this a few times, it becomes a pretty simple matter to spin up yet another Vagrant setup—certainly much easier than trying to juggle multiple dependency stacks by hand.
+
+More importantly, though, the real speed and efficiency gain does not lie with the person who sets 
+
+Vagrant up. Imagine a new developer coming in to your project expecting days' worth of downloads, configuration file edits, and wiki-clicking. Imagine telling her,「Install Vagrant and VirtualBox. Check out the code. From the infrastructure directory, run 'vagrant up'.」And that’s it! Compare that with some of the painful onboarding processes you have experienced or heard described.
+
+Of course, we’ve only scratched the surface in this chapter. As you need to configure Vagrant to do more 
+
+for you, the official site at https://www.vagrantup.com will provide you with all the support you need.
+
+Table 20-1 provides a quick reminder of the Vagrant commands we encountered in this chapter.
+
+495
+
+Chapter 20 ■ Vagrant
+
+Table 20-1.  Some Vagrant Commands
+
+Command
+
+vagrant up
+
+vagrant reload
+
+vagrant plugin list
+
+vagrant plugin install <plugin-name>
+
+vagrant provision
+
+vagrant halt
+
+vagrant init
+
+vagrant destroy
+
+## Summary
+
+Description
+
+Boot the virtual machine and provision if not yet provisionedHalt the system and bring it back upList the installed plug-insInstall a plug-inRun the provision step again (useful if you have updated provision scripts)Gracefully shut down the virtual machineCreate a new Vagrantfile document
+
+Destroy the virtual machine. Don’t worry, you can always start again with vagrant up!
+
+In this chapter, I introduced Vagrant, the application that lets you work in a production-like development environment without sacrificing your authoring tools. I covered installation, the choosing of a distribution, and initial setup—including mounting your development directories. Once we had a virtual machine to play with, I moved on to the provisioning process—covering package installation, as well as database and web server configuration. Finally, I looked at hostname management, and I showed our system working in the browser!

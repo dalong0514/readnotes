@@ -1,454 +1,238 @@
-PHP Standards
+Good (and Bad) Practice
 
-Unless you are a lawyer or a health inspector, the topic of standards probably does not make your heart race. However, what standards help us achieve is worth getting excited about. Standards promote interoperability, and that gives us access to a vast array of compatible tools and framework components.
+So far in this book, I have focused on coding, concentrating particularly on the role of design in building flexible and reusable tools and applications. Development doesn’t end with code, however. It is possible to come away from books and courses with a solid understanding of a language, yet still encounter problems when it comes to running and deploying a project.
 
-This chapter will cover several important aspects of standards:
+In this chapter, I will move beyond code to introduce some of the tools and techniques that form the 
 
-PHP Standards Recommendations: Their origins and purpose
+underpinnings of a successful development process. This chapter will cover the following:
 
-•	 Why standards: What are standards and why they matter•	•	•	•	
+Build: Creating and deploying packages
 
-PSR-1: The Basic Coding Standard
+Third-party packages: Where to get them and when to use them
 
-PSR-2: The Coding Style Guide
+•	•	•	 Version control: Bringing harmony to the development process•	 Documentation: Writing code that is easy to understand, use, and extend•	 Unit testing: A tool for automated bug detection and prevention•	•	 Vagrant: A tool that uses virtualization, so that all developers can work with a system 
 
-PSR-4: Autoloading
+Standards: Why it's sometimes good to follow the herd
 
-Why Standards?
+that resembles a production environment, no matter their hardware or OS
 
-Design patterns interoperate. That is built in at their core. A problem described in a design pattern suggests a particular solution, which in turn generates architectural consequences. These are then well addressed by new patterns. Patterns also help developers to interoperate because they provide a shared vocabulary. Object-oriented systems tend to privilege the principle of playing nice.
+•	
 
-As we increasingly share each other’s components though, this informal tendency towards 
+Continuous integration: Using this practice and set of tools to automate project builds and tests, as well as to be alerted of problems as they occur
 
-interoperability is not always enough. As we have seen, Composer (or our package management system of choice) allows us to mix and match tools in our projects. These components may be designed as standalone libraries, or they may be pieces from a wider framework. Either way, once deployed in our system, they must be capable of working beside and in collaboration with any number of other components. By adhering to core standards, we make it less likely that our work will run into compatibility issues.
+Beyond Code
 
-In some senses, the nature of a standard is less important than the fact that it is adhered to. Personally, for 
+When I first graduated from working on my own and took a place in a development team, I was astonished at how much stuff other developers seemed to have to know. Good-natured arguments simmered endlessly over issues of vital-seeming importance: Which is the best text editor? Should the team standardize on an integrated development environment? Should we impose a coding standard? How should we test our code? Should we document as we develop? Sometimes these issues seemed more important than the code itself, and my colleagues seemed to have acquired their encyclopedic knowledge of the domain through some strange process of osmosis.
 
-example, I don’t love every aspect of the PSR-2 style guidelines. In most circumstances, including this book, I have adopted the standard. Other developers on my teams will hopefully find my code easier to work with because they will find it in a format that is familiar. For other standards, such as autoloading, failure to observe a common standard will result in components that may not work together at all without additional middleware.Standards are probably not the most exciting aspect of programming. However there is an interesting contradiction at their core. It may seem that a standard closes down creativity. After all, standards tell you want you can and can’t do. You must comply. You might think that this is hardly the stuff of innovation. And yet we owe the great flowering of creativity that the internet has ushered into our lives to the fact that every node on this network of networks conforms to open standards. Proprietary systems stuck within walled gardens are necessarily limited in scope and often in longevity—no matter how clever their code or slick their interfaces. The internet, with its shared protocols, ensures that any site can link to any other site. Most 
+The books I had read on PHP, Perl, and Java certainly didn’t stray from the code itself to any great extent. 
 
-385
+As I have already discussed, most books on programming platforms rarely diverge from their tight focus on functions and syntax to take in code design. If design is off topic, you can be sure that wider issues such as version control and testing are rarely discussed. This is not a criticism—if a book professes to cover the main features of a language, it should be no surprise that this is all it does.
 
-Chapter 15 ■ php StandardS
+377
 
-browsers support standard HTML, CSS, and JavaScript. The interfaces we can build within these standards are not always the most impressive we might imagine (though the limitations are much less than they were); still, abiding by them enables us to maximize the reach of our work.
+Chapter 14 ■ Good (and Bad) praCtiCe
 
-Used well, standards promote openness, cooperation, and, ultimately, creativity. This is true, even if a 
+In learning about code, however, I found that I had neglected many of the mechanics of a project’s day-
 
-standard itself enforces some limitations.
+to-day life. I discovered that some of these details were critical to the success or failure of projects I helped develop. In this chapter, and in more detail in coming chapters, I will look beyond code to explore some of the tools and techniques on which the success of your projects may depend.
 
-What Are PHP Standards Recommendations?
+Borrowing a Wheel
 
-At the 2009 PHP Tek conference, a group of framework developers formed an organization they called the PHP Framework Interop Group (PHP-Fig). Since then, developers have come on board from other key components. Their purpose was to build standards, so that their systems could better co-exist.
+When faced with a challenging but discrete requirement in a project (the need to parse a particular format, perhaps, or to use a novel protocol in talking to a remote server), there is a lot to be said for building a component that addresses the need. It can also be one of the best ways to learn your craft. In creating a package, you gain insight into a problem and file away new techniques that might have wider application. You invest at once in your project and in your own skills. By keeping functionality internal to your system, you can save your users from having to download third-party packages. Occasionally, too, you may sidestep thorny licensing issues. There’s nothing like the sense of satisfaction you can get when you test a component you designed yourself and find that, wonder of wonders, it works—it does exactly what you wrote on the tin.
 
-The group vote on standards proposals which progress from Draft, through Review, and finally, to 
+There is a dark side to all this, of course. Many packages represent an investment of thousands of 
 
-Accepted status.
+man-hours: a resource that you may not have on hand. You may be able to address this by developing only the functionality needed specifically by your project, whereas a third-party tool might fulfill a myriad of other needs, as well. The question remains, however: if a freely available tool exists, why are you squandering your talents in reproducing it? Do you have the time and resources to develop, test, and debug your package? Might not this time be better deployed elsewhere?
 
-Table 15-1 lists the current standards at the time of this writing.
+I am one of the worst offenders when it comes to wheel reinvention. Picking apart problems and 
 
-Table 15-1.  Accepted PHP Standards Recommendations
+inventing solutions to them is a fundamental part of what we do as coders. Getting down to some serious architecture is a more rewarding prospect than writing some glue to stitch together three or four existing components. When this temptation comes over me, I remind myself of projects past. Although the choice to build from scratch has never killed a project in my experience, I have seen it devour schedules and murder profit margins. There I sit with a manic gleam in my eye, hatching plots and spinning class diagrams, failing to notice as I obsess over the details of my component that the big picture is now a distant memory.
 
-PSR Number
+Now, when I map out a project, I try to develop a feel for what belongs inside the codebase and what should be treated as a third-party requirement. For example, your application may generate (or read) an RSS feed; and you may need to validate e-mail addresses and automate mailouts, authenticate users, or read from a standard-format configuration file. All of these needs can be fulfilled by external packages.
 
-Name
+In previous versions of this book, I suggested that PEAR (PHP Extension and Application Repository) 
 
-Description
+was the way to go for packages. Times change, though, and the PHP world has very definitely moved to the Composer dependency manager and its default repository, Packagist (https://packagist.org). Because Composer manages packages on a per-project basis, it is less prone to the dreaded dependency hell syndrome (where different packages require incompatible versions of the same library). Besides, the fact that all the action has moved to Composer/Packagist means that you’re more likely to find what you’re looking for there. What’s more, many of the PEAR packages are available through Packagist (https://packagist.org/packages/pear/).
 
-1
+So, once you have defined your needs, your first stop should be the Packagist site. You can then use Composer to install your package and to manage package dependencies. I will cover Composer in more detail in the next chapter.
 
-2
+To give you some idea of what’s available using Composer and Packagist, here are just a few of the 
 
-34
+things you can do with the packages you’ll find there:
 
-6
+•	 Cache output with pear/cache_lite•	•	•	
 
-7
+Extract RSS feeds with simplepie/simplepie
 
-Basic Coding Standard
+Test the efficiency of your code with the athletic/athletic benchmark library
 
-Coding Style Guide
+Abstract the details of database access with doctrine/dbal
 
-Logger InterfaceAutoloading Standard
+378
 
-Caching Interface
+Chapter 14 ■ Good (and Bad) praCtiCe
 
-Fundamentals such as PHP tags and basic naming conventionsCode formatting, including rules for placement of braces, argument lists, etc.Rules for log levels and logger behaviorsConventions for naming classes and namespaces, as well as their mapping to the filesystemRules for cache management, including data types, cache item lifetime, error handling, etc.
+•	•	•	
 
-HTTP Message Interfaces
+Send mail with attachments with pear/mail
 
-Conventions for HTTP requests and responses
+Parse configuration file formats with symfony/config
 
-But that’s not all. There are also draft proposals in the works, including one for inline documentation 
+Parse and manipulate URLs with jwage/purl
 
-(PSR-5), another style guide (PSR-12), and a standard for hypermedia links (PSR-13).
+The Packagist website provides a powerful search facility. You may find packages that address your 
 
-Why PSR in Particular?So, why choose one standard and not another? It happens that the PHP Framework Interop Group—the originators of PSRs—has a pretty great pedigree, and the standards themselves therefore make sense. But also, these are the standards that the major frameworks and components are adopting. If you are using Composer to add functionality to your projects, you are already consuming code that complies with PSRs. By using its conventions for autoloading and its style guides, you are likely building code that is ready for collaboration with other people and components.
+needs there, or you may need to cast your net wider using a search engine. Either way, you should always take time to assess existing packages before setting out to potentially reinvent that wheel.
 
-386
+The fact that you have a need—and that a package exists to address it—should not be the start and end of your deliberations. Although it is preferable to use a package where it will save you otherwise unnecessary development, in some cases it can add overhead without real gain. Your client’s need for your application to send mail, for example, does not mean that you should automatically use the pear/mail package. PHP provides a perfectly good mail() function, so this would probably be your first stop. As soon as you realize that you have a requirement to validate all e-mail addresses according to the RFC822 standard and that the design team wants to send image attachments with the e-mails, you may begin to weigh the options differently. As it happens, pear/mail supports both these features (the latter in conjunction with mail_mime).Many programmers, myself included, often place too much emphasis on the creation of original code, 
 
-Chapter 15 ■ php StandardS
+sometimes to the detriment of their projects.
 
- ■ Note  One set of standards is not inherently superior to another. When you choose whether to adopt a standard, your choice may be driven by your judgment of the recommendation’s merits. alternatively, you might make a pragmatic choice based on the context within which you are working. If you’re working in the Wordpress community, for example, you might want to adopt the style defined in the Core Contributor handbook at https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/. Such a choice is part of the point of standards, which are all about the cooperation of people and software.
+ the unwillingness to use third party tools and solutions is often built-in at the institutional level. this 
 
-PSRs are a good bet because they are supported by key framework and component projects, including 
+ ■ Note tendency to treat external products with suspicion is sometimes known as the not invented here syndrome.
 
-Phing, Composer, PEAR, Symfony, and Zend 2. Like patterns, standards are infectious—you’re probably already benefiting from them.
+This emphasis on authorship may be one reason that there often seems to be more creation than actual 
 
-Who Are PSRs for?Ostensibly PSRs are designed for the creators of frameworks. The fact that the membership of the PHP-Fig group rapidly widened to include the creators of tools as well as frameworks, however, shows that standards have wide relevance. That said, unless you are creating a logger, you may not need to worry too much about the details of PSR-3 (beyond ensuring any logging tool you use is itself compliant). On the other hand, if you’ve read the rest of this book, chances are you are as likely to be creating tools as you are to be consuming them. So, it’s also likely that you’ll find something relevant to you either in the present standards or the standards to come.
+use of reusable code.
 
-And then there are the standards that matter to all of us. Unglamorous as style guides are, for example, 
+Effective programmers see original code as just one of the tools available to aid them in engineering a project’s successful outcome. Such programmers look at the resources they have at hand and deploy them effectively. If a package exists to take some strain, then that is a win. To steal and paraphrase an aphorism from the Perl world: good coders are lazy.
 
-they are relevant to every programmer. And while the rules that govern autoloading really apply to those who create autoloaders (and the main game in town is probably Composer’s), they also fundamentally affect how we organize our classes, our packages, and our files.
+Playing Nice
 
-For these reasons, I will focus on coding style and autoloading for the rest of this chapter.
+The truth of Sartre’s famous dictum that「Hell is other people」is proved on a daily basis in some software projects. This might describe the relationship between clients and developers, symptomized by the many ways that lack of communication leads to creeping features and skewed priorities. But the cap fits, too, for happily communicative and cooperative team members when it comes to sharing code.
 
-Coding with Style
+As soon as a project has more than one developer, version control becomes an issue. A single coder 
 
-I tend to find pull request comments like「your braces are in the wrong place」disproportionately irritating. Such input often seems nitpicky and perilously close to bike-shedding.
+may work on code in place, saving a copy of her working directory at key points in development. Introduce another programmer to the mix, and this strategy breaks down in minutes. If the new developer works in the same development directory, then there is a real chance that one programmer will overwrite the work of his colleague when saving, unless both are very careful to always work on different files.
 
- In case you have not come across it, the verb「to bike-shed」refers to the tendency in some 
+Alternatively, our two developers can each take a version of the codebase to work on separately. That works fine until the moment comes to reconcile the two versions. Unless the developers have worked on entirely different sets of files, the task of merging two or more development strands rapidly becomes an enormous headache.
 
- ■ Note reviewers to criticize unimportant elements of a project under scrutiny. the implication is that such elements are chosen because they fit within the scope of the commenter’s competence. So, given a skyscraper to assess, a particular manager might focus, not on the vast and complex tower of glass and steel, but on the much easier to comprehend bike shed around the back. Wikipedia has a good history of the term: https://en.wikipedia.org/wiki/Law_of_triviality
+This is where Git, Subversion, and similar tools come in. Using a version control system, you can check out your own version of a codebase and work on it until you are happy with the result. You can then update your version with any changes that your colleagues have been making. The version control software will automatically merge these changes into your files, notifying you of any conflicts it cannot handle. Once you have tested this new hybrid, you can save it to the central repository, making it available to other developers.
 
-387
+379
 
-Chapter 15 ■ php StandardS
+Chapter 14 ■ Good (and Bad) praCtiCe
 
-And yet I have come to see that conforming to a common style can help improve the quality of code. 
+Version control systems provide you with other benefits. They keep a complete record of all stages of a project, so you can roll back to, or grab a snapshot of, any point in the project’s lifetime. You can also create branches, so that you can maintain a public release at the same time as a bleeding-edge development version.
 
-This is mainly a matter of readability (regardless of the reasoning behind a particular rule). If a team abides by the same rules for indentations, brace placement, argument lists, and so on, then a developer can quickly assess and contribute to a colleague’s code.
+Once you have used version control on a project, you will not want to attempt another without it. 
 
-So, for this edition of the book, I committed to edit all code examples so that they conform to PSR-1 
+Working simultaneously with multiple branches of a project can be a conceptual challenge, especially at first, but the benefits soon become clear. Version control is just too useful to live without. I cover Git in Chapter 17.
 
-and PSR-2. I have asked my colleague and technical editor Paul Tregoing to hold me to that, too. This was a promise that was so easy to make at the planning stage—and much more effort than I expected. This brings me to the first style guide lesson I learned. If possible, adopt a standard early for your project. Refactoring to a code style will likely tie up resources and make it hard to examine code differences that span The Time of the Great Reformat.
+Giving Your Code Wings
 
-So what changes have I had to apply? Let’s start with the basics.
+Have you ever seen your code grounded because it is just too hard to build? This is especially true for projects that are developed in place. Such projects settle into their context, with passwords and directories, databases and helper application invocations programmed right into the code. Deploying a project of this kind can be a major undertaking, with teams of programmers picking through source code to amend settings, so that they fit the new environment.
 
-PSR-1 Basic Coding StandardThese are the fundamentals for PHP code. You can find them in detail at http://www.php-fig.org/psr/psr-1/. Let’s break them down.
+This problem can be eased to some degree by providing a centralized configuration file or class so that settings can be changed in one place. But even then, build can be a chore. The difficulty or ease of installation will have a major impact upon the popularity of any application you distribute. It will also impede or encourage multiple and frequent deployments during development.
 
-Opening and Closing TagsFirst of all, a PHP section should open either with <?php or <?=. In other words, the short opening tag, <?, should not be used, nor should any other variation. A section should close with ?> only (or, as we shall see in the next section, no tag at all).
+As with any repetitive and time-consuming task, build should be automated. A build tool can determine default values for install locations, check and change permissions, create databases, and initialize variables, among other tasks. In fact, a build tool can do just about anything you need to get an application from a source directory in a distribution to full deployment.
 
-Side EffectsA PHP file should declare classes, interfaces, functions, and the like, or it should perform an action (such as reading or writing to a file or sending output to the browser); however, it should not do both. If you are accustomed to using require_once() to include other class files, this will trip you up straight away because the act of including another file is a side effect. Just as patterns beget patterns, so standards tend to require other standards. The correct way to handle class dependencies is through a PSR-4 compliant autoloader.
+This doesn’t absolve the user from the responsibility for adding information about his environment to 
 
-So, is it legal for a class you declare to write to a file in one of its methods? That is perfectly acceptable because the effect is not kicked off by the file’s inclusion. In other words, it’s an execution effect not a side effect.
+the code, of course, but it can make the process as easy as answering a few questions or providing a couple of command line switches.
 
-So what kind of file might perform actions rather than declare classes? Think of the script that kicks off 
+Cloud products such as Amazon’s EC2 have made it possible to create test and staging environments, as needed. Good build and install solutions are essential in order to take full advantage of these resources. It’s no good being able to provision a server on an automated basis if you can’t also deploy your system on the fly.
 
-an application.
+There are various build tools available to the developer. Both PEAR and Composer manage installation 
 
-Here is a listing that performs actions as a direct result of inclusion:
+(PEAR centrally, and Composer to a local vendor directory). You can create your own packages for either system, which can then be downloaded and installed by users with ease. Build is about much more than the process of placing file A in location B, however.
 
-// listing 15.01// index.phpnamespace popp\ch15\batch01;
+In Chapter 19, I will look at an application called Phing. This open source project is a port of the popular Ant build tool that is written in and for Java. Phing is written in and for PHP, but it’s architecturally similar to Ant and uses the same XML format for its build files.
 
-require_once(__DIR__ . "/../../../vendor/autoload.php");
+Composer performs a limited number of tasks extremely well and offers the simplest possible 
 
-$tree = new Tree();print "loaded " . get_class($tree) . "\n";
+configuration. Phing is more daunting at first, but with the tradeoff of immense flexibility. Not only can you use Phing to automate anything from file copying to XSLT transformation, you can easily write and incorporate your own tasks, should you need to extend the tool. Phing is written using PHP’s object-oriented features, and its design emphasizes modularity and ease of extension.
 
-Here is a PHP file that declares a class with no side effects:
+Build tools and those designed for package or dependency management are far from mutually 
 
-// listing 15.02
+exclusive. Typically, a build tool is used during development to run tests, perform project housekeeping, and to prepare the packages that are ultimately deployed via PEAR, Composer, or even distribution based–package management systems like RPM and Apt.
 
-388
+Standards
 
-Chapter 15 ■ php StandardS
+I mentioned previously that this book is shifting its focus in this edition from PEAR to Composer. Is this because Composer is much better than PEAR? I do love lots of things about Composer, and these might swing the decision on their own. The principal reason the book is shifting, though, is that everyone else has 
 
-// Tree.phpnamespace popp\ch15\batch01;
+380
 
-class Tree{}
+Chapter 14 ■ Good (and Bad) praCtiCe
 
- In other chapters, I largely omit namespace declarations and use directives in order to focus on the 
+shifted. Composer has become the standard for dependency management. That is crucial because it means that when I find a package at Packagist, I am also likely to find all its dependencies and related packages. I’ll even find many of the PEAR packages there.
 
- ■ Note code. Since this chapter is about the mechanics of formatting class files, I will include namespace and use statements where appropriate.
+Choosing a standard for dependency management, then, ensures availability and interoperability. But standards apply beyond packages and dependencies to the ways that systems work and to the ways that we code. If we agree on protocols, then our systems and teams can integrate seamlessly with one another. And, as more and more components mix across more and more systems, that is increasingly essential.
 
-NamingClasses must be declared in upper camel case, also known as studly caps. In other words, a class name should begin with a capital letter. The rest of the name should be lowercase unless it consists of multiple words. In this instance, each word should begin with an uppercase letter, like this:
+Where a definitive way of handling, say, logging, is needed, it is obviously ideal that we adopt the best protocol. But the quality of the recommendation (which will dictate formats, log levels, etc.) is possibly less important than the fact that we all comply with it. It’s no good implementing the best standard if you’re the only person doing it.
 
-class MyClassName
+In chapter 15, I discuss standards in more detail with particular reference to a set of recommendations 
 
-Properties can be named in any way, although consistency is called for. I tend to use camel case, an 
+managed by the PHP-FIG group. These PSRs (PHP Standards Recommendations) cover everything from caching to security. In the chapter, I will focus on PSR-1 and PSR-2, recommendations which address the thorny issue of coding style (where do you like to put your braces? And how do you feel about someone else telling you to change the way you do it?). Then I move on to the absolute boon of PSR-4, which covers autoloading (support for PSR-4 is another area in which Composer excels).
 
-approach similar to studly caps, but without the leading capital letter:
+Vagrant
 
-private $myPropertyName
+What operating system does your team use? Some organizations mandate a particular combination of hardware and software, of course. Often, though, there will be a mix. One developer may have a development machine running Fedora. Another might swear by his MacBook, and a third may stick with his Windows box (he probably likes it for gaming).
 
-Methods must be declared in camel case:
+Chances are, the production system will run on something else entirely—CentOS, perhaps.It can be a pain getting a system to work across multiple platforms, and it can be a risk if none of those 
 
-public function myMethodName()
+platforms resemble the production system. You really don’t want to discover issues related to the production OS after you’ve gone live. In practice, of course, you’ll likely deploy to a staging environment first. Even so, wouldn’t it be better to catch these problems early?
 
-Class constants must be upper case, with words separated by underscores:
+Vagrant is a technology that uses virtualization to give all team members a development environment 
 
-const MY_NAME_IS = 'matt';
+that is as close as possible to production. Getting up and running should be as simple as invoking a command or two and, best of all, everyone can stick with their favorite machines and distributions (I’m a Fedora guy, for the record).
 
-More Rules and an ExampleClasses, namespaces, and files should be declared in accordance with the PSR-4 autoloading standard. We will come to that later in the chapter, however. PHP documents should be saved as UTF-8 encoded files.
+I cover Vagrant in Chapter 20.
 
-Finally, for PSR-1, let’s get it all wrong—and then put it right. Here is a class file that breaks all the rules:
+Testing
 
-<?// listing 15.03
+When you create a class, you are probably pretty sure that it works. You will, after all, have put it through its paces during development. You’ll also have run your system with the component in place, checking that it integrates well, and that your new functionality is available and performing as expected.
 
-class conf_reader {    const ModeFile = 1;    const Mode_DB = 2;    private $conf_file;    private $confValues= [];
+Can you be sure that your class will carry on working as expected though? That might seem like a silly question. After all, you’ve checked your code once; why should it stop working arbitrarily? Well, of course it won’t; nothing happens arbitrarily, and if you never add another line of code to your system, you can probably breathe easy. If, on the other hand, your project is active, then it’s inevitable that your component’s context will change and highly likely that the component itself will be altered in any number of ways.
 
-    function read_conf() {
+Let’s look at these issues in turn. First, how can changing a component’s context introduce errors? Even in a system where components are nicely decoupled from one another, they remain interdependent. Objects used by your class return values, perform actions, and accept data. If any of these behaviors change, the effects on the operation of your class might cause the kind of error that’s easy to catch—the kind where your system falls over with a convenient error message that includes a file name and line number. Much more 
 
-389
+381
 
-Chapter 15 ■ php StandardS
+Chapter 14 ■ Good (and Bad) praCtiCe
 
-        // implementation    }}?>
+insidious, though, is the kind of change that does not cause an engine-level error, but nonetheless confuses your component. If your class makes an assumption based on another class’s data, a change in that data might cause it to make a wrong decision. Your class is now in error and without a change to a line of code.And it’s likely that you will go on altering the class you’ve just completed. Often, these changes will be 
 
-Can you spot all the issues? First of all, I used a short opening tag. I also failed to declare a namespace (though we haven’t yet covered this requirement in detail). In naming my class, I used underscores and no capitals, rather than studly caps. And I used two formats for my constant names, neither of which are the required one—all capitals with words should be separated by underscores. Although both my property names were legal, I failed to make them consistent; specifically, I used underscores for $conf_file and camel case for $confValues. In naming my method, read_conf(), I used an underscore rather than camel case.
+minor and obvious—so minor, in fact, that you won’t feel the need to run through the careful checks you performed during development. You’ll have probably forgotten them all, anyhow, unless you kept them in some way (perhaps commented out at the bottom of your class file as I sometimes do). Small changes, though, have a way of causing large unintended consequences—consequences that might have been caught had you thought to put a test harness in place.
 
-Let’s fix the problems:
+A test harness is a set of automated tests that can be applied to your system as a whole or to its individual 
 
-<?php// listing 15.04
+classes. Well deployed, a test harness helps you to prevent bugs from occurring and from recurring. A single change may cause a cascade of errors, and the test harness can help you to locate and eliminate these. This means you can make changes with some confidence that you are not breaking anything. It is quite satisfying to make an improvement to your system and then see a list of failed tests. These are all errors that might have been propagated within your system, but now it won’t have to suffer them.
 
-namespace popp\ch15\batch01;
+Continuous Integration
 
-class ConfReader {    const MODE_FILE = 1;    const MODE_DB = 2;    private $confFile;    private $confValues = [];
+Have you ever made a schedule that made everything okay? You start with an assignment: code maybe, or a school project. It’s big and scary, and failure lurks. But you get out a sheet of paper, and you slice it up into manageable tasks. You determine the books to read and the components to write. Maybe you highlight the tasks in different colors. Individually, none of the tasks is actually that scary, it turns out. And gradually, as you plan, you conquer the deadline. As long as you do a little bit every day, you’ll be fine. You can relax.
 
-    function readConf() {        // implementation    }}
+Sometimes, though, that schedule takes on a talismanic power. You hold it up like a shield, to protect yourself from doubt, and from the creeping fear that perhaps this time you’ll crash and burn. And it’s only after several weeks that you realize the schedule is not magic on its own. You actually have to do the work, too. By then, of course, lulled by the schedule’s reassuring power, you have let things slide. There’s nothing for it but to make a new schedule. This time it will be less reassuring.
 
-PSR-2 Coding Style GuideThe Coding Style Guide (PSR-2) builds upon PSR-1. Let’s jump in and look at some of the rules.
+Testing and building are like that, too. You have to run your tests. You have to build your projects, and 
 
-Starting and Ending a PHP DocumentWe have already seen that PSR-1 requires that PHP blocks open with <?php. PSR-2 stipulates that pure PHP files should not have an ending ?> tag, but should end with a single blank line. It’s all too easy to end a file with a closing tag, and then let an extra newline creep in. This can result in formatting bugs, as well as errors when you set HTTP headers (you cannot do this after content has already been sent to the browser).
+build them in fresh environments regularly; otherwise, the magic won’t work.
 
-namespace declarations should be followed by a blank line, and a block of use declarations should be 
+And if writing tests is a pain, running them can be a chore, especially as they gain in complexity and failures interrupt your plans. Of course, if you were running them more often, you’d probably have fewer failures, and those you did have would stand a good chance of relating to new code that’s fresh in your mind.
 
-followed by a blank line. Do not put more than one use declaration on the same line:
+It’s easy to get comfortable in a sandbox. After all, you’ve got all your toys there: little scriptlets that 
 
-// listing 15.05
+make your life easy, development tools, and useful libraries. The trouble is, your project may be getting too comfortable in your sandbox, too. It may begin to rely on uncommitted code, or dependencies that you have left out of your build files. That means it’s broken anywhere else but where you work.
 
-namespace popp\ch15\batch01;
+The only answer is to build, build, and build again. And do it in a reasonably virgin environment each time.Of course, it’s all very well to advise this; it’s quite another matter to do it. Coders as a breed tend to like 
 
-use popp\ch10\batch06\DiamondDecorator;use popp\ch10\batch06\DiamondPlains;
+to code. They want to keep the meetings and the housekeeping to a minimum. That’s where Continuous Integration (CI) comes in. CI is both a practice and a set of tools to make the practice as easy as it possibly can be. Ideally, builds and tests should be entirely automatic, or at least launchable from a single command or click. Any problems will be tracked, and you will be notified before an issue becomes too serious. I will talk more about CI in Chapter 21.
 
-// begin class
+382
 
-390
-
-Chapter 15 ■ php StandardS
-
-Starting and Ending a ClassThe class keyword, the class name, and extends and implements must all be placed on the same line. Where a class implements multiple interfaces, each interface name can be included on the same line as the class declaration, or it can be placed indented on its own line. If you choose to place your interface names on multiple lines, the first item must be placed on its own line rather than directly after the implements keyword. Class braces should begin on the line after the class declaration and end on their own line (directly after the class contents). So, a class declaration might look something like this:
-
-// listing 15.06class EarthGame extends Game implements    Playable,    Savable{    // class body}
-
-However, you could equally place the interface names on a single line:
-
-class EarthGame extends Game implements Playable, Savable{    // class body}
-
-Declaring PropertiesProperties must have a declared visibility (public, private, or protected). The var keyword is not acceptable. We have already covered the format for property names as part of PSR-1. You can use underscores, camel case, or studly case—but you should be consistent.
-
-Starting and Ending a MethodAll methods must have a declared visibility (public, private, or protected). The visibility keyword must follow abstract or final, but precede static. Method arguments with default values should be placed at the end of the argument list.
-
-Single Line DeclarationsMethod braces should begin on the line after the method name and end on their own line (directly after the method code). A list of method arguments should not begin or end with a space (i.e., they should snuggle in close to the wrapping parentheses). For each argument, the comma should be flush with the preceding argument name (or the default value), but it should then be followed by a space. Let’s clarify things with an example:
-
-// listing 15.07
-
-final public static function generateTile(int $diamondCount, bool $polluted = false){    // implementation}
-
-391
-
-Chapter 15 ■ php StandardS
-
-Multi-line DeclarationsA single line method declaration is not practical in cases where there are many arguments. In this situation, you can break the argument list so that each argument (including type, argument variable, default value, and comma) is placed indented on its own line. In this case, the closing parenthesis should be placed on the line after the argument list, flush with the start of the method declaration. The opening brace should follow the closing parenthesis on the same line, separated by a space. The method body should begin on a new line. Once again, that sounds much more complicated that it is. An example should make it clearer:
-
-// listing 15.08
-
-    public function __construct(        int $size,        string $name,        bool $wraparound = false,        bool $aliens = false    ) {        // implementation    }
-
-Lines and IndentationYou should use four spaces rather than tabs for indentation. It’s worth checking your editor settings—you can configure good editors to use spaces rather than a tab when you press the Tab key. You should also wrap your text before your line reaches 120 characters.
-
-Calling Methods and FunctionsDo not place a space between the method name and the opening parenthesis. You can apply the same rules to the argument list in a method call as you do to the argument list in a method declaration. In other words, for a single line call leave no space after the opening parenthesis or before the closing parenthesis. A comma should follow directly after each argument, with a single space falling before the next one. If you need to use multiple lines for a method call, each argument should sit indented on its own line, and the closing parenthesis should fall on a new line:
-
-// listing 15.09
-
-        $earthgame = new EarthGame(            5,            "earth",            true,            true        );        $earthgame::generateTile(5, true);
-
-392
-
-Chapter 15 ■ php StandardS
-
-Flow of ControlFlow control keywords (if, for, while, etc.) must be followed by a single space. However, the opening parenthesis must not be followed by a space. Similarly, the closing parenthesis must not be preceded by a space. So, the contents should be snug in their brackets. In contrast to class and (single line) function declarations, the opening brace for the flow control block should begin on the same line as the closing parenthesis. The closing brace should sit on its own line. Here’s a quick example:
-
-// listing 15.10
-
-        $tile = [];        for ($x = 0; $x < $diamondcount; $x++) {            if ($polluted) {                $tile[] = new PollutionDecorator(new DiamondDecorator(new Plains()));            } else {                $tile[] = new DiamondDecorator(new Plains());            }        }
-
-Notice the space after both for and if. The for and if statements are flush to their parentheses. In both 
-
-cases, the closing parenthesis is followed by a space and then the opening brace for the flow control body.
-
-Checking and Fixing your CodeEven if this chapter covered every single directive in PSR-2, it would be hard to keep it all in your mind. After all, we have other things to think about—like the design and implementation of our systems. So, given that we have bought into the value of coding standards, how do we comply without using too much of our time or focus? We use a tool, of course.
-
-PHP_CodeSniffer allows you to detect and even repair standards violations—and not just for PSR. You 
-
-can get it by following the instructions at https://github.com/squizlabs/PHP_CodeSniffer. There are Composer and PEAR options, but here’s how you can download the PHP archive files:
-
-curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
-
-curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
-
-Why two downloads? The first is for phpcs, which diagnoses and reports on violations. The second is for phpcbf, which can fix a lot of them. Let’s put the tools through their paces. First, here is a scrappily formatted piece of code:
-
-// listing 15.11namespace popp\ch15\batch01;
-
-class ebookParser {    function __construct(string $path , $format=0 ) {        if ($format>1)            $this->setFormat( 1 );    }    function setformat(int $format) {        // do something with $format    }}
-
-393
-
-Chapter 15 ■ php StandardS
-
-Rather than run through the problems here, let’s have PHP_CodeSniffer do it for us:
-
-$ php phpcs.phar --standard=PSR2 src/ch15/batch01/phpcsBroken.php
-
-----------------------------------------------------------------------FOUND 14 ERRORS AFFECTING 6 LINES----------------------------------------------------------------------  3 | ERROR | [x] There must be one blank line after the namespace    |       |     declaration  4 | ERROR | [ ] Class name "ebookParser" is not in camel caps    |       |     format  4 | ERROR | [x] Opening brace of a class must be on the line after    |       |     the definition  6 | ERROR | [ ] Visibility must be declared on method "__construct"  6 | ERROR | [x] Expected 0 spaces between argument "$path" and    |       |     comma; 1 found  6 | ERROR | [x] Incorrect spacing between argument "$format" and    |       |     equals sign; expected 1 but found 0  6 | ERROR | [x] Incorrect spacing between default value and equals    |       |     sign for argument "$format"; expected 1 but found 0  6 | ERROR | [x] Expected 0 spaces between argument "$format" and    |       |     closing bracket; 1 found  6 | ERROR | [x] Opening brace should be on a new line  7 | ERROR | [x] Inline control structures are not allowed  8 | ERROR | [x] Space after opening parenthesis of function call    |       |     prohibited  8 | ERROR | [x] Expected 0 spaces before closing bracket; 1 found 11 | ERROR | [ ] Visibility must be declared on method "setformat" 11 | ERROR | [x] Opening brace should be on a new line----------------------------------------------------------------------PHPCBF CAN FIX THE 11 MARKED SNIFF VIOLATIONS AUTOMATICALLY----------------------------------------------------------------------
-
-That’s an exhausting number of problems for just a few lines of code. Luckily, as the output indicates, 
-
-we can fix a lot of these with very little effort:
-
-$ php phpcbf.phar --standard=PSR2 src/ch15/batch01/EbookParser.php
-
-Processing EbookParser.php [PHP => 83 tokens in 15 lines]... DONE in 11ms (11 fixable violations)        => Fixing file: 0/11 violations remaining [made 4 passes]... DONE in 17msPatched 1 file
-
-Now, if we run phpcs again, we’ll see that the situation is much improved:
-
-$ php phpcs.phar --standard=PSR2 src/ch15/batch01/EbookParser.php
-
-----------------------------------------------------------------------FOUND 3 ERRORS AFFECTING 3 LINES----------------------------------------------------------------------
-
-394
-
-Chapter 15 ■ php StandardS
-
-  5 | ERROR | Class name "ebookParser" is not in camel caps format  8 | ERROR | Visibility must be declared on method "__construct" 15 | ERROR | Visibility must be declared on method "setformat"----------------------------------------------------------------------
-
-I’ll go ahead and add the visibility declarations, and then change the name of the class—a quick job! 
-
-And now I have a stylishly compliant code file:
-
-// listing 15.12
-
-namespace popp\ch15\batch01;
-
-class EbookParser{    public function __construct(string $path, $format = 0)    {        if ($format > 1) {            $this->setFormat(1);        }    }
-
-    private function setformat(int $format)    {        // do something with $format    }}
-
-PSR-4 Autoloading
-
-We looked at PHP’s support for autoloading in Chapter 5. In that chapter, we saw how we could use the spl_autoload_register() function to automatically require files based on the name of an as yet unloaded class. Although this is powerful, it is also a kind of behind the scenes magic. This is fine in a single project, but a recipe for great confusion if multiple components come together and all use different conventions for loading class files.
-
-The Autoloading Standard (PSR-4) requires frameworks to conform to a common set of rules, thereby 
-
-adding some discipline to the magic.
-
-This is great news for developers. It means that we can more or less ignore the mechanics of requiring 
-
-files, and focus instead on class dependencies.
-
-The Rules that Matter to UsThe main purpose of PSR-4 is to define rules for autoloader developers. However, those rules inevitably determine the way we must declare namespaces and classes. Here are some of the basics.
-
-A fully-qualified classname (that is, the name of a class, including its namespaces) must include an 
-
-initial「vendor」namespace. So, a class must have at least one namespace.
-
-395
-
-Chapter 15 ■ php StandardS
-
-Let’s say that our vendor namespace is popp. We can declare a class in this way:
-
-// listing 15.13
-
-namespace popp;
-
-class Services{}
-
-The fully-qualified class name for this class is popp\Services.The initial namespaces in a path must correspond to one or more base directories. We can use this to map a set of sub-namespaces to a starting directory. If, for example, we want to work with the namespace popp\library (and nothing else under the popp namespace), then we might map that to a top-level directory to spare us from having to maintain an empty popp/ directory.
-
-Let’s set up a composer.json file to perform that mapping:
-
-{    "autoload": {        "psr-4": {            "popp\\library\\": "mylib"        }    }  }
-
-Notice that I don’t even need to call the base directory, "library". This is an arbitrary mapping of 
-
-popp\library to the mylib directory. Now I can create a class file under the mylib directory:
-
-// listing 15.14// mylib/LibraryCatalogue.php
-
-namespace popp\library;
-
-use popp\library\inventory\Book;
-
-class LibraryCatalogue{    private $books = [];    public function addBook(Book $book)    {        $this->books[] = $book;    }}
-
-In order to be found, the LibraryCatalogue class must be placed in a file with exactly the same name 
-
-(with the obvious addition of the .php extension).
-
-After a base directory (mylib) has been associated with initial namespaces (popp\library), there 
-
-must then be a direct relation between subsequent directories and sub-namespaces. It happens that I have already referenced a class named popp\library\inventory\Book in my LibraryCatalogue class. That class file should therefore be placed in the mylib/inventory directory:
-
-396
-
-Chapter 15 ■ php StandardS
-
-// listing 15.15// mylib/library/inventory/Book.php
-
-namespace popp\library\inventory;
-
-class Book{    // implementation}
-
-Remember the rule that the initial namespaces in a path must correspond to one or more base 
-
-directories? So far we have made a one-to-one relationship between popp\library and mylib. There’s actually no reason why we can’t map the popp\library namespace to more than one base directory. Let’s add a directory named additional to the mapping; here’s the amendment to composer.json:
-
-{    "autoload": {        "psr-4": {            "popp\\library\\": ["mylib", "additional"]        }    }}
-
-Now I can create the additional/inventory directories and a class to go in them:
-
-// listing 15.16// additional/inventory/Ebook.phpnamespace popp\library\inventory;
-
-class Ebook extends Book{    // implementation}
-
-Next, let’s create a top-level runner script, index.php, to instantiate these classes:
-
-// listing 15.17// index.php
-
-require_once("vendor/autoload.php");
-
-use popp\library\LibraryCatalogue;
-
-// will be found under mylib/use popp\library\inventory\Book;
-
-// will be found under additional/use popp\library\inventory\Ebook;
-
-$catalogue = new LibraryCatalogue();$catalogue->addBook(new Book());$catalogue->addBook(new Ebook());
-
-397
-
-Chapter 15 ■ php StandardS
-
- ■ Note  You must use Composer to generate the autoload file, vendor/autoload.php, and this file must be included in some way before you gain access to the logic you have declared in composer.json. You can do this by running the command composer install. You can learn more about Composer in Chapter 15.
-
-Remember the rule about side effects? A PHP file should declare classes, interfaces, functions, and the 
-
-like; or, it should perform an action. However, it should not do both. This script falls into the taking action category. Crucially, it calls require_once() to include the autoload code generated using the configuration in the composer.json file. Thanks to this, all the classes are located, despite the fact that Ebook has been placed in an entirely separate base directory from the rest.
-
-Why would I want to maintain two separate directories for the same core namespace? One possible 
-
-reason is for unit tests that you want to keep separate from production code. You may also manage plug-ins and extensions that will not ship with every version of your system.
-
- Be sure to keep an eye on all the pSr standards at http://www.php-fig.org/psr/. this is a fast 
-
- ■ Note moving area, and you’ll likely find that standards relevant to you are on their way.
+Chapter 14 ■ Good (and Bad) praCtiCe
 
 Summary
 
-In this chapter, I wrestled a little with the possibility that standards are less than fantastically exciting—and then made a case for their power. Standards get integration issues out of our way, so that we can get on and do amazing things. I looked at PSR-1 and PSR-2, the standards for basic coding and for wider coding style. Next, I went on to discuss PSR-4, the standard for autoloaders. Finally, I worked through a Composer-based example that showed PSR-4 compliant autoloading in practice.
+A developer’s aim is always to deliver a working system. Writing good code is an essential part of this aim’s fulfillment, but it is not the whole story.
 
-398
+In this chapter, I introduced dependency management with Composer and Packagist. I also discussed 
 
-CHAPTER 16
+two great aids to collaboration: Vagrant and version control. I covered why version control requires automated build, and I introduced Phing, a PHP implementation of Ant, a Java build tool. Finally, I discussed software testing and introduced CI, a set of tools to automate build and testing.
+
+383
+
+CHAPTER 15
 

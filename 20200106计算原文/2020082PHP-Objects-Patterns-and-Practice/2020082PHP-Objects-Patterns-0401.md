@@ -4,8 +4,6 @@ You have already seen how class type hinting and access control give you more co
 
 This chapter will cover several subjects:
 
-•	
-
 Static methods and properties: Accessing data and functionality through classes rather than objects
 
 Abstract classes and interfaces: Separating design from implementation

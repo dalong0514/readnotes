@@ -1,396 +1,454 @@
-PHP Using and Creating Components with Composer
+PHP Standards
 
-Programmers aspire to produce reusable code. This is one of the great goals in object-oriented coding. We like to abstract useful functionality from the messiness of specific context, turning a particular solution into a tool that can be used again and again. To come at this from another angle, if programmers love the reusable, they hate duplication. By creating libraries that can be reapplied, programmers avoid the need to implement similar solutions across multiple projects.
+Unless you are a lawyer or a health inspector, the topic of standards probably does not make your heart race. However, what standards help us achieve is worth getting excited about. Standards promote interoperability, and that gives us access to a vast array of compatible tools and framework components.
 
-Even if we avoid duplication in our own code, though, there is a wider issue. For every tool you create, how many other programmers have implemented the same solution? This is wasted effort on an epic scale: wouldn’t it be much more sensible for programmers to collaborate and to focus their energies on making a single tool better, rather than producing hundreds of variations on a theme?
+This chapter will cover several important aspects of standards:
 
-In order to do this, we need to get our hands on existing libraries. But then the packages we need will 
+PHP Standards Recommendations: Their origins and purpose
 
-likely require other libraries in order to do their work. So we need a tool which can handle downloading and installing packages, as well as manage their dependencies. That is where Composer comes in; it does all this, and more besides.
+•	 Why standards: What are standards and why they matter•	•	•	•	
 
-This chapter will cover several key issues:
+PSR-1: The Basic Coding Standard
 
-Installation: Downloading and setting up Composer
+PSR-2: The Coding Style Guide
 
-•	•	•	 Versions: Specifying versions so as to get the latest code without breaking your 
+PSR-4: Autoloading
 
-Requirements: Using composer.json to get packages
+Why Standards?
 
-system
+Design patterns interoperate. That is built in at their core. A problem described in a design pattern suggests a particular solution, which in turn generates architectural consequences. These are then well addressed by new patterns. Patterns also help developers to interoperate because they provide a shared vocabulary. Object-oriented systems tend to privilege the principle of playing nice.
 
-•	•	
+As we increasingly share each other’s components though, this informal tendency towards 
 
-Packagist: Configuring your code for public access
+interoperability is not always enough. As we have seen, Composer (or our package management system of choice) allows us to mix and match tools in our projects. These components may be designed as standalone libraries, or they may be pieces from a wider framework. Either way, once deployed in our system, they must be capable of working beside and in collaboration with any number of other components. By adhering to core standards, we make it less likely that our work will run into compatibility issues.
 
-Private repositories: Leveraging Composer using a private repository
+In some senses, the nature of a standard is less important than the fact that it is adhered to. Personally, for 
 
-What Is Composer?
+example, I don’t love every aspect of the PSR-2 style guidelines. In most circumstances, including this book, I have adopted the standard. Other developers on my teams will hopefully find my code easier to work with because they will find it in a format that is familiar. For other standards, such as autoloading, failure to observe a common standard will result in components that may not work together at all without additional middleware.Standards are probably not the most exciting aspect of programming. However there is an interesting contradiction at their core. It may seem that a standard closes down creativity. After all, standards tell you want you can and can’t do. You must comply. You might think that this is hardly the stuff of innovation. And yet we owe the great flowering of creativity that the internet has ushered into our lives to the fact that every node on this network of networks conforms to open standards. Proprietary systems stuck within walled gardens are necessarily limited in scope and often in longevity—no matter how clever their code or slick their interfaces. The internet, with its shared protocols, ensures that any site can link to any other site. Most 
 
-Strictly speaking, Composer is a dependency manager, rather than a package manger. This, it seems, is because it handles component relationships on a local basis, rather than centrally as Yum and Apt do. If you think that this is an overly fine distinction, you could be right. However we define it, Composer allows you to specify packages. It downloads them to a local directory (vendor), finds and downloads all dependencies, and then makes all this code available to your project via an autoloader.
+385
 
-As always, we need to begin by getting the tool.
+Chapter 15 ■ php StandardS
 
-399
+browsers support standard HTML, CSS, and JavaScript. The interfaces we can build within these standards are not always the most impressive we might imagine (though the limitations are much less than they were); still, abiding by them enables us to maximize the reach of our work.
 
-Chapter 16 ■ php Using and Creating Components with Composer
+Used well, standards promote openness, cooperation, and, ultimately, creativity. This is true, even if a 
 
-Installing Composer
+standard itself enforces some limitations.
 
-You can download Composer at https://getcomposer.org/download/. You will find an installer mechanism there, but the phar file should suit most purposes:
+What Are PHP Standards Recommendations?
 
-$ wget https://getcomposer.org/download/1.2.0/composer.phar .$ chmod 755 composer.phar$ sudo mv composer.phar /usr/bin/composer
+At the 2009 PHP Tek conference, a group of framework developers formed an organization they called the PHP Framework Interop Group (PHP-Fig). Since then, developers have come on board from other key components. Their purpose was to build standards, so that their systems could better co-exist.
 
-I download the archive and run chmod to ensure that it is executable. Then I copy it into a central 
+The group vote on standards proposals which progress from Draft, through Review, and finally, to 
 
-location so that I can run it easily from anywhere in my system. Now I can test the command:
+Accepted status.
 
-$ composer --version
+Table 15-1 lists the current standards at the time of this writing.
 
-Composer version 1.2.0 2016-07-19 01:28:52
+Table 15-1.  Accepted PHP Standards Recommendations
 
-Installing a (Set of) Package(s)
+PSR Number
 
-Why did I do that funky bit with the brackets? Because packages inevitably beget packages—sometimes a lot of packages.
-
-Let’s begin with a library that stands alone, though. Imagine that we’re building an application which 
-
-needs to communicate with Twitter. A little bit of research leads me to the abraham/twitteroath package. In order to install this, I need to generate a JSON file named composer.json, and then define a require element:
-
-{    "require": {        "abraham/twitteroauth": "0.6.*"    }}
-
-I begin with a directory that is empty apart from the composer.json file. Once I run a Composer 
-
-command, though, we’ll see a change:
-
-$ composer install
-
-Loading composer repositories with package informationUpdating dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Downloading: 100%        
-
-Writing lock fileGenerating autoload files
-
-So what has been generated? Let’s take a look:
-
-$ ls
-
-composer.json  composer.lock  vendor
-
-400
-
-Chapter 16 ■ php Using and Creating Components with Composer
-
-Composer installs packages into vendor/. It also generates a file named composer.lock. This specifies 
-
-the exact versions of all packages installed. If you’re using version control, you should commit this file. If another developer runs composer install with a composer.lock file present, package versions will be installed on her system exactly as specified. In this way, the team can stay in sync with one another, and you can be sure that your production environment exactly matches the development and test environments. You can override the lockfile by running this snippet:
-
-composer update
-
-This will generate a new lock file. Typically, you will run this to keep current with new package versions 
-
-(if you are using wildcards, as I have, or ranges).
-
-Installing a Package from the Command LineAs you have seen, I can create the composer.json file using an editor. But you can also have Composer do it for you. This is particularly useful if you need to kick off with a single package. When you invoke composer require on the command line, Composer will download the specified package and install it into vendor/ for you. It will also generate a composer.json file, which you can then edit and extend:
-
-$ composer require abraham/twitteroauth
-
-Using version ^0.6.4 for abraham/twitteroauth./composer.json has been createdLoading composer repositories with package informationUpdating dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
-
-Writing lock fileGenerating autoload files
-
-VersionsComposer is designed to support semantic versioning. In essence, this involves defining a package’s version with three numbers, separated by dots: major, minor, and patch. If you fix a bug, add no functionality, and do not break backwards compatibility, you should increment the patch number. If you add new functionality, but do not break backwards compatibility, you should increment the middle minor number. If your new version breaks backwards compatibility (in other words, if client code would break if this new version were suddenly switched in), then you should increment the first major version number.
-
- ■ Note 
-
- You can read more about the semantic versioning convention at https://semver.org.
-
-You should bear this in mind when specifying versions in your composer.json file: if you are too liberal 
-
-in your ranges or wild cards, you may find that your system breaks on update.
-
-Table 16-1 shows some of the ways that you can specify versions with Composer.
-
-401
-
-Chapter 16 ■ php Using and Creating Components with Composer
-
-Table 16-1.  Composer and Package Versions
-
-Example
-
-Notes
-
-Type
-
-ExactWildcard
-
-1.2.21.2.*
-
-Range
-
-1.0.0 - 1.1.7
-
-Only install the given versionInstall the exact specified numbers, but find latest available version matching the wildcardInstall a version no lower than the first number and no higher than the last number
-
-Comparison
-
->1.2.0 <=1.2.2 Use <, <=, >, and >= to specify complex ranges. You can combine these 
-
-Tilde (major version)
-
-Caret
-
-~1.3
-
-^1.3
-
-directives with a space (equivalent to「and」) or with || to specify「or」.The given number is the minimum, and the final number specified can increase. So for ~1.3, 1.3 is the minimum and there can be no match at 2.0.0 or above
-
-Will match up to, but not including, the next breaking change. So while ~1.3.1 will not match at 1.4 and above, ^1.3.1 will match from 1.3.1 up to, but not including, 2.0.0. This is generally the most useful shortcut
-
-require-devVery often you need packages during development that are unnecessary in a production context. You will want to run tests locally, for example, but you are unlikely to need PHPUnit available on your public site.
-
-Composer addresses this by supporting a separate require-dev element. You can add packages here, 
-
-just as you can for the require element:
-
-{    "require-dev": {        "phpunit/phpunit": "*"    },    "require": {        "abraham/twitteroauth": "0.6.*",        "ext-xml": "*"    }}
-
-Now, when we run composer install, PHPUnit and all sorts of dependent packages are downloaded 
-
-and installed:
-
-$ composer install
-
-Loading composer repositories with package informationUpdating dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
-
-  - Installing symfony/yaml (v3.1.3)    Downloading: 100%        
-
-  - Installing sebastian/version (2.0.0)
-
-402
-
-Chapter 16 ■ php Using and Creating Components with Composer
-
-    Downloading: 100%        ....  - Installing phpspec/prophecy (v1.6.1)    Downloading: 100%        
-
-  - Installing myclabs/deep-copy (1.5.1)    Loading from cache
-
-  - Installing phpunit/phpunit (5.5.0)    Downloading: 100%        
-
-sebastian/global-state suggests installing ext-uopz (*)phpunit/phpunit-mock-objects suggests installing ext-soap (*)phpunit/php-code-coverage suggests installing ext-xdebug (>=2.4.0)phpunit/phpunit suggests installing phpunit/php-invoker (~1.1)Writing lock fileGenerating autoload files
-
-If you’re installing in a production context, however, you can pass the --no-dev flag to composer 
-
-install, and Composer will download only those packages specified in the require element:
-
-$ composer install --no-dev
-
-Loading composer repositories with package informationUpdating dependencies  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
-
-Writing lock fileGenerating autoload files
-
- when you run the composer install command, Composer creates a file named composer.lock. 
-
- ■ Note this records the exact version of every file you installed under vendor/. if you run composer install with a composer.lock file present alongside composer.json, Composer will fetch the package versions it has recorded if they are not present. this is useful because you can commit a composer.lock file to your version-control repository and be sure that your team will download the same versions of all the packages you have installed. if you need to override composer.lock, either to get the latest versions of packages or because you have changed composer.json, you should run composer update to override the lock file.
-
-Composer and Autoload
-
-We covered autoloading in some detail in Chapter 15. For the sake of completeness however, it is worth looking at it briefly. Composer generates a file named autoload.php, which handles class loading for the packages it downloads. You can also leverage this functionality for your own code by including autoload.
-
-403
-
-Chapter 16 ■ php Using and Creating Components with Composer
-
-php (usually with require_once()). Once you have done this, any class you declare in your system will be found automatically when accessed in your code, so long as your directories and filenames mirror your namespaces and class names.
-
-In other words, a class named popp5/megaquiz/command/CommandContext must be placed in a file 
-
-named CommandContext.php in the popp5/megaquiz/command/ directory.
-
-If you want to mix things up (perhaps by omitting a redundant leading directory or two, or by adding a test directory to the search path), then you can use the autoload element to map a namespace to your file structure, like this:
-
-    "autoload": {        "psr-4": {            "popp5\\megaquiz\\": ["src", "test"]        }    }
-
-Now, so long as autoload.php is included, my classes are easily discoverable. Thanks to my autoload 
-
-configuration, the popp5/megaquiz/command/CommandContext class will now be found in src/command/CommandContext.php. Not only that, but because I have referenced more than one target (test as well as src), I can also create test classes that belong to the popp5\megaquiz\ namespace under the test/ directory.
-
-Turn to the「PSR-4 Autoloading」section in Chapter 15 to follow a more in-depth example.
-
-Creating Your Own Package
-
-If you have worked with PEAR in the past, you might expect a section on creating a package here to involve an entirely new package file. In fact, we’ve already been creating a package throughout this chapter. We just have to add some more information, and then find a way to make our code available to others.
-
-Adding Package InformationYou really do not have to add that much information to make a viable package, but you absolutely need a name, so that your package can be found. I’m also going to include the description and authors elements, as well as to create a fake product named megaquiz which you will find popping up in other chapters occasionally:
-
-    "name": "popp5/megaquiz",    "description": "a truly mega quiz",    "authors": [        {            "name": "matt zandstra",            "email": "matt@getinstance.com"        }    ],
-
-These fields should be mostly self-explanatory. The exception might be that leading namespace—popp5, in this case—which is separated from the actual package name by a forward slash. This is known as the vendor name. As you might expect, the vendor name becomes a top-level directory under vendor/ when your package is installed. This is often the organization name used by the package owner in Github or Bitbucket.
-
-With all that in place, you are ready to commit your package to your version control host of choice. If 
-
-you’re not sure what that involves, you can learn a lot more about this subject in Chapter 17.
-
-404
-
-Chapter 16 ■ php Using and Creating Components with Composer
-
- Composer supports a version field, but it is considered better practice to use a tag in git to track 
-
- ■ Note your package’s version. Composer will automatically recognize this.
-
-Remember that you should not push the vendor directory (at least not usually—there are some arguable exceptions to that rule). However, it is often a good idea to track the generated composer.lock file alongside composer.json.
-
-Platform PackagesAlthough you cannot use Composer to install system-wide packages, you can specify system-wide requirements, so that your package will only install in a system which is ready for it.
-
-A platform package is specified with a single key, though in a couple of cases the key is further broken 
-
-down by type, using a dash. I list the available types in Table 16-2.
-
-Table 16-2.  Platform Packages
-
-Type
-
-Example
+Name
 
 Description
 
-PHPExtensionLibrary
+1
 
-"php": "7.*"
+2
 
-"ext-xml": ">2"
+34
 
-"lib-iconv": "~2"
+6
 
-The PHP versionThe PHP extensionA system library used by PHP
+7
 
-HHVM
+Basic Coding Standard
 
-"hhvm": "~2"
+Coding Style Guide
 
-An HHVM version (HHVM is a virtual machine that supports an extended version of PHP)
+Logger InterfaceAutoloading Standard
 
-Let’s try it out:
+Caching Interface
 
-{    "require": {        "abraham/twitteroauth": "0.6.*",        "ext-xml": "*",        "ext-gd": "*"    }}
+Fundamentals such as PHP tags and basic naming conventionsCode formatting, including rules for placement of braces, argument lists, etc.Rules for log levels and logger behaviorsConventions for naming classes and namespaces, as well as their mapping to the filesystemRules for cache management, including data types, cache item lifetime, error handling, etc.
 
-In the preceding code, I specify that my package requires the xml and gd extensions. Now it’s time to run 
+HTTP Message Interfaces
 
-update:
+Conventions for HTTP requests and responses
 
-$ composer update
+But that’s not all. There are also draft proposals in the works, including one for inline documentation 
 
-Loading composer repositories with package informationUpdating dependencies (including require-dev)Your requirements could not be resolved to an installable set of packages.
+(PSR-5), another style guide (PSR-12), and a standard for hypermedia links (PSR-13).
 
-  Problem 1- The requested PHP extension ext-gd * is missing from your system. Install or enable PHP's gd extension.
+Why PSR in Particular?So, why choose one standard and not another? It happens that the PHP Framework Interop Group—the originators of PSRs—has a pretty great pedigree, and the standards themselves therefore make sense. But also, these are the standards that the major frameworks and components are adopting. If you are using Composer to add functionality to your projects, you are already consuming code that complies with PSRs. By using its conventions for autoloading and its style guides, you are likely building code that is ready for collaboration with other people and components.
 
-405
+386
 
-Chapter 16 ■ php Using and Creating Components with Composer
+Chapter 15 ■ php StandardS
 
-It looks as though I was set up for XML; however, GD, an image manipulation package, is not installed 
+ ■ Note  One set of standards is not inherently superior to another. When you choose whether to adopt a standard, your choice may be driven by your judgment of the recommendation’s merits. alternatively, you might make a pragmatic choice based on the context within which you are working. If you’re working in the Wordpress community, for example, you might want to adopt the style defined in the Core Contributor handbook at https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/. Such a choice is part of the point of standards, which are all about the cooperation of people and software.
 
-on my system, so Composer throws an error.
+PSRs are a good bet because they are supported by key framework and component projects, including 
 
-Distribution Through Packagist
+Phing, Composer, PEAR, Symfony, and Zend 2. Like patterns, standards are infectious—you’re probably already benefiting from them.
 
-If you’ve been working through this chapter, you might have wondered where the packages we have been installing actually come from. It feels a lot like magic, but (as you might expect) there is a package repository behind the scenes. It is called Packagist, and it can be found at https://packagist.org. So long as your code can be found in a public git repository, it can be made available through Packagist.
+Who Are PSRs for?Ostensibly PSRs are designed for the creators of frameworks. The fact that the membership of the PHP-Fig group rapidly widened to include the creators of tools as well as frameworks, however, shows that standards have wide relevance. That said, unless you are creating a logger, you may not need to worry too much about the details of PSR-3 (beyond ensuring any logging tool you use is itself compliant). On the other hand, if you’ve read the rest of this book, chances are you are as likely to be creating tools as you are to be consuming them. So, it’s also likely that you’ll find something relevant to you either in the present standards or the standards to come.
 
-Let’s give it a shot. I have pushed my megaquiz project to Github, so now I need to tell Packagist about 
+And then there are the standards that matter to all of us. Unglamorous as style guides are, for example, 
 
-my repository. Once I have signed up, I simply add the URL of my repository. You can see this in Figure 16-1.
+they are relevant to every programmer. And while the rules that govern autoloading really apply to those who create autoloaders (and the main game in town is probably Composer’s), they also fundamentally affect how we organize our classes, our packages, and our files.
 
-Figure 16-1.  Adding a package to Packagist
+For these reasons, I will focus on coding style and autoloading for the rest of this chapter.
 
-Once I’ve added megaquiz, Packagist locates the repository, checks the composer.json file, and displays 
+Coding with Style
 
-a control panel. You can see that in Figure 16-2.
+I tend to find pull request comments like「your braces are in the wrong place」disproportionately irritating. Such input often seems nitpicky and perilously close to bike-shedding.
 
-Packagist tells me that I have not set license information. I can fix this at any time by adding a license element to the composer.json file:"license": "Apache-2.0",
+ In case you have not come across it, the verb「to bike-shed」refers to the tendency in some 
 
-406
+ ■ Note reviewers to criticize unimportant elements of a project under scrutiny. the implication is that such elements are chosen because they fit within the scope of the commenter’s competence. So, given a skyscraper to assess, a particular manager might focus, not on the vast and complex tower of glass and steel, but on the much easier to comprehend bike shed around the back. Wikipedia has a good history of the term: https://en.wikipedia.org/wiki/Law_of_triviality
 
-Chapter 16 ■ php Using and Creating Components with Composer
+387
 
-Figure 16-2.  The package control panel
+Chapter 15 ■ php StandardS
 
-Packagist has also failed to find any version information. I’ll fix this by adding a tag to the Github 
+And yet I have come to see that conforming to a common style can help improve the quality of code. 
 
-repository:
+This is mainly a matter of readability (regardless of the reasoning behind a particular rule). If a team abides by the same rules for indentations, brace placement, argument lists, and so on, then a developer can quickly assess and contribute to a colleague’s code.
 
-$ git tag -a '1.0.1' -m '1.0.1'$ git push –tags
+So, for this edition of the book, I committed to edit all code examples so that they conform to PSR-1 
 
- if you think i’m cheating by skimming over this git stuff, you’re right. i cover both git and github in 
+and PSR-2. I have asked my colleague and technical editor Paul Tregoing to hold me to that, too. This was a promise that was so easy to make at the planning stage—and much more effort than I expected. This brings me to the first style guide lesson I learned. If possible, adopt a standard early for your project. Refactoring to a code style will likely tie up resources and make it hard to examine code differences that span The Time of the Great Reformat.
 
- ■ Note some detail in Chapter 17.
+So what changes have I had to apply? Let’s start with the basics.
 
-Now Packagist knows about my version number. You can confirm that in Figure 16-3.
+PSR-1 Basic Coding StandardThese are the fundamentals for PHP code. You can find them in detail at http://www.php-fig.org/psr/psr-1/. Let’s break them down.
 
-407
+Opening and Closing TagsFirst of all, a PHP section should open either with <?php or <?=. In other words, the short opening tag, <?, should not be used, nor should any other variation. A section should close with ?> only (or, as we shall see in the next section, no tag at all).
 
-Chapter 16 ■ php Using and Creating Components with Composer
+Side EffectsA PHP file should declare classes, interfaces, functions, and the like, or it should perform an action (such as reading or writing to a file or sending output to the browser); however, it should not do both. If you are accustomed to using require_once() to include other class files, this will trip you up straight away because the act of including another file is a side effect. Just as patterns beget patterns, so standards tend to require other standards. The correct way to handle class dependencies is through a PSR-4 compliant autoloader.
 
-Figure 16-3.  Packagist knows the version
+So, is it legal for a class you declare to write to a file in one of its methods? That is perfectly acceptable because the effect is not kicked off by the file’s inclusion. In other words, it’s an execution effect not a side effect.
 
-Now, anyone can include megaquiz from another package. Here is a minimal composer.json file:
+So what kind of file might perform actions rather than declare classes? Think of the script that kicks off 
 
-{    "require": {        "popp5/megaquiz": "*"    }}
+an application.
 
-I specify the vendor name and the package name. Riskily, I am happy to accept any version at all. Let’s 
+Here is a listing that performs actions as a direct result of inclusion:
 
-go ahead and install:
+// listing 15.01// index.phpnamespace popp\ch15\batch01;
 
-$ composer install
+require_once(__DIR__ . "/../../../vendor/autoload.php");
 
-Loading composer repositories with package informationInstalling dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
+$tree = new Tree();print "loaded " . get_class($tree) . "\n";
 
-408
+Here is a PHP file that declares a class with no side effects:
 
-Chapter 16 ■ php Using and Creating Components with Composer
+// listing 15.02
 
-  - Installing popp5/megaquiz (1.0.1)    Downloading: 100%        
+388
 
-Writing lock fileGenerating autoload files
+Chapter 15 ■ php StandardS
 
-Notice that the dependencies I specified when I set up megaquiz are also downloaded.
+// Tree.phpnamespace popp\ch15\batch01;
 
-Keeping it private
+class Tree{}
 
-Of course, you don’t always want to publish your code to the world. Sometimes you need to share only with a smaller set of authorized users.
+ In other chapters, I largely omit namespace declarations and use directives in order to focus on the 
 
-Here is a private package named getinstance/api_util that I use for internal projects:
+ ■ Note code. Since this chapter is about the mechanics of formatting class files, I will include namespace and use statements where appropriate.
 
-{    "name": "getinstance/api_util",    "description": "core getinstance api code",    "authors": [        {            "name": "matt zandstra",            "email": "matt@getinstance.com"        }    ],      "require": {        "silex/silex": "~1.3",        "bshaffer/oauth2-server-php": "~1.8"    },      "require-dev": {         "phpunit/phpunit": "~4.3.0"    },      "autoload": {        "psr-4": {            "getinstance\\api_util\\": ["src" , "test/functional"]        }    }}
+NamingClasses must be declared in upper camel case, also known as studly caps. In other words, a class name should begin with a capital letter. The rest of the name should be lowercase unless it consists of multiple words. In this instance, each word should begin with an uppercase letter, like this:
 
-This is hosted in a private Bitbucket repository, so it’s not available via Packagist. So how would I 
+class MyClassName
 
-include it in a project? I simply need to tell Composer where to look. I can do this by creating or adding to the repositories element:
+Properties can be named in any way, although consistency is called for. I tend to use camel case, an 
 
-{    "repositories": [        {            "type": "vcs",            "url": "git@bitbucket.org:getinstance/api_util.git"        }    ],
+approach similar to studly caps, but without the leading capital letter:
 
-409
+private $myPropertyName
 
-Chapter 16 ■ php Using and Creating Components with Composer
+Methods must be declared in camel case:
 
-    "require": {        "popp5/megaquiz": "*",        "getinstance/api_util": "v1.0.3"    }}
+public function myMethodName()
 
-So now, so long as I have access to getinstance/api_util, I can install both my private package and 
+Class constants must be upper case, with words separated by underscores:
 
-megaquiz at once:
+const MY_NAME_IS = 'matt';
 
-$ composer install
+More Rules and an ExampleClasses, namespaces, and files should be declared in accordance with the PSR-4 autoloading standard. We will come to that later in the chapter, however. PHP documents should be saved as UTF-8 encoded files.
 
-Loading composer repositories with package informationInstalling dependencies (including require-dev)          - Installing abraham/twitteroauth (0.6.4)    Loading from cache
+Finally, for PSR-1, let’s get it all wrong—and then put it right. Here is a class file that breaks all the rules:
 
-  - Installing popp5/megaquiz (1.0.1)    Loading from cache...  - Installing silex/silex (v1.3.5)    Loading from cache
+<?// listing 15.03
 
-  - Installing getinstance/api_util (v1.0.3)    Cloning 3cf2988875b824936e6421d0810ceea90b76d139...Writing lock fileGenerating autoload files
+class conf_reader {    const ModeFile = 1;    const Mode_DB = 2;    private $conf_file;    private $confValues= [];
+
+    function read_conf() {
+
+389
+
+Chapter 15 ■ php StandardS
+
+        // implementation    }}?>
+
+Can you spot all the issues? First of all, I used a short opening tag. I also failed to declare a namespace (though we haven’t yet covered this requirement in detail). In naming my class, I used underscores and no capitals, rather than studly caps. And I used two formats for my constant names, neither of which are the required one—all capitals with words should be separated by underscores. Although both my property names were legal, I failed to make them consistent; specifically, I used underscores for $conf_file and camel case for $confValues. In naming my method, read_conf(), I used an underscore rather than camel case.
+
+Let’s fix the problems:
+
+<?php// listing 15.04
+
+namespace popp\ch15\batch01;
+
+class ConfReader {    const MODE_FILE = 1;    const MODE_DB = 2;    private $confFile;    private $confValues = [];
+
+    function readConf() {        // implementation    }}
+
+PSR-2 Coding Style GuideThe Coding Style Guide (PSR-2) builds upon PSR-1. Let’s jump in and look at some of the rules.
+
+Starting and Ending a PHP DocumentWe have already seen that PSR-1 requires that PHP blocks open with <?php. PSR-2 stipulates that pure PHP files should not have an ending ?> tag, but should end with a single blank line. It’s all too easy to end a file with a closing tag, and then let an extra newline creep in. This can result in formatting bugs, as well as errors when you set HTTP headers (you cannot do this after content has already been sent to the browser).
+
+namespace declarations should be followed by a blank line, and a block of use declarations should be 
+
+followed by a blank line. Do not put more than one use declaration on the same line:
+
+// listing 15.05
+
+namespace popp\ch15\batch01;
+
+use popp\ch10\batch06\DiamondDecorator;use popp\ch10\batch06\DiamondPlains;
+
+// begin class
+
+390
+
+Chapter 15 ■ php StandardS
+
+Starting and Ending a ClassThe class keyword, the class name, and extends and implements must all be placed on the same line. Where a class implements multiple interfaces, each interface name can be included on the same line as the class declaration, or it can be placed indented on its own line. If you choose to place your interface names on multiple lines, the first item must be placed on its own line rather than directly after the implements keyword. Class braces should begin on the line after the class declaration and end on their own line (directly after the class contents). So, a class declaration might look something like this:
+
+// listing 15.06class EarthGame extends Game implements    Playable,    Savable{    // class body}
+
+However, you could equally place the interface names on a single line:
+
+class EarthGame extends Game implements Playable, Savable{    // class body}
+
+Declaring PropertiesProperties must have a declared visibility (public, private, or protected). The var keyword is not acceptable. We have already covered the format for property names as part of PSR-1. You can use underscores, camel case, or studly case—but you should be consistent.
+
+Starting and Ending a MethodAll methods must have a declared visibility (public, private, or protected). The visibility keyword must follow abstract or final, but precede static. Method arguments with default values should be placed at the end of the argument list.
+
+Single Line DeclarationsMethod braces should begin on the line after the method name and end on their own line (directly after the method code). A list of method arguments should not begin or end with a space (i.e., they should snuggle in close to the wrapping parentheses). For each argument, the comma should be flush with the preceding argument name (or the default value), but it should then be followed by a space. Let’s clarify things with an example:
+
+// listing 15.07
+
+final public static function generateTile(int $diamondCount, bool $polluted = false){    // implementation}
+
+391
+
+Chapter 15 ■ php StandardS
+
+Multi-line DeclarationsA single line method declaration is not practical in cases where there are many arguments. In this situation, you can break the argument list so that each argument (including type, argument variable, default value, and comma) is placed indented on its own line. In this case, the closing parenthesis should be placed on the line after the argument list, flush with the start of the method declaration. The opening brace should follow the closing parenthesis on the same line, separated by a space. The method body should begin on a new line. Once again, that sounds much more complicated that it is. An example should make it clearer:
+
+// listing 15.08
+
+    public function __construct(        int $size,        string $name,        bool $wraparound = false,        bool $aliens = false    ) {        // implementation    }
+
+Lines and IndentationYou should use four spaces rather than tabs for indentation. It’s worth checking your editor settings—you can configure good editors to use spaces rather than a tab when you press the Tab key. You should also wrap your text before your line reaches 120 characters.
+
+Calling Methods and FunctionsDo not place a space between the method name and the opening parenthesis. You can apply the same rules to the argument list in a method call as you do to the argument list in a method declaration. In other words, for a single line call leave no space after the opening parenthesis or before the closing parenthesis. A comma should follow directly after each argument, with a single space falling before the next one. If you need to use multiple lines for a method call, each argument should sit indented on its own line, and the closing parenthesis should fall on a new line:
+
+// listing 15.09
+
+        $earthgame = new EarthGame(            5,            "earth",            true,            true        );        $earthgame::generateTile(5, true);
+
+392
+
+Chapter 15 ■ php StandardS
+
+Flow of ControlFlow control keywords (if, for, while, etc.) must be followed by a single space. However, the opening parenthesis must not be followed by a space. Similarly, the closing parenthesis must not be preceded by a space. So, the contents should be snug in their brackets. In contrast to class and (single line) function declarations, the opening brace for the flow control block should begin on the same line as the closing parenthesis. The closing brace should sit on its own line. Here’s a quick example:
+
+// listing 15.10
+
+        $tile = [];        for ($x = 0; $x < $diamondcount; $x++) {            if ($polluted) {                $tile[] = new PollutionDecorator(new DiamondDecorator(new Plains()));            } else {                $tile[] = new DiamondDecorator(new Plains());            }        }
+
+Notice the space after both for and if. The for and if statements are flush to their parentheses. In both 
+
+cases, the closing parenthesis is followed by a space and then the opening brace for the flow control body.
+
+Checking and Fixing your CodeEven if this chapter covered every single directive in PSR-2, it would be hard to keep it all in your mind. After all, we have other things to think about—like the design and implementation of our systems. So, given that we have bought into the value of coding standards, how do we comply without using too much of our time or focus? We use a tool, of course.
+
+PHP_CodeSniffer allows you to detect and even repair standards violations—and not just for PSR. You 
+
+can get it by following the instructions at https://github.com/squizlabs/PHP_CodeSniffer. There are Composer and PEAR options, but here’s how you can download the PHP archive files:
+
+curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+
+curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
+
+Why two downloads? The first is for phpcs, which diagnoses and reports on violations. The second is for phpcbf, which can fix a lot of them. Let’s put the tools through their paces. First, here is a scrappily formatted piece of code:
+
+// listing 15.11namespace popp\ch15\batch01;
+
+class ebookParser {    function __construct(string $path , $format=0 ) {        if ($format>1)            $this->setFormat( 1 );    }    function setformat(int $format) {        // do something with $format    }}
+
+393
+
+Chapter 15 ■ php StandardS
+
+Rather than run through the problems here, let’s have PHP_CodeSniffer do it for us:
+
+$ php phpcs.phar --standard=PSR2 src/ch15/batch01/phpcsBroken.php
+
+----------------------------------------------------------------------FOUND 14 ERRORS AFFECTING 6 LINES----------------------------------------------------------------------  3 | ERROR | [x] There must be one blank line after the namespace    |       |     declaration  4 | ERROR | [ ] Class name "ebookParser" is not in camel caps    |       |     format  4 | ERROR | [x] Opening brace of a class must be on the line after    |       |     the definition  6 | ERROR | [ ] Visibility must be declared on method "__construct"  6 | ERROR | [x] Expected 0 spaces between argument "$path" and    |       |     comma; 1 found  6 | ERROR | [x] Incorrect spacing between argument "$format" and    |       |     equals sign; expected 1 but found 0  6 | ERROR | [x] Incorrect spacing between default value and equals    |       |     sign for argument "$format"; expected 1 but found 0  6 | ERROR | [x] Expected 0 spaces between argument "$format" and    |       |     closing bracket; 1 found  6 | ERROR | [x] Opening brace should be on a new line  7 | ERROR | [x] Inline control structures are not allowed  8 | ERROR | [x] Space after opening parenthesis of function call    |       |     prohibited  8 | ERROR | [x] Expected 0 spaces before closing bracket; 1 found 11 | ERROR | [ ] Visibility must be declared on method "setformat" 11 | ERROR | [x] Opening brace should be on a new line----------------------------------------------------------------------PHPCBF CAN FIX THE 11 MARKED SNIFF VIOLATIONS AUTOMATICALLY----------------------------------------------------------------------
+
+That’s an exhausting number of problems for just a few lines of code. Luckily, as the output indicates, 
+
+we can fix a lot of these with very little effort:
+
+$ php phpcbf.phar --standard=PSR2 src/ch15/batch01/EbookParser.php
+
+Processing EbookParser.php [PHP => 83 tokens in 15 lines]... DONE in 11ms (11 fixable violations)        => Fixing file: 0/11 violations remaining [made 4 passes]... DONE in 17msPatched 1 file
+
+Now, if we run phpcs again, we’ll see that the situation is much improved:
+
+$ php phpcs.phar --standard=PSR2 src/ch15/batch01/EbookParser.php
+
+----------------------------------------------------------------------FOUND 3 ERRORS AFFECTING 3 LINES----------------------------------------------------------------------
+
+394
+
+Chapter 15 ■ php StandardS
+
+  5 | ERROR | Class name "ebookParser" is not in camel caps format  8 | ERROR | Visibility must be declared on method "__construct" 15 | ERROR | Visibility must be declared on method "setformat"----------------------------------------------------------------------
+
+I’ll go ahead and add the visibility declarations, and then change the name of the class—a quick job! 
+
+And now I have a stylishly compliant code file:
+
+// listing 15.12
+
+namespace popp\ch15\batch01;
+
+class EbookParser{    public function __construct(string $path, $format = 0)    {        if ($format > 1) {            $this->setFormat(1);        }    }
+
+    private function setformat(int $format)    {        // do something with $format    }}
+
+PSR-4 Autoloading
+
+We looked at PHP’s support for autoloading in Chapter 5. In that chapter, we saw how we could use the spl_autoload_register() function to automatically require files based on the name of an as yet unloaded class. Although this is powerful, it is also a kind of behind the scenes magic. This is fine in a single project, but a recipe for great confusion if multiple components come together and all use different conventions for loading class files.
+
+The Autoloading Standard (PSR-4) requires frameworks to conform to a common set of rules, thereby 
+
+adding some discipline to the magic.
+
+This is great news for developers. It means that we can more or less ignore the mechanics of requiring 
+
+files, and focus instead on class dependencies.
+
+The Rules that Matter to UsThe main purpose of PSR-4 is to define rules for autoloader developers. However, those rules inevitably determine the way we must declare namespaces and classes. Here are some of the basics.
+
+A fully-qualified classname (that is, the name of a class, including its namespaces) must include an 
+
+initial「vendor」namespace. So, a class must have at least one namespace.
+
+395
+
+Chapter 15 ■ php StandardS
+
+Let’s say that our vendor namespace is popp. We can declare a class in this way:
+
+// listing 15.13
+
+namespace popp;
+
+class Services{}
+
+The fully-qualified class name for this class is popp\Services.The initial namespaces in a path must correspond to one or more base directories. We can use this to map a set of sub-namespaces to a starting directory. If, for example, we want to work with the namespace popp\library (and nothing else under the popp namespace), then we might map that to a top-level directory to spare us from having to maintain an empty popp/ directory.
+
+Let’s set up a composer.json file to perform that mapping:
+
+{    "autoload": {        "psr-4": {            "popp\\library\\": "mylib"        }    }  }
+
+Notice that I don’t even need to call the base directory, "library". This is an arbitrary mapping of 
+
+popp\library to the mylib directory. Now I can create a class file under the mylib directory:
+
+// listing 15.14// mylib/LibraryCatalogue.php
+
+namespace popp\library;
+
+use popp\library\inventory\Book;
+
+class LibraryCatalogue{    private $books = [];    public function addBook(Book $book)    {        $this->books[] = $book;    }}
+
+In order to be found, the LibraryCatalogue class must be placed in a file with exactly the same name 
+
+(with the obvious addition of the .php extension).
+
+After a base directory (mylib) has been associated with initial namespaces (popp\library), there 
+
+must then be a direct relation between subsequent directories and sub-namespaces. It happens that I have already referenced a class named popp\library\inventory\Book in my LibraryCatalogue class. That class file should therefore be placed in the mylib/inventory directory:
+
+396
+
+Chapter 15 ■ php StandardS
+
+// listing 15.15// mylib/library/inventory/Book.php
+
+namespace popp\library\inventory;
+
+class Book{    // implementation}
+
+Remember the rule that the initial namespaces in a path must correspond to one or more base 
+
+directories? So far we have made a one-to-one relationship between popp\library and mylib. There’s actually no reason why we can’t map the popp\library namespace to more than one base directory. Let’s add a directory named additional to the mapping; here’s the amendment to composer.json:
+
+{    "autoload": {        "psr-4": {            "popp\\library\\": ["mylib", "additional"]        }    }}
+
+Now I can create the additional/inventory directories and a class to go in them:
+
+// listing 15.16// additional/inventory/Ebook.phpnamespace popp\library\inventory;
+
+class Ebook extends Book{    // implementation}
+
+Next, let’s create a top-level runner script, index.php, to instantiate these classes:
+
+// listing 15.17// index.php
+
+require_once("vendor/autoload.php");
+
+use popp\library\LibraryCatalogue;
+
+// will be found under mylib/use popp\library\inventory\Book;
+
+// will be found under additional/use popp\library\inventory\Ebook;
+
+$catalogue = new LibraryCatalogue();$catalogue->addBook(new Book());$catalogue->addBook(new Ebook());
+
+397
+
+Chapter 15 ■ php StandardS
+
+ ■ Note  You must use Composer to generate the autoload file, vendor/autoload.php, and this file must be included in some way before you gain access to the logic you have declared in composer.json. You can do this by running the command composer install. You can learn more about Composer in Chapter 15.
+
+Remember the rule about side effects? A PHP file should declare classes, interfaces, functions, and the 
+
+like; or, it should perform an action. However, it should not do both. This script falls into the taking action category. Crucially, it calls require_once() to include the autoload code generated using the configuration in the composer.json file. Thanks to this, all the classes are located, despite the fact that Ebook has been placed in an entirely separate base directory from the rest.
+
+Why would I want to maintain two separate directories for the same core namespace? One possible 
+
+reason is for unit tests that you want to keep separate from production code. You may also manage plug-ins and extensions that will not ship with every version of your system.
+
+ Be sure to keep an eye on all the pSr standards at http://www.php-fig.org/psr/. this is a fast 
+
+ ■ Note moving area, and you’ll likely find that standards relevant to you are on their way.
 
 Summary
 
-You should leave this chapter with a sense of how easy it is to leverage Composer packages to add power to your projects. Through the composer.json file, you can also make your code accessible to other users, whether publicly by using Packagist or by specifying your own repository. This approach automates dependency downloads for your users and allows third-party packages to use yours without the need for bundling.
+In this chapter, I wrestled a little with the possibility that standards are less than fantastically exciting—and then made a case for their power. Standards get integration issues out of our way, so that we can get on and do amazing things. I looked at PSR-1 and PSR-2, the standards for basic coding and for wider coding style. Next, I went on to discuss PSR-4, the standard for autoloaders. Finally, I worked through a Composer-based example that showed PSR-4 compliant autoloading in practice.
 
-410
+398
 
-CHAPTER 17
+CHAPTER 16
 

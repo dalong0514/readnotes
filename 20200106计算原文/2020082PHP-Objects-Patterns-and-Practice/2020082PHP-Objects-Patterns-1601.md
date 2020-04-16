@@ -1,744 +1,396 @@
-Version Control with Git
+PHP Using and Creating Components with Composer
 
-All disasters have their tipping point, the moment at which order finally breaks down and events simply spiral out of control. Do you ever find yourself in projects like that? Are you able to spot that crucial moment?
+Programmers aspire to produce reusable code. This is one of the great goals in object-oriented coding. We like to abstract useful functionality from the messiness of specific context, turning a particular solution into a tool that can be used again and again. To come at this from another angle, if programmers love the reusable, they hate duplication. By creating libraries that can be reapplied, programmers avoid the need to implement similar solutions across multiple projects.
 
-Perhaps it’s when you make「just a couple of changes」and find that you have brought everything 
+Even if we avoid duplication in our own code, though, there is a wider issue. For every tool you create, how many other programmers have implemented the same solution? This is wasted effort on an epic scale: wouldn’t it be much more sensible for programmers to collaborate and to focus their energies on making a single tool better, rather than producing hundreds of variations on a theme?
 
-crashing down around you (and, even worse, you’re not quite sure how to get back to the point of stability you have just destroyed). It could be when you realize that three members of your team have been working on the same set of classes and merrily saving over each other’s work. Or perhaps it’s when you discover that a bug fix that you have implemented twice has somehow disappeared from the codebase yet again. Wouldn’t it be nice if there were a tool to help you manage collaborative working, allowing you to take snapshots of your projects, roll them back if necessary, and then to merge multiple strands of development? In this chapter, we look at Git, a tool that does all that, and more.
+In order to do this, we need to get our hands on existing libraries. But then the packages we need will 
 
-This chapter will cover the following aspects of working with Git:
+likely require other libraries in order to do their work. So we need a tool which can handle downloading and installing packages, as well as manage their dependencies. That is where Composer comes in; it does all this, and more besides.
 
-Basic configuration: Exploring some tips for setting up Git
+This chapter will cover several key issues:
 
-Importing: Starting a new project
+Installation: Downloading and setting up Composer
 
-•	•	•	•	 Updating: Merging other people’s work with your own•	
+•	•	•	 Versions: Specifying versions so as to get the latest code without breaking your 
 
-Committing changes: Saving your work to the repository
+Requirements: Using composer.json to get packages
 
-Branching: Maintaining parallel strands of development
+system
 
-Why Use Version Control?
+•	•	
 
-If it hasn’t already, version control will change your life (if only your life as a developer). How many times have you reached a stable moment in a project, drawn a breath, and plunged onward into development chaos once again? How easy was it to revert to the stable version when it came time to demonstrate your work in progress? Of course, you may have saved a snapshot of your project when it reached a stable moment, probably by duplicating your development directory. Now imagine that your colleague is working on the same codebase. Perhaps he has saved a stable copy of the code as you have. The difference is that his copy is a snapshot of his work, not yours. Of course, he has a messy development directory, too. So you have four versions of your project to coordinate. Now imagine a project with four programmers and a web UI developer. You’re looking pale. Perhaps you would like to lie down?
+Packagist: Configuring your code for public access
 
-Git exists exclusively to address this problem. Using Git, all of your developers can clone their own 
+Private repositories: Leveraging Composer using a private repository
 
-copies of the codebase from a central repository. Whenever they reach a stable point in their code, they can pull the latest code from the server and merge it with their own recent work. When they are ready, and after they have fixed any conflicts, they can push their new stable synthesis back into the shared repository.
+What Is Composer?
 
-411
+Strictly speaking, Composer is a dependency manager, rather than a package manger. This, it seems, is because it handles component relationships on a local basis, rather than centrally as Yum and Apt do. If you think that this is an overly fine distinction, you could be right. However we define it, Composer allows you to specify packages. It downloads them to a local directory (vendor), finds and downloads all dependencies, and then makes all this code available to your project via an autoloader.
 
-Chapter 17 ■ Version Control with Git
+As always, we need to begin by getting the tool.
 
-Git is a distributed version-control system. This means that, once they have acquired a branch, users 
+399
 
-commit to their own local repository without the need for a network connection. There are a number of benefits to this. It means that day-to-day operations are faster, and that you can work easily on planes and trains and in automobiles. Ultimately, however, you can share an authoritative repository with your teammates.
+Chapter 16 ■ php Using and Creating Components with Composer
 
-The fact that each developer can merge her work into a central repository means that reconciling multiple strands of development is made vastly easier. Even better, you can check out versions of your codebase based on a date or a label. So when your code reaches a stable point, suitable for showing to a client as work in progress, for example, you can tag that with an arbitrary label. You can then use that tag to check out the correct codebase when your client swoops into your office looking to impress an investor.Wait! There’s more! You can also manage multiple strands of development at the same time. If this 
+Installing Composer
 
-sounds needlessly complicated, imagine a mature project. You have already shipped the first version, and you’re well into development of version 2. Does version 1.n go away in the meantime? Of course not. Your users are spotting bugs and requesting enhancements all the time. You may be months away from shipping version 2, so where do you make and test the changes? Git lets you maintain distinct branches of the codebase. So you might create a bug-fix branch of your version 1.n for development on the current production code. At key points, this branch can be merged back into the version 2 code (the trunk), so that your new release can benefit from improvements to version 1.n.
+You can download Composer at https://getcomposer.org/download/. You will find an installer mechanism there, but the phar file should suit most purposes:
 
- ■ Note  Git is not the only version-control system available. You might also like to look into subversion (http://subversion.apache.org/) or Mercurial (http://mercurial.selenic.com/). this chapter is necessarily a brief introduction to a large topic. luckily, however, Pro Git by scott Chacon (apress, 2014) covers the topic with depth and clarity. not only that, but a web version is available online at https://git-scm.com/book/en/v2.
+$ wget https://getcomposer.org/download/1.2.0/composer.phar .$ chmod 755 composer.phar$ sudo mv composer.phar /usr/bin/composer
 
-Let’s get on and look at some of these features in practice.
+I download the archive and run chmod to ensure that it is executable. Then I copy it into a central 
 
-Getting Git
+location so that I can run it easily from anywhere in my system. Now I can test the command:
 
-If you are working with a Unix-like operating system (such as Linux or FreeBSD), you may already have Git installed and ready to use.
+$ composer --version
 
- i show commands that are input at the command line in bold to distinguish them from any output 
+Composer version 1.2.0 2016-07-19 01:28:52
 
- ■ Note they may produce.
+Installing a (Set of) Package(s)
 
-Try typing this from the command line:
+Why did I do that funky bit with the brackets? Because packages inevitably beget packages—sometimes a lot of packages.
 
-$ git help
+Let’s begin with a library that stands alone, though. Imagine that we’re building an application which 
 
-You should see some usage information that will confirm that you are ready to get started. If you do 
+needs to communicate with Twitter. A little bit of research leads me to the abraham/twitteroath package. In order to install this, I need to generate a JSON file named composer.json, and then define a require element:
 
-not already have Git, you should consult your distribution’s documentation. You will almost certainly have access to a simple installation mechanism such as Yum or Apt, or you can acquire Git directly from  http://git-scm.com/downloads.
+{    "require": {        "abraham/twitteroauth": "0.6.*"    }}
 
-412
+I begin with a directory that is empty apart from the composer.json file. Once I run a Composer 
 
- throughout this chapter, i denote command line input by displaying it in bold text. a dollar sign ($) 
+command, though, we’ll see a change:
 
- ■ Note represents the command prompt.
+$ composer install
 
-Chapter 17 ■ Version Control with Git
+Loading composer repositories with package informationUpdating dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Downloading: 100%        
 
-Using an Online Git Repository
+Writing lock fileGenerating autoload files
 
-You may have noticed by now that this book often goes it alone. I almost never argue that you should reinvent the wheel; rather, you should at least get a sense of what goes into wheel construction before buying one ready-made. For this reason, I’ll be covering the mechanics of setting up and maintaining your own central git repository in the next section. Let’s get real, though. You’ll almost certainly use a specialized host to manage your repositories. There are a number of these to choose from, though the biggest players are probably Bitbucket (https://bitbucket.org) and GitHub (https://github.org).
+So what has been generated? Let’s take a look:
 
-So, which should you choose? As a rule of thumb, GitHub is probably the standard for open source products. Startups often opt for Bitbucket because it offers free private repositories and only charges as your team grows. That seems like a good deal; after all, if your team is growing, then you’ve probably either secured funding or you’re seeing some revenue. If that’s true, then well done, you!
+$ ls
 
-More or less on the basis of a coin toss, I’ll sign up with GitHub for my project. Figure 17-1 shows my next decision, which is between a public or private repository. I’ll opt for a public project (because I’m a cheapskate).
+composer.json  composer.lock  vendor
 
-Figure 17-1.  Getting started with a GitHub project
+400
 
-413
+Chapter 16 ■ php Using and Creating Components with Composer
 
-Chapter 17 ■ Version Control with Git
+Composer installs packages into vendor/. It also generates a file named composer.lock. This specifies 
 
-At this point, GitHub offers some helpful instructions for importing my project. You can see those in 
+the exact versions of all packages installed. If you’re using version control, you should commit this file. If another developer runs composer install with a composer.lock file present, package versions will be installed on her system exactly as specified. In this way, the team can stay in sync with one another, and you can be sure that your production environment exactly matches the development and test environments. You can override the lockfile by running this snippet:
 
-Figure 17-2.
+composer update
 
-Figure 17-2.  GitHub’s import instructions
+This will generate a new lock file. Typically, you will run this to keep current with new package versions 
 
-I’m not ready to run those commands yet, though. GitHub needs to be able to validate me when I push 
+(if you are using wildcards, as I have, or ranges).
 
-files to the server. In order to do that, it requires my public key. I describe one way of generating such a key in the next section,「Configuring a Git Server.」Once I have a public key, I can add it from the SSH and GPG keys link in GitHub’s User Settings screen.
+Installing a Package from the Command LineAs you have seen, I can create the composer.json file using an editor. But you can also have Composer do it for you. This is particularly useful if you need to kick off with a single package. When you invoke composer require on the command line, Composer will download the specified package and install it into vendor/ for you. It will also generate a composer.json file, which you can then edit and extend:
 
-You can see GitHub’s settings screen for SSH and GPG keys in Figure 17-3.
+$ composer require abraham/twitteroauth
 
-414
+Using version ^0.6.4 for abraham/twitteroauth./composer.json has been createdLoading composer repositories with package informationUpdating dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
 
-Chapter 17 ■ Version Control with Git
+Writing lock fileGenerating autoload files
 
-Figure 17-3.  Adding an SSH key
+VersionsComposer is designed to support semantic versioning. In essence, this involves defining a package’s version with three numbers, separated by dots: major, minor, and patch. If you fix a bug, add no functionality, and do not break backwards compatibility, you should increment the patch number. If you add new functionality, but do not break backwards compatibility, you should increment the middle minor number. If your new version breaks backwards compatibility (in other words, if client code would break if this new version were suddenly switched in), then you should increment the first major version number.
 
-Now I’m ready to start adding files to my repository. Before we get into that, though, we should step 
+ ■ Note 
 
-back and spend some time following the do-it-yourself route.
+ You can read more about the semantic versioning convention at https://semver.org.
 
-Configuring a Git Server
+You should bear this in mind when specifying versions in your composer.json file: if you are too liberal 
 
-Git is different from traditional version-control systems in two key ways. First, under the hood, it stores snapshots of files, rather than the changes made to files between commits. Second, and more obviously to the user, it operates locally to your system until you choose to push to or pull from a remote repository. This means that you are not dependent on an Internet connection to get on with your work.
+in your ranges or wild cards, you may find that your system breaks on update.
 
-You do not need a single remote repository in order to work with Git; but in practice, it almost always 
+Table 16-1 shows some of the ways that you can specify versions with Composer.
 
-makes sense to have a shared source of authority if you are working with a team.
+401
 
-In this section, I look at the steps needed to get a remote Git server up and running. I assume root 
+Chapter 16 ■ php Using and Creating Components with Composer
 
-access to a Linux machine.
+Table 16-1.  Composer and Package Versions
 
-Creating the Remote RepositoryIn order to create a Git repository, I must first create a containing directory. I log into a freshly provisioned remote server via SSH. I am going to create my repository under /var/git. Generally speaking, only the root user can create and modify directories there, so I run the following command using sudo:
+Example
 
-$ sudo mkdir -p /var/git/megaquiz$ cd /var/git/megaquiz/
+Notes
 
-415
+Type
 
-Chapter 17 ■ Version Control with Git
+ExactWildcard
 
-I create /var/git, a parent directory for my repositories, and a subdirectory for a sample project called 
+1.2.21.2.*
 
-megaquiz. Now I can prepare the directory itself:
+Range
 
-$ sudo git init --bare
+1.0.0 - 1.1.7
 
-Initialized empty Git repository in /var/git/megaquiz/
+Only install the given versionInstall the exact specified numbers, but find latest available version matching the wildcardInstall a version no lower than the first number and no higher than the last number
 
-The --bare flag tells Git to initialize a repository without a working directory. Git will complain if you 
+Comparison
 
-try to push to a repository that has not been created in this way.
+>1.2.0 <=1.2.2 Use <, <=, >, and >= to specify complex ranges. You can combine these 
 
-At the moment, only the root user can mess around under /var/git. I can change this by creating a user 
+Tilde (major version)
 
-and a group named git and making it the directory’s owner:
+Caret
 
-$ sudo adduser git$ sudo chown -R git:git /var/git
+~1.3
 
-Preparing the Repository for Local UsersAlthough this is a designated remote server, I should also ensure that local users can commit to the repository. If you’re not careful, this can cause ownership and permissions issues (especially if users with sudo privileges push code).
+^1.3
 
-$ sudo chmod -R g+rws /var/git
+directives with a space (equivalent to「and」) or with || to specify「or」.The given number is the minimum, and the final number specified can increase. So for ~1.3, 1.3 is the minimum and there can be no match at 2.0.0 or above
 
-This gives members of the git group write access to /var/git and causes all files and directories 
+Will match up to, but not including, the next breaking change. So while ~1.3.1 will not match at 1.4 and above, ^1.3.1 will match from 1.3.1 up to, but not including, 2.0.0. This is generally the most useful shortcut
 
-created here to take on the git group. Now, as long as I ensure that they are members of the git group, local users will be able to write to the repository. Not only that, any files created will be writable by other members of the group.
+require-devVery often you need packages during development that are unnecessary in a production context. You will want to run tests locally, for example, but you are unlikely to need PHPUnit available on your public site.
 
-You can add a local user to the git group like this:
+Composer addresses this by supporting a separate require-dev element. You can add packages here, 
 
-$ sudo usermod -aG git bob
+just as you can for the require element:
 
-Now user bob is a member of the git group.
+{    "require-dev": {        "phpunit/phpunit": "*"    },    "require": {        "abraham/twitteroauth": "0.6.*",        "ext-xml": "*"    }}
 
-Providing Access to UsersThe owner of the bob user mentioned in the previous section can log into the server and interact with the repository from his shell. Generally, though, you won’t want to provide shell access to all your users. In any case, most users will prefer to take advantage of Git’s distributed nature and to work locally with their cloned data.
+Now, when we run composer install, PHPUnit and all sorts of dependent packages are downloaded 
 
-One way to grant a user SSH access is via public-key authentication. To do this, you first need to acquire the user’s public SSH key. The user may already have this—on a Linux machine, he will probably find the key in the configuration directory, .ssh, in a file named id_rsa.pub. Otherwise, he can easily generate a new key. On a Unix-like machine, this is a matter of running the ssh-keygen command and copying the value that it generates:
+and installed:
 
-$ ssh-keygen$ cat .ssh/id_rsa.pub
+$ composer install
 
-416
+Loading composer repositories with package informationUpdating dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
 
-As the repository administrator, I will have asked you for a copy of this key. Once I have it, I must add it 
+  - Installing symfony/yaml (v3.1.3)    Downloading: 100%        
 
-to the git user’s SSH set up on the repository server. This is merely a matter of pasting the public key into the .ssh/authorized_keys file. I may need to create the .ssh configuration directory for the first key I set up (I am running these commands from the git user’s home directory):
+  - Installing sebastian/version (2.0.0)
 
-Chapter 17 ■ Version Control with Git
+402
 
-$ mkdir .ssh$ chmod 0700 .ssh# create authorized_keys file and paste in the user's key:$ vi .ssh/authorized_keys$ chmod 0700 .ssh/authorized_keys
+Chapter 16 ■ php Using and Creating Components with Composer
 
- ■ Note  a common cause of ssh access failure is the creation of configuration files with overly liberal permissions. the ssh configuration environment should be readable and writable to the account’s owner, only. Pro OpenSSH by Michael stahnke (apress, 2005) covers ssh comprehensively.
+    Downloading: 100%        ....  - Installing phpspec/prophecy (v1.6.1)    Downloading: 100%        
 
-Closing Down Shell Access for the git UserNo server should be any more open than it needs to be. You may want to enable your user to access Git commands, but probably not much more.
+  - Installing myclabs/deep-copy (1.5.1)    Loading from cache
 
-You can see the shell associated with a user on a Linux server by looking at the file, /etc/passwd. Here is 
+  - Installing phpunit/phpunit (5.5.0)    Downloading: 100%        
 
-the relevant line for the git account on my remote server:
+sebastian/global-state suggests installing ext-uopz (*)phpunit/phpunit-mock-objects suggests installing ext-soap (*)phpunit/php-code-coverage suggests installing ext-xdebug (>=2.4.0)phpunit/phpunit suggests installing phpunit/php-invoker (~1.1)Writing lock fileGenerating autoload files
 
-git:x:1001:1001::/home/git:/bin/bash
+If you’re installing in a production context, however, you can pass the --no-dev flag to composer 
 
-Git provides a special shell, named git-shell, that restricts the user to selected commands only. I can 
+install, and Composer will download only those packages specified in the require element:
 
-enable this program for logins by editing /etc/passwd:
+$ composer install --no-dev
 
-git:x:1001:1001::/home/git:/usr/bin/git-shell
+Loading composer repositories with package informationUpdating dependencies  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
 
-Now, if I attempt to log in via SSH, I’m told the score and logged out:
+Writing lock fileGenerating autoload files
 
-$ ssh git@poppch17.vagrant.internal
+ when you run the composer install command, Composer creates a file named composer.lock. 
 
-Last login: Sat Jul 30 11:58:27 2016 from 192.168.33.1fatal: What do you think I am? A shell?Connection to poppch17.vagrant.internal closed.
+ ■ Note this records the exact version of every file you installed under vendor/. if you run composer install with a composer.lock file present alongside composer.json, Composer will fetch the package versions it has recorded if they are not present. this is useful because you can commit a composer.lock file to your version-control repository and be sure that your team will download the same versions of all the packages you have installed. if you need to override composer.lock, either to get the latest versions of packages or because you have changed composer.json, you should run composer update to override the lock file.
 
-Beginning a Project
+Composer and Autoload
 
-Now that I have a remote Git server and access to it from my local account, it’s time to add my work in progress to the repository at /var/git/megaquiz.
+We covered autoloading in some detail in Chapter 15. For the sake of completeness however, it is worth looking at it briefly. Composer generates a file named autoload.php, which handles class loading for the packages it downloads. You can also leverage this functionality for your own code by including autoload.
 
-Before I start, I take a good look at my files and directories, and remove any temporary items I might 
+403
 
-find. Failure to do this is a common annoyance. Temporary items to watch for include automatically generated files such as composer packages, build directories, installer logs, and so on.
+Chapter 16 ■ php Using and Creating Components with Composer
 
-417
+php (usually with require_once()). Once you have done this, any class you declare in your system will be found automatically when accessed in your code, so long as your directories and filenames mirror your namespaces and class names.
 
-Chapter 17 ■ Version Control with Git
+In other words, a class named popp5/megaquiz/command/CommandContext must be placed in a file 
 
- ■ Note  You can specify files and patterns to ignore by placing a file named .gitignore in your repository. on a linux system, the man gitignore command should provide examples of filename wildcarding that you can amend to exclude the various lock files and temporary directories created by your build processes, editors, and iDes. this text is also available online at http://git-scm.com/docs/gitignore.
+named CommandContext.php in the popp5/megaquiz/command/ directory.
 
-Before I go any further, I should register my identity with Git—this makes it easier to track who did what 
+If you want to mix things up (perhaps by omitting a redundant leading directory or two, or by adding a test directory to the search path), then you can use the autoload element to map a namespace to your file structure, like this:
 
-in the repository:
+    "autoload": {        "psr-4": {            "popp5\\megaquiz\\": ["src", "test"]        }    }
 
-$ git config --global user.name "matt z"$ git config --global user.email "matt@getinstance.com"
+Now, so long as autoload.php is included, my classes are easily discoverable. Thanks to my autoload 
 
-Now that I have established my personal details and ensured that my project is clean, I can set it up and 
+configuration, the popp5/megaquiz/command/CommandContext class will now be found in src/command/CommandContext.php. Not only that, but because I have referenced more than one target (test as well as src), I can also create test classes that belong to the popp5\megaquiz\ namespace under the test/ directory.
 
-push its code to the server:
+Turn to the「PSR-4 Autoloading」section in Chapter 15 to follow a more in-depth example.
 
-$ cd megaquiz$ git init
+Creating Your Own Package
 
-Initialized empty Git repository in /home/mattz/work/megaquiz/.git/
+If you have worked with PEAR in the past, you might expect a section on creating a package here to involve an entirely new package file. In fact, we’ve already been creating a package throughout this chapter. We just have to add some more information, and then find a way to make our code available to others.
 
-Now it’s time to add my files:
+Adding Package InformationYou really do not have to add that much information to make a viable package, but you absolutely need a name, so that your package can be found. I’m also going to include the description and authors elements, as well as to create a fake product named megaquiz which you will find popping up in other chapters occasionally:
 
-$ git add .
+    "name": "popp5/megaquiz",    "description": "a truly mega quiz",    "authors": [        {            "name": "matt zandstra",            "email": "matt@getinstance.com"        }    ],
 
-Git is now tracking all the files and directories under megaquiz. Tracked files can be in three states: 
+These fields should be mostly self-explanatory. The exception might be that leading namespace—popp5, in this case—which is separated from the actual package name by a forward slash. This is known as the vendor name. As you might expect, the vendor name becomes a top-level directory under vendor/ when your package is installed. This is often the organization name used by the package owner in Github or Bitbucket.
 
-unmodified, modified, or staged. You can check this by running the command, git status:
+With all that in place, you are ready to commit your package to your version control host of choice. If 
 
-$ git status
+you’re not sure what that involves, you can learn a lot more about this subject in Chapter 17.
 
-On branch master
+404
 
-Initial commit
+Chapter 16 ■ php Using and Creating Components with Composer
 
-Changes to be committed:  (use "git rm --cached <file>..." to unstage)On branch master
+ Composer supports a version field, but it is considered better practice to use a tag in git to track 
 
-Initial commit
+ ■ Note your package’s version. Composer will automatically recognize this.
 
-Changes to be committed:  (use "git rm --cached <file>..." to unstage)
+Remember that you should not push the vendor directory (at least not usually—there are some arguable exceptions to that rule). However, it is often a good idea to track the generated composer.lock file alongside composer.json.
 
-      new file:   command/Command.php      new file:   command/CommandContext.php      new file:   command/FeedbackCommand.php      new file:   command/LoginCommand.php      new file:   main.php      new file:   quizobjects/User.php      new file:   quiztools/AccessManager.php      new file:   quiztools/ReceiverFactory.php
+Platform PackagesAlthough you cannot use Composer to install system-wide packages, you can specify system-wide requirements, so that your package will only install in a system which is ready for it.
 
-418
+A platform package is specified with a single key, though in a couple of cases the key is further broken 
 
-Thanks to my previous git add command, all my files are staged for commit. I can go ahead now and 
+down by type, using a dash. I list the available types in Table 16-2.
 
-Chapter 17 ■ Version Control with Git
+Table 16-2.  Platform Packages
 
-execute the commit command:
+Type
 
-$ git commit -m 'my first commit'
+Example
 
-[master (root-commit) f147d21] my first commit 8 files changed, 235 insertions(+) create mode 100755 command/Command.php create mode 100755 command/CommandContext.php create mode 100755 command/FeedbackCommand.php create mode 100755 command/LoginCommand.php create mode 100755 main.php create mode 100755 quizobjects/User.php create mode 100755 quiztools/AccessManager.php create mode 100644 quiztools/ReceiverFactory.php
+Description
 
-I add a message via the -m flag. If I omitted this, then Git would launch an editor that I can use to add my 
+PHPExtensionLibrary
 
-check-in message.
+"php": "7.*"
 
-If you are accustomed to version-control systems such as CVS and Subversion, you might think that 
+"ext-xml": ">2"
 
-we’re done. And although I could happily continue editing, adding, committing, and branching from here, there is an additional stage I need to consider if I want to share this code using a central repository. As we will see later on in the chapter, Git allows us to manage multiple project branches. Thanks to this feature, I can maintain a branch for each release, but also keep my bleeding-edge risky development safely out of my production code. When we start out, Git sets up a single branch named master. I can confirm the state of my branches with the command, git branch:
+"lib-iconv": "~2"
 
-$ git branch -a
+The PHP versionThe PHP extensionA system library used by PHP
 
-* master
+HHVM
 
-The -a flag specifies that Git should show us all branches (the default is to omit the remote ones). And 
+"hhvm": "~2"
 
-the output shows the master branch.
+An HHVM version (HHVM is a virtual machine that supports an extended version of PHP)
 
-In fact, I have done nothing yet to associate my local repository with the remote server. It’s time to put 
+Let’s try it out:
 
-that right:
+{    "require": {        "abraham/twitteroauth": "0.6.*",        "ext-xml": "*",        "ext-gd": "*"    }}
 
-$ git remote add origin git@poppch17.vagrant.internal:/var/git/megaquiz
+In the preceding code, I specify that my package requires the xml and gd extensions. Now it’s time to run 
 
-This command is disappointingly quiet, given the work that it has done. In fact, it is the equivalent of telling Git to「associate the nickname origin with the given server location. Furthermore, set up a tracking relationship between the local branch master and a remote equivalent.」
+update:
 
-To confirm all of this, I check with Git that the remote handle origin has been set up:
+$ composer update
 
-$ git remote -v
+Loading composer repositories with package informationUpdating dependencies (including require-dev)Your requirements could not be resolved to an installable set of packages.
 
-origin git@poppch17.vagrant.internal:/var/git/megaquiz (fetch)origin git@poppch17.vagrant.internal:/var/git/megaquiz (push)
+  Problem 1- The requested PHP extension ext-gd * is missing from your system. Install or enable PHP's gd extension.
 
-Of course, if you used a service like GitHub, you would use your equivalent of the git remote add step 
+405
 
-shown in Figure 17-2. In my case, that looks like this:
+Chapter 16 ■ php Using and Creating Components with Composer
 
-$ git remote add origin git@github.com:popp5/megaquiz.git
+It looks as though I was set up for XML; however, GD, an image manipulation package, is not installed 
 
-419
+on my system, so Composer throws an error.
 
-Chapter 17 ■ Version Control with Git
+Distribution Through Packagist
 
-I still haven’t sent any actual files to my Git server, however, so that’s my next step:
+If you’ve been working through this chapter, you might have wondered where the packages we have been installing actually come from. It feels a lot like magic, but (as you might expect) there is a package repository behind the scenes. It is called Packagist, and it can be found at https://packagist.org. So long as your code can be found in a public git repository, it can be made available through Packagist.
 
-$ git push origin master
+Let’s give it a shot. I have pushed my megaquiz project to Github, so now I need to tell Packagist about 
 
-Counting objects: 12, done.Delta compression using up to 2 threads.Compressing objects: 100% (9/9), done.Writing objects: 100% (12/12), 2.65 KiB, done.Total 12 (delta 1), reused 0 (delta 0)To git@poppch17.vagrant.internal:/var/git/megaquiz * [new branch]      master -> master
+my repository. Once I have signed up, I simply add the URL of my repository. You can see this in Figure 16-1.
 
-Now I can run the git branch command again to confirm that the remote version of the master branch 
+Figure 16-1.  Adding a package to Packagist
 
-has appeared:
+Once I’ve added megaquiz, Packagist locates the repository, checks the composer.json file, and displays 
 
-$ git branch -a
+a control panel. You can see that in Figure 16-2.
 
-* master  remotes/origin/master
+Packagist tells me that I have not set license information. I can fix this at any time by adding a license element to the composer.json file:"license": "Apache-2.0",
 
- I have established what is called a tracking branch. this is a local branch that is associated with a 
+406
 
- ■ Note remote twin.
+Chapter 16 ■ php Using and Creating Components with Composer
 
-Cloning the RepositoryFor the purposes of this chapter, I have invented a team member named Bob. Bob is working with me on the MegaQuiz project. Naturally, he wants his own version of the code. I have already added his public key to the Git server, so he is good to go. In the parallel world of GitHub, I have invited Bob to join my project, and he has added his own public key to his account. The effect is the same; Bob can acquire the repository using the command, git clone:
+Figure 16-2.  The package control panel
 
-$ git clone git@github.com:popp5/megaquiz.git
-
-remote: Counting objects: 14, done.remote: Compressing objects: 100% (12/12), done.remote: Total 14 (delta 1), reused 14 (delta 1), pack-reused 0Receiving objects: 100% (14/14), done.Resolving deltas: 100% (1/1), done.
-
-Now both of us can develop locally and, when we’re ready, share our code with one another.
-
-Updating and Committing
-
-Bob is, of course, a fine and talented fellow. Except, that is, for one common and highly annoying trait: he cannot leave other people’s code alone.
-
-Bob is smart and inquisitive, easily excited by shiny new avenues of development, and he’s keen to 
-
-help optimize new code. As a result, everywhere I turn, I seem to see the hand of Bob. Bob has added to my documentation, and he has implemented an idea I mentioned over coffee. I may have to kill Bob. In the meantime, however, I must handle the fact that the code on which I am working needs to be merged with Bob’s input.420
-
-Here’s a file called quizobjects/User.php. At the moment, it contains nothing but the barest of bones:
-
-namespace popp\ch17\megaquiz\quizobjects;
-
-Chapter 17 ■ Version Control with Git
-
-class User{}
-
-I have decided to add some documentation. I begin by adding a file comment to my version of the file:
-
-namespace popp\ch17\megaquiz\quizobjects;
-
-/** * @license   http://www.example.com Borsetshire Open License * @package  quizobjects */
-
-class User{}
-
-Remember that a file can have three states: unmodified, modified, and staged. The User.php file has 
-
-now moved from unmodified to modified. I can see this with the git status command:
-
-$ git status
-
-On branch masterYour branch is up-to-date with 'origin/master'.Changes not staged for commit:  (use "git add <file>..." to update what will be committed)  (use "git checkout -- <file>..." to discard changes in working directory)
-
-       modified:   quizobjects/User.php
-
-no changes added to commit (use "git add" and/or "git commit -a")
-
-User.php has been modified, but not yet staged for commit. I can change this state using the command, 
-
-git add:
-
-$ git add quizobjects/User.php$ git status
-
-On branch masterYour branch is up-to-date with 'origin/master'.Changes to be committed:  (use "git reset HEAD <file>..." to unstage)
-
-       modified:   quizobjects/User.php
-
-Now I am ready to commit:
-
-$ git commit -m'added documentation' quizobjects/User.php
-
-421
-
-Chapter 17 ■ Version Control with Git
-
-[master 97472c4] added documentation 1 file changed, 5 insertions(+)
-
-A Git commit only affects my local repository. If I am sure that the world is ready for my change, I must 
-
-push my code to the remote repository:
-
-$ git push origin master
-
-Counting objects: 6, done.Delta compression using up to 4 threads.Compressing objects: 100% (5/5), done.Writing objects: 100% (6/6), 670 bytes | 0 bytes/s, done.Total 6 (delta 2), reused 0 (delta 0)To git@github.com:popp5/megaquiz.git   715fc2f..04d75b4  master -> master
-
-Meanwhile, working in his own sandbox, Bob is keen as ever, and he has created a class comment:
-
-namespace popp\ch17\megaquiz\quizobjects;
-
-/** * @package  quizobjects */
-
-class User{}
-
-Now it’s Bob’s turn to add, commit, and push. Because the adding and committing parts of this are so 
-
-commonly run together, Git allows you to combine them into a single command:
-
-$ git commit -a -m'my great documentation'
-
-[master 161c6c5] my great documentation 1 files changed, 4 insertions(+), 0 deletions(-)
-
-So we now have two distinct versions of User.php. There’s the version I just pushed to the remote 
-
-repository, and there is Bob’s version, committed, but not yet pushed. Let’s see what happens when Bob tries to push his local version to the remote repository:
-
-$ git push origin master
-
-To git@github.com:popp5/megaquiz.git ! [rejected]        master -> master (non-fast-forward)error: failed to push some refs to 'git@github.com:popp5/megaquiz.git'To prevent you from losing history, non-fast-forward updates were rejectedMerge the remote changes before pushing again.  See the 'Note aboutfast-forwards' section of 'git push --help' for details.
-
-As you can see, Git won’t let you push if there’s an update to apply. Bob must first pull down my version 
-
-of the User.php file:422
-
-Chapter 17 ■ Version Control with Git
-
-$ git pull origin master
-
-remote: Counting objects: 6, done.remote: Compressing objects: 100% (3/3), done.remote: Total 6 (delta 2), reused 6 (delta 2), pack-reused 0Unpacking objects: 100% (6/6), done.From github.com:popp5/megaquiz * branch            master     -> FETCH_HEADAuto-merging quizobjects/User.phpCONFLICT (content): Merge conflict in quizobjects/User.phpAutomatic merge failed; fix conflicts and then commit the result.
-
-Git will happily merge data from two sources into to the same file, so long as the changes don’t overlap. Git has no means of handling changes that affect the same lines. How can it decide what is to have priority? Should the repository overwrite Bob’s changes, or the other way around? Should both changes coexist? Which should go first? Git has no choice but to report a conflict and let Bob sort out the problem.
-
-Here’s what Bob sees when he opens the file:
-
-namespace popp\ch17\megaquiz\quizobjects;
-
-/**<<<<<<< HEAD======= * @license   http://www.example.com Borsetshire Open License>>>>>>> 04d75b41c8d972438bd803042f1117e12d2869eb * @package  quizobjects */
-
-class User{}
-
-Git includes both Bob’s comment and the conflicting changes, together with metadata that tells him which part originates where. The conflicting information is separated by a line of equals signs. Bob’s input is signaled by a line of less-than symbols followed by "HEAD". The remote changes are included on the other side of the divide.
-
-Now that Bob has identified the conflict, he can edit the file to fix the collision:
-
-namespace popp\ch17\megaquiz\quizobjects;
-
-/** * @license   http://www.example.com Borsetshire Open License * @package   quizobjects */
-
-class User{}
-
-Next, Bob resolves the conflict by staging the file:
-
-$ git add quizobjects/User.php$ git commit -m'documentation merged'
-
-[master 89e5e46] documentation merged
-
-423
-
-Chapter 17 ■ Version Control with Git
-
-And now, finally, he can push to the remote repository:
-
-$ git push origin master
-
-Adding and Removing Files and Directories
-
-Projects change shape as they develop. Version-control software must take account of this, allowing users to add new files and remove deadwood that would otherwise get in the way.
-
-Adding a FileYou have seen the add subcommand many times already. I used it during my project setup to add my code to the empty megaquiz repository, and subsequently, to stage files for commit. By running git add on an untracked file or directory, you ask Git to track it—and stage it for commit. Here I add a document called Question.php to the project:
-
-$ touch quizobjects/Question.php
-
-$ git add quizobjects/Question.php
-
-In a real-world situation, I would probably start out by adding some content to Question.php. Here, I 
-
-confine myself to creating an empty file using the standard touch command. Once I have added a document, I must still invoke the commit subcommand to complete the addition:
-
-$ git commit -m'initial checkin'
-
-[master 02cf67c] initial checkin 1 file changed, 0 insertions(+), 0 deletions(-) create mode 100644 quizobjects/Question.php
-
-Question.php is now in the local repository.
-
-Removing a FileShould I discover that I have been too hasty and need to remove the document, it should come as no surprise to learn that I can use a subcommand called rm:
-
-$ git rm quizobjects/Question.php
-
-rm 'quizobjects/Question.php'
-
-Once again, a commit is required to finish the job. As usual, I can confirm this by running git status:
-
-$ git status
-
-On branch masterYour branch is ahead of 'origin/master' by 1 commit.
-
-424
-
-Chapter 17 ■ Version Control with Git
-
-  (use "git push" to publish your local commits)Changes to be committed:  (use "git reset HEAD <file>..." to unstage)
-
-       deleted:    quizobjects/Question.php
-
-$ git commit -m'removed Question'
-
-[master fd4d64e] removed Question 1 file changed, 0 insertions(+), 0 deletions(-) delete mode 100644 quizobjects/Question.php
-
-Adding a DirectoryYou can also add and remove directories with add and rm. Let’s say Bob wants to make a new directory available:
-
-$ mkdir resources$ touch resources/blah.gif$ git add resources/
-
-$ git status
-
-On branch masterYour branch is ahead of 'origin/master' by 2 commits.  (use "git push" to publish your local commits)Changes to be committed:  (use "git reset HEAD <file>..." to unstage)
-
-      new file:   resources/blah.gif
-
-Notice how the contents of resources are added automatically to the repository. Now Bob can commit 
-
-and then push the whole lot to the remote repository in the usual way.
-
-Removing DirectoriesAs you might expect, you can remove directories with the rm subcommand. In this situation, however, I must tell Git that I wish it to remove the directory's contents by passing an -r flag to the subcommand. Here, I profoundly disagree with Bob’s decision to add a resources directory:
-
-$ git rm -r resources/
-
-rm 'resources/blah.gif'
-
-425
-
-Chapter 17 ■ Version Control with Git
-
-Tagging a Release
-
-All being well, a project will eventually reach a state of readiness, and you will want to ship it or deploy it. Whenever you make a release, you should leave a bookmark in your repository, so that you can always revisit the code at that point. As you might expect, you can create a tag in your code with the git tag command:
-
-$ git tag -a 'version1.0' -m 'release 1.0'
-
-You can see the tags associated with your repository by running git tag with no arguments:
-
-$ git tag
-
-version1.0
-
-We have been working locally up until this point. In order to get the tag onto the remote repository, we 
-
-must use the --tags flag with the git push subcommand:
-
-$ git push origin --tags
-
-Counting objects: 1, done.Writing objects: 100% (1/1), 168 bytes | 0 bytes/s, done.Total 1 (delta 0), reused 0 (delta 0)To git@github.com:popp5/megaquiz.git* [new tag]         version1.0 -> version1.0
-
-Using the --tags flag causes all local tags to be pushed to the remote repository.Of course, any action you take on a GitHub repo can be tracked on the site. You can see my release tag 
-
-in Figure 17-4.
-
-Figure 17-4.  Viewing a tag on GitHub
-
-426
-
-Chapter 17 ■ Version Control with Git
-
-Once you can bookmark your code with a tag, it makes sense to wonder how you might go about 
-
-revisiting old releases. For this, however, you should first spend some time looking at branching—something at which Git is particularly good.
-
-Branching a Project
-
-Once my project has been released, I can pack it away and wander off to do something new, right? After all, it was so elegantly written that bugs are an impossibility, not to mention so thoroughly specified that no user could possibly require any new features!
-
-Meanwhile, back in the real world, I must continue to work with the codebase on at least two levels. Bug reports should be trickling in right about now, and the wish list for version 1.2.0 will be swelling with demands for fantastic new features. How do I reconcile these forces? I need to fix the bugs as they are reported, and I need to push on with primary development. I could fix the bugs as part of development and release everything in one go, when the next version is stable. But then users may have a long wait before they see any problems addressed. This is plainly unacceptable. On the other hand, I could release as I go. In that scenario, I risk shipping broken code. Clearly, I need two strands to my development. I will continue to add new and risky features to the project’s main branch (often called the trunk), but I should now create a branch for my new release on which I can add only bug fixes.
-
- ■ Note  this way of managing branches is by no means the only game in town. Developers argue constantly about the best way of organizing branches and managing releases and bug fixes. one of the most popular approaches is git-flow (neatly described at http://danielkummer.github.io/git-flow-cheatsheet/). Under this practice, master is the release branch. new code goes on a develop branch, and it’s merged to master at release time. each unit of active development has its own feature branch, which gets merged into develop when stable.
-
-I can both create and switch to a new branch using the git checkout command. First, let’s take a quick 
-
-look at the state of my branches:
-
-$ git branch -a
-
-* master  remotes/origin/master
-
-As you can see, I have a single branch: master, and its remote equivalent. Now, I will create and switch 
-
-to a new branch:
-
-$ git checkout -b megaquiz-branch1.0
-
-Switched to a new branch 'megaquiz-branch1.0'
-
-To track my use of branches I will use a particular file as an example, command/FeedbackCommand.php. 
-
-It seems that I created my bug fix branch just in time. Users have started to report that they are unable to use the feedback mechanism in the system. I locate the bug:
-
-//...$result = $msgSystem->despatch($email, $msg, $topic);
-
-427
-
-Chapter 17 ■ Version Control with Git
-
-if (! $user) {    $this->context->setError($msgSystem->getError());//...
-
-I should, in fact, be testing $result and not $user. Here is my edit:
-
-        //...        $result = $msgSystem->dispatch($email, $msg, $topic);        if (! $result) {            $this->context->setError($msgSystem->getError());        //...
-
-Because I am working on the branch megaquiz-branch1.0, I can commit this change:
-
-$ git add command/FeedbackCommand.php$ git commit -m'bugfix'
-
-[megaquiz-branch1.0 d69dfc1] bugfix 1 file changed, 1 insertion(+), 1 deletion(-)
-
-Of course, this commit is local. I need to use the git push command to get the branch onto the remote 
+Packagist has also failed to find any version information. I’ll fix this by adding a tag to the Github 
 
 repository:
 
-$ git push origin megaquiz-branch1.0
+$ git tag -a '1.0.1' -m '1.0.1'$ git push –tags
 
-Counting objects: 4, done.Delta compression using up to 4 threads.Compressing objects: 100% (4/4), done.Writing objects: 100% (4/4), 440 bytes | 0 bytes/s, done.Total 4 (delta 2), reused 0 (delta 0)To git@github.com:popp5/megaquiz.git * [new branch]      megaquiz-branch1.0 -> megaquiz-branch1.0
+ if you think i’m cheating by skimming over this git stuff, you’re right. i cover both git and github in 
 
-Now, what about Bob? He will inevitably want to pitch in and fix some bugs. First, he invokes git pull, 
+ ■ Note some detail in Chapter 17.
 
-which helpfully tells him about the new branch (and my recent other activities):
+Now Packagist knows about my version number. You can confirm that in Figure 16-3.
 
-$ git pull
+407
 
-remote: Counting objects: 11, done.remote: Compressing objects: 100% (7/7), done.remote: Total 11 (delta 4), reused 11 (delta 4), pack-reused 0Unpacking objects: 100% (11/11), done.From github.com:popp5/megaquiz   f6ab532..cf120a4  master     -> origin/master * [new branch]      megaquiz-branch1.0 -> origin/megaquiz-branch1.0 * [new tag]         version1.0 -> version1.0Updating f6ab532..cf120a4Fast-forward 0 files changed, 0 insertions(+), 0 deletions(-) delete mode 100644 resources/blah.gif
+Chapter 16 ■ php Using and Creating Components with Composer
 
-428
+Figure 16-3.  Packagist knows the version
 
-Chapter 17 ■ Version Control with Git
+Now, anyone can include megaquiz from another package. Here is a minimal composer.json file:
 
-Now Bob can switch to a local branch which will track the remote one:
+{    "require": {        "popp5/megaquiz": "*"    }}
 
-$ git checkout megaquiz-branch1.0
+I specify the vendor name and the package name. Riskily, I am happy to accept any version at all. Let’s 
 
-Branch megaquiz-branch1.0 set up to track remote branch megaquiz-branch1.0 from origin.Switched to a new branch 'megaquiz-branch1.0'
+go ahead and install:
 
-Bob is good to go now. He can add and commit his own fixes; and when he pushes, they will end up on 
+$ composer install
 
-the remote branch.
+Loading composer repositories with package informationInstalling dependencies (including require-dev)  - Installing abraham/twitteroauth (0.6.4)    Loading from cache
 
-Meanwhile, I would like to add some bleeding-edge enhancements on the trunk—that is, my master 
+408
 
-branch. Let’s look again at the state of my branches from the perspective of my local repository:
+Chapter 16 ■ php Using and Creating Components with Composer
 
-$ git branch -a
+  - Installing popp5/megaquiz (1.0.1)    Downloading: 100%        
 
-  master* megaquiz-branch1.0  remotes/origin/master  remotes/origin/megaquiz-branch1.0
+Writing lock fileGenerating autoload files
 
-I can switch to an existing branch by invoking git checkout:
+Notice that the dependencies I specified when I set up megaquiz are also downloaded.
 
-$ git checkout master
+Keeping it private
 
-Switched to branch 'master'Your branch is up-to-date with 'origin/master'.
+Of course, you don’t always want to publish your code to the world. Sometimes you need to share only with a smaller set of authorized users.
 
-When I look now at command/FeedbackCommand.php, I see that my bug fix has magically disappeared. Of course, it’s still stored under megaquiz-branch1.0. Later, I can merge the fix into the master branch, so there’s no need to worry. Instead, I can focus on adding new code:
+Here is a private package named getinstance/api_util that I use for internal projects:
 
-class FeedbackCommand extends Command{
+{    "name": "getinstance/api_util",    "description": "core getinstance api code",    "authors": [        {            "name": "matt zandstra",            "email": "matt@getinstance.com"        }    ],      "require": {        "silex/silex": "~1.3",        "bshaffer/oauth2-server-php": "~1.8"    },      "require-dev": {         "phpunit/phpunit": "~4.3.0"    },      "autoload": {        "psr-4": {            "getinstance\\api_util\\": ["src" , "test/functional"]        }    }}
 
-    public function execute(CommandContext $context)    {        // new development        // goes here        $msgSystem = ReceiverFactory::getMessageSystem();        $email = $context->get('email');        // ...
+This is hosted in a private Bitbucket repository, so it’s not available via Packagist. So how would I 
 
-All I have done here is to add a comment to simulate an addition to the code. I can now commit and 
+include it in a project? I simply need to tell Composer where to look. I can do this by creating or adding to the repositories element:
 
-push this:
+{    "repositories": [        {            "type": "vcs",            "url": "git@bitbucket.org:getinstance/api_util.git"        }    ],
 
-$ git commit -am'new development on master'$ git push origin master
+409
 
-429
+Chapter 16 ■ php Using and Creating Components with Composer
 
-Chapter 17 ■ Version Control with Git
+    "require": {        "popp5/megaquiz": "*",        "getinstance/api_util": "v1.0.3"    }}
 
-So I now have parallel branches. Of course, sooner or later, I will want my master branch to benefit from 
+So now, so long as I have access to getinstance/api_util, I can install both my private package and 
 
-the bug fixes that I have committed on megaquiz-branch1.0.
+megaquiz at once:
 
-I can do this on the command line, but first let’s pause to look at a feature supported by GitHub and 
+$ composer install
 
-similar services like BitBucket. The pull request (often abbreviated to PR) allows me to request a code review before merging a branch. So before magaquiz-branch1.0 hits master, I can ask Bob to check my work. As you can see in Figure 17-5, GitHub detects the branch and gives me the opportunity to issue my pull request.
+Loading composer repositories with package informationInstalling dependencies (including require-dev)          - Installing abraham/twitteroauth (0.6.4)    Loading from cache
 
-Figure 17-5.  GitHub makes issuing pull requests easy
+  - Installing popp5/megaquiz (1.0.1)    Loading from cache...  - Installing silex/silex (v1.3.5)    Loading from cache
 
-I hit the button and add a comment before submitting the pull request. You can see the result of that in 
-
-Figure 17-6.
-
-430
-
-Chapter 17 ■ Version Control with Git
-
-Figure 17-6.  Issuing the pull request
-
-Now Bob can examine my changes and add any comments he may have. GitHub shows him exactly 
-
-what has changed. You can see Bob’s comment in Figure 17-7.
-
-Figure 17-7.  The changes covered by a pull request
-
-431
-
-Chapter 17 ■ Version Control with Git
-
-Once Bob approves my pull request, I can merge directly from the browser, or I can return to the 
-
-command line. This is pretty easy. Git provides a subcommand named merge:
-
-$ git checkout master
-
-Already on 'master'Your branch is up-to-date with 'origin/master'.
-
-In fact, I’m already on the master branch—but it can’t hurt to be sure. Now I perform the actual merge:
-
-$ git merge megaquiz-branch1.0
-
-Auto-merging command/FeedbackCommand.phpMerge made by the 'recursive' strategy. command/FeedbackCommand.php | 2 +- 1 file changed, 1 insertion(+), 1 deletion(-)
-
- to merge or not to merge? the choice is not always as straightforward as it might seem. in some 
-
- ■ Note cases, for example, your bug fix may be the kind of temporary work that is supplanted by a more thorough refactoring on the trunk, or it may no longer apply due to a change in specification. this is necessarily a judgment call. Most teams i have worked in, however, tend to merge to the trunk where possible, while keeping work on the branch to the bare minimum. new features for us generally appear on the trunk and find their way quickly to users through a「release early and often」policy.
-
-Now, when I look at the version of FeedbackCommand in the trunk, I confirm that all changes have been 
-
-merged:
-
-public function execute(CommandContext $context){      // new development    // goes here    $msgSystem = ReceiverFactory::getMessageSystem();    $email = $context->get('email');    $msg = $context->get('pass');    $topic = $context->get('topic');    $result = $msgSystem->despatch($email, $msg, $topic);    if (! $result) {        $this->context->setError($msgSystem->getError());        return false;    }
-
-432
-
-Chapter 17 ■ Version Control with Git
-
-The execute() method now includes both my simulated trunk development and the bug fix.I created a branch when I first「released」MegaQuiz version 1.0 and that’s what we have been working 
-
-with. Remember, however, that I also created a tag at that stage. I promised at the time that I would show you how to access the tag. In fact, you’ve already seen how. You can create a local branch based on the tag in just the same way that Bob set up his local version of our bug fix branch. The difference is that this new branch is entirely fresh. It does not track an existing remote branch:
-
-$ git checkout -b new-version1.0-branch version1.0
-
-Switched to a new branch 'new-version1.0-branch'
-
-However, now that I have this new branch, I can push it and share it just as you have seen.
+  - Installing getinstance/api_util (v1.0.3)    Cloning 3cf2988875b824936e6421d0810ceea90b76d139...Writing lock fileGenerating autoload files
 
 Summary
 
-Git comprises an enormous number of tools, each with a daunting range of options and capabilities. I can only hope to provide a brief introduction in the space available. Nonetheless, if you only use the features that I have covered in this chapter, you should see the benefit in your own work, whether through protection against data loss or improvements in collaborative working.
+You should leave this chapter with a sense of how easy it is to leverage Composer packages to add power to your projects. Through the composer.json file, you can also make your code accessible to other users, whether publicly by using Packagist or by specifying your own repository. This approach automates dependency downloads for your users and allows third-party packages to use yours without the need for bundling.
 
-In this chapter, we took a tour through the basics of Git. I looked briefly at configuration before 
+410
 
-importing a project. I checked out, committed, and updated code, and then showed you how to tag and export a release. I ended the chapter with a brief look at branches, demonstrating their usefulness in maintaining concurrent development and bug-fix strands in a project.
-
-There is one issue that I have glossed over here, to some extent. We established the principle that developers should check out their own versions of a project. On the whole, however, projects will not run in place. In order to test their changes, developers need to deploy code locally. Sometimes, this is as simple as copying over a few directories. More often, however, deployment must address a whole range of configuration issues. In the next chapter, we will look at some techniques for automating this process.
-
-433
-
-CHAPTER 18
+CHAPTER 17
 

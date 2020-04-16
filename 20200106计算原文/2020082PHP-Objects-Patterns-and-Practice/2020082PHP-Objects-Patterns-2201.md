@@ -1,660 +1,298 @@
-Appendix B: A Simple Parser
+Objects, Patterns, Practice
 
-The Interpreter pattern discussed in Chapter 11 does not cover parsing. An interpreter without a parser is pretty incomplete, unless you persuade your users to write PHP code to invoke the interpreter! Third-party parsers are available that could be deployed to work with the Interpreter pattern, and that would probably be the best choice in a real-world project. This appendix, however, presents a simple object-oriented parser designed to work with the MarkLogic interpreter built in Chapter 11. Be aware that these examples are no more than a proof of concept. They are not designed for use in real-world situations.
+From object basics through design pattern principles, and on to tools and techniques, this book has focused on a single objective: the successful PHP project.
 
- ■ Note  The interface and broad structure of this parser code are based on Steven Metsker’s Building Parsers with Java (Addison-Wesley Professional, 2001). The brutally simplified implementation is my fault, however, and any mistakes should be laid at my door. Steven has given kind permission for the use of his original concept.
+In this chapter, I recap some of the topics I have covered and points made throughout the book:
 
-The Scanner
+•	
 
-In order to parse a statement, you must first break it down into a set of words and characters (known as tokens). The following class uses a number of regular expressions to define tokens. It also provides a convenient result stack that I will be using later in this section. Here is the Scanner class:
+PHP and objects: How PHP continues to increase its support for object-oriented programming, and how to leverage these features
 
-// listing 24.01class Scanner{    // token types    const WORD         = 1;    const QUOTE        = 2;    const APOS         = 3;    const WHITESPACE   = 6;    const EOL          = 8;    const CHAR         = 9;    const EOF          = 0;    const SOF          = -1;
+•	 Objects and design: Summarizing some OO design principles•	•	
 
-    protected $line_no    = 1;    protected $char_no    = 0;    protected $token      = null;    protected $token_type = -1;
+Patterns: What makes them cool
 
-539
+Pattern principles: A recap of the guiding object-oriented principles that underlie many patterns
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+•	
 
-    // Reader provides access to the raw character data. Context stores    // result data    public function __construct(Reader $r, Context $context)    {        $this->r = $r;        $this->context = $context;    }
+The tools for the job: Revisiting the tools I have described, and checking out a few I haven’t
 
-    public function getContext(): Context    {        return $this->context;    }
+Objects
 
-    // read through all whitespace characters    public function eatWhiteSpace(): int    {        $ret = 0;
+As you saw in Chapter 2, for a long time objects were something of an afterthought in the PHP world. Support was rudimentary, to say the least, in PHP 3, with objects barely more than associative arrays in fancy dress. Although things improved radically for the object enthusiast with PHP 4, there were still significant problems. Not the least of these was that by default, objects were assigned and passed by reference.
 
-        if ($this->token_type != self::WHITESPACE &&            $this->token_type != self::EOL        ) {            return $ret;        }
+The introduction of PHP 5 finally dragged objects center stage. You could still program in PHP without 
 
-        while ($this->nextToken() == self::WHITESPACE ||            $this->token_type == self::EOL        ) {            $ret++;        }
+ever declaring a class, but the language was finally optimized for object-oriented design. PHP 7 rounded this out, introducing long-awaited features such as scalar and return type declarations. Probably for reasons of backward compatibility, a few popular frameworks remain essentially procedural in nature (notably WordPress); by-and-large, however, most new PHP projects today are object-oriented.
 
-        return $ret;    }
+In Chapters 3, 4, and 5, I looked at PHP’s object-oriented support in detail. Here are some of the new 
 
-    // get a string representation of a token    // either the current token, or that represented    // by the $int arg    public function getTypeString(int $int = -1): string    {        if ($int < 0) {            $int = $this->tokenType();        }        if ($int < 0) {            return null;        }
+features PHP has introduced since version 5: reflection, exceptions, private and protected methods and properties, the __toString() method, the static modifier, abstract classes and methods, final methods and properties, interfaces, iterators, interceptor methods, type declarations, the const modifier, passing by reference, __clone(), the __construct() method, late static binding, namespaces, and anonymous classes. The extensive length of this incomplete list reveals the degree to which the future of PHP is bound up with object-oriented programming.
 
-        $resolve = [            self::WORD =>       'WORD',            self::QUOTE =>      'QUOTE',            self::APOS =>       'APOS',            self::WHITESPACE => 'WHITESPACE',            self::EOL =>        'EOL',
+The Zend Engine 2 and PHP 5 have made object-oriented design central to the PHP project, opening up 
 
-540
+the language to a new set of developers and opening up new possibilities for existing devotees.
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+In Chapter 6, I looked at the benefits that objects can bring to the design of your projects. Because objects 
 
-            self::CHAR =>       'CHAR',            self::EOF =>        'EOF'        ];
+and design are one of the central themes of this book, it is worth recapping some conclusions in detail.
 
-        return $resolve[$int];    }
+525
 
-    // the current token type (represented by an integer)    public function tokenType(): int    {        return $this->token_type;    }
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-    // get the contents of the current token    public function token()    {        return $this->token;    }
+ChoiceThere is no law that says you have to develop with classes and objects only. Well-designed object-oriented code provides a clean interface that can be accessed from any client code, whether procedural or object-oriented. Even if you have no interest in writing objects (unlikely if you are still reading this book), you will probably find yourself using them, if only as a client of Composer packages.
 
-    // return true if the current token is a word    public function isWord(): bool    {        return ($this->token_type == self::WORD);    }
+Encapsulation and DelegationObjects mind their own business and get on with their allotted tasks behind closed doors. They provide an interface through which requests and results can be passed. Any data that need not be exposed, and the dirty details of implementation, are hidden behind this front.
 
-    // return true if the current token is a quote character    public function isQuote(): bool    {        return ($this->token_type == self::APOS || $this->token_type == self::QUOTE);    }
+This gives object-oriented and procedural projects different shapes. The controller in an  
 
-    // current line number in source    public function lineNo(): int    {        return $this->line_no;    }
+object-oriented project is often surprisingly sparse, consisting of a handful of instantiations that acquire objects and invocations that call up data from one set and pass it on to another.
 
-    // current character number in source    public function charNo(): int    {        return $this->char_no;    }
+A procedural project, on the other hand, tends to be much more interventionist. The controlling logic 
 
-    // clone this object    public function __clone()    {        $this->r = clone($this->r);    }
+descends into implementation to a greater extent, referring to variables, measuring return values, and taking turns along different pathways of operation according to circumstance.
 
-    // move on to the next token in the source. Set the current    // token and track the line and character numbers
+DecouplingTo decouple is to remove interdependence between components, so that making a change to one component does not necessitate changes to others. Well-designed objects are self-enclosed. That is, they do not need to refer outside of themselves to recall a detail they learned in a previous invocation.
 
-541
+By maintaining an internal representation of state, objects reduce the need for global variables—a 
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+notorious cause of tight coupling. In using a global variable, you bind one part of a system to another. If a component (whether a function, a class, or a block of code) refers to a global variable, there is a risk that another component will accidentally use the same variable name and substitute its value for the first. There is a chance that a third component will come to rely on the value in the variable as set by the first. Change the way that the first component works, and you may cause the third to stop working. The aim of object-oriented design is to reduce such interdependence, making each component as self-sufficient as possible.
 
-    public function nextToken(): int    {        $this->token = null;        $type;
+Another cause of tight coupling is code duplication. When you must repeat an algorithm in different parts of your project, you will find tight coupling. What happens when you come to change the algorithm? Clearly you must remember to change it everywhere it occurs. Forget to do this, and your system is in trouble.
 
-        while (! is_bool($char = $this->getChar())) {            if ($this->isEolChar($char)) {                $this->token = $this->manageEolChars($char);                $this->line_no++;                $this->char_no = 0;                $type = self::EOL;
+A common cause of code duplication is the parallel conditional. If your project needs to do things 
 
-                return ($this->token_type = self::EOL);            } elseif ($this->isWordChar($char)) {                $this->token = $this->eatWordChars($char);                $type = self::WORD;            } elseif ($this->isSpaceChar($char)) {                $this->token = $char;                $type = self::WHITESPACE;            } elseif ($char == "'") {                $this->token = $char;                $type = self::APOS;            } elseif ($char == '"') {                $this->token = $char;                $type = self::QUOTE;            } else {                $type = self::CHAR;                $this->token = $char;            }
+in one way according to a particular circumstance (e.g., running on Linux), and another according to an alternative circumstance (e.g., running on Windows), you will often find the same if/else clauses popping up in different parts of your system. If you add a new circumstance together with strategies for handling it (MacOS), you must ensure that all conditionals are updated.
 
-            $this->char_no += strlen($this->token());
+Object-oriented programming provides a technique for handling this problem. You can replace 
 
-            return ($this->token_type = $type);        }
+conditionals with polymorphism. Polymorphism, also known as class switching, is the transparent use of different subclasses according to circumstance. Because each subclass supports the same interface as the common superclass, the client code neither knows nor cares which particular implementation it is using.
 
-        return ($this->token_type = self::EOF);    }
+Conditional code is not banished from object-oriented systems; it is merely minimized and centralized. 
 
-    // return an array of token type and token content for the NEXT token    public function peekToken(): array    {        $state = $this->getState();        $type = $this->nextToken();        $token = $this->token();        $this->setState($state);
+Conditional code of some kind must be used to determine which particular subtypes are to be served up to clients. This test, though, generally takes place once, and in one place, thus reducing coupling.
 
-        return [$type, $token];    }
+526
 
-    // get a ScannerState object that stores the parser's current    // position in the source, and data about the current token
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-542
+ReusabilityEncapsulation promotes decoupling, which promotes reuse. Components that are self-sufficient and communicate with wider systems only through their public interface can often be moved from one system and used in another without change.
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+In fact, this is rarer than you might think. Even nicely orthogonal code can be project-specific. When 
 
-    public function getState(): ScannerState    {        $state = new ScannerState();        $state->line_no      = $this->line_no;        $state->char_no      = $this->char_no;        $state->token        = $this->token;        $state->token_type   = $this->token_type;        $state->r            = clone($this->r);        $state->context      = clone($this->context);
+creating a set of classes for managing the content of a particular web site, for example, it is worth taking some time in the planning stage to look at those features that are specific to your client, and those that might form the foundation for future projects with content management at their heart.
 
-        return $state;    }
+Another tip for reuse: centralize those classes that might be used in multiple projects. Do not, in other 
 
-    // use a ScannerState object to restore the scanner's    // state    public function setState(ScannerState $state)    {        $this->line_no      = $state->line_no;        $this->char_no      = $state->char_no;        $this->token        = $state->token;        $this->token_type   = $state->token_type;        $this->r            = $state->r;        $this->context      = $state->context;    }
+words, copy a nicely reusable class into a new project. This will cause tight coupling on a macro level, as you will inevitably end up changing the class in one project and forgetting to do so in another. You would do better to manage common classes in a central repository that can be shared by your projects.
 
-    // get the next character from source    // returns boolean when none left    private function getChar()    {        return $this->r->getChar();    }
+AestheticsThis is not going to convince anyone who is not already convinced, but to me, object-oriented code is aesthetically pleasing. The messiness of implementation is hidden away behind clean interfaces, making an object a thing of apparent simplicity to its client.
 
-    // get all characters until they stop being    // word characters    private function eatWordChars(string $char): string    {        $val = $char;
+I love the neatness and elegance of polymorphism, so that an API allows you to manipulate vastly 
 
-        while ($this->isWordChar($char = $this->getChar())) {            $val .= $char;        }
+different objects that nonetheless perform interchangeably and transparently—the way that objects can be stacked up neatly or slotted into one another like children’s blocks.
 
-        if ($char) {            $this->pushBackChar();        }
+Of course, there are those who argue that the converse is true. Object-oriented code can manifest 
 
-        return $val;    }
+itself as an explosion of classes all so decoupled from one another that piecing together their relationships can be a headache. This is a code smell in its own right. It is often tempting to build factories that produce factories that produce factories, until your code resembles a hall of mirrors. Sometimes it makes sense to do the simplest thing that works, and then refactor in just enough elegance for testing and flexibility. Let the problem space determine your solution, rather than a list of best practices.
 
-    // get all characters until they stop being space    // characters
+ the rigid application of so-called best practice is also often an issue in project management, too. 
 
-543
+ ■ Note Whenever the use of a technique or a process begins to resemble ritual, applied automatically and inflexibly, it’s worth taking a moment to investigate the reasoning behind your current approach. it could be you’re drifting from the realm of tools to that of the cargo cult.
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+It is also worth mentioning that a beautiful solution is not always the best, or most efficient. It is 
 
-    private function eatSpaceChars(string $char): string    {        $val = $char;
+tempting to use a full-blown object-oriented solution where a quick script or a few system calls might have gotten the job done.
 
-        while ($this->isSpaceChar($char = $this->getChar())) {            $val .= $char;        }
+Patterns
 
-        $this->pushBackChar();
+Recently, a Java programmer applied for a job in a company with which I have some involvement. In his cover letter, he apologized for only having used patterns for a couple of years. This assumption that design patterns are a recent discovery—a transformative advance—is testament to the excitement they have generated. In fact, it is likely that this experienced coder has been using patterns for a lot longer than he thinks.
 
-        return $val;    }
+527
 
-    // move back one character in source    private function pushBackChar()    {        $this->r->pushBackChar();    }
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-    // argument is a word character    private function isWordChar($char): bool    {        if (is_bool($char)) {            return false;        }
+Patterns describe common problems and tested solutions. Patterns name, codify, and organize real-
 
-        return (preg_match("/[A-Za-z0-9_\-]/", $char) === 1);    }
+world best practice. They are not components of an invention or clauses in a doctrine. A pattern would not be valid if it did not describe practices that are already common at the time of hatching.
 
-    // argument is a space character    private function isSpaceChar($char): bool    {        return (preg_match("/\t| /", $char) === 1);    }
+Remember that the concept of a pattern language originated in the field of architecture. People 
 
-    // argument is an end of line character    private function isEolChar($char): bool    {        $check = preg_match("/\n|\r/", $char);
+were building courtyards and arches for thousands of years before patterns were proposed as a means of describing solutions to problems of space and function.
 
-        return ($check === 1);    }
+Having said that, it is true that design patterns often provoke the kind of emotions associated with 
 
-    // swallow either \n, \r or \r\n    private function manageEolChars(string $char): string    {        if ($char == "\r") {            $next_char=$this->getChar();
+religious or political disputes. Devotees roam the corridors with an evangelistic gleam in their eye and a copy of the Gang of Four book under their arm. They accost the uninitiated and reel off pattern names like articles of faith. It is little wonder that some critics see design patterns as hype.
 
-            if ($next_char == "\n") {                return "{$char}{$next_char}";
+In languages such as Perl and PHP, patterns are also controversial because of their firm association with object-oriented programming. In a context in which objects are a design decision and not a given, associating oneself with design patterns amounts to a declaration of preference, not least because patterns beget more patterns, and objects beget more objects.
 
-544
+What Patterns Buy UsI introduced patterns in Chapter 7. Let’s reiterate some of the benefits that patterns can buy us.
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+Tried and TestedFirst of all, as I’ve noted, patterns are proven solutions to particular problems. Drawing an analogy between patterns and recipes is dangerous: recipes can be followed blindly, whereas patterns are「half-baked」(Martin Fowler) by nature and need more thoughtful handling. Nevertheless, both recipes and patterns share one important characteristic: they have been tried out and tested thoroughly before inscription.
 
-            } else {                $this->pushBackChar();            }        }
+Patterns Suggest Other PatternsPatterns have grooves and curves that fit one another. Certain patterns slot together with a satisfying click. Solving a problem using a pattern will inevitably have ramifications. These consequences can become the conditions that suggest complementary patterns. It is important, of course, to be careful that you are addressing real needs and problems when you choose related patterns, and not just building elegant but useless towers of interlocking code. It is tempting to build the programming equivalent of an architectural folly.
 
-        return $char;    }
+A Common VocabularyPatterns are a means of developing a common vocabulary for describing problems and solutions. Naming is important—it stands in for describing, and therefore lets us cover lots of ground very quickly. Naming, of course, also obscures meaning for those who do not yet share the vocabulary, which is one reason why patterns can be so infuriating at times.
 
-    public function getPos(): int    {        return $this->r->getPos();    }}
+Patterns Promote DesignAs discussed in the next section, patterns can encourage good design when used properly. There is an important caveat, of course. Patterns are not fairy dust.
 
-// listing 24.02class ScannerState{    public $line_no;    public $char_no;    public $token;    public $token_type;    public $r;}
+528
 
-First, I set up constants for the tokens that interest me. I am going to match characters, words, 
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-whitespace, and quote characters. I test for these types in methods dedicated to each token: isWordChar(), isSpaceChar(), and so on. The heart of the class is the nextToken() method. This attempts to match the next token in a given string. The Scanner stores a Context object. Parser objects use this to share results as they work through the target text.
+Patterns and Principles of DesignDesign patterns are, by their nature, concerned with good design. Used well, they can help you build loosely coupled and flexible code. Pattern critics have a point, though, when they say that patterns can be overused by the newly infected. Because pattern implementations form pretty and elegant structures, it can be tempting to forget that good design always lies in fitness for purpose. Remember that patterns exist to address problems.
 
-Note that there is a second class: ScannerState. The Scanner is designed so that Parser objects can save state, try stuff out, and restore if they’ve gone down a blind alley. The getState() method populates and returns a ScannerState object. setState() uses a ScannerState object to revert state if required.
+When I first started working with patterns, I found myself creating Abstract Factories all over my code. I 
 
-Here is the Context class:
+needed to generate objects, and Abstract Factory certainly helped me to do that.
 
-// listing 24.03
+In fact, though, I was thinking lazily and making unnecessary work for myself. The sets of objects I 
 
-class Context{    public $resultstack = [];
+needed to produce were indeed related, but they did not yet have alternative implementations. The classic Abstract Factory pattern is ideal for situations in which you have alternative sets of objects to generate according to circumstance. To make Abstract Factory work, you need to create factory classes for each type of object and a class to serve up the factory class. It’s exhausting just describing the process.
 
-    public function pushResult($mixed)    {        array_push($this->resultstack, $mixed);    }
+My code would have been much cleaner had I created a basic factory class, only refactoring to 
 
-    public function popResult()    {        return array_pop($this->resultstack);    }
+implement Abstract Factory if I found myself needing to generate a parallel set of objects.
 
-    public function resultCount(): int
+The fact that you are using patterns does not guarantee good design. When developing, it is a good idea to bear in mind two expressions of the same principle: KISS (「Keep it simple, stupid」) and「Do the simplest thing that works.」eXtreme programmers also give us another, related, acronym: YAGNI.「You aren’t going to need it,」meaning that you should not implement a feature unless it is truly required.
 
-545
+With the warnings out of the way, I can resume my tone of breathless enthusiasm. As I laid out in Chapter 9, patterns tend to embody a set of principles that can be generalized and applied to all code.
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+Favor Composition over InheritanceInheritance relationships are powerful. We use inheritance to support runtime class switching (polymorphism), which lies at the heart of many of the patterns and techniques I explored in this book. By relying on solely on inheritance in design, though, you can produce inflexible structures that are prone to duplication.
 
-    {        return count($this->resultstack);    }
+Avoid Tight CouplingI have already talked about this issue in this chapter, but it is worth mentioning here for the sake of completeness. You can never escape the fact that change in one component may require changes in other parts of your project. You can, however, minimize this by avoiding both duplication (typified in our examples by parallel conditionals) and the overuse of global variables (or Singletons). You should also minimize the use of concrete subclasses when abstract types can be used to promote polymorphism. This last point leads us to another principle.
 
-    public function peekResult()    {        if (empty($this->resultstack)) {            throw new Exception("empty resultstack");        }
+Code to an Interface, Not an ImplementationDesign your software components with clearly defined public interfaces that make the responsibility of each transparent. If you define your interface in an abstract superclass and have client classes demand and work with this abstract type, you then decouple clients from specific implementations.
 
-        return $this->resultstack[count($this->resultstack) -1];    }}
+Having said that, remember the YAGNI principle. If you start out with the need for only one 
 
-As you can see, this is just a simple stack, a convenient noticeboard for parsers to work with. It performs 
+implementation for a type, there is no immediate reason to create an abstract superclass. You can just as well define a clear interface in a single concrete class. As soon as you find that your single implementation is trying to do more than one thing at the same time, you can redesignate your concrete class as the abstract parent of two subclasses. Client code will be none the wiser, as it continues to work with a single type.
 
-a similar job to that of the context class used in the Interpreter pattern, but it is not the same class.
+529
 
-Notice that the Scanner does not itself work with a file or string. Instead, it requires a Reader object. 
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-This would allow me to easily swap in different sources of data. Here is the Reader interface and an implementation, StringReader:
+A classic sign that you may need to split an implementation and hide the resultant classes behind an 
 
-// listing 24.04
+abstract parent is the emergence of conditional statements in the implementation.
 
-interface Reader{    public function getChar();    public function getPos(): int;    public function pushBackChar();}
+Encapsulate the Concept that VariesIf you find that you are drowning in subclasses, it may be that you should be extracting the reason for all this subclassing into its own type. This is particularly the case if the reason is to achieve an end that is incidental to your type’s main purpose.
 
-// listing 24.05
+Given a type UpdatableThing, for example, you may find yourself creating FtpUpdatableThing, 
 
-class StringReader implements Reader{    private $in;    private $pos;
+HttpUpdatableThing, and FileSystemUpdatableThing subtypes. The responsibility of your type, though, is to be a thing that is updatable—the mechanism for storage and retrieval is incidental to this purpose. Ftp, Http, and FileSystem are the things that vary here, and they belong in their own type—let’s call it UpdateMechanism. UpdateMechanism will have subclasses for the different implementations. You can then add as many update mechanisms as you want without disturbing the UpdatableThing type, which remains focused on its core responsibility.
 
-    public function __construct($in)    {        $this->in = $in;        $this->pos = 0;    }
+Notice also that I have replaced a static compile-time structure with a dynamic runtime arrangement 
 
-    public function getChar()    {        if ($this->pos >= strlen($this->in)) {            return false;        }
+here, bringing us (as if by accident) back to our first principle:「Favor composition over inheritance.」
 
-        $char = substr($this->in, $this->pos, 1);        $this->pos++;
+Practice
 
-546
+The issues that I covered in this section of the book (and introduced in Chapter 14) are often ignored by texts and coders alike. In my own life as a programmer, I discovered that these tools and techniques were at least as relevant to the success of a project as design. There is little doubt that issues such as documentation and automated build are less revelatory in nature than wonders such as the Composite pattern.
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+ Let’s just remind ourselves of the beauty of Composite: a simple inheritance tree whose objects 
 
-        return $char;    }
+ ■ Note can be joined at runtime to form structures that are also trees, but are orders of magnitude more flexible and complex. Multiple objects share a single interface by which they are presented to the outside world. the interplay between simple and complex, multiple and singular, has got to get your pulse racing—that’s not just software design, it’s poetry.
 
-    public function getPos(): int    {        return $this->pos;    }
+Even if issues such as documentation and build, testing, and version control are more prosaic than 
 
-    public function pushBackChar()    {        $this->pos--;    }
+patterns, they are no less important. In the real world, a fantastic design will not survive if multiple developers cannot easily contribute to it or understand the source. Systems become hard to maintain and extend without automated testing. Without build tools, no one is going to bother to deploy your work. As PHP’s user base widens, so does our responsibility as developers to ensure quality and ease-of-deployment.
 
-    public function string()    {        return $this->in;    }}
+A project exists in two modes. A project is its structures of code and functionality, and it is also set of 
 
-This simply reads from a string one character at a time. I could easily provide a file-based version, of 
+files and directories, a ground for cooperation, a set of sources and targets, and a subject for transformation. In this sense, a project is a system from the outside as much as it is within its code. Mechanisms for build, testing, documentation, and version control require the same attention to detail as the code such mechanisms support. Focus on the metasystem with as much fervor as you do on the system itself.
 
-course.
+TestingAlthough testing is part of the framework that one applies to a project from the outside, it is intimately integrated into the code itself. Because total decoupling is not possible, or even desirable, test frameworks are a powerful way of monitoring the ramifications of change. Altering the return type of a method could influence 
 
-Perhaps the best way to see how the Scanner might be used is to use it. Here is some code to break up 
+530
 
-the example statement into tokens:
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-// listing 24.06
+client code elsewhere, causing bugs to emerge weeks or months after the change is made. A test framework gives you half a chance of catching errors of this kind (the better the tests, the better the odds here).
 
-$context = new Context();$user_in = "\$input equals '4' or \$input equals 'four'";$reader = new StringReader($user_in);$scanner = new Scanner($reader, $context);
+Testing is also a tool for improving object-oriented design. Testing first (or at least concurrently) helps 
 
-while ($scanner->nextToken() != Scanner::EOF) {    print $scanner->token();    print "   {$scanner->charNo()}";    print "   {$scanner->getTypeString()}\n";}
+you to focus on a class’s interface and think carefully about the responsibility and behavior of every method. I introduced PHPUnit, which is used for testing, in Chapter 18.
 
-I initialize a Scanner object and then loop through the tokens in the given string by repeatedly calling 
+StandardsI am a contrarian by nature. I hate being told what to do. Words like compliance instantly invoke a fight-or-flight response in me. But, counter-intuitive as it may seem, standards drive innovation. That is because they drive interoperability. The rise of the Internet was fueled in part by the fact that open standards are built in to its core. Web sites can link to one another, and web servers can be reused in any domain because protocols are well-known and respected. A solution in a silo may be better than a widely accepted and applied standard, but what if the silo burns down? What if it is bought, and the new owner decides to charge for access? What happens when some people decide that the silo next door is better? In Chapter 16 I discussed PSR, PHP Standard Recommendations. I focused in particular on standards for autoloading, which have done much to clean up the way that PHP developers include classes. I also looked at PSR-2, the standard for coding style. Programmers have strong feelings about the placement of braces and the deployment of argument lists, but agreeing to abide by a common set of rules makes for readable and consistent code, and allows us to use tools to check and reformat our source files. In that spirit I have reformatted all code examples in this edition to comply with PSR-2.
 
-nextToken(). The token() method returns the current portion of the input matched. char_no() tells me where I am in the string, and getTypeString() returns a string version of the constant flag representing the current token. This is what the output should look like:
+Version ControlCollaboration is hard. Let’s face it: people are awkward. Programmers are even worse. Once you’ve sorted out the roles and tasks on your team, the last thing you want to deal with is clashes in the source code itself. As you saw in Chapter 17, Git (and similar tools such as CVS and Subversion) enable you to merge the work of multiple programmers into a single repository. Where clashes are unavoidable, Git flags the fact and points you to the source to fix the problem.
 
-$       1       CHARinput   6       WORD        7       WHITESPACEequals  13      WORD        14      WHITESPACE'       15      APOS4       16      WORD'       17      APOS        18      WHITESPACE
+Even if you are a solo programmer, version control is a necessity. Git supports branching, so that you can maintain a software release and develop the next version at the same time, merging bug fixes from the stable release to the development branch.
 
-547
+Git also provides a record of every commit ever made on your project. This means that you can roll back 
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+by date or tag to any moment. This will save your project someday—believe me.
 
-or      20      WORD        21      WHITESPACE$       22      CHARinput   27      WORD        28      WHITESPACEequals  34      WORD        35      WHITESPACE'       36      APOSfour    40      WORD'       41      APOS
+Automated BuildVersion control without automated build is of limited use. A project of any complexity takes work to deploy. Various files need to be moved to different places on a system, configuration files need to be transformed to have the right values for the current platform and database, and database tables need to be set up or transformed. I covered two tools designed for installation. The first, Composer (see Chapter 15), is ideal for standalone packages and small applications. The second build tool I covered was Phing (see Chapter 19), which is a tool with enough power and flexibility to automate the installation of the largest and most labyrinthine project.
 
-I could, of course, match finer-grained tokens than this, but this is good enough for my purposes. 
+Automated build transforms deployment from a chore to a matter of a line or two at the command line. With little effort, you can invoke your test framework and your documentation output from your build tool. If the needs of your developers do not sway you, bear in mind the pathetically grateful cries of your users as they discover that they need no longer spend an entire afternoon copying files and changing configuration fields every time you release a new version of your project.
 
-Breaking up the string is the easy part. How do I build up a grammar in code?
+531
 
-The Parser
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-One approach is to build a tree of Parser objects. Here is the abstract Parser class that I will be using:
+Continuous IntegrationIt is not enough to be able to test and build a project; you have do it all the time. This becomes increasingly important as a project grows in complexity and you manage multiple branches. You should build and test the stable branch from which you make minor bug fix releases, an experimental development branch or two, and your main trunk. If you were to try to do all that manually, even with the aid of build and test tools, you’d never get around to any coding. Of course, all coders hate that, so build and testing inevitably get skimped on.
 
-// listing 24.07
+In Chapter 20, I looked at Continuous Integration, a practice and a set of tools that automate the build 
 
-abstract class Parser{    const GIP_RESPECTSPACE = 1;
+and test processes as much as possible.
 
-    protected $respectSpace = false;    protected static $debug = false;    protected $discard = false;    protected $name;    private static $count=0;
+What I MissedA few tool categories I have had to omit from this book due to time and space constraints are, nonetheless, supremely useful for any project. In most cases, there is more than one good tool for the job at hand so, although I’ll suggest one or two, you may want to spend some time talking with other developers and digging around with your favorite search engine before you make your choice.
 
-    public function __construct(string $name = null, $options = [])    {        if (is_null($name)) {            self::$count++;            $this->name = get_class($this) . " (" . self::$count . ")";        } else {            $this->name = $name;        }
+If your project has more than one developer or even just an active client, then you will need a tool to 
 
-        if (isset($options[self::GIP_RESPECTSPACE])) {            $this->respectSpace=true;        }    }
+track bugs and tasks. Like version control, a bug tracker is one of those productivity tools that, once you have tried it on a project, you cannot imagine not using. Trackers allow users to report problems with a project, but they are just as often used as a means of describing required features and allocating their implementation to team members.
 
-    protected function next(Scanner $scanner)    {        $scanner->nextToken();
+You can get a snapshot of open tasks at any time, narrowing the search according to product, task owner, version number, and priority. Each task has its own page, in which you can discuss any ongoing issues. Discussion entries and changes in task status can be copied by mail to team members, so it’s easy to keep an eye on things without going to the tracker URL all the time.
 
-        if (! $this->respectSpace) {            $scanner->eatWhiteSpace();
+There are many tools out there. Even after all this time, though, I usually return to the venerable Bugzilla 
 
-548
+(http://www.bugzilla.org). Bugzilla is free and open source, and has all the features most developers could need. It is a downloadable product, so you will have to run it on your own server. It still looks a little Web 1.0, but it’s none the worse for that. If you do not want to host your own tracker, and you have or prefer your interfaces a little prettier (and have deeper pockets), you might look at the Atlassian’s SAAS solution, Jira (https://www.atlassian.com/software/jira).
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+For high level task tracking and project planning (especially if you’re interested in using a Kanban 
 
-        }    }
+system), you might also look at Trello (http://www.trello.com).
 
-    public function spaceSignificant(bool $bool)    {        $this->respectSpace = $bool;    }
+A tracker is generally just one of a suite of collaboration tools you will want to use to share information 
 
-    public static function setDebug(bool $bool)    {        self::$debug = $bool;    }
+around a project. At a price, you can use an integrated solution such as Basecamp (https://basecamp.com/) or Atlassian tools (https://www.atlassian.com/). Or you may choose to stitch together a tools ecosystem using a variety of tools. To facilitate communication within your team, for example, you will probably need a mechanism for chat or messaging. Perhaps the most popular tool for this at the time of this writing is Slack (https://www.slack.com). Slack is a multi-roomed web-based chat environment. If you’re old school like me, you might instantly think of IRC (Internet Relay Chat)—and you’d be right: there’s little you can do with Slack that you couldn’t do with IRC. Except that Slack is browser-based, easy-to-use, and has integration with other services already built-in. Slack is free unless you need premium features.
 
-    public function setHandler(Handler $handler)    {        $this->handler = $handler;    }
+Speaking of old school, you might also consider using a mailing list for your project. My favorite mailing list software is Mailman (http://www.gnu.org/software/mailman/), which is free, relatively easy to install, and highly configurable.
 
-    final public function scan(Scanner $scanner): bool    {        if ($scanner->tokenType() == Scanner::SOF) {            $scanner->nextToken();        }
+For co-operatively editable text documents and spreadsheets, Google Docs (https://docs.google.
 
-        $ret = $this->doScan($scanner);
+com/) is probably the easiest solution.
 
-        if ($ret && ! $this->discard && $this->term()) {            $this->push($scanner);        }
+Your code is not as clear as you think it is. A stranger visiting a codebase for the first time can be faced 
 
-        if ($ret) {            $this->invokeHandler($scanner);        }
+with a daunting task. Even you, as author of the code, will eventually forget how it all hangs together. For inline documentation, you should look at phpDocumentor (https://www.phpdoc.org/) which allows you to document as you go, and automatically generates hyperlinked output. The output from phpDocumentor 
 
-        if ($this->term() && $ret) {            $this->next($scanner);        }
+532
 
-        $this->report("::scan returning $ret");
+Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
-        return $ret;    }
+is particularly useful in an object-oriented context, as it allows the user to click around from class to class. As classes are often contained in their own files, reading the source directly can involve following complex trails from source file to source file.
 
-    public function discard()    {        $this->discard = true;    }
+Although inline documentation is important, projects also generate a broiling heap of written material. This includes usage instructions, consultation on future directions, client assets, meeting minutes, and party announcements. During the lifetime of a project, such materials are very fluid, and a mechanism is often needed to allow people to collaborate in their evolution.
 
-    abstract public function trigger(Scanner $scanner): bool;
+A wiki (wiki is apparently Hawaiian for「very fast」) is the perfect tool for creating collaborative webs 
 
-    public function term(): bool
+of hyperlinked documents. Pages can be created or edited at the click of a button, and hyperlinks are automatically generated for words that match page names. A wiki is another one of those tools that seems so simple, essential, and obvious that you are sure you probably had the idea first, but just didn’t get around to doing anything about it. There are a number of wikis to choose from. I have had good experience with PhpWiki, which can be downloaded from http://phpwiki.sourceforge.net, and DokuWiki, which you can find at http://wiki.splitbrain.org/wiki:dokuwiki.
 
-549
+Summary
 
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
+In this chapter I wrapped things up, revisiting the core topics that make up the book. Although I haven’t tackled any concrete issues such as individual patterns or object functions here, this chapter should serve as a reasonable summary of this book’s concerns.
 
-    {        return true;    }
+There is never enough room or time to cover all the material that one would like. Nevertheless, I hope 
 
-    protected function invokeHandler(Scanner $scanner)    {        if (! empty($this->handler)) {            $this->report("calling handler: " . get_class($this->handler));            $this->handler->handleMatch($this, $scanner);        }    }
+that this book has served to make one argument: PHP is growing up. It is now one of the most popular programming languages in the world. I hope that PHP remains the hobbyist’s favorite language, and that many new PHP programmers are delighted to discover how far they can get with just a little code. At the same time, though, more and more professional teams are building large systems with PHP. Such projects deserve more than a just-do-it approach. Through its extension layer, PHP has always been a versatile language, providing a gateway to hundreds of applications and libraries. Its object-oriented support, on the other hand, gains you access to a different set of tools. Once you begin to think in objects, you can chart the hard-won experience of other programmers. You can navigate and deploy pattern languages developed with reference, not just to PHP, but to Smalltalk, C++, C#, or Java, too. It is our responsibility to meet this challenge with careful design and good practice. The future is reusable.
 
-    protected function report($msg)    {        if (self::$debug) {            print "<{$this->name}> " . get_class($this) . ": $msg\n";        }    }
+533
 
-    protected function push(Scanner $scanner)    {        $context = $scanner->getContext();        $context->pushResult($scanner->token());    }
+CHAPTER 23
 
-    abstract protected function doScan(Scanner $scan): bool;}
-
-The place to start with this class is the scan() method. It is here that most of the logic resides. scan() is given a Scanner object to work with. The first thing that the Parser does is defer to a concrete child class, calling the abstract doScan() method. doScan() returns true or false; you will see a concrete example later in this section.
-
-If doScan() reports success, and a couple of other conditions are fulfilled, then the results of the 
-
-parse are pushed to the Context object’s result stack. The Scanner object holds the Context that is used by Parser objects to communicate results. The actual pushing of the successful parse takes place in the Parser::push() method:
-
-    protected function push(Scanner $scanner)    {        $context = $scanner->getContext();        $context->pushResult($scanner->token());    }
-
-In addition to a parse failure, there are two conditions that might prevent the result from being pushed 
-
-to the scanner’s stack. First, client code can ask a parser to discard a successful match by calling the discard() method. This toggles a property called $discard to true. Second, only terminal parsers (that is, parsers that are not composed of other parsers) should push their result to the stack. Composite parsers (instances of CollectionParser, often referred to in the following text as collection parsers) will instead let their successful children push their results. I test whether or not a parser is terminal using the term() method, which is overridden to return false by collection parsers.
-
-550
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-If the concrete parser has been successful in its matching, then I call another method: 
-
-invokeHandler(). This is passed the Scanner object. If a Handler (that is, an object that implements the Handler interface) has been attached to Parser (using the setHandler() method), then its handleMatch() method is invoked here. I use handlers to make a successful grammar actually do something, as you will see shortly.
-
-Back in the scan() method, I call on the Scanner object (via the next() method) to advance its position 
-
-by calling its nextToken() and eatWhiteSpace() methods. Finally, I return the value that was provided by doScan().
-
-In addition to doScan(), notice the abstract trigger() method. This is used to determine whether a parser should bother to attempt a match. If trigger() returns false, then the conditions are not right for parsing. Let’s take a look at a concrete terminal, Parser. CharacterParse is designed to match a particular character:
-
-// listing 24.08
-
-class CharacterParse extends Parser{    private $char;
-
-    public function __construct($char, $name = null, $options = null)    {        parent::__construct($name, $options);        $this->char = $char;    }
-
-    public function trigger(Scanner $scanner): bool    {        return ($scanner->token() == $this->char);    }
-
-    protected function doScan(Scanner $scanner): bool    {        return ($this->trigger($scanner));    }}
-
-The constructor accepts a character to match and an optional parser name for debugging purposes. 
-
-The trigger() method simply checks whether the scanner is pointing to a character token that matches the sought character. Because no further scanning than this is required, the doScan() method simply invokes trigger().
-
-Terminal matching is a reasonably simple affair, as you can see. Let’s look now at a collection parser. 
-
-First, I’ll define a common superclass, and then go on to create a concrete example:
-
-// listing 24.09
-
-abstract class CollectionParse extends Parser{    protected $parsers = [];
-
-    public function add(Parser $p): Parser    {
-
-551
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-        if (is_null($p)) {            throw new Exception("argument is null");        }
-
-        $this->parsers[]= $p;
-
-        return $p;    }
-
-    public function term(): bool    {        return false;    }}
-
-// listing 24.10
-
-class SequenceParse extends CollectionParse{    public function trigger(Scanner $scanner): bool    {        if (empty($this->parsers)) {            return false;        }
-
-        return $this->parsers[0]->trigger($scanner);    }
-
-    protected function doScan(Scanner $scanner): bool    {        $start_state = $scanner->getState();
-
-        foreach ($this->parsers as $parser) {            if (! ($parser->trigger($scanner) && $parser->scan($scanner))) {                $scanner->setState($start_state);                return false;            }        }
-
-        return true;    }}
-
-The abstract CollectionParse class simply implements an add() method that aggregates Parsers and 
-
-overrides term() to return false.
-
-The SequenceParse::trigger() method tests only the first child Parser it contains, invoking its trigger() method. The calling Parser will first call CollectionParse::trigger() to see if it is worth calling CollectionParse::scan(). If CollectionParse::scan() is called, then doScan() is invoked, and the trigger() and scan() methods of all Parser children are called in turn. A single failure results in CollectionParse::doScan() reporting failure.
-
-552
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-One of the problems with parsing is the need to try stuff out. A SequenceParse object may contain an 
-
-entire tree of parsers within each of its aggregated parsers. These will push the Scanner on by a token or more and cause results to be registered with the Context object. If the final child in the Parser list returns false, what should SequenceParse do about the results lodged in Context by the child’s more successful siblings? A sequence is all or nothing, so I have no choice but to roll back both the Context object and the Scanner. I do this by saving state at the start of doScan() and calling setState() just before returning false on failure. Of course, if I return true, then there’s no need to roll back.
-
-For the sake of completeness, here are all the remaining Parser classes:
-
-// listing 24.11
-
-class RepetitionParse extends CollectionParse{    private $min;    private $max;
-
-    public function __construct($min = 0, $max = 0, $name = null, $options = null)    {        parent::__construct($name, $options);
-
-        if ($max < $min && $max > 0) {            throw new Exception(                "maximum ( $max ) larger than minimum ( $min )"            );        }
-
-        $this->min = $min;        $this->max = $max;    }
-
-    public function trigger(Scanner $scanner): bool    {        return true;    }
-
-    protected function doScan(Scanner $scanner): bool    {        $start_state = $scanner->getState();
-
-        if (empty($this->parsers)) {            return true;        }
-
-        $parser = $this->parsers[0];        $count = 0;
-
-        while (true) {            if ($this->max > 0 && $count >= $this->max) {                return true;            }
-
-553
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-            if (! $parser->trigger($scanner)) {                if ($this->min == 0 || $count >= $this->min) {                    return true;                } else {                    $scanner->setState($start_state);
-
-                    return false;                }            }
-
-            if (! $parser->scan($scanner)) {                if ($this->min == 0 || $count >= $this->min) {                    return true;                } else {                    $scanner->setState($start_state);
-
-                    return false;                }            }
-
-            $count++;        }
-
-        return true;    }}
-
-// This matches if one or other of two subparsers match// listing 24.12class AlternationParse extends CollectionParse{    public function trigger(Scanner $scanner): bool    {        foreach ($this->parsers as $parser) {            if ($parser->trigger($scanner)) {                return true;            }        }
-
-        return false;    }
-
-    protected function doScan(Scanner $scanner): bool    {        $type = $scanner->tokenType();
-
-        foreach ($this->parsers as $parser) {            $start_state = $scanner->getState();
-
-554
-
-            if ($type == $parser->trigger($scanner) && $parser->scan($scanner)) {                 return true;            }        }
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-        $scanner->setState($start_state);
-
-        return false;    }}
-
-// this terminal parser matches a string literal// listing 24.13class StringLiteralParse extends Parser{    public function trigger(Scanner $scanner): bool    {        return (            $scanner->tokenType() == Scanner::APOS ||            $scanner->tokenType() == Scanner::QUOTE        );    }
-
-    protected function push(Scanner $scanner)    {        return;    }
-
-    protected function doScan(Scanner $scanner): bool    {        $quotechar = $scanner->tokenType();        $ret = false;        $string = "";
-
-        while ($token = $scanner->nextToken()) {            if ($token == $quotechar) {                $ret = true;                break;            }
-
-            $string .= $scanner->token();        }
-
-        if ($string && ! $this->discard) {            $scanner->getContext()->pushResult($string);        }
-
-        return $ret;    }}
-
-555
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-// this terminal parser matches a word token// listing 24.14class WordParse extends Parser{    public function __construct($word = null, $name = null, $options = [])    {        parent::__construct($name, $options);        $this->word = $word;    }
-
-    public function trigger(Scanner $scanner): bool    {        if ($scanner->tokenType() != Scanner::WORD) {            return false;        }
-
-        if (is_null($this->word)) {            return true;        }
-
-        return ($this->word == $scanner->token());    }
-
-    protected function doScan(Scanner $scanner): bool    {        return ($this->trigger($scanner));    }}
-
-By combining terminal and nonterminal Parser objects, I can build a reasonably sophisticated parser. 
-
-You can see all the Parser classes I use for this example in Figure 24-1.
-
-556
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-Figure 24-1.  The Parser classes
-
-The idea behind this use of the Composite pattern is that a client can build up a grammar in code that closely matches EBNF notation. Table 24-1 shows the parallels between these classes and EBNF fragments.
-
-Table 24-1.  Composite Parsers and EBNF
-
-Class
-
-EBNF Example
-
-Description
-
-AlternationParse
-
-orExpr | andExpr
-
-SequenceParse
-
-RepetitionParse
-
-'and' operand
-
-( eqExpr )*
-
-Either one or anotherA list (all required in order)
-
-Zero or more required
-
-557
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-Now it’s time to build some client code to implement the mini-language. As a reminder, here is the 
-
-EBNF fragment I presented in Chapter 11:
-
-expr     = operand { orExpr | andExpr }operand  = ( '(' expr ')' | ? string literal ? | variable ) { eqExpr }orExpr   = 'or' operandandExpr  = 'and' operandeqExpr   = 'equals' operandvariable = '$' , ? word ?
-
-This simple class builds up a grammar based on this fragment and runs it:
-
-// listing 24.15
-
-class MarkParse{    private $expression;    private $operand;    private $interpreter;    private $context;
-
-    public function __construct($statement)    {        $this->compile($statement);    }
-
-    public function evaluate($input)    {        $icontext = new InterpreterContext();        $prefab = new VariableExpression('input', $input);        // add the input variable to Context        $prefab->interpret($icontext);
-
-        $this->interpreter->interpret($icontext);        $result = $icontext->lookup($this->interpreter);
-
-        return $result;    }
-
-    public function compile($statementStr)    {        // build parse tree        $context = new Context();        $scanner = new Scanner(new StringReader($statementStr), $context);        $statement = $this->expression();        $scanresult = $statement->scan($scanner);
-
-        if (! $scanresult || $scanner->tokenType() != Scanner::EOF) {            $msg  = "";            $msg .= " line: {$scanner->line_no()} ";            $msg .= " char: {$scanner->char_no()}";            $msg .= " token: {$scanner->token()}\n";
-
-558
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-            throw new Exception($msg);        }
-
-        $this->interpreter = $scanner->getContext()->popResult();    }
-
-    public function expression(): Parser    {        if (! isset($this->expression)) {            $this->expression = new SequenceParse();            $this->expression->add($this->operand());            $bools = new RepetitionParse();            $whichbool = new AlternationParse();            $whichbool->add($this->orExpr());            $whichbool->add($this->andExpr());            $bools->add($whichbool);            $this->expression->add($bools);        }
-
-        return $this->expression;    }
-
-    public function orExpr(): Parser    {        $or = new SequenceParse();        $or->add(new WordParse('or'))->discard();        $or->add($this->operand());        $or->setHandler(new BooleanOrHandler());
-
-        return $or;    }
-
-    public function andExpr(): Parser    {        $and = new SequenceParse();        $and->add(new WordParse('and'))->discard();        $and->add($this->operand());        $and->setHandler(new BooleanAndHandler());
-
-        return $and;    }
-
-    public function operand(): Parser    {        if (! isset($this->operand)) {            $this->operand = new SequenceParse();            $comp = new AlternationParse();            $exp = new SequenceParse();            $exp->add(new CharacterParse('('))->discard();            $exp->add($this->expression());            $exp->add(new CharacterParse(')'))->discard();            $comp->add($exp);
-
-559
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-            $comp->add(new StringLiteralParse())                ->setHandler(new StringLiteralHandler());            $comp->add($this->variable());            $this->operand->add($comp);            $this->operand->add(new RepetitionParse())->add($this->eqExpr());        }
-
-        return $this->operand;    }
-
-    public function eqExpr(): Parser    {        $equals = new SequenceParse();        $equals->add(new WordParse('equals'))->discard();        $equals->add($this->operand());        $equals->setHandler(new EqualsHandler());
-
-        return $equals;    }
-
-    public function variable(): Parser    {        $variable = new SequenceParse();        $variable->add(new CharacterParse('$'))->discard();        $variable->add(new WordParse());        $variable->setHandler(new VariableHandler());
-
-        return $variable;    }}
-
-This may seem like a complicated class, but all it is doing is building up the grammar I have already 
-
-defined. Most of the methods are analogous to production names (that is, the names that begin each production line in EBNF, such as eqExpr and andExpr). If you look at the expression() method, you should see that I am building up the same rule as I defined in EBNF earlier:
-
-// expr     = operand { orExpr | andExpr }    public function expression()    {        if (! isset($this->expression)) {            $this->expression = new SequenceParse();            $this->expression->add($this->operand());            $bools = new RepetitionParse();            $whichbool = new AlternationParse();            $whichbool->add($this->orExpr());            $whichbool->add($this->andExpr());            $bools->add($whichbool);            $this->expression->add($bools);        }
-
-        return $this->expression;    }
-
-560
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-In both the code and the EBNF notation, I define a sequence that consists of a reference to an operand, followed by zero or more instances of an alternation between orExpr and andExpr. Notice that I am storing the Parser returned by this method in a property variable. This is to prevent infinite loops, as methods invoked from expression() themselves reference expression().
-
-The only methods that are doing more than just building the grammar are compile() and evaluate(). compile() can be called directly or automatically via the constructor, which accepts a statement string and uses it to create a Scanner object. It calls the expression() method, which returns a tree of Parser objects that make up the grammar. It then calls Parser::scan(), passing it the Scanner object. If the raw code does not parse, the compile() method throws an exception. Otherwise, it retrieves the result of compilation as left on the Scanner object’s Context. As you will see shortly, this should be an Expression object. This result is stored in a property called $interpreter.
-
-The evaluate() method makes a value available to the Expression tree. It does this by predefining a VariableExpression object named input and registering it with the Context object that is then passed to the main Expression object. As with variables such as $_REQUEST in PHP, this $input variable is always available to MarkLogic coders.
-
- ■ Note  See Chapter 11 for more about the VariableExpression class that is part of the interpreter pattern example.
-
-The evaluate() method calls the Expression::interpret() method to generate a final result. 
-
-Remember, you need to retrieve interpreter results from the Context object.
-
-So far, you have seen how to parse text and how to build a grammar. You also saw in Chapter 11 how to use the Interpreter pattern to combine Expression objects and process a query. You have not yet seen, however, how to relate the two processes. How do you get from a parse tree to the interpreter? The answer lies in the Handler objects that can be associated with Parser objects using Parser::setHandler(). Let’s take a look at the way to manage variables. I associate a VariableHandler with the Parser in the variable() method:
-
-$variable->setHandler(new VariableHandler());
-
-Here is the Handler interface:
-
-// listing 24.16
-
-interface Handler{    public function handleMatch(        Parser $parser,        Scanner $scanner    );}
-
-And here is VariableHandler:
-
-// listing 24.17
-
-class VariableHandler implements Handler{
-
-561
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-    public function handleMatch(Parser $parser, Scanner $scanner)    {        $varname = $scanner->getContext()->popResult();        $scanner->getContext()->pushResult(new VariableExpression($varname));    }}
-
-If the Parser with which VariableHandler is associated matches on a scan operation, then 
-
-handleMatch() is called. By definition, the last item on the stack will be the name of the variable. I remove this and replace it with a new VariableExpression object with the correct name. Similar principles are used to create EqualsExpression objects, LiteralExpression objects, and so on.
-
-Here are the remaining handlers:
-
-// listing 24.18
-
-class StringLiteralHandler implements Handler{    public function handleMatch(Parser $parser, Scanner $scanner)    {        $value = $scanner->getContext()->popResult();        $scanner->getContext()->pushResult(new LiteralExpression($value));    }}
-
-// listing 24.19
-
-class EqualsHandler implements Handler{    public function handleMatch(Parser $parser, Scanner $scanner)    {        $comp1 = $scanner->getContext()->popResult();        $comp2 = $scanner->getContext()->popResult();        $scanner->getContext()->pushResult(new EqualsExpression($comp1, $comp2));    }}
-
-// listing 24.20
-
-class BooleanOrHandler implements Handler{    public function handleMatch(Parser $parser, Scanner $scanner)    {        $comp1 = $scanner->getContext()->popResult();        $comp2 = $scanner->getContext()->popResult();        $scanner->getContext()->pushResult(new BooleanOrExpression($comp1, $comp2));    }}
-
-// listing 24.21
-
-562
-
-ChAPTer 24 ■ APPendix B: A SiMPle PArSer
-
-class BooleanAndHandler implements Handler{    public function handleMatch(Parser $parser, Scanner $scanner)    {        $comp1 = $scanner->getContext()->popResult();        $comp2 = $scanner->getContext()->popResult();        $scanner->getContext()->pushResult(new BooleanAndExpression($comp1, $comp2));    }}
-
-Bearing in mind that you also need the Interpreter example from Chapter 11 at hand, you can work with 
-
-the MarkParse class like this:
-
-$input      = 'five';$statement = "( \$input equals 'five')";
-
-$engine = new MarkParse($statement);$result = $engine->evaluate($input);print "input: $input evaluating: $statement\n";
-
-if ($result) {    print "true!\n";} else {    print "false!\n";}
-
-This should produce the following results:
-
-input: five evaluating: ( $input equals 'five')true!
-
-563
+Appendix A: Bibliography
 

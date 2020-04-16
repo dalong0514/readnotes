@@ -1,1312 +1,1016 @@
-Automated Build with Phing
+Testing with PHPUnit
 
-If version control is one side of the coin, then automated build is the other. Version control allows multiple developers to work collaboratively on a single project. With many coders each deploying a project in her own space, automated build soon becomes essential. One developer may have her web-facing directory in /usr/local/apache/htdocs; another might use /home/bibble/public_html. Developers may use different database passwords, library directories, or mail mechanisms. A flexible codebase might easily accommodate all of these differences, but the effort of changing settings and manually copying directories around your file system to get things working would soon become tiresome—especially if you need to install code in progress several times a day (or several times an hour).
+Every component in a system depends for its continued smooth running on the consistency of operation and interface of its peers. By definition, then, development breaks systems. As you improve your classes and packages, you must remember to amend any code that works with them. For some changes, this can create a ripple effect, affecting components far away from the code you originally changed. Eagle-eyed vigilance and an encyclopedic knowledge of a system’s dependencies can help to address this problem. Of course, while these are excellent virtues, systems soon grow too complex for every unwanted effect to be easily predicted, not least because systems often combine the work of many developers. To address this problem, it is a good idea to test every component regularly. This, of course, is a repetitive and complex task; and as such, it lends itself well to automation.
 
-You have already seen that Composer automates package installation. You’ll almost certainly want to 
+Among the test solutions available to PHP programmers, PHPUnit is perhaps the most ubiquitous and 
 
-deliver a project to an end user via a Composer or PEAR package because that mechanism is straightforward for the user and because package-management systems handle dependencies. But there’s a lot of work that might need automating before a package has been created. You may need to generate template-generated code, for example. You should run tests and provide mechanisms for creating and updating database tables. Finally, you may want to automate the creation of a production-ready package. In this chapter, I introduce you to Phing, which handles just such jobs. This chapter will cover the following:
+certainly the most fully featured tool. In this chapter, you will learn the following about PHPUnit:
 
-Properties: Setting and getting data
+Installation: Using PEAR to install PHPUnit
 
-•	 Getting and installing Phing: Who builds the builder?•	•	•	•	
+•	•	 Writing Tests: Creating test cases and using assertion methods•	 Handling Exceptions: Strategies for confirming failure•	•	•	•	
 
-Types: Describing complex parts of a project
+Running multiple tests: Collecting tests into suites
 
-Targets: Breaking a build into callable, interdependent sets of functionality
+Constructing assertion logic: Using constraints
 
-Tasks: The things that get stuff done
+Faking components: Mocks and stubs
 
-What Is Phing?
+Testing web applications: Testing with and without additional tools
 
-Phing is a PHP tool for building projects. It is very closely modeled on the hugely popular (and very powerful) Java tool called Ant. Ant was so named because it is small but capable of constructing things that are very large indeed. Both Phing and Ant use an XML file (usually named build.xml) to determine what to do in order to install or otherwise work with a project.
+Functional Tests and Unit Tests
 
-The PHP world really needs a good build solution. Serious developers have had a number of options in the past. First, it is possible to use make, the ubiquitous Unix build tool that is still used for most C and Perl projects. However, make is extremely picky about syntax and requires quite a lot of shell knowledge, up to and including scripting—this can be challenging for some PHP programmers who have not come to programming via the Unix or Linux command line. What’s more, make provides very few built-in tools for common build operations such as transforming file names and contents. It is really just a glue for shell commands. This makes it hard to write programs that will install across platforms. Not all environments will have the same version of make, or even have it at all. Even if you have make, you may not have all the commands the makefile (the configuration file that drives make) requires.
+Testing is essential in any project. Even if you don’t formalize the process, you must have found yourself developing informal lists of actions that put your system through its paces. This process soon becomes wearisome, and that can lead to a fingers-crossed attitude to your projects.
 
-465
+One approach to testing starts at the interface of a project, modeling the various ways in which a user 
 
-Chapter 19 ■ automated Build with phing
+might negotiate the system. This is probably the way you would go when testing by hand, although there are various frameworks for automating the process. These functional tests are sometimes called acceptance tests because a list of actions performed successfully can be used as criteria for signing off a project phase. Using this approach, you typically treat the system as a black box—your tests remain willfully ignorant of the hidden components that collaborate to form the system under test.
 
-Phing’s relationship with make is illustrated in its name: Phing stands for PHing Is Not Gnu make. This 
+Whereas functional tests operate from without, unit tests work from the inside out. Unit testing tends 
 
-playful recursion is a common coder’s joke (for example, GNU itself stands for Gnu is Not Unix).
+to focus on classes, with test methods grouped together in test cases. Each test case puts one class through a rigorous workout, checking that each method performs as advertised and fails as it should. The objective, as far as possible, is to test each component in isolation from its wider context. This often supplies you with a sobering verdict on the success of your mission to decouple the parts of your system.
 
-Phing is a native PHP application that interprets a user-created XML file in order to perform operations 
+435
 
-on a project. Such operations would typically involve the copying of files from a distribution directory to various destination directories, but there is much more to Phing. Phing can be used to generate documentation, run tests, invoke commands, run arbitrary PHP code, create packages, replace keywords in files, strip comments, and generate tar/gzipped package releases. Even if Phing does not yet do what you need, it is designed to be easily extensible.
+Chapter 18 ■ testing with phpUnit
 
-Because Phing is itself a PHP application, all you need to run it is a recent PHP engine. As Phing is an 
+Tests can be run as part of the build process, directly from the command line, or even via a web page. In 
 
-application for installing PHP applications, the presence of a PHP executable is a reasonably safe bet.
+this chapter, I’ll concentrate on the command line.
 
-Getting and Installing Phing
+Unit testing is a good way of ensuring the quality of design in a system. Tests reveal the responsibilities of classes and functions. Some programmers even advocate a test-first approach. You should, they say, write the tests before you even begin work on a class. This lays down a class’s purpose, ensuring a clean interface and short, focused methods. Personally, I have never aspired to this level of purity—it just doesn’t suit my style of coding. Nevertheless, I attempt to write tests as I go. Maintaining a test harness provides me with the security I need to refactor my code. I can pull down and replace entire packages with the knowledge that I have a good chance of catching unexpected errors elsewhere in the system.
 
-If it is difficult to install an install tool, then something is surely wrong! However, assuming that you have PHP 5 or better on your system (and if you haven’t, this isn’t the book for you!), installation of Phing could not be easier.
+Testing by Hand
 
-You can acquire and install Phing with two simple commands:
+In the last section, I said that testing was essential in every project. I could have said instead that testing is inevitable in every project. We all test. The tragedy is that we often throw away this good work.
 
-$ pear channel-discover pear.phing.info$ pear install phing/phing
+So, let’s create some classes to test. Here is a class that stores and retrieves user information. For the 
 
-This will install Phing as a PEAR package. You should have write permission for your PEAR directories, 
+sake of demonstration, it generates arrays, rather than the User objects you’d normally expect to use:
 
-which, on most Unix or Linux systems, will mean running the command as the root user.
+// listing 18.01class UserStore{    private $users = [];
 
- at the time of this writing, phing installed with pear is broken due to a namespacing issue. this problem 
+    public function addUser(string $name, string $mail, string $pass):bool    {        if (isset($this->users[$mail])) {            throw new \Exception(                "User {$mail} already in the system"            );        }
 
- ■ Note will likely be resolved by the time you read this. if not, however, we have had good results using Composer.
+        if (strlen($pass) < 5) {            throw new \Exception(                "Password must have 5 or more letters"            );        }
 
-You can also install Phing with Composer. You should add this to your composer.json file:
+        $this->users[$mail] = [            'pass' => $pass,            'mail' => $mail,            'name' => $name        ];
 
-{    "require-dev": {        "phing/phing": "2.*"    }}
+        return true;    }
 
-If you run into any installation problems, you should visit the download page at http://phing.info/
+    public function notifyPasswordFailure(string $mail)    {        if (isset($this->users[$mail])) {            $this->users[$mail]['failed'] = time();        }    }
 
-trac/wiki/Users/Download. You will find plenty of installation instructions there.
+436
 
-Composing the Build Document
+Chapter 18 ■ testing with phpUnit
 
-You should now be ready to get cracking with Phing! Let’s test things out:
+    public function getUser(string $mail):array    {        return ( $this->users[$mail] );    }}
 
-$ phing -v
+This class accepts user data with the addUser() method and retrieves it via getUser(). The user’s 
 
-Phing 2.14.0
+e-mail address is used as the key for retrieval. If you’re like me, you’ll write some sample implementation as you develop, just to check that things are behaving as you designed them:
 
-The -v flag to the phing command causes the script to return version information. By the time you 
+// listing 18.02$store = new UserStore();$store->addUser(    "bob williams",    "bob@example.com",    "12345");$store->notifyPasswordFailure("bob@example.com");$user = $store->getUser("bob@example.com");print_r($user);
 
-read this, the version number may have changed, but you should see a similar message when you run the command on your system.
+This is the sort of thing that I might add to the foot of a file as I work on the class it contains. The test 
 
-466
+validation is performed manually, of course; it’s up to me to eyeball the results and confirm that the data returned by UserStore::getUser() corresponds with the information I added initially. It’s a test of sorts, nevertheless.
 
-Chapter 19 ■ automated Build with phing
+Here is a client class that uses UserStore to confirm that a user has provided the correct authentication 
 
- if you installed phing using Composer, the runnable script file will be installed in your local  
+information:
 
- ■ Note vendor/bin/ directory. to run phing you should either add this directory to your $PATH environment variable or use an explicit path to the executable.
+// listing 18.03class Validator{    private $store;
 
-Now I’ll run the phing command without arguments:
+    public function __construct(UserStore $store)    {        $this->store = $store;    }
 
-$ phing
+    public function validateUser(string $mail, string $pass): bool    {        if (! is_array($user = $this->store->getUser($mail))) {            return false;        }
 
-Buildfile: build.xml does not exist!
+        if ($user['pass'] == $pass) {            return true;        }
 
-As you can see, Phing is lost without instructions. By default, it will look for a file called build.xml. Let’s 
+        $this->store->notifyPasswordFailure($mail);
 
-build a minimal document so that we can at least make that error message go away:
+        return false;    }}
 
-<?xml version="1.0"?><!-- build xml -->
+437
 
-<project name="megaquiz" default="main">    <target name="main"/></project>
+Chapter 18 ■ testing with phpUnit
 
-This is the bare minimum you can get away with in a build file. If we save the previous example as 
+The class requires a UserStore object, which it saves in the $store property. This property is used by 
 
-build.xml and run phing again, we should get some more interesting output:
+the validateUser() method to ensure, first of all, that the user referenced by the given e-mail address exists in the store; and, second, that the user’s password matches the provided argument. If both these conditions are fulfilled, the method returns true. Once again, I might test this as I go along:
 
-$ phing
+// listing 18.04$store = new UserStore();$store->addUser("bob williams", "bob@example.com", "12345");$validator = new Validator($store);if ($validator->validateUser("bob@example.com", "12345")) {    print "pass, friend!\n";}
 
-Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'main' has no tasks or dependencies
+I instantiate a UserStore object, which I prime with data and pass to a newly instantiated Validator 
 
-megaquiz > main:
+object. I can then confirm a user name and password combination.
 
-BUILD FINISHED
+Once I’m finally satisfied with my work, I could delete these sanity checks altogether or comment them out. This is a terrible waste of a valuable resource. These tests could form the basis of a harness to scrutinize the system as I develop. One of the tools that might help me to do this is PHPUnit.
 
-Total time: 1.3404 second
+Introducing PHPUnit
 
-A lot of effort to achieve precisely nothing, you may think, but we have to start somewhere! As you can see, Phing also helpfully points out there’s nothing very useful about this build file. Look again at that build file. Because we are dealing with XML, I include an XML declaration. As you probably know, XML comments look like this:
+PHPUnit is a member of the xUnit family of testing tools. The ancestor of these is SUnit, a framework invented by Kent Beck to test systems built with the Smalltalk language. The xUnit framework was probably established as a popular tool, however, by the Java implementation, jUnit, and by the rise to prominence of agile methodologies like Extreme Programming (XP) and Scrum, all of which place great emphasis on testing.
 
-<!-- this is an XML comment. OK? -->
+You can get PHPUnit with Composer:
 
-So, because it’s a comment, the second line in my build file is ignored. You can put as many comments as you like in your build files, and as they grow, you should make full use of this fact. Large build files can be hard to follow without suitable comments.
+{    "require-dev": {        "phpunit/phpunit": "5.3.*"    }}
 
-467
+Once you have run composer install, you will find the phpunit script at vendor/bin/phpunit. Or, you 
 
-Chapter 19 ■ automated Build with phing
+can download a PHP archive (.phar) file. You can then make the archive executable:
 
-The real start of any build file is the project element. The project element can include up to five 
+$ wget https://phar.phpunit.de/phpunit.phar$ chmod 755 phpunit.phar$ sudo mv phpunit.phar/usr/local/bin/phpunit
 
-attributes. Of these, name and default are compulsory. The name attribute establishes the project’s name; default defines a target to run if none are specified on the command line. An optional description attribute can provide summary information. You can specify the context directory for the build using a basedir attribute. If this is omitted, the current working directory will be assumed. Finally, you can specify the minimum version of the Phing application with which the build file should work using phingVersion. You can see these attributes summarized in Table 19-1.
+ i show commands that are input at the command line in bold to distinguish them from any output 
 
-Table 19-1.  The Attributes of the Project Element
+ ■ Note they may produce.
 
-Attribute
+438
 
-Required
+Creating a Test CaseArmed with PHPUnit, I can write tests for the UserStore class. Tests for each target component should be collected in a single class that extends PHPUnit_Framework_TestCase, one of the classes made available by the PHPUnit package. Here’s how to create a minimal test case class:
+
+Chapter 18 ■ testing with phpUnit
+
+// listing 18.05namespace popp\ch18\batch01;
+
+class UserStoreTest extends \PHPUnit_Framework_TestCase{
+
+    public function setUp()    {    }
+
+    public function tearDown()    {    }
+
+// ...}
+
+I named the test case class UserStoreTest. You are not obliged to use the name of the class you are 
+
+testing in the test’s name, although that is what many developers do. Naming conventions of this kind can greatly improve the accessibility of a test harness, especially as the number of components and tests in the system begins to increase. It is often useful to place your test in the same namespace as the class under test. This will give you easy access to the class under test and its peers, and the structure of your test files will likely mirror that of your system. Remember that, thanks to Composer’s support for PSR-4, you can maintain separate directory structures for class files in the same package.
+
+Here’s how we might do this in Composer:
+
+"autoload": {    "psr-4": {        "popp\\": ["myproductioncode/",  "mytestcode/"]    }}  
+
+In this code, I have nominated two directories that map to the popp namespace. I can now maintain 
+
+these in parallel, making it easy to keep my test and production code separate.
+
+Each test in a test case class is run in isolation from its siblings. The setUp() method is automatically invoked for each test method, allowing us to set up a stable and suitably primed environment for the test. tearDown() is invoked after each test method is run. If your tests change the wider environment of your system, you can use this method to reset state. The common platform managed by setUp() and tearDown() is known as a fixture.
+
+In order to test the UserStore class, I need an instance of it. I can instantiate this in setUp() and assign 
+
+it to a property. Let’s create a test method as well:
+
+// listing 18.05namespace popp\ch18\batch01;
+
+439
+
+Chapter 18 ■ testing with phpUnit
+
+class UserStoreTest extends \PHPUnit_Framework_TestCase{    private $store;
+
+    public function setUp()    {        $this->store = new UserStore();    }
+
+    public function tearDown()    {    }
+
+    public function testGetUser()    {        $this->store->addUser("bob williams", "a@b.com", "12345");        $user = $this->store->getUser("a@b.com");        $this->assertEquals($user['mail'], "a@b.com");        $this->assertEquals($user['name'], "bob williams");        $this->assertEquals($user['pass'], "12345");    }
+
+    public function testAddUserShortPass()    {        try {            $this->store->addUser("bob williams", "bob@example.com", "ff");        } catch (\Exception $e) {            return;        }        $this->fail("Short password exception expected");    }}
+
+ ■ Note 
+
+ remember that setUp() and tearDown() are called once for every test method in your class.
+
+Test methods should be named to begin with the word「test」and should require no arguments. This is 
+
+because the test case class is manipulated using reflection.
+
+ ■ Note 
+
+ reflection is covered in detail in Chapter 5.
+
+The object that runs the tests looks at all the methods in the class and invokes only those that match this 
+
+pattern (that is, methods that begin with「test」).
+
+440
+
+Chapter 18 ■ testing with phpUnit
+
+In the example, I tested the retrieval of user information. I don’t need to instantiate UserStore for each 
+
+test because I handled that in setUp(). Because setUp() is invoked for each test, the $store property is guaranteed to contain a newly instantiated object.
+
+Within the testgetUser() method, I first provide UserStore::addUser() with dummy data, and then I 
+
+retrieve that data and test each of its elements.
+
+There is one additional issue to be aware of here, before we can run our test. I am using use statements 
+
+without require or require_once. In other words, I am relying on autoloading. That’s fine, but where do I tell my tests how to locate the generated autoload.php file? I could put a require_once statement in the test class (or a superclass), but that would break the PSR-1 rule that class files should not have side effects. The simplest thing to do is to tell PHPUnit about the autoload.php file from the command line:
+
+$ phpunit src/ch18/batch01/UserStoreTest.php --bootstrap vendor/autoload.php
+
+PHPUnit 5.0.10 by Sebastian Bergmann and contributors.
+
+..                                                                  2 / 2 (100%)
+
+Time: 175 ms, Memory: 4.00MB
+
+OK (2 tests, 3 assertions)
+
+Assertion MethodsAn assertion in programming is a statement or method that allows you to check your assumptions about an aspect of your system. In using an assertion, you typically define an expectation that something is the case, that $cheese is "blue" or $pie is "apple". If your expectation is confounded, a warning of some kind will be generated. Assertions are such a good way of adding safety to a system that PHP supports them natively inline and allows you to turn them off in a production context.
+
+ see the manual page at http://php.net/assert for more information on php’s support for 
+
+ ■ Note assertions.
+
+PHPUnit supports assertions through a set of static methods.In the previous example, I used an inherited static method, assertEquals(). This method compares 
+
+its two provided arguments and checks them for equivalence. If they do not match, the test method will be chalked up as a failed test. Having subclassed PHPUnit_Framework_TestCase, I have access to a set of assertion methods. Some of these methods are listed in Table 18-1.
+
+441
+
+Chapter 18 ■ testing with phpUnit
+
+Table 18-1.  PHPUnit_Framework_TestCase Assert Methods
+
+Method
 
 Description
 
-Default Value
+assertEquals($val1, $val2, $message, $delta)
 
-name
+assertFalse($expression, $message)
 
-description
+assertTrue($expression, $message)
 
-YesNoYesdefaultphingVersion No
+assertNotNull($val, $message)
 
-The name of the projectA brief project summaryThe default target to runThe minimum version of Phing to run against
+assertNull($val, $message)
 
-NoneNoneNoneNone
+assertSame($val1, $val2, $message)
 
-basedir
+assertNotSame($val1, $val2, $message)
 
-No
+assertRegExp($regexp, $val, $message)
 
-The file system context in which build will run
+assertAttributeSame($val, $attribute, $classname, $message)
 
-Current directory (.)
+Fail if $val1 is not equivalent to $val2 ($delta represents an allowable margin of error)Evaluate $expression; fail if it does not resolve to false
 
-Once I have defined a project element, I must create at least one target—the one I reference in the 
+Evaluate $expression; fail if it does not resolve to true
 
-default attribute.
+Fail if $val is nullFail if $val is anything other than nullFail if $val1 and $val2 are not references to the same object, or if they are variables of different types or valuesFail if $val1 and $val2 are references to the same object or variables of the same type and valueFail if $val is not matched by the regular expression, $regexp
 
-TargetsTargets are similar, in some senses, to functions. A target is a set of actions grouped together to achieve an objective: to copy a directory from one place another, for example, or to generate documentation.
+Fail if $val is not the same type and value as $classname::$attribute
 
-In my previous example, I included a bare-minimum implementation for a target:
+fail()
 
-<target name="main"/>
+Fail
 
-As you can see, a target must define at least a name attribute. I have made use of this in the project 
+Testing ExceptionsYour focus as a coder is usually to make stuff work and work well. Often, that mentality carries through to testing, especially if you are testing your own code. The temptation is to test that a method behaves as advertised. It’s easy to forget how important it is to test for failure. How good is a method’s error checking? Does it throw an exception when it should? Does it throw the right exception? Does it clean up after an error if, for example, an operation is half complete before the problem occurs? It is your role as a tester to check all of this. Luckily, PHPUnit can help.
 
-element. Because the default element points to the main target, this target will be invoked whenever Phing is run without command-line arguments. This was confirmed by the output:
+Here is a test that checks the behavior of the UserStore class when an operation fails:
 
-megaquiz > main:
+//...public function testAddUserShortPass(){    try {        this->store->addUser("bob williams", "bob@example.com", "ff");    } catch (\Exception $e) {        return;    }    $this->fail("Short password exception expected");}//...
 
-Targets can be organized to depend on one another. By setting up a dependency between one target 
+442
 
-and another, you tell Phing that the first target should not run before the target it depends on has been run. Now, I’ll add a dependency to my build file:
+Chapter 18 ■ testing with phpUnit
 
-<?xml version="1.0"?><!-- build xml -->
+If you look back at the UserStore::addUser() method, you will see that I throw an exception if the 
 
-<project name="megaquiz"         default="main">    <target name="runfirst" />    <target name="runsecond" depends="runfirst"/>    <target name="main" depends="runsecond"/></project>
+user’s password is less than five characters long. My test attempts to confirm this. I add a user with an illegal password in a try clause. If the expected exception is thrown, then flow skips to the catch clause, and all is well. If the addUser() method does not throw an exception as expected, the execution flow reaches the fail() method call.
 
-468
+Another way to test that an exception is thrown is to use an assertion method called 
 
-Chapter 19 ■ automated Build with phing
+expectException(), which requires the name of the exception type you expect to be thrown (either Exception or a subclass). If the test method exits without the correct exception having been thrown, the test will fail.
 
-As you can see, I have introduced a new attribute for the target element. depends tells Phing that the referenced target should be executed before the current one, so I might want a target that copies certain files to a directory to be invoked before one that runs a transformation on all files in that directory. I added two new targets in the example: runsecond, on which main depends; and runfirst, on which runsecond depends. Here’s what happens when I run Phing with this build file:
+ ■ Note 
 
-$ phing
+ the expectedException() method was added in php 5.2.0.
 
-Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'runfirst' has no tasks or dependencies
+Here’s a quick reimplementation of the previous test:
 
-megaquiz > runfirst:megaquiz > runsecond:megaquiz > main:
+// listing 18.06namespace popp\ch18\batch02;
 
-BUILD FINISHED
+class UserStoreTest extends \PHPUnit_Framework_TestCase{    private $store;
 
-Total time: 0.3029 seconds
+    public function setUp()    {        $this->store = new UserStore();    }
 
-As you can see, the dependencies are honored. Phing encounters the main target, sees its dependency, 
+    public function testAddUserShortPass()    {        $this->expectException('\\Exception');        $this->store->addUser("bob williams", "a@b.com", "ff");        $this->fail("Short password exception expected");    }}
 
-and moves back to runsecond. runsecond has its own dependency, and Phing invokes runfirst. Having satisfied its dependency, Phing can invoke runsecond. Finally, main is invoked. The depends attribute can reference more than one target at a time. A comma-separated list of dependencies can be provided, and each will be honored in turn.
+Running Test SuitesIf I am testing the UserStore class, I should also test Validator. Here is a cut-down version of a class called ValidateTest that tests the Validator::validateUser() method:
 
-Now that I have more than one target to play with, I can override the project element’s default attribute 
+// listing 18.07namespace popp\ch18\batch02;
 
-from the command line:
+class ValidatorTest extends \PHPUnit_Framework_TestCase{    private $validator;
 
-$ phing runsecond
+443
 
-Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'runfirst' has no tasks or dependencies
+Chapter 18 ■ testing with phpUnit
 
-megaquiz > runfirst:megaquiz > runsecond:
+    public function setUp()    {        $store = new UserStore();        $store->addUser("bob williams", "bob@example.com", "12345");        $this->validator = new Validator($store);    }    public function tearDown()    {    }
 
-BUILD FINISHED
+    public function testValidateCorrectPass()    {        $this->assertTrue(            $this->validator->validateUser("bob@example.com", "12345"),            "Expecting successful validation"        );    }
 
-Total time: 0.2671 seconds
+}
 
-By passing in a target name, I cause the default attribute to be ignored. The target matching my 
+So now that I have more than one test case, how do I go about running them together? The best way is to place your test classes in a common root directory. You can then specify this directory, and PHPUnit will run all the tests beneath it:
 
-argument is invoked instead (as well as the target on which it depends). This is useful for invoking specialized tasks, such as cleaning up a build directory or running post-install scripts.
+$ phpunit src/ch18/batch02/
 
-The target element also supports an optional description attribute, to which you can assign a brief 
+PHPUnit 5.0.10 by Sebastian Bergmann and contributors.......Time: 104 ms, Memory: 3.75Mb
 
-description of the target’s purpose:
+OK (7 tests, 8 assertions)
 
-<?xml version="1.0"?><!-- build xml -->
+ConstraintsIn most circumstances, you will use off-the-peg assertions in your tests. In fact, at a stretch you can achieve an awful lot with AssertTrue() alone. As of PHPUnit 3.0, however, PHPUnit_Framework_TestCase included a set of factory methods that return PHPUnit_Framework_Constraint objects. You can combine these and pass them to PHPUnit_Framework_TestCase::AssertThat() in order to construct your own assertions.
 
-<project name="megaquiz"         default="main"
+It’s time for a quick example. The UserStore object should not allow duplicate e-mail addresses to be 
 
-469
+added. Here’s a test that confirms this:
 
-Chapter 19 ■ automated Build with phing
+// listing 18.08
 
-         description="A quiz engine">    <target name="runfirst"            description="The first target" />    <target name="runsecond"            depends="runfirst"            description="The second target" />    <target name="main"            depends="runsecond"            description="The main target" /></project>
+    // UserStoreTest
 
-Adding a description to your targets makes no difference to the normal build process. If the user runs 
+    public function testAddUserDuplicate()    {        try {            $ret = $this->store->addUser("bob williams", "a@b.com", "123456");
 
-Phing with a -projecthelp flag, however, the descriptions will be used to summarize the project:
+444
 
-$ phing -projecthelp
+Chapter 18 ■ testing with phpUnit
 
-Buildfile: /home/bob/working/megaquiz/build.xmlWarning: target 'runfirst' has no tasks or dependenciesA quiz engineDefault target:------------------------------------------------------------------------------- main       The main target
+            $ret = $this->store->addUser("bob stevens", "a@b.com", "123456");            self::fail("Exception should have been thrown");        } catch (\Exception $e) {            $const = $this->logicalAnd(                $this->logicalNot($this->contains("bob stevens")),                $this->isType('array')            );            self::AssertThat($this->store->getUser("a@b.com"), $const);        }    }
 
-Main targets:------------------------------------------------------------------------------- main       The main target runfirst   The first target runsecond  The second target
+This test adds a user to the UserStore object and then adds a second user with the same e-mail address. The test thereby confirms that an exception is thrown with the second call to addUser(). In the catch clause, I build a constraint object using the convenience methods available to us. These return corresponding instances of PHPUnit_Framework_Constraint. Let’s break down the composite constraint in the previous example:
 
-Notice that I added the description attribute to the project element, too. If you want to hide a target from a listing like this, you can add a hidden attribute. This is useful for targets that provide housekeeping functionality, but which should not be invoked directly from the command line:
+$this->contains("bob stevens")
 
-    <target name="housekeeping" hidden="true">        <!-- useful things that should not be called directly -->    </target>
+This returns a PHPUnit_Framework_Constraint_TraversableContains object. When passed to 
 
-PropertiesPhing allows you to set such values using the property element.
+AssertThat, this object will generate an error if the test subject does not contain an element matching the given value ("bob stevens"). I negate this, though, by passing this constraint to another: PHPUnit_Framework_Constraint_Not. Once again, I use a convenience method, available through the TestCase class (actually through a superclass, Assert):
 
-Properties are similar to global variables in a script. As such, they are often declared toward the top of a project to make it easy for developers to work out what’s what in the build file. Here I create a build file that works with database information:
+$this->logicalNot( $this->contains("bob stevens"))
 
-<?xml version="1.0"?><!-- build xml -->
+Now, the AssertThat assertion will fail if the test value (which must be traversable) contains an element 
 
-<project name="megaquiz"         default="main">
+that matches the string, "bob stevens". In this way, you can build up quite complex logical structures. By the time I have finished, my constraint can be summarized as follows: 'Do not fail if the test value is an array and does not contain the string "bob stevens".' You could build much more involved constraints in this way. The constraint is run against a value by passing both to AssertThat().
 
-470
+You could achieve all this with standard assertion methods, of course, but constraints have a couple of virtues. First, they form nice logical blocks with clear relationships among components (although good use of formatting may be necessary to support clarity). Second, and more important, a constraint is reusable. You can set up a library of complex constraints and use them in different tests. You can even combine complex constraints with one another:
 
-Chapter 19 ■ automated Build with phing
+$const = $this->logicalAnd(    $a_complex_constraint,    $another_complex_constraint);
 
-    <property name="dbname" value="megaquiz" />    <property name="dbpass" value="default" />    <property name="dbhost" value="localhost" />
+Table 18-2 shows the some of the constraint methods available in a TestCase class.
 
-    <target name="main">        <echo>database: ${dbname}</echo>        <echo>pass:     ${dbpass}</echo>        <echo>host:     ${dbhost}</echo>    </target></project>
+445
 
-I introduced a new element: property. property requires name and value attributes. Notice also that 
+Chapter 18 ■ testing with phpUnit
 
-I have added this to the main target. echo is an example of a task. I will explore tasks more fully in the next section. For now, though, it’s enough to know that echo does exactly what you would expect—it causes its contents to be output. Notice the syntax used to reference the value of a property here. By using a dollar sign, and wrapping the property name in curly brackets, you tell Phing to replace the string with the property value:
+Table 18-2.  Some Constraint Methods
 
-${propertyname}
+TestCase Method
 
-All this build file achieves is to declare three properties and to print them to standard output. Here it is 
+greaterThan($num)
 
-in action:
+contains($val)
 
-$ phing
+identicalTo($val)
 
-Buildfile: /home/bob/working/megaquiz/build.xml
+greaterThanOrEqual($num)
 
-megaquiz > main:
+lessThan($num)
 
-     [echo] database: megaquiz     [echo] pass:     default     [echo] host:     localhost
+Constraint Fails Unless . . .
 
-BUILD FINISHED
+Test value is greater than $numTest value (traversable) contains an element that matches $valTest value is a reference to the same object as $val or, for nonobjects, is of the same type and valueTest value is greater than or equal to $numTest value is less than $numTest value is less than or equal to $num
 
-Total time: 0.4402 seconds
+lessThanOrEqual($num)equalTo($value, $delta=0, $depth=10) Test value equals $val. If specified, $delta defines a margin of 
 
-Now that I have introduced properties, I can wrap up my exploration of targets. The target element accepts two additional attributes: if and unless. Each of these should be set with the name of a property. When you use if with a property name, the target will only be executed if the given property is set. If the property is not set, the target will exit silently. Here, I comment out the dbpass property and make the main task require it using the if attribute:
+stringContains($str, $casesensitive=true)
 
-    <property name="dbname"  value="megaquiz" />    <!--<property name="dbpass"  value="default" />-->    <property name="dbhost" value="localhost" />
+matchesRegularExpression($pattern)
 
-    <target name="main" if="dbpass">        <echo>database: ${dbname}</echo>        <echo>pass:     ${dbpass}</echo>        <echo>host:     ${dbhost}</echo>    </target>
+logicalAnd(PHPUnit_Framework_Constraint $const,  [, $const..])
 
-471
+logicalOr(PHPUnit_Framework_Constraint $const,  [, $const..])
 
-Chapter 19 ■ automated Build with phing
+logicalNot(PHPUnit_Framework_Constraint $const)
 
-Let’s run phing again:
+error for numeric comparisons, and $depth determines how recursive a comparison should be for arrays or objectsTest value contains $str. This is case sensitive by default
 
-$ phing
+Test value matches the regular expression in $patternAll provided constraints pass
 
-Buildfile: /home/bob/working/megaquiz/build.xmlmegaquiz > main:
+At least one of the provided constraints match
 
-BUILD FINISHED
+The provided constraint does not pass
 
-Total time: 0.2628 seconds
+Mocks and StubsUnit tests aim to test a component in isolation of the system that contains it to the greatest possible extent. Few components exist in a vacuum, however. Even nicely decoupled classes require access to other objects as methods arguments. Many classes also work directly with databases or the filesystem.
 
-As you can see, I have raised no error, but the main task did not run. Why might I want to do this? There is another way of setting properties in a project. They can be specified on the command line. You tell Phing that you are passing it a property with the -D flag followed by a property assignment. So the argument should look like this:
+You have already seen one way of dealing with this. The setUp() and tearDown() methods can be used to manage a fixture (i.e., a common set of resources for your tests, which might include database connections, configured objects, a scratch area on the file system, etc.)
 
--Dname=value
+Another approach is to fake the context of the class you are testing. This involves creating objects that pretend to be the objects that do real stuff. For example, you might pass a fake database mapper to your test object’s constructor. Because this fake object shares a type with the real mapper class (extends from a common abstract base or even overrides the genuine class itself), your subject is none the wiser. You can prime the fake object with valid data. Objects that provide a sandbox of this sort for unit tests are known as stubs. They can be useful because they allow you to focus in on the class you want to test without inadvertently testing the entire edifice of your system at the same time.
 
-In my example, I want the dbname property to be made available via the command line:
+Fake objects can be taken a stage further than this, however. Because the object you are testing is likely to call a fake object in some way, you can prime it to confirm the invocations you are expecting. Using a fake object as a spy in this way is known as behavior verification, and it is what distinguishes a mock object from a stub.
 
-$ phing -Ddbpass=userset
+446
 
-Buildfile: /home/bob/working/megaquiz/build.xml
+Chapter 18 ■ testing with phpUnit
 
-megaquiz > main:
+You can build mocks yourself by creating classes hard-coded to return certain values and to report on 
 
-     [echo] database: megaquiz     [echo] pass:     userset     [echo] host:     localhost
+method invocations. This is a simple process, but it can be time-consuming.
 
-BUILD FINISHED
+PHPUnit provides access to an easier and more dynamic solution. It will generate mock objects on the fly for you. It does this by examining the class you wish to mock and building a child class that overrides its methods. Once you have this mock instance, you can call methods on it to prime it with data and to set the conditions for success.
 
-Total time: 0.4611 seconds
+Let’s build an example. The UserStore class contains a method called notifyPasswordFailure(), 
 
-The if attribute of the main target is satisfied that the dbpass property is present, and the target is 
+which sets a field for a given user. This should be called by Validator when an attempt to set a password fails. Here, I mock up the UserStore class so that it both provides data to the Validator object and confirms that its notifyPasswordFailure() method was called as expected:
 
-allowed to execute.
+// listing 18.09
 
-As you might expect, the unless attribute is the opposite of if. If a property is set and it is referenced 
+// ValidatorTest
 
-in a target’s unless attribute, then the target will not run. This is useful if you want to make it possible to suppress a particular target from the command line. So I might add something like this to the main target:
+    public function testValidateFalsePass()    {        $store = $this->getMock(__NAMESPACE__ . "\\UserStore");        $this->validator = new Validator($store);
 
-<target name="main" unless="suppressmain">
+        $store->expects($this->once())            ->method('notifyPasswordFailure')            ->with($this->equalTo('bob@example.com'));
 
-main will be executed unless a suppressmain property is present:
+        $store->expects($this->any())            ->method("getUser")            ->will($this->returnValue([                "name" => "bob williams",                "mail" => "bob@example.com",            "pass" => "right"        ]));
 
-$ phing -Dsuppressmain=yes
+        $this->validator->validateUser("bob@example.com", "wrong");
 
-I have wrapped up the target element; Table 19-2 shows a summary of its attributes.
+Mock objects use a fluent interface; that is, they have a language-like structure. These are much easier to 
 
-472
+use than to describe. Such constructs work from left to right, each invocation returning an object reference, which can then be invoked with a further modifying method call (itself returning an object). This can make for easy use, but painful debugging.
 
-Chapter 19 ■ automated Build with phing
+In the previous example, I called the PHPUnit_Framework_TestCase method: getMock(), passing it 
 
-Table 19-2.  The Attributes of the Target Element
+"UserStore", the name of the class I wish to mock. This dynamically generates a class and instantiates an object from it. I store this mock object in $store and pass it to Validator. This causes no error because the object’s newly minted class extends UserStore. I have fooled Validator into accepting a spy into its midst.
 
-Attribute
+Mock objects generated by PHPUnit have an expects() method. This method requires a matcher object 
 
-Required
+(actually it’s of type PHPUnit_Framework_MockObject_Matcher_Invocation, but don’t worry; you can use the convenience methods in TestCase to generate your matcher). The matcher defines the cardinality of the expectation; that is, it dictates the number of times a method should be called.
+
+Table 18-3 shows the matcher methods available in a TestCase class.
+
+447
+
+Chapter 18 ■ testing with phpUnit
+
+Table 18-3.  Some Matcher Methods
+
+TestCase Method
+
+Match Fails Unless . . .
+
+any()
+
+never()
+
+atLeastOnce()
+
+once()
+
+exactly($num)
+
+at($num)
+
+Zero or more calls are made to the corresponding method (useful for stub objects that return values, but don’t test invocations)No calls are made to the corresponding methodOne or more calls are made to the corresponding methodA single call is made to the corresponding method$num calls are made to the corresponding method
+
+A call to the corresponding method made at $num index (each method call to a mock is recorded and indexed)
+
+Having set up the match requirement, I need to specify a method to which it applies. For instance, 
+
+expects() returns an object (PHPUnit_Framework_MockObject_Builder_InvocationMocker, if you must know) that has a method called method(). I can simply call that with a method name. This is enough to get some real mocking done:
+
+$store = $this->getMock("UserStore");$store->expects($this->once())    ->method('notifyPasswordFailure');
+
+I need to go further, however, and check the parameters that are passed to notifyPasswordFailure(). 
+
+The InvocationMocker::method() returns an instance of the object it was called on. InvocationMocker includes a method name, with(), which accepts a variable list of parameters to match. It also accepts constraint objects, so you can test ranges and so on. Armed with this, you can complete the statement and ensure that the expected parameter is passed to notifyPasswordFailure():
+
+$store->expects($this->once())    ->method('notifyPasswordFailure')    ->with($this->equalTo('bob@example.com'));
+
+You can see why this is known as a fluent interface. It reads a bit like a sentence:「The $store object 
+
+expects a single call to the notifyPasswordFailure() method with parameter bob@example.com.」
+
+Notice that I passed a constraint to with(). Actually, that’s redundant; any bare arguments are 
+
+converted to constraints internally, so I could write the statement like this:
+
+$store->expects($this->once())    ->method('notifyPasswordFailure')    ->with('bob@example.com');
+
+Sometimes, you only want to use PHPUnit’s mocks as stubs; that is, as objects that return values to allow your tests to run. In such cases, you can invoke InvocationMocker::will() from the call to method(). The will() method requires the return value (or values if the method is to be called repeatedly) that the associated method should be primed to return. You can pass in this return value by calling either TestCase::returnValue() or TestCase::onConsecutiveCalls(). Once again, this is much easier to do than to describe. Here’s the fragment from my earlier example in which I prime UserStore to return a value:
+
+$store->expects($this->any())    ->method("getUser")
+
+448
+
+Chapter 18 ■ testing with phpUnit
+
+    ->will($this->returnValue([        "name" => "bob williams",        "mail" => "bob@example.com",        "pass" => "right"    ]));
+
+I prime the UserStore mock to expect any number of calls to getUser(). Right now, I’m 
+
+concerned with providing data, not with testing calls. Next, I call will() with the result of invoking TestCase::returnValue() with the data I want returned (this happens to be a PHPUnit_Framework_MockObject_Stub_Return object, although if I were you, I’d just remember the convenience method you use to get it).
+
+You can alternatively pass the result of a call to TestCase::onConsecutiveCalls() to will(). This 
+
+accepts any number of parameters, each one of which will be returned by your mocked method as it is called repeatedly.
+
+Tests Succeed When They FailAlthough most agree that testing is a fine thing, you grow to really love it generally only after it has saved your bacon a few times. Let’s simulate a situation where a change in one part of a system has an unexpected effect elsewhere.
+
+The UserStore class has been running for a while when, during a code review, it is agreed that it would 
+
+be neater for the class to generate User objects rather than associative arrays. Here is the new version:
+
+// listing 18.10namespace popp\ch18\batch03;
+
+class UserStore{    private $users = [];
+
+    public function addUser(string $name, string $mail, string $pass)    {        if (isset($this->users[$mail])) {            throw new \Exception(                "User {$mail} already in the system"            );        }
+
+        $this->users[$mail] = new User($name, $mail, $pass);
+
+        return true;    }
+
+    public function notifyPasswordFailure(string $mail)    {        if (isset($this->users[$mail])) {            $this->users[$mail]->failed(time());        }    }
+
+    public function getUser(string $mail)
+
+449
+
+Chapter 18 ■ testing with phpUnit
+
+    {        if (isset($this->users[$mail])) {            return ( $this->users[$mail] );        }
+
+        return null;    }}
+
+Here is the simple User class:
+
+// listing 18.11namespace popp\ch18\batch03;
+
+class User{    private $name;    private $mail;    private $pass;    private $failed;
+
+    public function __construct(string $name, string $mail, string $pass)    {        $this->name = $name;        $this->mail = $mail;
+
+        if (strlen($pass) < 5) {            throw new \Exception(                "Password must have 5 or more letters"            );        }
+
+        $this->pass = $pass;    }
+
+    public function getMail(): string    {        return $this->mail;    }
+
+    public function getPass(): string    {        return $this->pass;    }
+
+    public function failed(string $time)    {        $this->failed = $time;    }}
+
+450
+
+Of course, I amend the UserStoreTest class to account for these changes. Consider this code designed 
+
+to work with an array:
+
+Chapter 18 ■ testing with phpUnit
+
+public function testGetUser(){    $this->store->addUser("bob williams", "a@b.com", "12345");    $user = $this->store->getUser("a@b.com");    $this->assertEquals($user['mail'], "a@b.com");    //...
+
+It is now converted into code designed to work with an object, like this:
+
+public function testGetUser(){    $this->store->addUser("bob williams", "a@b.com", "12345");    $user = $this->store->getUser("a@b.com");    $this->assertEquals($user->getMail(), "a@b.com");}
+
+When I come to run my test suite, however, I am rewarded with a warning that my work is not yet done:
+
+$ phpunit src/ch18/batch03/
+
+PHPUnit 5.0.10 by Sebastian Bergmann and contributors.....F..                                                             7 / 7 (100%)
+
+Time: 254 ms, Memory: 4.00MB
+
+There was 1 failure:
+
+1) popp\ch18\batch03\ValidatorTest::testValidateCorrectPassExpecting successful validationFailed asserting that false is true.
+
+/var/popp/src/ch18/batch03/ValidatorTest.php:24
+
+FAILURES!Tests: 7, Assertions: 6, Failures: 1.
+
+I invoke getUser(). Although getUser() now returns an object and not an array, my method does not 
+
+generate a warning. getUser() originally returned the requested user array on success or null on failure, so I validated users by checking for an array using the is_array() function. Now, of course, getUser() returns an object, and the validateUser() method will always return false. Without the test framework, the Validator would have simply rejected all users as invalid without fuss or warning.
+
+Now, imagine making this neat little change on a Friday night without a test framework in place. Think 
+
+about the frantic text messages that would drag you out of your pub, armchair, or restaurant:「What have you done? All our customers are locked out!」
+
+The most insidious bugs don’t cause the interpreter to report that something is wrong. They hide in perfectly 
+
+legal code, and they silently break the logic of your system. Many bugs don’t manifest themselves where you are working; they are caused there, but the effects pop up elsewhere, days or even weeks later. A test framework can help you catch at least some of these, preventing rather than discovering problems in your systems.
+
+451
+
+Chapter 18 ■ testing with phpUnit
+
+Write tests as you code, and run them often. If someone reports a bug, first add a test to your framework 
+
+to confirm it. Next, fix the bug so that the test is passed. Bugs have a funny habit of recurring in the same area. Writing tests to prove bugs and then to guard the fix against subsequent problems is known as regression testing. Incidentally, if you keep a separate directory of regression tests, remember to name your files descriptively. On one project, our team decided to name our regression tests after Bugzilla ticket numbers. We ended up with a directory containing 400 test files, each with a name like test_973892.php. Finding an individual test became a tedious chore!
+
+Writing Web Tests
+
+You should engineer your web systems in such a way that they can be invoked easily from the command line or an API call. In Chapter 12, you saw some tricks that might help you with this. In particular, if you create a Request class to encapsulate an HTTP request, you can just as easily populate an instance from the command line or method argument lists as from request parameters. The system can then run in ignorance of its context.
+
+If you find a system hard to run in different contexts, that may indicate a design issue. If, for example, you have numerous filepaths hard-coded into components, it’s likely you are suffering from tight coupling. You should consider moving elements that tie your components to their context into encapsulating objects that can be acquired from a central repository. The registry pattern, also covered in Chapter 12, will likely help you with this.
+
+Once your system can be run directly from a method call, you’ll find that high-level web tests are 
+
+relatively easy to write without any additional tools.
+
+You may find, however, that even the most well-thought-out project will need some refactoring to get things ready for testing. In my experience, this almost always results in design improvements. I’m going to demonstrate this by retrofitting one aspect of the WOO example from Chapters 12 and 13 for unit testing.
+
+Refactoring a Web Application for TestingWe actually left the WOO example in a reasonable state from a tester’s point of view. Because the system uses a single Front Controller, there’s a simple API interface. This is a simple class called Runner.php:
+
+// listing 18.13require_once("vendor/autoload.php");
+
+use popp\ch18\batch04\woo\controller\Controller;
+
+Controller::run();
+
+That would be easy enough to add to a unit test, right? But what about command line arguments? To 
+
+some extent, this is already handled in the Request class:
+
+// listing 18.14
+
+    public function init()    {        if (isset($_SERVER['REQUEST_METHOD'])) {            if ($_SERVER['REQUEST_METHOD']) {                $this->properties = $_REQUEST;                return;
+
+452
+
+Chapter 18 ■ testing with phpUnit
+
+            }        }        foreach ($_SERVER['argv'] as $arg) {            if (strpos($arg, '=')) {                list($key, $val) = explode("=", $arg);                $this->setProperty($key, $val);            }        }    }
+
+ Just a reminder that, if you do implement your own Request class, you should capture and store 
+
+ ■ Note GET, POST and even PUT properties separately, rather than dumping them into a single $request property.
+
+The init() method detects whether the process is running in a server context, and populates the 
+
+$properties array accordingly (either directly or via setProperty()). This works fine for command-line invocation. For example, it means I can run something like this:
+
+$ php src/ch18/batch04/Runner.php cmd=AddVenue venue_name=bob
+
+The preceding line generates this response:
+
+<html><head><title>Add a Space for venue bob</title></head><body><h1>Add a Space for Venue 'bob'</h1>
+
+<table><tr><td>'bob' added (18)</td></tr><tr><td>please add name for the space</td></tr></table>[add space]<form method="post">    <input type="text" value="" name="space_name"/>    <input type="hidden" name="cmd" value="AddSpace" />    <input type="hidden" name="venue_id" value="18" />    <input type="submit" value="submit" /></form>
+
+</body></html>
+
+Although this works for the command line, it remains a little tricky to pass in arguments via a method call. One inelegant solution would be to manually set the $argv array before calling the controller’s run() method. I don’t much like this, though. Playing directly with magic arrays feels plain wrong, and the string 
+
+453
+
+Chapter 18 ■ testing with phpUnit
+
+manipulation involved at each end would compound the sin. Looking at the Controller class more closely, however, reveals a design decision that can help us:
+
+// listing 18.15
+
+// Controller
+
+    public function handleRequest()    {        $request = ApplicationRegistry::getRequest();        $app_c = ApplicationRegistry::appController();
+
+        while ($cmd = $app_c->getCommand($request)) {            $cmd->execute($request);        }
+
+        $this->invokeView($app_c->getView($request));    }
+
+This method is designed to be invoked by the static run() method. Note how the Request object is not directly instantiated. Instead, I acquire it from the ApplicationRegistry. When the Registry holds a single instance of an object like Request, I can acquire a reference to it and load it with data from within my test before I start the system running by invoking the controller. In this way, I can simulate a web request. Because my system uses a Request object as its only interface to a web request, it is decoupled from the data source. As long as Request is sane, the system will not care whether its data originates ultimately from a test or from a web server. As a general principle I prefer to push instantiations back to a registry, where possible. That way, I can later extend my implementation of the static factory method, ApplicationRegistry::instance() in this case. This approach returns a mock registry populated with fake components if a flag is set, thereby creating an entirely mocked environment. I love to fool my systems.
+
+Here, however, I will demonstrate the first, more conservative trick by preloading my Request object 
+
+with test data.
+
+Simple Web TestingHere’s a test case that performs a very basic test on the WOO system:
+
+// listing 18.16namespace popp\ch18\batch04;
+
+use popp\ch18\batch04\woo\controller\Controller;use popp\ch18\batch04\woo\controller\Request;use popp\ch18\batch04\woo\base\ApplicationRegistry;use popp\ch18\batch04\woo\controller\ApplicationHelper;
+
+class AddVenueTest extends \PHPUnit_Framework_TestCase{    public function testAddVenueVanilla()    {        $output = $this->runCommand("AddVenue", ["venue_name"=>"bob"]);    }
+
+454
+
+Chapter 18 ■ testing with phpUnit
+
+    public function runCommand($command = null, array $args = null)    {        $applicationHelper = ApplicationHelper::instance();        $applicationHelper->init();        $request = ApplicationRegistry::getRequest();        if (! is_null($args)) {            foreach ($args as $key => $val) {                $request->setProperty($key, $val);            }        }
+
+        if (! is_null($command)) {            $request->setProperty('cmd', $command);        }
+
+        woo\controller\Controller::run();    }}
+
+In fact, it does not so much test anything as prove that the system can be invoked. The real work is done in the runCommand() method. There is nothing terribly clever here. I get a Request object from the RequestRegistry, and I populate it with the keys and values provided in the method call. Because the Controller will go to the same source for its Request object, I know that it will work with the values that I have set.
+
+Running this test confirms that all is well. I see the output I expect. The problem is that this output is 
+
+printed by the view, so it’s hard to test. I can fix that quite easily by buffering the output:
+
+// listing 18.17namespace popp\ch18\batch04;
+
+use popp\ch18\batch04\woo\controller\Controller;use popp\ch18\batch04\woo\controller\Request;use popp\ch18\batch04\woo\base\ApplicationRegistry;use popp\ch18\batch04\woo\controller\ApplicationHelper;
+
+class AddVenueTest2 extends \PHPUnit_Framework_TestCase{
+
+    public function testAddVenueVanilla()    {        $output = $this->runCommand("AddVenue", ["venue_name"=>"bob"]);        self::AssertRegexp("/added/", $output);    }
+
+    public function runCommand($command = null, array $args = null)    {        $applicationHelper = ApplicationHelper::instance();        $applicationHelper->init();        ob_start();        $request = ApplicationRegistry::getRequest();        if (! is_null($args)) {            foreach ($args as $key => $val) {
+
+455
+
+Chapter 18 ■ testing with phpUnit
+
+                $request->setProperty($key, $val);            }        }
+
+        if (! is_null($command)) {            $request->setProperty('cmd', $command);        }        woo\controller\Controller::run();        $ret = ob_get_contents();        ob_end_clean();
+
+        return $ret;    }}
+
+By catching the system’s output in a buffer, I’m able to return it from the runCommand() method. Next, I 
+
+apply a simple assertion to the return value to examine.
+
+Here is the view from the command line:
+
+$ phpunit src/ch18/batch04/AddVenueTest2.php
+
+PHPUnit 5.0.10 by Sebastian Bergmann and contributors..                                                                   1 / 1 (100%)Time: 194 ms, Memory: 4.00MBOK (1 test, 1 assertion)
+
+If you are going to be running lots of tests on a system in this way, it would make sense to create a Web 
+
+UI superclass to hold runCommand().
+
+I am glossing over some details here that you will face in your own tests. You will need to ensure that 
+
+the system works with configurable storage locations. You don’t want your tests going to the same datastore that you use for your development environment. This is another opportunity for design improvement. Look for hard-coded filepaths and DSN values, and push them back to the Registry. Next, ensure your tests work within a sandbox, but set these values in your test case’s setUp() method. Finally, look into swapping in a MockRequestRegistry, which you can charge up with stubs, mocks, and various other sneaky fakes.
+
+Approaches like this are great for testing the inputs and output of a web application. There are some 
+
+distinct limitations, however. This method won’t capture the browser experience. Where a web application uses JavaScript, Ajax, and other client-side cleverness, testing the text generated by your system won’t tell you whether the user is seeing a sane interface.
+
+Luckily, there is a solution.
+
+Introducing SeleniumSelenium (http://seleniumhq.org/) consists of a set of commands for defining web tests. It also provides tools and APIs for authoring and running browser tests.
+
+In this brief introduction, I’ll create a quick test for the WOO system that I created in Chapter 12. The 
+
+test will work in conjunction with Selenium Server via an API called php-webdriver.
+
+Getting SeleniumYou can download Selenium components at http://seleniumhq.org/download/. For the purposes of this example, you will need the Selenium Standalone Server.
+
+456
+
+Chapter 18 ■ testing with phpUnit
+
+Once you’ve downloaded the package, you should find a file named selenium-server-standalone-
+
+2.53.0.jar (although, of course, your version number will probably be different). Copy this file somewhere central. To proceed further, you’ll need Java installed on your system. Once you’ve confirmed this, you can start the Selenium Server.
+
+Here, I copy the server to the /usr/local/lib directory. Then I start the server:
+
+$ sudo cp selenium-server-standalone-2.53.0.jar /usr/local/lib/$ java -jar /usr/local/lib/selenium-server-standalone-2.53.0.jar
+
+20:20:06.501 INFO - Launching a standalone Selenium Server20:20:06.673 INFO - Java: Oracle Corporation 25.65-b0120:20:06.673 INFO - OS: Linux 4.0.4-303.fc22.x86_64 amd6420:20:06.746 INFO - v2.53.0, with Core v2.53.0. Built from revision 35ae25b20:20:06.922 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform LINUX20:20:06.923 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform LINUX20:20:06.923 INFO - Driver class not found: com.opera.core.systems.OperaDriver20:20:06.923 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered20:20:06.925 INFO - Driver provider org.openqa.selenium.safari.SafariDriver registration is skipped:registration capabilities Capabilities [{browserName=safari, version=, platform=MAC}] does not match the current platform LINUX20:20:06.926 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver20:20:06.927 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered20:20:07.254 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub20:20:07.254 INFO - Selenium Server is up and running
+
+Note that the startup output tells us the URL we should use in order to communicate with the server. 
+
+This will come in handy later.
+
+Now I’m ready to proceed.
+
+PHPUnit and SeleniumAlthough PHPUnit has provided APIs for working with Selenium in the past, its support has been patchy and its documentation has been even more so. In order to access as many of Selenium’s features as possible, therefore, it makes sense to use PHPUnit in conjunction with a tool that is designed to provide the bindings that we need.
+
+Introducing php-webdriverWebDriver is the mechanism by which Selenium controls browsers, and it was introduced with Selenium 2. Selenium developers provide Java, Python, and C# APIs for WebDriver. There are a few PHP APIs available. I have chosen to use php-webdriver, which was created by Facebook developers. It is under active development and mirrors the official APIs. This is very handy when you want to look up a technique, since many examples you’ll find online will be offered in Java, which means they will apply readily to php-webdriver with a little porting of code.
+
+457
+
+Chapter 18 ■ testing with phpUnit
+
+You can add php-webdriver it to your project with Composer:
+
+"require-dev": {    "phpunit/phpunit": "5.0.*",    "facebook/webdriver" : "*"},
+
+Update your composer.json file, run composer update, and you should be ready to go.
+
+Creating the Test SkeletonI will be working with an instance of the WOO application, which will run on my system at the URL, http://popp.vagrant.internal/webwoo/.
+
+I’ll start off with a boilerplate test class:
+
+// listing 18.18namespace popp\ch18\batch04;
+
+use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
+
+class SeleniumTest extends \PHPUnit_Framework_TestCase{    protected function setUp()    {    }
+
+    public function testAddVenue()    {    }}
+
+I specify some of the php-webdriver classes I will be using, and then create a bare bones test class. Now 
+
+it’s time to make this test do something.
+
+Connecting to SeleniumRemember that, on start up, the server outputs its connection URL. In order to make the connection to Selenium, I need to pass this URL and a capabilities array to a class named RemoteWebDriver:
+
+// listing 18.19namespace popp\ch18\batch04;
+
+458
+
+Chapter 18 ■ testing with phpUnit
+
+use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
+
+class SeleniumTest extends PHPUnit_Framework_TestCase{    private $driver;
+
+    protected function setUp()    {        $host = "http://127.0.0.1:4444/wd/hub";        $capabilities = [WebDriverCapabilityType::BROWSER_NAME => 'firefox'];        $this->driver = RemoteWebDriver::create($host, $capabilities);    }
+
+    public function testAddVenue()    {    }}
+
+If you installed php-webdriver with Composer, you can see a full list of capabilities in the class file 
+
+at vendor/facebook/webdriver/lib/Remote/WebDriverCapabilityType.php. For my present purposes, however, I really only need to specify the browser name. I pass the host string and the $capabilities array to the static RemoteWebDriver::create() method, and store the resulting object reference in the $driver property. When I run this test, I should see that Selenium launches a fresh browser window in preparation for my tests.
+
+ ■ Note  these code examples were tested with selenium 2.53 and Firefox 43.0, and then tested again with selenium 2.53 and Firefox 45.0. there have been reports that some later versions of Firefox have manifested compatibility issues with selenium. hopefully, by the time you read this, these issues will have been resolved!
+
+Writing the TestI would like to test a simple workflow. I will navigate to the AddVenue page, add a venue, and then add a space. This involves interacting with three web pages.
+
+Here is my test:
+
+// listing 18.20namespace popp\ch18\batch04;
+
+use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
+
+459
+
+Chapter 18 ■ testing with phpUnit
+
+class seleniumtest3 extends \PHPUnit_Framework_TestCase {
+
+    protected function setUp() {        $host = "http://127.0.0.1:4444/wd/hub";        $capabilities = array(WebDriverCapabilityType::BROWSER_NAME => 'firefox');        $this->driver = RemoteWebDriver::create($host, $capabilities);    }
+
+    public function testAddVenue() {        $this->driver->get("http://popp.vagrant.internal/webwoo/AddVenue.php");
+
+        $venel = $this->driver->findElement(WebDriverBy::name("venue_name"));        $venel->sendKeys("my_test_venue");        $venel->submit();
+
+        $tdel = $this->driver->findElement( WebDriverBy::xpath("//td[1]") );        $this->assertRegexp("/'my_test_venue' added/", $tdel->getText());
+
+        $spacel = $this->driver->findElement(WebDriverBy::name("space_name"));        $spacel->sendKeys("my_test_space");        $spacel->submit();
+
+        $el = $this->driver->findElement(WebDriverBy::xpath("//td[1]"));        $this->assertRegexp("/'my_test_space' added/", $el->getText());
+
+    }}
+
+Here’s what happens when I run this test on the command line:
+
+$ phpunit src/ch18/batch04/seleniumtest3.php
+
+PHPUnit 5.0.10 by Sebastian Bergmann and contributors..                                                                   1 / 1 (100%)Time: 3.11 seconds, Memory: 3.00MBOK (1 test, 2 assertions)
+
+Of course, it’s not all that happens. Selenium also launches a browser window and performs my 
+
+specified operations upon it. I have to admit, I find this effect a little eerie!
+
+Let’s run through the code. First, I invoke WebDriver::get(), which acquires my starting page. Note that this method expects a full URL (which does not need to be local to the Selenium Server host). In this case, I configured an Apache server on a Vagrant virtual machine to serve up a mocked up AddVenue.php script. Selenium will load the specified document into the browser it has launched. You can see this page in Figure 18-1.
+
+460
+
+Chapter 18 ■ testing with phpUnit
+
+Figure 18-1.  The AddVenue page loaded by Selenium
+
+Once the page has loaded, I have access to it via the WebDriver API. I can acquire a reference to a page element using the RemoteWebDriver::findElement() method. This requires an object of type WebDriverBy. The WebDriverBy class provides a set of factory methods, each of which returns a WebDriverBy object configured to specify a particular means of locating an element. My form element has a name attribute set to "venue_name", so I use the WebDriverBy::name() method to tell findElement() to look for an element this way. Table 18-4 lists all of the available factory methods.
+
+Table 18-4.  WebDriverBy factory methods
+
+Method
+
+className()
+
+cssSelector()
+
+id()
+
+name()
+
+linkText()
+
+partialLinkText()
+
+tagName()
+
+xpath()
 
 Description
 
-name
+Find elements by CSS class nameFind elements by CSS selectorFind an element by its idFind elements by name attributeFind elements by their link textFind elements by a fragment of link textFind elements by their tag
 
-depends
+Find elements that match an Xpath expression
 
-if
+461
 
-unless
+Chapter 18 ■ testing with phpUnit
 
-logskipped
+Once I have a reference to the venue_name form element, an object of type RemoteWebElement, I can use its sendKeys() method to set a value. It’s important to note that sendKeys() does more than just set a value. It also simulates the act of typing into an element. This is useful for testing systems that use JavaScript to capture keyboard events.
 
-hidden
+With my new value set, I submit the form. The API is smart about this. When I call submit() on an 
 
-description
+element, Selenium locates the containing form and submits it.
 
-YesNoNoNoNo
+Submitting the form, of course, causes a new page to be loaded. So, next I check that all is as I expect. 
 
-No
+Once again, I use WebDriver::findElement(), although this time I pass it a WebDriverBy object configured for Xpath. If my search is successful, findElement() will return a new RemoteWebElement object. If my search fails, on the other hand, the resulting exception will bring down my test. Assuming that all is well, I acquire the element’s value using the RemoteWebElement::getText() method.
 
-No
+At this stage, I have submitted the form and checked the state of the returned web page. You can see the 
 
-The name of the targetTargets on which the current dependsExecute target only if given property is presentExecute target only if given property is not presentIf a target is skipped (e.g., because of if / unless), add a notification to outputHide target from lists and summaries
+page in Figure 18-2.
 
-A short summary of the target’s purpose
+Figure 18-2.  The AddSpace page
 
-When a property is set on the command line, it overrides any and all property declarations within the 
+Now all that remains is to populate the form once again, submit, and check the new page. I use 
 
-build file. There is another condition in which a property value can be overwritten. By default, if a property is declared twice, the original value will have primacy. You can alter this behavior by setting an attribute called override in the second property element. Here’s an example:
+techniques that you have already encountered to achieve this.
 
-<?xml version="1.0"?><!-- build xml -->
+Of course, I’ve only just scratched the surface of Selenium here. But I hope this discussion has been 
 
-<project name="megaquiz"         default="main">
+enough to give you an idea of the possibilities. If you want to learn more, there is a complete Selenium manual at http://seleniumhq.org/docs/index.html.
 
-    <property name="dbpass"  value="default" />
+462
 
-    <target name="main">        <property name="dbpass" override="yes" value="specific" />        <echo>pass:     ${dbpass}</echo>    </target>
+Chapter 18 ■ testing with phpUnit
 
-</project>
+A Note of Caution
 
-I set a property called dbpass, giving it the initial value "default". In the main target I set the property once again, adding an override attribute set to "yes" and providing a new value. The new value is reflected in the output:
+It’s easy to get carried away with the benefits that automated tests can offer. I add unit tests to my projects, and I use PHPUnit for functional tests, as well. That is, I test at the level of the system, as well as that of the class. I have seen real and observable benefits, but I believe that these come at a price.
 
-$ phing
+Tests add a number of costs to your development. As you build safety into the project, for example, 
 
-Buildfile: /home/bob/working/megaquiz/build.xml
+you are also adding a time penalty into the build process that can impact releases. The time it takes to write tests is part of this, but so is the time it takes to run them. On one system, we may have suites of functional tests that run against more than one database and more than one version control system. Add a few more contextual variables like that, and we face a real barrier to running the test suite. Of course, tests that aren’t run aren’t useful. One answer to this is to fully automate your tests, so runs are kicked off by a scheduling application like cron. Another is to maintain a subset of your tests that can be easily run by developers as they commit code. These should sit alongside your longer, slower test run.
 
-megaquiz > main:
+Another issue to consider is the brittle nature of many test harnesses. Your tests may give you 
 
-     [echo] pass:     specific
+confidence to make changes, but as your test coverage increases along with the complexity of your system, it becomes easier to break multiple tests. Of course, this is often what you want. You want to know when expected behavior does not occur or when unexpected behavior does.
 
-BUILD FINISHED
+Oftentimes, however, a test harness can break because of a relatively trivial change, such as the wording 
 
-473
+of a feedback string. Every broken test is an urgent matter, but it can be frustrating to have to change 30 test cases to address a minor alteration in architecture or output. Unit tests are less prone to problems of this sort because, by and large, they focus on each component in isolation.
 
-Chapter 19 ■ automated Build with phing
+The cost involved in keeping tests in step with an evolving system is a tradeoff that you simply have to 
 
-If I had not set the override element in the second property element, the original value of "default" 
+factor in. On the whole, I believe the benefits justify the costs.
 
-would have stayed in place. It is important to note that targets are not functions: there is no concept of local scope. If you override a property within a task, it remains overridden for all other tasks throughout the build file. You could get around this, of course, by storing a property value in a temporary property before overriding, and then resetting it when you have finished working locally.
+You can also do some things to reduce the fragility of a test harness. It’s a good idea to write tests with 
 
-So far, I have dealt with properties that you define yourself. Phing also provides built-in properties. You 
+the expectation of change built in, to some extent. I tend to use regular expressions to test output rather than direct equality tests, for example. Testing for a few key words is less likely to make my test fail when I remove a newline character from an output string. Of course, making your tests too forgiving is also a danger, so it is a matter of using your judgment.
 
-reference these in exactly the same way that you would reference properties you have declared yourself. Here’s an example:
+Another issue is the extent to which you should use mocks and stubs to fake the system beyond the 
 
-<?xml version="1.0"?><!-- build xml -->
+component you wish to test. Some insist that you should isolate your component as much as possible and mock everything around it. This works for me in some projects. In others, however, I have found that maintaining a system of mocks can become a time sink. Not only do you have the cost of keeping your tests in line with your system, but you must keep your mocks up-to-date. Imagine changing the return type of a method. If you fail to update the method of the corresponding stub object to return the new type, client tests may pass in error. With a complex fake system, there is a real danger of bugs creeping into mocks. Debugging tests is frustrating work, especially when the system itself is not at fault.
 
-<project name="megaquiz"         default="main">
+I tend to play this by ear. I use mocks and stubs by default, but I’m unapologetic about moving to real 
 
-    <target name="main">        <echo>name:     ${phing.project.name}</echo>        <echo>base:     ${project.basedir}</echo>        <echo>home:     ${user.home}</echo>        <echo>pass:     ${env.DBPASS}</echo>    </target>
+components if the costs begin to mount up. You may lose some focus on the test subject, but this comes with the bonus that errors originating in the component’s context are at least real problems with the system. You can, of course, use a combination of real and fake elements. I routinely use an in-memory database in test mode, for example.
 
-</project>
+As you may have gathered, I am not an ideologue when it comes to testing. I routinely「cheat」by 
 
-I reference just a few of the built-in Phing properties. phing.project.name resolves to the name of the project as defined in the name attribute of the project element; project.basedir gives the starting directory; and user.home provides the executing user’s home directory (this is useful for providing default install locations).
+combining real and mocked components; and because priming data is repetitive, I often centralize test fixtures into what Martin Fowler calls Object Mothers. These classes are simple factories that generate primed objects for the purpose of testing. Shared fixtures of this sort are anathema to some.
 
-Finally, the env prefix in a property reference indicates an operating system environment variable. So by 
+463
 
-specifying ${env.DBPASS}, I am looking for an environment variable called DBPASS. Here I run Phing on this file:
+Chapter 18 ■ testing with phpUnit
 
-$ phing
+Having pointed out some of the problems that testing may force you to confront, it is worth reiterating a 
 
-Buildfile: /home/bob/working/megaquiz/build.xml
+few points that, for my money, trump all objections. Testing accomplishes several things:
 
-megaquiz > main:
+•	
 
-     [echo] name:     megaquiz     [echo] base:     /home/bob/working/megaquiz     [echo] home:     /home/bob     [echo] pass:     ${env.DBPASS}
+•	•	•	
 
-BUILD FINISHED
+•	
 
-Total time: 0.1120 seconds
+It helps you prevent bugs (to the extent that you find them during development and refactoring)
 
-Notice that the final property has not been translated. This is the default behavior when a property is 
+It helps you discover bugs (as you extend test coverage)
 
-not found—the string referencing the property is left untransformed. If I set the DBPASS environment variable and run again, I should see the variable reflected in the output:
+It encourages you to focus on the design of your system
 
-474
+It lets you improve code design with less fear that changes will cause more problems than they solve
 
-Chapter 19 ■ automated Build with phing
+It gives you confidence when you ship code
 
-$ export DBPASS=wooshpoppow$ phing
-
-Buildfile: /home/bob/working/megaquiz/build.xml
-
-megaquiz > main:     ...     [echo] pass:     whooshpoppow
-
-BUILD FINISHED
-
-Total time: 0.2852 seconds
-
-So now you have seen three ways of setting a property: the property element, a command-line 
-
-argument, and an environment variable.
-
-There is a fourth approach that complements these. You can use a separate file to specify property values. As my projects grow in complexity, I tend to favor this approach. Let’s return to a basic build file:
-
-<?xml version="1.0"?><!-- build xml -->
-
-<project name="megaquiz"         default="main">
-
-    <target name="main">        <echo>database: ${dbname}</echo>        <echo>pass:     ${dbpass}</echo>        <echo>host:     ${dbhost}</echo>    </target></project>
-
-As you can see, this build file simply outputs properties without first declaring them, or checking that 
-
-their values exist. This is what I get when I run this with no arguments:
-
-$ phing
-
-...     [echo] database: ${dbname}     [echo] pass:     ${dbpass}     [echo] host:     ${dbhost}...
-
-Now I’ll declare my properties in a separate file. I’ll call it megaquiz.properties:
-
-dbname=filedbdbpass=filepassdbhost=filehost
-
-Now I can apply this file to my build process with Phing’s propertyfile option:
-
-475
-
-Chapter 19 ■ automated Build with phing
-
-$ phing -propertyfile megaquiz.properties
-
-...     [echo] database: filedb     [echo] pass:     filepass     [echo] host:     filehost...
-
-I find this mechanism much more convenient than managing long lists of command-line options. 
-
-However, you do need to be careful not to check your property file into your version-control system!
-
-You can use targets to ensure that properties are populated. Let’s say, for example, that my project 
-
-requires a dbpass property. I would like the user to set dbpass on the command line (this always has priority over other property-assignment methods). Failing that, I should look for an environment variable. Finally, I should give up and go for a default value:
-
-<?xml version="1.0"?><!-- build xml -->
-
-<project name="megaquiz"         default="main">
-
-    <target name="setenvpass" if="env.DBPASS" unless="dbpass">        <property name="dbpass" override="yes" value="${env.DBPASS}" />    </target>
-
-    <target name="setpass" unless="dbpass" depends="setenvpass">        <property name="dbpass" override="yes" value="default" />    </target>
-
-    <target name="main" depends="setpass">        <echo>pass:     ${dbpass}</echo>    </target>
-
-</project>
-
-So, as usual, the default target main is invoked first. This has a dependency set, so Phing goes back to the 
-
-setpass target. setpass, though, depends on setenvpass, so I start there. setenvpass is configured to run only if dbpass has not been set and if env.DBPASS is present. If these conditions are met, then I set the dbpass property using the property element. At this stage then, dbpass is populated either by a command-line argument or by an environment variable. If neither of these were present, then the property would remain unset at this stage. The setpass target is now executed, but only if dbpass is not yet present. In this case, it sets the property to the default string: "default".
-
-Conditionally Setting Property Values with the Condition TaskThe previous example set up quite a complex assignment logic. More often, however, you’ll need a simple default value. The condition task allows you to set a property’s value based upon configurable conditions. Here is an example:
-
-476
-
-Chapter 19 ■ automated Build with phing
-
-<?xml version="1.0"?>
-
-<!-- build xml -->
-
-<project name="megaquiz"         default="main">
-
-    <condition property="dbpass" value="default">        <not>            <isset property="dbpass" />        </not>    </condition>
-
-    <target name="main">        <echo>pass:     ${dbpass}</echo>    </target>
-
-</project>
-
-The condition task requires a property attribute. It also optionally accepts a value attribute, which is assigned to the property if the nested test clause resolves to true. If no value attribute is provided, then the property will be set to true if the nested test resolves to true.
-
-The test clause is one of a number of tags, some of which, like not in this example, accept their own 
-
-nested elements. I used the isset element, which returns true if the referenced property is set. Because I want to assign a value to the dbpass property if it is not set, I need to negate this result by wrapping it in the not tag. This inverts the resolution of the tag it contains. So, in terms of PHP syntax, the condition task in my example is analogous to this:
-
-if (! isset($dbpass)) {    $dbpass = "default";}
-
-TypesYou may think that having looked at properties, you are now through with data. In fact, Phing supports a set of special elements called types. These encapsulate different kinds of information useful to the build process.
-
-FileSetLet’s say that you need to represent a directory in your build file. This is a common situation as you might imagine. You could use a property to represent this directory, certainly, but you’d run into problems straightaway if your developers use different platforms that support distinct directory separators. The answer is the FileSet data type. FileSet is platform independent, so if you represent a directory with forward slashes in the path, they will be automatically translated behind the scenes into backslashes when the build is run on a Windows machine. You can define a minimal fileset element like this:
-
-    <fileset dir="src/lib" />
-
-477
-
-Chapter 19 ■ automated Build with phing
-
-As you can see, I use the dir attribute to set the directory I wish to represent. You can optionally add an 
-
-id attribute, so that you can refer to the fileset later on:
-
-    <fileset dir="src/lib" id="srclib">
-
-The FileSet data type is particularly useful in specifying types of documents to include or exclude. 
-
-When installing a set of files, you may not wish those that match a certain pattern to be included. You can handle conditions like this in an excludes attribute:
-
-    <fileset dir="src/lib" id="srclib"         excludes="**/*_test.php **/*Test.php" />
-
-Notice the syntax I have used in the excludes attribute. Double asterisks represent any directory or subdirectory within src/lib. A single asterisk represents zero or more characters. So I am specifying that I would like to exclude files that end in _test.php or Test.php in all directories below the starting point defined in the dir attribute. The excludes attribute accepts multiple patterns separated by white space.I can apply the same syntax to an includes attribute. Perhaps my src/lib directories contain many 
-
-non-PHP files that are useful to developers, but which should not find their way into an installation. I could exclude those files, of course, but it might be simpler just to define the kinds of files I can include. In this case, if a file doesn’t end in .php, it isn’t going to be installed:
-
-    <fileset dir="src/lib" id="srclib"         excludes="**/*_test.php **/*Test.php"         includes="**/*.php" />
-
-As you build up include and exclude rules, your fileset element is likely to become overly long. 
-
-Luckily, you can pull out individual exclude rules and place each one in its own exclude subelement. You can do the same for include rules. I can now rewrite my FileSet like this:
-
-    <fileset dir="src/lib" id="srclib">        <exclude name="**/*_test.php" />        <exclude name="**/*Test.php" />        <include name="**/*.php" />    </fileset>
-
-You can see some of the attributes of the fileset element in Table 19-3.
-
-Table 19-3.  Some Attributes of the Fileset Element
-
-Attribute
-
-Required
-
-Description
-
-refid
-
-NoNodirexpandsymboliclinks NoNoincludes
-
-excludes
-
-No
-
-Current fileset is a reference to fileset of given IDThe starting directoryIf set to 'true' follow symbolic linksA comma-separated list of patterns—those that match will be included
-
-A comma-separated list of patterns—those that match will be excluded
-
-478
-
-Chapter 19 ■ automated Build with phing
-
-PatternSetAs you build up patterns in your fileset elements (and in others), there is a danger that you will begin to repeat groups of exclude and include elements. In my previous example, I defined patterns for test files and regular code files. I may add to these over time (perhaps I wish to include .conf and .inc extensions to my definition of code files). If I define other fileset elements that also use these patterns, I will be forced to make any adjustments across all relevant fileset elements.
-
-You can overcome this problem by grouping patterns into patternset elements. The patternset 
-
-element groups include and exclude elements so that they can be referenced later from within other types. Here I extract the include and exclude elements from my fileset example and add them to patternset elements:
-
-    <patternset id="inc_code">        <include name="**/*.php" />        <include name="**/*.inc" />        <include name="**/*.conf" />    </patternset>
-
-    <patternset id="exc_test">        <exclude name="**/*_test.php" />        <exclude name="**/*Test.php" />    </patternset>
-
-I create two patternset elements, setting their id attributes to inc_code and exc_test respectively. 
-
-inc_code contains the include elements for including code files, and exc_test contains the exclude files for excluding test files. I can now reference these patternset elements within a fileset:
-
-    <fileset dir="src/lib" id="srclib">        <patternset refid="inc_code" />        <patternset refid="exc_test" />    </fileset>
-
-To reference an existing patternset, you must use another patternset element. The second element must set a single attribute: refid. The refid attribute should refer to the id of the patternset element you wish to use in the current context. In this way, I can reuse patternset elements across different fileset elements:
-
-    <fileset dir="src/views" id="srcviews">        <patternset refid="inc_code" />    </fileset>
-
-Any changes I make to the inc_code patternset will automatically update any types that use it. As with 
-
-FileSet, you can place exclude rules either in an excludes attribute or a set of exclude subelements. The same is true of include rules.
-
-Some patternset element attributes are summarized in Table 19-4.
-
-479
-
-Chapter 19 ■ automated Build with phing
-
-Table 19-4.  Some Attributes of the Patternset Element
-
-Attribute
-
-Required
-
-Description
-
-id
-
-excludes
-
-includes
-
-refid
-
-NoNoNo
-
-No
-
-A unique handle for referring to the elementA list of patterns for exclusionA list of patterns for inclusion
-
-Current patternset is a reference to patternset of given ID
-
-FilterChainThe types that I have encountered so far have provided mechanisms for selecting sets of files. FilterChain, by contrast, provides a flexible mechanism for transforming the contents of text files.
-
-In common with all types, defining a filterchain element does not in itself cause any changes to take place. The element and its children must first be associated with a task—that is, an element that tells Phing to take a course of action. I will return to tasks a little later.
-
-A filterchain element groups any number of filters together. Filters operate on files like a pipeline—the first alters its file and passes its results on to the second, which makes its own alterations, and so on. By combining multiple filters in a filterchain element, you can effect flexible transformations.
-
-Here I dive straight in and create a filterchain that removes PHP comments from any text passed to it:
-
-<filterchain>    <stripphpcomments /></filterchain>
-
-The StripPhpComments task does just what the name suggests. If you have provided detailed API 
-
-documentation in your source code, you may have made life easy for developers, but you have also added a lot of dead weight to your project. Because all the work that matters takes place within your source directories, there is no reason why you should not strip out comments on installation.
-
- if you use a build tool for your projects, ensure that no-one makes changes in the installed code. the 
-
- ■ Note installer will copy over any altered files, and the changes will be lost. i have seen it happen.
-
-Let’s sneak a peek at the next section and place the filterchain element in a task:
-
-    <target name="main">        <copy todir="build/lib">            <fileset refid="srclib"/>            <filterchain>                <stripphpcomments />            </filterchain>        </copy>    </target>
-
-The Copy task is probably the one you get most use out of. It copies files from place to place. As you can see, I define the destination directory in the todir attribute. The source of the files is defined by the fileset element I created in the previous section. Then comes the filterchain element. Any file copied by the Copy task will have this transformation applied to it.
-
-480
-
-Chapter 19 ■ automated Build with phing
-
-Phing supports filters for many operations, including stripping new lines (StripLineBreaks) and 
-
-replacing tabs with spaces (TabToSpaces). There is even an XsltFilter for applying XSLT transformations to source files! Perhaps the most commonly used filter, however, is ReplaceTokens. This allows you to swap tokens in your source code for properties defined in your build file, whether pulled from environment variables or passed in on the command line. This is very useful for customizing an installation. It’s a good idea to centralize your tokens into a central configuration file for easy overview of the variable aspects of your project.
-
-ReplaceTokens optionally accepts two attributes, begintoken and endtoken. You can use these to define 
-
-the characters that delineate token boundaries. If you omit these, Phing will assume the default character of @. In order to recognize and replace tokens, you must add token elements to the replacetokens element. Now I’ll add a replacetokens element to my example:
-
-    <copy todir="build/lib">        <fileset refid="srclib"/>        <filterchain>            <stripphpcomments />            <replacetokens>                <token key="dbname" value="${dbname}" />                <token key="dbhost" value="${dbhost}" />                <token key="dbpass" value="${dbpass}" />            </replacetokens>        </filterchain>    </copy>
-
-As you can see, token elements require key and value attributes. Let’s see the effect of  
-
-running this task with its transformations on a file in my project. The original file lives in a source directory, src/lib/Config.php:
-
-/** * Quick and dirty Conf class**/class Config {    public $dbname ="@dbname@";    public $dbpass ="@dbpass@";    public $dbhost ="@dbhost@";}
-
-Running my main target containing the Copy task defined previously gives the following output:
-
-$ phing
-
-Buildfile: /home/bob/working/megaquiz/build.xml
-
-megaquiz > main:
-
-     [copy] Copying 8 files to /home/bob/working/megaquiz/build/lib
-
-BUILD FINISHED
-
-Total time: 0.1413 seconds
-
-The original file is untouched, of course, but thanks to the Copy task, it has been reproduced at build/
-
-lib/Config.php:
-
-481
-
-Chapter 19 ■ automated Build with phing
-
-class Config {    public $dbname ="megaquiz";    public $dbpass ="default";    public $dbhost ="localhost";}
-
-Not only has the comment been removed, but the tokens have been replaced with their property 
-
-equivalents.
-
-TasksTasks are the elements in a build file that get things done. You won’t achieve much without using a task, which is why I have cheated and used a couple already. I’ll reintroduce these.
-
-EchoThe Echo task is perfect for the obligatory「Hello World」example. In the real world, you can use it to tell the user what you are about to do or what you have done. You can also sanity-check your build process by displaying the values of properties. As you have seen, any text placed within the opening and closing tags of an echo element will be printed to the browser:
-
-<echo>The pass is '${dbpass}', shhh!</echo>
-
-Alternatively, you can add the output message to a msg attribute:
-
-<echo msg="The pass is '${dbpass}', shhh!" />
-
-This will have the identical effect of printing the following to standard output:
-
-[echo] The pass is 'default', shhh!
-
-CopyCopying is really what installation is all about. Typically, you will create one target that copies files from your source directories and assembles them in a temporary build directory. You will then have another target that copies the assembled (and transformed) files to their output locations. Breaking the installation into separate build and install phases is not absolutely necessary, but it does mean that you can check the results of the initial build before committing to overwriting production code. You can also change a property and install again to a different location without the need to run a potentially expensive copy/replace phase again.
-
-At its simplest, the Copy task allows you to specify a source file and a destination directory or file:
-
-<copy file="src/lib/Config.php" todir="build/conf" />
-
-As you can see, I specify the source file using the file attribute. You may be familiar already with the 
-
-todir attribute, which is used to specify the target directory. If the target directory does not exist, Phing will create it for you.
-
-If you need to specify a target file, rather than a containing directory, you can use the tofile attribute 
-
-instead of todir:
-
-<copy file="src/lib/Config.php" tofile="build/conf/myConfig.php" />
-
-482
-
-Once again, the build/conf directory is created if necessary, but this time, Config.php is renamed to 
-
-myConfig.php.
-
-As you have seen, to copy more than one file at a time, you need to add a fileset element to copy:
-
-Chapter 19 ■ automated Build with phing
-
-        <copy todir="build/lib">            <fileset refid="srclib"/>        </copy>
-
-The source files are defined by the srclib fileset element, so all you have to set in copy is the todir 
-
-attribute.
-
-Phing is smart enough to test whether or not your source file has been changed since the target file was created. If no change has been made, then Phing will not copy. This means that you can build many times, and only the files that have changed in the meantime will be installed. This is fine, as long as other things are not likely to change. If a file is transformed according to the configuration of a replacetokens element, for example, you may want to ensure that the file is transformed every time that the Copy task is invoked. You can do this by setting an overwrite attribute:
-
-        <copy todir="build/lib" overwrite="yes">            <fileset refid="srclib"/>            <filterchain>                <stripphpcomments />                <replacetokens>                    <token key="dbpass" value="${dbpass}" />                </replacetokens>            </filterchain>        </copy>
-
-Now whenever copy is run, the files matched by the fileset element are replaced whether or not the 
-
-source has been recently updated.
-
-You can see the copy element summarized in Table 19-5.
-
-Table 19-5.  The Attributes of the Copy Element
-
-Required
-
-Description
-
-Default Value
-
-Attribute
-
-todir
-
-tofile
-
-tstamp
-
-None
-
-None
-
-false
-
-false
-
-false755
-
-true
-
-no
-
-483
-
-Yes (if tofile not present)Yes (if todir not present)No
-
-Directory to copy into
-
-The file to copy to
-
-Match the timestamp of any file overwritten (it will appear unaltered)Match the permissions of any file overwrittenCopy empty directories overSet the (octal) modeBuild process will be stopped if an error encountered
-
-Nopreservemodeincludeemptydirs NoNomodeNo
-
-haltonerror
-
-overwrite
-
-No
-
-Overwrite target if it already exists
-
-Chapter 19 ■ automated Build with phing
-
-InputYou have seen that the echo element is used to send output to the user. To gather input from the user, I have used separate methods involving the command line and an environment variable. These mechanisms are neither very structured nor interactive, however.
-
- one reason for allowing users to set values at build time is to allow for flexibility from build 
-
- ■ Note environment to build environment. in the case of database passwords, another benefit is that this sensitive data is not enshrined in the build file itself. of course, once the build has been run, the password will be saved into a source file, so it is up to the developer to ensure the security of his system!
-
-The input element allows you to present the user with a prompt message. Phing then awaits input 
-
-which it assigns it to a property. Here’s an example:
-
-    <target name="setpass" unless="dbpass">        <input message="You don't seem to have set a db password"               propertyName="dbpass"               defaultValue="default"               promptChar=" >" />    </target>
-
-    <target name="main" depends="setpass">        <echo>pass:     ${dbpass}</echo>    </target>
-
-Once again, I have a default target: main. This depends on another target, setpass, which is responsible 
-
-for ensuring that the dbpass property is populated. To this end, I use the target element’s unless attribute, which ensures that it will not run if dbpass is already set.
-
-The setpass target consists of a single input task element. An input element can have a message 
-
-attribute, which should contain a prompt for the user. The propertyName attribute is required and defines the property to be populated by user input. If the user presses Enter at the prompt without setting a value, the property is given a fallback value if the defaultValue attribute is set. Finally, you can customize the prompt character using the promptChar attribute—this provides a visual cue for the user to input data. Let’s run Phing using the previous targets:
-
-$ phingBuildfile: /home/bob/working/megaquiz/build.xml
-
-megaquiz > setpass:You don't seem to have set a db password [default] > mypassmegaquiz > main:     [echo] pass:     mypass
-
-BUILD FINISHED
-
-Total time: 6.0322 seconds
-
-484
-
-Chapter 19 ■ automated Build with phing
-
-The input element is summarized in Table 19-6.
-
-Table 19-6.  The Attributes of the Input Element
-
-Attribute
-
-Required
-
-Description
-
-propertyName
-
-message
-
-defaultValue
-
-validArgs
-
-promptChar
-
-YesNoNoNo
-
-No
-
-The property to populate with user inputThe prompt messageA value to assign to the property if the user does not provide inputA list of acceptable input values separated by commas. If the user inputs a value that is not on this list Phing will re-present the prompt
-
-A visual cue that the user should provide input
-
-DeleteInstallation is generally about creating, copying, and transforming files. Deletion has its place as well, however. This is particularly the case when you wish to perform a clean install. As I have already discussed, files are generally only copied from source to destination for source files that have changed since the last build. By deleting a build directory, you ensure that the full compilation process will take place.
-
-Here I delete a directory:
-
-    <target name="clean">        <delete dir="build" />    </target>
-
-When I run phing with the argument clean (the name of the target), my delete task element is invoked. 
-
-Here’s Phing’s output:
-
-$ phing clean
-
-Buildfile: /home/bob/working/megaquiz/build.xmlmegaquiz > clean:   [delete] Deleting directory /home/bob/working/megaquiz/build
-
-BUILD FINISHED
-
-The delete element accepts an attribute, file, which can be used to point to a particular file. 
-
-Alternatively, you can fine-tune your deletions by adding a fileset subelement to delete.
+In every project for which I’ve written tests, I’ve had occasion to be grateful for that fact sooner or later.
 
 Summary
 
-Serious development rarely happens all in one place. A codebase needs to be separated from its installation, so that work in progress does not pollute production code that needs to remain functional at all times. Version control allows developers to check out a project and work on it in their own space. This requires that they should be able to configure the project easily for their environments. Finally, and perhaps most importantly, the customer (even if the customer is yourself in a year’s time, when you’ve forgotten the ins-and-outs of your code) should be able to install your project after a glance at a Read Me file.
+In this chapter, I revisited the kinds of tests we all write as developers, but all too often thoughtlessly discard. From there, I introduced PHPUnit, which lets you write the same kind of throwaway tests during development, but then keep them and feel the lasting benefit! I created a test-case implementation, and I covered the available assertion methods. I also examined constraints and explored the devious world of mock objects. Next, I showed how refactoring for testing can improve design, demonstrating some techniques for testing web applications—first by using just PHPUnit, and then by using Selenium. Finally, I risked the ire of some by warning of the costs that tests incur and discussing the trade-offs involved.
 
-485
+464
 
-Chapter 19 ■ automated Build with phing
-
-In this chapter, I have covered some of the basics of Phing, a fantastic tool, which brings much of the 
-
-functionality of Apache Ant to the PHP world. I have only scratched the surface of Phing’s capabilities. Nevertheless, once you are up and running with the targets, tasks, types, and properties discussed here, you’ll find it easy to bolt on new elements for advanced features like creating tar/gzipped distributions, automatically generating PEAR package installations, and running PHP code directly from the build file.
-
-If Phing does not satisfy all your build needs, you will discover that, like Ant, it is designed to be 
-
-extensible—get out there and build your own tasks! Even if you don’t add to Phing, you should take some time to examine the source code. Phing is written entirely in object-oriented PHP, and its code is chock-full of design examples.
-
-486
-
-CHAPTER 20
-
-Vagrant
-
-Where do you run your code?
-
-Maybe you have a development environment you have honed to perfection with a favorite editor and 
-
-any number of useful development tools. Of course, your perfect set up for writing code is probably very different from the best system on which to run it. And that’s a challenge that Vagrant can help you with. Using Vagrant you get to work on your local machine and run your code on a system that’s all but identical to your production server. In this chapter I will show you how. We will cover the following:
-
-Basic set up: From installation to choosing your first box
-
-•	•	•	 Mounting host directories: Editing code on your host machine and having it available 
-
-Logging in: Investigating your virtual machine with ssh
-
-transparently in your Vagrant box
-
-•	•	
-
-Provisioning: Writing a script to install packages and configure Apache and MySQL
-
-Set a hostname: Configuring your box so that you can access it using a custom hostname
-
-The Problem
-
-As always, let’s spend a little time defining the problem space. It is relatively easy, these days, to configure a LAMP stack on most desktop or laptop computers. Even so, a personal computer is unlikely to match your production environment. Is it running the same version of PHP? What about Apache and MySQL? If you’re using Elasticsearch, you may need to consider Java, too. The list soon grows. Developing against one set of tools on a particular platform can sometimes be problematic if your production stack is significantly different.
-
-You might give up and shift your development to a remote machine—there are plenty of cloud vendors who will allow you to spin up a box quickly. But that’s not a free option, and, depending upon your editor of choice, a remote system may not integrate well with the development tools you wish to use.
-
-So it may be worth the effort of matching the packages on your computer as closely as possible with 
-
-those installed on the production system. The match won’t be perfect, but perhaps it will be good enough, and you’ll probably catch most issues on the staging server.
-
-What happens, though, when you begin work on a second project with radically different requirements? 
-
-We have seen that Composer does a great job of keeping dependencies separate, but there are still global packages like PHP, MySQL, and Apache to keep in line.
-
- ■ Note  If you decide to develop on remote systems, I recommend making the effort to learn how to use the vim editor. Despite its quirks, it is extremely powerful, and you can be 99% certain that either vim or its more basic ancestor vi will available on any Unix-like system you encounter.
-
-487
-
-Chapter 20 ■ Vagrant
-
-Virtualization is a potential solution, and a good one. It can be a pain installing an operating system, 
-
-though, and there can be considerable configuration hassles.
-
-If only there were a tool that made creating a production-like development environment on a local 
-
-machine really simple. OK, it’s obvious that now I’m going to say that just such a tool exists. Well, one does. It’s called Vagrant, and it is truly amazing.
-
-A Little Setup
-
-It is tempting to say that Vagrant gives you a development environment with a single command. That can be true—but you do have to install the requisite software first. Given that, and a configuration file that you can check out from your project’s version-control repository, launching a new environment truly can involve a single command.
-
-Let’s get started with the setup first. Vagrant requires a virtualization platform. It supports several, but I will use VirtualBox. My host machine runs Fedora, but you can install VirtualBox on any Linux distribution and on OSX or Windows. You can find the download page at https://www.virtualbox.org/wiki/Downloads, together with instructions for your platform.
-
-Once you have VirtualBox installed, you’ll need Vagrant, of course. The download page is at https://www.vagrantup.com/downloads.html. Once we have installed these applications, our next task will be to choose the box we’ll run our code on.
-
-Choosing and Installing a Vagrant BoxProbably the easiest way to acquire a Vagrant box is to use the search interface at https://atlas.hashicorp.com/search. Since many production systems run CentOS, that’s what I will look for. You can see the fruits of my research in Figure 20-1.
-
-Figure 20-1.  Searching for a Vagrant box
-
-488
-
-CentOS 6.7 looks about right for my needs. I now have enough information to get a Vagrant 
-
-environment running. Usually when you run Vagrant, it will read a configuration file named Vagrantfile—but since I am starting from scratch, I need to ask Vagrant to generate one:
-
-Chapter 20 ■ Vagrant
-
-$ vagrant init bento/centos-6.7
-
-A 'Vagrantfile' has been placed in this directory. You are nowready to 'vagrant up' your first virtual environment! Please readthe comments in the Vagrantfile as well as documentation on'vagrantup.com' for more information on using Vagrant.
-
-As you can see, I pass Vagrant the name of the box I want to work with, and it uses this information to 
-
-generate some minimal configuration.
-
-If I open up the generated Vagrantfile document, I can see this (among much other boilerplate):
-
-  # Every Vagrant development environment requires a box. You can search for  # boxes at https://atlas.hashicorp.com/search.  config.vm.box = "bento/centos-6.7"
-
-At this point, I have only gotten as far as generating configuration. Next, I must run the all-important 
-
-vagrant up command. If you work with Vagrant often, you will soon find this command very familiar. It kicks off your Vagrant session by downloading and provisioning your new box (if necessary), then booting it:
-
-$ vagrant up
-
-Because I am running this command for the first time with the bento/centos-6.7 virtual machine, 
-
-Vagrant starts by downloading the box:
-
-Bringing machine 'default' up with 'virtualbox' provider...==> default: Box 'bento/centos-6.7' could not be found. Attempting to find and install...    default: Box Provider: virtualbox    default: Box Version: >= 0==> default: Loading metadata for box 'bento/centos-6.7'    default: URL: https://atlas.hashicorp.com/bento/centos-6.7==> default: Adding box 'bento/centos-6.7' (v2.2.7) for provider: virtualbox    default: Downloading: https://atlas.hashicorp.com/bento/boxes/centos-6.7/versions/2.2.7/providers/virtualbox.box==> default: Successfully added box 'bento/centos-6.7' (v2.2.7) for 'virtualbox'!
-
-Vagrant stores the box (under ~/.vagrant.d/boxes/ if you are running Linux) so that you won’t have to download it again on your system—even if you run multiple virtual machines. Then it configures and boots the machine (it provides lots of detail as it does so). Once it has finished running, I can test it out by logging in to my new machine:
-
-$ vagrant ssh$ pwd
-
-/home/vagrant
-
-$ cat /etc/redhat-release
-
-489
-
-Chapter 20 ■ Vagrant
-
-CentOS release 6.7 (Final)
-
-We’re in! So what have we won? Well, we have access to a machine that somewhat resembles our 
-
-production environment. Anything else? Quite a lot, in fact. I said earlier that I would like to edit files on my local machine but run them in a production-like space. Let’s set that up.
-
-Mounting Local Directories on the Vagrant Box
-
-Let’s put some sample files together. I ran my first vagrant init and vagrant up commands in a directory I named infrastructure. I will resurrect the webwoo project I used in Chapter 18 (a cut down version of the system I developed for Chapter 12). Putting all that together, my development environment looks a little like this:
-
-ch20/    infrastructure/        Vagrantfile    webwoo/         AddVenue.php         index.php         Main.php         AddSpace.php
-
-Our challenge is to set up the environment so that we can work with webwoo files locally, but run them 
-
-transparently using a stack installed on the CentOS box. Depending upon our configuration, Vagrant will attempt to mount directories on the host machine within the guest box. In fact, Vagrant has already mounted one directory for us. Let’s check it out:
-
-$ vagrant ssh
-
-Last login: Tue Jul  5 15:36:19 2016 from 10.0.2.2
-
-$ ls -a /vagrant
-
-.  ..   .vagrant  Vagrantfile
-
-So Vagrant has mounted the infrastructure directory as /vagrant on the box. That will come in handy 
-
-when we write a script to provision the box. For now, though, let’s focus on mounting the webwoo directory. We can do this by editing Vagrantfile:
-
-    config.vm.synced_folder "../webwoo", "/var/www/poppch20"
-
-So with this directive, I am telling Vagrant to mount the webwoo directory on the guest box at /var/www/
-
-poppch20. In order to see that in effect, I need to reboot the box. There’s a new command for this (which should be run on the host system and not within the virtual machine):
-
-$ vagrant reload
-
-The virtual machine shuts down and reboots cleanly. Vagrant mounts the infrastructure (/vagrant)
-
-and webwoo (/var/www/poppch20) directories. Here’s an extract from the command’s output:
-
-490
-
-Chapter 20 ■ Vagrant
-
-    ==> default: Mounting shared folders...    default: /vagrant => /home/mattz/ch20/infrastructure    default: /var/www/poppch20 => /home/mattz/ch20/webwoo
-
-I can log in quickly to confirm that /var/www/poppch20 is in place:
-
-$ vagrant ssh
-
-Last login: Thu Jul  7 15:25:16 2016 from 10.0.2.2
-
-$ ls /var/www/poppch20/
-
-AddSpace.php  AddVenue.php  index.php  Main.php
-
-So now I can run a sexy IDE on my local machine and have the changes it makes transparently available 
-
-on the guest box!
-
-Of course, placing files on a CentOS VM is not the same as running the system. A typical Vagrant box 
-
-comes without too much pre-installed. The assumption is that the developer will want to customize the environment according to need and circumstance.
-
-The next stage is to provision our box.
-
-Provisioning
-
-Once again, provisioning is directed by the Vagrantfile document. Vagrant supports several tools designed for provisioning machines, including chef (https://www.chef.io/chef/), puppet (https://puppet.com), and ansible (https://www.ansible.com). They’re all worth investigating. For the purposes of this example, though, I’m going to use a good old-fashioned shell script.
-
-Once again I begin with Vagrantfile:
-
-config.vm.provision "shell", path: "setup.sh"
-
-This should be reasonably clear. I’m telling Vagrant to use a shell script to provision my box, and I 
-
-specify setup.sh as the script which should be executed.
-
-What you put in your shell script depends upon your requirements, of course. I’m going to begin by 
-
-setting t couple of variables, and installing some packages:
-
-#!/bin/bash
-
-VAGRANTDIR=/vagrantSERVERDIR=/var/www/poppch20/
-
-sudo rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpmsudo yum install -y patchsudo yum install -y vim
-
-sudo yum -q -y install mysql-serversudo yum -q -y install httpd;sudo yum -q -y install php70wsudo yum -q -y install php70w-mysql
-
-491
-
-Chapter 20 ■ Vagrant
-
-sudo yum -q -y install php70w-xmlsudo yum -q -y install php70w-dom
-
-PHP 7 is not available by default on CentOS 6. However, installing a yum repository from webtatic.
-
-com provides access to a package named php70w and a stack of related extensions. I write my script to a file named setup.sh which I place in the infrastructure directory alongside Vagrantfile.
-
-Now, how do I kick off the provisioning process? If the config.vm.provision directive and the setup.sh script had both been in place when I ran vagrant up, then the provisioning would have been automatic. As it is, I’ll now need to run it manually:
-
-$ vagrant provision
-
-This will spew an awful lot of information onto your terminal as the setup.sh script is run within the 
-
-Vagrant box. Let’s see if it worked:
-
-$ vagrant ssh$ php -v
-
-PHP 7.0.7 (cli) (built: May 28 2016 08:26:36) ( NTS )Copyright (c) 1997-2016 The PHP GroupZend Engine v3.0.0, Copyright (c) 1998-2016 Zend Technologies
-
-Setting Up the Web ServerOf course, even with MySQL and Apache installed, the system is not ready to be run. First of all, we should configure Apache. The easiest way to do this is to create a configuration file that can be copied into Apache’s conf.d directory. Let’s call the file poppch20.conf, and drop it into the infrastructure directory:
-
-NameVirtualHost *:80
-
-<VirtualHost *:80>    ServerAdmin matt@getinstance.com    DocumentRoot /var/www/poppch20    ServerName poppch20.vagrant.internal    ErrorLog logs/poppch20-error_log    CustomLog logs/poppch20-access_log common </VirtualHost>
-
-<Directory /var/www/poppch20>AllowOverride all</Directory>
-
-I’ll return to that hostname a little later. Leaving aside that tantalizing detail, this is enough to tell 
-
-Apache about our /var/www/poppch20 directory and to set up logging. Of course, I’ll also have to update setup.sh to copy the configuration file at provision time:
-
-sudo cp $VAGRANTDIR/poppch20.conf /etc/httpd/conf.d/sudo service httpd restartsudo /sbin/chkconfig httpd on
-
-492
-
-Chapter 20 ■ Vagrant
-
-I copy the configuration file into place and restart the web server so that the configuration is picked up. I 
-
-also run chkconfig to ensure that the server will be started at boot time.
-
-After making this change, I can re-run this script:
-
-$ vagrant provision
-
-It’s important to note that those parts of the set up script we previously covered will also be re-run. When you 
-
-create a provisioning script, you must design it so it can be executed repeatedly without serious repercussions. Luckily, Yum detects that my specified packages have already been installed and grumbles harmlessly, in part because I take the precaution of passing it -q flag, which keeps the complaints relatively muted.
-
-Setting Up MySQLFor many applications you’ll need to make sure that a database is available and ready for connections. Here’s a simple addition to my setup script:
-
-sudo service mysqld start/usr/bin/mysqladmin -s -u root password 'vagrant' || echo "** unable to create pass - probably already done"echo "CREATE DATABASE IF NOT EXISTS poppch20_vagrant" | mysql -u root -pvagrant# install data here if needed#echo "GRANT ALL PRIVILEGES  ON poppch20_vagrant.* TO'vagrant'@'localhost' IDENTIFIED BY 'vagrant'WITH GRANT OPTION" | mysql -u root -pvagrantecho "FLUSH PRIVILEGES" | mysql -u root -pvagrantsudo /sbin/chkconfig mysqld on
-
-I start MySQL. Then I run the mysqladmin command to create a root password. This will fail after the first run because the password will already be set, so I use the -s flag to suppress error messages and print a message of my own if the command fails. Then I create a database, a user, and a password. Finally, I run chkconfig to ensure that the MySQL daemon will start at boot time.
-
-With that in place, I can provision again, and then test my database:
-
-$ vagrant provision
-
-# much output
-
-$ vagrant ssh$ mysql -uvagrant -pvagrant poppch20_vagrant
-
-Welcome to the MySQL monitor.  Commands end with ; or \g.Your MySQL connection id is 9Server version: 5.1.73 Source distribution
-
-Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or itsaffiliates. Other names may be trademarks of their respectiveowners.
-
-493
-
-Chapter 20 ■ Vagrant
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.mysql>
-
-We now have a running database and a web server. It’s time to see the code in action.
-
-Configuring a Host NameWe have logged in to our new production-like development environment several times, so networking is more or less taken care of. Even though I’ve configured a web server, I’ve yet to use it. That’s because we still need to support a hostname for our VM. So let’s add one to Vagrantfile:
-
-config.vm.hostname = "poppch20.vagrant.internal"config.vm.network :private_network, ip: "192.168.33.148"
-
-I invent a hostname and use the config.vm.hostname directive to add it. I also configure private 
-
-networking with config.vm.network, assigning a static IP address. You should use private address space for this—an unused IP address beginning with 192.168 should work.
-
-Because this is an invented hostname, we must configure our operating system to handle the resolution. 
-
-On a Unix-like system that means editing a system file, /etc/hosts. In this case, I would add the following:
-
-192.168.33.148  poppch20.vagrant.internal
-
-Not overly onerous, but we are working towards a one-command install for our team, so it would be good to have a way of automating this step. Fortunately, Vagrant supports plug-ins, and the hostmanager plug-in does exactly what we need.
-
-You can see what plug-ins are installed with this command:
-
-$ vagrant plugin list
-
-vagrant-login (1.0.1, system)vagrant-share (1.1.5, system)
-
-To add a plug-in, you simply run the vagrant plugin install command:
-
-$ vagrant plugin install vagrant-hostmanager
-
-Installing the 'vagrant-hostmanager' plugin. This can take a few minutes...Installed the plugin 'vagrant-hostmanager (1.8.2)'!
-
-Then you can explicitly tell the plug-in to update /etc/hosts, like this:
-
-$ vagrant hostmanager
-
-[default] Updating /etc/hosts file...
-
-In order to make this process automatic for our team members, we should explicitly enable hostmanger 
-
-in Vagrantfile:
-
- config.hostmanager.enabled = true
-
-494
-
-With the configuration changes in place, we should run vagrant reload in order to apply them.  
-
-Then it’s the moment of truth! Will our system run in the browser? As you can see in Figure 20-2, the system should work just fine.
-
-Chapter 20 ■ Vagrant
-
-Figure 20-2.  Accessing a configured system on a Vagrant box
-
-Wrapping It Up
-
-So we have gone from nothing to a fully working development environment. Given that it took a chapter’s worth of effort to get here, it might seem like a bit of a cheat to say that Vagrant is quick and easy. There are two answers to that. First, once you have done this a few times, it becomes a pretty simple matter to spin up yet another Vagrant setup—certainly much easier than trying to juggle multiple dependency stacks by hand.
-
-More importantly, though, the real speed and efficiency gain does not lie with the person who sets 
-
-Vagrant up. Imagine a new developer coming in to your project expecting days' worth of downloads, configuration file edits, and wiki-clicking. Imagine telling her,「Install Vagrant and VirtualBox. Check out the code. From the infrastructure directory, run 'vagrant up'.」And that’s it! Compare that with some of the painful onboarding processes you have experienced or heard described.
-
-Of course, we’ve only scratched the surface in this chapter. As you need to configure Vagrant to do more 
-
-for you, the official site at https://www.vagrantup.com will provide you with all the support you need.
-
-Table 20-1 provides a quick reminder of the Vagrant commands we encountered in this chapter.
-
-495
-
-Chapter 20 ■ Vagrant
-
-Table 20-1.  Some Vagrant Commands
-
-Command
-
-vagrant up
-
-vagrant reload
-
-vagrant plugin list
-
-vagrant plugin install <plugin-name>
-
-vagrant provision
-
-vagrant halt
-
-vagrant init
-
-vagrant destroy
-
-Summary
-
-Description
-
-Boot the virtual machine and provision if not yet provisionedHalt the system and bring it back upList the installed plug-insInstall a plug-inRun the provision step again (useful if you have updated provision scripts)Gracefully shut down the virtual machineCreate a new Vagrantfile document
-
-Destroy the virtual machine. Don’t worry, you can always start again with vagrant up!
-
-In this chapter, I introduced Vagrant, the application that lets you work in a production-like development environment without sacrificing your authoring tools. I covered installation, the choosing of a distribution, and initial setup—including mounting your development directories. Once we had a virtual machine to play with, I moved on to the provisioning process—covering package installation, as well as database and web server configuration. Finally, I looked at hostname management, and I showed our system working in the browser!
-
-496
-
-CHAPTER 21
+CHAPTER 19
 

@@ -1,14 +1,12 @@
-Enterprise Patterns
+# 11 Performing and Representing Tasks
 
-PHP is, first and foremost, a language designed for the Web. And, because of its extensive support for objects, we can take advantage of patterns hatched in the context of other object-oriented languages, particularly Java.
+In this chapter, we get active. I look at patterns that help you to get things done, whether interpreting a mini-language or encapsulating an algorithm.
 
-I develop a single example in this chapter, using it to illustrate the patterns I cover. Remember, though, that by choosing to use one pattern, you are not committed to using all of the patterns that work well with it. Nor should you feel that the implementations presented here are the only way you might go about deploying these patterns. Rather, you should use the examples here to help you understand the thrust of the patterns described, feeling free to extract what you need for your projects.
+This chapter will walk you through several patterns:
 
-Because of the amount of material to cover, this is one this book’s longest and most involved chapters, and it may be a challenge to traverse it in one sitting. It is divided into an introduction and two main parts. These dividing lines might make good break points.
+•	
 
-I also describe the individual patterns in the「Architecture Overview」section. Although these are interdependent to some extent, you should be able to jump straight to any particular pattern and work through it independently, moving on to related patterns at your leisure.
-
-This chapter will cover several key topics:
+•	
 
 •	
 
@@ -16,1531 +14,1300 @@ This chapter will cover several key topics:
 
 •	
 
-Architecture overview: An introduction to the layers that typically comprise an enterprise application
+The Interpreter pattern: Building a mini-language interpreter that can be used to create scriptable applications
 
-Registry pattern: Managing application data
+The Strategy pattern: Identifying algorithms in a system and encapsulating them into their own types
 
-Presentation layer: Tools for managing and responding to requests and for presenting data to the user
+The Observer pattern: Creating hooks for alerting disparate objects about system events
 
-Business logic layer: Getting to the real purpose of your system, which is addressing business problems
+The Visitor pattern: Applying an operation to all the nodes in a tree of objects
 
-Architecture Overview
+The Command pattern: Creating command objects that can be saved and passed around
 
-With a lot of ground to cover, let’s kick off with an overview of the patterns to come, followed by an introduction to building layered, or tiered, applications.
+The Null Object pattern: Using non-operational objects in place of null values.
 
-The PatternsI will explore several patterns in this chapter. You may read from start to finish or dip into those patterns that fit your needs or pique your interest:
+The Interpreter Pattern
+
+Languages are written in other languages (at least at first). PHP itself, for example, is written in C.  By the same token, odd as it may sound, you can define and run your own languages using PHP. Of course, any language you might create will be slow and somewhat limited. Nonetheless, mini-languages can be  very useful, as you will see in this chapter.
+
+The ProblemWhen you create web (or command-line) interfaces in PHP, you give the user access to functionality. The trade-off in interface design is between power and ease-of-use. As a rule, the more power you give your user, the more cluttered and confusing your interface becomes. Good interface design can help a lot here, of course. But if 90 percent of users are using the same 30 percent of your features, the costs of piling on the functionality may outweigh the benefits. You may wish to consider simplifying your system for most users. But what of the power users, that ten percent who use your system’s advanced features? Perhaps you can accommodate them in a different way. By offering such users a domain language (often called a  DSL—Domain Specific Language), you might actually extend the power of your application.
+
+235
+
+Chapter 11 ■ performing and representing tasks
+
+Of course, you have a programming language at hand right away. It’s called PHP. Here’s how you could 
+
+allow your users to script your system:
+
+$form_input = $_REQUEST['form_input'];// contains: "print file_get_contents('/etc/passwd');"eval($form_input);
+
+This approach to making an application scriptable is clearly insane. Just in case the reasons are not 
+
+blatantly obvious, they boil down to two issues: security and complexity. The security issue is well addressed in the example. By allowing users to execute PHP via your script, you are effectively giving them access to the server the script runs on. The complexity issue is just as big a drawback. No matter how clear your code is, the average user is unlikely to extend it easily and certainly not from the browser window.
+
+A mini-language, though, can address both these problems. You can design flexibility into the language, 
+
+reduce the possibility that the user can do damage, and keep things focused.
+
+Imagine an application for authoring quizzes. Producers design questions and establish rules for 
+
+marking the answers submitted by contestants. It is a requirement that quizzes must be marked without human intervention, even though some answers can be typed into a text field by users.
+
+Here’s a Question:
+
+How many members in the Design Patterns gang?
+
+You can accept「four」or「4」as correct answers. You might create a web interface that allows a producer 
+
+to use a regular Expression for marking responses:
+
+^4|four$
+
+Most producers are not hired for their knowledge of regular expressions, however. To make everyone’s 
+
+life easier, you might implement a more user-friendly mechanism for marking responses:
+
+$input equals "4" or $input equals "four"
+
+You propose a language that supports variables, an operator called equals, and Boolean logic (or and 
+
+and). Programmers love naming things, so let’s call it MarkLogic. It should be easy to extend, as you envisage lots of requests for richer features. Let’s leave aside the issue of parsing input for now and concentrate on a mechanism for plugging these elements together at runtime to produce an answer. This, as you might expect, is where the Interpreter pattern comes in.
+
+ImplementationA language is made up of expressions (that is, things that resolve to a value). As you can see in Table 11-1, even a tiny language like MarkLogic needs to keep track of a lot of elements.
+
+236
+
+Chapter 11 ■ performing and representing tasks
+
+Table 11-1.  Elements of the MarkLogic Grammar
+
+Description
+
+EBNF Name
+
+Class Name
+
+VariableString literalBoolean and
+
+variable
+
+VariableExpression
+
+<stringLiteral>
+
+LiteralExpression
+
+andExpr
+
+BooleanAndExpression
+
+Boolean or
+
+orExpr
+
+BooleanOrExpression
+
+Example
+
+$input
+
+"four"
+
+$input equals '4' and $other equals '6'
+
+$input equals '4' or $other equals '6'
+
+Equality test
+
+eqExpr
+
+EqualsExpression
+
+$input equals '4'
+
+Table 11-1 lists EBNF names. So what is EBNF all about? It’s a notation that you can use to describe a language grammar. EBNF stands for Extended Backus-Naur Form. It consists of a series of lines (called productions), each one consisting of a name and a description that takes the form of references to other productions and to terminals (that is, elements that are not themselves made up of references to other productions). Here is one way of describing my grammar using EBNF:
+
+expr     = operand { orExpr | andExpr }operand  = ( '(' expr ')' | ? string literal ? | variable ) { eqExpr }orExpr   = 'or' operandandExpr  = 'and' operandeqExpr   = 'equals' operandvariable = '$' , ? word ?
+
+Some symbols have special meanings (that should be familiar from regular Expression notation): | means or, for example. You can group elements using brackets. So in the example, an Expression (expr) consists of an operand followed by zero or more of either orExpr or andExpr. An operand can be a bracketed Expression, a quoted string (I have omitted the production for this), or a variable followed by zero or more instances of eqExpr. Once you get the hang of referring from one production to another, EBNF becomes quite easy to read.
+
+In Figure 11-1, I represent the elements of my grammar as classes.
+
+237
+
+Chapter 11 ■ performing and representing tasks
+
+Figure 11-1.  The Interpreter classes that make up the MarkLogic language
+
+As you can see, BooleanAndExpression and its siblings inherit from OperatorExpression. This is 
+
+because these classes all perform their operations upon other Expression objects. VariableExpression and LiteralExpression work directly with values.
+
+All Expression objects implement an interpret() method that is defined in the abstract base class, 
+
+Expression. The interpret() method expects an InterpreterContext object that is used as a shared data store. Each Expression object can store data in the InterpreterContext object. The InterpreterContext will then be passed along to other Expression objects. So that data can be retrieved easily from the InterpreterContext, the Expression base class implements a getKey() method that returns a unique handle. Let’s see how this works in practice with an implementation of Expression:
+
+// listing 11.01
+
+abstract class Expression{    private static $keycount = 0;    private $key;
+
+    abstract public function interpret(InterpreterContext $context);
+
+    public function getKey()    {        if (! isset($this->key)) {            self::$keycount++;            $this->key = self::$keycount;        }
+
+238
+
+Chapter 11 ■ performing and representing tasks
+
+        return $this->key;    }}
+
+// listing 11.02
+
+class LiteralExpression extends Expression{    private $value;
+
+    public function __construct($value)    {        $this->value = $value;    }
+
+    public function interpret(InterpreterContext $context)    {        $context->replace($this, $this->value);    }}
+
+// listing 11.03
+
+class InterpreterContext{    private $expressionstore = [];
+
+    public function replace(Expression $exp, $value)    {        $this->expressionstore[$exp->getKey()] = $value;    }
+
+    public function lookup(Expression $exp)    {        return $this->expressionstore[$exp->getKey()];    }}
+
+// listing 11.04
+
+$context = new InterpreterContext();$literal = new LiteralExpression('four');$literal->interpret($context);print $context->lookup($literal) . "\n";
+
+Here’s the output:
+
+four
+
+239
+
+Chapter 11 ■ performing and representing tasks
+
+I’ll begin with the InterpreterContext class. As you can see, it is really only a front end for an associative array, $expressionstore, which I use to hold data. The replace() method accepts an Expression object as key and a value of any type, and then adds the pair to $expressionstore. It also provides a lookup() method for retrieving data.
+
+The Expression class defines the abstract interpret() method and a concrete getKey() method that 
+
+uses a static counter value to generate, store, and return an identifier.
+
+This method is used by InterpreterContext::lookup() and InterpreterContext::replace() to 
+
+index data.
+
+The LiteralExpression class defines a constructor that accepts a value argument. The interpret() 
+
+method requires a InterpreterContext object. I simply call replace(), using getKey() to define the key for retrieval and the $value property. This will become a familiar pattern as you examine the other Expression classes. The interpret() method always inscribes its results upon the InterpreterContext object.
+
+I include some client code as well, instantiating both an InterpreterContext object and a 
+
+LiteralExpression object (with a value of "four"). I pass the InterpreterContext object to  LiteralExpression::interpret(). The interpret() method stores the key/value pair in InterpreterContext, from where I retrieve the value by calling lookup().
+
+Here’s the remaining terminal class. VariableExpression is a little more complicated:
+
+// listing 11.05
+
+class VariableExpression extends Expression{    private $name;    private $val;
+
+    public function __construct($name, $val = null)    {        $this->name = $name;        $this->val = $val;    }
+
+    public function interpret(InterpreterContext $context)    {        if (! is_null($this->val)) {            $context->replace($this, $this->val);            $this->val = null;        }    }
+
+    public function setValue($value)    {        $this->val = $value;    }
+
+    public function getKey()    {        return $this->name;    }}
+
+240
+
+Chapter 11 ■ performing and representing tasks
+
+// listing 11.06
+
+$context = new InterpreterContext();$myvar = new VariableExpression('input', 'four');$myvar->interpret($context);print $context->lookup($myvar) . "\n";// output: four
+
+$newvar = new VariableExpression('input');$newvar->interpret($context);print $context->lookup($newvar) . "\n";// output: four
+
+$myvar->setValue("five");$myvar->interpret($context);print $context->lookup($myvar) . "\n";// output: five
+
+print $context->lookup($newvar) . "\n";// output: five
+
+The VariableExpression class accepts both name and value arguments for storage in property 
+
+variables. I provide the setValue() method, so that client code can change the value at any time.
+
+The interpret() method checks whether or not the $val property has a nonnull value. If the $val 
+
+property has a value, it sets it on the InterpreterContext. I then set the $val property to null. This is in case interpret() is called again after another identically named instance of VariableExpression has changed the value in the InterpreterContext object. This is quite a limited variable, accepting only string values. If you intend to extend your language, you should consider having it work with other Expression objects, so that it can contain the results of tests and operations. For now, though, VariableExpression will do the work I need of it. Notice that I have overridden the getKey() method, so that variable values are linked to the variable name and not to an arbitrary static ID.
+
+Operator expressions in the language all work with two other Expression objects in order to 
+
+get their job done. It makes sense, therefore, to have them extend a common superclass. Here is the OperatorExpression class:
+
+// listing 11.07
+
+abstract class OperatorExpression extends Expression{    protected $l_op;    protected $r_op;
+
+    public function __construct(Expression $l_op, Expression $r_op)    {        $this->l_op = $l_op;        $this->r_op = $r_op;    }
+
+    public function interpret(InterpreterContext $context)    {        $this->l_op->interpret($context);        $this->r_op->interpret($context);        $result_l = $context->lookup($this->l_op);
+
+241
+
+Chapter 11 ■ performing and representing tasks
+
+        $result_r = $context->lookup($this->r_op);        $this->doInterpret($context, $result_l, $result_r);    }
+
+    abstract protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    );}
+
+OperatorExpression is an abstract class. It implements interpret(), but it also defines the abstract 
+
+dointerpret() method.
+
+The constructor demands two Expression objects, $l_op and $r_op, which it stores in properties.The interpret() method begins by invoking interpret() on both its operand properties (if you have read the previous chapter, you might notice that I am creating an instance of the Composite pattern here). Once the operands have been run, interpret() still needs to acquire the values that this yields. It does this by calling InterpreterContext::lookup() for each property. It then calls dointerpret(), leaving it up to child classes to decide what to do with the results of these operations.
+
+ dointerpret() is an instance of the template method pattern. in this pattern, a parent class both 
+
+ ■ Note defines and calls an abstract method, leaving it up to child classes to provide an implementation. this can streamline the development of concrete classes, as shared functionality is handled by the superclass, leaving the children to concentrate on clean, narrow objectives.
+
+Here’s the EqualsExpression class, which tests two Expression objects for equality:
+
+// listing 11.08
+
+class EqualsExpression extends OperatorExpression{    protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {            $context->replace($this, $result_l == $result_r);    }}
+
+EqualsExpression only implements the dointerpret() method, which tests the equality of the operand results it has been passed by the interpret() method, placing the result in the InterpreterContext object.
+
+To wrap up the Expression classes, here are BooleanOrExpression and BooleanAndExpression:
+
+// listing 11.09
+
+class BooleanOrExpression extends OperatorExpression{
+
+242
+
+Chapter 11 ■ performing and representing tasks
+
+    protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {        $context->replace($this, $result_l || $result_r);    }}
+
+// listing 11.10class BooleanAndExpression extends OperatorExpression{    protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {        $context->replace($this, $result_l && $result_r);    }}
+
+Instead of testing for equality, the BooleanOrExpression class applies a logical or operation and stores 
+
+the result of that via the InterpreterContext::replace() method. BooleanAndExpression, of course, applies a logical and operation.
+
+I now have enough code to execute the mini-language fragment I quoted earlier. Here it is again:
+
+$input equals "4" or $input equals "four"
+
+Here’s how I can build this statement up with my Expression classes:
+
+// listing 11.11
+
+$context = new InterpreterContext();$input = new VariableExpression('input');$statement = new BooleanOrExpression(    new EqualsExpression($input, new LiteralExpression('four')),    new EqualsExpression($input, new LiteralExpression('4')));
+
+I instantiate a variable called "input" but hold off on providing a value for it. I then create a 
+
+BooleanOrExpression object that will compare the results from two EqualsExpression objects. The first of these objects compares the VariableExpression object stored in $input with a LiteralExpression containing the string "four"; the second compares $input with a LiteralExpression object containing the string "4".
+
+Now, with my statement prepared, I am ready to provide a value for the input variable and run the code:
+
+// listing 11.12
+
+foreach (["four", "4", "52"] as $val) {    $input->setValue($val);    print "$val:\n";
+
+243
+
+Chapter 11 ■ performing and representing tasks
+
+    $statement->interpret($context);    if ($context->lookup($statement)) {        print "top marks\n\n";    } else {        print "dunce hat on\n\n";    }}
+
+In fact, I run the code three times, with three different values. The first time through, I set the temporary 
+
+variable $val to "four", assigning it to the input VariableExpression object using its setValue() method. I then call interpret() on the topmost Expression object (the BooleanOrExpression object that contains references to all other expressions in the statement). Here are the internals of this invocation, step-by-step:
 
 •	
 
-Registry: This pattern is useful for making data available to all classes in a process. Through careful use of serialization, it can also be used to store information across a session or even across instances of an application.
-
-277
-
-Chapter 12 ■ enterprise patterns
+•	
 
 •	
+
+•	
+
+•	
+
+•	
+
+•	
+
+•	
+
+•	
+
+$statement calls interpret() on its $l_op property (the first EqualsExpression object).
+
+The first EqualsExpression object calls interpret() on its $l_op property (a reference to the input VariableExpression object, which is currently set to "four").
+
+The input VariableExpression object writes its current value to the provided InterpreterContext object by calling InterpreterContext::replace().
+
+The first EqualsExpression object calls interpret() on its $r_op property (a LiteralExpression object charged with the value "four").
+
+The LiteralExpression object registers its key and its value with InterpreterContext.
+
+The first EqualsExpression object retrieves the values for $l_op ("four") and $r_op ("four") from the InterpreterContext object.
+
+The first EqualsExpression object compares these two values for equality, and then registers the result (true) and its key with the InterpreterContext object.
+
+Back at the top of the tree, the $statement object (BooleanOrExpression) calls interpret() on its $r_op property. This resolves to a value (false, in this case) in the same way the $l_op property did.
+
+The $statement object retrieves values for each of its operands from the InterpreterContext object and compares them using ||. It is comparing true and false, so the result is true. This final result is stored in the InterpreterContext object.
+
+And all that is only for the first iteration through the loop. Here is the final output:
+
+four:top marks
+
+4:top marks
+
+52:dunce hat on
+
+244
+
+Chapter 11 ■ performing and representing tasks
+
+You may need to read through this section a few times before the process clicks. The old issue of object versus class trees might confuse you, here. Expression classes are arranged in an inheritance hierarchy, just as Expression objects are composed into a tree at runtime. As you read back through the code, keep this distinction in mind.
+
+Figure 11-2 shows the complete class diagram for the example.
+
+Figure 11-2.  The Interpreter pattern deployed
+
+Interpreter IssuesOnce you set up the core classes for an Interpreter pattern implementation, it becomes easy to extend. The price you pay is in the sheer number of classes you could end up creating. For this reason, Interpreter is best applied to relatively small languages. If you have a need for a full programming language, you would do better to look for a third-party tool to use.
+
+Because Interpreter classes often perform very similar tasks, it is worth keeping an eye on the classes 
+
+you create with a view to factoring out duplication.
+
+Many people approaching the Interpreter pattern for the first time are disappointed, after some initial 
+
+excitement, to discover that it does not address parsing. This means that you are not yet in a position to offer your users a nice, friendly language. Chapter 24 contains some rough code to illustrate one strategy for parsing a mini-language.
+
+The Strategy Pattern
+
+Classes often try to do too much. It’s understandable: you create a class that performs a few related actions; and, as you code, some of these actions need to be varied according to the circumstances. At the same time, your class needs to be split into subclasses. Before you know it, your design is being pulled apart by competing forces.
+
+245
+
+Chapter 11 ■ performing and representing tasks
+
+The ProblemSince I have recently built a marking language, I’m sticking with the quiz example. Quizzes need questions, so you build a Question class, giving it a mark() method. All is well until you need to support different marking mechanisms.
+
+Imagine that you are asked to support the simple MarkLogic language, marking by straight match and 
+
+regular Expression. Your first thought might be to subclass for these differences, as in Figure 11-3.
+
+Figure 11-3.  Defining subclasses according to marking strategies
+
+This would serve you well, as long as marking remains the only aspect of the class that varies. Imagine, 
+
+though, that you are called on to support different kinds of questions: those that are text-based and those that support rich media. This presents you with a problem when it comes to incorporating these forces in one inheritance tree, as you can see in Figure 11-4.
+
+Figure 11-4.  Defining subclasses according to two forces
+
+246
+
+Chapter 11 ■ performing and representing tasks
+
+Not only have the number of classes in the hierarchy ballooned, but you also necessarily introduce 
+
+repetition. Your marking logic is reproduced across each branch of the inheritance hierarchy.
+
+Whenever you find yourself repeating an algorithm across siblings in an inheritance tree (whether 
+
+through subclassing or repeated conditional statements), consider abstracting these behaviors into their own type.
+
+ImplementationAs with all the best patterns, Strategy is simple and powerful. When classes must support multiple implementations of an interface (e.g., multiple marking mechanisms), the best approach is often to extract these implementations and place them in their own type, rather than to extend the original class to handle them.
+
+So, in the example, your approach to marking might be placed in a Marker type. Figure 11-5 shows the 
+
+new structure.
+
+Figure 11-5.  Extracting algorithms into their own type
+
+Remember the Gang of Four principle,「Favor composition over inheritance」? This is an excellent example. By defining and encapsulating the marking algorithms, you reduce subclassing and increase flexibility. You can add new marking strategies at any time without the need to change the Question classes at all. All Question classes know is that they have an instance of a Marker at their disposal, and that it is guaranteed by its interface to support a mark() method. The details of implementation are entirely somebody else’s problem.
+
+Here are the Question classes rendered as code:
+
+// listing 11.13
+
+abstract class Question{    protected $prompt;    protected $marker;
+
+    public function __construct(string $prompt, Marker $marker)
+
+247
+
+Chapter 11 ■ performing and representing tasks
+
+    {        $this->prompt = $prompt;        $this->marker = $marker;    }
+
+    public function mark(string $response): bool    {        return $this->marker->mark($response);    }}
+
+// listing 11.14
+
+class TextQuestion extends Question{    // do text question specific things}
+
+// listing 11.15
+
+class AVQuestion extends Question{    // do audiovisual question specific things}
+
+As you can see, I have left the exact nature of the difference between TextQuestion and AVQuestion to the imagination. The Question base class provides all the real functionality, storing a prompt property and a Marker object. When Question::mark() is called with a response from the end user, the method simply delegates the problem solving to its Marker object.
+
+Now it’s time to define some simple Marker objects:
+
+// listing 11.16
+
+abstract class Marker{    protected $test;
+
+    public function __construct(string $test)    {        $this->test = $test;    }
+
+    abstract public function mark(string $response): bool;}
+
+// listing 11.17
+
+class MarkLogicMarker extends Marker{    private $engine;
+
+248
+
+Chapter 11 ■ performing and representing tasks
+
+    public function __construct(string $test)    {        parent::__construct($test);        $this->engine = new MarkParse($test);    }
+
+    public function mark(string $response): bool    {        return $this->engine->evaluate($response);    }}
+
+// listing 11.18
+
+class MatchMarker extends Marker{    public function mark(string $response): bool    {        return ($this->test == $response);    }}
+
+// listing 11.19
+
+class RegexpMarker extends Marker{    public function mark(string $response): bool    {        return (preg_match("$this->test", $response) === 1);    }}
+
+There should be little, if anything, that is particularly surprising about the Marker classes themselves. 
+
+Note that the MarkParse object is designed to work with the simple parser developed in Chapter 24. The key here is in the structure that I have defined, rather than in the detail of the strategies themselves. I can swap RegexpMarker for MatchMarker, with no impact on the Question class.
+
+Of course, you must still decide what method to use to choose between concrete Marker objects. I have 
+
+seen two real-world approaches to this problem. In the first, producers used radio buttons to select the preferred marking strategy. In the second, the structure of the marking condition itself was used; that is, a match statement was left plain:
+
+five
+
+A MarkLogic statement was preceded by a colon:
+
+:$input equals 'five'
+
+And a regular Expression used forward slashes:
+
+/f.ve/
+
+249
+
+Chapter 11 ■ performing and representing tasks
+
+Here is some code to run the classes through their paces:
+
+// listing 11.20
+
+$markers = [      new RegexpMarker("/f.ve/"),    new MatchMarker("five"),    new MarkLogicMarker('$input equals "five"')];
+
+foreach ($markers as $marker) {    print get_class($marker)."\n";    $question = new TextQuestion("how many beans make five", $marker);
+
+    foreach (["five", "four"] as $response) {        print "    response: $response: ";        if ($question->mark($response)) {            print "well done\n";        } else {            print "never mind\n";        }    }}
+
+I construct three strategy objects, using each in turn to help construct a TextQuestion object. The 
+
+TextQuestion object is then tried against two sample responses.
+
+Here is the output (including namespaces):
+
+popp\ch11\batch02\RegexpMarker    response: five: well done    response: four: never mindpopp\ch11\batch02\MatchMarker    response: five: well done    response: four: never mindpopp\ch11\batch02\MarkLogicMarker    response: five: well done    response: five: never mind
+
+In the example, I passed specific data (the $response variable) from the client to the strategy object via the mark() method. Sometimes, you may encounter circumstances in which you don’t always know in advance how much information the strategy object will require when its operation is invoked. You can delegate the decision as to what data to acquire by passing the strategy an instance of the client itself. The strategy can then query the client in order to build the data it needs.
+
+The Observer Pattern
+
+Orthogonality is a virtue I have described before. One of our objectives as programmers should be to build components that can be altered or moved with minimal impact on other components. If every change we make to one component necessitates a ripple of changes elsewhere in the codebase, the task of development can quickly become a spiral of bug creation and elimination.
+
+250
+
+Chapter 11 ■ performing and representing tasks
+
+Of course, orthogonality is often just a dream. Elements in a system must have embedded references 
+
+to other elements. You can, however, deploy various strategies to minimize this. You have seen various examples of polymorphism in which the client understands a component’s interface, but the actual component may vary at runtime.
+
+In some circumstances, you may wish to drive an even greater wedge between components than this. 
+
+Consider a class responsible for handling a user’s access to a system:
+
+// listing 11.21
+
+class Login{    const LOGIN_USER_UNKNOWN = 1;    const LOGIN_WRONG_PASS = 2;    const LOGIN_ACCESS = 3;
+
+    private $status = [];
+
+    public function handleLogin(string $user, string $pass, string $ip): bool    {        $isvalid=false;        switch (rand(1, 3)) {            case 1:                $this->setStatus(self::LOGIN_ACCESS, $user, $ip);                $isvalid = true;                break;            case 2:                $this->setStatus(self::LOGIN_WRONG_PASS, $user, $ip);                $isvalid = false;                break;            case 3:                $this->setStatus(self::LOGIN_USER_UNKNOWN, $user, $ip);                $isvalid = false;                break;        }
+
+        print "returning ".(($isvalid)?"true":"false")."\n";
+
+        return $isvalid;    }
+
+    private function setStatus(int $status, string $user, string $ip)    {        $this->status = [$status, $user, $ip];    }
+
+    public function getStatus(): array    {        return $this->status;    }}
+
+251
+
+Chapter 11 ■ performing and representing tasks
+
+In a real-world example, of course, the handleLogin() method would validate the user against a storage 
+
+mechanism. As it is, this class fakes the login process using the rand() function. There are three potential outcomes of a call to handleLogin(). The status flag may be set to LOGIN_ACCESS, LOGIN_WRONG_PASS, or LOGIN_USER_UNKNOWN.
+
+Because the Login class is a gateway guarding the treasures of your business team, it may excite much interest during development and in the months beyond. Marketing might call you up and ask that you keep a log of IP addresses. You can add a call to your system’s Logger class:
+
+// listing 11.22
+
+    public function handleLogin(string $user, string $pass, string $ip): bool    {        switch (rand(1, 3)) {            case 1:                $this->setStatus(self::LOGIN_ACCESS, $user, $ip);                $isvalid = true;                break;            case 2:                $this->setStatus(self::LOGIN_WRONG_PASS, $user, $ip);                $isvalid = false;                break;            case 3:                $this->setStatus(self::LOGIN_USER_UNKNOWN, $user, $ip);                $isvalid = false;                break;        }
+
+        Logger::logIP($user, $ip, $this->getStatus());
+
+        return $isvalid;    }
+
+Worried about security, the system administrators might ask for notification of failed logins. Once again, 
+
+you can return to the login method and add a new call:
+
+// listing 11.23
+
+        if (! $isvalid) {            Notifier::mailWarning(                $user,                $ip,                $this->getStatus()            );        }
+
+The business development team might announce a tie-in with a particular ISP, asking that a cookie be 
+
+set when particular users log in. And so on, and so on.
+
+These are all easy enough requests to fulfill, but addressing them comes at a cost to your design. The 
+
+Login class soon becomes very tightly embedded into this particular system. You cannot pull it out and drop it into another product without going through the code line-by-line and removing everything that is specific to the old system. This isn’t too hard, of course, but then you are off down the road of cut-and-paste coding. 
+
+252
+
+Chapter 11 ■ performing and representing tasks
+
+Now that you have two similar but distinct Login classes in your systems, you find that an improvement to one will necessitate the same changes in the other—until, inevitably and gracelessly, they fall out of alignment with one another.
+
+So what can you do to save the Login class? The Observer pattern is a great fit here.
+
+ImplementationAt the core of the Observer pattern is the unhooking of client elements (the observers) from a central class (the subject). Observers need to be informed when events occur that the subject knows about. At the same time, you do not want the subject to have a hardcoded relationship with its observer classes.
+
+To achieve this, you can allow observers to register themselves with the subject. You give the Login class three new methods, attach(), detach(), and notify(), and enforce this using an interface called Observable:
+
+// listing 11.24
+
+interface Observable{    public function attach(Observer $observer);    public function detach(Observer $observer);    public function notify();}
+
+// listing 11.25
+
+class Login implements Observable{    private $observers = [];    private $storage;
+
+    const LOGIN_USER_UNKNOWN = 1;    const LOGIN_WRONG_PASS   = 2;    const LOGIN_ACCESS       = 3;
+
+    public function attach(Observer $observer)    {        $this->observers[] = $observer;    }
+
+    public function detach(Observer $observer)    {        $this->observers = array_filter(            $this->observers,            function ($a) use ($observer) {                return (! ($a === $observer ));            }        );    }
+
+253
+
+Chapter 11 ■ performing and representing tasks
+
+    public function notify()    {        foreach ($this->observers as $obs) {            $obs->update($this);        }    }    // ...}
+
+So the Login class manages a list of observer objects. These can be added by a third party using 
+
+the attach() method and removed via detach(). The notify() method is called to tell the observers that something of interest has happened. The method simply loops through the list of observers, calling update() on each one.
+
+The Login class itself calls notify() from its handleLogin() method:
+
+// listing 11.26
+
+    public function handleLogin(string $user, string $pass, string $ip)    {        switch (rand(1, 3)) {            case 1:                $this->setStatus(self::LOGIN_ACCESS, $user, $ip);                $isvalid = true;                break;            case 2:                $this->setStatus(self::LOGIN_WRONG_PASS, $user, $ip);                $isvalid = false;                break;            case 3:                $this->setStatus(self::LOGIN_USER_UNKNOWN, $user, $ip);                $isvalid = false;                break;        }
+
+        $this->notify();
+
+        return $isvalid;    }
+
+Here’s the interface for the Observer class:
+
+// listing 11.27
+
+interface Observer{    public function update(Observable $observable);}
+
+Any object that uses this interface can be added to the Login class via the attach() method. Here’s a 
+
+concrete instance:
+
+254
+
+Chapter 11 ■ performing and representing tasks
+
+// listing 11.28
+
+class LoginAnalytics implements Observer{    public function update(Observable $observable)    {        // not type safe!        $status = $observable->getStatus();        print __CLASS__ . ":    doing something with status info\n";    }}
+
+Notice how the observer object uses the instance of Observable to get more information about the 
+
+event. It is up to the subject class to provide methods that observers can query to learn about state. In this case, I have defined a method called getStatus() that observers can call to get a snapshot of the current state of play.
+
+This addition also highlights a problem, though. By calling Login::getStatus(), the LoginAnalytics 
+
+class assumes more knowledge than it safely can. It is making this call on an Observable object, but there’s no guarantee that this will also be a Login object. I have a couple of options here. I could extend the Observable interface to include a getStatus() declaration and perhaps rename it to something like ObservableLogin to signal that it is specific to the Login type.
+
+Alternatively, I could keep the Observable interface generic and make the Observer classes responsible 
+
+for ensuring that their subjects are of the correct type. They could even handle the chore of attaching themselves to their subject. Since there will be more than one type of Observer, and since I’m planning to perform some housekeeping that is common to all of them, here’s an abstract superclass to handle the donkey work:
+
+// listing 11.29
+
+abstract class LoginObserver implements Observer{    private $login;
+
+    public function __construct(Login $login)    {        $this->login = $login;        $login->attach($this);    }
+
+    public function update(Observable $observable)    {        if ($observable === $this->login) {            $this->doUpdate($observable);        }    }
+
+    abstract public function doUpdate(Login $login);}
+
+The LoginObserver class requires a Login object in its constructor. It stores a reference and calls 
+
+Login::attach(). When update() is called, it checks that the provided Observable object is the correct 
+
+255
+
+Chapter 11 ■ performing and representing tasks
+
+reference. It then calls a Template Method: doUpdate(). I can now create a suite of LoginObserver objects, all of which can be secure they are working with a Login object and not just any old Observable:
+
+// listing 11.30
+
+class SecurityMonitor extends LoginObserver{    public function doUpdate(Login $login)    {        $status = $login->getStatus();        if ($status[0] == Login::LOGIN_WRONG_PASS) {            // send mail to sysadmin            print __CLASS__ . ":    sending mail to sysadmin\n";        }    }}
+
+// listing 11.31
+
+class GeneralLogger extends LoginObserver{    public function doUpdate(Login $login)    {        $status = $login->getStatus();        // add login data to log        print __CLASS__ . ":    add login data to log\n";    }}
+
+// listing 11.32
+
+class PartnershipTool extends LoginObserver{    public function doUpdate(Login $login)    {        $status = $login->getStatus();        // check $ip address        // set cookie if it matches a list        print __CLASS__ . ":    set cookie if it matches a list\n";    }}
+
+Creating and attaching LoginObserver classes is now achieved in one go at the time of instantiation:
+
+$login = new Login();new SecurityMonitor($login);new GeneralLogger($login);new PartnershipTool($login);
+
+So now I have created a flexible association between the subject classes and the observers. You can see 
+
+the class diagram for the example in Figure 11-6.
+
+256
+
+Chapter 11 ■ performing and representing tasks
+
+Figure 11-6.  The Observer pattern
+
+PHP provides built-in support for the Observer pattern through the bundled SPL (Standard PHP 
+
+Library) extension. The SPL is a set of tools that help with common, largely object-oriented problems. The Observer aspect of this OO Swiss Army knife consists of three elements: SplObserver, SplSubject, and SplObjectStorage. SplObserver and SplSubject are interfaces and exactly parallel the Observer and Observable interfaces shown in this section’s example. SplObjectStorage is a utility class designed to provide improved storage and removal of objects. Here’s an edited version of the Observer implementation:
+
+// listing 11.33
+
+class Login implements \SplSubject{    private $storage;    // ...
+
+    public function __construct()    {        $this->storage = new \SplObjectStorage();    }
+
+257
+
+Chapter 11 ■ performing and representing tasks
+
+    public function attach(\SplObserver $observer)    {        $this->storage->attach($observer);    }
+
+    public function detach(\SplObserver $observer)    {        $this->storage->detach($observer);    }
+
+    public function notify()    {        foreach ($this->storage as $obs) {            $obs->update($this);        }    }
+
+    // ...}
+
+// listing 11.34abstract class LoginObserver implements \SplObserver{    private $login;
+
+    public function __construct(Login $login)    {        $this->login = $login;        $login->attach($this);    }
+
+    public function update(\SplSubject $subject)    {        if ($subject === $this->login) {            $this->doUpdate($subject);        }    }
+
+    abstract public function doUpdate(Login $login);}
+
+There are no real differences, as far as SplObserver (which was Observer) and SplSubject (which was 
+
+Observable) are concerned—except, of course, I no longer need to declare the interfaces, and I must alter my type hinting according to the new names. SplObjectStorage provides you with a really useful service, however. You may have noticed that, in my initial example, my implementation of Login::detach() applied array_filter (together with an anonymous function) to the $observers array, in order to find and remove the argument object. The SplObjectStorage class does this work for you under the hood. It implements attach() and detach() methods, and can be passed to foreach and iterated like an array.
+
+258
+
+Chapter 11 ■ performing and representing tasks
+
+ You can read more about spL in the php documentation at http://www.php.net/spl. in particular, 
+
+ ■ Note you will find many iterator tools there. i cover php’s built-in iterator interface in Chapter 13,「database patterns.」
+
+Another approach to the problem of communicating between an Observable class and its Observer 
+
+could be to pass specific state information via the update() method, rather than an instance of the subject class. For a quick-and-dirty solution, this is often the approach I would take initially. So in the example, update() would expect a status flag, the username, and IP address (probably in an array for portability), rather than an instance of Login. This saves you from having to write a state method in the Login class. On the other hand, where the subject class stores a lot of state, passing an instance of it to update() allows observers much more flexibility.
+
+You could also lock down type completely, by making the Login class refuse to work with anything 
+
+other than a specific type of observer class (LoginObserver, perhaps). If you want to do that, then you may consider some kind of runtime check on objects passed to the attach() method; otherwise, you may need to reconsider the Observable interface altogether.
+
+Once again, I have used composition at runtime to build a flexible and extensible model. The Login 
+
+class can be extracted from its context and dropped into an entirely different project without qualification. There, it might work with a different set of observers.
+
+The Visitor Pattern
+
+As you have seen, many patterns aim to build structures at runtime, following the principle that composition is more flexible than inheritance. The ubiquitous Composite pattern is an excellent example of this. When you work with collections of objects, you may need to apply various operations to the structure that involve working with each individual component. Such operations can be built into the components themselves. After all, components are often best placed to invoke one another.
+
+This approach is not without issues. You do not always know about all the operations you may need to 
+
+perform on a structure. If you add support for new operations to your classes on a case-by-case basis, you can bloat your interface with responsibilities that don’t really fit. As you might guess, the Visitor pattern addresses these issues.
+
+The ProblemThink back to the Composite example from the previous chapter. For a game, I created an army of components such that the whole and its parts can be treated interchangeably. You saw that operations can be built into components. Typically, leaf objects perform an operation and composite objects call on their children to perform the operation:
+
+// listing 11.35
+
+class Army extends CompositeUnit{    public function bombardStrength(): int    {        $strength = 0;
+
+259
+
+Chapter 11 ■ performing and representing tasks
+
+        foreach ($this->units() as $unit) {            $strength += $unit->bombardStrength();        }
+
+        return $strength;    }}
+
+// listing 11.36
+
+class LaserCanonUnit extends Unit{    public function bombardStrength(): int    {        return 44;    }}
+
+Where this operation is integral to the responsibility of the composite class, there is no problem. There 
+
+are more peripheral tasks, however, that may not sit so happily on the interface.
+
+Here’s an operation that dumps textual information about leaf nodes. It could be added to the abstract 
+
+Unit class:
+
+// listing 11.37
+
+abstract class Unit{    // ...    public function textDump($num = 0): string    {        $txtout = "";        $pad = 4*$num;        $txtout .= sprintf("%{$pad}s", "");        $txtout .= get_class($this).": ";        $txtout .= "bombard: ".$this->bombardStrength()."\n";
+
+        return $txtout;    }    // ...}
+
+This method can then be overridden in the CompositeUnit class:
+
+// listing 11.38
+
+abstract class CompositeUnit extends Unit{    // ...    public function textDump($num = 0): string
+
+260
+
+Chapter 11 ■ performing and representing tasks
+
+    {        $txtout = parent::textDump($num);        foreach ($this->units as $unit) {            $txtout .= $unit->textDump($num + 1);        }
+
+        return $txtout;    }}
+
+I could go on to create methods for counting the number of units in the tree, for saving components to a 
+
+database, and for calculating the food units consumed by an army.
+
+Why would I want to include these methods in the composite’s interface? There is only one really 
+
+compelling answer. I include these disparate operations here because this is where an operation can gain easy access to related nodes in the composite structure.
+
+Although it is true that ease of traversal is part of the Composite pattern, it does not follow that every 
+
+operation that needs to traverse the tree should therefore claim a place in the Composite’s interface.
+
+So these are the forces at work: I want to take full advantage of the easy traversal afforded by my object 
+
+structure, but I want to do this without bloating the interface.
+
+ImplementationI’ll begin with the interfaces. In the abstract Unit class, I define an accept() method:
+
+// listing 11.39
+
+abstract class Unit{    // ...    public function accept(ArmyVisitor $visitor)    {        $refthis = new \ReflectionClass(get_class($this));        $method = "visit".$refthis->getShortName();        $visitor->$method($this);    }
+
+    protected function setDepth($depth)    {        $this->depth=$depth;    }
+
+    public function getDepth()    {        return $this->depth;    }}
+
+As you can see, the accept() method expects an ArmyVisitor object to be passed to it. PHP allows 
+
+you dynamically to define the method on the ArmyVisitor you wish to call, so I construct a method name based on the name of the current class and invoke that method on the provided ArmyVisitor object. If the current class is Army, then I invoke ArmyVisitor::visitArmy(). If the current class is TroopCarrier, then 
+
+261
+
+Chapter 11 ■ performing and representing tasks
+
+I invoke ArmyVisitor::visitTroopCarrier(). And so on. This saves me from implementing accept() on every leaf node in my class hierarchy. While I was in the area, I also added two methods of convenience: getDepth() and setDepth(). These can be used to store and retrieve the depth of a unit in a tree. setDepth() is invoked by the unit’s parent when it adds it to the tree from CompositeUnit::addUnit():
+
+// listing 11.40
+
+abstract class CompositeUnit extends Unit{    // ...
+
+    public function addUnit(Unit $unit)    {        foreach ($this->units as $thisunit) {            if ($unit === $thisunit) {                return;            }        }
+
+        $unit->setDepth($this->depth+1);        $this->units[] = $unit;    }
+
+    public function accept(ArmyVisitor $visitor)    {        parent::accept($visitor);
+
+        foreach ($this->units as $thisunit) {            $thisunit->accept($visitor);        }    }}
+
+I included an accept() method in this fragment. This calls Unit::accept() to invoke the relevant vist() 
+
+method on the provided ArmyVisitor object. Then it loops through any child objects calling accept(). In fact, because accept() overrides its parent operation, the accept() method allows me to do two things:
 
 •	•	
 
-•	
+Invoke the correct visitor method for the current component
 
-•	
+Pass the visitor object to all the current element children via the accept() method (assuming the current component is composite)
 
-Front Controller: Use this for larger systems in which you know that you will need as much flexibility as possible in managing many different views and commands.
+I have yet to define the interface for ArmyVisitor. The accept() methods should give you some clue. The visitor class will define accept() methods for each of the concrete classes in the class hierarchy. This allows me to provide different functionality for different objects. In my version of this class, I also define a default visit() method that is automatically called if implementing classes choose not to provide specific handling for particular Unit classes:
 
-Application Controller: Create a class to manage view logic and command selection.
+// listing 11.41
 
-Template View: Create pages that manage display and user interface only, incorporating dynamic information into display markup with as little raw code as possible.
+abstract class ArmyVisitor{    abstract public function visit(Unit $node);
 
-Page Controller: Lighter weight but less flexible than Front Controller, Page Controller addresses the same need. Use this pattern to manage requests and handle view logic if you want fast results and your system is unlikely to grow substantially in complexity.
+262
 
-Transaction Script: When you want to get things done fast, with minimal up-front planning, fall back on procedural library code for your application logic. This pattern does not scale well.
+Chapter 11 ■ performing and representing tasks
 
-•	 Domain Model: At the opposite pole from Transaction Script, use this pattern to 
+    public function visitArcher(Archer $node)    {        $this->visit($node);    }
 
-build object-based models of your business participants and processes.
+    public function visitCavalry(Cavalry $node)    {        $this->visit($node);    }
 
- the Command pattern is not described individually here (i wrote about it in Chapter 11); however, it 
+    public function visitLaserCanonUnit(LaserCanonUnit $node)    {        $this->visit($node);    }
 
- ■ Note is encountered once again in both the Front Controller and application Controller patterns.
+    public function visitTroopCarrierUnit(TroopCarrierUnit $node)    {        $this->visit($node);    }
 
-Applications and LayersMany (most, in fact) of the patterns in this chapter are designed to promote the independent operation of several distinct tiers in an application. Just as classes represent specializations of responsibilities, so do the tiers of an enterprise system, albeit on a coarser scale. Figure 12-1 shows a typical breakdown of the layers in a system.
+    public function visitArmy(Army $node)    {        $this->visit($node);    }}
 
-Figure 12-1.  The layers, or tiers, in a typical enterprise system
+So now it’s just a matter of providing implementations of ArmyVisitor, and I am ready to go. Here is the 
 
-278
+simple text dump code reimplemented as an ArmyVisitor object:
 
-The structure shown in Figure 12-1 is not written in stone: some of these tiers may be combined, 
+// listing 11.42
 
-and different strategies can be used for communication between them, depending on the complexity of your system. Nonetheless, Figure 12-1 illustrates a model that emphasizes flexibility and reuse, and many enterprise applications follow it to a large extent.
+class TextDumpArmyVisitor extends ArmyVisitor{    private $text = "";
 
-Chapter 12 ■ enterprise patterns
+    public function visit(Unit $node)    {        $txt = "";        $pad = 4*$node->getDepth();        $txt .= sprintf("%{$pad}s", "");        $txt .= get_class($node).": ";        $txt .= "bombard: ".$node->bombardStrength()."\n";        $this->text .= $txt;    }
 
-•	
+    public function getText()    {        return $this->text;    }}
 
-•	
+263
 
-•	
+Chapter 11 ■ performing and representing tasks
 
-•	
+Let’s look at some client code, and then walk through the whole process:
 
-The view layer contains the interface that a system’s users actually see and interact with. It is responsible for presenting the results of a user’s request and providing the mechanism by which the next request can be made to the system.
+// listing 11.43$main_army = new Army();$main_army->addUnit(new Archer());$main_army->addUnit(new LaserCanonUnit());$main_army->addUnit(new Cavalry());
 
-The command and control layer processes the request from the user. Based on this analysis, it delegates to the business logic layer any processing required in order to fulfill the request. It then chooses which view is best suited to present the results to the user. In practice, this and the view layer are often combined into a single presentation layer. Even so, the role of display should be strictly separated from those of request handling and business logic invocation.
+$textdump = new TextDumpArmyVisitor();$main_army->accept($textdump);print $textdump->getText();
 
-The business logic layer is responsible for seeing to the business of a request. It performs any required calculations and marshals the resulting data.
+This code yields the following output:
 
-The data layer insulates the rest of the system from the mechanics of saving and acquiring persistent information. In some systems, the command and control layer uses the data layer to acquire the business objects with which it needs to work. In other systems, the data layer is hidden as much as possible.
+Tax levied for popp\ch11\batch08\Army: 1Tax levied for popp\ch11\batch08\Archer: 2Tax levied for popp\ch11\batch08\LaserCanonUnit: 1Tax levied for popp\ch11\batch08\Cavalry: 3TOTAL: 7
 
-So what is the point of dividing a system in this way? As with so much else in this book, the answer lies with decoupling. By keeping business logic independent of the view layer, you make it possible to add new interfaces to your system with little or no rewriting.
+I create an Army object. Because Army is composite, it has an addUnit() method, and I use this to add some 
 
-Imagine a system for managing event listings (this will be a very familiar example by the end of the 
+more Unit objects. I then create the TextDumpArmyVisitor object, which I pass to Army::accept(). The accept() method constructs a method call and invokes TextDumpArmyVisitor::visitArmy(). In this case, I have provided no special handling for Army objects, so the call is passed on to the generic visit() method. visit() has been passed a reference to the Army object. It invokes its methods (including the newly added getDepth(), which tells anyone who needs to know how far down the object hierarchy the unit is) in order to generate summary data. The call to visitArmy() is complete, so the Army::accept() operation now calls accept() on its children in turn, passing the visitor along. In this way, the ArmyVisitor class visits every object in the tree.
 
-chapter). The end user will naturally require a slick HTML interface. Administrators maintaining the system may require a command-line interface for building into automated systems. At the same time, you may be developing versions of the system to work with cell phones and other handheld devices. You may even begin to consider SOAP or a RESTful API.
+With the addition of just a couple of methods, I have created a mechanism by which new functionality 
 
-If you originally combined the underlying logic of your system with the HTML view layer (which is still a common strategy), these requirements would trigger an instant rewrite. If, on the other hand, you had created a tiered system, you would be able to bolt on new presentation strategies without the need to reconsider your business logic and data layers.
+can be plugged into my composite classes without compromising their interface and without lots of duplicated traversal code.
 
-By the same token, persistence strategies are subject to change. Once again, you should be able to 
+On certain squares in the game, armies are subject to a tax. The tax collector visits the army and levies a fee for each unit it finds. Different units are taxable at different rates. Here’s where I can take advantage of the specialized methods in the visitor class:
 
-switch between storage models with minimal impact on the other tiers in a system.
+// listing 11.44
 
-Testing is another good reason for creating systems with separate tiers. Web applications are 
+class TaxCollectionVisitor extends ArmyVisitor{    private $due = 0;    private $report = "";
 
-notoriously hard to test. In an insufficiently tiered system, automated tests must negotiate the HTML interface at one end and risk triggering random queries to a database at the other, even when their focus is aimed at neither of these areas. Although any testing is better than none, such tests are necessarily haphazard. In a tiered system, on the other hand, the classes that face other tiers are often written so that they extend an abstract superclass or implement an interface. This supertype can then support polymorphism. In a test context, an entire tier can be replaced by a set of dummy objects (often called「stubs」or「mock」objects). In this way, you can test business logic using a fake data layer, for example. You can read more about testing in Chapter 18.
+    public function visit(Unit $node)    {        $this->levy($node, 1);    }
 
-Layers are useful even if you think that testing is for wimps and your system will only ever have a single 
+    public function visitArcher(Archer $node)    {        $this->levy($node, 2);    }
 
-interface. By creating tiers with distinct responsibilities, you build a system whose constituent parts are easier to extend and debug. You limit duplication by keeping code with the same kinds of responsibility in one place (rather than lacing a system with database calls, for example, or with display strategies). Adding to such a system is relatively easy because your changes tend to be nicely vertical, as opposed to messily horizontal.
+264
 
-279
+Chapter 11 ■ performing and representing tasks
 
-Chapter 12 ■ enterprise patterns
+    public function visitCavalry(Cavalry $node)    {        $this->levy($node, 3);    }
 
-A new feature, in a tiered system, might require a new interface component, additional request 
+    public function visitTroopCarrierUnit(TroopCarrierUnit $node)    {        $this->levy($node, 5);    }
 
-handling, some more business logic, and an amendment to your storage mechanism. That’s vertical change. In a nontiered system, you might add your feature and then remember that five separate pages reference your amended database table. Or was it six? There may be dozens of places where your new interface may potentially be invoked, so you need to work through your system, adding code for that. This is horizontal amendment.
+    private function levy(Unit $unit, int $amount)    {        $this->report .= "Tax levied for " . get_class($unit);        $this->report .= ": $amount\n";        $this->due += $amount;    }
 
-In reality, of course, you never entirely escape from horizontal dependencies of this sort, especially when it comes to navigation elements in the interface. A tiered system can help to minimize the need for horizontal amendment, however.
+    public function getReport()    {        return $this->report;    }
 
- ■ Note  While many of these patterns have been around for a while (patterns reflect well-tried practices, after all), the names and boundaries are drawn either from Martin Fowler’s key work on enterprise patterns, Patterns of Enterprise Application Architecture (addison-Wesley professional, 2002), or from the influential Core J2EE Patterns: Best Practices and Design Strategies (prentice hall, 2001) by alur et al. For the sake of consistency,  i have tended to use Fowler’s naming conventions where the two sources diverge.
+    public function getTax()    {        return $this->due;    }}
 
-All the examples in this chapter revolve around a fictional listings system with the whimsical-sounding 
+In this simple example, I make no direct use of the Unit objects passed to the various visit methods. I 
 
-name,「Woo,」which stands for something like「What’s On Outside.」
+do, however, use the specialized nature of these methods, levying different fees according to the specific type of the invoking Unit object.
 
-Participants of the system include venues (e.g., theaters, clubs, or cinemas), spaces (e.g., screen 1 or the 
+Here’s some client code:
 
-stage upstairs) and events (e.g., The Long Good Friday or The Importance of Being Earnest).
+// listing 11.45
 
-The operations I will cover include creating a venue, adding a space to a venue, and listing all venues in 
+$main_army = new Army();$main_army->addUnit(new Archer());$main_army->addUnit(new LaserCanonUnit());$main_army->addUnit(new Cavalry());
 
-the system.
+$taxcollector = new TaxCollectionVisitor();$main_army->accept($taxcollector);print $taxcollector->getReport();print "TOTAL: ";print $taxcollector->getTax() . "\n";
 
-Remember that the aim of this chapter is to illustrate key enterprise design patterns and not to build a working system. Reflecting the interdependent nature of design patterns, most of these examples overlap to a large extent with code examples, making good use of ground covered elsewhere in the chapter. As this code is mainly designed to demonstrate enterprise patterns, much of it does not fulfill all the criteria demanded by a production system. In particular, I omit error checking where it might stand in the way of clarity. You should approach the examples as a means of illustrating the patterns they implement, rather than as building blocks in a framework or application.
+The TaxCollectionVisitor object is passed to the Army object’s accept() method, as before. Once 
 
-Cheating Before We Start
+again, Army passes a reference to itself to the visitArmy() method, before calling accept() on its children. The components are blissfully unaware of the operations performed by their visitor. They simply collaborate with its public interface, each one passing itself dutifully to the correct method for its type.
 
-Most of the patterns in this book find a natural place in the layers of an enterprise architecture. But some patterns are so basic that they stand outside of this structure. The Registry pattern is a good example of this. In fact, Registry is a powerful way of breaking out of the constraints laid down by layering. It is the exception that allows for the smooth running of the rule.
+265
 
-RegistryThe Registry pattern is all about providing system-wide access to objects. These days, it is almost an article of faith that globals are bad. Like other sins, though, global data is fatally attractive. This is so much the case that object-oriented architects have felt it necessary to reinvent globals under a new name. You encountered the Singleton pattern in Chapter 9, although it is true that singleton objects do not suffer from all the ills that beset global variables. In particular, you cannot overwrite a singleton by accident. Singletons, then, are  low-fat globals. You should remain suspicious of singleton objects, though, because they invite you to anchor your classes into a system, thereby introducing coupling.
+Chapter 11 ■ performing and representing tasks
 
-280
+In addition to the methods defined in the ArmyVisitor class, TaxCollectionVisitor provides two 
 
-Chapter 12 ■ enterprise patterns
+summary methods, getReport() and getTax(). Invoking these provides the data you might expect:
 
-Nevertheless, singletons are so useful at times that many programmers (including me) can’t bring 
+Tax levied for popp\ch11\batch08\Army: 1Tax levied for popp\ch11\batch08\Archer: 2Tax levied for popp\ch11\batch08\LaserCanonUnit: 1Tax levied for popp\ch11\batch08\Cavalry: 3TOTAL: 7
 
-themselves to give them up.
+Figure 11-7 shows the participants in this example.
 
-The ProblemAs you have seen, many enterprise systems are divided into layers, with each layer communicating with its neighbors only through tightly defined conduits. This separation of tiers makes an application flexible. You can replace or otherwise develop each tier with the minimum impact on the rest of the system. What happens, though, when you acquire information in a tier that you later need in another noncontiguous layer?
+Figure 11-7.  The Visitor pattern
 
-Let’s say that I acquire configuration data in an ApplicationHelper class:
+Visitor IssuesThe Visitor pattern, then, is another pattern that combines simplicity and power. There are a few things to bear in mind when deploying this pattern, however.
 
-// listing 12.01class ApplicationHelper{    public function getOptions(): array    {        $optionfile = __DIR__ . "/data/woo_options.xml";
+First, although it is perfectly suited to the Composite pattern, Visitor can, in fact, be used with any collection of objects. So, you might use it with a list of objects where each object stores a reference to its siblings, for example.
 
-        if (! file_exists($optionfile)) {            throw new AppException("Could not find options file");        }
+By externalizing operations, you may risk compromising encapsulation. That is, you may need to expose 
 
-        $options = simplexml:load_file($optionfile);        $dsn = (string) $options->dsn;        // what do we do with this now?        // ...    }}
+the guts of your visited objects in order to let visitors do anything useful with them. You saw, for example, that for the first Visitor example, I was forced to provide an additional method in the Unit interface in order to provide information for TextDumpArmyVisitor objects. You also saw this dilemma previously in the Observer pattern.
 
-Acquiring the information is easy enough, but how would I get it to the data layer, where it is later used? 
+Because iteration is separated from the operations that visitor objects perform, you must relinquish a 
 
-And what about all the other configuration information I must disseminate throughout my system?One answer would be to pass this information around the system from object to object: from a 
+degree of control. For example, you cannot easily create a visit() method that does something both before and after child nodes are iterated. One way around this would be to move responsibility for iteration into the visitor objects. The trouble with this is that you may end up duplicating the traversal code from visitor to visitor.
 
-controller object responsible for handling requests; to objects in the business logic layer; and finally, to an object responsible for talking to the database.
+By default, I prefer to keep traversal internal to the visited classes, but externalizing it provides you with one distinct advantage. You can vary the way that you work through the visited classes on a visitor-by-visitor basis.
 
-This is entirely feasible. In fact, you could pass the ApplicationHelper object itself around or, 
+266
 
-alternatively, a more specialized Context object. Either way, contextual information is transmitted through the layers of your system to the object or objects that need it.
+Chapter 11 ■ performing and representing tasks
 
-The tradeoff is that, in order to do this, you must alter the interface of all the objects that relay the 
+The Command Pattern
 
-context object, whether they need to use it or not. Clearly, this undermines loose coupling to some extent.
+In recent years, I have rarely completed a web project without deploying this pattern. Originally conceived in the context of graphical user interface design, command objects make for good enterprise application design, encouraging a separation between the controller (request and dispatch handling) and domain model (application logic) tiers. Put more simply, the Command pattern makes for systems that are well organized and easy to extend.
 
-The Registry pattern provides an alternative that is not without its own consequences.A registry is simply a class that provides access to data (usually, but not exclusively, objects) via static methods (or via instance methods on a singleton). Every object in a system, therefore, has access to these objects.
+The ProblemAll systems must make decisions about what to do in response to a user’s request. In PHP, that decision-making process is often handled by a spread of point-of-contact pages. In selecting a page (feedback.php),  the user clearly signals the functionality and interface she requires. Increasingly, PHP developers are opting for a single-point-of-contact approach (as I will discuss in the next chapter). In either case, however, the receiver of a request must delegate to a tier more concerned with application logic. This delegation is particularly important in cases where the user can make requests to different pages. Without it, duplication inevitably creeps into the project.
 
-The term「Registry」is drawn from Fowler’s Patterns of Enterprise Application Architecture; but, as with 
+So, imagine you have a project with a range of tasks that need performing. In particular, the system 
 
-all patterns, implementations pop up everywhere. In The Pragmatic Programmer: from Journeyman to Master (Addison-Wesley Professional, 1999), David Hunt and David Thomas liken a registry class to a police incident-notice board. Detectives on one shift leave evidence and sketches on the board, which are then picked up by new detectives on another shift. I have also seen the Registry pattern called Whiteboard and Blackboard.
+must allow some users to log in and others to submit feedback. You could create login.php and feedback.php pages that handle these tasks, instantiating specialist classes to get the job done. Unfortunately, user interface in a system rarely maps neatly to the tasks that the system is designed to complete. You may require login and feedback capabilities on every page, for example. If pages must handle many different tasks, then perhaps you should think of tasks as things that can be encapsulated. In doing this, you make it easy to add new tasks to your system, and you build a boundary between your system’s tiers. This brings us to the Command pattern.
 
-281
+ImplementationThe interface for a command object could not get much simpler. It requires a single method: execute().In Figure 11-8, I have represented Command as an abstract class. At this level of simplicity, it could be defined instead as an interface. I tend to use abstracts for this purpose because I often find that the base class can also provide useful common functionality for its derived objects.
 
-Chapter 12 ■ enterprise patterns
+Figure 11-8.  The Command class
 
-ImplementationFigure 12-2 shows a Registry object that stores and serves Request objects.
+There are up to three other participants in the Command pattern: the client, which instantiates the 
 
-Figure 12-2.  A simple registry
+command object; the invoker, which deploys the object; and the receiver on which the command operates.The receiver can be given to the command in its constructor by the client, or it can be acquired from a factory object of some kind. I like the latter approach, keeping the constructor method clear of arguments. All Command objects can then be instantiated in exactly the same way.
 
-Here is this class in code form:
+Here’s the abstract base class:
 
-// listing 12.02class Registry{    private static $instance = null;    private $request;
+// listing 11.46
 
-    private function __construct()    {    }
+abstract class Command
 
-    public static function instance(): self    {        if (is_null(self::$instance)) {            self::$instance = new self();        }
+267
 
-        return self::$instance;    }
+Chapter 11 ■ performing and representing tasks
 
-    public function getRequest(): Request    {        if (is_null($this->request)) {            $this->request = new Request();        }
+{    abstract public function execute(CommandContext $context): bool;}
 
-        return $this->request;    }}
+And here’s a concrete Command class:
 
-// listing 12.03class Request{}
+// listing 11.47
 
-282
+class LoginCommand extends Command{    public function execute(CommandContext $context): bool    {        $manager = Registry::getAccessManager();        $user = $context->get('username');        $pass = $context->get('pass');        $user_obj = $manager->login($user, $pass);
 
-Chapter 12 ■ enterprise patterns
+        if (is_null($user_obj)) {            $context->setError($manager->getError());            return false;        }
 
-You can then access the same Request from any part of your system:
+        $context->addParam("user", $user_obj);
 
-// listing 12.04$reg = Registry::instance();print_r($reg->getRequest());
+        return true;    }}
 
-As you can see, the Registry is simply a singleton (see Chapter 9 if you need a reminder about singleton classes). The code creates and returns a sole instance of the Registry class via the instance() method. This can then be used to retrieve a Request object.
+The LoginCommand is designed to work with an AccessManager object. AccessManager is an imaginary class that handles the nuts-and-bolts of logging users into the system. Notice that the Command::execute() method demands a CommandContext object—this is known as RequestHelper in Core J2EE Patterns: Best Practices and Design Strategies (Prentice Hall, 2001) by Alur et al. This is a mechanism by which request data can be passed to Command objects, and by which responses can be channeled back to the view layer. Using an object in this way is useful because I can pass different parameters to commands without breaking the interface. The CommandContext is essentially an object wrapper around an associative array variable, though it is frequently extended to perform additional helpful tasks. Here is a simple CommandContext implementation:
 
-I have been known to throw caution to the wind and use a key-based system, like this:
+// listing 11.48
 
-// listing 12.05class Registry{    private static $instance=null;    private $values = [];
+class CommandContext{    private $params = [];    private $error = "";
 
-    private function __construct()    {    }
+    public function __construct()    {        $this->params = $_REQUEST;    }
 
-    public static function instance(): self    {        if (is_null(self::$instance)) {            self::$instance = new self();        }
+268
 
-        return self::$instance;    }
+Chapter 11 ■ performing and representing tasks
 
-    public function get(string $key)    {        if (isset($this->values[$key])) {            return $this->values[$key];        }
+    public function addParam(string $key, $val)    {        $this->params[$key] = $val;    }
 
-        return null;    }
+    public function get(string $key): string    {        if (isset($this->params[$key])) {            return $this->params[$key];        }        return null;    }
 
-    public function set(string $key, $value)    {        $this->values[$key] = $value;    }}
+    public function setError($error): string    {        $this->error = $error;    }
 
-The benefit here is that you don’t need to create methods for every object you wish to store and serve. 
+    public function getError(): string    {        return $this->error;    }}
 
-The downside, though, is that you reintroduce global variables by the back door. The use of arbitrary strings as keys for the objects you store means that there is nothing stopping one part of your system from overwriting a key/value pair when adding an object. I have found it useful to use this map-like structure during development, and then shift over to explicitly named methods when I’m clear about the data I am going to need to store and retrieve.
+So, armed with a CommandContext object, the LoginCommand can access request data: the submitted 
 
-283
+username and password. I use Registry, a simple class with static methods for generating common objects, to return the AccessManager object with which LoginCommand needs to work. If AccessManager reports an error, the command lodges the error message with the CommandContext object for use by the presentation layer, and returns false. If all is well, LoginCommand simply returns true. Note that Command objects do not themselves perform much logic. They check input, handle error conditions, and cache data, as well as calling on other objects to perform operations. If you find that application logic creeps into your command classes, it is often a sign that you should consider refactoring. Such code invites duplication, as it is inevitably copied and pasted between commands. You should at least look at where such functionality belongs. It may be best moved down into your business objects, or possibly into a Facade layer. In my example, I am still missing the client, the class that generates command objects, and the invoker, the class that works with the generated command. The easiest way of selecting which command to instantiate in a web project is by using a parameter in the request itself. Here is a simplified client:
 
-Chapter 12 ■ enterprise patterns
+// listing 11.49
 
- ■ Note  the registry pattern is not the only way of managing the services a system requires. in Chapter 10, we covered a similar strategy named Dependency injection, which is used in popular frameworks like symfony.
+class CommandFactory{    private static $dir = 'commands';
 
-You can also use registry objects as factories for common objects in your system. Instead of storing a provided object, the Registry class creates an instance and then caches the reference. It may do some setup behind the scenes as well, perhaps retrieving data from a configuration file or combining a number of objects:
+    public static function getCommand(string $action = 'Default'): Command    {        if (preg_match('/\W/', $action)) {            throw new Exception("illegal characters in action");        }
 
-// listing 12.06
+        $class = __NAMESPACE__ . "\\commands\\" . UCFirst(strtolower($action)) . "Command";
 
-    // class Registry
+269
 
-    private $treeBuilder = null;    private $conf = null;
+Chapter 11 ■ performing and representing tasks
 
-    // ...
+        if (! class_exists($class)) {            throw new CommandNotFoundException("no '$class' class located");        }
 
-    public function treeBuilder(): TreeBuilder    {        if (is_null($this->treeBuilder)) {            $this->treeBuilder = new TreeBuilder($this->conf()->get('treedir'));        }
+        $cmd = new $class();
 
-        return $this->treeBuilder;    }
+        return $cmd;    }}
 
-    public function conf(): Conf    {        if (is_null($this->conf)) {            $this->conf = new Conf();        }
+The CommandFactory class simply looks for a particular class. A fully qualified class name is constructed 
 
-        return $this->conf;    }
+using the CommandFactory class’s own namespace, the string '\commands\', and the CommandContext object’s $action parameter. The last item should have been passed to the system from the request. Thanks to Composer’s autoload magic, we don’t need to worry about explicitly requiring a class. If the class exists, then an object is instantiated and returned to the caller. I could add more error checking here, ensuring that the found class belongs to the Command family, and that the constructor expects no arguments; however, this version will do fine for my purposes. The strength of this approach is that you can create a discoverable Command object with the correct namespace at any time, and the system will immediately support it.
 
-TreeBuilder and Conf are just dummy classes, included to demonstrate a point. A client class that 
+The invoker is now simplicity itself:
 
-needs a TreeBuilder object can simply call Registry::treeBuilder(), without bothering itself with the complexities of initialization. Such complexities may include application-level data such as the dummy Conf object, and most classes in a system should be insulated from them.
+// listing 11.50
 
-Registry objects can be useful for testing, too. The static instance() method can be used to serve up a child of the Registry class, primed with dummy objects. Here’s how I might amend instance() to achieve this:
+class Controller{    private $context;
 
-// listing 12.07
+    public function __construct()    {        $this->context = new CommandContext();    }
 
-    // class Registry
+    public function getContext(): CommandContext    {        return $this->context;    }
 
-    private static $testmode = false;
+    public function process()    {        $action = $this->context->get('action');        $action = ( is_null($action) ) ? "default" : $action;        $cmd = CommandFactory::getCommand($action);
 
-    // ...
+        if (! $cmd->execute($this->context)) {            // handle failure        } else {            // success            // dispatch view        }    }}
 
-284
+270
 
-Chapter 12 ■ enterprise patterns
+Chapter 11 ■ performing and representing tasks
 
-    public static function testMode(bool $mode = true)    {        self::$instance = null;        self::$testmode = $mode;    }
+Here is some code to invoke the class:
 
-    public static function instance(): self    {        if (is_null(self::$instance)) {            if (self::$testmode) {                self::$instance = new MockRegistry();            } else {                self::$instance = new self();            }        }
+// listing 11.51
 
-        return self::$instance;    }
+$controller = new Controller();$context = $controller->getContext();
 
-When you need to put your system through its paces, you can use test mode to switch in a fake 
+$context->addParam('action', 'login' );$context->addParam('username', 'bob' );$context->addParam('pass', 'tiddles' );$controller->process();
 
-registry. This can serve up stubs (objects that fake a real environment for testing purposes) or mocks (similar objects that also analyze calls made to them and assess them for correctness):
+print $context->getError();
 
-// listing 12.08Registry::testMode();$mockreg = Registry::instance();
+Before I call Controller::process(), I fake a web request by setting parameters on the CommandContext 
 
-You can read more about mock and stub objects in Chapter 18.
+object instantiated in the controller’s constructor. The process() method acquires the "action" parameter (falling back to the string "default" if no action parameter is present). The method then delegates object instantiation to the CommandFactory object. It invokes execute() on the returned command. Notice how the controller has no idea about the command’s internals. It is this independence from the details of command execution that makes it possible for you to add new Command classes with a relatively small impact on this framework.
 
-Registry, Scope, and PHPThe term scope is often used to describe the visibility of an object or value in the context of code structures. The lifetime of a variable can also be measured over time. There are three levels of scope you might consider in this sense. The standard is the period covered by an HTTP request. PHP also provides built-in support for session variables. These are serialized and saved to the file system or the database at the end of a request, and then restored at the start of the next. A session ID stored in a cookie or passed around in query strings is used to keep track of the session owner. Because of this, you can think of some variables as having session scope. You can take advantage of this by storing some objects between requests, saving a trip to the database. Clearly, you need to be careful that you don’t end up with multiple versions of the same object, so you may need to consider a locking strategy when you check an object that also exists in a database into a session.
+Here’s one more Command class:
 
-In other languages, notably Java and Perl (running on the ModPerl Apache module), there is the concept of application scope. Variables that occupy this space are available across all instances of the application. This is fairly alien to PHP; but in larger applications, it might be considered useful to have access to an application-wide space for accessing configuration variables.
+// listing 11.52
 
-In previous editions of this book, I demonstrated examples of session- and application-scoped registry classes; but in the ten years or so since I first wrote that sample code, I have never had cause to use anything but a request-scoped registry. There is an initialization cost to this per-request approach, but you will typically use caching strategies to manage this.
+class FeedbackCommand extends Command{    public function execute(CommandContext $context): bool    {        $msgSystem = Registry::getMessageSystem();        $email = $context->get('email');        $msg   = $context->get('msg');        $topic = $context->get('topic');        $result = $msgSystem->send($email, $msg, $topic);
 
-285
+        if (! $result) {            $context->setError($msgSystem->getError());            return false;        }
 
-Chapter 12 ■ enterprise patterns
+        return true;    }}
 
-ConsequencesRegistry objects make their data globally available. This means that any class that acts as a client for a registry will exhibit a dependency that is not declared in its interface. This can become a serious problem if you begin to rely on Registry objects for lots of the data in your system. Registry objects are best used sparingly, for a well-defined set of data items.
+ i will return to the Command pattern in Chapter 12, with a fuller implementation of a Command factory 
 
-The Presentation Layer
+ ■ Note class. the framework for running commands presented here is a simplified version of another pattern that you will encounter: the front Controller.
 
-When a request hits your system, you must interpret the requirement it carries, invoke any business logic needed, and finally, return a response. For simple scripts, this whole process often takes place entirely inside the view itself, with only the heavyweight logic and persistence code split off into libraries.
+271
 
- a view is an individual element in the view layer. it can be a php page (or a collection of composed 
+Chapter 11 ■ performing and representing tasks
 
- ■ Note view elements) whose primary responsibility is to display data and provide the mechanism by which new requests can be generated by the user. it could also be a template in a system such as twig.
+This class will be run in response to a "feedback" action string, without the need for any changes in the 
 
-As systems grow in size, this default strategy becomes less tenable with request processing, business 
+controller or CommandFactory classes.
 
-logic invocation, and view dispatch logic necessarily duplicated from view to view.
+Figure 11-9 shows the participants of the Command pattern.
 
-In this section, I look at strategies for managing these three key responsibilities of the presentation layer. Because the boundaries between the view layer and the command and control layer are often fairly blurred, it makes sense to treat them together under the common term,「presentation layer.」
+Figure 11-9.  Command pattern participants
 
-Front ControllerThis pattern is diametrically opposed to the traditional PHP application with its multiple points of entry. The Front Controller pattern presents a central point of access for all incoming requests, ultimately delegating to a view the task of presenting results back to the user. This is a key pattern in the Java enterprise community. It is covered in great detail in Core J2EE Patterns: Best Practices and Design Strategies, which remains one of the most influential enterprise patterns resources. The pattern is not universally loved in the PHP community, partly because of the overhead that initialization sometimes incurs.
+The Null Object Pattern
 
-Most systems I write tend to gravitate toward the Front Controller. That is, I may not deploy the entire pattern to start with, but I will be aware of the steps necessary to evolve my project into a Front Controller implementation should I need the flexibility it affords.
+Half the problems that programmers face seem to be related to type. That’s one reason PHP has increasingly supported type checks for method declarations and returns. If dealing with a variable that contains the wrong type is a problem, dealing with one that contains no type at all is at least as bad. This happens all the time, since so many functions return null when they fail to generate a useful value. You can avoid inflicting this issue on yourself and others by using the Null Object pattern in your projects. As you will see, while the other patterns in this chapter try to get stuff done, Null Object is designed to do nothing as gracefully as possible.
 
-The ProblemWhere requests are handled at multiple points throughout a system, it is hard to keep duplication from the code. You may need to authenticate a user, translate terms into different languages, or simply access common data. When a request requires common actions from view to view, you may find yourself copying and pasting operations. This can make alteration difficult, as a simple amendment may need to be deployed across several points in your system. For this reason, it becomes easy for some parts of your code to fall out of alignment with others. Of course, a first step might be to centralize common operations into library code, but you are still left with the calls to the library functions or methods distributed throughout your system.Difficulty in managing the progression from view to view is another problem that can arise in a system 
+The ProblemIf your method has been charged with the task of finding an object, sometimes there is little to be done but to admit defeat. The information provided by the calling code may be stale or a resource may be unavailable. If 
 
-where control is distributed among its views. In a complex system, a submission in one view may lead to any number of result pages, according to the input and the success of any operations performed at the logic layer. Forwarding from view to view can get messy, especially if the same view might be used in different flows.
+272
 
-286
+Chapter 11 ■ performing and representing tasks
 
-Chapter 12 ■ enterprise patterns
+the failure is catastrophic, you might choose to throw an exception. Often, though, you’ll want to be a little more forgiving. In such a case, returning a null value might seem like a good way of signaling failure to the client.The problem here is that your method is breaking its contract. If it has committed to return an object 
 
-ImplementationAt heart, the Front Controller pattern defines a central point of entry for every request. It processes the request and uses it to select an operation to perform. Operations are often defined in specialized command objects organized according to the Command pattern.
+with a certain method, then returning null forces the client code to adjust to unexpected circumstances.
 
-Figure 12-3 shows an overview of a Front Controller implementation.
+Let’s return once again to our game. And let’s say that a class named TileForces keeps track of 
 
-Figure 12-3.  A Controller class and a command hierarchy
+information about units on a particular tile. Our game maintains local saved information about the units in the system, and a component named UnitAcquisition is responsible for turning this metadata into an array of objects.
 
-In fact, you are likely to deploy a few helper classes to smooth the process, but let’s begin with the core 
+Here is the TileForces constructor:
 
-participants. Here is a simple Controller class:
+// listing 11.53
 
-// listing 12.09class Controller{    private $reg;
+class TileForces{    private $units = [];    private $x;    private $y;
 
-    private function __construct()    {        $this->reg = Registry::instance();    }
+    function __construct(int $x, int $y, UnitAcquisition $acq)    {        $this->x = $x;        $this->y = $x;        $this->units = $acq->getUnits($this->x, $this->y);    }    // ...}
 
-    public static function run()    {        $instance = new Controller();        $instance->init();        $instance->handleRequest();    }
+The TileForces object does little but delegate to the provided UnitAcquisition object to get an array of 
 
-    private function init()    {        $this->reg->getApplicationHelper()->init();    }
+Unit objects. Let’s build a fake UnitAcquisition object:
 
-    private function handleRequest()    {        $request = $reg->getRequest();
+// listing 11.54
 
-287
+class UnitAcquisition{    function getUnits(int $x, int $y): array    {        // 1. looks up x and y in local data and gets a list of unit ids        // 2. goes off to a data source and gets full unit data        // here's some fake data        $army = new Army();        $army->addUnit(new Archer());        $found = [            new Cavalry(),            null,            new LaserCanonUnit(),            $army        ];
 
-Chapter 12 ■ enterprise patterns
+        return $found;    }}
 
-        $resolver = new CommandResolver();        $cmd = $resolver->getCommand($request);        $cmd->execute($request);    }}
+273
 
-Simplified as this is, and bereft of error handling, there isn’t much more to the Controller class. A 
+Chapter 11 ■ performing and representing tasks
 
-controller sits at the tip of a system, delegating to other classes. It is these other classes that do most of the work. run() is merely a convenience method that calls init() and handleRequest(). It is static, and the constructor is private, so the only option for client code is to kick off execution of the system. I usually do this in a file called index.php that contains only a few of lines of code:
+In this class, I hide the process of getting Unit data. Of course, in a real system, some actual look up would be performed here. I have contented myself with a few direct instantiations. Notice, though, that I embedded a sneaky null value in the $found array. This might happen, for example, if our network game client holds metadata that has fallen out of alignment with the state of data on a server.Armed with its array of Unit objects, TileForces can provide some functionality:
 
-// listing 12.10require_once(__DIR__ . "/../../../vendor/autoload.php");
+// listing 11.55
 
-use \popp\ch12\batch05\Controller;
+    // TileForces    public function firepower(): int    {        $power = 0;
 
-Controller::run();
+        foreach($this->units as $unit) {            $power += $unit->bombardStrength();        }
 
-Notice that nasty looking require statement. It is really only there so that the rest of the system can live in ignorance of the need for requiring files. The autoload.php script is automatically generated by Composer. It manages the logic for loading class files, as needed. If that meant nothing to you, don’t worry; we cover autoloading in much more detail in Chapter 16.
+        return $power;    }
 
-The distinction between the init() and handleRequest() methods is really one of category in PHP. In 
+Let’s put the code through its paces:
 
-some languages, init() would be run only at application startup, and handleRequest() or an equivalent would be run for each user request. This class observes the same distinction between setup and request handling, even though init() is called for each request.
+// listing 11.56
 
-The init() method makes a call to a class called ApplicationHelper via the Registry class, which is referenced by the Controller’s $reg property. The ApplicationHelper class manages configuration data for the application as a whole. Controller::init() calls a method in ApplicationHelper, also called init(), which, as you will see, initializes data used by the application.
+$acquirer = new UnitAcquisition();$tileforces = new TileForces(4, 2, $acquirer);$power = $tileforces->firepower();print "power is {$power}\n";
 
-The handleRequest() method uses a CommandResolver to acquire a Command object, which it runs by 
+Thanks to that lurking null, this code causes an error:
 
-calling Command::execute().
+Error: Call to a member function bombardStrength() on null
 
-ApplicationHelperThe ApplicationHelper class is not essential to Front Controller. Most implementations must acquire basic configuration data, though, so I should develop a strategy for this. Here is a simple ApplicationHelper:
+TileForces::firepower() cycles through its $units array, calling bombardStrength() on each Unit. 
 
-// listing 12.11class ApplicationHelper{    private $config = __DIR__ . "/data/woo_options.ini";    private $reg;
+The attempt to invoke a method on a null value, of course, causes an error.
 
-    public function __construct()    {        $this->reg = Registry::instance();    }
+The most obvious solution is to check each element of the array before working with it:
 
-288
+// listing 11.57
 
-Chapter 12 ■ enterprise patterns
+    // TileForces    public function firepower(): int    {        $power = 0;
 
-    public function init()    {        $this->setupOptions();
+        foreach ($this->units as $unit) {            if (! is_null($unit)) {                $power += $unit->bombardStrength();            }        }
 
-        if (isset($_SERVER['REQUEST_METHOD'])) {            $request = new HttpRequest();        } else {            $request = new CliRequest();        }
+        return $power;    }
 
-        $this->reg->setRequest($request);    }
+274
 
-    private function setupOptions()    {        if (! file_exists($this->config)) {            throw new AppException("Could not find options file");        }
+Chapter 11 ■ performing and representing tasks
 
-        $options = parse_ini_file($this->config, true);
+On its own, this isn’t too much of a problem. But imagine a version of TileForces that performs all sorts 
 
-        $conf = new Conf($options['config']);        $this->reg->setConf($conf);
+of operations on the elements in its $units property. As soon as we begin to replicate the is_null() check in multiple places, we are presented once again with a particular code smell. Often, the answer to parallel chunks of client code is to replace multiple conditionals with polymorphism. We can do that here, too.
 
-        $commands = new Conf($options['commands']);        $this->reg->setCommands($commands);    }}
+ImplementationThe Null Object pattern allows us to delegate the doing of nothing to a class of an expected type. In this case, I will create a NullUnit class.
 
-This class simply reads a configuration file and adds various objects to a registry, thereby making them 
+// listing 11.58
 
-available to the wider system. The init() method calls a private method—setupOptions()—which reads an .ini file and passes two arrays (each in an instance of an array wrapper named Conf) to the Registry object. There is nothing to Conf but a get() and a set() method—although more sophisticated configuration classes might manage searching for and parsing files, as well as managing the found data. One of these Conf arrays is intended to hold general configuration values—and that is passed to Registry::setConf(). The other array is for mapping URL paths to Command classes, and I pass that to Registry::setCommands().
+class NullUnit extends Unit{    public function bombardStrength(): int    {        return 0;    }
 
-The init() method also attempts to discover whether the application is being run in a web context or on the command line (by checking for the existence of $_SERVER['REQUEST_METHOD']). It passes a distinct Request subclass to the Registry object, depending on the result of that test.
+    public function getHealth(): int    {        return 0;    }
 
-Since Registry classes do very little but store and serve up objects, they do not make for exciting source 
+    public function getDepth(): int {        return 0;    }}
 
-code listings. For the sake of completeness, though, here are the additional Registry methods used or implied by the ApplicationHelper:
+This implementation of Unit respects the interface, but does precisely nothing. Now, I can amend 
 
-// listing 12.12    // must be initialized by some smarter component    public function setRequest(Request $request)    {        $this->request = $request;    }
+UnitAcquisition to create a NullUnit rather than use a null:
 
-    public function getRequest(): Request    {        if (is_null($this->request)) {
+// listing 11.59
 
-289
+    public function getUnits(int $x, int $y): array    {        $army = new Army();        $army->addUnit(new Archer());
 
-Chapter 12 ■ enterprise patterns
+        $found = [            new Cavalry(),            new NullUnit(),            new LaserCanonUnit(),            $army        ];
 
-            throw new \Exception("No Request set");        }
+    return $found;    }
 
-        return $this->request;    }
+275
 
-    public function getApplicationHelper(): ApplicationHelper    {        if (is_null($this->applicationHelper)) {            $this->applicationHelper = new ApplicationHelper();        }
+Chapter 11 ■ performing and representing tasks
 
-        return $this->applicationHelper;    }
+The client code in TileForces can call any methods it likes on a NullUnit object without problem or 
 
-    public function setConf(Conf $conf)    {        $this->conf = $conf;    }
+error:
 
-    public function getConf(): Conf    {        if (is_null($this->conf)) {            $this->conf = new Conf();        }
+// listing 11.60
 
-        return $this->conf;    }
+    // TileForces    public function firepower(): int {        $power = 0;
 
-    public function setCommands(Conf $commands)    {        $this->commands = $commands;    }
+        foreach($this->units as $unit) {            $power += $unit->bombardStrength();        }
 
-    public function getCommands(): Conf    {        return $this->commands;    }
+        return $power;    }
 
-Here is the simple configuration file:
+Take a look at any substantial project and count up the number of inelegant checks that have been 
 
-[config]dsn=sqlite:/var/popp/src/ch12/batch05/data/woo.db
+forced on its coders by methods that return null values. How many of those checks could be dispensed with if more of us used Null Object?
 
-[commands]/=\popp\ch12\batch05\DefaultCommand
+Of course, sometimes you will need to know that you are dealing with a null object. The most obvious way of doing this would be to test an object with the instanceof operator. That is even less elegant than the original is_null() call, however.
 
-CommandResolverA controller needs a way of deciding how to interpret an HTTP request, so that it can invoke the right code to fulfill that request. You could easily include this logic within the Controller class itself, but I prefer to use a specialist class for the purpose. That makes it easy to refactor for polymorphism, if necessary.
+Perhaps the neatest solution is to add an isNull() method to both a base class (returning false) and to 
 
-290
+the Null Object (returning true):
 
-Chapter 12 ■ enterprise patterns
+// listing 11.61
 
-A Front Controller often invokes application logic by running a Command object (I introduced the 
+if (! $unit->isNull()) {    // do something} else {    print "null - no action\n";}
 
-Command pattern in Chapter 11). The Command is chosen according to the request URL (using either the URL path or, less frequently these days, a GET parameter). Either way, you end up with a token or pattern which can be used for Command selection. There is more than one way of using a URL to select a command. For example, you can test the token against a configuration file or data structure (a logical strategy). Or, you can test it directly against class files on the file system (a physical strategy).
+That gives us the best of both worlds. Any method of a NullUnit object can be safely called. And any 
 
-You saw an example of a command factory that used a physical strategy in the last chapter. This time, I 
+Unit object can be queried for null status.
 
-will take the logical approach, mapping URL fragments to Command classes:
+## Summary
 
-// listing 12.13class CommandResolver{    private static $refcmd = null;    private static $defaultcmd = DefaultCommand::class;
+In this chapter, I wrapped up my examination of the Gang of Four patterns, placing a strong emphasis on how to get things done. I began by showing you how to design a mini-language and build its engine with the Interpreter pattern.
 
-    public function __construct()    {        // could make this configurable        self::$refcmd = new \ReflectionClass(Command::class);    }
+In the Strategy pattern, you encountered another way of using composition to increase flexibility 
 
-    public function getCommand(Request $request): Command    {        $reg = Registry::instance();        $commands = $reg->getCommands();        $path = $request->getPath();
+and reduce the need for repetitive subclassing. And with the Observer pattern, you learned how to solve the problem of notifying disparate and varying components about system events. You also revisited the Composite example; and with the Visitor pattern, learned how to pay a call on, and apply many operations to, every component in a tree. You even saw how the Command pattern can help you to build an extensible tiered system. Finally, you saved yourself a heap of checking for nulls with the Null Object pattern.
 
-        $class = $commands->get($path);
+In the next chapter, I will step further beyond the Gang of Four to examine some patterns specifically 
 
-        if (is_null($class)) {            $request->addFeedback("path '$path' not matched");            return new self::$defaultcmd();        }
-
-        if (! class_exists($class)) {            $request->addFeedback("class '$class' not found");            return new self::$defaultcmd();        }
-
-        $refclass = new \ReflectionClass($class);
-
-        if (! $refclass->isSubClassOf(self::$refcmd)) {            $request->addFeedback("command '$refclass' is not a Command");            return new self::$defaultcmd();        }
-
-        return $refclass->newInstance();    }}
-
-This simple class acquires a Conf object from the registry and uses the URL path (provided by the 
-
-Request::getPath() method) to attempt to get a class name. If the class name is found, and if the class both exists and extends the Command base class, then it is instantiated and returned.
-
-291
-
-Chapter 12 ■ enterprise patterns
-
-If any of these conditions are not met, the getCommand() method degrades gracefully by serving up a 
-
-default Command object.
-
-A more sophisticated implementation (e.g., like the ones used by the routing logic in Silex and Symfony) 
-
-would allow for wildcards in these paths.
-
-You may wonder why this code takes it on trust that the Command class it locates does not require 
-
-parameters:
-
-return $refclass->newInstance();
-
-The answer to this lies in the signature of the Command class itself:
-
-// listing 12.14abstract class Command{    final public function __construct()    {    }
-
-    public function execute(Request $request)    {        $this->doExecute($request);    }
-
-    abstract public function doExecute(Request $request);}
-
-By declaring the constructor method final, I make it impossible for a child class to override it. No 
-
-Command class, therefore, will ever require arguments to its constructor.
-
-When creating command classes, you should be careful to keep them as devoid of application logic 
-
-as you possibly can. As soon as they begin to do application-type stuff, you’ll find that they turn into a kind of tangled transaction script and duplication will soon creep in. Commands are a kind of relay station: they should interpret a request, call into the domain to juggle some objects, and then lodge data for the presentation layer. As soon as they begin to do anything more complicated than this, it’s probably time to refactor. The good news is that refactoring is relatively easy. It’s not hard to spot when a command is trying to do too much, and the solution is usually clear: move that functionality down to a helper or domain class.
-
-RequestRequests are magically handled for us by PHP and neatly packaged up in superglobal arrays. You might have noticed that I still use a class to represent a request. A Request object is passed to CommandResolver, and later on, to Command.
-
-Why do I not let these classes simply query the $_REQUEST, $_POST, or $_GET arrays for themselves?  
-
-I could do that, of course, but by centralizing request operations in one place, I open up new options.
-
-You could, for example, apply filters to the incoming request. Or, as the next example shows, you could gather request parameters from somewhere other than an HTTP request, allowing the application to be run from the command line or from a test script.
-
-The Request object is also a useful repository for data that needs to be communicated to the view layer. 
-
-In fact, many systems offer a separate Response object for that purpose, but we will keep things lean here.
-
-Here is a simple Request superclass:
-
-// listing 12.15abstract class Request
-
-292
-
-Chapter 12 ■ enterprise patterns
-
-{    protected $properties;    protected $feedback = [];    protected $path = "/";
-
-    public function __construct()    {        $this->init();    }
-
-    abstract public function init();
-
-    public function setPath(string $path)    {        $this->path = $path;    }
-
-    public function getPath(): string    {        return $this->path;    }
-
-    public function getProperty(string $key)    {        if (isset($this->properties[$key])) {            return $this->properties[$key];        }
-
-        return null;    }
-
-    public function setProperty(string $key, $val)    {        $this->properties[$key] = $val;    }
-
-    public function addFeedback(string $msg)    {        array_push($this->feedback, $msg);    }
-
-    public function getFeedback(): array    {        return $this->feedback;    }
-
-    public function getFeedbackString($separator = "\n"): string    {        return implode($separator, $this->feedback);    }
-
-293
-
-Chapter 12 ■ enterprise patterns
-
-    public function clearFeedback()    {        $this->feedback = [];    }}
-
-As you can see, most of this class is taken up with mechanisms for setting and acquiring properties. 
-
-The init() method is responsible for populating the private $properties array, and it will be handled by child classes. It’s important to note that this example implementation ignores request methods—not something you would ever want to do in the real world. A full implementation should manage GET, POST, and PUT arrays, as well as provide a unified query mechanism. Once you have a Request object, you should be able to access a parameter via the getProperty() method, which accepts a key string and returns the corresponding value (as stored in the $properties array). You can also add data via setProperty().
-
-The class also manages a $feedback array. This is a simple conduit through which controller classes can 
-
-pass messages to the user. In a fuller implementation, we would likely want to differentiate between error and informational messages.
-
-You may remember that ApplicationHelper instantiates one of HttpRequest and CliRequest. Here is 
-
-the first of these:
-
-// listing 12.16class HttpRequest extends Request{    public function init()    {        // we're conveniently ignoring POST/GET/etc distinctions        // don't do that in the real world!        $this->properties = $_REQUEST;        $this->path = $_SERVER['PATH_INFO'];        $this->path = (empty($this->path)) ? "/" : $this->path;    }}
-
-CliRequest takes argument pairs from the command line in the form key=value and breaks them out 
-
-into properties. It also detects an argument with a path: prefix and assigns the provided value to the object’s $path property:
-
-// listing 12.17class CliRequest extends Request{    public function init()    {        $args = $_SERVER['argv'];
-
-        foreach ($args as $arg) {            if (preg_match("/^path:(\S+)/", $arg, $matches)) {                $this->path = $matches[1];            } else {                if (strpos($arg, '=')) {                    list($key, $val) = explode("=", $arg);                    $this->setProperty($key, $val);                }
-
-294
-
-Chapter 12 ■ enterprise patterns
-
-            }        }
-
-        $this->path = (empty($this->path)) ? "/" : $this->path;    }}
-
-A CommandYou have already seen the Command base class, and Chapter 11 covered the Command pattern in detail, so there’s no need to go too deep into Commands. Let’s round things off, though, with a simple, concrete Command object:
-
-// listing 12.18class DefaultCommand extends Command{    public function doExecute(Request $request)    {        $request->addFeedback("Welcome to WOO");        include(__DIR__ . "/main.php");    }}
-
-This is the Command object that is served up by CommandResolver if no explicit request for a particular 
-
-Command is received.
-
-As you may have noticed, the abstract base class implements execute() itself, calling down to 
-
-the doExecute() implementation of its child class. This allows us to add setup and cleanup code to all commands, simply by altering the base class.
-
-The execute() method is passed a Request object that gives access to user input, as well as to the 
-
-setFeedback() method. DefaultCommand makes use of this to set a welcome message.
-
-Finally, the command dispatches control to a view, simply by calling include(). Embedding the map from command to view in the Command classes is the simplest dispatch mechanism; but for small systems, it can be perfectly adequate. A more flexible strategy can be seen in the「Application Controller」section.
-
-The file, main.php, contains some HTML and a call into the Request object to check for any feedback (I’ll cover views in more detail, shortly). I now have all the components in place to run the system. Here’s what I see:
-
-<html><head><title>Woo! it's Woo!</title></head><body>
-
-<table><tr><td>Welcome to WOO</td></tr></table>
-
-</body></html>
-
-295
-
-Chapter 12 ■ enterprise patterns
-
-As you can see, the feedback message set by the default command has found its way into the output. 
-
-Let’s review the full process that leads to this outcome.
-
-OverviewIt is possible that the detail of the classes covered in this section might disguise the simplicity of the Front Controller pattern. Figure 12-4 shows a sequence diagram that illustrates the life cycle of a request.
-
-Figure 12-4.  The front controller in operation
-
-As you can see, the front controller delegates initialization to the ApplicationHelper object (which could use caching to short-circuit any expensive setup). The Controller then acquires a Command object from the CommandResolver object. Finally, it invokes Command::execute() to kick off the application logic.In this implementation of the pattern, the Command itself is responsible for delegating to the view layer. 
-
-You can see a refinement of this in the next section.
-
-ConsequencesFront Controller is not for the fainthearted. It does require a lot of up-front development before you begin to see benefits. This is a serious drawback if your project requires fast turnaround, or if it is small enough that the Front Controller framework would weigh in heavier than the rest of the system.
-
-Having said that, once you have successfully deployed a Front Controller in one project, you will find that you can reuse it for others with lightning speed. You can abstract much of its functionality into library code, effectively building yourself a reusable framework.
-
-The requirement that all configuration information be loaded up for every request is another 
-
-drawback. All approaches will suffer from this to some extent, but Front Controller often requires additional information, such as logical maps of commands and views.
-
-This overhead can be eased considerably by caching such data. The most efficient way of doing this is to add the data to your system as native PHP. This is fine if you are the sole maintainer of a system; but if you have nontechnical users, you may need to provide a configuration file. You can still automate the 
-
-296
-
-Chapter 12 ■ enterprise patterns
-
-native PHP approach, though, by creating a system that reads a configuration file and then builds PHP data structures, which it writes to a cache file. Once the native PHP cache has been created, the system will use it in preference to the configuration file until a change is made and the cache must be rebuilt.
-
-On the plus side, Front Controller centralizes the presentation logic of your system. This means that you 
-
-can exert control over the way that requests are processed and views are selected in one place (well, in one set of classes, anyway). This reduces duplication and decreases the likelihood of bugs.
-
-Front Controller is also very extensible. Once you have a core up and running, you can add new Command 
-
-classes and views very easily.
-
-In this example, commands handled their own view dispatch. If you use the Front Controller pattern 
-
-with an object that helps with view (and possibly command) selection, then the pattern allows for excellent control over navigation, which is harder to maintain elegantly when presentation control is distributed throughout a system. I cover such an object in the next section.
-
-Application ControllerAllowing commands to invoke their own views is acceptable for smaller systems, but it is not ideal. It is preferable to decouple your commands from your view layer as much as possible.
-
-An application controller takes responsibility for mapping requests to commands, and commands to 
-
-views. This decoupling means that it becomes easier to switch in alternative sets of views without changing the codebase. It also allows the system owner to change the flow of the application, again without the need for touching any internals. By allowing for a logical system of Command resolution, the pattern also makes it easier for the same Command to be used in different contexts within a system.
-
-The ProblemRemember the nature of the example problem. An administrator needs to be able to add a venue to the system and to associate a space with it. The system might, therefore, support the AddVenue and AddSpace commands. According to the examples so far, these commands would be selected using a direct map from a path (/addvenue) to a class (AddVenue).
-
-Broadly speaking, a successful call to the AddVenue command should lead to an initial call to the 
-
-AddSpace command. This relationship might be hard-coded into the classes themselves, with AddVenue invoking AddSpace on success. AddSpace might then include a view that contains the form for adding the space to the venue.
-
-Both commands may be associated with at least two different views, a core view for presenting the 
-
-input form and an error or「thank you」screen. According to the logic already discussed, the Command classes themselves would include those views (using conditional tests to decide which view to present in which circumstances).
-
-This level of hard-coding is fine, as long as the commands will always be used in the same way. It begins 
-
-to break down, though, if I want a special view for AddVenue in some circumstances, and if I want to alter the logic by which one command leads to another (perhaps one flow might include an additional screen between a successful venue addition and the start of a space addition). If each of your commands is only used once, in one relationship to other commands and with one view, then you should hard-code your commands’ relationship with each other and their views. Otherwise, you should read on.
-
-An application controller class can take over this logic, freeing up Command classes to concentrate on 
-
-their job, which is to process input, invoke application logic, and handle any results.
-
-ImplementationAs always, the key to this pattern is the interface. An application controller is a class (or a set of classes) that the front controller can use to acquire commands based on a user request and to find the right view to present after the command has been run. You can see the bare bones of this relationship in Figure 12-5.
-
-297
-
-Chapter 12 ■ enterprise patterns
-
-Figure 12-5.  The Application Controller pattern
-
-As with all patterns in this chapter, the aim is to make things as simple as possible for the client  
-
-code—hence the spartan front controller class. Behind the interface, though, I must deploy an implementation. The approach laid out here is just one way of doing it. As you work through this section, remember that the essence of the pattern lies in the way that the participants (the application controller, the commands, and the views) interact—and not with the specifics of this implementation.
-
-Let’s begin with the code that uses the application controller.
-
-The Front ControllerHere is how the FrontController might work with the AppController class (simplified and stripped of error handling):
-
-// listing 12.19
-
-    // Controller    private function __construct()    {        $this->reg = Registry::instance();    }
-
-    public function handleRequest()    {        $request = $this->reg->getRequest();        $controller = new AppController();        $cmd = $controller->getCommand($request);        $cmd->execute($request);        $view = $controller->getView($request);        $view->render($request);    }
-
-Moving on from the previous example, the principal difference is that, in addition to changing a class 
-
-name from CommandResolver to AppController (admittedly a somewhat cosmetic move), we now retrieve a ViewComponent as well as a Command object. Notice that this code uses a registry object to acquire the Request object. We might also store the AppController object in the Registry—even if it isn’t used elsewhere by other components. Classes that avoid direct instantiation are generally more flexible and easier to test.
-
-298
-
-Chapter 12 ■ enterprise patterns
-
-So by what logic does the AppController know which view to associate with which command? As 
-
-always with object-oriented code, the interface is more important than the implementation. Let’s fill in a possible approach, however.
-
-Implementation OverviewA Command class might demand a different view according to different stages of operation. The default view for the AddVenue command might be a data input form. If the user adds the wrong kind of data, the form may be presented again, or an error page may be shown. If all goes well, and the venue is created in the system, then I may wish to forward to another in a chain of Command objects: AddSpace, perhaps.
-
-The Command objects tell the system of their current state by setting a status flag. Here are the flags that 
-
-this minimal implementation recognizes (set as a property in the Command superclass):
-
-// listing 12.20
-
-    const CMD_DEFAULT = 0;    const CMD_OK = 1;    const CMD_ERROR = 2;    const CMD_INSUFFICIENT_DATA = 3;
-
-The application controller finds and instantiates the correct Command class using the Request object. 
-
-Once it has been run, the Command will be associated with a status. This combination of Command and status can be compared against a data structure to determine which command should be run next, or—if no more commands should be run—which view to serve up.
-
-The Configuration FileThe system’s owner can determine the way that commands and views work together by setting a set of configuration directives. Here is an extract:
-
-    <control>
-
-        <command path="/" class="\popp\ch12\batch06\DefaultCommand">            <view name="main" />            <status value="CMD_ERROR">                <view name="error" />            </status>        </command>
-
-        <command path="/listvenues" class="\popp\ch12\batch06\ListVenues">            <view name="listvenues" />        </command>
-
-        <command path="/quickaddvenue" class="\popp\ch12\batch06\AddVenue">            <view name="quickadd" />        </command>
-
-        <command path="/addvenue" class="\popp\ch12\batch06\AddVenue">            <view name="addvenue" />            <status value="CMD_OK">
-
-299
-
-Chapter 12 ■ enterprise patterns
-
-                <forward path="/addspace" />            </status>        </command>
-
-        <command path="/addspace" class="\popp\ch12\batch06\AddSpace">            <view name="addspace" />            <status value="CMD_OK">                <forward path="/listvenues" />            </status>        </command>
-
-    </control>
-
-This XML fragment shows one strategy for abstracting the flow of commands and their relationship to 
-
-views from the Command classes themselves. The directives are all contained within a control element.
-
-Each command element defines path and class attributes which describe basic command mapping. The logic for views is more complex, however. A view element at the top level of a command defines a default relationship. In other words, if no more specific condition is matched, this view will be used for a command. The status elements define these specific conditions. Their value attributes should match one of the command statuses you have seen. When a command’s execution renders a CMD_OK status, for example, if an equivalent status has been defined in the XML document, the corresponding view element will be used.
-
-A view element defines a name attribute. This value is used to build a path to a template file which can 
-
-then be included.
-
-A command or a status element might contain a forward element instead of a view. The WOO system treats a forward as a special kind of view which, instead of rendering a template, reinvokes the application with a new path.
-
-Let’s work through a fragment of this XML in the light of that explanation:
-
-        <command path="/addvenue" class="\popp\ch12\batch06\AddVenue">            <view name="addvenue" />            <status value="CMD_OK">                <forward path="/addspace" />            </status>        </command>
-
-When the system is invoked with the /addvenue path, the AddVenue command is called. It then 
-
-generates a status value—one of CMD_DEFAULT, CMD_OK, CMD_ERROR, or CMD_INSUFFICIENT_DATA. For any status but CMD_OK, the addvenue template will be invoked. If the command returns CMD_OK status, however, the condition is matched. The status element could simply contain another view that would be included in place of the default. Here, though, the forward element comes into play. By forwarding to another command, the configuration file delegates all responsibility for handling views to the new element. The system will then begin again with the /addspace path in a new request.
-
-Parsing the Configuration FileThanks to the SimpleXML extension, we don’t have to do any actual parsing—that is handled for us. All that is left is to traverse the SimpleXML data structure and build our own data. Here is a class named ViewComponentCompiler that does just that:
-
-// listing 12.21class ViewComponentCompiler
-
-300
-
-Chapter 12 ■ enterprise patterns
-
-{    private static $defaultcmd = DefaultCommand::class;
-
-    public function parseFile($file)    {        $options = \simplexml:load_file($file);        return $this->parse($options);    }
-
-    public function parse(\SimpleXMLElement $options): Conf    {        $conf = new Conf();
-
-        foreach ($options->control->command as $command) {            $path = (string)$command['path'];            $cmdstr = (string)$command['class'];            $path = (empty($path)) ? "/" : $path;            $cmdstr = (empty($cmdstr)) ? self::$defaultcmd : $cmdstr;            $pathobj = new ComponentDescriptor($path, $cmdstr);
-
-            $this->processView($pathobj, 0, $command);
-
-            if (isset($command->status) && isset($command->status['value'])) {                foreach ($command->status as $statusel) {                    $status = (string)$statusel['value'];                    $statusval = constant(Command::class . "::" . $status);
-
-                    if (is_null($statusval)) {                        throw new AppException("unknown status: {$status}");                    }
-
-                    $this->processView($pathobj, $statusval, $statusel);                }            }
-
-            $conf->set($path, $pathobj);        }        return $conf;    }
-
-    public function processView(ComponentDescriptor $pathobj, int $statusval, \SimpleXMLElement $el)    {        if (isset($el->view) && isset($el->view['name'])) {            $pathobj->setView($statusval, new TemplateViewComponent((string)$el->view['name']));        }
-
-        if (isset($el->forward) && isset($el->forward['path'])) {            $pathobj->setView($statusval, new ForwardViewComponent((string)$el->forward['path']));        }    }}
-
-301
-
-Chapter 12 ■ enterprise patterns
-
-The real action here takes place in the parse() method, which accepts a SimpleXMLElement object for 
-
-traversal. I start by instantiating a Conf object (remember, this is just a wrapper around an array). Then I loop through the command elements in the XML. For each command, I extract the values of the path and class attributes, and I pass this data to the constructor of a ComponentDescriptor object. This object will manage the bundle of information associated with a command element—you’ll see the class soon.
-
-Then I call a private method named processView(), passing it the ComponentDescriptor, a zero-
-
-valued integer (because we’re handling the default status), and a reference to the current XML element (that is command right now). Depending on what it finds in the XML fragment, processView() either creates a TemplateViewComponent or a ForwardViewComponent, which it passes along to ComponentDescriptor::setView(). It may match nothing and make no call at all, of course—but that is probably inadvisable. —Perhaps we’d make it an error condition in a fuller implementation.
-
-Back in parse(), I begin work on the status attributes. I call processView() once again—but this time with 
-
-the integer that corresponds to the string in the status element’s value attribute. In other words, the string  CMD_OK becomes 1, CMD_ERROR becomes 2, and so on. PHP’s constant() method provides a neat way of making this conversion. So I pass processView() a non-zero integer this time around, as well as the status XML element.Once again processView() populates the ComponentDescriptor with any found ViewComponent objects.Finally, I store the ComponentDescriptor object in the Conf object, indexed by the command 
-
-component’s path value.
-
-Once the loop is finished, I return the Conf object.It may take a little re-reading before you can follow this flow; but in essence, the process is very 
-
-simple: ViewComponentCompiler builds up an array (wrapped, as previously, in a Conf object) of ComponentDescriptor objects. Each ComponentDescriptor object maintains information about a path and a Command class, as well as an array of ViewComponent objects (managing template display or forwarding) indexed by a status value (0 for the default view).
-
-Despite all this busywork, it is important to remember the high-level process is pretty simple. We are constructing the relationships between potential requests on the one hand, and commands and views on the other. Figure 12-6 shows this initialization process.
-
-Figure 12-6.  Compiling commands and views
-
-Managing the Component DataYou have seen that the compiled ComponentDescriptor objects are stored in a Conf object—essentially a getter and setter for an associative array. The keys here are the paths the system recognizes: /, for example, or /addvenue.
-
-302
-
-So let’s take a look at ComponentDescriptor, which manages command, view, and forward information:
-
-Chapter 12 ■ enterprise patterns
-
-// listing 12.22class ComponentDescriptor{    private $path;    private static $refcmd;    private $cmdstr;
-
-    public function __construct(string $path, string $cmdstr)    {        self::$refcmd = new \ReflectionClass(Command::class);        $this->path = $path;        $this->cmdstr = $cmdstr;    }
-
-    public function getCommand(): Command    {        return $this->resolveCommand($this->cmdstr);    }
-
-    public function setView(int $status, ViewComponent $view)    {        $this->views[$status] = $view;    }
-
-    public function getView(Request $request): ViewComponent    {        $status = $request->getCmdStatus();        $status = (is_null($status)) ? 0 : $status;
-
-        if (isset($this->views[$status])) {            return $this->views[$status];        }
-
-        if (isset($this->views[0])) {            return $this->views[0];        }
-
-        throw new AppException("no view found");    }
-
-    public function resolveCommand(string $class): Command    {        if (is_null($class)) {            throw new AppException("unknown class '$class'");        }
-
-        if (! class_exists($class)) {            throw new AppException("class '$class' not found");        }
-
-303
-
-Chapter 12 ■ enterprise patterns
-
-        $refclass = new \ReflectionClass($class);
-
-        if (! $refclass->isSubClassOf(self::$refcmd)) {            throw new AppException("command '$class' is not a Command");        }
-
-        return $refclass->newInstance();    }}
-
-So you can see the storage and retrieval here, but there’s a little more work going on, too. Command information (the full class name for the Command) is added via the constructor, and only lazily converted into a Command object when getCommand() is called. This instantiation and checking takes place in a private method: resolveCommand(). The code here should look familiar—it’s actually stolen from (ahem … inspired by) the equivalent functionality in CommandResolver from earlier in the chapter.
-
-Acquiring views is easier. Remember, each view component will have been stored via the setView() method. 
-
-Behind the scenes, we now see that the ViewComponent objects are managed in an array property, $views, and indexed by an integer, a Command status value. When the getView() method is called by client code, we are passed a Request object in which the Command status may have been cached. We get at this value via a new convenience method, Request::getCmdStatus(). Armed with this, it’s simply a matter of checking the $views array for a corresponding ViewComponent element. If there is no match, we return the default, which is indexed by zero.
-
-In this way, this little class provides all of the logic implied by a command element in the XML file.Because most of the real work is done by helper classes, the application controller itself is relatively thin. 
-
-Let’s take a look:
-
-// listing 12.23class AppController{    private static $defaultcmd = DefaultCommand::class;    private static $defaultview = "fallback";
-
-    public function getCommand(Request $request): Command    {        try {            $descriptor = $this->getDescriptor($request);            $cmd = $descriptor->getCommand();        } catch (AppException $e) {            $request->addFeedback($e->getMessage());            return new self::$defaultcmd();        }
-
-        return $cmd;    }
-
-    public function getView(Request $request): ViewComponent    {        try {            $descriptor = $this->getDescriptor($request);            $view = $descriptor->getView($request);        } catch (AppException $e) {            return new TemplateViewComponent(self::$defaultview);        }
-
-304
-
-Chapter 12 ■ enterprise patterns
-
-        return $view;    }
-
-    private function getDescriptor(Request $request): ComponentDescriptor    {        $reg = Registry::instance();        $commands = $reg->getCommands();        $path = $request->getPath();        $descriptor = $commands->get($path);
-
-        if (is_null($descriptor)) {            throw new AppException("no descriptor for {$path}", 404);        }
-
-        return $descriptor;    }}
-
-There is little actual logic in this class since most of the complexity has been pushed down to various 
-
-helper classes. Both getCommand() and getView() call a private method, getDescriptor(), to acquire a ComponentDescriptor for the current request. The getDescriptor() method gets the current path from the Request object and uses it to extract a ComponentDescriptor object from a Conf object which is also stored by the registry and returned by getCommands(). Remember that this array of ComponentDescriptor objects was previously populated by the ViewComponentCompiler object with potential paths as keys.Once getCommand() and getView() have a ComponentDescriptor object, each can call its 
-
-corresponding method. In getCommand(), we call ComponentDescriptor::getCommand(); in getView(), we call ComponentDescriptor::getView().
-
-Before we move on, there are a few details to wrap up. Now that Command objects no longer invoke views, 
-
-we need a mechanism for rendering templates. This is handled by TemplateViewComponent objects. These implement an interface, ViewComponent:
-
-// listing 12.24interface ViewComponent{    public function render(Request $request);}
-
-Why the interface? We treat both forwarding and template display as view processes. Here is 
-
-TemplateViewDisplay:
-
-// listing 12.25class TemplateViewComponent implements ViewComponent{    private $name = null;
-
-    public function __construct(string $name)    {        $this->name = $name;    }
-
-305
-
-Chapter 12 ■ enterprise patterns
-
-    public function render(Request $request)    {        $reg = Registry::instance();        $conf = $reg->getConf();        $path = $conf->get("templatepath");
-
-        if (is_null($path)) {            throw new AppException("no template directory");        }
-
-        $fullpath = "{$path}/{$this->name}.php";
-
-        if (! file_exists($fullpath)) {            throw new AppException("no template at {$fullpath}");        }
-
-        include($fullpath);    }}
-
-This class is instantiated with a name—which it then uses at render() time, combined with a path-
-
-configuration value, to include a template.
-
-Here is ForwardViewComponent:
-
-// listing 12.26class ForwardViewComponent implements ViewComponent{    private $path = null;
-
-    public function __construct($path)    {        $this->path = $path;    }
-
-    public function render(Request $request)    {        $request->forward($this->path);    }}
-
-This class simply calls forward() on the provided Request object. The implementation of forward() varies depending upon the Request subtype. For HttpRequest, it is a matter of setting the Location header:
-
-// listing 12.27
-
-    // HttpRequest
-
-    public function forward(string $path)    {        header("Location: {$path}");        exit;    }
-
-306
-
-For CliRequest we can’t rely on the server to handle forwarding, so we have to take a different 
-
-Chapter 12 ■ enterprise patterns
-
-approach:
-
-// listing 12.28
-
-    // CliRequest
-
-    public function forward(string $path)    {        // tack the new path onto the end the argument list        // last argument wins        $_SERVER['argv'][] = "path:{$path}";        Registry::reset();        Controller::run();    }
-
-We take advantage of the fact that, when the argument array is parsed for a path, the final match found 
-
-is ultimately set on the Request. All we need do is add a path argument, clear the Registry, and run the controller from the top.
-
-And that leads us full circle, an excellent moment for an overview!The strategies an application controller might use to acquire views and commands can vary 
-
-considerably; the key is that these are hidden away from the wider system. Figure 12-7 shows the high-level process by which a Front Controller class uses an application controller to acquire first a Command object and then a view.
-
-Figure 12-7.  Using an application controller to acquire commands and views
-
-307
-
-Chapter 12 ■ enterprise patterns
-
-Note that the view that is rendered in Figure 12-7 could be one of ForwardViewComponent (which will 
-
-start the process over again with a new path) or TemplateViewComponent (which will include a template file).
-
-Remember that the data needed for the process of acquiring Command and ViewComponent objects in 
-
-Figure 12-7 was compiled by our old friend, ApplicationHelper. As a reminder, here is the high-level code that achieved that:
-
-// listing 12.29    private function setupOptions()    {
-
-        //...
-
-        $vcfile = $conf->get("viewcomponentfile");        $cparse = new ViewComponentCompiler();
-
-        $commandandviewdata = $cparse->parseFile($vcfile);        $reg->setCommands($commandandviewdata);    }
-
-The Command ClassNow that commands are no longer responsible for invoking their templates, it’s worth looking briefly at the base class and the implementation. We have already seen the new statuses in the Command class, but there is an additional piece of housekeeping to note:
-
-// listing 12.30abstract class Command{
-
-    const CMD_DEFAULT = 0;    const CMD_OK = 1;    const CMD_ERROR = 2;    const CMD_INSUFFICIENT_DATA = 3;
-
-    final public function __construct()    {    }
-
-    public function execute(Request $request)    {        $status = $this->doExecute($request);        $request->setCmdStatus($status);    }
-
-    abstract public function doExecute(Request $request): int;}
-
-In a good example of the Template Method pattern, the execute() method calls the abstract 
-
-doExecute() method, and caches the return value in the Request object. This will be used a little later by the ComponentDescriptor in selecting the correct view to return.
-
-308
-
-Chapter 12 ■ enterprise patterns
-
-A Concrete CommandHere is how a simple AddVenue command might look:
-
-// listing 12.31class AddVenue extends Command{    public function doExecute(Request $request): int    {        $name = $request->getProperty("venue_name");
-
-        if (is_null($name)) {            $request->addFeedback("no name provided");            return self::CMD_INSUFFICIENT_DATA;        } else {            // do some stuff            $request->addFeedback("'{$name}' added");            return self::CMD_OK;        }
-
-        return self::CMD_DEFAULT;    }}
-
-In fact, this is missing functional code related to building a Venue object and saving it to a database, but we will get to all that. All that’s important at this point is the fact that the command returns different statuses, according to the circumstances. As we have already seen, different statuses will cause different views to be selected and returned by the application controller. So, if we’re using the example XML, when CMD_OK is returned, the forwarding mechanism will trigger forwarding to /addspace. This is triggered in this way only for /addvenue. If the request that caused this command to be invoked uses the path /quickaddvenue, then no forwarding will take place, and the quickaddvenue view will be displayed. The AddVenue command knows nothing of this, though. It sticks to its core responsibilities.
-
-ConsequencesA fully featured instance of the Application Controller pattern can be a pain to set up because of the sheer amount of work that must go into acquiring and applying metadata that describes the relationships between command and request, command and command, and command and view.
-
-For this reason, I tend to implement something like this only when my application tells me it is needed. 
-
-I usually hear this whisper when I find myself adding conditionals to my commands that invoke different views or invoke other commands, according to the circumstances. It is at about this time that I feel that command flow and display logic are beginning to spiral out of my control.
-
-Of course, an application controller can use all sorts of mechanisms to build its associations among 
-
-commands and views, not just the approach I have taken here. Even if you’re starting off with a fixed relationship among a request string, a command name, and a view in all cases, you could still benefit from building an application controller to encapsulate this. It will give you considerable flexibility when you must refactor in order to accommodate more complexity.
-
-309
-
-Chapter 12 ■ enterprise patterns
-
-Page ControllerMuch as I like the Front Controller pattern, it is not always the right approach to take. The investment in up-front design tends to reward the larger system and penalize simple, need-results-now projects. The Page Controller pattern will probably be familiar to you already as it is a common strategy. Nevertheless, it is worth exploring some of the issues.
-
-The ProblemOnce again, the problem is your need to manage the relationship among request, domain logic, and presentation. This is pretty much a constant for enterprise projects. What differs, though, are the constraints placed on you.
-
-If you have a relatively simple project, one in which big up-front design could threaten your deadline without adding huge amounts of value, Page Controller can be a good option for managing requests and views.
-
-Let’s say that you want to present a page that displays a list of all venues in the Woo system. Even with the database retrieval code finished, without Front Controller already in place, I have a daunting task to get just this simple result.
-
-The view is a list of venues; the request is for a list of venues. Errors permitting, the request does not 
-
-lead to a new view, as you might expect in a complex task. The simplest thing that works here is to associate the view and the controller—often in the same page.
-
-ImplementationAlthough the practical reality of Page Controller projects can become fiendish, the pattern is simple. Control is related to a view, or to a set of views. In the simplest case, this means that the control sits in the view itself, although it can be abstracted, especially when a view is closely linked with others (that is, when you might need to forward to different pages in different circumstances).
-
-Here is the simplest flavor of Page Controller:
-
-<?php// listing 12.32namespace popp\ch12\batch07;
-
-try {    $venuemapper = new VenueMapper();    $venues = $venuemapper->findAll();} catch (\Exception $e) {    include('error.php');    exit(0);}
-
-// default page follows?><html><head><title>Venues</title></head><body><h1>Venues</h1>
-
-310
-
-Chapter 12 ■ enterprise patterns
-
-<?php foreach ($venues as $venue) { ?>    <?php print $venue->getName(); ?><br /><?php } ?>
-
-</body></html>
-
-This document has two elements to it. The view element handles display, while the controller  
-
-element manages the request and invokes application logic. Even though view and controller inhabit the same page, they are rigidly separated.
-
-There is very little to this example (aside from the database work going on behind the scenes, of which 
-
-you’ll find more in the next chapter). The PHP block at the top of the page attempts to get a list of Venue objects, which it stores in the $venues global variable.
-
-If an error occurs, the page delegates to a page called error.php by using include(), followed by 
-
-exit() to kill any further processing on the current page. I could equally have used an HTTP forward. If no include takes place, then the HTML at the bottom of the page (the view) is shown.
-
-Figure 12-8.  Page Controllers embedded in views
-
-This will do as a quick test, but a system of any size or complexity will probably need more support  
-
-than that.
-
-The Page Controller code was previously implicitly separated from the view. Here, I make the break, 
-
-starting with a rudimentary Page Controller base class:
-
-// listing 12.33abstract class PageController{    abstract public function process();
-
-    public function __construct()    {        $this->reg = Registry::instance();    }
-
-    public function init()    {        if (isset($_SERVER['REQUEST_METHOD'])) {            $request = new HttpRequest();        } else {            $request = new CliRequest();        }
-
-311
-
-Chapter 12 ■ enterprise patterns
-
-        $this->reg->setRequest($request);    }
-
-    public function forward(string $resource)    {        $request = $this->getRequest();        $request->forward($resource);    }
-
-    public function render(string $resource, Request $request)    {        include($resource);    }
-
-    public function getRequest()    {        return $this->reg->getRequest();    }}
-
-This class uses some of the tools that you have already looked at—in particular, the Request and 
-
-Registry classes. The PageController class’s main roles are to provide access to a Request object and to manage the inclusion of views. This list of purposes would quickly grow in a real project as more child classes discover a need for common functionality.
-
-A child class could live inside the view, and thereby display it by default as before. Or, it could stand 
-
-separate from the view. The latter approach is cleaner, I think, so that’s the path that I take. Here is a PageController that attempts to add a new venue to the system:
-
-// listing 12.34class AddVenueController extends PageController{    public function process()    {        $request = $this->getRequest();
-
-        try {            $name = $request->getProperty('venue_name');
-
-            if (is_null($request->getProperty('submitted'))) {                $request->addFeedback("choose a name for the venue");                $this->render(__DIR__ . '/view/add_venue.php', $request);            } elseif (is_null($name)) {                $request->addFeedback("name is a required field");                $this->render(__DIR__ . '/view/add_venue.php', $request);
-
-                return;            } else {                // add to database                $this->forward('listvenues.php');            }
-
-312
-
-Chapter 12 ■ enterprise patterns
-
-        } catch (Exception $e) {            $this->render(__DIR__.'/view/error.php', $request);        }    }}
-
-The AddVenueController class only implements the process() method. process() is responsible for 
-
-checking the user’s submission. If the user has not submitted a form, or has completed the form incorrectly, the default view (add_venue.php) is included, providing feedback and presenting the form. If I successfully add a new user, then the method invokes forward() to send the user to the ListVenues page controller.
-
-Note the format I used for the view. I tend to differentiate view files from class files by using all 
-
-lowercase file names in the former and camel case (running words together and using capital letters to show the boundaries) in the latter.
-
-You may have noticed that there is nothing within the AddVenueController class that causes it to be 
-
-run. I could place runner code within the same file, but this would make testing difficult (because the very act of including the class would execute its methods). For this reason, I create a runner script for each page. Here is addvenue.php:
-
-// listing 12.35$addvenue = new AddVenueController();$addvenue->init();$addvenue->process();
-
-Here is the view associated with the AddVenueController class:
-
-<!-- listing 12.36 --><html><head><title>Add Venue</title></head><body><h1>Add Venue</h1>
-
-<table><tr><td><?phpprint $request->getFeedbackString("</td></tr><tr><td>");?></td></tr></table>
-
-<form action="/addvenue.php" method="get">    <input type="hidden" name="submitted" value="yes"/>    <input type="text" name="venue_name" /></form>
-
-</body></html>
-
-313
-
-Chapter 12 ■ enterprise patterns
-
-As you can see, the view does nothing but display data and provide the mechanism for generating a new 
-
-request. The request is made to the PageController (via the /addvenue.php runner), not back to the view. Remember, it is the PageController class that is responsible for processing requests.
-
-You can see an overview of this more complicated version of the Page Controller pattern in Figure 12-9.
-
-Figure 12-9.  A Page Controller class hierarchy and its include relationships
-
-ConsequencesThis approach has the great merit that it immediately makes sense to anyone with any web experience. I make a request for venues.php, and that is precisely what I get. Even an error is within the bounds of expectation, with「server error」and「page not found」pages an everyday reality.
-
-Things get a little more complicated if you separate the view from the page controller class, but the near 
-
-one-to-one relationship between the participants is clear enough.
-
-A page controller includes its view once it has completed processing. In some circumstances, though, it forwards instead to another page controller. So, for example, when AddVenue successfully adds a venue, it no longer needs to display the addition form. Instead it delegates to ListVenues.
-
-This is handled within the PageController by the forward() method which, like the 
-
-ForwardViewComponent we have already seen, simply calls forward() on the Request.
-
-Although a page controller class might delegate to Command objects, the benefit of doing so is not as 
-
-marked as it is with Front Controller. Front Controller classes need to work out what the purpose of a request is; page controller classes already know this. The light request checking and logic layer calls that you would put in a Command sit just as easily in a page controller class, and you benefit from the fact that you do not need a mechanism to select your Command objects.
-
-Duplication can be a problem, but the use of a common superclass can factor away a lot of that. You can 
-
-also save on setup time because you can avoid loading data that you won’t need in the current context. Of course, you could do that with Front Controller, too, but the process of discovering what is needed, and what is not, would be much more complicated.
-
-314
-
-Chapter 12 ■ enterprise patterns
-
-The real drawback to the pattern lies in situations where the paths through your views are complex—especially when the same view is used in different ways at different times (add and edit screens are a good example of this). You can find that you get tangled up in conditionals and state checking, and it becomes hard to get an overview of your system.
-
-It is not impossible to start with Page Controller and move toward the Front Controller pattern, however. This is especially true if you are using a PageController superclass. As a rule of thumb, if I estimate a system should take me less than a week or so to complete, and that it isn’t going to need more phases in the future, I would choose Page Controller and benefit from the fast turnaround. If I were building a large project that needs to grow over time and has complex view logic, I would go for a Front Controller every time.
-
-Template View and View HelperTemplate View is pretty much what you get by default in PHP, in that I can commingle presentation markup (HTML) and system code (native PHP). As I have said before, this is both a blessing and a curse because the ease with which these can be brought together represents a temptation to combine application and display logic in the same place—with potentially disastrous consequences.
-
-In PHP then, programming the view is largely a matter of restraint. If it isn’t strictly a matter of display, 
-
-treat any code with the greatest suspicion.
-
-To this end, the View Helper pattern (Alur et al.) provides for a helper class that may be specific to a 
-
-view or shared between multiple views to help with any tasks that require more than the smallest amount of code.
-
-The ProblemThese days it is becoming rarer to find SQL queries and other business logic embedded directly in display pages, but it still happens. I have covered this particular evil in great detail in previous chapters, so I’ll keep this brief.
-
-Web pages that contain too much code can be hard for web producers to work with, as presentation 
-
-components become tangled up in loops and conditionals.
-
-Business logic in the presentation forces you to stick with that interface. You can’t switch in a new view 
-
-easily without porting across a lot of application code, too.
-
-Systems that separate their views from their logic are also easier to test. This is because tests can be 
-
-applied to the functionality of the logic layer in isolation of the noisy distractions of presentation.
-
-Security issues often appear in systems which embed logic in their presentation layer, too. In such 
-
-systems, because database queries and code to handle user input tends to be scattered in with tables and forms and lists, it becomes hard to identify potential hazards.
-
-With many operations recurring from view to view, systems that embed application code in their 
-
-templates tend to fall prey to duplication as the same code structures are pasted from page to page. Where this happens, bugs and maintenance nightmares surely follow.
-
-To prevent this from happening, you should handle application processing elsewhere and allow views to manage presentation only. This is often achieved by making views the passive recipients of data. Where a view does need to interrogate the system, it is a good idea to provide a View Helper object to do any involved work on the view’s behalf.
-
-ImplementationOnce you have created a wider framework, the view layer is not a massive programming challenge.  Of course, it remains a huge design and information-architecture issue, but that’s another book!
-
-315
-
-Chapter 12 ■ enterprise patterns
-
-Template View was so named by Fowler. It is a staple pattern used by most enterprise programmers. In some languages, an implementation might involve cooking up a templating system that translates tags to values set by the system. You have that option in PHP, too. You could use a templating engine like the excellent Twig. My preferred option, though, is to use PHP’s existing functionality, but to use it with care.
-
-In order for a view to have something to work with, it must be able to acquire data. I like to define a View 
-
-Helper that views can use.
-
-Here is a simple View Helper class:
-
-// listing 12.37class ViewHelper{    public function sponsorList()    {        // do something complicated to get the sponsor list        return "Bob's Shoe Emporium";    }}
-
-All this class does at present is provide a sponsor list string. Let’s assume that there is some relatively 
-
-complex process to acquire or format this data that we should not embed in the template itself. You can extend it to provide additional functionality as your application evolves. If you find yourself doing something in a view that takes up more than a couple of lines, chances are it belongs in the View Helper. In a larger application, you may provide multiple View Helper objects in an inheritance hierarchy in order to provide different tools for different parts of your system.
-
-I might acquire a View Helper from a factory of some kind—perhaps the registry. From the point of view 
-
-of the template, the simplest approach is to make a helper instance available in the render() method:
-
-// listing 12.38    public function render(string $resource, Request $request)    {        $vh = new ViewHelper();        // now the template will have the $vh variable        include($resource);    }
-
-Here is a simple view that uses the View Helper:
-
-<!-- listing 12.39 --><html><head><title>Venues</title></head><body><h1>Venues</h1>
-
-<div>Proudly sponsored by: <?php echo $vh->sponsorList(); ?>
-
-</div>
-
-316
-
-Chapter 12 ■ enterprise patterns
-
-Listing venues
-
-</body></html>
-
-The view (list_venues.php) is granted a ViewHelper instance in the $vh variable. It calls the 
-
-sponsorList() method and prints the results.
-
-Clearly, this example doesn’t banish code from the view, but it does severely limit the amount and kind of coding that needs to be done. The page contains a simple print statement and will inevitably require other method calls as it grows in complexity, but a designer should be able to work around code of this kind with little or no effort.
-
-Slightly more problematic are if statements and loops. These are difficult to delegate to a View Helper 
-
-because they are usually bound up with formatted output. I tend to keep both simple conditionals and loops (which are very common in building tables that display rows of data) inside the Template View; but to keep them as simple as possible, I delegate things like test clauses, where possible.
-
-ConsequencesThere is something slightly disturbing about the way that data is passed to the view layer, in that a view doesn’t really have a fixed interface that guarantees its environment. I tend to think of every view as entering into a contract with the system at large. The view effectively says to the application,「If I am invoked, then I have a right to access object This, object That, and object TheOther.」It is up to the application to ensure that this is the case.
-
-You could make views stricter by providing accessor methods in the helper classes, but I have always found it easier to register objects dynamically for the view layer through a Request, Response, or Context object.
-
-While templates are often essentially passive, populated with data resulting from the last request, there may be times when the view needs to make an ancillary request. The View Helper is a good place to provide this functionality, keeping any knowledge of the mechanism by which data is required hidden from the view itself. Even the View Helper should do as little work as possible, delegating to a command or contacting the domain layer via a facade.
-
- You saw the Facade pattern in Chapter 10. alur et al. look at one use of Facades in enterprise 
-
- ■ Note programming in the session Facade pattern (which is designed to limit fine-grained network transactions). Fowler also describes a pattern called service Layer, which provides a simple point of access to the complexities within a layer.
-
-The Business Logic Layer
-
-If the control layer orchestrates communication with the outside world and marshals a system’s response to it, the logic layer gets on with the business of an application. This layer should be as free as possible of the noise and trauma generated as query strings are analyzed, HTML tables are constructed, and feedback messages composed. Business logic is about doing the stuff that needs doing—the true purpose of the application. Everything else exists just to support these tasks.
-
-317
-
-Chapter 12 ■ enterprise patterns
-
-In a classic object-oriented application, the business logic layer is often composed of classes that model 
-
-the problems that the system aims to address. As you shall see, this is a flexible design decision. It also requires significant up-front planning.
-
-Let’s begin, then, with the quickest way of getting a system up and running.
-
-Transaction ScriptThe Transaction Script pattern (Patterns of Enterprise Application Architecture) describes the way that many systems evolve of their own accord. It is simple, intuitive, and effective, although it becomes less so as systems grow. A transaction script handles a request inline, rather than delegating to specialized objects. It is the quintessential quick fix. It is also a hard pattern to categorize because it combines elements from other layers in this chapter. I have chosen to present it as part of the business logic layer because the pattern’s motivation is to achieve the business aims of the system.
-
-The ProblemEvery request must be handled in some way. As you have seen, many systems provide a layer that assesses and filters incoming data. Ideally, though, this layer should then call on classes that are designed to fulfill the request. These classes could be broken down to represent forces and responsibilities in a system, perhaps with a facade interface. This approach requires a certain amount of careful design, however. For some projects (typically small in scope and urgent in nature), such development overhead can be unacceptable. In this case, you may need to build your business logic into a set of procedural operations. Each operation will be crafted to handle a particular request.
-
-The problem, then, is the need to provide a fast and effective mechanism for fulfilling a system’s 
-
-objectives without a potentially costly investment in complex design.
-
-The great benefit of this pattern is the speed with which you can get results. Each script takes input 
-
-and manipulates the database to ensure an outcome. Beyond organizing related methods within the same class and keeping the Transaction Script classes in their own tier (that is, as independent as possible of the command, control, and view layers), there is little up-front design required.
-
-While business logic layer classes tend to be clearly separated from the presentation layer, they are 
-
-often more embedded in the data layer. This is because retrieving and storing data is key to the tasks that such classes often perform. You will see mechanisms for decoupling logic objects from the database later in the chapter. Transaction Script classes, though, usually know all about the database (although they can use gateway classes to handle the details of their actual queries).
-
-ImplementationLet’s return to my events listing example. In this case, the system supports three relational database tables: venue, space, and event. A venue may have a number of spaces (e.g., a theater can have more than one stage, and a dance club may have different rooms). Each space plays host to many events. Here is the schema:
-
-CREATE TABLE 'venue' (  'id' int(11) NOT NULL auto_increment,  'name' text,  PRIMARY KEY  ('id'))CREATE TABLE 'space' (  'id' int(11) NOT NULL auto_increment,
-
-318
-
-Chapter 12 ■ enterprise patterns
-
-  'venue' int(11) default NULL,  'name' text,  PRIMARY KEY  ('id'))CREATE TABLE 'event' (  'id' int(11) NOT NULL auto_increment,  'space' int(11) default NULL,  'start' mediumtext,  'duration' int(11) default NULL,  'name' text,  PRIMARY KEY  ('id'))
-
-Clearly, the system will need mechanisms for adding both venues and events. Each of these represents 
-
-a single transaction. I could give each method its own class (and organize my classes according to the Command pattern that you encountered in Chapter 11). In this case, though, I am going to place the methods in a single class, albeit as part of an inheritance hierarchy. You can see the structure in Figure 12-10.
-
-Figure 12-10.  A Transaction Script class with its superclass
-
-So why does this example include an abstract superclass? In a script of any size, I would be likely to add 
-
-more concrete classes to this hierarchy. Since most of these will share at least some core functionality, it makes sense to lodge this in a common parent.
-
-In fact, this is a pattern in its own right (Fowler has named it Layer Supertype). Where classes in a layer share characteristics, it makes sense to group them into a single type, locating utility operations in the base class. You will see this a lot in the rest of this chapter.
-
-In this case, the base class acquires a PDO object, which it stores in a property. It also provides methods 
-
-for caching database statements and making queries:
-
-// listing 12.40abstract class Base{    private $pdo;    private $config = __DIR__ . "/data/woo_options.ini";
-
-319
-
-Chapter 12 ■ enterprise patterns
-
-    private $stmts = [];
-
-    public function __construct()    {        $reg = Registry::instance();        $options = parse_ini_file($this->config, true);        $conf = new Conf($options['config']);        $reg->setConf($conf);        $dsn = $reg->getDSN();
-
-        if (is_null($dsn)) {            throw new AppException("No DSN");        }
-
-        $this->pdo = new \PDO($dsn);        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);    }
-
-    public function getPdo(): \PDO    {        return $this->pdo;    }}
-
-I use the Registry class to acquire a DSN string, which I pass to the PDO constructor. I make the PDO object available via a getter method: getPdo(). In fact, a lot of this work can be pushed back into the Registry object itself—a strategy you’ll see that I have adopted elsewhere in this chapter and the next.
-
-Here is the start of the VenueManager class, which sets up my SQL statements:
-
-// listing 12.41class VenueManager extends Base{
-
-    private $addvenue = "INSERT INTO venue                          ( name )                          VALUES( ? )";
-
-    private $addspace  = "INSERT INTO space                          ( name, venue )                          VALUES( ?, ? )";
-
-    private $addevent =  "INSERT INTO event                          ( name, space, start, duration )                          VALUES( ?, ?, ?, ? )";
-
-    // ...
-
-Not much new here. These are the SQL statements that the transaction scripts will use. They 
-
-are constructed in a format accepted by the PDO class’s prepare() method. The question marks are placeholders for the values that will be passed to execute(). Now it’s time to define the first method designed to fulfill a specific business need:
-
-320
-
-Chapter 12 ■ enterprise patterns
-
-// listing 12.42
-
-    // VenueManager
-
-    public function addVenue(string $name, array $spaces): array    {        $pdo = $this->getPdo();        $ret = [];        $ret['venue'] = [$name];        $stmt = $pdo->prepare($this->addvenue);        $stmt->execute($ret['venue']);        $vid = $pdo->lastInsertId();
-
-        $ret['spaces'] = [];
-
-        $stmt = $pdo->prepare($this->addspace);        foreach ($spaces as $spacename) {            $values = [$spacename, $vid];            $stmt->execute($values);            $sid = $pdo->lastInsertId();            array_unshift($values, $sid);            $ret['spaces'][] = $values;        }
-
-        return $ret;    }
-
-As you can see, addVenue() requires a venue name and an array of space names. It uses these to 
-
-populate the venue and space tables. It also creates a data structure that contains this information, along with the newly generated ID values for each row.
-
-If there’s an error with this, remember, an exception is thrown. I don’t catch any exceptions here, so 
-
-anything thrown by prepare() will also be thrown by this method. This is the result I want, although I should to make it clear that this method throws exceptions in my documentation.
-
-Having created the venue row, I loop through $spaces, adding a row in the space table for each element. Notice that I include the venue ID as a foreign key in each of the space rows I create, associating the row with the venue.
-
-The second transaction script is similarly straightforward:
-
-// listing 12.43
-
-    // VenueManager
-
-    public function bookEvent(int $spaceid, string $name, int $time, int $duration)    {        $pdo = $this->getPdo();        $stmt = $pdo->prepare($this->addevent);        $stmt->execute([$name, $spaceid, $time, $duration]);    }
-
-The purpose of this script is to add an event to the events table, associated with a space.
-
-321
-
-Chapter 12 ■ enterprise patterns
-
-ConsequencesThe Transaction Script pattern is an effective way of getting good results fast. It is also one of those patterns many programmers have used for years without imagining it might need a name. With a few good helper methods like those I added to the base class, you can concentrate on application logic without getting too bogged down in database fiddle-faddling.
-
-I have seen Transaction Script appear in a less welcome context. I thought I was writing a much more 
-
-complex and object-heavy application than would usually suit this pattern. As the pressure of deadlines began to tell, I found that I was placing more and more logic in what was intended to be a thin facade onto a Domain Model (see the next section). Although the result was less elegant than I had wanted, I have to admit that the application did not appear to suffer for its implicit redesign.
-
-In most cases, you would choose a Transaction Script approach with a small project when you are 
-
-certain it isn’t going to grow into a large one. The approach does not scale well because duplication often begins to creep in as the scripts inevitably cross one another. You can go some way to factoring this out, of course, but you probably will not be able to excise it completely.
-
-In my example, I decide to embed database code in the transaction script classes themselves. As you 
-
-saw, though, the code wants to separate the database work from the application logic. I can make that break absolute by pulling it out of the class altogether and creating a gateway class whose role it is to handle database interactions on the system’s behalf.
-
-Domain ModelThe Domain Model is the pristine logical engine that many of the other patterns in this chapter strive to create, nurture, and protect. It is an abstracted representation of the forces at work in your project. It’s a kind of plane of forms, where your business problems play out their nature unencumbered by nasty material issues like databases and web pages.
-
-If that seems a little flowery, let’s bring it down to reality. A Domain Model is a representation of the real-world participants of your system. It is in the Domain Model that the object-as-thing rule of thumb is truer than elsewhere. Everywhere else, objects tend to embody responsibilities. In the Domain Model, they often describe a set of attributes, with added agency. They are things that do stuff.
-
-The ProblemIf you have been using Transaction Script, you may find that duplication becomes a problem as different scripts need to perform the same tasks. That can be factored out to a certain extent, but over time, it’s easy to fall into cut-and-paste coding.
-
-You can use a Domain Model to extract and embody the participants and process of your system. Rather than using a script to add space data to the database, and then associate event data with it, you can create Space and Event classes. Booking an event in a space can then become as simple as a call to Space::bookEvent(). A task like checking for a time clash becomes Event::intersects(), and so on.
-
-Clearly, with an example as simple as Woo, a Transaction Script is more than adequate. But as domain logic gets more complex, the alternative of a Domain Model becomes increasingly attractive. Complex logic can be handled more easily, and you need less conditional code when you model the application domain.
-
-ImplementationDomain Models can be relatively simple to design. Most of the complexity associated with the subject lies in the patterns that are designed to keep the model pure—that is, to separate it from the other tiers in the application.
-
-322
-
-Chapter 12 ■ enterprise patterns
-
-Separating the participants of a Domain Model from the presentation layer is largely a matter of ensuring that they keep to themselves. Separating the participants from the data layer is much more problematic. Although the ideal is to consider a Domain Model only in terms of the problems it represents and resolves, the reality of the database is hard to escape.
-
-It is common for Domain Model classes to map fairly directly to tables in a relational database, and 
-
-this certainly makes life easier. Figure 12-11, for example, shows a class diagram that sketches some of the participants of the Woo system.
-
-Figure 12-11.  An extract from a Domain Model
-
-The objects in Figure 12-11 mirror the tables that were set up for the Transaction Script example. 
-
-This direct association makes a system easier to manage, but it is not always possible, especially if you are working with a database schema that precedes your application. Such an association can itself be the source of problems. If you’re not careful, you can end up modeling the database, rather than the problems and forces you are attempting to address.
-
-Just because a Domain Model often mirrors the structure of a database does not mean that its classes 
-
-should have any knowledge of it. By separating the model from the database, you make the entire tier easier to test and less likely to be affected by changes of schema, or even changes of storage mechanism. It also focuses the responsibility of each class on its core tasks.
-
-Here is a simplified Venue object, together with its parent class:
-
-// listing 12.44abstract class DomainObject{    private $id;
-
-323
-
-Chapter 12 ■ enterprise patterns
-
-    public function __construct(int $id)    {        $this->id = $id;    }
-
-    public function getId(): int    {        return $this->id;    }
-
-    public static function getCollection(string $type): Collection    {        // dummy implementation        return Collection::getCollection($type);    }
-
-    public function markDirty()    {        // next chapter!    }}
-
-// listing 12.45class Venue extends DomainObject{    private $name;    private $spaces;
-
-    public function __construct(int $id, string $name)    {        $this->name = $name;        $this->spaces = self::getCollection(Space::class);        parent::__construct($id);    }
-
-    public function setSpaces(SpaceCollection $spaces)    {        $this->spaces = $spaces;    }
-
-    public function getSpaces(): SpaceCollection    {        return $this->spaces;    }
-
-    public function addSpace(Space $space)    {        $this->spaces->add($space);        $space->setVenue($this);    }
-
-324
-
-Chapter 12 ■ enterprise patterns
-
-    public function setName(string $name)    {        $this->name = $name;        $this->markDirty();    }
-
-    public function getName(): string    {        return $this->name;    }}
-
-There are a few points that distinguish this class from one intended to run without persistence. Instead of an array, I am using an object of type SpaceCollection to store any Space objects the Venue might contain (though it could be argued that a type-safe array is a bonus whether you are working with a database or not!). Because this class works with a special collection object rather than an array of Space objects, the constructor needs to instantiate an empty collection on startup. It does this by calling a static method on the layer supertype:
-
- $this->spaces = self::getCollection(Space::class);
-
-I will return to this system’s collection objects and how to acquire them in the next chapter. For now, 
-
-though, the superclass simply returns an empty array.
-
- ■ Note  in this chapter and the next, i will discuss amendments to both the Venue and Space objects. these are simple domain objects, and they share a common functional core. if you’re coding along, you should be able to apply concepts i discuss to either class. a Space class may not maintain a collection of Space objects for example, but it might manage Event objects in exactly the same way.
-
-I expect an $id parameter in the constructor that I pass to the superclass for storage. It should come as 
-
-no surprise to learn that the $id parameter represents the unique ID of a row in the database. Notice also that I call a method on the superclass called markDirty()(this will be covered when you encounter the Unit of Work pattern).
-
-ConsequencesThe design of a Domain Model needs to be as simple or complicated as the business processes you need to emulate. The beauty of this is that you can focus on the forces in your problem as you design the model, handling issues like persistence and presentation in other layers—in theory, that is.
-
-In practice, I think that most developers design their domain models with at least one eye on the 
-
-database. No one wants to design structures that will force you (or, worse, your colleagues) into somersaults of convoluted code when it comes to getting your objects in and out of the database.
-
-This separation between the Domain Model and the data layer comes at a considerable cost in terms 
-
-of design and planning. It is possible to place database code directly in the model (although you would probably want to design a gateway to handle the actual SQL). For relatively simple models, especially if each class broadly maps to a table, this approach can be a real win, saving you the considerable design overhead of devising an external system for reconciling your objects with the database.
-
-325
-
-Chapter 12 ■ enterprise patterns
-
-Summary
-
-I have covered an enormous amount of ground here (although I have also left out a lot). You should not feel daunted by the sheer volume of code in this chapter. Patterns are meant to be used in the right circumstances, and combined when useful. Use those described in this chapter that you feel meet the needs of your project, and do not feel that you must build an entire framework before embarking on a project. On the other hand, there is enough material here to form the basis of a framework, or just as likely, to provide some insight into the architecture of some of the prebuilt frameworks you might choose to deploy.
-
-And there’s more! I left you teetering on the edge of persistence, with just a few tantalizing hints about 
-
-collections and mappers to tease you. In the next chapter, I will look at some patterns for working with databases and for insulating your objects from the details of data storage.
-
-326
-
-CHAPTER 13
-
+oriented toward enterprise programming.

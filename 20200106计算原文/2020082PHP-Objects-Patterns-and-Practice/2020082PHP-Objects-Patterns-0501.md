@@ -1062,15 +1062,8 @@ By the time that the ModuleRunner::init() method has run its course, the object 
 
 objects, all primed with data. The class can now be given a method to loop through the Module objects, calling execute() on each one.
 
-Summary
+## Summary
 
 In this chapter, I covered some of the techniques and tools that you can use to manage your libraries and classes. I explored PHP’s namespace feature. You saw that we can combine include paths, namespaces, autoload, and the file system to provide flexible organization for classes.
 
-We also examined PHP’s object and class functions, before taking things to the next level with the 
-
-powerful Reflection API. Finally, we used the Reflection classes to build a simple example that illustrates one of the potential uses that Reflection has to offer.
-
-131
-
-CHAPTER 6
-
+We also examined PHP’s object and class functions, before taking things to the next level with the powerful Reflection API. Finally, we used the Reflection classes to build a simple example that illustrates one of the potential uses that Reflection has to offer.
