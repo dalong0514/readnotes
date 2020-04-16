@@ -1,3 +1,7 @@
+# 2020080PHP-and-MySQL-Web-R01
+
+英文第 5 版的出版时间：2016 年 9 月
+
 ## 记忆时间
 
 ## 卡片
@@ -63,19 +67,11 @@ Laura Thomson
 
 ### 2. 摘录及评论
 
-1『自己的观点』
-
-2『行动指南』
-
-3『与其他知识的连接』
-
-英文第 5 版的出版时间：2016 年 9 月
-
 ## 书评
 
 ### 02
 
-为了备战面试：我没有考上理想的研究院，就业的压力再一次摆在了我的面前。记得当初做毕业设计使用的 asp.net2.0 技术，发现网上已经开始使用 3.0+ 了。而且又在网上看到，说用 .net 做网站的程序员挣不了多少钱。再加上，我也不太喜欢 visual studio（我讨厌自动生成模板，就像《程序员修炼之道》中‘邪恶的向导’所提到的一样）。这时，我想到了另一种语言 php（大学没接触 jsp 或是什么别的语言了）。那是距离我规定的找工作时间还有一个多月，我又一次拿出了这本书，开始从头看起。书的内容不用说自然是一本好书，从最简单的 php 标记开始讲起，然后的变量，逻辑，操作符，读写文件，使用数组，正则表达式，处理字符串，最后的面向对象的基本支持。讲完 php 后开始教授 mysql，然后是一些我认为的废话（电子商务与安全性），再然后的一些进阶的 php 知识，包括文件上传，网络函数，日期管理，创建图片，会话控制等，最后是一大堆的实例。因为时间的关系，我实现了购物车功能的那个实例（当时看到了 500 页）就急匆匆的开始投简历去了。
+为了备战面试：我没有考上理想的研究院，就业的压力再一次摆在了我的面前。记得当初做毕业设计使用的 asp.net2.0 技术，发现网上已经开始使用 3.0+ 了。而且又在网上看到，说用 .net 做网站的程序员挣不了多少钱。再加上，我也不太喜欢 visual studio（我讨厌自动生成模板，就像《程序员修炼之道》中「邪恶的向导」所提到的一样）。这时，我想到了另一种语言 php（大学没接触 jsp 或是什么别的语言了）。那是距离我规定的找工作时间还有一个多月，我又一次拿出了这本书，开始从头看起。书的内容不用说自然是一本好书，从最简单的 php 标记开始讲起，然后的变量，逻辑，操作符，读写文件，使用数组，正则表达式，处理字符串，最后的面向对象的基本支持。讲完 php 后开始教授 mysql，然后是一些我认为的废话（电子商务与安全性），再然后的一些进阶的 php 知识，包括文件上传，网络函数，日期管理，创建图片，会话控制等，最后是一大堆的实例。因为时间的关系，我实现了购物车功能的那个实例（当时看到了 500 页）就急匆匆的开始投简历去了。
 
 小小的打击： 记得当时面试 ZOL 时我还特意拿着这本书，面试官看我没有任何的工作经验，就把我叫到了一旁，问我：你虽然没有工作经验，但公司很喜欢你身上那种精神，你和另外两位已经进入了最后一轮面试。当时真没想到自己会这么幸运。我们三个人进入了一个小小的房间，面试官是 cto。在几个试探性的问题后，他看出了我的技术经验不足，从他的眼神中我看到，他想给我机会，但是我还不能达到他的目标。他看了我一眼，说：好吧，我问大家最后一个问题。如果我想用 mysql 降序排列一组数据，我该如何办？ 他手指指向我，让我第一个回答，显然这个问题对于另外两个人实在是太简单了。他希望通过我回答出这个问题，给我一次在这里工作的机会。我想了一下，说： 用 select top 然后跟。。。。他打断了我，并让另外两个人回答。显然我的答案是错的。就这样我的第一次面试失败了。出来后我翻遍了一整本书都没有找到为什么不能用 top（我把 mysql 和 sqlserver 记混了）。这件事情告诉我，学习任何技术一定要踏实，在去尝试新技术之前，应该熟练掌握已学习的知识。让他们变得更加的扎实！
 
@@ -119,15 +115,17 @@ You should be able to use any of these projects as is, or you can modify them to
 
 What Is PHP? PHP is a server-side scripting language designed specifically for the web. Within an HTML page, you can embed PHP code that will be executed each time the page is visited. Your PHP code is interpreted at the web server and generates HTML or other output that the visitor will see.
 
-1『PHP 是服务端的脚本语言，其代码是在服务器端解释完成的，然后以 HTML 的格式返回给客户端，比如浏览器。PHP 是开源的。』
+1『 PHP 是服务端的脚本语言，其代码是在服务器端解释完成的，然后以 HTML 的格式返回给客户端，比如浏览器。PHP 是开源的。』
 
 PHP was conceived in 1994 and was originally the work of one man, Rasmus Lerdorf. It was adopted by other talented people and has gone through several major rewrites to bring us the broad, mature product we see today. According to Google’s Greg Michillie in May 2013, PHP ran more than three quarters of the world’s websites, and that number had grown to over 82% by July 2016. PHP is an open-source project, which means you have access to the source code and have the freedom to use, alter, and redistribute it. PHP originally stood for Personal Home Page but was changed in line with the GNU recursive naming convention (GNU = Gnu’s Not Unix) and now stands for PHP Hypertext Preprocessor.
+
+1『 PHP 起源于个人主页（personal home page）。』
 
 The current major version of PHP is 7. This version saw a complete rewrite of the underlying Zend engine and some major improvements to the language. All of the code in this book has been tested and validated against the most recent release of PHP 7 at the time of writing, as well as the latest version in the PHP 5.6 family of releases, which is still officially supported.
 
 What Is MySQL? MySQL (pronounced My-Ess-Que-Ell) is a very fast, robust, relational database management system (RDBMS). A database enables you to efficiently store, search, sort, and retrieve data. The MySQL server controls access to your data to ensure that multiple users can work with it concurrently, to provide fast access to it, and to ensure that only authorized users can obtain access. Hence, MySQL is a multiuser, multithreaded server. It uses Structured Query Language (SQL), the standard database query language. MySQL has been publicly available since 1996 but has a development history going back to 1979. It is the world’s most popular open-source database and has won the Linux Journal Readers’ Choice Award on a number of occasions.
 
-1『数据库可以让我们非常有效的存储、搜索、排序和提取数据；数据能让很多人同访问数据，而且可以给让问的人设置不同的权限。』
+1『数据库可以让我们非常有效的存储、搜索、排序和提取数据；数据能让很多人同访问数据，而且可以给访问的人设置不同的权限。』
 
 Why Use PHP and MySQL? When setting out to build a website, you could use many different products. You need to choose the following: 1) Where to run your web servers: the cloud, virtual private servers, or actual hardware. 2) An operating system. 3) Web server software. 4) A database management system or other datastore. 5) A programming or scripting language.
 
@@ -137,13 +135,13 @@ The majority of PHP code can be written to be portable between operating systems
 
 Some of PHP’s Strengths. Some of PHP’s main competitors are Python, Ruby (on Rails or otherwise), Node.js, Perl, Microsoft .NET, and Java. In comparison to these products, PHP has many strengths, including the following: 1) Performance. PHP is very fast. 2) Scalability. You can effectively and cheaply implement horizontal scaling with large numbers of commodity servers. 3) Database Integration. PHP has native connections available to many database systems. 4) Built-in Libraries. Because PHP was designed for use on the Web, it has many built-in functions for performing many useful web-related tasks. You can generate images on the fly, connect to web services and other network services, parse XML, send email, work with cookies, and generate PDF documents, all with just a few lines of code. 5) Cost. PHP is free. 6) Ease of Learning PHP. The syntax of PHP is based on other programming languages, primarily C and Perl. 7) Object-Oriented Support. 8) Portability. PHP is available for many different operating systems. 9) Flexibility of Development Approach. PHP allows you to implement simple tasks simply, and equally easily adapts to implementing large applications using a framework based on design patterns such as Model-View-Controller (MVC). 10) Source Code. 11) Availability of Support and Documentation. 
 
-1『由于是针对 web 开发的语言，它内置的很多函数跟 web 相关，所以做这些任务就很方便，比如生成图片、连接网络服务、解析 XML、发送邮件、cookies 相关、生成 pdf 等。』
+1『由于是针对 web 开发的语言，它内置的很多函数跟 web 相关，所以做这些任务就很方便，比如生成图片、连接网络服务、解析 XML、发送邮件、cookies 相关、生成 pdf 等；laravel 框架就是基于 MVC 的。』
 
 Key Features of PHP 7. In December 2015, the long-awaited PHP 7 release was made available to the public. As mentioned in this introduction, the book covers both PHP 5.6 and PHP 7, which might lead you to ask「what happened to PHP 6?」The short answer is: there is no PHP 6 and never was for the general public. There was a development effort around a codebase that was referred to as「PHP 6」but it never came to fruition; there were many ambitious plans and subsequent complications that made it difficult for the team to continue to pursue. PHP 7 is not PHP 6 and doesn’t include the features and code from that development effort; PHP 7 is its own release with its own focus — specifically a focus on performance.
 
 Under the hood, PHP 7 includes a refactor of the Zend Engine that powers it, which resulted in a significant performance boost to many web applications — sometimes upwards of 100%! While increased performance and decreased memory use were key to the release of PHP 7, so was backward-compatibility. In fact, relatively few backward-incompatible language changes were introduced. These are discussed contextually throughout this book so that the chapters remain usable with PHP 5.6 or PHP 7, as widespread adoption of PHP 7 has not yet occurred by commercial web-hosting providers.
 
-1『PHP6 没有实现，直接从 5.6 升级到了 7，7 对网页服务的性能提升很大。』
+1『 PHP6 没有实现，直接从 5.6 升级到了 7，7 对网页服务的性能提升很大。』
 
 Some of MySQL’s Strengths. MySQL’s main competitors in the relational database space are PostgreSQL, Microsoft SQL Server, and Oracle. There is also a growing trend in the web application world toward use of NoSQL/non-relational databases such as MongoDB. Let’s take a look at why MySQL is still a good choice in many cases. MySQL has many strengths, including the following: 1) Performance. MySQL is undeniably fast. 2) Low Cost. 3) Ease of Use. 4) Portability. 5) Source Code. 6) Availability of Support. Not all open-source products have a parent company offering support, training, consulting, and certification, but you can get all of these benefits from Oracle.
 
@@ -187,7 +185,7 @@ Also note the names of the form fields: tireqty, oilqty, and sparkqty. You’ll 
 
 You should consider adopting a coding standard for field names so that all field names throughout your site use the same format. This way, you can more easily remember whether, for example, you abbreviated a word in a field name or put in underscores as spaces.
 
-1『form 即表单；又见这两种请求，get 和 post，get (appended to the end of the URL) or post (sent as a separate message)。』
+1『 form 即表单；又见这两种请求，get 和 post，get (appended to the end of the URL) or post (sent as a separate message)。』
 
 3『
 
@@ -199,7 +197,7 @@ You should consider adopting a coding standard for field names so that all field
 
 To process the form, you need to create the script mentioned in the action attribute of the form tag called processorder.php. Open your text editor and create this file. Then type in the following code:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -224,7 +222,7 @@ None of the raw PHP is visible because the PHP interpreter has run through the s
 
 3『例子解释了服务端脚本的概念，浏览器不需要理解 PHP 这种服务端脚本，那么联想到，浏览器需要理解 JavaScript 这种客户端脚本。』
 
-The code that you now have in this file consists of four types of text: 1) HTML. 2) PHP tags. 3) PHP statements. 3) Whitespace. You can also add comments. Most of the lines in the example are just plain HTML.
+The code that you now have in this file consists of four types of text: 1) HTML. 2) PHP tags. 3) PHP statements. 4) Whitespace. You can also add comments. Most of the lines in the example are just plain HTML.
 
 PHP Tags. The PHP code in the preceding example began with \<?php and ended with ?>. This is similar to all HTML tags because they all begin with a less than (\<) symbol and end with a greater than (>) symbol. These symbols (\<?php and ?>) are called PHP tags. They tell the web server where the PHP code starts and finishes. Any text between the tags is interpreted as PHP. Any text outside these tags is treated as normal HTML. The PHP tags allow you to escape from HTML.
 
@@ -250,17 +248,6 @@ As you have probably guessed, using the echo construct has a very simple result:
 
 Whitespace. Spacing characters such as newlines (carriage returns), spaces, and tabs are known as whitespace. As you probably already know, browsers ignore whitespace in HTML, and so does the PHP engine. Consider these two HTML fragments:
 
-    <h1>Welcome to Bob's Auto Parts!</h1><p>What would you like to order today?</p>
-
-and
-
-```
-<h1>Welcome             to Bob's
-Auto Parts!</h1>
-<p>What would you like
-to order today?</p>
-```
-
 These two snippets of HTML code produce identical output because they appear the same to the browser. However, you can and are encouraged to use whitespace sensibly in your HTML as an aid to humans — to enhance the readability of your HTML code. The same is true for PHP. You don’t need to have any whitespace between PHP statements, but it makes the code much easier to read if you put each statement on a separate line. For example,
 
     echo 'hello ';
@@ -272,13 +259,11 @@ and
 
 are equivalent, but the first version is easier to read.
 
-1『HTML 和 PHP 都忽略 whitespace，whitespace 的概念：Spacing characters such as newlines (carriage returns), spaces, and tabs.』
+1『 HTML 和 PHP 都忽略 whitespace，whitespace 的概念：Spacing characters such as newlines (carriage returns), spaces, and tabs.』
 
-Comments are exactly that: Comments in code act as notes to people reading the code. Comments can be used to explain the purpose of the script, who wrote it, why they wrote it the way they did, when it was last modified, and so on. You generally find comments in all but the simplest PHP scripts. The PHP interpreter ignores any text in comments. Essentially, the PHP parser skips over the comments, making them equivalent to whitespace.
+Comments are exactly that: Comments in code act as notes to people reading the code. PHP supports C, C++, and shell script–style comments. The following is a C-style, multiline comment that might appear at the start of a PHP script:
 
-PHP supports C, C++, and shell script–style comments. The following is a C-style, multiline comment that might appear at the start of a PHP script:
-
-```
+```php
 /* Author: Bob Smith   
 Last modified: April 10   
 This script processes the customer orders.
@@ -287,11 +272,15 @@ This script processes the customer orders.
 
 Multiline comments should begin with a /* and end with */. As in C, multiline comments cannot be nested. You can also use single-line comments, either in the C++ style:
 
-    echo '<p>Order processed.</p>'; // Start printing order
+```php
+echo '<p>Order processed.</p>'; // Start printing order
+```
 
 or in the shell script style:
 
-    echo '<p>Order processed.</p>'; # Start printing order
+```php
+echo '<p>Order processed.</p>'; # Start printing order
+```
 
 With both of these styles, everything after the comment symbol (# or //) is a comment until you reach the end of the line or the ending PHP tag, whichever comes first. In the following line of code, the text before the closing tag, here is a comment, is part of a comment. The text after the closing tag, here is not, will be treated as HTML because it is outside the closing tag:
 
@@ -303,7 +292,7 @@ So far, you haven’t used PHP to do anything you couldn’t have done with plai
 
 You could also write this on one line, using the concatenation operator (.), as
 
-```
+```php
 <?php  
 echo "<p>Order processed at ".date('H:i, jS F Y')."</p>";?>
 ```
@@ -338,7 +327,7 @@ Let’s look at an example that creates easier-to-use copies of variables. To co
 
 Place the following block of code at the start of the processing script. All other scripts in this book that handle data from a form contain a similar block at the start. Because this code will not produce any output, placing it above or below the \<html> and other HTML tags that start your page makes no difference. We generally place such blocks at the start of the script to make them easy to find.
 
-```
+```php
 <?php  // create short variable names  
 $tireqty = $_POST['tireqty'];  
 $oilqty = $_POST['oilqty'];  
@@ -360,7 +349,7 @@ For now, it’s enough to know that you should echo out user data to the browser
 
 To make the script start doing something visible, add the following lines to the bottom of your PHP script:   
 
-```
+```php
 <?php
 echo '<p>Order processed at '.date('H:i, JS F Y').'</p>';;
 echo '<p>your order is as follows: </p>';
@@ -397,7 +386,7 @@ Remember the two kinds of strings mentioned already: ones with double quotation 
 
 There is also a third way of specifying strings using the heredoc syntax (<<<), which will be familiar to Perl users. Heredoc syntax allows you to specify long strings tidily, by specifying an end marker that will be used to terminate the string. The following example creates a three-line string and echoes it:
 
-```
+```php
 echo <<<theEnd  
 line 1  
 line 2 
@@ -421,7 +410,7 @@ Understanding Identifiers. Identifiers are the names of variables. (The names of
 
 You can declare and use your own variables in addition to the variables you are passed from the HTML form. One of the features of PHP is that it does not require you to declare variables before using them. A variable is created when you first assign a value to it. See the next section for details.You assign values to variables using the assignment operator (=) as you did when copying one variable’s value to another. On Bob’s site, you want to work out the total number of items ordered and the total amount payable. You can create two variables to store these numbers. To begin with, you need to initialize each of these variables to zero by adding these lines to the bottom of your PHP script. Each of these two lines creates a variable and assigns a literal value to it. You can also assign variable values to variables, as shown in this example:
 
-```
+```php
 $totalqty = 0;
 $totalamount = 0.00;
 
@@ -465,7 +454,7 @@ Because you assigned 0, an integer, to \$totalqty, this is now an integer type v
 
 Type Casting. You can pretend that a variable or value is of a different type by using a type cast. This feature works identically to the way it works in C. You simply put the temporary type in parentheses in front of the variable you want to cast. For example, you could have declared the two variables from the preceding section using a cast:
 
-```
+```php
 $totalqty = 0;
 $totalamount = (float)$totalqty;
 ```
