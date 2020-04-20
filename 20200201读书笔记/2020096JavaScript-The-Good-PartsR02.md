@@ -617,7 +617,7 @@ var is_array = function (value) {
 
 Unfortunately, it fails to identify arrays that were constructed in a different window or frame. If we want to accurately detect those foreign arrays, we have to work a little harder:
 
-```
+```js
 var is_array = function (value) {
     return value &&
     typeof value === 'object' &&
@@ -929,7 +929,7 @@ The (?:...)? indicates an optional noncapturing group. It is usually better to u
 
 This is another optional noncapturing group. It matches e (or E), an optional sign, and one or more digits.
 
-## 02. Construction
+### 02. Construction
 
 There are two ways to make a RegExp object. The preferred way, as we saw in the examples, is to use a regular expression literal. Regular expression literals are enclosed in slashes. This can be a little tricky because slash is also used as the division operator and in comments. There are three flags that can be set on a RegExp. They are indicated by the letters g, i, and m, as listed in Table 7-1. The flags are appended directly to the end of the RegExp literal:
 

@@ -4,11 +4,21 @@
 
 ## 记忆时间
 
+2020-04-21
+
 ## 卡片
 
 ### 0101. 主题卡——JS 的精华
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+JavaScript is built on some very good ideas and a few very bad ones. The very good ideas include functions, loose typing, dynamic objects, and an expressive object literal notation.
+
+JavaScript’s functions are first class objects with (mostly) lexical scoping. JavaScript is the first lambda language to go mainstream. Deep down, JavaScript has more in common with Lisp and Scheme than with Java. It is Lisp in C’s clothing. This makes JavaScript a remarkably powerful language.
+
+But it turns out that strong typing does not eliminate the need for careful testing. And I have found in my work that the sorts of errors that strong type checking finds are not the errors I worry about. On the other hand, I find loose typing to be liberating. I don’t need to form complex class hierarchies. And I never have to cast or wrestle with the type system to get the behavior that I want.
+
+JavaScript has a very powerful object literal notation. Objects can be created simply by listing their components. This notation was the inspiration for JSON, the popular data interchange format.
+
+A controversial feature in JavaScript is prototypal inheritance. JavaScript has a class-free object system in which objects inherit properties directly from other objects. This is really powerful, but it is unfamiliar to classically trained programmers. If you attempt to apply classical design patterns directly to JavaScript, you will be frustrated. But if you learn to work with JavaScript’s prototypal nature, your efforts will be rewarded.
 
 ### 0201. 术语卡——delegation
 
@@ -138,7 +148,7 @@ JavaScript is most despised because it isn’t some other language. If you are g
 
 The amazing thing about JavaScript is that it is possible to get work done with it without knowing much about the language, or even knowing much about programming. It is a language with enormous expressive power. It is even better when you know what you’re doing. Programming is difficult business. It should never be undertaken in ignorance.
 
-1『enormous expressive power. 是 JS 的一大特点。』
+1『 enormous expressive power. 是 JS 的一大特点。』
 
 ### 02. Analyzing JavaScript
 
@@ -150,7 +160,7 @@ JavaScript’s functions are first class objects with (mostly) lexical scoping. 
 
 The fashion in most programming languages today demands strong typing. The theory is that strong typing allows a compiler to detect a large class of errors at compile time. The sooner we can detect and repair errors, the less they cost us. JavaScript is a loosely typed language, so JavaScript compilers are unable to detect type errors. This can be alarming to people who are coming to JavaScript from strongly typed languages. But it turns out that strong typing does not eliminate the need for careful testing. And I have found in my work that the sorts of errors that strong type checking finds are not the errors I worry about. On the other hand, I find loose typing to be liberating. I don’t need to form complex class hierarchies. And I never have to cast or wrestle with the type system to get the behavior that I want.
 
-1『 JS 是弱类型语言。作者认为强类型语言（比如 Java）在类型强制上能提供的真正有用的价值有限，还不如弱类型呢。』
+1『 JS 是弱类型语言。作者认为强类型语言（比如 Java）在类型强制上能提供的真正有用的价值有限，获得的好处弥补不了弱类型的灵活性。』
 
 JavaScript has a very powerful object literal notation. Objects can be created simply by listing their components. This notation was the inspiration for JSON, the popular data interchange format. (There will be more about JSON in Appendix E.)
 
@@ -199,7 +209,7 @@ Then, make a file in the same directory with a name like program.js:
 
     document.writeln('Hello, world!');
 
-1『以后写 JS 代码就按这种方式在本地服务器上跑，比在浏览器里的 console 里写代码方便太多。』
+1『写 JS 代码可以按这种方式在本地服务器上跑，比在浏览器里的 console 里写代码方便太多；还有种更简单的方式，直接在 html 或者 js 文件里嵌入 JS 代码，这样不用弄 2 个文件，JS 代码量不多的情况下。』
 
 Next, open your HTML file in your browser to see the result. Throughout the book, a method method is used to define new methods. This is its definition: 
 
