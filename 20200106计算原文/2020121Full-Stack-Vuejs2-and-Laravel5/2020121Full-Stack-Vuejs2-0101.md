@@ -276,7 +276,7 @@ After a whirlwind overview of Vue's key features, I'm sure you're keen now to st
 
 Vuebnb is a realistic, full-stack web application which utilizes many of the main features of Vue, Laravel, and the other tools and design patterns covered in this book. From a user's point of view, Vuebnb is an online marketplace for renting short-term lodgings in cities around the world. You may notice some likeness between Vuebnb and another online marketplace for accommodation with a similar name!
 
-You can view a completed version of Vuebnb here: http://vuebnb.vuejsdevelopers.com.
+You can view a completed version of Vuebnb here: [Vuebnb](http://vuebnb.vuejsdevelopers.com/).
 
 If you don't have internet access right now, here are screenshots of two of the main pages. Firstly, the home page, where users can search or browse through accommodation options:
 

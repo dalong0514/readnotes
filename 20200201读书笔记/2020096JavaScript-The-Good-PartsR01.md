@@ -6,19 +6,9 @@
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
-
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
 
 ### 0201. 术语卡——delegation
 
@@ -56,19 +46,7 @@ The invocation operator is a pair of parentheses that follow any expression that
 
 醍醐灌顶，函数调用和用字面量创建函数是两码事，调用最关键的是那对圆括号 ()，圆括号前面可以是函数名，也可以是函数字面量。而圆括号里面是要传递进函数的实参；parameter 实参，调用函数时传递进来的。argument 形参，定义函数时设定的。
 
-### 0301. 人名卡——
-
-基本信息
-
-用一句话描述你对这个大牛的印象。
-
-贡献及著作
-
-### 0401. 金句卡——Most programming languages contain good parts and bad parts.
-
-Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts
-
-### 0501. 信息卡——代码风格
+### 0206. 信息卡——代码风格
 
 Throughout this book I have used a consistent style. My intention was to make the code examples as easy to read as possible. I used whitespace consistently to give you more cues about the meaning of my programs.
 
@@ -76,9 +54,17 @@ I indented the contents of blocks and object literals four spaces. I placed a sp
 
 If a statement doesn’t fit on a line, I will break it after a comma or a binary operator. That gives more protection against copy/paste errors that are masked by semicolon insertion. (The tragedy of semicolon insertion will be revealed in Appendix A.) I indent the remainder of the statement an extra four spaces, or eight spaces if four would be ambiguous (such as a line break in the condition part of an if statement). I always use blocks with structured statements such as if and while because it is less error prone. I have seen:
 
-贯穿本书，我始终采用一致的风格。我的目的是使代码实例尽可能易于阅读。我使用一致的留白来帮助你理解我的程序的逻辑思路。我对代码块内容和对象字面量缩进 4 个空格。我放了一个空格在 if 和 ( 之间，以致 if 不会看起来像一个函数调用。只有真的是在调用时，我才使 ( 和其前面的符号相毗连。我在除了 . 和 [ 外的所有中置运算符的两边都放了空格，它们俩无须空格是因为它们有更高的优先级。我在每个逗号和冒号后面都使用一个空格。
+使用一致的留白来理解程序的逻辑思路。1）代码块内容和对象字面量缩进 4 个空格。2）放了一个空格在 if 和 ( 之间，以致 if 不会看起来像一个函数调用。只有真的是在调用时，才使 ( 和其前面的符号相毗连。3）在除了 . 和 [ 外的所有中置运算符的两边都放了空格，它们俩无须空格是因为它们有更高的优先级。4）在每个逗号和冒号后面都使用一个空格。5）在每行最多放一个语句，在一行里放多条语句可能会被误读。如果一个语句一行放不下，我会在一个冒号或二元运算符后拆开它。给折断后的语句的其余部分多缩进 4 个空格，如果 4 个还不够明显，就缩进 8 个空格（例如在一个 if 语句的条件部分插入一个换行符的时候）。6）在诸如 if 和 while 这样结构化的语句里，始终使用代码块，因为这样会减少出错的概率。
 
-我在每行最多放一个语句，在一行里放多条语句可能会被误读。如果一个语句一行放不下，我会在一个冒号或二元运算符后拆开它，这将更好地防止自动插入分号的机制掩盖复制 / 粘贴的错误（自动插入分号带来的悲剧会在附录 A 里披露）。我给折断后的语句的其余部分多缩进 4 个空格，如果 4 个还不够明显，就缩进 8 个空格（例如在一个 if 语句的条件部分插入一个换行符的时候）。在诸如 if 和 while 这样结构化的语句里，我始终使用代码块，因为这样会减少出错的概率。
+### 0301. 人名卡——Douglas Crockford
+
+Douglas Crockford，本书作者。
+
+贡献及著作
+
+### 0401. 金句卡——Most programming languages contain good parts and bad parts.
+
+Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts
 
 ## 书评
 

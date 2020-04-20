@@ -1,22 +1,10 @@
-In the last chapter, we learned about Vue.js components and converted Vuebnb to a component-based architecture. Now that we've done this, we can easily add new pages to our app using Vue Router.
+# 0701. Building a Multi-Page App with Vue Router
 
-In this chapter, we'll create a home page for Vuebnb, including a gallery of clickable thumbnails that showcase the full set of mock listings.
+In the last chapter, we learned about Vue.js components and converted Vuebnb to a component-based architecture. Now that we've done this, we can easily add new pages to our app using Vue Router. In this chapter, we'll create a home page for Vuebnb, including a gallery of clickable thumbnails that showcase the full set of mock listings.
 
-Topics covered in this chapter:
+Topics covered in this chapter: 1) An explanation of what router libraries are and why they are a critical part of single-page applications. 2) An overview of Vue Router and its main features. 3) Installation and basic configuration of Vue Router. 4) Using the RouterLink and RouterView special components to manage page navigation. 5) Setting up AJAX with Vue to retrieve data from the web service without a page refresh. 7) Using route navigation guards to retrieve data before a new page is loaded.
 
-An explanation of what router libraries are and why they are a critical part of single-page applications
-
-An overview of Vue Router and its main features
-
-Installation and basic configuration of Vue Router
-
-Using the RouterLink and RouterView special components to manage page navigation
-
-Setting up AJAX with Vue to retrieve data from the web service without a page refresh
-
-Using route navigation guards to retrieve data before a new page is loaded
-
-Single-page applications
+## 01. Single-page applications
 
 Most websites are broken up into pages in order to make the information they contain easier to consume. Traditionally this is done with a server/client model, where each page must be loaded from the server with a different URL. To navigate to a new page, the browser must send a request to the URL of that page. The server will send the data back and the browser can unload the existing page and load the new one. For the average internet connection, this process will likely take a few seconds, during which the user must wait for the new page to load.
 
@@ -740,15 +728,8 @@ With that done, we can see the left arrow is hidden when the page loads, as expe
 
 Figure 7.24. Hidden left arrow on page load
 
-Summary
+## Summary
 
-In this chapter, we learned how router libraries work and why they are a crucial addition to SPAs. We then got familiar with the key features of Vue Router including the route object, navigation guards, and the RouterLink and RouterView special components.
-
-Putting this knowledge into practice, we installed Vue Router and configured it for use in our app. We then built a home page for Vuebnb, including a gallery of listing summaries organized within image sliders.
-
-Finally, we implemented an architecture for correctly matching pages with either available local data or new data retrieved from the web service via AJAX.
+In this chapter, we learned how router libraries work and why they are a crucial addition to SPAs. We then got familiar with the key features of Vue Router including the route object, navigation guards, and the RouterLink and RouterView special components. Putting this knowledge into practice, we installed Vue Router and configured it for use in our app. We then built a home page for Vuebnb, including a gallery of listing summaries organized within image sliders. Finally, we implemented an architecture for correctly matching pages with either available local data or new data retrieved from the web service via AJAX.
 
 Now that we have a substantial number of components in our app, many of which communicate data between one another, it's time to investigate another key Vue.js tool: Vuex. Vuex is a Flux-based library that offers a superior way of managing application state.
-
-Managing Your Application State with Vuex
-

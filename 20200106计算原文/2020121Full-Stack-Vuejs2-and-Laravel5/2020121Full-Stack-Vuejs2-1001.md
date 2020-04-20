@@ -1,3 +1,5 @@
+# 1001. Deploying a Full-Stack App to the Cloud
+
 Now that the functionality of Vuebnb is complete, the final step is to deploy it to production. We'll use two free services, Heroku and KeyCDN, to share Vuebnb with the world.
 
 Topics covered in this chapter:
@@ -408,13 +410,8 @@ Secondly, I invite you to check out Vue.js Developers, an online community for V
 
 Check it out at this URL: https://vuejsdevelopers.com.
 
-Summary
+## Summary
 
-In this chapter, we learned how to deploy a full-stack app to a Heroku cloud server. To do this, we used the Heroku CLI to set up a new Heroku app, and then deployed it using Heroku's Git server.
-
-We also created a CDN with KeyCDN, and used FTP to deploy our static assets to the CDN.
-
-Finally, we learned why it's important for performance and security to build our JavaScript assets in production-mode ahead of deployment.
+In this chapter, we learned how to deploy a full-stack app to a Heroku cloud server. To do this, we used the Heroku CLI to set up a new Heroku app, and then deployed it using Heroku's Git server. We also created a CDN with KeyCDN, and used FTP to deploy our static assets to the CDN. Finally, we learned why it's important for performance and security to build our JavaScript assets in production-mode ahead of deployment.
 
 This is the final chapter of the book. Thank you for reading and good luck on your web development journey!
-

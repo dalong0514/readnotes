@@ -1,3 +1,5 @@
+# 0901. Adding a User Login and API Authentication with Passport
+
 In the last chapter, we allowed the user to save their favorite Vuebnb listings. This feature was only implemented in the frontend app though, so if the user reloaded the page their selections would be lost.
 
 In this chapter, we'll create a user login system and persist saved items to the database so they can be retrieved after a page refresh.
@@ -470,15 +472,8 @@ $ php artisan tinker >>> DB::table('users')->select('saved')->first(); # "saved"
 
 Make sure you're logged in as that user and load Vuebnb in the browser. Toggle a few of your saved listing selections and rerun the query above. You should find that the database is now persisting the saved listing IDs.
 
-Summary
+## Summary
 
-In this chapter, we learned about authentication in full-stack Vue/Laravel apps, including session-based authentication for web routes, and token-based authentication for API routes using Laravel Passport.
-
-We used this knowledge to set up a login system for Vuebnb, and to allow saved room listings to be persisted to the database.
-
-Along the way, we also learned how to utilize CSRF tokens for securing forms, and about Vuex actions for adding asynchronous code to the store.
+In this chapter, we learned about authentication in full-stack Vue/Laravel apps, including session-based authentication for web routes, and token-based authentication for API routes using Laravel Passport. We used this knowledge to set up a login system for Vuebnb, and to allow saved room listings to be persisted to the database. Along the way, we also learned how to utilize CSRF tokens for securing forms, and about Vuex actions for adding asynchronous code to the store.
 
 In the next, and final, chapter, we will learn how to deploy a full-stack Vue and Laravel app to production by deploying Vuebnb to a free Heroku PHP server. We will also begin serving images and other static content from a free CDN.
-
-Deploying a Full-Stack App to the Cloud
-
