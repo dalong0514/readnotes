@@ -6,7 +6,7 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡——JS 的精华
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
@@ -116,13 +116,13 @@ When I was a young journeyman programmer, I would learn about every feature of t
 
 Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts. After all, how can you build something good out of bad parts? It is rarely possible for standards committees to remove imperfections from a language because doing so would cause the breakage of all of the bad programs that depend on those bad parts. They are usually powerless to do anything except heap more features on top of the existing pile of imperfections. And the new features do not always interact harmoniously, thus producing more bad parts. But you have the power to define your own subset. You can write better programs by relying exclusively on the good parts.
 
-2『Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts. 做一张金句卡片。每种语言都有好的部分和坏的部分，制定标准的组织因为各种原因不可能把坏的部分剔除掉，只能不断的加新的特性。但作为个体，我们有权利和义务只使用语言里好的部分。』
+2『 Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts. 做一张金句卡片。每种语言都有好的部分和坏的部分，制定标准的组织因为各种原因不可能把坏的部分剔除掉，只能不断的加新的特性。但作为个体，我们有权利和义务只使用语言里好的部分。』
 
 JavaScript is a language with more than its share of bad parts. It went from nonexistence to global adoption in an alarmingly short period of time. It never had an interval in the lab when it could be tried out and polished. It went straight into Netscape Navigator 2 just as it was, and it was very rough. When Java™ applets failed, JavaScript became the「Language of the Web」by default. JavaScript’s popularity is almost completely independent of its qualities as a programming language.
 
 Fortunately, JavaScript has some extraordinarily good parts. In JavaScript, there is a beautiful, elegant, highly expressive language that is buried under a steaming pile of good intentions and blunders. The best nature of JavaScript is so effectively hidden that for many years the prevailing opinion of JavaScript was that it was an unsightly, incompetent toy. My intention here is to expose the goodness in JavaScript, an out-standing, dynamic programming language. JavaScript is a block of marble, and I chip away the features that are not beautiful until the language’s true nature reveals itself. I believe that the elegant subset I carved out is vastly superior to the language as a whole, being more reliable, readable, and maintainable.
 
-1『JS 的精华在于 out-standing, dynamic programming language. 』
+1『 JS 的精华在于 out-standing, dynamic programming language. 』
 
 This book will not attempt to fully describe the language. Instead, it will focus on the good parts with occasional warnings to avoid the bad. The subset that will be described here can be used to construct reliable, readable programs small and large. By focusing on just the good parts, we can reduce learning time, increase robustness, and save some trees.
 
@@ -132,7 +132,7 @@ Perhaps the greatest benefit of studying the good parts is that you can avoid th
 
 JavaScript is an important language because it is the language of the web browser. Its association with the browser makes it one of the most popular programming languages in the world. At the same time, it is one of the most despised programming languages in the world. The API of the browser, the Document Object Model (DOM) is quite awful, and JavaScript is unfairly blamed. The DOM would be painful to work with in any language. The DOM is poorly specified and inconsistently implemented. This book touches only very lightly on the DOM. I think writing a Good Parts book about the DOM would be extremely challenging.
 
-1『DOM 太挫，拿得出手的东西很少。』
+1『 DOM 太挫，拿得出手的东西很少。』
 
 JavaScript is most despised because it isn’t some other language. If you are good in some other language and you have to program in an environment that only supports JavaScript, then you are forced to use JavaScript, and that is annoying. Most people in that situation don’t even bother to learn JavaScript first, and then they are surprised when JavaScript turns out to have significant differences from the some other language they would rather be using, and that those differences matter.
 
@@ -144,13 +144,13 @@ The amazing thing about JavaScript is that it is possible to get work done with 
 
 JavaScript is built on some very good ideas and a few very bad ones. The very good ideas include functions, loose typing, dynamic objects, and an expressive object literal notation. The bad ideas include a programming model based on global variables.
 
-1『ES6 引入的 let、const 就是为了解决「a programming model based on global variables.」』
+1『 ES6 引入的 let、const 就是为了解决「a programming model based on global variables.」』
 
 JavaScript’s functions are first class objects with (mostly) lexical scoping. JavaScript is the first lambda language to go mainstream. Deep down, JavaScript has more in common with Lisp and Scheme than with Java. It is Lisp in C’s clothing. This makes JavaScript a remarkably powerful language.
 
 The fashion in most programming languages today demands strong typing. The theory is that strong typing allows a compiler to detect a large class of errors at compile time. The sooner we can detect and repair errors, the less they cost us. JavaScript is a loosely typed language, so JavaScript compilers are unable to detect type errors. This can be alarming to people who are coming to JavaScript from strongly typed languages. But it turns out that strong typing does not eliminate the need for careful testing. And I have found in my work that the sorts of errors that strong type checking finds are not the errors I worry about. On the other hand, I find loose typing to be liberating. I don’t need to form complex class hierarchies. And I never have to cast or wrestle with the type system to get the behavior that I want.
 
-1『JS 是弱类型语言。作者认为强类型语言（比如 Java）在类型强制上能提供的真正有用的价值有限，还不如弱类型呢。』
+1『 JS 是弱类型语言。作者认为强类型语言（比如 Java）在类型强制上能提供的真正有用的价值有限，还不如弱类型呢。』
 
 JavaScript has a very powerful object literal notation. Objects can be created simply by listing their components. This notation was the inspiration for JSON, the popular data interchange format. (There will be more about JSON in Appendix E.)
 
@@ -210,8 +210,6 @@ Function.prototype.method = function (name, func) {
 };
 ```
 
-It will be explained in Chapter 4.
-
 ## 02. Grammar
 
 ### 1. 逻辑脉络
@@ -220,17 +218,7 @@ JS 的语法内容，包括空白符、命令规则、各基本类型、语句�
 
 ### 2. 摘录及评论
 
-This chapter introduces the grammar of the good parts of JavaScript, presenting a quick overview of how the language is structured. We will represent the grammar with railroad diagrams. The rules for interpreting these diagrams are simple:
-
-• You start on the left edge and follow the tracks to the right edge.
-
-• As you go, you will encounter literals in ovals, and rules or descriptions in rectangles.『图里面圆形的是 literals，矩形的是 rules or descriptions. 』
-
-• Any sequence that can be made by following the tracks is legal.
-
-• Any sequence that cannot be made by following the tracks is not legal.
-
-• Railroad diagrams with one bar at each end allow whitespace to be inserted between any pair of tokens. Railroad diagrams with two bars at each end do not.
+This chapter introduces the grammar of the good parts of JavaScript, presenting a quick overview of how the language is structured. We will represent the grammar with railroad diagrams. The rules for interpreting these diagrams are simple: 1) You start on the left edge and follow the tracks to the right edge. 2) As you go, you will encounter literals in ovals, and rules or descriptions in rectangles.『图里面圆形的是 literals，矩形的是 rules or descriptions. 』3) Any sequence that can be made by following the tracks is legal. 4) Any sequence that cannot be made by following the tracks is not legal. 5) Railroad diagrams with one bar at each end allow whitespace to be inserted between any pair of tokens. Railroad diagrams with two bars at each end do not.
 
 The grammar of the good parts presented in this chapter is significantly simpler than the grammar of the whole language.
 
@@ -315,23 +303,9 @@ Statements tend to be executed in order from top to bottom. The sequence of exec
 
 A block is a set of statements wrapped in curly braces. Unlike many other languages, blocks in JavaScript do not create a new scope, so variables should be defined at the top of the function, not in blocks.
 
-The if statement changes the flow of the program based on the value of the expression. The then block is executed if the expression is truthy; otherwise, the optional else branch is taken. Here are the falsy values:
+The if statement changes the flow of the program based on the value of the expression. The then block is executed if the expression is truthy; otherwise, the optional else branch is taken. Here are the falsy values: 1) false. 2) null. 3) undefined. 4) The empty string ''. 5) The number 0. 6) The number NaN.
 
-• false
-
-• null
-
-• undefined
-
-• The empty string ''
-
-• The number 0
-
-• The number NaN
-
-All other values are truthy, including true, the string 'false', and all objects.
-
-The switch statement performs a multiway branch. It compares the expression for equality with all of the specified cases. The expression can produce a number or a string. When an exact match is found, the statements of the matching case clause are executed. If there is no match, the optional default statements are executed.
+All other values are truthy, including true, the string 'false', and all objects. The switch statement performs a multiway branch. It compares the expression for equality with all of the specified cases. The expression can produce a number or a string. When an exact match is found, the statements of the matching case clause are executed. If there is no match, the optional default statements are executed.
 
 A case clause contains one or more case expressions. The case expressions need not be constants. The statement following a clause should be a disruptive statement to prevent fall through into the next case. The break statement can be used to exit from a switch.
 
@@ -369,15 +343,7 @@ An expression statement can either assign values to one or more variables or mem
 
 ### 06. Expressions
 
-The simplest expressions are a literal value (such as a string or number), a variable, a built-in value (true, false, null, undefined, NaN, or Infinity), an invocation expression preceded by new, a refinement expression preceded by delete, an expression wrapped in parentheses, an expression preceded by a prefix operator, or an expression followed by:
-
-• An infix operator and another expression.
-
-• The ? ternary operator followed by another expression, then by :, and then by yet another expression.
-
-• An invocation.
-
-• A refinement.
+The simplest expressions are a literal value (such as a string or number), a variable, a built-in value (true, false, null, undefined, NaN, or Infinity), an invocation expression preceded by new, a refinement expression preceded by delete, an expression wrapped in parentheses, an expression preceded by a prefix operator, or an expression followed by: 1) An infix operator and another expression. 2) The ? ternary operator followed by another expression, then by :, and then by yet another expression. 3) An invocation. 4) A refinement.
 
 The ? ternary operator takes three operands. If the first operand is truthy, it produces the value of the second operand. But if the first operand is falsy, it produces the value of the third operand.
 
@@ -426,7 +392,7 @@ An object is a container of properties, where a property has a name and a value.
 
 Objects in JavaScript are class-free. There is no constraint on the names of new properties or on the values of properties. Objects are useful for collecting and organizing data. Objects can contain other objects, so they can easily represent tree or graph structures. JavaScript includes a prototype linkage feature that allows one object to inherit the properties of another. When used well, this can reduce object initialization time and memory consumption.
 
-1『JS 中的对象是无类型的（class-free）。』
+1『 JS 中的对象是无类型的（class-free）。』
 
 ### 01. Object Literals
 
@@ -545,7 +511,9 @@ if (typeof Object.create !== 'function') {
 var another_stooge = Object.create(stooge);
 ```
 
-3『「2019013程勋非的重学前端R01.md」里正好有这个例子：这段代码创建了一个空函数作为类，并把传入的原型挂在了它的 prototype，最后创建了一个它的实例，根据 new 的行为，这将产生一个以传入的第一个参数为原型的对象。这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型，所以放到今天意义已经不大了。ES6 以来，JavaScript 提供了一系列内置函数，以便更为直接地访问操纵原型。三个方法分别为：1）Object.create 根据指定的原型创建新对象，原型可以是 null；2）Object.getPrototypeOf 获得一个对象的原型；3）Object.setPrototypeOf 设置一个对象的原型。利用这三个方法，我们可以完全抛开类的思维，利用原型来实现抽象和复用。ES6 中加入了新特性 class，new 跟 function 搭配的怪异行为终于可以退休了（虽然运行时没有改变），在任何场景，我都推荐使用 ES6 的语法来定义类，而令 function 回归原本的函数语义。』
+3『「2019013程勋非的重学前端R01.md」
+
+有这个例子：这段代码创建了一个空函数作为类，并把传入的原型挂在了它的 prototype，最后创建了一个它的实例，根据 new 的行为，这将产生一个以传入的第一个参数为原型的对象。这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型，所以放到今天意义已经不大了。ES6 以来，JavaScript 提供了一系列内置函数，以便更为直接地访问操纵原型。三个方法分别为：1）Object.create 根据指定的原型创建新对象，原型可以是 null；2）Object.getPrototypeOf 获得一个对象的原型；3）Object.setPrototypeOf 设置一个对象的原型。利用这三个方法，我们可以完全抛开类的思维，利用原型来实现抽象和复用。ES6 中加入了新特性 class，new 跟 function 搭配的怪异行为终于可以退休了（虽然运行时没有改变），在任何场景，我都推荐使用 ES6 的语法来定义类，而令 function 回归原本的函数语义。』
 
 1『注意，winter 只是建议在用使用基于类的面向对象时使用新语法 class 来定义类，有些场景下照样可以用基于原型的面向对象。』
 
@@ -607,7 +575,6 @@ console.log('y: ' + y.programming);
 ```
 
 』
-
 
 ### 06. Reflection
 
@@ -732,7 +699,7 @@ Functions in JavaScript are objects. Objects are collections of name/value pairs
 
 1『 function’s context 是函数的上下文；函数对象在被创建时默认有 2 个隐藏属性：函数上下文和实现函数行为的 code（目前的理解即为调用属性）。函数上下文这个隐藏属性跟闭包密切相关，甚至于就是闭包。（2020-03-29）』
 
-3『Javascript 创建一个函数对象时，会给该对象设置一个「调用」属性。当 Javascript 调用一个函数时，可理解为调用此函数的「调用」属性。详细的描述请参阅 Ecmascript 规范的「13.2 Creating Function Objects」。』
+3『 Javascript 创建一个函数对象时，会给该对象设置一个「调用」属性。当 Javascript 调用一个函数时，可理解为调用此函数的「调用」属性。详细的描述请参阅 Ecmascript 规范的「13.2 Creating Function Objects」。』
 
 2『去找规范里的「Creating Function Objects」看。』
 
