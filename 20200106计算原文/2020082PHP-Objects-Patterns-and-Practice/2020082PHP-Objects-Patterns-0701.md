@@ -1,8 +1,10 @@
 PART II Patterns
 
-# 07 What Are Design Patterns? Why Use Them?
+# 07. What Are Design Patterns? Why Use Them?
 
-Most problems we encounter as programmers have been handled time and again by others in our community. Design patterns can provide us with the means to mine that wisdom. Once a pattern becomes a common currency, it enriches our language, making it easy to share design ideas and their consequences. Design patterns simply distill common problems, define tested solutions, and describe likely outcomes. Many books and articles focus on the details of computer languages, such as the available functions, classes and methods, and so on. Pattern catalogs concentrate instead on how you can move on from these basics (the「what」) to an understanding of the problems and potential solutions in your projects (the「why」and「how」).
+Most problems we encounter as programmers have been handled time and again by others in our community. Design patterns can provide us with the means to mine that wisdom. Once a pattern becomes a common currency, it enriches our language, making it easy to share design ideas and their consequences. Design patterns simply distill common problems, define tested solutions, and describe likely outcomes. 
+
+Many books and articles focus on the details of computer languages, such as the available functions, classes and methods, and so on. Pattern catalogs concentrate instead on how you can move on from these basics (the「what」) to an understanding of the problems and potential solutions in your projects (the「why」and「how」).
 
 In this chapter, I introduce you to design patterns and look at some of the reasons for their popularity.This chapter will cover the following:
 
@@ -12,7 +14,7 @@ Pattern structure: What are the key elements of a design pattern?
 
 Pattern benefits: Why are patterns worth your time?
 
-What Are Design Patterns?
+## 01. What Are Design Patterns?
 
 In the world of software, a pattern is a tangible manifestation of an organization’s tribal memory.
 
@@ -22,13 +24,9 @@ In the world of software, a pattern is a tangible manifestation of an organizati
 
 —Grady Booch in Core J2EE Patterns
 
-As these quotations imply, a design pattern is a problem analyzed with good practice for its solution 
+As these quotations imply, a design pattern is a problem analyzed with good practice for its solution explained.
 
-explained.
-
-Problems tend to recur, and as web programmers we must solve them time and time again. How 
-
-should we handle an incoming request? How can we translate this data into instructions for our system? How should we acquire data? Present results? Over time, we answer these questions with a greater or lesser degree of elegance and evolve an informal set of techniques that we use and reuse in our projects. These techniques are patterns of design.
+Problems tend to recur, and as web programmers we must solve them time and time again. How should we handle an incoming request? How can we translate this data into instructions for our system? How should we acquire data? Present results? Over time, we answer these questions with a greater or lesser degree of elegance and evolve an informal set of techniques that we use and reuse in our projects. These techniques are patterns of design.
 
 Design patterns inscribe and formalize these problems and solutions, making hard-won experience 
 
@@ -209,7 +207,4 @@ any classes at all. With a few notable exceptions, however, objects and object-o
 
 In this chapter, I introduced design patterns, showed you their structure (using the Gang of Four form), and suggested some reasons why you might want to use design patterns in your scripts.
 
-It is important to remember that design patterns are not snap-on solutions that can be combined like 
-
-components to build a project. They are suggested approaches to common problems. These solutions embody some key design principles. It is these that we will examine in the next chapter.
-
+It is important to remember that design patterns are not snap-on solutions that can be combined like components to build a project. They are suggested approaches to common problems. These solutions embody some key design principles. It is these that we will examine in the next chapter.

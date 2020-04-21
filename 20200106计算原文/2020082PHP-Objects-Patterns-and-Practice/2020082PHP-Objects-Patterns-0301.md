@@ -1,4 +1,4 @@
-# 03 Object Basics
+# 03. Object Basics
 
 Objects and classes lie at the heart of this book and, since the introduction of PHP 5 over a decade ago, they have lain at the heart of PHP, too. In this chapter, I lay down the groundwork for more in-depth coverage of objects and design by examining PHP’s core object-oriented features. If you are new to object-oriented programming, you should read this chapter carefully.
 
@@ -633,444 +633,703 @@ When I described class type declarations, I implied that types and classes are s
 
 ## 05. Inheritance
 
-Inheritance is the means by which one or more classes can be derived from a base class.
+Inheritance is the means by which one or more classes can be derived from a base class. A class that inherits from another is said to be a subclass of it. This relationship is often described in terms of parents and children. A child class is derived from and inherits characteristics from the parent. These characteristics consist of both properties and methods. The child class will typically add new functionality to that provided by its parent (also known as a superclass); for this reason, a child class is said to extend its parent. Before I dive into the syntax of inheritance, I’ll examine the problems it can help you to solve. 
 
+### 1. The Inheritance Problem
 
+Look again at the ShopProduct class. At the moment, it is nicely generic. It can handle all sorts of products:
 
-
-
-
-A class that inherits from another is said to be a subclass of it. This relationship is often described in terms of parents and children. A child class is derived from and inherits characteristics from the parent. These characteristics consist of both properties and methods. The child class will typically add new functionality to that provided by its parent (also known as a superclass); for this reason, a child class is said to extend its parent.
-
-Before I dive into the syntax of inheritance, I’ll examine the problems it can help you to solve.
-
-The Inheritance ProblemLook again at the ShopProduct class. At the moment, it is nicely generic. It can handle all sorts of products:
-
-```
+```php
 // listing 03.29
 
-$product1 = new ShopProduct("My Antonia", "Willa", "Cather", 5.99);$product2 = new ShopProduct(    "Exile on Coldharbour Lane",    "The",
-
-    "Alabama 3",    10.99);print "author: " . $product1->getProducer() . "\n";print "artist: " . $product2->getProducer() . "\n";
+$product1 = new ShopProduct("My Antonia", "Willa", "Cather", 5.99);
+$product2 = new ShopProduct(    "Exile on Coldharbour Lane",    "The", "Alabama 3",    10.99);
+print "author: " . $product1->getProducer() . "\n";
+print "artist: " . $product2->getProducer() . "\n";
 ```
 
 Here’s the output:
 
-author: Willa Catherartist: The Alabama 3
+```
+author: Willa Cather
+artist: The Alabama 3
+```
 
 Separating the producer name into two parts works well with both books and CDs. I want to be able to sort on「Alabama 3」and「Cather」, not on「The」and「Willa」. Laziness is an excellent design strategy, so there is no need to worry about using ShopProduct for more than one kind of product at this stage.
 
-If I add some new requirements to my example, however, things rapidly become more complicated. 
+If I add some new requirements to my example, however, things rapidly become more complicated. Imagine, for example, that you need to represent data specific to books and CDs. For CDs, you must store the total playing time; for books, the total number of pages. There could be any number of other differences, but this will serve to illustrate the issue.
 
-Imagine, for example, that you need to represent data specific to books and CDs. For CDs, you must store the total playing time; for books, the total number of pages. There could be any number of other differences, but this will serve to illustrate the issue.
-
-How can I extend my example to accommodate these changes? Two options immediately present 
-
-themselves. First, I could throw all the data into the ShopProduct class. Second, I could split ShopProduct into two separate classes.
+How can I extend my example to accommodate these changes? Two options immediately present themselves. First, I could throw all the data into the ShopProduct class. Second, I could split ShopProduct into two separate classes. 
 
 Let’s examine the first approach. Here, I combine CD- and book-related data in a single class:
 
-```
+```php
 // listing 03.30
 
-class ShopProduct{    public $numPages;    public $playLength;    public $title;    public $producerMainName;    public $producerFirstName;    public $price;
+class ShopProduct{    
+    public $numPages;    
+    public $playLength;    
+    public $title;    
+    public $producerMainName;    
+    public $producerFirstName;    
+    public $price;
 
-    public function __construct(        string $title,        string $firstName,        string $mainName,        float $price,        int $numPages = 0,        int $playLength = 0    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;        $this->numPages          = $numPages;        $this->playLength        = $playLength;    }
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float $price,        
+        int $numPages = 0,        
+        int $playLength = 0    ) {        
+        $this->title = $title;        
+        $this->producerFirstName = $firstName;        
+        $this->producerMainName  = $mainName;        
+        $this->price = $price;        
+        $this->numPages = $numPages;        
+        $this->playLength = $playLength;    
+        }
 
-    public function getNumberOfPages()    {        return $this->numPages;    }
+    public function getNumberOfPages()    {        
+        return $this->numPages;    
+    }
 
-    public function getPlayLength()    {        return $this->playLength;    }
+    public function getPlayLength()    {        
+        return $this->playLength;   
+    }
 
-    public function getProducer()    {        return $this->producerFirstName . " "            . $this->producerMainName;    }}
+    public function getProducer()    {        
+        return $this->producerFirstName . " "            
+            . $this->producerMainName;    
+    }
+}
 ```
 
-I have provided method access to the $numPages and $playLength properties to illustrate the divergent 
+I have provided method access to the \$numPages and \$playLength properties to illustrate the divergent forces at work here. An object instantiated from this class will include a redundant method and, for a CD, must be instantiated using an unnecessary constructor argument: a CD will store information and functionality relating to book pages, and a book will support play-length data. This is probably something you could live with right now. But what would happen if I added more product types, each with its own methods, and then added more methods for each type? Our class would become increasingly complex and hard to manage.
 
-forces at work here. An object instantiated from this class will include a redundant method and, for a CD, must be instantiated using an unnecessary constructor argument: a CD will store information and functionality relating to book pages, and a book will support play-length data. This is probably something you could live with right now. But what would happen if I added more product types, each with its own methods, and then added more methods for each type? Our class would become increasingly complex and hard to manage.
+So forcing fields that don’t belong together into a single class leads to bloated objects with redundant properties and methods.
 
-So forcing fields that don’t belong together into a single class leads to bloated objects with redundant 
+The problem doesn’t end with data, either. I run into difficulties with functionality as well. Consider a method that summarizes a product. The sales department has requested a clear summary line for use in invoices. They want me to include the playing time for CDs and a page count for books, so I will be forced to provide different implementations for each type. I could try using a flag to keep track of the object’s format. Here’s an example:
 
-properties and methods.
-
-The problem doesn’t end with data, either. I run into difficulties with functionality as well. Consider 
-
-a method that summarizes a product. The sales department has requested a clear summary line for use in invoices. They want me to include the playing time for CDs and a page count for books, so I will be forced to provide different implementations for each type. I could try using a flag to keep track of the object’s format. Here’s an example:
-
-```
+```php
 // listing 03.31
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        if ($this->type == 'book') {            $base .= ": page count - {$this->numPages}";        } elseif ($this->type == 'cd') {            $base .= ": playing time - {$this->playLength}";        }        return $base;    }
+public function getSummaryLine()    {        
+    $base  = "{$this->title} ( {$this->producerMainName}, ";        
+    $base .= "{$this->producerFirstName} )";        
+    if ($this->type == 'book') {            
+        $base .= ": page count - {$this->numPages}";        
+    } elseif ($this->type == 'cd') {            
+        $base .= ": playing time - {$this->playLength}";        
+    }        
+    return $base;    
+}
 ```
 
-In order to set the $type property, I could test the $numPages argument to the constructor. Still, once again, the ShopProduct class has become more complex than necessary. As I add more differences to my formats, or add new formats, these functional differences will become even harder to manage. Perhaps I should try another approach to this problem.
+In order to set the \$type property, I could test the \$numPages argument to the constructor. Still, once again, the ShopProduct class has become more complex than necessary. As I add more differences to my formats, or add new formats, these functional differences will become even harder to manage. Perhaps I should try another approach to this problem.
 
-As ShopProduct is beginning to feel like two classes in one, I could accept this and create two types 
+As ShopProduct is beginning to feel like two classes in one, I could accept this and create two types rather than one. Here’s how I might do it:
 
-rather than one. Here’s how I might do it:
-
-```
+```php
 // listing 03.32
 
-class CdProduct{    public $playLength;    public $title;    public $producerMainName;    public $producerFirstName;    public $price;
+class CdProduct{    
+    public $playLength;    
+    public $title;    
+    public $producerMainName;    
+    public $producerFirstName;    
+    public $price;
 
-    public function __construct(        string $title,        string $firstName,        string $mainName,        float  $price,        int    $playLength    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;        $this->playLength        = $playLength;    }
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float  $price,        
+        int    $playLength    
+    ) {        
+        $this->title             = $title;        
+        $this->producerFirstName = $firstName;        
+        $this->producerMainName  = $mainName;        
+        $this->price             = $price;        
+        $this->playLength        = $playLength;    
+    }
 
-    public function getPlayLength()    {        return $this->playLength;    }
+    public function getPlayLength()    {        
+        return $this->playLength;    
+    }
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        $base .= ": playing time - {$this->playLength}";        return $base;    }
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        $base .= ": playing time - {$this->playLength}";        
+        return $base;    
+    }
 
-    public function getProducer()    {        return $this->producerFirstName . " "            . $this->producerMainName;    }}
+    public function getProducer()    {        
+    return $this->producerFirstName . " "            
+        . $this->producerMainName;    
+    }
+}
 ```
 
-```
+```php
 // listing 03.33
 
-class BookProduct{    public $numPages;    public $title;    public $producerMainName;
+class BookProduct{    
+    public $numPages;    
+    public $title;    
+    public $producerMainName;
 
-    public $producerFirstName;    public $price;
+    public $producerFirstName;    
+    public $price;
 
-    public function __construct(        string $title,        string $firstName,        string $mainName,        float  $price,        int    $numPages    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;        $this->numPages          = $numPages;    }
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float  $price,        
+        int    $numPages    
+    ) {        
+        $this->title             = $title;        
+        $this->producerFirstName = $firstName;        
+        $this->producerMainName  = $mainName;        
+        $this->price             = $price;        
+        $this->numPages          = $numPages;    
+    }
 
-    public function getNumberOfPages()    {        return $this->numPages;    }
+    public function getNumberOfPages()    {        
+        return $this->numPages;    
+    }
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        $base .= ": page count - {$this->numPages}";        return $base;    }
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        $base .= ": page count - {$this->numPages}";        
+        return $base;    
+    }
 
-    public function getProducer()    {        return $this->producerFirstName . " "            . $this->producerMainName;    }}
+    public function getProducer()    {        
+        return $this->producerFirstName . " "            
+            . $this->producerMainName;    
+    }
+}
 ```
 
-I have addressed the complexity issue, but at a cost. I can now create a getSummaryLine() method for 
+I have addressed the complexity issue, but at a cost. I can now create a getSummaryLine() method for each format without having to test a flag. Neither class maintains fields or methods that are not relevant to it.
 
-each format without having to test a flag. Neither class maintains fields or methods that are not relevant to it.
+The cost lies in duplication. The getProducerName() method is exactly the same in each class. Each constructor sets a number of identical properties in the same way. This is another unpleasant odor you should train yourself to sniff out.
 
-The cost lies in duplication. The getProducerName() method is exactly the same in each class. Each 
-
-constructor sets a number of identical properties in the same way. This is another unpleasant odor you should train yourself to sniff out.
-
-If I need the getProducer() methods to behave identically for each class, any changes I make to one implementation will need to be made for the other. Without care, the classes will soon slip out of synchronization.
-
-Even if I am confident that I can maintain the duplication, my worries are not over. I now have two types 
-
-rather than one.
+If I need the getProducer() methods to behave identically for each class, any changes I make to one implementation will need to be made for the other. Without care, the classes will soon slip out of synchronization. Even if I am confident that I can maintain the duplication, my worries are not over. I now have two types rather than one.
 
 Remember the ShopProductWriter class? Its write() method is designed to work with a single type: ShopProduct. How can I amend this to work as before? I could remove the class type declaration from the method signature, but then I must trust to luck that write() is passed an object of the correct type. I could add my own type checking code to the body of the method:
 
-```
+```php
 // listing 03.34
 
-class ShopProductWriter{    public function write($shopProduct)    {        if (            ! ($shopProduct instanceof CdProduct)  &&            ! ($shopProduct instanceof BookProduct)        ) {            die("wrong type supplied");        }        $str  = "{$shopProduct->title}: "            . $shopProduct->getProducer()            . " ({$shopProduct->price})\n";        print $str;    }}
+class ShopProductWriter{    
+    public function write($shopProduct)    {        
+        if (            
+            ! ($shopProduct instanceof CdProduct)  &&            
+            ! ($shopProduct instanceof BookProduct)        
+        ) {            
+            die("wrong type supplied");        
+        }        
+        $str  = "{$shopProduct->title}: "            
+            . $shopProduct->getProducer()            
+            . " ({$shopProduct->price})\n";        
+        print $str;    
+    }
+}
 ```
 
-Notice the instanceof operator in the example; instanceof resolves to true if the object in the left-
-
-hand operand is of the type represented by the right-hand operand.
+Notice the instanceof operator in the example; instanceof resolves to true if the object in the left-hand operand is of the type represented by the right-hand operand.
 
 Once again, I have been forced to include a new layer of complexity. Not only do I have to test the \$shopProduct argument against two types in the write() method, but I have to trust that each type will continue to support the same fields and methods as the other. It was all much neater when I simply demanded a single type because I could use a class type declaration and because I could be confident that the ShopProduct class supported a particular interface.
 
-The CD and book aspects of the ShopProduct class don’t work well together but can’t live apart, it 
+The CD and book aspects of the ShopProduct class don’t work well together but can’t live apart, it seems. I want to work with books and CDs as a single type while providing a separate implementation for each format. I want to provide common functionality in one place to avoid duplication, but allow each format to handle some method calls differently. I need to use inheritance.
 
-seems. I want to work with books and CDs as a single type while providing a separate implementation for each format. I want to provide common functionality in one place to avoid duplication, but allow each format to handle some method calls differently. I need to use inheritance.
+1『为什么要发明「继承」特性，作者真的是把当时遇到问题的场景描述清楚了，很赞。任何新的好的特性都是为了解决某一个难题而创造出来的。』
 
-Working with InheritanceThe first step in building an inheritance tree is to find the elements of the base class that don’t fit together or that need to be handled differently.
+### 2. Working with Inheritance
 
-I know that the getPlayLength() and getNumberOfPages() methods do not belong together. I also know that I need to create different implementations for the getSummaryLine() method. Let’s use these differences as the basis for two derived classes:
+The first step in building an inheritance tree is to find the elements of the base class that don’t fit together or that need to be handled differently. I know that the getPlayLength() and getNumberOfPages() methods do not belong together. I also know that I need to create different implementations for the getSummaryLine() method. Let’s use these differences as the basis for two derived classes:
 
-```
+```php
 // listing 03.35
 
-class ShopProduct{    public $numPages;    public $playLength;    public $title;    public $producerMainName;    public $producerFirstName;    public $price;    public function __construct(        string $title,
+class ShopProduct{    
+    public $numPages;    
+    public $playLength;    
+    public $title;    
+    public $producerMainName;    
+    public $producerFirstName;    
+    public $price;    
+    
+    public function __construct(        
+        string $title,
+        string $firstName,        
+        string $mainName,        
+        float  $price,        
+        int    $numPages = 0,        
+        int    $playLength = 0    
+    ) {        
+        $this->title             = $title;        
+        $this->producerFirstName = $firstName;        
+        $this->producerMainName  = $mainName;        
+        $this->price             = $price;        
+        $this->numPages          = $numPages;        
+        $this->playLength        = $playLength;    
+    }
 
+    public function getProducer()    {        
+        return $this->producerFirstName . " "            
+            . $this->producerMainName;    
+    }
 
-        string $firstName,        string $mainName,        float  $price,        int    $numPages = 0,        int    $playLength = 0    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;        $this->numPages          = $numPages;        $this->playLength        = $playLength;    }
-
-    public function getProducer()    {        return $this->producerFirstName . " "            . $this->producerMainName;    }
-
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        return $base;    }}
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        return $base;    
+    }
+}
 ```
 
-
-```
+```php
 // listing 03.36
 
-class CdProduct extends ShopProduct{    public function getPlayLength()    {        return $this->playLength;    }
+class CdProduct extends ShopProduct{    
+    public function getPlayLength()    {        
+        return $this->playLength;    
+    }
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        $base .= ": playing time - {$this->playLength}";        return $base;    }}
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        $base .= ": playing time - {$this->playLength}";        
+        return $base;    
+    }
+}
 ```
 
-```
+```php
 // listing 03.37
 
-class BookProduct extends ShopProduct{    public function getNumberOfPages()
+class BookProduct extends ShopProduct{    
+    public function getNumberOfPages() {        
+        return $this->numPages;    
+    }
 
-    {        return $this->numPages;    }
-
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        $base .= ": page count - {$this->numPages}";        return $base;    }}
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        $base .= ": page count - {$this->numPages}";        
+        return $base;    
+    }
+}
 ```
 
-To create a child class, you must use the extends keyword in the class declaration. In the example, I 
-
-created two new classes, BookProduct and CdProduct. Both extend the ShopProduct class.
+To create a child class, you must use the extends keyword in the class declaration. In the example, I created two new classes, BookProduct and CdProduct. Both extend the ShopProduct class.
 
 Because the derived classes do not define constructors, the parent class’s constructor is automatically invoked when they are instantiated. The child classes inherit access to all the parent’s public and protected methods (though not to private methods or properties). This means that you can call the getProducer() method on an object instantiated from the CdProduct class, even though getProducer() is defined in the ShopProduct class:
 
-```
+```php
 // listing 03.38
 
-$product2 = new CdProduct(    "Exile on Coldharbour Lane",    "The",    "Alabama 3",    10.99,    0,    60.33);print "artist: {$product2->getProducer()}\n";
+$product2 = new CdProduct(    
+    "Exile on Coldharbour Lane",    
+    "The",    
+    "Alabama 3",    
+    10.99,    
+    0,    
+    60.33
+);
+print "artist: {$product2->getProducer()}\n";
 ```
 
-So both the child classes inherit the behavior of the common parent. You can treat a BookProduct 
+So both the child classes inherit the behavior of the common parent. You can treat a BookProduct object as if it were a ShopProduct object. You can pass a BookProduct or CdProduct object to the ShopProductWriter class’s write() method and all will work as expected.
 
-object as if it were a ShopProduct object. You can pass a BookProduct or CdProduct object to the ShopProductWriter class’s write() method and all will work as expected.
-
-Notice that both the CdProduct and BookProduct classes override the getSummaryLine() method, 
-
-providing their own implementation. Derived classes can extend but also alter the functionality of their parents.
+Notice that both the CdProduct and BookProduct classes override the getSummaryLine() method, providing their own implementation. Derived classes can extend but also alter the functionality of their parents.
 
 The super class’s implementation of this method might seem redundant because it is overridden by both its children. Nevertheless, it provides basic functionality that new child classes might use. The method’s presence also provides a guarantee to client code that all ShopProduct objects will provide a getSummaryLine() method. Later on you will see how it is possible to make this promise in a base class without providing any implementation at all. Each child ShopProduct class inherits its parent’s properties. Both BookProduct and CdProduct access the \$title property in their versions of getSummaryLine().
 
 Inheritance can be a difficult concept to grasp at first. By defining a class that extends another, you ensure that an object instantiated from it is defined by the characteristics of first the child and then the parent class. Another way of thinking about this is in terms of searching. When I invoke \$product2->getProducer(), there is no such method to be found in the CdProduct class, and the invocation falls through to the default implementation in ShopProduct. When I invoke \$product2->getSummaryLine(), on the other hand, the getSummaryLine() method is found in CdProduct and invoked.
 
-The same is true of property accesses. When I access \$title in the BookProduct class’s 
+1『跟 JS 里的委托异曲同工，调用对象里的某个属性时，好不到就去它的原型对象里找，再找不到就去其原型对象的原型对象里去，直到找到根原型对象。』
 
-getSummaryLine() method, the property is not found in the BookProduct class. It is acquired instead from the parent class, from ShopProduct. The \$title property applies equally to both subclasses, and therefore, it belongs in the superclass.
+The same is true of property accesses. When I access \$title in the BookProduct class’s getSummaryLine() method, the property is not found in the BookProduct class. It is acquired instead from the parent class, from ShopProduct. The \$title property applies equally to both subclasses, and therefore, it belongs in the superclass.
 
 A quick look at the ShopProduct constructor, however, shows that I am still managing data in the base class that should be handled by its children. The BookProduct class should handle the \$numPages argument and property, and the CdProduct class should handle the \$playLength argument and property. To make this work, I will define constructor methods in each of the child classes.
 
-Constructors and InheritanceWhen you define a constructor in a child class, you become responsible for passing any arguments on to the parent. If you fail to do this, you can end up with a partially constructed object.
+#### 2.1 Constructors and Inheritance
 
-To invoke a method in a parent class, you must first find a way of referring to the class itself: a handle. 
+When you define a constructor in a child class, you become responsible for passing any arguments on to the parent. If you fail to do this, you can end up with a partially constructed object. To invoke a method in a parent class, you must first find a way of referring to the class itself: a handle. 
 
-PHP provides us with the parent keyword for this purpose.
+PHP provides us with the parent keyword for this purpose. To refer to a method in the context of a class rather than an object, you use :: rather than ->:
 
-To refer to a method in the context of a class rather than an object, you use :: rather than ->:
-
+```php
 parent::__construct()
-
-The preceding means,「Invoke the __construct() method of the parent class.」Here I amend my 
-
-example so that each class handles only the data that is appropriate to it:
-
 ```
+
+The preceding means,「Invoke the \_\_construct() method of the parent class.」Here I amend my example so that each class handles only the data that is appropriate to it:
+
+```php
 // listing 03.39
 
-class ShopProduct{    public $title;    public $producerMainName;    public $producerFirstName;    public $price;
+class ShopProduct{    
+    public $title;    
+    public $producerMainName;    
+    public $producerFirstName;    
+    public $price;
 
-    function __construct(        $title,        $firstName,        $mainName,        $price    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;    }
+    function __construct(        
+        $title,        
+        $firstName,        
+        $mainName,        
+        $price    
+    ) {        
+    $this->title             = $title;        
+    $this->producerFirstName = $firstName;        
+    $this->producerMainName  = $mainName;        
+    $this->price             = $price;    
+    }
 
-    function getProducer()    {        return $this->producerFirstName . " "            . $this->producerMainName;    }
+    function getProducer()    {        
+        return $this->producerFirstName . " "            
+            . $this->producerMainName;    
+    }
 
     function getSummaryLine()    {
-
-        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        return $base;    }}
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        r
+        eturn $base;    
+    }
+}
 ```
 
-```
+```php
 // listing 03.40
 
-class BookProduct extends ShopProduct{    public $numPages;
+class BookProduct extends ShopProduct{    
+    public $numPages;
 
-    public function __construct(        string $title,        string $firstName,        string $mainName,        float  $price,        int    $numPages    ) {        parent::__construct(            $title,            $firstName,            $mainName,            $price        );        $this->numPages = $numPages;    }
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float  $price,        
+        int    $numPages    
+    ) {        
+        parent::__construct(            
+            $title,            
+            $firstName,            
+            $mainName,            
+            $price        
+        );        
+        $this->numPages = $numPages;    
+    }
 
-    public function getNumberOfPages()    {        return $this->numPages;    }
+    public function getNumberOfPages()    {        
+        return $this->numPages;    
+    }
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( $this->producerMainName, ";        $base .= "$this->producerFirstName )";        $base .= ": page count – {$this->numPages}";        return $base;    }}
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( $this->producerMainName, ";        
+        $base .= "$this->producerFirstName )";        
+        $base .= ": page count – {$this->numPages}";        
+        return $base;    
+    }
+}
 ```
 
-```
+```php
 // listing 03.41
 
-class CdProduct extends ShopProduct{    public $playLength;
+class CdProduct extends ShopProduct{    
+    public $playLength;
 
-    public function __construct(        string $title,        string $firstName,
+    public function __construct(        
+        string $title,        
+        string $firstName,
+        string $mainName,        
+        float  $price,        
+        int    $playLength    
+    ) {        
+        parent::__construct(            
+            $title,            
+            $firstName,            
+            $mainName,            
+            $price        
+    );        
+    $this->playLength = $playLength;    
+    }
 
-        string $mainName,        float  $price,        int    $playLength    ) {        parent::__construct(            $title,            $firstName,            $mainName,            $price        );        $this->playLength = $playLength;    }
+    public function getPlayLength()    {        
+        return $this->playLength;    
+    }
 
-    public function getPlayLength()    {        return $this->playLength;    }
-
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        $base .= ": playing time - {$this->playLength}";        return $base;    }}
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        $base .= ": playing time - {$this->playLength}";        
+        return $base;    
+    }
+}
 ```
 
 Each child class invokes the constructor of its parent before setting its own properties. The base class now knows only about its own data. Child classes are generally specializations of their parents. As a rule of thumb, you should avoid giving parent classes any special knowledge about their children.
 
- prior to php 5, constructors took on the name of the enclosing class. the new unified constructors 
+Note: prior to php 5, constructors took on the name of the enclosing class. the new unified constructors use the name \_\_construct(). Using the old syntax, a call to a parent constructor would tie you to that particular class: parent::ShopProduct();. the old constructor syntax was deprecated in php 7.0 and should not be used.
 
- ■ Note use the name __construct(). Using the old syntax, a call to a parent constructor would tie you to that particular class: parent::ShopProduct();. the old constructor syntax was deprecated in php 7.0 and should not be used.
+#### 2.2 Invoking an Overridden Method
 
-Invoking an Overridden MethodThe parent keyword can be used with any method that overrides its counterpart in a parent class. When you override a method, you may not wish to obliterate the functionality of the parent, but rather to extend it. You can achieve this by calling the parent class’s method in the current object’s context. If you look again at the getSummaryLine() method implementations, you will see that they duplicate a lot of code. It would be better to use rather than reproduce the functionality already developed in the ShopProduct class:
+The parent keyword can be used with any method that overrides its counterpart in a parent class. When you override a method, you may not wish to obliterate the functionality of the parent, but rather to extend it. You can achieve this by calling the parent class’s method in the current object’s context. If you look again at the getSummaryLine() method implementations, you will see that they duplicate a lot of code. It would be better to use rather than reproduce the functionality already developed in the ShopProduct class:
 
 ```
 // listing 03.42
 
 // ShopProduct class...
 
-    function getSummaryLine()
-
-    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        return $base;    }
-```
-
-```
+function getSummaryLine() {        
+    $base  = "{$this->title} ( {$this->producerMainName}, ";        
+    $base .= "{$this->producerFirstName} )";        
+    return $base;    
+}
+`
 // listing 03.43
 
 // BookProduct class...
 
-    public function getSummaryLine()    {        $base  = parent::getSummaryLine();        $base .= ": page count - $this->numPages";        return $base;    }
+public function getSummaryLine() {        
+    $base  = parent::getSummaryLine();        
+    $base .= ": page count - $this->numPages";        
+    return $base;    
+}
 ```
 
-I set up the core functionality for the getSummaryLine() method in the ShopProduct base class. Rather 
+I set up the core functionality for the getSummaryLine() method in the ShopProduct base class. Rather than reproduce this in the CdProduct and BookProduct subclasses, I simply call the parent method before proceeding to add more data to the summary string.
 
-than reproduce this in the CdProduct and BookProduct subclasses, I simply call the parent method before proceeding to add more data to the summary string.
+Now that you have seen the basics of inheritance, I will reexamine property and method visibility in light of the full picture.
 
-Now that you have seen the basics of inheritance, I will reexamine property and method visibility in 
+### 3. Public, Private, and Protected: Managing Access to Your Classes
 
-light of the full picture.
+So far, I have declared all properties public. Public access is the default setting for methods and for properties if you use the old var keyword in your property declaration. Elements in your classes can be declared public, private, or protected: 1) Public properties and methods can be accessed from any context. 2) A private method or property can only be accessed from within the enclosing class. Even subclasses have no access. 3) A protected method or property can only be accessed from within either the enclosing class or from a subclass. No external code is granted access.
 
-Public, Private, and Protected: Managing Access to Your ClassesSo far, I have declared all properties public. Public access is the default setting for methods and for properties if you use the old var keyword in your property declaration.
+So how is this useful to us? Visibility keywords allow you to expose only those aspects of a class that are required by a client. This sets a clear interface for your object. By preventing a client from accessing certain properties, access control can also help prevent bugs in your code. Imagine, for example, that you want to allow ShopProduct objects to support a discount. You could add a \$discount property and a setDiscount() method:
 
-Elements in your classes can be declared public, private, or protected:
-
-Public properties and methods can be accessed from any context.
-
-A private method or property can only be accessed from within the enclosing class. Even subclasses have no access.
-
-A protected method or property can only be accessed from within either the enclosing class or from a subclass. No external code is granted access.
-
-So how is this useful to us? Visibility keywords allow you to expose only those aspects of a class that are 
-
-required by a client. This sets a clear interface for your object.
-
-By preventing a client from accessing certain properties, access control can also help prevent bugs in 
-
-your code. Imagine, for example, that you want to allow ShopProduct objects to support a discount. You could add a \$discount property and a setDiscount() method:
-
-
-```
+```php
 // listing 03.44
 
 // ShopProduct class
 
-    public $discount = 0;//...
+public $discount = 0;
+//...
 
-    public function setDiscount(int $num)    {        $this->discount = $num;    }
+public function setDiscount(int $num)    {        
+    $this->discount = $num;    
+}
 ```
 
-Armed with a mechanism for setting a discount, you can create a getPrice() method that takes 
+Armed with a mechanism for setting a discount, you can create a getPrice() method that takes account of the discount that has been applied:
 
-account of the discount that has been applied:
-
+```php
+public function getPrice()    {        
+    return ($this->price - $this->discount);    
+}
 ```
-    public function getPrice()    {        return ($this->price - $this->discount);    }
+
+At this point, you have a problem. You only want to expose the adjusted price to the world, but a client can easily bypass the getPrice() method and access the \$price property:
+
+```php
+print "The price is {$product1->price}\n";
 ```
-
-At this point, you have a problem. You only want to expose the adjusted price to the world, but a client 
-
-can easily bypass the getPrice() method and access the \$price property:
-
-    print "The price is {$product1->price}\n";
 
 This will print the raw price and not the discount-adjusted price you wish to present. You can put a stop to this straight away by making the \$price property private. This will prevent direct access, forcing clients to use the getPrice() method. Any attempt from outside the ShopProduct class to access the \$price property will fail. As far as the wider world is concerned, this property has ceased to exist.
 
-Setting properties to private can be an overzealous strategy. A private property cannot be accessed by 
-
-a child class. Imagine that our business rules state that books alone should be ineligible for discounts. You could override the getPrice() method so that it returns the \$price property, applying no discount:
+Setting properties to private can be an overzealous strategy. A private property cannot be accessed by a child class. Imagine that our business rules state that books alone should be ineligible for discounts. You could override the getPrice() method so that it returns the \$price property, applying no discount:
 
 ```
 // listing 03.45
 
 // BookProduct
 
-    public function getPrice()    {        return $this->price;    }
+public function getPrice()    {        
+    return $this->price;    
+}
 ```
 
-As the private \$price property is declared in the ShopProduct class and not BookProduct, the attempt to 
+As the private \$price property is declared in the ShopProduct class and not BookProduct, the attempt to access it here will fail. The solution to this problem is to declare \$price protected, thereby granting access to descendant classes. Remember that a protected property or method cannot be accessed from outside the class hierarchy in which it was declared. It can only be accessed from within its originating class or from within children of the originating class.
 
-access it here will fail. The solution to this problem is to declare \$price protected, thereby granting access to descendant classes. Remember that a protected property or method cannot be accessed from outside the class hierarchy in which it was declared. It can only be accessed from within its originating class or from within children of the originating class.
+As a general rule, err on the side of privacy. Make properties private or protected at first and relax your restriction only as needed. Many (if not most) methods in your classes will be public, but once again, if in doubt, lock it down. A method that provides local functionality for other methods in your class has no relevance to your class’s users. Make it private or protected.
 
-As a general rule, err on the side of privacy. Make properties private or protected at first and relax your 
+1『以上是设置私有属性、保护属性的原则。』
 
-restriction only as needed. Many (if not most) methods in your classes will be public, but once again, if in doubt, lock it down. A method that provides local functionality for other methods in your class has no relevance to your class’s users. Make it private or protected.
+#### 3.1 Accessor Methods
 
-Accessor MethodsEven when client programmers need to work with values held by your class, it is often a good idea to deny direct access to properties, providing methods instead that relay the needed values. Such methods are known as accessors or getters and setters.
+Even when client programmers need to work with values held by your class, it is often a good idea to deny direct access to properties, providing methods instead that relay the needed values. Such methods are known as accessors or getters and setters.
 
-You have already seen one benefit afforded by accessor methods. You can use an accessor to filter a 
+1『一个原则，通说对象的方法去访问属性值，不要直接访问，把「方法」作为接口。』
 
-property value according to circumstances, as was illustrated by the getPrice() method.
+You have already seen one benefit afforded by accessor methods. You can use an accessor to filter a property value according to circumstances, as was illustrated by the getPrice() method. You can also use a setter method to enforce a property type. Type declarations can be used to constrain method arguments, but a property can contain data of any type. Remember the ShopProductWriter class that uses a ShopProduct object to output list data? I can develop this further, so that it writes any number of ShopProduct objects at one time:
 
-You can also use a setter method to enforce a property type. Type declarations can be used to constrain 
-
-method arguments, but a property can contain data of any type. Remember the ShopProductWriter class that uses a ShopProduct object to output list data? I can develop this further, so that it writes any number of ShopProduct objects at one time:
-
-```
+```php
 // listing 03.46
 
-class ShopProductWriter{    public $products = [];
+class ShopProductWriter{    
+    public $products = [];
+    
+    public function addProduct(ShopProduct $shopProduct)    {        
+        $this->products[] = $shopProduct;    
+    }
 
-    public function addProduct(ShopProduct $shopProduct)    {        $this->products[] = $shopProduct;    }
-
-    public function write()    {        $str =  "";        foreach ($this->products as $shopProduct) {            $str .= "{$shopProduct->title}: ";            $str .= $shopProduct->getProducer();            $str .= " ({$shopProduct->getPrice()})\n";        }        print $str;    }}
+    public function write()    {        
+        $str =  "";        
+        foreach ($this->products as $shopProduct) {            
+        $str .= "{$shopProduct->title}: ";            
+        $str .= $shopProduct->getProducer();            
+        $str .= " ({$shopProduct->getPrice()})\n";        
+        }        
+    print $str;    
+    }
+}
 ```
 
-The ShopProductWriter class is now much more useful. It can hold many ShopProduct objects and 
+The ShopProduct Writer class is now much more useful. It can hold many ShopProduct objects and write data for them all in one go. I must trust my client coders to respect the intentions of the class, though. Despite the fact that I have provided an addProduct() method, I have not prevented programmers from manipulating the \$products property directly. Not only could someone add the wrong kind of object to the \$products array property, but he could even overwrite the entire array and replace it with a primitive value. I can prevent this by making the \$products property private:
 
-write data for them all in one go. I must trust my client coders to respect the intentions of the class, though. Despite the fact that I have provided an addProduct() method, I have not prevented programmers from manipulating the \$products property directly. Not only could someone add the wrong kind of object to the \$products array property, but he could even overwrite the entire array and replace it with a primitive value. I can prevent this by making the \$products property private:
-
-```
-class ShopProductWriter {    private $products = [];//...
+```php
+class ShopProductWriter {    
+    private $products = [];
+    //...
 ```
 
 It’s now impossible for external code to damage the \$products property. All access must be via the addProduct() method, and the class type declaration I use in the method declaration ensures that only ShopProduct objects can be added to the array property.
 
-The ShopProduct ClassesLet’s close this chapter by amending the ShopProduct class and its children to lock down access control:
+#### 3.2 The ShopProduct Classes
 
-```
+Let’s close this chapter by amending the ShopProduct class and its children to lock down access control:
+
+```php
 // listing 03.48
 
-class ShopProduct{    private   $title;    private   $producerMainName;    private   $producerFirstName;    protected $price;    private   $discount = 0;
+class ShopProduct{    
+    private   $title;    
+    private   $producerMainName;    
+    private   $producerFirstName;    
+    protected $price;    
+    private   $discount = 0;
 
-    public function __construct(        string $title,        string $firstName,        string $mainName,        float  $price    ) {        $this->title             = $title;        $this->producerFirstName = $firstName;        $this->producerMainName  = $mainName;        $this->price             = $price;    }
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float  $price    
+    ) {        
+        $this->title             = $title;        
+        $this->producerFirstName = $firstName;        
+        $this->producerMainName  = $mainName;        
+        $this->price             = $price;    
+    }
 
-    public function getProducerFirstName()    {        return $this->producerFirstName;    }
+    public function getProducerFirstName()    {        
+        return $this->producerFirstName;    
+    }
 
-    public function getProducerMainName()    {        return $this->producerMainName;    }
+    public function getProducerMainName()    {        
+        return $this->producerMainName;    
+    }
 
-    public function setDiscount($num)    {        $this->discount = $num;    }
+    public function setDiscount($num)    {        
+        $this->discount = $num;   
+    }
 
-    public function getDiscount()    {        return $this->discount;    }
+    public function getDiscount()    {        
+        return $this->discount;    
+    }
 
-    public function getTitle()    {        return $this->title;    }
+    public function getTitle()    {        
+        return $this->title;    
+    }
 
-    public function getPrice()    {        return ($this->price - $this->discount);    }
+    public function getPrice()    {        
+        return ($this->price - $this->discount);    
+    }
 
-    public function getProducer()    {        return $this->producerFirstName . 」」           . $this->producerMainName;    }
+    public function getProducer()    {        
+        return $this->producerFirstName . ""           
+            . $this->producerMainName;    
+    }
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";
+        return $base;    
+    }
+}
 
-        return $base;    }}
-```
-
-```
 // listing 03.49
 
-class CdProduct extends ShopProduct{    private $playLength;    public function __construct(        string $title,        string $firstName,        string $mainName,        float  $price,        int    $playLength    ) {        parent::__construct(            $title,            $firstName,            $mainName,            $price        );        $this->playLength = $playLength;    }
+class CdProduct extends ShopProduct{    
+    private $playLength;    
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float  $price,        
+        int    $playLength    
+    ) {        
+    parent::__construct(            
+        $title,            
+        $firstName,            
+        $mainName,            
+        $price        
+    );        
+        $this->playLength = $playLength;    
+    }
 
-    public function getPlayLength()    {        return $this->playLength;    }
+    public function getPlayLength()    {        
+        return $this->playLength;    
+    }
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        $base .= ": playing time - {$this->playLength}";        return $base;    }}
-```
+    public function getSummaryLine()    {        
+        $base  = "{$this->title} ( {$this->producerMainName}, ";        
+        $base .= "{$this->producerFirstName} )";        
+        $base .= ": playing time - {$this->playLength}";        
+        return $base;    
+    }
+}
 
-```
 // listing 03.50
 
-class BookProduct extends ShopProduct{    private $numPages;
+class BookProduct extends ShopProduct{    
+    private $numPages;
+    public function __construct(        
+        string $title,        
+        string $firstName,        
+        string $mainName,        
+        float  $price,        
+        int    $numPages    
+    ) {
+    parent::__construct(            
+        $title,            
+        $firstName,            
+        $mainName,            
+        $price        
+    );        
+        $this->numPages = $numPages;    
+    }
 
-    public function __construct(        string $title,        string $firstName,        string $mainName,        float  $price,        int    $numPages    ) {
+    public function getNumberOfPages()    {        
+        return $this->numPages;    
+    }
 
-        parent::__construct(            $title,            $firstName,            $mainName,            $price        );        $this->numPages = $numPages;    }
+    public function getSummaryLine()    {        
+        $base  = parent::getSummaryLine();        
+        $base .= ": page count - $this->numPages";        
+        return $base;    
+    }
 
-    public function getNumberOfPages()    {        return $this->numPages;    }
-
-    public function getSummaryLine()    {        $base  = parent::getSummaryLine();        $base .= ": page count - $this->numPages";        return $base;    }
-
-    public function getPrice()    {        return $this->price;    }}
+    public function getPrice()    {        
+        return $this->price;    
+    }
+}
 ```
 
 There is nothing substantially new in this version of the ShopProduct family. All properties are either private or protected, and I added a number of accessor methods to round things off.

@@ -1,24 +1,20 @@
-# 05 Object Tools
+# 05. Object Tools
 
 As we have seen, PHP supports object-oriented programming through language constructs such as classes and methods. The language also provides wider support through functions and classes designed to help you work with objects.
 
-In this chapter, we will look at some tools and techniques that you can use to organize, test, and 
-
-manipulate objects and classes.
+In this chapter, we will look at some tools and techniques that you can use to organize, test, and manipulate objects and classes.
 
 This chapter will cover the following tools and techniques:
 
-•	 Namespaces: Organize your code into discrete package-like compartments•	•	
+Namespaces: Organize your code into discrete package-like compartments.
 
-Include paths: Setting central accessible locations for your library code
+Include paths: Setting central accessible locations for your library code.
 
-Class and object functions: Functions for testing objects, classes, properties, and methods
+Class and object functions: Functions for testing objects, classes, properties, and methods.
 
-•	
+The Reflection API: A powerful suite of built-in classes that provide unprecedented access to class information at runtime.
 
-The Reflection API: A powerful suite of built-in classes that provide unprecedented access to class information at runtime
-
-PHP and Packages
+## 01. PHP and Packages
 
 A package is a set of related classes, usually grouped together in some way. Packages can be used to separate parts of a system from one another. Some programming languages formally recognize packages and provide them with distinct namespaces. PHP has no native concept of a package, but as of PHP 5.3, it introduced namespaces. I’ll look at this feature in the next section. I’ll also take a look at the old way of organizing classes into package-like structures.
 

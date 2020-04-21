@@ -1,4 +1,4 @@
-4String Manipulation and Regular Expressions
+# 04. String Manipulation and Regular Expressions
 
 In this chapter, we discuss how you can use PHP’s string functions to format and manipulate text. We also discuss using string functions or regular expression functions to search (and replace) words, phrases, or other patterns within a string.
 

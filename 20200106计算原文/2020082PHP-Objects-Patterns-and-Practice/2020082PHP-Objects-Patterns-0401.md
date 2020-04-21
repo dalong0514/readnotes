@@ -1,36 +1,38 @@
-# 04 Advanced Features
+# 04. Advanced Features
 
 You have already seen how class type hinting and access control give you more control over a class’s interface. In this chapter, I will delve deeper into PHP’s object-oriented features.
 
-This chapter will cover several subjects:
+This chapter will cover several subjects: 
 
-Static methods and properties: Accessing data and functionality through classes rather than objects
+Static methods and properties: Accessing data and functionality through classes rather than objects.
 
-Abstract classes and interfaces: Separating design from implementation
+Abstract classes and interfaces: Separating design from implementation.
 
-Traits: Sharing implementation between class hierarchies
+Traits: Sharing implementation between class hierarchies.
 
-Error handling: Introducing exceptions
+Error handling: Introducing exceptions.
 
-Final classes and methods: Limiting inheritance
+Final classes and methods: Limiting inheritance.
 
-•	•	•	•	•	•	 Destructor methods: Cleaning up after your objects•	•	•	
+Destructor methods: Cleaning up after your objects.	
 
-Interceptor methods: Automating delegation
+Interceptor methods: Automating delegation.
 
-Cloning objects: Making object copies
+Cloning objects: Making object copies.
 
-Resolving objects to strings: Creating a summary method
+Resolving objects to strings: Creating a summary method.
 
-Callbacks: Adding functionality to components with anonymous functions and classes
+Callbacks: Adding functionality to components with anonymous functions and classes.
 
-Static Methods and Properties
+## 01. Static Methods and Properties
 
 All of the examples in the previous chapter worked with objects. I characterized classes as templates from which objects are produced, and objects as active instances of classes—the things whose methods you invoke and whose properties you access. I implied that, in object-oriented programming, the real work is done by instances of classes. Classes, after all, are merely templates for objects.
 
 In fact, it is not that simple. You can access both methods and properties in the context of a class rather than that of an object. Such methods and properties are「static」and must be declared as such by using the static keyword:
 
-// listing 04.01class StaticExample{    static public $aNum = 0;    public static function sayHello()    {
+// listing 04.01
+
+class StaticExample{    static public $aNum = 0;    public static function sayHello()    {
 
 
         print "hello";    }}
@@ -1499,10 +1501,6 @@ Now, here’s a version of the Person class that can use a PersonWriter object:
 
 // listing 04.99class Person{    public function output(PersonWriter $writer)    {        $writer->write($this);    }
 
-95
-
-Chapter 4 ■ advanCed Features
-
     public function getName(): string    {        return "Bob";    }
 
     public function getAge(): int    {        return 44;    }}
@@ -1528,10 +1526,6 @@ Anonymous classes do not support closures. In other words, variables declared in
 ->getAge() . "\n");
 
                 }            }        );
-
-96
-
-Chapter 4 ■ advanCed Features
 
 I passed a path argument to the constructor. This value was stored in the $path property and eventually 
 

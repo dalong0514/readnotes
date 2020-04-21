@@ -1,24 +1,18 @@
-# 06 Objects and Design
+# 06. Objects and Design
 
 Now that we have seen the mechanics of PHP’s object support in some detail, we will step back from the details and consider how best to use the tools that we have encountered. In this chapter, I introduce you to some of the issues surrounding objects and design. I will also look at the UML, a powerful graphical language for describing object-oriented systems.This chapter will cover the following topics:
 
-Design basics: What I mean by design, and how object-oriented design differs from 
+Design basics: What I mean by design, and how object-oriented design differs from procedural code.
 
-procedural code
+Class scope: How to decide what to include in a class.
 
-Class scope: How to decide what to include in a class
+Encapsulation: Hiding implementation and data behind a class’s interface.
 
-Encapsulation: Hiding implementation and data behind a class’s interface
+Polymorphism: Using a common supertype to allow the transparent substitution of specialized subtypes at runtime.
 
-Polymorphism: Using a common supertype to allow the transparent substitution of specialized subtypes at runtime
+The UML: Using diagrams to describe object-oriented architectures.
 
-The UML: Using diagrams to describe object-oriented architectures
-
-•	•	•	
-
-•	
-
-Defining Code Design
+## 01. Defining Code Design
 
 One sense of code design concerns the definition of a system: the determination of a system’s requirements, scope, and objectives. What does the system need to do? For whom does it need to do it? What are the outputs of the system? Do they meet the stated need? On a lower level, design can be taken to mean the process by which you define the participants of a system and organize their relationships. This chapter is concerned with the second sense: the definition and disposition of classes and objects.
 
@@ -29,10 +23,6 @@ There are other relationships that you can define for your classes. You can crea
 composed of other types or that manage lists of other type instances. You can design classes that simply use other objects. The potential for such relationships of composition or use is built into your classes (e.g., through the use of type declarations in method signatures), but the actual object relationships take place at runtime, which can add flexibility to your design. You will see how to model these relationships in this chapter, and we’ll explore them further throughout the book.
 
 As part of the design process, you must decide when an operation should belong to a type and when it should belong to another class used by the type. Everywhere you turn, you are presented with choices, decisions that might lead to clarity and elegance or might mire you in compromise.
-
-133
-
-Chapter 6 ■ ObjeCts and design
 
 In this chapter, I will examine some issues that might influence a few of these choices.
 
@@ -622,11 +612,8 @@ As you can see, sequence diagrams can model processes, freezing slices of dynami
 
 presenting them with surprising clarity.
 
- ■ Note  Look at Figures 6-16 and 6-20. notice how the class diagram illustrates polymorphism, showing the classes derived from ShopProductWriter and ShopProduct. now notice how this detail becomes transparent when we model the communication among objects. Where possible, we want objects to work with the most general types available, so that we can hide the details of implementation.
+Note  Look at Figures 6-16 and 6-20. notice how the class diagram illustrates polymorphism, showing the classes derived from ShopProductWriter and ShopProduct. now notice how this detail becomes transparent when we model the communication among objects. Where possible, we want objects to work with the most general types available, so that we can hide the details of implementation.
 
 ## Summary
 
 In this chapter, I went beyond the nuts and bolts of object-oriented programming to look at some key design issues. I examined features such as encapsulation, loose coupling, and cohesion that are essential aspects of a flexible and reusable object-oriented system. I went on to look at the UML, laying groundwork that will be essential in working with patterns later in the book.
-
-
-
