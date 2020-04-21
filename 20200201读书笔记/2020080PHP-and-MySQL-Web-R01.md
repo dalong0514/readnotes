@@ -6,19 +6,9 @@
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
-
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
 
 ### 0201. 术语卡——\$\_POST、 \$\_GET 和 \$\_REQUEST
 
@@ -34,21 +24,35 @@ Variable Variables. PHP provides one other type of variable: the variable variab
 
 You can then use \$\$varname in place of \$tireqty. For example, you can set the value of \$tireqty as follows:
 
+    $$varname = 5;
+
+This is equivalent to
+
+    $tireqty = 5;
+
+一个应用场景是与 for 循环结合。
+
+you can combine variable variables with a for loop to iterate through a series of repetitive form fields. If, for example, you have form fields with names such as name1, name2, name3, and so on, you can process them like this:
+
+```php
+for ($i=1; $i <= $numnames; $i++) {  
+    $temp= "name$i";  
+    // 对 $$temp 操作，比如赋值、计算之类的，相当于对一系列 name1、name2、name3...操作
+    echo htmlspecialchars($$temp).'<br />'; // or whatever processing you want to do
+}
+```
+
+By dynamically creating the names of the variables, you can access each of the fields in turn. 
+
 ### 0203. 术语卡——
 
 ### 0301. 人名卡——Luke Welling
 
-Luke Welling
-
 Laura Thomson
-
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
 
 #### 01. 基本信息
 
-本书的作者，PHP 以及 web 开发的大牛。
+Luke Welling，本书的作者，PHP 以及 web 开发的大牛。
 
 #### 02. 贡献及著作
 
@@ -86,11 +90,11 @@ Laura Thomson
 
 ### 03
 
-[PHP和MySQL Web应用开发核心技术（Core Web Application Development with PHP and MySQL）](https://book.douban.com/subject/1824542/)
+[PHP 和 MySQL Web 应用开发核心技术（Core Web Application Development with PHP and MySQL）](https://book.douban.com/subject/1824542/)
 
 上面这个链接的书名字叫《PHP 和 MySQL Web 应用开发核心技术》（以后我们简称「web 核心」），不管是名字还是书皮都跟这本书非常像，如果你都读过的话，会感觉里面的章节安排也是非常像的。我评论的这本书（以后简称「web 开发」，和「web 核心」区分开）由于被他的「圣经」光环所笼罩，所以当我拿到「web 核心」这本书的时候，感觉他其实就是在抄袭「web 开发」，不值得去阅读，但是当我有一次无意读了他其中的某些章节的时候，我感觉「web 核心」比「web 开发」更胜一筹，具体哪里更好，我现在已经无法细数了，现在只是留有印象：前者比后者讲的更清楚明白，项目开发中的经验讲的更多，新技术新思想也涉及的更多等等。
 
-如果还要深入研究的话，上面两本书都不够，推荐下面这本书，PHP 5 权威编程：[PHP 5权威编程](https://book.douban.com/subject/2981954/)。里面的代码优化和扩展开发部分对想深入学习的人非常有用！
+如果还要深入研究的话，上面两本书都不够，推荐下面这本书，PHP 5 权威编程：[PHP 5 权威编程](https://book.douban.com/subject/2981954/)。里面的代码优化和扩展开发部分对想深入学习的人非常有用！
 
 2『以下载原文书籍「2020087Core_Web_Application_Development_with_」以及「2020090PHP5_Power_Programming」。』
 
@@ -411,15 +415,7 @@ The token theEnd is entirely arbitrary. It just needs to be guaranteed not to ap
 
 1『 heredoc syntax 应用于有很多行的内容，可类比于双引号，前后的起始、终结标识符可以任意定，但必须保持一致，例子里给的 endEnd 可以作为以后默认使用的标识符。』
 
-Understanding Identifiers. Identifiers are the names of variables. (The names of functions and classes are also identifiers; we look at functions and classes in Chapter 5「Reusing Code and Writing Functions,」and Chapter 6「Object-Oriented PHP.」) You need to be aware of the simple rules defining valid identifiers:
-
-■ Identifiers can be of any length and can consist of letters, numbers, and underscores.
-
-■ Identifiers cannot begin with a digit.
-
-■ In PHP, identifiers are case sensitive. \$tireqty is not the same as \$TireQty. Trying to use them interchangeably is a common programming error. Function names are an exception to this rule: Their names can be used in any case.
-
-■ A variable can have the same name as a function. This usage is confusing, however, and should be avoided. Also, you cannot create a function with the same name as another function.
+Understanding Identifiers. Identifiers are the names of variables. (The names of functions and classes are also identifiers; we look at functions and classes in Chapter 5「Reusing Code and Writing Functions,」and Chapter 6「Object-Oriented PHP.」) You need to be aware of the simple rules defining valid identifiers: 1) Identifiers can be of any length and can consist of letters, numbers, and underscores. 2) Identifiers cannot begin with a digit. 3) In PHP, identifiers are case sensitive. \$tireqty is not the same as \$TireQty. Trying to use them interchangeably is a common programming error. Function names are an exception to this rule: Their names can be used in any case. 4) A variable can have the same name as a function. This usage is confusing, however, and should be avoided. Also, you cannot create a function with the same name as another function.
 
 1『识别码大小写敏感，但是函数名是个例外。』
 
@@ -437,23 +433,9 @@ $totalamount = $totalqty;
 
 A variable’s type refers to the kind of data stored in it. PHP provides a set of data types. Different data can be stored in different data types. 
 
-PHP’s Data Types. PHP supports the following basic data types:
+PHP’s Data Types. PHP supports the following basic data types: 1) Integer — Used for whole numbers. 2) Float (also called double)—Used for real numbers. 3) String — Used for strings of characters. 4) Boolean — Used for true or false values. 5) Array — Used to store multiple data items (see Chapter 3「Using Arrays」). 6) Object — Used for storing instances of classes (see Chapter 6).
 
- ■ Integer — Used for whole numbers.
-
- ■ Float (also called double)—Used for real numbers.
-
- ■ String — Used for strings of characters.
-
- ■ Boolean — Used for true or false values.
-
- ■ Array — Used to store multiple data items (see Chapter 3,「Using Arrays」).
-
- ■ Object — Used for storing instances of classes (see Chapter 6).
-
-Three special types are also available: NULL, resource, and callable.
-
-Variables that have not been given a value, have been unset, or have been given the specific value NULL are of type NULL.
+Three special types are also available: NULL, resource, and callable. Variables that have not been given a value, have been unset, or have been given the specific value NULL are of type NULL.
 
 Certain built-in functions (such as database functions) return variables that have the type resource. They represent external resources (such as database connections). You will almost certainly not directly manipulate a resource variable, but frequently they are returned by functions and must be passed as parameters to other functions.
 
@@ -520,41 +502,11 @@ This function provides a list of PHP’s predefined variables and constants, amo
 
 ### 08. Understanding Variable Scope
 
-The term scope refers to the places within a script where a particular variable is visible. The six basic scope rules in PHP are as follows:
-
- ■ Built-in superglobal variables are visible everywhere within a script.
-
- ■ Constants, once declared, are always visible globally; that is, they can be used inside and outside functions.
-
- ■ Global variables declared in a script are visible throughout that script, but not inside functions.
-
- ■ Variables inside functions that are declared as global refer to the global variables of the same name.
-
- ■ Variables created inside functions and declared as static are invisible from outside the function but keep their value between one execution of the function and the next. (We explain this idea fully in Chapter 5.)
-
- ■ Variables created inside functions are local to the function and cease to exist when the function terminates.
+The term scope refers to the places within a script where a particular variable is visible. The six basic scope rules in PHP are as follows: 1) Built-in superglobal variables are visible everywhere within a script. 2) Constants, once declared, are always visible globally; that is, they can be used inside and outside functions. 3) Global variables declared in a script are visible throughout that script, but not inside functions. 4) Variables inside functions that are declared as global refer to the global variables of the same name. 5) Variables created inside functions and declared as static are invisible from outside the function but keep their value between one execution of the function and the next. (We explain this idea fully in Chapter 5.) 6) Variables created inside functions are local to the function and cease to exist when the function terminates.
 
 The arrays \$\_GET and \$\_POST and some other special variables have their own scope rules. They are known as superglobals and can be seen everywhere, both inside and outside functions.
 
-The complete list of superglobals is as follows:
-
- ■ \$GLOBALS—An array of all global variables (Like the global keyword, this allows you to access global variables inside a function—for example, as \$GLOBALS['myvariable'].)
-
- ■ \$\_SERVER—An array of server environment variables.
-
- ■ \$\_GET—An array of variables passed to the script via the GET method.
-
- ■ \$\_POST—An array of variables passed to the script via the POST method.
-
- ■ \$\_COOKIE—An array of cookie variables.
-
- ■ \$\_FILES—An array of variables related to file uploads.
-
- ■ \$\_ENV—An array of environment variables.
-
- ■ \$\_REQUEST—An array of all user input including the contents of input including \$\_GET, \$\_POST, and \$\_COOKIE (but not including \$\_FILES)
-
- ■ \$\_SESSION—An array of session variables.
+The complete list of superglobals is as follows: 1) \$GLOBALS—An array of all global variables (Like the global keyword, this allows you to access global variables inside a function—for example, as \$GLOBALS['myvariable'].) 2) \$\_SERVER—An array of server environment variables. 3) \$\_GET—An array of variables passed to the script via the GET method. 4) \$\_POST—An array of variables passed to the script via the POST method. 5) \$\_COOKIE—An array of cookie variables. 6) \$\_FILES—An array of variables related to file uploads. 7)  \$\_ENV—An array of environment variables. 8) \$\_REQUEST—An array of all user input including the contents of input including \$\_GET, \$\_POST, and \$\_COOKIE (but not including \$\_FILES). 9) \$\_SESSION—An array of session variables.
 
 We come back to each of these superglobals throughout the book as they become relevant. We cover scope in more detail when we discuss functions and classes later in this chapter. For the time being, all the variables we use are global by default.
 
@@ -926,15 +878,9 @@ for( expression1; condition; expression2)
     expression3;
 ```
 
-■ expression1 is executed once at the start. Here, you usually set the initial value of a counter.
-
-■ The condition expression is tested before each iteration. If the expression returns false, iteration stops. Here, you usually test the counter against a limit.
-
-■ expression2 is executed at the end of each iteration. Here, you usually adjust the value of the counter.
-
-■ expression3 is executed once per iteration. This expression is usually a block of code and contains the bulk of the loop code.
+1) expression1 is executed once at the start. Here, you usually set the initial value of a counter. 2) The condition expression is tested before each iteration. If the expression returns false, iteration stops. Here, you usually test the counter against a limit. 3) expression2 is executed at the end of each iteration. Here, you usually adjust the value of the counter. 4) expression3 is executed once per iteration. This expression is usually a block of code and contains the bulk of the loop code.
  
- Both the while and for versions are functionally identical. The for loop is somewhat more compact, saving two lines. Both these loop types are equivalent; neither is better or worse than the other. In a given  situation, you can use whichever you find more intuitive.
+Both the while and for versions are functionally identical. The for loop is somewhat more compact, saving two lines. Both these loop types are equivalent; neither is better or worse than the other. In a given  situation, you can use whichever you find more intuitive.
 
 As a side note, you can combine variable variables with a for loop to iterate through a series of repetitive form fields. If, for example, you have form fields with names such as name1, name2, name3, and so on, you can process them like this:
 
@@ -1014,8 +960,18 @@ declare(encoding='UTF-8');
 
 In this case, the declare statement may not be followed by a code block if you are using namespaces. We’ll talk about namespaces more later. The declare control structure is mentioned here only for completeness. We consider some examples showing how to use tick functions in Chapters 25「Using PHP and MySQL for Large Projects,」and 26「Debugging and Logging.」
 
+## 02. Storing and Retrieving Data
 
+Now that you know how to access and manipulate data entered in an HTML form, you can look at ways of storing that information for later use. In most cases, including the example from the previous chapter, you’ll want to store this data and load it later. In this case, you need to write customer orders to storage so that they can be filled later.
 
+In this chapter, you learn how to write the customer’s order from the previous example to a file and read it back. You also learn why this isn’t always a good solution. When you have large numbers of orders, you should use a database management system such as MySQL instead.
 
+Key topics covered in this chapter include: 1) Saving data for later. 2) Opening a file. 3) Creating and writing to a file. 4) Closing a file. 5) Reading from a file. 6) Locking files. 7) Deleting files. 8) Using other useful file functions. 9) Doing it a better way: using database management systems.
+
+### 01. Saving Data for Later
+
+You can store data in two basic ways: in flat files or in a database. A flat file can have many formats, but in general, when we refer to a flat file, we mean a simple text file. For this chapter’s example, you will write customer orders to a text file, one order per line.
+
+Writing orders this way is very simple, but also limiting, as you’ll see later in this chapter. If you’re dealing with information of any reasonable volume, you’ll probably want to use a database instead. However, flat files have their uses, and in some situations you need to know how to use them.
  
  

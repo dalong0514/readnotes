@@ -24,91 +24,67 @@ Key topics covered in this chapter include:
 
  ■ Doing it a better way: using database management systems.
 
-Saving Data for LaterYou can store data in two basic ways: in flat files or in a database.
+## 01. Saving Data for Later
 
-A flat file can have many formats, but in general, when we refer to a flat file, we mean a simple text file. For this chapter’s example, you will write customer orders to a text file, one order per line.
+You can store data in two basic ways: in flat files or in a database. A flat file can have many formats, but in general, when we refer to a flat file, we mean a simple text file. For this chapter’s example, you will write customer orders to a text file, one order per line.
 
 Writing orders this way is very simple, but also limiting, as you’ll see later in this chapter. If you’re dealing with information of any reasonable volume, you’ll probably want to use a database instead. However, flat files have their uses, and in some situations you need to know how to use them.
 
 The processes of writing to and reading from files are similar in many programming languages. If you’ve done any C programming or Unix shell scripting, these procedures will seem familiar to you.
 
-Storing and Retrieving Bob’s OrdersIn this chapter, you use a slightly modified version of the order form you looked at in the preceding chapter. Begin with this form and the PHP code you wrote to process the order data.
+## 02. Storing and Retrieving Bob’s Orders
 
-We’ve modified the form to include a quick way to obtain the customer’s shipping address. You can see this modified form in Figure 2.1.
+In this chapter, you use a slightly modified version of the order form you looked at in the preceding chapter. Begin with this form and the PHP code you wrote to process the order data. We’ve modified the form to include a quick way to obtain the customer’s shipping address. You can see this modified form in Figure 2.1.
 
 Figure 2.1  This version of the order form gets the customer’s shipping address
 
-The form field for the shipping address is called address. This gives you a variable you can access as $_REQUEST['address'] or $_POST['address'] or $_GET['address'], depending on the form submission method. (See Chapter 1,「PHP Crash Course,」for details.)
+The form field for the shipping address is called address. This gives you a variable you can access as \$\_REQUEST['address'] or \$\_POST['address'] or \$\_GET['address'], depending on the form submission method. (See Chapter 1,「PHP Crash Course,」for details.)
 
 In this chapter, you write each order that comes in to the same file. Then you construct a web interface for Bob’s staff to view the orders that have been received.
 
-Opening a File
+## 03. Processing Files
 
-55
+Writing data to a file requires three steps: 1) Open the file. If the file doesn’t already exist, you need to create it. 2) Write the data to the file. 3) Close the file.
 
-Processing FilesWriting data to a file requires three steps:
-
-1.  Open the file. If the file doesn’t already exist, you need to create it.
-
-2.  Write the data to the file.
-
-3.  Close the file.
-
-Similarly, reading data from a file takes three steps:
-
-1.  Open the file. If you cannot open the file (for example, if it doesn’t exist), you need to 
-
-recognize this and exit gracefully.
-
-2.  Read data from the file.
-
-3.  Close the file.
+Similarly, reading data from a file takes three steps: 1) Open the file. If you cannot open the file (for example, if it doesn’t exist), you need to recognize this and exit gracefully. 2) Read data from the file. 3) Close the file.
 
 When you want to read data from a file, you have many choices about how much of the file to read at a time. We’ll describe some common choices in detail. For now, we’ll start at the beginning by opening a file.
 
-Opening a FileTo open a file in PHP, you use the fopen() function. When you open the file, you need to specify how you intend to use it. This is known as the file mode.
+## 04. Opening a File
 
-Choosing File ModesThe operating system on the server needs to know what you want to do with a file that you are opening. It needs to know whether the file can be opened by another script while you have it open and whether you (or the script owner) have permission to use it in the requested way. Essentially, file modes give the operating system a mechanism to determine how to handle access requests from other people or scripts and a method to check that you have access and permission to a particular file.
+To open a file in PHP, you use the fopen() function. When you open the file, you need to specify how you intend to use it. This is known as the file mode.
 
-You need to make three choices when opening a file:
+### 1. Choosing File Modes
 
-1.  You might want to open a file for reading only, for writing only, or for both reading and 
+The operating system on the server needs to know what you want to do with a file that you are opening. It needs to know whether the file can be opened by another script while you have it open and whether you (or the script owner) have permission to use it in the requested way. Essentially, file modes give the operating system a mechanism to determine how to handle access requests from other people or scripts and a method to check that you have access and permission to a particular file.
 
-writing.
+You need to make three choices when opening a file: 1) You might want to open a file for reading only, for writing only, or for both reading and writing. 2) If writing to a file, you might want to overwrite any existing contents of a file or append new data to the end of the file. You also might like to terminate your program gracefully instead of overwriting a file if the file already exists. 3) If you are trying to write to a file on a system that differentiates between binary and text files, you might need to specify this fact. The fopen() function supports combinations of these three options.
 
-2.  If writing to a file, you might want to overwrite any existing contents of a file or append new data to the end of the file. You also might like to terminate your program gracefully instead of overwriting a file if the file already exists.
+### 2. Using fopen() to Open a File
 
-3.  If you are trying to write to a file on a system that differentiates between binary and text 
+Assume that you want to write a customer order to Bob’s order file. You can open this file for writing with the following:
 
-files, you might need to specify this fact.
-
-The fopen() function supports combinations of these three options.
-
-56
-
-Chapter 2  Storing and Retrieving Data
-
-Using fopen() to Open a FileAssume that you want to write a customer order to Bob’s order file. You can open this file for writing with the following:
-
+```php
 $fp = fopen("$document_root/../orders/orders.txt", 'w');
+```
 
 When fopen() is called, it expects two, three, or four parameters. Usually, you use two, as shown in this code line.
 
-The first parameter should be the file you want to open. You can specify a path to this file, as in the preceding code; here, the orders.txt file is in the orders directory. We used the PHP built-in variable $_SERVER['DOCUMENT_ROOT'] but, as with the cumbersome full names for form variables, we assigned a shorter name.
+The first parameter should be the file you want to open. You can specify a path to this file, as in the preceding code; here, the orders.txt file is in the orders directory. We used the PHP built-in variable \$\_SERVER['DOCUMENT_ROOT'] but, as with the cumbersome full names for form variables, we assigned a shorter name.
 
-This variable points at the base of the document tree on your web server. This code line uses .. to mean「the parent directory of the document root directory.」This directory is outside the document tree, for security reasons. In this case, we do not want this file to be web acces-sible except through the interface that we provide. This path is called a relative path because it describes a position in the file system relative to the document root.
+This variable points at the base of the document tree on your web server. This code line uses .. to mean「the parent directory of the document root directory.」This directory is outside the document tree, for security reasons. In this case, we do not want this file to be web acces-sible except through the interface that we provide. This path is called a relative path because it describes a position in the file system relative to the document root. As with the short names given form variables, you need the following line at the start of your script to copy the contents of the long-style variable to the short-style name.
 
-As with the short names given form variables, you need the following line at the start of your script
-
+```php
 $document_root = $_SERVER['DOCUMENT_ROOT'];
-
-to copy the contents of the long-style variable to the short-style name.
+```
 
 You could also specify an absolute path to the file. This is the path from the root directory (/ on a Unix system and typically C:\ on a Windows system). On our Unix server, this path could be something like /data/orders. If no path is specified, the file will be created or looked for in the same directory as the script itself. The directory used will vary if you are running PHP through some kind of CGI wrapper and depends on your server configuration.
 
 In a Unix environment, you use forward slashes (/) in directory paths. If you are using a Windows platform, you can use forward (/) or backslashes (\). If you use backslashes, they must be escaped (marked as a special character) for fopen() to understand them properly. To escape a character, you simply add an additional backslash in front of it, as shown in the following:
 
+```php
 $fp = fopen("$document_root\\..\\orders\\orders.txt", 'w');
+```
 
 Very few people use backslashes in paths within PHP because it means the code will work only in Windows environments. If you use forward slashes, you can often move your code between Windows and Unix machines without alteration.
 
@@ -118,95 +94,51 @@ Table 2.1  Summary of File Modes for fopen()
 
 Mode Mode Name Meaning
 
-r
+r, Open the file for reading, beginning from the start of the file.
 
-r+
+r+, Open the file for reading and writing, beginning from the start of the file.
 
-w
+w, Open the file for writing, beginning from the start of the file. If the file already exists, delete the existing contents. If it does not exist, try to  create it.
 
-Read
+w+, Open the file for writing and reading, beginning from the start of the file. If the file already exists, delete the existing contents. If it does not exist, try to create it.
 
-Read
+x, Open the file for writing, beginning from the start of the file. If the file already exists, it will not be opened, fopen() will return false, and PHP will generate a warning.
 
-Write
+x+, Open the file for writing and reading, beginning from the start of the file. If the file already exists, it will not be opened, fopen() will return false, and PHP will generate a warning.
 
-w+
+a, Open the file for appending (writing) only, starting from the end of the  existing contents, if any. If it does not exist, try to create it.
 
-Write
+a+, Open the file for appending (writing) and reading, starting from the end of the existing contents, if any. If it does not exist, try to create it.
 
-x
+b, Used in conjunction with one of the other modes. You might want to use this mode if your file system differentiates between binary and text files. Windows systems differentiate; Unix systems do not. The PHP developers recommend you always use this option for maximum portability. It is the default mode.
 
-x+
-
-Cautious write
-
-Cautious write
-
-a
-
-Append
-
-a+
-
-Append
-
-b
-
-t
-
-Binary
-
-Text
-
-Open the file for reading, beginning from the start of the file.
-
-Open the file for reading and writing, beginning from the start of the file.
-
-Open the file for writing, beginning from the start of the file. If the file already exists, delete the existing contents. If it does not exist, try to  create it.
-
-Open the file for writing and reading, beginning from the start of the file. If the file already exists, delete the existing contents. If it does not exist, try to create it.
-
-Open the file for writing, beginning from the start of the file. If the file already exists, it will not be opened, fopen() will return false, and PHP will generate a warning.
-
-Open the file for writing and reading, beginning from the start of the file. If the file already exists, it will not be opened, fopen() will return false, and PHP will generate a warning.
-
-Open the file for appending (writing) only, starting from the end of the  existing contents, if any. If it does not exist, try to create it.
-
-Open the file for appending (writing) and reading, starting from the end of the existing contents, if any. If it does not exist, try to create it.
-
-Used in conjunction with one of the other modes. You might want to use this mode if your file system differentiates between binary and text files. Windows systems differentiate; Unix systems do not. The PHP developers recommend you always use this option for maximum portability. It is the default mode.
-
-Used in conjunction with one of the other modes. This mode is an option only in Windows systems. It is not recommended except before you have ported your code to work with the b option.
+t, Used in conjunction with one of the other modes. This mode is an option only in Windows systems. It is not recommended except before you have ported your code to work with the b option.
 
 The right file mode to choose depends on how the system will be used. We used 'w' in this example which allows only one order to be stored in the file. Each time a new order is taken, it overwrites the previous order. This usage is probably not very sensible, so you would be better off specifying append mode (and binary mode, as recommended):
 
+```php
 $fp = fopen("$document_root/../orders/orders.txt", 'ab');
+```
 
-The third parameter of fopen() is optional. You can use it if you want to search the include_path (set in your PHP configuration; see Appendix A,「Installing Apache, PHP, and MySQL」) for a file. If you want to do this, set this parameter to true. If you tell PHP to search the include_path, you do not need to provide a directory name or path:
+The third parameter of fopen() is optional. You can use it if you want to search the include\_path (set in your PHP configuration; see Appendix A,「Installing Apache, PHP, and MySQL」) for a file. If you want to do this, set this parameter to true. If you tell PHP to search the include\_path, you do not need to provide a directory name or path:
 
+```php
 $fp = fopen('orders.txt', 'ab', true);
-
-58
-
-Chapter 2  Storing and Retrieving Data
+```
 
 The fourth parameter is also optional. The fopen() function allows filenames to be prefixed with a protocol (such as http://) and opened at a remote location. Some protocols allow for an extra parameter. We look at this use of the fopen() function in the next section of this chapter.
 
-If fopen() opens the file successfully, a resource that is effectively a handle or pointer to the file is returned and should be stored in a variable—in this case, $fp. You use this variable to access the file when you actually want to read from or write to it.
+If fopen() opens the file successfully, a resource that is effectively a handle or pointer to the file is returned and should be stored in a variable—in this case, \$fp. You use this variable to access the file when you actually want to read from or write to it.
 
-Opening Files Through FTP or HTTPIn addition to opening local files for reading and writing, you can open files via FTP, HTTP, and other protocols using fopen(). You can disable this capability by turning off the allow_url_fopen directive in the php.ini file. If you have trouble opening remote files with fopen(), check your php.ini file.
+### 3. Opening Files Through FTP or HTTP
 
-If the filename you use begins with ftp://, a passive mode FTP connection will be opened to the server you specify and a pointer to the start of the file will be returned.
+In addition to opening local files for reading and writing, you can open files via FTP, HTTP, and other protocols using fopen(). You can disable this capability by turning off the allow\_url\_fopen directive in the php.ini file. If you have trouble opening remote files with fopen(), check your php.ini file.
 
-If the filename you use begins with http://, an HTTP connection will be opened to the server you specify and a pointer to the response will be returned.
+If the filename you use begins with ftp://, a passive mode FTP connection will be opened to the server you specify and a pointer to the start of the file will be returned. If the filename you use begins with http://, an HTTP connection will be opened to the server you specify and a pointer to the response will be returned. Remember that the domain names in your URL are not case sensitive, but the path and file-name might be.
 
-Remember that the domain names in your URL are not case sensitive, but the path and file-name might be.
+### 4. Addressing Problems Opening Files
 
-Addressing Problems Opening FilesAn error you might make is trying to open a file you don’t have permission to read from or write to. (This error occurs commonly on Unix-like operating systems, but you may also see it occasionally under Windows.) When you do, PHP gives you a warning similar to the one shown in Figure 2.2.
-
-Opening a File
-
-59
+An error you might make is trying to open a file you don’t have permission to read from or write to. (This error occurs commonly on Unix-like operating systems, but you may also see it occasionally under Windows.) When you do, PHP gives you a warning similar to the one shown in Figure 2.2.
 
 Figure 2.2  PHP specifically warns you when a file can’t be opened
 
@@ -214,59 +146,78 @@ If you receive this error, you need to make sure that the user under which the s
 
 On most systems, the script runs as the web server user. If your script is on a Unix system in the ~/public_html/chapter02/ directory, for example, you could create a group-writable directory in which to store the order by typing the following:
 
-mkdir path/to/orderschgrp apache path/to/orderschmod 775 path/to/orders
+```
+mkdir path/to/orders
+chgrp apache path/to/orders
+chmod 775 path/to/orders
+```
 
-You could also choose to change ownership of the file to the web server user. Some people will choose to make the file world-writable as a shortcut here, but bear in mind that  directories and files that anybody can write to are dangerous. In particular, directories that are  accessible directly from the Web should not be writable. For this reason, our orders directory is outside the document tree. We discuss security more in Chapter 15,「Building a Secure Web Application.」
+1『
+
+由于用的是 laravel 框架，第 2 步不需要，进入根目录 public 后：
+
+```
+mkdir orders
+chmod 775 orders
+```
+
+』
+
+You could also choose to change ownership of the file to the web server user. Some people will choose to make the file world-writable as a shortcut here, but bear in mind that directories and files that anybody can write to are dangerous. In particular, directories that are accessible directly from the Web should not be writable. For this reason, our orders directory is outside the document tree. We discuss security more in Chapter 15「Building a Secure Web Application.」
 
 Incorrect permission setting is probably the most common thing that can go wrong when opening a file, but it’s not the only thing. If you can’t open the file, you really need to know this so that you don’t try to read data from or write data to it.
 
-60
+If the call to fopen() fails, the function will return false. It will also cause PHP to emit a warning\_level error (E\_WARNING). You can deal with the error in a more user-friendly way by suppressing PHP’s error message and giving your own:
 
-Chapter 2  Storing and Retrieving Data
+```php
+@$fp = fopen("$document_root/../orders/orders.txt", 'ab');
+if (!$fp){  
+    echo "<p><strong> Your order could not be processed at this time.  "       
+        .Please try again later.</strong></p></body></html>";  
+    exit;
+}
+```
 
-If the call to fopen() fails, the function will return false. It will also cause PHP to emit a warning_level error (E_WARNING). You can deal with the error in a more user-friendly way by suppressing PHP’s error message and giving your own:
+The @ symbol in front of the call to fopen() tells PHP to suppress any errors resulting from the function call. Usually, it’s a good idea to know when things go wrong, but in this case we’re going to deal with that problem elsewhere. You can also write this line as follows:
 
-@$fp = fopen("$document_root/../orders/orders.txt", 'ab');if (!$fp){  echo "<p><strong> Your order could not be processed at this time.  "       .Please try again later.</strong></p></body></html>";  exit;}
-
-The @ symbol in front of the call to fopen() tells PHP to suppress any errors resulting from the function call. Usually, it’s a good idea to know when things go wrong, but in this case we’re going to deal with that problem elsewhere.
-
-You can also write this line as follows:
-
+```php
 $fp = @fopen("$document_root/../orders/orders.txt", 'a');
+```
 
-Using this method tends to make it less obvious that you are using the error suppression  operator, so it may make your code harder to debug.
+1『 @ 的用法，处理错误的时候用，可以「压制」任何函数调用时的错误。』
 
-NoteIn general, use of the error suppression operator is not considered good style, so consider it a shortcut for now. The method described here is a simplistic way of dealing with errors. We look at a more elegant method for error handling in Chapter 7,「Error and Exception Handling.」But one thing at a time.
+Using this method tends to make it less obvious that you are using the error suppression operator, so it may make your code harder to debug.
 
- 
+Note: In general, use of the error suppression operator is not considered good style, so consider it a shortcut for now. The method described here is a simplistic way of dealing with errors. We look at a more elegant method for error handling in Chapter 7「Error and Exception Handling.」But one thing at a time.
 
- 
-
-The if statement tests the variable $fp to see whether a valid file pointer was returned from the fopen() call; if not, it prints an error message and ends script execution.
+The if statement tests the variable \$fp to see whether a valid file pointer was returned from the fopen() call; if not, it prints an error message and ends script execution.
 
 The output when using this approach is shown in Figure 2.3.
 
-Writing to a File
-
-61
-
 Figure 2.3  Using your own error messages instead of PHP’s is more user friendly
 
-Writing to a FileWriting to a file in PHP is relatively simple. You can use either of the functions fwrite() (file write) or fputs() (file put string); fputs() is an alias to fwrite(). You call fwrite() in the following way:
+### 5. Writing to a File
 
+Writing to a file in PHP is relatively simple. You can use either of the functions fwrite() (file write) or fputs() (file put string); fputs() is an alias to fwrite(). You call fwrite() in the following way:
+
+```php
 fwrite($fp, $outputstring);
+```
 
-This function call tells PHP to write the string stored in $outputstring to the file pointed to by $fp.
+This function call tells PHP to write the string stored in \$outputstring to the file pointed to by \$fp.
 
-An alternative to fwrite() is the file_put_contents() function. It has the following prototype:
+An alternative to fwrite() is the file\_put\_contents() function. It has the following prototype:
 
-int file_put_contents ( string filename,                        mixed data                         [, int flags                         [, resource context]])
+```php
+int file_put_contents ( 
+    string filename,                        
+    mixed data                         
+    [, int flags                         
+    [, resource context]]
+)
+```
 
 This function writes the string contained in data to the file named in filename without any need for an fopen() (or fclose()) function call. This function is the half of a matched pair, the other half being file_get_contents(), which we discuss shortly. You most commonly use the flags and context optional parameters when writing to remote files using, for example, HTTP or FTP. (We discuss these functions in Chapter 18,「Using Network and Protocol Functions.」)
-
-62
-
-Chapter 2  Storing and Retrieving Data
 
 Parameters for fwrite()The function fwrite() actually takes three parameters, but the third one is optional. The prototype for fwrite() is
 
