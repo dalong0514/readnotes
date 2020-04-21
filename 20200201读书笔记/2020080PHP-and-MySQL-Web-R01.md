@@ -52,7 +52,6 @@ Laura Thomson
 
 #### 02. 贡献及著作
 
-
 ### 0401. 金句卡——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
@@ -292,7 +291,7 @@ With both of these styles, everything after the comment symbol (# or //) is a co
 
     // here is a comment ?> here is not
 
-### 03. Adding Dynamic Content
+### 04. Adding Dynamic Content
 
 So far, you haven’t used PHP to do anything you couldn’t have done with plain HTML. The main reason for using a server-side scripting language is to be able to provide dynamic content to a site’s users. This is an important application because content that changes according to users’ needs or over time will keep visitors coming back to a site. PHP allows you to do this easily. Let’s start with a simple example. Replace the PHP in processorder.php with the following code: 
 
@@ -565,17 +564,17 @@ Operators are symbols that you can use to manipulate values and variables by per
 
 In general, operators can take one, two, or three arguments, with the majority taking two. For example, the assignment operator takes two: the storage location on the left side of the = symbol and an expression on the right side. These arguments are called operands—that is, the things that are being operated upon.
 
-#### 1. Arithmetic Operators
+#### 01. Arithmetic Operators
 
 Arithmetic operators are straightforward; they are just the normal mathematical operators. PHP’s arithmetic operators are shown in Table 1.1.
 
 You should note that arithmetic operators are usually applied to integers or doubles. If you apply them to strings, PHP will try to convert the string to a number. If it contains an e or an E, it will be read as being in scientific notation and converted to a float; otherwise, it will be converted to an integer. PHP will look for digits at the start of the string and use them as the value; if there are none, the value of the string will be zero.
 
-#### 2. String Operators 
+#### 02. String Operators 
 
 You’ve already seen and used the only string operator. You can use the string concatenation operator to add two strings and to generate and store a result much as you would use the addition operator to add two numbers:
 
-#### 3. Assignment Operators
+#### 03. Assignment Operators
 
 You’ve already seen the basic assignment operator (=). Always refer to this as the assignment operator and read it as「is set to.」For example,
 
@@ -638,7 +637,7 @@ References can be a bit tricky. Remember that a reference is like an alias rathe
 
 Unsetting does not change the value of \$b (7) but does break the link between \$a and the value 7 stored in memory.
 
-#### 4. Comparison Operators
+#### 04. Comparison Operators
 
 The comparison operators compare two values. Expressions using these operators return either of the logical values true or false depending on the result of the comparison.
 
@@ -654,7 +653,7 @@ Other Comparison Operators. PHP also supports a number of other comparison opera
 
 For example, 0\=='0' will be true, but 0==='0' will not because one zero is an integer and the other zero is a string.
 
-#### 5. Logical Operators
+#### 05. Logical Operators
 
 The logical operators combine the results of logical conditions. For example, you might be interested in a case in which the value of a variable, \$a, is between 0 and 100. You would need to test both the conditions \$a >= 0 and \$a <= 100, using the AND operator, as follows:
 
@@ -662,11 +661,11 @@ The logical operators combine the results of logical conditions. For example, yo
 
 PHP supports logical AND, OR, XOR (exclusive or), and NOT. The set of logical operators and their use is summarized in Table 1.4. The and and or operators have lower precedence than the && and || operators. We cover precedence in more detail later in this chapter.
 
-#### 6. Bitwise Operators
+#### 06. Bitwise Operators
 
 The bitwise operators enable you to treat an integer as the series of bits used to represent it. You probably will not find a lot of use for the bitwise operators in PHP, but a summary is shown in Table 1.5.
 
-#### 7. Other Operators
+#### 07. Other Operators
 
 In addition to the operators we have covered so far, you can use several others. The comma operator (,) separates function arguments and other lists of items. It is normally used incidentally. Two special operators, new and ->, are used to instantiate a class and access class members, respectively. They are covered in detail in Chapter 6. There are a few others that we discuss briefly here.
 
@@ -756,7 +755,7 @@ We generally use echo in this book, but you can use print if you find it more re
 
 Before we leave the world of variables and operators, let’s look at PHP’s variable handling functions. PHP provides a library of functions that enable you to manipulate and test variables in different ways.
 
-#### 1. Testing and Setting Variable Types
+#### 01. Testing and Setting Variable Types
 
 Most of the variable functions are related to testing the type of function. The two most general are gettype() and settype(). They have the following function prototypes; that is, this is what arguments expect and what they return:
 
@@ -782,7 +781,7 @@ echo gettype($a) . '<br />';
 
 When gettype() is called the first time, the type of \$a is integer. After the call to settype(), the type is changed to float, which is reported as double. (Be aware of this difference.) PHP also provides some specific type-testing functions. Each takes a variable as an argument and returns either true or false. The functions are:
 
-#### 2. Testing Variable Status
+#### 02. Testing Variable Status
 
 PHP has several functions for testing the status of a variable. The first is isset(), which has the following prototype:
 
@@ -807,7 +806,7 @@ echo 'empty($nothere): ' . empty($nothere).'<br />';
 
 The variable \$tireqty should return 1 (true) from isset() regardless of what value you entered in that form field and regardless of whether you entered a value at all. Whether it is empty() depends on what you entered in it. The variable \$nothere does not exist, so it generates a blank (false) result from isset() and a 1 (true) result from empty(). These functions are handy when you need to make sure that the user filled out the appropriate fields in the form.
 
-#### 3. Reinterpreting Variables
+#### 03. Reinterpreting Variables
 
 You can achieve the equivalent of casting a variable by calling a function. The following three functions can be useful for this task:
 
@@ -823,13 +822,13 @@ Each accepts a variable as input and returns the variable’s value converted to
 
 Control structures are the structures within a language that allow you to control the flow of execution through a program or script. You can group them into conditional (or branching) structures and repetition structures (or loops). If you want to sensibly respond to your users’ input, your code needs to be able to make  decisions. The constructs that tell your program to make decisions are called conditionals.
 
-#### 1. if Statements
+#### 01. if Statements
 
 You can use an if statement to make a decision. You should give the if statement a condition to use. If the condition is true, the following block of code will be executed. Conditions in if statements must be surrounded by parentheses ().
 
 For example, if a visitor orders no tires, no bottles of oil, and no spark plugs from Bob, it is probably because she accidentally clicked the Submit Order button before she had finished filling out the form. Rather than telling the visitor「Order processed,」the page could give her a more useful message. When the visitor orders no items, you might like to say,「You did not order anything on the previous page!」You can do this easily by using the following if statement:
 
-#### 2. Code Blocks
+#### 02. Code Blocks
 
 Often you may have more than one statement you want executed according to the actions of a conditional statement such as if. You can group a number of statements together as a block. To declare a block, you enclose it in curly braces:
 
@@ -844,13 +843,13 @@ The three lines enclosed in curly braces are now a block of code. When the condi
 
 Note: As already mentioned, PHP does not care how you lay out your code. However, you should indent your code for readability purposes. Indenting is used to enable you to see at a glance which lines will be executed only if conditions are met, which statements are grouped into blocks, and which statements are parts of loops or functions. In the previous examples, you can see that the statement depending on the if statement and the statements making up the block are indented.
 
-#### 3. else Statements
+#### 03. else Statements
 
 You may often need to decide not only whether you want an action performed, but also which of a set of possible actions you want performed. An else statement allows you to define an alternative action to be taken when the condition in an if statement is false. Say you want to warn Bob’s customers when they do not order anything. On the other hand, if they do make an order, instead of a warning, you want to show them what they ordered. If you rearrange the code and add an else statement, you can display either a warning or a summary: 
 
 You can build more complicated logical processes by nesting if statements within each other. In the following code, the summary will be displayed only if the condition \$totalqty == 0 is true, and each line in the summary will be displayed only if its own condition is met: 
 
-#### 4. elseif Statements
+#### 04. elseif Statements
 
 For many of the decisions you make, you have more than two options. You can create a sequence of many options using the elseif statement, which is a combination of an else and an if statement. When you provide a sequence of conditions, the program can check each until it finds one that is true. 
 
@@ -860,7 +859,7 @@ Note that you are free to type elseif or else if—versions with or without a sp
 
 If you are going to write a cascading set of elseif statements, you should be aware that only one of the blocks or statements will be executed. It did not matter in this example because all the conditions were mutually exclusive; only one can be true at a time. If you write conditions in a way that more than one could be true at the same time, only the block or statement following the first true condition will be executed.
 
-#### 5. switch Statements
+#### 05. switch Statements
 
 The switch statement works in a similar way to the if statement, but it allows the condition to take more than two values. In an if statement, the condition can be either true or false. In a switch statement, the condition can take any number of different values, as long as it evaluates to a simple type (integer, string, or float). You need to provide a case statement to handle each value you want to react to and, optionally, a default case to handle any that you do not provide a specific case statement for.
 
@@ -888,7 +887,7 @@ switch($find) {
 
 The switch statement behaves somewhat differently from an if or elseif statement. An if statement affects only one statement unless you deliberately use curly braces to create a block of statements. A switch statement behaves in the opposite way. When a case statement in a switch is activated, PHP executes statements until it reaches a break statement. Without break statements, a switch would execute all the code following the case that was true. When a break statement is reached, the next line of code after the switch statement is executed.
 
-#### 6. Comparing the Different Conditionals
+#### 06. Comparing the Different Conditionals
 
 If you are not familiar with the statements described in the preceding sections, you might be asking,「Which one is the best?」That is not really a question we can answer. There is nothing that you can do with one or more else, elseif, or switch statements that you cannot do with a set of if statements. You should try to use whichever conditional will be most readable in your situation. You will acquire a feel for which suits different situations as you gain experience.
 
@@ -900,7 +899,7 @@ Bob wants a table displaying the freight cost that will be added to a customer�
 
 Rather than requiring an easily bored human—who must be paid for his time—to type the HTML, having a cheap and tireless computer do it would be helpful. Loop statements tell PHP to execute a statement or block repeatedly.
 
-#### 1. while Loops
+#### 01. while Loops
 
 The simplest kind of loop in PHP is the while loop. Like an if statement, it relies on a  condition. The difference between a while loop and an if statement is that an if statement executes the code that follows it only once if the condition is true. A while loop executes the block repeatedly for as long as the condition is true. You generally use a while loop when you don’t know how many iterations will be required to make the condition true. If you require a fixed number of iterations, consider using a for loop. The basic structure of a while loop is
 
@@ -918,7 +917,7 @@ while ($num <= 5 ){
 
 At the beginning of each iteration, the condition is tested. If the condition is false, the block will not be executed and the loop will end. The next statement after the loop will then be executed. You can use a while loop to do something more useful, such as display the repetitive freight table in Figure 1.7. Listing 1.3 uses a while loop to generate the freight table.
 
-#### 2. for and foreach Loops
+#### 02. for and foreach Loops
 
 The way that you used the while loops in the preceding section is very common. You set a counter to begin with. Before each iteration, you test the counter in a condition. And at the end of each iteration, you modify the counter. You can write this style of loop in a more compact form by using a for loop. The basic  structure of a for loop is
 
@@ -948,7 +947,7 @@ for ($i=1; $i <= $numnames; $i++){
 
 By dynamically creating the names of the variables, you can access each of the fields in turn. As well as the for loop, there is a foreach loop, designed specifically for use with arrays. We discuss how to use it in Chapter 3.
 
-#### 3. do...while Loops
+#### 03. do...while Loops
 
 The final loop type we describe behaves slightly differently. The general structure of a do...while statement is
 

@@ -312,13 +312,13 @@ The Web Edition can be viewed on all types of computers and mobile devices with 
 
 To get access to the Web Edition of PHP and MySQL Web Development, Fifth Edition all you need to do is register this book:
 
-1.  Go to www.informit.com/register
+1.  Go to www.informit.com/register.
 
-2.  Sign in or create a new account
+2.  Sign in or create a new account.
 
-3.  Enter ISBN: 9780321833891
+3.  Enter ISBN: 9780321833891.
 
-4.  Answer the questions as proof of purchase
+4.  Answer the questions as proof of purchase.
 
 The Web Edition will appear under the Digital Purchases tab on your Account page. Click the Launch link to access the product.
 
@@ -326,178 +326,73 @@ The Web Edition will appear under the Digital Purchases tab on your Account page
 
 We hope you enjoy this book and enjoy learning about PHP and MySQL as much as we did when we first began using these products. They are really a pleasure to use. Soon, you’ll be able to join the many thousands of web developers who use these robust, powerful tools to easily build dynamic, real-time web applications.
 
-
-
-
-
-
-
-
-
-
-
-
-「I’ve never purchased a better programming book… This book proved to be the most informative, easiest to follow, and had the best examples of any other computer-related book I have ever purchased. The text is very easy to follow!」
-
-—Nick Landman
-
-「This book by Welling & Thomson is the only one which I have found to be indispensable. The writing is clear and straightforward but never wastes my time. The book is extremely well laid out. The chapters are the right length and chapter titles quickly take you where you want to go.」
-
-— Wright Sullivan, President, 
-
-A&E Engineering, Inc., Greer South Carolina
-
-「I just wanted to tell you that I think the book PHP and MySQL Web Development rocks! It’s logically structured, just the right difficulty level for me (intermediate), interesting and easy to read, and, of course, full of valuable information!」
-
-—CodE-E, Austria
-
-「There are several good 
-
-introductory books on PHP, but Welling & Thomson is an excellent handbook for those who wish to build up complex and reliable systems. It’s obvious that the authors have a strong background in the development of professional applications and they teach not only the language itself, but also how to use it with good software engineering practices.」
-
-— Javier Garcia, senior telecom engi-neer, Telefonica R&D Labs, Madrid
-
-「I picked up this book two days ago and I am half way finished. I just can’t put it down. The layout and flow is perfect. Everything is presented in such a way so that the information is very palatable. I am able to immediately grasp all the concepts. The examples have also been wonderful. I just had to take some time out to express to you how pleased I have been with this book.」
-
-—Jason B. Lancaster
-
-「This book has proven a trusty 
-
-companion, with an excellent crash course in PHP and superb coverage of MySQL as used for Web applications. It also features several complete applications that are great examples of how to construct modular, scalable applications with PHP. Whether you are a PHP newbie or a veteran in search of a better desk-side reference, this one is sure to please!」
-
-—WebDynamic
-
-「The true PHP/MySQL bible, PHP 
-
-and MySQL Web Development by Luke Welling and Laura Thomson, made me realize that programming and databases are now available to the commoners. Again, I know 1/10000th of what there is to know, and already I’m enthralled.」
-
-—Tim Luoma, TnTLuoma.com
-
-「Welling and Thomson’s book is a good reference for those who want to get to grips with practical projects straight off the bat. It includes webmail, shopping cart, session control, and web-forum/weblog applications as a matter of course, and begins with a sturdy look at PHP first, moving to MySQL once the basics are covered.」
-
-—twilight30 on Slashdot
-
-「This book is absolutely excellent, 
-
-to say the least…. Luke Welling and Laura Thomson give the best in-depth explanations I’ve come across on such things as regular expressions, classes and objects, sessions etc. I really feel this book filled in a lot of gaps for me with things I didn’t quite understand…. This book jumps right into the functions and features most commonly used with PHP, and from there it continues in describing real-world projects, MySQL integration, and security issues from a project manager’s point of view. I found every bit of this book to be well organized and easy to understand.」
-
-—notepad on codewalkers.com
-
-「A top-notch reference for 
-
-programmers using PHP and MySQL. Highly recommended.」
-
-applications with two of the most popular open-source Web development technologies…. The projects are the real jewel of the book. Not only are the projects described and constructed in a logical, component-based manner, but the selection of projects represents an excellent cross-section of common components that are built into many web sites.」
-
-—Craig Cecil
-
-「The book takes an easy, step-by-step approach to introduce even the clueless programmer to the language of PHP. On top of that, I often find myself referring back to it in my Web design efforts. I’m still learning new things about PHP, but this book gave me a solid foundation from which to start and continues to help me to this day.」
-
-—The Internet Writing Journal
-
-—Stephen Ward
-
-「This book rocks! I am an 
-
-experienced programmer, so I didn’t need a lot of help with PHP syntax; after all, it’s very close to C/C++. I don’t know a thing about databases, though, so when I wanted to develop a book review engine (among other projects) I wanted a solid reference to using MySQL with PHP. I have O’Reilly’s mSQL and MySQL book, and it’s probably a better pure-SQL reference, but this book has earned a place on my reference shelf…Highly recommended.」
-
-—Paul Robichaux
-
-「One of the best programming 
-
-guides I’ve ever read.」
-
-—jackofsometrades from Lahti, Finland
-
-「This is a well-written book 
-
-for learning how to build Internet 
-
-「This book is one of few that really 
-
-touched me and made me ‘love’ it. I can’t put it in my bookshelf; I must put it in a touchable place on my working bench as I always like to refer from it. Its structure is good, wordings are simple and straight forward, and examples are clear and step by step. Before I read it, I knew nothing of PHP and MySQL. After reading it, I have the confidence and skill to develop any complicated Web application.」
-
-—Power Wong
-
-「This book is God…. I highly recommend this book to anyone who wants to jump in the deep end with database driven Web application programming. I wish more computer books were organized this way.」
-
-—Sean C Schertell
-
-PHP and MySQL® Web Development
-
-Fifth Edition
-
 ## Contents at a Glance
 
-Introduction  1
+Introduction
 
-I: Using PHP
+### I: Using PHP
 
-  1  PHP Crash Course  11
+  1  PHP Crash Course  
 
-  2  Storing and Retrieving Data  53
+  2  Storing and Retrieving Data  
 
-  3  Using Arrays  75
+  3  Using Arrays  
 
-  4  String Manipulation and Regular Expressions  101
+  4  String Manipulation and Regular Expressions  
 
-  5  Reusing Code and Writing Functions  131
+  5  Reusing Code and Writing Functions  
 
-  6  Object-Oriented PHP  159
+  6  Object-Oriented PHP  
 
-  7  Error and Exception Handling  199
+  7  Error and Exception Handling  
 
-II: Using MySQL
+### II: Using MySQL
 
-  8  Designing Your Web Database   209
+  8  Designing Your Web Database   
 
-  9  Creating Your Web Database  221
+  9  Creating Your Web Database 
+  
+  10  Working with Your MySQL Database  
 
-  10  Working with Your MySQL Database  247
+  11  Accessing Your MySQL Database from the Web with PHP  
 
-  11  Accessing Your MySQL Database from the Web with PHP  271
+  12  Advanced MySQL Administration  
 
-  12  Advanced MySQL Administration  291
+  13  Advanced MySQL Programming  
 
-  13  Advanced MySQL Programming  315
+### III: Web Application Security
 
-III: Web Application Security
+  14  Web Application Security Risks
 
-  14  Web Application Security Risks  331
+  15  Building a Secure Web Application
 
-  15  Building a Secure Web Application  341
+  16  Implementing Authentication Methods with PHP  
 
-  16  Implementing Authentication Methods with PHP  365
+### IV: Advanced PHP Techniques
 
-IV: Advanced PHP Techniques
+  17  Interacting with the File System and the Server
 
-  17  Interacting with the File System and the Server  379
+  18  Using Network and Protocol Functions 
 
-  18  Using Network and Protocol Functions  403
+  19  Managing the Date and Time 
 
-  19  Managing the Date and Time  423
+  20  Internationalization and Localization 
 
-viii
+  21  Generating Images 
 
-Contents at a Glance
+  22  Using Session Control in PHP 
 
-  20  Internationalization and Localization  437
+  23  Integrating JavaScript and PHP 
 
-  21  Generating Images  449
+  24  Other Useful Features 
 
-  22  Using Session Control in PHP  475
+### V: Building Practical PHP and MySQL Projects
 
-  23  Integrating JavaScript and PHP  493
+  25  Using PHP and MySQL for Large Projects
 
-  24  Other Useful Features  519
+  26  Debugging and Logging 
 
-V: Building Practical PHP and MySQL Projects
-
-  25  Using PHP and MySQL for Large Projects  529
-
-  26  Debugging and Logging  543
-
-  27  Building User Authentication and Personalization  561
+  27  Building User Authentication and Personalization 
 
   28  Building a Web-Based Email Service with Laravel Part I  Web Edition
 
@@ -507,63 +402,4 @@ V: Building Practical PHP and MySQL Projects
 
   31  Building a Shopping Cart  Web Edition
 
-VI: Appendix
-
-  A  Installing Apache, PHP, and MySQL  599
-
-  Index  615
-
-Lead AuthorsLaura Thomson is Director of Engineering at Mozilla Corporation. She was formerly a principal at both OmniTI and Tangled Web Design, and she has worked for RMIT University and the Boston Consulting Group. She holds a Bachelor of Applied Science (Computer Science) degree and a Bachelor of Engineering (Computer Systems Engineering) degree with honors. In her spare time she enjoys riding horses, arguing about free and open source software, and sleeping.
-
-Luke Welling is a software engineer and regularly speaks on open source and web development topics at conferences such as OSCON, ZendCon, MySQLUC, PHPCon, OSDC, and LinuxTag. He has worked for OmniTI, for the web analytics company Hitwise.com, at the database vendor MySQL AB, and as an independent consultant at Tangled Web Design. He has taught computer science at RMIT University in Melbourne, Australia, and holds a Bachelor of Applied Science (Computer Science) degree. In his spare time, he attempts to perfect his insomnia.
-
-Contributing AuthorsJulie C. Meloni is a software development manager and technical consultant living in Washington,D.C. She has written several books and articles on web-based programming languages and database topics, including the bestselling Sams Teach Yourself PHP, MySQL and Apache All in One.
-
-John Coggeshall is the owner of Internet Technology Solutions, LLC—an Internet and PHP consultancy serving customers worldwide, as well as the owner of CoogleNet, a subscription based WiFi network. As former senior member of Zend Technologies’ Global Services team, he got started with PHP in 1997 and is the author of four published books and over 100 articles on PHP technologies.
-
-Jennifer Kyrnin is an author and web designer who has been working on the Internet since 1995. Her other books include Sams Teach Yourself Bootstrap in 24 Hours, Sams Teach Yourself Responsive Web Design in 24 Hours, and Sams Teach Yourself HTML5 Mobile Application Development in 24 Hours.
-
-We Want to Hear from You!As the reader of this book, you are our most important critic and commentator. We value your opinion and want to know what we’re doing right, what we could do better, what areas you’d like to see us publish in, and any other words of wisdom you’re willing to pass our way.
-
-You can email or write directly to let us know what you did or didn’t like about this book—as well as what we can do to make our books stronger.
-
-Please note that we cannot help you with technical problems related to the topic of this book, and that due to the high volume of mail we receive, we might not be able to reply to every message.
-
-When you write, please be sure to include this book’s title and author, as well as your name and phone or email address.
-
-Email: 
-
-feedback@developers-library.info
-
-Mail:    
-
-Reader FeedbackAddison-Wesley Developer’s Library800 East 96th StreetIndianapolis, IN 46240 USA
-
-Reader ServicesVisit our website and register this book at www.informit.com/register for convenient access to any updates, downloads, or errata that might be available for this book.
-
-Accessing the Free Web EditionYour purchase of this book in any format, print or electronic, includes access to the corresponding Web Edition, which provides several special features to help you learn:
-
- ■ The complete text of the book online
-
- ■ Interactive quizzes and exercises to test your understanding of the material
-
- ■ Bonus chapters not included in the print or e-book editions
-
- ■ Updates and corrections as they become available
-
-The Web Edition can be viewed on all types of computers and mobile devices with any modern web browser that supports HTML5.
-
-To get access to the Web Edition of PHP and MySQL Web Development, Fifth Edition, all you need to do is register this book:
-
-1.  Go to www.informit.com/register
-
-2.  Sign in or create a new account
-
-3.  Enter ISBN: 9780321833891
-
-4.  Answer the questions as proof of purchase
-
-The Web Edition will appear under the Digital Purchases tab on your Account page. Click the Launch link to access the product.
-
-This page intentionally left blank 
-
+  VI: Appendix

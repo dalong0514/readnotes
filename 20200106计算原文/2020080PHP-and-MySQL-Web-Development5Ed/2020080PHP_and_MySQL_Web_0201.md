@@ -1,28 +1,28 @@
-# 02 Storing and Retrieving Data
+# 02. Storing and Retrieving Data
 
 Now that you know how to access and manipulate data entered in an HTML form, you can look at ways of storing that information for later use. In most cases, including the example from the previous chapter, you’ll want to store this data and load it later. In this case, you need to write customer orders to storage so that they can be filled later.
 
 In this chapter, you learn how to write the customer’s order from the previous example to a file and read it back. You also learn why this isn’t always a good solution. When you have large numbers of orders, you should use a database management system such as MySQL instead.
 
-Key topics covered in this chapter include
+Key topics covered in this chapter include:
 
- ■ Saving data for later
+ ■ Saving data for later.
 
- ■ Opening a file
+ ■ Opening a file.
 
- ■ Creating and writing to a file
+ ■ Creating and writing to a file.
 
- ■ Closing a file
+ ■ Closing a file.
 
- ■ Reading from a file
+ ■ Reading from a file.
 
- ■ Locking files
+ ■ Locking files.
 
- ■ Deleting files
+ ■ Deleting files.
 
- ■ Using other useful file functions
+ ■ Using other useful file functions.
 
- ■ Doing it a better way: using database management systems
+ ■ Doing it a better way: using database management systems.
 
 Saving Data for LaterYou can store data in two basic ways: in flat files or in a database.
 
@@ -625,4 +625,3 @@ You may also want to read through the file system section of the PHP online manu
 ## Next
 
 In the next chapter, you learn what arrays are and how they can be used for processing data in your PHP scripts.
-

@@ -1,4 +1,4 @@
-# 01 PHP Crash Course
+# 01. PHP Crash Course
 
 This chapter gives you a quick overview of PHP syntax and language constructs. If you are already a PHP programmer, it might fill some gaps in your knowledge. If you have a background using C, Perl, Python, or another programming language, it will help you get up to speed quickly.
 

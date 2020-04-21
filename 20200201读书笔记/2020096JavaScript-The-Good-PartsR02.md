@@ -1083,10 +1083,6 @@ Matching tends to be greedy, matching as many repetitions as possible up to the 
 
 ## 09. Style
 
-Here is a silly stately style indeed!
-
-—William Shakespeare, The First Part of Henry the Sixth Computer 
-
 programs are the most complex things that humans make. Programs are made up of a huge number of parts, expressed as functions, statements, and expressions that are arranged in sequences that must be virtually free of error. The runtime behavior has little resemblance to the program that implements it. Software is usually expected to be modified over the course of its productive life. The process of converting one correct program into a different correct program is extremely challenging.
 
 运行时行为（runtime behavior）几乎和实现它的程序没有什么相似之处。在软件的产品生命周期中，它们通常都会被修改。把一个正确的程序转化为另一个同样正确但风格不同的程序，是一个极具挑战性的过程。
@@ -1186,7 +1182,7 @@ is probably intended to be:
 
 I want to avoid idioms that look like mistakes.
 
-1『 ES6 新增的 let、const 解决了作者的难题。』
+1『 ES6 新增的 let、const 解决了作者的难题；条件语句里的判断语言，一定不要用赋值语句。』
 
 I never allow switch cases to fall through to the next case. I once found a bug in my code caused by an unintended fall through immediately after having made a vigorous speech about why fall through was sometimes useful. I was fortunate in that I was able to learn from the experience. When reviewing the features of a language, I now pay special attention to features that are sometimes useful but occasionally dangerous. Those are the worst parts because it is difficult to tell whether they are being used correctly. That is a place where bugs hide.
 
@@ -1223,7 +1219,7 @@ github 上找到下面代码：[javascript 模块模式实现](https://gist.gith
             var aListItems = yud.getElementsByClassName("li", elList);
             return aListItems;
         };
-        //这个放回的对象将变成YAHOO.myProject.myModule:
+        //这个返回的对象将变成 YAHOO.myProject.myModule:
         return {
             aDragObjects: [], //可对外访问的，存储DD对象
             init: function () {
@@ -1238,7 +1234,7 @@ github 上找到下面代码：[javascript 模块模式实现](https://gist.gith
             }
         };
     }();
-    //上面的代码已经执行，所以我们能立即访问init方法：
+    //上面的代码已经执行，所以我们能立即访问 init 方法：
     YAHOO.myProject.myModule.init();
 </script>
 ```
@@ -1247,10 +1243,6 @@ medium 上的一篇文章：[Module Pattern in JavaScript - Level Up Coding](htt
 』
 
 ## 10. Beautiful Features
-
-Thus, expecting thy reply, I profane my lips on thy foot, my eyes on thy picture, and my heart on thy every part. Thine, in the dearest design of industry...
-
-—William Shakespeare, Love’s Labor’s Lost
 
 I was invited last year to contribute a chapter to Andy Oram’s and Greg Wilson’s Beautiful Code (O’Reilly), an anthology on the theme of beauty as expressed in computer programs. I wanted to write my chapter in JavaScript. I wanted to use it to present something abstract, powerful, and useful to show that the language was up to it. And I wanted to avoid the browser and other venues in which JavaScript is typecast. I wanted to show something respectable with some heft to it.
 

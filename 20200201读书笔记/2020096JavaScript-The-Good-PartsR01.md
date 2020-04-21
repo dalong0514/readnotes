@@ -20,6 +20,12 @@ JavaScript has a very powerful object literal notation. Objects can be created s
 
 A controversial feature in JavaScript is prototypal inheritance. JavaScript has a class-free object system in which objects inherit properties directly from other objects. This is really powerful, but it is unfamiliar to classically trained programmers. If you attempt to apply classical design patterns directly to JavaScript, you will be frustrated. But if you learn to work with JavaScript’s prototypal nature, your efforts will be rewarded.
 
+1) Simplified JavaScript is just the good stuff, including: Functions as first class objects. Functions in Simplified JavaScript are lambdas with lexical scoping. 2) Dynamic objects with prototypal inheritance Objects are class-free. We can add a new member to any object by ordinary assignment. An object can inherit members from another object. 3) Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format.
+
+### 0101. 主题卡——正则表达式的知识体系
+
+结构与元素。
+
 ### 0201. 术语卡——delegation
 
 The prototype link is used only in retrieval. If we try to retrieve a property value from an object, and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object. And if that object is lacking the property, then it goes to its prototype, and so on until the process finally bottoms out with Object.prototype. If the desired property exists nowhere in the prototype chain, then the result is the undefined value. This is called delegation.
