@@ -476,7 +476,7 @@ This is equivalent to
 
 This approach might seem somewhat obscure, but we’ll revisit its use later. Instead of having to list and use each form variable separately, you can use a loop and variable variable to process them all automatically. You can find an example illustrating this in the section on for loops later in this chapter.
 
-1『应用场景在哪？』
+1『应用场景在哪？目前知道了一个应用点，与 for 循环结合起来用，详见信息卡片。』
 
 ### 07. Declaring and Using Constants
 
@@ -516,17 +516,17 @@ Operators are symbols that you can use to manipulate values and variables by per
 
 In general, operators can take one, two, or three arguments, with the majority taking two. For example, the assignment operator takes two: the storage location on the left side of the = symbol and an expression on the right side. These arguments are called operands—that is, the things that are being operated upon.
 
-#### 01. Arithmetic Operators
+#### 9.1 Arithmetic Operators
 
 Arithmetic operators are straightforward; they are just the normal mathematical operators. PHP’s arithmetic operators are shown in Table 1.1.
 
 You should note that arithmetic operators are usually applied to integers or doubles. If you apply them to strings, PHP will try to convert the string to a number. If it contains an e or an E, it will be read as being in scientific notation and converted to a float; otherwise, it will be converted to an integer. PHP will look for digits at the start of the string and use them as the value; if there are none, the value of the string will be zero.
 
-#### 02. String Operators 
+#### 9.2 String Operators 
 
 You’ve already seen and used the only string operator. You can use the string concatenation operator to add two strings and to generate and store a result much as you would use the addition operator to add two numbers:
 
-#### 03. Assignment Operators
+#### 9.3 Assignment Operators
 
 You’ve already seen the basic assignment operator (=). Always refer to this as the assignment operator and read it as「is set to.」For example,
 
@@ -589,7 +589,7 @@ References can be a bit tricky. Remember that a reference is like an alias rathe
 
 Unsetting does not change the value of \$b (7) but does break the link between \$a and the value 7 stored in memory.
 
-#### 04. Comparison Operators
+#### 9.4 Comparison Operators
 
 The comparison operators compare two values. Expressions using these operators return either of the logical values true or false depending on the result of the comparison.
 
@@ -605,7 +605,7 @@ Other Comparison Operators. PHP also supports a number of other comparison opera
 
 For example, 0\=='0' will be true, but 0==='0' will not because one zero is an integer and the other zero is a string.
 
-#### 05. Logical Operators
+#### 9.5 Logical Operators
 
 The logical operators combine the results of logical conditions. For example, you might be interested in a case in which the value of a variable, \$a, is between 0 and 100. You would need to test both the conditions \$a >= 0 and \$a <= 100, using the AND operator, as follows:
 
@@ -613,11 +613,11 @@ The logical operators combine the results of logical conditions. For example, yo
 
 PHP supports logical AND, OR, XOR (exclusive or), and NOT. The set of logical operators and their use is summarized in Table 1.4. The and and or operators have lower precedence than the && and || operators. We cover precedence in more detail later in this chapter.
 
-#### 06. Bitwise Operators
+#### 9.6 Bitwise Operators
 
 The bitwise operators enable you to treat an integer as the series of bits used to represent it. You probably will not find a lot of use for the bitwise operators in PHP, but a summary is shown in Table 1.5.
 
-#### 07. Other Operators
+#### 9.7 Other Operators
 
 In addition to the operators we have covered so far, you can use several others. The comma operator (,) separates function arguments and other lists of items. It is normally used incidentally. Two special operators, new and ->, are used to instantiate a class and access class members, respectively. They are covered in detail in Chapter 6. There are a few others that we discuss briefly here.
 
@@ -707,7 +707,7 @@ We generally use echo in this book, but you can use print if you find it more re
 
 Before we leave the world of variables and operators, let’s look at PHP’s variable handling functions. PHP provides a library of functions that enable you to manipulate and test variables in different ways.
 
-#### 01. Testing and Setting Variable Types
+#### 12.1 Testing and Setting Variable Types
 
 Most of the variable functions are related to testing the type of function. The two most general are gettype() and settype(). They have the following function prototypes; that is, this is what arguments expect and what they return:
 
@@ -733,7 +733,7 @@ echo gettype($a) . '<br />';
 
 When gettype() is called the first time, the type of \$a is integer. After the call to settype(), the type is changed to float, which is reported as double. (Be aware of this difference.) PHP also provides some specific type-testing functions. Each takes a variable as an argument and returns either true or false. The functions are:
 
-#### 02. Testing Variable Status
+#### 12.2 Testing Variable Status
 
 PHP has several functions for testing the status of a variable. The first is isset(), which has the following prototype:
 
@@ -758,7 +758,7 @@ echo 'empty($nothere): ' . empty($nothere).'<br />';
 
 The variable \$tireqty should return 1 (true) from isset() regardless of what value you entered in that form field and regardless of whether you entered a value at all. Whether it is empty() depends on what you entered in it. The variable \$nothere does not exist, so it generates a blank (false) result from isset() and a 1 (true) result from empty(). These functions are handy when you need to make sure that the user filled out the appropriate fields in the form.
 
-#### 03. Reinterpreting Variables
+#### 12.3 Reinterpreting Variables
 
 You can achieve the equivalent of casting a variable by calling a function. The following three functions can be useful for this task:
 
@@ -770,17 +770,17 @@ string strval(mixed var)
 
 Each accepts a variable as input and returns the variable’s value converted to the  appropriate type. The intval() function also allows you to specify the base for conversion when the  variable to be converted is a string. (This way, you can convert, for example, hexadecimal strings to integers.)
 
-### 12. Making Decisions with Conditionals
+### 13. Making Decisions with Conditionals
 
 Control structures are the structures within a language that allow you to control the flow of execution through a program or script. You can group them into conditional (or branching) structures and repetition structures (or loops). If you want to sensibly respond to your users’ input, your code needs to be able to make  decisions. The constructs that tell your program to make decisions are called conditionals.
 
-#### 01. if Statements
+#### 13.1 if Statements
 
 You can use an if statement to make a decision. You should give the if statement a condition to use. If the condition is true, the following block of code will be executed. Conditions in if statements must be surrounded by parentheses ().
 
 For example, if a visitor orders no tires, no bottles of oil, and no spark plugs from Bob, it is probably because she accidentally clicked the Submit Order button before she had finished filling out the form. Rather than telling the visitor「Order processed,」the page could give her a more useful message. When the visitor orders no items, you might like to say,「You did not order anything on the previous page!」You can do this easily by using the following if statement:
 
-#### 02. Code Blocks
+#### 13.2 Code Blocks
 
 Often you may have more than one statement you want executed according to the actions of a conditional statement such as if. You can group a number of statements together as a block. To declare a block, you enclose it in curly braces:
 
@@ -795,13 +795,13 @@ The three lines enclosed in curly braces are now a block of code. When the condi
 
 Note: As already mentioned, PHP does not care how you lay out your code. However, you should indent your code for readability purposes. Indenting is used to enable you to see at a glance which lines will be executed only if conditions are met, which statements are grouped into blocks, and which statements are parts of loops or functions. In the previous examples, you can see that the statement depending on the if statement and the statements making up the block are indented.
 
-#### 03. else Statements
+#### 13.3 else Statements
 
 You may often need to decide not only whether you want an action performed, but also which of a set of possible actions you want performed. An else statement allows you to define an alternative action to be taken when the condition in an if statement is false. Say you want to warn Bob’s customers when they do not order anything. On the other hand, if they do make an order, instead of a warning, you want to show them what they ordered. If you rearrange the code and add an else statement, you can display either a warning or a summary: 
 
 You can build more complicated logical processes by nesting if statements within each other. In the following code, the summary will be displayed only if the condition \$totalqty == 0 is true, and each line in the summary will be displayed only if its own condition is met: 
 
-#### 04. elseif Statements
+#### 13.4 elseif Statements
 
 For many of the decisions you make, you have more than two options. You can create a sequence of many options using the elseif statement, which is a combination of an else and an if statement. When you provide a sequence of conditions, the program can check each until it finds one that is true. 
 
@@ -811,7 +811,9 @@ Note that you are free to type elseif or else if—versions with or without a sp
 
 If you are going to write a cascading set of elseif statements, you should be aware that only one of the blocks or statements will be executed. It did not matter in this example because all the conditions were mutually exclusive; only one can be true at a time. If you write conditions in a way that more than one could be true at the same time, only the block or statement following the first true condition will be executed.
 
-#### 05. switch Statements
+1『多个条件为真的情况，只执行第一个条件为真的语句。』
+
+#### 13.5 switch Statements
 
 The switch statement works in a similar way to the if statement, but it allows the condition to take more than two values. In an if statement, the condition can be either true or false. In a switch statement, the condition can take any number of different values, as long as it evaluates to a simple type (integer, string, or float). You need to provide a case statement to handle each value you want to react to and, optionally, a default case to handle any that you do not provide a specific case statement for.
 
@@ -839,11 +841,11 @@ switch($find) {
 
 The switch statement behaves somewhat differently from an if or elseif statement. An if statement affects only one statement unless you deliberately use curly braces to create a block of statements. A switch statement behaves in the opposite way. When a case statement in a switch is activated, PHP executes statements until it reaches a break statement. Without break statements, a switch would execute all the code following the case that was true. When a break statement is reached, the next line of code after the switch statement is executed.
 
-#### 06. Comparing the Different Conditionals
+#### 13.6 Comparing the Different Conditionals
 
 If you are not familiar with the statements described in the preceding sections, you might be asking,「Which one is the best?」That is not really a question we can answer. There is nothing that you can do with one or more else, elseif, or switch statements that you cannot do with a set of if statements. You should try to use whichever conditional will be most readable in your situation. You will acquire a feel for which suits different situations as you gain experience.
 
-### 13. Repeating Actions Through Iteration
+### 14. Repeating Actions Through Iteration
 
 One thing that computers have always been very good at is automating repetitive tasks. If you need something done the same way a number of times, you can use a loop to repeat some parts of your program.
 
@@ -851,7 +853,7 @@ Bob wants a table displaying the freight cost that will be added to a customer�
 
 Rather than requiring an easily bored human—who must be paid for his time—to type the HTML, having a cheap and tireless computer do it would be helpful. Loop statements tell PHP to execute a statement or block repeatedly.
 
-#### 01. while Loops
+#### 14.1 while Loops
 
 The simplest kind of loop in PHP is the while loop. Like an if statement, it relies on a  condition. The difference between a while loop and an if statement is that an if statement executes the code that follows it only once if the condition is true. A while loop executes the block repeatedly for as long as the condition is true. You generally use a while loop when you don’t know how many iterations will be required to make the condition true. If you require a fixed number of iterations, consider using a for loop. The basic structure of a while loop is
 
@@ -869,7 +871,7 @@ while ($num <= 5 ){
 
 At the beginning of each iteration, the condition is tested. If the condition is false, the block will not be executed and the loop will end. The next statement after the loop will then be executed. You can use a while loop to do something more useful, such as display the repetitive freight table in Figure 1.7. Listing 1.3 uses a while loop to generate the freight table.
 
-#### 02. for and foreach Loops
+#### 14.2 for and foreach Loops
 
 The way that you used the while loops in the preceding section is very common. You set a counter to begin with. Before each iteration, you test the counter in a condition. And at the end of each iteration, you modify the counter. You can write this style of loop in a more compact form by using a for loop. The basic  structure of a for loop is
 
@@ -893,7 +895,7 @@ for ($i=1; $i <= $numnames; $i++){
 
 By dynamically creating the names of the variables, you can access each of the fields in turn. As well as the for loop, there is a foreach loop, designed specifically for use with arrays. We discuss how to use it in Chapter 3.
 
-#### 03. do...while Loops
+#### 14.3 do...while Loops
 
 The final loop type we describe behaves slightly differently. The general structure of a do...while statement is
 
@@ -908,7 +910,7 @@ do{
 }while ($num < 1 ) ;
 ```
 
-### 14. Breaking Out of a Control Structure or Script
+### 15. Breaking Out of a Control Structure or Script
 
 If you want to stop executing a piece of code, you can choose from three approaches, depending on the effect you are trying to achieve. 1) If you want to stop executing a loop, you can use the break statement as previously discussed in the section on switch. If you use the break statement in a loop, execution of the script will continue at the next line of the script after the loop. 2) If you want to jump to the next loop iteration, you can instead use the continue statement. 3) If you want to finish executing the entire PHP script, you can use exit. This approach is typically useful when you are performing error checking. For example, you could modify the earlier example as follows:
 
@@ -921,7 +923,7 @@ if($totalqty == 0){
 
 1『找错的时候经常用 exit; 退出，结合函数 var_dump() 一起用。』 
  
-### 15. Employing Alternative Control Structure Syntax
+### 16. Employing Alternative Control Structure Syntax
 
 For all the control structures we have looked at, there is an alternative form of syntax. It consists of replacing the opening brace ({) with a colon (:) and the closing brace with a new keyword, which will be endif, endswitch, endwhile, endfor, or endforeach, depending on which control structure is being used. No alternative syntax is available for do...while loops. For example, the code
 
@@ -941,7 +943,7 @@ if ($totalqty == 0) :
 endif;
 ```
  
-### 16. Using declare
+### 17. Using declare
 
 One other control structure in PHP, the declare structure, is not used as frequently in day-to-day coding as the other constructs. The general form of this control structure is as follows:
 
@@ -974,4 +976,446 @@ You can store data in two basic ways: in flat files or in a database. A flat fil
 
 Writing orders this way is very simple, but also limiting, as you’ll see later in this chapter. If you’re dealing with information of any reasonable volume, you’ll probably want to use a database instead. However, flat files have their uses, and in some situations you need to know how to use them.
  
- 
+### 02. Storing and Retrieving Bob’s Orders
+
+In this chapter, you use a slightly modified version of the order form you looked at in the preceding chapter. Begin with this form and the PHP code you wrote to process the order data. We’ve modified the form to include a quick way to obtain the customer’s shipping address. You can see this modified form in Figure 2.1.
+
+The form field for the shipping address is called address. This gives you a variable you can access as \$\_REQUEST['address'] or \$\_POST['address'] or \$\_GET['address'], depending on the form submission method. (See Chapter 1,「PHP Crash Course,」for details.) In this chapter, you write each order that comes in to the same file. Then you construct a web interface for Bob’s staff to view the orders that have been received.
+
+### 03. Processing Files
+
+Writing data to a file requires three steps: 1) Open the file. If the file doesn’t already exist, you need to create it. 2) Write the data to the file. 3) Close the file.
+
+Similarly, reading data from a file takes three steps: 1) Open the file. If you cannot open the file (for example, if it doesn’t exist), you need to recognize this and exit gracefully. 2) Read data from the file. 3) Close the file. When you want to read data from a file, you have many choices about how much of the file to read at a time. We’ll describe some common choices in detail. For now, we’ll start at the beginning by opening a file.
+
+### 04. Opening a File
+
+To open a file in PHP, you use the fopen() function. When you open the file, you need to specify how you intend to use it. This is known as the file mode.
+
+#### 4.1 Choosing File Modes
+
+The operating system on the server needs to know what you want to do with a file that you are opening. It needs to know whether the file can be opened by another script while you have it open and whether you (or the script owner) have permission to use it in the requested way. Essentially, file modes give the operating system a mechanism to determine how to handle access requests from other people or scripts and a method to check that you have access and permission to a particular file.
+
+You need to make three choices when opening a file: 1) You might want to open a file for reading only, for writing only, or for both reading and writing. 2) If writing to a file, you might want to overwrite any existing contents of a file or append new data to the end of the file. You also might like to terminate your program gracefully instead of overwriting a file if the file already exists. 3) If you are trying to write to a file on a system that differentiates between binary and text files, you might need to specify this fact. The fopen() function supports combinations of these three options.
+
+#### 4.2 Using fopen() to Open a File
+
+Assume that you want to write a customer order to Bob’s order file. You can open this file for writing with the following:
+
+```php
+$fp = fopen("$document_root/../orders/orders.txt", 'w');
+```
+
+When fopen() is called, it expects two, three, or four parameters. Usually, you use two, as shown in this code line.
+
+The first parameter should be the file you want to open. You can specify a path to this file, as in the preceding code; here, the orders.txt file is in the orders directory. We used the PHP built-in variable \$\_SERVER['DOCUMENT_ROOT'] but, as with the cumbersome full names for form variables, we assigned a shorter name.
+
+This variable points at the base of the document tree on your web server. This code line uses .. to mean「the parent directory of the document root directory.」This directory is outside the document tree, for security reasons. In this case, we do not want this file to be web acces-sible except through the interface that we provide. This path is called a relative path because it describes a position in the file system relative to the document root. As with the short names given form variables, you need the following line at the start of your script to copy the contents of the long-style variable to the short-style name.
+
+```php
+$document_root = $_SERVER['DOCUMENT_ROOT'];
+```
+
+You could also specify an absolute path to the file. This is the path from the root directory (/ on a Unix system and typically C:\ on a Windows system). On our Unix server, this path could be something like /data/orders. If no path is specified, the file will be created or looked for in the same directory as the script itself. The directory used will vary if you are running PHP through some kind of CGI wrapper and depends on your server configuration.
+
+In a Unix environment, you use forward slashes (/) in directory paths. If you are using a Windows platform, you can use forward (/) or backslashes (\). If you use backslashes, they must be escaped (marked as a special character) for fopen() to understand them properly. To escape a character, you simply add an additional backslash in front of it, as shown in the following:
+
+```php
+$fp = fopen("$document_root\\..\\orders\\orders.txt", 'w');
+```
+
+Very few people use backslashes in paths within PHP because it means the code will work only in Windows environments. If you use forward slashes, you can often move your code between Windows and Unix machines without alteration.
+
+The second fopen() parameter is the file mode, which should be a string. This string speci-fies what you want to do with the file. In this case, we are passing 'w' to fopen(); this means「open the file for writing.」A summary of file modes is shown in Table 2.1.
+
+The right file mode to choose depends on how the system will be used. We used 'w' in this example which allows only one order to be stored in the file. Each time a new order is taken, it overwrites the previous order. This usage is probably not very sensible, so you would be better off specifying append mode (and binary mode, as recommended):
+
+```php
+$fp = fopen("$document_root/../orders/orders.txt", 'ab');
+```
+
+The third parameter of fopen() is optional. You can use it if you want to search the include\_path (set in your PHP configuration; see Appendix A,「Installing Apache, PHP, and MySQL」) for a file. If you want to do this, set this parameter to true. If you tell PHP to search the include\_path, you do not need to provide a directory name or path:
+
+```php
+$fp = fopen('orders.txt', 'ab', true);
+```
+
+The fourth parameter is also optional. The fopen() function allows filenames to be prefixed with a protocol (such as http://) and opened at a remote location. Some protocols allow for an extra parameter. We look at this use of the fopen() function in the next section of this chapter.
+
+If fopen() opens the file successfully, a resource that is effectively a handle or pointer to the file is returned and should be stored in a variable—in this case, \$fp. You use this variable to access the file when you actually want to read from or write to it.
+
+#### 4.3 Opening Files Through FTP or HTTP
+
+In addition to opening local files for reading and writing, you can open files via FTP, HTTP, and other protocols using fopen(). You can disable this capability by turning off the allow\_url\_fopen directive in the php.ini file. If you have trouble opening remote files with fopen(), check your php.ini file.
+
+If the filename you use begins with ftp://, a passive mode FTP connection will be opened to the server you specify and a pointer to the start of the file will be returned. If the filename you use begins with http://, an HTTP connection will be opened to the server you specify and a pointer to the response will be returned. Remember that the domain names in your URL are not case sensitive, but the path and file-name might be.
+
+#### 4.4 Addressing Problems Opening Files
+
+An error you might make is trying to open a file you don’t have permission to read from or write to. (This error occurs commonly on Unix-like operating systems, but you may also see it occasionally under Windows.) When you do, PHP gives you a warning similar to the one shown in Figure 2.2.
+
+If you receive this error, you need to make sure that the user under which the script runs has permission to access the file you are trying to use. Depending on how your server is set up, the script might be running as the web server user or as the owner of the directory where the script is located.
+
+On most systems, the script runs as the web server user. If your script is on a Unix system in the ~/public_html/chapter02/ directory, for example, you could create a group-writable directory in which to store the order by typing the following:
+
+```
+mkdir path/to/orders
+chgrp apache path/to/orders
+chmod 775 path/to/orders
+```
+
+1『
+
+由于用的是 laravel 框架，第 2 步不需要，进入根目录 public 后：
+
+```
+mkdir orders
+chmod 775 orders
+```
+
+』
+
+You could also choose to change ownership of the file to the web server user. Some people will choose to make the file world-writable as a shortcut here, but bear in mind that directories and files that anybody can write to are dangerous. In particular, directories that are accessible directly from the Web should not be writable. For this reason, our orders directory is outside the document tree. We discuss security more in Chapter 15「Building a Secure Web Application.」
+
+Incorrect permission setting is probably the most common thing that can go wrong when opening a file, but it’s not the only thing. If you can’t open the file, you really need to know this so that you don’t try to read data from or write data to it.
+
+If the call to fopen() fails, the function will return false. It will also cause PHP to emit a warning\_level error (E\_WARNING). You can deal with the error in a more user-friendly way by suppressing PHP’s error message and giving your own:
+
+```php
+@$fp = fopen("$document_root/../orders/orders.txt", 'ab');
+if (!$fp){  
+    echo "<p><strong> Your order could not be processed at this time.  "       
+        .Please try again later.</strong></p></body></html>";  
+    exit;
+}
+```
+
+The @ symbol in front of the call to fopen() tells PHP to suppress any errors resulting from the function call. Usually, it’s a good idea to know when things go wrong, but in this case we’re going to deal with that problem elsewhere. You can also write this line as follows:
+
+```php
+$fp = @fopen("$document_root/../orders/orders.txt", 'a');
+```
+
+1『 @ 的用法，处理错误的时候用，可以「压制」任何函数调用时的错误。』
+
+Using this method tends to make it less obvious that you are using the error suppression operator, so it may make your code harder to debug.
+
+Note: In general, use of the error suppression operator is not considered good style, so consider it a shortcut for now. The method described here is a simplistic way of dealing with errors. We look at a more elegant method for error handling in Chapter 7「Error and Exception Handling.」But one thing at a time.
+
+The if statement tests the variable \$fp to see whether a valid file pointer was returned from the fopen() call; if not, it prints an error message and ends script execution.
+
+### 06. Closing a File
+
+After you’ve finished using a file, you need to close it. You should do this by using the fclose() function as follows:
+
+```php
+fclose($fp);
+```
+
+This function returns true if the file was successfully closed or false if it wasn’t. This process is much less likely to go wrong than opening a file in the first place, so in this case we’ve chosen not to test it. The complete listing for the final version of processorder.php is shown in Listing 2.2.
+
+### 07. Reading from a File
+
+Right now, Bob’s customers can leave their orders via the Web, but if Bob’s staff members want to look at the orders, they have to open the files themselves. Let’s create a web interface to let Bob’s staff read the files easily. The code for this interface is shown in Listing 2.3.
+
+```php
+<?php
+    // create short variable name
+    $document_root = $_SERVER['DOCUMENT_ROOT'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dalong's Auto Parts</h1>
+    <h2>Customer Orders</h2>
+    <?php
+        @$fp = fopen('$document_root/../orders/orders.txt', 'rb');
+        flock($fp, LOCK_SH);    // lock file for reading
+        if (!$fp) {
+            echo '<p><strong>No orders pending.<br />please try again later.
+                    </strong></p>';
+            exit;
+        }
+        while (!feof($fp)) {
+            $order = fgets($fp);
+            echo htmlspecialchars($order).'<br />>';
+        }
+        flock($fp, LOCK_UN);    // release read lock
+        fclose($fp);
+    ?>
+</body>
+</html>
+```
+
+This script follows the sequence we described earlier: open the file, read from the file, close the file. The output from this script using the data file from Listing 2.1 is shown in Figure 2.4.
+
+#### 7.1 Opening a File for Reading: fopen()
+
+Again, you open the file by using fopen(). In this case, you open the file for reading only, so you use the file mode 'rb':
+
+```php
+$fp = fopen("$document_root/../orders/orders.txt", 'rb');
+```
+
+#### 7.2 Knowing When to Stop: feof()
+
+In this example, you use a while loop to read from the file until the end of the file is reached. The while loop tests for the end of the file using the feof() function:
+
+```php
+while (!feof($fp))
+```
+
+The feof() function takes a file handle as its single parameter. It returns true if the file pointer is at the end of the file. Although the name might seem strange, you can remember it easily if you know that feof stands for File End Of File. In this case (and generally when reading from a file), you read from the file until EOF is reached.
+
+#### 7.3 Reading a Line at a Time: fgets(), fgetss(), and fgetcsv()
+
+1『看到 fgetcsv() 就知道找到自己想要的知识点了，哈哈。（2020-04-21）』
+
+In this example, you use the fgets() function to read from the file:
+
+```php
+$order= fgets($fp);
+```
+
+This function reads one line at a time from a file. In this case, it reads until it encounters a newline character (\n) or EOF. You can use many different functions to read from files. The fgets() function, for example, is useful when you’re dealing with files that contain plain text that you want to deal with in chunks.
+
+An interesting variation on fgets() is fgetss(), which has the following prototype:
+
+```php
+string fgetss(resource fp[, int length[, string allowable_tags]]);
+```
+
+This function is similar to fgets() except that it strips out any PHP and HTML tags found in the string. If you want to leave in any particular tags, you can include them in the  allowable\_tags string. You would use fgetss() for safety when reading a file written by somebody else or one containing user input. Allowing unrestricted HTML code in the file could mess up your carefully planned formatting. Allowing unrestricted PHP or JavaScript could give a malicious user an opportunity to create a security problem.
+
+The function fgetcsv() is another variation on fgets(). It has the following prototype:
+
+```php
+array fgetcsv ( resource fp, int length [, string delimiter              
+                        [, string enclosure              
+                        [, string escape]]])
+```
+
+This function breaks up lines of files when you have used a delimiting character, such as the tab character (as we suggested earlier) or a comma (as commonly used by spreadsheets and other applications). If you want to reconstruct the variables from the order separately rather than as a line of text, fgetcsv() allows you to do this simply. You call it in much the same way as you would call fgets(), but you pass it the delimiter you used to separate fields. For example,
+
+```php
+$order = fgetcsv($fp, 0, "\t");
+```
+
+1『参数 0 表示不限制长度。』
+
+This code would retrieve a line from the file and break it up wherever a tab (\t) was encountered. The results are returned in an array (\$order in this code example). We cover arrays in more detail in Chapter 3. The length parameter should be greater than the length in characters of the longest line in the file you are trying to read, or 0 if you do not want to limit the line length. The enclosure parameter specifies what each field in a line is surrounded by. If not specified, it defaults to " (a double quotation mark).
+
+#### 7.4 Reading the Whole File: readfile(), fpassthru(), file(), and file\_get\_contents()
+
+Instead of reading from a file a line at a time, you can read the whole file in one go. Here are four different ways you can do this.
+
+The first uses readfile(). You can replace almost the entire script you wrote previously with one line:
+
+```
+readfile("$document_root/../orders/orders.txt");
+```
+
+A call to the readfile() function opens the file, echoes the content to standard output (the browser), and then closes the file. The prototype for readfile() is:
+
+```
+int readfile(string filename, [bool use_include_path[, resource context]] );
+```
+
+The optional second parameter specifies whether PHP should look for the file in the include\_path and operates the same way as in fopen(). The optional context parameter is used only when files are opened remotely via, for example, HTTP; we cover such usage in more detail in Chapter 18. The function returns the total number of bytes read from the file.
+
+1『通过网络协议 HTTP 打开文件，涉及到一个可选参数，去第 18 章看相关信息。』
+
+Second, you can use fpassthru(). To do so, you need to open the file using fopen() first. You can then pass the file pointer as an argument to fpassthru(), which dumps the contents of the file from the pointer’s position onward to standard output. It closes the file when it is finished. You can use fpassthru() as follows:
+
+```
+$fp = fopen("$document_root/../orders/orders.txt", 'rb');
+fpassthru($fp);
+```
+
+The function fpassthru() returns true if the read is successful and false otherwise.
+
+The third option for reading the whole file is using the file() function. This function is  identical to readfile() except that instead of echoing the file to standard output, it turns it into an array. We cover this function in more detail when we look at arrays in Chapter 3. Just for reference, you would call it using：
+
+```php
+$filearray = file("$document_root/../orders/orders.txt");
+```
+
+This line reads the entire file into the array called \$filearray. Each line of the file is stored in a separate element of the array. Note that this function was not binary safe in older versions of PHP.
+
+The fourth option is to use the file\_get\_contents() function. This function is identical to readfile() except that it returns the content of the file as a string instead of outputting it to the browser. 
+
+#### 7.5 Reading a Character: fgetc()
+
+Another option for file processing is to read a single character at a time from a file. You can do this by using the fgetc() function. It takes a file pointer as its only parameter and returns the next character in the file. You can replace the while loop in the original script with one that uses fgetc(), as follows:
+
+```php
+while (!feof($fp)){  
+    $char = fgetc($fp);  
+    if (!feof($fp))    
+        echo ($char=="\n" ? "<br />": $char);  }
+}
+```
+
+This code reads a single character at a time from the file using fgetc() and stores it in \$char, until the end of the file is reached. It then does a little processing to replace the text end-of-line characters (\n) with HTML line breaks (\<br />). 
+
+This is just to clean up the formatting. If you try to output the file with newlines between records, the whole file will be printed on a single line. (Try it and see.) Web browsers do not render whitespace, such as newlines, so you need to replace them with HTML linebreaks (\<br />) instead. You can use the ternary operator to do this neatly.
+
+A minor side effect of using fgetc() instead of fgets() is that fgetc() returns the EOF  character, whereas fgets() does not. You need to test feof() again after you’ve read the  character because you don’t want to echo the EOF to the browser. Reading a file character by character is not generally sensible or efficient unless for some reason you actually want to process it character by character.
+
+#### 7.6 Reading an Arbitrary Length: fread()
+
+The final way you can read from a file is to use the fread() function to read an arbitrary number of bytes from the file. This function has the following prototype:
+
+```php
+string fread(resource fp, int length);
+```
+
+It reads up to length bytes, to the end of the file or network packet, whichever comes first.
+
+### 08. Using Other File Functions
+
+Numerous other file functions are useful from time to time. Some that we have found handy are described next.
+
+#### 8.1 Checking Whether a File Is There: file_exists()
+
+If you want to check whether a file exists without actually opening it, you can use file_exists(), as follows:
+
+```php
+if (file_exists("$document_root/../orders/orders.txt")) {     
+    echo 'There are orders waiting to be processed.';
+} else {     
+    echo 'There are currently no orders.';
+}
+```
+
+#### 8.2 Determining How Big a File Is: filesize()
+
+You can check the size of a file by using the filesize() function:
+
+```php
+echo filesize("$document_root/../orders/orders.txt");
+```
+
+It returns the size of a file in bytes and can be used in conjunction with fread() to read a whole file (or some fraction of the file) at a time. You can even replace the entire original script with the following:
+
+```
+$fp = fopen("$document_root/../orders/orders.txt", 'rb');
+echo nl2br(fread( $fp, filesize("$document_root/../orders/orders.txt")));
+fclose( $fp ); 
+```
+
+The nl2br() function converts the \n characters in the output to HTML line breaks (\<br />).
+
+#### 8.3 Deleting a File: unlink()
+
+If you want to delete the order file after the orders have been processed, you can do so by using unlink(). (There is no function called delete.) For example,
+
+```php
+unlink("$document_root/../orders/orders.txt");
+```
+
+This function returns false if the file could not be deleted. This situation typically occurs if the permissions on the file are insufficient or if the file does not exist.
+
+#### 8.4 Navigating Inside a File: rewind(), fseek(), and ftell()
+
+You can manipulate and discover the position of the file pointer inside a file by using rewind(), fseek(), and ftell(). The rewind() function resets the file pointer to the beginning of the file. The ftell()  function reports how far into the file the pointer is in bytes. For example, you can add the following lines to the bottom of the original script (before the fclose() command):
+
+```php
+echo 'Final position of the file pointer is '.(ftell($fp));
+echo '<br />';rewind($fp);
+echo 'After rewind, the position is '.(ftell($fp));
+echo '<br />';
+```
+
+Figure 2.5  After reading the orders, the file pointer points to the end of the file, an offset of 198 bytes. The call to rewind sets it back to position 0, the start of the file
+
+You can use the function fseek() to set the file pointer to some point within the file. Its prototype is
+
+```php
+int fseek ( resource fp, int offset [, int whence])
+```
+
+A call to fseek() sets the file pointer fp at a point starting from whence and moving offset bytes into the file. The optional whence parameter defaults to the value SEEK\_SET, which is effectively the start of the file. The other possible values are SEEK\_CUR (the current location of the file pointer) and SEEK\_END (the end of the file).
+
+The rewind() function is equivalent to calling the fseek() function with an offset of zero. For example, you can use fseek() to find the middle record in a file or to perform a binary search. If you reach the level of complexity in a data file where you need to do these kinds of things, your life will be much easier if you use a built-for-purpose database.
+
+Locking FilesImagine a situation in which two customers are trying to order a product at the same time. (This situation is not uncommon, especially when your website starts to get any kind of traffic volume.) What if one customer calls fopen() and begins writing, and then the other customer calls fopen() and also begins writing? What will be the final contents of the file? Will it be the first order followed by the second order, or vice versa? Will it be one order or the other?  Or will it be something less useful, such as the two orders interleaved somehow? The answer depends on your operating system but is often impossible to know.
+
+To avoid problems like this, you can use file locking. You use this feature in PHP by using the flock() function. This function should be called after a file has been opened but before any data is read from or written to the file. The prototype for flock() is:
+
+```php
+bool flock (resource fp, int operation [, int &wouldblock])
+```
+
+You need to pass it a pointer to an open file and a constant representing the kind of lock you require. It returns true if the lock was successfully acquired and false if it was not. The optional third parameter will contain the value true if acquiring the lock would cause the current process to block (that is, have to wait). The possible values for operation are shown in Table 2.2. 1) LOCK_SH, Reading lock. The file can be shared with other readers. 2) LOCK_EX, Writing lock. This operation is exclusive; the file cannot be shared. 3) LOCK_UN, The existing lock is released. 4) LOCK_NB, Blocking is prevented while you are trying to acquire a lock. (Not  supported on Windows.)
+
+If you are going to use flock(), you need to add it to all the scripts that use the file; otherwise, it is worthless.
+
+Note that flock() does not work with NFS or other networked file systems. It also does not work with antique file systems that do not support locking, such as FAT. On some operating systems, it is implemented at the process level and does not work correctly if you are using a multithreaded server API. 
+
+To use it with the order example, you can alter processorder.php as follows:
+
+```php
+@ $fp = fopen("$document_root/../orders/orders.txt", 'ab');
+
+flock($fp, LOCK_EX);
+
+if (!$fp) {      
+    echo "<p><strong> Your order could not be processed at this time.            
+                                    Please try again later.</strong></p></body></html>";      
+    exit;   
+}
+
+fwrite($fp, $outputstring, strlen($outputstring));
+flock($fp, LOCK_UN);    
+fclose($fp);
+```
+
+You should also add locks to vieworders.php:
+
+```php
+@$fp = fopen("$document_root/../orders/orders.txt", 'rb');   
+flock($fp, LOCK_SH); // lock file for reading   // read from file   
+flock($fp, LOCK_UN); // release read lock   
+fclose($fp);
+```
+
+The code is now more robust but still not perfect. What if two scripts tried to acquire a lock at the same time? This would result in a race condition, in which the processes compete for locks but it is uncertain which will succeed. Such a condition could cause more problems. You can do better by using a database.
+
+1『数据库能满足多人同时读写的需求。』
+
+### 09. A Better Way: Databases
+
+So far, all the examples we have looked at use flat files. In Part II of this book, we look at how to use MySQL, a relational database management system (RDBMS), instead. You might ask,「Why would I bother?」
+
+#### 9.1 Problems with Using Flat Files
+
+There are a number of problems in working with flat files: 
+
+1. When a file grows large, working with it can be very slow. 
+
+2. Searching for a particular record or group of records in a flat file is difficult. If the records are in order, you can use some kind of binary search in conjunction with a fixed-width record to search on a key field. If you want to find patterns of information (for example, you want to find all the customers who live in Sometown), you would have to read in each record and check it individually.
+
+3. Dealing with concurrent access can become problematic. You have seen how to lock files, but locking can cause the race condition we discussed earlier. It can also cause a bottleneck. With enough traffic on a site, a large group of users may be waiting for the file to be unlocked before they can place their order. If the wait is too long, people will go elsewhere to buy.
+
+4. All the file processing you have seen so far deals with a file using sequential processing; that is, you start from the beginning of the file and read through to the end. Inserting records into or deleting records from the middle of the file (random access) can be difficult because you end up reading the whole file into memory, making the changes, and writing the whole file out again. With a large data file, having to go through all these steps becomes a significant overhead.
+
+5. Beyond the limits offered by file permissions, there is no easy way of enforcing different levels of access to data.
+
+#### 9.2 How RDBMSs Solve These Problems
+
+Relational database management systems address all these issues: 1) RDBMSs can provide much faster access to data than flat files. And MySQL, the database system we use in this book, has some of the fastest benchmarks of any RDBMS. 2) RDBMSs can be easily queried to extract sets of data that fit certain criteria. 3) RDBMSs have built-in mechanisms for dealing with concurrent access so that you, as a programmer, don’t have to worry about it. 4) RDBMSs provide random access to your data. 5) RDBMSs have built-in privilege systems. MySQL has particular strengths in this area.
+
+Probably the main reason for using an RDBMS is that all (or at least most) of the functionality that you want in a data storage system has already been implemented. Sure, you could write your own library of PHP functions, but why reinvent the wheel? In Part II of this book,「Using MySQL,」we discuss how relational databases work generally, and specifically how you can set up and use MySQL to create database-backed websites.
+
+If you are building a simple system and don’t feel you need a full-featured database but want to avoid the locking and other issues associated with using a flat file, you may want to consider using PHP’s SQLite extension. This extension provides essentially an SQL interface to a flat file. In this book, we focus on using MySQL, but if you would like more information about SQLite, you can find it at http://sqlite.org/ and http://www.php.net/sqlite.
+
+### 10. Further Reading
+
+For more information on interacting with the file system, you can go straight to Chapter 17,「Interacting with the File System and the Server.」In that part of the book, we talk about how to change permissions, ownership, and names of files; how to work with directories; and how to interact with the file system environment. You may also want to read through the file system section of the PHP online manual at http://www.php.net/filesystem.

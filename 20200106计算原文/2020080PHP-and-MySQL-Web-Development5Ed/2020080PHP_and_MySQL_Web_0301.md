@@ -6,35 +6,25 @@ PHP supports arrays with both numerical and string indexes. You are probably fam
 
 In this chapter, you continue developing the Bob’s Auto Parts example using arrays to work more easily with repetitive information such as customer orders. Likewise, you write shorter, tidier code to do some of the things you did with files in the preceding chapter.
 
-Key topics covered in this chapter include
+Key topics covered in this chapter include:
 
- ■ Numerically indexed arrays
+■ Numerically indexed arrays.
 
- ■ Non-numerically indexed arrays
+■ Non-numerically indexed arrays.
 
- ■ Array operators
+■ Array operators.
 
- ■ Multidimensional arrays
+■ Multidimensional arrays.
 
- ■ Array sorting
+■ Array sorting.
 
- ■ Array functions
+■ Array functions.
 
-What Is an Array?You learned about scalar variables in Chapter 1,「PHP Crash Course.」A scalar variable is a named location in which to store a value; similarly, an array is a named place to store a set of values, thereby allowing you to group variables.
+## 01. What Is an Array?
 
-76
+You learned about scalar variables in Chapter 1,「PHP Crash Course.」A scalar variable is a named location in which to store a value; similarly, an array is a named place to store a set of values, thereby allowing you to group variables.
 
-Chapter 3  Using Arrays
-
-Bob’s product list is the array for the example used in this chapter. In Figure 3.1, you can see a list of three products stored in an array format. These three products are stored in a single variable called $products. (We describe how to create a variable like this shortly.)
-
-Tires
-
-Oil
-
-Spark Plugs
-
-product
+Bob’s product list is the array for the example used in this chapter. In Figure 3.1, you can see a list of three products stored in an array format. These three products are stored in a single variable called \$products. (We describe how to create a variable like this shortly.)
 
 Figure 3.1  Bob’s products can be stored in an array
 
@@ -53,10 +43,6 @@ Initializing Numerically Indexed ArraysTo create the array shown in Figure 3.1, 
 $products = array( 'Tires', 'Oil', 'Spark Plugs' );
 
 This code creates an array called $products containing the three values given: 'Tires', 'Oil', and 'Spark Plugs'. Note that, like echo, array() is actually a language construct rather than a function.
-
-Numerically Indexed Arrays
-
-77
 
 Since PHP 5.4, you can use a new shorthand syntax for creating arrays. This uses the [ and ] characters in place of the array() operator. For example, to create the array shown in Figure 3.1 with the shorthand syntax, you would use the following line of code:
 
@@ -85,10 +71,6 @@ You can also use various functions to extract part of an array or to reorder an 
 Accessing Array ContentsTo access the contents of a variable, you use its name. If the variable is an array, you access the contents using both the variable name and a key or index. The key or index indicates which of the values in the array you access. The index is placed in square brackets after the name. In other words, you can use $products[0], $products[1], and $products[2] to access each of the contents of the $products array.
 
 You may also use the { } characters to access array elements instead of the [ ] characters if you prefer. For example, you could use $products{0} to access the first element of the products array.
-
-78
-
-Chapter 3  Using Arrays
 
 By default, element zero is the first element in the array. The same numbering scheme is used in C, C++, Java, and a number of other languages, but it might take some getting used to if you are not familiar with it.
 
@@ -120,10 +102,6 @@ for ($i = 0; $i<3; $i++) {  echo $products[$i]." ";}
 
 This loop provides similar output to the preceding code but requires less typing than  manually writing code to work with each element in a large array. The ability to use a simple loop to access each element is a nice feature of arrays. You can also use the foreach loop, specially designed for use with arrays. In this example, you could use it as follows:
 
-Arrays with Different Indices
-
-79
-
 foreach ($products as $current) {  echo $current." ";}
 
 This code stores each element in turn in the variable $current and prints it out.
@@ -148,10 +126,6 @@ $prices['Tires'] = 100;$prices['Oil'] = 10;$prices['Spark Plugs'] = 4;
 
 Using LoopsBecause the indices in an array are not numbers, you cannot use a simple counter in a for loop to work with the array. However, you can use the foreach loop or the list() and each() constructs.
 
-80
-
-Chapter 3  Using Arrays
-
 The foreach loop has a slightly different structure when using non-numerically indexed arrays. You can use it exactly as you did in the previous example, or you can incorporate the keys as well:
 
 foreach ($prices as $key => $value) {  echo $key." – ".$value."<br />";}
@@ -168,10 +142,6 @@ In Chapter 1, we looked at while loops and the echo statement. The preceding cod
 
 In this code, the variable $element is an array. When you call each(), it gives you an array with four values and the four indices to the array locations. The locations key and 0 contain the key of the current element, and the locations value and 1 contain the value of the current element. Although the one you choose makes no difference, we chose to use the named  locations rather than the numbered ones.
 
-Array Operators
-
-81
-
 There is a more elegant and common way of doing the same thing. The construct list() can be used to split an array into a number of values. You can separate each set of  values that the each() function gives you like this:
 
 while (list($product, $price) = each($prices)) {  echo $product." – ".$price."<br />";}
@@ -187,34 +157,6 @@ This code sets the current element back to the start of the array and allows you
 Array OperatorsOne set of special operators applies only to arrays. Most of them have an analogue in the scalar operators, as you can see by looking at Table 3.1.
 
 Table 3.1  PHP’s Array Operators
-
-Operator
-
-+
-
-==
-
-===
-
-!=
-
-<>
-
-!==
-
-Name
-
-Union
-
-Equality
-
-Identity
-
-Example 
-
-$a + $b
-
-Result
 
 Union of $a and $b. The array $b is appended to $a, but any key clashes are not added.
 
@@ -244,10 +186,6 @@ $a !== $b
 
 True if $a and $b do not contain the same  elements, with the same types, in the same order.
 
-82
-
-Chapter 3  Using Arrays
-
 These operators are mostly fairly self-evident, but union requires some further explanation. The union operator tries to add the elements of $b to the end of $a. If elements in $b have the same keys as some elements already in $a, they will not be added. That is, no elements of $a will be overwritten.
 
 You will notice that the array operators in Table 3.1 all have equivalent operators that work on scalar variables. As long as you remember that + performs addition on scalar types and union on arrays—even if you have no interest in the set arithmetic behind that behavior—the  behaviors should make sense. You cannot usefully compare arrays to scalar types.
@@ -255,32 +193,6 @@ You will notice that the array operators in Table 3.1 all have equivalent operat
 Multidimensional ArraysArrays do not have to be a simple list of keys and values; each location in the array can hold another array. This way, you can create a two-dimensional array. You can think of a two-dimensional array as a matrix, or grid, with width and height or rows and columns.
 
 If you want to store more than one piece of data about each of Bob’s products, you could use a two-dimensional array. Figure 3.3 shows Bob’s products represented as a two-dimensional array with each row representing an individual product and each column representing a stored product attribute.
-
-Code
-
-Description
-
-Price
-
-product
-
-TIR
-
-OIL
-
-Tires
-
-Oil
-
-SPK
-
-Spark Plugs
-
-100
-
-10
-
-4
 
 product attribute
 
@@ -293,10 +205,6 @@ $products = array( array('TIR', 'Tires', 100 ),                   array('OIL', '
 You can see from this definition that the $products array now contains three arrays.
 
 To access the data in a one-dimensional array, recall that you need the name of the array and the index of the element. A two-dimensional array is similar, except that each element has two indices: a row and a column. (The top row is row 0, and the far-left column is column 0.)
-
-Multidimensional Arrays
-
-83
 
 To display the contents of this array, you could manually access each element in order like this:
 
@@ -322,10 +230,6 @@ You do, however, lose the ability to use a simple for loop to step through each 
 
 for ($row = 0; $row < 3; $row++){  echo '|'.$products[$row]['Code'].'|'.$products[$row]['Description'].
 
-84
-
-Chapter 3  Using Arrays
-
        '|'.$products[$row]['Price'].'|<br />';}
 
 Using a for loop, you can step through the outer, numerically indexed $products array. Each row in the $products array is an array with descriptive indices. Using the each() and list() functions in a while loop, you can step through these inner arrays. Therefore, you can use a while loop inside a for loop:
@@ -337,56 +241,6 @@ You do not need to stop at two dimensions. In the same way that array elements c
 A three-dimensional array has height, width, and depth. If you are comfortable thinking of a two-dimensional array as a table with rows and columns, imagine a pile or deck of those tables. Each element is referenced by its layer, row, and column.
 
 If Bob divided his products into categories, you could use a three-dimensional array to store them. Figure 3.4 shows Bob’s products in a three-dimensional array.
-
-yrogatect c
-
-udorp
-
-Truck Parts
-
-Code
-
-Description
-
-Price
-
-Van Parts
-
-Code
-
-Description
-
-Price
-
-Car Parts
-
-Code
-
-Description
-
-Price
-
-CAR_TIR
-
-Tires
-
-CAR_OIL
-
-Oil
-
-tcudorp
-
-CAR_SPK
-
-Spark Plugs
-
-100
-
-10
-
-4
-
-product attribute
 
 Figure 3.4  This three-dimensional array allows you to divide products into categories
 
@@ -850,5 +704,6 @@ Note that for extract() to extract an element, that element’s key must be a va
 
 Further ReadingThis chapter covers what we believe to be the most useful of PHP’s array functions. We have chosen not to cover all the possible array functions, as there are a huge variety of them. The online PHP manual available at http://www.php.net/array provides a brief description for each.
 
-NextIn the next chapter, you will learn about string processing functions. We cover functions that search, replace, split, and merge strings, as well as the powerful regular expression functions that can perform almost any action on a string.
+## Next
 
+In the next chapter, you will learn about string processing functions. We cover functions that search, replace, split, and merge strings, as well as the powerful regular expression functions that can perform almost any action on a string.

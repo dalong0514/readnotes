@@ -54,13 +54,13 @@ When you want to read data from a file, you have many choices about how much of 
 
 To open a file in PHP, you use the fopen() function. When you open the file, you need to specify how you intend to use it. This is known as the file mode.
 
-### 1. Choosing File Modes
+### 4.1 Choosing File Modes
 
 The operating system on the server needs to know what you want to do with a file that you are opening. It needs to know whether the file can be opened by another script while you have it open and whether you (or the script owner) have permission to use it in the requested way. Essentially, file modes give the operating system a mechanism to determine how to handle access requests from other people or scripts and a method to check that you have access and permission to a particular file.
 
 You need to make three choices when opening a file: 1) You might want to open a file for reading only, for writing only, or for both reading and writing. 2) If writing to a file, you might want to overwrite any existing contents of a file or append new data to the end of the file. You also might like to terminate your program gracefully instead of overwriting a file if the file already exists. 3) If you are trying to write to a file on a system that differentiates between binary and text files, you might need to specify this fact. The fopen() function supports combinations of these three options.
 
-### 2. Using fopen() to Open a File
+### 4.2 Using fopen() to Open a File
 
 Assume that you want to write a customer order to Bob’s order file. You can open this file for writing with the following:
 
@@ -130,13 +130,13 @@ The fourth parameter is also optional. The fopen() function allows filenames to 
 
 If fopen() opens the file successfully, a resource that is effectively a handle or pointer to the file is returned and should be stored in a variable—in this case, \$fp. You use this variable to access the file when you actually want to read from or write to it.
 
-### 3. Opening Files Through FTP or HTTP
+### 4.3 Opening Files Through FTP or HTTP
 
 In addition to opening local files for reading and writing, you can open files via FTP, HTTP, and other protocols using fopen(). You can disable this capability by turning off the allow\_url\_fopen directive in the php.ini file. If you have trouble opening remote files with fopen(), check your php.ini file.
 
 If the filename you use begins with ftp://, a passive mode FTP connection will be opened to the server you specify and a pointer to the start of the file will be returned. If the filename you use begins with http://, an HTTP connection will be opened to the server you specify and a pointer to the response will be returned. Remember that the domain names in your URL are not case sensitive, but the path and file-name might be.
 
-### 4. Addressing Problems Opening Files
+### 4.4 Addressing Problems Opening Files
 
 An error you might make is trying to open a file you don’t have permission to read from or write to. (This error occurs commonly on Unix-like operating systems, but you may also see it occasionally under Windows.) When you do, PHP gives you a warning similar to the one shown in Figure 2.2.
 
@@ -196,7 +196,7 @@ The output when using this approach is shown in Figure 2.3.
 
 Figure 2.3  Using your own error messages instead of PHP’s is more user friendly
 
-### 5. Writing to a File
+## 05. Writing to a File
 
 Writing to a file in PHP is relatively simple. You can use either of the functions fwrite() (file write) or fputs() (file put string); fputs() is an alias to fwrite(). You call fwrite() in the following way:
 
@@ -217,101 +217,179 @@ int file_put_contents (
 )
 ```
 
-This function writes the string contained in data to the file named in filename without any need for an fopen() (or fclose()) function call. This function is the half of a matched pair, the other half being file_get_contents(), which we discuss shortly. You most commonly use the flags and context optional parameters when writing to remote files using, for example, HTTP or FTP. (We discuss these functions in Chapter 18,「Using Network and Protocol Functions.」)
+This function writes the string contained in data to the file named in filename without any need for an fopen() (or fclose()) function call. This function is the half of a matched pair, the other half being file\_get\_contents(), which we discuss shortly. You most commonly use the flags and context optional parameters when writing to remote files using, for example, HTTP or FTP. (We discuss these functions in Chapter 18「Using Network and Protocol Functions.」)
 
-Parameters for fwrite()The function fwrite() actually takes three parameters, but the third one is optional. The prototype for fwrite() is
+### 5.1 Parameters for fwrite()
 
+The function fwrite() actually takes three parameters, but the third one is optional. The prototype for fwrite() is:
+
+```php
 int fwrite ( resource handle, string [, int length])
+```
 
-The third parameter, length, is the maximum number of bytes to write. If this parameter is supplied, fwrite() will write string to the file pointed to by handle until it reaches the end of string or has written length bytes, whichever comes first.
+The third parameter, length, is the maximum number of bytes to write. If this parameter is supplied, fwrite() will write string to the file pointed to by handle until it reaches the end of string or has written length bytes, whichever comes first. You can obtain the string length by using PHP’s built-in strlen() function, as follows:
 
-You can obtain the string length by using PHP’s built-in strlen() function, as follows:
-
+```php
 fwrite($fp, $outputstring, strlen($outputstring));
+```
 
 You may want to use this third parameter when writing in binary mode because it helps avoid some cross-platform compatibility issues.
 
-File FormatsWhen you are creating a data file like the one in the example, the format in which you store the data is completely up to you. (However, if you are planning to use the data file in another application, you may have to follow that application’s rules.)
+### 5.2 File Formats
 
-Now construct a string that represents one record in the data file. You can do this as follows:
+When you are creating a data file like the one in the example, the format in which you store the data is completely up to you. (However, if you are planning to use the data file in another application, you may have to follow that application’s rules.) Now construct a string that represents one record in the data file. You can do this as follows:
 
-$outputstring = $date.'\t'.$tireqty.' tires \t'.$oilqty.' oil\t'                  .$sparkqty.' spark plugs\t\$'.$totalamount                  .'\t'. $address.'\n';
+```php
+$outputstring = $date.'\t'.$tireqty.' tires \t'.$oilqty.' oil\t'                  
+                            .$sparkqty.' spark plugs\t\$'.$totalamount                  
+                            .'\t'. $address.'\n';
+```
 
 In this simple example, you store each order record on a separate line in the file. Writing one record per line gives you a simple record separator in the newline character. Because newlines are invisible, you can represent them with the control sequence "\n".
 
 Throughout the book, we write the data fields in the same order every time and separate fields with a tab character. Again, because a tab character is invisible, it is represented by the control sequence "\t". You may choose any sensible delimiter that is easy to read back.
 
-The separator or delimiter character should be something that will certainly not occur in the input, or you should process the input to remove or escape out any instances of the delimiter. For now, if you look at the full code listing, you’ll see that we have used a regular expression function (preg_replace()) to strip out potentially problematic characters. We will explain this fully when we look at processing input in Chapter 4,「String Manipulation and Regular Expressions.」
+The separator or delimiter character should be something that will certainly not occur in the input, or you should process the input to remove or escape out any instances of the delimiter. For now, if you look at the full code listing, you’ll see that we have used a regular expression function (preg\_replace()) to strip out potentially problematic characters. We will explain this fully when we look at processing input in Chapter 4「String Manipulation and Regular Expressions.」
 
-Using a special field separator allows you to split the data back into separate variables more easily when you read the data back. We cover this topic in Chapter 3,「Using Arrays,」and Chapter 4. Here, we treat each order as a single string.
+Using a special field separator allows you to split the data back into separate variables more easily when you read the data back. We cover this topic in Chapter 3「Using Arrays,」and Chapter 4. Here, we treat each order as a single string. After a few orders are processed, the contents of the file look something like the example shown in Listing 2.1.
 
-After a few orders are processed, the contents of the file look something like the example shown in Listing 2.1.
+## 06. Closing a File
 
-Closing a File
+After you’ve finished using a file, you need to close it. You should do this by using the fclose() function as follows:
 
-63
-
-Listing 2.1  orders.txt—Example of What the Orders File Might Contain18:55, 16th April 2013  4 tires  1 oil  6 spark plugs  $477.4 22 Short St, Smalltown18:56, 16th April 2013  1 tires  0 oil  0 spark plugs  $110   33 Main Rd, Oldtown18:57, 16th April 2013  0 tires  1 oil  4 spark plugs  $28.6  127 Acacia St, Springfield
-
-Closing a FileAfter you’ve finished using a file, you need to close it. You should do this by using the fclose() function as follows:
-
+```php
 fclose($fp);
+```
 
 This function returns true if the file was successfully closed or false if it wasn’t. This process is much less likely to go wrong than opening a file in the first place, so in this case we’ve chosen not to test it.
 
 The complete listing for the final version of processorder.php is shown in Listing 2.2.
 
-Listing 2.2  processorder.php—Final Version of the Order Processing Script<?php  // create short variable names  $tireqty = (int) $_POST['tireqty'];  $oilqty = (int) $_POST['oilqty'];  $sparkqty = (int) $_POST['sparkqty'];  $address = preg_replace('/\t|\R/',' ',$_POST['address']);  $document_root = $_SERVER['DOCUMENT_ROOT'];  $date = date('H:i, jS F Y');?><!DOCTYPE html><html>  <head>    <title>Bob's Auto Parts - Order Results</title>  </head>  <body>    <h1>Bob's Auto Parts</h1>    <h2>Order Results</h2>     <?php      echo "<p>Order processed at ".date('H:i, jS F Y')."</p>";      echo "<p>Your order is as follows: </p>";       $totalqty = 0;      $totalamount = 0.00;       define('TIREPRICE', 100);
+Listing 2.2  processorder.php—Final Version of the Order Processing Script
 
-64
+```php
+<?php
+  // create short variable names
+  $tireqty = (int) $_POST['tireqty'];
+  $oilqty = (int) $_POST['oilqty'];
+  $sparkqty = (int) $_POST['sparkqty'];
+  $address = preg_replace('/\t|\R/',' ',$_POST['address']);
+  $document_root = $_SERVER['DOCUMENT_ROOT'];
+  $date = date('H:i, jS F Y');
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bob's Auto Parts - Order Results</title>
+  </head>
+  <body>
+    <h1>Bob's Auto Parts</h1>
+    <h2>Order Results</h2> 
+    <?php
+      echo "<p>Order processed at ".date('H:i, jS F Y')."</p>";
+      echo "<p>Your order is as follows: </p>";
 
-Chapter 2  Storing and Retrieving Data
+      $totalqty = 0;
+      $totalamount = 0.00;
 
-      define('OILPRICE', 10);      define('SPARKPRICE', 4);
+      define('TIREPRICE', 100);
+      define('OILPRICE', 10);
+      define('SPARKPRICE', 4);
 
-      $totalqty = $tireqty + $oilqty + $sparkqty;      echo "<p>Items ordered: ".$totalqty."<br />";
+      $totalqty = $tireqty + $oilqty + $sparkqty;
+      echo "<p>Items ordered: ".$totalqty."<br />";
 
-      if ($totalqty == 0) {        echo "You did not order anything on the previous page!<br />";      } else {        if ($tireqty > 0) {          echo htmlspecialchars($tireqty).' tires<br />';        }        if ($oilqty > 0) {          echo htmlspecialchars($oilqty).' bottles of oil<br />';        }        if ($sparkqty > 0) {          echo htmlspecialchars($sparkqty).' spark plugs<br />';        }      }
+      if ($totalqty == 0) {
+        echo "You did not order anything on the previous page!<br />";
+      } else {
+        if ($tireqty > 0) {
+          echo htmlspecialchars($tireqty).' tires<br />';
+        }
+        if ($oilqty > 0) {
+          echo htmlspecialchars($oilqty).' bottles of oil<br />';
+        }
+        if ($sparkqty > 0) {
+          echo htmlspecialchars($sparkqty).' spark plugs<br />';
+        }
+      }
 
-      $totalamount = $tireqty * TIREPRICE                   + $oilqty * OILPRICE                   + $sparkqty * SPARKPRICE;
+
+      $totalamount = $tireqty * TIREPRICE
+                   + $oilqty * OILPRICE
+                   + $sparkqty * SPARKPRICE;
 
       echo "Subtotal: $".number_format($totalamount,2)."<br />";
 
-      $taxrate = 0.10;  // local sales tax is 10%      $totalamount = $totalamount * (1 + $taxrate);      echo "Total including tax: $".number_format($totalamount,2)."</p>";
+      $taxrate = 0.10;  // local sales tax is 10%
+      $totalamount = $totalamount * (1 + $taxrate);
+      echo "Total including tax: $".number_format($totalamount,2)."</p>";
 
       echo "<p>Address to ship to is ".htmlspecialchars($address)."</p>";
 
-      $outputstring = $date."\t".$tireqty." tires \t".$oilqty." oil\t"                      .$sparkqty." spark plugs\t\$".$totalamount                      ."\t". $address."\n";
+      $outputstring = $date."\t".$tireqty." tires \t".$oilqty." oil\t"
+                      .$sparkqty." spark plugs\t\$".$totalamount
+                      ."\t". $address."\n";
 
-       // open file for appending       @$fp = fopen("$document_root/../orders/orders.txt", 'ab');
+       // open file for appending
+       @$fp = fopen("$document_root/../orders/orders.txt", 'ab');
 
-       if (!$fp) {         echo "<p><strong> Your order could not be processed at this time.               Please try again later.</strong></p>";         exit;       }
+       if (!$fp) {
+         echo "<p><strong> Your order could not be processed at this time.
+               Please try again later.</strong></p>";
+         exit;
+       }
 
        flock($fp, LOCK_EX);
+       fwrite($fp, $outputstring, strlen($outputstring));
+       flock($fp, LOCK_UN);
+       fclose($fp);
 
-Reading from a File
+       echo "<p>Order written.</p>";
+    ?>
+  </body>
+</html>
+```
 
-65
+## 07. Reading from a File
 
-       fwrite($fp, $outputstring, strlen($outputstring));       flock($fp, LOCK_UN);       fclose($fp);
+Right now, Bob’s customers can leave their orders via the Web, but if Bob’s staff members want to look at the orders, they have to open the files themselves. Let’s create a web interface to let Bob’s staff read the files easily. The code for this interface is shown in Listing 2.3.
 
-       echo "<p>Order written.</p>";    ?>  </body></html>
+Listing 2.3  vieworders.php—Staff Interface to the Orders File
 
-Reading from a FileRight now, Bob’s customers can leave their orders via the Web, but if Bob’s staff members want to look at the orders, they have to open the files themselves.
+```php
+<?php
+    // create short variable name
+    $document_root = $_SERVER['DOCUMENT_ROOT'];
+?>
 
-Let’s create a web interface to let Bob’s staff read the files easily. The code for this interface is shown in Listing 2.3.
-
-Listing 2.3  vieworders.php—Staff Interface to the Orders File<?php  // create short variable name  $document_root = $_SERVER['DOCUMENT_ROOT'];?><!DOCTYPE html><html>  <head>    <title>Bob's Auto Parts - Order Results</title>  </head>  <body>    <h1>Bob's Auto Parts</h1>    <h2>Customer Orders</h2>    <?php      @$fp = fopen("$document_root/../orders/orders.txt", 'rb');      flock($fp, LOCK_SH); // lock file for reading
-
-      if (!$fp) {        echo "<p><strong>No orders pending.<br />              Please try again later.</strong></p>";        exit;      }
-
-      while (!feof($fp)) {         $order= fgets($fp);         echo htmlspecialchars($order)."<br />";      }
-
-66
-
-Chapter 2  Storing and Retrieving Data
-
-      flock($fp, LOCK_UN); // release read lock      fclose($fp);     ?>  </body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Dalong's Auto Parts</h1>
+    <h2>Customer Orders</h2>
+    <?php
+        @$fp = fopen('$document_root/../orders/orders.txt', 'rb');
+        flock($fp, LOCK_SH);    // lock file for reading
+        if (!$fp) {
+            echo '<p><strong>No orders pending.<br />please try again later.
+                    </strong></p>';
+            exit;
+        }
+        while (!feof($fp)) {
+            $order = fgets($fp);
+            echo htmlspecialchars($order).'<br />>';
+        }
+        flock($fp, LOCK_UN);    // release read lock
+        fclose($fp);
+    ?>
+</body>
+</html>
+```
 
 This script follows the sequence we described earlier: open the file, read from the file, close the file. The output from this script using the data file from Listing 2.1 is shown in Figure 2.4.
 
@@ -319,191 +397,215 @@ Figure 2.4  The vieworders.php script displays all the orders currently in the o
 
 Let’s look at the functions in this script in detail.
 
-Opening a File for Reading: fopen()Again, you open the file by using fopen(). In this case, you open the file for reading only, so you use the file mode 'rb':
+### 7.1 Opening a File for Reading: fopen()
 
+Again, you open the file by using fopen(). In this case, you open the file for reading only, so you use the file mode 'rb':
+
+```php
 $fp = fopen("$document_root/../orders/orders.txt", 'rb');
+```
 
-Knowing When to Stop: feof()In this example, you use a while loop to read from the file until the end of the file is reached. The while loop tests for the end of the file using the feof() function:
+### 7.2 Knowing When to Stop: feof()
 
+In this example, you use a while loop to read from the file until the end of the file is reached. The while loop tests for the end of the file using the feof() function:
+
+```php
 while (!feof($fp))
+```
 
-Reading from a File
+The feof() function takes a file handle as its single parameter. It returns true if the file pointer is at the end of the file. Although the name might seem strange, you can remember it easily if you know that feof stands for File End Of File. In this case (and generally when reading from a file), you read from the file until EOF is reached.
 
-67
+### 7.3 Reading a Line at a Time: fgets(), fgetss(), and fgetcsv()
 
-The feof() function takes a file handle as its single parameter. It returns true if the file pointer is at the end of the file. Although the name might seem strange, you can remember it easily if you know that feof stands for File End Of File.
+1『看到 fgetcsv() 就知道找到自己想要的知识点了，哈哈。（2020-04-21）』
 
-In this case (and generally when reading from a file), you read from the file until EOF is reached.
+In this example, you use the fgets() function to read from the file:
 
-Reading a Line at a Time: fgets(), fgetss(), and fgetcsv()In this example, you use the fgets() function to read from the file:
-
+```php
 $order= fgets($fp);
+```
 
-This function reads one line at a time from a file. In this case, it reads until it encounters a newline character (\n) or EOF.
-
-You can use many different functions to read from files. The fgets() function, for example, is useful when you’re dealing with files that contain plain text that you want to deal with in chunks.
+This function reads one line at a time from a file. In this case, it reads until it encounters a newline character (\n) or EOF. You can use many different functions to read from files. The fgets() function, for example, is useful when you’re dealing with files that contain plain text that you want to deal with in chunks.
 
 An interesting variation on fgets() is fgetss(), which has the following prototype:
 
+```php
 string fgetss(resource fp[, int length[, string allowable_tags]]);
+```
 
-This function is similar to fgets() except that it strips out any PHP and HTML tags found in the string. If you want to leave in any particular tags, you can include them in the  allowable_tags string. You would use fgetss() for safety when reading a file written by somebody else or one containing user input. Allowing unrestricted HTML code in the file could mess up your carefully planned formatting. Allowing unrestricted PHP or JavaScript could give a malicious user an opportunity to create a security problem.
+This function is similar to fgets() except that it strips out any PHP and HTML tags found in the string. If you want to leave in any particular tags, you can include them in the  allowable\_tags string. You would use fgetss() for safety when reading a file written by somebody else or one containing user input. Allowing unrestricted HTML code in the file could mess up your carefully planned formatting. Allowing unrestricted PHP or JavaScript could give a malicious user an opportunity to create a security problem.
 
 The function fgetcsv() is another variation on fgets(). It has the following prototype:
 
-array fgetcsv ( resource fp, int length [, string delimiter              [, string enclosure              [, string escape]]])
+```php
+array fgetcsv ( resource fp, int length [, string delimiter              
+                        [, string enclosure              
+                        [, string escape]]])
+```
 
 This function breaks up lines of files when you have used a delimiting character, such as the tab character (as we suggested earlier) or a comma (as commonly used by spreadsheets and other applications). If you want to reconstruct the variables from the order separately rather than as a line of text, fgetcsv() allows you to do this simply. You call it in much the same way as you would call fgets(), but you pass it the delimiter you used to separate fields. For example,
 
+```php
 $order = fgetcsv($fp, 0, "\t");
+```
 
-This code would retrieve a line from the file and break it up wherever a tab (\t) was encoun-tered. The results are returned in an array ($order in this code example). We cover arrays in more detail in Chapter 3.
+1『参数 0 表示不限制长度。』
 
-68
+This code would retrieve a line from the file and break it up wherever a tab (\t) was encountered. The results are returned in an array (\$order in this code example). We cover arrays in more detail in Chapter 3. The length parameter should be greater than the length in characters of the longest line in the file you are trying to read, or 0 if you do not want to limit the line length. The enclosure parameter specifies what each field in a line is surrounded by. If not specified, it defaults to " (a double quotation mark).
 
-Chapter 2  Storing and Retrieving Data
+### 7.4 Reading the Whole File: readfile(), fpassthru(), file(), and file\_get\_contents()
 
-The length parameter should be greater than the length in characters of the longest line in the file you are trying to read, or 0 if you do not want to limit the line length.
-
-The enclosure parameter specifies what each field in a line is surrounded by. If not specified, it defaults to " (a double quotation mark).
-
-Reading the Whole File: readfile(), fpassthru(), file(), and file_get_contents()Instead of reading from a file a line at a time, you can read the whole file in one go. Here are four different ways you can do this.
+Instead of reading from a file a line at a time, you can read the whole file in one go. Here are four different ways you can do this.
 
 The first uses readfile(). You can replace almost the entire script you wrote previously with one line:
 
+```
 readfile("$document_root/../orders/orders.txt");
+```
 
-A call to the readfile() function opens the file, echoes the content to standard output (the browser), and then closes the file. The prototype for readfile() is
+A call to the readfile() function opens the file, echoes the content to standard output (the browser), and then closes the file. The prototype for readfile() is:
 
+```
 int readfile(string filename, [bool use_include_path[, resource context]] );
+```
 
-The optional second parameter specifies whether PHP should look for the file in the include_path and operates the same way as in fopen(). The optional context parameter is used only when files are opened remotely via, for example, HTTP; we cover such usage in more detail in Chapter 18. The function returns the total number of bytes read from the file.
+The optional second parameter specifies whether PHP should look for the file in the include\_path and operates the same way as in fopen(). The optional context parameter is used only when files are opened remotely via, for example, HTTP; we cover such usage in more detail in Chapter 18. The function returns the total number of bytes read from the file.
 
-Second, you can use fpassthru(). To do so, you need to open the file using fopen() first. You can then pass the file pointer as an argument to fpassthru(), which dumps the contents of the file from the pointer’s position onward to standard output. It closes the file when it is finished.
+1『通过网络协议 HTTP 打开文件，涉及到一个可选参数，去第 18 章看相关信息。』
 
-You can use fpassthru() as follows:
+Second, you can use fpassthru(). To do so, you need to open the file using fopen() first. You can then pass the file pointer as an argument to fpassthru(), which dumps the contents of the file from the pointer’s position onward to standard output. It closes the file when it is finished. You can use fpassthru() as follows:
 
-$fp = fopen("$document_root/../orders/orders.txt", 'rb');fpassthru($fp);
+```
+$fp = fopen("$document_root/../orders/orders.txt", 'rb');
+fpassthru($fp);
+```
 
 The function fpassthru() returns true if the read is successful and false otherwise.
 
-The third option for reading the whole file is using the file() function. This function is  identical to readfile() except that instead of echoing the file to standard output, it turns it into an array. We cover this function in more detail when we look at arrays in Chapter 3. Just for reference, you would call it using
+The third option for reading the whole file is using the file() function. This function is  identical to readfile() except that instead of echoing the file to standard output, it turns it into an array. We cover this function in more detail when we look at arrays in Chapter 3. Just for reference, you would call it using：
 
+```php
 $filearray = file("$document_root/../orders/orders.txt");
+```
 
-This line reads the entire file into the array called $filearray. Each line of the file is stored in a separate element of the array. Note that this function was not binary safe in older versions of PHP.
+This line reads the entire file into the array called \$filearray. Each line of the file is stored in a separate element of the array. Note that this function was not binary safe in older versions of PHP.
 
-Using Other File Functions
+The fourth option is to use the file\_get\_contents() function. This function is identical to readfile() except that it returns the content of the file as a string instead of outputting it to the browser. 
 
-69
+### 7.5 Reading a Character: fgetc()
 
-The fourth option is to use the file_get_contents() function. This function is identical to readfile() except that it returns the content of the file as a string instead of outputting it to the browser. 
+Another option for file processing is to read a single character at a time from a file. You can do this by using the fgetc() function. It takes a file pointer as its only parameter and returns the next character in the file. You can replace the while loop in the original script with one that uses fgetc(), as follows:
 
-Reading a Character: fgetc()Another option for file processing is to read a single character at a time from a file. You can do this by using the fgetc() function. It takes a file pointer as its only parameter and returns the next character in the file. You can replace the while loop in the original script with one that uses fgetc(), as follows:
+```php
+while (!feof($fp)){  
+    $char = fgetc($fp);  
+    if (!feof($fp))    
+        echo ($char=="\n" ? "<br />": $char);  }
+}
+```
 
-while (!feof($fp)){  $char = fgetc($fp);  if (!feof($fp))    echo ($char=="\n" ? "<br />": $char);  }}
+This code reads a single character at a time from the file using fgetc() and stores it in \$char, until the end of the file is reached. It then does a little processing to replace the text end-of-line characters (\n) with HTML line breaks (\<br />). 
 
-This code reads a single character at a time from the file using fgetc() and stores it in $char, until the end of the file is reached. It then does a little processing to replace the text end-of-line characters (\n) with HTML line breaks (<br />). 
+This is just to clean up the formatting. If you try to output the file with newlines between records, the whole file will be printed on a single line. (Try it and see.) Web browsers do not render whitespace, such as newlines, so you need to replace them with HTML linebreaks (\<br />) instead. You can use the ternary operator to do this neatly.
 
-This is just to clean up the formatting. If you try to output the file with newlines between records, the whole file will be printed on a single line. (Try it and see.) Web browsers do not render whitespace, such as newlines, so you need to replace them with HTML linebreaks (<br />) instead. You can use the ternary operator to do this neatly.
+A minor side effect of using fgetc() instead of fgets() is that fgetc() returns the EOF  character, whereas fgets() does not. You need to test feof() again after you’ve read the  character because you don’t want to echo the EOF to the browser. Reading a file character by character is not generally sensible or efficient unless for some reason you actually want to process it character by character.
 
-A minor side effect of using fgetc() instead of fgets() is that fgetc() returns the EOF  character, whereas fgets() does not. You need to test feof() again after you’ve read the  character because you don’t want to echo the EOF to the browser.
+### 7.6 Reading an Arbitrary Length: fread()
 
-Reading a file character by character is not generally sensible or efficient unless for some reason you actually want to process it character by character.
+The final way you can read from a file is to use the fread() function to read an arbitrary number of bytes from the file. This function has the following prototype:
 
-Reading an Arbitrary Length: fread()The final way you can read from a file is to use the fread() function to read an arbitrary number of bytes from the file. This function has the following prototype:
-
+```php
 string fread(resource fp, int length);
+```
 
 It reads up to length bytes, to the end of the file or network packet, whichever comes first.
 
-Using Other File FunctionsNumerous other file functions are useful from time to time. Some that we have found handy are described next.
+## 08. Using Other File Functions
 
-70
+Numerous other file functions are useful from time to time. Some that we have found handy are described next.
 
-Chapter 2  Storing and Retrieving Data
+### 8.1 Checking Whether a File Is There: file_exists()
 
-Checking Whether a File Is There: file_exists()If you want to check whether a file exists without actually opening it, you can use file_exists(), as follows:
+If you want to check whether a file exists without actually opening it, you can use file_exists(), as follows:
 
-if (file_exists("$document_root/../orders/orders.txt")) {     echo 'There are orders waiting to be processed.';} else {     echo 'There are currently no orders.';}
+```php
+if (file_exists("$document_root/../orders/orders.txt")) {     
+    echo 'There are orders waiting to be processed.';
+} else {     
+    echo 'There are currently no orders.';
+}
+```
 
-Determining How Big a File Is: filesize()You can check the size of a file by using the filesize() function:
+### 8.2 Determining How Big a File Is: filesize()
 
+You can check the size of a file by using the filesize() function:
+
+```php
 echo filesize("$document_root/../orders/orders.txt");
+```
 
 It returns the size of a file in bytes and can be used in conjunction with fread() to read a whole file (or some fraction of the file) at a time. You can even replace the entire original script with the following:
 
-$fp = fopen("$document_root/../orders/orders.txt", 'rb');echo nl2br(fread( $fp, filesize("$document_root/../orders/orders.txt")));fclose( $fp ); 
+```
+$fp = fopen("$document_root/../orders/orders.txt", 'rb');
+echo nl2br(fread( $fp, filesize("$document_root/../orders/orders.txt")));
+fclose( $fp ); 
+```
 
-The nl2br() function converts the \n characters in the output to HTML line breaks (<br />).
+The nl2br() function converts the \n characters in the output to HTML line breaks (\<br />).
 
-Deleting a File: unlink()If you want to delete the order file after the orders have been processed, you can do so by using unlink(). (There is no function called delete.) For example,
+### 8.3 Deleting a File: unlink()
 
+If you want to delete the order file after the orders have been processed, you can do so by using unlink(). (There is no function called delete.) For example,
+
+```php
 unlink("$document_root/../orders/orders.txt");
+```
 
 This function returns false if the file could not be deleted. This situation typically occurs if the permissions on the file are insufficient or if the file does not exist.
 
-Navigating Inside a File: rewind(), fseek(), and ftell()You can manipulate and discover the position of the file pointer inside a file by using rewind(), fseek(), and ftell().
+### 8.4 Navigating Inside a File: rewind(), fseek(), and ftell()
 
-The rewind() function resets the file pointer to the beginning of the file. The ftell()  function reports how far into the file the pointer is in bytes. For example, you can add the following lines to the bottom of the original script (before the fclose() command):
+You can manipulate and discover the position of the file pointer inside a file by using rewind(), fseek(), and ftell(). The rewind() function resets the file pointer to the beginning of the file. The ftell()  function reports how far into the file the pointer is in bytes. For example, you can add the following lines to the bottom of the original script (before the fclose() command):
 
-echo 'Final position of the file pointer is '.(ftell($fp));echo '<br />';rewind($fp);echo 'After rewind, the position is '.(ftell($fp));echo '<br />';
+```php
+echo 'Final position of the file pointer is '.(ftell($fp));
+echo '<br />';rewind($fp);
+echo 'After rewind, the position is '.(ftell($fp));
+echo '<br />';
+```
 
 The output in the browser should be similar to that shown in Figure 2.5.
-
-Locking Files
-
-71
 
 Figure 2.5  After reading the orders, the file pointer points to the end of the file, an offset of 198 bytes. The call to rewind sets it back to position 0, the start of the file
 
 You can use the function fseek() to set the file pointer to some point within the file. Its prototype is
 
+```php
 int fseek ( resource fp, int offset [, int whence])
+```
 
-A call to fseek() sets the file pointer fp at a point starting from whence and moving offset bytes into the file. The optional whence parameter defaults to the value SEEK_SET, which is effectively the start of the file. The other possible values are SEEK_CUR (the current location of the file pointer) and SEEK_END (the end of the file).
+A call to fseek() sets the file pointer fp at a point starting from whence and moving offset bytes into the file. The optional whence parameter defaults to the value SEEK\_SET, which is effectively the start of the file. The other possible values are SEEK\_CUR (the current location of the file pointer) and SEEK\_END (the end of the file).
 
 The rewind() function is equivalent to calling the fseek() function with an offset of zero. For example, you can use fseek() to find the middle record in a file or to perform a binary search. If you reach the level of complexity in a data file where you need to do these kinds of things, your life will be much easier if you use a built-for-purpose database.
 
-Locking FilesImagine a situation in which two customers are trying to order a product at the same time. (This situation is not uncommon, especially when your website starts to get any kind of traffic volume.) What if one customer calls fopen() and begins writing, and then the other customer calls fopen() and also begins writing? What will be the final contents of the file? Will it be the first order followed by the second order, or vice versa? Will it be one order or the other? 
+Locking FilesImagine a situation in which two customers are trying to order a product at the same time. (This situation is not uncommon, especially when your website starts to get any kind of traffic volume.) What if one customer calls fopen() and begins writing, and then the other customer calls fopen() and also begins writing? What will be the final contents of the file? Will it be the first order followed by the second order, or vice versa? Will it be one order or the other?  Or will it be something less useful, such as the two orders interleaved somehow? The answer depends on your operating system but is often impossible to know.
 
-72
+To avoid problems like this, you can use file locking. You use this feature in PHP by using the flock() function. This function should be called after a file has been opened but before any data is read from or written to the file. The prototype for flock() is:
 
-Chapter 2  Storing and Retrieving Data
-
-Or will it be something less useful, such as the two orders interleaved somehow? The answer depends on your operating system but is often impossible to know.
-
-To avoid problems like this, you can use file locking. You use this feature in PHP by using the flock() function. This function should be called after a file has been opened but before any data is read from or written to the file.
-
-The prototype for flock() is
-
+```php
 bool flock (resource fp, int operation [, int &wouldblock])
+```
 
-You need to pass it a pointer to an open file and a constant representing the kind of lock you require. It returns true if the lock was successfully acquired and false if it was not. The optional third parameter will contain the value true if acquiring the lock would cause the current process to block (that is, have to wait).
+You need to pass it a pointer to an open file and a constant representing the kind of lock you require. It returns true if the lock was successfully acquired and false if it was not. The optional third parameter will contain the value true if acquiring the lock would cause the current process to block (that is, have to wait). The possible values for operation are shown in Table 2.2.
 
-The possible values for operation are shown in Table 2.2.
+LOCK_SH, Reading lock. The file can be shared with other readers.
 
-Table 2.2  flock() Operation Values
+LOCK_EX, Writing lock. This operation is exclusive; the file cannot be shared.
 
-Value of Operation
+LOCK_UN, The existing lock is released.
 
-Meaning
-
-LOCK_SH 
-
-LOCK_EX
-
-LOCK_UN
-
-LOCK_NB
-
-Reading lock. The file can be shared with other readers.
-
-Writing lock. This operation is exclusive; the file cannot be shared.
-
-The existing lock is released.
-
-Blocking is prevented while you are trying to acquire a lock. (Not  supported on Windows.)
+LOCK_NB, Blocking is prevented while you are trying to acquire a lock. (Not  supported on Windows.)
 
 If you are going to use flock(), you need to add it to all the scripts that use the file; otherwise, it is worthless.
 
@@ -511,67 +613,64 @@ Note that flock() does not work with NFS or other networked file systems. It als
 
 To use it with the order example, you can alter processorder.php as follows:
 
-    @ $fp = fopen("$document_root/../orders/orders.txt", 'ab');
+```php
+@ $fp = fopen("$document_root/../orders/orders.txt", 'ab');
 
-    flock($fp, LOCK_EX);
+flock($fp, LOCK_EX);
 
-    if (!$fp) {      echo "<p><strong> Your order could not be processed at this time.            Please try again later.</strong></p></body></html>";      exit;    }
+if (!$fp) {      
+    echo "<p><strong> Your order could not be processed at this time.            
+                                    Please try again later.</strong></p></body></html>";      
+    exit;   
+}
 
-    fwrite($fp, $outputstring, strlen($outputstring));
-
-A Better Way: Databases
-
-73
-
-    flock($fp, LOCK_UN);    fclose($fp);
+fwrite($fp, $outputstring, strlen($outputstring));
+flock($fp, LOCK_UN);    
+fclose($fp);
+```
 
 You should also add locks to vieworders.php:
 
-   @$fp = fopen("$document_root/../orders/orders.txt", 'rb');   flock($fp, LOCK_SH); // lock file for reading   // read from file   flock($fp, LOCK_UN); // release read lock   fclose($fp);
+```php
+@$fp = fopen("$document_root/../orders/orders.txt", 'rb');   
+flock($fp, LOCK_SH); // lock file for reading   // read from file   
+flock($fp, LOCK_UN); // release read lock   
+fclose($fp);
+```
 
 The code is now more robust but still not perfect. What if two scripts tried to acquire a lock at the same time? This would result in a race condition, in which the processes compete for locks but it is uncertain which will succeed. Such a condition could cause more problems. You can do better by using a database.
 
-A Better Way: DatabasesSo far, all the examples we have looked at use flat files. In Part II of this book, we look at how to use MySQL, a relational database management system (RDBMS), instead. You might ask,「Why would I bother?」
+1『数据库能满足多人同时读写的需求。』
 
-Problems with Using Flat FilesThere are a number of problems in working with flat files:
+## 09. A Better Way: Databases
 
- ■ When a file grows large, working with it can be very slow.
+So far, all the examples we have looked at use flat files. In Part II of this book, we look at how to use MySQL, a relational database management system (RDBMS), instead. You might ask,「Why would I bother?」
 
- ■ Searching for a particular record or group of records in a flat file is difficult. If the records 
+### 9.1 Problems with Using Flat Files
 
-are in order, you can use some kind of binary search in conjunction with a fixed-width record to search on a key field. If you want to find patterns of information (for example, you want to find all the customers who live in Sometown), you would have to read in each record and check it individually.
+There are a number of problems in working with flat files: 
 
- ■ Dealing with concurrent access can become problematic. You have seen how to lock files, but locking can cause the race condition we discussed earlier. It can also cause a bottleneck. With enough traffic on a site, a large group of users may be waiting for the file to be unlocked before they can place their order. If the wait is too long, people will go elsewhere to buy.
+1. When a file grows large, working with it can be very slow. 
 
- ■ All the file processing you have seen so far deals with a file using sequential processing; that is, you start from the beginning of the file and read through to the end. Inserting records into or deleting records from the middle of the file (random access) can be difficult because you end up reading the whole file into memory, making the changes, and writing the whole file out again. With a large data file, having to go through all these steps becomes a significant overhead.
+2. Searching for a particular record or group of records in a flat file is difficult. If the records are in order, you can use some kind of binary search in conjunction with a fixed-width record to search on a key field. If you want to find patterns of information (for example, you want to find all the customers who live in Sometown), you would have to read in each record and check it individually.
 
- ■ Beyond the limits offered by file permissions, there is no easy way of enforcing different levels of access to data.
+3. Dealing with concurrent access can become problematic. You have seen how to lock files, but locking can cause the race condition we discussed earlier. It can also cause a bottleneck. With enough traffic on a site, a large group of users may be waiting for the file to be unlocked before they can place their order. If the wait is too long, people will go elsewhere to buy.
 
-How RDBMSs Solve These ProblemsRelational database management systems address all these issues:
+4. All the file processing you have seen so far deals with a file using sequential processing; that is, you start from the beginning of the file and read through to the end. Inserting records into or deleting records from the middle of the file (random access) can be difficult because you end up reading the whole file into memory, making the changes, and writing the whole file out again. With a large data file, having to go through all these steps becomes a significant overhead.
 
- ■ RDBMSs can provide much faster access to data than flat files. And MySQL, the database 
+5. Beyond the limits offered by file permissions, there is no easy way of enforcing different levels of access to data.
 
-system we use in this book, has some of the fastest benchmarks of any RDBMS.
+### 9.2 How RDBMSs Solve These Problems
 
- ■ RDBMSs can be easily queried to extract sets of data that fit certain criteria.
+Relational database management systems address all these issues: 1) RDBMSs can provide much faster access to data than flat files. And MySQL, the database system we use in this book, has some of the fastest benchmarks of any RDBMS. 2) RDBMSs can be easily queried to extract sets of data that fit certain criteria. 3) RDBMSs have built-in mechanisms for dealing with concurrent access so that you, as a programmer, don’t have to worry about it. 4) RDBMSs provide random access to your data. 5) RDBMSs have built-in privilege systems. MySQL has particular strengths in this area.
 
- ■ RDBMSs have built-in mechanisms for dealing with concurrent access so that you, as a 
-
-programmer, don’t have to worry about it.
-
- ■ RDBMSs provide random access to your data.
-
- ■ RDBMSs have built-in privilege systems. MySQL has particular strengths in this area.
-
-Probably the main reason for using an RDBMS is that all (or at least most) of the functionality that you want in a data storage system has already been implemented. Sure, you could write your own library of PHP functions, but why reinvent the wheel?
-
-In Part II of this book,「Using MySQL,」we discuss how relational databases work generally, and specifically how you can set up and use MySQL to create database-backed websites.
+Probably the main reason for using an RDBMS is that all (or at least most) of the functionality that you want in a data storage system has already been implemented. Sure, you could write your own library of PHP functions, but why reinvent the wheel? In Part II of this book,「Using MySQL,」we discuss how relational databases work generally, and specifically how you can set up and use MySQL to create database-backed websites.
 
 If you are building a simple system and don’t feel you need a full-featured database but want to avoid the locking and other issues associated with using a flat file, you may want to consider using PHP’s SQLite extension. This extension provides essentially an SQL interface to a flat file. In this book, we focus on using MySQL, but if you would like more information about SQLite, you can find it at http://sqlite.org/ and http://www.php.net/sqlite.
 
-Further ReadingFor more information on interacting with the file system, you can go straight to Chapter 17,「Interacting with the File System and the Server.」In that part of the book, we talk about how to change permissions, ownership, and names of files; how to work with directories; and how to interact with the file system environment.
+## 10. Further Reading
 
-You may also want to read through the file system section of the PHP online manual at http://www.php.net/filesystem.
+For more information on interacting with the file system, you can go straight to Chapter 17,「Interacting with the File System and the Server.」In that part of the book, we talk about how to change permissions, ownership, and names of files; how to work with directories; and how to interact with the file system environment. You may also want to read through the file system section of the PHP online manual at http://www.php.net/filesystem.
 
 ## Next
 

@@ -399,7 +399,7 @@ This chapter will cover the following topics: 1) Constructor methods: Automating
 
 The first barrier to understanding object-oriented programming is the strange and wonderful relationship between the class and the object. For many people, it is this relationship that represents the first moment of revelation, the first flash of object-oriented excitement. So let’s not skimp on the fundamentals.
 
-#### 1. A First Class
+#### 1.1 A First Class
 
 Classes are often described in terms of objects. This is interesting, because objects are often described in terms of classes. This circularity can make the first steps in object-oriented programming hard going. Because it’s classes that shape objects, we should begin by defining a class.
 
@@ -416,7 +416,7 @@ class ShopProduct
 
 The ShopProduct class in the example is already a legal class, although it is not terribly useful yet. I have done something quite significant, however. I have defined a type; that is, I have created a category of data that I can use in my scripts. The power of this should become clearer as you work through the chapter.
 
-#### 2. A First Object (or Two)
+#### 1.2 A First Object (or Two)
 
 If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class. I use the ShopProduct class as a mold for generating ShopProduct objects. To do this, I need the new operator. The new operator is used in conjunction with the name of a class, like this:
 
@@ -602,7 +602,7 @@ This translates to the following: the \$producerFirstName property of the curren
 
 I rely on the client coder to change a ShopProduct object’s properties from their default values. This is problematic in two ways. First, it takes five lines to properly initialize a ShopProduct object, and no coder will thank you for that. Second, I have no way of ensuring that any of the properties are set when a ShopProduct object is initialized. What I need is a method that is called automatically when an object is instantiated from a class.
 
-#### Creating a Constructor Method
+#### 3.1 Creating a Constructor Method
 
 A constructor method is invoked when an object is created. You can use it to set things up, ensuring that essential properties are assigned values and any necessary preliminary work is completed.
 
@@ -656,7 +656,7 @@ Type determines the way data can be managed in your scripts. You use the string 
 
 Method and function definitions do not necessarily require that an argument should be of a particular type. This is both a curse and a blessing. The fact that an argument can be of any type offers you flexibility. You can build methods that respond intelligently to different data types, tailoring functionality to changing circumstances. This flexibility can also cause ambiguity to creep into code when a method body expects an argument to hold one type but gets another.
 
-#### 1. Primitive Types
+#### 4.1 Primitive Types
 
 PHP is a loosely typed language. This means that there is no necessity for a variable to be declared to hold a particular data type. The variable \$number could hold the value 2 and the string "two" within the same scope. In strongly typed languages, such as C or Java, you must declare the type of a variable before assigning a value to it, and, of course, the value must be of the specified type.
 
@@ -791,7 +791,7 @@ However you address problems of this kind, you can be sure of one thing—type m
 
 1『类型检验问题是 php 里是个大问题，同样为弱类型语言的 JS，应该也存在着相同的问题。』
 
-#### 2. Taking the Hint: Object Types
+#### 4.2 Taking the Hint: Object Types
 
 Just as an argument variable can contain any primitive type, by default it can contain an object of any type. This flexibility has its uses, but can present problems in the context of a method definition. Imagine a method designed to work with a ShopProduct object:
 
@@ -984,7 +984,7 @@ When I described class type declarations, I implied that types and classes are s
 
 Inheritance is the means by which one or more classes can be derived from a base class. A class that inherits from another is said to be a subclass of it. This relationship is often described in terms of parents and children. A child class is derived from and inherits characteristics from the parent. These characteristics consist of both properties and methods. The child class will typically add new functionality to that provided by its parent (also known as a superclass); for this reason, a child class is said to extend its parent. Before I dive into the syntax of inheritance, I’ll examine the problems it can help you to solve. 
 
-#### 1. The Inheritance Problem
+#### 5.1 The Inheritance Problem
 
 Look again at the ShopProduct class. At the moment, it is nicely generic. It can handle all sorts of products:
 
@@ -1198,7 +1198,7 @@ The CD and book aspects of the ShopProduct class don’t work well together but 
 
 1『为什么要发明「继承」特性，作者真的是把当时遇到问题的场景描述清楚了，很赞。任何新的好的特性都是为了解决某一个难题而创造出来的。』
 
-#### 2. Working with Inheritance
+#### 5.2 Working with Inheritance
 
 The first step in building an inheritance tree is to find the elements of the base class that don’t fit together or that need to be handled differently. I know that the getPlayLength() and getNumberOfPages() methods do not belong together. I also know that I need to create different implementations for the getSummaryLine() method. Let’s use these differences as the basis for two derived classes:
 
@@ -1308,7 +1308,7 @@ The same is true of property accesses. When I access \$title in the BookProduct 
 
 A quick look at the ShopProduct constructor, however, shows that I am still managing data in the base class that should be handled by its children. The BookProduct class should handle the \$numPages argument and property, and the CdProduct class should handle the \$playLength argument and property. To make this work, I will define constructor methods in each of the child classes.
 
-#### 2.1 Constructors and Inheritance
+#### 5.2.1 Constructors and Inheritance
 
 When you define a constructor in a child class, you become responsible for passing any arguments on to the parent. If you fail to do this, you can end up with a partially constructed object. To invoke a method in a parent class, you must first find a way of referring to the class itself: a handle. 
 
@@ -1428,7 +1428,7 @@ Each child class invokes the constructor of its parent before setting its own pr
 
 Note: prior to php 5, constructors took on the name of the enclosing class. the new unified constructors use the name \_\_construct(). Using the old syntax, a call to a parent constructor would tie you to that particular class: parent::ShopProduct();. the old constructor syntax was deprecated in php 7.0 and should not be used.
 
-#### 2.2 Invoking an Overridden Method
+#### 5.2.2 Invoking an Overridden Method
 
 The parent keyword can be used with any method that overrides its counterpart in a parent class. When you override a method, you may not wish to obliterate the functionality of the parent, but rather to extend it. You can achieve this by calling the parent class’s method in the current object’s context. If you look again at the getSummaryLine() method implementations, you will see that they duplicate a lot of code. It would be better to use rather than reproduce the functionality already developed in the ShopProduct class:
 
@@ -1458,7 +1458,7 @@ I set up the core functionality for the getSummaryLine() method in the ShopProdu
 
 Now that you have seen the basics of inheritance, I will reexamine property and method visibility in light of the full picture.
 
-#### 3. Public, Private, and Protected: Managing Access to Your Classes
+#### 5.3 Public, Private, and Protected: Managing Access to Your Classes
 
 So far, I have declared all properties public. Public access is the default setting for methods and for properties if you use the old var keyword in your property declaration. Elements in your classes can be declared public, private, or protected: 1) Public properties and methods can be accessed from any context. 2) A private method or property can only be accessed from within the enclosing class. Even subclasses have no access. 3) A protected method or property can only be accessed from within either the enclosing class or from a subclass. No external code is granted access.
 
@@ -1511,7 +1511,7 @@ As a general rule, err on the side of privacy. Make properties private or protec
 
 1『以上是设置私有属性、保护属性的原则。』
 
-#### 3.1 Accessor Methods
+#### 5.3.1 Accessor Methods
 
 Even when client programmers need to work with values held by your class, it is often a good idea to deny direct access to properties, providing methods instead that relay the needed values. Such methods are known as accessors or getters and setters.
 
@@ -1551,7 +1551,7 @@ class ShopProductWriter {
 
 It’s now impossible for external code to damage the \$products property. All access must be via the addProduct() method, and the class type declaration I use in the method declaration ensures that only ShopProduct objects can be added to the array property.
 
-#### 3.2 The ShopProduct Classes
+#### 5.3.2 The ShopProduct Classes
 
 Let’s close this chapter by amending the ShopProduct class and its children to lock down access control:
 
