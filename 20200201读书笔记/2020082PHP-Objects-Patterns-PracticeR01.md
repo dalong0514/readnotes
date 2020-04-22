@@ -32,7 +32,11 @@ XP also dictates that projects should be broken down into small (very small) ite
 
 In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two tools developed by Rasmus Lerdorf using Perl. PHP stood for Personal Homepage Tools. FI stood for Form Interpreter. Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. 
 
-### 0203. 术语卡 ——
+### 0203. 术语卡 ——继承
+
+单纯拆分后的弊端：1）很多重复代码或者重复的形式；2）共有的部分要更新的话每个都得更新，容易忘。3）传参的时候类型检测不好实现了。「继承」是分割与合并之间的平衡把握。
+
+The CD and book aspects of the ShopProduct class don’t work well together but can’t live apart, it seems. I want to work with books and CDs as a single type while providing a separate implementation for each format. I want to provide common functionality in one place to avoid duplication, but allow each format to handle some method calls differently. I need to use inheritance.
 
 ### 0301. 人名卡 ——
 
@@ -826,6 +830,8 @@ The ShopProductWriter class contains a single method, write(). The write() metho
 
 Note: You might wonder why I didn't add the write() method directly to ShopProduct. the reason lies with areas of responsibility. the ShopProduct class is responsible for managing product data; the ShopProductWriter is responsible for writing it. You will begin to see why this division of labor can be useful as you read this chapter.
 
+1『按业务（功能）划分代码。』
+
 To address this problem, PHP 5 introduced class type declarations (known then as type hints). To add a class type declaration to a method argument, you simply place a class name in front of the method argument you need to constrain. So I can amend the write() method thus:
 
 ```php
@@ -839,7 +845,7 @@ To address this problem, PHP 5 introduced class type declarations (known then as
 
 Now the write() method will only accept the \$shopProduct argument if it contains an object of type ShopProduct. This snippet tries to call write() with a dodgy object:
 
-1『传递给函数的参数，如果类型不对是一个大问题。PHP 5 引入的 type hints 为此而生，指函数传递的参数前面直接指定类型。按作者的意思应该只能指定对象的类型，其他基本类型比如 string 之类的，不知道是否可以指定，待确认（2020-04-21）。回复：标量类型的声明指定是 PHP 7 新增的特性，下面正好有个例子。』
+1『传递给函数的参数，如果类型不对是一个大问题。PHP 5 引入的 type hints 为此而生，在函数传递的参数前面直接指定类型。其他基本类型比如 string 之类的，不知道是否可以指定，待确认（2020-04-21）。回复：标量类型的声明指定是 PHP 7 新增的特性，下面正好有个例子。』
 
 3『「2020121Full-Stack-Vuejs2-R01」
 
@@ -1169,6 +1175,8 @@ The cost lies in duplication. The getProducerName() method is exactly the same i
 
 If I need the getProducer() methods to behave identically for each class, any changes I make to one implementation will need to be made for the other. Without care, the classes will soon slip out of synchronization. Even if I am confident that I can maintain the duplication, my worries are not over. I now have two types rather than one.
 
+1『拆分后的弊端：1）很多重复代码或者重复的形式；2）共有的部分要更新的话每个都得更新，容易忘。3）传参的时候类型检测不好实现了。』
+
 Remember the ShopProductWriter class? Its write() method is designed to work with a single type: ShopProduct. How can I amend this to work as before? I could remove the class type declaration from the method signature, but then I must trust to luck that write() is passed an object of the correct type. I could add my own type checking code to the body of the method:
 
 ```php
@@ -1196,7 +1204,7 @@ Once again, I have been forced to include a new layer of complexity. Not only do
 
 The CD and book aspects of the ShopProduct class don’t work well together but can’t live apart, it seems. I want to work with books and CDs as a single type while providing a separate implementation for each format. I want to provide common functionality in one place to avoid duplication, but allow each format to handle some method calls differently. I need to use inheritance.
 
-1『为什么要发明「继承」特性，作者真的是把当时遇到问题的场景描述清楚了，很赞。任何新的好的特性都是为了解决某一个难题而创造出来的。』
+1『为什么要发明「继承」特性，作者真的是把当时遇到问题的场景描述清楚了，很赞。任何新的好的特性都是为了解决某一个难题而创造出来的。「继承」是分割与合并之间的平衡把握。』
 
 #### 5.2 Working with Inheritance
 
@@ -1300,6 +1308,8 @@ Notice that both the CdProduct and BookProduct classes override the getSummaryLi
 
 The super class’s implementation of this method might seem redundant because it is overridden by both its children. Nevertheless, it provides basic functionality that new child classes might use. The method’s presence also provides a guarantee to client code that all ShopProduct objects will provide a getSummaryLine() method. Later on you will see how it is possible to make this promise in a base class without providing any implementation at all. Each child ShopProduct class inherits its parent’s properties. Both BookProduct and CdProduct access the \$title property in their versions of getSummaryLine().
 
+1『重载的好处比之前自己想象的要大很多，不仅仅是表层的覆盖。』
+
 Inheritance can be a difficult concept to grasp at first. By defining a class that extends another, you ensure that an object instantiated from it is defined by the characteristics of first the child and then the parent class. Another way of thinking about this is in terms of searching. When I invoke \$product2->getProducer(), there is no such method to be found in the CdProduct class, and the invocation falls through to the default implementation in ShopProduct. When I invoke \$product2->getSummaryLine(), on the other hand, the getSummaryLine() method is found in CdProduct and invoked.
 
 1『跟 JS 里的委托异曲同工，调用对象里的某个属性时，好不到就去它的原型对象里找，再找不到就去其原型对象的原型对象里去，直到找到根原型对象。』
@@ -1317,6 +1327,8 @@ PHP provides us with the parent keyword for this purpose. To refer to a method i
 ```php
 parent::__construct()
 ```
+
+1『上面语句其实是个调用，里面要传入的参数，是父类里的基本属性。作者没写分号，之前没想到这点。』
 
 The preceding means,「Invoke the \_\_construct() method of the parent class.」Here I amend my example so that each class handles only the data that is appropriate to it:
 
@@ -1426,13 +1438,15 @@ class CdProduct extends ShopProduct{
 
 Each child class invokes the constructor of its parent before setting its own properties. The base class now knows only about its own data. Child classes are generally specializations of their parents. As a rule of thumb, you should avoid giving parent classes any special knowledge about their children.
 
+1『上面的方法，实现了父类里基本属性与子类的分离，子类只有通过构造函数才能访问到父类里的那些基本属性。』
+
 Note: prior to php 5, constructors took on the name of the enclosing class. the new unified constructors use the name \_\_construct(). Using the old syntax, a call to a parent constructor would tie you to that particular class: parent::ShopProduct();. the old constructor syntax was deprecated in php 7.0 and should not be used.
 
 #### 5.2.2 Invoking an Overridden Method
 
 The parent keyword can be used with any method that overrides its counterpart in a parent class. When you override a method, you may not wish to obliterate the functionality of the parent, but rather to extend it. You can achieve this by calling the parent class’s method in the current object’s context. If you look again at the getSummaryLine() method implementations, you will see that they duplicate a lot of code. It would be better to use rather than reproduce the functionality already developed in the ShopProduct class:
 
-```
+```php
 // listing 03.42
 
 // ShopProduct class...
@@ -1455,6 +1469,8 @@ public function getSummaryLine() {
 ```
 
 I set up the core functionality for the getSummaryLine() method in the ShopProduct base class. Rather than reproduce this in the CdProduct and BookProduct subclasses, I simply call the parent method before proceeding to add more data to the summary string.
+
+1『子类里的成员函数的重载也可以借鉴构造函数的思路，不用全部重载，父类里有的部分代码可以直接调用。』
 
 Now that you have seen the basics of inheritance, I will reexamine property and method visibility in light of the full picture.
 
@@ -1495,7 +1511,7 @@ This will print the raw price and not the discount-adjusted price you wish to pr
 
 Setting properties to private can be an overzealous strategy. A private property cannot be accessed by a child class. Imagine that our business rules state that books alone should be ineligible for discounts. You could override the getPrice() method so that it returns the \$price property, applying no discount:
 
-```
+```php
 // listing 03.45
 
 // BookProduct

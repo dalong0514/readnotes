@@ -26,102 +26,146 @@ Callbacks: Adding functionality to components with anonymous functions and class
 
 ## 01. Static Methods and Properties
 
-All of the examples in the previous chapter worked with objects. I characterized classes as templates from which objects are produced, and objects as active instances of classes—the things whose methods you invoke and whose properties you access. I implied that, in object-oriented programming, the real work is done by instances of classes. Classes, after all, are merely templates for objects.
+All of the examples in the previous chapter worked with objects. I characterized classes as templates from which objects are produced, and objects as active instances of classes—the things whose methods you invoke and whose properties you access. I implied that, in object-oriented programming, the real work is done by instances of classes. Classes, after all, are merely templates for objects. In fact, it is not that simple. You can access both methods and properties in the context of a class rather than that of an object. Such methods and properties are「static」and must be declared as such by using the static keyword:
 
-In fact, it is not that simple. You can access both methods and properties in the context of a class rather than that of an object. Such methods and properties are「static」and must be declared as such by using the static keyword:
-
+```php
 // listing 04.01
 
-class StaticExample{    static public $aNum = 0;    public static function sayHello()    {
+class StaticExample{    
+    static public $aNum = 0;    
+    public static function sayHello() {
+        print "hello";    
+    }
+}
+```
 
+Static methods are functions with class scope. They cannot themselves access any normal properties in the class because these would belong to an object; however, they can access static properties. If you change a static property, all instances of that class are able to access the new value. Because you access a static element via a class and not an instance, you do not need a variable that references an object. Instead, you use the class name in conjunction with ::, as in this example:
 
-        print "hello";    }}
+```php
+print StaticExample::$aNum;
+StaticExample::sayHello();
+```
 
-Static methods are functions with class scope. They cannot themselves access any normal properties in the class because these would belong to an object; however, they can access static properties. If you change a static property, all instances of that class are able to access the new value.
+This syntax should be familiar from the previous chapter. I used :: in conjunction with parent to access an overridden method. Now, as then, I am accessing class rather than object data. Class code can use the parent keyword to access a superclass without using its class name. To access a static method or property from within the same class (rather than from a child), I would use the self keyword. self is to classes what the \$this pseudo-variable is to objects. So from outside the StaticExample class, I access the \$aNum property using its class name:
 
-Because you access a static element via a class and not an instance, you do not need a variable that 
-
-references an object. Instead, you use the class name in conjunction with ::, as in this example:
-
-print StaticExample::$aNum;StaticExample::sayHello();
-
-This syntax should be familiar from the previous chapter. I used :: in conjunction with parent to access 
-
-an overridden method. Now, as then, I am accessing class rather than object data. Class code can use the parent keyword to access a superclass without using its class name. To access a static method or property from within the same class (rather than from a child), I would use the self keyword. self is to classes what the $this pseudo-variable is to objects. So from outside the StaticExample class, I access the $aNum property using its class name:
-
-StaticExample::$aNum;
+    StaticExample::$aNum;
 
 From within the StaticExample class, I can use the self keyword:
 
-// listing 04.02class StaticExample{    static public $aNum = 0;    public static function sayHello()    {        self::$aNum++;        print "hello (".self::$aNum.")\n";    }}
+```
+// listing 04.02
 
- Making a method call using parent is the only circumstance in which you should use a static 
+class StaticExample{    
+    static public $aNum = 0;    
+    public static function sayHello()    {        
+        self::$aNum++;        
+        print "hello (".self::$aNum.")\n";    
+    }
+}
+```
 
- ■ Note reference to a nonstatic method.
+Note: Making a method call using parent is the only circumstance in which you should use a static reference to a nonstatic method. unless you are accessing an overridden method, you should only ever use :: to access a method or property that has been explicitly declared static. In documentation, however, you will often see static syntax used to refer to a method or property. this does not mean that the item in question is necessarily static, just that it belongs to a certain class. the write() method of the ShopProductWriter class might be referred to as ShopProductWriter::write(), for example, even though the write() method is not static. You will see this syntax here when that level of specificity is appropriate.
 
-unless you are accessing an overridden method, you should only ever use :: to access a method or property that has been explicitly declared static.
-
-In documentation, however, you will often see static syntax used to refer to a method or property. this does not mean that the item in question is necessarily static, just that it belongs to a certain class. the write() method of the ShopProductWriter class might be referred to as ShopProductWriter::write(), for example, even though the write() method is not static. You will see this syntax here when that level of specificity is appropriate.
-
-48
-
-Chapter 4 ■ advanCed Features
-
-By definition, static methods and properties are invoked on classes and not objects. For this reason, they are often referred to as class variables and properties. As a consequence of this class orientation, you cannot use the $this pseudo-variable inside a static method.
+By definition, static methods and properties are invoked on classes and not objects. For this reason, they are often referred to as class variables and properties. As a consequence of this class orientation, you cannot use the \$this pseudo-variable inside a static method.
 
 So, why would you use a static method or property? Static elements have a number of characteristics that can be useful. First, they are available from anywhere in your script (assuming that you have access to the class). This means you can access functionality without needing to pass an instance of the class from object to object or, worse, storing an instance in a global variable. Second, a static property is available to every instance of a class, so you can set values that you want to be available to all members of a type. Finally, the fact that you don’t need an instance to access a static property or method can save you from instantiating an object purely to get at a simple function.
 
-To illustrate this, I will build a static method for the ShopProduct class that automates the instantiation 
+To illustrate this, I will build a static method for the ShopProduct class that automates the instantiation of ShopProduct objects. Using SQLite, I might define a products table like this:
 
-of ShopProduct objects. Using SQLite, I might define a products table like this:
+```php
+CREATE TABLE products (                            
+                                                id INTEGER PRIMARY KEY AUTOINCREMENT,                            
+                                                type TEXT,                            
+                                                firstname TEXT,                            
+                                                mainname TEXT,                            
+                                                title TEXT,                            
+                                                price float,                            
+                                                numpages int,                            
+                                                playlength int,                            
+                                                discount int 
+)
+```
 
-CREATE TABLE products (                            id INTEGER PRIMARY KEY AUTOINCREMENT,                            type TEXT,                            firstname TEXT,                            mainname TEXT,                            title TEXT,                            price float,                            numpages int,                            playlength int,                            discount int )
+Now I want to build a getInstance() method that accepts a row ID and PDO object, uses them to acquire a database row, and then returns a ShopProduct object. I can add these methods to the ShopProduct class I created in the previous chapter. As you probably know, PDO stands for PHP Data Object. The PDO class provides a common interface to different database applications:
 
-Now I want to build a getInstance() method that accepts a row ID and PDO object, uses them to 
-
-acquire a database row, and then returns a ShopProduct object. I can add these methods to the ShopProduct class I created in the previous chapter. As you probably know, PDO stands for PHP Data Object. The PDO class provides a common interface to different database applications:
-
+```php
 // listing 04.03
 
 // ShopProduct class...
 
     private $id = 0;    // ...
 
-    public function setID(int $id)    {        $this->id = $id;    }    // ...
+    public function setID(int $id)    {        
+        $this->id = $id;    
+    }    
+    // ...
 
-    public static function getInstance(int $id, \PDO $pdo): ShopProduct    {        $stmt = $pdo->prepare("select * from products where id=?");        $result = $stmt->execute([$id]);        $row = $stmt->fetch();        if (empty($row)) {            return null;        }
+    public static function getInstance(int $id, \PDO $pdo): ShopProduct    {        
+        $stmt = $pdo->prepare("select * from products where id=?");        
+        $result = $stmt->execute([$id]);        
+        $row = $stmt->fetch();        
+        if (empty($row)) {            
+            return null;        
+        }
+        if ($row['type'] == "book") {            
+        $product = new BookProduct(                
+            $row['title'],                
+            $row['firstname'],                
+            $row['mainname'],                
+            (float) $row['price'],                
+            (int) $row['numpages']            
+            );        
+        } elseif ($row['type'] == "cd") {            
+        $product = new CdProduct(                
+            $row['title'],                
+            $row['firstname'],                
+            $row['mainname'],                
+            (float) $row['price'],                
+            (int) $row['playlength']            
+            );        
+        } else {            
+            $firstname = (is_null($row['firstname'])) ? "" : $row['firstname'];            
+            $product = new ShopProduct(                
+                $row['title'],                
+                $firstname,                
+                $row['mainname'],                
+                (float) $row['price']            
+            );        
+        }        
+        $product->setId((int) $row['id']);        
+        $product->setDiscount((int) $row['discount']);        
+        return $product;    
+    }
+```
 
-49
-
-Chapter 4 ■ advanCed Features
-
-        if ($row['type'] == "book") {            $product = new BookProduct(                $row['title'],                $row['firstname'],                $row['mainname'],                (float) $row['price'],                (int) $row['numpages']            );        } elseif ($row['type'] == "cd") {            $product = new CdProduct(                $row['title'],                $row['firstname'],                $row['mainname'],                (float) $row['price'],                (int) $row['playlength']            );        } else {            $firstname = (is_null($row['firstname'])) ? "" : $row['firstname'];            $product = new ShopProduct(                $row['title'],                $firstname,                $row['mainname'],                (float) $row['price']            );        }        $product->setId((int) $row['id']);        $product->setDiscount((int) $row['discount']);        return $product;    }
-
-As you can see, the getInstance() method returns a ShopProduct object and, based on a type flag, is 
-
-smart enough to work out the precise specialization it should instantiate. I have omitted any error handling to keep the example compact. In a real-world version of this, for example, I would not be so trusting as to assume that the provided PDO object was initialized to talk to the correct database. In fact, I probably wrap the PDO with a class that would guarantee this behavior. You can read more about object-oriented coding and databases in Chapter 13.
+As you can see, the getInstance() method returns a ShopProduct object and, based on a type flag, is smart enough to work out the precise specialization it should instantiate. I have omitted any error handling to keep the example compact. In a real-world version of this, for example, I would not be so trusting as to assume that the provided PDO object was initialized to talk to the correct database. In fact, I probably wrap the PDO with a class that would guarantee this behavior. You can read more about object-oriented coding and databases in Chapter 13.
 
 This method is more useful in a class context than an object context. It lets you convert raw data from the database into an object easily, without requiring that you have a ShopProduct object to start with. The method does not use any instance properties or methods, so there is no reason why it should not be declared static. Given a valid PDO object, I can invoke the method from anywhere in an application:
 
-$dsn = "sqlite:/".__DIR__."/products.db";$pdo = new \PDO($dsn, null, null);$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);$obj = ShopProduct::getInstance(1, $pdo);
+```php
+$dsn = "sqlite:/".__DIR__."/products.db";
+$pdo = new \PDO($dsn, null, null);
+$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+$obj = ShopProduct::getInstance(1, $pdo);
+```
 
 Methods like this act as「factories」in that they take raw materials (such as row data or configuration information) and use them to produce objects. The term factory is applied to code designed to generate object instances. You will encounter factory examples again in future chapters.
 
 In some ways, of course, this example poses as many problems as it solves. Although I make the ShopProduct::getInstance() method accessible from anywhere in a system without the need for an ShopProduct instance, I also demand that client code provides a PDO object. Where is this to be found? 
 
-50
-
-Chapter 4 ■ advanCed Features
-
 And is it really good practice for a parent class to have such intimate knowledge of its children? (Hint: no, it is not.) Problems of this kind—where to acquire key objects and values and how much classes should know about one another—are very common in object-oriented programming. I examine various approaches to object generation in Chapter 9.
 
-Constant Properties
+## 02. Constant Properties
 
 Some properties should not be changed. The Answer to Life, the Universe, and Everything is 42, and you want it to stay that way. Error and status flags will often be hard-coded into your classes. Although they should be publicly and statically available, client code should not be able to change them.
 
-PHP allows you to define constant properties within a class. Like global constants, class constants 
+PHP allows you to define constant properties within a class. Like global constants, class constants cannot be changed once they are set. A constant property is declared with the const keyword. Constants are not prefixed with a dollar sign like regular properties. By convention, they are often named using only uppercase characters:
 
-cannot be changed once they are set. A constant property is declared with the const keyword. Constants are not prefixed with a dollar sign like regular properties. By convention, they are often named using only uppercase characters:
+
+
+
+
+
 
 // listing 04.04class ShopProduct{    const AVAILABLE      = 0;    const OUT_OF_STOCK   = 1;    // ...
 
@@ -146,10 +190,6 @@ created in the previous chapter, this time as an abstract class:
 // listing 04.05abstract class ShopProductWriter{    protected $products = [];
 
     public function addProduct(ShopProduct $shopProduct)    {        $this->products[] = $shopProduct;    }}
-
-51
-
-Chapter 4 ■ advanCed Features
 
 You can create methods and properties as normal, but any attempt to instantiate an abstract object in 
 
@@ -189,10 +229,6 @@ So any class that extends an abstract class must implement all abstract methods 
 
 abstract. An extending class is responsible for more than simply implementing an abstract method. In doing so, it must reproduce the method signature. This means that the access control of the implementing method cannot be stricter than that of the abstract method. The implementing method should also require the same number of arguments as the abstract method, reproducing any class type hinting.
 
-52
-
-Chapter 4 ■ advanCed Features
-
 Here are two implementations of ShopProductWriter:
 
 // listing 04.06class XmlProductWriter extends ShopProductWriter{
@@ -208,10 +244,6 @@ and the second outputs text. A method that requires a ShopProductWriter object w
 Interfaces
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies.
-
-53
-
-Chapter 4 ■ advanCed Features
 
 Here’s an interface:
 
@@ -248,10 +280,6 @@ defined in the ShopProduct class and Chargeable interface.
 Passed the same object, the method knows that $prod supports all the methods in ShopProduct:
 
     public function addProduct(ShopProduct $prod)    {
-
-54
-
-Chapter 4 ■ advanCed Features
 
          // ...    }
 
@@ -293,10 +321,6 @@ So interfaces provide types without implementation. But what if you want to shar
 
 across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
 
-55
-
-Chapter 4 ■ advanCed Features
-
 A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes.
 
 Let’s look at why a trait might be useful.
@@ -329,10 +353,6 @@ class UtilityService extends Service{    private $taxrate = 17;
 
 $u = new UtilityService();print $u->calculateTax(100)."\n";
 
-56
-
-Chapter 4 ■ advanCed Features
-
 Defining and Using a TraitOne of the core object-oriented design goals I will cover in this book is the removal of duplication. As you will see in Chapter 11, one solution to this kind of duplication is to factor it out into a reusable strategy class. Traits provide another approach—less elegant, perhaps, but certainly effective.
 
 Here I declare a single trait that defines a calculateTax() method, and then I include it in both 
@@ -357,10 +377,6 @@ $u = new UtilityService();print $u->calculateTax(100) . "\n";
 
 I declare the PriceUtilities trait with the trait keyword. The body of a trait looks very similar to that of a class. It is simply a set of methods and properties collected within braces. Once I have declared it, I can access the PriceUtilities trait from within my classes. I do this with the use keyword followed by the name of the trait I wish to incorporate. So having declared and implemented the calculateTax() method in a single place, I go ahead and incorporate it into both the ShopProduct and the UtilityService classes.
 
-57
-
-Chapter 4 ■ advanCed Features
-
 Using More than One TraitYou can include multiple traits in a class by listing each one after the use keyword, separated by commas. In this example, I define and apply a new trait, IdentityTrait, keeping my original PriceUtilities trait:
 
 // listing 04.17trait IdentityTrait{    public function generateId(): string    {        return uniqid();    }}
@@ -383,10 +399,6 @@ and then declare that ShopProduct implements it:
 
 // listing 04.20interface IdentityObject{    public function generateId(): string;}
 
-58
-
-Chapter 4 ■ advanCed Features
-
 // listing 04.21trait IdentityTrait{    public function generateId(): string    {        return uniqid();    }}
 
 // listing 04.22class ShopProduct implements IdentityObject{    use PriceUtilities, IdentityTrait;}
@@ -404,10 +416,6 @@ Managing Method Name Conflicts with insteadofThe ability to combine traits is a 
 // listing 04.26trait PriceUtilities{    private $taxrate = 17;
 
     public function calculateTax(float $price): float    {
-
-59
-
-Chapter 4 ■ advanCed Features
 
         return (($this->taxrate / 100) * $price);    }
 
@@ -441,10 +449,6 @@ So when I run this code, I get the dummy output I planted in TaxTools::calculate
 
 222
 
-60
-
-Chapter 4 ■ advanCed Features
-
 Aliasing overridden trait methodsWe have seen that you can use insteadof to disambiguate between methods. What do you do, though, if you want to then access the overridden method? The as operator allows you to alias trait methods. Once again, the as operator requires a full reference to a method on its left-hand side. On the right-hand side of the operator, you should put the name of the alias. So here, for example, I reinstate the calculateTax() method of the PriceUtilities trait using the new name basicTax():
 
 // listing 04.31class UtilityService extends Service{
@@ -472,10 +476,6 @@ example, want to use a trait method to implement an abstract method signature de
 Using static methods in traitsMost of the examples you have seen so far could use static methods because they do not store instance data. There’s nothing complicated about placing a static method in a trait. Here I change the PriceUtilities::$taxrate property and the PriceUtilities::calculateTax() methods so that they are static:
 
 // listing 04.33trait PriceUtilities{
-
-61
-
-Chapter 4 ■ advanCed Features
 
     private static $taxrate = 17;
 
@@ -857,10 +857,6 @@ The benefit of these fine-grained catch clauses is that they allow you to apply 
 
         try {            //...        } catch ( FileException $e ) {            throw $e;        }
 
-74
-
-Chapter 4 ■ advanCed Features
-
 Another trick you can play here is to throw a new exception that wraps the current one. This allows you to stake a claim to the error and add your own contextual information, while retaining the data encapsulated by the exception you have caught. You can read more about this technique in Chapter 15.
 
 So what happens if an exception is not caught by client code? It is implicitly rethrown, and the client’s 
@@ -878,10 +874,6 @@ Imagine, for example, that Runner::init() keeps a log of its actions. It logs th
 process, any errors encountered, and then it logs the end of the initialization process. Here I provide a typically simplified example of this kind of logging:
 
 // listing 04.66    public static function init()    {        try {            $fh = fopen(__DIR__ . "/log.txt", "a");            fputs($fh, "start\n");            $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            print "user: " . $conf->get('user') . "\n";            print "host: " . $conf->get('host') . "\n";            $conf->set("pass", "newpass");            $conf->write();            fputs($fh, "end\n");            fclose($fh);        } catch (FileException $e) {            // permissions issue or non-existent file            fputs($fh, "file exception\n");            throw $e;        } catch (XmlException $e) {            fputs($fh, "xml exception\n");
-
-75
-
-Chapter 4 ■ advanCed Features
 
             // broken xml        } catch (ConfException $e) {            fputs($fh, "conf exception\n");            // wrong kind of XML file        } catch (\Exception $e) {            fputs($fh, "general exception\n");            // backstop: should not be called        }    }
 
@@ -908,10 +900,6 @@ familiar with Java, it’s likely you’ll have seen this clause before. Althoug
 I can fix this problem by moving my log write and code to close to a finally clause:
 
     public static function init()    {        $fh = fopen(__DIR__ . "/log.txt", "a");        try {            fputs($fh, "start\n");            $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            print "user: " . $conf->get('user') . "\n";            print "host: " . $conf->get('host') . "\n";            $conf->set("pass", "newpass");            $conf->write();        } catch (FileException $e) {            // permissions issue or non-existent file            fputs($fh, "file exception\n");        } catch (XmlException $e) {            fputs($fh, "xml exception\n");            // broken xml        } catch (ConfException $e) {            fputs($fh, "conf exception\n");
-
-76
-
-Chapter 4 ■ advanCed Features
 
             // wrong kind of XML file        } catch (Exception $e) {            fputs($fh, "general exception\n");            // backstop: should not be called        } finally {            fputs($fh, "end\n");            fclose($fh);        }    }
 
@@ -943,10 +931,6 @@ Here’s an attempt to subclass the Checkout class:
 
 // listing 04.68class IllegalCheckout extends Checkout{    // ...}
 
-77
-
-Chapter 4 ■ advanCed Features
-
 This produces an error:
 
 PHP Fatal error:  Class IllegalCheckout may not inherit from final class (Checkout) in ....
@@ -968,10 +952,6 @@ though, implementations will often vary. Different classes or combinations of cl
 The Internal Error Class
 
 Back when exceptions were first introduced, the world of trying and catching applied primarily to code written in PHP and not the core engine. Internally generated errors maintained their own logic. This could get messy if you wanted to manage core errors in the same way as code-generated exceptions. PHP 7 has made a start on addressing this issue with the Error class. This implements Throwable—the same built-in interface that the Exception class implements, and therefore it can be treated in the same way. This also means the methods described in Table 4-1 are honored. Error is subclassed for individual error types. Here’s how you might catch a parse error generated by an eval statement:
-
-78
-
-Chapter 4 ■ advanCed Features
 
         try {            eval("illegal code");        } catch (\Error $e) {            print get_class($e)."\n";        } catch (\Exception $e) {            // do something with an Exception        }
 
@@ -1010,10 +990,6 @@ PHP provides built-in interceptor methods that can intercept messages sent to un
 PHP supports three built-in interceptor methods. Like __construct(), these are invoked for you when 
 
 the right conditions are met. Table 4-3 describes the methods.
-
-79
-
-Chapter 4 ■ advanCed Features
 
 Table 4-3.  The Interceptor Methods
 
@@ -1057,10 +1033,6 @@ implemented __get() to take the property name and construct a new string, prepen
 
 $p = new Person();print $p->name;
 
-80
-
-Chapter 4 ■ advanCed Features
-
 In this case, the getName() method is invoked behind the scenes:
 
 Bob
@@ -1089,10 +1061,6 @@ passed two arguments: the name of the property and the value the client is attem
 
     public function setName(string $name)    {        $this->myname = $name;        if (! is_null($name)) {            $this->myname = strtoupper($this->myname);        }    }
 
-81
-
-Chapter 4 ■ advanCed Features
-
     public function setAge(int $age)    {        $this->myage = $age;    }}
 
 In this example, I work with「setter」methods rather than「getters.」If a user attempts to assign to an 
@@ -1114,10 +1082,6 @@ The __call() method is probably the most useful of all the interceptor methods. 
 The __call() method can be useful for delegation. Delegation is the mechanism by which one object 
 
 passes method invocations on to a second. It is similar to inheritance, in that a child class passes on a method call to its parent implementation. With inheritance the relationship between child and parent is fixed, so the ability to switch the receiving object at runtime means that delegation can be more flexible than inheritance. An example clarifies things a little. Here is a simple class for formatting information from the Person class:
-
-82
-
-Chapter 4 ■ advanCed Features
 
 // listing 04.75class PersonWriter{
 
@@ -1141,10 +1105,6 @@ The Person class here demands a PersonWriter object as a constructor argument an
 
 property variable. In the __call() method, I use the provided $method argument, testing for a method of the same name in the PersonWriter object I have stored. If I encounter such a method, I delegate the method call to the PersonWriter object, passing my current instance to it (in the $this pseudo-variable). Consider what happens if the client makes this call to Person:
 
-83
-
-Chapter 4 ■ advanCed Features
-
 $person = new Person(new PersonWriter());$person->writeName();
 
 In this case, the __call() method is invoked. I find a method called writeName() in my PersonWriter 
@@ -1164,10 +1124,6 @@ This can be a convenience for the client programmer. Imagine, for example, an Ad
     public function __construct(string $maybenumber, string $maybestreet = null)    {        if (is_null($maybestreet)) {            $this->streetaddress = $maybenumber;        } else {            $this->number = $maybenumber;            $this->street = $maybestreet;        }    }
 
     public function __set(string $property, string $value)    {        if ($property === "streetaddress") {            if (preg_match("/^(\d+.*?)[\s,]+(.+)$/", $value, $matches)) {                $this->number = $matches[1];                $this->street = $matches[2];            } else {                throw new \Exception("unable to parse street address: '{$value}'");            }
-
-84
-
-Chapter 4 ■ advanCed Features
 
         }    }
 
@@ -1190,10 +1146,6 @@ Address::$streetaddress property is accessed, __get() is invoked. In my implemen
 Defining Destructor Methods
 
 You have seen that the __construct() method is automatically invoked when an object is instantiated. PHP 5 also introduced the __destruct() method. This is invoked just before an object is garbage-collected; that is, before it is expunged from memory. You can use this method to perform any final cleaning up that might be necessary.
-
-85
-
-Chapter 4 ■ advanCed Features
 
 Imagine, for example, a class that saves itself to a database when so ordered. I could use the __
 
@@ -1220,10 +1172,6 @@ their colleagues are sometimes called magic methods. As you will know if you hav
 In the case of __destruct(), for example, you can end up saddling clients with unwelcome surprises. 
 
 Think about the Person class—it performs a database write in its __destruct() method. Now imagine a novice developer idly putting the Person class through its paces. He doesn’t spot the __destruct() method, and he sets about instantiating a set of Person objects. Passing values to the constructor, he assigns the CEO’s secret and faintly obscene nickname to the $name property, and then sets $age at 150. He runs his test script a few times, trying out colorful name and age combinations.
-
-86
-
-Chapter 4 ■ advanCed Features
 
 The next morning, his manager asks him to step into a meeting room to explain why the database 
 
@@ -1257,10 +1205,6 @@ When you implement __clone(),it is important to understand the context in which 
 
 // listing 04.81class Person{    private $name;
 
-87
-
-Chapter 4 ■ advanCed Features
-
     private $age;    private $id;
 
     public function __construct(string $name, int $age)    {        $this->name = $name;        $this->age = $age;    }
@@ -1285,10 +1229,6 @@ properties, though, are copied by reference, which may not be what you want or e
 
 // listing 04.84class Person
 
-88
-
-Chapter 4 ■ advanCed Features
-
 {    private $name;    private $age;    private $id;    public  $account;
 
     public function __construct(string $name, int $age, Account $account)    {        $this->name = $name;        $this->age  = $age;        $this->account = $account;    }
@@ -1312,10 +1252,6 @@ If I do not want an object property to be shared after a clone operation, then i
 explicitly in the __clone() method:
 
     function __clone()    {        $this->id   = 0;        $this->account = clone $this->account;    }
-
-89
-
-Chapter 4 ■ advanCed Features
 
 Defining String Values for Your Objects
 
@@ -1345,10 +1281,6 @@ Now when I print a Person object, the object will resolve to this:
 
 $person = new Person();
 
-90
-
-Chapter 4 ■ advanCed Features
-
 print $person;
 
 Bob (age 44)
@@ -1374,10 +1306,6 @@ class ProcessSale{    private $callbacks;
     public function registerCallback(callable $callback)    {        if (! is_callable($callback)) {            throw new Exception("callback not callable");        }        $this->callbacks[] = $callback;    }
 
     public function sale(Product $product)    {        print "{$product->name}: processing \n";        foreach ($this->callbacks as $callback) {            call_user_func($callback, $product);        }    }}
-
-91
-
-Chapter 4 ■ advanCed Features
 
 This code is designed to run my various callbacks. It consists of two classes, Product and ProcessSale. 
 
@@ -1415,11 +1343,8 @@ Look again at that create_function() example. See how ugly it is? Placing code d
 
 inside a string is always a pain. You need to escape variables and quotation marks, and, if the callback grows to any size, it can be very hard to read, indeed. Wouldn’t it be neater if there were a more elegant way of 
 
-92
-
 creating anonymous functions? Well, since PHP 5.3, there is a much better way of doing it. You can simply declare and assign a function in one statement. Here’s the previous example using the new syntax:
 
-Chapter 4 ■ advanCed Features
 
 // listing 04.91$logger2 = function ($product) {    print "    logging ({$product->name})\n";};
 
@@ -1449,10 +1374,6 @@ ing    mailing (shoes)
 
 coffee: processing    mailing (coffee)
 
-93
-
-Chapter 4 ■ advanCed Features
-
 You can have a method return an anonymous function—something like this:
 
 // listing 04.94class Totalizer{    public static function warnAmount()    {        return function (Product $product) {            if ($product->price > 5) {                print "    reached high price: {$product->price}\n";            }        };    }}
@@ -1468,10 +1389,6 @@ I can make my anonymous function track variables from its wider scope with a use
 // listing 04.96class Totalizer2{    public static function warnAmount($amt)    {        $count=0;        return function ($product) use ($amt, &$count) {            $count += $product->price;            print "   count: $count\n";            if ($count > $amt) {                print "   high price reached: {$count}\n";            }        };    }}
 
 // listing 04.97$processor = new ProcessSale();$processor->registerCallback(Totalizer2::warnAmount(8));
-
-94
-
-Chapter 4 ■ advanCed Features
 
 $processor->sale(new Product("shoes", 6));print "\n";$processor->sale(new Product("coffee", 6));
 
@@ -1527,13 +1444,9 @@ Anonymous classes do not support closures. In other words, variables declared in
 
                 }            }        );
 
-I passed a path argument to the constructor. This value was stored in the $path property and eventually 
+I passed a path argument to the constructor. This value was stored in the $path property and eventually used by the write() method.
 
-used by the write() method.
-
-Of course, if your anonymous class begins to grow in size and complexity, it becomes more sensible to 
-
-create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
+Of course, if your anonymous class begins to grow in size and complexity, it becomes more sensible to create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
 
 ## Summary
 
