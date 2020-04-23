@@ -1,4 +1,4 @@
-Continuous Integration
+# Continuous Integration
 
 In previous chapters, you’ve seen a plethora of tools that are designed to support a well-managed project. Unit testing, documentation, build, and version control are all fantastically useful. But tools, and testing in particular, can be bothersome.
 
@@ -618,10 +618,6 @@ With all that set up, I can return to the project screen and run another build. 
 
 newly enhanced output.
 
-519
-
-Chapter 21 ■ Continuous integration
-
 Figure 21-11.  The Project screen showing trend information
 
 Over time, the project screen will plot trends for test performance, coverage, and style compliance. There are also links to the latest API Documentation, detailed test results, and full coverage information.
@@ -630,11 +626,7 @@ Triggering BuildsAll of this rich information is almost useless if someone in yo
 
 intervals. Intervals can be set using cron format, which provides fine, although somewhat arcane, control 
 
-520
-
 over scheduling. Luckily, Jenkins provides good online help for the format, and there are simple aliases if you don’t require precision scheduling. The aliases include @hourly, @midnight, @daily, @weekly, and @monthly. In Figure 21-12, I configure the build to run once daily, or every time the repository changes, based upon a poll for changes that should take place once an hour.
-
-Chapter 21 ■ Continuous integration
 
 Figure 21-12.  Scheduling builds
 
@@ -643,10 +635,6 @@ Test FailuresSo far everything seems to be going well, even if userthing won’t
 Here is a part of a class named Validate in the namespace userthing\util:
 
     public function validateUser(string $mail, string $pass): boolean    {
-
-521
-
-Chapter 21 ■ Continuous integration
 
         // make it always fail        return false;        $user = $this->store->getUser($mail);        if (is_null($user)) {            return null;        }        if ($user->getPass() == $pass) {            return true;        }
 
@@ -662,17 +650,8 @@ Having made my change, all I need do is commit, and wait. Sure enough, before lo
 
 shows a build marked by a yellow icon. Once I click on the build link, I find more details. You can see the screen in Figure 21-13.
 
-522
-
-Chapter 21 ■ Continuous integration
-
 Figure 21-13.  The Unstable Build
 
-Summary
+## Summary
 
 In this chapter, I brought together many of the tools that you have seen in previous chapters and glued them in place with Jenkins. I prepared a small project for CI, applying a range of tools including PHPUnit (both for testing and code coverage), PHP_CodeSniffer, phpDocumentor, and Git. Then I set up Jenkins and showed you how to add a project to the system. I put the system through its paces and, finally, showed you how to extend Jenkins so that it can bug you with e-mails, and test both build and installation.
-
-523
-
-CHAPTER 22
-

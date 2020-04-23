@@ -1,4 +1,4 @@
-Version Control with Git
+# Version Control with Git
 
 All disasters have their tipping point, the moment at which order finally breaks down and events simply spiral out of control. Do you ever find yourself in projects like that? Are you able to spot that crucial moment?
 
@@ -728,17 +728,10 @@ Switched to a new branch 'new-version1.0-branch'
 
 However, now that I have this new branch, I can push it and share it just as you have seen.
 
-Summary
+## Summary
 
 Git comprises an enormous number of tools, each with a daunting range of options and capabilities. I can only hope to provide a brief introduction in the space available. Nonetheless, if you only use the features that I have covered in this chapter, you should see the benefit in your own work, whether through protection against data loss or improvements in collaborative working.
 
-In this chapter, we took a tour through the basics of Git. I looked briefly at configuration before 
-
-importing a project. I checked out, committed, and updated code, and then showed you how to tag and export a release. I ended the chapter with a brief look at branches, demonstrating their usefulness in maintaining concurrent development and bug-fix strands in a project.
+In this chapter, we took a tour through the basics of Git. I looked briefly at configuration before importing a project. I checked out, committed, and updated code, and then showed you how to tag and export a release. I ended the chapter with a brief look at branches, demonstrating their usefulness in maintaining concurrent development and bug-fix strands in a project.
 
 There is one issue that I have glossed over here, to some extent. We established the principle that developers should check out their own versions of a project. On the whole, however, projects will not run in place. In order to test their changes, developers need to deploy code locally. Sometimes, this is as simple as copying over a few directories. More often, however, deployment must address a whole range of configuration issues. In the next chapter, we will look at some techniques for automating this process.
-
-433
-
-CHAPTER 18
-

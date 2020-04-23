@@ -4,16 +4,6 @@ In this chapter, we get active. I look at patterns that help you to get things d
 
 This chapter will walk you through several patterns:
 
-•	
-
-•	
-
-•	
-
-•	•	
-
-•	
-
 The Interpreter pattern: Building a mini-language interpreter that can be used to create scriptable applications
 
 The Strategy pattern: Identifying algorithms in a system and encapsulating them into their own types

@@ -4,25 +4,25 @@ You have already seen how class type hinting and access control give you more co
 
 This chapter will cover several subjects: 
 
-Static methods and properties: Accessing data and functionality through classes rather than objects.
+- Static methods and properties: Accessing data and functionality through classes rather than objects.
 
-Abstract classes and interfaces: Separating design from implementation.
+- Abstract classes and interfaces: Separating design from implementation.
 
-Traits: Sharing implementation between class hierarchies.
+- Traits: Sharing implementation between class hierarchies.
 
-Error handling: Introducing exceptions.
+- Error handling: Introducing exceptions.
 
-Final classes and methods: Limiting inheritance.
+- Final classes and methods: Limiting inheritance.
 
-Destructor methods: Cleaning up after your objects.	
+- Destructor methods: Cleaning up after your objects.	
 
-Interceptor methods: Automating delegation.
+- Interceptor methods: Automating delegation.
 
-Cloning objects: Making object copies.
+- Cloning objects: Making object copies.
 
-Resolving objects to strings: Creating a summary method.
+- Resolving objects to strings: Creating a summary method.
 
-Callbacks: Adding functionality to components with anonymous functions and classes.
+- Callbacks: Adding functionality to components with anonymous functions and classes.
 
 ## 01. Static Methods and Properties
 
@@ -30,7 +30,6 @@ All of the examples in the previous chapter worked with objects. I characterized
 
 ```php
 // listing 04.01
-
 class StaticExample{    
     static public $aNum = 0;    
     public static function sayHello() {
@@ -54,7 +53,6 @@ From within the StaticExample class, I can use the self keyword:
 
 ```
 // listing 04.02
-
 class StaticExample{    
     static public $aNum = 0;    
     public static function sayHello()    {        
@@ -74,15 +72,15 @@ To illustrate this, I will build a static method for the ShopProduct class that 
 
 ```php
 CREATE TABLE products (                            
-                                                id INTEGER PRIMARY KEY AUTOINCREMENT,                            
-                                                type TEXT,                            
-                                                firstname TEXT,                            
-                                                mainname TEXT,                            
-                                                title TEXT,                            
-                                                price float,                            
-                                                numpages int,                            
-                                                playlength int,                            
-                                                discount int 
+        id INTEGER PRIMARY KEY AUTOINCREMENT,                            
+        type TEXT,                            
+        firstname TEXT,                            
+        mainname TEXT,                            
+        title TEXT,                            
+        price float,                            
+        numpages int,                            
+        playlength int,                            
+        discount int 
 )
 ```
 
@@ -90,7 +88,6 @@ Now I want to build a getInstance() method that accepts a row ID and PDO object,
 
 ```php
 // listing 04.03
-
 // ShopProduct class...
 
     private $id = 0;    // ...
@@ -161,419 +158,559 @@ Some properties should not be changed. The Answer to Life, the Universe, and Eve
 
 PHP allows you to define constant properties within a class. Like global constants, class constants cannot be changed once they are set. A constant property is declared with the const keyword. Constants are not prefixed with a dollar sign like regular properties. By convention, they are often named using only uppercase characters:
 
+```php
+// listing 04.04
+class ShopProduct{    
+    const AVAILABLE      = 0;    
+    const OUT_OF_STOCK   = 1;   
+    // ...
+```
 
+Constant properties can contain only primitive values. You cannot assign an object to a constant. Like static properties, constant properties are accessed through the class and not an instance. Just as you define a constant without a dollar sign, no leading symbol is required when you refer to one:
 
-
-
-
-
-// listing 04.04class ShopProduct{    const AVAILABLE      = 0;    const OUT_OF_STOCK   = 1;    // ...
-
-Constant properties can contain only primitive values. You cannot assign an object to a constant. Like 
-
-static properties, constant properties are accessed through the class and not an instance. Just as you define a constant without a dollar sign, no leading symbol is required when you refer to one:
-
+```php
 print ShopProduct::AVAILABLE;
+```
 
-Attempting to set a value on a constant once it has been declared will cause a parse error.You should use constants when your property needs to be available across all instances of a class, as 
+Attempting to set a value on a constant once it has been declared will cause a parse error. You should use constants when your property needs to be available across all instances of a class, as well as when the property value needs to be fixed and unchanging.
 
-well as when the property value needs to be fixed and unchanging.
+## 03. Abstract Classes
 
-Abstract Classes
+An abstract class cannot be instantiated. Instead it defines (and, optionally, partially implements) the interface for any class that might extend it. You define an abstract class with the abstract keyword. Here I redefine the ShopProductWriter class I created in the previous chapter, this time as an abstract class:
 
-An abstract class cannot be instantiated. Instead it defines (and, optionally, partially implements) the interface for any class that might extend it.
+```php
+// listing 04.05
+abstract class ShopProductWriter {    
+    protected $products = [];
+    public function addProduct(ShopProduct $shopProduct)    {        
+        $this->products[] = $shopProduct;    
+    }
+}
+```
 
-You define an abstract class with the abstract keyword. Here I redefine the ShopProductWriter class I 
+You can create methods and properties as normal, but any attempt to instantiate an abstract object in this way will cause an error:
 
-created in the previous chapter, this time as an abstract class:
-
-// listing 04.05abstract class ShopProductWriter{    protected $products = [];
-
-    public function addProduct(ShopProduct $shopProduct)    {        $this->products[] = $shopProduct;    }}
-
-You can create methods and properties as normal, but any attempt to instantiate an abstract object in 
-
-this way will cause an error:
-
+```php
 $writer = new ShopProductWriter();
+```
 
 You can see the error in this output:
 
-Error: Cannot instantiate abstract class popp\ch04\batch03\ShopProductWriter
+    Error: Cannot instantiate abstract class popp\ch04\batch03\ShopProductWriter
 
-In most cases, an abstract class will contain at least one abstract method. These are declared, once 
+In most cases, an abstract class will contain at least one abstract method. These are declared, once again, with the abstract keyword. An abstract method cannot have an implementation. You declare it in the normal way, but end the declaration with a semicolon rather than a method body. Here I add an abstract write() method to the ShopProductWriter class:
 
-again, with the abstract keyword. An abstract method cannot have an implementation. You declare it in the normal way, but end the declaration with a semicolon rather than a method body. Here I add an abstract write() method to the ShopProductWriter class:
+```php
+abstract class ShopProductWriter {    
+    protected $products = [];
+    public function addProduct(ShopProduct $shopProduct)    {        
+        $this->products[]=$shopProduct;    
+    }
+    abstract public function write();
+}
+```
 
-abstract class ShopProductWriter{    protected $products = [];
+In creating an abstract method, you ensure that an implementation will be available in all concrete child classes, but you leave the details of that implementation undefined.
 
-    public function addProduct(ShopProduct $shopProduct)    {        $this->products[]=$shopProduct;    }
+Assume I were to create a class derived from ShopProductWriter that does not implement the write() method, as in this example:
 
-    abstract public function write();}
-
-In creating an abstract method, you ensure that an implementation will be available in all concrete 
-
-child classes, but you leave the details of that implementation undefined.
-
-Assume I were to create a class derived from ShopProductWriter that does not implement the write() 
-
-method, as in this example:
-
+```php
 class ErroredWriter extends ShopProductWriter{}
+```
 
 I would face the following error:
 
-PHP Fatal error:  Class ErroredWriter contains 1 abstract method andmust therefore be declared abstract or implement the remaining methods (ShopProductWriter::write) in...
+    PHP Fatal error:  Class ErroredWriter contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (ShopProductWriter::write) in...
 
-So any class that extends an abstract class must implement all abstract methods or itself be declared 
+So any class that extends an abstract class must implement all abstract methods or itself be declared abstract. An extending class is responsible for more than simply implementing an abstract method. In doing so, it must reproduce the method signature. This means that the access control of the implementing method cannot be stricter than that of the abstract method. The implementing method should also require the same number of arguments as the abstract method, reproducing any class type hinting. Here are two implementations of ShopProductWriter:
 
-abstract. An extending class is responsible for more than simply implementing an abstract method. In doing so, it must reproduce the method signature. This means that the access control of the implementing method cannot be stricter than that of the abstract method. The implementing method should also require the same number of arguments as the abstract method, reproducing any class type hinting.
+```php
+// listing 04.06
+class XmlProductWriter extends ShopProductWriter{
 
-Here are two implementations of ShopProductWriter:
+    public function write()    {        
+        $writer = new \XMLWriter();        
+        $writer->openMemory();        
+        $writer->startDocument('1.0', 'UTF-8');        
+        $writer->startElement("products");        
+        foreach ($this->products as $shopProduct) {            
+            $writer->startElement("product");            
+            $writer->writeAttribute("title", $shopProduct->getTitle());            
+            $writer->startElement("summary");            
+            $writer->text($shopProduct->getSummaryLine());            
+            $writer->endElement(); // summary            
+            $writer->endElement(); // product        
+        }        
+        $writer->endElement(); // products        $writer->endDocument();        print $writer->flush();    
+    }
+}
 
-// listing 04.06class XmlProductWriter extends ShopProductWriter{
+// listing 04.07
+class TextProductWriter extends ShopProductWriter {    
+    public function write()    {        
+        $str = "PRODUCTS:\n";        
+        foreach ($this->products as $shopProduct) {            
+            $str .= $shopProduct->getSummaryLine()."\n";        
+        }        
+        print $str;    
+    }
+}
+```
 
-    public function write()    {        $writer = new \XMLWriter();        $writer->openMemory();        $writer->startDocument('1.0', 'UTF-8');        $writer->startElement("products");        foreach ($this->products as $shopProduct) {            $writer->startElement("product");            $writer->writeAttribute("title", $shopProduct->getTitle());            $writer->startElement("summary");            $writer->text($shopProduct->getSummaryLine());            $writer->endElement(); // summary            $writer->endElement(); // product        }        $writer->endElement(); // products        $writer->endDocument();        print $writer->flush();    }}
+I create two classes, each with its own implementation of the write() method. The first outputs XML and the second outputs text. A method that requires a ShopProductWriter object will not know which of these two classes it is receiving, but it can be absolutely certain that a write() method is implemented. Note that I don’t test the type of \$products before treating it as an array. This is because this property is initialized as an empty array in the ShopProductWriter.
 
-// listing 04.07class TextProductWriter extends ShopProductWriter{    public function write()    {        $str = "PRODUCTS:\n";        foreach ($this->products as $shopProduct) {            $str .= $shopProduct->getSummaryLine()."\n";        }        print $str;    }}
+## 04. Interfaces
 
-I create two classes, each with its own implementation of the write() method. The first outputs XML 
+Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
-and the second outputs text. A method that requires a ShopProductWriter object will not know which of these two classes it is receiving, but it can be absolutely certain that a write() method is implemented. Note that I don’t test the type of $products before treating it as an array. This is because this property is initialized as an empty array in the ShopProductWriter.
+```
+// listing 04.08
+interface Chargeable {    
+    public function getPrice(): float;
+}
+```
 
-Interfaces
+As you can see, an interface looks very much like a class. Any class that incorporates this interface commits to implementing all the methods it defines, or it must be declared abstract. A class can implement an interface using the implements keyword in its declaration. Once you have done this, the process of implementing an interface is the same as extending an abstract class that contains only abstract methods. Now I will make the ShopProduct class implement Chargeable:
 
-Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies.
+```php
+// listing 04.09
+class ShopProduct implements Chargeable {    
+    // ...    
+    protected $price;    
+    // ...
+    public function getPrice(): float    {        
+        return $this->price;    
+    }    
+    // ...
+}
+```
 
-Here’s an interface:
+ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements. This means that the CdProduct class belongs to the following:
 
-// listing 04.08interface Chargeable{    public function getPrice(): float;}
+```
+CdProduct
+ShopProduct
+Chargeable
+```
 
-As you can see, an interface looks very much like a class. Any class that incorporates this interface 
+This can be exploited by client code. To know an object’s type is to know its capabilities. Consider this method:
 
-commits to implementing all the methods it defines, or it must be declared abstract.
+```php
+public function cdInfo(CdProduct $prod)    {        
+    // ...    
+}
+```
 
-A class can implement an interface using the implements keyword in its declaration. Once you have 
+The method knows that the \$prod object has a getPlayLength() method in addition to all the methods defined in the ShopProduct class and Chargeable interface. Passed the same object, the method knows that \$prod supports all the methods in ShopProduct:
 
-done this, the process of implementing an interface is the same as extending an abstract class that contains only abstract methods. Now I will make the ShopProduct class implement Chargeable:
+```php
+public function addProduct(ShopProduct $prod)    {
+     // ...    
+}
+```
 
-// listing 04.09class ShopProduct implements Chargeable{    // ...    protected $price;    // ...
+Without further testing, however, the method will know nothing of the getPlayLength() method. Once again, passed the same CdProduct object, the method knows nothing at all of the ShopProduct or CdProduct types:
 
-    public function getPrice(): float    {        return $this->price;    }    // ...}
+```php
+public function addChargeableItem(Chargeable $item)    {        
+    //...    
+}
+```
 
-ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements.
+However, this method is only concerned with whether the \$item argument contains a getPrice() method. Because any class can implement an interface (in fact, a class can implement any number of interfaces), interfaces effectively join types that are otherwise unrelated. I might define an entirely new class that implements Chargeable:
 
-This means that the CdProduct class belongs to the following:
+```php
+class Shipping implements Chargeable{    
+    public function getPrice(): float    {        
+        //...    
+    }
+}
+```
 
-CdProductShopProductChargeable
+I can pass a Shipping object to the addChargeableItem method just as I can pass it a ShopProduct object. The important thing to a client working with a Chargeable object is that it can call a getPrice() method. Any other available methods are associated with other types, whether through the object’s own class, a superclass, or another interface. These are irrelevant to the client.
 
-This can be exploited by client code. To know an object’s type is to know its capabilities. Consider this 
+A class can both extend a superclass and implement any number of interfaces. The extends clause should precede the implements clause:
 
-method:
+```php
+class Consultancy extends TimedService implements Bookable, Chargeable {    
+    // ...
+}
+```
 
-    public function cdInfo(CdProduct $prod)    {        // ...    }
+Notice that the Consultancy class implements more than one interface. Multiple interfaces follow the implements keyword in a comma-separated list. PHP only supports inheritance from a single parent, so the extends keyword can precede a single class name only.
 
-The method knows that the $prod object has a getPlayLength() method in addition to all the methods 
+## 05. Traits
 
-defined in the ShopProduct class and Chargeable interface.
+As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. But what if you want to share an implementation across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
 
-Passed the same object, the method knows that $prod supports all the methods in ShopProduct:
+1『 traits 的作用是为了：share an implementation across inheritance hierarchies. 可以当作类的组件模块，在类的定义里使用 use 关键词调用 trait。』
 
-    public function addProduct(ShopProduct $prod)    {
+A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
 
-         // ...    }
+### 5.1 A Problem for Traits to Solve
 
-Without further testing, however, the method will know nothing of the getPlayLength() method.Once again, passed the same CdProduct object, the method knows nothing at all of the ShopProduct or 
+Here is a version of the ShopProduct class with a calculateTax() method:
 
-CdProduct types:
-
-    public function addChargeableItem(Chargeable $item)    {        //...    }
-
-However, this method is only concerned with whether the $item argument contains a getPrice() method.Because any class can implement an interface (in fact, a class can implement any number of interfaces), 
-
-interfaces effectively join types that are otherwise unrelated. I might define an entirely new class that implements Chargeable:
-
-class Shipping implements Chargeable{    public function getPrice(): float    {        //...    }}
-
-I can pass a Shipping object to the addChargeableItem method just as I can pass it a ShopProduct object.The important thing to a client working with a Chargeable object is that it can call a getPrice() 
-
-method. Any other available methods are associated with other types, whether through the object’s own class, a superclass, or another interface. These are irrelevant to the client.
-
-A class can both extend a superclass and implement any number of interfaces. The extends clause 
-
-should precede the implements clause:
-
-class Consultancy extends TimedService implements Bookable, Chargeable{    // ...}
-
-Notice that the Consultancy class implements more than one interface. Multiple interfaces follow the 
-
-implements keyword in a comma-separated list.
-
-PHP only supports inheritance from a single parent, so the extends keyword can precede a single class 
-
-name only.
-
-Traits
-
-As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type.
-
-So interfaces provide types without implementation. But what if you want to share an implementation 
-
-across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
-
-A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes.
-
-Let’s look at why a trait might be useful.
-
-A Problem for Traits to SolveHere is a version of the ShopProduct class with a calculateTax() method:
-
+```php
 // listing 04.10
+class ShopProduct {    
+    private $taxrate = 17;
+    // ...
 
-class ShopProduct{    private $taxrate = 17;
+    public function calculateTax(float $price): float    {        
+        return (($this->taxrate / 100) * $price);    
+    }
+}
 
-// ...
+// listing 04.11
+$p = new ShopProduct("Fine Soap", "", "Bob's Bathroom", 1.33);
+print $p->calculateTax(100) . "\n";
+```
 
-    public function calculateTax(float $price): float    {        return (($this->taxrate / 100) * $price);    }}
+The calculateTax() method accepts a \$price argument and calculates a sales tax amount based on the private \$taxrate property. Of course, a subclass gains access to calculateTax(). But what about entirely different class hierarchies? Imagine a class named UtilityService, which inherits from another class, Service. If UtilityService needs to use an identical routine, I might find myself duplicating calculateTax() in its entirety:
 
-// listing 04.11$p = new ShopProduct("Fine Soap", "", "Bob's Bathroom", 1.33);print $p->calculateTax(100) . "\n";
+```php
+abstract class Service {    
+    // service oriented stuff
+}
 
-The calculateTax() method accepts a $price argument and calculates a sales tax amount based on 
+class UtilityService extends Service {    
+    private $taxrate = 17;
+    function calculateTax(float $price): float    {        
+        return ( ( $this->taxrate/100 ) * $price );    
+    }
+}
 
-the private $taxrate property.
+$u = new UtilityService();
+print $u->calculateTax(100)."\n";
+```
 
-Of course, a subclass gains access to calculateTax(). But what about entirely different class 
+### 5.2 Defining and Using a Trait
 
-hierarchies? Imagine a class named UtilityService, which inherits from another class, Service. If UtilityService needs to use an identical routine, I might find myself duplicating calculateTax() in its entirety:
+One of the core object-oriented design goals I will cover in this book is the removal of duplication. As you will see in Chapter 11, one solution to this kind of duplication is to factor it out into a reusable strategy class. Traits provide another approach—less elegant, perhaps, but certainly effective. Here I declare a single trait that defines a calculateTax() method, and then I include it in both ShopProduct and UtilityService:
 
-abstract class Service{    // service oriented stuff}
+```php
+// listing 04.12
+trait PriceUtilities {    
+    private $taxrate = 17;
+    public function calculateTax(float $price): float    {        
+        return (($this->taxrate / 100) * $price);    
+    }
+    // other utilities
+}
 
-class UtilityService extends Service{    private $taxrate = 17;
+// listing 04.13
+class ShopProduct {    
+    use PriceUtilities;
+}
 
-    function calculateTax(float $price): float    {        return ( ( $this->taxrate/100 ) * $price );    }}
+// listing 04.14
+abstract class Service {    
+    // service oriented stuff
+}
 
-$u = new UtilityService();print $u->calculateTax(100)."\n";
+// listing 04.15
+class UtilityService extends Service {    
+    use PriceUtilities;
+}
 
-Defining and Using a TraitOne of the core object-oriented design goals I will cover in this book is the removal of duplication. As you will see in Chapter 11, one solution to this kind of duplication is to factor it out into a reusable strategy class. Traits provide another approach—less elegant, perhaps, but certainly effective.
-
-Here I declare a single trait that defines a calculateTax() method, and then I include it in both 
-
-ShopProduct and UtilityService:
-
-// listing 04.12trait PriceUtilities{    private $taxrate = 17;
-
-    public function calculateTax(float $price): float    {        return (($this->taxrate / 100) * $price);    }
-
-    // other utilities}
-
-// listing 04.13class ShopProduct{    use PriceUtilities;}
-
-// listing 04.14abstract class Service{    // service oriented stuff}
-
-// listing 04.15class UtilityService extends Service{    use PriceUtilities;}
-
-// listing 04.16$p = new ShopProduct();print $p->calculateTax(100) . "\n";
-
-$u = new UtilityService();print $u->calculateTax(100) . "\n";
+// listing 04.16
+$p = new ShopProduct();
+print $p->calculateTax(100) . "\n";
+$u = new UtilityService();
+print $u->calculateTax(100) . "\n";
+```
 
 I declare the PriceUtilities trait with the trait keyword. The body of a trait looks very similar to that of a class. It is simply a set of methods and properties collected within braces. Once I have declared it, I can access the PriceUtilities trait from within my classes. I do this with the use keyword followed by the name of the trait I wish to incorporate. So having declared and implemented the calculateTax() method in a single place, I go ahead and incorporate it into both the ShopProduct and the UtilityService classes.
 
-Using More than One TraitYou can include multiple traits in a class by listing each one after the use keyword, separated by commas. In this example, I define and apply a new trait, IdentityTrait, keeping my original PriceUtilities trait:
+### 5.3 Using More than One Trait
 
-// listing 04.17trait IdentityTrait{    public function generateId(): string    {        return uniqid();    }}
+You can include multiple traits in a class by listing each one after the use keyword, separated by commas. In this example, I define and apply a new trait, IdentityTrait, keeping my original PriceUtilities trait:
 
-// listing 04.18class ShopProduct{    use PriceUtilities, IdentityTrait;}
+```php
+// listing 04.17
+trait IdentityTrait {    
+    public function generateId(): string    {        
+        return uniqid();    
+    }
+}
 
-// listing 04.19$p = new ShopProduct();print $p->calculateTax(100) . "\n";print $p->generateId() . "\n";
+// listing 04.18
+class ShopProduct {    
+    use PriceUtilities, IdentityTrait;
+}
 
-By applying both PriceUtilities and IdentityTrait with the use keyword, I make the 
+// listing 04.19
+$p = new ShopProduct();
+print $p->calculateTax(100) . "\n";print $p->generateId() . "\n";
+```
 
-calculateTax() and the generateId() methods available to the ShopProduct class. This means the class offers both the calculateTax() and generateId() methods.
+By applying both PriceUtilities and IdentityTrait with the use keyword, I make the calculateTax() and the generateId() methods available to the ShopProduct class. This means the class offers both the calculateTax() and generateId() methods.
 
- ■ Note  the IdentityTrait trait provides the generateId() method. In fact, a database often generates identifiers for objects, but you might switch in a local implementation for testing purposes. You can find out more about objects, databases, and unique identifiers in Chapter 12, which covers the Identity Map pattern. You can learn more about testing and mocking in Chapter 18.
+Note: the IdentityTrait trait provides the generateId() method. In fact, a database often generates identifiers for objects, but you might switch in a local implementation for testing purposes. You can find out more about objects, databases, and unique identifiers in Chapter 12, which covers the Identity Map pattern. You can learn more about testing and mocking in Chapter 18.
 
-Combining Traits and InterfacesAlthough traits are useful, they don’t change the type of the class to which they are applied. So when you apply the IdentityTrait trait to multiple classes, they won’t share a type that could be hinted for in a method signature.
+### 5.4 Combining Traits and Interfaces
 
-Luckily, traits play well with interfaces. I can define an interface that requires a generateId() method, 
+Although traits are useful, they don’t change the type of the class to which they are applied. So when you apply the IdentityTrait trait to multiple classes, they won’t share a type that could be hinted for in a method signature. Luckily, traits play well with interfaces. I can define an interface that requires a generateId() method, and then declare that ShopProduct implements it:
 
-and then declare that ShopProduct implements it:
+```php
+// listing 04.20
+interface IdentityObject {    
+    public function generateId(): string;
+}
 
-// listing 04.20interface IdentityObject{    public function generateId(): string;}
+// listing 04.21
+trait IdentityTrait {    
+    public function generateId(): string    {        
+        return uniqid();    
+    }
+}
 
-// listing 04.21trait IdentityTrait{    public function generateId(): string    {        return uniqid();    }}
-
-// listing 04.22class ShopProduct implements IdentityObject{    use PriceUtilities, IdentityTrait;}
+// listing 04.22
+class ShopProduct implements IdentityObject {    
+    use PriceUtilities, IdentityTrait;
+}
+```
 
 As before, ShopProduct uses the IdentityTrait trait. However, the method this imports, generateId() now also fulfills a commitment to the IdentityObject interface. This means that we can pass ShopProduct objects to methods and functions that use type hinting to demand IdentityObject instances, like this:
 
-// listing 04.23    public static function storeIdentityObject(IdentityObject $idobj)    {        // do something with the IdentityObject    }
+```php
+// listing 04.23    
+public static function storeIdentityObject(IdentityObject $idobj)    {        
+    // do something with the IdentityObject    
+}
 
-// listing 04.24$p = new ShopProduct();self::storeIdentityObject($p);print $p->calculateTax(100) . "\n";print $p->generateId() . "\n";
+// listing 04.24$p = new ShopProduct();
+self::storeIdentityObject($p);
+print $p->calculateTax(100) . "\n";
+print $p->generateId() . "\n";
+```
 
-Managing Method Name Conflicts with insteadofThe ability to combine traits is a nice feature, but sooner or later conflicts are inevitable. Consider what would happen, for example, if I were to use two traits that provide a calculateTax() method:
+### 5.5 Managing Method Name Conflicts with insteadof
 
-// listing 04.25trait TaxTools{    function calculateTax(float $price): float    {        return 222;    }}
+The ability to combine traits is a nice feature, but sooner or later conflicts are inevitable. Consider what would happen, for example, if I were to use two traits that provide a calculateTax() method:
 
-// listing 04.26trait PriceUtilities{    private $taxrate = 17;
+```php
+// listing 04.25
+trait TaxTools {    
+    function calculateTax(float $price): float    {        
+        return 222;    
+    }
+}
 
+// listing 04.26
+trait PriceUtilities {    
+    private $taxrate = 17;
     public function calculateTax(float $price): float    {
+        return (($this->taxrate / 100) * $price);    
+    }
+    // other utilities
+}
 
-        return (($this->taxrate / 100) * $price);    }
+// listing 04.27
+class UtilityService extends Service {    
+    use PriceUtilities, TaxTools;
+}
 
-    // other utilities}
+// listing 04.28
+$u = new UtilityService();
+print $u->calculateTax(100) . "\n";
+```
 
-// listing 04.27class UtilityService extends Service{    use PriceUtilities, TaxTools;}
+Because I have included two traits that contain calculateTax() methods, PHP is unable to work out which should override the other. The result is a fatal error:
 
-// listing 04.28$u = new UtilityService();print $u->calculateTax(100) . "\n";
-
-Because I have included two traits that contain calculateTax() methods, PHP is unable to work out 
-
-which should override the other. The result is a fatal error:
-
-PHP Fatal error:  Trait method calculateTax has not been applied, because thereare collisions with other trait methods on...
+    PHP Fatal error:  Trait method calculateTax has not been applied, because thereare collisions with other trait methods on...
 
 To fix this problem, I can use the insteadof keyword. Here’s how:
 
-// listing 04.29class UtilityService extends Service{    use PriceUtilities, TaxTools {        TaxTools::calculateTax insteadof PriceUtilities;    }}
+```php
+// listing 04.29
+class UtilityService extends Service {    
+    use PriceUtilities, TaxTools {        
+        TaxTools::calculateTax insteadof PriceUtilities;    
+    }
+}
 
-// listing 04.30$u = new UtilityService();print $u->calculateTax(100) . "\n";
+// listing 04.30
+$u = new UtilityService();
+print $u->calculateTax(100) . "\n";
+```
 
 In order to apply further directives to a use statement, I must first add a body. I do this with opening and closing braces. Within this block, I use the insteadof operator. This requires a fully qualified method reference (i.e., one that identifies both the trait and the method names, separated by a scope resolution operator) on the left-hand side. On the right-hand side, insteadof requires the name of the trait whose equivalent method should be overridden:
 
+```php
 TaxTools::calculateTax insteadof PriceUtilities;
+```
 
-The preceding snippet means,「Use the calculateTax() method of TaxTools instead of the method of 
+The preceding snippet means,「Use the calculateTax() method of TaxTools instead of the method of he same name in PriceUtilities.」So when I run this code, I get the dummy output I planted in TaxTools::calculateTax():
 
-the same name in PriceUtilities.」
+    222
 
-So when I run this code, I get the dummy output I planted in TaxTools::calculateTax():
+### 5.6 Aliasing overridden trait methods
 
-222
+We have seen that you can use insteadof to disambiguate between methods. What do you do, though, if you want to then access the overridden method? The as operator allows you to alias trait methods. Once again, the as operator requires a full reference to a method on its left-hand side. On the right-hand side of the operator, you should put the name of the alias. So here, for example, I reinstate the calculateTax() method of the PriceUtilities trait using the new name basicTax():
 
-Aliasing overridden trait methodsWe have seen that you can use insteadof to disambiguate between methods. What do you do, though, if you want to then access the overridden method? The as operator allows you to alias trait methods. Once again, the as operator requires a full reference to a method on its left-hand side. On the right-hand side of the operator, you should put the name of the alias. So here, for example, I reinstate the calculateTax() method of the PriceUtilities trait using the new name basicTax():
+```
+// listing 04.31
+class UtilityService extends Service {
+    use PriceUtilities, TaxTools {        
+    TaxTools::calculateTax insteadof PriceUtilities;        
+    PriceUtilities::calculateTax as basicTax;    
+    }
+}
 
-// listing 04.31class UtilityService extends Service{
-
-    use PriceUtilities, TaxTools {        TaxTools::calculateTax insteadof PriceUtilities;        PriceUtilities::calculateTax as basicTax;    }}
-
-// listing 04.32$u = new UtilityService();print $u->calculateTax(100) . "\n";print $u->basicTax(100) . "\n";
+// listing 04.32
+$u = new UtilityService();
+print $u->calculateTax(100) . "\n";
+print $u->basicTax(100) . "\n";
+```
 
 This gives the following output:
 
-22217
+    22217
 
-So PriceUtilities::calculateTax() has been resurrected as part of the UtilityService class under 
+So PriceUtilities::calculateTax() has been resurrected as part of the UtilityService class under the name basicTax(). 
 
-the name basicTax().
+Note: Where a method name clashes between traits, it is not enough to alias one of the method names in the use block. You must first determine which method supercedes the other using the insteadof operator. then you can reassign the discarded method a new name with the as operator.
 
- Where a method name clashes between traits, it is not enough to alias one of the method names in 
+Incidentally, you can also use method name aliasing where there is no name clash. You might, for example, want to use a trait method to implement an abstract method signature declared in a parent class or in an interface.
 
- ■ Note the use block. You must first determine which method supercedes the other using the insteadof operator. then you can reassign the discarded method a new name with the as operator.
+### 5.7 Using static methods in traits
 
-Incidentally, you can also use method name aliasing where there is no name clash. You might, for 
+Most of the examples you have seen so far could use static methods because they do not store instance data. There’s nothing complicated about placing a static method in a trait. Here I change the PriceUtilities::\$taxrate property and the PriceUtilities::calculateTax() methods so that they are static:
 
-example, want to use a trait method to implement an abstract method signature declared in a parent class or in an interface.
-
-Using static methods in traitsMost of the examples you have seen so far could use static methods because they do not store instance data. There’s nothing complicated about placing a static method in a trait. Here I change the PriceUtilities::$taxrate property and the PriceUtilities::calculateTax() methods so that they are static:
-
-// listing 04.33trait PriceUtilities{
-
+```
+// listing 04.33trait PriceUtilities {
     private static $taxrate = 17;
+    public static function calculateTax(float $price): float    {        
+        return ((self::$taxrate / 100) * $price);    
+    }
+    // other utilities
+}
 
-    public static function calculateTax(float $price): float    {        return ((self::$taxrate / 100) * $price);    }
+// listing 04.34
+class UtilityService extends Service {    
+    use PriceUtilities;
+}
 
-    // other utilities}
-
-// listing 04.34class UtilityService extends Service{    use PriceUtilities;}
-
-// listing 04.35$u = new UtilityService();print $u::calculateTax(100) . "\n";
+// listing 04.35
+$u = new UtilityService();
+print $u::calculateTax(100) . "\n";
+```
 
 As you might expect, this script outputs the following:
 
-17
+    17
 
 So, static methods are declared in traits and accessed via the host class in the normal way.
 
-Accessing Host Class PropertiesYou might assume that static methods are really the only way to go as far as traits are concerned. Even trait methods that are not declared static are essentially static in nature, right? Well, wrong, in fact—you can access properties and methods in a host class:
+### 5.8 Accessing Host Class Properties
 
-// listing 04.36trait PriceUtilities{    function calculateTax(float $price): float    {        // is this good design?        return (($this->taxrate / 100) * $price);    }
+You might assume that static methods are really the only way to go as far as traits are concerned. Even trait methods that are not declared static are essentially static in nature, right? Well, wrong, in fact—you can access properties and methods in a host class:
 
-    // other utilities}
+```php
+// listing 04.36
+trait PriceUtilities {    
+    function calculateTax(float $price): float    {        
+        // is this good design?        
+        return (($this->taxrate / 100) * $price);    
+    }
+    // other utilities
+}
 
-// listing 04.37class UtilityService extends Service{    public $taxrate = 17;    use PriceUtilities;}
+// listing 04.37
+class UtilityService extends Service {    
+    public $taxrate = 17;    use PriceUtilities;
+}
 
-62
+// listing 04.38
+$u = new UtilityService();
+print $u->calculateTax(100) . "\n";
+```
 
-Chapter 4 ■ advanCed Features
+In the preceding code, I amend the PriceUtilities trait so that it accesses a property in its host class. If you think that this is bad design, you’re right. It’s spectacularly bad design. Although it’s useful for the trait to access data set by its host class, there is nothing to require the UtilityService class to actually provide a \$taxrate property. Remember that traits should be usable across many different classes. What is the guarantee or even the likelihood that any host classes will declare a \$taxrate?
 
-// listing 04.38$u = new UtilityService();print $u->calculateTax(100) . "\n";
+On the other hand, it would be great to be able to establish a contract that says, essentially,「If you use this trait, then you must provide it certain resources.」In fact, you can achieve exactly this effect. Traits support abstract methods.
 
-In the preceding code, I amend the PriceUtilities trait so that it accesses a property in its host class. If you think that this is bad design, you’re right. It’s spectacularly bad design. Although it’s useful for the trait to access data set by its host class, there is nothing to require the UtilityService class to actually provide a $taxrate property. Remember that traits should be usable across many different classes. What is the guarantee or even the likelihood that any host classes will declare a $taxrate?
+### 5.9 Defining Abstract Methods in Traits
 
-On the other hand, it would be great to be able to establish a contract that says, essentially,「If you use 
+You can define abstract methods in a trait in just the same way you would in a class. When a trait is used by a class, it takes on the commitment to implement any abstract methods it declares. Armed with this knowledge, I can reimplement my previous example so that the trait forces the using class to provide tax rate information:
 
-this trait, then you must provide it certain resources.」
+```php
+// listing 04.39
+trait PriceUtilities {    
+    function calculateTax(float $price): float    {        
+        // better design.. we know getTaxRate() is implemented        
+        return (($this->getTaxRate() / 100) * $price);    
+    }
+    abstract function getTaxRate(): float;    // other utilities
+}
 
-In fact, you can achieve exactly this effect. Traits support abstract methods.
+// listing 04.40
+class UtilityService extends Service {    
+    use PriceUtilities;
+    public function getTaxRate(): float    {        
+        return 17;    
+    }
+}
 
-Defining Abstract Methods in TraitsYou can define abstract methods in a trait in just the same way you would in a class. When a trait is used by a class, it takes on the commitment to implement any abstract methods it declares.
-
-Armed with this knowledge, I can reimplement my previous example so that the trait forces the using 
-
-class to provide tax rate information:
-
-// listing 04.39trait PriceUtilities{    function calculateTax(float $price): float    {        // better design.. we know getTaxRate() is implemented        return (($this->getTaxRate() / 100) * $price);    }
-
-    abstract function getTaxRate(): float;    // other utilities}
-
-// listing 04.40class UtilityService extends Service{    use PriceUtilities;
-
-    public function getTaxRate(): float    {        return 17;    }}
-
-// listing 04.41$u = new UtilityService();print $u->calculateTax(100) . "\n";
+// listing 04.41
+$u = new UtilityService();
+print $u->calculateTax(100) . "\n";
+```
 
 By declaring an abstract getTaxRate() method in the PriceUtilities trait, I force the UtilityService class to provide an implementation. Of course, since PHP does not constrain return types, the UtilityService::calculateTax() method cannot be absolutely certain it’s going to get a sane value from getTaxRate(). 
 
-63
-
-Chapter 4 ■ advanCed Features
-
 You could overcome this to some extent by writing all sorts of checking routines, but this misses the point. It is probably adequate just to signal to a client coder that she should provide certain information by requiring the implementation of a method or two.
 
-Changing Access Rights to Trait MethodsYou can, of course, declare a trait method public, private, or protected. However, you can also change this access from within the class that uses the trait. You have already seen that the as operator can be used to alias a method name. If you use an access modifier on the right-hand side of this operator, it will change the method’s access level rather than its name.
+### 5.10 Changing Access Rights to Trait Methods
 
-Imagine, for example, you would like to use calculateTax() from within UtilityService, but not 
+You can, of course, declare a trait method public, private, or protected. However, you can also change this access from within the class that uses the trait. You have already seen that the as operator can be used to alias a method name. If you use an access modifier on the right-hand side of this operator, it will change the method’s access level rather than its name.
 
-make it available to implementing code. Here’s how you would change the use statement:
+Imagine, for example, you would like to use calculateTax() from within UtilityService, but not make it available to implementing code. Here’s how you would change the use statement:
 
-// listing 04.42trait PriceUtilities{    public function calculateTax(float $price): float    {        return (($this->getTaxRate() / 100) * $price);    }    public abstract function getTaxRate(): float;    // other utilities}
+```php
+// listing 04.42
+trait PriceUtilities {    
+    public function calculateTax(float $price): float    {        
+    r   eturn (($this->getTaxRate() / 100) * $price);    
+    }    
+    public abstract function getTaxRate(): float;    // other utilities
+}
 
-// listing 04.43class UtilityService extends Service{    use PriceUtilities {        PriceUtilities::calculateTax as private;    }
-
+// listing 04.43
+class UtilityService extends Service {    
+    use PriceUtilities {        
+        PriceUtilities::calculateTax as private;    
+    }
     private $price;
+    public function __construct(float $price)    {        
+        $this->price = $price;    
+    }
+    public function getTaxRate(): float    {        
+        return 17;    
+    }
+    public function getFinalPrice(): float    {        
+        return ($this->price + $this->calculateTax($this->price));    
+    }
+}
 
-    public function __construct(float $price)    {        $this->price = $price;    }
+// listing 04.44$u = new UtilityService(100);
+print $u->getFinalPrice() . "\n";
+```
 
-    public function getTaxRate(): float    {        return 17;    }
+I deploy the as operator in conjunction with the private keyword in order to set private access to calculateTax(). This means I can access the method from getFinalPrice(). Here’s an external attempt to access calculateTax():
 
-    public function getFinalPrice(): float    {        return ($this->price + $this->calculateTax($this->price));    }}
-
-64
-
-Chapter 4 ■ advanCed Features
-
-// listing 04.44$u = new UtilityService(100);print $u->getFinalPrice() . "\n";
-
-I deploy the as operator in conjunction with the private keyword in order to set private access to 
-
-calculateTax(). This means I can access the method from getFinalPrice(). Here’s an external attempt to access calculateTax():
-
-$u = new UtilityService(100);print $u->calculateTax()."\n";
+```php
+$u = new UtilityService(100);
+print $u->calculateTax()."\n";
+```
 
 Unfortunately, this code will generate an error:
 
-Error: Call to private method popp\ch04\batch06_9\UtilityService::calculateTax() from context ...
+    Error: Call to private method popp\ch04\batch06_9\UtilityService::calculateTax() from context ...
 
-Late Static Bindings: The static Keyword
+## 06. Late Static Bindings: The static Keyword
 
 Now that you’ve seen abstract classes, traits, and interfaces, it’s time to return briefly to static methods. You saw that a static method can be used as factory, a way of generating instances of the containing class. If you’re as lazy a coder as me, you might chafe at the duplication in an example like this:
 
@@ -588,10 +725,6 @@ Now that you’ve seen abstract classes, traits, and interfaces, it’s time to 
 I create a super class named DomainObject. In a real-world project, of course, this would contain 
 
 functionality common to its extending classes. Then I create two child classes, User and Document. I would like my concrete classes to have static create() methods.
-
-65
-
-Chapter 4 ■ advanCed Features
 
  Why would I use a static factory method when a constructor performs the work of creating an 
 
@@ -619,11 +752,7 @@ So self resolves to DomainObject, the place where create() is defined, and not t
 
 on which it was called. Until PHP 5.3 this was a serious limitation, which spawned many rather clumsy workarounds. PHP 5.3 introduced a concept called late static bindings. The most obvious manifestation of this feature is the keyword: static. static is similar to self, except that it refers to the invoked rather than the containing class. In this case, it means that calling Document::create() results in a new Document object and not a doomed attempt to instantiate a DomainObject object.
 
-66
-
 So now I can take advantage of my inheritance relationship in a static context:
-
-Chapter 4 ■ advanCed Features
 
 abstract class DomainObject{    public static function create(): DomainObject    {        return new static();    }}
 
@@ -645,10 +774,6 @@ The static keyword can be used for more than just instantiation. Like self and p
 
     public static function getGroup(): string    {        return "default";    }}
 
-67
-
-Chapter 4 ■ advanCed Features
-
 // listing 04.53class User extends DomainObject{}
 
 // listing 04.54class Document extends DomainObject{    public static function getGroup(): string    {        return "document";    }}
@@ -665,15 +790,11 @@ popp\ch04\batch07\User Object(    [group:popp\ch04\batch07\DomainObject:private]
 
 For the User class, not much clever needs to happen. The DomainObject constructor calls getGroup() and finds it locally. In the case of SpreadSheet, though, the search begins at the invoked class, SpreadSheet itself. It provides no implementation, so the getGroup() method in the Document class is invoked. Before PHP 5.3 and late static binding, I would have been stuck with the self keyword here, which would only look for getGroup() in the DomainObject class.
 
-Handling Errors
+## 07. Handling Errors
 
 Things go wrong. Files are misplaced, database servers are left uninitialized, URLs are changed, XML files are mangled, permissions are poorly set, disk quotas are exceeded. The list goes on and on. In the fight to anticipate every problem, a simple method can sometimes sink under the weight of its own error-handling code.
 
-68
-
 Here is a simple Conf class that stores, retrieves, and sets data in an XML configuration file:
-
-Chapter 4 ■ advanCed Features
 
 // listing 04.57class Conf{    private $file;    private $xml;    private $lastmatch;
 
@@ -690,10 +811,6 @@ The Conf class uses the SimpleXml extension to access name value pairs. Here’s
 which it is designed to work:
 
 <?xml version="1.0"?><conf>    <item name="user">bob</item>    <item name="pass">newpass</item>    <item name="host">localhost</item></conf>
-
-69
-
-Chapter 4 ■ advanCed Features
 
 The Conf class’s constructor accepts a file path, which it passes to simplexml:load_file().It stores the resulting SimpleXmlElement object in a property called $xml. The get() method uses XPath to locate an item element with the given name attribute, returning its value. set() either changes the value of an existing item or creates a new one. Finally, the write() method saves the new configuration data back to the file.
 
@@ -735,10 +852,6 @@ The Exception class is fantastically useful for providing error notification and
 
 (the getTrace() and getTraceAsString() methods are particularly helpful in this regard). In fact, it is almost identical to the PEAR_Error class that was discussed earlier. There is much more to an exception than the information it holds, though.
 
-70
-
-Chapter 4 ■ advanCed Features
-
 Table 4-1.  The Exception Class’s Public Methods
 
 Method
@@ -773,10 +886,6 @@ The write() method can use a similar construct:
 
 // listing 04.59    public function write()    {        if (! is_writeable($this->file)) {            throw new \Exception("file '{$this->file}' is not writeable");        }        file_put_contents($this->file, $this->xml->asXML());    }
 
-71
-
-Chapter 4 ■ advanCed Features
-
 The __construct() and write() methods can now check diligently for file errors as they do their work, 
 
 but they let code more fitted for the purpose decide how to respond to any errors detected.
@@ -807,10 +916,6 @@ clause invoked will depend on the type of the thrown exception and the class typ
 
     public function getLibXmlError()    {        return $this->error;    }
 
-72
-
-Chapter 4 ■ advanCed Features
-
 }
 
 // listing 04.62class FileException extends \Exception{}
@@ -832,10 +937,6 @@ has $message and $code properties, and it resembles the Exception class. I take 
 __construct() throws either an XmlException, a FileException, or a ConfException, depending on 
 
 the kind of error it encounters. Note that I pass the option flag LIBXML_NOERROR to simplexml:load_file(). This suppresses warnings, leaving me free to handle them with my XmlException class after the fact. If I encounter a malformed XML file, I know that an error has occurred because simplexml:load_file() won’t have returned an object. I can then access the error using libxml:get_last_error().
-
-73
-
-Chapter 4 ■ advanCed Features
 
 The write() method throws a FileException if the $file property points to an unwritable entity.So, I have established that __construct() might throw one of three possible exceptions. How can I take 
 
@@ -915,7 +1016,7 @@ startfile exceptionend
 
  ■ Note however, calling die() or exit() in a try or catch block will end script execution, and the finally clause will not be run.
 
-Final Classes and Methods
+## Final Classes and Methods
 
 Inheritance allows for enormous flexibility within a class hierarchy. You can override a class or method so that a call in a client method will achieve radically different effects, according to which class instance it has been passed. Sometimes, though, a class or method should remain fixed and unchanging. If you have achieved the definitive functionality for your class or method, and you feel that overriding it can only damage the ultimate perfection of your work, you may need the final keyword.
 

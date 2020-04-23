@@ -1,4 +1,4 @@
-PHP Standards
+# PHP Standards
 
 Unless you are a lawyer or a health inspector, the topic of standards probably does not make your heart race. However, what standards help us achieve is worth getting excited about. Standards promote interoperability, and that gives us access to a vast array of compatible tools and framework components.
 

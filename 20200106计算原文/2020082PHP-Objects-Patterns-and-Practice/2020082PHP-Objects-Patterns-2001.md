@@ -1,4 +1,4 @@
-# 20 Vagrant
+# 20Vagrant
 
 Where do you run your code?
 

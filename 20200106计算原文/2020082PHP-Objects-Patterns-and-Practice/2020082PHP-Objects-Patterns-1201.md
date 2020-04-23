@@ -10,12 +10,6 @@ I also describe the individual patterns in the「Architecture Overview」section
 
 This chapter will cover several key topics:
 
-•	
-
-•	•	
-
-•	
-
 Architecture overview: An introduction to the layers that typically comprise an enterprise application
 
 Registry pattern: Managing application data
@@ -30,21 +24,7 @@ With a lot of ground to cover, let’s kick off with an overview of the patterns
 
 The PatternsI will explore several patterns in this chapter. You may read from start to finish or dip into those patterns that fit your needs or pique your interest:
 
-•	
-
 Registry: This pattern is useful for making data available to all classes in a process. Through careful use of serialization, it can also be used to store information across a session or even across instances of an application.
-
-277
-
-Chapter 12 ■ enterprise patterns
-
-•	
-
-•	•	
-
-•	
-
-•	
 
 Front Controller: Use this for larger systems in which you know that you will need as much flexibility as possible in managing many different views and commands.
 
@@ -68,21 +48,9 @@ Applications and LayersMany (most, in fact) of the patterns in this chapter are 
 
 Figure 12-1.  The layers, or tiers, in a typical enterprise system
 
-278
-
 The structure shown in Figure 12-1 is not written in stone: some of these tiers may be combined, 
 
 and different strategies can be used for communication between them, depending on the complexity of your system. Nonetheless, Figure 12-1 illustrates a model that emphasizes flexibility and reuse, and many enterprise applications follow it to a large extent.
-
-Chapter 12 ■ enterprise patterns
-
-•	
-
-•	
-
-•	
-
-•	
 
 The view layer contains the interface that a system’s users actually see and interact with. It is responsible for presenting the results of a user’s request and providing the mechanism by which the next request can be made to the system.
 
@@ -111,10 +79,6 @@ notoriously hard to test. In an insufficiently tiered system, automated tests mu
 Layers are useful even if you think that testing is for wimps and your system will only ever have a single 
 
 interface. By creating tiers with distinct responsibilities, you build a system whose constituent parts are easier to extend and debug. You limit duplication by keeping code with the same kinds of responsibility in one place (rather than lacing a system with database calls, for example, or with display strategies). Adding to such a system is relatively easy because your changes tend to be nicely vertical, as opposed to messily horizontal.
-
-279
-
-Chapter 12 ■ enterprise patterns
 
 A new feature, in a tiered system, might require a new interface component, additional request 
 

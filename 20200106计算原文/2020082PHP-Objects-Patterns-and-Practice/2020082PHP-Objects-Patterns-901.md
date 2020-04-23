@@ -4,10 +4,6 @@ Creating objects is a messy business. So, many object-oriented designs deal with
 
 This chapter will cover the following patterns:
 
-•	
-
-•	•	•	•	•	
-
 The Singleton pattern: A special class that generates one—and only one—object instance
 
 The Factory Method pattern: Building an inheritance hierarchy of creator classes

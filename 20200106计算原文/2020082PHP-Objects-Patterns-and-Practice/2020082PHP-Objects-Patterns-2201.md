@@ -1,4 +1,4 @@
-Objects, Patterns, Practice
+# Objects, Patterns, Practice
 
 From object basics through design pattern principles, and on to tools and techniques, this book has focused on a single objective: the successful PHP project.
 
@@ -38,10 +38,6 @@ In Chapter 6, I looked at the benefits that objects can bring to the design of y
 
 and design are one of the central themes of this book, it is worth recapping some conclusions in detail.
 
-525
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
-
 ChoiceThere is no law that says you have to develop with classes and objects only. Well-designed object-oriented code provides a clean interface that can be accessed from any client code, whether procedural or object-oriented. Even if you have no interest in writing objects (unlikely if you are still reading this book), you will probably find yourself using them, if only as a client of Composer packages.
 
 Encapsulation and DelegationObjects mind their own business and get on with their allotted tasks behind closed doors. They provide an interface through which requests and results can be passed. Any data that need not be exposed, and the dirty details of implementation, are hidden behind this front.
@@ -73,10 +69,6 @@ conditionals with polymorphism. Polymorphism, also known as class switching, is 
 Conditional code is not banished from object-oriented systems; it is merely minimized and centralized. 
 
 Conditional code of some kind must be used to determine which particular subtypes are to be served up to clients. This test, though, generally takes place once, and in one place, thus reducing coupling.
-
-526
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
 ReusabilityEncapsulation promotes decoupling, which promotes reuse. Components that are self-sufficient and communicate with wider systems only through their public interface can often be moved from one system and used in another without change.
 
@@ -110,10 +102,6 @@ Patterns
 
 Recently, a Java programmer applied for a job in a company with which I have some involvement. In his cover letter, he apologized for only having used patterns for a couple of years. This assumption that design patterns are a recent discovery—a transformative advance—is testament to the excitement they have generated. In fact, it is likely that this experienced coder has been using patterns for a lot longer than he thinks.
 
-527
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
-
 Patterns describe common problems and tested solutions. Patterns name, codify, and organize real-
 
 world best practice. They are not components of an invention or clauses in a doctrine. A pattern would not be valid if it did not describe practices that are already common at the time of hatching.
@@ -137,10 +125,6 @@ Patterns Suggest Other PatternsPatterns have grooves and curves that fit one ano
 A Common VocabularyPatterns are a means of developing a common vocabulary for describing problems and solutions. Naming is important—it stands in for describing, and therefore lets us cover lots of ground very quickly. Naming, of course, also obscures meaning for those who do not yet share the vocabulary, which is one reason why patterns can be so infuriating at times.
 
 Patterns Promote DesignAs discussed in the next section, patterns can encourage good design when used properly. There is an important caveat, of course. Patterns are not fairy dust.
-
-528
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
 Patterns and Principles of DesignDesign patterns are, by their nature, concerned with good design. Used well, they can help you build loosely coupled and flexible code. Pattern critics have a point, though, when they say that patterns can be overused by the newly infected. Because pattern implementations form pretty and elegant structures, it can be tempting to forget that good design always lies in fitness for purpose. Remember that patterns exist to address problems.
 
@@ -169,10 +153,6 @@ Code to an Interface, Not an ImplementationDesign your software components with 
 Having said that, remember the YAGNI principle. If you start out with the need for only one 
 
 implementation for a type, there is no immediate reason to create an abstract superclass. You can just as well define a clear interface in a single concrete class. As soon as you find that your single implementation is trying to do more than one thing at the same time, you can redesignate your concrete class as the abstract parent of two subclasses. Client code will be none the wiser, as it continues to work with a single type.
-
-529
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
 A classic sign that you may need to split an implementation and hide the resultant classes behind an 
 
@@ -206,10 +186,6 @@ files and directories, a ground for cooperation, a set of sources and targets, a
 
 TestingAlthough testing is part of the framework that one applies to a project from the outside, it is intimately integrated into the code itself. Because total decoupling is not possible, or even desirable, test frameworks are a powerful way of monitoring the ramifications of change. Altering the return type of a method could influence 
 
-530
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
-
 client code elsewhere, causing bugs to emerge weeks or months after the change is made. A test framework gives you half a chance of catching errors of this kind (the better the tests, the better the odds here).
 
 Testing is also a tool for improving object-oriented design. Testing first (or at least concurrently) helps 
@@ -229,10 +205,6 @@ by date or tag to any moment. This will save your project someday—believe me.
 Automated BuildVersion control without automated build is of limited use. A project of any complexity takes work to deploy. Various files need to be moved to different places on a system, configuration files need to be transformed to have the right values for the current platform and database, and database tables need to be set up or transformed. I covered two tools designed for installation. The first, Composer (see Chapter 15), is ideal for standalone packages and small applications. The second build tool I covered was Phing (see Chapter 19), which is a tool with enough power and flexibility to automate the installation of the largest and most labyrinthine project.
 
 Automated build transforms deployment from a chore to a matter of a line or two at the command line. With little effort, you can invoke your test framework and your documentation output from your build tool. If the needs of your developers do not sway you, bear in mind the pathetically grateful cries of your users as they discover that they need no longer spend an entire afternoon copying files and changing configuration fields every time you release a new version of your project.
-
-531
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
 
 Continuous IntegrationIt is not enough to be able to test and build a project; you have do it all the time. This becomes increasingly important as a project grows in complexity and you manage multiple branches. You should build and test the stable branch from which you make minor bug fix releases, an experimental development branch or two, and your main trunk. If you were to try to do all that manually, even with the aid of build and test tools, you’d never get around to any coding. Of course, all coders hate that, so build and testing inevitably get skimped on.
 
@@ -270,10 +242,6 @@ Your code is not as clear as you think it is. A stranger visiting a codebase for
 
 with a daunting task. Even you, as author of the code, will eventually forget how it all hangs together. For inline documentation, you should look at phpDocumentor (https://www.phpdoc.org/) which allows you to document as you go, and automatically generates hyperlinked output. The output from phpDocumentor 
 
-532
-
-Chapter 22 ■ ObjeCts, patterns, praCtiCe
-
 is particularly useful in an object-oriented context, as it allows the user to click around from class to class. As classes are often contained in their own files, reading the source directly can involve following complex trails from source file to source file.
 
 Although inline documentation is important, projects also generate a broiling heap of written material. This includes usage instructions, consultation on future directions, client assets, meeting minutes, and party announcements. During the lifetime of a project, such materials are very fluid, and a mechanism is often needed to allow people to collaborate in their evolution.
@@ -282,17 +250,10 @@ A wiki (wiki is apparently Hawaiian for「very fast」) is the perfect tool for 
 
 of hyperlinked documents. Pages can be created or edited at the click of a button, and hyperlinks are automatically generated for words that match page names. A wiki is another one of those tools that seems so simple, essential, and obvious that you are sure you probably had the idea first, but just didn’t get around to doing anything about it. There are a number of wikis to choose from. I have had good experience with PhpWiki, which can be downloaded from http://phpwiki.sourceforge.net, and DokuWiki, which you can find at http://wiki.splitbrain.org/wiki:dokuwiki.
 
-Summary
+## Summary
 
 In this chapter I wrapped things up, revisiting the core topics that make up the book. Although I haven’t tackled any concrete issues such as individual patterns or object functions here, this chapter should serve as a reasonable summary of this book’s concerns.
 
 There is never enough room or time to cover all the material that one would like. Nevertheless, I hope 
 
 that this book has served to make one argument: PHP is growing up. It is now one of the most popular programming languages in the world. I hope that PHP remains the hobbyist’s favorite language, and that many new PHP programmers are delighted to discover how far they can get with just a little code. At the same time, though, more and more professional teams are building large systems with PHP. Such projects deserve more than a just-do-it approach. Through its extension layer, PHP has always been a versatile language, providing a gateway to hundreds of applications and libraries. Its object-oriented support, on the other hand, gains you access to a different set of tools. Once you begin to think in objects, you can chart the hard-won experience of other programmers. You can navigate and deploy pattern languages developed with reference, not just to PHP, but to Smalltalk, C++, C#, or Java, too. It is our responsibility to meet this challenge with careful design and good practice. The future is reusable.
-
-533
-
-CHAPTER 23
-
-Appendix A: Bibliography
-

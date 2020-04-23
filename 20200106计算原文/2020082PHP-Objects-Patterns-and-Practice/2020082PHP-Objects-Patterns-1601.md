@@ -1,4 +1,4 @@
-PHP Using and Creating Components with Composer
+# PHP Using and Creating Components with Composer
 
 Programmers aspire to produce reusable code. This is one of the great goals in object-oriented coding. We like to abstract useful functionality from the messiness of specific context, turning a particular solution into a tool that can be used again and again. To come at this from another angle, if programmers love the reusable, they hate duplication. By creating libraries that can be reapplied, programmers avoid the need to implement similar solutions across multiple projects.
 

@@ -152,7 +152,7 @@ The point of a carousel is to allow the user to peruse a collection of images wi
 
 resources/assets/js/app.js:
 
-```
+```js
 Vue.component('image-carousel', { template: `<div class="image-carousel"> <img v-bind:src="images[index]"/> </div>`, data() { return { images: [ '/images/1/Image_1.jpg', '/images/1/Image_2.jpg', '/images/1/Image_3.jpg', '/images/1/Image_4.jpg' ], index: 0 } } });
 ```
 
@@ -205,6 +205,7 @@ Vue.component('image-carousel', {
 
 Components can be nested in other components in the same way that standard HTML elements can be nested. For example, component B can be a child of component A, if component A declares component B in its template:
 
+
 ```js
 <div id="app"> 
     <component-a></component-a> 
@@ -244,7 +245,7 @@ This renders as:
 
 While some components are designed for use anywhere in an app, other components may be designed with a more specific purpose. When we register a component using the API, that is, Vue.component, that component is globally registered and can be used within any other component or instance. We can also locally register a component by declaring it in the components option in the root instance, or in another component:
 
-```
+```js
 Vue.component('component-a', { 
     template: ` <div> <p>Hi I'm component A</p> <component-b></component-b> </div>`, 
     components: { 'component-b': { 
@@ -347,92 +348,222 @@ A key aspect of components is that they are reusable, which is why we give them 
 We can send data to a component through a custom HTML property know as a prop. We must also register this custom property in an array, props, in the component's configuration. In the following example, we've created a prop, title:
 
 ```js
-<div id="app"> <my-component title="My component!"></my-component> <!-- Renders as <div>My component!</div> --> </div> <script> Vue.component('my-component', { template: '<div>{{ title }}</div>', props: ['title'] }); new Vue({ el: '#app' }); </script>
+<div id="app"> 
+    <my-component title="My component!"></my-component>
+     <!-- Renders as <div>My component!</div> --> 
+</div> 
+
+<script> 
+    Vue.component('my-component', { 
+        template: '<div>{{ title }}</div>', 
+        props: ['title'] 
+    }); 
+    
+    new Vue({ 
+        el: '#app' 
+    }); 
+</script>
 ```
 
 A prop can be used just like any data property of the component: you can interpolate it in the template, use it in methods and computed properties, and so on. However, you should not mutate prop data. Think of prop data as being borrowed from another component or instance - only the owner should change it.
+
+1『隐喻：prop data 是从其他组件或实例里借来的数据，所以只有原主人可以修改。』
 
 Props are proxied to the instance just like data properties, meaning you can refer to a prop as this.myprop within that component's code. Be sure to name your props uniquely to your data properties to avoid a clash!
 
 ### 7.2 One-way data flow
 
-Since props must be declared in the template where the component is used, prop data can only pass from a parent to a child. This is why you shouldn't mutate a prop - since data flows down, the change will not be reflected in the parent, and therefore you will have different versions of what is meant to be the same bit of state.
+Since props must be declared in the template where the component is used, prop data can only pass from a parent to a child. This is why you shouldn't mutate a prop - since data flows down, the change will not be reflected in the parent, and therefore you will have different versions of what is meant to be the same bit of state. If you do need to tell the owner to change the data, there is a separate interface for passing data from a child to a parent, which we'll see later.
 
-If you do need to tell the owner to change the data, there is a separate interface for passing data from a child to a parent, which we'll see later.
+1『 prop data 的数据流是自上而下的，只能从父模板传递到子模板。』
 
 ### 7.3 Dynamic props
 
-We can reactively bind data to a component using the v-bind directive. When the data changes in the parent, it will automatically flow down to the child.
+We can reactively bind data to a component using the v-bind directive. When the data changes in the parent, it will automatically flow down to the child. In the following example, the value of title in the root instance gets programmatically updated after two seconds. This change will automatically flow down to MyComponent, which will reactively re-render to display the new value:
 
-In the following example, the value of title in the root instance gets programmatically updated after two seconds. This change will automatically flow down to MyComponent, which will reactively re-render to display the new value:
+```js
+<body>
+    <div id="app">
+        <my-component :title="title"></my-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: ''<div>@{{ title }}</div>',
+            props: ['title'],
+        });
 
-<div id="app"> <my-component :title="title"></my-component> <!-- Renders initially as <div>Hello World</div> --> <!-- Re-renders after two seconds as <div>Goodbye World</div> --> </div> <script> Vue.component('my-component', { template: '<div>{{ title }}</div>', props: [ 'title' ] }); var app = new Vue({ el: '#app', data: { title: 'Hello World' } }); setTimeout(() => { app.title = 'Goodbye World' }, 2000); </script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                title: "hello world"
+            },
+        });
 
-Since the v-bind directive is used so commonly in templates, you can omit the directive name as a shorthand: <div v-bind:title="title"> can be shortened to <div :title="title">.
+        setTimeout(() => {
+            vm.title = "goodbye world";
+        }, 2000);
+    </script>
+</body>
+```
 
-## Image URLs
+1『注意，码了一遍发现报错，title 变量未定义。因为是在 laravel 框架里，绑定数据的格式跟 blade 冲突，所以得在前面加一个 @。备注：作者也是对的，放到外面的 js 模块代码作为引入时就不需要加 @，vue 实例化直接在 html 页面里就得加上。（2020-04-23）目前还没弄明白，在作者项目里，为什么不能在一个页面里注册 2 个 vue 实例。自己新建了一个实验页面就可以注册多个 vue 实例。经试验，可以在作者项目里的页面里引入自己试验的 js 模块，以后项目开发里可以采用同样的思路，分模块引用。（2020-04-23）』
+
+Since the v-bind directive is used so commonly in templates, you can omit the directive name as a shorthand: \<div v-bind:title="title"> can be shortened to \<div :title="title">.
+
+## 08. Image URLs
 
 When we created ImageCarousel, we hard-coded the image URLs. With props, we now have a mechanism for sending dynamic data from the root instance down to a component. Let's bind the root instance data property images to a prop, also called images, in our ImageCarousel declaration.
 
 resources/views/app.blade.php:
 
-<div class="modal-content"> <image-carousel :images="images"></image-carousel> </div>
+```php
+<div class="modal-content"> 
+    <image-carousel :images="images"></image-carousel> 
+</div>
+```
 
 Now, delete the data property images in the ImageCarousel component, and instead declare images as a prop.
 
+1『可以把模板里的图片 url 数据删掉了，所以之前记录的那个纯写图片地址产生的问题也就不存在了。』
+
 resources/assets/js/app.js:
 
-Vue.component('image-carousel', { props: ['images'], data() { return { index: 0 } }, ... }
+```js
+Vue.component('image-carousel', { 
+    props: ['images'], 
+    data() { return { index: 0 } }, 
+    ... 
+}
+```
 
-The root instance will now be responsible for the state of the image URLs, and the image carousel component will just be responsible for displaying them.
-
-Using Vue Devtools, we can inspect the state of the image carousel component, which now includes images as a prop value instead of a data value:
+The root instance will now be responsible for the state of the image URLs, and the image carousel component will just be responsible for displaying them. Using Vue Devtools, we can inspect the state of the image carousel component, which now includes images as a prop value instead of a data value:
 
 Figure 6.5. Image URLs are props sent to the ImageCarousel component
 
 Now that the image URLs are coming from the model, we can access other listing routes, such as /listing/2, and see the correct image displaying in the modal window again.
 
-## Distinguishing carousel controls
+## 09. Distinguishing carousel controls
 
-The CarouselControl component should have two possible states: either left-pointing or right-pointing. When clicked by the user, the former will ascend through the available images, the latter will descend.
-
-This state should not be internally determined, but instead passed down from ImageCarousel. To do so, let's add a prop dir to CarouselControl that will take a string value, and should be either left or right.
+The CarouselControl component should have two possible states: either left-pointing or right-pointing. When clicked by the user, the former will ascend through the available images, the latter will descend. This state should not be internally determined, but instead passed down from ImageCarousel. To do so, let's add a prop dir to CarouselControl that will take a string value, and should be either left or right.
 
 With the dir prop, we can now bind the correct icon to the i element. This is done with a computed property which appends the prop's value to the string fa-chevron-, resulting in either fa-chevron-left or fa-chevron-right.
 
 resources/assets/js/app.js:
 
-Vue.component('image-carousel', { template: ` <div class="image-carousel"> <img :src="image"> <div class="controls"> <carousel-control dir="left"></carousel-control> <carousel-control dir="right"></carousel-control> </div> </div> `, ... components: { 'carousel-control': { template: `<i :class="classes"></i>`, props: [ 'dir' ], computed: { classes() { return 'carousel-control fa fa-2x fa-chevron-' + this.dir; } }
-
-} } }
+```js
+Vue.component('image-carousel', {
+    template: `<div class="image-carousel">
+                    <img v-bind:src="image">
+                    <div class="controls">
+                        <carousel-control dir="left"></carousel-control>
+                        <carousel-control dir="right"></carousel-control>
+                    </div>
+               </div>`,
+    props: ['images'],
+    data() {
+        return {
+            index: 0,
+        }
+    },
+    computed: {
+        image() {
+            return this.images[this.index];
+        }
+    },
+    components: {
+        'carousel-control': {
+            template: `<i :class="classes"></i>`,
+            props: ['dir'],
+            computed: {
+                classes() {
+                    return 'carousel-control fa fa-2x fa-chevron-' + this.dir;
+                },
+            },
+        }
+    },
+});
+```
 
 Now we can see the carousel control icons correctly directed:
 
 Figure 6.6. Carousel control icons are now correctly directed
 
-## Custom events
+## 10. Custom events
 
-Our carousel controls are displaying nicely, but they still don't do anything! When they're clicked, we need them to tell ImageCarousel to either increment or decrement its index value, which will result in the image being changed.
+Our carousel controls are displaying nicely, but they still don't do anything! When they're clicked, we need them to tell ImageCarousel to either increment or decrement its index value, which will result in the image being changed. Dynamic props won't work for this task, as props can only send data down from a parent to a child. What do we do when the child needs to send data up to the parent?
 
-Dynamic props won't work for this task, as props can only send data down from a parent to a child. What do we do when the child needs to send data up to the parent?
+Custom events can be emitted from a child component and listened to by its parent. To implement this, we use the \$emit instance method in the child, which takes the event name as the first argument and an arbitrary number of additional arguments for any data to be sent along with the event, such as this.\$emit('my-event', 'My event payload');.
 
-Custom events can be emitted from a child component and listened to by its parent. To implement this, we use the $emit instance method in the child, which takes the event name as the first argument and an arbitrary number of additional arguments for any data to be sent along with the event, such as this.$emit('my-event', 'My event payload');.
+The parent can listen to this event using the v-on directive in the template where the component is declared. If you handle the event with a method, any arguments sent with the event will be passed to this method as parameters. Consider this example, where a child component, MyComponent, emits an event called toggle to tell the parent, the root instance, to change the value of a data property, toggle:
 
-The parent can listen to this event using the v-on directive in the template where the component is declared. If you handle the event with a method, any arguments sent with the event will be passed to this method as parameters.
+1『子模板可以通过 emits 通知父模板，需要改变什么数据值。』
 
-Consider this example, where a child component, MyComponent, emits an event called toggle to tell the parent, the root instance, to change the value of a data property, toggle:
+```js
+<body>
+    <div id="app">
+        <my-component @toggle="toggle=!toggle"></my-component>
+        @{{ message }}
+    </div>
+    <!-- <script src="{{ asset('js/testapp.js') }}" type="text/javascript"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: '<div v-on:click="clicked">click me</div>',
+            methods: {
+                clicked: function() {
+                    this.$emit('toggle');
+                },
+            },
+        });
 
-<div id="app"> <my-component @toggle="toggle = !toggle"></my-component> {{ message }} </div> <script> Vue.component('my-component', { template: '<div v-on:click="clicked">Click me</div>', methods: { clicked: function() { this.$emit('toggle'); } } }); new Vue({ el: '#app', data: { toggle: false }, computed: { message: function() { return this.toggle ? 'On' : 'Off'; } } }); </script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                toggle: false,
+            },
+            computed: {
+                message: function() {
+                    return this.toggle ? 'On' : 'Off';
+                },
+            },
+        });
+    </script>
+</body>
+```
 
-## Changing carousel images
+1『
 
-Returning to CarouselControl, let's respond to a user's click by using the v-on directive and triggering a method, clicked. This method will, in turn, emit a custom event, change-image, which will include a payload of either -1 or 1, depending on whether the state of the component is left or right.
+报错：[Vue warn]: Property or method "clicked" is not defined on the instance but referenced during render. Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property.
 
-Just like with v-bind, there is a shorthand for v-on as well. Simply replace v-on: with @; for instance, <div @click="handler"></div> is the equivalent of <div v-on:click="handler"></div>.
+找了半天后发现，组件里的方法属性应该是 methods 而非 method，真的是魔鬼在细节。
+
+』
+
+## 11. Changing carousel images
+
+Returning to CarouselControl, let's respond to a user's click by using the v-on directive and triggering a method, clicked. This method will, in turn, emit a custom event, change-image, which will include a payload of either -1 or 1, depending on whether the state of the component is left or right. Just like with v-bind, there is a shorthand for v-on as well. Simply replace v-on: with @; for instance, \<div @click="handler">\</div> is the equivalent of \<div v-on:click="handler">\</div>.
 
 resources/assets/js/app.js:
 
-components: { 'carousel-control': { template: `<i :class="classes" @click="clicked"></i>`, props: [ 'dir' ], computed: { classes() { return 'carousel-control fa fa-2x fa-chevron-' + this.dir; } }, methods: { clicked() { this.$emit('change-image', this.dir === 'left' ? -1 : 1); } } } }
+```js
+components: {
+    'carousel-control': {
+        template: `<i :class="classes" @click="clicked"></i>`,
+        props: ['dir'],
+        computed: {
+            classes() {
+                return 'carousel-control fa fa-2x fa-chevron-' + this.dir;
+            }
+        },
+        methods: {
+            clicked() {
+                this.$emit('change-image', this.dir === 'left' ? -1 : 1);
+            }
+        },
+    }
+},
+```
 
 Open Vue Devtools to the Events tab, and, at the same time, click on the carousel controls. Custom events are logged here, so we can verify change-image is being emitted:
 
@@ -442,82 +573,131 @@ ImageCarousel will now need to listen for the change-image event via the v-on di
 
 resources/assets/js/app.js:
 
-Vue.component('image-carousel', { template: ` <div class="image-carousel"> <img :src="image"> <div class="controls"> <carousel-control
-
-dir="left"
-
-@change-image="changeImage"
-
-></carousel-control> <carousel-control
-
-dir="right"
-
-@change-image="changeImage"
-
-></carousel-control> </div> </div> `, ... methods: { changeImage(val) { let newVal = this.index + parseInt(val); if (newVal < 0) { this.index = this.images.length -1; } else if (newVal === this.images.length) { this.index = 0; } else { this.index = newVal; } } }, ... }
+```js
+Vue.component('image-carousel', {
+    template: `<div class="image-carousel">
+                    <img v-bind:src="image">
+                    <div class="controls">
+                        <carousel-control dir="left" @change-image="changeImage"></carousel-control>
+                        <carousel-control dir="right" @changeImage="changeImage"></carousel-control>
+                    </div>
+               </div>`,
+    props: ['images'],
+    data() {
+        return {
+            index: 0,
+        }
+    },
+    computed: {
+        image() {
+            return this.images[this.index];
+        }
+    },
+    components: {
+        'carousel-control': {
+            template: `<i :class="classes" @click="clicked"></i>`,
+            props: ['dir'],
+            computed: {
+                classes() {
+                    return 'carousel-control fa fa-2x fa-chevron-' + this.dir;
+                }
+            },
+            methods: {
+                clicked() {
+                    this.$emit('change-image', this.dir === 'left' ? -1 : 1);
+                }
+            },
+        }
+    },
+    methods: {
+        changeImage(val) {
+            let newVal = this.index + parseInt(val);
+            if (newVal < 0) {
+                this.index = this.images.length - 1;
+            } else if (newVal === this.images.length) {
+                this.index = 0;
+            } else {
+                this.index = newVal;
+            }
+        },
+    },
+});
+```
 
 With this done, the image carousel will now work perfectly:
 
 Figure 6.8. The state of the image carousel after the image has been changed
 
-Single-file components
+## 12. Single-file components
 
-Single-File Components (SFCs) are files with a .vue extension that contain the complete definition of a single component and can be imported into your Vue.js app. SFCs make it simple to create and use components, and come with a variety of other benefits which we'll soon explore.
+Single-File Components (SFCs) are files with a .vue extension that contain the complete definition of a single component and can be imported into your Vue.js app. SFCs make it simple to create and use components, and come with a variety of other benefits which we'll soon explore. SFCs are similar to HTML files but have (at most) three root elements: 1) template. 2) script. 3) style.
 
-SFCs are similar to HTML files but have (at most) three root elements:
+The component definition goes inside the script tag and will be exactly like any other component definition except: 1) It will export an ES module. 2) It will not need a template property (or a render function; more on that later).
 
-template
-
-script
-
-style
-
-The component definition goes inside the script tag and will be exactly like any other component definition except:
-
-It will export an ES module
-
-It will not need a template property (or a render function; more on that later)
-
-The component's template will be declared as HTML markup inside the template tag. This should be a welcome relief from writing cumbersome template strings!
-
-The style tag is a feature unique to SFCs and can contain any CSS rules you need for the component. This mostly just helps with the organization of your CSS.
-
-Here's an example of the declaration and usage of a single-file component.
+The component's template will be declared as HTML markup inside the template tag. This should be a welcome relief from writing cumbersome template strings! The style tag is a feature unique to SFCs and can contain any CSS rules you need for the component. This mostly just helps with the organization of your CSS. Here's an example of the declaration and usage of a single-file component.
 
 MyComponent.vue:
 
-<template> <div id="my-component">{{ title }}</div> </template> <script> export default { data() { title: 'My Component' } }; </script> <style> .my-component { color: red; } </style>
+```js
+<template> 
+    <div id="my-component">{{ title }}</div> 
+</template> 
+<script> 
+    export default { 
+        data() { 
+            title: 'My Component' 
+        } 
+    }; 
+</script> 
+<style> 
+    .my-component { 
+        color: red; 
+    } 
+</style>
+```
 
 app.js:
 
-import 'MyComponent' from './MyComponent.vue'; new Vue({ el: '#app', components: { MyComponent } });
+```js
+import 'MyComponent' from './MyComponent.vue'; 
 
-Transformation
+new Vue({ 
+    el: '#app', 
+    components: { MyComponent } 
+});
+```
+
+## 13. Transformation
 
 To use a single-file component in your app, you simply import it like it were an ES module. The .vue file is not a valid JavaScript module file, however. Just like we use the Webpack Babel plugin to transpile our ES2015 code into ES5 code, we must use Vue Loader to transform .vue files into JavaScript modules.
 
-Vue Loader is already configured by default with Laravel Mix, so there's nothing further we need to do in this project; any SFCs we import will just work!
+Vue Loader is already configured by default with Laravel Mix, so there's nothing further we need to do in this project; any SFCs we import will just work! To learn more about Vue Loader, check out the documentation at [Introduction | Vue Loader](https://vue-loader.vuejs.org/).
 
-To learn more about Vue Loader, check out the documentation at https://vue-loader.vuejs.org/.
+### 13.1 Refactoring components to SFCs
 
-Refactoring components to SFCs
+Our resource/assets/js/app.js file is almost 100 lines long now. If we keep adding components, it will start to get unmanageable, so it's time to think about splitting it up. Let's begin by refactoring our existing components to be SFCs. First, we'll create a new directory, then we will create the .vue files:
 
-Our resource/assets/js/app.js file is almost 100 lines long now. If we keep adding components, it will start to get unmanageable, so it's time to think about splitting it up.
-
-Let's begin by refactoring our existing components to be SFCs. First, we'll create a new directory, then we will create the .vue files:
-
-$ mkdir resources/assets/components $ touch resources/assets/components/ImageCarousel.vue $ touch resources/assets/components/CarouselControl.vue
+```
+$ mkdir resources/assets/components 
+$ touch resources/assets/components/ImageCarousel.vue 
+$ touch resources/assets/components/CarouselControl.vue
+```
 
 Starting with ImageCarousel.vue, the first step is to create the three root elements.
 
 resources/assets/components/ImageCarousel.vue:
 
-<template></template> <script></script> <style></style>
+```
+<template></template> 
+<script></script> 
+<style></style>
+```
 
 Now, we move the template string into the template tag, and the component definition into the script tag. The component definition must be exported as a module.
 
 resources/assets/components/ImageCarousel.vue:
 
+```
 <template> <div class="image-carousel"> <img :src="image"> <div class="controls"> <carousel-control
 
 dir="left"
@@ -531,24 +711,53 @@ dir="right"
 @change-image="changeImage"
 
 ></carousel-control> </div> </div> </template> <script> export default { props: [ 'images' ], data() { return { index: 0 } }, computed: { image() { return this.images[this.index]; } }, methods: { changeImage(val) { let newVal = this.index + parseInt(val); if (newVal < 0) { this.index = this.images.length -1; } else if (newVal === this.images.length) { this.index = 0; } else { this.index = newVal; } } }, components: { 'carousel-control': { template: `<i :class="classes" @click="clicked"></i>`, props: [ 'dir' ], computed: { classes() { return 'carousel-control fa fa-2x fa-chevron-' + this.dir; } }, methods: { clicked() { this.$emit('change-image', this.dir === 'left' ? -1 : 1); } } } } } </script> <style></style>
+```
 
 Now we can import this file into our app and register it locally in the root instance. As mentioned, Vue is able to automatically switch between kebab-case component names and Pascal-case ones. This means we can use the object shorthand syntax inside the component configuration and Vue will correctly resolve it.
 
 resources/assets/js/app.js:
 
-import ImageCarousel from '../components/ImageCarousel.vue'; var app = new Vue({ ... components: { ImageCarousel } });
+```
+import ImageCarousel from '../components/ImageCarousel.vue'; 
+
+var app = new Vue({ 
+    ... 
+    components: { ImageCarousel } 
+});
+```
 
 Be sure to delete any remaining code from the original ImageCarousel component definition in app.js before moving on.
 
-CSS
+### 13.2 CSS
 
 SFCs allow us to add style to a component, helping to better organize our CSS code. Let's move the CSS rules we created for the image carousel into this new SFC's style tag:
 
-<template>...</template> <script>...</script> <style> .image-carousel { height: 100%; margin-top: -12vh; position: relative; display: flex; align-items: center; justify-content: center; } .image-carousel img { width: 100%; } .image-carousel .controls { position: absolute; width: 100%; display: flex; justify-content: space-between; } </style>
+```css
+<template>...</template> 
+<script>...</script> 
 
-When the project builds, you should find it still appears the same. The interesting thing, though, is where the CSS has ended up in the build. If you check public/css/style.css, you'll find it's not there.
+<style> 
+    .image-carousel { 
+        height: 100%; 
+        margin-top: -12vh; 
+        position: relative; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+    } 
+    .image-carousel img { 
+        width: 100%; 
+    } 
+    .image-carousel .controls { 
+        position: absolute; 
+        width: 100%; 
+        display: flex; 
+        justify-content: space-between; 
+    } 
+</style>
+```
 
-It's actually included in the JavaScript bundle as a string:
+When the project builds, you should find it still appears the same. The interesting thing, though, is where the CSS has ended up in the build. If you check public/css/style.css, you'll find it's not there. It's actually included in the JavaScript bundle as a string:
 
 Figure 6.9. CSS stored as a string in the JavaScript bundle file
 
@@ -560,7 +769,11 @@ Inlining CSS is actually the default behavior of Vue Loader. However, we can ove
 
 webpack.mix.js:
 
-mix.options({ extractVueStyles: 'public/css/vue-style.css' });
+```
+mix.options({ 
+    extractVueStyles: 'public/css/vue-style.css' 
+});
+```
 
 Now an additional file, public/css/vue-style.css, will be outputted in the build:
 
@@ -570,27 +783,40 @@ We'll need to load this new file in our view, after the main style sheet.
 
 resources/views/app.blade.php:
 
-<head> ... <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"> <link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css"> ... </head>
+```php
+<head> 
+    ... 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"> 
+    <link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css"> 
+    ... 
+</head>
+```
 
-CarouselControl
+### 13.3 CarouselControl
 
 Let's now abstract our CarouselControl component into an SFC, and move any relevant CSS rules from resources/assets/css/style.css as well.
 
 resources/assets/components/CarouselControl.vue:
 
+```
 <template> <i :class="classes" @click="clicked"></i> </template> <script> export default { props: [ 'dir' ], computed: { classes() { return 'carousel-control fa fa-2x fa-chevron-' + this.dir; } }, methods: { clicked() { this.$emit('change-image', this.dir === 'left' ? -1 : 1); } } } </script> <style> .carousel-control { padding: 1rem; color: #ffffff; opacity: 0.85 } @media (min-width: 744px) { .carousel-control { font-size: 3rem; } } </style>
+```
 
 This file can now be imported by the ImageCarousel component.
 
 resources/assets/components/ImageCarousel.vue:
 
+```
 <template>...</style> <script> import CarouselControl from '../components/CarouselControl.vue'; export default { ... components: { CarouselControl } } </script> <style>...</style>
+```
 
 With that done, our existing components have been refactored to SFCs. This has not made any obvious difference to the functionality of our app (although it is slightly faster, as I'll explain later), but it will make development easier as we continue.
 
-Content distribution
+## 14. Content distribution
 
 Imagine you're going to build a component-based Vue.js app that resembles the following structure:
+
+
 
 Figure 6.12. Component-based Vue.js app
 
@@ -598,7 +824,7 @@ Notice that in the left-branch of the above diagram, ComponentC is declared by C
 
 With what you know about components so far, how would you make the template for ComponentB, given that it has to declare two different components? Perhaps it would include a v-if directive to use either ComponentC or ComponentD depending on some variable passed down as a prop from ComponentA. This approach would work, however, it makes ComponentB very inflexible, limiting its reusability in other parts of the app.
 
-Slots
+## Slots
 
 We've learned so far that the content of a component is defined by its own template, not by its parent, so we wouldn't expect the following to work:
 
@@ -628,7 +854,7 @@ It's important to note that content declared inside a component in the parent te
 
 <div id="app"> <my-component> <!--This works--> <p>{{ parentProperty }}</p> <!--This does not work. childProperty is undefined, as this content--> <!--is compiled in the parent's scope--> <p>{{ childProperty }} </my-component> </div> <script> Vue.component('my-component', { template: ` <div> <slot></slot> <p>Child content</p> </div>`, data() { return { childProperty: 'World' } } }); new Vue({ el: '#app', data: { parentProperty: 'Hello' } }); </script>
 
-Modal window
+## Modal window
 
 A lot of the functionality left in our root Vue instance concerns the modal window. Let's abstract this into a separate component. First, we'll create the new component file:
 
@@ -670,7 +896,7 @@ Figure 6.13. Vue Devtools showing hierarchy of components
 
 The representation of our app in Vue Devtools is slightly misleading. It makes it seem as though ImageCarousel is a child of ModalWindow. Even though ImageCarousel renders within ModalWindow due to the slot, these components are actually siblings!
 
-Refs
+## Refs
 
 In its initial state, the modal window is hidden with a display: none CSS rule. To open the modal, the user must click the header image. A click event listener will then set the root instance data property modelOpen to true, which will, in turn, add a class to the modal to overwrite the display: none to display: block.
 
@@ -698,7 +924,7 @@ resources/views/app.blade.php:
 
 It is an anti-pattern to use ref when the normal methods of interacting with a component, props and events, are sufficient. ref is usually only required for communicating with elements that fall outside of the normal flow of a page, as a modal window does.
 
-Header image
+## Header image
 
 Let's now abstract the header image into a component. Firstly, create a new .vue file:
 
@@ -726,7 +952,7 @@ resources/views/app.blade.php:
 
 ></header-image> <div class="container">...</div> <modal-window>...</modal-window> </div>
 
-Feature lists
+## Feature lists
 
 Let's continue our process of refactoring Vuebnb into components, and abstract the amenities and prices lists. These lists have a similar purpose and structure, so it makes sense that we create a single, versatile component for both.
 
