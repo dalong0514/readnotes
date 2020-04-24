@@ -122,7 +122,7 @@ Topics this chapter covers: 1) Basic features of Vue, including templates, direc
 
 In this first chapter, we did a high-level introduction to Vue.js, covering the basic features such as templates, directives, and components, as well as advanced features such as single-file components and server-side rendering. We also had a look at the tools in Vue's ecosystem including Vue Router and Vuex. We then did an overview of Vuebnb, the full-stack project that you'll be building as you progress through the book, and saw how to install the code base from GitHub. In the next chapter, we'll get properly acquainted with Vue's basic features and starting putting them to use by building a prototype of Vuebnb.
 
-### 01. Introducing Vue.js
+### 1.1 Introducing Vue.js
 
 At the time of writing in late 2017, Vue.js is at version 2.5. In less than four years from its first release, Vue has become one of the most popular open source projects on GitHub. This popularity is partly due to its powerful features, but also to its emphasis on developer experience and ease of adoption.
 
@@ -132,7 +132,7 @@ Vue is not supported by a tech giant in the way that React and Angular are and r
 
 The key design principles of Vue are as follows: 1) Focus: Vue has opted for a small, focused API, and its sole purpose is the creation of UIs. 2) Simplicity: Vue's syntax is terse and easy to follow. 3) Compactness: The core library script is ~25 KB minified, making it smaller than React and even jQuery. 4) Speed: Rendering benchmarks beat many of the main frameworks, including React. 5) Versatility: Vue works well for small jobs where you might normally use jQuery, but can scale up as a legitimate SPA solution.
 
-### 04. Templates
+### 1.4 Templates
 
 By default, Vue will use an HTML file for its template. An included script will declare an instance of Vue and use the el property in the configuration object to tell Vue where in the template the app will be mounted:
 
@@ -160,7 +160,7 @@ We can bind data to our template by creating it as a data property and using the
 </script>
 ```
 
-### 05. Directives
+### 1.5 Directives
 
 Similar to Angular, we can add functionality to our templates by using directives. These are special properties we add to HTML tags starting with the v- prefix. Say we have an array of data. We can render this data to the page as sequential HTML elements by using the v-for directive:
 
@@ -193,7 +193,7 @@ The preceding code renders as follows:
 </div>
 ```
 
-### 06. Reactivity
+### 1.6 Reactivity
 
 A key feature of Vue's design is its reactivity system. When you modify data, the view automatically updates to reflect that change. For example, if we create a function that pushes another item to our array of grocery items after the page has already been rendered, the page will automatically re-render to reflect that change:
 
@@ -216,7 +216,7 @@ Two seconds after the initial rendering, we see this:
 </div>
 ```
 
-### 07. Components
+### 1.7 Components
 
 Components extend basic HTML elements and allow you to create your own reusable custom elements. For example, here I've created a custom element, grocery-item, which renders as a li. The text child of that node is sourced from a custom HTML property, title, which is accessible from within the component code:
 
@@ -252,11 +252,11 @@ This renders as follows:
 
 But probably the main reason to use components is that it makes it easier to architect a larger application. Functionality can be broken into reuseable, self-contained components.
 
-### 08. Advanced features
+### 1.8 Advanced features
 
 If you have been coding along with the examples so far, close your browser now until next chapter, as the following advanced snippets can't simply be included in a browser script.
 
-### 09. Single-file components
+### 1.9 Single-file components
 
 A drawback of using components is that you need to write your template in a JavaScript string outside of your main HTML file. There are ways to write template definitions in your HTML file, but then you have an awkward separation between markup and logic. A convenient solution to this is single-file components:
 
@@ -286,7 +286,7 @@ These files have the .vue extension and encapsulate the component template, Java
 
 1『关键点来了，所以得适用框架。』
 
-### 10. Module build
+### 1.10 Module build
 
 As we saw earlier, Vue can be dropped into a project as an external script for direct use in a browser. Vue is also available as an NPM module for use in more sophisticated projects, including a build tool such as Webpack. If you're unfamiliar with Webpack, it's a module bundler that takes all your project assets and bundles them up into something you can provide to the browser. In the bundling process, you can transform those assets as well.
 
@@ -294,7 +294,7 @@ Using Vue as a module and introducing Webpack opens possibilities such as the fo
 
 We will be exploring Webpack more extensively in Chapter 5, Integrating Laravel and Vue.js with Webpack.
 
-### 11. Server-side rendering
+### 1.11 Server-side rendering
 
 Server-side rendering is a great way to increase the perception of loading speed in full-stack apps. Users get a complete page with visible content when they load your site, as opposed to an empty page that doesn't get populated until JavaScript runs. Say we have an app built with components. If we use our browser development tool to view our page DOM after the page has loaded, we will see our fully rendered app:
 
@@ -316,17 +316,17 @@ But if we view the source of the document, that is, index.html, as it was when s
 
 Why? Because JavaScript is responsible for building our page and, ipso facto, JavaScript has to run before the page is built. But with server-side rendering, our index file includes the HTML needed for the browser to build a DOM before JavaScript is downloaded and run. The app does not load any faster, but content is shown sooner.
 
-### 12. The Vue ecosystem
+### 1.12 The Vue ecosystem
 
 While Vue is a standalone library, it is even more powerful when combined with some of the optional tools in its ecosystem. For most projects, you'll include Vue Router and Vuex in your frontend stack, and use Vue Devtools for debugging.
 
-#### 1. Vue Devtools
+#### 1.12.1 Vue Devtools
 
 Vue Devtools is a browser extension that can assist you in the development of a Vue.js project. Among other things, it allows you to see the hierarchy of components in your app and the state of components, which is useful for debugging:
 
 We'll see what else it can do later in this section.
 
-#### 2. Vue Router
+#### 1.12.2 Vue Router
 
 Vue Router allows you to map different states of your SPA to different URLs, giving you virtual pages. For example, mydomain.com/ might be the front page of a blog and have a component hierarchy like this:
 
@@ -350,7 +350,7 @@ Whereas mydomain.com/post/1 might be an individual post from the blog and look l
 
 Changing from one page to the other doesn't require a reload of the page, just swapping the middle component to reflect the state of the URL, which is exactly what Vue Router does.
 
-#### 3. Vuex
+#### 1.12.3 Vuex
 
 Vuex provides a powerful way to manage the data of an application as the complexity of the UI increases, by centralizing the application's data into a single store. We can get snapshots of the application's state by inspecting the store in Vue Devtools:
 
@@ -366,13 +366,13 @@ Topics this chapter covers: 1) Installation and basic configuration of Vue.js. 2
 
 In this chapter, we got familiar with the essential features of Vue including installation and basic configuration, data binding, text interpolation, directives, methods, watchers and lifecycle hooks. We also learned about Vue's inner workings, including the reactivity system. We then used this knowledge to set up a basic Vue project and create page content for the Vuebnb prototype with text, lists of information, a header image, and UI widgets like the show more button and the modal window. In the next chapter, we'll take a brief break from Vue while we set up a backend for Vuebnb using Laravel.
 
-### 01. Vuebnb prototype
+### 2.1 Vuebnb prototype
 
 In this chapter, we'll be building a prototype of Vuebnb, the case-study project that runs for the duration of this book. The prototype will just be of the listing page, and by the end of the chapter will look like this:
 
 Once we've set up our backend in Chapter 3, Setting Up a Laravel Development Environment, and Chapter 4, Building a Web Service with Laravel, we'll migrate this prototype into the main project.
 
-### 03. NPM install
+### 2.3 NPM install
 
 You'll now need to install the third-party scripts used in this project, including Vue.js itself. The NPM install method will read the included package.json file and download the required modules:
 
@@ -380,11 +380,11 @@ You'll now need to install the third-party scripts used in this project, includi
 
 You'll now see a new node\_modules directory has appeared in your project folder.
 
-### 04. Main files
+### 2.4 Main files
 
 Open the vuebnb-prototype directory in your IDE. Note that the following index.html file is included. It's mostly comprised of boilerplate code, but also has some structural markup included in the body tag. Also note that this file links to style.css, where our CSS rules will be added, and app.js, where our JavaScript will be added.
 
-### 06. Installing Vue.js
+### 2.6 Installing Vue.js
 
 Now it's time to add the Vue.js library to our project. Vue was downloaded as part of our NPM install, so now we can simply link to the browser-build of Vue.js with a script tag.
 
@@ -407,7 +407,7 @@ Vue will now be registered as a global object. We can test this by going to our 
 
     console.log(Vue);
 
-### 09. Data binding
+### 2.9 Data binding
 
 A simple task for Vue is to bind some JavaScript data to the template. Let's create a data property in our configuration object and assign to it an object including a title property with a 'My apartment' string value.
 
@@ -487,7 +487,7 @@ mix.js('resources/js/app.js', 'public/js')
 
 』
 
-### 10. Mock listing
+### 2.10 Mock listing
 
 While we're developing, it'd be nice to work with some mock data so that we can see how our completed page will look. I've included sample/data.js in the project for this very reason. Let's load it in our document, making sure it goes above our app.js file.
 
@@ -513,7 +513,7 @@ var vm = new Vue({
 
 』
 
-### 11. Header image
+### 2.11 Header image
 
 No room listing would be complete without a big, glossy image to show it off. We've got a header image in our mock listing that we'll now include. Add this markup to the page.
 
@@ -539,7 +539,7 @@ style.css:
 
 You may be wondering why we're using a div rather than an img tag. To help with positioning, we're going to set our image as the background of the div with the header-img class.
 
-### 12. Style binding
+### 2.12 Style binding
 
 To set a background image, we must provide the URL as a property in a CSS rule like this:
 
@@ -565,13 +565,13 @@ You may think using a text interpolation is the solution here, for example:
 
 But this is not valid Vue.js syntax. This is, instead, a job for another Vue.js feature called a directive. Let's explore directives first and then come back to solving this problem.
 
-### 14. Usage
+### 2.14 Usage
 
 Just like normal HTML attributes, directives are usually name/value pairs in the form name="value". To use a directive, simply add it to an HTML tag as you would an attribute, for example:
 
     <p v-directive="value">
 
-### 15. Expressions
+### 2.15 Expressions
 
 If a directive requires a value, it will be an expression. In the JavaScript language, expressions are small, evaluable statements that produce a single value. Expressions can be used wherever a value is expected, for example in the parenthesis of an if statement:
 
@@ -585,7 +585,7 @@ The expression here could be any of the following: 1) A mathematical expression,
 
     <div v-dir="someExpression">{{ firstName + " " + lastName }}</div>
 
-### 16. Example: v-if
+### 2.16 Example: v-if
 
 v-if will conditionally render an element if its value is a truthy expression. In the following case, v-if will remove/insert the p element depending on the myval value:
 
@@ -605,7 +605,7 @@ If we add a consecutive element with the v-else directive (a special directive t
 <p v-if="myval">Hello Vue</p> <p v-else>Goodbye Vue</p>
 ```
 
-### 17. Arguments
+### 2.17 Arguments
 
 Some directives take an argument, denoted by a colon after the directive name. For example, the v-on directive, which listens to DOM events, requires an argument to specify which event should be listened to:
 
@@ -613,7 +613,7 @@ Some directives take an argument, denoted by a colon after the directive name. F
 
 Instead of click, the argument could be mouseenter, keypress, scroll, or any other event (including custom events).
 
-### 18. Style binding (continued)
+### 2.18 Style binding (continued)
 
 Coming back to our header image, we can use the v-bind directive with the style argument to bind a value to the style attribute.
 
@@ -644,7 +644,7 @@ Inspect the page with your browser Dev Tools and notice how the v-bind directive
 
     <div class="header-img" style="background-image: url('sample/header.jpg');"></div>
 
-### 19. Lists section
+### 2.19 Lists section
 
 The next bit of content we'll add to our page is the Amenities and Prices lists:
 
@@ -670,7 +670,7 @@ var vm = new Vue({
 })
 ```
 
-### 20. List rendering
+### 2.20 List rendering
 
 The v-for directive requires a special type of expression in the form of item in items, where items is the source array, and item is an alias for the current array element being looped over. Let's work on the amenities array first. Each member of this array is an object with a title and icon property, that is:
 
@@ -697,7 +697,7 @@ index.html:
 </div>
 ```
 
-### 21. Icons
+### 2.21 Icons
 
 The second property of our amenity objects is icon. This is actually a class relating to an icon in the Font Awesome icon font. We've installed Font Awesome as an NPM module already, so add this to the head of the page to now use it.
 
@@ -709,7 +709,7 @@ The second property of our amenity objects is icon. This is actually a class rel
 
 』
 
-### 22. Key
+### 2.22 Key
 
 As you might expect, the DOM nodes generated by v-for="amenity in amenities" are reactively bound to the amenities array. If the content of amenities changes, Vue will automatically re-render the nodes to reflect the change. When using v-for, it's recommended you provide a unique key property to each item in the list. This allows Vue to target the exact DOM nodes that need to be changed, making DOM updates more efficient. Usually, the key would be a numeric ID, for example:
 
@@ -723,11 +723,11 @@ As you might expect, the DOM nodes generated by v-for="amenity in amenities" are
 
 For the amenities and prices lists, the content is not going to change over the life of the app, so there's no need for us to provide a key. Some linters may warn you about this, but in this case, the warning can be safely ignored.
 
-### 23. Prices
+### 2.23 Prices
 
 Let's now add the price list to our template as well. I'm sure you'll agree that looping a template is far easier than writing out every item. However, you may notice that there is still some common markup between these two lists. Later in the book we'll utilize components to make this part of the template even more modular.
 
-### 24. Show more feature
+### 2.24 Show more feature
 
 We've run into a problem now that the lists section is after the About section. The About section has an arbitrary length, and in some of the mock listings that we'll add you'll see that this section is quite long. We don't want it to dominate the page and force the user to do a lot of unwelcome scrolling to see the lists section, so we need a way to hide some of the text if it's too long, yet allow the user to view the full text if they choose. Let's add a show more UI feature that will crop the About text after a certain length and give the user a button to reveal the hidden text:
 
@@ -750,7 +750,7 @@ We'll start by adding a contracted class to the p tag that contains the about te
 
 We'll also put a button after the p tag that the user can click to expand the section to full height. Here's the CSS that's needed, including a generic button rule that will provide base styling for all buttons that we'll add throughout the project.
 
-### 25. Class binding
+### 2.25 Class binding
 
 How we'll approach this is to dynamically bind the contracted class. Let's create a contracted data property and set its initial value to true.
 
@@ -777,7 +777,7 @@ It follows that when the page loads the contracted class is bound:
 <p class="contracted">...</p>
 ```
 
-### 26. Event listener
+### 2.26 Event listener
 
 We now want to remove the contracted class automatically when the user clicks the More button. To do this job, we'll use the v-on directive, which listens to DOM events with a click argument. The value of the v-on directive can be an expression that assigns contracted to false.
 
@@ -791,7 +791,7 @@ index.html:
 </div
 ```
 
-### 27. Reactivity
+### 2.27 Reactivity
 
 When we click the More button, the contracted value changes and Vue will instantly update the page to reflect this change. How does Vue know to do this? To answer this question we must first understand the concept of getters and setters.
 
@@ -833,13 +833,13 @@ console.log(person.firstName); // George
 console.log(person.lastName) // Washington
 ```
 
-### 28. Reactive data properties
+### 2.28 Reactive data properties
 
 Another one of Vue's initialization steps is to walk through all of the data properties and assign them getters and setters. If you look in the following screenshot, you can see how each property in our current app has a get and set function added to it:
 
 Vue added these getters and setters to enable it to perform dependency tracking and change notification when the properties are accessed or modified. So, when the contracted value is changed by the click event, its set method is triggered. The set method will set the new value, but will also carry out a secondary task of informing Vue that a value has changed and any part of the page relying on it may need to be re-rendered.
 
-### 29. Hiding the More button
+### 2.29 Hiding the More button
 
 Once the About section has been expanded, we want to hide the More button as it's no longer needed. We can use the v-if directive to achieve this in conjunction with the contracted property.
 
@@ -849,7 +849,7 @@ Once the About section has been expanded, we want to hide the More button as it'
 </button>
 ```
 
-### 30. Image modal window
+### 2.30 Image modal window
 
 To prevent our header image from dominating the page, we've cropped it and limited its height. But what if the user wants to see the image in its full glory? A great UI design pattern to allow the user to focus on a single item of content is a modal window. Here's what our modal will look like when opened:
 
@@ -859,7 +859,7 @@ Our modal will give a properly scaled view of the header image so the user can f
 
 For now, though, here are the required features for our modal: 1) Open the modal by clicking the header image. 2) Freeze the main window. 3) Show the image. 3) Close the modal window with a close button or the Escape key.
 
-#### 1. Opening
+#### 2.30.1 Opening
 
 First, let's add a Boolean data property that will represent the opened or closed state of our modal. We'll initialize it to false.
 
@@ -908,15 +908,15 @@ The main modal div will act as a container for the rest of the modal content, bu
 
 Note also that the display is initially set to none, but we're dynamically binding a class to the modal called show that gives it block display. The addition/removal of this class will, of course, be bound to the value of modalOpen.
 
-#### 2. Window
+#### 2.30.2 Window
 
 Let's now add markup for the window that will be overlaid on our background panel. The window will have a width constraint and will be centered in the viewport.
 
-### 31. Disabling the main window
+### 2.31 Disabling the main window
 
 When the modal is open, we want to prevent any interaction with the main window and also make a clear distinction between the main window and the child window. We can do this by: 1) Dimming the main window. 2) Preventing body scroll.
 
-#### 1. Dimming the main window
+#### 2.31.1 Dimming the main window
 
 We could simply hide our main window when the modal is open, but it's better if the user can still be aware of where they are in flow of the app. To achieve this, we will dim the main window under a semi-transparent panel. We can do this by giving our modal panel an opaque black background.
 
@@ -927,7 +927,19 @@ We could simply hide our main window when the modal is open, but it's better if 
 }
 ```
 
-#### 2. Preventing body scroll
+1『
+
+点详细图一直出不来，这个问题卡了很久。最后通过对比作者样式的源码，发现需要添加如下代码。（2020-04-24）
+
+```css
+#modal.show {
+    display: block;
+}
+```
+
+』
+
+#### 2.31.2 Preventing body scroll
 
 We have a problem, though. Our modal panel, despite being full screen, is still a child of the body tag. This means we can still scroll the main window! We don't want users to interact with the main window in any way while the modal is open, so we must disable scrolling on the body.
 
@@ -953,7 +965,7 @@ We can use v-bind:class to add/remove this class, right? Unfortunately, no. Reme
 
 If we add a directive to the body tag, it will not be seen by Vue.
 
-### 32. Vue's mount element
+### 2.32 Vue's mount element
 
 What if we just mounted Vue on the body tag, wouldn't that solve our problems? For example:
 
@@ -967,7 +979,7 @@ Remember that Vue has to compile the template and replaces the mount node. If yo
 
 1『上面的是一个关键知识点。』
 
-### 33. Watchers
+### 2.33 Watchers
 
 So, how can we add/remove classes from the body if it's out of Vue's dominion? We'll have to do it the old-fashioned way with the browser's Web API. We need to run the following statements when the modal is opened or closed:
 
@@ -1021,17 +1033,17 @@ Vue can't update the body tag for us, but it can trigger custom logic that will.
 
 Now when you try to scroll the page you'll see it won't budge!
 
-### 34. Closing
+### 2.34 Closing
 
 Users will need a way to close their modal and return to the main window. We'll overlay a button in the top-right corner that, when clicked, evaluates an expression to set modalOpen to false. The show class on our wrapper div will consequentially be removed, which means the display CSS property will return to none, thus removing the modal from the page.
 
-### 35. Escape key
+### 2.35 Escape key
 
 Having a close button for our modal is handy, but most people's instinctual action for closing a window is the Escape key. v-on is Vue's mechanism for listening to events and seems like a good candidate for this job. Adding the keyup argument will trigger a handler callback after any key is pressed while this input is focused:
 
     <input v-on:keyup="handler">
 
-### 36. Event modifiers
+### 2.36 Event modifiers
 
 Vue makes it easy to listen for specific keys by offering modifiers to the v-on directive. Modifiers are postfixes denoted by a dot (.), for example:
 
@@ -1059,7 +1071,7 @@ document.addEventListener('keyup', function(evt) {
 
 This works, with one caveat (discussed in the next section). But Vue can help us make it perfect.
 
-### 37. Lifecycle hooks
+### 2.37 Lifecycle hooks
 
 When your main script is run and your instance of Vue is set up, it goes through a series of initialization steps. As we said earlier, Vue will walk through your data objects and make them reactive, as well as compile the template and mount to the DOM. Later in the lifecycle, Vue will also go through updating steps, and later still, tear-down steps. Here is a diagram of the lifecycle instance taken from http://vuejs.org. Many of these steps concern concepts that we haven't yet covered, but you should get the gist:
 
@@ -1110,7 +1122,7 @@ var vm = new Vue({
 });
 ```
 
-### 38. Methods
+### 2.38 Methods
 
 The Vue configuration object also has a section for methods. Methods are not reactive, so you could define them outside of the Vue configuration without any difference in functionality, but the advantage to Vue methods is that they are passed the Vue instance as context and therefore have easy access to your other properties and methods. Let's refactor our escapeKeyListener to be a Vue instance method.
 
@@ -1155,7 +1167,7 @@ var vm = new Vue({
 
 1『留意下「this.escapeKeyListenser」。』
 
-### 39. Proxied properties
+### 2.39 Proxied properties
 
 You may have noticed that our escapeKeyListener method can refer to this.modalOpen. Shouldn't it be this.methods.modalOpen?
 
@@ -1163,7 +1175,7 @@ When a Vue instance is constructed, it proxies any data properties, methods, and
 
 You can see these proxied properties by printing the Vue object in the browser console. Now the simplicity of text interpolations might make more sense, they have the context of the Vue instance, and thanks to proxied properties, can be referenced like {{ myDataProperty }}. However, while proxying to the root makes syntax terser, a consequence is that you can't name your data properties, methods, or computed properties with the same name!
 
-### 40. Removing listener
+### 2.40 Removing listener
 
 To avoid any memory leaks, we should also use removeEventListener to get rid of the listener when the Vue instance is torn down. We can use the destroy hook and call our escapeKeyListener method for this purpose.
 
@@ -1183,17 +1195,17 @@ Topics covered in this chapter: 1) A brief introduction to Laravel. 2) Setting u
 
 In this brief chapter, we discussed the requirements for developing a Laravel project. We then installed and configured the Homestead virtual development environment to host our main project, Vuebnb. In the next chapter, we will begin work on our main project by building a web service to supply data to the frontend of Vuebnb.
 
-### 01. Laravel
+### 3.1 Laravel
 
 Laravel is an open source MVC framework for PHP that is used to build robust web applications. Laravel is currently at version 5.5 and is among the most popular PHP frameworks, beloved for its elegant syntax and powerful features. Laravel is suitable for creating a variety of web-based projects, such as the following: 1) Websites with user authentication, such as a customer portal or a social network. 2) Web applications, such as an image cropper or a monitoring dashboard. 3) Web services, such as RESTful APIs.
 
-### 02. Laravel and Vue
+### 3.2 Laravel and Vue
 
 Laravel may seem like a monolithic framework because it includes features for building almost any kind of web application. Under the hood, though, Laravel is a collection of many separate modules, some developed as part of the Laravel project and some from third-party authors. Part of what makes Laravel great is its careful curation and seamless connection of these constituent modules.
 
 Since Laravel version 5.3, Vue.js has been the default frontend framework included in a Laravel installation. There's no official reason why Vue was chosen over other worthy options, such as React, but my guess is that it's because Vue and Laravel share the same philosophy: simplicity and an emphasis on the developer experience. Whatever the reason, Vue and Laravel offer an immensely powerful and flexible full-stack framework for developing web applications.
 
-### 03. Environment
+### 3.3 Environment
 
 We'll be using Laravel 5.5 for the backend of Vuebnb. This version of Laravel requires PHP 7, several PHP extensions, and the following software: 1) Composer. 2) A web server, such as Apache or Nginx. 3) A database, such as MySQL or MariaDB.
 
@@ -1201,11 +1213,11 @@ Rather than manually installing the Laravel requirements on your computer, I str
 
 1『已经好几个地方看到推荐用 Homestead 开发环境了。』
 
-### 04. Homestead
+### 3.4 Homestead
 
 Laravel Homestead is a virtual web application environment which runs on Vagrant and VirtualBox and can be run on any Windows, Mac, or Linux system. Using Homestead will save you the headache of setting up an development environment from scratch. It will also ensure you have an identical environment to the one I'm using, which will make it easier for you to follow along with this book. If you don't have Homestead installed on your computer, follow the directions in the Laravel documentation: https://laravel.com/docs/5.5/homestead. Use the default configuration options. Once you've installed Homestead and launched the Vagrant box with the vagrant up command, you're ready to continue.
 
-### 05. Vuebnb
+### 3.5 Vuebnb
 
 In Chapter 2, Prototyping Vuebnb, Your First Vue.js Project, we made a prototype of the frontend of Vuebnb. The prototype was created from a single HTML file that we loaded directly from the browser. Now we'll start working on the full-stack Vuebnb project, of which the prototype will soon be a critical part. This main project will be a full Laravel installation with a web server and database.
 
@@ -1221,13 +1233,13 @@ Topics covered in this chapter: 1) Using Laravel to create a web service. 2) Wri
 
 In this chapter, we built a web service with Laravel to make the Vuebnb listing data publicly accessible. This involved setting up a database table using a migration and schema, then seeding the database with mock listing data. We then created a public interface for the web service using routes. This returned the mock data as a JSON payload, including links to our mock images. In the next chapter, we'll introduce Webpack and the Laravel Mix build tool to set up a full-stack development environment. We'll migrate the Vuebnb prototype into the project, and refactor it to fit the new workflow.
 
-### 01. Vuebnb room listings
+### 4.1 Vuebnb room listings
 
 In Chapter 2, Prototyping Vuebnb, Your First Vue.js Project, we built a prototype of the listing page of the frontend app. Soon we'll be removing the hardcoded data on this page and turning it into a template that can display any room listing.
 
 We won't be adding functionality for a user to create their own room listing in this book. Instead, we'll use a package of mock data comprising 30 different listings, each with their own unique titles, descriptions, and images. We will seed the database with these listings and configure Laravel to serve them to the frontend as required.
 
-### 02. Web service
+### 4.2 Web service
 
 A web service is an application that runs on a server and allows a client (such as a browser) to remotely write/retrieve data to/from the server over HTTP. The interface of a web service will be one or more API endpoints, sometimes protected with authentication, that will return data in an XML or JSON payload:
 
@@ -1235,7 +1247,7 @@ Web services are a speciality of Laravel, so it won't be hard to create one for 
 
 Laravel also has inbuilt features to add API architectures such as REST, though we won't need this for our simple use case.
 
-### 03. Mock data
+### 4.3 Mock data
 
 The mock listing data is in the file database/data.json. This file includes a JSON-encoded array of 30 objects, with each object representing a different listing. Having built the listing page prototype, you'll no doubt recognize a lot of the same properties on these objects, including the title, address, and description. database/data.json:
 
@@ -1243,11 +1255,11 @@ Each mock listing includes several images of the room as well. Images aren't rea
 
 2『源码里的「data.json」复制进「database」文件夹。』
 
-### 04. Database
+### 4.4 Database
 
 Our web service will require a database table for storing the mock listing data. To set this up we'll need to create a schema and migration. We'll then create a seeder that will load and parse our mock data file and insert it into the database, ready for use in the app.
 
-### 05. Migration
+### 4.5 Migration
 
 A migration is a special class that contains a set of actions to run against the database, such as creating or modifying a database table. Migrations ensure your database gets set up identically every time you create a new instance of your app, for example, installing in production or on a teammate's machine. To create a new migration, use the make:migration Artisan CLI command. The argument of the command should be a snake-cased description of what the migration will do:
 
@@ -1257,7 +1269,7 @@ You'll now see your new migration in the database/migrations directory. You'll n
 
 Your new migration declares a class that extends Migration. It overrides two methods: up, which is used to add new tables, columns, or indexes to your database; and down, which is used to delete them. We'll implement these methods shortly.
 
-### 06. Schema
+### 4.6 Schema
 
 A schema is a blueprint for the structure of a database. For a relational database such as MySQL, the schema will organize data into tables and columns. In Laravel, schemas are declared by using the Schema facade's create method.
 
@@ -1304,7 +1316,7 @@ public function down()
 
 A facade is an object-oriented design pattern for creating a static proxy to an underlying class in the service container. The facade is not meant to provide any new functionality; its only purpose is to provide a more memorable and easily readable way of performing a common action. Think of it as an object-oriented helper function.
 
-### 07. Execution
+### 4.7 Execution
 
 Now that we've set up our new migration, let's run it with this Artisan command:
 
@@ -1326,11 +1338,11 @@ Now enter a PHP statement for evaluation. Let's use the DB facade's select metho
 
 The output is quite verbose so I won't reproduce it here, but you should see an object with all your table details, confirming the migration worked.
 
-### 08. Seeding mock listings
+### 4.8 Seeding mock listings
 
 Now that we have a database table for our listings, let's seed it with the mock data. To do so we're going to have to do the following: 1) Load the database/data.json file. 2) Parse the file. 3) Insert the data into the listings table.
 
-#### 1. Creating a seeder
+#### 4.8.1 Creating a seeder
 
 Laravel includes a seeder class that we can extend called Seeder. Use this Artisan command to implement it:
 
@@ -1359,7 +1371,7 @@ class ListingsTableSeeder extends Seeder
 }
 ```
 
-#### 2. Loading the mock data
+#### 4.8.2 Loading the mock data
 
 Laravel provides a File facade that allows us to open files from disk as simply as File::get(\$path). To get the full path to our mock data file we can use the base\_path() helper function, which returns the path to the root of our application directory as a string.
 
@@ -1395,13 +1407,13 @@ class ListingsTableSeeder extends Seeder
 
 ```
 
-#### 3. Inserting the data
+#### 4.8.3 Inserting the data
 
 In order to insert the data, we'll use the DB facade again. This time we'll call the table method, which returns an instance of Builder. The Builder class is a fluent query builder that allows us to query the database by chaining constraints, for example, DB::table(...)->where(...)->join(...) and so on. Let's use the insert method of the builder, which accepts an array of column names and values.
 
 1『上面给出了查询数据库的线索，可以深挖。』
 
-#### 4. Executing the seeder
+#### 4.8.4 Executing the seeder
 
 To execute the seeder we must call it from the DatabaseSeeder.php file, which is in the same directory.
 
@@ -1448,13 +1460,13 @@ Finally, let's inspect the first row of the table just to be sure its content is
 >>>> DB::table('listings')->get()->first();
 ```
 
-### 09. Listing model
+### 4.9 Listing model
 
 We've now successfully created a database table for our listings and seeded it with mock listing data. How do we access this data now from the Laravel app? We saw how the DB facade lets us execute queries on our database directly. But Laravel provides a more powerful way to access data via the Eloquent ORM.
 
 1『直接查询数据库里的数据是用 tinker 结合 「DB facade」。』
 
-### 10. Eloquent ORM
+### 4.10 Eloquent ORM
 
 Object-Relational Mapping (ORM) is a technique for converting data between incompatible systems in object-oriented programming languages. Relational databases such as MySQL can only store scalar values such as integers and strings, organized within tables. We want to make use of rich objects in our app, though, so we need a means of robust conversion.
 
@@ -1481,7 +1493,7 @@ class Listing extends Model
 
 How do we tell the ORM what table to map to, and what columns to include? By default, the Model class uses the class name (Listing) in lowercase (listing) as the table name to use. And, by default, it uses all the fields from the table. Now, any time we want to load our listings we can use code such as this, anywhere in our app:
 
-### 11. Casting
+### 4.11 Casting
 
 The data types in a MySQL database don't completely match up to those in PHP. For example, how does an ORM know if a database value of 0 is meant to be the number 0, or the Boolean value of false? An Eloquent model can be given a \$casts property to declare the data type of any specific attribute. \$casts is an array of key/values where the key is the name of the attribute being cast, and the value is the data type we want to cast to.
 
@@ -1513,7 +1525,7 @@ Now these attributes will have the correct type, making our model more robust:
 
     echo gettype($listing->amenity_wifi()); // boolean
 
-### 12. Public interface
+### 4.12 Public interface
 
 The final piece of our web service is the public interface that will allow a client app to request the listing data. Since the Vuebnb listing page is designed to display one listing at a time, we'll at least need an endpoint to retrieve a single listing. Let's now create a route that will match any incoming GET requests to the URI /api/listing/{listing} where {listing} is an ID. We'll put this in the routes/api.php file, where routes are automatically given the /api/ prefix and have middleware optimized for use in a web service by default.
 
@@ -1532,7 +1544,7 @@ We can test this works by using the curl command from the Terminal:
 
 1『这个实现很赞，借鉴下。重点是那个闭包函数，特别是传参那块；之前一直获取不了数据，弄了半天找到原因，因为数据库连到了之前的「laravel」上，设置里更改数据后为「vuebnb」之后，一定要重启服务器，否则还是连到老的数据。』
 
-### 13. Controller
+### 4.13 Controller
 
 We'll be adding more routes to retrieve the listing data as the project progresses. It's a best practice to use a controller class for this functionality to keep a separation of concerns. Let's create one with Artisan CLI:
 
@@ -1578,19 +1590,19 @@ routes/api.php:
 
 3『 [Database: Query Builder - Laravel - The PHP Framework For Web Artisans](https://laravel.com/docs/7.x/queries) 』
 
-### 14. Images
+### 4.14 Images
 
 As stated at the beginning of the chapter, each mock listing comes with several images of the room. These images are not in the project code and must be copied from a parallel directory in the code base called images. Copy the contents of this directory into the public/images folder:
 
 1『把源码里的图片都移到自己的项目里。』
 
-#### 1. Accessing images
+#### 4.14.1 Accessing images
 
 Files in the public directory can be directly requested by appending their relative path to the site URL. For example, the default CSS file, public/css/app.css, can be requested at http://vuebnb.test/css/app.css. The advantage of using the public folder, and the reason we've put our images there, is to avoid having to create any logic for accessing them. A frontend app can then directly call the images in an img tag. You may think it's inefficient for our web server to serve images like this, and you'd be right. Later in the book, we'll serve the images from a CDN when in production mode. Let's try to open one of the mock listing images in our browser to test this thesis: http://vuebnb.test/images/1/Image_1.jpg:
 
 Figure 4.5. Mock listing image displayed in browser
 
-#### 2. Image links
+#### 4.14.2 Image links
 
 The payload for each listing in the web service should include links to these new images so a client app knows where to find them. Let's add the image paths to our listing API payload so it looks like this:
 
@@ -1651,13 +1663,13 @@ In this chapter, we got familiar with the files and configuration of Laravel's d
 
 In Chapter 6, Composing Widgets with Vue.js Components, we will be introduced to one of the most important and powerful tools for building user interfaces with Vue.js: components. We will build an image carousel for Vuebnb, and use knowledge of components to refactor the Vuebnb client app into a flexible component-based architecture.
 
-### 01. Laravel frontend
+### 5.1 Laravel frontend
 
 We think of Laravel as being a backend framework, but a fresh Laravel project includes boilerplate code and configuration for a frontend app as well. The out-of-the-box frontend includes JavaScript and Sass asset files, as a well as a package.json file that specifies dependencies such as Vue.js, jQuery, and Bootstrap.
 
 Let's take a look at this boilerplate code and configuration so we get an idea of how the Vuebnb frontend app will fit into our Laravel project when we begin the migration.
 
-#### 1. JavaScript
+#### 5.1.1 JavaScript
 
 JavaScript assets are kept in the resources/assets/js folder. There are several .js files in this directory, as well as a sub-directory component, with a .vue file. This latter file will be explained in another chapter so we'll ignore it for now. The main JavaScript file is app.js. You'll see the familiar Vue constructor in this file, but also some syntax that may not be as familiar. On the first line is a require function that is intended to import an adjacent file, bootstrap.js, which in turn loads other libraries including jQuery and Lodash.
 
@@ -1674,7 +1686,7 @@ const app = new Vue({
 });
 ```
 
-#### 2. CSS
+#### 5.1.2 CSS
 
 If you haven't heard of Sass before, it's a CSS extension that makes it easier to develop CSS. A default Laravel installation includes the resources/assets/sass directory, which includes two boilerplate Sass files. The main Sass file is app.scss. Its job is to import other Sass files including the Bootstrap CSS framework.
 
@@ -1691,7 +1703,7 @@ resources/assets/sass/app.scss:
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 ```
 
-#### 3. Node modules
+#### 5.1.3 Node modules
 
 Another key aspect of the Laravel frontend is the package.json file in the root of the project directory. Similar to composer.json, this file is used for configuration and dependency management, only for Node modules rather than PHP. One of the properties of package.json is devDependencies, which specifies the modules required in the development environment, including jQuery, Vue, and Lodash.
 
@@ -1712,11 +1724,11 @@ package.json:
 }
 ```
 
-#### 4. Views
+#### 5.1.4 Views
 
 To serve the frontend app with Laravel, it needs to be included in a view. The only out-of-the-box view provided is the welcome view, located at resources/views/welcome.blade.php, which is used as a boilerplate home page. The welcome view does not actually include the frontend app and it's left to the user to install it themselves. We'll look at how to do this later in the chapter.
 
-#### 5. Asset compilation
+#### 5.1.5 Asset compilation
 
 The files in resources/assets include functions and syntax that can't be used directly in a browser. For example, the require method used in app.js, which is designed to import a JavaScript module, is not a native JavaScript method and is not part of the standard Web API:
 
@@ -1730,11 +1742,11 @@ Figure 5.2. Asset compilation process
 
 The reason we go to the effort of using this asset compilation process is so we can author our frontend app without the constraints of what a browser allows. We can introduce a variety of handy development tools and features that'll allow us to write our code and fix problems more easily.
 
-### 02. Webpack
+### 5.2 Webpack
 
 Webpack is the default build tool supplied with Laravel 5.5 and we'll be making use of it in the development of Vuebnb. What makes Webpack different to other popular build tools, such as Gulp and Grunt, is that it's first and foremost a module bundler. Let's begin our overview of Webpack by getting an understanding of how the module bundling process works.
 
-#### 1. Dependencies
+#### 5.2.1 Dependencies
 
 In a frontend application, we are likely to have dependencies for third-party JavaScript libraries or even other files in our own code base. For example, the Vuebnb prototype is dependent on Vue.js and the mock-listing data file:
 
@@ -1748,7 +1760,7 @@ There's no real way of managing these dependencies in a browser, other than to e
 
 This system has a number of downsides: 1) Global variables introduce possibilities of naming collisions and accidental mutations. 2) Script loading order is fragile and can be easily broken as the app grows. 3) We can't utilize performance optimizations, such as loading scripts asynchronously.
 
-#### 2. Modules
+#### 5.2.2 Modules
 
 A solution to the dependency management problem is to use a module system, such as CommonJS or native ES modules. These systems allow JavaScript code to be modularized and imported into other files.
 
@@ -1781,7 +1793,7 @@ console.log(multiplyByTwo(2));
 
 The problem is that CommonJS cannot be used in a browser (it was designed for server-side JavaScript) and native ES modules are only now getting browser support. If we want to use a module system in a project, we'll need a build tool: Webpack.
 
-#### 3. Bundling
+#### 5.2.3 Bundling
 
 The process of resolving modules into browser-friendly code is called bundling. Webpack begins the bundling process with the entry file as a starting point. In the Laravel frontend app, resources/assets/js/app.js is the entry file. Webpack analyzes the entry file to find any dependencies. In the case of app.js, it will find three: bootstrap, vue, and Example.vue.
 
@@ -1797,7 +1809,7 @@ Webpack will resolve these dependencies and then analyze them to find any depend
 
     <script src="bundle.js"></script>
 
-#### 4. Loaders
+#### 5.2.4 Loaders
 
 Part of what makes Webpack so powerful is that during the bundling process it can transform a module with one or more Webpack loaders. For example, Babel is a compiler that transforms next-generation JavaScript syntax such as ES2015 into standard ES5. The Webpack Babel loader is one of the most popular as it allows developers to write their code using modern features, but still provide support in older browsers.
 
@@ -1821,7 +1833,7 @@ public/js/app.js:
 var app = new Vue({ el: '#app' });
 ```
 
-#### 5. Laravel Mix
+#### 5.2.5 Laravel Mix
 
 One of the downsides of Webpack is that configuring it is arduous. To make thing easier, Laravel includes a module called Mix that takes the most commonly-used Webpack options and puts them behind a simple API.
 
@@ -1837,13 +1849,13 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css');
 ```
 
-### 03. Running Webpack
+### 5.3 Running Webpack
 
 Now that we have a high-level understanding of Webpack, let's run it and see how it bundles the default frontend asset files. First, ensure you have all the development dependencies installed:
 
     $ npm install
 
-#### 1. CLI
+#### 5.3.1. CLI
 
 Webpack is typically runs from the command line, for example:
 
@@ -1851,7 +1863,7 @@ Webpack is typically runs from the command line, for example:
 
 Rather than figuring out the correct CLI option ourselves, we can use one of the Weback scripts predefined in package.json. For example, the development script will run Webpack with options suitable for creating a development build.
 
-#### 2. First build
+#### 5.3.2 First build
 
 Let's now run the dev script (a shortcut for the development script):
 
@@ -1861,19 +1873,19 @@ After this runs, you should see an output in the Terminal similar to the followi
 
 This output tells us a number of things, but most importantly that the build was successful and what files were created in the output including fonts, JavaScript, and CSS. Note that the output file path is relative not to the project root but to the public directory, so the js/apps.js file will be found at public/js/app.js.
 
-#### 3. JavaScript
+#### 5.3.3 JavaScript
 
 Inspecting the output JavaScript file, public/js/app.js, we see a whole lot of code in there - around 42,000 lines! That's because jQuery, Lodash, Vue, and the other JavaScript dependencies have all been bundled into this one file. It's also because we've used a development build that does not include minification or uglification. If you search through the file, you'll see that the code from our entry file, app.js, has been transpiled to ES5 as expected:
 
-#### 4. CSS
+#### 5.3.4 CSS
 
 We also have a CSS bundle file, public/css/app.css. If you inspect this file you will find the imported Bootstrap CSS framework has been included and the Sass syntax has been compiled to plain CSS.
 
-#### 5. Fonts
+#### 5.3.5 Fonts
 
 You might think it's strange that there are fonts in the output, since Mix did not include any explicit font configuration. These fonts are dependencies of the Bootstrap CSS framework and Mix, by default, will output them individually rather than in a font bundle.
 
-### 04. Migrating Vuebnb
+### 5.4 Migrating Vuebnb
 
 Now that we're familiar with the default Laravel frontend app code and configuration, we're ready to migrate the Vuebnb prototype into the main project. This migration will allow us to have all our source code in one place, plus we can utilize this more sophisticated development environment for building the remainder of Vuebnb.
 
@@ -1881,7 +1893,7 @@ The migration will involve: 1) Removing any unnecessary modules and files. 2) Mo
 
 1『图很形象，描述了要迁移的原始文件对应的目标文件：style.css->css、logo.png->images、app.js->js、index.html->views。』
 
-#### 1. Removing unnecessary dependencies and files
+#### 5.4.1 Removing unnecessary dependencies and files
 
 Let's begin by removing the Node dependencies we no longer need. We'll keep axis as it'll be used in a later chapter, and cross-env because it ensures our NPM scripts can be run in a variety of environments. We'll get rid of the rest:
 
@@ -1901,7 +1913,7 @@ mix
 
 Now our frontend app is free from clutter and we can move the prototype files into their new home.
 
-#### 2. HTML
+#### 5.4.2 HTML
 
 Let's now copy the contents of index.html from the prototype project we completed in Chapter 2, Prototyping Vuebnb, Your First Vue.js Project, into a new file, app.blade.php. This will allow the template to be used as a Laravel view:
 
@@ -1915,7 +1927,7 @@ routes/web.php:
 
 1『发现文件名中不能带 balde，否则渲染不了，只能还是 app.php。因为 vue 跟 blade 的语法冲突导致的，下面小结给出了解决办法：在所有绑定的数据前面加上 @ 即可解决。』
 
-#### 3. Syntax clash
+#### 5.4.3 Syntax clash
 
 Using the prototype template file as a view will cause a small issue as Vue and Blade share a common syntax. For example, look at the heading section where Vue.js interpolates the title and address of a listing.
 
@@ -1932,7 +1944,7 @@ resources/views/app.blade.php:
 
 Once you've done that for each set of double curly brackets in the file, load the home route in the browser to test the new view. Without the JavaScript or CSS it doesn't look great, but at least we can confirm it works:
 
-#### 4. JavaScript
+#### 5.4.4 JavaScript
 
 Let's now move the prototype's main script file, app.js, into the Laravel project:
 
@@ -1952,7 +1964,7 @@ Can be replaced with, resources/views/app.blade.php:
 <script src="{{ asset('js/app.js') }}"></script>
 ```
 
-#### 5. Mock data dependency
+#### 5.4.5 Mock data dependency
 
 Let's copy the mock data dependency into the project as well:
 
@@ -1986,7 +1998,7 @@ var app = new Vue({ ... });
 
 While Laravel has opted to use CommonJS syntax for including modules, that is require, we will use native ES module syntax, that is import. This is because ES modules are making their way into the JavaScript standard, and it's more consistent with the syntax used by Vue.
 
-#### 6. Displaying modules with Webpack
+#### 5.4.6 Displaying modules with Webpack
 
 Let's run a Webpack build to make sure the JavaScript migration is working so far:
 
@@ -2006,7 +2018,7 @@ It'd be nice to know that the mock data dependency was added without having to m
 
 1『上面的可以配置下，能显示更多的信息。』
 
-#### 7. Vue.js dependency
+#### 5.4.7 Vue.js dependency
 
 Let's now import Vue.js as a dependency of our entry file.
 
@@ -2063,7 +2075,7 @@ alias: { 'vue$': 'vue/dist/vue.common.js' }
 
 In short, import Vue from 'vue' is effectively the same as import Vue from 'node_modules/vue/dist/vue.common.js'. We'll explain the different Vue builds in Chapter 6, Composing Widgets with Vue.js Components. With that done, our JavaScript has been successfully migrated. Loading the home route again, we can better make out the listing page of Vuebnb with the JavaScript now included:
 
-#### 8. CSS
+#### 5.4.8 CSS
 
 To migrate CSS, we'll copy style.css from the prototype into the Laravel project. The default Laravel frontend app used Sass rather than CSS, so we'll need to make a directory for CSS assets first:
 
@@ -2083,7 +2095,7 @@ resources/views/app.blade.php:
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
 
-#### 9. Font styles
+#### 5.4.9 Font styles
 
 We also have the Open Sans and Font Awesome style sheets to include. First, install the font packages with NPM:
 
@@ -2102,13 +2114,13 @@ yarn add open-sans-all
 
 』
 
-#### 10. Fonts
+#### 5.4.10 Fonts
 
 Open Sans and Font Awesome need both a CSS style sheet, and the relevant font files. Like CSS, Webpack can bundle fonts as modules, but we currently don't need to take advantage of this. Instead, we'll use the copy method, which tells Mix to copy the fonts from their home directory into the public folder where they can be accessed by the frontend app.
 
 After building again, you'll now see a public/fonts folder in the project structure.
 
-#### 11. Images
+#### 5.4.11 Images
 
 We'll now migrate the images, including the logo for the toolbar, and the mock data header image:
 
@@ -2154,11 +2166,11 @@ While not exactly an image, we'll also migrate the favicon. This can be put stra
 
 1『目前还不知道这个图片啥用。』
 
-### 05. Development tools
+### 5.5 Development tools
 
 We can utilize some handy development tools to improve our frontend workflow, including: 1) Watch mode. 2) BrowserSync.
 
-#### 1. Watch mode
+#### 5.5.1 Watch mode
 
 So far, we've been running builds of our app manually using npm run dev every time we make a change. Webpack also has a watch mode where it automatically runs a build when a dependency changes. Thanks to the design of Webpack, it is able to efficiently complete these automatic builds by only rebuilding modules that have changed. To use watch mode, run the watch script included in package.json:
 
@@ -2170,7 +2182,7 @@ To test that it works, add this at the bottom of resources/assets/js/app.js:
 
 If watch mode is running correctly, saving this file will trigger a build, and you'll see updated build statistics in the Terminal. If you then refresh the page you'll see the Testing watch message in the console. To turn off watch mode, press Ctrl + C in the Terminal. It can then be restarted at any time. Don't forget to remove the console.log once you're satisfied watch mode is working. I'll assume you're using watch for the rest of the book, so I won't remind you to build your project after changes anymore!
 
-#### 2. BrowserSync
+#### 5.5.2 BrowserSync
 
 Another useful development tool is BrowserSync. Similar to watch mode, BrowserSync monitors your files for changes, and when one occurs inserts the change into the browser. This saves you from having to do a manual browser refresh after every build.
 
@@ -2213,7 +2225,7 @@ Even though the BrowserSync server runs on a different port to the web server, I
 
 1『安装的时候提示要单独安装 webpack，「yarn add webpack」。后来发现没自动更新，为了减少电脑负担，这个功能先取消了。（2020-04-19）』
 
-#### 3. ES2015
+#### 5.5.3 ES2015
 
 The js Mix method applies the Babel plugin to Webpack, ensuring that any ES2015 code is transpiled down to browser-friendly ES5 before it's added to the bundle file. We wrote the Vuebnb frontend app prototype using only ES5 syntax, as we ran it directly in the browser without any build step. But now we can take advantage of ES2015 syntax, which includes a lot of handy features. For example, we can use a shorthand for assigning a function to an object property.
 
@@ -2231,7 +2243,7 @@ escapeKeyListener(evt) { ... }
 
 There are several instances of this in app.js that we can change. There aren't any other opportunities for using ES2015 syntax in our code yet, though in the coming chapters we'll see more.
 
-#### 4. Polyfills
+#### 5.5.4 Polyfills
 
 The ES2015 proposal includes new syntax, but also new APIs, such as Promise, and additions to existing APIs, such as Array and Object. The Webpack Babel plugin can transpile ES2015 syntax, but new API methods require polyfilling. A polyfill is a script that is run in the browser to cover an API or API method that may be missing.
 
@@ -2285,11 +2297,11 @@ At the top of app.js, add this line to include the Object.assign polyfill:
 
 After this builds, refresh your page to see whether it works. Most likely you will not notice any difference unless you can test this on an older browser, such as Internet Explorer, but now you have the assurance that this code will run almost anywhere.
 
-### 06. Mock data
+### 5.6 Mock data
 
 We've now completely migrated the Vuebnb prototype into our Laravel project, plus we've added a build step. Everything in the frontend app is working as it was in Chapter 2, Prototyping Vuebnb, Your First Vue.js Project. However, we still have mock data hard-coded into the frontend app. In this last part of the chapter, we're going to remove that hard-coded data and replace it with data from the backend.
 
-#### 1. Routes
+#### 5.6.1 Routes
 
 Currently, the home route, that is, /, loads our frontend app. But what we've built for our frontend app so far is not meant to be a home page! We'll be building that in future chapters. What we've built is the listing page, which should be at a route like /listing/5, where 5 is the ID of the mock data listing being used. Let's modify the route to reflect this.
 
@@ -2323,11 +2335,11 @@ Route::get('/listing/{listing}', function(ListingModel $listing) {
 
 One cool in-built feature is, if the dynamic segment does not match a model, for example /listing/50 or /listing/somestring, Laravel will abort the route and return a 404.
 
-#### 2. Architecture
+#### 5.6.2 Architecture
 
 Given that we can retrieve the correct listing model in the route handler, and that, thanks to the Blade templating system, we can dynamically insert content into our app view, an obvious architecture emerges: we can inject the model into the head of the page. That way, when the Vue app loads, it will have immediate access to the model:
 
-#### 3. Injecting data
+#### 5.6.3 Injecting data
 
 Getting the mock-listing data into the client app will take several steps. We'll begin by converting the model to an array. The view helper can then be used to make the model available within the template at runtime.
 
@@ -2361,7 +2373,7 @@ If we now go to the /listing/5 route, we will see the following in our page sour
 
 And you will see the following in our console:
 
-#### 4. JSON
+#### 5.6.4 JSON
 
 We'll now encode the entire model as JSON within the view. The JSON format is good because it can be stored as a string and can be parsed by both PHP and JavaScript. In our inline script, let's format the model as a JSON string and assign to a model variable.
 
@@ -2384,7 +2396,7 @@ If we change the log command to console.log(JSON.parse(model));, we see our mode
 
 We've now successfully gotten our model from the backend into the frontend app!
 
-#### 5. Sharing data between scripts
+#### 5.6.5 Sharing data between scripts
 
 We have another issue to overcome now. The inline script in the head of the document, which is where our model object is, is a different script to the one where we have our client application, which is where it's needed. As we've discussed in the previous section, multiple scripts and global variables are generally not preferred as they make the app fragile. But in this scenario, they're a necessity. The safest way to share an object or function between two scripts is to make it a property of the global window object. That way, it's very obvious from your code that you're intentionally using a global variable:
 
@@ -2418,7 +2430,7 @@ let model = JSON.parse(window.vuebnb_listing_model);
 var app = new Vue({ ... });
 ```
 
-#### 6. Replacing the hard-coded model
+#### 5.6.6 Replacing the hard-coded model
 
 We now have access to our listing model in the entry file, so let's switch it with our hard-coded model in the data property assignment.
 
@@ -2482,7 +2494,7 @@ Route::get('/{listing}', 'ListingController@get_listing_web');
 
 』
 
-#### 7. Amenities and prices
+#### 5.6.7 Amenities and prices
 
 If you refresh the page now, it will load, but the script will have some errors. The problem is that the amenities and prices data are structured differently in the frontend app to how they are in the backend. This is because the model initially came from our database, which stores scalar values. In JavaScript, we can use richer objects which allow us to nest data, making it much easier to work with and manipulate. Here is how the model object currently looks. Notice that the amenities and prices are scalar values:
 
@@ -2510,7 +2522,7 @@ model = populateAmenitiesAndPrices(model);
 
 Once we've added this and refreshed the page, we should see the new model data in the text parts of the page (although still with the hard-coded images):
 
-#### 8. Image URLs
+#### 5.6.8 Image URLs
 
 The last thing to do is replace the hard-coded images' URLs in the frontend app. These URLs are not currently a part of the model, so need to be manually added to the model before we inject it into the template. We've already done a very similar job back in Chapter 4, Building a Web Service With Laravel, for the API listing route.
 
@@ -2573,7 +2585,7 @@ private function add_image_urls($model, $id)
 
 With that done, if we refresh the app and open Vue Devtools, we should see that we have the image URLs as an images data property:
 
-#### 9. Replacing the hard-coded image URLs
+#### 5.6.9 Replacing the hard-coded image URLs
 
 The final step is to use these image URLs from the backend instead of the hard-coded URL. Remembering that images is an array of URLs, we'll use the first image as a default, that is, images[0]. First, we'll update the entry file,
 
@@ -2592,3 +2604,6 @@ resources/views/app.blade.php:
 ```php
 <div class="modal-content"> <img v-bind:src="images[0]"/> </div>
 ```
+
+
+
