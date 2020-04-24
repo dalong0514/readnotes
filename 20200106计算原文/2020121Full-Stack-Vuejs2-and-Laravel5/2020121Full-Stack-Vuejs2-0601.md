@@ -818,6 +818,10 @@ Imagine you're going to build a component-based Vue.js app that resembles the fo
 
 
 
+
+
+
+
 Figure 6.12. Component-based Vue.js app
 
 Notice that in the left-branch of the above diagram, ComponentC is declared by ComponentB. However, in the right branch, ComponentD is declared by a different instance of ComponentB.
