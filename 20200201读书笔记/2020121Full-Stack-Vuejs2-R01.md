@@ -1,3 +1,5 @@
+# 2020121Full-Stack-Vuejs2-R01
+
 ## 记忆时间
 
 ## 卡片
@@ -10,8 +12,6 @@
 
 根据反常识，再补充三个证据——就产生三张术语卡。
 
-例子。
-
 ### 0202. 术语卡——
 
 ### 0203. 术语卡——
@@ -19,8 +19,6 @@
 ### 0301. 人名卡——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
 
 #### 01. 基本信息
 
@@ -66,6 +64,8 @@ Finally, you will learn how to use Laravel Passport for authenticated AJAX reque
 
 The year is 2014 and the war of Single-Page Application (SPA) solutions is truly raging. There are many rivals: Angular, React, Ember, Knockout, and Backbone, to name but a few. However, the battle being most closely watched is between Google's Angular and Facebook's React.
 
+1『原来 Angular 是 Google 的，而 React 是 Facebook 的。』
+
 Angular, the SPA king until this point, is a full-fledged framework that follows the familiar MVC paradigm. React, the unlikely challenger seems quite odd in comparison with its core library only dealing with the view layer and markup written entirely in JavaScript! While Angular holds the bigger market share, React has caused a seismic shift in how developers think about web application design and has raised the bar on framework size and performance.
 
 Meanwhile, a developer named Evan You was experimenting with his own new framework, Vue.js. It would combine the best features of Angular and React to achieve a perfect balance between simplicity and power. Your vision would resonate so well with other developers that Vue would soon be among the most popular SPA solutions.
@@ -106,13 +106,7 @@ Chapter 10, Deploying a Full-Stack App to the Cloud, describes how to build and 
 
 What you will learn? 1) Core features of Vue.js to create sophisticated user interfaces. 2) Build a secure backend API with Laravel. 3) Learn a state-of-the-art web development workflow with Webpack. 4) Full-stack app design principles and best practices. 5) Learn to deploy a full-stack app to a cloud server and CDN. 6) Managing complex application state with Vuex. 7) Securing a web service with Laravel Passport.
 
-2『
-
-已下载书籍源码「」。github 上发现作者还有另外 3 本书「Vue.js Design Patterns and Best Practices」、「Vue.js 2.x by Example」和「Vue.js 2 Web Development Projects」。
-
-顺藤摸瓜，找到出版社的书籍源码集合：[Packt](https://github.com/PacktPublishing)。
-
-』
+2『已下载书籍源码「2020121Full-Stack-Vue.js-2-and-Laravel-5源码」。github 上发现作者还有另外 3 本书「Vue.js Design Patterns and Best Practices」、「Vue.js 2.x by Example」和「Vue.js 2 Web Development Projects」。顺藤摸瓜，找到出版社的书籍源码集合：[Packt](https://github.com/PacktPublishing)。』
 
 ## 0101. Hello Vue – An Introduction to Vue.js
 
@@ -228,6 +222,8 @@ Components extend basic HTML elements and allow you to create your own reusable 
         <grocery-item title="Milk"></grocery-item> 
     </ul> 
 </div> 
+
+// js
 <script> 
     Vue.component( 'grocery-item', { 
         props: [ 'title' ], 
@@ -251,10 +247,6 @@ This renders as follows:
 ```
 
 But probably the main reason to use components is that it makes it easier to architect a larger application. Functionality can be broken into reuseable, self-contained components.
-
-### 1.8 Advanced features
-
-If you have been coding along with the examples so far, close your browser now until next chapter, as the following advanced snippets can't simply be included in a browser script.
 
 ### 1.9 Single-file components
 
@@ -284,7 +276,7 @@ A drawback of using components is that you need to write your template in a Java
 
 These files have the .vue extension and encapsulate the component template, JavaScript configuration, and style all in a single file. Of course, a web browser can't read these files, so they need to be first processed by a build tool such as Webpack.
 
-1『关键点来了，所以得适用框架。』
+1『关键点来了，所以得使用框架。』
 
 ### 1.10 Module build
 
@@ -330,7 +322,7 @@ We'll see what else it can do later in this section.
 
 Vue Router allows you to map different states of your SPA to different URLs, giving you virtual pages. For example, mydomain.com/ might be the front page of a blog and have a component hierarchy like this:
 
-```
+```html
 <div id="app"> 
     <my-header></my-header> 
     <blog-summaries></blog-summaries> 

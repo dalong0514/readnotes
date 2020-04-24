@@ -673,7 +673,7 @@ To use a single-file component in your app, you simply import it like it were an
 
 Vue Loader is already configured by default with Laravel Mix, so there's nothing further we need to do in this project; any SFCs we import will just work! To learn more about Vue Loader, check out the documentation at [Introduction | Vue Loader](https://vue-loader.vuejs.org/).
 
-### 13.1 Refactoring components to SFCs
+## 14. Refactoring components to SFCs
 
 Our resource/assets/js/app.js file is almost 100 lines long now. If we keep adding components, it will start to get unmanageable, so it's time to think about splitting it up. Let's begin by refactoring our existing components to be SFCs. First, we'll create a new directory, then we will create the .vue files:
 
@@ -697,27 +697,73 @@ Now, we move the template string into the template tag, and the component defini
 
 resources/assets/components/ImageCarousel.vue:
 
-```
-<template> <div class="image-carousel"> <img :src="image"> <div class="controls"> <carousel-control
+```js
+<template>
+    <div class="image-carousel">
+        <img v-bind:src="image">
+        <div class="controls">
+            <carousel-control dir="left" 
+                @change-image="changeImage"></carousel-control>
+            <carousel-control dir="right" 
+                @change-image="changeImage"></carousel-control>
+        </div>
+    </div>
+</template>
 
-dir="left"
+<script>
+    export default {
+        props: ['images'],
+        data() {
+            return {
+                index: 0,
+            }
+        },
+        computed: {
+            image() {
+                return this.images[this.index];
+            }
+        },
+        components: {
+            'carousel-control': {
+                template: `<i :class="classes" @click="clicked"></i>`,
+                props: ['dir'],
+                computed: {
+                    classes() {
+                        return 'carousel-control fa fa-2x fa-chevron-' + this.dir;
+                    }
+                },
+                methods: {
+                    clicked() {
+                        this.$emit('change-image', this.dir === 'left' ? -1 : 1);
+                    }
+                },
+            }
+        },
+        methods: {
+            changeImage(val) {
+                let newVal = this.index + parseInt(val);
+                if (newVal < 0) {
+                    this.index = this.images.length - 1;
+                } else if (newVal === this.images.length) {
+                    this.index = 0;
+                } else {
+                    this.index = newVal;
+                }
+            },
+        },
+    }
+</script>
 
-@change-image="changeImage"
+<style>
 
-></carousel-control> <carousel-control
-
-dir="right"
-
-@change-image="changeImage"
-
-></carousel-control> </div> </div> </template> <script> export default { props: [ 'images' ], data() { return { index: 0 } }, computed: { image() { return this.images[this.index]; } }, methods: { changeImage(val) { let newVal = this.index + parseInt(val); if (newVal < 0) { this.index = this.images.length -1; } else if (newVal === this.images.length) { this.index = 0; } else { this.index = newVal; } } }, components: { 'carousel-control': { template: `<i :class="classes" @click="clicked"></i>`, props: [ 'dir' ], computed: { classes() { return 'carousel-control fa fa-2x fa-chevron-' + this.dir; } }, methods: { clicked() { this.$emit('change-image', this.dir === 'left' ? -1 : 1); } } } } } </script> <style></style>
+</style>
 ```
 
 Now we can import this file into our app and register it locally in the root instance. As mentioned, Vue is able to automatically switch between kebab-case component names and Pascal-case ones. This means we can use the object shorthand syntax inside the component configuration and Vue will correctly resolve it.
 
 resources/assets/js/app.js:
 
-```
+```js
 import ImageCarousel from '../components/ImageCarousel.vue'; 
 
 var app = new Vue({ 
@@ -728,7 +774,7 @@ var app = new Vue({
 
 Be sure to delete any remaining code from the original ImageCarousel component definition in app.js before moving on.
 
-### 13.2 CSS
+### 14.1 CSS
 
 SFCs allow us to add style to a component, helping to better organize our CSS code. Let's move the CSS rules we created for the image carousel into this new SFC's style tag:
 
@@ -765,11 +811,13 @@ To use it, Webpack's bootstrapping code will inline this CSS string into the hea
 
 Figure 6.10. Inlined CSS in document head
 
+1『样式跑到头文件里去了。』
+
 Inlining CSS is actually the default behavior of Vue Loader. However, we can override this and get Webpack to write SFC styles to their own file. Add the following to the bottom of the Mix configuration.
 
 webpack.mix.js:
 
-```
+```js
 mix.options({ 
     extractVueStyles: 'public/css/vue-style.css' 
 });
@@ -792,199 +840,519 @@ resources/views/app.blade.php:
 </head>
 ```
 
-### 13.3 CarouselControl
+### 14.2 CarouselControl
 
 Let's now abstract our CarouselControl component into an SFC, and move any relevant CSS rules from resources/assets/css/style.css as well.
 
 resources/assets/components/CarouselControl.vue:
 
-```
-<template> <i :class="classes" @click="clicked"></i> </template> <script> export default { props: [ 'dir' ], computed: { classes() { return 'carousel-control fa fa-2x fa-chevron-' + this.dir; } }, methods: { clicked() { this.$emit('change-image', this.dir === 'left' ? -1 : 1); } } } </script> <style> .carousel-control { padding: 1rem; color: #ffffff; opacity: 0.85 } @media (min-width: 744px) { .carousel-control { font-size: 3rem; } } </style>
+```js
+<template>
+    <i :class="classes" @click="clicked"></i>
+</template>
+
+<script>
+export default {
+    props: ['dir'],
+    computed: {
+        classes() {
+            return 'carousel-control fa fa-2x fa-chevron-' + this.dir;
+        }
+    },
+    methods: {
+        clicked() {
+            this.$emit('change-image', this.dir === 'left' ? -1 : 1);
+        }
+    },
+}
+</script>
+
+<style>
+    .carousel-control {
+        padding: 1rem;
+        color: #ffffff;
+        opacity: 0.85;
+    }
+
+    @media (min-width: 744px) {
+        .container {
+            width: 696px;
+        }
+        .carousel-control {
+            font-size: 3rem;
+        }
+    }
+</style>
 ```
 
 This file can now be imported by the ImageCarousel component.
 
 resources/assets/components/ImageCarousel.vue:
 
-```
-<template>...</style> <script> import CarouselControl from '../components/CarouselControl.vue'; export default { ... components: { CarouselControl } } </script> <style>...</style>
+```js
+<template>...</style> 
+<script> 
+    import CarouselControl from '../components/CarouselControl.vue'; 
+    export default { 
+        ... 
+        components: { CarouselControl } 
+    } 
+</script> 
+<style>...</style>
 ```
 
 With that done, our existing components have been refactored to SFCs. This has not made any obvious difference to the functionality of our app (although it is slightly faster, as I'll explain later), but it will make development easier as we continue.
 
-## 14. Content distribution
+## 15. Content distribution
 
 Imagine you're going to build a component-based Vue.js app that resembles the following structure:
 
-
-
-
-
-
+![](./res/2020008.png)
 
 Figure 6.12. Component-based Vue.js app
 
-Notice that in the left-branch of the above diagram, ComponentC is declared by ComponentB. However, in the right branch, ComponentD is declared by a different instance of ComponentB.
+Notice that in the left-branch of the above diagram, Component C is declared by Component B. However, in the right branch, Component D is declared by a different instance of Component B.
 
-With what you know about components so far, how would you make the template for ComponentB, given that it has to declare two different components? Perhaps it would include a v-if directive to use either ComponentC or ComponentD depending on some variable passed down as a prop from ComponentA. This approach would work, however, it makes ComponentB very inflexible, limiting its reusability in other parts of the app.
+With what you know about components so far, how would you make the template for Component B, given that it has to declare two different components? Perhaps it would include a v-if directive to use either Component C or Component D depending on some variable passed down as a prop from Component A. This approach would work, however, it makes Component B very inflexible, limiting its reusability in other parts of the app.
 
-## Slots
+1『上面的痛点是「插槽」要解决的问题。』
+
+## 16. Slots
 
 We've learned so far that the content of a component is defined by its own template, not by its parent, so we wouldn't expect the following to work:
 
-<div id="app"> <my-component> <p>Parent content</p> </my-component> </div>
+```html
+<div id="app"> 
+    <my-component> 
+        <p>Parent content</p> 
+    </my-component> 
+</div>
+```
 
 But it will work if MyComponent has a slot. Slots are distribution outlets inside a component, defined with the special slot element:
 
-Vue.component('my-component', { template: ` <div> <slot></slot> <p>Child content</p> </div>` }); new Vue({ el: '#app' });
+```js
+Vue.component('my-component', { 
+    template: ` 
+        <div> 
+            <slot></slot> 
+            <p>Child content</p> 
+        </div>` 
+}); 
+new Vue({ 
+    el: '#app' 
+});
+```
 
 This renders as:
 
-<div id="app"> <div> <p>Parent content</p> <p>Child content</p> </div> </div>
+```js
+<div id="app"> 
+    <div> 
+        <p>Parent content</p> 
+        <p>Child content</p> 
+    </div> 
+</div>
+```
 
-If ComponentB has a slot in its template, like this:
+If Component B has a slot in its template, like this:
 
+```js
 Vue.component('component-b', {
-
-template: '<slot></slot>'
-
+    template: '<slot></slot>'
 });
+```
 
 We can solve the problem just stated without having to use a cumbersome v-for:
 
-<component-a> <component-b> <component-c></component-c> </component-b> <component-b> <component-d></component-d> </component-b> </component-a>
+```html
+<component-a> 
+    <component-b> 
+        <component-c></component-c> 
+    </component-b> 
+    <component-b> 
+        <component-d></component-d> 
+    </component-b> 
+</component-a>
+```
 
 It's important to note that content declared inside a component in the parent template is compiled in the scope of the parent. Although it is rendered inside the child, it cannot access any of the child's data. The following example should distinguish this:
 
-<div id="app"> <my-component> <!--This works--> <p>{{ parentProperty }}</p> <!--This does not work. childProperty is undefined, as this content--> <!--is compiled in the parent's scope--> <p>{{ childProperty }} </my-component> </div> <script> Vue.component('my-component', { template: ` <div> <slot></slot> <p>Child content</p> </div>`, data() { return { childProperty: 'World' } } }); new Vue({ el: '#app', data: { parentProperty: 'Hello' } }); </script>
+```js
+<div id="app"> 
+    <my-component> 
+        <!--This works--> 
+        <p>{{ parentProperty }}</p> 
+        <!--This does not work. childProperty is undefined, as this content--> 
+        <!--is compiled in the parent's scope--> 
+        <p>{{ childProperty }} </p> 
+    </my-component> 
+</div> 
 
-## Modal window
+<script> 
+    Vue.component('my-component', { 
+        template: ` 
+            <div> 
+                <slot></slot> 
+                <p>Child content</p> 
+            </div>`, 
+        data() { 
+            return { childProperty: 'World' } 
+        } 
+    }); 
+    new Vue({ el: '#app', data: { parentProperty: 'Hello' } }); 
+</script>
+```
+
+## 17. Modal window
 
 A lot of the functionality left in our root Vue instance concerns the modal window. Let's abstract this into a separate component. First, we'll create the new component file:
 
-$ touch resources/assets/components/ModalWindow.vue
+    $ touch resources/assets/components/ModalWindow.vue
 
 Now, we'll transplant the markup from the view to the component. To ensure the carousel stays decoupled from the modal window, we'll replace the ImageCarousel declaration in the markup with a slot.
 
 resources/assets/components/ModalWindow.vue:
 
-<template> <div id="modal" :class="{ show : modalOpen }"> <button @click="modalOpen = false" class="modal-close">&times;</button> <div class="modal-content"> <slot></slot> </div> </div> </template> <script></script> <style></style>
+```js
+<template>
+    <div id="modal" :class="{ show: modalOpen }">
+        <button @click="modalOpen=false" class="modal-close">&times;</button>
+        <div class="modal-content">
+            <slot></slot>
+        </div>
+    </div>    
+</template>
+```
 
 We can now declare a ModalWindow element in the hole we just created in the view, with an ImageCarousel as content for the slot.
 
 resources/views/app.blade.php:
 
-<div id="app"> <div class="header">...</div> <div class="container">...</div> <modal-window> <image-carousel :images="images"></image-carousel> </modal-window> </div>
+```js
+<div id="app"> 
+    <div class="header">...</div> 
+    <div class="container">...</div> 
+    <modal-window> 
+        <image-carousel :images="images"></image-carousel> 
+    </modal-window> 
+</div>
+```
 
 We will now move the needed functionality from the root instance and place it inside the script tag.
 
 resources/assets/components/ModalWindow.vue:
 
-<template>...</template> <script> export default { data() { return { modalOpen: false } }, methods: { escapeKeyListener(evt) { if (evt.keyCode === 27 && this.modalOpen) { this.modalOpen = false; } } }, watch: { modalOpen() { var className = 'modal-open'; if (this.modalOpen) { document.body.classList.add(className); } else { document.body.classList.remove(className); } } }, created() { document.addEventListener('keyup', this.escapeKeyListener); }, destroyed() { document.removeEventListener('keyup', this.escapeKeyListener); }, } </script> <style></style>
+```js
+<script>
+    export default {
+        data() {
+            return {
+                modalOpen: false,
+            }
+        },
+        methods: {
+            escapeKeyListenser: function(evt) {
+                if (evt.keyCode === 27 && this.modalOpen) {
+                    this.modalOpen = false;
+                }
+            }
+        },
+        watch: {
+            modalOpen: function() {
+                var className = "modal-open";
+                if (this.modalOpen) {
+                    document.body.classList.add(className);
+                } else {
+                    document.body.classList.remove(className);
+                }
+            },
+        },
+        created: function() {
+            document.addEventListener('keyup', this.escapeKeyListenser);
+        },
+        destoryed: function() {
+            document.removeEventListener('keyup', this.escapeKeyListenser);
+        },
+    }
+</script>
+```
 
 Next we import ModalWindow in the entry file.
 
 resources/assets/js/app.js:
 
-import ModalWindow from '../components/ModalWindow.vue'; var app = new Vue({ el: '#app', data: Object.assign(model, { headerImageStyle: { 'background-image': `url(${model.images[0]})` }, contracted: true }), components: { ImageCarousel, ModalWindow } });
+```js
+// import "core-js/fn/object/assign";
+import Vue from 'vue';
+// window.Vue = require('vue');
+import { populateAmenitiesAndPrices } from './helpers';
+import ImageCarousel from '../components/ImageCarousel.vue';
+import ModalWindow from '../components/ModalWindow.vue';
+
+let model = JSON.parse(window.vuebnb_listing_model);
+model = populateAmenitiesAndPrices(model);
+
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    // ployfills
+    data: Object.assign(model, {
+        headerImageStyle: {
+            "background-image": `url(${model.images[0]})`
+        },
+        contracted: true,
+    }),
+    components: { 
+        ImageCarousel,
+        ModalWindow,
+    },
+});
+```
 
 Finally, let's move any modal-related CSS rules into the SFC as well:
 
-<template>...</template> <script>...</script> <style> #modal { display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 2000; background-color: rgba(0,0,0,0.85); } #modal.show { display: block; } body.modal-open { overflow: hidden; position: fixed; } .modal-close { cursor: pointer; position: absolute; right: 0; top: 0; padding: 0px 28px 8px; font-size: 4em; width: auto; height: auto; background: transparent; border: 0; outline: none; color: #ffffff; z-index: 1000; font-weight: 100; line-height: 1; } .modal-content { height: 100%; max-width: 105vh; padding-top: 12vh; margin: 0 auto; position: relative; } </style>
+```css
+<style>
+    #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 2000;
+        background-color: rgba(0, 0, 0, 0.85);
+    }
 
-After the project builds, you'll notice the modal window won't open. We'll fix that in the next section.
+    #modal.show {
+        display: block;
+    }
 
-If you check Vue Devtools, you'll see a ModalWindow component in the hierarchy of components now:
+    body.modal-open {
+        overflow: hidden;
+        position: fixed;
+    }
+
+    .modal-close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0px 28px 8px;
+        font-size: 4em;
+        width: auto;
+        height: auto;
+        background: transparent;
+        border: 0;
+        outline: none;
+        color: #ffffff;
+        z-index: 1000;
+        font-weight: 100;
+        line-height: 1;
+    }
+
+    .modal-content {
+        height: 100%;
+        max-width: 105vh;
+        padding-top: 12vh;
+        margin: 0 auto;
+        position: relative;
+    }
+</style>
+```
+
+After the project builds, you'll notice the modal window won't open. We'll fix that in the next section. If you check Vue Devtools, you'll see a ModalWindow component in the hierarchy of components now:
 
 Figure 6.13. Vue Devtools showing hierarchy of components
 
 The representation of our app in Vue Devtools is slightly misleading. It makes it seem as though ImageCarousel is a child of ModalWindow. Even though ImageCarousel renders within ModalWindow due to the slot, these components are actually siblings!
 
-## Refs
+## 18. Refs
 
 In its initial state, the modal window is hidden with a display: none CSS rule. To open the modal, the user must click the header image. A click event listener will then set the root instance data property modelOpen to true, which will, in turn, add a class to the modal to overwrite the display: none to display: block.
+
+1『数据流的走向。会解析业务的数据流很重要。』
 
 After refactoring, however, modalOpen has been moved into the ModalWindow component along with the rest of the modal logic, and hence the modal opening functionality is currently broken. One possible way to fix this is to let the root instance manage the opened/closed state of the modal by moving the logic back into the root instance. We could then use a prop to inform the modal when it needs to open. When the modal is closed (this happens in the scope of the modal component, where the close button is) it would send an event to the root instance to update the state.
 
 This approach would work, but it's not in the spirit of making our components decoupled and reusable; the modal component should manage its own state. How, then, can we allow the modal to keep its state, but let the root instance (the parent) change it? An event won't work, as events can only flow up, not down.
 
+1『 Refs 是为了解决上面场景而生的。作者讲解知识点的方式很好，先抛出一个真实场景里遇到的问题，然后引出要学的技术，技术都是为了解决具体问题而创造出来的。』
+
 ref is a special property that allows you to directly reference a child component's data. To use it, declare the ref property and assign it a unique value, such as imagemodal.
 
 resources/views/app.blade.php:
 
-<modal-window ref="imagemodal"> ... </modal-window>
+```html
+<modal-window ref="imagemodal"> 
+    ... 
+</modal-window>
+```
 
-Now the root instance has access to this specific ModalWindow component's data via the $refs object. This means we can change the value of modalOpen inside a root instance method, just like we could from within ModalWindow.
+Now the root instance has access to this specific ModalWindow component's data via the \$refs object. This means we can change the value of modalOpen inside a root instance method, just like we could from within ModalWindow.
 
 resources/assets/js/app.js:
 
-var app = new Vue({ ... methods: { openModal() { this.$refs.imagemodal.modalOpen = true; }, } });
+```js
+methods: {
+    openModal() {
+        this.$ref.imagemodal.modalOpen = true;
+    }
+},
+```
 
 Now we can call the openModal method in the header image's click listener, thus restoring the modal opening functionality.
 
 resources/views/app.blade.php:
 
-<div id="app"> <div class="header"> <div class="header-img" :style="headerImageStyle" @click="openModal"> <button class="view-photos">View Photos</button> </div> </div> ... </div>
+```html
+<div class="header">
+    <div class="header-img" :style="headerImageStyle" @click="openModal">
+        <button class="view-photos">View Photos</button>
+    </div>
+</div
+```
 
 It is an anti-pattern to use ref when the normal methods of interacting with a component, props and events, are sufficient. ref is usually only required for communicating with elements that fall outside of the normal flow of a page, as a modal window does.
 
-## Header image
+## 19. Header image
 
 Let's now abstract the header image into a component. Firstly, create a new .vue file:
 
-$ touch resources/assets/components/HeaderImage.vue
+    $ touch resources/assets/components/HeaderImage.vue
 
-Now move in the markup, data, and CSS. Take note of the following modifications:
-
-An event header-clicked must be emitted. This will be used to open the modal
-
-The image URL is passed as a prop, image-url, then transformed to be an inline style rule via a computed property
+Now move in the markup, data, and CSS. Take note of the following modifications: 1) An event header-clicked must be emitted. This will be used to open the modal. 2) The image URL is passed as a prop, image-url, then transformed to be an inline style rule via a computed property.
 
 resource/assets/components/HeaderImage.vue:
 
-<template> <div class="header"> <div class="header-img" :style="headerImageStyle" @click="$emit('header-clicked')" > <button class="view-photos">View Photos</button> </div> </div> </template> <script> export default { computed: { headerImageStyle() { return { 'background-image': `url(${this.imageUrl})` }; } }, props: [ 'image-url' ] } </script> <style> .header { height: 320px; } .header .header-img { background-repeat: no-repeat; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-position: 50% 50%; background-color: #f5f5f5; height: 100%; cursor: pointer; position: relative; } .header .header-img button { font-size: 14px; padding: 7px 18px; color: #484848; line-height: 1.43; background: #ffffff; font-weight: bold; border-radius: 4px; border: 1px solid #c4c4c4; } .header .header-img button.view-photos { position: absolute; bottom: 20px; left: 20px; } </style>
+```js
+<template>
+    <div class="header">
+        <div class="header-img" :style="headerImageStyle" 
+            @click="$emit('header-clicked')">
+            <button class="view-photos">View Photos</button>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        computed: {
+            headerImageStyle() {
+                return {
+                    "background-image": `url(${this.imageUrl})`}
+            },
+        },
+        props: ['image-url'],
+    }
+</script>
+
+<style>
+    .header {
+        height: 320px;
+    }
+
+    .header .header-img {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-color: #f5f5f5;
+        height: 100%;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .header .header-img button {
+        border-radius: 4px;
+        border: 1px solid #c4c4c4;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+        line-height: 1.43;
+        user-select: none;
+        white-space: nowrap;
+        cursor: pointer;
+        background: white;
+        color: #484848;
+        padding: 7px 18px;
+        font-size: 14px;
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    .header .header-img .view-photos {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+</style>
+```
 
 Once you've imported this component in resources/assets/js/app.js, declare it in the main template. Be sure to bind the image-url prop and handle the click event.
 
 resources/views/app.blade.php:
 
-<div id="app"> <header-image
+```html
+<header-image :image-url="images[0]" @header-clicked="openModal"></header-image>
+```
 
-:image-url="images[0]"
+## 20. Feature lists
 
-@header-clicked="openModal"
-
-></header-image> <div class="container">...</div> <modal-window>...</modal-window> </div>
-
-## Feature lists
-
-Let's continue our process of refactoring Vuebnb into components, and abstract the amenities and prices lists. These lists have a similar purpose and structure, so it makes sense that we create a single, versatile component for both.
-
-Let's remind ourselves of how the markup for the lists currently looks.
+Let's continue our process of refactoring Vuebnb into components, and abstract the amenities and prices lists. These lists have a similar purpose and structure, so it makes sense that we create a single, versatile component for both. Let's remind ourselves of how the markup for the lists currently looks.
 
 resources/views/app.blade.php:
 
-<div class="lists"> <hr> <div class="amenities list"> <div class="title"><strong>Amenities</strong></div> <div class="content"> <div class="list-item" v-for="amenity in amenities"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>@{{ amenity.title }}</span> </div> </div> </div> <hr> <div class="prices list"> <div class="title"><strong>Prices</strong></div> <div class="content"> <div class="list-item" v-for="price in prices"> @{{ price.title }}: <strong>@{{ price.value }}</strong> </div> </div> </div> </div>
+```html
+<div class="lists">
+    <hr>
+    <div class="amenities list">
+        <div class="title"><strong>Amentities</strong></div>
+        <div class="content">
+            <div class="list-item" v-for="amenity in amenities">
+                <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
+                <span>@{{ amenity.title }}</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="prices list">
+        <div class="title"><strong>Prices</strong></div>
+        <div class="content">
+            <div class="list-item" v-for="price in prices">
+                @{{ price.title }}: <strong>@{{ price.value }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+```
 
-The main difference between the two lists is inside the <div class="content">...</div> section, as the data being displayed in each list has a slightly different structure. The amenities have an icon and a title whereas the prices have a title and a value. We'll use a slot in this section to allow the parent to customize the content for each.
+The main difference between the two lists is inside the \<div class="content">...\</div> section, as the data being displayed in each list has a slightly different structure. The amenities have an icon and a title whereas the prices have a title and a value. We'll use a slot in this section to allow the parent to customize the content for each. But first, let's create the new FeatureList component file:
 
-But first, let's create the new FeatureList component file:
-
-$ touch resources/assets/components/FeatureList.vue
+    $ touch resources/assets/components/FeatureList.vue
 
 We'll move the markup for one of the lists in, using a slot to replace the list content. We'll also add a prop for the title and move in any list-related CSS.
 
 resources/assets/components/FeatureList.vue:
 
-<template> <div> <hr> <div class="list"> <div class="title"><strong>{{ title }}</strong></div> <div class="content"> <slot></slot> </div> </div> </div> </template> <script> export default { props: ['title'] } </script> <style> hr { border: 0; border-top: 1px solid #dce0e0; } .list { display: flex; flex-wrap: nowrap; margin: 2em 0; } .list .title { flex: 1 1 25%; } .list .content { flex: 1 1 75%; display: flex; flex-wrap: wrap; } .list .list-item { flex: 0 0 50%; margin-bottom: 16px; } .list .list-item > i { width: 35px; } @media (max-width: 743px) { .list .title { flex: 1 1 33%; } .list .content { flex: 1 1 67%; } .list .list-item { flex: 0 0 100%; } } </style>
+```
+
+```
 
 Go ahead and import FeatureList into resources/assets/js/app.js, and add it to the locally registered components. Now we can use FeatureList in our main template, with a separate instance for each list.
 
 resources/views/app.blade.php:
 
+```
 <div id="app"> ... <div class="container"> ... <div class="lists"> <feature-list title="Amenities"> <div class="list-item" v-for="amenity in amenities"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>@{{ amenity.title }}</span> </div> </feature-list> <feature-list title="Prices"> <div class="list-item" v-for="price in prices"> @{{ price.title }}: <strong>@{{ price.value }}</strong> </div> </feature-list> </div> </div> </div>
+```
 
-Scoped slots
+
+
+
+
+
+
+## 21. Scoped slots
 
 The FeatureList component works but is quite weak. The majority of the content comes through the slot and so it seems like the parent is doing too much work, and the child too little. Given that there's repeated code in both declarations of the component (<div class="list-item" v-for="...">), it'd be good to delegate this to the child.
 
@@ -1040,11 +1408,11 @@ resources/views/app.blade.php:
 
 Although this approach has just as much markup as before, it has delegated more common functionality to the component, which makes for a more robust design.
 
-Expandable text
+## 22. Expandable text
 
 We created functionality back in Chapter 2, Prototyping Vuebnb, Your First Vue.js Project, to allow the About text to be partially contracted when the page loads and expanded to its full length by clicking a button. Let's abstract this functionality into a component as well:
 
-$ touch resources/assets/components/ExpandableText.vue
+    $ touch resources/assets/components/ExpandableText.vue
 
 Move all the markup, configuration, and CSS into the new component. Note that we use a slot for the text content.
 
@@ -1072,9 +1440,11 @@ With that done, most of the data and functionality of the Vuebnb client app has 
 
 resources/assets/js/app.js:
 
+```
 ... import ImageCarousel from '../components/ImageCarousel.vue'; import ModalWindow from '../components/ModalWindow.vue'; import FeatureList from '../components/FeatureList.vue'; import HeaderImage from '../components/HeaderImage.vue'; import ExpandableText from '../components/ExpandableText.vue'; var app = new Vue({ el: '#app', data: Object.assign(model, {}), components: { ImageCarousel, ModalWindow, FeatureList, HeaderImage, ExpandableText }, methods: { openModal() { this.$refs.imagemodal.modalOpen = true; } } });
+```
 
-Virtual DOM
+## 23. Virtual DOM
 
 Let's change tack now and discuss how Vue renders components. Take a look at this example:
 
@@ -1088,7 +1458,7 @@ Once the template has been compiled, any state or directives can easily be appli
 
 After that, Vue can interface with the DOM API to synchronize the page with the state of the component.
 
-Render functions
+## 24. Render functions
 
 Rather than supplying a string template for your component, you can instead supply a render function. Without understanding the syntax, you can probably tell from the following example that the render function is generating a semantically equivalent template to the string template in the previous example. Both define a div with an id attribute of my-component and with inner text of My component:
 
@@ -1096,7 +1466,7 @@ Vue.component('my-component'</span>, { render(createElement) { createElement('di
 
 Render functions are more efficient because they don't require Vue to first compile the template string. The downside, though, is that writing a render function is not as easy or expressive as markup syntax, and, once you get a large template, will be difficult to work with.
 
-Vue Loader
+## 25. Vue Loader
 
 Wouldn't it be great if we could create HTML markup templates in development, then get Vue's template compiler to turn them into render functions as part of the build step? That would be the best of both worlds.
 
@@ -1104,7 +1474,7 @@ This is exactly what happens to single-file components when Webpack transforms t
 
 Figure 6.15. image-carousel component in the bundle file
 
-Refactoring the main template as single-file component
+## 26. Refactoring the main template as single-file component
 
 The template for our app's root instance is the content within the #app element in the app view. A DOM template like this requires the Vue template compiler, just like any string template does.
 
@@ -1112,7 +1482,7 @@ If we were able to abstract this DOM template into an SFC as well, it would mean
 
 Let's create a new SFC for the main template and call it ListingPage, as this part of the app is our listing page:
 
-$ touch resources/assets/components/ListingPage.vue
+    $ touch resources/assets/components/ListingPage.vue
 
 We'll move the main template, root configuration and any relevant CSS into this component. Take note of the following:
 
@@ -1132,7 +1502,7 @@ resource/assets/components/ListingPage.vue:
 
 ></header-image> <div class="container"> <div class="heading"> <h1>{{ title }}</h1> <p>{{ address }}</p> </div> <hr> <div class="about"> <h3>About this listing</h3> <expandable-text>{{ about }}</expandable-text> </div> <div class="lists"> <feature-list title="Amenities" :items="amenities"> <template slot-scope="amenity"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>{{ amenity.title }}</span> </template> </feature-list> <feature-list title="Prices" :items="prices"> <template slot-scope="price"> {{ price.title }}: <strong>{{ price.value }}</strong> </template> </feature-list> </div> </div> <modal-window ref="imagemodal"> <image-carousel :images="images"></image-carousel> </modal-window> </div> </template> <script> import { populateAmenitiesAndPrices } from '../js/helpers'; let model = JSON.parse(window.vuebnb_listing_model); model = populateAmenitiesAndPrices(model); import ImageCarousel from './ImageCarousel.vue'; import ModalWindow from './ModalWindow.vue'; import FeatureList from './FeatureList.vue'; import HeaderImage from './HeaderImage.vue'; import ExpandableText from './ExpandableText.vue'; export default { data() { return Object.assign(model, {}); }, components: { ImageCarousel, ModalWindow, FeatureList, HeaderImage, ExpandableText }, methods: { openModal() { this.$refs.imagemodal.modalOpen = true; } } } </script> <style> .about { margin: 2em 0; } .about h3 { font-size: 22px; } </style>
 
-Mounting the root-level component with a render function
+## 27. Mounting the root-level component with a render function
 
 Now the mount element in our main template will be empty. We need to declare the Listing component, but we don't want to do it in the view.
 
@@ -1156,7 +1526,7 @@ To avoid getting side-tracked, I won't explain the syntax of render functions he
 
 Now that Vuebnb is no longer using string or DOM templates, we don't need the template compiler functionality anymore. There's a special build of Vue we can use which doesn't include it!
 
-Vue.js builds
+## 28. Vue.js builds
 
 There are a number of different environments and use cases for running Vue.js. In one project, you might load Vue directly in the browser, in another you may load it on a Node.js server for the purpose of server rendering. As such, there are different builds of Vue provided so you can choose the most suitable one.
 
@@ -1176,11 +1546,11 @@ Full (production) vue.min.js - -
 
 Runtime-only (production) vue.runtime.min.js - -
 
-Module system
+## 29. Module system
 
 The columns of the table categorize the builds as either UMD, CommonJS, or ES Module. We discussed CommonJS and ES modules back in Chapter 5, Integrating Laravel And Vue.js with Webpack, but we didn't mention UMD (Universal Module Definition). The main things you need to know about UMD is that it's yet another module pattern, and that it works well in a browser. UMD is the choice if you are directly linking to Vue in a script tag.
 
-Production builds
+## 30. Production builds
 
 The rows of the table are split into two types: full or runtime, and with or without production.
 
@@ -1188,11 +1558,11 @@ A production build is used in a deployed app, as opposed to one running in devel
 
 Note that there is only a UMD version of the production build as only UMD runs directly in a browser. CommonJS and ES Module are to be used in conjunction with a build tool, like Webpack, which provides its own production processing.
 
-Full build vs runtime-only
+## 31. Full build vs runtime-only
 
 As we've been discussing, Vue includes a template compiler for converting any string or DOM templates to render functions at runtime. The full build includes the template compiler and is what you would normally use. However, if you've already transformed your templates into render functions in development, you can use the runtime-only build, which drops the compiler and is about 30% smaller!
 
-Selecting a build
+## 32. Selecting a build
 
 A good build for Vuebnb is vue.runtime.esm.js since we're using Webpack and we don't need the template compiler. We could also use vue.runtime.common.js, but that wouldn't be consistent with our use of ES modules elsewhere in the project. In practice, though, there is no difference as Webpack will process them in the same way.
 
