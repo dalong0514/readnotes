@@ -1,4 +1,4 @@
-9Creating Your Web Database
+# 09. Creating Your Web Database
 
 In this chapter, we explain how to set up a MySQL database for use on a website.
 

@@ -4,27 +4,23 @@ In this chapter, we discuss how you can use PHP’s string functions to format a
 
 These functions are useful in many contexts. You often may want to clean up or reformat user input that is going to be stored in a database. Search functions are great when building search engine applications (among other things).
 
-Key topics covered in this chapter include
+Key topics covered in this chapter include:
 
- ■ Formatting strings
+ ■ Formatting strings.
 
- ■ Joining and splitting strings
+ ■ Joining and splitting strings.
 
- ■ Comparing strings
+ ■ Comparing strings.
 
- ■ Matching and replacing substrings with string functions
+ ■ Matching and replacing substrings with string functions.
 
- ■ Using regular expressions
+ ■ Using regular expressions.
 
-Creating a Sample Application: Smart Form MailIn this chapter, you will use string and regular expression functions in the context of a Smart Form Mail application. You’ll then add these scripts to the Bob’s Auto Parts site you’ve been building in preceding chapters.
+## 4.1 Creating a Sample Application: Smart Form Mail
 
-This time, you’ll build a straightforward and commonly used customer feedback form for Bob’s customers to enter their complaints and compliments, as shown in Figure 4.1. However, this application has one improvement over many you will find on the Web. Instead of  emailing the form to a generic email address like feedback@example.com, you’ll attempt to put some  intelligence into the process by searching the input for key words and phrases and then sending the email to the appropriate employee at Bob’s company. For example, if the email 
+In this chapter, you will use string and regular expression functions in the context of a Smart Form Mail application. You’ll then add these scripts to the Bob’s Auto Parts site you’ve been building in preceding chapters.
 
-102
-
-Chapter 4  String Manipulation and Regular Expressions
-
-contains the word advertising, you might send the feedback to the Marketing department. If the email is from Bob’s biggest client, it can go straight to Bob.
+This time, you’ll build a straightforward and commonly used customer feedback form for Bob’s customers to enter their complaints and compliments, as shown in Figure 4.1. However, this application has one improvement over many you will find on the Web. Instead of  emailing the form to a generic email address like feedback@example.com, you’ll attempt to put some  intelligence into the process by searching the input for key words and phrases and then sending the email to the appropriate employee at Bob’s company. For example, if the email contains the word advertising, you might send the feedback to the Marketing department. If the email is from Bob’s biggest client, it can go straight to Bob.
 
 Figure 4.1  Bob’s feedback form asks customers for their name, email address, and comments.
 
@@ -37,10 +33,6 @@ Listing 4.1  processfeedback.php—Basic Script to Email Form Contents<?php
 //create short variable names$name=$_POST['name'];$email=$_POST['email'];$feedback=$_POST['feedback'];
 
 //set up some static information
-
-Creating a Sample Application: Smart Form Mail
-
-103
 
 $toaddress = "feedback@example.com";
 
@@ -68,10 +60,6 @@ bool mail(string to, string subject, string message,          string [additional
 
 The first three parameters are compulsory and represent the address to send email to, the subject line, and the message contents, respectively. The fourth parameter can be used to send any additional valid email headers. Valid email headers are described in the document RFC822, which is available online if you want more details. (RFCs, or Requests for Comment, are the source of many Internet standards; we discuss them in Chapter 18,「Using Network and Protocol Functions.」) Here, the fourth parameter adds a From: address for the mail. You can also use it to add Reply-To: and Cc: fields, among others. If you want more than one 
 
-104
-
-Chapter 4  String Manipulation and Regular Expressions
-
 additional header, just separate them by using newlines and carriage returns (\\n) within the string, as follows:
 
 $additional_headers="From: webserver@example.com\r\n "                     ."Reply-To: bob@example.com";
@@ -94,10 +82,6 @@ The trim() function strips whitespace from the start and end of a string and ret
 
 You may also use the alias chop() for rtrim(). Perl has a similar function but they behave slightly differently, so be cautious in your assumptions if you are coming to PHP from a Perl background.
 
-Formatting Strings
-
-105
-
 Formatting Strings for OutputPHP includes a set of functions that you can use to reformat a string in different ways for different purposes.
 
 Filtering Strings for OutputWhenever we take user-submitted data and output it somewhere, we need to plan it with the destination in mind. This is because most places we send output to consider some  characters and strings as special or control characters and strings, and we don’t want the output  destination to interpret user-submitted data as commands.
@@ -114,37 +98,9 @@ In general, this function converts characters to their HTML entity equivalents a
 
 Table 4.1  HTML Entities Encoded by the htmlspecialchars() Function
 
-Character
-
-Translation
-
-&
-
-"
-
-'
-
-<
-
->
-
-&amp;
-
-&quot;
-
-&apos;
-
-&lt;
-
-&gt;
-
 The default encoding of quotes is to only encode double quotes. Single quotes will remain untranslated. This behavior is controlled by the flags parameter.
 
 The first parameter is the string to be translated, and the function returns the translated string.
-
-106
-
-Chapter 4  String Manipulation and Regular Expressions
 
 Note: If the input string is not valid in the specified encoding, the function will return the empty string without raising an error. This is intended to help avoid code injection issues.
 
@@ -204,10 +160,6 @@ Replace invalid code points with a Unicode Replacement Character.
 
 Filtering Strings for Other Forms of OutputDepending on where you are outputting strings, the characters that may cause problems are different. We previously discussed the htmlspecialchars() function for output to the browser.
 
-Formatting Strings
-
-107
-
 In the example in Listing 4.1, we are sending output to email. What do we need to take into account here? We don’t care if the email contains HTML, so using the htmlspecialchars() function is not appropriate here.
 
 The main issue in email is that headers are separated by the character string \r\n (carriage return-line feed). We need to take care that user data we use in the email headers does not contain these characters, or we run the risk of a set of attacks, called header injection. (We discuss this in more detail in Part III.)
@@ -225,10 +177,6 @@ Using HTML Formatting: The nl2br() FunctionThe nl2br() function takes a string a
 Remember that HTML disregards plain whitespace, so if you don’t filter this output through nl2br(), it will appear on a single line (except for newlines forced by the browser window). The result is illustrated in Figure 4.2.
 
 Notice that we first applied the htmlspecialchars() function and then the nl2br()  function. This is because if we did them in the opposite order, the <br/> tags inserted by the nl2br() function would be translated into HTML entities by the htmlspecialchars()  function and hence would have no effect.
-
-108
-
-Chapter 4  String Manipulation and Regular Expressions
 
 Figure 4.2  Using PHP’s nl2br() function improves the display of long strings within HTML.
 
@@ -1178,5 +1126,7 @@ The amount of material available on regular expressions is enormous. You can sta
 
 Regular expressions take a while to sink in; the more examples you look at and run, the more confident you will be using them.
 
-NextIn the next chapter, we discuss several ways you can use PHP to save programming time and effort and prevent redundancy by reusing pre-existing code.
+## Next
+
+In the next chapter, we discuss several ways you can use PHP to save programming time and effort and prevent redundancy by reusing pre-existing code.
 

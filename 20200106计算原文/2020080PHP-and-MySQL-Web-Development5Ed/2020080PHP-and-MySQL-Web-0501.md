@@ -1,4 +1,4 @@
-5Reusing Code and Writing Functions
+# 05 Reusing Code and Writing Functions
 
 This chapter explains how reusing code leads to more consistent, reliable, maintainable code, with less effort. We demonstrate techniques for modularizing and reusing code, beginning with the simple use of require() and include() to use the same code on more than one page. The example given here covers using include files to get a consistent look and feel across your site. We also explain how you can write and call your own functions using page and form generation functions as examples.
 
@@ -25,10 +25,6 @@ Key topics covered in this chapter include
 ■  Using namespaces
 
 The Advantages of Reusing CodeOne of the goals of software engineers is to reuse code in lieu of writing new code. The reason for this is not that software engineers are a particularly lazy group, but instead because reusing existing code reduces costs, increases reliability, and improves consistency. Ideally, a new project is created by combining existing reusable components, with a minimum of development from scratch.
-
-132
-
-Chapter 5  Reusing Code and Writing Functions 
 
 CostOver the useful life of a piece of software, significantly more time will be spent maintaining, modifying, testing, and documenting it than was originally spent writing it. If you are writing commercial code, you should attempt to limit the number of lines in use within the organiza-tion. One of the most practical ways to achieve this goal is to reuse code already in use instead of writing a slightly different version of the same code for a new task. Less code means lower costs. If existing software meets the requirements of the new project, use it. The cost of using existing software is almost always less than the cost of developing an equivalent product. This applies whether you are buying a product or using an open-source project. Tread carefully, though, if existing software almost meets your requirements. 
 

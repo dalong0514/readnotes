@@ -1,28 +1,26 @@
-# 2020080PHP-and-MySQL-Web-R02
-
-## 记忆时间
-
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
-
-## 03. Using Arrays
+# 03. Using Arrays
 
 This chapter shows you how to use an important programming construct: arrays. The variables used in the previous chapters were scalar variables, which store a single value. An array is a variable that stores a set or sequence of values. One array can have many elements, and each element can hold a single value, such as text or numbers, or another array. An array containing other arrays is known as a multidimensional array.
 
 PHP supports arrays with both numerical and string indexes. You are probably familiar with numerically indexed arrays if you’ve used any other programming language, but you might not have seen arrays using string indexes before, although you may have seen similar things called hashes, maps, or dictionaries elsewhere. Rather than each element having a numeric index, you can use words or other meaningful information.
 
-1『 php 里的数组，键为字符串的类型，其实就是 python 里的字典、JS 里的对象。』
+In this chapter, you continue developing the Bob’s Auto Parts example using arrays to work more easily with repetitive information such as customer orders. Likewise, you write shorter, tidier code to do some of the things you did with files in the preceding chapter.
 
-In this chapter, you continue developing the Bob’s Auto Parts example using arrays to work more easily with repetitive information such as customer orders. Likewise, you write shorter, tidier code to do some of the things you did with files in the preceding chapter. Key topics covered in this chapter include: 1) Numerically indexed arrays. 2) Non-numerically indexed arrays. 3) Array operators. 4) Multidimensional arrays. 5) Array sorting. 6) Array functions.
+Key topics covered in this chapter include:
 
-In the next chapter, you will learn about string processing functions. We cover functions that search, replace, split, and merge strings, as well as the powerful regular expression functions that can perform almost any action on a string.
+■ Numerically indexed arrays.
 
-### 3.1 What Is an Array?
+■ Non-numerically indexed arrays.
+
+■ Array operators.
+
+■ Multidimensional arrays.
+
+■ Array sorting.
+
+■ Array functions.
+
+## 3.1 What Is an Array?
 
 You learned about scalar variables in Chapter 1「PHP Crash Course.」A scalar variable is a named location in which to store a value; similarly, an array is a named place to store a set of values, thereby allowing you to group variables. Bob’s product list is the array for the example used in this chapter. In Figure 3.1, you can see a list of three products stored in an array format. These three products are stored in a single variable called \$products. (We describe how to create a variable like this shortly.)
 
@@ -36,11 +34,11 @@ The values stored in an array are called the array elements. Each array element 
 
 PHP allows you to interchangeably use numbers or strings as the array indices. You can use arrays in the traditional numerically indexed way or set the keys to be whatever you like to make the indexing more meaningful and useful. (This approach may be familiar to you if you have used associative arrays, maps, hashes, or dictionaries in other programming languages.) The programming approach may vary a little depending on whether you are using standard numerically indexed arrays or more interesting index values. We begin by looking at numerically indexed arrays and then move on to using user-defined keys.
 
-### 3.2 Numerically Indexed Arrays
+## 3.2 Numerically Indexed Arrays
 
 Numerically indexed arrays are supported in most programming languages. In PHP, the indices start at zero by default, although you can alter this value.
 
-#### 3.2.1 Initializing Numerically Indexed Arrays
+### 3.2.1 Initializing Numerically Indexed Arrays
 
 To create the array shown in Figure 3.1, use the following line of PHP code:
 
@@ -82,7 +80,7 @@ $letters = range('a', 'z');
 
 If you have information stored in a file on disk, you can load the array contents directly from the file. We look at this topic later in this chapter under the heading「Loading Arrays from Files.」If you have the data for your array stored in a database, you can load the array contents directly from the database. This process is covered in Chapter 11「Accessing Your MySQL Database from the Web with PHP.」You can also use various functions to extract part of an array or to reorder an array. We look at some of these functions later in this chapter under the heading「Performing Other Array Manipulations.」
 
-#### 3.2.2 Accessing Array Contents
+### 3.2.2 Accessing Array Contents
 
 To access the contents of a variable, you use its name. If the variable is an array, you access the contents using both the variable name and a key or index. The key or index indicates which of the values in the array you access. The index is placed in square brackets after the name. In other words, you can use \$products[0], \$products[1], and \$products[2] to access each of the contents of the \$products array. You may also use the { } characters to access array elements instead of the [ ] characters if you prefer. For example, you could use \$products{0} to access the first element of the products array.
 
@@ -122,7 +120,7 @@ If \$products does not already exist, the first line will create a new array wit
 
 1『 php 能动态的自动更新数组大小，好多其他语言没这能力。印象中 JS 好像不行，待确认。（2020-04-25）』
 
-#### 3.2.3 Using Loops to Access the Array
+### 3.2.3 Using Loops to Access the Array
 
 Because the array is indexed by a sequence of numbers, you can use a for loop to more easily display its contents:
 
@@ -144,11 +142,11 @@ foreach ($products as $current) {
 
 This code stores each element in turn in the variable \$current and prints it out.
 
-### 3.3 Arrays with Different Indices
+## 3.3 Arrays with Different Indices
 
 In the \$products array, you allowed PHP to give each item the default index. This meant that the first item you added became item 0; the second, item 1; and so on. PHP also supports arrays in which you can associate any scalar key or index you want with each value.
 
-#### 3.3.1 Initializing an Array
+### 3.3.1 Initializing an Array
 
 The following code creates an array with product names as keys and prices as values:
 
@@ -160,7 +158,7 @@ $prices = array('Tires'=>100, 'Oil'=>10, 'Spark Plugs'=>4);
 
 The symbol between the keys and values (=>) is simply an equal sign immediately followed by a greater than symbol.
 
-#### 3.3.2 Accessing the Array Elements
+### 3.3.2 Accessing the Array Elements
 
 Again, you access the contents using the variable name and a key, so you can access the information stored in the prices array as \$prices['Tires'], \$prices['Oil'], and \$prices['Spark Plugs']. The following code creates the same \$prices array. Instead of creating an array with three elements, this version creates an array with only one element and then adds two more:
 
@@ -180,7 +178,7 @@ $prices['Spark Plugs'] = 4;
 
 1『这个方式构建「键-值」对数组更灵活，方便用在循环体里。』
 
-#### 3.3.3 Using Loops
+### 3.3.3 Using Loops
 
 Because the indices in an array are not numbers, you cannot use a simple counter in a for loop to work with the array. However, you can use the foreach loop or the list() and each() constructs. The foreach loop has a slightly different structure when using non-numerically indexed arrays. You can use it exactly as you did in the previous example, or you can incorporate the keys as well:
 
@@ -230,19 +228,25 @@ while (list($product, $price) = each($prices)) {
 
 This code sets the current element back to the start of the array and allows you to go through again.
 
-### 3.4 Array Operators
+## 3.4 Array Operators
 
 One set of special operators applies only to arrays. Most of them have an analogue in the scalar operators, as you can see by looking at Table 3.1.
+
+Table 3.1  PHP’s Array Operators
+
+![](./res/2020005.png)
 
 These operators are mostly fairly self-evident, but union requires some further explanation. The union operator tries to add the elements of \$b to the end of \$a. If elements in \$b have the same keys as some elements already in \$a, they will not be added. That is, no elements of \$a will be overwritten.
 
 You will notice that the array operators in Table 3.1 all have equivalent operators that work on scalar variables. As long as you remember that + performs addition on scalar types and union on arrays—even if you have no interest in the set arithmetic behind that behavior—the  behaviors should make sense. You cannot usefully compare arrays to scalar types.
 
-### 3.5 Multidimensional Arrays
+## 3.5 Multidimensional Arrays
 
 Arrays do not have to be a simple list of keys and values; each location in the array can hold another array. This way, you can create a two-dimensional array. You can think of a two-dimensional array as a matrix, or grid, with width and height or rows and columns.
 
 If you want to store more than one piece of data about each of Bob’s products, you could use a two-dimensional array. Figure 3.3 shows Bob’s products represented as a two-dimensional array with each row representing an individual product and each column representing a stored product attribute.
+
+![](./res/2020001.png)
 
 Figure 3.3  You can store more information about Bob’s products in a two-dimensional array
 
@@ -329,6 +333,10 @@ You do not need to stop at two dimensions. In the same way that array elements c
 
 If Bob divided his products into categories, you could use a three-dimensional array to store them. Figure 3.4 shows Bob’s products in a three-dimensional array.
 
+![](./res/2020002.png)
+
+Figure 3.4  This three-dimensional array allows you to divide products into categories
+
 From the code that defines this array, you can see that a three-dimensional array is an array containing arrays of arrays:
 
 ```php
@@ -365,11 +373,11 @@ Because of the way multidimensional arrays are created, you could create four-, 
 
 1『同感，三维以上人就很像想象了。』
 
-### 3.6 Sorting Arrays
+## 3.6 Sorting Arrays
 
 Sorting related data stored in an array is often useful. You can easily take a one-dimensional array and sort it into order. 
 
-#### 3.6.1 Using sort()
+### 3.6.1 Using sort()
 
 The following code showing the sort() function results in the array being sorted into ascending alphabetical order:
 
@@ -401,7 +409,7 @@ sort($products, SORT_STRING & SORT_FLAG_CASE);
 
 This makes the sort() function ignore case, so 'a' and 'A' are treated as equivalent.
 
-#### 3.6.2 Using asort() and ksort() to Sort Arrays
+### 3.6.2 Using asort() and ksort() to Sort Arrays
 
 If you are using an array with descriptive keys to store items and their prices, you need to use different kinds of sort functions to keep keys and values together as they are sorted. The following code creates an array containing the three products and their associated prices and then sorts the array into ascending price order:
 
@@ -417,17 +425,17 @@ $prices = array('Tires'=>100, 'Oil'=>10, 'Spark Plugs'=>4);
 ksort($prices);
 ```
 
-#### 3.6.2 Sorting in Reverse
+### 3.6.2 Sorting in Reverse
 
 The three different sorting functions—sort(), asort(), and ksort()—sort an array into ascending order. Each function has a matching reverse sort function to sort an array into descending order. The reverse versions are called rsort(), arsort(), and krsort().
 
 You use the reverse sort functions in the same way you use the ascending sort functions. The rsort() function sorts a single-dimensional numerically indexed array into descending order. The arsort() function sorts a one-dimensional array into descending order using the value of each element. The krsort() function sorts a one-dimensional array into descending order using the key of each element.
 
-### 3.7 Sorting Multidimensional 
+## 3.7 Sorting Multidimensional 
 
 ArraysSorting arrays with more than one dimension, or by something other than alphabetical or numerical order, is more complicated. PHP knows how to compare two numbers or two text strings, but in a multidimensional array, each element is an array. There are two approaches to sorting multidimensional arrays: creating a user-defined sort or using the array\_multisort() function. 
 
-#### 3.7.1 Using the array\_multisort() function
+### 3.7.1 Using the array\_multisort() function
 
 The array\_multisort() function can be used either to sort multidimensional arrays, or to sort multiple arrays at once. The following is the definition of a two-dimensional array used earlier. This array stores Bob’s three products with a code, a description, and a price for each:
 
@@ -461,7 +469,7 @@ For the ordering you can pass SORT\_ASC or SORT\_DESC for ascending or descendin
 
 One important point to note for array\_multisort() is that, while it will maintain key-value associations when the keys are strings, it will not do so if the keys are numeric, as in this example.
 
-#### 3.7.2 User-Defined Sorts
+### 3.7.2 User-Defined Sorts
 
 Taking the same array as in the previous example, there are at least two useful sort orders. You might want the products sorted into alphabetical order using the description or by numeric order by the price. Either result is possible, but you can use the function usort() to tell PHP how to compare the items. To do this, you need to write your own comparison function. The following code sorts this array into alphabetical order using the second column in the array—the description:
 
@@ -514,7 +522,7 @@ Similar to asort(), uasort() should be used when sorting a non-numerically index
 
 Similar to ksort(), uksort() should be used when sorting a non-numerically indexed array by key. Use ksort if your keys are simple numbers or text. Define a comparison function and use uksort() if your keys are more complicated objects such as arrays.
 
-#### 3.7.3 Reverse User Sorts
+### 3.7.3 Reverse User Sorts
 
 The functions sort(), asort(), and ksort() all have matching reverse sorts with an r in the function name. The user-defined sorts do not have reverse variants, but you can sort a multidimensional array into reverse order. Because you provide the comparison function, you can write a comparison function that returns the opposite values. To sort into reverse order, the function needs to return 1 if \$x is less than \$y and -1 if \$x is greater than \$y. For example:
 
@@ -532,19 +540,44 @@ function reverse_compare($x, $y) {
 
 Calling usort(\$products, 'reverse_compare') would now result in the array being placed in descending order by price.
 
-### 3.8 Reordering Arrays
+## 3.8 Reordering Arrays
 
 For some applications, you might want to manipulate the order of the array in other ways than a sort. The function shuffle() randomly reorders the elements of your array. The function array\_reverse() gives you a copy of your array with all the elements in reverse order.
 
-#### 3.8.1 Using shuffle()
+### 3.8.1 Using shuffle()
 
 Bob wants to feature a small number of his products on the front page of his site. He has a large number of products but would like three randomly selected items shown on the front page. So that repeat visitors do not get bored, he would like the three chosen products to be different for each visit. He can easily accomplish his goal if all his products are in an array. Listing 3.1 displays three randomly chosen pictures by shuffling the array into a random order and then displaying the first three.
 
 1『下面的功能实现从数据里随机筛选 3 个呈现给前端。』
 
+Listing 3.1 bobs_front_page.php—Using PHP to Produce a Dynamic Front Page for Bob’s Auto Parts
+
+```php
+<?php  
+$pictures = array('brakes.png', 'headlight.png',                     
+                            'spark_plug.png', 'steering_wheel.png',                     
+                            'tire.png', 'wiper_blade.png');
+shuffle($pictures);
+?>
+
+<!DOCTYPE html>
+<html>  
+<head>    
+<title>Bob's Auto Parts</title>
+</head>
+  
+<body>    
+<h1>Bob's Auto Parts</h1>      <div align="center">      <table style="width: 100%; border: 0">        <tr>        <?php        for ($i = 0; $i < 3; $i++) {          echo "<td style=\"width: 33%; text-align: center\">                <img src=\"";          echo $pictures[$i];          echo "\"/></td>";        }        
+?>        </tr>     </table>     </div>  
+</body>
+</html>
+```
+
 Because the code selects random pictures, it produces a different page nearly every time you load it, as shown in Figure 3.5.
 
-#### 3.8.2 Reversing an Array
+Figure 3.5  The shuffle() function enables you to feature three randomly chosen products
+
+### 3.8.2 Reversing an Array
 
 Sometimes you may want to reverse the order of an array. The simplest way to do this is with the function array\_reverse(), which takes an array and creates a new one with the same contents in reverse order. Using the range() function usually creates an ascending sequence, as follows:
 
@@ -576,7 +609,7 @@ Here, we create an empty array and then use array\_push() for each element to ad
 $numbers = range(10, 1, -1);
 ```
 
-### 3.9 Loading Arrays from Files
+## 3.9 Loading Arrays from Files
 
 In Chapter 2,「Storing and Retrieving Data」you learned how to store customer orders in a file. Each line in the file looked something like this:
 
@@ -588,9 +621,43 @@ To process or fulfill this order, you could load it back into an array. Listing 
 
 Listing 3.2  vieworders.php—Using PHP to Display Orders for Bob
 
+```php
+<?php  // create short variable name  $document_root = $_SERVER['DOCUMENT_ROOT'];?><!DOCTYPE html><html>  <head>    <title>Bob's Auto Parts - Order Results</title>  </head>  <body>    <h1>Bob's Auto Parts</h1>    <h2>Customer Orders</h2>     <?php    $orders= file("$document_root/../orders/orders.txt");
+
+    $number_of_orders = count($orders);    if ($number_of_orders == 0) {      echo "<p><strong>No orders pending.<br />            Please try again later.</strong></p>";    }
+
+    for ($i=0; $i<$number_of_orders; $i++) {      echo $orders[$i]."<br />";    }    ?>  </body></html>
+```
+
 This script produces almost exactly the same output as Listing 2.3 in the preceding chapter, which was shown in Figure 2.4. This time, the script uses the function file(), which loads the entire file into an array. Each line in the file becomes one element of an array. This code also uses the count() function to see how many elements are in an array. Furthermore, you could load each section of the order lines into separate array elements to process the sections separately or to format them more attractively. Listing 3.3 does exactly that.
 
 Listing 3.3 vieworders_v2.php—Using PHP to Separate, Format, and Display Orders for Bob
+
+```php
+<?php  // create short variable name  $document_root = $_SERVER['DOCUMENT_ROOT'];?><!DOCTYPE html>
+
+<html>  <head>    <title>Bob's Auto Parts - Customer Orders</title>
+
+    <style type="text/css">    table, th, td {      border-collapse: collapse;      border: 1px solid black;      padding: 6px;    }
+
+    th {      background: #ccccff;          }    </style>
+
+  </head>  <body>    <h1>Bob's Auto Parts</h1>    <h2>Customer Orders</h2> 
+
+    <?php      //Read in the entire file      //Each order becomes an element in the array      $orders= file("$document_root/../orders/orders.txt");
+
+      // count the number of orders in the array      $number_of_orders = count($orders);
+
+      if ($number_of_orders == 0) {        echo "<p><strong>No orders pending.<br />              Please try again later.</strong></p>";      }
+
+      echo "<table>\n";      echo "<tr>              <th>Order Date</th>              <th>Tires</th>              <th>Oil</th>              <th>Spark Plugs</th>              <th>Total</th>              <th>Address</th>            <tr>";
+
+      for ($i=0; $i<$number_of_orders; $i++) {        //split up each line        $line = explode("\t", $orders[$i]);
+
+        // keep only the number of items ordered        $line[1] = intval($line[1]);        $line[2] = intval($line[2]);        $line[3] = intval($line[3]);
+
+        // output each order        echo "<tr>              <td>".$line[0]."</td>              <td style=\"text-align: right;\">".$line[1]."</td>              <td style=\"text-align: right;\">".$line[2]."</td>                  <td style=\"text-align: right;\">".$line[3]."</td>              <td style=\"text-align: right;\">".$line[4]."</td>              <td>".$line[5]."</td>          </tr>";      }          echo "</table>";    ?>  </body></html>
+```
 
 The code in Listing 3.3 loads the entire file into an array, but unlike the example in Listing 3.2, here we use the function explode() to split up each line so that we can apply some  processing and formatting before printing. The output from this script is shown in Figure 3.6.
 
@@ -620,11 +687,11 @@ This example doesn’t do very much processing. Rather than output tires, oil, a
 
 You could extract numbers from these strings in a number of ways. Here, we used the function intval(). As mentioned in Chapter 1, intval() converts a string to an integer. The conver-sion is reasonably clever and ignores parts, such as the label in this example, which cannot be converted to an integer. We cover various ways of processing strings in the next chapter.
 
-### 3.10 Performing Other Array Manipulations
+## 3.10 Performing Other Array Manipulations
 
 So far, we have covered only about half the array processing functions. Many others will be useful from time to time; we describe some of them next.
 
-#### 3.10.1 Navigating Within an Array: each(), current(), reset(), end(), next(), pos(), and prev()
+### 3.10.1 Navigating Within an Array: each(), current(), reset(), end(), next(), pos(), and prev()
 
 We mentioned previously that every array has an internal pointer that points to the current element in the array. You indirectly used this pointer earlier when using the each() function, but you can directly use and manipulate this pointer. 
 
@@ -656,7 +723,7 @@ In this case, the output would appear in a browser as follows:
 
 Using each(), current(), reset(), end(), next(), pos(), and prev(), you can write your own code to navigate through an array in any order.
 
-#### 3.10.2 Applying Any Function to Each Element in an Array: array_walk()
+### 3.10.2 Applying Any Function to Each Element in an Array: array_walk()
 
 Sometimes you might want to work with or modify every element in an array in the same way. The function array_walk() allows you to do this. The prototype of array\_walk() is as follows:
 
@@ -694,7 +761,7 @@ This code defines a function, my\_multiply(), that will multiply each element in
 
 A subtle point to note is the way \$value is passed. The ampersand (&) before the variable name in the definition of my_multiply() means that \$value will be passed by reference. Passing by reference allows the function to alter the contents of the array. We address passing by reference in more detail in Chapter 5. If you are not familiar with the term, for now just note that to pass by reference, you place an ampersand before the variable name in the function declaration.
 
-#### 3.10.3 Counting Elements in an Array: count(), sizeof(), and array_count_values()
+### 3.10.3 Counting Elements in an Array: count(), sizeof(), and array_count_values()
 
 You used the function count() in an earlier example to count the number of elements in an array of orders. The function sizeof() is an alias to count(). This function returns the number of elements in an array passed to it. You get a count of one for the number of elements in a normal scalar variable and zero if you pass either an empty array or a variable that has not been set.
 
@@ -711,7 +778,7 @@ creates an array called \$ac that contains:
 
 This result indicates that 4, 5, and 3 occurred once in \$array, 1 occurred three times, and 2 occurred twice.
 
-#### 3.10.4 Converting Arrays to Scalar Variables: extract()
+### 3.10.4 Converting Arrays to Scalar Variables: extract()
 
 If you have a non-numerically indexed array with a number of key value pairs, you can turn them into a set of scalar variables using the function extract(). The prototype for extract() is as follows:
 
@@ -751,28 +818,10 @@ This code again produces the following output:
 
 Note that for extract() to extract an element, that element’s key must be a valid variable name, which means that keys starting with numbers or including spaces are skipped.
 
-### 3.11 Further Reading
+## 3.11 Further Reading
 
 This chapter covers what we believe to be the most useful of PHP’s array functions. We have chosen not to cover all the possible array functions, as there are a huge variety of them. The online PHP manual available at http://www.php.net/array provides a brief description for each.
 
-## 04. String Manipulation and Regular Expressions
+## Next
 
-In this chapter, we discuss how you can use PHP’s string functions to format and manipulate text. We also discuss using string functions or regular expression functions to search (and replace) words, phrases, or other patterns within a string. These functions are useful in many contexts. You often may want to clean up or reformat user input that is going to be stored in a database. Search functions are great when building search engine applications (among other things).
-
-Key topics covered in this chapter include: 1) Formatting strings. 2) Joining and splitting strings. 3) Comparing strings. 4) Matching and replacing substrings with string functions. 5) Using regular expressions.
-
-In the next chapter, we discuss several ways you can use PHP to save programming time and effort and prevent redundancy by reusing pre-existing code.
-
-### 4.1 Creating a Sample Application: Smart Form Mail
-
-
-
-
-
-
-
-
-
-
-
-
+In the next chapter, you will learn about string processing functions. We cover functions that search, replace, split, and merge strings, as well as the powerful regular expression functions that can perform almost any action on a string.

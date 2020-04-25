@@ -1,4 +1,4 @@
-8Designing Your Web Database 
+# 08. Designing Your Web Database 
 
 Now that you are familiar with the basics of PHP, you can begin looking at integrating a database into your scripts. As you might recall, Chapter 2,「Storing and Retrieving Data,」described the advantages of using a database instead of a flat file. They include
 
