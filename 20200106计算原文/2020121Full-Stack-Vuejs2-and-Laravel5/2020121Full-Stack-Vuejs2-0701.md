@@ -14,7 +14,7 @@ The advantage of the Single-Page Application architecture is that it can create 
 
 The disadvantage of the SPA architecture is that it makes the client app bulkier due to the added functionality, so gains from speeding up page changes may be negated by the fact that the user must download a large app on the first page load. Also, handling routes adds complexity to the app as multiple states must be managed, URLs must be handled, and a lot of default browser functionality must be recreated in the app.
 
-Routers
+## Routers
 
 If you are going with an SPA architecture and your app design includes multiple pages, you'll want to use a router. A router, in this context, is a library that will mimic browser navigation through JavaScript and various native APIs so that the user gets an experience similar to that of a traditional multi-page app. Routers will typically include functionality to:
 
@@ -28,7 +28,7 @@ Manage the browser history
 
 Manage scroll bar behavior
 
-Vue Router
+## Vue Router
 
 Some frontend frameworks, such as Angular or Ember, include a router library out-of-the-box. The philosophy guiding these frameworks is that the developer is better served with a complete, integrated solution for their SPA.
 
@@ -42,7 +42,7 @@ let routes = [ { path: '/', component: HomePage }, { path: '/about', component: 
 
 Since rendering a component is an almost instantaneous process in normal circumstances, the transition between pages with Vue Router is as well. However, there are asynchronous hooks that can be invoked to give you the opportunity to load new data from the server, if your different pages require it.
 
-Special components
+## Special components
 
 When you install Vue Router, two components are registered globally for use throughout your app: RouterLink and RouterView.
 
@@ -52,7 +52,7 @@ As explained, Vue Router will swap designated page components as a way of mimick
 
 <div id="app"> <header></header> <router-view> // This is where different page components display </router-view> <footer></footer> </div>
 
-Vuebnb routing
+## Vuebnb routing
 
 It was never a stated goal for Vuebnb to be a single-page application. Indeed, Vuebnb will deviate from pure SPA architecture as we'll see later in the book.
 
@@ -62,7 +62,7 @@ Of course, if we're going to add a router, we'll need some extra pages! So far i
 
 Figure 7.1. Front page of Vuebnb
 
-Installing Vue Router
+## Installing Vue Router
 
 Vue Router is an NPM package and can be installed on the command line:
 
@@ -86,7 +86,7 @@ resources/assets/js/app.js:
 
 import "core-js/fn/object/assign"; import Vue from 'vue'; import ListingPage from '../components/ListingPage.vue'; import router from './router' var app = new Vue({ el: '#app', render: h => h(ListingPage), router });
 
-Creating routes
+## Creating routes
 
 The most basic configuration for Vue Router is to provide a routes array, which maps URLs to the corresponding page components. This array will contain objects with at least two properties: path and component.
 
@@ -104,7 +104,7 @@ You'll notice that the path for our ListingPage component contains a dynamic seg
 
 There are two modes for Vue Router: hash mode and history mode. Hash mode uses the URL hash to simulate a full URL so that the page won't be reloaded when the hash changes. History mode has real URLs and leverages the history.pushState API to change the URL without causing a page reload. The only downside to history mode is that URLs outside of the app, such as /some/weird/path, can't be handled by Vue and must be handled by the server. That's no problem for us, so we'll use history mode for Vuebnb.
 
-App component
+## App component
 
 For our router to work, we need to declare a RouterView component somewhere in our page template. Otherwise, there's nowhere for the page components to render.
 
@@ -116,7 +116,7 @@ Figure 7.2. The relationship between App, ListingPage, and HomePage
 
 Let's create the App component file:
 
-$ touch resources/assets/components/App.vue
+    $ touch resources/assets/components/App.vue
 
 The root instance of Vue should render this to the page when it loads, instead of ListingPage.
 
@@ -138,11 +138,11 @@ There's also an indicator, which tells us that the ListingPage component is the 
 
 Figure 7.3. /listing/1 with Vue Devtools open, showing the component hierarchy
 
-Home page
+## Home page
 
 Let's start work on our home page now. We'll first create a new component, HomePage:
 
-$ touch resources/assets/components/HomePage.vue
+    $ touch resources/assets/components/HomePage.vue
 
 For now, let's add placeholder markup to the component before we set it up properly.
 
@@ -186,7 +186,7 @@ If you click that link, you'll be taken to the home page! Remember, the page has
 
 Figure 7.5. Home page with Vue Devtools showing component hierarchy
 
-Home route
+## Home route
 
 Let's now add a server-side route for the home page so that we can load our app from the root path. This new route will point to a get_home_web method in our ListingController class.
 
@@ -208,13 +208,13 @@ Viewing the source of this page, it's exactly the same page as we get when we lo
 
 Figure 7.6. Page source of vuebnb.test with empty initial state
 
-Initial state
+## Initial state
 
 Just like our listing page, our home page will need initial state. Looking at the finished product, we can see that the home page displays a summary of all our mock listings with a thumbnail image, a title, and short description:
 
 Figure 7.7. Completed home page, focusing on listings
 
-Refactoring
+## Refactoring
 
 Before we inject the initial state into the home page, let's do a small refactoring of the code including renaming some variables and restructuring some methods. This will ensure that the code semantics reflect the changing requirements and keep our code readable and easy to understand.
 
@@ -250,7 +250,7 @@ resources/assets/components/ListingPage.vue:
 
 <script> let serverData = JSON.parse(window.vuebnb_server_data); let model = populateAmenitiesAndPrices(serverData.listing); ... </script>
 
-Home page initial state
+## Home page initial state
 
 Using Eloquent ORM, it's trivial to retrieve all our listing entries using the method Listing::all. Multiple Model instances are returned by this method within a Collection object.
 
@@ -260,7 +260,7 @@ app/Http/Controllers/ListingController.php:
 
 public function get_home_web() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $data = collect(['listings' => $collection->toArray()]); return view('app', ['data' => $data]); } /* [ "listings" => [ 0 => [ "id" => 1, "address" => "...", "title" => "...", "price_per_night" => "..." ] 1 => [ ... ] ... 29 => [ ... ] ] ] */
 
-Adding the thumbnail
+## Adding the thumbnail
 
 Each mock listing has a thumbnail version of the first image, which can be used for the listing summary. The thumbnail is much smaller than the image we use for the header of the listing page and is ideal for the listing summaries on the home page. The URL for the thumbnail is public/images/{x}/Image_1_thumb.jpg where {x} is the ID of the listing.
 
@@ -270,7 +270,7 @@ app/Http/Controllers/ListingController.php:
 
 public function get_home_web() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); $data = collect(['listings' => $collection->toArray()]); return view('app', ['data' => $data]); } /* [ "listings" => [ 0 => [ "id" => 1, "address" => "...", "title" => "...", "price_per_night" => "...", "thumb" => "..." ] 1 => [ ... ] ... 29 => [ ... ] ] ] */
 
-Receiving in the client
+## Receiving in the client
 
 With the initial state now ready, let's add it to our HomePage component. Before we can use it though there's an additional aspect we need to consider: the listing summaries are grouped by country. Look again at Figure 7.7 to see how these groups are displayed.
 
@@ -286,7 +286,7 @@ We'll now see through Vue Devtools that HomePage has successfully loaded the lis
 
 Figure 7.8. Vue Devtools showing the state of the HomePage component
 
-ListingSummary component
+## ListingSummary component
 
 Now that the HomePage component has data available, we can work on displaying it.
 
@@ -306,7 +306,7 @@ Figure 7.9. Iterating the listing summary groups in the HomePage component
 
 Since each listing summary will be of some complexity, we'll create a separate component, ListingSummary, for displaying them:
 
-$ touch resources/assets/components/ListingSummary.vue
+    $ touch resources/assets/components/ListingSummary.vue
 
 Let's declare ListingSummary within our HomePage template. We'll again use a v-for directive to iterate group, an array, creating a new instance of ListingSummary for each member. The data for each member will be bound to a single prop, listing.
 
@@ -360,7 +360,7 @@ Figure 7.12. Listing summaries in rows
 
 You'll notice that at full page width, we can only see three listings from each country group. The other seven are hidden by the CSS overflow: hidden rule. Soon, we'll be adding image slider functionality to each group to allow the user to browse through all the listings.
 
-In-app navigation
+## In-app navigation
 
 If we use the address bar of the browser to navigate to the home page, http://vuebnb.test/, it works because Laravel is now serving a page at this route. But, if we navigate to the home page from the listing page, there's no longer any page content:
 
@@ -376,7 +376,7 @@ Figure 7.14. How a page decides what data it needs
 
 If you're interested in reading more about this design pattern, check out the article Avoid This Common Anti-Pattern In Full-Stack Vue/Laravel Apps at https://vuejsdevelopers.com/2017/08/06/vue-js-laravel-full-stack-ajax/.
 
-Adding a path to the model
+## Adding a path to the model
 
 Let's go to the listing controller and add a path property to the data injected into the head of our view. To do this, we'll add a helper function called add_meta_data which will add the path, as well as some other meta properties in later chapters.
 
@@ -388,7 +388,7 @@ app/Http/Controllers/ListingController.php:
 
 private function add_meta_data($collection, $request) { return $collection->merge([ 'path' => $request->getPathInfo() ]); } public function get_listing_web(Listing $listing, Request $request) { $data = $this->get_listing($listing); $data = $this->add_meta_data($data, $request); return view('app', ['data' => $data]); } public function get_home_web(Request $request) { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); $data = collect(['listings' => $collection->toArray()]); $data = $this->add_meta_data($data, $request); return view('app', ['data' => $data]); } /* [ "listings" => [ ... ], "path" => "/" ] */
 
-Route navigation guards
+## Route navigation guards
 
 Similar to lifecycle hooks, navigation guards allow you to intercept Vue Router navigations at a particular point in their life cycle. These guards can be applied to a specific component, a specific route, or to all routes.
 
@@ -400,7 +400,7 @@ We can use the beforeRouteEnter navigation guard to fetch data from our web serv
 
 beforeRouteEnter(to, from, next) { if (to !== injectedData.path) { getDataWithAjax.then(data => { applyData(data) }) } else { applyData(injectedData) } next() }
 
-next
+## next
 
 An important feature of navigation guards is that they will halt navigation until the next function is called. This allows asynchronous code to be executed before the navigation is resolved:
 
@@ -418,7 +418,7 @@ This callback is not triggered until the route is confirmed and the component in
 
 beforeRouteEnter(to, from, next) { var data = { ... } next(component => { component.$data = data; }); }
 
-HomePage component
+## HomePage component
 
 Let's add beforeRouteEnter to the HomePage component. Firstly, move any logic for retrieving data from the document head into the hook. We then check the path property of the data to see if it matches the current route. If so, we call next and pass a callback function that applies the data to the component's instance. If not, we'll need to use AJAX to get the right data.
 
@@ -428,7 +428,7 @@ export default { data() { return { listing_groups: [] }; }, components: { Listin
 
 I've added listing_groups as a data property. Before, we were applying our data to the component instance as it was created. Now, we're applying the data after the component is created. To set up reactive data, Vue must know the names of the data properties, so we initialize with an empty value and update it when the data needed is available.
 
-Home API endpoint
+## Home API endpoint
 
 We'll now implement the AJAX functionality. Before we do, though, we need to add a home page endpoint to our web service.
 
@@ -446,7 +446,7 @@ app/Http/Controllers/ListingController.php:
 
 private function get_listing_summaries() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); return collect(['listings' => $collection->toArray()]); } public function get_home_web(Request $request) { $data = $this->get_listing_summaries(); $data = $this->add_meta_data($data, $request); return view('app', ['data' => $data]); } public function get_home_api() { $data = $this->get_listing_summaries(); return response()->json($data); }
 
-Axios
+## Axios
 
 To perform AJAX requests to the web service, we'll use the Axios HTTP client, which is included with Laravel's default frontend code. Axios has a very simple API allowing us to make requests to a GET URL like this:
 
@@ -466,7 +466,7 @@ import axios from 'axios'; export default { data() { ... }, components: { ... },
 
 And with that, we can now navigate to the home page in two ways, either via the address bar, or by going from a link from the listing page. Either way, we get the right data!
 
-Mixins
+## Mixins
 
 If you have any functionality that is common between components, you can put it in a mixin to avoid rewriting the same functionality.
 
@@ -476,11 +476,11 @@ var mixin = { methods: { commonMethod() { console.log('common method'); } } }; V
 
 You might be wondering what happens if the component configuration has a method or other property that conflicts with the mixin. The answer is that mixins have a merging strategy that determines the priority of any conflicts. Generally, the component's specified configuration will take precedence. The details of the merging strategy are explained in the Vue.js documentation at http://vuejs.org.
 
-Moving the solution to a mixin
+## Moving the solution to a mixin
 
 Let's generalize the solution for getting the right data to the home page so that we can use it on the listing page as well. To do this, we'll move Axios and the beforeRouteEnter hook from the HomePage component into a mixin that can then be added to both page components:
 
-$ touch resources/assets/js/route-mixin.js
+    $ touch resources/assets/js/route-mixin.js
 
 At the same time, let's improve the code by removing the repetition of the next function call. To do this, we'll create a new method, getData, which will be responsible for figuring out where to get the right data for the page and also for getting it. Note that this method will be asynchronous since it may need to wait for AJAX to resolve, so it will return a Promise rather than an actual value. This Promise is then resolved within the navigation guard.
 
@@ -490,7 +490,7 @@ import axios from 'axios'; function getData(to) { return new Promise((resolve) =
 
 We don't need a polyfill for Promise as that is already supplied in the Axios library.
 
-assignData
+## assignData
 
 You'll notice that within the next callback we call a method on the subject component called assignData, passing the data object as an argument. We'll need to implement the assignData method in any component that uses this mixin. We do it this way so that the component can process the data, if necessary, before it is applied to the component instance. For example, the ListingPage component must process the data via the populateAmenitiesAndPrices helper function.
 
@@ -504,7 +504,7 @@ resources/assets/components/HomePage.vue:
 
 <script> import { groupByCountry } from '../js/helpers'; import ListingSummary from './ListingSummary.vue'; import axios from 'axios'; import routeMixin from '../js/route-mixin'; export default { mixins: [ routeMixin ], data() { ... }, methods: { assignData({ listings }) { this.listing_groups = groupByCountry(listings); }, }, components: { ... } } </script>
 
-Linking to the listing page
+## Linking to the listing page
 
 The above should work but we can't test it since there are not yet any in-app links to the listing page!
 
@@ -536,7 +536,7 @@ resources/assets/components/ListingPage.vue:
 
 <header-image v-if="images[0]" :image-url="images[0]" @header-clicked="openModal" ></header-image>
 
-Scroll behavior
+## Scroll behavior
 
 Another aspect of website navigation that the browser automatically manages is scroll behavior. For example, if you scroll to the bottom of a page, then navigate to a new page, the scroll position is reset. But if you return to the previous page, the scroll position is remembered by the browser, and you're taken back to the bottom.
 
@@ -550,7 +550,7 @@ resources/assets/js/router.js:
 
 export default new VueRouter({ mode: 'history', routes: [ ... ], scrollBehavior (to, from, savedPosition) { return { x: 0, y: 0 } } });
 
-Adding a footer
+## Adding a footer
 
 To improve the design of Vuebnb, let's add a footer to the bottom of each page. We'll make it a reusable component, so let's begin by creating that:
 
@@ -598,13 +598,13 @@ resources/assets/css/style.css:
 
 Now we have .home-container and .listing-container as two possible containers for our custom-footer component. Let's dynamically select the class depending on the route, so the footer is always correctly aligned.
 
-The route object
+## The route object
 
 The route object represents the state of the currently active route and can be accessed inside the root instance, or a component instance, as this.$route. This object contains parsed information of the current URL and the route records matched by the URL:
 
 created() { console.log(this.$route.fullPath); // /listing/1 console.log(this.$route.params); // { listing: "1" } }
 
-Dynamically selecting the container class
+## Dynamically selecting the container class
 
 In order to select the correct container class in custom-footer, we can get the name of the current route from the route object, and use that in a template literal.
 
@@ -616,7 +616,7 @@ Now the footer will use .home-container when displayed on the home page:
 
 Figure 7.20. Custom footer on home page with the correct container class
 
-Listing summary image slider
+## Listing summary image slider
 
 On our home page, we need to make it so that a user can see more than just three of the possible 10 listings for each country. To do this, we will turn each listing summary group into an image slider.
 
@@ -638,7 +638,7 @@ resources/assets/components/HomePage.vue:
 
 Most developers will use the terms image carousel and image slider interchangeably. In this book, I make a slight distinction, a carousel contains a single image that gets completely switched out with another, while a slider shifts the position of images, with several visible at once.
 
-Adding the slider
+## Adding the slider
 
 We'll now add the slider functionality to ListingSummaryGroup. To do this, we'll reuse the CarouselControl component we made back in Chapter 6, Composing Widgets with Vue.js Components. We'll want to display one on either side of the group, so let's put them into the template, remembering to declare the dir attribute. We'll also add some structural markup and CSS for displaying the controls.
 
@@ -650,7 +650,7 @@ After adding this code, your home page will look like this:
 
 Figure 7.21. Carousel controls on listing summary groups
 
-Translate
+## Translate
 
 In order to shift our listing summaries in response to the carousel controls being clicked, we will use a CSS transform called translate. This moves an affected element from its current position by an amount specified in pixels.
 
@@ -676,7 +676,7 @@ resources/assets/components/ListingSummaryGroup.vue:
 
 ... .listing-summaries-wrapper { overflow: hidden; } .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; } ...
 
-Carousel controls
+## Carousel controls
 
 We now need the carousel controls to change the value of the translate. To do so, let's add a data property, offset, to ListingSummaryGroup. This will track how many images we've shifted along, that is, it will start at zero, and go up to a maximum of seven (not 10 because we don't want to shift so far along that all of the images are off-screen).
 
@@ -700,7 +700,7 @@ resources/assets/components/ListingSummaryGroup.vue:
 
 With that done, we have a working image slider for each listing group!
 
-Finishing touches
+## Finishing touches
 
 There are two more small features to add to these image sliders to give Vuebnb users the best possible experience. Firstly, let's add a CSS transition to animate the translate change over a period of half a second and give a nice sliding effect.
 

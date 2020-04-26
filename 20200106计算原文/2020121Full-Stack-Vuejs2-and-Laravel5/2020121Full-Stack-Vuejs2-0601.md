@@ -1334,77 +1334,184 @@ We'll move the markup for one of the lists in, using a slot to replace the list 
 
 resources/assets/components/FeatureList.vue:
 
-```
+```js
+<template>
+    <div>
+        <hr>
+        <div class="list">
+            <div class="title"><strong>{{ title }}</strong></div>
+            <div class="content">
+                <slot></slot>
+            </div>
+        </div>
+    </div>
+</template>
 
+<script>
+    export default {
+        props: ['title'],
+    }
+    </script>
+
+    <style>
+    hr {
+        border: 0;
+        border-top: 1px solid #dce0e0;
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 2em 0;
+    }
+
+    .list .title {
+        flex: 1 1 25%;
+    }
+    
+    .list .content {
+        flex: 1 1 75%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .list .list-item {
+        flex: 0 0 50%;
+        margin-bottom: 16px;
+    }
+    
+    .list .list-item > i {
+        width: 35px;
+    }
+
+    @media (max-width: 743px) {
+        .list .title {
+        flex: 1 1 33%;
+        }
+    
+        .list .content {
+        flex: 1 1 67%;
+        }
+    
+        .list .list-item {
+        flex: 0 0 100%;
+        }
+    }
+</style>
 ```
 
 Go ahead and import FeatureList into resources/assets/js/app.js, and add it to the locally registered components. Now we can use FeatureList in our main template, with a separate instance for each list.
 
+1『这里有个之前遗漏的知识点，局部注册组件（locally registered components）。』
+
 resources/views/app.blade.php:
 
+```html
+    <div class="lists">
+        <feature-list title="Amenities">
+            <div class="list-item" v-for="amenity in amenities">
+                <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
+                <span>@{{ amenity.title }}</span>
+            </div>
+        </feature-list>
+        <feature-list title="Prices">
+            <div class="list-item" v-for="price in prices">
+                @{{ price.title }}: <strong>@{{ price.value }}</strong>
+            </div>
+        </feature-list>
+    </div>
 ```
-<div id="app"> ... <div class="container"> ... <div class="lists"> <feature-list title="Amenities"> <div class="list-item" v-for="amenity in amenities"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>@{{ amenity.title }}</span> </div> </feature-list> <feature-list title="Prices"> <div class="list-item" v-for="price in prices"> @{{ price.title }}: <strong>@{{ price.value }}</strong> </div> </feature-list> </div> </div> </div>
-```
-
-
-
-
-
-
 
 ## 21. Scoped slots
 
-The FeatureList component works but is quite weak. The majority of the content comes through the slot and so it seems like the parent is doing too much work, and the child too little. Given that there's repeated code in both declarations of the component (<div class="list-item" v-for="...">), it'd be good to delegate this to the child.
+The FeatureList component works but is quite weak. The majority of the content comes through the slot and so it seems like the parent is doing too much work, and the child too little. Given that there's repeated code in both declarations of the component (\<div class="list-item" v-for="...">), it'd be good to delegate this to the child.
 
-To allow our component template to be more versatile, we can use a scoped slot instead of a regular slot. Scoped slots allow you to pass a template to the slot instead of passing a rendered element. When this template is declared in the parent, it will have access to any props supplied in the child.
+To allow our component template to be more versatile, we can use a scoped slot instead of a regular slot. Scoped slots allow you to pass a template to the slot instead of passing a rendered element. When this template is declared in the parent, it will have access to any props supplied in the child. 
 
 For example, a component child with a scoped slot might look like the following:
 
-<div> <slot my-prop="Hello from child"></slot> </div>
+1『上面的关键知识点：Scoped slots 的概念。』
+
+```html
+<div> 
+    <slot my-prop="Hello from child"></slot> 
+</div>
+```
 
 A parent that uses this component will declare a template element, which will have a property slot-scope that names an alias object. Any props added to the slot in the child template are available as properties of the alias object:
 
-<child> <template slot-scope="props"> <span>Hello from parent</span> <span>{{ props.my-prop }}</span> </template> </child>
+```html
+<child> 
+    <template slot-scope="props"> 
+        <span>Hello from parent</span> 
+        <span>{{ props.my-prop }}</span> 
+    </template> 
+</child>
+```
 
 This renders as:
 
-<div> <span>Hello from parent</span> <span>Hello from child</span> </div>
+```html
+<div> 
+    <span>Hello from parent</span> 
+    <span>Hello from child</span> 
+</div>
+```
 
 Let's go through the steps of including a scoped slot with our FeatureList component. The goal is to be able to pass the list items array in as a prop and get the FeatureList component to iterate them. That way, FeatureList is taking ownership of any repeated functionality. The parent will then provide a template to define how each list item should display.
 
 resources/views/app.blade.php:
 
-<div class="lists"> <feature-list title="Amenities" :items="amenities"> <!--template will go here--> </feature-list> <feature-list title="Prices" :items="prices"> <!--template will go here--> </feature-list> </div>
+```html
+<div class="lists"> 
+    <feature-list title="Amenities" :items="amenities"> 
+        <!--template will go here--> 
+    </feature-list> 
+    <feature-list title="Prices" :items="prices"> 
+        <!--template will go here--> 
+    </feature-list> 
+</div>
+```
 
-Focusing now on the FeatureList component, follow these steps:
-
-Add items to the props array in the configuration object
-
-items will be array which we iterate inside the <div class="content"> section
-
-In the loop, item is an alias to any particular list item. We can create a slot and bind that list item to the slot using v-bind="item". (We haven't used v-bind without an argument before, but this will bind the properties of an entire object to the element. This is useful as the amenities and prices objects have different properties and we now don't have to specify them.)
+Focusing now on the FeatureList component, follow these steps: 1) Add items to the props array in the configuration object. 2) items will be array which we iterate inside the \<div class="content"> section. 3) In the loop, item is an alias to any particular list item. We can create a slot and bind that list item to the slot using v-bind="item". (We haven't used v-bind without an argument before, but this will bind the properties of an entire object to the element. This is useful as the amenities and prices objects have different properties and we now don't have to specify them.)
 
 resources/assets/components/FeatureList.vue:
 
-<template> <div> <hr> <div class="list"> <div class="title"><strong>{{ title }}</strong></div> <div class="content"> <div class="list-item" v-for="item in items"> <slot v-bind="item"></slot> </div> </div> </div> </div> </template> <script> export default { props: ['title', 'items'] } </script> <style>...</style>
+```html
+<template>
+    <div>
+        <hr>
+        <div class="list">
+            <div class="title"><strong>{{ title }}</strong></div>
+            <div class="content">
+                <div class="list-item" v-for="item in items">
+                    <slot v-bind="item"></slot>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+```
 
-Now we'll return to our view. Let's work on the amenities list first:
-
-Declare a template element inside the FeatureList declaration.
-
-The template must include the slot-scope property to which we assign an alias, amenity. This alias allows us to access the scoped props.
-
-Inside the template, we can use exactly the same markup we had before to display our amenity list items.
+Now we'll return to our view. Let's work on the amenities list first: 1) Declare a template element inside the FeatureList declaration. 2) The template must include the slot-scope property to which we assign an alias, amenity. This alias allows us to access the scoped props. 3) Inside the template, we can use exactly the same markup we had before to display our amenity list items.
 
 resources/views/app.blade.php:
 
-<feature-list title="Amenities" :items="amenities"> <template slot-scope="amenity"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>@{{ amenity.title }}</span> </template> </feature-list>
-
-Here's the complete main template with prices as well.
-
-resources/views/app.blade.php:
-
-<div id="app"> ... <div class="container"> ... <div class="lists"> <feature-list title="Amenities" :items="amenities"> <template slot-scope="amenity"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>@{{ amenity.title }}</span> </template> </feature-list> <feature-list title="Prices" :items="prices"> <template slot-scope="price"> @{{ price.title }}: <strong>@{{ price.value }}</strong> </template> </feature-list> </div> </div> </div>
+```html
+<div class="lists">
+    <feature-list title="Amenities" :items="amenities">
+        <template slot-scope="amenity">
+            <i class="fa fa-lg" :class="amenity.icon"></i>
+            <span>@{{ amenity.title }}</span>
+        </template>
+    </feature-list>
+    <feature-list title="Prices" :items="prices">
+        <template slot-scope="price">
+            @{{ price.title }}: <strong>@{{ price.value }}</strong>
+        </template>
+    </feature-list>
+</div>
+```
 
 Although this approach has just as much markup as before, it has delegated more common functionality to the component, which makes for a more robust design.
 
@@ -1418,51 +1525,137 @@ Move all the markup, configuration, and CSS into the new component. Note that we
 
 resources/assets/components/ExpandableText.vue:
 
-<template> <div> <p :class="{ contracted: contracted }"> <slot></slot> </p> <button v-if="contracted" class="more" @click="contracted = false">
+```js
+<template>
+    <div>
+        <p :class="{contracted: contracted}">
+            <slot></slot>
+        </p>
+        <button class="more" v-if="contracted" @click="contracted=false">
+            + More
+        </button>
+    </div>
+</template>
 
-+ More
+<script>
+    export default {
+        data() {
+            return {
+                contracted: true,
+            }
+        },
+    }
+</script>
 
-</button> </div> </template> <script> export default { data() { return { contracted: true } } } </script> <style> p { white-space: pre-wrap; } .contracted { height: 250px; overflow: hidden; } .about button.more { background: transparent; border: 0; color: #008489; padding: 0; font-size: 17px;
+<style>
+    .about p {
+        white-space: pre-wrap;
+    }
 
-font-weight: bold; } .about button.more:hover,
+    .about p.contracted {
+        height: 250px;
+        overflow: hidden;
+    }
 
-.about button.more:focus,
+    .about button.more {
+        background: transparent;
+        border: 0;
+        color: #008489;
+        padding: 0;
+        font-size: 17px;
+        font-weight: bold;
+    }
 
-.about button.more:active { text-decoration: underline; outline: none; } </style>
+    .about button.more:hover,
+    .about button.more:focus,
+    .about button.more:active {
+        text-decoration: underline;
+        outline: none;
+    }
+</style>
+```
 
 Once you've imported this component in resources/assets/js/app.js, declare it in the main template, remembering to interpolate the about data property in the slot.
 
 resource/views/app.blade.php:
 
-<div id="app"> <header-image>...</header-image> <div class="container"> <div class="heading">...</div> <hr> <div class="about"> <h3>About this listing</h3> <expandable-text>@{{ about }}</expandable-text> </div> ... </div> </div>
+```html
+<div class="about">
+    <h3>About this listing</h3>
+    <expandable-text>@{{ about }}</expandable-text>
+</div>
+```
 
 With that done, most of the data and functionality of the Vuebnb client app has been abstracted into components. Let's take a look at resources/assets/js/app.js and see how bare it has become!
 
 resources/assets/js/app.js:
 
+```js
+// import "core-js/fn/object/assign";
+import Vue from 'vue';
+// window.Vue = require('vue');
+import { populateAmenitiesAndPrices } from './helpers';
+import ImageCarousel from '../components/ImageCarousel.vue';
+import ModalWindow from '../components/ModalWindow.vue';
+import HeaderImage from '../components/HeaderImage.vue';
+import FeatureList from '../components/FeatureList.vue';
+import ExpandableText from '../components/ExpandableText.vue';
+
+let model = JSON.parse(window.vuebnb_listing_model);
+model = populateAmenitiesAndPrices(model);
+
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    // ployfills
+    data: Object.assign(model, {}),
+    components: { 
+        ImageCarousel,
+        ModalWindow,
+        HeaderImage,
+        FeatureList,
+        ExpandableText,
+    },
+    methods: {
+        openModal() {
+            this.$refs.imagemodal.modalOpen = true;
+        }
+    },
+});
 ```
-... import ImageCarousel from '../components/ImageCarousel.vue'; import ModalWindow from '../components/ModalWindow.vue'; import FeatureList from '../components/FeatureList.vue'; import HeaderImage from '../components/HeaderImage.vue'; import ExpandableText from '../components/ExpandableText.vue'; var app = new Vue({ el: '#app', data: Object.assign(model, {}), components: { ImageCarousel, ModalWindow, FeatureList, HeaderImage, ExpandableText }, methods: { openModal() { this.$refs.imagemodal.modalOpen = true; } } });
-```
+
+1『这里 vue 实例里的数据，一直觉得很精妙「data: Object.assign(model, {}),」。』
 
 ## 23. Virtual DOM
 
 Let's change tack now and discuss how Vue renders components. Take a look at this example:
 
-Vue.component('my-component', { template: '<div id="my-component">My component</div>' });
+```js
+Vue.component('my-component', { 
+    template: '<div id="my-component">My component</div>' 
+});
+```
 
 In order for Vue to be able to render this component to the page, it will first transform the template string into a JavaScript object using an internal template compiler library:
 
+![](./res/2020009.png)
+
 Figure 6.14. How the template compiler turns a template string into an object
 
-Once the template has been compiled, any state or directives can easily be applied. For example, if the template includes a v-for, a simple for-loop can be used to multiply the nodes and interpolate the correct variables.
-
-After that, Vue can interface with the DOM API to synchronize the page with the state of the component.
+Once the template has been compiled, any state or directives can easily be applied. For example, if the template includes a v-for, a simple for-loop can be used to multiply the nodes and interpolate the correct variables. After that, Vue can interface with the DOM API to synchronize the page with the state of the component.
 
 ## 24. Render functions
 
 Rather than supplying a string template for your component, you can instead supply a render function. Without understanding the syntax, you can probably tell from the following example that the render function is generating a semantically equivalent template to the string template in the previous example. Both define a div with an id attribute of my-component and with inner text of My component:
 
-Vue.component('my-component'</span>, { render(createElement) { createElement('div', {attrs:{id:'my-component'}}, 'My component'); // Equivalent to <div id="my-component">My component</div> } })
+```js
+Vue.component('my-component'</span>, { 
+    render(createElement) { 
+        createElement('div', {attrs:{id:'my-component'}}, 'My component'); 
+        // Equivalent to <div id="my-component">My component</div> 
+    } 
+})
+```
 
 Render functions are more efficient because they don't require Vue to first compile the template string. The downside, though, is that writing a render function is not as easy or expressive as markup syntax, and, once you get a large template, will be difficult to work with.
 
@@ -1472,35 +1665,25 @@ Wouldn't it be great if we could create HTML markup templates in development, th
 
 This is exactly what happens to single-file components when Webpack transforms them via Vue Loader. Take a look at the following snippet of the JavaScript bundle and you can see the ImageCarousel component after Webpack has transformed and bundled it:
 
+1『上面说了 Vue Loader 可以解决的问题，目前还不是很清楚。（2020-04-26）』
+
 Figure 6.15. image-carousel component in the bundle file
 
 ## 26. Refactoring the main template as single-file component
 
-The template for our app's root instance is the content within the #app element in the app view. A DOM template like this requires the Vue template compiler, just like any string template does.
-
-If we were able to abstract this DOM template into an SFC as well, it would mean all our frontend app templates would be built as render functions and would not need to invoke the template compiler at runtime.
+The template for our app's root instance is the content within the #app element in the app view. A DOM template like this requires the Vue template compiler, just like any string template does. If we were able to abstract this DOM template into an SFC as well, it would mean all our frontend app templates would be built as render functions and would not need to invoke the template compiler at runtime.
 
 Let's create a new SFC for the main template and call it ListingPage, as this part of the app is our listing page:
 
     $ touch resources/assets/components/ListingPage.vue
 
-We'll move the main template, root configuration and any relevant CSS into this component. Take note of the following:
-
-We need to put the template inside a wrapping div as components must have a single root element
-
-We can now remove the @ escapes as this file won't be processed by Blade
-
-The component is now adjacent to the other components we created, so be sure to change the relative paths of the imports
+We'll move the main template, root configuration and any relevant CSS into this component. Take note of the following: 1) We need to put the template inside a wrapping div as components must have a single root element. 2) We can now remove the @ escapes as this file won't be processed by Blade. 3) The component is now adjacent to the other components we created, so be sure to change the relative paths of the imports.
 
 resource/assets/components/ListingPage.vue:
 
-<template> <div> <header-image
+```js
 
-:image-url="images[0]"
-
-@header-clicked="openModal"
-
-></header-image> <div class="container"> <div class="heading"> <h1>{{ title }}</h1> <p>{{ address }}</p> </div> <hr> <div class="about"> <h3>About this listing</h3> <expandable-text>{{ about }}</expandable-text> </div> <div class="lists"> <feature-list title="Amenities" :items="amenities"> <template slot-scope="amenity"> <i class="fa fa-lg" :class="amenity.icon"></i> <span>{{ amenity.title }}</span> </template> </feature-list> <feature-list title="Prices" :items="prices"> <template slot-scope="price"> {{ price.title }}: <strong>{{ price.value }}</strong> </template> </feature-list> </div> </div> <modal-window ref="imagemodal"> <image-carousel :images="images"></image-carousel> </modal-window> </div> </template> <script> import { populateAmenitiesAndPrices } from '../js/helpers'; let model = JSON.parse(window.vuebnb_listing_model); model = populateAmenitiesAndPrices(model); import ImageCarousel from './ImageCarousel.vue'; import ModalWindow from './ModalWindow.vue'; import FeatureList from './FeatureList.vue'; import HeaderImage from './HeaderImage.vue'; import ExpandableText from './ExpandableText.vue'; export default { data() { return Object.assign(model, {}); }, components: { ImageCarousel, ModalWindow, FeatureList, HeaderImage, ExpandableText }, methods: { openModal() { this.$refs.imagemodal.modalOpen = true; } } } </script> <style> .about { margin: 2em 0; } .about h3 { font-size: 22px; } </style>
+```
 
 ## 27. Mounting the root-level component with a render function
 
@@ -1508,19 +1691,29 @@ Now the mount element in our main template will be empty. We need to declare the
 
 resources/views/app.blade.php:
 
+```html
 <body> <div id="toolbar"> <img class="icon" src="{{ asset('images/logo.png') }}"> <h1>vuebnb</h1> </div> <div id="app"> <listing></listing> </div> <script src="{{ asset('js/app.js') }}"></script> </body>
+```
 
 If we do it like that, we wouldn't fully eliminate all string and DOM templates from our app, so we'll keep the mount element empty.
 
 resources/views/app.blade.php:
 
-... <div id="app"></div> ...
+```html
+... 
+<div id="app"></div> 
+...
+```
 
 We can now declare Listing with a render function inside our root instance.
 
 resources/assets/js/app.js:
 
+```js
 import "core-js/fn/object/assign"; import Vue from 'vue'; import ListingPage from '../components/ListingPage.vue'; var app = new Vue({ el: '#app', render: h => h(ListingPage) });
+```
+
+1『又往上抽象了一层，太赞了。但要不要抽象到这层还得考虑下。（2020-04-26）』
 
 To avoid getting side-tracked, I won't explain the syntax of render functions here, as this is the only one we'll write throughout the book. If you'd like to learn more about render functions, check out the Vue.js documentation at https://vuejs.org/.
 
@@ -1532,47 +1725,61 @@ There are a number of different environments and use cases for running Vue.js. I
 
 Looking in the dist folder of the Vue NPM package, we can see eight different Vue.js builds:
 
-Figure 6.16. The various builds in the node_modules/vue/dist folder
+```
+-rw-r--r--   1 Daglas  staff   4.2K  4 11 22:36 README.md
+-rw-r--r--   1 Daglas  staff   313K  4 11 22:36 vue.common.dev.js
+-rw-r--r--   1 Daglas  staff   157B  4 11 22:36 vue.common.js
+-rw-r--r--   1 Daglas  staff    91K  4 11 22:36 vue.common.prod.js
+-rw-r--r--   1 Daglas  staff   308K  4 11 22:36 vue.esm.browser.js
+-rw-r--r--   1 Daglas  staff    91K  4 11 22:36 vue.esm.browser.min.js
+-rw-r--r--   1 Daglas  staff   319K  4 11 22:36 vue.esm.js
+-rw-r--r--   1 Daglas  staff   334K  4 11 22:36 vue.js
+-rw-r--r--   1 Daglas  staff    91K  4 11 22:36 vue.min.js
+-rw-r--r--   1 Daglas  staff   218K  4 11 22:36 vue.runtime.common.dev.js
+-rw-r--r--   1 Daglas  staff   173B  4 11 22:36 vue.runtime.common.js
+-rw-r--r--   1 Daglas  staff    63K  4 11 22:36 vue.runtime.common.prod.js
+-rw-r--r--   1 Daglas  staff   222K  4 11 22:36 vue.runtime.esm.js
+-rw-r--r--   1 Daglas  staff   233K  4 11 22:36 vue.runtime.js
+-rw-r--r--   1 Daglas  staff    63K  4 11 22:36 vue.runtime.min.js
+```
+
+Figure 6.16. The various builds in the node\_modules/vue/dist folder
 
 The Vue.js website provides a table to explain these eight different builds:
 
-UMD CommonJS ES Module
-
-Full vue.js vue.common.js vue.esm.js
-
-Runtime-only vue.runtime.js vue.runtime.common.js vue.runtime.esm.js
-
-Full (production) vue.min.js - -
-
-Runtime-only (production) vue.runtime.min.js - -
-
-## 29. Module system
+### 28.1 Module system
 
 The columns of the table categorize the builds as either UMD, CommonJS, or ES Module. We discussed CommonJS and ES modules back in Chapter 5, Integrating Laravel And Vue.js with Webpack, but we didn't mention UMD (Universal Module Definition). The main things you need to know about UMD is that it's yet another module pattern, and that it works well in a browser. UMD is the choice if you are directly linking to Vue in a script tag.
 
-## 30. Production builds
+### 28.2 Production builds
 
-The rows of the table are split into two types: full or runtime, and with or without production.
-
-A production build is used in a deployed app, as opposed to one running in development. It has been minified, and any warnings, comments, or other development options are turned off or stripped out. The point is to make the build as small and secure as possible, which is what you'd want in production.
+The rows of the table are split into two types: full or runtime, and with or without production. A production build is used in a deployed app, as opposed to one running in development. It has been minified, and any warnings, comments, or other development options are turned off or stripped out. The point is to make the build as small and secure as possible, which is what you'd want in production.
 
 Note that there is only a UMD version of the production build as only UMD runs directly in a browser. CommonJS and ES Module are to be used in conjunction with a build tool, like Webpack, which provides its own production processing.
 
-## 31. Full build vs runtime-only
+### 28.3 Full build vs runtime-only
 
 As we've been discussing, Vue includes a template compiler for converting any string or DOM templates to render functions at runtime. The full build includes the template compiler and is what you would normally use. However, if you've already transformed your templates into render functions in development, you can use the runtime-only build, which drops the compiler and is about 30% smaller!
 
-## 32. Selecting a build
+### 28.4 Selecting a build
 
 A good build for Vuebnb is vue.runtime.esm.js since we're using Webpack and we don't need the template compiler. We could also use vue.runtime.common.js, but that wouldn't be consistent with our use of ES modules elsewhere in the project. In practice, though, there is no difference as Webpack will process them in the same way.
 
 Remember that we include Vue at the top of our entry file with the statement import Vue from 'vue'. The last 'vue' is an alias to the Vue build that Webpack resolves when it runs. Currently, this alias is defined within the default Mix configuration and is set to the build vue.common.js. We can override that configuration by adding the following to the bottom of our webpack.mix.js file.
 
+```js
 webpack.mix.js:
 
 ...
 
-mix.webpackConfig({ resolve: { alias: { 'vue$': 'vue/dist/vue.runtime.esm.js' } } });
+mix.webpackConfig({ 
+    resolve: { 
+        alias: { 
+            'vue$': 'vue/dist/vue.runtime.esm.js' 
+        } 
+    } 
+});
+```
 
 After a new build, we should expect to see a smaller bundle size due to the template compiler being removed. In the following screenshot, I've shown the bundle before and after I ran a dev build in a separate Terminal tab:
 
