@@ -4,107 +4,220 @@ In the last chapter, we learned about Vue.js components and converted Vuebnb to 
 
 Topics covered in this chapter: 1) An explanation of what router libraries are and why they are a critical part of single-page applications. 2) An overview of Vue Router and its main features. 3) Installation and basic configuration of Vue Router. 4) Using the RouterLink and RouterView special components to manage page navigation. 5) Setting up AJAX with Vue to retrieve data from the web service without a page refresh. 7) Using route navigation guards to retrieve data before a new page is loaded.
 
-## 01. Single-page applications
+## 7.1 Single-page applications
 
 Most websites are broken up into pages in order to make the information they contain easier to consume. Traditionally this is done with a server/client model, where each page must be loaded from the server with a different URL. To navigate to a new page, the browser must send a request to the URL of that page. The server will send the data back and the browser can unload the existing page and load the new one. For the average internet connection, this process will likely take a few seconds, during which the user must wait for the new page to load.
 
 By using a powerful frontend framework and an AJAX utility, a different model is possible: the browser can load an initial web page, but navigating to new pages will not require the browser to unload the page and load a new one. Instead, any data required for new pages can be loaded asynchronously with AJAX. From a user's perspective, such a website would appear to have pages just like any other, but from a technical perspective, this site really only has one page. Hence the name, Single-Page Application (SPA).
 
+2『解释了 SPA 架构的概念，以及其利弊。做张术语卡片。』
+
 The advantage of the Single-Page Application architecture is that it can create a more seamless experience for the user. Data for new pages must still be retrieved, and will therefore create some small disruption to the user's flow, but this disruption is minimized since the data retrieval can be done asynchronously and JavaScript can continue to run. Also, since SPA pages usually require less data due to the reuse of some page elements, page loading is quicker.
 
 The disadvantage of the SPA architecture is that it makes the client app bulkier due to the added functionality, so gains from speeding up page changes may be negated by the fact that the user must download a large app on the first page load. Also, handling routes adds complexity to the app as multiple states must be managed, URLs must be handled, and a lot of default browser functionality must be recreated in the app.
 
-## Routers
+## 7.2 Routers
 
-If you are going with an SPA architecture and your app design includes multiple pages, you'll want to use a router. A router, in this context, is a library that will mimic browser navigation through JavaScript and various native APIs so that the user gets an experience similar to that of a traditional multi-page app. Routers will typically include functionality to:
+If you are going with an SPA architecture and your app design includes multiple pages, you'll want to use a router. A router, in this context, is a library that will mimic browser navigation through JavaScript and various native APIs so that the user gets an experience similar to that of a traditional multi-page app. Routers will typically include functionality to: 1) Handle navigation actions from within the page. 2) Match parts of the application to routes. 3) Manage the address bar. 4) Manage the browser history. 5) Manage scroll bar behavior.
 
-Handle navigation actions from within the page
+2『路由的概念做张术语卡。』
 
-Match parts of the application to routes
+### 7.2.1 Vue Router
 
-Manage the address bar
-
-Manage the browser history
-
-Manage scroll bar behavior
-
-## Vue Router
-
-Some frontend frameworks, such as Angular or Ember, include a router library out-of-the-box. The philosophy guiding these frameworks is that the developer is better served with a complete, integrated solution for their SPA.
-
-Others frameworks/libraries, such as React and Vue.js, do not include a router. Instead, you must install a separate library.
+Some frontend frameworks, such as Angular or Ember, include a router library out-of-the-box. The philosophy guiding these frameworks is that the developer is better served with a complete, integrated solution for their SPA. Others frameworks/libraries, such as React and Vue.js, do not include a router. Instead, you must install a separate library.
 
 In the case of Vue.js, an official router library is available called Vue Router. This library has been developed by the Vue.js core team, so it is optimized for usage with Vue.js and makes full use of fundamental Vue features such as components and reactivity.
 
 With Vue Router, different pages of the application are represented by different components. When you set up Vue Router, you will pass in configuration to tell it which URLs map to which component. Then, when a link is clicked in the app, Vue Router will swap the active component so as to match the new URL, for example:
 
-let routes = [ { path: '/', component: HomePage }, { path: '/about', component: AboutPage }, { path: '/contact', component: ContactPage } ];
+```js
+let routes = [ 
+    { path: '/', component: HomePage }, 
+    { path: '/about', component: AboutPage }, 
+    { path: '/contact', component: ContactPage } 
+];
+```
 
 Since rendering a component is an almost instantaneous process in normal circumstances, the transition between pages with Vue Router is as well. However, there are asynchronous hooks that can be invoked to give you the opportunity to load new data from the server, if your different pages require it.
 
-## Special components
+### 7.2.2 Special components
 
-When you install Vue Router, two components are registered globally for use throughout your app: RouterLink and RouterView.
+When you install Vue Router, two components are registered globally for use throughout your app: RouterLink and RouterView. 1) RouterLink is generally used in place of a tags and gives your links access to the special features of Vue Router. As explained, Vue Router will swap designated page components as a way of mimicking browser navigation. 2) RouterView is the outlet in which this component swap takes place. Like a slot, you put it somewhere in your main page template. For example:
 
-RouterLink is generally used in place of a tags and gives your links access to the special features of Vue Router.
+```html
+<div id="app"> 
+    <header></header> 
+    <router-view> 
+        // This is where different page components display 
+    </router-view> 
+    <footer></footer> 
+</div>
+```
 
-As explained, Vue Router will swap designated page components as a way of mimicking browser navigation. RouterView is the outlet in which this component swap takes place. Like a slot, you put it somewhere in your main page template. For example:
+## 7.3 Vuebnb routing
 
-<div id="app"> <header></header> <router-view> // This is where different page components display </router-view> <footer></footer> </div>
-
-## Vuebnb routing
-
-It was never a stated goal for Vuebnb to be a single-page application. Indeed, Vuebnb will deviate from pure SPA architecture as we'll see later in the book.
-
-That said, incorporating Vue Router will be very beneficial to the user's experience of navigation in the app, so we'll add it to Vuebnb in this chapter.
+It was never a stated goal for Vuebnb to be a single-page application. Indeed, Vuebnb will deviate from pure SPA architecture as we'll see later in the book. That said, incorporating Vue Router will be very beneficial to the user's experience of navigation in the app, so we'll add it to Vuebnb in this chapter.
 
 Of course, if we're going to add a router, we'll need some extra pages! So far in the project, we've been working on the listing page of Vuebnb, but are yet to start work on the front page of the app. So in addition to installing Vue Router, we will start work on the Vuebnb home page, which displays thumbnails and links to all our mock listings:
 
 Figure 7.1. Front page of Vuebnb
 
-## Installing Vue Router
+### 7.3.1 Installing Vue Router
 
 Vue Router is an NPM package and can be installed on the command line:
 
-$ npm i --save-dev vue-router
+    $ npm i --save-dev vue-router
+
+3『
+
+改用 yarn 安装。有个疑问，为啥安装成开发者依赖。
+
+[yarn install | Yarn](https://classic.yarnpkg.com/en/docs/cli/install/)
+
+yarn install is used to install all dependencies for a project. This is most commonly used when you have just checked out code for a project, or when another developer on the project has added a new dependency that you need to pick up.
+
+If you are used to using npm you might be expecting to use --save or --save-dev. These have been replaced by yarn add and yarn add --dev. For more information, see the yarn add documentation.
+
+Running yarn with no command will run yarn install, passing through any provided flags. If you need reproducible dependencies, which is usually the case with the continuous integration systems, you should pass --frozen-lockfile flag.
+
+[yarn add | Yarn](https://classic.yarnpkg.com/en/docs/cli/add)
+
+Installs a package and any packages that it depends on.
+
+### Adding dependencies
+
+In general, a package is simply a folder with code and a package.json file that describes the contents. When you want to use another package, you first need to add it to your dependencies. This means running yarn add [package-name] to install it into your project.
+
+This will also update your package.json and your yarn.lock so that other developers working on the project will get the same dependencies as you when they run yarn or yarn install. Most packages will be installed from the npm registry and referred to by simply their package name. For example, yarn add react will install the react package from the npm registry. You can specify versions using one of these:
+
+```
+yarn add package-name installs the “latest” version of the package.
+yarn add package-name@1.2.3 installs a specific version of a package from the registry.
+yarn add package-name@tag installs a specific “tag” (e.g. beta, next, or latest).
+```
+
+You can also specify packages from different locations:
+
+```
+yarn add package-name installs the package from the npm registry unless you have specified another one in your package.json.
+yarn add file:/path/to/local/folder installs a package that is on your local file system. This is useful to test out other packages of yours that haven’t been published to the registry.
+yarn add file:/path/to/local/tarball.tgz installs a package from a gzipped tarball which could be used to share a package before publishing it.
+yarn add link:/path/to/local/folder installs a symlink to a package that is on your local file system. This is useful to develop related packages in monorepo environments.
+yarn add <git remote url> installs a package from a remote git repository.
+yarn add <git remote url>#<branch/commit/tag> installs a package from a remote git repository at specific git branch, git commit or git tag.
+yarn add https://my-project.org/package.tgz installs a package from a remote gzipped tarball.
+```
+
+### Caveats
+
+If you have used a package manager like npm previously, you may be looking for how to add global dependencies. For the vast majority of packages it is considered a bad practice to have global dependencies because they are implicit. It is much better to add all of your dependencies locally so that they are explicit and anyone else using your project gets the same set of dependencies. If you are trying to use a CLI tool that has a bin you can access these in your ./node_modules/.bin directory. You can also use the global command:
+
+    yarn global add <package...>
+
+### Commands
+
+    yarn add <package...>
+
+This will install one or more packages in your dependencies.
+
+    yarn add <package...> [--dev/-D]
+
+Using --dev or -D will install one or more packages in your devDependencies.
+
+    yarn add <package...> [--peer/-P]
+
+Using --peer or -P will install one or more packages in your peerDependencies.
+
+    yarn add <package...> [--optional/-O]
+
+Using --optional or -O will install one or more packages in your optionalDependencies.
+
+    yarn add <package...> [--exact/-E]
+
+Using --exact or -E installs the packages as exact versions. The default is to use the most recent release with the same major version. For example, yarn add foo@1.2.3 would accept version 1.9.1, but yarn add foo@1.2.3 --exact would only accept version 1.2.3.
+
+    yarn add <package...> [--tilde/-T]
+
+Using --tilde or -T installs the most recent release of the packages that have the same minor version. The default is to use the most recent release with the same major version. For example, yarn add foo@1.2.3 --tilde would accept 1.2.9 but not 1.3.0.
+
+    yarn add <package...> [--ignore-workspace-root-check/-W]
+
+Using --ignore-workspace-root-check or -W allows a package to be installed at the workspaces root. This tends not to be desired behaviour, as dependencies are generally expected to be part of a workspace. For example yarn add lerna --ignore-workspace-root-check --dev at the workspaces root would allow lerna to be used within the scripts of the root package.json.
+
+    yarn add <alias-package>@npm:<package>
+
+This will install a package under a custom alias. Aliasing, allows multiple versions of the same dependency to be installed, each referenced via the alias-package name given. For example, yarn add my-foo@npm:foo will install the package foo (at the latest version) in your dependencies under the specified alias my-foo. Also, yarn add my-foo@npm:foo@1.0.1 allows a specific version of foo to be installed.
+
+    yarn add <package...> --audit
+
+Checks for known security issues with the installed packages. A count of found issues will be added to the output. Use the yarn audit command for additional details.
+
+』
 
 Let's put our router configuration into a new file, router.js:
 
-$ touch resources/assets/js/router.js
+    $ touch resources/assets/js/router.js
 
-To add Vue Router to our project, we must import the library and then use the Vue.use API method to make Vue compatible with Vue Router. This will give Vue a new configuration property, router, that we can use to connect a new router.
-
-We then create an instance of Vue Router with new VueRouter().
+To add Vue Router to our project, we must import the library and then use the Vue.use API method to make Vue compatible with Vue Router. This will give Vue a new configuration property, router, that we can use to connect a new router. We then create an instance of Vue Router with new VueRouter().
 
 resources/assets/js/router.js:
 
-import Vue from 'vue'; import VueRouter from 'vue-router'; Vue.use(VueRouter); export default new VueRouter();
+```js
+import Vue from 'vue'; 
+import VueRouter from 'vue-router'; 
+Vue.use(VueRouter); 
+
+export default new VueRouter();
+```
 
 By exporting our router instance from this new file, we've made it into a module that can be imported in app.js. If we name the imported module router, object destructuring can be used to succinctly connect it to our main configuration object.
 
 resources/assets/js/app.js:
 
-import "core-js/fn/object/assign"; import Vue from 'vue'; import ListingPage from '../components/ListingPage.vue'; import router from './router' var app = new Vue({ el: '#app', render: h => h(ListingPage), router });
+```js
+// import "core-js/fn/object/assign";
+// window.Vue = require('vue');
+import Vue from 'vue';
+import ListingPage from '../components/ListingPage.vue';
+import router from './router';
 
-## Creating routes
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    render: h => h(ListingPage),
+    // components: {ListingPage},
+    router,
+});
+
+```
+
+### 7.3.2 Creating routes
 
 The most basic configuration for Vue Router is to provide a routes array, which maps URLs to the corresponding page components. This array will contain objects with at least two properties: path and component.
 
-Note that by page components I'm simply referring to any components that we've designated to represent a page in our app. They are regular components in every other way.
+1『核心是创建路由数组，将 URL 和组件对应起来。』
 
-For now, we're only going to have two routes in our app, one for our home page and one for our listing page. The HomePage component doesn't exist yet, so we'll keep its route commented out until we create it.
+Note that by page components I'm simply referring to any components that we've designated to represent a page in our app. They are regular components in every other way. For now, we're only going to have two routes in our app, one for our home page and one for our listing page. The HomePage component doesn't exist yet, so we'll keep its route commented out until we create it.
 
 resources/assets/js/router.js:
 
+```js
 import ListingPage from '../components/ListingPage.vue';
 
-export default new VueRouter({ mode: 'history', routes: [ // { path: '/', component: HomePage }, // doesn't exist yet! { path: '/listing/:listing', component: ListingPage } ] });
+export default new VueRouter({ 
+    mode: 'history', 
+    routes: [ 
+        // { path: '/', component: HomePage }, // doesn't exist yet! 
+        { path: '/listing/:listing', component: ListingPage } 
+    ] 
+});
+```
 
 You'll notice that the path for our ListingPage component contains a dynamic segment :listing so that this route will match paths including /listing/1, listing/2 ... listing/whatever.
 
 There are two modes for Vue Router: hash mode and history mode. Hash mode uses the URL hash to simulate a full URL so that the page won't be reloaded when the hash changes. History mode has real URLs and leverages the history.pushState API to change the URL without causing a page reload. The only downside to history mode is that URLs outside of the app, such as /some/weird/path, can't be handled by Vue and must be handled by the server. That's no problem for us, so we'll use history mode for Vuebnb.
 
-## App component
+## 7.4 App component
 
 For our router to work, we need to declare a RouterView component somewhere in our page template. Otherwise, there's nowhere for the page components to render.
 
@@ -138,7 +251,7 @@ There's also an indicator, which tells us that the ListingPage component is the 
 
 Figure 7.3. /listing/1 with Vue Devtools open, showing the component hierarchy
 
-## Home page
+## 7.5 Home page
 
 Let's start work on our home page now. We'll first create a new component, HomePage:
 

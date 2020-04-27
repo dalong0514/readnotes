@@ -596,7 +596,7 @@ The code in Listing 3.3 loads the entire file into an array, but unlike the exam
 
 Figure 3.6  After splitting order records with explode(), you can put each part of an order in a different table cell for better-looking output
 
-2『上面加载文件成数组后排序的实现代码，好好研究。』
+2『上面加载文件成数组后排序的实现代码，好好研究其细节。开发数据流一体化的时候是利用「laravel-excel」包实现加载文件数据成数组的。（2020-04-26）』
 
 The explode function has the following prototype:
 
@@ -635,9 +635,11 @@ You have already seen that reset() returns the pointer to the first element in t
 To move through an array in reverse order, you could use end() and prev(). The prev()  function is the opposite of next(). It moves the current pointer back one and then returns the new current element. For example, the following code displays an array in reverse order:
 
 ```php
-$value = end ($array);
-while ($value){  echo "$value<br />";  
-$value = prev($array);}
+$value = end($array);
+while ($value){  
+    echo "$value<br />";  
+    $value = prev($array);
+}
 ```
 
 For example, you can declare \$array like this:
@@ -750,6 +752,8 @@ This code again produces the following output:
     value1 value2 value3
 
 Note that for extract() to extract an element, that element’s key must be a valid variable name, which means that keys starting with numbers or including spaces are skipped.
+
+1『 extract() 函数的功能如同其名称一般，可以将数组里的元素提取成一个个单独的变量，留意其应用场景。（2020-04-26）』
 
 ### 3.11 Further Reading
 

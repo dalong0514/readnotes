@@ -1682,7 +1682,79 @@ We'll move the main template, root configuration and any relevant CSS into this 
 resource/assets/components/ListingPage.vue:
 
 ```js
+<template>
+    <div>
+        <header-image :image-url="images[0]" 
+        @header-clicked="openModal"></header-image>
+        <div class="container">
+            <div class="heading">
+                <h1>{{ title }}</h1>
+                <p>{{ address }}</p>
+            </div>
+            <hr>
+            <div class="about">
+                <h3>About this listing</h3>
+                <expandable-text>{{ about }}</expandable-text>
+            </div>
+            <div class="lists">
+                <feature-list title="Amenities" :items="amenities">
+                    <template slot-scope="amenity">
+                        <i class="fa fa-lg" :class="amenity.icon"></i>
+                        <span>{{ amenity.title }}</span>
+                    </template>
+                </feature-list>
+                <feature-list title="Prices" :items="prices">
+                    <template slot-scope="price">
+                        {{ price.title }}: <strong>{{ price.value }}</strong>
+                    </template>
+                </feature-list>
+            </div>
+        </div>
+        <modal-window ref="imagemodal">
+            <image-carousel :images="images"></image-carousel> 
+        </modal-window>
+    </div>
+</template>
 
+<script>
+    import { populateAmenitiesAndPrices } from '../js/helpers';
+    import ImageCarousel from './ImageCarousel.vue';
+    import ModalWindow from './ModalWindow.vue';
+    import HeaderImage from './HeaderImage.vue';
+    import FeatureList from './FeatureList.vue';
+    import ExpandableText from './ExpandableText.vue';
+
+    let model = JSON.parse(window.vuebnb_listing_model);
+    model = populateAmenitiesAndPrices(model);
+
+    export default {
+        data() {
+            return Object.assign(model, {});
+        },
+        components: { 
+            ImageCarousel,
+            ModalWindow,
+            HeaderImage,
+            FeatureList,
+            ExpandableText,
+        },
+        methods: {
+            openModal() {
+                this.$refs.imagemodal.modalOpen = true;
+            }
+        },
+}
+</script>
+
+<style>
+    .about {
+        margin-top: 2em;
+    }
+
+    .about h3 {
+        font-size: 22px;
+    }
+</style>
 ```
 
 ## 27. Mounting the root-level component with a render function
@@ -1692,7 +1764,9 @@ Now the mount element in our main template will be empty. We need to declare the
 resources/views/app.blade.php:
 
 ```html
-<body> <div id="toolbar"> <img class="icon" src="{{ asset('images/logo.png') }}"> <h1>vuebnb</h1> </div> <div id="app"> <listing></listing> </div> <script src="{{ asset('js/app.js') }}"></script> </body>
+<div id="app">
+    <listing-page></listing-page>
+</div>
 ```
 
 If we do it like that, we wouldn't fully eliminate all string and DOM templates from our app, so we'll keep the mount element empty.
@@ -1710,14 +1784,61 @@ We can now declare Listing with a render function inside our root instance.
 resources/assets/js/app.js:
 
 ```js
-import "core-js/fn/object/assign"; import Vue from 'vue'; import ListingPage from '../components/ListingPage.vue'; var app = new Vue({ el: '#app', render: h => h(ListingPage) });
+// import "core-js/fn/object/assign";
+// window.Vue = require('vue');
+import Vue from 'vue';
+import ListingPage from '../components/ListingPage.vue';
+
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    render: h => h(ListingPage),
+    // components: {ListingPage},
+});
 ```
 
-1『又往上抽象了一层，太赞了。但要不要抽象到这层还得考虑下。（2020-04-26）』
+1『又往上抽象了一层，太赞了。』
 
 To avoid getting side-tracked, I won't explain the syntax of render functions here, as this is the only one we'll write throughout the book. If you'd like to learn more about render functions, check out the Vue.js documentation at https://vuejs.org/.
 
 Now that Vuebnb is no longer using string or DOM templates, we don't need the template compiler functionality anymore. There's a special build of Vue we can use which doesn't include it!
+
+1『
+
+抽象到单页后报错：
+
+```html
+ERROR in ./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e& (./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e&)
+Module Error (from ./node_modules/vue-loader/lib/loaders/templateLoader.js):
+(Emitted value instead of an instance of Error)
+
+  Errors compiling template:
+
+  tag <image-carousel> has no matching end tag.
+
+  28 |      </div>
+  29 |      <modal-window ref="imagemodal">
+  30 |          <image-carousel :images="images"><image-carousel/>
+     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  31 |      </modal-window>
+  32 |  </div>
+
+ @ ./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e& 1:0-215 1:0-215
+ @ ./resources/assets/components/ListingPage.vue
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js
+```
+
+找了半天发现是 \<image-carousel> 写错了，改为：
+```
+<modal-window ref="imagemodal">
+    <image-carousel :images="images"></image-carousel> 
+</modal-window>
+```
+
+又一次体验到「细节」的重要性。
+
+』
 
 ## 28. Vue.js builds
 
@@ -1726,7 +1847,6 @@ There are a number of different environments and use cases for running Vue.js. I
 Looking in the dist folder of the Vue NPM package, we can see eight different Vue.js builds:
 
 ```
--rw-r--r--   1 Daglas  staff   4.2K  4 11 22:36 README.md
 -rw-r--r--   1 Daglas  staff   313K  4 11 22:36 vue.common.dev.js
 -rw-r--r--   1 Daglas  staff   157B  4 11 22:36 vue.common.js
 -rw-r--r--   1 Daglas  staff    91K  4 11 22:36 vue.common.prod.js

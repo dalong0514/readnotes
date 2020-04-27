@@ -16,7 +16,7 @@ You have already seen how class type hinting and access control give you more co
 
 In this chapter, we came to grips with PHP’s advanced object-oriented features. Some of these will become familiar as you work through the book. In particular, I will return frequently to abstract classes, exceptions, and static methods. In the next chapter, I take a step back from built-in object features and look at classes and functions designed to help you work with objects.
 
-### 01. Static Methods and Properties
+### 4.1 Static Methods and Properties
 
 All of the examples in the previous chapter worked with objects. I characterized classes as templates from which objects are produced, and objects as active instances of classes—the things whose methods you invoke and whose properties you access. I implied that, in object-oriented programming, the real work is done by instances of classes. Classes, after all, are merely templates for objects. In fact, it is not that simple. You can access both methods and properties in the context of a class rather than that of an object. Such methods and properties are「static」and must be declared as such by using the static keyword:
 
@@ -32,12 +32,16 @@ class StaticExample{
 
 Static methods are functions with class scope. They cannot themselves access any normal properties in the class because these would belong to an object; however, they can access static properties. If you change a static property, all instances of that class are able to access the new value. Because you access a static element via a class and not an instance, you do not need a variable that references an object. Instead, you use the class name in conjunction with ::, as in this example:
 
+1『直接修改基类的静态方法、静态属性的强大在于，修改的数据会更新到所有基于该类的实例化对象身上。』
+
 ```php
 print StaticExample::$aNum;
 StaticExample::sayHello();
 ```
 
 This syntax should be familiar from the previous chapter. I used :: in conjunction with parent to access an overridden method. Now, as then, I am accessing class rather than object data. Class code can use the parent keyword to access a superclass without using its class name. To access a static method or property from within the same class (rather than from a child), I would use the self keyword. self is to classes what the \$this pseudo-variable is to objects. So from outside the StaticExample class, I access the \$aNum property using its class name:
+
+1『访问静态属性和静态方法，在外面用「classname::staticproperty」，在类定义里用「self::staticproperty」。在类定义里，self 关键词绑定到该「类」如同 \$this 绑定到通过该类实例化后的「对象」。』
 
 ```php
 StaticExample::$aNum;
@@ -57,6 +61,8 @@ class StaticExample{
 ```
 
 Note: Making a method call using parent is the only circumstance in which you should use a static reference to a nonstatic method. unless you are accessing an overridden method, you should only ever use :: to access a method or property that has been explicitly declared static. In documentation, however, you will often see static syntax used to refer to a method or property. this does not mean that the item in question is necessarily static, just that it belongs to a certain class. the write() method of the ShopProductWriter class might be referred to as ShopProductWriter::write(), for example, even though the write() method is not static. You will see this syntax here when that level of specificity is appropriate.
+
+1『除非重载方法，不应该用 :: 去访问那些显式声明的静态属性和静态方法。目前还没弄清楚这个概念。（2020-04-27）』
 
 By definition, static methods and properties are invoked on classes and not objects. For this reason, they are often referred to as class variables and properties. As a consequence of this class orientation, you cannot use the \$this pseudo-variable inside a static method.
 
@@ -146,7 +152,7 @@ In some ways, of course, this example poses as many problems as it solves. Altho
 
 And is it really good practice for a parent class to have such intimate knowledge of its children? (Hint: no, it is not.) Problems of this kind—where to acquire key objects and values and how much classes should know about one another—are very common in object-oriented programming. I examine various approaches to object generation in Chapter 9.
 
-### 02. Constant Properties
+### 4.2 Constant Properties
 
 Some properties should not be changed. The Answer to Life, the Universe, and Everything is 42, and you want it to stay that way. Error and status flags will often be hard-coded into your classes. Although they should be publicly and statically available, client code should not be able to change them.
 
@@ -168,7 +174,7 @@ print ShopProduct::AVAILABLE;
 
 Attempting to set a value on a constant once it has been declared will cause a parse error. You should use constants when your property needs to be available across all instances of a class, as well as when the property value needs to be fixed and unchanging.
 
-### 03. Abstract Classes
+### 4.3 Abstract Classes
 
 An abstract class cannot be instantiated. Instead it defines (and, optionally, partially implements) the interface for any class that might extend it. You define an abstract class with the abstract keyword. Here I redefine the ShopProductWriter class I created in the previous chapter, this time as an abstract class:
 
@@ -254,7 +260,7 @@ class TextProductWriter extends ShopProductWriter {
 
 I create two classes, each with its own implementation of the write() method. The first outputs XML and the second outputs text. A method that requires a ShopProductWriter object will not know which of these two classes it is receiving, but it can be absolutely certain that a write() method is implemented. Note that I don’t test the type of \$products before treating it as an array. This is because this property is initialized as an empty array in the ShopProductWriter.
 
-### 04. Interfaces
+### 4.4 Interfaces
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
@@ -334,7 +340,7 @@ class Consultancy extends TimedService implements Bookable, Chargeable {
 
 Notice that the Consultancy class implements more than one interface. Multiple interfaces follow the implements keyword in a comma-separated list. PHP only supports inheritance from a single parent, so the extends keyword can precede a single class name only.
 
-### 05. Traits
+### 4.5 Traits
 
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. But what if you want to share an implementation across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
 
@@ -342,7 +348,7 @@ As we have seen, interfaces help you manage the fact that, like Java, PHP does n
 
 A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
 
-#### 5.1 A Problem for Traits to Solve
+#### 4.5.1 A Problem for Traits to Solve
 
 Here is a version of the ShopProduct class with a calculateTax() method:
 
@@ -380,7 +386,7 @@ $u = new UtilityService();
 print $u->calculateTax(100)."\n";
 ```
 
-#### 5.2 Defining and Using a Trait
+#### 4.5.2 Defining and Using a Trait
 
 One of the core object-oriented design goals I will cover in this book is the removal of duplication. As you will see in Chapter 11, one solution to this kind of duplication is to factor it out into a reusable strategy class. Traits provide another approach—less elegant, perhaps, but certainly effective. Here I declare a single trait that defines a calculateTax() method, and then I include it in both ShopProduct and UtilityService:
 
@@ -418,7 +424,7 @@ print $u->calculateTax(100) . "\n";
 
 I declare the PriceUtilities trait with the trait keyword. The body of a trait looks very similar to that of a class. It is simply a set of methods and properties collected within braces. Once I have declared it, I can access the PriceUtilities trait from within my classes. I do this with the use keyword followed by the name of the trait I wish to incorporate. So having declared and implemented the calculateTax() method in a single place, I go ahead and incorporate it into both the ShopProduct and the UtilityService classes.
 
-#### 5.3 Using More than One Trait
+#### 4.5.3 Using More than One Trait
 
 You can include multiple traits in a class by listing each one after the use keyword, separated by commas. In this example, I define and apply a new trait, IdentityTrait, keeping my original PriceUtilities trait:
 
@@ -444,7 +450,7 @@ By applying both PriceUtilities and IdentityTrait with the use keyword, I make t
 
 Note: the IdentityTrait trait provides the generateId() method. In fact, a database often generates identifiers for objects, but you might switch in a local implementation for testing purposes. You can find out more about objects, databases, and unique identifiers in Chapter 12, which covers the Identity Map pattern. You can learn more about testing and mocking in Chapter 18.
 
-#### 5.4 Combining Traits and Interfaces
+#### 4.5.4 Combining Traits and Interfaces
 
 Although traits are useful, they don’t change the type of the class to which they are applied. So when you apply the IdentityTrait trait to multiple classes, they won’t share a type that could be hinted for in a method signature. Luckily, traits play well with interfaces. I can define an interface that requires a generateId() method, and then declare that ShopProduct implements it:
 
@@ -481,7 +487,7 @@ print $p->calculateTax(100) . "\n";
 print $p->generateId() . "\n";
 ```
 
-#### 5.5 Managing Method Name Conflicts with insteadof
+#### 4.5.5 Managing Method Name Conflicts with insteadof
 
 The ability to combine traits is a nice feature, but sooner or later conflicts are inevitable. Consider what would happen, for example, if I were to use two traits that provide a calculateTax() method:
 
@@ -541,7 +547,7 @@ The preceding snippet means,「Use the calculateTax() method of TaxTools instead
 
     222
 
-#### 5.6 Aliasing overridden trait methods
+#### 4.5.6 Aliasing overridden trait methods
 
 We have seen that you can use insteadof to disambiguate between methods. What do you do, though, if you want to then access the overridden method? The as operator allows you to alias trait methods. Once again, the as operator requires a full reference to a method on its left-hand side. On the right-hand side of the operator, you should put the name of the alias. So here, for example, I reinstate the calculateTax() method of the PriceUtilities trait using the new name basicTax():
 
@@ -570,7 +576,7 @@ Note: Where a method name clashes between traits, it is not enough to alias one 
 
 Incidentally, you can also use method name aliasing where there is no name clash. You might, for example, want to use a trait method to implement an abstract method signature declared in a parent class or in an interface.
 
-#### 5.7 Using static methods in traits
+#### 4.5.7 Using static methods in traits
 
 Most of the examples you have seen so far could use static methods because they do not store instance data. There’s nothing complicated about placing a static method in a trait. Here I change the PriceUtilities::\$taxrate property and the PriceUtilities::calculateTax() methods so that they are static:
 
@@ -599,7 +605,7 @@ As you might expect, this script outputs the following:
 
 So, static methods are declared in traits and accessed via the host class in the normal way.
 
-#### 5.8 Accessing Host Class Properties
+#### 4.5.8 Accessing Host Class Properties
 
 You might assume that static methods are really the only way to go as far as traits are concerned. Even trait methods that are not declared static are essentially static in nature, right? Well, wrong, in fact—you can access properties and methods in a host class:
 
@@ -627,7 +633,7 @@ In the preceding code, I amend the PriceUtilities trait so that it accesses a pr
 
 On the other hand, it would be great to be able to establish a contract that says, essentially,「If you use this trait, then you must provide it certain resources.」In fact, you can achieve exactly this effect. Traits support abstract methods.
 
-#### 5.9 Defining Abstract Methods in Traits
+#### 4.5.9 Defining Abstract Methods in Traits
 
 You can define abstract methods in a trait in just the same way you would in a class. When a trait is used by a class, it takes on the commitment to implement any abstract methods it declares. Armed with this knowledge, I can reimplement my previous example so that the trait forces the using class to provide tax rate information:
 
@@ -658,7 +664,7 @@ By declaring an abstract getTaxRate() method in the PriceUtilities trait, I forc
 
 You could overcome this to some extent by writing all sorts of checking routines, but this misses the point. It is probably adequate just to signal to a client coder that she should provide certain information by requiring the implementation of a method or two.
 
-#### 5.10 Changing Access Rights to Trait Methods
+#### 4.5.10 Changing Access Rights to Trait Methods
 
 You can, of course, declare a trait method public, private, or protected. However, you can also change this access from within the class that uses the trait. You have already seen that the as operator can be used to alias a method name. If you use an access modifier on the right-hand side of this operator, it will change the method’s access level rather than its name.
 

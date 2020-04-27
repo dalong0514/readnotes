@@ -1471,10 +1471,50 @@ Let's create a new SFC for the main template and call it ListingPage, as this pa
 
 We'll move the main template, root configuration and any relevant CSS into this component. Take note of the following: 1) We need to put the template inside a wrapping div as components must have a single root element. 2) We can now remove the @ escapes as this file won't be processed by Blade. 3) The component is now adjacent to the other components we created, so be sure to change the relative paths of the imports.
 
+1『注意点：这个根组件必须最外层有个 \<div> 标签；数据绑定可以移除 @ 了，在根组件里不会跟 blade 冲突了；导入其他组件的文路径得改了。』
+
 resource/assets/components/ListingPage.vue:
 
 ```js
+<template>
+    <div>
+        ...
+    </div>
+</template>
 
+<script>
+    import { populateAmenitiesAndPrices } from '../js/helpers';
+    import ImageCarousel from './ImageCarousel.vue';
+    import ModalWindow from './ModalWindow.vue';
+    import HeaderImage from './HeaderImage.vue';
+    import FeatureList from './FeatureList.vue';
+    import ExpandableText from './ExpandableText.vue';
+
+    let model = JSON.parse(window.vuebnb_listing_model);
+    model = populateAmenitiesAndPrices(model);
+
+    export default {
+        data() {
+            return Object.assign(model, {});
+        },
+        components: { 
+            ImageCarousel,
+            ModalWindow,
+            HeaderImage,
+            FeatureList,
+            ExpandableText,
+        },
+        methods: {
+            openModal() {
+                this.$refs.imagemodal.modalOpen = true;
+            }
+        },
+}
+</script>
+
+<style>
+...
+</style>
 ```
 
 ### 6.27 Mounting the root-level component with a render function
@@ -1484,7 +1524,9 @@ Now the mount element in our main template will be empty. We need to declare the
 resources/views/app.blade.php:
 
 ```html
-<body> <div id="toolbar"> <img class="icon" src="{{ asset('images/logo.png') }}"> <h1>vuebnb</h1> </div> <div id="app"> <listing></listing> </div> <script src="{{ asset('js/app.js') }}"></script> </body>
+<div id="app">
+    <listing-page></listing-page>
+</div>
 ```
 
 If we do it like that, we wouldn't fully eliminate all string and DOM templates from our app, so we'll keep the mount element empty.
@@ -1502,10 +1544,20 @@ We can now declare Listing with a render function inside our root instance.
 resources/assets/js/app.js:
 
 ```js
-import "core-js/fn/object/assign"; import Vue from 'vue'; import ListingPage from '../components/ListingPage.vue'; var app = new Vue({ el: '#app', render: h => h(ListingPage) });
+// import "core-js/fn/object/assign";
+// window.Vue = require('vue');
+import Vue from 'vue';
+import ListingPage from '../components/ListingPage.vue';
+
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    render: h => h(ListingPage),
+    // components: {ListingPage},
+});
 ```
 
-1『又往上抽象了一层，太赞了。但要不要抽象到这层还得考虑下。（2020-04-26）』
+1『又往上抽象了一层，太赞了。』
 
 To avoid getting side-tracked, I won't explain the syntax of render functions here, as this is the only one we'll write throughout the book. If you'd like to learn more about render functions, check out the Vue.js documentation at https://vuejs.org/.
 
@@ -1516,30 +1568,34 @@ Now that Vuebnb is no longer using string or DOM templates, we don't need the te
 抽象到单页后报错：
 
 ```html
-ERROR in ./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e& (./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e&)
-Module Error (from ./node_modules/vue-loader/lib/loaders/templateLoader.js):
-(Emitted value instead of an instance of Error)
+Errors compiling template:
 
-  Errors compiling template:
+tag <image-carousel> has no matching end tag.
 
-  tag <image-carousel> has no matching end tag.
+28 |      </div>
+29 |      <modal-window ref="imagemodal">
+30 |          <image-carousel :images="images"><image-carousel/>
+ |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+31 |      </modal-window>
+32 |  </div>
 
-  28 |      </div>
-  29 |      <modal-window ref="imagemodal">
-  30 |          <image-carousel :images="images"><image-carousel/>
-     |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  31 |      </modal-window>
-  32 |  </div>
-
- @ ./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e& 1:0-215 1:0-215
- @ ./resources/assets/components/ListingPage.vue
- @ ./resources/assets/js/app.js
- @ multi ./resources/assets/js/app.js
+@ ./resources/assets/components/ListingPage.vue?vue&type=template&id=3e09ee1e& 1:0-215 1:0-215
+@ ./resources/assets/components/ListingPage.vue
+@ ./resources/assets/js/app.js
+@ multi ./resources/assets/js/app.js
 ```
 
+找了半天发现是 \<image-carousel> 写错了，改为：
+
+```
+<modal-window ref="imagemodal">
+    <image-carousel :images="images"></image-carousel> 
+</modal-window>
+```
+
+又一次体验到「细节」的重要性。
 
 』
-
 
 ### 6.28 Vue.js builds
 
@@ -1576,6 +1632,8 @@ The rows of the table are split into two types: full or runtime, and with or wit
 
 Note that there is only a UMD version of the production build as only UMD runs directly in a browser. CommonJS and ES Module are to be used in conjunction with a build tool, like Webpack, which provides its own production processing.
 
+1『应该是要选 ES Module，只有 ES Module 和 CommonJS 可以跟 Webpack 结合。ES Module 里面又有 2 个：vue.esm.js 和 vue.runtime.esm.js，vue.esm.js 生产环境用，而 vue.runtime.esm.js 开发环境用。』
+
 #### 6.28.3 Full build vs runtime-only
 
 As we've been discussing, Vue includes a template compiler for converting any string or DOM templates to render functions at runtime. The full build includes the template compiler and is what you would normally use. However, if you've already transformed your templates into render functions in development, you can use the runtime-only build, which drops the compiler and is about 30% smaller!
@@ -1585,6 +1643,8 @@ As we've been discussing, Vue includes a template compiler for converting any st
 A good build for Vuebnb is vue.runtime.esm.js since we're using Webpack and we don't need the template compiler. We could also use vue.runtime.common.js, but that wouldn't be consistent with our use of ES modules elsewhere in the project. In practice, though, there is no difference as Webpack will process them in the same way.
 
 Remember that we include Vue at the top of our entry file with the statement import Vue from 'vue'. The last 'vue' is an alias to the Vue build that Webpack resolves when it runs. Currently, this alias is defined within the default Mix configuration and is set to the build vue.common.js. We can override that configuration by adding the following to the bottom of our webpack.mix.js file.
+
+1『默认加载的是 vue.common.js。』
 
 ```js
 webpack.mix.js:
@@ -1606,15 +1666,69 @@ Figure 6.17. The difference between bundle sizes after applying the runtime-only
 
 Keep in mind that without the template compiler we can no longer provide string templates for our components. Doing so will cause an error at runtime. That shouldn't be a problem though since we've got the far more powerful option of SFCs.
 
+1『我还是改为默认的构建工具「vue.common.js」，性能差点无所谓，按作者的意思如果不使用 SFCs，即涉及到模板编译的时候，vue.runtime.esm.js 应该有问题。现在不确定是否是这个意思。（2020-04026）』
+
 ## 0701. Building a Multi-Page App with Vue Router
 
 In the last chapter, we learned about Vue.js components and converted Vuebnb to a component-based architecture. Now that we've done this, we can easily add new pages to our app using Vue Router. In this chapter, we'll create a home page for Vuebnb, including a gallery of clickable thumbnails that showcase the full set of mock listings.
 
 Topics covered in this chapter: 1) An explanation of what router libraries are and why they are a critical part of single-page applications. 2) An overview of Vue Router and its main features. 3) Installation and basic configuration of Vue Router. 4) Using the RouterLink and RouterView special components to manage page navigation. 5) Setting up AJAX with Vue to retrieve data from the web service without a page refresh. 7) Using route navigation guards to retrieve data before a new page is loaded.
 
+3『官方文档：[Introduction | Vue Router](https://router.vuejs.org/)。』
+
 ### Summary
 
 In this chapter, we learned how router libraries work and why they are a crucial addition to SPAs. We then got familiar with the key features of Vue Router including the route object, navigation guards, and the RouterLink and RouterView special components. Putting this knowledge into practice, we installed Vue Router and configured it for use in our app. We then built a home page for Vuebnb, including a gallery of listing summaries organized within image sliders. Finally, we implemented an architecture for correctly matching pages with either available local data or new data retrieved from the web service via AJAX.
 
 Now that we have a substantial number of components in our app, many of which communicate data between one another, it's time to investigate another key Vue.js tool: Vuex. Vuex is a Flux-based library that offers a superior way of managing application state.
+
+### 7.1 Single-page applications
+
+Most websites are broken up into pages in order to make the information they contain easier to consume. Traditionally this is done with a server/client model, where each page must be loaded from the server with a different URL. To navigate to a new page, the browser must send a request to the URL of that page. The server will send the data back and the browser can unload the existing page and load the new one. For the average internet connection, this process will likely take a few seconds, during which the user must wait for the new page to load.
+
+By using a powerful frontend framework and an AJAX utility, a different model is possible: the browser can load an initial web page, but navigating to new pages will not require the browser to unload the page and load a new one. Instead, any data required for new pages can be loaded asynchronously with AJAX. From a user's perspective, such a website would appear to have pages just like any other, but from a technical perspective, this site really only has one page. Hence the name, Single-Page Application (SPA).
+
+2『解释了 SPA 架构的概念，以及其利弊。做张术语卡片。』
+
+The advantage of the Single-Page Application architecture is that it can create a more seamless experience for the user. Data for new pages must still be retrieved, and will therefore create some small disruption to the user's flow, but this disruption is minimized since the data retrieval can be done asynchronously and JavaScript can continue to run. Also, since SPA pages usually require less data due to the reuse of some page elements, page loading is quicker.
+
+The disadvantage of the SPA architecture is that it makes the client app bulkier due to the added functionality, so gains from speeding up page changes may be negated by the fact that the user must download a large app on the first page load. Also, handling routes adds complexity to the app as multiple states must be managed, URLs must be handled, and a lot of default browser functionality must be recreated in the app.
+
+### 7.2 Routers
+
+If you are going with an SPA architecture and your app design includes multiple pages, you'll want to use a router. A router, in this context, is a library that will mimic browser navigation through JavaScript and various native APIs so that the user gets an experience similar to that of a traditional multi-page app. Routers will typically include functionality to: 1) Handle navigation actions from within the page. 2) Match parts of the application to routes. 3) Manage the address bar. 4) Manage the browser history. 5) Manage scroll bar behavior.
+
+2『路由的概念做张术语卡。』
+
+#### 7.2.1 Vue Router
+
+Some frontend frameworks, such as Angular or Ember, include a router library out-of-the-box. The philosophy guiding these frameworks is that the developer is better served with a complete, integrated solution for their SPA. Others frameworks/libraries, such as React and Vue.js, do not include a router. Instead, you must install a separate library.
+
+In the case of Vue.js, an official router library is available called Vue Router. This library has been developed by the Vue.js core team, so it is optimized for usage with Vue.js and makes full use of fundamental Vue features such as components and reactivity.
+
+With Vue Router, different pages of the application are represented by different components. When you set up Vue Router, you will pass in configuration to tell it which URLs map to which component. Then, when a link is clicked in the app, Vue Router will swap the active component so as to match the new URL, for example:
+
+```js
+let routes = [ 
+    { path: '/', component: HomePage }, 
+    { path: '/about', component: AboutPage }, 
+    { path: '/contact', component: ContactPage } 
+];
+```
+
+Since rendering a component is an almost instantaneous process in normal circumstances, the transition between pages with Vue Router is as well. However, there are asynchronous hooks that can be invoked to give you the opportunity to load new data from the server, if your different pages require it.
+
+#### 7.2.2 Special components
+
+When you install Vue Router, two components are registered globally for use throughout your app: RouterLink and RouterView. 1) RouterLink is generally used in place of a tags and gives your links access to the special features of Vue Router. As explained, Vue Router will swap designated page components as a way of mimicking browser navigation. 2) RouterView is the outlet in which this component swap takes place. Like a slot, you put it somewhere in your main page template. For example:
+
+```html
+<div id="app"> 
+    <header></header> 
+    <router-view> 
+        // This is where different page components display 
+    </router-view> 
+    <footer></footer> 
+</div>
+```
 
