@@ -2239,4 +2239,309 @@ app/Http/Controllers/ListingController.php:
     }
 ```
 
+1『
+
+目前首页没问题，但详细页面报错：
+
+```
+$data is undefined
+Make the variable optional in the blade template. Replace {{ $data }} with {{ $data ?? '' }}
+
+Make variable optional
+```
+
+』
+
+### 7.6 Adding the thumbnail
+
+Each mock listing has a thumbnail version of the first image, which can be used for the listing summary. The thumbnail is much smaller than the image we use for the header of the listing page and is ideal for the listing summaries on the home page. The URL for the thumbnail is public/images/{x}/Image\_1\_thumb.jpg where {x} is the ID of the listing.
+
+Collection objects have a helper method, transform, that we can use to add the thumbnail image URL to each listing. transform accepts a callback closure function that is called once per item, allowing you to modify that item and return it to the collection without fuss.
+
+2『又见到 Collection 对象，感觉很重要，larave-excel 里也用到，去研究下其具体信息。（2020-04-27）』
+
+app/Http/Controllers/ListingController.php:
+
+```php
+    // home page
+    public function get_home_web()
+    {
+        $collection = ListingModel::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        // 增加 thumb 图片的 url
+        $collection->transform(function($listing) {
+            $listing->thumb = asset(
+                'images/' . $listing->id . '/Image_1_thumb.jpg'
+            );
+            return $listing;
+        });
+        $data = collect(['listing' => $collection->toArray()]);
+        return view('app', ['data' => $data]);
+    }
+```
+
+1『感觉又是个关键知识点，可以在原有的数据中额外增加字段属性。』
+
+### 7.7 Receiving in the client
+
+With the initial state now ready, let's add it to our HomePage component. Before we can use it though there's an additional aspect we need to consider: the listing summaries are grouped by country. Look again at Figure 7.7 to see how these groups are displayed.
+
+After we've parsed our injected data, let's modify the object so the listings are grouped by country. We can easily create a function to do this, as every listing object has an address property in which the country is always explicitly named, for example, No. 51, Hanzhong Street, Wanhua District, Taipei City, Taiwan 108. To save you having to write this function, I have supplied one in the helpers module called groupByCountry which can be imported at the top of the component configuration.
+
+1『
+
+找到了 helper.js 里该函数的实现：
+
+```js
+let groupByCountry = function (listings) {
+  if (!listings) return {};
+  return listings.reduce(function (rv, x) {
+    let key = ['Taiwan', 'Poland', 'Cuba'].find(country => x.address.indexOf(country) > -1);
+    if (!rv[key]) {
+      rv[key] = [];
+    }
+    rv[key].push(x);
+    return rv;
+  }, {});
+};
+
+export { groupByCountry };
+```
+
+上面的函数实现值得好好研究。
+
+』
+
+
+resources/assets/components/HomePage.vue:
+
+```js
+... 
+<script> 
+    import { groupByCountry } from '../js/helpers'; 
+    
+    let serverData = JSON.parse(window.vuebnb_server_data); 
+    let listing_groups = groupByCountry(serverData.listings); 
+    
+    export default { 
+        data() { 
+            return { listing_groups } 
+        } 
+    } 
+</script>
+```
+
+1『
+
+发现报错说没有 reduce() 这个方法，发现传参传错了，是 serverData.listings 而非 serverData，serverData 是个对象。改完后发现获取的数据是空值，结果发现之前做数据的时候把对象里的属性名做成了「listing」而非作者的「listings」，改下即可。
+
+serverData 是个对象这也是个关键知识点。
+
+```
+return Object.assign(serverData, {});
+```
+
+Object.assign() 函数里的第一个参数只能是个对象。
+
+』
+
+We'll now see through Vue Devtools that HomePage has successfully loaded the listing summaries, grouped by country and ready for display:
+
+### 7.8 ListingSummary component
+
+Now that the HomePage component has data available, we can work on displaying it. To begin with, clear out the existing content of the component and replace it with a div. This div will feature a v-for directive to iterate through each of our listing groups. Since listing\_groups is an object with key/value pairs, we'll give our v-for two aliases: group and country, which are the value and key of each object item respectively.
+
+We will interpolate country inside a heading. group will be used in the next section.
+
+resources/assets/components/HomePage.vue:
+
+```html
+<template>
+    <div>
+        <div v-for="(group, country) in listing_groups">
+            <h1>Places in {{ country }}</h1>
+        </div>
+        Each listing will go here
+    </div>
+</template>
+
+<script>...</script>
+```
+
+This is what the home page will now look like:
+
+Figure 7.9. Iterating the listing summary groups in the HomePage component
+
+Since each listing summary will be of some complexity, we'll create a separate component, ListingSummary, for displaying them:
+
+    $ touch resources/assets/components/ListingSummary.vue
+
+Let's declare ListingSummary within our HomePage template. We'll again use a v-for directive to iterate group, an array, creating a new instance of ListingSummary for each member. The data for each member will be bound to a single prop, listing.
+
+resources/assets/components/HomePage.vue:
+
+```html
+<template>
+    <div>
+        <div v-for="(group, country) in listing_groups">
+            <h1>Places in {{ country }}</h1>
+            <div class="listing-summaries">
+                <listing-summary v-for="listing in group" :key="listing.id"
+                :listing="listing"></listing-summary>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { groupByCountry } from '../js/helpers';
+import ListingSummary from './ListingSummary';
+
+let serverData = JSON.parse(window.vuebnb_server_data);
+let listing_groups = groupByCountry(serverData.listing);
+
+export default {
+    data() {
+        return { listing_groups }
+    },
+    components: {
+        ListingSummary,
+    },
+}
+</script>
+```
+
+Let's create some simple content for the ListingSummary component, just to test our approach.
+
+resources/assets/components/ListingSummary.vue:
+
+```html
+<template>
+    <div class="listing-summary">
+        {{ listing.address }}
+    </div>
+</template>
+
+<script>
+export default {
+    props: ['listing'],
+}
+</script>
+```
+
+Refreshing our page, we'll now see this prototype of our listing summaries:
+
+Figure 7.10. Prototype of ListingSummary component
+
+Since this approach is working, let's now complete the structure of the ListingSummary component. To display the thumbnail, we bind it as a background image for a fixed width/height div. We'll also need some CSS rules to get this displaying nicely.
+
+resources/assets/components/ListingSummary.vue:
+
+```html
+<template>
+    <div class="listing-summary">
+        <div class="wrapper">
+            <div class="thumbnail" :style="backgroundImageStyle"></div>
+            <div class="info title">
+                <span>{{ listing.price_per_night }}</span>
+                <span>{{ listing.title }}</span>
+            </div>
+            <div class="info address">{{ listing.address }}</div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: ['listing'],
+        computed: {
+            backgroundImageStyle() {
+                return {
+                    'background-image': `url("${this.listing.thumb}")`
+                }
+            }
+        },
+    }
+</script>
+
+<style>
+...
+</style>
+```
+
+1『
+
+```
+.listing-summary .thumbnail {
+    max-width: 350px;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+```
+
+添加完上面代码后，图片才显示出来的。
+
+』
+
+After you add that code, your listing summaries will look like this:
+
+Figure 7.11. Complete listing summaries being displayed
+
+We gave each listing summary a fixed width/height so that we could display them in a neat grid. Currently, they're displaying in one tall column, so let's add some CSS flex rules to the HomePage component to get the summaries into rows. We'll add a class listing-summary-group to the element that wraps the summaries. We'll also add a class home-container to the root div to constrain the width of the page and center the content.
+
+resources/assets/components/HomePage.vue:
+
+```js
+<template>
+    <div class="home-container">
+        <div v-for="(group, country) in listing_groups">
+            <h1>Places in {{ country }}</h1>
+            <div class="listing-summaries">
+                <listing-summary v-for="listing in group" :key="listing.id"
+                :listing="listing"></listing-summary>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import ListingSummary from './ListingSummary';
+
+    let serverData = JSON.parse(window.vuebnb_server_data);
+    let listing_groups = groupByCountry(serverData.listing);
+
+    export default {
+        data() {
+            return { listing_groups }
+        },
+        components: {
+            ListingSummary,
+        },
+    }
+</script>
+
+<style>
+...
+</style>
+```
+
+Finally, we'll need to add a rule to prevent the listings from forcing the edge of the document to exceed the viewport. Add this to the main CSS file.
+
+resources/assets/css/style.css:
+
+```css
+html, body { 
+    overflow-x: hidden; 
+}
+```
+
+You'll notice that at full page width, we can only see three listings from each country group. The other seven are hidden by the CSS overflow: hidden rule. Soon, we'll be adding image slider functionality to each group to allow the user to browse through all the listings.
+
+
+
+
+
 

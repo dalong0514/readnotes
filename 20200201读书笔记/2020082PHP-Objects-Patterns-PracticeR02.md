@@ -274,7 +274,7 @@ I create two classes, each with its own implementation of the write() method. Th
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
-1『接口才是纯模板，它只定义函数，而且这个函数还没函数体。。』
+1『接口才是纯模板，它只定义函数，而且这个函数没函数体。』
 
 ```php
 // listing 04.08
@@ -302,7 +302,15 @@ class ShopProduct implements Chargeable {
 
 ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements. This means that the CdProduct class belongs to the following:
 
-1『上面说了接口的用途，应该是跟类型有关，目前没弄明白。（2020-04-27）』
+1『
+
+上面说了接口的用途，应该是跟类型有关，目前没弄明白。目前知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，没实现一个接口对应着一个「type」。2）跟 traits 结合起来用。（2020-04-27）
+
+回复：
+
+As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. 
+
+』
 
 ```
 CdProduct
@@ -569,7 +577,7 @@ The preceding snippet means,「Use the calculateTax() method of TaxTools instead
 
 We have seen that you can use insteadof to disambiguate between methods. What do you do, though, if you want to then access the overridden method? The as operator allows you to alias trait methods. Once again, the as operator requires a full reference to a method on its left-hand side. On the right-hand side of the operator, you should put the name of the alias. So here, for example, I reinstate the calculateTax() method of the PriceUtilities trait using the new name basicTax():
 
-```
+```php
 // listing 04.31
 class UtilityService extends Service {
     use PriceUtilities, TaxTools {        
@@ -592,14 +600,17 @@ So PriceUtilities::calculateTax() has been resurrected as part of the UtilitySer
 
 Note: Where a method name clashes between traits, it is not enough to alias one of the method names in the use block. You must first determine which method supercedes the other using the insteadof operator. then you can reassign the discarded method a new name with the as operator.
 
+1『只是用别名是没用的，必须先用 insteadof 语句确定默认哪个方法。』
+
 Incidentally, you can also use method name aliasing where there is no name clash. You might, for example, want to use a trait method to implement an abstract method signature declared in a parent class or in an interface.
 
 #### 4.5.7 Using static methods in traits
 
 Most of the examples you have seen so far could use static methods because they do not store instance data. There’s nothing complicated about placing a static method in a trait. Here I change the PriceUtilities::\$taxrate property and the PriceUtilities::calculateTax() methods so that they are static:
 
-```
-// listing 04.33trait PriceUtilities {
+```php
+// listing 04.33
+trait PriceUtilities {
     private static $taxrate = 17;
     public static function calculateTax(float $price): float    {        
         return ((self::$taxrate / 100) * $price);    
@@ -639,7 +650,8 @@ trait PriceUtilities {
 
 // listing 04.37
 class UtilityService extends Service {    
-    public $taxrate = 17;    use PriceUtilities;
+    public $taxrate = 17;    
+    use PriceUtilities;
 }
 
 // listing 04.38
@@ -650,6 +662,8 @@ print $u->calculateTax(100) . "\n";
 In the preceding code, I amend the PriceUtilities trait so that it accesses a property in its host class. If you think that this is bad design, you’re right. It’s spectacularly bad design. Although it’s useful for the trait to access data set by its host class, there is nothing to require the UtilityService class to actually provide a \$taxrate property. Remember that traits should be usable across many different classes. What is the guarantee or even the likelihood that any host classes will declare a \$taxrate?
 
 On the other hand, it would be great to be able to establish a contract that says, essentially,「If you use this trait, then you must provide it certain resources.」In fact, you can achieve exactly this effect. Traits support abstract methods.
+
+1『使用 traits 要注意的一点是「Traits support abstract methods」，上面作者表达的注意事项目前没弄透。（2020-04-27）』
 
 #### 4.5.9 Defining Abstract Methods in Traits
 

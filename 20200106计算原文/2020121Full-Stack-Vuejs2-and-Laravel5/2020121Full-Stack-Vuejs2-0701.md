@@ -571,6 +571,19 @@ app/Http/Controllers/ListingController.php:
     }
 ```
 
+1『
+
+目前首页没问题，但详细页面报错：
+
+```
+$data is undefined
+Make the variable optional in the blade template. Replace {{ $data }} with {{ $data ?? '' }}
+
+Make variable optional
+```
+
+』
+
 ## 7.6 Adding the thumbnail
 
 Each mock listing has a thumbnail version of the first image, which can be used for the listing summary. The thumbnail is much smaller than the image we use for the header of the listing page and is ideal for the listing summaries on the home page. The URL for the thumbnail is public/images/{x}/Image\_1\_thumb.jpg where {x} is the ID of the listing.
@@ -582,38 +595,113 @@ Collection objects have a helper method, transform, that we can use to add the t
 app/Http/Controllers/ListingController.php:
 
 ```php
-public function get_home_web() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); $data = collect(['listings' => $collection->toArray()]); return view('app', ['data' => $data]); } /* [ "listings" => [ 0 => [ "id" => 1, "address" => "...", "title" => "...", "price_per_night" => "...", "thumb" => "..." ] 1 => [ ... ] ... 29 => [ ... ] ] ] */
+    // home page
+    public function get_home_web()
+    {
+        $collection = ListingModel::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        // 增加 thumb 图片的 url
+        $collection->transform(function($listing) {
+            $listing->thumb = asset(
+                'images/' . $listing->id . '/Image_1_thumb.jpg'
+            );
+            return $listing;
+        });
+        $data = collect(['listing' => $collection->toArray()]);
+        return view('app', ['data' => $data]);
+    }
 ```
 
-## Receiving in the client
+1『感觉又是个关键知识点，可以在原有的数据中额外增加字段属性。』
+
+## 7.7 Receiving in the client
 
 With the initial state now ready, let's add it to our HomePage component. Before we can use it though there's an additional aspect we need to consider: the listing summaries are grouped by country. Look again at Figure 7.7 to see how these groups are displayed.
 
-After we've parsed our injected data, let's modify the object so the listings are grouped by country. We can easily create a function to do this, as every listing object has an address property in which the country is always explicitly named, for example, No. 51, Hanzhong Street, Wanhua District, Taipei City, Taiwan 108.
+After we've parsed our injected data, let's modify the object so the listings are grouped by country. We can easily create a function to do this, as every listing object has an address property in which the country is always explicitly named, for example, No. 51, Hanzhong Street, Wanhua District, Taipei City, Taiwan 108. To save you having to write this function, I have supplied one in the helpers module called groupByCountry which can be imported at the top of the component configuration.
 
-To save you having to write this function, I have supplied one in the helpers module called groupByCountry which can be imported at the top of the component configuration.
+1『
+
+找到了 helper.js 里该函数的实现：
+
+```js
+let groupByCountry = function (listings) {
+  if (!listings) return {};
+  return listings.reduce(function (rv, x) {
+    let key = ['Taiwan', 'Poland', 'Cuba'].find(country => x.address.indexOf(country) > -1);
+    if (!rv[key]) {
+      rv[key] = [];
+    }
+    rv[key].push(x);
+    return rv;
+  }, {});
+};
+
+export { groupByCountry };
+```
+
+上面的函数实现值得好好研究。
+
+』
+
 
 resources/assets/components/HomePage.vue:
 
-... <script> import { groupByCountry } from '../js/helpers'; let serverData = JSON.parse(window.vuebnb_server_data); let listing_groups = groupByCountry(serverData.listings); export default { data() { return { listing_groups } } } </script>
+```js
+... 
+<script> 
+    import { groupByCountry } from '../js/helpers'; 
+    
+    let serverData = JSON.parse(window.vuebnb_server_data); 
+    let listing_groups = groupByCountry(serverData.listings); 
+    
+    export default { 
+        data() { 
+            return { listing_groups } 
+        } 
+    } 
+</script>
+```
+
+1『
+
+发现报错说没有 reduce() 这个方法，发现传参传错了，是 serverData.listings 而非 serverData，serverData 是个对象。改完后发现获取的数据是空值，结果发现之前做数据的时候把对象里的属性名做成了「listing」而非作者的「listings」，改下即可。
+
+serverData 是个对象这也是个关键知识点。
+
+```
+return Object.assign(serverData, {});
+```
+
+Object.assign() 函数里的第一个参数只能是个对象。
+
+』
 
 We'll now see through Vue Devtools that HomePage has successfully loaded the listing summaries, grouped by country and ready for display:
 
 Figure 7.8. Vue Devtools showing the state of the HomePage component
 
-## ListingSummary component
+## 7.8 ListingSummary component
 
-Now that the HomePage component has data available, we can work on displaying it.
-
-To begin with, clear out the existing content of the component and replace it with a div. This div will feature a v-for directive to iterate through each of our listing groups. Since listing_groups is an object with key/value pairs, we'll give our v-for two aliases: group and country, which are the value and key of each object item respectively.
+Now that the HomePage component has data available, we can work on displaying it. To begin with, clear out the existing content of the component and replace it with a div. This div will feature a v-for directive to iterate through each of our listing groups. Since listing\_groups is an object with key/value pairs, we'll give our v-for two aliases: group and country, which are the value and key of each object item respectively.
 
 We will interpolate country inside a heading. group will be used in the next section.
 
 resources/assets/components/HomePage.vue:
 
-<template> <div> <div v-for="(group, country) in listing_groups"> <h1>Places in {{ country }}</h1> <div> Each listing will go here </div> </div> </div> </template>
+```html
+<template>
+    <div>
+        <div v-for="(group, country) in listing_groups">
+            <h1>Places in {{ country }}</h1>
+        </div>
+        Each listing will go here
+    </div>
+</template>
 
 <script>...</script>
+```
 
 This is what the home page will now look like:
 
@@ -627,15 +715,54 @@ Let's declare ListingSummary within our HomePage template. We'll again use a v-f
 
 resources/assets/components/HomePage.vue:
 
-<template> <div> <div v-for="(group, country) in listing_groups"> <h1>Places in {{ country }}</h1> <div class="listing-summaries"> <listing-summary v-for="listing in group" :key="listing.id" :listing="listing" ></listing-summary> </div> </div> </div> </template> <script> import { groupByCountry } from '../js/helpers';
+```html
+<template>
+    <div>
+        <div v-for="(group, country) in listing_groups">
+            <h1>Places in {{ country }}</h1>
+            <div class="listing-summaries">
+                <listing-summary v-for="listing in group" :key="listing.id"
+                :listing="listing"></listing-summary>
+            </div>
+        </div>
+    </div>
+</template>
 
-import ListingSummary from './ListingSummary.vue'; let serverData = JSON.parse(window.vuebnb_server_data); let listing_groups = groupByCountry(serverData.listings); export default { data() { return { listing_groups } }, components: { ListingSummary } } </script>
+<script>
+import { groupByCountry } from '../js/helpers';
+import ListingSummary from './ListingSummary';
+
+let serverData = JSON.parse(window.vuebnb_server_data);
+let listing_groups = groupByCountry(serverData.listing);
+
+export default {
+    data() {
+        return { listing_groups }
+    },
+    components: {
+        ListingSummary,
+    },
+}
+</script>
+```
 
 Let's create some simple content for the ListingSummary component, just to test our approach.
 
 resources/assets/components/ListingSummary.vue:
 
-<template> <div class="listing-summary"> {{ listing.address }} </div> </template> <script> export default { props: [ 'listing' ], } </script>
+```html
+<template>
+    <div class="listing-summary">
+        {{ listing.address }}
+    </div>
+</template>
+
+<script>
+export default {
+    props: ['listing'],
+}
+</script>
+```
 
 Refreshing our page, we'll now see this prototype of our listing summaries:
 
@@ -645,29 +772,170 @@ Since this approach is working, let's now complete the structure of the ListingS
 
 resources/assets/components/ListingSummary.vue:
 
-<template> <div class="listing-summary"> <div class="wrapper"> <div class="thumbnail" :style="backgroundImageStyle"></div> <div class="info title"> <span>{{ listing.price_per_night }}</span> <span>{{ listing.title }}</span> </div> <div class="info address">{{ listing.address }}</div> </div> </div> </template> <script> export default { props: [ 'listing' ], computed: { backgroundImageStyle() { return { 'background-image': `url("${this.listing.thumb}")` } } } } </script> <style> .listing-summary { flex: 0 0 auto; } .listing-summary a { text-decoration: none; } .listing-summary .wrapper { max-width: 350px; display: block; } .listing-summary .thumbnail { width: 350px; height: 250px; background-size: cover; background-position: center; } .listing-summary .info { color: #484848; word-wrap: break-word; letter-spacing: 0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .listing-summary .info.title { padding-top: 5px; font-weight: 700; font-size: 16px; line-height: 24px; } .listing-summary .info.address { font-size: 14px; line-height: 18px; } </style>
+```html
+<template>
+    <div class="listing-summary">
+        <div class="wrapper">
+            <div class="thumbnail" :style="backgroundImageStyle"></div>
+            <div class="info title">
+                <span>{{ listing.price_per_night }}</span>
+                <span>{{ listing.title }}</span>
+            </div>
+            <div class="info address">{{ listing.address }}</div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: ['listing'],
+        computed: {
+            backgroundImageStyle() {
+                return {
+                    'background-image': `url("${this.listing.thumb}")`
+                }
+            }
+        },
+    }
+</script>
+
+<style>
+    .listing-summary {
+        flex: 0 0 auto;
+    }
+
+    .listing-summary a {
+        text-decoration: none;
+    }
+
+    .listing-summary .wrapper {
+        max-width: 350px;
+        display: block;
+    }
+
+    .listing-summary .thumbnail {
+        max-width: 350px;
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .listing-summary .info {
+        color: #484844;
+        word-wrap: break-word;
+        letter-spacing: 02.px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .listing-summary .info title {
+        padding-top: 5px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .listing-summary .info.address {
+        font-size: 14px;
+        line-height: 18px;
+    }
+</style>
+```
+
+1『
+
+```
+.listing-summary .thumbnail {
+    max-width: 350px;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+```
+
+添加完上面代码后，图片才显示出来的。
+
+』
 
 After you add that code, your listing summaries will look like this:
 
 Figure 7.11. Complete listing summaries being displayed
 
-We gave each listing summary a fixed width/height so that we could display them in a neat grid. Currently, they're displaying in one tall column, so let's add some CSS flex rules to the HomePage component to get the summaries into rows.
-
-We'll add a class listing-summary-group to the element that wraps the summaries. We'll also add a class home-container to the root div to constrain the width of the page and center the content.
+We gave each listing summary a fixed width/height so that we could display them in a neat grid. Currently, they're displaying in one tall column, so let's add some CSS flex rules to the HomePage component to get the summaries into rows. We'll add a class listing-summary-group to the element that wraps the summaries. We'll also add a class home-container to the root div to constrain the width of the page and center the content.
 
 resources/assets/components/HomePage.vue:
 
-<template> <div class="home-container"> <div v-for="(group, country) in listing_groups" class="listing-summary-group" > ... </div> </div> </template> <script>...</script> <style> .home-container { margin: 0 auto; padding: 0 25px; } @media (min-width: 1131px) { .home-container { width: 1080px; } } .listing-summary-group { padding-bottom: 20px; } .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; overflow: hidden; } .listing-summaries > .listing-summary { margin-right: 15px; }
+```js
+<template>
+    <div class="home-container">
+        <div v-for="(group, country) in listing_groups">
+            <h1>Places in {{ country }}</h1>
+            <div class="listing-summaries">
+                <listing-summary v-for="listing in group" :key="listing.id"
+                :listing="listing"></listing-summary>
+            </div>
+        </div>
+    </div>
+</template>
 
-.listing-summaries > .listing-summary:last-child {
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import ListingSummary from './ListingSummary';
 
-margin-right: 0; } </style>
+    let serverData = JSON.parse(window.vuebnb_server_data);
+    let listing_groups = groupByCountry(serverData.listing);
+
+    export default {
+        data() {
+            return { listing_groups }
+        },
+        components: {
+            ListingSummary,
+        },
+    }
+</script>
+
+<style>
+    .home-container {
+        margin: 0 auto;
+        padding: 0 25px;
+    }
+
+    @media (min-width: 1131px) {
+        .home-container {
+            width: 1080px;
+        }
+    }
+
+    .listing-summary-group {
+        padding-bottom: 20px;
+    }
+
+    .listing-summaries {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+    .listing-summaries > .listing-summary {
+        margin-right: 15px;
+    }
+    .listing-summaries > .listing-summary:last-child {
+        margin-right: 0;
+    }
+</style>
+```
 
 Finally, we'll need to add a rule to prevent the listings from forcing the edge of the document to exceed the viewport. Add this to the main CSS file.
 
 resources/assets/css/style.css:
 
-html, body { overflow-x: hidden; }
+```css
+html, body { 
+    overflow-x: hidden; 
+}
+```
 
 With that, we get a nice looking home page:
 
@@ -675,47 +943,125 @@ Figure 7.12. Listing summaries in rows
 
 You'll notice that at full page width, we can only see three listings from each country group. The other seven are hidden by the CSS overflow: hidden rule. Soon, we'll be adding image slider functionality to each group to allow the user to browse through all the listings.
 
-## In-app navigation
+## 7.9 In-app navigation
 
 If we use the address bar of the browser to navigate to the home page, http://vuebnb.test/, it works because Laravel is now serving a page at this route. But, if we navigate to the home page from the listing page, there's no longer any page content:
 
 Figure 7.13. Empty home page after navigating from listing page
 
-We currently don't have any links to the listing page from the home page, but if we did, we'd experience a similar issue.
+We currently don't have any links to the listing page from the home page, but if we did, we'd experience a similar issue. The reason is that our page components currently get their initial state from the data we've injected into the head of the document. If we navigate to a different page using Vue Router, which doesn't invoke a page refresh, the next page component will have the wrong initial state merged in.
 
-The reason is that our page components currently get their initial state from the data we've injected into the head of the document. If we navigate to a different page using Vue Router, which doesn't invoke a page refresh, the next page component will have the wrong initial state merged in.
+1『这个问题之前就发现了，目前列表页面没有数据。』
 
 We need to improve our architecture so that when a page is navigated to we check if the model injected into the head matches the current page. To facilitate this, we'll add a path property to the model and check that it matches the active URL. If not, we'll use AJAX to get the right data from the web service:
+
+![](./res/2020011.png)
 
 Figure 7.14. How a page decides what data it needs
 
 If you're interested in reading more about this design pattern, check out the article Avoid This Common Anti-Pattern In Full-Stack Vue/Laravel Apps at https://vuejsdevelopers.com/2017/08/06/vue-js-laravel-full-stack-ajax/.
 
-## Adding a path to the model
+### 7.9.1 Adding a path to the model
 
-Let's go to the listing controller and add a path property to the data injected into the head of our view. To do this, we'll add a helper function called add_meta_data which will add the path, as well as some other meta properties in later chapters.
+Let's go to the listing controller and add a path property to the data injected into the head of our view. To do this, we'll add a helper function called add\_meta\_data which will add the path, as well as some other meta properties in later chapters.
 
 Note that the path of the current route can be determined by the Request object. This object can be declared as the last argument of any route-handling functions and is provided in each request by the service container.
 
 app/Http/Controllers/ListingController.php:
 
-...
+```php
+<?php
 
-private function add_meta_data($collection, $request) { return $collection->merge([ 'path' => $request->getPathInfo() ]); } public function get_listing_web(Listing $listing, Request $request) { $data = $this->get_listing($listing); $data = $this->add_meta_data($data, $request); return view('app', ['data' => $data]); } public function get_home_web(Request $request) { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); $data = collect(['listings' => $collection->toArray()]); $data = $this->add_meta_data($data, $request); return view('app', ['data' => $data]); } /* [ "listings" => [ ... ], "path" => "/" ] */
+namespace App\Http\Controllers;
 
-## Route navigation guards
+use Illuminate\Http\Request;
+use App\Models\ListingModel;
 
-Similar to lifecycle hooks, navigation guards allow you to intercept Vue Router navigations at a particular point in their life cycle. These guards can be applied to a specific component, a specific route, or to all routes.
+class ListingController extends Controller
+{
+    // refactoring methods
+    public function get_listing($listing)
+    {
+        $model = $listing->toArray();
+        for($i = 1; $i <=4; $i++) {
+            $model['image_' . $i] = asset('images/' . $listing->id . '/Image_' . $i . '.jpg');
+        }
+        return collect(['listing' => $model]);
+    }
 
-For example, afterEach is the navigation guard called after any route is navigated away from. You might use this hook to store analytics information, for example:
+    // adding a path to the model
+    private function add_meta_data($collection, $request) {
+        return $collection->merge([
+            'path' => $request->getPathInfo()
+        ]);
+    }
 
+    public function get_listing_api(ListingModel $listing)
+    {
+        $data = $this->get_listing($listing);
+        return response()->json($data);
+    }
+
+    public function get_listing_web(ListingModel $listing, Request $request)
+    {
+        $data = $this->get_listing($listing);
+        $data = $this->add_meta_data($data, $request);
+        return view('app', ['data' => $data]);
+    }
+
+    // home page
+    public function get_home_web(Request $request)
+    {
+        $collection = ListingModel::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        // 增加 thumb 图片的 url
+        $collection->transform(function($listing) {
+            $listing->thumb = asset(
+                'images/' . $listing->id . '/Image_1_thumb.jpg'
+            );
+            return $listing;
+        });
+        $data = collect(['listings' => $collection->toArray()]);
+        $data = $this->add_meta_data($data, $request);
+        return view('app', ['data' => $data]);
+    }
+}
+```
+
+1『
+
+有 2 个注意点：
+
+1、详细页里的数据跟 public function get_listing() 方法挂钩，该页面返回的数据对象里的属性名是「listing」。
+
+2、首页里的数据跟 get_home_web() 方法挂钩，该页面返回的数据对象里的属性名是「listings」。
+
+已经被 router-vue 绕晕了，逻辑还没弄清楚。（2020-04-27）
+
+』
+
+### 7.9.2 Route navigation guards
+
+Similar to lifecycle hooks, navigation guards allow you to intercept Vue Router navigations at a particular point in their life cycle. These guards can be applied to a specific component, a specific route, or to all routes. For example, afterEach is the navigation guard called after any route is navigated away from. You might use this hook to store analytics information, for example:
+
+
+
+
+
+
+
+```js
 router.afterEach((to, from) => { storeAnalytics(userId, from.path); })
+```
 
 We can use the beforeRouteEnter navigation guard to fetch data from our web service if the data in the head is unsuitable. Consider the following pseudo-code for how we might implement this:
 
+```js
 beforeRouteEnter(to, from, next) { if (to !== injectedData.path) { getDataWithAjax.then(data => { applyData(data) }) } else { applyData(injectedData) } next() }
+```
 
-## next
+### 7.9.3 next
 
 An important feature of navigation guards is that they will halt navigation until the next function is called. This allows asynchronous code to be executed before the navigation is resolved:
 
@@ -731,7 +1077,9 @@ However, the next function in beforeRouteEnter can accept a callback function as
 
 This callback is not triggered until the route is confirmed and the component instance has been created. Due to how JavaScript closures work, the callback will have access to the scope of the surrounding code where it was called:
 
+```
 beforeRouteEnter(to, from, next) { var data = { ... } next(component => { component.$data = data; }); }
+```
 
 ## HomePage component
 
@@ -869,12 +1217,13 @@ export default new VueRouter({ mode: 'history', routes: [ ... ], scrollBehavior 
 
 To improve the design of Vuebnb, let's add a footer to the bottom of each page. We'll make it a reusable component, so let's begin by creating that:
 
-$ touch resources/assets/components/CustomFooter.vue
+    $ touch resources/assets/components/CustomFooter.vue
 
 Here is the markup. For now, it's just a stateless component.
 
 resources/assets/js/CustomFooter.vue:
 
+```
 <template> <div id="footer"> <div class="hr"></div> <div class="container"> <p> <img class="icon" src="/images/logo_grey.png"> <span>
 
 <strong>Vuebnb</strong>. A full-stack Vue.js and Laravel demo app
@@ -888,12 +1237,15 @@ display: flex; }
 padding-right: 6px;
 
 } </style>
+```
 
 Let's add the footer to the App component, just below the RouterView where the pages are output.
 
 resources/assets/js/App.vue:
 
+```
 <template> <div> <div id="toolbar">...</div> <router-view></router-view> <custom-footer></custom-footer> </div> </template> <script> import CustomFooter from './CustomFooter.vue'; export default { components: { CustomFooter } } </script> <style>...</style>
+```
 
 Here's how it looks on the listing page:
 
@@ -909,15 +1261,19 @@ Secondly, let's move .home-container to the main CSS file as well, since we'll s
 
 resources/assets/css/style.css:
 
+```
 .listing-container { margin: 0 auto; padding: 0 12px; } @media (min-width: 744px) { .listing-container { width: 696px; } } .home-container { margin: 0 auto; padding: 0 25px; } @media (min-width: 1131px) { .home-container { width: 1080px; } }
+```
 
 Now we have .home-container and .listing-container as two possible containers for our custom-footer component. Let's dynamically select the class depending on the route, so the footer is always correctly aligned.
 
 ## The route object
 
-The route object represents the state of the currently active route and can be accessed inside the root instance, or a component instance, as this.$route. This object contains parsed information of the current URL and the route records matched by the URL:
+The route object represents the state of the currently active route and can be accessed inside the root instance, or a component instance, as this.\$route. This object contains parsed information of the current URL and the route records matched by the URL:
 
+```
 created() { console.log(this.$route.fullPath); // /listing/1 console.log(this.$route.params); // { listing: "1" } }
+```
 
 ## Dynamically selecting the container class
 
@@ -925,7 +1281,9 @@ In order to select the correct container class in custom-footer, we can get the 
 
 resources/assets/components/CustomFooter.vue:
 
+```
 <template> <div id="footer"> <div class="hr"></div> <div :class="containerClass"> <p>...</p> </div> </div> </template> <script> export default { computed: { containerClass() { // this.$route.name is either 'home' or 'listing' return `${this.$route.name}-container`; } } } </script> <style>...</style>
+```
 
 Now the footer will use .home-container when displayed on the home page:
 
@@ -937,19 +1295,23 @@ On our home page, we need to make it so that a user can see more than just three
 
 Let's create a new component to house each listing summary group. We'll then add arrowheads to the sides of this component, allowing the user to easily step through its listings:
 
-$ touch resources/assets/components/ListingSummaryGroup.vue
+    $ touch resources/assets/components/ListingSummaryGroup.vue
 
 We'll now abstract the markup and logic for displaying listing summaries from HomePage into this new component. Each group will need to know the name of the country and the included listings, so we'll add this data as props.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 <template> <div class="listing-summary-group"> <h1>Places in {{ country }}</h1> <div class="listing-summaries"> <listing-summary v-for="listing in listings" :key="listing.id" :listing="listing" ></listing-summary> </div> </div> </template> <script> import ListingSummary from './ListingSummary.vue'; export default { props: [ 'country', 'listings' ], components: { ListingSummary } } </script> <style> .listing-summary-group { padding-bottom: 20px; } .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; overflow: hidden; } .listing-summaries > .listing-summary { margin-right: 15px; } .listing-summaries > .listing-summary:last-child { margin-right: 0; } </style>
+```
 
 Back in the HomePage, we will declare the ListingSummaryGroup with a v-for, iterating over each country group.
 
 resources/assets/components/HomePage.vue:
 
+```
 <template> <div class="home-container"> <listing-summary-group v-for="(group, country) in listing_groups" :key="country" :listings="group" :country="country" class="listing-summary-group" ></listing-summary-group> </div> </template> <script> import routeMixin from '../js/route-mixin'; import ListingSummaryGroup from './ListingSummaryGroup.vue'; import { groupByCountry } from '../js/helpers'; export default { mixins: [ routeMixin ], data() { return { listing_groups: [] }; }, methods: { assignData({ listings }) { this.listing_groups = groupByCountry(listings); } }, components: { ListingSummaryGroup } } </script>
+```
 
 Most developers will use the terms image carousel and image slider interchangeably. In this book, I make a slight distinction, a carousel contains a single image that gets completely switched out with another, while a slider shifts the position of images, with several visible at once.
 
@@ -959,7 +1321,9 @@ We'll now add the slider functionality to ListingSummaryGroup. To do this, we'll
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 <template> <div class="listing-summary-group"> <h1>Places in {{ country }}</h1> <div class="listing-carousel"> <div class="controls"> <carousel-control dir="left"></carousel-control> <carousel-control dir="right"></carousel-control> </div> <div class="listing-summaries-wrapper"> <div class="listing-summaries"> <listing-summary v-for="listing in listings" :listing="listing" :key="listing.id" ></listing-summary> </div> </div> </div> </div> </template> <script> import ListingSummary from './ListingSummary.vue'; import CarouselControl from './CarouselControl.vue'; export default { props: [ 'country', 'listings' ], components: { ListingSummary, CarouselControl } } </script> <style> ... .listing-carousel { position: relative; } .listing-carousel .controls { display: flex; justify-content: space-between; position: absolute; top: calc(50% - 45px); left: -45px; width: calc(100% + 90px); } .listing-carousel .controls .carousel-control{ color: #c5c5c5; font-size: 1.5rem; cursor: pointer; } .listing-summaries-wrapper { overflow: hidden; } </style>
+```
 
 After adding this code, your home page will look like this:
 
@@ -977,7 +1341,9 @@ By binding inline style to the element with the listing-summary class, we can co
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 <template> <div class="listing-summary-group"> <h1>Places in {{ country }}</h1> <div class="listing-carousel"> <div class="controls">...</div> <div class="listing-summaries" :style="style"> <listing-summary...>...</listing-summary> </div> </div> </div> </template> <script> export default { props: [ 'country', 'listings' ], computed: { style() { return { transform: `translateX(-365px)` } } }, components: { ... } } </script>
+```
 
 Now all of our summary groups will be shifted:
 
@@ -989,7 +1355,9 @@ To fix this, we'll move the CSS rule overflow: hidden from listing-summaries to 
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 ... .listing-summaries-wrapper { overflow: hidden; } .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; } ...
+```
 
 ## Carousel controls
 
@@ -1001,17 +1369,21 @@ change will step the value of offset, which is then multiplied by the width of e
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 ...
 
 const rowSize = 3; const listingSummaryWidth = 365; export default { props: [ 'country', 'listings' ], data() { return { offset: 0 } }, methods: { change(val) { let newVal = this.offset + parseInt(val); if (newVal >= 0 && newVal <= this.listings.length - rowSize) { this.offset = newVal; } } }, computed: { style() { return { transform: `translateX(${this.offset * -listingSummaryWidth}px)` } } }, components: { ... } }
+```
 
 Lastly, we must use a v-on directive in the template to register a listener for the change-image event of the CarouselControl components.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 <div class="controls"> <carousel-control dir="left" @change-image="change"></carousel-control>
 
 <carousel-control dir="right" @change-image="change"></carousel-control> </div>
+```
 
 With that done, we have a working image slider for each listing group!
 
@@ -1021,7 +1393,9 @@ There are two more small features to add to these image sliders to give Vuebnb u
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; transition: transform 0.5s; }
+```
 
 Sadly you can't see the effects of this in a book, so you'll have to try it for yourself!
 
@@ -1031,13 +1405,17 @@ To do this, we'll use style bindings to dynamically add a visibility: hidden CSS
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 <div class="controls"> <carousel-control dir="left" @change-image="change" :style="leftArrowStyle" ></carousel-control> <carousel-control dir="right" @change-image="change" :style="rightArrowStyle" ></carousel-control> </div>
+```
 
 And the computed properties.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```
 computed: { ... leftArrowStyle() { return { visibility: (this.offset > 0 ? 'visible' : 'hidden') } }, rightArrowStyle() { return { visibility: ( this.offset < (this.listings.length - rowSize) ? 'visible' : 'hidden' ) } } }
+```
 
 With that done, we can see the left arrow is hidden when the page loads, as expected:
 
