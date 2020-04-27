@@ -32,7 +32,7 @@ class StaticExample{
 
 Static methods are functions with class scope. They cannot themselves access any normal properties in the class because these would belong to an object; however, they can access static properties. If you change a static property, all instances of that class are able to access the new value. Because you access a static element via a class and not an instance, you do not need a variable that references an object. Instead, you use the class name in conjunction with ::, as in this example:
 
-1『直接修改基类的静态方法、静态属性的强大在于，修改的数据会更新到所有基于该类的实例化对象身上。』
+1『直接修改基类的静态方法、静态属性的强大在于，修改的数据会更新到所有基于该类的实例化对象身上。后面有一段内容专门说了静态属性和静态方法的 3 个优势。』
 
 ```php
 print StaticExample::$aNum;
@@ -137,6 +137,8 @@ Now I want to build a getInstance() method that accepts a row ID and PDO object,
 
 As you can see, the getInstance() method returns a ShopProduct object and, based on a type flag, is smart enough to work out the precise specialization it should instantiate. I have omitted any error handling to keep the example compact. In a real-world version of this, for example, I would not be so trusting as to assume that the provided PDO object was initialized to talk to the correct database. In fact, I probably wrap the PDO with a class that would guarantee this behavior. You can read more about object-oriented coding and databases in Chapter 13.
 
+2『读完后面有关数据库的内容后，再回头来仔细研究下上面的代码。（2020-04-27）』
+
 This method is more useful in a class context than an object context. It lets you convert raw data from the database into an object easily, without requiring that you have a ShopProduct object to start with. The method does not use any instance properties or methods, so there is no reason why it should not be declared static. Given a valid PDO object, I can invoke the method from anywhere in an application:
 
 ```php
@@ -151,6 +153,8 @@ Methods like this act as「factories」in that they take raw materials (such as 
 In some ways, of course, this example poses as many problems as it solves. Although I make the ShopProduct::getInstance() method accessible from anywhere in a system without the need for an ShopProduct instance, I also demand that client code provides a PDO object. Where is this to be found? 
 
 And is it really good practice for a parent class to have such intimate knowledge of its children? (Hint: no, it is not.) Problems of this kind—where to acquire key objects and values and how much classes should know about one another—are very common in object-oriented programming. I examine various approaches to object generation in Chapter 9.
+
+1『真实环环相扣，上面的知识点消化需要第 9 章的内容。』
 
 ### 4.2 Constant Properties
 
@@ -171,6 +175,8 @@ Constant properties can contain only primitive values. You cannot assign an obje
 ```php
 print ShopProduct::AVAILABLE;
 ```
+
+1『常量属性的方位跟静态属性一样，类名后面加域运算符再加常量名（不需要 \$）。』
 
 Attempting to set a value on a constant once it has been declared will cause a parse error. You should use constants when your property needs to be available across all instances of a class, as well as when the property value needs to be fixed and unchanging.
 
@@ -197,6 +203,8 @@ $writer = new ShopProductWriter();
 You can see the error in this output:
 
     Error: Cannot instantiate abstract class popp\ch04\batch03\ShopProductWriter
+
+1『抽象类不能实例化，它是用来定义接口供其他类继承用的。抽象类里定义的抽象方法不能有「实现」，所以定义的时候没有函数体，跟调用的形式一样。关键是继承它的子类一定在子类里实现这个抽象方法。』
 
 In most cases, an abstract class will contain at least one abstract method. These are declared, once again, with the abstract keyword. An abstract method cannot have an implementation. You declare it in the normal way, but end the declaration with a semicolon rather than a method body. Here I add an abstract write() method to the ShopProductWriter class:
 
@@ -241,7 +249,9 @@ class XmlProductWriter extends ShopProductWriter{
             $writer->endElement(); // summary            
             $writer->endElement(); // product        
         }        
-        $writer->endElement(); // products        $writer->endDocument();        print $writer->flush();    
+        $writer->endElement(); // products        
+        $writer->endDocument();        
+        print $writer->flush();    
     }
 }
 
@@ -264,7 +274,9 @@ I create two classes, each with its own implementation of the write() method. Th
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
-```
+1『接口才是纯模板，它只定义函数，而且这个函数还没函数体。。』
+
+```php
 // listing 04.08
 interface Chargeable {    
     public function getPrice(): float;
@@ -272,6 +284,8 @@ interface Chargeable {
 ```
 
 As you can see, an interface looks very much like a class. Any class that incorporates this interface commits to implementing all the methods it defines, or it must be declared abstract. A class can implement an interface using the implements keyword in its declaration. Once you have done this, the process of implementing an interface is the same as extending an abstract class that contains only abstract methods. Now I will make the ShopProduct class implement Chargeable:
+
+1『一个接口的实现过程，如同继承一个只包含抽象方法的抽象类。下面实现接口的例子很清楚了，相当于在定义接口的函数语句后面直接加上函数体。』
 
 ```php
 // listing 04.09
@@ -287,6 +301,8 @@ class ShopProduct implements Chargeable {
 ```
 
 ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements. This means that the CdProduct class belongs to the following:
+
+1『上面说了接口的用途，应该是跟类型有关，目前没弄明白。（2020-04-27）』
 
 ```
 CdProduct
@@ -337,6 +353,8 @@ class Consultancy extends TimedService implements Bookable, Chargeable {
     // ...
 }
 ```
+
+1『好强大，继承和接口实现同时进行。』
 
 Notice that the Consultancy class implements more than one interface. Multiple interfaces follow the implements keyword in a comma-separated list. PHP only supports inheritance from a single parent, so the extends keyword can precede a single class name only.
 

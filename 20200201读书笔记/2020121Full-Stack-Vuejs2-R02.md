@@ -1732,3 +1732,511 @@ When you install Vue Router, two components are registered globally for use thro
 </div>
 ```
 
+### 7.3 Vuebnb routing
+
+It was never a stated goal for Vuebnb to be a single-page application. Indeed, Vuebnb will deviate from pure SPA architecture as we'll see later in the book. That said, incorporating Vue Router will be very beneficial to the user's experience of navigation in the app, so we'll add it to Vuebnb in this chapter.
+
+Of course, if we're going to add a router, we'll need some extra pages! So far in the project, we've been working on the listing page of Vuebnb, but are yet to start work on the front page of the app. So in addition to installing Vue Router, we will start work on the Vuebnb home page, which displays thumbnails and links to all our mock listings:
+
+#### 7.3.1 Installing Vue Router
+
+Vue Router is an NPM package and can be installed on the command line:
+
+    $ npm i --save-dev vue-router
+
+3『
+
+改用 yarn 安装。有个疑问，为啥安装成开发者依赖。
+
+[yarn install | Yarn](https://classic.yarnpkg.com/en/docs/cli/install/)
+
+yarn install is used to install all dependencies for a project. This is most commonly used when you have just checked out code for a project, or when another developer on the project has added a new dependency that you need to pick up.
+
+If you are used to using npm you might be expecting to use --save or --save-dev. These have been replaced by yarn add and yarn add --dev. For more information, see the yarn add documentation.
+
+Running yarn with no command will run yarn install, passing through any provided flags. If you need reproducible dependencies, which is usually the case with the continuous integration systems, you should pass --frozen-lockfile flag.
+
+[yarn add | Yarn](https://classic.yarnpkg.com/en/docs/cli/add)
+
+Installs a package and any packages that it depends on.
+
+#### Adding dependencies
+
+In general, a package is simply a folder with code and a package.json file that describes the contents. When you want to use another package, you first need to add it to your dependencies. This means running yarn add [package-name] to install it into your project.
+
+This will also update your package.json and your yarn.lock so that other developers working on the project will get the same dependencies as you when they run yarn or yarn install. Most packages will be installed from the npm registry and referred to by simply their package name. For example, yarn add react will install the react package from the npm registry. You can specify versions using one of these:
+
+```
+yarn add package-name installs the “latest” version of the package.
+yarn add package-name@1.2.3 installs a specific version of a package from the registry.
+yarn add package-name@tag installs a specific “tag” (e.g. beta, next, or latest).
+```
+
+You can also specify packages from different locations:
+
+```
+yarn add package-name installs the package from the npm registry unless you have specified another one in your package.json.
+yarn add file:/path/to/local/folder installs a package that is on your local file system. This is useful to test out other packages of yours that haven’t been published to the registry.
+yarn add file:/path/to/local/tarball.tgz installs a package from a gzipped tarball which could be used to share a package before publishing it.
+yarn add link:/path/to/local/folder installs a symlink to a package that is on your local file system. This is useful to develop related packages in monorepo environments.
+yarn add <git remote url> installs a package from a remote git repository.
+yarn add <git remote url>#<branch/commit/tag> installs a package from a remote git repository at specific git branch, git commit or git tag.
+yarn add https://my-project.org/package.tgz installs a package from a remote gzipped tarball.
+```
+
+#### Caveats
+
+If you have used a package manager like npm previously, you may be looking for how to add global dependencies. For the vast majority of packages it is considered a bad practice to have global dependencies because they are implicit. It is much better to add all of your dependencies locally so that they are explicit and anyone else using your project gets the same set of dependencies. If you are trying to use a CLI tool that has a bin you can access these in your ./node_modules/.bin directory. You can also use the global command:
+
+    yarn global add <package...>
+
+#### Commands
+
+    yarn add <package...>
+
+This will install one or more packages in your dependencies.
+
+    yarn add <package...> [--dev/-D]
+
+Using --dev or -D will install one or more packages in your devDependencies.
+
+    yarn add <package...> [--peer/-P]
+
+Using --peer or -P will install one or more packages in your peerDependencies.
+
+    yarn add <package...> [--optional/-O]
+
+Using --optional or -O will install one or more packages in your optionalDependencies.
+
+    yarn add <package...> [--exact/-E]
+
+Using --exact or -E installs the packages as exact versions. The default is to use the most recent release with the same major version. For example, yarn add foo@1.2.3 would accept version 1.9.1, but yarn add foo@1.2.3 --exact would only accept version 1.2.3.
+
+    yarn add <package...> [--tilde/-T]
+
+Using --tilde or -T installs the most recent release of the packages that have the same minor version. The default is to use the most recent release with the same major version. For example, yarn add foo@1.2.3 --tilde would accept 1.2.9 but not 1.3.0.
+
+    yarn add <package...> [--ignore-workspace-root-check/-W]
+
+Using --ignore-workspace-root-check or -W allows a package to be installed at the workspaces root. This tends not to be desired behaviour, as dependencies are generally expected to be part of a workspace. For example yarn add lerna --ignore-workspace-root-check --dev at the workspaces root would allow lerna to be used within the scripts of the root package.json.
+
+    yarn add <alias-package>@npm:<package>
+
+This will install a package under a custom alias. Aliasing, allows multiple versions of the same dependency to be installed, each referenced via the alias-package name given. For example, yarn add my-foo@npm:foo will install the package foo (at the latest version) in your dependencies under the specified alias my-foo. Also, yarn add my-foo@npm:foo@1.0.1 allows a specific version of foo to be installed.
+
+    yarn add <package...> --audit
+
+Checks for known security issues with the installed packages. A count of found issues will be added to the output. Use the yarn audit command for additional details.
+
+』
+
+Let's put our router configuration into a new file, router.js:
+
+    $ touch resources/assets/js/router.js
+
+To add Vue Router to our project, we must import the library and then use the Vue.use API method to make Vue compatible with Vue Router. This will give Vue a new configuration property, router, that we can use to connect a new router. We then create an instance of Vue Router with new VueRouter().
+
+resources/assets/js/router.js:
+
+```js
+import Vue from 'vue'; 
+import VueRouter from 'vue-router'; 
+Vue.use(VueRouter); 
+
+export default new VueRouter();
+```
+
+By exporting our router instance from this new file, we've made it into a module that can be imported in app.js. If we name the imported module router, object destructuring can be used to succinctly connect it to our main configuration object.
+
+resources/assets/js/app.js:
+
+```js
+// import "core-js/fn/object/assign";
+// window.Vue = require('vue');
+import Vue from 'vue';
+import ListingPage from '../components/ListingPage.vue';
+import router from './router';
+
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    render: h => h(ListingPage),
+    // components: {ListingPage},
+    router,
+});
+
+```
+
+#### 7.3.2 Creating routes
+
+The most basic configuration for Vue Router is to provide a routes array, which maps URLs to the corresponding page components. This array will contain objects with at least two properties: path and component.
+
+1『核心是创建路由数组，将 URL 和组件对应起来。』
+
+Note that by page components I'm simply referring to any components that we've designated to represent a page in our app. They are regular components in every other way. For now, we're only going to have two routes in our app, one for our home page and one for our listing page. The HomePage component doesn't exist yet, so we'll keep its route commented out until we create it.
+
+resources/assets/js/router.js:
+
+```js
+import ListingPage from '../components/ListingPage.vue';
+
+export default new VueRouter({ 
+    mode: 'history', 
+    routes: [ 
+        // { path: '/', component: HomePage }, // doesn't exist yet! 
+        { path: '/listing/:listing', component: ListingPage } 
+    ] 
+});
+```
+
+You'll notice that the path for our ListingPage component contains a dynamic segment :listing so that this route will match paths including /listing/1, listing/2 ... listing/whatever.
+
+There are two modes for Vue Router: hash mode and history mode. Hash mode uses the URL hash to simulate a full URL so that the page won't be reloaded when the hash changes. History mode has real URLs and leverages the history.pushState API to change the URL without causing a page reload. The only downside to history mode is that URLs outside of the app, such as /some/weird/path, can't be handled by Vue and must be handled by the server. That's no problem for us, so we'll use history mode for Vuebnb.
+
+### 7.4 App component
+
+For our router to work, we need to declare a RouterView component somewhere in our page template. Otherwise, there's nowhere for the page components to render. We'll slightly restructure our app to do this. As it is, the ListingPage component is the root component of the app, as it is at the top of the component hierarchy and loads all other components that we use.
+
+Since we want the router to switch between ListingPage and HomePage based on the URL, we need another component to be above ListingPage in the hierarchy and handle this work. We'll call this new root component App:
+
+Figure 7.2. The relationship between App, ListingPage, and HomePage
+
+1『上面的图解很形象，多看看。vue 的根实例变成了「router-view」。』
+
+Let's create the App component file:
+
+    $ touch resources/assets/components/App.vue
+
+The root instance of Vue should render this to the page when it loads, instead of ListingPage.
+
+resources/assets/js/app.js:
+
+```js
+import App from '../components/App.vue'; 
+... 
+var app = new Vue({ 
+    el: '#app', 
+    render: h => h(App), 
+    router 
+});
+```
+
+The following is the content of the App component. I've added the special RouterView component into the template, which is the outlet where either the HomePage or ListingPage component will render.
+
+You'll also notice I've moved the toolbar from app.blade.php into the template of App. This is so the toolbar is in the domain of Vue; before it was outside of the mount point and therefore untouchable by Vue. I've done this so that later we can make the main logo a link to the home page using RouterLink, as this is a convention for most websites. I've moved any toolbar related CSS into the style element as well.
+
+resources/assets/components/App.vue:
+
+```js
+<template>
+    <div id="toolbar">
+        <img src="{{ asset('images/logo.png') }}" class="icon">
+        <h1>vuebnb</h1>
+    </div>
+    <router-view></router-view>
+</template>
+
+<style>
+    #toolbar {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e4e4e4;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #toolbar .icon {
+        height: 34px;
+        padding: 16px 12px 16px 24px;
+        display: inline-block;
+    }
+
+    #toolbar h1 {
+        color: #4fc08d;
+        display: inline-block;
+        font-size: 28px;
+        margin: 0;
+    }
+</style>
+```
+
+1『
+
+这里会报错：Errors compiling template:
+
+src="{{ asset('images/logo.png') }}": Interpolation inside attributes has been removed.
+
+得改下模板里的：
+
+```html
+<div id="toolbar">
+    <img src="/images/logo.png" class="icon">
+    <h1>vuebnb</h1>
+</div>
+```
+
+改完还是报错，发现最外层缺了个 div 容器，加上就好了。
+
+```
+<div>
+    <div id="toolbar">
+        <img src="/images/logo.png" class="icon">
+        <h1>vuebnb</h1>
+    </div>
+    <router-view></router-view>
+</div>
+```
+
+原理目前没弄明白。（2020-04-27）
+
+』
+
+With that done, if you now navigate the browser to a URL like /listing/1, you'll see everything looks the same as it did before. However, if you look at Vue Devtools, you'll see the component hierarchy has changed, reflecting the addition of the App component. There's also an indicator, which tells us that the ListingPage component is the active page component for Vue Router:
+
+### 7.5 Home page
+
+Let's start work on our home page now. We'll first create a new component, HomePage:
+
+    $ touch resources/assets/components/HomePage.vue
+
+For now, let's add placeholder markup to the component before we set it up properly.
+
+resources/assets/components/HomePage.vue:
+
+```html
+<template> 
+    <div>Vuebnb home page</div> 
+</template>
+```
+
+Be sure to import this component in the router file, and uncomment the route where it's used.
+
+resources/assets/js/router.js:
+
+```js
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import ListingPage from '../components/ListingPage.vue';
+import HomePage from '../components/HomePage.vue';
+
+Vue.use(VueRouter);
+
+export default new VueRouter( {
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            component: HomePage
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage
+        },
+    ]
+});
+```
+
+You might be tempted to test this new route out by putting the URL http://vuebnb.test/ into your browser address bar. You'll find, though, that it results in a 404 error. Remember, we still haven't created a route for this on our server. Although Vue is managing routes from within the app, any address bar navigation requests must be served from Laravel.
+
+1『关键知识点：服务器上建路由必须通过 laravel，vue-router 只是网站内部间的路由管理。』
+
+Let's now create a link to our home page in the toolbar by using the RouterLink component. This component is like an enhanced a tag. For example, if you give your routes a name property, you can simply use the to prop rather than having to supply an href. Vue will resolve this to the correct URL on render.
+
+resources/assets/components/App.vue:
+
+```html
+<template>
+    <div>
+        <div id="toolbar">
+            <router-link :to="{name:'home'}">
+                <img src="/images/logo.png" class="icon">
+                <h1>vuebnb</h1>
+            </router-link>
+        </div>
+        <router-view></router-view>
+    </div>
+</template>
+```
+
+Let's also add name properties to our routes for this to work.
+
+resources/assets/js/router.js:
+
+```js
+export default new VueRouter( {
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            component: HomePage,
+            name: 'home',
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage,
+            name: 'listing',
+        },
+    ]
+});
+```
+
+We'll also have to modify our CSS now since we now have another tag wrapped around our logo. Modify the toolbar CSS rules to match those that follow.
+
+resources/assets/components/App.vue:
+
+```css
+<style>
+    #toolbar {
+        border-bottom: 1px solid #e4e4e4;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #toolbar .icon {
+        height: 34px;
+        padding: 16px 12px 16px 24px;
+        display: inline-block;
+    }
+
+    #toolbar h1 {
+        color: #4fc08d;
+        display: inline-block;
+        font-size: 28px;
+        margin: 0;
+    }
+
+    #toolbar a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+</style>
+```
+
+Let's now open a listing page, such as /listing/1. If you inspect the DOM, you'll see that our toolbar now has a new a tag inside it with a correctly resolved link back to the home page:
+
+Figure 7.4. The toolbar is a link back to the home page via the RouterLink element
+
+If you click that link, you'll be taken to the home page! Remember, the page hasn't actually changed; Vue router simply swapped ListingPage for HomePage within RouterView, and also updated the browser URL via the history.pushState API:
+
+#### 7.5.1 Home route
+
+Let's now add a server-side route for the home page so that we can load our app from the root path. This new route will point to a get\_home\_web method in our ListingController class.
+
+routes/web.php:
+
+```
+<?php
+
+Route::get('/', 'ListingController@get_home_web'); 
+Route::get('/listing/{listing}', 'ListingController@get_listing_web');
+```
+
+Going to the controller now, we'll make it so the get\_home\_web method returns the app view, just as it does for the listing web route. The app view includes a template variable model which we use to pass through the initial application state, as set up in Chapter 5, Integrating Laravel and Vue.js with Webpack. For now, just assign an empty array as a placeholder.
+
+app/Http/Controllers/ListingController.php:
+
+```
+public function get_home_web() { 
+    return view('app', ['model' => []]); 
+}
+```
+
+With that done, we can now navigate to http://vuebnb.test/ and it will work! When the Vue app is bootstrapped, Vue Router will check the URL value and, seeing that the path is /, will load the HomePage component inside the RouterView outlet for the first rendering of the app.
+
+Viewing the source of this page, it's exactly the same page as we get when we load the listing route since it's the same view, that is, app.blade.php. The only difference is that the initial state is an empty array:
+
+Figure 7.6. Page source of vuebnb.test with empty initial state
+
+#### 7.5.2 Initial state
+
+Just like our listing page, our home page will need initial state. Looking at the finished product, we can see that the home page displays a summary of all our mock listings with a thumbnail image, a title, and short description:
+
+#### 7.5.3 Refactoring
+
+Before we inject the initial state into the home page, let's do a small refactoring of the code including renaming some variables and restructuring some methods. This will ensure that the code semantics reflect the changing requirements and keep our code readable and easy to understand.
+
+1『重构的思想出来了，微小的改动，比如重命名变量名、重构函数等。』
+
+Firstly, let's rename our template variable from \$model to the more general \$data.
+
+resources/views/app.blade.php:
+
+```html
+<script type="text/javascript"> window.vuebnb_server_data = "{!! addslashes(json_encode($data)) !!}" </script>
+```
+
+In our listing controller, we're now going to abstract any common logic from our listing route methods into a new helper method called get\_listing. In this helper method, we will nest the Listing model inside a Laravel Collection under the listing key. Collection is an array-like wrapper for Eloquent models that offers a bunch of handy methods that we'll be putting to use shortly. get\_listing will include logic from the add\_image\_urls helper method, which can now safely be deleted. We'll also need to reflect the change to our template variable when we call the view method.
+
+app/Http/Controllers/ListingController.php:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\ListingModel;
+
+class ListingController extends Controller
+{
+    // refactoring methods
+    public function get_listing($listing)
+    {
+        $model = $listing->toArray();
+        for($i = 1; $i <=4; $i++) {
+            $model['image_' . $i] = asset('images/' . $listing->id . '/Image_' . $i . '.jpg');
+        }
+        return collect(['listing' => $model]);
+    }
+
+    public function get_listing_api(ListingModel $listing)
+    {
+        $data = $this->get_listing($listing);
+        return response()->json($data);
+    }
+
+    public function get_listing_web(ListingModel $listing)
+    {
+        $data = $this->get_listing($listing);
+        return view('app', ['model' => $data]);
+    }
+
+    // home page
+    public function get_home_web()
+    {
+        return view('app', ['data' => []]);
+    }
+}
+```
+
+Finally, we'll need to update our ListingPage component to reflect the new name and structure of the server data we're injecting.
+
+resources/assets/components/ListingPage.vue:
+
+```
+<script> let serverData = JSON.parse(window.vuebnb_server_data); 
+let model = populateAmenitiesAndPrices(serverData.listing); 
+... 
+</script>
+```
+
+#### 7.5.4 Home page initial state
+
+Using Eloquent ORM, it's trivial to retrieve all our listing entries using the method Listing::all. Multiple Model instances are returned by this method within a Collection object.
+
+Note that we don't need all the fields on the model, for example, amenities, about, and so on are not used in the listing summaries that populate the home page. To ensure our data is as lean as possible, we can pass an array of fields to the Listing::all method that will tell the database to only include those fields explicitly mentioned.
+
+app/Http/Controllers/ListingController.php:
+
+```php
+    // home page
+    public function get_home_web()
+    {
+        $collection = ListingModel::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        $data = collect(['listing' => $collection->toArray()]);
+        return view('app', ['data' => $data]);
+    }
+```
+
+

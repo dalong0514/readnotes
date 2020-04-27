@@ -219,13 +219,15 @@ There are two modes for Vue Router: hash mode and history mode. Hash mode uses t
 
 ## 7.4 App component
 
-For our router to work, we need to declare a RouterView component somewhere in our page template. Otherwise, there's nowhere for the page components to render.
-
-We'll slightly restructure our app to do this. As it is, the ListingPage component is the root component of the app, as it is at the top of the component hierarchy and loads all other components that we use.
+For our router to work, we need to declare a RouterView component somewhere in our page template. Otherwise, there's nowhere for the page components to render. We'll slightly restructure our app to do this. As it is, the ListingPage component is the root component of the app, as it is at the top of the component hierarchy and loads all other components that we use.
 
 Since we want the router to switch between ListingPage and HomePage based on the URL, we need another component to be above ListingPage in the hierarchy and handle this work. We'll call this new root component App:
 
+![](./res/2020010.png)
+
 Figure 7.2. The relationship between App, ListingPage, and HomePage
+
+1『上面的图解很形象，多看看。vue 的根实例变成了「router-view」。』
 
 Let's create the App component file:
 
@@ -235,7 +237,15 @@ The root instance of Vue should render this to the page when it loads, instead o
 
 resources/assets/js/app.js:
 
-import App from '../components/App.vue'; ... var app = new Vue({ el: '#app', render: h => h(App), router });
+```js
+import App from '../components/App.vue'; 
+... 
+var app = new Vue({ 
+    el: '#app', 
+    render: h => h(App), 
+    router 
+});
+```
 
 The following is the content of the App component. I've added the special RouterView component into the template, which is the outlet where either the HomePage or ListingPage component will render.
 
@@ -243,11 +253,70 @@ You'll also notice I've moved the toolbar from app.blade.php into the template o
 
 resources/assets/components/App.vue:
 
-<template> <div> <div id="toolbar"> <img class="icon" src="/images/logo.png"> <h1>vuebnb</h1> </div> <router-view></router-view> </div> </template> <style> #toolbar { display: flex; align-items: center; border-bottom: 1px solid #e4e4e4; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); } #toolbar .icon { height: 34px; padding: 16px 12px 16px 24px; display: inline-block; } #toolbar h1 { color: #4fc08d; display: inline-block; font-size: 28px; margin: 0; } </style>
+```js
+<template>
+    <div id="toolbar">
+        <img src="{{ asset('images/logo.png') }}" class="icon">
+        <h1>vuebnb</h1>
+    </div>
+    <router-view></router-view>
+</template>
 
-With that done, if you now navigate the browser to a URL like /listing/1, you'll see everything looks the same as it did before. However, if you look at Vue Devtools, you'll see the component hierarchy has changed, reflecting the addition of the App component.
+<style>
+    #toolbar {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #e4e4e4;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
 
-There's also an indicator, which tells us that the ListingPage component is the active page component for Vue Router:
+    #toolbar .icon {
+        height: 34px;
+        padding: 16px 12px 16px 24px;
+        display: inline-block;
+    }
+
+    #toolbar h1 {
+        color: #4fc08d;
+        display: inline-block;
+        font-size: 28px;
+        margin: 0;
+    }
+</style>
+```
+
+1『
+
+这里会报错：Errors compiling template:
+
+src="{{ asset('images/logo.png') }}": Interpolation inside attributes has been removed.
+
+得改下模板里的：
+
+```html
+<div id="toolbar">
+    <img src="/images/logo.png" class="icon">
+    <h1>vuebnb</h1>
+</div>
+```
+
+改完还是报错，发现最外层缺了个 div 容器，加上就好了。
+
+```
+<div>
+    <div id="toolbar">
+        <img src="/images/logo.png" class="icon">
+        <h1>vuebnb</h1>
+    </div>
+    <router-view></router-view>
+</div>
+```
+
+原理目前没弄明白。（2020-04-27）
+
+』
+
+With that done, if you now navigate the browser to a URL like /listing/1, you'll see everything looks the same as it did before. However, if you look at Vue Devtools, you'll see the component hierarchy has changed, reflecting the addition of the App component. There's also an indicator, which tells us that the ListingPage component is the active page component for Vue Router:
 
 Figure 7.3. /listing/1 with Vue Devtools open, showing the component hierarchy
 
@@ -261,35 +330,114 @@ For now, let's add placeholder markup to the component before we set it up prope
 
 resources/assets/components/HomePage.vue:
 
-<template> <div>Vuebnb home page</div> </template>
+```html
+<template> 
+    <div>Vuebnb home page</div> 
+</template>
+```
 
 Be sure to import this component in the router file, and uncomment the route where it's used.
 
 resources/assets/js/router.js:
 
-.... import HomePage from '../components/HomePage.vue'; import ListingPage from '../components/ListingPage.vue'; export default new VueRouter({ mode: 'history', routes: [ { path: '/', component: HomePage }, { path: '/listing/:listing', component: ListingPage } ] });
+```js
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import ListingPage from '../components/ListingPage.vue';
+import HomePage from '../components/HomePage.vue';
+
+Vue.use(VueRouter);
+
+export default new VueRouter( {
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            component: HomePage
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage
+        },
+    ]
+});
+```
 
 You might be tempted to test this new route out by putting the URL http://vuebnb.test/ into your browser address bar. You'll find, though, that it results in a 404 error. Remember, we still haven't created a route for this on our server. Although Vue is managing routes from within the app, any address bar navigation requests must be served from Laravel.
+
+1『关键知识点：服务器上建路由必须通过 laravel，vue-router 只是网站内部间的路由管理。』
 
 Let's now create a link to our home page in the toolbar by using the RouterLink component. This component is like an enhanced a tag. For example, if you give your routes a name property, you can simply use the to prop rather than having to supply an href. Vue will resolve this to the correct URL on render.
 
 resources/assets/components/App.vue:
 
-<div id="toolbar"> <router-link :to="{ name: 'home' }"> <img class="icon" src="/images/logo.png"> <h1>vuebnb</h1> </router-link> </div>
+```html
+<template>
+    <div>
+        <div id="toolbar">
+            <router-link :to="{name:'home'}">
+                <img src="/images/logo.png" class="icon">
+                <h1>vuebnb</h1>
+            </router-link>
+        </div>
+        <router-view></router-view>
+    </div>
+</template>
+```
 
 Let's also add name properties to our routes for this to work.
 
-resources/assets/js/app.js:
+resources/assets/js/router.js:
 
-routes: [ { path: '/', component: HomePage, name: 'home' }, { path: '/listing/:listing', component: ListingPage, name: 'listing' } ]
+```js
+export default new VueRouter( {
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            component: HomePage,
+            name: 'home',
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage,
+            name: 'listing',
+        },
+    ]
+});
+```
 
 We'll also have to modify our CSS now since we now have another tag wrapped around our logo. Modify the toolbar CSS rules to match those that follow.
 
 resources/assets/components/App.vue:
 
-<template>...</template> <style> #toolbar { border-bottom: 1px solid #e4e4e4; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); }
+```css
+<style>
+    #toolbar {
+        border-bottom: 1px solid #e4e4e4;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
 
-... #toolbar a { display: flex; align-items: center; text-decoration: none; } </style>
+    #toolbar .icon {
+        height: 34px;
+        padding: 16px 12px 16px 24px;
+        display: inline-block;
+    }
+
+    #toolbar h1 {
+        color: #4fc08d;
+        display: inline-block;
+        font-size: 28px;
+        margin: 0;
+    }
+
+    #toolbar a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+</style>
+```
 
 Let's now open a listing page, such as /listing/1. If you inspect the DOM, you'll see that our toolbar now has a new a tag inside it with a correctly resolved link back to the home page:
 
@@ -299,21 +447,28 @@ If you click that link, you'll be taken to the home page! Remember, the page has
 
 Figure 7.5. Home page with Vue Devtools showing component hierarchy
 
-## Home route
+### 7.5.1 Home route
 
-Let's now add a server-side route for the home page so that we can load our app from the root path. This new route will point to a get_home_web method in our ListingController class.
+Let's now add a server-side route for the home page so that we can load our app from the root path. This new route will point to a get\_home\_web method in our ListingController class.
 
 routes/web.php:
 
+```
 <?php
 
-Route::get('/', 'ListingController@get_home_web'); Route::get('/listing/{listing}', 'ListingController@get_listing_web');
+Route::get('/', 'ListingController@get_home_web'); 
+Route::get('/listing/{listing}', 'ListingController@get_listing_web');
+```
 
-Going to the controller now, we'll make it so the get_home_web method returns the app view, just as it does for the listing web route. The app view includes a template variable model which we use to pass through the initial application state, as set up in Chapter 5, Integrating Laravel and Vue.js with Webpack. For now, just assign an empty array as a placeholder.
+Going to the controller now, we'll make it so the get\_home\_web method returns the app view, just as it does for the listing web route. The app view includes a template variable model which we use to pass through the initial application state, as set up in Chapter 5, Integrating Laravel and Vue.js with Webpack. For now, just assign an empty array as a placeholder.
 
 app/Http/Controllers/ListingController.php:
 
-public function get_home_web() { return view('app', ['model' => []]); }
+```
+public function get_home_web() { 
+    return view('app', ['model' => []]); 
+}
+```
 
 With that done, we can now navigate to http://vuebnb.test/ and it will work! When the Vue app is bootstrapped, Vue Router will check the URL value and, seeing that the path is /, will load the HomePage component inside the RouterView outlet for the first rendering of the app.
 
@@ -321,49 +476,82 @@ Viewing the source of this page, it's exactly the same page as we get when we lo
 
 Figure 7.6. Page source of vuebnb.test with empty initial state
 
-## Initial state
+### 7.5.2 Initial state
 
 Just like our listing page, our home page will need initial state. Looking at the finished product, we can see that the home page displays a summary of all our mock listings with a thumbnail image, a title, and short description:
 
 Figure 7.7. Completed home page, focusing on listings
 
-## Refactoring
+### 7.5.3 Refactoring
 
 Before we inject the initial state into the home page, let's do a small refactoring of the code including renaming some variables and restructuring some methods. This will ensure that the code semantics reflect the changing requirements and keep our code readable and easy to understand.
 
-Firstly, let's rename our template variable from $model to the more general $data.
+1『重构的思想出来了，微小的改动，比如重命名变量名、重构函数等。』
+
+Firstly, let's rename our template variable from \$model to the more general \$data.
 
 resources/views/app.blade.php:
 
+```html
 <script type="text/javascript"> window.vuebnb_server_data = "{!! addslashes(json_encode($data)) !!}" </script>
+```
 
-In our listing controller, we're now going to abstract any common logic from our listing route methods into a new helper method called get_listing. In this helper method, we will nest the Listing model inside a Laravel Collection under the listing key. Collection is an array-like wrapper for Eloquent models that offers a bunch of handy methods that we'll be putting to use shortly. get_listing will include logic from the add_image_urls helper method, which can now safely be deleted.
-
-We'll also need to reflect the change to our template variable when we call the view method.
+In our listing controller, we're now going to abstract any common logic from our listing route methods into a new helper method called get\_listing. In this helper method, we will nest the Listing model inside a Laravel Collection under the listing key. Collection is an array-like wrapper for Eloquent models that offers a bunch of handy methods that we'll be putting to use shortly. get\_listing will include logic from the add\_image\_urls helper method, which can now safely be deleted. We'll also need to reflect the change to our template variable when we call the view method.
 
 app/Http/Controllers/ListingController.php:
 
-private function get_listing($listing) { $model = $listing->toArray(); for($i = 1; $i <=4; $i++) { $model['image_' . $i] = asset(
+```php
+<?php
 
-'images/' . $listing->id . '/Image_' . $i . '.jpg'
+namespace App\Http\Controllers;
 
-); } return collect(['listing' => $model]); } public function get_listing_api(Listing $listing) { $data = $this->get_listing($listing); return response()->json($data); } public function get_listing_web(Listing $listing) { $data = $this->get_listing($listing); return view('app', ['data' => $data]); }
+use Illuminate\Http\Request;
+use App\Models\ListingModel;
 
-public function get_home_web()
-
+class ListingController extends Controller
 {
+    // refactoring methods
+    public function get_listing($listing)
+    {
+        $model = $listing->toArray();
+        for($i = 1; $i <=4; $i++) {
+            $model['image_' . $i] = asset('images/' . $listing->id . '/Image_' . $i . '.jpg');
+        }
+        return collect(['listing' => $model]);
+    }
 
-return view('app', ['data' => []]);
+    public function get_listing_api(ListingModel $listing)
+    {
+        $data = $this->get_listing($listing);
+        return response()->json($data);
+    }
 
+    public function get_listing_web(ListingModel $listing)
+    {
+        $data = $this->get_listing($listing);
+        return view('app', ['model' => $data]);
+    }
+
+    // home page
+    public function get_home_web()
+    {
+        return view('app', ['data' => []]);
+    }
 }
+```
 
 Finally, we'll need to update our ListingPage component to reflect the new name and structure of the server data we're injecting.
 
 resources/assets/components/ListingPage.vue:
 
-<script> let serverData = JSON.parse(window.vuebnb_server_data); let model = populateAmenitiesAndPrices(serverData.listing); ... </script>
+```
+<script> let serverData = JSON.parse(window.vuebnb_server_data); 
+let model = populateAmenitiesAndPrices(serverData.listing); 
+... 
+</script>
+```
 
-## Home page initial state
+### 7.5.4 Home page initial state
 
 Using Eloquent ORM, it's trivial to retrieve all our listing entries using the method Listing::all. Multiple Model instances are returned by this method within a Collection object.
 
@@ -371,17 +559,31 @@ Note that we don't need all the fields on the model, for example, amenities, abo
 
 app/Http/Controllers/ListingController.php:
 
-public function get_home_web() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $data = collect(['listings' => $collection->toArray()]); return view('app', ['data' => $data]); } /* [ "listings" => [ 0 => [ "id" => 1, "address" => "...", "title" => "...", "price_per_night" => "..." ] 1 => [ ... ] ... 29 => [ ... ] ] ] */
+```php
+    // home page
+    public function get_home_web()
+    {
+        $collection = ListingModel::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        $data = collect(['listing' => $collection->toArray()]);
+        return view('app', ['data' => $data]);
+    }
+```
 
-## Adding the thumbnail
+## 7.6 Adding the thumbnail
 
-Each mock listing has a thumbnail version of the first image, which can be used for the listing summary. The thumbnail is much smaller than the image we use for the header of the listing page and is ideal for the listing summaries on the home page. The URL for the thumbnail is public/images/{x}/Image_1_thumb.jpg where {x} is the ID of the listing.
+Each mock listing has a thumbnail version of the first image, which can be used for the listing summary. The thumbnail is much smaller than the image we use for the header of the listing page and is ideal for the listing summaries on the home page. The URL for the thumbnail is public/images/{x}/Image\_1\_thumb.jpg where {x} is the ID of the listing.
 
 Collection objects have a helper method, transform, that we can use to add the thumbnail image URL to each listing. transform accepts a callback closure function that is called once per item, allowing you to modify that item and return it to the collection without fuss.
 
+2『又见到 Collection 对象，感觉很重要，larave-excel 里也用到，去研究下其具体信息。（2020-04-27）』
+
 app/Http/Controllers/ListingController.php:
 
+```php
 public function get_home_web() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); $data = collect(['listings' => $collection->toArray()]); return view('app', ['data' => $data]); } /* [ "listings" => [ 0 => [ "id" => 1, "address" => "...", "title" => "...", "price_per_night" => "...", "thumb" => "..." ] 1 => [ ... ] ... 29 => [ ... ] ] ] */
+```
 
 ## Receiving in the client
 
