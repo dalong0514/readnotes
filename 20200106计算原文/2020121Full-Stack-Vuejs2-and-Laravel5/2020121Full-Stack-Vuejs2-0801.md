@@ -351,54 +351,113 @@ Each entry in the log can tell you the state after the change was committed, as 
 
 Our ListingSave component's icon will appear differently, depending on whether or not the listing is saved; it will be opaque if the listing is saved, and transparent if it is not. Since the component doesn't store its state locally, we need to retrieve state from the store to implement this feature.
 
-Vuex store state should generally be retrieved via a computed property. This ensures that the component is not keeping its own copy, which would violate the single source of truth principle, and that the component is re-rendered when the state is mutated by this component or another. Reactivity works with Vuex state, too!
-
-Let's create a computed property isListingSaved, which will return a Boolean value reflecting whether or not this particular listing has been saved.
+Vuex store state should generally be retrieved via a computed property. This ensures that the component is not keeping its own copy, which would violate the single source of truth principle, and that the component is re-rendered when the state is mutated by this component or another. Reactivity works with Vuex state, too! Let's create a computed property isListingSaved, which will return a Boolean value reflecting whether or not this particular listing has been saved.
 
 resources/assets/components/ListingSave.vue:
-
-```js
-export default { props: [ 'id' ], methods: { toggleSaved() { this.$store.commit('toggleSaved', this.id); } }, computed: { isListingSaved() { return this.$store.state.saved.find(saved => saved === this.id); } } }
-```
 
 We can now use this computed property to change the icon. Currently we're using the Font Awesome icon fa-heart-o. This should represent the unsaved state. When the listing is saved we should instead use the icon fa-heart. We can implement this with a dynamic class binding.
 
 resources/assets/components/ListingSave.vue:
 
 ```js
-<template> <div class="listing-save" @click.stop="toggleSaved()"> <i :class="classes"></i> </div> </template> <script> export default { props: [ 'id' ], methods: { ... }, computed: { isListingSaved() { ...}, classes() { let saved = this.isListingSaved; return { 'fa': true, 'fa-lg': true, 'fa-heart': saved, 'fa-heart-o': !saved } } } } </script> <style> ... .listing-save .fa-heart { color: #ff5a5f; } </style>
+<template>
+    <div class="listing-save" @click.stop="toggleSaved()">
+        <i :class="classes"></i>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: ['id'],
+        methods: {
+            toggleSaved() {
+                this.$store.commit('toggleSaved', this.id);
+            }
+        },
+        computed: {
+            isListingSaved() {
+                return this.$store.state.saved.find(saved => saved === this.id);
+            },
+            classes() {
+                let saved = this.isListingSaved;
+                return {
+                    'fa': true,
+                    'fa-lg': true,
+                    'fa-heart': saved,
+                    'fa-heart-o': !saved,
+
+                }
+            }
+        },
+    }
+</script>
+
+<style>
+    .listing-save {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .listing-save .fa-heart-o {
+        color: #ffffff;
+    }
+
+    .listing-save .fa-heart {
+        color: #ff5a5f;
+    }
+</style>
 ```
+
+1『发现心形不见了，又没报错，找了半天发现自己「classes」没用指令绑定，少了绑定指令简写的冒号。』
 
 Now the user can visually identify which listings have been saved and which haven't. Thanks to reactive Vuex data, the icon will instantly be updated when a change to the saved state is made from anywhere in the app:
 
 Figure 8.9. The ListingSave icon will change depending on the state
 
-## Adding to ListingPage
+## 8.7 Adding to ListingPage
 
 We also want the save feature to appear on the listing page. It will go inside the HeaderImage component alongside the View Photos button so that, like with the listing summaries, the button is overlaid on the listing's main image.
 
 resources/assets/components/HeaderImage.vue:
 
 ```js
-<template> <div class="header"> <div
+<template>
+    <div class="header">
+        <div class="header-img" :style="headerImageStyle" 
+            @click="$emit('header-clicked')">
+            <listing-save :id="id"></listing-save>
+            <button class="view-photos">View Photos</button>
+        </div>
+    </div>
+</template>
 
-class="header-img"
+<script>
+    import ListingSave from './ListingSave';
+    export default {
+        computed: {
+            headerImageStyle() {
+                return {
+                    "background-image": `url(${this.imageUrl})`}
+            },
+        },
+        props: ['image-url', 'id'],
+        components: {
+            ListingSave,
+        }
+    }
+</script>
+```
 
-:style="headerImageStyle"
-
-@click="$emit('header-clicked')"
-
-> <listing-save :id="id"></listing-save> <button class="view-photos">View Photos</button> </div> </div> </template> <script> import ListingSave from './ListingSave.vue'; export default { computed: { ... }, props: ['image-url', 'id'], components: { ListingSave } } </script> <style>...</style>
-
-Note that HeaderImage does not have the listing ID in its scope, so we'll have to pass this down as a prop from ListingPage. id is not currently a data property of ListingPage either, but, if we declare it, it will simply work.
-
-This is because the ID is already a property of the initial state/AJAX data the component receives, therefore id will automatically be populated by the Object.assign when the component is loaded by the router.
+Note that HeaderImage does not have the listing ID in its scope, so we'll have to pass this down as a prop from ListingPage. id is not currently a data property of ListingPage either, but, if we declare it, it will simply work. This is because the ID is already a property of the initial state/AJAX data the component receives, therefore id will automatically be populated by the Object.assign when the component is loaded by the router.
 
 resources/assets/components/ListingPage.vue:
 
-<template> <div> <header-image v-if="images[0]" :image-url="images[0]" @header-clicked="openModal" :id="id" ></header-image> ... </div> </template> <script> ... export default { data() { ... id: null }, methods: { assignData({ listing }) { Object.assign(this.$data, populateAmenitiesAndPrices(listing)); }, ... }, ... } </script>
-
-<style>...</style>
+```html
+<header-image v-if="images[0]" 
+:image-url="images[0]" 
+@header-clicked="openModal"
+:id="id"></header-image>
 ```
 
 With that done, the save feature will now appear on the listing page:
@@ -407,19 +466,11 @@ Figure 8.10. The listing save feature on the listing page
 
 If you save a listing via the listing page, then return to the home page, the equivalent listing summary will be saved. This is because our Vuex state is global and will persist across page changes (though not page refreshes...yet).
 
-## Making ListingSave a button
+## 8.8 Making ListingSave a button
 
-As it is, the ListingSave feature appears too small in the listing page header and will be easily overlooked by a user. Let's make it a proper button, similar to the View Photos button in the bottom left of the header.
-
-To do this, we'll modify ListingSave to allow parent components to send a prop button. This Boolean prop will indicate if the component should include a button element wrapped around the icon or not.
-
-The text for this button will be a computed property message which will change from Save to Saved depending on the value of isListingSaved.
+As it is, the ListingSave feature appears too small in the listing page header and will be easily overlooked by a user. Let's make it a proper button, similar to the View Photos button in the bottom left of the header. To do this, we'll modify ListingSave to allow parent components to send a prop button. This Boolean prop will indicate if the component should include a button element wrapped around the icon or not. The text for this button will be a computed property message which will change from Save to Saved depending on the value of isListingSaved.
 
 resources/assets/components/ListingSave.vue:
-
-```js
-<template> <div class="listing-save" @click.stop="toggleSaved()"> <button v-if="button"> <i :class="classes"></i> {{ message }} </button> <i v-else :class="classes"></i> </div> </template> <script> export default { props: [ 'id', 'button' ], methods: { ... }, computed: { isListingSaved() { ... }, classes() { ... }, message() { return this.isListingSaved ? 'Saved' : 'Save'; } } } </script> <style> ... .listing-save i { padding-right: 4px; } .listing-save button .fa-heart-o { color: #808080; } </style>
-```
 
 We will now set the button prop to true within HeaderImage. Even though the value is not dynamic, we use a v-bind to ensure the value is interpreted as a JavaScript value, not a string.
 
@@ -433,7 +484,7 @@ With that, the ListingSave will appear as a button on our listing pages:
 
 Figure 8.11. The listing save feature appears as a button on the listing page
 
-## Moving page state into the store
+## 8.9 Moving page state into the store
 
 Now that the user can save any listings that they like, we will need a saved page where they can view those saved listings together. We will build this new page shortly, and it will look like this:
 
@@ -443,13 +494,22 @@ Implementing the saved page will require an enhancement to our app architecture,
 
 All the pages in our app require a route on the server to return a view. This view includes the data for the relevant page component inlined in the document head. Or, if we navigate to that page via in-app links, an API endpoint will instead supply that same data. We set up this mechanism in Chapter 7, Building A Multi-Page App With Vue Router.
 
+
+
+
+
 The saved page will require the same data as the home page (the listing summary data), as the saved page is really just a slight variation on the home page. It makes sense, then, to share data between the home page and saved page. In other words, if a user loads Vuebnb from the home page, then navigates to the saved page, or vice versa, it would be a waste to load the listing summary data more than once.
 
 Let's decouple our page state from our page components and move it into Vuex. That way it can be used by whichever page needs and it and avoid unnecessary reloading:
 
+
+
+
+
+
 Figure 8.13. Page state in store
 
-## State and mutator methods
+## 8.10 State and mutator methods
 
 Let's add two new state properties to our Vuex store: listings and listing_summaries. These will be arrays that store our listings and listing summaries respectively. When the page first loads, or when the route changes and the API is called, the loaded data will be put into these arrays rather than being assigned directly to the page components. The page components will instead retrieve this data from the store.
 
@@ -459,7 +519,7 @@ resources/assets/js/store.js:
 
 import Vue from 'vue'; import Vuex from 'vuex'; Vue.use(Vuex); export default new Vuex.Store({ state: { saved: [], listing_summaries: [], listings: [] }, mutations: { toggleSaved(state, id) { ... }, addData(state, { route, data }) { if (route === 'listing') { state.listings.push(data.listing); } else { state.listing_summaries = data.listings; } } } });
 
-## Router
+## 8.11 Router
 
 The logic for retrieving page state is in the mixin file route-mixin.js. This mixin adds a beforeRouteEnter hook to a page component which applies the page state to the component instance when it becomes available.
 
@@ -477,7 +537,7 @@ With that done, we can now delete the route mixin:
 
     $ rm resources/assets/js/route-mixin.js
 
-## Retrieving page state from Vuex
+## 8.12 Retrieving page state from Vuex
 
 Now that we've moved page state into Vuex we'll need to modify our page components to retrieve it. Starting with ListingPage, the changes we must make are:
 
@@ -507,7 +567,7 @@ After making these changes, reload the app and you should see no obvious change 
 
 Figure 8.14. Page state is now in the Vuex store
 
-## Getters
+## 8.13 Getters
 
 Sometimes what we want to get from the store is not a direct value, but a derived value. For example, say we wanted to get only those listing summaries that were saved by the user. To do this, we can define a getter, which is like a computed property for the store:
 
@@ -541,7 +601,7 @@ listing() { return populateAmenitiesAndPrices( this.$store.getters.getListing(th
 }
 ```
 
-## Checking if page state is in the store
+## 8.14 Checking if page state is in the store
 
 We've successfully moved page state into the store. Now in the navigation guard, we will check to see if the data a page needs is already stored to avoid retrieving the same data twice:
 
@@ -561,7 +621,7 @@ router.beforeEach((to, from, next) => { let serverData = JSON.parse(window.vuebn
 
 With that done, if the in-app navigation is used to navigate from the home page to listing 1, then back to the home page, then back to listing 1, the app will retrieve listing 1 from the API just the once. It would have done it twice under the previous architecture!
 
-## Saved page
+## 8.15 Saved page
 
 We will now add the saved page to Vuebnb. Let's begin by creating the component file:
 
@@ -629,7 +689,7 @@ If we remove all our saved listings, this is what we see:
 
 Figure 8.17. Saved page without listings
 
-## Toolbar links
+## 8.16 Toolbar links
 
 The last thing we'll do in this chapter is to add a link to the saved page in the toolbar so that the saved page is accessible from any other page. To do this, we'll add an inline ul where links are enclosed within a child li (we'll add more links to the toolbar in Chapter 9, Adding a User Login and API Authentication with Passport).
 

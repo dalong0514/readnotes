@@ -309,5 +309,118 @@ Each entry in the log can tell you the state after the change was committed, as 
 
 1『再点一下，数组里的该 id 会删掉，为实现取消收藏做准备啊。』
 
+### 8.6 Changing the icon to reflect the state
+
+Our ListingSave component's icon will appear differently, depending on whether or not the listing is saved; it will be opaque if the listing is saved, and transparent if it is not. Since the component doesn't store its state locally, we need to retrieve state from the store to implement this feature.
+
+Vuex store state should generally be retrieved via a computed property. This ensures that the component is not keeping its own copy, which would violate the single source of truth principle, and that the component is re-rendered when the state is mutated by this component or another. Reactivity works with Vuex state, too! Let's create a computed property isListingSaved, which will return a Boolean value reflecting whether or not this particular listing has been saved.
+
+resources/assets/components/ListingSave.vue:
+
+We can now use this computed property to change the icon. Currently we're using the Font Awesome icon fa-heart-o. This should represent the unsaved state. When the listing is saved we should instead use the icon fa-heart. We can implement this with a dynamic class binding.
+
+resources/assets/components/ListingSave.vue:
+
+```js
+<template>
+    <div class="listing-save" @click.stop="toggleSaved()">
+        <i :class="classes"></i>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: ['id'],
+        methods: {
+            toggleSaved() {
+                this.$store.commit('toggleSaved', this.id);
+            }
+        },
+        computed: {
+            isListingSaved() {
+                return this.$store.state.saved.find(saved => saved === this.id);
+            },
+            classes() {
+                let saved = this.isListingSaved;
+                return {
+                    'fa': true,
+                    'fa-lg': true,
+                    'fa-heart': saved,
+                    'fa-heart-o': !saved,
+
+                }
+            }
+        },
+    }
+</script>
+
+<style>
+    .listing-save {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .listing-save .fa-heart-o {
+        color: #ffffff;
+    }
+
+    .listing-save .fa-heart {
+        color: #ff5a5f;
+    }
+</style>
+```
+
+1『发现心形不见了，又没报错，找了半天发现自己「classes」没用指令绑定，少了绑定指令简写的冒号。』
+
+### 8.7 Adding to ListingPage
+
+We also want the save feature to appear on the listing page. It will go inside the HeaderImage component alongside the View Photos button so that, like with the listing summaries, the button is overlaid on the listing's main image.
+
+resources/assets/components/HeaderImage.vue:
+
+```js
+<template>
+    <div class="header">
+        <div class="header-img" :style="headerImageStyle" 
+            @click="$emit('header-clicked')">
+            <listing-save :id="id"></listing-save>
+            <button class="view-photos">View Photos</button>
+        </div>
+    </div>
+</template>
+
+<script>
+    import ListingSave from './ListingSave';
+    export default {
+        computed: {
+            headerImageStyle() {
+                return {
+                    "background-image": `url(${this.imageUrl})`}
+            },
+        },
+        props: ['image-url', 'id'],
+        components: {
+            ListingSave,
+        }
+    }
+</script>
+```
+
+Note that HeaderImage does not have the listing ID in its scope, so we'll have to pass this down as a prop from ListingPage. id is not currently a data property of ListingPage either, but, if we declare it, it will simply work. This is because the ID is already a property of the initial state/AJAX data the component receives, therefore id will automatically be populated by the Object.assign when the component is loaded by the router.
+
+resources/assets/components/ListingPage.vue:
+
+```html
+<header-image v-if="images[0]" 
+:image-url="images[0]" 
+@header-clicked="openModal"
+:id="id"></header-image>
+```
+
+If you save a listing via the listing page, then return to the home page, the equivalent listing summary will be saved. This is because our Vuex state is global and will persist across page changes (though not page refreshes...yet).
+
+
+
 
 
