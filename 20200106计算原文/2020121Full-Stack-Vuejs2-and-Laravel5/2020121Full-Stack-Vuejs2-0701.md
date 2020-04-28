@@ -1045,101 +1045,222 @@ class ListingController extends Controller
 
 Similar to lifecycle hooks, navigation guards allow you to intercept Vue Router navigations at a particular point in their life cycle. These guards can be applied to a specific component, a specific route, or to all routes. For example, afterEach is the navigation guard called after any route is navigated away from. You might use this hook to store analytics information, for example:
 
-
-
-
-
-
-
 ```js
-router.afterEach((to, from) => { storeAnalytics(userId, from.path); })
+router.afterEach((to, from) => { 
+    storeAnalytics(userId, from.path); 
+})
 ```
 
 We can use the beforeRouteEnter navigation guard to fetch data from our web service if the data in the head is unsuitable. Consider the following pseudo-code for how we might implement this:
 
 ```js
-beforeRouteEnter(to, from, next) { if (to !== injectedData.path) { getDataWithAjax.then(data => { applyData(data) }) } else { applyData(injectedData) } next() }
+beforeRouteEnter(to, from, next) { 
+    if (to !== injectedData.path) { 
+        getDataWithAjax.then(data => { 
+            applyData(data) 
+        }) 
+        } else { 
+            applyData(injectedData) 
+        } 
+    next() 
+}
 ```
 
 ### 7.9.3 next
 
 An important feature of navigation guards is that they will halt navigation until the next function is called. This allows asynchronous code to be executed before the navigation is resolved:
 
-beforeRouteEnter(to, from, next) { new Promise(...).then(() => { next(); }); }
-
-You can pass false to the next function to prevent a navigation, or you can pass a different route to redirect it. If you don't pass anything, the navigation is considered confirmed.
-
-The beforeRouteEnter guard is a special case. Firstly, this is undefined within it since it is called before the next page component has been created:
-
-beforeRouteEnter(to, from, next) { console.log(this); // undefined }
-
-However, the next function in beforeRouteEnter can accept a callback function as an argument, for example, next(component => { ... }); where component is the page component instance.
-
-This callback is not triggered until the route is confirmed and the component instance has been created. Due to how JavaScript closures work, the callback will have access to the scope of the surrounding code where it was called:
-
-```
-beforeRouteEnter(to, from, next) { var data = { ... } next(component => { component.$data = data; }); }
+```js
+beforeRouteEnter(to, from, next) { 
+    new Promise(...).then(() => { 
+        next(); 
+    }); 
+}
 ```
 
-## HomePage component
+You can pass false to the next function to prevent a navigation, or you can pass a different route to redirect it. If you don't pass anything, the navigation is considered confirmed. The beforeRouteEnter guard is a special case. Firstly, this is undefined within it since it is called before the next page component has been created:
+
+```js
+beforeRouteEnter(to, from, next) { 
+    console.log(this); // undefined 
+}
+```
+
+However, the next function in beforeRouteEnter can accept a callback function as an argument, for example, next(component => { ... }); where component is the page component instance. This callback is not triggered until the route is confirmed and the component instance has been created. Due to how JavaScript closures work, the callback will have access to the scope of the surrounding code where it was called:
+
+```js
+beforeRouteEnter(to, from, next) { 
+    var data = { ... } 
+    next(component => { 
+        component.$data = data; 
+    }); 
+}
+```
+
+## 7.10 HomePage component
 
 Let's add beforeRouteEnter to the HomePage component. Firstly, move any logic for retrieving data from the document head into the hook. We then check the path property of the data to see if it matches the current route. If so, we call next and pass a callback function that applies the data to the component's instance. If not, we'll need to use AJAX to get the right data.
 
 resources/assets/components/HomePage.vue:
 
-export default { data() { return { listing_groups: [] }; }, components: { ListingSummary }, beforeRouteEnter(to, from, next) { let serverData = JSON.parse(window.vuebnb_server_data); if (to.path === serverData.path) { let listing_groups = groupByCountry(serverData.listings); next(component => component.listing_groups = listing_groups); } else { console.log('Need to get data with AJAX!') next(false); } } }
+```js
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import ListingSummary from './ListingSummary';
 
-I've added listing_groups as a data property. Before, we were applying our data to the component instance as it was created. Now, we're applying the data after the component is created. To set up reactive data, Vue must know the names of the data properties, so we initialize with an empty value and update it when the data needed is available.
+    export default {
+        data() {
+            return { 
+                listing_groups: [],
+            };
+        },
+        components: {
+            ListingSummary,
+        },
+        beforeRouteEnter(to, from, next) {
+            let serverData = JSON.parse(window.vuebnb_server_data);
+            if (to.path === serverData.path) {
+                let listing_groups = groupByCountry(serverData.listings);
+                next(component => component.listing_groups = listing_groups);
+            } else {
+                console.log('Need to get data with AJAX!');
+                next(false);
+            }
+        },
+    }
+</script>
+```
 
-## Home API endpoint
+I've added listing\_groups as a data property. Before, we were applying our data to the component instance as it was created. Now, we're applying the data after the component is created. To set up reactive data, Vue must know the names of the data properties, so we initialize with an empty value and update it when the data needed is available.
 
-We'll now implement the AJAX functionality. Before we do, though, we need to add a home page endpoint to our web service.
+### 7.10.1 Home API endpoint
 
-Let's first add the home API route.
+We'll now implement the AJAX functionality. Before we do, though, we need to add a home page endpoint to our web service. Let's first add the home API route.
 
 routes/api.php:
 
+```php
 ...
 
 Route::get('/', 'ListingController@get_home_api');
+```
 
-Looking now at the ListingController class, we'll abstract the bulk of the logic from get_home_web into a new function, get_listing_summaries. We'll then use this function in the get_home_api method and return a JSON response.
+Looking now at the ListingController class, we'll abstract the bulk of the logic from get\_home\_web into a new function, get\_listing\_summaries. We'll then use this function in the get\_home\_api method and return a JSON response.
 
 app/Http/Controllers/ListingController.php:
 
-private function get_listing_summaries() { $collection = Listing::all([ 'id', 'address', 'title', 'price_per_night' ]); $collection->transform(function($listing) { $listing->thumb = asset( 'images/' . $listing->id . '/Image_1_thumb.jpg' ); return $listing; }); return collect(['listings' => $collection->toArray()]); } public function get_home_web(Request $request) { $data = $this->get_listing_summaries(); $data = $this->add_meta_data($data, $request); return view('app', ['data' => $data]); } public function get_home_api() { $data = $this->get_listing_summaries(); return response()->json($data); }
+```php
+private function get_listing_summaries() {
+    $collection = ListingModel::all([
+        'id', 'address', 'title', 'price_per_night'
+    ]);
+    // 增加 thumb 图片的 url
+    $collection->transform(function($listing) {
+        $listing->thumb = asset(
+            'images/' . $listing->id . '/Image_1_thumb.jpg'
+        );
+        return $listing;
+    });
+    return collect(['listings' => $collection->toArray()]);
+}
 
-## Axios
+// home page
+public function get_home_web(Request $request)
+{
+    $data = $this->get_listing_summaries();
+    $data = $this->add_meta_data($data, $request);
+    return view('app', ['data' => $data]);
+}
+
+// home api endpoint
+public function get_home_api() {
+    $data = $this->get_listing_summaries();
+    return response()->json($data);
+}
+```
+
+### 7.10.2 Axios
 
 To perform AJAX requests to the web service, we'll use the Axios HTTP client, which is included with Laravel's default frontend code. Axios has a very simple API allowing us to make requests to a GET URL like this:
 
+```js
 axios.get('/my-url');
+```
 
 Axios is a Promise-based library, so in order to retrieve the response, you can simply chain a then callback:
 
-axios.get('/my-url').then(response => { console.log(response.data); // Hello from my-url });
+```js
+axios.get('/my-url').then(response => { 
+    console.log(response.data); // Hello from my-url 
+});
+```
 
 As the Axios NPM package is already installed, we can go ahead and import the HomePage component. We can then use it to perform the request to the home API endpoint, /api/. In the then callback, we apply the returned data to the component instance exactly as we did with the inlined model.
 
 resources/assets/components/HomePage.vue:
 
-...
+```js
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import ListingSummary from './ListingSummary';
+    import axios from 'axios';
 
-import axios from 'axios'; export default { data() { ... }, components: { ... }, beforeRouteEnter (to, from, next) { let serverData = JSON.parse(window.vuebnb_server_data); if (to.path === serverData.path) { let listing_groups = groupByCountry(serverData.listings); next(component => component.listing_groups = listing_groups); } else { axios.get(`/api/`).then(({ data }) => { let listing_groups = groupByCountry(data.listings); next(component => component.listing_groups = listing_groups); }); } } }
+    export default {
+        data() {
+            return { 
+                listing_groups: [],
+            };
+        },
+        components: {
+            ListingSummary,
+        },
+        beforeRouteEnter(to, from, next) {
+            let serverData = JSON.parse(window.vuebnb_server_data);
+            if (to.path === serverData.path) {
+                let listing_groups = groupByCountry(serverData.listings);
+                next(component => component.listing_groups = listing_groups);
+            } else {
+                console.log('Need to get data with AJAX!');
+                axios.get(`api`).then(({data}) => {
+                    let listing_groups = groupByCountry(data.listings);
+                    next(component => component.listing_groups = listing_groups);
+                })
+            }
+        },
+    }
+</script>
+```
 
 And with that, we can now navigate to the home page in two ways, either via the address bar, or by going from a link from the listing page. Either way, we get the right data!
 
-## Mixins
+## 7.11 Mixins
 
-If you have any functionality that is common between components, you can put it in a mixin to avoid rewriting the same functionality.
+If you have any functionality that is common between components, you can put it in a mixin to avoid rewriting the same functionality. A Vue mixin is an object in the same form as a component configuration object. To use it in a component, declare within an array and assign it to the configuration property mixin. When this component is instantiated, any configuration options of the mixin will be merged with what you've declared on the component:
 
-A Vue mixin is an object in the same form as a component configuration object. To use it in a component, declare within an array and assign it to the configuration property mixin. When this component is instantiated, any configuration options of the mixin will be merged with what you've declared on the component:
+```js
+var mixin = { 
+    methods: { 
+        commonMethod() { 
+            console.log('common method'); 
+        } 
+    } 
+}; 
 
-var mixin = { methods: { commonMethod() { console.log('common method'); } } }; Vue.component('a', { mixins: [ mixin ] }); Vue.component('b', { mixins: [ mixin ] methods: { otherMethod() { ... } } });
+Vue.component('a', { 
+    mixins: [ mixin ] 
+}); 
+
+Vue.component('b', { 
+    mixins: [ mixin ] 
+    methods: { 
+        otherMethod() { ... } 
+    } 
+});
+```
 
 You might be wondering what happens if the component configuration has a method or other property that conflicts with the mixin. The answer is that mixins have a merging strategy that determines the priority of any conflicts. Generally, the component's specified configuration will take precedence. The details of the merging strategy are explained in the Vue.js documentation at http://vuejs.org.
 
-## Moving the solution to a mixin
+### 7.11.1 Moving the solution to a mixin
 
 Let's generalize the solution for getting the right data to the home page so that we can use it on the listing page as well. To do this, we'll move Axios and the beforeRouteEnter hook from the HomePage component into a mixin that can then be added to both page components:
 
@@ -1149,25 +1270,111 @@ At the same time, let's improve the code by removing the repetition of the next 
 
 resources/assets/js/route-mixin.js:
 
-import axios from 'axios'; function getData(to) { return new Promise((resolve) => { let serverData = JSON.parse(window.vuebnb_server_data); if (!serverData.path || to.path !== serverData.path) { axios.get(`/api${to.path}`).then(({ data }) => { resolve(data); }); } else { resolve(serverData); } }); } export default { beforeRouteEnter: (to, from, next) => { getData(to).then((data) => { next(component => component.assignData(data)); }); } };
+```js
+import axios from 'axios';
+
+function getData(to) {
+    return new Promise((resolve) => {
+        let serverData = JSON.parse(window.vuebnb_server_data);
+        if (!serverData.path || to.path !== serverData.path) {
+            axios.get(`api${to.path}`).then(({data}) => {
+                resolve(data);
+            })
+        } else {
+            resolve(serverData);
+        }
+    });
+}
+
+export default {
+    beforeRouteEnter: (to, from, next) => {
+        getData(to).then((data) => {
+            next(component => component.assignData(data));
+        });
+    }
+};
+```
 
 We don't need a polyfill for Promise as that is already supplied in the Axios library.
 
-## assignData
+### 7.11.2 assignData
 
 You'll notice that within the next callback we call a method on the subject component called assignData, passing the data object as an argument. We'll need to implement the assignData method in any component that uses this mixin. We do it this way so that the component can process the data, if necessary, before it is applied to the component instance. For example, the ListingPage component must process the data via the populateAmenitiesAndPrices helper function.
 
 resources/assets/components/ListingPage.vue:
 
-... import routeMixin from '../js/route-mixin'; export default { mixins: [ routeMixin ], data() { return { title: null, about: null, address: null, amenities: [], prices: [], images: [] } }, components: { ... }, methods: { assignData({ listing }) { Object.assign(this.$data, populateAmenitiesAndPrices(listing)); }, openModal() { this.$refs.imagemodal.modalOpen = true; } } }
+```js
+<script>
+    import { populateAmenitiesAndPrices } from '../js/helpers';
+    import ImageCarousel from './ImageCarousel.vue';
+    import ModalWindow from './ModalWindow.vue';
+    import HeaderImage from './HeaderImage.vue';
+    import FeatureList from './FeatureList.vue';
+    import ExpandableText from './ExpandableText.vue';
+    import routeMixin from '../js/route-mixin';
+
+    export default {
+        mixins: [routeMixin],
+        data() {
+            return {
+                title: null,
+                about: null,
+                address: null,
+                amenities: [],
+                prices: [],
+                images: [],
+            }
+        },
+        components: { 
+            ImageCarousel,
+            ModalWindow,
+            HeaderImage,
+            FeatureList,
+            ExpandableText,
+        },
+        methods: {
+            assignData({listing}) {
+                Object.assign(this.$data, populateAmenitiesAndPrices(listing));
+            },
+            openModal() {
+                this.$refs.imagemodal.modalOpen = true;
+            },
+        },
+}
+</script>
+```
 
 We'll also need to add assignData to the HomePage component.
 
 resources/assets/components/HomePage.vue:
 
-<script> import { groupByCountry } from '../js/helpers'; import ListingSummary from './ListingSummary.vue'; import axios from 'axios'; import routeMixin from '../js/route-mixin'; export default { mixins: [ routeMixin ], data() { ... }, methods: { assignData({ listings }) { this.listing_groups = groupByCountry(listings); }, }, components: { ... } } </script>
+```js
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import ListingSummary from './ListingSummary';
+    import axios from 'axios';
+    import routeMixin from '../js/route-mixin';
 
-## Linking to the listing page
+    export default {
+        mixins: [routeMixin],
+        data() {
+            return { 
+                listing_groups: [],
+            };
+        },
+        methods: {
+            assignData({listings}) {
+                this.listing_groups = groupByCountry(listings);
+            }
+        },
+        components: {
+            ListingSummary,
+        },
+    }
+</script>
+```
+
+### 7.11.3 Linking to the listing page
 
 The above should work but we can't test it since there are not yet any in-app links to the listing page!
 
@@ -1175,7 +1382,57 @@ Each of our ListingSummary instances represents a single listing, and should the
 
 resources/assets/components/ListingSummary.vue:
 
-<div class="listing-summary"> <router-link :to="{ name: 'listing', params: { listing: listing.id } }"> <div class="wrapper"> <div class="thumbnail" :style="backgroundImageStyle"></div> <div class="info title"> <span>{{ listing.price_per_night }}</span> <span>{{ listing.title }}</span> </div> <div class="info address">{{ listing.address }}</div> </div> </router-link> </div>
+```html
+<template>
+    <div class="listing-summary">
+        <router-link :to="{name:'listing', params:{listing:listing.id}}">
+            <div class="wrapper">
+                <div class="thumbnail" :style="backgroundImageStyle"></div>
+                <div class="info title">
+                    <span>{{ listing.price_per_night }}</span>
+                    <span>{{ listing.title }}</span>
+                </div>
+                <div class="info address">{{ listing.address }}</div>
+            </div>
+        </router-link>
+    </div>
+</template>
+```
+
+1『
+
+发现详细页面没数据，报错：
+
+http://localhost:8000/listing/api/listing/1 404 (Not Found)
+
+可以看出请求的数据出问题了，路由的名字错了，api 应该在 listing 前面。推理出问题应该在路由上，最后找到（route-mixin.js）：
+
+```js
+axios.get(`api${to.path}`).then(({data}) => {
+    resolve(data);
+})
+```
+
+应该是：
+
+```js
+axios.get(`/api${to.path}`).then(({data}) => {
+    resolve(data);
+})
+```
+
+少了个 /，魔鬼在细节。
+
+弄错了，关键不是少了 /，关键是前面的 === 应该是 ！===，有没有 / 没有啥影响。
+
+```js
+if (!serverData.path || to.path !== serverData.path) {
+    axios.get(`api${to.path}`).then(({data}) => {
+        resolve(data);
+    })
+```
+
+』
 
 With that done, the listing summaries will now be links. Clicking from one to the listing page, we see this:
 
@@ -1189,17 +1446,30 @@ The reason for this is that the component's first render occurs before the callb
 
 resources/assets/components/ListingPage.vue:
 
-data() { return { title: null, about: null, address: null, amenities: [], prices: [], images: [] } },
+```js
+data() { 
+    return { 
+        title: null, 
+        about: null, 
+        address: null, 
+        amenities: [], 
+        prices: [], 
+        images: [] 
+    } 
+},
+```
 
-In the HeaderImage declaration, we bind the first image like this: :image-url="images[0]". Since the array is initially empty, this will be an undefined value and results in the unhandled error.
-
-The explanation is complex, but the fix is easy: just add a v-if to header-image, ensuring it won't render until valid data is available.
+In the HeaderImage declaration, we bind the first image like this: :image-url="images[0]". Since the array is initially empty, this will be an undefined value and results in the unhandled error. The explanation is complex, but the fix is easy: just add a v-if to header-image, ensuring it won't render until valid data is available.
 
 resources/assets/components/ListingPage.vue:
 
-<header-image v-if="images[0]" :image-url="images[0]" @header-clicked="openModal" ></header-image>
+```html
+    <header-image v-if="images[0]" 
+    :image-url="images[0]" 
+    @header-clicked="openModal"></header-image>
+```
 
-## Scroll behavior
+## 7.12 Scroll behavior
 
 Another aspect of website navigation that the browser automatically manages is scroll behavior. For example, if you scroll to the bottom of a page, then navigate to a new page, the scroll position is reset. But if you return to the previous page, the scroll position is remembered by the browser, and you're taken back to the bottom.
 
@@ -1211,9 +1481,17 @@ Vue Router has a scrollbehavior method that allows you to adjust where the page 
 
 resources/assets/js/router.js:
 
-export default new VueRouter({ mode: 'history', routes: [ ... ], scrollBehavior (to, from, savedPosition) { return { x: 0, y: 0 } } });
+```js
+export default new VueRouter({ 
+    mode: 'history', 
+    routes: [ ... ], 
+    scrollBehavior (to, from, savedPosition) { 
+        return { x: 0, y: 0 } 
+    } 
+});
+```
 
-## Adding a footer
+## 7.13 Adding a footer
 
 To improve the design of Vuebnb, let's add a footer to the bottom of each page. We'll make it a reusable component, so let's begin by creating that:
 
@@ -1223,28 +1501,70 @@ Here is the markup. For now, it's just a stateless component.
 
 resources/assets/js/CustomFooter.vue:
 
-```
-<template> <div id="footer"> <div class="hr"></div> <div class="container"> <p> <img class="icon" src="/images/logo_grey.png"> <span>
+```html
+<template>
+    <div id="footer">
+        <div class="container">
+            <p>
+                <img src="/images/logo_grey.png" class="icon">
+                <span>
+                    <strong>Vuebnb</strong>. A full-stack Vue.js and Laravel demo app
+                </span>
+            </p>
+        </div>
+    </div>
+</template>
 
-<strong>Vuebnb</strong>. A full-stack Vue.js and Laravel demo app
+<style>
+    #footer .icon {
+        height: 23px;
+        display: inline-block;
+        margin-bottom: -6px;
+    }
 
-</span> </p> </div> </div> </template> <style> #footer { margin-bottom: 3em; } #footer .icon { height: 23px; display: inline-block; margin-bottom: -6px; } .hr { border-bottom: 1px solid #dbdbdb; margin: 3em 0; } #footer p { font-size</span>: 15px; color: #767676 !important;
+    .hr {
+        border-bottom: 1px solid #dbdbdb;
+        margin: 3em 0;
+    }
 
-display: flex; }
+    #footer p {
+        font-size: 15px;
+        color: #767676 !important;
+        display: flex;
+    }
 
-#footer p img {
-
-padding-right: 6px;
-
-} </style>
+    #footer p img {
+        padding-right: 6px;
+    }
+</style>
 ```
 
 Let's add the footer to the App component, just below the RouterView where the pages are output.
 
 resources/assets/js/App.vue:
 
-```
-<template> <div> <div id="toolbar">...</div> <router-view></router-view> <custom-footer></custom-footer> </div> </template> <script> import CustomFooter from './CustomFooter.vue'; export default { components: { CustomFooter } } </script> <style>...</style>
+```html
+<template>
+    <div>
+        <div id="toolbar">
+            <router-link :to="{name:'home'}">
+                <img src="/images/logo.png" class="icon">
+                <h1>vuebnb</h1>
+            </router-link>
+        </div>
+        <router-view></router-view>
+        <custom-footer></custom-footer>
+    </div>
+</template>
+
+<script>
+import CustomFooter from './CustomFooter';
+export default {
+    components: {
+        CustomFooter,
+    }
+}
+</script>
 ```
 
 Here's how it looks on the listing page:
@@ -1252,6 +1572,8 @@ Here's how it looks on the listing page:
 Figure 7.18. Custom footer on listing page
 
 Now here's how it looks on the home page. It doesn't look as good because the text is not aligned left as you'd expect. This is because the container constraints used on this page are different to the .container class we've added to the footer:
+
+1『详细页面里排版可以，但首页里的这个版本就比较乱。』
 
 Figure 7.19. Custom footer on home page
 
@@ -1261,39 +1583,83 @@ Secondly, let's move .home-container to the main CSS file as well, since we'll s
 
 resources/assets/css/style.css:
 
-```
-.listing-container { margin: 0 auto; padding: 0 12px; } @media (min-width: 744px) { .listing-container { width: 696px; } } .home-container { margin: 0 auto; padding: 0 25px; } @media (min-width: 1131px) { .home-container { width: 1080px; } }
+```css
+.listing-container {
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+@media (min-width: 744px) {
+    .listing-container {
+      width: 696px;
+    }
+}
+
+.home-container {
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+@media (min-width: 1131px) {
+    .home-container {
+        width: 1080px;
+    }
+}
 ```
 
 Now we have .home-container and .listing-container as two possible containers for our custom-footer component. Let's dynamically select the class depending on the route, so the footer is always correctly aligned.
 
-## The route object
+### 7.13.1 The route object
 
 The route object represents the state of the currently active route and can be accessed inside the root instance, or a component instance, as this.\$route. This object contains parsed information of the current URL and the route records matched by the URL:
 
-```
-created() { console.log(this.$route.fullPath); // /listing/1 console.log(this.$route.params); // { listing: "1" } }
+```js
+created() { 
+    console.log(this.$route.fullPath); // /listing/1 
+    console.log(this.$route.params); // { listing: "1" } 
+}
 ```
 
-## Dynamically selecting the container class
+### 7.13.2 Dynamically selecting the container class
 
 In order to select the correct container class in custom-footer, we can get the name of the current route from the route object, and use that in a template literal.
 
 resources/assets/components/CustomFooter.vue:
 
-```
-<template> <div id="footer"> <div class="hr"></div> <div :class="containerClass"> <p>...</p> </div> </div> </template> <script> export default { computed: { containerClass() { // this.$route.name is either 'home' or 'listing' return `${this.$route.name}-container`; } } } </script> <style>...</style>
+```js
+<template>
+    <div id="footer">
+        <div class="hr"></div>
+        <div :class="containerClass">
+            <p>
+                <img src="/images/logo_grey.png" class="icon">
+                <span>
+                    <strong>Vuebnb</strong>. A full-stack Vue.js and Laravel demo app
+                </span>
+            </p>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    computed: {
+        containerClass() {
+            // this.$route.name is either 'home' or 'listing'
+            return `${this.$route.name}-container`;
+        }
+    },
+}
+</script>
 ```
 
 Now the footer will use .home-container when displayed on the home page:
 
 Figure 7.20. Custom footer on home page with the correct container class
 
-## Listing summary image slider
+## 7.14 Listing summary image slider
 
-On our home page, we need to make it so that a user can see more than just three of the possible 10 listings for each country. To do this, we will turn each listing summary group into an image slider.
-
-Let's create a new component to house each listing summary group. We'll then add arrowheads to the sides of this component, allowing the user to easily step through its listings:
+On our home page, we need to make it so that a user can see more than just three of the possible 10 listings for each country. To do this, we will turn each listing summary group into an image slider. Let's create a new component to house each listing summary group. We'll then add arrowheads to the sides of this component, allowing the user to easily step through its listings:
 
     $ touch resources/assets/components/ListingSummaryGroup.vue
 
@@ -1301,35 +1667,154 @@ We'll now abstract the markup and logic for displaying listing summaries from Ho
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-<template> <div class="listing-summary-group"> <h1>Places in {{ country }}</h1> <div class="listing-summaries"> <listing-summary v-for="listing in listings" :key="listing.id" :listing="listing" ></listing-summary> </div> </div> </template> <script> import ListingSummary from './ListingSummary.vue'; export default { props: [ 'country', 'listings' ], components: { ListingSummary } } </script> <style> .listing-summary-group { padding-bottom: 20px; } .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; overflow: hidden; } .listing-summaries > .listing-summary { margin-right: 15px; } .listing-summaries > .listing-summary:last-child { margin-right: 0; } </style>
+```js
+<template>
+    <div class="listing-summary-group">
+        <h1>Places in {{ country }}</h1>
+        <div class="listing-summaries">
+            <listing-summary 
+            v-for="listing in listings"
+            :key="listing.id"
+            :listing="listing"></listing-summary>
+        </div>
+    </div>
+</template>
+
+<script>
+    import ListingSummary from './ListingSummary.vue';
+    export default {
+        props: ['country', 'listings'],
+        components: {
+            ListingSummary,
+        },
+    }
+</script>
+
+<style>
+    .listing-summary-group {
+        padding-bottom: 20px;
+    }
+
+    .listing-summaries {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    .listing-summaries > .listing-summary {
+        margin-right: 15px;
+    }
+
+    .listing-summaries > .listing-summary:last-child {
+        margin-right: 0;
+    }
+</style>
 ```
 
 Back in the HomePage, we will declare the ListingSummaryGroup with a v-for, iterating over each country group.
 
 resources/assets/components/HomePage.vue:
 
-```
-<template> <div class="home-container"> <listing-summary-group v-for="(group, country) in listing_groups" :key="country" :listings="group" :country="country" class="listing-summary-group" ></listing-summary-group> </div> </template> <script> import routeMixin from '../js/route-mixin'; import ListingSummaryGroup from './ListingSummaryGroup.vue'; import { groupByCountry } from '../js/helpers'; export default { mixins: [ routeMixin ], data() { return { listing_groups: [] }; }, methods: { assignData({ listings }) { this.listing_groups = groupByCountry(listings); } }, components: { ListingSummaryGroup } } </script>
+```js
+<template>
+    <div class="home-container">
+        <listing-summary-group 
+        v-for="(group, country) in listing_groups"
+        :key="country"
+        :listings="group"
+        :country="country"
+        class="listing-summary-group">
+        </listing-summary-group>
+    </div>
+</template>
+
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import routeMixin from '../js/route-mixin';
+    import ListingSummaryGroup from './ListingSummaryGroup.vue';
+
+    export default {
+        mixins: [routeMixin],
+        data() {
+            return { 
+                listing_groups: [],
+            };
+        },
+        methods: {
+            assignData({listings}) {
+                this.listing_groups = groupByCountry(listings);
+            }
+        },
+        components: {
+            ListingSummaryGroup,
+        },
+    }
+</script>
 ```
 
 Most developers will use the terms image carousel and image slider interchangeably. In this book, I make a slight distinction, a carousel contains a single image that gets completely switched out with another, while a slider shifts the position of images, with several visible at once.
 
-## Adding the slider
+1『
+
+报错，说找不到组件 ListingSummary，找的是找了很久，看了一遍又一遍，最后是发现在 ListingSummaryGroup 里注册 ListingSummary 组件时，少打了一个 s。
+
+```
+// 漏掉了组件后面的 s，应该是 components
+component: {
+    ListingSummary,
+},
+```
+
+细节细节细节！
+
+』
+
+### 7.14.1 Adding the slider
 
 We'll now add the slider functionality to ListingSummaryGroup. To do this, we'll reuse the CarouselControl component we made back in Chapter 6, Composing Widgets with Vue.js Components. We'll want to display one on either side of the group, so let's put them into the template, remembering to declare the dir attribute. We'll also add some structural markup and CSS for displaying the controls.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-<template> <div class="listing-summary-group"> <h1>Places in {{ country }}</h1> <div class="listing-carousel"> <div class="controls"> <carousel-control dir="left"></carousel-control> <carousel-control dir="right"></carousel-control> </div> <div class="listing-summaries-wrapper"> <div class="listing-summaries"> <listing-summary v-for="listing in listings" :listing="listing" :key="listing.id" ></listing-summary> </div> </div> </div> </div> </template> <script> import ListingSummary from './ListingSummary.vue'; import CarouselControl from './CarouselControl.vue'; export default { props: [ 'country', 'listings' ], components: { ListingSummary, CarouselControl } } </script> <style> ... .listing-carousel { position: relative; } .listing-carousel .controls { display: flex; justify-content: space-between; position: absolute; top: calc(50% - 45px); left: -45px; width: calc(100% + 90px); } .listing-carousel .controls .carousel-control{ color: #c5c5c5; font-size: 1.5rem; cursor: pointer; } .listing-summaries-wrapper { overflow: hidden; } </style>
+```js
+<template>
+    <div class="listing-summary-group">
+        <h1>Places in {{ country }}</h1>
+        <div class="listing-carousel">
+            <div class="controls">
+                <carousel-control dir="left"></carousel-control>
+                <carousel-control dir="right"></carousel-control>
+            </div>
+            <div class="listing-summaries-wrapper">
+                <div class="listing-summaries">
+                    <listing-summary 
+                    v-for="listing in listings"
+                    :key="listing.id"
+                    :listing="listing"></listing-summary>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import ListingSummary from './ListingSummary.vue';
+    import CarouselControl from './CarouselControl';
+    export default {
+        props: ['country', 'listings'],
+        components: {
+            ListingSummary,
+            CarouselControl,
+        },
+    }
+</script>
 ```
 
 After adding this code, your home page will look like this:
 
 Figure 7.21. Carousel controls on listing summary groups
 
-## Translate
+### 7.14.2 Translate
 
 In order to shift our listing summaries in response to the carousel controls being clicked, we will use a CSS transform called translate. This moves an affected element from its current position by an amount specified in pixels.
 
@@ -1341,80 +1826,159 @@ By binding inline style to the element with the listing-summary class, we can co
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-<template> <div class="listing-summary-group"> <h1>Places in {{ country }}</h1> <div class="listing-carousel"> <div class="controls">...</div> <div class="listing-summaries" :style="style"> <listing-summary...>...</listing-summary> </div> </div> </div> </template> <script> export default { props: [ 'country', 'listings' ], computed: { style() { return { transform: `translateX(-365px)` } } }, components: { ... } } </script>
+```js
+<script>
+    import ListingSummary from './ListingSummary.vue';
+    import CarouselControl from './CarouselControl';
+    export default {
+        props: ['country', 'listings'],
+        computed: {
+            style() {
+                return {transform: `translateX(-365px)`}
+            }
+        },
+        components: {
+            ListingSummary,
+            CarouselControl,
+        },
+    }
+</script>
 ```
 
 Now all of our summary groups will be shifted:
 
 Figure 7.23. Shifted listing groups with translate controlled by JavaScript
 
-The problem evident in Figure 7.23 is that we can only see three images at once and that they're overflowing out of the container into the other parts of the page.
-
-To fix this, we'll move the CSS rule overflow: hidden from listing-summaries to listing-summaries-wrapper.
+The problem evident in Figure 7.23 is that we can only see three images at once and that they're overflowing out of the container into the other parts of the page. To fix this, we'll move the CSS rule overflow: hidden from listing-summaries to listing-summaries-wrapper.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-... .listing-summaries-wrapper { overflow: hidden; } .listing-summaries { display: flex; flex-direction: row; justify-content: space-between; } ...
+```css
+... 
+
+.listing-summaries-wrapper { 
+    overflow: hidden; 
+} 
+
+.listing-summaries { 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+} 
+
+...
 ```
 
-## Carousel controls
+### 7.14.3 Carousel controls
 
 We now need the carousel controls to change the value of the translate. To do so, let's add a data property, offset, to ListingSummaryGroup. This will track how many images we've shifted along, that is, it will start at zero, and go up to a maximum of seven (not 10 because we don't want to shift so far along that all of the images are off-screen).
 
-We'll also add a method change, which will serve as an event handling function for the custom event that the carousel control components emit. This method accepts one argument, val, which will either be -1 or 1, depending on whether the left or right carousel control was triggered.
-
-change will step the value of offset, which is then multiplied by the width of each listing (365px) to calculate the translate.
+We'll also add a method change, which will serve as an event handling function for the custom event that the carousel control components emit. This method accepts one argument, val, which will either be -1 or 1, depending on whether the left or right carousel control was triggered. change will step the value of offset, which is then multiplied by the width of each listing (365px) to calculate the translate.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-...
+```js
+const rowSize = 3;
+const listingSummaryWidth = 365;
 
-const rowSize = 3; const listingSummaryWidth = 365; export default { props: [ 'country', 'listings' ], data() { return { offset: 0 } }, methods: { change(val) { let newVal = this.offset + parseInt(val); if (newVal >= 0 && newVal <= this.listings.length - rowSize) { this.offset = newVal; } } }, computed: { style() { return { transform: `translateX(${this.offset * -listingSummaryWidth}px)` } } }, components: { ... } }
+export default {
+    props: ['country', 'listings'],
+    data() {
+        return {
+            offset:0
+        }
+    },
+    methods: {
+        change(val) {
+            let newVal = this.offset + parseInt(val);
+            if (newVal >= 0 && newVal <= this.listings.length-rowSize) {
+                this.offset = newVal;
+            }
+        }
+    },
+    computed: {
+        style() {
+            return {
+                transform: `translateX(${this.offset *- listingSummaryWidth}px)`
+            }
+        }
+    },
+    components: {
+        ListingSummary,
+        CarouselControl,
+    },
+}
 ```
 
 Lastly, we must use a v-on directive in the template to register a listener for the change-image event of the CarouselControl components.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-<div class="controls"> <carousel-control dir="left" @change-image="change"></carousel-control>
-
-<carousel-control dir="right" @change-image="change"></carousel-control> </div>
+```html
+<div class="controls">
+    <carousel-control dir="left" @change-image="change"></carousel-control>
+    <carousel-control dir="right" @change-image="change"></carousel-control>
+</div>
 ```
 
 With that done, we have a working image slider for each listing group!
 
-## Finishing touches
+### 7.14.4 Finishing touches
 
 There are two more small features to add to these image sliders to give Vuebnb users the best possible experience. Firstly, let's add a CSS transition to animate the translate change over a period of half a second and give a nice sliding effect.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
+```css
+.listing-summaries { 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    transition: transform 0.5s; 
+}
 ```
-.listing-summaries { display: flex; flex-direction: row; justify-content: space-between; transition: transform 0.5s; }
-```
 
-Sadly you can't see the effects of this in a book, so you'll have to try it for yourself!
+Sadly you can't see the effects of this in a book, so you'll have to try it for yourself! 
 
-Finally, unlike our image carousel, these sliders are not continuous; they have a minimum and maximum value. Let's hide the appropriate arrow if that minimum or maximum is reached. For example, when the sliders load, the left arrow should be hidden because the user cannot decrement the offset further below zero.
-
-To do this, we'll use style bindings to dynamically add a visibility: hidden CSS rule.
+Finally, unlike our image carousel, these sliders are not continuous; they have a minimum and maximum value. Let's hide the appropriate arrow if that minimum or maximum is reached. For example, when the sliders load, the left arrow should be hidden because the user cannot decrement the offset further below zero. To do this, we'll use style bindings to dynamically add a visibility: hidden CSS rule.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-<div class="controls"> <carousel-control dir="left" @change-image="change" :style="leftArrowStyle" ></carousel-control> <carousel-control dir="right" @change-image="change" :style="rightArrowStyle" ></carousel-control> </div>
+```js
+<div class="controls">
+    <carousel-control 
+    dir="left" 
+    @change-image="change"
+    :style="leftArrowStyle"></carousel-control>
+    <carousel-control 
+    dir="right" 
+    @change-image="change"
+    :style="rightArrowStyle"></carousel-control>
+</div>
 ```
 
 And the computed properties.
 
 resources/assets/components/ListingSummaryGroup.vue:
 
-```
-computed: { ... leftArrowStyle() { return { visibility: (this.offset > 0 ? 'visible' : 'hidden') } }, rightArrowStyle() { return { visibility: ( this.offset < (this.listings.length - rowSize) ? 'visible' : 'hidden' ) } } }
+```js
+computed: {
+    style() {
+        return {
+            transform: `translateX(${this.offset *- listingSummaryWidth}px)`
+        }
+    },
+    leftArrowStyle() {
+        return { visibility: (this.offset > 0 ? 'visible' : 'hidden') }
+    },
+    rightArrowStyle() {
+        return {
+            visibility: (
+                this.offset < (this.listings.length - rowSize) ? 'visible' : 'hidden'
+            )
+        }
+    },
+},
 ```
 
 With that done, we can see the left arrow is hidden when the page loads, as expected:

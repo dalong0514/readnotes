@@ -22,7 +22,15 @@ The disadvantage of the SPA architecture is that it makes the client app bulkier
 
 If you are going with an SPA architecture and your app design includes multiple pages, you'll want to use a router. A router, in this context, is a library that will mimic browser navigation through JavaScript and various native APIs so that the user gets an experience similar to that of a traditional multi-page app. Routers will typically include functionality to: 1) Handle navigation actions from within the page. 2) Match parts of the application to routes. 3) Manage the address bar. 4) Manage the browser history. 5) Manage scroll bar behavior.
 
-### 0203. 术语卡——
+### 0203. 术语卡——组件里的 props
+
+发现一个很好的类比，函数。组件是 html 里的自定义标签，把标签当一个函数来看，标签的属性名称（对应于 props）就好比是这个函数的形参，其声明是在组件定义里的 props 属性里，是个列表对象。实参是这个标签里实际传递给组件的对象，最关键的是这个对象可以是 vue 实例里的数据对象（数据或方法）。
+
+```html
+<my-component title="dalong"></my-component>
+```
+
+上面的例子里，title 是 props，dalong 是传递给这个组件的数据对象。
 
 ### 0301. 人名卡——
 
@@ -41,10 +49,6 @@ If you are going with an SPA architecture and your app design includes multiple 
 ### 0501. 行动卡——
 
 行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
-
-最后还有一张任意卡，记录个人阅读感想。
 
 ## 模板
 
@@ -569,7 +573,9 @@ But this is not valid Vue.js syntax. This is, instead, a job for another Vue.js 
 
 Just like normal HTML attributes, directives are usually name/value pairs in the form name="value". To use a directive, simply add it to an HTML tag as you would an attribute, for example:
 
-    <p v-directive="value">
+```html
+<p v-directive="value">
+```
 
 ### 2.15 Expressions
 
@@ -583,25 +589,29 @@ if (expression) {
 
 The expression here could be any of the following: 1) A mathematical expression, for example x + 7. 2) A comparison, for example v <= 7. 3) A Vue data property, for example this.myval. Directives and text interpolations both accept expression values:
 
-    <div v-dir="someExpression">{{ firstName + " " + lastName }}</div>
+```html
+<div v-dir="someExpression">
+    {{ firstName + " " + lastName }}
+</div>
+```
 
 ### 2.16 Example: v-if
 
 v-if will conditionally render an element if its value is a truthy expression. In the following case, v-if will remove/insert the p element depending on the myval value:
 
-```
+```html
 <div id="app"> <p v-if="myval">Hello Vue</p> </div> <script> var app = new Vue({ el: '#app', data: { myval: true } }); </script>
 ```
 
 Will renders as:
 
-```
+```html
 <div id="app"> <p>Hello Vue</p> </div>
 ```
 
 If we add a consecutive element with the v-else directive (a special directive that requires no value), it will be symmetrically removed/inserted as myval changes:
 
-```
+```html
 <p v-if="myval">Hello Vue</p> <p v-else>Goodbye Vue</p>
 ```
 
@@ -609,9 +619,13 @@ If we add a consecutive element with the v-else directive (a special directive t
 
 Some directives take an argument, denoted by a colon after the directive name. For example, the v-on directive, which listens to DOM events, requires an argument to specify which event should be listened to:
 
-    <a v-on:click="doSomething">
+```html
+<a v-on:click="doSomething">
+```
 
 Instead of click, the argument could be mouseenter, keypress, scroll, or any other event (including custom events).
+
+1『形成条件反射，指令后面有冒号 : 的话，后面的是要传递给该指令的参数。』
 
 ### 2.18 Style binding (continued)
 
@@ -619,7 +633,7 @@ Coming back to our header image, we can use the v-bind directive with the style 
 
 index.html:
 
-```
+```html
 <div class="header-img" v-bind:style="headerImageStyle"></div>
 ```
 
@@ -642,7 +656,9 @@ Figure 2.6. Page including header image
 
 Inspect the page with your browser Dev Tools and notice how the v-bind directive has evaluated:
 
-    <div class="header-img" style="background-image: url('sample/header.jpg');"></div>
+```html
+<div class="header-img" style="background-image: url('sample/header.jpg');"></div>
+```
 
 ### 2.19 Lists section
 

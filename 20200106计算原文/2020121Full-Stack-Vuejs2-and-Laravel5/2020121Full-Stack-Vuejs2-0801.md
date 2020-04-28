@@ -22,7 +22,7 @@ Flux is not a library. You can't go to GitHub and download it. Flux is a set of 
 
 Let's now explore the guiding principles of Flux.
 
-Principle #1 – Single source of truth
+## Principle #1 – Single source of truth
 
 Components may have local data that only they need to know about. For example, the position of the scroll bar in the user list component is probably of no interest to other components:
 
@@ -32,7 +32,7 @@ But any data that is to be shared between components, for example application da
 
 Figure 8.2. Centralized data simplifies application state
 
-Principle #2 – Data is read-only
+## Principle #2 – Data is read-only
 
 Components can freely read data from the store. But they cannot change data in the store, at least not directly.
 
@@ -42,7 +42,7 @@ Why this approach? If we centralize the data-altering logic then we don't have t
 
 Figure 8.3. State is read-only. Mutator methods are used to write to the store
 
-Principle #3 – Mutations are synchronous
+## Principle #3 – Mutations are synchronous
 
 It's much easier to debug state inconsistencies in an app that implements the above two principles in its architecture. You could log commits and observe how the state changes in response (which automatically happens with Vue Devtools, as we'll see).
 
@@ -62,13 +62,13 @@ Installing Vuex
 
 Vuex is an NPM package that can be installed from the command line:
 
-$ npm i --save-dev vuex
+    $ npm i --save-dev vuex
 
 We will put our Vuex configuration into a new module file store.js:
 
-$ touch resources/assets/js/store.js
+    $ touch resources/assets/js/store.js
 
-We need to import Vuex in this file and, like Vue Router, install it with Vue.use. This gives special properties to Vue that make it compatible with Vuex, such as allowing components to access the store via this.$store.
+We need to import Vuex in this file and, like Vue Router, install it with Vue.use. This gives special properties to Vue that make it compatible with Vuex, such as allowing components to access the store via this.\$store.
 
 resources/assets/js/store.js:
 
@@ -96,13 +96,15 @@ ListingSave component
 
 Let's begin by creating the new component:
 
-$ touch resources/assets/components/ListingSave.vue
+    $ touch resources/assets/components/ListingSave.vue
 
 The template of this component will include a Font Awesome heart icon. It will also include a click handler which will be used to toggle the saved state. Since this component will always be a child of a listing or listing summary, it will receive a listing ID as a prop. This prop will be used shortly to save the state in Vuex.
 
 resources/assets/components/ListingSave.vue:
 
+```js
 <template> <div class="listing-save" @click.stop="toggleSaved()"> <i class="fa fa-lg fa-heart-o"></i> </div> </template> <script> export default { props: [ 'id' ], methods: { toggleSaved() { // Implement this } } } </script> <style> .listing-save { position: absolute; top: 20px; right: 20px; cursor: pointer; } .listing-save .fa-heart-o { color: #ffffff; } </style>
+```
 
 Note that the click handler has a stop modifier. This modifier prevents the click event from bubbling up to ancestor elements, especially any anchor tags which might trigger a page change!
 
@@ -110,7 +112,9 @@ We'll now add ListingSave to the ListingSummary component. Remember to pass the 
 
 resources/assets/components/ListingSummary.vue:
 
+```js
 <template> <div class="listing-summary"> <router-link :to="{ name: 'listing', params: {listing: listing.id}}"> ... </router-link> <listing-save :id="listing.id"></listing-save> </div> </template> <script> import ListingSave from './ListingSave.vue'; export default { ... components: { ListingSave } } </script> <style> .listing-summary { ... position: relative; } ... @media (max-width: 400px) { .listing-summary .listing-save { left: 15px; right: auto; } } </style>
+```
 
 With that done, we will now see the ListingSave heart icon rendered on each summary:
 
@@ -130,11 +134,13 @@ export default new Vuex.Store({ state: { saved: [] } });
 
 Mutator method
 
-We created the stub for a toggleSaved method in our ListingSave component. This method should add or remove the listing's ID from the saved state in the store. Components can access the store as this.$store. More specifically, the saved array can be accessed at this.$store.state.saved.
+We created the stub for a toggleSaved method in our ListingSave component. This method should add or remove the listing's ID from the saved state in the store. Components can access the store as this.\$store. More specifically, the saved array can be accessed at this.\$store.state.saved.
 
 resources/assets/components/ListingSave.vue:
 
+```js
 methods: { toggleSaved() { console.log(this.$store.state.saved); /* Currently an empty array. [] */ } }
+```
 
 Remember that in the Flux architecture state is read-only. That means we cannot directly modify saved from a component. Instead, we must create a mutator method in the store which does the modification for us.
 
@@ -144,13 +150,17 @@ The logic for toggleSaved is to check if the listing ID is already in the saved 
 
 resources/assets/js/store.js:
 
+```
 export default new Vuex.Store({ state: { saved: [] }, mutations: { toggleSaved(state, id) { let index = state.saved.findIndex(saved => saved === id); if (index === -1) { state.saved.push(id); } else { state.saved.splice(index, 1); } } } });
+```
 
 We now need to commit this mutation from ListingSave. Commit is Flux jargon that is synonymous with call or trigger. A commit looks like a custom event with the first argument being the name of the mutator method and the second being the payload.
 
 resources/assets/components/ListingSave.vue:
 
+```
 export default { props: [ 'id' ], methods: { toggleSaved() { this.$store.commit('toggleSaved', this.id); } } }
+```
 
 The main point of using mutator methods in the store architecture is that state is changed consistently. But there is an additional benefit: we can easily log these changes for debugging. If you check the Vuex tab in Vue Devtools after clicking one of the save buttons, you will see an entry for that mutation:
 
@@ -170,13 +180,17 @@ Let's create a computed property isListingSaved, which will return a Boolean val
 
 resources/assets/components/ListingSave.vue:
 
+```js
 export default { props: [ 'id' ], methods: { toggleSaved() { this.$store.commit('toggleSaved', this.id); } }, computed: { isListingSaved() { return this.$store.state.saved.find(saved => saved === this.id); } } }
+```
 
 We can now use this computed property to change the icon. Currently we're using the Font Awesome icon fa-heart-o. This should represent the unsaved state. When the listing is saved we should instead use the icon fa-heart. We can implement this with a dynamic class binding.
 
 resources/assets/components/ListingSave.vue:
 
+```js
 <template> <div class="listing-save" @click.stop="toggleSaved()"> <i :class="classes"></i> </div> </template> <script> export default { props: [ 'id' ], methods: { ... }, computed: { isListingSaved() { ...}, classes() { let saved = this.isListingSaved; return { 'fa': true, 'fa-lg': true, 'fa-heart': saved, 'fa-heart-o': !saved } } } } </script> <style> ... .listing-save .fa-heart { color: #ff5a5f; } </style>
+```
 
 Now the user can visually identify which listings have been saved and which haven't. Thanks to reactive Vuex data, the icon will instantly be updated when a change to the saved state is made from anywhere in the app:
 
@@ -188,6 +202,7 @@ We also want the save feature to appear on the listing page. It will go inside t
 
 resources/assets/components/HeaderImage.vue:
 
+```js
 <template> <div class="header"> <div
 
 class="header-img"
@@ -207,6 +222,7 @@ resources/assets/components/ListingPage.vue:
 <template> <div> <header-image v-if="images[0]" :image-url="images[0]" @header-clicked="openModal" :id="id" ></header-image> ... </div> </template> <script> ... export default { data() { ... id: null }, methods: { assignData({ listing }) { Object.assign(this.$data, populateAmenitiesAndPrices(listing)); }, ... }, ... } </script>
 
 <style>...</style>
+```
 
 With that done, the save feature will now appear on the listing page:
 
@@ -224,13 +240,17 @@ The text for this button will be a computed property message which will change f
 
 resources/assets/components/ListingSave.vue:
 
+```js
 <template> <div class="listing-save" @click.stop="toggleSaved()"> <button v-if="button"> <i :class="classes"></i> {{ message }} </button> <i v-else :class="classes"></i> </div> </template> <script> export default { props: [ 'id', 'button' ], methods: { ... }, computed: { isListingSaved() { ... }, classes() { ... }, message() { return this.isListingSaved ? 'Saved' : 'Save'; } } } </script> <style> ... .listing-save i { padding-right: 4px; } .listing-save button .fa-heart-o { color: #808080; } </style>
+```
 
 We will now set the button prop to true within HeaderImage. Even though the value is not dynamic, we use a v-bind to ensure the value is interpreted as a JavaScript value, not a string.
 
 resources/assets/components/HeaderImage.vue:
 
+```js
 <listing-save :id="id" :button="true"></listing-save>
+```
 
 With that, the ListingSave will appear as a button on our listing pages:
 
@@ -278,7 +298,7 @@ import axios from 'axios'; import store from './store'; let router = new VueRout
 
 With that done, we can now delete the route mixin:
 
-$ rm resources/assets/js/route-mixin.js
+    $ rm resources/assets/js/route-mixin.js
 
 Retrieving page state from Vuex
 
@@ -294,13 +314,17 @@ Change template variables so they're properties of listing: an example is {{ tit
 
 resources/assets/components/ListingPage.vue:
 
+```js
 <template> <div> <header-image v-if="listing.images[0]" :image-url="listing.images[0]" @header-clicked="openModal" :id="listing.id" ></header-image> <div class="listing-container"> <div class="heading"> <h1>{{ listing.title }}</h1> <p>{{ listing.address }}</p> </div> <hr> <div class="about"> <h3>About this listing</h3> <expandable-text>{{ listing.about }}</expandable-text> </div> <div class="lists"> <feature-list title="Amenities" :items="listing.amenities"> ... </feature-list> <feature-list title="Prices" :items="listing.prices"> ... </feature-list> </div> </div> <modal-window ref="imagemodal"> <image-carousel :images="listing.images"></image-carousel> </modal-window> </div> </template> <script> ... export default { components: { ... }, computed: { listing() { let listing = this.$store.state.listings.find( listing => listing.id == this.$route.params.listing ); return populateAmenitiesAndPrices(listing); } }, methods: { ... } } </script>
+```
 
 Changes to HomePage are much simpler; just remove the mixin and the local state, and replace it with a computed property, listing_groups, which will retrieve all the listing summaries from the store.
 
 resources/assets/components/HomePage.vue:
 
+```js
 export default { computed: { listing_groups() { return groupByCountry(this.$store.state.listing_summaries); } }, components: { ... } }
+```
 
 After making these changes, reload the app and you should see no obvious change in behavior. However, inspecting the Vuex tab of Vue Devtools, you will see that page data is now in the store:
 
@@ -314,7 +338,9 @@ state: { saved: [5, 10], listing_summaries: [ ... ] }, getters: { savedSummaries
 
 Now, any component that needs the getter data can retrieve it from the store as follows:
 
+```js
 console.log(this.$store.state.getters.savedSummaries); /* [ 5 => [ ... ], 10 => [ ... ] ] */
+```
 
 Generally, you define a getter when several components need the same derived value, to save repeating code. Let's create a getter which retrieves a specific listing. We've already created this functionality in ListingPage, but since we're going to need it in our router as well, we'll refactor it as a getter.
 
@@ -322,17 +348,21 @@ One thing about getters is that they don't accept a payload argument like mutati
 
 resources/assets/js/router.js:
 
+```
 getters: { getListing(state) { return id => state.listings.find(listing => id == listing.id); } }
+```
 
 Let's now use this getter in our ListingPage to replace the previous logic.
 
 resources/assets/components/ListingPage.vue:
 
+```
 computed: {
 
 listing() { return populateAmenitiesAndPrices( this.$store.getters.getListing(this.$route.params.listing) ); }
 
 }
+```
 
 Checking if page state is in the store
 
@@ -348,7 +378,9 @@ If the route name is not listing, check to see if the store has listing summarie
 
 resources/assets/js/router.js:
 
+```js
 router.beforeEach((to, from, next) => { let serverData = JSON.parse(window.vuebnb_server_data); if ( to.name === 'listing' ? store.getters.getListing(to.params.listing) : store.state.listing_summaries.length > 0 ) { next(); } else if (!serverData.path || to.path !== serverData.path) { axios.get(`/api${to.path}`).then(({data}) => { store.commit('addData', {route: to.name, data}); next(); }); } else { store.commit('addData', {route: to.name, data: serverData}); next(); } });
+```
 
 With that done, if the in-app navigation is used to navigate from the home page to listing 1, then back to the home page, then back to listing 1, the app will retrieve listing 1 from the API just the once. It would have done it twice under the previous architecture!
 
@@ -356,13 +388,15 @@ Saved page
 
 We will now add the saved page to Vuebnb. Let's begin by creating the component file:
 
-$ touch resources/assets/components/SavedPage.vue
+    $ touch resources/assets/components/SavedPage.vue
 
 Next, we'll create a new route with this component at the path /saved.
 
 resources/assets/js/router.js:
 
+```
 ... import SavedPage from '../components/SavedPage.vue'; let router = new VueRouter({ ... routes: [ ... { path: '/saved', component: SavedPage, name: 'saved' } ] });
+```
 
 Let's also add some server-side routes to the Laravel project. As discussed above, the saved page uses exactly the same data as the home page. This means that we can just call the same controller methods used for the home page.
 
@@ -378,19 +412,25 @@ Now we will define the SavedPage component. Beginning with the script tag, we wi
 
 resources/assets/components/SavedPage.vue:
 
+```
 <template></template> <script> import ListingSummary from './ListingSummary.vue'; export default { computed: { listings() { return this.$store.state.listing_summaries.filter( item => this.$store.state.saved.indexOf(item.id) > -1 ); } }, components: { ListingSummary } } </script> <style></style>
+```
 
 Next, we will add to the template tag of SavedPage. The main content includes a check for the length of the array returned by the listings computed property. If it is 0, no items have been saved yet. In this case, we display a message to inform the user. If there are listings saved, however, we'll iterate through them and display them with the ListingSummary component.
 
 resources/assets/components/SavedPage.vue:
 
+```
 <template> <div id="saved" class="home-container"> <h2>Saved listings</h2> <div v-if="listings.length" class="listing-summaries"> <listing-summary v-for="listing in listings" :listing="listing" :key="listing.id" ></listing-summary> </div> <div v-else>No saved listings.</div> </div> </template> <script>...</script> <style>...</style>
+```
 
 Lastly, we'll add to the style tag. The main thing to note here is that we're utilizing the flex-wrap: wrap rule and justifying to the left. This ensures that our listing summaries will organize themselves in rows without gaps.
 
 resources/assets/components/SavedPage.vue:
 
+```
 <template>...</template> <script>...</script> <style> #saved .listing-summaries { display: flex; flex-wrap: wrap; justify-content: left; overflow: hidden; } #saved .listing-summaries .listing-summary { padding-bottom: 30px; } .listing-summaries > .listing-summary { margin-right: 15px; } </style>
+```
 
 Let's also add the .saved-container CSS rules in our global CSS file. This ensures that our custom footer has access to these rules as well.
 
@@ -418,13 +458,17 @@ The last thing we'll do in this chapter is to add a link to the saved page in th
 
 resources/assets/components/App.vue:
 
+```
 <div id="toolbar"> <router-link :to="{ name: 'home' }"> <img class="icon" src="/images/logo.png"> <h1>vuebnb</h1> </router-link> <ul class="links"> <li> <router-link :to="{ name: 'saved' }">Saved</router-link> </li> </ul> </div>
+```
 
 To display this correctly, we'll have to add some extra CSS. Firstly, we'll modify the #toolbar declaration so that the toolbar uses flex for display. We'll also add some new rules below that for displaying the links.
 
 resources/assets/components/App.vue:
 
+```
 <style> #toolbar { display: flex; justify-content: space-between; border-bottom: 1px solid #e4e4e4; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); } ... #toolbar ul { display: flex; align-items: center; list-style: none; padding: 0 24px 0 0; margin: 0; } @media (max-width: 373px) { #toolbar ul { padding-right: 12px; } } #toolbar ul li { padding: 10px 10px 0 10px; } #toolbar ul li a { text-decoration: none; line-height: 1; color: inherit; font-size: 13px; padding-bottom: 8px; letter-spacing: 0.5px;
+```
 
 cursor: pointer; } #toolbar ul li a:hover { border-bottom: 2px solid #484848; padding-bottom: 6px; } </style>
 

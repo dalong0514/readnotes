@@ -2,19 +2,9 @@
 
 Now that the functionality of Vuebnb is complete, the final step is to deploy it to production. We'll use two free services, Heroku and KeyCDN, to share Vuebnb with the world.
 
-Topics covered in this chapter:
+Topics covered in this chapter: 1) An introduction to the Heroku cloud platform service. 2) Deploying Vuebnb to Heroku as a free app. 3) How CDNs improve the performance of full-stack apps. 4) Integrating a free CDN with Laravel. 5) Building assets in production-mode for performance and security.
 
-An introduction to the Heroku cloud platform service
-
-Deploying Vuebnb to Heroku as a free app
-
-How CDNs improve the performance of full-stack apps
-
-Integrating a free CDN with Laravel
-
-Building assets in production-mode for performance and security
-
-Heroku
+## Heroku
 
 Heroku is a cloud platform service for web applications. It's immensely popular among developers due to the simplicity and affordability it offers for getting apps online.
 
@@ -368,7 +358,7 @@ You have now completed the case-study project for this book, a sophisticated ful
 
 Be sure to show Vuebnb off to your friends and colleagues, as they'll no doubt be impressed with your new skills. I'd also appreciate if you tweeted me the link to your project so I can admire your work too. My Twitter handle is @anthonygore.
 
-Recap
+## Recap
 
 We've come a long way in this book, let's recap some of what we've achieved:
 
@@ -392,23 +382,15 @@ In Chapter 9, Adding a User Login and API Authentication With Passport, we added
 
 In Chapter 10, Deploying a Full-Stack App to the Cloud, we deployed the app to a Heroku cloud server and transferred static assets to a CDN
 
-Next steps
+## Next steps
 
 You may have reached the end of the book, but your journey as a full-stack Vue developer has only just begun! What should you move on to next?
 
-Firstly, there are still plenty more features you can add to Vuebnb. Designing and implementing these yourself will increase your skill and knowledge immensely. Here are a few ideas to get you started:
+Firstly, there are still plenty more features you can add to Vuebnb. Designing and implementing these yourself will increase your skill and knowledge immensely. Here are a few ideas to get you started: 1) Complete the user authentication flow. Add a registration page and functionality for resetting passwords. 2) Add a user profile page. Here, users can upload an avatar that will display in the toolbar when they're logged in. 3) Create a form on the listing page that allows the room to be booked. Include a drop-down datepicker widget for selecting start and end dates. 4) Server render the app by running Vue from a JavaScript sandbox on the server. This way users get a complete page with visible content when they load the site.
 
-Complete the user authentication flow. Add a registration page and functionality for resetting passwords
+Secondly, I invite you to check out Vue.js Developers, an online community for Vue.js enthusiasts that I founded. Here you can read articles on Vue.js, stay up-to-date with Vue.js news through our newsletter, and share tips and tricks with other developers in our Facebook group. Check it out at this URL: https://vuejsdevelopers.com.
 
-Add a user profile page. Here, users can upload an avatar that will display in the toolbar when they're logged in
-
-Create a form on the listing page that allows the room to be booked. Include a drop-down datepicker widget for selecting start and end dates
-
-Server render the app by running Vue from a JavaScript sandbox on the server. This way users get a complete page with visible content when they load the site
-
-Secondly, I invite you to check out Vue.js Developers, an online community for Vue.js enthusiasts that I founded. Here you can read articles on Vue.js, stay up-to-date with Vue.js news through our newsletter, and share tips and tricks with other developers in our Facebook group.
-
-Check it out at this URL: https://vuejsdevelopers.com.
+3『[Latest posts - Vue.js Developers](https://vuejsdevelopers.com/) 』
 
 ## Summary
 
