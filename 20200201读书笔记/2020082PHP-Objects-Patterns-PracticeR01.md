@@ -48,6 +48,10 @@ ShopProduct already had a getPrice() method, so why might it be useful to implem
 
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. 
 
+### 0205. 术语卡——Identity Map
+
+a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
+
 ### 0301. 人名卡 ——
 
 #### 01. 基本信息

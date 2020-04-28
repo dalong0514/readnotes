@@ -24,7 +24,7 @@ This chapter will cover several subjects:
 
 - Callbacks: Adding functionality to components with anonymous functions and classes.
 
-## 01. Static Methods and Properties
+## 4.1 Static Methods and Properties
 
 All of the examples in the previous chapter worked with objects. I characterized classes as templates from which objects are produced, and objects as active instances of classes—the things whose methods you invoke and whose properties you access. I implied that, in object-oriented programming, the real work is done by instances of classes. Classes, after all, are merely templates for objects. In fact, it is not that simple. You can access both methods and properties in the context of a class rather than that of an object. Such methods and properties are「static」and must be declared as such by using the static keyword:
 
@@ -152,7 +152,7 @@ In some ways, of course, this example poses as many problems as it solves. Altho
 
 And is it really good practice for a parent class to have such intimate knowledge of its children? (Hint: no, it is not.) Problems of this kind—where to acquire key objects and values and how much classes should know about one another—are very common in object-oriented programming. I examine various approaches to object generation in Chapter 9.
 
-## 02. Constant Properties
+## 4.2 Constant Properties
 
 Some properties should not be changed. The Answer to Life, the Universe, and Everything is 42, and you want it to stay that way. Error and status flags will often be hard-coded into your classes. Although they should be publicly and statically available, client code should not be able to change them.
 
@@ -174,7 +174,7 @@ print ShopProduct::AVAILABLE;
 
 Attempting to set a value on a constant once it has been declared will cause a parse error. You should use constants when your property needs to be available across all instances of a class, as well as when the property value needs to be fixed and unchanging.
 
-## 03. Abstract Classes
+## 4.3 Abstract Classes
 
 An abstract class cannot be instantiated. Instead it defines (and, optionally, partially implements) the interface for any class that might extend it. You define an abstract class with the abstract keyword. Here I redefine the ShopProductWriter class I created in the previous chapter, this time as an abstract class:
 
@@ -259,7 +259,7 @@ class TextProductWriter extends ShopProductWriter {
 
 I create two classes, each with its own implementation of the write() method. The first outputs XML and the second outputs text. A method that requires a ShopProductWriter object will not know which of these two classes it is receiving, but it can be absolutely certain that a write() method is implemented. Note that I don’t test the type of \$products before treating it as an array. This is because this property is initialized as an empty array in the ShopProductWriter.
 
-## 04. Interfaces
+## 4.4 Interfaces
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
@@ -339,7 +339,7 @@ class Consultancy extends TimedService implements Bookable, Chargeable {
 
 Notice that the Consultancy class implements more than one interface. Multiple interfaces follow the implements keyword in a comma-separated list. PHP only supports inheritance from a single parent, so the extends keyword can precede a single class name only.
 
-## 05. Traits
+## 4.5 Traits
 
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. But what if you want to share an implementation across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
 
@@ -347,7 +347,7 @@ As we have seen, interfaces help you manage the fact that, like Java, PHP does n
 
 A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
 
-### 5.1 A Problem for Traits to Solve
+### 4.5.1 A Problem for Traits to Solve
 
 Here is a version of the ShopProduct class with a calculateTax() method:
 
@@ -385,7 +385,7 @@ $u = new UtilityService();
 print $u->calculateTax(100)."\n";
 ```
 
-### 5.2 Defining and Using a Trait
+### 4.5.2 Defining and Using a Trait
 
 One of the core object-oriented design goals I will cover in this book is the removal of duplication. As you will see in Chapter 11, one solution to this kind of duplication is to factor it out into a reusable strategy class. Traits provide another approach—less elegant, perhaps, but certainly effective. Here I declare a single trait that defines a calculateTax() method, and then I include it in both ShopProduct and UtilityService:
 
@@ -423,7 +423,7 @@ print $u->calculateTax(100) . "\n";
 
 I declare the PriceUtilities trait with the trait keyword. The body of a trait looks very similar to that of a class. It is simply a set of methods and properties collected within braces. Once I have declared it, I can access the PriceUtilities trait from within my classes. I do this with the use keyword followed by the name of the trait I wish to incorporate. So having declared and implemented the calculateTax() method in a single place, I go ahead and incorporate it into both the ShopProduct and the UtilityService classes.
 
-### 5.3 Using More than One Trait
+### 4.5.3 Using More than One Trait
 
 You can include multiple traits in a class by listing each one after the use keyword, separated by commas. In this example, I define and apply a new trait, IdentityTrait, keeping my original PriceUtilities trait:
 
@@ -449,7 +449,7 @@ By applying both PriceUtilities and IdentityTrait with the use keyword, I make t
 
 Note: the IdentityTrait trait provides the generateId() method. In fact, a database often generates identifiers for objects, but you might switch in a local implementation for testing purposes. You can find out more about objects, databases, and unique identifiers in Chapter 12, which covers the Identity Map pattern. You can learn more about testing and mocking in Chapter 18.
 
-### 5.4 Combining Traits and Interfaces
+### 4.5.4 Combining Traits and Interfaces
 
 Although traits are useful, they don’t change the type of the class to which they are applied. So when you apply the IdentityTrait trait to multiple classes, they won’t share a type that could be hinted for in a method signature. Luckily, traits play well with interfaces. I can define an interface that requires a generateId() method, and then declare that ShopProduct implements it:
 
@@ -486,7 +486,7 @@ print $p->calculateTax(100) . "\n";
 print $p->generateId() . "\n";
 ```
 
-### 5.5 Managing Method Name Conflicts with insteadof
+### 4.5.5 Managing Method Name Conflicts with insteadof
 
 The ability to combine traits is a nice feature, but sooner or later conflicts are inevitable. Consider what would happen, for example, if I were to use two traits that provide a calculateTax() method:
 
@@ -546,7 +546,7 @@ The preceding snippet means,「Use the calculateTax() method of TaxTools instead
 
     222
 
-### 5.6 Aliasing overridden trait methods
+### 4.5.6 Aliasing overridden trait methods
 
 We have seen that you can use insteadof to disambiguate between methods. What do you do, though, if you want to then access the overridden method? The as operator allows you to alias trait methods. Once again, the as operator requires a full reference to a method on its left-hand side. On the right-hand side of the operator, you should put the name of the alias. So here, for example, I reinstate the calculateTax() method of the PriceUtilities trait using the new name basicTax():
 
@@ -575,7 +575,7 @@ Note: Where a method name clashes between traits, it is not enough to alias one 
 
 Incidentally, you can also use method name aliasing where there is no name clash. You might, for example, want to use a trait method to implement an abstract method signature declared in a parent class or in an interface.
 
-### 5.7 Using static methods in traits
+### 4.5.7 Using static methods in traits
 
 Most of the examples you have seen so far could use static methods because they do not store instance data. There’s nothing complicated about placing a static method in a trait. Here I change the PriceUtilities::\$taxrate property and the PriceUtilities::calculateTax() methods so that they are static:
 
@@ -604,7 +604,7 @@ As you might expect, this script outputs the following:
 
 So, static methods are declared in traits and accessed via the host class in the normal way.
 
-### 5.8 Accessing Host Class Properties
+### 4.5.8 Accessing Host Class Properties
 
 You might assume that static methods are really the only way to go as far as traits are concerned. Even trait methods that are not declared static are essentially static in nature, right? Well, wrong, in fact—you can access properties and methods in a host class:
 
@@ -632,7 +632,7 @@ In the preceding code, I amend the PriceUtilities trait so that it accesses a pr
 
 On the other hand, it would be great to be able to establish a contract that says, essentially,「If you use this trait, then you must provide it certain resources.」In fact, you can achieve exactly this effect. Traits support abstract methods.
 
-### 5.9 Defining Abstract Methods in Traits
+### 4.5.9 Defining Abstract Methods in Traits
 
 You can define abstract methods in a trait in just the same way you would in a class. When a trait is used by a class, it takes on the commitment to implement any abstract methods it declares. Armed with this knowledge, I can reimplement my previous example so that the trait forces the using class to provide tax rate information:
 
@@ -663,7 +663,7 @@ By declaring an abstract getTaxRate() method in the PriceUtilities trait, I forc
 
 You could overcome this to some extent by writing all sorts of checking routines, but this misses the point. It is probably adequate just to signal to a client coder that she should provide certain information by requiring the implementation of a method or two.
 
-### 5.10 Changing Access Rights to Trait Methods
+### 4.5.10 Changing Access Rights to Trait Methods
 
 You can, of course, declare a trait method public, private, or protected. However, you can also change this access from within the class that uses the trait. You have already seen that the as operator can be used to alias a method name. If you use an access modifier on the right-hand side of this operator, it will change the method’s access level rather than its name.
 
@@ -710,239 +710,354 @@ Unfortunately, this code will generate an error:
 
     Error: Call to private method popp\ch04\batch06_9\UtilityService::calculateTax() from context ...
 
-## 06. Late Static Bindings: The static Keyword
+## 4.6 Late Static Bindings: The static Keyword
 
 Now that you’ve seen abstract classes, traits, and interfaces, it’s time to return briefly to static methods. You saw that a static method can be used as factory, a way of generating instances of the containing class. If you’re as lazy a coder as me, you might chafe at the duplication in an example like this:
 
-// listing 04.45abstract class DomainObject{
+```php
+// listing 04.45
+abstract class DomainObject{
 
 }
 
-// listing 04.46class User extends DomainObject{    public static function create(): User    {        return new User();    }}
+// listing 04.46
+class User extends DomainObject{    
+    public static function create(): User    {        
+        return new User();    
+    }
+}
 
-// listing 04.47class Document extends DomainObject{    public static function create(): Document    {        return new Document();    }}
+// listing 04.47
+class Document extends DomainObject{    
+    public static function create(): Document    {        
+        return new Document();    
+    }
+}
+```
 
-I create a super class named DomainObject. In a real-world project, of course, this would contain 
+I create a super class named DomainObject. In a real-world project, of course, this would contain functionality common to its extending classes. Then I create two child classes, User and Document. I would like my concrete classes to have static create() methods.
 
-functionality common to its extending classes. Then I create two child classes, User and Document. I would like my concrete classes to have static create() methods.
+Note: Why would I use a static factory method when a constructor performs the work of creating an object already? In Chapter 12, I’ll describe a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
 
- Why would I use a static factory method when a constructor performs the work of creating an 
+2『体现了 Identity Map 设计模式。做张术语卡片。』
 
- ■ Note object already? In Chapter 12, I’ll describe a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
+This code works fine, but it has an annoying amount of duplication. I don’t want to have to create boilerplate code like this for every DomainObject child class that I create. Instead, I’ll try pushing the create() method up to the superclass:
 
-This code works fine, but it has an annoying amount of duplication. I don’t want to have to create 
+```php
+// listing 04.48
+abstract class DomainObject{    
+    public static function create(): DomainObject    {        
+        return new self();    
+    }
+}
 
-boilerplate code like this for every DomainObject child class that I create. Instead, I’ll try pushing the create() method up to the superclass:
+// listing 04.49
+class User extends DomainObject {
 
-// listing 04.48abstract class DomainObject{    public static function create(): DomainObject    {        return new self();    }}
+}
 
-// listing 04.49class User extends DomainObject{}
+// listing 04.50
+class Document extends DomainObject {
 
-// listing 04.50class Document extends DomainObject{}
+}
 
 // listing 04.51Document::create();
+```
 
-Well, that looks neat. I now have common code in one place, and I’ve used self as a reference to the 
+Well, that looks neat. I now have common code in one place, and I’ve used self as a reference to the class. But I have made an assumption about the self keyword. In fact, it does not act for classes exactly the same way that \$this does for objects. self does not refer to the calling context; it refers to the context of resolution. So if I run the previous example, I get this:
 
-class. But I have made an assumption about the self keyword. In fact, it does not act for classes exactly the same way that $this does for objects. self does not refer to the calling context; it refers to the context of resolution. So if I run the previous example, I get this:
+    Error: Cannot instantiate abstract class popp\ch04\batch06\DomainObject
 
-Error: Cannot instantiate abstract class popp\ch04\batch06\DomainObject
+So self resolves to DomainObject, the place where create() is defined, and not to Document, the class on which it was called. Until PHP 5.3 this was a serious limitation, which spawned many rather clumsy workarounds. PHP 5.3 introduced a concept called late static bindings. The most obvious manifestation of this feature is the keyword: static. static is similar to self, except that it refers to the invoked rather than the containing class. In this case, it means that calling Document::create() results in a new Document object and not a doomed attempt to instantiate a DomainObject object. So now I can take advantage of my inheritance relationship in a static context:
 
-So self resolves to DomainObject, the place where create() is defined, and not to Document, the class 
+```php
+abstract class DomainObject{    
+    public static function create(): DomainObject    {        
+        return new static();    
+    }
+}
 
-on which it was called. Until PHP 5.3 this was a serious limitation, which spawned many rather clumsy workarounds. PHP 5.3 introduced a concept called late static bindings. The most obvious manifestation of this feature is the keyword: static. static is similar to self, except that it refers to the invoked rather than the containing class. In this case, it means that calling Document::create() results in a new Document object and not a doomed attempt to instantiate a DomainObject object.
+class User extends DomainObject {
 
-So now I can take advantage of my inheritance relationship in a static context:
+}
 
-abstract class DomainObject{    public static function create(): DomainObject    {        return new static();    }}
+class Document extends DomainObject {
 
-class User extends DomainObject{}
-
-class Document extends DomainObject{}
+}
 
 print_r(Document::create());
+```
 
-Document Object()
+    Document Object()
 
 The static keyword can be used for more than just instantiation. Like self and parent, static can be used as an identifier for static method calls, even from a non-static context. Let’s say I want to include the concept of a group for my DomainObject classes. By default in my new classification, all classes fall into category「default,」but I’d like to be able override this for some branches of my inheritance hierarchy:
 
-// listing 04.52abstract class DomainObject{    private $group;
+```php
+// listing 04.52
+abstract class DomainObject{    
+    private $group;
 
-    public function __construct()    {        $this->group = static::getGroup();    }
+    public function __construct()    {        
+        $this->group = static::getGroup();    
+    }
 
-    public static function create(): DomainObject    {        return new static();    }
+    public static function create(): DomainObject    {        
+        return new static();    
+    }
 
-    public static function getGroup(): string    {        return "default";    }}
+    public static function getGroup(): string    {        
+        return "default";    
+    }
+}
 
-// listing 04.53class User extends DomainObject{}
+// listing 04.53
+class User extends DomainObject {
 
-// listing 04.54class Document extends DomainObject{    public static function getGroup(): string    {        return "document";    }}
+}
 
-// listing 04.55class SpreadSheet extends Document{}
+// listing 04.54
+class Document extends DomainObject{    
+    public static function getGroup(): string    {        
+        return "document";    
+    }
+}
 
-// listing 04.56print_r(User::create());print_r(SpreadSheet::create());
+// listing 04.55
+class SpreadSheet extends Document {
 
-I introduced a constructor to the DomainObject class. It uses the static keyword to invoke a static 
+}
 
-method: getGroup(). DomainObject provides the default implementation, but Document overrides it. I also created a new class, SpreadSheet, that extends Document. Here’s the output:
+// listing 04.56
+print_r(User::create());
+print_r(SpreadSheet::create());
+```
 
-popp\ch04\batch07\User Object(    [group:popp\ch04\batch07\DomainObject:private] => default)popp\ch04\batch07\SpreadSheet Object(    [group:popp\ch04\batch07\DomainObject:private] => document)
+I introduced a constructor to the DomainObject class. It uses the static keyword to invoke a static method: getGroup(). DomainObject provides the default implementation, but Document overrides it. I also created a new class, SpreadSheet, that extends Document. Here’s the output:
+
+```
+popp\ch04\batch07\User Object
+(    
+[group:popp\ch04\batch07\DomainObject:private] => default
+)
+
+popp\ch04\batch07\SpreadSheet Object
+(    
+[group:popp\ch04\batch07\DomainObject:private] => document
+)
+```
 
 For the User class, not much clever needs to happen. The DomainObject constructor calls getGroup() and finds it locally. In the case of SpreadSheet, though, the search begins at the invoked class, SpreadSheet itself. It provides no implementation, so the getGroup() method in the Document class is invoked. Before PHP 5.3 and late static binding, I would have been stuck with the self keyword here, which would only look for getGroup() in the DomainObject class.
 
-## 07. Handling Errors
+## 4.7 Handling Errors
 
 Things go wrong. Files are misplaced, database servers are left uninitialized, URLs are changed, XML files are mangled, permissions are poorly set, disk quotas are exceeded. The list goes on and on. In the fight to anticipate every problem, a simple method can sometimes sink under the weight of its own error-handling code.
 
 Here is a simple Conf class that stores, retrieves, and sets data in an XML configuration file:
 
-// listing 04.57class Conf{    private $file;    private $xml;    private $lastmatch;
+```php
+// listing 04.57
+class Conf{    
+    private $file;    
+    private $xml;    
+    private $lastmatch;
 
-    public function __construct(string $file)    {        $this->file = $file;        $this->xml = simplexml:load_file($file);    }
+    public function __construct(string $file)    {        
+        $this->file = $file;        
+        $this->xml = simplexml:load_file($file);    
+    }
 
-    public function write()    {        file_put_contents($this->file, $this->xml->asXML());    }
+    public function write()    {        
+        file_put_contents($this->file, $this->xml->asXML());    
+    }
 
-    public function get(string $str)    {        $matches = $this->xml->xpath("/conf/item[@name=\"$str\"]");        if (count($matches)) {            $this->lastmatch = $matches[0];            return (string)$matches[0];        }        return null;    }
+    public function get(string $str)    {        
+        $matches = $this->xml->xpath("/conf/item[@name=\"$str\"]");        
+        if (count($matches)) {            
+            $this->lastmatch = $matches[0];            
+            return (string)$matches[0];        
+        }        
+        return null;    
+    }
 
-    public function set(string $key, string $value)    {        if (! is_null($this->get($key))) {            $this->lastmatch[0]=$value;            return;        }        $conf = $this->xml->conf;        $this->xml->addChild('item', $value)->addAttribute('name', $key);    }}
+    public function set(string $key, string $value)    {        
+        if (! is_null($this->get($key))) {            
+            $this->lastmatch[0]=$value;            
+            return;        
+        }        
+        $conf = $this->xml->conf;        
+        $this->xml->addChild('item', $value)->addAttribute('name', $key);    
+    }
+}
+```
 
-The Conf class uses the SimpleXml extension to access name value pairs. Here’s the kind of format with 
+The Conf class uses the SimpleXml extension to access name value pairs. Here’s the kind of format with which it is designed to work:
 
-which it is designed to work:
+```
+<?xml version="1.0"?>
+<conf>    
+    <item name="user">bob</item>    
+    <item name="pass">newpass</item>    
+    <item name="host">localhost</item>
+</conf>
+```
 
-<?xml version="1.0"?><conf>    <item name="user">bob</item>    <item name="pass">newpass</item>    <item name="host">localhost</item></conf>
+The Conf class’s constructor accepts a file path, which it passes to simplexml:load_file().It stores the resulting SimpleXmlElement object in a property called \$xml. The get() method uses XPath to locate an item element with the given name attribute, returning its value. set() either changes the value of an existing item or creates a new one. Finally, the write() method saves the new configuration data back to the file.
 
-The Conf class’s constructor accepts a file path, which it passes to simplexml:load_file().It stores the resulting SimpleXmlElement object in a property called $xml. The get() method uses XPath to locate an item element with the given name attribute, returning its value. set() either changes the value of an existing item or creates a new one. Finally, the write() method saves the new configuration data back to the file.
+Like much example code, the Conf class is highly simplified. In particular, it has no strategy for handling nonexistent or unwriteable files. It is also optimistic in outlook. It assumes that the XML document will be well-formed and will contain the expected elements.
 
-Like much example code, the Conf class is highly simplified. In particular, it has no strategy for handling 
+Testing for these error conditions is relatively trivial, but I must still decide how to respond to them should they arise. There are generally two options.
 
-nonexistent or unwriteable files. It is also optimistic in outlook. It assumes that the XML document will be well-formed and will contain the expected elements.
-
-Testing for these error conditions is relatively trivial, but I must still decide how to respond to them 
-
-should they arise. There are generally two options.
-
-First, I could end execution. This is simple but drastic. My humble class would then take responsibility 
-
-for bringing an entire script crashing down around it. Although methods such as __construct() and write() are well placed to detect errors, they do not have the information to decide how to handle them.
+First, I could end execution. This is simple but drastic. My humble class would then take responsibility for bringing an entire script crashing down around it. Although methods such as __construct() and write() are well placed to detect errors, they do not have the information to decide how to handle them.
 
 Rather than handle the error in my class, then, I could return an error flag of some kind. This could be a Boolean or an integer value such as 0 or -1. Some classes will also set an error string or flag, so that the client code can request more information after a failure.
 
-Many PEAR packages combine these two approaches by returning an error object (an instance of PEAR_
+Many PEAR packages combine these two approaches by returning an error object (an instance of PEAR\_Error), which acts both as notification that an error has occurred and contains the error message within it. This approach is now deprecated, but plenty of classes have not been upgraded, not least because client code often depends on the old behavior.
 
-Error), which acts both as notification that an error has occurred and contains the error message within it. This approach is now deprecated, but plenty of classes have not been upgraded, not least because client code often depends on the old behavior.
-
-The problem here is that you pollute your return value. You have to rely on the client coder to test for the 
-
-return type every time your error-prone method is called. This can be risky. Trust no one!
+The problem here is that you pollute your return value. You have to rely on the client coder to test for the return type every time your error-prone method is called. This can be risky. Trust no one!
 
 When you return an error value to calling code, there is no guarantee that the client will be any better equipped than your method to decide how to handle the error. If this is the case, then the problem begins all over again. The client method will have to determine how to respond to the error condition, maybe even implementing a different error-reporting strategy.
 
-ExceptionsPHP 5 introduced exceptions to PHP, a radically different way of handling error conditions. Different for PHP, that is. You will find them hauntingly familiar if you have Java or C++ experience. Exceptions address all of the issues that I have raised so far in this section.
+### 4.7.1 Exceptions
 
-An exception is a special object instantiated from the built-in Exception class (or from a derived class). 
+PHP 5 introduced exceptions to PHP, a radically different way of handling error conditions. Different for PHP, that is. You will find them hauntingly familiar if you have Java or C++ experience. Exceptions address all of the issues that I have raised so far in this section.
 
-Objects of type Exception are designed to hold and report error information.
+An exception is a special object instantiated from the built-in Exception class (or from a derived class). Objects of type Exception are designed to hold and report error information. The Exception class constructor accepts two optional arguments, a message string and an error code. The class provides some useful methods for analyzing error conditions. These are described in Table 4-1.
 
-The Exception class constructor accepts two optional arguments, a message string and an error code. 
-
-The class provides some useful methods for analyzing error conditions. These are described in Table 4-1.
-
-The Exception class is fantastically useful for providing error notification and debugging information 
-
-(the getTrace() and getTraceAsString() methods are particularly helpful in this regard). In fact, it is almost identical to the PEAR_Error class that was discussed earlier. There is much more to an exception than the information it holds, though.
+The Exception class is fantastically useful for providing error notification and debugging information (the getTrace() and getTraceAsString() methods are particularly helpful in this regard). In fact, it is almost identical to the PEAR_Error class that was discussed earlier. There is much more to an exception than the information it holds, though.
 
 Table 4-1.  The Exception Class’s Public Methods
 
-Method
+### 4.7.1.1 Throwing an Exception
 
-Description
+The throw keyword is used in conjunction with an Exception object. It halts execution of the current method and passes responsibility for handling the error back to the calling code. Here I amend the __construct() method to use the throw statement:
 
-getMessage()
-
-getCode()
-
-getFile()
-
-getLine()
-
-getPrevious()
-
-getTrace()
-
-Get the message string that was passed to the constructorGet the code integer that was passed to the constructorGet the file in which the exception was generatedGet the line number at which the exception was generatedGet a nested Exception objectGet a multidimensional array tracing the method calls that led to the exception, including method, class, file, and argument data
-
-getTraceAsString() Get a string version of the data returned by getTrace()
-
-__toString()
-
-Called automatically when the Exception object is used in string context. Returns a string describing the exception details
-
-Throwing an ExceptionThe throw keyword is used in conjunction with an Exception object. It halts execution of the current method and passes responsibility for handling the error back to the calling code. Here I amend the __construct() method to use the throw statement:
-
-// listing 04.58    public function __construct(string $file)    {        $this->file = $file;        if (! file_exists($file)) {            throw new \Exception("file '$file' does not exist");        }        $this->xml = simplexml:load_file($file);    }
+```php
+// listing 04.58    
+public function __construct(string $file)    {        
+    $this->file = $file;        
+    if (! file_exists($file)) {           
+        throw new \Exception("file '$file' does not exist");        
+    }        
+    $this->xml = simplexml:load_file($file);    
+}
+```
 
 The write() method can use a similar construct:
 
-// listing 04.59    public function write()    {        if (! is_writeable($this->file)) {            throw new \Exception("file '{$this->file}' is not writeable");        }        file_put_contents($this->file, $this->xml->asXML());    }
+```php
+// listing 04.59    
+public function write()    {        
+    if (! is_writeable($this->file)) {            
+        throw new \Exception("file '{$this->file}' is not writeable");        
+    }        
+    file_put_contents($this->file, $this->xml->asXML());    
+}
+```
 
-The __construct() and write() methods can now check diligently for file errors as they do their work, 
+The \_\_construct() and write() methods can now check diligently for file errors as they do their work, but they let code more fitted for the purpose decide how to respond to any errors detected. So how does client code know how to handle an exception when thrown? When you invoke a method that may throw an exception, you can wrap your call in a try clause. A try clause is made up of the try keyword followed by braces. The try clause must be followed by at least one catch clause in which you can handle any error, like this:
 
-but they let code more fitted for the purpose decide how to respond to any errors detected.
+```php
+// listing 04.60
+try {    
+    $conf = new Conf(__DIR__ . "/conf01.xml");    
+    print "user: " . $conf->get('user') . "\n";    
+    print "host: " . $conf->get('host') . "\n";    
+    $conf->set("pass", "newpass");    
+    $conf->write();
+    } catch (\Exception $e) {    
+    die($e->__toString());
+    }
+```
 
-So how does client code know how to handle an exception when thrown? When you invoke a method 
+As you can see, the catch clause superficially resembles a method declaration. When an exception is thrown, the catch clause in the invoking scope is called. The Exception object is automatically passed in as the argument variable.
 
-that may throw an exception, you can wrap your call in a try clause. A try clause is made up of the try keyword followed by braces. The try clause must be followed by at least one catch clause in which you can handle any error, like this:
+Just as execution is halted within the throwing method when an exception is thrown, so it is within the try clause—control passes directly to the catch clause.
 
-// listing 04.60try {    $conf = new Conf(__DIR__ . "/conf01.xml");    print "user: " . $conf->get('user') . "\n";    print "host: " . $conf->get('host') . "\n";    $conf->set("pass", "newpass");    $conf->write();} catch (\Exception $e) {    die($e->__toString());}
+### 4.7.1.2 Subclassing Exception
 
-As you can see, the catch clause superficially resembles a method declaration. When an exception is 
+You can create classes that extend the Exception class as you would with any user-defined class. There are two reasons why you might want to do this. First, you can extend the class’s functionality. Second, the fact that a derived class defines a new class type can aid error handling in itself.
 
-thrown, the catch clause in the invoking scope is called. The Exception object is automatically passed in as the argument variable.
+You can, in fact, define as many catch clauses as you need for a try statement. The particular catch clause invoked will depend on the type of the thrown exception and the class type hint in the argument list. Here are some simple classes that extend Exception:
 
-Just as execution is halted within the throwing method when an exception is thrown, so it is within the 
+```php
+// listing 04.61
+class XmlException extends \Exception{    
+    private $error;
 
-try clause—control passes directly to the catch clause.
+    public function __construct(\LibXmlError $error)    {        
+        $shortfile = basename($error->file);        
+        $msg = "[{$shortfile}, line {$error->line}, col {$error->column}] {$error->message}";        
+        $this->error = $error;        
+        parent::__construct($msg, $error->code);    
+    }
 
-Subclassing ExceptionYou can create classes that extend the Exception class as you would with any user-defined class. There are two reasons why you might want to do this. First, you can extend the class’s functionality. Second, the fact that a derived class defines a new class type can aid error handling in itself.
-
-You can, in fact, define as many catch clauses as you need for a try statement. The particular catch 
-
-clause invoked will depend on the type of the thrown exception and the class type hint in the argument list. Here are some simple classes that extend Exception:
-
-// listing 04.61class XmlException extends \Exception{    private $error;
-
-    public function __construct(\LibXmlError $error)    {        $shortfile = basename($error->file);        $msg = "[{$shortfile}, line {$error->line}, col {$error->column}] {$error->message}";        $this->error = $error;        parent::__construct($msg, $error->code);    }
-
-    public function getLibXmlError()    {        return $this->error;    }
+    public function getLibXmlError()    {        
+        return $this->error;    
+    }
 
 }
 
-// listing 04.62class FileException extends \Exception{}
+// listing 04.62
+class FileException extends \Exception{}
 
-// listing 04.63class ConfException extends \Exception{}
+// listing 04.63
+class ConfException extends \Exception{}
+```
 
-The LibXmlError class is generated behind the scenes when SimpleXml encounters a broken XML file. It 
+The LibXmlError class is generated behind the scenes when SimpleXml encounters a broken XML file. It has \$message and \$code properties, and it resembles the Exception class. I take advantage of this similarity and use the LibXmlError object in the XmlException class. The FileException and ConfException classes do nothing more than subclass Exception. I can now use these classes in my code and amend both \_\_construct() and write():
 
-has $message and $code properties, and it resembles the Exception class. I take advantage of this similarity and use the LibXmlError object in the XmlException class. The FileException and ConfException classes do nothing more than subclass Exception. I can now use these classes in my code and amend both __construct() and write():
-
+```php
 // listing 04.64
 
 // Conf class...
 
-    function __construct(string $file)    {        $this->file = $file;        if (! file_exists($file)) {            throw new FileException("file '$file' does not exist");        }        $this->xml = simplexml:load_file($file, null, LIBXML_NOERROR);        if (! is_object($this->xml)) {            throw new XmlException(libxml:get_last_error());        }        $matches = $this->xml->xpath("/conf");        if (! count($matches)) {            throw new ConfException("could not find root element: conf");        }    }
+    function __construct(string $file)    {        
+        $this->file = $file;        
+        if (! file_exists($file)) {            
+            throw new FileException("file '$file' does not exist");        
+        }        
+        $this->xml = simplexml:load_file($file, null, LIBXML_NOERROR);        
+        if (! is_object($this->xml)) {            
+            throw new XmlException(libxml:get_last_error());        
+        }        
+        $matches = $this->xml->xpath("/conf");        
+        if (! count($matches)) {            
+            throw new ConfException("could not find root element: conf");        
+        }    
+    }
 
-    function write()    {        if (! is_writeable($this->file)) {            throw new FileException("file '{$this->file}' is not writeable");        }        file_put_contents($this->file, $this->xml->asXML());    }
+    function write()    {        
+        if (! is_writeable($this->file)) {            
+            throw new FileException("file '{$this->file}' is not writeable");        
+        }        
+        file_put_contents($this->file, $this->xml->asXML());    
+    }
+```
 
-__construct() throws either an XmlException, a FileException, or a ConfException, depending on 
+\_\_construct() throws either an XmlException, a FileException, or a ConfException, depending on the kind of error it encounters. Note that I pass the option flag LIBXML\_NOERROR to simplexml:load\_file(). This suppresses warnings, leaving me free to handle them with my XmlException class after the fact. If I encounter a malformed XML file, I know that an error has occurred because simplexml:load\_file() won’t have returned an object. I can then access the error using libxml:get\_last\_error().
 
-the kind of error it encounters. Note that I pass the option flag LIBXML_NOERROR to simplexml:load_file(). This suppresses warnings, leaving me free to handle them with my XmlException class after the fact. If I encounter a malformed XML file, I know that an error has occurred because simplexml:load_file() won’t have returned an object. I can then access the error using libxml:get_last_error().
+The write() method throws a FileException if the \$file property points to an unwritable entity.So, I have established that \_\_construct() might throw one of three possible exceptions. How can I take advantage of this? Here’s some code that instantiates a Conf object:
 
-The write() method throws a FileException if the $file property points to an unwritable entity.So, I have established that __construct() might throw one of three possible exceptions. How can I take 
-
-advantage of this? Here’s some code that instantiates a Conf object:
-
-// listing 04.65    public static function init()    {        try {            $conf = new Conf(__DIR__."/conf.broken.xml");            print "user: " . $conf->get('user') . "\n";            print "host: " . $conf->get('host') . "\n";            $conf->set("pass", "newpass");            $conf->write();        } catch (FileException $e) {            // permissions issue or non-existent file        } catch (XmlException $e) {            // broken xml        } catch (ConfException $e) {            // wrong kind of XML file        } catch (\Exception $e) {            // backstop: should not be called        }    }
+```php
+// listing 04.65    
+public static function init()    {        
+    try {            
+        $conf = new Conf(__DIR__."/conf.broken.xml");            
+        print "user: " . $conf->get('user') . "\n";            
+        print "host: " . $conf->get('host') . "\n";            
+        $conf->set("pass", "newpass");            
+        $conf->write();        
+    } catch (FileException $e) {            
+        // permissions issue or non-existent file        
+    } catch (XmlException $e) {            
+        // broken xml        
+    } catch (ConfException $e) {            
+        // wrong kind of XML file        
+    } catch (\Exception $e) {            
+        // backstop: should not be called        
+    }    
+}
+```
 
 I provide a catch clause for each class type. The clause invoked depends on the exception type thrown. 
 
@@ -950,73 +1065,129 @@ The first to match will be executed, so remember to place the most generic type 
 
 The first catch clause (FileException) is invoked if there is a problem with the configuration file (if the file is nonexistent or unwriteable). The second clause (XmlException) is invoked if an error occurs in parsing the XML file (e.g., if an element is not closed). The third clause (ConfException) is invoked if a valid XML file does not contain the expected root conf element. The final clause (Exception) should not be reached because my methods only generate the three exceptions, which are explicitly handled. It is often a good idea to have a「backstop」clause like this, in case you add new exceptions to the code during development.
 
- If you do provide a「backstop」catch clause, you should ensure that you actually do something about 
-
- ■ Note the exception in most instances—failing silently can cause bugs which are hard to diagnose.
+Note: If you do provide a「backstop」catch clause, you should ensure that you actually do something about the exception in most instances—failing silently can cause bugs which are hard to diagnose.
 
 The benefit of these fine-grained catch clauses is that they allow you to apply different recovery or failure mechanisms to different errors. For example, you may decide to end execution, log the error and continue, or explicitly rethrow an error:
 
-        try {            //...        } catch ( FileException $e ) {            throw $e;        }
+```php
+try {            
+    //...        
+} catch ( FileException $e ) {            
+throw $e;        
+}
+```
 
 Another trick you can play here is to throw a new exception that wraps the current one. This allows you to stake a claim to the error and add your own contextual information, while retaining the data encapsulated by the exception you have caught. You can read more about this technique in Chapter 15.
 
-So what happens if an exception is not caught by client code? It is implicitly rethrown, and the client’s 
+So what happens if an exception is not caught by client code? It is implicitly rethrown, and the client’s own calling code is given the opportunity to catch it. This process continues either until the exception is caught or until it can no longer be thrown. At this point, a fatal error occurs. Here’s what would happen if I did not catch one of the exceptions in my example:
 
-own calling code is given the opportunity to catch it. This process continues either until the exception is caught or until it can no longer be thrown. At this point, a fatal error occurs. Here’s what would happen if I did not catch one of the exceptions in my example:
-
-PHP Fatal error:  Uncaught exception 'FileException' with message'file 'nonexistent/not_there.xml' does not exist' in ...
+```
+PHP Fatal error:  Uncaught exception 'FileException' with message
+'file 'nonexistent/not_there.xml' does not exist' in ...
+```
 
 So, when you throw an exception, you force the client to take responsibility for handling it. This is not an abdication of responsibility. An exception should be thrown when a method has detected an error, but does not have the contextual information to be able to handle it intelligently. The write() method in my example knows when the attempt to write will fail, and it knows why, but it does not know what to do about it. This is as it should be. If I were to make the Conf class more knowledgeable than it currently is, it would lose focus and become less reusable.
 
-Cleaning Up After try/catch Clauses with finallyThe way that code flow is affected by exceptions can cause unexpected problems. For example, clean-up code or other essential housekeeping may not be performed after an exception is generated within a try clause. As you have seen, if an exception is generated within a try clause, flow moves directly to the relevant catch clause. Code that closes database connections or file handles may not get called, and status information might not be updated.
+### 4.7.1.3 Cleaning Up After try/catch Clauses with finally
 
-Imagine, for example, that Runner::init() keeps a log of its actions. It logs the start of the initialization 
+The way that code flow is affected by exceptions can cause unexpected problems. For example, clean-up code or other essential housekeeping may not be performed after an exception is generated within a try clause. As you have seen, if an exception is generated within a try clause, flow moves directly to the relevant catch clause. Code that closes database connections or file handles may not get called, and status information might not be updated.
 
-process, any errors encountered, and then it logs the end of the initialization process. Here I provide a typically simplified example of this kind of logging:
+Imagine, for example, that Runner::init() keeps a log of its actions. It logs the start of the initialization process, any errors encountered, and then it logs the end of the initialization process. Here I provide a typically simplified example of this kind of logging:
 
-// listing 04.66    public static function init()    {        try {            $fh = fopen(__DIR__ . "/log.txt", "a");            fputs($fh, "start\n");            $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            print "user: " . $conf->get('user') . "\n";            print "host: " . $conf->get('host') . "\n";            $conf->set("pass", "newpass");            $conf->write();            fputs($fh, "end\n");            fclose($fh);        } catch (FileException $e) {            // permissions issue or non-existent file            fputs($fh, "file exception\n");            throw $e;        } catch (XmlException $e) {            fputs($fh, "xml exception\n");
+```php
+// listing 04.66    
+public static function init()    {        
+    try {            
+        $fh = fopen(__DIR__ . "/log.txt", "a");            
+        fputs($fh, "start\n");            
+        $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            
+        print "user: " . $conf->get('user') . "\n";            
+        print "host: " . $conf->get('host') . "\n";            
+        $conf->set("pass", "newpass");            
+        $conf->write();            
+        fputs($fh, "end\n");            
+        fclose($fh);        
+    } catch (FileException $e) {            
+        // permissions issue or non-existent file            
+        fputs($fh, "file exception\n");            
+        throw $e;        
+    } catch (XmlException $e) {            
+        fputs($fh, "xml exception\n");
+            // broken xml        
+    } catch (ConfException $e) {            
+        fputs($fh, "conf exception\n");            
+        // wrong kind of XML file        
+    } catch (\Exception $e) {            
+        fputs($fh, "general exception\n");            
+        // backstop: should not be called        
+    }    
+}
+```
 
-            // broken xml        } catch (ConfException $e) {            fputs($fh, "conf exception\n");            // wrong kind of XML file        } catch (\Exception $e) {            fputs($fh, "general exception\n");            // backstop: should not be called        }    }
-
-I open a file, log.txt; I write to it; and then I call my configuration code. If an exception is encountered 
-
-in this process, I log this fact in the relevant catch clause. I end the try clause by writing to the log and closing its file handle.
+I open a file, log.txt; I write to it; and then I call my configuration code. If an exception is encountered in this process, I log this fact in the relevant catch clause. I end the try clause by writing to the log and closing its file handle.
 
 Of course, this last step will never be reached if an exception is encountered. Flow passes straight to the relevant catch block, and the rest of the try clause is never run. Here is the log output when a file exception is generated:
 
-startfile exception
+```
+start
+file exception
+```
 
-As you can see, the logging began, and the file exception was noted, but the portion of code that 
+As you can see, the logging began, and the file exception was noted, but the portion of code that registers the end of logging was never reached, and so the log was not updated with that.
 
-registers the end of logging was never reached, and so the log was not updated with that.
+You might think that the solution would be to place the final logging step outside of the try /catch block altogether. This would not work reliably. If a generated exception is caught, and the try block allows execution to continue, then flow will move beyond the try / catch construct. However, a catch clause could rethrow the exception, or it might end script execution altogether.
 
-You might think that the solution would be to place the final logging step outside of the try /catch 
+To help programmers deal with problems like this, PHP 5.5 introduced a new clause: finally. If you’re familiar with Java, it’s likely you’ll have seen this clause before. Although catch clauses are only conditionally run when matching exceptions are thrown, the finally clause is always run, whether or not an exception is generated within the try block. I can fix this problem by moving my log write and code to close to a finally clause:
 
-block altogether. This would not work reliably. If a generated exception is caught, and the try block allows execution to continue, then flow will move beyond the try / catch construct. However, a catch clause could rethrow the exception, or it might end script execution altogether.
+```php
+public static function init()    {        
+    $fh = fopen(__DIR__ . "/log.txt", "a");        
+    try {            
+        fputs($fh, "start\n");            
+        $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            
+        print "user: " . $conf->get('user') . "\n";            
+        print "host: " . $conf->get('host') . "\n";            
+        $conf->set("pass", "newpass");            
+        $conf->write();        
+    } catch (FileException $e) {            
+        // permissions issue or non-existent file            
+        fputs($fh, "file exception\n");        
+    } catch (XmlException $e) {            
+        fputs($fh, "xml exception\n");            
+        // broken xml        
+    } catch (ConfException $e) {            
+        fputs($fh, "conf exception\n");
+        // wrong kind of XML file        
+    } catch (Exception $e) {            
+        fputs($fh, "general exception\n");            
+        // backstop: should not be called        
+    } finally {            
+        fputs($fh, "end\n");           
+        fclose($fh);    
+    }    
+}
+```
 
-To help programmers deal with problems like this, PHP 5.5 introduced a new clause: finally. If you’re 
+Because the log write and the fclose() invocation are wrapped in a finally clause, these statements will be run even if, as is the case when a FileException is caught, the exception is rethrown. Here, again, is the log text when a FileException is generated: 
 
-familiar with Java, it’s likely you’ll have seen this clause before. Although catch clauses are only conditionally run when matching exceptions are thrown, the finally clause is always run, whether or not an exception is generated within the try block.
+```
+start
+file 
+exceptionend
+```
 
-I can fix this problem by moving my log write and code to close to a finally clause:
+Note:  a finally clause will be run if an invoked catch clause rethrows an exception or returns a value. however, calling die() or exit() in a try or catch block will end script execution, and the finally clause will not be run.
 
-    public static function init()    {        $fh = fopen(__DIR__ . "/log.txt", "a");        try {            fputs($fh, "start\n");            $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            print "user: " . $conf->get('user') . "\n";            print "host: " . $conf->get('host') . "\n";            $conf->set("pass", "newpass");            $conf->write();        } catch (FileException $e) {            // permissions issue or non-existent file            fputs($fh, "file exception\n");        } catch (XmlException $e) {            fputs($fh, "xml exception\n");            // broken xml        } catch (ConfException $e) {            fputs($fh, "conf exception\n");
+## 4.8 Final Classes and Methods
 
-            // wrong kind of XML file        } catch (Exception $e) {            fputs($fh, "general exception\n");            // backstop: should not be called        } finally {            fputs($fh, "end\n");            fclose($fh);        }    }
 
-Because the log write and the fclose() invocation are wrapped in a finally clause, these statements 
 
-will be run even if, as is the case when a FileException is caught, the exception is rethrown.
 
-Here, again, is the log text when a FileException is generated:
 
-startfile exceptionend
 
- a finally clause will be run if an invoked catch clause rethrows an exception or returns a value. 
 
- ■ Note however, calling die() or exit() in a try or catch block will end script execution, and the finally clause will not be run.
 
-## Final Classes and Methods
+
 
 Inheritance allows for enormous flexibility within a class hierarchy. You can override a class or method so that a call in a client method will achieve radically different effects, according to which class instance it has been passed. Sometimes, though, a class or method should remain fixed and unchanging. If you have achieved the definitive functionality for your class or method, and you feel that overriding it can only damage the ultimate perfection of your work, you may need the final keyword.
 
@@ -1050,7 +1221,7 @@ Good object-oriented code tends to emphasize the well-defined interface. Behind 
 
 though, implementations will often vary. Different classes or combinations of classes conform to common interfaces but behave differently in different circumstances. By declaring a class or method final, you limit this flexibility. There will be times when this is desirable, and you will see some of them later in the book. However, you should think carefully before declaring something final. Are there really no circumstances in which overriding would be useful? You could always change your mind later on, of course, but this might not be so easy if you are distributing a library for others to use. Use final with care.
 
-The Internal Error Class
+## 4.9 The Internal Error Class
 
 Back when exceptions were first introduced, the world of trying and catching applied primarily to code written in PHP and not the core engine. Internally generated errors maintained their own logic. This could get messy if you wanted to manage core errors in the same way as code-generated exceptions. PHP 7 has made a start on addressing this issue with the Error class. This implements Throwable—the same built-in interface that the Exception class implements, and therefore it can be treated in the same way. This also means the methods described in Table 4-1 are honored. Error is subclassed for individual error types. Here’s how you might catch a parse error generated by an eval statement:
 
@@ -1084,7 +1255,7 @@ Thrown when an argument of the wrong type is passed to a method, a method return
 
  ■ Note  at the time of this writing, an attempt to call Error::getMessage() fails with an error, despite the fact that this is declared in the Throwable interface. It is likely that this issue will have been fixed by the time you read this!
 
-Working with Interceptors
+## 4.10 Working with Interceptors
 
 PHP provides built-in interceptor methods that can intercept messages sent to undefined methods and properties. This is also known as overloading, but as that term means something quite different in Java and C++, I think it is better to talk in terms of interception.
 
@@ -1244,7 +1415,7 @@ The __get() method is much more straightforward, of course. Whenever the
 
 Address::$streetaddress property is accessed, __get() is invoked. In my implementation of this interceptor, I test for streetaddress and, if I find a match, I return a concatenation of the $number and $street properties.
 
-Defining Destructor Methods
+## Defining Destructor Methods
 
 You have seen that the __construct() method is automatically invoked when an object is instantiated. PHP 5 also introduced the __destruct() method. This is invoked just before an object is garbage-collected; that is, before it is expunged from memory. You can use this method to perform any final cleaning up that might be necessary.
 
@@ -1278,7 +1449,7 @@ The next morning, his manager asks him to step into a meeting room to explain wh
 
 contains insulting Person data. The moral? Do not trust magic.
 
-Copying Objects with __clone()
+## Copying Objects with __clone()
 
 In PHP 4, copying an object was a simple matter of assigning from one variable to another:
 
@@ -1354,7 +1525,7 @@ explicitly in the __clone() method:
 
     function __clone()    {        $this->id   = 0;        $this->account = clone $this->account;    }
 
-Defining String Values for Your Objects
+## Defining String Values for Your Objects
 
 Another Java-inspired feature introduced by PHP 5 was the __toString() method. Before PHP 5.2, when you printed an object, it would resolve to a string like this:
 
@@ -1507,7 +1678,7 @@ This demonstrates that the callback is keeping track of $count between invocatio
 
 $amt remain associated with the function because they were present to the context of its declaration and because they were specified in its use clause.
 
-Anonymous Classes
+## Anonymous Classes
 
 As of PHP 7 you can declare anonymous classes as well as functions. These are especially useful when you need to create and derive an instance from a small class. This is especially useful when the class in question is simple and specific to the local context.
 

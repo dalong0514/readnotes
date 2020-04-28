@@ -62,3 +62,252 @@ It's much easier to debug state inconsistencies in an app that implements the ab
 
 But this ability would be undermined if our mutations were applied asynchronously. We'd know the order our commits came in, but we would not know the order in which our components committed them. Synchronous mutations ensure state is not dependent on the sequence and timing of unpredictable events.
 
+### 8.2 Vuex
+
+Vuex (usually pronounced veweks) is the official Vue.js implementation of the Flux architecture. By enforcing the principles described previously, Vuex keeps your application data in a transparent and predictable state even when that data is being shared across many components.
+
+Vuex includes a store with state and mutator methods, and will reactively update any components that are reading data from the store. It also allows for handy development features like hot module reloading (updating modules in a running application) and time-travel debugging (stepping back through mutations to trace bugs).
+
+In this chapter, we will add a save feature to our Vuebnb listings so that a user can keep track of the listings that they like best. Unlike other data in our app so far, the saved state must persist across pages; for example, when a user changes from one page to another, the app must remember which items the user has already saved. We will use Vuex to achieve this:
+
+Figure 8.4. Saved state is available to all page components
+
+#### 8.2.1 Installing Vuex
+
+Vuex is an NPM package that can be installed from the command line:
+
+    $ npm i --save-dev vuex
+
+1『改用「yarn add vuex --dev」。』
+
+We will put our Vuex configuration into a new module file store.js:
+
+    $ touch resources/assets/js/store.js
+
+We need to import Vuex in this file and, like Vue Router, install it with Vue.use. This gives special properties to Vue that make it compatible with Vuex, such as allowing components to access the store via this.\$store.
+
+resources/assets/js/store.js:
+
+```js
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+export default new Vuex.Store();
+```
+
+We will then import the store module in our main app file, and add it to our Vue instance.
+
+resources/assets/js/app.js:
+
+```js
+// import "core-js/fn/object/assign";
+// window.Vue = require('vue');
+import Vue from 'vue';
+import ListingPage from '../components/ListingPage.vue';
+import App from '../components/App.vue';
+import router from './router';
+import store from './store';
+
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    render: h => h(App),
+    // components: {ListingPage},
+    router,
+    store,
+});
+```
+
+### 8.3 Save feature
+
+As mentioned, we'll be adding a save feature to our Vuebnb listings. The UI of this feature is a small, clickable icon that is overlaid on the top right of a listing summary's thumbnail image. It acts similarly to a checkbox, allowing the user to toggle the saved status of any particular listing:
+
+The save feature will also be added as a button in the header image on the listing page:
+
+#### 8.3.1 ListingSave component
+
+Let's begin by creating the new component:
+
+    $ touch resources/assets/components/ListingSave.vue
+
+The template of this component will include a Font Awesome heart icon. It will also include a click handler which will be used to toggle the saved state. Since this component will always be a child of a listing or listing summary, it will receive a listing ID as a prop. This prop will be used shortly to save the state in Vuex.
+
+resources/assets/components/ListingSave.vue:
+
+```html
+<template>
+    <div class="listing-save" @click.stop="toggleSaved()">
+        <i class="fa fa-lg fa-heart-o"></i>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: ['id'],
+        methods: {
+            toggleSaved() {
+                //
+            }
+        }
+    }
+</script>
+
+<style>
+    .listing-save {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .listing-save .fa-heart-o {
+        color: #ffffff;
+    }
+</style>
+```
+
+Note that the click handler has a stop modifier. This modifier prevents the click event from bubbling up to ancestor elements, especially any anchor tags which might trigger a page change!
+
+1『上面的修饰符 stop 是个关键知识点，类似于小程序里的冒泡和非冒泡机制。』
+
+We'll now add ListingSave to the ListingSummary component. Remember to pass the listing's ID as a prop. While we're at it, let's add a position: relative to the .listing-summary class rules so that ListingSave can be positioned absolutely against it.
+
+resources/assets/components/ListingSummary.vue:
+
+```html
+<template>
+    <div class="listing-summary">
+        <router-link :to="{name:'listing', params:{listing:listing.id}}">
+            <div class="wrapper">
+                <div class="thumbnail" :style="backgroundImageStyle"></div>
+                <div class="info title">
+                    <span>{{ listing.price_per_night }}</span>
+                    <span>{{ listing.title }}</span>
+                </div>
+                <div class="info address">{{ listing.address }}</div>
+            </div>
+        </router-link>
+        <listing-save :id="listing.id"></listing-save>
+    </div>
+</template>
+
+<script>
+    import ListingSave from './ListingSave';
+    export default {
+        props: ['listing'],
+        computed: {
+            backgroundImageStyle() {
+                return {
+                    'background-image': `url("${this.listing.thumb}")`
+                }
+            }
+        },
+        components: {
+            ListingSave,
+        }
+    }
+</script>
+
+<style>
+    .listing-summary {
+        flex: 0 0 auto;
+        position: relative;
+    }
+
+    @media (max-width: 400px) {
+        .listing-summary .listing-save {
+            left: 15px;
+            right: auto;
+        }
+    }
+...
+</style>
+```
+
+With that done, we will now see the ListingSave heart icon rendered on each summary:
+
+Figure 8.7. The ListingSave component within ListingSummary components
+
+### 8.4 Saved state
+
+The ListingSave component does not have any local data; we will instead keep any saved listings in our Vuex store. To do this, we will create an array in the store called saved. Each time the user toggles the saved state of a listing its ID will be either added or removed from this array. To begin, let's add a state property to our Vuex store. This object will hold any data we want to be globally available to the components of our app. We will add the saved property to this object and assign it an empty array.
+
+1『数据中心啊，太赞了。』
+
+resources/assets/js/store.js:
+
+```js
+...
+
+export default new Vuex.Store({ 
+    state: { 
+        saved: [] 
+    } 
+});
+```
+
+### 8.5 Mutator method
+
+We created the stub for a toggleSaved method in our ListingSave component. This method should add or remove the listing's ID from the saved state in the store. Components can access the store as this.\$store. More specifically, the saved array can be accessed at this.\$store.state.saved.
+
+resources/assets/components/ListingSave.vue:
+
+```js
+methods: { 
+    toggleSaved() { 
+    console.log(this.$store.state.saved); /* Currently an empty array. [] */ 
+    } 
+}
+```
+
+Remember that in the Flux architecture state is read-only. That means we cannot directly modify saved from a component. Instead, we must create a mutator method in the store which does the modification for us.
+
+Let's create a mutations property in our store configuration, and add a function property toggleSaved. Vuex mutator methods receive two arguments: the store state and a payload. This payload can be anything you want to pass from the component to the mutator. For the current case, we will send the listing ID. The logic for toggleSaved is to check if the listing ID is already in the saved array and if so, remove it, or if not, add it.
+
+resources/assets/js/store.js:
+
+```js
+export default new Vuex.Store({
+    state: {
+        saved: [],
+    },
+    mutations: {
+        toggleSaved(state, id) {
+            let index = state.saved.findIndex(saved => saved === id);
+            if (index === -1) {
+                state.saved.push(id);
+            } else {
+                state.saved.splice(index, 1);
+            }
+        }
+    },
+});
+```
+
+We now need to commit this mutation from ListingSave. Commit is Flux jargon that is synonymous with call or trigger. A commit looks like a custom event with the first argument being the name of the mutator method and the second being the payload.
+
+resources/assets/components/ListingSave.vue:
+
+```js
+<script>
+    export default {
+        props: ['id'],
+        methods: {
+            toggleSaved() {
+                this.$store.commit('toggleSaved', this.id);
+            }
+        }
+    }
+</script>
+```
+
+The main point of using mutator methods in the store architecture is that state is changed consistently. But there is an additional benefit: we can easily log these changes for debugging. If you check the Vuex tab in Vue Devtools after clicking one of the save buttons, you will see an entry for that mutation:
+
+Figure 8.8: Mutation log
+
+Each entry in the log can tell you the state after the change was committed, as well as the particulars of the mutation. If you double-click a logged mutation, Vue Devtools will revert the state of the app to what it was directly after that change. This is called time-travel debugging and can be useful for fine-grained debugging.
+
+1『再点一下，数组里的该 id 会删掉，为实现取消收藏做准备啊。』
+
+
+

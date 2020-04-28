@@ -1191,7 +1191,7 @@ app.js:
 
 Now when you try to scroll the page you'll see it won't budge!
 
-## 34. Closing
+## 2.17 Closing
 
 Users will need a way to close their modal and return to the main window. We'll overlay a button in the top-right corner that, when clicked, evaluates an expression to set modalOpen to false. The show class on our wrapper div will consequentially be removed, which means the display CSS property will return to none, thus removing the modal from the page.
 
@@ -1229,13 +1229,13 @@ style.css:
 }
 ```
 
-## 35. Escape key
+### 2.17.1 Escape key
 
 Having a close button for our modal is handy, but most people's instinctual action for closing a window is the Escape key. v-on is Vue's mechanism for listening to events and seems like a good candidate for this job. Adding the keyup argument will trigger a handler callback after any key is pressed while this input is focused:
 
     <input v-on:keyup="handler">
 
-## 36. Event modifiers
+### 2.17.2 Event modifiers
 
 Vue makes it easy to listen for specific keys by offering modifiers to the v-on directive. Modifiers are postfixes denoted by a dot (.), for example:
 
@@ -1263,7 +1263,7 @@ document.addEventListener('keyup', function(evt) {
 
 This works, with one caveat (discussed in the next section). But Vue can help us make it perfect.
 
-## 37. Lifecycle hooks
+## 2.18 Lifecycle hooks
 
 When your main script is run and your instance of Vue is set up, it goes through a series of initialization steps. As we said earlier, Vue will walk through your data objects and make them reactive, as well as compile the template and mount to the DOM. Later in the lifecycle, Vue will also go through updating steps, and later still, tear-down steps. Here is a diagram of the lifecycle instance taken from http://vuejs.org. Many of these steps concern concepts that we haven't yet covered, but you should get the gist:
 
@@ -1271,8 +1271,16 @@ Figure 2.11. Vue.js lifecycle diagram
 
 Vue allows you to execute custom logic at these different steps via lifecycle hooks, which are callbacks defined in the configuration object. For example, here we utilize the beforeCreate and created hooks:
 
-```
-new Vue({ data: { message: 'Hello' }, beforeCreate: function() { console.log('beforeCreate message: ' + this.message); // "beforeCreate message: undefined" }, created: function() { console.log('created: '+ this.message); // "created message: Hello" }, });
+```js
+new Vue({ 
+data: { message: 'Hello' }, 
+beforeCreate: function() { 
+    console.log('beforeCreate message: ' + this.message); // "beforeCreate message: undefined" 
+}, 
+created: function() { 
+    console.log('created: '+ this.message); // "created message: Hello" 
+}, 
+});
 ```
 
 Vue will alias data properties to the context object after the beforeCreate hook is called but before the created hook is called, hence why this.message is undefined in the former.
@@ -1281,7 +1289,7 @@ The caveat I mentioned earlier about the Escape key listener is this: although u
 
 app.js:
 
-```
+```js
 // to set up the listener in the created lifecycle
 function escapeKeyListenser(evt) {
     if (evt.keyCode === 27 && vm.modalOpen) {
@@ -1320,7 +1328,7 @@ var vm = new Vue({
 });
 ```
 
-## 38. Methods
+## 2.19 Methods
 
 The Vue configuration object also has a section for methods. Methods are not reactive, so you could define them outside of the Vue configuration without any difference in functionality, but the advantage to Vue methods is that they are passed the Vue instance as context and therefore have easy access to your other properties and methods. Let's refactor our escapeKeyListener to be a Vue instance method.
 
@@ -1367,7 +1375,7 @@ var vm = new Vue({
 
 1『留意下「this.escapeKeyListenser」。』
 
-## 39. Proxied properties
+### 2.19.1 Proxied properties
 
 You may have noticed that our escapeKeyListener method can refer to this.modalOpen. Shouldn't it be this.methods.modalOpen?
 
@@ -1383,7 +1391,7 @@ Figure 2.12. Our app's Vue instance
 
 Now the simplicity of text interpolations might make more sense, they have the context of the Vue instance, and thanks to proxied properties, can be referenced like {{ myDataProperty }}. However, while proxying to the root makes syntax terser, a consequence is that you can't name your data properties, methods, or computed properties with the same name!
 
-## 40. Removing listener
+### 2.19.2 Removing listener
 
 To avoid any memory leaks, we should also use removeEventListener to get rid of the listener when the Vue instance is torn down. We can use the destroy hook and call our escapeKeyListener method for this purpose.
 

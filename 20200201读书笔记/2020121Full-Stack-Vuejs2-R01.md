@@ -32,6 +32,25 @@ If you are going with an SPA architecture and your app design includes multiple 
 
 上面的例子里，title 是 props，dalong 是传递给这个组件的数据对象。
 
+### 0204. 术语卡——watcher
+
+如何对跟 vue 实例平行的节点操作，还是得靠 DOM 的 API，但前提是 vue 能告知 DOM 相关信息，watcher 就是做这个的。
+
+Vue 实例里增加 watch 方法调用浏览器的 API 从而操作与 vue 实例同级别的 DOM 节点。
+
+```js
+    watch: {
+        modalOpen: function() {
+            var className = "modal-open";
+            if (this.modalOpen) {
+                document.body.classList.add(className);
+            } else {
+                document.body.classList.remove(className);
+            }
+        },
+    },
+```
+
 ### 0301. 人名卡——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
@@ -861,8 +880,6 @@ Once the About section has been expanded, we want to hide the More button as it'
 
 To prevent our header image from dominating the page, we've cropped it and limited its height. But what if the user wants to see the image in its full glory? A great UI design pattern to allow the user to focus on a single item of content is a modal window. Here's what our modal will look like when opened:
 
-Figure 2.10. Header image modal
-
 Our modal will give a properly scaled view of the header image so the user can focus on the appearance of the lodgings without the distraction of the rest of the page. Later in the book, we will insert an image carousel into the modal so the user can browse through a whole collection of room images!
 
 For now, though, here are the required features for our modal: 1) Open the modal by clicking the header image. 2) Freeze the main window. 3) Show the image. 3) Close the modal window with a close button or the Escape key.
@@ -884,7 +901,7 @@ We'll make it so that clicking our header image will set the modal to open. We'l
 
 index.html:
 
-```
+```html
 <div class="header">
     <div 
     class="header-img" 
@@ -949,7 +966,7 @@ Preventing body scroll. We have a problem, though. Our modal panel, despite bein
 
 The trick is to add the CSS overflow property to the body tag and set it to hidden. This has the effect of clipping any overflow (that is, part of the page not currently in view), and the rest of the content will be made invisible. We'll need to dynamically add and remove this CSS rule, as we obviously want to be able to scroll through the page when the modal is closed. So, let's create a class called modal-open that we can apply to the body tag when the modal is open.
 
-```
+```css
 body.modal-open { 
     overflow: hidden;
     position: fixed; 
@@ -981,13 +998,13 @@ This is not permitted by Vue and if you attempt it you will get this error:
 
 Remember that Vue has to compile the template and replaces the mount node. If you have script tags as children of the mount node, as you often do with body, or if your user has browser plugins that modify the document (many do) then all sorts of hell might break loose on the page when it replaces that node. If you define your own root element with a unique ID, there should be no such conflict.
 
-1『上面的是一个关键知识点。』
+1『上面的是一个关键知识点。vue 是不能挂在 body 或 html 跟节点上的。』
 
 ### 2.16 Watchers
 
 So, how can we add/remove classes from the body if it's out of Vue's dominion? We'll have to do it the old-fashioned way with the browser's Web API. We need to run the following statements when the modal is opened or closed:
 
-```
+```html
 // Modal opens 
 document.body.classList.add('modal-open'); 
 
@@ -996,6 +1013,8 @@ document.body.classList.remove('modal-closed');
 ```
 
 As discussed, Vue adds reactive getters and setters to each data property so that when data changes it knows to update the DOM appropriately. Vue also allows you to write custom logic that hooks into reactive data changes via a feature called watchers.
+
+1『如何对跟 vue 实例平行的节点操作，还是得靠 DOM 的 API，但前提是 vue 能告知 DOM 相关信息，watcher 就是做这个的。』
 
 To add a watcher, first add the watch property to your Vue instance. Assign an object to this where each property has the name of a declared data property, and each value is a function. The function has two arguments: the old value and new value. Whenever a data property changes, Vue will trigger any declared watcher methods:
 
@@ -1037,31 +1056,35 @@ Vue can't update the body tag for us, but it can trigger custom logic that will.
 
 Now when you try to scroll the page you'll see it won't budge!
 
-### 2.34 Closing
+### 2.17 Closing
 
 Users will need a way to close their modal and return to the main window. We'll overlay a button in the top-right corner that, when clicked, evaluates an expression to set modalOpen to false. The show class on our wrapper div will consequentially be removed, which means the display CSS property will return to none, thus removing the modal from the page.
 
-### 2.35 Escape key
+#### 2.17.1 Escape key
 
 Having a close button for our modal is handy, but most people's instinctual action for closing a window is the Escape key. v-on is Vue's mechanism for listening to events and seems like a good candidate for this job. Adding the keyup argument will trigger a handler callback after any key is pressed while this input is focused:
 
     <input v-on:keyup="handler">
 
-### 2.36 Event modifiers
+#### 2.17.2 Event modifiers
 
 Vue makes it easy to listen for specific keys by offering modifiers to the v-on directive. Modifiers are postfixes denoted by a dot (.), for example:
 
-    <input v-on:keyup.enter="handler">
+```html
+<input v-on:keyup.enter="handler">
+```
 
 As you'd probably guess, the .enter modifier tells Vue to only call the handler when the event is triggered by the Enter key. Modifiers save you from having to remember the specific key code, and also make your template logic more obvious. Vue offers a variety of other key modifiers, including: 1) tab. 2) delete. 3) space. 4) esc. With that in mind, it seems like we could close our modal with this directive:
 
-    v-on:keyup.esc="modalOpen = false"
+```html
+v-on:keyup.esc="modalOpen = false"
+```
 
 But then what tag do we attach this directive to? Unfortunately, unless an input is focused on, key events are dispatched from the body element, which, as we know, is out of Vue's jurisdiction! To handle this event we'll, once again, resort to the Web API.
 
 app.js:
 
-```
+```js
 var app = new Vue({ ... }); 
 
 document.addEventListener('keyup', function(evt) {
@@ -1071,15 +1094,27 @@ document.addEventListener('keyup', function(evt) {
 });
 ```
 
-1『函数的第一个传参如果用原书里的「\</span>'keyup'」会报错，目前还没解决。』
+1『函数的第一个传参如果用原书里的「\</span>'keyup'」会报错，是印刷的原因，有些地方会多出字符 \</span>，后面章节还会遇到。』
 
 This works, with one caveat (discussed in the next section). But Vue can help us make it perfect.
 
-### 2.37 Lifecycle hooks
+### 2.18 Lifecycle hooks
 
 When your main script is run and your instance of Vue is set up, it goes through a series of initialization steps. As we said earlier, Vue will walk through your data objects and make them reactive, as well as compile the template and mount to the DOM. Later in the lifecycle, Vue will also go through updating steps, and later still, tear-down steps. Here is a diagram of the lifecycle instance taken from http://vuejs.org. Many of these steps concern concepts that we haven't yet covered, but you should get the gist:
 
 Vue allows you to execute custom logic at these different steps via lifecycle hooks, which are callbacks defined in the configuration object. For example, here we utilize the beforeCreate and created hooks:
+
+```js
+new Vue({ 
+data: { message: 'Hello' }, 
+beforeCreate: function() { 
+    console.log('beforeCreate message: ' + this.message); // "beforeCreate message: undefined" 
+}, 
+created: function() { 
+    console.log('created: '+ this.message); // "created message: Hello" 
+}, 
+});
+```
 
 2『上面的代码有时间码一遍。』
 
@@ -1087,7 +1122,7 @@ Vue will alias data properties to the context object after the beforeCreate hook
 
 The caveat I mentioned earlier about the Escape key listener is this: although unlikely, if the Escape key was pressed and our callback was called before Vue has proxied the data properties, app.modalOpen would be undefined rather than true and so our if statement would not control flow like we expect. To overcome this we can set up the listener in the created lifecycle hook that will be called after Vue has proxied the data properties. This gives us a guarantee that modalOpen will be defined when the callback is run.
 
-```
+```js
 // to set up the listener in the created lifecycle
 function escapeKeyListenser(evt) {
     if (evt.keyCode === 27 && vm.modalOpen) {
@@ -1126,11 +1161,11 @@ var vm = new Vue({
 });
 ```
 
-### 2.38 Methods
+### 2.19 Methods
 
 The Vue configuration object also has a section for methods. Methods are not reactive, so you could define them outside of the Vue configuration without any difference in functionality, but the advantage to Vue methods is that they are passed the Vue instance as context and therefore have easy access to your other properties and methods. Let's refactor our escapeKeyListener to be a Vue instance method.
 
-```
+```js
 // Vue 实例
 var vm = new Vue({
     el: "#app",
@@ -1171,7 +1206,7 @@ var vm = new Vue({
 
 1『留意下「this.escapeKeyListenser」。』
 
-### 2.39 Proxied properties
+#### 2.19.1 Proxied properties
 
 You may have noticed that our escapeKeyListener method can refer to this.modalOpen. Shouldn't it be this.methods.modalOpen?
 
@@ -1179,7 +1214,9 @@ When a Vue instance is constructed, it proxies any data properties, methods, and
 
 You can see these proxied properties by printing the Vue object in the browser console. Now the simplicity of text interpolations might make more sense, they have the context of the Vue instance, and thanks to proxied properties, can be referenced like {{ myDataProperty }}. However, while proxying to the root makes syntax terser, a consequence is that you can't name your data properties, methods, or computed properties with the same name!
 
-### 2.40 Removing listener
+1『 When a Vue instance is constructed, it proxies any data properties, methods, and computed properties to the instance object. 代理机制解答了之前的困惑，数据绑定直接写属性名即可。』
+
+#### 2.19.2 Removing listener
 
 To avoid any memory leaks, we should also use removeEventListener to get rid of the listener when the Vue instance is torn down. We can use the destroy hook and call our escapeKeyListener method for this purpose.
 

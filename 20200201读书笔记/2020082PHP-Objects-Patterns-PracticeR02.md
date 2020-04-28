@@ -743,6 +743,472 @@ Unfortunately, this code will generate an error:
 
     Error: Call to private method popp\ch04\batch06_9\UtilityService::calculateTax() from context ...
 
+### 4.6 Late Static Bindings: The static Keyword
 
+Now that you’ve seen abstract classes, traits, and interfaces, it’s time to return briefly to static methods. You saw that a static method can be used as factory, a way of generating instances of the containing class. If you’re as lazy a coder as me, you might chafe at the duplication in an example like this:
+
+```php
+// listing 04.45
+abstract class DomainObject{
+
+}
+
+// listing 04.46
+class User extends DomainObject{    
+    public static function create(): User    {        
+        return new User();    
+    }
+}
+
+// listing 04.47
+class Document extends DomainObject{    
+    public static function create(): Document    {        
+        return new Document();    
+    }
+}
+```
+
+I create a super class named DomainObject. In a real-world project, of course, this would contain functionality common to its extending classes. Then I create two child classes, User and Document. I would like my concrete classes to have static create() methods.
+
+Note: Why would I use a static factory method when a constructor performs the work of creating an object already? In Chapter 12, I’ll describe a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
+
+2『体现了 Identity Map 设计模式。做张术语卡片。』
+
+This code works fine, but it has an annoying amount of duplication. I don’t want to have to create boilerplate code like this for every DomainObject child class that I create. Instead, I’ll try pushing the create() method up to the superclass:
+
+```php
+// listing 04.48
+abstract class DomainObject{    
+    public static function create(): DomainObject    {        
+        return new self();    
+    }
+}
+
+// listing 04.49
+class User extends DomainObject {
+
+}
+
+// listing 04.50
+class Document extends DomainObject {
+
+}
+
+// listing 04.51Document::create();
+```
+
+Well, that looks neat. I now have common code in one place, and I’ve used self as a reference to the class. But I have made an assumption about the self keyword. In fact, it does not act for classes exactly the same way that \$this does for objects. self does not refer to the calling context; it refers to the context of resolution. So if I run the previous example, I get this:
+
+    Error: Cannot instantiate abstract class popp\ch04\batch06\DomainObject
+
+So self resolves to DomainObject, the place where create() is defined, and not to Document, the class on which it was called. Until PHP 5.3 this was a serious limitation, which spawned many rather clumsy workarounds. PHP 5.3 introduced a concept called late static bindings. The most obvious manifestation of this feature is the keyword: static. static is similar to self, except that it refers to the invoked rather than the containing class. In this case, it means that calling Document::create() results in a new Document object and not a doomed attempt to instantiate a DomainObject object. So now I can take advantage of my inheritance relationship in a static context:
+
+```php
+abstract class DomainObject{    
+    public static function create(): DomainObject    {        
+        return new static();    
+    }
+}
+
+class User extends DomainObject {
+
+}
+
+class Document extends DomainObject {
+
+}
+
+print_r(Document::create());
+```
+
+    Document Object()
+
+The static keyword can be used for more than just instantiation. Like self and parent, static can be used as an identifier for static method calls, even from a non-static context. Let’s say I want to include the concept of a group for my DomainObject classes. By default in my new classification, all classes fall into category「default,」but I’d like to be able override this for some branches of my inheritance hierarchy:
+
+```php
+// listing 04.52
+abstract class DomainObject{    
+    private $group;
+
+    public function __construct()    {        
+        $this->group = static::getGroup();    
+    }
+
+    public static function create(): DomainObject    {        
+        return new static();    
+    }
+
+    public static function getGroup(): string    {        
+        return "default";    
+    }
+}
+
+// listing 04.53
+class User extends DomainObject {
+
+}
+
+// listing 04.54
+class Document extends DomainObject{    
+    public static function getGroup(): string    {        
+        return "document";    
+    }
+}
+
+// listing 04.55
+class SpreadSheet extends Document {
+
+}
+
+// listing 04.56
+print_r(User::create());
+print_r(SpreadSheet::create());
+```
+
+I introduced a constructor to the DomainObject class. It uses the static keyword to invoke a static method: getGroup(). DomainObject provides the default implementation, but Document overrides it. I also created a new class, SpreadSheet, that extends Document. Here’s the output:
+
+```
+popp\ch04\batch07\User Object
+(    
+[group:popp\ch04\batch07\DomainObject:private] => default
+)
+
+popp\ch04\batch07\SpreadSheet Object
+(    
+[group:popp\ch04\batch07\DomainObject:private] => document
+)
+```
+
+For the User class, not much clever needs to happen. The DomainObject constructor calls getGroup() and finds it locally. In the case of SpreadSheet, though, the search begins at the invoked class, SpreadSheet itself. It provides no implementation, so the getGroup() method in the Document class is invoked. Before PHP 5.3 and late static binding, I would have been stuck with the self keyword here, which would only look for getGroup() in the DomainObject class.
+
+### 4.7 Handling Errors
+
+Things go wrong. Files are misplaced, database servers are left uninitialized, URLs are changed, XML files are mangled, permissions are poorly set, disk quotas are exceeded. The list goes on and on. In the fight to anticipate every problem, a simple method can sometimes sink under the weight of its own error-handling code.
+
+Here is a simple Conf class that stores, retrieves, and sets data in an XML configuration file:
+
+```php
+// listing 04.57
+class Conf{    
+    private $file;    
+    private $xml;    
+    private $lastmatch;
+
+    public function __construct(string $file)    {        
+        $this->file = $file;        
+        $this->xml = simplexml:load_file($file);    
+    }
+
+    public function write()    {        
+        file_put_contents($this->file, $this->xml->asXML());    
+    }
+
+    public function get(string $str)    {        
+        $matches = $this->xml->xpath("/conf/item[@name=\"$str\"]");        
+        if (count($matches)) {            
+            $this->lastmatch = $matches[0];            
+            return (string)$matches[0];        
+        }        
+        return null;    
+    }
+
+    public function set(string $key, string $value)    {        
+        if (! is_null($this->get($key))) {            
+            $this->lastmatch[0]=$value;            
+            return;        
+        }        
+        $conf = $this->xml->conf;        
+        $this->xml->addChild('item', $value)->addAttribute('name', $key);    
+    }
+}
+```
+
+The Conf class uses the SimpleXml extension to access name value pairs. Here’s the kind of format with which it is designed to work:
+
+```
+<?xml version="1.0"?>
+<conf>    
+    <item name="user">bob</item>    
+    <item name="pass">newpass</item>    
+    <item name="host">localhost</item>
+</conf>
+```
+
+The Conf class’s constructor accepts a file path, which it passes to simplexml:load_file().It stores the resulting SimpleXmlElement object in a property called \$xml. The get() method uses XPath to locate an item element with the given name attribute, returning its value. set() either changes the value of an existing item or creates a new one. Finally, the write() method saves the new configuration data back to the file.
+
+Like much example code, the Conf class is highly simplified. In particular, it has no strategy for handling nonexistent or unwriteable files. It is also optimistic in outlook. It assumes that the XML document will be well-formed and will contain the expected elements.
+
+Testing for these error conditions is relatively trivial, but I must still decide how to respond to them should they arise. There are generally two options.
+
+First, I could end execution. This is simple but drastic. My humble class would then take responsibility for bringing an entire script crashing down around it. Although methods such as __construct() and write() are well placed to detect errors, they do not have the information to decide how to handle them.
+
+Rather than handle the error in my class, then, I could return an error flag of some kind. This could be a Boolean or an integer value such as 0 or -1. Some classes will also set an error string or flag, so that the client code can request more information after a failure.
+
+Many PEAR packages combine these two approaches by returning an error object (an instance of PEAR\_Error), which acts both as notification that an error has occurred and contains the error message within it. This approach is now deprecated, but plenty of classes have not been upgraded, not least because client code often depends on the old behavior.
+
+The problem here is that you pollute your return value. You have to rely on the client coder to test for the return type every time your error-prone method is called. This can be risky. Trust no one!
+
+When you return an error value to calling code, there is no guarantee that the client will be any better equipped than your method to decide how to handle the error. If this is the case, then the problem begins all over again. The client method will have to determine how to respond to the error condition, maybe even implementing a different error-reporting strategy.
+
+#### 4.7.1 Exceptions
+
+PHP 5 introduced exceptions to PHP, a radically different way of handling error conditions. Different for PHP, that is. You will find them hauntingly familiar if you have Java or C++ experience. Exceptions address all of the issues that I have raised so far in this section.
+
+An exception is a special object instantiated from the built-in Exception class (or from a derived class). Objects of type Exception are designed to hold and report error information. The Exception class constructor accepts two optional arguments, a message string and an error code. The class provides some useful methods for analyzing error conditions. These are described in Table 4-1.
+
+The Exception class is fantastically useful for providing error notification and debugging information (the getTrace() and getTraceAsString() methods are particularly helpful in this regard). In fact, it is almost identical to the PEAR_Error class that was discussed earlier. There is much more to an exception than the information it holds, though.
+
+Table 4-1.  The Exception Class’s Public Methods
+
+#### 4.7.1.1 Throwing an Exception
+
+The throw keyword is used in conjunction with an Exception object. It halts execution of the current method and passes responsibility for handling the error back to the calling code. Here I amend the __construct() method to use the throw statement:
+
+```php
+// listing 04.58    
+public function __construct(string $file)    {        
+    $this->file = $file;        
+    if (! file_exists($file)) {           
+        throw new \Exception("file '$file' does not exist");        
+    }        
+    $this->xml = simplexml:load_file($file);    
+}
+```
+
+The write() method can use a similar construct:
+
+```php
+// listing 04.59    
+public function write()    {        
+    if (! is_writeable($this->file)) {            
+        throw new \Exception("file '{$this->file}' is not writeable");        
+    }        
+    file_put_contents($this->file, $this->xml->asXML());    
+}
+```
+
+The \_\_construct() and write() methods can now check diligently for file errors as they do their work, but they let code more fitted for the purpose decide how to respond to any errors detected. So how does client code know how to handle an exception when thrown? When you invoke a method that may throw an exception, you can wrap your call in a try clause. A try clause is made up of the try keyword followed by braces. The try clause must be followed by at least one catch clause in which you can handle any error, like this:
+
+```php
+// listing 04.60
+try {    
+    $conf = new Conf(__DIR__ . "/conf01.xml");    
+    print "user: " . $conf->get('user') . "\n";    
+    print "host: " . $conf->get('host') . "\n";    
+    $conf->set("pass", "newpass");    
+    $conf->write();
+    } catch (\Exception $e) {    
+    die($e->__toString());
+    }
+```
+
+As you can see, the catch clause superficially resembles a method declaration. When an exception is thrown, the catch clause in the invoking scope is called. The Exception object is automatically passed in as the argument variable.
+
+Just as execution is halted within the throwing method when an exception is thrown, so it is within the try clause—control passes directly to the catch clause.
+
+#### 4.7.1.2 Subclassing Exception
+
+You can create classes that extend the Exception class as you would with any user-defined class. There are two reasons why you might want to do this. First, you can extend the class’s functionality. Second, the fact that a derived class defines a new class type can aid error handling in itself.
+
+You can, in fact, define as many catch clauses as you need for a try statement. The particular catch clause invoked will depend on the type of the thrown exception and the class type hint in the argument list. Here are some simple classes that extend Exception:
+
+```php
+// listing 04.61
+class XmlException extends \Exception{    
+    private $error;
+
+    public function __construct(\LibXmlError $error)    {        
+        $shortfile = basename($error->file);        
+        $msg = "[{$shortfile}, line {$error->line}, col {$error->column}] {$error->message}";        
+        $this->error = $error;        
+        parent::__construct($msg, $error->code);    
+    }
+
+    public function getLibXmlError()    {        
+        return $this->error;    
+    }
+
+}
+
+// listing 04.62
+class FileException extends \Exception{}
+
+// listing 04.63
+class ConfException extends \Exception{}
+```
+
+The LibXmlError class is generated behind the scenes when SimpleXml encounters a broken XML file. It has \$message and \$code properties, and it resembles the Exception class. I take advantage of this similarity and use the LibXmlError object in the XmlException class. The FileException and ConfException classes do nothing more than subclass Exception. I can now use these classes in my code and amend both \_\_construct() and write():
+
+```php
+// listing 04.64
+
+// Conf class...
+
+    function __construct(string $file)    {        
+        $this->file = $file;        
+        if (! file_exists($file)) {            
+            throw new FileException("file '$file' does not exist");        
+        }        
+        $this->xml = simplexml:load_file($file, null, LIBXML_NOERROR);        
+        if (! is_object($this->xml)) {            
+            throw new XmlException(libxml:get_last_error());        
+        }        
+        $matches = $this->xml->xpath("/conf");        
+        if (! count($matches)) {            
+            throw new ConfException("could not find root element: conf");        
+        }    
+    }
+
+    function write()    {        
+        if (! is_writeable($this->file)) {            
+            throw new FileException("file '{$this->file}' is not writeable");        
+        }        
+        file_put_contents($this->file, $this->xml->asXML());    
+    }
+```
+
+\_\_construct() throws either an XmlException, a FileException, or a ConfException, depending on the kind of error it encounters. Note that I pass the option flag LIBXML\_NOERROR to simplexml:load\_file(). This suppresses warnings, leaving me free to handle them with my XmlException class after the fact. If I encounter a malformed XML file, I know that an error has occurred because simplexml:load\_file() won’t have returned an object. I can then access the error using libxml:get\_last\_error().
+
+The write() method throws a FileException if the \$file property points to an unwritable entity.So, I have established that \_\_construct() might throw one of three possible exceptions. How can I take advantage of this? Here’s some code that instantiates a Conf object:
+
+```php
+// listing 04.65    
+public static function init()    {        
+    try {            
+        $conf = new Conf(__DIR__."/conf.broken.xml");            
+        print "user: " . $conf->get('user') . "\n";            
+        print "host: " . $conf->get('host') . "\n";            
+        $conf->set("pass", "newpass");            
+        $conf->write();        
+    } catch (FileException $e) {            
+        // permissions issue or non-existent file        
+    } catch (XmlException $e) {            
+        // broken xml        
+    } catch (ConfException $e) {            
+        // wrong kind of XML file        
+    } catch (\Exception $e) {            
+        // backstop: should not be called        
+    }    
+}
+```
+
+I provide a catch clause for each class type. The clause invoked depends on the exception type thrown. 
+
+The first to match will be executed, so remember to place the most generic type at the end and the most specialized at the start. For example, if you were to place the catch clause for Exception ahead of the clause for XmlException and ConfException, neither of these would ever be invoked. This is because both of these classes belong to the Exception type, and would therefore match the first clause.
+
+The first catch clause (FileException) is invoked if there is a problem with the configuration file (if the file is nonexistent or unwriteable). The second clause (XmlException) is invoked if an error occurs in parsing the XML file (e.g., if an element is not closed). The third clause (ConfException) is invoked if a valid XML file does not contain the expected root conf element. The final clause (Exception) should not be reached because my methods only generate the three exceptions, which are explicitly handled. It is often a good idea to have a「backstop」clause like this, in case you add new exceptions to the code during development.
+
+Note: If you do provide a「backstop」catch clause, you should ensure that you actually do something about the exception in most instances—failing silently can cause bugs which are hard to diagnose.
+
+The benefit of these fine-grained catch clauses is that they allow you to apply different recovery or failure mechanisms to different errors. For example, you may decide to end execution, log the error and continue, or explicitly rethrow an error:
+
+```php
+try {            
+    //...        
+} catch ( FileException $e ) {            
+throw $e;        
+}
+```
+
+Another trick you can play here is to throw a new exception that wraps the current one. This allows you to stake a claim to the error and add your own contextual information, while retaining the data encapsulated by the exception you have caught. You can read more about this technique in Chapter 15.
+
+So what happens if an exception is not caught by client code? It is implicitly rethrown, and the client’s own calling code is given the opportunity to catch it. This process continues either until the exception is caught or until it can no longer be thrown. At this point, a fatal error occurs. Here’s what would happen if I did not catch one of the exceptions in my example:
+
+```
+PHP Fatal error:  Uncaught exception 'FileException' with message
+'file 'nonexistent/not_there.xml' does not exist' in ...
+```
+
+So, when you throw an exception, you force the client to take responsibility for handling it. This is not an abdication of responsibility. An exception should be thrown when a method has detected an error, but does not have the contextual information to be able to handle it intelligently. The write() method in my example knows when the attempt to write will fail, and it knows why, but it does not know what to do about it. This is as it should be. If I were to make the Conf class more knowledgeable than it currently is, it would lose focus and become less reusable.
+
+#### 4.7.1.3 Cleaning Up After try/catch Clauses with finally
+
+The way that code flow is affected by exceptions can cause unexpected problems. For example, clean-up code or other essential housekeeping may not be performed after an exception is generated within a try clause. As you have seen, if an exception is generated within a try clause, flow moves directly to the relevant catch clause. Code that closes database connections or file handles may not get called, and status information might not be updated.
+
+Imagine, for example, that Runner::init() keeps a log of its actions. It logs the start of the initialization process, any errors encountered, and then it logs the end of the initialization process. Here I provide a typically simplified example of this kind of logging:
+
+```php
+// listing 04.66    
+public static function init()    {        
+    try {            
+        $fh = fopen(__DIR__ . "/log.txt", "a");            
+        fputs($fh, "start\n");            
+        $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            
+        print "user: " . $conf->get('user') . "\n";            
+        print "host: " . $conf->get('host') . "\n";            
+        $conf->set("pass", "newpass");            
+        $conf->write();            
+        fputs($fh, "end\n");            
+        fclose($fh);        
+    } catch (FileException $e) {            
+        // permissions issue or non-existent file            
+        fputs($fh, "file exception\n");            
+        throw $e;        
+    } catch (XmlException $e) {            
+        fputs($fh, "xml exception\n");
+            // broken xml        
+    } catch (ConfException $e) {            
+        fputs($fh, "conf exception\n");            
+        // wrong kind of XML file        
+    } catch (\Exception $e) {            
+        fputs($fh, "general exception\n");            
+        // backstop: should not be called        
+    }    
+}
+```
+
+I open a file, log.txt; I write to it; and then I call my configuration code. If an exception is encountered in this process, I log this fact in the relevant catch clause. I end the try clause by writing to the log and closing its file handle.
+
+Of course, this last step will never be reached if an exception is encountered. Flow passes straight to the relevant catch block, and the rest of the try clause is never run. Here is the log output when a file exception is generated:
+
+```
+start
+file exception
+```
+
+As you can see, the logging began, and the file exception was noted, but the portion of code that registers the end of logging was never reached, and so the log was not updated with that.
+
+You might think that the solution would be to place the final logging step outside of the try /catch block altogether. This would not work reliably. If a generated exception is caught, and the try block allows execution to continue, then flow will move beyond the try / catch construct. However, a catch clause could rethrow the exception, or it might end script execution altogether.
+
+To help programmers deal with problems like this, PHP 5.5 introduced a new clause: finally. If you’re familiar with Java, it’s likely you’ll have seen this clause before. Although catch clauses are only conditionally run when matching exceptions are thrown, the finally clause is always run, whether or not an exception is generated within the try block. I can fix this problem by moving my log write and code to close to a finally clause:
+
+```php
+public static function init()    {        
+    $fh = fopen(__DIR__ . "/log.txt", "a");        
+    try {            
+        fputs($fh, "start\n");            
+        $conf = new Conf(dirname(__FILE__) . "/conf.broken.xml");            
+        print "user: " . $conf->get('user') . "\n";            
+        print "host: " . $conf->get('host') . "\n";            
+        $conf->set("pass", "newpass");            
+        $conf->write();        
+    } catch (FileException $e) {            
+        // permissions issue or non-existent file            
+        fputs($fh, "file exception\n");        
+    } catch (XmlException $e) {            
+        fputs($fh, "xml exception\n");            
+        // broken xml        
+    } catch (ConfException $e) {            
+        fputs($fh, "conf exception\n");
+        // wrong kind of XML file        
+    } catch (Exception $e) {            
+        fputs($fh, "general exception\n");            
+        // backstop: should not be called        
+    } finally {            
+        fputs($fh, "end\n");           
+        fclose($fh);    
+    }    
+}
+```
+
+Because the log write and the fclose() invocation are wrapped in a finally clause, these statements will be run even if, as is the case when a FileException is caught, the exception is rethrown. Here, again, is the log text when a FileException is generated: 
+
+```
+start
+file 
+exceptionend
+```
+
+Note:  a finally clause will be run if an invoked catch clause rethrows an exception or returns a value. however, calling die() or exit() in a try or catch block will end script execution, and the finally clause will not be run.
 
 
