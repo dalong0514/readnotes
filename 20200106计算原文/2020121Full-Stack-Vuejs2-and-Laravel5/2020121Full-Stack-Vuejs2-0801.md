@@ -4,7 +4,7 @@ In the last chapter, you learned how Vue Router can be used to add virtual pages
 
 Topics covered in this chapter: 1) An introduction to the Flux application architecture and why it is useful for building user interfaces. 2) An overview of Vuex and its key features, including state and mutations. 3) How to install Vuex and set up a global store that can be accessed by Vue.js components. 4) How Vuex allows for superior debugging with Vue Devtools via mutation logging and time-travel debugging. 5) The creation of a save feature for Vuebnb listings and a saved listings page. 6) Moving page state into Vuex to minimize unnecessary data retrieval from the server.
 
-## 01. Flux application architecture
+## 8.1 Flux application architecture
 
 Imagine you've developed a multi-user chat app. The interface has a user list, private chat windows, an inbox with chat history and a notification bar to inform users of unread messages.
 
@@ -16,39 +16,49 @@ Facebook developers struggled with this zombie notification bug for some time. T
 
 The flaw is most easily understood in the abstract: when you have multiple components in an application that share data, the complexity of their interconnections will increase to a point where the state of the data is no longer predictable or understandable. When bugs like the one described inevitably arise, the complexity of the app data makes them near impossible to resolve:
 
+![](./res/2020012.png)
+
 Figure 8.1. The complexity of communication between components increases with every extra component
 
-Flux is not a library. You can't go to GitHub and download it. Flux is a set of guiding principles that describe a scalable frontend architecture that sufficiently mitigates this flaw. It is not just for a chat app, but for any complex UI with components which share state, like Vuebnb.
+Flux is not a library. You can't go to GitHub and download it. Flux is a set of guiding principles that describe a scalable frontend architecture that sufficiently mitigates this flaw. It is not just for a chat app, but for any complex UI with components which share state, like Vuebnb. Let's now explore the guiding principles of Flux.
 
-Let's now explore the guiding principles of Flux.
-
-## Principle #1 – Single source of truth
+### Principle #1 – Single source of truth
 
 Components may have local data that only they need to know about. For example, the position of the scroll bar in the user list component is probably of no interest to other components:
 
-Vue.component('user-list', { data() { scrollPos: ... } });
+```js
+Vue.component('user-list', { 
+    data() { 
+        scrollPos: ... 
+    } 
+});
+```
 
 But any data that is to be shared between components, for example application data, needs to be kept in a single place, separate from the components that use it. This location is referred to as the store. Components must read application data from this location and not keep their own copy to prevent conflict or disagreement:
 
+1『 Single source of truth 指的就是中心数据文件。』
+
+![](./res/2020013.png)
+
 Figure 8.2. Centralized data simplifies application state
 
-## Principle #2 – Data is read-only
+### Principle #2 – Data is read-only
 
-Components can freely read data from the store. But they cannot change data in the store, at least not directly.
-
-Instead, they must inform the store of their intent to change the data and the store will be responsible for making those changes via a set of defined functions called mutator methods.
+Components can freely read data from the store. But they cannot change data in the store, at least not directly. Instead, they must inform the store of their intent to change the data and the store will be responsible for making those changes via a set of defined functions called mutator methods.
 
 Why this approach? If we centralize the data-altering logic then we don't have to look far if there are inconsistencies in the state. We're minimizing the possibility that some random component (possibly in a third party module) has changed the data in an unexpected fashion:
 
+![](./res/2020014.png)
+
 Figure 8.3. State is read-only. Mutator methods are used to write to the store
 
-## Principle #3 – Mutations are synchronous
+### Principle #3 – Mutations are synchronous
 
 It's much easier to debug state inconsistencies in an app that implements the above two principles in its architecture. You could log commits and observe how the state changes in response (which automatically happens with Vue Devtools, as we'll see).
 
 But this ability would be undermined if our mutations were applied asynchronously. We'd know the order our commits came in, but we would not know the order in which our components committed them. Synchronous mutations ensure state is not dependent on the sequence and timing of unpredictable events.
 
-Vuex
+## 8.2 Vuex
 
 Vuex (usually pronounced veweks) is the official Vue.js implementation of the Flux architecture. By enforcing the principles described previously, Vuex keeps your application data in a transparent and predictable state even when that data is being shared across many components.
 
@@ -56,13 +66,17 @@ Vuex includes a store with state and mutator methods, and will reactively update
 
 In this chapter, we will add a save feature to our Vuebnb listings so that a user can keep track of the listings that they like best. Unlike other data in our app so far, the saved state must persist across pages; for example, when a user changes from one page to another, the app must remember which items the user has already saved. We will use Vuex to achieve this:
 
+![](./res/2020015.png)
+
 Figure 8.4. Saved state is available to all page components
 
-Installing Vuex
+### 8.2.1 Installing Vuex
 
 Vuex is an NPM package that can be installed from the command line:
 
     $ npm i --save-dev vuex
+
+1『改用「yarn add vuex --dev」。』
 
 We will put our Vuex configuration into a new module file store.js:
 
@@ -72,17 +86,39 @@ We need to import Vuex in this file and, like Vue Router, install it with Vue.us
 
 resources/assets/js/store.js:
 
-import Vue from 'vue'; import Vuex from 'vuex'; Vue.use(Vuex); export default new Vuex.Store();
+```js
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+export default new Vuex.Store();
+```
 
 We will then import the store module in our main app file, and add it to our Vue instance.
 
 resources/assets/js/app.js:
 
-... import router from './router';
+```js
+// import "core-js/fn/object/assign";
+// window.Vue = require('vue');
+import Vue from 'vue';
+import ListingPage from '../components/ListingPage.vue';
+import App from '../components/App.vue';
+import router from './router';
+import store from './store';
 
-import store from './store'; var app = new Vue({ el: '#app', render: h => h(App), router, store });
+// Vue 实例
+var vm = new Vue({
+    el: "#app",
+    render: h => h(App),
+    // components: {ListingPage},
+    router,
+    store,
+});
 
-Save feature
+```
+
+## 8.3 Save feature
 
 As mentioned, we'll be adding a save feature to our Vuebnb listings. The UI of this feature is a small, clickable icon that is overlaid on the top right of a listing summary's thumbnail image. It acts similarly to a checkbox, allowing the user to toggle the saved status of any particular listing:
 

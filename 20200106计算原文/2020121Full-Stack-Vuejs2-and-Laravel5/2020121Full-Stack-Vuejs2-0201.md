@@ -4,7 +4,7 @@ In this chapter, we will learn the basic features of Vue.js. We'll then put this
 
 Topics this chapter covers: 1) Installation and basic configuration of Vue.js. 2) Vue.js essential concepts, such as data binding, directives, watchers and lifecycle hooks. 3) How Vue's reactivity system works. 4) Project requirements for the case-study project. 5) Using Vue.js to add page content including dynamic text, lists, and a header image. 6) Building an image modal UI feature with Vue.
 
-## 01. Vuebnb prototype
+## 2.1. Vuebnb prototype
 
 In this chapter, we'll be building a prototype of Vuebnb, the case-study project that runs for the duration of this book. The prototype will just be of the listing page, and by the end of the chapter will look like this:
 
@@ -12,7 +12,7 @@ Figure 2.1. Vuebnb prototype
 
 Once we've set up our backend in Chapter 3, Setting Up a Laravel Development Environment, and Chapter 4, Building a Web Service with Laravel, we'll migrate this prototype into the main project.
 
-## 02. Project code
+## 2.2 Project code
 
 Before we begin, you'll need to download the code base to your computer by cloning it from GitHub. Instructions are given in the section Code base in Chapter 1, Hello Vue - An Introduction to Vue.js. The folder vuebnb-prototype has the project code for the prototype we'll now be building. Change into that folder and list the contents:
 
@@ -25,7 +25,7 @@ Figure 2.2. vuebnb-prototype project files
 
 Unless otherwise specified, all further Terminal commands in this chapter will assume you're in the vuebnb-prototype folder.
 
-## 03. NPM install
+## 2.3 NPM install
 
 You'll now need to install the third-party scripts used in this project, including Vue.js itself. The NPM install method will read the included package.json file and download the required modules:
 
@@ -33,7 +33,7 @@ You'll now need to install the third-party scripts used in this project, includi
 
 You'll now see a new node\_modules directory has appeared in your project folder.
 
-## 04. Main files
+### 2.3.1 Main files
 
 Open the vuebnb-prototype directory in your IDE. Note that the following index.html file is included. It's mostly comprised of boilerplate code, but also has some structural markup included in the body tag. Also note that this file links to style.css, where our CSS rules will be added, and app.js, where our JavaScript will be added.
 
@@ -108,11 +108,11 @@ body {
 
 ```
 
-## 05. Opening in the browser
+### 2.3.2 Opening in the browser
 
 To view the project, locate the index.html file in your web browser. In Chrome, it's as simple as File | Open File. When it loads, you'll see a page that is mostly empty, other than the toolbar at the top.
 
-## 06. Installing Vue.js
+### 2.3.3 Installing Vue.js
 
 Now it's time to add the Vue.js library to our project. Vue was downloaded as part of our NPM install, so now we can simply link to the browser-build of Vue.js with a script tag.
 
@@ -139,11 +139,11 @@ Here is the result:
 
 Figure 2.3. Checking Vue is registered as a global object
 
-## 07. Page content
+## 2.4 Page content
 
 With our environment set up and starter code installed, we're now ready to take the first steps in building the Vuebnb prototype. Let's add some content to the page, including the header image, the title, and the About section. We'll be adding structure to our HTML file and using Vue.js to insert the correct content where we need it.
 
-## 08. The Vue instance
+## 2.5 The Vue instance
 
 Looking at our app.js file, let's now create our root instance of Vue.js by using the new operator with the Vue object.
 
@@ -190,7 +190,7 @@ index.html:
 
 From now on, we'll refer to our mount node and its children as our template.
 
-## 09. Data binding
+## 2.6 Data binding
 
 A simple task for Vue is to bind some JavaScript data to the template. Let's create a data property in our configuration object and assign to it an object including a title property with a 'My apartment' string value.
 
@@ -366,7 +366,7 @@ mix.js('resources/js/app.js', 'public/js')
 
 』
 
-## 10. Mock listing
+## 2.7 Mock listing
 
 While we're developing, it'd be nice to work with some mock data so that we can see how our completed page will look. I've included sample/data.js in the project for this very reason. Let's load it in our document, making sure it goes above our app.js file.
 
@@ -436,7 +436,7 @@ var vm = new Vue({
 
 』
 
-## 11. Header image
+## 2.8 Header image
 
 No room listing would be complete without a big, glossy image to show it off. We've got a header image in our mock listing that we'll now include. Add this markup to the page.
 
@@ -473,7 +473,7 @@ style.css:
 
 You may be wondering why we're using a div rather than an img tag. To help with positioning, we're going to set our image as the background of the div with the header-img class.
 
-## 12. Style binding
+## 2.9 Style binding
 
 To set a background image, we must provide the URL as a property in a CSS rule like this:
 
@@ -499,19 +499,19 @@ You may think using a text interpolation is the solution here, for example:
 
 But this is not valid Vue.js syntax. This is, instead, a job for another Vue.js feature called a directive. Let's explore directives first and then come back to solving this problem.
 
-## 13. Directives
+## 2.10 Directives
 
 Vue's directives are special HTML attributes with the v- prefix, for example, v-if, which provide a simple way to add functionality to our templates. Some examples of directives you can add to an element are: 1) v-if: Conditionally render the element. 2) v-for: Render the element multiple times based on an array or object. 3) v-bind: Dynamically bind an attribute of the element to a JavaScript expression. 4) v-on: Attach an event listener to the element.
 
 There are more that we will explore throughout the book.
 
-## 14. Usage
+### 2.10.1 Usage
 
 Just like normal HTML attributes, directives are usually name/value pairs in the form name="value". To use a directive, simply add it to an HTML tag as you would an attribute, for example:
 
     <p v-directive="value">
 
-## 15. Expressions
+### 2.10.2 Expressions
 
 If a directive requires a value, it will be an expression. In the JavaScript language, expressions are small, evaluable statements that produce a single value. Expressions can be used wherever a value is expected, for example in the parenthesis of an if statement:
 
@@ -527,7 +527,7 @@ Directives and text interpolations both accept expression values:
 
     <div v-dir="someExpression">{{ firstName + " " + lastName }}</div>
 
-## 16. Example: v-if
+### 2.10.3 Example: v-if
 
 v-if will conditionally render an element if its value is a truthy expression. In the following case, v-if will remove/insert the p element depending on the myval value:
 
@@ -547,7 +547,7 @@ If we add a consecutive element with the v-else directive (a special directive t
 <p v-if="myval">Hello Vue</p> <p v-else>Goodbye Vue</p>
 ```
 
-## 17. Arguments
+### 2.10.4 Arguments
 
 Some directives take an argument, denoted by a colon after the directive name. For example, the v-on directive, which listens to DOM events, requires an argument to specify which event should be listened to:
 
@@ -555,7 +555,7 @@ Some directives take an argument, denoted by a colon after the directive name. F
 
 Instead of click, the argument could be mouseenter, keypress, scroll, or any other event (including custom events).
 
-## 18. Style binding (continued)
+### 2.10.5 Style binding (continued)
 
 Coming back to our header image, we can use the v-bind directive with the style argument to bind a value to the style attribute.
 
@@ -586,7 +586,7 @@ Inspect the page with your browser Dev Tools and notice how the v-bind directive
 
     <div class="header-img" style="background-image: url('sample/header.jpg');"></div>
 
-## 19. Lists section
+## 2.11 Lists section
 
 The next bit of content we'll add to our page is the Amenities and Prices lists:
 
@@ -663,7 +663,7 @@ var vm = new Vue({
 })
 ```
 
-## 20. List rendering
+### 2.11.1 List rendering
 
 The v-for directive requires a special type of expression in the form of item in items, where items is the source array, and item is an alias for the current array element being looped over. Let's work on the amenities array first. Each member of this array is an object with a title and icon property, that is:
 
@@ -696,7 +696,7 @@ It will render as:
 <div class="container"> <div class="heading">...</div> <hr> <div class="about">...</div> <div class="lists"> <div>Wireless Internet</div> <div>Pets Allowed</div> <div>TV</div> <div>Kitchen</div> <div>Breakfast</div> <div>Laptop friendly workspace</div> </div> </div>
 ```
 
-## 21. Icons
+### 2.11.2 Icons
 
 The second property of our amenity objects is icon. This is actually a class relating to an icon in the Font Awesome icon font. We've installed Font Awesome as an NPM module already, so add this to the head of the page to now use it.
 
@@ -733,7 +733,7 @@ style.css:
 .list { display: flex; flex-wrap: nowrap; margin: 2em 0; } .list .title { flex: 1 1 25%; } .list .content { flex: 1 1 75%; display: flex; flex-wrap: wrap; } .list .list-item { flex: 0 0 50%; margin-bottom: 16px; } .list .list-item > i { width: 35px; } @media (max-width: 743px) { .list .title { flex: 1 1 33%; } .list .content { flex: 1 1 67%; } .list .list-item { flex: 0 0 100%; } }
 ```
 
-## 22. Key
+### 2.11.3 Key
 
 As you might expect, the DOM nodes generated by v-for="amenity in amenities" are reactively bound to the amenities array. If the content of amenities changes, Vue will automatically re-render the nodes to reflect the change. When using v-for, it's recommended you provide a unique key property to each item in the list. This allows Vue to target the exact DOM nodes that need to be changed, making DOM updates more efficient. Usually, the key would be a numeric ID, for example:
 
@@ -747,7 +747,7 @@ As you might expect, the DOM nodes generated by v-for="amenity in amenities" are
 
 For the amenities and prices lists, the content is not going to change over the life of the app, so there's no need for us to provide a key. Some linters may warn you about this, but in this case, the warning can be safely ignored.
 
-## 23. Prices
+### 2.11.4 Prices
 
 Let's now add the price list to our template as well.
 
@@ -759,7 +759,7 @@ index.html:
 
 I'm sure you'll agree that looping a template is far easier than writing out every item. However, you may notice that there is still some common markup between these two lists. Later in the book we'll utilize components to make this part of the template even more modular.
 
-## 24. Show more feature
+## 2.12 Show more feature
 
 We've run into a problem now that the lists section is after the About section. The About section has an arbitrary length, and in some of the mock listings that we'll add you'll see that this section is quite long. We don't want it to dominate the page and force the user to do a lot of unwelcome scrolling to see the lists section, so we need a way to hide some of the text if it's too long, yet allow the user to view the full text if they choose.
 
@@ -834,7 +834,7 @@ style.css:
 
 To make this work, we need a way to remove the contracted class when the user clicks the More button. Seems like a good job for directives!
 
-## 25. Class binding
+### 2.12.1 Class binding
 
 How we'll approach this is to dynamically bind the contracted class. Let's create a contracted data property and set its initial value to true.
 
@@ -861,7 +861,7 @@ It follows that when the page loads the contracted class is bound:
 <p class="contracted">...</p>
 ```
 
-## 26. Event listener
+### 2.12.2 Event listener
 
 We now want to remove the contracted class automatically when the user clicks the More button. To do this job, we'll use the v-on directive, which listens to DOM events with a click argument. The value of the v-on directive can be an expression that assigns contracted to false.
 
@@ -875,7 +875,7 @@ index.html:
 </div
 ```
 
-## 27. Reactivity
+## 2.13 Reactivity
 
 When we click the More button, the contracted value changes and Vue will instantly update the page to reflect this change. How does Vue know to do this? To answer this question we must first understand the concept of getters and setters.
 
@@ -917,7 +917,7 @@ console.log(person.firstName); // George
 console.log(person.lastName) // Washington
 ```
 
-## 28. Reactive data properties
+### 2.13.1 Reactive data properties
 
 Another one of Vue's initialization steps is to walk through all of the data properties and assign them getters and setters. If you look in the following screenshot, you can see how each property in our current app has a get and set function added to it:
 
@@ -927,7 +927,7 @@ Vue added these getters and setters to enable it to perform dependency tracking 
 
 If you'd like to know more about Vue's reactivity system, check out the article Reactivity In Vue.js (And Its Pitfalls) at https://vuejsdevelopers.com/2017/03/05/vue-js-reactivity/.
 
-## 29. Hiding the More button
+### 2.13.1 Hiding the More button
 
 Once the About section has been expanded, we want to hide the More button as it's no longer needed. We can use the v-if directive to achieve this in conjunction with the contracted property.
 
@@ -939,7 +939,7 @@ index.html:
 </button>
 ```
 
-## 30. Image modal window
+## 2.14 Image modal window
 
 To prevent our header image from dominating the page, we've cropped it and limited its height. But what if the user wants to see the image in its full glory? A great UI design pattern to allow the user to focus on a single item of content is a modal window. Here's what our modal will look like when opened:
 
@@ -949,7 +949,7 @@ Our modal will give a properly scaled view of the header image so the user can f
 
 For now, though, here are the required features for our modal: 1) Open the modal by clicking the header image. 2) Freeze the main window. 3) Show the image. 3) Close the modal window with a close button or the Escape key.
 
-### 1. Opening
+### 2.14.1 Opening
 
 First, let's add a Boolean data property that will represent the opened or closed state of our modal. We'll initialize it to false.
 
@@ -1050,7 +1050,7 @@ style.css:
 }
 ```
 
-### 2. Window
+### 2.14.2 Window
 
 Let's now add markup for the window that will be overlaid on our background panel. The window will have a width constraint and will be centered in the viewport.
 
@@ -1080,13 +1080,11 @@ style.css:
 }
 ```
 
-## 31. Disabling the main window
+### 2.14.3 Disabling the main window
 
 When the modal is open, we want to prevent any interaction with the main window and also make a clear distinction between the main window and the child window. We can do this by: 1) Dimming the main window. 2) Preventing body scroll.
 
-### 1. Dimming the main window
-
-We could simply hide our main window when the modal is open, but it's better if the user can still be aware of where they are in flow of the app. To achieve this, we will dim the main window under a semi-transparent panel. We can do this by giving our modal panel an opaque black background.
+Dimming the main window. We could simply hide our main window when the modal is open, but it's better if the user can still be aware of where they are in flow of the app. To achieve this, we will dim the main window under a semi-transparent panel. We can do this by giving our modal panel an opaque black background.
 
 style.css:
 
@@ -1097,9 +1095,7 @@ style.css:
 }
 ```
 
-### 2. Preventing body scroll
-
-We have a problem, though. Our modal panel, despite being full screen, is still a child of the body tag. This means we can still scroll the main window! We don't want users to interact with the main window in any way while the modal is open, so we must disable scrolling on the body.
+Preventing body scroll. We have a problem, though. Our modal panel, despite being full screen, is still a child of the body tag. This means we can still scroll the main window! We don't want users to interact with the main window in any way while the modal is open, so we must disable scrolling on the body.
 
 The trick is to add the CSS overflow property to the body tag and set it to hidden. This has the effect of clipping any overflow (that is, part of the page not currently in view), and the rest of the content will be made invisible. We'll need to dynamically add and remove this CSS rule, as we obviously want to be able to scroll through the page when the modal is closed. So, let's create a class called modal-open that we can apply to the body tag when the modal is open.
 
@@ -1125,7 +1121,7 @@ We can use v-bind:class to add/remove this class, right? Unfortunately, no. Reme
 
 If we add a directive to the body tag, it will not be seen by Vue.
 
-## 32. Vue's mount element
+## 2.15 Vue's mount element
 
 What if we just mounted Vue on the body tag, wouldn't that solve our problems? For example:
 
@@ -1139,7 +1135,7 @@ Remember that Vue has to compile the template and replaces the mount node. If yo
 
 1『上面的是一个关键知识点。』
 
-## 33. Watchers
+## 2.16 Watchers
 
 So, how can we add/remove classes from the body if it's out of Vue's dominion? We'll have to do it the old-fashioned way with the browser's Web API. We need to run the following statements when the modal is opened or closed:
 
