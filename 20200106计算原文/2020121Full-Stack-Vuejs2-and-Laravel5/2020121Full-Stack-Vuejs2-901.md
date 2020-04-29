@@ -1,34 +1,24 @@
 # 0901. Adding a User Login and API Authentication with Passport
 
-In the last chapter, we allowed the user to save their favorite Vuebnb listings. This feature was only implemented in the frontend app though, so if the user reloaded the page their selections would be lost.
+In the last chapter, we allowed the user to save their favorite Vuebnb listings. This feature was only implemented in the frontend app though, so if the user reloaded the page their selections would be lost. In this chapter, we'll create a user login system and persist saved items to the database so they can be retrieved after a page refresh.
 
-In this chapter, we'll create a user login system and persist saved items to the database so they can be retrieved after a page refresh.
+Topics covered in this chapter: 1) Setting up a user login system utilizing Laravel's built-in authentication features. 2) Creating a login form with CSRF protection. 3) Using Vuex actions for asynchronous operations in the store. 4) A brief introduction to the OAuth protocol for API authentication. 5) Setting up Laravel Passport to allow authenticated AJAX requests.
 
-Topics covered in this chapter:
-
-Setting up a user login system utilizing Laravel's built-in authentication features
-
-Creating a login form with CSRF protection
-
-Using Vuex actions for asynchronous operations in the store
-
-A brief introduction to the OAuth protocol for API authentication
-
-Setting up Laravel Passport to allow authenticated AJAX requests
-
-User model
+## 9.1 User model
 
 In order to save listing items to the database, we first need a user model, as we want each user to have their own unique list. Adding a user model means we'll also need an authentication system so that users can sign in and out. Fortunately, Laravel provides a full-featured user model and authentication system out-of-the-box.
 
 Let's now take a look at the user model boilerplate files to see what modifications will be needed to fit them for our purposes.
 
-Migration
+### 9.1.1 Migration
 
 Looking first at the database migration, the user table schema already includes ID, name, email, and password columns.
 
 database/migrations/2014_10_12_000000_create_users_table.php:
 
+```
 <?php use Illuminate\Support\Facades\Schema; use Illuminate\Database\Schema\Blueprint; use Illuminate\Database\Migrations\Migration; class CreateUsersTable extends Migration { public function up() { Schema::create('users', function (Blueprint $table) { $table->increments('id'); $table->string('name'); $table->string('email')->unique(); $table->string('password'); $table->rememberToken(); $table->timestamps(); }); } public function down() { Schema::dropIfExists('users'); } }
+```
 
 This schema will be sufficient for our needs if we add an additional column for storing the saved listing IDs. Ideally, we'd store these in an array, but since relational databases don't have an array column type, we will instead store them as a serialized string, for example, [1, 5, 10] within a text column.
 
@@ -36,7 +26,7 @@ database/migrations/2014_10_12_000000_create_users_table.php:
 
 Schema::create('users', function (Blueprint $table) { ... $table->text('saved'); });
 
-Model
+## Model
 
 Let's now take a look now at the User model class that Laravel provides.
 
@@ -54,13 +44,15 @@ class User extends Authenticatable { ... protected $fillable = [ 'name', 'email'
 
 Now we can treat the saved attribute as an array, even though it's stored as a string in the database:
 
+```
 echo gettype($user->saved()); // array
+```
 
-Seeder
+## Seeder
 
 In a normal web app with a login system, you'd have a registration page so users can create their own accounts. To ensure this book doesn't get too long, we'll skip that feature and instead generate user accounts with a database seeder:
 
-$ php artisan make:seeder UsersTableSeeder
+    $ php artisan make:seeder UsersTableSeeder
 
 You can implement a registration page for Vuebnb yourself if you want. The Laravel documentation covers it quite thoroughly at https://laravel.com/docs/5.5/authentication.
 
@@ -68,7 +60,9 @@ Let's create at least one account with a name, email, password, and an array of 
 
 database/seeds/UsersTableSeeder.php:
 
+```
 <?php use Illuminate\Database\Seeder; use App\User; use Illuminate\Support\Facades\Hash; class UsersTableSeeder extends Seeder { public function run() { User::create([ 'name' => 'Jane Doe', 'email' => 'test@gmail.com', 'password' => Hash::make('test'), 'saved' => [1,5,7,9] ]); } }
+```
 
 To run the seeder we need to call it from the main DatabaseSeeder class.
 
@@ -84,7 +78,7 @@ To confirm that our user table and data were created correctly, we'll use Tinker
 
 $ php artisan tinker >>> DB::table('users')->get(); /* { "id": 1, "name": "Jane Doe", "email": "test@gmail.com", "password": "...", "remember_token": null, "created_at": "2017-10-27 02:30:31", "updated_at": "2017-10-27 02:30:31", "saved": "[1,5,7,9]" } */
 
-Login system
+## Login system
 
 Now that we have our user model created, we can implement the rest of the login system. Again, Laravel includes this as an out-of-the-box feature, so there is only a small amount of configuration for us to do.
 
@@ -102,11 +96,11 @@ Here's a diagrammatic representation of the login system for further clarity:
 
 Figure 9.1. Login flow
 
-LoginPage component
+## LoginPage component
 
 We will need a login page for our app, so let's create a new page component:
 
-$ touch resources/assets/components/LoginPage.vue
+    $ touch resources/assets/components/LoginPage.vue
 
 We'll begin by defining the template markup, which includes a form with fields for email and password, and a submit button. The form uses the HTTP POST method and is sent to the /login path. I've wrapped the form elements in a div with the .form-controller class to help with styling.
 
@@ -136,7 +130,7 @@ resources/assets/js/router.js:
 
 ... import LoginPage from '../components/LoginPage.vue'; let router = new VueRouter({ ... routes: [ ... { path: '/login', component: LoginPage, name: 'login' } ], ... }); router.beforeEach((to, from, next) => { ... if ( to.name === 'listing' ? store.getters.getListing(to.params.listing) : store.state.listing_summaries.length > 0 || to.name === 'login' ) { next(); } ... }); export default router;
 
-Server routes
+## Server routes
 
 Now that we've added a login page at the /login route, we will need to create a matching server-side route. We will also need a route for the login form that posts to the same /login path.
 
@@ -148,7 +142,7 @@ routes/web.php:
 
 To see the effect of this code, we can use Artisan to show a list of the routes in our app:
 
-$ php artisan route:list
+    $ php artisan route:list
 
 Output:
 
@@ -172,7 +166,7 @@ With that done, we can now see our complete login page by navigating the browser
 
 Figure 9.3. Login page
 
-CSRF protection
+## CSRF protection
 
 CSRF (cross-site request forgery) is a type of malicious exploit where an attacker gets a user to unknowingly perform an action on a server that they're currently logged in to. This action will change something on the server that is advantageous to the attacker, for example, transfer money, change the password to one the attacker knows, and so on.
 
@@ -204,12 +198,13 @@ If we now try to log in to our app using the credentials of the user we created 
 
 Figure 9.5. Invalid route
 
-Post-login redirection
+## Post-login redirection
 
-When a user logs in, Laravel will redirect them to a page defined by the $redirectTo attribute in the login controller. Let's change this from /home to /.
+When a user logs in, Laravel will redirect them to a page defined by the \$redirectTo attribute in the login controller. Let's change this from /home to /.
 
 app/Http/Auth/Controllers/LoginController.php:
 
+```
 class LoginController extends Controller { ... protected $redirectTo = '/'; ... }
 
 Let's also update the RedirectIfAuthenticated middleware class so that if a logged-in user attempts to view the login page, they're redirect to / (instead of the default /home value.)
@@ -217,10 +212,11 @@ Let's also update the RedirectIfAuthenticated middleware class so that if a logg
 app/Http/Middleware/RedirectIfAuthenticated.php:
 
 ... if (Auth::guard($guard)->check()) { return redirect('/'); }
+```
 
 With that done, our login process will now work correctly.
 
-Adding authentication links to the toolbar
+## Adding authentication links to the toolbar
 
 Let's now add login and logout links in the toolbar so Vuebnb users can easily access these features.
 
@@ -230,6 +226,7 @@ The logout link is a bit more interesting: we capture the click event from this 
 
 resources/assets/components/App.vue:
 
+```
 <template> ... <ul class="links"> <li> <router-link :to="{ name: 'saved' }"> Saved </router-link> </li> <li> <router-link :to="{ name: 'login' }"> Log In </router-link> </li> <li> <a @click="logout">Log Out</a> <form
 
 style="display: hidden"
@@ -241,8 +238,9 @@ method="POST"
 id="logout"
 
 > <input type="hidden" name="_token" :value="csrf_token"/> </form> </li> </ul> ... </template> <script> ... export default { components: { ... }, data() { return { csrf_token: window.csrf_token } }, methods: { logout() { document.getElementById('logout').submit(); } } } </script>
+```
 
-Protecting the saved route
+## Protecting the saved route
 
 We can use our login system now to protect certain routes from guests, that is, unauthenticated users. Laravel provides the auth middleware, which can be applied to any route and will redirect a guest user to the login page if they attempt to access it. Let's apply this to our saved page route.
 
@@ -252,11 +250,11 @@ Route::get('/saved', 'ListingController@get_home_web')->middleware('auth');
 
 If you log out of the application and attempt to access this route from the navigation bar of your browser, you'll find it redirects you back to /login.
 
-Passing authentication state to the frontend
+## Passing authentication state to the frontend
 
 We now have a complete mechanism for logging users in and out of Vuebnb. However, the frontend app is not yet aware of the user's authentication state. Let's remedy that now so we can add authentication-based features to the frontend.
 
-auth meta property
+## auth meta property
 
 We'll begin by adding the authentication state to the meta information we pass through in the head of each page. We'll utilize the Auth facade check method, which returns true if the user is authenticated, and assign this to a new auth property.
 
@@ -274,7 +272,7 @@ With that done, Vuex is now tracking the authentication state of the user. Be su
 
 Figure 9.6. Value of auth in Vue Devtools
 
-Responding to authenticated state
+## Responding to authenticated state
 
 Now that we're tracking the authentication state of the user, we can get Vuebnb to respond to it. For one, let's make it so that a user can't save a listing unless they're logged in. To do this, we'll modify the behavior of the toggleSaved mutator method so that if the user is logged in they can save an item, but if not they are redirected to the login page via the push method of Vue Router.
 
@@ -306,7 +304,7 @@ This is how the toolbar will look now, depending on whether the user is logged i
 
 Figure 9.8. Comparison of the logged in and logged out state in toolbar
 
-Retrieving saved items from the database
+## Retrieving saved items from the database
 
 Let's now work on retrieving the saved items from the database and displaying them in the frontend. To begin with, we'll add a new saved property to the metadata we put in the document head. This will be an empty array if the user is logged out, or the array of saved listing IDs associated with that user, if they're logged in.
 
@@ -328,11 +326,11 @@ state: { saved: [], listing_summaries: [], listings: [], auth: false }
 
 With that done, we should find that the saved listings in the database now match those in the frontend if we check with Vue Devtools:
 
-$ php artisan tinker >>> DB::table('users')->select('saved')->first(); # "saved": "[1,5,7,9]"
+    $ php artisan tinker >>> DB::table('users')->select('saved')->first(); # "saved": "[1,5,7,9]"
 
 Figure 9.8. Vuex tab of Vue Devtools shows saved listings match database
 
-Persisting saved listings
+## Persisting saved listings
 
 The mechanism for persisting saved listings is as follows: when a listing is toggled in the frontend app, we trigger an AJAX request that POSTs the ID to a route on the backend. This route calls a controller that will update the model:
 
@@ -340,7 +338,7 @@ Figure 9.9. Persisting saved listings
 
 Let's now implement this mechanism.
 
-Creating an API route
+## Creating an API route
 
 We'll begin on the server side and add a route for the frontend to POST listing IDS to. We'll need to add the auth middleware so that only authenticated users can access this route (we'll discuss the meaning of :api shortly).
 
@@ -356,7 +354,7 @@ Route::post('/user/toggle_saved', 'UserController@toggle_saved')
 
 Since this is an API route, its full path will be /api/user/toggle_saved. We haven't yet created the controller that this route calls, UserController, so let's do that now:
 
-$ php artisan make:controller UserController
+    $ php artisan make:controller UserController
 
 In this new controller, we'll add the toggled_saved handling method. Since this is an HTTP POST route, this method will have access to the form data. We'll make it so that the frontend AJAX call to this route includes an id field, which will be the listing ID we want to toggle. To access this field, we can use the Input facade, that is, Input::get('id');.
 
@@ -366,7 +364,9 @@ Once the ID is toggled, we can then use the model's save method to persist the u
 
 app/Http/Controllers/UserController.php:
 
+```
 <?php ... use Illuminate\Support\Facades\Auth; use Illuminate\Support\Facades\Input; class UserController extends Controller { public function toggle_saved() { $id = Input::get('id'); $user = Auth::user(); $saved = $user->saved; $key = array_search($id, $saved); if ($key === FALSE) { array_push($saved, $id); } else { array_splice($saved, $key, 1); } $user->saved = $saved; $user->save(); return response()->json(); } }
+```
 
 Vuex actions
 
@@ -378,7 +378,7 @@ var store = new Vuex.Store({ state: { val: null }, mutations: { assignVal(state,
 
 By abstracting asynchronous code into actions we can still centralize any state-altering logic in the store without tainting our application data through race conditions.
 
-AJAX request
+## AJAX request
 
 Let's now use AJAX to make the request to /api/user/toggle_saved when a listing is saved. We'll put this logic into a Vuex action so that the toggleSaved mutation is not committed until the AJAX call resolves. We'll import the Axios HTTP library into the store to facilitate this.
 
@@ -392,13 +392,15 @@ We now need to call the toggledSaved action, not the mutation, from our ListingS
 
 resources/assets/components/ListingSave.vue:
 
+```
 toggleSaved() { this.$store.dispatch('toggleSaved', this.id); }
+```
 
 The code for this feature in the frontend is correct, but if we test it out and try and save an item we get a 401 Unauthenticated error from the server:
 
 Figure 9.10. AJAX call results in a 401 Unauthenticated error
 
-API authentication
+## API authentication
 
 We added the auth middleware to our /api/user/toggle_saved route to protect it from guest users. We also specified the api guard for this middleware, that is, auth:api.
 
@@ -414,7 +416,7 @@ We could use the session driver for API routes as well, but this is not recommen
 
 You may see auth used as a shorthand for auth:web, as the web guard is the default.
 
-OAuth
+## OAuth
 
 OAuth is an authorization protocol that allows third-party applications to access a user's data on a server without exposing their password. Access to this protected data is given in exchange for a special token that is granted to the application once it, and the user, have identified themselves to the server. A typical use case for OAuth is social login, for example, when you utilize a Facebook or Google login for your own website.
 
@@ -422,21 +424,21 @@ One challenge of making secure AJAX requests is that you can't store any credent
 
 While OAuth is a great solution for API authentication, it is also quite an in-depth topic that I can't fully cover in this book. I recommend you read this guide to get a better understanding: https://www.oauth.com/.
 
-Laravel Passport
+## Laravel Passport
 
 Laravel Passport is an implementation of OAuth that can easily be set up in a Laravel application. Let's install it now for use in Vuebnb.
 
 First, install Passport with Composer:
 
-$ composer require laravel/passport
+    $ composer require laravel/passport
 
 Passport includes new database migrations that generate the tables needed to store OAuth tokens. Let's run the migration:
 
-$ php artisan migrate
+    $ php artisan migrate
 
 The following command will install the encryption keys needed to generate secure tokens:
 
-$ php artisan passport:install
+    $ php artisan passport:install
 
 After running this command, add the Laravel\Passport\HasApiTokens trait to the user model.
 
@@ -452,7 +454,7 @@ config/auth.php:
 
 'guards' => [ 'web' => [ 'driver' => 'session', 'provider' => 'users', ], 'api' => [ 'driver' => 'passport', 'provider' => 'users', ], ],
 
-Attaching tokens
+## Attaching tokens
 
 OAuth requires an access token to be sent to the frontend app when the user logs in. Passport includes a middleware that can handle this for you. Add the CreateFreshApiToken middleware to the web middleware group and the laravel_token cookie will be attached to outgoing responses.
 

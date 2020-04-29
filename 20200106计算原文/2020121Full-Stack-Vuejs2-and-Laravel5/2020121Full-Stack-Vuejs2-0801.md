@@ -494,44 +494,111 @@ Implementing the saved page will require an enhancement to our app architecture,
 
 All the pages in our app require a route on the server to return a view. This view includes the data for the relevant page component inlined in the document head. Or, if we navigate to that page via in-app links, an API endpoint will instead supply that same data. We set up this mechanism in Chapter 7, Building A Multi-Page App With Vue Router.
 
-
-
-
-
 The saved page will require the same data as the home page (the listing summary data), as the saved page is really just a slight variation on the home page. It makes sense, then, to share data between the home page and saved page. In other words, if a user loads Vuebnb from the home page, then navigates to the saved page, or vice versa, it would be a waste to load the listing summary data more than once.
+
+1『首页的数据跟收藏页面的数据时共有的，所以只需加载一次。』
 
 Let's decouple our page state from our page components and move it into Vuex. That way it can be used by whichever page needs and it and avoid unnecessary reloading:
 
-
-
-
-
+![](./res/2020016.png)
 
 Figure 8.13. Page state in store
 
+1『上图说明了将公共的数据剥离出来放进 Store 里。』
+
 ## 8.10 State and mutator methods
 
-Let's add two new state properties to our Vuex store: listings and listing_summaries. These will be arrays that store our listings and listing summaries respectively. When the page first loads, or when the route changes and the API is called, the loaded data will be put into these arrays rather than being assigned directly to the page components. The page components will instead retrieve this data from the store.
+Let's add two new state properties to our Vuex store: listings and listing\_summaries. These will be arrays that store our listings and listing summaries respectively. When the page first loads, or when the route changes and the API is called, the loaded data will be put into these arrays rather than being assigned directly to the page components. The page components will instead retrieve this data from the store.
 
 We'll also add a mutator method, addData, for populating these arrays. It will accept a payload object with two properties: route and data. route is the name of the route, for example, listing, home, and so on. data is the listing or listing summary data retrieved from the document head or the API.
 
 resources/assets/js/store.js:
 
-import Vue from 'vue'; import Vuex from 'vuex'; Vue.use(Vuex); export default new Vuex.Store({ state: { saved: [], listing_summaries: [], listings: [] }, mutations: { toggleSaved(state, id) { ... }, addData(state, { route, data }) { if (route === 'listing') { state.listings.push(data.listing); } else { state.listing_summaries = data.listings; } } } });
+```js
+export default new Vuex.Store({
+    state: {
+        saved: [],
+        listing_summaries: [],
+        listings: [],
+    },
+    mutations: {
+        toggleSaved(state, id) {
+            let index = state.saved.findIndex(saved => saved === id);
+            if (index === -1) {
+                state.saved.push(id);
+            } else {
+                state.saved.splice(index, 1);
+            }
+        },
+        addData(state, {route, data}) {
+            if (route === 'listing') {
+                state.listings.push(data.listing);
+            } else {
+                state.listing_summaries = data.listings;
+            }
+        },
+    },
+});
+```
 
 ## 8.11 Router
 
 The logic for retrieving page state is in the mixin file route-mixin.js. This mixin adds a beforeRouteEnter hook to a page component which applies the page state to the component instance when it becomes available.
 
-Now that we're storing page state in Vuex we will utilize a different approach. Firstly, we won't need a mixin anymore; we'll put this logic into router.js now. Secondly, we'll use a different navigation guard, beforeEach. This is not a component hook, but a hook that can be applied to the router itself, and it is triggered before every navigation.
-
-You can see in the following code block how I've implemented this in router.js. Note that before next() is called we commit the page state to the store.
+Now that we're storing page state in Vuex we will utilize a different approach. Firstly, we won't need a mixin anymore; we'll put this logic into router.js now. Secondly, we'll use a different navigation guard, beforeEach. This is not a component hook, but a hook that can be applied to the router itself, and it is triggered before every navigation. You can see in the following code block how I've implemented this in router.js. Note that before next() is called we commit the page state to the store.
 
 resources/assets/js/router.js:
 
-...
+```js
+import Vue from 'vue';
+import axios from 'axios';
+import store from './store';
 
-import axios from 'axios'; import store from './store'; let router = new VueRouter({ ... }); router.beforeEach((to, from, next) => { let serverData = JSON.parse(window.vuebnb_server_data); if (!serverData.path || to.path !== serverData.path) { axios.get(`/api${to.path}`).then(({data}) => { store.commit('addData', {route: to.name, data}); next(); }); } else { store.commit('addData', {route: to.name, data: serverData}); next(); } }); export default router;
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+import HomePage from '../components/HomePage.vue';
+import ListingPage from '../components/ListingPage.vue';
+
+let router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            component: HomePage,
+            name: 'home',
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage,
+            name: 'listing',
+        },
+        {
+            path: '/saved',
+            component: SavedPage,
+            name: 'saved',
+        },
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        return {x:0, y:0};
+    },
+});
+
+router.beforeEach((to, from, next) => {
+    let serverData = JSON.parse(window.vuebnb_server_data);
+    if (!serverData.path || to.path !== serverData.path) {
+        axios.get(`/api${to.path}`).then(({data}) => {
+            store.commit('addData', {route: to.name, data});
+            next();
+        });
+    } else {
+        store.commit('addData', {route: to.name, data: serverData});
+        next();
+    }
+});
+
+export default router;
+```
 
 With that done, we can now delete the route mixin:
 
@@ -539,31 +606,148 @@ With that done, we can now delete the route mixin:
 
 ## 8.12 Retrieving page state from Vuex
 
-Now that we've moved page state into Vuex we'll need to modify our page components to retrieve it. Starting with ListingPage, the changes we must make are:
-
-Remove local data properties.
-
-Add a computed property listing. This will find the right listing data from the store based on the route.
-
-Remove the mixin.
-
-Change template variables so they're properties of listing: an example is {{ title }} , which will become {{ listing.title }}. Unfortunately, all variables are now properties of listing which makes our template slightly more verbose.
+Now that we've moved page state into Vuex we'll need to modify our page components to retrieve it. Starting with ListingPage, the changes we must make are: 1) Remove local data properties. 2) Add a computed property listing. This will find the right listing data from the store based on the route. 3) Remove the mixin. 4) Change template variables so they're properties of listing: an example is {{ title }} , which will become {{ listing.title }}. Unfortunately, all variables are now properties of listing which makes our template slightly more verbose.
 
 resources/assets/components/ListingPage.vue:
 
-```js
-<template> <div> <header-image v-if="listing.images[0]" :image-url="listing.images[0]" @header-clicked="openModal" :id="listing.id" ></header-image> <div class="listing-container"> <div class="heading"> <h1>{{ listing.title }}</h1> <p>{{ listing.address }}</p> </div> <hr> <div class="about"> <h3>About this listing</h3> <expandable-text>{{ listing.about }}</expandable-text> </div> <div class="lists"> <feature-list title="Amenities" :items="listing.amenities"> ... </feature-list> <feature-list title="Prices" :items="listing.prices"> ... </feature-list> </div> </div> <modal-window ref="imagemodal"> <image-carousel :images="listing.images"></image-carousel> </modal-window> </div> </template> <script> ... export default { components: { ... }, computed: { listing() { let listing = this.$store.state.listings.find( listing => listing.id == this.$route.params.listing ); return populateAmenitiesAndPrices(listing); } }, methods: { ... } } </script>
+```html
+<template>
+    <div>
+        <header-image v-if="listing.images[0]" 
+        :image-url="listing.images[0]" 
+        @header-clicked="openModal"
+        :id="listing.id"></header-image>
+        <div class="listing-container">
+            <div class="heading">
+                <h1>{{ listing.title }}</h1>
+                <p>{{ listing.address }}</p>
+            </div>
+            <hr>
+            <div class="about">
+                <h3>About this listing</h3>
+                <expandable-text>{{ listing.about }}</expandable-text>
+            </div>
+            <div class="lists">
+                <feature-list title="Amenities" :items="listing.amenities">
+                    <template slot-scope="amenity">
+                        <i class="fa fa-lg" :class="amenity.icon"></i>
+                        <span>{{ amenity.title }}</span>
+                    </template>
+                </feature-list>
+                <feature-list title="Prices" :items="listing.prices">
+                    <template slot-scope="price">
+                        {{ price.title }}: <strong>{{ price.value }}</strong>
+                    </template>
+                </feature-list>
+            </div>
+        </div>
+        <modal-window ref="imagemodal">
+            <image-carousel :images="listing.images"></image-carousel> 
+        </modal-window>
+    </div>
+</template>
+
+<script>
+    import { populateAmenitiesAndPrices } from '../js/helpers';
+    import ImageCarousel from './ImageCarousel.vue';
+    import ModalWindow from './ModalWindow.vue';
+    import HeaderImage from './HeaderImage.vue';
+    import FeatureList from './FeatureList.vue';
+    import ExpandableText from './ExpandableText.vue';
+
+    export default {
+        data() {
+            return {
+                title: null,
+                about: null,
+                address: null,
+                amenities: [],
+                prices: [],
+                images: [],
+                id: null,
+            }
+        },
+        components: { 
+            ImageCarousel,
+            ModalWindow,
+            HeaderImage,
+            FeatureList,
+            ExpandableText,
+        },
+        computed: {
+            listing() {
+                let listing = this.$store.state.listings.find(
+                    listing => listing.id == this.$route.params.listing
+                );
+                return populateAmenitiesAndPrices(listing);
+            }
+        },
+        methods: {
+            openModal() {
+                this.$refs.imagemodal.modalOpen = true;
+            },
+        },
+}
+</script>
 ```
 
-Changes to HomePage are much simpler; just remove the mixin and the local state, and replace it with a computed property, listing_groups, which will retrieve all the listing summaries from the store.
+1『上面 JS 代码里，主要修改的地方是 computed 和 methods 属性里。』
+
+Changes to HomePage are much simpler; just remove the mixin and the local state, and replace it with a computed property, listing\_groups, which will retrieve all the listing summaries from the store.
 
 resources/assets/components/HomePage.vue:
 
-```js
-export default { computed: { listing_groups() { return groupByCountry(this.$store.state.listing_summaries); } }, components: { ... } }
+```html
+<template>
+    <div class="home-container">
+        <listing-summary-group 
+        v-for="(group, country) in listing_groups"
+        :key="country"
+        :listings="group"
+        :country="country"
+        class="listing-summary-group">
+        </listing-summary-group>
+    </div>
+</template>
+
+<script>
+    import { groupByCountry } from '../js/helpers';
+    import ListingSummaryGroup from './ListingSummaryGroup.vue';
+
+    export default {
+        computed: {
+            listing_groups() {
+                return groupByCountry(this.$store.state.listing_summaries);
+            }
+        },
+        components: {
+            ListingSummaryGroup,
+        },
+    }
+</script>
 ```
 
 After making these changes, reload the app and you should see no obvious change in behavior. However, inspecting the Vuex tab of Vue Devtools, you will see that page data is now in the store:
+
+1『
+
+修改后是没有报错，但首页里没有收藏的心形图标，最后定位到问题在 ListingSave.vue 文件里。
+
+```html
+<template>
+    <div class="listing-save" @click.stop="toggleSaved()">
+        <button v-if="button">
+            <i :class="classes"></i>
+            {{ message }}
+        </button>
+        <i v-else :class="classes"></i>
+    </div>
+</template>
+```
+
+button 里需要加上 \<i v-else :class="classes">\</i>。但具体的原理目前没弄明白。（2020-04-29）
+
+』
 
 Figure 8.14. Page state is now in the Vuex store
 
@@ -571,23 +755,46 @@ Figure 8.14. Page state is now in the Vuex store
 
 Sometimes what we want to get from the store is not a direct value, but a derived value. For example, say we wanted to get only those listing summaries that were saved by the user. To do this, we can define a getter, which is like a computed property for the store:
 
-state: { saved: [5, 10], listing_summaries: [ ... ] }, getters: { savedSummaries(state) { return state.listing_summaries.filter( item => state.saved.indexOf(item.id) > -1 ); } }
+```js
+state: { 
+    saved: [5, 10], 
+    listing_summaries: [ ... ] 
+}, 
+getters: { 
+    savedSummaries(state) { 
+        return state.listing_summaries.filter( 
+        item => state.saved.indexOf(item.id) > -1 
+        ); 
+    } 
+}
+```
 
 Now, any component that needs the getter data can retrieve it from the store as follows:
 
 ```js
-console.log(this.$store.state.getters.savedSummaries); /* [ 5 => [ ... ], 10 => [ ... ] ] */
+console.log(this.$store.state.getters.savedSummaries);
+
+ /* 
+ [ 
+    5 => [ ... ], 
+    10 => [ ... ] 
+ ] 
+ */
 ```
 
-Generally, you define a getter when several components need the same derived value, to save repeating code. Let's create a getter which retrieves a specific listing. We've already created this functionality in ListingPage, but since we're going to need it in our router as well, we'll refactor it as a getter.
-
-One thing about getters is that they don't accept a payload argument like mutations do. If you want to pass a value to a getter, you need to return a function where the payload is an argument of that function.
+Generally, you define a getter when several components need the same derived value, to save repeating code. Let's create a getter which retrieves a specific listing. We've already created this functionality in ListingPage, but since we're going to need it in our router as well, we'll refactor it as a getter. One thing about getters is that they don't accept a payload argument like mutations do. If you want to pass a value to a getter, you need to return a function where the payload is an argument of that function.
 
 resources/assets/js/router.js:
 
 ```
-getters: { getListing(state) { return id => state.listings.find(listing => id == listing.id); } }
+getters: {
+    getListing(state) {
+        return id => state.listings.find(listing => id == listing.id);
+    }
+},
 ```
+
+1『上面的方法应该是在 store.js 文件里定义的，作者有误。』
 
 Let's now use this getter in our ListingPage to replace the previous logic.
 
@@ -595,28 +802,45 @@ resources/assets/components/ListingPage.vue:
 
 ```
 computed: {
-
-listing() { return populateAmenitiesAndPrices( this.$store.getters.getListing(this.$route.params.listing) ); }
-
-}
+    listing() {
+        return populateAmenitiesAndPrices(
+            this.$store.getters.getListing(this.$route.params.listing)
+        );
+    }
+},
 ```
 
 ## 8.14 Checking if page state is in the store
 
 We've successfully moved page state into the store. Now in the navigation guard, we will check to see if the data a page needs is already stored to avoid retrieving the same data twice:
 
+![](./res/2020017.png)
+
 Figure 8.15. Decision logic for getting page data
 
-Let's implement this logic in the beforeEach hook in router.js. We'll add an if block at the start that will instantly resolve the hook if the data is already present. The if uses a ternary function with the following logic:
-
-If the route name is listing, use the getListing getter to see if that particular listing is available (this getter returns undefined if it is not)
-
-If the route name is not listing, check to see if the store has listing summaries available. Listing summaries are always retrieved all at once, so if there's at least one, you can assume they're all there
+Let's implement this logic in the beforeEach hook in router.js. We'll add an if block at the start that will instantly resolve the hook if the data is already present. The if uses a ternary function with the following logic: 1) If the route name is listing, use the getListing getter to see if that particular listing is available (this getter returns undefined if it is not). 2) If the route name is not listing, check to see if the store has listing summaries available. Listing summaries are always retrieved all at once, so if there's at least one, you can assume they're all there.
 
 resources/assets/js/router.js:
 
 ```js
-router.beforeEach((to, from, next) => { let serverData = JSON.parse(window.vuebnb_server_data); if ( to.name === 'listing' ? store.getters.getListing(to.params.listing) : store.state.listing_summaries.length > 0 ) { next(); } else if (!serverData.path || to.path !== serverData.path) { axios.get(`/api${to.path}`).then(({data}) => { store.commit('addData', {route: to.name, data}); next(); }); } else { store.commit('addData', {route: to.name, data: serverData}); next(); } });
+router.beforeEach((to, from, next) => {
+    let serverData = JSON.parse(window.vuebnb_server_data);
+    if (
+        to.name === 'listing'
+          ? store.getters.getListing(to.params.listing)
+          : store.state.listing_summaries.length > 0
+    ) {
+    next();
+    } else if (!serverData.path || to.path !== serverData.path) {
+        axios.get(`/api${to.path}`).then(({data}) => {
+            store.commit('addData', {route: to.name, data});
+            next();
+        });
+    } else {
+        store.commit('addData', {route: to.name, data: serverData});
+        next();
+    }
+});
 ```
 
 With that done, if the in-app navigation is used to navigate from the home page to listing 1, then back to the home page, then back to listing 1, the app will retrieve listing 1 from the API just the once. It would have done it twice under the previous architecture!
@@ -631,55 +855,139 @@ Next, we'll create a new route with this component at the path /saved.
 
 resources/assets/js/router.js:
 
-```
-... import SavedPage from '../components/SavedPage.vue'; let router = new VueRouter({ ... routes: [ ... { path: '/saved', component: SavedPage, name: 'saved' } ] });
+```js
+let router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            component: HomePage,
+            name: 'home',
+        },
+        {
+            path: '/listing/:listing',
+            component: ListingPage,
+            name: 'listing',
+        },
+        {
+            path: '/saved',
+            component: SavedPage,
+            name: 'saved',
+        },
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        return {x:0, y:0};
+    },
+});
 ```
 
 Let's also add some server-side routes to the Laravel project. As discussed above, the saved page uses exactly the same data as the home page. This means that we can just call the same controller methods used for the home page.
 
 routes/web.php:
 
+```php
 Route::get('/saved', 'ListingController@get_home_web');
+```
 
 routes/api.php:
 
+```php
 Route::get('/saved', 'ListingController@get_home_api');
+```
 
 Now we will define the SavedPage component. Beginning with the script tag, we will import the ListingSummary component we created back in Chapter 6, Composing Widgets with Vue.js Components. We'll also create a computed property, listings, that will return the listing summaries from the store, filtered by whether or not they're saved.
 
 resources/assets/components/SavedPage.vue:
 
-```
-<template></template> <script> import ListingSummary from './ListingSummary.vue'; export default { computed: { listings() { return this.$store.state.listing_summaries.filter( item => this.$store.state.saved.indexOf(item.id) > -1 ); } }, components: { ListingSummary } } </script> <style></style>
+```html
+<script>
+    import ListingSummary from './ListingSummary.vue';
+    export default {
+        computed: {
+            listings() {
+                return this.$store.state.listing_summaries.filter(
+                    item => this.$store.state.saved.indexOf(item.id) > -1
+                );
+            },
+        },
+        components: {
+            ListingSummary,
+        }
+    }
+</script>
 ```
 
 Next, we will add to the template tag of SavedPage. The main content includes a check for the length of the array returned by the listings computed property. If it is 0, no items have been saved yet. In this case, we display a message to inform the user. If there are listings saved, however, we'll iterate through them and display them with the ListingSummary component.
 
 resources/assets/components/SavedPage.vue:
 
-```
-<template> <div id="saved" class="home-container"> <h2>Saved listings</h2> <div v-if="listings.length" class="listing-summaries"> <listing-summary v-for="listing in listings" :listing="listing" :key="listing.id" ></listing-summary> </div> <div v-else>No saved listings.</div> </div> </template> <script>...</script> <style>...</style>
+```html
+<template>
+    <div class="home-container" id="saved">
+        <h2>Saved listings</h2>
+        <div v-if="listings.length" class="listing-summaries">
+            <listing-summary
+            v-for="listing in listings"
+            :listing="listing"
+            :key="listing.id"></listing-summary>
+        </div>
+        <div v-else> No Saved listings.</div>
+    </div>
+</template>
 ```
 
 Lastly, we'll add to the style tag. The main thing to note here is that we're utilizing the flex-wrap: wrap rule and justifying to the left. This ensures that our listing summaries will organize themselves in rows without gaps.
 
 resources/assets/components/SavedPage.vue:
 
-```
-<template>...</template> <script>...</script> <style> #saved .listing-summaries { display: flex; flex-wrap: wrap; justify-content: left; overflow: hidden; } #saved .listing-summaries .listing-summary { padding-bottom: 30px; } .listing-summaries > .listing-summary { margin-right: 15px; } </style>
+```css
+<style>
+    #saved .listing-summaries {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        overflow: hidden;
+    }
+
+    #saved .listing-summaries .listing-summary {
+        padding-bottom: 30px;
+    }
+
+    .listing-summaries > .listing-summary {
+        margin-right: 15px;
+    }
+</style>
 ```
 
 Let's also add the .saved-container CSS rules in our global CSS file. This ensures that our custom footer has access to these rules as well.
 
 resources/assets/css/style.css:
 
-.saved-container { margin: 0 auto; padding: 0 25px; } @media (min-width: 1131px) { .saved-container { width: 1095px; padding-left: 40px; margin-bottom: -10px; } }
+```css
+.saved-container {
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+@media (min-width: 1131px) {
+    .saved-container {
+        width: 1095px;
+        padding-left: 40px;
+        margin-bottom: -10px;
+    }
+}
+```
 
 The final task is to add some default saved listings to the store. I've chosen 1 and 15 at random, but you can add any you want. We'll remove these again in the next chapter when we use Laravel to persist saved listings to the database.
 
 resources/assets/js/store.js:
 
-state: { saved: [1, 15], ... },
+```
+state: { 
+    saved: [1, 15], 
+    ... 
+},
+```
 
 With that done, here's what our saved page looks like:
 
@@ -695,16 +1003,91 @@ The last thing we'll do in this chapter is to add a link to the saved page in th
 
 resources/assets/components/App.vue:
 
-```
-<div id="toolbar"> <router-link :to="{ name: 'home' }"> <img class="icon" src="/images/logo.png"> <h1>vuebnb</h1> </router-link> <ul class="links"> <li> <router-link :to="{ name: 'saved' }">Saved</router-link> </li> </ul> </div>
+```js
+<template>
+    <div>
+        <div id="toolbar">
+            <router-link :to="{name:'home'}">
+                <img src="/images/logo.png" class="icon">
+                <h1>vuebnb</h1>
+            </router-link>
+            <ul class="links">
+                <li>
+                    <router-link :to="{ name:'saved' }">Saved</router-link>
+                </li>
+            </ul>
+        </div>
+        <router-view></router-view>
+        <custom-footer></custom-footer>
+    </div>
+</template>
 ```
 
 To display this correctly, we'll have to add some extra CSS. Firstly, we'll modify the #toolbar declaration so that the toolbar uses flex for display. We'll also add some new rules below that for displaying the links.
 
 resources/assets/components/App.vue:
 
-```
-<style> #toolbar { display: flex; justify-content: space-between; border-bottom: 1px solid #e4e4e4; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); } ... #toolbar ul { display: flex; align-items: center; list-style: none; padding: 0 24px 0 0; margin: 0; } @media (max-width: 373px) { #toolbar ul { padding-right: 12px; } } #toolbar ul li { padding: 10px 10px 0 10px; } #toolbar ul li a { text-decoration: none; line-height: 1; color: inherit; font-size: 13px; padding-bottom: 8px; letter-spacing: 0.5px;
+```css
+<style>
+    #toolbar {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #e4e4e4;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #toolbar .icon {
+        height: 34px;
+        padding: 16px 12px 16px 24px;
+        display: inline-block;
+    }
+
+    #toolbar h1 {
+        color: #4fc08d;
+        display: inline-block;
+        font-size: 28px;
+        margin: 0;
+    }
+
+    #toolbar a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    #toolbar ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0 24px 0 0;
+        margin: 0;
+    }
+
+    @media (max-width: 373px) {
+        #toolbar ul {
+            padding-right: 12px;
+        }
+    }
+    
+    #toolbar ul li {
+        padding: 10px 10px 0 10px;
+    }
+
+    #toolbar ul li a {
+        text-decoration: none;
+        line-height: 1;
+        color: inherit;
+        font-size: 13px;
+        padding-bottom: 8px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+    }
+
+    #toolbar ul li a:hover {
+        border-bottom: 2px solid #484848;
+        padding-bottom: 6px;
+    }
+</style>
 ```
 
 cursor: pointer; } #toolbar ul li a:hover { border-bottom: 2px solid #484848; padding-bottom: 6px; } </style>
