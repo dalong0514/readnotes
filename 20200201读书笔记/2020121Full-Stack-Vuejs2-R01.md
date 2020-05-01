@@ -81,6 +81,8 @@ Vue 实例里增加 watch 方法调用浏览器的 API 从而操作与 vue 实�
 
 Copyright © 2017 Packt Publishing
 
+[Vuebnb](http://vuebnb.vuejsdevelopers.com/)
+
 ### Book Description
 
 Vue is a JavaScript framework that can be used for anything from simple data display to sophisticated front-end applications and Laravel is a PHP framework used for developing fast and secure web-sites. This book gives you practical knowledge of building modern full-stack web apps from scratch using Vue with a Laravel back end.
@@ -1314,6 +1316,8 @@ Your new migration declares a class that extends Migration. It overrides two met
 
 A schema is a blueprint for the structure of a database. For a relational database such as MySQL, the schema will organize data into tables and columns. In Laravel, schemas are declared by using the Schema facade's create method.
 
+1『 laravel 建数据表是通过 facade 的 create() 方法。Facade 在这里的应用是一个面向对象设计的一种模式，目前还无法理解是哪种模式以及如何实现的。（2020-04-30）』
+
 We'll now make a schema for a table to hold Vuebnb listings. The columns of the table will match the structure of our mock listing data. Note that we set a default false value for the amenities and allow the prices to have a NULL value. All other columns require a value. The schema will go inside our migration's up method. We'll also fill out the down with a call to Schema::drop.
 
 2017_06_20_133317_create_listings_table.php:
@@ -1448,6 +1452,8 @@ class ListingsTableSeeder extends Seeder
 
 ```
 
+1『从本地文件里读取数据写进数据库，可以借用上面的实现。注意前面的 use 引用需要的方法。借用上面的知识点实现了「数据流一体化」里将清洗好的数据写入数据库的环节。（2020-04-30）』
+
 #### 4.8.3 Inserting the data
 
 In order to insert the data, we'll use the DB facade again. This time we'll call the table method, which returns an instance of Builder. The Builder class is a fluent query builder that allows us to query the database by chaining constraints, for example, DB::table(...)->where(...)->join(...) and so on. Let's use the insert method of the builder, which accepts an array of column names and values.
@@ -1542,7 +1548,7 @@ For the listings table, we will cast the amenities attributes as Booleans.
 
 app/Listing.php:
 
-```
+```php
 <?php
 
 namespace App;
@@ -1564,7 +1570,9 @@ class Listing extends Model
 
 Now these attributes will have the correct type, making our model more robust:
 
-    echo gettype($listing->amenity_wifi()); // boolean
+```php
+echo gettype($listing->amenity_wifi()); // boolean
+```
 
 ### 4.12 Public interface
 
@@ -1619,13 +1627,13 @@ class ListingController extends Controller
 }
 ```
 
-1『这里也试验了下之前常规获取数据的方法，在 model 文件里写一个方法专门提前数据。』
+1『这里也试验了下之前常规获取数据的方法，在 model 文件里写一个方法专门提取数据库里的数据。』
 
 For the Route::get method we can pass a string as the second argument instead of a closure function. The string should be in the form [controller]@[method], for example, ListingController@get_listing_web. Laravel will correctly resolve this at runtime.
 
 routes/api.php:
 
-```
+```php
 <?php Route::get('/listing/{listing}', 'ListingController@get_listing_api');
 ```
 
@@ -1639,15 +1647,15 @@ As stated at the beginning of the chapter, each mock listing comes with several 
 
 #### 4.14.1 Accessing images
 
-Files in the public directory can be directly requested by appending their relative path to the site URL. For example, the default CSS file, public/css/app.css, can be requested at http://vuebnb.test/css/app.css. The advantage of using the public folder, and the reason we've put our images there, is to avoid having to create any logic for accessing them. A frontend app can then directly call the images in an img tag. You may think it's inefficient for our web server to serve images like this, and you'd be right. Later in the book, we'll serve the images from a CDN when in production mode. Let's try to open one of the mock listing images in our browser to test this thesis: http://vuebnb.test/images/1/Image_1.jpg:
+Files in the public directory can be directly requested by appending their relative path to the site URL. For example, the default CSS file, public/css/app.css, can be requested at http://vuebnb.test/css/app.css. The advantage of using the public folder, and the reason we've put our images there, is to avoid having to create any logic for accessing them. A frontend app can then directly call the images in an img tag. You may think it's inefficient for our web server to serve images like this, and you'd be right. Later in the book, we'll serve the images from a CDN when in production mode. Let's try to open one of the mock listing images in our browser to test this thesis: 
 
-Figure 4.5. Mock listing image displayed in browser
+http://vuebnb.test/images/1/Image_1.jpg
 
 #### 4.14.2 Image links
 
 The payload for each listing in the web service should include links to these new images so a client app knows where to find them. Let's add the image paths to our listing API payload so it looks like this:
 
-```
+```json
 { 
 "id": 1, 
 "title": "...",
@@ -1663,6 +1671,27 @@ The payload for each listing in the web service should include links to these ne
 The thumbnail image won't be used until later in the project. To implement this, we'll use our model's toArray method to make an array representation of the model. We'll then easily be able to add new fields. Each mock listing has exactly four images, numbered 1 to 4, so we can use a for loop and the asset helper to generate fully-qualified URLs to files in the public folder. We finish by creating an instance of the Response class by calling the response helper. We use the json; method and pass in our array of fields, returning the result.
 
 1『这就是之前自己一直想实现的，如何管理图片 URL，如何把这些信息做进对象数据里。』
+
+3『 [Helpers - Laravel - The PHP Framework For Web Artisans](https://laravel.com/docs/7.x/helpers)
+
+这里还获取了一个重要知识点，laravel 里有很多 helper 函数可以使用。比如 URLs 标签里的 asset()：
+
+The asset function generates a URL for an asset using the current scheme of the request (HTTP or HTTPS):
+
+```php
+$url = asset('img/photo.jpg');
+```
+
+You can configure the asset URL host by setting the ASSET\_URL variable in your .env file. This can be useful if you host your assets on an external service like Amazon S3:
+
+```php
+// ASSET_URL=http://example.com/assets
+$url = asset('img/photo.jpg'); // http://example.com/assets/img/photo.jpg
+```
+
+之前遇到七牛头 URL 在生产环境里替换不了的情况，想到的解决办法是声明一个常量，再字符串拼接。完全可以用上面的 asset() 函数实现，更简洁。（2020-05-01）
+
+』
 
 app/Http/Controllers/ListingController.php:
 
@@ -1686,9 +1715,71 @@ The /api/listing/{listing} endpoint is now ready for consumption by a client app
 
     "image_1":"http:\/\/localhost:8000\/images\/1\/Image_1.jpg"
 
-感觉反斜杠只是转移字符，使用的时候是没有的，待确认。
+感觉反斜杠只是转移字符，使用的时候是没有的，待确认。回复：的确是之前想的，转义字符显示，实际用的时候没有。（2020-05-01）
 
 顺便搜了篇文章，有空看看：[Laravel’s URL::to() vs URL::asset() - Simon Wicki - Medium](https://medium.com/@zwacky/laravels-url-to-vs-url-asset-fd427ed6f7ef)
+
+』
+
+3『
+
+```php
+return response()->json($model);
+```
+
+这个语句引申出来的知识点：
+
+[Returning JSON from a PHP Script - Stack Overflow](https://stackoverflow.com/questions/4064444/returning-json-from-a-php-script)
+
+I want to return JSON from a PHP script. Do I just echo the result? Do I have to set the Content-Type header?
+
+Reply: While you're usually fine without it, you can and should set the Content-Type header:
+
+```
+<?PHP
+$data = /** whatever you're serializing **/;
+header('Content-Type: application/json');
+echo json_encode($data);
+```
+
+If I'm not using a particular framework, I usually allow some request params to modify the output behavior. It can be useful, generally for quick troubleshooting, to not send a header, or sometimes print\_r the data payload to eyeball it (though in most cases, it shouldn't be necessary).
+
+[HTTP Responses - Laravel - The PHP Framework For Web Artisans](https://laravel.com/docs/7.x/responses)
+
+All routes and controllers should return a response to be sent back to the user's browser. Laravel provides several different ways to return responses. The most basic response is returning a string from a route or controller. The framework will automatically convert the string into a full HTTP response:
+
+「最后的 return response() 是这个意思，路由和控制器得返回一个 response（数据）给浏览器。」
+
+```php
+Route::get('/', function () {
+    return 'Hello World';
+});
+```
+
+In addition to returning strings from your routes and controllers, you may also return arrays. The framework will automatically convert the array into a JSON response:
+
+```php
+Route::get('/', function () {
+    return [1, 2, 3];
+});
+```
+
+Typically, you won't just be returning simple strings or arrays from your route actions. Instead, you will be returning full Illuminate\Http\Response instances or views. Returning a full Response instance allows you to customize the response's HTTP status code and headers. A Response instance inherits from the Symfony\Component\HttpFoundation\Response class, which provides a variety of methods for building HTTP responses:
+
+```php
+Route::get('home', function () {
+    return response('Hello World', 200)
+                  ->header('Content-Type', 'text/plain');
+});
+```
+
+上面的文档已存入「2020014laravel-document -> 2001-HTTP-Responses.md」，好好读读。
+
+又看到一篇好文章：[How to Use JSON Data with PHP or JavaScript – Tania Rascia](https://www.taniarascia.com/how-to-use-json-data-with-php-or-javascript/)，以存入计算机类里的「2020碎片知识 -> 20200501How-to-Use-JSON-Data-with-PHP-or-JavaScript.md」。
+
+As you can see, it's a human readable format of data that might traditionally be stored in a table. Some companies might have public .json files located that you can access and extract data from (an API you can connect to). You might also save a .json file somewhere in your project that you want to extract data from. Goals: JSON data can be accessed and utilized with many programming languages. In this tutorial, we'll learn how to access JSON with PHP and JavaScript.
+
+详细的内容可以到消化后的「2020006IT碎片知识RS02.md」里看。
 
 』
 

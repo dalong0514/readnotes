@@ -70,7 +70,7 @@ We can bind data to our template by creating it as a data property and using the
 
 ## 05. Directives
 
-Similar to Angular, we can add functionality to our templates by using directives. These are special properties we add to HTML tags starting with the v- prefix. Say we have an array of data. We can render this data to the page as sequential HTML elements by using the v-for directive:
+Similar to Angular, we can add functionality to our templates by using directives. These are special properties we add to HTML tags starting with the v-prefix. Say we have an array of data. We can render this data to the page as sequential HTML elements by using the v-for directive:
 
 ```js
 <div id="app"> 
