@@ -154,7 +154,7 @@ In some ways, of course, this example poses as many problems as it solves. Altho
 
 And is it really good practice for a parent class to have such intimate knowledge of its children? (Hint: no, it is not.) Problems of this kind—where to acquire key objects and values and how much classes should know about one another—are very common in object-oriented programming. I examine various approaches to object generation in Chapter 9.
 
-1『真实环环相扣，上面的知识点消化需要第 9 章的内容。』
+1『真是环环相扣，上面的知识点消化需要第 9 章的内容。』
 
 ### 4.2 Constant Properties
 
@@ -176,7 +176,7 @@ Constant properties can contain only primitive values. You cannot assign an obje
 print ShopProduct::AVAILABLE;
 ```
 
-1『常量属性的方位跟静态属性一样，类名后面加域运算符再加常量名（不需要 \$）。』
+1『常量属性的调用方法跟静态属性一样，类名后面加域运算符再加常量名（不需要 \$）。』
 
 Attempting to set a value on a constant once it has been declared will cause a parse error. You should use constants when your property needs to be available across all instances of a class, as well as when the property value needs to be fixed and unchanging.
 
@@ -274,7 +274,7 @@ I create two classes, each with its own implementation of the write() method. Th
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
-1『接口才是纯模板，它只定义函数，而且这个函数没函数体。』
+1『接口才是纯模板，它只定义函数，而且这个函数没函数体。相比而言，抽象类里除了有抽象方法外，也可以有普通方法。』
 
 ```php
 // listing 04.08
@@ -302,6 +302,12 @@ class ShopProduct implements Chargeable {
 
 ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements. This means that the CdProduct class belongs to the following:
 
+```
+CdProduct
+ShopProduct
+Chargeable
+```
+
 1『
 
 上面说了接口的用途，应该是跟类型有关，目前没弄明白。目前知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，没实现一个接口对应着一个「type」。2）跟 traits 结合起来用。（2020-04-27）
@@ -311,12 +317,6 @@ ShopProduct already had a getPrice() method, so why might it be useful to implem
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. 
 
 』
-
-```
-CdProduct
-ShopProduct
-Chargeable
-```
 
 This can be exploited by client code. To know an object’s type is to know its capabilities. Consider this method:
 
