@@ -27,10 +27,10 @@ If you are going with an SPA architecture and your app design includes multiple 
 发现一个很好的类比，函数。组件是 html 里的自定义标签，把标签当一个函数来看，标签的属性名称（对应于 props）就好比是这个函数的形参，其声明是在组件定义里的 props 属性里，是个列表对象。实参是这个标签里实际传递给组件的对象，最关键的是这个对象可以是 vue 实例里的数据对象（数据或方法）。
 
 ```html
-<my-component title="dalong"></my-component>
+<my-component :title="dalong"></my-component>
 ```
 
-上面的例子里，title 是 props，dalong 是传递给这个组件的数据对象。
+上面的例子里，title 是 props，dalong 是传递给这个组件的数据对象。注意 title 需要绑定一下。
 
 ### 0204. 术语卡——watcher
 
@@ -1735,7 +1735,7 @@ I want to return JSON from a PHP script. Do I just echo the result? Do I have to
 
 Reply: While you're usually fine without it, you can and should set the Content-Type header:
 
-```
+```php
 <?PHP
 $data = /** whatever you're serializing **/;
 header('Content-Type: application/json');
@@ -1805,6 +1805,8 @@ Let's take a look at this boilerplate code and configuration so we get an idea o
 
 JavaScript assets are kept in the resources/assets/js folder. There are several .js files in this directory, as well as a sub-directory component, with a .vue file. This latter file will be explained in another chapter so we'll ignore it for now. The main JavaScript file is app.js. You'll see the familiar Vue constructor in this file, but also some syntax that may not be as familiar. On the first line is a require function that is intended to import an adjacent file, bootstrap.js, which in turn loads other libraries including jQuery and Lodash.
 
+1『几个重要的第三方 JS 库：jQuery、Lodash、Bootstrap、Vue。』
+
 require is not a standard JavaScript function and must be resolved somehow before this code can be used in a browser.
 
 resources/assets/js/app.js:
@@ -1864,8 +1866,6 @@ To serve the frontend app with Laravel, it needs to be included in a view. The o
 
 The files in resources/assets include functions and syntax that can't be used directly in a browser. For example, the require method used in app.js, which is designed to import a JavaScript module, is not a native JavaScript method and is not part of the standard Web API:
 
-Figure 5.1. require is not defined in the browser
-
 A build tool is needed to take these asset files, resolve any non-standard functions and syntax, and output code that the browser can use. There are a number of popular build tools for frontend assets including Grunt, Gulp, and Webpack:
 
 Figure 5.2. Asset compilation process
@@ -1884,7 +1884,7 @@ In a frontend application, we are likely to have dependencies for third-party Ja
 
 There's no real way of managing these dependencies in a browser, other than to ensure any shared functions and variables have global scope and that scripts are loaded in the right order. For example, since node\_modules/vue/dist/vue.js defines a global Vue object and is loaded first, we're able to use the Vue object in our app.js script. If either of those conditions was not met, Vue would not be defined when app.js ran, resulting in an error:
 
-```
+```html
 <script src="node_modules/vue/dist/vue.js"></script> 
 <script src="sample/data.js"></script> 
 <script src="app.js"></script>
@@ -1894,7 +1894,7 @@ This system has a number of downsides: 1) Global variables introduce possibiliti
 
 #### 5.2.2 Modules
 
-A solution to the dependency management problem is to use a module system, such as CommonJS or native ES modules. These systems allow JavaScript code to be modularized and imported into other files.
+A solution to the dependency management problem is to use a module system, such as CommonJS or native ES modules. These systems allow JavaScript code to be modularized and imported into other files. 
 
 Here is a CommonJS example:
 
@@ -1918,12 +1918,15 @@ export default function(value) {
     return value * 2; 
 } 
 
-// moduleB.js import multiplyByTwo from './moduleA';
+// moduleB.js 
+import multiplyByTwo from './moduleA';
 console.log(multiplyByTwo(2));
 // Output: 4
 ```
 
 The problem is that CommonJS cannot be used in a browser (it was designed for server-side JavaScript) and native ES modules are only now getting browser support. If we want to use a module system in a project, we'll need a build tool: Webpack.
+
+1『所以后面有一章里专门有个表，说说明了各个类型的 vue.js 内核支持哪种 Modules，是 CommonJS 还是 Native ES。本书的项目用的是 Native ES。』
 
 #### 5.2.3 Bundling
 
@@ -1939,7 +1942,9 @@ Vue.component('example', require('./components/Example.vue')); ...
 
 Webpack will resolve these dependencies and then analyze them to find any dependencies that they might have. This process continues until all dependencies of the project are found. The result is a graph of dependencies that, in a large project, might include hundreds of different modules. Webpack uses this graph of dependencies as a blueprint for bundling all the code into a single browser-friendly file:
 
-    <script src="bundle.js"></script>
+```html
+<script src="bundle.js"></script>
+```
 
 #### 5.2.4 Loaders
 
@@ -1981,6 +1986,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css');
 ```
 
+1『 JS 里的链式方法，记得「2020096JavaScript-The-Good-Parts」里有提到。』
+
 ### 5.3 Running Webpack
 
 Now that we have a high-level understanding of Webpack, let's run it and see how it bundles the default frontend asset files. First, ensure you have all the development dependencies installed:
@@ -2017,6 +2024,8 @@ We also have a CSS bundle file, public/css/app.css. If you inspect this file you
 
 You might think it's strange that there are fonts in the output, since Mix did not include any explicit font configuration. These fonts are dependencies of the Bootstrap CSS framework and Mix, by default, will output them individually rather than in a font bundle.
 
+1『后面有个地方记录了如何安装字体以及图标，过程中踩过一些坑。』
+
 ### 5.4 Migrating Vuebnb
 
 Now that we're familiar with the default Laravel frontend app code and configuration, we're ready to migrate the Vuebnb prototype into the main project. This migration will allow us to have all our source code in one place, plus we can utilize this more sophisticated development environment for building the remainder of Vuebnb.
@@ -2030,6 +2039,8 @@ The migration will involve: 1) Removing any unnecessary modules and files. 2) Mo
 Let's begin by removing the Node dependencies we no longer need. We'll keep axis as it'll be used in a later chapter, and cross-env because it ensures our NPM scripts can be run in a variety of environments. We'll get rid of the rest:
 
     $ npm uninstall bootstrap-sass jquery lodash --save-dev
+
+1『原来可以同时卸载几个第三方库。』
 
 This command will leave your dev dependencies looking like this. Next, we'll remove the files we don't need. This includes several of the JavaScript assets, all of the Sass plus the welcome view:
 
@@ -2057,7 +2068,7 @@ routes/web.php:
 <?php Route::get('/', function () { return view('app'); });
 ```
 
-1『发现文件名中不能带 balde，否则渲染不了，只能还是 app.php。因为 vue 跟 blade 的语法冲突导致的，下面小结给出了解决办法：在所有绑定的数据前面加上 @ 即可解决。』
+1『发现文件名中不能带 balde，否则渲染不了，只能还是 app.php。因为 vue 跟 blade 的语法冲突导致的，但其实可以加 balde，下面小结给出了解决办法：在所有绑定的数据前面加上 @ 即可解决。而且通过后面的学习，用单文件模式（SFC）时不存在这个问题，在 .vue 文件里绑定数据不需要加上 @。（2020-05-02）』
 
 #### 5.4.3 Syntax clash
 
@@ -2084,7 +2095,7 @@ Given the current Mix settings, this will now be the entry file of the JavaScrip
 
 resources/views/app.blade.php:
 
-```php
+```html
 <script src="node_modules/vue/dist/vue.js"></script> 
 <script src="sample/data.js"></script> 
 <script src="app.js"></script>
@@ -2092,7 +2103,7 @@ resources/views/app.blade.php:
 
 Can be replaced with, resources/views/app.blade.php:
 
-```php
+```html
 <script src="{{ asset('js/app.js') }}"></script>
 ```
 
@@ -2110,7 +2121,7 @@ export default { ... }
 
 1『
 
-改进了下 data.js：
+应用了下「重学前端」里获取的知识点，改进了下 data.js：
 
 ```js
 var sample = {...}
@@ -2130,6 +2141,8 @@ var app = new Vue({ ... });
 
 While Laravel has opted to use CommonJS syntax for including modules, that is require, we will use native ES module syntax, that is import. This is because ES modules are making their way into the JavaScript standard, and it's more consistent with the syntax used by Vue.
 
+1『记住，native ES module syntax 更适合 vue。』
+
 #### 5.4.6 Displaying modules with Webpack
 
 Let's run a Webpack build to make sure the JavaScript migration is working so far:
@@ -2140,7 +2153,7 @@ If all is well, you'll see the JavaScript bundle file being output:
 
 It'd be nice to know that the mock data dependency was added without having to manually inspect the bundle to find the code. We can do this by telling Webpack to print the modules it has processed in the Terminal output. In the development script in our package.json, a --hide-modules flag has been set, as some developers prefer a succinct output message. Let's remove it for now and instead add the --display-modules flag, so the script looks like this:
 
-```
+```json
 "scripts": { 
     ... 
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --display-modules --config=node_modules/laravel-mix/setup/webpack.config.js", 
@@ -2169,7 +2182,7 @@ var app = new Vue({ ... });
 
     yarn add vue
 
-引入 vue 的话，书籍介绍了加上之前研究的，目前知道两种：
+引入 vue 的话，书籍介绍的加上之前研究的，目前知道两种：
 
 ```
 // 1
@@ -2179,7 +2192,7 @@ import Vue from 'vue';
 window.Vue = require('vue')
 ```
 
-用方法 1 的话，发现在 app.blade.php 里如果实例化另外一个 vue 实例时，报错：(index):52 Uncaught ReferenceError: Vue is not defined。也是的，因为另外的那个 vue 实例的 id 是 app1，在 app.js 里实例化的只有 app 那个实例。然而用方法 2 不会报错，本质原因还没弄明白，待验证。
+用方法 1 的话，发现在 app.blade.php 里如果实例化另外一个 vue 实例时，报错：(index):52 Uncaught ReferenceError: Vue is not defined。也是的，因为另外的那个 vue 实例的 id 是 app1，在 app.js 里实例化的只有 app 那个实例。然而用方法 2 不会报错，本质原因还没弄明白。那么，能不能再另一个 js 文件里声明一个 vue 实例，然后在 app.js 里引用，或者直接在 app.js 里再声明一个，这样的话就可以通说 webpack 编译掉，待验证（2020-05-02）。
 
 』
 
@@ -2225,7 +2238,11 @@ We'll now link to the CSS bundle in our view by updating the link's href.
 
 resources/views/app.blade.php:
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+```html
+<link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+```
+
+1『上面是比较容易忽略的点，要去 HTML 页面里的 head 标签里引用下这个样式文件。』
 
 #### 5.4.9 Font styles
 
@@ -2240,9 +2257,11 @@ Remember to remove the links to the font style sheets from the view as these wil
 1『
 
 ```
-yarn add font-awesome
-yarn add open-sans-all
+yarn add font-awesome --dev
+yarn add open-sans-all --dev
 ```
+
+记得把 HTML 文件里 head 标签内的字体引用链接删掉（有的话）。
 
 』
 
@@ -2276,19 +2295,24 @@ We also need to ensure the view is pointing to the correct file location for the
 
 resources/views/app.blade.php:
 
-```
-<div id="toolbar"> <img class="icon" src="{{ asset('images/logo.png') }}"> <h1>vuebnb</h1> </div>
+```html
+<div id="toolbar"> 
+    <img class="icon" src="{{ asset('images/logo.png') }}"> 
+    <h1>vuebnb</h1> 
+</div>
 ```
 
 And in the modal. resources/views/app.blade.php:
 
-```
-<div class="modal-content"> <img src="{{ asset('images/header.jpg') }}"/> </div>
+```html
+<div class="modal-content"> 
+    <img src="{{ asset('images/header.jpg') }}"/> 
+</div>
 ```
 
 Don't forget that the headerImageStyle data property in the entry file also needs to be updated. resources/assets/js/app.js:
 
-```
+```json
 headerImageStyle: { 'background-image': 'url(/images/header.jpg)' },
 ```
 
@@ -2326,6 +2350,8 @@ We have the app's URL stored as an environment variable in the .env file, so let
 
     $ npm i dotenv --save-devpm
 
+3『原来「dotenv」包的作用是可以直接在 laravel 文件里调用「.env」定义的变量，之前遇到的七牛头 HTTP 读不出来，又提供了一个解决方案。』
+
 Require the dotenv module at the top of the Mix configuration file and use the config method to load .env. Any environment variables will then be available as properties of the process.env object. We can now pass an options object to the browserSync method with process.env.APP_URL assigned to proxy. I also like to use the open: false option as well, which prevents BrowserSync from automatically opening a tab.
 
 webpack.mix.js:
@@ -2355,7 +2381,7 @@ Note that if you run BrowserSync inside your Homestead box you can access it at 
 
 Even though the BrowserSync server runs on a different port to the web server, I will continue to refer to URLs in the app without specifying the port to avoid any confusion, for example, vuebnb.test rather than localhost:3000 or vuebnb.test:3000.
 
-1『安装的时候提示要单独安装 webpack，「yarn add webpack」。后来发现没自动更新，为了减少电脑负担，这个功能先取消了。（2020-04-19）』
+1『安装的时候提示要单独安装 webpack，「yarn add webpack」，后来发现没自动更新（待解决）。为了减少电脑负担，这个功能目前没用。（2020-04-19）』
 
 #### 5.5.3 ES2015
 
@@ -2393,13 +2419,91 @@ Look at the data object in our entry file, resources/assets/js/app.js. We are ma
 
 resources/assets/js/app.js:
 
-```
+```js
 data: Object.assign(sample, { 
     headerImageStyle: { 'background-image': 'url(/images/header.jpg)' }, 
     contracted: true, 
     modalOpen: false 
 }),
 ```
+
+3『 
+
+Object.assign 这个 API 的作用是合并对象，在前端开发中经常用，经验证目前的开发框架是支持的，不需要再手动安装了。
+
+[Object.assign() - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+
+The Object.assign() method copies all enumerable own properties from one or more source objects to a target object. It returns the target object.
+
+```js
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+```
+
+    Object.assign(target, ...sources)
+
+target, The target object — what to apply the sources’ properties to, which is returned after it is modified. sources, The source object(s) — objects containing the properties you want to apply.
+
+Properties in the target object are overwritten by properties in the sources if they have the same key. Later sources' properties overwrite earlier ones. The Object.assign() method only copies enumerable and own properties from a source object to a target object. 
+
+It uses [[Get]] on the source and [[Set]] on the target, so it will invoke getters and setters. Therefore it assigns properties, versus copying or defining new properties. This may make it unsuitable for merging new properties into a prototype if the merge sources contain getters. For copying property definitions (including their enumerability) into prototypes, use Object.getOwnPropertyDescriptor() and Object.defineProperty() instead.
+
+Both String and Symbol properties are copied. In case of an error, for example if a property is non-writable, a TypeError is raised, and the target object is changed if any properties are added before the error is raised. 
+
+Note: Object.assign() does not throw on null or undefined sources.
+
+文档里给了大量的例子，可以看看，而且有中文文档。
+
+Cloning an object.
+
+```js
+const obj = { a: 1 };
+const copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+```
+
+Warning for Deep Clone. For deep cloning, we need to use alternatives, because Object.assign() copies property values. If the source value is a reference to an object, it only copies the reference value.
+
+```js
+function test() {
+  'use strict';
+
+  let obj1 = { a: 0 , b: { c: 0}};
+  let obj2 = Object.assign({}, obj1);
+  console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
+  
+  obj1.a = 1;
+  console.log(JSON.stringify(obj1)); // { "a": 1, "b": { "c": 0}}
+  console.log(JSON.stringify(obj2)); // { "a": 0, "b": { "c": 0}}
+  
+  obj2.a = 2;
+  console.log(JSON.stringify(obj1)); // { "a": 1, "b": { "c": 0}}
+  console.log(JSON.stringify(obj2)); // { "a": 2, "b": { "c": 0}}
+  
+  obj2.b.c = 3;
+  console.log(JSON.stringify(obj1)); // { "a": 1, "b": { "c": 3}}
+  console.log(JSON.stringify(obj2)); // { "a": 2, "b": { "c": 3}}
+  
+  // Deep Clone
+  obj1 = { a: 0 , b: { c: 0}};
+  let obj3 = JSON.parse(JSON.stringify(obj1));
+  obj1.a = 4;
+  obj1.b.c = 4;
+  console.log(JSON.stringify(obj3)); // { "a": 0, "b": { "c": 0}}
+}
+
+test();
+```
+
+』
 
 To polyfill Object.assign we must install a new core-js dependency, which is a library of polyfills for most new JavaScript APIs. We'll use some other core-js polyfills later in the project:
 
@@ -2425,7 +2529,7 @@ At the top of app.js, add this line to include the Object.assign polyfill:
 
     import "core-js/fn/object/assign";
 
-1『发现不需要引用上面语句，引用反而报错。』
+1『发现不需要引用上面语句，引用反而报错。原理待了解。（2020-05-01）』
 
 After this builds, refresh your page to see whether it works. Most likely you will not notice any difference unless you can test this on an older browser, such as Internet Explorer, but now you have the assurance that this code will run almost anywhere.
 
@@ -2505,22 +2609,26 @@ If we now go to the /listing/5 route, we will see the following in our page sour
 
 And you will see the following in our console:
 
+1『如此方便的将数据从后端传递到前端，多亏了 Blade templating system。』
+
 #### 5.6.4 JSON
 
 We'll now encode the entire model as JSON within the view. The JSON format is good because it can be stored as a string and can be parsed by both PHP and JavaScript. In our inline script, let's format the model as a JSON string and assign to a model variable.
 
 resources/views/app.blade.php:
 
-```php
+```html
 <script type="text/javascript">
     var model = "{!!addslashes(json_encode($model))!!}";
     console.log(model);
 </script
 ```
 
-1『这里相当于一步步教你如何把从句从后端传递到前端来。』
+1『这里相当于一步步教你如何把数据从后端传递到前端来。』
 
 Notice we also had to wrap json\_encode in another global function, addslashes. This function will add backslashes before any character that needs to be escaped. It's necessary to do this because the JavaScript JSON parser doesn't know which quotes in the string are part of the JavaScript syntax, and which are part of the JSON object.
+
+1『原来全局函数 addslashes() 是给 json 数据加转义字符的，赞。』
 
 We also had to use a different kind of Blade syntax for interpolation. A feature of Blade is that statements within double curly brackets {{ }} are automatically sent through PHP's htmlspecialchars function to prevent XSS attacks. This will, unfortunately, invalidate our JSON object. The solution is to use the alternative {!! !!} syntax, which does not validate the contents. This is safe to do in this scenario because we're sure we're not using any user-supplied content. Now if we refresh the page, we'll see the JSON object as a string in the console:
 
@@ -2546,7 +2654,7 @@ If you add additional scripts to your project, particularly third-party ones, th
 
 resources/views/app.blade.php:
 
-```
+```html
 <script type="text/javascript">
     window.vuebnb_listing_model = "{!!addslashes(json_encode($model))!!}";
 </script
@@ -2579,10 +2687,6 @@ var app = new Vue({
 ```
 
 With that done, we can now remove the import sample from './data'; statement from the top of app.js. We can also delete the sample data files as they won't be used any further in the project:
-
-```
-$ rm resources/assets/js/data.js resources/assets/images/header.jpg
-```
 
 1『
 
@@ -2618,11 +2722,13 @@ Route::get('/{listing}', 'ListingController@get_listing_web');
 
 报错：Call to undefined function assets()
 
-说明 asset() 其实是一个函数，修改成下面代码即可解决问题。
+说明 asset() 其实是一个函数，自己把函数名拼错了，修改成下面代码即可解决问题。
 
 ```html
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 ```
+
+函数 asset() 是 laravel 框架里，将文件自动转化为 url 的内置函数。之前是误打误撞解决了问题，src="{{ asset('js/app.js') }}" 跟资源夹那边半毛钱关系也没有，它只是引用 public 文件夹下的 js/app.js，之前没有用 asset() 函数时，url 里是没有 HTTP 头的，其实手动把头补全也可以解决上述问题。（2020-05-01）
 
 』
 
@@ -2672,7 +2778,7 @@ public function get_listing_api(ListingModel $listing)
 }
 ```
 
-2『又看到 asset() 函数，去查下。』
+2『又看到 asset() 函数，去查下。回复：前面有个地方给出了 laravel 文档里这个函数的相关信息，是一个 helper 函数，用来输出文件的 URL。（2020-05-02）』
 
 In fact, our web route will end up with identical code to this API route, only instead of returning JSON, it will return a view. Let's share the common logic. Begin by moving the route closure function into a new get\_listing\_web method in the listing controller.
 
@@ -2736,6 +2842,3 @@ resources/views/app.blade.php:
 ```php
 <div class="modal-content"> <img v-bind:src="images[0]"/> </div>
 ```
-
-
-
