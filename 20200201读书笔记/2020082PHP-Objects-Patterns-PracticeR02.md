@@ -310,7 +310,7 @@ Chargeable
 
 1『
 
-上面说了接口的用途，应该是跟类型有关，目前没弄明白。目前知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，没实现一个接口对应着一个「type」。2）跟 traits 结合起来用。（2020-04-27）
+上面说了接口的用途，应该是跟「多类型」有关，目前没彻底吃透。现阶段知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，每实现一个接口对应着一个「type」。2）跟 traits 结合起来用。（2020-04-27）
 
 回复：
 
@@ -370,7 +370,7 @@ Notice that the Consultancy class implements more than one interface. Multiple i
 
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. But what if you want to share an implementation across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
 
-1『 traits 的作用是为了：share an implementation across inheritance hierarchies. 可以当作类的组件模块，在类的定义里使用 use 关键词调用 trait。』
+1『 traits 的作用是实现局部继承：share an implementation across inheritance hierarchies. 可以当作类的组件模块，在类的定义里使用 use 关键词调用 trait。在 laravel 框架里看到很多 use 语句是放在 class 定义体之外的。traits 能和接口结合起来一起用，还能跟抽象属性、抽象方法结合起来用，着实强大。』
 
 A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
 
@@ -415,6 +415,8 @@ print $u->calculateTax(100)."\n";
 #### 4.5.2 Defining and Using a Trait
 
 One of the core object-oriented design goals I will cover in this book is the removal of duplication. As you will see in Chapter 11, one solution to this kind of duplication is to factor it out into a reusable strategy class. Traits provide another approach—less elegant, perhaps, but certainly effective. Here I declare a single trait that defines a calculateTax() method, and then I include it in both ShopProduct and UtilityService:
+
+1『上面场景里的问题，除了用 traits 解决外，第 11 章还提供了方案（facor it out into a reusable class）。use 语句调用 traits 可以放在 class 体内。』
 
 ```php
 // listing 04.12
@@ -479,6 +481,8 @@ Note: the IdentityTrait trait provides the generateId() method. In fact, a datab
 #### 4.5.4 Combining Traits and Interfaces
 
 Although traits are useful, they don’t change the type of the class to which they are applied. So when you apply the IdentityTrait trait to multiple classes, they won’t share a type that could be hinted for in a method signature. Luckily, traits play well with interfaces. I can define an interface that requires a generateId() method, and then declare that ShopProduct implements it:
+
+1『单独的 traits 没法使用「type hinting」，但是结合 Interfaces 就能使用。下面的例子目前还没消化。（2020-05-03）』
 
 ```php
 // listing 04.20
@@ -638,6 +642,8 @@ So, static methods are declared in traits and accessed via the host class in the
 
 You might assume that static methods are really the only way to go as far as traits are concerned. Even trait methods that are not declared static are essentially static in nature, right? Well, wrong, in fact—you can access properties and methods in a host class:
 
+1『 traits 定义里可以通过 \$this->XX 来调用宿主类（即调用该 traits 的 class）里的属性，作者认为是个坏设计，因为你怎么能确定宿主类里就一定有这个属性的声明呢。所以如果能结合 abstract methods 的话即可解决这个问题。这个特性跟 JS 里的闭包很像。』
+
 ```php
 // listing 04.36
 trait PriceUtilities {    
@@ -662,8 +668,6 @@ print $u->calculateTax(100) . "\n";
 In the preceding code, I amend the PriceUtilities trait so that it accesses a property in its host class. If you think that this is bad design, you’re right. It’s spectacularly bad design. Although it’s useful for the trait to access data set by its host class, there is nothing to require the UtilityService class to actually provide a \$taxrate property. Remember that traits should be usable across many different classes. What is the guarantee or even the likelihood that any host classes will declare a \$taxrate?
 
 On the other hand, it would be great to be able to establish a contract that says, essentially,「If you use this trait, then you must provide it certain resources.」In fact, you can achieve exactly this effect. Traits support abstract methods.
-
-1『使用 traits 要注意的一点是「Traits support abstract methods」，上面作者表达的注意事项目前没弄透。（2020-04-27）』
 
 #### 4.5.9 Defining Abstract Methods in Traits
 
@@ -823,6 +827,8 @@ print_r(Document::create());
 
     Document Object()
 
+1『上面才是正确的实现方法，需要使用 Static Bindings。』
+
 The static keyword can be used for more than just instantiation. Like self and parent, static can be used as an identifier for static method calls, even from a non-static context. Let’s say I want to include the concept of a group for my DomainObject classes. By default in my new classification, all classes fall into category「default,」but I’d like to be able override this for some branches of my inheritance hierarchy:
 
 ```php
@@ -881,9 +887,13 @@ popp\ch04\batch07\SpreadSheet Object
 
 For the User class, not much clever needs to happen. The DomainObject constructor calls getGroup() and finds it locally. In the case of SpreadSheet, though, the search begins at the invoked class, SpreadSheet itself. It provides no implementation, so the getGroup() method in the Document class is invoked. Before PHP 5.3 and late static binding, I would have been stuck with the self keyword here, which would only look for getGroup() in the DomainObject class.
 
+1『妙啊妙啊，这样的话基类的定义就更灵活了。』
+
 ### 4.7 Handling Errors
 
 Things go wrong. Files are misplaced, database servers are left uninitialized, URLs are changed, XML files are mangled, permissions are poorly set, disk quotas are exceeded. The list goes on and on. In the fight to anticipate every problem, a simple method can sometimes sink under the weight of its own error-handling code.
+
+1『 bug 是永远不可能全部消除的，能做的就是有效的管理 bug，周全的设计出错后该如何处理。』
 
 Here is a simple Conf class that stores, retrieves, and sets data in an XML configuration file:
 
@@ -925,7 +935,7 @@ class Conf{
 
 The Conf class uses the SimpleXml extension to access name value pairs. Here’s the kind of format with which it is designed to work:
 
-```
+```xml
 <?xml version="1.0"?>
 <conf>    
     <item name="user">bob</item>    
@@ -934,7 +944,7 @@ The Conf class uses the SimpleXml extension to access name value pairs. Here’s
 </conf>
 ```
 
-The Conf class’s constructor accepts a file path, which it passes to simplexml:load_file().It stores the resulting SimpleXmlElement object in a property called \$xml. The get() method uses XPath to locate an item element with the given name attribute, returning its value. set() either changes the value of an existing item or creates a new one. Finally, the write() method saves the new configuration data back to the file.
+The Conf class’s constructor accepts a file path, which it passes to simplexml:load_file(). It stores the resulting SimpleXmlElement object in a property called \$xml. The get() method uses XPath to locate an item element with the given name attribute, returning its value. set() either changes the value of an existing item or creates a new one. Finally, the write() method saves the new configuration data back to the file.
 
 Like much example code, the Conf class is highly simplified. In particular, it has no strategy for handling nonexistent or unwriteable files. It is also optimistic in outlook. It assumes that the XML document will be well-formed and will contain the expected elements.
 
@@ -959,6 +969,8 @@ An exception is a special object instantiated from the built-in Exception class 
 The Exception class is fantastically useful for providing error notification and debugging information (the getTrace() and getTraceAsString() methods are particularly helpful in this regard). In fact, it is almost identical to the PEAR_Error class that was discussed earlier. There is much more to an exception than the information it holds, though.
 
 Table 4-1.  The Exception Class’s Public Methods
+
+1『 PHP 里的错误是个对象，是内置 Exception 类的实例化对象。』
 
 #### 4.7.1.1 Throwing an Exception
 
@@ -1069,7 +1081,7 @@ The LibXmlError class is generated behind the scenes when SimpleXml encounters a
 
 \_\_construct() throws either an XmlException, a FileException, or a ConfException, depending on the kind of error it encounters. Note that I pass the option flag LIBXML\_NOERROR to simplexml:load\_file(). This suppresses warnings, leaving me free to handle them with my XmlException class after the fact. If I encounter a malformed XML file, I know that an error has occurred because simplexml:load\_file() won’t have returned an object. I can then access the error using libxml:get\_last\_error().
 
-The write() method throws a FileException if the \$file property points to an unwritable entity.So, I have established that \_\_construct() might throw one of three possible exceptions. How can I take advantage of this? Here’s some code that instantiates a Conf object:
+The write() method throws a FileException if the \$file property points to an unwritable entity. So, I have established that \_\_construct() might throw one of three possible exceptions. How can I take advantage of this? Here’s some code that instantiates a Conf object:
 
 ```php
 // listing 04.65    
@@ -1111,6 +1123,8 @@ throw $e;
 ```
 
 Another trick you can play here is to throw a new exception that wraps the current one. This allows you to stake a claim to the error and add your own contextual information, while retaining the data encapsulated by the exception you have caught. You can read more about this technique in Chapter 15.
+
+1『上面的代码实现了一个如何处理「多错误」场景，需好好消化，目前没吃透。（2020-05-03）』
 
 So what happens if an exception is not caught by client code? It is implicitly rethrown, and the client’s own calling code is given the opportunity to catch it. This process continues either until the exception is caught or until it can no longer be thrown. At this point, a fatal error occurs. Here’s what would happen if I did not catch one of the exceptions in my example:
 
@@ -1205,10 +1219,801 @@ Because the log write and the fclose() invocation are wrapped in a finally claus
 
 ```
 start
-file 
-exceptionend
+file exception
+end
 ```
 
 Note:  a finally clause will be run if an invoked catch clause rethrows an exception or returns a value. however, calling die() or exit() in a try or catch block will end script execution, and the finally clause will not be run.
 
+### 4.8 Final Classes and Methods
 
+Inheritance allows for enormous flexibility within a class hierarchy. You can override a class or method so that a call in a client method will achieve radically different effects, according to which class instance it has been passed. Sometimes, though, a class or method should remain fixed and unchanging. If you have achieved the definitive functionality for your class or method, and you feel that overriding it can only damage the ultimate perfection of your work, you may need the final keyword.
+
+final puts a stop to inheritance. A final class cannot be subclassed. Less drastically, a final method cannot be overridden. Here’s a final class:
+
+```php
+// listing 04.67
+final class Checkout {    
+    // ...
+}
+```
+
+Here’s an attempt to subclass the Checkout class:
+
+```php
+// listing 04.68
+class IllegalCheckout extends Checkout {    
+    //...
+}
+```
+
+This produces an error:
+
+    PHP Fatal error:  Class IllegalCheckout may not inherit from final class (Checkout) in ....
+
+I could relax matters somewhat by declaring a method in Checkout final, rather than the whole class. The final keyword should be placed in front of any other modifiers such as protected or static, like this:
+
+```php
+// listing 04.69
+class Checkout {    
+    final public function totalize() {        
+        // calculate bill    
+    }
+}
+```
+
+I can now subclass Checkout, but any attempt to override totalize() will cause a fatal error:
+
+```
+// listing 04.70
+class IllegalCheckout extends Checkout {    
+    final public function totalize() {        
+        // change bill calculation    
+    }
+}
+```
+
+    PHP Fatal error:  Cannot override final method popp\ch04\batch14\Checkout::totalize() ...
+
+Good object-oriented code tends to emphasize the well-defined interface. Behind the interface, though, implementations will often vary. Different classes or combinations of classes conform to common interfaces but behave differently in different circumstances. By declaring a class or method final, you limit this flexibility. There will be times when this is desirable, and you will see some of them later in the book. However, you should think carefully before declaring something final. Are there really no circumstances in which overriding would be useful? You could always change your mind later on, of course, but this might not be so easy if you are distributing a library for others to use. Use final with care.
+
+### 4.9 The Internal Error Class
+
+Back when exceptions were first introduced, the world of trying and catching applied primarily to code written in PHP and not the core engine. Internally generated errors maintained their own logic. This could get messy if you wanted to manage core errors in the same way as code-generated exceptions. PHP 7 has made a start on addressing this issue with the Error class. This implements Throwable—the same built-in interface that the Exception class implements, and therefore it can be treated in the same way. This also means the methods described in Table 4-1 are honored. Error is subclassed for individual error types. Here’s how you might catch a parse error generated by an eval statement:
+
+```php
+try {            
+    eval("illegal code");        
+} catch (\Error $e) {            
+    print get_class($e)."\n";        
+} catch (\Exception $e) {            
+    // do something with an Exception        
+}
+```
+
+Here’s the output:
+
+    ParseError
+
+So you can match some types of internal errors in catch clauses, either by specifying the Error superclass or by specifying a more specific subclass. Table 4-2 shows the current Error subclasses.
+
+Table 4-2.  The Built-in Error Classes Introduced by PHP 7
+
+Note: at the time of this writing, an attempt to call Error::getMessage() fails with an error, despite the fact that this is declared in the Throwable interface. It is likely that this issue will have been fixed by the time you read this!
+
+### 4.10 Working with Interceptors
+
+PHP provides built-in interceptor methods that can intercept messages sent to undefined methods and properties. This is also known as overloading, but as that term means something quite different in Java and C++, I think it is better to talk in terms of interception.
+
+PHP supports three built-in interceptor methods. Like __construct(), these are invoked for you when the right conditions are met. Table 4-3 describes the methods.
+
+Table 4-3.  The Interceptor Methods
+
+The \_\_get() and \_\_set() methods are designed for working with properties that have not been declared in a class (or its parents).
+
+\_\_get() is invoked when client code attempts to read an undeclared property. It is called automatically with a single string argument containing the name of the property that the client is attempting to access. Whatever you return from the \_\_get() method will be sent back to the client as if the target property exists with that value. Here’s a quick example:
+
+```php
+// listing 04.71
+class Person {    
+    public function __get(string $property) {        
+        $method = "get{$property}";        
+        if (method_exists($this, $method)) {            
+            return $this->$method();        
+        }    
+    }
+
+    public function getName(): string    {        
+        return "Bob";    
+    }
+
+    public function getAge(): int    {       
+        return 44;    
+    }
+}
+```
+
+When a client attempts to access an undefined property, the \_\_get() method is invoked. I have implemented \_\_get() to take the property name and construct a new string, prepending the word「get」. I pass this string to a function called method\_exists(), which accepts an object and a method name and tests for method existence. If the method does exist, I invoke it and pass its return value to the client. Assume the client requests a \$name property:
+
+```php
+$p = new Person();print $p->name;
+```
+
+In this case, the getName() method is invoked behind the scenes:
+
+    Bob
+
+If the method does not exist, I do nothing. The property that the user is attempting to access will resolve to NULL.
+
+The \_\_isset() method works in a similar way to \_\_get(). It is invoked after the client calls isset() on an undefined property. Here’s how I might extend Person:
+
+```php
+// listing 04.72    
+public function __isset(string $property)    {        
+    $method = "get{$property}";        
+    return (method_exists($this, $method));    
+}
+```
+
+Now a cautious user can test a property before working with it:
+
+```php
+if (isset($p->name)) {    
+    print $p->name;
+}
+```
+
+The \_\_set() method is invoked when client code attempts to assign to an undefined property. It is passed two arguments: the name of the property and the value the client is attempting to set. You can then decide how to work with these arguments. Here I further amend the Person class:
+
+```php
+// listing 04.73
+class Person {    
+    private $myname;    
+    private $myage;
+
+    public function __set(string $property, string $value)    {        
+        $method = "set{$property}";       
+        if (method_exists($this, $method)) {            
+            return $this->$method($value);        
+        }    
+    }
+
+    public function setName(string $name)    {        
+        $this->myname = $name;        
+            if (! is_null($name)) {            
+            $this->myname = strtoupper($this->myname);        
+        }    
+    }
+
+    public function setAge(int $age)    {        
+        $this->myage = $age;   
+    }
+}
+```
+
+In this example, I work with「setter」methods rather than「getters.」If a user attempts to assign to an undefined property, the \_\_set() method is invoked with the property name and the assigned value. I test for the existence of the appropriate method and invoke it if it exists. In this way, I can filter the assigned value.
+
+Note: remember that methods and properties in php documentation are frequently spoken of in static terms in order to identify them with their classes. so you might talk about the Person::\$name property, even though the property is not declared static and would in fact be accessed via an object.
+
+So if I create a Person object and then attempt to set a property called Person::\$name, the \_\_set() method is invoked because this class does not define a \$name property. The method is passed the string "name" and the value that the client assigned. How the value is then used depends on the implementation of \_\_set(). In this example, I construct a method name out of the property argument combined with the string, "set". The setName() method is found and duly invoked. This transforms the incoming value and stores it in a real property:
+
+```php
+$p = new Person();
+$p->name = "bob";// the $myname property becomes 'BOB'
+```
+
+As you might expect, \_\_unset() mirrors \_\_set(). When unset() is called on an undefined property, \_\_unset() is invoked with the name of the property. You can then do what you like with the information. This example passes null to a method resolved using the same technique that you saw used by \_\_set():
+
+```php
+// listing 04.74    
+public function __unset(string $property)    {        
+    $method = "set{$property}";        
+    if (method_exists($this, $method)) {            
+        $this->$method(null);        
+    }    
+}
+```
+
+The \_\_call() method is probably the most useful of all the interceptor methods. It is invoked when an undefined method is called by client code. \_\_call() is invoked with the method name and an array holding all arguments passed by the client. Any value that you return from the \_\_call() method is returned to the client as if it were returned by the method invoked.
+
+The \_\_call() method can be useful for delegation. Delegation is the mechanism by which one object passes method invocations on to a second. It is similar to inheritance, in that a child class passes on a method call to its parent implementation. With inheritance the relationship between child and parent is fixed, so the ability to switch the receiving object at runtime means that delegation can be more flexible than inheritance. An example clarifies things a little. Here is a simple class for formatting information from the Person class:
+
+```php
+// listing 04.75class PersonWriter {
+
+    public function writeName(Person $p)    {        
+        print $p->getName() . "\n";    
+    }
+
+    public function writeAge(Person $p)    {        
+        print $p->getAge() . "\n";    
+    }
+}
+```
+
+I could, of course, subclass this to output Person data in various ways. Here is an implementation of the Person class that uses both a PersonWriter object and the \_\_call() method: 
+
+```php
+// listing 04.76
+class Person {    
+    private $writer;
+
+    public function __construct(PersonWriter $writer)    {        
+        $this->writer = $writer;    
+    }
+
+    public function __call(string $method, array $args)    {        
+        if (method_exists($this->writer, $method)) {            
+            return $this->writer->$method($this);        
+        }    
+    }
+
+    public function getName(): string    {        
+        return "Bob";    
+    }    
+    public function getAge(): int    {        
+        return 44;    
+    }
+}
+```
+
+The Person class here demands a PersonWriter object as a constructor argument and stores it in a property variable. In the \_\_call() method, I use the provided \$method argument, testing for a method of the same name in the PersonWriter object I have stored. If I encounter such a method, I delegate the method call to the PersonWriter object, passing my current instance to it (in the \$this pseudo-variable). Consider what happens if the client makes this call to Person:
+
+```php
+$person = new Person(new PersonWriter());
+$person->writeName();
+```
+
+In this case, the \_\_call() method is invoked. I find a method called writeName() in my PersonWriter object and invoke it. This saves me from manually invoking the delegated method like this:
+
+```php
+function writeName() {    
+    $this->writer->writeName($this);
+}
+```
+
+The Person class has magically gained two new methods. Although automated delegation can save a lot of legwork, there can be a cost in clarity. If you rely too much on delegation, you present the world with a dynamic interface that resists reflection (the runtime examination of class facets) and is not always clear to the client coder at first glance. This is because the logic that governs the interaction between a delegating class and its target can be obscure—buried in methods like \_\_call() rather than signaled up front by inheritance relationships or method type hints, as is the case for similar relationships. The interceptor methods have their place, but they should be used with care, and classes that rely on them should document this fact very clearly.
+
+I will return to the topics of delegation and reflection later in the book.The \_\_get() and \_\_set() interceptor methods can also be used to manage composite properties. 
+
+This can be a convenience for the client programmer. Imagine, for example, an Address class that manages a house number and a street name. Ultimately this object data will be written to database fields, so the separation of number and street is sensible. But if house numbers and street names are commonly acquired in undifferentiated lumps, then you might want to help the class’s user. Here is a class that manages a composite property, Address::\$streetaddress:
+
+```php
+// listing 04.77
+class Address {    
+    private $number;    
+    private $street;
+
+    public function __construct(string $maybenumber, string $maybestreet = null)    {        
+        if (is_null($maybestreet)) {            
+            $this->streetaddress = $maybenumber;        
+        } else {            
+            $this->number = $maybenumber;            
+            $this->street = $maybestreet;        
+        }    
+    }
+
+    public function __set(string $property, string $value)    {        
+        if ($property === "streetaddress") {            
+            if (preg_match("/^(\d+.*?)[\s,]+(.+)$/", $value, $matches)) {                
+                $this->number = $matches[1];                
+                $this->street = $matches[2];            
+            } else {                
+                throw new \Exception("unable to parse street address: '{$value}'");            
+            }
+        }    
+    }
+
+    public function __get(string $property)    {        
+        if ($property === "streetaddress") {            
+            return $this->number . " " . $this->street;        
+        }    
+    }
+}
+
+// listing 04.78
+$address = new Address("441b Bakers Street");
+print "street address: {$address->streetaddress}\n";
+$address = new Address("15", "Albert Mews");
+print "street address: {$address->streetaddress}\n";
+$address->streetaddress = "34, West 24th Avenue";
+print "street address: {$address->streetaddress}\n";
+```
+
+When a user attempts to set the (nonexistent) Address::\$streetaddress property, the interceptor method \_\_call() is invoked. There, I test for the property name, streetaddress. Before I can set the \$number and \$street properties, I must first ensure that the provided value can be parsed, and then go ahead and extract the fields. For this example, I have set simple rules. An address can be parsed if it begins with a number and has spaces or commas ahead of a second part. Thanks to back references, if the check passes, I already have the data I’m looking for in the \$matches array, and I assign values to the \$number and \$street properties. If the parse fails, I throw an exception. So when a string such as 441b Bakers Street is assigned to Address::\$streetaddress, it’s actually the \$number and \$street properties that get populated. I can demonstrate this with print_r():
+
+```php
+$address = new Address("441b Bakers Street");
+print_r($address);
+
+Address Object (    
+    [number:Address:private] => 441b    
+    [street:Address:private] => Bakers Street
+)
+```
+
+The \_\_get() method is much more straightforward, of course. Whenever the Address::\$streetaddress property is accessed, \_\_get() is invoked. In my implementation of this interceptor, I test for streetaddress and, if I find a match, I return a concatenation of the \$number and \$street properties.
+
+### 4.11 Defining Destructor Methods
+
+You have seen that the \_\_construct() method is automatically invoked when an object is instantiated. PHP 5 also introduced the \_\_destruct() method. This is invoked just before an object is garbage-collected; that is, before it is expunged from memory. You can use this method to perform any final cleaning up that might be necessary.
+
+Imagine, for example, a class that saves itself to a database when so ordered. I could use the \_\_destruct() method to ensure that an instance saves its data when it is deleted:
+
+```php
+// listing 04.79
+class Person {    
+    protected $name;    
+    private   $age;    
+    private   $id;
+
+    public function __construct(string $name, int $age)    {        
+        $this->name = $name;        
+        $this->age  = $age;   
+    }
+
+    public function setId(int $id)    {        
+        $this->id = $id;    
+    }
+
+    public function __destruct()    {        
+        if (! empty($this->id)) {            
+            // save Person data            
+            print "saving person\n";        
+        }    
+    }
+}
+```
+
+The \_\_destruct() method is invoked whenever a Person object is removed from memory. This will happen either when you call the unset() function with the object in question or when no further references to the object exist in the process. So if I create and destroy a Person object, you can see the \_\_destruct() method come into play:
+
+```php
+// listing 04.80
+$person = new Person("bob", 44);
+$person->setId(343);
+unset($person);
+// output:
+// saving person
+```
+
+Although tricks like this are fun, it’s worth sounding a note of caution. \_\_call(), \_\_destruct(), and their colleagues are sometimes called magic methods. As you will know if you have ever read a fantasy novel, magic is not always a good thing. Magic is arbitrary and unexpected. Magic bends the rules. Magic incurs hidden costs.
+
+In the case of \_\_destruct(), for example, you can end up saddling clients with unwelcome surprises. Think about the Person class—it performs a database write in its \_\_destruct() method. Now imagine a novice developer idly putting the Person class through its paces. He doesn’t spot the \_\_destruct() method, and he sets about instantiating a set of Person objects. Passing values to the constructor, he assigns the CEO’s secret and faintly obscene nickname to the \$name property, and then sets \$age at 150. He runs his test script a few times, trying out colorful name and age combinations.
+
+The next morning, his manager asks him to step into a meeting room to explain why the database contains insulting Person data. The moral? Do not trust magic.
+
+### 4.12 Copying Objects with \_\_clone()
+
+In PHP 4, copying an object was a simple matter of assigning from one variable to another:
+
+```php
+class CopyMe {
+}
+
+$first = new CopyMe();
+$second = $first;/
+/ PHP 4: $second and $first are 2 distinct objects
+// PHP 5 plus: $second and $first refer to one object
+```
+
+This「simple matter」was a source of many bugs, as object copies were accidentally spawned when variables were assigned, methods were called, and objects were returned. This was made worse by the fact that there was no way of testing two variables to see whether they referred to the same object. Equivalence tests would tell you whether all fields were the same (\=\=) or whether both variables were objects (===), but not whether they pointed to the same object.
+
+In PHP, objects are always assigned and passed around by reference. This means that when my previous example is run with PHP 5, \$first and \$second contain references to the same object instead of two copies. Although this is generally what you want when working with objects, there will be occasions when you need to get a copy of an object rather than a reference to an object.
+
+PHP provides the clone keyword for just this purpose. clone operates on an object instance, producing a by-value copy:
+
+```php
+class CopyMe {
+}
+
+$first  = new CopyMe();
+$second = clone 
+$first;
+// PHP 5 plus: $second and $first are 2 distinct objects
+```
+
+The issues surrounding object copying only start here. Consider the Person class that I implemented in the previous section. A default copy of a Person object would contain the identifier (the \$id property), which in a full implementation I would use to locate the correct row in a database. If I allow this property to be copied, a client coder can end up with two distinct objects referencing the same data source, which is probably not what she wanted when she made her copy. An update in one object will affect the other, and vice versa.Luckily, you can control what is copied when clone is invoked on an object. You do this by implementing a special method called \_\_clone() (note the leading two underscores that are characteristic of built-in methods). \_\_clone() is called automatically when the clone keyword is invoked on an object.
+
+When you implement \_\_clone(), it is important to understand the context in which the method runs. \_\_clone() is run on the copied object and not the original. Here I add \_\_clone() to yet another version of the Person class:
+
+```php
+// listing 04.81
+class Person {    
+    private $name;
+
+    private $age;    
+    private $id;
+
+    public function __construct(string $name, int $age)    {        
+        $this->name = $name;        
+        $this->age = $age;    
+    }
+
+    public function setId(int $id)    {        
+        $this->id = $id;    
+    }
+
+    public function __clone()    {        
+        $this->id = 0;    
+    }
+}
+```
+
+When clone is invoked on a Person object, a new shallow copy is made, and its \_\_clone() method is invoked. This means that anything I do in \_\_clone() overwrites the default copy I already made. In this case, I ensure that the copied object’s \$id property is set to zero:
+
+```php
+// listing 04.82
+$person = new Person("bob", 44);
+$person->setId(343);
+$person2 = clone $person;
+// $person2 :
+//     name: bob
+//     age: 44
+//     id: 0.
+```
+
+A shallow copy ensures that primitive properties are copied from the old object to the new. Object properties, though, are copied by reference, which may not be what you want or expect when cloning an object. Say that I give the Person object an Account object property. This object holds a balance that I want copied to the cloned object. What I don’t want, though, is for both Person objects to hold references to the same account:
+
+```php
+// listing 04.83class Account {    
+    public $balance;
+
+    public function __construct(float $balance)    {        
+        $this->balance = $balance;    
+    }
+}
+
+// listing 04.84
+class Person {    
+    private $name;    
+    private $age;    
+    private $id;    
+    public  $account;
+
+    public function __construct(string $name, int $age, Account $account)    {        
+        $this->name = $name;        
+        $this->age  = $age;        
+        $this->account = $account;    
+    }
+
+    public function setId(int $id)    {        
+        $this->id = $id;    
+    }
+
+    public function __clone()    {        
+        $this->id   = 0;    
+    }
+}
+
+// listing 04.85
+$person = new Person("bob", 44, new Account(200));
+$person->setId(343);
+$person2 = clone $person;
+
+// give $person some money
+$person->account->balance += 10;
+// $person2 sees the credit tooprint 
+$person2->account->balance;
+```
+
+This gives the following output:
+
+    210
+
+\$person holds a reference to an Account object that I have kept publicly accessible for the sake of brevity (as you know, I would usually restrict access to a property, providing an accessor method, if necessary). When the clone is created, it holds a reference to the same Account object that \$person references. I demonstrate this by adding to the \$person object’s Account and confirming the increased balance via \$person2. If I do not want an object property to be shared after a clone operation, then it is up to me to clone it explicitly in the \_\_clone() method:
+
+```php
+function __clone()    {        
+    $this->id   = 0;        
+    $this->account = clone $this->account;    
+}
+```
+
+### 4.13 Defining String Values for Your Objects
+
+Another Java-inspired feature introduced by PHP 5 was the \_\_toString() method. Before PHP 5.2, when you printed an object, it would resolve to a string like this:
+
+```php
+// listing 04.86
+class StringThing{
+}
+
+// listing 04.87
+$st = new StringThing();
+print $st;
+```
+
+```
+Object id #1
+
+Since PHP 5.2, this code will produce an error like this:
+
+Object of class popp\ch04\batch22\StringThing could not be converted to string ...
+```
+
+By implementing a \_\_toString() method, you can control how your objects represent themselves when printed. \_\_toString() should be written to return a string value. The method is invoked automatically when your object is passed to print or echo, and its return value is substituted. Here I add a \_\_toString() version to a minimal Person class:
+
+```php
+// listing 04.88
+class Person {    
+    function getName(): string    {        
+        return "Bob";    
+    }
+
+    function getAge(): int    {        
+        return 44;    
+    }
+
+    function __toString(): string    {        
+        $desc  = $this->getName() . " (age ";        
+        $desc .= $this->getAge() . ")";        
+        return $desc;    
+    }
+}
+```
+
+Now when I print a Person object, the object will resolve to this:
+
+```php
+$person = new Person();
+
+print $person;
+```
+
+    Bob (age 44)
+
+The \_\_toString() method is particularly useful for logging and error reporting, as well as for classes whose main task is to convey information. The Exception class, for example, summarizes exception data in its \_\_toString() method.
+
+### 4.14 Callbacks, Anonymous Functions, and Closures
+
+Although not strictly an object-oriented feature, anonymous functions are useful enough to mention here because you may encounter them in object-oriented applications that utilize callbacks. To kick things off, here are a couple of classes:
+
+```php
+// listing 04.89
+class Product {    
+    public $name;    
+    public $price;
+
+    public function __construct(string $name, float $price)    {        
+        $this->name = $name;        
+        $this->price = $price;    
+    }
+}
+
+class ProcessSale {    
+    private $callbacks;
+
+    public function registerCallback(callable $callback)    {        
+        if (! is_callable($callback)) {            
+            throw new Exception("callback not callable");        
+        }        
+        $this->callbacks[] = $callback;    
+    }
+
+    public function sale(Product $product)    {        
+        print "{$product->name}: processing \n";        
+        foreach ($this->callbacks as $callback) {            
+            call_user_func($callback, $product);        
+        }    
+    }
+}
+```
+
+This code is designed to run my various callbacks. It consists of two classes, Product and ProcessSale. Product simply stores \$name and \$price properties. I’ve made these public for the purposes of brevity. Remember, in the real world, you’d probably want to make your properties private or protected and provide accessor methods. ProcessSale consists of two methods.
+
+The first, registerCallback(), accepts an unhinted scalar, tests it, and adds it to a callback array. The test, a built-in function called is\_callable(), ensures that whatever I’ve been given can be invoked by a function such as call\_user\_func() or array\_walk().
+
+The second method, sale(), accepts a Product object, outputs a message about it, and then loops through the \$callback array property. It passes each element to call\_user\_func(), which calls the code, passing it a reference to the product. All of the following examples will work with the framework.
+
+Why are callbacks useful? They allow you to plug functionality into a component at runtime that is not directly related to that component’s core task. By making a component callback aware, you give others the power to extend your code in contexts you don’t yet know about.
+
+1『回调函数的好处，下面还举了个例子。如何用好回调函数一直是个短板。（2020-05-03）』
+
+Imagine, for example, that a future user of ProcessSale wants to create a log of sales. If the user has access to the class, she might add logging code directly to the sale() method. This isn’t always a good idea, though. If she is not the maintainer of the package that provides ProcessSale, then her amendments will be overwritten the next time the package is upgraded. Even if she is the maintainer of the component, adding many incidental tasks to the sale() method will begin to overwhelm its core responsibility, and potentially make it less usable across projects. I will return to these themes in the next section.
+
+Luckily, though, I made ProcessSale callback-aware. Here I create a callback that simulates logging:
+
+```php
+// listing 04.90
+$logger = create_function(    
+    '$product',    
+    'print "    logging ({$product->name})\n";'
+);
+
+$processor = new ProcessSale();
+$processor->registerCallback($logger);
+
+$processor->sale(new Product("shoes", 6));
+print "\n";
+$processor->sale(new Product("coffee", 6));
+```
+
+I use create\_function() to build my callback. As you can see, it accepts two string arguments: first, a list of parameters; and second, the function body. The result is often called an anonymous function as it’s not named in the manner of a standard function. Instead, it can be stored in a variable and passed to functions and methods as a parameter. That’s just what I do, storing the function in the \$logger variable and passing it to ProcessSale::registerCallback(). Finally, I create a couple of products and pass them to the sale() method. You have already seen what happens there. The sale is processed (in reality a simple message is printed about the product) and any callbacks are executed. Here is the code in action:
+
+```
+shoes: processing    logging (shoes)
+
+coffee: processing    logging (coffee)
+```
+
+Look again at that create\_function() example. See how ugly it is? Placing code designed to be executed inside a string is always a pain. You need to escape variables and quotation marks, and, if the callback grows to any size, it can be very hard to read, indeed. Wouldn’t it be neater if there were a more elegant way of creating anonymous functions? Well, since PHP 5.3, there is a much better way of doing it. You can simply declare and assign a function in one statement. Here’s the previous example using the new syntax:
+
+```php
+// listing 04.91
+$logger2 = function ($product) {    
+    print "    logging ({$product->name})\n";
+};
+
+$processor = new ProcessSale();
+$processor->registerCallback($logger2);
+
+$processor->sale(new Product("shoes", 6));
+print "\n";
+$processor->sale(new Product("coffee", 6));
+```
+
+The only difference here lies in the creation of the anonymous function. As you can see, it’s a lot neater. I simply use the function keyword inline, and without a function name. Note that because this is an inline statement, a semicolon is required at the end of the code block. The output here is the same as that of the previous example.
+
+1『确实，匿名函数后面有个分号。』
+
+Of course, callbacks needn’t be anonymous. You can use the name of a function, or even an object reference and a method, as a callback. Here I do just that:
+
+```php
+// listing 04.92
+class Mailer{    
+    public function doMail(Product $product)    {        
+        print "    mailing ({$product->name})\n";    
+    }
+}
+
+// listing 04.93
+$processor = new ProcessSale();
+$processor->registerCallback([new Mailer(), "doMail"]);
+
+$processor->sale(new Product("shoes", 6));
+print "\n";
+$processor->sale(new Product("coffee", 6));
+```
+
+I create a class: Mailer. Its single method, doMail(), accepts a Product object and outputs a message about it. When I call registerCallback(), I pass it an array. The first element is a Mailer object, and the second is a string that matches the name of the method I want invoked. Remember that registerCallback() checks its argument for callability. is\_callable() is smart enough to test arrays of this sort. A valid callback in array form should have an object as its first element, and the name of a method as its second element. I pass that test here, and here is my output:
+
+```
+shoes: process
+
+ing    
+    mailing (shoes)
+
+coffee: processing    
+    mailing (coffee)
+```
+
+You can have a method return an anonymous function—something like this:
+
+```php
+// listing 04.94
+class Totalizer {    
+    public static function warnAmount()    {        
+        return function (Product $product) {            
+            if ($product->price > 5) {                
+                print "    reached high price: {$product->price}\n";            
+            }        
+        };    
+    }
+}
+
+// listing 04.95
+$processor = new ProcessSale();
+$processor->registerCallback(Totalizer::warnAmount());
+// ...
+```
+
+Apart from the convenience of using the warnAmount() method as a factory for the anonymous function, I have not added much of interest here. But this structure allows me to do much more than just generate an anonymous function. It allows me to take advantage of closures. The new style anonymous functions can reference variables declared in the anonymous functions parent scope. This is a hard concept to grasp at times. It’s as if the anonymous function continues to remember the context in which it was created. Imagine that I want Totalizer::warnAmount() to do two things. First of all, I’d like it to accept an arbitrary target amount. Second, I want it to keep a tally of prices as products are sold. When the total exceeds the target amount, the function will perform an action (in this case, as you might have guessed, it will simply write a message).
+
+I can make my anonymous function track variables from its wider scope with a use clause:
+
+```php
+// listing 04.96
+class Totalizer2 {    
+    public static function warnAmount($amt)    {        
+        $count=0;        
+        return function ($product) use ($amt, &$count) {            
+            $count += $product->price;            
+            print "   count: $count\n";            
+            if ($count > $amt) {                
+                print "   high price reached: {$count}\n";            
+            }        
+        };    
+    }
+}
+
+// listing 04.97
+$processor = new ProcessSale();
+$processor->registerCallback(Totalizer2::warnAmount(8));
+
+$processor->sale(new Product("shoes", 6));
+print "\n";
+$processor->sale(new Product("coffee", 6));
+```
+
+The anonymous function returned by Totalizer2::warnAmount() specifies two variables in its use clause. The first is \$amt. This is the argument that warnAmount() accepted. The second closure variable is \$count. \$count is declared in the body of warnAmount() and set initially to zero. Notice that I prepend an ampersand to the \$count variable in the use clause. This means the variable will be accessed by reference rather than by value in the anonymous function. In the body of the anonymous function, I increment \$count by the product’s value, and then test the new total against \$amt. If the target value has been reached, I output a notification. Here is the code in action:
+
+```
+shoes: processing   
+    count: 6
+
+coffee: processing   
+    count: 12
+
+   high price reached: 12
+```
+
+This demonstrates that the callback is keeping track of \$count between invocations. Both \$count and \$amt remain associated with the function because they were present to the context of its declaration and because they were specified in its use clause.
+
+### 4.15 Anonymous Classes
+
+As of PHP 7 you can declare anonymous classes as well as functions. These are especially useful when you need to create and derive an instance from a small class. This is especially useful when the class in question is simple and specific to the local context. Let’s return to our PersonWriter example. I’ll start off by creating an interface this time:
+
+```php
+// listing 04.98
+interface PersonWriter {    
+    public function write(Person $person);
+}
+```
+
+Now, here’s a version of the Person class that can use a PersonWriter object:
+
+```php
+// listing 04.99
+class Person {    
+    public function output(PersonWriter $writer)    {        
+        $writer->write($this);    
+    }
+
+    public function getName(): string    {        
+        return "Bob";    
+    }
+
+    public function getAge(): int    {        
+        return 44;    
+    }
+}
+```
+
+The output() method accepts a PersonWriter instance, and then passes an instance of the current class to its write() method. In this way, the Person class is nicely insulated from the implementation of the writer.Moving on to client code, if we need a writer to print name and age values for a Person object, we might go ahead and create a class in the usual way. But it’s such a trivial implementation that we could equally create a class and pass it to Person at the same time:
+
+```php
+// listing 04.100        
+$person = new Person();        
+$person->output (            
+    new class implements PersonWriter {                
+        public function write(Person $person) {                    
+            print $person->getName(). " " . $person->getAge() . "\n";                
+        }            
+    }        
+);
+```
+
+As you can see, you can declare an anonymous class with the keywords, new class. You can then add any extends and implements clauses required before creating the class block.
+
+Anonymous classes do not support closures. In other words, variables declared in a wider scope cannot be accessed within the class. However you can pass values to an anonymous class’s constructor. Let’s create a slightly more complex PersonWriter:
+
+```php
+// listing 04.101        
+$person = new Person();        
+$person->output(            
+    new class("/tmp/persondump") implements PersonWriter {                
+        private $path;
+
+        public function __construct(string $path) {                    
+            $this->path = $path;                
+        }
+
+        public function write(Person $person) {                     
+            file_put_contents($this->path, $person->getName(). " " . $person 
+            ->getAge() . "\n");
+       }            
+    }        
+);
+```
+
+I passed a path argument to the constructor. This value was stored in the $path property and eventually used by the write() method. Of course, if your anonymous class begins to grow in size and complexity, it becomes more sensible to create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
