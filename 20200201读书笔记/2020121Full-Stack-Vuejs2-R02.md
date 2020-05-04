@@ -47,6 +47,8 @@ Once we've registered a component like this, we can use it within our project:
 
 In addition to reusable markup, components allow us to reuse JavaScript functionality. The configuration object can not only include a template but can also include its own state, just like the Vue instance. In fact, each component can be thought of as a mini-instance of Vue with its own data, methods, lifecycle hooks, and so on. We treat component data slightly differently to the Vue instance though, as components are meant to be reusable. For example, we might create a bank of check-box components like this:
 
+1『确实，组件就好比小型的 vue 实例。』
+
 ```js
 <div id="app"> 
     <check-box></check-box> 
@@ -74,13 +76,15 @@ data() {
 }
 ```
 
+1『用场景解释为什么组件里的数据要使用 return 语句返回一个对象。』
+
 ### 6.2 Image carousel
 
 Let's build a new feature for the Vuebnb frontend app using components. As you'll recall from previous chapters, each of our mock data listings has four different images, and we're passing the URLs to the frontend app. To allow the user to peruse these images, we're going to create an image carousel. This carousel will replace the static image that currently occupies the modal window that pops up when you click the header of a listing. Begin by opening the app view. Remove the static image and replace it with a custom HTML element image-carousel.
 
 resources/views/app.blade.php:
 
-```php
+```html
 <div class="modal-content"> 
     <image-carousel></image-carousel> 
 </div>
@@ -92,7 +96,7 @@ A component can be referred to in your code by a kebab-case name such as my-comp
 
 Let's now register the component in our entry file. The template of this new component will simply be the image tag we removed from the view, wrapped in a div. We add this wrapping element, as component templates must have a single root element, and we'll soon be adding more elements inside it.
 
-1『组件与根实例是并列结构的。』
+1『从定义的语法上看，组件与根实例是并列结构的。』
 
 As a proof of concept, the component data will include an array of hard-coded image URLs. Once we learn how to pass data into a component, we will remove these hard-coded URLs and replace them with dynamic ones from our model.
 
