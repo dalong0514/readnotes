@@ -300,6 +300,39 @@ Vue.component('image-carousel', {
 
 To have these controls float nicely over our image carousel, we'll add some new rules to our CSS file as well.
 
+```css
+.image-carousel img {
+    width: 100%;
+    margin-top: -12vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-carousel .controls {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.carousel-control {
+    padding: 1rem;
+    color: #ffffff;
+    opacity: 0.85;
+}
+
+@media (min-width: 744px) {
+    .container {
+        width: 696px;
+    }
+    .carousel-control {
+        font-size: 3rem;
+    }
+}
+```
+
 ### 6.7 Communicating with components
 
 A key aspect of components is that they are reusable, which is why we give them their own state to keep them independent from the rest of the app. However, we may still want to send in data, or send it out. Components have an interface for communicating with other parts of the app, which we will now explore.
@@ -328,7 +361,7 @@ We can send data to a component through a custom HTML property know as a prop. W
 
 A prop can be used just like any data property of the component: you can interpolate it in the template, use it in methods and computed properties, and so on. However, you should not mutate prop data. Think of prop data as being borrowed from another component or instance - only the owner should change it.
 
-1『隐喻：prop data 是从其他组件或实例里借来的数据，所以只有原主人可以修改。』
+1『隐喻：prop data 是从其他组件或实例里借来的数据，所以只有原主人可以修改。也解释了后面看到的，组件的数据流只能自上而下。』
 
 Props are proxied to the instance just like data properties, meaning you can refer to a prop as this.myprop within that component's code. Be sure to name your props uniquely to your data properties to avoid a clash!
 
@@ -342,7 +375,7 @@ Since props must be declared in the template where the component is used, prop d
 
 We can reactively bind data to a component using the v-bind directive. When the data changes in the parent, it will automatically flow down to the child. In the following example, the value of title in the root instance gets programmatically updated after two seconds. This change will automatically flow down to MyComponent, which will reactively re-render to display the new value:
 
-```js
+```html
 <body>
     <div id="app">
         <my-component :title="title"></my-component>
@@ -350,7 +383,7 @@ We can reactively bind data to a component using the v-bind directive. When the 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('my-component', {
-            template: ''<div>@{{ title }}</div>',
+            template: `<div>@{{ title }}</div>`,
             props: ['title'],
         });
 
@@ -369,8 +402,6 @@ We can reactively bind data to a component using the v-bind directive. When the 
 ```
 
 1『注意，码了一遍发现报错，title 变量未定义。因为是在 laravel 框架里，绑定数据的格式跟 blade 冲突，所以得在前面加一个 @。』
-
-Since the v-bind directive is used so commonly in templates, you can omit the directive name as a shorthand: \<div v-bind:title="title"> can be shortened to \<div :title="title">.
 
 ### 6.8 Image URLs
 
@@ -408,7 +439,7 @@ With the dir prop, we can now bind the correct icon to the i element. This is do
 
 resources/assets/js/app.js:
 
-```js
+```html
 Vue.component('image-carousel', {
     template: `<div class="image-carousel">
                     <img v-bind:src="image">
@@ -452,7 +483,7 @@ The parent can listen to this event using the v-on directive in the template whe
 
 1『子模板可以通过 emits 通知父模板，需要改变什么数据值。』
 
-```js
+```html
 <body>
     <div id="app">
         <my-component @toggle="toggle=!toggle"></my-component>
@@ -524,7 +555,7 @@ ImageCarousel will now need to listen for the change-image event via the v-on di
 
 resources/assets/js/app.js:
 
-```js
+```html
 Vue.component('image-carousel', {
     template: `<div class="image-carousel">
                     <img v-bind:src="image">
