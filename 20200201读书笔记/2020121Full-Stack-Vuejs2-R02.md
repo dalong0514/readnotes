@@ -481,7 +481,7 @@ Custom events can be emitted from a child component and listened to by its paren
 
 The parent can listen to this event using the v-on directive in the template where the component is declared. If you handle the event with a method, any arguments sent with the event will be passed to this method as parameters. Consider this example, where a child component, MyComponent, emits an event called toggle to tell the parent, the root instance, to change the value of a data property, toggle:
 
-1『子模板可以通过 emits 通知父模板，需要改变什么数据值。』
+1『子模板可以通过 emits 通知父模板，需要改变什么数据值。简单说子组件通过 emits 发的通知可以被父组件监听到，父组件根据通知做出动作。这个过程跟 html 文件那边的事件很相似，浏览器对应于父组件，猜测因为这种类似的过程所以被称为「Custom events」。自定义组件解决了数据从向往上反馈的难题。』
 
 ```html
 <body>
@@ -489,7 +489,6 @@ The parent can listen to this event using the v-on directive in the template whe
         <my-component @toggle="toggle=!toggle"></my-component>
         @{{ message }}
     </div>
-    <!-- <script src="{{ asset('js/testapp.js') }}" type="text/javascript"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('my-component', {
@@ -552,6 +551,8 @@ components: {
 Open Vue Devtools to the Events tab, and, at the same time, click on the carousel controls. Custom events are logged here, so we can verify change-image is being emitted:
 
 ImageCarousel will now need to listen for the change-image event via the v-on directive. The event will be handled by a method changeImage which will have a single parameter, val, reflecting the payload being sent in the event. The method will then use val to step the value of index, ensuring it loops to the start or end if it exceeds the bounds of the array it indexes.
+
+1『父组件里，通过在 methods 里定义一个监听方法来处理子组件发送过来的通知。changeImage() 是父组件的监听方法，传入的参数 val 是子组件发送过来的通知。』
 
 resources/assets/js/app.js:
 
@@ -674,7 +675,7 @@ Starting with ImageCarousel.vue, the first step is to create the three root elem
 
 resources/assets/components/ImageCarousel.vue:
 
-```
+```html
 <template></template> 
 <script></script> 
 <style></style>
@@ -761,7 +762,6 @@ var app = new Vue({
 
 Be sure to delete any remaining code from the original ImageCarousel component definition in app.js before moving on.
 
-
 #### 6.14.1 CSS
 
 SFCs allow us to add style to a component, helping to better organize our CSS code. Let's move the CSS rules we created for the image carousel into this new SFC's style tag:
@@ -813,7 +813,7 @@ We'll need to load this new file in our view, after the main style sheet.
 
 resources/views/app.blade.php:
 
-```php
+```html
 <head> 
     ... 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"> 
@@ -1475,7 +1475,7 @@ Once the template has been compiled, any state or directives can easily be appli
 Rather than supplying a string template for your component, you can instead supply a render function. Without understanding the syntax, you can probably tell from the following example that the render function is generating a semantically equivalent template to the string template in the previous example. Both define a div with an id attribute of my-component and with inner text of My component:
 
 ```js
-Vue.component('my-component'</span>, { 
+Vue.component('my-component', { 
     render(createElement) { 
         createElement('div', {attrs:{id:'my-component'}}, 'My component'); 
         // Equivalent to <div id="my-component">My component</div> 
@@ -1491,10 +1491,9 @@ Wouldn't it be great if we could create HTML markup templates in development, th
 
 This is exactly what happens to single-file components when Webpack transforms them via Vue Loader. Take a look at the following snippet of the JavaScript bundle and you can see the ImageCarousel component after Webpack has transformed and bundled it:
 
-1『上面说了 Vue Loader 可以解决的问题，目前还不是很清楚。（2020-04-26）』
+1『 Vue Loader 可以解决上面提到的问题，即 render function 难写。』
 
 Figure 6.15. image-carousel component in the bundle file
-
 
 ### 6.26 Refactoring the main template as single-file component
 
@@ -1701,7 +1700,7 @@ Figure 6.17. The difference between bundle sizes after applying the runtime-only
 
 Keep in mind that without the template compiler we can no longer provide string templates for our components. Doing so will cause an error at runtime. That shouldn't be a problem though since we've got the far more powerful option of SFCs.
 
-1『我还是改为默认的构建工具「vue.common.js」，性能差点无所谓，按作者的意思如果不使用 SFCs，即涉及到模板编译的时候，vue.runtime.esm.js 应该有问题。现在不确定是否是这个意思。（2020-04026）』
+1『最后改为「vue.esm.js」，性能差点无所谓，按作者的意思如果不使用 SFCs，即涉及到模板编译的时候，vue.runtime.esm.js 应该有问题。（2020-04-26）』
 
 ## 0701. Building a Multi-Page App with Vue Router
 

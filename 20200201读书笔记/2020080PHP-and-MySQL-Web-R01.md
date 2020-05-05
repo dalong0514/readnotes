@@ -44,7 +44,9 @@ for ($i=1; $i <= $numnames; $i++) {
 
 By dynamically creating the names of the variables, you can access each of the fields in turn. 
 
-### 0203. 术语卡——
+### 0203. 术语卡——RFCs
+
+The fourth parameter can be used to send any additional valid email headers. Valid email headers are described in the document RFC822, which is available online if you want more details. (RFCs, or Requests for Comment, are the source of many Internet standards; we discuss them in Chapter 18「Using Network and Protocol Functions.」) 
 
 ### 0301. 人名卡——Luke Welling
 

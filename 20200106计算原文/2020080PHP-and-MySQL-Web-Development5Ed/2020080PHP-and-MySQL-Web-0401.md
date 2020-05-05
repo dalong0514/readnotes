@@ -24,31 +24,43 @@ This time, you’ll build a straightforward and commonly used customer feedback 
 
 Figure 4.1  Bob’s feedback form asks customers for their name, email address, and comments.
 
-Start with the bare bones script shown in Listing 4.1 and add to it as you read along.
+Start with the bare bones script shown in Listing 4.1 and add to it as you read along. Note that this script, while working, should not be deployed as-is, for reasons we’ll discuss in the next section. We’ll look at a refined version later in the chapter, which will be suitable for actual use.
 
-Note that this script, while working, should not be deployed as-is, for reasons we’ll discuss in the next section. We’ll look at a refined version later in the chapter, which will be suitable for actual use.
+Listing 4.1  processfeedback.php—Basic Script to Email Form Contents
 
-Listing 4.1  processfeedback.php—Basic Script to Email Form Contents<?php
+```php
+<?php
 
-//create short variable names$name=$_POST['name'];$email=$_POST['email'];$feedback=$_POST['feedback'];
+//create short variable names
+$name=$_POST['name'];
+$email=$_POST['email'];
+$feedback=$_POST['feedback'];
 
 //set up some static information
-
 $toaddress = "feedback@example.com";
-
 $subject = "Feedback from web site";
-
-$mailcontent = "Customer name: ".filter_var($name)."\n".               "Customer email: ".$email."\n".               "Customer comments:\n".$feedback."\n";
-
+$mailcontent = "Customer name: ".filter_var($name)."\n".               
+                        "Customer email: ".$email."\n".               
+                        "Customer comments:\n".$feedback."\n";
 $fromaddress = "From: webserver@example.com";
 
-//invoke mail() function to send mailmail($toaddress, $subject, $mailcontent, $fromaddress);
+//invoke mail() function to send mail
+mail($toaddress, $subject, $mailcontent, $fromaddress);
 
-?><!DOCTYPE html><html>  <head>    <title>Bob's Auto Parts - Feedback Submitted</title>  </head>  <body>
+?>
 
-    <h1>Feedback submitted</h1>    <p>Your feedback has been sent.</p>
+<!DOCTYPE html>
+<html>  
+    <head>    
+        <title>Bob's Auto Parts - Feedback Submitted</title>  
+    </head>  
 
-  </body></html>
+    <body>
+        <h1>Feedback submitted</h1>    
+        <p>Your feedback has been sent.</p>
+    </body>
+</html>
+```
 
 Generally, you should check that users have filled out all the required form fields using, for example, isset(). We have omitted this function call from the script and other examples for the sake of brevity.
 
@@ -56,201 +68,194 @@ In this script, you can see that we have concatenated the form fields together a
 
 Unsurprisingly, this function sends email. The prototype for mail() looks like this:
 
-bool mail(string to, string subject, string message,          string [additional_headers [, string additional_parameters]]);
+```php
+bool mail(string to, string subject, string message,          
+                string [additional_headers [, string additional_parameters]]);
+```
 
-The first three parameters are compulsory and represent the address to send email to, the subject line, and the message contents, respectively. The fourth parameter can be used to send any additional valid email headers. Valid email headers are described in the document RFC822, which is available online if you want more details. (RFCs, or Requests for Comment, are the source of many Internet standards; we discuss them in Chapter 18,「Using Network and Protocol Functions.」) Here, the fourth parameter adds a From: address for the mail. You can also use it to add Reply-To: and Cc: fields, among others. If you want more than one 
+The first three parameters are compulsory and represent the address to send email to, the subject line, and the message contents, respectively. The fourth parameter can be used to send any additional valid email headers. Valid email headers are described in the document RFC822, which is available online if you want more details. (RFCs, or Requests for Comment, are the source of many Internet standards; we discuss them in Chapter 18「Using Network and Protocol Functions.」) 
 
-additional header, just separate them by using newlines and carriage returns (\\n) within the string, as follows:
+2『终于知道 RFC822 的基本意思了，之前很多地方看到过，做一张术语卡片。Requests for Comment, are the source of many Internet standards. 』
 
-$additional_headers="From: webserver@example.com\r\n "                     ."Reply-To: bob@example.com";
+Here, the fourth parameter adds a From: address for the mail. You can also use it to add Reply-To: and Cc: fields, among others. If you want more than one additional header, just separate them by using newlines and carriage returns (\\n) within the string, as follows:
 
-The optional fifth parameter can be used to pass a parameter to whatever program you have configured to send mail.
+```php
+$additional_headers="From: webserver@example.com\r\n "                     
+                                    ."Reply-To: bob@example.com";
+```
 
-To use the mail() function, set up your PHP installation to point at your mail-sending program. If the script doesn’t work for you in its current form, an installation issue might be at fault, check Appendix A,「Installing Apache, PHP, and MySQL.」
+The optional fifth parameter can be used to pass a parameter to whatever program you have configured to send mail. To use the mail() function, set up your PHP installation to point at your mail-sending program. If the script doesn’t work for you in its current form, an installation issue might be at fault, check Appendix A,「Installing Apache, PHP, and MySQL.」
 
 Throughout this chapter, you enhance this basic script by making use of PHP’s string handling and regular expression functions.
 
-Formatting StringsYou often need to clean up user strings (typically from an HTML form interface) before you can use them. The following sections describe some of the functions you can use.
+## 4.2 Formatting Strings
 
-Trimming Strings: chop(), ltrim(), and trim()The first step in tidying up is to trim any excess whitespace from the string. Although this step is never compulsory, it can be useful if you are going to store the string in a file or database, or if you’re going to compare it to other strings.
+You often need to clean up user strings (typically from an HTML form interface) before you can use them. The following sections describe some of the functions you can use.
 
-PHP provides three useful functions for this purpose. In the beginning of the script when you give short names to the form input variables, you can use the trim() function to tidy up your input data as follows:
+### 4.2.1 Trimming Strings: chop(), ltrim(), and trim()
 
-$name = trim($_POST['name']);$email = trim($_POST['email']);$feedback = trim($_POST['feedback']);
+The first step in tidying up is to trim any excess whitespace from the string. Although this step is never compulsory, it can be useful if you are going to store the string in a file or database, or if you’re going to compare it to other strings. PHP provides three useful functions for this purpose. In the beginning of the script when you give short names to the form input variables, you can use the trim() function to tidy up your input data as follows:
 
-The trim() function strips whitespace from the start and end of a string and returns the  resulting string. The characters it strips by default are newlines and carriage returns (\n and \r), horizontal and vertical tabs (\t and \x0B), end-of-string characters (\0), and spaces. You can also pass it a second parameter containing a list of characters to strip instead of this default list. Depending on your particular purpose, you might like to use the ltrim() or rtrim()  functions instead. They are both similar to trim(), taking the string in question as a parameter and returning the formatted string. The difference between these three is that trim() removes whitespace from the start and end of a string, ltrim() removes whitespace from the start (or left) only, and rtrim() removes whitespace from the end (or right) only.
+```php
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$feedback = trim($_POST['feedback']);
+```
+
+The trim() function strips whitespace from the start and end of a string and returns the resulting string. The characters it strips by default are newlines and carriage returns (\n and \r), horizontal and vertical tabs (\t and \x0B), end-of-string characters (\0), and spaces. You can also pass it a second parameter containing a list of characters to strip instead of this default list. Depending on your particular purpose, you might like to use the ltrim() or rtrim()  functions instead. They are both similar to trim(), taking the string in question as a parameter and returning the formatted string. The difference between these three is that trim() removes whitespace from the start and end of a string, ltrim() removes whitespace from the start (or left) only, and rtrim() removes whitespace from the end (or right) only.
 
 You may also use the alias chop() for rtrim(). Perl has a similar function but they behave slightly differently, so be cautious in your assumptions if you are coming to PHP from a Perl background.
 
-Formatting Strings for OutputPHP includes a set of functions that you can use to reformat a string in different ways for different purposes.
+### 4.2.2 Formatting Strings for Output
 
-Filtering Strings for OutputWhenever we take user-submitted data and output it somewhere, we need to plan it with the destination in mind. This is because most places we send output to consider some  characters and strings as special or control characters and strings, and we don’t want the output  destination to interpret user-submitted data as commands.
+PHP includes a set of functions that you can use to reformat a string in different ways for different purposes.
 
-For example, if echoing user input to a browser, we don’t want to execute any HTML or JavaScript that the user may have included. This is not only because it might break the  formatting, but also because it is a security vulnerability to allow the execution of arbitrary user-submitted code or commands. We’ll discuss this in a lot more detail in Part III of this book,「Web Application Security.」In that section, we’ll also cover the filter extension, which enables generic filtering per-destination.
+#### 4.2.2.1 Filtering Strings for Output
 
-Filtering Strings for Output to the Browser with htmlspecialchars()We used this function in previous chapters, but let’s recap here. The htmlspecialchars() function converts characters that have a special meaning in HTML to their HTML entity equivalent. For example, the character < is converted to the entity &lt;.
+Whenever we take user-submitted data and output it somewhere, we need to plan it with the destination in mind. This is because most places we send output to consider some characters and strings as special or control characters and strings, and we don’t want the output destination to interpret user-submitted data as commands.
 
-The prototype of this function is as follows:
+For example, if echoing user input to a browser, we don’t want to execute any HTML or JavaScript that the user may have included. This is not only because it might break the formatting, but also because it is a security vulnerability to allow the execution of arbitrary user-submitted code or commands. We’ll discuss this in a lot more detail in Part III of this book,「Web Application Security.」In that section, we’ll also cover the filter extension, which enables generic filtering per-destination.
 
+#### 4.2.2.2 Filtering Strings for Output to the Browser with htmlspecialchars()
+
+We used this function in previous chapters, but let’s recap here. The htmlspecialchars() function converts characters that have a special meaning in HTML to their HTML entity equivalent. For example, the character \< is converted to the entity \&lt;. The prototype of this function is as follows:
+
+```php
 string htmlspecialchars (string string [, int flags = ENT_COMPAT | ENT_HTML401 [, string encoding = 'UTF-8' [, bool double_encode = true ]]])
+```
 
 In general, this function converts characters to their HTML entity equivalents as shown in Table 4.1.
 
 Table 4.1  HTML Entities Encoded by the htmlspecialchars() Function
 
-The default encoding of quotes is to only encode double quotes. Single quotes will remain untranslated. This behavior is controlled by the flags parameter.
-
-The first parameter is the string to be translated, and the function returns the translated string.
+The default encoding of quotes is to only encode double quotes. Single quotes will remain untranslated. This behavior is controlled by the flags parameter. The first parameter is the string to be translated, and the function returns the translated string.
 
 Note: If the input string is not valid in the specified encoding, the function will return the empty string without raising an error. This is intended to help avoid code injection issues.
 
-The first optional parameter, flags, specifies how the translation should be done. You pass in a bitmask representing the possible values combined together. The default value, as you can see in the prototype above, is ENT_COMPAT | ENT_HTML401. The ENT_COMPAT constant indicates that double quotes should be encoded, and single quotes left as-is, while the ENT_HTML401 constant indicates that code should be treated as HTML 4.01.
+The first optional parameter, flags, specifies how the translation should be done. You pass in a bitmask representing the possible values combined together. The default value, as you can see in the prototype above, is ENT\_COMPAT | ENT\_HTML401. The ENT\_COMPAT constant indicates that double quotes should be encoded, and single quotes left as-is, while the ENT\_HTML401 constant indicates that code should be treated as HTML 4.01.
 
 The second optional parameter, encoding, specifies the encoding used for conversion. From PHP 5.4 on, the default is UTF-8. Prior to that, it was ISO-8859-1, commonly known as Latin-1. The list of supported encodings may be found in the PHP documentation.
 
-The third optional parameter, double_encode, specifies whether to encode HTML entities. The default is to convert them (again).
+The third optional parameter, double\_encode, specifies whether to encode HTML entities. The default is to convert them (again).
 
 The full set of possible values that may be combined in the flags parameter can be found in Table 4.2.
 
 Table 4.2  Flags for the htmlspecialchars() Function
 
-Flag
+#### 4.2.2.3 Filtering Strings for Other Forms of Output
 
-Meaning
+Depending on where you are outputting strings, the characters that may cause problems are different. We previously discussed the htmlspecialchars() function for output to the browser. In the example in Listing 4.1, we are sending output to email. What do we need to take into account here? We don’t care if the email contains HTML, so using the htmlspecialchars() function is not appropriate here.
 
-ENT_COMPAT
+The main issue in email is that headers are separated by the character string \r\n (carriage return-line feed). We need to take care that user data we use in the email headers does not contain these characters, or we run the risk of a set of attacks, called header injection. (We discuss this in more detail in Part III.) As with many string processing problems, there are multiple ways to approach this. One way is to use the str\_replace() function, as follows:
 
-Encode double quotes but not single quotes
+```php
+$mailcontent = "Customer name: ".str_replace("\r\n", "", $name)."\n".               
+                        "Customer email: ".str_replace("\r\n", "",$email)."\n".               
+                        "Customer comments:\n".str_replace("\r\n", "",$feedback)."\n";
+```
 
-ENT_NOQUOTES
+If you have more complicated matching or replacement rules, you can use the regular expression functions described later in this chapter. In a simple case like this where you want to entirely replace one string with another, you should always use the str\_replace() function. We’ll discuss the str\_replace() function in more detail later in this chapter.
 
-Do not encode either single or double quotes
+#### 4.2.2.4 Using HTML Formatting: The nl2br() 
 
-ENT_QUOTES
+FunctionThe nl2br() function takes a string as a parameter and replaces all the newlines in it with the HTML \<br/> tag. This capability is useful for echoing a long string to the browser. For example, you can use this function to format the customer’s feedback to echo it back:
 
-Encodes both single and double quotes
-
-ENT_HTML401
-
-Treat code as HTML 4.01
-
-ENT_XML1
-
-ENT_XHTML
-
-ENT_HTML5
-
-ENT_IGNORE
-
-Treat code as XML1
-
-Treat code as XHTML
-
-Treat code as HTML5
-
-Discard invalid code unit sequences instead of returning the empty string. Not recommended for security reasons.
-
-ENT_SUBSTITUTE
-
-Replace invalid code unit sequences with a Unicode Replacement Character.
-
-ENT_DISALLOWED
-
-Replace invalid code points with a Unicode Replacement Character.
-
-Filtering Strings for Other Forms of OutputDepending on where you are outputting strings, the characters that may cause problems are different. We previously discussed the htmlspecialchars() function for output to the browser.
-
-In the example in Listing 4.1, we are sending output to email. What do we need to take into account here? We don’t care if the email contains HTML, so using the htmlspecialchars() function is not appropriate here.
-
-The main issue in email is that headers are separated by the character string \r\n (carriage return-line feed). We need to take care that user data we use in the email headers does not contain these characters, or we run the risk of a set of attacks, called header injection. (We discuss this in more detail in Part III.)
-
-As with many string processing problems, there are multiple ways to approach this. One way is to use the str_replace() function, as follows:
-
-$mailcontent = "Customer name: ".str_replace("\r\n", "", $name)."\n".               "Customer email: ".str_replace("\r\n", "",$email)."\n".               "Customer comments:\n".str_replace("\r\n", "",$feedback)."\n";
-
-If you have more complicated matching or replacement rules, you can use the regular expression functions described later in this chapter. In a simple case like this where you want to entirely replace one string with another, you should always use the str_replace() function. We’ll discuss the str_replace() function in more detail later in this chapter.
-
-Using HTML Formatting: The nl2br() FunctionThe nl2br() function takes a string as a parameter and replaces all the newlines in it with the HTML <br/> tag. This capability is useful for echoing a long string to the browser. For example, you can use this function to format the customer’s feedback to echo it back:
-
-<p>Your feedback (shown below) has been sent.</p><p><?php echo nl2br(htmlspecialchars($feedback)); ?> </p>
+```html
+<p>Your feedback (shown below) has been sent.</p>
+<p><?php echo nl2br(htmlspecialchars($feedback)); ?> </p>
+```
 
 Remember that HTML disregards plain whitespace, so if you don’t filter this output through nl2br(), it will appear on a single line (except for newlines forced by the browser window). The result is illustrated in Figure 4.2.
 
-Notice that we first applied the htmlspecialchars() function and then the nl2br()  function. This is because if we did them in the opposite order, the <br/> tags inserted by the nl2br() function would be translated into HTML entities by the htmlspecialchars()  function and hence would have no effect.
+Notice that we first applied the htmlspecialchars() function and then the nl2br()  function. This is because if we did them in the opposite order, the \<br/> tags inserted by the nl2br() function would be translated into HTML entities by the htmlspecialchars()  function and hence would have no effect.
 
 Figure 4.2  Using PHP’s nl2br() function improves the display of long strings within HTML.
 
 At this stage, we have an order processing script that formats user data for output to both email and HTML. The revised order processing script is found in Listing 4.2.
 
-Listing 4.2  processfeedback_v2.php—Revised Script to Email Form Contents<?php
+Listing 4.2  processfeedback_v2.php—Revised Script to Email Form Contents
 
-//create short variable names$name = trim($_POST['name']);$email = trim($_POST['email']);$feedback = trim($_POST['feedback']);
+```php
+<?php
 
-//set up some static information$toaddress = "feedback@example.com";
+//create short variable names
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$feedback = trim($_POST['feedback']);
 
+//set up some static information
+$toaddress = "feedback@example.com";
 $subject = "Feedback from web site";
-
-$mailcontent = "Customer name: ".str_replace("\r\n", "", $name)."\n".               "Customer email: ".str_replace("\r\n", "",$email)."\n".               "Customer comments:\n".str_replace("\r\n", "",$feedback)."\n";
-
+$mailcontent = "Customer name: ".str_replace("\r\n", "", $name)."\n".               
+                        "Customer email: ".str_replace("\r\n", "",$email)."\n".               
+                        "Customer comments:\n".str_replace("\r\n", "",$feedback)."\n";
 $fromaddress = "From: webserver@example.com";
 
-//invoke mail() function to send mailmail($toaddress, $subject, $mailcontent, $fromaddress);
+//invoke mail() function to send mail
+mail($toaddress, $subject, $mailcontent, $fromaddress);
 
-Formatting Strings
+?>
 
-109
-
-?><!DOCTYPE html><html>  <head>    <title>Bob's Auto Parts - Feedback Submitted</title>  </head>  <body>
-
-    <h1>Feedback submitted</h1>    <p>Your feedback (shown below) has been sent.</p>    <p><?php echo nl2br(htmlspecialchars($feedback)); ?> </p>  </body></html>
+<!DOCTYPE html>
+<html>  
+    <head>    
+        <title>Bob's Auto Parts - Feedback Submitted</title>  
+    </head>  
+    
+    <body>
+        <h1>Feedback submitted</h1>    
+        <p>Your feedback (shown below) has been sent.</p>    
+        <p><?php echo nl2br(htmlspecialchars($feedback)); ?> </p>  
+    </body>
+</html>
+```
 
 There are many other string processing functions you may find useful. We’ll examine these in the remainder of this section.
 
-Formatting a String for PrintingSo far, you have used the echo language construct to print strings to the browser. PHP also supports a print() construct, which does the same thing as echo, but returns a value, which is always equal to 1.
+#### 4.2.2.5 Formatting a String for Printing
 
-Both of these techniques print a string「as is.」You can apply some more sophisticated  formatting using the functions printf() and sprintf(). They work basically the same way, except that printf() outputs a formatted string and sprintf() returns a formatted string.
+So far, you have used the echo language construct to print strings to the browser. PHP also supports a print() construct, which does the same thing as echo, but returns a value, which is always equal to 1. Both of these techniques print a string「as is.」You can apply some more sophisticated formatting using the functions printf() and sprintf(). They work basically the same way, except that printf() outputs a formatted string and sprintf() returns a formatted string.
 
 If you have previously programmed in C, you will find that these functions are conceptually similar to the C versions. Be careful, though, because the syntax is not exactly the same. If you haven’t, they take getting used to but are useful and powerful.
 
 The prototypes for these functions are
 
+```
 string sprintf (string format [, mixed args...])int printf (string format [, mixed args...])
+```
 
-The first parameter passed to both of these functions is a format string that describes the basic shape of the output with format codes instead of variables. The other parameters are variables that will be substituted in to the format string.
+The first parameter passed to both of these functions is a format string that describes the basic shape of the output with format codes instead of variables. The other parameters are variables that will be substituted in to the format string. For example, using echo, you can use the variables you want to print inline, like this:
 
-For example, using echo, you can use the variables you want to print inline, like this:
-
+```php
 echo "Total amount of order is $total.";
+```
 
 To get the same effect with printf(), you would use
 
+```php
 printf ("Total amount of order is %s.", $total);
+```
 
-The %s in the format string is called a conversion specification. This one means「replace with a string.」In this case, it is replaced with $total interpreted as a string. If the value stored in $total was 12.4, both of these approaches would print it as 12.4.
+The %s in the format string is called a conversion specification. This one means「replace with a string.」In this case, it is replaced with \$total interpreted as a string. If the value stored in \$total was 12.4, both of these approaches would print it as 12.4. The advantage of printf() is that you can use a more useful conversion specification to specify that \$total is actually a floating-point number and that it should have two decimal places after the decimal point, as follows:
 
-110
-
-Chapter 4  String Manipulation and Regular Expressions
-
-The advantage of printf() is that you can use a more useful conversion specification to specify that $total is actually a floating-point number and that it should have two decimal places after the decimal point, as follows:
-
+```php
 printf ("Total amount of order is %.2f", $total);
+```
 
-Given this formatting, and 12.4 stored in $total, this statement will print as 12.40.
+Given this formatting, and 12.4 stored in \$total, this statement will print as 12.40. You can have multiple conversion specifications in the format string. If you have n conversion specifications, you will usually have n arguments after the format string. Each conversion speci-fication will be replaced by a reformatted argument in the order they are listed. For example,
 
-You can have multiple conversion specifications in the format string. If you have n conversion specifications, you will usually have n arguments after the format string. Each conversion speci-fication will be replaced by a reformatted argument in the order they are listed. For example,
+```php
+printf ("Total amount of order is %.2f (with shipping %.2f) ",           
+            $total, $total_shipping);
+```
 
-printf ("Total amount of order is %.2f (with shipping %.2f) ",           $total, $total_shipping);
+Here, the first conversion specification uses the variable \$total, and the second uses the  variable \$total\_shipping. Each conversion specification follows the same format, which is
 
-Here, the first conversion specification uses the variable $total, and the second uses the  variable $total_shipping.
-
-Each conversion specification follows the same format, which is
-
-%[+]['padding_character][-][width][.precision]type
+    %[+]['padding_character][-][width][.precision]type
 
 All conversion specifications start with a % symbol. If you actually want to print a % symbol, you need to use %%.The + sign is optional. By default, only numbers that are negative show a sign (in this case -). If you specify a sign here then positive values will be prefixed with the + sign and negative values will be prefixed with the - sign.
 
-The padding_character is optional. It is used to pad your variable to the width you have specified. An example would be to add leading zeros to a number like a counter. The default padding character is a space. If you are specifying a space or zero, you do not need to prefix it with the apostrophe ('). For any other padding character, you need to prefix it with an apostrophe.
+The padding\_character is optional. It is used to pad your variable to the width you have specified. An example would be to add leading zeros to a number like a counter. The default padding character is a space. If you are specifying a space or zero, you do not need to prefix it with the apostrophe ('). For any other padding character, you need to prefix it with an apostrophe.
 
 The - symbol is optional. It specifies that the data in the field will be left-justified rather than right-justified, which is the default.
 
@@ -262,133 +267,32 @@ The final part of the specification is a type code. A summary of these codes is 
 
 Table 4.3  Conversion Specification Type Codes
 
-Type
-
-Meaning
-
-%
-
-b
-
-A literal % character.
-
-Interpret as an integer and print as a binary number.
-
-Formatting Strings
-
-111
-
-c
-
-d
-
-e
-
-E
-
-f
-
-F
-
-g
-
-G
-
-o
-
-s
-
-u
-
-x
-
-X
-
-Interpret as an integer and print as a character.
-
-Interpret as an integer and print as a decimal number.
-
-Interpret as a double and print in scientific notation. Precision is the number of digits after the decimal point.
-
-Same as e but a capital E will be printed.
-
-Interpret as a float and print as a locale-aware floating-point number.
-
-Interpret as a float and print as a non-locale-aware floating-point number.
-
-This is the shorter output, given a choice of e or f as the specification type.
-
-This is the shorter output, given a choice of E or F as the specification type.
-
-Interpret as an integer and print as an octal number.
-
-Interpret as a string and print as a string.
-
-Interpret as an integer and print as an unsigned decimal.
-
-Interpret as an integer and print as a hexadecimal number with lowercase letters for the digits a–f.
-
-Interpret as an integer and print as a hexadecimal number with uppercase letters for the digits A–F.
-
 When using the printf() function with conversion type codes, you can use argument numbering. That means that the arguments don’t need to be in the same order as the  conversion specifications. For example,
 
-printf ("Total amount of order is %2\$.2f (with shipping %1\$.2f) ",           $total_shipping, $total);
+```php
+printf ("Total amount of order is %2\$.2f (with shipping %1\$.2f) ",           
+            $total_shipping, $total);
+```
 
-Just add the argument position in the list directly after the % sign, followed by an escaped $ symbol; in this example, 2\$ means「replace with the second argument in the list.」This method can also be used to repeat arguments.
+Just add the argument position in the list directly after the % sign, followed by an escaped \$ symbol; in this example, 2\$ means「replace with the second argument in the list.」This method can also be used to repeat arguments. Two alternative versions of these functions are called vprintf() and vsprintf(). These  variants accept two parameters: the format string and an array of the arguments rather than a variable number of parameters.
 
-Two alternative versions of these functions are called vprintf() and vsprintf(). These  variants accept two parameters: the format string and an array of the arguments rather than a variable number of parameters.
+#### 4.2.2.6 Changing the Case of a String
 
-Changing the Case of a StringYou can also reformat the case of a string. This capability is not particularly useful for the sample application, but we’ll look at some brief examples.
+You can also reformat the case of a string. This capability is not particularly useful for the sample application, but we’ll look at some brief examples.
 
-If you start with the subject string, $subject, which you are using for email, you can change its case by using several functions. The effect of these functions is summarized in Table 4.4. The first column shows the function name, the second describes its effect, the third shows how it would be applied to the string $subject, and the last column shows what value would be returned from the function.
-
-112
-
-Chapter 4  String Manipulation and Regular Expressions
+If you start with the subject string, \$subject, which you are using for email, you can change its case by using several functions. The effect of these functions is summarized in Table 4.4. The first column shows the function name, the second describes its effect, the third shows how it would be applied to the string \$subject, and the last column shows what value would be returned from the function.
 
 Table 4.4  String Case Functions and Their Effects
 
-Function
+## 4.3 Joining and Splitting Strings with String Functions
 
-Description
+Often, you may want to look at parts of a string individually. For example, you might want to look at words in a sentence (say, for spellchecking) or split a domain name or email address into its component parts. PHP provides several string functions (and regular expression functions) that allow you to do this.
 
-Use
 
-Value
 
-strtoupper()
 
-Turns string to  uppercase
 
-strtolower()
 
-Turns string to  lowercase
-
-ucfirst()
-
-ucwords()
-
-Capitalizes first Feedback from  character of string if it’s alphabetic
-
-Capitalizes first Feedback From  character of each word in the string that begins with an  alphabetic character
-
-$subject
-
-Feedback from web site
-
-strtoupper($subject)
-
-strtolower($subject)
-
-FEEDBACK FROM WEB SITE
-
-feedback from web site
-
-ucfirst($subject) web site
-
-ucwords($subject) Web Site
-
-Joining and Splitting Strings with String FunctionsOften, you may want to look at parts of a string individually. For example, you might want to look at words in a sentence (say, for spellchecking) or split a domain name or email address into its component parts. PHP provides several string functions (and regular expression functions) that allow you to do this.
 
 In this example, Bob wants any customer feedback from bigcustomer.com to go directly to him, so you can split the email address the customer typed into parts to find out whether he or she works for Bob’s big customer.
 
@@ -403,10 +307,6 @@ To get the domain name from the customer’s email address in the script, you ca
 $email_array = explode('@', $email);
 
 This call to explode() splits the customer’s email address into two parts: the username, which is stored in $email_array[0], and the domain name, which is stored in $email_array[1]. 
-
-Joining and Splitting Strings with String Functions
-
-113
 
 Now you can test the domain name to determine the customer’s origin and then send the feedback to the appropriate person:
 
@@ -431,10 +331,6 @@ string strtok(string input, string separator);
 The separator can be either a character or a string of characters, but the input string is split on each of the characters in the separator string rather than on the whole separator string (as explode does).
 
 Calling strtok() is not quite as simple as it seems in the prototype. To get the first token from a string, you call strtok() with the string you want tokenized and a separator. To get the subsequent tokens from the string, you just pass a single parameter—the separator. The  function keeps its own internal pointer to its place in the string. If you want to reset the pointer, you can pass the string into it again.
-
-114
-
-Chapter 4  String Manipulation and Regular Expressions
 
 strtok() is typically used as follows:
 
