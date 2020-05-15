@@ -4,9 +4,11 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡——如何 用 vue-router 搭建单页应用
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+
+### 0102. 主题卡——如何用 vuex 搭建数据中心 store
 
 ### 0201. 术语卡——SPA
 
@@ -50,6 +52,28 @@ Vue 实例里增加 watch 方法调用浏览器的 API 从而操作与 vue 实�
         },
     },
 ```
+
+### 0205. 术语卡——Flux application architecture
+
+Flux is not a library. You can't go to GitHub and download it. Flux is a set of guiding principles that describe a scalable frontend architecture that sufficiently mitigates this flaw. It is not just for a chat app, but for any complex UI with components which share state, like Vuebnb. Let's now explore the guiding principles of Flux.
+
+Principle #1 – Single source of truth
+
+Components may have local data that only they need to know about. For example, the position of the scroll bar in the user list component is probably of no interest to other components:
+
+But any data that is to be shared between components, for example application data, needs to be kept in a single place, separate from the components that use it. This location is referred to as the store. Components must read application data from this location and not keep their own copy to prevent conflict or disagreement:
+
+Principle #2 – Data is read-only
+
+Components can freely read data from the store. But they cannot change data in the store, at least not directly. Instead, they must inform the store of their intent to change the data and the store will be responsible for making those changes via a set of defined functions called mutator methods.
+
+Why this approach? If we centralize the data-altering logic then we don't have to look far if there are inconsistencies in the state. We're minimizing the possibility that some random component (possibly in a third party module) has changed the data in an unexpected fashion.
+
+Principle #3 – Mutations are synchronous
+
+It's much easier to debug state inconsistencies in an app that implements the above two principles in its architecture. You could log commits and observe how the state changes in response (which automatically happens with Vue Devtools, as we'll see).
+
+But this ability would be undermined if our mutations were applied asynchronously. We'd know the order our commits came in, but we would not know the order in which our components committed them. Synchronous mutations ensure state is not dependent on the sequence and timing of unpredictable events.
 
 ### 0301. 人名卡——
 

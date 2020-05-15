@@ -133,6 +133,8 @@ Let's begin by creating the new component:
 
 The template of this component will include a Font Awesome heart icon. It will also include a click handler which will be used to toggle the saved state. Since this component will always be a child of a listing or listing summary, it will receive a listing ID as a prop. This prop will be used shortly to save the state in Vuex.
 
+1『看来是作为子组件，往往通过 prop 获取父组件的数据。』
+
 resources/assets/components/ListingSave.vue:
 
 ```html
@@ -168,7 +170,7 @@ resources/assets/components/ListingSave.vue:
 
 Note that the click handler has a stop modifier. This modifier prevents the click event from bubbling up to ancestor elements, especially any anchor tags which might trigger a page change!
 
-1『上面的修饰符 stop 是个关键知识点，类似于小程序里的冒泡和非冒泡机制。』
+1『上面的修饰符 stop 是个关键知识点，类似于小程序里的冒泡和非冒泡机制。但目前还没能力碰到一个场景知道该用它。（2020-05-15）』
 
 We'll now add ListingSave to the ListingSummary component. Remember to pass the listing's ID as a prop. While we're at it, let's add a position: relative to the .listing-summary class rules so that ListingSave can be positioned absolutely against it.
 
@@ -223,6 +225,8 @@ resources/assets/components/ListingSummary.vue:
 ...
 </style>
 ```
+
+1『这里的 css 样式值得学习。』
 
 With that done, we will now see the ListingSave heart icon rendered on each summary:
 
@@ -300,6 +304,8 @@ resources/assets/components/ListingSave.vue:
     }
 </script>
 ```
+
+1『组件通知 store 修改数据，是通过 \$store.commit() 方法发送信息给 mutations。而组件想从 store 那边获取数据的话，必须通过自己的 computed 属性，methods 属性是不行的，这样做的原因是为了 computed 不会保存备份，确保了 Flux 框架里「单一数据源」的原则。』
 
 The main point of using mutator methods in the store architecture is that state is changed consistently. But there is an additional benefit: we can easily log these changes for debugging. If you check the Vuex tab in Vue Devtools after clicking one of the save buttons, you will see an entry for that mutation:
 
@@ -442,6 +448,8 @@ Implementing the saved page will require an enhancement to our app architecture,
 
 All the pages in our app require a route on the server to return a view. This view includes the data for the relevant page component inlined in the document head. Or, if we navigate to that page via in-app links, an API endpoint will instead supply that same data. We set up this mechanism in Chapter 7, Building A Multi-Page App With Vue Router.
 
+1『简单阐述了在没使用 VueX 的情况下，多页面是如何跟后台服务器交互数据的。』
+
 The saved page will require the same data as the home page (the listing summary data), as the saved page is really just a slight variation on the home page. It makes sense, then, to share data between the home page and saved page. In other words, if a user loads Vuebnb from the home page, then navigates to the saved page, or vice versa, it would be a waste to load the listing summary data more than once.
 
 1『首页的数据跟收藏页面的数据时共有的，所以只需加载一次。』
@@ -485,11 +493,17 @@ export default new Vuex.Store({
 });
 ```
 
+1『现在看上面的代码实现，清爽很多了。（2020-05-15）』
+
 ### 8.11 Router
 
 The logic for retrieving page state is in the mixin file route-mixin.js. This mixin adds a beforeRouteEnter hook to a page component which applies the page state to the component instance when it becomes available.
 
+1『 mixin file 是上一章的一个知识点，这里又看到钩子「hook」这个极其重要的概念，官方文档前面综述里的那张生命周期图值得反复看。』
+
 Now that we're storing page state in Vuex we will utilize a different approach. Firstly, we won't need a mixin anymore; we'll put this logic into router.js now. Secondly, we'll use a different navigation guard, beforeEach. This is not a component hook, but a hook that can be applied to the router itself, and it is triggered before every navigation. You can see in the following code block how I've implemented this in router.js. Note that before next() is called we commit the page state to the store.
+
+1『上面的知识密度很大。2 点更新：1）废除 route-mixin.js，将其逻辑合并到 router.js 里。2）增加 beforeEach() 来切换页面的数据，这个方法不是组件的钩子，而是给路由 router 用的，它是在跳转到各页面之间被触发的。注意一点，before next() 方法是在，组件页面通过 commit() 方法通知组件修改 store 数据之前被调用的。』
 
 resources/assets/js/router.js:
 
@@ -635,7 +649,17 @@ resources/assets/components/ListingPage.vue:
 </script>
 ```
 
-1『上面 JS 代码里，主要修改的地方是 computed 和 methods 属性里。』
+1『
+
+上面 JS 代码里，主要修改的地方是 computed 和 methods 属性里。多次减到 find() 方法结合箭头函数的妙用，牢记。
+
+```js
+let listing = this.$store.state.listings.find(
+    listing => listing.id == this.$route.params.listing
+);
+```
+
+』
 
 Changes to HomePage are much simpler; just remove the mixin and the local state, and replace it with a computed property, listing\_groups, which will retrieve all the listing summaries from the store.
 
@@ -728,7 +752,7 @@ Generally, you define a getter when several components need the same derived val
 
 resources/assets/js/router.js:
 
-```
+```js
 getters: {
     getListing(state) {
         return id => state.listings.find(listing => id == listing.id);
@@ -742,7 +766,7 @@ Let's now use this getter in our ListingPage to replace the previous logic.
 
 resources/assets/components/ListingPage.vue:
 
-```
+```js
 computed: {
     listing() {
         return populateAmenitiesAndPrices(
@@ -751,6 +775,8 @@ computed: {
     }
 },
 ```
+
+1『注意下，目前页面获取数据已经放到路由文件「router.js」里去了，而且是在跳转页面之前完成的。上面小节讲的是如何获取状态「retrieving page state from Vuex」。使用 getter 方法可以封装同样的操作。』
 
 ### 8.14 Checking if page state is in the store
 
@@ -924,7 +950,7 @@ The final task is to add some default saved listings to the store. I've chosen 1
 
 resources/assets/js/store.js:
 
-```
+```js
 state: { 
     saved: [1, 15], 
     ... 
@@ -1378,7 +1404,7 @@ resources/assets/js/components/LoginPage.vue:
 <style>...</style>
 ```
 
-1『意外的收获，组件里通过绑定「:value」直接能访问组件里的数据属性，待验证。（2020-05-02）』
+1『意外的收获，组件里通过绑定「:value」直接能访问组件里的数据属性，待验证。（2020-05-02）回复：之前理解有误，「:value」只是绑定 token 的值到 input 组件的 value 属性上。上面的知识点帮了大忙，解决了开发数据流开发时，上传 CAD 文件环节遇到的问题。』
 
 If we now try to log in to our app using the credentials of the user we created in the seeder, we'll get served this error page. Looking in the address bar, you'll see that the route we're on is /home, which is not a valid route within our app, hence the NotFoundHttpException:
 

@@ -2157,7 +2157,7 @@ Let's now add a server-side route for the home page so that we can load our app 
 
 routes/web.php:
 
-```
+```php
 <?php
 
 Route::get('/', 'ListingController@get_home_web'); 
@@ -2166,9 +2166,11 @@ Route::get('/listing/{listing}', 'ListingController@get_listing_web');
 
 Going to the controller now, we'll make it so the get\_home\_web method returns the app view, just as it does for the listing web route. The app view includes a template variable model which we use to pass through the initial application state, as set up in Chapter 5, Integrating Laravel and Vue.js with Webpack. For now, just assign an empty array as a placeholder.
 
+1『加空的数据组占位，这个细节解决了开发「数据流」遇到的大问题，牢记这种思路。（2020-05-14）』
+
 app/Http/Controllers/ListingController.php:
 
-```
+```php
 public function get_home_web() { 
     return view('app', ['model' => []]); 
 }
