@@ -1714,6 +1714,8 @@ Topics covered in this chapter: 1) An explanation of what router libraries are a
 
 In this chapter, we learned how router libraries work and why they are a crucial addition to SPAs. We then got familiar with the key features of Vue Router including the route object, navigation guards, and the RouterLink and RouterView special components. Putting this knowledge into practice, we installed Vue Router and configured it for use in our app. We then built a home page for Vuebnb, including a gallery of listing summaries organized within image sliders. Finally, we implemented an architecture for correctly matching pages with either available local data or new data retrieved from the web service via AJAX.
 
+1『这一章的核心内容：路由对象、路由连接和路由页面这 2 个组件、导航卫士。』
+
 Now that we have a substantial number of components in our app, many of which communicate data between one another, it's time to investigate another key Vue.js tool: Vuex. Vuex is a Flux-based library that offers a superior way of managing application state.
 
 ### 7.1 Single-page applications
@@ -1722,7 +1724,7 @@ Most websites are broken up into pages in order to make the information they con
 
 By using a powerful frontend framework and an AJAX utility, a different model is possible: the browser can load an initial web page, but navigating to new pages will not require the browser to unload the page and load a new one. Instead, any data required for new pages can be loaded asynchronously with AJAX. From a user's perspective, such a website would appear to have pages just like any other, but from a technical perspective, this site really only has one page. Hence the name, Single-Page Application (SPA).
 
-2『解释了 SPA 架构的概念，以及其利弊。做张术语卡片。』
+2『解释了 SPA 架构的概念，以及其利弊。单文件应用能够实现的前提是利用 ajax 异步与服务器交互数据。做张术语卡片。』
 
 The advantage of the Single-Page Application architecture is that it can create a more seamless experience for the user. Data for new pages must still be retrieved, and will therefore create some small disruption to the user's flow, but this disruption is minimized since the data retrieval can be done asynchronously and JavaScript can continue to run. Also, since SPA pages usually require less data due to the reuse of some page elements, page loading is quicker.
 
@@ -1751,6 +1753,8 @@ let routes = [
 ```
 
 Since rendering a component is an almost instantaneous process in normal circumstances, the transition between pages with Vue Router is as well. However, there are asynchronous hooks that can be invoked to give you the opportunity to load new data from the server, if your different pages require it.
+
+1『又提到异步「钩子」的重要性。』
 
 #### 7.2.2 Special components
 
@@ -2071,7 +2075,13 @@ export default new VueRouter( {
 
 You might be tempted to test this new route out by putting the URL http://vuebnb.test/ into your browser address bar. You'll find, though, that it results in a 404 error. Remember, we still haven't created a route for this on our server. Although Vue is managing routes from within the app, any address bar navigation requests must be served from Laravel.
 
-1『关键知识点：服务器上建路由必须通过 laravel，vue-router 只是网站内部间的路由管理。』
+1『
+
+关键知识点：服务器上建路由必须通过 laravel，vue-router 只是网站内部间的路由管理。
+
+感觉这是针对「history」模式，需要再后端设置路由，如果是 hash 模式，估计不需要，待验证。（2020-05-20）
+
+』
 
 Let's now create a link to our home page in the toolbar by using the RouterLink component. This component is like an enhanced a tag. For example, if you give your routes a name property, you can simply use the to prop rather than having to supply an href. Vue will resolve this to the correct URL on render.
 
@@ -2248,7 +2258,7 @@ Finally, we'll need to update our ListingPage component to reflect the new name 
 
 resources/assets/components/ListingPage.vue:
 
-```
+```html
 <script> let serverData = JSON.parse(window.vuebnb_server_data); 
 let model = populateAmenitiesAndPrices(serverData.listing); 
 ... 
@@ -2264,15 +2274,15 @@ Note that we don't need all the fields on the model, for example, amenities, abo
 app/Http/Controllers/ListingController.php:
 
 ```php
-    // home page
-    public function get_home_web()
-    {
-        $collection = ListingModel::all([
-            'id', 'address', 'title', 'price_per_night'
-        ]);
-        $data = collect(['listing' => $collection->toArray()]);
-        return view('app', ['data' => $data]);
-    }
+// home page
+public function get_home_web()
+{
+    $collection = ListingModel::all([
+        'id', 'address', 'title', 'price_per_night'
+    ]);
+    $data = collect(['listing' => $collection->toArray()]);
+    return view('app', ['data' => $data]);
+}
 ```
 
 1『
@@ -2299,25 +2309,25 @@ Collection objects have a helper method, transform, that we can use to add the t
 app/Http/Controllers/ListingController.php:
 
 ```php
-    // home page
-    public function get_home_web()
-    {
-        $collection = ListingModel::all([
-            'id', 'address', 'title', 'price_per_night'
-        ]);
-        // 增加 thumb 图片的 url
-        $collection->transform(function($listing) {
-            $listing->thumb = asset(
-                'images/' . $listing->id . '/Image_1_thumb.jpg'
-            );
-            return $listing;
-        });
-        $data = collect(['listing' => $collection->toArray()]);
-        return view('app', ['data' => $data]);
-    }
+// home page
+public function get_home_web()
+{
+    $collection = ListingModel::all([
+        'id', 'address', 'title', 'price_per_night'
+    ]);
+    // 增加 thumb 图片的 url
+    $collection->transform(function($listing) {
+        $listing->thumb = asset(
+            'images/' . $listing->id . '/Image_1_thumb.jpg'
+        );
+        return $listing;
+    });
+    $data = collect(['listing' => $collection->toArray()]);
+    return view('app', ['data' => $data]);
+}
 ```
 
-1『感觉又是个关键知识点，可以在原有的数据中额外增加字段属性。』
+1『感觉又是个关键知识点，collect() 方法可以在原有的数据中额外增加字段属性。』
 
 ### 7.7 Receiving in the client
 
@@ -2521,10 +2531,6 @@ resources/assets/components/ListingSummary.vue:
 
 』
 
-After you add that code, your listing summaries will look like this:
-
-Figure 7.11. Complete listing summaries being displayed
-
 We gave each listing summary a fixed width/height so that we could display them in a neat grid. Currently, they're displaying in one tall column, so let's add some CSS flex rules to the HomePage component to get the summaries into rows. We'll add a class listing-summary-group to the element that wraps the summaries. We'll also add a class home-container to the root div to constrain the width of the page and center the content.
 
 resources/assets/components/HomePage.vue:
@@ -2576,11 +2582,38 @@ html, body {
 
 You'll notice that at full page width, we can only see three listings from each country group. The other seven are hidden by the CSS overflow: hidden rule. Soon, we'll be adding image slider functionality to each group to allow the user to browse through all the listings.
 
+3『 [overflow - CSS（层叠样式表） | MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow)
+
+CSS 属性 overflow 定义当一个元素的内容太大而无法适应「块级格式化上下文」时候该做什么。它是 overflow-x 和 overflow-y 的简写属性。
+
+这个选项包含剪切，显示滚动条，或者显示从容器溢出到周围区域的内容。指定除 visible（默认值）以外的值将创建一个新的块级格式化上下文，这在技术层面上是必须的——如果一个浮动元素和滚动条相交，它会在每个滚动步骤后强行重新包装内容，从而导致慢滚动体验。为使 overflow 有效果，块级容器必须有一个指定的高度（height 或者 max-height）或者将 white-space 设置为 nowrap。
+
+注意:  设置一个轴为 visible（默认值），同时设置另一个轴为不同的值，会导致设置 visible 的轴的行为会变成 auto。 即使将 overflow 设置为 hidden，也可以使用 JavaScript Element.scrollTop 属性来滚动 HTML 元素。
+
+```css
+/* 默认值。内容不会被修剪，会呈现在元素框之外 */
+overflow: visible;
+
+/* 内容会被修剪，并且其余内容不可见 */
+overflow: hidden;
+
+/* 内容会被修剪，浏览器会显示滚动条以便查看其余内容 */
+overflow: scroll;
+
+/* 由浏览器定夺，如果内容被修剪，就会显示滚动条 */
+overflow: auto;
+
+/* 规定从父元素继承overflow属性的值 */
+overflow: inherit;
+```
+
+从下面列表中选出一个或两个关键字来指定 overflow 属性。如果指定了两个关键字，第一个关键字应用于 overflow-x，第二个关键字应用于 overflow-y。否则，overflow-x 和 overflow-y 都设置为相同的值。
+
+』
+
 ### 7.9 In-app navigation
 
 If we use the address bar of the browser to navigate to the home page, http://vuebnb.test/, it works because Laravel is now serving a page at this route. But, if we navigate to the home page from the listing page, there's no longer any page content:
-
-Figure 7.13. Empty home page after navigating from listing page
 
 We currently don't have any links to the listing page from the home page, but if we did, we'd experience a similar issue. The reason is that our page components currently get their initial state from the data we've injected into the head of the document. If we navigate to a different page using Vue Router, which doesn't invoke a page refresh, the next page component will have the wrong initial state merged in.
 
@@ -2588,7 +2621,11 @@ We currently don't have any links to the listing page from the home page, but if
 
 We need to improve our architecture so that when a page is navigated to we check if the model injected into the head matches the current page. To facilitate this, we'll add a path property to the model and check that it matches the active URL. If not, we'll use AJAX to get the right data from the web service:
 
-If you're interested in reading more about this design pattern, check out the article Avoid This Common Anti-Pattern In Full-Stack Vue/Laravel Apps at https://vuejsdevelopers.com/2017/08/06/vue-js-laravel-full-stack-ajax/.
+If you're interested in reading more about this design pattern, check out the article Avoid This Common Anti-Pattern In Full-Stack Vue/Laravel Apps at [stack-ajax](https://vuejsdevelopers.com/2017/08/06/vue-js-laravel-full-stack-ajax/).
+
+1『作者的核心思想是在每一个页面的数据对象里，添加一个 url 属性，检测数据对象是否匹配目前激活着的页面，不匹配的话再后台请求数据。不过对于逻辑简单的页面，也可以通过「v-if」选择性展示，不用跳转到另外一个页面。』
+
+2『上面的文章作为本书的附件「附件01-Avoid-This-Common-Anti-Pattern」。』
 
 #### 7.9.1 Adding a path to the model
 
@@ -2666,7 +2703,7 @@ class ListingController extends Controller
 
 2、首页里的数据跟 get_home_web() 方法挂钩，该页面返回的数据对象里的属性名是「listings」。
 
-已经被 router-vue 绕晕了，逻辑还没弄清楚。（2020-04-27）
+原来 \$request->getPathInfo() 能从前端发来的请求中获取 url 信息。
 
 』
 
@@ -2707,6 +2744,8 @@ beforeRouteEnter(to, from, next) {
 }
 ```
 
+1『明 beforeRouteEnter 是个迭代器。』
+
 You can pass false to the next function to prevent a navigation, or you can pass a different route to redirect it. If you don't pass anything, the navigation is considered confirmed. The beforeRouteEnter guard is a special case. Firstly, this is undefined within it since it is called before the next page component has been created:
 
 ```js
@@ -2725,6 +2764,8 @@ beforeRouteEnter(to, from, next) {
     }); 
 }
 ```
+
+1『 next() 里传入回调函数这个用法妙，可惜目前没有完全吃透，不清楚具体在哪些场景下使用。（2020-05-22）』
 
 ### 7.10 HomePage component
 
@@ -2761,6 +2802,8 @@ resources/assets/components/HomePage.vue:
 ```
 
 I've added listing\_groups as a data property. Before, we were applying our data to the component instance as it was created. Now, we're applying the data after the component is created. To set up reactive data, Vue must know the names of the data properties, so we initialize with an empty value and update it when the data needed is available.
+
+1『这里注意一点，listing_groups 声明一个空数组占坑。』
 
 #### 7.10.1 Home API endpoint
 
@@ -2866,6 +2909,8 @@ And with that, we can now navigate to the home page in two ways, either via the 
 
 If you have any functionality that is common between components, you can put it in a mixin to avoid rewriting the same functionality. A Vue mixin is an object in the same form as a component configuration object. To use it in a component, declare within an array and assign it to the configuration property mixin. When this component is instantiated, any configuration options of the mixin will be merged with what you've declared on the component:
 
+1『原来 mixins 是用来解决组件之间公共函数库的。它可以分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被「混合」进入该组件本身的选项。』
+
 ```js
 var mixin = { 
     methods: { 
@@ -2888,6 +2933,142 @@ Vue.component('b', {
 ```
 
 You might be wondering what happens if the component configuration has a method or other property that conflicts with the mixin. The answer is that mixins have a merging strategy that determines the priority of any conflicts. Generally, the component's specified configuration will take precedence. The details of the merging strategy are explained in the Vue.js documentation at http://vuejs.org.
+
+3『 [混入 — Vue.js](https://cn.vuejs.org/v2/guide/mixins.html#%E5%9F%BA%E7%A1%80)
+
+#### 1.1 基础
+
+混入 (mixin) 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。
+
+例子：
+
+```js
+// 定义一个混入对象
+var myMixin = {
+  created: function () {
+    this.hello()
+  },
+  methods: {
+    hello: function () {
+      console.log('hello from mixin!')
+    }
+  }
+}
+
+// 定义一个使用混入对象的组件
+var Component = Vue.extend({
+  mixins: [myMixin]
+})
+
+var component = new Component() // => "hello from mixin!"
+```
+
+#### 1.2 选项合并
+
+当组件和混入对象含有同名选项时，这些选项将以恰当的方式进行「合并」。比如，数据对象在内部会进行递归合并，并在发生冲突时以组件数据优先。
+
+```js
+var mixin = {
+  data: function () {
+    return {
+      message: 'hello',
+      foo: 'abc'
+    }
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  data: function () {
+    return {
+      message: 'goodbye',
+      bar: 'def'
+    }
+  },
+  created: function () {
+    console.log(this.$data)
+    // => { message: "goodbye", foo: "abc", bar: "def" }
+  }
+})
+```
+
+同名钩子函数将合并为一个数组，因此都将被调用。另外，混入对象的钩子将在组件自身钩子之前调用。
+
+```js
+var mixin = {
+  created: function () {
+    console.log('混入对象的钩子被调用')
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  created: function () {
+    console.log('组件钩子被调用')
+  }
+})
+
+// => "混入对象的钩子被调用"
+// => "组件钩子被调用"
+```
+
+值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。两个对象键名冲突时，取组件对象的键值对。
+
+```js
+var mixin = {
+  methods: {
+    foo: function () {
+      console.log('foo')
+    },
+    conflicting: function () {
+      console.log('from mixin')
+    }
+  }
+}
+
+var vm = new Vue({
+  mixins: [mixin],
+  methods: {
+    bar: function () {
+      console.log('bar')
+    },
+    conflicting: function () {
+      console.log('from self')
+    }
+  }
+})
+
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
+```
+
+注意：Vue.extend() 也使用同样的策略进行合并。
+
+#### 1.3 全局混入
+
+混入也可以进行全局注册。使用时格外小心！一旦使用全局混入，它将影响每一个之后创建的 Vue 实例。使用恰当时，这可以用来为自定义选项注入处理逻辑。
+
+```js
+// 为自定义的选项 'myOption' 注入一个处理器。
+Vue.mixin({
+  created: function () {
+    var myOption = this.$options.myOption
+    if (myOption) {
+      console.log(myOption)
+    }
+  }
+})
+
+new Vue({
+  myOption: 'hello!'
+})
+// => "hello!"
+```
+
+请谨慎使用全局混入，因为它会影响每个单独创建的 Vue 实例（包括第三方组件）。大多数情况下，只应当应用于自定义选项，就像上面示例一样。推荐将其作为插件发布，以避免重复应用混入。
+
+』
 
 #### 7.11.1 Moving the solution to a mixin
 
@@ -3098,6 +3279,8 @@ resources/assets/components/ListingPage.vue:
     @header-clicked="openModal"></header-image>
 ```
 
+1『这个解决思路很好，应该可以应用到其他场景。（2020-05-22）』
+
 ### 7.12 Scroll behavior
 
 Another aspect of website navigation that the browser automatically manages is scroll behavior. For example, if you scroll to the bottom of a page, then navigate to a new page, the scroll position is reset. But if you return to the previous page, the scroll position is remembered by the browser, and you're taken back to the bottom.
@@ -3187,6 +3370,8 @@ In fact, .container was specifically designed for the listing page, while .home-
 
 Now we have .home-container and .listing-container as two possible containers for our custom-footer component. Let's dynamically select the class depending on the route, so the footer is always correctly aligned.
 
+1『这是不是就是样式的全局污染问题，element-admin 作者提到的用 scope style 可以解决，此信息点待验证。（2020-05-22）』
+
 #### 7.13.1 The route object
 
 The route object represents the state of the currently active route and can be accessed inside the root instance, or a component instance, as this.\$route. This object contains parsed information of the current URL and the route records matched by the URL:
@@ -3232,6 +3417,8 @@ export default {
 ```
 
 Now the footer will use .home-container when displayed on the home page:
+
+1『用 this.\$route.name 可以获得当前页面的路由名称。』
 
 ### 7.14 Listing summary image slider
 
