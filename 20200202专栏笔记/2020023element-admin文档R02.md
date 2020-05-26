@@ -871,7 +871,462 @@ created() {
 
 回复 Rouner：留给后来者：如果你的代码出现表头和内容有 1px 的距离偏差，那么请在 style 下面的 element-ui.scss 文件的最后加上 body .el-table th {display: table-cell!important;} 就能解决这个问题。问题出现原因不详。如果表格表头和内容的偏移还解决不了，可以调用 element-ui 的 doLayout 方法： this.\$refs. 你的表格.doLayout ();
 
+## 0304. 手摸手，带你用 vue 撸后台 —— 极简的后台基础模板
 
+做这个 vueAdmin-template 的主要原因是：vue-element-admin 这个项目的初衷是一个 vue 的管理后台集成方案，把平时用到的一些组件或者经验分享给大家，同时它也在不断的维护和拓展中，比如最近重构了 dashboard，加入了全屏功能，新增了 tabs-view 等等。所以项目会越来越复杂，不太适合很多初用 vue 的同学来构建后台。所以就写了这个基础模板，它没有复杂的功能，只包含了一个后台需要最基础的东西。vueAdmin-template 主要是基于 vue-cli webpack 模板为基础开发的。
 
+引入了如下 dependencies：1）element-ui 饿了么出品的 vue2.0 pc UI 框架。2）axios 一个现在主流并且很好用的请求库，支持 Promise。3）js-cookie 一个轻量的 JavaScript 库来处理 cookie。4）normalize.css 格式化 css。5）nprogress 轻量的全局进度条控制。6）vuex 官方状态管理。7）vue-router 官方路由。
+
+该项目只做了一个管理后台需要极简的功能，封装了 axios 请求，支持无限层级路由，动态权限和动态侧边栏。如果需要更多复杂的功能可以参考 vue-element-admin，若还有不足，欢迎提 issue 或者 pr。下文会简单说一下用该模板需要注意的地方。
+
+### 4.1 路由懒加载
+
+路由懒加载应该是写大一点的项目都会用的一个功能，只有在使用这个 component 的时候才会加载这个相应的组件，这样写大大减少了初始页面 js 的大小并且能更好的利用游览器的缓存。
+
+```js
+const Foo = resolve => require(['./Foo.vue'], resolve)
+//或者
+const Foo = () => import('./Foo');
+```
+
+在懒加载页面不多的情况下一切是那么的美好，但我司后台业务在不断地迭代，现在项目近百个路由，这时候使用路由懒加载在开发模式下就是一件痛苦的事情了，随手改一行代码热更新都是要 6000ms + 的，这怎么能忍。楼主整整花了一天多的时间找原因，能 webpack 优化的方法都用了，什么 dll、HappyPack 等方法都是过了，但提升的效果都不是很明显，正好那段时间出了 webpack3 楼主也升级了，编译速度也得到了很大幅度的提升，不过也要 2000ms+。后来经过大神 @jzlxiaohei 的指点发现原来是路由懒加载搞得鬼，楼主猜测可能是异步加载导致 webpack 每次的 cache 失效了，所以每次的 rebuild 才会这么的慢。找到了原因我们就可以对症下药了，我们就自己封装了一个\_import () 的方法，只有在正式环境下才使用懒加载。这样解决了困扰多事的 rebuild 慢问题。代码「[vue-element-admin/index.js at master · PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/router/index.js#L3)」。
+
+```js
+const _import = require('./_import_' + process.env.NODE_ENV);
+const Foo = _import('Foo');
+```
+
+整整比原来 6000ms 快了十多倍，我终于又能愉快的开发了。
+
+### 4.2 权限——控制
+
+在手摸手，带你用 vue 撸后台系列二（登录权限篇）这章中其实已经详细介绍过了。该项目中权限的实现方式是：通过获取当前用户的权限去比对路由表，生成当前用户具的权限可访问的路由表，通过 router.addRoutes 动态挂载到 router 上。但其实很多公司的业务逻辑可能不是这样的，举一个例子来说，很多公司的需求是每个页面的权限是动态配置的，不像本项目中是写死预设的。但其实原理是相同的。如这个例子，你可以在后台通过一个 tree 控件或者其它展现形式给每一个页面动态配置权限，之后将这份路由表存储到后端。当用户登录后根据 role，后端返回一个相应的路由表或者前端去请求之前存储的路由表动态生成可访问页面，之后就是 router.addRoutes 动态挂载到 router 上，你会发现原来是相同的，万变不离其宗。
+
+### 4.3 导航
+
+侧边栏：本项目里的侧边栏是根据 router.js 配置的路由并且根据权限动态生成的，这样就省去了写一遍路由还要再手动写侧边栏这种麻烦事，同是使用了递归组件，这样不管你路由多少级嵌套，都能愉快的显示了。权限验证那里也做了递归的处理。
+
+面包屑：本项目中也封装了一个面包屑导航，它也是通过 watch \$route 动态生成的。代码「[vue-admin-template/index.vue at master · PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template/blob/master/src/components/Breadcrumb/index.vue)」。
+
+由于侧边栏导航和面包屑亦或是权限，你会发现其实都是和 router 密切相关的，所以基于 vue-router 路由信息对象上做了一下小小的拓展，自定义了一些属性：
+
+```
+icon : the icon show in the sidebar
+hidden : if hidden:true will not show in the sidebar
+redirect : if redirect:noredirect will not redirct in the levelbar
+noDropdown : if noDropdown:true will not has submenu in the sidebar
+meta : { role: ['admin'] } will control the page role
+```
+
+大家也可以结合自己的业务需求增改这些自定义属性。
+
+### 4.4 iconfont
+
+element-ui 自带的图标不是很丰富，但管理后台图标的定制性又很强。这里只给大家推荐使用阿里的 iconfont「[Iconfont-阿里巴巴矢量图标库](https://www.iconfont.cn/)」，简单好用又方便管理。本项目中已经嵌入了一些 iconfont 作为例子，大家可以自行替换。这里来简单介绍一下 iconfont 的使用方式。首先注册好 iconfont 账号之后，可以在我的项目中管理自己的 iconfont 。我司所有的项目都是用这个管理的，真心推荐使用。
+
+创建好图标库后如果有更新替换也很方便，这里我使用了 Symbol 的方式引入，这里还有 unicode，font-class 的引入方式，有兴趣的可以自行研究「[Iconfont-阿里巴巴矢量图标库](https://www.iconfont.cn/help/detail?spm=a313x.7781069.1998910419.13.HpQ1yI&helptype=code)」。之后我们点击下载 Symbol，会发现有如下这些文件，我们只要关心 iconfont.js 就可以了。我们将它替换项目中的 iconfont.js 就可以了。本项目中也封装了一个 svg component 方便大家使用。
+
+```html
+<icon-svg icon-class="填入你需要的 iconfont 名字就能使用了"></icon-svg>
+```
+
+### 4.5 favicon
+
+每个项目都需要有一个属于自己的 favicon。其实实现起来非常的方便，我们主需要借助 html-webpack-plugin「[jantimon/html-webpack-plugin: Simplifies creation of HTML files to serve your webpack bundles](https://github.com/jantimon/html-webpack-plugin)」。
+
+```js
+//webpack config
+function resolveApp(relativePath) {
+    return path.resolve(relativePath);
+}
+new HtmlWebpackPlugin({
+      filename: config.build.index,
+      template: 'index.html',
+      inject: true,
+      favicon: resolveApp('favicon.ico')
+    }),
+```
+
+你只要将本项目跟目录下的 favicon.ico 文件替换为你想要的图标即可。
+
+### 4.6 eslint
+
+vue cli 默认提供了 standard 和 airbnb 两种 lint 规范，说真的一个检查校验的太松一个又太紧，而且每个团队的 lint 规范又是不同的，所以楼主干脆在项目里把大部分常用的 lint 规范都列举了出来并写上了注释方便大家修改代码地址「[vue-admin-template/.eslintrc.js at master · PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template/blob/master/.eslintrc.js)」，大家也可以把自己的规范上传到 npm，像 vue 一样 vue-eslint-config。配置 eslint 对多人协作的项目有很大的好处，同时配置好 lint 在加 ide 的 lint 插件写代码简直要起飞。相关配置可见第一篇教程。
+
+### 4.7 postcss
+
+相信大部分 vue 的项目都是基于 vue-cli「[vuejs/vue-cli: Standard Tooling for Vue.js Development](https://github.com/vuejs/vue-cli) | [Vue CLI](https://cli.vuejs.org/)」来开发的，不过毕竟每个人需求都是不太一样的，需要自定义一些的东西。就比如拿 postcss 来说 vue-cli 有一个小坑，它默认 autoprefixer 只会对通过 vue-loader 引入的样式有作用，换而言之也就是 .vue 文件里面的 css autoprefixer 才会效果。相关问题 issues/544,issues/600「[Autoprefixer is only active for .vue files · Issue #600 · vuejs-templates/webpack](https://github.com/vuejs-templates/webpack/issues/600)」。解决方案也很简单粗暴。
+
+```html
+//app.vue
+<style lang="scss">
+  @import './styles/index.scss'; // 全局自定义的css样式
+</style>
+```
+
+你在 .vue 文件中引入你要的样式就可以了，或者你可以改变 vue-cli 的文件在 css-loader 前面在加一个 postcss-loader，在前面的 issue 地址中已经给出了解决方案。这里再来说一下 postcss 的配置问题，新版的 vue-cli webpack 模板「[vuejs-templates/webpack: A full-featured Webpack + vue-loader setup with hot reload, linting, testing & css extraction.](https://github.com/vuejs-templates/webpack)」inti 之后跟目录下默认有一个.postcssrc.js 。vue-loader 的 postcss 会默认读取这个文件的里的配置项，所以在这里直接改配置文件就可以了。配置和 postcss「[postcss/postcss: Transforming styles with JS plugins](https://github.com/postcss/postcss)」是一样的。
+
+```js
+//.postcssrc.js
+module.exports = {
+  "plugins": {
+    // to edit target browsers: use "browserlist" field in package.json
+    "autoprefixer": {}
+  }
+}
+//package.json
+"browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+```
+
+如上代码所述，autoprefixe r 回去读取 package.json 下 browserslist 的配置文件：
+
+1. \> 1% 兼容全球使用率大于 1% 的游览器。
+
+2. last 2 versions 兼容每个游览器的最近两个版本。
+
+3. not ie <= 8 不兼容 ie8 及以下 具体可见 browserslist「[browserslist/browserslist: Share target browsers between different front-end tools, like Autoprefixer, Stylelint and babel-preset-env](https://github.com/browserslist/browserslist)」、postcss 也还有很多很多其它的功能大家可以自行去把玩「[PostCSS.parts | A searchable catalog of PostCSS plugins](https://www.postcss.parts/)」。
+
+### 4.8 babel-polyfill
+
+本项目暂时没有兼容性需求，如有兼容性需求可自行使用 babel-polyfill。在 Node/Browserify/webpack 中使用
+
+```
+npm install --save babel-polyfill // 下载依赖
+```
+
+在入口文件中引入：
+
+```js
+import 'babel-polyfill';
+
+// 或者
+require('babel-polyfill');//es6
+```
+
+在 webpack.config.js 中加入 babel-polyfill 到你的入口数组：
+
+```js
+module.exports = {
+    entry:["babel-polyfill","./app/js"]
+}
+```
+
+具体可参考 link。或者更简单暴力 polyfill.io「[Polyfill.io](https://cdn.polyfill.io/v3/)」使用它给的一个 cdn 地址，引入这段 js 之后它会自动判断游览器，加载缺少的那部分 polyfill，但国内速度肯能不行，大家可以自己搭 cdn。
+
+### 4.9 跨域问题
+
+楼主 vue 群里的小伙伴们问的最多的问题还是关于跨域的，其实跨域问题真的不是一个很难解决的问题。这里我来简单总结一下我推荐的几种跨域解决方案。
+
+1、我最推荐的也是我司常用的方式就是 \*\*cors\*\* 全称为 Cross Origin Resource Sharing（跨域资源共享）。这玩意对应前端来说和平时发请求写法上没有任何区别，工作量基本都在后端这里。每一次请求浏览器必须先以 OPTIONS 请求方式发送一个预请求，从而获知服务器端对跨源请求所支持 HTTP 方法。在确认服务器允许该跨源请求的情况下，以实际的 HTTP 请求方法发送那个真正的请求。推荐的原因是只要第一次配好了，之后不管有多少接口和项目复用就可以了，一劳永逸的解决了跨域问题，而且不管是开发环境还是测试环境都能方便的使用。
+
+2、但总有后端觉得麻烦不想这么搞。那前端也是有解决方案的，在 dev 开发模式下可以下使用 \*\*webpack 的 proxy，使用也是很方便的看一下文档就会使用了，楼主一些个人项目使用的该方法。但这种方法在生成环境是不适用的。在生产环境中需要使用 Nginx 反向代理 \*\* 不管是 proxy 和 nginx 的原理都是一样的通过搭建一个中转服务器来转发请求规避跨域的问题。1）开发环境 cors；生成环境 cors。2）开发环境 proxy；生成环境 nginx。
+
+这里我只推荐这两种方式跨域，其它的跨域方式都很多，但真心主流的也就这两种方式。
+
+### 4.10 easy-mock
+
+vue-element-admin 由于是一个纯前端个人项目，所以所以的数据都是用 mockjs 生成的，它的原理是：拦截了所有的请求并代理到本地模拟数据，所以 network 中没有任何的请求发出。不过这并不符合实际业务开发中的场景，所以这个项目中使用了前不久刚出的 easy-mock，支持跨域，mockjs 的语法，支持 Swagger 这几点还是挺不错的。相关文章「[活儿好又性感的在线 Mock 平台 - Easy Mock - 掘金](https://juejin.im/post/58ff1fae61ff4b0066792f6e)」。
+
+### 4.11 baseurl
+
+线上或者测试环境接口的 base\_url 不一样是很长见得需求，或者你在本地用了如 easy-mock 这种模拟数据到线上环境你想用自己公司生产环境的数据，这些需求都可以简单的通过用 baseurl 来解决。首先我们在 config/ 下有 dev.env.js 和 prod.env.js 这两个配置文件。用它来区分不同环境的配置参数。
+
+```js
+//dev.env.js
+module.exports = {
+  NODE_ENV: '"development"',
+  BASE_API: '"https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin"',
+}
+//prod.env.js
+module.exports = {
+  NODE_ENV: '"production"',
+  BASE_API: '"https://prod-xxx"',
+}
+```
+
+同时本项目封装了 axios 拦截器，方便大家使用，大家也可根据自己的业务自行修改。
+
+```js
+import axios from 'axios';
+import { Message } from 'element-ui';
+import store from '../store';
+
+// 创建axios实例
+const service = axios.create({
+  baseURL: process.env.BASE_API, // api的base_url 读取config配置文件
+  timeout: 5000                  // 请求超时时间
+});
+
+// request拦截器
+service.interceptors.request.use(config => {
+  if (store.getters.token) {
+    config.headers['X-Token'] = store.getters.token; // 让每个请求携带自定义token 请根据实际情况自行修改
+  }
+  return config;
+}, error => {
+  // Do something with request error
+  console.log(error); // for debug
+  Promise.reject(error);
+})
+
+// respone拦截器
+service.interceptors.response.use(
+  response => {
+  /**
+  * code为非20000是抛错 可结合自己业务进行修改
+  */
+    const res = response.data;
+    if (res.code !== 20000) {
+      Message({
+        message: res.data,
+        type: 'error',
+        duration: 5 * 1000
+      });
+
+      // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
+      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          store.dispatch('FedLogOut').then(() => {
+            location.reload();// 为了重新实例化vue-router对象 避免bug
+          });
+        })
+      }
+      return Promise.reject(error);
+    } else {
+      return response.data;
+    }
+  },
+  error => {
+    console.log('err' + error);// for debug
+    Message({
+      message: error.message,
+      type: 'error',
+      duration: 5 * 1000
+    });
+    return Promise.reject(error);
+  }
+)
+
+export default service;
+```
+
+由于 axios 每一个都是一个实例，你的请求都是基于这个实例来的，所以所以配置的参数属性都继承了下来。
+
+```js
+//api.xxx.js
+import fetch from '@/utils/fetch';
+export function getInfo(token) {
+  return fetch({
+    url: '/user/info',
+    method: 'get',
+    params: { token }
+  });
+}
+//你可以直接这样使用，之前拦截器写的东西都是生效的，
+//它自动会有一个你之前配置的baseURL,
+//但你说我这个请求baseURL和其它的不同,
+//这也是很方便的，你可以字请求内部修改，
+//它会自动覆盖你在创建实例时候写的参数如
+export function getInfo(token) {
+  return fetch({
+    baseURL: https://api2-xxxx.com
+    url: '/user/info',
+    method: 'get',
+    params: { token }
+  });
+}
+```
+
+### 总结
+
+这篇文章主要是介绍了 vueAdmin 做了哪些事情，希望大家如果有后台新项目要开发，建议基于 vue-admin-template 来开发，而 vue-element-admin 更多的是用来当做一个集成方案，你要什么功能就去里面找拿来用，因为两者的基础架构是一样的，所以复用成本也很低。
+
+## 0306手摸手，带你封装一个 vue component
+
+### 6.1 为什么选择自己封装第三方库
+
+最近几个月我司把之前两三年的所有业务都用了 vue 重构了一遍，前台使用 vue+ssr，后台使用了 vue+element，在此过程中封装和自己写了很多 vue component。其实 vue 写 component 相当简单和方便，github 上有很多的 vue component 都只是简单的包装了一些 jquery 或者原生 js 的插件，但我个人是不太喜欢使用这些第三方封装的。理由如下：
+
+1、很多第三方封装的组件参数配置项其实是有缺损的。如一些富文本或者图表组件，配置项远比你想想中的多得多，第三方封装组件很难覆盖全部所有配置。
+
+2、第三方组件的更新频率很难保证。很多第三方封装组件并不能一直和原始组件保持同步更新速度，万一原始组件更新了某个你需要的功能，但第三方并没有更新那岂不是很尴尬，而且很多第三方组件维护一段时间之后就不维护了。
+
+3、灵活性和针对性。还是那富文本来说，富文本在我司有很多定制化需求，我们需要将图片上传七牛，需要将图片打水印，需要很多针对业务的特殊需求，使用第三方包装的组件是不合适的，一般基于第三方封装的组件是很难拓展的。
+
+所以我觉得大部分组件还是自己封装来的更为方便和灵活一些。
+
+### 6.2 动手开干
+
+接下来我们一起手摸手教改造包装一个 js 插件，只要几分钟就可以封装一个专属于你的 vue component。封装对象：countUp.js「[inorganik/countUp.js: Animates a numerical value by counting to it](https://github.com/inorganik/countUp.js)」，改造后结果 vue-countTo「[PanJiaChen/vue-countTo: It's a vue component that will count to a target number at a specified duration https://panjiachen.github.io/countTo/demo/](https://github.com/PanJiaChen/vue-countTo)」。
+
+首先我们用官方提供的 vue-cli 来构建项目，这里选择了 webpack-simple（组件相对而言比较简单，不需要很多复杂的功能，所以 webpack-simple 已经满足需求了）。
+
+```
+$ npm install -g vue-cli
+$ vue init webpack-simple my-project
+$ cd my-project
+$ npm install
+```
+
+安装 countup.js：
+
+```
+$ npm install countup.js
+$ npm run dev
+```
+
+启动项目之后按照 countup.js 官方 demo 初始化插件。
+
+app.vue
+
+```
+<template>
+  <span ref='countup'></span>
+</template>
+
+<script>
+import CountUp from 'countup.js'
+export default {
+  name: 'countup-demo',
+  data () {
+    return {
+      numAnim:null
+    }
+  },
+  mounted(){
+    this.initCountUp()
+  },
+  methods:{
+    initCountUp(){
+      this.numAnim = new CountUp(this.$refs.countup,0, 2017)
+      this.numAnim.start();
+    }
+  }
+}
+</script>
+```
+
+刷新页面，就这么简单，countUp.js 已经生效了。
+
+接下来查看 countUp.js 的 github 发现它定义了如下可配置参数。对应 vue 就是 props，类型和初始化一目了然。
+
+1『图片里的是 countUp.js 的 params。』
+
+```js
+props: {
+  start: {
+    type: Number,
+    default: 0
+  },
+  end: {
+    type: Number,
+    default: 2017
+  },
+  decimal: {
+    type: Number,
+    default: 0
+  },
+  duration: {
+    type: Number,
+    default: 2.5
+  },
+  options: {
+    type: Object
+  }
+}
+```
+
+之后再将 countup 之前写死的配置项替换为动态 props 就可以了。
+
+```js
+this.numAnim = new CountUp(this.$refs.countup, 
+                           this.start,
+                           this.end,
+                           this.decimal,
+                           this.duration,
+                           this.options)
+```
+
+使用组件：
+
+```html
+<vue-count-up :end="2500" :duration="2.5"></vue-count-up>
+```
+
+只要几分钟一个属于自己的原生组件就包装好了，就是这么简单。完整 demo「[countUp-demo/App.vue at master · PanJiaChen/countUp-demo](https://github.com/PanJiaChen/countUp-demo/blob/master/src/App.vue)」。
+
+这时候你如果觉得使用 countUp.js 还有些不满足你的需求，那你可以选择自己来造轮子了。
+
+### 6.3 造轮子篇
+
+首先当然是阅读源码。其实源码也就两部分核心代码：
+
+第一部分：主要是就是 requestAnimationFrame，在游览器不支持 requestAnimationFrame 的情况下使用 setTimeout 来模拟，这段代码值得仔细阅读，自己在平时的项目中也能借鉴使用这段代码。
+
+第二部分：就是 count 函数。
+
+看懂这两部分之后造轮子就相当的简单了，demo「[PanJiaChen/vue-countTo: It's a vue component that will count to a target number at a specified duration https://panjiachen.github.io/countTo/demo/](https://github.com/PanJiaChen/vue-countTo)」。造轮子过程中发现 countUp，并没有 autoplay 这个参数项可以让组件自动开始count，没关系。。。我们可以自己来撸，我们首先定义 autoplay 这个props为布尔值，默认所有组件 autoplay 为 true
+
+```js
+ props:{
+   autoplay: {
+     type: Boolean,
+     required: false,
+     default: true
+   }
+ }
+ ```
+ 
+定义好 props 之后只要在 mounted 生命周期内加一个判断就完事了。
+
+```js
+mounted() {
+  if (this.autoplay) {
+    this.start();
+  }
+}
+```
+
+我们的 countUp 组件可以自动 count 了！
+
+### 6.4 上传 npm
+
+在不跨项目的情况下之前所做的已经满足需求了。但我们不能就此满足，我想让世界上更多的人来使用我的插件，这时候就要上传  npm「[npm | build amazing things](https://www.npmjs.com/)」了 demo「[PanJiaChen/vue-countTo: It's a vue component that will count to a target number at a specified duration https://panjiachen.github.io/countTo/demo/](https://github.com/PanJiaChen/vue-countTo)」。
+
+首先我们新建一个index.js。
+
+```js
+import CountTo from './vue-countTo.vue'
+
+// 导出模块
+export default CountTo
+
+//global 情况下 自动安装
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.component('count-to', CountTo)
+}
+```
+
+同时我们也要改造一下 webpack 的配置，因为不是所有使用你组件的人都是通过 npm 安装使用 import 引入组件的的。还有很多人是通过 \<script> 标签的方式直接引入的，所以我们要将 libraryTarget 改为 umd 格式「[Output | webpack](https://webpack.js.org/configuration/output/)」。
+
+```js
+library: 'CountTo',
+libraryTarget: 'umd',
+umdNamedDefine: true
+```
+
+大功告成，现在只要将它发布到 npm 就可以了，首先注册一个npm 账号，之后配置自己的 package.json（注意填写 version，每次发布的 version 不能相同；main 为入口文件地址）。之后只要一行命令 npm publish 你的项目就发到 npm 了，快让小伙伴们一起来用你的vue component 吧！
+
+### 总结
+
+这里这是拿了一个很简单的 countUp 组件举了一个简单例子，有的时候自己动手丰衣足食，很多插件的封装比想象中简单的多。产品经理再也不会看到我因为这个 fu\*\* 插件怎么不支持这个功能而愁眉苦脸了，我们可以更好地满足产品了。
 
 
