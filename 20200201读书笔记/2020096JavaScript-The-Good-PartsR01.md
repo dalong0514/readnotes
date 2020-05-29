@@ -26,7 +26,7 @@ A controversial feature in JavaScript is prototypal inheritance. JavaScript has 
 
 3. Object literals and array literals. This is a very convenient notation for creating new objects and arrays. JavaScript literals were the inspiration for the JSON data interchange format.
 
-### 0101. 主题卡——正则表达式的知识体系
+### 0102. 主题卡——正则表达式的知识体系
 
 结构与元素。
 
@@ -50,7 +50,7 @@ This quo function is designed to be used without the new prefix, so the name is 
 
 The best thing about JavaScript is its implementation of functions. It got almost everything right. But, as you should expect with JavaScript, it didn’t get everything right. A function encloses a set of statements. Functions are the fundamental modular unit of JavaScript. They are used for code reuse, information hiding, and composition. Functions are used to specify the behavior of objects. Generally, the craft of programming is the factoring of a set of requirements into a set of functions and data structures.
 
-1『the craft of programming is the factoring of a set of requirements into a set of functions and data structures. 函数式编程的思想。』
+1『 the craft of programming is the factoring of a set of requirements into a set of functions and data structures. 函数式编程的思想。』
 
 Functions in JavaScript are objects. Objects are collections of name/value pairs having a hidden link to a prototype object. Objects produced from object literals are linked to Object.prototype. Function objects are linked to Function.prototype (which is itself linked to Object.prototype). Every function is also created with two additional hidden properties: the function’s context and the code that implements the function’s behavior.
 
