@@ -124,7 +124,7 @@ JavaScript is a surprisingly powerful language. Its unconventionality presents s
 
 This is not a book for beginners. Someday I hope to write a JavaScript: The First Parts book, but this is not that book. This is not a book about Ajax or web programming. The focus is exclusively on JavaScript, which is just one of the languages the web developer must master. This is not a book for dummies. This book is small, but it is dense. There is a lot of material packed into it. Don’t be discouraged if it takes multiple readings to get it. Your efforts will be rewarded.
 
-## 01. Good Parts
+## 0101. Good Parts
 
 ### 1. 逻辑脉络
 
@@ -230,7 +230,7 @@ Function.prototype.method = function (name, func) {
 };
 ```
 
-## 02. Grammar
+## 0201. Grammar
 
 ### 1. 逻辑脉络
 
@@ -398,7 +398,7 @@ Object literals are a convenient notation for specifying new objects. The names 
 
 A function literal defines a function value. It can have an optional name that it can use to call itself recursively. It can specify a list of parameters that will act as variables initialized by the invocation arguments. The body of the function includes variable definitions and statements. There will be more about functions in Chapter 4.
 
-## 03. Objects
+## 0301. Objects
 
 ### 1. 逻辑脉络
 
@@ -707,7 +707,7 @@ By reducing your global footprint to a single name, you significantly reduce the
 
 1『用闭包来 information hiding，闭包也是一种减少全局变量污染的有效手段。』
 
-## 04. Function
+## 0401. Function
 
 The best thing about JavaScript is its implementation of functions. It got almost everything right. But, as you should expect with JavaScript, it didn’t get everything right. A function encloses a set of statements. Functions are the fundamental modular unit of JavaScript. They are used for code reuse, information hiding, and composition. Functions are used to specify the behavior of objects. Generally, the craft of programming is the factoring of a set of requirements into a set of functions and data structures.
 

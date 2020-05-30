@@ -1,4 +1,4 @@
-## 05. Inheritance
+## 0501. Inheritance
 
 Divides one thing entire to many objects; Like perspectives, which rightly gazed upon. Show nothing but confusion...
 
@@ -477,7 +477,7 @@ In this way, a constructor could assemble objects from a set of parts. JavaScrip
 
 我们可以在任何单独的对象上调用 eventuality，授予它事件处理方法。我们也可以赶在 that 被返回前在一个构造器函数中调用它；用这种方式，一个构造器函数可以从一套部件中把对象组装出来。Javascript 的弱类型在此处是一个巨大的优势，因为我们无须花费精力去了解对象在类型系统中的继承关系。相反我们只需专注于它们的个性特征。如果我们想要 eventuality 访问该对象的私有状态，可以把私有成员集 my 传递给它。
 
-## 06. Arrays
+## 0601. Arrays
 
 An array is a linear allocation of memory in which elements are accessed by integers that are used to compute offsets. Arrays can be very fast data structures. Unfortunately, JavaScript does not have anything like this kind of array. Instead, JavaScript provides an object that has some array-like characteristics. It converts array subscripts into strings that are used to make properties. It is significantly slower than a real array, but it can be more convenient to use. Retrieval and updating of properties work the same as with objects, except that there is a special trick with integer property names. Arrays have their own literal format. Arrays also have a much more useful set of built-in methods, described in Chapter 8.
 
@@ -764,7 +764,7 @@ myMatrix = Array.identity(4);
 document.writeln(myMatrix[3][3]); // 1
 ```
 
-## 07. Regular Expressions
+## 0701. Regular Expressions
 
 Many of JavaScript’s features were borrowed from other languages. The syntax came from Java, functions came from Scheme, and prototypal inheritance came from Self. JavaScript’s Regular Expression feature was borrowed from Perl.
 
