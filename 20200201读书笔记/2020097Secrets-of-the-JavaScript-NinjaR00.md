@@ -28,9 +28,7 @@
 
 #### 02. 贡献及著作
 
-### 0401. 金句卡——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
+### 0401. 金句卡——JS 里的 class 关键字是语法糖
 
 ### 0501. 任意卡——数组的常用操作
 
@@ -342,9 +340,9 @@ What are some common uses for a generator function? Why are promises better than
 
 
 
-## 07. Object orientation with prototypes
+## 0701. Object orientation with prototypes
 
-## Summary 
+### Summary 
 
 1. JavaScript objects are simple collections of named properties with values. 
 
@@ -918,6 +916,289 @@ for(let prop in Ninja.prototype) {
 ```
 
 Now if we run the code, we’ll see that everything is peachy. We’ve reestablished the connection between ninja instances and the Ninja function, so we can know that they were constructed by the Ninja function. In addition, if anybody tries to loop through the properties of the Ninja.prototype object, we’ve made sure that our patched-on property constructor won’t be visited. Now that’s the mark of a true ninja; we went in, did our job, and got out, without anybody noticing anything from the outside! 
+
+#### 7.3.2 The instanceof operator 
+
+In most programming languages, the straightforward approach for checking whether an object is a part of a class hierarchy is to use the instanceof operator. For example, in Java, the instanceof operator works by checking whether the object on the left side is either the same class or a subclass of the class type on the right. 
+
+Although certain parallels could be made with how the instanceof operator works in JavaScript, there’s a little twist. In JavaScript, the instanceof operator works on the prototype chain of the object. For example, say we have the following expression: 
+
+```js
+ninja instanceof Ninja 
+```
+
+The instanceof operator works by checking whether the current prototype of the Ninja function is in the prototype chain of the ninja instance. Let’s go back to our persons and ninjas, for a more concrete example. 
+
+Listing 7.11 Studying the instanceof operator 
+
+```js
+function Person() {} 
+function Ninja() {} 
+Ninja.prototype = new Person(); 
+const ninja = new Ninja(); 
+
+// A ninja instance is both a Ninja and a Person. 
+assert(ninja instanceof Ninja, "Our ninja is a Ninja!"); 
+assert(ninja instanceof Person, "A ninja is also a Person. "); 
+```
+
+As expected, a ninja is, at the same time, a Ninja and a Person. But, to nail down this point, figure 7.16 shows how the whole thing works behind the scenes. 
+
+Figure 7.16 The prototype chain of a ninja instance is composed of a new Person() object and the Person prototype. 
+
+The prototype chain of a ninja instance is composed of a new Person() object, through which we’ve achieved inheritance, and the Person prototype. When evaluating the expression ninja instanceof Ninja, the JavaScript engine takes the prototype of the Ninja function, the new Person() object, and checks whether it’s in the prototype chain of the ninja instance. Because the new Person() object is a direct prototype of the ninja instance, the result is true. 
+
+In the second case, where we check ninja instanceof Person, the JavaScript engine takes the prototype of the Person function, the Person prototype, and checks whether it can be found in the prototype chain of the ninja instance. Again, it can, because it’s the prototype of our new Person() object, which, as we’ve already seen, is the prototype of the ninja instance. 
+
+And that’s all there is to know about the instanceof operator. Although its most common use is in providing a clear way to determine whether an instance was created by a particular function constructor, it doesn’t exactly work like that. Instead, it checks whether the prototype of the right-side function is in the prototype chain of the object on the left. Therefore, there is a caveat that we should be careful about. 
+
+THE INSTANCEOF CAVEAT 
+
+As you’ve seen multiple times throughout this chapter, JavaScript is a dynamic language in which we can modify a lot of things during program execution. For example, there’s nothing stopping us from changing the prototype of a constructor, as shown in the following listing. 
+
+Listing 7.12 Watch out for changes to constructor prototypes 
+
+```js
+function Ninja() {} 
+const ninja = new Ninja();
+assert(!(ninja instanceof Ninja), "The ninja is now not a Ninja!?"); 
+
+// We change the prototype of the Ninja constructor function. 
+Ninja.prototype = {}; 
+assert(ninja instanceof Ninja, "Our ninja is a Ninja!"); 
+// Even though our ninja instance was created by the Ninja constructor, the instanceof operator now says that ninja isn’t an instance of Ninja anymore! 
+```
+
+In this example, we again repeat all the basic steps of making a ninja instance, and our first test goes fine. But if we change the prototype of the Ninja constructor function after the creation of the ninja instance, and again test whether ninja is an instanceof Ninja, we’ll see that the situation has changed. This will surprise us only if we cling to the inaccurate assumption that the instanceof operator tells us whether an instance was created by a particular function constructor. If, on the other hand, we take the real semantics of the instanceof operator—that it checks only whether the prototype of the function on the right side is in the prototype chain of the object on the left side—we won’t be surprised. This situation is shown in figure 7.17. 
+
+Figure 7.17 The instanceof operator checks whether the prototype of the function on the right is in the prototype chain of the object on the left. Be careful; the function’s prototype can be changed anytime! 
+
+1『重点警惕的是，一个构造函数的原型在运行时的过程中可以任意的被修改。』
+
+Now that we understand how prototypes work in JavaScript, and how to use prototypes in conjunction with constructor functions to implement inheritance, let’s move on to a new addition in the ES6 version of JavaScript: classes. 
+
+### 7.4 Using JavaScript “classes” in ES6 
+
+It’s great that JavaScript lets us use a form of inheritance via prototypes. But many developers, especially those from a classical object-oriented background, would prefer a simplification or abstraction of JavaScript’s inheritance system into one that they’re more familiar with. 
+
+This inevitably leads toward the realm of classes, even though JavaScript doesn’t support classical inheritance natively. As a response to this need, several JavaScript libraries that simulate classical inheritance have popped up. Because each library implements classes in its own way, the ECMAScript committee has standardized the syntax for simulating class-based inheritance. Notice how we said simulating. Even though now we can use the class keyword in JavaScript, the underlying implementation is still based on prototype inheritance! 
+
+NOTE: The class keyword has been added to the ES6 version of JavaScript, and not all browsers implement it (see http://mng.bz/3ykA for current support). 
+
+Let’s start by studying the new syntax. 
+
+#### 7.4.1 Using the class keyword 
+
+ES6 introduces a new class keyword that provides a much more elegant way of creating objects and implementing inheritance than manually implementing it ourselves with prototypes. Using the class keyword is easy, as shown in the following listing. 
+
+1『既然 ES6 帮忙封装了用原型模拟基于类的面向对象，那以后果断用它的封装来声明类，即使用 calss 关键字。声明的时候有封装的，简单且同意，但在运行时的过程中可以自由的再切换回基于原型的语法，目前自己是这么考虑的，哈哈。（2020-05-30）』
+
+Listing 7.13 Creating a class in ES6 
+
+```js
+// Uses the class keyword to start specifying an ES6 class 
+
+class Ninja { 
+    // Defines a constructor function that will be called when we call the class with the keyword new 
+    constructor(name) { 
+        this.name = name; 
+    } 
+    // Defines an additional method accessible to all Ninja instances 
+    swingSword() { 
+        return true; 
+    } 
+} 
+
+// Instantiates a new ninja object with the keyword new 
+var ninja = new Ninja("Yoshi"); 
+
+// Tests for the expected behavior 
+assert(ninja instanceof Ninja, "Our ninja is a Ninja"); 
+assert(ninja.name === "Yoshi", "named Yoshi"); 
+assert(ninja.swingSword(), "and he can swing a sword"); 
+```
+
+Listing 7.13 shows that we can create a Ninja class by using the class keyword. When creating ES6 classes, we can explicitly define a constructor function that will be invoked when instantiating a Ninja instance. In the constructor’s body, we can access the newly created instance with the this keyword, and we can easily add new properties, such as the name property. Within the class body, we can also define methods that will be accessible to all Ninja instances. In this case, we’ve defined a swingSword method that returns true. Next we can create a Ninja instance by calling the Ninja class with the keyword new, just as we would if Ninja was a simple constructor function (as earlier in the chapter). Finally, we can test that the ninja instance behaves as expected, that it’s an instanceof Ninja, has a name property, and has access to the swingSword method.
+
+CLASSES ARE SYNTACTIC SUGAR 
+
+As mentioned earlier, even though ES6 has introduced the class keyword, under the hood we’re still dealing with good old prototypes; classes are syntactic sugar designed to make our lives a bit easier when mimicking classes in JavaScript. 
+Our class code from listing 7.13 can be translated to functionally identical ES5 code: 
+
+```js
+function Ninja(name) { 
+    this.name = name; 
+} 
+Ninja.prototype.swingSword = function() { 
+    return true; 
+}; 
+```
+
+As you can see, there’s nothing especially new with ES6 classes. The code is more elegant, but the same concepts are applied. 
+
+STATIC METHODS 
+
+In the previous examples, you saw how to define object methods (prototype methods), accessible to all object instances. In addition to such methods, classical object-oriented languages such as Java use static methods, methods defined on a class level. Check out the following example. 
+
+1『传统的基于类的面向对象里，静态方法是基于「类」这个层级的方法，根据这个类实例化后的对象都可以访问该方法。』
+
+Listing 7.14 Static methods in ES6 
+
+```js
+class Ninja { 
+    constructor(name, level) { 
+        this.name = name; 
+        this.level = level; 
+    } 
+    swingSword() { 
+        return true; 
+    } 
+    // Uses the static keyword to make a static method 
+    static compare(ninja1, ninja2) { 
+        return ninja1.level - ninja2.level; 
+    } 
+} 
+
+var ninja1 = new Ninja("Yoshi", 4); 
+var ninja2 = new Ninja("Hattori", 3); 
+
+// ninja instances don’t have access to compare. 
+assert(!("compare" in ninja1) && !("compare" in ninja2), "A ninja instance doesn't know how to compare"); 
+
+// The class Ninja has access to the compare method. 
+assert(Ninja.compare(ninja1, ninja2) > 0, "The Ninja class can do the comparison!"); 
+
+assert(!("swingSword" in Ninja), "The Ninja class cannot swing a sword"); 
+```
+
+We again create a Ninja class that has a swingSword method accessible from all ninja instances. We also define a static method, compare, by prefixing the method name with the keyword static. The compare method, which compares the skill levels of two ninjas, is defined on the class level, and not the instance level! Later we test that this effectively means that the compare method isn’t accessible from ninja instances but is accessible from the Ninja class.
+
+We can also look at how “static” methods can be implemented in pre-ES6 code. For this, we have to remember only that classes are implemented through functions. Because static methods are class-level methods, we can implement them by taking advantage of functions as first-class objects, and adding a method property to our constructor function, as in the following example: 
+
+```js
+function Ninja() {} 
+// Extends the constructor function with a method to mimic static methods in pre-ES6 code 
+Ninja.compare = function(ninja1, ninja2) {...} 
+```
+
+Now let’s move on to inheritance. 
+
+#### 7.4.2 Implementing inheritance 
+
+To be honest, performing inheritance in pre-ES6 code can be a pain. Let’s go back to our trusted Ninjas, Persons example: 
+
+```js
+function Person() {} 
+Person.prototype.dance = function() {}; 
+
+function Ninja() {} 
+Ninja.prototype = new Person(); 
+
+Object.defineProperty(Ninja.prototype, "constructor", { 
+    enumerable: false, 
+    value: Ninja, 
+    writable: true 
+}); 
+```
+
+1『上面是 ES6 之前，基于原型的面向对象，实现对象继承的完整代码。』
+
+There’s a lot to keep in mind here: Methods accessible to all instances should be added directly to the prototype of the constructor function, as we did with the dance method and the Person constructor. If we want to implement inheritance, we have to set the prototype of the derived “class” to the instance of the base “class.” In this case, we assigned a new instance of Person to Ninja.prototype. Unfortunately, this messes up the constructor property, so we have to manually restore it with the Object.defineProperty method. This is a lot to keep in mind when trying to achieve a relatively simple and commonly used feature (inheritance). Luckily, with ES6, all of this is significantly simplified. Let’s see how it’s done in the following listing. 
+
+Listing 7.15 Inheritance in ES6 
+
+```js
+class Person { 
+    constructor(name) { 
+        this.name = name; 
+    } 
+    dance() { 
+        return true; 
+    } 
+} 
+
+// Uses the extends keyword to inherit from another class 
+class Ninja extends Person { 
+    constructor(name, weapon) { 
+    // Uses the super keyword to call the base class constructor 
+    super(name); 
+    this.weapon = weapon; 
+    } 
+
+    wieldWeapon() { 
+        return true; 
+    } 
+} 
+
+var person = new Person("Bob"); 
+
+assert(person instanceof Person, "A person's a person"); 
+assert(person.dance(), "A person can dance."); 
+assert(person.name === "Bob", "We can call it by name."); 
+assert(!(person instanceof Ninja), "But it's not a Ninja"); 
+assert(!("wieldWeapon" in person), "And it cannot wield a weapon"); 
+
+var ninja = new Ninja("Yoshi", "Wakizashi"); 
+assert(ninja instanceof Ninja, "A ninja's a ninja"); 
+assert(ninja.wieldWeapon(), "That can wield a weapon"); 
+assert(ninja instanceof Person, "But it's also a person"); 
+assert(ninja.name === "Yoshi" , "That has a name"); 
+assert(ninja.dance(), "And enjoys dancing"); 
+```
+
+Listing 7.15 shows how to achieve inheritance in ES6; we use the extends keyword to inherit from another class. In this example, we create a Person class with a constructor that assigns a name to each Person instance. We also define a dance method that will be accessible to all Person instances. Next we define a Ninja class that extends the Person class. It has an additional weapon property, and a wieldWeapon method.
+
+In the constructor of the derived, Ninja class, there’s a call to the constructor of the base, Person class, through the keyword super. This should be familiar, if you’ve worked with any class-based language. We continue by creating a person instance and checking that it’s an instance of the Person class that has a name and can dance. Just to be sure, we also check that a person who isn’t a Ninja can’t wield a weapon.
+
+We also create a ninja instance and check that it’s an instance of Ninja and can wield a weapon. Because every ninja is also a Person, we check that a ninja is an instance of Person, that it has a name, and that it also, in the interim of fighting, enjoys dancing.
+
+See how easy this is? There’s no need to think about prototypes or the side effects of certain overridden properties. We define classes and specify their relationship by using the extends keyword. Finally, with ES6, hordes of developers coming from languages such as Java or C# can be at peace. And that’s it. With ES6, we build class hierarchies almost as easily as in any other, more conventional object-oriented language. 
+
+## 0801. Controlling access to objects
+
+### Summary
+
+1. We can monitor our objects with getters, setters, and proxies.
+
+2. By using accessor methods (getters and setters), we can control access to object properties.
+
+    – Accessor properties can be defined by using the built-in Object.defineProperty method or with a special get and set syntax as parts of object literals or ES6 classes.
+
+    – A get method is implicitly called whenever we try to read, whereas a set method is called whenever we assign a value to the matching object’s property.
+
+    – Getter methods can be used to define computed properties, properties whose value is calculated on a per request basis, whereas setter methods can be used to achieve data validation and logging.
+
+3. Proxies are an ES6 addition to JavaScript and are used to control other objects.
+
+    – Proxies enable us to define custom actions that will be executed when an object is interacted with (for example, when a property is read or a function is called).
+
+    – All interactions have to go through the proxy, which has traps that are triggered when a specific action occurs.
+
+4. Use proxies to achieve elegant.
+
+    – Logging.
+
+    – Performance measurements.
+
+    – Data validation.
+
+    – Autopopulating object properties (thereby avoiding pesky null exceptions).
+
+    – Negative array indexes. 
+
+5. Proxies aren’t fast, so be careful when using them in code that’s executed a lot. We recommend that you do performance testing.
+
+This chapter covers: 1) Using getters and setters to control access to object properties. 2) Controlling access to objects through proxies. 3) Using proxies for cross-cutting concerns.
+
+In the previous chapter, you saw that JavaScript objects are dynamic collections of properties. We can easily add new properties, change the values of properties, and even completely remove existing properties. In many situations (for example, when validating property values, logging, or displaying data in the UI), we need to be able to monitor exactly what’s going on with our objects. So in this chapter, you’ll learn techniques for controlling access to and monitoring all of the changes that occur in your objects.
+
+We’ll start with getters and setters, methods that control access to specific object properties. You first saw these methods in action in chapters 5 and 7. In this chapter, you’ll see some of their built-in language support and how to use them for logging, performing data validation, and defining computed properties. 
+
+We’ll continue with proxies, a completely new type of object introduced in ES6. These objects control access to other objects. You’ll learn how they work and how to use them to great effect to easily expand your code with cross-cutting concerns such as performance measurement or logging, and how to avoid null exceptions by autopopulating object properties. Let’s start the journey with something we already know to a certain degree: getters and setters.
+
+What are some of the benefits of accessing a property’s value through getters and setters? What is the main difference between proxies and getters and setters? What are proxy traps? Name three types of trap.
+
+
 
 
 

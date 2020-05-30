@@ -1,4 +1,4 @@
-# 06 Functions for the future: generators and promises
+# 0601. Functions for the future: generators and promises
 
 This chapter covers: 1) Continuing function execution with generators. 2) Handling asynchronous tasks with promises. 3) Achieving elegant asynchronous code by combining generators and promises.
 

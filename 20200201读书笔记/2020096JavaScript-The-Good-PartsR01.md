@@ -148,7 +148,7 @@ This book will not attempt to fully describe the language. Instead, it will focu
 
 Perhaps the greatest benefit of studying the good parts is that you can avoid the need to unlearn the bad parts. Unlearning bad patterns is very difficult. It is a painful task that most of us face with extreme reluctance. Sometimes languages are subsetted to make them work better for students. But in this case, I am subsetting JavaScript to make it work better for professionals.
 
-### 01. Why JavaScript?
+### 1.1 Why JavaScript?
 
 JavaScript is an important language because it is the language of the web browser. Its association with the browser makes it one of the most popular programming languages in the world. At the same time, it is one of the most despised programming languages in the world. The API of the browser, the Document Object Model (DOM) is quite awful, and JavaScript is unfairly blamed. The DOM would be painful to work with in any language. The DOM is poorly specified and inconsistently implemented. This book touches only very lightly on the DOM. I think writing a Good Parts book about the DOM would be extremely challenging.
 
@@ -160,7 +160,7 @@ The amazing thing about JavaScript is that it is possible to get work done with 
 
 1『 enormous expressive power. 是 JS 的一大特点。』
 
-### 02. Analyzing JavaScript
+### 1.2 Analyzing JavaScript
 
 JavaScript is built on some very good ideas and a few very bad ones. The very good ideas include functions, loose typing, dynamic objects, and an expressive object literal notation. The bad ideas include a programming model based on global variables.
 
@@ -200,7 +200,7 @@ JavaScript is a language of many contrasts. It contains many errors and sharp ed
 
 But in order to use the language well, you must be well informed about its limitations. I will pound on those with some brutality. Don’t let that discourage you. The good parts are good enough to compensate for the bad parts.
 
-### 03. A Simple Testing Ground
+### 1.3 A Simple Testing Ground
 
 If you have a web browser and any text editor, you have everything you need to run JavaScript programs. First, make an HTML file with a name like program.html:
 
@@ -242,7 +242,7 @@ This chapter introduces the grammar of the good parts of JavaScript, presenting 
 
 The grammar of the good parts presented in this chapter is significantly simpler than the grammar of the whole language.
 
-### 01. Whitespace
+### 2.1 Whitespace
 
 Whitespace can take the form of formatting characters or comments. Whitespace is usually insignificant, but it is occasionally necessary to use whitespace to separate sequences of characters that would otherwise be combined into a single token. For example, in:
 
@@ -260,7 +260,7 @@ var rm_a = /a*/.match(s);
 
 causes a syntax error. So, it is recommended that /* */ comments be avoided and // comments be used instead. In this book, // will be used exclusively.
 
-### 02. Names
+### 2.2 Names
 
 A name is a letter optionally followed by one or more letters, digits, or underbars. A name cannot be one of these reserved words:
 
@@ -285,7 +285,7 @@ while with
 
 Most of the reserved words in this list are not used in the language. The list does not include some words that should have been reserved but were not, such as undefined, NaN, and Infinity. It is not permitted to name a variable or parameter with a reserved word. Worse, it is not permitted to use a reserved word as the name of an object property in an object literal or following a dot in a refinement. Names are used for statements, variables, parameters, property names, operators, and labels.
 
-### 03. Numbers
+### 2.3 Numbers
 
 JavaScript has a single number type. Internally, it is represented as 64-bit floating point, the same as Java’s double. Unlike most other programming languages, there is no separate integer type, so 1 and 1.0 are the same value. This is a significant convenience because problems of overflow in short integers are completely avoided, and all you need to know about a number is that it is a number. A large class of numeric type errors is avoided.
 
@@ -293,7 +293,7 @@ If a number literal has an exponent part, then the value of the literal is compu
 
 1『 JS 里的对象 Math 包含一系列对数字处理的方法。』
 
-### 04. Strings
+### 2.4 Strings
 
 A string literal can be wrapped in single quotes or double quotes. It can contain zero or more characters. The \ (backslash) is the escape character. JavaScript was built at a time when Unicode was a 16-bit character set, so all characters in JavaScript are 16 bits wide. JavaScript does not have a character type. To represent a character, make a string with just one character in it.
 
@@ -309,7 +309,7 @@ is true. Strings have methods (see Chapter 8):
 
     'cat'.toUpperCase( ) === 'CAT'
 
-### 05. Statements
+### 2.5 Statements
 
 A compilation unit contains a set of executable statements. In web browsers, each \<script> tag delivers a compilation unit that is compiled and immediately executed. Lacking a linker, JavaScript throws them all together in a common global namespace. There is more on global variables in Appendix A.
 
@@ -361,7 +361,7 @@ The break statement causes the exit from a loop statement or a switch statement.
 
 An expression statement can either assign values to one or more variables or members, invoke a method, delete a property from an object. The = operator is used for assignment. Do not confuse it with the === equality operator. The += operator can add or concatenate.
 
-### 06. Expressions
+### 2.6 Expressions
 
 The simplest expressions are a literal value (such as a string or number), a variable, a built-in value (true, false, null, undefined, NaN, or Infinity), an invocation expression preceded by new, a refinement expression preceded by delete, an expression wrapped in parentheses, an expression preceded by a prefix operator, or an expression followed by: 1) An infix operator and another expression. 2) The ? ternary operator followed by another expression, then by :, and then by yet another expression. 3) An invocation. 4) A refinement.
 
@@ -388,13 +388,13 @@ Invocation causes the execution of a function value. The invocation operator is 
 
 A refinement is used to specify a property or element of an object or array. This will be described in detail in the next chapter.
 
-### 07. Literals
+### 2.7 Literals
 
 Object literals are a convenient notation for specifying new objects. The names of the properties can be specified as names or as strings. The names are treated as literal names, not as variable names, so the names of the properties of the object must be known at compile time. The values of the properties are expressions. There will be more about object literals in the next chapter. Array literals are a convenient notation for specifying new arrays. There will be more about array literals in Chapter 6. There will be more about regular expressions in Chapter 7.
 
 『 Literals 即字面量。对象字面量是一种可以方便地按指定规格创建新对象的表示法。属性名可以是标识符或字符串。这些名字被当做字面量名而不是变量名来对待，所以对象的属性名在编译时才能知道。属性的值就是表达式。』
 
-### 08. Functions
+### 2.8 Functions
 
 A function literal defines a function value. It can have an optional name that it can use to call itself recursively. It can specify a list of parameters that will act as variables initialized by the invocation arguments. The body of the function includes variable definitions and statements. There will be more about functions in Chapter 4.
 
@@ -414,7 +414,7 @@ Objects in JavaScript are class-free. There is no constraint on the names of new
 
 1『 JS 中的对象是无类型的（class-free）。』
 
-### 01. Object Literals
+### 3.1 Object Literals
 
 Object literals provide a very convenient notation for creating new object values. An object literal is a pair of curly braces surrounding zero or more name/value pairs. An object literal can appear anywhere an expression can appear: 
 
@@ -448,7 +448,7 @@ var flight = {
 };
 ```
 
-### 02. Retrieval
+### 3.2 Retrieval
 
 Values can be retrieved from an object by wrapping a string expression in a [ ] suffix. If the string expression is a constant, and if it is a legal JavaScript name and not a reserved word, then the . notation can be used instead. The . notation is preferred because it is more compact and it reads better:
 
@@ -479,7 +479,7 @@ flight.equipment // undefined flight.equipment.model // throw "TypeError"
 flight.equipment && flight.equipment.model // undefined Retrieval
 ```
 
-### 03. Update
+### 3.3 Update
 
 A value in an object can be updated by assignment. If the property name already exists in the object, the property value is replaced:
 
@@ -496,7 +496,7 @@ flight.equipment = {
 flight.status = 'overdue';
 ```
 
-### 04. Reference
+### 3.4 Reference
 
 Objects are passed around by reference. They are never copied: 
 
@@ -513,7 +513,7 @@ a = b = c = {};
 // a, b, and c all refer to the same empty object
 ```
 
-### 05. Prototype
+### 3.5 Prototype
 
 Every object is linked to a prototype object from which it can inherit properties. All objects created from object literals are linked to Object.prototype, an object that comes standard with JavaScript. When you make a new object, you can select the object that should be its prototype.
 
@@ -596,7 +596,7 @@ console.log('y: ' + y.programming);
 
 』
 
-### 06. Reflection
+### 3.6 Reflection
 
 It is easy to inspect an object to determine what properties it has by attempting to retrieve the properties and examining the values obtained. The typeof operator can be very helpful in determining the type of a property: 
 
@@ -623,7 +623,7 @@ flight.hasOwnProperty('constructor') // false
 
 1『两种方法剔除掉原型链上原生的属性，一是自己写方法剔除，一是用 hasOwnProperty() 来过滤。』
 
-### 07. Enumeration
+### 3.7 Enumeration
 
 The for in statement can loop over all of the property names in an object. The enumeration will include all of the properties—including functions and prototype properties that you might not be interested in—so it is necessary to filter out the values you don’t want. The most common filters are the hasOwnProperty method and using typeof to exclude functions:
 
@@ -658,7 +658,7 @@ By using for instead of for in, we were able to get the properties we wanted wit
 
 1『使用 for 来遍历更佳，但前提是要有需要遍历的属性名的数组。』
 
-### 08. Delete
+### 3.8 Delete
 
 The delete operator can be used to remove a property from an object. It will remove a property from the object if it has one. It will not touch any of the objects in the prototype linkage. Removing a property from an object may allow a property from the prototype linkage to shine through:
 
@@ -671,7 +671,7 @@ another_stooge.nickname // 'Curly'
 
 1『之前用 Object.create() 封装，让子对象不能触达父对象的原型链，此时删除掉子对象的这个属性后，其父对象原型链上的属性也就暴露出来了。』
 
-### 09. Global Abatement
+### 3.9 Global Abatement
 
 JavaScript makes it easy to define global variables that can hold all of the assets of your application. Unfortunately, global variables weaken the resiliency of programs and should be avoided. One way to minimize the use of global variables is to create a single global variable for your application:
 
@@ -713,7 +713,7 @@ The best thing about JavaScript is its implementation of functions. It got almos
 
 1『函数是 JS 的灵魂所在，函数式编程。』
 
-### 01. Function Objects
+### 4.1 Function Objects
 
 Functions in JavaScript are objects. Objects are collections of name/value pairs having a hidden link to a prototype object. Objects produced from object literals are linked to Object.prototype. Function objects are linked to Function.prototype (which is itself linked to Object.prototype). Every function is also created with two additional hidden properties: the function’s context and the code that implements the function’s behavior.
 
@@ -727,7 +727,7 @@ Every function object is also created with a prototype property. Its value is an
 
 Since functions are objects, they can be used like any other value. Functions can be stored in variables, objects, and arrays. Functions can be passed as arguments to functions, and functions can be returned from functions. Also, since functions are objects, functions can have methods. The thing that is special about functions is that they can be invoked.
 
-### 02. Function Literal
+### 4.2 Function Literal
 
 Function objects are created with function literals:
 
@@ -751,7 +751,7 @@ A function literal can appear anywhere that an expression can appear. Functions 
 
 1『字面量创建的函数对象包含一个连到外部上下文的连接。那么通过原型对象创建的函数对象呢？』
 
-### 03. Invocation
+### 4.3 Invocation
 
 Invoking a function suspends the execution of the current function, passing control and parameters to the new function. In addition to the declared parameters, every function receives two additional parameters: this and arguments. The this parameter is very important in object oriented programming, and its value is determined by the invocation pattern. There are four patterns of invocation in JavaScript: the method invocation pattern, the function invocation pattern, the constructor invocation pattern, and the apply invocation pattern. The patterns differ in how the bonus parameter this is initialized.
 
@@ -761,7 +761,7 @@ The invocation operator is a pair of parentheses that follow any expression that
 
 1『醍醐灌顶，函数调用和用字面量创建函数是两码事，调用最关键的是那对圆括号 ()，圆括号前面可以是函数名，也可以是函数字面量。而圆括号里面是要传递进函数的实参；parameter 实参，调用函数时传递进来的。argument 形参，定义函数时设定的。』
 
-#### 1. The Method Invocation Pattern
+#### 4.3.1 The Method Invocation Pattern
 
 When a function is stored as a property of an object, we call it a method. When a method is invoked, this is bound to that object. If an invocation expression contains a refinement (that is, a . dot expression or [subscript] expression), it is invoked as a method:
 
@@ -788,7 +788,7 @@ A method can use this to access the object so that it can retrieve values from t
 
 1『对于「方法调用模式」，this 绑定其所属的对象，是发生在调用的时候。』
 
-#### 2. The Function Invocation Pattern
+#### 4.3.2 The Function Invocation Pattern
 
 When a function is not the property of an object, then it is invoked as a function: 
 
@@ -822,7 +822,7 @@ document.writeln(myObject.getValue( )); // 6
 
 1『方法模式调用，用 . 来调用；函数模式调用用 function(); 来调用（比如上面例子里的 help(); ）。』
 
-#### 3. The Constructor Invocation Pattern
+#### 4.3.3 The Constructor Invocation Pattern
 
 JavaScript is a prototypal inheritance language. That means that objects can inherit properties directly from other objects. The language is class-free. This is a radical departure from the current fashion. Most languages today are classical. Prototypal inheritance is powerfully expressive, but is not widely understood.
 
@@ -858,7 +858,7 @@ Functions that are intended to be used with the new prefix are called constructo
 
 1『上面形式创建的对象没有私有属性，后面的章节是利用闭包特性来实现私有属性的。』
 
-#### 4. The Apply Invocation Pattern
+#### 4.3.4 The Apply Invocation Pattern
 
 Because JavaScript is a functional object-oriented language, functions can have methods. The apply method lets us construct an array of arguments to use to invoke a function. It also lets us choose the value of this. The apply method takes two parameters. The first is the value that should be bound to this. The second is an array of parameters.
 
@@ -886,7 +886,7 @@ var status = Quo.prototype.get_status.apply(statusObject);
 
 1『 Quo.prototype.get_status.apply(statusObject); 是指定 this 绑定到 apply() 调用时传递的参数，在这里即 statusObject，所以 get_status 函数里的 this.statu 即 statusObject 对象里的 status 属性值。』
 
-### 04. Arguments
+### 4.4 Arguments
 
 A bonus parameter that is available to functions when they are invoked is the arguments array. It gives the function access to all of the arguments that were supplied with the invocation, including excess arguments that were not assigned to parameters. This makes it possible to write functions that take an unspecified number of parameters:
 
@@ -914,7 +914,7 @@ This is not a particularly useful pattern. In Chapter 6, we will see how we can 
 
 1『上面默认参数（parameters）的用法很赞。』
 
-### 05. Return
+### 4.5 Return
 
 When a function is invoked, it begins execution with the first statement, and ends when it hits the } that closes the function body. That causes the function to return control to the part of the program that invoked the function.
 
@@ -922,7 +922,7 @@ The return statement can be used to cause the function to return early. When ret
 
 如果函数调用时在前面加上了 new 前缀，且返回值不是一个对象，则返回 this（该新对象）。
 
-### 06. Exceptions
+### 4.6 Exceptions
 
 JavaScript provides an exception handling mechanism. Exceptions are unusual (but not completely unexpected) mishaps that interfere with the normal flow of a program. When such a mishap is detected, your program should throw an exception: 
 
@@ -959,7 +959,7 @@ If an exception is thrown within a try block, control will go to its catch claus
 
 1『如果在 try 代码块内抛出了一个异常，控制权就会跳转到它的 catch 从句。』
 
-### 07. Augmenting Types
+### 4.7 Augmenting Types
 
 JavaScript allows the basic types of the language to be augmented. In Chapter 3, we saw that adding a method to Object.prototype makes that method available to all objects. This also works for functions, arrays, strings, numbers, regular expressions, and booleans. For example, by augmenting Function.prototype, we can make a method available to all functions:
 
@@ -1009,7 +1009,7 @@ Function.prototype.method = function (name, func) {
 
 Another concern is that the for in statement interacts badly with prototypes. We saw a couple of ways to mitigate that in Chapter 3: we can use the hasOwnProperty method to screen out inherited properties, and we can look for specific types.
 
-### 08. Recursion
+### 4.8 Recursion
 
 A recursive function is a function that calls itself, either directly or indirectly. Recursion is a powerful programming technique in which a problem is divided into a set of similar subproblems, each solved with a trivial solution. Generally, a recursive function calls itself to solve its subproblems.
 
@@ -1104,7 +1104,7 @@ var factorial = function factorial(i, a) {
 document.writeln(factorial(4)); // 24
 ```
 
-### 09. Scope
+### 4.9 Scope
 
 Scope in a programming language controls the visibility and lifetimes of variables and parameters. This is an important service to the programmer because it reduces naming collisions and provides automatic memory management: 
 
@@ -1135,7 +1135,7 @@ In many modern languages, it is recommended that variables be declared as late a
 
 糟糕的是，尽管 Javascript 的代码块语法貌似支持块级作用域，但实际上 Javascript 并不支持。这个混淆之处可能成为错误之源。Javascript 确实有函数作用域。那意味着定义在函数中的参数和变量在函数外部是不可见的，而在一个函数内部任何位置定义的变量，在该函数内部任何地方都可见。很多现代语言都推荐尽可能延迟声明变量。而用在 Javascript 上的话却会成为槽糕的建议，因为它缺少块级作用域。所以，最好的做法是在函数体的顶部声明函数中可能用到的所有变量。
 
-### 10. Closure
+### 4.10 Closure
 
 The good news about scope is that inner functions get access to the parameters and variables of the functions they are defined within (with the exception of this and arguments). This is a very good thing. Our getElementsByAttribute function worked because it declared a results variable, and the inner function that it passed to walk\_the\_DOM also had access to the results variable.
 
@@ -1274,7 +1274,7 @@ Now, instead of assigning a function to onclick, we define a function and immedi
 
 1『这里的知识点感觉很重要，目前还没弄明白。（2020-03-29）』
 
-### 11. Callbacks
+### 4.11 Callbacks
 
 Functions can make it easier to deal with discontinuous events. For example, suppose there is a sequence that begins with a user interaction, making a request of the server, and finally displaying the server’s response. The native way to write that would be:
 
@@ -1299,7 +1299,7 @@ We pass a function parameter to the send\_request_asynchronously function that w
 
 1『回调函数目前的理解，把这个任务悬挂起来，做个标记，先干其他的事，等那边回复后再继续这个任务。』
 
-### 12. Module
+### 4.12 Module
 
 We can use functions and closure to make modules. A module is a function or object that presents an interface but that hides its state and implementation. By using functions to produce modules, we can almost completely eliminate our use of global variables, thereby mitigating one of JavaScript’s worst features.
 
@@ -1400,7 +1400,7 @@ If we passed seqer.gensym to a third party’s function, that function would be 
 
 Seder 包含的方法都没有用到 this 或 that，因此没有办法损害 seder。除非调用对应的方法，否则没法改变 prefix 或 seq 的值。seer 对象是可变的，所以它的方法可能会被替换掉，但替换后的方法依然不能访问私有成员。seder 就是一组函数的集合，而且那些函数被授予特权，拥有使用或修改私有状态的能力。如果我们把 seqer.gensym 作为一个值传递给第三方函数，那个函数能用它产生唯一字符串，但却不能通过它来改变 prefix 或 seq 的值。
 
-### 13. Cascade
+### 4.13 Cascade
 
 Some methods do not have a return value. For example, it is typical for methods that set or change the state of an object to return nothing. If we have those methods return this instead of undefined, we can enable cascades. In a cascade, we can call many methods on the same object in sequence in a single statement. An Ajax library that enables cascades would allow us to write in a style like this: 
 
@@ -1431,7 +1431,7 @@ In this example, the getElement function produces an object that gives functiona
 
 级联技术可以产生出极富表现力的接口。它也能给那波构造「全能」接口的热潮降降温，一个接口没必要一次做太多事情。
 
-### 14. Curry
+### 4.14 Curry
 
 Functions are values, and we can manipulate function values in interesting ways. Currying allows us to produce a new function by combining a function and an argument:
 
@@ -1472,7 +1472,7 @@ Function.method('curry', function ( ) {
 
 3『柯里化，也常译为「局部套用」，是把多参数函数转换为一系列单参数函数并进行调用的技术。这项技术以数学家 Haskell Curry 的名字命名。』
 
-### 15. Memoization
+### 4.15 Memoization
 
 Functions can use objects to remember the results of previous operations, making it possible to avoid unnecessary work. This optimization is called memoization. JavaScript’s objects and arrays are very convenient for this. Let’s say we want a recursive function to compute Fibonacci numbers. A Fibonacci number is the sum of the two previous Fibonacci numbers. The first two are 0 and 1: 
 

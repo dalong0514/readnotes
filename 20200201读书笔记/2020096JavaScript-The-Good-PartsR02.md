@@ -8,7 +8,7 @@ Inheritance is an important topic in most programming languages. In the classica
 
 JavaScript, being a loosely typed language, never casts. The lineage of an object is irrelevant. What matters about an object is what it can do, not what it is descended from. JavaScript provides a much richer set of code reuse patterns. It can ape the classical pattern, but it also supports other patterns that are more expressive. The set of possible inheritance patterns in JavaScript is vast. In this chapter, we’ll look at a few of the most straightforward patterns. Much more complicated constructions are possible, but it is usually best to keep it simple. In classical languages, objects are instances of classes, and a class can inherit from another class. JavaScript is a prototypal language, which means that objects inherit directly from other objects.
 
-### 01. Pseudoclassical
+### 5.1 Pseudoclassical
 
 JavaScript is conflicted about its prototypal nature. Its prototype mechanism is obscured by some complicated syntactic business that looks vaguely classical. Instead of having objects inherit directly from other objects, an unnecessary level of indirection is inserted such that objects are produced by constructor functions.
 
@@ -167,7 +167,7 @@ The pseudoclassical form can provide comfort to programmers who are unfamiliar w
 
 1『许多复杂的类层次结构产生的原因就是静态类型检査的约束。Javascript 完全摆脱了那些约束，这是 JS 又一大优点，弱类型。』
 
-### 02. Object Specifiers
+### 5.2 Object Specifiers
 
 It sometimes happens that a constructor is given a very large number of parameters. This can be troublesome because it can be very difficult to remember the order of the arguments. In such cases, it can be much friendlier if we write the constructor to accept a single object specifier instead. That object contains the specification of the object to be constructed. So, instead of:
 
@@ -192,7 +192,7 @@ The arguments can now be listed in any order, arguments can be left out if the c
 
 当与 JSON 一起工作时，这种形式还可以有一个间接的好处。JSON 文本只能描述数据，但有时数据表示的是一个对象，把该数据与它的方法关联起来是有用的。如果构造器取得一个对象说明符，就能让它轻松实现，因为我们可以筒单地把 JSON 对象传递给构造器，而它将返回一个构造完全的对象。
 
-### 03. Prototypal
+### 5.3 Prototypal
 
 In a purely prototypal pattern, we dispense with classes. We focus instead on the objects. Prototypal inheritance is conceptually simpler than classical inheritance: a new object can inherit the properties of an old object. This is perhaps unfamiliar, but it is really easy to understand. You start by making a useful object. You can then make many more objects that are like that one. The classification process of breaking an application down into a set of nested abstract classes can be completely avoided.
 
@@ -260,7 +260,7 @@ scope = oldScope;
 };
 ```
 
-### 04. Functional
+### 5.4 Functional
 
 One weakness of the inheritance patterns we have seen so far is that we get no privacy. All properties of an object are visible. We get no private variables and no private methods. Sometimes that doesn’t matter, but sometimes it matters a lot. In frustration, some uninformed programmers have adopted a pattern of pretend privacy. If they have a property that they wish to make private, they give it an odd-looking name, with the hope that other users of the code will pretend that they cannot see the odd looking members. Fortunately, we have a much better alternative in an application of the module pattern.
 
@@ -407,7 +407,7 @@ A durable object cannot be compromised. Access to a durable object does not give
 
 函数化模式有很大的灵活性。它相比伪类模式不仅带来的工作更少，还让我们得到更好的封装和信息隐藏，以及访问父类方法的能力。如果对象的所有状态都是私有的，那么该对象就成为一个「防伪」（tamper-proof）对象。该对象的属性可以被替换或删除，但该对象的完整性不会受到损害。如果我们用函数化的样式创建一个对象，并且该对象的所有方法都不使用 this 或 that，那么该对象就是持久性（durable）的。一个持久性对象就是一个简单功能函数的集合。一个持久性的对象不会被入侵。访问一个持久性的对象时，除非有方法授权，否则攻击者不能访问对象的内部状态。
 
-### 05. Parts
+### 5.5 Parts
 
 We can compose objects out of sets of parts. For example, we can make a function that can add simple event processing features to any object. It adds an on method, a fire method, and a private event registry:
 
@@ -483,7 +483,7 @@ An array is a linear allocation of memory in which elements are accessed by inte
 
 数组是一段线性分配的内存，它通过整数计算偏移并访问其中的元素。数组是一种性能出色的数据结构。不幸的是，Javascript 没有像此类数组一样的数据结构。作为替代，Javascript 提供了一种拥有一些类数组（aray-like）特性的对象。它把数组的下标转变成字符串，用其作为属性。它明显地比一个真正的数组慢，但它使用起来更方便。它的属性的检索和更新的方式与对象一模一样，只不过多一个可以用整数作为属性名的特性。数组有自己的字面量格式。数组也有一套非常有用的内置方法。
 
-### 01. Array Literals
+### 6.1 Array Literals
 
 Array literals provide a very convenient notation for creating new array values. An array literal is a pair of square brackets surrounding zero or more values separated by commas. An array literal can appear anywhere an expression can appear. The first value will get the property name '0', the second value will get the property name '1', and so on:
 
@@ -525,7 +525,7 @@ misc.length // 10
 
 1『 JS 里数组的各个元素可以是不同的类型，这个是「对象模拟数组」的一个体现。』
 
-### 02. Length
+### 6.2 Length
 
 Every array has a length property. Unlike most other languages, JavaScript’s array length is not an upper bound. If you store an element with a subscript that is greater than or equal to the current length, the length will increase to contain the new element. There is no array bounds error. The length property is the largest integer property name in the array plus one. This is not necessarily the number of properties in the array: 
 
@@ -564,7 +564,7 @@ numbers.push('go');
 // numbers is ['zero', 'one', 'two', 'shi', 'go']
 ```
 
-### 03. Delete
+### 6.3 Delete
 
 Since JavaScript’s arrays are really objects, the delete operator can be used to remove elements from an array:
 
@@ -588,7 +588,7 @@ numbers.splice(2, 1);
 
 The property whose value is 'shi' has its key changed from '4' to '3'. Because every property after the deleted property must be removed and reinserted with a new key, this might not go quickly for large arrays.
 
-### 04. Enumeration
+### 6.4 Enumeration
 
 Since JavaScript’s arrays are really objects, the for in statement can be used to iterate over all of the properties of an array. Unfortunately, for in makes no guarantee about the order of the properties, and most array applications expect the elements to be produced in numerical order. Also, there is still the problem with unexpected properties being dredged up from the prototype chain.
 
@@ -603,7 +603,7 @@ for (i = 0; i < myArray.length; i += 1) {
 }
 ```
 
-### 05. Confusion
+### 6.5 Confusion
 
 A common error in JavaScript programs is to use an object when an array is required or an array when an object is required. The rule is simple: when the property names are small sequential integers, you should use an array. Otherwise, use an object. JavaScript itself is confused about the difference between arrays and objects. The typeof operator reports that the type of an array is 'object', which isn’t very helpful. JavaScript does not have a good mechanism for distinguishing between arrays and objects. We can work around that deficiency by defining our own is\_array function: 
 
@@ -643,7 +643,7 @@ var is_array = function() {
 
 』
 
-### 06. Methods
+### 6.6 Methods
 
 JavaScript provides a set of methods for acting on arrays. The methods are functions stored in Array.prototype. In Chapter 3, we saw that Object.prototype can be augmented. Array.prototype can be augmented as well. For example, suppose we want to add an array method that will allow us to do computation on an array:
 
@@ -693,7 +693,7 @@ total = data.total( ); // total is 108
 
 Since the string 'total' is not an integer, adding a total property to an array does not change its length. Arrays are most useful when the property names are integers, but they are still objects, and objects can accept any string as a property name. It is not useful to use the Object.create method from Chapter 3 on arrays because it produces an object, not an array. The object produced will inherit the array’s values and methods, but it will not have the special length property.
 
-### 07. Dimensions
+### 6.7 Dimensions
 
 JavaScript arrays usually are not initialized. If you ask for a new array with [], it will be empty. If you access a missing element, you will get the undefined value. If you are aware of that, or if you will naturally set every element before you attempt to retrieve it, then all is well. But if you are implementing algorithms that assume that every element starts with a known value (such as 0), then you must prep the array yourself. JavaScript should have provided some form of an Array.dim method to do this, but we can easily correct this oversight:
 
@@ -784,7 +784,7 @@ All of the parts of a regular expression are pushed tightly together, making the
 
 3『Scheme，一种多范型的蝙程语言，它是两种 Iisp 主要的方言之一。而 Iisp（全名 LISt Processor，即链表处理语言）是由约输·麦卡锡在 1960 年左右创造的一种基于 lambda 演算的函数式编程语言；Self 语言，是一种基于原型的面向对象程序设计语言，于 1986 年由范乐帕洛阿尔托研究中心的 David Ungar 和 Randy Smith 给出了最初的设计；在数学、逻辑和计算机科学中，形式语言是用精确的数学或机器可处理的公式定义的语言。』
 
-### 01. An Example
+### 7.1 An Example
 
 Here is an example. It is a regular expression that matches URLs. The pages of this book are not infinitely wide, so I broke it into two lines. In a JavaScript program, the regular expression must be on a single line. Whitespace is significant: 
 
@@ -929,7 +929,7 @@ The (?:...)? indicates an optional noncapturing group. It is usually better to u
 
 This is another optional noncapturing group. It matches e (or E), an optional sign, and one or more digits.
 
-### 02. Construction
+### 7.2 Construction
 
 There are two ways to make a RegExp object. The preferred way, as we saw in the examples, is to use a regular expression literal. Regular expression literals are enclosed in slashes. This can be a little tricky because slash is also used as the division operator and in comments. There are three flags that can be set on a RegExp. They are indicated by the letters g, i, and m, as listed in Table 7-1. The flags are appended directly to the end of the RegExp literal:
 
@@ -971,13 +971,13 @@ x.lastIndex = 10;
 document.writeln(y.lastIndex); // 10
 ```
 
-### 03. Elements
+### 7.3 Elements
 
 Let’s look more closely at the elements that make up regular expressions.
 
 1『正则表达式里的元素，这个概念加进自学正则表达式的知识框架内，目前的体系里有正则的结构、元素。』
 
-#### 1. Regexp Choice
+#### 7.3.1 Regexp Choice
 
 A regexp choice contains one or more regexp sequences. The sequences are separated by the | (vertical bar) character. The choice matches if any of the sequences match. It attempts to match each of the sequences in order. So:
 
@@ -985,11 +985,11 @@ A regexp choice contains one or more regexp sequences. The sequences are separat
 
 matches the in in into. It wouldn’t match int because the match of in was successful.
 
-#### 2. Regexp Sequence
+#### 7.3.2 Regexp Sequence
 
 A regexp sequence contains one or more regexp factors. Each factor can optionally be followed by a quantifier that determines how many times the factor is allowed to appear. If there is no quantifier, then the factor will be matched one time.
 
-#### 3. Regexp Factor
+#### 7.3.3 Regexp Factor
 
 A regexp factor can be a character, a parenthesized group, a character class, or an escape sequence. All characters are treated literally except for the control characters and the special characters:
 
@@ -1005,7 +1005,7 @@ An unescaped . matches any character except a line-ending character. An unescape
 
 当 lastindex 属性值为 0 时，一个未转义的 ^ 会匹配文本的开始。当指定了 m 标识时，它也能匹配行结束符。一个未转义的 \$ 将匹配文本的结束。当指定了 m 标识时，它也能匹配行结束符。
 
-#### 4. Regexp Escape
+#### 7.3.4 Regexp Escape
 
 The backslash character indicates escapement in regexp factors as well as in strings, but in regexp factors, it works a little differently.
 
@@ -1032,7 +1032,7 @@ var doubled_words =
 
 \b 被指定为一个字边界标识，它方便用于对文本的字边界进行匹配。遗憾的是，它使用 \w 去寻找字边界，所以它对多语言应用来说是完全无用的。这并不是个好的特性。\1 是指向分组 1 所捕获到的文本的一个引用，所以它能被再次匹配。例如，你能用下面的正则表达式来搜索文本中的重复的单词。Doubled words 会寻找重复的单词（包含一个或多个字母的字符串），该单词的后面跟着个或多个空白，然后再跟着与它相同的单词。
 
-#### 5. Regexp Group
+#### 7.3.5 Regexp Group
 
 There are four kinds of groups:
 
@@ -1044,7 +1044,7 @@ There are four kinds of groups:
 
 非捕获型分组有一个 (?: 前缀。非捕获型分组仅做简单的匹配，并不会捕获所匹配的文本。这会带来微弱的性能优势。非捕获型分组不会干扰捕获型分组的编号。向前正向匹配分组类似于非捕获型分组，但在这个组匹配后，文本会倒回到它开始的地方，实际上并不匹配任何东西。这不是一个好的特性。向前负向匹配分组类似于向前正向匹配分组，但只有当它匹配失败时它才继续向前进行匹配。这不是一个好的特性。
 
-#### 6. Regexp Class
+#### 7.3.6 Regexp Class
 
 1『 Regexp Class 指字符集。』
 
@@ -1067,13 +1067,13 @@ which includes the characters from ! through / and : through @ and [ through àn
 
 它包括从 ！到 /、从 ：到 、从（ 到 ` 和从 [ 到 ~ 的字符。但它看起来依旧相当难以阅读。另一个方便之处是类的求反。如果 [ 后的第一个字符是 ^，那么这个类会排除这些特殊字符，所以取反的正则会匹配任何一个非 ASCI 特殊字符的字符。
 
-#### 7. Regexp Class Escape
+#### 7.3.7 Regexp Class Escape
 
 The rules of escapement within a character class are slightly different than those for a regexp factor. [\b] is the backspace character. Here are the special characters that should be escaped in a character class:
 
     - / [ \ ] ^
 
-#### 8. Regexp Quantifier
+#### 7.3.8 Regexp Quantifier
 
 A regexp factor may have a regexp quantifier suffix that determines how many times the factor should match. A number wrapped in curly braces means that the factor should match that many times. So, /www/ matches the same as /w{3}/. {3,6} will match 3, 4, 5, or 6 times. {3,} will match 3 or more times. ? is the same as {0,1}. * is the same as {0,}. + is the same as {1,}.
 
