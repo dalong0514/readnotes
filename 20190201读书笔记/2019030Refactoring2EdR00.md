@@ -2,17 +2,23 @@
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——重构手段
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+### 1.1 提炼函数
 
-#### 04. 例子
+代码里提炼出函数。一些好习惯收集：
 
-### 0201. 术语卡——
+1、永远将函数的返回值命名为「result」，这样我一眼就能知道它的作用。然后我再次编译、测试、提交代码。
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+2、函数参数的命令。使用一门动态类型语言（如 JavaScript）时，跟踪变量的类型很有意义。因此，我为参数取名时都默认带上其类型名。一般我会使用不定冠词修饰它，除非命名中另有解释其角色的相关信息。
 
-例子。
+### 0201. 术语卡——重构
+
+书里对重构这个词进行了阐释：重构 !== 更改，尤其是不等于影响函数正常工作的更改。在作者的概念体系里，重构是小步的、不影响函数行为的迭代式更改，嗯，跟敏捷的概念有点像。重构跟性能优化很像：都是修改代码且不影响行为。但前者是为了理解、便于修改；后者是为了性能而改。关于重构和加新功能的配合，作者把它们比喻成两顶帽子 —— 你戴或者不戴，什么时候戴，都随你，但是你要清楚自己戴着哪一顶帽子。
+
+重构的时机，在书中看来，应该是不得不重构时：譬如添加新功能前，重构能让修改更容易；帮助自己理解代码时，重构能让代码更易懂；捡垃圾时，重构可以改掉屎一样的代码（你懂的）。同样，也有不需要重构的时候：比如这段代码凌乱但是跟我无关、也不需要修改或是在某个隐藏得很好的 API 下。又或者重写更容易，那就重写吧。
+
+另外，关于变量命名的经验：作者喜欢把所有返回值变量命名成 result，学到了 —— 这样能一眼就知道变量的作用。以及，因为 JavaScript 是动态类型语言，所以作者喜欢在变量命名里加类型，尤其是加入不定冠词，比如 aPerformance。
 
 ### 0202. 术语卡——
 
@@ -77,5 +83,432 @@ Martin Fowler，本书作者，大师中的大师。
 十七年前，我以菜鸟之身读到《重构》，深受其中蕴涵的工匠精神感召，在 Fowler 先生与侯捷老师帮助下，完成了本书第一版的翻译工作。如今再译本书第二版，来自 ThoughtWorks 的青年才俊林从羽君主动请缨与我搭档合译，我亦将此视为匠艺传承的一桩美事。新一代程序员中，关注新工具、新框架、新商业模式者伙矣，关注面向对象、TDD、重构之类基本功者寥寥。林君年纪虽轻，却能平心静气磨砺技艺，对基本功学而时习，颇有老派工匠之风。当年藉由翻译《重构》一书，我从 Fowler 先生、侯捷老师身上学到他们的工匠精神，十余年来时时践行自勉。如今新一代软件工匠的代表人物林君接手此书，必会令工匠精神传承光大。
 
 据说古时高僧有偈云：「时时勤拂拭，勿使惹尘埃」。代码当如是，专业人士的技艺亦当如是。与《重构》的诸位读者共勉。
+
+### 02
+
+纵览武侠江湖，制胜法门不外两项，内功和外功。二者得一可天下去得，但最终皆入内外兼修之境。倚天是自内而外，先修内功九阳真经，然后以此为基础，加上太极拳和太极剑，最终成就天下第一高手。笑傲是自外而内，先学独孤九剑，后学吸星大法，最后学易筋经。神雕也不外如是，玉女心经算是外功，内功则是独孤求败之法门。只修内不修外，好比万贯家财而不知用，张无忌也要得传太极方可天下去得。只修外不修内，终是一场空。令狐冲身怀独孤九剑，在义救向问天时几乎丢掉性命。
+
+软件工程的自动化测试和设计模式，近似武侠世界的内功和外功。自动化测试好比内功，没有自动化测试为根基，每做一次修改，都可能引发不可思议错误，若没有自动化测试，最终进入无测试死循环。设计模式好比外功，重构的方法好比剑招，剑招固然重要，但更重要的是知道什么时候用什么剑招，心中无招，信手挥洒，皆是模式。
+
+内里明心见性，心如磐石，护体神功，自动化测试；外求格物致知，游刃有余，独孤九剑，设计模式。
+
+而「重构」好比五岳剑谱，是独孤九剑之基础功夫，令狐冲是在思过崖看到五岳剑派的剑谱和破法，然后发了疑情，然后才接受独孤九剑的思想并最终继承之，而练成之后，随心所欲，五岳剑谱的剑招还是常用的，所以讲独孤九剑与五岳剑谱只是外功的不同阶段而已。学会了五岳剑谱，才能更好地领会独孤九剑，学会了独孤九剑，才能更好地把握什么时候用什么剑招。《重构》->《设计模式》。
+
+1『又提供了一个自修软件工程的视角。』
+
+### 03
+
+先说作者，作者曾经也是写 Java 的，后来貌似不喜欢 Java 了（正常人都会这样吧），先是跟人合著了本 Ruby 版的重构，然后 —— 又应上了那个说法：所有能用 JavaScript 写的东西终将用 JavaScript 写成。这本关于重构的书，终于用 JavaScript 做了重构。当我在书里看到 Object.assign、Lodash 和箭头函数时，我的内心感到了快乐。尤其是小步重构到后来，函数体里都转成箭头函数和 lambda 表达式，hmm，真香。
+
+书的第一章从一个例子开始，一步步地重构，看得人如痴如醉 —— 这可不是玩笑，重构的精妙能将人完全代入。而且这个例子，也随着时代的变迁进行了场景修改，第一版是用的影碟出租屋的例子，但是现在基本上很少有人租碟了，所以改成了剧场看剧，嗯，很时髦，也算是一种「重构」吧。
+
+书里对重构这个词进行了阐释：重构 !== 更改，尤其是不等于影响函数正常工作的更改。在作者的概念体系里，重构是小步的、不影响函数行为的迭代式更改，嗯，跟敏捷的概念有点像。重构跟性能优化很像：都是修改代码且不影响行为。但前者是为了理解、便于修改；后者是为了性能而改。
+
+2『重构的定义，做一张术语卡片。』
+
+关于重构和加新功能的配合，作者把它们比喻成两顶帽子 —— 你戴或者不戴，什么时候戴，都随你，但是你要清楚自己戴着哪一顶帽子。
+
+重构的时机，在书中看来，应该是不得不重构时：譬如添加新功能前，重构能让修改更容易；帮助自己理解代码时，重构能让代码更易懂；捡垃圾时，重构可以改掉屎一样的代码（你懂的）。同样，也有不需要重构的时候：比如这段代码凌乱但是跟我无关、也不需要修改或是在某个隐藏得很好的 API 下。又或者重写更容易，那就重写吧。
+
+另外，关于变量命名的经验：作者喜欢把所有返回值变量命名成 result，学到了 —— 这样能一眼就知道变量的作用。以及，因为 JavaScript 是动态类型语言，所以作者喜欢在变量命名里加类型，尤其是加入不定冠词，比如 aPerformance。
+
+Anyway，重构不是银弹。我认为重构是需要在对代码的业务逻辑、对系统的边界、以及前人的意图都有所理解的基础上才能做的事情。依然记得刚入职时跟着同事们一起 pair programming，看着他们一步步地把代码重构时那种爽感。相信这也是一本常看常新的书啦。再多说一句：完整的测试用例才是重构的关键前提。以及，如之前看的《程序员的呐喊》里说的那样，如果你的 team 里都是天才程序员，管他什么重构不重构的，哈哈哈哈。可惜大部分 team 都是由像我这样的庸人组成，最好还是每个人会一些重构让世界更美好吧。
+
+### 05
+
+组里最主要的 Service 已经运行了几年了，目前大约有 40000 行代码，不少部分缺乏 Unit Tests。每次看代码的时候都有一种想重构的冲动。不过什么时候才重构呢？经理那里是不好交差的 —— 他们关心的是新功能的实现速度。有的时候重写反而（对程序员）的发展更好，因为工作量明显的可以看到。所以重构不过是谁都不愿意做的脏活累活，能拖就拖。
+
+于是就有了一个难题：代码不容易理解，所以才想重构；可不理解又如何重构呢？等自己理解了又懒得重构了，先把手头的任务做完再说吧，重构就留给下一个人吧。我认为《重构 —— 改善既有代码的设计》的贡献就在于教你如何在不完全理解代码的情况下安全的修改代码。
+
+一次和经理讨论到了重构，他说重构要在有完善的测试情况下才能安全的进行。可是眼前的代码测试 Coverage 不到 20%，而且因为正是代码的设计导致其难以测试，这种情况下该怎么办呢？是先努力写测试，然后再重构，还是先重构，然后在测试呢？我觉得可以采用书中提到的已经验证是安全的重构方法先进行重构，重构和加测试交替进行。
+
+## 01. Refactoring: A First Example Topics
+
+How do I begin to talk about refactoring? The traditional way is by introducing the history of the subject, broad principles, and the like. When somebody does that at a conference, I get slightly sleepy. My mind starts wandering, with a low­-priority background process polling the speaker until they give an example. The examples wake me up because I can see what is going on. With principles, it is too easy to make broad generalizations—and too hard to figure out how to apply things. An example helps make things clear.
+
+So I’m going to start this book with an example of refactoring. I’ll talk about how refactoring works and will give you a sense of the refactoring process. I can then do the usual principles-­style introduction in the next chapter.
+
+With any introductory example, however, I run into a problem. If I pick a large program, describing it and how it is refactored is too complicated for a mortal reader to work through. (I tried this with the original book—and ended up throwing away two examples, which were still pretty small but took over a hundred pages each to describe.) However, if I pick a program that is small enough to be comprehensible, refactoring does not look like it is worthwhile.
+
+I’m thus in the classic bind of anyone who wants to describe techniques that are useful for real­world programs. Frankly, it is not worth the effort to do all the refactoring that I’m going to show you on the small program I will be using. But if the code I’m showing you is part of a larger system, then the refactoring becomes important. Just look at my example and imagine it in the context of a much larger system.
+
+### 1.1 The Starting Point
+
+In the first edition of this book, my starting program printed a bill from a video rental store, which may now lead many of you to ask: “What’s a video rental store?” Rather than answer that question, I’ve reskinned the example to something that is both older and still current.
+
+Image a company of theatrical players who go out to various events performing plays. Typically, a customer will request a few plays and the company charges them based on the size of the audience and the kind of play they perform. There are currently two kinds of plays that the company performs: tragedies and comedies. As well as providing a bill for the performance, the company gives its customers “volume credits” which they can use for discounts on future performances—think of it as a customer loyalty mechanism.
+
+设想有一个戏剧演出团，演员们经常要去各种场合表演戏剧。通常客户（customer）会指定几出剧目，而剧团则根据观众（audience）人数及剧目类型来向客户收费。该团目前出演两种戏剧：悲剧（tragedy）和喜剧 （comedy）。给客户发出账单时，剧团还会根据到场观众的数量给出「观众量积分」（volume credit）优惠，下次客户再请剧团表演时可以使用积分获得折扣——你可以把它看作一种提升客户忠诚度的方式。
+
+The performers store data about their plays in a simple JSON file that looks something like this:
+
+plays.json…
+
+```json
+{
+    "hamlet": {"name": "Hamlet", "type": "tragedy"}, 
+    "as­like": {"name": "As You Like It", "type": "comedy"}, 
+    "othello": {"name": "Othello", "type": "tragedy"}
+}
+```
+
+The data for their bills also comes in a JSON file:
+
+invoices.json…
+
+```json
+[
+    {
+        "customer": "BigCo", "performances": [
+        { "playID": "hamlet", "audience": 55 }, {
+        "playID": "as­like",
+        "audience": 35 }, {
+        "playID": "othello",
+        "audience": 40 } ]
+    }
+]
+```
+
+The code that prints the bill is this simple function:
+
+```js
+function statement (invoice, plays) {
+    let totalAmount = 0; 
+    let volumeCredits = 0; 
+    let result = `Statement for ${invoice.customer}\n`; 
+    const format = new Intl.NumberFormat("en­US", { 
+        style: "currency", 
+        currency: "USD", 
+        minimumFractionDigits: 2 
+    }).format; 
+    
+    for (let perf of invoice.performances) {
+        const play = plays[perf.playID];
+        let thisAmount = 0;
+        switch (play.type) { 
+            case "tragedy":
+                thisAmount = 40000; 
+                if (perf.audience > 30) { thisAmount += 1000 * (perf.audience ­ 30); } 
+                break; 
+            case "comedy":
+                thisAmount = 30000; 
+                if (perf.audience > 20) { thisAmount += 10000 + 500 * (perf.audience ­ 20); } 
+                thisAmount += 300 * perf.audience; 
+                break; 
+            default:
+                throw new Error(`unknown type: ${play.type}`); 
+        }
+        // add volume credits 
+        volumeCredits += Math.max(perf.audience ­ 30, 0); 
+        // add extra credit for every ten comedy attendees 
+        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
+        // print line for this order 
+        result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+        totalAmount += thisAmount;
+    } 
+    result += `Amount owed is ${format(totalAmount/100)}\n`; 
+    result += `You earned ${volumeCredits} credits\n`; 
+    return result;
+}
+```
+
+Running that code on the test data files above results in the following output:
+
+```
+Statement for BigCo 
+    Hamlet: $650.00 (55 seats) 
+    As You Like It: $580.00 (35 seats) 
+    Othello: $500.00 (40 seats) 
+    Amount owed is $1,730.00 
+You earned 47 credits
+```
+
+1『
+
+在 vue 是实现：
+
+```js
+stateMent() {
+  //  invoices.json 数据是一个数组
+  let invoice = invoices[0];
+  let totalAmount = 0;
+  let volumeCredits = 0;
+  let result = `Statement for ${invoice.customer}\n`;
+  const format = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumIntegerDigits: 2,
+  }).format;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    let thisAmount = 0;
+
+    switch (play.type) {
+      case 'tragedy':
+        thisAmount = 40000;
+        if (perf.audience > 30) {
+          thisAmount += 1000 * (perf.audience - 30);
+        }
+        break;
+      case 'comedy':
+        thisAmount = 30000;
+        if (perf.audience > 20) {
+          thisAmount += 10000 + 500 * (perf.audience -20);
+        }
+        thisAmount += 300 * perf.audience;
+        break;
+      default:
+        throw new Error(`unkown type: ${paly.type}`);
+    }
+    // add volume credits
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    // add extra credit for every ten comedy attendees
+    if ('comedy' === play.type) {
+      volumeCredits += Math.floor(perf.audience / 5);
+    }
+
+    // print line for this order
+    result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+    totalAmount += thisAmount;
+  }
+  result += `Amount owed is ${format(totalAmount/100)}\n`;
+  result += `You earned ${volumeCredits} credits\n`;
+  console.log(result);
+},
+```
+
+』
+
+### 1.2 COMMENTS ON THE STARTING PROGRAM
+
+What are your thoughts on the design of this program? The first thing I’d say is that it’s tolerable as it is—a program so short doesn’t require any deep structure to be comprehensible. But remember my earlier point that I have to keep examples small. Imagine this program on a larger scale—perhaps hundreds of lines long. At that size, a single inline function is hard to understand.
+
+Given that the program works, isn’t any statement about its structure merely an aesthetic judgment, a dislike of “ugly” code? After all, the compiler doesn’t care whether the code is ugly or clean. But when I change the system, there is a human involved, and humans do care. A poorly designed system is hard to change—because it is difficult to figure out what to change and how these changes will interact with the existing code to get the behavior I want. And if it is hard to figure out what to change, there is a good chance that I will make mistakes and introduce bugs.
+
+Thus, if I’m faced with modifying a program with hundreds of lines of code, I’d rather it be structured into a set of functions and other program elements that allow me to understand more easily what the program is doing. If the program lacks structure, it’s usually easier for me to add structure to the program first, and then make the change I need.
+
+When you have to add a feature to a program but the code is not structured in a convenient way, first refactor the program to make it easy to add the feature, then add the feature.
+
+In this case, I have a couple of changes that the users would like to make. First, they want a statement printed in HTML. Consider what impact this change would have. I’m faced with adding conditional statements around every statement that adds a string to the result. That will add a host of complexity to the function. Faced with that, most people prefer to copy the method and change it to emit HTML. Making a copy may not seem too onerous a task, but it sets up all sorts of problems for the future. Any changes to the charging logic would force me to update both methods—and to ensure they are updated consistently. If I’m writing a program that will never change again, this kind of copy­and­paste is fine. But if it’s a long­lived program, then duplication is a menace.
+
+This brings me to a second change. The players are looking to perform more kinds of plays: they hope to add history, pastoral, pastoral­comical, historical­pastoral, tragicalhistorical, tragical­-comical­-historical­pastoral, scene individable, and poem unlimited to their repertoire. They haven’t exactly decided yet what they want to do and when. This change will affect both the way their plays are charged for and the way volume credits are calculated. As an experienced developer I can be sure that whatever scheme they come up with, they will change it again within six months. After all, when feature requests come, they come not as single spies but in battalions.
+
+现在，第二个变化来了：演员们尝试在表演类型上做更多突破，无论是历史剧、田园剧、田园喜剧、田园史剧、历 史悲剧还是历史田园悲喜剧，无论一成不变的正统戏，还是千变万幻的新派戏，他们都希望有所尝试，只是还没有决定试哪种以及何时试演。这对戏剧场次的计费方式、积分的计算方式都有影响。作为一个经验丰富的开发者，我可以肯定：不论最终提出什么方案，他们一定会在 6 个月之内再次修改它。毕竟，需求通常不来则已，一来便会接踵而至。
+
+Again, that statement method is where the changes need to be made to deal with changes in classification and charging rules. But if I copy statement to htmlStatement, I’d need to ensure that any changes are consistent. Furthermore, as the rules grow in complexity, it’s going to be harder to figure out where to make the changes and harder to do them without making a mistake.
+
+Let me stress that it’s these changes that drive the need to perform refactoring. If the code works and doesn’t ever need to change, it’s perfectly fine to leave it alone. It would be nice to improve it, but unless someone needs to understand it, it isn’t causing any real harm. Yet as soon as someone does need to understand how that code works, and struggles to follow it, then you have to do something about it.
+
+我再强调一次，是需求的变化使重构变得必要。如果一段代码能正常工作，并且不会再被修改，那么完全可以不去重构它。能改进之当然很好，但若没人需要去理解它，它就不会真正妨碍什么。如果确实有人需要理解它的工作原理， 并且觉得理解起来很费劲，那你就需要改进一下代码了。
+
+### 1.3 THE FIRST STEP IN REFACTORING
+
+Whenever I do refactoring, the first step is always the same. I need to ensure I have a solid set of tests for that section of code. The tests are essential because even though I will follow refactorings structured to avoid most of the opportunities for introducing bugs, I’m still human and still make mistakes. The larger a program, the more likely it is that my changes will cause something to break inadvertently—in the digital age, frailty’s name is software.
+
+1『重构的前提是该代码有一组可靠的测试。』
+
+Since the statement returns a string, what I do is create a few invoices, give each invoice a few performances of various kinds of plays, and generate the statement strings. I then do a string comparison between the new string and some reference strings that I have hand­checked. I set up all of these tests using a testing framework so I can run them with just a simple keystroke in my development environment. The tests take only a few seconds to run, and as you will see, I run them often.
+
+statement 函数的返回值是一个字符串，我做的就是创建几张新的账单（invoice），假设每张账单收取了几出戏剧的费用，然后使用这几张账单作为输入调用 statement 函数， 生成对应的对账单（statement）字符串。我会拿生成的字符串与我已经手工检查过的字符串做比对。我会借助一个测试框架来配置好这些测试，只要在开发环境中输入一行命令就可以把它们运行起来。运行这些测试只需几秒钟，所以你会看到我经常运行它们。
+
+An important part of the tests is the way they report their results. They either go green, meaning that all the strings are identical to the reference strings, or red, showing a list of failures—the lines that turned out differently. The tests are thus self­checking. It is vital to make tests self­checking. If I don’t, I’d end up spending time hand­checking values from the test against values on a desk pad, and that would slow me down. Modern testing frameworks provide all the features needed to write and run selfchecking tests.
+
+测试过程中很重要的一部分，就是测试程序对于结果的报告方式。它们要么变绿，表示所有新字符串都和参考字符串一样，要么就变红，然后列出失败清单，显示问题字符串的出现行号。这些测试都能够自我检验。使测试能自我检验至关重要，否则就得耗费大把时间来回比对，这会降低开发速度。现代的测试框架都提供了丰富的设施，支持编写和运行能够自我检验的测试。
+
+Before you start refactoring, make sure you have a solid suite of tests. These tests must be self­checking.
+
+重构前，先检查自己是否有一套可靠的测试集。 这些测试必须有自我检验能力。
+
+As I do the refactoring, I’ll lean on the tests. I think of them as a bug detector to protect me against my own mistakes. By writing what I want twice, in the code and in the test, I have to make the mistake consistently in both places to fool the detector. By doublechecking my work, I reduce the chance of doing something wrong. Although it takes time to build the tests, I end up saving that time, with considerable interest, by spending less time debugging. This is such an important part of refactoring that I devote a full chapter to it (Building Tests (85)).
+
+1『第 4 章整篇讲解如何构建测试体系。』
+
+### 1.4 DECOMPOSING THE STATEMENT FUNCTION
+
+When refactoring a long function like this, I mentally try to identify points that separate different parts of the overall behavior. The first chunk that leaps to my eye is the switch statement in the middle.
+
+As I look at this chunk, I conclude that it’s calculating the charge for one performance. That conclusion is a piece of insight about the code. But as Ward Cunningham puts it, this understanding is in my head—a notoriously volatile form of storage. I need to persist it by moving it from my head back into the code itself. That way, should I come back to it later, the code will tell me what it’s doing—I don’t have to figure it out again.
+
+The way to put that understanding into code is to turn that chunk of code into its own function, naming it after what it does—something like amountFor(aPerformance). When I want to turn a chunk of code into a function like this, I have a procedure for doing it that minimizes my chances of getting it wrong. I wrote down this procedure and, to make it easy to reference, named it Extract Function (106).
+
+First, I need to look in the fragment for any variables that will no longer be in scope once I’ve extracted the code into its own function. In this case, I have three: perf, play, and thisAmount. The first two are used by the extracted code, but not modified, so I can pass them in as parameters. Modified variables need more care. Here, there is only one, so I can return it. I can also bring its initialization inside the extracted code. All of which yields this:
+
+首先，我需要检查一下，如果我将这块代码提炼到自己 的一个函数里，有哪些变量会离开原本的作用域。在此示例中，是 perf、play 和 thisAmount 这 3 个变量。前两个变量会被提炼后的函数使用，但不会被修改，那么我就可以将它们以参数方式传递进来。我更关心那些会被修改的变量。这里只有唯一一个——thisAmount，因此可以将它从函数中直接返回。我还可以将其初始化放到提炼后的函数里。
+
+function statement…
+
+```js
+function amountFor(perf, play) {
+    let thisAmount = 0; 
+    switch (play.type) { 
+        case "tragedy":
+            thisAmount = 40000; 
+            if (perf.audience > 30) { 
+                thisAmount += 1000 * (perf.audience ­ 30); 
+            } 
+            break; 
+        case "comedy":
+            thisAmount = 30000; 
+            if (perf.audience > 20) { 
+                thisAmount += 10000 + 500 * (perf.audience ­ 20); 
+            } 
+            thisAmount += 300 * perf.audience; 
+            break; 
+        default:
+            throw new Error(`unknown type: ${play.type}`); 
+    } 
+    return thisAmount;
+}
+```
+
+When I use a header like “function someName…” in italics for some code, that means that the following code is within the scope of the function, file, or class named in the header. There is usually other code within that scope that I won’t show, as I’m not discussing it at the moment.
+
+The original statement code now calls this function to populate thisAmount:
+
+top level…
+
+```js
+function statement (invoice, plays) {
+    let totalAmount = 0; 
+    let volumeCredits = 0; 
+    let result = `Statement for ${invoice.customer}\n`; 
+    const format = new Intl.NumberFormat("en­US", { 
+        style: "currency", 
+        currency: "USD", 
+        minimumFractionDigits: 2 
+    }).format; 
+    
+    for (let perf of invoice.performances) {
+        const play = plays[perf.playID];
+        let thisAmount = amountFor(perf, play);
+        
+        // add volume credits 
+        volumeCredits += Math.max(perf.audience ­ 30, 0); 
+        // add extra credit for every ten comedy attendees 
+        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
+        
+        // print line for this order 
+        result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+        totalAmount += thisAmount;
+    } 
+    result += `Amount owed is ${format(totalAmount/100)}\n`; 
+    result += `You earned ${volumeCredits} credits\n`; 
+    return result;
+}
+```
+
+1『
+
+vue 里：
+
+```js
+stateMent() {
+  let invoice = invoices[0];
+  let totalAmount = 0;
+  let volumeCredits = 0;
+  let result = `Statement for ${invoice.customer}\n`;
+  const format = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumIntegerDigits: 2,
+  }).format;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    let thisAmount = this.amountFor(perf, play)
+
+    // add volume credits
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    // add extra credit for every ten comedy attendees
+    if ('comedy' === play.type) {
+      volumeCredits += Math.floor(perf.audience / 5);
+    }
+
+    // print line for this order
+    result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+    totalAmount += thisAmount;
+  }
+  result += `Amount owed is ${format(totalAmount/100)}\n`;
+  result += `You earned ${volumeCredits} credits\n`;
+  console.log(result);
+},
+amountFor(perf, play) {
+  let thisAmount = 0;
+  switch (play.type) {
+    case 'tragedy':
+      thisAmount = 40000;
+      if (perf.audience > 30) {
+        thisAmount += 1000 * (perf.audience - 30);
+      }
+      break;
+    case 'comedy':
+      thisAmount = 30000;
+      if (perf.audience > 20) {
+        thisAmount += 10000 + 500 * (perf.audience -20);
+      }
+      thisAmount += 300 * perf.audience;
+      break;
+    default:
+      throw new Error(`unkown type: ${paly.type}`);
+  }
+  return thisAmount;
+}
+```
+
+』
+
+Once I’ve made this change, I immediately compile and test to see if I’ve broken anything. It’s an important habit to test after every refactoring, however simple. Mistakes are easy to make—at least, I find them easy to make. Testing after each change means that when I make a mistake, I only have a small change to consider in order to spot the error, which makes it far easier to find and fix. This is the essence of the refactoring process: small changes and testing after each change. If I try to do too much, making a mistake will force me into a tricky debugging episode that can take a long time. Small changes, enabling a tight feedback loop, are the key to avoiding that mess.
+
+1『无论多小的改动，改完后直接再跑一下，看看跟改前跑的结果是够一样，一定要养成这个习惯。』
+
+I use compile here to mean doing whatever is needed to make the JavaScript executable. Since JavaScript is directly executable, that may mean nothing, but in other cases it may mean moving code to an output directory and/or using a processor such as Babel [babel].
+
+Refactoring changes the programs in small steps, so if you make a mistake, it is easy to find where the bug is.
+
+This being JavaScript, I can extract amountFor into a nested function of statement. This is helpful as it means I don’t have to pass data that’s inside the scope of the containing function to the newly extracted function. That doesn’t make a difference in this case, but it’s one less issue to deal with. In this case the tests passed, so my next step is to commit the change to my local version control system. I use a version control system, such as git or mercurial, that allows me to make private commits. I commit after each successful refactoring, so I can easily get back to a working state should I mess up later. I then squash changes into more significant commits before I push the changes to a shared repository.
+
+Extract Function (106) is a common refactoring to automate. If I was programming in Java, I would have instinctively reached for the key sequence for my IDE to perform this refactoring. As I write this, there is no such robust support for this refactoring in JavaScript tools, so I have to do this manually. It’s not hard, although I have to be careful with those locally scoped variables.
+
+1『提炼函数，写进「重构手段」的主题卡里去。』
+
+Once I’ve used Extract Function (106), I take a look at what I’ve extracted to see if there are any quick and easy things I can do to clarify the extracted function. The first thing I do is rename some of the variables to make them clearer, such as changing thisAmount to result.
+
+It’s my coding standard to always call the return value from a function “result”. That way I always know its role. Again, I compile, test, and commit. Then I move onto the first argument.
+
+2『永远将函数的返回值命名为「result」，这样我一眼就能知道它的作用。然后我再次编译、测试、提交代码。效仿作者的这个习惯。』
+
+function statement…
+
+```js
+function amountFor(aPerformance, play) {
+    let result = 0; 
+    switch (play.type) { 
+        case "tragedy":
+            result = 40000; 
+            if (aPerformance.audience > 30) { result += 1000 * (aPerformance.audience ­ 30); } 
+            break; 
+        case "comedy":
+            result = 30000; 
+            if (aPerformance.audience > 20) { result += 10000 + 500 * (aPerformance.audience ­ 20); } 
+            result += 300 * aPerformance.audience; 
+            break; 
+        default:
+            throw new Error(`unknown type: ${play.type}`); 
+    } 
+    return result;
+}
+```
+
+Again, this is following my coding style. With a dynamically typed language such as JavaScript, it’s useful to keep track of types—hence, my default name for a parameter includes the type name. I use an indefinite article with it unless there is some specific role information to capture in the name. I learned this convention from Kent Beck [Beck SBPP] and continue to find it helpful.
+
+这是我的另一个编码风格。使用一门动态类型语言（如 JavaScript）时，跟踪变量的类型很有意义。因此，我为参数取名时都默认带上其类型名。一般我会使用不定冠词修饰它，除非命名中另有解释其角色的相关信息。这个习惯是从 Kent Beck 那里学的 [Beck SBPP]，到现在我还一直觉得很有用。
+
+1『参数的命名方式，又是一个值得效仿的好习惯。』
+
+Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
+
+Is this renaming worth the effort? Absolutely. Good code should clearly communicate what it is doing, and variable names are a key to clear code. Never be afraid to change names to improve clarity. With good find-­and-­replace tools, it is usually not difficult; testing, and static typing in a language that supports it, will highlight any occurrences you miss. And with automated refactoring tools, it’s trivial to rename even widely used functions. The next item to consider for renaming is the play parameter, but I have a different fate for that.
+
+好代码应能清楚地表明它在做什么，而变量命名是代码清晰的关键。 只要改名能够提升代码的可读性，那就应该毫不犹豫去做。 有好的查找替换工具在手，改名通常并不困难；此外，你的测试以及语言本身的静态类型支持，都可以帮你揪出漏改的地方。如今有了自动化的重构工具，即便要给一个被大量调用的函数改名，通常也不在话下。
+
 
 

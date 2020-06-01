@@ -8,6 +8,8 @@ Inheritance is an important topic in most programming languages. In the classica
 
 JavaScript, being a loosely typed language, never casts. The lineage of an object is irrelevant. What matters about an object is what it can do, not what it is descended from. JavaScript provides a much richer set of code reuse patterns. It can ape the classical pattern, but it also supports other patterns that are more expressive. The set of possible inheritance patterns in JavaScript is vast. In this chapter, we’ll look at a few of the most straightforward patterns. Much more complicated constructions are possible, but it is usually best to keep it simple. In classical languages, objects are instances of classes, and a class can inherit from another class. JavaScript is a prototypal language, which means that objects inherit directly from other objects.
 
+1『作者的观点是没必要使用那些模拟基于类的面向对象（new 结合构造函数的语法），直接使用原生的基于原型的面向对象来编程。但 ES6 以后，模拟基于类的面向对象的那条线，升级为通过 class 关键字来实现了，那么其实也可以走那条线了。但一定得用 class 来声明类。（2020-05-30）』
+
 ### 5.1 Pseudoclassical
 
 JavaScript is conflicted about its prototypal nature. Its prototype mechanism is obscured by some complicated syntactic business that looks vaguely classical. Instead of having objects inherit directly from other objects, an unnecessary level of indirection is inserted such that objects are produced by constructor functions.
@@ -20,7 +22,7 @@ Javascript 的原型存在着诸多矛盾。它的某些复杂的语法看起来
 
 基于原型的面向对象，老版可以采用下面方法实现。创建了一个空函数作为类，并把传入的原型挂在了它的 prototype，最后创建了一个它的实例，根据 new 的行为，这将产生一个以传入的第一个参数为原型的对象。这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型，所以放到今天意义已经不大了。ES6 以来，JavaScript 提供了一系列内置函数，以便更为直接地访问操纵原型。三个方法分别为：1）Object.create 根据指定的原型创建新对象，原型可以是 null；2）Object.getPrototypeOf 获得一个对象的原型；3）Object.setPrototypeOf 设置一个对象的原型。利用这三个方法，我们可以完全抛开类的思维，利用原型来实现抽象和复用。
 
-基于类的面向对象，老版是通过插入了一个多余的间接层：通过构造器函数产生对象。这个方法很繁琐，ES6 新增了 class 语法来定义类。
+基于类的面向对象，老版插入了一个多余的间接层：通过构造器函数产生对象。这个方法很繁琐，ES6 新增了 class 语法来定义类。
 
 ```js
 if (typeof Object.create !== 'function') {
@@ -37,7 +39,9 @@ var another_stooge = Object.create(stooge);  // 这个 create() 方法是自己�
 
 When a function object is created, the Function constructor that produces the function object runs some code like this:
 
-    this.prototype = {constructor: this};
+```js
+this.prototype = {constructor: this};
+```
 
 The new function object is given a prototype property whose value is an object containing a constructor property whose value is the new function object. The prototype object is the place where inherited traits are to be deposited. Every function gets a prototype object because the language does not provide a way of determining which functions are intended to be used as constructors. The constructor property is not useful. It is the prototype object that is important.
 
@@ -285,12 +289,13 @@ Here is a pseudocode template for a functional constructor (boldface text added 
 ```js
 var constructor = function (spec, my) {
 var that, other private instance variables;
+
 my = my || {};
-
 Add shared variables and functions to my
-that = a new object;
 
+that = a new object;
 Add privileged methods to that
+
 return that;
 
 };
@@ -300,7 +305,9 @@ The spec object contains all of the information that the constructor needs to ma
 
 Next, declare the private instance variables and private methods for the object. This is done by simply declaring variables. The variables and inner functions of the constructor become the private members of the instance. The inner functions have access to spec and my and that and the private variables. Next, add the shared secrets to the my object. This is done by assignment: 
 
-    my.member = value;
+```js
+my.member = value;
+```
 
 Now, we make a new object and assign it to that. There are lots of ways to make a new object. We can use an object literal. We can call a pseudoclassical constructor with the new operator. We can use the Object.create method on a prototype object.
 
@@ -315,7 +322,7 @@ var methodical = function ( ) {
 that.methodical = methodical;
 ```
 
-The advantage to defining methodical in two steps is that if other methods want to call methodical, they can call methodical( ) instead of that.methodical( ). If the instance is damaged or tampered with so that that.methodical is replaced, the methods that call methodical will continue to work the same because their private methodical is not affected by modification of the instance. Finally, we return that. 
+The advantage to defining methodical in two steps is that if other methods want to call methodical, they can call methodical() instead of that.methodical(). If the instance is damaged or tampered with so that that.methodical is replaced, the methods that call methodical will continue to work the same because their private methodical is not affected by modification of the instance. Finally, we return that. 
 
 Let’s apply this pattern to our mammal example. We don’t need my here, so we’ll just leave it out, but we will use a spec object. The name and saying properties are now completely private. They are accessible only via the privileged get_name and says methods:
 
@@ -350,25 +357,28 @@ In the pseudoclassical pattern, the Cat constructor function had to duplicate wo
 
 ```js
 var cat = function (spec) {
-spec.saying = spec.saying || 'meow';
-var that = mammal(spec);
-that.purr = function (n) {
-    var i, s = '';
-    for (i = 0; i < n; i += 1) {
-        if (s) {
-            s += '-';
+    spec.saying = spec.saying || 'meow';
+    var that = mammal(spec);
+    that.purr = function (n) {
+        var i, s = '';
+        for (i = 0; i < n; i += 1) {
+            if (s) {
+                s += '-';
+            }
+            s += 'r';
         }
-        s += 'r';
-    }
-    return s;
-};
-that.get_name = function ( ) {
-    return that.says( ) + ' ' + spec.name + ' ' + that.says( );
+        return s;
+    };
+    that.get_name = function () {
+        return that.says( ) + ' ' + spec.name + ' ' + that.says( );
+    };
     return that;
 };
 
 var myCat = cat({name: 'Henrietta'});
 ```
+
+1『从这里开始，下面的代码还是没有吃透。（2020-05-31）』
 
 The functional pattern also gives us a way to deal with super methods. We will make a superior method that takes a method name and returns a function that invokes that method. The function will invoke the original method even if the property is changed:
 

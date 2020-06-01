@@ -12,12 +12,9 @@ I’m thus in the classic bind of anyone who wants to describe techniques that a
 
 In the first edition of this book, my starting program printed a bill from a video rental store, which may now lead many of you to ask: “What’s a video rental store?” Rather than answer that question, I’ve reskinned the example to something that is both older and still current.
 
-
-
-
-
-
 Image a company of theatrical players who go out to various events performing plays. Typically, a customer will request a few plays and the company charges them based on the size of the audience and the kind of play they perform. There are currently two kinds of plays that the company performs: tragedies and comedies. As well as providing a bill for the performance, the company gives its customers “volume credits” which they can use for discounts on future performances—think of it as a customer loyalty mechanism.
+
+设想有一个戏剧演出团，演员们经常要去各种场合表演戏剧。通常客户（customer）会指定几出剧目，而剧团则根据观众（audience）人数及剧目类型来向客户收费。该团目前出演两种戏剧：悲剧（tragedy）和喜剧 （comedy）。给客户发出账单时，剧团还会根据到场观众的数量给出「观众量积分」（volume credit）优惠，下次客户再请剧团表演时可以使用积分获得折扣——你可以把它看作一种提升客户忠诚度的方式。
 
 The performers store data about their plays in a simple JSON file that looks something like this:
 
@@ -25,11 +22,9 @@ plays.json…
 
 ```json
 {
-
-"hamlet": {"name": "Hamlet", "type": "tragedy"}, 
-"as­like": {"name": "As You Like It", "type": "comedy"}, 
-"othello": {"name": "Othello", "type": "tragedy"}
-
+    "hamlet": {"name": "Hamlet", "type": "tragedy"}, 
+    "as­like": {"name": "As You Like It", "type": "comedy"}, 
+    "othello": {"name": "Othello", "type": "tragedy"}
 }
 ```
 
@@ -37,27 +32,16 @@ The data for their bills also comes in a JSON file:
 
 invoices.json…
 
-Click here to view code image
-
 ```json
 [
-
-{
-
-"customer": "BigCo", "performances": [
-
-{ "playID": "hamlet", "audience": 55 }, {
-
-"playID": "as­like",
-
-"audience": 35 }, {
-
-"playID": "othello",
-
-"audience": 40 } ]
-
-}
-
+    {
+        "customer": "BigCo", "performances": [
+        { "playID": "hamlet", "audience": 55 }, {
+        "playID": "as­like",
+        "audience": 35 }, {
+        "playID": "othello",
+        "audience": 40 } ]
+    }
 ]
 ```
 
@@ -65,39 +49,113 @@ The code that prints the bill is this simple function:
 
 ```js
 function statement (invoice, plays) {
-
-let totalAmount = 0; let volumeCredits = 0; let result = `Statement for ${invoice.customer}\n`; const format = new Intl.NumberFormat("en­US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format; for (let perf of invoice.performances) {
-
-const play = plays[perf.playID];
-
-let thisAmount = 0;
-
-switch (play.type) { case "tragedy":
-
-thisAmount = 40000; if (perf.audience > 30) { thisAmount += 1000 * (perf.audience ­ 30); } break; case "comedy":
-
-thisAmount = 30000; if (perf.audience > 20) { thisAmount += 10000 + 500 * (perf.audience ­ 20); } thisAmount += 300 * perf.audience; break; default:
-
-throw new Error(`unknown type: ${play.type}`); }
-
-// add volume credits volumeCredits += Math.max(perf.audience ­ 30, 0); // add extra credit for every ten comedy attendees if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-
-// print line for this order result += ` ${play.name}: ${format(thisAmount/100)} (${perf.audience} totalAmount += thisAmount;
-
-} result += `Amount owed is ${format(totalAmount/100)}\n`; result += `You earned ${volumeCredits} credits\n`; return result;
-
-seats
-
+    let totalAmount = 0; 
+    let volumeCredits = 0; 
+    let result = `Statement for ${invoice.customer}\n`; 
+    const format = new Intl.NumberFormat("en­US", { 
+        style: "currency", 
+        currency: "USD", 
+        minimumFractionDigits: 2 
+    }).format; 
+    
+    for (let perf of invoice.performances) {
+        const play = plays[perf.playID];
+        let thisAmount = 0;
+        switch (play.type) { 
+            case "tragedy":
+                thisAmount = 40000; 
+                if (perf.audience > 30) { thisAmount += 1000 * (perf.audience ­ 30); } 
+                break; 
+            case "comedy":
+                thisAmount = 30000; 
+                if (perf.audience > 20) { thisAmount += 10000 + 500 * (perf.audience ­ 20); } 
+                thisAmount += 300 * perf.audience; 
+                break; 
+            default:
+                throw new Error(`unknown type: ${play.type}`); 
+        }
+        // add volume credits 
+        volumeCredits += Math.max(perf.audience ­ 30, 0); 
+        // add extra credit for every ten comedy attendees 
+        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
+        // print line for this order 
+        result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+        totalAmount += thisAmount;
+    } 
+    result += `Amount owed is ${format(totalAmount/100)}\n`; 
+    result += `You earned ${volumeCredits} credits\n`; 
+    return result;
 }
 ```
 
 Running that code on the test data files above results in the following output:
 
 ```
-Statement for BigCo Hamlet: $650.00 (55 seats) As You Like It: $580.00 (35 seats) Othello: $500.00 (40 seats) Amount owed is $1,730.00 You earned 47 credits
+Statement for BigCo 
+    Hamlet: $650.00 (55 seats) 
+    As You Like It: $580.00 (35 seats) 
+    Othello: $500.00 (40 seats) 
+    Amount owed is $1,730.00 
+You earned 47 credits
 ```
 
-COMMENTS ON THE STARTING PROGRAM
+1『
+
+在 vue 是实现：
+
+```js
+stateMent() {
+  //  invoices.json 数据是一个数组
+  let invoice = invoices[0];
+  let totalAmount = 0;
+  let volumeCredits = 0;
+  let result = `Statement for ${invoice.customer}\n`;
+  const format = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumIntegerDigits: 2,
+  }).format;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    let thisAmount = 0;
+
+    switch (play.type) {
+      case 'tragedy':
+        thisAmount = 40000;
+        if (perf.audience > 30) {
+          thisAmount += 1000 * (perf.audience - 30);
+        }
+        break;
+      case 'comedy':
+        thisAmount = 30000;
+        if (perf.audience > 20) {
+          thisAmount += 10000 + 500 * (perf.audience -20);
+        }
+        thisAmount += 300 * perf.audience;
+        break;
+      default:
+        throw new Error(`unkown type: ${paly.type}`);
+    }
+    // add volume credits
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    // add extra credit for every ten comedy attendees
+    if ('comedy' === play.type) {
+      volumeCredits += Math.floor(perf.audience / 5);
+    }
+
+    // print line for this order
+    result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+    totalAmount += thisAmount;
+  }
+  result += `Amount owed is ${format(totalAmount/100)}\n`;
+  result += `You earned ${volumeCredits} credits\n`;
+  console.log(result);
+},
+```
+
+』
+
+## 1.2 COMMENTS ON THE STARTING PROGRAM
 
 What are your thoughts on the design of this program? The first thing I’d say is that it’s tolerable as it is—a program so short doesn’t require any deep structure to be comprehensible. But remember my earlier point that I have to keep examples small. Imagine this program on a larger scale—perhaps hundreds of lines long. At that size, a single inline function is hard to understand.
 
@@ -109,53 +167,41 @@ When you have to add a feature to a program but the code is not structured in a 
 
 In this case, I have a couple of changes that the users would like to make. First, they want a statement printed in HTML. Consider what impact this change would have. I’m faced with adding conditional statements around every statement that adds a string to the result. That will add a host of complexity to the function. Faced with that, most people prefer to copy the method and change it to emit HTML. Making a copy may not seem too onerous a task, but it sets up all sorts of problems for the future. Any changes to the charging logic would force me to update both methods—and to ensure they are updated consistently. If I’m writing a program that will never change again, this kind of copy­and­paste is fine. But if it’s a long­lived program, then duplication is a menace.
 
-This brings me to a second change. The players are looking to perform more kinds of plays: they hope to add history, pastoral, pastoral­comical, historical­pastoral, tragicalhistorical, tragical­comical­historical­pastoral, scene individable, and poem unlimited to their repertoire. They haven’t exactly decided yet what they want to do and when. This change will affect both the way their plays are charged for and the way volume credits are calculated. As an experienced developer I can be sure that whatever scheme they come up with, they will change it again within six months. After all, when feature requests come, they come not as single spies but in battalions.
+This brings me to a second change. The players are looking to perform more kinds of plays: they hope to add history, pastoral, pastoral­comical, historical­pastoral, tragicalhistorical, tragical­-comical­-historical­pastoral, scene individable, and poem unlimited to their repertoire. They haven’t exactly decided yet what they want to do and when. This change will affect both the way their plays are charged for and the way volume credits are calculated. As an experienced developer I can be sure that whatever scheme they come up with, they will change it again within six months. After all, when feature requests come, they come not as single spies but in battalions.
+
+现在，第二个变化来了：演员们尝试在表演类型上做更多突破，无论是历史剧、田园剧、田园喜剧、田园史剧、历 史悲剧还是历史田园悲喜剧，无论一成不变的正统戏，还是千变万幻的新派戏，他们都希望有所尝试，只是还没有决定试哪种以及何时试演。这对戏剧场次的计费方式、积分的计算方式都有影响。作为一个经验丰富的开发者，我可以肯定：不论最终提出什么方案，他们一定会在 6 个月之内再次修改它。毕竟，需求通常不来则已，一来便会接踵而至。
 
 Again, that statement method is where the changes need to be made to deal with changes in classification and charging rules. But if I copy statement to htmlStatement, I’d need to ensure that any changes are consistent. Furthermore, as the rules grow in complexity, it’s going to be harder to figure out where to make the changes and harder to do them without making a mistake.
 
 Let me stress that it’s these changes that drive the need to perform refactoring. If the code works and doesn’t ever need to change, it’s perfectly fine to leave it alone. It would be nice to improve it, but unless someone needs to understand it, it isn’t causing any real harm. Yet as soon as someone does need to understand how that code works, and struggles to follow it, then you have to do something about it.
 
-THE FIRST STEP IN REFACTORING
+我再强调一次，是需求的变化使重构变得必要。如果一段代码能正常工作，并且不会再被修改，那么完全可以不去重构它。能改进之当然很好，但若没人需要去理解它，它就不会真正妨碍什么。如果确实有人需要理解它的工作原理， 并且觉得理解起来很费劲，那你就需要改进一下代码了。
+
+## 1.3 THE FIRST STEP IN REFACTORING
 
 Whenever I do refactoring, the first step is always the same. I need to ensure I have a solid set of tests for that section of code. The tests are essential because even though I will follow refactorings structured to avoid most of the opportunities for introducing bugs, I’m still human and still make mistakes. The larger a program, the more likely it is that my changes will cause something to break inadvertently—in the digital age, frailty’s name is software.
 
+1『重构的前提是该代码有一组可靠的测试。』
+
 Since the statement returns a string, what I do is create a few invoices, give each invoice a few performances of various kinds of plays, and generate the statement strings. I then do a string comparison between the new string and some reference strings that I have hand­checked. I set up all of these tests using a testing framework so I can run them with just a simple keystroke in my development environment. The tests take only a few seconds to run, and as you will see, I run them often.
+
+statement 函数的返回值是一个字符串，我做的就是创建几张新的账单（invoice），假设每张账单收取了几出戏剧的费用，然后使用这几张账单作为输入调用 statement 函数， 生成对应的对账单（statement）字符串。我会拿生成的字符串与我已经手工检查过的字符串做比对。我会借助一个测试框架来配置好这些测试，只要在开发环境中输入一行命令就可以把它们运行起来。运行这些测试只需几秒钟，所以你会看到我经常运行它们。
 
 An important part of the tests is the way they report their results. They either go green, meaning that all the strings are identical to the reference strings, or red, showing a list of failures—the lines that turned out differently. The tests are thus self­checking. It is vital to make tests self­checking. If I don’t, I’d end up spending time hand­checking values from the test against values on a desk pad, and that would slow me down. Modern testing frameworks provide all the features needed to write and run selfchecking tests.
 
+测试过程中很重要的一部分，就是测试程序对于结果的报告方式。它们要么变绿，表示所有新字符串都和参考字符串一样，要么就变红，然后列出失败清单，显示问题字符串的出现行号。这些测试都能够自我检验。使测试能自我检验至关重要，否则就得耗费大把时间来回比对，这会降低开发速度。现代的测试框架都提供了丰富的设施，支持编写和运行能够自我检验的测试。
+
 Before you start refactoring, make sure you have a solid suite of tests. These tests must be self­checking.
+
+重构前，先检查自己是否有一套可靠的测试集。 这些测试必须有自我检验能力。
 
 As I do the refactoring, I’ll lean on the tests. I think of them as a bug detector to protect me against my own mistakes. By writing what I want twice, in the code and in the test, I have to make the mistake consistently in both places to fool the detector. By doublechecking my work, I reduce the chance of doing something wrong. Although it takes time to build the tests, I end up saving that time, with considerable interest, by spending less time debugging. This is such an important part of refactoring that I devote a full chapter to it (Building Tests (85)).
 
-DECOMPOSING THE STATEMENT FUNCTION
+1『第 4 章整篇讲解如何构建测试体系。』
+
+## 1.4 DECOMPOSING THE STATEMENT FUNCTION
 
 When refactoring a long function like this, I mentally try to identify points that separate different parts of the overall behavior. The first chunk that leaps to my eye is the switch statement in the middle.
-
-```js
-function statement (invoice, plays) {
-
-let totalAmount = 0; let volumeCredits = 0; let result = `Statement for ${invoice.customer}\n`; const format = new Intl.NumberFormat("en­US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format; for (let perf of invoice.performances) {
-
-const play = plays[perf.playID];
-
-let thisAmount = 0; switch (play.type) { case "tragedy":
-
-thisAmount = 40000; if (perf.audience > 30) { thisAmount += 1000 * (perf.audience ­ 30); } break; case "comedy":
-
-thisAmount = 30000; if (perf.audience > 20) { thisAmount += 10000 + 500 * (perf.audience ­ 20); } thisAmount += 300 * perf.audience; break; default:
-
-throw new Error(`unknown type: ${play.type}`); }
-
-// add volume credits volumeCredits += Math.max(perf.audience ­ 30, 0); // add extra credit for every ten comedy attendees if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-
-// print line for this order result += ` ${play.name}: ${format(thisAmount/100)} (${perf.audience} totalAmount += thisAmount;
-
-} result += `Amount owed is ${format(totalAmount/100)}\n`; result += `You earned ${volumeCredits} credits\n`; return result;
-
-seats
-
-}
-```
 
 As I look at this chunk, I conclude that it’s calculating the charge for one performance. That conclusion is a piece of insight about the code. But as Ward Cunningham puts it, this understanding is in my head—a notoriously volatile form of storage. I need to persist it by moving it from my head back into the code itself. That way, should I come back to it later, the code will tell me what it’s doing—I don’t have to figure it out again.
 
@@ -163,19 +209,31 @@ The way to put that understanding into code is to turn that chunk of code into i
 
 First, I need to look in the fragment for any variables that will no longer be in scope once I’ve extracted the code into its own function. In this case, I have three: perf, play, and thisAmount. The first two are used by the extracted code, but not modified, so I can pass them in as parameters. Modified variables need more care. Here, there is only one, so I can return it. I can also bring its initialization inside the extracted code. All of which yields this:
 
+首先，我需要检查一下，如果我将这块代码提炼到自己 的一个函数里，有哪些变量会离开原本的作用域。在此示例中，是 perf、play 和 thisAmount 这 3 个变量。前两个变量会被提炼后的函数使用，但不会被修改，那么我就可以将它们以参数方式传递进来。我更关心那些会被修改的变量。这里只有唯一一个——thisAmount，因此可以将它从函数中直接返回。我还可以将其初始化放到提炼后的函数里。
+
 function statement…
 
 ```js
 function amountFor(perf, play) {
-
-let thisAmount = 0; switch (play.type) { case "tragedy":
-
-thisAmount = 40000; if (perf.audience > 30) { thisAmount += 1000 * (perf.audience ­ 30); } break; case "comedy":
-
-thisAmount = 30000; if (perf.audience > 20) { thisAmount += 10000 + 500 * (perf.audience ­ 20); } thisAmount += 300 * perf.audience; break; default:
-
-throw new Error(`unknown type: ${play.type}`); } return thisAmount;
-
+    let thisAmount = 0; 
+    switch (play.type) { 
+        case "tragedy":
+            thisAmount = 40000; 
+            if (perf.audience > 30) { 
+                thisAmount += 1000 * (perf.audience ­ 30); 
+            } 
+            break; 
+        case "comedy":
+            thisAmount = 30000; 
+            if (perf.audience > 20) { 
+                thisAmount += 10000 + 500 * (perf.audience ­ 20); 
+            } 
+            thisAmount += 300 * perf.audience; 
+            break; 
+        default:
+            throw new Error(`unknown type: ${play.type}`); 
+    } 
+    return thisAmount;
 }
 ```
 
@@ -187,21 +245,96 @@ top level…
 
 ```js
 function statement (invoice, plays) {
-
-let totalAmount = 0; let volumeCredits = 0; let result = `Statement for ${invoice.customer}\n`; const format = new Intl.NumberFormat("en­US", { style: "currency", currency: "USD", minimumFractionDigits: 2 }).format; for (let perf of invoice.performances) {
-
-const play = plays[perf.playID];
-
-let thisAmount = amountFor(perf, play);
-
-// add volume credits volumeCredits += Math.max(perf.audience ­ 30, 0); // add extra credit for every ten comedy attendees if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-
-// print line for this order result += ` ${play.name}: ${format(thisAmount/100)} (${perf.audience} totalAmount += thisAmount;
-
-} result += `Amount owed is ${format(totalAmount/100)}\n`; result += `You earned ${volumeCredits} credits\n`; return result;
+    let totalAmount = 0; 
+    let volumeCredits = 0; 
+    let result = `Statement for ${invoice.customer}\n`; 
+    const format = new Intl.NumberFormat("en­US", { 
+        style: "currency", 
+        currency: "USD", 
+        minimumFractionDigits: 2 
+    }).format; 
+    
+    for (let perf of invoice.performances) {
+        const play = plays[perf.playID];
+        let thisAmount = amountFor(perf, play);
+        
+        // add volume credits 
+        volumeCredits += Math.max(perf.audience ­ 30, 0); 
+        // add extra credit for every ten comedy attendees 
+        if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
+        
+        // print line for this order 
+        result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+        totalAmount += thisAmount;
+    } 
+    result += `Amount owed is ${format(totalAmount/100)}\n`; 
+    result += `You earned ${volumeCredits} credits\n`; 
+    return result;
+}
 ```
 
+1『
+
+vue 里：
+
+```js
+stateMent() {
+  let invoice = invoices[0];
+  let totalAmount = 0;
+  let volumeCredits = 0;
+  let result = `Statement for ${invoice.customer}\n`;
+  const format = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumIntegerDigits: 2,
+  }).format;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    let thisAmount = this.amountFor(perf, play)
+
+    // add volume credits
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    // add extra credit for every ten comedy attendees
+    if ('comedy' === play.type) {
+      volumeCredits += Math.floor(perf.audience / 5);
+    }
+
+    // print line for this order
+    result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
+    totalAmount += thisAmount;
+  }
+  result += `Amount owed is ${format(totalAmount/100)}\n`;
+  result += `You earned ${volumeCredits} credits\n`;
+  console.log(result);
+},
+amountFor(perf, play) {
+  let thisAmount = 0;
+  switch (play.type) {
+    case 'tragedy':
+      thisAmount = 40000;
+      if (perf.audience > 30) {
+        thisAmount += 1000 * (perf.audience - 30);
+      }
+      break;
+    case 'comedy':
+      thisAmount = 30000;
+      if (perf.audience > 20) {
+        thisAmount += 10000 + 500 * (perf.audience -20);
+      }
+      thisAmount += 300 * perf.audience;
+      break;
+    default:
+      throw new Error(`unkown type: ${paly.type}`);
+  }
+  return thisAmount;
+}
+```
+
+』
+
 Once I’ve made this change, I immediately compile and test to see if I’ve broken anything. It’s an important habit to test after every refactoring, however simple. Mistakes are easy to make—at least, I find them easy to make. Testing after each change means that when I make a mistake, I only have a small change to consider in order to spot the error, which makes it far easier to find and fix. This is the essence of the refactoring process: small changes and testing after each change. If I try to do too much, making a mistake will force me into a tricky debugging episode that can take a long time. Small changes, enabling a tight feedback loop, are the key to avoiding that mess.
+
+1『无论多小的改动，改完后直接再跑一下，看看跟改前跑的结果是够一样，一定要养成这个习惯。』
 
 I use compile here to mean doing whatever is needed to make the JavaScript executable. Since JavaScript is directly executable, that may mean nothing, but in other cases it may mean moving code to an output directory and/or using a processor such as Babel [babel].
 
@@ -211,49 +344,54 @@ This being JavaScript, I can extract amountFor into a nested function of stateme
 
 Extract Function (106) is a common refactoring to automate. If I was programming in Java, I would have instinctively reached for the key sequence for my IDE to perform this refactoring. As I write this, there is no such robust support for this refactoring in JavaScript tools, so I have to do this manually. It’s not hard, although I have to be careful with those locally scoped variables.
 
+1『提炼函数，写进「重构手段」的主题卡里去。』
+
 Once I’ve used Extract Function (106), I take a look at what I’ve extracted to see if there are any quick and easy things I can do to clarify the extracted function. The first thing I do is rename some of the variables to make them clearer, such as changing thisAmount to result.
 
-function statement…
-
-```js
-function amountFor(perf, play) {
-
-let result = 0; switch (play.type) { case "tragedy":
-
-result = 40000; if (perf.audience > 30) { result += 1000 * (perf.audience ­ 30); } break; case "comedy":
-
-result = 30000; if (perf.audience > 20) { result += 10000 + 500 * (perf.audience ­ 20); } result += 300 * perf.audience; break; default:
-
-throw new Error(`unknown type: ${play.type}`); } return result;
-
-}
-```
-
 It’s my coding standard to always call the return value from a function “result”. That way I always know its role. Again, I compile, test, and commit. Then I move onto the first argument.
+
+2『永远将函数的返回值命名为「result」，这样我一眼就能知道它的作用。然后我再次编译、测试、提交代码。效仿作者的这个习惯。』
 
 function statement…
 
 ```js
 function amountFor(aPerformance, play) {
-
-let result = 0; switch (play.type) { case "tragedy":
-
-result = 40000; if (aPerformance.audience > 30) { result += 1000 * (aPerformance.audience ­ 30); } break; case "comedy":
-
-result = 30000; if (aPerformance.audience > 20) { result += 10000 + 500 * (aPerformance.audience ­ 20); } result += 300 * aPerformance.audience; break; default:
-
-throw new Error(`unknown type: ${play.type}`); } return result;
-
+    let result = 0; 
+    switch (play.type) { 
+        case "tragedy":
+            result = 40000; 
+            if (aPerformance.audience > 30) { result += 1000 * (aPerformance.audience ­ 30); } 
+            break; 
+        case "comedy":
+            result = 30000; 
+            if (aPerformance.audience > 20) { result += 10000 + 500 * (aPerformance.audience ­ 20); } 
+            result += 300 * aPerformance.audience; 
+            break; 
+        default:
+            throw new Error(`unknown type: ${play.type}`); 
+    } 
+    return result;
 }
 ```
 
 Again, this is following my coding style. With a dynamically typed language such as JavaScript, it’s useful to keep track of types—hence, my default name for a parameter includes the type name. I use an indefinite article with it unless there is some specific role information to capture in the name. I learned this convention from Kent Beck [Beck SBPP] and continue to find it helpful.
 
+这是我的另一个编码风格。使用一门动态类型语言（如 JavaScript）时，跟踪变量的类型很有意义。因此，我为参数取名时都默认带上其类型名。一般我会使用不定冠词修饰它，除非命名中另有解释其角色的相关信息。这个习惯是从 Kent Beck 那里学的 [Beck SBPP]，到现在我还一直觉得很有用。
+
+1『参数的命名方式，又是一个值得效仿的好习惯。』
+
 Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
 
-Is this renaming worth the effort? Absolutely. Good code should clearly communicate what it is doing, and variable names are a key to clear code. Never be afraid to change names to improve clarity. With good find­and­replace tools, it is usually not difficult; testing, and static typing in a language that supports it, will highlight any occurrences you miss. And with automated refactoring tools, it’s trivial to rename even widely used functions. The next item to consider for renaming is the play parameter, but I have a different fate for that.
+Is this renaming worth the effort? Absolutely. Good code should clearly communicate what it is doing, and variable names are a key to clear code. Never be afraid to change names to improve clarity. With good find-­and-­replace tools, it is usually not difficult; testing, and static typing in a language that supports it, will highlight any occurrences you miss. And with automated refactoring tools, it’s trivial to rename even widely used functions. The next item to consider for renaming is the play parameter, but I have a different fate for that.
 
-Removing the play Variable
+好代码应能清楚地表明它在做什么，而变量命名是代码清晰的关键。 只要改名能够提升代码的可读性，那就应该毫不犹豫去做。 有好的查找替换工具在手，改名通常并不困难；此外，你的测试以及语言本身的静态类型支持，都可以帮你揪出漏改的地方。如今有了自动化的重构工具，即便要给一个被大量调用的函数改名，通常也不在话下。
+
+
+
+
+
+
+#### Removing the play Variable
 
 As I consider the parameters to amountFor, I look to see where they come from. aPerformance comes from the loop variable, so naturally changes with each iteration through the loop. But play is computed from the performance, so there’s no need to pass it in as a parameter at all—I can just recalculate it within amountFor. When I’m breaking down a long function, I like to get rid of variables like play, because temporary variables create a lot of locally scoped names that complicate extractions. The refactoring I will use here is Replace Temp with Query (178).
 
