@@ -2017,3 +2017,7 @@ $person->output(
 ```
 
 I passed a path argument to the constructor. This value was stored in the $path property and eventually used by the write() method. Of course, if your anonymous class begins to grow in size and complexity, it becomes more sensible to create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
+
+
+
+
