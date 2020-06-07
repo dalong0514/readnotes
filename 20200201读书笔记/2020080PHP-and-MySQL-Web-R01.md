@@ -48,6 +48,33 @@ By dynamically creating the names of the variables, you can access each of the f
 
 The fourth parameter can be used to send any additional valid email headers. Valid email headers are described in the document RFC822, which is available online if you want more details. (RFCs, or Requests for Comment, are the source of many Internet standards; we discuss them in Chapter 18「Using Network and Protocol Functions.」) 
 
+### 0204. 术语卡——conversion specification
+
+The %s in the format string is called a conversion specification. This one means「replace with a string.」In this case, it is replaced with \$total interpreted as a string. If the value stored in \$total was 12.4, both of these approaches would print it as 12.4. The advantage of printf() is that you can use a more useful conversion specification to specify that \$total is actually a floating-point number and that it should have two decimal places after the decimal point, as follows:
+
+```php
+printf ("Total amount of order is %.2f", $total);
+```
+
+Given this formatting, and 12.4 stored in \$total, this statement will print as 12.40. You can have multiple conversion specifications in the format string. If you have n conversion specifications, you will usually have n arguments after the format string. Each conversion speci-fication will be replaced by a reformatted argument in the order they are listed. 
+
+```php
+%[+]['padding_character][-][width][.precision]type
+```
+
+All conversion specifications start with a % symbol. If you actually want to print a % symbol, you need to use %%. The + sign is optional. By default, only numbers that are negative show a sign (in this case -). If you specify a sign here then positive values will be prefixed with the + sign and negative values will be prefixed with the - sign.
+
+The padding\_character is optional. It is used to pad your variable to the width you have specified. An example would be to add leading zeros to a number like a counter. The default padding character is a space. If you are specifying a space or zero, you do not need to prefix it with the apostrophe ('). For any other padding character, you need to prefix it with an apostrophe.
+
+The - symbol is optional. It specifies that the data in the field will be left-justified rather than right-justified, which is the default. The width specifier tells printf() how much room (in characters) to leave for the variable to be substituted in here. The precision specifier should begin with a decimal point. It should contain the number of places after the decimal point you would like displayed. The final part of the specification is a type code. A summary of these codes is shown in Table 4.3.
+
+```php
+printf ("Total amount of order is %2\$.2f (with shipping %1\$.2f) ",           
+            $total_shipping, $total);
+```
+
+Just add the argument position in the list directly after the % sign, followed by an escaped \$ symbol; in this example, 2\$ means「replace with the second argument in the list.」This method can also be used to repeat arguments. Two alternative versions of these functions are called vprintf() and vsprintf(). These  variants accept two parameters: the format string and an array of the arguments rather than a variable number of parameters.
+
 ### 0301. 人名卡——Luke Welling
 
 Laura Thomson

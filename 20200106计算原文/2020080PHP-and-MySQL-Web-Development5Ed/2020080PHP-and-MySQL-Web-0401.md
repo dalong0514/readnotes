@@ -286,103 +286,125 @@ Table 4.4  String Case Functions and Their Effects
 
 ## 4.3 Joining and Splitting Strings with String Functions
 
-Often, you may want to look at parts of a string individually. For example, you might want to look at words in a sentence (say, for spellchecking) or split a domain name or email address into its component parts. PHP provides several string functions (and regular expression functions) that allow you to do this.
+Often, you may want to look at parts of a string individually. For example, you might want to look at words in a sentence (say, for spellchecking) or split a domain name or email address into its component parts. PHP provides several string functions (and regular expression functions) that allow you to do this. In this example, Bob wants any customer feedback from bigcustomer.com to go directly to him, so you can split the email address the customer typed into parts to find out whether he or she works for Bob’s big customer.
 
+### 4.3.1 Using explode(), implode(), and join()
 
+The first function you could use for this purpose, explode(), has the following prototype:
 
-
-
-
-
-In this example, Bob wants any customer feedback from bigcustomer.com to go directly to him, so you can split the email address the customer typed into parts to find out whether he or she works for Bob’s big customer.
-
-Using explode(), implode(), and join()The first function you could use for this purpose, explode(), has the following prototype:
-
+```php
 array explode(string separator, string input [, int limit]);
+```
 
-This function takes a string input and splits it into pieces on a specified separator string. The pieces are returned in an array. You can limit the number of pieces with the optional limit parameter.
+This function takes a string input and splits it into pieces on a specified separator string. The pieces are returned in an array. You can limit the number of pieces with the optional limit parameter. To get the domain name from the customer’s email address in the script, you can use the following code:
 
-To get the domain name from the customer’s email address in the script, you can use the following code:
-
+```php
 $email_array = explode('@', $email);
+```
 
-This call to explode() splits the customer’s email address into two parts: the username, which is stored in $email_array[0], and the domain name, which is stored in $email_array[1]. 
+This call to explode() splits the customer’s email address into two parts: the username, which is stored in \$email_array[0], and the domain name, which is stored in \$email_array[1]. Now you can test the domain name to determine the customer’s origin and then send the feedback to the appropriate person:
 
-Now you can test the domain name to determine the customer’s origin and then send the feedback to the appropriate person:
-
-if ($email_array[1] == "bigcustomer.com") {  $toaddress = "bob@example.com";} else {  $toaddress = "feedback@example.com";}
+```php
+if ($email_array[1] == "bigcustomer.com") {  
+    $toaddress = "bob@example.com";
+    } else {  
+    $toaddress = "feedback@example.com";
+    }
+```
 
 If the domain is capitalized or mixed case, however, this approach will not work. You could avoid this problem by first converting the domain to all uppercase or all lowercase and then checking for a match, as follows:
 
-if (strtolower($email_array[1]) == "bigcustomer.com") {  $toaddress = "bob@example.com";} else {  $toaddress = "feedback@example.com";}
+```php
+if (strtolower($email_array[1]) == "bigcustomer.com") {  
+    $toaddress = "bob@example.com";
+    } else {  
+    $toaddress = "feedback@example.com";
+    }
+```
 
 You can reverse the effects of explode() by using either implode() or join(), which are  identical. For example,
 
+```php
 $new_email = implode('@', $email_array);
+```
 
-This statement takes the array elements from $email_array and joins them with the string passed in the first parameter. The function call is similar to explode(), but the effect is the opposite.
+This statement takes the array elements from \$email_array and joins them with the string passed in the first parameter. The function call is similar to explode(), but the effect is the opposite.
 
-Using strtok()Unlike explode(), which breaks a string into all its pieces at one time, strtok() gets pieces (called tokens) from a string one at a time. strtok() is a useful alternative to using explode() for processing words from a string one at a time.
+### 4.3.2 Using strtok()
 
-The prototype for strtok() is
+Unlike explode(), which breaks a string into all its pieces at one time, strtok() gets pieces (called tokens) from a string one at a time. strtok() is a useful alternative to using explode() for processing words from a string one at a time. The prototype for strtok() is:
 
+```php
 string strtok(string input, string separator);
+```
 
 The separator can be either a character or a string of characters, but the input string is split on each of the characters in the separator string rather than on the whole separator string (as explode does).
 
-Calling strtok() is not quite as simple as it seems in the prototype. To get the first token from a string, you call strtok() with the string you want tokenized and a separator. To get the subsequent tokens from the string, you just pass a single parameter—the separator. The  function keeps its own internal pointer to its place in the string. If you want to reset the pointer, you can pass the string into it again.
+Calling strtok() is not quite as simple as it seems in the prototype. To get the first token from a string, you call strtok() with the string you want tokenized and a separator. To get the subsequent tokens from the string, you just pass a single parameter—the separator. The function keeps its own internal pointer to its place in the string. If you want to reset the pointer, you can pass the string into it again. strtok() is typically used as follows:
 
-strtok() is typically used as follows:
-
-$token = strtok($feedback, " ");while ($token != "") {  echo $token."<br />";  $token = strtok(" ");
-
+```php
+$token = strtok($feedback, " ");
+while ($token != "") {  
+    echo $token."<br />";  
+    $token = strtok(" ");
 }
+```
 
-As usual, it’s a good idea to check that the customer actually typed some feedback in the form, using, for example, the empty() function. We have omitted these checks for brevity.
+As usual, it’s a good idea to check that the customer actually typed some feedback in the form, using, for example, the empty() function. We have omitted these checks for brevity. The preceding code prints each token from the customer’s feedback on a separate line and loops until there are no more tokens. 
 
-The preceding code prints each token from the customer’s feedback on a separate line and loops until there are no more tokens. 
+### 4.3.3 Using substr()
 
-Using substr()The substr() function enables you to access a substring between given start and end points of a string. It’s not appropriate for the example used here but can be useful when you need to get at parts of fixed format strings.
+The substr() function enables you to access a substring between given start and end points of a string. It’s not appropriate for the example used here but can be useful when you need to get at parts of fixed format strings. The substr() function has the following prototype:
 
-The substr() function has the following prototype:
-
+```php
 string substr(string string, int start[, int length] );
+```
 
-This function returns a substring copied from within string.
+This function returns a substring copied from within string. The following examples use this test string:
 
-The following examples use this test string:
-
+```php
 $test = 'Your customer service is excellent';
+```
 
 If you call it with a positive number for start (only), you will get the string from the start position to the end of the string. For example,
 
+```php
 substr($test, 1);
+```
 
-returns our customer service is excellent. Note that the string position starts from 0, as with arrays.
+returns our customer service is excellent. Note that the string position starts from 0, as with arrays. If you call substr() with a negative start (only), you will get the string from the end of the string minus start characters to the end of the string. For example,
 
-If you call substr() with a negative start (only), you will get the string from the end of the string minus start characters to the end of the string. For example,
-
+```php
 substr($test, -9);
+```
 
 returns excellent.
 
 The length parameter can be used to specify either a number of characters to return (if it is positive) or the end character of the return sequence (if it is negative). For example,
 
+```php
 substr($test, 0, 4);
+```
 
-returns the first four characters of the string—namely, Your. The code
+returns the first four characters of the string—namely, Your. The code:
 
+```php
 substr($test, 5, -13);
+```
 
 returns the characters between the fourth character and the thirteenth-to-last character—that is, customer service. The first character is location 0. So location 5 is the sixth character.
 
-Comparing Strings
-
-115
+### 4.4 Comparing Strings
 
 Comparing StringsSo far, we’ve just shown you how to use the operator == to compare two strings for  equality. You can do some slightly more sophisticated comparisons using PHP. We’ve divided these comparisons into two categories for you: partial matches and others. We deal with the others first and then get into partial matching, which we need to further develop the Smart Form example.
 
-Performing String Ordering: strcmp(), strcasecmp(), and strnatcmp()The strcmp(), strcasecmp(), and strnatcmp() functions can be used to order strings. This capability is useful when you are sorting data.
+
+
+
+
+### 4.4.1 Performing String Ordering: strcmp(), strcasecmp(), and strnatcmp()
+
+The strcmp(), strcasecmp(), and strnatcmp() functions can be used to order strings. This capability is useful when you are sorting data.
 
 The prototype for strcmp() is
 
@@ -400,13 +422,11 @@ The function strcasecmp() is identical except that it is not case sensitive.
 
 The function strnatcmp() and its non-case sensitive twin, strnatcasecmp() compare strings according to a「natural ordering,」which is more the way a human would do it. For example, strcmp() would order the string 2 as greater than the string 12 because it is  lexicographically greater. strnatcmp() would order them the other way around. You can read more about natural ordering at http://www.naturalordersort.org/.
 
-Testing String Length with strlen()You can check the length of a string by using the strlen() function. If you pass it a string, this function will return its length. For example, the result of this code is 5: 
+### 4.4.2 Testing String Length with strlen()
+
+You can check the length of a string by using the strlen() function. If you pass it a string, this function will return its length. For example, the result of this code is 5: 
 
 echo strlen("hello");
-
-116
-
-Chapter 4  String Manipulation and Regular Expressions
 
 You can use the strlen() function for validating input data. Consider the email address on the sample form, stored in $email. One basic way of validating an email address stored in $email is to check its length. By our reasoning, the minimum length of an email address is six characters—for example, a@a.to if you have a country code with no second-level domains, a one-letter server name, and a one-letter email address. Therefore, an error could be produced if the address is not at least this length:
 
@@ -414,7 +434,9 @@ if (strlen($email) < 6){    echo 'That email address is not valid';   exit;  // 
 
 Clearly, this approach is a very simplistic way of validating this information. We look at better ways in the next section.
 
-Matching and Replacing Substrings with String FunctionsChecking whether a particular substring is present in a larger string is a common operation. This partial matching is usually more useful than testing for complete equality in strings.
+## 4.5 Matching and Replacing Substrings with String Functions
+
+Checking whether a particular substring is present in a larger string is a common operation. This partial matching is usually more useful than testing for complete equality in strings.
 
 In the Smart Form example, you want to look for certain key phrases in the customer  feedback and send the mail to the appropriate department. If you want to send emails discussing Bob’s shops to the retail manager, for example, you want to know whether the word shop or  derivatives thereof appear in the message.
 
@@ -425,10 +447,6 @@ You could also do the same thing, however, with a single function call to one of
 Finding Strings in Strings: strstr(), strchr(), strrchr(), and stristr()To find a string within another string, you can use any of the functions strstr(), strchr(), strrchr(), or stristr().
 
 The function strstr(), which is the most generic, can be used to find a string or  character match within a longer string. In PHP, the strchr() function is the same as strstr(), although its name implies that it is used to find a character in a string, similar to the C version of this function. In PHP, either of these functions can be used to find a string inside a string, including finding a string containing only a single character.
-
-Matching and Replacing Substrings with String Functions 
-
-117
 
 The prototype for strstr() is as follows:
 
@@ -453,10 +471,6 @@ The strpos() function has the following prototype:
 int strpos(string haystack, string needle[, int offset=0]);
 
 The integer returned represents the position of the first occurrence of the needle within the haystack. The first character is in position 0 as usual.
-
-118
-
-Chapter 4  String Manipulation and Regular Expressions
 
 For example, the following code echoes the value 4 to the browser:
 
@@ -515,10 +529,6 @@ Similar to the str_replace() function, you can also use substr_replace() by pass
 Introducing Regular ExpressionsPHP has historically supported two styles of regular expression syntax: POSIX and Perl. Both types are compiled into PHP by default, but since PHP version 5.3 the POSIX style has been deprecated.
 
 So far, all the pattern matching you’ve done has used the string functions. You have been limited to exact matches or to exact substring matches. If you want to do more complex pattern matching, you should use regular expressions. Regular expressions are difficult to grasp at first but can be extremely useful.
-
-120
-
-Chapter 4  String Manipulation and Regular Expressions
 
 The BasicsA regular expression is a way of describing a pattern in a piece of text. The exact (or literal) matches you’ve seen so far are a form of regular expression. For example, earlier you searched for regular expression terms such as "shop" and "delivery".
 
@@ -609,10 +619,6 @@ ASCII characters
 Lowercase letters
 
 Uppercase letters
-
-122
-
-Chapter 4  String Manipulation and Regular Expressions
 
 Class
 

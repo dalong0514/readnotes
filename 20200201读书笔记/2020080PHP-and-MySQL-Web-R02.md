@@ -2,15 +2,15 @@
 
 ## 记忆时间
 
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
+2020-06-06
 
 ## 03. Using Arrays
+
+### 逻辑脉络
+
+数组的相关知识，包括数值索引数组、非数值索引数组、多维数组、如何遍历数组、数组排序、数组的常用函数。
+
+### 摘录及评论
 
 This chapter shows you how to use an important programming construct: arrays. The variables used in the previous chapters were scalar variables, which store a single value. An array is a variable that stores a set or sequence of values. One array can have many elements, and each element can hold a single value, such as text or numbers, or another array. An array containing other arrays is known as a multidimensional array.
 
@@ -164,7 +164,7 @@ The symbol between the keys and values (=>) is simply an equal sign immediately 
 
 Again, you access the contents using the variable name and a key, so you can access the information stored in the prices array as \$prices['Tires'], \$prices['Oil'], and \$prices['Spark Plugs']. The following code creates the same \$prices array. Instead of creating an array with three elements, this version creates an array with only one element and then adds two more:
 
-```
+```php
 $prices = array('Tires'=>100);
 $prices['Oil'] = 10;
 $prices['Spark Plugs'] = 4;
@@ -172,7 +172,7 @@ $prices['Spark Plugs'] = 4;
 
 Here is another slightly different but equivalent piece of code. In this version, you do not explicitly create an array at all. The array is created for you when you add the first element to it:
 
-```
+```php
 $prices['Tires'] = 100;
 $prices['Oil'] = 10;
 $prices['Spark Plugs'] = 4;
@@ -199,6 +199,8 @@ while ($element = each($prices)) {
 }
 ```
 
+1『 while 循环的使用场景比我之前想的要多不少，关键在于那些拥有默认终止条件的场景。（2020-06-06）』
+
 The output of this script fragment is shown in Figure 3.2.
 
 Figure 3.2  An each() statement can be used to loop through arrays
@@ -206,6 +208,8 @@ Figure 3.2  An each() statement can be used to loop through arrays
 In Chapter 1, we looked at while loops and the echo statement. The preceding code uses the each() function, which we have not yet covered. This function returns the current element in an array and makes the next element the current one. Because we are calling each() within a while loop, it returns every element in the array in turn and stops when the end of the array is reached.
 
 In this code, the variable \$element is an array. When you call each(), it gives you an array with four values and the four indices to the array locations. The locations key and 0 contain the key of the current element, and the locations value and 1 contain the value of the current element. Although the one you choose makes no difference, we chose to use the named  locations rather than the numbered ones.
+
+1『细节知识，each(\$array) 返回的 \$element 其实也是一个数组，里面 4 个元素，索引 0 和 key 的值为返回原数组特定元素的索引，索引 1 和 value 的值为返回原数组特定元素的值。』
 
 There is a more elegant and common way of doing the same thing. The construct list() can be used to split an array into a number of values. You can separate each set of  values that the each() function gives you like this:
 
@@ -215,7 +219,7 @@ while (list($product, $price) = each($prices)) {
 }
 ```
 
-1『这个方式拆解还是第一次见，而且作者是推荐这种方式的，优雅。』
+1『这个方式拆解还是第一次见，而且作者是推荐这种方式的，优雅。以后偏离数组需要使用索引和值的时候，可以使用 list() 加 each()，给人的感觉就是有水平。但要注意的是，使用 each() 后会改变数组里元素指针所指的位置，要再次遍历的话需要用函数 reset() 重置索引。（2020-06-06）』
 
 This line uses each() to take the current element from \$prices, return it as an array, and make the next element current. It also uses list() to turn the 0 and 1 elements from the array returned by each() into two new variables called \$product and \$price.
 
@@ -244,14 +248,12 @@ Arrays do not have to be a simple list of keys and values; each location in the 
 
 If you want to store more than one piece of data about each of Bob’s products, you could use a two-dimensional array. Figure 3.3 shows Bob’s products represented as a two-dimensional array with each row representing an individual product and each column representing a stored product attribute.
 
-Figure 3.3  You can store more information about Bob’s products in a two-dimensional array
-
 Using PHP, you would write the following code to set up the data in the array shown in Figure 3.3:
 
 ```php
 $products = array( array('TIR', 'Tires', 100 ),                   
-                                array('OIL', 'Oil', 10 ),                   
-                                array('SPK', 'Spark Plugs', 4 ) );
+                    array('OIL', 'Oil', 10 ),                   
+                    array('SPK', 'Spark Plugs', 4 ) );
 ```
 
 You can see from this definition that the \$products array now contains three arrays. To access the data in a one-dimensional array, recall that you need the name of the array and the index of the element. A two-dimensional array is similar, except that each element has two indices: a row and a column. (The top row is row 0, and the far-left column is column 0.) To display the contents of this array, you could manually access each element in order like this:
@@ -266,7 +268,7 @@ echo '|'.$products[2][0].'|'.$products[2][1].'|'.$products[2][2].'|<br />';
 
 Alternatively, you could place a for loop inside another for loop to achieve the same result:
 
-```
+```php
 for ($row = 0; $row < 3; $row++) {   
     for ($column = 0; $column < 3; $column++) {      
         echo '|'.$products[$row][$column];   
@@ -301,7 +303,7 @@ $products = array(array('Code' => 'TIR',
                             );
 ```
 
-1『这种构建二维数组的方式是我想要的。』
+1『这种构建二维数组的方式是我想要的，而且可以使用 [] 来构建。』
 
 This array is easier to work with if you want to retrieve a single value. Remembering that the description is stored in the Description column is easier than remembering it is stored in column 1. Using descriptive indices, you do not need to remember that an item is stored at [x][y]. You can easily find your data by referring to a location with meaningful row and column names. You do, however, lose the ability to use a simple for loop to step through each column in turn. Here is one way to write code to display this array:
 
@@ -417,7 +419,7 @@ $prices = array('Tires'=>100, 'Oil'=>10, 'Spark Plugs'=>4);
 ksort($prices);
 ```
 
-#### 3.6.2 Sorting in Reverse
+#### 3.6.3 Sorting in Reverse
 
 The three different sorting functions—sort(), asort(), and ksort()—sort an array into ascending order. Each function has a matching reverse sort function to sort an array into descending order. The reverse versions are called rsort(), arsort(), and krsort().
 
@@ -666,6 +668,8 @@ Sometimes you might want to work with or modify every element in an array in the
 bool array_walk(array arr, callable func[, mixed userdata])
 ```
 
+1『类似于 pandas 里的 apply() 函数，对数组（字典）内的元素进行函数处理，这里的 array_walk() 一定一定要牢记，实在太有用了。基本上其他语言都有相对应的函数。（2020-06-05）』
+
 Similar to the way we used usort() earlier, array\_walk() expects you to declare a function of your own. As you can see, array\_walk() takes three parameters. The first, arr, is the array to be processed. The second, func, is the name of a user-defined function that will be applied to each element in the array. The third parameter, userdata, is optional. If you use it, it will be passed through to your function as a parameter. We’ll see how this works shortly.
 
 A handy user-defined function might be one that displays each element with some specified formatting. The following code displays each element on a new line by calling the user-defined function my\_print() with each element of \$array:
@@ -695,6 +699,8 @@ array_walk($array, 'my_multiply', 3);
 This code defines a function, my\_multiply(), that will multiply each element in the array by a supplied factor. You need to use the optional third parameter to array\_walk() to take a parameter to pass to the function and use it as the multiplication factor. Because you need this parameter, you must define the function, my\_multiply(), to take three parameters: an array element’s value (\$value), an array element’s key (\$key), and the parameter (\$factor). You can choose to ignore the key.
 
 A subtle point to note is the way \$value is passed. The ampersand (&) before the variable name in the definition of my_multiply() means that \$value will be passed by reference. Passing by reference allows the function to alter the contents of the array. We address passing by reference in more detail in Chapter 5. If you are not familiar with the term, for now just note that to pass by reference, you place an ampersand before the variable name in the function declaration.
+
+1『引用传参的知识点在第 5 章。』
 
 #### 3.10.3 Counting Elements in an Array: count(), sizeof(), and array_count_values()
 
@@ -753,7 +759,7 @@ This code again produces the following output:
 
 Note that for extract() to extract an element, that element’s key must be a valid variable name, which means that keys starting with numbers or including spaces are skipped.
 
-1『 extract() 函数的功能如同其名称一般，可以将数组里的元素提取成一个个单独的变量，留意其应用场景。（2020-04-26）』
+1『数组批量转成常规的标量，extract() 函数的功能如同其名称一般，可以将数组里的元素提取成一个个单独的变量，留意其应用场景。（2020-04-26）』
 
 ### 3.11 Further Reading
 
@@ -871,9 +877,7 @@ For example, if echoing user input to a browser, we don’t want to execute any 
 
 We used this function in previous chapters, but let’s recap here. The htmlspecialchars() function converts characters that have a special meaning in HTML to their HTML entity equivalent. For example, the character \< is converted to the entity \&lt;. The prototype of this function is as follows:
 
-```php
 string htmlspecialchars (string string [, int flags = ENT_COMPAT | ENT_HTML401 [, string encoding = 'UTF-8' [, bool double_encode = true ]]])
-```
 
 In general, this function converts characters to their HTML entity equivalents as shown in Table 4.1.
 
@@ -900,12 +904,14 @@ Depending on where you are outputting strings, the characters that may cause pro
 The main issue in email is that headers are separated by the character string \r\n (carriage return-line feed). We need to take care that user data we use in the email headers does not contain these characters, or we run the risk of a set of attacks, called header injection. (We discuss this in more detail in Part III.) As with many string processing problems, there are multiple ways to approach this. One way is to use the str\_replace() function, as follows:
 
 ```php
-$mailcontent = "Customer name: ".str_replace("\r\n", "", $name)."\n".               
-                        "Customer email: ".str_replace("\r\n", "",$email)."\n".               
-                        "Customer comments:\n".str_replace("\r\n", "",$feedback)."\n";
+$mailcontent = "Customer name: " . str_replace("\r\n", "", $name) . "\n".               
+                        "Customer email: " . str_replace("\r\n", "",$email) . "\n".               
+                        "Customer comments:\n" . str_replace("\r\n", "",$feedback) . "\n";
 ```
 
 If you have more complicated matching or replacement rules, you can use the regular expression functions described later in this chapter. In a simple case like this where you want to entirely replace one string with another, you should always use the str\_replace() function. We’ll discuss the str\_replace() function in more detail later in this chapter.
+
+1『字符串处理，每个语言果然都有这个替换函数。』
 
 #### 4.2.2.4 Using HTML Formatting: The nl2br() 
 
@@ -921,6 +927,8 @@ Remember that HTML disregards plain whitespace, so if you don’t filter this ou
 Notice that we first applied the htmlspecialchars() function and then the nl2br()  function. This is because if we did them in the opposite order, the \<br/> tags inserted by the nl2br() function would be translated into HTML entities by the htmlspecialchars()  function and hence would have no effect.
 
 Figure 4.2  Using PHP’s nl2br() function improves the display of long strings within HTML.
+
+1『图里给人的信息是，长句拆成短句了。』
 
 At this stage, we have an order processing script that formats user data for output to both email and HTML. The revised order processing script is found in Listing 4.2.
 
@@ -967,12 +975,11 @@ There are many other string processing functions you may find useful. We’ll ex
 
 So far, you have used the echo language construct to print strings to the browser. PHP also supports a print() construct, which does the same thing as echo, but returns a value, which is always equal to 1. Both of these techniques print a string「as is.」You can apply some more sophisticated formatting using the functions printf() and sprintf(). They work basically the same way, except that printf() outputs a formatted string and sprintf() returns a formatted string.
 
-If you have previously programmed in C, you will find that these functions are conceptually similar to the C versions. Be careful, though, because the syntax is not exactly the same. If you haven’t, they take getting used to but are useful and powerful.
+If you have previously programmed in C, you will find that these functions are conceptually similar to the C versions. Be careful, though, because the syntax is not exactly the same. If you haven’t, they take getting used to but are useful and powerful. The prototypes for these functions are:
 
-The prototypes for these functions are
-
-```
-string sprintf (string format [, mixed args...])int printf (string format [, mixed args...])
+```php
+string sprintf (string format [, mixed args...])
+int printf (string format [, mixed args...])
 ```
 
 The first parameter passed to both of these functions is a format string that describes the basic shape of the output with format codes instead of variables. The other parameters are variables that will be substituted in to the format string. For example, using echo, you can use the variables you want to print inline, like this:
@@ -989,6 +996,8 @@ printf ("Total amount of order is %s.", $total);
 
 The %s in the format string is called a conversion specification. This one means「replace with a string.」In this case, it is replaced with \$total interpreted as a string. If the value stored in \$total was 12.4, both of these approaches would print it as 12.4. The advantage of printf() is that you can use a more useful conversion specification to specify that \$total is actually a floating-point number and that it should have two decimal places after the decimal point, as follows:
 
+1『这里的 conversion specification 即 %s，好多好多地方看到过。做张术语卡片。』
+
 ```php
 printf ("Total amount of order is %.2f", $total);
 ```
@@ -1002,9 +1011,11 @@ printf ("Total amount of order is %.2f (with shipping %.2f) ",
 
 Here, the first conversion specification uses the variable \$total, and the second uses the  variable \$total\_shipping. Each conversion specification follows the same format, which is
 
-    %[+]['padding_character][-][width][.precision]type
+```php
+%[+]['padding_character][-][width][.precision]type
+```
 
-All conversion specifications start with a % symbol. If you actually want to print a % symbol, you need to use %%.The + sign is optional. By default, only numbers that are negative show a sign (in this case -). If you specify a sign here then positive values will be prefixed with the + sign and negative values will be prefixed with the - sign.
+All conversion specifications start with a % symbol. If you actually want to print a % symbol, you need to use %%. The + sign is optional. By default, only numbers that are negative show a sign (in this case -). If you specify a sign here then positive values will be prefixed with the + sign and negative values will be prefixed with the - sign.
 
 The padding\_character is optional. It is used to pad your variable to the width you have specified. An example would be to add leading zeros to a number like a counter. The default padding character is a space. If you are specifying a space or zero, you do not need to prefix it with the apostrophe ('). For any other padding character, you need to prefix it with an apostrophe.
 
@@ -1029,7 +1040,115 @@ If you start with the subject string, \$subject, which you are using for email, 
 
 Table 4.4  String Case Functions and Their Effects
 
+### 4.3 Joining and Splitting Strings with String Functions
 
+Often, you may want to look at parts of a string individually. For example, you might want to look at words in a sentence (say, for spellchecking) or split a domain name or email address into its component parts. PHP provides several string functions (and regular expression functions) that allow you to do this. In this example, Bob wants any customer feedback from bigcustomer.com to go directly to him, so you can split the email address the customer typed into parts to find out whether he or she works for Bob’s big customer.
+
+#### 4.3.1 Using explode(), implode(), and join()
+
+The first function you could use for this purpose, explode(), has the following prototype:
+
+```php
+array explode(string separator, string input [, int limit]);
+```
+
+This function takes a string input and splits it into pieces on a specified separator string. The pieces are returned in an array. You can limit the number of pieces with the optional limit parameter. To get the domain name from the customer’s email address in the script, you can use the following code:
+
+```php
+$email_array = explode('@', $email);
+```
+
+This call to explode() splits the customer’s email address into two parts: the username, which is stored in \$email_array[0], and the domain name, which is stored in \$email_array[1]. Now you can test the domain name to determine the customer’s origin and then send the feedback to the appropriate person:
+
+```php
+if ($email_array[1] == "bigcustomer.com") {  
+    $toaddress = "bob@example.com";
+    } else {  
+    $toaddress = "feedback@example.com";
+    }
+```
+
+If the domain is capitalized or mixed case, however, this approach will not work. You could avoid this problem by first converting the domain to all uppercase or all lowercase and then checking for a match, as follows:
+
+```php
+if (strtolower($email_array[1]) == "bigcustomer.com") {  
+    $toaddress = "bob@example.com";
+    } else {  
+    $toaddress = "feedback@example.com";
+    }
+```
+
+You can reverse the effects of explode() by using either implode() or join(), which are  identical. For example,
+
+```php
+$new_email = implode('@', $email_array);
+```
+
+This statement takes the array elements from \$email_array and joins them with the string passed in the first parameter. The function call is similar to explode(), but the effect is the opposite.
+
+#### 4.3.2 Using strtok()
+
+Unlike explode(), which breaks a string into all its pieces at one time, strtok() gets pieces (called tokens) from a string one at a time. strtok() is a useful alternative to using explode() for processing words from a string one at a time. The prototype for strtok() is:
+
+```php
+string strtok(string input, string separator);
+```
+
+The separator can be either a character or a string of characters, but the input string is split on each of the characters in the separator string rather than on the whole separator string (as explode does).
+
+Calling strtok() is not quite as simple as it seems in the prototype. To get the first token from a string, you call strtok() with the string you want tokenized and a separator. To get the subsequent tokens from the string, you just pass a single parameter—the separator. The function keeps its own internal pointer to its place in the string. If you want to reset the pointer, you can pass the string into it again. strtok() is typically used as follows:
+
+```php
+$token = strtok($feedback, " ");
+while ($token != "") {  
+    echo $token."<br />";  
+    $token = strtok(" ");
+}
+```
+
+As usual, it’s a good idea to check that the customer actually typed some feedback in the form, using, for example, the empty() function. We have omitted these checks for brevity. The preceding code prints each token from the customer’s feedback on a separate line and loops until there are no more tokens. 
+
+#### 4.3.3 Using substr()
+
+The substr() function enables you to access a substring between given start and end points of a string. It’s not appropriate for the example used here but can be useful when you need to get at parts of fixed format strings. The substr() function has the following prototype:
+
+```php
+string substr(string string, int start[, int length] );
+```
+
+This function returns a substring copied from within string. The following examples use this test string:
+
+```php
+$test = 'Your customer service is excellent';
+```
+
+If you call it with a positive number for start (only), you will get the string from the start position to the end of the string. For example,
+
+```php
+substr($test, 1);
+```
+
+returns our customer service is excellent. Note that the string position starts from 0, as with arrays. If you call substr() with a negative start (only), you will get the string from the end of the string minus start characters to the end of the string. For example,
+
+```php
+substr($test, -9);
+```
+
+returns excellent.
+
+The length parameter can be used to specify either a number of characters to return (if it is positive) or the end character of the return sequence (if it is negative). For example,
+
+```php
+substr($test, 0, 4);
+```
+
+returns the first four characters of the string—namely, Your. The code:
+
+```php
+substr($test, 5, -13);
+```
+
+returns the characters between the fourth character and the thirteenth-to-last character—that is, customer service. The first character is location 0. So location 5 is the sixth character.
 
 
 
