@@ -1034,99 +1034,206 @@ The structure of the code is much better now. The top­level statement function 
 
 So far, my refactoring has focused on adding enough structure to the function so that I can understand it and see it in terms of its logical parts. This is often the case early in refactoring. Breaking down complicated chunks into small pieces is important, as is naming things well. Now, I can begin to focus more on the functionality change I want to make—specifically, providing an HTML version of this statement. In many ways, it’s now much easier to do. With all the calculation code split out, all I have to do is write an HTML version of the seven lines of code at the top. The problem is that these brokenout functions are nested within the textual statement method, and I don’t want to copy and paste them into a new function, however well organized. I want the same calculation functions to be used by the text and HTML versions of the statement.
 
-
-
-
-
-
+到目前为止，我的重构主要是为原函数添加足够的结构，以便我能更好地理解它，看清它的逻辑结构。这也是重构早期的一般步骤。把复杂的代码块分解为更小的单元，与好的命名一样都很重要。现在，我可以更多关注我要修改的功能部分了，也就是为这张详单提供一个 HTML 版本。不管怎么说，现在改起来更加简单了。因为计算代码已经被分离出来，我只需要为顶部的 7 行代码实现一个 HTML 的版本。问题是，这些分解出来的函数嵌套在打印文本详单的函数中。无论嵌套函数组织得多么良好，我总不想将它们全复制粘贴到另一个新函数中。我希望同样的计算函数可以被文本版详单和 HTML 版详单共用。
 
 There are various ways to do this, but one of my favorite techniques is Split Phase (154). My aim here is to divide the logic into two parts: one that calculates the data required for the statement, the other that renders it into text or HTML. The first phase creates an intermediate data structure that it passes to the second.
 
 I start a Split Phase (154) by applying Extract Function (106) to the code that makes up the second phase. In this case, that’s the statement printing code, which is in fact the entire content of statement. This, together with all the nested functions, goes into its own top­level function which I call renderPlainText.
 
-```js
+要实现复用有许多种方法，而我最喜欢的技术是拆分阶段（154）。这里我的目标是将逻辑分成两部分：一部分计算详单所需的数据，另一部分将数据渲染成文本或 HTML。第一阶段会创建一个中转数据结构，再把它传递给第二阶段。要开始拆分阶段（154），我会先对组成第二阶段的代码应用提炼函数（106）。在这个例子中，这部分代码就是打印详单的代码，其实也就是 statement 函数的全部内容。我要把它们与所有嵌套的函数一起抽取到一个新的顶层函数中，并将其命名为 renderPlainText。
 
+1『 statement() 相当于一个空函数，把 renderPlainText() 里的东西一点点剥离出来放进 statement()。』
+
+```js
+statement() {
+  return this.renderPlainText();
+},
+renderPlainText() {
+  let invoice = invoices[0];
+  let result = `Statement for ${invoice.customer}\n`;
+  for (let perf of invoice.performances) {
+    // print line for this order
+    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+  }
+  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
+  result += `You earned ${this.totalVolumeCredits()} credits\n`;
+  console.log(result);
+},
 ```
 
 I do my usual compile-­test-­commit, then create an object that will act as my intermediate data structure between the two phases. I pass this data object in as an argument to renderPlainText (compile­test­commit).
 
 ```js
-
+statement() {
+  const statementData = {};
+  return this.renderPlainText(statementData);
+},
+renderPlainText(data) {
+  let invoice = invoices[0];
+  let result = `Statement for ${invoice.customer}\n`;
+  for (let perf of invoice.performances) {
+    // print line for this order
+    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+  }
+  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
+  result += `You earned ${this.totalVolumeCredits()} credits\n`;
+  console.log(result);
+},
 ```
 
-I now examine the other arguments used by renderPlainText. I want to move the data that comes from them into the intermediate data structure, so that all the calculation code moves into the statement function and renderPlainText operates solely on data passed to it through the data parameter.
+I now examine the other arguments used by renderPlainText. I want to move the data that comes from them into the intermediate data structure, so that all the calculation code moves into the statement function and renderPlainText operates solely on data passed to it through the data parameter. My first move is to take the customer and add it to the intermediate object (compiletest­commit).
 
-My first move is to take the customer and add it to the intermediate object (compiletest­commit).
+```js
+statement() {
+  const statementData = {};
+  statementData.customer = invoices[0].customer;
+  return this.renderPlainText(statementData, invoices[0]);
+},
+renderPlainText(data, invoice) {
+  let result = `Statement for ${data.customer}\n`;
+  for (let perf of invoice.performances) {
+    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+  }
+  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
+  result += `You earned ${this.totalVolumeCredits()} credits\n`;
+  console.log(result);
+},
+```
 
-Click here to view code image
+Similarly, I add the performances, which allows me to delete the invoice parameter to renderPlainText (compile­test­commit). 
 
-function statement (invoice, plays) { const statementData = {}; statementData.customer = invoice.customer; return renderPlainText(statementData, invoice, plays); }
+top level…
 
-function renderPlainText(data, invoice, plays) {
+```js
+statement() {
+  const statementData = {};
+  statementData.customer = invoices[0].customer;
+  statementData.performances = invoices[0].performances;
+  return this.renderPlainText(statementData);
+},
+renderPlainText(data) {
+  let result = `Statement for ${data.customer}\n`;
+  for (let perf of data.performances) {
+    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+  }
+  result += `Amount owed is ${this.usd(this.totalAmount(data))}\n`;
+  result += `You earned ${this.totalVolumeCredits(data)} credits\n`;
+  console.log(result);
+},
+```
 
-let result = `Statement for ${data.customer}\n`; for (let perf of invoice.performances) { result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience } result += `Amount owed is ${usd(totalAmount())}\n`; result += `You earned ${totalVolumeCredits()} credits\n`; return result;
-
-Similarly, I add the performances, which allows me to delete the invoice parameter to renderPlainText (compile­test­commit). top level…
-
-Click here to view code image
-
-function statement (invoice, plays) { const statementData = {}; statementData.customer = invoice.customer; statementData.performances = invoice.performances; return renderPlainText(statementData, invoice, plays); }
-
-function renderPlainText(data, plays) {
-
-let result = `Statement for ${data.customer}\n`; for (let perf of data.performances) { result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.au } result += `Amount owed is ${usd(totalAmount())}\n`; result += `You earned ${totalVolumeCredits()} credits\n`; return result;
-
-dience
+1『这里跟原书中的代码不一样，因为是在 vue 里实现的，调用函数的时候还是的传入参数 data，原书中的代码不用传参，是因为闭包的原因么？待确认。（2020-06-12）』
 
 function renderPlainText…
 
-Click here to view code image
+```js
+totalAmount(data) {
+  let result = 0;
+  for (let perf of data.performances) {
+    result += this.amountFor(perf);
+  }
+  return result;
+},
+totalVolumeCredits(data) {
+  let result = 0;
+  for (let perf of data.performances) {
+    result += this.volumeCreditsFor(perf);
+  }
+  return result;
+},
+```
 
-function totalAmount() { let result = 0; for (let perf of data.performances) { result += amountFor(perf); } return result; } function totalVolumeCredits() { let result = 0; for (let perf of data.performances) { result += volumeCreditsFor(perf); } return result; }
+Now I’d like the play name to come from the intermediate data. To do this, I need to enrich the performance record with data from the play (compile-­test-­commit).
 
-Now I’d like the play name to come from the intermediate data. To do this, I need to enrich the performance record with data from the play (compile­test­commit).
+```js
+statement() {
+  const statementData = {};
+  statementData.customer = invoices[0].customer;
+  statementData.performances = invoices[0].performances.map(this.enrichPerformance);
+  return this.renderPlainText(statementData);
+},
+enrichPerformance(aPerformance) {
+  const result = Object.assign({}, aPerformance);
+  return result;
+},
+```
 
-Click here to view code image
+1『 map() 函数的使用，还能像语句 invoices[0].performances.map(this.enrichPerformance) 这样用，传入回调函数时，直接省略了数组中各元素的标识「item」，涨见识了。书籍「忍者秘籍」里的介绍：内置的 map 方法创建了一个全新的数组，然后遍历输入的数组。对输入数组的每个元素，在新建的数组上，都会基于回调函数的执行结果创建一个对应的元素。其典型用法是 const weapons = ninjas.map(item => item.weapon) 』
 
-function statement (invoice, plays) { const statementData = {}; statementData.customer = invoice.customer; statementData.performances = invoice.performances.map(enrichPerformance); return renderPlainText(statementData, plays);
+3『 [Object.assign() - JavaScript | MDN](https://wiki.developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
-function enrichPerformance(aPerformance) { const result = Object.assign({}, aPerformance); return result; }
+Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+
+```js
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+```
+
+如果目标对象中的属性具有相同的键，则属性将被源对象中的属性覆盖。后面的源对象的属性将类似地覆盖前面的源对象的属性。Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象。该方法使用源对象的 [[Get]] 和目标对象的 [[Set]]，所以它会调用相关 getter 和 setter。因此，它分配属性，而不仅仅是复制或定义新的属性。如果合并源包含 getter，这可能使其不适合将新属性合并到原型中。为了将属性定义（包括其可枚举性）复制到原型，应使用Object.getOwnPropertyDescriptor()和Object.defineProperty() 。
+
+String类型和 Symbol 类型的属性都会被拷贝。在出现错误的情况下，例如，如果属性不可写，会引发 TypeError，如果在引发错误之前添加了任何属性，则可以更改 target 对象。注意，Object.assign 不会在那些 source 对象值为 null 或 undefined 的时候抛出错误。
+
+```js
+// 复制一个对象节
+const obj = { a: 1 };
+const copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+
+// 合并对象节
+const o1 = { a: 1 };
+const o2 = { b: 2 };
+const o3 = { c: 3 };
+const obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
+
+// 合并具有相同属性的对象节，属性被后续参数中具有相同属性的其他对象覆盖。
+const o1 = { a: 1, b: 1, c: 1 };
+const o2 = { b: 2, c: 2 };
+const o3 = { c: 3 };
+const obj = Object.assign({}, o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+```
+
+』
 
 At the moment, I’m just making a copy of the performance object, but I’ll shortly add data to this new record. I take a copy because I don’t want to modify the data passed into the function. I prefer to treat data as immutable as much as I can—mutable state quickly becomes something rotten.
 
+现在我只是简单地返回了一个 aPerformance 对象的副 本，但马上我就会往这条记录中添加新的数据。返回副本的原因是，我不想修改传给函数的参数，我总是尽量保持数据不可变（immutable）——可变的状态会很快变成烫手的山芋。
+
+1『为何使用 assign() 函数复制一个对象可以实现数据的「不可变」，目前没吃透。（2020-06-12）』
+
 The idiom result = Object.assign({}, aPerformance) looks very odd to people unfamiliar to JavaScript. It performs a shallow copy. I’d prefer to have a function for this, but it’s one of those cases where the idiom is so baked into JavaScript usage that writing my own function would look out of place for JavaScript programmers.
 
-Now I have a spot for the play, I need to add it. To do that, I need to apply Move Function (198) to playFor and statement (compile­test­commit).
+Now I have a spot for the play, I need to add it. To do that, I need to apply Move Function (198) to playFor and statement (compile­-test­-commit).
+
+现在我们已经有了安放 play 字段的地方，可以把数据放进去。我需要对 playFor 和 statement 函数应用搬移函数（198）（然后编译、测试、提交）。
+
+
+
+
+
 
 function statement…
 
-Click here to view code image
+```js
 
-function enrichPerformance(aPerformance) { const result = Object.assign({}, aPerformance); result.play = playFor(result); return result; }
-
-function playFor(aPerformance) { return plays[aPerformance.playID]; }
+```
 
 I then replace all the references to playFor in renderPlainText to use the data instead (compile­test­commit).
 
-function renderPlainText… Click here to view code image let result = `Statement for ${data.customer}\n`; for (let perf of data.performances) { result += ` ${perf.play.name}: ${usd(amountFor(perf))} (${perf.audience} } result += `Amount owed is ${usd(totalAmount())}\n`; result += `You earned ${totalVolumeCredits()} credits\n`; return result;
+```js
 
-sea
+```
 
-function volumeCreditsFor(aPerformance) { let result = 0; result += Math.max(aPerformance.audience ­ 30, 0); if ("comedy" === aPerformance.play.type) result += Math.floor(aPerformance.aud return result; }
-
-function amountFor(aPerformance) {
-
-let result = 0; switch (aPerformance.play.type) { case "tragedy":
-
-result = 40000; if (aPerformance.audience > 30) { result += 1000 * (aPerformance.audience ­ 30); } break; case "comedy":
-
-result = 30000; if (aPerformance.audience > 20) { result += 10000 + 500 * (aPerformance.audience ­ 20); } result += 300 * aPerformance.audience; break; default:
-
-throw new Error(`unknown type: ${aPerformance.play.type}`); } return result;
-
-}
-
-I then move amountFor in a similar way (compile­test­commit).
+I then move amountFor in a similar way (compile-­test-­commit).
 
 function statement…
 
