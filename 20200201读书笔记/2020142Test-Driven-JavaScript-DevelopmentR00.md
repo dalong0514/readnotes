@@ -18,7 +18,11 @@ Unit test is a function or method, which invokes a unit of module in software an
 
 Unit test is only relevant to developers who are closely working with the code. A unit test is only applicable to test a logical piece of a code. Illogical code would not be tested with the use of unit testing. For example, getting and setting values in text field will not be considered in logical code. 
 
-### 0203. 术语卡——
+### 0203. 术语卡——TDD and BDD
+
+Behavior-driven development (BDD) is a term introduced by Dan North to address this shortcoming. The terminology used by BDD focuses on the behavioral aspect of the system. In this chapter, you are going to learn about Jasmine in detail and note that the differences in nomenclature of TDD and BDD. Deep down, TDD and BDD would serve the same purpose, but using the vocabulary of BDD gives you a better set of tests and documents your system in a better way. 
+
+While TDD interface gives names such as suite(), test(), setup(), teardown(), suiteSetup(), suiteTearDown(), assert(), and so on. BDD offers describe(), context(), it(), beforeEach(), afterEach(), beforeAll(), afterAll(), expect(), and so on. A test suite in TDD is usually created using suite(),while BDD uses describe(); to create a unit test TDD uses test() and BDD uses it(). 
 
 ### 0301. 人名卡——
 
@@ -1066,3 +1070,545 @@ It will run our test in the browser and then close the browser. It will show our
 
 Karma is just a tool which needs any framework to be included to perform testing in Karma. We used Jasmine here. Karma has plugins for testing frameworks (such as Jasmine, Mocha, and QUnit). You can check the source code of the existing plugins and write your own plugin for the desired testing framework.
 
+## 0401. Jasmine
+
+Jasmine is considered to be very popular among testing frameworks. It is called to be complete and does not need any other supporting frameworks. In this chapter, you learned about the Jasmine testing framework and its offerings. You also learned how to extend Jasmine using custom spies, matchers, and equality testers with the help of the employee object. In the next chapter, you will learn about JsTestDriver, its setup, and how we can run our Jasmine specs with it. We will also see how to perform Ajax operations in tests later in this book. 
+
+### 4.1 Understanding behavior-driven development 
+
+A very important thing to learn about TDD is that it's not about just testing, but it's more than that. It defines a process and encourages to improve the overall design of a system. We have seen in Chapter 1, Overview of TDD, and Chapter 2, Testing Concepts, that tests written in TDD not only test our projects, but they also act as documentation and are useful in many more ways. But most of the developers tend to take it just for testing and are not able to harness the benefit of TDD beyond that; probably, because the title mentions test in TDD. 
+
+Behavior-driven development (BDD) is a term introduced by Dan North to address this shortcoming. The terminology used by BDD focuses on the behavioral aspect of the system. In this chapter, you are going to learn about Jasmine in detail and note that the differences in nomenclature of TDD and BDD. Deep down, TDD and BDD would serve the same purpose, but using the vocabulary of BDD gives you a better set of tests and documents your system in a better way. 
+
+While TDD interface gives names such as suite(), test(), setup(), teardown(), suiteSetup(), suiteTearDown(), assert(), and so on. BDD offers describe(), context(), it(), beforeEach(), afterEach(), beforeAll(), afterAll(), expect(), and so on. A test suite in TDD is usually created using suite(),while BDD uses describe(); to create a unit test TDD uses test() and BDD uses it(). 
+
+2『 TDD 与 BDD 的区别，做一张术语卡片。』——已完成
+
+### 4.2 Setting up Jasmine 
+
+Jasmine does not depend on any other JavaScript frameworks. It is available as a standalone release at https://github.com/jasmine/jasmine/releases. We are going to pick a stable version, for example, v2.3.0 for this chapter. We can download a ZIP file of standalone release, which we need to extract and use. After extraction, the folder structure looks like this: 
+
+### 4.3 describe and specs
+
+We have seen tests suites in many tools in the previous chapters. In Jasmine, we use describe to start a test suite. describe is a global function, which takes two parameters—a string and a function. The string is the title for the suite and function contains all of the tests implementations. A test in Jasmine is known as spec. The parameter function in the describe function contains one or more specs. A spec is also defined by calling a global function it, which takes two parameters just like describe. 
+
+1『 jasmine 里一个测试是一个 spec。测试组件 describe 的第二个函数参数里可以包含多个 spec。而 spec 是别全局函数 it() 调用的，it 函数的 2 个参数与 describe 很像，一个是名字字符串一个是调用函数。』
+
+Let's take a look at the following code: 
+
+```js
+describe("Title of a Suite", function() { 
+    // variables available for all specs 
+    var amountToConvert; 
+    var rateOfConversion; 
+    
+    // the function 'it' defines a spec 
+    it("Title of a Spec", function() { 
+        // do some testing here 
+    }); 
+    it("Another spec", function() { 
+        // do some testing here 
+    }); 
+}); 
+```
+
+As seen from the preceding code, describe defined a suite and specs were defined using it. To make these functions available, we need to use Jasmine JavaScript libraries. The following is the necessary code we need to include in our HTML file: 
+
+```html
+<script src="lib/jasmine-2.3.0/jasmine.js"></script> 
+<script src="lib/jasmine-2.3.0/jasmine-html.js"></script> 
+<script src="lib/jasmine-2.3.0/boot.js"></script> 
+```
+
+To style the page, we can use the CSS provided by Jasmine: 
+
+```html
+<link rel="stylesheet" type="text/css" href="lib/jasmine- 
+2.3.0/jasmine.css"> 
+```
+
+Jasmine keeps our JavaScript code and tests in different folders, src—for our logical code, and spec—for all the tests. You would need to check the paths of the files as per your setup. A simple skeleton will be like this: 
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner v3.5.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-3.5.0/jasmine_favicon.png">
+  <link rel="stylesheet" href="lib/jasmine-3.5.0/jasmine.css">
+
+  <script src="lib/jasmine-3.5.0/jasmine.js"></script>
+  <script src="lib/jasmine-3.5.0/jasmine-html.js"></script>
+  <script src="lib/jasmine-3.5.0/boot.js"></script>
+
+  <!-- include source files here... -->
+  <script src="src/Player.js"></script>
+  <script src="src/Song.js"></script>
+
+  <!-- include spec files here... -->
+  <script src="spec/SpecHelper.js"></script>
+  <script src="spec/PlayerSpec.js"></script>
+
+</head>
+
+<body>
+</body>
+</html>
+```
+
+1『结构超级清晰，逻辑代码放在 src 文件夹里，测试代码放在 spec 文件夹里。』
+
+In the preceding code, we included two more files except those required by Jasmine. One is start.js in the src/ folder, which contains our logical code, functions, and many more. Another one is startSpec.js, which contains our testing code. For now, we created a simple function to add two values in start.js. 
+
+```js
+// function to add two values. 
+function add(a, b){ 
+    return a + b; 
+} 
+```
+
+And we created our specs in the startSpec.js file in the spec folder. 
+
+```js
+describe('Title of a Suite', function() {
+    let numberA = 3;
+    let numberB = 2;
+
+    it('Testing the add() function', function() {
+        expect(add(numberA, numberB)).toEqual(5);
+    });
+});
+```
+
+1『第一次写代码的时候犯了个错「expect(add(numberA, numberB).toEqual(5));」，自以为 toEqual() 函数是 add() 的链函数，其实是 expect() 的链函数，注意括号的位置。』
+
+We added an expectation in the spec chained with a matcher toEqual(). This matcher is going to compare the values. You are going to learn expectations and matchers further in this chapter. For now, let's create a file (for example, testAdd. html) and see the output after we run the file. Open the browser and run testAdd. html to run the tests: 
+
+### 4.4 Expectations 
+
+Assertions in Jasmine are named as an expectation. An expectation can either be true or false. Every expectation takes an actual value as only argument. An expectation is then chained with a matcher, which takes the expected value as an argument. 
+
+```js
+expect(true).toBe(true); 
+```
+
+1『断言语句的基本结构，上面的阐述说的很清晰了。』
+
+Here, expect is an expectation and toBe is a matcher. To evaluate negative assertions, expect() is chained with a not before calling a matcher. Matchers are used for Boolean comparison and validation of an expected value. You will learn more about matchers in the next subsection. See the following code: 
+
+```js
+expect(false).not.toBe(true); 
+```
+
+### 4.4 Matchers 
+
+Matchers are used to compare the expected and actual values or validation of the expected value. If a matcher is going to compare the expected value, it takes actual value as argument. Matchers are chained with expectations. There are a number of matchers provided by Jasmine. Here is a list of all matchers: 
+
+#### 4.4.1 toBe() 
+
+This matcher compares using the identity (===) operator. 
+
+```js
+var a = 5; 
+expect(a).toBe(5); 
+expect(a).not.toBe("5"); 
+```
+
+The difference between the identity operator (===) and equality operator (==) is that in identity operator, no type conversion is done before comparison. 
+
+#### 4.4.2 toEqual()
+
+This matcher is used to compare simple literals, variables, and functions. 
+
+```js
+expect(a).toEqual(5); // checking for simple variables. 
+expect(a).not.toEqual(3); 
+```
+
+For simple literals and variables, both toBe() and toEqual() can be used, but to compare objects only toEqual() is to be used. 
+
+#### 4.4.3 toMatch()
+
+This matcher is used for regular expressions. 
+
+```js
+var strReg = "The quick brown fox"; 
+expect(strReg).toMatch(/The/); 
+expect(strReg).not.toMatch(/jump/); 
+```
+
+#### 4.4.4 toBeDefined()
+
+This matcher checks if a variable or a function is defined. Let's check for the function we defined for addition: 
+
+```js
+expect(add).toBeDefined(); // will pass 
+expect(add).not.toBeDefined(); // will not pass 
+```
+
+#### 4.4.5 toBeUndefined()
+
+This matcher does the opposite of toBeDefined(). 
+
+```js
+expect(add).toBeUndefined(); // will not pass 
+expect(add).not.toBeUndefined(); // will pass 
+```
+
+#### 4.4.6 toBeNull()
+
+This matcher checks if a variable is null. 
+
+```js
+expect(a).not.toBeNull(); 
+expect(null).toBeNull(); 
+```
+
+#### 4.4.7 toBeTruthy()
+
+This matcher checks if a variable or expression is true. 
+
+```js
+a = false; 
+b = true; 
+expect(b).toBeTruthy(); 
+expect(a).not.toBeTruthy(); 
+expect(add(2,3)).toBeTruthy(); 
+```
+
+#### 4.4.8 toBeFalsy()
+
+This matcher checks if a value or expression is false. 
+
+```js
+expect(add(0,0)).toBeFalsy(); 
+expect(b).not.toBeFalsy(); 
+```
+
+#### 4.4.9 toContain()
+
+This matcher checks if a collection (array) has an item or not. 
+
+```js
+var fruits = ["apple", "orange", "grape","papaya", "peach", "banana" ]; 
+expect(fruits).toContain("apple"); 
+```
+
+#### 4.4.10 toBeLessThan()
+
+This matcher is for the comparison of numbers in mathematics. 
+
+```js
+var a = 2, b = 3, c = 5.1234; 
+expect(a).toBeLessThan(b); 
+expect(c).not.toBeLessThan(a); 
+```
+
+In the first expect statement, it compares a to b and expects b would be greater than a. While in next statement, it expects c would not be less than a. 
+
+#### 4.4.11 toBeGreaterThan()
+
+This matcher is the opposite of toBeLessThan(). 
+
+```js
+expect(b).toBeGreaterThan(a); 
+expect(b).not.toBeGreaterThan(c); 
+```
+
+#### 4.4.12 toBeCloseTo()
+
+This matcher checks if a number is close to another number. This matcher takes two arguments, the first is the number and second is the decimal precision. Let's see the following example to understand this matcher: 
+
+```js
+expect(c).toBeCloseTo(5.1, 1) // will pass 
+expect(c).not.toBeCloseTo(5.1, 2) // will pass 
+```
+
+Since c has a value 5.1234, it is compared to 5.1 that matches till the first digit. Thus, it passes for the first expectation. 
+
+#### 4.4.13 toThrow()
+
+This matcher checks if a function throws an exception. 
+
+```js
+f1 = function() { 
+    return 1 + 2; 
+}; 
+f2 = function() { 
+    return undefinedVar + 1; 
+}; 
+expect(f1).not.toThrow(); 
+expect(f2).toThrow(); 
+```
+
+#### 4.4.14 toThrowError()
+
+This matcher checks if an specific exception was thrown from a function. 
+
+```js
+f3 = function() { 
+    throw new TypeError("A custom Exception from f3"); 
+}; 
+expect(f3).toThrowError("custom"); 
+```
+
+The preceding expectation will fail, as the strings do not match exactly. "custom" does not match "A custom Exception from f3". But the following expectation will pass, because it uses regular expression to match the strings: 
+
+```js
+expect(f3).toThrowError(/custom/); 
+```
+
+The following expectation checks using the exception type as well. It also takes an optional argument as a string or regular expression to match the string. 
+
+```js
+expect(f3).toThrowError(TypeError); // will pass, checks type 
+expect(f3).toThrowError(TypeError, /custom/); // will pass 
+expect(f3).toThrowError(TypeError, "custom exception"); // will fail 
+```
+
+#### 4.4.15 jasmine.any()
+
+Sometimes, we are unaware of the actual value of an expression, but know the type. In this case, we can match them using jasmine.any(). Let's see how this is used: 
+
+```js
+expect([12,323]).toEqual(jasmine.any(Array)); 
+expect({}).toEqual(jasmine.any(Object)); 
+expect(21312312).toEqual(jasmine.any(Number)); 
+```
+
+As we can see, jasmine.any will match the expected value to a type of class. 
+
+#### 4.4.16 jasmine.objectContaining()
+
+We can also do partial match when it comes to key/pair values. Let's see the following example to see how it works: 
+
+```js
+var employee = { 
+    name: "Alice", 
+    age: 29, 
+    department: "Testing", 
+    grade: 5 
+} 
+
+expect(employee).toEqual(jasmine.objectContaining({ 
+    department: "Testing" 
+})); 
+expect(employee).toEqual(jasmine.objectContaining({ 
+    age: jasmine.any(Number) 
+})); 
+```
+
+We can provide a key/value pair to match partially with an object. Sometimes, these default matchers are not enough to fulfill our requirements, and we need to create custom matchers. With Jasmine, we can create custom matchers, which you will learn later in this chapter. 
+
+### 4.5 Set up and tear down 
+
+Just like other frameworks, Jasmine also provides a way to set up and tear down. Jasmine provides global functions such as beforeEach—called before each spec, afterEach—called after each spec, beforeAll—called only once before all specs are run, and afterAll—called only once after all specs are done. Look at the following code to understand this: 
+
+```js
+describe('Setup and Teardown', () => {
+    let count = 0;
+    let velocity = 0;
+    beforeEach(() => {
+        velocity = 100;
+        count++;
+        console.log('Count is ' + count);
+    });
+
+    afterEach(() => {
+        velocity = 0;
+        console.log('Some spec just finished and this function is called');
+    });
+
+    beforeAll(() => {
+        console.log('This is called only one, specs are about to run.');
+    });
+
+    afterAll(() => {
+        console.log('All specs finished, time for cleanup');
+    });
+
+    it('Testing Velocity and reducing velocity', () => {
+        expect(velocity).toEqual(100);
+        velocity = 20;
+        expect(velocity).toBe(20);
+    })
+
+    it('Testing Velocity', () => {
+        expect(velocity).toEqual(100);
+        expect(true).toEqual(true);
+    });
+});
+```
+
+If you run the following code, you will see all specs running successfully with status pass and the following will be the console output. The beforeAll and afterAll functions are run once during a run. We can see that the variable count is increased by 1 before each spec is run and velocity is set to 100 so that the first expectation of each spec is met true. 
+
+This was one way of sharing variables among it, beforeEach, and afterEach. There is one more way using the this keyword, which is set to empty for each spec. Consider the following code: 
+
+```js
+describe('Setup and Teardown', () => {
+    let count = 0;
+    let velocity = 0;
+    beforeEach(() => {
+        this.velocity = 100;
+    });
+
+    afterEach(() => {
+        this.velocity = 0;
+    });
+
+    it('Testing Velocity and reducing velocity', () => {
+        expect(this.velocity).toEqual(100);
+        this.velocity = 20;
+        expect(this.velocity).toBe(20);
+        this.acceleration = 5;
+    })
+
+    it('Testing Velocity', () => {
+        expect(this.acceleration).toBeUndefined();
+    });
+});
+```
+
+Since the this keyword will be set to empty for the next spec, this.acceleration will not be defined. Running this suite will pass all the specs in it. 
+
+### 4.6 Spies 
+
+A spy is an emulation of a function or object, irrespective of which function/object is defined or not. There are times when we need stubs for the functions we need to use for performing testing. Jasmine has spies for this purpose. A spy can stub functions but can only exist within describe and it block if it is defined. 
+
+Apart from the matchers we read in this chapter, there are special matchers just for spies. One is toHaveBeenCalled(), which returns true if the spy was called. Another one is toHaveBeenCalledWith(), which returns true if the spy was called with arguments. 
+
+Let's see the following example to understand how spies work. The following is our source for an Employee function in the employee.js file created in the src folder: 
+
+```js
+let DEFAULT_SALARY = 1000;
+
+function Employee(name, grade, department, salary) {
+    this.name = name;
+    this.grade = grade;
+    this.department = department;
+
+    this.salary = salary || 0;
+}
+
+// 此处不能用箭头函数
+Employee.prototype.getName = function() {
+    return this.name;
+};
+Employee.prototype.getDepartment = function() {
+    return this.department;
+};
+Employee.prototype.getGrade = function() {
+    return this.grade;
+};
+Employee.prototype.getSalary = function() {
+    return this.salary;
+};
+Employee.prototype.calculateSalary = function() {
+    return this.grade * DEFAULT_SALARY;
+};
+
+Employee.prototype.getDetails = function() {
+    return 'Employee Name: ' + this.getName() + '\nDepartment: ' + this.getDepartment() +
+    '\nGrade: ' + this.getGrade() + '\nSalary: ' + this.getSalary();
+};
+```
+
+We need to print details of each employee. We want to be sure that the salary was calculated before employee details were printed. We create a spy using the spyOn() function and call this file spyEmployee.js. We then put it in the spec folder. 
+
+```js
+describe('Jasmine Spy', () => {
+    it('Spying employee', () => {
+        let alice = new Employee('Alice', 4, 'Testing');
+        spyOn(alice, 'calculateSalary');
+        console.log(alice.getDetails());
+        expect(alice.calculateSalary).toHaveBeenCalled();
+    });
+});
+```
+
+We created a spy using spyOn(alice, "calculateSalary"), and then called the toHaveBeenCalled() matcher. As soon as we create a spy on the calculateSalary() function, Jasmine replaces the actual implementation. Now a spy will be called rather than an actual implementation. 
+
+After running this HTML file, the following is the output: 
+
+As we can see, it was expected that calculateSalary should have been called, but it failed since it was not called before printing the salary. Now let's change our code in employee.js and keep spec as it is: 
+
+```js
+var DEFAULT_SALARY = 1000;
+
+function Employee(name, grade, department, salary) {
+    this.name = name;
+    this.grade = grade;
+    this.department = department;
+
+    this.salary = salary || 0;
+}
+
+// 此处不能用箭头函数
+Employee.prototype.getName = function() {
+    return this.name;
+};
+
+Employee.prototype.getDepartment = function() {
+    return this.department;
+};
+
+Employee.prototype.getGrade = function() {
+    return this.grade;
+};
+
+Employee.prototype.getSalary = function() {
+    if (!this.salary) {
+        this.salary = this.calculateSalary();
+    }
+    return this.salary;
+}
+
+Employee.prototype.calculateSalary = function() {
+    return this.grade * DEFAULT_SALARY;
+};
+
+Employee.prototype.getDetails = function() {
+    return 'Employee Name: ' + this.getName() + '\nDepartment: ' + this.getDepartment() +
+    '\nGrade: ' + this.getGrade() + '\nSalary: ' + this.getSalary();
+};
+```
+
+1『跑出来，发现 console 上，DEFAULT_SALARY 是 undefined，原因待解决。（2020-06-16）』
+
+As we can see, calculateSalary is now being called from the getSalary() function. Let's run this again and see what happens: 
+
+Now spec passed because it could find that the salary was calculated before printing details. In this example, we worked with the toHaveBeenCalled() matcher. There are several other matchers also defined for spies: 
+
+• toHaveBeenCalledWith(): To understand this, let's modify method in employee.js: 
+
+```js
+Employee.prototype.calculateSalary = function(grade){ 
+    this.grade = grade; this.salary = this.grade * DEFAULT_SALARY; 
+} 
+```
+
+This method will take grade and set both the salary and grade for an employee. We know that it will call the calculateSalary() function without any argument, which we can see by our implementation. We add one more spec to check if this was called with or without arguments. 
+
+```js
+describe('Jasmine Spy', () => {
+    it('Spying employee', () => {
+        let alice = new Employee('Alice', 4, 'Testing');
+        spyOn(alice, 'calculateSalary');
+        console.log(alice.getDetails());
+        // expect(alice.calculateSalary).toHaveBeenCalled();
+        expect(alice.calculateSalary).toHaveBeenCalledWith(5);
+    });
+});
+```
+
+If we run our spec now, we can see that it will fail with message: Expected spy calculateSalary to have been called with [ 5 ] but actual calls were [ ]: 
+
+We can chain the expectation with not as well: 
+
+```js
+expect(alice.calculateSalary).not.toHaveBeenCalledWith(5); 
+```
+
+After chaining with not, if you rerun the spec, it will pass. 
