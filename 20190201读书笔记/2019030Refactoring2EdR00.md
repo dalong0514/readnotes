@@ -94,6 +94,10 @@ for each desired change, make the change easy (warning: this may be hard), then 
 
 每次要修改时，首先令修改很容易（警告：这件事有时会很难），然后再进行这次容易的修改。——Kent Beck
 
+### 0402. 金句卡——Make sure all tests are fully automatic and that they check their own results.
+
+
+
 ### 0501. 任意卡——重构时机三原则
 
 Here’s a guideline Don Roberts gave me: The first time you do something, you just do it. The second time you do something similar, you wince at the duplication, but you do the duplicate thing anyway. The third time you do something similar, you refactor. Or for those who like baseball: Three strikes, then you refactor.
