@@ -1152,6 +1152,3 @@ returns the characters between the fourth character and the thirteenth-to-last c
 
 
 
-
-
-
