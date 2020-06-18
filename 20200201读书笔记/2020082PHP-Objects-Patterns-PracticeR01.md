@@ -6,21 +6,13 @@ Copyright © 2016 by Matt Zandstra
 
 ## 记忆时间
 
+2020-06-18
+
 ## 卡片
 
 ### 0101. 反常识卡——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
-
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
 
 ### 0201. 术语卡——XP
 
@@ -52,13 +44,17 @@ As we have seen, interfaces help you manage the fact that, like Java, PHP does n
 
 a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
 
-### 0301. 人名卡 ——
+### 0206. 术语卡——class
 
-#### 01. 基本信息
+本书对「类」的定义：
 
-PHP 的发明人。
+If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class.
 
-#### 02. 贡献及书籍
+### 0301. 人名卡——Matt Zandstra
+
+人名卡：Matt Zandstra（）
+
+印象：本书的作者。
 
 ### 0401. 金句卡——code to an interface, not an implementation
 
@@ -150,11 +146,11 @@ As programmers, we build machines that have shape and action. We invest many hou
 
 In July 2004 PHP 5.0 was released. This version introduced a suite of radical enhancements. Perhaps first among these was radically improved support for object-oriented programming. This stimulated much interest in objects and design within the PHP community. In fact, this was an intensification of a process that began when version 4 first made object-oriented programming with PHP a serious reality.
 
-1『2004 年发布的 PHP 5.0 增加了面向对象的编程特性。』
+1『 2004 年发布的 PHP 5.0 增加了面向对象的编程特性。』
 
 In this chapter, I look at some of the needs that coding with objects can address. I very briefly summarize some aspects of the evolution of patterns and related practices. I also outline the topics covered by this book. I will look at the following: 1) The evolution of disaster: A project goes bad. 2) Design and PHP: How object-oriented design techniques took root in the PHP community. 3) This book: Objects. Patterns. Practice.
 
-### 01. The Problem
+### 1.1 The Problem
 
 You add utility functions (such as database access code) to files that can be included from page to page, and before you know it you have a working web application. You are well on the road to ruin. You don’t realize this, of course, because your site looks fantastic. It performs well, your clients are happy, and your users are spending money. Trouble strikes when you go back to the code to begin a new phase. Now you have a larger team, some more users, a bigger budget. Yet, without warning, things begin to go wrong. It’s as if your project has been poisoned.
 
@@ -180,7 +176,7 @@ Lack of documentation makes the code hard to read, and lack of testing allows ob
 
 Now, none of this is bad news if you are a freelance PHP consultant. Assessing and fixing a system like this can fund expensive espresso drinks and DVD box sets for six months or more. More seriously, though, problems of this sort can mean the difference between a business’s success or failure.
 
-### 02. PHP and Other Languages
+### 1.2 PHP and Other Languages
 
 PHP’s phenomenal popularity meant that its boundaries were tested early and hard. As you will see in the next chapter, PHP started life as a set of macros for managing personal home pages. With the advent of PHP 3 and, to a greater extent, PHP 4, the language rapidly became the successful power behind large enterprise websites. In many ways, however, the legacy of PHP’s beginnings carried through into script design and project management. In some quarters, PHP retained an unfair reputation as a hobbyist language, best suited for presentation tasks.
 
@@ -206,8 +202,6 @@ If XP was the militant wing of the design movement, then the moderate tendency i
 
 XP was deemed a tad cultish by some, but it grew out of two decades of object-oriented practice at the highest level, and its principles were widely cannibalized. In particular, code revision, known as refactoring, was taken up as a powerful adjunct to patterns. Refactoring has evolved since the 1980s, but it was codified in Martin Fowler’s catalog of refactorings, Refactoring: Improving the Design of Existing Code (Addison-Wesley Professional), which was published in 1999 and defined the field.
 
-2『上面的应该是一篇论文，去找下。』
-
 Testing, too, became a hot issue with the rise to prominence of XP and patterns. The importance of automated tests was further underlined by the release of the powerful JUnit test platform, which became a key weapon in the Java programmer’s armory. A landmark article on the subject,「Test Infected: Programmers Love Writing Tests」by Kent Beck and Erich Gamma, gives an excellent introduction to the topic and remains hugely influential.
 
 2『上面是篇论文，已下载论文「2020014Test Infected: Programmers Love Writing Tests」存入 Zotero。』
@@ -220,9 +214,9 @@ The release of the first PHP 5 beta in 2003 ensured the future of PHP as a langu
 
 PHP 7, released in December 2015, represents a continuation of this trend. In particular it provides support for scalar and return type declarations — two features that many developers (together with previous editions of this book) have been clamoring for over the years. If you don’t know what that means or why it's important, read on!
 
-1-2『PHP 7 的两个新特性很重要：support for scalar and return type declarations。PHP 7 发布的时间做一张信息卡片。』
+2『 PHP 7 的两个新特性很重要：support for scalar and return type declarations。PHP 7 发布的时间（2015 年）做一张信息卡片。』
 
-### 03. About This Book
+### 1.3 About This Book
 
 Instead, I examine, in the context of PHP, some well-established design principles and some key patterns (particularly those inscribed in Design Patterns, the classic Gang of Four book). Finally, I move beyond the strict limits of code to look at tools and techniques that can help to ensure the success of a project. Aside from this introduction and a brief conclusion, the book is divided into three main parts: objects, patterns, and practice.
 
@@ -280,7 +274,7 @@ Objects were not always a key part of the PHP project. In fact, they were once d
 
 We will look at the following: 1) PHP/FI 2.0: PHP, but not as we know it. 3) PHP 3: Objects make their first appearance. 4) PHP 4: Object-oriented programming grows up. 5) PHP 5: Objects at the heart of the language. 6) PHP 7: Closing the gap.
 
-### 01. The Accidental Success of PHP Objects
+### 2.1 The Accidental Success of PHP Objects
 
 With PHP’s extensive object support and so many object-oriented PHP libraries and applications in circulation, the rise of the object in PHP may seem like the culmination of a natural and inevitable process. In fact, nothing could be further from the truth.
 
@@ -292,7 +286,7 @@ Syntactic Sugar: PHP 3. In fact, even as PHP 3 was in the planning stage, object
 
 Of course, the addition of methods and inheritance made classes much more than glorified associative arrays, but there were still severe limitations on what you might do with your classes. In particular, you could not access a parent class’s overridden methods (don’t worry if you don’t know what this means yet; I will explain later). Another disadvantage that I will examine in the next section was the less than optimal way that objects were passed around in PHP scripts.
 
-1『PHP3 继承的类里面的方法无法重构，即没法覆盖掉父类里同样名称的方法。另外一个缺点是「对象」的传递途径太少： the less than optimal way that objects were passed around in PHP scripts. 』
+1『 PHP 3 继承的类里面的方法无法重构，即没法覆盖掉父类里同样名称的方法。另外一个缺点是对象在 PHP 脚本中被传递的方式并非最佳。第二个缺点目前无法完全理解。（2020-06-18）』
 
 That objects were a marginal issue at this time is underlined by their lack of prominence in official documentation. The manual devoted one sentence and a code example to objects. The example did not illustrate inheritance or properties.
 
@@ -345,11 +339,11 @@ One of the biggest twists in PHP’s history was that despite the very limited f
 
 As noted in the previous chapter, interest in object-oriented design became obvious in sites and articles online. PHP’s official software repository, PEAR, itself embraced object-oriented programming. With hindsight, it’s easy to think of PHP’s adoption of object-oriented support as a reluctant capitulation to an inevitable force. It’s important to remember that, although object-oriented programming has been around since the 1960s, it really gained ground in the mid-1990s. Java, the great popularizer, was not released until 1995. A superset of C, a procedural language, C++ has been around since 1979. After a long evolution, it arguably made the leap to the big time during the 1990s. Perl 5 was released in 1994, another revolution within a formerly procedural language that made it possible for its users to think in objects (although some argue that Perl’s object-oriented support also felt like something of an afterthought). For a small procedural language, PHP developed its object support remarkably fast, showing a real responsiveness to the requirements of its users.
 
-1『面向对象的概念是 1960 年代提出来的，但真正开始流行成主流是在 1990 年代中后期，java 是 1995 年发布，c++ 是 1990s 大改动（1979 年发布），Perl 5 是 1994 年发布，这些语言都是主流的面向对象语言。』
+2『面向对象的概念是 1960 年代提出来的，但真正开始流行成主流是在 1990 年代中后期，java 是 1995 年发布，c++ 是 1990s 大改动（1979 年发布），Perl 5 是 1994 年发布，这些语言都是主流的面向对象语言。上面的时间点做一张计算机信息卡片。』
 
 Change Embraced: PHP 5. PHP 5 represented an explicit endorsement of objects and object-oriented programming. That is not to say that objects were the only way to work with PHP (this book does not say that either, by the way). Objects were, however, recognized as a powerful and important means for developing enterprise systems, and PHP fully supported them in its core design.
 
-1『之前 PHP 对面向对象很不情愿，PHP 5 开始拥抱面向对象。最重要的转变是从「复制对象」升级到了「传递引用」。除了这点，还有很多其他新特性，比如 private and protected methods and properties, the static keyword, namespaces, type hints (now called type declarations), and exceptions。PHP 是服役最长的版本，差不多 20 年。』
+1『之前 PHP 对面向对象很不情愿，PHP 5 开始拥抱面向对象。最重要的转变是从「复制对象」升级到了「传递引用」。除了这点，还有很多其他新特性，比如 private and protected methods and properties, the static keyword, namespaces, type hints (now called type declarations), and exceptions。PHP 是服役最长的版本，差不多 12 年。』
 
 Arguably, one significant effect of the enhancements in PHP 5 was the adoption of the language by larger Internet companies. Both Yahoo! And Facebook, for example, started using PHP extensively within their platforms. With version 5, PHP became one of the standard languages for development and enterprise on the internet.
 
@@ -377,7 +371,7 @@ As you will see, object-oriented design often uses a method declaration as a kin
 
 I’m pleased to write that the day has come! PHP 7 introduced scalar type declarations (previously known as type hints) and return type declarations, and you’ll see them used plenty in this edition. PHP 7 also provided other nice-to-haves, including anonymous classes and some namespace enhancements.
 
-### 02. Advocacy and Agnosticism: The Object Debate
+### 2.2 Advocacy and Agnosticism: The Object Debate
 
 Objects and object-oriented design seem to stir passions on both sides of the enthusiasm divide. Many excellent programmers have produced excellent code for years without using objects, and PHP continues to be a superb platform for procedural web programming.
 
@@ -405,11 +399,11 @@ Objects and classes lie at the heart of this book and, since the introduction of
 
 This chapter will cover the following topics: 1) Constructor methods: Automating the setup of your objects. 2) Classes and objects: Declaring classes and instantiating objects. 3) Primitive and class types: Why type matters. 4) Inheritance: Why we need inheritance and how to use it. 5) Visibility: Streamlining your object interfaces and protecting your methods and properties from meddling.
 
-### 01. Classes and Objects
+### 3.1 Classes and Objects
 
 The first barrier to understanding object-oriented programming is the strange and wonderful relationship between the class and the object. For many people, it is this relationship that represents the first moment of revelation, the first flash of object-oriented excitement. So let’s not skimp on the fundamentals.
 
-#### 1.1 A First Class
+#### 3.1.1 A First Class
 
 Classes are often described in terms of objects. This is interesting, because objects are often described in terms of classes. This circularity can make the first steps in object-oriented programming hard going. Because it’s classes that shape objects, we should begin by defining a class.
 
@@ -426,7 +420,7 @@ class ShopProduct
 
 The ShopProduct class in the example is already a legal class, although it is not terribly useful yet. I have done something quite significant, however. I have defined a type; that is, I have created a category of data that I can use in my scripts. The power of this should become clearer as you work through the chapter.
 
-#### 1.2 A First Object (or Two)
+#### 3.1.2 A First Object (or Two)
 
 If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class. I use the ShopProduct class as a mold for generating ShopProduct objects. To do this, I need the new operator. The new operator is used in conjunction with the name of a class, like this:
 
@@ -465,7 +459,7 @@ Note: in ancient versions of php (up to version 5.1), you could print an object 
 
 By passing the objects to var\_dump(), I extract useful information including, after the hash sign, each object’s internal identifier. In order to make these objects more interesting, I can amend the ShopProduct class to support special data fields called properties.
 
-### 02. Setting Properties in a Class
+### 3.2 Setting Properties in a Class
 
 Classes can define special variables called properties. A property, also known as a member variable, holds data that can vary from object to object. So in the case of ShopProduct objects, you may wish to manipulate title and price fields, for example.
 
@@ -571,7 +565,7 @@ Finally, I have to jump through hoops to do something that I will probably want 
 
 1『对象里的成员方法，就是为了解决上面场景遇到的问题而生的，其可以在对象内部操作对象里的数据属性。数据属性声明为私有，在外面只能通过调用成员方法来操作对象里的数据属性，这就解决了在外面误改对象数据属性的可能性。』
 
-### 03. Working with Methods
+### 3.3 Working with Methods
 
 Just as properties allow your objects to store data, methods allow your objects to perform tasks. Methods are special functions declared within a class. As you might expect, a method declaration resembles a function declaration. The function keyword precedes a method name, followed by an optional list of argument variables in parentheses. The method body is enclosed by braces:
 
@@ -612,7 +606,7 @@ This translates to the following: the \$producerFirstName property of the curren
 
 I rely on the client coder to change a ShopProduct object’s properties from their default values. This is problematic in two ways. First, it takes five lines to properly initialize a ShopProduct object, and no coder will thank you for that. Second, I have no way of ensuring that any of the properties are set when a ShopProduct object is initialized. What I need is a method that is called automatically when an object is instantiated from a class.
 
-#### 3.1 Creating a Constructor Method
+#### 3.3.1 Creating a Constructor Method
 
 A constructor method is invoked when an object is created. You can use it to set things up, ensuring that essential properties are assigned values and any necessary preliminary work is completed.
 
@@ -658,7 +652,7 @@ This predictability is an important aspect of object-oriented programming. You s
 
 1『传参的类型检验很重要。』
 
-### 04. Arguments and Types
+### 3.4 Arguments and Types
 
 Type determines the way data can be managed in your scripts. You use the string type to display character data, for example, and manipulate such data with string functions. Integers are used in mathematical expressions, Booleans are used in test expressions, and so on. These categories are known as primitive types. On a higher level, though, a class defines a type. A ShopProduct object, therefore, belongs to the primitive type object, but it also belongs to the ShopProduct class type. In this section, I will look at types of both kinds in relation to class methods.
 
@@ -666,7 +660,7 @@ Type determines the way data can be managed in your scripts. You use the string 
 
 Method and function definitions do not necessarily require that an argument should be of a particular type. This is both a curse and a blessing. The fact that an argument can be of any type offers you flexibility. You can build methods that respond intelligently to different data types, tailoring functionality to changing circumstances. This flexibility can also cause ambiguity to creep into code when a method body expects an argument to hold one type but gets another.
 
-#### 4.1 Primitive Types
+#### 3.4.1 Primitive Types
 
 PHP is a loosely typed language. This means that there is no necessity for a variable to be declared to hold a particular data type. The variable \$number could hold the value 2 and the string "two" within the same scope. In strongly typed languages, such as C or Java, you must declare the type of a variable before assigning a value to it, and, of course, the value must be of the specified type.
 
@@ -801,7 +795,7 @@ However you address problems of this kind, you can be sure of one thing—type m
 
 1『类型检验问题是 php 里是个大问题，同样为弱类型语言的 JS，应该也存在着相同的问题。』
 
-#### 4.2 Taking the Hint: Object Types
+#### 3.4.2 Taking the Hint: Object Types
 
 Just as an argument variable can contain any primitive type, by default it can contain an object of any type. This flexibility has its uses, but can present problems in the context of a method definition. Imagine a method designed to work with a ShopProduct object:
 
@@ -992,11 +986,11 @@ In Table 3-2, I list the type declarations supported by PHP. 1) array. An array
 
 When I described class type declarations, I implied that types and classes are synonymous. There is a key difference between the two, however. When you define a class, you also define a type, but a type can describe an entire family of classes. The mechanism by which different classes can be grouped together under a type is called inheritance. I discuss inheritance in the next section.
 
-### 05. Inheritance
+### 3.5 Inheritance
 
 Inheritance is the means by which one or more classes can be derived from a base class. A class that inherits from another is said to be a subclass of it. This relationship is often described in terms of parents and children. A child class is derived from and inherits characteristics from the parent. These characteristics consist of both properties and methods. The child class will typically add new functionality to that provided by its parent (also known as a superclass); for this reason, a child class is said to extend its parent. Before I dive into the syntax of inheritance, I’ll examine the problems it can help you to solve. 
 
-#### 5.1 The Inheritance Problem
+#### 3.5.1 The Inheritance Problem
 
 Look again at the ShopProduct class. At the moment, it is nicely generic. It can handle all sorts of products:
 
@@ -1212,7 +1206,7 @@ The CD and book aspects of the ShopProduct class don’t work well together but 
 
 1『为什么要发明「继承」特性，作者真的是把当时遇到问题的场景描述清楚了，很赞。任何新的好的特性都是为了解决某一个难题而创造出来的。「继承」是分割与合并之间的平衡把握。』
 
-#### 5.2 Working with Inheritance
+#### 3.5.2 Working with Inheritance
 
 The first step in building an inheritance tree is to find the elements of the base class that don’t fit together or that need to be handled differently. I know that the getPlayLength() and getNumberOfPages() methods do not belong together. I also know that I need to create different implementations for the getSummaryLine() method. Let’s use these differences as the basis for two derived classes:
 
@@ -1324,7 +1318,7 @@ The same is true of property accesses. When I access \$title in the BookProduct 
 
 A quick look at the ShopProduct constructor, however, shows that I am still managing data in the base class that should be handled by its children. The BookProduct class should handle the \$numPages argument and property, and the CdProduct class should handle the \$playLength argument and property. To make this work, I will define constructor methods in each of the child classes.
 
-#### 5.2.1 Constructors and Inheritance
+#### 3.5.2.1 Constructors and Inheritance
 
 When you define a constructor in a child class, you become responsible for passing any arguments on to the parent. If you fail to do this, you can end up with a partially constructed object. To invoke a method in a parent class, you must first find a way of referring to the class itself: a handle. 
 
@@ -1448,7 +1442,7 @@ Each child class invokes the constructor of its parent before setting its own pr
 
 Note: prior to php 5, constructors took on the name of the enclosing class. the new unified constructors use the name \_\_construct(). Using the old syntax, a call to a parent constructor would tie you to that particular class: parent::ShopProduct();. the old constructor syntax was deprecated in php 7.0 and should not be used.
 
-#### 5.2.2 Invoking an Overridden Method
+#### 3.5.2.2 Invoking an Overridden Method
 
 The parent keyword can be used with any method that overrides its counterpart in a parent class. When you override a method, you may not wish to obliterate the functionality of the parent, but rather to extend it. You can achieve this by calling the parent class’s method in the current object’s context. If you look again at the getSummaryLine() method implementations, you will see that they duplicate a lot of code. It would be better to use rather than reproduce the functionality already developed in the ShopProduct class:
 
@@ -1480,7 +1474,7 @@ I set up the core functionality for the getSummaryLine() method in the ShopProdu
 
 Now that you have seen the basics of inheritance, I will reexamine property and method visibility in light of the full picture.
 
-#### 5.3 Public, Private, and Protected: Managing Access to Your Classes
+#### 3.5.3 Public, Private, and Protected: Managing Access to Your Classes
 
 So far, I have declared all properties public. Public access is the default setting for methods and for properties if you use the old var keyword in your property declaration. Elements in your classes can be declared public, private, or protected: 1) Public properties and methods can be accessed from any context. 2) A private method or property can only be accessed from within the enclosing class. Even subclasses have no access. 3) A protected method or property can only be accessed from within either the enclosing class or from a subclass. No external code is granted access.
 
@@ -1533,7 +1527,7 @@ As a general rule, err on the side of privacy. Make properties private or protec
 
 1『以上是设置私有属性、保护属性的原则。』
 
-#### 5.3.1 Accessor Methods
+#### 3.5.3.1 Accessor Methods
 
 Even when client programmers need to work with values held by your class, it is often a good idea to deny direct access to properties, providing methods instead that relay the needed values. Such methods are known as accessors or getters and setters.
 
@@ -1573,7 +1567,7 @@ class ShopProductWriter {
 
 It’s now impossible for external code to damage the \$products property. All access must be via the addProduct() method, and the class type declaration I use in the method declaration ensures that only ShopProduct objects can be added to the array property.
 
-#### 5.3.2 The ShopProduct Classes
+#### 3.5.3.2 The ShopProduct Classes
 
 Let’s close this chapter by amending the ShopProduct class and its children to lock down access control:
 
