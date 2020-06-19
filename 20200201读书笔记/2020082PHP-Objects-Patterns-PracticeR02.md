@@ -2,7 +2,65 @@
 
 ## 记忆时间
 
-## 0601. Object-Oriented PHP
+## 0105. Object Tools
+
+In this chapter, I covered some of the techniques and tools that you can use to manage your libraries and classes. I explored PHP’s namespace feature. You saw that we can combine include paths, namespaces, autoload, and the file system to provide flexible organization for classes. We also examined PHP’s object and class functions, before taking things to the next level with the powerful Reflection API. Finally, we used the Reflection classes to build a simple example that illustrates one of the potential uses that Reflection has to offer.
+
+As we have seen, PHP supports object-oriented programming through language constructs such as classes and methods. The language also provides wider support through functions and classes designed to help you work with objects. In this chapter, we will look at some tools and techniques that you can use to organize, test, and manipulate objects and classes.
+
+This chapter will cover the following tools and techniques: 1) Namespaces: Organize your code into discrete package-like compartments. 2) Include paths: Setting central accessible locations for your library code. 3) Class and object functions: Functions for testing objects, classes, properties, and methods. 4) The Reflection API: A powerful suite of built-in classes that provide unprecedented access to class information at runtime.
+
+### 5.1 PHP and Packages
+
+A package is a set of related classes, usually grouped together in some way. Packages can be used to separate parts of a system from one another. Some programming languages formally recognize packages and provide them with distinct namespaces. PHP has no native concept of a package, but as of PHP 5.3, it introduced namespaces. I’ll look at this feature in the next section. I’ll also take a look at the old way of organizing classes into package-like structures.
+
+#### 5.1.1 PHP Packages and Namespaces
+
+Although PHP does not intrinsically support the concept of a package, developers have traditionally used both naming schemes and the filesystem to organize their code into package-like structures. 
+
+Until PHP 5.3, developers were forced to name their files in a global context. In other words, if you named a class ShoppingBasket, it would become instantly available across your system. This caused two major problems. First, and most damaging, was the possibility of naming collisions. You might think that this is unlikely. After all, all you have to do is remember to give all your classes unique names, right? The trouble is, we all rely increasingly on library code. This is a good thing, of course, because it promotes code reuse. But assume your project does this:
+
+```php
+// listing 05.01
+
+require_once __DIR__ . "/../useful/Outputter.php";
+class Outputter {    
+    // output data
+}
+```
+
+Now assume you incorporate the included file at useful/Outputter.php:
+
+```php
+// listing 05.02
+
+class Outputter{    //}
+```
+
+Well, you can guess what will happen, right? This happens:
+
+```
+PHP Fatal error:  Cannot declare class Outputter because the name is already in use in  /var/popp/src/ch05/batch01/useful/Outputter.php on line 4
+```
+
+Back before the introduction of namespaces, there was a conventional workaround to this problem. The answer was to prepend package names to class names, so that class names were guaranteed to be unique:
+
+```php
+// listing 05.03
+// my/Outputer.php
+
+require_once __DIR__ . "/../useful/Outputter.php";
+class my_Outputter{    // output data}
+
+// listing 05.04
+// useful/Outputter.php
+
+class useful_Outputter{    //}
+```
+
+The problem here was that, as projects got more involved, class names grew longer and longer. It was not an enormous problem, but it resulted in issues with code readability, and made it harder to hold classnames in your head while you worked. Many cumulative coding hours were lost to typos. If you’re maintaining legacy code, you may well still see code that follows this convention. For that reason, I’ll return briefly to the old way of handling packages later in this chapter.
+
+## 0106. Object-Oriented PHP
 
 This chapter explains concepts of object-oriented (OO) development and shows how they can be implemented in PHP. PHP’s OO implementation has all the features you would expect in a fully object-oriented language. We point out each of these features as we go through this chapter. Key topics covered in this chapter include: 1) Object-oriented concepts. 2) Classes, attributes, and operations. 3) Class attributes. 4) Per-class constants. 5) Class method invocation. 6) Inheritance. 7) Access modifiers. 8) Static methods. 9) Type hinting. 10) Late static bindings. 11) Object cloning. 12) Abstract classes. 13) Class design. 14) Implementation of your design. 15) Advanced OO functionality.
 
@@ -53,4 +111,7 @@ Inheritance allows you to create a hierarchical relationship between classes usi
 With inheritance, you can build on and add to existing classes. From a simple base class, you can derive more complex and specialized classes as the need arises. This capability makes your code more reusable, which is one of the important advantages of an object-oriented approach.
 
 Using inheritance might save you work if operations can be written once in a superclass rather than many times in separate subclasses. It might also allow you to more accurately model  real-world relationships. If a sentence about two classes makes sense with「is a」between the classes, inheritance is probably appropriate. The sentence「a car is a vehicle」makes sense, but the sentence「a vehicle is a car」does not make sense because not all vehicles are cars. Therefore, car can inherit from vehicle.
+
+
+
 

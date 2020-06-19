@@ -28,19 +28,42 @@ In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two t
 
 The CD and book aspects of the ShopProduct class don’t work well together but can’t live apart, it seems. I want to work with books and CDs as a single type while providing a separate implementation for each format. I want to provide common functionality in one place to avoid duplication, but allow each format to handle some method calls differently. I need to use inheritance.
 
-### 0204. 术语卡——Interfaces
+### 0204. 术语卡——Interfaces 及其意义
+
+接口才是纯模板，它只定义函数，而且这个函数没函数体。相比而言，抽象类里除了有抽象方法外，也可以有普通方法。
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. 
 
 ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements.（take on 是承担的意思。）
 
+实现接口的类接受了它继承的类及实现的接口的类型。
+
+As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. 
+
 一个接口的实现过程，如同继承一个只包含抽象方法的抽象类。实现接口，相当于在定义接口的函数语句后面直接加上函数体。目前知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，没实现一个接口对应着一个「type」。2）跟 traits 结合起来用。
 
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. 
 
+```php
+// listing 04.09
+class ShopProduct implements Chargeable {    
+    // ...    
+    protected $price;    
+    // ...
+    public function getPrice(): float    {        
+        return $this->price;    
+    }    
+    // ...
+}
+```
+
+在类里实现接口的时候，配套的数据类型不能少，比如上面代码里的「public function getPrice(): float {}」。这点正好体现了后面一直强调的「实现多个指定类型」。
+
 ### 0205. 术语卡——Identity Map
 
-a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
+Note: Why would I use a static factory method when a constructor performs the work of creating an object already? In Chapter 12, I’ll describe a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
+
+当构造函数创建对象时，我为什么使用静态工厂方法？第 12 章将介绍 Identity Map 模式。只有具有相同特征的对象没有被管理，Identity Map 组件才会生成并管理这个新对象。如果目标对象已经存在，就返回诚对象。像 create() 这样的工厂方法能为这类组件创建优秀的客户端。
 
 ### 0206. 术语卡——class
 
@@ -74,6 +97,46 @@ You have already seen one benefit afforded by accessor methods. You can use an a
 
 之前已经看到由访问方法带来的一个好处。可以使用访问方法根据环境过滤属性，就像 getPrice() 方法那样。也可以使用 setter 方法来强制属性类型。我们已经见过，类的类型提示可以用于约束方法参数，但是它不能直接控制属性类型。还记得 ShopProductwriter 类使用 Shopi 输出清单数据吗？我们将改进它，使其一次可以输出许多 ShopProduct 对象。
 
+### 0209. 术语卡——Abstract Classes
+
+抽象类不能实例化，它是用来定义接口供其他类继承用的。抽象类里定义的抽象方法不能有「实现」，所以定义的时候没有函数体，跟调用的形式一样。关键是继承它的子类一定在子类里实现这个抽象方法。
+
+An abstract class cannot be instantiated. Instead it defines (and, optionally, partially implements) the interface for any class that might extend it. You define an abstract class with the abstract keyword. In most cases, an abstract class will contain at least one abstract method. These are declared, once again, with the abstract keyword. An abstract method cannot have an implementation. You declare it in the normal way, but end the declaration with a semicolon rather than a method body. 
+
+### 0210. 术语卡——Traits
+
+traits 对于 class 如同，class 对于 object。traits 如同可以供多个类调用的公共代码。
+
+As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. But what if you want to share an implementation across inheritance hierarchies? PHP 5.4 introduced traits, and these let you do just that.
+
+1『 traits 的作用是实现局部继承：share an implementation across inheritance hierarchies. 可以当作类的组件模块，在类的定义里使用 use 关键词调用 trait。在 laravel 框架里看到很多 use 语句是放在 class 定义体之外的。traits 能和接口结合起来一起用，还能跟抽象属性、抽象方法结合起来用，着实强大。』
+
+A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
+
+### 0211. 术语卡——late static bindings
+
+So self resolves to DomainObject, the place where create() is defined, and not to Document, the class on which it was called. Until PHP 5.3 this was a serious limitation, which spawned many rather clumsy workarounds. PHP 5.3 introduced a concept called late static bindings. The most obvious manifestation of this feature is the keyword: static. static is similar to self, except that it refers to the invoked rather than the containing class. In this case, it means that calling Document::create() results in a new Document object and not a doomed attempt to instantiate a DomainObject object. So now I can take advantage of my inheritance relationship in a static context:
+
+因此，self 被解析为定义 create() 的 DomainObject，而不是解析为调用 self 的 Document 类。PHP 5.3 之前，在这方面都有严格的限制，产生过很多笨拙的解决方案。PHP 5.3 中引入了延迟静态绑定的概念。该特性最明显的标志就是新关键字 static。static 类似于 self，但它指的是被调用的类而不是包含类。在本例中，它的意思是调用 Document::create() 将生成一个新的 Document 对象，而不是试图实例化一个 DomainObject 对象。因此，现在在静态上下文中使用继承关系。
+
+```php
+abstract class DomainObject{    
+    public static function create(): DomainObject    {        
+        return new static();    
+    }
+}
+
+class User extends DomainObject {
+
+}
+
+class Document extends DomainObject {
+
+}
+
+print_r(Document::create());
+```
+
 ### 0301. 人名卡——Matt Zandstra
 
 人名卡：Matt Zandstra（）
@@ -99,6 +162,26 @@ As a general rule, err on the side of privacy. Make properties private or protec
 一般来说，我们倾向于严格控制可访问性。最好将类属性初始化为 private 或 protected 然后在需要的时候再放松限制条件。类中的许多（如果不是大多数）方法都可以是 public，但是如果拿不定主意的话，就限制一下。有些类方法只为类中其他方法提供本地功能，与类外部的代码没有任何联系，应该将其设置为 private 或 protected。
 
 1『以上是设置私有属性、保护属性的原则。属性都设置为限制性的 private 或 protected 的，再根据应用场景放松限制；方法都设置为 public 的，再根据应用场景加强限制。』
+
+### 0502. 任意卡——如何调用静态属性和静态方法
+
+静态方法的调用形式都是「类名::静态方法」，唯一也用 :: 调用非静态方法的场景式在类继承定义里「parent::非静态方法」。所以，如果是访问那些显式声明的静态属性和静态方法的，都应该用 :: 去调用，除非是访问重载方法（这点还是不明白）。（2020-06-19）
+
+Note: Making a method call using parent is the only circumstance in which you should use a static reference to a nonstatic method. unless you are accessing an overridden method, you should only ever use :: to access a method or property that has been explicitly declared static. In documentation, however, you will often see static syntax used to refer to a method or property. this does not mean that the item in question is necessarily static, just that it belongs to a certain class. the write() method of the ShopProductWriter class might be referred to as ShopProductWriter::write(), for example, even though the write() method is not static. You will see this syntax here when that level of specificity is appropriate.
+
+只有在使用 parent 关健字调用方法的时候，才能对一个非静态方法进行静态形式的调用。除非是访问一个被写的方法，否则永远只能使用 :: 访问被明确声明为 static 的方法或属性。在文档中，你将会经常看到使用 static 语法来引用方法或属性。这并不意味着其中的方法或属性必须是静态的，只不过说明它属于特定的类。例如，shopProductWriter 类的方法 write() 可以衣示为 Shopproductwriter::write()，虽然 write() 方法并不是静态的。你将在本书中看到这种语法形式。
+
+### 0503. 任意卡——静态属性和静态方法的优势
+
+So, why would you use a static method or property? Static elements have a number of characteristics that can be useful. First, they are available from anywhere in your script (assuming that you have access to the class). This means you can access functionality without needing to pass an instance of the class from object to object or, worse, storing an instance in a global variable. Second, a static property is available to every instance of a class, so you can set values that you want to be available to all members of a type. Finally, the fact that you don’t need an instance to access a static property or method can save you from instantiating an object purely to get at a simple function.
+
+静态元素有很多有用的特性。首先，它们在代码中的任何地方都可用（假设你可以访问该类）。也就是说，你不需要在对象间传递类的实例，也不需要将实例存放在全局变量中，就可以访问类中的方法。其次，类的每个实例都可以访问类中定义的静态属性，所以你可以利用静态属性来设置值，该值可以被类的所有对象使用。最后，不需要实例对象就能访问静态属性或方法，这样我们就不用为了获取一个简单的功能而实例化对象。
+
+### 0504. 任意卡——Combining Traits and Interfaces
+
+Although traits are useful, they don’t change the type of the class to which they are applied. So when you apply the IdentityTrait trait to multiple classes, they won’t share a type that could be hinted for in a method signature. Luckily, traits play well with interfaces. I can define an interface that requires a generateId() method, and then declare that ShopProduct implements it:
+
+单独的 traits 没法使用「type hinting」，但是结合 Interfaces 就能使用。
 
 ## 书评
 
@@ -150,7 +233,7 @@ PHP 实践，对于不了解的童鞋帮助很大，对于有所了解的童鞋�
 
 这是最好的 PHP 的 OO 书之一，另外一本是 PHP in Action。PHP 架构中常用的设计模式不多，书中基本都谈到了。我觉得学习设计模式最好是和框架一起进行，一个是理论，一个是实践，而且流行的框架基本代表了设计的最新思想，设计模式没有好坏之分，所以有空都应该学学。
 
-## 0101. Introduction
+## Introduction
 
 When I first conceived of this book, object-oriented design in PHP was an esoteric topic. The intervening years have not only seen the inexorable rise of PHP as an object-oriented language, but also the march of the framework. Frameworks are incredibly useful, of course. They manage the guts and the glue of many (perhaps, these days, most) web applications. What’s more, they often exemplify precisely the principles of design that this book explores. 
 
@@ -160,7 +243,7 @@ Although I’m an inveterate reinventor of wheels, the thrust of my argument is 
 
 1『秉持不要重新造轮子的原则，善用框架，但是要有一个概念，必须得清楚这个框架设计的初衷，它解决了什么问题，它用了什么策略。』
 
-## 0201. PHP: Design and Management
+## 0101. PHP: Design and Management
 
 ### 1. 逻辑脉络
 
@@ -290,7 +373,7 @@ In previous editions, I included a chapter on the PEAR package repository. Compo
 
 I include a new chapter on the previously mentioned Vagrant. In another new chapter, I examine PHP Standards. Since I endorse the value of complying with a style guide, I have reworked every code example in the book to meet the PSR-1 and PSR-2 standards. This was a much bigger commitment than I realized, and tech editor Paul Tregoing has worked valiantly to keep me honest.
 
-## 0202.  PHP and Objects
+## 0102.  PHP and Objects
 
 ### 1. 逻辑脉络
 

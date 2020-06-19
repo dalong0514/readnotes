@@ -1,4 +1,4 @@
-# 04. Advanced Features
+# 0104. Advanced Features
 
 You have already seen how class type hinting and access control give you more control over a class’s interface. In this chapter, I will delve deeper into PHP’s object-oriented features.
 

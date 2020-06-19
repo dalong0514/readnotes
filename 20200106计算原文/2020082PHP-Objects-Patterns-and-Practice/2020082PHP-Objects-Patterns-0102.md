@@ -1,4 +1,4 @@
-# 02 PHP and Objects
+# 0102. PHP and Objects
 
 Objects were not always a key part of the PHP project. In fact, they were once described as an afterthought by PHP’s designers.
 

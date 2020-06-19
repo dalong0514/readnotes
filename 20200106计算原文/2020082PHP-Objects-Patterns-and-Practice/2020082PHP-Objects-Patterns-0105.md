@@ -1,78 +1,62 @@
-# 05. Object Tools
+# 0205. Object Tools
 
-As we have seen, PHP supports object-oriented programming through language constructs such as classes and methods. The language also provides wider support through functions and classes designed to help you work with objects.
+As we have seen, PHP supports object-oriented programming through language constructs such as classes and methods. The language also provides wider support through functions and classes designed to help you work with objects. In this chapter, we will look at some tools and techniques that you can use to organize, test, and manipulate objects and classes.
 
-In this chapter, we will look at some tools and techniques that you can use to organize, test, and manipulate objects and classes.
+This chapter will cover the following tools and techniques: 1) Namespaces: Organize your code into discrete package-like compartments. 2) Include paths: Setting central accessible locations for your library code. 3) Class and object functions: Functions for testing objects, classes, properties, and methods. 4) The Reflection API: A powerful suite of built-in classes that provide unprecedented access to class information at runtime.
 
-This chapter will cover the following tools and techniques:
-
-Namespaces: Organize your code into discrete package-like compartments.
-
-Include paths: Setting central accessible locations for your library code.
-
-Class and object functions: Functions for testing objects, classes, properties, and methods.
-
-The Reflection API: A powerful suite of built-in classes that provide unprecedented access to class information at runtime.
-
-## 01. PHP and Packages
+## 5.1 PHP and Packages
 
 A package is a set of related classes, usually grouped together in some way. Packages can be used to separate parts of a system from one another. Some programming languages formally recognize packages and provide them with distinct namespaces. PHP has no native concept of a package, but as of PHP 5.3, it introduced namespaces. I’ll look at this feature in the next section. I’ll also take a look at the old way of organizing classes into package-like structures.
 
-PHP Packages and NamespacesAlthough PHP does not intrinsically support the concept of a package, developers have traditionally used both naming schemes and the filesystem to organize their code into package-like structures.
+### 5.1.1 PHP Packages and Namespaces
 
-Until PHP 5.3, developers were forced to name their files in a global context. In other words, if you 
+Although PHP does not intrinsically support the concept of a package, developers have traditionally used both naming schemes and the filesystem to organize their code into package-like structures. 
 
-named a class ShoppingBasket, it would become instantly available across your system. This caused two major problems. First, and most damaging, was the possibility of naming collisions. You might think that this is unlikely. After all, all you have to do is remember to give all your classes unique names, right? The trouble 
+Until PHP 5.3, developers were forced to name their files in a global context. In other words, if you named a class ShoppingBasket, it would become instantly available across your system. This caused two major problems. First, and most damaging, was the possibility of naming collisions. You might think that this is unlikely. After all, all you have to do is remember to give all your classes unique names, right? The trouble is, we all rely increasingly on library code. This is a good thing, of course, because it promotes code reuse. But assume your project does this:
 
-99
+```php
+// listing 05.01
 
-Chapter 5 ■ ObjeCt tOOls
-
-is, we all rely increasingly on library code. This is a good thing, of course, because it promotes code reuse. But assume your project does this:
-
-// listing 05.01require_once __DIR__ . "/../useful/Outputter.php";
-
-class Outputter{    // output data}
+require_once __DIR__ . "/../useful/Outputter.php";
+class Outputter {    
+    // output data
+}
+```
 
 Now assume you incorporate the included file at useful/Outputter.php:
 
-// listing 05.02class Outputter{    //}
+```php
+// listing 05.02
+
+class Outputter{    //}
+```
 
 Well, you can guess what will happen, right? This happens:
 
+```
 PHP Fatal error:  Cannot declare class Outputter because the name is already in use in  /var/popp/src/ch05/batch01/useful/Outputter.php on line 4
+```
 
-Back before the introduction of namespaces, there was a conventional workaround to this problem. The 
+Back before the introduction of namespaces, there was a conventional workaround to this problem. The answer was to prepend package names to class names, so that class names were guaranteed to be unique:
 
-answer was to prepend package names to class names, so that class names were guaranteed to be unique:
-
+```php
 // listing 05.03
-
 // my/Outputer.php
 
 require_once __DIR__ . "/../useful/Outputter.php";
-
 class my_Outputter{    // output data}
 
 // listing 05.04
-
 // useful/Outputter.php
 
 class useful_Outputter{    //}
+```
 
-The problem here was that, as projects got more involved, class names grew longer and longer. It 
+The problem here was that, as projects got more involved, class names grew longer and longer. It was not an enormous problem, but it resulted in issues with code readability, and made it harder to hold classnames in your head while you worked. Many cumulative coding hours were lost to typos. If you’re maintaining legacy code, you may well still see code that follows this convention. For that reason, I’ll return briefly to the old way of handling packages later in this chapter.
 
-was not an enormous problem, but it resulted in issues with code readability, and made it harder to hold classnames in your head while you worked. Many cumulative coding hours were lost to typos.
+#### 5.1.1.1 Namespaces to the Rescue
 
-100
-
-Chapter 5 ■ ObjeCt tOOls
-
-If you’re maintaining legacy code, you may well still see code that follows this convention. For that 
-
-reason, I’ll return briefly to the old way of handling packages later in this chapter.
-
-Namespaces to the RescuePHP 5.3 introduced namespaces. In essence, a namespace is a bucket in which you can place your classes, functions, and variables. Within a namespace you can access these items without qualification. From outside, you must either import the namespace, or reference it, in order to access the items it contains.
+PHP 5.3 introduced namespaces. In essence, a namespace is a bucket in which you can place your classes, functions, and variables. Within a namespace you can access these items without qualification. From outside, you must either import the namespace, or reference it, in order to access the items it contains.
 
 Confused? An example should help. Here I rewrite the previous example using namespaces:
 
@@ -94,13 +78,7 @@ class Debug{    public static function helloWorld()    {        print "hello fro
 
 You will typically use a name related to a product or organisation to define a repository. I might use 
 
-one of my domains: getinstance.com, for example. Because a domain name is unique to its owner, this is a trick that Java developers typically use for their package names. They invert domain names so that they run from the most generic to the most specific. Alternatively, I might use the namespace I have chosen for code examples in this book: popp, for the book name. Once I’ve identified my repository, I might go on to define packages. In this case, I use the chapter and then a numbered batch. This allows me to organise groups of 
-
-101
-
-Chapter 5 ■ ObjeCt tOOls
-
-examples into discrete buckets. So at this point in the chapter, I am at popp\ch05\batch04. Finally, I can further organise code by category. I’ve gone with util.
+one of my domains: getinstance.com, for example. Because a domain name is unique to its owner, this is a trick that Java developers typically use for their package names. They invert domain names so that they run from the most generic to the most specific. Alternatively, I might use the namespace I have chosen for code examples in this book: popp, for the book name. Once I’ve identified my repository, I might go on to define packages. In this case, I use the chapter and then a numbered batch. This allows me to organise groups of examples into discrete buckets. So at this point in the chapter, I am at popp\ch05\batch04. Finally, I can further organise code by category. I’ve gone with util.
 
 So how would I call the method? In fact, it depends where you’re doing the calling from. If you are 
 
@@ -144,13 +122,7 @@ didn’t begin with a leading backslash character. The argument to use is search
 
 namespace main;use popp\ch05\batch04\util\Debug;Debug::helloWorld();
 
-102
-
-This is the convention that is most often used. But what would happen if I already had a Debug class in 
-
-Chapter 5 ■ ObjeCt tOOls
-
-the calling namespace? Here is such a class:
+This is the convention that is most often used. But what would happen if I already had a Debug class in the calling namespace? Here is such a class:
 
 // listing 05.08namespace popp\ch05\batch04;
 
@@ -183,10 +155,6 @@ By using the as clause to use, I am able to change the Debug alias to coreDebug.
 (non-namespaced) space, you can simply precede the name with a backslash. Here’s a class declared in global space:
 
 // listing 05.09class Lister{    public static function helloWorld()    {        print "hello from global\n";    }}
-
-103
-
-Chapter 5 ■ ObjeCt tOOls
 
 And here’s some namespaced code:
 
@@ -222,13 +190,9 @@ namespace other {
 
     \com\getinstance\util\Debug::helloWorld();}
 
-104
-
 If you must combine multiple namespaces in the same file, then this is the recommended practice. 
 
 Usually, however, it’s considered best practice to define namespaces on a per-file basis.
-
-Chapter 5 ■ ObjeCt tOOls
 
  ■ Note  You can’t use both the brace and line namespace syntaxes in the same file. You must choose one and stick to it throughout.
 
@@ -243,10 +207,6 @@ You could also use include_once() with the same effect. The only difference betw
 Figure 5-1 shows the util and business packages from the point of view of the Nautilus file manager.
 
 Figure 5-1.  PHP packages organized using the file system
-
-105
-
-Chapter 5 ■ ObjeCt tOOls
 
  ■ Note  require_once() accepts a path to a file and includes it evaluated in the current script. the function will only incorporate its target if it has not already been incorporated elsewhere. this one-shot approach is particularly useful when accessing library code because it prevents the accidental redefinition of classes and functions. this can happen when the same file is included by different parts of your script in a single process using a function like require() or include().
 
@@ -269,10 +229,6 @@ introduced, every class was named according to its package path, with each direc
 For example, PEAR includes a package called XML, which has an RPC subpackage. The RPC package 
 
 contains a file called Server.php. The class defined inside Server.php is not called Server, as you might expect. Without namespaces, that would sooner or later clash with another Server class elsewhere in the PEAR project or in a user’s code. Instead, the class is named XML_RPC_Server. This approach made for unattractive class names. It did, however, make code easy to read because a class name always described its own context.
-
-106
-
-Chapter 5 ■ ObjeCt tOOls
 
 Include PathsWhen you organize your components, there are two perspectives that you should bear in mind. I have covered the first, where files and directories are placed on the filesystem. But you should also consider the way that components access one another. I have glossed over the issue of include paths so far in this section. When you include a file, you could refer to it using a relative path from the current working directory or an absolute path on the file system.
 
@@ -314,10 +270,6 @@ path. This is a list of directories that PHP searches when attempting to require
 
 include_path = ".:/usr/local/lib/php-libraries"
 
-107
-
-Chapter 5 ■ ObjeCt tOOls
-
 If you’re using Apache, you can also set include_path in the server application’s configuration file 
 
 (usually called httpd.conf) or a per-directory Apache configuration file (usually called .htaccess) with this syntax:
@@ -358,10 +310,6 @@ PHP 5 introduced autoload functionality to help automate the inclusion of class 
 
 support is pretty basic but still useful. It can be invoked by calling a function named spl_autoload_register() with no arguments. If autoload functionality has been activated in this way, a special function named spl_autoload() will be invoked whenever an attempt is made to instantiate an unknown class. The spl_autoload() function will be passed the name of the class, and it will attempt to use this name (converted to lower case), together with a file extension (php or inc by default) to include the relevant class file.
 
-108
-
-Chapter 5 ■ ObjeCt tOOls
-
 Here’s a simple example:
 
 spl_autoload_register();$writer = new Writer();
@@ -389,10 +337,6 @@ Here’s a simple autoload function, together with a class to load:
 \spl_autoload_register($basic);
 
 $blah = new Blah();$blah->wave();
-
-109
-
-Chapter 5 ■ ObjeCt tOOls
 
 Having failed to instantiate Blah initially, the PHP engine will see that I have registered an autoload 
 
@@ -424,10 +368,6 @@ if we override that default, it’s up to us to provide namespace support. This 
 
 class LocalPath{    public function wave()    {        print "hello from ".get_class();    }}
 
-110
-
-Chapter 5 ■ ObjeCt tOOls
-
 // listing 05.18$namespaces = function ($path) {    if (preg_match('/\\\\/', $path)) {        $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);    }    if (file_exists("{$path}.php")) {        require_once("{$path}.php");    }};
 
 \spl_autoload_register($namespaces);$obj = new util\LocalPath();$obj->wave();
@@ -451,10 +391,6 @@ stopping when instantiation is possible, or when the all options have been exhau
 There is obviously an overhead to this kind of stacking, so why does PHP support it? In a real world project, you’d likely combine the namespace and underscore strategies into a single function. However, components in large systems and in third-party libraries may need to register their own autoload mechanisms. Stacking allows multiple parts of a system to register autoload strategies independently, without overwriting one another. In fact, a library that only needs an autoload mechanism briefly can pass the name of its custom autoload function (or a reference to it, if the function is anonymous) to  spl_autoload_unregister() to clean up after itself!
 
  ■ Note  php supports __autoload(), a less powerful mechanism for managing automatic file includes. If you provide an implementation of the __autoload() function, php will call your function when it fails to locate a class. however, because this approach only supports http://www.php.net/spl_autoload_register, a single autoload function without stacking, it may be deprecated in future versions of php.
-
-111
-
-Chapter 5 ■ ObjeCt tOOls
 
 The Class and Object Functions
 
@@ -482,13 +418,9 @@ this isn’t to say that plug-ins aren’t a fine idea. allowing third-party dev
 
 Some class functions have been superseded by the more powerful Reflection API, which I will examine later in the chapter. Their simplicity and ease of use make them a first port of call in some instances, however.
 
-112
-
 Looking for ClassesThe class_exists() function accepts a string representing the class to check for and returns a Boolean true value if the class exists and false otherwise.
 
 Using this function, I can make the previous fragment a little safer:
-
-Chapter 5 ■ ObjeCt tOOls
 
 // listing 05.22$base = __DIR__;$classname = "Task";$path = "{$base}/tasks/{$classname}.php";if (! file_exists($path)) {    throw new \Exception("No such file as {$path}");}require_once($path);$qclassname = "tasks\\$classname";if (! class_exists($qclassname)) {    throw new Exception("No such class as $qclassname");}$myObj = new $qclassname();$myObj->doSpeak();
 
@@ -507,10 +439,6 @@ print_r(get_declared_classes());
 This will list user-defined and built-in classes. Remember that it only returns the classes declared at the time of the function call. You may run require() or require_once() later on, and thereby add to the number of classes in your script.
 
 Learning About an Object or ClassAs you know, you can constrain the object types of method arguments using class type hinting. Even with this tool, you can’t always be certain of an object’s type.
-
-113
-
-Chapter 5 ■ ObjeCt tOOls
 
 There are a number of basic tools available to check the type of an object. First of all, you can check the 
 
@@ -544,10 +472,6 @@ class or interface name on the right. It resolves to true if the object is an in
 
 // listing 05.25$product = self::getProduct();if ($product instanceof \popp\ch05\batch05\CdProduct) {    print "\$product is an instance of CdProduct\n";}
 
-114
-
-Chapter 5 ■ ObjeCt tOOls
-
 Getting a Fully Qualified String Reference to a ClassNamespaces have cleaned up much that was ugly about object-oriented PHP. We no longer have to tolerate ridiculously long class names or risk naming collisions (legacy code aside). On the other hand, with aliasing and with relative namespace references, it can be a chore to resolve some class paths so that they are fully qualified.
 
 Here are some examples of hard-to-resolve class names:
@@ -575,10 +499,6 @@ util\Writerutil\db\Queriermypackage\Local
 Learning About MethodsYou can acquire a list of all the methods in a class using the get_class_methods() function. This requires a class name and returns an array containing the names of all the methods in the class:
 
 print_r(get_class_methods('\\popp\\ch04\\batch02\\BookProduct'));
-
-115
-
-Chapter 5 ■ ObjeCt tOOls
 
 Assuming the BookProduct class exists, you might see something like this:
 
@@ -608,13 +528,9 @@ is_callable() optionally accepts a second argument, a Boolean. If you set this t
 
 will only check the syntax of the given method or function name, not for its actual existence.
 
-116
-
 The method_exists() function requires an object (or a class name) and a method name, and returns 
 
 true if the given method exists in the object’s class:
-
-Chapter 5 ■ ObjeCt tOOls
 
 // listing 05.28if (method_exists($product, $method)) {    print $product->$method(); // invoke the method}
 
@@ -637,10 +553,6 @@ As you might expect, this yields the parent class: ShopProduct.We can also test 
 // listing 05.29$product = self::getBookProduct(); // acquire an object
 
 if (is_subclass_of($product, '\\popp\\ch04\\batch02\\ShopProduct')) {    print "BookProduct is a subclass of ShopProduct\n";}
-
-117
-
-Chapter 5 ■ ObjeCt tOOls
 
 is_subclass_of() will tell you only about class inheritance relationships. It will not tell you that a class 
 
@@ -682,10 +594,6 @@ Much more impressive, though, is the related call_user_func_array() function. Th
 
 same way as call_user_func(), as far as selecting the target method or function is concerned. Crucially, though, it accepts any arguments required by the target method as an array.
 
-118
-
-Chapter 5 ■ ObjeCt tOOls
-
  ■ Note  beware—arguments passed to a function or method using call_user_func() are not passed by reference.
 
 So why is this useful? Occasionally you are given arguments in array form. Unless you know in advance 
@@ -701,10 +609,6 @@ As you have seen, the __call() method is invoked when an undefined method is cal
 The Reflection API
 
 PHP’s Reflection API is to PHP what the java.lang.reflect package is to Java. It consists of built-in classes for analyzing properties, methods, and classes. It’s similar in some respects to existing object functions, such as get_class_vars(), but is more flexible and provides much greater detail. It’s also designed to work with PHP’s object-oriented features, such as access control, interfaces, and abstract classes, in a way that the older, more limited class functions are not.
-
-119
-
-Chapter 5 ■ ObjeCt tOOls
 
 Getting StartedThe Reflection API can be used to examine more than just classes. For example, the ReflectionFunction class provides information about a given function, and ReflectionExtension yields insight about an extension compiled into the language. Table 5-1 lists some of the classes in the API.
 
@@ -752,13 +656,9 @@ Once you’ve created a ReflectionClass object, you can use the Reflection utili
 
 information about CdProduct. Reflection has a static export() method that formats and dumps the data 
 
-120
-
 managed by a Reflection object (that is, any instance of a class that implements the Reflector interface, to be pedantic). Here’s an abridged extract from the output generated by a call to Reflection::export():
 
 Class [ <user> class popp\ch04\batch02\CdProduct extends popp\ch04\batch02\ShopProduct ] {  @@ /var/popp/src/ch04/batch02/CdProduct.php 6-37
-
-Chapter 5 ■ ObjeCt tOOls
 
   - Constants [2] {    Constant [ integer AVAILABLE ] { 0 }    Constant [ integer OUT_OF_STOCK ] { 1 }  }
 
@@ -782,10 +682,6 @@ construct ] {
 
       - Parameters [5] {        Parameter #0 [ <required> string $title ]        Parameter #1 [ <required> string $firstName ]        Parameter #2 [ <required> string $mainName ]        Parameter #3 [ <required> float $price ]        Parameter #4 [ <required> integer $playLength ]      }    }...}
 
-121
-
-Chapter 5 ■ ObjeCt tOOls
-
 As you can see, Reflection::export() provides remarkable access to information about a class. 
 
 Reflection::export() provides summary information about almost every aspect of CdProduct, including the access control status of properties and methods, the arguments required by every method, and the location of every method within the script document. Compare that with a more established debugging function. The var_dump() function is a general-purpose tool for summarizing data. You must instantiate an object before you can extract a summary, and even then, it provides nothing like the detail made available by Reflection::export():
@@ -806,13 +702,9 @@ You’ve already seen how to instantiate a ReflectionClass object:
 
 $prodclass = new \ReflectionClass('popp\\ch04\\batch02\\CdProduct');
 
-122
-
 Next, I will use the ReflectionClass object to investigate CdProduct within a script. What kind of class 
 
 is it? Can an instance be created? Here’s a function to answer these questions:
-
-Chapter 5 ■ ObjeCt tOOls
 
 // listing 05.36
 
@@ -833,10 +725,6 @@ The methods should be self-explanatory, but here’s a brief description of some
 ReflectionClass::getName() returns the name of the class being examined.
 
 The ReflectionClass::isUserDefined() method returns true if the class has been declared in PHP code, and ReflectionClass::isInternal() yields true if the class is built-in.
-
-123
-
-Chapter 5 ■ ObjeCt tOOls
 
 •	
 
@@ -874,23 +762,15 @@ You can acquire a ReflectionMethod in two ways. First, you can get an array of R
 
 objects from ReflectionClass::getMethods(). Second, if you need to work with a specific method, ReflectionClass::getMethod() accepts a method name and returns the relevant ReflectionMethod object.
 
-124
-
 Here, we use ReflectionClass::getMethods() to put the ReflectionMethod class through its paces:
 
 // listing 05.40$prodclass = new \ReflectionClass('popp\\ch04\\batch02\\CdProduct');$methods = $prodclass->getMethods();
-
-Chapter 5 ■ ObjeCt tOOls
 
 foreach ($methods as $method) {    print ClassInfo::methodData($method);    print "\n----\n";}
 
 // listing 05.41
 
     // class ClassInfo    public static function methodData(\ReflectionMethod $method)    {        $details = "";        $name = $method->getName();        if ($method->isUserDefined()) {            $details .= "$name is user defined\n";        }        if ($method->isInternal()) {            $details .= "$name is built-in\n";        }        if ($method->isAbstract()) {            $details .= "$name is abstract\n";        }        if ($method->isPublic()) {            $details .= "$name is public\n";        }        if ($method->isProtected()) {            $details .= "$name is protected\n";        }        if ($method->isPrivate()) {            $details .= "$name is private\n";        }        if ($method->isStatic()) {            $details .= "$name is static\n";        }        if ($method->isFinal()) {            $details .= "$name is final\n";        }        if ($method->isConstructor()) {            $details .= "$name is the constructor\n";        }        if ($method->returnsReference()) {            $details .= "$name returns a reference (as opposed to a value)\n";        }        return $details;    }
-
-125
-
-Chapter 5 ■ ObjeCt tOOls
 
 The code uses ReflectionClass::getMethods() to get an array of ReflectionMethod objects and then 
 
@@ -926,10 +806,6 @@ Here are some of ReflectionParameter’s methods in action:
 
 $method = $class->getMethod("__construct");$params = $method->getParameters();
 
-126
-
-Chapter 5 ■ ObjeCt tOOls
-
 foreach ($params as $param) {    print ClassInfo::argData($param) . "\n";}
 
 // listing 05.45
@@ -956,10 +832,6 @@ Imagine that you’re creating a class that calls Module objects dynamically. Th
 
 ins written by third parties that can be slotted into the application without the need for any hard-coding. To achieve this, you might define an execute() method in the Module interface or abstract base class, forcing all child classes to define an implementation. You could allow the users of your system to list Module classes 
 
-127
-
-Chapter 5 ■ ObjeCt tOOls
-
 in an external XML configuration file. Your system can use this information to aggregate a number of Module objects before calling execute() on each one.
 
 What happens, however, if each Module requires different information to do its job? In that case, the 
@@ -982,10 +854,6 @@ Here’s some groundwork for the Module interface and a couple of implementing c
 
 // listing 05.49class PersonModule implements Module{    public function setPerson(Person $person)    {        print "PersonModule::setPerson(): {$person->name}\n";    }
 
-128
-
-Chapter 5 ■ ObjeCt tOOls
-
     public function execute()    {        // do things    }}
 
 Here, PersonModule and FtpModule both provide empty implementations of the execute() method. Each class also implements setter methods that do nothing but report that they were invoked. The system lays down the convention that all setter methods must expect a single argument: either a string or an object that can be instantiated with a single string argument. The PersonModule::setPerson() method expects a Person object, so I include a Person class in my example.
@@ -999,10 +867,6 @@ The ModuleRunner::$configData property contains references to the two Module cla
 // listing 05.51
 
     // class ModuleRunner    public function init()    {        $interface = new \ReflectionClass('popp\\ch05\\batch08\\Module');        foreach ($this->configData as $modulename => $params) {            $module_class = new \ReflectionClass($modulename);            if (! $module_class->isSubclassOf($interface)) {                throw new Exception("unknown module type: $modulename");            }            $module = $module_class->newInstance();            foreach ($module_class->getMethods() as $method) {                $this->handleMethod($module, $method, $params);                // we cover handleMethod() in a future listing!            }            array_push($this->modules, $module);        }    }
-
-129
-
-Chapter 5 ■ ObjeCt tOOls
 
 // listing 05.52$test = new ModuleRunner();$test->init();
 
@@ -1035,10 +899,6 @@ class. For each element in the array, the code invokes the ModuleRunner::handleM
 handleMethod() first checks that the method is a valid setter. In the code, a valid setter method must be 
 
 named setXXXX() and must declare one—and only one—argument.
-
-130
-
-Chapter 5 ■ ObjeCt tOOls
 
 Assuming that the argument checks out, the code then extracts a property name from the method 
 

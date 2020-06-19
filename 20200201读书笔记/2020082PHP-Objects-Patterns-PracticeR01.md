@@ -2,7 +2,7 @@
 
 ## 记忆时间
 
-## 0203. Object Basics
+## 0103. Object Basics
 
 This chapter covered a lot of ground, taking a class from an empty implementation through to a fully featured inheritance hierarchy. You took in some design issues, particularly with regard to type and inheritance. You saw PHP’s support for visibility and explored some of its uses. In the next chapter, I will show you more of PHP’s object-oriented features.
 
@@ -1436,7 +1436,7 @@ class BookProduct extends ShopProduct{
 
 There is nothing substantially new in this version of the ShopProduct family. All properties are either private or protected, and I added a number of accessor methods to round things off.
 
-## 0204. Advanced Features
+## 0104. Advanced Features
 
 You have already seen how class type hinting and access control give you more control over a class’s interface. In this chapter, I will delve deeper into PHP’s object-oriented features. This chapter will cover several subjects: 1) Static methods and properties: Accessing data and functionality through classes rather than objects. 2) Abstract classes and interfaces: Separating design from implementation. 3) Traits: Sharing implementation between class hierarchies. 4) Error handling: Introducing exceptions. 5) Final classes and methods: Limiting inheritance. 6) Destructor methods: Cleaning up after your objects. 7) Interceptor methods: Automating delegation. 8) Cloning objects: Making object copies. 9) Resolving objects to strings: Creating a summary method. 10) Callbacks: Adding functionality to components with anonymous functions and classes.
 
@@ -1448,7 +1448,7 @@ All of the examples in the previous chapter worked with objects. I characterized
 
 ```php
 // listing 04.01
-class StaticExample{    
+class StaticExample {    
     static public $aNum = 0;    
     public static function sayHello() {
         print "hello";    
@@ -1488,11 +1488,17 @@ class StaticExample{
 
 Note: Making a method call using parent is the only circumstance in which you should use a static reference to a nonstatic method. unless you are accessing an overridden method, you should only ever use :: to access a method or property that has been explicitly declared static. In documentation, however, you will often see static syntax used to refer to a method or property. this does not mean that the item in question is necessarily static, just that it belongs to a certain class. the write() method of the ShopProductWriter class might be referred to as ShopProductWriter::write(), for example, even though the write() method is not static. You will see this syntax here when that level of specificity is appropriate.
 
-1『除非重载方法，不应该用 :: 去访问那些显式声明的静态属性和静态方法。目前还没弄清楚这个概念。（2020-04-27）』
+只有在使用 parent 关健字调用方法的时候，才能对一个非静态方法进行静态形式的调用。除非是访问一个被写的方法，否则永远只能使用 :: 访问被明确声明为 static 的方法或属性。在文档中，你将会经常看到使用 static 语法来引用方法或属性。这并不意味着其中的方法或属性必须是静态的，只不过说明它属于特定的类。例如，shopProductWriter 类的方法 write() 可以衣示为 Shopproductwriter::write()，虽然 write() 方法并不是静态的。你将在本书中看到这种语法形式。
+
+2『除非重载方法，用 :: 去访问那些显式声明的静态属性和静态方法。目前还没弄清楚这个概念。（2020-04-27）回复：首先，静态方法的调用形式都是「类名::静态方法」，唯一也用 :: 调用非静态方法的场景式在类继承定义里「parent::非静态方法」。所以，如果是访问那些显式声明的静态属性和静态方法的，都应该用 :: 去调用，除非是访问重载方法（这点还是不明白）。（2020-06-19）如何调用静态属性和静态方法，做一张任意卡片。』——已完成
 
 By definition, static methods and properties are invoked on classes and not objects. For this reason, they are often referred to as class variables and properties. As a consequence of this class orientation, you cannot use the \$this pseudo-variable inside a static method.
 
 So, why would you use a static method or property? Static elements have a number of characteristics that can be useful. First, they are available from anywhere in your script (assuming that you have access to the class). This means you can access functionality without needing to pass an instance of the class from object to object or, worse, storing an instance in a global variable. Second, a static property is available to every instance of a class, so you can set values that you want to be available to all members of a type. Finally, the fact that you don’t need an instance to access a static property or method can save you from instantiating an object purely to get at a simple function.
+
+静态元素有很多有用的特性。首先，它们在代码中的任何地方都可用（假设你可以访问该类）。也就是说，你不需要在对象间传递类的实例，也不需要将实例存放在全局变量中，就可以访问类中的方法。其次，类的每个实例都可以访问类中定义的静态属性，所以你可以利用静态属性来设置值，该值可以被类的所有对象使用。最后，不需要实例对象就能访问静态属性或方法，这样我们就不用为了获取一个简单的功能而实例化对象。
+
+2『静态属性和静态方法的优势做一张任意卡片。』——已完成
 
 To illustrate this, I will build a static method for the ShopProduct class that automates the instantiation of ShopProduct objects. Using SQLite, I might define a products table like this:
 
@@ -1576,6 +1582,8 @@ $obj = ShopProduct::getInstance(1, $pdo);
 
 Methods like this act as「factories」in that they take raw materials (such as row data or configuration information) and use them to produce objects. The term factory is applied to code designed to generate object instances. You will encounter factory examples again in future chapters.
 
+这样的方法就像「工厂」一样，可以接受原始数据（比如一列数据或配置信息），然后据此产生对象。「工厂」这一术语在代码设计中用于生成对象实例。我们会在后面介绍工厂模式的例子。
+
 In some ways, of course, this example poses as many problems as it solves. Although I make the ShopProduct::getInstance() method accessible from anywhere in a system without the need for an ShopProduct instance, I also demand that client code provides a PDO object. Where is this to be found? 
 
 And is it really good practice for a parent class to have such intimate knowledge of its children? (Hint: no, it is not.) Problems of this kind—where to acquire key objects and values and how much classes should know about one another—are very common in object-oriented programming. I examine various approaches to object generation in Chapter 9.
@@ -1585,6 +1593,8 @@ And is it really good practice for a parent class to have such intimate knowledg
 ### 4.2 Constant Properties
 
 Some properties should not be changed. The Answer to Life, the Universe, and Everything is 42, and you want it to stay that way. Error and status flags will often be hard-coded into your classes. Although they should be publicly and statically available, client code should not be able to change them.
+
+1『所以错误和状态标志都应该设为常量属性。』
 
 PHP allows you to define constant properties within a class. Like global constants, class constants cannot be changed once they are set. A constant property is declared with the const keyword. Constants are not prefixed with a dollar sign like regular properties. By convention, they are often named using only uppercase characters:
 
@@ -1602,7 +1612,7 @@ Constant properties can contain only primitive values. You cannot assign an obje
 print ShopProduct::AVAILABLE;
 ```
 
-1『常量属性的调用方法跟静态属性一样，类名后面加域运算符再加常量名（不需要 \$）。』
+1『常量属性的调用方法跟静态属性一样，类名后面加域运算符再加常量名（不需要 \$，且全大写）。』
 
 Attempting to set a value on a constant once it has been declared will cause a parse error. You should use constants when your property needs to be available across all instances of a class, as well as when the property value needs to be fixed and unchanging.
 
@@ -1630,7 +1640,7 @@ You can see the error in this output:
 
     Error: Cannot instantiate abstract class popp\ch04\batch03\ShopProductWriter
 
-1『抽象类不能实例化，它是用来定义接口供其他类继承用的。抽象类里定义的抽象方法不能有「实现」，所以定义的时候没有函数体，跟调用的形式一样。关键是继承它的子类一定在子类里实现这个抽象方法。』
+2『抽象类不能实例化，它是用来定义接口供其他类继承用的。抽象类里定义的抽象方法不能有「实现」，所以定义的时候没有函数体，跟调用的形式一样。关键是继承它的子类一定在子类里实现这个抽象方法。抽象类做一张术语卡片。』——已完成
 
 In most cases, an abstract class will contain at least one abstract method. These are declared, once again, with the abstract keyword. An abstract method cannot have an implementation. You declare it in the normal way, but end the declaration with a semicolon rather than a method body. Here I add an abstract write() method to the ShopProductWriter class:
 
@@ -1696,11 +1706,13 @@ class TextProductWriter extends ShopProductWriter {
 
 I create two classes, each with its own implementation of the write() method. The first outputs XML and the second outputs text. A method that requires a ShopProductWriter object will not know which of these two classes it is receiving, but it can be absolutely certain that a write() method is implemented. Note that I don’t test the type of \$products before treating it as an array. This is because this property is initialized as an empty array in the ShopProductWriter.
 
+1『这倒是提供了一个不用写「类型检查」的办法，初始化一个该类型的空值。』
+
 ### 4.4 Interfaces
 
 Although abstract classes let you provide some measure of implementation, interfaces are pure templates. An interface can only define functionality; it can never implement it. An interface is declared with the interface keyword. It can contain properties and method declarations but not method bodies. Here’s an interface:
 
-1『接口才是纯模板，它只定义函数，而且这个函数没函数体。相比而言，抽象类里除了有抽象方法外，也可以有普通方法。』
+2『接口才是纯模板，它只定义函数，而且这个函数没函数体。相比而言，抽象类里除了有抽象方法外，也可以有普通方法。接口，做一张术语卡片。』——已完成
 
 ```php
 // listing 04.08
@@ -1726,7 +1738,11 @@ class ShopProduct implements Chargeable {
 }
 ```
 
+1『注意，在类里实现接口的时候，配套的数据类型不能少，比如上面代码里的「public function getPrice(): float {}」。这点正好体现了后面一直强调的「实现多个指定类型」。』
+
 ShopProduct already had a getPrice() method, so why might it be useful to implement the Chargeable interface? Once again, the answer has to do with types. An implementing class takes on the type of the class it extends and the interface that it implements. This means that the CdProduct class belongs to the following:
+
+实现接口的类接受了它继承的类及实现的接口的类型。
 
 ```
 CdProduct
@@ -1754,6 +1770,8 @@ public function cdInfo(CdProduct $prod)    {
 
 The method knows that the \$prod object has a getPlayLength() method in addition to all the methods defined in the ShopProduct class and Chargeable interface. Passed the same object, the method knows that \$prod supports all the methods in ShopProduct:
 
+这可以被客户端代码很方便地使用。你只要知道一个对象的类型，就知道它能做什么。现在知道 \$prod 对象除了拥有 ShopProduct 类和 Chargeable 接口中定义的所有方法之外，还有 getPlayLength() 方法。
+
 ```php
 public function addProduct(ShopProduct $prod)    {
      // ...    
@@ -1770,6 +1788,8 @@ public function addChargeableItem(Chargeable $item)    {
 
 However, this method is only concerned with whether the \$item argument contains a getPrice() method. Because any class can implement an interface (in fact, a class can implement any number of interfaces), interfaces effectively join types that are otherwise unrelated. I might define an entirely new class that implements Chargeable:
 
+由于任何类都可以实现接口（实际上，一个类可以实现多个接口），接口可以有效地将不相关的类型联结起来。
+
 ```php
 class Shipping implements Chargeable{    
     public function getPrice(): float    {        
@@ -1779,6 +1799,10 @@ class Shipping implements Chargeable{
 ```
 
 I can pass a Shipping object to the addChargeableItem method just as I can pass it a ShopProduct object. The important thing to a client working with a Chargeable object is that it can call a getPrice() method. Any other available methods are associated with other types, whether through the object’s own class, a superclass, or another interface. These are irrelevant to the client.
+
+将 shipping 对象传递给 addChargeableItem() 方法，就像将其传递给 ShopProduct 对象一样。使用 Chargeable 对象的代码（即客户端代码）可以随时调用 getPrice() 方法，而对象中的任何其他方法都要和其类型关联起来，无论是通过对象自己的类、父类还是其他接口。这些都是客户端代码不需要关注的。
+
+1『上面的信息目前没吃透。（2020-06-19）』
 
 A class can both extend a superclass and implement any number of interfaces. The extends clause should precede the implements clause:
 
@@ -1799,6 +1823,8 @@ As we have seen, interfaces help you manage the fact that, like Java, PHP does n
 1『 traits 的作用是实现局部继承：share an implementation across inheritance hierarchies. 可以当作类的组件模块，在类的定义里使用 use 关键词调用 trait。在 laravel 框架里看到很多 use 语句是放在 class 定义体之外的。traits 能和接口结合起来一起用，还能跟抽象属性、抽象方法结合起来用，着实强大。』
 
 A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
+
+2『 traits 做一张术语卡片。』——已完成
 
 #### 4.5.1 A Problem for Traits to Solve
 
@@ -1937,7 +1963,8 @@ public static function storeIdentityObject(IdentityObject $idobj)    {
     // do something with the IdentityObject    
 }
 
-// listing 04.24$p = new ShopProduct();
+// listing 04.24
+$p = new ShopProduct();
 self::storeIdentityObject($p);
 print $p->calculateTax(100) . "\n";
 print $p->generateId() . "\n";
@@ -2202,7 +2229,9 @@ I create a super class named DomainObject. In a real-world project, of course, t
 
 Note: Why would I use a static factory method when a constructor performs the work of creating an object already? In Chapter 12, I’ll describe a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
 
-2『体现了 Identity Map 设计模式。做张术语卡片。』
+当构造函数创建对象时，我为什么使用静态工厂方法？第 12 章将介绍 Identity Map 模式。只有具有相同特征的对象没有被管理，Identity Map 组件才会生成并管理这个新对象。如果目标对象已经存在，就返回诚对象。像 create() 这样的工厂方法能为这类组件创建优秀的客户端。
+
+2『体现了 Identity Map 设计模式。做张术语卡片。（目前还无法理解这个模式）』——已完成
 
 This code works fine, but it has an annoying amount of duplication. I don’t want to have to create boilerplate code like this for every DomainObject child class that I create. Instead, I’ll try pushing the create() method up to the superclass:
 
@@ -2229,9 +2258,15 @@ class Document extends DomainObject {
 
 Well, that looks neat. I now have common code in one place, and I’ve used self as a reference to the class. But I have made an assumption about the self keyword. In fact, it does not act for classes exactly the same way that \$this does for objects. self does not refer to the calling context; it refers to the context of resolution. So if I run the previous example, I get this:
 
+self 指的不是调用上下文，它指的是解析上下文。
+
     Error: Cannot instantiate abstract class popp\ch04\batch06\DomainObject
 
 So self resolves to DomainObject, the place where create() is defined, and not to Document, the class on which it was called. Until PHP 5.3 this was a serious limitation, which spawned many rather clumsy workarounds. PHP 5.3 introduced a concept called late static bindings. The most obvious manifestation of this feature is the keyword: static. static is similar to self, except that it refers to the invoked rather than the containing class. In this case, it means that calling Document::create() results in a new Document object and not a doomed attempt to instantiate a DomainObject object. So now I can take advantage of my inheritance relationship in a static context:
+
+因此，self 被解析为定义 create() 的 DomainObject，而不是解析为调用 self 的 Document 类。PHP 5.3 之前，在这方面都有严格的限制，产生过很多笨拙的解决方案。PHP 5.3 中引入了延迟静态绑定的概念。该特性最明显的标志就是新关键字 static。static 类似于 self，但它指的是被调用的类而不是包含类。在本例中，它的意思是调用 Document::create() 将生成一个新的 Document 对象，而不是试图实例化一个 DomainObject 对象。因此，现在在静态上下文中使用继承关系。
+
+2『延迟静态绑定，做一张术语卡片。』——已完成
 
 ```php
 abstract class DomainObject{    
@@ -2255,7 +2290,9 @@ print_r(Document::create());
 
 1『上面才是正确的实现方法，需要使用 Static Bindings。』
 
-The static keyword can be used for more than just instantiation. Like self and parent, static can be used as an identifier for static method calls, even from a non-static context. Let’s say I want to include the concept of a group for my DomainObject classes. By default in my new classification, all classes fall into category「default,」but I’d like to be able override this for some branches of my inheritance hierarchy:
+The static keyword can be used for more than just instantiation. Like self and parent, static can be used as an identifier for static method calls, even from a non-static context. Let’s say I want to include the concept of a group for my DomainObject classes. By default in my new classification, all classes fall into category「default」, but I’d like to be able override this for some branches of my inheritance hierarchy:
+
+static 关键字不仅仅可以用于实例化。和 self 和 parent 一样，static 还可以作为静态方法调用的标识符，甚至是从非静态上下文中调用。假设我想为 DomainObject 引入组的概念。默认情况下，所有类都属于 default 类别，但我想能为继承层次结构的某些分支重写类别。
 
 ```php
 // listing 04.52
@@ -2313,7 +2350,9 @@ popp\ch04\batch07\SpreadSheet Object
 
 For the User class, not much clever needs to happen. The DomainObject constructor calls getGroup() and finds it locally. In the case of SpreadSheet, though, the search begins at the invoked class, SpreadSheet itself. It provides no implementation, so the getGroup() method in the Document class is invoked. Before PHP 5.3 and late static binding, I would have been stuck with the self keyword here, which would only look for getGroup() in the DomainObject class.
 
-1『妙啊妙啊，这样的话基类的定义就更灵活了。』
+User 类不需要实现太多功能。DomainObject 构造函数调用了 getGroup() 类，并在本地进行查找。对于 SpreadSheet，虽然搜索从被调用的类 SpreadSheet 本身开始，但它没有提供任何实现，因此调用类 Document 中的 getGroup() 方法。PHP 5.3 以前未引入延迟静态绑定，self 关键字只查找 DomainObject 类中的 getGroup()，因此遇到 self 关键字的时候我无计可施。
+
+1『妙啊妙啊，这样的话基类的定义就更灵活了。但这一节的内容还是没有吃透。』
 
 ### 4.7 Handling Errors
 
@@ -2374,6 +2413,8 @@ The Conf class’s constructor accepts a file path, which it passes to simplexml
 
 Like much example code, the Conf class is highly simplified. In particular, it has no strategy for handling nonexistent or unwriteable files. It is also optimistic in outlook. It assumes that the XML document will be well-formed and will contain the expected elements.
 
+Conf 类的构造器接受一个文件路径，然后传递给 simplexml_load_file()。它将得到的 SimpleXmlElement 对象放在 \$xml 属性中。get() 方法使用 Xpath 和给定的 name 属性来定位 item 元素，并返回值。set() 改变已存在项的值或创建一个新项。最后，write() 方法将新的配置数据保存到文件中。和许多示例代码一样，conf 类非常简单。特别是，它没有任何处理配置信息不存在或不可写的策略。它看起来很乐观，假定 XML 文档的格式正确并且包含了需要的元素。
+
 Testing for these error conditions is relatively trivial, but I must still decide how to respond to them should they arise. There are generally two options.
 
 First, I could end execution. This is simple but drastic. My humble class would then take responsibility for bringing an entire script crashing down around it. Although methods such as __construct() and write() are well placed to detect errors, they do not have the information to decide how to handle them.
@@ -2382,11 +2423,19 @@ Rather than handle the error in my class, then, I could return an error flag of 
 
 Many PEAR packages combine these two approaches by returning an error object (an instance of PEAR\_Error), which acts both as notification that an error has occurred and contains the error message within it. This approach is now deprecated, but plenty of classes have not been upgraded, not least because client code often depends on the old behavior.
 
+测试这些错误条件比较琐碎，但是我们仍然需要决定当它们发生时该如何应对。通常有两种选择。首先，可以停止执行代码。这个办法很简单，但是过于激烈。这个粗陋的类会导致整个程序停止执行。虽然 \_\_construct() 和 write() 这样的方法可以检测到错误，但是它们并不知道该如何处理错误。其次，不在类中直接处理错误，而只返回某种错误标志。错误标志可以是布尔值（true 或 false）或整数值（比如 0 或 -1）。一些类也可以设置错误字符串或标志，让客户端代码在失败之后可以获得更多信息。许多 PEAR 包结合使用这两种方法，在发生错误时返回一个错误对象（PEAR_Error 的实例），该对象标志着有错误发生，同时也包含错误的信息。虽然这种方法已经过时了，但是大量的 PEAR 类还没有升级，因为很多客户端代码还依赖于这些旧的错误处理方式。
+
 The problem here is that you pollute your return value. You have to rely on the client coder to test for the return type every time your error-prone method is called. This can be risky. Trust no one!
 
 When you return an error value to calling code, there is no guarantee that the client will be any better equipped than your method to decide how to handle the error. If this is the case, then the problem begins all over again. The client method will have to determine how to respond to the error condition, maybe even implementing a different error-reporting strategy.
 
+这里有个问题，我们的返回值是不定的。PHP 语言本身没有强制规定统一的返回值。在写作本书时，PHP 还不支持返回对象的类型提示，所以有时本应返回一个对象或者基本类型的数据，但实际上返回的可能是一个错误标志。这时候，我们不得不依赖客户程序员来测试每次调用易于出错方法时返回的数据类型。这样做是很危险的，没有谁可以被信赖！当返回一个错误值给调用代码时，不能确保客户端代码能比我们的方法更好地决定如何处理错误。在这种情况下，问题又回到原点。客户端代码不得不决定如何响应错误条件，甚至要重新设计一个处理错误的方法。
+
 #### 4.7.1 Exceptions
+
+通常我们希望封装好的类是完整和独立的，不需要从外部干预内部代码的执行，所以依赖程序员另外写代码来测试一个类中的方法是否出错，这是非常不合理的。
+
+简单地说，我们需要把错误处理的责任集中放在类的内部，而不能依赖于调用该类的程序员和外部代码，因为通常使用该类的程序员并不知道怎么处理类内部的方法所引发的错误。本节主要强调了 PHP4 中各种错误处理方法的局限性，读者看过后面的内容后再回过头来对比一下，会更易于理解。——译者注
 
 PHP 5 introduced exceptions to PHP, a radically different way of handling error conditions. Different for PHP, that is. You will find them hauntingly familiar if you have Java or C++ experience. Exceptions address all of the issues that I have raised so far in this section.
 
@@ -2653,9 +2702,9 @@ Note:  a finally clause will be run if an invoked catch clause rethrows an excep
 
 ### 4.8 Final Classes and Methods
 
-Inheritance allows for enormous flexibility within a class hierarchy. You can override a class or method so that a call in a client method will achieve radically different effects, according to which class instance it has been passed. Sometimes, though, a class or method should remain fixed and unchanging. If you have achieved the definitive functionality for your class or method, and you feel that overriding it can only damage the ultimate perfection of your work, you may need the final keyword.
+Inheritance allows for enormous flexibility within a class hierarchy. You can override a class or method so that a call in a client method will achieve radically different effects, according to which class instance it has been passed. Sometimes, though, a class or method should remain fixed and unchanging. If you have achieved the definitive functionality for your class or method, and you feel that overriding it can only damage the ultimate perfection of your work, you may need the final keyword. final puts a stop to inheritance. A final class cannot be subclassed. Less drastically, a final method cannot be overridden. Here’s a final class:
 
-final puts a stop to inheritance. A final class cannot be subclassed. Less drastically, a final method cannot be overridden. Here’s a final class:
+继承为类层次（class hierarchy）内部带来了巨大的灵活性。通过覆写类或方法，根据调用的是哪个类实例，调用同样的类方法可以得到完全不同的结果。但有时候，你可能需要类或方法保持不变。如果希望类或方法完成确定不变的功能，担心覆写它会破坏这个功能，那么需要使用 final 关键字。final 关键字可以终止类的继承。final 类不能有子类，final 方法不能被覆写。
 
 ```php
 // listing 04.67
@@ -2690,7 +2739,7 @@ class Checkout {
 
 I can now subclass Checkout, but any attempt to override totalize() will cause a fatal error:
 
-```
+```php
 // listing 04.70
 class IllegalCheckout extends Checkout {    
     final public function totalize() {        
@@ -2730,6 +2779,8 @@ Note: at the time of this writing, an attempt to call Error::getMessage() fails 
 ### 4.10 Working with Interceptors
 
 PHP provides built-in interceptor methods that can intercept messages sent to undefined methods and properties. This is also known as overloading, but as that term means something quite different in Java and C++, I think it is better to talk in terms of interception.
+
+PHP 提供了内置的拦截器（Interceptor）方法，它可以「拦截」发送到未定义方法和属性的消息。它也被称为重载（overloading），但是自从这个术语在 Java 和 C++中被赋予不同的含义之后，我认为它还是叫做拦截器比较好。
 
 PHP supports three built-in interceptor methods. Like __construct(), these are invoked for you when the right conditions are met. Table 4-3 describes the methods.
 
@@ -3018,13 +3069,15 @@ class CopyMe {
 
 $first = new CopyMe();
 $second = $first;/
-/ PHP 4: $second and $first are 2 distinct objects
+// PHP 4: $second and $first are 2 distinct objects
 // PHP 5 plus: $second and $first refer to one object
 ```
 
 This「simple matter」was a source of many bugs, as object copies were accidentally spawned when variables were assigned, methods were called, and objects were returned. This was made worse by the fact that there was no way of testing two variables to see whether they referred to the same object. Equivalence tests would tell you whether all fields were the same (\=\=) or whether both variables were objects (===), but not whether they pointed to the same object.
 
 In PHP, objects are always assigned and passed around by reference. This means that when my previous example is run with PHP 5, \$first and \$second contain references to the same object instead of two copies. Although this is generally what you want when working with objects, there will be occasions when you need to get a copy of an object rather than a reference to an object.
+
+PHP 4 的这种用法可能会引发很多 bug，因为在变量赋值、调用方法、返回对象时都常常会无意中进行对象复制，而你可能并不知道。更糟的是，我们无法检査两个变量是否指向相同的对象。等值检测只会告诉你两者是否相等（\=\=）或者两者是否相等且都是对象（\=\=\=），但不会告诉你两者是否指向同一个对象。在 PHP 中，对象的赋值和传递都是通过引用进行的。这意味着当我们之前的代码运行在 PHP 5 时，First 和 Ssecond 这两个变量包含指向同一个对象的引用，而没有各自保留一份相同的副本，这正是我们处理对象时所希望的，但有时候我们也需要获得一个对象的副本，而不是引用。
 
 PHP provides the clone keyword for just this purpose. clone operates on an object instance, producing a by-value copy:
 
@@ -3033,12 +3086,15 @@ class CopyMe {
 }
 
 $first  = new CopyMe();
-$second = clone 
-$first;
+$second = clone $first;
 // PHP 5 plus: $second and $first are 2 distinct objects
 ```
 
-The issues surrounding object copying only start here. Consider the Person class that I implemented in the previous section. A default copy of a Person object would contain the identifier (the \$id property), which in a full implementation I would use to locate the correct row in a database. If I allow this property to be copied, a client coder can end up with two distinct objects referencing the same data source, which is probably not what she wanted when she made her copy. An update in one object will affect the other, and vice versa.Luckily, you can control what is copied when clone is invoked on an object. You do this by implementing a special method called \_\_clone() (note the leading two underscores that are characteristic of built-in methods). \_\_clone() is called automatically when the clone keyword is invoked on an object.
+The issues surrounding object copying only start here. Consider the Person class that I implemented in the previous section. A default copy of a Person object would contain the identifier (the \$id property), which in a full implementation I would use to locate the correct row in a database. If I allow this property to be copied, a client coder can end up with two distinct objects referencing the same data source, which is probably not what she wanted when she made her copy. An update in one object will affect the other, and vice versa.
+
+Luckily, you can control what is copied when clone is invoked on an object. You do this by implementing a special method called \_\_clone() (note the leading two underscores that are characteristic of built-in methods). \_\_clone() is called automatically when the clone keyword is invoked on an object.
+
+但这样复制对象还有问题。请回顾一下我们在上一节中实现的 Person 类。默认情况下，每个 Person 对象都会有其标识符（即 \$id 属性）。在实际开发中，\$id 属性可能会与数据库表中的某一条记录一一对应。如果允许复制 \$id 属性，那么可能会有两个完全不同的对象指向数据库中的同一条记录，这显然不是客户程序员想要的结果。此时对一个对象所做的更新会影响另一个，反之亦然。幸运的是，在对象上调用 clone 时，我们可以控制复制什么。我们可以通过实现一个特殊的方法 clone() 来达到这个目的（注意所有以两个下划线开头的方法都是 PHP 内置的方法）。当在一个对象上调用 clone 关键字时，其 \_\_clone() 方法就会被自动调用。实现 \_\_clone() 方法时，要注意当前方法执行的环境。\_\_clone() 方法是在复制得到的对象上运行的，而不是在原始对象上运行的。我们给 Person 类添加上 \_\_clone() 方法方法：
 
 When you implement \_\_clone(), it is important to understand the context in which the method runs. \_\_clone() is run on the copied object and not the original. Here I add \_\_clone() to yet another version of the Person class:
 
@@ -3081,7 +3137,8 @@ $person2 = clone $person;
 A shallow copy ensures that primitive properties are copied from the old object to the new. Object properties, though, are copied by reference, which may not be what you want or expect when cloning an object. Say that I give the Person object an Account object property. This object holds a balance that I want copied to the cloned object. What I don’t want, though, is for both Person objects to hold references to the same account:
 
 ```php
-// listing 04.83class Account {    
+// listing 04.83
+class Account {    
     public $balance;
 
     public function __construct(float $balance)    {        
@@ -3134,6 +3191,10 @@ function __clone()    {
     $this->account = clone $this->account;    
 }
 ```
+
+如果不希望对象属性在被复制之后被共享，那么可以显式地在 \_\_clone() 方法中复制指向的对象。
+
+1『上面显示的在  \_\_clone() 里指定规则，目前还没吃透，更达不到随心应用的地步。（2020-06-19）』
 
 ### 4.13 Defining String Values for Your Objects
 
@@ -3190,6 +3251,8 @@ print $person;
 
 The \_\_toString() method is particularly useful for logging and error reporting, as well as for classes whose main task is to convey information. The Exception class, for example, summarizes exception data in its \_\_toString() method.
 
+对于日志和错误报告，\_\_toString() 方法非常有用。 \_\_toString() 方法也可用于设计专门用来传递信息的类，比如 Exception 类可以把关于异常数据的总结信息写到 \_\_toString() 方法中。
+
 ### 4.14 Callbacks, Anonymous Functions, and Closures
 
 Although not strictly an object-oriented feature, anonymous functions are useful enough to mention here because you may encounter them in object-oriented applications that utilize callbacks. To kick things off, here are a couple of classes:
@@ -3233,9 +3296,13 @@ The second method, sale(), accepts a Product object, outputs a message about it,
 
 Why are callbacks useful? They allow you to plug functionality into a component at runtime that is not directly related to that component’s core task. By making a component callback aware, you give others the power to extend your code in contexts you don’t yet know about.
 
+回调为什么有用？利用回调，你可以在运行时将与组件的核心任务没有直接关系的功能插入到组件中。有了组件回调，你就赋予了其他人在你不知道的上下文中扩展你的代码的权利。
+
 1『回调函数的好处，下面还举了个例子。如何用好回调函数一直是个短板。（2020-05-03）』
 
 Imagine, for example, that a future user of ProcessSale wants to create a log of sales. If the user has access to the class, she might add logging code directly to the sale() method. This isn’t always a good idea, though. If she is not the maintainer of the package that provides ProcessSale, then her amendments will be overwritten the next time the package is upgraded. Even if she is the maintainer of the component, adding many incidental tasks to the sale() method will begin to overwhelm its core responsibility, and potentially make it less usable across projects. I will return to these themes in the next section.
+
+例如，假设 ProcessSale 类的一个用户想创建一条销售记录。如果该用户可以访问该类，那么他可能会直接在 sale() 方法中添加记录代码，但有时这种做法并不好。如果他不是 ProcessSale 类所在的包的维护者，那么他对该方法的修改会在下次更新包时被覆盖。即使他是该组件的维护者，向 sale() 方法中添加那么多附加的任务也是本末倒置，无法体现该方法的核心功能，这可能会导致该方法跨项目的可用性降低。
 
 Luckily, though, I made ProcessSale callback-aware. Here I create a callback that simulates logging:
 
@@ -3256,13 +3323,74 @@ $processor->sale(new Product("coffee", 6));
 
 I use create\_function() to build my callback. As you can see, it accepts two string arguments: first, a list of parameters; and second, the function body. The result is often called an anonymous function as it’s not named in the manner of a standard function. Instead, it can be stored in a variable and passed to functions and methods as a parameter. That’s just what I do, storing the function in the \$logger variable and passing it to ProcessSale::registerCallback(). Finally, I create a couple of products and pass them to the sale() method. You have already seen what happens there. The sale is processed (in reality a simple message is printed about the product) and any callbacks are executed. Here is the code in action:
 
+我使用 create\_function() 创建回调。你可以看到，它的参数是两个字符串。首先是一个参数列表，接着是函数体。结果通常被称为匿名函数，因为它没有以标准函数的方式命名，但它可被存储在一个变量中，作为参数传递给函数和方法。这就是我所做的：将函数存储在 \$logger 变量中，然后将其传递给 ProcessSale::registerCallback()。最后创建了两个产品并将其传递给 sale() 方法。你已经看到了所发生的事情，处理销售记录（实际上是输出与该产品有关的条简单的消息），并且执行所有回调。
+
 ```
 shoes: processing    logging (shoes)
-
 coffee: processing    logging (coffee)
 ```
 
+1『
+
+两个问题，首先 create_function() 已经被废弃了，直接用匿名函数。其次，\$callbacks 必须申明为空数组。
+
+```php
+class Product {
+    public $name;
+    public $price;
+
+    public function __construct(string $name, float $price) {
+        $this->name = $name;
+        $this->price = $price;
+    }
+}
+
+class ProcessSale {
+    private $callbacks = [];
+
+    public function registerCallback(callable $callback) {
+        if (! is_callable($callback)) {
+            throw new Exception("callback not callable");
+            $this->callbacks[] = $callback;
+        }
+    }
+
+    public function sale(Product $product) {
+        print "{$product->name}: processing \n";
+        foreach ($this->callbacks as $callback) {
+            call_user_func($callback, $product);
+        }
+    }
+}
+
+$logger = function($product) {
+    print "logging({$product->name})\n";
+};
+
+$processor = new ProcessSale();
+$processor->registerCallback($logger);
+$processor->sale(new Product("shoes", 6));
+print "\n";
+$processor->sale(new Product("coffee", 6));
+print "\n";
+```
+
+还是不对，发现「\$processor->registerCallback(\$logger);」压根没调用，待解决。回复：解决了，是自己把「\$this->callbacks[] = \$callback;」写到条件语句里面去了，拿出来即可，而且修正后 \$callbacks 就不需要赋值为空数组了。（2020-06-19）
+
+```php
+    public function registerCallback(callable $callback) {
+        if (! is_callable($callback)) {
+            throw new Exception("callback not callable");
+        } 
+        $this->callbacks[] = $callback;
+    }
+```
+
+』
+
 Look again at that create\_function() example. See how ugly it is? Placing code designed to be executed inside a string is always a pain. You need to escape variables and quotation marks, and, if the callback grows to any size, it can be very hard to read, indeed. Wouldn’t it be neater if there were a more elegant way of creating anonymous functions? Well, since PHP 5.3, there is a much better way of doing it. You can simply declare and assign a function in one statement. Here’s the previous example using the new syntax:
+
+再来看一下 create\_function() 这个例子。看看它有多难看。将要执行的代码放在一个字符串中是水远的痛。你需要转义变量和引号，并且如果回调达到了一定的大小，实际上它会变得」分难读。如果能找到一种优雅的方式来创建匿名函数，这个例子不就能变得整洁一些了吗？PHP5.3 及其后续版本提供了更好的方法来实现该功能。你可以简单地在一条语句中声明并分配函数。使用了新语法后的 Create_ function（）示例如下所示：
 
 ```php
 // listing 04.91
@@ -3281,6 +3409,8 @@ $processor->sale(new Product("coffee", 6));
 The only difference here lies in the creation of the anonymous function. As you can see, it’s a lot neater. I simply use the function keyword inline, and without a function name. Note that because this is an inline statement, a semicolon is required at the end of the code block. The output here is the same as that of the previous example.
 
 1『确实，匿名函数后面有个分号。』
+
+1『哇塞，这里看到了内联语句 inline statement，正好加深了对「重构」里内联函数的理解。』
 
 Of course, callbacks needn’t be anonymous. You can use the name of a function, or even an object reference and a method, as a callback. Here I do just that:
 
@@ -3303,10 +3433,10 @@ $processor->sale(new Product("coffee", 6));
 
 I create a class: Mailer. Its single method, doMail(), accepts a Product object and outputs a message about it. When I call registerCallback(), I pass it an array. The first element is a Mailer object, and the second is a string that matches the name of the method I want invoked. Remember that registerCallback() checks its argument for callability. is\_callable() is smart enough to test arrays of this sort. A valid callback in array form should have an object as its first element, and the name of a method as its second element. I pass that test here, and here is my output:
 
-```
-shoes: process
+我创建了 Mailer 类，该类只有一个方法 doMail()，接受 Product 对象并输出与该对象有关的一条消息。调用 registerCallback() 时，我传递给它一个数组。数组的第一个元素是 Mailer 对象，第二个元素是字符串（该字符串与我想要调用的方法的名称匹配）。记住，registerCallback() 会检查其参数的可调用性。is\_callable() 非常智能，能够测试这类数组。数组形式的有效回调应该以对象作为其第一个元素，以方法名作为其第二个元素。
 
-ing    
+```
+shoes: processing    
     mailing (shoes)
 
 coffee: processing    
@@ -3337,6 +3467,8 @@ Apart from the convenience of using the warnAmount() method as a factory for the
 
 I can make my anonymous function track variables from its wider scope with a use clause:
 
+除了使用 warnAmount() 作为匿名函数的工厂方法很方便之外，这里没有什么有趣的内容了。但除了生成匿名函数之外，利用该结构还可以做更多的事情，比如利用闭包。这些新风格的匿名函数可以引用在其父作用域中声明的变量。这个概念有时候很难理解。打个比方来说，就好像匿名函数还记得它被创建时所在的作用域。假设我想让 Totalizer::warnAmount() 做两件事：首先是让它接受一个随机的目标金额；其次是记录售出产品的总价格。当总价格超出目标金额时，让该函数执行一项操作（你可能猜到了，在本例中就是输出一条消息）。利用 use 子句，就可以让匿名函数追踪来自其父作用域的变量：
+
 ```php
 // listing 04.96
 class Totalizer2 {    
@@ -3363,6 +3495,10 @@ $processor->sale(new Product("coffee", 6));
 
 The anonymous function returned by Totalizer2::warnAmount() specifies two variables in its use clause. The first is \$amt. This is the argument that warnAmount() accepted. The second closure variable is \$count. \$count is declared in the body of warnAmount() and set initially to zero. Notice that I prepend an ampersand to the \$count variable in the use clause. This means the variable will be accessed by reference rather than by value in the anonymous function. In the body of the anonymous function, I increment \$count by the product’s value, and then test the new total against \$amt. If the target value has been reached, I output a notification. Here is the code in action:
 
+Totalizer2::warnAmount() 返回的匿名函数在其 use 子句中指定了两个变量：第一个变量是 \$amt，它是 warnAmount() 的实参；第二个闭包变量是 \$count。\$count 在 warnAmount() 函数体中声明，初始值为 0。注意，在 use 子句中我在 \$count 变量前面加了一个 &。这意味着该变量可以用匿名函数中的引用而不是值来访问。在匿名函数的函数体中，我为 \$count 增加了产品的价格（\$product 的值），然后测试新的总计值是否超过 \$amt。如果已经达到目标值，就输出一个通知。
+
+1『上面的代码对理解匿名函数、闭包的概念帮助很大，需要反复研读。』
+
 ```
 shoes: processing   
     count: 6
@@ -3374,6 +3510,8 @@ coffee: processing
 ```
 
 This demonstrates that the callback is keeping track of \$count between invocations. Both \$count and \$amt remain associated with the function because they were present to the context of its declaration and because they were specified in its use clause.
+
+这段代码说明了回调跟踪了两次调用之间的 \$count。\$count 和 \$amt 仍然和函数相关，因为它们出现在声明时所在的作用域中，并且在 use 子句中指定。
 
 ### 4.15 Anonymous Classes
 
@@ -3405,7 +3543,7 @@ class Person {
 }
 ```
 
-The output() method accepts a PersonWriter instance, and then passes an instance of the current class to its write() method. In this way, the Person class is nicely insulated from the implementation of the writer.Moving on to client code, if we need a writer to print name and age values for a Person object, we might go ahead and create a class in the usual way. But it’s such a trivial implementation that we could equally create a class and pass it to Person at the same time:
+The output() method accepts a PersonWriter instance, and then passes an instance of the current class to its write() method. In this way, the Person class is nicely insulated from the implementation of the writer. Moving on to client code, if we need a writer to print name and age values for a Person object, we might go ahead and create a class in the usual way. But it’s such a trivial implementation that we could equally create a class and pass it to Person at the same time:
 
 ```php
 // listing 04.100        
@@ -3444,3 +3582,4 @@ $person->output(
 
 I passed a path argument to the constructor. This value was stored in the $path property and eventually used by the write() method. Of course, if your anonymous class begins to grow in size and complexity, it becomes more sensible to create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
 
+1『匿名类不支持闭包，匿名类的这块知识还没吃透。（2020-06-19）』
