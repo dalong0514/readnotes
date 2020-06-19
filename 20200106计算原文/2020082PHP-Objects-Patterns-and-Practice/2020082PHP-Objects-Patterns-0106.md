@@ -1,6 +1,8 @@
 # 0106. Objects and Design
 
-Now that we have seen the mechanics of PHP’s object support in some detail, we will step back from the details and consider how best to use the tools that we have encountered. In this chapter, I introduce you to some of the issues surrounding objects and design. I will also look at the UML, a powerful graphical language for describing object-oriented systems.This chapter will cover the following topics:
+Now that we have seen the mechanics of PHP’s object support in some detail, we will step back from the details and consider how best to use the tools that we have encountered. In this chapter, I introduce you to some of the issues surrounding objects and design. I will also look at the UML, a powerful graphical language for describing object-oriented systems.
+
+This chapter will cover the following topics:
 
 Design basics: What I mean by design, and how object-oriented design differs from procedural code.
 
@@ -12,33 +14,31 @@ Polymorphism: Using a common supertype to allow the transparent substitution of 
 
 The UML: Using diagrams to describe object-oriented architectures.
 
-## 01. Defining Code Design
+## 6.1 Defining Code Design
 
 One sense of code design concerns the definition of a system: the determination of a system’s requirements, scope, and objectives. What does the system need to do? For whom does it need to do it? What are the outputs of the system? Do they meet the stated need? On a lower level, design can be taken to mean the process by which you define the participants of a system and organize their relationships. This chapter is concerned with the second sense: the definition and disposition of classes and objects.
 
+对「代码设计」的理解涉及系统的定义：确定系统的需求、作用域和目标。系统需要做什么？谁需要使用它？系统输出的内容是什么？系统可以满足一定的需求吗？从底层上看，设计是定义系统组成并组织各组件间关系的过程。本章从另一个角度考虑：类和对象的定义与配置。
+
 So what is a participant? An object-oriented system is made up of classes. It is important to decide the nature of these players in your system. Classes are made up, in part, of methods; so in defining your classes, you must decide which methods belong together. As you will see, though, classes are often combined in inheritance relationships to conform to common interfaces. It is these interfaces, or types, that should be your first port of call in designing your system.
 
-There are other relationships that you can define for your classes. You can create classes that are 
+那么什么是系统的参与者呢？面向对象的系统由一系列类组成。决定系统中这些类的角色是非常重要的，而类由方法组成，所以在定义类时，必须决定哪些方法应该放在一起。另外，类与类之问常常通过继承关系联系起来以便遵循公用的接口。因此，这些接口或类型应该是设计系统时首先要考虑的。
 
-composed of other types or that manage lists of other type instances. You can design classes that simply use other objects. The potential for such relationships of composition or use is built into your classes (e.g., through the use of type declarations in method signatures), but the actual object relationships take place at runtime, which can add flexibility to your design. You will see how to model these relationships in this chapter, and we’ll explore them further throughout the book.
+There are other relationships that you can define for your classes. You can create classes that are composed of other types or that manage lists of other type instances. You can design classes that simply use other objects. The potential for such relationships of composition or use is built into your classes (e.g., through the use of type declarations in method signatures), but the actual object relationships take place at runtime, which can add flexibility to your design. You will see how to model these relationships in this chapter, and we’ll explore them further throughout the book.
 
-As part of the design process, you must decide when an operation should belong to a type and when it should belong to another class used by the type. Everywhere you turn, you are presented with choices, decisions that might lead to clarity and elegance or might mire you in compromise.
+As part of the design process, you must decide when an operation should belong to a type and when it should belong to another class used by the type. Everywhere you turn, you are presented with choices, decisions that might lead to clarity and elegance or might mire you in compromise. In this chapter, I will examine some issues that might influence a few of these choices.
 
-In this chapter, I will examine some issues that might influence a few of these choices.
+你还可以为类定义其他关系。你可以创建由其他类型的对象组成的类，也可以创建用于管理多个其他对象实例的类。你还可以创建只是简单地用到其他对象的类。类之间的潜在关系往往在类的结构中就已经确定（例如类方法参数中的类型提示指定了要使用的对象类型），但是对象之间的实际关系只在代码执行时才产生，这些对象间的关系增加了代码的灵活性。在本章中，我们将看到如何为这些关系建立模型。在本书的后续章节中，我们还会深入研究。在设计过程中，必须决定某个操作何时属于某个类型，何时属于这个类型使用的另一个类。在每个地方你都面临选择，你的决定可能使代码更清晰、更优雅，也可能会让你陷入困境。
 
-Object-Oriented and Procedural Programming
+## 6.2 Object-Oriented and Procedural Programming
 
 How does object-oriented design differ from the more traditional procedural code? It is tempting to say that the primary distinction is that object-oriented code has objects in it. This is neither true nor useful. In PHP, you will often find procedural code using objects. You may also come across classes that contain tracts of procedural code. The presence of classes does not guarantee object-oriented design, even in a language such as Java, which forces you to do most things inside a class.
 
-One core difference between object-oriented and procedural code can be found in the way that 
-
-responsibility is distributed. Procedural code takes the form of a sequential series of commands and method calls. The controlling code tends to take responsibility for handling differing conditions. This top-down control can result in the development of duplications and dependencies across a project. Object-oriented code tries to minimize these dependencies by moving responsibility for handling tasks away from client code and toward the objects in the system.
+One core difference between object-oriented and procedural code can be found in the way that responsibility is distributed. Procedural code takes the form of a sequential series of commands and method calls. The controlling code tends to take responsibility for handling differing conditions. This top-down control can result in the development of duplications and dependencies across a project. Object-oriented code tries to minimize these dependencies by moving responsibility for handling tasks away from client code and toward the objects in the system.
 
 In this section, I’ll set up a simple problem and then analyze it in terms of both object-oriented and procedural code to illustrate these points. My project is to build a quick tool for reading from and writing to configuration files. In order to maintain focus on the structures of the code, I will omit implementation details in these examples.
 
-I’ll begin with a procedural approach to this problem. To start with, I will read and write text in this 
-
-format:
+I’ll begin with a procedural approach to this problem. To start with, I will read and write text in this format:
 
 key:value
 
@@ -57,10 +57,6 @@ looking for key/value pairs. It builds up an associative array as it goes. Final
 // listing 06.02
 
 $file = __DIR__ . "/params.txt";$params = [
-
-134
-
-Chapter 6 ■ ObjeCts and design
 
     "key1" => "val1",    "key2" => "val2",    "key3" => "val3",];writeParams($params, $file);$output = readParams($file);print_r($output);
 
@@ -83,10 +79,6 @@ The parameter file should be read in XML mode if the parameter file ends in .xml
 function readParams(string $source): array{    $params = [];    if (preg_match("/\.xml$/i", $source)) {        // read XML parameters from $source    } else {         // read text parameters from $source    }    return $params;}
 
 function writeParams(array $params, string $source){    if (preg_match("/\.xml$/i", $source)) {        // write XML parameters to $source    } else {        // write text parameters to $source    }}
-
-135
-
-Chapter 6 ■ ObjeCts and design
 
  illustrative code always involves a difficult balancing act. it needs to be clear enough to make its 
 
@@ -116,13 +108,9 @@ I define the addParam() method to allow the user to add parameters to the protec
 
 and getAllParams() to provide access to a copy of the array.
 
-136
-
 I also create a static getInstance() method that tests the file extension and returns a particular 
 
 subclass according to the results. Crucially, I define two abstract methods, read()and write(), ensuring that any subclasses will support this interface.
-
-Chapter 6 ■ ObjeCts and design
 
  ■ Note  placing a static method for generating child objects in the parent class is convenient. such a design decision has its own consequences, however. the ParamHandler type is now essentially limited to working with the concrete classes in this central conditional statement. What happens if you need to handle another format? Of course, if you are the maintainer of ParamHandler, you can always amend the getInstance() method. if you are a client coder, however, changing this library class may not be so easy (in fact, changing it won’t be hard, but you face the prospect of having to reapply your patch every time you reinstall the package that provides it). i will discuss issues of object creation in Chapter 9.
 
@@ -139,10 +127,6 @@ class XmlParamHandler extends ParamHandler{    public function write(): bool    
 // listing 06.06class TextParamHandler extends ParamHandler{    public function write(): bool    {        // write text        // using $this->params    }
 
     public function read(): bool    {        // read text        // and populate $this->params    }}
-
-137
-
-Chapter 6 ■ ObjeCts and design
 
 These classes simply provide implementations of the write() and read() methods. Each class will 
 
@@ -164,27 +148,29 @@ $test = ParamHandler::getInstance(__DIR__ . "/params.txt");$test->read(); // rea
 
 So, what can we learn from these two approaches?
 
-ResponsibilityThe controlling code in the procedural example takes responsibility for deciding about format—not once, but twice. The conditional code is tidied away into functions, certainly, but this merely disguises the fact of a single flow, making decisions as it goes. Calls to readParams() and to writeParams() take place in different contexts, so we are forced to repeat the file extension test in each function (or to perform variations on this test).
+### 6.2.1 Responsibility
+
+The controlling code in the procedural example takes responsibility for deciding about format—not once, but twice. The conditional code is tidied away into functions, certainly, but this merely disguises the fact of a single flow, making decisions as it goes. Calls to readParams() and to writeParams() take place in different contexts, so we are forced to repeat the file extension test in each function (or to perform variations on this test).
 
 In the object-oriented version, this choice about file format is made in the static getInstance() 
 
 method, which tests the file extension only once, serving up the correct subclass. The client code takes no responsibility for implementation. It uses the provided object with no knowledge of, or interest in, the particular subclass it belongs to. It knows only that it is working with a ParamHandler object, and that it will support write() and read(). While the procedural code busies itself about details, the object-oriented code works only with an interface, unconcerned about the details of implementation. Because responsibility for implementation lies with the objects and not with the client code, it would be easy to switch in support for new formats transparently.
 
-CohesionCohesion is the extent to which proximate procedures are related to one another. Ideally, you should create components that share a clear responsibility. If your code spreads related routines widely, you will find them harder to maintain as you have to hunt around to make changes.
+### Cohesion
+
+Cohesion is the extent to which proximate procedures are related to one another. Ideally, you should create components that share a clear responsibility. If your code spreads related routines widely, you will find them harder to maintain as you have to hunt around to make changes.
 
 Our ParamHandler classes collect related procedures into a common context. The methods for working 
 
 with XML share a context in which they can share data and where changes to one method can easily be reflected in another if necessary (e.g., if you needed to change an XML element name). The ParamHandler classes can therefore be said to have high cohesion.
 
-138
-
-Chapter 6 ■ ObjeCts and design
-
 The procedural example, on the other hand, separates related procedures. The code for working with 
 
 XML is spread across functions.
 
-CouplingTight coupling occurs when discrete parts of a system’s code are tightly bound up with one another so that a change in one part necessitates changes in the others. Tight coupling is by no means unique to procedural code, though the sequential nature of such code makes it prone to the problem.
+### Coupling
+
+Tight coupling occurs when discrete parts of a system’s code are tightly bound up with one another so that a change in one part necessitates changes in the others. Tight coupling is by no means unique to procedural code, though the sequential nature of such code makes it prone to the problem.
 
 You can see this kind of coupling in the procedural example. The writeParams() and readParams() functions run the same test on a file extension to determine how they should work with data. Any change in logic you make to one will have to be implemented in the other. If you were to add a new format, for example, you would have to bring the functions into line with one another, so that they both implement a new file extension test in the same way. This problem can only get worse as you add new parameter-related functions.
 
@@ -192,7 +178,9 @@ The object-oriented example decouples the individual subclasses from one another
 
 client code. If you were required to add a new parameter format, you could simply create a new subclass, amending a single test in the static getInstance() method.
 
-OrthogonalityThe killer combination of components with tightly defined responsibilities that are also independent from the wider system is sometimes referred to as orthogonality. Andrew Hunt and David Thomas discuss this subject in their book, The Pragmatic Programmer: From Journeyman to Master (Addison-Wesley Professional, 1999).
+### Orthogonality
+
+The killer combination of components with tightly defined responsibilities that are also independent from the wider system is sometimes referred to as orthogonality. Andrew Hunt and David Thomas discuss this subject in their book, The Pragmatic Programmer: From Journeyman to Master (Addison-Wesley Professional, 1999).
 
 Orthogonality, it is argued, promotes reuse in that components can be plugged into new systems 
 
@@ -200,7 +188,7 @@ without needing any special configuration. Such components will have clear input
 
 There is nothing automatic about loose coupling and high cohesion in a class context. We could, after all, embed our entire procedural example into one misguided class. So how can we achieve this balance in our code? I usually start by considering the classes that should live in my system.
 
-Choosing Your Classes
+## 6.3 Choosing Your Classes
 
 It can be surprisingly difficult to define the boundaries of your classes, especially as they will evolve with any system that you build.
 
@@ -211,10 +199,6 @@ feature software representations of real things—Person, Invoice, and Shop clas
 Let’s consider the ShopProduct example that we created in Chapter 3. Our system exists to offer 
 
 products to a customer, so defining a ShopProduct class is an obvious choice. But is that the only decision we need to make? We provide methods such as getTitle() and getPrice() for accessing product data. When we are asked to provide a mechanism for outputting summary information for invoices and delivery notes, it seems to make sense to define a write() method. When the client asks us to provide the product summaries 
-
-139
-
-Chapter 6 ■ ObjeCts and design
 
 in different formats, we look again at our class. We duly create writeXML() and writeHTML() methods in addition to the write() method. Or we add conditional code to write() to output different formats, according to an option flag.
 
@@ -230,7 +214,7 @@ So, ShopProduct classes are responsible for managing product data. If we add met
 
  ■ Note an otherwise unrelated class, for example. although this would seem to violate the rule that a class should have a singular responsibility, it can be the most convenient place for the functionality to live because a method has to have full access to an instance’s fields. Using local methods for persistence can also save us from creating a parallel hierarchy of persistence classes mirroring our savable classes, and thereby introducing unavoidable coupling. We deal with other strategies for object persistence in Chapter 12. avoid religious adherence to design rules; they are not a substitute for analyzing the problem before you. try to remain alive to the reasoning behind the rule, and emphasize that over the rule itself.
 
-Polymorphism
+## Polymorphism
 
 Polymorphism, or class switching, is a common feature of object-oriented systems. You have encountered it several times already in this book.
 
@@ -243,10 +227,6 @@ managed functionality for books and CDs, in addition to generic products. In ord
 // listing 03.31
 
     public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        if ($this->type == 'book') {            $base .= ": page count - {$this->numPages}";        } elseif ($this->type == 'cd') {
-
-140
-
-Chapter 6 ■ ObjeCts and design
 
             $base .= ": playing time - {$this->playLength}";        }        return $base;    }
 
@@ -276,11 +256,7 @@ As you have seen, PHP enforces the interfaces defined by abstract classes. This 
 
 can be sure that a concrete child class will support exactly the same method signatures as those defined by an abstract parent. This includes type declarations and access controls. Client code can, therefore, treat all children of a common superclass interchangeably (as long it only relies on only functionality defined in the parent).
 
-141
-
-Chapter 6 ■ ObjeCts and design
-
-Encapsulation
+## Encapsulation
 
 Encapsulation simply means the hiding of data and functionality from a client. And once again, it is a key object-oriented concept.
 
@@ -314,13 +290,9 @@ There are two lessons to take away from this example. First, encapsulation helps
 
 orthogonal code. Second, the extent to which encapsulation is enforceable is beside the point. Encapsulation is a technique that should be observed equally by classes and their clients.
 
-Forget How to Do It
+## Forget How to Do It
 
 If you are like me, the mention of a problem will set your mind racing, looking for mechanisms that might provide a solution. You might select functions that will address an issue, revisit clever regular expressions, track down Composer packages. You probably have some pasteable code in an old project that does 
-
-142
-
-Chapter 6 ■ ObjeCts and design
 
 something somewhat similar. At the design stage, you can profit by setting all that aside for a while. Empty your head of procedures and mechanisms.
 
@@ -336,7 +308,7 @@ In Design Patterns: Elements of Reusable Object-Oriented Software (Addison-Wesle
 
 1995), the Gang of Four summed up this principle with the phrase,「Program to an interface, not an implementation.」It is a good one to add to your coder’s handbook.
 
-Four Signposts
+## Four Signposts
 
 Very few people get it absolutely right at the design stage. Most of us amend our code as requirements change or as we gain a deeper understanding of the nature of the problem we are addressing.
 
@@ -354,10 +326,6 @@ Global variables have their place, but they do need to be viewed with some level
 
 quite a high level of suspicion, by the way. By using a global variable, or by giving a class any kind of knowledge about its wider domain, you anchor it into its context, making it less reusable and dependent on code beyond its control. Remember, you want to decouple your classes and routines and not create interdependence. Try to limit a class’s knowledge of its context. I will look at some strategies for doing this later in the book.
 
-143
-
-Chapter 6 ■ ObjeCts and design
-
 The Jack of All TradesIs your class trying to do too many things at once? If so, see if you can list the responsibilities of the class. You may find that one of them will form the basis of a good class itself.
 
 Leaving an overzealous class unchanged can cause particular problems if you create subclasses. Which 
@@ -370,7 +338,7 @@ If you find that you are testing for certain conditions frequently within a clas
 
 these tests mirrored across more than one method, this could be a sign that your one class should be two or more. See whether the structure of the conditional code suggests responsibilities that could be expressed in classes. The new classes should implement a shared abstract base class. Chances are that you will then have to work out how to pass the right class to client code. I will cover some patterns for creating objects in Chapter 9.
 
-The UML
+## The UML
 
 So far in this book, I have let the code speak for itself, and I have used short examples to illustrate concepts such as inheritance and polymorphism.
 
@@ -393,10 +361,6 @@ This luminous clarity is often harder to find in code fragments and bullet point
 Class DiagramsAlthough class diagrams are only one aspect of the UML, they are perhaps the most ubiquitous. Because they are particularly useful for describing object-oriented relationships, I will primarily use these in this book.
 
 Representing ClassesAs you might expect, classes are the main constituents of class diagrams. A class is represented by a named box (see Figure 6-1).
-
-144
-
-Chapter 6 ■ ObjeCts and design
 
 Figure 6-1.  A class
 
@@ -421,10 +385,6 @@ Interfaces are defined in the same way as classes, except that they must include
 extension to the UML), as shown in Figure 6-4.
 
 Figure 6-4.  An interface
-
-145
-
-Chapter 6 ■ ObjeCts and design
 
 AttributesBroadly speaking, attributes describe a class’s properties. Attributes are listed in the section directly beneath the class name (see Figure 6-5).
 
@@ -468,10 +428,6 @@ As you can see, operations use a similar syntax to that used by attributes. The 
 
 the method name. A list of parameters is enclosed in parentheses. The method’s return type, if any, is delineated by a colon. Parameters are separated by commas and follow the attribute syntax, with the attribute name separated from its type by a colon.
 
-146
-
-Chapter 6 ■ ObjeCts and design
-
 As you might expect, this syntax is relatively flexible. You can omit the visibility flag and the return type. 
 
 Parameters are often represented by their type alone, as the argument name is not usually significant.
@@ -494,10 +450,6 @@ In Figure 6-9, we model two classes and create an association between them.
 
 Figure 6-9.  A class association
 
-147
-
-Chapter 6 ■ ObjeCts and design
-
 At this stage, we are vague about the nature of this relationship. We have only specified that a Teacher object 
 
 will have a reference to one or more Pupil objects, or vice versa. This relationship may or may not be reciprocal.You can use arrows to describe the direction of the association. If the Teacher class has an instance of the Pupil class but not the other way round, then you should make your association an arrow leading from the Teacher to the Pupil class. This association, which is called unidirectional, is shown in Figure 6-10.
@@ -518,10 +470,6 @@ In Figure 6-13, there can be one Teacher object and between five and ten Pupil 
 
 Figure 6-13.  Defining multiplicity for an association
 
-148
-
-Chapter 6 ■ ObjeCts and design
-
 Aggregation and CompositionAggregation and composition are similar to association. All describe a situation in which a class holds a permanent reference to one or more instances of another. With aggregation and composition, though, the referenced instances form an intrinsic part of the referring object.
 
 In the case of aggregation, the contained objects are a core part of the container, but they can also be 
@@ -536,10 +484,6 @@ Composition represents an even stronger relationship than this. In composition, 
 
 can be referenced by its container only. It should be deleted when the container is deleted. Composition relationships are depicted in the same way as aggregation relationships, except that the diamond should be filled (see Figure 6-15).
 
-149
-
-Chapter 6 ■ ObjeCts and design
-
 Figure 6-15.  Composition
 
 A Person class maintains a reference to a SocialSecurityData object. The contained instance can 
@@ -549,10 +493,6 @@ belong only to the containing Person object.
 Describing UseThe use relationship is described as a dependency in the UML. It is the most transient of the relationships discussed in this section because it does not describe a permanent link between classes.A used class may be passed as an argument or acquired as a result of a method call.The Report class in Figure 6-16 uses a ShopProductWriter object. The use relationship is shown by the broken line and open arrow that connects the two. It does not, however, maintain this reference as a property in the same way that a ShopProductWriter object maintains an array of ShopProduct objects.
 
 Figure 6-16.  A dependency relationship
-
-150
-
-Chapter 6 ■ ObjeCts and design
 
 Using NotesClass diagrams can capture the structure of a system, but they provide no sense of process. Figure 6-16 tells us about the classes in our system. From Figure 6-16, you know that a Report object uses a ShopProductWriter, but you don’t know the mechanics of this. In Figure 6-17, I use a note to clarify things somewhat.
 
@@ -576,10 +516,6 @@ working independently in my diagram, I would include an object name using the fo
 
 You show the lifetime of the process you are modeling from top to bottom, as in Figure 6-19.
 
-151
-
-Chapter 6 ■ ObjeCts and design
-
 Figure 6-19.  Object lifelines in a sequence diagram
 
 The vertical broken lines represent the lifetime of the objects in the system. The larger boxes that follow 
@@ -588,13 +524,9 @@ the lifelines represent the focus of a process. If you read Figure 6-19 from to
 
 Figure 6-20.  The complete sequence diagram
 
-152
-
 The arrows represent the messages sent from one object to another. Return values are often left 
 
 implicit (although they can be represented by a broken line, passing from the invoked object to the message originator). Each message is labeled using the relevant method call. You can be quite flexible with your labeling, although there is some syntax. Square brackets represent a condition:
-
-Chapter 6 ■ ObjeCts and design
 
 [okToPrint]write()
 

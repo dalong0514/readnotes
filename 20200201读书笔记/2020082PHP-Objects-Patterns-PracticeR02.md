@@ -60,58 +60,28 @@ class useful_Outputter{    //}
 
 The problem here was that, as projects got more involved, class names grew longer and longer. It was not an enormous problem, but it resulted in issues with code readability, and made it harder to hold classnames in your head while you worked. Many cumulative coding hours were lost to typos. If you’re maintaining legacy code, you may well still see code that follows this convention. For that reason, I’ll return briefly to the old way of handling packages later in this chapter.
 
-## 0106. Object-Oriented PHP
+## 0106. Objects and Design
 
-This chapter explains concepts of object-oriented (OO) development and shows how they can be implemented in PHP. PHP’s OO implementation has all the features you would expect in a fully object-oriented language. We point out each of these features as we go through this chapter. Key topics covered in this chapter include: 1) Object-oriented concepts. 2) Classes, attributes, and operations. 3) Class attributes. 4) Per-class constants. 5) Class method invocation. 6) Inheritance. 7) Access modifiers. 8) Static methods. 9) Type hinting. 10) Late static bindings. 11) Object cloning. 12) Abstract classes. 13) Class design. 14) Implementation of your design. 15) Advanced OO functionality.
+In this chapter, I went beyond the nuts and bolts of object-oriented programming to look at some key design issues. I examined features such as encapsulation, loose coupling, and cohesion that are essential aspects of a flexible and reusable object-oriented system. I went on to look at the UML, laying groundwork that will be essential in working with patterns later in the book.
 
-The next chapter explains PHP’s exception handling capabilities. Exceptions provide an elegant mechanism for dealing with runtime errors.
+Now that we have seen the mechanics of PHP’s object support in some detail, we will step back from the details and consider how best to use the tools that we have encountered. In this chapter, I introduce you to some of the issues surrounding objects and design. I will also look at the UML, a powerful graphical language for describing object-oriented systems.
 
-### 6.1 Understanding Object-Oriented Concepts
+This chapter will cover the following topics: 1) Design basics: What I mean by design, and how object-oriented design differs from procedural code. 2) Class scope: How to decide what to include in a class. 3) Encapsulation: Hiding implementation and data behind a class’s interface. 4) Polymorphism: Using a common supertype to allow the transparent substitution of specialized subtypes at runtime. 5) The UML: Using diagrams to describe object-oriented architectures.
 
-Modern programming languages usually support or even require an object-oriented approach to software development. Object-oriented development attempts to use the classifications, relationships, and properties of the objects in the system to aid in program development and code reuse.
+### 6.1 Defining Code Design
 
-#### 6.1.1 Classes and Objects
+One sense of code design concerns the definition of a system: the determination of a system’s requirements, scope, and objectives. What does the system need to do? For whom does it need to do it? What are the outputs of the system? Do they meet the stated need? On a lower level, design can be taken to mean the process by which you define the participants of a system and organize their relationships. This chapter is concerned with the second sense: the definition and disposition of classes and objects.
 
-In the context of OO software, an object can be almost any item or concept—a physical object such as a desk or a customer; or a conceptual object that exists only in software, such as a text input area or a file. Generally, you will be most interested in objects, including both real-world objects and conceptual objects, that need to be represented in software.
+对「代码设计」的理解涉及系统的定义：确定系统的需求、作用域和目标。系统需要做什么？谁需要使用它？系统输出的内容是什么？系统可以满足一定的需求吗？从底层上看，设计是定义系统组成并组织各组件间关系的过程。本章从另一个角度考虑：类和对象的定义与配置。
 
-Object-oriented software is designed and built as a set of self-contained objects with both attributes and operations that interact to meet your needs. Attributes are properties or variables that relate to the object. Operations are methods, actions, or functions that the object can perform to modify itself or perform for some external effect. (You will hear the term attribute used interchangeably with the terms member variable and property, and the term operation used interchangeably with method.)
+So what is a participant? An object-oriented system is made up of classes. It is important to decide the nature of these players in your system. Classes are made up, in part, of methods; so in defining your classes, you must decide which methods belong together. As you will see, though, classes are often combined in inheritance relationships to conform to common interfaces. It is these interfaces, or types, that should be your first port of call in designing your system.
 
-Object-oriented software’s central advantage is its capability to support and encourage  encapsulation—also known as data hiding. Essentially, access to the data within an object is available only via the object’s operations, known as the interface of the object.
+那么什么是系统的参与者呢？面向对象的系统由一系列类组成。决定系统中这些类的角色是非常重要的，而类由方法组成，所以在定义类时，必须决定哪些方法应该放在一起。另外，类与类之问常常通过继承关系联系起来以便遵循公用的接口。因此，这些接口或类型应该是设计系统时首先要考虑的。
 
-An object’s functionality is bound to the data it uses. You can easily alter the details controlling how the object is implemented to improve performance, add new features, or fix bugs without having to change the interface. Changing the interface could have ripple effects throughout the project, but encapsulation allows you to make changes and fix bugs without your actions cascading to other parts of the project.
+There are other relationships that you can define for your classes. You can create classes that are composed of other types or that manage lists of other type instances. You can design classes that simply use other objects. The potential for such relationships of composition or use is built into your classes (e.g., through the use of type declarations in method signatures), but the actual object relationships take place at runtime, which can add flexibility to your design. You will see how to model these relationships in this chapter, and we’ll explore them further throughout the book.
 
-In other areas of software development, object orientation is the norm, and procedural or function-oriented software is considered old fashioned. However, many web applications are still designed and written using an ad hoc approach following a function-oriented methodology.
+As part of the design process, you must decide when an operation should belong to a type and when it should belong to another class used by the type. Everywhere you turn, you are presented with choices, decisions that might lead to clarity and elegance or might mire you in compromise. In this chapter, I will examine some issues that might influence a few of these choices.
 
-A number of reasons for using this approach exist. Many web projects are relatively small and straightforward. You can get away with picking up a saw and building a wooden spice rack without planning your approach, and you can successfully complete the majority of web software projects in the same way because of their small size. However, if you picked up a saw and attempted to build a house without formal planning, you wouldn’t get quality results, if you got results at all. The same is true for large software projects.
-
-Many web projects evolve from a set of hyperlinked pages into a complex application. Complex applications, whether presented via dialog boxes and windows or via dynamically generated HTML pages, need a properly thought-out development methodology. Object orientation can help you to manage the complexity in your projects, increase code reusability, and thereby reduce maintenance costs.
-
-In OO software, an object is a unique and identifiable collection of stored data and operations that operate on that data. For instance, you might have two objects that represent buttons. Even if both have a label「OK,」a width of 60 pixels, a height of 20 pixels, and any other attributes that are identical, you still need to be able to deal with one button or the other. In software, separate variables act as handles (unique identifiers) for the objects.
-
-Objects can be grouped into classes. Classes represent a set of objects that might vary from individual to individual, but must have a certain amount in common. A class contains objects that all have the same operations behaving in the same way and the same attributes representing the same things, although the values of those attributes vary from object to object.
-
-You can think of the noun bicycle as a class of objects describing many distinct bicycles with many common features or attributes—such as two wheels, a color, and a size—and operations, such as move. My own bicycle can be thought of as an object that fits into the class bicycle. It has all the common features of all bicycles, including a move operation that behaves the same as most other bicycles move—even if it is used more rarely. My bicycle’s attributes have unique values because my bicycle is green, and not all bicycles are that color.
-
-#### 6.1.2 Polymorphism
-
-An object-oriented programming language must support polymorphism, which means that different classes can have different behaviors for the same operation. If, for instance, you have a class car and a class bicycle, each can have different move operations. For real-world objects, this would rarely be a problem. Bicycles are not likely to become confused and start using a car’s move operation instead. However, a programming language does not possess the common sense of the real world, so the language must support polymorphism to know which move operation to use on a particular object.
-
-Polymorphism is more a characteristic of behaviors than it is of objects. In PHP, only member functions of a class can be polymorphic. A real-world comparison is that of verbs in natural languages, which are equivalent to member functions. Consider the ways a bicycle can be used in real life. You can clean it, move it, disassemble it, repair it, or paint it, among other things.
-
-1『只有类里的成员函数可以多态，成员函数类比于语言里的动词，很赞。』
-
-These verbs describe generic actions because you don’t know what kind of object is being acted on. (This type of abstraction of objects and actions is one of the distinguishing characteristics of human intelligence.)
-
-For example, moving a bicycle requires completely different actions from those required for moving a car, even though the concepts are similar. The verb move can be associated with a particular set of actions only after the object acted on is made known.
-
-#### 6.1.3 Inheritance
-
-Inheritance allows you to create a hierarchical relationship between classes using subclasses. A subclass inherits attributes and operations from its superclass. For example, car and bicycle have some things in common. You could use a class vehicle to contain the things such as a color attribute and a move operation that all vehicles have, and then let the car and bicycle classes inherit from vehicle. You will hear subclass, derived class, and child used interchangeably. Similarly, you will hear superclass and parent used interchangeably.
-
-With inheritance, you can build on and add to existing classes. From a simple base class, you can derive more complex and specialized classes as the need arises. This capability makes your code more reusable, which is one of the important advantages of an object-oriented approach.
-
-Using inheritance might save you work if operations can be written once in a superclass rather than many times in separate subclasses. It might also allow you to more accurately model  real-world relationships. If a sentence about two classes makes sense with「is a」between the classes, inheritance is probably appropriate. The sentence「a car is a vehicle」makes sense, but the sentence「a vehicle is a car」does not make sense because not all vehicles are cars. Therefore, car can inherit from vehicle.
-
-
+你还可以为类定义其他关系。你可以创建由其他类型的对象组成的类，也可以创建用于管理多个其他对象实例的类。你还可以创建只是简单地用到其他对象的类。类之间的潜在关系往往在类的结构中就已经确定（例如类方法参数中的类型提示指定了要使用的对象类型），但是对象之间的实际关系只在代码执行时才产生，这些对象间的关系增加了代码的灵活性。在本章中，我们将看到如何为这些关系建立模型。在本书的后续章节中，我们还会深入研究。在设计过程中，必须决定某个操作何时属于某个类型，何时属于这个类型使用的另一个类。在每个地方你都面临选择，你的决定可能使代码更清晰、更优雅，也可能会让你陷入困境。
 
 
