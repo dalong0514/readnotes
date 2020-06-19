@@ -2290,6 +2290,56 @@ print_r(Document::create());
 
 1『上面才是正确的实现方法，需要使用 Static Bindings。』
 
+3『
+
+数据流开发时用到了这个知识实现了工厂模式。
+
+```php
+<?php
+
+namespace App\Logic;
+
+use App\Exceptions\LogicExceptions;
+use App\Model\BaseModel;
+
+class BaseLogic
+{
+    protected $model;
+
+    public function __construct()
+    {
+    }
+
+    /**
+     * @param BaseModel $model
+     * @return static
+     */
+    public static function build(BaseModel $model)
+    {
+        return (new static())->setModel($model);
+    }
+
+    private function setModel(BaseModel $model)
+    {
+        $this->model = $model;
+        return $this;
+    }
+
+    /**
+     * 抛出错误信息
+     * @param string msg
+     * @param int code
+     * @throws LogicExceptions
+     */
+    public function error($msg = '错误', $code = 1001)
+    {
+        throw new LogicExceptions($msg, $code);
+    }
+}
+```
+
+』
+
 The static keyword can be used for more than just instantiation. Like self and parent, static can be used as an identifier for static method calls, even from a non-static context. Let’s say I want to include the concept of a group for my DomainObject classes. By default in my new classification, all classes fall into category「default」, but I’d like to be able override this for some branches of my inheritance hierarchy:
 
 static 关键字不仅仅可以用于实例化。和 self 和 parent 一样，static 还可以作为静态方法调用的标识符，甚至是从非静态上下文中调用。假设我想为 DomainObject 引入组的概念。默认情况下，所有类都属于 default 类别，但我想能为继承层次结构的某些分支重写类别。
