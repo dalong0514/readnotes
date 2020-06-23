@@ -32,6 +32,8 @@
 
 ### 0501. 任意卡——数组的常用操作
 
+更详细的可以参考官方文档：[索引集合类 (Indexed collections) - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Indexed_collections#map%E6%95%B0%E7%BB%84)。
+
 1、数据流开发时的几个应用场景。map() 根据单体号映射数组，然后通过 Set 去重，最后 Set 转数组。
 
 2、过滤函数 filter() 应用场景实在太多了，传入一个回调函数，在回调函数里对每一个数组子项 item 进行筛选，逻辑判断为 ture 的话，该子项筛选出来。还有个 find() 方法，它仅仅返回第一个判断为 ture 的子项。
@@ -49,6 +51,16 @@ getMonomerData() {
   this.confirmdata = this.roomdata.filter(item => item.project_id === this.searchvalue);
   console.log(this.confirmdata);
 },
+```
+
+3、数组内各元素求和。用 reduce() 函数，传一个回调函数进去，数据流开发里的一个例子：
+
+```js
+  let tempSystem = {};
+  tempSystem.system_normal_exhaust = this.roomData.filter(item => item.is_system)
+  .map(item => item.min_frequency)
+  .reduce((aggregated, item) => aggregated + item, 0);
+  this.systemData.push(tempSystem);
 ```
 
 ## 模板
