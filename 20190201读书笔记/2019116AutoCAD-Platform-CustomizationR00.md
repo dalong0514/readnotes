@@ -1,4 +1,4 @@
-# 2019116AutoCAD_Platform_CustomizationR00
+# 2019116AutoCAD-Platform-CustomizationR00
 
 ## 记忆时间
 
@@ -8,21 +8,9 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
-
 ### 0201. 术语卡——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
-
-例子。
 
 ### 0202. 术语卡——
 
@@ -65,12 +53,6 @@
 用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
 
 ### 2. 摘录及评论
-
-1『自己的观点』
-
-2『行动指南』
-
-3『与其他知识的连接』
 
 ## Introduction
 
@@ -128,7 +110,7 @@ Chapter 17: Creating and Modifying Nongraphical Objects In this chapter, you'll 
 
 Chapter 18: Working with the Operating System and External Files In this chapter, you will learn how to work with settings and files stored outside of the AutoCAD program. Settings can be stored in the Windows Registry and Plist files on Mac OS, and they can be used to affect the behavior of the AutoCAD program or persist values for your custom programs between AutoCAD sessions. Files and folders stored in the operating system can be accessed and manipulated from the AutoCAD program, which allows you to set up project folders or populate project information in the title block of a drawing from an external file.
 
-2『16 和18 章里应该有，将数据导出的相关信息。结果发现 17 章里也有这方面的信息。最终竟然在第 3 章里找到解决办法，直接用命令 dataextraction 就可以提取块里面的属性信息，以 csv 或 txt 格式导出来。』
+2『 16 和18 章里应该有，将数据导出的相关信息。结果发现 17 章里也有这方面的信息。最终竟然在第 3 章里找到解决办法，直接用命令 dataextraction 就可以提取块里面的属性信息，以 csv 或 txt 格式导出来。』
 
 Chapter 19: Catching and Handling Errors In this chapter, you will learn how to catch and handle errors that are caused by an AutoLISP function and keep an AutoLISP program from terminating early. AutoLISP provides functions that allow you to trace a function, see arguments as they are passed, catch an error and determine how it should be handled, and group functions together so all the actions performed can be rolled back as a single operation.
 
@@ -166,6 +148,8 @@ Chapter 34: Creating and Displaying User Forms In this chapter, you will learn h
 
 Chapter 35: Communicating with Other Applications In this chapter, you will learn how to work with libraries provided by other applications. These libraries can be used to access features of the Windows operating system, read and write content in an external text or XML file, and even work with the applications that make up Microsoft Office.
 
+1『这章涉及与其他 app 的交互，那么有提取 cad 数据直接进服务器的实现线索。（2020-06-25）』
+
 Chapter 36: Handling Errors and Deploying VBA Projects In this chapter, you will learn how to catch and handle errors that are caused by the incorrect use of a function or the improper handling of a value that is returned by a function. The Visual Basic Editor provides tools that allow you to debug code statements, evaluate values assigned to user-defined variables, identify where within a program an error has occurred, and determine how errors should be handled. The chapter wraps everything up with learning how to deploy a VBA project on other workstations for use by individuals at your company.
 
 Bonus Chapter 1: Working with 2D Objects and Object Properties In this chapter, you build on the concepts covered in Chapter 27,「Creating and Modifying Drawing Objects.」You will learn to create additional types of 2D objects and use advanced methods of modifying objects, you also learn to work with complex 2D objects, such as regions and hatch fills. The management of layers and linetypes and the control of the appearance of objects are also covered.
@@ -177,10 +161,6 @@ Bonus Chapter 3: Development Resources In this chapter, you discover resources t
 ## 01. Establishing the Foundation for Drawing Standards
 
 Well-established drawing standards ensure that your drawings all look the same when they are presented to the client, and they can make it easier to: Train new drafters and other professionals on your company's standards that use AutoCAD; Identify which drawing and externally referenced files are associated with a project; Determine the purpose of a named object in a drawing; Share project files with clients and contractors because your standards are well defined.
-
-
-
-
 
 ## 03. Building the Real World One Block at a Time
 
@@ -257,27 +237,4 @@ One of the benefits of using attributes with your blocks is that you can extract
 1『dataextraction 命令可以提取实体对象里的各个数据，可以筛选出块的属性信息，可以导出成 csv、txt 等格式。可以说这个命令可以满足我想要做数据分析所需的数据源了，哈哈；用命令 -attext 可以直接提取属性信息，但需要一个模板，没有 dataextraction 方便。』
 
 NOTE: After you place a table using the Data Extraction Wizard, a Data Link icon that looks like two chain links appears in the application's status-bar tray. Right-click the icon or the table in the drawing, and click Update All Data Links to ensure the information displayed in the table is up to date.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

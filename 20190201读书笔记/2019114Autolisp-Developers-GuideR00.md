@@ -1,4 +1,4 @@
-# 2019114autolisp_developers_guideR00
+# 2019114Autolisp-Developers-GuideR00
 
 ## 记忆时间
 
@@ -8,21 +8,9 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
-
 ### 0201. 术语卡——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
-
-例子。
 
 ### 0202. 术语卡——
 
@@ -31,20 +19,6 @@
 ### 0301. 人名卡——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
-
-#### 01. 出生日期
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及经历
-
-#### 03. 论文及书籍
-
-#### 04. 演讲汇总
-
-找一个他的 TED 演讲，有的话。
 
 ### 0401. 金句卡——
 
@@ -133,15 +107,7 @@ AutoCAD 2010. Changes: help - Invokes the Help facility. Function was updated to
 
 AutoCAD 2009. New: initcommandversion - Forces the next command to run with the specified version.
 
-## 0102About_Namespaces.md
-
-## 0103About_AutoLISP_Basics.md
-
-## 0104Communicate_With_AutoCAD.md
-
-## 0106Error_Codes_Reference_FAQ.md
-
-## 0105Manipulate_AutoCAD_Objects.md
+## 0105Manipulate-AutoCAD-Objects.md
 
 ### 1. 逻辑脉络
 
@@ -212,7 +178,7 @@ For example, you can obtain a selection set that includes all objects of a given
 
 If both the group code and the desired value are known, the list may be quoted as shown previously. If either is specified by a variable, the list must be constructed using the list and cons function. For example, the following code creates a selection set of all objects in the database that are on layer FLOOR3:
 
-```
+```c
 (setq lay_name "FLOOR3")
 (setq ss1
   (ssget "X"
@@ -778,23 +744,5 @@ Before you register an application, you should first check to see if the name is
 ```
 
 The regapp function provides a measure of security, but it cannot guarantee that two separate applications have not chosen the same name. One way of ensuring this is to adopt a naming scheme that uses the company or product name and a unique number (like your telephone number or the current date and time).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
