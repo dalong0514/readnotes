@@ -656,7 +656,7 @@ class Box {
 
 我们现在将使用七个基本的 PHPUnit 断言来为我们的 Box 类编写测试。这些断言是：
 
-```
+```php
 assertTrue()
 assertFalse()
 assertEquals()
@@ -672,7 +672,7 @@ assertTrue() 和 assertFalse() 允许你声明一个值等于 true 或 false 。
 
 要在 PHPUnit 中为此编写测试，我们可以执行以下操作：
 
-```
+```php
 <?php
 
 namespace Tests\Unit;
@@ -786,7 +786,7 @@ OK (3 tests, 6 assertions)
 
 让我们来执行以下测试：
 
-```
+```php
 <?php
 
 namespace Tests\Unit;
@@ -868,7 +868,7 @@ class ExampleTest extends TestCase
 
 如果你打开你的 web 浏览器，访问我们的程序（如果你没有启动你的 web 服务器，你可以运行 php artisan serve ），你应该可以在 web 根目录上看到屏幕上有 “Laravel 5” 的文本。 鉴于这个测试已经通过了 PHPUnit，我们可以很确定地说我们对这个测试示例改造是正确的。
 
-这个测试确保了访问/路径，网页可以返回 “'Laravel 5” 的文本。一个如此简单的检查也许不代表什么，但如果你的网站上要显示关键信息，它就可以在一个别处的改动导致这个页面无法正常显示正确的信息时，防止你部署一个被损坏的程序。
+这个测试确保了访问 / 路径，网页可以返回 “'Laravel 5” 的文本。一个如此简单的检查也许不代表什么，但如果你的网站上要显示关键信息，它就可以在一个别处的改动导致这个页面无法正常显示正确的信息时，防止你部署一个被损坏的程序。
 
 #### 5.1 visit()、see() 以及 dontSee()
 
@@ -1208,7 +1208,7 @@ class BetaTest extends TestCase
 
 3『 [Semaphore 2.0 Documentation](https://docs.semaphoreci.com/) 』
 
-如果你还没有一个 Semaphore 账户， 先去 注册一个免费的 Semaphore 账户。接下来需要做的是将它添加到你的项目，并按照提示逐步去做来执行你的测试：
+如果你还没有一个 Semaphore 账户， 先去注册一个免费的 Semaphore 账户。接下来需要做的是将它添加到你的项目，并按照提示逐步去做来执行你的测试：
 
 ```
 composer install --prefer-source
