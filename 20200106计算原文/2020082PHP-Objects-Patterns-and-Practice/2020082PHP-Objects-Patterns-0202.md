@@ -8,157 +8,247 @@ This chapter will cover the following topics: 1) Composition: How to use object 
 
 I first started working with objects in the Java language. As you might expect, it took a while before some concepts clicked. When it did happen, though, it happened very fast, almost with the force of revelation. The elegance of inheritance and encapsulation bowled me over. I could sense that this was a different way of defining and building systems. I got polymorphism, working with a type and switching implementations at runtime. It seemed to me that this understanding would solve most of my design problems, and help me design beautiful and elegant systems.
 
-All the books on my desk at the time focused on language features and the very many APIs available to the Java programmer. Beyond a brief definition of polymorphism, there was little attempt to examine design strategies.
+1『又见多态，可以替代条件语句的功能。working with a type and switching implementations at runtime. 』
 
-Language features alone do not engender object-oriented design. Although my projects fulfilled their 
+All the books on my desk at the time focused on language features and the very many APIs available to the Java programmer. Beyond a brief definition of polymorphism, there was little attempt to examine design strategies. Language features alone do not engender object-oriented design. Although my projects fulfilled their functional requirements, the kind of design that inheritance, encapsulation and polymorphism had seemed to offer continued to elude me.
 
-functional requirements, the kind of design that inheritance, encapsulation and polymorphism had seemed to offer continued to elude me.
+My inheritance hierarchies grew wider and deeper as I attempted to build a new class for every eventuality. The structure of my systems made it hard to convey messages from one tier to another without giving intermediate classes too much awareness of their surroundings, binding them into the application and making them unusable in new contexts.
 
-My inheritance hierarchies grew wider and deeper as I attempted to build a new class for every 
+It wasn’t until I discovered Design Patterns: Elements of Reusable Object-Oriented Software (Addison-Wesley Professional, 1995), otherwise known as the Gang of Four book, that I realized I had missed an entire design dimension. By that time, I had already discovered some of the core patterns for myself, but others contributed to a new way of thinking.
 
-eventuality. The structure of my systems made it hard to convey messages from one tier to another without giving intermediate classes too much awareness of their surroundings, binding them into the application and making them unusable in new contexts.
+I found that I had over-privileged inheritance in my designs, trying to build too much functionality into my classes. But where else can functionality go in an object-oriented system?
 
-It wasn’t until I discovered Design Patterns: Elements of Reusable Object-Oriented Software (Addison-
+I found the answer in composition. Software components can be defined at runtime by combining objects in flexible relationships. The Gang of Four boiled this down into a principle:「favor composition over inheritance.」The patterns described ways in which objects could be combined at runtime to achieve a level of flexibility impossible in an inheritance tree alone.
 
-Wesley Professional, 1995), otherwise known as the Gang of Four book, that I realized I had missed an entire design dimension. By that time, I had already discovered some of the core patterns for myself, but others contributed to a new way of thinking.
+1『金子知识啊，组合替代继承。』
 
-I found that I had over-privileged inheritance in my designs, trying to build too much functionality into 
+因为我努力地为每一个可能性建造新类，所以我的继承层次体系逐渐变得更广、更深。而在这样的系统结构中，如果中间类对于环境没有足够的了解，如果没有将它们绑定到具体应用中，如果没有使它们只可用于当前局部环境中，那么在系统的层级中传递信息将会变得十分困难。直到发现《设计模式》一书，我才意识到原来我没有完全理解什么是设计。虽然那时我自己也已经发现了一些核心模式，但是书中介绍的其他模式则提供了一种全新的思维方式。
 
-my classes. But where else can functionality go in an object-oriented system?
+我在设计中给了继承过多的特权，总是试图为我的类构建太多的功能。在面向对象系统里还有别的地方可以放置这些功能吗？我在组合模式中找到了答案。通过以灵活的关系来组合对象，组件能在运行时被定义。《设计模式》将这提炼成了一个原则：组合优于继承（favor composition over inheritance）。在该模式中，运行时组合对象所达到的灵活性非常高，而这在单独的继承树中是不可能达到的。
 
-I found the answer in composition. Software components can be defined at runtime by combining 
-
-objects in flexible relationships. The Gang of Four boiled this down into a principle:「favor composition over inheritance.」The patterns described ways in which objects could be combined at runtime to achieve a level of flexibility impossible in an inheritance tree alone.
-
-## Composition and Inheritance
+## 2.2 Composition and Inheritance
 
 Inheritance is a powerful way of designing for changing circumstances or contexts. It can limit flexibility, however, especially when classes take on multiple responsibilities.
 
-The ProblemAs you know, child classes inherit the methods and properties of their parents (as long as they are protected or public elements). You can use this fact to design child classes that provide specialized functionality.
+### 2.2.1 The Problem
 
-Figure 8-1 presents a simple example using the UML.The abstract Lesson class in Figure 8-1 models a lesson in a college. It defines abstract cost() 
+As you know, child classes inherit the methods and properties of their parents (as long as they are protected or public elements). You can use this fact to design child classes that provide specialized functionality.
 
-and chargeType() methods. The diagram shows two implementing classes, FixedPriceLesson and TimedPriceLesson, which provide distinct charging mechanisms for lessons.
+Figure 8-1 presents a simple example using the UML. The abstract Lesson class in Figure 8-1 models a lesson in a college. It defines abstract cost() and chargeType() methods. The diagram shows two implementing classes, FixedPriceLesson and TimedPriceLesson, which provide distinct charging mechanisms for lessons.
 
-Figure 8-1.  A parent class and two child classes
+Using this inheritance scheme, I can switch between lesson implementations. Client code will know only that it is dealing with a Lesson object, so the details of cost will be transparent.
 
-Using this inheritance scheme, I can switch between lesson implementations. Client code will know 
+What happens, though, if I introduce a new set of specializations? I need to handle lectures and seminars. Because these organize enrollment and lesson notes in different ways, they require separate classes. Now I have two forces that operate upon my design. I need to handle pricing strategies, and separate lectures and seminars.
 
-only that it is dealing with a Lesson object, so the details of cost will be transparent.
-
-What happens, though, if I introduce a new set of specializations? I need to handle lectures and 
-
-seminars. Because these organize enrollment and lesson notes in different ways, they require separate classes. Now I have two forces that operate upon my design. I need to handle pricing strategies, and separate lectures and seminars.
-
-Figure 8-2 shows a brute-force solution.
+![](./res/2020022.png)
 
 Figure 8-2.  A poor inheritance structure
 
-Figure 8-2 shows a hierarchy that is clearly faulty. I can no longer use the inheritance tree to manage my 
+Figure 8-2 shows a hierarchy that is clearly faulty. I can no longer use the inheritance tree to manage my pricing mechanisms without duplicating great swathes of functionality. The pricing strategies are mirrored across the Lecture and Seminar class families.
 
-pricing mechanisms without duplicating great swathes of functionality. The pricing strategies are mirrored across the Lecture and Seminar class families.
+At this stage, I might consider using conditional statements in the Lesson super class, removing those unfortunate duplications. Essentially, I remove the pricing logic from the inheritance tree altogether, moving it up into the super class. This is the reverse of the usual refactoring, where you replace a conditional with polymorphism. Here is an amended Lesson class:
 
-At this stage, I might consider using conditional statements in the Lesson super class, removing those 
+利用这种继承模式，我们可以在课程的实现之间切换。而客户端代码只知道它是在处理一个 Lesson 对象，因此费用的细节就会变得透明。可是如果引入一组新的特殊性，又会怎样呢？比如我们需要处理演讲和研讨会。因为演讲和研讨会会以不同的方式注册登记和教授课程，所以它们会要求独立的类。因此在设计上现在会有两个分支。我们需要处理不同的定价策略并区分演讲和研讨会。
 
-unfortunate duplications. Essentially, I remove the pricing logic from the inheritance tree altogether, moving it up into the super class. This is the reverse of the usual refactoring, where you replace a conditional with polymorphism. Here is an amended Lesson class:
+图 8-2 的体系明显是有缺陷的。在该体系中，我们不得不大量重复开发功能，否则无法使用继承树来管理价格机制。定价策略在 Lecture 和 Seminar 类的子类中被重复实现。我们可能要考虑在父类 Lesson 中使用条件语句来移除那些不适宜的重复。我们是把定价逻辑从继承树中一并移除并迁移到父类中，但这与我们通常用多态替换条件的重构思想背道而驰。下面是一个修改过的 Lesson 类。
 
-// listing 08.01abstract class Lesson{    protected $duration;    const     FIXED = 1;    const     TIMED = 2;    private   $costtype;
+```php
+<?php
+// declare(strict_types=1);  // 显式声明类型检查为严格模式
 
-    public function __construct(int $duration, int $costtype = 1)    {        $this->duration = $duration;        $this->costtype = $costtype;    }
+// listing 0801
 
-    public function cost(): int    {        switch ($this->costtype) {            case self::TIMED:                return (5 * $this->duration);                break;            case self::FIXED:                return 30;                break;
+abstract class Lesson {
+    protected $duration;
+    const FIXED= 1;
+    const TIMED = 2;
+    private $costtype;
 
-            default:                $this->costtype = self::FIXED;                return 30;        }    }
+    public function __construct(int $duration, int $costtype = 1) {
+        $this->duration = $duration;
+        $this->costtype = $costtype;
+    }
 
-    public function chargeType(): string    {        switch ($this->costtype) {            case self::TIMED:                return "hourly rate";                break;            case self::FIXED:                return "fixed rate";                break;            default:                $this->costtype = self::FIXED;                return "fixed rate";        }    }
+    public function cost(): int {
+        switch ($this->costtype) {
+            case self::TIMED:
+                return (5 * $this->duration);
+                break;
+            case self::FIXED:
+                return 30;
+                break;
+            default:
+                $this->costtype = self::FIXED;
+                return 30;
+        }
+    }
 
-    // more lesson methods...}
+    public function chargeType(): string {
+        switch ($this->costtype) {
+            case self::TIMED:
+                return "hourly rate";
+                break;
+            case self::FIXED:
+                return "fixed rate";
+                break;
+            default:
+                $this->costtype = self::FIXED;
+                return "fixed rate";
+        }
+    }
 
-// listing 08.02class Lecture extends Lesson{    // Lecture-specific implementations ...}
+    // more lesson methods...
+}
 
-// listing 08.03class Seminar extends Lesson{    // Seminar-specific implementations ...}
+class Lecture extends Lesson {
+    // Lecture-specific implementions...
+}
+
+class Seminar extends Lesson {
+    // Seminar-specific implementions...
+}
+```
 
 Here’s how I might work with these classes:
 
-// listing 08.04$lecture = new Lecture(5, Lesson::FIXED);print "{$lecture->cost()} ({$lecture->chargeType()})\n";
+```php
+$lecture = new Lecture(5, Lesson::FIXED);
+echo "{$lecture->cost()}({$lecture->chargeType()})\n";
 
-$seminar = new Seminar(3, Lesson::TIMED);print "{$seminar->cost()} ({$seminar->chargeType()})\n";
+$seminar = new Seminar(3, Seminar::TIMED);
+echo "{$seminar->cost()}({$seminar->chargeType()})\n";
+```
 
 And here’s the output:
 
-30 (fixed rate)15 (hourly rate)
+```
+30 (fixed rate)
+15 (hourly rate)
+```
 
 You can see the new class diagram in Figure 8-3.
 
-Figure 8-3.  Inheritance hierarchy improved by removing cost calculations from subclasses
+![](./res/2020023.png)
 
-I have made the class structure much more manageable, but at a cost. Using conditionals in this code is a retrograde step. Usually, you would try to replace a conditional statement with polymorphism. Here, I have done the opposite. As you can see, this has forced me to duplicate the conditional statement across the chargeType() and cost() methods.
+Figure 8-3. Inheritance hierarchy improved by removing cost calculations from subclasses
 
-I seem doomed to duplicate code.
+I have made the class structure much more manageable, but at a cost. Using conditionals in this code is a retrograde step. Usually, you would try to replace a conditional statement with polymorphism. Here, I have done the opposite. As you can see, this has forced me to duplicate the conditional statement across the chargeType() and cost() methods. I seem doomed to duplicate code.
 
-Using CompositionI can use the Strategy pattern to compose my way out of trouble. Strategy is used to move a set of algorithms into a separate type. By moving cost calculations, I can simplify the Lesson type. You can see this in Figure 8-4.
+### 2.2.2 Using Composition
+
+I can use the Strategy pattern to compose my way out of trouble. Strategy is used to move a set of algorithms into a separate type. By moving cost calculations, I can simplify the Lesson type. You can see this in Figure 8-4.
+
+![](./res/2020024.png)
 
 Figure 8-4.  Moving algorithms into a separate type
 
-I create an abstract class, CostStrategy, which defines the abstract methods, cost() and chargeType(). 
-
-The cost() method requires an instance of Lesson, which it will use to generate cost data. I provide two implementations for CostStrategy. Lesson objects work only with the CostStrategy type, not a specific implementation, so I can add new cost algorithms at any time by subclassing CostStrategy. This would require no changes at all to any Lesson classes.
+I create an abstract class, CostStrategy, which defines the abstract methods, cost() and chargeType(). The cost() method requires an instance of Lesson, which it will use to generate cost data. I provide two implementations for CostStrategy. Lesson objects work only with the CostStrategy type, not a specific implementation, so I can add new cost algorithms at any time by subclassing CostStrategy. This would require no changes at all to any Lesson classes.
 
 Here’s a simplified version of the new Lesson class illustrated in Figure 8-4:
 
-// listing 08.05abstract class Lesson{    private $duration;    private $costStrategy;
+```php
+abstract class CostStrategy {
+    abstract public function cost(Lesson $lesson): int;
+    abstract public function chargeType(): string;
+}
 
-    public function __construct(int $duration, CostStrategy $strategy)    {        $this->duration = $duration;        $this->costStrategy = $strategy;    }
+abstract class Lesson {
+    private $duration;
+    private $CostStrategy;
 
-    public function cost(): int    {        return $this->costStrategy->cost($this);    }
+    public function __construct(int $duration, CostStrategy $strategy) {
+        $this->duration = $duration;
+        $this->CostStrategy = $strategy;
+    }
 
-    public function chargeType(): string    {        return $this->costStrategy->chargeType();    }
+    public function cost(): int {
+        return $this->CostStrategy->cost($this);
+    }
 
-    public function getDuration(): int    {        return $this->duration;    }
+    public function chargeType(): string {
+        return $this->CostStrategy->chargeType();
+    }
 
-    // more lesson methods...}
+    public function getDuration(): int {
+        return $this->duration;
+    }
 
-// listing 08.06class Lecture extends Lesson{    // Lecture-specific implementations ...}
+    // more lesson methods...
+}
 
-// listing 08.07class Seminar extends Lesson{    // Seminar-specific implementations ...}
+class Lecture extends Lesson {
+    // Lecture-specific implementions...
+}
 
-The Lesson class requires a CostStrategy object, which it stores as a property. The Lesson::cost() 
+class Seminar extends Lesson {
+    // Seminar-specific implementions...
+}
+```
 
-method simply invokes CostStrategy::cost(). Equally, Lesson::chargeType() invokes CostStrategy::chargeType(). This explicit invocation of another object’s method in order to fulfill a request is known as delegation. In my example, the CostStrategy object is the delegate of Lesson. The Lesson class washes its hands of responsibility for cost calculations and passes on the task to a CostStrategy implementation. Here, it is caught in the act of delegation:
+The Lesson class requires a CostStrategy object, which it stores as a property. The Lesson::cost() method simply invokes CostStrategy::cost(). Equally, Lesson::chargeType() invokes CostStrategy::chargeType(). This explicit invocation of another object’s method in order to fulfill a request is known as delegation. In my example, the CostStrategy object is the delegate of Lesson. The Lesson class washes its hands of responsibility for cost calculations and passes on the task to a CostStrategy implementation. Here, it is caught in the act of delegation:
 
-    public function cost(): int    {        return $this->costStrategy->cost($this);    }
+1『又见委托（delegation）。』
+
+这种显式调用另一个对象的方法来执行一个请求的方式便是所谓的「委托」。在我们的示例中，Coststrategy 对象便是 Lesson 的委托方。Lesson 类不再负责计费，而是把计费任务传给 CostStrategy 类。下面的代码执行了委托操作：
+
+```php
+    public function cost(): int {
+        return $this->CostStrategy->cost($this);
+    }
+```
 
 Here is the CostStrategy class, together with its implementing children:
 
-// listing 08.08abstract class CostStrategy{    abstract public function cost(Lesson $lesson): int;    abstract public function chargeType(): string;}
+```php
+abstract class CostStrategy {
+    abstract public function cost(Lesson $lesson): int;
+    abstract public function chargeType(): string;
+}
 
-// listing 08.09class TimedCostStrategy extends CostStrategy{    public function cost(Lesson $lesson): int    {        return ($lesson->getDuration() * 5);    }
+class TimedCostStrategy extends CostStrategy {
+    function cost(Lesson $lesson):int {
+        return ($lesson->getDuration() * 5);
+    }
 
-    public function chargeType(): string    {        return "hourly rate";    }}
+    function chargeType(): string {
+        return "hourly rate";
+    }
+}
 
-// listing 08.10class FixedCostStrategy extends CostStrategy{    public function cost(Lesson $lesson): int    {        return 30;    }
+class FixedCostStrategy extends CostStrategy {
+    function cost(Lesson $lesson): int {
+        return 30;
+    }
 
-    public function chargeType(): string    {        return "fixed rate";    }}
+    function chargeType(): string {
+        return "fixed rate";
+    }
+}
+```
 
-I can change the way that any Lesson object calculates cost by passing it a different CostStrategy object 
+I can change the way that any Lesson object calculates cost by passing it a different CostStrategy object at runtime. This approach then makes for highly flexible code. Rather than building functionality into my code structures statically, I can combine and recombine objects dynamically:
 
-at runtime. This approach then makes for highly flexible code. Rather than building functionality into my code structures statically, I can combine and recombine objects dynamically:
-
-// listing 08.11$lessons[] = new Seminar(4, new TimedCostStrategy());$lessons[] = new Lecture(4, new FixedCostStrategy());
+```php
+$lessons[] = new Seminar(4, new TimedCostStrategy);
+$lessons[] = new Lecture(4, new FixedCostStrategy);
 
 foreach ($lessons as $lesson) {
+    print "lesson charge {$lesson->cost()}. \n";
+    echo "Charge type: {$lesson->chargeType()}\n";
+}
+```
 
-    print "lesson charge {$lesson->cost()}. ";    print "Charge type: {$lesson->chargeType()}\n";}
-
+```
 lesson charge 20. Charge type: hourly ratelesson charge 30. Charge type: fixed rate
+```
 
-As you can see, one effect of this structure is that I have focused the responsibilities of my classes. 
+1『通过组合 Lesson 和 CostStrategy 实现，在运行时根据不同的条件实施不同的行为，即条件语句实现的功能。』
 
-CostStrategy objects are responsible solely for calculating cost, and Lesson objects manage lesson data.So, composition can make your code more flexible because objects can be combined to handle tasks 
+As you can see, one effect of this structure is that I have focused the responsibilities of my classes. CostStrategy objects are responsible solely for calculating cost, and Lesson objects manage lesson data. So, composition can make your code more flexible because objects can be combined to handle tasks dynamically in many more ways than you can anticipate in an inheritance hierarchy alone. There can be a penalty with regard to readability, though. Because composition tends to result in more types, with relationships that aren’t fixed with the same predictability as they are in inheritance relationships, it can be slightly harder to digest the relationships in a system.
 
-dynamically in many more ways than you can anticipate in an inheritance hierarchy alone. There can be a penalty with regard to readability, though. Because composition tends to result in more types, with relationships that aren’t fixed with the same predictability as they are in inheritance relationships, it can be slightly harder to digest the relationships in a system.
+组合使用对象比使用继承体系更灵活，因为组合可以以多种方式动态地处理任务，不过这可能导致代码的可读性下降。因为组合需要更多的对象类型，而这些类型的关系并不像在继承关系中那般有固定的可预见性，所以要理解系统中类和对象的关系会有些困难。
 
-## Decoupling
+## 2.3 Decoupling
 
 You saw in Chapter 6 that it makes sense to build independent components. A system with highly interdependent classes can be hard to maintain. A change in one location can require a cascade of related changes across the system.
 
@@ -202,6 +292,7 @@ If you’ve hard-coded calls to a Mailer class or a Texter class, then your syst
 
 Here is some code that hides the implementation details of a notifier from the system that uses it:
 
+```php
 // listing 08.12class RegistrationMgr{    public function register(Lesson $lesson)    {        // do something with this Lesson
 
         // now tell someone        $notifier = Notifier::getNotifier();        $notifier->inform("new lesson: cost ({$lesson->cost()})");    }}
@@ -215,10 +306,9 @@ Here is some code that hides the implementation details of a notifier from the s
 // listing 08.14class MailNotifier extends Notifier{    public function inform($message)    {        print "MAIL notification: {$message}\n";    }}
 
 // listing 08.15class TextNotifier extends Notifier{    public function inform($message)    {        print "TEXT notification: {$message}\n";    }}
+```
 
-I create RegistrationMgr, a sample client for my Notifier classes. The Notifier class is abstract, but it 
-
-does implement a static method, getNotifier(), which fetches a concrete Notifier object (TextNotifier or MailNotifier). In a real project, the choice of Notifier would be determined by a flexible mechanism, such as a configuration file. Here, I cheat and make the choice randomly. MailNotifier and TextNotifier do nothing more than print out the message they are passed along with an identifier to show which one has been called.
+I create RegistrationMgr, a sample client for my Notifier classes. The Notifier class is abstract, but it does implement a static method, getNotifier(), which fetches a concrete Notifier object (TextNotifier or MailNotifier). In a real project, the choice of Notifier would be determined by a flexible mechanism, such as a configuration file. Here, I cheat and make the choice randomly. MailNotifier and TextNotifier do nothing more than print out the message they are passed along with an identifier to show which one has been called.
 
 Notice how the knowledge of which concrete Notifier should be used has been focused in the 
 
@@ -226,7 +316,9 @@ Notifier::getNotifier() method. I could send notifier messages from a hundred di
 
 Here is some code that calls the RegistrationMgr:
 
+```php
 // listing 08.16$lessons1 = new Seminar(4, new TimedCostStrategy());$lessons2 = new Lecture(4, new FixedCostStrategy());$mgr = new RegistrationMgr();$mgr->register($lessons1);$mgr->register($lessons2);
+```
 
 And here’s the output from a typical run:
 
@@ -238,7 +330,7 @@ Figure 8-6 shows these classes.Notice how similar the structure in Figure 8-6 
 
 Figure 8-5.
 
-## Code to an Interface, Not to an Implementation
+## 2.4 Code to an Interface, Not to an Implementation
 
 This principle is one of the all-pervading themes of this book. You saw in Chapter 6 (and in the last section) that you can hide different implementations behind the common interface defined in a superclass. Client code can then require an object of the superclass’s type rather than that of an implementing class, unconcerned by the specific implementation it is actually getting.
 
@@ -284,7 +376,7 @@ When you create an abstract superclass, there is always the issue of how its chi
 
 instantiated. Which child do you choose and according to which condition? This subject forms a category of its own in the Gang of Four pattern catalog, and I will examine this further in the next chapter.
 
-## The Concept that Varies
+## 2.5 The Concept that Varies
 
 It’s easy to interpret a design decision once it has been made, but how do you decide where to start?
 
@@ -310,7 +402,7 @@ So how do you spot variation? One sign is the misuse of inheritance. This might 
 
 deployed according to multiple forces at one time (e.g., lecture/seminar and fixed/timed cost). It might also include subclassing on an algorithm where the algorithm is incidental to the core responsibility of the type. The other sign of variation suitable for encapsulation is, as you have seen, a conditional expression.
 
-## Patternitis
+## 2.6 Patternitis
 
 One problem for which there is no pattern is the unnecessary or inappropriate use of patterns. This has earned patterns a bad name in some quarters. Because pattern solutions are neat, it is tempting to apply them wherever you see a fit, whether they truly fulfill a need or not.
 
@@ -328,7 +420,7 @@ When you work with a pattern catalog, the structure and process of the solution 
 
 mind, consolidated by the code example. Before applying a pattern, though, pay close attention to the problem, or「when to use it,」section, and then read up on the pattern’s consequences. In some contexts, the cure may be worse than the disease.
 
-## The Patterns
+## 2.7 The Patterns
 
 This book is not a pattern catalog. Nevertheless, in the coming chapters, I will introduce a few of the key patterns in use at the moment, providing PHP implementations and discussing them in the broad context of PHP programming.
 

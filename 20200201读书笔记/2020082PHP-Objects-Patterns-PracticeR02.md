@@ -487,7 +487,7 @@ So these are your participants: a MainParser, a TagParser, and an ArgumentParser
 
 This is your problem: you need to generate a different set of objects according to the circumstance, and you want this to be more or less transparent to other components in the system. It just so happens that the Gang of Four define the following problem in their book’s summary page for the pattern Abstract Factory,「Provide an interface for creating families of related or dependent objects without specifying their concrete classes.」That fits nicely. It is the nature of our problem that determines and shapes our use of this pattern. There is nothing cut and paste about the solution either, as you can see in Chapter 9, in which I cover Abstract Factory.
 
-The very act of naming a pattern is valuable; it contributes to the kind of common vocabulary that has arisen naturally over the years in older crafts and professions. Such shorthand greatly aids collaborative design as alternative approaches and their various consequences are weighed and tested. When you discuss your alternative parser families, for example, you can simply tell colleagues that the system creates each set of objects using the Abstract Factory pattern. They will nod sagely, either immediately enlightened or making a mental note to look it up later. The point is that this bundle of concepts and consequences has a handle, which makes for a useful shorthand, as I’ll illustrate later in this chapter.
+The very act of naming a pattern is valuable, it contributes to the kind of common vocabulary that has arisen naturally over the years in older crafts and professions. Such shorthand greatly aids collaborative design as alternative approaches and their various consequences are weighed and tested. When you discuss your alternative parser families, for example, you can simply tell colleagues that the system creates each set of objects using the Abstract Factory pattern. They will nod sagely, either immediately enlightened or making a mental note to look it up later. The point is that this bundle of concepts and consequences has a handle, which makes for a useful shorthand, as I’ll illustrate later in this chapter.
 
 这时你的问题便是：需要根据不同的情况创建一组不同的对象，同时要这组对象在系统里相对于其他组件来说或多或少是透明的。这恰恰就是《设计模式》一书的摘要中为抽象工厂（Abstract Factory）模式所定义的问题：为一个相关或相依赖的对象家族提供统一的创建接口，并无需指定实体类。这和我们的问题十分符合。正是问题的本质决定和形成了我们对该模式的使用。没有任何对解决方案的剪切和粘贴，而在第 9 章中，你可以看到对于抽象工厂模式的详细介绍。
 
@@ -509,7 +509,7 @@ The Gang of Four book is important because it inscribes key patterns, but also b
 
 这个始于问题及其广泛的环境继而进入解决方案的定义（被应用于建筑问题及解决方案）意义重大。这几年有一些对设计模式被滥用的指责，特别是被没经验的程序员所使用时。解决方案被应用于并不符合的问题及上下文中通常是滥用的信号。模式是类和对象的一种特殊组织形式是以定义解决方案的应用条件并讨论其效果的形式来组织的。本书中，我们将关注模式领域中特别具有影响力的一部分，即 Erich Gamma、Richard Helm、Ralph Johnson 和 John Vlissidek 所著的《设计模式——可复用面向对象软件的基础》（Addison- Wesley 1995) 一书中所描述的模式。该书集中介绍了面向对象软件开发中的模式，并记录了一些在大多数现代面向对象项目中出现的传统模式。《设计模式》一书非常重要，不仅因为它记录了关键模式，而且因为它也描述了形成和推动这些模式的设计原则。在下一章中我们便会看到其中的一些原则。
 
- ■ Note: the patterns described by the gang of Four and in this book are really instances of a pattern language. a pattern language is a catalog of problems and solutions organized together so that they complement one another, forming an interrelated whole. there are pattern languages for other problem spaces, such as visual design and project management (and architecture, of course). When i discuss design patterns here, i refer to problems and solutions in object-oriented software development.
+ ■ Note: the patterns described by the gang of Four and in this book are really instances of a pattern language. a pattern language is a catalog of problems and solutions organized together so that they complement one another, forming an interrelated whole. there are pattern languages for other problem spaces, such as visual design and project management (and architecture, of course). When I discuss design patterns here, I refer to problems and solutions in object-oriented software development.
 
 《设计模式》及本书中所描述的模式是模式语言的真实实例，这些模式便是组织在一起的问题和解决方策的一个目录，以使模式可相互补充而形成一个相互关联的整体。当然也存在其他问题的模式语言，如视觉设计和项目管理（当然还有建筑）。但在此我所讨论的设计模式都是针对面向对象软件开发的问题和解决方案的。
 
@@ -524,6 +524,8 @@ Names matter. They enrich the language of programmers; a few short words can sta
 Martin Fowler agrees:「Pattern names are crucial, because part of the purpose of patterns is to create a vocabulary that allows developers to communicate more effectively」(Patterns of Enterprise Application Architecture, Addison-Wesley Professional, 2002).
 
 In Patterns of Enterprise Application Architecture, Martin Fowler refines a database access pattern I first encountered in Core J2EE Patterns by Deepak Alur, Dan Malks, and John Crupi (Prentice Hall, 2001). Fowler defines two patterns that describe specializations of the older pattern. The logic of his approach is clearly correct (one of the new patterns models domain objects, while the other models database tables, a distinction that was vague in the earlier work). Nonetheless, it was hard to train myself to think in terms of the new patterns. I had been using the name of the original in design sessions and documents for so long that it had become part of my language.
+
+2『已下载书籍「2020105企业应用架构模式 | 2020105Patterns-of-Enterprise-Application-Architecture」、「2020151J2EE核心模式 | 2020151Core-J2EE-Patterns」。』
 
 在《企业应用架构模式》一书中，Martin Fowler 改进了一个我曾在《J2EE 核心模式》（Deepak Alur、Dan Malks 和 John Crupia 著，Prentice Hall, 2003）中了解到的数据库访问模式。他定义了两个新模式来描述旧模式的特例。显然他的逻辑是正确的：新模式之一，对领域对象（domain object）进行了建模；另一个新模式对数据库表进行了建模。这区分了之前模式中含糊不清的地方。但最初我很不习惯他所采用的新术语，因为我使用旧的命名方式已经很长时间了，以至于旧的命名已经成为我的语言中的一部分。
 
@@ -573,6 +575,8 @@ There are a number of well-defined pattern structures, including the original fo
 
 8. Related Patterns: Some patterns imply others. In applying one solution, you can create the context in which another becomes useful. This section examines these synergies. It may also discuss patterns that have similarities to the problem or the solution, as well as any antecedents (i.e., patterns defined elsewhere on which the current pattern builds).
 
+2『设计模式结构（pattern structures）做一张术语卡片。』——已完成
+
 编写本书时，在我桌上有 5 份模式目录。看一下每个目录的模式，便可发现每一个都使用不样的结构：其中一些比较正式；一些比较细致，有着许多的子分类；还有一些则比较松散。这些目录中有一些定义良好的模式结构，其中包括由 Christopher Alexander 原创的格式（Alexandrian 格式）和 Portland 模式库所钟爱的叙述性格式（Portland 格式）。不过因为《设计模式》书极具影响力，而且我们也会介绍该书所描述的很多模式，所以先研究一下该书所采用的模式结构。其主要组成部分如下所示。
 
 1、意图：模式目的的简要概括。你应该一眼就能看出模式的要点。
@@ -587,7 +591,7 @@ There are a number of well-defined pattern structures, including the original fo
 
 6、示例代码：我总是先跳到这一部分。我发现简单的代码范例是理解模式的捷径。范例通常都会被简化以突出解决方案的核心内容。示例代码可以用任何一种面向对象语言编写，当然本书中使用的是 PHP。
 
-7、已知应用：使用该模式（问题、上下文及解决方案）的真实系统。有些人会说一个模式要变得真实，它就必须出现在至少 3 个公开存在的真实系统中。这有时会被称为「三法则」（rule of three，意思是解决某个特定问题所采取的设计，一次出现是偶然现象，两次是巧合，3 次出现オ可称为一个模式）。
+7、已知应用：使用该模式（问题、上下文及解决方案）的真实系统。有些人会说一个模式要变得真实，它就必须出现在至少 3 个公开存在的真实系统中。这有时会被称为「三法则」（rule of three，意思是解决某个特定问题所采取的设计，一次出现是偶然现象，两次是巧合，3 次出现才可称为一个模式）。
 
 8、相关模式：一些模式意味着其他模式也要被采用。在使用某个设计模式时，可以创造出另一个模式适用的条件。这部分内容研究了可能存在的模式间的合作，也可能会讨论那些问题或解决方案中具有相似点的模式及任何需要预先使用的模式（当前模式可能以其他模式为基础）。
 
@@ -637,9 +641,11 @@ Ignore Bob. I won’t describe the tortuous nonpattern version of this; I will c
 
 The point is that, without a pattern language, we would still use these techniques. They precede their naming and organization. If patterns did not exist, they would evolve on their own, anyway. Any tool that is used sufficiently will eventually acquire a name.
 
+1『确实，任何一个好的技术只要足够好，到最后肯定会有一个大家都知道的名字。』
+
 #### 1.4.5 Patterns Are Tried and Tested
 
-So if patterns document good practice, is naming the only truly original thing about pattern catalogs? In some senses, that would seem to be true. Patterns represent best practice in an object-oriented context. To some highly experienced programmers, this may seem an exercise in repackaging the obvious. To the rest of us, patterns provide access to problems and solutions we would otherwise have to discover the hard way.Patterns make design accessible. As pattern catalogs emerge for more and more specializations, even the highly experienced can find benefits as they move into new aspects of their fields. A GUI programmer can gain fast access to common problems and solutions in enterprise programming, for example. A web programmer can quickly chart strategies for avoiding the pitfalls that lurk in tablet and smart phone projects.
+So if patterns document good practice, is naming the only truly original thing about pattern catalogs? In some senses, that would seem to be true. Patterns represent best practice in an object-oriented context. To some highly experienced programmers, this may seem an exercise in repackaging the obvious. To the rest of us, patterns provide access to problems and solutions we would otherwise have to discover the hard way. Patterns make design accessible. As pattern catalogs emerge for more and more specializations, even the highly experienced can find benefits as they move into new aspects of their fields. A GUI programmer can gain fast access to common problems and solutions in enterprise programming, for example. A web programmer can quickly chart strategies for avoiding the pitfalls that lurk in tablet and smart phone projects.
 
 如果模式验证了高质量的实践，那么名称是否是模式目录仅有的真正原创的东西？从某种意义上说，好像是这样的。在面向对象的环境中，模式代表着最佳实践。对于一些经验非常丰富的程序员来说，这就像是再包装明显的最佳实践。对于我们而言，模式提供了发现问题和解决方案的途径，否则我们将不得不非常辛苦地去发掘。模式使我们更容易得到好的设计方案。当模式目录变得越来越专业化，即使经验丰富的程序员也会在进入新领域的时候从中受益。例如，图形用户界面程序员可以快速理解企业级开发中的常见问题和解决方案。Web 程序员能快速制定策略来避免 PDA 和智能手机项目的缺陷。
 
@@ -682,5 +688,243 @@ In this chapter, I examined some of the principles that underpin many design pat
 Although design patterns simply describe solutions to problems, they tend to emphasize solutions that promote reusability and flexibility. To achieve this, they manifest some key object-oriented design principles. We will encounter some of them in this chapter and in more detail throughout the rest of the book.
 
 This chapter will cover the following topics: 1) Composition: How to use object aggregation to achieve greater flexibility than you could with inheritance alone. 2) Decoupling: How to reduce dependency between elements in a system. 3) The power of the interface: Patterns and polymorphism. 4) Pattern categories: The types of patterns that this book will cover.
+
+### 2.1 The Pattern Revelation
+
+I first started working with objects in the Java language. As you might expect, it took a while before some concepts clicked. When it did happen, though, it happened very fast, almost with the force of revelation. The elegance of inheritance and encapsulation bowled me over. I could sense that this was a different way of defining and building systems. I got polymorphism, working with a type and switching implementations at runtime. It seemed to me that this understanding would solve most of my design problems, and help me design beautiful and elegant systems.
+
+1『又见多态，可以替代条件语句的功能。working with a type and switching implementations at runtime. 』
+
+All the books on my desk at the time focused on language features and the very many APIs available to the Java programmer. Beyond a brief definition of polymorphism, there was little attempt to examine design strategies. Language features alone do not engender object-oriented design. Although my projects fulfilled their functional requirements, the kind of design that inheritance, encapsulation and polymorphism had seemed to offer continued to elude me.
+
+My inheritance hierarchies grew wider and deeper as I attempted to build a new class for every eventuality. The structure of my systems made it hard to convey messages from one tier to another without giving intermediate classes too much awareness of their surroundings, binding them into the application and making them unusable in new contexts.
+
+It wasn’t until I discovered Design Patterns: Elements of Reusable Object-Oriented Software (Addison-Wesley Professional, 1995), otherwise known as the Gang of Four book, that I realized I had missed an entire design dimension. By that time, I had already discovered some of the core patterns for myself, but others contributed to a new way of thinking.
+
+I found that I had over-privileged inheritance in my designs, trying to build too much functionality into my classes. But where else can functionality go in an object-oriented system?
+
+I found the answer in composition. Software components can be defined at runtime by combining objects in flexible relationships. The Gang of Four boiled this down into a principle:「favor composition over inheritance.」The patterns described ways in which objects could be combined at runtime to achieve a level of flexibility impossible in an inheritance tree alone.
+
+1『金子知识啊，组合替代继承。』
+
+因为我努力地为每一个可能性建造新类，所以我的继承层次体系逐渐变得更广、更深。而在这样的系统结构中，如果中间类对于环境没有足够的了解，如果没有将它们绑定到具体应用中，如果没有使它们只可用于当前局部环境中，那么在系统的层级中传递信息将会变得十分困难。直到发现《设计模式》一书，我才意识到原来我没有完全理解什么是设计。虽然那时我自己也已经发现了一些核心模式，但是书中介绍的其他模式则提供了一种全新的思维方式。
+
+我在设计中给了继承过多的特权，总是试图为我的类构建太多的功能。在面向对象系统里还有别的地方可以放置这些功能吗？我在组合模式中找到了答案。通过以灵活的关系来组合对象，组件能在运行时被定义。《设计模式》将这提炼成了一个原则：组合优于继承（favor composition over inheritance）。在该模式中，运行时组合对象所达到的灵活性非常高，而这在单独的继承树中是不可能达到的。
+
+### 2.2 Composition and Inheritance
+
+Inheritance is a powerful way of designing for changing circumstances or contexts. It can limit flexibility, however, especially when classes take on multiple responsibilities.
+
+#### 2.2.1 The Problem
+
+As you know, child classes inherit the methods and properties of their parents (as long as they are protected or public elements). You can use this fact to design child classes that provide specialized functionality.
+
+Figure 8-1 presents a simple example using the UML. The abstract Lesson class in Figure 8-1 models a lesson in a college. It defines abstract cost() and chargeType() methods. The diagram shows two implementing classes, FixedPriceLesson and TimedPriceLesson, which provide distinct charging mechanisms for lessons.
+
+Using this inheritance scheme, I can switch between lesson implementations. Client code will know only that it is dealing with a Lesson object, so the details of cost will be transparent.
+
+What happens, though, if I introduce a new set of specializations? I need to handle lectures and seminars. Because these organize enrollment and lesson notes in different ways, they require separate classes. Now I have two forces that operate upon my design. I need to handle pricing strategies, and separate lectures and seminars.
+
+Figure 8-2 shows a hierarchy that is clearly faulty. I can no longer use the inheritance tree to manage my pricing mechanisms without duplicating great swathes of functionality. The pricing strategies are mirrored across the Lecture and Seminar class families.
+
+At this stage, I might consider using conditional statements in the Lesson super class, removing those unfortunate duplications. Essentially, I remove the pricing logic from the inheritance tree altogether, moving it up into the super class. This is the reverse of the usual refactoring, where you replace a conditional with polymorphism. Here is an amended Lesson class:
+
+利用这种继承模式，我们可以在课程的实现之间切换。而客户端代码只知道它是在处理一个 Lesson 对象，因此费用的细节就会变得透明。可是如果引入一组新的特殊性，又会怎样呢？比如我们需要处理演讲和研讨会。因为演讲和研讨会会以不同的方式注册登记和教授课程，所以它们会要求独立的类。因此在设计上现在会有两个分支。我们需要处理不同的定价策略并区分演讲和研讨会。
+
+图 8-2 的体系明显是有缺陷的。在该体系中，我们不得不大量重复开发功能，否则无法使用继承树来管理价格机制。定价策略在 Lecture 和 Seminar 类的子类中被重复实现。我们可能要考虑在父类 Lesson 中使用条件语句来移除那些不适宜的重复。我们是把定价逻辑从继承树中一并移除并迁移到父类中，但这与我们通常用多态替换条件的重构思想背道而驰。下面是一个修改过的 Lesson 类。
+
+```php
+<?php
+// declare(strict_types=1);  // 显式声明类型检查为严格模式
+
+// listing 0801
+
+abstract class Lesson {
+    protected $duration;
+    const FIXED= 1;
+    const TIMED = 2;
+    private $costtype;
+
+    public function __construct(int $duration, int $costtype = 1) {
+        $this->duration = $duration;
+        $this->costtype = $costtype;
+    }
+
+    public function cost(): int {
+        switch ($this->costtype) {
+            case self::TIMED:
+                return (5 * $this->duration);
+                break;
+            case self::FIXED:
+                return 30;
+                break;
+            default:
+                $this->costtype = self::FIXED;
+                return 30;
+        }
+    }
+
+    public function chargeType(): string {
+        switch ($this->costtype) {
+            case self::TIMED:
+                return "hourly rate";
+                break;
+            case self::FIXED:
+                return "fixed rate";
+                break;
+            default:
+                $this->costtype = self::FIXED;
+                return "fixed rate";
+        }
+    }
+
+    // more lesson methods...
+}
+
+class Lecture extends Lesson {
+    // Lecture-specific implementions...
+}
+
+class Seminar extends Lesson {
+    // Seminar-specific implementions...
+}
+```
+
+Here’s how I might work with these classes:
+
+```php
+$lecture = new Lecture(5, Lesson::FIXED);
+echo "{$lecture->cost()}({$lecture->chargeType()})\n";
+
+$seminar = new Seminar(3, Seminar::TIMED);
+echo "{$seminar->cost()}({$seminar->chargeType()})\n";
+```
+
+And here’s the output:
+
+```
+30 (fixed rate)
+15 (hourly rate)
+```
+
+You can see the new class diagram in Figure 8-3. Inheritance hierarchy improved by removing cost calculations from subclasses
+
+I have made the class structure much more manageable, but at a cost. Using conditionals in this code is a retrograde step. Usually, you would try to replace a conditional statement with polymorphism. Here, I have done the opposite. As you can see, this has forced me to duplicate the conditional statement across the chargeType() and cost() methods. I seem doomed to duplicate code.
+
+#### 2.2.2 Using Composition
+
+I can use the Strategy pattern to compose my way out of trouble. Strategy is used to move a set of algorithms into a separate type. By moving cost calculations, I can simplify the Lesson type. You can see this in Figure 8-4.
+
+Figure 8-4.  Moving algorithms into a separate type
+
+I create an abstract class, CostStrategy, which defines the abstract methods, cost() and chargeType(). The cost() method requires an instance of Lesson, which it will use to generate cost data. I provide two implementations for CostStrategy. Lesson objects work only with the CostStrategy type, not a specific implementation, so I can add new cost algorithms at any time by subclassing CostStrategy. This would require no changes at all to any Lesson classes.
+
+Here’s a simplified version of the new Lesson class illustrated in Figure 8-4:
+
+```php
+abstract class CostStrategy {
+    abstract public function cost(Lesson $lesson): int;
+    abstract public function chargeType(): string;
+}
+
+abstract class Lesson {
+    private $duration;
+    private $CostStrategy;
+
+    public function __construct(int $duration, CostStrategy $strategy) {
+        $this->duration = $duration;
+        $this->CostStrategy = $strategy;
+    }
+
+    public function cost(): int {
+        return $this->CostStrategy->cost($this);
+    }
+
+    public function chargeType(): string {
+        return $this->CostStrategy->chargeType();
+    }
+
+    public function getDuration(): int {
+        return $this->duration;
+    }
+
+    // more lesson methods...
+}
+
+class Lecture extends Lesson {
+    // Lecture-specific implementions...
+}
+
+class Seminar extends Lesson {
+    // Seminar-specific implementions...
+}
+```
+
+The Lesson class requires a CostStrategy object, which it stores as a property. The Lesson::cost() method simply invokes CostStrategy::cost(). Equally, Lesson::chargeType() invokes CostStrategy::chargeType(). This explicit invocation of another object’s method in order to fulfill a request is known as delegation. In my example, the CostStrategy object is the delegate of Lesson. The Lesson class washes its hands of responsibility for cost calculations and passes on the task to a CostStrategy implementation. Here, it is caught in the act of delegation:
+
+1『又见委托（delegation）。』
+
+这种显式调用另一个对象的方法来执行一个请求的方式便是所谓的「委托」。在我们的示例中，Coststrategy 对象便是 Lesson 的委托方。Lesson 类不再负责计费，而是把计费任务传给 CostStrategy 类。下面的代码执行了委托操作：
+
+```php
+    public function cost(): int {
+        return $this->CostStrategy->cost($this);
+    }
+```
+
+Here is the CostStrategy class, together with its implementing children:
+
+```php
+abstract class CostStrategy {
+    abstract public function cost(Lesson $lesson): int;
+    abstract public function chargeType(): string;
+}
+
+class TimedCostStrategy extends CostStrategy {
+    function cost(Lesson $lesson):int {
+        return ($lesson->getDuration() * 5);
+    }
+
+    function chargeType(): string {
+        return "hourly rate";
+    }
+}
+
+class FixedCostStrategy extends CostStrategy {
+    function cost(Lesson $lesson): int {
+        return 30;
+    }
+
+    function chargeType(): string {
+        return "fixed rate";
+    }
+}
+```
+
+I can change the way that any Lesson object calculates cost by passing it a different CostStrategy object at runtime. This approach then makes for highly flexible code. Rather than building functionality into my code structures statically, I can combine and recombine objects dynamically:
+
+```php
+$lessons[] = new Seminar(4, new TimedCostStrategy);
+$lessons[] = new Lecture(4, new FixedCostStrategy);
+
+foreach ($lessons as $lesson) {
+    print "lesson charge {$lesson->cost()}. \n";
+    echo "Charge type: {$lesson->chargeType()}\n";
+}
+```
+
+```
+lesson charge 20. Charge type: hourly ratelesson charge 30. Charge type: fixed rate
+```
+
+1『通过组合 Lesson 和 CostStrategy 实现，在运行时根据不同的条件实施不同的行为，即条件语句实现的功能。』
+
+As you can see, one effect of this structure is that I have focused the responsibilities of my classes. CostStrategy objects are responsible solely for calculating cost, and Lesson objects manage lesson data. So, composition can make your code more flexible because objects can be combined to handle tasks dynamically in many more ways than you can anticipate in an inheritance hierarchy alone. There can be a penalty with regard to readability, though. Because composition tends to result in more types, with relationships that aren’t fixed with the same predictability as they are in inheritance relationships, it can be slightly harder to digest the relationships in a system.
+
+组合使用对象比使用继承体系更灵活，因为组合可以以多种方式动态地处理任务，不过这可能导致代码的可读性下降。因为组合需要更多的对象类型，而这些类型的关系并不像在继承关系中那般有固定的可预见性，所以要理解系统中类和对象的关系会有些困难。
+
+
+
+
 
 

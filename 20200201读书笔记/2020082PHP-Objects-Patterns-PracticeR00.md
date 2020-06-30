@@ -155,6 +155,30 @@ Conditional Statements. You will use if and switch statements with perfectly goo
 
 1『重构的 4 个方向：代码重复、类知道的太多（慎用全局变量）、万能的类和条件语句。代码重复往往意味着高耦合，一个地方的代码需要修改，另一个地方同样的代码也要跟着改；尽量把一个类限制在自己的环境中；如果类的职责过多，那么在创建子类的时候会产生问题。你要用子类扩展什么样的功能？』
 
+### 0213. 术语卡——pattern structures
+
+At heart, a design pattern consists of four parts: the name, the problem, the solution, and the consequences.
+
+设计模式有 4 部分组成：命名、问题、解决方案、成效。
+
+There are a number of well-defined pattern structures, including the original form developed by Christopher Alexander (the Alexandrian form), and the narrative approach favored by the Portland Pattern Repository (the Portland form). Because the Gang of Four book is so influential, and because we will cover many of the patterns they describe, let’s examine a few of the sections they include in their patterns:
+
+1. Intent: A brief statement of the pattern’s purpose. You should be able to see the point of the pattern at a glance.
+
+2. Motivation: The problem described, often in terms of a typical situation. The anecdotal approach can help make the pattern easy to grasp.
+
+3. Applicability: An examination of the different situations in which you might apply the pattern. While the motivation describes a typical problem, this section defines specific situations and weighs the merits of the solution in the context of each.
+
+4. Structure/Interaction: These sections may contain UML class and interaction diagrams describing the relationships among classes and objects in the solution.
+
+5. Implementation: This section looks at the details of the solution. It examines any issues that may come up when applying the technique and provides tips for deployment.
+
+6. Sample Code: I always skip ahead to this section. I find that a simple code example often provides a way into a pattern. The example is often chopped down to the basics in order to lay the solution bare. It could be in any object-oriented language. Of course, in this book, it will always be PHP.
+
+7. Known Uses: These describe real systems in which the pattern (problem, context, and solution) occurs. Some people say that for a pattern to be genuine, it must be found in at least three publicly available contexts. This is sometimes called the「rule of three.」
+
+8. Related Patterns: Some patterns imply others. In applying one solution, you can create the context in which another becomes useful. This section examines these synergies. It may also discuss patterns that have similarities to the problem or the solution, as well as any antecedents (i.e., patterns defined elsewhere on which the current pattern builds).
+
 ### 0301. 人名卡——Matt Zandstra
 
 人名卡：Matt Zandstra（）
