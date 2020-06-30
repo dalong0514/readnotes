@@ -252,121 +252,145 @@ As you can see, one effect of this structure is that I have focused the responsi
 
 You saw in Chapter 6 that it makes sense to build independent components. A system with highly interdependent classes can be hard to maintain. A change in one location can require a cascade of related changes across the system.
 
-The ProblemReusability is one of the key objectives of object-oriented design, and tight coupling is its enemy. You can diagnose tight coupling when you see that a change to one component of a system necessitates many changes elsewhere. You should aspire to create independent components, so that you can make changes without a domino effect of unintended consequences. When you alter a component, the extent to which it is independent is related to the likelihood that your changes will cause other parts of your system to fail.
+### 2.3.1 The Problem
 
-You saw an example of tight coupling in Figure 8-2. Because the cost logic was mirrored across the 
+Reusability is one of the key objectives of object-oriented design, and tight coupling is its enemy. You can diagnose tight coupling when you see that a change to one component of a system necessitates many changes elsewhere. You should aspire to create independent components, so that you can make changes without a domino effect of unintended consequences. When you alter a component, the extent to which it is independent is related to the likelihood that your changes will cause other parts of your system to fail.
 
-Lecture and Seminar types, a change to TimedPriceLecture would necessitate a parallel change to the same logic in TimedPriceSeminar. By updating one class and not the other, I would break my system—without any warning from the PHP engine. My first solution, using a conditional statement, produced a similar dependency between the cost() and chargeType() methods.
+重用性是面向对象设计的主要目标之一，而紧耦合（tight-coupling）便是它的敌人。当我们看到系统中一个组件的改变迫使系统其他许多地方也发生改变的时候，就可诊断为紧耦合了。为了能安全地做变动，我们总是期望创建能够独立存在的组件。在修改组件时，其独立程度会决定你的修改对系统中其他组件的影响程度，系统的其他组件甚至有可能会因此失败。
 
-By applying the Strategy pattern, I distilled my cost algorithms into the CostStrategy type, locating 
+2『紧耦合，做一张术语卡片。』——已完成
 
-them behind a common interface and implementing each only once.
+You saw an example of tight coupling in Figure 8-2. Because the cost logic was mirrored across the Lecture and Seminar types, a change to TimedPriceLecture would necessitate a parallel change to the same logic in TimedPriceSeminar. By updating one class and not the other, I would break my system—without any warning from the PHP engine. My first solution, using a conditional statement, produced a similar dependency between the cost() and chargeType() methods.
 
-Coupling of another sort can occur when many classes in a system are embedded explicitly into a 
+By applying the Strategy pattern, I distilled my cost algorithms into the CostStrategy type, locating them behind a common interface and implementing each only once.
 
-platform or environment. Let’s say that you are building a system that works with a MySQL database, for example. You might use methods such as mysqli::query() to speak to the database server.
+在图 8-2 中，我们看到过紧耦合的例子。因为费用计算逻辑在 Lecture 和 Seminar 类型中都存在，所以对 TimedPriceLecture 的一个改变将会迫使在 TimedPriceSeminar 中同样逻辑的相应变化。如果仅改动一个类而不改动其他类的代码，系统将无法正常工作，而且没有来自 PHP 引擎的任何警告。而我们的第一个解决方案（使用条件语句）在 cost() 和 chargeType() 方法之间生成了一个类似的依赖关系。通过应用策略模式，我们将费用算法提取为 CostStrategy 类型，将算法放置在共同接口后并且每个算法只需实现一次。
+
+Coupling of another sort can occur when many classes in a system are embedded explicitly into a platform or environment. Let’s say that you are building a system that works with a MySQL database, for example. You might use methods such as mysqli::query() to speak to the database server.
 
 Should you be required to deploy the system on a server that does not support MySQL, you could convert your entire project to use SQLite. You would be forced to make changes throughout your code, though, and face the prospect of maintaining two parallel versions of your application.
 
-The problem here is not the system’s dependency on an external platform. Such a dependency is 
+不过当系统中许多类都显式嵌入到一个平台或环境中时，其他类型的耦合仍时有发生。比如建立了一个基于 MySQL 数据库的系统。你可能会用一些诸如 mysql\_connect() 和 mysql\_query() 的函数来与数据库服务器交互。如果现在你被要求在不支持 MySQL 的服务器上部署系统，比如要把整个项目都转换成使用 SQLite，那么你可能被迫要改变整个代码，并且面临维护应用程序的两个并行版本的状况。
 
-inevitable. You need to work with code that speaks to a database. The problem comes when such code is scattered throughout a project. Talking to databases is not the primary responsibility of most classes in a system, so the best strategy is to extract such code and group it together behind a common interface. In this way, you promote the independence of your classes. At the same time, by concentrating your gateway code in one place, you make it much easier to switch to a new platform without disturbing your wider system. This process, the hiding of implementation behind a clean interface, is known as encapsulation. The Doctrine database library solves this problem with the DBAL (database abstraction layer) project. This provides a single point of access for multiple databases.
+1『中文是老版书籍，看来数据库的连接方法都改了哦。』
 
-The DriverManager class provides a static method called getConnection() that accepts a parameters 
+The problem here is not the system’s dependency on an external platform. Such a dependency is inevitable. You need to work with code that speaks to a database. The problem comes when such code is scattered throughout a project. Talking to databases is not the primary responsibility of most classes in a system, so the best strategy is to extract such code and group it together behind a common interface. In this way, you promote the independence of your classes. At the same time, by concentrating your gateway code in one place, you make it much easier to switch to a new platform without disturbing your wider system. This process, the hiding of implementation behind a clean interface, is known as encapsulation. The Doctrine database library solves this problem with the DBAL (database abstraction layer) project. This provides a single point of access for multiple databases.
 
-array. According to the makeup of this array, it returns a particular implementation of an interface called Doctrine\DBAL\Driver. You can see the class structure in Figure 8-5.
+1『如何隔离与数据库交互的代码，这个思路太赞了。这里有提高「Doctrine database library 」这个工具，就是为了解决这个问题的，记得去了解下。突然想到有本 python 的英文书里（那个作者写了好几本书），也有提高这种在程序和数据库之间抽象出来的中间层。』
+
+这里的问题不在于系统对外部平台的依赖。这样的依赖是无法避免的。我们确实需要使用与数据库交互的代码。但当这样的代码散布在整个项目中时，问题就来了。与数据库交互不是系统中大部分类的首要责任，因此最好的策略就是提取这样的代码并将其组合在公共接口后。这可以使类之间相互独立。同时，通过在一个地方集中你的「入ロ」代码，就能更轻松地切换到一个新的平台而不会影响到系统中更大的部分。这个把具体实现隐藏在一个干净的接口后面的过程，正是大家所知道的「封装」。
+
+PEAR 中的 PEAR::MDB2 包（沿袭自 PEAR::DB）可以解决这个问题。该包支持对多个数据库的访问。最新的 PDO 扩展已将此模型移植到 PHP 语言中。MDB2 类提供了一个静态方法 connect()，它接受一个 DSN (Data Source Name，数据源名）字符串参数。根据这个字符串的构成，它返回 MDB2\_Driver\_Comon 类的一个特定实现。因此对于字符串 "mysql://", connect() 方法返回一个 MmB2\_Driver\_mysql 对象，而对于一个以 "sqlite://" 开头的字符串，它将返回一个 MDB2 Driver\_sqlite，对象。可以在图 8-5 中看到该类的结构。
+
+The DriverManager class provides a static method called getConnection() that accepts a parameters array. According to the makeup of this array, it returns a particular implementation of an interface called Doctrine\DBAL\Driver. You can see the class structure in Figure 8-5.
+
+![](./res/2020025.png)
 
 Figure 8-5.  The DBAL package decouples client code from database objects
 
-The DBAL package, then, lets you decouple your application code from the specifics of your database 
+The DBAL package, then, lets you decouple your application code from the specifics of your database platform. You should be able to run a single system with MySQL, SQLite, MSSQL, and others without changing a line of code (apart from your configuring parameters, of course).
 
-platform. You should be able to run a single system with MySQL, SQLite, MSSQL, and others without changing a line of code (apart from your configuring parameters, of course).
+### 2.3.2 Loosening Your Coupling
 
-Loosening Your CouplingTo handle database code flexibly, you should decouple the application logic from the specifics of the database platform it uses. You will see lots of opportunities for this kind of separation of components in your own projects.
+To handle database code flexibly, you should decouple the application logic from the specifics of the database platform it uses. You will see lots of opportunities for this kind of separation of components in your own projects.
 
-Imagine, for example, that the Lesson system must incorporate a registration component to add new 
+Imagine, for example, that the Lesson system must incorporate a registration component to add new lessons to the system. As part of the registration procedure, an administrator should be notified when a lesson is added. The system’s users can’t agree whether this notification should be sent by mail or by text message. In fact, they’re so argumentative that you suspect they might want to switch to a new mode of communication in the future. What’s more, they want to be notified of all sorts of things, so that a change to the notification mode in one place will mean a similar alteration in many other places.
 
-lessons to the system. As part of the registration procedure, an administrator should be notified when a lesson is added. The system’s users can’t agree whether this notification should be sent by mail or by text message. In fact, they’re so argumentative that you suspect they might want to switch to a new mode of communication in the future. What’s more, they want to be notified of all sorts of things, so that a change to the notification mode in one place will mean a similar alteration in many other places.
+If you’ve hard-coded calls to a Mailer class or a Texter class, then your system is tightly coupled to a particular notification mode, just as it would be tightly coupled to a database platform by the use of a specialized database API. Here is some code that hides the implementation details of a notifier from the system that uses it:
 
-If you’ve hard-coded calls to a Mailer class or a Texter class, then your system is tightly coupled to a particular notification mode, just as it would be tightly coupled to a database platform by the use of a specialized database API.
+为了灵活处理数据库代码，我们应该将应用逻辑从数据库平台的特殊性中解耦出来。在你自己的项目中，你会看到很多这种需要分离组件的情况。例如，课程系统中应包含注册组件，从而向系统中添加新课程。添加了新课程后，应该通知管理员，这是注册程序的一部分。对于应该通过邮件发送通知还是通过文本消息发送通知，系统用户的意见不一致。实际上，他们太挑别了，以至于你怀疑将来他们会想使用一种新的信息传达模式。此外，他们希望发生任何事情都会收到通知。所以，修改了通知模式的一处意味着要对多处做同样的修改。
 
-Here is some code that hides the implementation details of a notifier from the system that uses it:
+如果已经硬编码了对 Mailer 类或 Texter 类的调用，那么系统就与特殊的通知模式紧密相关了。就像利用专门的数据库 API 时，系统就与某数据库平台紧密相关一样。下面的这些代码对使用通知程序的系统隐藏了通知程序的实现细节。
 
 ```php
-// listing 08.12class RegistrationMgr{    public function register(Lesson $lesson)    {        // do something with this Lesson
+class RegistrationMgr {
+    function register(Lesson $lesson) {
+        // do something with the lesson
 
-        // now tell someone        $notifier = Notifier::getNotifier();        $notifier->inform("new lesson: cost ({$lesson->cost()})");    }}
+        // now tell someone
+        $notifier = Notifier::getNotifier();
+        $notifier->inform("new lesson: cost({$lesson->cost()})");
+    }
+}
 
-// listing 08.13abstract class Notifier{    public static function getNotifier(): Notifier    {        // acquire concrete class according to        // configuration or other logic
+abstract class Notifier {
+    public static function getNotifier(): Notifier {
+        // acquire concrete class according to configuration or other logic
+        if (rand(1, 2) === 1) {
+            return new MailNotifier();
+        } else {
+            return new TextNotifier();
+        }
+    }
+}
 
-        if (rand(1, 2) === 1) {            return new MailNotifier();        } else {            return new TextNotifier();        }    }
+class MailNotifier extends Notifier {
+    public function inform($message) {
+        echo "MAIL notification: {$message}\n";
+    }
+}
 
-    abstract public function inform($message);}
-
-// listing 08.14class MailNotifier extends Notifier{    public function inform($message)    {        print "MAIL notification: {$message}\n";    }}
-
-// listing 08.15class TextNotifier extends Notifier{    public function inform($message)    {        print "TEXT notification: {$message}\n";    }}
+class TextNotifier extends Notifier {
+    public function inform($message) {
+        echo "TEXT notification: {$message}\n";
+    }
+}
 ```
 
 I create RegistrationMgr, a sample client for my Notifier classes. The Notifier class is abstract, but it does implement a static method, getNotifier(), which fetches a concrete Notifier object (TextNotifier or MailNotifier). In a real project, the choice of Notifier would be determined by a flexible mechanism, such as a configuration file. Here, I cheat and make the choice randomly. MailNotifier and TextNotifier do nothing more than print out the message they are passed along with an identifier to show which one has been called.
 
-Notice how the knowledge of which concrete Notifier should be used has been focused in the 
+Notice how the knowledge of which concrete Notifier should be used has been focused in the Notifier::getNotifier() method. I could send notifier messages from a hundred different parts of my system, and a change in Notifier would only have to be made in that one method. Here is some code that calls the RegistrationMgr:
 
-Notifier::getNotifier() method. I could send notifier messages from a hundred different parts of my system, and a change in Notifier would only have to be made in that one method.
+注意，具体应该使用哪个 Notifier 对象取决于 Notifier::getnotifier() 方法。我可以从系统的上百个不同部分发送消息，但只需在该方法中对 Notifier 进行一项修改即可。
 
-Here is some code that calls the RegistrationMgr:
 
 ```php
-// listing 08.16$lessons1 = new Seminar(4, new TimedCostStrategy());$lessons2 = new Lecture(4, new FixedCostStrategy());$mgr = new RegistrationMgr();$mgr->register($lessons1);$mgr->register($lessons2);
+$mrg = new RegistrationMgr();
+$mrg->register(new Seminar(4, new TimedCostStrategy));
+$mrg->register(new Lecture(4, new FixedCostStrategy));
 ```
 
 And here’s the output from a typical run:
 
+```
 TEXT notification: new lesson: cost (20)MAIL notification: new lesson: cost (30)
+```
+
+![](./res/2020026.png)
 
 Figure 8-6.  The Notifier class separates client code from Notifier implementations
 
-Figure 8-6 shows these classes.Notice how similar the structure in Figure 8-6 is to that formed by the Doctrine components shown in 
-
-Figure 8-5.
+Figure 8-6 shows these classes.Notice how similar the structure in Figure 8-6 is to that formed by the Doctrine components shown in Figure 8-5.
 
 ## 2.4 Code to an Interface, Not to an Implementation
 
 This principle is one of the all-pervading themes of this book. You saw in Chapter 6 (and in the last section) that you can hide different implementations behind the common interface defined in a superclass. Client code can then require an object of the superclass’s type rather than that of an implementing class, unconcerned by the specific implementation it is actually getting.
 
-Parallel conditional statements, like the ones I rooted out from Lesson::cost() and 
 
-Lesson::chargeType(), are a common sign that polymorphism is needed. They make code hard to maintain because a change in one conditional expression necessitates a change in its siblings. Conditional statements are occasionally said to implement a「simulated inheritance.」
 
-By placing the cost algorithms in separate classes that implement CostStrategy, I remove duplication. I 
 
-also make it much easier should I need to add new cost strategies in the future.
 
-From the perspective of client code, it is often a good idea to require abstract or general types in your 
+Parallel conditional statements, like the ones I rooted out from Lesson::cost() and Lesson::chargeType(), are a common sign that polymorphism is needed. They make code hard to maintain because a change in one conditional expression necessitates a change in its siblings. Conditional statements are occasionally said to implement a「simulated inheritance.」
 
-methods’ parameters. By requiring more specific types, you could limit the flexibility of your code at runtime.Having said that, of course, the level of generality you choose in your argument hints is a matter of 
+By placing the cost algorithms in separate classes that implement CostStrategy, I remove duplication. I also make it much easier should I need to add new cost strategies in the future.
 
-judgment. Make your choice too general, and your method may become less safe. If you require the specific functionality of a subtype, then accepting a differently equipped sibling into a method could be risky.
+From the perspective of client code, it is often a good idea to require abstract or general types in your methods’ parameters. By requiring more specific types, you could limit the flexibility of your code at runtime.Having said that, of course, the level of generality you choose in your argument hints is a matter of judgment. Make your choice too general, and your method may become less safe. If you require the specific functionality of a subtype, then accepting a differently equipped sibling into a method could be risky.
 
-Still, make your choice of argument hint too restricted, and you lose the benefits of polymorphism. Take 
+Still, make your choice of argument hint too restricted, and you lose the benefits of polymorphism. Take a look at this altered extract from the Lesson class:
 
-a look at this altered extract from the Lesson class:
-
+```php
 // listing 08.17    public function __construct(int $duration, FixedCostStrategy $strategy)    {        $this->duration = $duration;        $this->costStrategy = $strategy;    }
+```
 
-There are two issues arising from the design decision in this example. First, the Lesson object is now 
+There are two issues arising from the design decision in this example. First, the Lesson object is now tied to a specific cost strategy, which closes down my ability to compose dynamic components. Second, the explicit reference to the FixedPriceStrategy class forces me to maintain that particular implementation.
 
-tied to a specific cost strategy, which closes down my ability to compose dynamic components. Second, the explicit reference to the FixedPriceStrategy class forces me to maintain that particular implementation.
+By requiring a common interface, I can combine a Lesson object with any CostStrategy implementation:
 
-By requiring a common interface, I can combine a Lesson object with any CostStrategy 
-
-implementation:
-
+```php
 // listing 08.18    public function __construct(int $duration, CostStrategy $strategy)    {        $this->duration = $duration;        $this->costStrategy = $strategy;    }
+```
 
-I have, in other words, decoupled my Lesson class from the specifics of cost calculation. All that matters 
-
-is the interface and the guarantee that the provided object will honor it.
+I have, in other words, decoupled my Lesson class from the specifics of cost calculation. All that matters is the interface and the guarantee that the provided object will honor it.
 
 Of course, coding to an interface can often simply defer the question of how to instantiate your objects. 
 
@@ -392,7 +416,7 @@ suitability for encapsulation in a new type. Each alternative in a suspect condi
 
 Promoting flexibility through composition
 
-•	•	•	 Making inheritance hierarchies more compact and focused•	
+Making inheritance hierarchies more compact and focused•	
 
 Focusing responsibility
 
