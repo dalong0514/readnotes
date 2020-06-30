@@ -1,20 +1,10 @@
-# 08 Some Pattern Principles
+# 0202. Some Pattern Principles
 
 Although design patterns simply describe solutions to problems, they tend to emphasize solutions that promote reusability and flexibility. To achieve this, they manifest some key object-oriented design principles. We will encounter some of them in this chapter and in more detail throughout the rest of the book.
 
-This chapter will cover the following topics:
+This chapter will cover the following topics: 1) Composition: How to use object aggregation to achieve greater flexibility than you could with inheritance alone. 2) Decoupling: How to reduce dependency between elements in a system. 3) The power of the interface: Patterns and polymorphism. 4) Pattern categories: The types of patterns that this book will cover.
 
-•	
-
-Composition: How to use object aggregation to achieve greater flexibility than you could with inheritance alone
-
-•	 Decoupling: How to reduce dependency between elements in a system•	•	
-
-Pattern categories: The types of patterns that this book will cover
-
-The power of the interface: Patterns and polymorphism
-
-The Pattern Revelation
+## 2.1 The Pattern Revelation
 
 I first started working with objects in the Java language. As you might expect, it took a while before some concepts clicked. When it did happen, though, it happened very fast, almost with the force of revelation. The elegance of inheritance and encapsulation bowled me over. I could sense that this was a different way of defining and building systems. I got polymorphism, working with a type and switching implementations at runtime. It seemed to me that this understanding would solve most of my design problems, and help me design beautiful and elegant systems.
 
@@ -36,15 +26,11 @@ I found that I had over-privileged inheritance in my designs, trying to build to
 
 my classes. But where else can functionality go in an object-oriented system?
 
-165
-
-Chapter 8 ■ Some pattern prinCipleS
-
 I found the answer in composition. Software components can be defined at runtime by combining 
 
 objects in flexible relationships. The Gang of Four boiled this down into a principle:「favor composition over inheritance.」The patterns described ways in which objects could be combined at runtime to achieve a level of flexibility impossible in an inheritance tree alone.
 
-Composition and Inheritance
+## Composition and Inheritance
 
 Inheritance is a powerful way of designing for changing circumstances or contexts. It can limit flexibility, however, especially when classes take on multiple responsibilities.
 
@@ -66,10 +52,6 @@ seminars. Because these organize enrollment and lesson notes in different ways, 
 
 Figure 8-2 shows a brute-force solution.
 
-166
-
-Chapter 8 ■ Some pattern prinCipleS
-
 Figure 8-2.  A poor inheritance structure
 
 Figure 8-2 shows a hierarchy that is clearly faulty. I can no longer use the inheritance tree to manage my 
@@ -85,10 +67,6 @@ unfortunate duplications. Essentially, I remove the pricing logic from the inher
     public function __construct(int $duration, int $costtype = 1)    {        $this->duration = $duration;        $this->costtype = $costtype;    }
 
     public function cost(): int    {        switch ($this->costtype) {            case self::TIMED:                return (5 * $this->duration);                break;            case self::FIXED:                return 30;                break;
-
-167
-
-Chapter 8 ■ Some pattern prinCipleS
 
             default:                $this->costtype = self::FIXED;                return 30;        }    }
 
@@ -112,10 +90,6 @@ And here’s the output:
 
 You can see the new class diagram in Figure 8-3.
 
-168
-
-Chapter 8 ■ Some pattern prinCipleS
-
 Figure 8-3.  Inheritance hierarchy improved by removing cost calculations from subclasses
 
 I have made the class structure much more manageable, but at a cost. Using conditionals in this code is a retrograde step. Usually, you would try to replace a conditional statement with polymorphism. Here, I have done the opposite. As you can see, this has forced me to duplicate the conditional statement across the chargeType() and cost() methods.
@@ -129,10 +103,6 @@ Figure 8-4.  Moving algorithms into a separate type
 I create an abstract class, CostStrategy, which defines the abstract methods, cost() and chargeType(). 
 
 The cost() method requires an instance of Lesson, which it will use to generate cost data. I provide two implementations for CostStrategy. Lesson objects work only with the CostStrategy type, not a specific implementation, so I can add new cost algorithms at any time by subclassing CostStrategy. This would require no changes at all to any Lesson classes.
-
-169
-
-Chapter 8 ■ Some pattern prinCipleS
 
 Here’s a simplified version of the new Lesson class illustrated in Figure 8-4:
 
@@ -156,10 +126,6 @@ The Lesson class requires a CostStrategy object, which it stores as a property. 
 
 method simply invokes CostStrategy::cost(). Equally, Lesson::chargeType() invokes CostStrategy::chargeType(). This explicit invocation of another object’s method in order to fulfill a request is known as delegation. In my example, the CostStrategy object is the delegate of Lesson. The Lesson class washes its hands of responsibility for cost calculations and passes on the task to a CostStrategy implementation. Here, it is caught in the act of delegation:
 
-170
-
-Chapter 8 ■ Some pattern prinCipleS
-
     public function cost(): int    {        return $this->costStrategy->cost($this);    }
 
 Here is the CostStrategy class, together with its implementing children:
@@ -182,10 +148,6 @@ at runtime. This approach then makes for highly flexible code. Rather than build
 
 foreach ($lessons as $lesson) {
 
-171
-
-Chapter 8 ■ Some pattern prinCipleS
-
     print "lesson charge {$lesson->cost()}. ";    print "Charge type: {$lesson->chargeType()}\n";}
 
 lesson charge 20. Charge type: hourly ratelesson charge 30. Charge type: fixed rate
@@ -196,7 +158,7 @@ CostStrategy objects are responsible solely for calculating cost, and Lesson obj
 
 dynamically in many more ways than you can anticipate in an inheritance hierarchy alone. There can be a penalty with regard to readability, though. Because composition tends to result in more types, with relationships that aren’t fixed with the same predictability as they are in inheritance relationships, it can be slightly harder to digest the relationships in a system.
 
-Decoupling
+## Decoupling
 
 You saw in Chapter 6 that it makes sense to build independent components. A system with highly interdependent classes can be hard to maintain. A change in one location can require a cascade of related changes across the system.
 
@@ -220,13 +182,9 @@ The problem here is not the system’s dependency on an external platform. Such 
 
 inevitable. You need to work with code that speaks to a database. The problem comes when such code is scattered throughout a project. Talking to databases is not the primary responsibility of most classes in a system, so the best strategy is to extract such code and group it together behind a common interface. In this way, you promote the independence of your classes. At the same time, by concentrating your gateway code in one place, you make it much easier to switch to a new platform without disturbing your wider system. This process, the hiding of implementation behind a clean interface, is known as encapsulation. The Doctrine database library solves this problem with the DBAL (database abstraction layer) project. This provides a single point of access for multiple databases.
 
-172
-
 The DriverManager class provides a static method called getConnection() that accepts a parameters 
 
 array. According to the makeup of this array, it returns a particular implementation of an interface called Doctrine\DBAL\Driver. You can see the class structure in Figure 8-5.
-
-Chapter 8 ■ Some pattern prinCipleS
 
 Figure 8-5.  The DBAL package decouples client code from database objects
 
@@ -247,10 +205,6 @@ Here is some code that hides the implementation details of a notifier from the s
 // listing 08.12class RegistrationMgr{    public function register(Lesson $lesson)    {        // do something with this Lesson
 
         // now tell someone        $notifier = Notifier::getNotifier();        $notifier->inform("new lesson: cost ({$lesson->cost()})");    }}
-
-173
-
-Chapter 8 ■ Some pattern prinCipleS
 
 // listing 08.13abstract class Notifier{    public static function getNotifier(): Notifier    {        // acquire concrete class according to        // configuration or other logic
 
@@ -274,13 +228,9 @@ Here is some code that calls the RegistrationMgr:
 
 // listing 08.16$lessons1 = new Seminar(4, new TimedCostStrategy());$lessons2 = new Lecture(4, new FixedCostStrategy());$mgr = new RegistrationMgr();$mgr->register($lessons1);$mgr->register($lessons2);
 
-174
-
 And here’s the output from a typical run:
 
 TEXT notification: new lesson: cost (20)MAIL notification: new lesson: cost (30)
-
-Chapter 8 ■ Some pattern prinCipleS
 
 Figure 8-6.  The Notifier class separates client code from Notifier implementations
 
@@ -288,7 +238,7 @@ Figure 8-6 shows these classes.Notice how similar the structure in Figure 8-6 
 
 Figure 8-5.
 
-Code to an Interface, Not to an Implementation
+## Code to an Interface, Not to an Implementation
 
 This principle is one of the all-pervading themes of this book. You saw in Chapter 6 (and in the last section) that you can hide different implementations behind the common interface defined in a superclass. Client code can then require an object of the superclass’s type rather than that of an implementing class, unconcerned by the specific implementation it is actually getting.
 
@@ -312,10 +262,6 @@ a look at this altered extract from the Lesson class:
 
 // listing 08.17    public function __construct(int $duration, FixedCostStrategy $strategy)    {        $this->duration = $duration;        $this->costStrategy = $strategy;    }
 
-175
-
-Chapter 8 ■ Some pattern prinCipleS
-
 There are two issues arising from the design decision in this example. First, the Lesson object is now 
 
 tied to a specific cost strategy, which closes down my ability to compose dynamic components. Second, the explicit reference to the FixedPriceStrategy class forces me to maintain that particular implementation.
@@ -338,7 +284,7 @@ When you create an abstract superclass, there is always the issue of how its chi
 
 instantiated. Which child do you choose and according to which condition? This subject forms a category of its own in the Gang of Four pattern catalog, and I will examine this further in the next chapter.
 
-The Concept that Varies
+## The Concept that Varies
 
 It’s easy to interpret a design decision once it has been made, but how do you decide where to start?
 
@@ -364,11 +310,7 @@ So how do you spot variation? One sign is the misuse of inheritance. This might 
 
 deployed according to multiple forces at one time (e.g., lecture/seminar and fixed/timed cost). It might also include subclassing on an algorithm where the algorithm is incidental to the core responsibility of the type. The other sign of variation suitable for encapsulation is, as you have seen, a conditional expression.
 
-176
-
-Chapter 8 ■ Some pattern prinCipleS
-
-Patternitis
+## Patternitis
 
 One problem for which there is no pattern is the unnecessary or inappropriate use of patterns. This has earned patterns a bad name in some quarters. Because pattern solutions are neat, it is tempting to apply them wherever you see a fit, whether they truly fulfill a need or not.
 
@@ -386,7 +328,7 @@ When you work with a pattern catalog, the structure and process of the solution 
 
 mind, consolidated by the code example. Before applying a pattern, though, pay close attention to the problem, or「when to use it,」section, and then read up on the pattern’s consequences. In some contexts, the cure may be worse than the disease.
 
-The Patterns
+## The Patterns
 
 This book is not a pattern catalog. Nevertheless, in the coming chapters, I will introduce a few of the key patterns in use at the moment, providing PHP implementations and discussing them in the broad context of PHP programming.
 
@@ -398,21 +340,12 @@ Patterns for Organizing Objects and ClassesThese patterns help you to organize t
 
 Task-Oriented PatternsThese patterns describe the mechanisms by which classes and objects cooperate to achieve objectives.
 
-177
-
-Chapter 8 ■ Some pattern prinCipleS
-
 Enterprise PatternsI look at some patterns that describe typical Internet programming problems and solutions. Drawn largely from Patterns of Enterprise Application Architecture and Core J2EE Patterns: Best Practices and Design Strategies, the patterns deal with presentation and application logic.
 
 Database PatternsAn examination of patterns that help with storing and retrieving data, and with mapping objects to and from databases.
 
-Summary
+## Summary
 
 In this chapter, I examined some of the principles that underpin many design patterns. I looked at the use of composition to enable object combination and recombination at runtime, resulting in more flexible structures than would be available using inheritance alone. I also introduced you to decoupling, the practice of extracting software components from their context to make them more generally applicable. Finally, I reviewed the importance of interface as a means of decoupling clients from the details of implementation.
 
 In the coming chapters, I will examine some design patterns in detail.
-
-178
-
-CHAPTER 9
-

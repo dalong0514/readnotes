@@ -286,173 +286,190 @@ So, ShopProduct classes are responsible for managing product data. If we add met
 
 ## 6.4 Polymorphism
 
-Polymorphism, or class switching, is a common feature of object-oriented systems. You have encountered it several times already in this book.
+Polymorphism, or class switching, is a common feature of object-oriented systems. You have encountered it several times already in this book. Polymorphism is the maintenance of multiple implementations behind a common interface. This sounds complicated, but in fact, it should be very familiar to you by now. The need for polymorphism is often signaled by the presence of extensive conditional statements in your code.
 
-Polymorphism is the maintenance of multiple implementations behind a common interface. This sounds complicated, but in fact, it should be very familiar to you by now. The need for polymorphism is often signaled by the presence of extensive conditional statements in your code.
+如果代码中存在大量条件语句，就说明需要使用多态。
 
-When I first created the ShopProduct class in Chapter 3, I experimented with a single class which 
+When I first created the ShopProduct class in Chapter 3, I experimented with a single class which managed functionality for books and CDs, in addition to generic products. In order to provide summary information, I relied on a conditional statement:
 
-managed functionality for books and CDs, in addition to generic products. In order to provide summary information, I relied on a conditional statement:
-
+```php
 // listing 03.31
 
-    public function getSummaryLine()    {        $base  = "{$this->title} ( {$this->producerMainName}, ";        $base .= "{$this->producerFirstName} )";        if ($this->type == 'book') {            $base .= ": page count - {$this->numPages}";        } elseif ($this->type == 'cd') {
+public function getSummaryLine()    {        
+    $base  = "{$this->title} ( {$this->producerMainName}, ";        
+    $base .= "{$this->producerFirstName} )";        
+    if ($this->type == 'book') {            
+        $base .= ": page count - {$this->numPages}";        
+    } elseif ($this->type == 'cd') {
+        $base .= ": playing time - {$this->playLength}";        
+    }        
+    return $base;    
+}
+```
 
-            $base .= ": playing time - {$this->playLength}";        }        return $base;    }
+These statements suggested the shape for the two subclasses: CdProduct and BookProduct. By the same token, the conditional statements in my procedural parameter example contained the seeds of the object-oriented structure I finally arrived at. I repeated the same condition in two parts of the script:
 
-These statements suggested the shape for the two subclasses: CdProduct and BookProduct.By the same token, the conditional statements in my procedural parameter example contained the 
+同样，在上文面向过程的例子中我们也使用了条件语句，这些语句中暗含了我们最终要实现的面向对象结构的萌芽。我们在代码的两个部分重复使用相同的条件语句。
 
-seeds of the object-oriented structure I finally arrived at. I repeated the same condition in two parts of the script:
-
+```php
 // listing 06.03
 
-function readParams(string $source): array{    $params = [];    if (preg_match("/\.xml$/i", $source)) {        // read XML parameters from $source    } else {         // read text parameters from $source    }    return $params;}
+function readParams(string $source): array {    
+    $params = [];    
+    if (preg_match("/\.xml$/i", $source)) {        
+        // read XML parameters from $source    
+    } else {         
+        // read text parameters from $source    
+    }    
+    return $params;
+}
 
-function writeParams(array $params, string $source){    if (preg_match("/\.xml$/i", $source)) {        // write XML parameters to $source    } else {        // write text parameters to $source    }}
+function writeParams(array $params, string $source) {    
+    if (preg_match("/\.xml$/i", $source)) {        
+        // write XML parameters to $source    
+    } else {        
+        // write text parameters to $source    
+    }
+}
+```
 
-Each clause suggested one of the subclasses I finally produced: XmlParamHandler and 
+Each clause suggested one of the subclasses I finally produced: XmlParamHandler and TextParamHandler. These extended the abstract base class ParamHandler’s write() and read() methods:
 
-TextParamHandler. These extended the abstract base class ParamHandler’s write() and read() methods:
-
+```php
 // listing 06.09
+// could return XmlParamHandler or TextParamHandler
 
-// could return XmlParamHandler or TextParamHandler$test = ParamHandler::getInstance($file);$test->read();  // could be XmlParamHandler::read() or TextParamHandler::read()$test->addParam("newkey1", "newval1");$test->write(); // could be XmlParamHandler::write() or TextParamHandler::write()
+$test = ParamHandler::getInstance($file);
+$test->read();  // could be XmlParamHandler::read() or TextParamHandler::read()
+$test->addParam("newkey1", "newval1");
+$test->write(); // could be XmlParamHandler::write() or TextParamHandler::write()
+```
 
-It is important to note that polymorphism doesn’t banish conditionals. Methods such as 
+It is important to note that polymorphism doesn’t banish conditionals. Methods such as ParamHandler::getInstance() will often determine which objects to return based on switch or if statements. These tend to centralize the conditional code into one place, though.
 
-ParamHandler::getInstance() will often determine which objects to return based on switch or if statements. These tend to centralize the conditional code into one place, though.
+As you have seen, PHP enforces the interfaces defined by abstract classes. This is useful because we can be sure that a concrete child class will support exactly the same method signatures as those defined by an abstract parent. This includes type declarations and access controls. Client code can, therefore, treat all children of a common superclass interchangeably (as long it only relies on only functionality defined in the parent).
 
-As you have seen, PHP enforces the interfaces defined by abstract classes. This is useful because we 
+就像我们看到的那样，PHP 强制接口由抽象类定义。这非常有用，因为我们可以确定子类将会实现抽象父类中定义的所有方法，包括类类型提示和方法的访问控制。客户端代码因此可以使用一个公共父类的任意子类而不需要改写代码（只要客户端代码仅依赖于父类中定义的功能）。这个规则唯一的缺憾是：无法强制规定类方法返回的数据类型。
 
-can be sure that a concrete child class will support exactly the same method signatures as those defined by an abstract parent. This includes type declarations and access controls. Client code can, therefore, treat all children of a common superclass interchangeably (as long it only relies on only functionality defined in the parent).
+1『 PHP 7 已经支持返回特定的数据类型了。（2020-06-30）』
 
 ## 6.5 Encapsulation
 
 Encapsulation simply means the hiding of data and functionality from a client. And once again, it is a key object-oriented concept.
 
-On the simplest level, you encapsulate data by declaring properties private or protected. By hiding a 
+On the simplest level, you encapsulate data by declaring properties private or protected. By hiding a property from client code, you enforce an interface and prevent the accidental corruption of an object’s data. Polymorphism illustrates another kind of encapsulation. By placing different implementations behind a common interface, you hide these underlying strategies from the client. This means that any changes that are made behind this interface are transparent to the wider system. You can add new classes or change the code in a class without causing errors. The interface is what matters, not the mechanisms working beneath it. The more independent these mechanisms are kept, the less chance that changes or repairs will have a knock-on effect in your projects.
 
-property from client code, you enforce an interface and prevent the accidental corruption of an object’s data.Polymorphism illustrates another kind of encapsulation. By placing different implementations behind a common interface, you hide these underlying strategies from the client. This means that any changes that are made behind this interface are transparent to the wider system. You can add new classes or change the code in a class without causing errors. The interface is what matters, not the mechanisms working beneath it. The more independent these mechanisms are kept, the less chance that changes or repairs will have a knock-on effect in your projects.
+要实现封装，最简单的办法是将属性定义为 private 或 protected。通过对客户端代码隐藏属性，我们创建了一个接口并防止在偶然情况下污染对象中的数据。多态是另外一种封装。通过把不同的实现放在公共接口之后，我们对客户端代码隐藏了功能的实现。也就是说，任何在接口背后发生的改变对外界的系统来说都是可忽略的。我们可以增加新类或改变类中的代码，而不会产生错误。接口与其背后的工作机制是分开来的。这些机制越独立，改进或修正代码对系统的影响越小。
 
-Encapsulation is, in some ways, the key to object-oriented programming. Your objective should be to make each part as independent as possible from its peers. Classes and methods should receive as much information as is necessary to perform their allotted tasks, which should be limited in scope and clearly identified.
-
-The introduction of the private, protected, and public keywords have made encapsulation easier. 
+Encapsulation is, in some ways, the key to object-oriented programming. Your objective should be to make each part as independent as possible from its peers. Classes and methods should receive as much information as is necessary to perform their allotted tasks, which should be limited in scope and clearly identified. The introduction of the private, protected, and public keywords have made encapsulation easier. 
 
 Encapsulation is also a state of mind, though. PHP 4 provided no formal support for hiding data. Privacy had to be signaled using documentation and naming conventions. An underscore, for example, is a common way of signaling a private property:
 
+从某种程度上说，封装是面向对象编程的关键。我们的目标是使系统中的每一部分都尽可能独立。类和方法应当能够接收到足够的信息来执行它们承担的任务，而这些任务应该非常清晰，有明确的定义和范围。在 PHP 5 中，private、protected 和 public 关键字的引入使封装变得容易。尽管如此，在使用封裝时还是要深思熟虑。但 PHP 4 并没有正式支持隐藏数据，你不得不使用文档和命名惯例来说明数据的隐私性。例如，以下划线开头的属性通常是私有属性：
+
+```php
 var $_touchezpas;
+```
 
-Code had to be checked closely, of course, because privacy was not strictly enforced. Interestingly, 
+Code had to be checked closely, of course, because privacy was not strictly enforced. Interestingly, though, errors were rare because the structure and style of the code made it pretty clear which properties wanted to be left alone. By the same token, even after PHP 5 arrived, we could break the rules and discover the exact subtype of an object that we were using in a class-switching context simply by using the instanceof operator:
 
-though, errors were rare because the structure and style of the code made it pretty clear which properties wanted to be left alone.
+```php
+function workWithProducts(ShopProduct $prod)    {        
+    if ($prod instanceof CdProduct) {            
+        // do cd thing        
+    } else if ($prod instanceof BookProduct) {            
+        // do book thing        
+    }    
+}
+```
 
-By the same token, even after PHP 5 arrived, we could break the rules and discover the exact subtype of 
+You may have a very good reason to do this, but, in general, it carries a slightly uncertain odor. By querying the specific subtype in the example, I am setting up a dependency. Although the specifics of the subtype were hidden by polymorphism, it would have been possible to have changed the ShopProduct inheritance hierarchy entirely with no ill effects. This code ends that. Now, if I need to rationalize the CdProduct and BookProduct classes, I may create unexpected side effects in the workWithProducts() method.
 
-an object that we were using in a class-switching context simply by using the instanceof operator:
+There are two lessons to take away from this example. First, encapsulation helps you to create orthogonal code. Second, the extent to which encapsulation is enforceable is beside the point. Encapsulation is a technique that should be observed equally by classes and their clients.
 
-    function workWithProducts(ShopProduct $prod)    {        if ($prod instanceof CdProduct) {            // do cd thing        } else if ($prod instanceof BookProduct) {            // do book thing        }    }
+1『 Encapsulation is a technique that should be observed equally by classes and their clients. 有关封装的第二个说明事项目前还理解不了。（2020-06-30）』
 
-You may have a very good reason to do this, but, in general, it carries a slightly uncertain odor. By querying 
+这样做通常有很好的理由，但通常来说会带来一些不确定的因素。在代码中査询特定子类型时会产生一个依赖关系。如果我们利用多态来隐藏特定子类型的特性，ShopProduct 的继承关系改变时就不会产生任何错误。但上面的代码会破坏这种情况。使用上面的代码时，如果我们改写了 CdProduct 和 BookProduct 类，就有可能在 workwithproducts() 方法中产生预想不到的错误。
 
-the specific subtype in the example, I am setting up a dependency. Although the specifics of the subtype were hidden by polymorphism, it would have been possible to have changed the ShopProduct inheritance hierarchy entirely with no ill effects. This code ends that. Now, if I need to rationalize the CdProduct and BookProduct classes, I may create unexpected side effects in the workWithProducts() method.
-
-There are two lessons to take away from this example. First, encapsulation helps you to create 
-
-orthogonal code. Second, the extent to which encapsulation is enforceable is beside the point. Encapsulation is a technique that should be observed equally by classes and their clients.
+这个例子说明了两件事。首先，封装可以帮助我们创建正交的代码。其次，封装的范围不怎么重要，无论封装的规模是大是小，类和客户端代码都必须同时关注封装的实现。
 
 ## 6.6 Forget How to Do It
 
-If you are like me, the mention of a problem will set your mind racing, looking for mechanisms that might provide a solution. You might select functions that will address an issue, revisit clever regular expressions, track down Composer packages. You probably have some pasteable code in an old project that does 
+If you are like me, the mention of a problem will set your mind racing, looking for mechanisms that might provide a solution. You might select functions that will address an issue, revisit clever regular expressions, track down Composer packages. You probably have some pasteable code in an old project that does something somewhat similar. At the design stage, you can profit by setting all that aside for a while. Empty your head of procedures and mechanisms.
 
-something somewhat similar. At the design stage, you can profit by setting all that aside for a while. Empty your head of procedures and mechanisms.
+如果你和我一样，可能会一遇到问题就开始努力寻找解决办法：设计函数来解决一个问题，或构造一个正则表达式，或者下载 Composer 包，或者可能会从旧的项目中寻找解决类似问题的代码来使用。在设计阶段，让大脑空自一段时间会给你带来意想不到的好处。清清空脑海中这些和细节相关的念头。
 
 Think only about the key participants of your system: the types it will need and their interfaces. Of course, your knowledge of process will inform your thinking. A class that opens a file will need a path, database code will need to manage table names and passwords, and so on. Let the structures and relationships in your code lead you, though. You will find that the implementation falls into place easily behind a well-defined interface. You then have the flexibility to switch out, improve, or extend an implementation should you need to, without affecting the wider system.
 
-In order to emphasize interface, think in terms of abstract base classes rather than concrete children. 
+1『做好接口 -> 实现 -> 重构。』
 
-In my parameter-fetching code, for example, the interface is the most important aspect of the design. I want a type that reads and writes name/value pairs. It is this responsibility that is important about the type, not the actual persistence medium or the means of storing and retrieving data. I design the system around the abstract ParamHandler class, and only add in the concrete strategies for actually reading and writing parameters later on. In this way, I build both polymorphism and encapsulation into my system from the start. The structure lends itself to class switching.
+你可以只考虑系统中的关键参与者：项目需要的对象类型和这些对象的接口。当然，你的经验会告诉你如何思考：一个打开文件的类需要一个路径，数据库代码需要管理表名和密码等。但最好不要被经验所左右，而要让代码中的结构和关系来引导你，你会发现在一个定义良好的接口之后加入实现代码是很容易的。接着你可以灵活地选择、改进或扩展一个可能需要的实现，而不会影响到外界的系统。
+
+In order to emphasize interface, think in terms of abstract base classes rather than concrete children. In my parameter-fetching code, for example, the interface is the most important aspect of the design. I want a type that reads and writes name/value pairs. It is this responsibility that is important about the type, not the actual persistence medium or the means of storing and retrieving data. I design the system around the abstract ParamHandler class, and only add in the concrete strategies for actually reading and writing parameters later on. In this way, I build both polymorphism and encapsulation into my system from the start. The structure lends itself to class switching.
+
+为了强调接口，我们按抽象基类而不是具体的子类来思考。例如，在之前的参数读取示例代码中，接口是设计中最重要的部分。我们需要一个可以读写键值对的对象类型。对于该对象类型来说，读写键/值对就是最重要的职责，而不是持久存储或获取数据。我们围绕着抽象类 ParamHandler 来设计系统，并只为实际读写需要增加具体的处理方案。用这种方法，我们一开始就在系统中使用了多态和封装。这个结构也具有类切换的能力。
 
 Having said that, of course, I knew from the start that there would be text and XML implementations of ParamHandler, and there is no question that this influenced my interface. There is always a certain amount of mental juggling to do when designing interfaces.
 
-In Design Patterns: Elements of Reusable Object-Oriented Software (Addison-Wesley Professional, 
+In Design Patterns: Elements of Reusable Object-Oriented Software (Addison-Wesley Professional, 1995), the Gang of Four summed up this principle with the phrase,「Program to an interface, not an implementation.」It is a good one to add to your coder’s handbook.
 
-1995), the Gang of Four summed up this principle with the phrase,「Program to an interface, not an implementation.」It is a good one to add to your coder’s handbook.
+我们一开始就已经知道将会有文本和 XML 两种类型的 Paramhandler 实现，这毫无疑问会影响我们对于接口的设计。这些具体的实现有可能会干扰到我们设计出抽象的接口，因为我们思考的东西增加了。设计接口的时候我们或多或少总得花一番心思。「四人组」在《设计模式》一书中用一句话总结了这个规则——「为接口而不是实现而编程」（Program to an interface, not an implementation）。
+
+设计软件的时候，克服复杂度是一个非常重要的原则。我们应尽量减少同一时间在脑中思考的对象，要能分清主次，把问题抽象出来。所谓的「心智把戏」，指的是权衡哪些东西是真正需要放到系统中的过程。Code Complete 一书中有涉及相关话题。一一译者注
 
 ## 6.7 Four Signposts
 
-Very few people get it absolutely right at the design stage. Most of us amend our code as requirements change or as we gain a deeper understanding of the nature of the problem we are addressing.
+Very few people get it absolutely right at the design stage. Most of us amend our code as requirements change or as we gain a deeper understanding of the nature of the problem we are addressing. As you amend your code, it can easily drift beyond your control. A method is added here and a new class there, and gradually your system begins to decay. As you have seen already, your code can point the way to its own improvement. These pointers in code are sometimes referred to as code smells—that is, features in code that may suggest particular fixes or at least call you to look again at your design. In this section, I distill some of the points already made into four signs that you should watch out for as you code.
 
-As you amend your code, it can easily drift beyond your control. A method is added here and a new class there, and gradually your system begins to decay. As you have seen already, your code can point the way to its own improvement. These pointers in code are sometimes referred to as code smells—that is, features in code that may suggest particular fixes or at least call you to look again at your design. In this section, I distill some of the points already made into four signs that you should watch out for as you code.
+Code Duplication. Duplication is one of the great evils in code. If you get a strange sense of déjà vu as you write a routine, chances are you have a problem. Take a look at the instances of repetition in your system. Perhaps they belong together. Duplication generally means tight coupling. If you change something fundamental about one routine, will the similar routines need amendment? If this is the case, they probably belong in the same class.
 
-Code DuplicationDuplication is one of the great evils in code. If you get a strange sense of déjà vu as you write a routine, chances are you have a problem.
+The Class Who Knew Too Much. It can be a pain passing parameters around from method to method. Why not simply reduce the pain by using a global variable? With a global, everyone can get at the data. Global variables have their place, but they do need to be viewed with some level of suspicion. That’s quite a high level of suspicion, by the way. By using a global variable, or by giving a class any kind of knowledge about its wider domain, you anchor it into its context, making it less reusable and dependent on code beyond its control. Remember, you want to decouple your classes and routines and not create interdependence. Try to limit a class’s knowledge of its context. I will look at some strategies for doing this later in the book.
 
-Take a look at the instances of repetition in your system. Perhaps they belong together. Duplication 
+从一个方法传递参数到另一个方法时可能会产生问题。为什么不使用全局变量减少麻烦呢？使用全局变量可以让所有的方法都能获得数据。全局变量有它们自己的作用，但使用时一定要慎重考虑。使用全局变量或者允许一个类知道它之外的领域的内容，你就可以把这个类绑定到外部环境中，让它很难重用，并无法保持独立。记住，我们要解开类及例程之间的耦合，尽量避免产生相互的依赖关系。我们要尽量把一个类限制在自己的环境中。
 
-generally means tight coupling. If you change something fundamental about one routine, will the similar routines need amendment? If this is the case, they probably belong in the same class.
+The Jack of All TradesIs. your class trying to do too many things at once? If so, see if you can list the responsibilities of the class. You may find that one of them will form the basis of a good class itself. Leaving an overzealous class unchanged can cause particular problems if you create subclasses. Which responsibility are you extending with the subclass? What would you do if you needed a subclass for more than one responsibility? You are likely to end up with too many subclasses or an over-reliance on conditional code.
 
-The Class Who Knew Too MuchIt can be a pain passing parameters around from method to method. Why not simply reduce the pain by using a global variable? With a global, everyone can get at the data.
+你的类是否尝试一次完成很多工作？如果是的话，就要检查类的职责列表了。你会发现其中的一些功能可以提取出来，成为一个基类。如果类的职责过多，那么在创建子类的时候会产生问题。你要用子类扩展什么样的功能？如果想要让子类负责更多的事情，该怎么办？这样可能会产生太多的子类或者过度依赖于条件语句。
 
-Global variables have their place, but they do need to be viewed with some level of suspicion. That’s 
+Conditional Statements. You will use if and switch statements with perfectly good reason throughout your projects. Sometimes, though, such structures can be a cry for polymorphism. If you find that you are testing for certain conditions frequently within a class, especially if you find these tests mirrored across more than one method, this could be a sign that your one class should be two or more. See whether the structure of the conditional code suggests responsibilities that could be expressed in classes. The new classes should implement a shared abstract base class. Chances are that you will then have to work out how to pass the right class to client code. I will cover some patterns for creating objects in Chapter 9.
 
-quite a high level of suspicion, by the way. By using a global variable, or by giving a class any kind of knowledge about its wider domain, you anchor it into its context, making it less reusable and dependent on code beyond its control. Remember, you want to decouple your classes and routines and not create interdependence. Try to limit a class’s knowledge of its context. I will look at some strategies for doing this later in the book.
+在项目中我们常有非常好的理由来使用 if 和 switch 语句，但有时这样的结构会让我们不得不使用多态。如果你发现在一个类中频繁地进行特定条件的判断，特别是当你发现这些条件判断在多个方法中出现时，就说明这个类需要拆分成两个或者更多。检查一下条件代码的结构，看看是否应该将某些功能独立出来放在独立类中。拆分出来的几个类应该有一个共享的抽象基类，这时你需要知道如何传递正确的子类给客户端代码。
 
-The Jack of All TradesIs your class trying to do too many things at once? If so, see if you can list the responsibilities of the class. You may find that one of them will form the basis of a good class itself.
-
-Leaving an overzealous class unchanged can cause particular problems if you create subclasses. Which 
-
-responsibility are you extending with the subclass? What would you do if you needed a subclass for more than one responsibility? You are likely to end up with too many subclasses or an over-reliance on conditional code.
-
-Conditional StatementsYou will use if and switch statements with perfectly good reason throughout your projects. Sometimes, though, such structures can be a cry for polymorphism.
-
-If you find that you are testing for certain conditions frequently within a class, especially if you find 
-
-these tests mirrored across more than one method, this could be a sign that your one class should be two or more. See whether the structure of the conditional code suggests responsibilities that could be expressed in classes. The new classes should implement a shared abstract base class. Chances are that you will then have to work out how to pass the right class to client code. I will cover some patterns for creating objects in Chapter 9.
+2『重构的 4 个方向：代码重复、类知道的太多（慎用全局变量）、万能的类和条件语句。代码重复往往意味着高耦合，一个地方的代码需要修改，另一个地方同样的代码也要跟着改；尽量把一个类限制在自己的环境中；如果类的职责过多，那么在创建子类的时候会产生问题。你要用子类扩展什么样的功能？做一张术语卡片。』——已完成
 
 ## 6.8 The UML
 
-So far in this book, I have let the code speak for itself, and I have used short examples to illustrate concepts such as inheritance and polymorphism.
+So far in this book, I have let the code speak for itself, and I have used short examples to illustrate concepts such as inheritance and polymorphism. This is useful because PHP is a common currency here: it’s a language we have in common, if you have read this far. As our examples grow in size and complexity, though, using code alone to illustrate the broad sweep of design becomes somewhat absurd. It is hard to see an overview in a few lines of code.
 
-This is useful because PHP is a common currency here: it’s a language we have in common, if you have read this far. As our examples grow in size and complexity, though, using code alone to illustrate the broad sweep of design becomes somewhat absurd. It is hard to see an overview in a few lines of code.
+UML stands for Unified Modeling Language. The initials are correctly used with the definite article. This isn’t just a unified modeling language, it is the Unified Modeling Language.
 
-UML stands for Unified Modeling Language. The initials are correctly used with the definite article. This 
+1『统一建模语言，注意要用定冠词 the。』
 
-isn’t just a unified modeling language, it is the Unified Modeling Language.
+Perhaps this magisterial tone derives from the circumstances of the language’s forging. According to Martin Fowler (UML Distilled, Addison-Wesley Professional, 1999), the UML emerged as a standard only after long years of intellectual and bureaucratic sparring among the great and good of the object-oriented design community. The result of this struggle is a powerful graphical syntax for describing object-oriented systems. We will only scratch the surface in this section, but you will soon find that a little UML (sorry, a little of the UML) goes a long way.
 
-Perhaps this magisterial tone derives from the circumstances of the language’s forging. According to Martin Fowler (UML Distilled, Addison-Wesley Professional, 1999), the UML emerged as a standard only after long years of intellectual and bureaucratic sparring among the great and good of the object-oriented design community.
+Class diagrams in particular can describe structures and patterns so that their meaning shines through. This luminous clarity is often harder to find in code fragments and bullet points.
 
-The result of this struggle is a powerful graphical syntax for describing object-oriented systems. We will 
+### 6.8.1 Class Diagrams
 
-only scratch the surface in this section, but you will soon find that a little UML (sorry, a little of the UML) goes a long way.
+Although class diagrams are only one aspect of the UML, they are perhaps the most ubiquitous. Because they are particularly useful for describing object-oriented relationships, I will primarily use these in this book. 
 
-Class diagrams in particular can describe structures and patterns so that their meaning shines through. 
-
-This luminous clarity is often harder to find in code fragments and bullet points.
-
-Class DiagramsAlthough class diagrams are only one aspect of the UML, they are perhaps the most ubiquitous. Because they are particularly useful for describing object-oriented relationships, I will primarily use these in this book.
-
-Representing ClassesAs you might expect, classes are the main constituents of class diagrams. A class is represented by a named box (see Figure 6-1).
+Representing Classes. As you might expect, classes are the main constituents of class diagrams. A class is represented by a named box (see Figure 6-1).
 
 Figure 6-1.  A class
 
-The class is divided into three sections, with the name displayed in the first. These dividing lines are 
+The class is divided into three sections, with the name displayed in the first. These dividing lines are optional when we present no more information than the class name. In designing a class diagram, we may find that the level of detail in Figure 6-1 is enough for some classes. We are not obligated to represent every field and method, or even every class in a class diagram.
 
-optional when we present no more information than the class name. In designing a class diagram, we may find that the level of detail in Figure 6-1 is enough for some classes. We are not obligated to represent every field and method, or even every class in a class diagram.
+Abstract classes are represented either by italicizing the class name (see Figure 6-2) or by adding {abstract} to the class name (see Figure 6-3). The first method is the more common of the two, but the second is more useful when you are making notes.
 
-Abstract classes are represented either by italicizing the class name (see Figure 6-2) or by adding 
-
-{abstract} to the class name (see Figure 6-3). The first method is the more common of the two, but the second is more useful when you are making notes.
+{abstract} 语法是约束的一个例子。「约束」在类图中用于描述特定元素将被使用。花括号中的文字并没有特殊的结构，它只是提供一个将应用于该元素的条件声明。
 
 Figure 6-2.  An abstract class
 
 Figure 6-3.  An abstract class defined using a constraint
 
- the {abstract} syntax is an example of a constraint. Constraints are used in class diagrams to 
+ ■ Note:  the {abstract} syntax is an example of a constraint. Constraints are used in class diagrams to describe the way in which specific elements should be used. there is no special structure for the text between the braces; it should simply provide a short clarification of any conditions that may apply to the element.
 
- ■ Note describe the way in which specific elements should be used. there is no special structure for the text between the braces; it should simply provide a short clarification of any conditions that may apply to the element.
-
-Interfaces are defined in the same way as classes, except that they must include a stereotype (that is, an 
-
-extension to the UML), as shown in Figure 6-4.
+Interfaces are defined in the same way as classes, except that they must include a stereotype (that is, an extension to the UML), as shown in Figure 6-4.
 
 Figure 6-4.  An interface
 
@@ -460,37 +477,21 @@ AttributesBroadly speaking, attributes describe a class’s properties. Attribut
 
 Figure 6-5.  An attribute
 
-Let’s take a close look at the attribute in the example. The initial symbol represents the level of visibility, 
-
-or access control, for the attribute. Table 6-1 shows the three symbols available.
+Let’s take a close look at the attribute in the example. The initial symbol represents the level of visibility, or access control, for the attribute. Table 6-1 shows the three symbols available.
 
 Table 6-1.  Visibility Symbols
 
-Symbol
+The visibility symbol is followed by the name of the attribute. In this case, I am describing the ShopProduct::\$price property. A colon is used to separate the attribute name from its type (and optionally, its default value). Once again, you need only include as much detail as is necessary for clarity.
 
-Visibility
+### 6.8.2 Operations
 
-Explanation
+Operations describe methods; or, more properly, they describe the calls that can be made on an instance of a class. Figure 6-6 shows two operations in the ShopProduct class.
 
-+-
 
-#
 
-PublicPrivate
 
-Available to all codeAvailable to the current class only
 
-Protected
 
-Available to the current class and its subclasses only
-
-The visibility symbol is followed by the name of the attribute. In this case, I am describing the 
-
-ShopProduct::$price property. A colon is used to separate the attribute name from its type (and optionally, its default value).
-
-Once again, you need only include as much detail as is necessary for clarity.
-
-OperationsOperations describe methods; or, more properly, they describe the calls that can be made on an instance of a class. Figure 6-6 shows two operations in the ShopProduct class.
 
 Figure 6-6.  Operations
 

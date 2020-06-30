@@ -1,24 +1,12 @@
-# Testing with PHPUnit
+# 0305. Testing with PHPUnit
 
 Every component in a system depends for its continued smooth running on the consistency of operation and interface of its peers. By definition, then, development breaks systems. As you improve your classes and packages, you must remember to amend any code that works with them. For some changes, this can create a ripple effect, affecting components far away from the code you originally changed. Eagle-eyed vigilance and an encyclopedic knowledge of a system’s dependencies can help to address this problem. Of course, while these are excellent virtues, systems soon grow too complex for every unwanted effect to be easily predicted, not least because systems often combine the work of many developers. To address this problem, it is a good idea to test every component regularly. This, of course, is a repetitive and complex task; and as such, it lends itself well to automation.
 
 Among the test solutions available to PHP programmers, PHPUnit is perhaps the most ubiquitous and 
 
-certainly the most fully featured tool. In this chapter, you will learn the following about PHPUnit:
+certainly the most fully featured tool. In this chapter, you will learn the following about PHPUnit: 1) Installation: Using PEAR to install PHPUnit. 2) Writing Tests: Creating test cases and using assertion methods. 3) Handling Exceptions: Strategies for confirming failure. 4) Running multiple tests: Collecting tests into suites. 5) Constructing assertion logic: Using constraints. 6) Faking components: Mocks and stubs. 7) Testing web applications: Testing with and without additional tools.
 
-Installation: Using PEAR to install PHPUnit
-
-•	•	 Writing Tests: Creating test cases and using assertion methods•	 Handling Exceptions: Strategies for confirming failure•	•	•	•	
-
-Running multiple tests: Collecting tests into suites
-
-Constructing assertion logic: Using constraints
-
-Faking components: Mocks and stubs
-
-Testing web applications: Testing with and without additional tools
-
-Functional Tests and Unit Tests
+## 5.1 Functional Tests and Unit Tests
 
 Testing is essential in any project. Even if you don’t formalize the process, you must have found yourself developing informal lists of actions that put your system through its paces. This process soon becomes wearisome, and that can lead to a fingers-crossed attitude to your projects.
 
@@ -30,17 +18,13 @@ Whereas functional tests operate from without, unit tests work from the inside o
 
 to focus on classes, with test methods grouped together in test cases. Each test case puts one class through a rigorous workout, checking that each method performs as advertised and fails as it should. The objective, as far as possible, is to test each component in isolation from its wider context. This often supplies you with a sobering verdict on the success of your mission to decouple the parts of your system.
 
-435
-
-Chapter 18 ■ testing with phpUnit
-
 Tests can be run as part of the build process, directly from the command line, or even via a web page. In 
 
 this chapter, I’ll concentrate on the command line.
 
 Unit testing is a good way of ensuring the quality of design in a system. Tests reveal the responsibilities of classes and functions. Some programmers even advocate a test-first approach. You should, they say, write the tests before you even begin work on a class. This lays down a class’s purpose, ensuring a clean interface and short, focused methods. Personally, I have never aspired to this level of purity—it just doesn’t suit my style of coding. Nevertheless, I attempt to write tests as I go. Maintaining a test harness provides me with the security I need to refactor my code. I can pull down and replace entire packages with the knowledge that I have a good chance of catching unexpected errors elsewhere in the system.
 
-Testing by Hand
+## Testing by Hand
 
 In the last section, I said that testing was essential in every project. I could have said instead that testing is inevitable in every project. We all test. The tragedy is that we often throw away this good work.
 
@@ -59,10 +43,6 @@ sake of demonstration, it generates arrays, rather than the User objects you’d
         return true;    }
 
     public function notifyPasswordFailure(string $mail)    {        if (isset($this->users[$mail])) {            $this->users[$mail]['failed'] = time();        }    }
-
-436
-
-Chapter 18 ■ testing with phpUnit
 
     public function getUser(string $mail):array    {        return ( $this->users[$mail] );    }}
 
@@ -92,10 +72,6 @@ information:
 
         return false;    }}
 
-437
-
-Chapter 18 ■ testing with phpUnit
-
 The class requires a UserStore object, which it saves in the $store property. This property is used by 
 
 the validateUser() method to ensure, first of all, that the user referenced by the given e-mail address exists in the store; and, second, that the user’s password matches the provided argument. If both these conditions are fulfilled, the method returns true. Once again, I might test this as I go along:
@@ -108,7 +84,7 @@ object. I can then confirm a user name and password combination.
 
 Once I’m finally satisfied with my work, I could delete these sanity checks altogether or comment them out. This is a terrible waste of a valuable resource. These tests could form the basis of a harness to scrutinize the system as I develop. One of the tools that might help me to do this is PHPUnit.
 
-Introducing PHPUnit
+## Introducing PHPUnit
 
 PHPUnit is a member of the xUnit family of testing tools. The ancestor of these is SUnit, a framework invented by Kent Beck to test systems built with the Smalltalk language. The xUnit framework was probably established as a popular tool, however, by the Java implementation, jUnit, and by the rise to prominence of agile methodologies like Extreme Programming (XP) and Scrum, all of which place great emphasis on testing.
 
@@ -126,11 +102,7 @@ $ wget https://phar.phpunit.de/phpunit.phar$ chmod 755 phpunit.phar$ sudo mv php
 
  ■ Note they may produce.
 
-438
-
 Creating a Test CaseArmed with PHPUnit, I can write tests for the UserStore class. Tests for each target component should be collected in a single class that extends PHPUnit_Framework_TestCase, one of the classes made available by the PHPUnit package. Here’s how to create a minimal test case class:
-
-Chapter 18 ■ testing with phpUnit
 
 // listing 18.05namespace popp\ch18\batch01;
 
@@ -162,10 +134,6 @@ it to a property. Let’s create a test method as well:
 
 // listing 18.05namespace popp\ch18\batch01;
 
-439
-
-Chapter 18 ■ testing with phpUnit
-
 class UserStoreTest extends \PHPUnit_Framework_TestCase{    private $store;
 
     public function setUp()    {        $this->store = new UserStore();    }
@@ -191,10 +159,6 @@ because the test case class is manipulated using reflection.
 The object that runs the tests looks at all the methods in the class and invokes only those that match this 
 
 pattern (that is, methods that begin with「test」).
-
-440
-
-Chapter 18 ■ testing with phpUnit
 
 In the example, I tested the retrieval of user information. I don’t need to instantiate UserStore for each 
 
@@ -227,10 +191,6 @@ Assertion MethodsAn assertion in programming is a statement or method that allow
 PHPUnit supports assertions through a set of static methods.In the previous example, I used an inherited static method, assertEquals(). This method compares 
 
 its two provided arguments and checks them for equivalence. If they do not match, the test method will be chalked up as a failed test. Having subclassed PHPUnit_Framework_TestCase, I have access to a set of assertion methods. Some of these methods are listed in Table 18-1.
-
-441
-
-Chapter 18 ■ testing with phpUnit
 
 Table 18-1.  PHPUnit_Framework_TestCase Assert Methods
 
@@ -274,10 +234,6 @@ Here is a test that checks the behavior of the UserStore class when an operation
 
 //...public function testAddUserShortPass(){    try {        this->store->addUser("bob williams", "bob@example.com", "ff");    } catch (\Exception $e) {        return;    }    $this->fail("Short password exception expected");}//...
 
-442
-
-Chapter 18 ■ testing with phpUnit
-
 If you look back at the UserStore::addUser() method, you will see that I throw an exception if the 
 
 user’s password is less than five characters long. My test attempts to confirm this. I add a user with an illegal password in a try clause. If the expected exception is thrown, then flow skips to the catch clause, and all is well. If the addUser() method does not throw an exception as expected, the execution flow reaches the fail() method call.
@@ -306,10 +262,6 @@ Running Test SuitesIf I am testing the UserStore class, I should also test Valid
 
 class ValidatorTest extends \PHPUnit_Framework_TestCase{    private $validator;
 
-443
-
-Chapter 18 ■ testing with phpUnit
-
     public function setUp()    {        $store = new UserStore();        $store->addUser("bob williams", "bob@example.com", "12345");        $this->validator = new Validator($store);    }    public function tearDown()    {    }
 
     public function testValidateCorrectPass()    {        $this->assertTrue(            $this->validator->validateUser("bob@example.com", "12345"),            "Expecting successful validation"        );    }
@@ -336,9 +288,6 @@ added. Here’s a test that confirms this:
 
     public function testAddUserDuplicate()    {        try {            $ret = $this->store->addUser("bob williams", "a@b.com", "123456");
 
-444
-
-Chapter 18 ■ testing with phpUnit
 
             $ret = $this->store->addUser("bob stevens", "a@b.com", "123456");            self::fail("Exception should have been thrown");        } catch (\Exception $e) {            $const = $this->logicalAnd(                $this->logicalNot($this->contains("bob stevens")),                $this->isType('array')            );            self::AssertThat($this->store->getUser("a@b.com"), $const);        }    }
 
@@ -361,10 +310,6 @@ You could achieve all this with standard assertion methods, of course, but const
 $const = $this->logicalAnd(    $a_complex_constraint,    $another_complex_constraint);
 
 Table 18-2 shows the some of the constraint methods available in a TestCase class.
-
-445
-
-Chapter 18 ■ testing with phpUnit
 
 Table 18-2.  Some Constraint Methods
 
@@ -412,10 +357,6 @@ Another approach is to fake the context of the class you are testing. This invol
 
 Fake objects can be taken a stage further than this, however. Because the object you are testing is likely to call a fake object in some way, you can prime it to confirm the invocations you are expecting. Using a fake object as a spy in this way is known as behavior verification, and it is what distinguishes a mock object from a stub.
 
-446
-
-Chapter 18 ■ testing with phpUnit
-
 You can build mocks yourself by creating classes hard-coded to return certain values and to report on 
 
 method invocations. This is a simple process, but it can be time-consuming.
@@ -451,10 +392,6 @@ Mock objects generated by PHPUnit have an expects() method. This method requires
 (actually it’s of type PHPUnit_Framework_MockObject_Matcher_Invocation, but don’t worry; you can use the convenience methods in TestCase to generate your matcher). The matcher defines the cardinality of the expectation; that is, it dictates the number of times a method should be called.
 
 Table 18-3 shows the matcher methods available in a TestCase class.
-
-447
-
-Chapter 18 ■ testing with phpUnit
 
 Table 18-3.  Some Matcher Methods
 
@@ -504,10 +441,6 @@ Sometimes, you only want to use PHPUnit’s mocks as stubs; that is, as objects 
 
 $store->expects($this->any())    ->method("getUser")
 
-448
-
-Chapter 18 ■ testing with phpUnit
-
     ->will($this->returnValue([        "name" => "bob williams",        "mail" => "bob@example.com",        "pass" => "right"    ]));
 
 I prime the UserStore mock to expect any number of calls to getUser(). Right now, I’m 
@@ -538,10 +471,6 @@ class UserStore{    private $users = [];
 
     public function getUser(string $mail)
 
-449
-
-Chapter 18 ■ testing with phpUnit
-
     {        if (isset($this->users[$mail])) {            return ( $this->users[$mail] );        }
 
         return null;    }}
@@ -564,13 +493,9 @@ class User{    private $name;    private $mail;    private $pass;    private $fa
 
     public function failed(string $time)    {        $this->failed = $time;    }}
 
-450
-
 Of course, I amend the UserStoreTest class to account for these changes. Consider this code designed 
 
 to work with an array:
-
-Chapter 18 ■ testing with phpUnit
 
 public function testGetUser(){    $this->store->addUser("bob williams", "a@b.com", "12345");    $user = $this->store->getUser("a@b.com");    $this->assertEquals($user['mail'], "a@b.com");    //...
 
@@ -606,10 +531,6 @@ The most insidious bugs don’t cause the interpreter to report that something i
 
 legal code, and they silently break the logic of your system. Many bugs don’t manifest themselves where you are working; they are caused there, but the effects pop up elsewhere, days or even weeks later. A test framework can help you catch at least some of these, preventing rather than discovering problems in your systems.
 
-451
-
-Chapter 18 ■ testing with phpUnit
-
 Write tests as you code, and run them often. If someone reports a bug, first add a test to your framework 
 
 to confirm it. Next, fix the bug so that the test is passed. Bugs have a funny habit of recurring in the same area. Writing tests to prove bugs and then to guard the fix against subsequent problems is known as regression testing. Incidentally, if you keep a separate directory of regression tests, remember to name your files descriptively. On one project, our team decided to name our regression tests after Bugzilla ticket numbers. We ended up with a directory containing 400 test files, each with a name like test_973892.php. Finding an individual test became a tedious chore!
@@ -642,10 +563,6 @@ some extent, this is already handled in the Request class:
 
     public function init()    {        if (isset($_SERVER['REQUEST_METHOD'])) {            if ($_SERVER['REQUEST_METHOD']) {                $this->properties = $_REQUEST;                return;
 
-452
-
-Chapter 18 ■ testing with phpUnit
-
             }        }        foreach ($_SERVER['argv'] as $arg) {            if (strpos($arg, '=')) {                list($key, $val) = explode("=", $arg);                $this->setProperty($key, $val);            }        }    }
 
  Just a reminder that, if you do implement your own Request class, you should capture and store 
@@ -667,10 +584,6 @@ The preceding line generates this response:
 </body></html>
 
 Although this works for the command line, it remains a little tricky to pass in arguments via a method call. One inelegant solution would be to manually set the $argv array before calling the controller’s run() method. I don’t much like this, though. Playing directly with magic arrays feels plain wrong, and the string 
-
-453
-
-Chapter 18 ■ testing with phpUnit
 
 manipulation involved at each end would compound the sin. Looking at the Controller class more closely, however, reveals a design decision that can help us:
 
@@ -698,10 +611,6 @@ use popp\ch18\batch04\woo\controller\Controller;use popp\ch18\batch04\woo\contro
 
 class AddVenueTest extends \PHPUnit_Framework_TestCase{    public function testAddVenueVanilla()    {        $output = $this->runCommand("AddVenue", ["venue_name"=>"bob"]);    }
 
-454
-
-Chapter 18 ■ testing with phpUnit
-
     public function runCommand($command = null, array $args = null)    {        $applicationHelper = ApplicationHelper::instance();        $applicationHelper->init();        $request = ApplicationRegistry::getRequest();        if (! is_null($args)) {            foreach ($args as $key => $val) {                $request->setProperty($key, $val);            }        }
 
         if (! is_null($command)) {            $request->setProperty('cmd', $command);        }
@@ -723,10 +632,6 @@ class AddVenueTest2 extends \PHPUnit_Framework_TestCase{
     public function testAddVenueVanilla()    {        $output = $this->runCommand("AddVenue", ["venue_name"=>"bob"]);        self::AssertRegexp("/added/", $output);    }
 
     public function runCommand($command = null, array $args = null)    {        $applicationHelper = ApplicationHelper::instance();        $applicationHelper->init();        ob_start();        $request = ApplicationRegistry::getRequest();        if (! is_null($args)) {            foreach ($args as $key => $val) {
-
-455
-
-Chapter 18 ■ testing with phpUnit
 
                 $request->setProperty($key, $val);            }        }
 
@@ -766,10 +671,6 @@ test will work in conjunction with Selenium Server via an API called php-webdriv
 
 Getting SeleniumYou can download Selenium components at http://seleniumhq.org/download/. For the purposes of this example, you will need the Selenium Standalone Server.
 
-456
-
-Chapter 18 ■ testing with phpUnit
-
 Once you’ve downloaded the package, you should find a file named selenium-server-standalone-
 
 2.53.0.jar (although, of course, your version number will probably be different). Copy this file somewhere central. To proceed further, you’ll need Java installed on your system. Once you’ve confirmed this, you can start the Selenium Server.
@@ -789,10 +690,6 @@ Now I’m ready to proceed.
 PHPUnit and SeleniumAlthough PHPUnit has provided APIs for working with Selenium in the past, its support has been patchy and its documentation has been even more so. In order to access as many of Selenium’s features as possible, therefore, it makes sense to use PHPUnit in conjunction with a tool that is designed to provide the bindings that we need.
 
 Introducing php-webdriverWebDriver is the mechanism by which Selenium controls browsers, and it was introduced with Selenium 2. Selenium developers provide Java, Python, and C# APIs for WebDriver. There are a few PHP APIs available. I have chosen to use php-webdriver, which was created by Facebook developers. It is under active development and mirrors the official APIs. This is very handy when you want to look up a technique, since many examples you’ll find online will be offered in Java, which means they will apply readily to php-webdriver with a little porting of code.
-
-457
-
-Chapter 18 ■ testing with phpUnit
 
 You can add php-webdriver it to your project with Composer:
 
@@ -820,10 +717,6 @@ Connecting to SeleniumRemember that, on start up, the server outputs its connect
 
 // listing 18.19namespace popp\ch18\batch04;
 
-458
-
-Chapter 18 ■ testing with phpUnit
-
 use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
 
 class SeleniumTest extends PHPUnit_Framework_TestCase{    private $driver;
@@ -845,10 +738,6 @@ Here is my test:
 // listing 18.20namespace popp\ch18\batch04;
 
 use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
-
-459
-
-Chapter 18 ■ testing with phpUnit
 
 class seleniumtest3 extends \PHPUnit_Framework_TestCase {
 
@@ -877,10 +766,6 @@ Of course, it’s not all that happens. Selenium also launches a browser window 
 specified operations upon it. I have to admit, I find this effect a little eerie!
 
 Let’s run through the code. First, I invoke WebDriver::get(), which acquires my starting page. Note that this method expects a full URL (which does not need to be local to the Selenium Server host). In this case, I configured an Apache server on a Vagrant virtual machine to serve up a mocked up AddVenue.php script. Selenium will load the specified document into the browser it has launched. You can see this page in Figure 18-1.
-
-460
-
-Chapter 18 ■ testing with phpUnit
 
 Figure 18-1.  The AddVenue page loaded by Selenium
 
@@ -912,10 +797,6 @@ Find elements by CSS class nameFind elements by CSS selectorFind an element by i
 
 Find elements that match an Xpath expression
 
-461
-
-Chapter 18 ■ testing with phpUnit
-
 Once I have a reference to the venue_name form element, an object of type RemoteWebElement, I can use its sendKeys() method to set a value. It’s important to note that sendKeys() does more than just set a value. It also simulates the act of typing into an element. This is useful for testing systems that use JavaScript to capture keyboard events.
 
 With my new value set, I submit the form. The API is smart about this. When I call submit() on an 
@@ -939,10 +820,6 @@ techniques that you have already encountered to achieve this.
 Of course, I’ve only just scratched the surface of Selenium here. But I hope this discussion has been 
 
 enough to give you an idea of the possibilities. If you want to learn more, there is a complete Selenium manual at http://seleniumhq.org/docs/index.html.
-
-462
-
-Chapter 18 ■ testing with phpUnit
 
 A Note of Caution
 
@@ -980,19 +857,10 @@ As you may have gathered, I am not an ideologue when it comes to testing. I rout
 
 combining real and mocked components; and because priming data is repetitive, I often centralize test fixtures into what Martin Fowler calls Object Mothers. These classes are simple factories that generate primed objects for the purpose of testing. Shared fixtures of this sort are anathema to some.
 
-463
-
-Chapter 18 ■ testing with phpUnit
-
 Having pointed out some of the problems that testing may force you to confront, it is worth reiterating a 
 
 few points that, for my money, trump all objections. Testing accomplishes several things:
 
-•	
-
-•	•	•	
-
-•	
 
 It helps you prevent bugs (to the extent that you find them during development and refactoring)
 
@@ -1006,11 +874,6 @@ It gives you confidence when you ship code
 
 In every project for which I’ve written tests, I’ve had occasion to be grateful for that fact sooner or later.
 
-Summary
+## Summary
 
 In this chapter, I revisited the kinds of tests we all write as developers, but all too often thoughtlessly discard. From there, I introduced PHPUnit, which lets you write the same kind of throwaway tests during development, but then keep them and feel the lasting benefit! I created a test-case implementation, and I covered the available assertion methods. I also examined constraints and explored the devious world of mock objects. Next, I showed how refactoring for testing can improve design, demonstrating some techniques for testing web applications—first by using just PHPUnit, and then by using Selenium. Finally, I risked the ire of some by warning of the costs that tests incur and discussing the trade-offs involved.
-
-464
-
-CHAPTER 19
-

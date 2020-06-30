@@ -3633,3 +3633,61 @@ $person->output(
 I passed a path argument to the constructor. This value was stored in the $path property and eventually used by the write() method. Of course, if your anonymous class begins to grow in size and complexity, it becomes more sensible to create a named class in a class file. This is especially true if you find yourself duplicating your anonymous class in more than one place.
 
 1『匿名类不支持闭包，匿名类的这块知识还没吃透。（2020-06-19）』
+
+## 0105. Object Tools
+
+In this chapter, I covered some of the techniques and tools that you can use to manage your libraries and classes. I explored PHP’s namespace feature. You saw that we can combine include paths, namespaces, autoload, and the file system to provide flexible organization for classes. We also examined PHP’s object and class functions, before taking things to the next level with the powerful Reflection API. Finally, we used the Reflection classes to build a simple example that illustrates one of the potential uses that Reflection has to offer.
+
+As we have seen, PHP supports object-oriented programming through language constructs such as classes and methods. The language also provides wider support through functions and classes designed to help you work with objects. In this chapter, we will look at some tools and techniques that you can use to organize, test, and manipulate objects and classes.
+
+This chapter will cover the following tools and techniques: 1) Namespaces: Organize your code into discrete package-like compartments. 2) Include paths: Setting central accessible locations for your library code. 3) Class and object functions: Functions for testing objects, classes, properties, and methods. 4) The Reflection API: A powerful suite of built-in classes that provide unprecedented access to class information at runtime.
+
+### 5.1 PHP and Packages
+
+A package is a set of related classes, usually grouped together in some way. Packages can be used to separate parts of a system from one another. Some programming languages formally recognize packages and provide them with distinct namespaces. PHP has no native concept of a package, but as of PHP 5.3, it introduced namespaces. I’ll look at this feature in the next section. I’ll also take a look at the old way of organizing classes into package-like structures.
+
+#### 5.1.1 PHP Packages and Namespaces
+
+Although PHP does not intrinsically support the concept of a package, developers have traditionally used both naming schemes and the filesystem to organize their code into package-like structures. 
+
+Until PHP 5.3, developers were forced to name their files in a global context. In other words, if you named a class ShoppingBasket, it would become instantly available across your system. This caused two major problems. First, and most damaging, was the possibility of naming collisions. You might think that this is unlikely. After all, all you have to do is remember to give all your classes unique names, right? The trouble is, we all rely increasingly on library code. This is a good thing, of course, because it promotes code reuse. But assume your project does this:
+
+```php
+// listing 05.01
+
+require_once __DIR__ . "/../useful/Outputter.php";
+class Outputter {    
+    // output data
+}
+```
+
+Now assume you incorporate the included file at useful/Outputter.php:
+
+```php
+// listing 05.02
+
+class Outputter{    //}
+```
+
+Well, you can guess what will happen, right? This happens:
+
+```
+PHP Fatal error:  Cannot declare class Outputter because the name is already in use in  /var/popp/src/ch05/batch01/useful/Outputter.php on line 4
+```
+
+Back before the introduction of namespaces, there was a conventional workaround to this problem. The answer was to prepend package names to class names, so that class names were guaranteed to be unique:
+
+```php
+// listing 05.03
+// my/Outputer.php
+
+require_once __DIR__ . "/../useful/Outputter.php";
+class my_Outputter{    // output data}
+
+// listing 05.04
+// useful/Outputter.php
+
+class useful_Outputter{    //}
+```
+
+The problem here was that, as projects got more involved, class names grew longer and longer. It was not an enormous problem, but it resulted in issues with code readability, and made it harder to hold classnames in your head while you worked. Many cumulative coding hours were lost to typos. If you’re maintaining legacy code, you may well still see code that follows this convention. For that reason, I’ll return briefly to the old way of handling packages later in this chapter.
