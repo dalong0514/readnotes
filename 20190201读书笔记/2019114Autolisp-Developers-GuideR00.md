@@ -8,9 +8,11 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——
+### 0201. 术语卡——DXF group codes
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+CAD 里实体对象的唯一标识。
+
+The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. 
 
 ### 0202. 术语卡——
 
@@ -24,13 +26,15 @@
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
+## 0101Introduction.md
+
+[Pomoc: Introduction (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-A0E9D801-8BE9-4BF1-85E8-3807E15F3B71)
+
 可以搜索问题的官方地址，可以按 Google 搜索的规则来：
 
 [Search - Autodesk Community](https://forums.autodesk.com/t5/forums/searchpage/tab/message?advanced=false&allow_punctuation=false&inactive=false)
 
 [主页 | Autodesk Knowledge Network](https://knowledge.autodesk.com/zh-hans)
-
-## 0101Introduction.md
 
 ### 1. 逻辑脉络
 
@@ -60,6 +64,8 @@ The AutoLISP documentation is broken down into three types of content: Reference
 
 The following is covered by the AutoLISP Developer's documentation: Details on the concepts and structures of the AutoLISP language; Provides a summary of all AutoLISP functions by category and information on AutoLISP error codes; Describes how to develop and test AutoLISP programs; Explains how to design and implement dialog boxes with AutoLISP applications. (Windows only)
 
+1『最终目标是要熟练使用 AutoLISP applications 构造图形窗口（dialog boxes）的自定义命令。』
+
 In addition to the AutoLISP reference and tutorial topics, several other AutoCAD documentation resources might be required for building and deploying applications. You might need to use these resources when working with AutoLISP:
 
 1. AutoCAD ActiveX Reference and Developer's Guides contain information on accessing ActiveX methods, properties, objects, and events. If you develop AutoLISP applications that use ActiveX automation to reference AutoCAD objects, you will need to refer to these guides. The help files can be accessed from %ProgramFiles%\Common Files\Autodesk Shared. (AutoCAD for Mac does not support ActiveX)
@@ -71,7 +77,7 @@ AutoCAD Customization topics contain basic information on creating and modifying
 
 5. The Managed .NET Reference and Developer's Guides contain information on using the Managed .NET API to develop custom AutoCAD applications. The Managed .NET Reference is not installed with the AutoCAD program. To obtain this documentation, download the ObjectARX SDK (Software Development Kit) from the www.autodesk.com/objectarx. The Managed .NET Developer's Guide is available from the AutoCAD product help. (AutoCAD for Mac does not support Managed .NET development)
 
-2『hatch patterns 的概念；DXF group codes 的概念；已下载书籍「2020038dxf_reference2012」。』
+2『hatch patterns 的概念；DXF group codes 的概念做一张术语卡片；已下载书籍「2020038dxf_reference2012」。』——已完成
 
 3『
 
@@ -107,6 +113,8 @@ AutoCAD 2010. Changes: help - Invokes the Help facility. Function was updated to
 
 AutoCAD 2009. New: initcommandversion - Forces the next command to run with the specified version.
 
+1『各版本的主要更新信息。』
+
 ## 0105Manipulate-AutoCAD-Objects.md
 
 ### 1. 逻辑脉络
@@ -117,7 +125,7 @@ AutoLISP 里有两类操作对象（objects）的函数，一是获取特定对�
 
 修改实体数据的基本思路，通过 entget 获得实体的数据列表，直接通过 entmod 修改获取的数据列表，然后将修改后的数据列表传递进整个 CAD 数据库里。
 
-```
+```c
 (setq ent (entlast))               ; Set ent to last entity.
 (setq entl (entget ent))           ; Set entl to association list of last entity.
 ```
@@ -249,7 +257,7 @@ About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names 
 
     (ssget "X" '((2 . "`*U2")))
 
-1『wild-card 是指通配符。` 应该是转义用的；』
+1『 wild-card 是指通配符。` 应该是转义用的；』
 
 1『选择特定名称块的实现方式，mark 一下。可以用来提取块里的基本信息用，做设备表的一个环节；过滤器的形参必须是一个 list，'() 应该就是一个 list 的简要表达方式。所以这个表达式可以换一个方式：list(cons 2 "`*U2")。』
 
@@ -443,7 +451,7 @@ The following example code illustrates how ssadd can be used in conjunction with
 
 About Entity Context and Coordinate Transform Data (AutoLISP).  The nentsel and nentselp functions are similar to entsel, except they return two additional values to handle entities nested within block references. Another difference between these functions is that when the user responds to a nentsel call by selecting a complex entity or a complex entity is selected by nentselp, these functions return the entity name of the selected subentity and not the complex entity's header, as entsel does.
 
-1『nentsel、nentselp 函数与常规的 entsel 的区别在于，针对像「块」这种复杂的集合，它们返回的是块里面元素的 entity name，而 entsel 返回的是整个块的 entity name。』
+1『 nentsel、nentselp 函数与常规的 entsel 的区别在于，针对像「块」这种复杂的集合，它们返回的是块里面元素的 entity name，而 entsel 返回的是整个块的 entity name。』
 
 For example, when the user selects a 3D polyline, nentsel returns a vertex subentity instead of the polyline header. You can retrieve the polyline header by making successive calls to entnext, stepping forward to the Seqend subentity, and then obtain the name of the header from the Deqend subentity's -2 dxf group code. The same applies when the user selects attributes in a nested block reference.
 
@@ -499,7 +507,7 @@ The Mij, where 0 le; i, j le; 2, are the Model to World Transformation Matrix co
 
 Note: This is the only AutoLISP function that uses a matrix of this type. The nentselp function is preferred to nentsel because it returns a matrix similar to those used by other AutoLISP, ObjectARX, and Managed .NET functions.
 
-1『nentselp 更适用于哪些含有矩阵属性信息的实体。』
+1『 nentselp 更适用于哪些含有矩阵属性信息的实体。』
 
 Using the entity name previously obtained with nentsel, the following example illustrates how to obtain the MCS start point of a line (group code 10) contained in a block definition:
 
@@ -669,6 +677,8 @@ About Deleting an Entity (AutoLISP). Entities can be deleted using the entdel fu
 
 
 
+
+
 About Entity Handles and Their Uses (AutoLISP). The handent function retrieves the name of an entity with a specific handle. As with entity names, handles are unique within a drawing. However, an entity's handle is constant throughout its life. AutoLISP applications that manipulate a specific database can use handent to obtain the current name of an entity they must use. You can use the AutoCAD LIST command to get the handle of a selected object. The following example code uses handent to obtain and display the entity name that is associated with the handle “5a2”.
 
 1『重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。』
@@ -744,5 +754,3 @@ Before you register an application, you should first check to see if the name is
 ```
 
 The regapp function provides a measure of security, but it cannot guarantee that two separate applications have not chosen the same name. One way of ensuring this is to adopt a naming scheme that uses the company or product name and a unique number (like your telephone number or the current date and time).
-
-
