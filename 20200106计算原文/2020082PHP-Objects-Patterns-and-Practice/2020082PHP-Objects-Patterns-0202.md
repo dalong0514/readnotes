@@ -421,17 +421,15 @@ The Gang of Four recommend that you「encapsulate the concept that varies.」In 
 
 I quickly established that subclassing for this variation was inappropriate, and I resorted to a conditional statement. By bringing my variation into the same class, I underlined its suitability for encapsulation.
 
-The Gang of Four recommend that you actively seek varying elements in your classes and assess their suitability for encapsulation in a new type. Each alternative in a suspect conditional may be extracted to form a class that extends a common abstract parent. This new type can then be used by the class or classes from which it was extracted. This has the following effects:
-
-1. Promoting flexibility through composition.
-
-2. Making inheritance hierarchies more compact and focused.
-
-3. Focusing responsibility.
-
-4. Reducing duplication.
+The Gang of Four recommend that you actively seek varying elements in your classes and assess their suitability for encapsulation in a new type. Each alternative in a suspect conditional may be extracted to form a class that extends a common abstract parent. This new type can then be used by the class or classes from which it was extracted. This has the following effects: 1) Promoting flexibility through composition. 2) Making inheritance hierarchies more compact and focused. 3) Focusing responsibility. 4) Reducing duplication.
 
 So how do you spot variation? One sign is the misuse of inheritance. This might include inheritance deployed according to multiple forces at one time (e.g., lecture/seminar and fixed/timed cost). It might also include subclassing on an algorithm where the algorithm is incidental to the core responsibility of the type. The other sign of variation suitable for encapsulation is, as you have seen, a conditional expression.
+
+1『发现「变化点」的两个信号：误用继承和条件语句。』
+
+我们发现为这个变化直接创建子类是不合适的，于是使用了条件语句。通过把变化的元素放入同一个类中，我们强调了封装的适用性。《设计模式》建议积极搜寻类中变化的元素，并评估它们是否适合用新类型来封装。根据一定条件，变化的元素（如计费算法）可被提取出来形成子类（如 TimedCostStrategy 和 FixedCostStrategy），而这些元素共同拥有一个抽象父类（Coststrategy）。而这个新类型（CostStrategy）能被其他类使用。这么做有以下好处：1）专注于职责。2）通过组合提高灵活性。3）使继承层级体系更紧凑和集中；4）减少重复。
+
+那么如何发现变化的元素呢？误用继承便是一个标志。误用的表现可能包括一次实现不同分支（lecture/seminar and fixed/timed cost）的继承；也可能包括子类化某个算法，而该算法对于该对象类型的核心职责是偶然的。当然，适合封装「变化元素」的另一个标志便是出现了条件表达式。
 
 ## 2.6 Patternitis
 
@@ -439,17 +437,17 @@ One problem for which there is no pattern is the unnecessary or inappropriate us
 
 The eXtreme Programming (XP) methodology offers a couple of principles that might apply here. The first is,「You aren’t going to need it」(often abbreviated to YAGNI). This is generally applied to application features, but it also makes sense for patterns.
 
-When I build large environments in PHP, I tend to split my application into layers, separating 
+When I build large environments in PHP, I tend to split my application into layers, separating application logic from presentation and persistence layers. I use all sorts of core and enterprise patterns in conjunction with one another.
 
-application logic from presentation and persistence layers. I use all sorts of core and enterprise patterns in conjunction with one another.
+When I am asked to build a feedback form for a small business web site, however, I may simply use procedural code in a single page script. I do not need enormous amounts of flexibility; I won’t be building on the initial release. I don’t need to use patterns that address problems in larger systems. Instead, I apply the second XP principle:「Do the simplest thing that works.」
 
-When I am asked to build a feedback form for a small business web site, however, I may simply use 
+When you work with a pattern catalog, the structure and process of the solution are what stick in the mind, consolidated by the code example. Before applying a pattern, though, pay close attention to the problem, or「when to use it,」section, and then read up on the pattern’s consequences. In some contexts, the cure may be worse than the disease.
 
-procedural code in a single page script. I do not need enormous amounts of flexibility; I won’t be building on the initial release. I don’t need to use patterns that address problems in larger systems. Instead, I apply the second XP principle:「Do the simplest thing that works.」
+模式的一个问题便是不必要或不恰当地使用模式。这让模式在某些领域名声不佳。因为模式解决方案很棒，所以它会引诱你把模式应用在任何你认为合适的地方，无论它们是否真的适合用来达到目标。极限编程（XP, extreme Programming）提供了几个可以使用的相关原则。第一个是「你还不需要它」。这通常被应用在应用程序的功能上，但是对于模式来说也有意义。
 
-When you work with a pattern catalog, the structure and process of the solution are what stick in the 
+当使用 PHP 开发较大的项目时，我会把应用程序分离到各个层中，把应用程序逻辑从表现层和持久化层中分离开来。我通常联合使用各种核心模式和企业模式。然而当为一个小型商务网站建立一个用户反馈表单时，我可能只在单一页面脚本中使用过程式代码。此时，不需要大量的灵活性，不需要以后基于最初版本进行大量扩展，也不需要使用那些在更庞大的系统中解决问题的模式，而是应用极限编程的第二个原则：用最简单的方式来完成任务。
 
-mind, consolidated by the code example. Before applying a pattern, though, pay close attention to the problem, or「when to use it,」section, and then read up on the pattern’s consequences. In some contexts, the cure may be worse than the disease.
+当使用模式目录时，通过示例代码能巩固你脑中解决方案的结构和流程。然而在应用模式之前，要特别注意目录中「问题」或者「何时使用」那部分，并且熟读模式的效用。在某些情况下，错误的治疗会比疾病本身更糟。
 
 ## 2.7 The Patterns
 
@@ -457,15 +455,31 @@ This book is not a pattern catalog. Nevertheless, in the coming chapters, I will
 
 The patterns described will be drawn from key catalogs, including Design Patterns: Elements of Reusable Object-Oriented Software, Patterns of Enterprise Application Architecture by Martin Fowler (Addison-Wesley Professional, 2002) and Core J2EE Patterns: Best Practices and Design Strategies (Prentice Hall, 2001) by Alur, et al. I use the Gang of Four’s categorization as a starting point, dividing patterns into five categories, as follows.
 
-Patterns for Generating ObjectsThese patterns are concerned with the instantiation of objects. This is an important category given the principle,「Code to an interface.」If you are working with abstract parent classes in your design, then you must develop strategies for instantiating objects from concrete subclasses. It is these objects that will be passed around your system.
+被描述的模式将会从主要的模式目录，包括《设计模式》、《企业应用架构模式》和《J2EE 核心模式》中提取出来，我将以《设计模式》一书的分类为起点，将模式分为以下几种。
 
-Patterns for Organizing Objects and ClassesThese patterns help you to organize the compositional relationships of your objects. More simply, these patterns show how you combine objects and classes.
+2『这三本模式相关的经典一定要去读，真香，哈哈。』
 
-Task-Oriented PatternsThese patterns describe the mechanisms by which classes and objects cooperate to achieve objectives.
+1. Patterns for Generating Objects. These patterns are concerned with the instantiation of objects. This is an important category given the principle,「Code to an interface.」If you are working with abstract parent classes in your design, then you must develop strategies for instantiating objects from concrete subclasses. It is these objects that will be passed around your system.
 
-Enterprise PatternsI look at some patterns that describe typical Internet programming problems and solutions. Drawn largely from Patterns of Enterprise Application Architecture and Core J2EE Patterns: Best Practices and Design Strategies, the patterns deal with presentation and application logic.
+2. Patterns for Organizing Objects and Classes. These patterns help you to organize the compositional relationships of your objects. More simply, these patterns show how you combine objects and classes.
 
-Database PatternsAn examination of patterns that help with storing and retrieving data, and with mapping objects to and from databases.
+3. Task-Oriented Patterns. These patterns describe the mechanisms by which classes and objects cooperate to achieve objectives.
+
+4. Enterprise Patterns. I look at some patterns that describe typical Internet programming problems and solutions. Drawn largely from Patterns of Enterprise Application Architecture and Core J2EE Patterns: Best Practices and Design Strategies, the patterns deal with presentation and application logic.
+
+5. Database PatternsAn examination of patterns that help with storing and retrieving data, and with mapping objects to and from databases.
+
+1『在使用生成对象模式时，运行时期间，如何根据特定的条件实现特定的子类实例化对象是关键点。』
+
+1、用于生成对象的模式。这类模式关注对象的实例化。考虑到「面向接口编程」原则，这是一个重要的分类。如果在设计中使用抽象父类，那么我们必须考虑从具体子类实例化对象的策略。实例化得到的对象会在系统中被传递。
+
+2、用于组织对象和类的模式。这类模式帮助我们组织对象的组成关系。更简单地说，就是这些模式教我们如何合并对象和类。
+
+3、面向任务的模式。这类模式描述了如何让类和对象合作来达成特定目标。
+
+4、企业模式。我们着眼于一些描述典型因特网编程问题和解决方案的模式。它们很大程度上来自于《企业应用架构模式》和《J2EE 核心模式》这两本书，用于处理表现逻辑及应用逻辑。
+
+5、数据库模式。数据库存取数据及对象一数据库映射的相关模式。
 
 ## Summary
 
