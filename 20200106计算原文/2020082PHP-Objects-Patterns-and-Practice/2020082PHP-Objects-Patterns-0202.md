@@ -366,20 +366,27 @@ Figure 8-6 shows these classes.Notice how similar the structure in Figure 8-6 
 
 This principle is one of the all-pervading themes of this book. You saw in Chapter 6 (and in the last section) that you can hide different implementations behind the common interface defined in a superclass. Client code can then require an object of the superclass’s type rather than that of an implementing class, unconcerned by the specific implementation it is actually getting.
 
-
-
-
-
 Parallel conditional statements, like the ones I rooted out from Lesson::cost() and Lesson::chargeType(), are a common sign that polymorphism is needed. They make code hard to maintain because a change in one conditional expression necessitates a change in its siblings. Conditional statements are occasionally said to implement a「simulated inheritance.」
+
+把不同的实现隐藏在父类所定义的共同接口下。然后客户端代码需要一个父类的对象而不是一个子类的对象，从而使客户端代码可以不用关心它实际得到的是哪个具体实现。我们在 Lesson::cost() 和 Lesson::cost() 中创建的并行条件语句，就是需要多态的常见标志。这样的条件语句使代码很难维护，因为条件表达式的改变必然要求与之对应的代码主体也随之改变，所以条件语句有时会被称作实现了一个「模拟继承」。
 
 By placing the cost algorithms in separate classes that implement CostStrategy, I remove duplication. I also make it much easier should I need to add new cost strategies in the future.
 
-From the perspective of client code, it is often a good idea to require abstract or general types in your methods’ parameters. By requiring more specific types, you could limit the flexibility of your code at runtime.Having said that, of course, the level of generality you choose in your argument hints is a matter of judgment. Make your choice too general, and your method may become less safe. If you require the specific functionality of a subtype, then accepting a differently equipped sibling into a method could be risky.
+From the perspective of client code, it is often a good idea to require abstract or general types in your methods’ parameters. By requiring more specific types, you could limit the flexibility of your code at runtime. Having said that, of course, the level of generality you choose in your argument hints is a matter of judgment. Make your choice too general, and your method may become less safe. If you require the specific functionality of a subtype, then accepting a differently equipped sibling into a method could be risky.
 
 Still, make your choice of argument hint too restricted, and you lose the benefits of polymorphism. Take a look at this altered extract from the Lesson class:
 
+而通过把计费算法放置在一个实现 CostStrategy 的独立的类中，我们可以移除重复代码，也可以使在未来加入新的计费策略变得更加容易。从客户端代码的角度看，类方法参数为抽象或通用类型通常都是不错的主意。如果参数对对象类型要求过于严格，就会限制代码在运行时的灵活性。
+
+当然，如何使用参数类型提示来调整参数对象的「通用性」是需要仔细权衡的。选择过于通用，则会降低方法的安全性。而如果需要某个子类型的特有功能，那么方法接受另一个子类类型则可能会有风险。尽管如此，若参数的类型匹配限制过于严格，那么将无法得到多态带来的好处。下面是修改过的 Lesson 类里的一段代码。
+
 ```php
-// listing 08.17    public function __construct(int $duration, FixedCostStrategy $strategy)    {        $this->duration = $duration;        $this->costStrategy = $strategy;    }
+// listing 08.17    
+
+public function __construct(int $duration, FixedCostStrategy $strategy)    {        
+    $this->duration = $duration;        
+    $this->costStrategy = $strategy;    
+}
 ```
 
 There are two issues arising from the design decision in this example. First, the Lesson object is now tied to a specific cost strategy, which closes down my ability to compose dynamic components. Second, the explicit reference to the FixedPriceStrategy class forces me to maintain that particular implementation.
@@ -387,44 +394,44 @@ There are two issues arising from the design decision in this example. First, th
 By requiring a common interface, I can combine a Lesson object with any CostStrategy implementation:
 
 ```php
-// listing 08.18    public function __construct(int $duration, CostStrategy $strategy)    {        $this->duration = $duration;        $this->costStrategy = $strategy;    }
+// listing 08.18    
+public function __construct(int $duration, CostStrategy $strategy)    {        
+    $this->duration = $duration;        
+    $this->costStrategy = $strategy;    
+}
 ```
 
-I have, in other words, decoupled my Lesson class from the specifics of cost calculation. All that matters is the interface and the guarantee that the provided object will honor it.
+1『 CostStrategy 只提供接口。』
 
-Of course, coding to an interface can often simply defer the question of how to instantiate your objects. 
+I have, in other words, decoupled my Lesson class from the specifics of cost calculation. All that matters is the interface and the guarantee that the provided object will honor it. Of course, coding to an interface can often simply defer the question of how to instantiate your objects. 
 
-When I say that a Lesson object can be combined with any CostStrategy interface at runtime, I beg the question,「But where does the CostStrategy object come from?」
+When I say that a Lesson object can be combined with any CostStrategy interface at runtime, I beg the question,「But where does the CostStrategy object come from?」When you create an abstract superclass, there is always the issue of how its children should be instantiated. Which child do you choose and according to which condition? This subject forms a category of its own in the Gang of Four pattern catalog, and I will examine this further in the next chapter.
 
-When you create an abstract superclass, there is always the issue of how its children should be 
+换句话说，我们把 Lesson 类从具体的费用计算中分离出来了。我们所做的就是提供接口并保证所提供的对象会实现接口。当然，面向接口编程无法回答如何实例化对象的问题。当我们说 Lesson 对象能在运行时与任何 Coststrategy 接口绑定时，我们回避了这么一个问题：「但是 coststrategy 对象从哪里来呢？」当创建一个抽象父类时，常会碰到如何实例化它的子类的问题。你会选择实例化哪个子类来对应相应的条件呢？这个主题在《设计模式》模式目录中形成了一个独立的类别，我们会在下章研究其中一些模式。
 
-instantiated. Which child do you choose and according to which condition? This subject forms a category of its own in the Gang of Four pattern catalog, and I will examine this further in the next chapter.
+1『核心问题：当创建一个抽象父类时，常会碰到如何实例化它的子类的问题。你会选择实例化哪个子类来对应相应的条件呢？』
 
 ## 2.5 The Concept that Varies
 
 It’s easy to interpret a design decision once it has been made, but how do you decide where to start?
 
-The Gang of Four recommend that you「encapsulate the concept that varies.」In terms of my lesson 
+The Gang of Four recommend that you「encapsulate the concept that varies.」In terms of my lesson example, the varying concept is the cost algorithm. Not only is the cost calculation one of two possible strategies in the example, but it is obviously a candidate for expansion: special offers, overseas student rates, introductory discounts-all sorts of possibilities present themselves.
 
-example, the varying concept is the cost algorithm. Not only is the cost calculation one of two possible strategies in the example, but it is obviously a candidate for expansion: special offers, overseas student rates, introductory discounts-all sorts of possibilities present themselves.
+1『核心观点：封装变化。』
 
 I quickly established that subclassing for this variation was inappropriate, and I resorted to a conditional statement. By bringing my variation into the same class, I underlined its suitability for encapsulation.
 
-The Gang of Four recommend that you actively seek varying elements in your classes and assess their 
+The Gang of Four recommend that you actively seek varying elements in your classes and assess their suitability for encapsulation in a new type. Each alternative in a suspect conditional may be extracted to form a class that extends a common abstract parent. This new type can then be used by the class or classes from which it was extracted. This has the following effects:
 
-suitability for encapsulation in a new type. Each alternative in a suspect conditional may be extracted to form a class that extends a common abstract parent. This new type can then be used by the class or classes from which it was extracted. This has the following effects:
+1. Promoting flexibility through composition.
 
-Promoting flexibility through composition
+2. Making inheritance hierarchies more compact and focused.
 
-Making inheritance hierarchies more compact and focused•	
+3. Focusing responsibility.
 
-Focusing responsibility
+4. Reducing duplication.
 
-Reducing duplication
-
-So how do you spot variation? One sign is the misuse of inheritance. This might include inheritance 
-
-deployed according to multiple forces at one time (e.g., lecture/seminar and fixed/timed cost). It might also include subclassing on an algorithm where the algorithm is incidental to the core responsibility of the type. The other sign of variation suitable for encapsulation is, as you have seen, a conditional expression.
+So how do you spot variation? One sign is the misuse of inheritance. This might include inheritance deployed according to multiple forces at one time (e.g., lecture/seminar and fixed/timed cost). It might also include subclassing on an algorithm where the algorithm is incidental to the core responsibility of the type. The other sign of variation suitable for encapsulation is, as you have seen, a conditional expression.
 
 ## 2.6 Patternitis
 
