@@ -10,7 +10,7 @@
 
 ### 0201. 术语卡——DXF group codes
 
-CAD 里实体对象的唯一标识。
+CAD 里实体对象的唯一标识。重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。
 
 The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. 
 
@@ -87,33 +87,7 @@ AutoCAD Customization topics contain basic information on creating and modifying
 
 』
 
-Additions and changes made to AutoLISP. AutoCAD 2018. No new or changed functions; AutoCAD 2017. No new or changed functions.
-
-AutoCAD 2016. Changed: osnap - Returns a 3D point that is the result of applying an Object Snap mode to a specified point. The function no longer accepts the qui mode. Using the qui mode results in a value of nil to be returned, even if other modes are specified; Obsolete: getcfg - Retrieves application data from the AppData section of the acad20xx.cfg file. setcfg - Writes application data to the AppData section of the acad20xx.cfg file.
-
-Note: getcfg and setcfg are still available for compatibility, but might be removed in a future release. It is recommended to use the vl-registry-read and vl-registry-write functions as replacements.
-
-AutoCAD 2015. No new or changed functions.
-
-AutoCAD 2014. New: findtrustedfile - Searches the AutoCAD trusted file paths for the specified file. showHTMLModalWindow - Displays a modal window with a HTML document; use in conjunction with the new JavaScript API; Changed: findfile - Searches the AutoCAD support and trusted file paths. Function was updated to search the new trusted applications paths.
-
-AutoCAD 2013. New: vlax-machine-product-key - Returns the AutoCAD Windows registry path in the HKLM (HKEY_LOCAL_MACHINE); Obsolete: vlax-product-key - Returns the AutoCAD Windows registry path.
-
-AutoCAD 2012. New: command-s - Executes an AutoCAD command and the supplied input. 
-
-\*pop-error-mode* - Error-handling function that ends the previous call to \*push-error-using-command* or \*push-error-using-stack*. 
-
-\*push-error-using-command* - Error-handling function that indicates the use of the command function within a custom \*error* handler.
-
-\*push-error-using-stack* - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom \*error* handler.
-
-AutoCAD 2011. New: dumpallproperties - Retrieves an entity’s supported properties. getpropertyvalue - Returns the current value of an entity’s property. ispropertyreadonly - Returns the read-only state of an entity’s property. setpropertyvalue - Sets the property value for an entity.
-
-AutoCAD 2010. Changes: help - Invokes the Help facility. Function was updated to add support for HTML documentation.
-
-AutoCAD 2009. New: initcommandversion - Forces the next command to run with the specified version.
-
-1『各版本的主要更新信息。』
+1『原文中有各版本的主要更新信息。』
 
 ## 0105Manipulate-AutoCAD-Objects.md
 
