@@ -14,7 +14,17 @@ CAD 里实体对象的唯一标识。重新打开文件，里面实体的名称�
 
 The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. 
 
-### 0202. 术语卡——
+### 0202. 术语卡——Entity Names
+
+An entity name is a numeric label assigned to objects in a drawing. It is actually a pointer into a file maintained by AutoCAD, and can be used to find the object's database record and its vectors (if they are displayed). This label can be referenced by AutoLISP functions to allow selection of objects for processing in various ways. Internally, AutoCAD refers to objects as entities.
+
+Note: You can use the vlax-ename->vla-object function to convert an entity name to a VLA-object when working with ActiveX functions. The vlax-vla-object->ename function converts a VLA-object to an entity name. The following functions are useful when working with entity names: 1)entget - Retrieves an object's (entity's) definition data. 2) entlast - Returns the name of the last non-deleted main object (entity) in the drawing. 3) ssname - Returns the object (entity) name of the indexed element of a selection set. 4) entsel - Prompts the user to select a single object (entity) by specifying a point. 5) nentsel - Prompts the user to select an object (entity) by specifying a point, and provides access to the definition data contained within a complex object. 6) nentselp - Provides similar functionality to that of the nentsel function without the need for user input. 7) handent - Returns an object (entity) name based on its handle.
+
+Entity names assigned to objects in a drawing are only in effect during the current editing session. The next time you open the drawing, AutoCAD assigns new entity names to the objects. You can use an object's handle to refer to it from one editing session to another.
+
+1『实体名重新打开图纸会刷新掉，handle 则不会。』
+
+Objects in a drawing can be represented as ActiveX (VLA) objects. When working with ActiveX methods and properties, you must refer to VLA-objects, not the ename pointer returned by functions such as entlast. VLA-objects can be converted to an ename pointer with vlax-vla-object->ename. You can also use vlax-ename->vla-object to convert an ename pointer to a VLA-object.
 
 ### 0203. 术语卡——
 
@@ -264,4 +274,320 @@ A common mistake is to omit the closing quotation mark (") in a text string, in 
 Reference topics in the documentation use a consistent convention to describe the proper syntax for an AutoLISP function. The syntax used is as follows:
 
 In this example, the foo function has one required argument, string of the string data type, and one or more optional arguments of numeric value for number. The number arguments can be of the integer or real data types. Frequently, the name of the argument indicates the expected data type. The examples in the following table show both valid and invalid calls to the foo function.
+
+### 3.3 About Data Types (AutoLISP)
+
+AutoLISP expressions are processed according to the order and data type of the code within the parentheses. Before you can fully utilize AutoLISP, you must understand the differences among the data types and how to use them.
+
+#### 3.3.1 About Integers (AutoLISP)
+
+Integers are whole numbers; numbers that do not contain a decimal point. AutoLISP integers are 32-bit signed numbers with values ranging from +2,147,483,647 to -2,147,483,648. Some functions through, only accept 16-bit numbers ranging from +32767 to -32678. When you explicitly use an integer, that value is known as a constant. Numbers such as 2, -56, and 1,200,196 are valid integers.
+
+If you enter a number that is greater than the maximum integer allowed (resulting in integer overflow), AutoLISP converts the integer to a real number. However, if you perform an arithmetic operation on two valid integers, and the result is greater than the maximum allowable integer, the resulting number will be invalid.
+
+The following examples demonstrate how AutoLISP handles integer overflow. The largest positive integer value retains its specified value:
+
+```
+(setq int1 2147483647)
+
+// out
+2147483647
+```
+
+If you enter an integer that is greater than the largest allowable value, AutoLISP returns the value as a real:
+
+```
+(setq int2 2147483648)
+
+// out
+2.14748e+009
+```
+
+An arithmetic operation involving two valid integers, but resulting in integer overflow, produces an invalid result:
+
+```
+(setq int3 (+ 2147483646 3))
+
+// out
+-2147483647
+```
+
+In the previous example the result is clearly invalid, as the addition of two positive numbers results in a negative number. But note how the following operation produces a valid result:
+
+```
+(setq int4 (+ 2147483648 2))
+
+// out
+2.14748e+009
+```
+
+In this instance, AutoLISP converts 2147483648 to a valid real before adding 2 to the number. The result is a valid real. The largest negative integer value retains its specified value:
+
+```
+(setq int5 -2147483647)
+
+// out
+-2147483647
+```
+
+If you enter a negative integer larger than the greatest allowable negative value, AutoLISP returns the value as a real:
+
+```
+(setq int6 -2147483648)
+
+// out
+-2.14748e+009
+```
+
+The following operation concludes successfully, because AutoLISP first converts the overflow negative integer to a valid real:
+
+```
+(setq int7 (- -2147483648 1))
+
+// out
+-2.14748e+009
+```
+
+#### 3.3.2 About Reals (AutoLISP)
+
+A real is a number containing a decimal point. Numbers between -1 and 1 must contain a leading zero. Real numbers are stored in double-precision floating-point format, providing at least 14 significant digits of precision. Note that AutoLISP does not show you all the significant digits.
+
+Reals can be expressed in scientific notation, which has an optional e or E followed by the exponent of the number (for example, 0.0000041 is the same as 4.1e-6). Numbers such as 3.1, 0.23, -56.123, and 21,000,000.0 are all valid AutoLISP real numbers.
+
+#### 3.3.3 About Strings (AutoLISP)
+
+A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in an AutoLISP expression, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
+
+#### 3.3.4 About Lists (AutoLISP)
+
+A list is a group of related values separated by spaces and enclosed in parentheses. Lists provide an efficient method of storing numerous related values. After all, LISP is so-named because it is the LISt Processing language. Once you understand the power of lists, you will find that you can create more powerful and flexible applications. Lists are used to represent 2D and 3D coordinate values, and entity data.
+
+Examples of lists are (1.0 1.0 0.0), ("this" "that" "the other"), and (1 . "ONE"). AutoLISP provides many functions for working with lists. The following are some of the most commonly used functions:
+
+1. list - Creates a new list with any number of values.
+
+2. append - Appends values to an existing list, and returns a new list.
+
+3. cons - Adds an element to the beginning of a list, or constructs a dotted list.
+
+4. length - Returns an integer indicating the number of elements in a list.
+
+5. assoc - Searches an association list for an element and returns that association list entry.
+
+6. car - Returns the first element of a list.
+
+7. cdr - Returns a list containing all but the first element of the specified list.
+
+8. nth - Returns the nth element of a list.
+
+9. subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
+
+1『以上都是一些常用的数组操作函数，牢记哦。』
+
+#### 3.3.4.1 Creating a List
+
+The list function provides a simple method of grouping related items. These items do not need to be of similar data types and can even be other lists. The following code groups three items as a list:
+
+```
+(setq lst1 (list 1.0 "One" 1))
+
+// out
+(1.0 "One" 1)
+```
+
+1『试验过，list 函数后面的元素不能直接用 () 括起来。如果想简单用 () 声明的话，可以用下面讲到的 ' 符号，替代 list 函数名。』
+
+A list can also be created using the quote (or ' ) function.
+
+```
+(setq lst1 '(1.0 "One" 1))
+
+// out
+(1.0 "One" 1)
+```
+
+#### 3.3.4.2 Adding to or Changing an Item in a List
+
+The append function allows you to add new items to the end of a list, and the cons function allows you to add new items to the beginning of a list. The subst function can be used to substitute a new item for every occurrence of an old item. These functions do not modify the original list; they return a modified list. If you need to modify the original list, you explicitly replace the old list with the new list.
+
+The append function takes any number of lists and runs them together as one list. Therefore, all arguments to this function must be lists. The following code adds another "One" to the list stored in lst1.
+
+```
+(setq lst2 (append lst1 '("One")))
+
+// out
+(1.0 "One" 1 "One")
+```
+
+The cons function combines a single element with a list. You can add another string "One" to the beginning of a list, lst2, with the cons function.
+
+```
+(setq lst3 (cons "One" lst2 ))
+
+// out
+("One" 1.0 "One" 1 "One")
+```
+
+You can substitute all occurrences of an item in a list with a new item using the subst function. The following code replaces all strings "One" with the string "one".
+
+```
+(setq lst4 (subst "one" "One" lst3))
+
+// out
+("one" 1.0 "one" 1 "one")
+```
+
+#### 3.3.4.3 Retrieving an Item from a List
+
+You can retrieve a specific item from a list with the nth function. This function accepts two arguments. The first argument is an integer that specifies which item to return. Lists start with a 0 index. A 0 specifies the first item in a list, 1 specifies the second item, and so on. The second argument is the list itself. The following code returns the second item in lst1.
+
+```
+(nth 1 lst1)
+
+// out
+"One"
+```
+
+The car function returns the first item of a list. For example:
+
+```
+(car lst1)
+
+// out
+1.0
+```
+
+The cdr function returns all items from a list as a new list, except the first item. For example:
+
+```
+(cdr lst1)
+
+// out
+("One" 1)
+```
+
+AutoLISP also offers a number of additional functions that are variations of the car and cdr functions. For example, the cadr function returns the second element of a list and the caddr function returns the third item of a list. The cadr function is like using the cdr function on a list and then car on the resulting list.
+
+```
+(cadr lst1)
+
+// out
+"One"
+
+(car (cdr lst1))
+// out
+"One"
+```
+
+#### 3.3.5 About Selection Sets (AutoLISP)
+
+Selection sets are groups of one or more objects (entities). You can interactively add objects to, or remove objects from, selection sets with AutoLISP routines. The following example uses the ssget function to return a selection set containing all the objects in a drawing.
+
+```
+(ssget "X")
+
+// out
+<Selection set: 1>
+```
+
+1『上面的命名目前没有弄清楚。回复：现在看这个命令很简单啊，ssget 函数，接受一个参数 "X" 表示返回一个包含当前图纸里所有实体的选择集。（2020-07-03）』
+
+#### 3.3.6 About Entity Names (AutoLISP)
+
+An entity name is a numeric label assigned to objects in a drawing. It is actually a pointer into a file maintained by AutoCAD, and can be used to find the object's database record and its vectors (if they are displayed). This label can be referenced by AutoLISP functions to allow selection of objects for processing in various ways. Internally, AutoCAD refers to objects as entities.
+
+2『实体名（About Entity Names）做一张术语卡片。』
+
+Note: You can use the vlax-ename->vla-object function to convert an entity name to a VLA-object when working with ActiveX functions. The vlax-vla-object->ename function converts a VLA-object to an entity name. The following functions are useful when working with entity names:
+
+1. entget - Retrieves an object's (entity's) definition data.
+
+2. entlast - Returns the name of the last non-deleted main object (entity) in the drawing.
+
+3. ssname - Returns the object (entity) name of the indexed element of a selection set.
+
+4. entsel - Prompts the user to select a single object (entity) by specifying a point.
+
+5. nentsel - Prompts the user to select an object (entity) by specifying a point, and provides access to the definition data contained within a complex object.
+
+6. nentselp - Provides similar functionality to that of the nentsel function without the need for user input.
+
+7. handent - Returns an object (entity) name based on its handle.
+
+The following example uses the entlast function to get the name of the last object created in the drawing.
+
+```
+(entlast)
+
+// out
+<Entity name: 27f0540>
+```
+
+Entity names assigned to objects in a drawing are only in effect during the current editing session. The next time you open the drawing, AutoCAD assigns new entity names to the objects. You can use an object's handle to refer to it from one editing session to another.
+
+1『实体名重新打开图纸会刷新掉，handle 则不会。』
+
+#### 3.3.7 About VLA-objects (AutoLISP/ActiveX)
+
+Objects in a drawing can be represented as ActiveX (VLA) objects. When working with ActiveX methods and properties, you must refer to VLA-objects, not the ename pointer returned by functions such as entlast. VLA-objects can be converted to an ename pointer with vlax-vla-object->ename. You can also use vlax-ename->vla-object to convert an ename pointer to a VLA-object.
+
+Note: AutoCAD for Mac does not support ActiveX.
+
+2『VLA-object 的概念去多了解下。』
+
+#### 3.3.8 About File Descriptors (AutoLISP)
+
+A file descriptor is a pointer to a file opened by the AutoLISP open function. The open function returns this pointer as an alphanumeric label. You supply the file descriptor as an argument to other AutoLISP functions that read, write, or close the file.
+
+You use the following functions when working with a file:
+
+1. open - Opens a file for access by the AutoLISP I/O functions.
+
+2. write-line - Writes a string to the screen or to an open file.
+
+3. write-char - Writes one character to the screen or to an open file.
+
+4. read-line - Reads a string from the keyboard or from an open file, until an end-of-line marker is encountered.
+
+5. read-char - Returns the decimal ASCII code representing the character read from the keyboard input buffer or from an open file.
+
+6. print – Prints an expression to the command line or writes an expression to an open file.
+
+7. prin1 – Prints an expression to the command line or writes an expression to an open file.
+
+8. close – Closes a file opened with the open function.
+
+1『
+
+要实现读写数据就得靠上面的这些函数，读取块属性里的实现肯定得结合这些。实现写数据方法：[Pomoc: write-line (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-CB4F3ABC-F0F6-41DA-A911-75B90D9F974A)
+
+```
+# open a file first
+(setq f (open "d:\\test.txt" "w"))
+(write-line "dalong" f)
+# close the file
+(close file)
+```
+
+』
+
+The following example opens the myinfo.dat file for reading. The open function returns a file descriptor which is stored in the file1 variable:
+
+```
+(setq file1 (open "c:\\myinfo.dat" "r"))
+#<file "c:\\myinfo.dat">
+```
+
+Files remain open until you explicitly close them in your AutoLISP program. The close function closes a file. The following code closes the file whose file descriptor is stored in the file1 variable:
+
+```
+(close file1)
+// out
+nil
+```
+
+1『果然所有语言都是一个套路，打开文件记得关掉。』
+
+
+
 
