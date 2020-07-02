@@ -1,4 +1,4 @@
-# 11 Performing and Representing Tasks
+# 0205. Performing and Representing Tasks
 
 In this chapter, we get active. I look at patterns that help you to get things done, whether interpreting a mini-language or encapsulating an algorithm.
 
@@ -1294,10 +1294,6 @@ Unit object can be queried for null status.
 
 In this chapter, I wrapped up my examination of the Gang of Four patterns, placing a strong emphasis on how to get things done. I began by showing you how to design a mini-language and build its engine with the Interpreter pattern.
 
-In the Strategy pattern, you encountered another way of using composition to increase flexibility 
+In the Strategy pattern, you encountered another way of using composition to increase flexibility and reduce the need for repetitive subclassing. And with the Observer pattern, you learned how to solve the problem of notifying disparate and varying components about system events. You also revisited the Composite example; and with the Visitor pattern, learned how to pay a call on, and apply many operations to, every component in a tree. You even saw how the Command pattern can help you to build an extensible tiered system. Finally, you saved yourself a heap of checking for nulls with the Null Object pattern.
 
-and reduce the need for repetitive subclassing. And with the Observer pattern, you learned how to solve the problem of notifying disparate and varying components about system events. You also revisited the Composite example; and with the Visitor pattern, learned how to pay a call on, and apply many operations to, every component in a tree. You even saw how the Command pattern can help you to build an extensible tiered system. Finally, you saved yourself a heap of checking for nulls with the Null Object pattern.
-
-In the next chapter, I will step further beyond the Gang of Four to examine some patterns specifically 
-
-oriented toward enterprise programming.
+In the next chapter, I will step further beyond the Gang of Four to examine some patterns specifically oriented toward enterprise programming.

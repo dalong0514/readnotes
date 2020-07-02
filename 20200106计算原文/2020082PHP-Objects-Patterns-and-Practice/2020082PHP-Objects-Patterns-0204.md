@@ -1,4 +1,4 @@
-# 10 Patterns for Flexible Object Programming
+# 0204. Patterns for Flexible Object Programming
 
 With strategies for generating objects covered, we’re free now to look at some strategies for structuring classes and objects. I will focus in particular on the principle that composition provides greater flexibility than inheritance. The patterns I examine in this chapter are once again drawn from the Gang of Four catalog.
 
@@ -24,10 +24,6 @@ The Composite Pattern
 
 The Composite pattern is perhaps the most extreme example of inheritance deployed in the service of composition. It is a simple and yet breathtakingly elegant design. It is also fantastically useful. Be warned, though; it is so neat, you might be tempted to overuse this strategy.
 
-211
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 The Composite pattern is a simple way of aggregating and then managing groups of similar objects so that an individual object is indistinguishable to a client from a collection of objects. The pattern is, in fact, very simple, but it is also often confusing. One reason for this is the similarity in structure of the classes in the pattern to the organization of its objects. Inheritance hierarchies are trees, beginning with the super class at the root, and branching out into specialized subclasses. The inheritance tree of classes laid down by the Composite pattern is designed to allow the easy generation and traversal of a tree of objects.
 
 If you are not already familiar with this pattern, you have every right to feel confused at this point. Let’s try an analogy to illustrate the way that single entities can be treated in the same way as collections of things. Given broadly irreducible ingredients such as cereals and meat (or soya if you prefer), we can make a food product—a sausage, for example. We then act on the result as a single entity. Just as we eat, cook, buy, or sell meat, we can eat, cook, buy, or sell the sausage that the meat in part composes. We might take the sausage and combine it with the other composite ingredients to make a pie, thereby rolling a composite into a larger composite. We behave in the same way to the collection as we do to the parts. The Composite pattern helps us to model this relationship between collections and components in our code.
@@ -45,10 +41,6 @@ abstract class Unit{    abstract public function bombardStrength(): int;}
 class Archer extends Unit{    public function bombardStrength(): int    {        return 4;    }}
 
 class LaserCannonUnit extends Unit{    public function bombardStrength(): int    {        return 44;    }}
-
-212
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 The Unit class defines an abstract bombardStrength() method, which sets the attack strength of a 
 
@@ -69,10 +61,6 @@ The Army class has an addUnit() method that accepts a Unit object. Unit objects 
 property called $units. I calculate the combined strength of my army in the bombardStrength() method. This simply iterates through the aggregated Unit objects, calling the bombardStrength() method of  each one.
 
 This model is perfectly acceptable, as long as the problem remains as simple as this. What happens, though, if I were to add some new requirements? Let’s say that an army should be able to combine with other armies. Each army should retain its own identity so that it can disentangle itself from the whole at a later date. The Arch Duke’s brave forces might share common cause today with General Soames’s assault upon the exposed flank of the enemy, but a domestic rebellion may send his army scurrying home at any time. For this reason, I can’t just decant the units from each army into a new force.
-
-213
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 I could amend the Army class to accept Army objects as well as Unit objects:
 
@@ -96,10 +84,6 @@ ImplementationThe Composite pattern defines a single inheritance hierarchy that 
 
 Figure 10-1 shows a class diagram that illustrates the Composite pattern as applied to our problem.
 
-214
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 Figure 10-1.  The Composite pattern
 
 As you can see, all the units in this model extend the Unit class. A client can be sure, then, that any Unit object will support the bombardStrength() method. So, an Army can be treated in exactly the same way as an Archer.
@@ -117,10 +101,6 @@ composite object might implement these abstract methods:
 class Army extends Unit{    private $units = [];
 
     public function addUnit(Unit $unit)    {        if (in_array($unit, $this->units, true)) {            return;        }
-
-215
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
         $this->units[] = $unit;    }
 
@@ -148,10 +128,6 @@ class Archer extends Unit{    public function addUnit(Unit $unit)    {        th
 
     public function removeUnit(Unit $unit)    {        throw new UnitException(get_class($this) . " is a leaf");    }
 
-216
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
     public function bombardStrength(): int    {        return 4;    }}
 
 I do not want to make it possible to add a Unit object to an Archer object, so I throw exceptions if addUnit() or removeUnit() are called. I will need to do this for all leaf objects, so I could perhaps improve my design by replacing the abstract addUnit()/removeUnit() methods in Unit with default implementations like the one in the preceding example:
@@ -174,21 +150,10 @@ to provide an implementation of addUnit() and removeUnit(), which could cause pr
 
 section. Let’s end this section by examining some of its benefits:
 
-•	
-
-•	
 
 Flexibility: Because everything in the Composite pattern shares a common supertype, it is very easy to add new composite or leaf objects to the design without changing a program’s wider context.
 
 Simplicity: A client using a Composite structure has a straightforward interface. There is no need for a client to distinguish between an object that is composed of others and a leaf object (except when adding new components). A call to Army::bombardStrength() may cause a cascade of delegated calls behind the scenes; but to the client, the process and result are exactly equivalent to those associated with calling Archer::bombardStrength().
-
-217
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
-•	
-
-•	
 
 Implicit reach: Objects in the Composite pattern are organized in a tree. Each composite holds references to its children. An operation on a particular part of the tree, therefore, can have a wide effect. We might remove a single Army object from its Army parent and add it to another. This simple act is wrought on one object, but it has the effect of changing the status of the Army object’s referenced Unit objects and of their own children.
 
@@ -222,10 +187,6 @@ If a client is passed a Unit object, it knows that the addUnit() method will be 
 
 pattern principle that primitive (leaf) classes have the same interface as composites is upheld. This does not actually help you much because you still do not know how safe you might be calling addUnit() on any Unit object you might come across.
 
-218
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 If I move these add/remove methods down so that they are available only to composite classes, then 
 
 passing a Unit object to a method leaves me with the problem that I do not know by default whether or not it supports addUnit(). Nevertheless, leaving booby-trapped methods lying around in leaf classes makes me uncomfortable. It adds no value and confuses a system’s design because the interface effectively lies about its own functionality.
@@ -256,10 +217,6 @@ abstract class CompositeUnit extends Unit{    private $units = [];
 
     public function removeUnit(Unit $unit)    {        $idx = array_search($unit, $this->units, true);        if (is_int($idx)) {            array_splice($this->units, $idx, 1, []);        }    }
 
-219
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
     public function getUnits(): array    {        return $this->units;    }}
 
 The CompositeUnit class is declared abstract, even though it does not itself declare an abstract method. 
@@ -277,10 +234,6 @@ This is where the getComposite() method comes into its own. By default, this met
 // listing 10.15
 
 class UnitScript{    public static function joinExisting(        Unit $newUnit,        Unit $occupyingUnit    ): CompositeUnit {        $comp = $occupyingUnit->getComposite();        if (! is_null($comp)) {            $comp->addUnit($newUnit);        } else {            $comp = new Army();
-
-220
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
             $comp->addUnit($occupyingUnit);            $comp->addUnit($newUnit);        }        return $comp;    }}
 
@@ -310,10 +263,6 @@ Another issue to bear in mind is the cost of some Composite operations. The Army
 
 method is typical in that it sets off a cascade of calls to the same method down the tree. For a large tree with lots of subarmies, a single call can cause an avalanche behind the scenes. bombardStrength() is not itself very expensive, but what would happen if some leaves performed a complex calculation to arrive at their return values? One way around this problem is to cache the result of a method call of this sort in the parent 
 
-221
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 object, so that subsequent invocations are less expensive. You need to be careful, though, to ensure that the cached value does not grow stale. You should devise strategies to wipe any caches whenever any operations take place on the tree. This may require that you give child objects references to their parents.
 
 Finally, a note about persistence. The Composite pattern is elegant, but it doesn’t lend itself neatly to storage in a relational database. This is because, by default, you access the entire structure only through a cascade of references. To construct a Composite structure from a database in the natural way, you would have to make multiple expensive queries. You can get around this problem by assigning an ID to the whole tree, so that all components can be drawn from the database in one go. Having acquired all the objects, however, you would still have the task of recreating the parent/child references, which themselves would have to be stored in the database. This is not difficult, but it is somewhat messy.
@@ -339,10 +288,6 @@ Let’s return to our game. Here, I define a Tile class and a derived type:
 // listing 10.17
 
 abstract class Tile{    abstract public function getWealthFactor(): int;}
-
-222
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 // listing 10.18class Plains extends Tile{    private $wealthfactor = 2;
 
@@ -370,10 +315,6 @@ $tile = new PollutedPlains();print $tile->getWealthFactor();
 
 You can see the class diagram for this example in Figure 10-3.
 
-223
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 Figure 10-3.  Building variation into an inheritance tree
 
 This structure is obviously inflexible. I can get plains with diamonds. I can get polluted plains. But can 
@@ -389,10 +330,6 @@ Let’s take a more commonplace example at this point. Serious web applications 
 You can extend the functionality of a base ProcessRequest class with additional processing in a derived LogRequest class, in a StructureRequest class, and in an AuthenticateRequest class. You can see this class hierarchy in Figure 10-4.
 
 Figure 10-4.  More hard-coded variations
-
-224
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 What happens, though, when you need to perform logging and authentication, but not data 
 
@@ -421,10 +358,6 @@ TileDecorator. This does not implement getWealthFactor(), so it must be declared
 // listing 10.23
 
 class DiamondDecorator extends TileDecorator{    public function getWealthFactor(): int    {
-
-225
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
         return $this->tile->getWealthFactor() + 2;    }}
 
@@ -458,10 +391,6 @@ $tile = new PollutionDecorator(new DiamondDecorator(new Plains()));print $tile->
 
 PollutionDecorator has a reference to a DiamondDecorator object, which has its own Tile reference.You can see the class diagram for this example in Figure 10-5.
 
-226
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 Figure 10-5.  The Decorator pattern
 
 This model is very extensible. You can add new decorators and components very easily. With lots of 
@@ -483,10 +412,6 @@ abstract class ProcessRequest{    abstract public function process(RequestHelper
 // listing 10.30
 
 class MainProcess extends ProcessRequest{    public function process(RequestHelper $req)    {        print __CLASS__ . ": doing something useful with request\n";    }}
-
-227
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 // listing 10.31
 
@@ -512,11 +437,7 @@ class StructureRequest extends DecorateProcess{    public function process(Reque
 
 Each process() method outputs a message before calling the referenced ProcessRequest object’s own process() method. You can now combine objects instantiated from these classes at runtime to build filters 
 
-228
-
 that perform different actions on a request, and in different orders. Here’s some code to combine objects from all these concrete classes into a single filter:
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 // listing 10.35
 
@@ -541,10 +462,6 @@ Some programmers create decorators that do not share a common type with the obje
 The Facade Pattern
 
 You may have had occasion to stitch third-party systems into your own projects in the past. Whether or not the code is object oriented, it will often be daunting, large, and complex. Your own code, too, may become a challenge to the client programmer who needs only to access a few features. The Facade pattern is a way of providing a simple, clear interface to complex systems.
-
-229
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
 The ProblemSystems tend to evolve large amounts of code that is really only useful within the system itself. Just as classes define clear public interfaces and hide their guts away from the rest of the world, so should well-designed systems. However, it is not always clear which parts of a system are designed to be used by client code and which are best hidden.
 
@@ -571,10 +488,6 @@ function getNameFromLine($line){    if (preg_match("/.*-(.*)\s\d+/", $line, $arr
 function getIDFromLine($line){    if (preg_match("/^(\d{1,3})-/", $line, $array)) {        return $array[1];    }    return -1;}
 
 class Product{    public $id;    public $name;
-
-230
-
-Chapter 10 ■ patterns for flexible objeCt programming
 
     public function __construct($id, $name)    {        $this->id = $id;        $this->name = $name;    }}
 
@@ -604,10 +517,6 @@ class ProductFacade{    private $products = [];
 
     private function compile()    {        $lines = getProductFileLines($this->file);
 
-231
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
         foreach ($lines as $line) {            $id = getIDFromLine($line);            $name = getNameFromLine($line);            $this->products[$id] = getProductObjectFromID($id, $name);        }    }
 
     public function getProducts(): array    {        return $this->products;    }
@@ -624,13 +533,8 @@ ConsequencesA Facade is really a very simple concept. It is just a matter of cre
 
 Despite the simplicity of the Facade pattern, it is all too easy to forget to use it, especially if you are familiar with the subsystem you are working with. There is a balance to be struck, of course. On the one hand, the benefit of creating simple interfaces to complex systems should be clear. On the other hand, one could abstract systems with reckless abandon, and then abstract the abstractions. If you are making significant simplifications for the clear benefit of client code, and/or shielding it from systems that might change, then you are probably right to implement the Facade pattern.
 
-232
-
-Chapter 10 ■ patterns for flexible objeCt programming
-
 ## Summary
 
 In this chapter, I looked at a few of the ways that classes and objects can be organized in a system. In particular, I focused on the principle that composition can be used to engender flexibility where inheritance fails. In both the Composite and Decorator patterns, inheritance is used to promote composition and to define a common interface that provides guarantees for client code.
 
 You also saw delegation used effectively in these patterns. Finally, I looked at the simple but powerful Facade pattern. Facade is one of those patterns that many people have been using for years without having a name to give it. Facade lets you provide a clean point of entry to a tier or subsystem. In PHP, the Facade pattern is also used to create object wrappers that encapsulate blocks of procedural code.
-

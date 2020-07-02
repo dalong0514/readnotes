@@ -2,19 +2,17 @@
 
 [Pomoc: Introduction (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-A0E9D801-8BE9-4BF1-85E8-3807E15F3B71)
 
-You can use number, string, and list-handling functions to customize AutoCAD.
+You can use number, string, and list-handling functions to customize AutoCAD. The following links introduce the basic concepts of the AutoLISP ® programming language. It describes the core components and data types used in AutoLISP, and presents examples of simple number-, string-, output-, and list-handling functions. AutoLISP code does not need to be compiled, so you can enter the code at a Command line and immediately see the results.
 
-The following links introduce the basic concepts of the AutoLISP ® programming language. It describes the core components and data types used in AutoLISP, and presents examples of simple number-, string-, output-, and list-handling functions.
+## 3.1 About Expressions (AutoLISP)
 
-AutoLISP code does not need to be compiled, so you can enter the code at a Command line and immediately see the results.
+An expression is the basic structure that is used when working with AutoLISP. AutoLISP expressions have the following form:
 
-## 01. About Expressions (AutoLISP)
-
-An expression is the basic structure that is used when working with AutoLISP.
-
-AutoLISP expressions have the following form:
-
+```
 (function arguments)
+```
+
+1『典型的函数式编程。』
 
 Each expression:
 
@@ -28,31 +26,42 @@ Each expression:
 
 For example, the following code example involves three functions:
 
-    (fun1 (fun2 arguments)(fun3 arguments))
+```
+(fun1 (fun2 arguments)(fun3 arguments))
+```
 
 The first function, fun1, has two arguments, which in this example are expressions. The values returned by the expressions are used by fun1. The other functions, fun2 and fun3, each have one argument. AutoLISP evaluates the innermost expression first, working its way outward. For this example, expressions containing fun2 and fun3 are evaluated before fun1.
 
+1『 AutoLISP 先执行最里层的表达式。』
+
 The following example shows the use of the * (multiplication) function, which accepts one or more numbers as arguments:
 
-    (* 2 27)
+```
+(* 2 27)
 
+// out
 54
+```
 
-Because this code example has no surrounding expression, AutoLISP returns the result to the window from which you entered the code.
+Because this code example has no surrounding expression, AutoLISP returns the result to the window from which you entered the code. Expressions nested within other expressions return their result to the surrounding expression. The following example uses the result from the + (addition) function as one of the arguments for the * (multiplication) function.
 
-Expressions nested within other expressions return their result to the surrounding expression.
+```
+(* 2 (+ 5 10))
 
-The following example uses the result from the + (addition) function as one of the arguments for the * (multiplication) function.
-
-    (* 2 (+ 5 10))
-
+// out
 30
+```
 
 In the previous example, (+ 5 10) returns a value of 15. After the innermost expression is evaluated, the AutoLISP interpreter sees the following:
 
-    (* 2 15)
+```
+(* 2 15)
 
+// out
 30
+```
+
+1『有个技巧。现在 autolisp 编辑器里编写代码，点菜单里的「加载活动编辑窗口」，下面的控制台会出现该文件的路径。接着在 CAD 里的 command prompt 里输入加载该文件的命名：(load "D:/xx.lsp") 即可。』
 
 ### Entering AutoLISP Expressions
 
@@ -60,22 +69,27 @@ AutoLISP expressions can be entered directly at the AutoCAD Command prompt, load
 
 If you enter the incorrect number of close (right) parentheses, AutoLISP displays the following prompt:
 
-    (_>
+```
+(_>
+```
+
+1『只要有开始符号 ( 就必定对应一个 ) 闭合符号，而且不写闭合符号的话在 command prompt 里命令就一直不会结束。』
 
 The number of open parentheses in this prompt indicates how many levels of open parentheses remain unclosed. If this prompt appears, you must enter the required number of close parentheses for the expression to be evaluated.
 
-    (* 2 (+ 5 10
-    ((_> ) )
+```
+(* 2 (+ 5 10
+((_> ) )
 
+// out
 30
+```
 
 A common mistake is to omit the closing quotation mark (") in a text string, in which case the close parentheses are interpreted as part of the string and have no effect in resolving the open parentheses. To correct this condition, press Shift+Esc to cancel the function, then re-enter it correctly.
 
-## 02. About Function Syntax (AutoLISP)
+## 3.2 About Function Syntax (AutoLISP)
 
-Reference topics in the documentation use a consistent convention to describe the proper syntax for an AutoLISP function.
-
-The syntax used is as follows:
+Reference topics in the documentation use a consistent convention to describe the proper syntax for an AutoLISP function. The syntax used is as follows:
 
 ![](./res/2019002.png)
 
@@ -83,77 +97,94 @@ In this example, the foo function has one required argument, string of the strin
 
 ![](./res/2019003.png)
 
-## 03. About Data Types (AutoLISP)
+## 3.3 About Data Types (AutoLISP)
 
 AutoLISP expressions are processed according to the order and data type of the code within the parentheses. Before you can fully utilize AutoLISP, you must understand the differences among the data types and how to use them.
 
-### 3.1 About Integers (AutoLISP)
+### 3.3.1 About Integers (AutoLISP)
 
-Integers are whole numbers; numbers that do not contain a decimal point.
-
-AutoLISP integers are 32-bit signed numbers with values ranging from +2,147,483,647 to -2,147,483,648. Some functions through, only accept 16-bit numbers ranging from +32767 to -32678. When you explicitly use an integer, that value is known as a constant. Numbers such as 2, -56, and 1,200,196 are valid integers.
+Integers are whole numbers; numbers that do not contain a decimal point. AutoLISP integers are 32-bit signed numbers with values ranging from +2,147,483,647 to -2,147,483,648. Some functions through, only accept 16-bit numbers ranging from +32767 to -32678. When you explicitly use an integer, that value is known as a constant. Numbers such as 2, -56, and 1,200,196 are valid integers.
 
 If you enter a number that is greater than the maximum integer allowed (resulting in integer overflow), AutoLISP converts the integer to a real number. However, if you perform an arithmetic operation on two valid integers, and the result is greater than the maximum allowable integer, the resulting number will be invalid.
 
-The following examples demonstrate how AutoLISP handles integer overflow.
+The following examples demonstrate how AutoLISP handles integer overflow. The largest positive integer value retains its specified value:
 
-The largest positive integer value retains its specified value:
+```
+(setq int1 2147483647)
 
-    (setq int1 2147483647)
-
+// out
 2147483647
+```
 
 If you enter an integer that is greater than the largest allowable value, AutoLISP returns the value as a real:
 
-    (setq int2 2147483648)
+```
+(setq int2 2147483648)
 
+// out
 2.14748e+009
+```
 
 An arithmetic operation involving two valid integers, but resulting in integer overflow, produces an invalid result:
 
-    (setq int3 (+ 2147483646 3))
+```
+(setq int3 (+ 2147483646 3))
 
+// out
 -2147483647
+```
 
 In the previous example the result is clearly invalid, as the addition of two positive numbers results in a negative number. But note how the following operation produces a valid result:
 
-    (setq int4 (+ 2147483648 2))
+```
+(setq int4 (+ 2147483648 2))
 
+// out
 2.14748e+009
+```
 
 In this instance, AutoLISP converts 2147483648 to a valid real before adding 2 to the number. The result is a valid real. The largest negative integer value retains its specified value:
 
-    (setq int5 -2147483647)
+```
+(setq int5 -2147483647)
 
+// out
 -2147483647
+```
 
 If you enter a negative integer larger than the greatest allowable negative value, AutoLISP returns the value as a real:
 
-    (setq int6 -2147483648)
+```
+(setq int6 -2147483648)
 
+// out
 -2.14748e+009
+```
 
 The following operation concludes successfully, because AutoLISP first converts the overflow negative integer to a valid real:
 
-    (setq int7 (- -2147483648 1))
+```
+(setq int7 (- -2147483648 1))
 
+// out
 -2.14748e+009
+```
 
-### 3.2 About Reals (AutoLISP)
+### 3.3.2 About Reals (AutoLISP)
 
-A real is a number containing a decimal point. Numbers between -1 and 1 must contain a leading zero.
-
-Real numbers are stored in double-precision floating-point format, providing at least 14 significant digits of precision. Note that AutoLISP does not show you all the significant digits.
+A real is a number containing a decimal point. Numbers between -1 and 1 must contain a leading zero. Real numbers are stored in double-precision floating-point format, providing at least 14 significant digits of precision. Note that AutoLISP does not show you all the significant digits.
 
 Reals can be expressed in scientific notation, which has an optional e or E followed by the exponent of the number (for example, 0.0000041 is the same as 4.1e-6). Numbers such as 3.1, 0.23, -56.123, and 21,000,000.0 are all valid AutoLISP real numbers.
 
-### 3.3 About Strings (AutoLISP)
+### 3.3.3 About Strings (AutoLISP)
 
-A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in an AutoLISP expression, that value is known as a literal string or a string constant.
+A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in an AutoLISP expression, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
 
-Examples of valid strings are “string 1” and “\nEnter first point:”.
 
-### 3.4 About Lists (AutoLISP)
+
+
+
+### 3.3.4 About Lists (AutoLISP)
 
 A list is a group of related values separated by spaces and enclosed in parentheses.
 
@@ -181,7 +212,7 @@ AutoLISP provides many functions for working with lists. The following are some 
 
 9. subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
 
-#### 3.4.1 Creating a List
+#### 3.3.4.1 Creating a List
 
 The list function provides a simple method of grouping related items. These items do not need to be of similar data types and can even be other lists. The following code groups three items as a list:
 
@@ -195,7 +226,7 @@ A list can also be created using the quote (or ' ) function.
 
 (1.0 "One" 1)
 
-#### 3.4.2 Adding to or Changing an Item in a List
+#### 3.3.4.2 Adding to or Changing an Item in a List
 
 The append function allows you to add new items to the end of a list, and the cons function allows you to add new items to the beginning of a list. The subst function can be used to substitute a new item for every occurrence of an old item. These functions do not modify the original list; they return a modified list. If you need to modify the original list, you explicitly replace the old list with the new list.
 
@@ -219,7 +250,7 @@ You can substitute all occurrences of an item in a list with a new item using th
 
 ("one" 1.0 "one" 1 "one")
 
-#### 3.4.3 Retrieving an Item from a List
+#### 3.3.4.3 Retrieving an Item from a List
 
 You can retrieve a specific item from a list with the nth function. This function accepts two arguments. The first argument is an integer that specifies which item to return. Lists start with a 0 index. A 0 specifies the first item in a list, 1 specifies the second item, and so on. The second argument is the list itself. The following code returns the second item in lst1.
 
@@ -249,7 +280,7 @@ AutoLISP also offers a number of additional functions that are variations of the
 
 "One"
 
-### 3.5 About Selection Sets (AutoLISP)
+### 3.3.5 About Selection Sets (AutoLISP)
 
 Selection sets are groups of one or more objects (entities). You can interactively add objects to, or remove objects from, selection sets with AutoLISP routines.
 
@@ -261,7 +292,7 @@ The following example uses the ssget function to return a selection set containi
 
 1『上面的命名目前没有弄清楚。』
 
-### 3.6 About Entity Names (AutoLISP)
+### 3.3.6 About Entity Names (AutoLISP)
 
 An entity name is a numeric label assigned to objects in a drawing.
 
@@ -293,7 +324,7 @@ The following example uses the entlast function to get the name of the last obje
 
 Entity names assigned to objects in a drawing are only in effect during the current editing session. The next time you open the drawing, AutoCAD assigns new entity names to the objects. You can use an object's handle to refer to it from one editing session to another.
 
-### 3.7 About VLA-objects (AutoLISP/ActiveX)
+### 3.3.7 About VLA-objects (AutoLISP/ActiveX)
 
 Objects in a drawing can be represented as ActiveX (VLA) objects.
 
@@ -303,7 +334,7 @@ When working with ActiveX methods and properties, you must refer to VLA-objects,
 
 2『VLA-object 的概念去多了解下。』
 
-### 3.8 About File Descriptors (AutoLISP)
+### 3.3.8 About File Descriptors (AutoLISP)
 
 A file descriptor is a pointer to a file opened by the AutoLISP open function.
 
@@ -338,7 +369,7 @@ Files remain open until you explicitly close them in your AutoLISP program. The 
 
 nil
 
-## 04. About Source Code Files (AutoLISP)
+## 3.4 About Source Code Files (AutoLISP)
 
 Although you can enter AutoLISP code at the AutoCAD Command prompt or Visual LISP Console window prompt (Windows only), any functions you define are lost when you close the drawing or session they were created in.
 

@@ -1970,3 +1970,205 @@ class Container {
 }
 ```
 
+### 3.6 Pushing to the Edge: Service Locator
+
+I promised that this chapter would deal with the logic of object creation, doing away with the sneaky buck-passing of many object-oriented examples. Yet some patterns here have slyly dodged the decision-making part of object creation, if not the creation itself.
+
+The Singleton pattern is not guilty. The logic for object creation is built-in and unambiguous. The Abstract Factory pattern groups the creation of product families into distinct concrete creators. How do we decide which concrete creator to use, though? The Prototype pattern presents us with a similar problem. Both these patterns handle the creation of objects, but they defer the decision as to which object or group of objects should be created.
+
+我保证过这一章主要介绍如何创建对象，不会列举许多与面向对象无关的例子。然而本章的些模式很狡猾地避过了对象生成相关的决策过程，看起来似乎与对象生成无关一一如果并不是创建本身的话。单例模式不在此列，因为单例模式中的对象创建逻辑是内建并明确的。抽象工厂模式产品家族的创建则分布到了不同的具体创建者中。那么我们如何选择具体的创建者呢？原型模式把相似的问题呈现在我们面前。这两个模式都用于创建对象，但它们延缓了应该创建哪个对象或者哪组对象的决定。
+
+The particular concrete creator that a system chooses is often decided according to the value of a configuration switch of some kind. This could be located in a database, a configuration file, or a server file (such as Apache’s directory-level configuration file, usually called .htaccess), or it could even be hard-coded as a PHP variable or property. Because PHP applications must be reconfigured for every request, you need script initialization to be as painless as possible. For this reason, I often opt to hard-code configuration flags in PHP code. This can be done by hand or by writing a script that autogenerates a class file. Here’s a crude class that includes a flag for calendar protocol types:
+
+系统经常根据配置的值来决定选择哪个特定的具体创建者。而这些配置信息可以在数据库、配置文件或服务器文件中（如 Apache 服务器的配置文件通常是 htaccess），或者干脆以 PHP 变量或属性进行硬编码。因为 PHP 应用程序必须为每个请求重新配置，所以需要让脚本的初始化尽可能地简单。正因为此，我经常选择在 PHP 代码中通过硬编码来设定配置标志。这可以通过手写或者写一个自动生成类文件的脚本来完成。下面是一个包含日历协议类型的标记的类：
+
+```php
+class Settings {
+    static $COMMSTYPE = 'Bloggs';
+}
+
+class AppConfig {
+    private static $instance;
+    private $commsManager;
+
+    private function __construct() {
+        // will run once only
+        $this->init();
+    }
+
+    private function init() {
+        switch (Settings::$COMMSTYPE) {
+            case 'Mega':
+                $this->commsManager = new MegaCommsManager();
+               break;
+            default:
+               $this->commsManager = new BloggsCommsManager();
+        }
+    }
+
+    public static function getInstance(): AppConfig {
+        if (empty(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    public function getCommsManager(): CommsManager {
+        return $this->commsManager;
+    }
+}
+```
+
+The AppConfig class is a standard Singleton. For that reason, I can get an AppConfig instance anywhere in the system, and I will always get the same one. The init() method is invoked by the class’s constructor and is therefore only run once in a process. It tests the Settings::\$COMMSTYPE property, instantiating a concrete CommsManager object according to its value. Now my script can get a CommsManager object and work with it without ever knowing about its concrete implementations or the concrete classes it generates:
+
+AppConfig 类是一个标准的单例。因此，我们可以在系统中任何地方得到 AppConfig 实例，并且确保得到的一直是同一个实例。init() 方法会被类的构造方法调用，且因此在一个进程中只会运行一次。它检查 Settings::\$COMMSTYPE 属性，并根据该属性的值来实例化一个具体的 CommsManager 对象。现在我们的代码可以得到并使用一个 CommsManager 对象，而不需要知道它的具体实现或者它所生成的具体类。
+
+```php
+$commsMgr = AppConfig::getInstance()->getCommsManager();
+$commsMgr->getApptEncoder()->encode();
+```
+
+Because AppConfig manages the work of finding and creating components for us, it is an instance of what’s known as the Service Locator pattern. It’s neat (and we’ll see it again in more detail in Chapter 12), but it does introduce a more benign dependency than direct instantiation. Any classes using its service must explicitly invoke this monolith, binding them to the wider system. For this reason, some prefer another approach.
+
+### 3.7 Splendid Isolation: Dependency Injection
+
+In the previous section, I used a flag and a conditional statement within a factory to determine which of two CommsManager classes to serve up. The solution was not as flexible as it might have been. The classes on offer were hard-coded within a single locator, with a choice of two components built-in to a conditional. That inflexibility was a facet of my demonstration code, though, rather than a problem with Service Locator, per se. I could have used any number of strategies to locate, instantiate, and return objects on behalf of client code. The real reason Service Locator is often treated with suspicion, however, is the fact that a component must explicitly invoke the locator. This feels a little, well, global. And object-oriented developers are rightly suspicious of all things global.
+
+#### 3.7.1 The Problem
+
+Whenever you use the new operator, you close down the possibility of polymorphism within that scope. Imagine a method that deploys a hard-coded BloggsApptEncoder object, for example:
+
+```php
+// listing 09.37
+
+class AppointmentMaker {    
+    public function makeAppointment()    {        
+        $encoder = new BloggsApptEncoder();        
+        return $encoder->encode();    
+    }
+}
+```
+
+This might work for our initial needs, but it will not allow any other ApptEncoder implementation to be switched in at runtime. That limits the ways in which the class can be used, and it makes the class harder to test. Much of this chapter addresses precisely this kind of inflexibility. But, as I pointed out in the previous section, I have skated over the fact that, even if we use the Prototype or Abstract Factory patterns, instantiation has to happen somewhere. Here again is a fragment of code that creates a Prototype object:
+
+```php
+// listing 09.32
+
+$factory = new TerrainFactory(    
+    new EarthSea(),    
+    new EarthPlains(),    
+    new EarthForest()
+);
+```
+
+The Prototype TerrainFactory class called here is a step in the right direction—it demands generic types: Sea, Plains, and Forest. The class leaves it up to the client code to determine which implementations should be provided. But how is this done?
+
+#### 3.7.2 Implementation
+
+Much of our code calls out to factories. As we have seen, this model is known as the Service Locator pattern. A method delegates responsibility to a provider which it trusts to find and serve up an instance of the desired type. The Prototype example inverts this; it simply expects the instantiating code to provide implementations at call time. There’s no magic here—it’s simply a matter of requiring types in a constructor’s signature, instead of creating them directly within the method. A variation on this is to provide setter methods, so that clients can pass in objects before invoking a method that uses them.
+
+So let’s fix up AppointmentMaker in this way:
+
+```php
+// listing 09.38
+
+class AppointmentMaker2 {    
+
+    private $encoder;
+
+    public function __construct(ApptEncoder $encoder) {        
+        $this->encoder = $encoder;    
+    }
+    
+    public function makeAppointment()    {        
+        return $this->encoder->encode();    
+    }
+}
+```
+
+AppointmentMaker2 has given up control—it no longer creates the BloggsApptEncoder, and we have gained flexibility. What about the logic for the actual creation of objects, though? Where do the dreaded new statements live? We need an assembler component to take on the job. Typically, this approach uses a configuration file to figure out which implementations should be instantiated. There are tools to help us with this, but this book is all about doing it ourselves, so let’s build a very naive implementation. I’ll start with a crude XML format which describes the relationships between classes in our system and the concrete types that should be passed to their constructors:
+
+```html
+<objects>    
+    <class name="\popp\ch09\batch11\TerrainFactory">        
+        <arg num="0" inst="\popp\ch09\batch11\EarthSea" />        
+        <arg num="1" inst="\popp\ch09\batch11\MarsPlains" />        
+        <arg num="2" inst="\popp\ch09\batch11\EarthForest" />    
+    </class>
+
+    <class name="\popp\ch09\batch14\AppointmentMaker2">        
+        <arg num="0" inst="\popp\ch09\batch06\BloggsApptEncoder" />    
+    </class>
+</objects>
+```
+
+I’ve described two classes from this chapter: TerrainFactory and AppointmentMaker2. I want TerrainFactory to be instantiated with an EarthSea object, a MarsPlains object, and an EarthForest object. I would also like AppointmentMaker2 to be passed a BloggsApptEncoder object. Here’s a very simple assembler class that reads this configuration data and instantiates objects on demand:
+
+```php
+// listing 09.39
+
+class ObjectAssembler {    
+
+    private $components = [];
+
+    public function __construct(string $conf)    {        
+        $this->configure($conf);    
+    }
+
+    private function configure(string $conf)    {        
+        $data = simplexml:load_file($conf);        
+        foreach ($data->class as $class) {            
+            $args = [];            
+            $name = (string)$class['name'];           
+            foreach ($class->arg as $arg) {                
+                $argclass = (string)$arg['inst'];                
+                $args[(int)$arg['num']] = $argclass;            
+            }            
+            ksort($args);            
+            $this->components[$name] = function () use ($name, $args) {                
+                $expandedargs = [];                
+                foreach ($args as $arg) {                    
+                    $expandedargs[] = new $arg();                
+                }                
+                $rclass = new \ReflectionClass($name);                
+                return $rclass->newInstanceArgs($expandedargs);            
+            };        
+        }    
+    }
+
+    public function getComponent(string $class)    {        
+        if (! isset($this->components[$class])) {            
+            throw new \Exception("unknown component '$class'");        
+        }        
+        $ret = $this->components[$class]();        
+        return $ret;    
+    }
+}
+```
+
+This is pretty crude, and it is a little dense at first reading, so let’s work through it briefly. Most of the real action takes place in configure(). The method accepts a path which is passed on from the constructor. It uses the simplexml extension to parse the configuration XML. In a real project, of course, we’d add more error handling here and throughout. For now, I’m pretty trusting of the XML I’m parsing. For every \<class> element, I extract the fully qualified class name and store it in the \$name variable. Then I acquire all the \<arg> subelements, all of which have their own class names. I store the arguments in an array named \$args, ordered according to the XML num argument. I pack all of this in an anonymous function which I store in the \$components property. This function, which instantiates a requested class and all its required objects, is only invoked when getComponent() is called with the correct class name. In this way the ObjectAssembler can maintain a pretty small footprint. Note the use of a closure here. The anonymous function has access to the \$name and \$args variables declared in the scope of its creation, thanks to the use keyword.
+
+Of course, this is really toy code. In addition to improved error checking, a robust implementation would need to handle the possibility that the objects to be injected into a component might themselves require arguments. We might also want to address issues around caching. For example, should a contained object be instantiated for every call, or only once?
+
+ ■ Note:  if you are considering building a Dependency injection assembler/container, you should look at a couple of options: pimple (notwithstanding its unpleasant name) and symfony Di. You can find out more about pimple at http://pimple.sensiolabs.org/; you can learn more about the symfony Di component at http://symfony.com/doc/current/components/dependency_injection/introduction.html.
+
+Nevertheless, we can now maintain the flexibility of our components and handle instantiation dynamically. Let’s try out the ObjectAssembler:
+
+```php
+// listing 09.40$assembler = new ObjectAssembler("src/ch09/batch14/objects.xml");
+$apptmaker = $assembler->getComponent("\\popp\\ch09\\batch14\\AppointmentMaker2");
+$out = $apptmaker->makeAppointment();
+print $out;
+```
+
+Once we have an ObjectAssembler, object acquisition takes up a single statement. The AppointmentMaker2 class is free of its previous hard-coded dependency on an ApptEncoder instance. A developer can now use the configuration file to control what classes are used at runtime, as well as to test AppointmentMaker2 in isolation from the wider system.
+
+#### 3.7.3 Consequences
+
+So, now we’ve seen two options for object creation. The AppConfig class was an instance of Service Locator (i.e., a class with the ability to find components or services on behalf of its client). Using dependency injection certainly makes for more elegant client code. The AppointmentMaker2 class is blissfully unaware of strategies for object creation. It simply does its job. This is the ideal for a class, of course. We want to design classes that can focus on their responsibilities, isolated as far as possible from the wider system. However, this purity does come at a price. The object assembler component hides a lot of magic. We must treat it as a black box and trust it to conjure up objects on our behalf. This is fine, so long as the magic works. Unexpected behavior can be hard to debug.
+
+The Service Locator pattern, on the other hand, is simpler, though it embeds your components into a wider system. It is not the case that, used well, a Service Locator makes testing harder. Nor does it make a system inflexible. A Service Locator can be configured to serve up arbitrary components for testing or according to configuration. But a hard-coded call to a service locator makes a component dependent upon it. Because the call is made from within the body of a method, the relationship between the client and the target component (which is provided by the Service Locator) is also somewhat obscured. This relationship is made explicit in the Dependency Injection example because it is declared in the constructor method’s signature.
+
+So, which approach should we choose? To some extent it’s a matter of preference. For my own part, I tend to prefer to start with the simplest solution, and then to refactor to greater complexity, if needed. For that reason, I usually opt for Service Locator. I can create a Registry class in a few lines of code, and increase its flexibility according to the requirements. My components are a little more knowing than I would like, but since I rarely move classes from one system to another, I have not suffered too much from the embedding effect. When I have moved a system-based class into a standalone library, I have not found it particularly hard to refactor the Service Locator dependency away.
+
+Dependency Injection offers purity, but it requires another kind of embedding. You must buy in to the magic of the assembler. If you are already working within a framework which offers this functionality, there is no reason not to avail yourself of it. The Symfony  DependencyInjection component, for example, provides a hybrid solution of Service Locator (known as the「service container」) and Dependency Injection. The service container manages the instantiation of objects according to the configuration (or code, if you prefer) and provides a simple interface for clients to obtain those objects. The service container even allows the use of factories for object creation. On the other hand, if you are rolling your own, or using components from various frameworks, you may wish to keep things simple at the cost of some elegance.

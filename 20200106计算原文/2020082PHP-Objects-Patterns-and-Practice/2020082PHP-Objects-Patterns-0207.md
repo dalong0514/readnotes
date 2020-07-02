@@ -1,4 +1,4 @@
-# 13 Database Patterns
+# 0207. Database Patterns
 
 Most web applications of any complexity handle persistence to a greater or lesser extent. Shops must recall their products and their customer records. Games must remember their players and the state of play. Social networking sites must keep track of your 238 friends and your unaccountable liking for boy-bands of the ’80s and ’90s. Whatever the application, the chances are it’s keeping score behind the scenes. In this chapter,  I look at some patterns that can help.
 
@@ -1432,11 +1432,7 @@ $collection = $finder->find($idobj);
 
 foreach ($collection as $venue) {    print $venue->getName()."\n";}
 
-372
-
-Chapter 13 ■ Database patterns
-
-Summary
+## Summary
 
 As always, the patterns you choose to use will depend on the nature of your problem. I naturally gravitate toward a Data Mapper working with an identity object. I like neat automated solutions, but I also need to know I can break out of the system and go manual when I need to, while maintaining a clean interface and a decoupled database layer. I may need to optimize an SQL query, for example, or use a join to acquire data across multiple tables. Even if you’re using a complex pattern-based third-party framework, you may find that the fancy object-relational mapping on offer does not do quite what you want. One test of a good framework, and of a good home-grown system, is the ease with which you can plug your own hack into place without degrading the overall integrity of the system as a whole. I love elegant, beautifully composed solutions, but I’m also a pragmatist!
 
@@ -1472,15 +1468,4 @@ queries
 
 process of data storage and retrieval
 
-In the next chapter, we take a welcome break from code, and I’ll introduce some of the wider practices 
-
-that can contribute to a successful project.
-
-373
-
-PART III
-
-Practice
-
-CHAPTER 14
-
+In the next chapter, we take a welcome break from code, and I’ll introduce some of the wider practices that can contribute to a successful project.

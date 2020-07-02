@@ -1,4 +1,4 @@
-# 12 Enterprise Patterns
+# 0206. Enterprise Patterns
 
 PHP is, first and foremost, a language designed for the Web. And, because of its extensive support for objects, we can take advantage of patterns hatched in the context of other object-oriented languages, particularly Java.
 
