@@ -12,7 +12,7 @@
 
 Copyright Š 2003-2005, Peter Seibel
 
-8. Macros: Defining Your Own
+## 0801. Macros: Defining Your Own
 
 Now it's time to start writing your own macros. The standard macros I covered in the previous chapter hint at some of the things you can do with macros, but that's just the beginning. Common Lisp doesn't support macros so every Lisp programmer can create their own variants of standard control constructs any more than C supports functions so every C programmer can write trivial variants of the functions in the C standard library. Macros are part of the language to allow you to create abstractions on top of the core language and standard library that move you closer toward being able to directly express the things you want to express.
 

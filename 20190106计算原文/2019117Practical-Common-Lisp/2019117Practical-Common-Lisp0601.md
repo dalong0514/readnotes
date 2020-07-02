@@ -1,4 +1,4 @@
-# 6. Variables
+# 0601. Variables
 
 The next basic building block we need to look at are variables. Common Lisp supports two kinds of variables: lexical and dynamic.1 These two types correspond roughly to "local" and "global" variables in other languages. However, the correspondence is only approximate. On one hand, some languages' "local" variables are in fact much like Common Lisp's dynamic variables.2 And on the other, some languages' local variables are lexically scoped without providing all the capabilities provided by Common Lisp's lexical variables. In particular, not all languages that provide lexically scoped variables support closures.
 

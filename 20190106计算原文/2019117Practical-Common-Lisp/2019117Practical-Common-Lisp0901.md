@@ -38,7 +38,7 @@ I could, of course, say a lot more about macros. All the macros you've seen so f
 
 Copyright © 2003-2005, Peter Seibel
 
-9. Practical: Building a Unit Test Framework
+## 9. Practical: Building a Unit Test Framework
 
 In this chapter you'll return to cutting code and develop a simple unit testing framework for Lisp. This will give you a chance to use some of the features you've learned about since Chapter 3, including macros and dynamic variables, in real code.
 

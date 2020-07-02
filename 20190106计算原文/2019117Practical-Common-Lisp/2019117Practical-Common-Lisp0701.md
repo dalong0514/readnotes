@@ -1,4 +1,4 @@
-# 7. Macros: Standard Control Constructs
+# 0701. Macros: Standard Control Constructs
 
 While many of the ideas that originated in Lisp, from the conditional expression to garbage collection, have been incorporated into other languages, the one language feature that continues to set Common Lisp apart is its macro system. Unfortunately, the word macro describes a lot of things in computing to which Common Lisp's macros bear only a vague and metaphorical similarity. This causes no end of misunderstanding when Lispers try to explain to non-Lispers what a great feature macros are.1 To understand Lisp's macros, you really need to come at them fresh, without preconceptions based on other things that also happen to be called macros. So let's start our discussion of Lisp's macros by taking a step back and looking at various ways languages support extensibility.
 
@@ -10,7 +10,7 @@ While Common Lisp supports both these methods of extending the language, macros 
 
 Now, it may seem that the benefits of having another way to extend the language would be easy to recognize. But for some reason a lot of folks who haven't actually used Lisp macros--folks who think nothing of spending their days creating new functional abstractions or defining hierarchies of classes to solve their programming problems--get spooked by the idea of being able to define new syntactic abstractions. The most common cause of macrophobia seems to be bad experiences with other "macro" systems. Simple fear of the unknown no doubt plays a role, too. To avoid triggering any macrophobic reactions, I'll ease into the subject by discussing several of the standard control-construct macros defined by Common Lisp. These are some of the things that, if Lisp didn't have macros, would have to be built into the language core. When you use them, you don't have to care that they're implemented as macros, but they provide a good example of some of the things you can do with macros.2 In the next chapter, I'll show you how you can define your own macros.
 
-## 01. WHEN and UNLESS
+## 7.1 WHEN and UNLESS
 
 As you've already seen, the most basic form of conditional execution--if x, do y; otherwise do z--is provided by the IF special operator, which has this basic form:
 
@@ -71,7 +71,7 @@ Admittedly, these are pretty trivial macros. There's no deep black magic here; t
 
 [3] You can’t actually feed this definition to Lisp because it’s illegal to redefine names in the COMMON-LISP package where WHEN comes from. If you really want to try writing such a macro, you’d need to change the name to something else, such as my-when.
 
-## 02. COND
+## 7.2 COND
 
 Another time raw IF expressions can get ugly is when you have a multibranch conditional: if a do x, else if b do y; else do z. There's no logical problem writing such a chain of conditional expressions with just IF, but it's not pretty.
 
@@ -105,7 +105,7 @@ By convention, the branch representing the final else clause in an if/else-if ch
           (t (do-z)))
 ```
 
-## 03. AND, OR, and NOT
+## 7.3 AND, OR, and NOT
 
 When writing the conditions in IF, WHEN, UNLESS, and COND forms, three operators that will come in handy are the boolean logic operators, AND, OR, and NOT.
 

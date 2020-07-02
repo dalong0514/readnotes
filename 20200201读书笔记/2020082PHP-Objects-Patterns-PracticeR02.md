@@ -954,15 +954,11 @@ Should you be required to deploy the system on a server that does not support My
 
 The problem here is not the system’s dependency on an external platform. Such a dependency is inevitable. You need to work with code that speaks to a database. The problem comes when such code is scattered throughout a project. Talking to databases is not the primary responsibility of most classes in a system, so the best strategy is to extract such code and group it together behind a common interface. In this way, you promote the independence of your classes. At the same time, by concentrating your gateway code in one place, you make it much easier to switch to a new platform without disturbing your wider system. This process, the hiding of implementation behind a clean interface, is known as encapsulation. The Doctrine database library solves this problem with the DBAL (database abstraction layer) project. This provides a single point of access for multiple databases.
 
-1『如何隔离与数据库交互的代码，这个思路太赞了。这里有提高「Doctrine database library 」这个工具，就是为了解决这个问题的，记得去了解下。突然想到有本 python 的英文书里（那个作者写了好几本书），也有提高这种在程序和数据库之间抽象出来的中间层。』
+1『如何隔离与数据库交互的代码，这个思路太赞了。这里有提到「Doctrine database library 」这个工具，就是为了解决这个问题的，记得去了解下。突然想到有本 python 的英文书里（那个作者写了好几本书），也有提到这种在程序和数据库之间抽象出来的中间层。』
 
 这里的问题不在于系统对外部平台的依赖。这样的依赖是无法避免的。我们确实需要使用与数据库交互的代码。但当这样的代码散布在整个项目中时，问题就来了。与数据库交互不是系统中大部分类的首要责任，因此最好的策略就是提取这样的代码并将其组合在公共接口后。这可以使类之间相互独立。同时，通过在一个地方集中你的「入ロ」代码，就能更轻松地切换到一个新的平台而不会影响到系统中更大的部分。这个把具体实现隐藏在一个干净的接口后面的过程，正是大家所知道的「封装」。
 
-PEAR 中的 PEAR::MDB2 包（沿袭自 PEAR::DB）可以解决这个问题。该包支持对多个数据库的访问。最新的 PDO 扩展已将此模型移植到 PHP 语言中。MDB2 类提供了一个静态方法 connect()，它接受一个 DSN (Data Source Name，数据源名）字符串参数。根据这个字符串的构成，它返回 MDB2\_Driver\_Comon 类的一个特定实现。因此对于字符串 "mysql://", connect() 方法返回一个 MmB2\_Driver\_mysql 对象，而对于一个以 "sqlite://" 开头的字符串，它将返回一个 MDB2 Driver\_sqlite，对象。可以在图 8-5 中看到该类的结构。
-
 The DriverManager class provides a static method called getConnection() that accepts a parameters array. According to the makeup of this array, it returns a particular implementation of an interface called Doctrine\DBAL\Driver. You can see the class structure in Figure 8-5.
-
-Figure 8-5.  The DBAL package decouples client code from database objects
 
 The DBAL package, then, lets you decouple your application code from the specifics of your database platform. You should be able to run a single system with MySQL, SQLite, MSSQL, and others without changing a line of code (apart from your configuring parameters, of course).
 
@@ -1029,10 +1025,11 @@ $mrg->register(new Lecture(4, new FixedCostStrategy));
 And here’s the output from a typical run:
 
 ```
-TEXT notification: new lesson: cost (20)MAIL notification: new lesson: cost (30)
+TEXT notification: new lesson: cost (20)
+MAIL notification: new lesson: cost (30)
 ```
 
-Figure 8-6 shows these classes.Notice how similar the structure in Figure 8-6 is to that formed by the Doctrine components shown in Figure 8-5.
+Notice how similar the structure in Figure 8-6 is to that formed by the Doctrine components shown in Figure 8-5.
 
 ### 2.4 Code to an Interface, Not to an Implementation
 
@@ -1081,7 +1078,7 @@ When I say that a Lesson object can be combined with any CostStrategy interface 
 
 换句话说，我们把 Lesson 类从具体的费用计算中分离出来了。我们所做的就是提供接口并保证所提供的对象会实现接口。当然，面向接口编程无法回答如何实例化对象的问题。当我们说 Lesson 对象能在运行时与任何 Coststrategy 接口绑定时，我们回避了这么一个问题：「但是 coststrategy 对象从哪里来呢？」当创建一个抽象父类时，常会碰到如何实例化它的子类的问题。你会选择实例化哪个子类来对应相应的条件呢？这个主题在《设计模式》模式目录中形成了一个独立的类别，我们会在下章研究其中一些模式。
 
-1『核心问题：当创建一个抽象父类时，常会碰到如何实例化它的子类的问题。你会选择实例化哪个子类来对应相应的条件呢？』
+1『核心问题：当创建一个抽象父类时，常会碰到如何实例化它的子类的问题。你会选择实例化哪个子类来对应相应的条件呢？回复：在抽象父类和具体实例化子类之间再抽象出一个「中间类」，这个中间类专门负责实例化，具体实例化子类（包含实例化代码）继承这个中间类。（2020-07-03）』
 
 ### 2.5 The Concept that Varies
 
@@ -1095,11 +1092,11 @@ I quickly established that subclassing for this variation was inappropriate, and
 
 The Gang of Four recommend that you actively seek varying elements in your classes and assess their suitability for encapsulation in a new type. Each alternative in a suspect conditional may be extracted to form a class that extends a common abstract parent. This new type can then be used by the class or classes from which it was extracted. This has the following effects: 1) Promoting flexibility through composition. 2) Making inheritance hierarchies more compact and focused. 3) Focusing responsibility. 4) Reducing duplication.
 
+我们发现为这个变化直接创建子类是不合适的，于是使用了条件语句。通过把变化的元素放入同一个类中，我们强调了封装的适用性。《设计模式》建议积极搜寻类中变化的元素，并评估它们是否适合用新类型来封装。根据一定条件，变化的元素（如计费算法）可被提取出来形成子类（如 TimedCostStrategy 和 FixedCostStrategy），而这些元素共同拥有一个抽象父类（Coststrategy）。而这个新类型（CostStrategy）能被其他类使用。这么做有以下好处：1）专注于职责。2）通过组合提高灵活性。3）使继承层级体系更紧凑和集中；4）减少重复。
+
 So how do you spot variation? One sign is the misuse of inheritance. This might include inheritance deployed according to multiple forces at one time (e.g., lecture/seminar and fixed/timed cost). It might also include subclassing on an algorithm where the algorithm is incidental to the core responsibility of the type. The other sign of variation suitable for encapsulation is, as you have seen, a conditional expression.
 
 1『发现「变化点」的两个信号：误用继承和条件语句。』
-
-我们发现为这个变化直接创建子类是不合适的，于是使用了条件语句。通过把变化的元素放入同一个类中，我们强调了封装的适用性。《设计模式》建议积极搜寻类中变化的元素，并评估它们是否适合用新类型来封装。根据一定条件，变化的元素（如计费算法）可被提取出来形成子类（如 TimedCostStrategy 和 FixedCostStrategy），而这些元素共同拥有一个抽象父类（Coststrategy）。而这个新类型（CostStrategy）能被其他类使用。这么做有以下好处：1）专注于职责。2）通过组合提高灵活性。3）使继承层级体系更紧凑和集中；4）减少重复。
 
 那么如何发现变化的元素呢？误用继承便是一个标志。误用的表现可能包括一次实现不同分支（lecture/seminar and fixed/timed cost）的继承；也可能包括子类化某个算法，而该算法对于该对象类型的核心职责是偶然的。当然，适合封装「变化元素」的另一个标志便是出现了条件表达式。
 
@@ -1139,7 +1136,7 @@ The patterns described will be drawn from key catalogs, including Design Pattern
 
 4. Enterprise Patterns. I look at some patterns that describe typical Internet programming problems and solutions. Drawn largely from Patterns of Enterprise Application Architecture and Core J2EE Patterns: Best Practices and Design Strategies, the patterns deal with presentation and application logic.
 
-5. Database PatternsAn examination of patterns that help with storing and retrieving data, and with mapping objects to and from databases.
+5. Database Patterns. An examination of patterns that help with storing and retrieving data, and with mapping objects to and from databases.
 
 1『在使用生成对象模式时，运行时期间，如何根据特定的条件实现特定的子类实例化对象是关键点。』
 
