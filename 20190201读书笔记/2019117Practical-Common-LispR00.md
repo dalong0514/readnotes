@@ -1,8 +1,74 @@
-This page, and the pages it links to, contain text of the Common Lisp book Practical Common Lisp published by Apress These pages now contain the final text as it appears in the book. If you find errors in these pages, please send email to book@gigamonkeys.com. These pages will remain online in perpetuity—I hope they will serve as a useful introduction to Common Lisp for folks who are curious about Lisp but maybe not yet curious enough to shell out big bucks for a dead-tree book and a good Common Lisp tutorial for folks who want to get down to real coding right away. However, don't let that stop you from buying the printed version available from Apress at your favorite local or online bookseller. For the complete bookstore browsing experience, you can read the letter to the reader that appears on the back cover of the treeware edition of the book.
+# 2019117Practical-Common-LispR00
 
-Copyright © 2003-2009, Peter Seibel
+Copyright © 2005 by Peter Seibel
 
-Dear Reader,
+## 记忆时间
+
+## 卡片
+
+### 0101. 反常识卡——
+
+这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+
+#### 01. 常识
+
+#### 02. 反常识
+
+#### 03. 知识来源
+
+比如提出者，如何演化成型的；书或专栏具体出现的地方。
+
+#### 04. 例子
+
+### 0201. 术语卡——
+
+根据反常识，再补充三个证据——就产生三张术语卡。
+
+例子。
+
+### 0202. 术语卡——
+
+### 0203. 术语卡——
+
+### 0301. 人名卡——
+
+根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+
+维基百科链接：有的话。
+
+#### 01. 出生日期
+
+用一句话描述你对这个大牛的印象。
+
+#### 02. 贡献及经历
+
+#### 03. 论文及书籍
+
+#### 04. 演讲汇总
+
+找一个他的 TED 演讲，有的话。
+
+### 0401. 金句卡——
+
+最后根据他写的非常震撼的话语——产生一张金句卡。
+
+### 0501. 行动卡——
+
+行动卡是能够指导自己的行动的卡。
+
+### 0601. 任意卡——
+
+最后还有一张任意卡，记录个人阅读感想。
+
+## 模板
+
+### 1. 逻辑脉络
+
+用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
+
+### 2. 摘录及评论
+
+## Preface
 
 Practical Common Lisp ... isn't that an oxymoron? If you're like most programmers, you probably know something about Lisp—from a comp sci course in college or from learning enough Elisp to customize Emacs a bit. Or maybe you just know someone who won't shut up about Lisp, the greatest language ever. But you probably never figured you'd see practical and Lisp in the same book title.
 
@@ -13,26 +79,6 @@ If any of those is true, this book is for you. Using Common Lisp, an ANSI standa
 But unlike many Lisp books, this one doesn't just touch on a few of Lisp's greatest features and then leave you on your own to actually use them. I cover all the language features you'll need to write real programs and devote well over a third of the book to developing nontrivial software—a statistical spam filter, a library for parsing binary files, and a server for streaming MP3s over a network complete with an online MP3 database and Web interface.
 
 So turn the book over, open it up, and see for yourself how eminently practical using the greatest language ever invented can be.
-
-Sincerely,
-
-Peter Seibel
-
-Back to index.
-
-## Acknowledgments
-
-This book wouldn’t have been written, at least not by me, if not for a few happy coincidences. So, I have to start by thanking Steven Haflich of Franz, who, after we met at a get-together of Bay Area Lispniks, invited me to lunch with some Franz salespeople where, among other things, we discussed the need for a new Lisp book. Then I have to thank Steve Sears, one of the sales guys at that lunch, who put me in touch with Franz’s president, Fritz Kunze, after Fritz mentioned he was looking for someone to write a Lisp book. And, of course, many thanks to Fritz for convincing Apress to publish a new Lisp book, for deciding I was the right guy to write it, and for providing encouragement and assistance along the way. Thanks also to Sheng-Chuang Wu of Franz, the instrument of much of that assistance.
-
-One of my most indispensable resources while working on the book was the newsgroup comp.lang.lisp. The comp.lang.lisp regulars answered what must have seemed to them an endless stream of questions about various aspects of Lisp and its history. I also turned frequently to the Google archives for the group, a treasure trove of technical expertise. So, thanks to Google for making them available and to all comp.lang.lisp participants past and present for providing the content. In particular, I’d like to recognize two long-time comp.lang.lisp contributorsBarry Margolin, who has been providing tidbits of Lisp history and his own brand of quiet wisdom for as long as I’ve been reading the group; and Kent Pitman, who, in addition to having been one of the principal technical editors of the language standard and the author of the Common Lisp HyperSpec, has written hundreds of thousands, if not millions, of words in comp.lang.lisp postings elucidating various aspects of the language and how it came to be.
-
-Other indispensable resources while working on the book were the Common Lisp libraries for PDF generation and typesetting, CL-PDF and CL-TYPESETTING, written by Marc Battyani. I used CL-TYPESETTING to generate handsome PDFs for my own red-pen editing and CL-PDF as the basis for the Common Lisp program I used to generate the line art that appears in this book.
-
-I also want to thank the many people who reviewed draft chapters on the Web and sent me e-mails pointing out typos, asking questions, or simply wishing me well. While there were too many to mention them all by name, a few deserve special mention for their extensive feedback: J. P. Massar (a fellow Bay Area Lispnik who also bucked up my spirits several times with well-timed pizza lunches), Gareth McCaughan, Chris Riesbeck, Bulent Murtezaoglu, Emre Sevinc, Chris Perkins, and Tayssir John Gabbour. Several of my non-Lisping buddies also got roped into looking at some chapters: thanks to Marc Hedlund, Jolly Chen, Steve Harris, Sam Pullara, Sriram Srinivasan, and William Grosso for their feedback. Thanks also to Scott Whitten for permission to use the photo that appears in Figure 26-1.
-
-My technical reviewers, Steven Haflich, Mikel Evins, and Barry Margolin, and my copy editor, Kim Wimpsett, improved this book in innumerable ways. Any errors that remain are, of course, my own. And thanks to everyone else at Apress who participated in getting this book out the door.
-
-Finally, and most of all, I want to thank my family: Mom and Dad, for everything, and Lily, for always believing I could do it.
 
 ## Typographical Conventions
 
@@ -78,10 +124,6 @@ Occasionally, I’ll use an equivalence sign ( ≡) to express that two Lisp for
 I have been complimented many times and they always embarrass me; I always feel that they have not said enough.
 
 —Mark Twain
-
-that book is dead sexy.
-
-—Xach on #lisp
 
 Peter Seibel offers a fresh view of Lisp and its possibilities for elegantly solving problems. In Practical Common Lisp, he gives enough basic information to let you quickly see the power of the functional language paradigm. He then dazzles you with examples that seem almost magical in their simplicity and power. This read is pure fun from start to finish.
 
@@ -143,7 +185,6 @@ With the IT world evolving at an ever increasing pace, professionals need the mo
 
 —Marc Battyani, author of CL-PDF, CL-TYPESETTING, and mod_lisp.
 
-
 Please don't assume Common Lisp is only useful for Databases, Unit Test Frameworks, Spam Filters, ID3 Parsers, Web Programming, Shoutcast Servers, HTML Generation Interpreters, and HTML Generation Compilers just because these are the only things happened to be implemented in the book Practical Common Lisp.
 
 —Tobias C. Rittweiler, Lisp Programmer
@@ -152,68 +193,6 @@ When I met Peter, who just started writing this book, I asked to myself (not to 
 
 —Taiichi Yuasa, Professor, Department of Communications and Computer Engineering, Kyoto University
 
-## Contents
+## 0101. Introduction: Why Lisp?
 
-Introduction: Why Lisp?
 
-Lather, Rinse, Repeat: A Tour of the REPL
-
-Practical: A Simple Database
-
-Syntax and Semantics
-
-Functions
-
-Variables
-
-Macros: Standard Control Constructs
-
-Macros: Defining Your Own
-
-Practical: Building a Unit Test Framework
-
-Numbers, Characters, and Strings
-
-Collections
-
-They Called It LISP for a Reason: List Processing
-
-Beyond Lists: Other Uses for Cons Cells
-
-Files and File I/O
-
-Practical: A Portable Pathname Library
-
-Object Reorientation: Generic Functions
-
-Object Reorientation: Classes
-
-A Few FORMAT Recipes
-
-Beyond Exception Handling: Conditions and Restarts
-
-The Special Operators
-
-Programming in the Large: Packages and Symbols
-
-LOOP for Black Belts
-
-Practical: A Spam Filter
-
-Practical: Parsing Binary Files
-
-Practical: An ID3 Parser
-
-Practical: Web Programming with AllegroServe
-
-Practical: An MP3 Database
-
-Practical: A Shoutcast Server
-
-Practical: An MP3 Browser
-
-Practical: An HTML Generation Library, the Interpreter
-
-Practical: An HTML Generation Library, the Compiler
-
-Conclusion: What's Next?

@@ -588,6 +588,374 @@ nil
 
 1『果然所有语言都是一个套路，打开文件记得关掉。』
 
+### 3.4 About Source Code Files (AutoLISP)
 
+Although you can enter AutoLISP code at the AutoCAD Command prompt or Visual LISP Console window prompt (Windows only), any functions you define are lost when you close the drawing or session they were created in. AutoLISP source code can be saved to an ASCII text file with a .lsp extension. Saving AutoLISP source code to a file has the following advantages: 1) Programs are not lost when the drawing they are defined in is closed. 2) Programs can be used in more than one drawing and can be executed on multiple machines. 3) Programs can be shared with others in your organization. 4) Testing and debugging multiple expressions is considerably easier.
 
+AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
+
+1『 MNL 应该就是可以显示的自定义菜单，后面需要自己实现的。（2020-07-02）』
+
+For example, on Windows, when acad.cuix is loaded, the file named acad.mnl is also loaded if it is found in one of the folders listed as part of the AutoCAD Support File Search Path. If a CUIx file does not have a corresponding MNL file, no error is displayed, the product just moves and loading other support files.
+
+Note: While AutoLISP source code is commonly saved in files with a .lsp or .mnl extension, AutoLISP code can be loaded from any ASCII text file.
+
+#### Topics in this section
+
+1. About Formatting and Spaces in Code (AutoLISP). AutoLISP code can span multiple lines, and contain empty lines and extra spaces. Empty lines and extra spaces do not have any significant meaning, but can make your code easier to read.
+
+2. About Comments in AutoLISP Program Files (AutoLISP). Comments are useful to both the programmer and future users who may need to revise a program to suit their needs.
+
+3. To Create and Open AutoLISP Source Code Files (AutoLISP). AutoLISP source code files can be created and edited using a plain ASCII text editor.
+
+#### 3.4.1 About Formatting and Spaces in Code (AutoLISP)
+
+AutoLISP code can span multiple lines, and contain empty lines and extra spaces. Empty lines and extra spaces do not have any significant meaning, but can make your code easier to read. Multiple spaces between function and variable names, and constants are equivalent to a single space. The end of a line and tab is also treated as a single space. The following two expressions produce the same result:
+
+```
+(setq test1 123 test2 456)
+
+(setq
+  test1 123
+  test2 456
+)
+```
+
+The extensive use of parentheses in AutoLISP code can make it difficult to read. The traditional techniques for combatting this confusion is indentation, and to align the open and close parentheses of a function. The more deeply nested a line of code is, the farther to the right the line is positioned. The following two functions are the same code, but the second one is much easier to read and determine visually if the parentheses of the AutoLISP expressions are balanced.
+
+```
+(defun c:mycmd ()
+(setq old_clayer (getvar "clayer"))
+(setq insPt (getpoint "\nSpecify text insertion: "))
+(if (/= insPt nil)
+(progn
+(command "_.UNDO" "_BE")
+(command "._-LAYER" "_M" "Text" "_C" "3" "" "")
+(command "_.-TEXT" insPt "" "0" "Sample Text")
+(command "_.UNDO" "_E")))
+(setvar "clayer" old_clayer)
+(princ)
+)
+
+(defun c:mycmd ()
+  (setq old_clayer (getvar "clayer"))
+
+  (setq insPt (getpoint "\nSpecify text insertion: "))
+
+  (if (/= insPt nil)
+    (progn
+      (command "_.UNDO" "_BE")
+      (command "._-LAYER" "_M" "Text" "_C" "3" "" "")
+      (command "_.-TEXT" insPt "" "0" "Sample Text")
+      (command "_.UNDO" "_E")
+    )
+  )
+
+  (setvar "clayer" old_clayer)
+ (princ)
+)
+```
+
+1『上面的例子值得好好吸收消化。』
+
+#### 3.4.2 About Comments in AutoLISP Program Files (AutoLISP)
+
+Comments are useful to both the programmer and future users who may need to revise a program to suit their needs. It is good coding practice to include comments in all AutoLISP program files, small and large. Use comments to do the following: 1) Give a title, authorship, and creation date. 2) Provide instructions on using a routine. 3) Make explanatory notes throughout the body of a routine. 4) Make notes to yourself during debugging.
+
+Comments begin with one or more semicolons ( ; ) and continue through the end of the line.
+
+```
+; This entire line is a comment
+(setq area (* pi r r)) ; Compute area of circle
+```
+
+Any text within ;| ... |; is ignored. Therefore, comments can be included within a line of code or extend for multiple lines. This type of comment is known as an in-line comment.
+
+```
+(setq tmode ;|some note here|; (getvar "tilemode"))
+```
+
+The following example shows a comment that continues across multiple lines:
+
+```
+(setvar "orthomode" 1) ;|comment starts here
+and continues to this line,
+but ends way down here|; (princ "\nORTHOMODE set On.")
+```
+
+#### 3.4.3 To Create and Open AutoLISP Source Code Files (AutoLISP)
+
+AutoLISP source code files can be created and edited using a plain ASCII text editor.
+
+### 3.5 About Variables (AutoLISP)
+
+Variables are used to store a value or list of values in memory. The data type of a variable is determined when a value is assigned. Variables retain their value until a new value is assigned or the variable goes out of scope. The scope of a variable can either be global or local. Global variables are accessible by any AutoLISP program that is loaded into a drawing, while local variables are only available within a specific function or command. You use the AutoLISP setq function to assign values to variables. The syntax of the setq function is as follows:
+
+```
+(setq variable_name1 value1 [variable_name2 value2 ...])
+```
+
+The setq function assigns the specified value to the variable name given, and returns the last assigned value as its function result. The following example creates two variables: val and abc. val is assigned the value of 3, while abc is assigned the value of 3.875.
+
+```
+(setq val 3 abc 3.875)
+
+// out
+3.875
+```
+
+The following example creates a variable named layr and assigns it the value of “EXTERIOR-WALLS”.
+
+```
+(setq layr "EXTERIOR-WALLS")
+
+// out
+"EXTERIOR-WALLS"
+```
+
+#### Using a Variable with a Function
+
+Once a value is assigned to a variable, it can be used in an expression as the value for an argument of a function. The following uses two of the previously created variables in a few AutoLISP expressions to create a layer and draw a line with a specific length at 0 degrees.
+
+```
+(command "_.-layer" "_make" layr "")
+(command "_.line" PAUSE (strcat "@" (itoa val) "<0") "")
+```
+
+#### Checking the Value of a Variable
+
+You can use the following methods to determine the current value of a variable:
+
+At the AutoCAD Command prompt, add an ! (exclamation point) in front of the variable and press Enter.
+
+```
+(setq val 3 abc 3.875)
+// out
+3.875
+
+!val
+// out
+3
+```
+
+At the Visual LISP Console Window prompt, enter the name of the variable and press Enter. (Windows only).
+
+```
+_$ (setq val 3 abc 3.875)
+// out
+3.875
+
+_$ val
+// out
+3
+```
+
+At the AutoCAD Command prompt or Visual LISP Console Window prompt (Windows only), or in an AutoLISP program, create an expression that uses the princ function and pass it the name of the variable. You should also follow the first expression with a second expression that uses the princ function, but do not pass it an argument to suppress the return value of the first princ function.
+
+```
+(setq val 3 abc 3.875)
+// out
+3.875
+
+(princ val)(princ)
+// out
+3
+```
+
+1『上面的打印语句下面有详细的解释。』
+
+Note: If you do not add the second expression in the above example, a value of 33 appears to be returned. The first 3 is the desired output of the princ function, while the second 3 is the result of the value returned by the princ function. Remember that AutoLISP returns the value of the last function evaluated. In the previous example, no value is returned by the second princ because no argument was provided.
+
+1『 autolisp 必定返回最后一个函数计算后的值。』
+
+#### 3.5.1 About Nil Variables (AutoLISP)
+
+A variable that has not been assigned a value has a default value of nil. This is different from blank, which is considered a character string, and different from 0, which is a number. So, in addition to checking a variable for its current value, you can test to determine if the variable has been assigned a value.
+
+1『类似于 JavaScript 里的 undefined 的，哈哈。』
+
+Each variable consumes a small amount of memory, so it is good programming practice to reuse variable names or set variables to nil when their values are no longer needed. Setting a variable to nil releases the memory used to store that variable's value. If you no longer need the val variable, you can release its value from memory with the following expression:
+
+```
+(setq val nil)
+// out
+nil
+```
+
+Another efficient programming practice is to use local variables whenever possible.
+
+1『养成 2 个好习惯：1）释放不用的变量；2）尽量用不要用全局变量。』
+
+#### 3.5.2 About Predefined Variables (AutoLISP)
+
+AutoLISP has several predefined variables that can be used with your custom functions and commands. You can change the value of these variables with the setq function. However, other applications might rely on their values being consistent; therefore, it is recommended that you do not modify these variables. The following variables are predefined for use with AutoLISP applications:
+
+1. PAUSE - Defined as a constant string of a double backslash (\\) character. This variable is used with the command function to pause for user input.
+
+2. PI - Defined as the constant p (pi). It evaluates to approximately 3.14159.
+
+3. T - Defined as the constant T. This is used as a non-nil value.
+
+Note: Visual LISP, by default, protects these variables from redefinition. You can override this protection through the Visual LISP Symbol Service feature or by setting a Visual LISP environment option. Visual LISP is available on Windows only.
+
+### 3.6 About Number Handling (AutoLISP)
+
+AutoLISP provides functions for working with integers and real numbers. In addition to performing basic and complex mathematical computations, you can use the number-handling functions to help you in your daily use of AutoCAD. If you are drawing a steel connection detail that uses a 2.5" bolt with a diameter of 0.5" and has 13 threads per inch, you could calculate the total number of threads for the bolt by multiplying 2.5 by 13. In AutoLISP, this is done with the multiplication ( * ) function. Remember, the name of a function comes before the arguments you are passing to a function.
+
+```
+(* 2.5 13)
+
+// out
+32.5
+```
+
+The arithmetic functions that have a number argument (as opposed to num or angle, for example) return different values if you provide integers or reals as arguments. If all arguments are integers, the value returned is an integer. However, if one or all the arguments are reals, the value returned is a real.
+
+```
+(/ 12 5)
+// out
+2
+
+(/ 12.0 5)
+// out
+2.4
+```
+
+### 3.7 About Strings and String Handling (AutoLISP)
+
+A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in AutoLISP, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
+
+AutoLISP provides many functions for working with string values. The following are some of the most commonly used functions:
+
+1. strcat – Returns a string that is the concatenation of multiple strings.
+
+2. strcase – Returns a string where all alphabetic characters have been converted to uppercase or lowercase.
+
+3. strlen – Returns an integer that is the number of characters in a string.
+
+4. substr – Returns a substring of a string.
+
+5. vl-string-search – Searches for the specified pattern in a string.
+
+6. vl-string-subst – Substitutes one string for another, within a string.
+
+1『字符串的常用操作函数，跟数组的一样，得牢记，哈哈。』
+
+#### 3.7.1 Convert the Case of a String
+
+The alphabetic characters of a string can be converted to uppercase or lowercase with the strcase function. It accepts two arguments: a string and an optional argument that specifies the case in which the characters are returned. If the optional second argument is omitted, it evaluates to nil and strcase returns the characters converted to uppercase.
+
+```
+(strcase "This is a TEST.")
+
+// out
+"THIS IS A TEST."
+```
+
+If you provide a second argument of T, the characters are returned as lowercase.
+
+```
+(strcase "This is a TEST." T)
+
+// out
+"this is a test."
+```
+
+Note: The predefined variable T is often used to represent a True value when a function returns or excepts a True/False value. A nil value is used to represent a False value in these conditions.
+
+1『 strcase 函数，一般是传递进 2 个参数，第一个参数是要处理的字符串；第二个参数决定如何处理，不输入的话默认为 nil，全大写，输入 T 的话代表 True，全小写。』
+
+#### 3.7.2 Combine Multiple Strings
+
+You can combine multiple strings into a single string value with the strcat function. This is useful for placing a variable string within a constant string, such as an error message or note in a drawing. The following code example sets a variable to a string value and then uses strcat to insert that string between two other strings.
+
+```
+(setq str "BIG")
+
+(setq bigstr (strcat "This is a " str " test."))
+
+// out
+"This is a BIG test."
+```
+
+#### 3.7.3 Return a Substring of a String
+
+The substr function allows you to return a portion of a string. This function requires two arguments and has one optional argument. The first argument is a string and the second argument is an integer that represents the start character of the string that you want to return as the substring. If the third argument is not provided, substr returns all characters including and following the specified start character.
+
+```
+(substr "Welcome to AutoLISP" 12)
+
+// out
+"AutoLISP"
+```
+
+If want to return a substring that is at the beginning or middle of the string provided to the substr function, you can specify an integer for the third argument that represents the number of characters that should be returned. For example, the following example code returns the first 7 characters of the provided string:
+
+```
+(substr "Welcome to AutoLISP" 1 7)
+
+// out
+"Welcome"
+```
+
+Often, when working with a string you might not know how long it is but might know the start position of the substring you want to return. The strlen function returns the number of characters (including spaces) in a string.
+
+```
+(setq filnam "bigfile.txt")
+(strlen filnam)
+
+// out
+11
+```
+
+The following example code returns all the characters in a filename except the last four (the period and the three-letter extension). This is done by using strlen to get the length of the string and subtract 4 from that value. Then substr is used to specify the first character of the substring and its length.
+
+```
+(setq newlen (- (strlen filnam) 4))
+// out
+7
+
+(substr filnam 1 newlen)
+
+"bigfile"
+```
+
+1『上面的方法可以获得一个文件的文件名。应该也可以直接用字符串函数来实现，待实现。（2020-07-03）』
+
+You can combine the two previous lines of code into one if you do not need the length of the string stored in the newlen variable for other functions.
+
+```
+(substr filnam 1 (- (strlen filnam) 4))
+
+// out
+"bigfile"
+```
+
+#### 3.7.4 Find and Replace Text in a String
+
+Finding and replacing text can be helpful in updating notes or part numbers. The vl-string-search function allows you to locate a pattern within a string, and return the start position as an integer of the first instance of the specified pattern. If the function returns an integer, you can then use that as the starting position for another search to make sure there is not more than one instance of the pattern in the string.
+
+The vl-string-subst function can be used to replace text within a string. Similar to the vl-string-search function, it can only identify the first instance of a specified pattern. You can use the vl-string-search function after replacing a text string to see if another instance of a pattern is contained in the string returned by vl-string-subst.
+
+1『可以两个函数结合起来用遍历的方法全部替换。』
+
+The following code examples find and replace the text [WIDTH] in a string.
+
+```
+(setq note "All door openings are [WIDTH] unless otherwise noted.")
+// out
+"All door openings are [WIDTH] unless otherwise noted."
+
+(setq position (vl-string-search "[WIDTH]" note))
+// out
+22
+
+(setq revised-note (vl-string-subst "36\"" "[WIDTH]" note position))
+// out
+"All door openings are 36\" unless otherwise noted."
+
+(prompt revised-note)(princ)
+// out
+All door openings are 36" unless otherwise noted.
+```
 
