@@ -2,9 +2,9 @@
 
 ## 记忆时间
 
-## 0105Manipulate-AutoCAD-Objects.md
+## 0105. Manipulate-AutoCAD-Objects
 
-几种选择集列表（Selection Set Filter Lists）：过滤器列表里使用通配符、过滤 Extended Data 的选择集、过滤器列表里使用 Relational Tests、过滤器里用布尔逻辑运算、修改选择集（添加或删除选择集中的实体）。
+几种选择集列表（Selection Set Filter Lists）：1）过滤器列表里使用通配符。2）过滤 Extended Data 的选择集。3）过滤器列表里使用 Relational Tests。4）过滤器里用布尔逻辑运算。5）修改选择集（添加或删除选择集中的实体）。
 
 AutoLISP 里有两类操作对象（objects）的函数，一是获取特定对象的实体名（entity name），二是获取或修改特定对象的实体数据（entity data）。获取对象 entity name 的函数有，entsel、nentsel、nentselp、entnext、entlast；增加实体用 entmake，增加复杂实体（complex entity）用多个 entmake；获取实体内部信息用函数 entget，entget 的传入参数是实体的 entity name，那么就可以用 entsel 获取；修改对象实体数据用 entmod；删除对象实体用 entdel。
 
@@ -23,19 +23,35 @@ You can select and handle objects, and use their extended data. Most AutoLISP ®
 
 AutoLISP uses symbol tables to maintain lists of graphic and non-graphic data related to a drawing, such as the layers, linetypes, and block definitions. Each symbol table entry has a related entity name and handle and can be manipulated in a manner similar to the way other AutoCAD ® entities are manipulated.
 
-1『用 symbol tables 来定位要操作的实体。symbol table entry 也有跟普通实体一样的「实体名」和「头」。』
+1『用 symbol tables 来定位要操作的实体。symbol table entry 也有跟普通实体一样的「实体名」和「头」。回复：感觉 symbol tables 就是 ctrl + I 出来的特性表格。』
+
+### 5.1 About Selecting Objects and Selection Sets (AutoLISP)
 
 Selection sets are groups of one or more selected objects (entities). You can interactively add objects to, remove objects from, or list objects in a selection set. The following example code uses the ssget function to return a selection set containing all the objects in a drawing.
 
-    (ssget "X")
+```
+(ssget "X")
+```
 
-AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets: ssget - Prompts the user to select objects (entities), and returns a selection set; ssadd - Adds an object (entity) to a selection set, or creates a new selection set; ssdel - Removes an object (entity) from a selection set; ssname - Returns the object (entity) name of the indexed element of a selection set; sslength - Returns an integer containing the number of objects (entities) in a selection set.
+AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets: 
 
-The ssget function provides the most general means of creating a selection set. It can create a selection set in one of the following ways: Explicitly specifying the objects to select, using the Last, Previous, Window, Implied, Window Polygon, Crossing, Crossing Polygon, or Fence options; Specifying a single point; Selecting all objects in the database; Prompting the user to select objects. With any option, you can use filtering to specify a list of properties and conditions that the selected objects must match.
+1. ssget - Prompts the user to select objects (entities), and returns a selection set; 
+
+2. ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
+
+3. ssdel - Removes an object (entity) from a selection set; 
+
+4. ssname - Returns the object (entity) name of the indexed element of a selection set; 
+
+5. sslength - Returns an integer containing the number of objects (entities) in a selection set.
+
+1『获得选择集之后，需要靠 ssname，比如获取块选择集里第一个块的实体信息：「(setq ent (entget (ssname ss 0)))」』
+
+The ssget function provides the most general means of creating a selection set. It can create a selection set in one of the following ways: 1) Explicitly specifying the objects to select, using the Last, Previous, Window, Implied, Window Polygon, Crossing, Crossing Polygon, or Fence options; 2) Specifying a single point; 3) Selecting all objects in the database; 4) Prompting the user to select objects. With any option, you can use filtering to specify a list of properties and conditions that the selected objects must match.
 
 1『过滤器和选择集结合起来用。』
 
-3『ssget 的官方文档：[Pomoc: ssget (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-0F37CC5E-1559-4011-B8CF-A3BA0973B2C3)』
+3『 ssget 的官方文档：[Pomoc: ssget (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-0F37CC5E-1559-4011-B8CF-A3BA0973B2C3)』
 
 Note: Selection set and entity names do not remain the same between drawing sessions.
 
@@ -43,11 +59,15 @@ Note: Selection set and entity names do not remain the same between drawing sess
 
 The first argument to ssget is a string that describes which selection option to use. The next two arguments, pt1 and pt2, specify point values for the relevant options (they should be left out if they do not apply). A point list, pt-list, must be provided as an argument to the selection methods that allow selection by polygons (that is, Fence, Crossing Polygon, and Window Polygon). The last argument, filter-list, is optional. If filter-list is supplied, it specifies the list of entity field values used in filtering. For example, you can obtain a selection set that includes all objects of a given type, on a given layer, or of a given color. The following table shows examples of calls to ssget:
 
+1『原文里有不少例子，利于理解。』
+
 For example, Creates a selection set from the most recently created selection set:
 
-    (setq ss1 (ssget "P"))
+```
+(setq ss1 (ssget "P"))
+```
 
-1『ssget 函数有 3 个形参，第一个形参是内置的参数，各个符号代表选择的方式，详见下表；第二个形参是「点列表」，可以定选择集的范围；第三个形参是「过滤器」，可以用来过滤实体。』
+1『 ssget 函数有 3 个形参，第一个形参是内置的参数，各个符号代表选择的方式，详见原文表；第二个形参是「点列表」，可以定选择集的范围；第三个形参是「过滤器」，可以用来过滤实体。』
 
 When an application has finished using a selection set, it is important to release it from memory. This can be done by setting it to nil:
 
@@ -57,11 +77,28 @@ Remember: You can also release the memory used by the values stored in a variabl
 
 Attempting to manage a large number of selection sets simultaneously is not recommended. An AutoLISP application cannot have more than 128 selection sets open at once. (The limit may be lower on your system.) When the limit is reached, AutoCAD will not create more selection sets. Keep a minimum number of sets open at a time, and set unneeded selection sets to nil as soon as possible. If the maximum number of selection sets is reached, you must call the gc function to free unused memory before another ssget will work.
 
-1『要有选择集释放内存、变量释放内存（尽可能用局部变量）的概念。』
+1『要有选择集释放内存、变量释放内存（尽可能用局部变量）的概念。一张图纸里最多同时保存 128 个选择集（可能更少），在函数里用局部变量保存即可，函数调用结束后自动释放。』
 
-About Selection Set Filter Lists (AutoLISP). An entity filter list is an association list that uses DXF group codes in the same format as a list returned by entget.
+### 5.1.1 About Selection Set Filter Lists (AutoLISP)
 
-2『又见「DXF group codes」。选择集里的 DXF group codes 是通过 entget 函数获取的。』
+An entity filter list is an association list that uses DXF group codes in the same format as a list returned by entget.
+
+1『
+
+又见「DXF group codes」。选择集里的 DXF group codes 是通过 entget 函数获取的。比如下面，通过块名筛选出选择集，获取选择集里的第一个块实体的信息：
+
+```
+// insert 是块的 type
+(setq ss (ssget "X" '((0 . "insert") (2 . "testblock"))))
+(sslength ss)
+(setq ent (entget (ssname ss 0)))
+
+!ent
+// out
+((-1 . <图元名: 7ff47f6404d0>) (0 . "INSERT") (330 . <图元名: 7ff47f603820>) (5 . "A588D") (100 . "AcDbEntity") (67 . 0) (410 . "Model") (8 . "管道编号") (100 . "AcDbBlockReference") (66 . 1) (2 . "testblock") (10 16708.2 -17025.4 0.0) (41 . 1.0) (42 . 1.0) (43 . 1.0) (50 . 0.0) (70 . 0) (71 . 0) (44 . 0.0) (45 . 0.0) (210 0.0 0.0 1.0))
+```
+
+』
 
 The ssget function recognizes all group codes except entity names (group code -1), handles (group code 5), and xdata (group codes greater than 1000). If an invalid group code is used in a filter-list, it is ignored by ssget. Use the group code -3 to search for objects with xdata. When a filter-list is provided as the last argument to ssget, the function scans the selected objects and creates a selection set containing the names of all main entities matching the specified criteria. The filter-list specifies which property (or properties) of the entities are to be checked and which values constitute a match.
 
@@ -78,11 +115,13 @@ If both the group code and the desired value are known, the list may be quoted a
 )
 ```
 
-1『list(cons 8 lay_name) 等价于图里的表达式 '((8 . lay_name))』
+1『 list(cons 8 lay_name) 等价于图里的表达式 '((8 . lay_name))』
 
 If the filter-list specifies more than one property, an entity is included in the selection set only if it matches all specified conditions, as in the following example code:
 
-    (ssget "X" (list (cons 0 "CIRCLE")(cons 8 lay_name)(cons 62 3)))
+```
+(ssget "X" (list (cons 0 "CIRCLE")(cons 8 lay_name)(cons 62 3)))
+```
 
 This code selects only Circle objects on layer FLOOR3 that are colored green. This type of test performs a Boolean “AND” operation.
 
@@ -96,33 +135,47 @@ This code selects only Circle objects on layer FLOOR3 that are colored green. Th
 
 使用。虽然 cons 单元可用于储存有序的数据对，但它们更常用于组合为更复杂的复合数据结构，特别是列表和二叉树；有序对。例如 LISP 表达式 (cons 1 2) 产生一个有序的单元，在左半部存放 1，而右半部存放 2。左右次序不能互换（(1 2) 跟 (2 1) 不同）。在 LISP 表示法中，(cons 1 2) 结果会印出如下。须注意 1 和 2 之间的句点；这个 S 表达式是特殊的「点对」（所谓的 cons 对），并不是普通的「列表」。
 
-    (1 . 2)
+```
+(1 . 2)
+```
 
 列表。列表 (42 69 613) 的 Cons 单元图，以 cons 构造函数写成：
 
-    (cons 42 (cons 69 (cons 613 nil)))
+```
+(cons 42 (cons 69 (cons 613 nil)))
+```
 
 此外可用 list 函数写成：
 
-    (list 42 69 613)
+```
+(list 42 69 613)
+```
 
 LISP 编程中的列表实作在「cons 对」之上。具体地说，每个列表的结构都是：一个空列表 ()，通常被称为 nil 的特殊物件；一个 cons 单元，car 代表这列表的第一个元素，而 cdr 则是包含其余元素的一个子列表。这形成了简单基本的列表，而 cons，car 和 cdr 函数可以操作列表的内容。注意，nil 是个特殊的空列表，并不是「cons 对」。考虑元素为 1,2 和 3 的列表为例。这样的列表经由三个步骤产生：CONS 3 到 nil 空列表之上；CONS 2 到上一步的结果之上；CONS 1 到上一步的结果，产生最后的结果。这相当于单一表达式：
 
-    (cons 1 (cons 2 (cons 3 nil)))
+```
+(cons 1 (cons 2 (cons 3 nil)))
+```
 
 或可用 list 函数节略如下：
 
-    (list 1 2 3)
+```
+(list 1 2 3)
+```
 
 最终结果是一个列表，形式如右：
 
-    (1 . (2 . (3 . nil)))
+```
+(1 . (2 . (3 . nil)))
+```
 
 通常结果会被打印为：(1 2 3)，因此 cons 操作会在既有列表的最前头，添加一个元素。例如，如果 x 是上面定义的列表，那么 (cons 5 x) 将产生列表：(5 1 2 3) 。另一个有用的函数是 append，用于合并两个列表。
 
 树。cons 也容易建构出在叶片中储存数据的二叉树。例如以下代码： (cons (cons 1 2) (cons 3 4)) 产生了一棵树：
 
-    ((1 . 2) . (3 . 4))
+```
+((1 . 2) . (3 . 4))
+```
 
 技术上，前例中的列表（1 2 3）恰巧是不平衡的二叉树。要看到这点，只需重新排列图：
 
@@ -518,7 +571,9 @@ All points associated with an object are expressed in terms of that object's Obj
 
 When writing functions to process entity lists, make sure the function logic is independent of the order of the sublists; use assoc to guarantee this. The assoc function searches a list for a group code of a specified type. The following code returns the object type "LINE" (0) from the list entl.
 
-    (cdr (assoc 0 entl))
+```
+(cdr (assoc 0 entl))
+```
 
 If the group code specified is not present in the list (or if it is not a valid group code), assoc returns nil.
 

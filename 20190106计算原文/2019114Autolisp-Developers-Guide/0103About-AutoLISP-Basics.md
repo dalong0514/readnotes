@@ -829,21 +829,30 @@ Lists provide an efficient and powerful method of storing numerous related value
 
 Several AutoLISP functions provide a basis for programming two-dimensional and three-dimensional graphics applications. These functions return point values in the form of a list. The list function provides a simple method of grouping related items. These items do not need to be of similar data types. The following code groups three related items as a list:
 
-    (setq lst1 (list 1.0 "One" 1))
+```
+(setq lst1 (list 1.0 "One" 1))
 
+// out
 (1.0 "One" 1)
+```
 
 You can retrieve a specific item from the list in the lst1 variable with the nth function. This function accepts two arguments. The first argument is an integer that specifies which item to return. A 0 specifies the first item in a list, 1 specifies the second item, and so on. The second argument is the list itself. The following code returns the second item in lst1.
 
-    (nth 1 lst1)
+```
+(nth 1 lst1)
 
+// out
 "One"
+```
 
 The cdr function returns all elements, except the first, from a list. For example:
 
-    (cdr lst1)
+```
+(cdr lst1)
 
+// out
 ("One" 1)
+```
 
 The car function provides another way to extract items from a list. For more examples using car and cdr, and combinations of the two, see About Point Lists (AutoLISP).
 
@@ -851,121 +860,146 @@ Three functions let you modify an existing list. The append function returns a l
 
 The append function takes any number of lists and runs them together as one list. Therefore, all arguments to this function must be lists. The following code adds another "One" to the list lst1. Note the use of the quote (or ' ) function as an easy way to make the string "One" into a list.
 
-    (setq lst2 (append lst1 '("One")))
+```
+(setq lst2 (append lst1 '("One")))
 
+// out
 (1.0 "One" 1 "One")
+```
 
 The cons function combines a single element with a list. You can add another string "One" to the beginning of this new list, lst2, with the cons function.
 
-    (setq lst3 (cons "One" lst2 ))
+```
+(setq lst3 (cons "One" lst2 ))
 
+// out
 ("One" 1.0 "One" 1 "One")
+```
 
 You can substitute all occurrences of an item in a list with a new item with the subst function. The following code replaces all strings "One" with the string "one".
 
-    (setq lst4 (subst "one" "One" lst3))
+```
+(setq lst4 (subst "one" "One" lst3))
 
+// out
 ("one" 1.0 "one" 1 "one")
+```
 
 ### 3.8.1 About Point Lists (AutoLISP)
 
-AutoLISP utilizes the list data type to represent graphical coordinate values.
+AutoLISP utilizes the list data type to represent graphical coordinate values. Points are expressed as lists with either two or three numerical values. 1) 2D point - List with two integer or real numbers, (X and Y, respectively), as in (3.4 7.52). 2) 3D point – List with three integer or real numbers, (X, Y, and Z, respectively), as in (3.4 7.52 1.0). You can use the list function to form point lists, as shown in the following examples:
 
-Points are expressed as lists with either two or three numerical values.
-
-1. 2D point - List with two integer or real numbers, (X and Y, respectively), as in (3.4 7.52).
-
-2. 3D point – List with three integer or real numbers, (X, Y, and Z, respectively), as in (3.4 7.52 1.0).
-
-You can use the list function to form point lists, as shown in the following examples:
-
-    (list 3.875 1.23)
-
+```
+(list 3.875 1.23)
+// out
 (3.875 1.23)
 
-    (list 88.0 14.77 3.14)
-
+(list 88.0 14.77 3.14)
+// out
 (88.0 14.77 3.14)
+```
 
 To assign particular coordinates to a point variable, you can use one of the following expressions:
 
-    (setq pt1 (list 3.875 1.23))
-
+```
+(setq pt1 (list 3.875 1.23))
+// out
 (3.875 1.23)
 
-    (setq pt2 (list 88.0 14.77 3.14))
-
+(setq pt2 (list 88.0 14.77 3.14))
+// out
 (88.0 14.77 3.14)
 
-    (setq abc 3.45)
-
+(setq abc 3.45)
+// out
 3.45
 
-    (setq pt3 (list abc 1.23))
-
+(setq pt3 (list abc 1.23))
+// out
 (3.45 1.23)
+```
 
 The latter uses the value of variable abc as the X component of the point list. If all members of a list are constant values, you can use the quote function to explicitly define the list, rather than the list function. The quote function returns an expression without evaluation, as follows:
 
-    (setq pt1 (quote (4.5 7.5)))
+1『只有 list 元素是 constant 值是才可以用 quote。』
 
+```
+(setq pt1 (quote (4.5 7.5)))
+
+// out
 (4.5 7.5)
+```
 
 The single quotation mark ( ' ) can be used as shorthand for the quote function. The following code produces the same result as the preceding code.
 
-    (setq pt1 '(4.5 7.5))
+```
+(setq pt1 '(4.5 7.5))
 
+// out
 (4.5 7.5)
+```
 
 The quote and (‘) functions cannot be used to create a list using values that are stored in a variable. The following code does not return the excepted results:
 
-    (setq abc 3.45)
-
+```
+(setq abc 3.45)
+// out
 3.45
 
-    (setq pt4 (quote abc 1.23))
-
+(setq pt4 (quote abc 1.23))
+// out
 ; error: syntax error
+```
 
 1『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。』
 
-#### Retrieve the X, Y, and Z components of a point list
+Retrieve the X, Y, and Z components of a point list. You can retrieve the X, Y, and Z components of a point list using three additional built-in functions; car, cadr, and caddr. The following code examples show how to retrieve values from a 3D point list. The pt variable is set to the point 1.5,3.2,2:
 
-You can retrieve the X, Y, and Z components of a point list using three additional built-in functions; car, cadr, and caddr. The following code examples show how to retrieve values from a 3D point list. The pt variable is set to the point 1.5,3.2,2:
-
-    (setq pt '(1.5 3.2 2.0))
-
+```
+(setq pt '(1.5 3.2 2.0))
+// out
 (1.5 3.2 2.0)
+```
 
 The car function returns the first member of a list. In this example, it returns the X value of the point list to the x_val variable.
 
-    (setq x_val (car pt))
-
+```
+(setq x_val (car pt))
+// out
 1.5
+```
 
 The cadr function returns the second member of a list. In this example it returns the Y value of the point list to the y_val variable.
 
-    (setq y_val (cadr pt))
-
+```
+(setq y_val (cadr pt))
+// out
 3.2
+```
 
 The caddr function returns the third member of a list. In this example it returns the Z value of the point list to the z_val variable.
 
-    (setq z_val (caddr pt))
-
+```
+(setq z_val (caddr pt))
+// out
 2.0
+```
 
 You can use the following code to define the lower-left and upper-right (pt1 and pt2) corners of a rectangle, as follows:
 
-    (setq pt1 '(1.0 2.0) pt2 '(3.0 4.0))
-
+```
+(setq pt1 '(1.0 2.0) pt2 '(3.0 4.0))
+// out
 (3.0 4.0)
+```
 
 You can use the car and cadr functions to set the pt3 variable to the upper-left corner of the rectangle, by extracting the X component of pt1 and the Y component of pt2, as follows:
 
-    (setq pt3 (list (car pt1) (cadr pt2)))
-
+```
+ (setq pt3 (list (car pt1) (cadr pt2)))
+// out
 (1.0 4.0)
+```
 
 The preceding statement sets pt3 equal to point (1.0, 4.0).
 
@@ -982,15 +1016,15 @@ AutoLISP supports combinations of the car and cdr functions up to four levels de
 
 ### 3.8.2 About Dotted Pairs (AutoLISP)
 
-Dotted pair lists must always contain two members and is the method AutoLISP uses to maintain entity definition data.
-
-When representing a dotted pair, members of the list are separated by a period ( . ). Most list-handling functions do not accept a dotted pair as an argument, so you should be sure you are passing the right kind of list to a function.
+Dotted pair lists must always contain two members and is the method AutoLISP uses to maintain entity definition data. When representing a dotted pair, members of the list are separated by a period ( . ). Most list-handling functions do not accept a dotted pair as an argument, so you should be sure you are passing the right kind of list to a function.
 
 Dotted pairs are an example of an "improper list." An improper list is one in which the last cdr is not nil. In addition to adding an item to the beginning of a list, the cons function can create a dotted pair. If the second argument to the cons function is anything other than another list or nil, it creates a dotted pair.
 
-    (setq sublist (cons 'lyr "WALLS"))
-
+```
+(setq sublist (cons 'lyr "WALLS"))
+// out
 (LYR . "WALLS")
+```
 
 The following functions are useful for handling dotted pairs:
 
@@ -1004,47 +1038,41 @@ The following functions are useful for handling dotted pairs:
 
 The following code creates an association list of dotted pairs:
 
-    (setq wallinfo (list sublist (cons 'len 240.0) (cons 'hgt 96.0)))
-
+```
+(setq wallinfo (list sublist (cons 'len 240.0) (cons 'hgt 96.0)))
+// out
 ((LYR . "WALLS") (LEN . 240.0) (HGT . 96.0))
+```
 
 The assoc function returns a specified list from within an association list regardless of the specified list's location within the association list. The assoc function searches for a specified key element in the lists and returns the first instance, as follows:
 
-    (assoc 'len wallinfo)
-
+```
+(assoc 'len wallinfo)
+// out
 (LEN . 240.0)
 
-    (cdr (assoc 'lyr wallinfo))
-
+(cdr (assoc 'lyr wallinfo))
+// out
 "WALLS"
 
-    (nth 1 wallinfo)
-
+(nth 1 wallinfo)
+// out
 (LEN . 240.0)
 
-    (car (nth 1 wallinfo))
-
+(car (nth 1 wallinfo))
+// out
 LEN
+```
 
 ## 3.9 About Basic Output Functions (AutoLISP)
 
-AutoLISP includes functions for controlling the AutoCAD display, including both text and graphics windows. Some functions also display information in the Visual LISP Console window. The major text display functions are:
-
-- prin1
-
-- princ
-
-- print
-
-- prompt
+AutoLISP includes functions for controlling the AutoCAD display, including both text and graphics windows. Some functions also display information in the Visual LISP Console window. The major text display functions are: 1) prin1. 2) princ. 3) print. 4) prompt.
 
 These functions are discussed in the following linked topics. The remaining display functions are covered in About Using AutoLISP to Communicate with AutoCAD (AutoLISP), beginning with the About Display Control (AutoLISP) topic.
 
 ### 3.9.1 About Displaying Messages (AutoLISP)
 
-AutoLISP programs often need to inform the user of an error or request for input.
-
-Messages that are displayed should try and not interrupt the flow of a command, and when they do the text displayed should be short and precise as to what the problem is or the input that is being requested. AutoLISP offers the following functions to display messages to the user:
+AutoLISP programs often need to inform the user of an error or request for input. Messages that are displayed should try and not interrupt the flow of a command, and when they do the text displayed should be short and precise as to what the problem is or the input that is being requested. AutoLISP offers the following functions to display messages to the user:
 
 1. prompt - Displays string at the AutoCAD Command prompt.
 
@@ -1062,71 +1090,84 @@ The write-char, write-line, getXXX, and entsel functions can also display messag
 
 When entered from the Visual LISP Console window prompt, the prompt function displays a message (a string) in the AutoCAD Command window and returns nil to the Visual LISP Console window. The princ, prin1, and print functions all display a value (not necessarily a string) in the AutoCAD Command prompt and returns the value to the Visual LISP Console window.
 
-Note: Visual LISP is available on Windows only.
-
 The following examples demonstrate the differences between the basic output functions and how they handle the same string of text.
 
-    (setq str "The \"allowable\" tolerance is \261 \274\"")
-
-    (prompt str)
-
+```
+(setq str "The \"allowable\" tolerance is \261 \274\"")
+(prompt str)
+// out
 outputs The "allowable" tolerance is 1/4"
-
 returns nil
 
-    (princ str)
-
+(princ str)
+// out
 outputs The "allowable" tolerance is 1/4"
-
 returns "The \"allowable\" tolerance is 1/4\""
 
-    (prin1 str)
-
+(prin1 str)
+// out
 outputs "The \"allowable\" tolerance is 1/4""
-
 returns "The \"allowable\" tolerance is 1/4\""
 
-    (print str)
-
+(print str)
+// out
 outputs<blank line> "The \"allowable\" tolerance is 1/4""<space>
-
 returns "The \"allowable\" tolerance is 1/4\""
+```
 
 ### 3.9.2 About Exiting a Function Quietly (AutoLISP)
 
-If you invoke the princ function without passing an expression to it, it displays nothing and has no value to return.
-
-So if you add a call to princ without any arguments, after an expression, there is no return value. This is a great way to suppress the nil that is often returned by the last expression within a custom function. This practice is called exiting quietly.
+If you invoke the princ function without passing an expression to it, it displays nothing and has no value to return. So if you add a call to princ without any arguments, after an expression, there is no return value. This is a great way to suppress the nil that is often returned by the last expression within a custom function. This practice is called exiting quietly.
 
 ### 3.9.3 About Control Characters in Strings (AutoLISP)
 
-Within quoted string values, the backslash (\) character allows control characters (or escape codes) to be included.
-
-The following lists the currently recognized control characters:
+Within quoted string values, the backslash (\) character allows control characters (or escape codes) to be included. The following lists the currently recognized control characters:
 
 ![](./res/2019004.png)
 
-The prompt, princ, and getXXX functions expand the control characters in a string and display the expanded string at the AutoCAD Command prompt.
+The prompt, princ, and getXXX functions expand the control characters in a string and display the expanded string at the AutoCAD Command prompt. The following example shows displaying a backslash character (\) and quotation mark (") within a quoted string:
 
-The following example shows displaying a backslash character (\) and quotation mark (") within a quoted string:
-
-    (princ "The \"filename\" is: D:\\ACAD\\TEST.TXT.")
-
+```
+(princ "The \"filename\" is: D:\\ACAD\\TEST.TXT.")
+// out
 The "filename" is: D:\ACAD\TEST.TXT
+```
 
 Text can be forced across multiple lines with the newline character (\n).
 
-    (prompt "An example of the \nnewline character. ")
-
+```
+(prompt "An example of the \nnewline character. ")
+// out
 An example of the
-
 newline character.
+```
 
-You can also use the terpri function to cause a line break.
+You can also use the terpri function to cause a line break. The Return character (\r) returns to the beginning of the current line. This is useful for displaying incremental information (for example, a counter showing the number of objects processed during a loop).
 
-The Return character (\r) returns to the beginning of the current line. This is useful for displaying incremental information (for example, a counter showing the number of objects processed during a loop).
+1『
 
-1『这里直觉是一个关键点，因为跟循环有关，等遇到应用点的时候在反馈回这里。』
+这里直觉是一个关键点，因为跟循环有关，等遇到应用点的时候在反馈回这里。
+
+回复：做计数器用的。（2020-07-02）
+
+[Pomoc: terpri (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-16FB5411-7563-4FB9-AB59-A73457B092C5)
+
+Prints a newline to the command line
+
+```
+(terpri)
+```
+No arguments.
+
+Return Values
+
+Type: nil
+
+Always returns nil.
+
+Remarks: The terpri function is not used for file I/O. To write a newline to a file, use prin1, princ, or print.
+
+』
 
 A Tab character (\t) can be used in strings to indent or to provide alignment with other tabbed text strings. In this example, note the use of the princ function to suppress the ending nil.
 
@@ -1143,11 +1184,9 @@ Sam 103
 
 ### 3.9.4 About Wild-Card Matching (AutoLISP)
 
-A string can be compared to a wild-card pattern with the wcmatch function.
+A string can be compared to a wild-card pattern with the wcmatch function. This can be helpful when needing to build a dynamic selection set (in conjunction with ssget) or to retrieve extended entity data by application name (in conjunction with entget). The wcmatch function compares a single string to a pattern. The function returns T if the string matches the pattern, and nil if it does not. The wild-card patterns are similar to the regular expressions used by many system and application programs.
 
-This can be helpful when needing to build a dynamic selection set (in conjunction with ssget) or to retrieve extended entity data by application name (in conjunction with entget). The wcmatch function compares a single string to a pattern. The function returns T if the string matches the pattern, and nil if it does not. The wild-card patterns are similar to the regular expressions used by many system and application programs.
-
-1『直觉这里又是一个关键点。讲的应该就是通配符的知识点。』
+1『直觉这里又是一个关键点。讲的应该就是通配符的知识点。回复：通配符与选择集（ssget）配合构建动态选择集，还可以与 entget 配合，结合实体名筛选。其实跟正则的功能差不多。』
 
 The following rules apply to wild-card patterns:
 
@@ -1161,41 +1200,51 @@ The following rules apply to wild-card patterns:
 
 In the following examples, a string variable called matchme has been declared and initialized:
 
-    (setq matchme "this is a string - test1 test2 the end")
-
+```
+(setq matchme "this is a string - test1 test2 the end")
+// out
 "this is a string - test1 test2 the end"
+```
 
 The following code checks whether or not matchme begins with the four characters "this":
 
-    (wcmatch matchme "this*")
-
+```
+(wcmatch matchme "this*")
+// out
 T
+```
 
 The following code illustrates the use of brackets in the pattern. In this case, wcmatch returns T if matchme contains "test4", "test5", "test6" (4-6), or "test9" (note the use of the * character):
 
-    (wcmatch matchme "*test[4-69]*")
-
+```
+(wcmatch matchme "*test[4-69]*")
+// out
 nil
+```
 
 In this case, wcmatch returns nil because matchme does not contain any of the strings indicated by the pattern. However, using the pattern "test[4-61]" does match the string because it contains “test1”.
 
-    (wcmatch matchme "*test[4-61]*")
-
+```
+(wcmatch matchme "*test[4-61]*")
+// out
 T
+```
 
 The pattern string can specify multiple patterns, separated by commas. The following code returns T if matchme equals "ABC", or if it begins with "XYZ", or if it ends with "end".
 
-    (wcmatch matchme "ABC,XYZ*,*end")
-
+```
+(wcmatch matchme "ABC,XYZ*,*end")
+// out
 T
-
-1『上面的几个例子还是有待消化，好几个没弄明白。』
+```
 
 ## 3.10. About Equality and Conditional (AutoLISP)
 
 AutoLISP includes functions that provide equality verification as well as conditional branching and looping. The equality and conditional functions are listed in AutoLISP Function Synopsis (AutoLISP), under the heading Equality and Conditional Functions (AutoLISP).
 
 When writing code that checks string and symbol table names, keep in mind that AutoLISP automatically converts symbol table names to upper case in some instances. When testing symbol names for equality, you need to make the comparison insensitive to the case of the names. Use the strcase function to convert strings to the same case before testing them for equality.
+
+1『确实，CAD 很多地方会自动把字符转成大写的，比如块里面的属性名。所以在做匹配的时候记得先用字符串函数 strcase 将要匹配的字符转成大写的。』
 
 ## 3.11. About Symbol and Function Handling (AutoLISP)
 
@@ -1205,19 +1254,9 @@ AutoLISP provides functions for handling one or more groups of functions. The li
 
 ### 3.11.1 About Defining a Function (AutoLISP)
 
-You can define your own functions.
+You can define your own functions. Once defined, these functions can be used at the AutoCAD Command prompt, the Visual LISP Console prompt, or within other AutoLISP expressions, just as you use the standard functions.
 
-Once defined, these functions can be used at the AutoCAD Command prompt, the Visual LISP Console prompt, or within other AutoLISP expressions, just as you use the standard functions.
-
-Note: Visual LISP is available on Windows only.
-
-You can also create your own commands, because commands are just a special type of function. The defun function combines a multiple expressions into a function or command. This function requires at least three arguments:
-
-1. Name of the function (symbol name).
-
-2. Argument list (a list of arguments and local variables used by the function). The argument list can be nil or an empty list ().
-
-3. AutoLISP expressions to execute with the function or command. There must be at least one expression in a function definition.
+You can also create your own commands, because commands are just a special type of function. The defun function combines a multiple expressions into a function or command. This function requires at least three arguments: 1) Name of the function (symbol name). 2) Argument list (a list of arguments and local variables used by the function). The argument list can be nil or an empty list (). 3) AutoLISP expressions to execute with the function or command. There must be at least one expression in a function definition.
 
 ```
 (defun symbol_name ( arguments / local_variables )
@@ -1229,23 +1268,27 @@ You can also create your own commands, because commands are just a special type 
 
 The following example code defines a simple function that accepts no arguments and displays the message “bye” at the AutoCAD Command prompt. Note that the argument list is defined as an empty list (()):
 
-    (defun DONE ( ) (prompt "\nbye! "))
-
+```
+(defun DONE ( ) (prompt "\nbye! "))
+// out
 DONE
+```
 
 Once the DONE function is defined, you can use it as you would any other function. For example, the following code prints a message, then says “bye” at the AutoCAD Command prompt:
 
-    (prompt "The value is 127.") (DONE) (princ)
+```
+(prompt "The value is 127.") (DONE) (princ)
 
 The value is 127
 
 bye!
+```
+
+1『这种代码定义出的命令跟我之前想的有出入，只能在源码里调用，在 CAD 里的话必须使用命令：(DONE)；这里正巧发现，lisp 的函数名是部分大小写的，用命令 (done) 也可以跑。』
 
 Note how the previous example invokes the princ function without an argument to suppress an ending nil and achieves a quiet exit.
 
 1『正巧弄明白了为什么语句最后要加 (princ)，是为了消除字符串尾部的「nil」，否则显示出来的尾部就是 bye!nil 了。』
-
-1『这种代码定义出的命令跟我之前想的有出入，只能在源码里调用，在 CAD 里的话必须使用命令：(DONE)』
 
 Functions that accept no arguments may seem useless. However, you might use this type of function to query the state of certain system variables or conditions and to return a value that indicates those values.
 
@@ -1253,20 +1296,19 @@ Functions that accept no arguments may seem useless. However, you might use this
 
 ### 3.11.2 About Compatibility of Defun with Earlier Releases of AutoCAD (AutoLISP)
 
-The internal implementation of defun changed in AutoCAD 2000.
+The internal implementation of defun changed in AutoCAD 2000. This change is transparent to the great majority of AutoLISP users upgrading from earlier AutoCAD releases. The change only affects AutoLISP code that manipulated defun definitions as a list structure, such as by appending one function to another, as in the following code:
 
-This change is transparent to the great majority of AutoLISP users upgrading from earlier AutoCAD releases. The change only affects AutoLISP code that manipulated defun definitions as a list structure, such as by appending one function to another, as in the following code:
-
-    (append s::startup (cdr mystartup))
+```
+(append s::startup (cdr mystartup))
+```
 
 For situations like this, you can use defun-q to define your functions. An attempt to use a defun function as a list results in an error. The following example illustrates the error:
 
-
-    (defun foo (x) 4)
-
+```
+(defun foo (x) 4)
+// out
 foo
 
-```
 (append foo '(3 4))
 ; error: Invalid attempt to access a compiled function definition.
 You may want to define it using defun-q: #<SUBR @024bda3c FOO>
@@ -1286,7 +1328,7 @@ To use functions as AutoCAD commands, be sure they adhere to the following rules
 
 2. The function must be defined with no arguments. However, local variables are permitted and it is a good programming practice to use them.
 
-1『不能有参数。』
+1『不能有参数，但可以使用局部变量。』
 
 A function defined in this manner can be issued transparently from within any prompt of any built-in AutoCAD command, provided the function issued transparently does not call the command function. When issuing a C:xxx defined command transparently, you must precede the XXX portion with a single quotation mark (').
 
@@ -1298,42 +1340,49 @@ Note: When calling a function defined as a command from the code of another Auto
 
 #### 3.11.3.1 About Defining Commands (AutoLISP)
 
-New commands can be defined with the defun function and by prefixing a function name with c:.
+New commands can be defined with the defun function and by prefixing a function name with c:. Functions prefixed with c: can be accessed directly from the AutoCAD Command prompt and used to redefine an AutoCAD command.
 
-Functions prefixed with c: can be accessed directly from the AutoCAD Command prompt and used to redefine an AutoCAD command.
+Functions that are defined as commands should not accept arguments directly, instead input for a command should be obtained using one of the getXXX functions. The following defines a function named HELLO. This function displays a simple message.
 
-Functions that are defined as commands should not accept arguments directly, instead input for a command should be obtained using one of the getXXX functions.
-
-The following defines a function named HELLO. This function displays a simple message.
-
-    (defun HELLO () (princ "\nHello world.") (princ))
-
+```
+(defun HELLO () (princ "\nHello world.") (princ))
+// out
 HELLO
+```
 
 Functions can be issued from the AutoCAD Command prompt or an AutoLISP program. The HELLO function can be called from the AutoCAD Command prompt by entering the following:
 
+```
 Command: (hello)
-
+// out
 Hello world.
+```
 
 The HELLO function must be wrapped in parentheses since it is not defined as a command. Entering HELLO without the parentheses at the AutoCAD Command prompt, returns the following error message:
 
+```
 Unknown command "HELLO". Press F1 for help.
+```
 
 Adding c: to the front of the HELLO function name results in the function being declared as a command, and can then be entered at the AutoCAD Command prompt without being wrapped with parentheses. For example:
 
-    (defun C:HELLO () (princ "\nHello world.") (princ))
-
+```
+(defun C:HELLO () (princ "\nHello world.") (princ))
+// out
 C:HELLO
+```
 
 While HELLO is declared as a command, it is also an AutoLISP function as well. The command can now be entered at the AutoCAD Command prompt, as follows:
 
+```
 Command: hello
-
+// out
 Hello world.
+```
 
 The HELLO command can also be used transparently because it does not make a call the command function. At the AutoCAD Command prompt, you could do the following:
 
+```
 Command: line
 
 From point: 'hello
@@ -1341,10 +1390,13 @@ From point: 'hello
 Hello world.
 
 From point:
+```
 
 If an AutoLISP function is declared as a command, you can call the command from an AutoLISP program by wrapping the whole function name with parentheses. For example:
 
+```
 (c:hello)
+```
 
 Note: If you are using the Visual LISP Editor in the Windows release, the Console window does not recognize AutoCAD commands. You must wrap the function name with parentheses.
 
@@ -1352,9 +1404,7 @@ You cannot usually use an AutoLISP statement to respond to prompts from an AutoL
 
 #### 3.11.3.2 About Redefining AutoCAD Commands (AutoLISP)
 
-Using AutoLISP, you can undefine and replace the functionality of a built-in AutoCAD command.
-
-The UNDEFINE command allows you to disable a built-in AutoCAD command, and then using AutoLISP it can be replaced by defining a user-defined command of the same name with the defun function. A command remains undefined for the current editing session only. The built-in definition of a command can be restored with the REDEFINE command.
+Using AutoLISP, you can undefine and replace the functionality of a built-in AutoCAD command. The UNDEFINE command allows you to disable a built-in AutoCAD command, and then using AutoLISP it can be replaced by defining a user-defined command of the same name with the defun function. A command remains undefined for the current editing session only. The built-in definition of a command can be restored with the REDEFINE command.
 
 You can execute the built-in definition of a command after it has been undefined by specifying its name prefixed with a period (.). For example, if you undefine QUIT, you can access the command by entering .quit at the AutoCAD Command prompt. This is also the syntax that should be used within the AutoLISP command function to make sure your user-defined functions and commands work predictably even if a built-in command has been undefined.
 
@@ -1370,19 +1420,27 @@ Consider the following example. Whenever you use the LINE command, you want Auto
   (command ".LINE")
  (princ)
 )
-```
 
+// out
 C:LINE
+```
 
 In this example, the function C:LINE is designed to issue its message and then to execute the standard LINE command (using .LINE with the command function). Before AutoCAD can use your definition of the LINE command, you must undefine the built-in LINE command. Enter the following to undefine the built-in LINE command:
 
-    (command ".undefine" "line")
+```
+(command ".undefine" "line")
+```
+
+1『先要让原始命令失效。』
 
 After undefining the command and entering line at the AutoCAD Command prompt, AutoCAD uses the C:LINE AutoLISP function:
 
+```
 Command: line
 
+// out
 Shouldn't you be using PLINE?
+```
 
 .LINE Specify first point: Specify first point:
 
@@ -1397,15 +1455,41 @@ The previous code example assumes the CMDECHO system variable is set to 1 (On). 
   (setvar "cmdecho" cmdsave)
  (princ)
 )
+
+// out
+C:LINE
 ```
 
-C:LINE
+3『[Pomoc: getvar (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-9C56BEA8-D473-4305-9E17-BEF7630C334D)
+
+Retrieves the value of an AutoCAD system variable.
+
+```
+(getvar varname)
+```
+
+varname. Type: String. Names of a system variable. See the product's Help system for a list of current AutoCAD system variables.
+
+Return Values. Type: Integer, Real, String, List, or nil. The value of the system variable; otherwise nil, if varname is not a valid system variable.
+
+Examples. Get the current value of the fillet radius:
+
+```
+(getvar 'FILLETRAD)
+
+// out
+0.25
+```
+
+』
 
 Now if you enter line at the AutoCAD Command prompt, the following text is displayed:
 
+```
 Shouldn't you be using PLINE?
 
 Specify first point:
+```
 
 You can undefined and redefine commands to create a drawing management system, for example. You can redefine the NEW, OPEN, and QUIT commands to write billing information to a log file after a drawing is created and before you terminate an editing session.
 
@@ -1415,9 +1499,7 @@ AutoLISP provides a method for defining a list of symbols (variables) that are a
 
 #### 3.11.4.1 About Local and Global Variables (AutoLISP)
 
-Variables can be local or global in scope based on how they are defined.
-
-The use of local variables ensures that the variables in your functions are unaffected by other user-defined functions and custom applications. These variables do not remain available after the calling function has completed its task.
+Variables can be local or global in scope based on how they are defined. The use of local variables ensures that the variables in your functions are unaffected by other user-defined functions and custom applications. These variables do not remain available after the calling function has completed its task.
 
 When you define a function or a command, any variables that you want to remain local must be added after the forward slash ( / ) in the arguments and local variables list. For example, the following example defines a function named ARGTEST which combines a constant string with other strings values. arg1 and arg2 are populated by the arguments you provide when using the function, but ccc is defined as a local variable for this function.
 
@@ -1426,25 +1508,32 @@ When you define a function or a command, any variables that you want to remain l
   (setq ccc "Constant string")
   (strcat ccc ", " arg1 ", " arg2)
 )
+
+// out
+ARGTEST
 ```
 
-ARGTEST
+```
+(ARGTEST "String 1" "String 2")
 
-    (ARGTEST "String 1" "String 2")
-
+// out
 "Constant string, String 1, String 2"
+```
 
 Once the function is done, the value of ccc is lost. You can test this by entering the following at the AutoCAD Command prompt:
 
-    !ccc
+```
+!ccc
 
+// out
 nil
+```
 
 Tip: Do not make your variables local until after you have done most of the debugging for your function. By not declaring your variables as local right away, you can check the last values assigned to a variable after the function has finished.
 
 Another advantage of using local variables is that AutoCAD can recycle the memory space used by these variables, whereas global variables keep accumulating within AutoCAD memory space.
 
-Global variables can be helpful if you want to retain values in between the uses of a function or command while the function remains loaded, or to use a value across many functions. However, if all or many of your variables are global it becomes increasingly possible that you could end up changing the value of a variable so it is incompatible with another function. This can lead to unpredictable behavior and it can be very difficult to identify the source of a problem. When declaring a global variable, it is good practice to indicate that you intend a variable to be global. A common way of doing this is to add an opening and closing asterisk to the variable name, for example, *default-layer*.
+Global variables can be helpful if you want to retain values in between the uses of a function or command while the function remains loaded, or to use a value across many functions. However, if all or many of your variables are global it becomes increasingly possible that you could end up changing the value of a variable so it is incompatible with another function. This can lead to unpredictable behavior and it can be very difficult to identify the source of a problem. When declaring a global variable, it is good practice to indicate that you intend a variable to be global. A common way of doing this is to add an opening and closing asterisk to the variable name, for example, \*default-layer*.
 
 1『前后加星号代表是全局变量。』
 
@@ -1457,25 +1546,30 @@ All variables when they are initially declared are global. The following code de
   (prompt (strcat "\nCurrent layer: " cur-layer "\nDoor layer: " *dr-layer*))
  (princ)
 )
+
+// out
+LIST-LAYERS
 ```
 
-LIST-LAYERS
-
-    (list-layers)
+```
+(list-layers)
 
 Current layer: 0
 
 Door layer: Doors
+```
 
 You can test the values stored in the variables by doing the following:
 
-    !cur-layer
+```
+!cur-layer
 
 nil
 
-    !*dr-layer*
+!*dr-layer*
 
 "Doors"
+```
 
 While a variable can be declared as local in a function, a variable with the same name can also be declared as global. If a variable name is added to the local variables list of a function, the global variable with the same name is ignored. The following example code demonstrates this behavior:
 
@@ -1493,17 +1587,19 @@ While a variable can be declared as local in a function, a variable with the sam
 )
 ```
 
-    (list-scope)
+```
+(list-scope)
 
+// out
 var-scope is nil
-
 Scope: Local
 
-    !var-scope
-
+!var-scope
+//out
 "Global"
+```
 
-1『上面例子的代码逻辑有待弄清楚。』
+1『之前没注意到，这里的「!var-scope」是不用加括号的。』
 
 When the function is started, the variable var-scope is declared with a value of nil within the scope of the function. This is why the message var-scope is nil is returned when checking to see if the variable is nil. If var-scope was not added to the local variables list for the function, the message Scope: Global would have been displayed and the value of var-scope changed to "Local".
 
@@ -1521,31 +1617,24 @@ When the function is started, the variable var-scope is declared with a value of
 )
 ```
 
-    (list-scope)
-
+```
+(list-scope)
+// out
 Scope: Global
-
 Scope: Local
 
-    !var-scope
-
+!var-scope
+// out
 "Local"
+```
 
-#### To declare local variables (AutoLISP)
+To declare local variables (AutoLISP). Local variables are only accessible within the user-defined function that they are defined in. In the arguments and variables list of the defun function, add a forward slash ( / ) delimiter to the list. After the forward slash, list each local variable. Be certain there is at least one space between the slash and each local variable.
 
-Local variables are only accessible within the user-defined function that they are defined in.
-
-In the arguments and variables list of the defun function, add a forward slash ( / ) delimiter to the list.
-
-After the forward slash, list each local variable.
-
-Be certain there is at least one space between the slash and each local variable.
+1『声明局部变量时，/ 与变量名后面得有个空格。』
 
 #### 3.11.4.2 Example Using Local Variables (AutoLISP)
 
-The LOCAL function in the following example defines two local variables: aaa and bbb.
-
-At the AutoCAD Command prompt, enter the following code:
+The LOCAL function in the following example defines two local variables: aaa and bbb. At the AutoCAD Command prompt, enter the following code:
 
 ```
 (defun LOCAL ( / aaa bbb)
@@ -1554,65 +1643,70 @@ At the AutoCAD Command prompt, enter the following code:
   (princ (strcat "\nbbb has the value " bbb))
   (princ)
 )
-```
 
+// out
 LOCAL
+```
 
 Note: You can also add the example code to an existing or create a new LSP file. Then load the LSP file with the APPLOAD command.
 
 Enter the following code to define two global variables before using the LOCAL function:
 
-    (setq aaa 1 bbb 2)
-
+```
+(setq aaa 1 bbb 2)
+// out
 2
+```
 
 Enter the following code to check the value of the two global variables:
 
-    !aaa
-
+```
+!aaa
+// out
 1
 
-    !bbb
-
+!bbb
+// out
 2
+```
 
 Enter the following code to check the value of the two local variables:
 
-    (local)
+```
+(local)
 
+// out
 aaa has the value A
-
 bbb has the value B
+```
 
 You will notice the function used the values for aaa and bbb that are local within the function. The current values for aaa and bbb are still set to their global values and can be verified with the following statements:
 
-    !aaa
-
+```
+!aaa
+// out
 1
 
-    !bbb
-
+!bbb
+// out
 2
+```
 
 ### 3.11.5 About Functions with Arguments (AutoLISP)
 
-With AutoLISP, many functions require you to pass them values. These values are known as arguments.
-
-1『形参 arguments 的定义。』
-
-There are functions that also accept no arguments, and some in which accept optional arguments. User-defined functions cannot have optional arguments. When you call a user-defined function that accepts arguments, you must provide values for all arguments.
+With AutoLISP, many functions require you to pass them values. These values are known as arguments. There are functions that also accept no arguments, and some in which accept optional arguments. User-defined functions cannot have optional arguments. When you call a user-defined function that accepts arguments, you must provide values for all arguments.
 
 1『注意：自定义的函数是没法使用默认形参的，必须明确掉。』
 
 Note: You can define multiple user functions with the same name, but have each definition accept a different number or type of arguments.
 
-1『同一个名字定义多个函数，每个函数设不同的形参。这倒是个折中的办法。』
+1『同一个名字定义多个函数，每个函数设不同的形参。这倒是个折中的办法。回复：这不就是函数重载么，哈哈。（2020-07-03）』
 
-The symbols used as arguments are defined in the argument list before the local variables. Arguments are treated as a special type of local variable; argument variables are not available outside the function. You cannot define a function with multiple arguments of the same name.
+The symbols used as arguments are defined in the argument list before the local variables. Arguments are treated as a special type of local variable; argument variables are not available outside the function. You cannot define a function with multiple arguments of the same name. If you do use the same name for multiple arguments, the following error message is displayed at the AutoCAD Command prompt:
 
-If you do use the same name for multiple arguments, the following error message is displayed at the AutoCAD Command prompt:
-
+```
 duplicate argument name:
+```
 
 The following code defines a function that accepts two arguments. The code expects the arguments to both be of the string data type. The arguments are combined and returned as the resulting string.
 
@@ -1621,33 +1715,36 @@ The following code defines a function that accepts two arguments. The code expec
   (setq ccc "Constant string")
   (strcat ccc ", " arg1 ", " arg2)
 )
+
+// out
+ARGTEST
 ```
 
-ARGTEST
+The ARGTEST function returns the desired value because AutoLISP always returns the results of the last expression it evaluates. The last line in ARGTEST uses strcat to concatenate the strings, and the resulting value is returned. This is one example where you should not use the princ function to suppress the return value from your program. This type of function can be used a number of times within an application to combine two variable strings with one constant string in a specific order. Because it returns a value, you can save the value to a variable for use later in the application.
 
-The ARGTEST function returns the desired value because AutoLISP always returns the results of the last expression it evaluates. The last line in ARGTEST uses strcat to concatenate the strings, and the resulting value is returned. This is one example where you should not use the princ function to suppress the return value from your program.
-
-This type of function can be used a number of times within an application to combine two variable strings with one constant string in a specific order. Because it returns a value, you can save the value to a variable for use later in the application.
-
-    (setq newstr (ARGTEST "String 1" "String 2"))
-
+```
+(setq newstr (ARGTEST "String 1" "String 2"))
+// out
 "Constant string, String 1, String 2"
+```
 
-The newstr variable is now set to the value of the three strings combined.
+The newstr variable is now set to the value of the three strings combined. Note that the ccc variable was defined locally within the ARGTEST function. Once the function runs to completion, AutoLISP recaptures the memory allocated to the variable. You can use the following code to check the value assigned to ccc.
 
-Note that the ccc variable was defined locally within the ARGTEST function. Once the function runs to completion, AutoLISP recaptures the memory allocated to the variable. You can use the following code to check the value assigned to ccc.
-
-    !ccc
-
+```
+!ccc
+// out
 nil
+```
 
 If string values are not passed to the ARGTEST function, the strcat function will return the following error:
 
+```
 ; error: bad argument type: stringp 1
+```
 
 You can use the type function to verify the data type of an argument and respond appropriately. The vl-catch-apply-all function could also be helpful in catching the error returned by the strcat function. The following example code uses the type function to make sure that the ARGTEST function was passed two string values before trying to combine and return the resulting string.
 
-1『vl-catch-apply-all 是获取错误类型的函数，那么在写测试程序的时候应该很有用。』
+1『 vl-catch-apply-all 是获取错误类型的函数，那么在写测试程序的时候应该很有用。』
 
 ```
 (defun ARGTEST (arg1 arg2 / ccc retVal)
@@ -1667,13 +1764,9 @@ You can use the type function to verify the data type of an argument and respond
 )
 ```
 
-#### About Special Forms (AutoLISP)
+### 3.11.6 About Special Forms (AutoLISP)
 
-Certain AutoLISP functions are considered special forms because they evaluate arguments in a different manner than most AutoLISP function calls.
-
-A typical function evaluates all arguments passed to it before acting on those arguments. Special forms either do not evaluate all their arguments, or only evaluate some arguments under certain conditions.
-
-The following AutoLISP functions are considered special forms:
+Certain AutoLISP functions are considered special forms because they evaluate arguments in a different manner than most AutoLISP function calls. A typical function evaluates all arguments passed to it before acting on those arguments. Special forms either do not evaluate all their arguments, or only evaluate some arguments under certain conditions. The following AutoLISP functions are considered special forms:
 
 ```
 * AND
@@ -1699,38 +1792,38 @@ The following AutoLISP functions are considered special forms:
 
 ## 3.12 About Error Handling (AutoLISP)
 
-The AutoLISP language provides several functions for handling errors.
-
-The proper handling of errors allows your program to exit gracefully and with an expected result. Using the error handling functions of the AutoLISP programming language allows you to do the following:
-
-
-
-
-
-
-Provide information to users when an error occurs during the execution of a program.
-
-Restore the AutoCAD environment to a known state.
-
-Intercept errors and continue program execution.
+The AutoLISP language provides several functions for handling errors. The proper handling of errors allows your program to exit gracefully and with an expected result. Using the error handling functions of the AutoLISP programming language allows you to do the following: 1) Provide information to users when an error occurs during the execution of a program. 2) Restore the AutoCAD environment to a known state. 3) Intercept errors and continue program execution.
 
 The following functions are useful to handle errors encountered by your programs:
 
-*error* - A user-definable error-handling function.
-*pop-error-mode* - Error-handling function that ends the previous call to *push-error-using-command* or *push-error-using-stack*.
-*push-error-using-command* - Error-handling function that indicates the use of the command function within a custom *error* handler.
-*push-error-using-stack* - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom *error* handler.
-vl-catch-all-apply - Passes a list of arguments to a specified function and traps any exceptions.
+1. \*error* - A user-definable error-handling function.
+
+2. \*pop-error-mode* - Error-handling function that ends the previous call to \*push-error-using-command* or \*push-error-using-stack*.
+
+3. \*push-error-using-command* - Error-handling function that indicates the use of the command function within a custom \*error* handler.
+
+4. \*push-error-using-stack* - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom \*error* handler.
+
+5. vl-catch-all-apply - Passes a list of arguments to a specified function and traps any exceptions.
+
 If your program contains more than one error in the same expression, you cannot depend on the order in which AutoLISP detects the errors. For example, the inters function requires several arguments, each of which must be either a 2D or 3D point list. A call to inters like the following:
 
+```
 (inters 'a)
+```
+
 Two errors are encountered: too few arguments and invalid argument type. You will receive either of the following error messages:
 
+```
 ; *** ERROR: too few arguments
 ; *** ERROR: bad argument type: 2D/3D point
+```
+
 Your program should be designed to handle either error.
 
 Note: AutoLISP evaluates all arguments before checking the argument types. In earlier releases of AutoCAD, AutoLISP evaluated and checked the type of each argument sequentially. To see the difference, look at the following code examples:
+
+```
 (defun foo ()
   (print "Evaluating foo")
   '(1 2))
@@ -1742,8 +1835,11 @@ Note: AutoLISP evaluates all arguments before checking the argument types. In ea
 (defun baz ()
   (print "Evaluating baz")
   'c)
+```
+
 Observe how an expression using the inters function is evaluated in AutoCAD:
 
+```
 Command: (inters (foo) (bar) (baz))
 
 "Evaluating foo"
@@ -1753,32 +1849,33 @@ Command: (inters (foo) (bar) (baz))
 "Evaluating baz"
 
 ; *** ERROR: too few arguments
+```
 
-Each argument was evaluated successfully before AutoLISP passed the results to inters and discovered that too few arguments were specified.
+Each argument was evaluated successfully before AutoLISP passed the results to inters and discovered that too few arguments were specified. In AutoCAD R14 and earlier, the same expression evaluated as follows:
 
-In AutoCAD R14 and earlier, the same expression evaluated as follows:
-
+```
 Command: (inters (foo) (bar) (baz))
 
 "Evaluating foo"
 
 "Evaluating bar" error: bad argument type
+```
 
 AutoLISP evaluated (foo), then passed the result to inters. Since the result was a valid 2D point list, AutoLISP proceeds to evaluate (bar), where it determines that the evaluated result is a string, an invalid argument type for inters.
 
-### 3.12.1 About Using the *error* Function (AutoLISP)
+### 3.12.1 About Using the \*error* Function (AutoLISP)
 
-The *error* function can ensure that AutoCAD returns to a particular state after an error occurs.
+The \*error* function can ensure that AutoCAD returns to a particular state after an error occurs. This user-definable function can assess the error condition and return an appropriate message to the user. If AutoCAD encounters an error during evaluation, it prints a message in the following form:
 
-This user-definable function can assess the error condition and return an appropriate message to the user. If AutoCAD encounters an error during evaluation, it prints a message in the following form:
-
+```
 Error: text
+```
 
-In this message, text describes the error. However, if the *error* function is defined (that is, if it is not nil), AutoLISP executes *error* instead of printing the message. The *error* function receives text as its single argument. If *error* is not defined or is nil, AutoLISP evaluation stops and displays a traceback of the calling function and its callers. It is beneficial to leave this error handler in effect while you debug your program.
+In this message, text describes the error. However, if the \*error* function is defined (that is, if it is not nil), AutoLISP executes \*error* instead of printing the message. The \*error* function receives text as its single argument. If \*error* is not defined or is nil, AutoLISP evaluation stops and displays a traceback of the calling function and its callers. It is beneficial to leave this error handler in effect while you debug your program.
 
 A code for the last error is saved in the system variable ERRNO, where you can retrieve it using the getvar function.
 
-Before defining your own *error* function, save the current contents of *error* so that the previous error handler can be restored upon exit. When an error condition exists, AutoCAD calls the currently defined *error* function and passes it one argument, which is a text string describing the nature of the error. Your *error* function should be designed to exit quietly after an Esc (cancel) or an exit function call. The standard way to accomplish this is to include the following statements in your error-handling routine.
+Before defining your own \*error* function, save the current contents of \*error* so that the previous error handler can be restored upon exit. When an error condition exists, AutoCAD calls the currently defined \*error* function and passes it one argument, which is a text string describing the nature of the error. Your \*error* function should be designed to exit quietly after an Esc (cancel) or an exit function call. The standard way to accomplish this is to include the following statements in your error-handling routine.
 
 ```
 (if
@@ -1791,11 +1888,9 @@ Before defining your own *error* function, save the current contents of *error* 
 )
 ```
 
-This code evaluates the error message passed to it and ensures that the user is informed of the nature of the error. If the user cancels the command or function while it is running, nothing is returned from this code. Likewise, if an error condition is programmed into your code and the exit function is called, nothing is returned. It is presumed you have already explained the nature of the error by displaying a message. Remember to include a terminating call to princ if you do not want a return value printed at the end of the *error* function.
+This code evaluates the error message passed to it and ensures that the user is informed of the nature of the error. If the user cancels the command or function while it is running, nothing is returned from this code. Likewise, if an error condition is programmed into your code and the exit function is called, nothing is returned. It is presumed you have already explained the nature of the error by displaying a message. Remember to include a terminating call to princ if you do not want a return value printed at the end of the \*error* function.
 
-The main caveat about error-handling routines is they are normal AutoLISP functions that can be canceled by the user. Keep them as short and as fast as possible. This will increase the likelihood that an entire routine will execute if called.
-
-You can also warn the user about error conditions by displaying an alert box, which is a small dialog box containing a message supplied by your program and a single OK button. To display an alert box, call the alert function.
+The main caveat about error-handling routines is they are normal AutoLISP functions that can be canceled by the user. Keep them as short and as fast as possible. This will increase the likelihood that an entire routine will execute if called. You can also warn the user about error conditions by displaying an alert box, which is a small dialog box containing a message supplied by your program and a single OK button. To display an alert box, call the alert function.
 
 The following call to alert displays an alert box with the message File note found:
 
@@ -1803,7 +1898,7 @@ The following call to alert displays an alert box with the message File note fou
 
 ### 3.12.2 About Catching Errors and Continuing Program Execution (AutoLISP)
 
-Programs should intercept and attempt to process errors instead of allowing control to pass to *error* when possible.
+Programs should intercept and attempt to process errors instead of allowing control to pass to \*error* when possible.
 
 The vl-catch-all-apply function is designed to invoke any function, return a value from the function, and trap any error that may occur. The function requires two arguments:
 
@@ -1824,17 +1919,19 @@ The result from this example returns a VL-CATCH-ALL-APPLY-ERROR object which can
 
 The following example checks for an error object and returns the error message:
 
+```
 (if (vl-catch-all-error-p catchit)
   (vl-catch-all-error-message catchit)
 )
 "divide by zero"
+```
 
-#### catch errors with vl-catch-all-apply (AutoLISP)
-
-Errors caused by AutoLISP functions can result in a program ending unexpectedly, make sure to handle all known situations that could cause an error.
+catch errors with vl-catch-all-apply (AutoLISP). Errors caused by AutoLISP functions can result in a program ending unexpectedly, make sure to handle all known situations that could cause an error.
 
 Wrap each function that could throw an error with vl-catch-all-apply.
+
 Evaluate the value returned by vl-catch-all-apply with vl-catch-all-error-p to see if an error object or a value was returned.
+
 Use vl-catch-all-error-message to get the message associated with the returned error object.
 Load, run, and test the code.
 
@@ -1843,6 +1940,8 @@ Load, run, and test the code.
 The following defines a function named catch-me-if-you-can. This function accepts two number arguments and uses vl-catch-all-apply to divide the first number by the second number. The vl-catch-all-error-p function determines whether the return value from vl-catch-all-apply is an error object. If the return value is an error object, catch-me-if-you-can invokes vl-catch-all-error-message to obtain the message from the error object.
 
 At the AutoCAD Command prompt, enter the following code:
+
+```
 (defun catch-me-if-you-can (dividend divisor / errobj)
   (setq errobj (vl-catch-all-apply '/ (list dividend divisor)))
   (if (vl-catch-all-error-p errobj)
@@ -1858,18 +1957,29 @@ At the AutoCAD Command prompt, enter the following code:
   )
  (princ)
 )
+```
+
 Note: You can also add the example code to an existing or create a new LSP file. Then load the LSP file with the APPLOAD command.
+
 Enter the following code:
+
+```
 (catch-me-if-you-can 50 2)
+```
+
 The function returns 25.
 
 Enter the following code:
+
+```
 (catch-me-if-you-can 50 0)
+```
+
 The function issues the following prompt:
 
 "An error occurred: divide by zero" Do you want to continue? [Y/N]:
 
-If you enter y (or yes), catch-me-if-you-can indicates that it will continue processing. Try modifying this example by changing vl-catch-all-apply to apply. Load and run the example with a divide by zero again. When apply results in an error, execution immediately halts and *error* is called, resulting in an error message.
+If you enter y (or yes), catch-me-if-you-can indicates that it will continue processing. Try modifying this example by changing vl-catch-all-apply to apply. Load and run the example with a divide by zero again. When apply results in an error, execution immediately halts and \*error* is called, resulting in an error message.
 
 The vl-catch-* functions are especially important when you use ActiveX with AutoLISP. Many of the AutoCAD ActiveX automation methods are designed to be used in the “programming by exception” style. This means they either return useful values if they succeed, or raise an exception if they fail (instead of returning an error value). If your program uses ActiveX methods, you must prepare it to catch exceptions, otherwise the program halts, leaving the user at a Command prompt.
 

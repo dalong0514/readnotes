@@ -6,11 +6,11 @@ Query and command functions provide direct access to AutoCAD commands and drawin
 
 AutoLISP ® provides various functions for examining the contents of the currently loaded drawing. This chapter introduces these functions and describes how to use them in conjunction with other functions.
 
-## 01. About Accessing Commands and Services (AutoLISP)
+## 4.1 About Accessing Commands and Services (AutoLISP)
 
 The query and command functions described in this section provide direct access to AutoCAD ® commands and drawing services. Their behavior depends on the current state of the AutoCAD system and environment variables, and on the drawing that is currently loaded. See Query and Command Functions (AutoLISP) in AutoLISP Function Synopsis (AutoLISP), for a complete list of query and command functions.
 
-### 1.1 About Using AutoCAD Commands (AutoLISP)
+### 4.1.1 About Using AutoCAD Commands (AutoLISP)
 
 AutoLISP can execute a built-in AutoCAD command or one that is defined in a loaded ObjectARX or Managed .NET application.
 
@@ -62,7 +62,7 @@ The CircCS command is similar to CircC except it prompts the user for a center p
 
 1『command-s 函数，最后不需要 PAUSE』
 
-#### 1.1.1 About Foreign Language or International Support (AutoLISP)
+#### 4.1.1.1 About Foreign Language or International Support (AutoLISP)
 
 AutoLISP programs can be used in an AutoCAD release that supports a language other than the original language the program was developed for.
 
@@ -74,7 +74,7 @@ If you are using the dot prefix (to avoid using redefined commands), you can pla
 
 Note: It is recommended to always add an underscore (_) in front of a command name or keyword when using the command or command-s functions; this will help your program to work as expected when executed in a language other than it was originally targeted for.
 
-#### 1.1.2 About Pausing for User Input During an AutoCAD Command (AutoLISP)
+#### 4.1.1.2 About Pausing for User Input During an AutoCAD Command (AutoLISP)
 
 The PAUSE symbol can be used in the command function to interrupt the execution of an AutoCAD command and have the user provide input.
 
@@ -148,7 +148,7 @@ Command: nil
 
 Menu input is not suspended when PAUSE is used by the command function. If a menu item is active when the command function pauses for input, that input request can be satisfied by the menu. If you want the menu item to be suspended as well, you must provide a backslash in the menu item. When valid input is provided, both the command function and the menu item resume.
 
-#### 1.1.3 About Passing Pick Points to AutoCAD Commands (AutoLISP)
+#### 4.1.1.3 About Passing Pick Points to AutoCAD Commands (AutoLISP)
 
 Some AutoCAD commands (such as TRIM, EXTEND, and FILLET) require the user to specify a pick point as well as the object itself.
 
@@ -179,7 +179,7 @@ If AutoCAD is at an idle Command prompt when these statements are called, AutoCA
 
 5. Performs the TRIM command by selecting the el object (the line) and by selecting the point specified by pt.
 
-#### 1.1.4 About Undoing Changes Made by a Routine (AutoLISP)
+#### 4.1.1.4 About Undoing Changes Made by a Routine (AutoLISP)
 
 Grouping multiple AutoLISP statements together under a single UNDO group allows you to rollback all the actions performed by using either the AutoCAD U or UNDO commands.
 
@@ -225,7 +225,7 @@ The following example code demonstrates how the AutoCAD UNDO command can be used
 
 After running the c:YesUndo routine, you will see a semi-circle just like with the c:NoUndo routine. Issuing the U or UNDO command after running the c:YesUndo routine results in the AutoCAD TRIM, LINE, and CIRCLE commands being undone.
 
-### 1.2 About System and Environment Variables (AutoLISP)
+### 4.1.2 About System and Environment Variables (AutoLISP)
 
 AutoLISP applications can inspect and change the value of AutoCAD system variables with the getvar and setvar functions.
 
@@ -245,11 +245,13 @@ The following example code demonstrates how to get and set the value of the Auto
 
 3『
 
-lisp 里有关条件语句的用法，可参考「2019117Practical_Common_Lisp0701.md」。
+lisp 里有关条件语句的用法，可参考「2019117Practical-Common-Lisp0701.md」。
 
 As you've already seen, the most basic form of conditional execution--if x, do y; otherwise do z--is provided by the IF special operator, which has this basic form:
 
-    (if condition then-form [else-form])
+```
+(if condition then-form [else-form])
+```
 
 The condition is evaluated and, if its value is non-NIL, the then-form is evaluated and the resulting value returned. Otherwise, the else-form, if any, is evaluated and its value returned. If condition is NIL and there's no else-form, then the IF returns NIL.
 
@@ -290,7 +292,7 @@ The following example code demonstrates how to set the MaxHatch environment vari
 (setenv "MaxHatch" curMaxHatch)
 ```
 
-### 1.3 About Configuration Files (AutoLISP)
+### 4.1.3 About Configuration Files (AutoLISP)
 
 AutoCAD uses a configuration file with the name acadxxxx.cfg to store device and application information.
 
@@ -312,13 +314,13 @@ The following code returns the value assigned to the specified section and param
 
 Note: It is recommend to store values in the Windows Registry or the AutoCAD property list (HKCU.plist and HKLM.plist) files on Mac OS. This can be done using the vl-registry-read and vl-registry-write functions.
 
-## 02. About Display Control (AutoLISP)
+## 4.2 About Display Control (AutoLISP)
 
 AutoLISP includes functions for controlling the AutoCAD display in both text and graphics windows. Some functions prompt for, or depend on, input from the AutoCAD user.
 
 The prompt, princ, prin1, and print functions are the primary text output functions.
 
-### 2.1 About Controlling Menus (AutoLISP)
+### 4.2.1 About Controlling Menus (AutoLISP)
 
 The menucmd function controls the display of the menus on the menu bar, drawing area, or an image title menu.
 
@@ -399,9 +401,9 @@ You can also use the menucmd function to evaluate DIESEL string expressions with
 )
 ```
 
-1『(princ (strcat "\nThe current time is " ctim )，这种语句使用频次真是高，打印「自定义字符串+变量」。』
+1『 (princ (strcat "\nThe current time is " ctim )，这种语句使用频次真是高，打印「自定义字符串+变量」。』
 
-### 2.2 About Controlling the Graphics and Text Windows (AutoLISP)
+### 4.2.2 About Controlling the Graphics and Text Windows (AutoLISP)
 
 You can control the display of the graphics and text windows from an application.
 
@@ -421,7 +423,7 @@ Related Concepts:
 
 - Display Control Functions Reference (AutoLISP)
 
-### 2.3 About Controlling Low-Level Graphics (AutoLISP)
+### 4.2.3 About Controlling Low-Level Graphics (AutoLISP)
 
 Low-level graphics in the drawing area and application window can be controlled using AutoLISP functions.
 
@@ -446,11 +448,11 @@ The following sequence restores the default graphics window display caused by in
 (redraw)
 ```
 
-## 03. About Getting User Input (AutoLISP)
+## 4.3 About Getting User Input (AutoLISP)
 
 Several functions enable an AutoLISP application to prompt the user for input of data. See User Input Functions (AutoLISP) in AutoLISP Function Synopsis (AutoLISP), for a complete list of user input functions.
 
-### 3.1 About The Getxxx Functions (AutoLISP)
+### 4.3.1 About The Getxxx Functions (AutoLISP)
 
 Each user-input getxxx function pauses for data entry of the indicated type and returns the value entered. The application specifies an optional prompt to display before the function pauses. The following table lists the getxxx functions and the type of user input requested.
 
@@ -482,7 +484,7 @@ This can be confusing, because the original prompt may have scrolled out of the 
 
 The AutoCAD user cannot typically respond to a user-input function by entering an AutoLISP expression. If your AutoLISP routine makes use of the initget function, arbitrary keyboard input is permitted to certain functions that can allow an AutoLISP statement as response to a command implemented in AutoLISP.
 
-### 3.2 About Controlling User-Input Function Conditions (AutoLISP)
+### 4.3.2 About Controlling User-Input Function Conditions (AutoLISP)
 
 The initget function provides a level of control over the next user-input function call.
 
@@ -492,7 +494,7 @@ The control bits and keywords established by initget apply only to the next user
 
 1『目前还是没弄明白 initget 函数的功能。』
 
-#### 3.2.1 Setting Input Options
+#### 4.3.2.1 Setting Input Options
 
 The value of the bits argument of initget restricts the types of user input to the next user-input function call. This reduces error-checking.
 
@@ -515,7 +517,7 @@ As an example, if these values are set before a call to the getint function, the
 
 This sequence requests the user's age. AutoCAD displays an error message and repeats the prompt if the user attempts to enter a negative or zero value, or if the user only presses Enter, or enters a string (the getint function rejects attempts to enter a value that is not an integer).
 
-#### 3.2.2 Setting Keyword Options
+#### 4.3.2.2 Setting Keyword Options
 
 The optional string argument of initget specifies a list of keywords recognized by the next user-input function call. The user-input function returns one of the predefined keywords if the input from the user matches the spelling of a keyword (not case sensitive), or if the user enters the abbreviation of a keyword.
 
@@ -581,16 +583,17 @@ By convention, the branch representing the final else clause in an if/else-if ch
 
 Related Concepts:
 
+```
 * About Accessing and Requesting User Input (AutoLISP)
-
 * About Arbitrary Keyboard Input (AutoLISP)
 * About Control Characters in Strings (AutoLISP)
 * About Using AutoCAD Commands (AutoLISP)
 * About Passing Pick Points to AutoCAD Commands (AutoLISP)
 * About Pausing for User Input During an AutoCAD Command (AutoLISP)
 * User Input Functions Reference (AutoLISP)
+```
 
-### 3.3 About Arbitrary Keyboard Input (AutoLISP)
+### 4.3.3 About Arbitrary Keyboard Input (AutoLISP)
 
 Arbitrary input allows you to provide a string to most of the getXXX functions as if it is a keyword; control bits and keywords are honored first.
 
@@ -625,7 +628,7 @@ Reference point: Select a point
 
 Next point: @1,1,0
 
-## 04. About Geometric Utilities (AutoLISP)
+## 4.4 About Geometric Utilities (AutoLISP)
 
 A group of functions allows applications to obtain pure geometric information and geometric data from the drawing.
 
@@ -662,8 +665,8 @@ The call to polar sets endpt to a point that is the same distance from (1,7) as 
 
 Related Concepts:
 
+```
 * About Object Snaps (AutoLISP)
-
 * About Getting the Extents of Text (AutoLISP)
 * About Angular Conversion (AutoLISP)
 * About Accessing and Requesting User Input (AutoLISP)
@@ -671,12 +674,11 @@ Related Concepts:
 * About Integers (AutoLISP)
 * About Reals (AutoLISP)
 * Geometric Functions Reference (AutoLISP)
+```
 
-### 4.1 About Object Snaps (AutoLISP)
+### 4.4.1 About Object Snaps (AutoLISP)
 
-The osnap function can find a point by using one of the AutoCAD Object Snap modes.
-
-You pass the function a three element list that represents a 3D point; if you want to specify a 2D point, set the Z axis to a value of 0 (zero). Snap modes are specified using a string value; multiple Snap modes can be specified by using a comma delimiter.
+The osnap function can find a point by using one of the AutoCAD Object Snap modes. You pass the function a three element list that represents a 3D point; if you want to specify a 2D point, set the Z axis to a value of 0 (zero). Snap modes are specified using a string value; multiple Snap modes can be specified by using a comma delimiter.
 
 The following example code looks for the midpoint of an object near pt1:
 
@@ -692,7 +694,7 @@ In both examples, pt2 is set to the snap point if one is found that fulfills the
 
 Note: The AutoCAD APERTURE system variable determines the allowable proximity of a selected point to an object when you use Object Snap.
 
-### 4.2 About Getting the Extents of Text (AutoLISP)
+### 4.4.2 About Getting the Extents of Text (AutoLISP)
 
 The textbox function returns the diagonal coordinates of a box that encloses text.
 
@@ -825,15 +827,13 @@ The second routine, which follows, accomplishes the same task as the first routi
 )
 ```
 
-## 05. About Data Conversions (AutoLISP)
+## 4.5 About Data Conversions (AutoLISP)
 
 The listed topics are related to utilities for converting data types and units. See in AutoLISP Function Synopsis (AutoLISP), for a complete list of conversion functions.
 
-### 5.1 About String Conversions (AutoLISP)
+### 4.5.1 About String Conversions (AutoLISP)
 
-Numeric values can be converted to string values for use in output or textual data.
-
-The following functions can be used to convert real and angle values to strings, and back:
+Numeric values can be converted to string values for use in output or textual data. The following functions can be used to convert real and angle values to strings, and back:
 
 1. rtos – Converts a real number into a formatted string based on a specified linear units mode.
 
@@ -843,7 +843,7 @@ The following functions can be used to convert real and angle values to strings,
 
 4. angtof – Converts a formatted string representing an angle into a real (floating-point) value in radians.
 
-#### 5.1.1 Converting Real Numbers to a String with Linear Units Format
+#### 4.5.1.1 Converting Real Numbers to a String with Linear Units Format
 
 The rtos function converts a real value to a string. The format of the result string can be specified using the arguments of the function, or by the AutoCAD LUNITS and LUPREC system variables then when not provided. The AutoCAD DIMZIN system variable controls how leading and trailing zeros are written to the result string.
 
@@ -885,7 +885,7 @@ Value formatted as 1'5.50"
 Value formatted as 1'5-1/2"
 Value formatted as 17-1/2''
 
-#### 5.1.2 Converting Strings with Linear Units Format to Real Numbers
+#### 4.5.1.2 Converting Strings with Linear Units Format to Real Numbers
 
 The distof (distance to floating point) function is the complement of rtos. All of the following calls return the same value: 17.5. (Note the use of the backslash (\) with modes 3 and 4.)
 
@@ -896,7 +896,7 @@ The distof (distance to floating point) function is the complement of rtos. All 
 (distof "17 1/2" 5)     ; Mode 5 = fractional
 When you have a string specifying a distance in feet and inches, you must precede the quotation mark with a backslash ( \" ) so it does not look like the end of the string. The preceding examples of distof demonstrates this action.
 
-#### 5.1.3 Converting Real Numbers to a String with Angular Units Format
+#### 4.5.1.3 Converting Real Numbers to a String with Angular Units Format
 
 The angtos function converts an angular value to a string. The format of the result string can be specified using the arguments of the function, or by the AutoCAD AUNITS and AUPREC system variables then when not provided. The AutoCAD DIMZIN system variable controls how leading and trailing zeros are written to the result string.
 
@@ -935,7 +935,7 @@ Angle formatted as 3.1416r
 Angle formatted as W
 The UNITMODE system variable also affects strings returned by angtos when it returns a string in surveyor's units (mode equals 4). If UNITMODE equals 0, the string returned can include spaces (for example, "N 45d E"); if UNITMODE equals 1, the string contains no spaces (for example, "N45dE").
 
-#### 5.1.4 Converting Strings with Angular Units Format to Real Numbers
+#### 4.5.1.4 Converting Strings with Angular Units Format to Real Numbers
 
 The angtof function complements angtos, all of the following calls return the same value: 3.14159.
 
@@ -953,7 +953,7 @@ About Control Characters in Strings (AutoLISP)
 About Angular Conversion (AutoLISP)
 String-Handling Functions Reference (AutoLISP)
 
-### 5.2 About Angular Conversion (AutoLISP)
+### 4.5.2 About Angular Conversion (AutoLISP)
 
 Angular values returned by most AutoLISP functions and those stored in a drawing are expressed in radians, while angular input is commonly provided in degrees or another angular format than radians.
 
@@ -1012,7 +1012,7 @@ About Reals (AutoLISP)
 About Number Handling (AutoLISP)
 Conversion Functions Reference (AutoLISP)
 
-### 5.3 About ASCII Codes (AutoLISP)
+### 4.5.3 About ASCII Codes (AutoLISP)
 
 ASCII codes are integer values that represent alphanumeric characters.
 
@@ -1115,14 +1115,17 @@ The following example code defines a command named ASCII and a function named BA
 )
 ```
 
-Related Concepts
+Related Concepts:
+
+```
 About Integers (AutoLISP)
 About Number Handling (AutoLISP)
 About String Conversions (AutoLISP)
 About Strings and String Handling (AutoLISP)
 Conversion Functions Reference (AutoLISP)
+```
 
-### 5.4 About Unit Conversion (AutoLISP)
+### 4.5.4 About Unit Conversion (AutoLISP)
 
 Values that represent distances, volumes, or other forms of measurement can be converted from one real-world unit to another.
 
@@ -1154,7 +1157,7 @@ Unit Definition File Reference (AutoLISP)
 Example: Convert Inches to Meters (AutoLISP)
 Conversion Functions Reference (AutoLISP)
 
-#### 5.4.1 Example: Convert Inches to Meters (AutoLISP)
+#### 4.5.4.1 Example: Convert Inches to Meters (AutoLISP)
 
 This example demonstrates how a user-specified distance in inches can be converted to meters with the cvunit function.
 
@@ -1170,7 +1173,7 @@ This example demonstrates how a user-specified distance in inches can be convert
  (princ)
 )
 
-#### 5.4.2 Unit Definition File Reference (AutoLISP)
+#### 4.5.4.2 Unit Definition File Reference (AutoLISP)
 
 The AutoCAD unit definition file, acad.unt, allows you to define the factors to convert data one set of units to another set of units.
 
@@ -1231,7 +1234,7 @@ Comments can be added to the file by placing a semicolon at the beginning of a l
 
 ; This entire line is a comment.
 
-### 5.5 About Coordinate System Transformations (AutoLISP)
+### 4.5.5 About Coordinate System Transformations (AutoLISP)
 
 A point or displacement can be transformed from one coordinate system into another with trans.
 
@@ -1276,11 +1279,11 @@ When the from and to integer codes are 2 and 3, in either order, 2 indicates the
 PSDCS
 Paper space DCS—this coordinate system can be transformed only to or from the DCS of the currently active model space viewport. This is essentially a 2D transformation, where the X and Y coordinates are always scaled and are offset if the disp argument is 0. The Z coordinate is scaled but is never translated. Therefore, it can be used to find the scale factor between the two coordinate systems. The PSDCS (integer code 2) can be transformed only into the current model space viewport. If the from argument equals 3, the to argument must equal 2, and vice versa.
 
-## 06. About File Handling (AutoLISP)
+## 4.6 About File Handling (AutoLISP)
 
 AutoLISP provides functions for handling files and data I/O. See File-Handling Functions (AutoLISP) in AutoLISP Function Synopsis (AutoLISP) topic, for a complete list of file-handling functions.
 
-### 6.1 About Searching for Files (AutoLISP)
+### 4.6.1 About Searching for Files (AutoLISP)
 
 An application can use the findfile function to search for a particular file name.
 
@@ -1327,7 +1330,7 @@ This following example uses getfiled to let the user browse the directory struct
 )
 ```
 
-The *dfil variable is set to the file you select, which can then be used by other AutoLISP functions or as a response to a command prompt for a file name. To use this variable in response to a command prompt, enter !*dfil.
+The \*dfil variable is set to the file you select, which can then be used by other AutoLISP functions or as a response to a command prompt for a file name. To use this variable in response to a command prompt, enter !*dfil.
 
 1『备注：dfil 前面都有一个 *，因为 Markdown 格式的原因显示不出来。』
 
@@ -1339,7 +1342,7 @@ Related Concepts:
 
 - File-Handling Functions Reference (AutoLISP)
 
-### 6.2 About Accessing and Assigning Help to a Command (AutoLISP)
+### 4.6.2 About Accessing and Assigning Help to a Command (AutoLISP)
 
 The help and setfunhelp functions provide access to the product and your custom help files.
 
@@ -1384,13 +1387,13 @@ Related Concepts:
 
 - Query and Command Functions Reference (AutoLISP)
 
-## 07. About Device Access and Control (AutoLISP)
+## 4.7 About Device Access and Control (AutoLISP)
 
 AutoLISP provides the grread and tablet functions for accessing data from the various input devices.
 
 Note that the read-char and read-line file-handling functions can also read input from the keyboard input buffer.
 
-### 7.1 About Accessing and Requesting User Input (AutoLISP)
+### 4.7.1 About Accessing and Requesting User Input (AutoLISP)
 
 AutoLISP can collect raw input from an input device, in addition to offering a set of functions designed to request specific types of input from the user.
 
@@ -1410,7 +1413,7 @@ The following are some of the functions that can be used to get input from the u
 
 7. getangle – Pauses for the input of an angle and returns the angle expressed in radians.
 
-#### 7.1.1 Getting Direct Keyboard and Mouse Input
+#### 4.7.1.1 Getting Direct Keyboard and Mouse Input
 
 The grread function returns raw user input, whether from the keyboard or from the pointing device (mouse or digitizer). If the call to grread enables tracking, the function returns a digitized coordinate that can be used for things such as dragging. The value returned by grread is a list and the first character defines the type of input that the user provided.
 
@@ -1444,7 +1447,7 @@ Character entered was: f
 
 ASCII code: 102
 
-#### 7.1.2 Requesting Input with the GetXXX Functions
+#### 4.7.1.2 Requesting Input with the GetXXX Functions
 
 AutoLISP provides several functions to get basic input from the user at the AutoCAD Command prompt. These functions allow you to request get points, enter text or numbers, and even use keywords to make branching commands. Each user-input getXXX function pauses for data entry of the indicated type and returns the value entered. The application calling one of the functions can specify an optional prompt to display before the function pauses for input. The initget function does not work with all getXXX functions.
 
@@ -1470,14 +1473,14 @@ Enter an integer:
 
 Providing a valid integer returns the value entered for the getint function and that value is displayed as part of the prompt “User entered:” at the AutoCAD Command prompt, but if an invalid integer is provided the message “Requires an integer value.” is displayed and the user is requested to provide an integer again. If Enter is pressed before a value is typed, the message “User did not provide an integer.” is displayed.
 
-#### 7.1.3 Validating Input
+#### 4.7.1.3 Validating Input
 
 You should protect your code from unintentional user errors. The AutoLISP user input getXXX functions do much of this for you. However, it is important to check for adherence to other program requirements that the getXXX functions do not check for. If you neglect to check input validity, the program's integrity can be seriously affected.
 
 Related Concepts:
 
+```
 * About Control Characters in Strings (AutoLISP)
-
 * About Controlling User-Input Function Conditions (AutoLISP)
 * About Arbitrary Keyboard Input (AutoLISP)
 * About Using AutoCAD Commands (AutoLISP)
@@ -1487,8 +1490,9 @@ Related Concepts:
 * About Point Lists (AutoLISP)
 * About Geometric Utilities (AutoLISP)
 * User Input Functions Reference (AutoLISP)
+```
 
-### 7.2 About Calibrating Tablets (AutoLISP)
+### 4.7.2 About Calibrating Tablets (AutoLISP)
 
 Digitizing tablets can be calibrated using the TABLET command or with the AutoLISP tablet function.
 
@@ -1573,7 +1577,7 @@ Related Concepts:
 * About Configuration Files (AutoLISP)
 * Device Access Functions Reference (AutoLISP)
 
-## 08. About Getting and Calculating Date\Time Values (AutoLISP)
+## 4.8 About Getting and Calculating Date\Time Values (AutoLISP)
 
 The AutoCAD environment provides several system variables that can be used to get the current system date\time along with date\time related information about the current drawing.
 
@@ -1588,7 +1592,7 @@ For example, the following is an example of the current system date\time returne
 
 Note: Starting with AutoCAD 2017-based products, all date\time related system variables are only accurate to the nearest second with the exception of MILLISECS; whereas in previous releases time also included milliseconds. If you need to track time changes, be warned that you will no longer see a change in time until one second has elapsed even though 0 to 999 milliseconds might have passed. When needing to calculate differences in time smaller than one second, consider using the value returned by the MILLISECS system variable.
 
-### 8.1 Date\Time Related System Variables
+### 4.8.1 Date\Time Related System Variables
 
 This section lists the system variables that are related to getting the current system date\time or date\time values associated with the current drawing.
 
@@ -1616,7 +1620,7 @@ TDUSRTIMER - Stores the user-elapsed timer.
 
 TDUUPDATE - Stores the universal time and date of the last update or save.
 
-### 8.2 Display the Full Value of a Date\Time Related System Variable
+### 4.8.2 Display the Full Value of a Date\Time Related System Variable
 
 When using the GETVAR function to obtain the value of a system variable that stores a real number, the value when output to the Command prompt is displayed in scientific notation. While scientific notation makes it easier for the AutoCAD program to present large decimal numbers, it doesn't make it easier to read or understand. The RTOS function can be used to display all significant digits of a real number returned by the GETVAR function.
 
@@ -1630,7 +1634,7 @@ Command: (rtos (getvar "cdate") 2 6)
 
 Note: The third argument of the RTOS function controls the precision in which the real number is returned. A value of 6 indicates that the real number should be returned with six significant digits after the decimal place. Prior to AutoCAD 2017-based products, the value stored in CDATE included milliseconds which were represented by the 7th and 8th significant digits after the decimal place.
 
-### 8.3 Format the Date\Time Value Returned by CDATE
+### 4.8.3 Format the Date\Time Value Returned by CDATE
 
 The real number stored in CDATE represents the current system date and time in coded decimal format; converting that real number to a string makes it much easier to extract specific digits. Using the SUBSTR function, a portion of a string can be returned.
 
@@ -1701,7 +1705,7 @@ Time: 14:38:57
 "02/14/2017  14:39:04"
 ```
 
-### 8.4 Format Modified Julian Date Values
+### 4.8.4 Format Modified Julian Date Values
 
 All other date\time related system variables store time in the Modified Julian Date format with the exceptions of CDATE and MILLISECS. The date part of the Modified Julian Date format is the integer part of the number (what is to the left of the decimal) and it represents the number of days since Noon on January 1, 4713 BC, while time is the decimal fraction part of the number (what is to the right of the decimal) and it represents the time that has elapsed since Midnight which can be calculated by multiplying the decimal fraction by 86,400.
 
@@ -1726,7 +1730,7 @@ Command: (rtos (jtod (getvar "date")) 2 6)
 
 "20170222.092127"
 
-### 8.5 Calculate Elapsed Time
+### 4.8.5 Calculate Elapsed Time
 
 The calculation of elapsed time can be accomplished by subtracting two different date and time, or just time only values. Based on the precision needed, you can use the value stored in the CDATE or MILLISECS system variables. For very small changes in time, fractions of a second, the value stored in the MILLISECS system variable would be best.
 
@@ -1786,8 +1790,44 @@ The return value of the TimeDiff function might look similar to the following:
 
 Related Concepts:
 
+```
 * About Using AutoLISP to Communicate With AutoCAD (AutoLISP)
-
 * About System and Environment Variables (AutoLISP)
 * About Device Access and Control (AutoLISP)
+```
 
+## 练习代码汇总
+
+4.1-circle
+
+```
+(defun C:DONE(/ p1 rad)
+;;;  (command "._circle" "0,0" "10,10")
+;;;  (command ",_thickness" 1)
+;;;  (command "._circle" PAUSE PAUSE)
+  (setq p1 (getpoint "\nEnter a center point: "))
+  (setq rad (getdist p1 "\nEnter a radius: "))
+  (command-s "._circle" p1 rad)
+  (princ)
+)
+```
+
+4.2-layer
+
+```
+(setq blk "MY_BLOCK")
+(setq old_lay (getvar "clayer"))
+(command "._-layer" "set" "NEW_LAY" "")
+(command "._-insert" blk PAUSE "" "" PAUSE)
+(command "._-layer" "set" old_lay "")
+```
+
+4.3-pick
+
+```
+(command "._circle" "5,5" "2")
+(command "._line" "3,5" "7,5" "")
+(setq el (entlast))
+(setq pt '(5 7))
+(command "._trim" el "" pt "")
+```
