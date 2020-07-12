@@ -20,7 +20,7 @@ Related topics also grew in prominence. Among them was eXtreme Programming (XP),
 
 XP also dictates that projects should be broken down into small (very small) iterations. Both code and requirements should be scrutinized at all times. Architecture and design should be a shared and constant issue, leading to the frequent revision of code.
 
-### 0202. 术语卡——PHP 本质的两块内容
+### 0202. 术语卡——PHP 的本质内容
 
 In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two tools developed by Rasmus Lerdorf using Perl. PHP stood for Personal Homepage Tools. FI stood for Form Interpreter. Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. 
 
@@ -30,7 +30,7 @@ In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two t
 
 The CD and book aspects of the ShopProduct class don’t work well together but can’t live apart, it seems. I want to work with books and CDs as a single type while providing a separate implementation for each format. I want to provide common functionality in one place to avoid duplication, but allow each format to handle some method calls differently. I need to use inheritance.
 
-### 0204. 术语卡——Interfaces 及其意义
+### 0204. 术语卡——Interfaces
 
 接口才是纯模板，它只定义函数，而且这个函数没函数体。相比而言，抽象类里除了有抽象方法外，也可以有普通方法。
 
@@ -42,7 +42,7 @@ ShopProduct already had a getPrice() method, so why might it be useful to implem
 
 As we have seen, interfaces help you manage the fact that, like Java, PHP does not support multiple inheritance. In other words, a class in PHP can only extend a single parent. However, you can make a class promise to implement as many interfaces as you like; for each interface it implements, the class takes on the corresponding type. So interfaces provide types without implementation. 
 
-一个接口的实现过程，如同继承一个只包含抽象方法的抽象类。实现接口，相当于在定义接口的函数语句后面直接加上函数体。目前知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，没实现一个接口对应着一个「type」。2）跟 traits 结合起来用。
+一个接口的实现过程，如同继承一个只包含抽象方法的抽象类。实现接口，相当于在定义接口的函数语句后面直接加上函数体。目前知道的用途：1）一个类只能继承一个基类，但可以实现多个接口，每实现一个接口对应着一个「type」。2）跟 traits 结合起来用。
 
 ```php
 // listing 04.09
@@ -63,19 +63,19 @@ class ShopProduct implements Chargeable {
 
 Note: Why would I use a static factory method when a constructor performs the work of creating an object already? In Chapter 12, I’ll describe a pattern called Identity Map. an Identity Map component generates and manages a new object only if an object with the same distinguishing characteristics is not already under management. If the target object already exists, it is returned. a factory method like create() would make a good client for a component of this sort.
 
-当构造函数创建对象时，我为什么使用静态工厂方法？第 12 章将介绍 Identity Map 模式。只有具有相同特征的对象没有被管理，Identity Map 组件才会生成并管理这个新对象。如果目标对象已经存在，就返回诚对象。像 create() 这样的工厂方法能为这类组件创建优秀的客户端。
+当构造函数创建对象时，我为什么使用静态工厂方法？第 12 章将介绍 Identity Map 模式。只有具有相同特征的对象没有被管理，Identity Map 组件才会生成并管理这个新对象。如果目标对象已经存在，就返回该对象。像 create() 这样的工厂方法能为这类组件创建优秀的客户端。
+
+1『到目前为止，还不是很理解 Identity Map 这个概念。（2020-07-12）』
 
 ### 0206. 术语卡——class
 
-本书对「类」的定义：
-
-If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class.
+本书对「类」的定义：If a class is a template for generating objects, it follows that an object is data that has been structured according to the template defined in a class. An object is said to be an instance of its class. It is of the type defined by the class.
 
 ### 0207. 术语卡——类型处理
 
 Note: in the next section,「taking the hint: Object types,」I will describe a much better way of constraining the type of arguments passed to methods and functions. Converting a string argument on the client’s behalf would be friendly but would probably present other problems. in providing a conversion mechanism, you second-guess the context and intent of the client. by enforcing the boolean data type, on the other hand, you leave the client to decide whether to map strings to boolean values and determine which word should map to true or false. the outputAddresses() method, meanwhile, concentrates on the task it is designed to perform. this emphasis on performing a specific task in deliberate ignorance of the wider context is an important principle in object-oriented programming, and I will return to it frequently throughout the book.
 
-这种方法强制性要求客户端代码提供正确的数据类型给 Resolve 参数。把字符串参数转化成布尔类型对于客户端代码来说更加友好，但是这可能会引起其他问题。在提供转换方法的情况下，我们需要猜测客户端代码的环境和意图。另一方面，通过强制规定参数为布尔型数据类型客户端代码需要决定是否将字符串映射为布尔值以及哪个单词映射为哪个值。这样，outputaddresses() 方法可以专注于执行它的任务。在面向对象开发中，「专注特定任务，忽略外界上下文」是一个重要的设计原则，我们将在本书中经常提到这一点。
+这种方法强制性要求客户端代码提供正确的数据类型给 Resolve 参数。把字符串参数转化成布尔类型对于客户端代码来说更加友好，但是这可能会引起其他问题。在提供转换方法的情况下，我们需要猜测客户端代码的环境和意图。另一方面，通过强制规定参数为布尔型数据类型，客户端代码需要决定是否将字符串映射为布尔值以及哪个单词映射为哪个值。这样，outputaddresses() 方法可以专注于执行它的任务。在面向对象开发中，「专注特定任务，忽略外界上下文」是一个重要的设计原则，我们将在本书中经常提到这一点。
 
 In fact, your strategies for dealing with argument types will depend on the seriousness of any potential bugs on the one hand, and the benefits of flexibility on the other. PHP casts most primitive values for you, depending on context. Numbers in strings are converted to their integer or floating point equivalents when used in a mathematical expression, for example. So your code might be naturally forgiving of type errors. If you expect one of your method arguments to be an array, however, you may need to be more careful. Passing a nonarray value to one of PHP’s array functions will not produce a useful result and could cause a cascade of errors in your method.
 
@@ -87,19 +87,19 @@ However you address problems of this kind, you can be sure of one thing—type m
 
 无论你如何解决这类问题，都要认真思考一件事情：类型处理。PHP 是一种弱类型的语言这使得这件事更加重要。我们不能依靠编译器来防止类型相关的 bug，必须考虑到当非法数据类型的参数传递给方法时，会产生怎样的后果。我们不能完全信任客户端程序员，应该始终考虑如何在方法中处理他们引入的无用信息。
 
-### 0208. 术语卡——Accessor Methods
+### 0208. 术语卡——Accessor Methods: getters and setters
 
-一个原则，通过对象的方法去访问属性值，不要直接访问，把「方法」作为接口。
+一个原则，通过对象的方法去访问属性值，不要直接访问，「方法」即接口。对象里方法和数据的地位是不对等的（郑烨在「软件设计之美」里的观点），对象的接口也应该尽可能的少的，每增加一个接口的时候得反复问自己，这个接口是必须的么？
 
 Even when client programmers need to work with values held by your class, it is often a good idea to deny direct access to properties, providing methods instead that relay the needed values. Such methods are known as accessors or getters and setters.
 
-You have already seen one benefit afforded by accessor methods. You can use an accessor to filter a property value according to circumstances, as was illustrated by the getPrice() method. You can also use a setter method to enforce a property type. Type declarations can be used to constrain method arguments, but a property can contain data of any type. Remember the ShopProductWriter class that uses a ShopProduct object to output list data? I can develop this further, so that it writes any number of ShopProduct objects at one time:
+You have already seen one benefit afforded by accessor methods. You can use an accessor to filter a property value according to circumstances, as was illustrated by the getPrice() method. You can also use a setter method to enforce a property type. Type declarations can be used to constrain method arguments, but a property can contain data of any type. Remember the ShopProductWriter class that uses a ShopProduct object to output list data? I can develop this further, so that it writes any number of ShopProduct objects at one time.
 
 之前已经看到由访问方法带来的一个好处。可以使用访问方法根据环境过滤属性，就像 getPrice() 方法那样。也可以使用 setter 方法来强制属性类型。我们已经见过，类的类型提示可以用于约束方法参数，但是它不能直接控制属性类型。还记得 ShopProductwriter 类使用 ShopProduct 输出清单数据吗？我们将改进它，使其一次可以输出许多 ShopProduct 对象。
 
 ### 0209. 术语卡——Abstract Classes
 
-抽象类不能实例化，它是用来定义接口供其他类继承用的。抽象类里定义的抽象方法不能有「实现」，所以定义的时候没有函数体，跟调用的形式一样。关键是继承它的子类一定在子类里实现这个抽象方法。
+抽象类不能实例化，它是用来定义接口供其他类继承用的。抽象类里定义的抽象方法不能有「实现」，所以定义的时候没有函数体，跟调用的形式一样。关键是继承它的子类一定要在子类里实现这个抽象方法。
 
 An abstract class cannot be instantiated. Instead it defines (and, optionally, partially implements) the interface for any class that might extend it. You define an abstract class with the abstract keyword. In most cases, an abstract class will contain at least one abstract method. These are declared, once again, with the abstract keyword. An abstract method cannot have an implementation. You declare it in the normal way, but end the declaration with a semicolon rather than a method body. 
 
@@ -112,6 +112,8 @@ As we have seen, interfaces help you manage the fact that, like Java, PHP does n
 1『 traits 的作用是实现局部继承：share an implementation across inheritance hierarchies. 可以当作类的组件模块，在类的定义里使用 use 关键词调用 trait。在 laravel 框架里看到很多 use 语句是放在 class 定义体之外的（这个的含义待确认，2020-06-29）。traits 能和接口结合起来一起用，还能跟抽象属性、抽象方法结合起来用，着实强大。』
 
 A trait is a class-like structure that cannot itself be instantiated but can be incorporated into classes. Any methods defined in a trait become available as part of any class that uses it. A trait changes the structure of a class, but doesn’t change its type. Think of traits as includes for classes. Let’s look at why a trait might be useful.
+
+1『目前感觉 traits 是 PHP 针对「组合优于继承」思想给出的一个方案，好比把类 class 里可复用的部分再拆解成可一个个组件（traits），这些组件也可以嵌入其他类里用。一言以蔽之，把父类的颗粒度做的更细，以减少常规继承带来的弊端。（2020-07-12）』
 
 ### 0211. 术语卡——late static bindings
 
@@ -187,9 +189,9 @@ Reusability is one of the key objectives of object-oriented design, and tight co
 
 ### 0301. 人名卡——Matt Zandstra
 
-人名卡：Matt Zandstra（）
+人名卡：Matt Zandstra。
 
-印象：本书的作者。
+印象：PHP 专家，本书的作者。
 
 ### 0401. 金句卡——code to an interface, not an implementation
 
