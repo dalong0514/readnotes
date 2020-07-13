@@ -75,6 +75,8 @@ $output = readParams($file);
 print_r($output);
 ```
 
+1『小细节知识，__ DIR__ 可直接获取当前文件所在的路径，赞。』
+
 This code is relatively compact and should be easy to maintain. The writeParams() function is called to create param.txt and to write to it with something like this:
 
 ```
@@ -116,7 +118,9 @@ function writeParams(array $params, string $source) {
 }
 ```
 
- ■ Note: illustrative code always involves a difficult balancing act. it needs to be clear enough to make its point, which often means sacrificing error checking and fitness for its ostensible purpose. in other words, the example here is really intended to illustrate issues of design and duplication rather than the best way to parse and write file data. For this reason, i omit implementation where it is not relevant to the issue at hand.
+2『注意，这里的代码有正则的代码，PHP 的正则语法抽时间学习下，哈哈。』
+
+ ■ Note: illustrative code always involves a difficult balancing act. it needs to be clear enough to make its point, which often means sacrificing error checking and fitness for its ostensible purpose. in other words, the example here is really intended to illustrate issues of design and duplication rather than the best way to parse and write file data. For this reason, I omit implementation where it is not relevant to the issue at hand.
 
 示例代码总是在寻求平街。它需要足够清晰以抓住要点，所以通常省略了错误检查。也就是说，这里的代码主要是说明设计和代码重复的问题，并不是提供解析和写入文件数据的最佳途径。因此，代码中忽略了与设计不相关的内容。
 
@@ -157,7 +161,9 @@ abstract class ParamHandler {
 
 I define the addParam() method to allow the user to add parameters to the protected \$params property and getAllParams() to provide access to a copy of the array. I also create a static getInstance() method that tests the file extension and returns a particular subclass according to the results. Crucially, I define two abstract methods, read() and write(), ensuring that any subclasses will support this interface.
 
- ■ Note: placing a static method for generating child objects in the parent class is convenient. such a design decision has its own consequences, however. the ParamHandler type is now essentially limited to working with the concrete classes in this central conditional statement. What happens if you need to handle another format? Of course, if you are the maintainer of ParamHandler, you can always amend the getInstance() method. if you are a client coder, however, changing this library class may not be so easy (in fact, changing it won’t be hard, but you face the prospect of having to reapply your patch every time you reinstall the package that provides it). i will discuss issues of object creation in Chapter 9.
+ ■ Note: placing a static method for generating child objects in the parent class is convenient. such a design decision has its own consequences, however. the ParamHandler type is now essentially limited to working with the concrete classes in this central conditional statement. What happens if you need to handle another format? Of course, if you are the maintainer of ParamHandler, you can always amend the getInstance() method. if you are a client coder, however, changing this library class may not be so easy (in fact, changing it won’t be hard, but you face the prospect of having to reapply your patch every time you reinstall the package that provides it). I will discuss issues of object creation in Chapter 9.
+
+1『在父类里设置一个静态方法来构建子类的对象，是一个不错的方法，但这种生成「对象」的方法还能再优化。再优化的方法应该是用设计模式中的「工厂方法」。（2020-07-13）』
 
 把一个用于生成子对象的静态方法放在父类中是很方便的，然而这样的设计也有不足之处。ParamHandler 类型现在只能与条件语句中规定的类一起工作。如果需要处理其他格式的文件，怎么办呢？当然，如果你是 ParamHandler 的维护者，可以修改 getinstance() 方法。但是如果你只是这段代码的使用者，修改这个类就不是那么容易了（实际上，修改它并不难，但是每次重新安装这个包的时候都需要再次修改）。我们将会在第 9 章中讨论对象创建的问题。
 
@@ -209,7 +215,7 @@ $test->write(); // writing in XML format
 
 We can also read from either file format:
 
-```
+```php
 // listing 06.08
 
 $test = ParamHandler::getInstance(__DIR__ . "/params.txt");
@@ -220,13 +226,19 @@ print_r($params);
 
 So, what can we learn from these two approaches?
 
+1『当然是第二种用「对象」来实现的方法更简单了。（2020-07-13）』
+
 #### 6.2.1 Responsibility
 
 The controlling code in the procedural example takes responsibility for deciding about format—not once, but twice. The conditional code is tidied away into functions, certainly, but this merely disguises the fact of a single flow, making decisions as it goes. Calls to readParams() and to writeParams() take place in different contexts, so we are forced to repeat the file extension test in each function (or to perform variations on this test().
 
+1『很有道理，写和读其实是 2 个行为，读的时候其实是没必要检测扩展名的，但在面向过程的代码里，每次进行「写」和「读」的行为前，必须进行文件名的扩展检测，是一种重复。（2020-07-13）』
+
 In the object-oriented version, this choice about file format is made in the static getInstance() method, which tests the file extension only once, serving up the correct subclass. The client code takes no responsibility for implementation. It uses the provided object with no knowledge of, or interest in, the particular subclass it belongs to. It knows only that it is working with a ParamHandler object, and that it will support write() and read(). While the procedural code busies itself about details, the object-oriented code works only with an interface, unconcerned about the details of implementation. Because responsibility for implementation lies with the objects and not with the client code, it would be easy to switch in support for new formats transparently.
 
 在过程式编程的例子中，控制代码的职责是判断文件格式，它判断了两次而不是一次。条件语句被绑定到函数中，但这仅是将判断的流程隐藏起来。对 readparams() 的调用和对 writeparams() 的调用必须发生在不同的地方，因此我们不得不在每个函数中重复检测文件扩展名（或执行其他检测操作）。在面向对象代码中，我们在静态方法 getinstance() 中进行文件格式的选择，并且仅在 getinstance() 中检测文件扩展名一次，就可以决定使用哪一个合适的子类。客户端代码并不负责实现读写功能。它不需要知道自己属于哪个子类就可以使用给定的对象。它只需要知道自己正在使用 Paramhandler 对象，并且 Paramhandler 对象支持 write() 和 read() 方法。过程式代码忙于处理细节，而面向对象代码只需一个接口即可工作，并且不用考虑实现的细节。由于实现由对象负责，而不是由客户端代码负贵，所以我们能够很方便地增加对新格式的支持。
+
+2『实现由对象负责，而非由客户端（父类，父类只提供接口），这句话醍醐灌顶。把上面的内容放进「面向过程与面向对象」主题卡里。』——已完成
 
 #### 6.2.2 Cohesion
 
@@ -256,11 +268,13 @@ There is nothing automatic about loose coupling and high cohesion in a class con
 
 正交（orthogonality）指将职责相关的组件紧紧组合在一起，而与外部系统环境隔开，保持独立。Andrew Hunt 和 David Thomas 在 The Pragmatic Programmer 一书（Addison- Wesley, 1999） 中有所介绍。正交主张重用组件，期望不需要任何特殊配置就能把一个组件插入到新系统中。这样的组件有明确的与环境无关的输入和输出。正交代码使修改变得更简单，因为修改一个实现只会影响到被改动的组件本身。最后，正交代码更加安全。bug 的影响只局限于它的作用域之中。内部高度相互依赖的代码发生错误时，很容易在系统中引起连锁反应。如果只有一个类，松散耦合和高聚合是无从谈起的。毕竟，我们可以把整个过程式示例的全部代码塞到一个被误导的类里。因此，我们如何才能在代码中达到一个平衡呢？通常，首先考虑哪些类应该存在于系统之中。
 
-2『 The Pragmatic Programmer 这本书已经出新版了，已下载「2020120The-Pragmatic-Programmer2Ed」。』
+2『 The Pragmatic Programmer 这本书已经出新版了，已下载「2020120The-Pragmatic-Programmer2Ed」。正交的概念做一张术语卡片。』——已完成
 
 ### 6.3 Choosing Your Classes
 
 It can be surprisingly difficult to define the boundaries of your classes, especially as they will evolve with any system that you build.
+
+1『确实，界定类的边界，即如何抽象出模型是最难的。（2020-07-13）』
 
 It can seem straightforward when you are modeling the real world. Object-oriented systems often feature software representations of real things—Person, Invoice, and Shop classes abound. This would seem to suggest that defining a class is a matter of finding the things in your system and then giving them agency through methods. This is not a bad starting point, but it does have its dangers. If you see a class as a noun, a subject for any number of verbs, then you may find it bloating as ongoing development and requirement changes call for it to do more and more things.
 
@@ -272,13 +286,17 @@ Either way, the problem here is that the ShopProduct class is now trying to do t
 
 我们回顾一下在第 3 章中创建的 ShopProduct。系统为了给顾客提供产品，因此要定义一个 ShopProduct 类，但是这是唯一的办法吗？为了访问产品数据，我们需要提供诸如 getTitle() 和 getPrice() 等方法。当我们需要输出发票和提货单的摘要信息时，需要定义 write() 方法。当顾客要求得到不同格式的产品摘要信息时，除了创建 write() 方法之外，还要创建 writeXML() 和 writeHTML() 方法。否则，需要增加条件代码到 write() 中并根据选项标志输出不同格式。无论哪一种方式，ShopProduct 类现在做了太多的事情。它忙着管理显示方案及产品数据。
 
-How should you think about defining classes? The best approach is to think of a class as having a primary responsibility and to make that responsibility as singular and focused as possible. Put the responsibility into words. It has been said that you should be able to describe a class’s responsibility in 25 words or less, rarely using the words「and」or「or.」If your sentence gets too long or mired in clauses, it is probably time to consider defining new classes along the lines of some of the responsibilities you have described.
+How should you think about defining classes? The best approach is to think of a class as having a primary responsibility and to make that responsibility as singular and focused as possible. Put the responsibility into words. It has been said that you should be able to describe a class’s responsibility in 25 words or less, rarely using the words「and」or「or」. If your sentence gets too long or mired in clauses, it is probably time to consider defining new classes along the lines of some of the responsibilities you have described.
 
 So, ShopProduct classes are responsible for managing product data. If we add methods for writing to different formats, we begin to add a new area of responsibility: product display. As you saw in Chapter 3, we actually defined two types based on these separate responsibilities. The ShopProduct type remained responsible for product data, and the ShopProductWriter type took on responsibility for displaying product information. Individual subclasses refined these responsibilities.
+
+2『如何定义类，做一张任意卡片。』——已完成
 
 我们应该如何定义类呢？最好的办法是让一个类只有一个主要的职责，并且任务要尽可能独立。你可以把类的职责用多个词来形容，最好不超过 25 个词，不要用到词「且」或者「或」。如果句子太长或者有复杂的子句，就应该考虑用你所描述的一部分任务来定义新类。因此，ShopProduct 类应该主要负责处理产品数据。如果我们显示不同格式的摘要信息，则有了一个新的职责：产品显示。正如第 3 章所述，我们实际上基于这两个不同的职责定义了两个类型：ShopProduct 类型负责处理产品数据；ShopProductWriter 类型负责显示产品信息。每个类只承担自己的任务。
 
  ■ Note:  Very few design rules are entirely inflexible. You will sometimes see code for saving object data in an otherwise unrelated class, for example. although this would seem to violate the rule that a class should have a singular responsibility, it can be the most convenient place for the functionality to live because a method has to have full access to an instance’s fields. Using local methods for persistence can also save us from creating a parallel hierarchy of persistence classes mirroring our savable classes, and thereby introducing unavoidable coupling. We deal with other strategies for object persistence in Chapter 12. avoid religious adherence to design rules; they are not a substitute for analyzing the problem before you. try to remain alive to the reasoning behind the rule, and emphasize that over the rule itself.
+
+1『说到心坎里去了，无招胜有招，哈哈。』
 
 设计原则并非一成不变。比如，有时你会看到在另一个不相关的类中出现了保存对象数据的代码。这似乎违反了类应该有单一职责的原则，但事实上，这样做可以为类方法完全访问对象实例的属性提供最大的便利。使用本地方法进行对象持久化也可让我们不用创建与被保存的相对应的持久化美，避免产生依赖。我们会在第 12 章中介绍更多对象持久化的策略。记住要避免对于设计原则的宗教性崇拜。设计原则并不能代替你来分析问题。要掌提设计原则背后的内涵，这比设计原则本身史为重要。
 
@@ -344,6 +362,8 @@ $test->write(); // could be XmlParamHandler::write() or TextParamHandler::write(
 ```
 
 It is important to note that polymorphism doesn’t banish conditionals. Methods such as ParamHandler::getInstance() will often determine which objects to return based on switch or if statements. These tend to centralize the conditional code into one place, though.
+
+1『多态只是把条件语句集中封装到了一个地方。』
 
 As you have seen, PHP enforces the interfaces defined by abstract classes. This is useful because we can be sure that a concrete child class will support exactly the same method signatures as those defined by an abstract parent. This includes type declarations and access controls. Client code can, therefore, treat all children of a common superclass interchangeably (as long it only relies on only functionality defined in the parent).
 
