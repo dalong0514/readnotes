@@ -379,6 +379,8 @@ On the simplest level, you encapsulate data by declaring properties private or p
 
 要实现封装，最简单的办法是将属性定义为 private 或 protected。通过对客户端代码隐藏属性，我们创建了一个接口并防止在偶然情况下污染对象中的数据。多态是另外一种封装。通过把不同的实现放在公共接口之后，我们对客户端代码隐藏了功能的实现。也就是说，任何在接口背后发生的改变对外界的系统来说都是可忽略的。我们可以增加新类或改变类中的代码，而不会产生错误。接口与其背后的工作机制是分开来的。这些机制越独立，改进或修正代码对系统的影响越小。
 
+1『确实，多态也是一种封装，客户端看到的只是「接口」，而接口的实现他是看不到的，即使实现换了一个方法，对客户端来说，没感觉。接口用来分割「变」与「不变」，不变的东西抽象成接口，放到一个父类里，即袁英杰在其文章「小类大对象」中的小类。而变的东西，放到具体的实现里，对应于「大对象」。』
+
 Encapsulation is, in some ways, the key to object-oriented programming. Your objective should be to make each part as independent as possible from its peers. Classes and methods should receive as much information as is necessary to perform their allotted tasks, which should be limited in scope and clearly identified. The introduction of the private, protected, and public keywords have made encapsulation easier. 
 
 Encapsulation is also a state of mind, though. PHP 4 provided no formal support for hiding data. Privacy had to be signaled using documentation and naming conventions. An underscore, for example, is a common way of signaling a private property:
@@ -400,6 +402,8 @@ function workWithProducts(ShopProduct $prod)    {
     }    
 }
 ```
+
+1『细节知识，用 \$prod instanceof CdProduct 语句，来判断传进来的参数术语哪个类，开发数据流（暖通全面通风）时就用到该知识点。』
 
 You may have a very good reason to do this, but, in general, it carries a slightly uncertain odor. By querying the specific subtype in the example, I am setting up a dependency. Although the specifics of the subtype were hidden by polymorphism, it would have been possible to have changed the ShopProduct inheritance hierarchy entirely with no ill effects. This code ends that. Now, if I need to rationalize the CdProduct and BookProduct classes, I may create unexpected side effects in the workWithProducts() method.
 
@@ -695,7 +699,7 @@ This is not always the case, of course. Some enterprise patterns work well in la
 
 I referred to object-capable languages earlier in this section. You could code in PHP without defining any classes at all. With a few notable exceptions, however, objects and object-oriented design lie at the heart of most PHP projects and libraries.
 
-本章中只有很小一部分是专门针对 PHP 的，从某种程度上说它算是本章的一点特色。许多模式都可以应用于各种具有面向对象能力的语言，实现起来通常不会有什么问题。当然，并不总是这样。一些企业模式只有在服务器请求对应一个应用进程的情况下オ能很好地工作。PHP 并不能以那样的方式工作。在 PHP 中，每一个请求都会开始一个新的脚本执行。这意味着要更谨慎地对待一些模式。例如，前端控制器（Front Controller）模式通常需要较多的初始化时间。如果初始化仅在应用启动时发生一次，那么还没问题，但如果每次请求都需要初始化，就会导致问题。这并不是说我们不能使用该模式，因为我在以前成功地使用过该模式。我们必须确保在讨论模式的时候考虑到 PHP 相关的问题，因为 PHP 正是本书研究所有模式时的具体环境。
+本章中只有很小一部分是专门针对 PHP 的，从某种程度上说它算是本章的一点特色。许多模式都可以应用于各种具有面向对象能力的语言，实现起来通常不会有什么问题。当然，并不总是这样。一些企业模式只有在服务器请求对应一个应用进程的情况下才能很好地工作。PHP 并不能以那样的方式工作。在 PHP 中，每一个请求都会开始一个新的脚本执行。这意味着要更谨慎地对待一些模式。例如，前端控制器（Front Controller）模式通常需要较多的初始化时间。如果初始化仅在应用启动时发生一次，那么还没问题，但如果每次请求都需要初始化，就会导致问题。这并不是说我们不能使用该模式，因为我在以前成功地使用过该模式。我们必须确保在讨论模式的时候考虑到 PHP 相关的问题，因为 PHP 正是本书研究所有模式时的具体环境。
 
 在本节开头我提到过「具有对象能力的语言」。你根本不必定义任何类就可编写 PHP 代码（但如果使用 PEAR，你将会使用到一些对象）。虽然本书几乎完全关注于用面向对象解决方案来解决编程问题，但并不是在鼓吹面向对象。模式和 PHP 能被有效地混合，而且它们也形成了本书的核心，另外它们也能与许多传统方式很好地共存。对此 PEAR 便是一个极好的证明。PEAR 包优雅地使用了设计模式，它们在本质上趋于面向对象。但这个特性使它们在过程式项目中更加实用（而非不实用）。因为 PEAR 包是自我封装的，并将它们自身的复杂性都隐藏在十分干净的接口下，所以它们能被轻松地嵌入任何类型的项目中。
 
