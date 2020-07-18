@@ -569,6 +569,8 @@ Although code may be presented, the solution is never cut-and-paste. The pattern
 
 Martin Fowler refers to solutions in patterns as「half-baked.」That is, the coder must take away the concept and finish it for himself.
 
+1『设计模式中的解决方案是个半成品，此观点做一张任意卡片。』——已完成
+
 解决方案最初是和问题放在一起的，并常用 UML 类图和交互图更详细地进行描述。而模式通常也包含一个代码范例。尽管代码也许是现成的，但解决方案从来不是简单的剪切及粘贴。模式描述了一个问题的解决方法，但在实现时可能会有上百种细微的差别。这就像农作物播种的操作，如果你简单地盲目遵循书本上的步骤，那么在收获季节很可能会挨饿。以模式为基础，但又能针对各种情况随机应变的方法会更实用。虽然问题的基本解决方案（使你的庄稼成长）总是相同的（播种、灌溉、收割），但是实际采用的步骤依赖于各种因素，如土壤类别、地理位置、土地的方位和当地的害虫等。于是 Martin Fowler 把模式中的解决方案称为「半成品」。换句话说，编码人员必须理解概念并自己来完成具体的实现。
 
 #### 1.2.4 Consequences
@@ -601,7 +603,7 @@ There are a number of well-defined pattern structures, including the original fo
 
 2『设计模式结构（pattern structures）做一张术语卡片。』——已完成
 
-编写本书时，在我桌上有 5 份模式目录。看一下每个目录的模式，便可发现每一个都使用不样的结构：其中一些比较正式；一些比较细致，有着许多的子分类；还有一些则比较松散。这些目录中有一些定义良好的模式结构，其中包括由 Christopher Alexander 原创的格式（Alexandrian 格式）和 Portland 模式库所钟爱的叙述性格式（Portland 格式）。不过因为《设计模式》书极具影响力，而且我们也会介绍该书所描述的很多模式，所以先研究一下该书所采用的模式结构。其主要组成部分如下所示。
+编写本书时，在我桌上有 5 份模式目录。看一下每个目录的模式，便可发现每一个都使用不一样的结构：其中一些比较正式；一些比较细致，有着许多的子分类；还有一些则比较松散。这些目录中有一些定义良好的模式结构，其中包括由 Christopher Alexander 原创的格式（Alexandrian 格式）和 Portland 模式库所钟爱的叙述性格式（Portland 格式）。不过因为《设计模式》书极具影响力，而且我们也会介绍该书所描述的很多模式，所以先研究一下该书所采用的模式结构。其主要组成部分如下所示。
 
 1、意图：模式目的的简要概括。你应该一眼就能看出模式的要点。
 
@@ -626,6 +628,8 @@ So what benefits can patterns bring? Given that a pattern is a problem defined a
 #### 1.4.1 A Design Pattern Defines a Problem
 
 How many times have you reached a stage in a project and found that there is no going forward? Chances are you must backtrack some way before starting out again. By defining common problems, patterns can help you to improve your design. Sometimes, the first step to a solution is recognizing that you have a problem.
+
+1『有时卡住的时候，可以尝试先退一步，为了后续跨出的更大更远。这里的退一步是指认清所遇问题的本质。（2020-07-17）』
 
 有多少次在项目到了某个阶段时你发现无法继续？这时你很可能必须以某种方式返回而不是继续尝试前进。通过定义共性问题，模式能帮助你改进设计。有时找到解决方案的第一步便是认清你面对的问题。
 
@@ -888,7 +892,7 @@ class Seminar extends Lesson {
 
 The Lesson class requires a CostStrategy object, which it stores as a property. The Lesson::cost() method simply invokes CostStrategy::cost(). Equally, Lesson::chargeType() invokes CostStrategy::chargeType(). This explicit invocation of another object’s method in order to fulfill a request is known as delegation. In my example, the CostStrategy object is the delegate of Lesson. The Lesson class washes its hands of responsibility for cost calculations and passes on the task to a CostStrategy implementation. Here, it is caught in the act of delegation:
 
-1『又见委托（delegation）。』
+2『又见委托（delegation）。委托做一张术语卡片。』——已完成
 
 这种显式调用另一个对象的方法来执行一个请求的方式便是所谓的「委托」。在我们的示例中，Coststrategy 对象便是 Lesson 的委托方。Lesson 类不再负责计费，而是把计费任务传给 CostStrategy 类。下面的代码执行了委托操作：
 
@@ -980,7 +984,7 @@ The problem here is not the system’s dependency on an external platform. Such 
 
 1『如何隔离与数据库交互的代码，这个思路太赞了。这里有提到「Doctrine database library 」这个工具，就是为了解决这个问题的，记得去了解下。突然想到有本 python 的英文书里（那个作者写了好几本书），也有提到这种在程序和数据库之间抽象出来的中间层。』
 
-这里的问题不在于系统对外部平台的依赖。这样的依赖是无法避免的。我们确实需要使用与数据库交互的代码。但当这样的代码散布在整个项目中时，问题就来了。与数据库交互不是系统中大部分类的首要责任，因此最好的策略就是提取这样的代码并将其组合在公共接口后。这可以使类之间相互独立。同时，通过在一个地方集中你的「入ロ」代码，就能更轻松地切换到一个新的平台而不会影响到系统中更大的部分。这个把具体实现隐藏在一个干净的接口后面的过程，正是大家所知道的「封装」。
+这里的问题不在于系统对外部平台的依赖。这样的依赖是无法避免的。我们确实需要使用与数据库交互的代码。但当这样的代码散布在整个项目中时，问题就来了。与数据库交互不是系统中大部分类的首要责任，因此最好的策略就是提取这样的代码并将其组合在公共接口后。这可以使类之间相互独立。同时，通过在一个地方集中你的「入口」代码，就能更轻松地切换到一个新的平台而不会影响到系统中更大的部分。这个把具体实现隐藏在一个干净的接口后面的过程，正是大家所知道的「封装」。
 
 The DriverManager class provides a static method called getConnection() that accepts a parameters array. According to the makeup of this array, it returns a particular implementation of an interface called Doctrine\DBAL\Driver. You can see the class structure in Figure 8-5.
 
@@ -1148,7 +1152,7 @@ This book is not a pattern catalog. Nevertheless, in the coming chapters, I will
 
 The patterns described will be drawn from key catalogs, including Design Patterns: Elements of Reusable Object-Oriented Software, Patterns of Enterprise Application Architecture by Martin Fowler (Addison-Wesley Professional, 2002) and Core J2EE Patterns: Best Practices and Design Strategies (Prentice Hall, 2001) by Alur, et al. I use the Gang of Four’s categorization as a starting point, dividing patterns into five categories, as follows.
 
-被描述的模式将会从主要的模式目录，包括《设计模式》、《企业应用架构模式》和《J2EE 核心模式》中提取出来，我将以《设计模式》一书的分类为起点，将模式分为以下几种。
+被描述的模式将会从主要的模式目录，包括《设计模式》、《企业应用架构模式》和《J2EE 核心模式》中提取出来，我将以《设计模式》一书的分类为起点，将模式分为以下五类。
 
 2『这三本模式相关的经典一定要去读，真香，哈哈。』
 
@@ -1223,7 +1227,7 @@ class NastyBoss {
     }
 
     public function projectFail() {
-        if (count($this->employees) >0 ) {
+        if (count($this->employees) > 0 ) {
             $emp = array_pop($this->employees);
             $emp->fire();
         }
@@ -1290,7 +1294,7 @@ class NastyBoss {
     }
 
     public function projectFail() {
-        if (count($this->employees) >0 ) {
+        if (count($this->employees) > 0 ) {
             $emp = array_pop($this->employees);
             $emp->fire();
         }
@@ -1405,6 +1409,8 @@ getinstance() 方法使用一系列 if/ese 语句来决定实例化哪个子类�
 
 The global variable is one of the great bugbears of the object-oriented programmer. The reasons should be familiar to you by now. Global variables tie classes into their context, undermining encapsulation (see Chapter 6,「Objects and Design,」and Chapter 8,「Some Pattern Principles,」for more on this). A class that relies on global variables becomes impossible to pull out of one application and use in another, without first ensuring that the new application itself defines the same global variables.
 
+1『全局变量破坏了封装，做一张任意卡片。』——已完成
+
 全局变量是面向对象程序员遇到的引发 bug 的主要原因之一。这是因为全局变量将类捆绑于特定的环境，破坏了封装（参见第 6 章及第 8 章）。如果新的应用程序无法保证一开始就定义了相同的全局变量，那么一个依赖于全局变量的类就无法从一个应用程序中提取出来并应用到新应用程序中。
 
 Although this is undesirable, the unprotected nature of global variables can be a greater problem. Once you start relying on global variables, it is perhaps just a matter of time before one of your libraries declares a global that clashes with another declared elsewhere. You have seen already that, if you are not using namespaces, PHP is vulnerable to class name clashes. But this is much worse. PHP will not warn you when globals collide. The first you will know about it is when your script begins to behave oddly. Worse still, you may not notice any issues at all in your development environment. By using globals, though, you potentially leave your users exposed to new and interesting conflicts when they attempt to deploy your library alongside others.
@@ -1421,6 +1427,8 @@ As I hinted, namespaces provide some protection from this. You can at least scop
 
 Well-designed systems generally pass object instances around via method calls. Each class retains its independence from the wider context, collaborating with other parts of the system via clear lines of communication. Sometimes, though, you find that this forces you to use some classes as conduits for objects that do not concern them, introducing dependencies in the name of good design.
 
+1『作为对象间沟通的类 > 引入依赖关系，直觉上这个是个关键知识点，目前无法消化。（2020=07-18）』
+
 经过良好设计的系统一般通过方法调用来传递对象实例。每个类都会与背景环境保持独立并通过清晰的通信方式来与系统中其他部分进行协作。有时你需要使用一些作为对象间沟通渠道的类，此时就不得不引入依赖关系。
 
 Imagine a Preferences class that holds application-level information. We might use a Preferences object to store data such as DSN strings (Data Source Names hold table and user information about a database), URL roots, file paths, and so on. This is the sort of information that will vary from installation to installation. The object may also be used as a notice board, a central location for messages that could be set or retrieved by otherwise unrelated objects in a system.
@@ -1435,7 +1443,7 @@ You also need to be sure that all objects in your system are working with the sa
 
 Let’s distill the forces in this problem: 1) A Preferences object should be available to any object in your system. 2) A Preferences object should not be stored in a global variable, which can be overwritten. 3) There should be no more than one Preferences object in play in the system. This means that object Y can set a property in the Preferences object, and object Z can retrieve the same property, without either one talking to the other directly (assuming both have access to the Preferences object).
 
-我们还需要保证系统中的所有对象都使用同一个 Preferences 对象。我们不希望一些对象在一个 Preferences 对象上设值，而其他对象从另外一个完全不同的 Preferences 对象上读取数据。让我们提炼出这个问题的几个关键点：1）Preferences 对象应该可以被系统中的任何对象使用。2）Preferences 对象不应该被储存在会被覆写的全局变量中。3）系统中不应超过一个 Preferences，对象。也就是说，Y 对象可设置 Preferences 对象的一个属性，而 Z 对象不需要通过其他对象（假设 Y 和 Z 都可以访问 Preferences）对象就可以直接获得该属性的值。
+我们还需要保证系统中的所有对象都使用同一个 Preferences 对象。我们不希望一些对象在一个 Preferences 对象上设值，而其他对象从另外一个完全不同的 Preferences 对象上读取数据。让我们提炼出这个问题的几个关键点：1）Preferences 对象应该可以被系统中的任何对象使用。2）Preferences 对象不应该被储存在会被覆写的全局变量中。3）系统中不应超过一个 Preferences 对象。也就是说，Y 对象可设置 Preferences 对象的一个属性，而 Z 对象不需要通过其他对象（假设 Y 和 Z 都可以访问 Preferences）对象就可以直接获得该属性的值。
 
 #### 3.2.2 Implementation
 
@@ -1516,7 +1524,7 @@ A static method cannot access object properties because it is, by definition, in
 
 静态方法不能访问普通的对象属性，因为根据静态的定义，它只能被类而不是对象调用。但静态方法可以访问一个静态属性。
 
-### 3.2.3 Consequences
+#### 3.2.3 Consequences
 
 So, how does the Singleton approach compare to using a global variable? First, the bad news. Both Singletons and global variables are prone to misuse. Because Singletons can be accessed from anywhere in a system, they can serve to create dependencies that can be hard to debug. Change a Singleton, and classes that use it may be affected. Dependencies are not a problem in themselves. After all, we create a dependency every time we declare that a method requires an argument of a particular type. The problem is that the global nature of the Singleton lets a programmer bypass the lines of communication defined by class interfaces. When a Singleton is used, the dependency is hidden away inside a method and not declared in its signature. This can make it harder to trace the relationships within a system. Singleton classes should therefore be deployed sparingly and with care.
 
@@ -1707,7 +1715,7 @@ echo $mgr->getFooterText();
 
 So, when I am required to implement MegaCal, supporting it is simply a matter of writing a new implementation for my abstract classes. Figure 9-5 shows the MegaCal classes.
 
-### 3.3.3 Consequences
+#### 3.3.3 Consequences
 
 Notice that the creator classes mirror the product hierarchy. This is a common consequence of the Factory Method pattern and disliked by some as a special kind of code duplication. Another issue is the possibility that the pattern could encourage unnecessary subclassing. If your only reason for subclassing a creator is to deploy the Factory Method pattern, you may need to think again (that’s why I introduced the header and footer constraints to the example here).
 
@@ -1733,7 +1741,7 @@ The BloggsCal classes are unrelated to one another by inheritance (although they
 
 BloggsCal 的类与其他格式（如 MegaCal）互相没有关联（尽管它们实现了一个公共的接口），但它们的功能相似。所以如果系统目前正在使用 BloggsTtdEncoder，那么它应该也能使用 BloggsContactEncoder。看一下如何做到这一点。我们仍从接口开始着手，就如在工厂方法模式中所做的那样（见图 9-7)。
 
-### 3.4.2 Implementation
+#### 3.4.2 Implementation
 
 The abstract CommsManager class defines the interface for generating each of the three products (ApptEncoder, TtdEncoder, and ContactEncoder). You need to implement a concrete creator in order to actually generate the concrete products for a particular family. I illustrate that for the BloggsCal format in Figure 9-8.
 

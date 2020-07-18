@@ -22,10 +22,6 @@ Languages are written in other languages (at least at first). PHP itself, for ex
 
 The ProblemWhen you create web (or command-line) interfaces in PHP, you give the user access to functionality. The trade-off in interface design is between power and ease-of-use. As a rule, the more power you give your user, the more cluttered and confusing your interface becomes. Good interface design can help a lot here, of course. But if 90 percent of users are using the same 30 percent of your features, the costs of piling on the functionality may outweigh the benefits. You may wish to consider simplifying your system for most users. But what of the power users, that ten percent who use your system’s advanced features? Perhaps you can accommodate them in a different way. By offering such users a domain language (often called a  DSL—Domain Specific Language), you might actually extend the power of your application.
 
-235
-
-Chapter 11 ■ performing and representing tasks
-
 Of course, you have a programming language at hand right away. It’s called PHP. Here’s how you could 
 
 allow your users to script your system:
@@ -124,10 +120,6 @@ Some symbols have special meanings (that should be familiar from regular Express
 
 In Figure 11-1, I represent the elements of my grammar as classes.
 
-237
-
-Chapter 11 ■ performing and representing tasks
-
 Figure 11-1.  The Interpreter classes that make up the MarkLogic language
 
 As you can see, BooleanAndExpression and its siblings inherit from OperatorExpression. This is 
@@ -145,10 +137,6 @@ abstract class Expression{    private static $keycount = 0;    private $key;
     abstract public function interpret(InterpreterContext $context);
 
     public function getKey()    {        if (! isset($this->key)) {            self::$keycount++;            $this->key = self::$keycount;        }
-
-238
-
-Chapter 11 ■ performing and representing tasks
 
         return $this->key;    }}
 
@@ -175,10 +163,6 @@ $context = new InterpreterContext();$literal = new LiteralExpression('four');$li
 Here’s the output:
 
 four
-
-239
-
-Chapter 11 ■ performing and representing tasks
 
 I’ll begin with the InterpreterContext class. As you can see, it is really only a front end for an associative array, $expressionstore, which I use to hold data. The replace() method accepts an Expression object as key and a value of any type, and then adds the pair to $expressionstore. It also provides a lookup() method for retrieving data.
 
@@ -212,10 +196,6 @@ class VariableExpression extends Expression{    private $name;    private $val;
 
     public function getKey()    {        return $this->name;    }}
 
-240
-
-Chapter 11 ■ performing and representing tasks
-
 // listing 11.06
 
 $context = new InterpreterContext();$myvar = new VariableExpression('input', 'four');$myvar->interpret($context);print $context->lookup($myvar) . "\n";// output: four
@@ -245,10 +225,6 @@ abstract class OperatorExpression extends Expression{    protected $l_op;    pro
     public function __construct(Expression $l_op, Expression $r_op)    {        $this->l_op = $l_op;        $this->r_op = $r_op;    }
 
     public function interpret(InterpreterContext $context)    {        $this->l_op->interpret($context);        $this->r_op->interpret($context);        $result_l = $context->lookup($this->l_op);
-
-241
-
-Chapter 11 ■ performing and representing tasks
 
         $result_r = $context->lookup($this->r_op);        $this->doInterpret($context, $result_l, $result_r);    }
 
@@ -310,33 +286,11 @@ Now, with my statement prepared, I am ready to provide a value for the input var
 
 foreach (["four", "4", "52"] as $val) {    $input->setValue($val);    print "$val:\n";
 
-243
-
-Chapter 11 ■ performing and representing tasks
-
     $statement->interpret($context);    if ($context->lookup($statement)) {        print "top marks\n\n";    } else {        print "dunce hat on\n\n";    }}
 
 In fact, I run the code three times, with three different values. The first time through, I set the temporary 
 
 variable $val to "four", assigning it to the input VariableExpression object using its setValue() method. I then call interpret() on the topmost Expression object (the BooleanOrExpression object that contains references to all other expressions in the statement). Here are the internals of this invocation, step-by-step:
-
-•	
-
-•	
-
-•	
-
-•	
-
-•	
-
-•	
-
-•	
-
-•	
-
-•	
 
 $statement calls interpret() on its $l_op property (the first EqualsExpression object).
 
@@ -364,10 +318,6 @@ four:top marks
 
 52:dunce hat on
 
-244
-
-Chapter 11 ■ performing and representing tasks
-
 You may need to read through this section a few times before the process clicks. The old issue of object versus class trees might confuse you, here. Expression classes are arranged in an inheritance hierarchy, just as Expression objects are composed into a tree at runtime. As you read back through the code, keep this distinction in mind.
 
 Figure 11-2 shows the complete class diagram for the example.
@@ -388,10 +338,6 @@ The Strategy Pattern
 
 Classes often try to do too much. It’s understandable: you create a class that performs a few related actions; and, as you code, some of these actions need to be varied according to the circumstances. At the same time, your class needs to be split into subclasses. Before you know it, your design is being pulled apart by competing forces.
 
-245
-
-Chapter 11 ■ performing and representing tasks
-
 The ProblemSince I have recently built a marking language, I’m sticking with the quiz example. Quizzes need questions, so you build a Question class, giving it a mark() method. All is well until you need to support different marking mechanisms.
 
 Imagine that you are asked to support the simple MarkLogic language, marking by straight match and 
@@ -405,10 +351,6 @@ This would serve you well, as long as marking remains the only aspect of the cla
 though, that you are called on to support different kinds of questions: those that are text-based and those that support rich media. This presents you with a problem when it comes to incorporating these forces in one inheritance tree, as you can see in Figure 11-4.
 
 Figure 11-4.  Defining subclasses according to two forces
-
-246
-
-Chapter 11 ■ performing and representing tasks
 
 Not only have the number of classes in the hierarchy ballooned, but you also necessarily introduce 
 
@@ -435,10 +377,6 @@ Here are the Question classes rendered as code:
 abstract class Question{    protected $prompt;    protected $marker;
 
     public function __construct(string $prompt, Marker $marker)
-
-247
-
-Chapter 11 ■ performing and representing tasks
 
     {        $this->prompt = $prompt;        $this->marker = $marker;    }
 
@@ -530,10 +468,6 @@ The Observer Pattern
 
 Orthogonality is a virtue I have described before. One of our objectives as programmers should be to build components that can be altered or moved with minimal impact on other components. If every change we make to one component necessitates a ripple of changes elsewhere in the codebase, the task of development can quickly become a spiral of bug creation and elimination.
 
-250
-
-Chapter 11 ■ performing and representing tasks
-
 Of course, orthogonality is often just a dream. Elements in a system must have embedded references 
 
 to other elements. You can, however, deploy various strategies to minimize this. You have seen various examples of polymorphism in which the client understands a component’s interface, but the actual component may vary at runtime.
@@ -557,10 +491,6 @@ class Login{    const LOGIN_USER_UNKNOWN = 1;    const LOGIN_WRONG_PASS = 2;    
     private function setStatus(int $status, string $user, string $ip)    {        $this->status = [$status, $user, $ip];    }
 
     public function getStatus(): array    {        return $this->status;    }}
-
-251
-
-Chapter 11 ■ performing and representing tasks
 
 In a real-world example, of course, the handleLogin() method would validate the user against a storage 
 
@@ -592,10 +522,6 @@ These are all easy enough requests to fulfill, but addressing them comes at a co
 
 Login class soon becomes very tightly embedded into this particular system. You cannot pull it out and drop it into another product without going through the code line-by-line and removing everything that is specific to the old system. This isn’t too hard, of course, but then you are off down the road of cut-and-paste coding. 
 
-252
-
-Chapter 11 ■ performing and representing tasks
-
 Now that you have two similar but distinct Login classes in your systems, you find that an improvement to one will necessitate the same changes in the other—until, inevitably and gracelessly, they fall out of alignment with one another.
 
 So what can you do to save the Login class? The Observer pattern is a great fit here.
@@ -617,10 +543,6 @@ class Login implements Observable{    private $observers = [];    private $stora
     public function attach(Observer $observer)    {        $this->observers[] = $observer;    }
 
     public function detach(Observer $observer)    {        $this->observers = array_filter(            $this->observers,            function ($a) use ($observer) {                return (! ($a === $observer ));            }        );    }
-
-253
-
-Chapter 11 ■ performing and representing tasks
 
     public function notify()    {        foreach ($this->observers as $obs) {            $obs->update($this);        }    }    // ...}
 
@@ -682,10 +604,6 @@ The LoginObserver class requires a Login object in its constructor. It stores a 
 
 Login::attach(). When update() is called, it checks that the provided Observable object is the correct 
 
-255
-
-Chapter 11 ■ performing and representing tasks
-
 reference. It then calls a Template Method: doUpdate(). I can now create a suite of LoginObserver objects, all of which can be secure they are working with a Login object and not just any old Observable:
 
 // listing 11.30
@@ -708,10 +626,6 @@ So now I have created a flexible association between the subject classes and the
 
 the class diagram for the example in Figure 11-6.
 
-256
-
-Chapter 11 ■ performing and representing tasks
-
 Figure 11-6.  The Observer pattern
 
 PHP provides built-in support for the Observer pattern through the bundled SPL (Standard PHP 
@@ -723,10 +637,6 @@ Library) extension. The SPL is a set of tools that help with common, largely obj
 class Login implements \SplSubject{    private $storage;    // ...
 
     public function __construct()    {        $this->storage = new \SplObjectStorage();    }
-
-257
-
-Chapter 11 ■ performing and representing tasks
 
     public function attach(\SplObserver $observer)    {        $this->storage->attach($observer);    }
 
@@ -747,10 +657,6 @@ Chapter 11 ■ performing and representing tasks
 There are no real differences, as far as SplObserver (which was Observer) and SplSubject (which was 
 
 Observable) are concerned—except, of course, I no longer need to declare the interfaces, and I must alter my type hinting according to the new names. SplObjectStorage provides you with a really useful service, however. You may have noticed that, in my initial example, my implementation of Login::detach() applied array_filter (together with an anonymous function) to the $observers array, in order to find and remove the argument object. The SplObjectStorage class does this work for you under the hood. It implements attach() and detach() methods, and can be passed to foreach and iterated like an array.
-
-258
-
-Chapter 11 ■ performing and representing tasks
 
  You can read more about spL in the php documentation at http://www.php.net/spl. in particular, 
 
@@ -782,10 +688,6 @@ The ProblemThink back to the Composite example from the previous chapter. For a 
 
 class Army extends CompositeUnit{    public function bombardStrength(): int    {        $strength = 0;
 
-259
-
-Chapter 11 ■ performing and representing tasks
-
         foreach ($this->units() as $unit) {            $strength += $unit->bombardStrength();        }
 
         return $strength;    }}
@@ -813,10 +715,6 @@ This method can then be overridden in the CompositeUnit class:
 // listing 11.38
 
 abstract class CompositeUnit extends Unit{    // ...    public function textDump($num = 0): string
-
-260
-
-Chapter 11 ■ performing and representing tasks
 
     {        $txtout = parent::textDump($num);        foreach ($this->units as $unit) {            $txtout .= $unit->textDump($num + 1);        }
 
@@ -852,10 +750,6 @@ As you can see, the accept() method expects an ArmyVisitor object to be passed t
 
 you dynamically to define the method on the ArmyVisitor you wish to call, so I construct a method name based on the name of the current class and invoke that method on the provided ArmyVisitor object. If the current class is Army, then I invoke ArmyVisitor::visitArmy(). If the current class is TroopCarrier, then 
 
-261
-
-Chapter 11 ■ performing and representing tasks
-
 I invoke ArmyVisitor::visitTroopCarrier(). And so on. This saves me from implementing accept() on every leaf node in my class hierarchy. While I was in the area, I also added two methods of convenience: getDepth() and setDepth(). These can be used to store and retrieve the depth of a unit in a tree. setDepth() is invoked by the unit’s parent when it adds it to the tree from CompositeUnit::addUnit():
 
 // listing 11.40
@@ -874,7 +768,6 @@ I included an accept() method in this fragment. This calls Unit::accept() to inv
 
 method on the provided ArmyVisitor object. Then it loops through any child objects calling accept(). In fact, because accept() overrides its parent operation, the accept() method allows me to do two things:
 
-•	•	
 
 Invoke the correct visitor method for the current component
 
@@ -885,10 +778,6 @@ I have yet to define the interface for ArmyVisitor. The accept() methods should 
 // listing 11.41
 
 abstract class ArmyVisitor{    abstract public function visit(Unit $node);
-
-262
-
-Chapter 11 ■ performing and representing tasks
 
     public function visitArcher(Archer $node)    {        $this->visit($node);    }
 
@@ -911,10 +800,6 @@ class TextDumpArmyVisitor extends ArmyVisitor{    private $text = "";
     public function visit(Unit $node)    {        $txt = "";        $pad = 4*$node->getDepth();        $txt .= sprintf("%{$pad}s", "");        $txt .= get_class($node).": ";        $txt .= "bombard: ".$node->bombardStrength()."\n";        $this->text .= $txt;    }
 
     public function getText()    {        return $this->text;    }}
-
-263
-
-Chapter 11 ■ performing and representing tasks
 
 Let’s look at some client code, and then walk through the whole process:
 
@@ -944,10 +829,6 @@ class TaxCollectionVisitor extends ArmyVisitor{    private $due = 0;    private 
 
     public function visitArcher(Archer $node)    {        $this->levy($node, 2);    }
 
-264
-
-Chapter 11 ■ performing and representing tasks
-
     public function visitCavalry(Cavalry $node)    {        $this->levy($node, 3);    }
 
     public function visitTroopCarrierUnit(TroopCarrierUnit $node)    {        $this->levy($node, 5);    }
@@ -974,10 +855,6 @@ The TaxCollectionVisitor object is passed to the Army object’s accept() method
 
 again, Army passes a reference to itself to the visitArmy() method, before calling accept() on its children. The components are blissfully unaware of the operations performed by their visitor. They simply collaborate with its public interface, each one passing itself dutifully to the correct method for its type.
 
-265
-
-Chapter 11 ■ performing and representing tasks
-
 In addition to the methods defined in the ArmyVisitor class, TaxCollectionVisitor provides two 
 
 summary methods, getReport() and getTax(). Invoking these provides the data you might expect:
@@ -1001,10 +878,6 @@ Because iteration is separated from the operations that visitor objects perform,
 degree of control. For example, you cannot easily create a visit() method that does something both before and after child nodes are iterated. One way around this would be to move responsibility for iteration into the visitor objects. The trouble with this is that you may end up duplicating the traversal code from visitor to visitor.
 
 By default, I prefer to keep traversal internal to the visited classes, but externalizing it provides you with one distinct advantage. You can vary the way that you work through the visited classes on a visitor-by-visitor basis.
-
-266
-
-Chapter 11 ■ performing and representing tasks
 
 The Command Pattern
 
@@ -1030,10 +903,6 @@ Here’s the abstract base class:
 
 abstract class Command
 
-267
-
-Chapter 11 ■ performing and representing tasks
-
 {    abstract public function execute(CommandContext $context): bool;}
 
 And here’s a concrete Command class:
@@ -1056,10 +925,6 @@ class CommandContext{    private $params = [];    private $error = "";
 
     public function __construct()    {        $this->params = $_REQUEST;    }
 
-268
-
-Chapter 11 ■ performing and representing tasks
-
     public function addParam(string $key, $val)    {        $this->params[$key] = $val;    }
 
     public function get(string $key): string    {        if (isset($this->params[$key])) {            return $this->params[$key];        }        return null;    }
@@ -1079,10 +944,6 @@ class CommandFactory{    private static $dir = 'commands';
     public static function getCommand(string $action = 'Default'): Command    {        if (preg_match('/\W/', $action)) {            throw new Exception("illegal characters in action");        }
 
         $class = __NAMESPACE__ . "\\commands\\" . UCFirst(strtolower($action)) . "Command";
-
-269
-
-Chapter 11 ■ performing and representing tasks
 
         if (! class_exists($class)) {            throw new CommandNotFoundException("no '$class' class located");        }
 
@@ -1107,10 +968,6 @@ class Controller{    private $context;
     public function process()    {        $action = $this->context->get('action');        $action = ( is_null($action) ) ? "default" : $action;        $cmd = CommandFactory::getCommand($action);
 
         if (! $cmd->execute($this->context)) {            // handle failure        } else {            // success            // dispatch view        }    }}
-
-270
-
-Chapter 11 ■ performing and representing tasks
 
 Here is some code to invoke the class:
 
@@ -1140,10 +997,6 @@ class FeedbackCommand extends Command{    public function execute(CommandContext
 
  ■ Note class. the framework for running commands presented here is a simplified version of another pattern that you will encounter: the front Controller.
 
-271
-
-Chapter 11 ■ performing and representing tasks
-
 This class will be run in response to a "feedback" action string, without the need for any changes in the 
 
 controller or CommandFactory classes.
@@ -1157,10 +1010,6 @@ The Null Object Pattern
 Half the problems that programmers face seem to be related to type. That’s one reason PHP has increasingly supported type checks for method declarations and returns. If dealing with a variable that contains the wrong type is a problem, dealing with one that contains no type at all is at least as bad. This happens all the time, since so many functions return null when they fail to generate a useful value. You can avoid inflicting this issue on yourself and others by using the Null Object pattern in your projects. As you will see, while the other patterns in this chapter try to get stuff done, Null Object is designed to do nothing as gracefully as possible.
 
 The ProblemIf your method has been charged with the task of finding an object, sometimes there is little to be done but to admit defeat. The information provided by the calling code may be stale or a resource may be unavailable. If 
-
-272
-
-Chapter 11 ■ performing and representing tasks
 
 the failure is catastrophic, you might choose to throw an exception. Often, though, you’ll want to be a little more forgiving. In such a case, returning a null value might seem like a good way of signaling failure to the client.The problem here is that your method is breaking its contract. If it has committed to return an object 
 
@@ -1187,10 +1036,6 @@ Unit objects. Let’s build a fake UnitAcquisition object:
 class UnitAcquisition{    function getUnits(int $x, int $y): array    {        // 1. looks up x and y in local data and gets a list of unit ids        // 2. goes off to a data source and gets full unit data        // here's some fake data        $army = new Army();        $army->addUnit(new Archer());        $found = [            new Cavalry(),            null,            new LaserCanonUnit(),            $army        ];
 
         return $found;    }}
-
-273
-
-Chapter 11 ■ performing and representing tasks
 
 In this class, I hide the process of getting Unit data. Of course, in a real system, some actual look up would be performed here. I have contented myself with a few direct instantiations. Notice, though, that I embedded a sneaky null value in the $found array. This might happen, for example, if our network game client holds metadata that has fallen out of alignment with the state of data on a server.Armed with its array of Unit objects, TileForces can provide some functionality:
 
@@ -1226,10 +1071,6 @@ The most obvious solution is to check each element of the array before working w
 
         return $power;    }
 
-274
-
-Chapter 11 ■ performing and representing tasks
-
 On its own, this isn’t too much of a problem. But imagine a version of TileForces that performs all sorts 
 
 of operations on the elements in its $units property. As soon as we begin to replicate the is_null() check in multiple places, we are presented once again with a particular code smell. Often, the answer to parallel chunks of client code is to replace multiple conditionals with polymorphism. We can do that here, too.
@@ -1255,10 +1096,6 @@ UnitAcquisition to create a NullUnit rather than use a null:
         $found = [            new Cavalry(),            new NullUnit(),            new LaserCanonUnit(),            $army        ];
 
     return $found;    }
-
-275
-
-Chapter 11 ■ performing and representing tasks
 
 The client code in TileForces can call any methods it likes on a NullUnit object without problem or 
 

@@ -108,10 +108,6 @@ Most of the patterns in this book find a natural place in the layers of an enter
 
 RegistryThe Registry pattern is all about providing system-wide access to objects. These days, it is almost an article of faith that globals are bad. Like other sins, though, global data is fatally attractive. This is so much the case that object-oriented architects have felt it necessary to reinvent globals under a new name. You encountered the Singleton pattern in Chapter 9, although it is true that singleton objects do not suffer from all the ills that beset global variables. In particular, you cannot overwrite a singleton by accident. Singletons, then, are  low-fat globals. You should remain suspicious of singleton objects, though, because they invite you to anchor your classes into a system, thereby introducing coupling.
 
-280
-
-Chapter 12 ■ enterprise patterns
-
 Nevertheless, singletons are so useful at times that many programmers (including me) can’t bring 
 
 themselves to give them up.
@@ -146,10 +142,6 @@ The term「Registry」is drawn from Fowler’s Patterns of Enterprise Applicatio
 
 all patterns, implementations pop up everywhere. In The Pragmatic Programmer: from Journeyman to Master (Addison-Wesley Professional, 1999), David Hunt and David Thomas liken a registry class to a police incident-notice board. Detectives on one shift leave evidence and sketches on the board, which are then picked up by new detectives on another shift. I have also seen the Registry pattern called Whiteboard and Blackboard.
 
-281
-
-Chapter 12 ■ enterprise patterns
-
 ImplementationFigure 12-2 shows a Registry object that stores and serves Request objects.
 
 Figure 12-2.  A simple registry
@@ -169,10 +161,6 @@ Here is this class in code form:
         return $this->request;    }}
 
 // listing 12.03class Request{}
-
-282
-
-Chapter 12 ■ enterprise patterns
 
 You can then access the same Request from any part of your system:
 
@@ -199,10 +187,6 @@ I have been known to throw caution to the wind and use a key-based system, like 
 The benefit here is that you don’t need to create methods for every object you wish to store and serve. 
 
 The downside, though, is that you reintroduce global variables by the back door. The use of arbitrary strings as keys for the objects you store means that there is nothing stopping one part of your system from overwriting a key/value pair when adding an object. I have found it useful to use this map-like structure during development, and then shift over to explicitly named methods when I’m clear about the data I am going to need to store and retrieve.
-
-283
-
-Chapter 12 ■ enterprise patterns
 
  ■ Note  the registry pattern is not the only way of managing the services a system requires. in Chapter 10, we covered a similar strategy named Dependency injection, which is used in popular frameworks like symfony.
 
@@ -238,10 +222,6 @@ Registry objects can be useful for testing, too. The static instance() method ca
 
     // ...
 
-284
-
-Chapter 12 ■ enterprise patterns
-
     public static function testMode(bool $mode = true)    {        self::$instance = null;        self::$testmode = $mode;    }
 
     public static function instance(): self    {        if (is_null(self::$instance)) {            if (self::$testmode) {                self::$instance = new MockRegistry();            } else {                self::$instance = new self();            }        }
@@ -261,10 +241,6 @@ Registry, Scope, and PHPThe term scope is often used to describe the visibility 
 In other languages, notably Java and Perl (running on the ModPerl Apache module), there is the concept of application scope. Variables that occupy this space are available across all instances of the application. This is fairly alien to PHP; but in larger applications, it might be considered useful to have access to an application-wide space for accessing configuration variables.
 
 In previous editions of this book, I demonstrated examples of session- and application-scoped registry classes; but in the ten years or so since I first wrote that sample code, I have never had cause to use anything but a request-scoped registry. There is an initialization cost to this per-request approach, but you will typically use caching strategies to manage this.
-
-285
-
-Chapter 12 ■ enterprise patterns
 
 ConsequencesRegistry objects make their data globally available. This means that any class that acts as a client for a registry will exhibit a dependency that is not declared in its interface. This can become a serious problem if you begin to rely on Registry objects for lots of the data in your system. Registry objects are best used sparingly, for a well-defined set of data items.
 
@@ -290,10 +266,6 @@ The ProblemWhere requests are handled at multiple points throughout a system, it
 
 where control is distributed among its views. In a complex system, a submission in one view may lead to any number of result pages, according to the input and the success of any operations performed at the logic layer. Forwarding from view to view can get messy, especially if the same view might be used in different flows.
 
-286
-
-Chapter 12 ■ enterprise patterns
-
 ImplementationAt heart, the Front Controller pattern defines a central point of entry for every request. It processes the request and uses it to select an operation to perform. Operations are often defined in specialized command objects organized according to the Command pattern.
 
 Figure 12-3 shows an overview of a Front Controller implementation.
@@ -313,10 +285,6 @@ participants. Here is a simple Controller class:
     private function init()    {        $this->reg->getApplicationHelper()->init();    }
 
     private function handleRequest()    {        $request = $reg->getRequest();
-
-287
-
-Chapter 12 ■ enterprise patterns
 
         $resolver = new CommandResolver();        $cmd = $resolver->getCommand($request);        $cmd->execute($request);    }}
 
@@ -348,10 +316,6 @@ ApplicationHelperThe ApplicationHelper class is not essential to Front Controlle
 
     public function __construct()    {        $this->reg = Registry::instance();    }
 
-288
-
-Chapter 12 ■ enterprise patterns
-
     public function init()    {        $this->setupOptions();
 
         if (isset($_SERVER['REQUEST_METHOD'])) {            $request = new HttpRequest();        } else {            $request = new CliRequest();        }
@@ -380,10 +344,6 @@ code listings. For the sake of completeness, though, here are the additional Reg
 
     public function getRequest(): Request    {        if (is_null($this->request)) {
 
-289
-
-Chapter 12 ■ enterprise patterns
-
             throw new \Exception("No Request set");        }
 
         return $this->request;    }
@@ -409,10 +369,6 @@ Here is the simple configuration file:
 [commands]/=\popp\ch12\batch05\DefaultCommand
 
 CommandResolverA controller needs a way of deciding how to interpret an HTTP request, so that it can invoke the right code to fulfill that request. You could easily include this logic within the Controller class itself, but I prefer to use a specialist class for the purpose. That makes it easy to refactor for polymorphism, if necessary.
-
-290
-
-Chapter 12 ■ enterprise patterns
 
 A Front Controller often invokes application logic by running a Command object (I introduced the 
 
@@ -443,10 +399,6 @@ will take the logical approach, mapping URL fragments to Command classes:
 This simple class acquires a Conf object from the registry and uses the URL path (provided by the 
 
 Request::getPath() method) to attempt to get a class name. If the class name is found, and if the class both exists and extends the Command base class, then it is instantiated and returned.
-
-291
-
-Chapter 12 ■ enterprise patterns
 
 If any of these conditions are not met, the getCommand() method degrades gracefully by serving up a 
 
@@ -494,10 +446,6 @@ Here is a simple Request superclass:
 
 // listing 12.15abstract class Request
 
-292
-
-Chapter 12 ■ enterprise patterns
-
 {    protected $properties;    protected $feedback = [];    protected $path = "/";
 
     public function __construct()    {        $this->init();    }
@@ -519,10 +467,6 @@ Chapter 12 ■ enterprise patterns
     public function getFeedback(): array    {        return $this->feedback;    }
 
     public function getFeedbackString($separator = "\n"): string    {        return implode($separator, $this->feedback);    }
-
-293
-
-Chapter 12 ■ enterprise patterns
 
     public function clearFeedback()    {        $this->feedback = [];    }}
 
@@ -547,10 +491,6 @@ into properties. It also detects an argument with a path: prefix and assigns the
 // listing 12.17class CliRequest extends Request{    public function init()    {        $args = $_SERVER['argv'];
 
         foreach ($args as $arg) {            if (preg_match("/^path:(\S+)/", $arg, $matches)) {                $this->path = $matches[1];            } else {                if (strpos($arg, '=')) {                    list($key, $val) = explode("=", $arg);                    $this->setProperty($key, $val);                }
-
-294
-
-Chapter 12 ■ enterprise patterns
 
             }        }
 
@@ -582,10 +522,6 @@ The file, main.php, contains some HTML and a call into the Request object to che
 
 </body></html>
 
-295
-
-Chapter 12 ■ enterprise patterns
-
 As you can see, the feedback message set by the default command has found its way into the output. 
 
 Let’s review the full process that leads to this outcome.
@@ -607,10 +543,6 @@ The requirement that all configuration information be loaded up for every reques
 drawback. All approaches will suffer from this to some extent, but Front Controller often requires additional information, such as logical maps of commands and views.
 
 This overhead can be eased considerably by caching such data. The most efficient way of doing this is to add the data to your system as native PHP. This is fine if you are the sole maintainer of a system; but if you have nontechnical users, you may need to provide a configuration file. You can still automate the 
-
-296
-
-Chapter 12 ■ enterprise patterns
 
 native PHP approach, though, by creating a system that reads a configuration file and then builds PHP data structures, which it writes to a cache file. Once the native PHP cache has been created, the system will use it in preference to the configuration file until a change is made and the cache must be rebuilt.
 
@@ -652,10 +584,6 @@ their job, which is to process input, invoke application logic, and handle any r
 
 ImplementationAs always, the key to this pattern is the interface. An application controller is a class (or a set of classes) that the front controller can use to acquire commands based on a user request and to find the right view to present after the command has been run. You can see the bare bones of this relationship in Figure 12-5.
 
-297
-
-Chapter 12 ■ enterprise patterns
-
 Figure 12-5.  The Application Controller pattern
 
 As with all patterns in this chapter, the aim is to make things as simple as possible for the client  
@@ -675,10 +603,6 @@ The Front ControllerHere is how the FrontController might work with the AppContr
 Moving on from the previous example, the principal difference is that, in addition to changing a class 
 
 name from CommandResolver to AppController (admittedly a somewhat cosmetic move), we now retrieve a ViewComponent as well as a Command object. Notice that this code uses a registry object to acquire the Request object. We might also store the AppController object in the Registry—even if it isn’t used elsewhere by other components. Classes that avoid direct instantiation are generally more flexible and easier to test.
-
-298
-
-Chapter 12 ■ enterprise patterns
 
 So by what logic does the AppController know which view to associate with which command? As 
 
@@ -710,10 +634,6 @@ The Configuration FileThe system’s owner can determine the way that commands a
 
         <command path="/addvenue" class="\popp\ch12\batch06\AddVenue">            <view name="addvenue" />            <status value="CMD_OK">
 
-299
-
-Chapter 12 ■ enterprise patterns
-
                 <forward path="/addspace" />            </status>        </command>
 
         <command path="/addspace" class="\popp\ch12\batch06\AddSpace">            <view name="addspace" />            <status value="CMD_OK">                <forward path="/listvenues" />            </status>        </command>
@@ -744,10 +664,6 @@ Parsing the Configuration FileThanks to the SimpleXML extension, we don’t have
 
 // listing 12.21class ViewComponentCompiler
 
-300
-
-Chapter 12 ■ enterprise patterns
-
 {    private static $defaultcmd = DefaultCommand::class;
 
     public function parseFile($file)    {        $options = \simplexml:load_file($file);        return $this->parse($options);    }
@@ -769,10 +685,6 @@ Chapter 12 ■ enterprise patterns
     public function processView(ComponentDescriptor $pathobj, int $statusval, \SimpleXMLElement $el)    {        if (isset($el->view) && isset($el->view['name'])) {            $pathobj->setView($statusval, new TemplateViewComponent((string)$el->view['name']));        }
 
         if (isset($el->forward) && isset($el->forward['path'])) {            $pathobj->setView($statusval, new ForwardViewComponent((string)$el->forward['path']));        }    }}
-
-301
-
-Chapter 12 ■ enterprise patterns
 
 The real action here takes place in the parse() method, which accepts a SimpleXMLElement object for 
 
@@ -798,11 +710,7 @@ Figure 12-6.  Compiling commands and views
 
 Managing the Component DataYou have seen that the compiled ComponentDescriptor objects are stored in a Conf object—essentially a getter and setter for an associative array. The keys here are the paths the system recognizes: /, for example, or /addvenue.
 
-302
-
 So let’s take a look at ComponentDescriptor, which manages command, view, and forward information:
-
-Chapter 12 ■ enterprise patterns
 
 // listing 12.22class ComponentDescriptor{    private $path;    private static $refcmd;    private $cmdstr;
 
@@ -823,10 +731,6 @@ Chapter 12 ■ enterprise patterns
     public function resolveCommand(string $class): Command    {        if (is_null($class)) {            throw new AppException("unknown class '$class'");        }
 
         if (! class_exists($class)) {            throw new AppException("class '$class' not found");        }
-
-303
-
-Chapter 12 ■ enterprise patterns
 
         $refclass = new \ReflectionClass($class);
 
@@ -851,10 +755,6 @@ Let’s take a look:
         return $cmd;    }
 
     public function getView(Request $request): ViewComponent    {        try {            $descriptor = $this->getDescriptor($request);            $view = $descriptor->getView($request);        } catch (AppException $e) {            return new TemplateViewComponent(self::$defaultview);        }
-
-304
-
-Chapter 12 ■ enterprise patterns
 
         return $view;    }
 
@@ -883,10 +783,6 @@ TemplateViewDisplay:
 // listing 12.25class TemplateViewComponent implements ViewComponent{    private $name = null;
 
     public function __construct(string $name)    {        $this->name = $name;    }
-
-305
-
-Chapter 12 ■ enterprise patterns
 
     public function render(Request $request)    {        $reg = Registry::instance();        $conf = $reg->getConf();        $path = $conf->get("templatepath");
 
@@ -918,11 +814,7 @@ This class simply calls forward() on the provided Request object. The implementa
 
     public function forward(string $path)    {        header("Location: {$path}");        exit;    }
 
-306
-
 For CliRequest we can’t rely on the server to handle forwarding, so we have to take a different 
-
-Chapter 12 ■ enterprise patterns
 
 approach:
 
@@ -941,10 +833,6 @@ And that leads us full circle, an excellent moment for an overview!The strategie
 considerably; the key is that these are hidden away from the wider system. Figure 12-7 shows the high-level process by which a Front Controller class uses an application controller to acquire first a Command object and then a view.
 
 Figure 12-7.  Using an application controller to acquire commands and views
-
-307
-
-Chapter 12 ■ enterprise patterns
 
 Note that the view that is rendered in Figure 12-7 could be one of ForwardViewComponent (which will 
 
@@ -978,10 +866,6 @@ In a good example of the Template Method pattern, the execute() method calls the
 
 doExecute() method, and caches the return value in the Request object. This will be used a little later by the ComponentDescriptor in selecting the correct view to return.
 
-308
-
-Chapter 12 ■ enterprise patterns
-
 A Concrete CommandHere is how a simple AddVenue command might look:
 
 // listing 12.31class AddVenue extends Command{    public function doExecute(Request $request): int    {        $name = $request->getProperty("venue_name");
@@ -1001,10 +885,6 @@ I usually hear this whisper when I find myself adding conditionals to my command
 Of course, an application controller can use all sorts of mechanisms to build its associations among 
 
 commands and views, not just the approach I have taken here. Even if you’re starting off with a fixed relationship among a request string, a command name, and a view in all cases, you could still benefit from building an application controller to encapsulate this. It will give you considerable flexibility when you must refactor in order to accommodate more complexity.
-
-309
-
-Chapter 12 ■ enterprise patterns
 
 Page ControllerMuch as I like the Front Controller pattern, it is not always the right approach to take. The investment in up-front design tends to reward the larger system and penalize simple, need-results-now projects. The Page Controller pattern will probably be familiar to you already as it is a common strategy. Nevertheless, it is worth exploring some of the issues.
 
@@ -1027,10 +907,6 @@ Here is the simplest flavor of Page Controller:
 try {    $venuemapper = new VenueMapper();    $venues = $venuemapper->findAll();} catch (\Exception $e) {    include('error.php');    exit(0);}
 
 // default page follows?><html><head><title>Venues</title></head><body><h1>Venues</h1>
-
-310
-
-Chapter 12 ■ enterprise patterns
 
 <?php foreach ($venues as $venue) { ?>    <?php print $venue->getName(); ?><br /><?php } ?>
 
@@ -1064,10 +940,6 @@ starting with a rudimentary Page Controller base class:
 
     public function init()    {        if (isset($_SERVER['REQUEST_METHOD'])) {            $request = new HttpRequest();        } else {            $request = new CliRequest();        }
 
-311
-
-Chapter 12 ■ enterprise patterns
-
         $this->reg->setRequest($request);    }
 
     public function forward(string $resource)    {        $request = $this->getRequest();        $request->forward($resource);    }
@@ -1091,10 +963,6 @@ separate from the view. The latter approach is cleaner, I think, so that’s the
             if (is_null($request->getProperty('submitted'))) {                $request->addFeedback("choose a name for the venue");                $this->render(__DIR__ . '/view/add_venue.php', $request);            } elseif (is_null($name)) {                $request->addFeedback("name is a required field");                $this->render(__DIR__ . '/view/add_venue.php', $request);
 
                 return;            } else {                // add to database                $this->forward('listvenues.php');            }
-
-312
-
-Chapter 12 ■ enterprise patterns
 
         } catch (Exception $e) {            $this->render(__DIR__.'/view/error.php', $request);        }    }}
 
@@ -1121,10 +989,6 @@ Here is the view associated with the AddVenueController class:
 <form action="/addvenue.php" method="get">    <input type="hidden" name="submitted" value="yes"/>    <input type="text" name="venue_name" /></form>
 
 </body></html>
-
-313
-
-Chapter 12 ■ enterprise patterns
 
 As you can see, the view does nothing but display data and provide the mechanism for generating a new 
 
@@ -1153,10 +1017,6 @@ marked as it is with Front Controller. Front Controller classes need to work out
 Duplication can be a problem, but the use of a common superclass can factor away a lot of that. You can 
 
 also save on setup time because you can avoid loading data that you won’t need in the current context. Of course, you could do that with Front Controller, too, but the process of discovering what is needed, and what is not, would be much more complicated.
-
-314
-
-Chapter 12 ■ enterprise patterns
 
 The real drawback to the pattern lies in situations where the paths through your views are complex—especially when the same view is used in different ways at different times (add and edit screens are a good example of this). You can find that you get tangled up in conditionals and state checking, and it becomes hard to get an overview of your system.
 
@@ -1198,10 +1058,6 @@ To prevent this from happening, you should handle application processing elsewhe
 
 ImplementationOnce you have created a wider framework, the view layer is not a massive programming challenge.  Of course, it remains a huge design and information-architecture issue, but that’s another book!
 
-315
-
-Chapter 12 ■ enterprise patterns
-
 Template View was so named by Fowler. It is a staple pattern used by most enterprise programmers. In some languages, an implementation might involve cooking up a templating system that translates tags to values set by the system. You have that option in PHP, too. You could use a templating engine like the excellent Twig. My preferred option, though, is to use PHP’s existing functionality, but to use it with care.
 
 In order for a view to have something to work with, it must be able to acquire data. I like to define a View 
@@ -1229,10 +1085,6 @@ Here is a simple view that uses the View Helper:
 <div>Proudly sponsored by: <?php echo $vh->sponsorList(); ?>
 
 </div>
-
-316
-
-Chapter 12 ■ enterprise patterns
 
 Listing venues
 
@@ -1262,10 +1114,6 @@ The Business Logic Layer
 
 If the control layer orchestrates communication with the outside world and marshals a system’s response to it, the logic layer gets on with the business of an application. This layer should be as free as possible of the noise and trauma generated as query strings are analyzed, HTML tables are constructed, and feedback messages composed. Business logic is about doing the stuff that needs doing—the true purpose of the application. Everything else exists just to support these tasks.
 
-317
-
-Chapter 12 ■ enterprise patterns
-
 In a classic object-oriented application, the business logic layer is often composed of classes that model 
 
 the problems that the system aims to address. As you shall see, this is a flexible design decision. It also requires significant up-front planning.
@@ -1292,10 +1140,6 @@ ImplementationLet’s return to my events listing example. In this case, the sys
 
 CREATE TABLE 'venue' (  'id' int(11) NOT NULL auto_increment,  'name' text,  PRIMARY KEY  ('id'))CREATE TABLE 'space' (  'id' int(11) NOT NULL auto_increment,
 
-318
-
-Chapter 12 ■ enterprise patterns
-
   'venue' int(11) default NULL,  'name' text,  PRIMARY KEY  ('id'))CREATE TABLE 'event' (  'id' int(11) NOT NULL auto_increment,  'space' int(11) default NULL,  'start' mediumtext,  'duration' int(11) default NULL,  'name' text,  PRIMARY KEY  ('id'))
 
 Clearly, the system will need mechanisms for adding both venues and events. Each of these represents 
@@ -1315,10 +1159,6 @@ In this case, the base class acquires a PDO object, which it stores in a propert
 for caching database statements and making queries:
 
 // listing 12.40abstract class Base{    private $pdo;    private $config = __DIR__ . "/data/woo_options.ini";
-
-319
-
-Chapter 12 ■ enterprise patterns
 
     private $stmts = [];
 
@@ -1347,10 +1187,6 @@ Here is the start of the VenueManager class, which sets up my SQL statements:
 Not much new here. These are the SQL statements that the transaction scripts will use. They 
 
 are constructed in a format accepted by the PDO class’s prepare() method. The question marks are placeholders for the values that will be passed to execute(). Now it’s time to define the first method designed to fulfill a specific business need:
-
-320
-
-Chapter 12 ■ enterprise patterns
 
 // listing 12.42
 
@@ -1384,10 +1220,6 @@ The second transaction script is similarly straightforward:
 
 The purpose of this script is to add an event to the events table, associated with a space.
 
-321
-
-Chapter 12 ■ enterprise patterns
-
 ConsequencesThe Transaction Script pattern is an effective way of getting good results fast. It is also one of those patterns many programmers have used for years without imagining it might need a name. With a few good helper methods like those I added to the base class, you can concentrate on application logic without getting too bogged down in database fiddle-faddling.
 
 I have seen Transaction Script appear in a less welcome context. I thought I was writing a much more 
@@ -1414,10 +1246,6 @@ Clearly, with an example as simple as Woo, a Transaction Script is more than ade
 
 ImplementationDomain Models can be relatively simple to design. Most of the complexity associated with the subject lies in the patterns that are designed to keep the model pure—that is, to separate it from the other tiers in the application.
 
-322
-
-Chapter 12 ■ enterprise patterns
-
 Separating the participants of a Domain Model from the presentation layer is largely a matter of ensuring that they keep to themselves. Separating the participants from the data layer is much more problematic. Although the ideal is to consider a Domain Model only in terms of the problems it represents and resolves, the reality of the database is hard to escape.
 
 It is common for Domain Model classes to map fairly directly to tables in a relational database, and 
@@ -1438,10 +1266,6 @@ Here is a simplified Venue object, together with its parent class:
 
 // listing 12.44abstract class DomainObject{    private $id;
 
-323
-
-Chapter 12 ■ enterprise patterns
-
     public function __construct(int $id)    {        $this->id = $id;    }
 
     public function getId(): int    {        return $this->id;    }
@@ -1459,10 +1283,6 @@ Chapter 12 ■ enterprise patterns
     public function getSpaces(): SpaceCollection    {        return $this->spaces;    }
 
     public function addSpace(Space $space)    {        $this->spaces->add($space);        $space->setVenue($this);    }
-
-324
-
-Chapter 12 ■ enterprise patterns
 
     public function setName(string $name)    {        $this->name = $name;        $this->markDirty();    }
 
@@ -1492,19 +1312,8 @@ This separation between the Domain Model and the data layer comes at a considera
 
 of design and planning. It is possible to place database code directly in the model (although you would probably want to design a gateway to handle the actual SQL). For relatively simple models, especially if each class broadly maps to a table, this approach can be a real win, saving you the considerable design overhead of devising an external system for reconciling your objects with the database.
 
-325
-
-Chapter 12 ■ enterprise patterns
-
-Summary
+## Summary
 
 I have covered an enormous amount of ground here (although I have also left out a lot). You should not feel daunted by the sheer volume of code in this chapter. Patterns are meant to be used in the right circumstances, and combined when useful. Use those described in this chapter that you feel meet the needs of your project, and do not feel that you must build an entire framework before embarking on a project. On the other hand, there is enough material here to form the basis of a framework, or just as likely, to provide some insight into the architecture of some of the prebuilt frameworks you might choose to deploy.
 
-And there’s more! I left you teetering on the edge of persistence, with just a few tantalizing hints about 
-
-collections and mappers to tease you. In the next chapter, I will look at some patterns for working with databases and for insulating your objects from the details of data storage.
-
-326
-
-CHAPTER 13
-
+And there’s more! I left you teetering on the edge of persistence, with just a few tantalizing hints about collections and mappers to tease you. In the next chapter, I will look at some patterns for working with databases and for insulating your objects from the details of data storage.

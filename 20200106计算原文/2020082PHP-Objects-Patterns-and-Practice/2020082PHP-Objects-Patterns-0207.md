@@ -32,10 +32,6 @@ Data Mapper
 
 If you thought I glossed over the issue of saving and retrieving Venue objects from the database in the「Domain Model」section of Chapter 12, here is where you might find at least some answers. The Data Mapper pattern is described as a Data Access Object in a couple places. First, it’s covered by Alur et al. in Core J2EE Patterns: Best Practices and Design Strategies (Prentice Hall, 2001). It’s also covered by Martin Fowler in Patterns of Enterprise Application Architecture (Addison-Wesley Professional, 2002). Note that Data Access Object is not an exact match to the Data Mapper pattern, as it generates data transfer objects; but since such objects are designed to become the real thing if you add water, the patterns are close enough).
 
-327
-
-Chapter 13 ■ Database patterns
-
 As you might imagine, a data mapper is a class that is responsible for handling the transition from 
 
 database to object.
