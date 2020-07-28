@@ -1035,7 +1035,7 @@ The structure of the code is much better now. The top­level statement function 
 
 顶层的 statement 函数现在只剩 7 行代码，而且它处理的都是与打印详单相关的逻辑。与计算相关的逻辑从主函数中被移走，改由一组函数来支持。 每个单独的计算过程和详单的整体结构，都因此变得更易理解了。
 
-## 1.6 Spliting the Phases of Calculation and Formatting
+### 1.6 Spliting the Phases of Calculation and Formatting
 
 So far, my refactoring has focused on adding enough structure to the function so that I can understand it and see it in terms of its logical parts. This is often the case early in refactoring. Breaking down complicated chunks into small pieces is important, as is naming things well. Now, I can begin to focus more on the functionality change I want to make—specifically, providing an HTML version of this statement. In many ways, it’s now much easier to do. With all the calculation code split out, all I have to do is write an HTML version of the seven lines of code at the top. The problem is that these brokenout functions are nested within the textual statement method, and I don’t want to copy and paste them into a new function, however well organized. I want the same calculation functions to be used by the text and HTML versions of the statement.
 
