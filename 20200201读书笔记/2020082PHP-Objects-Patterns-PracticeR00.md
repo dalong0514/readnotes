@@ -329,6 +329,21 @@ The global variable is one of the great bugbears of the object-oriented programm
 
 全局变量是面向对象程序员遇到的引发 bug 的主要原因之一。这是因为全局变量将类捆绑于特定的环境，破坏了封装（参见第 6 章及第 8 章）。如果新的应用程序无法保证一开始就定义了相同的全局变量，那么一个依赖于全局变量的类就无法从一个应用程序中提取出来并应用到新应用程序中。
 
+### 0509. 任意卡——为啥测试类的命名需要以 test 开头
+
+Test methods should be named to begin with the word「test」and should require no arguments. This is because the test case class is manipulated using reflection. reflection is covered in detail in Chapter 5.
+
+### 0510. 任意卡——测试中约束的优点
+
+You could achieve all this with standard assertion methods, of course, but constraints have a couple of virtues. First, they form nice logical blocks with clear relationships among components (although good use of formatting may be necessary to support clarity). Second, and more important, a constraint is reusable. You can set up a library of complex constraints and use them in different tests. You can even combine complex constraints with one another:
+
+```php
+$const = $this->logicalAnd(    
+    $a_complex_constraint,    
+    $another_complex_constraint
+);
+```
+
 ## 书评
 
 ### 01

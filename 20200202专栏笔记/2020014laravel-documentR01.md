@@ -102,6 +102,19 @@ class ExampleTest extends TestCase
 
 If you define your own setUp / tearDown methods within a test class, be sure to call the respective parent::setUp() / parent::tearDown() methods on the parent class.
 
+1『
+
+在看书籍「2020082PHP-Objects-Patterns-PracticeR00.md」恰巧实现了，而且当时还遇到一个问题：5.8 版本以上要求 setUp tearDown 的返回类型为 void，最终的代码如下：
+
+```
+public function setUp(): void {
+    parent::setUp();
+    $this->store = new UserStore();
+}
+```
+
+』
+
 ### 1.4 Artisan Test Runner
 
 In addition to the phpunit command, you may use the test Artisan command to run your tests. The Artisan test runner provides more information regarding the test that is currently running and will automatically stop on the first test failure:

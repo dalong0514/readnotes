@@ -192,6 +192,8 @@ class UserStoreTest extends \PHPUnit_Framework_TestCase{
 // ...}
 ```
 
+1『在 laravel 里直接用命令新建单元测试：php artisan make:test UserStoreTest --unit。』
+
 I named the test case class UserStoreTest. You are not obliged to use the name of the class you are testing in the test’s name, although that is what many developers do. Naming conventions of this kind can greatly improve the accessibility of a test harness, especially as the number of components and tests in the system begins to increase. It is often useful to place your test in the same namespace as the class under test. This will give you easy access to the class under test and its peers, and the structure of your test files will likely mirror that of your system. Remember that, thanks to Composer’s support for PSR-4, you can maintain separate directory structures for class files in the same package.
 
 在软件测试中，测试用具是指一个包含了软件和測试数据的集合，用以测试一个程序单元，使之在不同的条件下运行，并监控它的行为和输出。测试用具应该包含测试环境的搭建和清理，选择运行单个测试或者所有测试的方法，分析输出结果的手段以及错误的标准报告等——译者注
@@ -204,55 +206,87 @@ Here’s how we might do this in Composer:
 
 In this code, I have nominated two directories that map to the popp namespace. I can now maintain these in parallel, making it easy to keep my test and production code separate.
 
+Each test in a test case class is run in isolation from its siblings. The setUp() method is automatically invoked for each test method, allowing us to set up a stable and suitably primed environment for the test. tearDown() is invoked after each test method is run. If your tests change the wider environment of your system, you can use this method to reset state. The common platform managed by setUp() and tearDown() is known as a fixture. In order to test the UserStore class, I need an instance of it. I can instantiate this in setUp() and assign it to a property. Let’s create a test method as well:
 
+```php
+<?php
 
+namespace Tests\Unit;
 
-Each test in a test case class is run in isolation from its siblings. The setUp() method is automatically invoked for each test method, allowing us to set up a stable and suitably primed environment for the test. tearDown() is invoked after each test method is run. If your tests change the wider environment of your system, you can use this method to reset state. The common platform managed by setUp() and tearDown() is known as a fixture.
+use App\Code\UserStore;
+use PHPUnit\Framework\TestCase;
 
-In order to test the UserStore class, I need an instance of it. I can instantiate this in setUp() and assign it to a property. Let’s create a test method as well:
+class UserStoreTest extends TestCase
+{
+    protected $store;
 
-// listing 18.05namespace popp\ch18\batch01;
+    protected function setUp(): void {
+        parent::setUp();
+        $this->store = new UserStore();
+    }
+    
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function testGetUser() {
+        $this->store->addUser('bob williams', 'a@b.com', '12345');
+        $user = $this->store->getUser('a@b.com');
+        $this->assertEquals('a@b.com', $user['mail']);
+        $this->assertEquals('bob williams', $user['name']);
+        $this->assertEquals('12345', $user['pass']);
+    }
 
-class UserStoreTest extends \PHPUnit_Framework_TestCase{    private $store;
+    public function testAddUserShortPass() {
+        try {
+            $this->store->addUser('bob williams', 'bob@example.com', 'ff');
+        } catch (\Exception $e) {
+            return;
+        }
+        $this->fail('Short password exception expected');
+    }
+}
+```
 
-    public function setUp()    {        $this->store = new UserStore();    }
+1『
 
-    public function tearDown()    {    }
+遇到好几个问题：
 
-    public function testGetUser()    {        $this->store->addUser("bob williams", "a@b.com", "12345");        $user = $this->store->getUser("a@b.com");        $this->assertEquals($user['mail'], "a@b.com");        $this->assertEquals($user['name'], "bob williams");        $this->assertEquals($user['pass'], "12345");    }
+1、5.8 版本以上要求 setUp tearDown 的返回类型为 void，最终的代码如下：
 
-    public function testAddUserShortPass()    {        try {            $this->store->addUser("bob williams", "bob@example.com", "ff");        } catch (\Exception $e) {            return;        }        $this->fail("Short password exception expected");    }}
+```
+public function setUp(): void {
+    parent::setUp();
+    $this->store = new UserStore();
+}
+```
 
- ■ Note 
+2、成员变量识别不出，无法自动补全。
 
- remember that setUp() and tearDown() are called once for every test method in your class.
+发现在 setUp() 函数里定义成员变量，\$this->store = new UserStore()，\$store 在其他函数里是无法识别自动补全其内部方法的，去官网「[4. Fixtures — PHPUnit 9.2 Manual](https://phpunit.readthedocs.io/en/9.2/fixtures.html?highlight=setUp)」看了示例，发现语法没问题，应该只是 laravel 里显示的问题，不影响使用的。
 
-Test methods should be named to begin with the word「test」and should require no arguments. This is 
+』
 
-because the test case class is manipulated using reflection.
+■ Note: remember that setUp() and tearDown() are called once for every test method in your class.
 
- ■ Note 
+■ Note: Test methods should be named to begin with the word「test」and should require no arguments. This is because the test case class is manipulated using reflection. reflection is covered in detail in Chapter 5.
 
- reflection is covered in detail in Chapter 5.
+2『上面解释了为啥测试类的命名需要以 test 开头，做一张任意卡片。』——已完成
 
-The object that runs the tests looks at all the methods in the class and invokes only those that match this 
+The object that runs the tests looks at all the methods in the class and invokes only those that match this pattern (that is, methods that begin with「test」). In the example, I tested the retrieval of user information. I don’t need to instantiate UserStore for each test because I handled that in setUp(). Because setUp() is invoked for each test, the \$store property is guaranteed to contain a newly instantiated object.
 
-pattern (that is, methods that begin with「test」).
+1『 setUp() 可以当作是一个公共方法，里面的代码实现在每个测试前都会实现一次，这样可以避免重复代码。真是无时无刻不体现「消除重复」代码的基本原则。』
 
-In the example, I tested the retrieval of user information. I don’t need to instantiate UserStore for each 
+Within the testgetUser() method, I first provide UserStore::addUser() with dummy data, and then I retrieve that data and test each of its elements.
 
-test because I handled that in setUp(). Because setUp() is invoked for each test, the $store property is guaranteed to contain a newly instantiated object.
+There is one additional issue to be aware of here, before we can run our test. I am using use statements without require or require\_once. In other words, I am relying on autoloading. That’s fine, but where do I tell my tests how to locate the generated autoload.php file? I could put a require_once statement in the test class (or a superclass), but that would break the PSR-1 rule that class files should not have side effects. The simplest thing to do is to tell PHPUnit about the autoload.php file from the command line:
 
-Within the testgetUser() method, I first provide UserStore::addUser() with dummy data, and then I 
-
-retrieve that data and test each of its elements.
-
-There is one additional issue to be aware of here, before we can run our test. I am using use statements 
-
-without require or require_once. In other words, I am relying on autoloading. That’s fine, but where do I tell my tests how to locate the generated autoload.php file? I could put a require_once statement in the test class (or a superclass), but that would break the PSR-1 rule that class files should not have side effects. The simplest thing to do is to tell PHPUnit about the autoload.php file from the command line:
-
+```
 $ phpunit src/ch18/batch01/UserStoreTest.php --bootstrap vendor/autoload.php
+```
 
+```
 PHPUnit 5.0.10 by Sebastian Bergmann and contributors.
 
 ..                                                                  2 / 2 (100%)
@@ -260,374 +294,503 @@ PHPUnit 5.0.10 by Sebastian Bergmann and contributors.
 Time: 175 ms, Memory: 4.00MB
 
 OK (2 tests, 3 assertions)
+```
 
-Assertion MethodsAn assertion in programming is a statement or method that allows you to check your assumptions about an aspect of your system. In using an assertion, you typically define an expectation that something is the case, that $cheese is "blue" or $pie is "apple". If your expectation is confounded, a warning of some kind will be generated. Assertions are such a good way of adding safety to a system that PHP supports them natively inline and allows you to turn them off in a production context.
+### 5.3.2 Assertion Methods
 
- see the manual page at http://php.net/assert for more information on php’s support for 
+An assertion in programming is a statement or method that allows you to check your assumptions about an aspect of your system. In using an assertion, you typically define an expectation that something is the case, that \$cheese is "blue" or \$pie is "apple". If your expectation is confounded, a warning of some kind will be generated. Assertions are such a good way of adding safety to a system that PHP supports them natively inline and allows you to turn them off in a production context.
 
- ■ Note assertions.
+■ Note: see the manual page at http://php.net/assert for more information on php’s support for assertions.
 
-PHPUnit supports assertions through a set of static methods.In the previous example, I used an inherited static method, assertEquals(). This method compares 
-
-its two provided arguments and checks them for equivalence. If they do not match, the test method will be chalked up as a failed test. Having subclassed PHPUnit_Framework_TestCase, I have access to a set of assertion methods. Some of these methods are listed in Table 18-1.
+PHPUnit supports assertions through a set of static methods. In the previous example, I used an inherited static method, assertEquals(). This method compares its two provided arguments and checks them for equivalence. If they do not match, the test method will be chalked up as a failed test. Having subclassed PHPUnit\_Framework\_TestCase, I have access to a set of assertion methods. Some of these methods are listed in Table 18-1.
 
 Table 18-1.  PHPUnit_Framework_TestCase Assert Methods
 
-Method
+```
+assertEquals($val1, $val2, $message, $delta)——Fail if $val1 is not equivalent to $val2 ($delta represents an allowable margin of error)
 
-Description
+assertFalse($expression, $message)——Evaluate $expression; fail if it does not resolve to false
 
-assertEquals($val1, $val2, $message, $delta)
+assertTrue($expression, $message)——Evaluate $expression; fail if it does not resolve to true
 
-assertFalse($expression, $message)
+assertNotNull($val, $message)——Fail if $val is null
 
-assertTrue($expression, $message)
+assertNull($val, $message)——Fail if $val is anything other than null
 
-assertNotNull($val, $message)
+assertSame($val1, $val2, $message)——Fail if $val1 and $val2 are not references to the same object, or if they are variables of different types or values
 
-assertNull($val, $message)
+assertNotSame($val1, $val2, $message)——Fail if $val1 and $val2 are references to the same object or variables of the same type and value
 
-assertSame($val1, $val2, $message)
+assertRegExp($regexp, $val, $message)——Fail if $val is not matched by the regular expression, $regexp
 
-assertNotSame($val1, $val2, $message)
+assertAttributeSame($val, $attribute, $classname, $message)——Fail if $val is not the same type and value as $classname::$attribute
 
-assertRegExp($regexp, $val, $message)
+fail()——Fail
+```
 
-assertAttributeSame($val, $attribute, $classname, $message)
+1『 fail() 是使测试方法直接返回失败。』
 
-Fail if $val1 is not equivalent to $val2 ($delta represents an allowable margin of error)Evaluate $expression; fail if it does not resolve to false
+### 5.3.3 Testing Exceptions
 
-Evaluate $expression; fail if it does not resolve to true
+Your focus as a coder is usually to make stuff work and work well. Often, that mentality carries through to testing, especially if you are testing your own code. The temptation is to test that a method behaves as advertised. It’s easy to forget how important it is to test for failure. How good is a method’s error checking? Does it throw an exception when it should? Does it throw the right exception? Does it clean up after an error if, for example, an operation is half complete before the problem occurs? It is your role as a tester to check all of this. Luckily, PHPUnit can help.
 
-Fail if $val is nullFail if $val is anything other than nullFail if $val1 and $val2 are not references to the same object, or if they are variables of different types or valuesFail if $val1 and $val2 are references to the same object or variables of the same type and valueFail if $val is not matched by the regular expression, $regexp
-
-Fail if $val is not the same type and value as $classname::$attribute
-
-fail()
-
-Fail
-
-Testing ExceptionsYour focus as a coder is usually to make stuff work and work well. Often, that mentality carries through to testing, especially if you are testing your own code. The temptation is to test that a method behaves as advertised. It’s easy to forget how important it is to test for failure. How good is a method’s error checking? Does it throw an exception when it should? Does it throw the right exception? Does it clean up after an error if, for example, an operation is half complete before the problem occurs? It is your role as a tester to check all of this. Luckily, PHPUnit can help.
+开发者通常希望代码可用并运行良好。这种心理经常会贯彻到测试中，特别是在测试自己写的代码时。这时存在一个诱惑，就是只测试方法是否正常工作，而很容易忘掉对方法失败进行测试的重要性。比如一个方法的错误检査是否完善？当它应该抛出异常时会不会抛出异常？它是否能抛出正确的异常？在问题发生前只执行了一半的操作，在错误发生后是否会进行清理？作为一个测试者，你的任务就是检査所有这些情况。幸好 PHPUnit 可以帮助你。
 
 Here is a test that checks the behavior of the UserStore class when an operation fails:
 
-//...public function testAddUserShortPass(){    try {        this->store->addUser("bob williams", "bob@example.com", "ff");    } catch (\Exception $e) {        return;    }    $this->fail("Short password exception expected");}//...
+```php
+public function testAddUserShortPass() {
+    try {
+        $this->store->addUser('bob williams', 'bob@example.com', 'ff');
+    } catch (\Exception $e) {
+        return;
+    }
+    $this->fail('Short password exception expected');
+}
+```
 
-If you look back at the UserStore::addUser() method, you will see that I throw an exception if the 
+If you look back at the UserStore::addUser() method, you will see that I throw an exception if the user’s password is less than five characters long. My test attempts to confirm this. I add a user with an illegal password in a try clause. If the expected exception is thrown, then flow skips to the catch clause, and all is well. If the addUser() method does not throw an exception as expected, the execution flow reaches the fail() method call.
 
-user’s password is less than five characters long. My test attempts to confirm this. I add a user with an illegal password in a try clause. If the expected exception is thrown, then flow skips to the catch clause, and all is well. If the addUser() method does not throw an exception as expected, the execution flow reaches the fail() method call.
+Another way to test that an exception is thrown is to use an assertion method called expectException(), which requires the name of the exception type you expect to be thrown (either Exception or a subclass). If the test method exits without the correct exception having been thrown, the test will fail.
 
-Another way to test that an exception is thrown is to use an assertion method called 
-
-expectException(), which requires the name of the exception type you expect to be thrown (either Exception or a subclass). If the test method exits without the correct exception having been thrown, the test will fail.
-
- ■ Note 
-
- the expectedException() method was added in php 5.2.0.
+Note: the expectedException() method was added in php 5.2.0.
 
 Here’s a quick reimplementation of the previous test:
 
+```php
 // listing 18.06namespace popp\ch18\batch02;
 
-class UserStoreTest extends \PHPUnit_Framework_TestCase{    private $store;
+class UserStoreTest extends \PHPUnit_Framework_TestCase {    
+    private $store;
 
-    public function setUp()    {        $this->store = new UserStore();    }
+    public function setUp() {        
+        $this->store = new UserStore();    
+    }
 
-    public function testAddUserShortPass()    {        $this->expectException('\\Exception');        $this->store->addUser("bob williams", "a@b.com", "ff");        $this->fail("Short password exception expected");    }}
-
-Running Test SuitesIf I am testing the UserStore class, I should also test Validator. Here is a cut-down version of a class called ValidateTest that tests the Validator::validateUser() method:
-
-// listing 18.07namespace popp\ch18\batch02;
-
-class ValidatorTest extends \PHPUnit_Framework_TestCase{    private $validator;
-
-    public function setUp()    {        $store = new UserStore();        $store->addUser("bob williams", "bob@example.com", "12345");        $this->validator = new Validator($store);    }    public function tearDown()    {    }
-
-    public function testValidateCorrectPass()    {        $this->assertTrue(            $this->validator->validateUser("bob@example.com", "12345"),            "Expecting successful validation"        );    }
-
+    public function testAddUserShortPass() {        
+    $this->expectException('\\Exception');        
+    $this->store->addUser("bob williams", "a@b.com", "ff");        
+    $this->fail("Short password exception expected");    
+    }
 }
+```
+
+### 5.3.4 Running Test Suites
+
+If I am testing the UserStore class, I should also test Validator. Here is a cut-down version of a class called ValidateTest that tests the Validator::validateUser() method:
+
+```php
+<?php
+
+namespace Tests\Unit;
+
+use App\Code\UserStore;
+use App\Code\Validator;
+use PHPUnit\Framework\TestCase;
+
+class ValidatorTest extends TestCase
+{
+    private $validator;
+
+    public function setUp(): void {
+        parent::setUp();
+        $store = new UserStore();
+        $store->addUser('bob williams', 'bob@example.com', '12345');
+        $this->validator = new Validator($store);
+
+    }
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function testValidateCorrectPass()
+    {
+        $this->assertTrue(
+            $this->validator->validateUser('bob@example.com', '12345'),
+            'Expecting successful validation'
+        );
+    }
+}
+```
 
 So now that I have more than one test case, how do I go about running them together? The best way is to place your test classes in a common root directory. You can then specify this directory, and PHPUnit will run all the tests beneath it:
 
+```
 $ phpunit src/ch18/batch02/
 
 PHPUnit 5.0.10 by Sebastian Bergmann and contributors.......Time: 104 ms, Memory: 3.75Mb
 
 OK (7 tests, 8 assertions)
+```
 
-ConstraintsIn most circumstances, you will use off-the-peg assertions in your tests. In fact, at a stretch you can achieve an awful lot with AssertTrue() alone. As of PHPUnit 3.0, however, PHPUnit_Framework_TestCase included a set of factory methods that return PHPUnit_Framework_Constraint objects. You can combine these and pass them to PHPUnit_Framework_TestCase::AssertThat() in order to construct your own assertions.
+### 5.3.5 Constraints
 
-It’s time for a quick example. The UserStore object should not allow duplicate e-mail addresses to be 
+In most circumstances, you will use off-the-peg assertions in your tests. In fact, at a stretch you can achieve an awful lot with AssertTrue() alone. As of PHPUnit 3.0, however, PHPUnit\_Framework\_TestCase included a set of factory methods that return PHPUnit\_Framework\_Constraint objects. You can combine these and pass them to PHPUnit\_Framework\_TestCase::AssertThat() in order to construct your own assertions.
 
-added. Here’s a test that confirms this:
+1『自定义测试函数嘛，太赞了！』
 
-// listing 18.08
+在大多数情况下，你会在测试时使用 PHPUnit 中现成的断言。而事实上，你只要通过 AssertTrue() 方法就可完成很多测试工作。但在 Phpunit3.0 以后，PHPUnit\_Framework\_TestCase 包含了一套返回 PHPUnit\_Framework\_Constraint 对象的工厂方法。你可以合并这些对象并将其传给 PHPUnit\_Framework\_TestCase::AssertThat() 来构造你自己的断言。
 
-    // UserStoreTest
+It’s time for a quick example. The UserStore object should not allow duplicate e-mail addresses to be added. Here’s a test that confirms this:
 
-    public function testAddUserDuplicate()    {        try {            $ret = $this->store->addUser("bob williams", "a@b.com", "123456");
+```php
+public function testAddUserDuplicate() {
+    try {
+        $ret = $this->store->addUser('bob williams', 'a@b.com', '12345');
+        $ret = $this->store->addUser('bob stevens', 'a@b.com', '12345');
+        self::fail('Exception should have been thrown');
+    } catch (\Exception $e) {
+        $const = $this->logicalAnd(
+            $this->logicalNot($this->contains('bob stevens')),
+            $this->isType('array')
+        );
+        self::assertThat($this->store->getUser('a@b.com'), $const);
+    }
+}
+```
 
+This test adds a user to the UserStore object and then adds a second user with the same e-mail address. The test thereby confirms that an exception is thrown with the second call to addUser(). In the catch clause, I build a constraint object using the convenience methods available to us. These return corresponding instances of PHPUnit\_Framework\_Constraint. Let’s break down the composite constraint in the previous example:
 
-            $ret = $this->store->addUser("bob stevens", "a@b.com", "123456");            self::fail("Exception should have been thrown");        } catch (\Exception $e) {            $const = $this->logicalAnd(                $this->logicalNot($this->contains("bob stevens")),                $this->isType('array')            );            self::AssertThat($this->store->getUser("a@b.com"), $const);        }    }
-
-This test adds a user to the UserStore object and then adds a second user with the same e-mail address. The test thereby confirms that an exception is thrown with the second call to addUser(). In the catch clause, I build a constraint object using the convenience methods available to us. These return corresponding instances of PHPUnit_Framework_Constraint. Let’s break down the composite constraint in the previous example:
-
+```php
 $this->contains("bob stevens")
+```
 
-This returns a PHPUnit_Framework_Constraint_TraversableContains object. When passed to 
+This returns a PHPUnit\_Framework\_Constraint\_TraversableContains object. When passed to AssertThat, this object will generate an error if the test subject does not contain an element matching the given value ("bob stevens"). I negate this, though, by passing this constraint to another: PHPUnit\_Framework\_Constraint\_Not. Once again, I use a convenience method, available through the TestCase class (actually through a superclass, Assert):
 
-AssertThat, this object will generate an error if the test subject does not contain an element matching the given value ("bob stevens"). I negate this, though, by passing this constraint to another: PHPUnit_Framework_Constraint_Not. Once again, I use a convenience method, available through the TestCase class (actually through a superclass, Assert):
-
+```php
 $this->logicalNot( $this->contains("bob stevens"))
+```
 
-Now, the AssertThat assertion will fail if the test value (which must be traversable) contains an element 
-
-that matches the string, "bob stevens". In this way, you can build up quite complex logical structures. By the time I have finished, my constraint can be summarized as follows: 'Do not fail if the test value is an array and does not contain the string "bob stevens".' You could build much more involved constraints in this way. The constraint is run against a value by passing both to AssertThat().
+Now, the AssertThat assertion will fail if the test value (which must be traversable) contains an element that matches the string, "bob stevens". In this way, you can build up quite complex logical structures. By the time I have finished, my constraint can be summarized as follows: 'Do not fail if the test value is an array and does not contain the string "bob stevens".' You could build much more involved constraints in this way. The constraint is run against a value by passing both to AssertThat().
 
 You could achieve all this with standard assertion methods, of course, but constraints have a couple of virtues. First, they form nice logical blocks with clear relationships among components (although good use of formatting may be necessary to support clarity). Second, and more important, a constraint is reusable. You can set up a library of complex constraints and use them in different tests. You can even combine complex constraints with one another:
 
-$const = $this->logicalAnd(    $a_complex_constraint,    $another_complex_constraint);
+```php
+$const = $this->logicalAnd(    
+    $a_complex_constraint,    
+    $another_complex_constraint
+);
+```
+
+2『测试中约束的优点做一张任意卡片。』——已完成
 
 Table 18-2 shows the some of the constraint methods available in a TestCase class.
 
-Table 18-2.  Some Constraint Methods
+```
+greaterThan($num)——Test value is greater than $num
 
-TestCase Method
+contains($val)——Test value (traversable) contains an element that matches $val
 
-greaterThan($num)
+identicalTo($val)——Test value is a reference to the same object as $val or, for nonobjects, is of the same type and value
 
-contains($val)
+greaterThanOrEqual($num)——Test value is greater than or equal to $num
 
-identicalTo($val)
+lessThan($num)——Test value is less than $num
 
-greaterThanOrEqual($num)
+lessThanOrEqual($num)——Test value is less than or equal to $num
 
-lessThan($num)
+equalTo($value, $delta=0, $depth=10)——Test value equals $val. If specified, $delta defines a margin of error for numeric comparisons, and $depth determines how recursive a comparison should be for arrays or objectsTest value contains $str. This is case sensitive by default
 
-Constraint Fails Unless . . .
+stringContains($str, $casesensitive=true)——Test value contains $str. This is case sensitive by default
 
-Test value is greater than $numTest value (traversable) contains an element that matches $valTest value is a reference to the same object as $val or, for nonobjects, is of the same type and valueTest value is greater than or equal to $numTest value is less than $numTest value is less than or equal to $num
+matchesRegularExpression($pattern)——Test value matches the regular expression in $pattern
 
-lessThanOrEqual($num)equalTo($value, $delta=0, $depth=10) Test value equals $val. If specified, $delta defines a margin of 
+logicalAnd(PHPUnit_Framework_Constraint $const,  [, $const..])——All provided constraints pass
 
-stringContains($str, $casesensitive=true)
+logicalOr(PHPUnit_Framework_Constraint $const,  [, $const..])——At least one of the provided constraints match
 
-matchesRegularExpression($pattern)
+logicalNot(PHPUnit_Framework_Constraint $const)——The provided constraint does not pass
+```
 
-logicalAnd(PHPUnit_Framework_Constraint $const,  [, $const..])
+### 5.3.6 Mocks and Stubs
 
-logicalOr(PHPUnit_Framework_Constraint $const,  [, $const..])
-
-logicalNot(PHPUnit_Framework_Constraint $const)
-
-error for numeric comparisons, and $depth determines how recursive a comparison should be for arrays or objectsTest value contains $str. This is case sensitive by default
-
-Test value matches the regular expression in $patternAll provided constraints pass
-
-At least one of the provided constraints match
-
-The provided constraint does not pass
-
-Mocks and StubsUnit tests aim to test a component in isolation of the system that contains it to the greatest possible extent. Few components exist in a vacuum, however. Even nicely decoupled classes require access to other objects as methods arguments. Many classes also work directly with databases or the filesystem.
+Unit tests aim to test a component in isolation of the system that contains it to the greatest possible extent. Few components exist in a vacuum, however. Even nicely decoupled classes require access to other objects as methods arguments. Many classes also work directly with databases or the filesystem.
 
 You have already seen one way of dealing with this. The setUp() and tearDown() methods can be used to manage a fixture (i.e., a common set of resources for your tests, which might include database connections, configured objects, a scratch area on the file system, etc.)
+
+单元测试的目标就是尽可能在不受外部环境影响的条件下测试系统中的组件。但是只有极少数组件以这样的真空形式存在。甚至与外部耦合非常小的类也需要访问其他对象，例如以其他对象作为类方法参数。许多类也直接与数据库或文件系统一起工作。我们已经看到过处理这个问题的一种办法。我们可以利用 setup() 和 teardown() 方法来管理测试装置。测试装置就是一组供测试使用的公用资源，可能包含数据库连接、配置对象、文件系统的暂存区域等。
 
 Another approach is to fake the context of the class you are testing. This involves creating objects that pretend to be the objects that do real stuff. For example, you might pass a fake database mapper to your test object’s constructor. Because this fake object shares a type with the real mapper class (extends from a common abstract base or even overrides the genuine class itself), your subject is none the wiser. You can prime the fake object with valid data. Objects that provide a sandbox of this sort for unit tests are known as stubs. They can be useful because they allow you to focus in on the class you want to test without inadvertently testing the entire edifice of your system at the same time.
 
 Fake objects can be taken a stage further than this, however. Because the object you are testing is likely to call a fake object in some way, you can prime it to confirm the invocations you are expecting. Using a fake object as a spy in this way is known as behavior verification, and it is what distinguishes a mock object from a stub.
 
-You can build mocks yourself by creating classes hard-coded to return certain values and to report on 
+另一种方式就是伪造测试类的环境。该方式会创建假装在进行真实工作的对象。例如，你可能会传一个伪造的数据库映射给测试对象的构造函数。因为伪造对象和真实的映射类（继承自一个共同的抽象基类或甚至重写该类本身）是相同类型，所以测试目标对此一无所知。你可以预先准备好具有正确数据的虛拟对象（fake object）。这类为单元测试提供沙箱的对象就是所谓的桩。它们非常有用，因为它们使你能仅关注于要测试的类本身而无需同时注意整个系统。
 
-method invocations. This is a simple process, but it can be time-consuming.
+但虚拟对象的功能还不止于此。因为你所测试的对象可能会以某种方式调用虚拟对象，所以你可以准备好虚拟对象以便它按照预期那样确保调用可以进行。以这种类似间谍的方式使用虚拟对象被称为「行为确认」。对于对象行为的预期正是 mock 对象与 stub 对象不同的地方。
+
+Stub，可理解为占位用的假对象。简单地说，stub 只是占位，而 mock 对象还关注于对行为的预期，这是两者的区别。如果读者想了解更多内容，建议阅读 Martin Fowler 的 Mocks Aren't Stubs 一文。一一译者注
+
+23『
+
+Martin Fowler 博客里的文章：[Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
+
+消化吸收并作为本书的一个附件。
+
+』
+
+You can build mocks yourself by creating classes hard-coded to return certain values and to report on method invocations. This is a simple process, but it can be time-consuming.
 
 PHPUnit provides access to an easier and more dynamic solution. It will generate mock objects on the fly for you. It does this by examining the class you wish to mock and building a child class that overrides its methods. Once you have this mock instance, you can call methods on it to prime it with data and to set the conditions for success.
 
-Let’s build an example. The UserStore class contains a method called notifyPasswordFailure(), 
+Let’s build an example. The UserStore class contains a method called notifyPasswordFailure(), which sets a field for a given user. This should be called by Validator when an attempt to set a password fails. Here, I mock up the UserStore class so that it both provides data to the Validator object and confirms that its notifyPasswordFailure() method was called as expected:
 
-which sets a field for a given user. This should be called by Validator when an attempt to set a password fails. Here, I mock up the UserStore class so that it both provides data to the Validator object and confirms that its notifyPasswordFailure() method was called as expected:
+创建 mock 对象的办法有两种。首先，你可以自己创建相应的类来确保返回特定的值，以供方法调用。这是一个简单的过程，但需要花费一些时间。Phpunit 提供了另一个更为易用和动态的解决方案。它会为你在运行时自动生成 mock 对象。PHPUnit 会检査你想要模拟的对象并创建一个重写该对象方法的子类。一旦有了 mock 对象的实例，你就可以调用其中的方法来准备数据或设定测试成功的条件。
 
+下面举个例子。Userstores 类包含了一个 notifypasswordfai1ure（）方法，该方法会设定特定用户的密码字段。当尝试设置密码失败时，该方法就会被 va1 idator 调用。下面的例子创建了 Userstore 类的 mock 对象，以便它能为 Validator 对象提供数据及确认 notifypassword Fai1ure（）方法如预期地被调用：
+
+```php
 // listing 18.09
 
-// ValidatorTest
+public function testValidateFalsePass() {
+    $store = $this->getMockBuilder(UserStore::class)->getMock();
+    $this->validator = new Validator($store);
 
-    public function testValidateFalsePass()    {        $store = $this->getMock(__NAMESPACE__ . "\\UserStore");        $this->validator = new Validator($store);
+    $store->expects($this->once())
+        ->method('notifyPasswordFailure')
+        ->with($this->equalTo('bob@example.com'));
 
-        $store->expects($this->once())            ->method('notifyPasswordFailure')            ->with($this->equalTo('bob@example.com'));
+    $store->expects($this->any())
+        ->method('getUser')
+        ->with($this->returnValue([
+            'name' => 'bob williams',
+            'mail' => 'bob@example.com',
+            'pass' => 'right'
+        ]));
+    
+    $this->validator->validateUser('bob@example.com', 'wrong');
+}
+```
 
-        $store->expects($this->any())            ->method("getUser")            ->will($this->returnValue([                "name" => "bob williams",                "mail" => "bob@example.com",            "pass" => "right"        ]));
+1『
 
-        $this->validator->validateUser("bob@example.com", "wrong");
+遇到了一些问题，也解决了一些问题，但最终还是没有实现「原书」里的测试。
 
-Mock objects use a fluent interface; that is, they have a language-like structure. These are much easier to 
+getMock() 方法废弃了。
 
-use than to describe. Such constructs work from left to right, each invocation returning an object reference, which can then be invoked with a further modifying method call (itself returning an object). This can make for easy use, but painful debugging.
+[php - phpunit mock - method does not exist - Stack Overflow](https://stackoverflow.com/questions/39601142/phpunit-mock-method-does-not-exist)
 
-In the previous example, I called the PHPUnit_Framework_TestCase method: getMock(), passing it 
+PHPUnit\_Framework\_TestCase::getMockBuilder() only takes one (1) argument, the class name. The methods to mock are ment to be defined via the returned mock builder objects setMethods() method.
 
-"UserStore", the name of the class I wish to mock. This dynamically generates a class and instantiates an object from it. I store this mock object in $store and pass it to Validator. This causes no error because the object’s newly minted class extends UserStore. I have fooled Validator into accepting a spy into its midst.
+```php
+$stub = $this
+    ->getMockBuilder('SomeClass')
+    ->setMethods(['execute'])
+    ->getMock();
 
-Mock objects generated by PHPUnit have an expects() method. This method requires a matcher object 
+// 改善
+$stub = $this->getMockBuilder(SomeClass::class)->getMock();
+```
 
-(actually it’s of type PHPUnit_Framework_MockObject_Matcher_Invocation, but don’t worry; you can use the convenience methods in TestCase to generate your matcher). The matcher defines the cardinality of the expectation; that is, it dictates the number of times a method should be called.
+有时间好好看下官方文档：[8. Test Doubles — PHPUnit 9.2 Manual](https://phpunit.readthedocs.io/en/9.2/test-doubles.html#stubs)
 
+』
+
+Mock objects use a fluent interface; that is, they have a language-like structure. These are much easier to use than to describe. Such constructs work from left to right, each invocation returning an object reference, which can then be invoked with a further modifying method call (itself returning an object). This can make for easy use, but painful debugging.
+
+Mock 对象使用了类似于语言的流畅接口。使用这样的语言结构，调用从左到右进行，每次调用都返回对一个对象的引用，而该对象的引用可被后面的方法（仍会返回对象）继续调用。这样编写代码很简单，但调试的时候会有点麻烦。
+
+语言的流畅接口，指的是 PHP5 中可以使用多个 -> 符号连续调用对象方法。这里 Store、expects、method、wih 连起来就像一句话，所以称为「类似于语言」。——译者注
+
+In the previous example, I called the PHPUnit\_Framework\_TestCase method: getMock(), passing it "UserStore", the name of the class I wish to mock. This dynamically generates a class and instantiates an object from it. I store this mock object in \$store and pass it to Validator. This causes no error because the object’s newly minted class extends UserStore. I have fooled Validator into accepting a spy into its midst.
+
+Mock objects generated by PHPUnit have an expects() method. This method requires a matcher object (actually it’s of type PHPUnit\_Framework\_MockObject\_Matcher\_Invocation, but don’t worry; you can use the convenience methods in TestCase to generate your matcher). The matcher defines the cardinality of the expectation; that is, it dictates the number of times a method should be called.
+
+上面的范例调用了 PHPUnit\_Framework\_TestCase 的 getMock() 方法，并将要模拟的类名 UserStore 传给它。该方法会动态生成一个类，并为该类实例化一个对象。mock 对象被保存在 store 中并被传给 Validator。这样做不会引起错误，因为该对象来源于 UserStore 的子类。这样我们欺骗了 Validator，使之接受了一个间谍。
+
+由 PHPUnit 生成的 mock 对象有一个 expects() 方法。该方法要求一个匹配对象（它实际上是 PHPUnit\_Framework\_MockObject\_Matcher\_Invocation 类型。你不需要知道其确切类型，就可以在 TestCase 中使用便捷方法来生成匹配对象作为参数。匹配对象定义了期望的基数，即个方法应该被调用的次数。
+
+```
 Table 18-3 shows the matcher methods available in a TestCase class.
 
-Table 18-3.  Some Matcher Methods
+any()——Zero or more calls are made to the corresponding method (useful for stub objects that return values, but don’t test invocations)
 
-TestCase Method
+never()——No calls are made to the corresponding method
 
-Match Fails Unless . . .
+atLeastOnce()——One or more calls are made to the corresponding method
 
-any()
+once()——A single call is made to the corresponding method
 
-never()
+exactly($num)——$num calls are made to the corresponding method
 
-atLeastOnce()
+at($num)——A call to the corresponding method made at $num index (each method call to a mock is recorded and indexed)
+```
 
-once()
+Having set up the match requirement, I need to specify a method to which it applies. For instance, expects() returns an object (PHPUnit\_Framework\_MockObject\_Builder\_InvocationMocker, if you must know) that has a method called method(). I can simply call that with a method name. This is enough to get some real mocking done:
 
-exactly($num)
+```php
+$store = $this->getMock("UserStore");
+$store->expects($this->once())    
+    ->method('notifyPasswordFailure');
+```
 
-at($num)
+I need to go further, however, and check the parameters that are passed to notifyPasswordFailure(). The InvocationMocker::method() returns an instance of the object it was called on. InvocationMocker includes a method name, with(), which accepts a variable list of parameters to match. It also accepts constraint objects, so you can test ranges and so on. Armed with this, you can complete the statement and ensure that the expected parameter is passed to notifyPasswordFailure():
 
-Zero or more calls are made to the corresponding method (useful for stub objects that return values, but don’t test invocations)No calls are made to the corresponding methodOne or more calls are made to the corresponding methodA single call is made to the corresponding method$num calls are made to the corresponding method
+```php
+$store->expects($this->once())   
+     ->method('notifyPasswordFailure')    
+     ->with($this->equalTo('bob@example.com'));
+```
 
-A call to the corresponding method made at $num index (each method call to a mock is recorded and indexed)
+You can see why this is known as a fluent interface. It reads a bit like a sentence:「The \$store object expects a single call to the notifyPasswordFailure() method with parameter bob@example.com.」
 
-Having set up the match requirement, I need to specify a method to which it applies. For instance, 
+Notice that I passed a constraint to with(). Actually, that’s redundant; any bare arguments are converted to constraints internally, so I could write the statement like this:
 
-expects() returns an object (PHPUnit_Framework_MockObject_Builder_InvocationMocker, if you must know) that has a method called method(). I can simply call that with a method name. This is enough to get some real mocking done:
-
-$store = $this->getMock("UserStore");$store->expects($this->once())    ->method('notifyPasswordFailure');
-
-I need to go further, however, and check the parameters that are passed to notifyPasswordFailure(). 
-
-The InvocationMocker::method() returns an instance of the object it was called on. InvocationMocker includes a method name, with(), which accepts a variable list of parameters to match. It also accepts constraint objects, so you can test ranges and so on. Armed with this, you can complete the statement and ensure that the expected parameter is passed to notifyPasswordFailure():
-
-$store->expects($this->once())    ->method('notifyPasswordFailure')    ->with($this->equalTo('bob@example.com'));
-
-You can see why this is known as a fluent interface. It reads a bit like a sentence:「The $store object 
-
-expects a single call to the notifyPasswordFailure() method with parameter bob@example.com.」
-
-Notice that I passed a constraint to with(). Actually, that’s redundant; any bare arguments are 
-
-converted to constraints internally, so I could write the statement like this:
-
+```php
 $store->expects($this->once())    ->method('notifyPasswordFailure')    ->with('bob@example.com');
+```
 
 Sometimes, you only want to use PHPUnit’s mocks as stubs; that is, as objects that return values to allow your tests to run. In such cases, you can invoke InvocationMocker::will() from the call to method(). The will() method requires the return value (or values if the method is to be called repeatedly) that the associated method should be primed to return. You can pass in this return value by calling either TestCase::returnValue() or TestCase::onConsecutiveCalls(). Once again, this is much easier to do than to describe. Here’s the fragment from my earlier example in which I prime UserStore to return a value:
 
-$store->expects($this->any())    ->method("getUser")
+```php
+$store->expects($this->any())    
+    ->method("getUser")
+    ->will($this->returnValue([        
+        "name" => "bob williams",        
+        "mail" => "bob@example.com",        
+        "pass" => "right"    
+    ]));
+```
 
-    ->will($this->returnValue([        "name" => "bob williams",        "mail" => "bob@example.com",        "pass" => "right"    ]));
+I prime the UserStore mock to expect any number of calls to getUser(). Right now, I’m concerned with providing data, not with testing calls. Next, I call will() with the result of invoking TestCase::returnValue() with the data I want returned (this happens to be a PHPUnit\_Framework\_MockObject\_Stub\_Return object, although if I were you, I’d just remember the convenience method you use to get it).
 
-I prime the UserStore mock to expect any number of calls to getUser(). Right now, I’m 
+You can alternatively pass the result of a call to TestCase::onConsecutiveCalls() to will(). This accepts any number of parameters, each one of which will be returned by your mocked method as it is called repeatedly.
 
-concerned with providing data, not with testing calls. Next, I call will() with the result of invoking TestCase::returnValue() with the data I want returned (this happens to be a PHPUnit_Framework_MockObject_Stub_Return object, although if I were you, I’d just remember the convenience method you use to get it).
+### 5.3.7 Tests Succeed When They Fail
 
-You can alternatively pass the result of a call to TestCase::onConsecutiveCalls() to will(). This 
+Although most agree that testing is a fine thing, you grow to really love it generally only after it has saved your bacon a few times. Let’s simulate a situation where a change in one part of a system has an unexpected effect elsewhere.
 
-accepts any number of parameters, each one of which will be returned by your mocked method as it is called repeatedly.
+The UserStore class has been running for a while when, during a code review, it is agreed that it would be neater for the class to generate User objects rather than associative arrays. Here is the new version:
 
-Tests Succeed When They FailAlthough most agree that testing is a fine thing, you grow to really love it generally only after it has saved your bacon a few times. Let’s simulate a situation where a change in one part of a system has an unexpected effect elsewhere.
+```php
+// listing 18.10
 
-The UserStore class has been running for a while when, during a code review, it is agreed that it would 
+namespace popp\ch18\batch03;
 
-be neater for the class to generate User objects rather than associative arrays. Here is the new version:
+class UserStore {    
+    private $users = [];
 
-// listing 18.10namespace popp\ch18\batch03;
-
-class UserStore{    private $users = [];
-
-    public function addUser(string $name, string $mail, string $pass)    {        if (isset($this->users[$mail])) {            throw new \Exception(                "User {$mail} already in the system"            );        }
-
+    public function addUser(string $name, string $mail, string $pass)    {       
+     if (isset($this->users[$mail])) {            
+        throw new \Exception (                
+            "User {$mail} already in the system"            
+        );        
+     }
         $this->users[$mail] = new User($name, $mail, $pass);
+        return true;    
+    }
 
-        return true;    }
+    public function notifyPasswordFailure(string $mail)    {        
+        if (isset($this->users[$mail])) {            
+            $this->users[$mail]->failed(time());        
+        }
+    }
 
-    public function notifyPasswordFailure(string $mail)    {        if (isset($this->users[$mail])) {            $this->users[$mail]->failed(time());        }    }
-
-    public function getUser(string $mail)
-
-    {        if (isset($this->users[$mail])) {            return ( $this->users[$mail] );        }
-
+    public function getUser(string $mail) {        
+        if (isset($this->users[$mail])) {            
+            return ( $this->users[$mail] );        
+        }
         return null;    }}
+```
 
 Here is the simple User class:
 
-// listing 18.11namespace popp\ch18\batch03;
+```php
+// listing 18.11
 
-class User{    private $name;    private $mail;    private $pass;    private $failed;
+namespace popp\ch18\batch03;
 
-    public function __construct(string $name, string $mail, string $pass)    {        $this->name = $name;        $this->mail = $mail;
+class Use r{    
+    private $name;    
+    private $mail;    
+    private $pass;    
+    private $failed;
 
-        if (strlen($pass) < 5) {            throw new \Exception(                "Password must have 5 or more letters"            );        }
+    public function __construct(string $name, string $mail, string $pass)    {        
+        $this->name = $name;        
+        $this->mail = $mail;
 
-        $this->pass = $pass;    }
+        if (strlen($pass) < 5) {            
+            throw new \Exception (                
+                "Password must have 5 or more letters"            
+            );        
+        }
+        $this->pass = $pass;    
+    }
 
-    public function getMail(): string    {        return $this->mail;    }
+    public function getMail(): string    {        
+        return $this->mail;    
+    }
 
-    public function getPass(): string    {        return $this->pass;    }
+    public function getPass(): string    {        
+        return $this->pass;    
+    }
 
-    public function failed(string $time)    {        $this->failed = $time;    }}
+    public function failed(string $time)    {        
+        $this->failed = $time;    
+    }
+}
+```
 
-Of course, I amend the UserStoreTest class to account for these changes. Consider this code designed 
+Of course, I amend the UserStoreTest class to account for these changes. Consider this code designed to work with an array:
 
-to work with an array:
-
+```php
 public function testGetUser(){    $this->store->addUser("bob williams", "a@b.com", "12345");    $user = $this->store->getUser("a@b.com");    $this->assertEquals($user['mail'], "a@b.com");    //...
+```
 
 It is now converted into code designed to work with an object, like this:
 
-public function testGetUser(){    $this->store->addUser("bob williams", "a@b.com", "12345");    $user = $this->store->getUser("a@b.com");    $this->assertEquals($user->getMail(), "a@b.com");}
+```php
+public function testGetUser() {    
+    $this->store->addUser("bob williams", "a@b.com", "12345");    
+    $user = $this->store->getUser("a@b.com");    
+    $this->assertEquals($user->getMail(), "a@b.com");
+}
+```
 
 When I come to run my test suite, however, I am rewarded with a warning that my work is not yet done:
 
+```
 $ phpunit src/ch18/batch03/
 
 PHPUnit 5.0.10 by Sebastian Bergmann and contributors.....F..                                                             7 / 7 (100%)
 
 Time: 254 ms, Memory: 4.00MB
-
 There was 1 failure:
-
 1) popp\ch18\batch03\ValidatorTest::testValidateCorrectPassExpecting successful validationFailed asserting that false is true.
-
 /var/popp/src/ch18/batch03/ValidatorTest.php:24
-
 FAILURES!Tests: 7, Assertions: 6, Failures: 1.
+```
 
-I invoke getUser(). Although getUser() now returns an object and not an array, my method does not 
+I invoke getUser(). Although getUser() now returns an object and not an array, my method does not generate a warning. getUser() originally returned the requested user array on success or null on failure, so I validated users by checking for an array using the is\_array() function. Now, of course, getUser() returns an object, and the validateUser() method will always return false. Without the test framework, the Validator would have simply rejected all users as invalid without fuss or warning.
 
-generate a warning. getUser() originally returned the requested user array on success or null on failure, so I validated users by checking for an array using the is_array() function. Now, of course, getUser() returns an object, and the validateUser() method will always return false. Without the test framework, the Validator would have simply rejected all users as invalid without fuss or warning.
+Now, imagine making this neat little change on a Friday night without a test framework in place. Think about the frantic text messages that would drag you out of your pub, armchair, or restaurant:「What have you done? All our customers are locked out!」
 
-Now, imagine making this neat little change on a Friday night without a test framework in place. Think 
+The most insidious bugs don’t cause the interpreter to report that something is wrong. They hide in perfectly legal code, and they silently break the logic of your system. Many bugs don’t manifest themselves where you are working; they are caused there, but the effects pop up elsewhere, days or even weeks later. A test framework can help you catch at least some of these, preventing rather than discovering problems in your systems.
 
-about the frantic text messages that would drag you out of your pub, armchair, or restaurant:「What have you done? All our customers are locked out!」
+Write tests as you code, and run them often. If someone reports a bug, first add a test to your framework to confirm it. Next, fix the bug so that the test is passed. Bugs have a funny habit of recurring in the same area. Writing tests to prove bugs and then to guard the fix against subsequent problems is known as regression testing. Incidentally, if you keep a separate directory of regression tests, remember to name your files descriptively. On one project, our team decided to name our regression tests after Bugzilla ticket numbers. We ended up with a directory containing 400 test files, each with a name like test_973892.php. Finding an individual test became a tedious chore!
 
-The most insidious bugs don’t cause the interpreter to report that something is wrong. They hide in perfectly 
-
-legal code, and they silently break the logic of your system. Many bugs don’t manifest themselves where you are working; they are caused there, but the effects pop up elsewhere, days or even weeks later. A test framework can help you catch at least some of these, preventing rather than discovering problems in your systems.
-
-Write tests as you code, and run them often. If someone reports a bug, first add a test to your framework 
-
-to confirm it. Next, fix the bug so that the test is passed. Bugs have a funny habit of recurring in the same area. Writing tests to prove bugs and then to guard the fix against subsequent problems is known as regression testing. Incidentally, if you keep a separate directory of regression tests, remember to name your files descriptively. On one project, our team decided to name our regression tests after Bugzilla ticket numbers. We ended up with a directory containing 400 test files, each with a name like test_973892.php. Finding an individual test became a tedious chore!
-
-Writing Web Tests
+## 5.4 Writing Web Tests
 
 You should engineer your web systems in such a way that they can be invoked easily from the command line or an API call. In Chapter 12, you saw some tricks that might help you with this. In particular, if you create a Request class to encapsulate an HTTP request, you can just as easily populate an instance from the command line or method argument lists as from request parameters. The system can then run in ignorance of its context.
 
 If you find a system hard to run in different contexts, that may indicate a design issue. If, for example, you have numerous filepaths hard-coded into components, it’s likely you are suffering from tight coupling. You should consider moving elements that tie your components to their context into encapsulating objects that can be acquired from a central repository. The registry pattern, also covered in Chapter 12, will likely help you with this.
 
-Once your system can be run directly from a method call, you’ll find that high-level web tests are 
+你的 Web 系统应该设计成这样：通过命令行或 API 调用可以轻松地调用。第 12 章介绍了一些这方面的技巧。尤其是，如果创建 Request 类来封装 HTTP 请求，你可以通过请求参数填充实例，就像根据命令行或方法参数列表来填充实例一样简单。该系统随后会在不清楚上下文的状态下运行。
 
-relatively easy to write without any additional tools.
+如果你的 Web 系统很难在不同的上下文中运行，就说明设计可能有问题。例如，如果你将很多文件路径硬编码到了组件中，就可能导致紧密耦合。你应该考虑将造成组件与上下文耦合的元素移动到封装对象中，然后通过中心代码封装对象。第 12 章中介绍的注册表模式可以帮助你实现这一过程。
+
+Once your system can be run directly from a method call, you’ll find that high-level web tests are relatively easy to write without any additional tools.
 
 You may find, however, that even the most well-thought-out project will need some refactoring to get things ready for testing. In my experience, this almost always results in design improvements. I’m going to demonstrate this by retrofitting one aspect of the WOO example from Chapters 12 and 13 for unit testing.
 
-Refactoring a Web Application for TestingWe actually left the WOO example in a reasonable state from a tester’s point of view. Because the system uses a single Front Controller, there’s a simple API interface. This is a simple class called Runner.php:
+一旦 Web 系统可以直接通过方法调用运行，你会发现在不使用其他工具的情况下，高层次的 Web 测试相对会更容易编写。但是，即使是经过深思熟虑之后开发出来的项目，恐怕也需要经过重构才能具备测试条件。以我的编程经验来看，这通常会改进设计。我打算改进第 12 章和第 13 章的 WOO 示例的一个方面来进行单元测试，以此说明这一过程。
 
+### 5.4.1 Refactoring a Web Application for Testing
+
+We actually left the WOO example in a reasonable state from a tester’s point of view. Because the system uses a single Front Controller, there’s a simple API interface. This is a simple class called Runner.php:
+
+```
 // listing 18.13require_once("vendor/autoload.php");
 
 use popp\ch18\batch04\woo\controller\Controller;
@@ -643,29 +806,33 @@ some extent, this is already handled in the Request class:
     public function init()    {        if (isset($_SERVER['REQUEST_METHOD'])) {            if ($_SERVER['REQUEST_METHOD']) {                $this->properties = $_REQUEST;                return;
 
             }        }        foreach ($_SERVER['argv'] as $arg) {            if (strpos($arg, '=')) {                list($key, $val) = explode("=", $arg);                $this->setProperty($key, $val);            }        }    }
+```
 
  Just a reminder that, if you do implement your own Request class, you should capture and store 
 
- ■ Note GET, POST and even PUT properties separately, rather than dumping them into a single $request property.
+■ Note GET, POST and even PUT properties separately, rather than dumping them into a single \$request property.
 
-The init() method detects whether the process is running in a server context, and populates the 
+The init() method detects whether the process is running in a server context, and populates the \$properties array accordingly (either directly or via setProperty()). This works fine for command-line invocation. For example, it means I can run something like this:
 
-$properties array accordingly (either directly or via setProperty()). This works fine for command-line invocation. For example, it means I can run something like this:
-
+```
 $ php src/ch18/batch04/Runner.php cmd=AddVenue venue_name=bob
+```
 
 The preceding line generates this response:
 
+```
 <html><head><title>Add a Space for venue bob</title></head><body><h1>Add a Space for Venue 'bob'</h1>
 
 <table><tr><td>'bob' added (18)</td></tr><tr><td>please add name for the space</td></tr></table>[add space]<form method="post">    <input type="text" value="" name="space_name"/>    <input type="hidden" name="cmd" value="AddSpace" />    <input type="hidden" name="venue_id" value="18" />    <input type="submit" value="submit" /></form>
 
 </body></html>
+```
 
-Although this works for the command line, it remains a little tricky to pass in arguments via a method call. One inelegant solution would be to manually set the $argv array before calling the controller’s run() method. I don’t much like this, though. Playing directly with magic arrays feels plain wrong, and the string 
+Although this works for the command line, it remains a little tricky to pass in arguments via a method call. One inelegant solution would be to manually set the \$argv array before calling the controller’s run() method. I don’t much like this, though. Playing directly with magic arrays feels plain wrong, and the string 
 
 manipulation involved at each end would compound the sin. Looking at the Controller class more closely, however, reveals a design decision that can help us:
 
+```
 // listing 18.15
 
 // Controller
@@ -675,15 +842,15 @@ manipulation involved at each end would compound the sin. Looking at the Control
         while ($cmd = $app_c->getCommand($request)) {            $cmd->execute($request);        }
 
         $this->invokeView($app_c->getView($request));    }
+```
 
 This method is designed to be invoked by the static run() method. Note how the Request object is not directly instantiated. Instead, I acquire it from the ApplicationRegistry. When the Registry holds a single instance of an object like Request, I can acquire a reference to it and load it with data from within my test before I start the system running by invoking the controller. In this way, I can simulate a web request. Because my system uses a Request object as its only interface to a web request, it is decoupled from the data source. As long as Request is sane, the system will not care whether its data originates ultimately from a test or from a web server. As a general principle I prefer to push instantiations back to a registry, where possible. That way, I can later extend my implementation of the static factory method, ApplicationRegistry::instance() in this case. This approach returns a mock registry populated with fake components if a flag is set, thereby creating an entirely mocked environment. I love to fool my systems.
 
-Here, however, I will demonstrate the first, more conservative trick by preloading my Request object 
-
-with test data.
+Here, however, I will demonstrate the first, more conservative trick by preloading my Request object with test data.
 
 Simple Web TestingHere’s a test case that performs a very basic test on the WOO system:
 
+```
 // listing 18.16namespace popp\ch18\batch04;
 
 use popp\ch18\batch04\woo\controller\Controller;use popp\ch18\batch04\woo\controller\Request;use popp\ch18\batch04\woo\base\ApplicationRegistry;use popp\ch18\batch04\woo\controller\ApplicationHelper;
@@ -695,13 +862,13 @@ class AddVenueTest extends \PHPUnit_Framework_TestCase{    public function testA
         if (! is_null($command)) {            $request->setProperty('cmd', $command);        }
 
         woo\controller\Controller::run();    }}
+```
 
 In fact, it does not so much test anything as prove that the system can be invoked. The real work is done in the runCommand() method. There is nothing terribly clever here. I get a Request object from the RequestRegistry, and I populate it with the keys and values provided in the method call. Because the Controller will go to the same source for its Request object, I know that it will work with the values that I have set.
 
-Running this test confirms that all is well. I see the output I expect. The problem is that this output is 
+Running this test confirms that all is well. I see the output I expect. The problem is that this output is printed by the view, so it’s hard to test. I can fix that quite easily by buffering the output:
 
-printed by the view, so it’s hard to test. I can fix that quite easily by buffering the output:
-
+```
 // listing 18.17namespace popp\ch18\batch04;
 
 use popp\ch18\batch04\woo\controller\Controller;use popp\ch18\batch04\woo\controller\Request;use popp\ch18\batch04\woo\base\ApplicationRegistry;use popp\ch18\batch04\woo\controller\ApplicationHelper;
@@ -717,20 +884,17 @@ class AddVenueTest2 extends \PHPUnit_Framework_TestCase{
         if (! is_null($command)) {            $request->setProperty('cmd', $command);        }        woo\controller\Controller::run();        $ret = ob_get_contents();        ob_end_clean();
 
         return $ret;    }}
+```
 
-By catching the system’s output in a buffer, I’m able to return it from the runCommand() method. Next, I 
+By catching the system’s output in a buffer, I’m able to return it from the runCommand() method. Next, I apply a simple assertion to the return value to examine. Here is the view from the command line:
 
-apply a simple assertion to the return value to examine.
-
-Here is the view from the command line:
-
+```
 $ phpunit src/ch18/batch04/AddVenueTest2.php
 
 PHPUnit 5.0.10 by Sebastian Bergmann and contributors..                                                                   1 / 1 (100%)Time: 194 ms, Memory: 4.00MBOK (1 test, 1 assertion)
+```
 
-If you are going to be running lots of tests on a system in this way, it would make sense to create a Web 
-
-UI superclass to hold runCommand().
+If you are going to be running lots of tests on a system in this way, it would make sense to create a Web UI superclass to hold runCommand().
 
 I am glossing over some details here that you will face in your own tests. You will need to ensure that 
 
@@ -756,9 +920,11 @@ Once you’ve downloaded the package, you should find a file named selenium-serv
 
 Here, I copy the server to the /usr/local/lib directory. Then I start the server:
 
+```
 $ sudo cp selenium-server-standalone-2.53.0.jar /usr/local/lib/$ java -jar /usr/local/lib/selenium-server-standalone-2.53.0.jar
 
 20:20:06.501 INFO - Launching a standalone Selenium Server20:20:06.673 INFO - Java: Oracle Corporation 25.65-b0120:20:06.673 INFO - OS: Linux 4.0.4-303.fc22.x86_64 amd6420:20:06.746 INFO - v2.53.0, with Core v2.53.0. Built from revision 35ae25b20:20:06.922 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform LINUX20:20:06.923 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform LINUX20:20:06.923 INFO - Driver class not found: com.opera.core.systems.OperaDriver20:20:06.923 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered20:20:06.925 INFO - Driver provider org.openqa.selenium.safari.SafariDriver registration is skipped:registration capabilities Capabilities [{browserName=safari, version=, platform=MAC}] does not match the current platform LINUX20:20:06.926 INFO - Driver class not found: org.openqa.selenium.htmlunit.HtmlUnitDriver20:20:06.927 INFO - Driver provider org.openqa.selenium.htmlunit.HtmlUnitDriver is not registered20:20:07.254 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub20:20:07.254 INFO - Selenium Server is up and running
+```
 
 Note that the startup output tells us the URL we should use in order to communicate with the server. 
 
@@ -772,7 +938,9 @@ Introducing php-webdriverWebDriver is the mechanism by which Selenium controls b
 
 You can add php-webdriver it to your project with Composer:
 
+```
 "require-dev": {    "phpunit/phpunit": "5.0.*",    "facebook/webdriver" : "*"},
+```
 
 Update your composer.json file, run composer update, and you should be ready to go.
 
@@ -780,9 +948,11 @@ Creating the Test SkeletonI will be working with an instance of the WOO applicat
 
 I’ll start off with a boilerplate test class:
 
+```
 // listing 18.18namespace popp\ch18\batch04;
 
 use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
+```
 
 class SeleniumTest extends \PHPUnit_Framework_TestCase{    protected function setUp()    {    }
 
@@ -794,6 +964,7 @@ it’s time to make this test do something.
 
 Connecting to SeleniumRemember that, on start up, the server outputs its connection URL. In order to make the connection to Selenium, I need to pass this URL and a capabilities array to a class named RemoteWebDriver:
 
+```
 // listing 18.19namespace popp\ch18\batch04;
 
 use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
@@ -803,10 +974,9 @@ class SeleniumTest extends PHPUnit_Framework_TestCase{    private $driver;
     protected function setUp()    {        $host = "http://127.0.0.1:4444/wd/hub";        $capabilities = [WebDriverCapabilityType::BROWSER_NAME => 'firefox'];        $this->driver = RemoteWebDriver::create($host, $capabilities);    }
 
     public function testAddVenue()    {    }}
+```
 
-If you installed php-webdriver with Composer, you can see a full list of capabilities in the class file 
-
-at vendor/facebook/webdriver/lib/Remote/WebDriverCapabilityType.php. For my present purposes, however, I really only need to specify the browser name. I pass the host string and the $capabilities array to the static RemoteWebDriver::create() method, and store the resulting object reference in the $driver property. When I run this test, I should see that Selenium launches a fresh browser window in preparation for my tests.
+If you installed php-webdriver with Composer, you can see a full list of capabilities in the class file at vendor/facebook/webdriver/lib/Remote/WebDriverCapabilityType.php. For my present purposes, however, I really only need to specify the browser name. I pass the host string and the \$capabilities array to the static RemoteWebDriver::create() method, and store the resulting object reference in the \$driver property. When I run this test, I should see that Selenium launches a fresh browser window in preparation for my tests.
 
  ■ Note  these code examples were tested with selenium 2.53 and Firefox 43.0, and then tested again with selenium 2.53 and Firefox 45.0. there have been reports that some later versions of Firefox have manifested compatibility issues with selenium. hopefully, by the time you read this, these issues will have been resolved!
 
@@ -814,6 +984,7 @@ Writing the TestI would like to test a simple workflow. I will navigate to the A
 
 Here is my test:
 
+```
 // listing 18.20namespace popp\ch18\batch04;
 
 use Facebook\WebDriver\Remote\DesiredCapabilities;use Facebook\WebDriver\Remote\RemoteWebDriver;use Facebook\WebDriver\Remote\WebDriverCapabilityType;use Facebook\WebDriver\WebDriverBy;
@@ -833,16 +1004,17 @@ class seleniumtest3 extends \PHPUnit_Framework_TestCase {
         $el = $this->driver->findElement(WebDriverBy::xpath("//td[1]"));        $this->assertRegexp("/'my_test_space' added/", $el->getText());
 
     }}
+```
 
 Here’s what happens when I run this test on the command line:
 
+```
 $ phpunit src/ch18/batch04/seleniumtest3.php
 
 PHPUnit 5.0.10 by Sebastian Bergmann and contributors..                                                                   1 / 1 (100%)Time: 3.11 seconds, Memory: 3.00MBOK (1 test, 2 assertions)
+```
 
-Of course, it’s not all that happens. Selenium also launches a browser window and performs my 
-
-specified operations upon it. I have to admit, I find this effect a little eerie!
+Of course, it’s not all that happens. Selenium also launches a browser window and performs my specified operations upon it. I have to admit, I find this effect a little eerie!
 
 Let’s run through the code. First, I invoke WebDriver::get(), which acquires my starting page. Note that this method expects a full URL (which does not need to be local to the Selenium Server host). In this case, I configured an Apache server on a Vagrant virtual machine to serve up a mocked up AddVenue.php script. Selenium will load the specified document into the browser it has launched. You can see this page in Figure 18-1.
 
@@ -920,26 +1092,15 @@ The cost involved in keeping tests in step with an evolving system is a tradeoff
 
 factor in. On the whole, I believe the benefits justify the costs.
 
-You can also do some things to reduce the fragility of a test harness. It’s a good idea to write tests with 
+You can also do some things to reduce the fragility of a test harness. It’s a good idea to write tests with the expectation of change built in, to some extent. I tend to use regular expressions to test output rather than direct equality tests, for example. Testing for a few key words is less likely to make my test fail when I remove a newline character from an output string. Of course, making your tests too forgiving is also a danger, so it is a matter of using your judgment.
 
-the expectation of change built in, to some extent. I tend to use regular expressions to test output rather than direct equality tests, for example. Testing for a few key words is less likely to make my test fail when I remove a newline character from an output string. Of course, making your tests too forgiving is also a danger, so it is a matter of using your judgment.
+Another issue is the extent to which you should use mocks and stubs to fake the system beyond the component you wish to test. Some insist that you should isolate your component as much as possible and mock everything around it. This works for me in some projects. In others, however, I have found that maintaining a system of mocks can become a time sink. Not only do you have the cost of keeping your tests in line with your system, but you must keep your mocks up-to-date. Imagine changing the return type of a method. If you fail to update the method of the corresponding stub object to return the new type, client tests may pass in error. With a complex fake system, there is a real danger of bugs creeping into mocks. Debugging tests is frustrating work, especially when the system itself is not at fault.
 
-Another issue is the extent to which you should use mocks and stubs to fake the system beyond the 
+I tend to play this by ear. I use mocks and stubs by default, but I’m unapologetic about moving to real components if the costs begin to mount up. You may lose some focus on the test subject, but this comes with the bonus that errors originating in the component’s context are at least real problems with the system. You can, of course, use a combination of real and fake elements. I routinely use an in-memory database in test mode, for example.
 
-component you wish to test. Some insist that you should isolate your component as much as possible and mock everything around it. This works for me in some projects. In others, however, I have found that maintaining a system of mocks can become a time sink. Not only do you have the cost of keeping your tests in line with your system, but you must keep your mocks up-to-date. Imagine changing the return type of a method. If you fail to update the method of the corresponding stub object to return the new type, client tests may pass in error. With a complex fake system, there is a real danger of bugs creeping into mocks. Debugging tests is frustrating work, especially when the system itself is not at fault.
+As you may have gathered, I am not an ideologue when it comes to testing. I routinely「cheat」by combining real and mocked components; and because priming data is repetitive, I often centralize test fixtures into what Martin Fowler calls Object Mothers. These classes are simple factories that generate primed objects for the purpose of testing. Shared fixtures of this sort are anathema to some.
 
-I tend to play this by ear. I use mocks and stubs by default, but I’m unapologetic about moving to real 
-
-components if the costs begin to mount up. You may lose some focus on the test subject, but this comes with the bonus that errors originating in the component’s context are at least real problems with the system. You can, of course, use a combination of real and fake elements. I routinely use an in-memory database in test mode, for example.
-
-As you may have gathered, I am not an ideologue when it comes to testing. I routinely「cheat」by 
-
-combining real and mocked components; and because priming data is repetitive, I often centralize test fixtures into what Martin Fowler calls Object Mothers. These classes are simple factories that generate primed objects for the purpose of testing. Shared fixtures of this sort are anathema to some.
-
-Having pointed out some of the problems that testing may force you to confront, it is worth reiterating a 
-
-few points that, for my money, trump all objections. Testing accomplishes several things:
-
+Having pointed out some of the problems that testing may force you to confront, it is worth reiterating a few points that, for my money, trump all objections. Testing accomplishes several things:
 
 It helps you prevent bugs (to the extent that you find them during development and refactoring)
 

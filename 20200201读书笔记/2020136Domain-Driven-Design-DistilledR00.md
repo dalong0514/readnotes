@@ -8,27 +8,21 @@ Copyright © 2016 Pearson Education, Inc.
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——
+### 0201. 术语卡——三种学习模式
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+听者、视者和触者。
 
-例子。
+But why? Every person has a learning style. There are a number of learning styles, but three of the most discussed are auditory, visual, and tactile styles. The auditory learners learn by hearing and listening. The visual learners learn by reading or seeing imagery. The tactile learners learn by doing something that involves touching. It’s interesting that each learning style is heavily favored by the individual to the extent that he or she can sometimes have trouble with other types of learning. For example, tactile learners likely remember what they have done but may have problems remembering what was said during the process. With model building, you would think that visual and tactile learners would have a huge advantage over the auditory learners, because model building seems to mostly involve visual and tactile stimulation. However, that might not always hold true, especially if a team of model builders uses audible communication in their building process. In other words, model building holds out the possibility to accommodate the learning style of the vast majority of individuals.
 
 ### 0202. 术语卡——
 
 ### 0203. 术语卡——
 
-### 0301. 人名卡——
+### 0301. 人名卡——Vaughn Vernon
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+沃恩·弗农（Vaughn Vernon），DDD 的布道者，著作《IDDD》以及本书《DDD精粹》。
 
-维基百科链接：有的话。
-
-#### 01. 基本信息
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及著作
+注：Google 上搜 Vaughn Vernon 可以获取不少有价值的信息，比如他的演讲视频。
 
 ### 0401. 金句卡——
 
@@ -38,11 +32,9 @@ Copyright © 2016 Pearson Education, Inc.
 
 行动卡是能够指导自己的行动的卡。
 
-### 0601. 任意卡——
+### 0601. 任意卡——本书的内容框架
 
 领域驱动设计（DDD）是时下软件设计领域中的热门话题，它通过指导我们构建领域模型，来表达丰富的软件功能需求，并由此实现可以满足用户真正需要的软件。然而在实践过程中，由于不同的角色对于 DDD 的核心概念和主要工具的理解不同，常常会造成协作上的不一致。为了帮助和指导面向对象的开发人员、系统分析人员和设计人员更加合理地组织工作，各有侧重、有条不紊地进行复杂系统的开发，并有效地建立丰富而实用的领域模型，本书的作者 Vaughn Vernon 将自己近年来在领域驱动设计领域的理解进一步提炼，并将本书以精粹的形式呈现给广大的读者。本书的内容包括：DDD 对于广大读者的意义、从战略层面进行设计、从战术层面进行设计，以及相关的辅助工具。当然，仅仅通过此书的阅读无法深入地掌握领域驱动设计的精髓，无论你是什么经验水平或角色，请阅读本书并在项目中实践 DDD。并在这之后，再重读此书，看看你从项目的经历中学到了什么。反复这样的循环，你将会获益匪浅。
-
-1『总结了本书的四大内容：1）DDD 的意义。2）战略层进行设计。3）战术层进行设计。4）相关的辅助工具。』
 
 ## 译者序
 
@@ -80,11 +72,15 @@ It is my strong desire to help you be as human as you can possibly be by modelin
 
 For auditory learners, DDD holds out the prospect of learning through the team communication of building a model based on the development of a Ubiquitous Language. For visual and tactile learners, the process of using DDD tools is very visual and hands-on as your team models both strategically and tactically. This is especially true when drawing Context Maps and modeling the business process using Event Storming. Thus, I believe that DDD can support everyone who wants to learn and achieve greatness through model building.
 
+1『出现了 2 个关键词，绘制上下文映射图、用事件暴风建模。』
+
 对于听觉学习者而言，DDD 通过团队的沟通来构建基于通用语言的开发模型，并以此创造学习的契机。对于视觉和触觉学习者来说，在团队进行战略和战术建模时使用 DDD 其过程高度视觉化并非常注重实操。绘制上下文映射图并使用事件风暴构建业务流程时尤为如此。因此，我相信 DDD 可以帮助到每一位期待通过模型构建来学习并且希望获得伟大成就的人。
 
 ### Who Is This Book For?
 
 This book is for everyone interested in learning the most important DDD aspects and tools and in learning quickly. The most common readers are software architects and software developers who will put DDD into practice on projects. Very often, software developers quickly discover the beauty of DDD and are keenly attracted to its powerful tooling. Even so, I have made the subject understandable for executives, domain experts, managers, business analysts, information architects, and testers alike. There’s really no limit to those in the information technology (IT) industry and research and development (R&D) environments who can benefit from reading this book.
+
+3『忘记在哪里看到过（好像是「科学」杂志的一篇文章），把人员分成了 IT 和 R&D 两大类，待确认。（2020-07-29）』
 
 If you are a consultant and you are working with a client to whom you have recommended the use of DDD, provide this book as a way to bring the major stakeholders up to speed quickly. If you have developers—perhaps junior or midlevel or even senior—working on your project who are unfamiliar with DDD but need to use it very soon, make sure that they read this book. By reading this book, at minimum, all the project stakeholders and developers will have the vocabulary and understand the primary DDD tools being used. This will enable them to share things meaningfully as they move the project forward.
 
