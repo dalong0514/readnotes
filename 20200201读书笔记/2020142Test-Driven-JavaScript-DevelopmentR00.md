@@ -48,14 +48,6 @@ TDD is about how code should be written while Agile is about the whole developme
 
 最后还有一张任意卡，记录个人阅读感想。
 
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
-
 ## Preface
 
 Initially, all processing used to happen on the server's side and simple output was the response to web browsers. Nowadays, there are so many JavaScript frameworks and libraries that help readers to create charts, animations, simulations, and so on. By the time a project finishes or reaches a stable state, so much JavaScript code has already been written that changing and maintaining it further is tedious. At this point comes the importance of automated testing, and more specifically, developing all that code in a test-driven environment. Test-driven development is a methodology that makes testing the central part of the design process—before writing code, developers decide upon the conditions that code must meet to pass a test. The end goal is to help the readers understand the importance and process of using TDD as a part of the development.
