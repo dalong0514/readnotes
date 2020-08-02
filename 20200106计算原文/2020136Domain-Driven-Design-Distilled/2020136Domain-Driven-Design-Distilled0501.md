@@ -1,44 +1,18 @@
-# Chapter 5. Tactical Design with Aggregates
-
-
-
+# 0501. Tactical Design with Aggregates
 
 So far I have discussed strategic design with Bounded Contexts , Subdomains , and Context Maps. Here you see two Bounded Contexts , the Core Domain named Agile Project Management Context and a Supporting Subdomain that provides collaboration tools through Context Mapping integration.
 
-
-
 But what about the concepts that live inside a Bounded Context ? I’ve touched on these, but I will next cover them in more detail. They are likely the Aggregates in your model.
 
+## Why Used
 
-
-
-
-Why Used
-
-
-Each of the circled concepts that you see inside these two Bounded Contexts is an Aggregate. The one concept not circled—Discussion —is modeled as a Value Object. Even so, we are focused on Aggregates in this chapter, and we will take a closer look at how to model Product , BacklogItem , Release , and Sprint .
-
-
-
-
-
-* * *
-
-
+Each of the circled concepts that you see inside these two Bounded Contexts is an Aggregate. The one concept not circled—Discussion —is modeled as a Value Object. Even so, we are focused on Aggregates in this chapter, and we will take a closer look at how to model Product , BacklogItem , Release , and Sprint.
 
 What Is an Entity?
 
 An Entity models an individual thing. Each Entity has a unique identity in that you can distinguish its individuality from among all other Entities of the same or a different type. Many times, perhaps even most times, an Entity will be mutable; that is, its state will change over time. Still, an Entity is not of necessity mutable and may be immutable. The main thing that separates an Entity from other modeling tools is its uniqueness—its individuality.
 
 See Implementing Domain-Driven Design [IDDD] for an exhaustive treatment of Entities.
-
-
-
-* * *
-
-
-
-
 
 What is an Aggregate ? Two are represented here. Each Aggregate is composed of one or more Entities , where one Entity is called the Aggregate Root. Aggregates may also have Value Objects composed on them. As you see here, Value Objects are used inside both Aggregates .
 
@@ -88,23 +62,13 @@ To some degree, the use of transactions in your application is an implementation
 
 The reasons for the transactional boundary are business motivated, because it is the business that determines what a valid state of the cluster should be at any given time. In other words, if the Aggregate was not stored in a whole and valid state, the business operation that was performed would be considered incorrect according to business rules.
 
-
-
 To think about this in a different way, consider this. Although two Aggregates are represented here, only one of the two should be committed in a single transaction. That’s a general rule of Aggregate design: modify and commit only one Aggregate instance in one transaction. That’s why you see only the instance of Aggregate Type 1 within a transaction. We will look at the other rules of Aggregate design soon.
 
-
-
 Any other Aggregate will be modified and committed in a separate transaction. That’s why an Aggregate is said to be a transactional consistency boundary. So, you design your Aggregate compositions in a way that allows for transactional consistency and success. As seen here, an instance of Aggregate Type 2 is controlled under a separate transaction from the instance of Aggregate Type 1 .
-
-
 
 Since instances of these two Aggregates are designed to be modified in separate transactions, how do we get the instance of Aggregate Type 2 updated based on changes made to the instance of Aggregate Type 1 , to which our domain model must react? That’s a good question; we will consider the answer to it a bit later in this chapter.
 
 The main point to remember from this section is that business rules are the drivers for determining what must be whole, complete, and consistent at the end of a single transaction.
-
-
-
-
 
 Aggregate Rules of Thumb
 
@@ -266,10 +230,6 @@ Here, both TenantId and ProductId are modeled as immutable Value Objects.
 
 * * *
 
-
-
-
-
 Next you capture any intrinsic attributes or fields that are necessary for finding the Aggregate. In the case of Product , there are both description and name . Users can search one or both of these to find each Product . I also provide the C# code that declares these two intrinsic attributes.
 
 
@@ -365,39 +325,10 @@ Testable Units
 
 You should also design your Aggregates to be a sound encapsulation for unit testing. Complex Aggregates are hard to test. Following the previous design guidance will help you model testable Aggregates.
 
-
-
 Unit testing is different from validating business specifications (acceptance tests) as discussed in Chapter 2 , “Strategic Design with Bounded Contexts and the Ubiquitous Language ,” and Chapter 7 , “Acceleration and Management Tools .” Development of the unit tests will follow the creation of scenario specification acceptance tests. What we are concerned with here is testing that the Aggregate correctly does what it is supposed to do. You want to push on all the operations to ensure the correctness, quality, and stability of your Aggregates. You can use a unit testing framework for this, and there is much literature available on how to effectively unit test. These unit tests will be directly associated with your Bounded Context and kept with its source code repository.
 
+## Summary
 
-
-
-
-Summary
-
-
-In this chapter you learned:
-
-
-
-• What the Aggregate pattern is and why you should use it
-
-• The importance of designing with a consistency boundary in mind
-
-• About the various parts of an Aggregate
-
-• The four rules of thumb of effective Aggregate design
-
-• How you can model an Aggregate ’s unique identity
-
-• The importance of Aggregate attributes and how to prevent creating an Anemic Domain Model
-
-• How to model behavior on an Aggregate
-
-• To always adhere to the Ubiquitous Language within a Bounded Context
-
-• The importance of selecting the proper level of abstraction for your designs
-
-• A technique for right-sizing your Aggregate compositions, and how that includes designing for testability
+In this chapter you learned: 1) What the Aggregate pattern is and why you should use it. 2) The importance of designing with a consistency boundary in mind. 3) About the various parts of an Aggregate. 3) The four rules of thumb of effective Aggregate design. 4) How you can model an Aggregate ’s unique identity. 5) The importance of Aggregate attributes and how to prevent creating an Anemic Domain Model. 6) How to model behavior on an Aggregate. 7) To always adhere to the Ubiquitous Language within a Bounded Context. 8) The importance of selecting the proper level of abstraction for your designs. 9) A technique for right-sizing your Aggregate compositions, and how that includes designing for testability.
 
 For a more in-depth treatment of Entities , Value Objects , and Aggregates , see Chapters 5 , 6 , and 10 of Implementing Domain-Driven Design [IDDD] .

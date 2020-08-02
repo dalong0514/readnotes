@@ -1,25 +1,16 @@
-
-
-
-
-
-
-# Chapter 6. Tactical Design with Domain Events
-
-
-
+# 0601. Tactical Design with Domain Events
 
 You’ve already seen a bit in previous chapters about how Domain Events are used. A Domain Event is a record of some business-significant occurrence in a Bounded Context. By now you know that Domain Events are a very important tool for strategic design. Still, often during tactical design Domain Events are conceptualized and become a part of your Core Domain.
 
 To see the full power that results from using Domain Events , consider the concept of causal consistency. A business domain provides causal consistency if its operations that are causally related—one operation causes another—are seen by every dependent node of a distributed system in the same order [Causal] . This means that causally related operations must occur in a specific order, and thus one thing cannot happen unless another thing happens before it. Perhaps this means that one Aggregate cannot be created or modified until it is clear that a specific operation occurred to another Aggregate :
 
-1. Sue posts a message saying, “I lost my wallet!”
+1. Sue posts a message saying, “I lost my wallet!”.
 
-2. Gary says in reply, “That’s terrible!”
+2. Gary says in reply, “That’s terrible!”.
 
-3. Sue posts a message saying, “Don’t worry, I found my wallet!”
+3. Sue posts a message saying, “Don’t worry, I found my wallet!”.
 
-4. Gary replies, “That’s great!”
+4. Gary replies, “That’s great!”.
 
 If these messages were replicated on distributed nodes, but not in a causal order, it could appear that Gary said, “That’s great!” to the message “I lost my wallet!” The message “That’s great!” is not directly or causally related to “I lost my wallet!” and that’s definitely not what Gary wants Sue or anyone else to read. Thus, if causality is not achieved in the proper way, the overall domain would be wrong or at least misleading. This sort of causal, linearized system architecture can be readily achieved through the creation and publication of correctly ordered Domain Events.
 
@@ -134,9 +125,6 @@ Another tool at your disposal is snapshots, where the load time of your Aggregat
 One of the greatest advantages of using Event Sourcing is that it saves a record of everything that has ever happened in your Core Domain , at the individual occurrence level. This can be very helpful to your business for many reasons, ones that you can imagine today, such as compliance and analytics, and ones that you won’t realize until later. There are also technical advantages. For example, software developers can use event streams to examine usage trends and to debug their source code.
 
 You can find coverage of Event Sourcing techniques in Implementing Domain-Driven Design [IDDD] . Also, when you use Event Sourcing you are almost certainly obligated to use CQRS. You can also find discussions of this topic in Implementing Domain-Driven Design [IDDD] .
-
-
-
 
 
 Summary
