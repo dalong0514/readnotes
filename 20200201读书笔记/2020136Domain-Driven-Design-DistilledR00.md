@@ -92,7 +92,7 @@ If DDD had been used to develop it, the Subdomain would have been implemented as
 
 ### 0301. 人名卡——Vaughn Vernon
 
-沃恩·弗农（Vaughn Vernon），DDD 的布道者，著作《IDDD》以及本书《DDD精粹》。
+沃恩·弗农（Vaughn Vernon），DDD 的布道者，著作《Implement-Domain-Driven-Design》、《Domain-Driven-Design-Distilled》以及《Reactive-Messaging-Patterns》。
 
 注：Google 上搜 Vaughn Vernon 可以获取不少有价值的信息，比如他的演讲视频。
 
