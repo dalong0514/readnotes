@@ -32,11 +32,9 @@ This often happens due to the pressure to deliver software releases on a relentl
 
 他们采用一种我称之为「任务板挪卡」的方法来代替设计。团队有个开发任务清单，比如 Scrum 产品待办列表，其中的任务被张贴在「任务板」上，然后他们可以将一张便利贴从「任务板」上的「待办」泳道移动到「进行中」泳道，这就是「任务板挪卡」。产品经理提出待办项（任务），然后来一次「任务板挪卡」，这便构成了关于设计的全部「真知灼见」，剩下的就交给程序员大神们去疯狂输出代码。很少有团队会这样做，如果真的这样做了，业务就会为这些不存在的设计付出最高昂的代价。这种情况常常是因为团队必须按照苛刻得近乎残忍的时间表去发布软件，管理层只会使用 Scrum 控制交付节奏，却对它最重要的信条之一：知识获取（Knowledge Acquisition），视而不见。
 
-任务板挪卡是一种交接棒的协作模式。产品负责人在待办项列表中创建新的待办项，并更新列表中待办项的优先级。开发团队会依据优先级选取待办项，按照产品负责人的文档等需求描述完成相应的研发活动。上述过程中，业务人员与开发人员之间通过交互协作产生设计，这个动作很容易被忽略。优秀设计和有效设计并非由产品负责人或某个团队成员独立完成，而是通过他们之间不断的协作与交互，并在充分的知识获取后形成的。熟悉 Scrum 的读者会发现，Scrum 中的需求梳理与迭代计划会议一定程度上发挥了此类作用。但要注意，协作设计并非只局限在固定的会议中，也提倡在必要时随时随地进行。请参考《Scrum 精髓》【Essential Scrum】获取更多的内容。——译注
+任务板挪卡是一种交接棒的协作模式。产品负责人在待办项列表中创建新的待办项，并更新列表中待办项的优先级。开发团队会依据优先级选取待办项，按照产品负责人的文档等需求描述完成相应的研发活动。上述过程中，业务人员与开发人员之间通过交互协作产生设计，这个动作很容易被忽略。优秀设计和有效设计并非由产品负责人或某个团队成员独立完成，而是通过他们之间不断的协作与交互，并在充分的知识获取后形成的。熟悉 Scrum 的读者会发现，Scrum 中的需求梳理与迭代计划会议一定程度上发挥了此类作用。但要注意，协作设计并非只局限在固定的会议中，也提倡在必要时随时随地进行。请参考《Scrum 精髓》[Essential Scrum] 获取更多的内容。——译注
 
-Scrum 是一种用于开发创新产品和服务的敏捷方法，请参考《Scrum 精髓》【Essential Scrum] ——译注 
-
-Scrum 的开发方法更加强调将软件开发作为一种不断认知学习的过程，鼓励团队成员与业务人员之间持续地通过协作来迭代交付可工作的软件，并以此快速地获取用户反馈。当然知识获取并非「免费」，所以我们期望开发团队与业务人员之间通过一系列的设计研讨，并引入高效的协作工具（如 DDD 工具箱）帮助团队更加紧密和有效地进行知识传递与分享。关于 Scrum 中的需求梳理和迭代计划的更多介绍请参考《Scrum 精髓》【Essential Scrum】——译注
+Scrum 是一种用于开发创新产品和服务的敏捷方法。Scrum 的开发方法更加强调将软件开发作为一种不断认知学习的过程，鼓励团队成员与业务人员之间持续地通过协作来迭代交付可工作的软件，并以此快速地获取用户反馈。当然知识获取并非「免费」，所以我们期望开发团队与业务人员之间通过一系列的设计研讨，并引入高效的协作工具（如 DDD 工具箱）帮助团队更加紧密和有效地进行知识传递与分享。关于 Scrum 中的需求梳理和迭代计划的更多介绍请参考《Scrum 精髓》[Essential Scrum] ——译注
 
 2『去下载书籍「Essential Scrum」。』——未完成
 
@@ -64,7 +62,7 @@ When I consult or teach at individual businesses, I generally find the same situ
 
 10. There are strongly coupled services, where an operation is performed in one service, and that service calls directly to another service to cause a balancing operation. This coupling often leads to broken business processes and unreconciled data, not to mention systems that are very difficult to maintain.
 
-2『上面的十大问题，总结一下做一张任意卡片。』
+2『上面的十大问题，总结一下做一张任意卡片。』——已完成
 
 1、软件开发被视为成本中心而非利润中心。这通常是因为从业务的视角来看计算机和软件技术是必要的消耗而不是战略优势的重要来源。（不幸的是，在根深蒂固的商业文化下，这种观念不太可能被转变）
 
@@ -94,9 +92,13 @@ Questions about whether design is necessary or affordable are quite beside the p
 
 ——Book Design: A Practical Introduction by Douglas Martin
 
-这一切都似乎发生在「设计无法带来低成本的软件」的观念下。而这时常是出于商业上的简单考虑，软件开发人员并不知道还有其他更好的选择。软件正在蚕食整个世界 WSJ，对你而言重要的是，软件不但可以蚕食你的利润，也可以提供一场利润盛宴。你一定要明白，臆想出来的「不做设计能省钱」的观念简直是一个谬论，它已经巧妙地愚弄了那些不思考周详设计而只会对软件交付施压的人们。这是因为设计仍然会从每个开发人员的脑海流淌到在键盘上不断敲打着代码的指尖之中，这些设计并不需要来自其他地方的输入，包括业务。以下这句话可以很好地总结这种现象：关于设计是否必要或是否负担得起的问题根本都没有问到点上：设计是不可或缺的。除了优秀设计就是糟糕设计，根本不存在「不做设计」一说。
+这一切都似乎发生在「设计无法带来低成本的软件」的观念下。而这时常是出于商业上的简单考虑，软件开发人员并不知道还有其他更好的选择。软件正在蚕食整个世界 WSJ，对你而言重要的是，软件不但可以蚕食你的利润，也可以提供一场利润盛宴。你一定要明白，臆想出来的「不做设计能省钱」的观念简直是一个谬论，它已经巧妙地愚弄了那些不思考周详设计而只会对软件交付施压的人们。这是因为设计仍然会从每个开发人员的脑海流淌到在键盘上不断敲打着代码的指尖之中，这些设计并不需要来自其他地方的输入，包括业务。
+
+以下这句话可以很好地总结这种现象：关于设计是否必要或是否负担得起的问题根本都没有问到点上：设计是不可或缺的。除了优秀设计就是糟糕设计，根本不存在「不做设计」一说。
 
 不做设计并不能节约成本，而过度设计也会造成浪费，所以我们提倡适度的设计。Martin Fowler 认为敏捷开发不是轻视设计只注重实践和重构，而是鼓励演进式的设计（Evolutionary Design）。优秀设计与有效设计是在持续的重构和迭代过程中产生的，每一次的设计优化都是从最大限度地满足客户的功能性需求和非功能性需求角度出发，以拥抱变化的心态来应对变幻莫测的需求。——译注
+
+1『演化思维无处不在，这里有两个关键词「功能性需求」和「非功能性需求」。』
 
 Although Mr. Martin’s comments are not specifically about software design, they are still applicable to our craft, where there is no substitute for thoughtful design. In the situation just described, if you have five software developers working on the project, No Design will actually produce an amalgamation of five different designs in one. That is, you get a blend of five different made-up business language interpretations that are developed without the benefit of the real Domain Experts.
 
@@ -109,6 +111,8 @@ The bottom line: we model whether we acknowledge modeling or not. This can be li
 If you are afraid that producing software with thoughtful design is expensive, think of how much more expensive it’s going to be to live with or even fix a bad design. This is especially so when we are talking about software that needs to distinguish your organization from all others and yield considerable competitive advantages.
 
 A word closely related to good is effective, and it possibly more accurately states what we should strive for in software design: effective design. Effective design meets the needs of the business organization to the extent that it can distinguish itself from its competition by means of software. Effective design forces the organization to understand what it must excel at and is used to guide the creation of the correct software model.
+
+2『有效设计，做一张术语卡片。』——已完成
 
 如果你担心周详的设计会带来高昂的软件开发成本，那么设想一下，将来为了维护甚至修缮一套糟糕设计的软件就需要付出更为昂贵的代价。当我们把软件作为你的公司与其他公司之间的差异，并依靠它带来可观的竞争优势时，尤其如此。
 
@@ -170,6 +174,8 @@ In summary you have learned: 1) Some of the major pitfalls of putting too much i
 
 What are these things called Bounded Contexts ? What’s the Ubiquitous Language ? In short, DDD is primarily about modeling a Ubiquitous Language in an explicitly Bounded Context. While true, that probably wasn’t the most helpful description that I could provide. Let me break this down for you.
 
+2『上面对 DDD 下了一个简洁的定义，做一张术语卡片。』——已完成
+
 First, a Bounded Context is a semantic contextual boundary. This means that within the boundary each component of the software model has a specific meaning and does specific things. The components inside a Bounded Context are context specific and semantically motivated. That’s simple enough.
 
 When you are just getting started in your software modeling efforts, your Bounded Context is somewhat conceptual. You could think of it as part of your problem space. However, as your model starts to take on deeper meaning and clarity, your Bounded Context will quickly transition to your solution space , with your software model being reflected as project source code. (The problem space and solution space are better explained in the box.) Remember that a Bounded Context is where a model is implemented, and you will have separate software artifacts for each Bounded Context.
@@ -188,13 +194,15 @@ Your solution space is where you actually implement the solution that your probl
 
 什么是问题空间和解决方案空间？问题空间是在给定项目的约束条件下进行高级战略分析与设计各个步骤的地方。你可以使用简单的图表来展示讨论中高级的项目驱动因素，并记录关键目标与风险。在实践中，上下文映射图可以在问题空间中工作得很好。同时还要注意，限界上下文不仅可以在需要时用于问题空间的讨论，也与你的解决方案空间密切相关。
 
-解决方案空间就是真正实施解决方案的地方，这些解决方案在问題空间讨论中被识别为核心域（Core Domain）1。当限界上下文被当作组织的关键战略举措进行开发时，即被称为核心域。你将主要通过源代码和测试代码来实现限界上下文中的解决方案，也会在解決方案空间中编写代码，来支撑与其他限界上下文之间的集成。
+解决方案空间就是真正实施解决方案的地方，这些解决方案在问题空间讨论中被识别为核心域（Core Domain）1。当限界上下文被当作组织的关键战略举措进行开发时，即被称为核心域。你将主要通过源代码和测试代码来实现限界上下文中的解决方案，也会在解決方案空间中编写代码，来支撑与其他限界上下文之间的集成。
 
 1 核心域的识别是一个持续的精练过程，把一堆混杂在一起的组件分离，以某种形式提炼出最重要的内容，这种形式也将使核心域更具价值。一个严峻的现实是，我们不可能对所有的设计部分投入同等的资源进行优化，如同 MVP (Minimum Viable Product）产品原则所提倡的那样，产品研发需要聚焦在最小化可行产品上，不断获取用户反馈，并在这个最小化可行产品上持续快速选代，从而获得一个稳定的核心产品。在有限的资源下，为了使领域模型成为最有价值的资产，我们必须有效地梳理出模型的真正核心并完全根据这个核心来实现软件服务，这也是核心域的战略价值所在。一一译注
 
 』
 
 The software model inside the context boundary reflects a language that is developed by the team working in the Bounded Context and is spoken by every member of the team that creates the software model that functions within that Bounded Context. The language is called the Ubiquitous Language because it is both spoken among the team members and implemented in the software model. Thus, it is necessary that the Ubiquitous Language be rigorous—strict, exact, stringent, and tight. In the diagram, the boxes inside the Bounded Context represent the concepts of the model, which may be implemented as classes. When the Bounded Context is being developed as a key strategic initiative of your organization, it’s called the Core Domain.
+
+1-2『这里算是解释了核心域的概念，一个限界上下文被组织当作关键战略进行开发时，那么它就成为了一个核心域。』
 
 团队在限界上下文中发展了一种语言用于表达其边界内的软件模型，这一语言由在该界上下文中开发软件模型的每个团队成员所使用。它之所以被称之为通用语言（Ubiquitous Language）2，是因为团队成员间交流用的是它，软件模型实现的也是它。因此，通用语言必须严谨、精确，并且紧湊。上图中，限界上下文中的方框所表示的概念模型可以用类来实现。当限界上下文被当作组织的关键战略举措进行开发时，即被称之为核心域。
 
@@ -205,6 +213,8 @@ When compared with all the software your organization uses, a Core Domain is a s
 When someone on the team uses expressions from the Ubiquitous Language , everyone on the team understands what is meant with precision and constraints. The expression is ubiquitous within the team, as is all language used by the team that defines the software model being developed.
 
 When you consider language in a software model, think of the various nations that make up Europe. Within one of the countries across this space, the official language of each country is clear. Within the boundaries of those nations—for example, Germany, France, and Italy—the official languages are certain. As you cross a boundary, the official language changes. The same goes for Asia, where Japanese is spoken in Japan, and the languages spoken in China and Korea are clearly different across the national boundaries. You can think of Bounded Contexts in much the same way, as being language boundaries. In the case of DDD, the languages are those spoken by the team that owns the software model, and a notable written form of the language is the software model’s source code.
+
+1『欧洲各个国家语言的例子，值得细品。获得的启示，数据流里，每个外专业的任务领域，应该就是一个限界上下文，很明显，一个给排水设计人员是不懂暖通的专业知识的。（2020-08-04）』
 
 与组织使用的所有其他软件相比，核心域是其中最重要的软件模型，因为它是组织取得巨大成就的手段。发展核心域可以使你的组织在与其他组织的竞争中脱颗而出。至少，它标明了组织的业务主航道。你的组织无法在所有领域都出类拔萃，也无须如此。因此你需要做出明智的选择，哪些是核心域，而哪些不是。这是 DDD 的首要价值主张，同时你也期望通过恰当的投资把最好的资源投入到核心域中。当团队中有人使用通用语言进行交流时，其他人都可以明白他表达的准确含义和约束条件。通用语言和开发软件模型中使用的其他语言一样，在团队中无处不在。
 
@@ -220,15 +230,13 @@ There should be one team assigned to work on one Bounded Context. There should a
 
 It is especially important to be clear that one team works on a single Bounded Context. This completely eliminates the chances of any unwelcome surprises that arise when another team makes a change to your source code. Your team owns the source code and the database and defines the official interfaces through which your Bounded Context must be used. It’s a benefit of using DDD.
 
-一个团队应该在一个限界上下文中工作。每个限界上下文应该拥有一个独立的源代码仓库 1。一个团队可能工作在多个限界上下文中，但是多个团队不应该在同一个限界上下文中共事。我们应该采用和分离通用语言同样的方式，千净地把不同限界上下文的源代码和数据库模式隔离开。并且，将同一个限界上下文中的验收測试、单元測试和主要源代码存放在一起。尤其重要的是，要明确一个团队只在单一的限界上下文中工作。别给其他团队留下任何机会去修改你的源代码，从而引发意外。2 你的团队控制着源代码和数据库并定义了官方接口，必须通过这些接口才可以调用限界上下文。这是使用DDD 所能带来的好处之一。
+一个团队应该在一个限界上下文中工作。每个限界上下文应该拥有一个独立的源代码仓库 1。一个团队可能工作在多个限界上下文中，但是多个团队不应该在同一个限界上下文中共事。我们应该采用和分离通用语言同样的方式，干净地把不同限界上下文的源代码和数据库模式隔离开。并且，将同一个限界上下文中的验收测试、单元测试和主要源代码存放在一起。尤其重要的是，要明确一个团队只在单一的限界上下文中工作。别给其他团队留下任何机会去修改你的源代码，从而引发意外。2 你的团队控制着源代码和数据库并定义了官方接口，必须通过这些接口才可以调用限界上下文。这是使用 DDD 所能带来的好处之一。
 
-1『上面的「一个团队只在一个限界上下文中工作」，这个观点很认可，做一张任意卡片。』——已完成
+1『上面的「一个限界上下文中只能有一个团队」，这个观点很认可，做一张任意卡片。』——已完成
 
 1 传统软件开发方式里，一个产品往往由多个组件团队共同开发，组件代码分别存放在不同的代码仓库，只有负责的团队拥有组件代码仓库的所有权。由于使用了这种代码仓库的划分方法，大量的集成将会发生在组件与组件之间，同时也会产生大量的跨团队的交流和代码访问。一种常见的场景是，在开发初期新的功能往往无法集成并正常运作，更不可能完成阶段性验收，只有等到开发的后期才能获得一个可以运行的产品。而书中提及的独立代码仓库将遵循限界上下文进行划分，上下文内使用统一的通用语言进行交流，并尽可能由一个团队对领域模型进行维护。两种代码仓库的划分方式的最大区别在于，限界上下文内的领域模型往往具有独立的业务价值，可以独立地提供服务。而传统的组件式代码仓库经常会存在相互间的紧耦合关系，无法独立地提供服务。本书译者所著的《代码管理核心技术及实践》一书中也谈到了类似的案例，介绍了一个团队是如何从组件代码仓库转换到领域代码仓库的。一一译注 
 
 2 这并不是绝对的。事实上，很多上下文的代码仓库是开放的，并接受其他团队提交的代码。甚至，很多独角兽企业（如 Google 和 Facebook）在代码仓库上惊人一致地选择了单一仓库（monoreme）进行代码管理，即整个组织所有的产品代码放在唯一一个超大的代码仓库中。这些代码并不是铁板一块，它依然可以被分成多个服务甚至多个产品，由多个团队独立地构建、测试和维护。单一仓库和开放仓库一样更注重的是代码共有制带来的协作效率。代码共有制不会造成混乱，原因在于它们拥有完善的机制和工具对所有提交的代码进行准入控制和验证，而这些仓库的贡献者也对编写代码有着严格的自我要求。所以并不是要杜绝其他团队对代码仓库进行修改，而是要让这些修改可以预期且可以控制，这必须采取些适合团队的实践和工具来实现，例如频繁交流（如结对编程）、代码走查（如 Pull Request）和自动化验证（如契约测试）等。这些实践和手段往往由上下文映射关系决定，如共享内核关系就可以采用 Pull Request 的实践，而客户一供应商关系则可以采用契约测试的实践。关于映射关系的讨论请参考本书第 4 章的内容。——译注
-
-2『代码走查（如 Pull Request）去做一张术语卡片。』
 
 』
 
@@ -252,6 +260,8 @@ It’s the product of trying to do too much, with too many people, in the wrong 
 
 1 语言不仅仅只是起到交流的作用，更蕴含了使用该语言的背景、民族历史和发展历程。曾经风靡一时的世界语，正是因为脱离了一个共同的情境而无法真正普及。发展通用语言，是希望读者基于一定的业务上下文的情境不断地优化和建立统一的语言。一一译注
 
+1『此处颇有感触。世界语之所以被抛弃，就是它想做「万用模型」，模型只能在「范围」与「精度」间取平衡，要万用的话其精度必定很差，这模型也就没啥用了。DDD 里的通用语言也是一个道理，它必定依托于一个特定的限界上下文（业务场景）。（2020-08-04）』
+
 ### 2.1 Domain Experts and Business Drivers
 
 There may be strong, or at least subtle, hints communicated by business stakeholders that could have been used to help the technical team make better modeling choices. Thus, a Big Ball of Mud is often the result of unbridled effort made by a team of software developers who don’t listen to the business experts.
@@ -266,7 +276,7 @@ You can determine that this kind of segregation is needed when you consider that
 
 The policy in each of these business areas exists for different reasons. There is no escaping this fact, and no amount of mental gymnastics changes this.
 
-当你意识到不同业务领域对同一术语可能有不同的定义时，就可以背定这种分离是必要的。考虑一下保单（Policy）的概念，以及其在不同的保险业务领域中不同的含义。可以很容易地想象出，保单在承保中的含义与理赔、审核中的含义有很大的不同。更多的细节可以参考下一页的描述。每个业务领域中的保单因不同原因而存在。这是无法回避的事实，即便花费再多的力气、绞尽脑汁也无济于事。
+当你意识到不同业务领域对同一术语可能有不同的定义时，就可以确定这种分离是必要的。考虑一下保单（Policy）的概念，以及其在不同的保险业务领域中不同的含义。可以很容易地想象出，保单在承保中的含义与理赔、审核中的含义有很大的不同。更多的细节可以参考下一页的描述。每个业务领域中的保单因不同原因而存在。这是无法回避的事实，即便花费再多的力气、绞尽脑汁也无济于事。
 
 『
 
@@ -346,13 +356,15 @@ Don’t be fooled by the somewhat limited number of named concepts. For every na
 
 What tools are available with DDD to help us avoid such pitfalls? You need at least two fundamental strategic design tools. One is the Bounded Context and the other is the Ubiquitous Language. Employing a Bounded Context forces us to answer the question “What is core?” The Bounded Context should hold closely all concepts that are core to the strategic initiative and push out all others. The concepts that remain are part of the team’s Ubiquitous Language. You will see how DDD works to avoid the design of monolithic applications.
 
-DDD 中有哪些工具可以帮助我们避免这些陷阱？你至少需要两种基本的战略设计工具，限界上下文和通用语言。采用限界上下文会迫使我们回答「什么是核心？」的问题。它应紧紧地抓住战略举措中所有的核心概念，并排除其他概念，剩下的都应该是团队通用语言的一部分。你将看到 DD 如何避免单体应用设计的产生。
+DDD 中有哪些工具可以帮助我们避免这些陷阱？你至少需要两种基本的战略设计工具，限界上下文和通用语言。采用限界上下文会迫使我们回答「什么是核心？」的问题。它应紧紧地抓住战略举措中所有的核心概念，并排除其他概念，剩下的都应该是团队通用语言的一部分。你将看到 DDD 如何避免单体应用设计的产生。
 
 『
 
 Testing Benefits
 
 Because Bounded Contexts are not monolithic, other benefits are experienced when they are used. One such benefit is that tests will be focused on one model and thus be fewer in number and will run more quickly. Although this isn’t the primary motivation to use Bounded Contexts , it sure pays off in other ways.
+
+1『哈哈，妙哉妙哉，限界上下文无意中让测试更好写。』
 
 限界上下文并非庞然大物，使用它们却可以收益良多。其中之一就是测试会聚焦于一个模型中，这样测试的数量会更少，执行更快。虽然这并非是使用限界上下文的主要动机，但确实是意外的收获。
 
@@ -382,13 +394,15 @@ Product Owner or Domain Expert?
 
 You may wonder what the difference is between a Scrum product owner and a DDD Domain Expert. Well, in some cases they might be one and the same, that is, one person capable of filling both roles. Yet it should not be surprising that a product owner is typically more focused on managing and prioritizing the product backlog and seeing to it that the conceptual and technical continuity of the project is maintained. This doesn’t mean, however, that the product owner is naturally an expert in the business’s core competency in which you are working. Make sure that you have a true Domain Expert on the team, and don’t substitute a product owner without the necessary know-how instead.
 
-你可能会疑惑，Scum 中的产品负责人与 DD 中的领域专家之间的区别是什么。在某些情况下，他们可能是同一个人，也就是说，一个人承担两个角色。产品负责人常常更加关注管理和产品待办项的优先级排序，并时刻留意着项目的概念和技术是否保持着连续性，这一点也不足为奇。但这并不意味着产品负责人天生就是领城内的业务核心竟争力方面的专家。我们要确保团队中有真正的领城专家，还要避免让缺乏必要专业技能的产品负责人代替领域专家。
+你可能会疑惑，Scum 中的产品负责人与 DDD 中的领域专家之间的区别是什么。在某些情况下，他们可能是同一个人，也就是说，一个人承担两个角色。产品负责人常常更加关注管理和产品待办项的优先级排序，并时刻留意着项目的概念和技术是否保持着连续性，这一点也不足为奇。但这并不意味着产品负责人天生就是领城内的业务核心竟争力方面的专家。我们要确保团队中有真正的领城专家，还要避免让缺乏必要专业技能的产品负责人代替领域专家。
 
 』
 
 In your particular business, you also have Domain Experts. It’s not a job title but rather describes those who are primarily focused on the business. It’s their mental model that we start with to form the foundation of the team’s Ubiquitous Language.
 
 On the other hand, developers are focused on software development. As depicted here, developers can become consumed by programming languages and technologies. Yet developers working in a DDD project need to carefully resist the urge to be so technically centered that they cannot accept the business focus of the core strategic initiative. Rather, the developers should reject any uncalled-for terseness and be able to embrace the Ubiquitous Language that is gradually developed by the team inside their particular Bounded Context.
+
+2『精辟啊， It’s their mental model that we start with to form the foundation of the team’s Ubiquitous Language. 做一张金句卡片。』——已完成
 
 在特定的业务领域中，你还是需要领域专家的。这不仅是一个职称，而是形容那些主要专注于业务的人。领域专家的心智模型将会成为团队通用语言的坚实基础。另一方面，开发人员专注于软件开发。如图所示，开发人员将精力花费在编程语言与技术研究中。然而，在 DDD 项目的实施过程中，开发人员需要尽量克制这种「以技术为中心」的冲动，以防无法接受以业务为中心的核心战略举措。相反开发人员应当抛弃任何多余的技术洁癖 1，并拥抱团队在特定限界上下文中逐步发展的通用语言。
 
@@ -418,39 +432,39 @@ One very simple challenge is to ask whether each of the large-model concepts adh
 
 一个非常简单的质疑是，每个大型模型的概念是否都符合 Scrum 通用语言的要求？真的如此吗？例如，Tenant、User 和 Permission 都与 Scrum 无关。这些概念都应该从 Scrum 的软件模型中剥离出去。
 
-Tenant , User , and Permission should be replaced by Team , ProductOwner , and TeamMember . A ProductOwner and a TeamMember are actually Users in a Tenancy , but with ProductOwner and TeamMember we adhere to the Ubiquitous Language of Scrum. They are naturally the terms we use when we have conversations about Scrum products and the work a team does with them.
+Tenant, User, and Permission should be replaced by Team, ProductOwner, and TeamMember. A ProductOwner and a TeamMember are actually Users in a Tenancy , but with ProductOwner and TeamMember we adhere to the Ubiquitous Language of Scrum. They are naturally the terms we use when we have conversations about Scrum products and the work a team does with them.
 
 Tenant、User 和 Permission 应该被 Team、ProductOwner 和 TeamMember 取代。虽然 ProductOwner 和 TeamMember 实际上是一个 Tenant 中的 User，但使用它们更符合 Scrum 的通用语言。当讨论 Scrum 的产品和团队任务时，它们是我们脱口而出的术语。
 
-Are SupportPlans and Payments really part of Scrum project management? The answer here is clearly “no.” True, both SupportPlans and Payments will be managed under a Tenant ’s Account , but these are not part of our core Scrum language. They are out of context and are removed from this model.
+Are SupportPlans and Payments really part of Scrum project management? The answer here is clearly “no.” True, both SupportPlans and Payments will be managed under a Tenant’s Account, but these are not part of our core Scrum language. They are out of context and are removed from this model.
 
 SupportPlans 和 Payments 真的是 Scrum 项目管理的一部分吗？答案显然是「不」，的确，它们都将在 Tenant 的 Account 下进行管理，但并不是 Scrum 的核心通用语言。它们脱离了 Scrum 上下文，将会从模型中移除。
 
-What about introducing Human Resource Utilization concerns? It’s probably useful to someone, but it’s not going to be directly used by TeamMember Volunteers who will work on BacklogItemTasks . It’s out of context.
+What about introducing Human Resource Utilization concerns? It’s probably useful to someone, but it’s not going to be directly used by TeamMember Volunteers who will work on BacklogItemTasks. It’s out of context.
 
 引入人力资源利用率（Human Resource Utilization）的概念会有什么问题吗？对于某些人而言它可能有用，但它并不会被那些负责 BacklogItemTasks 的 Team Member Volunteer 直接使用。它不属于 Scrum 上下文。
 
-After the addition of the Team , ProductOwner , and TeamMember , the modelers realized that they were missing a core concept to allow TeamMembers to work on Tasks . In Scrum this is known as a Volunteer . So, the Volunteer concept is in context and was included in the language of the core model.
+After the addition of the Team, ProductOwner, and TeamMember, the modelers realized that they were missing a core concept to allow TeamMembers to work on Tasks. In Scrum this is known as a Volunteer. So, the Volunteer concept is in context and was included in the language of the core model.
 
 在添加团队、产品负责人和团队成员后，建模者意识到他们遗漏了一个核心的概念，当缺少这个概念时，TeamMember 将无法自愿认领 Task。这就是 Scrum 中的 Volunteer。因此，Volunteer 的概念属于 Scum 上下文，并包含在核心模型的通用语言中。
 
-Even though calendar-based Milestones , Retrospectives , and the like are in context, the team would prefer to save those modeling efforts for a later sprint. They are in context, but for now they are out of scope.
+Even though calendar-based Milestones, Retrospectives, and the like are in context, the team would prefer to save those modeling efforts for a later sprint. They are in context, but for now they are out of scope.
 
 尽管日历中的 Milestones、Retrospectives 等类似的概念都属于 Scrum 上下文，但团队更愿意将为其建模的工作留给接下来的冲刺。它们属于这个上下文，但目前已经超出了交付范围。
 
-Finally, the modelers want to make sure that they account for the fact that threaded Discussions will be part of the core model. So they model a Discussion . This means that Discussion is part of the team’s Ubiquitous Language , and thus inside the Bounded Context.
+Finally, the modelers want to make sure that they account for the fact that threaded Discussions will be part of the core model. So they model a Discussion. This means that Discussion is part of the team’s Ubiquitous Language, and thus inside the Bounded Context.
 
 最后，建模者希望确保考虑到的主题 Discussion 概念也将成为核心模型的一部分。为此，他们构建了一个 Discussion 模型。这意味着 Discussion 是团队通用语言的部分，并属于核心限界上下文。
 
-These linguistic challenges have resulted in a much cleaner and clearer model of the Ubiquitous Language. Yet how will the Scrum model fulfill needed Discussions ? It would certainly require a lot of ancillary software component support to make it work, so it seems inappropriate to model it inside our Scrum Bounded Context. In fact, the full Collaboration suite is out of context. The Discussion will be supported by integrating with another Bounded Context —the Collaboration Context.
+These linguistic challenges have resulted in a much cleaner and clearer model of the Ubiquitous Language. Yet how will the Scrum model fulfill needed Discussions? It would certainly require a lot of ancillary software component support to make it work, so it seems inappropriate to model it inside our Scrum Bounded Context. In fact, the full Collaboration suite is out of context. The Discussion will be supported by integrating with another Bounded Context —the Collaboration Context.
 
 对于这些语言的质疑使得通用语言的模型越来越清晰。然而，Scrum 模型将如何实现必要的讨论（Discussion）？这里肯定需要许多辅助的软件组件的支持，直接在 Scrum 限界上下文中对其建模似乎是不合适的。事实上，整套协作（Collaboration）的概念都不属于 Scrum 上下文。讨论将通过与另外一个限界上下文，协作上下文的集成获得支持。
 
-After that walk-through, we’re left with a much smaller actual Core Domain. Of course the Core Domain will grow. We already know that Planning , Retrospectives , Milestones , and related calendar-based models must be developed in time. Still, the model will grow only as new concepts adhere to the Ubiquitous Language of Scrum.
+After that walk-through, we’re left with a much smaller actual Core Domain. Of course the Core Domain will grow. We already know that Planning, Retrospectives, Milestones, and related calendar-based models must be developed in time. Still, the model will grow only as new concepts adhere to the Ubiquitous Language of Scrum.
 
 在这次练习之后，我们将会留下一个小巧却实际得多的核心域。当然，核心域将会持续扩展。我们已经知道必须尽快开发 Planning、Retrospectives、Milestones 以及其他基于日历的模型。尽管如此，只有当新的概念符合 Scrum 的通用语言时，才会扩展核心。
 
-And what about all the other modeling concepts that have been removed from the Core Domain ? It’s quite possible that several of the other concepts, if not all, will be composed into their own respective Bounded Contexts , each adhering to its own Ubiquitous Language. Later you will see how we integrate with them using Context Mapping.
+And what about all the other modeling concepts that have been removed from the Core Domain? It’s quite possible that several of the other concepts, if not all, will be composed into their own respective Bounded Contexts, each adhering to its own Ubiquitous Language. Later you will see how we integrate with them using Context Mapping.
 
 那么，我们该如何从核心域中分离出其他的建模概念呢？其他的几个概念，即便不是全部，都有很大的可能被放到不同的限界上下文中，并且都要遵循各自的通用语言。稍后你将了解我们是如何通过上下文映射来集成它们的。
 
