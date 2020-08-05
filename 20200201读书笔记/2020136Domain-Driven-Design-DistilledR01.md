@@ -480,7 +480,7 @@ Accelerate Your Discovery
 
 You may want to try a few Event Storming sessions as you work on your scenarios. These can help you to quickly understand which scenarios you should be working on, and how they should be prioritized. Likewise, developing concrete scenarios will give you a better idea of the direction that you should take in your Event Storming sessions. They are two tools that work well together. I explain the use of Event Storming in Chapter 7 , “Acceleration and Management Tools .”
 
-在一些场景上工作时，你或许想尝试几次事件风暴（Event Storming）的讨论。这些讨论可以帮助你快速地理解应该投入到哪些场景中，以及如何对这些场景进行优先级排序。同样，创建具体场景将会给你的事件风暴讨论方向带来一些更好的思路。这两种工具能够很好地配合。第 7 章中会介绍事件风暴的用法。
+在一些场景上工作时，你或许想尝试几次事件风暴（Event Storming）的讨论。这些讨论可以帮助你快速地理解应该投入到哪些场景中，以及如何对这些场景进行优先级排序。同样，创建具体场景将会给你的事件风暴讨论方向带来一些更好的思路。这两种工具能够很好地配合。第 7 章中会介绍事件风暴的用法。（两个工具：事件风暴和创建具体场景。）
 
 』
 
@@ -508,7 +508,7 @@ We can even draw simple pictures and diagrams. It’s all about doing whatever i
 
 我们甚至可以绘制一些简单的图画和图表。这些方式都是为了帮助团队进行良好的沟通。这里适当地提醒一句，当心你在建模工作中对文字场景、图画、图表这些文档长期保持同步花费过长的时间。2 这些文档并不是领域模型。相反，它们只是帮助你开发领域模型的工具。模型终将与代码融为一体。只有像婚礼这样的重要活动才需要仪式，而领域模型并不需要这些仪式。这并非意味着你不需要为更新场景付出努力，而是应该在正确的时候做正确的事。
 
- 2 请回忆敏捷宣言，「工作的软件高于详尽的文档」。文档只是一种工具，对于用户而言并不能产生价值所以在产品的研发过程中，利用轻量级的文档（例如 Wiki）去记录一些关键信息和共识足以。一一译注
+ 2 请回忆敏捷宣言，「工作的软件高于详尽的文档」。文档只是一种工具，对于用户而言并不能产生价值，所以在产品的研发过程中，利用轻量级的文档（例如 Wiki）去记录一些关键信息和共识足以。一一译注
 
 What would you do to improve a part of the Ubiquitous Language in our previous example? Think about it for just a minute. What’s missing? Before too long you probably wish for an understanding of who does the committing of backlog items to a sprint. Let’s add the who and see what happens:
 
@@ -550,23 +550,27 @@ The refined scenario in its entirety looks like this:
 
 The product owner commits a backlog item to a sprint. The backlog item may be committed only if it is already scheduled for release, and if a quorum of team members have approved commitment. If it is already committed to a different sprint, it must be uncommitted first. When the commitment completes, notify the sprint from which it was uncommitted and the sprint to which it is now committed.
 
-现在我们有了一个相当不错的领域场景。结尾的这句话令我们了解到，待办项与冲刺可能不需要在同一时间知晓待办项的提交状态。我们需要询问业务来确定，但这听起来像是引入最终一致性（Eventual Consistency）的好去处。在第 5 章中，你将会明白为什么最终致性非常重要，以及如何达成它。
+1『上面的信息是提炼后的领域场景，需要反复读，一定要有能力将自己的业务逻辑提炼成类似的场景描述。』
+
+现在我们有了一个相当不错的领域场景。结尾的这句话令我们了解到，待办项与冲刺可能不需要在同一时间知晓待办项的提交状态。我们需要询问业务来确定，但这听起来像是引入最终一致性（Eventual Consistency）的好去处。在第 5 章中，你将会明白为什么最终一致性非常重要，以及如何达成它。
 
 优化后的完整场景如下所示：产品负责人提交待办项到冲刺中。只有待办项位于发布计划中时才能进行提交，而且需要赞成承诺的团队成员达到法定人数。如果待办项已经提交到另外一个冲刺中，那么需要先将其回收。当待办项的提交完成后时，需要通知相关方（相关的冲刺）。
 
 How would a software model actually work in practice? You can well imagine a very innovative user interface supporting this software model. As a Scrum team is participating in a sprint planning session, team members use their smartphones or other mobile devices to add their approval to each backlog item as it is discussed and agreed upon to work on during the next sprint. The consensus of the quorum of team members approving each of the backlog items gives the product owner the ability to commit all of the approved backlog items to the sprint.
 
-实际的软件模型是如何工作的？你可以设想用一个非常有创意的用户界面来支撑这个软件模型。当 Scrum 团队正在进行一场冲刺计划会议时，团队成员们在讨论每个待办项时，会借助智能手机或其他移动设备投出他们的赞成票，这些待办项已被讨论并同意在下个冲刺中完成。赞成每个待办项的团队成员达到法定人数后，产品负责人才能将所有赞成通过的待办项提交到冲刺中。
+实际的软件模型是如何工作的？你可以设想用一个非常有创意的用户界面来支撑这个软件模型。当 Scrum 团队正在进行一场冲刺计划会议时，团队成员们在讨论每个待办项时，会借助智能手机或其他移动设备投出他们的赞成票，这些待办项已被讨论并同意在下一个冲刺中完成。赞成每个待办项的团队成员达到法定人数后，产品负责人才能将所有赞成通过的待办项提交到冲刺中。
 
-### 2.6 Putting Scenarios to Work
+#### 2.5.1 Putting Scenarios to Work
 
 You may be wondering how you can make the transition from a written scenario to some sort of artifact that can be used to validate your domain model against the team’s specifications. There is a technique named Specification by Example [Specification] that can be used; it’s also called Behavior-Driven Development [BDD] . What you are trying to achieve with this approach is to collaboratively develop and refine a Ubiquitous Language , model with a shared understanding, and determine whether your model adheres to your specifications. You will do this by creating acceptance tests. Here is how we might restate the preceding scenario as an executable specification:
 
 你可能想知道如何把书面场景转换成某种可以用来验证领域模型是否符合团队需求说明的产出物。可以采用一种被称为实例化需求「Specification」的技术，它也被称为行为驱动开发 [BDD] 1。你期望通过这种方法达到这些效果：协作发展并完善通用语言、团队共识建模，以及确定模型是否符合需求说明的要求。我们可以通过创建验收测试 [2] 来达到这些效果。下面是将之前的场景重新表述为可执行的需求说明之后的例子：
 
-1 Behavior Driven Development，行为驱动开发是一种敏捷软件开发方法，它鼓励软件项目中的开发者测试和业务人员之间的协作，包括验收测试和客户測试驱动等实践。实例化需求（Specification by Example, SBE）也是一种用于定义软件产品的需求和面向业务的功能测试的协作方法，它和行为驱动开发表达的是同样的概念，采用的也是同样的实践。实例化需求的介绍请参考同名书籍《实例化需求》[Specification]。——译注
+1 Behavior Driven Development，行为驱动开发是一种敏捷软件开发方法，它鼓励软件项目中的开发者测试和业务人员之间的协作，包括验收测试和客户测试驱动等实践。实例化需求（Specification by Example, SBE）也是一种用于定义软件产品的需求和面向业务的功能测试的协作方法，它和行为驱动开发表达的是同样的概念，采用的也是同样的实践。实例化需求的介绍请参考同名书籍《实例化需求》[Specification]。——译注
 
-2 验收测试通常指面向业务（用户）的（功能）测试，因此它还承载着衛接需求说明和测试代码的职责。验收测试最好使用业务人员、开发人员、测试人员都能理解的「语言」来描述，尽可能避免需求理解的偏差。在敏捷开发方法中，我们推崇使用用户故事中的验收条件来描述需求，它采用自然语言和「假如 / 当 / 那么」（Given/When/Then）的固定格式。这里验收测试的场景和用户故事中的验收条件几乎一模样。这些场景使用一种简单的编程语言 Gherkin 编写，它是行为驱动开发框架 Cucumber 的一部分。这些场景中的每一行语句都可以被 Cucumber 框架映射成支撑代码来执行。它支持包括中文在内的 60 种自然语言，这里的代码我们也使用了它支持的中文保留字来实现。一一译注
+2『已下载书籍「2020156实例化需求 | 2020156Specification-by-Example」。敏捷开发的相关知识首选去看之前下载的书籍「2020139Scrum敏捷软件开发」和「2020140用户故事与敏捷方法」。』
+
+2 验收测试通常指面向业务（用户）的（功能）测试，因此它还承载着衔接需求说明和测试代码的职责。验收测试最好使用业务人员、开发人员、测试人员都能理解的「语言」来描述，尽可能避免需求理解的偏差。在敏捷开发方法中，我们推崇使用用户故事中的验收条件来描述需求，它采用自然语言和「假如 / 当 / 那么」（Given/When/Then）的固定格式。这里验收测试的场景和用户故事中的验收条件几乎一模样。这些场景使用一种简单的编程语言 Gherkin 编写，它是行为驱动开发框架 Cucumber 的一部分。这些场景中的每一行语句都可以被 Cucumber 框架映射成支撑代码来执行。它支持包括中文在内的 60 种自然语言，这里的代码我们也使用了它支持的中文保留字来实现。一一译注
 
 ```
 Scenario: The product owner commits a backlog item to a sprint
@@ -595,7 +599,7 @@ And the backlog item committed event is created
 
 并且，有法定数量的团队成员赞成承诺
 
-当，产品负責人提交待办项到冲刺中
+当，产品负责人提交待办项到冲刺中
 
 那么，待办项被提交到冲刺中
 
@@ -606,24 +610,24 @@ With a scenario written in this form, you can create some backing code and use a
 
 You don’t have to use this form of executable specification in order to validate your domain model against your scenarios. You can use a unit testing framework to accomplish much the same thing, where you create acceptance tests (not unit tests) that validate your domain model:
 
+1『绝妙啊，用单元测试来验证领域模型，一石二鸟，因为自己本来就要写单元测试的，果然软件开发里的几个最佳实践都是串起来的：重构、单元测试、领域模型、设计原则、设计模式......』
+
 通过这种形式编写的场景，你可以实现一些支撑代码，并使用工具来执行该需求说明。即便没有工具，你也会发现这种「假如 / 当 / 那么」（Given/When/Then）的场景编写方式比之前的例子要好。然而，可执行的需求说明作为验证领域模型的方法着实让人难以抗拒 1。后面的第 7 章中，会对其进一步点评。你并非一定要使用这种形式的可执行需求说明来验证场景与领域模型是否一致。你也可以使用单元测试框架来达成同样的目标，通过它创建验收测试（不是单元测试）来验证领域模型：
 
-1 这里要提醒读者，行为驱动开发是一组实践方法，Cucumber 等框架只是实践行为驱动开发的可选工具中的一种。通过 Cucumber 框架刻意追求验收测试的自动化是一种狭义的认知。行为驱动开发框架不是自动化测试的银弹，不要期望它能轻易自动地解决你在场景验收中的所有问题。验收试意味着对系统功能进行完整的端到端的测试，这样的测试牵涉到从数据库到用户界面的方方面面，实施自动化的成本特别高。在具体的实施过程中，需要根据产品/项目的实际情况,比如资金、人力资源、时间、组织架构等，合理选择投入的方式与切入点。我们建议学习并理解测试金字塔，来帮助你构建更合理的自动化则试体系。——译注
+1 这里要提醒读者，行为驱动开发是一组实践方法，Cucumber 等框架只是实践行为驱动开发的可选工具中的一种。通过 Cucumber 框架刻意追求验收测试的自动化是一种狭义的认知。行为驱动开发框架不是自动化测试的银弹，不要期望它能轻易自动地解决你在场景验收中的所有问题。验收测试意味着对系统功能进行完整的端到端的测试，这样的测试牵涉到从数据库到用户界面的方方面面，实施自动化的成本特别高。在具体的实施过程中，需要根据产品 / 项目的实际情况,比如资金、人力资源、时间、组织架构等，合理选择投入的方式与切入点。我们建议学习并理解测试金字塔，来帮助你构建更合理的自动化则试体系。——译注
+
+1『测试金字塔相关的知识，目前的认知就是多些底部的单元测试。（2020-08-05）』
 
 ```js
 /*
 
 The product owner commits a backlog item to a sprint.
 
-The backlog item may be committed only if it is already
-
-scheduled for release, and if a quorum of team members
+The backlog item may be committed only if it is already scheduled for release, and if a quorum of team members
 
 have approved commitment. When the commitment completes,
 
 notify the sprint to which it is now committed.
-
-产品负责人提交待办项到冲刺中。只有计划好的待办项，才可以提交到冲刺中，而且需要赞成承诺的团队成员达到法定人数。如果待办项已经提交到另外一个冲刺中，必须先取消提交。当待办项的提交完成需要通知它现在要提交到的冲刺和被取消提交的冲刺。
 
 */
 
@@ -662,13 +666,15 @@ Whichever approach you decide on, both will generally be used in a red-green (fa
 
 这种基于单元测试的验收测试方法实现的目标与可执行的需求说明相同。其优势在于可以更快完成这种场景验证的编写，但会牺牲一定的可读性。尽管如此，大部分的领域专家都应能在开发人员的协助下读懂这些代码 1。如本例所示，使用这种方法时，在验证代码的注释中维护文档形式的相关场景可能效果更好。
 
-1 理想很丰满现实却骨感：极少有业务人员恩意编写甚至是阅读这种的验收测试「代码」。即便是使用行为驱动开发框架编写的场景也很难激起业务人员的阅读兴趣。而且，也不是所有的验收测试或场景都能自动化。所以，最现实的一种解决方法就是，业务人员按照自己的喜好选择工具，按照验收条件的格式编写需求说明，团队选出最值得做自动化的那些，由开发人员和测试人员将它们「翻译」成自动化测试脚本。这些測试脚本由开发人员和测试人员维护，根据场景的变化来更新测试脚本，这样才能做到像实例化需求提倡的那样让业务人员编写的需求说明持续地「执行」验证。因此，这种情况下对技术人员更友好的单元测试反而比 Cucumber 这样的框架更受欢迎。
+1 理想很丰满现实却骨感：极少有业务人员愿意编写甚至是阅读这种的验收测试「代码」。即便是使用行为驱动开发框架编写的场景也很难激起业务人员的阅读兴趣。而且，也不是所有的验收测试或场景都能自动化。所以，最现实的一种解决方法就是，业务人员按照自己的喜好选择工具，按照验收条件的格式编写需求说明，团队选出最值得做自动化的那些，由开发人员和测试人员将它们「翻译」成自动化测试脚本。这些测试脚本由开发人员和测试人员维护，根据场景的变化来更新测试脚本，这样才能做到像实例化需求提倡的那样让业务人员编写的需求说明持续地「执行」验证。因此，这种情况下对技术人员更友好的单元测试反而比 Cucumber 这样的框架更受欢迎。
 
 无论你决定采用哪种，这两种方法通常都会遵循红一绿（失败一通过）的形式 1，需求说明首先会运行失败，这是因为待验证的领域模型尚未实现。通过一系列的验证失败（红色），逐步完善领域模型，直到完全支持需求说明并通过验证（全绿）。这些验收测试将会直接与你的限界上下文相关，并保存在限界上下文的源代码库中。
 
-1 此处所提及的红一绿（失败一通过）的形式正是测试駆动开发（Test Driven Development, TDD）所提倡的软件实现方式。测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种设计方法论。它的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析、设计、质量控实例化的过程。实际上行为驱动开发也是对测试驱动开发的响应，只不过测试驱动开发多发生在开发人员编写代码时，而行为驱动开发从更早的需求梳理阶段就开始了，参与其中的除了开发人员还有业务人员和测试。关于测试驱动开发的内容请参考 Kent Beck 所著的《测试驱动开发》——译注
+1 此处所提及的红一绿（失败一通过）的形式正是测试驱动开发（Test Driven Development, TDD）所提倡的软件实现方式。测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种设计方法论。它的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析、设计、质量控实例化的过程。实际上行为驱动开发也是对测试驱动开发的响应，只不过测试驱动开发多发生在开发人员编写代码时，而行为驱动开发从更早的需求梳理阶段就开始了，参与其中的除了开发人员还有业务人员和测试。关于测试驱动开发的内容请参考 Kent Beck 所著的《测试驱动开发》——译注
 
-### 2.7 What about the Long Haul?
+1『测试驱动开发和行为测试开发的区别，做一张任意卡片。』——已完成
+
+#### 2.5.2 What about the Long Haul?
 
 Now you may be wondering how we should support the Ubiquitous Language once the innovation has ceased and maintenance sets in. Actually, some of the best learning, or knowledge acquisition, takes place over a long period of time, even during what some might refer to as “maintenance.” It is a mistake for teams to take the view that innovation ends when maintenance begins.
 
@@ -680,11 +686,13 @@ Perhaps the worst thing that could happen is for the label “maintenance phase�
 
 2 对于一个产品而言，创新贯穿了整个生命周期，从探索到拓展，再到维护，乃至退出，每个阶段都需要持续创新。我们不能将创新局限在新的功能和新的服务上。同时，商业模式、用户体验以及质量改善也都可以是创新的发力点。当产品进入了稳定期或是维护期时，我们需要在现有的高价值业务流程上延伸出新的创新，有时是入口创新，如近几年很多成功的产品，都从 PC 端转向了移动端，但核心的用户体验或是业务场景还是以原有的为主。有时候是模式创新，如 Microsoft 从多年的 Office 私有化服务最终转向了公有云的商业模式，并一举获得了巨大的成功。——译注
 
-### 2.8 Architecture
+### 2.6 Architecture
 
-There is another question that you may have wondered about. What’s inside a Bounded Context ? Using this Ports and Adapters [IDDD] architecture diagram, you can see that a Bounded Context is composed of more than a domain model.
+There is another question that you may have wondered about. What’s inside a Bounded Context? Using this Ports and Adapters [IDDD] architecture diagram, you can see that a Bounded Context is composed of more than a domain model.
 
 These layers are common in a Bounded Context: Input Adapters , such as user interface controllers, REST endpoints, and message listeners; Application Services that orchestrate use cases and manage transactions; the domain model that we’ve been focusing on; and Output Adapters such as persistence management and message senders. There is much to be said about the various layers in this architecture, and it is too elaborate to state in this distilled book. See Chapter 4 of Implementing Domain-Driven Design [IDDD] for an exhaustive discussion.
+
+1『这里的框架图直觉上非常非常重要。在限界上下文这个框架里可以包含多个层级的模型：1）输入适配器。2）应用层服务。3）领域模型。4）输出适配器。』
 
 还有一个你可能想了解的问题。限界上下文内会有什么？当使用端ロ (Port）和适配器（Adapters）[IDDD] 1 的架构图时，你会发现限界上下文的组成绝不仅仅只是一个领域模型。
 
@@ -702,7 +710,7 @@ Although there will be technology scattered throughout your architecture, the do
 
 Ports and Adapters can be used as a foundational architecture, but it’s not the only one that can be used along with DDD. Along with Ports and Adapters, you can use DDD with any of these architectures or architecture patterns (and others), mixing and matching them as needed:
 
-1. Event-Driven Architecture; Event Sourcing [IDDD] . Note that Event Sourcing is discussed in this book in Chapter 6 , “Tactical Design with Domain Events .”
+1. Event-Driven Architecture; Event Sourcing [IDDD]. Note that Event Sourcing is discussed in this book in Chapter 6 , “Tactical Design with Domain Events .”
 
 2. Command Query Responsibility Segregation (CQRS) [IDDD] .
 
@@ -728,7 +736,7 @@ Ports and Adapters can be used as a foundational architecture, but it’s not th
 
 5 充分利用云计算优势构建和运行的应用被称为云原生（Cloud Native）应用，企业需要借助构建和运行云原生应用和服务的平台，来自动执行并集成 Devops、持续交付、微服务和容器等概念。微服务、事件湖源、CORS 以及 Actor 模型这些架构都可以完美地契合云原生应用和平台。而 Amazon 加入 CNCF  (Cloud Native Computing Foundation）之后，三大云平台供应商（Google、Microsoft 和 Amazon）齐齐聚首，推进了云原生的标准化和最佳实践的普及。一一译注
 
-Another comment on microservices is in order. Some consider a microservice to be much smaller than a DDD Bounded Context. Using that definition, a microservice models only one concept and manages one narrow type of data. An example of such a microservice is a Product and another is a BacklogItem . If this is the granularity that you consider a worthy microservice, understand that both the Product microservice and the BacklogItem microservice will still be in the same larger, logical Bounded Context. The two small microservice components have only different deployment units, which may also have an impact on how they interact (see Context Mapping ). Linguistically they are still within the same Scrum-based contextual and semantic boundary.
+Another comment on microservices is in order. Some consider a microservice to be much smaller than a DDD Bounded Context. Using that definition, a microservice models only one concept and manages one narrow type of data. An example of such a microservice is a Product and another is a BacklogItem. If this is the granularity that you consider a worthy microservice, understand that both the Product microservice and the BacklogItem microservice will still be in the same larger, logical Bounded Context. The two small microservice components have only different deployment units, which may also have an impact on how they interact (see Context Mapping ). Linguistically they are still within the same Scrum-based contextual and semantic boundary.
 
 另一种关于微服务的解释也很恰当。有些人认为其实微服务要比 DDD 的限界上下文要小得多。按照这种定义，一个微服务模型只包含一个概念，并只用管理一种小类型的数据。例如，产品是一个微服务，待办项是另外一个。如果你认为这样粒度的微服务很有价值，那么你需要理解产品微服务和待办项微服务仍将存在于同一个更大的逻辑限界上下文中。1 即使这两个小型的微服务组件之间的区别仅仅是部署单元不一样，这也会影响它们的交互方式（参考上下文映射）。从语言学上来说，它们仍位于同一个基于 Scrum 的语境和语义边界之内。
 
@@ -738,9 +746,9 @@ Another comment on microservices is in order. Some consider a microservice to be
 
 In summary you have learned: 1) What Subdomains are and how they are used, both in the problem space and in the solution space. 2) The difference between a Core Domain , a Supporting Subdomain , and a Generic Subdomain. 3) How you can make use of Subdomains while reasoning about integration with a Big Ball of Mud legacy system. 4) The importance of aligning your DDD Bounded Context one-to-one with a single Subdomain. 5) How you should segregate a Supporting Subdomain model from your Core Domain model using a DDD Module when it is impractical to separate the two in different Bounded Contexts. For exhaustive coverage of Subdomains , see Chapter 2 of Implementing Domain-Driven Design [IDDD] .
 
-When you work on a DDD project, there are always multiple Bounded Contexts in play. One of the Bounded Contexts will be the Core Domain , and there will also be various Subdomains in other Bounded Contexts. In the previous chapter you saw the importance of dividing different models by their specific Ubiquitous Language and forming multiple Bounded Contexts . There are six Bounded Contexts and six Subdomains in the preceding diagram. Because DDD strategic design was used, the teams achieved the most optimal modeling composition: one Subdomain per Bounded Context , and one Bounded Context per Subdomain. In other words, the Agile Project Management Core is both one clean Bounded Context and one clean Subdomain. In some situations, there may be multiple Subdomains in one Bounded Context , but that doesn’t achieve the most optimal modeling outcome.
+When you work on a DDD project, there are always multiple Bounded Contexts in play. One of the Bounded Contexts will be the Core Domain , and there will also be various Subdomains in other Bounded Contexts. In the previous chapter you saw the importance of dividing different models by their specific Ubiquitous Language and forming multiple Bounded Contexts. There are six Bounded Contexts and six Subdomains in the preceding diagram. Because DDD strategic design was used, the teams achieved the most optimal modeling composition: one Subdomain per Bounded Context , and one Bounded Context per Subdomain. In other words, the Agile Project Management Core is both one clean Bounded Context and one clean Subdomain. In some situations, there may be multiple Subdomains in one Bounded Context , but that doesn’t achieve the most optimal modeling outcome.
 
-DDD 项目中总会碰到很多限界上下文（Bouded Contexts）。这些上下文中一定有个将成为核心域（Core Domain），而其他的限界上下文之中也会存在许多不同的子域（Sub Domain）。第 2 章中，你已经了解了通过特定的通用语言来划分不同模型，并形成多个限界上下文的重要性。上图中有六个限界上下文与六个子城。正是因为采用了 DDD 的战略设计，团队方能实现最佳的建模成果：限界上下文与子域之间一一对应。换句话说，敏捷项目管理核心即一个清晰的限界上下文，也是一个清晰的子域。在某些情况下，一个限界上下文中有可能存在多个子域，但这并非是最理想的建模结果。
+DDD 项目中总会碰到很多限界上下文（Bouded Contexts）。这些上下文中一定有一个将成为核心域（Core Domain），而其他的限界上下文之中也会存在许多不同的子域（Sub Domain）。第 2 章中，你已经了解了通过特定的通用语言来划分不同模型，并形成多个限界上下文的重要性。上图中有六个限界上下文与六个子城。正是因为采用了 DDD 的战略设计，团队方能实现最佳的建模成果：限界上下文与子域之间一一对应。换句话说，敏捷项目管理核心即一个清晰的限界上下文，也是一个清晰的子域。在某些情况下，一个限界上下文中有可能存在多个子域，但这并非是最理想的建模结果。
 
 ### 3.1 What Is a Subdomain?
 
@@ -750,9 +758,9 @@ Another way to think of a Subdomain is that it is a clear area of expertise, ass
 
 If DDD had been used to develop it, the Subdomain would have been implemented as a clean Bounded Context. The Domain Experts who specialize in that particular area of the business would have been members of the team that developed the Bounded Context. Although using DDD to develop a clean Bounded Context is the optimal choice, sometimes we can only wish that had been the case.
 
-简单地说，子域是整个业务领域的一部分。你可以认为子域代表的是一个单一的、有逻辑的领域模型。大多数的业务领域都过于庞大和复杂，难以作为整体来分析，因此我们般只关心那些必须在单个项目中涉及的子域。子域可以用来逻辑地拆分整个业务领域，这样才能理解存在于大型复杂项目中的问题空间。
+简单地说，子域是整个业务领域的一部分。你可以认为子域代表的是一个单一的、有逻辑的领域模型。大多数的业务领域都过于庞大和复杂，难以作为整体来分析，因此我们一般只关心那些必须在单个项目中涉及的子域。子域可以用来逻辑地拆分整个业务领域，这样才能理解存在于大型复杂项目中的问题空间。
 
-也可以认为子域是一个明确的专业领域，假设它负责为核心业务提供解决方案。这意味着特定的子城将会有一位或多位领域专家领衔，他们非常了解由这些特定子域促成的业务的方方面面。对你的业务而言，子域也有或多或少的战略意义。
+也可以认为子域是一个明确的专业领域，假设它负责为核心业务提供解决方案。这意味着特定的子域将会有一位或多位领域专家领衔，他们非常了解由这些特定子域促成的业务的方方面面。对你的业务而言，子域也有或多或少的战略意义。
 
 如果通过 DDD 来创建子域，它将会被实现成一个清晰的限界上下文。特定业务的领域专家将会成为共建限界上下文团队中的一员。虽然使用 DDD 来建立一个清晰的限界上下文是最佳选择，但有时这只是我们一厢情愿的想法。
 
@@ -800,6 +808,8 @@ With that in mind, you can even show the Core Domain that you are working on, or
 
 When using DDD, a Bounded Context should align one-to-one (1:1) with a single Subdomain. That is, when using DDD, if there is one Bounded Context , there is, as a goal, one Subdomain model in that Bounded Context. It may not always be possible or practical to achieve, but where possible it is important to design in that way. This will keep your Bounded Contexts clean and focused on the core strategic initiative.
 
+1『明确掉了，一个限界上下文对应于一个子域模型。』
+
 If you must create a second model in the same Bounded Context (within your Core Domain ), you should segregate the secondary model from your Core Domain using a completely separate Module [IDDD] . (A DDD Module is basically a package in Scala and Java, and a namespace in F# and C#.) This makes a clear linguistic statement that one model is core and the other is merely supporting. This particular use of segregating a Subdomain is one that you would employ in your solution space.
 
 当使用 DDD 时，限界上下文应该与子域一一对应（1:1）。也就是说，如果存在一个限界上下文，那么它的目标就应该是对应且只对应一个子域模型。想要始终做到这一点很难，但在可能的前提下，尽量以这种方式去建模很重要。这样可以使限界上下文清晰并且始终专注于核心战略举措。
@@ -824,7 +834,7 @@ A Context Mapping is highlighted in this diagram by the line inside the dashed b
 
 Considering that in two different Bounded Contexts there are two Ubiquitous Languages , this line represents the translation that exists between the two languages. By way of illustration, imagine that two teams need to work together, but they work across national boundaries and don’t speak the same language. Either the teams would need an interpreter, or one or both teams would have to learn a great deal about the other’s language. Finding an interpreter would be less work for both teams, but it could be expensive in various ways. For example, imagine the extra time needed for one team to talk to the interpreter, and then for the interpreter to relay the statements to the other team. It works fine for the first few moments but then becomes cumbersome. Still, the teams might find this a better solution than learning and embracing a foreign language and constantly switching between languages. And, of course, this describes the relationship only between two teams. What if there are a few other teams involved? Similarly, the same trade-offs would exist when translating one Ubiquitous Language into another, or in some other way adapting to another Ubiquitous Language.
 
-考虑到两个不同的限界上下文中存在着两种通用语言（Ubiquitous Language），这条线段也代表着两种语言之间的转译过程。挙个例子，假设有两个团队需要一起工作，但他们位于不同的国家，讲不同的语言。为了解决沟通问题，要么在两个团队间设置一名翻译要么其中一个团或者全部两个团队需要熟练掌握对方的语言。找一名翻译更容易一些，但各方面的开销会显著增加。例如，想一想下面这个场景中所消耗的额外时间：一个团队需要先和翻译沟通，然后由醐译转述给另一个团队。这样做刚开始可能还行，但过一段时间就变成了麻烦。尽管如此，相比学习和接受一门外语并在两者之间来回切换，这些团队可能会认为请翻译是一个更好的解决方案。这还只是涉及两个团队的关系，如果还有更多其他团队参与进来又会怎么样？类似地，将一种通用语言翻译成另一种时，或者以其他某种方式适应另一种通用语言时，也要做出同样的权衡。
+考虑到两个不同的限界上下文中存在着两种通用语言（Ubiquitous Language），这条线段也代表着两种语言之间的转译过程。挙个例子，假设有两个团队需要一起工作，但他们位于不同的国家，讲不同的语言。为了解决沟通问题，要么在两个团队间设置一名翻译要么其中一个团或者全部两个团队需要熟练掌握对方的语言。找一名翻译更容易一些，但各方面的开销会显著增加。例如，想一想下面这个场景中所消耗的额外时间：一个团队需要先和翻译沟通，然后由翻译转述给另一个团队。这样做刚开始可能还行，但过一段时间就变成了麻烦。尽管如此，相比学习和接受一门外语并在两者之间来回切换，这些团队可能会认为请翻译是一个更好的解决方案。这还只是涉及两个团队的关系，如果还有更多其他团队参与进来又会怎么样？类似地，将一种通用语言翻译成另一种时，或者以其他某种方式适应另一种通用语言时，也要做出同样的权衡。
 
 When we talk about Context Mapping , what is of interest to us is what kind of inter-team relationship and integration is represented by the line between any two Bounded Contexts. Well-defined boundaries and contracts between them support controlled changes over time. There are several kinds of Context Mappings , both team and technical, that can be represented by the line. In some cases both an inter-team relationship and an integration mapping will be blended.
 
@@ -854,17 +864,15 @@ A Shared Kernel , depicted on page 54 by the intersection of the two Bounded Con
 
 1 共享内核常见的一种方式就是将通用模块通过二进制依赖（如 JAR 包或者链接库）的方式共享给所有上下文使用。正如书中所说，持续地就修改进行开放式沟通并达成一致是很困难的，效率也很低。但蓬勃发展的开源软件社区却给我们做出了表率。大部分的开源软件都以二进制库的形式发布，开发者们也很难有直接面对面的沟通机会，但它们的发展和演进一点也不慢。开源软件开发者们会使用各种约定和相应实践进行沟通协作，使用 Github 的拉取请求（Pull Request）来审查代码并接受贡献，或是使用长期支持版本（Long Term Support, LTS）保持固定发布节奏给下游预留升级时间，又或是使用语义化版本（Semantic Version）向下游宣告破坏性修改。因此，越来越多的企业向开源社区学习，搭建基础设施和平台，建立企业的「内源」（内部开源）社区来开鼓励开发团队更高效地进行跨团队的协作。在译者所著的《代码管理核心技术及实践》中有关于「内源」社区的介绍。——译注
 
-2 Separate Ways，借鉴了《领域駆动设计》中的译法，和《实现领域驱动》（IDDD 中的译法「另谋他路」同义。——译注
+2 Separate Ways，借鉴了《领域驱动设计》中的译法，和《实现领域驱动》（IDDD 中的译法「另谋他路」同义。——译注
 
 #### 4.1.3 Customer-Supplier
 
 A Customer-Supplier describes a relationship between two Bounded Contexts and respective teams, where the Supplier is upstream (the U in the diagram) and the Customer is downstream (the D in the diagram). The Supplier holds sway in this relationship because it must provide what the Customer needs. It’s up to the Customer to plan with the Supplier to meet various expectations, but in the end the Supplier determines what the Customer will get and when. This is a very typical and practical relationship between teams, even within the same organization, as long as corporate culture does not allow the Supplier to be completely autonomous and unresponsive to the real needs of Customers.
 
-客户一供应商（Customer-Supplier）描述的是两个限界上下文之间和两个独立团队之间的一种关系：供应商位于上游（图中的 U），客户位于下游（图中的 D）。支配这种关系的是供应商，因为它必须提供客户需要的东西。客户需要与供应商共同制订规划来满足各种预期，但最终却是由供应商来决定客户获得的是什么以及何时获得 [2]。即便是来自于同一个组织的团队，只要企业文化不允许供应商完全自治或无视客户的实际需求，客户一供应商关系也是一种非常典型且现实的关系。
+客户一供应商（Customer-Supplier）描述的是两个限界上下文之间和两个独立团队之间的一种关系：供应商位于上游（图中的 U），客户位于下游（图中的 D）。支配这种关系的是供应商，因为它必须提供客户需要的东西。客户需要与供应商共同制订规划来满足各种预期，但最终却是由供应商来决定客户获得的是什么以及何时获得 [1]。即便是来自于同一个组织的团队，只要企业文化不允许供应商完全自治或无视客户的实际需求，客户一供应商关系也是一种非常典型且现实的关系。
 
-1 此处借鉴了《领域駆动设计》中的译法，和《实现領域驱动》[IDDD] 中的「客户方ー供应方开发」（Customer- Supplier Development）是同样的含义。
-
-2 和共享内核的映射关系一样，保持客户和供应商之间持续开放的沟通也很重要，持续沟通才能保障供应商按照客户的预期提供集成所需的接口。存在这种集成关系的团队常常会采用一种被称为消费者驱动契约（Consumer Driven Contract, CDC）的实践，通过契约测试来保证上游（生产者或供应商）和下游（消费者或客户）之间的协作。而利用一些工具（如 Pact），客户可以在进行测试时，将对供应商接口的期望记录下来，并将其变成供应商的接口测试，作为供应商持续集成流水线的一部分持续地进行验证。这样供应商可以随时了解自己提供的接口实现是否满足了客户期望。关于消费者驱动契的和契的测试的介绍请参考《微服务设计》第 7 章。关于 Pact 的使用请参考官方文档，一一译注
+1 和共享内核的映射关系一样，保持客户和供应商之间持续开放的沟通也很重要，持续沟通才能保障供应商按照客户的预期提供集成所需的接口。存在这种集成关系的团队常常会采用一种被称为消费者驱动契约（Consumer Driven Contract, CDC）的实践，通过契约测试来保证上游（生产者或供应商）和下游（消费者或客户）之间的协作。而利用一些工具（如 Pact），客户可以在进行测试时，将对供应商接口的期望记录下来，并将其变成供应商的接口测试，作为供应商持续集成流水线的一部分持续地进行验证。这样供应商可以随时了解自己提供的接口实现是否满足了客户期望。关于消费者驱动契的和契的测试的介绍请参考《微服务设计》第 7 章。关于 Pact 的使用请参考官方文档，一一译注
 
 #### 4.1.4 Conformist
 
@@ -888,7 +896,9 @@ Whenever possible, you should try to create an Anticorruption Layer between your
 
 但凡有可能，你就应该尝试在下游模型和上游集成模型之间创建一个防腐层，这样才可以在你这端的集成中创造出特别适合业务需求的模型概念，并将外部概念完全地隔离。然而，就像为两个讲不同语言的团队雇佣翻译来解决沟通问题一样，在某些情况下各方面的成本会水涨船高。
 
-1 防腐层可以说是最常见的一种阻止外部技术偏好或领域模型侵入的设计模式。几乎没有什么向题是一个防腐层解决不了的。API 网关就是一种防腐层的具体实现。例如，AWS API Gateway 有一项重要的功能就是要对一些服务端点的请求和响应进行转换，我们可以将外部 REST API 返回的数据通过 AWS API Gateway 重新映射，变成我们期望的符合业务模型的事件或者响应数据。另外，在对遗留单块系统进行拆分时，防腐层也发挥着巨大的作用。有一种对付单块系统的重构方式叫作「抽象分支」（Branch by Abstraction），其中从要拆分的模块中提取出的抽象层就发挥着防腐层的作用，在重构的过程中抵挡着未拆分部分对重构工作的腐蚀。这种修者模式的具体介绍，请参考《服务拆分与架构演进》。一一译
+1 防腐层可以说是最常见的一种阻止外部技术偏好或领域模型侵入的设计模式。几乎没有什么向题是一个防腐层解决不了的。API 网关就是一种防腐层的具体实现。例如，AWS API Gateway 有一项重要的功能就是要对一些服务端点的请求和响应进行转换，我们可以将外部 REST API 返回的数据通过 AWS API Gateway 重新映射，变成我们期望的符合业务模型的事件或者响应数据。另外，在对遗留单块系统进行拆分时，防腐层也发挥着巨大的作用。有一种对付单块系统的重构方式叫作「抽象分支」（Branch by Abstraction），其中从要拆分的模块中提取出的抽象层就发挥着防腐层的作用，在重构的过程中抵挡着未拆分部分对重构工作的腐蚀。这种修者模式的具体介绍，请参考《服务拆分与架构演进》。一一译注
+
+1『又看到这个观点，软件开发过程中，几乎所有的问题都是可以通过抽象出一层中间层来解决。』
 
 #### 4.1.6 Open Host Service
 
@@ -902,11 +912,9 @@ An Open Host Service defines a protocol or interface that gives access to your B
 
 A Published Language , illustrated in the image at the bottom of page 57 , is a well-documented information exchange language enabling simple consumption and translation by any number of consuming Bounded Contexts. Consumers who both read and write can translate from and into the shared language with confidence that their integrations are correct. Such a Published Language can be defined with XML Schema, JSON Schema, or a more optimal wire format, such as Protobuf or Avro. Often an Open Host Service serves and consumes a Published Language , which provides the best integration experience for third parties. This combination makes the translations between two Ubiquitous Languages very convenient.
 
-上图中展示的已发布语言（Published Language）[1] 是一种有着丰富文档的信息交换语言，可以被许多消费方的限界上下文简单地使用和翻译。需要读写信息的消费者们可以把共享语言翻译成自己的语言，反之亦然，而在此过程中它们对集成的正确性充满信心。这种已发布语言可以用 XML Schema、JSON Schema 或更佳的序列化格式定义，比如 Protobuf 或 Avro。通常，同时提供和使用己发布语言的开放主机服务可以为第三方提供最佳的集成体验。这种结合使得两种通用语言之间的转译非常方便。
+上图中展示的已发布语言（Published Language）是一种有着丰富文档的信息交换语言，可以被许多消费方的限界上下文简单地使用和翻译。需要读写信息的消费者们可以把共享语言翻译成自己的语言，反之亦然，而在此过程中它们对集成的正确性充满信心。这种已发布语言可以用 XML Schema、JSON Schema 或更佳的序列化格式定义，比如 Protobuf 或 Avro。通常，同时提供和使用己发布语言的开放主机服务可以为第三方提供最佳的集成体验。这种结合使得两种通用语言之间的转译非常方便。
 
-1 此处借鉴了《领域驱动设计》中的译法，和《实现领域駆动》IDDD 中的「发布语言」同义。一一译注
-
-2 Protocol Buffers，简称 Protobuf，是 Google 开源的数据交换标准，用于定义数据传输和持久化的报文格式。Avro 是 Apache Hadoop 的一个子项目，是一种远程过程调用和数据序列化框架。除了书中提到的这两种新的序列化协议，另一种新的「查询语言」GraphQL 也在逐渐流行起来。它由 Facebook 开源具备类型安全、内省、文档生成和可预测响应等优势，非常适合对数据有不同要求的各种客户端。有兴趣的读者可以参考其中文网站。——译注
+1 Protocol Buffers，简称 Protobuf，是 Google 开源的数据交换标准，用于定义数据传输和持久化的报文格式。Avro 是 Apache Hadoop 的一个子项目，是一种远程过程调用和数据序列化框架。除了书中提到的这两种新的序列化协议，另一种新的「查询语言」GraphQL 也在逐渐流行起来。它由 Facebook 开源具备类型安全、内省、文档生成和可预测响应等优势，非常适合对数据有不同要求的各种客户端。有兴趣的读者可以参考其中文网站。——译注
 
 #### 4.1.5 Separate Ways
 
@@ -922,7 +930,7 @@ You already learned plenty about Big Ball of Mud in the previous chapters, but I
 
 在第 3 章中，已经学到了很多关于大泥球（Big Ball of Mud）的知识，但这里要强调在处理大泥球或者要和它进行集成时可能面临的严重问题。制造大泥球这种事应该人人避之唯恐不及。
 
-Just in case that’s not enough warning, here’s what happens over time when you are responsible for creating a Big Ball of Mud: (1) A growing number of Aggregates cross-contaminate because of unwarranted connections and dependencies. (2) Maintaining one part of the Big Ball of Mud causes ripples across the model, which leads to “whack-a-mole” issues. (3) Only tribal knowledge and heroics—speaking all languages at once—save the system from complete collapse.
+Just in case that’s not enough warning, here’s what happens over time when you are responsible for creating a Big Ball of Mud: 1) A growing number of Aggregates cross-contaminate because of unwarranted connections and dependencies. 2) Maintaining one part of the Big Ball of Mud causes ripples across the model, which leads to “whack-a-mole” issues. 3) Only tribal knowledge and heroics—speaking all languages at once—save the system from complete collapse.
 
 假如这还不够让你警醒，下面描述的是如何一步一步把系统推向大泥球深渊：1）越来越多的聚合因为不合理的关联和依赖而交叉污染。2）对大泥球的一部分进行维护就会牵一发而动全身，解决问题就像在「打地鼠」。3）只剩下「部落知识」和「个人英雄主义」，唯有同时「讲」出所有语言的极个别「超人」方能扶大厦之将倾 [1]。
 
@@ -934,7 +942,7 @@ The problem is that there are already many Big Balls of Mud out there in the wid
 
 ### 4.2 Making Good Use of Context Mapping
 
-1『中文版书里的这张图可以好好看下。』
+1『中文版书里的这张图可以好好看下。画了 3 个常用的协议：远程过程调用（RPC）、RESTful 以及消息机制。』
 
 You may be wondering what specific kind of interface would be supplied to allow you to integrate with a given Bounded Context. That depends on what the team that owns the Bounded Context provides. It could be RPC via SOAP, or RESTful interfaces with resources, or it could be a messaging interface using queues or Publish-Subscribe. In the least favorable of situations you may be forced to use database or file system integration, but let’s hope that doesn’t happen. Database integration really should be avoided, and if you are forced to integrate that way, you really should be sure to isolate your consuming model by means of an Anticorruption Layer.
 
@@ -958,7 +966,7 @@ RPC 的主要问题是，无论是使用 SOAP 或是其他方法，它都缺乏�
 
 When RPC works—and it mostly works—it can be a very useful way to integrate. If you can influence the design of the service Bounded Context , it would be in your best interests if there is a well-designed API that provides an Open Host Service with a Published Language. Either way, your client Bounded Context can be designed with an Anticorruption Layer to isolate your model from unwanted outside influences.
 
-当 RPC 有效时一一大部分时间它都是有效的一它是一种非常实用的集成方式。当我们可以影响服务端限界上下文的设计时，如果它有一个设计良好的 API 使用已发布语言来提供开放主机服务，那就最好不过了。不管怎样，客户端限界上下文都可以设计一层防腐层，将模型与多余的外部影响隔离开来。
+当 RPC 有效时一一大部分时间它都是有效的——它是一种非常实用的集成方式。当我们可以影响服务端限界上下文的设计时，如果它有一个设计良好的 API 使用已发布语言来提供开放主机服务，那就最好不过了。不管怎样，客户端限界上下文都可以设计一层防腐层，将模型与多余的外部影响隔离开来。
 
 #### 4.2.2 RESTful HTTP
 
@@ -972,13 +980,15 @@ A service Bounded Context that sports a REST interface should provide an Open Ho
 
 使用 RESTful HTTP 是一种非常固定的思维方式。在本书里不会详细展开，但应该在尝试之前仔细研究 REST。《REST 实战》[RiP] 这本书是一个不错的开始。支持 REST 接口的服务端限界上下文应该提供开放主机服务和已发布语言。资源理应被定义成已发布语言，而且当它们与你的 REST URI 结合在一起之后，将形成天然的开放主机服务。
 
+2『已下载书籍「2020157REST实战 | 2020157REST-in-Practice」。』
+
 RESTful HTTP will tend to fail for many of the same reasons that RPC does—network and service provider failures, or unanticipated latency. However, RESTful HTTP is based on the premise of the Internet, and who can find fault with the track record of the Web when it comes to reliability, scalability, and overall success?
 
 造成 RESTful HTTP 失败的原因通常和许多造成 RPC 失败的原因一样一一网络或服务提供商故障，还有意外延迟。在没有网络的前提下，RESTful HTTP 无法运作，但谁又能通过跟踪这期间的日志记录来发现导致失败的原因，从而达成保证其成功的可靠性、可伸缩性以及完整性的目标呢？
 
 A common mistake made when using REST is to design resources that directly reflect the Aggregates in the domain model. Doing this forces every client into a Conformist relationship, where if the model changes shape the resources will also. So you don’t want to do that. Instead, resources should be designed synthetically to follow client-driven use cases. By “synthetic” I mean that to the client the resources provided must have the shape and composition of what they need, not what the actual domain model looks like. Sometimes the model will look just like what the client needs. But what the client needs is what drives the design of the resources, and not the model’s current composition.
 
-使用 REST 常犯的设计错误是直接把模型中的聚合暴露成资源。服务端模型一旦发生变化，资源也会随之一起改变，这样会把跟随者关系强加给每个客户端。所以你不会想这样做。相反，应该根据客户端驱动的用例设计出「合成」的资源。所「合成」，是指对客户端来说，服务端提供出来的资源必须具有它们所需要的样子和组成，而不是直接给出实际的领域模型。有时候模型看起来就像客户端需要的东西。但客户端真正所需要的是驱动资源模型的设计，而不只是保持模型的皮囊。
+使用 REST 常犯的设计错误是直接把模型中的聚合暴露成资源。服务端模型一旦发生变化，资源也会随之一起改变，这样会把跟随者关系强加给每个客户端。所以你不会想这样做。相反，应该根据客户端驱动的用例设计出「合成」的资源。「合成」，是指对客户端来说，服务端提供出来的资源必须具有它们所需要的样子和组成，而不是直接给出实际的领域模型。有时候模型看起来就像客户端需要的东西。但客户端真正所需要的是驱动资源模型的设计，而不只是保持模型的皮囊。
 
 #### 4.2.3 Messaging
 
@@ -1069,7 +1079,7 @@ On the other hand, it is difficult to predict every piece of data that all consu
 
 Sometimes circumstances will call for a balanced blend of both approaches.
 
-在增强事件与反向查询之间的权衡。有时，填充足够多的數据增强领域事件来满足所有消费者的需求是有好处的。而有些时候，保持轻量的领域事件并让消费者在需要更多数据时进行查询会更有利。第一种选择，即增强事件，将给予从属消费者更多自治权。如果自治是你的驱动要素，请选择增强事件数据的方式。另一方面，很难预料到所有消费者需要在领域事件中获取的每一条数据，而且如果全部提供，可能会丰富过了头。例如，在领域事件中填充敏据可能是一个糟糕的安全性决策。如果是这种情况，设计轻量的领域事件和一个可以让消费者请求的安全且丰富的查询模型可能才是正确的选择。而有些时候，需要视情况平衡地混合使用两种方法。
+在增强事件与反向查询之间的权衡。有时，填充足够多的数据增强领域事件来满足所有消费者的需求是有好处的。而有些时候，保持轻量的领域事件并让消费者在需要更多数据时进行查询会更有利。第一种选择，即增强事件，将给予从属消费者更多自治权。如果自治是你的驱动要素，请选择增强事件数据的方式。另一方面，很难预料到所有消费者需要在领域事件中获取的每一条数据，而且如果全部提供，可能会丰富过了头。例如，在领域事件中填充数据可能是一个糟糕的安全性决策。如果是这种情况，设计轻量的领域事件和一个可以让消费者请求的安全且丰富的查询模型可能才是正确的选择。而有些时候，需要视情况平衡地混合使用两种方法。
 
 1 请参考《实现领域驱动设计》D 附录 A 中的「增强事件」小节。一一译注
 
