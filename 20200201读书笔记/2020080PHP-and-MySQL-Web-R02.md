@@ -1203,4 +1203,3 @@ Inheritance allows you to create a hierarchical relationship between classes usi
 With inheritance, you can build on and add to existing classes. From a simple base class, you can derive more complex and specialized classes as the need arises. This capability makes your code more reusable, which is one of the important advantages of an object-oriented approach.
 
 Using inheritance might save you work if operations can be written once in a superclass rather than many times in separate subclasses. It might also allow you to more accurately model  real-world relationships. If a sentence about two classes makes sense with「is a」between the classes, inheritance is probably appropriate. The sentence「a car is a vehicle」makes sense, but the sentence「a vehicle is a car」does not make sense because not all vehicles are cars. Therefore, car can inherit from vehicle.
-
