@@ -1094,4 +1094,3 @@ You’re probably wondering about the data details of the Policy-Issued Domain E
 Are you curious about what happened to the Agile Project Management Context example? Straying from that to the insurance business domain allowed you to examine DDD with multiple examples. That should have helped you grasp DDD even better. Don’t worry, we will return to the Agile Project Management Context in the next chapter.
 
 你是不是对敏捷项目管理上下文的例子感到好奇？这里我们切换到保险业务领域，可以让你利用多个例子来研究 DDD，从而帮助你更好地掌握 DDD。别着急，我们将在下一章回到敏捷项目管理上下文上来。
-
