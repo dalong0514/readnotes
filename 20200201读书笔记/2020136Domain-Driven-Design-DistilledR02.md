@@ -50,7 +50,7 @@ See Implementing Domain-Driven Design [IDDD] for detailed coverage of Value Obje
 
 』
 
-The Root Entity of each Aggregate owns all the other elements clustered inside it. The name of the Root Entity is the Aggregate ’s conceptual name. You should choose a name that properly describes the conceptual whole that the Aggregate models.
+The Root Entity of each Aggregate owns all the other elements clustered inside it. The name of the Root Entity is the Aggregate’s conceptual name. You should choose a name that properly describes the conceptual whole that the Aggregate models.
 
 1『根实体的名称就是聚合概念上的名称，跟聚合取名时就先找出其跟实体。』
 
@@ -64,9 +64,11 @@ Each Aggregate forms a transactional consistency boundary. This means that withi
 
 Broader Meaning of Transaction
 
-To some degree, the use of transactions in your application is an implementation detail. For example, a typical use would have an Application Service [IDDD] controlling the atomic database transaction on behalf of the domain model. Under a different architecture, such as the Actor model [Reactive] where each Aggregate is implemented as an actor, transactions could be handled using Event Sourcing (see the next chapter) with a database that doesn’t support atomic transactions. Either way, what I mean by “transaction” is how modifications to an Aggregate are isolated and how business invariants—the rules to which the software must always adhere—are guaranteed to be consistent following each business operation. Whether this requirement is controlled by an atomic database transaction or by some other means, the Aggregate ’s state, or its representation by means of Event Sourcing, must be safely and correctly transitioned and maintained at all times.
+To some degree, the use of transactions in your application is an implementation detail. For example, a typical use would have an Application Service [IDDD] controlling the atomic database transaction on behalf of the domain model. Under a different architecture, such as the Actor model [Reactive] where each Aggregate is implemented as an actor, transactions could be handled using Event Sourcing (see the next chapter) with a database that doesn’t support atomic transactions. Either way, what I mean by “transaction” is how modifications to an Aggregate are isolated and how business invariants—the rules to which the software must always adhere—are guaranteed to be consistent following each business operation. Whether this requirement is controlled by an atomic database transaction or by some other means, the Aggregate’s state, or its representation by means of Event Sourcing, must be safely and correctly transitioned and maintained at all times.
 
-某种程度上，在应用程序中使用事务是实现的细节。例如，一种典型的实现会包括一个代表领城模型来控制原子级数据库事务的应用服务 [IDDD]。在其他不同的架构中，例如在 Actor 模型 [Reactive] 中，每个聚合都作为 Actor 实现，而事务可以使用事件溯源（Event Sourcing）（见第 6 章）来处理，即便数据库不支持原子级事务。不管怎样，我所说的「事务」就是如何隔离对聚合的修改，以及如何保证业务不变性（即软件必须始终遵守的规则）在每一次业务操作中都保持致。无论是通过原子级的数据库事务还是其他方法来控制需求，聚合的状态或者它通过事件溯源方法表现出的形式，必须始终安全和正确地进行转移和维护。
+1『上面的信息目前无法消化吸收。（2020-08-21）』
+
+某种程度上，在应用程序中使用事务是一个实现细节。例如，一种典型的实现会包括一个代表领城模型来控制原子级数据库事务的应用服务 [IDDD]。在其他不同的架构中，例如在 Actor 模型 [Reactive] 中，每个聚合都作为 Actor 实现，而事务可以使用事件溯源（Event Sourcing）（见第 6 章）来处理，即便数据库不支持原子级事务。不管怎样，我所说的「事务」就是如何隔离对聚合的修改，以及如何保证业务不变性（即软件必须始终遵守的规则）在每一次业务操作中都保持致。无论是通过原子级的数据库事务还是其他方法来控制需求，聚合的状态或者它通过事件溯源方法表现出的形式，必须始终安全和正确地进行转移和维护。
 
 』
 
@@ -84,6 +86,8 @@ Any other Aggregate will be modified and committed in a separate transaction. Th
 
 Since instances of these two Aggregates are designed to be modified in separate transactions, how do we get the instance of Aggregate Type 2 updated based on changes made to the instance of Aggregate Type 1, to which our domain model must react? That’s a good question; we will consider the answer to it a bit later in this chapter.
 
+1『关键知识点，聚合 2 依赖于聚合 1，聚合 1 更新后如何确保聚合 2 跟着更新，领域模型需要实现这个。』
+
 The main point to remember from this section is that business rules are the drivers for determining what must be whole, complete, and consistent at the end of a single transaction.
 
 由于这两个聚合的实例被设计成在各自的事务中进行修改，我们如何根据 Aggregate Type 1 实例上发生的变化来更新 Aggregate Type 2  实例？领域模型必须对这些变化做出响应。我们将在本章稍后考虑这个问题的答案。本节中要记住的重点是，业务规则才是驱动力，最终決定在单次事务完成提交后，哪些对象必须是完整、完全和一致的驱动力。
@@ -100,17 +104,19 @@ Let’s next consider the four basic rules of Aggregate design:
 
 4. Update other Aggregates using eventual consistency.
 
+1『聚合里的不变性，是有业务决定的；一致性边界就是聚合边界；标识符（类比于数据库表的主键）作为独一无二的外部引用。』
+
 Of course, these rules are not necessarily strictly enforced by any “DDD police.” They are meant as sound guidance such that when thoughtfully applied, they will help you design Aggregates that work effectively. That being the case, we will now dig into each of these rules to see how they should be applied wherever possible.
 
 接下来我们要思考的是聚合设计的四条基本规则：1）在聚合边界内保护业务规则不变性。2）聚合要设计得小巧。3）只能通过标识符引用其他聚合。4）使用最终一致性更新其他聚合。当然，这些规则不会由任何「DDD 警察」来强制执行。它们只是适当的指导，当经过深思熟虑被应用之后，它们将帮助你设计出能有效工作的聚合。既然是这样，现在我们要仔细钻研每一条规则，看看它们应该如何运用在合适的地方。
 
-在作者的《实现领域驱动设计》UDD 第 10 章「聚合」中也有提到设计聚合时要遵循的四条原则，它们是：1）一致性边界之内建模真正的不变条件。2）设计小聚合。3）通过唯一标识引用其他聚合。4）在边界之外使用最终一致性。本书中提出的四条原则看起来似乎和它们一样，但描述却更加鮮明准确。在第 1 条规则中作者直接点明了不变性乃是由业务决定，在第 3 条规则中作者强调将标识符作为独一无二的外部引用，在第 1 条和第 4 条中作者更是指出了一致性边界就是聚合边界。这些原则是作者在完成《实现领域驱动设计》之后，经过不断实践再次修正和精练的成果。一一译注
+在作者的《实现领域驱动设计》第 10 章「聚合」中也有提到设计聚合时要遵循的四条原则，它们是：1）一致性边界之内建模真正的不变条件。2）设计小聚合。3）通过唯一标识引用其他聚合。4）在边界之外使用最终一致性。本书中提出的四条原则看起来似乎和它们一样，但描述却更加鲜明准确。在第 1 条规则中作者直接点明了不变性乃是由业务决定，在第 3 条规则中作者强调将标识符作为独一无二的外部引用，在第 1 条和第 4 条中作者更是指出了一致性边界就是聚合边界。这些原则是作者在完成《实现领域驱动设计》之后，经过不断实践再次修正和精练的成果。一一译注
 
 Rule 1: Protect Business Invariants inside Aggregate Boundaries
 
 Rule 1 means that the business should ultimately determine Aggregate compositions based on what must be consistent when a transaction is committed. In the example on page 81, Product is designed such that at the end of a transaction all composed ProductBacklogItem instances must be accounted for and consistent with the Product root. Also, Sprint is designed such that at the end of a transaction all composed CommittedBacklogItem instances must be accounted for and consistent with the Sprint root.
 
-规则一的意思是聚合的组成部分应该由业务最终决定，而且要以那些在一次事务提交中必须保持一致的内容为基础。在上面的例子中，Product 被设计成在事务完成提交时，所有组成它的 ProductBacklogItem 都必须由它负贵并和根 Product 保持一致。同样的，Sprint 被设计成在事务完成提交时，所有组成它的 CommittedBacklogItem 都必须由它负责并和根 Sprint 保持一致。
+规则一的意思是聚合的组成部分应该由业务最终决定，而且要以那些在一次事务提交中必须保持一致的内容为基础。在上面的例子中，Product 被设计成在事务完成提交时，所有组成它的 ProductBacklogItem 都必须由它负责并和根 Product 保持一致。同样的，Sprint 被设计成在事务完成提交时，所有组成它的 CommittedBacklogItem 都必须由它负责并和根 Sprint 保持一致。
 
 Rule 1 becomes clearer with another example. Here’s the BacklogItem Aggregate. There is a business rule that states, “When all Task instances have hoursRemaining of zero, the BacklogItem status must be set to DONE.” Thus, at the end of a transaction this very specific business invariant must be met. The business requires it.
 
@@ -142,11 +148,11 @@ This further helps keep the Aggregate design small and efficient, making for low
 
 Another benefit to using reference by identity only is that your Aggregates can be easily stored in just about any kind of persistence mechanism, such as relational database, document database, key-value store, and data grids/fabrics. This means that you have options to use a MySQL relational table, a JSON-based store such as PostgreSQL or MongoDB, GemFire/Geode, Coherence, and GigaSpaces.
 
-现在，我们已经把大块的 Product 拆分成了四个更小的聚合，它们又如何在需要时引用其他的聚合呢？这里我们要遵守规则三：「只能通过标识符引用其他聚合」，在这个例子里，我们看到 BacklogItem、Release 和 Sprint 全都通过持有一个 ProductId 来引用 Product。这能帮助保持聚合不会変大，并防止在同一次事务中画蛇添足地修改多个聚合。
+现在，我们已经把大块的 Product 拆分成了四个更小的聚合，它们又如何在需要时引用其他的聚合呢？这里我们要遵守规则三：「只能通过标识符引用其他聚合」，在这个例子里，我们看到 BacklogItem、Release 和 Sprint 全都通过持有一个 ProductId 来引用 Product。这能帮助保持聚合不会变大，并防止在同一次事务中画蛇添足地修改多个聚合。
 
 这能进一步帮助保持聚合设计得小巧又高效，从而降低内存需求，并提升持久化存储中加载的速度。它还有助于强化不要在同一次事务中修改其他聚合实例的規则。在只拥有其他聚合标识符的情况下，获取它们的直接对象引用没那么容易。
 
-仅使用标识符引用还有一个好处，就是聚合可以使用任何类型的持久化机制轻松地存储,包括关系型数据库、文档数据库、键值型存储以及数据网格 / 结构。这意味着你可以选择 MYSQL 关系型数据库表、PostgreSQL 或者 MongoDB 这样基于 JSON 的存储，GemFire/Geode、Coherence、还有 Gigaspaces。
+仅使用标识符引用还有一个好处，就是聚合可以使用任何类型的持久化机制轻松地存储，包括关系型数据库、文档数据库、键值型存储以及数据网格 / 结构。这意味着你可以选择 MYSQL 关系型数据库表、PostgreSQL 或者 MongoDB 这样基于 JSON 的存储，GemFire/Geode、Coherence、还有 Gigaspaces。
 
 Apache Geode 是 Apache 顶级项目，由 Gemfire 开源而来，是集中间件、缓存、消息队列、事件处理引、NoSQL 数据库于一身的分布式内存数据处理平台它的介绍请参考《大中型企业的天网：Apache Geode》一文。——译注
 
@@ -156,15 +162,19 @@ Rule 4: Update Other Aggregates Using Eventual Consistency
 
 Here a BacklogItem is committed to a Sprint. Both the BacklogItem and the Sprint must react to this. It is first the BacklogItem that knows it has been committed to a Sprint. This is managed in one transaction, when the state of the BacklogItem is modified to contain the SprintId of the Sprint to which it is committed. So, how do we ensure that the Sprint is also updated with the BacklogItemId of the newly committed BacklogItem?
 
-例子里 BacklogItem 被提交到 Sprint 中。BacklogItem 和 Sprint 都要对此做出响应。首先 BacklogItem 知道它被提交到 Sprint 中，这是在一次事务中管理的，这次事务中 BacklogItem 的状态被修改，修改之后的状态会包含它被提交到的那个 Sprint 的 Sprinted。那么，我们如何确保 Sprint 的更新也包括了新提交的 BacklogItem 的 BacklogItemId 呢？
+例子里 BacklogItem 被提交到 Sprint 中。BacklogItem 和 Sprint 都要对此做出响应。首先 BacklogItem 知道它被提交到 Sprint 中，这是在一次事务中管理的，这次事务中 BacklogItem 的状态被修改，修改之后的状态会包含它被提交到的那个 Sprint 的 SprinteId。那么，我们如何确保 Sprint 的更新也包括了新提交的 BacklogItem 的 BacklogItemId 呢？
 
-As part of the BacklogItem Aggregate ’s transaction, it publishes a Domain Event named BacklogItemCommitted. The BacklogItem transaction completes and its state is persisted along with the Backlog-ItemCommitted Domain Event. When the BacklogItemCommitted makes its way to a local subscriber, a transaction is started and the state of the Sprint is modified to hold the BacklogItemId of the committed BacklogItem. The Sprint holds the BacklogItemId inside a new CommittedBacklogItem Entity.
+As part of the BacklogItem Aggregate’s transaction, it publishes a Domain Event named BacklogItemCommitted. The BacklogItem transaction completes and its state is persisted along with the BacklogItemCommitted Domain Event. When the BacklogItemCommitted makes its way to a local subscriber, a transaction is started and the state of the Sprint is modified to hold the BacklogItemId of the committed BacklogItem. The Sprint holds the BacklogItemId inside a new CommittedBacklogItem Entity.
 
-作为 BacklogItem 聚合事务的一部分，名为 BacklogItemCommitted 的领城事件将被发布出来。BacklogItem 事务结東之后，它的状态和领域事件 BacklogItemCommitted 一起完成了持久化。当将 BacklogItemCommitted 传递到本地的订阅者那里时，一个新的事务会被触发，而 Sprint 的状态会被修改，并且持有提交给它的 BacklogItem 的 BacklogItemId。Sprint 会在一个新的 CommittedBacklogItem 实体中保存 BacklogItemId。
+作为 BacklogItem 聚合事务的一部分，名为 BacklogItemCommitted 的领城事件将被发布出来。BacklogItem 事务结束之后，它的状态和领域事件 BacklogItemCommitted 一起完成了持久化。当将 BacklogItemCommitted 传递到本地的订阅者那里时，一个新的事务会被触发，而 Sprint 的状态会被修改，并且持有提交给它的 BacklogItem 的 BacklogItemId。Sprint 会在一个新的 CommittedBacklogItem 实体中保存 BacklogItemId。
+
+1『上面的过程，即使看了中文后还是无法消化。（2020-08-22）』
 
 Recall now what you learned in Chapter 4, “Strategic Design with Context Mapping.” Domain Events are published by an Aggregate and subscribed to by an interested Bounded Context. The messaging mechanism delivers the Domain Events to interested parties by means of subscriptions. The interested Bounded Context can be the same one from which the Domain Event was published, or it could be different Bounded Contexts.
 
-回忆一下你在第 4 章中学到的内容，领域事件由一个聚合发布并由感兴趣的服界上下文订阅。消息机制通过发布 / 订阅的方式把领域事件传递给感兴趣的限界上下文。感兴趣的限界上下文可能和发布领域事件的限界上下文是同一个，也有可能是另外一个。
+1『消息机制通过发布或订阅的方式，将领域事件传递给其他限界上下文。』
+
+回忆一下你在第 4 章中学到的内容，领域事件由一个聚合发布并由感兴趣的限界上下文订阅。消息机制通过发布 / 订阅的方式把领域事件传递给感兴趣的限界上下文。感兴趣的限界上下文可能和发布领域事件的限界上下文是同一个，也有可能是另外一个。
 
 It’s just that in the case of the BacklogItem Aggregate and the Sprint Aggregate, the publisher and subscriber are in the same Bounded Context. You don’t absolutely need to use a full-blown messaging middleware product for this case, but it’s easy to do so since you already use it for publishing to other Bounded Contexts.
 
@@ -184,7 +194,11 @@ There is nothing incredibly difficult about using eventual consistency. Still, u
 
 There are a few hooks waiting for you as you work on your domain model, implementing your Aggregates. One big, nasty hook is the Anemic Domain Model [IDDD]. This is where you are using an object-oriented domain model, and all of your Aggregates have only public accessors (getters and setters) but no real business behavior. This tends to happen when there is a technical rather than business focus during modeling. Designing an Anemic Domain Model requires you to take on all the overhead of a domain model without realizing any of its benefits. Don’t take the bait!
 
+2『上面算是解释了贫血模型的概念：除了公有访问器之外，没有包含任何真正意义上的业务行为。贫血做一张术语卡片。』
+
 Also watch out for leaking business logic into the Application Services above your domain model. It can happen undetected, just like physical anemia. Delegating business logic from services to helper/utility classes isn’t going to work out well either. Service utilities always exhibit an identity crisis and can never keep their stories straight. Place your business logic in your domain model, or suffer bugs sponsored by an Anemic Domain Model.
+
+1『贫血模型能带来哪些问题？回复：因为将业务的逻辑行为也放到服务层，最终导致服务越来越臃肿。（2020-08-22）』
 
 当你在领域模型上展开工作并实现聚合时，有一些诱惑在等待着你。贫血领城模型（Anemic Domain Model）就是一个令人讨厌的巨大诱惑。如果你正在使用面向对象的领域模型，而这些模型除了公有访问器（Getter 和 Setter）之外没有包含任何真正的业务行为，那就是这种模型了。如果在建模过程中过于注重技术而忽略了业务就会造成这种结果。你需要承担领域模型中的所有的开销来设计贫血模型，但从中却获益甚少。所以不要上当！
 
@@ -192,11 +206,17 @@ Also watch out for leaking business logic into the Application Services above yo
 
 1 在使用一些 MVC 框架时我们常常会掉进贫血模型的陷阱。MVC 框架常常会使用 ORM 来将关系型数据库的查询和操作结果直接映射成对象（有的框架甚至就把这些对象称为实体，更增加了迷惑性），这些对象一般只包含 Getter 和 Setter。而真正的业务逻辑和这些所谓的「实体」脱离，被放在另外一些被称为服务的对象里。这些服务一般会负责调用 ORM 加载对象，执行操作改变对象状态，最后进行持久化存储。本来应该和这些实体有着内聚性的业务逻辑完全被置于独立的服务中，最终导致服务越来越臃肿的同时，把这些 ORM 映射的对象变成了贫血领域模型，实际上 ORM 只是一种资源库（Repository）的具体实现方式，它不属于领域模型的一部分，它映射出来的对象也不能简单地直接当作领域模型中的聚合和实体。这种错误的做法显然缺失了领域模型这个关键的层次。领域模型应该由持久化的对象转换而来，并承担被错放在服务中的那些业务逻辑。一一译注
 
+1『上面的注释信息量蛮大的，需反复品味。』
+
+1『请教戴强后，仓库层（资源库 Repository），是逻辑层和 Model 间的过渡层。』
+
 『
 
 What about Functional Programming?
 
 When using functional programming, the rules change considerably. While an Anemic Domain Model is a bad idea when using object-oriented programming, it is somewhat the norm when applying functional programming. That’s because functional programming promotes the separation of data and behavior. Your data is designed as immutable data structures or record types, and your behavior is implemented as pure functions that operate on the immutable records of specific types. Rather than modifying the data that functions receive as arguments, the functions return new values. These new values may be the new state of an Aggregate or a Domain Event that represents a transition in an Aggregate ’s state.
+
+1『贫血模型，用函数式编程范式时竟然是推荐的，长见识了。做一张任意卡片。』
 
 I have largely addressed the object-oriented approach in this chapter because it is still the most widely used and well understood. Yet if you are employing a functional language and approach to DDD, be aware that some of this guidance is not applicable or is at least subject to overriding rules.
 
