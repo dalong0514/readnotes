@@ -68,7 +68,7 @@ To some degree, the use of transactions in your application is an implementation
 
 1『上面的信息目前无法消化吸收。（2020-08-21）』
 
-某种程度上，在应用程序中使用事务是一个实现细节。例如，一种典型的实现会包括一个代表领城模型来控制原子级数据库事务的应用服务 [IDDD]。在其他不同的架构中，例如在 Actor 模型 [Reactive] 中，每个聚合都作为 Actor 实现，而事务可以使用事件溯源（Event Sourcing）（见第 6 章）来处理，即便数据库不支持原子级事务。不管怎样，我所说的「事务」就是如何隔离对聚合的修改，以及如何保证业务不变性（即软件必须始终遵守的规则）在每一次业务操作中都保持致。无论是通过原子级的数据库事务还是其他方法来控制需求，聚合的状态或者它通过事件溯源方法表现出的形式，必须始终安全和正确地进行转移和维护。
+某种程度上，在应用程序中使用事务是一个实现细节。例如，一种典型的实现会包括一个代表领域模型来控制原子级数据库事务的应用服务 [IDDD]。在其他不同的架构中，例如在 Actor 模型 [Reactive] 中，每个聚合都作为 Actor 实现，而事务可以使用事件溯源（Event Sourcing）（见第 6 章）来处理，即便数据库不支持原子级事务。不管怎样，我所说的「事务」就是如何隔离对聚合的修改，以及如何保证业务不变性（即软件必须始终遵守的规则）在每一次业务操作中都保持致。无论是通过原子级的数据库事务还是其他方法来控制需求，聚合的状态或者它通过事件溯源方法表现出的形式，必须始终安全和正确地进行转移和维护。
 
 』
 
@@ -166,7 +166,7 @@ Here a BacklogItem is committed to a Sprint. Both the BacklogItem and the Sprint
 
 As part of the BacklogItem Aggregate’s transaction, it publishes a Domain Event named BacklogItemCommitted. The BacklogItem transaction completes and its state is persisted along with the BacklogItemCommitted Domain Event. When the BacklogItemCommitted makes its way to a local subscriber, a transaction is started and the state of the Sprint is modified to hold the BacklogItemId of the committed BacklogItem. The Sprint holds the BacklogItemId inside a new CommittedBacklogItem Entity.
 
-作为 BacklogItem 聚合事务的一部分，名为 BacklogItemCommitted 的领城事件将被发布出来。BacklogItem 事务结束之后，它的状态和领域事件 BacklogItemCommitted 一起完成了持久化。当将 BacklogItemCommitted 传递到本地的订阅者那里时，一个新的事务会被触发，而 Sprint 的状态会被修改，并且持有提交给它的 BacklogItem 的 BacklogItemId。Sprint 会在一个新的 CommittedBacklogItem 实体中保存 BacklogItemId。
+作为 BacklogItem 聚合事务的一部分，名为 BacklogItemCommitted 的领域事件将被发布出来。BacklogItem 事务结束之后，它的状态和领域事件 BacklogItemCommitted 一起完成了持久化。当将 BacklogItemCommitted 传递到本地的订阅者那里时，一个新的事务会被触发，而 Sprint 的状态会被修改，并且持有提交给它的 BacklogItem 的 BacklogItemId。Sprint 会在一个新的 CommittedBacklogItem 实体中保存 BacklogItemId。
 
 1『上面的过程，即使看了中文后还是无法消化。（2020-08-22）』
 
@@ -200,7 +200,7 @@ Also watch out for leaking business logic into the Application Services above yo
 
 1『贫血模型能带来哪些问题？回复：因为将业务的逻辑行为也放到服务层，最终导致服务越来越臃肿。（2020-08-22）』
 
-当你在领域模型上展开工作并实现聚合时，有一些诱惑在等待着你。贫血领城模型（Anemic Domain Model）就是一个令人讨厌的巨大诱惑。如果你正在使用面向对象的领域模型，而这些模型除了公有访问器（Getter 和 Setter）之外没有包含任何真正的业务行为，那就是这种模型了。如果在建模过程中过于注重技术而忽略了业务就会造成这种结果。你需要承担领域模型中的所有的开销来设计贫血模型，但从中却获益甚少。所以不要上当！
+当你在领域模型上展开工作并实现聚合时，有一些诱惑在等待着你。贫血领域模型（Anemic Domain Model）就是一个令人讨厌的巨大诱惑。如果你正在使用面向对象的领域模型，而这些模型除了公有访问器（Getter 和 Setter）之外没有包含任何真正的业务行为，那就是这种模型了。如果在建模过程中过于注重技术而忽略了业务就会造成这种结果。你需要承担领域模型中的所有的开销来设计贫血模型，但从中却获益甚少。所以不要上当！
 
 同时也要注意别把领域模型中的业务逻辑放到上层的应用服务中。这可能在不经意中就发生了，就像生理贫血一样，也不容易检查出来。将服务中的业务逻辑委托给帮助 / 工具类也不会有什么改善。服务工具类往往会显现出身份认同危机，也永远无法保持业务逻辑的连续性。请把业务逻辑放在领域模型之中。不然就要忍受贫血领域模型带来的问题。
 
@@ -292,13 +292,13 @@ Do you see the problems with this approach? There are more than a few, but consi
 
 7. You will never be able to address all future needs up front, which means if new Scrum concepts are ever added in the future, your existing model will prove to be a failure in foreseeing those needs.
 
-你发现该方法的问题了吗？这里面的问题不少，但请主要思考以下几点：1）软件模型的语言无法匹配领城专家的心智模型。2）抽象级别过高，当你开始对每个独立概念类型进行建模时会陷入大麻烦。3）这会导致每个类中都有特殊情况产生，并且可能造成使用通用方法去解决具体问题的复杂的类层次结构。4）因为试图要先去解决无关紧要的无解问题，你将会编写比实际需要多得多的代码。错误抽象的语言会殃及用户界面，并且将给用户带来困扰。会浪费大量时间和金钱。5）永远无法预先满足未来所有的需求，这意味着未来如果增加新的 Scrum 概念，现有模型对这些需求的预判会被证明是失败的。
+你发现该方法的问题了吗？这里面的问题不少，但请主要思考以下几点：1）软件模型的语言无法匹配领域专家的心智模型。2）抽象级别过高，当你开始对每个独立概念类型进行建模时会陷入大麻烦。3）这会导致每个类中都有特殊情况产生，并且可能造成使用通用方法去解决具体问题的复杂的类层次结构。4）因为试图要先去解决无关紧要的无解问题，你将会编写比实际需要多得多的代码。错误抽象的语言会殃及用户界面，并且将给用户带来困扰。会浪费大量时间和金钱。5）永远无法预先满足未来所有的需求，这意味着未来如果增加新的 Scrum 概念，现有模型对这些需求的预判会被证明是失败的。
 
 Following such a path may seem strange to some, but this incorrect level of abstractions is used often in technically inspired implementations.
 
 Don’t get taken in by this alluring, highly abstract implementation trap. Model the Ubiquitous Language explicitly according to the mental model of the Domain Experts that is refined by your team. By modeling what the business needs today, you will save a considerable amount of time, budget, code, and embarrassment. More still, you will do the business a great service by modeling an accurate and useful Bounded Context that reflects an effective design.
 
-这样的思路看起来有些奇怪，但由技术启发的实现中常常出现这种不正确的抽象级别。不要被这个诱人的、实现高度抽象的陷阱所吸引，而要根据团队精练过的领城专家的心智模型，脚踏实地地对通用语言进行建模。通过对当下的业务需求进行建模，你将省去大量的时间、预算和代码，并且避免了不必要的麻烦。更重要的是，你将通过建立能体现有效设计的准确且实用的限界上下文模型来为业务提供有效的服务。
+这样的思路看起来有些奇怪，但由技术启发的实现中常常出现这种不正确的抽象级别。不要被这个诱人的、实现高度抽象的陷阱所吸引，而要根据团队精练过的领域专家的心智模型，脚踏实地地对通用语言进行建模。通过对当下的业务需求进行建模，你将省去大量的时间、预算和代码，并且避免了不必要的麻烦。更重要的是，你将通过建立能体现有效设计的准确且实用的限界上下文模型来为业务提供有效的服务。
 
 #### 5.3.2 Right-Sizing Aggregates
 
@@ -340,7 +340,7 @@ Be careful that the business doesn’t insist that every Aggregate fall within t
 
 This exercise indicates that eventual consistency is business driven, not technically driven. Of course, you will have to find a way to technically cause eventual updates between multiple Aggregates, as discussed in the previous chapter on Context Mapping. Even so, it is only the business that can determine the acceptable time frame for updates to occur between various Entities. Some are immediate, or transactional, which means they must be managed by the same Aggregate. Some are eventual, which means they may be managed through Domain Events and messaging, for example. Considering what the business would have to do if it ran its operations only by means of paper systems can provide some worthwhile insights into how various domain-driven operations should work within a software model of the business operations.
 
-这个练习表明最终一致性是由业务驱动的，而不是由技术驱动的。当然，你必须找到一种方法在多个聚合之间完成技术上的最终更新，就像第 4 章中关于上下文映射的讨论一样。即便如此，只有业务才能决定发生在各种实体之间的更新的可接受时间范围。有些时间范围是即时或事务性的，这意味着它们必须由同一个聚合管理。而有些时间范围是最终一致的，这意味着它们可以通过领城事件和消息机制进行管理。假定业务只能通过纸制系统才可以完成操作，这样能激发一些有价值的思考，思考各种领域驱动的操作如何在业务操作的软件模型中工作。
+这个练习表明最终一致性是由业务驱动的，而不是由技术驱动的。当然，你必须找到一种方法在多个聚合之间完成技术上的最终更新，就像第 4 章中关于上下文映射的讨论一样。即便如此，只有业务才能决定发生在各种实体之间的更新的可接受时间范围。有些时间范围是即时或事务性的，这意味着它们必须由同一个聚合管理。而有些时间范围是最终一致的，这意味着它们可以通过领域事件和消息机制进行管理。假定业务只能通过纸制系统才可以完成操作，这样能激发一些有价值的思考，思考各种领域驱动的操作如何在业务操作的软件模型中工作。
 
 #### 5.3.3 Testable Units
 
@@ -358,11 +358,11 @@ For a thorough treatment of Domain Events and integration, see Chapters 8 and 13
 
 1『这一章书讲如何对领域事件建模的，可以配合 IDDD 的第 8 章和第 13 章来看。』
 
-总结：1）如何创建和命名领域事件。2）定义和实现标准领城事件接口的重要性。3）合理地命名领城事件非常重要。4）如何定义领域事件的属性。5）一些领域事件可能是由命令引起的，而另一些事件可能由其他变化的状态引起，比如日期和时间。6）如何把领域事件保存到事件存储中。7）在领域事件保存后如何发布它们。8）事件溯源的相关内容，以及领域事件如何存储和使用才能表示聚合的状态。
+总结：1）如何创建和命名领域事件。2）定义和实现标准领域事件接口的重要性。3）合理地命名领域事件非常重要。4）如何定义领域事件的属性。5）一些领域事件可能是由命令引起的，而另一些事件可能由其他变化的状态引起，比如日期和时间。6）如何把领域事件保存到事件存储中。7）在领域事件保存后如何发布它们。8）事件溯源的相关内容，以及领域事件如何存储和使用才能表示聚合的状态。
 
 You’ve already seen a bit in previous chapters about how Domain Events are used. A Domain Event is a record of some business-significant occurrence in a Bounded Context. By now you know that Domain Events are a very important tool for strategic design. Still, often during tactical design Domain Events are conceptualized and become a part of your Core Domain.
 
-在前面的章节中已经学到了一些领域事件（Domain Event）的用法。领城事件是一条记录，记录着在限界上下文（Bounded Context）中发生的对业务产生重要影响的事情。目前为止，我们已经了解到领城事件是非常重要的战略设计工具。然而，领域事件往往会在战术设计的过程中被概念化并演变成核心域的组成部分。
+在前面的章节中已经学到了一些领域事件（Domain Event）的用法。领域事件是一条记录，记录着在限界上下文（Bounded Context）中发生的对业务产生重要影响的事情。目前为止，我们已经了解到领域事件是非常重要的战略设计工具。然而，领域事件往往会在战术设计的过程中被概念化并演变成核心域的组成部分。
 
 To see the full power that results from using Domain Events, consider the concept of causal consistency. A business domain provides causal consistency if its operations that are causally related—one operation causes another—are seen by every dependent node of a distributed system in the same order [Causal]. This means that causally related operations must occur in a specific order, and thus one thing cannot happen unless another thing happens before it. Perhaps this means that one Aggregate cannot be created or modified until it is clear that a specific operation occurred to another Aggregate :
 
@@ -374,7 +374,7 @@ To see the full power that results from using Domain Events, consider the concep
 
 4. Gary replies, “That’s great!”.
 
-我们通过因果一致性的概念来展现运用领城事件所产生的全部威力。如果业务领域中存在因果关系的操作一一即一个操作会由另一个操作引起一一在分布式系统的每个独立节点中它们被观察到的发生顺序都是一样的，这就是业务领域提供的因果一致性 [Casual]。这意味着存在因果关系的操作必须按照特定的顺序发生，而且，如果前一个操作没有发生，那么后面的操作就不能发生。也许这就说明了，只有在一个聚合上明确地发生了特定操作的情况下，另一个聚合才能被创建或者修改：
+我们通过因果一致性的概念来展现运用领域事件所产生的全部威力。如果业务领域中存在因果关系的操作一一即一个操作会由另一个操作引起一一在分布式系统的每个独立节点中它们被观察到的发生顺序都是一样的，这就是业务领域提供的因果一致性 [Casual]。这意味着存在因果关系的操作必须按照特定的顺序发生，而且，如果前一个操作没有发生，那么后面的操作就不能发生。也许这就说明了，只有在一个聚合上明确地发生了特定操作的情况下，另一个聚合才能被创建或者修改：
 
 If these messages were replicated on distributed nodes, but not in a causal order, it could appear that Gary said, “That’s great!” to the message “I lost my wallet!” The message “That’s great!” is not directly or causally related to “I lost my wallet!” and that’s definitely not what Gary wants Sue or anyone else to read. Thus, if causality is not achieved in the proper way, the overall domain would be wrong or at least misleading. This sort of causal, linearized system architecture can be readily achieved through the creation and publication of correctly ordered Domain Events.
 
@@ -400,7 +400,7 @@ Your Domain Event type names should be a statement of a past occurrence, that is
 
 1-2『对领域事件建模的整个思路。1）先命名好领域事件（类名）。2）通过找领域服务来倒推出领域事件模型中所包含的属性（类里面的属性）。领域事件是一个结果，通过这个结果去追溯是什么动作导致的这个结果，这个「动作」即领域服务，接着去看领域服务模型里的属性，将这些属性照搬到领域事件中去。作者的例子里，领域事件是橙色的卡片，领域服务是蓝色卡片，聚合是黄色卡片。做一张任意卡片。』——已完成
 
-领域事件类型的名称应该是对过去发生的事情的陈述，即动词的过去式。这里有一些敏捷项目管理上下文中的例子：例如 ProductCreated 表明在过去的某个时间一个 Scrum Product 被创建了。其他领域事件有 ReleaseScheduled、SprintScheduled、BacklogItemPlanned 和 BacklogItemCommitted。每个名称都清晰简洁地呈现了在核心城（Core Domain 中发生的事情）。
+领域事件类型的名称应该是对过去发生的事情的陈述，即动词的过去式。这里有一些敏捷项目管理上下文中的例子：例如 ProductCreated 表明在过去的某个时间一个 Scrum Product 被创建了。其他领域事件有 ReleaseScheduled、SprintScheduled、BacklogItemPlanned 和 BacklogItemCommitted。每个名称都清晰简洁地呈现了在核心域（Core Domain 中发生的事情）。
 
 It’s a combination of the Domain Event’s name and its properties that fully conveys the record of what happened in the domain model. But what properties should a Domain Event hold?
 
@@ -418,9 +418,9 @@ These five examples give you a good idea of the properties that should be includ
 
 As described in Chapter 4, “Strategic Design with Context Mapping,” there are times when a Domain Event can be enriched with additional data. This can be especially helpful to consumers that don’t want to query back on your Bounded Context to obtain additional data that they need. Even so, you must be careful not to fill up a Domain Event with so much data that it loses its meaning. For example, consider the problem with BacklogItemCommitted holding the entire state of the BacklogItem. According to this Domain Event, what actually happened? All the extra data may make it unclear, unless you require the consumer to have a deep understanding of your BacklogItem element. Also, consider using BacklogItemUpdated with the full state of the BacklogItem, as opposed to providing BacklogItemCommitted. What happened to the BacklogItem is very unclear, because the consumer would have to compare the latest BacklogItemUpdated to the previous BacklogItemUpdated in order to understand what actually occurred to the BacklogItem.
 
-这五个例子很好地展示了，由敏捷项目管理上下文发布的各种不同的领域事件，应该包含哪些属性。例如，当一个 BacklogItem 被提交到 Sprint 中，领城事件 BacklogItemCommitted 被初始化并发布出来。这个领域事件包含了 tenantId，代表被提交的 BacklogItem 的 backlogItemId，以及代表它被提交的 Sprint 的 sprintId。
+这五个例子很好地展示了，由敏捷项目管理上下文发布的各种不同的领域事件，应该包含哪些属性。例如，当一个 BacklogItem 被提交到 Sprint 中，领域事件 BacklogItemCommitted 被初始化并发布出来。这个领域事件包含了 tenantId，代表被提交的 BacklogItem 的 backlogItemId，以及代表它被提交的 Sprint 的 sprintId。
 
-正如第 4 章中所述，有时可以使用额外的属性来增强领城事件。某些消费者不想在限界上下文中通过查询来获取他们需要的额外数据，对于这些消费者来说，用额外属性增强过的事件会很方便。即便如此，也必须特别小心，以避免把太多的数据塞给领域事件，从而导致它失去了本来的意义。例如，思考一下包含完整 BacklogItem 状态的 BacklogItemCommitted 所带来的问题。按照这个领域事件的定义，实际发生了什么？所有额外的数据都可能对此含义产生误导，除非消费者对 BacklogItem 元素有着深刻的理解。此外，再想一想使用包含 BacklogItem 完整状态的 BacklogItemUpdated 代替 BacklogItemCommitted。这个名字对 BacklogItem 上发生的事情的描述是模糊的，因为消费者不得不对比最新的 BacklogItemUpdated 和前一个 BacklogItemUpdated 才能理解究竟发生了什么。
+正如第 4 章中所述，有时可以使用额外的属性来增强领域事件。某些消费者不想在限界上下文中通过查询来获取他们需要的额外数据，对于这些消费者来说，用额外属性增强过的事件会很方便。即便如此，也必须特别小心，以避免把太多的数据塞给领域事件，从而导致它失去了本来的意义。例如，思考一下包含完整 BacklogItem 状态的 BacklogItemCommitted 所带来的问题。按照这个领域事件的定义，实际发生了什么？所有额外的数据都可能对此含义产生误导，除非消费者对 BacklogItem 元素有着深刻的理解。此外，再想一想使用包含 BacklogItem 完整状态的 BacklogItemUpdated 代替 BacklogItemCommitted。这个名字对 BacklogItem 上发生的事情的描述是模糊的，因为消费者不得不对比最新的 BacklogItemUpdated 和前一个 BacklogItemUpdated 才能理解究竟发生了什么。
 
 To make the proper use of Domain Events clearer, let’s walk through one scenario. The product owner commits a BacklogItem to a Sprint. The command itself causes the BacklogItem and the Sprint to be loaded. Then the command is executed on the BacklogItem Aggregate. This causes the state of the BacklogItem to be modified, and then the BacklogItemCommitted Domain Event is published as an outcome.
 
@@ -430,13 +430,13 @@ It’s important that the modified Aggregate and the Domain Event be saved toget
 
 1『修改后的聚合和领域事件必须同时保存。做一张任意卡片。』——已完成
 
-在同一次事务中同时保存修改过的聚合和领城事件非常关键。如果你使用的是对象关系映射工具，可以把聚合保存在一张表里，并且把领域事件保存在另一张事件存储表中然后提交事务。如果你使用的是事件溯源（Event Sourcing），聚合的状态可以完全由领城事件自己表达。我将在本章下一节讨论事件溯源。无论使用哪种方式，在事件存储中对领域事件进行持久化都会保留它们之间的因果顺序，这些顺序和在领域模型中发生的事件相关。
+在同一次事务中同时保存修改过的聚合和领域事件非常关键。如果你使用的是对象关系映射工具，可以把聚合保存在一张表里，并且把领域事件保存在另一张事件存储表中然后提交事务。如果你使用的是事件溯源（Event Sourcing），聚合的状态可以完全由领域事件自己表达。我将在本章下一节讨论事件溯源。无论使用哪种方式，在事件存储中对领域事件进行持久化都会保留它们之间的因果顺序，这些顺序和在领域模型中发生的事件相关。
 
 Once your Domain Event is saved to the event store, it can be published to any interested parties. This might be within your own Bounded Context and to external Bounded Contexts. This is your way of telling the world that something noteworthy has occurred in your Core Domain.
 
 Note that just saving the Domain Event in its causal order doesn’t guarantee that it will arrive at other distributed nodes in the same order. Thus, it is also the responsibility of the consuming Bounded Context to recognize proper causality. It might be the Domain Event type itself that can indicate causality, or it may be metadata associated with the Domain Event, such as a sequence or causal identifier. The sequence or causal identifier would indicate what caused this Domain Event, and if the cause was not yet seen, the consumer must wait to apply the newly arrived event until its cause arrives. In some cases it is possible to ignore latent Domain Events that have already been superseded by the actions associated with a later one; in this case causality has a dismissible impact.
 
-一旦领域事件被保存到了事件存储中，它就可以发布给任何对它感兴趣的订阅方。这可能发生在自己的限界上下文中也可能发生在外部的限界上下文中。这是你向世界宣告的方式，宣告在你的核心城中发生了一些值得关注的事件事情。
+一旦领域事件被保存到了事件存储中，它就可以发布给任何对它感兴趣的订阅方。这可能发生在自己的限界上下文中也可能发生在外部的限界上下文中。这是你向世界宣告的方式，宣告在你的核心域中发生了一些值得关注的事件事情。
 
 注意，只是按照因果顺序保存领域事件并不能保证这些事件会以同样的顺序到达其他的分布式节点。因此，识别出正确因果关系的重任就落到了消费事件的限界上下文肩上。因果关系可以由领域事件类型本身表明，或者由和领域事件关联在一起的元数据表示，比如一个序列标识符或者因果标识符。序列标识符或者因果标识符可以表示导致领域事件发生的原因事件，如果原因事件尚未出现，消费者必须等它到达后才能处理先前到达的（结果）事件。某些情况下，可以忽略潜在的领域事件，这些事件已经被后续事件的关联动作取代，这种情况下因果关系具有可消除的影响。
 
@@ -462,9 +462,9 @@ In the preceding diagram, the first Domain Event to occur was BacklogItemPlanned
 
 Each of the Domain Events that occurs for a given Aggregate instance is caused by a command, just as described previously. In the preceding diagram, it is the CommitBacklogItemToSprint command that has just been handled, and this has caused the BacklogItemCommitted Domain Event to occur.
 
-事件溯源（Event Sourcing）可以描述为，对所有发生在聚合实例上的领域事件进行持久化，把它们当作对聚合实例变化的记录。你存储的是发生在聚合上的所有独立事件，而不是把聚合状态作为一个整体进行持久化。一个聚合实例上发生的所有领域事件，按照它们原本发生的顺序，组成了该实例的事件流。事件流从聚合实例上发生的第一个领域事件开始，到最近发生的领城事件结束。当指定的聚合实例上发生了新的领域事件时，这些事件被追加到该实例事件流的末尾。在聚合上重新应用事件流，可以让它的状态从持久化存储中被重建到内存中。换句话说，使用事件溯源时，出于任何原因从内存中移除的聚合将依据它的事件流完整地进行重建。
+事件溯源（Event Sourcing）可以描述为，对所有发生在聚合实例上的领域事件进行持久化，把它们当作对聚合实例变化的记录。你存储的是发生在聚合上的所有独立事件，而不是把聚合状态作为一个整体进行持久化。一个聚合实例上发生的所有领域事件，按照它们原本发生的顺序，组成了该实例的事件流。事件流从聚合实例上发生的第一个领域事件开始，到最近发生的领域事件结束。当指定的聚合实例上发生了新的领域事件时，这些事件被追加到该实例事件流的末尾。在聚合上重新应用事件流，可以让它的状态从持久化存储中被重建到内存中。换句话说，使用事件溯源时，出于任何原因从内存中移除的聚合将依据它的事件流完整地进行重建。
 
-在上图中，最先发生的领城事件是 BacklogItemPlanned，接下来是 BacklogItemStoryDefined，而最近刚刚发生的是 BacklogItemCommitted。完整的事件流现在由这三个事件组成，它们按照图中呈现的顺序排列。和之前描述的一样，每个发生在指定聚合实例上的领域事件都是由命令引起的。在上图中，刚刚被处理的命令是 CommitBacklogItemToSprint，并且由此导致事件 BacklogItemCommitted 发生。
+在上图中，最先发生的领域事件是 BacklogItemPlanned，接下来是 BacklogItemStoryDefined，而最近刚刚发生的是 BacklogItemCommitted。完整的事件流现在由这三个事件组成，它们按照图中呈现的顺序排列。和之前描述的一样，每个发生在指定聚合实例上的领域事件都是由命令引起的。在上图中，刚刚被处理的命令是 CommitBacklogItemToSprint，并且由此导致事件 BacklogItemCommitted 发生。
 
 The event store is just a sequential storage collection or table where all Domain Events are appended. Because the event store is append-only, it makes the storage mechanism extremely fast, so you can plan on a Core Domain that uses Event Sourcing to have very high throughput, low latency, and be capable of high scalability.
 
@@ -492,7 +492,7 @@ One of the greatest advantages of using Event Sourcing is that it saves a record
 
 You can find coverage of Event Sourcing techniques in Implementing Domain-Driven Design [IDDD]. Also, when you use Event Sourcing you are almost certainly obligated to use CQRS. You can also find discussions of this topic in Implementing Domain-Driven Design [IDDD].
 
-使用事件溯源最大的优势之一就是它在独立事件这个级别保存了核心城中发生的一切。这会从各个方面对业务产生非常大的帮助，有一些现在就能想象得到，比如合规性检查和数据分析，还有一些将来才会意识到。它还有一些技术上的优势，例如，软件开发人员可以利用事件流检查使用趋势或者调试源码。在《实现领域驱动设计》中可以找到关于事件溯源技术的内容。另外，当使用事件溯源时，几乎一定会同时使用 CQRS。相关主题的讨论也可以在《实现领域驱动设计》中找到。
+使用事件溯源最大的优势之一就是它在独立事件这个级别保存了核心域中发生的一切。这会从各个方面对业务产生非常大的帮助，有一些现在就能想象得到，比如合规性检查和数据分析，还有一些将来才会意识到。它还有一些技术上的优势，例如，软件开发人员可以利用事件流检查使用趋势或者调试源码。在《实现领域驱动设计》中可以找到关于事件溯源技术的内容。另外，当使用事件溯源时，几乎一定会同时使用 CQRS。相关主题的讨论也可以在《实现领域驱动设计》中找到。
 
 ## 0701. Acceleration and Management Tools
 
@@ -632,7 +632,7 @@ If you think you have exhausted all possible important Domain Events, it may be 
 
 Create the Commands that cause each Domain Event. Sometimes a Domain Event will be the outcome of a happening in another system, and it will flow into your system as a result. Still, often a Command will be the outcome of some user gesture, and that Command, when carried out, will cause a Domain Event. The Command should be stated in the imperative, such as CreateProduct and CommitBacklogItem. These are some basic guidelines:
 
-创建导致每个领域事件发生的命令。有时，领域事件由其他系统中所发生的事情引发，作为结果流入系统中。但是，命令（Command）通常是某个用户操作的结果，而且命令的执行将导致领城事件的发生。命令应该被描述成指令式的，比如 CreateProduct 和 CommitBacklogItem。下面是一些基本指南：
+创建导致每个领域事件发生的命令。有时，领域事件由其他系统中所发生的事情引发，作为结果流入系统中。但是，命令（Command）通常是某个用户操作的结果，而且命令的执行将导致领域事件的发生。命令应该被描述成指令式的，比如 CreateProduct 和 CommitBacklogItem。下面是一些基本指南：
 
 1. On the light blue sticky notes, write the name of the Command that causes each corresponding Domain Event. For example, if you have a Domain Event named BacklogItemCommitted, the corresponding Command that causes that event is named CommitBacklogItem.
 
@@ -658,9 +658,9 @@ Create the Commands that cause each Domain Event. Sometimes a Domain Event will 
 
 5、按照从左到右的时间顺序继续处理下一个命令 / 事件对，和先前创建领域事件时一样。
 
-6、创建命令很有可能让你想到一些之前没有预料到的领域事件（比如上面发现的浅紫色流程或者其他事件）。继续把新发现的领城事件和它对应的命令摆放在建模平面上，记录下这些新的发现。
+6、创建命令很有可能让你想到一些之前没有预料到的领域事件（比如上面发现的浅紫色流程或者其他事件）。继续把新发现的领域事件和它对应的命令摆放在建模平面上，记录下这些新的发现。
 
-7、你还会发现一个命令可能导致多个领域事件发生。这很正常。创建一个命令把它摆放在那些由它引起的所有领城事件的左边。
+7、你还会发现一个命令可能导致多个领域事件发生。这很正常。创建一个命令把它摆放在那些由它引起的所有领域事件的左边。
 
 Once you have all of the Commands associated with the Domain Events that they cause, you are ready to move on to the next step.
 
@@ -668,7 +668,7 @@ Once you have all of the Commands associated with the Domain Events that they ca
 
 Associate the Entity/Aggregate on which the Command is executed and that produces the Domain Event outcome. This is the data holder where Commands are executed and Domain Events are emitted. Entity relationship diagrams are often the first and most popular step in today’s IT world, but it is a big mistake to start here. Business people don’t understand them well, and they can shut down conversations quickly. In fact, this step has been relegated to third place in Event Storming, because we are more focused on the business process than on the data. Even so, we do need to think about data at some point, and that point is now. At this stage, business experts will likely understand that the data comes into play. Here are some guidelines for modeling the Aggregates :
 
-把命令和领域事件通过实体 / 聚合 [1] 关联起来，命令在实体 / 聚合上执行并产生领城事件的结果。实体就是命令执行和领域事件触发的数据载体。在如今的 IT 世界中，绘制实体关系图通常是最流行的第一个步骤，但以此为起点却大错特错。业务人员并不了解这些关系图，很快就会失去沟通的兴趣。事实上，这个步骤已经在事件风暴中被推迟到了第三步，因为我们更关注业务流程而非数据。即便如此，我们确实需要在某个时候考虑数据，现在是时候了。在这个阶段，业务专家可能会理解数据在模型中扮演的角色。下面是一些建立聚合模型的指南：
+把命令和领域事件通过实体 / 聚合 [1] 关联起来，命令在实体 / 聚合上执行并产生领域事件的结果。实体就是命令执行和领域事件触发的数据载体。在如今的 IT 世界中，绘制实体关系图通常是最流行的第一个步骤，但以此为起点却大错特错。业务人员并不了解这些关系图，很快就会失去沟通的兴趣。事实上，这个步骤已经在事件风暴中被推迟到了第三步，因为我们更关注业务流程而非数据。即便如此，我们确实需要在某个时候考虑数据，现在是时候了。在这个阶段，业务专家可能会理解数据在模型中扮演的角色。下面是一些建立聚合模型的指南：
 
 1 在这个步骤中，虽然引用了 DDD 中的两个概念「实体」和「聚合」，但它们所表达的含义和《领域驱动设计》一书中的这两个概念的含义有所不同。Eric 在书中强调，「实体」是对业务对象的抽象属于解决方案。「聚合」由一个或一组实体所组成，也属于解決方案。而当下，我们的团队还处于对业务问题域的分析和理解过程中，因此译者建议读者将该步骤中的「实体」看成客观的业务对象；将「聚合」看成一个拥有生命周期的状态机，并由一个或一组业务对象所组成。——译注
 
@@ -684,7 +684,7 @@ Associate the Entity/Aggregate on which the Command is executed and that produce
 
 2、沿着业务流程的时间线移动，你很可能会发现一个聚合被反复地使用。不用调整时间线让所有命令 / 事件对都贴在同一张聚合便利贴上，而应该用多张便利贴，都写上同一个聚合的名字，分别贴在时间线上对应命令 / 事件对出现的地方。我们的重点是对业务流程建模，而业务流程是按时间发生的。
 
-3、当你思考和各种操作相关的数据时，可能会发现新的领城事件。不要忽视这些事件，而应该将新发现的领域事件和对应的命令和聚合记录下来，放在建模平面上。你还可能会发现某些聚合过于复杂，需要将它们拆分成一个托管的流程（浅紫色便利贴）[1]。不要放过任何改善的机会。
+3、当你思考和各种操作相关的数据时，可能会发现新的领域事件。不要忽视这些事件，而应该将新发现的领域事件和对应的命令和聚合记录下来，放在建模平面上。你还可能会发现某些聚合过于复杂，需要将它们拆分成一个托管的流程（浅紫色便利贴）[1]。不要放过任何改善的机会。
 
 1 就和前面步骤中发现的登录流程一样，它包含很多领域事件和命令，复杂但不属于核心域，使用没紫色便利贴表示就可以。——译注
 
@@ -694,7 +694,7 @@ Once you have completed this part of the design stage, you are approaching some 
 
 Draw boundaries and lines with arrows to show flow on your modeling surface. You have very likely discovered that there are multiple models in play, and Domain Events that flow between models, in your Event Storming sessions. Here’s how to deal with that:
 
-在建模平面上画出边界和表示事件流动的箭头连线。在事件风暴的讨论中，很可能已经发现了多个模型和在这些模型之间流动的领城事件。下面是处理这些模型和事件方法：
+在建模平面上画出边界和表示事件流动的箭头连线。在事件风暴的讨论中，很可能已经发现了多个模型和在这些模型之间流动的领域事件。下面是处理这些模型和事件方法：
 
 1. In summary, you will very likely find boundaries under the following conditions: departmental divisions, when different business people have conflicting definitions for the same term, or when a concept is important but not really part of the Core Domain.
 
@@ -704,13 +704,13 @@ Draw boundaries and lines with arrows to show flow on your modeling surface. You
 
 4. Draw lines with arrowheads to show the direction of Domain Events flowing between Bounded Contexts. This is an easy way to communicate how some Domain Events arrive in your system without being caused by a Command in your Bounded Context.
 
-1、简要地说，你非常有可能在下面这些条件满足时发现边界：部门分界出现时、不同业务人员对相同术语的定义出现冲突时，或者非常重要但不属于核心城的某个概念出现时。
+1、简要地说，你非常有可能在下面这些条件满足时发现边界：部门分界出现时、不同业务人员对相同术语的定义出现冲突时，或者非常重要但不属于核心域的某个概念出现时。
 
-2、可以用黑色马克笔在建模平面的白纸上绘制边界。要把上下文边界和其他类型的边界区分开。使用实线表示限界上下文边界，使用虚线表示子城边界。显然，绘制在纸上的边界是水久性的，所以请在动笔前确保你对这层细节的理解是准确的。如果你想先把模型围起来并且还可以方便地调整边界，请使用粉红色的便利贴标出大概区域，不要用水久性马克笔绘制边界，直到你具备了判断边界是否准确的信心
+2、可以用黑色马克笔在建模平面的白纸上绘制边界。要把上下文边界和其他类型的边界区分开。使用实线表示限界上下文边界，使用虚线表示子域边界。显然，绘制在纸上的边界是永久性的，所以请在动笔前确保你对这层细节的理解是准确的。如果你想先把模型围起来并且还可以方便地调整边界，请使用粉红色的便利贴标出大概区域，不要用永久性马克笔绘制边界，直到你具备了判断边界是否准确的信心。
 
 3、把粉红色便利贴摆在不同的区域边界内，并在这些便利贴上写上代表该区域内容的名字。这就是在给限界上下文命名。
 
-4、绘制箭头连线来表示领域事件在限界上下文之间的流动方向。这是一种交流领城事件如何抵达系统的简单方法，这些领城事件并非由限界上下文中的命令引起。
+4、绘制箭头连线来表示领域事件在限界上下文之间的流动方向。这是一种交流领域事件如何抵达系统的简单方法，这些领域事件并非由限界上下文中的命令引起。
 
 Any other details about these steps should be intuitively obvious. Just use boundaries and lines to communicate.
 
