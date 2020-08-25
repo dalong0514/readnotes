@@ -398,7 +398,7 @@ Your Domain Event type names should be a statement of a past occurrence, that is
 
 1『大赞，领域事件命名很有讲究的，首先命令要能反映出这个领域事件是做什么的，要能反映出这个模型的通用语言（最好领域专家来起名）；其次，命令要以过去式来命令，比如 ProductCreated 这种。』
 
-1-2『对领域事件建模的整个思路。1）先命名好领域事件（类名）。2）通过找领域服务来倒推出领域事件模型中所包含的属性（类里面的属性）。领域事件是一个结果，通过这个结果去追溯是什么动作导致的这个结果，这个「动作」即领域服务，接着去看领域服务模型里的属性，将这些属性照搬到领域事件中去。作者的例子里，领域事件是橙色的卡片，领域服务是蓝色卡片。做一张任意卡片。』——已完成
+1-2『对领域事件建模的整个思路。1）先命名好领域事件（类名）。2）通过找领域服务来倒推出领域事件模型中所包含的属性（类里面的属性）。领域事件是一个结果，通过这个结果去追溯是什么动作导致的这个结果，这个「动作」即领域服务，接着去看领域服务模型里的属性，将这些属性照搬到领域事件中去。作者的例子里，领域事件是橙色的卡片，领域服务是蓝色卡片，聚合是黄色卡片。做一张任意卡片。』——已完成
 
 领域事件类型的名称应该是对过去发生的事情的陈述，即动词的过去式。这里有一些敏捷项目管理上下文中的例子：例如 ProductCreated 表明在过去的某个时间一个 Scrum Product 被创建了。其他领域事件有 ReleaseScheduled、SprintScheduled、BacklogItemPlanned 和 BacklogItemCommitted。每个名称都清晰简洁地呈现了在核心城（Core Domain 中发生的事情）。
 
@@ -580,7 +580,7 @@ Here is a list of the people, mindset, and supplies you will need to storm out a
 
 1、邀请合适的人员是最基本的要求，领域专家和开发人员都要在模型上工作。每个人都会提出问题，也能给出问题的答案。为了互相支持，他们全部都要在同一个房间里参与建模讨论。
 
-2、每个成员都应该以开放包容的心态参与我在事件风暴讨论中观察到的最大问题就是，人们总是苛刻地追求正确和速度。创建事件的时候别犹豫，多多益善，因为你可以从中学到更多的东西，将来还有时间既快速又经济地完善这些事件。
+2、每个成员都应该以开放包容的心态参与。我在事件风暴讨论中观察到的最大问题就是，人们总是苛刻地追求正确和速度。创建事件的时候别犹豫，多多益善，因为你可以从中学到更多的东西，将来还有时间既快速又经济地完善这些事件。
 
 3、手边要有各种颜色的便利贴，永远不要嫌多。你至少需要这几种颜色：橘色、紫红色、浅蓝色、淡黄色、浅紫色和粉红色。你会发现其他颜色（比如绿色，后面的例子会用到）的便利贴也能派上用场。便利贴的尺寸应该是正方形（边长 7.62m）而不是那种更常见的矩形。便利贴上不需要写太多字，通常只用写几个词语。要考虑选一些贴得更牢的便利贴，你不会想看到便利贴散落在地上。
 
@@ -588,7 +588,7 @@ Here is a list of the people, mindset, and supplies you will need to storm out a
 
 5、找一面可以用来建模的宽墙。墙的宽度比高度更重要，但你用来建模的墙面至少需要 1m 的高度。墙面宽度最好没有限制，10m 左右的宽度应该是最低要求。通常可以使用长的会议桌或者地板来代替这样的可用墙面。会议桌的问题是它始终会限制你的施展空间，而地板的问题在于团队中未必所有成员都能轻松地够得着。所以，墙是最好的选择。
 
-6、准备一大卷白纸,通常可以在美术用品店、文具/教具店买到,甚至可以在宜家买到。白纸的尺寸应该和前面提到的墙面一样，宽 10m，高 1m，使用强力胶带将白纸贴在墙上。有些人选择使用白板代替白纸，这样虽然可以工作一段时间，但是白板上的便利贴会慢慢失去黏性，特别是反复地在不同位置上揭开又重贴之后白纸上的便利贴会贴得更久，如果你的建模活动打算进行大概三四天，而不是在几个小时的会议内结東，那么便利贴粘贴的寿命至关重要。
+6、准备一大卷白纸，通常可以在美术用品店、文具/教具店买到，甚至可以在宜家买到。白纸的尺寸应该和前面提到的墙面一样，宽 10m，高 1m，使用强力胶带将白纸贴在墙上。有些人选择使用白板代替白纸，这样虽然可以工作一段时间，但是白板上的便利贴会慢慢失去黏性，特别是反复地在不同位置上揭开又重贴之后白纸上的便利贴会贴得更久，如果你的建模活动打算进行大概三四天，而不是在几个小时的会议内结東，那么便利贴粘贴的寿命至关重要。
 
 Given the basic supplies and having the right people participating in the session, you are ready to begin. Consider each of the steps, one by one.
 
@@ -600,27 +600,27 @@ Storm out the business process by creating a series of Domain Events on sticky n
 
 The following are some basic guidelines that should be employed as you create your Domain Events:
 
-• Creating Domain Events first should emphasize that we have our first and primary focus on the business process, not on the data and its structure. It may take your team 10 to 15 minutes to warm up to this, but follow the steps just as I outline them here. Don’t be tempted to jump ahead.
+1. Creating Domain Events first should emphasize that we have our first and primary focus on the business process, not on the data and its structure. It may take your team 10 to 15 minutes to warm up to this, but follow the steps just as I outline them here. Don’t be tempted to jump ahead.
 
-• Write the name of each Domain Event on a sticky note. The name, as you learned in the previous chapter, should be a verb stated in the past tense. For example, an event may be named ProductCreated, and another may be named BacklogItemCommitted. (You can certainly break these names into multiple lines on the sticky notes.) If you are doing big-picture storming and you think that these names are too precise for the participants, use other names.
+2. Write the name of each Domain Event on a sticky note. The name, as you learned in the previous chapter, should be a verb stated in the past tense. For example, an event may be named ProductCreated, and another may be named BacklogItemCommitted. (You can certainly break these names into multiple lines on the sticky notes.) If you are doing big-picture storming and you think that these names are too precise for the participants, use other names.
 
-• Place the sticky notes on your modeling surface in time order, that is, from left to right in the order in which each event occurs in the domain. You start with the first Domain Events to the far left of your modeling surface and then move gradually to the right. Sometimes you won’t have a good understanding of the time order, in which case you should just put the corresponding Domain Events somewhere in the model. Figure out the “when” part, which will probably become obvious, later.
+3. Place the sticky notes on your modeling surface in time order, that is, from left to right in the order in which each event occurs in the domain. You start with the first Domain Events to the far left of your modeling surface and then move gradually to the right. Sometimes you won’t have a good understanding of the time order, in which case you should just put the corresponding Domain Events somewhere in the model. Figure out the “when” part, which will probably become obvious, later.
 
-• A Domain Event that happens in parallel with another according to your business process can be located under the Domain Event that happens at the same time. So, you use vertical space to represent parallel processing.
+4. A Domain Event that happens in parallel with another according to your business process can be located under the Domain Event that happens at the same time. So, you use vertical space to represent parallel processing.
 
-• As you go through this part of the storming session, you are going to find trouble spots in your existing or new business process. Clearly mark these with a purple/red sticky note and some text that explains why it’s a problem. You need to invest time at such points to learn more.
+5. As you go through this part of the storming session, you are going to find trouble spots in your existing or new business process. Clearly mark these with a purple/red sticky note and some text that explains why it’s a problem. You need to invest time at such points to learn more.
 
-• Sometimes the outcome of a Domain Event is a Process that needs to run. This could be a single step or multiple complex steps. Each Domain Event that causes a Proces s to be executed should be captured and named on a lilac sticky note. Draw a line with an arrowhead from the Domain Event to the named Process (lilac sticky note). Model a fine-grained Domain Event only if it is important to your Core Domain. Most likely a user registration process is a necessity but probably not considered a core feature of your application. Model the registration process as one single coarse-grained event, UserRegistered, and move on. Put your concentrated efforts into more important events.
+6. Sometimes the outcome of a Domain Event is a Process that needs to run. This could be a single step or multiple complex steps. Each Domain Event that causes a Proces s to be executed should be captured and named on a lilac sticky note. Draw a line with an arrowhead from the Domain Event to the named Process (lilac sticky note). Model a fine-grained Domain Event only if it is important to your Core Domain. Most likely a user registration process is a necessity but probably not considered a core feature of your application. Model the registration process as one single coarse-grained event, UserRegistered, and move on. Put your concentrated efforts into more important events.
 
 1、在创建领域事件时要强调我们优先和主要关注的是业务流程，而不是数据及其结构。这可能要花费 10-15 分钟才能让团队适应，但是请按照我这里列出的步骤慢慢来，别着急略过任何步骤。
 
 2、把每个领域事件的名称写在一张便利贴上。在前面的章节中已提到，事件的名称应该是动词的过去式。例如，可以命名某个事件为 Productcreated 而命名另一个事件为 Backlogitemcommitted（当然可以把这些名称分成几行写在便利贴上）。如果正在进行的是宏观的事件风暴，并且你认为这些名称对参与者来说过于细致，请使用其他名称。
 
-3、把这些写好事件的便利贴按照时间顺序摆放在建模平面上，即按照每个事件在领域中发生的先后顺序从左到右排列。从建模平面上最左边的、最先发生的领域事件开始，逐步地向右推进。有时可能没有搞清楚确切的时间顺序那就把领域事件放在平面的其他地方。对于它“何时发生”的这个问题，可能稍后才会变得清晰。
+3、把这些写好事件的便利贴按照时间顺序摆放在建模平面上，即按照每个事件在领域中发生的先后顺序从左到右排列。从建模平面上最左边的、最先发生的领域事件开始，逐步地向右推进。有时可能没有搞清楚确切的时间顺序那就把领域事件放在平面的其他地方。对于它「何时发生」的这个问题，可能稍后才会变得清晰。
 
 4、按照业务流程，有些领域事件会和其他事件并行发生，可以把这些事件摆放在同时发生的领域事件的下方。这样，就可以使用纵向的空间来表示并行处理。
 
-5、在风暴讨论的这个步骤中，会在已有的或新的业务流程中发现问题点。将它们清楚地记录在紫/红色的便利贴上,并用一段文字解释为什么它是一个问题点。你需要在这些问题点上投入更多的时间来学习。
+5、在风暴讨论的这个步骤中，会在已有的或新的业务流程中发现问题点。将它们清楚地记录在紫/红色的便利贴上，并用一段文字解释为什么它是一个问题点。你需要在这些问题点上投入更多的时间来学习。
 
 6、有时领域事件将导致一个需要执行的流程（Process）。流程可以是一个单独步骤，也可以是多个复杂步骤。由每个领域事件导致执行的流程都应该被命名并记录在浅紫色的便利贴上。请从领域事件开始绘制一条带箭头的连线最终指向这个命名流程（浅紫色便利贴）。只用对那些核心域中非常重要的细粒度领域事件进行建模。用户注册的流程或许是必需的，但可能不会被视为应用程序的核心功能。应该将注册流程创建成一个粗粒度的事件 UserRegistered，然后继续建模。把精力集中于需要解决的更重要的问题。
 
@@ -634,19 +634,19 @@ Create the Commands that cause each Domain Event. Sometimes a Domain Event will 
 
 创建导致每个领域事件发生的命令。有时，领域事件由其他系统中所发生的事情引发，作为结果流入系统中。但是，命令（Command）通常是某个用户操作的结果，而且命令的执行将导致领城事件的发生。命令应该被描述成指令式的，比如 CreateProduct 和 CommitBacklogItem。下面是一些基本指南：
 
-• On the light blue sticky notes, write the name of the Command that causes each corresponding Domain Event. For example, if you have a Domain Event named BacklogItemCommitted, the corresponding Command that causes that event is named CommitBacklogItem.
+1. On the light blue sticky notes, write the name of the Command that causes each corresponding Domain Event. For example, if you have a Domain Event named BacklogItemCommitted, the corresponding Command that causes that event is named CommitBacklogItem.
 
-• Place the light blue sticky note of the Command just to the left of the Domain Event that it causes. They are associated in pairs: Command/Event, Command/Event, Command/Event, and so on. Remember that some Domain Events will occur because of time limits being reached and so may not have a corresponding Command that explicitly causes them.
+2. Place the light blue sticky note of the Command just to the left of the Domain Event that it causes. They are associated in pairs: Command/Event, Command/Event, Command/Event, and so on. Remember that some Domain Events will occur because of time limits being reached and so may not have a corresponding Command that explicitly causes them.
 
-• If there is a specific user role that performs an action, and it is important to specify, you can place a small, bright yellow sticky note on the lower left corner of the light blue Command with a stick figure and the name of the role. In the above figure, “Product Owner” would be the role that performs the Command.
+3. If there is a specific user role that performs an action, and it is important to specify, you can place a small, bright yellow sticky note on the lower left corner of the light blue Command with a stick figure and the name of the role. In the above figure, “Product Owner” would be the role that performs the Command.
 
-• Sometimes a Command will cause a Process to be run. This could be a single step or multiple complex steps. Each Command that causes a Process to be executed should be captured and named on a lilac sticky note. Draw a line with an arrowhead from the Command to the named Process (lilac sticky note). The Process will actually cause one or more Commands and subsequent Domain Events, and if you know what those are now, create sticky notes for them and show them emitting from the Process.
+4. Sometimes a Command will cause a Process to be run. This could be a single step or multiple complex steps. Each Command that causes a Process to be executed should be captured and named on a lilac sticky note. Draw a line with an arrowhead from the Command to the named Process (lilac sticky note). The Process will actually cause one or more Commands and subsequent Domain Events, and if you know what those are now, create sticky notes for them and show them emitting from the Process.
 
-• Continue to move from left to right in time order just as you did when first creating each of the Domain Events.
+5. Continue to move from left to right in time order just as you did when first creating each of the Domain Events.
 
-• It is possible that creating Commands will cause you to think about Domain Events (as above when discovering lilac Processes, or other ones) that you didn’t previously envision. Go ahead and address this discovery by placing the newly discovered Domain Event on the modeling surface along with its corresponding Command.
+6. It is possible that creating Commands will cause you to think about Domain Events (as above when discovering lilac Processes, or other ones) that you didn’t previously envision. Go ahead and address this discovery by placing the newly discovered Domain Event on the modeling surface along with its corresponding Command.
 
-• You may also find that there is only one Command that causes multiple Domain Events. That’s fine; model the one Command and place it to the left of the multiple Domain Events that it causes.
+7. You may also find that there is only one Command that causes multiple Domain Events. That’s fine; model the one Command and place it to the left of the multiple Domain Events that it causes.
 
 1、在浅蓝色便利贴上，写下导致每个领域事件发生的对应命令的名称。例如，如果有一个名为 BacklogItemCommitted 的领域事件，导致该事件发生的对应命令的名称是 CommitBacklogItem。
 
@@ -668,25 +668,25 @@ Once you have all of the Commands associated with the Domain Events that they ca
 
 Associate the Entity/Aggregate on which the Command is executed and that produces the Domain Event outcome. This is the data holder where Commands are executed and Domain Events are emitted. Entity relationship diagrams are often the first and most popular step in today’s IT world, but it is a big mistake to start here. Business people don’t understand them well, and they can shut down conversations quickly. In fact, this step has been relegated to third place in Event Storming, because we are more focused on the business process than on the data. Even so, we do need to think about data at some point, and that point is now. At this stage, business experts will likely understand that the data comes into play. Here are some guidelines for modeling the Aggregates :
 
-把命令和顿域事件通过实体 / 聚合 [1] 关联起来，命令在实体/聚合上执行并产生领城事件的结果。实体就是命令执行和领域事件触发的数据载体。在如今的 IT 世界中，绘制实体关系图通常是最流行的第一个步骤，但以此为起点却大错特错。业务人员并不了解这些关系图，很快就会失去沟通的兴趣。事实上，这个步骤已经在事件风暴中被推迟到了第三步，因为我们更关注业务流程而非数据。即便如此，我们确实需要在某个时候考虑数据，现在是时候了。在这个阶段，业务专家可能会理解数据在模型中扮演的角色。下面是一些建立聚合模型的指南：
-
-• If the business people don’t like the word Aggregate, or if it confuses them in any way, you should use another name. Usually they can understand Entity, or you could just call it Data. The important thing is that the sticky allows the team to communicate clearly about the concept that it represents. Use the pale yellow sticky notes for all Aggregates and write the name of an Aggregate on each sticky note. This is a noun, such as Product or BacklogItem. You will do this for each Aggregate in your model.
-
-• Place the Aggregate sticky note behind and slightly above the Command and Domain Event pairs. In other words, you should be able to read the noun written on the Aggregate sticky note, but the Command and Domain Event pairs should adhere to the lower part of the Aggregate sticky to indicate that they are associated. If you really want to put a little space between the stickies that’s fine, but just be clear which Commands and Domain Events belong to which Aggregate.
-
-• As you move across your business process timeline, you will probably find that Aggregates are repeatedly used. Don’t rearrange your timeline in order to move all Command/Event pairs under a single Aggregate sticky note. Rather, create the same Aggregate noun on multiple sticky notes and place them repeatedly on the timeline where the corresponding Command/Event pairs occur. The main point is to model the business process; the business process occurs over time.
-
-• It’s possible that as you think about the data associated with various actions, you may discover new Domain Events. Don’t ignore these. Rather, place the newly discovered Domain Events along with the corresponding Commands and Aggregates on the modeling surface. You may also discover that some of the Aggregates are too complex, and you need to break these into a managed Process (lilac sticky). Don’t ignore these opportunities.
-
-1、如果业务人员不喜欢聚合这个词，或者这个词以任何形式干扰了他们，就应该使用其他名称。通常他们可以理解实体，或者干脆称之为数据。重要的是，团队可以利用便利贴清楚地沟通它们代表的概念。使用淡黄色便利贴表示所有聚合，把每个聚合的名称都写在便利贴上。这个名称是一个名词，比如 Product 或 Backlogitem。模型中的每个聚合都要完成这一步。把命令和领域事件便利贴一起贴在聚合便利贴上，聚合便利贴稍微靠上和其他两张便利贴错开一些。换句话说，你应该能看到聚合便利贴上的名词，而命令和领域事件便利贴应该分别贴在聚合便利贴的左下角和右下角，这样表明它们是关联在一起的。如果想让这些便利贴之间多错开一些距离也没有问题，但是要清楚地表示哪些命令和领域事件是属于哪个聚合的。
-
-2、沿着业务流程的时间线移动，你很可能会发现一个聚合被反复地使用。不用调整时间线让所有命令 / 事件对都贴在同一张聚合便利贴上，而应该用多张便 利贴，都写上同一个聚合的名字，分别贴在时间线上对应命令 / 事件对出现的地方。我们的重点是对业务流程建模，而业务流程是按时间发生的。
-
-3、当你思考和各种操作相关的数据时，可能会发现新的领城事件。不要忽视这些事件，而应该将新发现的领域事件和对应的命令和聚合记录下来，放在建模平面上。你还可能会发现某些聚合过于复杂，需要将它们拆分成一个托管的流程（浅紫色便利贴）[2]。不要放过任何改善的机会。
+把命令和领域事件通过实体 / 聚合 [1] 关联起来，命令在实体 / 聚合上执行并产生领城事件的结果。实体就是命令执行和领域事件触发的数据载体。在如今的 IT 世界中，绘制实体关系图通常是最流行的第一个步骤，但以此为起点却大错特错。业务人员并不了解这些关系图，很快就会失去沟通的兴趣。事实上，这个步骤已经在事件风暴中被推迟到了第三步，因为我们更关注业务流程而非数据。即便如此，我们确实需要在某个时候考虑数据，现在是时候了。在这个阶段，业务专家可能会理解数据在模型中扮演的角色。下面是一些建立聚合模型的指南：
 
 1 在这个步骤中，虽然引用了 DDD 中的两个概念「实体」和「聚合」，但它们所表达的含义和《领域驱动设计》一书中的这两个概念的含义有所不同。Eric 在书中强调，「实体」是对业务对象的抽象属于解决方案。「聚合」由一个或一组实体所组成，也属于解決方案。而当下，我们的团队还处于对业务问题域的分析和理解过程中，因此译者建议读者将该步骤中的「实体」看成客观的业务对象；将「聚合」看成一个拥有生命周期的状态机，并由一个或一组业务对象所组成。——译注
 
-2 就和前面步骤中发现的登录流程一样，它包含很多领域事件和命令，复杂但不属于核心域，使用没紫色便利贴表示就可以。——译注
+1. If the business people don’t like the word Aggregate, or if it confuses them in any way, you should use another name. Usually they can understand Entity, or you could just call it Data. The important thing is that the sticky allows the team to communicate clearly about the concept that it represents. Use the pale yellow sticky notes for all Aggregates and write the name of an Aggregate on each sticky note. This is a noun, such as Product or BacklogItem. You will do this for each Aggregate in your model.
+
+2. Place the Aggregate sticky note behind and slightly above the Command and Domain Event pairs. In other words, you should be able to read the noun written on the Aggregate sticky note, but the Command and Domain Event pairs should adhere to the lower part of the Aggregate sticky to indicate that they are associated. If you really want to put a little space between the stickies that’s fine, but just be clear which Commands and Domain Events belong to which Aggregate.
+
+3. As you move across your business process timeline, you will probably find that Aggregates are repeatedly used. Don’t rearrange your timeline in order to move all Command/Event pairs under a single Aggregate sticky note. Rather, create the same Aggregate noun on multiple sticky notes and place them repeatedly on the timeline where the corresponding Command/Event pairs occur. The main point is to model the business process; the business process occurs over time.
+
+4. It’s possible that as you think about the data associated with various actions, you may discover new Domain Events. Don’t ignore these. Rather, place the newly discovered Domain Events along with the corresponding Commands and Aggregates on the modeling surface. You may also discover that some of the Aggregates are too complex, and you need to break these into a managed Process (lilac sticky). Don’t ignore these opportunities.
+
+1、如果业务人员不喜欢聚合这个词，或者这个词以任何形式干扰了他们，就应该使用其他名称。通常他们可以理解实体，或者干脆称之为数据。重要的是，团队可以利用便利贴清楚地沟通它们代表的概念。使用淡黄色便利贴表示所有聚合，把每个聚合的名称都写在便利贴上。这个名称是一个名词，比如 Product 或 Backlogitem。模型中的每个聚合都要完成这一步。把命令和领域事件便利贴一起贴在聚合便利贴上，聚合便利贴稍微靠上和其他两张便利贴错开一些。换句话说，你应该能看到聚合便利贴上的名词，而命令和领域事件便利贴应该分别贴在聚合便利贴的左下角和右下角，这样表明它们是关联在一起的。如果想让这些便利贴之间多错开一些距离也没有问题，但是要清楚地表示哪些命令和领域事件是属于哪个聚合的。
+
+2、沿着业务流程的时间线移动，你很可能会发现一个聚合被反复地使用。不用调整时间线让所有命令 / 事件对都贴在同一张聚合便利贴上，而应该用多张便利贴，都写上同一个聚合的名字，分别贴在时间线上对应命令 / 事件对出现的地方。我们的重点是对业务流程建模，而业务流程是按时间发生的。
+
+3、当你思考和各种操作相关的数据时，可能会发现新的领城事件。不要忽视这些事件，而应该将新发现的领域事件和对应的命令和聚合记录下来，放在建模平面上。你还可能会发现某些聚合过于复杂，需要将它们拆分成一个托管的流程（浅紫色便利贴）[1]。不要放过任何改善的机会。
+
+1 就和前面步骤中发现的登录流程一样，它包含很多领域事件和命令，复杂但不属于核心域，使用没紫色便利贴表示就可以。——译注
 
 Once you have completed this part of the design stage, you are approaching some of the extra steps that you can perform if you choose to. Also understand that if you are using Event Sourcing, as described in the previous chapter, you have already come a long way toward understanding your Core Domain implementation, because there is a large overlap in Event Storming and Event Sourcing. Of course, the closer your storming is to the big picture, the further it potentially is from actual implementation. Still, you can use this same technique to reach a design-level view. In my experience teams tend to move in and out of big-picture and design-level within the same sessions. In the end your need to learn certain details will drive you beyond the big picture to reach a design-level model where it is essential.
 
@@ -696,13 +696,13 @@ Draw boundaries and lines with arrows to show flow on your modeling surface. You
 
 在建模平面上画出边界和表示事件流动的箭头连线。在事件风暴的讨论中，很可能已经发现了多个模型和在这些模型之间流动的领城事件。下面是处理这些模型和事件方法：
 
-• In summary, you will very likely find boundaries under the following conditions: departmental divisions, when different business people have conflicting definitions for the same term, or when a concept is important but not really part of the Core Domain.
+1. In summary, you will very likely find boundaries under the following conditions: departmental divisions, when different business people have conflicting definitions for the same term, or when a concept is important but not really part of the Core Domain.
 
-• You can use your black marker pens to draw on the paper modeling surface. Show context and other boundaries. Use solid lines for Bounded Contexts and dashed lines for Subdomains. Obviously drawing boundaries on the paper is permanent, so be sure you understand this level of detail before wading in. If you want to start by bounding models with less permanence, use the pink stickies to mark general areas and withhold drawing boundaries with permanent markers until your confidence justifies it.
+2. You can use your black marker pens to draw on the paper modeling surface. Show context and other boundaries. Use solid lines for Bounded Contexts and dashed lines for Subdomains. Obviously drawing boundaries on the paper is permanent, so be sure you understand this level of detail before wading in. If you want to start by bounding models with less permanence, use the pink stickies to mark general areas and withhold drawing boundaries with permanent markers until your confidence justifies it.
 
-• Place the pink sticky notes inside various boundaries and put the name that applies inside the boundary on those sticky notes. This names your Bounded Contexts.
+3. Place the pink sticky notes inside various boundaries and put the name that applies inside the boundary on those sticky notes. This names your Bounded Contexts.
 
-• Draw lines with arrowheads to show the direction of Domain Events flowing between Bounded Contexts. This is an easy way to communicate how some Domain Events arrive in your system without being caused by a Command in your Bounded Context.
+4. Draw lines with arrowheads to show the direction of Domain Events flowing between Bounded Contexts. This is an easy way to communicate how some Domain Events arrive in your system without being caused by a Command in your Bounded Context.
 
 1、简要地说，你非常有可能在下面这些条件满足时发现边界：部门分界出现时、不同业务人员对相同术语的定义出现冲突时，或者非常重要但不属于核心城的某个概念出现时。
 
@@ -718,9 +718,9 @@ Any other details about these steps should be intuitively obvious. Just use boun
 
 Identify the various views that your users will need to carry out their actions, and important roles for various users.
 
-• You won’t necessarily need to show every view that your user interface will provide, or any at all for that matter. If you decide to show any views, they should be those that are significant and require some special care in creating. These view artifacts can be represented by green sticky notes on the modeling surface. If it helps, draw a quick mockup (or wireframe) of the user interface views that are most important.
+1. You won’t necessarily need to show every view that your user interface will provide, or any at all for that matter. If you decide to show any views, they should be those that are significant and require some special care in creating. These view artifacts can be represented by green sticky notes on the modeling surface. If it helps, draw a quick mockup (or wireframe) of the user interface views that are most important.
 
-• You can also use bright yellow sticky notes to represent various important user roles. Again, show these only if you need to communicate something of significance about the user’s interaction with the system, or something that the system does for a specific role of user.
+2. You can also use bright yellow sticky notes to represent various important user roles. Again, show these only if you need to communicate something of significance about the user’s interaction with the system, or something that the system does for a specific role of user.
 
 It could well be that the fourth and fifth steps are all the extras you will need to incorporate with your Event Storming exercises.
 
