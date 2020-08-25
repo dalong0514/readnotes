@@ -268,6 +268,14 @@ I previously mentioned that there has been a movement around what is called No E
 
 I am also aware that some in the DDD community have basically defined their own process or process execution framework for using DDD and performing with it on a project. This may work well and be effective when it is accepted by a given team, but it can be more difficult to get buy-in from organizations that have already invested in an agile execution framework, such as Scrum.
 
+前面我曾提到过周围正在发生的名为拒绝估算（No Estimates) 的运动。这种方法拒绝采用常见的估算形式，比如故事点或者工时。它关注价值的交付更胜于关注成本的控制，对于即使只需要几个月完成的任务都不做估算。我不反对这种做法。然而，在撰写本书时我合作的客户仍然需要提供估算并限制任务时间，比如实现同等的细粒度功能所需的编程工作量。如果拒绝估算适合你和你的项目，那就接受它。
+
+我还了解到，DDD 社区中的一些人为了在项目中实施 DDD，定义了他们自己的基本流程或流程实施框架。当这些流程或框架被某个团队接受时，可能会有效并运转良好。但是，在那些已经把资源投入敏捷实施框架（例如 Scrum）的组织里，这些流程或框架要获得支持可能会更加困难。
+
+No Estimates，最早源于 Twitter 上个 Hashtag（话题）「#NoEstimates」。最初，一些开发者在这个话题下讨论估算的替代方法，这些讨论后来逐步扩大到博客和行业会议中，变成了一场运动。它并非全盘否定估算的效果，而是强调持续改进，不断地思考有哪些手段可以协助或者改善敏捷实践中的估算活动让团队能够更聚焦于交付价值。拒绝估算的实践者会先推动限制可用的估算点数（比如只允许 1 点、2 点和 3 点，甚至只允许 1 点），继而推动团队将故事和任务拆解成更小的可交付的任务。当任务足够小交付足够快时，就不再需要估算了。他们通过这种方法让团队更关注交付价值而不是浪费精力去做不准确的无意义的估算。——译注
+
+Martin Fowler 关于估算的总结恰到好处：「估算本身并无好坏之分…...任何关于估算用法的争论，都要遵从于敏捷的原则，即针对特定的上下文，决定该采用什么样的方法。」请参考《估算的目的》一文。——译注
+
 ![](./res/2020126.png)
 
 I have observed that recently Scrum has come under considerable criticism. While I don’t take sides in this criticism, I will openly state that often or even most times Scrum is being misused. I have already mentioned the tendency for teams to “design” using what I call “the task-board shuffle.” It’s just not the way Scrum was meant to be used on a software project. And, to repeat myself again, knowledge acquisition is both a Scrum tenet and a major goal of DDD but is largely ignored in exchange for relentless delivery with Scrum. Even so, Scrum is still heavily used in our industry, and I doubt that it will be displaced anytime soon.
@@ -276,23 +284,25 @@ Therefore, what I will do here is to show you how you can make DDD work in a Scr
 
 Where I use the term task or task board, this should be compatible with agile in general, and even Kanban. Where I use the term sprint, I will also try to include the words iteration for agile in general and WIP (work in progress) as a reference to Kanban. It may not always be a perfect fit, as I am not trying to define an actual process here. I hope you will simply benefit from the ideas and find a way to apply them appropriately in your specific agile execution framework.
 
-First Things First
+我注意到最近 Scrum 饱受批评。虽然我不持任何立场，但我会公开声明 Scrum 经常被误用，甚至在大部分时间内都被误用。我经提到过一些团队使用我称之为「任务板挪卡」的方法来进行「设计」的作风。这本来就不是 Scrum 应该在软件项目中的正确使用方式。而且，我再次重申，知识获取（Knowledge Acquisition）既是 Scrum 的宗旨，也是 DDD 的主要目标之一，但是在 Scum 的实施中却在很大程度上被牺牲了，用来交换无止境的交付。即便如此，Scrum 在我们这个行业内仍然会被大量使用，对它很快就会日薄西山的说法我表示怀疑。
+
+因此，我将在这里展示如何在基于 Scrum 运作的项目中运用 DDD。我向你展示的技术应该同样适用于其他敏捷项目方法，比如看板方法。这里没有什么是 Scrum 独有的，尽管些指南是用 Scrum 术语来表述的。鉴于大多数读者都通过某种形式的实践熟悉了 Scrum，所以大部分指南都是关于领域模型，以及使用 DDD 进行学习、试验和设计的。你需要在别处寻找使用 Scrum、看板方法或其他敏捷方法的概要指南。
+
+在这里我将使用术语任务（Task）或任务板（Task Board），这些术语应该与通用敏捷方法甚至是看板方法兼容。在这里我会使用术语冲刺，也会尝试使用通用敏捷方法中的选代（Iteration）一词，在涉及看板方法时我会使用 WIP 这些术语并不总是能完美地契合，因为我并不想在这里尝试定义一个实际的流程。我希望你可以从这些想法中受益，并找到一种方式在特定的敏捷实施框架中恰当地应用这些想法。
+
+Working in Process 的编写，在制品进行中的工作，来源于制造业。此处特指在软件研发工作流中的正在进行的开发任务，并通过对其管理来持续优化产品交付流程。——译注
+
+### 7.2.1 First Things First
 
 One of the most important means to successfully employing DDD on a project is to hire good people. There is simply no replacement for good people, and above-average developers for that matter. DDD is an advanced philosophy and technique for developing software, and it calls for above-average developers, even very good developers, to put it to use. Never underestimate the importance of hiring the right people with the right skills and self-motivation.
 
+在项目中成功应用 DDD 的最重要的手段之一就是聘请优秀的员工。在这方面，优秀人才和中上水平的开发人员根本无法替代。DDD 是开发软件的先进理念和技术，中上水平的乃至是非常优秀的开发人员能运用好它。雇用技能匹配和自我激励的合适人选的重要性永远不能低估。
+
 ![](./res/2020127.png)
 
-Use SWOT Analysis
+### 7.2.2 Use SWOT Analysis
 
-In case you are unfamiliar with SWOT analysis [SWOT], it stands for Strengths, Weaknesses, Opportunities, and Threats. SWOT analysis is a way for you to think about your project in very specific ways, gaining maximum knowledge as early as possible. Here are the basic ideas behind what you are looking to identify on a project:
-
-• Strengths: characteristics of the business or project that give it an advantage over others
-
-• Weaknesses: characteristics that place the business or project at a disadvantage relative to others
-
-• Opportunities: elements that the project could exploit to its advantage
-
-• Threats: elements in the environment that could cause trouble for the business or project
+In case you are unfamiliar with SWOT analysis [SWOT], it stands for Strengths, Weaknesses, Opportunities, and Threats. SWOT analysis is a way for you to think about your project in very specific ways, gaining maximum knowledge as early as possible. Here are the basic ideas behind what you are looking to identify on a project: 1) Strengths: characteristics of the business or project that give it an advantage over others. 2) Weaknesses: characteristics that place the business or project at a disadvantage relative to others. 3) Opportunities: elements that the project could exploit to its advantage. 4) Threats: elements in the environment that could cause trouble for the business or project.
 
 At any time on any Scrum or other agile project you should feel free and inclined to use SWOT analysis to determine your project’s current situation:
 
@@ -310,7 +320,7 @@ You will have the opportunity to place these actions on the task board as you pe
 
 ![](./res/2020128.png)
 
-Modeling Spikes and Modeling Debt
+### 7.2.3 Modeling Spikes and Modeling Debt
 
 Does it surprise you to learn that you can have modeling spikes and modeling debt to pay on a DDD project?
 
@@ -322,13 +332,25 @@ Furthermore, if you intend to timebox your modeling efforts as tasks on a task b
 
 The worst thing you could do now is to just forget everything that you learned from the modeling efforts that called out for a different, improved design. Rather, make a note that this needs to go into a later sprint (or iteration, WIP). This can be brought to your retrospective meeting 1 and turned in as a new task at your next sprint planning meeting (or iteration planning meeting, or added to the Kanban queue).
 
-1. In Kanban you can actually have retrospectives every day, so don’t wait for long to present the need to improve the model.
+看到 DDD 项目中出现建模 Spike，甚至还有建模债务要偿还，你是不是有些惊讶？项目启动阶段最好的选择之一就是事件风暴。它与其他相关的建模试验将共同形成一次建模 Spike。你必须「购买」关于 Scrum 产品的知识，有时「支付方式」就是建模 Spike，项目启动阶段几乎都需要 Spike。不过，我已经展示了使用事件风暴可以大大降低必要的投资成本。
+
+毫无疑问，即便将有价值的建模 Spike 视为项目的启动，也别指望一开始就可以完美地建立领域模型。甚至使用事件风暴之后，建模也不会那么完美。首先，业务和我们对它的理解会随着时间而改变，领域模型也会随之变化。此外，如果打算将建模工作当作任务，在任务板上管理它，并限定其完成时间，则可能会在每个冲刺（或迭代，或 WIP）中产生一些建模债务。当有时间限制时，根本没有足够的时间去尽善尽美地完成所有想要的建模任务。首先，将从设计开始，并在试验后意识到这些设计既不符合业务需求也不符合自己的预期。然而，却迫于时间限制的压力停下未完成的设计继续其他任务。
+
+Spike 一词来源于极限编程（Extreme Programming），它通过一系列的探索活动获取必要的知识，以降低技术方法的风险、更好地理解业务需求或提高用户故事估算的可靠性。这些探索活动包括研究、设计、调查和原型等。——译注
+
+Modeling Debt，建模债务是类比技术债务（Technical Debt）的提法。技术债务是编程及软件工程中的一个比喻，指开发人员为了加速软件开发采取的短视而非最佳的方案，虽然眼前看起来可以得到好处，但必须在未来偿还。作者认为建模也是这样的，会因为时间压力而妥协并产生债务，而这些债务需要记录下来并及时偿还。更多关于技术债务的内容请参考《「鱼变慢」还是「技术债」：适合国人口味的比喻》一文。——译注
+
+项目启动阶段是指在产品或项目启动初期，业务和技术人员通过高密度、深度协作互动的一系列工作坊，对项目范围、技术实现以及需求优先级达成初步一致的理解的过程，以便于快速进入后期项目交付。它也是一个将想法（ldea）变为计划（Plan）的过程。我们也希望读者可以将事件风暴引入这个过程中，以一种快速的设计技术，让领域专家和开发人员都可以参与到这个快节奏的学习过程中。——译注
+
+In Kanban you can actually have retrospectives every day, so don’t wait for long to present the need to improve the model.
 
 ![](./res/2020129.png)
 
-Identifying Tasks and Estimating Effort
+### 7.2.4 Identifying Tasks and Estimating Effort
 
 Event Storming is a tool that can be used at any time, not just during project inception. As you work in an Event Storming session, you will naturally create a number of artifacts. Each of the Domain Events, Commands, and Aggregates that you storm out in your paper model can be used as estimation units. How so?
+
+事件风暴可以在任何时间使用，并不会被局限在项目启动阶段中。在事件风暴中的工作会自然而然地创造出大量产出物。在纸面模型中创造出的每个领域事件、命令和聚合，都可以当作估算单元。该如何做呢？
 
 ![](./res/2020130.png)
 
@@ -346,11 +368,31 @@ One of the easiest and most accurate ways to estimate is by using a metrics-base
 
 6. Add up all the estimation units for all components in the current sprint (iteration or WIP), and this becomes your total estimation.
 
+最简单和最准确的估算方式之一是，使用基于度量指标的方法。正如在这里所看到的创建一张包含估算单元的简单表格，每种需要实现的组件类型都对应着一个估算单元。这将去除估算中的猜测部分，并为工作量估算的过程提供科学依据。以下是该表格的工作原理。
+
+1、第一列代表组件类型（Component Type），描述了特定的组件种类，每一个种类都定义了估算单元。
+
+2、其他三列分别代表简单（Easy）、适中（Moderate）和复杂（Complex）。这些列将代表特定单元类型的估算单元，表示为以小时为单位的整数或分数。
+
+3、现在为架构中出现的每一种组件类型添加一行。这里只展示了领域事件、命令和聚合这几种类型。但是，不要局限于这些类型。各种用户界面组件、服务、持久化操作、领域事件的序列化器和反序列化器等都可以添加一行。源代码中创建的每种特殊的产出物类型都可以添加一行（例如，如果通常在一个复合步骤里创建领域事件以及它的序列化器和反序列化器，在每一列中给这些领域事件分配的估算值要能体现出所有这些组件是一起创建的）。
+
+4、现在，填入每一种复杂级别（简单、适中和复杂）所需要的小时数（整数或者分数）。这些估算不仅包括实现所需的时间，还要包括进一步的设计和测试的工作量。这些数字要做到既精确又真实。
+
+5、当你知道接下来要处理的待办项任务（WIP）时，找到每项任务对应的指标并明确地识别出来。这里电子表格可以派上用场。
+
+6、将当前冲刺（代或 WIP）中所有组件的估算单元相加，就能得到总的估算。
+
 As you execute each sprint (iteration or WIP), tune your metrics to reflect the hours or fractions of hours that were actually required.
 
 If you are using Scrum and you have come to detest hour estimates, understand that this approach is much more forgiving and also much more accurate. As you learn your cadence, you will fine-tune your estimation metrics to be more accurate and realistic. It might require a few sprints to get it right. Also realize that as time and experience progress, you will probably either tune your numbers lower or use the Easy or Moderate columns more readily.
 
 If you are using Kanban and you think that estimates are completely fallacious and unnecessary, ask yourself a question: How do I know how to determine an accurate WIP in the first place in order to correctly limit our work queue? Regardless of what you may think, you are still estimating the effort involved and hoping that it is correct. Why not add a little science to the process and use this simple and accurate estimation approach?
+
+当执行每个冲刺（迭代或 WIP）时，根据实际完成需要的小时数（整数或分数）来调整这些指标。如果正在使用 Scrum 而且已经厌倦了以小时为单位的估算，请理解这种方法会更加宽容，也更加精确。在找到节奏之后，会调整估算度量指标，使其更加准确，更加符合实际。这可能需要几个冲刺来找感觉。还需要意识到，随着时间的推移和经验的增长，可能要调低估算的数字或者更多地使用简单或适中这两列。
+
+如果正在使用看板方法，并且认为估算完全不可靠也没有必要，那么请问自己一个问题：怎样才能先确定精确的 WIP 来正确地限制我们的工作队列？不管你怎么想，你仍然在估算涉及的工作量，并寄希望于它是正确的。为什么不让流程变得更科学一点，使用这种简单而准确的估算方法呢？
+
+相信大部分读者，特别是拥有敏捷（包括 Scrum）软件开发方法实践经验的读者，更熟悉的是使用故事点数来做估算，而不是这里的小时数。要准确地做出对完成故事所需小时数的估算是很困难的，因为影响这个数字的因素实在太多，未知的风险、模棱两可的需求和开发者的经验都会对其产生影响。而故事点数反映的是故事的复杂度。这里作者提出的这种方法也许能在他经历的一些案例中奏效。作者也在他的 Twitter 中提到，这种方法实际上是 #NoEstimates 中定义的「预测」（Forecast）而不是「估算」（Estimate），是「基于参考数据的分析结果对未来事件做出的预判和计算」。「预测」也好「估算」也罢，每一种估算方法都有它使用的场景。读者应该根据自己希望借助估算达成的目标和项目的实际情况选择适合自己的估算方式并持续改进。但是，作者这里对完成每个任务的真实时间的持续记录是非常值得推荐的实践。即便要做出估算，基于过往真实数据的推测总要好过拍脑袋。——译注
 
 『
 
@@ -360,6 +402,8 @@ This approach works. On one large corporate program the organization demanded es
 
 You should be able to get within 20% accuracy on long-term estimates, and much better on shorter-term estimates, such as for sprints, iterations, and WIP queues.
 
+这种方法是有效的。在一个大型公司计划中，该组织要求对整个计划中的个大型复杂项目进行估算。这个任务被分配给了两个团队。第一个团队由费用昂贵的顾问组成，他们有着与财富 500 强公司合作的估算和项目管理经验。这个团队里都是会计师和博士，还拥有能带来优势的震撼配置。第二个团队则是架构师和开发人员，他们使用这种基于度量指标的评估流程。该项目的规模在 2000 万美元左右，最终两个团队做出的估算结果只相差约 20 万美元（技术团队的估算略低）。技术人员做得还不赖。
+
 』
 
 ![](./res/2020131.png)
@@ -368,53 +412,93 @@ You should be able to get within 20% accuracy on long-term estimates, and much b
 
 Now that you have estimates for each component type, you can base your tasks directly off of those components. You might choose to keep each component as a single task with a number of hours or fraction thereof, or you might choose to break your tasks down a bit further. However, I suggest being careful with breaking tasks down to be too fine-grained, so as not to make the task board overly complex. As shown previously, it might even be best to combine all of the Commands and all of the Domain Events used by a single Aggregate into a single task.
 
+现在已经得到了每种组件类型的估算，可以直接将任务建立在这些组件之上。可以选择将每个花费数小时的组件直接保留为单个任务，也可以选择将这些任务进一步分解。但是，我建议分解任务时要小心，别把任务分解得太细，以免任务板变得过于复杂。如前所述，甚至可以将单个聚合使用的所有命令和领域事件合并为一个任务。
+
 ![](./res/2020132.png)
 
-How to Implement
+### 7.3.1 How to Implement
 
 Even with artifacts identified by Event Storming, you will not necessarily have all the knowledge you need to work on a specific domain scenario, story, and use case. If more is needed, be sure to include time for further knowledge acquisition in your estimates. But time for what? Recall that in Chapter 2 I introduced you to creating concrete scenarios around your domain model. This can be one of the best ways to acquire knowledge about your Core Domain, beyond what you can get out of Event Storming. Concrete scenarios and Event Storming are two tools that should be used together. Here’s how it works:
 
-• Perform a quick session of Event Storming, perhaps just for an hour or so. You will almost certainly discover that you need to develop more concrete scenarios around some of your quick modeling discoveries.
+即使有了在事件风暴中识别的产出物，也不一定掌握了完成关于特定领域场景、故事和用例的工作所需的全部知识。如果需要更多知识，请确保在估算中包含了更深入的知识获取所需的时间。时间怎么安排？回忆ー下，在第 2 章中，我介绍了围绕领域模型创建具体场景的方法。除了通过事件风暴获得知识，这可能是获取核心域知识的最佳途径之一。具体场景和事件风暴这两种工具应该一起使用。下面是具体的方法。
 
-• Partner with a Domain Expert to discuss one or more concrete scenarios that need to be refined. This identifies how the software model will be used. Again, these are not just procedures but should be stated with the goal of identifying actual domain model elements (e.g., objects), how the elements collaborate, and how they interact with users. (Refer to Chapter 2 as needed.)
+1. Perform a quick session of Event Storming, perhaps just for an hour or so. You will almost certainly discover that you need to develop more concrete scenarios around some of your quick modeling discoveries.
 
-• Create a set of acceptance tests (or executable specifications) that exercise each of the scenarios. (Refer to Chapter 2 as needed.)
+2. Partner with a Domain Expert to discuss one or more concrete scenarios that need to be refined. This identifies how the software model will be used. Again, these are not just procedures but should be stated with the goal of identifying actual domain model elements (e.g., objects), how the elements collaborate, and how they interact with users. (Refer to Chapter 2 as needed.)
 
-• Create the components to allow the tests/specifications to execute. Iterate (briefly and quickly) as you refine the tests/specifications and the components until they do what your Domain Expert expects.
+3. Create a set of acceptance tests (or executable specifications) that exercise each of the scenarios. (Refer to Chapter 2 as needed.)
 
-• Very likely some of the iteration (brief and quick) will cause you to consider other scenarios, create additional tests/specifications, and refine existing and create new components.
+4. Create the components to allow the tests/specifications to execute. Iterate (briefly and quickly) as you refine the tests/specifications and the components until they do what your Domain Expert expects.
+
+5. Very likely some of the iteration (brief and quick) will cause you to consider other scenarios, create additional tests/specifications, and refine existing and create new components.
+
+1、开展一次快速的事件风暴讨论，可能只需要 1 小时左右。你几乎肯定会发现，你需要围绕着快速建模的发现来发展更多的具体场景。
+
+2、和领域专家一起讨论一个或多个需要完善的具体场景。这将识别软件模型的使用方式。再次强调，这不仅是流程描述，而且还应该以识别真实的领域模型元素（例如对象）、元素协作方式以及用户交互方式为目标来进行陈述（需要时请参阅第 2 章）。
+
+3、创建一组验收测试（或可执行的需求说明）来验证每个场景（需要时请参阅第 2 章）。
+
+4、创建让这些测试 / 需求可以执行的组件。持续（短平快的）迭代来优化测试 / 需求说明和组件，直到达到领域专家的期望。
+
+5、很可能某些（短平快的）迭代会激发你对其他场景的思考，创建额外的测试 / 需求，完善现有组件并创建新组件。
 
 Continue this until you have acquired all the knowledge necessary to meet a limited business objective, or until your timebox expires. If you haven’t reached the desired point, make sure to incur modeling debt so that this can be addressed in the (ideally near) future.
 
 Yet how much time will you need from Domain Experts?
 
+持续下去直到获得能满足限定业务目标所需的全部知识，或抵达了时间盒的期限。如果还没有达到预期的目标，一定要记录下这些建模债务，这样可以在将来（越快越好）解决这个问题。然而需要占用多少领域专家的时间呢？
+
 ![](./res/2020133.png)
 
-Interacting with Domain Experts
+### 7.3.2 Interacting with Domain Experts
 
 One of the major challenges of employing DDD is getting time with Domain Experts, and without overdoing it. Many times those who are Domain Experts on a project will have loads of other responsibilities, hours of meetings, and possibly travel. With such potential absences from the modeling environment, it can be difficult to find enough time with them. So, we had better make the time we use count and limit it to just what is necessary. Unless you make modeling sessions fun and efficient, you stand a good chance of losing their help at just the wrong time. If they find it valuable, enlightening, and rewarding, you will likely establish the strong partnership that you will need.
 
+运用 DDD 的主要挑战之一是，合理地协调领域专家的时间。很多时候，项目中的领域专家还承担着大量其他工作，他们要参加大大小小的会议，还有可能出差。他们缺席建模活动的可能性很大，因此很难协调出足够的时间和他们交流。所以，我们最好合理控制时间，将其限制在必要的范围内。除非能让建模讨论有趣又高效，否则很可能因为时间安排错误而失去他们的支持。如果他们觉得这些讨论有价值、有启发、有回报，那么你很可能会和他们建立起所需要的强有力的伙伴关系。
+
 So the first questions to answer are “When do we need time with Domain Experts ? What tasks do they need to help us perform?”
 
-• Always include Domain Experts in Event Storming activities. Developers will always have a lot of questions, and Domain Experts will have the answers. Make sure they are in the Event Storming sessions together.
+1. Always include Domain Experts in Event Storming activities. Developers will always have a lot of questions, and Domain Experts will have the answers. Make sure they are in the Event Storming sessions together.
 
-• You will need Domain Experts’ input on discussions and the creation of model scenarios. See Chapter 2 for examples.
+2. You will need Domain Experts’ input on discussions and the creation of model scenarios. See Chapter 2 for examples.
 
-• Domain Experts will be needed to review tests to verify model correctness. This assumes that the developers have already made a conscientious effort to adhere to the Ubiquitous Language and to use quality, realistic test data.
+3. Domain Experts will be needed to review tests to verify model correctness. This assumes that the developers have already made a conscientious effort to adhere to the Ubiquitous Language and to use quality, realistic test data.
 
-• You will need Domain Experts to refine the Ubiquitous Language and its Aggregate names, Commands, and Domain Events, which are determined by the entire team. Ambiguities are resolved through review, questions, and discussion. Even so, Event Storming sessions should have already resolved most of the questions about the Ubiquitous Language.
+4. You will need Domain Experts to refine the Ubiquitous Language and its Aggregate names, Commands, and Domain Events, which are determined by the entire team. Ambiguities are resolved through review, questions, and discussion. Even so, Event Storming sessions should have already resolved most of the questions about the Ubiquitous Language.
+
+所以，首先要回答的几个问题是：我们什么时候需要领域专家？他们需要帮助我们完成哪些任务？
+
+1、一定要邀请领域专家参加事件风暴活动。开发人员总是会遇到很多问题，而领域专家有他们想要的答案。确保他们共同参与事件风暴讨论。
+
+2、在讨论和创建模型场景时需要领域专家的意见。请参考第 2 章中的示例。
+
+3、需要领域专家来评审验证模型正确性的测试。假定开发人员已经尽职尽责地遵循了通用语言，并使用了高质量的真实的测试数据。
+
+4、需要领域专家来完善通用语言以及聚合名称、命令和领域事件，这些都应该由团队一起决定。通过评审、质疑和讨论来消除歧义。即便如此，事件风暴讨论应该已经解决了关于通用语言的大部分问题。
 
 So, now that you know what you will need from Domain Experts, how much time should you require of them for each of these responsibilities?
 
-• Event Storming sessions should be limited to a few hours (two or three) each. You may need to hold sessions on consecutive days, such as for three or four days.
+1. Event Storming sessions should be limited to a few hours (two or three) each. You may need to hold sessions on consecutive days, such as for three or four days.
 
-• Block out generous amounts of time for scenario discussion and refinement, but try to maximize the time for each scenario. You should be able to discuss and iterate on one scenario over perhaps 10 to 20 minutes of time.
+2. Block out generous amounts of time for scenario discussion and refinement, but try to maximize the time for each scenario. You should be able to discuss and iterate on one scenario over perhaps 10 to 20 minutes of time.
 
-• For tests, you will need some time with Domain Experts to review what you have written. But don’t expect them to sit there as you write the code. Maybe they will, and that’s a bonus, but don’t expect it. Accurate models require less time to review and verify. Don’t underestimate the ability of Domain Experts to read through a test with your help. They can do it, especially if the test data is realistic. Your tests should allow the Domain Expert to understand and verify around one test every one to two minutes, or thereabouts.
+3. For tests, you will need some time with Domain Experts to review what you have written. But don’t expect them to sit there as you write the code. Maybe they will, and that’s a bonus, but don’t expect it. Accurate models require less time to review and verify. Don’t underestimate the ability of Domain Experts to read through a test with your help. They can do it, especially if the test data is realistic. Your tests should allow the Domain Expert to understand and verify around one test every one to two minutes, or thereabouts.
 
-• During test reviews, Domain Experts can provide input on Aggregates, Commands, and Domain Events, and perhaps other artifacts, as to how they adhere to the Ubiquitous Language. This can be accomplished in brief amounts of time.
+4. During test reviews, Domain Experts can provide input on Aggregates, Commands, and Domain Events, and perhaps other artifacts, as to how they adhere to the Ubiquitous Language. This can be accomplished in brief amounts of time.
 
 This guidance should help you use just the right amount of time with Domain Experts, and to limit the amount of time that you need to spend with them.
+
+现在已经知道了需要从领域专家那里得到的东西，那么这些工作需要占用他们多少时间呢？
+
+1、每次事件风暴讨论应限制在几个小时（两三个小时）以内。你可以连续几天都进行讨论，比如三天或四天。
+
+2、别用大块的时间讨论和细化场景，但尽量最大化利用每个场景的讨论时间。大概 10-20 分钟的时间，就能够完成一个场景的讨论和迭代。
+
+3、需要一些时间和领域专家一起评审自己写的测试，但是别指望他们坐下来看着你写代码。也许他们会这样做，这是惊喜，但别抱任何幻想。模型越精确，检査和验证花费的时间就越少。不要低估领域专家阅读测试的能力。在你的帮助下，他们能做到这一点，特别是当使用真实测试数据时。测试应该让领域专家在一两分钟之内理解并验证。
+
+4、在测试评审过程中，领域专家可以就聚合、命令和领域事件以及其他可能的产出物遵循通用语言的方式提出意见。这可以在短时间内完成。
+
+上面这份指南应该可以帮助你和领域专家协调恰当的时间，并把他们需要被占用的时间限制在合理范围内。
 
 ## Summary
 
