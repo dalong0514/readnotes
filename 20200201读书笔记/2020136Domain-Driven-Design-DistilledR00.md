@@ -130,6 +130,12 @@ Most people make the mistake of thinking design is what it looks like. People th
 
 There are a few hooks waiting for you as you work on your domain model, implementing your Aggregates. One big, nasty hook is the Anemic Domain Model. This is where you are using an object-oriented domain model, and all of your Aggregates have only public accessors (getters and setters) but no real business behavior. This tends to happen when there is a technical rather than business focus during modeling. Designing an Anemic Domain Model requires you to take on all the overhead of a domain model without realizing any of its benefits. Don’t take the bait!
 
+『摘自 Martin Fowler 的「20200801Anemic-Domain-Model.md」
+
+The basic symptom of an Anemic Domain Model is that at first blush it looks like the real thing. There are objects, many named after the nouns in the domain space, and these objects are connected with the rich relationships and structure that true domain models have. The catch comes when you look at the behavior, and you realize that there is hardly any behavior on these objects, making them little more than bags of getters and setters. Indeed often these models come with design rules that say that you are not to put any domain logic in the the domain objects. Instead there are a set of service objects which capture all the domain logic, carrying out all the computation and updating the model objects with the results. These services live on top of the domain model and use the domain model for data.
+
+』
+
 ### 0301. 人名卡——Vaughn Vernon
 
 沃恩·弗农（Vaughn Vernon），DDD 的布道者，著作《Implement-Domain-Driven-Design》、《Domain-Driven-Design-Distilled》以及《Reactive-Messaging-Patterns》。
