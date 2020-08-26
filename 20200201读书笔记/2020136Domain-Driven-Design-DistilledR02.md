@@ -742,7 +742,7 @@ Look into User Story Mapping by Jeff Patton [User Story Mapping]. This is used t
 
 The previous three add-on tools have a large overlap with the DDD philosophy and would be quite suitable to introduce into any DDD project. All of them are meant to be used in a highly accelerated project, are low ceremony, and are very cheap to use.
 
-2『已下载书籍「2020156实例化需求 | 2020156Specification-by-Example」、「Impact Mapping」、「User Story Mapping」。』
+2『已下载书籍「2020156实例化需求 | 2020156Specification-by-Example」、「2020158User-Story-Mapping | 用户故事地图」、「2020159Impact-Mapping」。』
 
 当然，这并不妨碍你进行试验，比如在建模平面上加入其他图形，并在事件风暴讨论中尝试其他建模步骤。请记住，这是关于设计的学习和沟通的过程，可以使用任何必要的工具将团队拧成一股绳来进行建模。只是要小心抵制仪式化，因为这会浪费很多资源。下面是其他的一些创意。
 
