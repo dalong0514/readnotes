@@ -1,19 +1,18 @@
-# 08 Methods
+# 0801. Methods
 
 Though this be madness, yet there is method in ’t.
 
-—William Shakespeare, The Tragedy of Hamlet,
-
-Prince of Denmark
+——William Shakespeare, The Tragedy of Hamlet, Prince of Denmark
 
 JavaScript includes a small set of standard methods that are available on the standard types.
 
-Array
+## 8.1 Array
 
-array.concat( item…)
+array.concat(item…)
 
-The concat method produces a new array containing a shallow copy of this array with the item s appended to it. If an item is an array, then each of its elements is appended individually. Also see array.push( item...) later in this chapter.
+The concat method produces a new array containing a shallow copy of this array with the items appended to it. If an item is an array, then each of its elements is appended individually. Also see array.push(item...) later in this chapter.
 
+```js
 var a = ['a', 'b', 'c'];
 
 var b = ['x', 'y', 'z'];
@@ -21,8 +20,11 @@ var b = ['x', 'y', 'z'];
 var c = a.concat(b, true);
 
 // c is ['a', 'b', 'c', 'x', 'y', 'z', true]
+```
 
-array.join( separator) The join method makes a string from an array. It does this by making a string of each of the array’s elements, and then concatenating them all together with a separator between them. The default separator is ','. To join without separation, use an empty string as the separator.
+array.join(separator) 
+
+The join method makes a string from an array. It does this by making a string of each of the array’s elements, and then concatenating them all together with a separator between them. The default separator is ','. To join without separation, use an empty string as the separator.
 
 If you are assembling a string from a large number of pieces, it is usually faster to put the pieces into an array and join them than it is to concatenate the pieces with the + operator: var a = ['a', 'b', 'c'];
 
@@ -1063,12 +1065,6 @@ The toLocaleUpperCase method produces a new string that is made by converting th
 string.toLowerCase( )
 
 The toLowerCase method produces a new string that is made by converting this string to lowercase.
-
-92
-
-|
-
-Chapter 8: Methods
 
 string.toUpperCase( ) The toUpperCase method produces a new string that is made by converting this string to uppercase.
 

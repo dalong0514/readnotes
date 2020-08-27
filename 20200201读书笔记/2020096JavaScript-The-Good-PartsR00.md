@@ -4,7 +4,7 @@
 
 ## 记忆时间
 
-2020-04-21
+2020-04-21、2020-08-27
 
 ## 卡片
 
@@ -171,8 +171,6 @@ If a statement doesn’t fit on a line, I will break it after a comma or a binar
 
 Douglas Crockford，本书作者。
 
-贡献及著作
-
 ### 0401. 金句卡——Most programming languages contain good parts and bad parts
 
 Most programming languages contain good parts and bad parts. I discovered that I could be a better programmer by using only the good parts and avoiding the bad parts
@@ -189,15 +187,27 @@ Most programming languages contain good parts and bad parts. I discovered that I
 
 就如其「最被低估的编程语言」称号所述，Javascript 实际上是一门非常优秀的语言，看似熟悉的语法之下隐含的是完全不同的世界观。尤其是在学、用 erlang 这种函数语言几年后，更能体会其很多设计元素的精巧之处。转贴几条 twitter 上记录的读书笔记备查：
 
-1、Javascript 语言中支持四类函数调用方式：1）全局函数。2）对象方法。3）构造函数。4）apply/call 调用。区别在于函数内 this 指针的绑定，分别是：1）Global 对象。2）调用对象。3）构造返回对象。4）调用时传入的第一个参数。2、作为 Prototype-base 和 Functional 编程混杂体的 Javascript，居然不提供尾递归 (tail-end recursion) 真是个杯具啊。所以有人想出了这种用 setTimeout 模拟的山寨办法。3、没有变量块作用域 (Block Scope) 的支持，是 Javascript 语义上与 C/C++ 系统又一重大区别。但回过头来看 Python/Scheme 也不提供块作用域的支持，究竟是当年的设计错误还是我们的思维定势问题？
+1、Javascript 语言中支持四类函数调用方式：1）全局函数。2）对象方法。3）构造函数。4）apply/call 调用。区别在于函数内 this 指针的绑定，分别是：1）Global 对象。2）调用对象。3）构造返回对象。4）调用时传入的第一个参数。
+
+2、作为 Prototype-base 和 Functional 编程混杂体的 Javascript，居然不提供尾递归 (tail-end recursion) 真是个杯具啊。所以有人想出了这种用 setTimeout 模拟的山寨办法。
+
+3、没有变量块作用域 (Block Scope) 的支持，是 Javascript 语义上与 C/C++ 系统又一重大区别。但回过头来看 Python/Scheme 也不提供块作用域的支持，究竟是当年的设计错误还是我们的思维定势问题？
 
 1『函数内 this 指针的绑定，对象的绑定，对理解变量、引用醍醐灌顶。』
 
-4、A Better Javascript Memoizer 利用闭包 (Closure) 和匿名方法 (anonymous function)，实现针对任意参数个数的 memoizer 模式，对复杂函数的计算结果进行缓存，那是相当的优雅。5、说起来 Javascript 中自动添加语句结束分号 (semicolon insertion) 也算是一个功能，可以很大程度上提高对网页上语法不规范脚本的兼容性。杯具的是各家的容忍限度不同方法不同，所以基本被列入不应被使用的糟粕。6、Javascript 里面的 NaN 本身就是个杯具，NaN != NaN 但 typeof NaN === 'number'，必须通过 isNaN 或 isFinite 才能筛选出，但这个可怜的函数又会自动对参数进行隐式类型转换。7、假以时日，HTTPS 和 Javascript 有可能成为 Web 领域，类似今天 TCP/IP 和 C/C++ 的基础构架的地位。不知十年后再回头看今日的理解，又是一番如何的景象，期待。
+4、A Better Javascript Memoizer 利用闭包 (Closure) 和匿名方法 (anonymous function)，实现针对任意参数个数的 memoizer 模式，对复杂函数的计算结果进行缓存，那是相当的优雅。
+
+5、说起来 Javascript 中自动添加语句结束分号 (semicolon insertion) 也算是一个功能，可以很大程度上提高对网页上语法不规范脚本的兼容性。杯具的是各家的容忍限度不同方法不同，所以基本被列入不应被使用的糟粕。
+
+6、Javascript 里面的 NaN 本身就是个杯具，NaN != NaN 但 typeof NaN === 'number'，必须通过 isNaN 或 isFinite 才能筛选出，但这个可怜的函数又会自动对参数进行隐式类型转换。
+
+7、假以时日，HTTPS 和 Javascript 有可能成为 Web 领域，类似今天 TCP/IP 和 C/C++ 的基础构架的地位。不知十年后再回头看今日的理解，又是一番如何的景象，期待。
 
 ### 03
 
-第一本书：JavaScript 高级程序设计。第二本书：ppk 谈 JavaScript。这是第三本。久闻大名的书，读完之后并没有预想的那种感觉。也许是因为书中的很多观点处处通用，即使你没有写过 js，也会从其他语言的普遍做法中见识到。The Definitive Guide 今年又出了新版，非常有可读性，两相对比之下不免让人感觉没那么棒。但这绝对是一本很奇特的书，两个地方：1）印象中其他语言没有对应的著作，例如 "Java: The Good Parts". C 有一本 pitfalls，但和这本不太一样。js 好的地方列了一遍，不好的地方也列了一遍。2）Appendix 比正文精彩。全书的精华都在 Appendix 了。最后我想说的是，这不是 js 语法书，看中这书薄而放弃 the definitive guide 的同学们，你们亏大了。
+第一本书：JavaScript 高级程序设计。第二本书：ppk 谈 JavaScript。这是第三本。久闻大名的书，读完之后并没有预想的那种感觉。也许是因为书中的很多观点处处通用，即使你没有写过 js，也会从其他语言的普遍做法中见识到。The Definitive Guide 今年又出了新版，非常有可读性，两相对比之下不免让人感觉没那么棒。但这绝对是一本很奇特的书，两个地方：1）印象中其他语言没有对应的著作，例如 "Java: The Good Parts"。C 有一本 pitfalls，但和这本不太一样。js 好的地方列了一遍，不好的地方也列了一遍。2）Appendix 比正文精彩。全书的精华都在 Appendix 了。最后我想说的是，这不是 js 语法书，看中这书薄而放弃 the definitive guide 的同学们，你们亏大了。
+
+2『已下载书籍「2020010JavaScript-The-Definitive-Guide6Ed」。』
 
 ### 05
 
@@ -265,7 +275,7 @@ The fashion in most programming languages today demands strong typing. The theor
 
 JavaScript has a very powerful object literal notation. Objects can be created simply by listing their components. This notation was the inspiration for JSON, the popular data interchange format. (There will be more about JSON in Appendix E.)
 
-1『 a very powerful object literal notation. 是 JS 的又一大特点。』
+1-2『 a very powerful object literal notation. 是 JS 的又一大特点。 附录里的 JSON 实例要反复去研读。』
 
 A controversial feature in JavaScript is prototypal inheritance. JavaScript has a class-free object system in which objects inherit properties directly from other objects. This is really powerful, but it is unfamiliar to classically trained programmers. If you attempt to apply classical design patterns directly to JavaScript, you will be frustrated. But if you learn to work with JavaScript’s prototypal nature, your efforts will be rewarded.
 
@@ -328,6 +338,8 @@ programs are the most complex things that humans make. Programs are made up of a
 运行时行为（runtime behavior）几乎和实现它的程序没有什么相似之处。在软件的产品生命周期中，它们通常都会被修改。把一个正确的程序转化为另一个同样正确但风格不同的程序，是一个极具挑战性的过程。
 
 Good programs have a structure that anticipates—but is not overly burdened by—the possible modifications that will be required in the future. Good programs also have a clear presentation. If a program is expressed well, then we have the best chance of being able to understand it so that it can be successfully modified or repaired.
+
+1『特别赞同，代码的可读性、可扩展性。』
 
 优秀的程序拥有一个前瞻性的结构，它会预见到在未来才可能需要的修改，但不会让其成为过度的负担。优秀的程序还会具备一种清晰的表达方式。如果一个程序被表达得很好，那么我们就能更加容易地去理解它，以便成功地改造或修补它。这些观点适用于所有的编程语言，而对 Javascript 来说尤为如此。Javascript 的弱类型和过度的容错性导致程序质量无法在编译时获得保障，所以为了弥补，我们应该按照严格的规范进行编码。
 
@@ -410,19 +422,25 @@ I tried to not waste your time with useless comments like this:
 
 In JavaScript, I prefer to use line comments. I reserve block comments for formal documentation and for commenting out. I prefer to make the structure of my programs self-illuminating, eliminating the need for comments. I am not always successful, so while my programs are awaiting perfection, I am writing comments.
 
-在 Javascript 里，我更喜欢用行注释。我把块注释用于正式的文档记录和注释。我更喜欢使我的程序结构能自我说明（self- illuminating），从而消除对注释的需要。我并非每次都能做到，所以只要我的程序还不尽完美，我就会编写注释。
+1『哈哈，重构可以帮助代码实现「自我解释」。』
+
+在 Javascript 里，我更喜欢用行注释。我把块注释用于正式的文档记录和注释。我更喜欢使我的程序结构能自我说明（self-illuminating），从而消除对注释的需要。我并非每次都能做到，所以只要我的程序还不尽完美，我就会编写注释。
 
 JavaScript has C syntax, but its blocks don’t have scope. So, the convention that variables should be declared at their first use is really bad advice in JavaScript. JavaScript has function scope, but not block scope, so I declare all of my variables at the beginning of each function. JavaScript allows variables to be declared after they are used. That feels like a mistake to me, and I don’t want to write programs that look like mistakes. I want my mistakes to stand out. Similarly, I never use an assignment expression in the condition part of an if because:
 
-    if (a = b) { ... }
+```js
+if (a = b) { ... }
+```
 
 is probably intended to be:
 
-    if (a === b) { ... }
+```js
+if (a === b) { ... }
+```
 
 I want to avoid idioms that look like mistakes.
 
-1『 ES6 新增的 let、const 解决了作者的难题；条件语句里的判断语言，一定不要用赋值语句。』
+1『 ES6 新增的 let、const 解决了作者的难题，所以好希望这本书可以出新版，哈哈；条件语句里的判断语言，一定不要用赋值语句。（2020-08-27）』
 
 I never allow switch cases to fall through to the next case. I once found a bug in my code caused by an unintended fall through immediately after having made a vigorous speech about why fall through was sometimes useful. I was fortunate in that I was able to learn from the experience. When reviewing the features of a language, I now pay special attention to features that are sometimes useful but occasionally dangerous. Those are the worst parts because it is difficult to tell whether they are being used correctly. That is a place where bugs hide.
 
@@ -432,11 +450,13 @@ Quality was not a motivating concern in the design, implementation, or standardi
 
 I use a single global variable to contain an application or library. Every object has its own namespace, so it is easy to use objects to organize my code. Use of closure provides further information hiding, increasing the strength of my modules.
 
+1『闭包可以实现信息隐藏，这个知识点一直没吃透。（2020-08-27）』
+
 在 Javascript 的设计、实现和标准化的过程中，质量没有被特别关注。这给使用这门语言的用户增加了避免其缺陷的难度。Javascript 为大型程序提供了支持，但它也带有不利于大型程序的形式和习惯用法。举例来说：Javascript 可以方便地使用全局变量，但随着程序的日益复杂，全局变量逐渐变得问题重重。对一个脚本应用或工具库，我只用唯一一个全局变量。每个对象都有它自己的命名空间，所以我很容易使用对象去管理代码。使用闭包能提供进一步的信息隐藏，增强我的模块的建壮性。
 
 3『
 
-作者的这个思想在 YAHOO 的 Javascript 库 YUI 中得到了底的贯彻。在 YUI 中仅用到两个全局变量：YAHO 和 YAHOO_config。YUI 的一切都是基于一种模块模式来实现的。
+作者的这个思想在 YAHOO 的 Javascript 库 YUI 中得到了彻底的贯彻。在 YUI 中仅用到两个全局变量：YAHO 和 YAHOO_config。YUI 的一切都是基于一种模块模式来实现的。
 
 github 上找到下面代码：[javascript 模块模式实现](https://gist.github.com/tangyangzhe/4276560)
 
