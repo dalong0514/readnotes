@@ -77,23 +77,13 @@ Just add the argument position in the list directly after the % sign, followed b
 
 ### 0301. 人名卡——Luke Welling
 
-Laura Thomson
-
-#### 01. 基本信息
-
 Luke Welling，本书的作者，PHP 以及 web 开发的大牛。
-
-#### 02. 贡献及著作
 
 ### 0401. 金句卡——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
+### 0501. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
 

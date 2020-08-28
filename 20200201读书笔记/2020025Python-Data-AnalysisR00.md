@@ -6,21 +6,9 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
-
 ### 0201. 术语卡——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
-
-例子。
 
 ### 0202. 术语卡——
 
@@ -29,8 +17,6 @@
 ### 0301. 人名卡——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
 
 #### 01. 出生日期
 
@@ -48,11 +34,7 @@
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
+### 0501. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
 
@@ -88,7 +70,9 @@ Chapter 12, Performance Tuning, Profiling, and Concurrency, gives hints on impro
 
 Appendix A, Key Concepts, serves as a glossary containing short descriptions of key concepts found throughout the book.
 
-Appendix B, Useful Functions, gives an overview of functions used in the book. Appendix C, Online Resources, lists links to documentation, forums, articles, and other important information.
+Appendix B, Useful Functions, gives an overview of functions used in the book. 
+
+Appendix C, Online Resources, lists links to documentation, forums, articles, and other important information.
 
 This book is for people with basic knowledge of Python and Mathematics who want to learn how to use Python software to analyze data. We try to keep things simple, but it's not possible to cover all the topics in great detail. It may be useful for you to refresh your knowledge of Mathematics via Khan Academy, Coursera, or Wikipedia. I would recommend the following books by Packt Publishing for further reading:
 
@@ -116,6 +100,8 @@ This book is for people with basic knowledge of Python and Mathematics who want 
 
 - Python Text Processing with NLTK 2.0 Cookbook, Jacob Perkins (2010)
 
+2『上面的书去收集。』——未完成
+
 ## 07. Signal Processing and Time Series
 
 ### 1. 逻辑脉络
@@ -135,7 +121,7 @@ Signal processing is a field of engineering and applied mathematics that analyze
 
 Moving averages are frequently used to analyze time series. A moving average specifies a window of data that is previously seen, which is averaged each time the window slides forward by one period; The different types of moving averages differ essentially in the weights used for averaging. The exponential moving average, for instance, has exponentially decreasing weights with time; This means that older values have less influence than newer values, which is sometimes desirable. The following code from the moving_average.py file in this book's code bundle plots the simple moving average for the 11- and 22-year sunspots cycles:
 
-```
+```py
 import matplotlib.pyplot as plt 
 import statsmodels.api as sm 
 # from pandas.stats.moments import rolling_mean「rolling_mean has been removed in the new version」
@@ -199,7 +185,7 @@ Lightweight access with sqlite3. SQLite is a very popular relational database. I
 
 A connection to the database is needed to proceed. If we wanted to store the database in a file, we would provide a filename. Instead, do the following:
 
-The with statement is standard Python and relies on the presence of a  \__exit__() method in a special context manager class. With this statement, we don't need to explicitly close the connection. The closing of the connection is done automatically by the context manager. After connecting to a database, we need a cursor. That's generally how it works with databases by the way. A database cursor is similar to a cursor in a text editor, in concept at least. We are required to close the cursor as well. Create the cursor as follows:
+The with statement is standard Python and relies on the presence of a  \_\_exit\_\_() method in a special context manager class. With this statement, we don't need to explicitly close the connection. The closing of the connection is done automatically by the context manager. After connecting to a database, we need a cursor. That's generally how it works with databases by the way. A database cursor is similar to a cursor in a text editor, in concept at least. We are required to close the cursor as well. Create the cursor as follows:
 
 ```
 with sqlite3.connect(":memory:") as con:
@@ -352,12 +338,4 @@ Apache Cassandra mixes features of key-value and traditional relational database
 1『Cassandra 表里每行的数据可以有不同的列；安装 Cassandra 需要先安装 Java，1.7 以上的版本。』
 
 3『[Download](http://cassandra.apache.org/download/); [Home - CASSANDRA - Apache Software Foundation](https://cwiki.apache.org/confluence/display/cassandra/)』
-
-
-
-
-
-
-
-
 

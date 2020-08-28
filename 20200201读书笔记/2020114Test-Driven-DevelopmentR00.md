@@ -18,14 +18,6 @@ Readers of Extreme Programming Explained will notice a difference in tone betwee
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-维基百科链接：有的话。
-
-#### 01. 基本信息
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及著作
-
 ### 0401. 金句卡——TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap
 
 ## 模板

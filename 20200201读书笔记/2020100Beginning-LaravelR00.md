@@ -6,16 +6,6 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
-
 ### 0201. 术语卡—— DI
 
 Laravel follows the MVC pattern of logic. But it has many more features that have enhanced the pattern’s features, elevating them to a new level. Laravel ships with a dependency injection (DI) mechanism by default (Figure 1-1). Figure 1-1. How DI works with an IoC container
@@ -40,11 +30,7 @@ Depending on many classes is necessary. Managing those dependencies is not easy.
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
+### 0501. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
 

@@ -6,16 +6,6 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-#### 01. 常识
-
-#### 02. 反常识
-
-#### 03. 知识来源
-
-比如提出者，如何演化成型的；书或专栏具体出现的地方。
-
-#### 04. 例子
-
 ### 0201. 术语卡——CRUD
 
 As mentioned earlier, HTTP verbs play a significant role in the intention of a request. The HTTP verb tells the server about how we, on the client side, intend to handle our data. How to handle data is often looked at from a CRUD perspective, which stands for: Create, Read, Update, Delete. As an example, imagine an application for a bookstore. The CRUD part here will be responsible for: Adding, Listing, Updating or Removing books from the bookstore.
@@ -31,14 +21,6 @@ Even better, when following the conventions of the JSON:API specification, you h
 ### 0301. 人名卡——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
-
-#### 01. 基本信息
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及著作
 
 ### 0401. 金句卡——anybody who knows how to work with the JSON:API specification, knows how to work with your API
 
