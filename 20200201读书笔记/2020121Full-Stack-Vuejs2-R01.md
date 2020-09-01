@@ -4,7 +4,7 @@
 
 ## 卡片
 
-### 0101. 主题卡——如何 用 vue-router 搭建单页应用
+### 0101. 主题卡——如何用 vue-router 搭建单页应用
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
@@ -74,6 +74,16 @@ Principle #3 – Mutations are synchronous
 It's much easier to debug state inconsistencies in an app that implements the above two principles in its architecture. You could log commits and observe how the state changes in response (which automatically happens with Vue Devtools, as we'll see).
 
 But this ability would be undermined if our mutations were applied asynchronously. We'd know the order our commits came in, but we would not know the order in which our components committed them. Synchronous mutations ensure state is not dependent on the sequence and timing of unpredictable events.
+
+### 0206. 术语卡——AJAX
+
+AJAX 即 Asynchronous JavaScript and XML（非同步的 JavaScript 与 XML 技术），指的是一套综合了多项技术的浏览器端网页开发技术。Ajax 的概念由杰西·詹姆士·贾瑞特所提出。
+
+传统的 Web 应用允许用户端填写表单（form），当送出表单时就向网页服务器发送一个请求。服务器接收并处理传来的表单，然后送回一个新的网页，但这个做法浪费了许多带宽，因为在前后两个页面中的大部分 HTML 码往往是相同的。由于每次应用的沟通都需要向服务器发送请求，应用的回应时间依赖于服务器的回应时间。这导致了用户界面的回应比本机应用慢得多。
+
+与此不同，AJAX 应用可以仅向服务器发送并取回必须的数据，并在客户端采用 JavaScript 处理来自服务器的回应。因为在服务器和浏览器之间交换的数据大量减少，服务器回应更快了。同时，很多的处理工作可以在发出请求的客户端机器上完成，因此 Web 服务器的负荷也减少了。
+
+类似于 DHTML 或 LAMP，AJAX 不是指一种单一的技术，而是有机地利用了一系列相关的技术。虽然其名称包含 XML，但实际上数据格式可以由 JSON 代替，进一步减少数据量，形成所谓的 AJAJ。而客户端与服务器也并不需要异步。一些基于 AJAX 的「派生／合成」式（derivative / composite）的技术也正在出现，如 AFLAX。
 
 ### 0301. 人名卡——
 
