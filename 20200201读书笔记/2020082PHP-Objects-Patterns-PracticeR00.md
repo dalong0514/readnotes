@@ -101,6 +101,8 @@ However you address problems of this kind, you can be sure of one thing—type m
 
 Even when client programmers need to work with values held by your class, it is often a good idea to deny direct access to properties, providing methods instead that relay the needed values. Such methods are known as accessors or getters and setters.
 
+1『经常看到的 getter、setter 方法，是类里供外部操作（读写）内中数据的方法，对外的接口。（2020-09-02）』
+
 You have already seen one benefit afforded by accessor methods. You can use an accessor to filter a property value according to circumstances, as was illustrated by the getPrice() method. You can also use a setter method to enforce a property type. Type declarations can be used to constrain method arguments, but a property can contain data of any type. Remember the ShopProductWriter class that uses a ShopProduct object to output list data? I can develop this further, so that it writes any number of ShopProduct objects at one time.
 
 之前已经看到由访问方法带来的一个好处。可以使用访问方法根据环境过滤属性，就像 getPrice() 方法那样。也可以使用 setter 方法来强制属性类型。我们已经见过，类的类型提示可以用于约束方法参数，但是它不能直接控制属性类型。还记得 ShopProductwriter 类使用 ShopProduct 输出清单数据吗？我们将改进它，使其一次可以输出许多 ShopProduct 对象。
