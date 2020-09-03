@@ -12,6 +12,22 @@ Copyright © 2016 by Matt Zandstra
 
 0102PHP and Objects
 
+0103Object Basics
+
+0104Advanced Features
+
+0105Object Tools
+
+0106Objects and Design
+
+0201What Are Design Patterns? Why Use Them?
+
+0202Some Pattern Principles
+
+0203Generating Objects
+
+0305Testing with PHPUnit
+
 ## 卡片
 
 ### 0101. 主题卡——面向对象和面向过程的区别
