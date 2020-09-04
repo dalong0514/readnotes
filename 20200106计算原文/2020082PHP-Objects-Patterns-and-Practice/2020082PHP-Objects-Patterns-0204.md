@@ -2,15 +2,9 @@
 
 With strategies for generating objects covered, we’re free now to look at some strategies for structuring classes and objects. I will focus in particular on the principle that composition provides greater flexibility than inheritance. The patterns I examine in this chapter are once again drawn from the Gang of Four catalog.
 
-This chapter will cover a trio of patterns:
+This chapter will cover a trio of patterns: 1) The Composite pattern: Composing structures in which groups of objects can be used as if they were individual objects. 2) The Decorator pattern: A flexible mechanism for combining objects at runtime to extend functionality. 3) The Facade pattern: Creating a simple interface to complex or variable systems.
 
-The Composite pattern: Composing structures in which groups of objects can be used as if they were individual objects
-
-The Decorator pattern: A flexible mechanism for combining objects at runtime to extend functionality
-
-The Facade pattern: Creating a simple interface to complex or variable systems
-
-Structuring Classes to Allow Flexible Objects
+## 4.1 Structuring Classes to Allow Flexible Objects
 
 Way back in Chapter 4, I said that beginners often confuse objects and classes. This was only half true. In fact, most of the rest of us occasionally scratch our heads over UML class diagrams, attempting to reconcile the static inheritance structures they show with the dynamic object relationships their objects will enter into off the page.
 
@@ -20,7 +14,7 @@ This is a common theme running through the first two patterns of this chapter. I
 
 important feature in both, but part of its importance lies in providing the mechanism by which composition can be used to represent structures and extend functionality.
 
-The Composite Pattern
+## 4.2 The Composite Pattern
 
 The Composite pattern is perhaps the most extreme example of inheritance deployed in the service of composition. It is a simple and yet breathtakingly elegant design. It is also fantastically useful. Be warned, though; it is so neat, you might be tempted to overuse this strategy.
 
@@ -538,3 +532,5 @@ Despite the simplicity of the Facade pattern, it is all too easy to forget to us
 In this chapter, I looked at a few of the ways that classes and objects can be organized in a system. In particular, I focused on the principle that composition can be used to engender flexibility where inheritance fails. In both the Composite and Decorator patterns, inheritance is used to promote composition and to define a common interface that provides guarantees for client code.
 
 You also saw delegation used effectively in these patterns. Finally, I looked at the simple but powerful Facade pattern. Facade is one of those patterns that many people have been using for years without having a name to give it. Facade lets you provide a clean point of entry to a tier or subsystem. In PHP, the Facade pattern is also used to create object wrappers that encapsulate blocks of procedural code.
+
+在本章中，我们研究了类和对象的几种组织方式，其中特别关注了使用组合以得到继承无法达到的灵活性。在组合模式和装饰模式中，使用继承是为了更好地组合对象，并为客户端代码提供统一的接口。我们也可以看到在这些模式中委托是如何被有效使用的。最后，我们研究了简单却强大的外观模式。外观模式是众多模式中一个被很多人运用了多年却没有得到命名的模式。外观模式可以为一个分层或一个子系统提供一个简洁的入口。在 PHP 中，外观模式也可用于创建封装过程式代码块的对象封装器。
