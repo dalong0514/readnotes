@@ -244,7 +244,7 @@ I referred to object-capable languages earlier in this section. You could code i
 
 ## 0202. Some Pattern Principles
 
-In this chapter, I examined some of the principles that underpin many design patterns. I looked at the use of composition to enable object combination and recombination at runtime, resulting in more flexible structures than would be available using inheritance alone. I also introduced you to decoupling, the practice of extracting software components from their context to make them more generally applicable. Finally, I reviewed the importance of interface as a means of decoupling clients from the details of implementation. In the coming chapters, I will examine some design patterns in detail.
+In this chapter, I examined some of the principles that underp in many design patterns. I looked at the use of composition to enable object combination and recombination at runtime, resulting in more flexible structures than would be available using inheritance alone. I also introduced you to decoupling, the practice of extracting software components from their context to make them more generally applicable. Finally, I reviewed the importance of interface as a means of decoupling clients from the details of implementation. In the coming chapters, I will examine some design patterns in detail.
 
 学习了一些设计模式背后的设计原则，讨论了在运行时使用组合来合并及再合并对象（这比单独使用继承的灵活性更高），介绍了解耦并提取组件来使它们更具适用性，回顾了接口（它将客户端代码与实现的具体细节相分离）的重要性。
 

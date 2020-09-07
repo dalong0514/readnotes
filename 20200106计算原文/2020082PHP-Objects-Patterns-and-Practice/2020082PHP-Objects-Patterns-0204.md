@@ -10,9 +10,11 @@ Way back in Chapter 4, I said that beginners often confuse objects and classes. 
 
 Remember the pattern principle,「Favor composition over inheritance」? This principle distills this tension between the organization of classes and objects. In order to build flexibility into our projects, we structure our classes so that their objects can be composed into useful structures at runtime.
 
-This is a common theme running through the first two patterns of this chapter. Inheritance is an 
+This is a common theme running through the first two patterns of this chapter. Inheritance is an important feature in both, but part of its importance lies in providing the mechanism by which composition can be used to represent structures and extend functionality.
 
-important feature in both, but part of its importance lies in providing the mechanism by which composition can be used to represent structures and extend functionality.
+在第 4 章中，我曾说过初学者常常对对象和类感到困惑。这也不全对。事实上，即使不是初学者，有时也会大伤脑筋，比如我们会尝试让 UML 类图中描述的静态继承结构与这些类的动态对象的关系保持一致，有时这个目标并不容易实现。你还记得「组合优于继承」这个模式原则吗？该原则体现了类和对象之间的组织弹性。为了使项目更具灵活性，我们需要将类按一定结构组织起来，以便它们的对象在代码运行时能被构建为有用的结构。这是本章前两个模式的共同主题。继承在这两个模式中很重要，但是组合所提供的描述结构及扩展功能的机制也很重要。
+
+1『将类按一定的结构组织起来，便于它们的对象在运行时被构建成有用的结构。这个信息直接上很重要，目前没吃透。（2020-09-04）』
 
 ## 4.2 The Composite Pattern
 
@@ -20,130 +22,242 @@ The Composite pattern is perhaps the most extreme example of inheritance deploye
 
 The Composite pattern is a simple way of aggregating and then managing groups of similar objects so that an individual object is indistinguishable to a client from a collection of objects. The pattern is, in fact, very simple, but it is also often confusing. One reason for this is the similarity in structure of the classes in the pattern to the organization of its objects. Inheritance hierarchies are trees, beginning with the super class at the root, and branching out into specialized subclasses. The inheritance tree of classes laid down by the Composite pattern is designed to allow the easy generation and traversal of a tree of objects.
 
+组合模式也许是将继承用于组合对象的最极端的例子。组合模式的设计思想简单而又非常优雅，并且非常实用。但要注意的是，因为这个模式很好用，你也许会经不起诱惑而过度使用它。组合模式可以很好地聚合和管理许多相似的对象，因而对客户端代码来说，一个独立对象和一个对象集合是没有差别的。虽然该模式实际上非常简单，但还是经常令人感到迷惑。其中一个原因就是模式中类的结构和对象的组织结构非常相似。组合模式中继承的层级结构是树型结构，由根部的基类开始，分支到各个不同的子类，在其继承树中可以轻松地生成枝叶，也可以很容易地遍历整个对象树中的对象。
+
 If you are not already familiar with this pattern, you have every right to feel confused at this point. Let’s try an analogy to illustrate the way that single entities can be treated in the same way as collections of things. Given broadly irreducible ingredients such as cereals and meat (or soya if you prefer), we can make a food product—a sausage, for example. We then act on the result as a single entity. Just as we eat, cook, buy, or sell meat, we can eat, cook, buy, or sell the sausage that the meat in part composes. We might take the sausage and combine it with the other composite ingredients to make a pie, thereby rolling a composite into a larger composite. We behave in the same way to the collection as we do to the parts. The Composite pattern helps us to model this relationship between collections and components in our code.
 
-The ProblemManaging groups of objects can be quite a complex task, especially if the objects in question might also contain objects of their own. This kind of problem is very common in coding. Think of invoices, with line items that summarize additional products or services, or things-to-do lists with items that themselves contain multiple subtasks. In content management, we can’t move for trees of sections, pages, articles, or media components. Managing these structures from the outside can quickly become daunting.
+如果你以前不熟悉这个模式，也许会感到有些困惑。让我们举例说明，单个物体有时可以被当成一个集合来看待。例如，用谷类和肉类（或者是你更加喜欢的大豆）可以制作一种食物香肠。然后我们将香肠当做单个物体来处理。就像我们可以食用、烹调、购买或者出售肉类一样，我们也可以食用、烹调、购买或者出售由肉类组成的香肠。我们也许会用香肠和其他组合成分来制作馅饼，从而将一个组合物合成一个更大的组合物。在这个例子中，我们处理组件的方式和处理集合的方式是一样的。组合模式有助于我们为集合和组件之间的关系建立模型。
 
-Let’s return to a previous scenario. I am designing a system based on a game called Civilization. A player 
+1『
 
-can move units around hundreds of tiles that make up a map. Individual counters can be grouped together to move, fight, and defend themselves as a unit. Here I define a couple of unit types:
+很佩服作者以及译者的表述能力，上面的这段信息算是把「组合模式」弄清楚了，在接着「王铮的设计模式专栏」里提到的，四人帮的原话：
 
+Compose objects into tree structure to represent part-whole hierarchies. Composite lets client treat individual objects and compositions of objects uniformly.
+
+将一组对象组织（Compose）成树形结构，以表示一种「部分 - 整体」的层次结构。组合让客户端（代指代码的使用者）可以统一单个对象和组合对象的处理逻辑。
+
+』
+
+### 4.2.1 The Problem
+
+Managing groups of objects can be quite a complex task, especially if the objects in question might also contain objects of their own. This kind of problem is very common in coding. Think of invoices, with line items that summarize additional products or services, or things-to-do lists with items that themselves contain multiple subtasks. In content management, we can’t move for trees of sections, pages, articles, or media components. Managing these structures from the outside can quickly become daunting.
+
+Let’s return to a previous scenario. I am designing a system based on a game called Civilization. A player can move units around hundreds of tiles that make up a map. Individual counters can be grouped together to move, fight, and defend themselves as a unit. Here I define a couple of unit types:
+
+管理一组对象是很复杂的，当对象中可能还包含着它们自己的对象时尤其如此。这类问题在开发中非常常见。比如发票中会包含描述产品或服务的条目，或者待办事宜列表会包含多个子任务。在 CMS（Content Management System，内容管理系统）中，我们无法离开页面、文章、多媒体组件等。从外部来管理这些结构相当困难。让我们回到之前虚构的一个场景，我们以一个叫做「文明」的游戏为基础设计一个系统。玩家可以在一个由大量区块所组成的地图上移动战斗单元。独立的单元可被组合起来一起移动、战斗和防守。我们先定义一些战斗单元的类型。
+
+```php
 // listing 10.01
 
-abstract class Unit{    abstract public function bombardStrength(): int;}
+abstract class Unit {    
+    abstract public function bombardStrength(): int;
+}
 
-class Archer extends Unit{    public function bombardStrength(): int    {        return 4;    }}
+class Archer extends Unit {
+    public function bombardStrength(): int {        
+        return 4;    
+    }
+}
 
-class LaserCannonUnit extends Unit{    public function bombardStrength(): int    {        return 44;    }}
+class LaserCannonUnit extends Unit {    
+    public function bombardStrength(): int {        
+        return 44;    
+    }
+}
+```
 
-The Unit class defines an abstract bombardStrength() method, which sets the attack strength of a 
+The Unit class defines an abstract bombardStrength() method, which sets the attack strength of a unit bombarding an adjacent tile. I implement this in both the Archer and LaserCannonUnit classes. These classes would also contain information about movement and defensive capabilities, but I’ll keep things simple. I could define a separate class to group units together, like this:
 
-unit bombarding an adjacent tile. I implement this in both the Archer and LaserCannonUnit classes. These classes would also contain information about movement and defensive capabilities, but I’ll keep things simple. I could define a separate class to group units together, like this:
-
+```php
 // listing 10.02
 
-class Army{    private $units = [];
+class Army {    
+    private $units = [];
 
-    public function addUnit(Unit $unit)    {        array_push($this->units, $unit);    }
+    public function addUnit(Unit $unit)    {        
+        array_push($this->units, $unit);    
+    }
 
-    public function bombardStrength(): int    {        $ret = 0;        foreach ($this->units as $unit) {            $ret += $unit->bombardStrength();        }        return $ret;    }}
+    public function bombardStrength(): int    {        
+    $ret = 0;        
+    foreach ($this->units as $unit) {            
+        $ret += $unit->bombardStrength();        
+    }        
+    return $ret;    
+    }
+}
 
-// listing 10.03$unit1 = new Archer();$unit2 = new LaserCannonUnit();$army = new Army();$army->addUnit($unit1);$army->addUnit($unit2);print $army->bombardStrength();
+// listing 10.03
 
-The Army class has an addUnit() method that accepts a Unit object. Unit objects are stored in an array 
+$unit1 = new Archer();
+$unit2 = new LaserCannonUnit();
+$army = new Army();
+$army->addUnit($unit1);
+$army->addUnit($unit2);
+print $army->bombardStrength();
+```
 
-property called $units. I calculate the combined strength of my army in the bombardStrength() method. This simply iterates through the aggregated Unit objects, calling the bombardStrength() method of  each one.
+The Army class has an addUnit() method that accepts a Unit object. Unit objects are stored in an array property called \$units. I calculate the combined strength of my army in the bombardStrength() method. This simply iterates through the aggregated Unit objects, calling the bombardStrength() method of  each one.
 
 This model is perfectly acceptable, as long as the problem remains as simple as this. What happens, though, if I were to add some new requirements? Let’s say that an army should be able to combine with other armies. Each army should retain its own identity so that it can disentangle itself from the whole at a later date. The Arch Duke’s brave forces might share common cause today with General Soames’s assault upon the exposed flank of the enemy, but a domestic rebellion may send his army scurrying home at any time. For this reason, I can’t just decant the units from each army into a new force.
 
+如果问题一直如此简单，那么这样的模型还是非常令人满意的。但是当我们加入一些新的需求，会发生什么呢？比如军队应该可以与其他军队进行合并。同时，每个军队都会有它自己的 ID，这样军队以后还能从整编中解散出来。比如今天大公爵（Archduke）和 Soames 将军的勇士们可能一起并肩作战，但是当国内发生叛乱时，公爵可能会在任何时候将它的军队调回。因此，我们不能仅支持将军队与军队合并，还要能够在必要的时候再把原来的军队抽离出来。我们可以修改 Army 类，使之可以像添加 Unit 对象一样添加 Army 对象
+
 I could amend the Army class to accept Army objects as well as Unit objects:
 
+```php
 // listing 10.04
 
-    public function addArmy(Army $army)    {        array_push($this->armies, $army);    }
+public function addArmy(Army $army) {        
+    array_push($this->armies, $army);    
+}
+```
 
 Then I’d need to amend the bombardStrength() method to iterate through all armies as well as units:
 
-// listing 10.05    public function bombardStrength(): int    {        $ret = 0;        foreach ($this->units as $unit) {            $ret += $unit->bombardStrength();        }        foreach ($this->armies as $army) {            $ret += $army->bombardStrength();        }        return $ret;    }
+```php
+// listing 10.05   
 
-This additional complexity is not too problematic at the moment. Remember, though, I would need to 
+ public function bombardStrength(): int {        
+    $ret = 0;        
+    foreach ($this->units as $unit) {            
+        $ret += $unit->bombardStrength();        
+    }        
+    foreach ($this->armies as $army) {            
+        $ret += $army->bombardStrength();        
+    }        
+    return $ret;    
+ }
+```
 
-do something similar in methods like defensiveStrength(), movementRange(), and so on. My game is going to be richly featured. Already the business group is calling for troop carriers that can hold up to ten units to improve their movement range on certain terrains. Clearly, a troop carrier is similar to an army in that it groups units. It also has its own characteristics. I could further amend the Army class to handle TroopCarrier objects, but I know that there will be a need for still more unit groupings. It is clear that I need a more flexible model.
+This additional complexity is not too problematic at the moment. Remember, though, I would need to do something similar in methods like defensiveStrength(), movementRange(), and so on. My game is going to be richly featured. Already the business group is calling for troop carriers that can hold up to ten units to improve their movement range on certain terrains. Clearly, a troop carrier is similar to an army in that it groups units. It also has its own characteristics. I could further amend the Army class to handle TroopCarrier objects, but I know that there will be a need for still more unit groupings. It is clear that I need a more flexible model.
 
-Let’s look again at the model I have been building. All the classes I created shared the need for a 
+Let’s look again at the model I have been building. All the classes I created shared the need for a bombardStrength() method. In effect, a client does not need to distinguish between an army, a unit, or a troop carrier. They are functionally identical. They need to move, attack, and defend. Those objects that contain others need to provide methods for adding and removing them. These similarities lead us to an inevitable conclusion. Because container objects share an interface with the objects that they contain, they are naturally suited to share a type family.
 
-bombardStrength() method. In effect, a client does not need to distinguish between an army, a unit, or a troop carrier. They are functionally identical. They need to move, attack, and defend. Those objects that contain others need to provide methods for adding and removing them. These similarities lead us to an inevitable conclusion. Because container objects share an interface with the objects that they contain, they are naturally suited to share a type family.
+此时，这个新的需求（即添加和抽取军队）还不算太复杂。但是记住，我们还需要对 defensiveStrength()、movementRange() 等方法做相似的修改。慢慢地，我们的游戏会变得越来越完善。现在客户提出了新要求：运兵船可以支持最多 10 个战斗单元以改进它们在某些地形上的活动范围。显然，运兵船与用于组合战斗单元的 Army 对象相似，但它也有一些自己的特性。虽然我们能够通过改进 Army 类来处理 TroopCarrier 对象，但是我们知道以后可能会有更多对部队进行组合的需求。显然，我们需要一个更灵活的模型。
 
-ImplementationThe Composite pattern defines a single inheritance hierarchy that lays down two distinct sets of responsibilities. We have already seen both of these in our example. Classes in the pattern must support a common set of operations as their primary responsibility. For us, that means the bombardStrength() method. Classes must also support methods for adding and removing child objects.
+让我们再回顾一下已经建立的这个模型。所有已创建的类都需要 bombardStrength() 方法。实际上，客户端代码并不需要去区分对象是 army、unit 还是 troop carrier 类型。就功能上说，它们都是相同的：它们都要移动、攻击和防御。这些包含其他对象的对象需要提供添加和移除其他对象的方法。这些相似性会给我们带来一个必然的结论：因为容器对象与它们包含的对象共享同一个接口，所以它们应该共享同一个类型家族。
+
+### 4.2.2 Implementation
+
+The Composite pattern defines a single inheritance hierarchy that lays down two distinct sets of responsibilities. We have already seen both of these in our example. Classes in the pattern must support a common set of operations as their primary responsibility. For us, that means the bombardStrength() method. Classes must also support methods for adding and removing child objects.
+
+组合模式定义了一个单根继承体系，使具有截然不同职责的集合可以并肩工作。在之前的例子中我们已看到以上两点。组合模式中的类必须支持一个共同的操作集，以将其作为它们的首要职责。对我们来说，bombardStrength() 方法便支持这样的操作。类同时必须拥有添加和删除子对象的方法。
 
 Figure 10-1 shows a class diagram that illustrates the Composite pattern as applied to our problem.
-
-Figure 10-1.  The Composite pattern
 
 As you can see, all the units in this model extend the Unit class. A client can be sure, then, that any Unit object will support the bombardStrength() method. So, an Army can be treated in exactly the same way as an Archer.
 
 The Army and TroopCarrier classes are composites: they are designed to hold Unit objects. The Archer and LaserCannon classes are leaves, designed to support unit operations, but not to hold other Unit objects. There is actually an issue as to whether leaves should honor the same interface as composites, as they do in Figure 10-1. The diagram shows TroopCarrier and Army aggregating other units, even though the leaf classes are also bound to implement addUnit(). I will return to this question shortly. Here is the abstract Unit class:
 
-// listing 10.06abstract class Unit{    abstract public function addUnit(Unit $unit);    abstract public function removeUnit(Unit $unit);    abstract public function bombardStrength(): int;}
+可以看到，模型中的所有部队单位都扩展自 Unit 类。然后，客户端代码可以肯定任何 unit 对象都支持 bombardStrength() 方法，因此完全可以像处理 Archer 对象那样处理 Army 对象。Army 和 TroopCarrier 类都被设计为组合对象，用于包含 Unit 对象。Archer 和 LaserCannon 类则是局部对象 1，具有部队单位的操作功能，但不能包含其他 Unit 对象。这里有个问题，就是局部对象是否需要遵循与图 10-1 所示的组合对象同样的接口。图 10-1 中的 TroopCarrier 和 Army 实现了与其他作战单元的组合，而即使在局部类中，也实现了 addUnit() 方法。我们稍后将讨论这个问题。
 
-As you can see, I lay down the basic functionality for all Unit objects here. Now, let’s see how a 
+1 也称为树叶对象。称为树叶是因为组合模式为树型结构，组合对象为枝干，单独存在的对象为树叶。树叶对象应该是最小单位，其中不能包含其他对象。一一译者注
 
-composite object might implement these abstract methods:
+```php
+// listing 10.06
 
+abstract class Unit {    
+    abstract public function addUnit(Unit $unit);    
+    abstract public function removeUnit(Unit $unit);    
+    abstract public function bombardStrength(): int;
+}
+```
+
+As you can see, I lay down the basic functionality for all Unit objects here. Now, let’s see how a composite object might implement these abstract methods:
+
+```php
 // listing 10.07
 
-class Army extends Unit{    private $units = [];
+class Army extends Unit {    
+    private $units = [];
 
-    public function addUnit(Unit $unit)    {        if (in_array($unit, $this->units, true)) {            return;        }
+    public function addUnit(Unit $unit) {        
+        if (in_array($unit, $this->units, true)) {            
+            return;        
+        }
+        $this->units[] = $unit;    
+    }
 
-        $this->units[] = $unit;    }
+    public function removeUnit(Unit $unit) {        
+        $idx = array_search($unit, $this->units, true);        
+        if (is_int($idx)) {            
+            array_splice($this->units, $idx, 1, []);        
+        }    
+    }
 
-    public function removeUnit(Unit $unit)    {        $idx = array_search($unit, $this->units, true);        if (is_int($idx)) {            array_splice($this->units, $idx, 1, []);        }    }
+    public function bombardStrength(): int {        
+        $ret = 0;        
+        foreach ($this->units as $unit) {            
+            $ret += $unit->bombardStrength();        
+        }        
+        return $ret;    
+    }
+}
+```
 
-    public function bombardStrength(): int    {        $ret = 0;        foreach ($this->units as $unit) {            $ret += $unit->bombardStrength();        }        return $ret;    }}
+1『上面几个数组操作的函数值得借鉴，意外收获，哈哈。而且老版书中 removeUnit() 里是通过匿名函数实现的，新版的这个实现应该更好，不然作者不会做此更新的。（2020-09-05）』
 
-The addUnit() method checks whether I have already added the same Unit object before storing it in 
+The addUnit() method checks whether I have already added the same Unit object before storing it in the private \$units array property. removeUnit() uses a similar check to remove a given Unit object from the property.
 
-the private $units array property. removeUnit() uses a similar check to remove a given Unit object from the property.
+Army objects, then, can store Units of any kind, including other Army objects, or leaves such as Archer or LaserCannonUnit. Because all units are guaranteed to support bombardStrength(), our Army::bombardStrength() method simply iterates through all the child Unit objects stored in the \$units property, calling the same method on each.
 
-Army objects, then, can store Units of any kind, including other Army objects, or leaves such as Archer or LaserCannonUnit. Because all units are guaranteed to support bombardStrength(), our Army::bombardStrength() method simply iterates through all the child Unit objects stored in the $units property, calling the same method on each.
+One problematic aspect of the Composite pattern is the implementation of add and remove functionality. The classic pattern places add() and remove() methods in the abstract super class. This ensures that all classes in the pattern share a common interface. As you can see here, though, it also means that leaf classes must provide an implementation:
 
-One problematic aspect of the Composite pattern is the implementation of add and remove 
+然后 Army 对象可保存任何类型的 Unit 对象，包括 Army 对象本身或者如 Archer 或 LaserCannonUnit 这样的局部对象。因为所有的部队单位都保证支持 bombardStrength() 方法，所以我们的 Army::bombardStrength() 方法只需遍历 Units 属性，调用每个 Unit 对象的 bombardStrength() 方法，就可以计算出整军队总的攻击强度。组合模式的一个问题是如何实现 add() 和 remove() 方法。一般的组合模式会在抽象超类中添加 add() 和 remove() 方法。这可以确保模式中的所有类都共享同一个接口，但这同时也意味着局部类必须也实现这些方法。
 
-functionality. The classic pattern places add() and remove() methods in the abstract super class. This ensures that all classes in the pattern share a common interface. As you can see here, though, it also means that leaf classes must provide an implementation:
-
+```php
 // listing 10.08
 
 class UnitException extends \Exception{}
 
 // listing 10.09
 
-class Archer extends Unit{    public function addUnit(Unit $unit)    {        throw new UnitException(get_class($this) . " is a leaf");    }
+class Archer extends Unit {    
+    public function addUnit(Unit $unit) {        
+        throw new UnitException(get_class($this) . " is a leaf");    
+    }
 
-    public function removeUnit(Unit $unit)    {        throw new UnitException(get_class($this) . " is a leaf");    }
+    public function removeUnit(Unit $unit) {        
+        throw new UnitException(get_class($this) . " is a leaf");    
+    }
 
-    public function bombardStrength(): int    {        return 4;    }}
+    public function bombardStrength(): int    {       
+        return 4;    
+    }
+}
+```
 
 I do not want to make it possible to add a Unit object to an Archer object, so I throw exceptions if addUnit() or removeUnit() are called. I will need to do this for all leaf objects, so I could perhaps improve my design by replacing the abstract addUnit()/removeUnit() methods in Unit with default implementations like the one in the preceding example:
 
+```php
 // listing 10.10
 
-abstract class Unit{    public function addUnit(Unit $unit)    {        throw new UnitException(get_class($this) . " is a leaf");    }
+abstract class Unit { 
+   
+    public function addUnit(Unit $unit) {        
+        throw new UnitException(get_class($this) . " is a leaf");    
+    }
 
-    public function removeUnit(Unit $unit)    {        throw new UnitException(get_class($this) . " is a leaf");    }
+    public function removeUnit(Unit $unit) {        
+        throw new UnitException(get_class($this) . " is a leaf");    
+    }
 
-    abstract public function bombardStrength(): int;}
+    abstract public function bombardStrength(): int;
+}
 
 // listing 10.11
 
-class Archer extends Unit{    public function bombardStrength(): int    {        return 4;    }}
+class Archer extends Unit {    
+        public function bombardStrength(): int {        
+            return 4;    
+        }
+}
+```
 
-This removes duplication in leaf classes, but has the drawback that a composite is not forced at compile time 
+This removes duplication in leaf classes, but has the drawback that a composite is not forced at compile time to provide an implementation of addUnit() and removeUnit(), which could cause problems down the line.I will look in more detail at some of the problems presented by the Composite pattern in the next section. Let’s end this section by examining some of its benefits:
 
-to provide an implementation of addUnit() and removeUnit(), which could cause problems down the line.I will look in more detail at some of the problems presented by the Composite pattern in the next 
-
-section. Let’s end this section by examining some of its benefits:
-
+这样做可以去除局部类中的重复代码，但是同时组合类不再需要强制性地实现 addUnit() 和  removeUnit() 方法了，这可能会带来问题。在下一节中，我们会深入讨论组合模式所带来的一些问题。现在先让我们回顾一下组合模式所带来的益处。
 
 Flexibility: Because everything in the Composite pattern shares a common supertype, it is very easy to add new composite or leaf objects to the design without changing a program’s wider context.
 
@@ -153,42 +267,63 @@ Implicit reach: Objects in the Composite pattern are organized in a tree. Each c
 
 Explicit reach: Tree structures are easy to traverse. They can be iterated in order to gain information or to perform transformations. We will look at a particularly powerful technique for this in the next chapter when we deal with the Visitor pattern.
 
-Often, you really see the benefit of a pattern only from the client’s perspective, so here are a couple of 
+1、灵活：因为组合模式中的一切类都共享了同一个父类型，所以可以轻松地在设计中添加新的组合对象或者局部对象，而无需大范围地修改代码。
 
-armies:
+2、简单：使用组合结构的客户端代码只需设计简单的接口。客户端代码没有必要区分一个对象是组合对象还是局部对象（除了添加新组件时）。客户端代码调用 Army::bombardStrength() 方法时也许会产生一些幕后的委托调用，但是对于客户端代码而言，无论是过程还是效果，都和调用 Army::bombardStrength() 方法是完全相同的。
 
+3、隐式到达：组合模式中的对象通过树型结构组织。每个组合对象中都保存着对子对象的引用。因此对树中某部分的一个小操作可能会产生很大的影响。比如我们可能会将一个父 Army 对象的某个子 Army 对象删除，并将其添加到另外一个父 Army 对象上去。这个简单的动作看似只对子 Army 对象产生作用，但实际上却影响了子 Army 对象中所引用的 unit 对象及其子对象的状态。
+
+4、显式到达：树型结构可轻松遍历。可以通过迭代树型结构来获取组合对象和局部对象的信息，或对组合对象和局部对象执行批量处理。在下一章中，我们在处理访问者模式时会看到一个与此相关的强大技术。
+
+Often, you really see the benefit of a pattern only from the client’s perspective, so here are a couple of armies:
+
+```php
 // listing 10.12
 
-// create an army$main_army = new Army();
+// create an army
+$main_army = new Army();
 
-// add some units$main_army->addUnit(new Archer());$main_army->addUnit(new LaserCannonUnit());
+// add some units
+$main_army->addUnit(new Archer());
+$main_army->addUnit(new LaserCannonUnit());
 
-// create a new army$sub_army = new Army();
+// create a new army
+$sub_army = new Army();
 
-// add some units$sub_army->addUnit(new Archer());$sub_army->addUnit(new Archer());$sub_army->addUnit(new Archer());
+// add some units
+$sub_army->addUnit(new Archer());
+$sub_army->addUnit(new Archer());
+$sub_army->addUnit(new Archer());
 
-// add the second army to the first$main_army->addUnit($sub_army);
+// add the second army to the first
+$main_army->addUnit($sub_army);
 
-// all the calculations handled behind the scenesprint "attacking with strength: {$main_army->bombardStrength()}\n";
+// all the calculations handled behind the scenes
+print "attacking with strength: {$main_army->bombardStrength()}\n";
+```
 
-I create a new Army object and add some primitive Unit objects. I repeat the process for a second Army 
+I create a new Army object and add some primitive Unit objects. I repeat the process for a second Army object that I then add to the first. When I call Unit::bombardStrength() on the first Army object, all the complexity of the structure that I have built up is entirely hidden.
 
-object that I then add to the first. When I call Unit::bombardStrength() on the first Army object, all the complexity of the structure that I have built up is entirely hidden.
+### 4.2.3 Consequences
 
-ConsequencesIf you’re anything like me, you would have heard alarm bells ringing when you saw the code extract for the Archer class. Why do we put up with these redundant addUnit() and removeUnit() methods in leaf classes that do not need to support them? An answer of sorts lies in the transparency of the Unit type.
+If you’re anything like me, you would have heard alarm bells ringing when you saw the code extract for the Archer class. Why do we put up with these redundant addUnit() and removeUnit() methods in leaf classes that do not need to support them? An answer of sorts lies in the transparency of the Unit type.
 
-If a client is passed a Unit object, it knows that the addUnit() method will be present. The Composite 
+If a client is passed a Unit object, it knows that the addUnit() method will be present. The Composite pattern principle that primitive (leaf) classes have the same interface as composites is upheld. This does not actually help you much because you still do not know how safe you might be calling addUnit() on any Unit object you might come across.
 
-pattern principle that primitive (leaf) classes have the same interface as composites is upheld. This does not actually help you much because you still do not know how safe you might be calling addUnit() on any Unit object you might come across.
+If I move these add/remove methods down so that they are available only to composite classes, then passing a Unit object to a method leaves me with the problem that I do not know by default whether or not it supports addUnit(). Nevertheless, leaving booby-trapped methods lying around in leaf classes makes me uncomfortable. It adds no value and confuses a system’s design because the interface effectively lies about its own functionality.
 
-If I move these add/remove methods down so that they are available only to composite classes, then 
+你也许会像我一样，在看到 Archer 类的代码时就想起了警报——为什么我们要把 addUnit() 和 removeUnit()，
 
-passing a Unit object to a method leaves me with the problem that I do not know by default whether or not it supports addUnit(). Nevertheless, leaving booby-trapped methods lying around in leaf classes makes me uncomfortable. It adds no value and confuses a system’s design because the interface effectively lies about its own functionality.
+ removeunit（）这样的冗余方法加到并不需要它们的局部类中？答案在于 Unit 类型的透明性。
 
-You can split composite classes off into their own CompositeUnit subtype quite easily. First of all, I 
+客户端代码在得到一个 Unit 对象时，知道其中一定包含 addunit（）方法。组合模式的原则便是局部类和组合类具有同样的接口。不过这未必能真正帮助我们，因为我们仍然不知道调用 nit 对象的 addunit（）方法是否安全。
 
-excise the add/remove behavior from Unit:
+如果我们将 add/ remove 方法降到下一级对象中，以便这些方法仅在组合类中使用，那么又会产生另一个问题一使用 Unit 对象时，我们并不知道该对象是否默认支持 addunit（）方法。但是，将冗余的类方法留在局部类中让人感到不舒服。这样做毫无意义而且给系统设计带来歧义因为接口应该关注于自己独有的功能。
 
+
+You can split composite classes off into their own CompositeUnit subtype quite easily. First of all, I excise the add/remove behavior from Unit:
+
+```php
 // listing 10.13
 
 abstract class Unit{    public function getComposite()    {        return null;    }
@@ -212,10 +347,9 @@ abstract class CompositeUnit extends Unit{    private $units = [];
     public function removeUnit(Unit $unit)    {        $idx = array_search($unit, $this->units, true);        if (is_int($idx)) {            array_splice($this->units, $idx, 1, []);        }    }
 
     public function getUnits(): array    {        return $this->units;    }}
+```
 
-The CompositeUnit class is declared abstract, even though it does not itself declare an abstract method. 
-
-It does, however, extend Unit, and it does not implement the abstract bombardStrength() method. Army (and any other composite classes) can now extend CompositeUnit. The classes in my example are now organized as in Figure 10-2.
+The CompositeUnit class is declared abstract, even though it does not itself declare an abstract method. It does, however, extend Unit, and it does not implement the abstract bombardStrength() method. Army (and any other composite classes) can now extend CompositeUnit. The classes in my example are now organized as in Figure 10-2.
 
 Figure 10-2.  Moving add/remove methods out of the base class
 
@@ -227,51 +361,41 @@ This is where the getComposite() method comes into its own. By default, this met
 
 // listing 10.15
 
+```php
 class UnitScript{    public static function joinExisting(        Unit $newUnit,        Unit $occupyingUnit    ): CompositeUnit {        $comp = $occupyingUnit->getComposite();        if (! is_null($comp)) {            $comp->addUnit($newUnit);        } else {            $comp = new Army();
 
             $comp->addUnit($occupyingUnit);            $comp->addUnit($newUnit);        }        return $comp;    }}
+```
 
-The joinExisting() method accepts two Unit objects. The first is a newcomer to a tile, and the second 
+The joinExisting() method accepts two Unit objects. The first is a newcomer to a tile, and the second is a prior occupier. If the second Unit is a CompositeUnit, then the first will attempt to join it. If not, then a new Army will be created to cover both units. I have no way of knowing at first whether the \$occupyingUnit argument contains a CompositeUnit. A call to getComposite() settles the matter, though. If getComposite() returns an object, I can add the new Unit object to it directly. If not, I create the new Army object and add both.
 
-is a prior occupier. If the second Unit is a CompositeUnit, then the first will attempt to join it. If not, then a new Army will be created to cover both units. I have no way of knowing at first whether the $occupyingUnit argument contains a CompositeUnit. A call to getComposite() settles the matter, though. If getComposite() returns an object, I can add the new Unit object to it directly. If not, I create the new Army object and add both.
+I could simplify this model further by having the Unit::getComposite() method return an Army object prepopulated with the current Unit. Or I could return to the previous model (which did not distinguish structurally between composite and leaf objects) and have Unit::addUnit() do the same thing: create an Army object and add both Unit objects to it. This is neat, but it presupposes that you know in advance the type of composite you would like to use to aggregate your units. Your business logic will determine the kinds of assumptions you can make when you design methods like getComposite() and addUnit().
 
-I could simplify this model further by having the Unit::getComposite() method return an Army object 
+These contortions are symptomatic of a drawback to the Composite pattern. Simplicity is achieved by ensuring that all classes are derived from a common base. The benefit of simplicity is sometimes bought at a cost to type safety. The more complex your model becomes, the more manual type checking you are likely to have to do. Let’s say that I have a Cavalry object. If the rules of the game state that you cannot put a horse on a troop carrier, I have no automatic way of enforcing this with the Composite pattern:
 
-prepopulated with the current Unit. Or I could return to the previous model (which did not distinguish structurally between composite and leaf objects) and have Unit::addUnit() do the same thing: create an Army object and add both Unit objects to it. This is neat, but it presupposes that you know in advance the type of composite you would like to use to aggregate your units. Your business logic will determine the kinds of assumptions you can make when you design methods like getComposite() and addUnit().
-
-These contortions are symptomatic of a drawback to the Composite pattern. Simplicity is achieved by 
-
-ensuring that all classes are derived from a common base. The benefit of simplicity is sometimes bought at a cost to type safety. The more complex your model becomes, the more manual type checking you are likely to have to do. Let’s say that I have a Cavalry object. If the rules of the game state that you cannot put a horse on a troop carrier, I have no automatic way of enforcing this with the Composite pattern:
-
+```php
 // listing 10.16
 
 class TroopCarrier extends CompositeUnit{    public function addUnit(Unit $unit)    {        if ($unit instanceof Cavalry) {            throw new UnitException("Can't get a horse on the vehicle");        }        parent::addUnit($unit);    }
 
     public function bombardStrength(): int    {        return 0;    }}
+```
 
-I am forced to use the instanceof operator to test the type of the object passed to addUnit(). If you 
+I am forced to use the instanceof operator to test the type of the object passed to addUnit(). If you have too many special cases of this kind, the drawbacks of the pattern begin to outweigh its benefits. Composite works best when most of the components are interchangeable.
 
-have too many special cases of this kind, the drawbacks of the pattern begin to outweigh its benefits. Composite works best when most of the components are interchangeable.
-
-Another issue to bear in mind is the cost of some Composite operations. The Army::bombardStrength() 
-
-method is typical in that it sets off a cascade of calls to the same method down the tree. For a large tree with lots of subarmies, a single call can cause an avalanche behind the scenes. bombardStrength() is not itself very expensive, but what would happen if some leaves performed a complex calculation to arrive at their return values? One way around this problem is to cache the result of a method call of this sort in the parent 
+Another issue to bear in mind is the cost of some Composite operations. The Army::bombardStrength() method is typical in that it sets off a cascade of calls to the same method down the tree. For a large tree with lots of subarmies, a single call can cause an avalanche behind the scenes. bombardStrength() is not itself very expensive, but what would happen if some leaves performed a complex calculation to arrive at their return values? One way around this problem is to cache the result of a method call of this sort in the parent 
 
 object, so that subsequent invocations are less expensive. You need to be careful, though, to ensure that the cached value does not grow stale. You should devise strategies to wipe any caches whenever any operations take place on the tree. This may require that you give child objects references to their parents.
 
 Finally, a note about persistence. The Composite pattern is elegant, but it doesn’t lend itself neatly to storage in a relational database. This is because, by default, you access the entire structure only through a cascade of references. To construct a Composite structure from a database in the natural way, you would have to make multiple expensive queries. You can get around this problem by assigning an ID to the whole tree, so that all components can be drawn from the database in one go. Having acquired all the objects, however, you would still have the task of recreating the parent/child references, which themselves would have to be stored in the database. This is not difficult, but it is somewhat messy.
 
-Although Composites sit uneasily with relational databases, they lend themselves very well indeed to 
-
-storage in XML. This is because XML elements are often themselves composed of trees of subelements.
+Although Composites sit uneasily with relational databases, they lend themselves very well indeed to storage in XML. This is because XML elements are often themselves composed of trees of subelements.
 
 Composite in SummarySo the Composite pattern is useful when you need to treat a collection of things in the same way as you would an individual, either because the collection is intrinsically like a component (armies and archers), or because the context gives the collection the same characteristics as the component (line items in an invoice). Composites are arranged in trees, so an operation on the whole can affect the parts, and data from the parts is transparently available via the whole. The Composite pattern makes such operations and queries transparent to the client. Trees are easy to traverse (as we shall see in the next chapter). It is easy to add new component types to Composite structures.
 
-On the downside, Composites rely on the similarity of their parts. As soon as we introduce complex 
+On the downside, Composites rely on the similarity of their parts. As soon as we introduce complex rules as to which composite object can hold which set of components, our code can become hard to manage. Composites do not lend themselves well to storage in relational databases, but are well suited to XML persistence.
 
-rules as to which composite object can hold which set of components, our code can become hard to manage. Composites do not lend themselves well to storage in relational databases, but are well suited to XML persistence.
-
-The Decorator Pattern
+## The Decorator Pattern
 
 While the Composite pattern helps us to create a flexible representation of aggregated components, the Decorator pattern uses a similar structure to help us to modify the functionality of concrete components. Once again, the key to this pattern lies in the importance of composition at runtime. Inheritance is a neat way of building on characteristics laid down by a parent class. This neatness can lead you to hard-code variation into your inheritance hierarchies, often causing inflexibility.
 
