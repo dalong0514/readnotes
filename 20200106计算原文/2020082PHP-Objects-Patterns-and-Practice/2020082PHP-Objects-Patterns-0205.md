@@ -2,25 +2,15 @@
 
 In this chapter, we get active. I look at patterns that help you to get things done, whether interpreting a mini-language or encapsulating an algorithm.
 
-This chapter will walk you through several patterns:
+This chapter will walk you through several patterns: 1) The Interpreter pattern: Building a mini-language interpreter that can be used to create scriptable applications. 2) The Strategy pattern: Identifying algorithms in a system and encapsulating them into their own types. 3) The Observer pattern: Creating hooks for alerting disparate objects about system events. 4) The Visitor pattern: Applying an operation to all the nodes in a tree of objects. 5) The Command pattern: Creating command objects that can be saved and passed around. 6) The Null Object pattern: Using non-operational objects in place of null values.
 
-The Interpreter pattern: Building a mini-language interpreter that can be used to create scriptable applications
-
-The Strategy pattern: Identifying algorithms in a system and encapsulating them into their own types
-
-The Observer pattern: Creating hooks for alerting disparate objects about system events
-
-The Visitor pattern: Applying an operation to all the nodes in a tree of objects
-
-The Command pattern: Creating command objects that can be saved and passed around
-
-The Null Object pattern: Using non-operational objects in place of null values.
-
-The Interpreter Pattern
+## 5.1 The Interpreter Pattern
 
 Languages are written in other languages (at least at first). PHP itself, for example, is written in C.  By the same token, odd as it may sound, you can define and run your own languages using PHP. Of course, any language you might create will be slow and somewhat limited. Nonetheless, mini-languages can be  very useful, as you will see in this chapter.
 
-The ProblemWhen you create web (or command-line) interfaces in PHP, you give the user access to functionality. The trade-off in interface design is between power and ease-of-use. As a rule, the more power you give your user, the more cluttered and confusing your interface becomes. Good interface design can help a lot here, of course. But if 90 percent of users are using the same 30 percent of your features, the costs of piling on the functionality may outweigh the benefits. You may wish to consider simplifying your system for most users. But what of the power users, that ten percent who use your system’s advanced features? Perhaps you can accommodate them in a different way. By offering such users a domain language (often called a  DSL—Domain Specific Language), you might actually extend the power of your application.
+### 5.1.1 The Problem
+
+When you create web (or command-line) interfaces in PHP, you give the user access to functionality. The trade-off in interface design is between power and ease-of-use. As a rule, the more power you give your user, the more cluttered and confusing your interface becomes. Good interface design can help a lot here, of course. But if 90 percent of users are using the same 30 percent of your features, the costs of piling on the functionality may outweigh the benefits. You may wish to consider simplifying your system for most users. But what of the power users, that ten percent who use your system’s advanced features? Perhaps you can accommodate them in a different way. By offering such users a domain language (often called a  DSL—Domain Specific Language), you might actually extend the power of your application.
 
 Of course, you have a programming language at hand right away. It’s called PHP. Here’s how you could 
 
@@ -56,15 +46,9 @@ life easier, you might implement a more user-friendly mechanism for marking resp
 
 $input equals "4" or $input equals "four"
 
-You propose a language that supports variables, an operator called equals, and Boolean logic (or and 
-
-and). Programmers love naming things, so let’s call it MarkLogic. It should be easy to extend, as you envisage lots of requests for richer features. Let’s leave aside the issue of parsing input for now and concentrate on a mechanism for plugging these elements together at runtime to produce an answer. This, as you might expect, is where the Interpreter pattern comes in.
+You propose a language that supports variables, an operator called equals, and Boolean logic (or and and). Programmers love naming things, so let’s call it MarkLogic. It should be easy to extend, as you envisage lots of requests for richer features. Let’s leave aside the issue of parsing input for now and concentrate on a mechanism for plugging these elements together at runtime to produce an answer. This, as you might expect, is where the Interpreter pattern comes in.
 
 ImplementationA language is made up of expressions (that is, things that resolve to a value). As you can see in Table 11-1, even a tiny language like MarkLogic needs to keep track of a lot of elements.
-
-236
-
-Chapter 11 ■ performing and representing tasks
 
 Table 11-1.  Elements of the MarkLogic Grammar
 
@@ -254,10 +238,6 @@ To wrap up the Expression classes, here are BooleanOrExpression and BooleanAndEx
 
 class BooleanOrExpression extends OperatorExpression{
 
-242
-
-Chapter 11 ■ performing and representing tasks
-
     protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {        $context->replace($this, $result_l || $result_r);    }}
 
 // listing 11.10class BooleanAndExpression extends OperatorExpression{    protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {        $context->replace($this, $result_l && $result_r);    }}
@@ -405,10 +385,6 @@ abstract class Marker{    protected $test;
 // listing 11.17
 
 class MarkLogicMarker extends Marker{    private $engine;
-
-248
-
-Chapter 11 ■ performing and representing tasks
 
     public function __construct(string $test)    {        parent::__construct($test);        $this->engine = new MarkParse($test);    }
 
@@ -569,10 +545,6 @@ interface Observer{    public function update(Observable $observable);}
 Any object that uses this interface can be added to the Login class via the attach() method. Here’s a 
 
 concrete instance:
-
-254
-
-Chapter 11 ■ performing and representing tasks
 
 // listing 11.28
 
@@ -1131,6 +1103,6 @@ Unit object can be queried for null status.
 
 In this chapter, I wrapped up my examination of the Gang of Four patterns, placing a strong emphasis on how to get things done. I began by showing you how to design a mini-language and build its engine with the Interpreter pattern.
 
-In the Strategy pattern, you encountered another way of using composition to increase flexibility and reduce the need for repetitive subclassing. And with the Observer pattern, you learned how to solve the problem of notifying disparate and varying components about system events. You also revisited the Composite example; and with the Visitor pattern, learned how to pay a call on, and apply many operations to, every component in a tree. You even saw how the Command pattern can help you to build an extensible tiered system. Finally, you saved yourself a heap of checking for nulls with the Null Object pattern.
+In the Strategy pattern, you encountered another way of using composition to increase flexibility and reduce the need for repetitive subclassing. And with the Observer pattern, you learned how to solve the problem of notifying disparate and varying components about system events. You also revisited the Composite example; and with the Visitor pattern, learned how to pay a call on, and apply many operations to, every component in a tree. You even saw how the Command pattern can help you to build an extensible tiered system. Finally, you saved yourself a heap of checking for nulls with the Null Object pattern. In the next chapter, I will step further beyond the Gang of Four to examine some patterns specifically oriented toward enterprise programming.
 
-In the next chapter, I will step further beyond the Gang of Four to examine some patterns specifically oriented toward enterprise programming.
+在本章中，我们结了对《设计模式》一书中模式的研究。我们用解释器模式设计了一个迷你语言并创建了该语言的引擎；使用了策略模式（另一种使用组合的方式）来增加系统灵活性并减少对于重复子类的需要；使用了观察者模式解决了将系统事件通知到多个不同组件的问题；也重新回顾了组合模式的示例，并通过访问者模式学习了如何在对象树中访问每个节点元素，并对它们执行多种操作；最后看到了命令模式如何帮助我们建立一个具有扩展性的多层系统。在下一章中，我们会介绍《设计模式》ー书中未提及的一些模式，特别是面向企业应用的设计模式。
