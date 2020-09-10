@@ -20,39 +20,13 @@
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-维基百科链接：有的话。
-
-#### 01. 出生日期
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及经历
-
-#### 03. 论文及书籍
-
-#### 04. 演讲汇总
-
-找一个他的 TED 演讲，有的话。
-
 ### 0401. 金句卡——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
+### 0501. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
-
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
 
 ## Introduction
 
@@ -234,7 +208,7 @@ When a block with dynamic properties is inserted into a drawing, additional grip
 
 One of the benefits of using attributes with your blocks is that you can extract the information and then use it in your drawing or an external program. If all of your blocks contain attributes, you could generate a bill of materials on demand or even help prepare an estimate for a project. The attribute values and the properties of the blocks containing attributes can be extracted from a drawing using the Attribute Extraction dialog box (attext command) or Data Extraction Wizard (attext command) (in AutoCAD on Windows only) or by using the -attext command at the command prompt in AutoCAD both on Windows and Mac OS. The following steps explain how to extract the attributes from a drawing using the Data Extraction Wizard in AutoCAD on Windows:
 
-1『dataextraction 命令可以提取实体对象里的各个数据，可以筛选出块的属性信息，可以导出成 csv、txt 等格式。可以说这个命令可以满足我想要做数据分析所需的数据源了，哈哈；用命令 -attext 可以直接提取属性信息，但需要一个模板，没有 dataextraction 方便。』
+1『 dataextraction 命令可以提取实体对象里的各个数据，可以筛选出块的属性信息，可以导出成 csv、txt 等格式。可以说这个命令可以满足我想要做数据分析所需的数据源了，哈哈；用命令 -attext 可以直接提取属性信息，但需要一个模板，没有 dataextraction 方便。』
 
 NOTE: After you place a table using the Data Extraction Wizard, a Data Link icon that looks like two chain links appears in the application's status-bar tray. Right-click the icon or the table in the drawing, and click Update All Data Links to ensure the information displayed in the table is up to date.
 
