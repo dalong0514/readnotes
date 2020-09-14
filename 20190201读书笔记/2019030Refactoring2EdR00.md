@@ -30,13 +30,9 @@ The great benefit of removing local variables is that it makes it much easier to
 
 ### 0102. 反常识卡——重构会加快开发进度
 
-常识：重构会放慢开发进度。
-
-反常识：重构会加快开发进度。
+常识：重构会放慢开发进度。反常识：重构会加快开发进度。
 
 出处：Martin Fowler，本书的一个核心观点。
-
-例子：
 
 如果你读了前面一小节，我对这个挑战的回应便已经很清楚了。尽管重构的目的是加快开发速度，但是，仍旧很多人认为，花在重构的时间是在拖慢新功能的开发进度。「重构会拖慢进度」这种看法仍然很普遍，这可能是导致人们没有充分重构的最大阻力所在。重构的唯一目的就是让我们开发更快，用更少的工作量创造更大的价值。
 
@@ -50,9 +46,7 @@ But I think the most dangerous way that people get trapped is when they try to j
 
 ### 0103. 反常识卡——测试会加快开发进度
 
-常识：测试会放慢开发进度。
-
-反常识：测试会加快开发进度。
+常识：测试会放慢开发进度。反常识：测试会加快开发进度。
 
 Refactoring is a valuable tool, but it can’t come alone. To do refactoring properly, I need Tutorialsa solid suite of tests to spot my inevitable mistakes. Even with automated refactoring tools, many of my refactorings will still need checking via a test suite. I don’t find this to be a disadvantage. Even without refactoring, writing good tests increases my effectiveness as a programmer. This was a surprise for me and is counterintuitive for most programmers—so it’s worth explaining why.
 
@@ -60,15 +54,11 @@ Refactoring is a valuable tool, but it can’t come alone. To do refactoring pro
 
 ### 0104. 主题卡——测试的颗粒度
 
-针对对每个类的每个行为做测试，特别是那些可能产生错误的行为。
+针对对每个类的每个行为做测试，特别是那些可能产生错误的行为。而对于类的 accessors（读取函数）没必要做测试。
 
 Now I’ll continue adding more tests. The style I follow is to look at all the things the class should do and test each one of them for any conditions that might cause the class to fail. This is not the same as testing every public method, which is what some programmers advocate. Testing should be risk­-driven; remember, I’m trying to find bugs, now or in the future. Therefore I don’t test accessors that just read and write a field: They are so simple that I’m not likely to find a bug there.
 
-现在，我将继续添加更多测试。我遵循的风格是：观察被测试类应该做的所有事情，然后对这个类的每个行为进行测试，包括各种可能使它发生异常的边界条件。这不同于某些程序员提倡的「测试所有 public 函数」的风格。记住，测试应该是一种风险驱动的行为，我测试的目标是希望找出现在或未来可能出现的 bug。所以我不会去测试那些仅仅读或写一个字段的访问函数，因为它们太简单了，不太可能出错。
-
 This is important because trying to write too many tests usually leads to not writing enough. I get many benefits from testing even if I do only a little testing. My focus is to test the areas that I’m most worried about going wrong. That way I get the most benefit for my testing effort. It is better to write and run incomplete tests than not to run complete tests.
-
-这一点很重要，因为如果尝试撰写过多测试，结果往往反而导致测试不充分。事实上，即使我只做一点点测试，也从中获益良多。测试的重点应该是那些我最担心出错的部分，这样就能从测试工作中得到最大利益。
 
 ### 0105. 主题卡——既有代码添加测试的具体步骤
 
