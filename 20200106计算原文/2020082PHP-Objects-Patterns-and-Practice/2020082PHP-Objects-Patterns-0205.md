@@ -8,97 +8,55 @@ This chapter will walk you through several patterns: 1) The Interpreter pattern:
 
 Languages are written in other languages (at least at first). PHP itself, for example, is written in C.  By the same token, odd as it may sound, you can define and run your own languages using PHP. Of course, any language you might create will be slow and somewhat limited. Nonetheless, mini-languages can be  very useful, as you will see in this chapter.
 
+编程语言总是用其他编程语言编写的（至少一开始是这样）。例如，PHP 就是用 C 编写的。虽然听起来可能有些怪，但出于同样的原因，我们也能用 PHP 定义和运行我们自己发明的编程语言。当然，我们创建的语言运行起来会比较慢，功能也很有限。尽管如此，迷你语言是非常有用的，这将在本章中介绍。
+
 ### 5.1.1 The Problem
 
 When you create web (or command-line) interfaces in PHP, you give the user access to functionality. The trade-off in interface design is between power and ease-of-use. As a rule, the more power you give your user, the more cluttered and confusing your interface becomes. Good interface design can help a lot here, of course. But if 90 percent of users are using the same 30 percent of your features, the costs of piling on the functionality may outweigh the benefits. You may wish to consider simplifying your system for most users. But what of the power users, that ten percent who use your system’s advanced features? Perhaps you can accommodate them in a different way. By offering such users a domain language (often called a  DSL—Domain Specific Language), you might actually extend the power of your application.
 
-Of course, you have a programming language at hand right away. It’s called PHP. Here’s how you could 
+Of course, you have a programming language at hand right away. It’s called PHP. Here’s how you could allow your users to script your system:
 
-allow your users to script your system:
+当我们用 PHP 创建 Web（或者命令行）接口时，我们会给用户访问功能的权限。在设计接口时，我们需要权衡易用性和功能。通常，你为用户提供的功能越多，你的接口就会越混乱。当然个优秀的接口设计可以提供很大的帮助，但是如果 90%的用户只使用你特性中相同的 30%，堆积在功能上的成本便可能会弊大于利了，而此时你也许该考虑为了大多数用户简化系统。但是那些使用系统中高级特性的另外 10% 的高级用户，又怎么办呢？你可以通过其他方法来满足他们的要求。通过给这些用户提供一种领域语言（通常被称为 DSL-domain Specific Language，领域特定语言），你也许能有效地扩展你应用程序的功能。当然，我们有一个编程语言马上可以使用，那就是 PHP。下面就是允许用户为我们的系统写脚本的一个例子。
 
-$form_input = $_REQUEST['form_input'];// contains: "print file_get_contents('/etc/passwd');"eval($form_input);
+```php
+$form_input = $_REQUEST['form_input'];
+// contains: "print file_get_contents('/etc/passwd');"
+eval($form_input);
+```
 
-This approach to making an application scriptable is clearly insane. Just in case the reasons are not 
+This approach to making an application scriptable is clearly insane. Just in case the reasons are not blatantly obvious, they boil down to two issues: security and complexity. The security issue is well addressed in the example. By allowing users to execute PHP via your script, you are effectively giving them access to the server the script runs on. The complexity issue is just as big a drawback. No matter how clear your code is, the average user is unlikely to extend it easily and certainly not from the browser window.
 
-blatantly obvious, they boil down to two issues: security and complexity. The security issue is well addressed in the example. By allowing users to execute PHP via your script, you are effectively giving them access to the server the script runs on. The complexity issue is just as big a drawback. No matter how clear your code is, the average user is unlikely to extend it easily and certainly not from the browser window.
+A mini-language, though, can address both these problems. You can design flexibility into the language, reduce the possibility that the user can do damage, and keep things focused.
 
-A mini-language, though, can address both these problems. You can design flexibility into the language, 
+Imagine an application for authoring quizzes. Producers design questions and establish rules for marking the answers submitted by contestants. It is a requirement that quizzes must be marked without human intervention, even though some answers can be typed into a text field by users.
 
-reduce the possibility that the user can do damage, and keep things focused.
+Here’s a Question: How many members in the Design Patterns gang?
 
-Imagine an application for authoring quizzes. Producers design questions and establish rules for 
+You can accept「four」or「4」as correct answers. You might create a web interface that allows a producer to use a regular Expression for marking responses:
 
-marking the answers submitted by contestants. It is a requirement that quizzes must be marked without human intervention, even though some answers can be typed into a text field by users.
-
-Here’s a Question:
-
-How many members in the Design Patterns gang?
-
-You can accept「four」or「4」as correct answers. You might create a web interface that allows a producer 
-
-to use a regular Expression for marking responses:
-
+```
 ^4|four$
+```
 
-Most producers are not hired for their knowledge of regular expressions, however. To make everyone’s 
+Most producers are not hired for their knowledge of regular expressions, however. To make everyone’s life easier, you might implement a more user-friendly mechanism for marking responses:
 
-life easier, you might implement a more user-friendly mechanism for marking responses:
-
+```php
 $input equals "4" or $input equals "four"
+```
 
 You propose a language that supports variables, an operator called equals, and Boolean logic (or and and). Programmers love naming things, so let’s call it MarkLogic. It should be easy to extend, as you envisage lots of requests for richer features. Let’s leave aside the issue of parsing input for now and concentrate on a mechanism for plugging these elements together at runtime to produce an answer. This, as you might expect, is where the Interpreter pattern comes in.
 
-ImplementationA language is made up of expressions (that is, things that resolve to a value). As you can see in Table 11-1, even a tiny language like MarkLogic needs to keep track of a lot of elements.
+### 5.1.2 Implementation
+
+A language is made up of expressions (that is, things that resolve to a value). As you can see in Table 11-1, even a tiny language like MarkLogic needs to keep track of a lot of elements.
 
 Table 11-1.  Elements of the MarkLogic Grammar
 
-Description
-
-EBNF Name
-
-Class Name
-
-VariableString literalBoolean and
-
-variable
-
-VariableExpression
-
-<stringLiteral>
-
-LiteralExpression
-
-andExpr
-
-BooleanAndExpression
-
-Boolean or
-
-orExpr
-
-BooleanOrExpression
-
-Example
-
-$input
-
-"four"
-
-$input equals '4' and $other equals '6'
-
-$input equals '4' or $other equals '6'
-
-Equality test
-
-eqExpr
-
-EqualsExpression
-
-$input equals '4'
-
 Table 11-1 lists EBNF names. So what is EBNF all about? It’s a notation that you can use to describe a language grammar. EBNF stands for Extended Backus-Naur Form. It consists of a series of lines (called productions), each one consisting of a name and a description that takes the form of references to other productions and to terminals (that is, elements that are not themselves made up of references to other productions). Here is one way of describing my grammar using EBNF:
 
+```php
 expr     = operand { orExpr | andExpr }operand  = ( '(' expr ')' | ? string literal ? | variable ) { eqExpr }orExpr   = 'or' operandandExpr  = 'and' operandeqExpr   = 'equals' operandvariable = '$' , ? word ?
+```
 
 Some symbols have special meanings (that should be familiar from regular Expression notation): | means or, for example. You can group elements using brackets. So in the example, an Expression (expr) consists of an operand followed by zero or more of either orExpr or andExpr. An operand can be a bracketed Expression, a quoted string (I have omitted the production for this), or a variable followed by zero or more instances of eqExpr. Once you get the hang of referring from one production to another, EBNF becomes quite easy to read.
 
@@ -106,14 +64,11 @@ In Figure 11-1, I represent the elements of my grammar as classes.
 
 Figure 11-1.  The Interpreter classes that make up the MarkLogic language
 
-As you can see, BooleanAndExpression and its siblings inherit from OperatorExpression. This is 
+As you can see, BooleanAndExpression and its siblings inherit from OperatorExpression. This is because these classes all perform their operations upon other Expression objects. VariableExpression and LiteralExpression work directly with values.
 
-because these classes all perform their operations upon other Expression objects. VariableExpression and LiteralExpression work directly with values.
+All Expression objects implement an interpret() method that is defined in the abstract base class, Expression. The interpret() method expects an InterpreterContext object that is used as a shared data store. Each Expression object can store data in the InterpreterContext object. The InterpreterContext will then be passed along to other Expression objects. So that data can be retrieved easily from the InterpreterContext, the Expression base class implements a getKey() method that returns a unique handle. Let’s see how this works in practice with an implementation of Expression:
 
-All Expression objects implement an interpret() method that is defined in the abstract base class, 
-
-Expression. The interpret() method expects an InterpreterContext object that is used as a shared data store. Each Expression object can store data in the InterpreterContext object. The InterpreterContext will then be passed along to other Expression objects. So that data can be retrieved easily from the InterpreterContext, the Expression base class implements a getKey() method that returns a unique handle. Let’s see how this works in practice with an implementation of Expression:
-
+```php
 // listing 11.01
 
 abstract class Expression{    private static $keycount = 0;    private $key;
@@ -143,31 +98,23 @@ class InterpreterContext{    private $expressionstore = [];
 // listing 11.04
 
 $context = new InterpreterContext();$literal = new LiteralExpression('four');$literal->interpret($context);print $context->lookup($literal) . "\n";
+```
 
 Here’s the output:
 
 four
 
-I’ll begin with the InterpreterContext class. As you can see, it is really only a front end for an associative array, $expressionstore, which I use to hold data. The replace() method accepts an Expression object as key and a value of any type, and then adds the pair to $expressionstore. It also provides a lookup() method for retrieving data.
+I’ll begin with the InterpreterContext class. As you can see, it is really only a front end for an associative array, \$expressionstore, which I use to hold data. The replace() method accepts an Expression object as key and a value of any type, and then adds the pair to \$expressionstore. It also provides a lookup() method for retrieving data.
 
-The Expression class defines the abstract interpret() method and a concrete getKey() method that 
+The Expression class defines the abstract interpret() method and a concrete getKey() method that uses a static counter value to generate, store, and return an identifier.
 
-uses a static counter value to generate, store, and return an identifier.
+This method is used by InterpreterContext::lookup() and InterpreterContext::replace() to index data.
 
-This method is used by InterpreterContext::lookup() and InterpreterContext::replace() to 
+The LiteralExpression class defines a constructor that accepts a value argument. The interpret() method requires a InterpreterContext object. I simply call replace(), using getKey() to define the key for retrieval and the \$value property. This will become a familiar pattern as you examine the other Expression classes. The interpret() method always inscribes its results upon the InterpreterContext object.
 
-index data.
+I include some client code as well, instantiating both an InterpreterContext object and a LiteralExpression object (with a value of "four"). I pass the InterpreterContext object to  LiteralExpression::interpret(). The interpret() method stores the key/value pair in InterpreterContext, from where I retrieve the value by calling lookup(). Here’s the remaining terminal class. VariableExpression is a little more complicated:
 
-The LiteralExpression class defines a constructor that accepts a value argument. The interpret() 
-
-method requires a InterpreterContext object. I simply call replace(), using getKey() to define the key for retrieval and the $value property. This will become a familiar pattern as you examine the other Expression classes. The interpret() method always inscribes its results upon the InterpreterContext object.
-
-I include some client code as well, instantiating both an InterpreterContext object and a 
-
-LiteralExpression object (with a value of "four"). I pass the InterpreterContext object to  LiteralExpression::interpret(). The interpret() method stores the key/value pair in InterpreterContext, from where I retrieve the value by calling lookup().
-
-Here’s the remaining terminal class. VariableExpression is a little more complicated:
-
+```php
 // listing 11.05
 
 class VariableExpression extends Expression{    private $name;    private $val;
@@ -189,19 +136,15 @@ $newvar = new VariableExpression('input');$newvar->interpret($context);print $co
 $myvar->setValue("five");$myvar->interpret($context);print $context->lookup($myvar) . "\n";// output: five
 
 print $context->lookup($newvar) . "\n";// output: five
+```
 
-The VariableExpression class accepts both name and value arguments for storage in property 
+The VariableExpression class accepts both name and value arguments for storage in property variables. I provide the setValue() method, so that client code can change the value at any time.
 
-variables. I provide the setValue() method, so that client code can change the value at any time.
+The interpret() method checks whether or not the \$val property has a nonnull value. If the \$val property has a value, it sets it on the InterpreterContext. I then set the \$val property to null. This is in case interpret() is called again after another identically named instance of VariableExpression has changed the value in the InterpreterContext object. This is quite a limited variable, accepting only string values. If you intend to extend your language, you should consider having it work with other Expression objects, so that it can contain the results of tests and operations. For now, though, VariableExpression will do the work I need of it. Notice that I have overridden the getKey() method, so that variable values are linked to the variable name and not to an arbitrary static ID.
 
-The interpret() method checks whether or not the $val property has a nonnull value. If the $val 
+Operator expressions in the language all work with two other Expression objects in order to get their job done. It makes sense, therefore, to have them extend a common superclass. Here is the OperatorExpression class:
 
-property has a value, it sets it on the InterpreterContext. I then set the $val property to null. This is in case interpret() is called again after another identically named instance of VariableExpression has changed the value in the InterpreterContext object. This is quite a limited variable, accepting only string values. If you intend to extend your language, you should consider having it work with other Expression objects, so that it can contain the results of tests and operations. For now, though, VariableExpression will do the work I need of it. Notice that I have overridden the getKey() method, so that variable values are linked to the variable name and not to an arbitrary static ID.
-
-Operator expressions in the language all work with two other Expression objects in order to 
-
-get their job done. It makes sense, therefore, to have them extend a common superclass. Here is the OperatorExpression class:
-
+```php
 // listing 11.07
 
 abstract class OperatorExpression extends Expression{    protected $l_op;    protected $r_op;
@@ -213,10 +156,9 @@ abstract class OperatorExpression extends Expression{    protected $l_op;    pro
         $result_r = $context->lookup($this->r_op);        $this->doInterpret($context, $result_l, $result_r);    }
 
     abstract protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    );}
+```
 
-OperatorExpression is an abstract class. It implements interpret(), but it also defines the abstract 
-
-dointerpret() method.
+OperatorExpression is an abstract class. It implements interpret(), but it also defines the abstract dointerpret() method.
 
 The constructor demands two Expression objects, $l_op and $r_op, which it stores in properties.The interpret() method begins by invoking interpret() on both its operand properties (if you have read the previous chapter, you might notice that I am creating an instance of the Composite pattern here). Once the operands have been run, interpret() still needs to acquire the values that this yields. It does this by calling InterpreterContext::lookup() for each property. It then calls dointerpret(), leaving it up to child classes to decide what to do with the results of these operations.
 
@@ -226,14 +168,17 @@ The constructor demands two Expression objects, $l_op and $r_op, which it stores
 
 Here’s the EqualsExpression class, which tests two Expression objects for equality:
 
+```php
 // listing 11.08
 
 class EqualsExpression extends OperatorExpression{    protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {            $context->replace($this, $result_l == $result_r);    }}
+```
 
 EqualsExpression only implements the dointerpret() method, which tests the equality of the operand results it has been passed by the interpret() method, placing the result in the InterpreterContext object.
 
 To wrap up the Expression classes, here are BooleanOrExpression and BooleanAndExpression:
 
+```php
 // listing 11.09
 
 class BooleanOrExpression extends OperatorExpression{
@@ -241,54 +186,55 @@ class BooleanOrExpression extends OperatorExpression{
     protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {        $context->replace($this, $result_l || $result_r);    }}
 
 // listing 11.10class BooleanAndExpression extends OperatorExpression{    protected function doInterpret(        InterpreterContext $context,        $result_l,        $result_r    ) {        $context->replace($this, $result_l && $result_r);    }}
+```
 
-Instead of testing for equality, the BooleanOrExpression class applies a logical or operation and stores 
-
-the result of that via the InterpreterContext::replace() method. BooleanAndExpression, of course, applies a logical and operation.
+Instead of testing for equality, the BooleanOrExpression class applies a logical or operation and stores the result of that via the InterpreterContext::replace() method. BooleanAndExpression, of course, applies a logical and operation.
 
 I now have enough code to execute the mini-language fragment I quoted earlier. Here it is again:
 
+```php
 $input equals "4" or $input equals "four"
+```
 
 Here’s how I can build this statement up with my Expression classes:
 
+```php
 // listing 11.11
 
 $context = new InterpreterContext();$input = new VariableExpression('input');$statement = new BooleanOrExpression(    new EqualsExpression($input, new LiteralExpression('four')),    new EqualsExpression($input, new LiteralExpression('4')));
+```
 
-I instantiate a variable called "input" but hold off on providing a value for it. I then create a 
-
-BooleanOrExpression object that will compare the results from two EqualsExpression objects. The first of these objects compares the VariableExpression object stored in $input with a LiteralExpression containing the string "four"; the second compares $input with a LiteralExpression object containing the string "4".
+I instantiate a variable called "input" but hold off on providing a value for it. I then create a BooleanOrExpression object that will compare the results from two EqualsExpression objects. The first of these objects compares the VariableExpression object stored in \$input with a LiteralExpression containing the string "four"; the second compares \$input with a LiteralExpression object containing the string "4".
 
 Now, with my statement prepared, I am ready to provide a value for the input variable and run the code:
 
+```php
 // listing 11.12
 
 foreach (["four", "4", "52"] as $val) {    $input->setValue($val);    print "$val:\n";
 
     $statement->interpret($context);    if ($context->lookup($statement)) {        print "top marks\n\n";    } else {        print "dunce hat on\n\n";    }}
+```
 
-In fact, I run the code three times, with three different values. The first time through, I set the temporary 
+In fact, I run the code three times, with three different values. The first time through, I set the temporary variable \$val to "four", assigning it to the input VariableExpression object using its setValue() method. I then call interpret() on the topmost Expression object (the BooleanOrExpression object that contains references to all other expressions in the statement). Here are the internals of this invocation, step-by-step:
 
-variable $val to "four", assigning it to the input VariableExpression object using its setValue() method. I then call interpret() on the topmost Expression object (the BooleanOrExpression object that contains references to all other expressions in the statement). Here are the internals of this invocation, step-by-step:
+\$statement calls interpret() on its \$l_op property (the first EqualsExpression object).
 
-$statement calls interpret() on its $l_op property (the first EqualsExpression object).
-
-The first EqualsExpression object calls interpret() on its $l_op property (a reference to the input VariableExpression object, which is currently set to "four").
+The first EqualsExpression object calls interpret() on its \$l_op property (a reference to the input VariableExpression object, which is currently set to "four").
 
 The input VariableExpression object writes its current value to the provided InterpreterContext object by calling InterpreterContext::replace().
 
-The first EqualsExpression object calls interpret() on its $r_op property (a LiteralExpression object charged with the value "four").
+The first EqualsExpression object calls interpret() on its \$r_op property (a LiteralExpression object charged with the value "four").
 
 The LiteralExpression object registers its key and its value with InterpreterContext.
 
-The first EqualsExpression object retrieves the values for $l_op ("four") and $r_op ("four") from the InterpreterContext object.
+The first EqualsExpression object retrieves the values for \$l_op ("four") and \$r_op ("four") from the InterpreterContext object.
 
 The first EqualsExpression object compares these two values for equality, and then registers the result (true) and its key with the InterpreterContext object.
 
-Back at the top of the tree, the $statement object (BooleanOrExpression) calls interpret() on its $r_op property. This resolves to a value (false, in this case) in the same way the $l_op property did.
+Back at the top of the tree, the \$statement object (BooleanOrExpression) calls interpret() on its \$r_op property. This resolves to a value (false, in this case) in the same way the \$l_op property did.
 
-The $statement object retrieves values for each of its operands from the InterpreterContext object and compares them using ||. It is comparing true and false, so the result is true. This final result is stored in the InterpreterContext object.
+The \$statement object retrieves values for each of its operands from the InterpreterContext object and compares them using ||. It is comparing true and false, so the result is true. This final result is stored in the InterpreterContext object.
 
 And all that is only for the first iteration through the loop. Here is the final output:
 
@@ -314,7 +260,7 @@ Many people approaching the Interpreter pattern for the first time are disappoin
 
 excitement, to discover that it does not address parsing. This means that you are not yet in a position to offer your users a nice, friendly language. Chapter 24 contains some rough code to illustrate one strategy for parsing a mini-language.
 
-The Strategy Pattern
+## The Strategy Pattern
 
 Classes often try to do too much. It’s understandable: you create a class that performs a few related actions; and, as you code, some of these actions need to be varied according to the circumstances. At the same time, your class needs to be split into subclasses. Before you know it, your design is being pulled apart by competing forces.
 
