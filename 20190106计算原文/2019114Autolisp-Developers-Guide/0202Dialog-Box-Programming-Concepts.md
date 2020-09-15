@@ -1,8 +1,9 @@
-# 0202Dialog Box Programming Concepts
+# 0202. Dialog Box Programming Concepts
 
 [Dialog Box Programming Concepts | Cadalyst](https://www.cadalyst.com/cad/autocad/dialog-box-programming-concepts-4829)
 
 30 Apr, 1999
+
 By: Bill Kramer
 
 Dialog-box interfaces can make a world of difference in how well the user community accepts an application. This month, we'll look at a simple dialog box and how to program it. First, we will create a basic version that does nothing more for the user than place all the input in a dialog box. Then, we'll improve that dialog box into something much more user friendly. Along the way we'll investigate how dialog boxes are defined and programmed in AutoLISP and Visual LISP.
@@ -14,7 +15,8 @@ When being defined, most tiles contain the Label and Key properties. The Label a
 
 Some simple rules exist for the use of Key properties inside a dialog box. First off, each Key value must be a string, and it must be unique inside the dialog box. In other words, there should not be any other keys of the same value in the same dialog box. Key names are case sensitive and should be consistent within an application. In Listing 1 all of the Key names are uppercase as a standard.
 
-Dialog Boxes as Objects
+## Dialog Boxes as Objects
+
 Another way to think of dialog boxes is to consider them to be objects. We won't go into the nuances of object-oriented programming, but similar programming concepts apply. From a programming perspective, an object is something that can be manipulated by setting and changing properties or data values. The properties are typically manipulated using functions or methods that take outside information and put it into the object or expose the information in the object to the outside world. When the properties of an object are changed, the object changes accordingly. In the case of AutoLISP, the outside world is our application, and the methods used to manipulate the dialog box are a set of functions available to our application. As we change the properties of the tile objects, the dialog box changes in one way or another.
 
 The coding required to manipulate a basic dialog box, can be found in Listing 2. This function performs all of the essential work required for input via a dialog box. It uses the dialog box definition found in Listing 1, which it assumes is located in the file cdnc3-99.dcl somewhere in the current file system. The (LOAD_DIALOG) subr loads an entire DCL file into memory, and it returns a dialog handle. The dialog handle is used later in the program to access the dialog box definitions. Since a single DCL file can contain multiple dialog-box definitions, a dialog handle can be used to address more than one dialog box.
@@ -33,7 +35,8 @@ Another property that is set in many applications at runtime is the Action prope
 
 Once the dialog box has been prepared, the (START_DIALOG) subr is run. At this time, the control is turned over to the dialog-box interaction (that is, the user is driving the pointing device, and the dialog box is reacting).
 
-How the Program Takes Control
+## How the Program Takes Control
+
 There are two ways that your program gets control once (START_DIALOG) is running. The first is for the dialog box to be finished. When the user hits a retirement button, such as OK or Cancel, the (START_DIALOG) subr returns. This subr always returns an integer amount. If the value returned is one, then the OK button was selected. Cancel results in a return value of zero. Your callback functions can also force a return of the (START_DIALOG) subr through the use of (DONE_DIALOG). In that case, you supply the integer parameter to (DONE_DIALOG) that will be returned as a result of the (START_DIALOG).
 
 The other way your program gets control from the dialog-box system is when a callback function is invoked. Callback functions defined in the Action properties of the tiles can result in your own functions being run as the result of the user manipulating the tile. When a callback function is running, your application can service the input, check it or change other tile settings.
@@ -42,7 +45,8 @@ Listing 2 does not contain any callback-function requests, just simple SETQ assi
 
 If the value returned from (START_ DIALOG) is not one (meaning that the cancel button has been hit), the ALLDONE flag is set to true in order to stop the WHILE loop. After stopping the WHILE loop, the dialog is unloaded from memory and a nil result sent back to the calling function.
 
-Making It Better
+## Making It Better
+
 The example in Listing 2 demonstrates the basic principles involved in programming a dialog box in AutoLISP, and it has a lot of lines of code when compared to simply asking the user for the input in a series of (GETSTRING) type entries. Additionally, this function does not run in a very user-friendly manner (other than to provide a dialog box entry mechanism). So, what can be done to improve it?
 
 First off, we can provide the system date in the date field as default. When asking for a date, it is a good idea to fill in the field with the system date. Not only does this save the user time in having to enter the date, it also provides a clue as to the date format expected. Another improvement is the use of pop-up lists for the initials of the engineer, the checker and the drafter. The use of the list items will ensure that the entry is proper as well as save on keystrokes needed to enter the information. These improvements make the interface much more satisfying for the user, and they also increase the integrity of the data entry.
@@ -51,14 +55,16 @@ Listings 3 and 4 are the DCL and AutoLISP code for the improved interface, respe
 
 The function CNOTE2_DIALOG also demonstrates a programming style I highly recommend when developing dialog-box functions, which is to put the runtime-property-setup-function calls in a separate function. Listing 5 contains the code for initializing the dialog box. The function CNOTE2_PREP contains the ACTION_TILE and SET_TILE calls used to initialize the dialog box. The reason for placing them in a separate function is to make it easier to add or change things in the future. It also makes the main-processing program shorter and easier to read (something you will be grateful for if you ever have to change the code in the future).
 
-List Box Setup
+## List Box Setup
+
 You have three subrs to fill in the popup-list values. START_LIST identifies the exact list tile to fill in; using it you can start at the beginning and define all the entries, append to the end or replace a single entry in the middle. ADD_LIST adds a value to the list at the place specified. And, END_LIST terminates the list update sequence. MAPCAR is often used with ADD_LIST to place the contents of a list of strings into the list tile. Also, you must maintain the list separately from the list box. When users manipulate or select a list member, the value of the tile only gives the location in the list box that is affected.
 
 After the call to CNOTE2_PREP (back in Listing 4), there is a call to the MODE_TILE subr. Not only can MODE_TILE be used to enable or disable tiles, but it can also be used to set the focus to the tile. Setting the focus means that the tile specified is the active tile for edits-as if the user had picked it with the mouse. In this application, the only keyboard entry required is the description, and, thus, the focus is set there initially. If a dialog box contains a mixture of mouse and keyboard entry, then set the focus to the first keyboard entry when starting the dialog box. That way the user can enter the data and return to the pointing device for the remainder of the dialog box. Keeping the user's comfort in mind when designing dialog boxes is important because it will improve the acceptance of the application.
 
 Finally, in Listing 4 we check to see what the value returned from START_DIALOG is. Similar to the earlier version, we are interested in the OK result. When OK has been selected, START_DIALOG returns a value of one, and the program then checks to see if the description field has been filled in. It doesn't need to check the initials because a default entry has already been selected, so the user can only select from the choices provided in the program. The date entry was checked using a callback function. At the end of Listing 5, the callback function, CNOTE2_DATE, was attached to the DATE tile. In Listing 6, CNOTE2_ DATE checks the date entry to see if it is a recognizable date. As a consequence, the user cannot enter a bad date while the dialog box is running. Thus, our main program in Listing 4 only has to check to see if the description entry is empty or not.
 
-Callback Functions
+## Callback Functions
+
 Callback functions provide a way for the program to perform error checking in a realtime fashion-as the user enters the data it is checked to see if it is valid. If not, an error message can be flashed to users informing them of the problem so that corrective action can take place right away. Callback functions should be short and to the point. They cannot perform (COMMAND) expressions, and they should not attempt to communicate with the user through the command line. Instead, callback functions can be set up to start nested dialog boxes and to create graphic objects using (ENTMAKE).
 
 The callback function in Listing 6 is very short, and it simply checks the date format. If the date format is not correct, the user is informed of that through an Alert dialog box. The date tile value is set to the currently saved value in the variable cdate. It is important to note that the date-check mechanism in Listing 6 uses some code borrowed from a previous Programmer's Toolbox column (CADENCE, March 1996, "The Dating Game," pp. 111-116). The function (IS_A_ DATE) is not printed here, but it can be found online at www.cadence-mag.com as part of the code associated with this article.
@@ -90,6 +96,8 @@ CHANGENOTE1 : dialog { label = "Change note";
   }
   ok_cancel;
 }
+
+
 Listing 2. Change Request Input Version 1
 
 ;;
@@ -153,6 +161,8 @@ Listing 2. Change Request Input Version 1
   ))
   (if (listp AllDone) AllDone) ;;send back ;;resulting list
 )
+
+
 Listing 3. Dialog Box Code for Version 2
 
 CHANGENOTE2 : dialog { label = "Change note";
