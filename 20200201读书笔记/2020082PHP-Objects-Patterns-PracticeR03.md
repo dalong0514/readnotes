@@ -20,6 +20,8 @@ One approach to testing starts at the interface of a project, modeling the vario
 
 测试在任何项目中都是一个基本要素。即使你的测试流程并不规范，也一定使用了一系列确认系统是否正常工作的操作。这种不规范的测试流程很快就会变得乏味，并且会逐渐让人形成种撞大运的心态。有一种测试方法是从一个项目的接口开始，为用户可能使用系统的各种方式建模。而这也是手工测试时通常会使用的方式，虽然也有众多的框架可以自动化该过程。这些功能测试有时又被称为验收测试（acceptance test），因为一个成功执行的动作列表可以作为一个项目阶段完成的依据。使用该方法时，通常会把系统看做一个黑盒一一测试只针对产品功能，并不关注项目内部结构和处理过程。
 
+2『这里给出了「验收测试」的定义，做一张术语卡片。』——已完成
+
 Whereas functional tests operate from without, unit tests work from the inside out. Unit testing tends to focus on classes, with test methods grouped together in test cases. Each test case puts one class through a rigorous workout, checking that each method performs as advertised and fails as it should. The objective, as far as possible, is to test each component in isolation from its wider context. This often supplies you with a sobering verdict on the success of your mission to decouple the parts of your system.
 
 Tests can be run as part of the build process, directly from the command line, or even via a web page. In this chapter, I’ll concentrate on the command line.
@@ -28,7 +30,7 @@ Unit testing is a good way of ensuring the quality of design in a system. Tests 
 
 功能测试从外部着手，而单元测试（本章的主题）则从内部着手。单元测试更加关注于类，并将测试方法组合到测试用例中。每个测试用例通过严格的检测来处理一个类，检査每个方法是否如预期般成功执行或失败。单元测试的目标是尽可能地在隔离周边环境的情况下测试每个组件。只有隔离了周围环境的影响，才能发现被测试的组件与周边组件间的耦合是否真正被解开。测试可以作为项目构建过程的一部分，直接从命令行或者甚至通过一个网页来执行。本章主要采用命令行方式进行测试。
 
-单元测试是保证系统设计质量的好办法。测试揭示了类和方法的职责。一些程序员甚至提倡测试先行（test-first）的开发方式。他们认为应该在写一个类之前先写好测试。测试设定了一个类的目的，保证了一个千净的接口和简短并集中的方法。我个人曾未渴望达到这样纯粹的程度——也许是因为这不符合我的编码风格。然而，我每前进一步都会努力写测试。测试给我提供了重构代码时的安全保障。因为我知道在系统的其他地方可以捕获非预期的错误，所以可以放心地删除或替换掉项目中的某个代码包。
+单元测试是保证系统设计质量的好办法。测试揭示了类和方法的职责。一些程序员甚至提倡测试先行（test-first）的开发方式。他们认为应该在写一个类之前先写好测试。测试设定了一个类的目的，保证了一个干净的接口和简短并集中的方法。我个人曾未渴望达到这样纯粹的程度——也许是因为这不符合我的编码风格。然而，我每前进一步都会努力写测试。测试给我提供了重构代码时的安全保障。因为我知道在系统的其他地方可以捕获非预期的错误，所以可以放心地删除或替换掉项目中的某个代码包。
 
 ### 5.2 Testing by Hand
 
@@ -76,6 +78,8 @@ class UserStore {
 }
 ```
 
+1『发现作者写函数的风格，入参和输出的类型都定死，但数据流开发的过程中，类型定死后经常遇到类型不符导致的 bug，后来把固定类型都取消了。但直觉上，作者的做法是好的，应该是有效的避免了后面深层次的 bug，只是目前自己的 level 达不到那个高度，践行不了。（2020-09-23）』
+
 This class accepts user data with the addUser() method and retrieves it via getUser(). The user’s e-mail address is used as the key for retrieval. If you’re like me, you’ll write some sample implementation as you develop, just to check that things are behaving as you designed them:
 
 1『直接在 laravel 里实现，代码如下。』
@@ -99,7 +103,6 @@ class TestController extends Controller
         );
         $store->notifyPasswordFailure('bob@example.com');
         $user = $store->getUser('bob@example.com');
-        dd($user);
         return $user;
     }
 }
@@ -176,13 +179,13 @@ $ chmod 755 phpunit.phar
 $ sudo mv phpunit.phar/usr/local/bin/phpunit
 ```
 
-2『上面的工具可以尝试一下。』
+1『 PHPUnit 安装这块内容还是去看 laravel 的官方文档和 PHPUnit 的官方文档。（2020-09-23）』
 
 Note: I show commands that are input at the command line in bold to distinguish them from any output  they may produce.
 
 #### 5.3.1 Creating a Test Case
 
-Armed with PHPUnit, I can write tests for the UserStore class. Tests for each target component should be collected in a single class that extends PHPUnit\_Framework\_TestCase, one of the classes made available by the PHPUnit package. Here’s how to create a minimal test case class:
+Armed with PHPUnit, I can write tests for the UserStore class. Tests for each target component should be collected in a single class that extends `PHPUnit_Framework_TestCase`, one of the classes made available by the PHPUnit package. Here’s how to create a minimal test case class:
 
 ```php
 // listing 18.05namespace popp\ch18\batch01;
@@ -200,7 +203,7 @@ class UserStoreTest extends \PHPUnit_Framework_TestCase{
 
 I named the test case class UserStoreTest. You are not obliged to use the name of the class you are testing in the test’s name, although that is what many developers do. Naming conventions of this kind can greatly improve the accessibility of a test harness, especially as the number of components and tests in the system begins to increase. It is often useful to place your test in the same namespace as the class under test. This will give you easy access to the class under test and its peers, and the structure of your test files will likely mirror that of your system. Remember that, thanks to Composer’s support for PSR-4, you can maintain separate directory structures for class files in the same package.
 
-在软件测试中，测试用具是指一个包含了软件和測试数据的集合，用以测试一个程序单元，使之在不同的条件下运行，并监控它的行为和输出。测试用具应该包含测试环境的搭建和清理，选择运行单个测试或者所有测试的方法，分析输出结果的手段以及错误的标准报告等——译者注
+在软件测试中，测试用具是指一个包含了软件和测试数据的集合，用以测试一个程序单元，使之在不同的条件下运行，并监控它的行为和输出。测试用具应该包含测试环境的搭建和清理，选择运行单个测试或者所有测试的方法，分析输出结果的手段以及错误的标准报告等——译者注
 
 In this code, I have nominated two directories that map to the popp namespace. I can now maintain these in parallel, making it easy to keep my test and production code separate.
 
@@ -251,9 +254,9 @@ class UserStoreTest extends TestCase
 
 遇到好几个问题：
 
-1、5.8 版本以上要求 setUp tearDown 的返回类型为 void，最终的代码如下：
+1、5.8 版本以上要求 setUp、tearDown 的返回类型为 void，最终的代码如下：
 
-```
+```php
 public function setUp(): void {
     parent::setUp();
     $this->store = new UserStore();
@@ -270,7 +273,7 @@ Note: remember that setUp() and tearDown() are called once for every test method
 
 Note: Test methods should be named to begin with the word「test」and should require no arguments. This is because the test case class is manipulated using reflection. reflection is covered in detail in Chapter 5.
 
-2『上面解释了为啥测试类的命名需要以 test 开头，做一张任意卡片。』——已完成
+2『上面解释了为啥测试类的命名需要以 test 开头，这里还有一个关键点：测试函数不能入参，做一张任意卡片。』——已完成
 
 The object that runs the tests looks at all the methods in the class and invokes only those that match this pattern (that is, methods that begin with「test」). In the example, I tested the retrieval of user information. I don’t need to instantiate UserStore for each test because I handled that in setUp(). Because setUp() is invoked for each test, the \$store property is guaranteed to contain a newly instantiated object.
 
@@ -279,6 +282,12 @@ The object that runs the tests looks at all the methods in the class and invokes
 Within the testgetUser() method, I first provide UserStore::addUser() with dummy data, and then I retrieve that data and test each of its elements.
 
 There is one additional issue to be aware of here, before we can run our test. I am using use statements without require or require\_once. In other words, I am relying on autoloading. That’s fine, but where do I tell my tests how to locate the generated autoload.php file? I could put a require_once statement in the test class (or a superclass), but that would break the PSR-1 rule that class files should not have side effects. The simplest thing to do is to tell PHPUnit about the autoload.php file from the command line:
+
+```
+phpunit src/ch18/batch01/UserStoreTest.php --bootstrap vendor/autoload.php
+```
+
+1『本来一直用命令 `./vendor/bin/phpunit` 跑全部的测试。试了下 brew 竟然可以安装 phpunit，哈哈。借鉴上面的信息，再结合 PHPunit 官网文档，可以直接用 phpunit 命令加类文件名，只跑这个文件里的测试。比如：`phpunit tests/Unit/UserStoreTest.php`，目前实验发现 phpunit 命令直接跑比老方法跑规则更严（老方法能跑通但新方法跑不通，报错），意外的大收获。（2020-09-23）』
 
 #### 5.3.2 Assertion Methods
 
