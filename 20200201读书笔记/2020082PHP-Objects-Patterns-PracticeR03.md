@@ -10,6 +10,8 @@ Every component in a system depends for its continued smooth running on the cons
 
 Among the test solutions available to PHP programmers, PHPUnit is perhaps the most ubiquitous and certainly the most fully featured tool. In this chapter, you will learn the following about PHPUnit: 1) Installation: Using PEAR to install PHPUnit. 2) Writing Tests: Creating test cases and using assertion methods. 3) Handling Exceptions: Strategies for confirming failure. 4) Running multiple tests: Collecting tests into suites. 5) Constructing assertion logic: Using constraints. 6) Faking components: Mocks and stubs. 7) Testing web applications: Testing with and without additional tools.
 
+本章重温了作为开发者所会编写却也会经常放弃的各种测试，并且介绍了 PhPunit。PhPunit 使你能在开发过程中编写出不被随意丢弃的测试，并且可以将这些测试保存起来并因此受益！我们演示了如何实现一个测试用例，并且介绍了可用的断言方法。我们讲解了约束和 mock 对象的用法。此外，我们展示了测试重构如何改进你的设计，以及测试 Web 应用的一些技巧（使用了 PhPunit 和 Selenium）。最后我冒着可能使某些人不满的风险，警告读者测试需要付出一定的代价，并讨论了如何权衡这些代价。
+
 ### 5.1 Functional Tests and Unit Tests
 
 Testing is essential in any project. Even if you don’t formalize the process, you must have found yourself developing informal lists of actions that put your system through its paces. This process soon becomes wearisome, and that can lead to a fingers-crossed attitude to your projects.
@@ -357,7 +359,7 @@ class UserStoreTest extends \PHPUnit_Framework_TestCase {
 }
 ```
 
-### 5.3.4 Running Test Suites
+#### 5.3.4 Running Test Suites
 
 If I am testing the UserStore class, I should also test Validator. Here is a cut-down version of a class called ValidateTest that tests the Validator::validateUser() method:
 
