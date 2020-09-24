@@ -287,7 +287,19 @@ There is one additional issue to be aware of here, before we can run our test. I
 phpunit src/ch18/batch01/UserStoreTest.php --bootstrap vendor/autoload.php
 ```
 
-1『本来一直用命令 `./vendor/bin/phpunit` 跑全部的测试。试了下 brew 竟然可以安装 phpunit，哈哈。借鉴上面的信息，再结合 PHPunit 官网文档，可以直接用 phpunit 命令加类文件名，只跑这个文件里的测试。比如：`phpunit tests/Unit/UserStoreTest.php`，目前实验发现 phpunit 命令直接跑比老方法跑规则更严（老方法能跑通但新方法跑不通，报错），意外的大收获。（2020-09-23）』
+1『
+
+本来一直用命令 `./vendor/bin/phpunit` 跑全部的测试。试了下 brew 竟然可以安装 phpunit，哈哈。借鉴上面的信息，再结合 PHPunit 官网文档，可以直接用 phpunit 命令加类文件名，只跑这个文件里的测试。比如：`phpunit tests/Unit/UserStoreTest.php`，在项目根目录下直接用命令 `phpunit` 可以跑项目里的所有测试用例。但目前实验发现 phpunit 命令直接跑比老方法跑规则更严（老方法能跑通但新方法跑不通，报错），意外的大收获。（2020-09-23）
+
+数据流项目直接跑的话，报错：
+
+```
+HP Fatal error:  Declaration of Illuminate\Foundation\Testing\TestCase::setUp() must be compatible with PHPUnit\Framework\TestCase::setUp(): void in
+```
+
+发现就是版本不兼容的问题。首先用 `php artisan` 查看项目的 laravel 版本号是 5.6.40。接着查看 `composer.json` 里，phpunit 版本是 7.0 的，说明 phpunit 7.0 和 laravel 5.6 是兼容的，但 brew 安装的 phpunit 是 9.3 的，跟 laravel 5.6 不兼容。最后查了下本书的项目版本号是 laravel 6.18，说明跟 phpunit 9.3 是兼容的。（2020-09-24）
+
+』
 
 #### 5.3.2 Assertion Methods
 
@@ -299,27 +311,18 @@ PHPUnit supports assertions through a set of static methods. In the previous exa
 
 Table 18-1.  PHPUnit_Framework_TestCase Assert Methods
 
-```
-assertEquals($val1, $val2, $message, $delta)——Fail if $val1 is not equivalent to $val2 ($delta represents an allowable margin of error)
-
-assertFalse($expression, $message)——Evaluate $expression; fail if it does not resolve to false
-
-assertTrue($expression, $message)——Evaluate $expression; fail if it does not resolve to true
-
-assertNotNull($val, $message)——Fail if $val is null
-
-assertNull($val, $message)——Fail if $val is anything other than null
-
-assertSame($val1, $val2, $message)——Fail if $val1 and $val2 are not references to the same object, or if they are variables of different types or values
-
-assertNotSame($val1, $val2, $message)——Fail if $val1 and $val2 are references to the same object or variables of the same type and value
-
-assertRegExp($regexp, $val, $message)——Fail if $val is not matched by the regular expression, $regexp
-
-assertAttributeSame($val, $attribute, $classname, $message)——Fail if $val is not the same type and value as $classname::$attribute
-
-fail()——Fail
-```
+| 断言 | 描述 |
+| --- | --- |
+| `assertEquals($val1, $val2, $message, $delta)` | `Fail if $val1 is not equivalent to $val2 ($delta represents an allowable margin of error)` |
+| `assertFalse($expression, $message)` | `Evaluate $expression; fail if it does not resolve to false` |
+| `assertTrue($expression, $message)` | `Evaluate $expression; fail if it does not resolve to true` |
+| `assertNotNull($val, $message)` | `Fail if $val is null` |
+| `assertNull($val, $message)` | `Fail if $val is anything other than null` |
+| `assertSame($val1, $val2, $message)` | `Fail if $val1 and $val2 are not references to the same object, or if they are variables of different types or values` |
+| `assertNotSame($val1, $val2, $message)` | `Fail if $val1 and $val2 are references to the same object or variables of the same type and value` |
+| `assertRegExp($regexp, $val, $message)` | `Fail if $val is not matched by the regular expression, $regexp` |
+| `assertAttributeSame($val, $attribute, $classname, $message)` | `Fail if $val is not the same type and value as $classname::$attribute` |
+| fail() | Fail |
 
 1『 fail() 是使测试方法直接返回失败。』
 
@@ -413,7 +416,7 @@ In most circumstances, you will use off-the-peg assertions in your tests. In fac
 
 1『自定义测试函数嘛，太赞了！』
 
-在大多数情况下，你会在测试时使用 PHPUnit 中现成的断言。而事实上，你只要通过 AssertTrue() 方法就可完成很多测试工作。但在 Phpunit3.0 以后，PHPUnit\_Framework\_TestCase 包含了一套返回 PHPUnit\_Framework\_Constraint 对象的工厂方法。你可以合并这些对象并将其传给 PHPUnit\_Framework\_TestCase::AssertThat() 来构造你自己的断言。
+在大多数情况下，你会在测试时使用 PHPUnit 中现成的断言。而事实上，你只要通过 AssertTrue() 方法就可完成很多测试工作。但在 Phpunit 3.0 以后，PHPUnit\_Framework\_TestCase 包含了一套返回 PHPUnit\_Framework\_Constraint 对象的工厂方法。你可以合并这些对象并将其传给 PHPUnit\_Framework\_TestCase::AssertThat() 来构造你自己的断言。
 
 It’s time for a quick example. The UserStore object should not allow duplicate e-mail addresses to be added. Here’s a test that confirms this:
 
@@ -433,13 +436,15 @@ public function testAddUserDuplicate() {
 }
 ```
 
+1『小插曲，`$this->contains` 已经被废弃了，改用新的 `$this->containsEquial`。（2020-09-24）』
+
 This test adds a user to the UserStore object and then adds a second user with the same e-mail address. The test thereby confirms that an exception is thrown with the second call to addUser(). In the catch clause, I build a constraint object using the convenience methods available to us. These return corresponding instances of PHPUnit\_Framework\_Constraint. Let’s break down the composite constraint in the previous example:
 
 ```php
 $this->contains("bob stevens")
 ```
 
-This returns a PHPUnit\_Framework\_Constraint\_TraversableContains object. When passed to AssertThat, this object will generate an error if the test subject does not contain an element matching the given value ("bob stevens"). I negate this, though, by passing this constraint to another: PHPUnit\_Framework\_Constraint\_Not. Once again, I use a convenience method, available through the TestCase class (actually through a superclass, Assert):
+This returns a `PHPUnit_Framework_Constraint_TraversableContains` object. When passed to AssertThat, this object will generate an error if the test subject does not contain an element matching the given value ("bob stevens"). I negate this, though, by passing this constraint to another: PHPUnit\_Framework\_Constraint\_Not. Once again, I use a convenience method, available through the TestCase class (actually through a superclass, Assert):
 
 ```php
 $this->logicalNot( $this->contains("bob stevens"))
@@ -456,7 +461,43 @@ $const = $this->logicalAnd(
 );
 ```
 
-2『测试中约束的优点做一张任意卡片。』——已完成
+2『测试中约束的优点做一张任意卡片。组合约束条件形成更复杂的自定义断言函数，而且可以层层组合，这个功能为例巨大。（2020-09-24）』——已完成
+
+3『
+
+phpunit 文档中：[1. Assertions — PHPUnit 9.2 Manual](https://phpunit.readthedocs.io/en/9.2/assertions.html#assertthat)
+
+`assertThat()`, More complex assertions can be formulated using the `PHPUnit\Framework\Constraint` classes. They can be evaluated using the assertThat() method. Example 1.59 shows how the logicalNot() and equalTo() constraints can be used to express the same assertion as assertNotEquals().
+
+```
+assertThat(mixed $value, PHPUnit\Framework\Constraint $constraint[, $message = ''])
+```
+
+Reports an error identified by `$message` if the `$value` does not match the `$constraint`.
+
+```php
+<?php
+use PHPUnit\Framework\TestCase;
+
+class BiscuitTest extends TestCase
+{
+    public function testEquals()
+    {
+        $theBiscuit = new Biscuit('Ginger');
+        $myBiscuit  = new Biscuit('Ginger');
+
+        $this->assertThat(
+          $theBiscuit,
+          $this->logicalNot(
+            $this->equalTo($myBiscuit)
+          )
+        );
+    }
+}
+?>
+```
+
+』
 
 #### 5.3.6 Mocks and Stubs
 
@@ -470,13 +511,15 @@ Another approach is to fake the context of the class you are testing. This invol
 
 Fake objects can be taken a stage further than this, however. Because the object you are testing is likely to call a fake object in some way, you can prime it to confirm the invocations you are expecting. Using a fake object as a spy in this way is known as behavior verification, and it is what distinguishes a mock object from a stub.
 
-另一种方式就是伪造测试类的环境。该方式会创建假装在进行真实工作的对象。例如，你可能会传一个伪造的数据库映射给测试对象的构造函数。因为伪造对象和真实的映射类（继承自一个共同的抽象基类或甚至重写该类本身）是相同类型，所以测试目标对此一无所知。你可以预先准备好具有正确数据的虛拟对象（fake object）。这类为单元测试提供沙箱的对象就是所谓的桩。它们非常有用，因为它们使你能仅关注于要测试的类本身而无需同时注意整个系统。
+1-2『哈哈，大赞，解耦测试有 2 个方式：1）把构建对象、数据库连接、文件系统的暂存区，都放到测试的前置、后置里。2）模拟测试类的环境，即 mock 对象（只需模拟对象的行为，数据不用模拟）。mock 对象和 stub 对象做一张术语卡片。（2020-09-24）』——已完成
+
+另一种方式就是伪造测试类的环境。该方式会创建假装在进行真实工作的对象。例如，你可能会传一个伪造的数据库映射给测试对象的构造函数。因为伪造对象和真实的映射类（继承自一个共同的抽象基类或甚至重写该类本身）是相同类型，所以测试目标对此一无所知。你可以预先准备好具有正确数据的虚拟对象（fake object）。这类为单元测试提供沙箱的对象就是所谓的桩。它们非常有用，因为它们使你能仅关注于要测试的类本身而无需同时注意整个系统。
 
 但虚拟对象的功能还不止于此。因为你所测试的对象可能会以某种方式调用虚拟对象，所以你可以准备好虚拟对象以便它按照预期那样确保调用可以进行。以这种类似间谍的方式使用虚拟对象被称为「行为确认」。对于对象行为的预期正是 mock 对象与 stub 对象不同的地方。
 
 Stub，可理解为占位用的假对象。简单地说，stub 只是占位，而 mock 对象还关注于对行为的预期，这是两者的区别。如果读者想了解更多内容，建议阅读 Martin Fowler 的 Mocks Aren't Stubs 一文。一一译者注
 
-23『
+2-3『
 
 Martin Fowler 博客里的文章：[Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
 
@@ -492,7 +535,7 @@ Let’s build an example. The UserStore class contains a method called notifyPas
 
 创建 mock 对象的办法有两种。首先，你可以自己创建相应的类来确保返回特定的值，以供方法调用。这是一个简单的过程，但需要花费一些时间。Phpunit 提供了另一个更为易用和动态的解决方案。它会为你在运行时自动生成 mock 对象。PHPUnit 会检査你想要模拟的对象并创建一个重写该对象方法的子类。一旦有了 mock 对象的实例，你就可以调用其中的方法来准备数据或设定测试成功的条件。
 
-下面举个例子。Userstores 类包含了一个 notifypasswordfai1ure（）方法，该方法会设定特定用户的密码字段。当尝试设置密码失败时，该方法就会被 va1 idator 调用。下面的例子创建了 Userstore 类的 mock 对象，以便它能为 Validator 对象提供数据及确认 notifypassword Fai1ure（）方法如预期地被调用：
+下面举个例子。UserStore 类包含了一个 notifyPasswordFailure() 方法，该方法会设定特定用户的密码字段。当尝试设置密码失败时，该方法就会被 Validator 调用。下面的例子创建了 UserStore 类的 mock 对象，以便它能为 Validator 对象提供数据及确认 notifyPasswordFailure() 方法如预期地被调用：
 
 ```php
 // listing 18.09
@@ -525,7 +568,7 @@ getMock() 方法废弃了。
 
 [php - phpunit mock - method does not exist - Stack Overflow](https://stackoverflow.com/questions/39601142/phpunit-mock-method-does-not-exist)
 
-PHPUnit\_Framework\_TestCase::getMockBuilder() only takes one (1) argument, the class name. The methods to mock are ment to be defined via the returned mock builder objects setMethods() method.
+`PHPUnit\_Framework\_TestCase::getMockBuilder()` only takes one (1) argument, the class name. The methods to mock are ment to be defined via the returned mock builder objects setMethods() method.
 
 ```php
 $stub = $this
@@ -537,7 +580,7 @@ $stub = $this
 $stub = $this->getMockBuilder(SomeClass::class)->getMock();
 ```
 
-有时间好好看下官方文档：[8. Test Doubles — PHPUnit 9.2 Manual](https://phpunit.readthedocs.io/en/9.2/test-doubles.html#stubs)
+有时间好好看下官方文档：[Test Doubles — PHPUnit 9.2 Manual](https://phpunit.readthedocs.io/en/9.2/test-doubles.html#stubs)
 
 』
 
@@ -555,16 +598,16 @@ Mock objects generated by PHPUnit have an expects() method. This method requires
 
 由 PHPUnit 生成的 mock 对象有一个 expects() 方法。该方法要求一个匹配对象（它实际上是 PHPUnit\_Framework\_MockObject\_Matcher\_Invocation 类型。你不需要知道其确切类型，就可以在 TestCase 中使用便捷方法来生成匹配对象作为参数。匹配对象定义了期望的基数，即个方法应该被调用的次数。
 
-```
 Table 18-3 shows the matcher methods available in a TestCase class.
 
-any()——Zero or more calls are made to the corresponding method (useful for stub objects that return values, but don’t test invocations)
-never()——No calls are made to the corresponding method
-atLeastOnce()——One or more calls are made to the corresponding method
-once()——A single call is made to the corresponding method
-exactly($num)——$num calls are made to the corresponding method
-at($num)——A call to the corresponding method made at $num index (each method call to a mock is recorded and indexed)
-```
+| methods | descripe |
+| --- | --- |
+| any() | Zero or more calls are made to the corresponding method (useful for stub objects that return values, but don’t test invocations) |
+| never() | No calls are made to the corresponding method |
+| atLeastOnce() | One or more calls are made to the corresponding method |
+| once() | A single call is made to the corresponding method |
+| exactly(`$num`) | `$num `calls are made to the corresponding method |
+| at(`$num`) | A call to the corresponding method made at `$num` index (each method call to a mock is recorded and indexed) |
 
 Having set up the match requirement, I need to specify a method to which it applies. For instance, expects() returns an object (PHPUnit\_Framework\_MockObject\_Builder\_InvocationMocker, if you must know) that has a method called method(). I can simply call that with a method name. This is enough to get some real mocking done:
 
