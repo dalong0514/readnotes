@@ -519,14 +519,6 @@ Fake objects can be taken a stage further than this, however. Because the object
 
 Stub，可理解为占位用的假对象。简单地说，stub 只是占位，而 mock 对象还关注于对行为的预期，这是两者的区别。如果读者想了解更多内容，建议阅读 Martin Fowler 的 Mocks Aren't Stubs 一文。一一译者注
 
-2-3『
-
-Martin Fowler 博客里的文章：[Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
-
-消化吸收并作为本书的一个附件。
-
-』
-
 You can build mocks yourself by creating classes hard-coded to return certain values and to report on method invocations. This is a simple process, but it can be time-consuming.
 
 PHPUnit provides access to an easier and more dynamic solution. It will generate mock objects on the fly for you. It does this by examining the class you wish to mock and building a child class that overrides its methods. Once you have this mock instance, you can call methods on it to prime it with data and to set the conditions for success.
@@ -582,6 +574,52 @@ $stub = $this->getMockBuilder(SomeClass::class)->getMock();
 
 有时间好好看下官方文档：[Test Doubles — PHPUnit 9.2 Manual](https://phpunit.readthedocs.io/en/9.2/test-doubles.html#stubs)
 
+研读了官方文档后还是没能解决，只能算弄出一个半成品（用的 stub 而非 mock），断言是能跑通，但理解不了为啥。（2020-09-24）
+
+```php
+    public function testValidateFalsePass() {
+        // $stub = $this->getMockBuilder(UserStore::class)
+        //             ->setMethodsExcept()
+        //             ->getMock();
+        
+        // $stub->expects($this->once())
+        //     ->method('notifyPasswordFailure')
+        //     ->with($this->equalTo('bob@example.com'));
+
+        // $stub->expects($this->any())
+        //     ->method('getUser')
+        //     ->with($this->returnValue([
+        //         'name' => 'bob williams',
+        //         'mail' => 'bob@example.com',
+        //         'pass' => 'right'
+        //     ]));
+        
+        $stub = $this->createMock(UserStore::class);
+        // $stub->method('notifyPasswordFailure')->willReturn('');
+        $stub->method('getUser')->willReturn([
+            'name' => 'bob williams',
+            'mail' => 'bob@example.com',
+            'pass' => 'right'
+        ]);
+
+        $this->validator = new Validator($stub);
+        // $this->validator->validateUser('bob@example.com', 'wrong');
+        $this->assertTrue($this->validator->validateUser('bob@example.com', 'right'));
+    }
+```
+
+总算是找到原因了，`with` 应该是 `will`，真实魔鬼在细节。（2020-09-24）
+
+```php
+$stub->expects($this->any())
+    ->method('getUser')
+    ->will($this->returnValue([
+        'name' => 'bob williams',
+        'mail' => 'bob@example.com',
+        'pass' => 'right'
+    ]));
+```
+
 』
 
 Mock objects use a fluent interface; that is, they have a language-like structure. These are much easier to use than to describe. Such constructs work from left to right, each invocation returning an object reference, which can then be invoked with a further modifying method call (itself returning an object). This can make for easy use, but painful debugging.
@@ -609,7 +647,7 @@ Table 18-3 shows the matcher methods available in a TestCase class.
 | exactly(`$num`) | `$num `calls are made to the corresponding method |
 | at(`$num`) | A call to the corresponding method made at `$num` index (each method call to a mock is recorded and indexed) |
 
-Having set up the match requirement, I need to specify a method to which it applies. For instance, expects() returns an object (PHPUnit\_Framework\_MockObject\_Builder\_InvocationMocker, if you must know) that has a method called method(). I can simply call that with a method name. This is enough to get some real mocking done:
+Having set up the match requirement, I need to specify a method to which it applies. For instance, expects() returns an object (`PHPUnit_Framework_MockObject_Builder_InvocationMocker`, if you must know) that has a method called method(). I can simply call that with a method name. This is enough to get some real mocking done:
 
 ```php
 $store = $this->getMock("UserStore");
@@ -630,7 +668,9 @@ You can see why this is known as a fluent interface. It reads a bit like a sente
 Notice that I passed a constraint to with(). Actually, that’s redundant; any bare arguments are converted to constraints internally, so I could write the statement like this:
 
 ```php
-$store->expects($this->once())    ->method('notifyPasswordFailure')    ->with('bob@example.com');
+$stub->expects($this->once())
+    ->method('notifyPasswordFailure')
+    ->with('bob@example.com');
 ```
 
 Sometimes, you only want to use PHPUnit’s mocks as stubs; that is, as objects that return values to allow your tests to run. In such cases, you can invoke InvocationMocker::will() from the call to method(). The will() method requires the return value (or values if the method is to be called repeatedly) that the associated method should be primed to return. You can pass in this return value by calling either TestCase::returnValue() or TestCase::onConsecutiveCalls(). Once again, this is much easier to do than to describe. Here’s the fragment from my earlier example in which I prime UserStore to return a value:
@@ -645,9 +685,35 @@ $store->expects($this->any())
     ]));
 ```
 
-I prime the UserStore mock to expect any number of calls to getUser(). Right now, I’m concerned with providing data, not with testing calls. Next, I call will() with the result of invoking TestCase::returnValue() with the data I want returned (this happens to be a PHPUnit\_Framework\_MockObject\_Stub\_Return object, although if I were you, I’d just remember the convenience method you use to get it).
+1『上面的信息体现了 stub 和 mock 的区别，stub 仅仅范围值，而 mock 可以返回行为。不过还是没吃透啊，而且也没有遇到必须 mock 的应用场景。（2020-09-24）』
+
+I prime the UserStore mock to expect any number of calls to getUser(). Right now, I’m concerned with providing data, not with testing calls. Next, I call will() with the result of invoking TestCase::returnValue() with the data I want returned (this happens to be a `PHPUnit_Framework_MockObject_Stub_Return object`, although if I were you, I’d just remember the convenience method you use to get it).
 
 You can alternatively pass the result of a call to TestCase::onConsecutiveCalls() to will(). This accepts any number of parameters, each one of which will be returned by your mocked method as it is called repeatedly.
+
+1『
+
+目前最终的版本，还需完善。（2020-09-24）
+
+```php
+public function testValidateFalsePass() {
+    $stub = $this->createMock(UserStore::class);
+
+    $stub->expects($this->any())
+        ->method('getUser')
+        ->will($this->returnValue([
+            'name' => 'bob williams',
+            'mail' => 'bob@example.com',
+            'pass' => 'right'
+        ]));
+
+    $this->validator = new Validator($stub);
+    $this->assertTrue($this->validator->validateUser('bob@example.com', 'right'));
+}
+```
+
+』
+
 
 #### 5.3.7 Tests Succeed When They Fail
 
@@ -669,8 +735,8 @@ class UserStore {
             "User {$mail} already in the system"            
         );        
      }
-        $this->users[$mail] = new User($name, $mail, $pass);
-        return true;    
+    $this->users[$mail] = new User($name, $mail, $pass);
+    return true;    
     }
 
     public function notifyPasswordFailure(string $mail)    {        
@@ -683,7 +749,9 @@ class UserStore {
         if (isset($this->users[$mail])) {            
             return ( $this->users[$mail] );        
         }
-        return null;    }}
+        return null;    
+        }
+    }
 ```
 
 Here is the simple User class:
@@ -764,3 +832,156 @@ If you find a system hard to run in different contexts, that may indicate a desi
 Once your system can be run directly from a method call, you’ll find that high-level web tests are relatively easy to write without any additional tools. You may find, however, that even the most well-thought-out project will need some refactoring to get things ready for testing. In my experience, this almost always results in design improvements. I’m going to demonstrate this by retrofitting one aspect of the WOO example from Chapters 12 and 13 for unit testing.
 
 一旦 Web 系统可以直接通过方法调用运行，你会发现在不使用其他工具的情况下，高层次的 Web 测试相对会更容易编写。但是，即使是经过深思熟虑之后开发出来的项目，恐怕也需要经过重构才能具备测试条件。以我的编程经验来看，这通常会改进设计。我打算改进第 12 章和第 13 章的 WOO 示例的一个方面来进行单元测试，以此说明这一过程。
+
+3『附件1-0305Enter-The-Mock.md
+
+[PHP Test Driven Development Part 4: Enter The Mock | by Sameer Nyaupane | Medium](https://medium.com/@sameernyaupane/php-test-driven-development-part-4-enter-the-mock-106b4fdedd00)
+
+Hey there, welcome to part 4! Today we’ll learn how to mock. Mocking is a process where you create a fake instance of a real class, and test against it. This is so that, you do not have to worry about the real functionality of external dependencies inside a class. This makes unit testing a lot easier and reliable.
+
+Please check out Part3, if you have not read it yet: https://hackernoon.com/php-test-driven-development-part-3-unit-testing-continued-db5d332197ec
+
+Although PHPUnit does have mocking capabilities, it is not as full fledged as that of Mockery’s ([Mockery — Mockery Docs 1.0-alpha documentation](http://docs.mockery.io/en/latest/)). We’ll be using Mockery for all our mocking needs. Another good thing is that Laravel ships with Mockery by default. We can get started straight away without any installation or configuration.
+
+1-2『哈哈，laravel 自待了 Mockery，之前确实在 composer.json 里看到了它。可以去消化吸收 Mockery 的官方文档了。（2020-09-24）』
+
+First, let’s write some sample code that we’ll use. For the purpose of making it simple, we’ll just make a wrapper class. A wrapper class called “Math” that calls the “Calculate” class. The same “Calculate” class that we made in the previous episode. Let’s make the file with the path “app/Math.php”.
+
+```php
+<?php
+namespace App;
+
+class Math
+{
+    /**
+     * @var Calculate
+     */
+    public $calculate;
+
+    /**
+     * Math constructor.
+     *
+     * @param Calculate $calculate
+     */
+    public function __construct(Calculate $calculate)
+    {
+        $this->calculate = $calculate;
+    }
+
+    /**
+     * Get Area
+     * 
+     * @param $length
+     * 
+     * @return float|int
+     */
+    public function getArea($length)
+    {
+        return $this->calculate->areaOfSquare($length);
+    }
+}
+```
+
+Here, on line 16, we require a Calculate class in the same namespace “App”. Then we assign it to the same object instance on line 18.
+
+Remember to always opt for dependency injections through the constructor instead of creating them through the “new” keyword inside the methods. This makes testing a lot easier when we make the mocks. Yes, you can still mock the “new” keyword instantiation using Mockery, but it’s almost always a bad idea. Another one is statics, it is best to avoid static calls and instead use their equivalent classes through constructor. If you’re using Laravel framework, you can always check the facade class reference to see what class you can use instead of the static calls. The facade class refrence is at: [Facades - Laravel - The PHP Framework For Web Artisans](https://laravel.com/docs/5.7/facades#facade-class-reference).
+
+Line 30 is where we call the areaOfSquare method of the dependency (`$this->calculate`).
+
+1『关键知识点：1）通过构造函数依赖注入一个对象而非 new 一个对象，构造函数注入对象大大便于测试。2）不要用静态方法。』
+
+So how would we go about testing this class? Here’s how we would do it:
+
+```php
+<?php
+namespace Tests\Unit;
+
+use App\Math;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+
+class MathTest extends MockeryTestCase
+{
+    public function setUp() 
+    {
+        $this->calculate = m::mock('App\Calculate');
+
+        $this->math = new Math($this->calculate);
+    }
+
+    public function test_getArea_WhenCalledWithLength2_Return4()
+    {
+        $this->calculate->shouldReceive('areaOfSquare')
+            ->andReturn(4)
+            ->once();
+
+        $length = 2;
+
+        $response = $this->math->getArea($length);
+
+        $this->assertTrue(is_int($response));
+        $this->assertEquals(4, $response);
+    }
+}
+```
+
+1『
+
+自己的代码：
+
+```php
+class MathMockeryTest extends MockeryTestCase
+{
+    // private $calculate;
+    // private $math;
+    public function setUp(): void {
+        parent::setUp();
+        $this->calculate = m::mock(Calculate::class);
+        $this->math = new Math($this->calculate);
+    }
+
+    public function testGetArea() {
+        $this->calculate->shouldReceive('areaOfSquare')
+            ->andReturn(4)
+            ->once();
+        
+            $length = 2;
+            $res = $this->math->getArea($length);
+            $this->assertEquals(4, $res);
+    }
+}
+```
+
+』
+
+Let’s go ahead and add this file to `/tests/Unit` folder. Let’s run this test on the command prompt:
+
+1『这里学到了一个技巧，竟然可以仅仅对一个方法来做测试，哈哈，太好了。直接命令 `phpunit --filter testMockTest`，testMockTest 是测试用例的方法名。』
+
+Great, 1 test passed with 3 assertions. Two assertions are the same as before on line 27 and 28. And one more new assertion is that of Mockery on line 19. 
+
+On line 5 we declare that we will use Mockery class with reference ‘m’. Line 6 is a new change. Instead of using the default PHPUnit TestCase, here we use Mockery’s TestCase. This is so that Mockery can carry out Mockery specific assertion verification and cleanup the process after each test call.
+
+For readers who have used Mockery before, you may be confused. Previously you’d have to run m::close() on tearDown() method for each test class. This has changed since Mockery v1.0.0 . You do not need to do that if you instead extend the Mockery’s TestCase class or use it’s trait. More info regarding this here: [PHPUnit Integration — Mockery Docs 1.0-alpha documentation](http://docs.mockery.io/en/latest/reference/phpunit_integration.html).
+
+Line 12 is where we make a mock object having the namespace of “App\Calculate”. This namespace has to be same as the original “Calculate” class, or else it will throw an error. Then on line 14 we pass that newly created mock object to the new instance of Math class.
+
+Now on line 19, is where the Mockery specific assertion begins. Now, we assert that the calculate class should receive the ‘areaOfSquare’ method call and we’ll return 4 when it does. And it should only be called once throughout the test execution, or it will fail. If you want it to run twice you can do `->twice()` or times `({number})` for any number of times.
+
+There are different ways and techniques to declare expectations according to your need. I encourage you to check the official documentation for the full reference at http://docs.mockery.io/en/latest/reference/expectations.html.
+
+That was it for the introduction and usage of mocks. Hurray! Now we know how to use mocks! We can now mock them pesky dependencies left and right as we please. There are still a lot more to learn regarding mocks, but what we have is enough for our use case. We will be using it extensively on the next episodes as we go on to tackle TDD.
+
+On the next episode, we will go and learn about Integration tests. The tests that do not deal with mocks, but rather call the real implementations.
+
+[PHP Test Driven Development Part 5: Integration Testing | by Sameer Nyaupane | Medium](https://medium.com/@sameernyaupane/php-test-driven-development-part-5-integration-testing-51535ca56bf0)
+
+』
+
+2-3『
+
+Martin Fowler 博客里的文章：[Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
+
+消化吸收并作为本书的一个附件。
+
+』
