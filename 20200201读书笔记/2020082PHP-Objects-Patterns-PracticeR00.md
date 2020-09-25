@@ -402,6 +402,14 @@ $const = $this->logicalAnd(
 );
 ```
 
+### 0511. 任意卡——构造函数依赖注入有利于单元测试
+
+Remember to always opt for dependency injections through the constructor instead of creating them through the “new” keyword inside the methods. This makes testing a lot easier when we make the mocks. Yes, you can still mock the “new” keyword instantiation using Mockery, but it’s almost always a bad idea. Another one is statics, it is best to avoid static calls and instead use their equivalent classes through constructor. If you’re using Laravel framework, you can always check the facade class reference to see what class you can use instead of the static calls. The facade class refrence is at: [Facades - Laravel - The PHP Framework For Web Artisans](https://laravel.com/docs/5.7/facades#facade-class-reference).
+
+Line 30 is where we call the areaOfSquare method of the dependency (`$this->calculate`).
+
+关键知识点：1）通过构造函数依赖注入一个对象而非 new 一个对象，构造函数注入对象大大便于测试。2）不要用静态方法。
+
 ## 书评
 
 ### 01

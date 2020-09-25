@@ -2,9 +2,11 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡——stub 和 mock 的区别
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+But as often as not I see mock objects described poorly. In particular I see them often confused with stubs - a common helper to testing environments. I understand this confusion - I saw them as similar for a while too, but conversations with the mock developers have steadily allowed a little mock understanding to penetrate my tortoiseshell cranium.
+
+This difference is actually two separate differences. On the one hand there is a difference in how test results are verified: a distinction between state verification and behavior verification. On the other hand is a whole different philosophy to the way testing and design play together, which I term here as the classical and mockist styles of Test Driven Development.
 
 ### 0201. 术语卡——CQRS 
 
@@ -55,6 +57,8 @@ CQRS stands for Command Query Responsibility Segregation. It's a pattern that I 
 20200807Contextual-Validation.md
 
 20200808Customer-Loyalty-Software.md
+
+20200828Mocks-Arent-Stubs.md
 
 ## 20200801Anemic-Domain-Model.md
 

@@ -888,7 +888,7 @@ Remember to always opt for dependency injections through the constructor instead
 
 Line 30 is where we call the areaOfSquare method of the dependency (`$this->calculate`).
 
-1『关键知识点：1）通过构造函数依赖注入一个对象而非 new 一个对象，构造函数注入对象大大便于测试。2）不要用静态方法。』
+1-2『关键知识点：1）通过构造函数依赖注入一个对象而非 new 一个对象，构造函数注入对象大大便于测试。2）不要用静态方法。做一张任意卡片。』——已完成
 
 So how would we go about testing this class? Here’s how we would do it:
 
@@ -978,10 +978,4 @@ On the next episode, we will go and learn about Integration tests. The tests tha
 
 』
 
-2-3『
-
-Martin Fowler 博客里的文章：[Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
-
-消化吸收并作为本书的一个附件。
-
-』
+3『 Martin Fowler 博客里的文章：[Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)，已经存入老马的专栏集「07Martin-Fowler -> 20200828Mocks-Arent-Stubs.md」。』
