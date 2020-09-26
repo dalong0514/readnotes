@@ -716,29 +716,32 @@ Gathering together everything that updates the volumeCredits variable makes it e
 
 ```js
 function totalVolumeCredits() {
- let volumeCredits = 0
+  let volumeCredits = 0
   for (const perf of invoices.performances) {
-    volumeCredits = volumeCreditsFor(perf)
+    // add volume credits
+    volumeCredits += volumeCreditsFor(perf)
   }
+  return volumeCredits
 }
 
 export function statement() {
   let totalAmount = 0
   let result = `Statement for ${invoices.customer}\n`
+
   for (const perf of invoices.performances) {
     // print line for this order
     result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
     totalAmount += amountFor(perf)
   }
 
-  let volumeCredits = totalVolumeCredits()
-  
   result += `Amount owed is ${usd(totalAmount)}\n`
-  result += `You earned ${volumeCredits} credits\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
   console.log(result)
   return usd(totalAmount)
 }
 ```
+
+1『这里有个小插曲。`volumeCredits` 本来算出来是 47，现在是 10，找原因找了很久，发现循环体里的加法没有叠加上去，一直找不到哪里错了。后来发现是 `totalVolumeCredits` 函数里，叠加语句里少掉了加法，错误如：`volumeCredits = volumeCreditsFor(perf)`，真的是个惨痛的教训，这个错误大概找了一个半小时！（2020-09-25）』
 
 Once everything is extracted, I can apply Inline Variable (123):
 
@@ -754,168 +757,123 @@ So, my overall advice on performance with refactoring is: Most of the time you s
 
 The second aspect I want to call your attention to is how small the steps were to remove volumeCredits. Here are the four steps, each followed by compiling, testing, and committing to my local source code repository: 1) Split Loop (227) to isolate the accumulation. 2) Slide Statements (223) to bring the initializing code next to the accumulation. 3) Extract Function (106) to create a function for calculating the total. 4) Inline Variable (123) to remove the variable completely.
 
+对于重构过程的性能问题，我总体的建议是：大多数情况下可以忽略它。如果重构引入了性能损耗，先完成重构，再做性能优化。其次，我希望你能注意到：我们移除 volumeCredits 的过程是多么小步。整个过程一共有4步，每一步都伴随着一次编译、测试以及向本地代码库的提交：1）使用拆分循环（227）分离出累加过程；2）使用移动语句（223）将累加变量的声明与累加过程集中到一起；3）使用提炼函数（106）提炼出计算总数的函数；4）使用内联变量（123）完全移除中间变量。
+
 I confess I don’t always take quite as short steps as these—but whenever things get difficult, my first reaction is to take shorter steps. In particular, should a test fail during a refactoring, if I can’t immediately see and fix the problem, I’ll revert to my last good commit and redo what I just did with smaller steps. That works because I commit so frequently and because small steps are the key to moving quickly, particularly when working with difficult code.
 
 I then repeat that sequence to remove totalAmount. I start by splitting the loop (compile­test­commit), then I slide the variable initialization (compile-­test-­commit), and then I extract the function. There is a wrinkle here: The best name for the function is “totalAmount”, but that’s the name of the variable, and I can’t have both at the same time. So I give the new function a random name when I extract it (and compile­-test-commit).
 
-function statement…
-
-```js
-appleSauce() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  for (let perf of invoice.performances) {
-    totalAmount += this.amountFor(perf);
-  }
-  return totalAmount;
-},
-```
-
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-  }
-  let totalAmount = this.appleSauce();
-  result += `Amount owed is ${this.usd(totalAmount)}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
-```
+我得坦白，我并非总是如此小步——但在事情变复杂时，我的第一反应就是采用更小的步子。怎样算变复杂呢，就是当重构过程有测试失败而我又无法马上看清问题所在并立即修复时，我就会回滚到最后一次可工作的提交，然后以更小的步子重做。这得益于我如此频繁地提交。特别是与复杂代码打交道时，细小的步子是快速前进的关键。接着我要重复同样的步骤来移除 totalAmount。我以拆解循环开始（编译、测试、提交），然后下移累加变量的声明语句（编译、测试、提交），最后再提炼函数。这里令我有点头疼的是：最好的函数名应该是 totalAmount，但它已经被变量名占用，我无法起两个同样的名字。因此，我在提炼函数时先给它随便取了一个名字（然后编译、测试、提交）。
 
 Then I inline the variable (compile­test­commit) and rename the function to something more sensible (compile­test­commit).
 
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-  }
-  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
-```
-
-function statement…
-
-```js
-totalAmount() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  for (let perf of invoice.performances) {
-    totalAmount += this.amountFor(perf);
-  }
-  return totalAmount;
-},
-```
-
 I also take the opportunity to change the names inside my extracted functions to adhere to my convention.
 
-function statement…
-
 ```js
-totalAmount() {
-  let invoice = invoices[0];
-  let result = 0;
-  for (let perf of invoice.performances) {
-    result += this.amountFor(perf);
+function totalAmount() {
+  let result = 0
+  for (const perf of invoices.performances) {
+    result += amountFor(perf)
   }
-  return result;
-},
-totalVolumeCredits() {
-  let invoice = invoices[0];
-  let result = 0;
-  for (let perf of invoice.performances) {
-    result += this.volumeCreditsFor(perf);
-  }
-  return result;
-},
-```
+  return result
+}
 
-1『 Vue 里可以把「let invoice = invoices[0]」放进 data 数据里，这样不用每个函数都重新声明。』
+export function statement() {
+  let result = `Statement for ${invoices.customer}\n`
+  for (const perf of invoices.performances) {
+    // print line for this order
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
+  }
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+}
+```
 
 ### 1.5 Status: Lots of Nested Functions
 
 Now is a good time to pause and take a look at the overall state of the code:
 
 ```js
-stateMent() {
-  let invoice = invoices[0];
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-  }
-  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
-totalAmount() {
-  let invoice = invoices[0];
-  let result = 0;
-  for (let perf of invoice.performances) {
-    result += this.amountFor(perf);
-  }
-  return result;
-},
-totalVolumeCredits() {
-  let invoice = invoices[0];
-  let result = 0;
-  for (let perf of invoice.performances) {
-    result += this.volumeCreditsFor(perf);
-  }
-  return result;
-},
-usd(aNumber) {
-  return new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-          minimumIntegerDigits: 2,
-        }).format(aNumber/100);
-},
-volumeCreditsFor(aPerformance) {
-  let result = 0;
-  result += Math.max(aPerformance.audience - 30, 0);
-  // add extra credit for every ten comedy attendees
-  if ('comedy' === this.playFor(aPerformance).type) {
-    result += Math.floor(aPerformance.audience / 5);
-  }
-  return result;
-},
-amountFor(aPerformance) {
-  let result = 0;
-  switch (this.playFor(aPerformance).type) {
+import { invoices, plays } from '@/code/data'
+
+function amountFor(aPerformance) {
+  let result = 0
+
+  switch (playFor(aPerformance).type) {
     case 'tragedy':
-      result = 40000;
+      result = 40000
       if (aPerformance.audience > 30) {
-        result += 1000 * (aPerformance.audience - 30);
+        result += 1000 * (aPerformance.audience - 30)
       }
-      break;
+      break
     case 'comedy':
-      result = 30000;
+      result = 30000
       if (aPerformance.audience > 20) {
-        result += 10000 + 500 * (aPerformance.audience -20);
+        result += 10000 + 500 * (aPerformance.audience - 20)
       }
-      result += 300 * aPerformance.audience;
-      break;
+      result += 300 * aPerformance.audience
+      break
     default:
-      throw new Error(`unkown type: ${this.playFor(aPerformance).type}`);
+      throw new Error(`unkown type: ${playFor(aPerformance).type}`)
   }
-  return result;
-},
-playFor(aPerformance) {
-  return plays[aPerformance.playID];
-},
+  return result
+}
+
+function playFor(aPerformance) {
+  return plays[aPerformance.playID]
+}
+
+function volumeCreditsFor(aPerformance) {
+  let result = 0
+  // add volume credits
+  result += Math.max(aPerformance.audience - 30, 0)
+  // add extra credit for every ten comedy attendees
+  if (playFor(aPerformance).type === 'comedy') {
+    result += Math.floor(aPerformance.audience / 5)
+  }
+  return result
+}
+
+function usd(aNumber) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumIntegerDigits: 2
+  }).format(aNumber / 100)
+}
+
+function totalVolumeCredits() {
+  let volumeCredits = 0
+  for (const perf of invoices.performances) {
+    // add volume credits
+    volumeCredits += volumeCreditsFor(perf)
+  }
+  return volumeCredits
+}
+
+function totalAmount() {
+  let result = 0
+  for (const perf of invoices.performances) {
+    result += amountFor(perf)
+  }
+  return result
+}
+
+export function statement() {
+  let result = `Statement for ${invoices.customer}\n`
+  for (const perf of invoices.performances) {
+    // print line for this order
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
+  }
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+}
 ```
 
 The structure of the code is much better now. The top­level statement function is now just seven lines of code, and all it does is laying out the printing of the statement. All the calculation logic has been moved out to a handful of supporting functions. This makes it easier to understand each individual calculation as well as the overall flow of the report.
@@ -934,123 +892,210 @@ I start a Split Phase (154) by applying Extract Function (106) to the code that 
 
 要实现复用有许多种方法，而我最喜欢的技术是拆分阶段（154）。这里我的目标是将逻辑分成两部分：一部分计算详单所需的数据，另一部分将数据渲染成文本或 HTML。第一阶段会创建一个中转数据结构，再把它传递给第二阶段。要开始拆分阶段（154），我会先对组成第二阶段的代码应用提炼函数（106）。在这个例子中，这部分代码就是打印详单的代码，其实也就是 statement 函数的全部内容。我要把它们与所有嵌套的函数一起抽取到一个新的顶层函数中，并将其命名为 renderPlainText。
 
-1『 statement() 相当于一个空函数，把 renderPlainText() 里的东西一点点剥离出来放进 statement()。』
+1『 statement() 相当于一个空函数，把 renderPlainText() 里的东西一点点剥离出来放进 statement()。回复：果然应了那句话，软件行业基本所有的问题都可以通过抽象出一个中间层来解决，哈哈，这里的 `renderPlainText()` 是具体实现，`statement()` 是它的接口。』
 
 ```js
-statement() {
-  return this.renderPlainText();
-},
-renderPlainText() {
-  let invoice = invoices[0];
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
+import { invoices, plays } from '@/code/data'
+
+function renderPlainText(data) {
+  let result = `Statement for ${data.customer}\n`
+  for (const perf of data.performances) {
     // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
   }
-  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+
+  function amountFor(aPerformance) {
+    let result = 0
+
+    switch (playFor(aPerformance).type) {
+      case 'tragedy':
+        result = 40000
+        if (aPerformance.audience > 30) {
+          result += 1000 * (aPerformance.audience - 30)
+        }
+        break
+      case 'comedy':
+        result = 30000
+        if (aPerformance.audience > 20) {
+          result += 10000 + 500 * (aPerformance.audience - 20)
+        }
+        result += 300 * aPerformance.audience
+        break
+      default:
+        throw new Error(`unkown type: ${playFor(aPerformance).type}`)
+    }
+    return result
+  }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID]
+  }
+
+  function volumeCreditsFor(aPerformance) {
+    let result = 0
+    // add volume credits
+    result += Math.max(aPerformance.audience - 30, 0)
+    // add extra credit for every ten comedy attendees
+    if (playFor(aPerformance).type === 'comedy') {
+      result += Math.floor(aPerformance.audience / 5)
+    }
+    return result
+  }
+
+  function usd(aNumber) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumIntegerDigits: 2
+    }).format(aNumber / 100)
+  }
+
+  function totalVolumeCredits() {
+    let volumeCredits = 0
+    for (const perf of invoices.performances) {
+      // add volume credits
+      volumeCredits += volumeCreditsFor(perf)
+    }
+    return volumeCredits
+  }
+
+  function totalAmount() {
+    let result = 0
+    for (const perf of invoices.performances) {
+      result += amountFor(perf)
+    }
+    return result
+  }
+}
+
+export function statement() {
+  const statementData = {}
+  statementData.customer = invoices.customer
+  statementData.performances = invoices.performances
+  return renderPlainText(statementData)
+}
 ```
+
+1『这里注意，之前的那么多函数都要放进 `renderPlainText()` 里去。』
 
 I do my usual compile-­test-­commit, then create an object that will act as my intermediate data structure between the two phases. I pass this data object in as an argument to renderPlainText (compile­test­commit).
 
 ```js
-statement() {
-  const statementData = {};
-  return this.renderPlainText(statementData);
-},
-renderPlainText(data) {
-  let invoice = invoices[0];
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
+function renderPlainText(data) {
+  let result = `Statement for ${invoices.customer}\n`
+  for (const perf of invoices.performances) {
     // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
   }
-  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+}
+
+export function statement() {
+  const statementData = {}
+  return renderPlainText(statementData)
+}
 ```
 
-I now examine the other arguments used by renderPlainText. I want to move the data that comes from them into the intermediate data structure, so that all the calculation code moves into the statement function and renderPlainText operates solely on data passed to it through the data parameter. My first move is to take the customer and add it to the intermediate object (compiletest­commit).
+I now examine the other arguments used by renderPlainText. I want to move the data that comes from them into the intermediate data structure, so that all the calculation code moves into the statement function and renderPlainText operates solely on data passed to it through the data parameter. My first move is to take the customer and add it to the intermediate object (compile-test­-commit).
 
 ```js
-statement() {
-  const statementData = {};
-  statementData.customer = invoices[0].customer;
-  return this.renderPlainText(statementData, invoices[0]);
-},
-renderPlainText(data, invoice) {
-  let result = `Statement for ${data.customer}\n`;
-  for (let perf of invoice.performances) {
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+function renderPlainText(data) {
+  let result = `Statement for ${data.customer}\n`
+  for (const perf of invoices.performances) {
+    // print line for this order
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
   }
-  result += `Amount owed is ${this.usd(this.totalAmount())}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+}
+
+export function statement() {
+  const statementData = {}
+  statementData.customer = invoices.customer
+  return renderPlainText(statementData)
+}
 ```
 
-Similarly, I add the performances, which allows me to delete the invoice parameter to renderPlainText (compile­test­commit). 
-
-top level…
+Similarly, I add the performances, which allows me to delete the invoice parameter to renderPlainText (compile-­test­-commit). 
 
 ```js
-statement() {
-  const statementData = {};
-  statementData.customer = invoices[0].customer;
-  statementData.performances = invoices[0].performances;
-  return this.renderPlainText(statementData);
-},
-renderPlainText(data) {
-  let result = `Statement for ${data.customer}\n`;
-  for (let perf of data.performances) {
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-  }
-  result += `Amount owed is ${this.usd(this.totalAmount(data))}\n`;
-  result += `You earned ${this.totalVolumeCredits(data)} credits\n`;
-  console.log(result);
-},
-```
+export function statement() {
+  const statementData = {}
+  statementData.customer = invoices.customer
+  statementData.performances = invoices.performances
+  return renderPlainText(statementData)
+}
 
-1『这里跟原书中的代码不一样，因为是在 vue 里实现的，调用函数的时候还是的传入参数 data，原书中的代码不用传参，是因为闭包的原因么？待确认。（2020-06-12）』
+function renderPlainText(data) {
+  let result = `Statement for ${data.customer}\n`
+  for (const perf of data.performances) {
+    // print line for this order
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
+  }
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+  
+  ......
+}
+```
 
 function renderPlainText…
 
 ```js
-totalAmount(data) {
-  let result = 0;
-  for (let perf of data.performances) {
-    result += this.amountFor(perf);
+  function totalVolumeCredits() {
+    let volumeCredits = 0
+    for (const perf of data.performances) {
+      // add volume credits
+      volumeCredits += volumeCreditsFor(perf)
+    }
+    return volumeCredits
   }
-  return result;
-},
-totalVolumeCredits(data) {
-  let result = 0;
-  for (let perf of data.performances) {
-    result += this.volumeCreditsFor(perf);
+
+  function totalAmount() {
+    let result = 0
+    for (const perf of data.performances) {
+      result += amountFor(perf)
+    }
+    return result
   }
-  return result;
-},
 ```
+
+1『调用函数 `totalAmount()` 的时候不用传参数 `data`，是因为闭包的原因么？待确认。（2020-06-12）回复：应该是闭包的原因。（2020-09-25）』
 
 Now I’d like the play name to come from the intermediate data. To do this, I need to enrich the performance record with data from the play (compile-­test-­commit).
 
+现在，我希望「剧目名称」信息也从中转数据中获得。为此，需要使用 play 中的数据填充 aPerformance 对象（记得编译、测试、提交）。
+
 ```js
-statement() {
-  const statementData = {};
-  statementData.customer = invoices[0].customer;
-  statementData.performances = invoices[0].performances.map(this.enrichPerformance);
-  return this.renderPlainText(statementData);
-},
-enrichPerformance(aPerformance) {
-  const result = Object.assign({}, aPerformance);
-  return result;
-},
+export function statement() {
+  const statementData = {}
+  statementData.customer = invoices.customer
+  statementData.performances = invoices.performances.map(enrichPerformance)
+  return renderPlainText(statementData)
+
+  function enrichPerformance(aPerformance) {
+    const result = Object.assign({}, aPerformance)
+    return result
+  }
+}
 ```
 
-1『 map() 函数的使用，还能像语句 invoices[0].performances.map(this.enrichPerformance) 这样用，传入回调函数时，直接省略了数组中各元素的标识「item」，涨见识了。书籍「忍者秘籍」里的介绍：内置的 map 方法创建了一个全新的数组，然后遍历输入的数组。对输入数组的每个元素，在新建的数组上，都会基于回调函数的执行结果创建一个对应的元素。其典型用法是 const weapons = ninjas.map(item => item.weapon) 』
+1『 map() 函数的使用，还能像语句 invoices.performances.map(this.enrichPerformance) 这样用，传入回调函数时，直接省略了数组中各元素的标识「item」，涨见识了。书籍「忍者秘籍」里的介绍：内置的 map 方法创建了一个全新的数组，然后遍历输入的数组。对输入数组的每个元素，在新建的数组上，都会基于回调函数的执行结果创建一个对应的元素。其典型用法是 const weapons = ninjas.map(item => item.weapon) 』
 
 3『 [Object.assign() - JavaScript | MDN](https://wiki.developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
@@ -1098,82 +1143,111 @@ console.log(obj); // { a: 1, b: 2, c: 3 }
 
 At the moment, I’m just making a copy of the performance object, but I’ll shortly add data to this new record. I take a copy because I don’t want to modify the data passed into the function. I prefer to treat data as immutable as much as I can—mutable state quickly becomes something rotten.
 
-现在我只是简单地返回了一个 aPerformance 对象的副 本，但马上我就会往这条记录中添加新的数据。返回副本的原因是，我不想修改传给函数的参数，我总是尽量保持数据不可变（immutable）——可变的状态会很快变成烫手的山芋。
-
-1『为何使用 assign() 函数复制一个对象可以实现数据的「不可变」，目前没吃透。（2020-06-12）』
-
 The idiom result = Object.assign({}, aPerformance) looks very odd to people unfamiliar to JavaScript. It performs a shallow copy. I’d prefer to have a function for this, but it’s one of those cases where the idiom is so baked into JavaScript usage that writing my own function would look out of place for JavaScript programmers.
 
 Now I have a spot for the play, I need to add it. To do that, I need to apply Move Function (198) to playFor and statement (compile­-test­-commit).
+
+现在我只是简单地返回了一个 aPerformance 对象的副本，但马上我就会往这条记录中添加新的数据。返回副本的原因是，我不想修改传给函数的参数，我总是尽量保持数据不可变（immutable）——可变的状态会很快变成烫手的山芋。在不熟悉 JavaScript 的人看来，`result = Object.assign({}, aPerformance)` 的写法可能十分奇怪。它返回的是一个浅副本。虽然我更希望有个函数来完成此功能，但这个用法已经约定俗成，如果我自己写个函数，在 JavaScript 程序员看来反而会格格不入。
+
+1『为何使用 assign() 函数复制一个对象可以实现数据的「不可变」，目前没吃透。（2020-06-12）回复：通过「浅复制」来保证数据的不可变，老马用了「函数式」编程范式的思想，哈哈。以后 JS 里实现浅复制的功能就用 `assign()`（2020-09-25）』
 
 现在我们已经有了安放 play 字段的地方，可以把数据放进去。我需要对 playFor 和 statement 函数应用搬移函数（198）（然后编译、测试、提交）。
 
 function statement…
 
 ```js
-enrichPerformance(aPerformance) {
-  const result = Object.assign({}, aPerformance);
-  result.play = this.playFor(result);
-  return result;
-},
+export function statement() {
+  const statementData = {}
+  statementData.customer = invoices.customer
+  statementData.performances = invoices.performances.map(enrichPerformance)
+  return renderPlainText(statementData)
+
+  function enrichPerformance(aPerformance) {
+    const result = Object.assign({}, aPerformance)
+    result.play = playFor(aPerformance)
+    return result
+  }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID]
+  }
+}
 ```
 
-I then replace all the references to playFor in renderPlainText to use the data instead (compile­test­commit).
+I then replace all the references to playFor in renderPlainText to use the data instead (compile-­test-­commit).
 
 ```js
-statement() {
-  const statementData = {};
-  statementData.customer = invoices[0].customer;
-  statementData.performances = invoices[0].performances.map(this.enrichPerformance);
-  return this.renderPlainText(statementData);
-},
-enrichPerformance(aPerformance) {
-  const result = Object.assign({}, aPerformance);
-  result.play = this.playFor(result);
-  return result;
-},
-renderPlainText(data) {
-  let result = `Statement for ${data.customer}\n`;
-  for (let perf of data.performances) {
-    result += `${perf.play.name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
+function renderPlainText(data) {
+  let result = `Statement for ${data.customer}\n`
+  for (const perf of data.performances) {
+    // print line for this order
+    result += `${perf.play.name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
   }
-  result += `Amount owed is ${this.usd(this.totalAmount(data))}\n`;
-  result += `You earned ${this.totalVolumeCredits(data)} credits\n`;
-  console.log(result);
-},
-volumeCreditsFor(aPerformance) {
-  let result = 0;
-  result += Math.max(aPerformance.audience - 30, 0);
-  // add extra credit for every ten comedy attendees
-  if ('comedy' === aPerformance.play.type) {
-    result += Math.floor(aPerformance.audience / 5);
+
+  result += `Amount owed is ${usd(totalAmount())}\n`
+  result += `You earned ${totalVolumeCredits()} credits\n`
+  console.log(result)
+  return usd(totalAmount())
+
+  function amountFor(aPerformance) {
+    let result = 0
+
+    switch (aPerformance.play.type) {
+      case 'tragedy':
+        result = 40000
+        if (aPerformance.audience > 30) {
+          result += 1000 * (aPerformance.audience - 30)
+        }
+        break
+      case 'comedy':
+        result = 30000
+        if (aPerformance.audience > 20) {
+          result += 10000 + 500 * (aPerformance.audience - 20)
+        }
+        result += 300 * aPerformance.audience
+        break
+      default:
+        throw new Error(`unkown type: ${aPerformance.play.type}`)
+    }
+    return result
   }
-  return result;
-},
-amountFor(aPerformance) {
-  let result = 0;
-  switch (aPerformance.play.type) {
-    case 'tragedy':
-      result = 40000;
-      if (aPerformance.audience > 30) {
-        result += 1000 * (aPerformance.audience - 30);
-      }
-      break;
-    case 'comedy':
-      result = 30000;
-      if (aPerformance.audience > 20) {
-        result += 10000 + 500 * (aPerformance.audience -20);
-      }
-      result += 300 * aPerformance.audience;
-      break;
-    default:
-      throw new Error(`unkown type: ${aPerformance.play.type}`);
+
+  function volumeCreditsFor(aPerformance) {
+    let result = 0
+    // add volume credits
+    result += Math.max(aPerformance.audience - 30, 0)
+    // add extra credit for every ten comedy attendees
+    if (aPerformance.play.type === 'comedy') {
+      result += Math.floor(aPerformance.audience / 5)
+    }
+    return result
   }
-  return result;
-},
-playFor(aPerformance) {
-  return plays[aPerformance.playID];
-},
+
+  function usd(aNumber) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumIntegerDigits: 2
+    }).format(aNumber / 100)
+  }
+
+  function totalVolumeCredits() {
+    let volumeCredits = 0
+    for (const perf of data.performances) {
+      // add volume credits
+      volumeCredits += volumeCreditsFor(perf)
+    }
+    return volumeCredits
+  }
+
+  function totalAmount() {
+    let result = 0
+    for (const perf of data.performances) {
+      result += amountFor(perf)
+    }
+    return result
+  }
+}
 ```
 
 I then move amountFor in a similar way (compile-­test-­commit).
