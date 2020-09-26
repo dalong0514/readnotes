@@ -301,6 +301,8 @@ As I look at this chunk, I conclude that it’s calculating the charge for one p
 
 The way to put that understanding into code is to turn that chunk of code into its own function, naming it after what it does—something like amountFor(aPerformance). When I want to turn a chunk of code into a function like this, I have a procedure for doing it that minimizes my chances of getting it wrong. I wrote down this procedure and, to make it easy to reference, named it Extract Function (106).
 
+看着这块代码，我就知道它在计算一场戏剧演出的费用。这是我的直觉。不过正如 Ward Cunningham 所说，这种理解只是我脑海中转瞬即逝的灵光。我需要梳理这些灵感，将它们从脑海中搬回到代码里去，以免忘记。这样当我回头看时，代码就能告诉我它在干什么，我不需要重新思考一遍。要将我的理解转化到代码里，得先将这块代码抽取成一个独立的函数，按它所干的事情给它命名，比如叫 amountFor(performance)。每次想将一块代码抽取成一个函数时，我都会遵循一个标准流程，最大程度减少犯错的可能。我把这个流程记录了下来，并将它命名为提炼函数（106），以便日后可以方便地引用。
+
 First, I need to look in the fragment for any variables that will no longer be in scope once I’ve extracted the code into its own function. In this case, I have three: perf, play, and thisAmount. The first two are used by the extracted code, but not modified, so I can pass them in as parameters. Modified variables need more care. Here, there is only one, so I can return it. I can also bring its initialization inside the extracted code. All of which yields this:
 
 首先，我需要检查一下，如果我将这块代码提炼到自己的一个函数里，有哪些变量会离开原本的作用域。在此示例中，是 perf、play 和 thisAmount 这 3 个变量。前两个变量会被提炼后的函数使用，但不会被修改，那么我就可以将它们以参数方式传递进来。我更关心那些会被修改的变量。这里只有唯一一个——thisAmount，因此可以将它从函数中直接返回。我还可以将其初始化放到提炼后的函数里。
@@ -334,6 +336,8 @@ function amountFor(perf, play) {
 When I use a header like “function someName…” in italics for some code, that means that the following code is within the scope of the function, file, or class named in the header. There is usually other code within that scope that I won’t show, as I’m not discussing it at the moment.
 
 The original statement code now calls this function to populate thisAmount:
+
+当我在代码块上方使用了斜体（中文对应为楷体）标记的题头「function xxx」时，表明该代码块位于题头所在函数、文件或类的作用域内。通常该作用域内还有其他的代码，但由于不是讨论重点，因此把它们隐去不展示。现在原 statement 函数可以直接调用这个新函数来初始化 thisAmount。
 
 top level…
 
@@ -369,58 +373,64 @@ function statement (invoice, plays) {
 
 1『
 
-vue 里：
+自己的代码：
+
+`statement.js`
 
 ```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
+import { invoices, plays } from '@/code/data'
+
+function amountFor(perf, play) {
+  let thisAmount = 0
+
+  switch (play.type) {
+    case 'tragedy':
+      thisAmount = 40000
+      if (perf.audience > 30) {
+        thisAmount += 1000 * (perf.audience - 30)
+      }
+      break
+    case 'comedy':
+      thisAmount = 30000
+      if (perf.audience > 20) {
+        thisAmount += 10000 + 500 * (perf.audience - 20)
+      }
+      thisAmount += 300 * perf.audience
+      break
+    default:
+      throw new Error(`unkown type: ${play.type}`)
+  }
+  return thisAmount
+}
+
+export function statement() {
+  let totalAmount = 0
+  let volumeCredits = 0
+  let result = `Statement for ${invoices.customer}\n`
   const format = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumIntegerDigits: 2,
-  }).format;
-  for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
-    let thisAmount = this.amountFor(perf, play)
+    minimumIntegerDigits: 2
+  }).format
+  for (const perf of invoices.performances) {
+    const play = plays[perf.playID]
+    const thisAmount = amountFor(perf, play)
 
     // add volume credits
-    volumeCredits += Math.max(perf.audience - 30, 0);
+    volumeCredits += Math.max(perf.audience - 30, 0)
     // add extra credit for every ten comedy attendees
-    if ('comedy' === play.type) {
-      volumeCredits += Math.floor(perf.audience / 5);
+    if (play.type === 'comedy') {
+      volumeCredits += Math.floor(perf.audience / 5)
     }
 
     // print line for this order
-    result += `${play.name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
-    totalAmount += thisAmount;
+    result += `${play.name}: ${format(thisAmount / 100)}(${perf.audience} seats)\n`
+    totalAmount += thisAmount
   }
-  result += `Amount owed is ${format(totalAmount/100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
-amountFor(perf, play) {
-  let thisAmount = 0;
-  switch (play.type) {
-    case 'tragedy':
-      thisAmount = 40000;
-      if (perf.audience > 30) {
-        thisAmount += 1000 * (perf.audience - 30);
-      }
-      break;
-    case 'comedy':
-      thisAmount = 30000;
-      if (perf.audience > 20) {
-        thisAmount += 10000 + 500 * (perf.audience - 20);
-      }
-      thisAmount += 300 * perf.audience;
-      break;
-    default:
-      throw new Error(`unkown type: ${paly.type}`);
-  }
-  return thisAmount;
+  result += `Amount owed is ${format(totalAmount / 100)}\n`
+  result += `You earned ${volumeCredits} credits\n`
+  console.log(result)
+  return format(totalAmount / 100)
 }
 ```
 
@@ -428,13 +438,15 @@ amountFor(perf, play) {
 
 Once I’ve made this change, I immediately compile and test to see if I’ve broken anything. It’s an important habit to test after every refactoring, however simple. Mistakes are easy to make—at least, I find them easy to make. Testing after each change means that when I make a mistake, I only have a small change to consider in order to spot the error, which makes it far easier to find and fix. This is the essence of the refactoring process: small changes and testing after each change. If I try to do too much, making a mistake will force me into a tricky debugging episode that can take a long time. Small changes, enabling a tight feedback loop, are the key to avoiding that mess.
 
-1『无论多小的改动，改完后直接再跑一下，看看跟改前跑的结果是够一样，一定要养成这个习惯。』
+1『无论多小的改动，改完后直接再跑一下，看看跟改前跑的结果是够一样，一定要养成这个习惯。回复：用 CLI 环境里搭建的，用 Jest 先搭建好测试，在测试框架下重构，实在是太爽了。（2020-09-25）』
 
 I use compile here to mean doing whatever is needed to make the JavaScript executable. Since JavaScript is directly executable, that may mean nothing, but in other cases it may mean moving code to an output directory and/or using a processor such as Babel [babel].
 
 Refactoring changes the programs in small steps, so if you make a mistake, it is easy to find where the bug is.
 
 This being JavaScript, I can extract amountFor into a nested function of statement. This is helpful as it means I don’t have to pass data that’s inside the scope of the containing function to the newly extracted function. That doesn’t make a difference in this case, but it’s one less issue to deal with. In this case the tests passed, so my next step is to commit the change to my local version control system. I use a version control system, such as git or mercurial, that allows me to make private commits. I commit after each successful refactoring, so I can easily get back to a working state should I mess up later. I then squash changes into more significant commits before I push the changes to a shared repository.
+
+这里我使用的「编译」一词，指的是将 JavaScript 变为可执行代码之前的所有步骤。虽然 JavaScript 可以直接执行，有时可能不需任何步骤，但有时可能需要将代码移动到一个输出目录，或使用 Babel 这样的代码处理器等。因为是 JavaScript，我可以直接将 amountFor 提炼成为 statement 的一个内嵌函数。这个特性十分有用，因为我就不需要再把外部作用域中的数据传给新提炼的函数。这个示例中可能区别不大，但也是少了一件要操心的事。
 
 Extract Function (106) is a common refactoring to automate. If I was programming in Java, I would have instinctively reached for the key sequence for my IDE to perform this refactoring. As I write this, there is no such robust support for this refactoring in JavaScript tools, so I have to do this manually. It’s not hard, although I have to be careful with those locally scoped variables.
 
@@ -468,6 +480,8 @@ function amountFor(aPerformance, play) {
 }
 ```
 
+1『在 vim 里用正则做替换真实方便，比如上面的实现：`:%s/thisAmount/result/c`，参数 c 表示替换前要一个个确认，如果没必要确认的话改成 g 即可，目前绝大多数情况下都是要确认的。（2020-09-25）』
+
 Again, this is following my coding style. With a dynamically typed language such as JavaScript, it’s useful to keep track of types—hence, my default name for a parameter includes the type name. I use an indefinite article with it unless there is some specific role information to capture in the name. I learned this convention from Kent Beck [Beck SBPP] and continue to find it helpful.
 
 这是我的另一个编码风格。使用一门动态类型语言（如 JavaScript）时，跟踪变量的类型很有意义。因此，我为参数取名时都默认带上其类型名。一般我会使用不定冠词修饰它，除非命名中另有解释其角色的相关信息。这个习惯是从 Kent Beck 那里学的 [Beck SBPP]，到现在我还一直觉得很有用。
@@ -482,193 +496,85 @@ Is this renaming worth the effort? Absolutely. Good code should clearly communic
 
 好代码应能清楚地表明它在做什么，而变量命名是代码清晰的关键。 只要改名能够提升代码的可读性，那就应该毫不犹豫去做。 有好的查找替换工具在手，改名通常并不困难；此外，你的测试以及语言本身的静态类型支持，都可以帮你揪出漏改的地方。如今有了自动化的重构工具，即便要给一个被大量调用的函数改名，通常也不在话下。
 
-
 #### 1.4.1 Removing the play Variable
 
 As I consider the parameters to amountFor, I look to see where they come from. aPerformance comes from the loop variable, so naturally changes with each iteration through the loop. But play is computed from the performance, so there’s no need to pass it in as a parameter at all—I can just recalculate it within amountFor. When I’m breaking down a long function, I like to get rid of variables like play, because temporary variables create a lot of locally scoped names that complicate extractions. The refactoring I will use here is Replace Temp with Query (178).
 
 观察 amountFor 函数时，我会看看它的参数都从哪里来。aPerformance 是从循环变量中来，所以自然每次循环都会改变，但 play 变量是由 performance 变量计算得到的，因此根本没必要将它作为参数传入，我可以在 amountFor 函数中重新计算得到它。当我分解一个长函数时，我喜欢将 play 这样的变量移除掉，因为它们创建了很多具有局部作用域的临时变量，这会使提炼函数更加复杂。这里我要使用的重构手法是以查询取代临时变量（178）。
 
-I begin by extracting the right­hand side of the assignment into a function.
-
-function statement…
-
-```js
-playFor(aPerformance) {
-  return plays[aPerformance.playID];
-}
-```
-
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  const format = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumIntegerDigits: 2,
-  }).format;
-  for (let perf of invoice.performances) {
-    let thisAmount = this.amountFor(perf, this.playFor(perf))
-
-    // add volume credits
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    // add extra credit for every ten comedy attendees
-    if ('comedy' === this.playFor(perf).type) {
-      volumeCredits += Math.floor(perf.audience / 5);
-    }
-
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
-    totalAmount += thisAmount;
-  }
-  result += `Amount owed is ${format(totalAmount/100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
-```
-
-I compile­-test-­commit. With that inlined, I can then apply Change Function Declaration (124) to amountFor to remove the play parameter. I do this in two steps. First, I use the new function inside amountFor.
+I begin by extracting the right­hand side of the assignment into a function. I compile­-test-­commit. With that inlined, I can then apply Change Function Declaration (124) to amountFor to remove the play parameter. I do this in two steps. First, I use the new function inside amountFor.
 
 编译、测试、提交。完成变量内联后，我可以对 amountFor 函数应用改变函数声明（124），移除 play 参数。 我会分两步走。首先在 amountFor 函数内部使用新提炼的函数。
 
-1『牢记变量内联。』
-
-function statement…
-
-```js
-amountFor(aPerformance, play) {
-  let thisAmount = 0;
-  switch (this.playFor(aPerformance).type) {
-    case 'tragedy':
-      thisAmount = 40000;
-      if (aPerformance.audience > 30) {
-        thisAmount += 1000 * (aPerformance.audience - 30);
-      }
-      break;
-    case 'comedy':
-      thisAmount = 30000;
-      if (aPerformance.audience > 20) {
-        thisAmount += 10000 + 500 * (aPerformance.audience -20);
-      }
-      thisAmount += 300 * aPerformance.audience;
-      break;
-    default:
-      throw new Error(`unkown type: ${this.playFor(aPerformance).type}`);
-  }
-  return thisAmount;
-},
-```
-
-I compile-­test-­commit, and then delete the parameter.
-
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  const format = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumIntegerDigits: 2,
-  }).format;
-  for (let perf of invoice.performances) {
-    let thisAmount = this.amountFor(perf);
-
-    // add volume credits
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    // add extra credit for every ten comedy attendees
-    if ('comedy' === this.playFor(perf).type) {
-      volumeCredits += Math.floor(perf.audience / 5);
-    }
-
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${format(thisAmount/100)}(${perf.audience} seats)\n`;
-    totalAmount += thisAmount;
-  }
-  result += `Amount owed is ${format(totalAmount/100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
-amountFor(aPerformance) {
-  let thisAmount = 0;
-  switch (this.playFor(aPerformance).type) {
-    case 'tragedy':
-      thisAmount = 40000;
-      if (aPerformance.audience > 30) {
-        thisAmount += 1000 * (aPerformance.audience - 30);
-      }
-      break;
-    case 'comedy':
-      thisAmount = 30000;
-      if (aPerformance.audience > 20) {
-        thisAmount += 10000 + 500 * (aPerformance.audience -20);
-      }
-      thisAmount += 300 * aPerformance.audience;
-      break;
-    default:
-      throw new Error(`unkown type: ${this.playFor(aPerformance).type}`);
-  }
-  return thisAmount;
-},
-playFor(aPerformance) {
-  return plays[aPerformance.playID];
-},
-```
-
-And compile-­test-­commit again.
-
-1『真是魔术般的消除了中间变量啊。』
+I compile-­test-­commit, and then delete the parameter. And compile-­test-­commit again.
 
 This refactoring alarms some programmers. Previously, the code to look up the play was executed once in each loop iteration; now, it’s executed thrice. I’ll talk about the interplay of refactoring and performance later, but for the moment I’ll just observe that this change is unlikely to significantly affect performance, and even if it were, it is much easier to improve the performance of a well­factored code base.
 
 这次重构可能在一些程序员心中敲响警钟：重构前，查找 play 变量的代码在每次循环中只执行了 1 次，而重构后却执行了 3 次。我会在后面探讨重构与性能之间的关系，但现在，我认为这次改动还不太可能对性能有严重影响，即便真的有所影响，后续再对一段结构良好的代码进行性能调优， 也容易得多。
 
-The great benefit of removing local variables is that it makes it much easier to do extractions, since there is less local scope to deal with. Indeed, usually I’ll take out local variables before I do any extractions.
+The great benefit of removing local variables is that it makes it much easier to do extractions, since there is less local scope to deal with. Indeed, usually I’ll take out local variables before I do any extractions. Now that I’m done with the arguments to amountFor, I look back at where it’s called. It’s being used to set a temporary variable that’s not updated again, so I apply Inline Variable (123).
 
 移除局部变量的好处就是做提炼时会简单得多，因为需要操心的局部作用域变少了。实际上，在做任何提炼前，我一般都会先移除局部变量。
 
-Now that I’m done with the arguments to amountFor, I look back at where it’s called. It’s being used to set a temporary variable that’s not updated again, so I apply Inline Variable (123).
-
-top level…
-
 ```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
+import { invoices, plays } from '@/code/data'
+
+function amountFor(aPerformance) {
+  let result = 0
+
+  switch (playFor(aPerformance).type) {
+    case 'tragedy':
+      result = 40000
+      if (aPerformance.audience > 30) {
+        result += 1000 * (aPerformance.audience - 30)
+      }
+      break
+    case 'comedy':
+      result = 30000
+      if (aPerformance.audience > 20) {
+        result += 10000 + 500 * (aPerformance.audience - 20)
+      }
+      result += 300 * aPerformance.audience
+      break
+    default:
+      throw new Error(`unkown type: ${playFor(aPerformance).type}`)
+  }
+  return result
+}
+
+function playFor(aPerformance) {
+  return plays[aPerformance.playID]
+}
+
+export function statement() {
+  let totalAmount = 0
+  let volumeCredits = 0
+  let result = `Statement for ${invoices.customer}\n`
   const format = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumIntegerDigits: 2,
-  }).format;
-  for (let perf of invoice.performances) {
+    minimumIntegerDigits: 2
+  }).format
+  for (const perf of invoices.performances) {
     // add volume credits
-    volumeCredits += Math.max(perf.audience - 30, 0);
+    volumeCredits += Math.max(perf.audience - 30, 0)
     // add extra credit for every ten comedy attendees
-    if ('comedy' === this.playFor(perf).type) {
-      volumeCredits += Math.floor(perf.audience / 5);
+    if (playFor(perf).type === 'comedy') {
+      volumeCredits += Math.floor(perf.audience / 5)
     }
 
     // print line for this order
-    result += `${this.playFor(perf).name}: ${format(this.amountFor(perf)/100)}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
+    result += `${playFor(perf).name}: ${format(amountFor(perf) / 100)}(${perf.audience} seats)\n`
+    totalAmount += amountFor(perf)
   }
-  result += `Amount owed is ${format(totalAmount/100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
+  result += `Amount owed is ${format(totalAmount / 100)}\n`
+  result += `You earned ${volumeCredits} credits\n`
+  console.log(result)
+  return format(totalAmount / 100)
+}
 ```
 
-1『 this.amountFor(perf) 替换了原来的 thisAmount。』
+1『真是魔术般的消除了中间变量啊。关键步骤：1）提炼出 `playFor()` 函数。2）`playFor(perf)` 直接作为参数传进函数 `amountFor(perf, playFor(perf))`。3）把 `amountFor()` 函数里的 `play` 全部替换为 `playFor(perf)`，这样就消除了临工变量 `play`，传入 `amountFor()` 函数的参数只需要是 `perf` 即可。4）直接用函数调用 `amountFor(perf)` 替换掉临时变量 `thisAmount`。』
 
 #### 1.4.2 Extracting Volume Credits
 
@@ -678,59 +584,47 @@ Now I get the benefit from removing the play variable as it makes it easier to e
 
 这会儿我们就看到了移除 play 变量的好处，移除了一个局部作用域的变量，提炼观众量积分的计算逻辑又更简单一些。我仍需要处理其他两个局部变量。perf 同样可以轻易作为参数传入，但 volumeCredits 变量则有些棘手。它是一个累加变量，循环的每次迭代都会更新它的值。因此最简单的方式是，将整块逻辑提炼到新函数中，然后在新函数中直接返回 volumeCredits。
 
-function statement…
+I remove the unnecessary (and, in this case, downright misleading) comment. I compile-test-­commit that, and then rename the variables inside the new function. function statement…
+
+I’ve shown it in one step, but as before I did the renames one at a time, with a compile-test-­commit after each.
 
 ```js
-function volumeCreditsFor(perf) { 
-    let volumeCredits = 0; 
-    volumeCredits += Math.max(perf.audience ­- 30, 0); 
-    if ("comedy" === playFor(perf).type) volumeCredits += Math.floor(perf.audience 
-    return volumeCredits; 
+function playFor(aPerformance) {
+  return plays[aPerformance.playID]
 }
-```
 
-top level…
+function volumeCreditsFor(aPerformance) {
+  let result = 0
+  // add volume credits
+  result += Math.max(aPerformance.audience - 30, 0)
+  // add extra credit for every ten comedy attendees
+  if (playFor(aPerformance).type === 'comedy') {
+    result += Math.floor(aPerformance.audience / 5)
+  }
+  return result
+}
 
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
+export function statement() {
+  let totalAmount = 0
+  let volumeCredits = 0
+  let result = `Statement for ${invoices.customer}\n`
   const format = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumIntegerDigits: 2,
-  }).format;
-  for (let perf of invoice.performances) {
-    // add volume credits
-    volumeCredits += this.volumeCreditsFor(perf);
-
+    minimumIntegerDigits: 2
+  }).format
+  for (const perf of invoices.performances) {
+    volumeCredits = volumeCreditsFor(perf)
     // print line for this order
-    result += `${this.playFor(perf).name}: ${format(this.amountFor(perf)/100)}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
+    result += `${playFor(perf).name}: ${format(amountFor(perf) / 100)}(${perf.audience} seats)\n`
+    totalAmount += amountFor(perf)
   }
-  result += `Amount owed is ${format(totalAmount/100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
+  result += `Amount owed is ${format(totalAmount / 100)}\n`
+  result += `You earned ${volumeCredits} credits\n`
+  console.log(result)
+  return format(totalAmount / 100)
+}
 ```
-
-I remove the unnecessary (and, in this case, downright misleading) comment. I compile-test-­commit that, and then rename the variables inside the new function. function statement…
-
-```js
-volumeCreditsFor(aPerformance) {
-  let result = 0;
-  result += Math.max(aPerformance.audience - 30, 0);
-  // add extra credit for every ten comedy attendees
-  if ('comedy' === this.playFor(aPerformance).type) {
-    result += Math.floor(aPerformance.audience / 5);
-  }
-  return result;
-},
-```
-
-I’ve shown it in one step, but as before I did the renames one at a time, with a compile-test-­commit after each.
 
 #### 1.4.3 Removing the format Variable
 
@@ -740,39 +634,6 @@ As I suggested before, temporary variables can be a problem. They are only usefu
 
 正如我上面所指出的，临时变量往往会带来麻烦。它们只在对其进行处理的代码块中有用，因此临时变量实质上是鼓励你写长而复杂的函数。因此，下一步我要替换掉一些临时变量，而最简单的莫过于从 format 变量入手。这是典型的「将函数赋值给临时变量」的场景，我更愿意将其替换为一个明确声明的函数。
 
-function statement…
-
-```js
-format(aNumber) {
-  return new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-          minimumIntegerDigits: 2,
-        }).format;
-},
-```
-
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    volumeCredits += this.volumeCreditsFor(perf);
-
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.format(this.amountFor(perf)/100)}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
-  }
-  result += `Amount owed is ${this.format(totalAmount/100)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
-```
-
 Although changing a function variable to a declared function is a refactoring, I haven’t named it and included it in the catalog. There are many refactorings that I didn’t feel important enough for that. This one is both simple to do and relatively rare, so I didn’t think it was worthwhile.
 
 尽管将函数变量改变成函数声明也是一种重构手法， 但我既未为此手法命名，也未将它纳入重构名录。还有很多的重构手法我都觉得没那么重要。我觉得上面这个函数改名的手法既十分简单又不太常用，不值得在重构名录中占有一席之地。
@@ -780,34 +641,6 @@ Although changing a function variable to a declared function is a refactoring, I
 I’m not keen on the name—“format” doesn’t really convey enough of what it’s doing. “formatAsUSD” would be a bit too long­winded since it’s being used in a string template, particularly within this small scope. I think the fact that it’s formatting a currency amount is the thing to highlight here, so I pick a name that suggests that and apply Change Function Declaration (124). 
 
 我对提炼得到的函数名称不很满意——format 未能清晰地描述其作用。formatAsUSD 很表意，但又太长，特别它仅是小范围地被用在一个字符串模板中。我认为这里真正需要强调的是，它格式化的是一个货币数字，因此我选取了一个能体现此意图的命名，并应用了改变函数声明（124）手法。
-
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    volumeCredits += this.volumeCreditsFor(perf);
-
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
-  }
-  result += `Amount owed is ${this.usd(totalAmount)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
-usd(aNumber) {
-  return new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-          minimumIntegerDigits: 2,
-        }).format(aNumber/100);
-},
-```
 
 Naming is both important and tricky. Breaking a large function into smaller ones only adds value if the names are good. With good names, I don’t have to read the body of the function to see what it does. But it’s hard to get names right the first time, so I use the best name I can think of for the moment, and don’t hesitate to rename it later. Often, it takes a second pass through some code to realize what the best name really is.
 
@@ -817,109 +650,97 @@ As I’m changing the name, I also move the duplicated division by 100 into the 
 
 重命名的同时，我还将重复的除以 100 的行为也搬移到函数里。将钱以美分为单位作为正整数存储是一种常见的做法，可以避免使用浮点数来存储货币的小数部分，同时又不影响用数学运算符操作它。不过，对于这样一个以美分为单位的整数，我又需要以美元为单位进行展示，因此让格式化函数来处理整除的事宜再好不过。
 
+```js
+function usd(aNumber) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumIntegerDigits: 2
+  }).format(aNumber/100)
+}
+
+export function statement() {
+  let totalAmount = 0
+  let volumeCredits = 0
+  let result = `Statement for ${invoices.customer}\n`
+  for (const perf of invoices.performances) {
+    volumeCredits = volumeCreditsFor(perf)
+    // print line for this order
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
+    totalAmount += amountFor(perf)
+  }
+  result += `Amount owed is ${usd(totalAmount)}\n`
+  result += `You earned ${volumeCredits} credits\n`
+  console.log(result)
+  return usd(totalAmount)
+}
+```
+
+1『这个格式化函数 `usd()` 的写法很值得去研究学习。（2020-09-25）』
+
 #### 1.4.4 Removing Total Volume Credits
 
 My next target variable is volumeCredits. This is a trickier case, as it’s built up during the iterations of the loop. My first move, then, is to use Split Loop (227) to separate the accumulation of volumeCredits.
 
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let volumeCredits = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
-  }
-  for (let perf of invoice.performances) {
-    volumeCredits += this.volumeCreditsFor(perf);
-  }
-  result += `Amount owed is ${this.usd(totalAmount)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
-```
+我的下一个重构目标是 volumeCredits。处理这个变量更加微妙，因为它是在循环的迭代过程中累加得到的。第一步，就是应用拆分循环（227）将 volumeCredits 的累加过程分离出来。
 
 With that done, I can use Slide Statements (223) to move the declaration of the variable next to the loop.
 
-top level…
+完成这一步，我就可以使用移动语句（223）手法将变量声明挪动到紧邻循环的位置。
 
 ```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
+export function statement() {
+  let totalAmount = 0
+  let result = `Statement for ${invoices.customer}\n`
+  for (const perf of invoices.performances) {
     // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
+    totalAmount += amountFor(perf)
   }
-  let volumeCredits = 0;
-  for (let perf of invoice.performances) {
-    volumeCredits += this.volumeCreditsFor(perf);
+
+  let volumeCredits = 0
+  for (const perf of invoices.performances) {
+    volumeCredits = volumeCreditsFor(perf)
   }
-  result += `Amount owed is ${this.usd(totalAmount)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
+
+  result += `Amount owed is ${usd(totalAmount)}\n`
+  result += `You earned ${volumeCredits} credits\n`
+  console.log(result)
+  return usd(totalAmount)
+}
 ```
 
 Gathering together everything that updates the volumeCredits variable makes it easier to do Replace Temp with Query (178). As before, the first step is to apply Extract Function (106) to the overall calculation of the variable.
 
-function statement…
+把与更新 volumeCredits 变量相关的代码都集中到一起，有利于以查询取代临时变量（178）手法的施展。第一步同样是先对变量的计算过程应用提炼函数（106）手法。
 
 ```js
-totalVolumeCredits() {
-  let invoice = invoices[0];
-  let volumeCredits = 0;
-  for (let perf of invoice.performances) {
-    volumeCredits += this.volumeCreditsFor(perf);
+function totalVolumeCredits() {
+ let volumeCredits = 0
+  for (const perf of invoices.performances) {
+    volumeCredits = volumeCreditsFor(perf)
   }
-  return volumeCredits;
-},
-```
+}
 
-top level…
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
+export function statement() {
+  let totalAmount = 0
+  let result = `Statement for ${invoices.customer}\n`
+  for (const perf of invoices.performances) {
     // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
+    result += `${playFor(perf).name}: ${usd(amountFor(perf))}(${perf.audience} seats)\n`
+    totalAmount += amountFor(perf)
   }
-  let volumeCredits = this.totalVolumeCredits();
-  result += `Amount owed is ${this.usd(totalAmount)}\n`;
-  result += `You earned ${volumeCredits} credits\n`;
-  console.log(result);
-},
+
+  let volumeCredits = totalVolumeCredits()
+  
+  result += `Amount owed is ${usd(totalAmount)}\n`
+  result += `You earned ${volumeCredits} credits\n`
+  console.log(result)
+  return usd(totalAmount)
+}
 ```
 
 Once everything is extracted, I can apply Inline Variable (123):
-
-top level… 
-
-```js
-stateMent() {
-  let invoice = invoices[0];
-  let totalAmount = 0;
-  let result = `Statement for ${invoice.customer}\n`;
-  for (let perf of invoice.performances) {
-    // print line for this order
-    result += `${this.playFor(perf).name}: ${this.usd(this.amountFor(perf))}(${perf.audience} seats)\n`;
-    totalAmount += this.amountFor(perf);
-  }
-  result += `Amount owed is ${this.usd(totalAmount)}\n`;
-  result += `You earned ${this.totalVolumeCredits()} credits\n`;
-  console.log(result);
-},
-```
 
 Let me pause for a bit to talk about what I’ve just done here. Firstly, I know readers will again be worrying about performance with this change, as many people are wary of repeating a loop. But most of the time, rerunning a loop like this has a negligible effect on performance. If you timed the code before and after this refactoring, you would probably not notice any significant change in speed—and that’s usually the case. Most programmers, even experienced ones, are poor judges of how code actually performs. Many of our intuitions are broken by clever compilers, modern caching techniques, and the like. The performance of software usually depends on just a few parts of the code, and changes anywhere else don’t make an appreciable difference.
 
