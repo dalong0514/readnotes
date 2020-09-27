@@ -1684,7 +1684,7 @@ One final swing of compile­-test-­commit—and now it’s easy to write an HTM
 statement.js…
 
 ```js
-// 此时此刻算是理解了输出样式与数据层的分离
+// 此时此刻算是理解了输出样式与数据层的分离（2020-09-27）
 
 import { createStatementData } from '@/code/createStatementData'
 
@@ -1763,7 +1763,7 @@ There are various ways to introduce structure to make this explicit, but in this
 
 My overall plan is to set up an inheritance hierarchy with comedy and tragedy subclasses that contain the calculation logic for those cases. Callers call a polymorphic amount function that the language will dispatch to the different calculations for the comedies and tragedies. I’ll make a similar structure for the volume credits calculation. To do this, I utilize a couple of refactorings. The core refactoring is Replace Conditional with Polymorphism (272), which changes a hunk of conditional code with polymorphism. But before I can do Replace Conditional with Polymorphism (272), I need to create an inheritance structure of some kind. I need to create a class to host the amount and volume credit functions.
 
-1『有一个经典重构手法出来了，replace conditional with polymorphism，条件语句转多态。』
+1『又一个经典重构手法出来了，replace conditional with polymorphism，条件语句转多态。』
 
 我的设想是先建立一个继承体系，它有「喜剧」和「悲剧」两个子类，子类各自包含独立的计算逻辑。调用者通过调用一个多态的 amount 函数，让语言帮你分发到不同的子类的计算过程中。volumeCredits 函数的处理也是如法炮制。为此我需要用到多种重构方法，其中最核心的一招是以多态取代条件表达式（272），将多个同样的类型码分支用多态取代。但在施展以多态取代条件表达式（272）之前，我得先创建一个基本的继承结构。我需要先创建一个类，并将价格计算函数和观众量积分计算函数放进去。
 
@@ -1775,25 +1775,27 @@ I begin by reviewing the calculation code. (One of the pleasant consequences of 
 
 The enrichPerformance function is the key, since it populates the intermediate data structure with the data for each performance. Currently, it calls the conditional functions for amount and volume credits. What I need it to do is call those functions on a host class. Since that class hosts functions for calculating data about performances, I’ll call it a performance calculator.
 
+enrichPerformance 函数是关键所在，因为正是它用每场演出的数据来填充中转数据结构。目前它直接调用了计算价格和观众量积分的函数，我需要创建一个类，通过这个类来调用这些函数。由于这个类存放了与每场演出相关数据的计算函数，于是我把它称为演出计算器（performance calculator）。
+
 function createStatementData…
 
 ```js
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCaluculator(aPerformance);
-    const result = Object.assign({}, aPerformance);
-    result.play = playFor(result);
-    result.amount = amountFor(result);
-    result.volumeCredits = volumeCreditsFor(result);
-    return result;
+    const calculator = new PerformanceCalculator(aPerformance)
+    const result = Object.assign({}, aPerformance)
+    result.play = playFor(result)
+    result.amount = amountFor(result)
+    result.volumeCredits = volumeCreditsFor(result)
+    return result
   }
 ```
 
 top level…
 
 ```js
-class PerformanceCaluculator {
+class PerformanceCalculator {
   constructor(aPerformance) {
-    this.performance = aPerformance;
+    this.performances = aPerformance
   }
 }
 ```
@@ -1806,14 +1808,13 @@ function createStatementData…
 
 ```js
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCaluculator(aPerformance, playFor(aPerformance));
-    const result = Object.assign({}, aPerformance);
-    result.play = playFor(result);
-    result.amount = amountFor(result);
-    result.volumeCredits = volumeCreditsFor(result);
-    return result;
+    const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance))
+    const result = Object.assign({}, aPerformance)
+    result.play = calculator.play
+    result.amount = amountFor(result)
+    result.volumeCredits = volumeCreditsFor(result)
+    return result
   }
-
 ```
 
 class PerformanceCalculator…
@@ -1870,15 +1871,17 @@ class PerformanceCaluculator {
 
 I can compile at this point to check for any compile­time errors. “Compiling” in my development environment occurs as I execute the code, so what I actually do is run Babel [babel]. That will be enough to catch any syntax errors in the new function—but little more than that. Even so, that can be a useful step. Once the new function fits its home, I take the original function and turn it into a delegating function so it calls the new function.
 
+搬移完成后可以编译一下，看看是否有编译错误。我在本地开发环境运行代码时，编译会自动发生，我实际需要做的只是运行一下 Babel。编译能帮我发现新函数中潜在的语法错误，语法之外的就帮不上什么忙了。尽管如此，这一步还是很有用。使新函数适应新家后，我会将原来的函数改造成一个委托函数，让它直接调用新函数。
+
 function createStatementData…
 
 ```js
   function amountFor(aPerformance) {
-    return new PerformanceCaluculator(aPerformance, playFor(aPerformance)).amount;
+    return new PerformanceCalculator(aPerformance, playFor(aPerformance)).amount
   }
 ```
 
-1『这里「new PerformanceCaluculator(aPerformance, playFor(aPerformance)).amount;」调用的是实例化对象的 get 属性值，所以 amount 后面没有括号 ()。』
+1『这里 `new PerformanceCaluculator(aPerformance, playFor(aPerformance)).amount;` 调用的是实例化对象的 get 属性值，所以 amount 后面没有括号 ()，这个知识点是在专栏「重学前端」里获得的。（2020-09-27）』
 
 Now I can compile­-test-­commit to ensure the code is working properly in its new home. With that done, I use Inline Function (115) to call the new function directly (compile-test-­commit).
 
@@ -1895,7 +1898,7 @@ function createStatementData…
   }
 ```
 
-1『这是，之前的 function amountFor(aPerformance) {} 函数可以整体删除了，绝妙！』
+1『这时，之前的 function amountFor(aPerformance) {} 函数可以整体删除了，绝妙！』
 
 I repeat the same process to move the volume credits calculation.
 
@@ -1903,12 +1906,12 @@ function createStatementData…
 
 ```js
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCaluculator(aPerformance, playFor(aPerformance));
-    const result = Object.assign({}, aPerformance);
-    result.play = calculator.play;
-    result.amount = calculator.amount;
-    result.volumeCredits = calculator.volumeCredits;
-    return result;
+    const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance))
+    const result = Object.assign({}, aPerformance)
+    result.play = calculator.play
+    result.amount = calculator.amount
+    result.volumeCredits = calculator.volumeCredits
+    return result
   }
 ```
 
@@ -1916,19 +1919,22 @@ class PerformanceCalculator…
 
 ```js
   get volumeCredits() {
-    let result = 0;
-    result += Math.max(this.performance.audience - 30, 0);
+    let result = 0
+    // add volume credits
+    result += Math.max(this.performance.audience - 30, 0)
     // add extra credit for every ten comedy attendees
-    if ('comedy' === this.play.type) {
-      result += Math.floor(this.performance.audience / 5);
+    if (this.play.type === 'comedy') {
+      result += Math.floor(this.performance.audience / 5)
     }
-    return result;
+    return result
   }
 ```
 
 #### 1.8.3 Making the Performance Calculator Polymorphic 
 
 Now that I have the logic in a class, it’s time to apply the polymorphism. The first step is to use Replace Type Code with Subclasses (362) to introduce subclasses instead of the type code. For this, I need to create subclasses of the performance calculator and use the appropriate subclass in createPerformanceData. In order to get the right subclass, I need to replace the constructor call with a function, since JavaScript constructors can’t return subclasses. So I use Replace Constructor with Factory Function (334).
+
+1『用子类代码替换类型代码，这句话有点感触了。这里由于 JS 语言的特性，没法在构造函数里直接返回子类，所以老马用工厂函数取代构造函数，这个知识点也很赞。（2020-09-26）』
 
 我已将全部计算逻辑搬移到一个类中，是时候将它多态化了。第一步是应用以子类取代类型码（362）引入子类， 弃用类型代码。为此，我需要为演出计算器创建子类，并在 createStatementData 中获取对应的子类。要得到正确的子类，我需要将构造函数调用替换为一个普通的函数调用，因为 JavaScript 的构造函数里无法返回子类。于是我使用以工厂函数取代构造函数（334）。
 
@@ -1951,7 +1957,7 @@ top level…
 
 ```js
 function createPerformanceCalculator(aPerformance, aPlay) {
-  return new PerformanceCaluculator(aPerformance, aPlay);
+  return new PerformanceCalculator(aPerformance, aPlay)
 }
 ```
 
@@ -1960,12 +1966,20 @@ With that now a function, I can create subclasses of the performance calculator 
 top level…
 
 ```js
+class TragedyCalculator extends PerformanceCalculator {
+  //
+}
+
+class ComedyCalculator extends PerformanceCalculator {
+  //
+}
+
 function createPerformanceCalculator(aPerformance, aPlay) {
   switch(aPlay.type) {
-    case 'tragedy': return new TragedyCalculator(aPerformance, aPlay);
-    case 'comedy': return new ComedyCalculator(aPerformance, aPlay);
+    case 'tragedy': return new TragedyCalculator(aPerformance, aPlay)
+    case 'comedy': return new ComedyCalculator(aPerformance, aPlay)
     default:
-      throw new Error(`unknown type: ${aPlay.type}`);
+      throw new Error(`unkonw type: ${aPlay.type}`)
   }
 }
 ```
@@ -2012,6 +2026,8 @@ class PerformanceCalculator…
 
 I could have removed the case for tragedy and let the default branch throw an error. But I like the explicit throw—and it will only be there for a couple more minutes (which is why I threw a string, not a better error object). After a compile­-test-­commit of that, I move the comedy case down too.
 
+虽然我也可以直接删掉处理悲剧的分支，将错误留给默认分支去抛出，但我更喜欢显式地抛出异常——何况这行代码只能再活个几分钟了（这也是我直接抛出一个字符串而不用更好的错误对象的原因）。再次进行编译、测试、提交。之后，将处理喜剧类型的分支也下移到子类中去。
+
 class ComedyCalculator…
 
 ```js
@@ -2035,6 +2051,8 @@ class PerformanceCalculator…
 get amount() { throw new Error('subclass responsibility'); }
 ```
 
+1『父类里还是保留 `get amout() {}`，并且抛出个异常表示应该是子类的职责，老马的这个做法好棒啊，哈哈。（2020-09-27）』
+
 The next conditional to replace is the volume credits calculation. Looking at the discussion of future categories of plays, I notice that most plays expect to check if audience is above 30, with only some categories introducing a variation. So it makes sense to leave the more common case on the superclass as a default, and let the variations override it as necessary. So I just push down the case for comedies:
 
 下一个要替换的条件表达式是观众量积分的计算。我回顾了一下前面关于未来戏剧类型的讨论，发现大多数剧类在计算积分时都会检查观众数是否达到 30，仅一小部分品类有所不同。因此，将更为通用的逻辑放到超类作为默认条件， 出现特殊场景时按需覆盖它，听起来十分合理。于是我将一部分喜剧的逻辑下移到子类。
@@ -2042,18 +2060,19 @@ The next conditional to replace is the volume credits calculation. Looking at th
 class PerformanceCalculator…
 
 ```js
-class PerformanceCaluculator {
+class PerformanceCalculator {
   constructor(aPerformance, aPlay) {
-    this.performance = aPerformance;
-    this.play = aPlay;
+    this.performance = aPerformance
+    this.play = aPlay
   }
 
   get amount() {
-    throw new Error('subclass responsibility');
+    throw new Error('subclass responsibility')
   }
 
   get volumeCredits() {
-    return Math.max(this.performance.audience - 30, 0);
+    // add volume credits
+    return Math.max(this.performance.audience - 30, 0)
   }
 }
 ```
@@ -2061,17 +2080,18 @@ class PerformanceCaluculator {
 class ComedyCalculator…
 
 ```js
-class ComedyCalculator extends PerformanceCaluculator {
+class ComedyCalculator extends PerformanceCalculator {
   get amount() {
-    let result = 30000;
+    let result = 30000
     if (this.performance.audience > 20) {
-      result += 10000 + 500 * (this.performance.audience -20);
+      result += 10000 + 500 * (this.performance.audience - 20)
     }
-    result += 300 * this.performance.audience;
-    return result;
+    result += 300 * this.performance.audience
+    return result
   }
+
   get volumeCredits() {
-    return super.volumeCredits + Math.floor(this.performance.audience / 5);
+    return super.volumeCredits + Math.floor(this.performance.audience / 5)
   }
 }
 ```
@@ -2083,83 +2103,87 @@ Time to reflect on what introducing the polymorphic calculator did to the code.
 createStatementData.js
 
 ```js
-export default function createStatementData(invoice, plays) {
-  const result = {};
-  result.customer = invoice.customer;
-  result.performances = invoice.performances.map(enrichPerformance);
-  result.totalAmount = totalAmount(result);
-  result.totalVolumeCredits = totalVolumeCredits(result);
-  return result;
+import { invoices, plays } from '@/code/data'
 
-  function enrichPerformance(aPerformance) {
-    const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance));
-    const result = Object.assign({}, aPerformance);
-    result.play = calculator.play;
-    result.amount = calculator.amount;
-    result.volumeCredits = calculator.volumeCredits;
-    return result;
+class PerformanceCalculator {
+  constructor(aPerformance, aPlay) {
+    this.performance = aPerformance
+    this.play = aPlay
   }
 
-  function playFor(aPerformance) {
-    return plays[aPerformance.playID];
+  get amount() {
+    throw new Error('subclass responsibility')
   }
 
-  function totalAmount(data) {
-    return data.performances
-      .reduce((total, p) => total + p.amount, 0);
+  get volumeCredits() {
+    // add volume credits
+    return Math.max(this.performance.audience - 30, 0)
+  }
+}
+
+class TragedyCalculator extends PerformanceCalculator {
+  get amount() {
+    let result = 40000
+    if (this.performance.audience > 30) {
+      result += 1000 * (this.performance.audience - 30)
+    }
+    return result
+  }
+}
+
+class ComedyCalculator extends PerformanceCalculator {
+  get amount() {
+    let result = 30000
+    if (this.performance.audience > 20) {
+      result += 10000 + 500 * (this.performance.audience - 20)
+    }
+    result += 300 * this.performance.audience
+    return result
   }
 
-  function totalVolumeCredits(data) {
-    return data.performances
-      .reduce((total, p) => total + p.volumeCredits, 0);
+  get volumeCredits() {
+    return super.volumeCredits + Math.floor(this.performance.audience / 5)
   }
 }
 
 function createPerformanceCalculator(aPerformance, aPlay) {
-  switch(aPlay.type) {
-    case 'tragedy': return new TragedyCalculator(aPerformance, aPlay);
-    case 'comedy': return new ComedyCalculator(aPerformance, aPlay);
+  switch (aPlay.type) {
+    case 'tragedy': return new TragedyCalculator(aPerformance, aPlay)
+    case 'comedy': return new ComedyCalculator(aPerformance, aPlay)
     default:
-      throw new Error(`unknown type: ${aPlay.type}`);
+      throw new Error(`unkonw type: ${aPlay.type}`)
   }
 }
 
-class PerformanceCaluculator {
-  constructor(aPerformance, aPlay) {
-    this.performance = aPerformance;
-    this.play = aPlay;
+export function createStatementData() {
+  const statementData = {}
+  statementData.customer = invoices.customer
+  statementData.performances = invoices.performances.map(enrichPerformance)
+  statementData.totalAmount = totalAmount(statementData)
+  statementData.totalVolumeCredits = totalVolumeCredits(statementData)
+  return statementData
+
+  function enrichPerformance(aPerformance) {
+    const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance))
+    const result = Object.assign({}, aPerformance)
+    result.play = calculator.play
+    result.amount = calculator.amount
+    result.volumeCredits = calculator.volumeCredits
+    return result
   }
 
-  get amount() {
-    throw new Error('subclass responsibility');
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID]
   }
 
-  get volumeCredits() {
-    return Math.max(this.performance.audience - 30, 0);
+  function totalAmount(data) {
+    return data.performances
+      .reduce((total, p) => total + p.amount, 0)
   }
-}
 
-class TragedyCalculator extends PerformanceCaluculator {
-  get amount() {
-    let result = 40000;
-    if (this.performance.audience > 30) {
-      result += 1000 * (this.performance.audience - 30);
-    }
-    return result;
-  }
-}
-
-class ComedyCalculator extends PerformanceCaluculator {
-  get amount() {
-    let result = 30000;
-    if (this.performance.audience > 20) {
-      result += 10000 + 500 * (this.performance.audience -20);
-    }
-    result += 300 * this.performance.audience;
-    return result;
-  }
-  get volumeCredits() {
-    return super.volumeCredits + Math.floor(this.performance.audience / 5);
+  function totalVolumeCredits(data) {
+    return data.performances
+      .reduce((total, p) => total + p.volumeCredits, 0)
   }
 }
 ```
@@ -2171,3 +2195,11 @@ Again, the code has increased in size as I’ve introduced structure. The benefi
 An alternative to what I’ve done here would be to have createPerformanceData return the calculator itself, instead of the calculator populating the intermediate data structure. One of the nice features of JavaScript’s class system is that with it, using getters looks like regular data access. My choice on whether to return the instance or calculate separate output data depends on who is using the downstream data structure. In this case, I preferred to show how to use the intermediate data structure to hide the decision to use a polymorphic calculator.
 
 除了这样设计，还有另一种可能的方案，那就是让 createStatementData 返回计算器实例本身，而非自己拿到计算器来填充中转数据结构。JavaScript 的类设计有不少好特性，例如，取值函数用起来就像普通的数据存取。我在考量是「直接返回实例本身」还是「返回计算好的中转数据」时，主要看数据的使用者是谁。在这个例子中，我更想通过中转数据结构来展示如何以此隐藏计算器背后的多态设计。
+
+这是一个简单的例子，但我希望它能让你对「重构怎么做」有一点感觉。例中我已经示范了数种重构手法，包括提炼函数（106）、内联变量（123）、搬移函数（198）和以多态取代条件表达式（272）等。本章的重构有 3 个较为重要的节点，分别是：将原函数分解成一组嵌套的函数、应用拆分阶段（154）分离计算逻辑与输出格式化逻辑，以及为计算器引入多态性来处理计算逻辑。每一步都给代码添加了更多的结构，以便我能更好地表达代码的意图。
+
+一般来说，重构早期的主要动力是尝试理解代码如何工作。通常你需要先通读代码，找到一些感觉，然后再通过重构将这些感觉从脑海里搬回到代码中。清晰的代码更容易理解，使你能够发现更深层次的设计问题，从而形成积极正向的反馈环。当然，这个示例仍有值得改进的地方，但现在测试仍能全部通过，代码相比初见时已经有了巨大的改善，所以我已经可以满足了。
+
+我谈论的是如何改善代码，但什么样的代码才算好代码，程序员们有很多争论。我偏爱小的、命名良好的函数，也知道有些人反对这个观点。如果我们说这只关乎美学，只是各花入各眼，没有好坏高低之分，那除了诉诸个人品味，就没有任何客观事实依据了。但我坚信，这不仅关乎个人品味，而且是有客观标准的。我认为，好代码的检验标准就是人们是否能轻而易举地修改它。好代码应该直截了当：有人需要修改代码时，他们应能轻易找到修改点，应该能快速做出更改，而不易引入其他错误。一个健康的代码库能够最大限度地提升我们的生产力，支持我们更快、更低成本地为用户添加新特性。为了保持代码库的健康，就需要时刻留意现状与理想之间的差距，然后通过重构不断接近这个理想。
+
+好代码的检验标准就是人们是否能轻而易举地修改它。这个示例告诉我们最重要的一点就是重构的节奏感。无论何时，当我向人们展示我如何重构时，无人不讶异于我的步子之小，并且每一步都保证代码处于编译通过和测试通过的可工作状态。20年前，当Kent Beck在底特律的一家宾馆里向我展示同样的手法时，我也报以同样的震撼。开展高效有序的重构，关键的心得是：小的步子可以更快前进，请保持代码永远处于可工作状态，小步修改累积起来也能大大改善系统的设计。这几点请君牢记，其余的我已无需多言。

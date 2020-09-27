@@ -615,3 +615,9 @@ Although this book (and its predecessor) are intended for programmers with any l
 For more up­to­date material, look up the web representation of this book, as well as the main refactoring web site: [refactoring.com](https://refactoring.com/) [ref.com]. 
 
 2『已下载书籍「2020146Refactoring-Workbook」、「2020110Refactoring-to-Patterns」、「2020147Refactoring-Databases」、「2020148Refactoring-HTML」、「2019031Working-Effectively-with-Legacy-Code」。』
+
+在第 2 章就开始谈延展阅读，这似乎有点儿奇怪。不过，有大量关于重构的材料已经超出了本书的范围，早些让读者知道这些材料的存在也是件好事。本书的第 1 版教很多人学会了重构，不过我的关注点是组织一本重构的参考书，而不是带领读者走过学习过程。如果你需要一本面向入门者的教材，我推荐 Bill Wake 的《重构手册》[Wake]，其中包含了很多有用的重构练习。很多重构的先行者同时也活跃于软件模式社区。Josh Kerievsky 在《重构与模式》[Kerievsky] 一书中紧密连接了这两个世界。他审视了影响巨大的 GoF[gof] 书中一些最有价值的模式，并展示了如何通过重构使代码向这些模式的方向演化。
+
+本书聚焦讨论通用编程语言中的重构技巧。还有一些专门领域的重构，例如已经引起关注的《数据库重构》[Ambler & Sadalage]（由 Scott Ambler 和 Pramod Sadalage 所著）和《重构 HTML》[Harold]（由 Elliotte Rusty Harold 所著）。尽管标题中没有「重构」二字，Michael Feathers 的《修改代码的艺术》[Feathers] 也不得不提。这本书主要讨论如何在缺乏测试覆盖的老旧代码库上开展重构。
+
+本书（及其前一版）对读者的编程语言背景没有要求。也有人写专门针对特定语言的重构书籍。我的两位前同事 Jay Fields 和 Shane Harvey 就撰写了 Ruby 版的《重构》[Fields et al.]。在本书的 Web 版和重构网站（refactoring.com）[ref.com] 上都可以找到更多相关材料的更新。
