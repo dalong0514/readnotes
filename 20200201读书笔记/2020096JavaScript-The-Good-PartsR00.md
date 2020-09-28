@@ -4,7 +4,7 @@
 
 ## 记忆时间
 
-2020-04-21、2020-08-27
+2020-04-21；2020-08-27
 
 ## 卡片
 
@@ -32,23 +32,23 @@ A controversial feature in JavaScript is prototypal inheritance. JavaScript has 
 
 实战细节汇总：
 
-1、首部加 ^ 表示是字符串的起始，强制从开头匹配。尾部加 \$ 表示字符串的末端，强制收尾。这两个符号如同锚点，/^expression\$/ 相当于将范围圈定好。
+1、首部加 `^` 表示是字符串的起始，强制从开头匹配。尾部加 `$` 表示字符串的末端，强制收尾。这两个符号如同锚点，`/^expression$/` 相当于将范围圈定好。
 
-摘录原文：We again use ^ and \$ to anchor the regular expression. This causes all of the characters in the text to be matched against the regular expression. If we had omitted the anchors, the regular expression would tell us if a string contains a number. With the anchors, it tells us if the string contains only a number. If we included just the ^, it would match strings starting with a number. If we included just the \$, it would match strings ending with a number.
+摘录原文：We again use `^` and `$` to anchor the regular expression. This causes all of the characters in the text to be matched against the regular expression. If we had omitted the anchors, the regular expression would tell us if a string contains a number. With the anchors, it tells us if the string contains only a number. If we included just the `^`, it would match strings starting with a number. If we included just the `$`, it would match strings ending with a number.
 
-2、首部加 ?: 表示非捕获型分组，即匹配的对象不会供后续使用。像这种以 ? 开头的是一种扩展表示法。
+2、首部加 `?:` 表示非捕获型分组，即匹配的对象不会供后续使用。像这种以 `? `开头的是一种扩展表示法。
 
-摘录原文：The (?:...)? indicates an optional noncapturing group. It is usually better to use noncapturing groups instead of the less ugly capturing groups because capturing has a performance penalty. 
+摘录原文：The `(?:...)? `indicates an optional noncapturing group. It is usually better to use noncapturing groups instead of the less ugly capturing groups because capturing has a performance penalty. 
 
-3、末尾加 ? 表示匹配 0 次或 1 次，即可选项；末尾加 + 表示匹配 1 次或多次；* 表示匹配 0 次或多次；{0,3} 表示匹配 0、1、2、3 次均可。
+3、末尾加 `?` 表示匹配 0 次或 1 次，即可选项；末尾加 `+` 表示匹配 1 次或多次；`*` 表示匹配 0 次或多次；`{0,3}` 表示匹配 0、1、2、3 次均可。
 
-4、() 里的表示是捕获组，匹配的信息会存入一个结果数据组，比如 PHP 里的结果数据默认为 \$matches。另，捕获组后面跟着冒号 : 的话，表示会按字面量进行匹配。
+4、`()` 里的表示是捕获组，匹配的信息会存入一个结果数据组，比如 PHP 里的结果数据默认为 `$matches`。另，捕获组后面跟着冒号 `:` 的话，表示会按字面量进行匹配。
 
-5、[] 里的表示是字符集（character class），比如 [A-Za-z] 表示所有的大小写字母；字符集内，首部加 ^ 的话表示反选，比如 [^?#] 表示匹配除了 ? 和 # 的所有字符。
+5、`[]` 里的表示是字符集（character class），比如 `[A-Za-z]` 表示所有的大小写字母；字符集内，首部加 `^` 的话表示反选，比如 `[^?#]` 表示匹配除了 ? 和 # 的所有字符。
 
-6、点号 . 表示匹配任意字符，除了 line-ending 字符（换行符）外。
+6、点号 `.` 表示匹配任意字符，除了 line-ending 字符（换行符）外。
 
-7、整个表达式后面加标识符 i 表示忽略大小写，比如 /expression/i。另外 2 个标识符是 g 和 m。
+7、整个表达式后面加标识符 `i` 表示忽略大小写，比如 `/expression/i`。另外 2 个标识符是 g 和 m。
 
 摘录原文：g, Global (match multiple times; the precise meaning of this varies with the method). i, Insensitive (ignore character case). m, Multiline (^ and \$ can match line-ending characters).
 
@@ -69,7 +69,7 @@ var my_regexp = new RegExp("\"(?:\\.|[^\\\\\\\"])*\"", 'g');
 
 摘录原文：The second parameter is a string specifying the flags. The RegExp constructor is useful when a regular expression must be generated at runtime using material that is not available to the programmer. RegExp objects contain the properties listed in Table 7-2.
 
-2、一个个 () 包裹起来的捕获组，也被称为因子（factor）。
+2、一个个 `()` 包裹起来的捕获组，也被称为因子（factor）。
 
 元素内容汇总：
 
