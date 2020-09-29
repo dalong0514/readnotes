@@ -226,7 +226,7 @@ Loops have been a core part of programming since the earliest languages. But we 
 
 We like using program elements to add structure—providing opportunities for variation, reuse, or just having more helpful names. But sometimes the structure isn’t needed. It may be a function that’s named the same as its body code reads, or a class that is essentially one simple function. Sometimes, this reflects a function that was expected to grow and be popular later, but never realized its dreams. Sometimes, it’s a class that used to pay its way, but has been downsized with refactoring. Either way, such program elements need to die with dignity. Usually this means using Inline Function (115) or Inline Class (186). With inheritance, you can use Collapse Hierarchy (380).
 
-程序元素（如类和函数）能给代码增加结构，从而支持变化、促进复用或者哪怕只是提供更好的名字也好，但有时我们真的不需要这层额外的结构。可能有这样一个函数，它的名字就跟实现代码看起来一模一样；也可能有这样一个类，根本就是一个简单的函数。这可能是因为，起初在编写这个函数时，程序员也许期望它将来有一天会变大、变复杂，但那一天从未到来；也可能是因为，这个类原本是有用的，但随着重构的进行越变越小，最后只剩了一个函数。不论上述哪一种原因，请让这样的程序元素庄严赴义通常你只需要使用内联函数（115) 或是内联类（186)。如果这个类处于一个继承体系中，可以使用折叠继承体系（380)。
+程序元素（如类和函数）能给代码增加结构，从而支持变化、促进复用或者哪怕只是提供更好的名字也好，但有时我们真的不需要这层额外的结构。可能有这样一个函数，它的名字就跟实现代码看起来一模一样；也可能有这样一个类，根本就是一个简单的函数。这可能是因为，起初在编写这个函数时，程序员也许期望它将来有一天会变大、变复杂，但那一天从未到来；也可能是因为，这个类原本是有用的，但随着重构的进行越变越小，最后只剩了一个函数。不论上述哪一种原因，请让这样的程序元素庄严赴义，通常你只需要使用内联函数（115）或是内联类（186）。如果这个类处于一个继承体系中，可以使用折叠继承体系（380)。
 
 ## 3.15 Speculative Generality
 
@@ -236,11 +236,9 @@ If you have abstract classes that aren’t doing much, use Collapse Hierarchy (3
 
 Speculative generality can be spotted when the only users of a function or class are test cases. If you find such an animal, delete the test case and apply Remove Dead Code (237).
 
-这个令我们十分敏感的坏昧道，命名者是 Brian Foote。当有人说「噢，我想我们总有一天需要做这事」，并因而企图以各式各样的钩子和特殊情况来处理一些非必要的事情，这种坏味道就出现了。这么做的结果往往造成系统更难理解和维护。如果所有装置都会被用到，就值得那么做；如果用不到，就不值得。用不上的装置只会挡你的路，所以，把它搬开吧
+这个令我们十分敏感的坏味道，命名者是 Brian Foote。当有人说「噢，我想我们总有一天需要做这事」，并因而企图以各式各样的钩子和特殊情况来处理一些非必要的事情，这种坏味道就出现了。这么做的结果往往造成系统更难理解和维护。如果所有装置都会被用到，就值得那么做；如果用不到，就不值得。用不上的装置只会挡你的路，所以，把它搬开吧。
 
-如果你的某个抽象类其实没有太大作用，请运用折叠继承体系（380)。不必要的委托可运用内联函数（115) 和内联类（186) 除掉。如果函数的某些参数未被用上，可以用改变函数声明（124) 去掉这些参数。如果有并非真正需要、只是为不知远在何处的将来而塞进去的参数，也应该用改变函数声明（124) 去掉
-
-如果函数或类的唯一用户是测试用例，这就飘出了坏味道「夸夸其谈通用性」。如果你发现这样的函数或类，可以先删掉测试用例，然后使用移除死代码（237)。
+如果你的某个抽象类其实没有太大作用，请运用折叠继承体系（380）。不必要的委托可运用内联函数（115）和内联类（186）除掉。如果函数的某些参数未被用上，可以用改变函数声明（124）去掉这些参数。如果有并非真正需要、只是为不知远在何处的将来而塞进去的参数，也应该用改变函数声明（124) 去掉。如果函数或类的唯一用户是测试用例，这就飘出了坏味道「夸夸其谈通用性」。如果你发现这样的函数或类，可以先删掉测试用例，然后使用移除死代码（237)。
 
 ## 3.16 Temporary Field
 
@@ -248,9 +246,7 @@ Sometimes you see a class in which a field is set only in certain circumstances.
 
 Use Extract Class (182) to create a home for the poor orphan variables. Use Move Function (198) to put all the code that concerns the fields into this new class. You may also be able to eliminate conditional code by using Introduce Special Case (289) to create an alternative class for when the variables aren’t valid.
 
-有时你会看到这样的类：其内部某个字段仅为某种特定情况而设。这样的代码让人不易理解，因为你通常认为对象在所有时候都需要它的所有字段。在字段未被使用的情况下猜测当初设置它的目的，会让你发疯。
-
-请使用提炼类（182) 给这个可怜的孤儿创造一个家，然后用搬移函数（198) 把所有和这些字段相关的代码都放进这个新家。也许你还可以使用引入特例（289) 在「変量不合法」的情下创建一个替代对象，从而避免写出条件式代码。
+有时你会看到这样的类：其内部某个字段仅为某种特定情况而设。这样的代码让人不易理解，因为你通常认为对象在所有时候都需要它的所有字段。在字段未被使用的情况下猜测当初设置它的目的，会让你发疯。请使用提炼类（182）给这个可怜的孤儿创造一个家，然后用搬移函数（198）把所有和这些字段相关的代码都放进这个新家。也许你还可以使用引入特例（289）在「变量不合法」的情况下创建一个替代对象，从而避免写出条件式代码。
 
 ## 3.17 Message Chains
 
@@ -260,11 +256,9 @@ The move to use here is Hide Delegate (189). You can do this at various points i
 
 Some people consider any method chain to be a terrible thing. We are known for our calm, reasoned moderation. Well, at least in this case we are.
 
-如果你看到用户向一个对象请求另一个对象，然后再向后者请求另一个对象，然后再请求另一个对象。这就是消息链。在实际代码中你看到的可能是一长串取值函数或一长串临时量。采取这种方式，意味客户端代码将与找过程中的导航结构紧密耦合。日对象间的关系发生任何变化，客户端就不得不做出相应修改。
+如果你看到用户向一个对象请求另一个对象，然后再向后者请求另一个对象，然后再请求另一个对象。这就是消息链。在实际代码中你看到的可能是一长串取值函数或一长串临时量。采取这种方式，意味客户端代码将与找过程中的导航结构紧密耦合。一旦对象间的关系发生任何变化，客户端就不得不做出相应修改。
 
-这时候应该使用隐委托关系（189)。你可以在消息链的不同位置采用这种重构手法。理论上，你可以重构消息链上的所有对象，但这么做就会把所有中间对象都变成「中间人」。通常更好的选择是：先观察消息链最终得到的对象是用来干什么的，看看能否以提炼函数（106) 把使用该对象的代码提炼到一个独立的函数中，再运用搬移函数（198) 把这个函数推入消息链。如果还有许多客户端代码需要访问链上的其他对象，同样添加一个函数来完成此事。
-
-有些人把任何函数链都视为坏东西，我们不这样想。我们的冷静镇定是出了名的，起码在这件事上是这样的。
+这时候应该使用隐委托关系（189）。你可以在消息链的不同位置采用这种重构手法。理论上，你可以重构消息链上的所有对象，但这么做就会把所有中间对象都变成「中间人」。通常更好的选择是：先观察消息链最终得到的对象是用来干什么的，看看能否以提炼函数（106）把使用该对象的代码提炼到一个独立的函数中，再运用搬移函数（198）把这个函数推入消息链。如果还有许多客户端代码需要访问链上的其他对象，同样添加一个函数来完成此事。有些人把任何函数链都视为坏东西，我们不这样想。我们的冷静镇定是出了名的，起码在这件事上是这样的。
 
 ## 3.18 Middle Man
 
@@ -272,9 +266,9 @@ One of the prime features of objects is encapsulation—hiding internal details 
 
 However, this can go too far. You look at a class’s interface and find half the methods are delegating to this other class. After a while, it is time to use Remove Middle Man (192) and talk to the object that really knows what’s going on. If only a few methods aren’t doing much, use Inline Function (115) to inline them into the caller. If there is additional behavior, you can use Replace Superclass with Delegate (399) or Replace Subclass with Delegate (381) to fold the middle man into the real object. That allows you to extend behavior without chasing all that delegation.
 
-对象的基本特征之一就是封装一一对外部世界隐藏其内部细节。封装往往伴随着委托。比如，你问主管是否有时间参加一个会议，他就把这个消息「委托」给他的记事簿，然后才能回答你。很好，你没必要知道这位主管到底使用传统记事还是使用电子记事簿抑或是秘书来记录自己的约会
+对象的基本特征之一就是封装一一对外部世界隐藏其内部细节。封装往往伴随着委托。比如，你问主管是否有时间参加一个会议，他就把这个消息「委托」给他的记事簿，然后才能回答你。很好，你没必要知道这位主管到底使用传统记事还是使用电子记事簿抑或是秘书来记录自己的约会。
 
-但是人们可能过度运用委托。你也许会看到某个类的接口有一半的函数都委托给其他类，这样就是过度运用。这时应该使用移除中间人（192），直接和真正负责的对象打交道。如果这样「不千实事」的函数只有少数几个，可以运用内联函数（115) 把它们放进调用端。如果这些中间人还有其他行为，可以运用以委托取代超类（399) 或者以委托取代子类（381) 把它变成真正的对象，这样你既可以扩展原对象的行为，又不必负担那么多的委托动作。
+但是人们可能过度运用委托。你也许会看到某个类的接口有一半的函数都委托给其他类，这样就是过度运用。这时应该使用移除中间人（192），直接和真正负责的对象打交道。如果这样「不干实事」的函数只有少数几个，可以运用内联函数（115）把它们放进调用端。如果这些中间人还有其他行为，可以运用以委托取代超类（399）或者以委托取代子类（381）把它变成真正的对象，这样你既可以扩展原对象的行为，又不必负担那么多的委托动作。
 
 ## 3.19 Insider Trading
 
@@ -284,11 +278,9 @@ Modules that whisper to each other by the coffee machine need to be separated by
 
 Inheritance can often lead to collusion. Subclasses are always going to know more about their parents than their parents would like them to know. If it’s time to leave home, apply Replace Subclass with Delegate (381) or Replace Superclass with Delegate (399).
 
-软件开发者喜欢在模块之间建起高墙，极其反感在模块之间大量交换数据，因为这会增加模块的耦合。在实际情况里，一定的数据交换不可避免，但我们必须尽量減少这种情况，并把这种交换都放到明面上来。
+软件开发者喜欢在模块之间建起高墙，极其反感在模块之间大量交换数据，因为这会增加模块的耦合。在实际情况里，一定的数据交换不可避免，但我们必须尽量减少这种情况，并把这种交换都放到明面上来。如果两个模块总是在咖啡机旁边窃窃私语，就应该用移函数（198）和搬移字段（207）减少它们的私下交流。如果两个模块有共同的兴趣，可以尝试再新建一个模块，把这些共用的数据放在一个管理良好的地方；或者用隐藏委托关系（189），把另一个模块变成两者的中介。
 
-如果两个模块总是在咖啡机旁边窃窃私语，就应该用移函数（198) 和搬移字段（207) 少它们的私下交流。如果两个模块有共同的兴趣，可以尝试再新建一个模块，把这些共用的数据放在一个管理良好的地方；或者用隐藏委托关系（189），把另一个模块变成两者的中介。
-
-继承常会造成密谋，因为子类对超类的了解总是超过后者的主观愿望。如果你觉得该让这个孩子独立生活了，请运用以委托取代子类（381) 或以委托取代超类（399) 让它离开继承体系。
+继承常会造成密谋，因为子类对超类的了解总是超过后者的主观愿望。如果你觉得该让这个孩子独立生活了，请运用以委托取代子类（381）或以委托取代超类（399）让它离开继承体系。
 
 ## 3.20 Large Class
 
@@ -302,22 +294,11 @@ As with a class with too many instance variables, a class with too much code is 
 
 The clients of such a class are often the best clue for splitting up the class. Look at whether clients use a subset of the features of the class. Each subset is a possible separate class. Once you’ve identified a useful subset, use Extract Class (182), Extract Superclass (375), or Replace Type Code with Subclasses (362) to break it out.
 
-如果想利用单个类做太多事情，其内往往就会出现太多字段。一旦如此，重复代码也就接踵而至了。
+如果想利用单个类做太多事情，其内往往就会出现太多字段。一旦如此，重复代码也就接踵而至了。你可以运用提炼类（182）将几个变量一起提炼至新类内。提炼时应该选择类内彼此相关的量，将它们放在一起。例如，depositAmount 和 depositCurrency 可能应该隶属同一个类。通常，如果类内的数个变量有着相同的前缀或后缀，这就意味着有机会把它们提炼到某个组件内。如果这个组件适合作为ー个子类，你会发现提炼超类（375）或者以子类取代类型码（362）（其实就是提炼子类）往往比较简单。
 
-你可以运用提炼类（182) 将几个变量一起提炼至新类内。提炼时应该选择类内彼此相关的量，将它们放在一起。例如，depositamount 和 depositcurrencyt 可能应该隶属同一个类。通常，如果类内的数个变量有着相同的前缀或后缀，这就意味着有机会把它们提炼到某个组件内。如果这个组件适合作为ー个子类，你会发现提炼超类（375) 或者以子类取代类型码（362)（其实就是提炼子类）往往比较简单
+有时候类并非在所有时刻都使用所有字段。若果真如此，你或许可以进行多次提炼。和「太多实例变量」一样，类内如果有太多代码，也是代码重复、混乱并最终走向死亡的源头。最简单的解决方案（还记得吗，我们喜欢简单的解决方案）是把多余的东西消弭于类内部。如果有 5 个「百行函数」，它们之中很多代码都相同，那么或许你可以把它们成 5 个「十行函数」和 10 个提炼出来的「双行函数」。
 
-有时候类并非在所有时刻都使用所有字段。若果真如此，你或许可以进行多次提炼。
-
-和「太多实例变量」一样，类内如果有太多代码，也是代码重复、混乱并最终走向死亡的源头。最简单的解決方案（还记得吗，我们喜欢简单的解決方案）是把多余的东西消弭于类内部。如果有 5 个「百行函数」，它们之中很多代码都相同，那么或许你可以把它们成 5 个「十行函数」和 10 个提炼出来的「双行函数」。
-
-观察一个大类的使用者，经常能找到如何拆分类的线索。看看使用者是否只用到了这个类所有功能的一个子集，每个这样的子集都可能拆分成一个独立的类。一旦识出一个合适的功能子集，就试用提炼类（182)、提炼超类（375) 或是以子类取代类型码（362) 将其拆分出来。
-
-
-
-
-
-
-
+观察一个大类的使用者，经常能找到如何拆分类的线索。看看使用者是否只用到了这个类所有功能的一个子集，每个这样的子集都可能拆分成一个独立的类。一旦识出一个合适的功能子集，就试用提炼类（182）、提炼超类（375）或是以子类取代类型码（362）将其拆分出来。
 
 ## 3.21 Alternative Classes with Different Interfaces
 
