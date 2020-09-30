@@ -32,7 +32,7 @@ else　
   charge = regularCharge();
 ```
 
-#### 10.1.Motivation
+#### 10.1.1 Motivation
 
 One of the most common sources of complexity in a program is complex conditional logic. As I write code to do various things depending on various conditions, I can quickly end up with a pretty long function. Length of a function is in itself a factor that makes it harder to read, but conditions increase the difficulty. The problem usually lies in the fact that the code, both in the condition checks and in the actions, tells me what happens but can easily obscure why it happens.
 
@@ -168,9 +168,9 @@ The reasons in favor of consolidating conditionals also point to the reasons aga
 
 #### 10.2.2 Mechanics
 
-1. Ensure that none of the conditionals have any side effects.
+1. Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
 
-2. If any do, use Separate Query from Modifier (306) on them first. Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
+2. Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
 
 3. Test.
 
@@ -297,7 +297,7 @@ These kinds of conditionals have different intentions—and these intentions sho
 
 2『卫语句，做一张术语卡片。』——已完成
 
-The key point of Replace Nested Conditional with Guard Clauses is emphasis. If I’m using an if­then­else construct, I’m giving equal weight to the if leg and the else leg. This communicates to the reader that the legs are equally likely and important. Instead, the guard clause says, “This isn’t the core to this function, and if it happens, do something and get out.”
+The key point of Replace Nested Conditional with Guard Clauses is emphasis. If I’m using an if­-then-­else construct, I’m giving equal weight to the if leg and the else leg. This communicates to the reader that the legs are equally likely and important. Instead, the guard clause says, “This isn’t the core to this function, and if it happens, do something and get out.”
 
 I often find I use Replace Nested Conditional with Guard Clauses when I’m working with a programmer who has been taught to have only one entry point and one exit point from a method. One entry point is enforced by modern languages, but one exit point is really not a useful rule. Clarity is the key principle: If the method is clearer with one exit point, use one exit point; otherwise don’t.
 
@@ -543,6 +543,8 @@ Another situation is where I can think of the logic as a base case with variants
 
 Polymorphism is one of the key features of object­oriented programming—and, like any useful feature, it’s prone to overuse. I’ve come across people who argue that all examples of conditional logic should be replaced with polymorphism. I don’t agree with that view. Most of my conditional logic uses basic conditional statements—if/else and switch/case. But when I see complex conditional logic that can be improved as discussed above, I find polymorphism a powerful tool.
 
+1『我也赞同老马的观点，没必要所有的条件语句都用多态替换，简单的还是用 if 或者 switch 语句，不过需要借鉴上面的重构手法，对于复杂逻辑的才用多态来取代。』
+
 复杂的条件逻辑是编程中最难理解的东西之一，因此我一直在寻求给条件逻辑添加结构。很多时候，我发现可以将条件逻辑拆分到不同的场景（或者叫高阶用例），从而拆解复杂的条件逻辑。这种拆分有时用条件逻辑本身的结构就足以表达，但使用类和多态能把逻辑的拆分表述得更清晰。
 
 一个常见的场景是：我可以构造一组类型，每个类型处理各自的一种条件逻辑。例如，我会注意到，图书、音乐、食品的处理方式不同，这是因为它们分属不同类型的商品。最明显的征兆就是有好几个函数都有基于类型代码的 switch 语句。若果真如此，我就可以针对 switch 语句中的每种分支逻辑创建一个类，用多态来承载各个类型特有的行为，从而去除重复的分支逻辑。
@@ -696,7 +698,7 @@ Now that I’ve created the class structure that I need, I can begin on the two 
 
 class EuropeanSwallow…
 
-```
+```js
 get plumage() { 
   return "average"; 
 }
@@ -735,7 +737,7 @@ Then, the Norwegian Blue:
 
 class NorwegianBlueParrot…
 
-```
+```js
 get plumage() { 
     return (this.voltage > 100) ? "scorched" : "beautiful"; 
 }
@@ -745,7 +747,7 @@ I leave the superclass method for the default case.
 
 class Bird…
 
-```
+```js
 get plumage() { 
   return "unknown"; 
 }
@@ -1095,7 +1097,8 @@ class ExperiencedChinaRating…
 
 ```js
 get voyageAndHistoryLengthFactor() { 　
-  let result = 0;　result += 3;　
+  let result = 0;　
+  result += 3;　
   if (this.history.length > 10) result += 1; 　
   if (this.voyage.length > 12) result += 1; 　
   if (this.voyage.length > 18) result -= 1; 　
@@ -1207,7 +1210,8 @@ class ExperiencedChinaRating…
 
 ```js
 get voyageLengthFactor() { 　
-  let result = 0;　result += 3;　
+  let result = 0;　
+  result += 3;　
   if (this.voyage.length > 12) result += 1; 　
   if (this.voyage.length > 18) result -= 1; 　
   return result;
@@ -1320,7 +1324,9 @@ After refactoring:
 
 ```js
 class UnknownCustomer {    
-  get name() {return "occupant";
+  get name() {
+    return "occupant";
+  }
 }
 ```
 
@@ -1462,6 +1468,8 @@ Note that I don’t make UnknownCustomer a subclass of Customer. In other langua
 Now comes the tricky bit. I have to return this new special­case object whenever I expect "unknown" and change each test for an unknown value to use the new isUnknown method. In general, I always want to arrange things so I can make one small change at a time, then test. But if I change the customer class to return an unknown customer instead of “unknown”, I have to make every client testing for “unknown” to call isUnknown—and I have to do it all at once. I find that as appealing as eating liver (i.e., not at all).
 
 There is a common technique to use whenever I find myself in this bind. I use Extract Function (106) on the code that I’d have to change in lots of places—in this case, the special­case comparison code.
+
+1『这个方法好，如果有几个地方不得不同时修改，可以把这个几个需要同时修改的地方提炼成一个函数。（2020-09-30）』
 
 注意，我没有把 UnknownCustomer 类声明为 Customer 的子类。在其他编程语言（尤其是静态类型的编程语言）中，我会需要继承关系。但 JavaScript 是一种动态类型语言，按照它的子类化规则，这里不声明继承关系反而更好。
 
@@ -1640,7 +1648,7 @@ const weeksDelinquent = aCustomer.paymentHistory.weeksDelinquentInLastYear;
 
 I carry on, looking at all the clients to see if I can replace them with the polymorphic behavior. But there will be exceptions—clients that want to do something different with the special case. I may have 23 clients that use “occupant” for the name of an unknown customer, but there’s always one that needs something different.
 
-我继续查看客户端代码，寻找是否有能用多态行为取代的地方。但也会有例外情况——客户端不想使用特例对象提供的逻辑，而是想做一些别的处理。我可能有23处客户端代码用「occupant」作为未知顾客的名字，但还有一处用了别的值。
+我继续查看客户端代码，寻找是否有能用多态行为取代的地方。但也会有例外情况——客户端不想使用特例对象提供的逻辑，而是想做一些别的处理。我可能有 23 处客户端代码用「occupant」作为未知顾客的名字，但还有一处用了别的值。
 
 client…
 
@@ -1660,13 +1668,15 @@ When I’m done with all the clients, I should be able to use Remove Dead Code (
 
 处理完所有客户端代码后，全局的 isUnknown 函数应该没人再调用了，可以用移除死代码（237）将其移除。
 
+1『引入特例对象的重构手法，目前没看明白，但直觉告诉自己很有用，需要反复研读，再结合其他地方的资料。（2020-09-30）』
+
 #### 10.5.4 Example: Using an Object Literal
 
 Creating a class like this is a fair bit of work for what is really a simple value. But for the example I gave, I had to make the class since the customer could be updated. If, however, I only read the data structure, I can use a literal object instead.
 
 Here is the opening case again—just the same, except this time there is no client that updates the customer:
 
-我们在上面处理的其实是一些很简单的值，却要创建一个这样的类，未免有点儿大动干戈。但在上面这个例子中，我必须创建这样一个类，因为 Customer 类是允许使用者更新其内容的。但如果面对一个只读的数据结构，我就可以改用字面量对象（literalobject）。还是前面这个例子——几乎完全一样，除了一件事：这次没有客户端对 Customer 对象做更新操作：
+我们在上面处理的其实是一些很简单的值，却要创建一个这样的类，未免有点儿大动干戈。但在上面这个例子中，我必须创建这样一个类，因为 Customer 类是允许使用者更新其内容的。但如果面对一个只读的数据结构，我就可以改用字面量对象（literal object）。还是前面这个例子——几乎完全一样，除了一件事：这次没有客户端对 Customer 对象做更新操作：
 
 class Site…
 
@@ -2060,7 +2070,7 @@ if (this.discountRate)
 After refactoring:
 
 ```js
-assert(this.discountRate>= 0); 
+assert(this.discountRate >= 0); 
 if (this.discountRate)  
   base = base - (this.discountRate * base);
 ```

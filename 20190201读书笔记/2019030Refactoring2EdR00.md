@@ -204,6 +204,249 @@ Run tests frequently. Run those exercising the code you’re working on at least
 
 In a real system, I might have thousands of tests. A good test framework allows me to run them easily and to quickly see if any have failed. This simple feedback is essential to self-­testing code. When I work, I’ll be running tests very frequently—checking progress with new code or checking for mistakes with refactoring.
 
+## 重构卡片
+
+### 0100. 条件逻辑相关
+
+### 0101. 分解条件表达式
+
+Apply Extract Function (106) on the condition and each leg of the conditional.
+
+对条件判断和每个条件分支分别运用提炼函数（106）手法。
+
+```js
+if (!aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd)) 　
+  charge = quantity * plan.summerRate;
+else　
+  charge = quantity * plan.regularRate + plan.regularServiceCharge;
+```
+
+After refactoring:
+
+```js
+if (summer())　
+  charge = summerCharge();
+else　
+  charge = regularCharge();
+```
+
+### 0102. 合并条件表达式
+
+1. Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
+
+2. Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
+
+3. Test.
+
+4. Repeat combining conditionals until they are all in a single condition.
+
+5. Consider using Extract Function (106) on the resulting condition.
+
+1、确定这些条件表达式都没有副作用。如果某个条件表达式有副作用，可以先用将查询函数和修改函数分离（306）处理。
+
+2、使用适当的逻辑运算符，将两个相关条件表达式合并为一个。顺序执行的条件表达式用逻辑或来合并，嵌套的 if 语句用逻辑与来合并。
+
+3、测试。
+
+4、重复前面的合并过程，直到所有相关的条件表达式都合并到一起。
+
+5、可以考虑对合并后的条件表达式实施提炼函数（106）。
+
+```js
+if (anEmployee.seniority < 2) return 0;
+if (anEmployee.monthsDisabled > 12) return 0;
+if (anEmployee.isPartTime) return 0
+```
+
+After refactoring:
+
+```js
+if (isNotEligibleForDisability()) return 0; 
+function isNotEligibleForDisability() {　
+  return ((anEmployee.seniority < 2)　　　　　
+          || (anEmployee.monthsDisabled > 12)　　　　　
+          || (anEmployee.isPartTime));
+}
+```
+
+### 0103. 以卫语句取代嵌套条件表达式
+
+1. Select outermost condition that needs to be replaced, and change it into a guard clause.
+
+2. Test.
+
+3. Repeat as needed.
+
+4. If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
+
+1、选中最外层需要被替换的条件逻辑，将其替换为卫语句。
+
+2、测试。
+
+3、有需要的话，重复上述步骤。
+
+4、如果所有卫语句都引发同样的结果，可以使用合并条件表达式（263）合并之。
+
+```js
+function getPayAmount() { 　
+  let result;　
+  if (isDead)　　
+    result = deadAmount(); 　
+  else {　　
+    if (isSeparated)　　　
+      result = separatedAmount(); 　　
+    else {　　　
+      if (isRetired)　　　　
+        result = retiredAmount(); 　　　
+      else　　　　
+        result = normalPayAmount();　　
+    }　
+  }　
+  return result;
+}
+```
+
+After refactoring:
+
+```js
+function getPayAmount() {　
+  if (isDead) return deadAmount();　
+  if (isSeparated) return separatedAmount(); 　
+  if (isRetired) return retiredAmount(); 　
+  return normalPayAmount();
+}
+```
+
+### 0104. 以多态取代条件表达式
+
+1. If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
+
+2. Use the factory function in calling code.
+
+3. Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
+
+4. Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
+
+5. Repeat for each leg of the conditional.
+
+6. Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
+
+1、如果现有的类尚不具备多态行为，就用工厂函数创建之，令工厂函数返回恰当的对象实例。
+
+2、在调用方代码中使用工厂函数获得对象实例。
+
+3、将带有条件逻辑的函数移到超类中。如果条件逻辑还未提炼至独立的函数，首先对其使用提炼函数（106）。
+
+4、任选一个子类，在其中建立一个函数，使之覆写超类中容纳条件表达式的那个函数。将与该子类相关的条件表达式分支复制到新函数中，并对它进行适当调整。
+
+5、重复上述过程，处理其他条件分支。
+
+6、在超类函数中保留默认情况的逻辑。或者，如果超类应该是抽象的，就把该函数声明为 abstract，或在其中直接抛出异常，表明计算责任都在子类中。
+
+```js
+switch (bird.type) {　
+  case 'EuropeanSwallow': 　　
+    return "average";　
+  case 'AfricanSwallow':　　
+    return (bird.numberOfCoconuts > 2) ? "tired" : "average"; 　
+  case 'NorwegianBlueParrot':　　
+    return (bird.voltage > 100) ? "scorched" : "beautiful"; 　
+  default:　　
+    return "unknown";
+}
+```
+
+After refactoring:
+
+```js
+class EuropeanSwallow { 　
+  get plumage() {　　
+    return "average";　
+  }
+}
+class AfricanSwallow { 　
+  get plumage() {　　 
+    return (this.numberOfCoconuts > 2) ? "tired" : "average";　
+  }
+}
+class NorwegianBlueParrot { 　
+  get plumage() {　　 
+    return (this.voltage > 100) ? "scorched" : "beautiful";
+  }
+}
+```
+
+### 0105. 引入特例（引入 null 对象）
+
+Begin with a container data structure (or class) that contains a property which is the subject of the refactoring. Clients of the container compare the subject property of the container to a special­case value. We wish to replace the special­case value of the subject with a special case class or data structure.
+
+1. Add a special­case check property to the subject, returning false.
+
+2. Create a special­case object with only the special­case check property, returning true.
+
+3. Apply Extract Function (106) to the special­case comparison code. Ensure that all clients use the new function instead of directly comparing it.
+
+4. Introduce the new special­case subject into the code, either by returning it from a function call or by applying a transform function.
+
+5. Change the body of the special­case comparison function so that it uses the specialcase check property.
+
+6. Test.
+
+7. Use Combine Functions into Class (144) or Combine Functions into Transform (149) to move all of the common special­case behavior into the new element. Since the special­case class usually returns fixed values to simple requests, these may be handled by making the special case a literal record.
+
+8. Use Inline Function (115) on the special­case comparison function for the places where it’s still needed.
+
+我们从一个作为容器的数据结构（或者类）开始，其中包含一个属性，该属性就是我们要重构的目标。容器的客户端每次使用这个属性时，都需要将其与某个特例值做比对。我们希望把这个特例值替换为代表这种特例情况的类或数据结构。
+
+1、给重构目标添加检查特例的属性，令其返回 false。
+
+2、创建一个特例对象，其中只有检查特例的属性，返回 true。
+
+3、对「与特例值做比对」的代码运用提炼函数（106），确保所有客户端都使用这个新函数，而不再直接做特例值的比对。
+
+4、将新的特例对象引入代码中，可以从函数调用中返回，也可以在变换函数中生成。
+
+5、修改特例比对函数的主体，在其中直接使用检查特例的属性。
+
+6、测试。
+
+7、使用函数组合成类（144）或函数组合成变换（149），把通用的特例处理逻辑都搬移到新建的特例对象中。特例类对于简单的请求通常会返回固定的值，因此可以将其实现为字面记录（literal record）。
+
+8、对特例比对函数使用内联函数（115），将其内联到仍然需要的地方。
+
+```js
+if (aCustomer === "unknown") customerName = "occupant";
+```
+
+After refactoring:
+
+```js
+class UnknownCustomer {    
+  get name() {
+    return "occupant";
+  }
+}
+```
+
+### 0106. 引入断言
+
+When you see that a condition is assumed to be true, add an assertion to state it. Since assertions should not affect the running of a system, adding one is always behavior­preserving.
+
+如果你发现代码假设某个条件始终为真，就加入一个断言明确说明这种情况。因为断言应该不会对系统运行造成任何影响，所以「加入断言」永远都应该是行为保持的。
+
+```js
+if (this.discountRate) 
+  base = base - (this.discountRate * base);
+```
+
+After refactoring:
+
+```js
+assert(this.discountRate >= 0); 
+if (this.discountRate)  
+  base = base - (this.discountRate * base);
+```
+
 ## 重构列表
 
 改变函数声明（Change Function Declaration）、将引用对象改为值对象（Change Reference to Value）、将值对象改为引用对象（Change Value to Reference）、折叠继承体系（Collapse Hierarchy）
