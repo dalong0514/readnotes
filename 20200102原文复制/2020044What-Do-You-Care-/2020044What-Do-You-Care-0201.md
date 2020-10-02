@@ -236,7 +236,7 @@ Every weekend I’d go down from Princeton to visit Arlene. One time the bus was
 
 The next morning I woke up and discovered I’d been sleeping in a garbage dump—a landfill! I felt foolish, and laughed.
 
-Arlene’s doctor was very nice, but he would get upset when I brought in a war bond for $18 every month. He could see we didn’t have much money, and kept insisting we shouldn’t contribute to the hospital, but I did it anyway.
+Arlene’s doctor was very nice, but he would get upset when I brought in a war bond for `$18` every month. He could see we didn’t have much money, and kept insisting we shouldn’t contribute to the hospital, but I did it anyway.
 
 One time, at Princeton, I received a box of pencils in the mail. They were dark green, and in gold letters were the words「RICHARD DARLING, I LOVE YOU! PUTSY.」It was Arlene (I called her Putsy).
 

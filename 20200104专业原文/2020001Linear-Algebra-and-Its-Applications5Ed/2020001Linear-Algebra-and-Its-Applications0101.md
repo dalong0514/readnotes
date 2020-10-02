@@ -1,4 +1,4 @@
-# 01 Linear Equations in Linear Algebra
+# 0101. Linear Equations in Linear Algebra
 
 INTRODUCTORY EXAMPLE
 

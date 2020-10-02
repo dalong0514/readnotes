@@ -203,6 +203,3 @@ The Study Guide contains a detailed solution to every third odd-numbered exercis
 If you have access to technology—MATLAB, Maple, Mathematica, or a TI graphing calculator—you can save many hours of homework time. The Study Guide is your “lab manual” that explains how to use each of these matrix utilities. It introduces new commands when they are needed. You can download from the web site www.pearsonhighered.com/lay the data for more than 850 exercises in the text. (With a few keystrokes, you can display any numerical homework problem on your screen.) Special matrix commands will perform the computations for you!
 
 What you do in your ﬁrst few weeks of studying this course will set your pattern for the term and determine how well you ﬁnish the course. Please read “How to Study Linear Algebra” in the Study Guide as soon as possible. Many students have found the strategies there very helpful, and we hope you will, too.
-
-
-
