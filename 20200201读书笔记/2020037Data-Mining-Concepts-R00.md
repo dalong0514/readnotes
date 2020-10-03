@@ -1,10 +1,10 @@
-# 2020037Data_Mining_Concepts_R00.md
+# 2020037Data-Mining-Concepts-R00.md
 
 ## 记忆时间
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
@@ -18,19 +18,19 @@ What Is Data Mining? It is no surprise that data mining, as a truly interdiscipl
 
 Many people treat data mining as a synonym for another popularly used term, knowledge discovery from data, or KDD, while others view data mining as merely an essential step in the process of knowledge discovery. The knowledge discovery process is shown in Figure 1.4 as an iterative sequence of the following steps:
 
-1. Data cleaning (to remove noise and inconsistent data)
+1. Data cleaning (to remove noise and inconsistent data).
 
-2. Data integration (where multiple data sources may be combined) 3
+2. Data integration (where multiple data sources may be combined). 3
 
-3. Data selection (where data relevant to the analysis task are retrieved from the database)
+3. Data selection (where data relevant to the analysis task are retrieved from the database).
 
-4. Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations) 4
+4. Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations). 4
 
-5. Data mining (an essential process where intelligent methods are applied to extract data patterns)
+5. Data mining (an essential process where intelligent methods are applied to extract data patterns).
 
-6. Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6)
+6. Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6).
 
-7. Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users)
+7. Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users).
 
 ### 0203. 术语卡 —— data warehouse 
 
@@ -67,6 +67,8 @@ A transactional database for AllElectronics. Transactions can be stored in a tab
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
 ### 0401. 金句卡 —— Necessity, who is the mother of invention
+
+With the mounting growth of data in every application, data mining meets the imminent need for effective, scalable, and flexible data analysis in our society. Data mining can be considered as a natural evolution of information technology and a confluence of several related disciplines and application domains.
 
 ### 0402. 金句卡 —— Where there are data, there are data mining applications
 
@@ -124,7 +126,7 @@ We have used the first two editions as textbooks in data mining courses at Carne
 
 We are deluged by data — scientific data, medical data, demographic data, financial data, and marketing data. People have no time to look at this data. Human attention has become the precious resource. So, we must find ways to automatically analyze the data, to automatically classify it, to automatically summarize it, to automatically discover and characterize trends in it, and to automatically flag anomalies. This is one of the most active and exciting areas of the database research community. Researchers in areas including statistics, visualization, artificial intelligence, and machine learning are contributing to this field. The breadth of the field makes it difficult to grasp the extraordinary progress over the last few decades.
 
-1『automatically flag anomalies 自动标记异常。』
+1『 automatically flag anomalies 自动标记异常。』
 
 The field has matured with many new and improved algorithms, and has broadened to include many more datatypes: streams, sequences, graphs, time-series, geospatial, audio, images, and video. We are certainly not at the end of the golden age — indeed research and commercial interest in data mining continues to grow — but we are all fortunate to have this modern compendium.
 
@@ -146,13 +148,13 @@ Data mining emerged during the late 1980s, made great strides during the 1990s, 
 
 Organization of the Book. Since the publication of the first two editions of this book, great progress has been made in the field of data mining. Many new data mining methodologies, systems, and applications have been developed, especially for handling new kinds of data, including information networks, graphs, complex structures, and data streams, as well as text, Web, multimedia, time-series, and spatiotemporal data. Such fast development and rich, new technical contents make it difficult to cover the full spectrum of the field in a single book. Instead of continuously expanding the coverage of this book, we have decided to cover the core material in sufficient scope and depth, and leave the handling of complex data types to a separate forthcoming book.
 
-1『spatiotemporal data 时间空间数据。』
+1『 spatiotemporal data 时间空间数据。』
 
 The core technical material, which handles mining on general data types, is expanded and substantially enhanced. Several individual chapters for topics from the second edition (e.g., data preprocessing, frequent pattern mining, classification, and clustering) are now augmented and each split into two chapters for this new edition. For these topics, one chapter encapsulates the basic concepts and techniques while the other presents advanced concepts and methods.
 
 Chapters from the second edition on mining complex data types (e.g., stream data, sequence data, graph-structured data, social network data, and multirelational data, as well as text, Web, multimedia, and spatiotemporal data) are now reserved for a new book that will be dedicated to advanced topics in data mining. Still, to support readers in learning such advanced topics, we have placed an electronic version of the relevant chapters from the second edition onto the book's web site as companion material for the third edition. The chapters of the third edition are described briefly as follows, with emphasis on the new material.
 
-2『第二版的有关挖掘复杂数据的内容可以作为第三版的补充资料，已下载原书第二版「2020037Data_Mining_Concepts_and_Techniques2Ed」以及辅导附件「2020037Data_Mining_Solution2Ed」。同时下载了「2020036Data_Mining_for_Business_Analytics_Python」，感觉这本 2020 年新出的书籍有具体的实现代码，可以跟本书配套使用。』
+2『第二版的有关挖掘复杂数据的内容可以作为第三版的补充资料，已下载原书第二版「2020037Data-Mining-Concepts-and-Techniques2Ed」以及辅导附件「2020037Data-Mining-Solution2Ed」。同时下载了「2020036Data-Mining-for-Business-Analytics-Python」，感觉这本 2020 年新出的书籍有具体的实现代码，可以跟本书配套使用。』
 
 Chapter 1 provides an introduction to the multidisciplinary field of data mining. It discusses the evolutionary path of information technology, which has led to the need for data mining, and the importance of its applications. It examines the data types to be mined, including relational, transactional, and data warehouse data, as well as complex data types such as time-series, sequences, data streams, spatiotemporal data, multimedia data, text data, graphs, social networks, and Web data. The chapter presents a general classification of data mining tasks, based on the kinds of knowledge to be mined, the kinds of technologies used, and the kinds of applications that are targeted. Finally, major challenges in the field are discussed.
 
@@ -162,13 +164,13 @@ Chapter 2 introduces the general data features. It first discusses data objects 
 
 Chapter 3 introduces techniques for data preprocessing. It first introduces the concept of data quality and then discusses methods for data cleaning, data integration, data reduction, data transformation, and data discretization.
 
-1『data discretization 数据离散化。』
+1『 data discretization 数据离散化。』
 
 Chapter 4 and Chapter 5 provide a solid introduction to data warehouses, OLAP (online analytical processing), and data cube technology. Chapter 4 introduces the basic concepts, modeling, design architectures, and general implementations of data warehouses and OLAP, as well as the relationship between data warehousing and other data generalization methods. Chapter 5 takes an in-depth look at data cube technology, presenting a detailed study of methods of data cube computation, including Star-Cubing and high-dimensional OLAP methods. Further explorations of data cube and OLAP technologies are discussed, such as sampling cubes, ranking cubes, prediction cubes, multifeature cubes for complex analysis queries, and discovery-driven cube exploration.
 
 Chapter 6 and Chapter 7 present methods for mining frequent patterns, associations, and correlations in large data sets. Chapter 6 introduces fundamental concepts, such as market basket analysis, with many techniques for frequent itemset mining presented in an organized way. These range from the basic Apriori algorithm and its variations to more advanced methods that improve efficiency, including the frequent pattern growth approach, frequent pattern mining with vertical data format, and mining closed and max frequent itemsets. The chapter also discusses pattern evaluation methods and introduces measures for mining correlated patterns. Chapter 7 is on advanced pattern mining methods. It discusses methods for pattern mining in multilevel and multidimensional space, mining rare and negative patterns, mining colossal patterns and high-dimensional data, constraint-based pattern mining, and mining compressed or approximate patterns. It also introduces methods for pattern exploration and application, including semantic annotation of frequent patterns.
 
-1『6、7 章是频繁模式、关联分析和相关性分析算法；8、9 章是分类分析算法；10、11 章是聚类分析算法。』
+1『 6、7 章是频繁模式、关联分析和相关性分析算法；8、9 章是分类分析算法；10、11 章是聚类分析算法。』
 
 Chapter 8 and Chapter 9 describe methods for data classification. Due to the importance and diversity of classification methods, the contents are partitioned into two chapters. Chapter 8 introduces basic concepts and methods for classification, including decision tree induction, Bayes classification, and rule-based classification. It also discusses model evaluation and selection methods and methods for improving classification accuracy, including ensemble methods and how to handle imbalanced data. Chapter 9 discusses advanced methods for classification, including Bayesian belief networks, the neural network technique of backpropagation, support vector machines, classification using frequent patterns, k-nearest-neighbor classifiers, case-based reasoning, genetic algorithms, rough set theory, and fuzzy set approaches. Additional topics include multiclass classification, semi-supervised classification, active learning, and transfer learning.
 
@@ -176,11 +178,11 @@ Cluster analysis forms the topic of Chapter 10 and Chapter 11. Chapter 10 introd
 
 Chapter 12 is dedicated to outlier detection. It introduces the basic concepts of outliers and outlier analysis and discusses various outlier detection methods from the view of degree of supervision (i.e., supervised, semi-supervised, and unsupervised methods), as well as from the view of approaches (i.e., statistical methods, proximity-based methods, clustering-based methods, and classification-based methods). It also discusses methods for mining contextual and collective outliers, and for outlier detection in high-dimensional data.
 
-1『outlier detection 离群点检测，设计「监督」的算法。』
+1『 outlier detection 离群点检测，设计「监督」的算法。』
 
 Finally, in Chapter 13, we discuss trends, applications, and research frontiers in data mining. We briefly cover mining complex data types, including mining sequence data (e.g., time series, symbolic sequences, and biological sequences), mining graphs and networks, and mining spatial, multimedia, text, and Web data. In-depth treatment of data mining methods for such data is left to a book on advanced topics in data mining, the writing of which is in progress. The chapter then moves ahead to cover other data mining methodologies, including statistical data mining, foundations of data mining, visual and audio data mining, as well as data mining applications. It discusses data mining for financial data analysis, for industries like retail and telecommunication, for use in science and engineering, and for intrusion detection and prevention. It also discusses the relationship between data mining and recommender systems. Because data mining is present in many aspects of daily life, we discuss issues regarding data mining and society, including ubiquitous and invisible data mining, as well as privacy, security, and the social impacts of data mining. We conclude our study by looking at data mining trends.
 
-1『intrusion detection and prevention 入侵检测和预防，信用卡防盗应该就属于此类。』
+1『 intrusion detection and prevention 入侵检测和预防，信用卡防盗应该就属于此类。』
 
 This book has several strong features that set it apart from other texts on data mining. It presents a very broad yet in-depth coverage of the principles of data mining. The chapters are written to be as self-contained as possible, so they may be read in order of interest by the reader. Advanced chapters offer a larger-scale view and may be considered optional for interested readers. All of the major methods of data mining are presented. The book presents important topics in data mining regarding multidimensional OLAP analysis, which is often overlooked or minimally treated in other data mining books. The book also maintains web sites with a number of online resources to aid instructors, students, and professionals in the field. These are described further in the following.
 
@@ -194,13 +196,7 @@ To the Professional. This book was designed to cover a wide range of topics in t
 
 The techniques and algorithms presented are of practical utility. Rather than selecting algorithms that perform well on small「toy」data sets, the algorithms described in the book are geared for the discovery of patterns and knowledge hidden in large, real data sets. Algorithms presented in the book are illustrated in pseudocode. The pseudocode is similar to the C programming language, yet is designed so that it should be easy to follow by programmers unfamiliar with C or C++. If you wish to implement any of the algorithms, you should find the translation of our pseudocode into the programming language of your choice to be a fairly straightforward task.
 
-## 01. Introduction
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
+## 0101. Introduction
 
 ### Summary
 
@@ -220,7 +216,7 @@ The techniques and algorithms presented are of practical utility. Rather than se
 
 ■ Data mining functionalities are used to specify the kinds of patterns or knowledge to be found in data mining tasks. The functionalities include characterization and discrimination; the mining of frequent patterns, associations, and correlations; classification and regression; cluster analysis; and outlier detection. As new types of data, new applications, and new analysis demands continue to emerge, there is no doubt we will see more and more novel data mining tasks in the future.
 
-1『novel data mining 可以理解为新颖、新奇的数据挖掘。』
+1『 novel data mining 可以理解为新颖、新奇的数据挖掘。』
 
 ■ Data mining, as a highly application-driven domain, has incorporated technologies from many other domains. These include statistics, machine learning, database and data warehouse systems, and information retrieval. The interdisciplinary nature of data mining research and development contributes significantly to the success of data mining and its extensive applications.
 
@@ -266,19 +262,19 @@ It is no surprise that data mining, as a truly interdisciplinary subject, can be
 
 Many people treat data mining as a synonym for another popularly used term, knowledge discovery from data, or KDD, while others view data mining as merely an essential step in the process of knowledge discovery. The knowledge discovery process is shown in Figure 1.4 as an iterative sequence of the following steps:
 
-1. Data cleaning (to remove noise and inconsistent data)
+1. Data cleaning (to remove noise and inconsistent data).
 
-2. Data integration (where multiple data sources may be combined) 3
+2. Data integration (where multiple data sources may be combined). 3
 
-3. Data selection (where data relevant to the analysis task are retrieved from the database)
+3. Data selection (where data relevant to the analysis task are retrieved from the database).
 
-4. Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations) 4
+4. Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations). 4
 
-5. Data mining (an essential process where intelligent methods are applied to extract data patterns)
+5. Data mining (an essential process where intelligent methods are applied to extract data patterns).
 
-6. Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6)
+6. Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6).
 
-7. Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users)
+7. Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users).
 
 ### 1.3. What Kinds of Data Can Be Mined?
 
@@ -374,13 +370,17 @@ Mining Frequent Patterns, Associations, and Correlations. Frequent patterns, as 
 
 Association analysis. Suppose that, as a marketing manager at AllElectronics, you want to know which items are frequently purchased together (i.e., within the same transaction). An example of such a rule, mined from the AllElectronics transactional database, is
 
-    buys(X,“computer”) ⇒ buys(X,“software”) [support = 1%,conﬁdence = 50%]
+```
+buys(X,“computer”) ⇒ buys(X,“software”) [support = 1%,conﬁdence = 50%]
+```
 
 where X is a variable representing a customer. A confidence, or certainty, of 50% means that if a customer buys a computer, there is a 50% chance that she will buy software as well. A 1% support means that 1% of all the transactions under analysis show that computer and software are purchased together. This association rule involves a single attribute or predicate (i.e., buys) that repeats. Association rules that contain a single predicate are referred to as single-dimensional association rules. Dropping the predicate notation, the rule can be written simply as「computer ⇒ software [1%, 50%].」
 
 Suppose, instead, that we are given the AllElectronics relational database related to purchases. A data mining system may find association rules like:
 
-    age(X, “20..29”) ∧ income(X, “40K..49K”) ⇒ buys(X, “laptop”)[support = 2%, conﬁdence = 60%]
+```
+age(X, “20..29”) ∧ income(X, “40K..49K”) ⇒ buys(X, “laptop”)[support = 2%, conﬁdence = 60%]
+```
 
 The rule indicates that of the AllElectronics customers under study, 2% are 20 to 29 years old with an income of \$40,000 to $49,000 and have purchased a laptop (computer) at AllElectronics. There is a 60% probability that a customer in this age and income group will purchase a laptop. Note that this is an association involving more than one attribute or predicate (i.e., age, income, and buys). Adopting the terminology used in multidimensional databases, where each attribute is referred to as a dimension, the above rule can be referred to as a multidimensional association rule.
 
@@ -432,10 +432,12 @@ To answer the first question, a pattern is interesting if it is (1) easily under
 
 Several objective measures of pattern interestingness exist. These are based on the structure of discovered patterns and the statistics underlying them. An objective measure for association rules of the form is rule support, representing the percentage of transactions from a transaction database that the given rule satisfies. This is taken to be the probability , where indicates that a transaction contains both X and Y, that is, the union of itemsets X and Y. Another objective measure for association rules is confidence, which assesses the degree of certainty of the detected association. This is taken to be the conditional probability ), that is, the probability that a transaction containing X also contains Y. More formally, support and confidence are defined as:
 
-    support(X ⇒ Y) = P(X ∪ Y)
-    conﬁdence(X ⇒ Y) = P(Y | X)
+```
+support(X ⇒ Y) = P(X ∪ Y)
+conﬁdence(X ⇒ Y) = P(Y | X)
+```
 
-1『conﬁdence 置信度，support 支持度，threshold 阈值。』
+1『 conﬁdence 置信度，support 支持度，threshold 阈值。』
 
 In general, each interestingness measure is associated with a threshold, which may be controlled by the user. For example, rules that do not satisfy a confidence threshold of, say, 50% can be considered uninteresting. Rules below the threshold likely reflect noise, exceptions, or minority cases and are probably of less value.
 
