@@ -8,13 +8,56 @@ Extraction is all about giving names, and I often need to change the names as I 
 
 Forming and naming functions are essential low­level refactorings—but, once created, it’s necessary to group functions into higher­level modules. I use Combine Functions into Class (144) to group functions, together with the data they operate on, into a class. Another path I take is to combine them into a transform (Combine Functions into Transform (149)), which is particularly handy with read­only data. At a step further in scale, I can often form these modules into distinct processing phases using Split Phase (154).
 
-## EXTRACT FUNCTION
+在重构名录的开头，我首先介绍一组我认为最有用的重构。我最常用到的重构就是用提炼函数（106）将代码提炼到函数中，或者用提炼变量（119）来提炼变量。既然重构的作用就是应对变化，你应该不会感到惊讶，我也经常使用这两个重构的反向重构——内联函效（115）和内联变量（123）。
 
-formerly: Extract Method inverse of: Inline Function (115) Motivation
+提炼的关键就在于命名，随着理解的加深，我经常需要改名。改变函数声明（124）可以用于修改函数的名字，也可以用于添加或刪参数。变量也可以用交量改名（137）来改名，不过需要先做封装变量（132）。在给函数的形式参数改名时，不妨先用引入参数对象（140）把常在一起出没的参数组合成一个对象。
+
+形成函数并给函数命名，这是低层级重构的精髓。有了函数以后，就需要把它们组合成更高层级的模块。我会使用函数组合成类（144），把函数和它们操作的数据一起组合成类。另一条路径是用函数组合成变换（149）将函数组合成变式（transform），这对于处理只读数据尤为便利。再往前一步，常常可以用拆分阶段（154）将这些模块组成界限分明的处理阶段。
+
+## 6.1 Extract Function
+
+![](./res/2020009.png)
+
+formerly: Extract Method 
+
+inverse of: Inline Function (115) 
+
+```js
+function printOwing(invoice) {　
+  printBanner();　
+  let outstanding = calculateOutstanding();　
+  //print details　
+  console.log(`name: ${invoice.customer}`);　
+  console.log(`amount: ${outstanding}`);
+}
+```
+
+After Refactor:
+
+```js
+function printOwing(invoice) {　
+  printBanner();　
+  let outstanding = calculateOutstanding();　
+  printDetails(outstanding);　
+  
+  function printDetails(outstanding) {　　
+    console.log(`name: ${invoice.customer}`);　　
+    console.log(`amount: ${outstanding}`);　
+  }
+}
+```
+
+### 6.1.1 Motivation
 
 Extract Function is one of the most common refactorings I do. (Here, I use the term “function” but the same is true for a method in an object­oriented language, or any kind of procedure or subroutine.) I look at a fragment of code, understand what it is doing, then extract it into its own function named after its purpose.
 
 During my career, I’ve heard many arguments about when to enclose code in its own function. Some of these guidelines were based on length: Functions should be no larger than fit on a screen. Some were based on reuse: Any code used more than once should be put in its own function, but code only used once should be left inline. The argument that makes most sense to me, however, is the separation between intention and implementation. If you have to spend effort looking at a fragment of code and figuring out what it’s doing, then you should extract it into a function and name the function after the “what.” Then, when you read it again, the purpose of the function leaps right out at you, and most of the time you won’t need to care about how the function fulfills its purpose (which is the body of the function). Once I accepted this principle, I developed a habit of writing very small functionstypically, only a few lines long. To me, any function with more than half­a­dozen lines of code starts to smell, and it’s not unusual for me to have functions that are a single line of code. The fact that size isn’t important was brought home to me by an example that Kent Beck showed me from the original Smalltalk system. Smalltalk in those days ran on black­and­white systems. If you wanted to highlight some text or graphics, you would reverse the video. Smalltalk’s graphics class had a method for this called highlight, whose implementation was just a call to the method reverse. The name of the method was longer than its implementation—but that didn’t matter because there was a big distance between the intention of the code and its implementation.
+
+提炼函数是我最常用的重构之一。（在这儿我用了「函数 / function」这个词，但换成面向对象语言中的「方法 / method」，或者其他任何形式的「过程 / procedure」或者「子程序 / subroutine」，也同样适用。）我会浏览一段代码，理解其作用，然后将其提炼到一个独立的函数中，并以这段代码的用途为这个函数命名。
+
+对于「何时应该把代码放进独立的函数」这个问题，我曾经听过多种不同的意见。有的观点从代码的长度考虑，认为一个函数应该能在一屏中显示。有的观点从复用的角度考虑，认为只要被用过不止一次的代码，就应该单独放进一个函数；只用过一次的代码则保持内联（inline）的状态。但我认为最合理的观点是「将意图与实现分开」：如果你需要花时间浏览一段代码才能弄清它到底在干什么，那么就应该将其提炼到一个函数中，并根据它所做的事为其命名。以后再读到这段代码时，你一眼就能看到函数的用途，大多数时候根本不需要关心函数如何达成其用途（这是函数体内干的事）。
+
+一旦接受了这个原则，我就逐渐养成一个习惯：写非常小的函数 —— 通常只有几行的长度。在我看来，一个函数一旦超过 6 行，就开始散发臭味。我甚至经常会写一些只有 1 行代码的函数。Kent Beck 曾向我展示最初的 Smalltalk 系统中的一个例子，从那时起我就接受了「函数名的长度不重要」的观念。那时运行 Smalltalk 的计算机只有黑白屏显示器，如果你想高亮突显某些文本或图像，就需要反转视频的显示。为此，Smalltalk 用于控制图像显示的类有一个叫作 highlight 的方法，其中的实现就只是调用 reverse 方法。在这个例子里，highlight 方法的名字比实现还长，但这并不重要，因为在这个方法中，代码的意图与实现之间有着相当大的距离。
 
 Some people are concerned about short functions because they worry about the performance cost of a function call. When I was young, that was occasionally a factor, but that’s very rare now. Optimizing compilers often work better with shorter functions which can be cached more easily. As always, follow the general guidelines on performance optimization.
 
@@ -22,161 +65,221 @@ Small functions like this only work if the names are good, so you need to pay go
 
 Often, I see fragments of code in a larger function that start with a comment to say what they do. The comment is often a good hint for the name of the function when I extract that fragment.
 
-Mechanics
+有些人担心短函数会造成大量函数调用，因而影响性能。在我尚且年轻时，有时确实会有这个问题；但如今「由于函数调用影响性能」的情况已经非常罕见了。短函数常常能让编译器的优化功能运转更良好，因为短函数可以更容易地被缓存。所以，应该始终遵循性能优化的一般指导方针，不用过早担心性能问题。
 
-Create a new function, and name it after the intent of the function (name it by what it does, not by how it does it).
+小函数得有个好名字才行，所以你必须在命名上花心思。起好名字需要练习，不过一旦你掌握了其中的技巧，就能写出很有自描述性的代码。
 
-If the code I want to extract is very simple, such as a single function call, I still extract it if the name of the new function will reveal the intent of the code in a better way. If I can’t come up with a more meaningful name, that’s a sign that I shouldn’t extract the code. However, I don’t have to come up with the best name right away; sometimes a good name only appears as I work with the extraction. It’s OK to extract a function, try to work with it, realize it isn’t helping, and then inline it back again. As long as I’ve learned something, my time wasn’t wasted.
+我经常会看见这样的情况：在一个大函数中，一段代码的顶上放着一句注释，说明这段代码要做什么。在把这段代码提炼到自己的函数中时，这样的注释往往会提示一个好名字。
 
-If the language supports nested functions, nest the extracted function inside the source function. That will reduce the amount of out­of­scope variables to deal with after the next couple of steps. I can always use Move Function (198) later. Copy the extracted code from the source function into the new target function.
+### 6.1.2 Mechanics
 
-Scan the extracted code for references to any variables that are local in scope to the source function and will not be in scope for the extracted function. Pass them as parameters.
+1. Create a new function, and name it after the intent of the function (name it by what it does, not by how it does it).
 
-If I extract into a nested function of the source function, I don’t run into these problems.
+    If the code I want to extract is very simple, such as a single function call, I still extract it if the name of the new function will reveal the intent of the code in a better way. If I can’t come up with a more meaningful name, that’s a sign that I shouldn’t extract the code. However, I don’t have to come up with the best name right away; sometimes a good name only appears as I work with the extraction. It’s OK to extract a function, try to work with it, realize it isn’t helping, and then inline it back again. As long as I’ve learned something, my time wasn’t wasted.
 
-Usually, these are local variables and parameters to the function. The most general approach is to pass all such parameters in as arguments. There are usually no difficulties for variables that are used but not assigned to.
+    If the language supports nested functions, nest the extracted function inside the source function. That will reduce the amount of out­of­scope variables to deal with after the next couple of steps. I can always use Move Function (198) later. 
 
-If a variable is only used inside the extracted code but is declared outside, move the declaration into the extracted code.
+2. Copy the extracted code from the source function into the new target function.
 
-Any variables that are assigned to need more care if they are passed by value. If there’s only one of them, I try to treat the extracted code as a query and assign the result to the variable concerned.
+3. Scan the extracted code for references to any variables that are local in scope to the source function and will not be in scope for the extracted function. Pass them as parameters. If I extract into a nested function of the source function, I don’t run into these problems. Usually, these are local variables and parameters to the function. The most general approach is to pass all such parameters in as arguments. There are usually no difficulties for variables that are used but not assigned to.
 
-Sometimes, I find that too many local variables are being assigned by the extracted code. It’s better to abandon the extraction at this point. When this happens, I consider other refactorings such as Split Variable (240) or Replace Temp with Query (178) to simplify variable usage and revisit the extraction later.
+    If a variable is only used inside the extracted code but is declared outside, move the declaration into the extracted code. Any variables that are assigned to need more care if they are passed by value. If there’s only one of them, I try to treat the extracted code as a query and assign the result to the variable concerned.
 
-Compile after all variables are dealt with.
+    Sometimes, I find that too many local variables are being assigned by the extracted code. It’s better to abandon the extraction at this point. When this happens, I consider other refactorings such as Split Variable (240) or Replace Temp with Query (178) to simplify variable usage and revisit the extraction later.
 
-Once all the variables are dealt with, it can be useful to compile if the language environment does compile­time checks. Often, this will help find any variables that haven’t been dealt with properly.
+4. Compile after all variables are dealt with. Once all the variables are dealt with, it can be useful to compile if the language environment does compile­time checks. Often, this will help find any variables that haven’t been dealt with properly.
 
-Replace the extracted code in the source function with a call to the target function.
+5. Replace the extracted code in the source function with a call to the target function.
 
-Test.
+6. Test.
 
-Look for other code that’s the same or similar to the code just extracted, and consider using Replace Inline Code with Function Call (222) to call the new function.
+7. Look for other code that’s the same or similar to the code just extracted, and consider using Replace Inline Code with Function Call (222) to call the new function.
 
 Some refactoring tools support this directly. Otherwise, it can be worth doing some quick searches to see if duplicate code exists elsewhere.
 
-Example: No Variables Out of Scope Example: No Variables Out of Scope
+1、创造一个新函数，根据这个函数的意图来对它命名（以它「做什么」来命名，而不是以它「怎样做」命名）。如果想要提炼的代码非常简单，例如只是一个函数调用，只要新函数的名称能够以更好的方式昭示代码意图，我还是会提炼它；但如果想不出一个更有意义的名称，这就是一个信号，可能我不应该提炼这块代码。不过，我不一定非得马上想出最好的名字，有时在提炼的过程中好的名字才会出现。有时我会提炼一个函数，尝试使用它，然后发现不太合适，再把它内联回去，这完全没问题。只要在这个过程中学到了东西，我的时间就没有白费。如果编程语言支持嵌套函数，就把新函数嵌套在源函数里，这能减少后面需要处理的超出作用域的变量个数。我可以稍后再使用搬移函数（198）把它从源函数中搬移出去。
+
+2、将待提炼的代码从源函数复制到新建的目标函数中。
+
+3、仔细检查提炼出的代码，看看其中是否引用了作用域限于源函数、在提炼出的新函数中访问不到的变量。若是，以参数的形式将它们传递给新函数。如果提炼出的新函数嵌套在源函数内部，就不存在变量作用域的问题了。这些「作用域限于源函数」的变量通常是局部变量或者源函数的参数。最通用的做法是将它们都作为参数传递给新函数。只要没在提炼部分对这些变量赋值，处理起来就没什么难度。
+
+如果某个变量是在提炼部分之外声明但只在提炼部分被使用，就把变量声明也搬移到提炼部分代码中去。如果变量按值传递给提炼部分又在提炼部分被赋值，就必须多加小心。如果只有一个这样的变量，我会尝试将提炼出的新函数变成一个查询（query），用其返回值给该变量赋值。但有时在提炼部分被赋值的局部变量太多，这时最好是先放弃提炼。这种情况下，我会考虑先使用别的重构手法，例如拆分变量（240）或者以查询取代临时变量（178），来简化变量的使用情况，然后再考虑提炼函数。
+
+4、所有变量都处理完之后，编译。如果编程语言支持编译期检查的话，在处理完所有变量之后做一次编译是很有用的，编译器经常会帮你找到没有被恰当处理的变量。
+
+5、在源函数中，将被提炼代码段替换为对目标函数的调用。
+
+6、测试。
+
+7、查看其他代码是否有与被提炼的代码段相同或相似之处。如果有，考虑使用以函数调用取代内联代码（222）令其调用提炼出的新函数。有些重构工具直接支持这一步。如果工具不支持，可以快速搜索一下，看看别处是否还有重复代码。
+
+### 6.1.3 Example: No Variables Out of Scope 
 
 In the simplest case, Extract Function is trivially easy.
 
-Click here to view code image
-
-function printOwing(invoice) { let outstanding = 0;
-
-console.log("***********************"); console.log("**** Customer Owes ****"); console.log("***********************");
-
-// calculate outstanding for (const o of invoice.orders) { outstanding += o.amount; }
-
-// record due date const today = Clock.today; invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
-
-//print details console.log(`name: ${invoice.customer}`); console.log(`amount: ${outstanding}`); console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
-
+```js
+function printOwing(invoice) {　
+  let outstanding = 0;　
+  console.log("***********************");　
+  console.log("**** Customer Owes ****");　c
+  onsole.log("***********************");　
+  // calculate outstanding　
+  for (const o of invoice.orders) {　　
+    outstanding += o.amount;　
+  }　
+  // record due date　
+  const today = Clock.today;　
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);　
+  //print details　
+  console.log(`name: ${invoice.customer}`);　
+  console.log(`amount: ${outstanding}`);　
+  console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
 }
+```
 
 You may be wondering what the Clock.today is about. It is a Clock Wrapper [mfcw]—an object that wraps calls to the system clock. I avoid putting direct calls to things like Date.now() in my code, because it leads to nondeterministic tests and makes it difficult to reproduce error conditions when diagnosing failures.
 
 It’s easy to extract the code that prints the banner. I just cut, paste, and put in a call:
 
-Click here to view code image
+你可能会好奇 Clock.today 是干什么的。这是一个 Clock Wrapper[mf-cw]，也就是封装系统时钟调用的对象。我尽量避免在代码中直接调用 Date.now() 这样的函数，因为这会导致测试行为不可预测，以及在诊断故障时难以复制出错时的情况。我们可以轻松提炼出「打印横幅」的代码。我只需要剪切、粘贴再插入一个函数调用动作就行了：
 
-function printOwing(invoice) { let outstanding = 0;
 
-printBanner();
-
-// calculate outstanding for (const o of invoice.orders) { outstanding += o.amount; } // record due date const today = Clock.today; invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
-
-//print details console.log(`name: ${invoice.customer}`); console.log(`amount: ${outstanding}`); console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
-
-} function printBanner() {
-
-console.log("***********************");
-
-console.log("**** Customer Owes ****");
-
-console.log("***********************"); }
+```js
+function printOwing(invoice) {　
+  let outstanding = 0;　
+  printBanner();　
+  // calculate outstanding　
+  for (const o of invoice.orders) {　　
+    outstanding += o.amount;　
+  }　
+  // record due date　
+  const today = Clock.today;　
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);　
+  //print details　
+  console.log(`name: ${invoice.customer}`); 　
+  console.log(`amount: ${outstanding}`);　
+  console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
+}
+  
+function printBanner() {　
+  console.log("***********************");　
+  console.log("**** Customer Owes ****");　
+  console.log("***********************");
+}
+```
 
 Similarly, I can take the printing of details and extract that too:
 
-Click here to view code image
+```js
+function printOwing(invoice) {　
+  let outstanding = 0;　
+  printBanner();　
+  // calculate outstanding　
+  for (const o of invoice.orders) {　　
+    outstanding += o.amount;　
+  }　
+  // record due date　
+  const today = Clock.today;　
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);　
+  printDetails();　
 
-function printOwing(invoice) { let outstanding = 0;
-
-printBanner();
-
-// calculate outstanding for (const o of invoice.orders) { outstanding += o.amount; }
-
-// record due date const today = Clock.today; invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
-
-printDetails();
-
-function printDetails() { console.log(`name: ${invoice.customer}`); console.log(`amount: ${outstanding}`); console.log(`due: ${invoice.dueDate.toLocaleDateString()}`); }
+  function printDetails() { 　　
+    console.log(`name: ${invoice.customer}`); 　　
+    console.log(`amount: ${outstanding}`);　　
+    console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
+  }
+}
+```
 
 This makes Extract Function seem like a trivially easy refactoring. But in many situations, it turns out to be rather more tricky.
 
 In the case above, I defined printDetails so it was nested inside printOwing. That way it was able to access all the variables defined in printOwing. But that’s not an option to me if I’m programming in a language that doesn’t allow nested functions. Then I’m faced, essentially, with the problem of extracting the function to the top level, which means I have to pay attention to any variables that exist only in the scope of the source function. These are the arguments to the original function and the temporary variables defined in the function.
 
-Example: Using Local Variables
+看起来提炼函数是一个极其简单的重构。但很多时候，情况会变得比较复杂。在上面的例子中，我把 printDetails 函数嵌套在 printOwing 函数内部，这样前者就能访问到 printOwing 内部定义的所有变量。如果我使用的编程语言不支持嵌套函数，就没法这样操作了，那么我就要面对「提炼出一个顶层函数」的问题。此时我必须细心处理「只存在于源函数作用域」的变量，包括源函数的参数以及源函数内部定义的临时变量。
+
+### 6.1.4 Example: Using Local Variables
 
 The easiest case with local variables is when they are used but not reassigned. In this case, I can just pass them in as parameters. So if I have the following function:
 
-Click here to view code image
+局部变量最简单的情况是：被提炼代码段只是读取这些变量的值，并不修改它们。这种情况下我可以简单地将它们当作参数传给目标函数。所以，如果我面对下列函数：
 
-function printOwing(invoice) { let outstanding = 0;
-
-printBanner();
-
-// calculate outstanding for (const o of invoice.orders) { outstanding += o.amount; }
-
-// record due date const today = Clock.today; invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
-
-//print details console.log(`name: ${invoice.customer}`); console.log(`amount: ${outstanding}`); console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
-
+```js
+function printOwing(invoice) {　
+  let outstanding = 0;　
+  printBanner();　
+  // calculate outstanding　
+  for (const o of invoice.orders) {　　
+    outstanding += o.amount;　
+  }　
+  // record due date　
+  const today = Clock.today;　
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);　
+  //print details　
+  console.log(`name: ${invoice.customer}`);　
+  console.log(`amount: ${outstanding}`);　
+  console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
 }
+```
 
 I can extract the printing of details passing two parameters:
 
-Click here to view code image
+```js
+function printOwing(invoice) {　
+  let outstanding = 0;　
+  printBanner();　
+  // calculate outstanding　
+  for (const o of invoice.orders) {　　
+    outstanding += o.amount;　
+  }　
+  // record due date　
+  const today = Clock.today;　
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);　
+  printDetails(invoice, outstanding);
+}
 
-function printOwing(invoice) { let outstanding = 0;
-
-printBanner();
-
-// calculate outstanding for (const o of invoice.orders) { outstanding += o.amount; }
-
-// record due date const today = Clock.today; invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDat
-
-printDetails(invoice, outstanding);
-
-} function printDetails(invoice, outstanding) {
-
-console.log(`name: ${invoice.customer}`);
-
-console.log(`amount: ${outstanding}`);
-
-console.log(`due: ${invoice.dueDate.toLocaleDateString()}`); }
+function printDetails(invoice, outstanding) {　
+  console.log(`name: ${invoice.customer}`);　
+  console.log(`amount: ${outstanding}`);　
+  console.log(`due: ${invoice.dueDate.toLocaleDateString()}`);
+}
+```
 
 The same is true if the local variable is a structure (such as an array, record, or object) and I modify that structure. So, I can similarly extract the setting of the due date:
 
-Click here to view code image
+如果局部变量是一个数据结构（例如数组、记录或者对象），而被提炼代码段又修改了这个结构中的数据，也可以如法炮制。所以，「设置到期日」的逻辑也可以用同样的方式提炼出来：
 
-function printOwing(invoice) { let outstanding = 0;
+```js
+function printOwing(invoice) {　
+  let outstanding = 0;　
+  printBanner();　
+  // calculate outstanding　
+  for (const o of invoice.orders) {　　
+    outstanding += o.amount;　
+  }　
+  recordDueDate(invoice);　
+  printDetails(invoice, outstanding);
+}
 
-printBanner();
+function recordDueDate(invoice) {　
+  const today = Clock.today;　
+  invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+}
+```
 
-// calculate outstanding for (const o of invoice.orders) { outstanding += o.amount; }
-
-recordDueDate(invoice); printDetails(invoice, outstanding);
-
-} function recordDueDate(invoice) {
-
-const today = Clock.today;
-
-invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDat }
-
-Example: Reassigning a Local Variable
+### 6.1.5 Example: Reassigning a Local Variable
 
 It’s the assignment to local variables that becomes complicated. In this case, we’re only talking about temps. If I see an assignment to a parameter, I immediately use Split Variable (240), which turns it into a temp.
 
 For temps that are assigned to, there are two cases. The simpler case is where the variable is a temporary variable used only within the extracted code. When that happens, the variable just exists within the extracted code. Sometimes, particularly when variables are initialized at some distance before they are used, it’s handy to use Slide Statements (223) to get all the variable manipulation together. The more awkward case is where the variable is used outside the extracted function. In that case, I need to return the new value. I can illustrate this with the following familiar­looking function:
+
+如果被提炼代码段对局部变量赋值，问题就变得复杂了。这里我们只讨论临时变量的问题。如果你发现源函数的参数被赋值，应该马上使用拆分变量（240）将其变成临时变量。
+
+被赋值的临时变量也分两种情况。较简单的情况是：这个变量只在被提炼代码段中使用。若果真如此，你可以将这个临时变量的声明移到被提炼代码段中，然后一起提炼出去。如果变量的初始化和使用离得有点儿远，可以用移动语句（223）
+把针对这个变量的操作放到一起。
+比较糟糕的情况是：被提炼代码段之外的代码也使用了这个变量。此时我需要返回修改后的值。我会用下面这个已经很眼熟的函数来展示该怎么做：
+
+
+
 
 Click here to view code image
 
