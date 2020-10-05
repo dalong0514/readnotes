@@ -96,6 +96,22 @@ Keeping data encapsulated is much less important for immutable data. When the da
 
 封装数据很重要，不过，不可变数据更重要。如果数据不能修改，就根本不需要数据更新前的验证或者其他逻辑钩子。我可以放心地复制数据，而不用搬移原来的数据 —— 这样就不用修改使用旧数据的代码，也不用担心有些代码获得过时失效的数据。不可变性是强大的代码防腐剂。
 
+Now, any attempt to reassign the properties of the default owner will cause an error. Different languages have different techniques to detect or prevent changes like this, so depending on the language I’d consider other options.
+
+Detecting and preventing changes like this is often worthwhile as a temporary measure. I can either remove the changes, or provide suitable mutating functions. Then, once they are all dealt with, I can modify the getting method to return a copy.
+
+So far I’ve talked about copying on getting data, but it may be worthwhile to make a copy in the setter too. That will depend on where the data comes from and whether I need to maintain a link to reflect any changes in that original data. If I don’t need such a link, a copy prevents accidents due to changes on that source data. Taking a copy may be superfluous most of the time, but copies in these cases usually have a negligible effect on performance; on the other hand, if I don’t do them, there is a risk of a long and difficult bout of debugging in the future.
+
+Remember that the copying above, and the class wrapper, both only work one level deep in the record structure. Going deeper requires more levels of copies or object wrapping.
+
+As you can see, encapsulating data is valuable, but often not straightforward. Exactly what to encapsulate—and how to do it—depends on the way the data is being used and the changes I have in mind. But the more widely it’s used, the more it’s worth my attention to encapsulate properly.
+
+现在，如果客户端调用 defaultOwner 函数获得「默认拥有人」数据、再尝试对其属性（即 lastName 和 firstName）重新赋值，赋值不会产生任何效果。对于侦测或阻止修改数据结构内部的数据项，各种编程语言有不同的方式，所以我会根据当下使用的语言来选择具体的办法。「侦测和阻止修改数据结构内部的数据项」通常只是个临时处置。随后我可以去除这些修改逻辑，或者提供适当的修改函数。这些都处理完之后，我就可以修改取值函数，使其返回一份数据副本。
+
+到目前为止，我都在讨论「在取数据时返回一份副本」，其实设值函数也可以返回一份副本。这取决于数据从哪儿来，以及我是否需要保留对源数据的连接，以便知悉源数据的变化。如果不需要这样一条连接，那么设值函数返回一份副本就有好处：可以防止因为源数据发生变化而造成的意外事故。很多时候可能没必要复制一份数据，不过多一次复制对性能的影响通常也都可以忽略不计。但是，如果不做复制，风险则是未来可能会陷入漫长而困难的调试排错过程。
+
+请记住，前面提到的数据复制、类封装等措施，都只在数据记录结构中深入了一层。如果想走得更深入，就需要更多层级的复制或是封装。如你所见，数据封装很有价值，但往往并不简单。到底应该封装什么，以及如何封装，取决于数据被使用的方式，以及我想要修改数据的方式。不过，一言以蔽之，数据被使用得越广，就越是值得花精力给它一个体面的封装。
+
 ### 0201. 术语卡——重构
 
 Refactoring (noun): a change made to the internal structure of software to make it easier to understand and cheaper to modify without changing its observable behavior. This definition corresponds to the named refactorings I’ve mentioned in the earlier examples, such as Extract Function (106) and Replace Conditional with Polymorphism (272). 
@@ -232,15 +248,527 @@ Run tests frequently. Run those exercising the code you’re working on at least
 
 In a real system, I might have thousands of tests. A good test framework allows me to run them easily and to quickly see if any have failed. This simple feedback is essential to self-­testing code. When I work, I’ll be running tests very frequently—checking progress with new code or checking for mistakes with refactoring.
 
+### 0506. 任意卡——范围类
+
+这项重构手法到这儿就完成了。不过，将一堆参数替换成一个真正的对象，这只是长征第一步。创建一个类是为了把行为搬移进去。在这里，我可以给「范围」类添加一个函数，用于测试一个值是否落在范围之内。
+
+```js
+function readingsOutsideRange(station, range) { 　
+  return station.readings　　
+    .filter(r => !range.contains(r.temp));
+}
+```
+
+class NumberRange…
+
+```js
+class NumberRange { 　
+  constructor(min, max) {　　
+    this._data = {min: min, max: max};　
+  }　
+  get min() {return this._data.min;} 　
+  get max() {return this._data.max;}
+  contains(arg) {return (arg >= this.min && arg <= this.max);}
+}  
+```
+
+This is a first step to creating a range [mf­range] that can take on a lot of useful behavior. Once I’ve identified the need for a range in my code, I can be constantly on the lookout for other cases where I see a max/min pair of numbers and replace them with a range. (One immediate possibility is the operating plan, replacing temperatureFloor and temperatureCeiling with a temperatureRange.) As I look at how these pairs are used, I can move more useful behavior into the range class, simplifying its usage across the code base. One of the first things I may add is a valuebased equality method to make it a true value object.
+
+这样我就迈出了第一步，开始逐渐打造一个真正有用的「范围」[mf-range] 类。一旦识别出「范围」这个概念，那么每当我在代码中发现「最大/最小值」这样一对数字时，我就会考虑是否可以将其改为使用「范围」类。（例如，我马上就会考虑把「运作计划」类中的 temperatureFloor 和 temperatureCeiling 替换为 temperatureRange。）在观察这些成对出现的数字如何被使用时，我会发现一些有用的行为，并将其搬移到「范围」类中，简化其使用方法。比如，我可能会先给这个类加上「基于数值判断相等性」的函数，使其成为一个真正的对象。
+
 ## 重构卡片
 
-### 0100. 条件逻辑相关
+### 01. 提炼-内联相关
 
-### 0101. 分解条件表达式
+#### 1.1 提炼函数
 
-Apply Extract Function (106) on the condition and each leg of the conditional.
+```js
+function printOwing(invoice) {　
+  printBanner();　
+  let outstanding = calculateOutstanding();　
+  //print details　
+  console.log(`name: ${invoice.customer}`);　
+  console.log(`amount: ${outstanding}`);
+}
+```
 
-对条件判断和每个条件分支分别运用提炼函数（106）手法。
+After Refactoring:
+
+```js
+function printOwing(invoice) {　
+  printBanner();　
+  let outstanding = calculateOutstanding();　
+  printDetails(outstanding);　
+  
+  function printDetails(outstanding) {　　
+    console.log(`name: ${invoice.customer}`);　　
+    console.log(`amount: ${outstanding}`);　
+  }
+}
+```
+
+1. Create a new function, and name it after the intent of the function (name it by what it does, not by how it does it).
+
+    If the code I want to extract is very simple, such as a single function call, I still extract it if the name of the new function will reveal the intent of the code in a better way. If I can’t come up with a more meaningful name, that’s a sign that I shouldn’t extract the code. However, I don’t have to come up with the best name right away; sometimes a good name only appears as I work with the extraction. It’s OK to extract a function, try to work with it, realize it isn’t helping, and then inline it back again. As long as I’ve learned something, my time wasn’t wasted.
+
+    If the language supports nested functions, nest the extracted function inside the source function. That will reduce the amount of out­of­scope variables to deal with after the next couple of steps. I can always use Move Function (198) later. 
+
+2. Copy the extracted code from the source function into the new target function.
+
+3. Scan the extracted code for references to any variables that are local in scope to the source function and will not be in scope for the extracted function. Pass them as parameters. If I extract into a nested function of the source function, I don’t run into these problems. Usually, these are local variables and parameters to the function. The most general approach is to pass all such parameters in as arguments. There are usually no difficulties for variables that are used but not assigned to.
+
+    If a variable is only used inside the extracted code but is declared outside, move the declaration into the extracted code. Any variables that are assigned to need more care if they are passed by value. If there’s only one of them, I try to treat the extracted code as a query and assign the result to the variable concerned.
+
+    Sometimes, I find that too many local variables are being assigned by the extracted code. It’s better to abandon the extraction at this point. When this happens, I consider other refactorings such as Split Variable (240) or Replace Temp with Query (178) to simplify variable usage and revisit the extraction later.
+
+4. Compile after all variables are dealt with. Once all the variables are dealt with, it can be useful to compile if the language environment does compile­time checks. Often, this will help find any variables that haven’t been dealt with properly.
+
+5. Replace the extracted code in the source function with a call to the target function.
+
+6. Test.
+
+7. Look for other code that’s the same or similar to the code just extracted, and consider using Replace Inline Code with Function Call (222) to call the new function. Some refactoring tools support this directly. Otherwise, it can be worth doing some quick searches to see if duplicate code exists elsewhere.
+
+1、创造一个新函数，根据这个函数的意图来对它命名（以它「做什么」来命名，而不是以它「怎样做」命名）。如果想要提炼的代码非常简单，例如只是一个函数调用，只要新函数的名称能够以更好的方式昭示代码意图，我还是会提炼它；但如果想不出一个更有意义的名称，这就是一个信号，可能我不应该提炼这块代码。不过，我不一定非得马上想出最好的名字，有时在提炼的过程中好的名字才会出现。有时我会提炼一个函数，尝试使用它，然后发现不太合适，再把它内联回去，这完全没问题。只要在这个过程中学到了东西，我的时间就没有白费。如果编程语言支持嵌套函数，就把新函数嵌套在源函数里，这能减少后面需要处理的超出作用域的变量个数。我可以稍后再使用搬移函数（198）把它从源函数中搬移出去。
+
+2、将待提炼的代码从源函数复制到新建的目标函数中。
+
+3、仔细检查提炼出的代码，看看其中是否引用了作用域限于源函数、在提炼出的新函数中访问不到的变量。若是，以参数的形式将它们传递给新函数。如果提炼出的新函数嵌套在源函数内部，就不存在变量作用域的问题了。这些「作用域限于源函数」的变量通常是局部变量或者源函数的参数。最通用的做法是将它们都作为参数传递给新函数。只要没在提炼部分对这些变量赋值，处理起来就没什么难度。
+
+如果某个变量是在提炼部分之外声明但只在提炼部分被使用，就把变量声明也搬移到提炼部分代码中去。如果变量按值传递给提炼部分又在提炼部分被赋值，就必须多加小心。如果只有一个这样的变量，我会尝试将提炼出的新函数变成一个查询（query），用其返回值给该变量赋值。但有时在提炼部分被赋值的局部变量太多，这时最好是先放弃提炼。这种情况下，我会考虑先使用别的重构手法，例如拆分变量（240）或者以查询取代临时变量（178），来简化变量的使用情况，然后再考虑提炼函数。
+
+4、所有变量都处理完之后，编译。如果编程语言支持编译期检查的话，在处理完所有变量之后做一次编译是很有用的，编译器经常会帮你找到没有被恰当处理的变量。
+
+5、在源函数中，将被提炼代码段替换为对目标函数的调用。
+
+6、测试。
+
+7、查看其他代码是否有与被提炼的代码段相同或相似之处。如果有，考虑使用以函数调用取代内联代码（222）令其调用提炼出的新函数。有些重构工具直接支持这一步。如果工具不支持，可以快速搜索一下，看看别处是否还有重复代码。
+
+#### 1.2 内联函数
+
+```js
+function getRating(driver) {　
+  return moreThanFiveLateDeliveries(driver) ? 2 : 1;
+}
+
+function moreThanFiveLateDeliveries(driver) {　
+  return driver.numberOfLateDeliveries > 5;
+}
+```
+
+After Refactoring:
+
+```js
+function getRating(driver) {　
+  return (driver.numberOfLateDeliveries > 5) ? 2 : 1;
+}
+```
+
+1. Check that this isn’t a polymorphic method. If this is a method in a class, and has subclasses that override it, then I can’t inline it. Find all the callers of the function.
+
+2. Replace each call with the function’s body.
+
+3. Test after each replacement.
+
+4. The entire inlining doesn’t have to be done all at once. If some parts of the inline are tricky, they can be done gradually as opportunity permits.
+
+5. Remove the function definition.
+
+Written this way, Inline Function is simple. In general, it isn’t. I could write pages on how to handle recursion, multiple return points, inlining a method into another object when you don’t have accessors, and the like. The reason I don’t is that if you encounter these complexities, you shouldn’t do this refactoring.
+
+1、检查函数，确定它不具多态性。如果该函数属于一个类，并且有子类继承了这个函数，那么就无法内联。
+
+2、找出这个函数的所有调用点。
+
+3、将这个函数的所有调用点都替换为函数本体。
+
+4、每次替换之后，执行测试。不必一次完成整个内联操作。如果某些调用点比较难以内联，可以等到时机成熟后再来处理。
+
+5、删除该函数的定义。
+
+被我这样一写，内联函数似乎很简单。但情况往往并非如此。对于递归调用、多返回点、内联至另一个对象中而该对象并无访问函数等复杂情况，我可以写上好几页。我之所以不写这些特殊情况，原因很简单：如果你遇到了这样的复杂情况，就不应该使用这个重构手法。
+
+#### 1.3 提炼变量
+
+```js
+return order.quantity * order.itemPrice -　
+  Math.max(0, order.quantity - 500) * order.itemPrice * 0.05 +　
+  Math.min(order.quantity * order.itemPrice * 0.1, 100);
+```
+
+After Reactoring:
+
+```js
+const basePrice = order.quantity * order.itemPrice;
+const quantityDiscount = Math.max(0, order.quantity - 500) * order.itemPrice * 0.05;
+const shipping = Math.min(basePrice * 0.1, 100);
+return basePrice - quantityDiscount + shipping;
+```
+
+1. Ensure that the expression you want to extract does not have side effects. 
+
+2. Declare an immutable variable. Set it to a copy of the expression you want to name.
+
+3. Replace the original expression with the new variable.
+
+4. Test.
+
+If the expression appears more than once, replace each occurrence with the variable, testing after each replacement.
+
+1、确认要提炼的表达式没有副作用。
+
+2、声明一个不可修改的变量，把你想要提炼的表达式复制一份，以该表达式的结果值给这个变量赋值。
+
+3、用这个新变量取代原来的表达式。
+
+4、测试。
+
+如果该表达式出现了多次，请用这个新变量逐一替换，每次替换之后都要执行测试。
+
+#### 1.4 内联变量
+
+```js
+let basePrice = anOrder.basePrice;
+return (basePrice > 1000);
+```
+
+After Refactoring:
+
+```js
+return anOrder.basePrice > 1000;
+```
+
+1. Check that the right­hand side of the assignment is free of side effects.
+
+2. If the variable isn’t already declared immutable, do so and test.
+
+3. This checks that it’s only assigned to once. Find the first reference to the variable and replace it with the right­hand side of the assignment.
+
+4. Test.
+
+5. Repeat replacing references to the variable until you’ve replaced all of them. 
+
+6. Remove the declaration and assignment of the variable.
+
+7. Test.
+
+1、检查确认变量赋值语句的右侧表达式没有副作用。
+
+2、如果变量没有被声明为不可修改，先将其变为不可修改，并执行测试。这是为了确保该变量只被赋值一次。
+
+3、找到第一处使用该变量的地方，将其替换为直接使用赋值语句的右侧表达式。
+
+4、测试。
+
+5、重复前面两步，逐一替换其他所有使用该变量的地方。
+
+6、删除该变量的声明点和赋值语句。
+
+7、测试。
+
+#### 1.5 改变函数声明
+
+```js
+function circum(radius) {...}
+```
+
+After Reactoring:
+
+```js
+function circumference(radius) {...}
+```
+
+#### Simple Mechanics
+
+1. If you’re removing a parameter, ensure it isn’t referenced in the body of the function.
+
+2. Change the method declaration to the desired declaration.
+
+3. Find all references to the old method declaration, update them to the new one.
+
+4. Test.
+
+It’s often best to separate changes, so if you want to both change the name and add a parameter, do these as separate steps. (In any case, if you run into trouble, revert and use the migration mechanics instead.)
+
+1、如果想要移除一个参数，需要先确定函数体内没有使用该参数。
+
+2、修改函数声明，使其成为你期望的状态。
+
+3、找出所有使用旧的函数声明的地方，将它们改为使用新的函数声明。
+
+4、测试。
+
+最好能把大的修改拆成小的步骤，所以如果你既想修改函数名，又想添加参数，最好分成两步来做。（并且，不论何时，如果遇到了麻烦，请撤销修改，并改用迁移式做法。）
+
+#### Migration Mechanics
+
+1. If necessary, refactor the body of the function to make it easy to do the following extraction step. Use Extract Function (106) on the function body to create the new function.
+
+2. If the new function will have the same name as the old one, give the new function a temporary name that’s easy to search for.
+
+3. If the extracted function needs additional parameters, use the simple mechanics to add them.
+
+4. Test.
+
+5. Apply Inline Function (115) to the old function.
+
+6. If you used a temporary name, use Change Function Declaration (124) again to restore it to the original name.
+
+7. Test.
+
+If you’re changing a method on a class with polymorphism, you’ll need to add indirection for each binding. If the method is polymorphic within a single class hierarchy, you only need the forwarding method on the superclass. If the polymorphism has no superclass link, then you’ll need forwarding methods on each implementation class.
+
+If you are refactoring a published API, you can pause the refactoring once you’ve created the new function. During this pause, deprecate the original function and wait for clients to change to the new function. The original function declaration can be removed when (and if) you’re confident all the clients of the old function have migrated to the new one.
+
+1、如果有必要的话，先对函数体内部加以重构，使后面的提炼步骤易于开展。
+
+2、使用提炼函数（106）将函数体提炼成一个新函数。如果你打算沿用旧函数的名字，可以先给新函数起一个易于搜索的临时名字。
+
+3、如果提炼出的函数需要新增参数，用前面的简单做法添加即可。
+
+4、测试。
+
+5、对旧函数使用内联函数（115）。
+
+6、如果新函数使用了临时的名字，再次使用改变函数声明（124）将其改回原来的名字。
+
+7、测试。
+
+如果要重构的函数属于一个具有多态性的类，那么对于该函数的每个实现版本，你都需要通过「提炼出一个新函数」的方式添加一层间接，并把旧函数的调用转发给新函数。如果该函数的多态性是在一个类继承体系中体现，那么只需要在超类上转发即可；如果各个实现类之间并没有一个共同的超类，那么就需要在每个实现类上做转发。
+
+如果要重构一个已对外发布的 API，在提炼出新函数之后，你可以暂停重构，将原来的函数声明为「不推荐使用」（deprecated），然后给客户端一点时间转为使用新函数。等你有信心所有客户端都已经从旧函数迁移到新函数，再移除旧函数的声明。
+
+#### 1.6 封装变量
+
+```js
+let defaultOwner = {firstName: "Martin", lastName: "Fowler"};
+```
+
+After Refactoring:
+
+```js
+let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"};
+
+export function defaultOwner() {
+  return defaultOwnerData;
+}
+
+export function setDefaultOwner(arg) {
+  defaultOwnerData = arg;
+}
+```
+
+1. Create encapsulating functions to access and update the variable.
+
+2. Run static checks.
+
+3. For each reference to the variable, replace with a call to the appropriate encapsulating function. Test after each replacement.
+
+4. Restrict the visibility of the variable.
+
+5. Sometimes it’s not possible to prevent access to the variable. If so, it may be useful to detect any remaining references by renaming the variable and testing.
+
+6. Test.
+
+7. If the value of the variable is a record, consider Encapsulate Record (162).
+
+1、创建封装函数，在其中访问和更新变量值。
+
+2、执行静态检查。
+
+3、逐一修改使用该变量的代码，将其改为调用合适的封装函数。每次替换之后，执行测试。
+
+4、限制变量的可见性。有时没办法阻止直接访问变量。若果真如此，可以试试将变量改名，再执行测试，找出仍在直接使用该变量的代码。
+
+5、测试。
+
+6、如果变量的值是一个记录，考虑使用封装记录（162）。
+
+#### 1.7 变量改名
+
+```js
+let a = height * width;
+```
+
+After Refactoring:
+
+```js
+let area = height * width;
+```
+
+1. If the variable is used widely, consider Encapsulate Variable (132).
+
+2. Find all references to the variable, and change every one. If there are references from another code base, the variable is a published variable, and you cannot do this refactoring. If the variable does not change, you can copy it to one with the new name, then change gradually, testing after each change.
+
+3. Test.
+
+1、如果变量被广泛使用，考虑运用封装变量（132）将其封装起来。
+
+2、找出所有使用该变量的代码，逐一修改。如果在另一个代码库中使用了该变量，这就是一个「已发布变量」（published variable），此时不能进行这个重构。如果变量值从不修改，可以将其复制到一个新名字之下，然后逐一修改使用代码，每次修改后执行测试。
+
+3、测试。
+
+#### 1.8 引入参数对象
+
+```js
+function amountInvoiced(startDate, endDate) {...} 
+function amountReceived(startDate, endDate) {...} 
+function amountOverdue(startDate, endDate) {...}
+```
+
+After Refactoring:
+
+```js
+function amountInvoiced(aDateRange) {...} 
+function amountReceived(aDateRange) {...} 
+function amountOverdue(aDateRange) {...}
+```
+
+1. If there isn’t a suitable structure already, create one. I prefer to use a class, as that makes it easier to group behavior later on. I usually like to ensure these structures are value objects [mf­vo].
+
+2. Test. 
+
+3. Use Change Function Declaration (124) to add a parameter for the new structure.
+
+4. Test.
+
+5. Adjust each caller to pass in the correct instance of the new structure. Test after each one.
+
+6. For each element of the new structure, replace the use of the original parameter with the element of the structure. Remove the parameter. Test.
+
+1、如果暂时还没有一个合适的数据结构，就创建一个。我倾向于使用类，因为稍后把行为放进来会比较容易。我通常会尽量确保这些新建的数据结构是值对象 [mf-vo]。
+
+2、测试。
+
+3、使用改变函数声明（124）给原来的函数新增一个参数，类型是新建的数据结构。
+
+4、测试。
+
+5、调整所有调用者，传入新数据结构的适当实例。每修改一处，执行测试。
+
+6、用新数据结构中的每项元素，逐一取代参数列表中与之对应的参数项，然后删除原来的参数。测试。
+
+#### 1.9 函数组合成类
+
+```js
+function base(aReading) {...}
+function taxableCharge(aReading) {...} 
+function calculateBaseCharge(aReading) {...}
+```
+
+After Refactoring:
+
+```js
+class Reading {   
+  base() {...}  
+  taxableCharge() {...}   
+  calculateBaseCharge() {...}
+}
+```
+
+1. Apply Encapsulate Record (162) to the common data record that the functions share. If the data that is common between the functions isn’t already grouped into a record structure, use Introduce Parameter Object (140) to create a record to group it together.
+
+2. Take each function that uses the common record and use Move Function (198) to move it into the new class. Any arguments to the function call that are members can be removed from the argument list.
+
+3. Each bit of logic that manipulates the data can be extracted with Extract Function (106) and then moved into the new class.
+
+1、运用封装记录（162）对多个函数共用的数据记录加以封装。如果多个函数共用的数据还未组织成记录结构，则先运用引入参数对象（140）将其组织成记录。
+
+2、对于使用该记录结构的每个函数，运用搬移函数（198）将其移入新类。如果函数调用时传入的参数已经是新类的成员，则从参数列表中去除之。
+
+3、用以处理该数据记录的逻辑可以用提炼函数（106）提炼出来，并移入新类。
+
+#### 1.10 函数组合成变换
+
+```js
+function base(aReading) {...}
+function taxableCharge(aReading) {...}
+```
+
+After Refactoring:
+
+```js
+function enrichReading(argReading) {  
+  const aReading = _.cloneDeep(argReading);  
+  aReading.baseCharge = base(aReading);  
+  aReading.taxableCharge = taxableCharge(aReading);  
+  return aReading;
+}
+```
+
+1. Create a transformation function that takes the record to be transformed and returns the same values. This will usually involve a deep copy of the record. It is often worthwhile to write a test to ensure the transform does not alter the original record.
+
+2. Pick some logic and move its body into the transform to create a new field in the record. Change the client code to access the new field. If the logic is complex, use Extract Function (106) first.
+
+3. Test.
+
+4. Repeat for the other relevant functions.
+
+1、创建一个变换函数，输入参数是需要变换的记录，并直接返回该记录的值。这一步通常需要对输入的记录做深复制（deep copy）。此时应该写个测试，确保变换不会修改原来的记录。
+
+2、挑选一块逻辑，将其主体移入变换函数中，把结果作为字段添加到输出记录中。修改客户端代码，令其使用这个新字段。如果计算逻辑比较复杂，先用提炼函数（106）提炼之。
+
+3、测试。
+
+4、针对其他相关的计算逻辑，重复上述步骤。
+
+#### 1.11 拆分阶段
+
+```js
+const orderData = orderString.split(/\s+/);
+const productPrice = priceList[orderData[0].split("-")[1]]; 
+const orderPrice = parseInt(orderData[1]) * productPrice;
+```
+
+After Refactoring:
+
+```js
+const orderRecord = parseOrder(order);
+const orderPrice = price(orderRecord, priceList);
+
+function parseOrder(aString) {　
+  const values = aString.split(/\s+/); 　
+  return ({　　
+    productID: values[0].split("-")[1], 　　
+    quantity: parseInt(values[1]),　
+  });
+}
+  
+function price(order, priceList) {　
+  return order.quantity * priceList[order.productID];
+}
+```
+
+1. Extract the second phase code into its own function.
+
+2. Test.
+
+3. Introduce an intermediate data structure as an additional argument to the extracted function.
+
+4. Test.
+
+5. Examine each parameter of the extracted second phase. If it is used by first phase, move it to the intermediate data structure. Test after each move.
+
+6. Sometimes, a parameter should not be used by the second phase. In this case, extract the results of each usage of the parameter into a field of the intermediate data structure and use Move Statements to Callers (217) on the line that populates it. 
+
+7. Apply Extract Function (106) on the first­phase code, returning the intermediate data structure. It’s also reasonable to extract the first phase into a transformer object.
+
+1、将第二阶段的代码提炼成独立的函数。
+
+2、测试。
+
+3、引入一个中转数据结构，将其作为参数添加到提炼出的新函数的参数列表中。
+
+4、测试。
+
+5、逐一检查提炼出的「第二阶段函数」的每个参数。如果某个参数被第一阶段用到，就将其移入中转数据结构。每次搬移之后都要执行测试。有时第二阶段根本不应该使用某个参数。果真如此，就把使用该参数得到的结果全都提炼成中转数据结构的字段，然后用搬移语句到调用者（217）把使用该参数的代码行搬移到「第二阶段函数」之外。
+
+6、对第一阶段的代码运用提炼函数（106），让提炼出的函数返回中转数据结构。也可以把第一阶段提炼成一个变换（transform）对象。
+
+### 02. 条件逻辑相关
+
+#### 2.1 分解条件表达式
 
 ```js
 if (!aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd)) 　
@@ -258,7 +786,28 @@ else　
   charge = regularCharge();
 ```
 
-### 0102. 合并条件表达式
+Apply Extract Function (106) on the condition and each leg of the conditional.
+
+对条件判断和每个条件分支分别运用提炼函数（106）手法。
+
+#### 2.2 合并条件表达式
+
+```js
+if (anEmployee.seniority < 2) return 0;
+if (anEmployee.monthsDisabled > 12) return 0;
+if (anEmployee.isPartTime) return 0
+```
+
+After refactoring:
+
+```js
+if (isNotEligibleForDisability()) return 0; 
+function isNotEligibleForDisability() {　
+  return ((anEmployee.seniority < 2)　　　　　
+          || (anEmployee.monthsDisabled > 12)　　　　　
+          || (anEmployee.isPartTime));
+}
+```
 
 1. Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
 
@@ -280,40 +829,7 @@ else　
 
 5、可以考虑对合并后的条件表达式实施提炼函数（106）。
 
-```js
-if (anEmployee.seniority < 2) return 0;
-if (anEmployee.monthsDisabled > 12) return 0;
-if (anEmployee.isPartTime) return 0
-```
-
-After refactoring:
-
-```js
-if (isNotEligibleForDisability()) return 0; 
-function isNotEligibleForDisability() {　
-  return ((anEmployee.seniority < 2)　　　　　
-          || (anEmployee.monthsDisabled > 12)　　　　　
-          || (anEmployee.isPartTime));
-}
-```
-
-### 0103. 以卫语句取代嵌套条件表达式
-
-1. Select outermost condition that needs to be replaced, and change it into a guard clause.
-
-2. Test.
-
-3. Repeat as needed.
-
-4. If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
-
-1、选中最外层需要被替换的条件逻辑，将其替换为卫语句。
-
-2、测试。
-
-3、有需要的话，重复上述步骤。
-
-4、如果所有卫语句都引发同样的结果，可以使用合并条件表达式（263）合并之。
+#### 2.3 以卫语句取代嵌套条件表达式
 
 ```js
 function getPayAmount() { 　
@@ -345,31 +861,23 @@ function getPayAmount() {　
 }
 ```
 
-### 0104. 以多态取代条件表达式
+1. Select outermost condition that needs to be replaced, and change it into a guard clause.
 
-1. If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
+2. Test.
 
-2. Use the factory function in calling code.
+3. Repeat as needed.
 
-3. Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
+4. If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
 
-4. Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
+1、选中最外层需要被替换的条件逻辑，将其替换为卫语句。
 
-5. Repeat for each leg of the conditional.
+2、测试。
 
-6. Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
+3、有需要的话，重复上述步骤。
 
-1、如果现有的类尚不具备多态行为，就用工厂函数创建之，令工厂函数返回恰当的对象实例。
+4、如果所有卫语句都引发同样的结果，可以使用合并条件表达式（263）合并之。
 
-2、在调用方代码中使用工厂函数获得对象实例。
-
-3、将带有条件逻辑的函数移到超类中。如果条件逻辑还未提炼至独立的函数，首先对其使用提炼函数（106）。
-
-4、任选一个子类，在其中建立一个函数，使之覆写超类中容纳条件表达式的那个函数。将与该子类相关的条件表达式分支复制到新函数中，并对它进行适当调整。
-
-5、重复上述过程，处理其他条件分支。
-
-6、在超类函数中保留默认情况的逻辑。或者，如果超类应该是抽象的，就把该函数声明为 abstract，或在其中直接抛出异常，表明计算责任都在子类中。
+#### 2.4 以多态取代条件表达式
 
 ```js
 switch (bird.type) {　
@@ -404,7 +912,45 @@ class NorwegianBlueParrot { 　
 }
 ```
 
-### 0105. 引入特例（引入 null 对象）
+1. If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
+
+2. Use the factory function in calling code.
+
+3. Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
+
+4. Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
+
+5. Repeat for each leg of the conditional.
+
+6. Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
+
+1、如果现有的类尚不具备多态行为，就用工厂函数创建之，令工厂函数返回恰当的对象实例。
+
+2、在调用方代码中使用工厂函数获得对象实例。
+
+3、将带有条件逻辑的函数移到超类中。如果条件逻辑还未提炼至独立的函数，首先对其使用提炼函数（106）。
+
+4、任选一个子类，在其中建立一个函数，使之覆写超类中容纳条件表达式的那个函数。将与该子类相关的条件表达式分支复制到新函数中，并对它进行适当调整。
+
+5、重复上述过程，处理其他条件分支。
+
+6、在超类函数中保留默认情况的逻辑。或者，如果超类应该是抽象的，就把该函数声明为 abstract，或在其中直接抛出异常，表明计算责任都在子类中。
+
+#### 2.5 引入特例（引入 null 对象）
+
+```js
+if (aCustomer === "unknown") customerName = "occupant";
+```
+
+After refactoring:
+
+```js
+class UnknownCustomer {    
+  get name() {
+    return "occupant";
+  }
+}
+```
 
 Begin with a container data structure (or class) that contains a property which is the subject of the refactoring. Clients of the container compare the subject property of the container to a special­case value. We wish to replace the special­case value of the subject with a special case class or data structure.
 
@@ -442,25 +988,7 @@ Begin with a container data structure (or class) that contains a property which 
 
 8、对特例比对函数使用内联函数（115），将其内联到仍然需要的地方。
 
-```js
-if (aCustomer === "unknown") customerName = "occupant";
-```
-
-After refactoring:
-
-```js
-class UnknownCustomer {    
-  get name() {
-    return "occupant";
-  }
-}
-```
-
-### 0106. 引入断言
-
-When you see that a condition is assumed to be true, add an assertion to state it. Since assertions should not affect the running of a system, adding one is always behavior­preserving.
-
-如果你发现代码假设某个条件始终为真，就加入一个断言明确说明这种情况。因为断言应该不会对系统运行造成任何影响，所以「加入断言」永远都应该是行为保持的。
+#### 2.6 引入断言
 
 ```js
 if (this.discountRate) 
@@ -474,6 +1002,10 @@ assert(this.discountRate >= 0);
 if (this.discountRate)  
   base = base - (this.discountRate * base);
 ```
+
+When you see that a condition is assumed to be true, add an assertion to state it. Since assertions should not affect the running of a system, adding one is always behavior­preserving.
+
+如果你发现代码假设某个条件始终为真，就加入一个断言明确说明这种情况。因为断言应该不会对系统运行造成任何影响，所以「加入断言」永远都应该是行为保持的。
 
 ## 重构列表
 

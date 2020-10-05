@@ -924,7 +924,7 @@ If you are refactoring a published API, you can pause the refactoring once you�
 
 如果要重构一个已对外发布的 API，在提炼出新函数之后，你可以暂停重构，将原来的函数声明为「不推荐使用」（deprecated），然后给客户端一点时间转为使用新函数。等你有信心所有客户端都已经从旧函数迁移到新函数，再移除旧函数的声明。
 
-### 6.4.3 Example: Renaming a Function (Simple Mechanics)
+### 6.5.3 Example: Renaming a Function (Simple Mechanics)
 
 Consider this function with an overly abbreved name:
 
@@ -1205,7 +1205,7 @@ Keeping data encapsulated is much less important for immutable data. When the da
 
 封装数据很重要，不过，不可变数据更重要。如果数据不能修改，就根本不需要数据更新前的验证或者其他逻辑钩子。我可以放心地复制数据，而不用搬移原来的数据 —— 这样就不用修改使用旧数据的代码，也不用担心有些代码获得过时失效的数据。不可变性是强大的代码防腐剂。
 
-### 6.6.2 Mechanics Mechanics
+### 6.6.2 Mechanics
 
 1. Create encapsulating functions to access and update the variable.
 
@@ -1262,65 +1262,97 @@ function setDefaultOwner(arg) {defaultOwner = arg;}
 
 I then start working on references to defaultOwner. When I see a reference, I replace it with a call to the getting function.
 
-Click here to view code image
-
+```js
 spaceship.owner = getDefaultOwner();
+```
 
 When I see an assignment, I replace it with the setting function.
 
-Click here to view code image
-
+```js
 setDefaultOwner({firstName: "Rebecca", lastName: "Parsons"});
+```
 
 I test after each replacement.
 
 Once I’m done with all the references, I restrict the visibility of the variable. This both checks that there aren’t any references that I’ve missed, and ensures that future changes to the code won’t access the variable directly. I can do that in JavaScript by moving both the variable and the accessor methods to their own file and only exporting the accessor methods.
 
+处理完所有使用该变量的代码之后，我就可以限制它的可见性。这一步的用意有两个，一来是检查是否遗漏了变量的引用，二来可以保证以后的代码也不会直接访问该变量。在 JavaScript 中，我可以把变量和访问函数搬移到单独一个文件中，并且只导出访问函数，这样就限制了变量的可见性。
+
 defaultOwner.js…
 
-Click here to view code image
+```js
+let defaultOwner = {firstName: "Martin", lastName: "Fowler"}; 
+export function getDefaultOwner() {return defaultOwner;} 
+export function setDefaultOwner(arg) {defaultOwner = arg;}
+```
 
-let defaultOwner = {firstName: "Martin", lastName: "Fowler"}; export function getDefaultOwner() {return defaultOwner;} export function setDefaultOwner(arg) {defaultOwner = arg;}
-
-If I’m in a situation where I cannot restrict the access to a variable, it may be useful to rename the variable and retest. That won’t prevent future direct access, but naming the variable something meaningful and awkward such as __privateOnly_defaultOwner may help.
+If I’m in a situation where I cannot restrict the access to a variable, it may be useful to rename the variable and retest. That won’t prevent future direct access, but naming the variable something meaningful and awkward such as `__privateOnly_defaultOwner` may help.
 
 I don’t like the use of get prefixes on getters, so I’ll rename to remove it.
 
-defaultOwner.js… Click here to view code image
+如果条件不允许限制对变量的访问，可以将变量改名，然后再次执行测试，检查是否仍有代码在直接使用该变量。这阻止不了未来的代码直接访问变量，不过可以给变量起个有意义又难看的名字（例如 `__privateOnly_defaultOwner`），提醒后来的客户端。我不喜欢给取值函数加上 get 前缀，所以我对这个函数改名。
 
-let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"}; export function getdefaultOwner() {return defaultOwnerData;} export function setDefaultOwner(arg) {defaultOwnerData = arg;}
+defaultOwner.js…
+
+```js
+let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"}; 
+export function getdefaultOwner() {return defaultOwnerData;} 
+export function setDefaultOwner(arg) {defaultOwnerData = arg;}
+```
 
 A common convention in JavaScript is to name a getting function and setting function the same and differentiate them due the presence of an argument. I call this practice Overloaded Getter Setter [ mf­ogs] and strongly dislike it. So, even though I don’t like the get prefix, I will keep the set prefix.
 
-Encapsulating the Value
+JavaScript 有一种惯例：给取值函数和设值函数起同样的名字，根据有没有传入参数来区分。我把这种做法称为「重载取值/设值函数」（Overloaded Getter Setter）[mf-orgs]，并且我强烈反对这种做法。所以，虽然我不喜欢 get 前缀，但我会保留 set 前缀。
+
+### 6.6.4 Encapsulating the Value
 
 The basic refactoring I’ve outlined here encapsulates a reference to some data structure, allowing me to control its access and reassignment. But it doesn’t control changes to that structure.
 
-Click here to view code image
+前面介绍的基本重构手法对数据结构的引用做了封装，使我能控制对该数据结构的访问和重新赋值，但并不能控制对结构内部数据项的修改：
 
-const owner1 = defaultOwner(); assert.equal("Fowler", owner1.lastName, "when set"); const owner2 = defaultOwner(); owner2.lastName = "Parsons"; assert.equal("Parsons", owner1.lastName, "after change owner2"); // is this ok?
+```js
+const owner1 = defaultOwner(); 
+assert.equal("Fowler", owner1.lastName, "when set"); 
+const owner2 = defaultOwner(); 
+owner2.lastName = "Parsons"; 
+assert.equal("Parsons", owner1.lastName, "after change owner2"); // is this ok?
+```
 
 The basic refactoring encapsulates the reference to the data item. In many cases, this is all I want to do for the moment. But I often want to take the encapsulation deeper to control not just changes to the variable but also to its contents.
 
 For this, I have a couple of options. The simplest one is to prevent any changes to the value. My favorite way to handle this is by modifying the getting function to return a copy of the data.
 
+前面的基本重构手法只封装了对最外层数据的引用。很多时候这已经足够了。但也有很多时候，我需要把封装做得更深入，不仅控制对变量引用的修改，还要控制对变量内容的修改。这有两个办法可以做到。最简单的办法是禁止对数据结构内部的数值做任何修改。我最喜欢的一种做法是修改取值函数，使其返回该数据的一份副本。
+
 defaultOwner.js…
 
-Click here to view code image
+```js
+let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"}; 
+export function defaultOwner() {return Object.assign({}, defaultOwnerData) 
+export function setDefaultOwner(arg) {defaultOwnerData = arg;} 
+```
 
-let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"}; export function defaultOwner() {return Object.assign({}, defaultOwnerData) export function setDefaultOwner(arg) {defaultOwnerData = arg;} I use this approach particularly often with lists. If I return a copy of the data, any clients using it can change it, but that change isn’t reflected in the shared data. I have to be careful with using copies, however: Some code may expect to change shared data. If that’s the case, I’m relying on my tests to detect a problem. An alternative is to prevent changes—and a good way of doing that is Encapsulate Record (162).
+I use this approach particularly often with lists. If I return a copy of the data, any clients using it can change it, but that change isn’t reflected in the shared data. I have to be careful with using copies, however: Some code may expect to change shared data. If that’s the case, I’m relying on my tests to detect a problem. An alternative is to prevent changes—and a good way of doing that is Encapsulate Record (162).
 
-Click here to view code image
+1『此时此刻才算明白，JS 里时常看到的函数 Object.assign() 是用来复制（应该是浅复制）数据的。（2020-10-05）』
 
-let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"}; export function defaultOwner() {return new Person(defaultOwnerData);} export function setDefaultOwner(arg) {defaultOwnerData = arg;}
+对于列表数据，我尤其常用这一招。如果我在取值函数中返回数据的一份副本，客户端可以随便修改它，但不会影响到共享的这份数据。但在使用副本的做法时，我必须格外小心：有些代码可能希望能修改共享的数据。若果真如此，我就只能依赖测试来发现问题了。另一种做法是阻止对数据的修改，比如通过封装记录（162）就能很好地实现这一效果。
 
-class Person { constructor(data) {
+```js
+let defaultOwnerData = {firstName: "Martin", lastName: "Fowler"}; 
+export function defaultOwner() {return new Person(defaultOwnerData);} 
+export function setDefaultOwner(arg) {defaultOwnerData = arg;}
 
-this._lastName = data.lastName;
-
-this._firstName = data.firstName
-
-} get lastName() {return this._lastName;} get firstName() {return this._firstName;} // and so on for other properties
+class Person { 　
+  constructor(data) {　　
+    this._lastName = data.lastName; 　　
+    this._firstName = data.firstName　
+  }　
+  get lastName() {return this._lastName;}　
+  get firstName() {return this._firstName;}　
+// and so on for other properties
+}
+```
 
 Now, any attempt to reassign the properties of the default owner will cause an error. Different languages have different techniques to detect or prevent changes like this, so depending on the language I’d consider other options.
 
@@ -1332,9 +1364,27 @@ Remember that the copying above, and the class wrapper, both only work one level
 
 As you can see, encapsulating data is valuable, but often not straightforward. Exactly what to encapsulate—and how to do it—depends on the way the data is being used and the changes I have in mind. But the more widely it’s used, the more it’s worth my attention to encapsulate properly.
 
-## RENAME VARIABLE
+现在，如果客户端调用 defaultOwner 函数获得「默认拥有人」数据、再尝试对其属性（即 lastName 和 firstName）重新赋值，赋值不会产生任何效果。对于侦测或阻止修改数据结构内部的数据项，各种编程语言有不同的方式，所以我会根据当下使用的语言来选择具体的办法。「侦测和阻止修改数据结构内部的数据项」通常只是个临时处置。随后我可以去除这些修改逻辑，或者提供适当的修改函数。这些都处理完之后，我就可以修改取值函数，使其返回一份数据副本。
 
-Motivation
+到目前为止，我都在讨论「在取数据时返回一份副本」，其实设值函数也可以返回一份副本。这取决于数据从哪儿来，以及我是否需要保留对源数据的连接，以便知悉源数据的变化。如果不需要这样一条连接，那么设值函数返回一份副本就有好处：可以防止因为源数据发生变化而造成的意外事故。很多时候可能没必要复制一份数据，不过多一次复制对性能的影响通常也都可以忽略不计。但是，如果不做复制，风险则是未来可能会陷入漫长而困难的调试排错过程。
+
+请记住，前面提到的数据复制、类封装等措施，都只在数据记录结构中深入了一层。如果想走得更深入，就需要更多层级的复制或是封装。如你所见，数据封装很有价值，但往往并不简单。到底应该封装什么，以及如何封装，取决于数据被使用的方式，以及我想要修改数据的方式。不过，一言以蔽之，数据被使用得越广，就越是值得花精力给它一个体面的封装。
+
+## 6.7 Rename Variable
+
+![](./res/2020015.png)
+
+```js
+let a = height * width;
+```
+
+After Refactoring:
+
+```js
+let area = height * width;
+```
+
+### 6.7.1 Motivation
 
 Naming things well is the heart of clear programming. Variables can do a lot to explain what I’m up to—if I name them well. But I frequently get my names wrong—sometimes because I’m not thinking carefully enough, sometimes because my understanding of the problem improves as I learn more, and sometimes because the program’s purpose changes as my users’ needs change.
 
@@ -1342,73 +1392,116 @@ Even more than most program elements, the importance of a name depends on how wi
 
 Persistent fields that last beyond a single function invocation require more careful naming. This is where I’m likely to put most of my attention.
 
-Mechanics
+好的命名是整洁编程的核心。变量可以很好地解释一段程序在干什么 —— 如果变量名起得好的话。但我经常会把名字起错 —— 有时是因为想得不够仔细，有时是因为我对问题的理解加深了，还有时是因为程序的用途随着用户的需求改变了。
 
-If the variable is used widely, consider Encapsulate Variable (132).
+使用范围越广，名字的好坏就越重要。只在一行的 lambda 表达式中使用的变量，跟踪起来很容易 —— 像这样的变量，我经常只用一个字母命名，因为变量的用途在这个上下文中很清晰。同理，短函数的参数名也常常很简单。不过在 JavaScript 这样的动态类型语言中，我喜欢把类型信息也放进名字里（于是变量名可能叫 aCustomer）。对于作用域超出一次函数调用的字段，则需要更用心命名。这是我最花心思的地方。
 
-Find all references to the variable, and change every one.
+### 6.7.2 Mechanics
 
-If there are references from another code base, the variable is a published variable, and you cannot do this refactoring.
+1. If the variable is used widely, consider Encapsulate Variable (132).
 
-If the variable does not change, you can copy it to one with the new name, then change gradually, testing after each change.
+2. Find all references to the variable, and change every one. If there are references from another code base, the variable is a published variable, and you cannot do this refactoring. If the variable does not change, you can copy it to one with the new name, then change gradually, testing after each change.
 
-Test.
+3. Test.
 
-Example
+1、如果变量被广泛使用，考虑运用封装变量（132）将其封装起来。
+
+2、找出所有使用该变量的代码，逐一修改。如果在另一个代码库中使用了该变量，这就是一个「已发布变量」（published variable），此时不能进行这个重构。如果变量值从不修改，可以将其复制到一个新名字之下，然后逐一修改使用代码，每次修改后执行测试。
+
+3、测试。
+
+### 6.7.3 Example
 
 The simplest case for renaming a variable is when it’s local to a single function: a temp or argument. It’s too trivial for even an example: I just find each reference and change it. After I’m done, I test to ensure I didn’t mess up.
 
 Problems occur when the variable has a wider scope than just a single function. There may be a lot of references all over the code base:
 
+如果要改名的变量只作用于一个函数（临时变量或者参数），对其改名是最简单的。这种情况太简单，根本不需要范例：找到变量的所有引用，修改过来就行。完成修改之后，我会执行测试，确保没有破坏什么东西。如果变量的作用域不止于单个函数，问题就会出现。代码库的各处可能有很多地方使用它：
+
+```js
 let tpHd = "untitled";
+```
 
 Some references access the variable:
 
+```js
 result += `<h1>${tpHd}</h1>`;
+```
 
 Others update it:
 
+```js
 tpHd = obj['articleTitle'];
+```
 
 My usual response to this is apply Encapsulate Variable (132).
 
-Click here to view code image
-
+```js
 result += `<h1>${title()}</h1>`;
 
 setTitle(obj['articleTitle']);
 
-function title() {return tpHd;} function setTitle(arg) {tpHd = arg;}
+function title() {return tpHd;} 
+function setTitle(arg) {tpHd = arg;}
+```
 
 At this point, I can rename the variable.
 
-Click here to view code image let _title = "untitled";
+```js
+let _title = "untitled";
 
-function title() {return _title;} function setTitle(arg) {_title = arg;}
+function title() {return _title;} 
+function setTitle(arg) {_title = arg;}
+```
 
 I could continue by inlining the wrapping functions so all callers are using the variable directly. But I’d rarely want to do this. If the variable is used widely enough that I feel the need to encapsulate it in order to change its name, it’s worth keeping it encapsulated behind functions for the future.
 
 In cases where I was going to inline, I’d call the getting function getTitle and not use an underscore for the variable name when I rename it.
 
-Renaming a Constant
+我可以继续重构下去，将包装函数内联回去，这样所有的调用者就变回直接使用变量的状态。不过我很少这样做。如果这个变量被广泛使用，以至于我感到需要先做封装才敢改名，那就有必要保持这个状态，将变量封装在函数后面。如果我确实想内联，在重构过程中，我就会将取值函数命名为 getTitle，并且其中的变量名也不会以下划线开头。
+
+### 6.7.4 Renaming a Constant
 
 If I’m renaming a constant (or something that acts like a constant to clients) I can avoid encapsulation, and still do the rename gradually, by copying. If the original declaration looks like this:
 
-Click here to view code image
+如果我想改名的是一个常量（或者在客户端看来就像是常量的元素），我可以复制这个常量，这样既不需要封装，又可以逐步完成改名。假如原来的变量声明是这样：
 
+```js
 const cpyNm = "Acme Gooseberries";
+```
 
 I can begin the renaming by making a copy:
 
-Click here to view code image
-
-const companyName = "Acme Gooseberries"; const cpyNm = companyName;
+```js
+const companyName = "Acme Gooseberries"; 
+const cpyNm = companyName;
+```
 
 With the copy, I can gradually change references from the old name to the new name. When I’m done, I remove the copy. I prefer to declare the new name and copy to the old name if it makes it a tad easier to remove the old name and put it back again should a test fail.
 
 This works for constants as well as for variables that are read­only to clients (such as an exported variable in JavaScript).
 
-## INTRODUCE PARAMETER OBJECT Motivation
+有了这个副本，我就可以逐一修改引用旧常量的代码，使其引用新的常量。全部修改完成后，我会删掉旧的常量。我喜欢先声明新的常量名，然后把新常量复制给旧的名字。这样最后删除旧名字时会稍微容易一点，如果测试失败，再把旧常量放回来也稍微容易一点。这个做法不仅适用于常量，也同样适用于客户端只能读取的变量（例如 JavaScript 模块中导出的变量）。
+
+## 6.8 Introduce Parameter Object
+
+![](./res/2020016.png)
+
+```js
+function amountInvoiced(startDate, endDate) {...} 
+function amountReceived(startDate, endDate) {...} 
+function amountOverdue(startDate, endDate) {...}
+```
+
+After Refactoring:
+
+```js
+function amountInvoiced(aDateRange) {...} 
+function amountReceived(aDateRange) {...} 
+function amountOverdue(aDateRange) {...}
+```
+
+### 6.8.1 Motivation
 
 I often see groups of data items that regularly travel together, appearing in function after function. Such a group is a data clump, and I like to replace it with a single data structure.
 
@@ -1416,121 +1509,220 @@ Grouping data into a structure is valuable because it makes explicit the relatio
 
 But the real power of this refactoring is how it enables deeper changes to the code. When I identify these new structures, I can reorient the behavior of the program to use these structures. I will create functions that capture the common behavior over this data—either as a set of common functions or as a class that combines the data structure with these functions. This process can change the conceptual picture of the code, raising these structures as new abstractions that can greatly simplify my understanding of the domain. When this works, it can have surprisingly powerful effects—but none of this is possible unless I use Introduce Parameter Object to begin the process.
 
-Mechanics
+我常会看见，一组数据项总是结伴同行，出没于一个又一个函数。这样一组数据就是所谓的数据泥团，我喜欢代之以一个数据结构。将数据组织成结构是一件有价值的事，因为这让数据项之间的关系变得明晰。使用新的数据结构，参数的参数列表也能缩短。并且经过重构之后，所有使用该数据结构的函数都会通过同样的名字来访问其中的元素，从而提升代码的一致性。
 
-If there isn’t a suitable structure already, create one.
+但这项重构真正的意义在于，它会催生代码中更深层次的改变。一旦识别出新的数据结构，我就可以重组程序的行为来使用这些结构。我会创建出函数来捕捉围绕这些数据的共用行为 —— 可能只是一组共用的函数，也可能用一个类把数据结构与使用数据的函数组合起来。这个过程会改变代码的概念图景，将这些数据结构提升为新的抽象概念，可以帮助我更好地理解问题域。果真如此，这个重构过程会产生惊人强大的效用 —— 但如果不用引入参数对象开启这个过程，后面的一切都不会发生。
 
-I prefer to use a class, as that makes it easier to group behavior later on. I usually like to ensure these structures are value objects [mf­vo].
+### 6.8.2 Mechanics
 
-Test. Use Change Function Declaration (124) to add a parameter for the new structure.
+1. If there isn’t a suitable structure already, create one. I prefer to use a class, as that makes it easier to group behavior later on. I usually like to ensure these structures are value objects [mf­vo].
 
-Test.
+2. Test. 
 
-Adjust each caller to pass in the correct instance of the new structure. Test after each one.
+3. Use Change Function Declaration (124) to add a parameter for the new structure.
 
-For each element of the new structure, replace the use of the original parameter with the element of the structure. Remove the parameter. Test.
+4. Test.
 
-Example
+5. Adjust each caller to pass in the correct instance of the new structure. Test after each one.
+
+6. For each element of the new structure, replace the use of the original parameter with the element of the structure. Remove the parameter. Test.
+
+1、如果暂时还没有一个合适的数据结构，就创建一个。我倾向于使用类，因为稍后把行为放进来会比较容易。我通常会尽量确保这些新建的数据结构是值对象 [mf-vo]。
+
+2、测试。
+
+3、使用改变函数声明（124）给原来的函数新增一个参数，类型是新建的数据结构。
+
+4、测试。
+
+5、调整所有调用者，传入新数据结构的适当实例。每修改一处，执行测试。
+
+6、用新数据结构中的每项元素，逐一取代参数列表中与之对应的参数项，然后删除原来的参数。测试。
+
+### 6.8.3 Example
 
 I’ll begin with some code that looks at a set of temperature readings and determines whether any of them fall outside of an operating range. Here’s what the data looks like for the readings:
 
-Click here to view code image
+下面要展示的代码会查看一组温度读数（reading），检查是否有任何一条读数超出了指定的运作温度范围（range）。温度读数的数据如下：
 
-const station = { name: "ZB1",
-
-readings: [ {temp: 47, time: "2016­11­10 09:10"}, {temp: 53, time: "2016­11­10 09:20"}, {temp: 58, time: "2016­11­10 09:30"}, {temp: 53, time: "2016­11­10 09:40"}, {temp: 51, time: "2016­11­10 09:50"}, ] };
+```js
+const station = { name: "ZB1",　　　　　　　　　
+              readings: [　　　　　　　　　　
+                {temp: 47, time: "2016-11-10 09:10"},　　　　　　　　　　
+                {temp: 53, time: "2016-11-10 09:20"},　　　　　　　　　　
+                {temp: 58, time: "2016-11-10 09:30"},　　　　　　　　　　
+                {temp: 53, time: "2016-11-10 09:40"},　　　　　　　　　　
+                {temp: 51, time: "2016-11-10 09:50"},　　　　　　　　　
+              ]　　　　　　　　
+            };
+```
 
 I have a function to find the readings that are outside a temperature range.
 
-Click here to view code image
-
-function readingsOutsideRange(station, min, max) { return station.readings .filter(r => r.temp < min || r.temp > max); }
+```js
+function readingsOutsideRange(station, min, max) { 　
+  return station.readings　　
+    .filter(r => r.temp < min || r.temp > max);
+}
+```
 
 It might be called from some code like this:
 
 caller
 
-Click here to view code image
-
-alerts = readingsOutsideRange(station, operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling);
+```js
+alerts = readingsOutsideRange(station,　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureFloor, 　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureCeiling);
+```
 
 Notice how the calling code pulls the two data items as a pair from another object and passes the pair into readingsOutsideRange. The operating plan uses different names to indicate the start and end of the range compared to readingsOutsideRange. A range like this is a common case where two separate data items are better combined into a single object. I’ll begin by declaring a class for the combined data.
 
-Click here to view code image
+请注意，这里的调用代码从另一个对象中抽出两项数据，转手又把这一对数据传递给 readingsOutsideRange。代表「运作计划」的 operatingPlan 对象用了另外的名字来表示温度范围的下限和上限，与 readingsOutsideRange 中所用的名字不同。像这样用两项各不相干的数据来表示一个范围的情况并不少见，最好是将其组合成一个对象。我会首先为要组合的数据声明一个类：
 
-class NumberRange { constructor(min, max) { this._data = {min: min, max: max}; } get min() {return this._data.min;} get max() {return this._data.max;} }
+```js
+class NumberRange { 　
+  constructor(min, max) {　　
+    this._data = {min: min, max: max};　
+  }　
+  get min() {return this._data.min;} 　
+  get max() {return this._data.max;}
+}      
+```
 
 I declare a class, rather than just using a basic JavaScript object, because I usually find this refactoring to be a first step to moving behavior into the newly created object. Since a class makes sense for this, I go right ahead and use one directly. I also don’t provide any update methods for the new class, as I’ll probably make this a Value Object [mf­vo]. Most times I do this refactoring, I create value objects.
 
 I then use Change Function Declaration (124) to add the new object as a parameter to readingsOutsideRange.
 
-Click here to view code image
+我声明了一个类，而不是基本的 JavaScript 对象，因为这个重构通常只是一系列重构的起点，随后我会把行为搬移到新建的对象中。既然类更适合承载数据与行为的组合，我就直接从声明一个类开始。同时，在这个新类中，我不会提供任何更新数据的函数，因为我有可能将其处理成值对象（ValueObject）[mf-vo]。在使用这个重构手法时，大多数情况下我都会创建值对象。然后我会运用改变函数声明（124），把新的对象作为参数传给 readingsOutsideRange。
 
-function readingsOutsideRange(station, min, max, range) { return station.readings .filter(r => r.temp < min || r.temp > max); }
+```js
+function readingsOutsideRange(station, min, max, range) { 　
+  return station.readings　　
+    .filter(r => r.temp < min || r.temp > max);
+}
+```
 
 In JavaScript, I can leave the caller as is, but in other languages I’d have to add a null for the new parameter which would look something like this:
 
+在 JavaScript 中，此时我不需要修改调用方代码，但在其他语言中，我必须在调用处为新参数传入 null 值，就像下面这样。
+
 caller
 
-Click here to view code image alerts = readingsOutsideRange(station,
-
-operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling, null);
+```js
+alerts = readingsOutsideRange(station,　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureFloor, 　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureCeiling, 　　　　　　　　　　　　　　　
+                        null);
+```
 
 At this point I haven’t changed any behavior, and tests should still pass. I then go to each caller and adjust it to pass in the correct date range.
 
-caller
-
-Click here to view code image
-
-const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temp alerts = readingsOutsideRange(station,
-
-operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling, range);
-
-I still haven’t altered any behavior yet, as the parameter isn’t used. All tests should still work.
-
-Now I can start replacing the usage of the parameters. I’ll start with the maximum.
-
-Click here to view code image
-
-function readingsOutsideRange(station, min, max, range) { return station.readings .filter(r => r.temp < min || r.temp > range.max); }
+到目前为止，我还没有修改任何行为，所以测试应该仍然能通过。随后，我会挨个找到函数的调用处，传入合适的温度范围。
 
 caller
 
-Click here to view code image
+```js
+const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling);
+alerts = readingsOutsideRange(station,　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureFloor, 　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureCeiling, 　　　　　　　　　　　　　　　
+                        range);
+```
 
-const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temp alerts = readingsOutsideRange(station, operatingPlan.temperatureFloor,
+I still haven’t altered any behavior yet, as the parameter isn’t used. All tests should still work. Now I can start replacing the usage of the parameters. I’ll start with the maximum.
 
-operatingPlan.temperatureCeiling, range);
+1『真的是好「小步」的修改，一步步来，哈哈。（2020-10-05）』
 
-I can test at this point, then remove the other parameter. Click here to view code image
+此时我还是没有修改任何行为，因为新添的参数没有被使用。所有测试应该仍然能通过。现在我可以开始修改使用参数的代码了。先从「最大值」开始：
 
-function readingsOutsideRange(station, min, range) { return station.readings .filter(r => r.temp < range.min || r.temp > range.max); }
+```js
+function readingsOutsideRange(station, min, max, range) { 　
+  return station.readings　　
+    .filter(r => r.temp < min || r.temp > range.max);
+}
+```
 
 caller
 
-Click here to view code image
+```js
+const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling);
+alerts = readingsOutsideRange(station,　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureFloor, 　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureCeiling, 　　　　　　　　　　　　　　　
+                        range);
+```
 
-const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temp alerts = readingsOutsideRange(station,
+I can test at this point, then remove the other parameter.
 
-operatingPlan.temperatureFloor, range);
+```js
+function readingsOutsideRange(station, min, max, range) { 　
+  return station.readings　　
+    .filter(r => r.temp < range.min || r.temp > range.max);
+}
+```
+
+caller
+
+```js
+const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling);
+alerts = readingsOutsideRange(station,　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureFloor, 　　　　　　　　　　　　　　　
+                        operatingPlan.temperatureCeiling, 　　　　　　　　　　　　　　　
+                        range);
+```
 
 That completes this refactoring. However, replacing a clump of parameters with a real object is just the setup for the really good stuff. The great benefits of making a class like this is that I can then move behavior into the new class. In this case, I’d add a method for range that tests if a value falls within the range.
 
-Click here to view code image
+这项重构手法到这儿就完成了。不过，将一堆参数替换成一个真正的对象，这只是长征第一步。创建一个类是为了把行为搬移进去。在这里，我可以给「范围」类添加一个函数，用于测试一个值是否落在范围之内。
 
-function readingsOutsideRange(station, range) { return station.readings .filter(r => !range.contains(r.temp)); }
+```js
+function readingsOutsideRange(station, range) { 　
+  return station.readings　　
+    .filter(r => !range.contains(r.temp));
+}
+```
 
 class NumberRange…
 
-Click here to view code image
-
-contains(arg) {return (arg >= this.min && arg <= this.max);}
+```js
+class NumberRange { 　
+  constructor(min, max) {　　
+    this._data = {min: min, max: max};　
+  }　
+  get min() {return this._data.min;} 　
+  get max() {return this._data.max;}
+  contains(arg) {return (arg >= this.min && arg <= this.max);}
+}  
+```
 
 This is a first step to creating a range [mf­range] that can take on a lot of useful behavior. Once I’ve identified the need for a range in my code, I can be constantly on the lookout for other cases where I see a max/min pair of numbers and replace them with a range. (One immediate possibility is the operating plan, replacing temperatureFloor and temperatureCeiling with a temperatureRange.) As I look at how these pairs are used, I can move more useful behavior into the range class, simplifying its usage across the code base. One of the first things I may add is a valuebased equality method to make it a true value object.
 
-## COMBINE FUNCTIONS INTO CLASS
+这样我就迈出了第一步，开始逐渐打造一个真正有用的「范围」[mf-range] 类。一旦识别出「范围」这个概念，那么每当我在代码中发现「最大/最小值」这样一对数字时，我就会考虑是否可以将其改为使用「范围」类。（例如，我马上就会考虑把「运作计划」类中的 temperatureFloor 和 temperatureCeiling 替换为 temperatureRange。）在观察这些成对出现的数字如何被使用时，我会发现一些有用的行为，并将其搬移到「范围」类中，简化其使用方法。比如，我可能会先给这个类加上「基于数值判断相等性」的函数，使其成为一个真正的对象。
 
-Motivation
+2『范围类做一张任意卡片。』——已完成
+
+## 6.9 Combine Functions into Class
+
+![](./res/2020017.png)
+
+```js
+function base(aReading) {...}
+function taxableCharge(aReading) {...} 
+function calculateBaseCharge(aReading) {...}
+```
+
+After Refactoring:
+
+```js
+class Reading {   
+  base() {...}  
+  taxableCharge() {...}   
+  calculateBaseCharge() {...}
+}
+```
+
+### 6.9.1 Motivation
 
 Classes are a fundamental construct in most modern programming languages. They bind together data and functions into a shared environment, exposing some of that data and function to other program elements for collaboration. They are the primary construct in object­oriented languages, but are also useful with other approaches too.
 
@@ -1544,151 +1736,227 @@ As well as a class, functions like this can also be combined into a nested funct
 
 Languages that don’t have classes as a first­class element, but do have first­class functions, often use the Function As Object [mf­fao] to provide this capability.
 
-Mechanics
+类，在大多数现代编程语言中都是基本的构造。它们把数据与函数捆绑到同一个环境中，将一部分数据与函数暴露给其他程序元素以便协作。它们是面向对象语言的首要构造，在其他程序设计方法中也同样有用。如果发现一组函数形影不离地操作同一块数据（通常是将这块数据作为参数传递给函数），我就认为，是时候组建一个类了。类能明确地给这些函数提供一个共用的环境，在对象内部调用这些函数可以少传许多参数，从而简化函数调用，并且这样一个对象也可以更方便地传递给系统的其他部分。
 
-Apply Encapsulate Record (162) to the common data record that the functions share.
+除了可以把已有的函数组织起来，这个重构还给我们一个机会，去发现其他的计算逻辑，将它们也重构到新的类当中。将函数组织到一起的另一种方式是函数组合成变换（149）。具体使用哪个重构手法，要看程序整体的上下文。使用类有一大好处：客户端可以修改对象的核心数据，通过计算得出的派生数据则会自动与核心数据保持一致。
 
-If the data that is common between the functions isn’t already grouped into a record structure, use Introduce Parameter Object (140) to create a record to group it together.
+类似这样的一组函数不仅可以组合成一个类，而且可以组合成一个嵌套函数。通常我更倾向于类而非嵌套函数，因为后者测试起来会比较困难。如果我想对外暴露多个函数，也必须采用类的形式。在有些编程语言中，类不是一等公民，而函数则是。面对这样的语言，可以用「函数作为对象」（Function As Object）[mf-fao] 的形式来实现这个重构手法。
 
-Take each function that uses the common record and use Move Function (198) to move it into the new class.
+### 6.9.2 Mechanics
 
-Any arguments to the function call that are members can be removed from the argument list.
+1. Apply Encapsulate Record (162) to the common data record that the functions share. If the data that is common between the functions isn’t already grouped into a record structure, use Introduce Parameter Object (140) to create a record to group it together.
 
-Each bit of logic that manipulates the data can be extracted with Extract Function (106) and then moved into the new class.
+2. Take each function that uses the common record and use Move Function (198) to move it into the new class. Any arguments to the function call that are members can be removed from the argument list.
 
-Example
+3. Each bit of logic that manipulates the data can be extracted with Extract Function (106) and then moved into the new class.
+
+1、运用封装记录（162）对多个函数共用的数据记录加以封装。如果多个函数共用的数据还未组织成记录结构，则先运用引入参数对象（140）将其组织成记录。
+
+2、对于使用该记录结构的每个函数，运用搬移函数（198）将其移入新类。如果函数调用时传入的参数已经是新类的成员，则从参数列表中去除之。
+
+3、用以处理该数据记录的逻辑可以用提炼函数（106）提炼出来，并移入新类。
+
+### 6.9.3 Example
 
 I grew up in England, a country renowned for its love of Tea. (Personally, I don’t like most tea they serve in England, but have since acquired a taste for Chinese and Japanese teas.) So my author’s fantasy conjures up a state utility for providing tea to the population. Every month they read the tea meters, to get a record like this:
 
-Click here to view code image
+我在英格兰长大，那是一个热爱喝茶的国度。（个人而言，我不喜欢在英格兰喝到的大部分茶，对中国茶和日本茶倒是情有独钟。）所以，我虚构了一种用于向老百姓供给茶水的公共设施。每个月会有软件读取茶水计量器的数据，得到类似这样的读数（reading）：
 
-reading = {customer: "ivan", quantity: 10, month: 5, year: 2017};
+```js
+reading = {customer: "ivan", quantity: 10, month: 5, year: 2017};
+```
 
 I look through the code that processes these records, and I see lots of places where similar calculations are done on the data. So I find a spot that calculates the base charge:
 
+浏览处理这些数据记录的代码，我发现有很多地方在做着相似的计算，于是我找到了一处计算「基础费用」（base charge）的逻辑。
+
 client 1…
 
-Click here to view code image
-
-const aReading = acquireReading(); const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity;
+```js
+const aReading = acquireReading(); 
+const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity;
+```
 
 Being England, everything essential must be taxed, so it is with tea. But the rules allow at least an essential level of tea to be free of taxation.
 
+在英格兰，一切生活必需品都得交税，茶自然也不例外。不过，按照规定，只要不超出某个必要用量，就不用交税。
+
 client 2…
 
-Click here to view code image
-
-const aReading = acquireReading(); const base = (baseRate(aReading.month, aReading.year) * aReading.quantity); const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year));
+```js
+const aReading = acquireReading(); 
+const base = (baseRate(aReading.month, aReading.year) * aReading.quantity); 
+const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year));
+```
 
 I’m sure that, like me, you noticed that the formula for the base charge is duplicated between these two fragments. If you’re like me, you’re already reaching for Extract Function (106). Interestingly, it seems our work has been done for us elsewhere.
 
+我相信你也发现了：计算基础费用的公式被重复了两遍。如果你跟我有一样的习惯，现在大概已经在着手提炼函数（106）了。有趣的是，好像别人已经动过这个脑筋了。
+
 client 3…
 
-Click here to view code image
+```js
+const aReading = acquireReading();
+const basicChargeAmount = calculateBaseCharge(aReading);
 
-const aReading = acquireReading(); const basicChargeAmount = calculateBaseCharge(aReading);
-
-function calculateBaseCharge(aReading) { return baseRate(aReading.month, aReading.year) * aReading.quantity; }
+function calculateBaseCharge(aReading) {  
+  return baseRate(aReading.month, aReading.year) * aReading.quantity;
+}
+```
 
 Given this, I have a natural impulse to change the two earlier bits of client code to use this function. But the trouble with top­level functions like this is that they are often easy to miss. I’d rather change the code to give the function a closer connection to the data it processes. A good way to do this is to turn the data into a class.
 
-To turn the record into a class, I use Encapsulate Record (162). Click here to view code image
+To turn the record into a class, I use Encapsulate Record (162).
 
-class Reading { constructor(data) {
+看到这里，我有一种自然的冲动，想把前面两处客户端代码都改为使用这个函数。但这样一个顶层函数的问题在于，它通常位于一个文件中，读者不一定能想到来这里寻找它。我更愿意对代码多做些修改，让该函数与其处理的数据在空间上有更紧密的联系。为此目的，不妨把数据本身变成一个类。我可以运用封装记录（162）将记录变成类。
 
-this._customer = data.customer;
-
-this._quantity = data.quantity;
-
-this._month = data.month;
-
-this._year = data.year;
-
-} get customer() {return this._customer;} get quantity() {return this._quantity;} get month() {return this._month;} get year() {return this._year;}
-
+```js
+class Reading {　
+  constructor(data) {　　
+    this._customer = data.customer;　　
+    this._quantity = data.quantity;　　
+    this._month = data.month;　　
+    this._year = data.year;　
+  }　
+  
+  get customer() {return this._customer;}　
+  get quantity() {return this._quantity;}　
+  get month()    {return this._month;}　
+  get year()     {return this._year;}
 }
+```
 
 To move the behavior, I’ll start with the function I already have: calculateBaseCharge. To use the new class, I need to apply it to the data as soon as I’ve acquired it.
 
+首先，我想把手上已有的函数 calculateBaseCharge 搬到新建的 Reading 类中。一得到原始的读数数据，我就用 Reading 类将它包装起来，然后就可以在函数中使用 Reading 类了。
+
 client 3…
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const basicChargeAmount = calculateBaseCharge(aReading);
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading); 
+const basicChargeAmount = calculateBaseCharge(aReading);
+```
 
 I then use Move Function (198) to move calculateBaseCharge into the new class.
 
 class Reading…
 
-Click here to view code image
-
-get calculateBaseCharge() { return baseRate(this.month, this.year) * this.quantity; }
-
-client 3…
-
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const basicChargeAmount = aReading.calculateBaseCharge; While I’m at it, I use
-
-Rename Function (124) to make it something more to my liking.
-
-Click here to view code image
-
-get baseCharge() { return baseRate(this.month, this.year) * this.quantity; }
+```js
+get calculateBaseCharge() { 
+  return baseRate(this.month, this.year) * this.quantity; 
+}
+```
 
 client 3…
 
-Click here to view code image
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading); 
+const basicChargeAmount = aReading.calculateBaseCharge; 
+```
 
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const basicChargeAmount = aReading.baseCharge;
+While I’m at it, I use Rename Function (124) to make it something more to my liking.
+
+```js
+get baseCharge() { 
+  return baseRate(this.month, this.year) * this.quantity; 
+}
+```
+
+client 3…
+
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading); 
+const basicChargeAmount = aReading.baseCharge;
+```
 
 With this naming, the client of the reading class can’t tell whether the base charge is a field or a derived value. This is a Good Thing—the Uniform Access Principle [mf­ua].
 
 I now alter the first client to call the method rather than repeat the calculation.
 
+用这个名字，Reading 类的客户端将不知道 baseCharge 究竟是一个字段还是推演计算出的值。这是好事，它符合「统一访问原则」（Uniform Access Principle）[mf-ua]。现在我可以修改客户端 1 的代码，令其调用新的方法，不要重复计算基础费用。
+
 client 1…
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const baseCharge = aReading.baseCharge;
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading); 
+const baseCharge = aReading.baseCharge;
+```
 
 There’s a strong chance I’ll use Inline Variable (123) on the baseCharge variable before the day is out. But more relevant to this refactoring is the client that calculates the taxable amount. My first step here is to use the new base charge property.
 
+很有可能我会顺手用内联变量（123）把 baseCharge 变量给去掉。不过，我们当下介绍的重构手法更关心「计算应税费用」的逻辑。同样，我先将那里的客户端代码改为使用新建的 baseCharge 属性。
+
 client 2…
 
-Click here to view code image
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading);
+const taxableCharge = Math.max(0, aReading.baseCharge - taxThreshold(aReading.year));
+```
 
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const taxableCharge = Math.max(0, aReading.baseCharge ­ taxThreshold(aReading.ye I use Extract Function (106) on the calculation for the taxable charge.
+I use Extract Function (106) on the calculation for the taxable charge.
 
-Click here to view code image
-
-function taxableChargeFn(aReading) { return Math.max(0, aReading.baseCharge ­ taxThreshold(aReading.year)); }
+```js
+function taxableChargeFn(aReading) { 
+  return Math.max(0, aReading.baseCharge ­ taxThreshold(aReading.year)); 
+}
+```
 
 client 3…
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const taxableCharge = taxableChargeFn(aReading);
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading); 
+const taxableCharge = taxableChargeFn(aReading);
+```
 
 Then I apply Move Function (198).
 
 class Reading…
 
-Click here to view code image
-
-get taxableCharge() { return Math.max(0, this.baseCharge ­ taxThreshold(this.year)); }
+```js
+get taxableCharge() { 
+  return Math.max(0, this.baseCharge ­ taxThreshold(this.year)); 
+}
+```
 
 client 3…
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = new Reading(rawReading); const taxableCharge = aReading.taxableCharge;
+```js
+const rawReading = acquireReading(); 
+const aReading = new Reading(rawReading); 
+const taxableCharge = aReading.taxableCharge;
+```
 
 Since all the derived data is calculated on demand, I have no problem should I need to update the stored data. In general, I prefer immutable data, but many circumstances force us to work with mutable data (such as JavaScript, a language ecosystem that wasn’t designed with immutability in mind). When there is a reasonable chance the data will be updated somewhere in the program, then a class is very helpful.
 
-## COMBINE FUNCTIONS INTO TRANSFORM COMBINE FUNCTIONS INTO TRANSFORM
+由于所有派生数据都是在使用时计算得出的，所以对存储下来的读数进行修改也没问题。一般而论，我更倾向于使用不可变的数据；但很多时候我们必须得使用可变数据（比如 JavaScript 整个语言生态在设计时就没有考虑数据的不可变性）。如果数据确有可能被更新，那么用类将其封装起来会很有帮助。
 
-Motivation
+## 6.10 Combine Functions into Transform 
+
+![](./res/2020018.png)
+
+```js
+function base(aReading) {...}
+function taxableCharge(aReading) {...}
+```
+
+After Refactoring:
+
+```js
+function enrichReading(argReading) {  
+  const aReading = _.cloneDeep(argReading);  
+  aReading.baseCharge = base(aReading);  
+  aReading.taxableCharge = taxableCharge(aReading);  
+  return aReading;
+}
+```
+
+### 6.10.1 Motivation
 
 Software often involves feeding data into programs that calculate various derived information from it. These derived values may be needed in several places, and those calculations are often repeated wherever the derived data is used. I prefer to bring all of these derivations together, so I have a consistent place to find and update them and avoid any duplicate logic.
 
@@ -1698,137 +1966,239 @@ An alternative to Combine Functions into Transform is Combine Functions into Cla
 
 One of the reasons I like to do combine functions is to avoid duplication of the derivation logic. I can do that just by using Extract Function (106) on the logic, but it’s often difficult to find the functions unless they are kept close to the data structures they operate on. Using a transform (or a class) makes it easy to find and use them.
 
-Mechanics
+在软件中，经常需要把数据「喂」给一个程序，让它再计算出各种派生信息。这些派生数值可能会在几个不同地方用到，因此这些计算逻辑也常会在用到派生数据的地方重复。我更愿意把所有计算派生数据的逻辑收拢到一处，这样始终可以在固定的地方找到和更新这些逻辑，避免到处重复。
 
-Create a transformation function that takes the record to be transformed and returns the same values.
+一个方式是采用数据变换（transform）函数：这种函数接受源数据作为输入，计算出所有的派生数据，将派生数据以字段形式填入输出数据。有了变换函数，我就始终只需要到变换函数中去检查计算派生数据的逻辑。函数组合成变换的替代方案是函数组合成类（144），后者的做法是先用源数据创建一个类，再把相关的计算逻辑搬移到类中。这两个重构手法都很有用，我常会根据代码库中已有的编程风格来选择使用其中哪一个。不过，两者有一个重要的区别：如果代码中会对源数据做更新，那么使用类要好得多；如果使用变换，派生数据会被存储在新生成的记录中，一旦源数据被修改，我就会遭遇数据不一致。
 
-This will usually involve a deep copy of the record. It is often worthwhile to write a test to ensure the transform does not alter the original record.
+我喜欢把函数组合起来的原因之一，是为了避免计算派生数据的逻辑到处重复。从道理上来说，只用提炼函数（106）也能避免重复，但孤立存在的函数常常很难找到，只有把函数和它们操作的数据放在一起，用起来才方便。引入变换（或者类）都是为了让相关的逻辑找起来方便。
 
-Pick some logic and move its body into the transform to create a new field in the record. Change the client code to access the new field.
+### 6.10.2 Mechanics
 
-If the logic is complex, use Extract Function (106) first.
+1. Create a transformation function that takes the record to be transformed and returns the same values. This will usually involve a deep copy of the record. It is often worthwhile to write a test to ensure the transform does not alter the original record.
 
-Test.
+2. Pick some logic and move its body into the transform to create a new field in the record. Change the client code to access the new field. If the logic is complex, use Extract Function (106) first.
 
-Repeat for the other relevant functions.
+3. Test.
 
-Example
+4. Repeat for the other relevant functions.
+
+1、创建一个变换函数，输入参数是需要变换的记录，并直接返回该记录的值。这一步通常需要对输入的记录做深复制（deep copy）。此时应该写个测试，确保变换不会修改原来的记录。
+
+2、挑选一块逻辑，将其主体移入变换函数中，把结果作为字段添加到输出记录中。修改客户端代码，令其使用这个新字段。如果计算逻辑比较复杂，先用提炼函数（106）提炼之。
+
+3、测试。
+
+4、针对其他相关的计算逻辑，重复上述步骤。
+
+### 6.10.3 Example
 
 Where I grew up, tea is an important part of life—so much that I can imagine a special utility that provides tea to the populace that’s regulated like a utility. Every month, the utility gets a reading of how much tea a customer has acquired.
 
-Click here to view code image
+在我长大的国度，茶是生活中的重要部分，以至于我想象了这样一种特别的公共设施，专门给老百姓供应茶水。每个月，从这个设备上可以得到读数（reading），从而知道每位顾客取用了多少茶。
 
+```js
 reading = {customer: "ivan", quantity: 10, month: 5, year: 2017};
+```
 
 Code in various places calculates various consequences of this tea usage. One such calculation is the base monetary amount that’s used to calculate the charge for the customer.
 
+几个不同地方的代码分别根据茶的用量进行计算。一处是计算应该向顾客收取的基本费用。
+
 client 1…
 
-Click here to view code image
+```js
+const aReading = acquireReading(); 
+const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity; 
+```
 
-const aReading = acquireReading(); const baseCharge = baseRate(aReading.month, aReading.year) * aReading.quantity; Another is the amount that should be taxed—which is less than the base amount since the government wisely considers that every citizen should get some tea tax free.
+Another is the amount that should be taxed—which is less than the base amount since the government wisely considers that every citizen should get some tea tax free.
+
+另一处是计算应该交税的费用 — 比基本费用要少，因为政府明智地认为，每个市民都有权免税享受一定量的茶水。
 
 client 2…
 
-Click here to view code image
-
-const aReading = acquireReading(); const base = (baseRate(aReading.month, aReading.year) * aReading.quantity); const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year));
+```js
+const aReading = acquireReading(); 
+const base = (baseRate(aReading.month, aReading.year) * aReading.quantity); 
+const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year));
+```
 
 Looking through this code, I see these calculations repeated in several places. Such duplication is asking for trouble when they need to change (and I’d bet it’s “when” not “if”). I can deal with this repetition by using Extract Function (106) on these calculations, but such functions often end up scattered around the program making it hard for future developers to realize they are there. Indeed, looking around I discover such a function, used in another area of the code.
 
+浏览处理这些数据记录的代码，我发现有很多地方在做着相似的计算。这样的重复代码，一旦需要修改（我打赌这只是早晚的问题），就会造成麻烦。我可以用提炼函数（106）来处理这些重复的计算逻辑，但这样提炼出来的函数会散落在程序中，以后的程序员还是很难找到。说真的，我还真在另一块代码中找到了一个这样的函数。
+
 client 3…
 
-Click here to view code image
+```js
+const aReading = acquireReading(); 
+const basicChargeAmount = calculateBaseCharge(aReading);
 
-const aReading = acquireReading(); const basicChargeAmount = calculateBaseCharge(aReading);
-
-function calculateBaseCharge(aReading) { return baseRate(aReading.month, aReading.year) * aReading.quantity; }
+function calculateBaseCharge(aReading) { 
+  return baseRate(aReading.month, aReading.year) * aReading.quantity; 
+}
+```
 
 One way of dealing with this is to move all of these derivations into a transformation step that takes the raw reading and emits a reading enriched with all the common derived results.
 
 I begin by creating a transformation function that merely copies the input object.
 
-Click here to view code image
+处理这种情况的一个办法是，把所有这些计算派生数据的逻辑搬移到一个变换函数中，该函数接受原始的「读数」作为输入，输出则是增强的「读数」记录，其中包含所有共用的派生数据。我先要创建一个变换函数，它要做的事很简单，就是复制输入的对象：
 
-function enrichReading(original) { const result = _.cloneDeep(original); return result; } I’m using the cloneDeep from lodash to create a deep copy.
+```js
+function enrichReading(original) { 
+  const result = _.cloneDeep(original); 
+  return result; 
+} 
+```
+
+I’m using the cloneDeep from lodash to create a deep copy.
 
 When I’m applying a transformation that produces essentially the same thing but with additional information, I like to name it using “enrich”. If it were producing something I felt was different, I would name it using “transform”.
 
 I then pick one of the calculations I want to change. First, I enrich the reading it uses with the current one that does nothing yet.
 
+我用了 Lodash 库的 cloneDeep 函数来进行深复制。这个变换函数返回的本质上仍是原来的对象，只是添加了更多的信息在上面。对于这种函数，我喜欢用「enrich」（增强）这个词来给它命名。如果它生成的是跟原来完全不同的对象，我就会用「transform」（变换）来命名它。然后我挑选一处想要搬移的计算逻辑。首先，我用现在的 enrichReading 函数来增强「读数」记录，尽管该函数暂时还什么都没做。
+
 client 3…
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const basicChargeAmount = calculateBaseCharge(aReading);
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const basicChargeAmount = calculateBaseCharge(aReading);
+```
 
 I use Move Function (198) on calculateBaseCharge to move it into the enrichment calculation.
 
-Click here to view code image
-
-function enrichReading(original) { const result = _.cloneDeep(original); result.baseCharge = calculateBaseCharge(result); return result; }
+```js
+function enrichReading(original) {  
+  const result = _.cloneDeep(original);  
+  result.baseCharge = calculateBaseCharge(result);  
+  return result;
+}
+```
 
 Within the transformation function, I’m happy to mutate a result object, instead of copying each time. I like immutability, but most common languages make it difficult to work with. I’m prepared to go through the extra effort to support it at boundaries, but will mutate within smaller scopes. I also pick my names (using aReading as the accumulating variable) to make it easier to move the code into the transformer function.
 
 I change the client that uses that function to use the enriched field instead.
 
+在变换函数内部，我乐得直接修改结果对象，而不是每次都复制一个新对象。我喜欢不可变的数据，但在大部分编程语言中，保持数据完全不可变很困难。在程序模块的边界处，我做好了心理准备，多花些精力来支持不可变性。但在较小的范围内，我可以接受可变的数据。另外，我把这里用到的变量命名为 aReading，表示它是一个累积变量（accumulating variable）。这样当我把更多的逻辑搬移到变换函数 enrichReading 中时，这个变量名也仍然适用。修改客户端代码，令其改用增强后的字段：
+
 client 3…
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const basicChargeAmount = aReading.baseCharge;
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const basicChargeAmount = aReading.baseCharge;
+```
 
 Once I’ve moved all calls to calculateBaseCharge, I can nest it inside enrichReading. That would make it clear that clients that need the calculated base charge should use the enriched record.
 
 One trap to beware of here. When I write enrichReading like this, to return the enriched reading, I’m implying that the original reading record isn’t changed. So it’s wise for me to add a test.
 
-Click here to view code image
+当所有调用 calculateBaseCharge 的地方都修改完成后，就可以把这个函数内嵌到 enrichReading 函数中，从而更清楚地表明态度：如果需要「计算基本费用」的逻辑，请使用增强后的记录。在这里要当心一个陷阱：在编写 enrichReading 函数时，我让它返回了增强后的读数记录，这背后隐含的意思是原始的读数记录不会被修改。所以我最好为此加个测试。
 
-it('check reading unchanged', function() { const baseReading = {customer: "ivan", quantity: 15, month: 5, year: 2017}; const oracle = _.cloneDeep(baseReading); enrichReading(baseReading); assert.deepEqual(baseReading, oracle); });
+```js
+it('check reading unchanged', function() {  
+  const baseReading = {customer: "ivan", quantity: 15, month: 5, year: 2017};   
+  const oracle = _.cloneDeep(baseReading);  
+  enrichReading(baseReading);   
+  assert.deepEqual(baseReading, oracle);
+});
+```
 
 I can then change client 1 to also use the same field.
 
 client 1…
 
-Click here to view code image
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const baseCharge = aReading.baseCharge;
+```
 
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const baseCharge = aReading.baseCharge;
+There is a good chance I can then use Inline Variable (123) on baseCharge too. Now I turn to the taxable amount calculation. My first step is to add in the transformation function.
 
-There is a good chance I can then use Inline Variable (123) on baseCharge too.
+此时可以考虑用内联变量（123）去掉 baseCharge 变量。现在我转头去看「计算应税费用」的逻辑。第一步是把变换函数用起来：
 
-Now I turn to the taxable amount calculation. My first step is to add in the transformation function.
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const base = (baseRate(aReading.month, aReading.year) * aReading.quantity); 
+const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year)); 
+```
 
-Click here to view code image
+I can immediately replace the calculation of the base charge with the new field. If the calculation was complex, I could Extract Function (106) first, but here it’s simple enough to do in one step.
 
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const base = (baseRate(aReading.month, aReading.year) * aReading.quantity); const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year)); I can immediately replace the calculation of the base charge with the new field. If the calculation was complex, I could Extract Function (106) first, but here it’s simple enough to do in one step.
+基本费用的计算逻辑马上就可以改用变换得到的新字段代替。如果计算逻辑比较复杂，我可以先运用提炼函数（106）。不过这里的情况足够简单，一步到位修改过来就行。
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const base = aReading.baseCharge; const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year));
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const base = aReading.baseCharge; 
+const taxableCharge = Math.max(0, base ­ taxThreshold(aReading.year));
+```
 
 Once I’ve tested that that works, I apply Inline Variable (123):
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const taxableCharge = Math.max(0, aReading.baseCharge ­ taxThreshold(aReading.ye
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const taxableCharge = Math.max(0, aReading.baseCharge - taxThreshold(aReading.year));
+```
 
 and move that computation into the transformer:
 
-Click here to view code image
-
-function enrichReading(original) { const result = _.cloneDeep(original); result.baseCharge = calculateBaseCharge(result); result.taxableCharge = Math.max(0, result.baseCharge ­ taxThreshold(result.yea return result; }
+```js
+function enrichReading(original) {   
+  const result = _.cloneDeep(original);  
+  result.baseCharge = calculateBaseCharge(result);  
+  result.taxableCharge = Math.max(0, result.baseCharge - taxThreshold(result.year));  
+  return result;
+}
+```
 
 I modify the original code to use the new field.
 
-Click here to view code image
-
-const rawReading = acquireReading(); const aReading = enrichReading(rawReading); const taxableCharge = aReading.taxableCharge;
+```js
+const rawReading = acquireReading(); 
+const aReading = enrichReading(rawReading); 
+const taxableCharge = aReading.taxableCharge;
+```
 
 Once I’ve tested that, it’s likely I would be able to use Inline Variable (123) on taxableCharge. One big problem with an enriched reading like this is: What happens should a client change a data value? Changing, say, the quantity field would result in data that’s inconsistent. To avoid this in JavaScript, my best option is to use Combine Functions into Class (144) instead. If I’m in a language with immutable data structures, I don’t have this problem, so its more common to see transforms in those languages. But even in languages without immutability, I can use transforms if the data appears in a readonly context, such as deriving data to display on a web page.
 
-## SPLIT PHASE
+测试。现在我可以再次用内联变量（123）把 taxableCharge 变量也去掉。增强后的读数记录有一个大问题：如果某个客户端修改了一项数据的值，会发生什么？比如说，如果某处代码修改了 quantity 字段的值，就会导致数据不一致。在 JavaScript 中，避免这种情况最好的办法是不要使用本重构手法，改用函数组合成类（144）。如果编程语言支持不可变的数据结构，那么就没有这个问题了，那样的语言中会更常用到变换。但即便编程语言不支持数据结构不可变，如果数据是在只读的上下文中被使用（例如在网页上显示派生数据），还是可以使用变换。
 
-Motivation
+## 6.11 Split Phase
+
+![](./res/2020019.png)
+
+```js
+const orderData = orderString.split(/\s+/);
+const productPrice = priceList[orderData[0].split("-")[1]]; 
+const orderPrice = parseInt(orderData[1]) * productPrice;
+```
+
+After Refactoring:
+
+```js
+const orderRecord = parseOrder(order);
+const orderPrice = price(orderRecord, priceList);
+
+function parseOrder(aString) {　
+  const values = aString.split(/\s+/); 　
+  return ({　　
+    productID: values[0].split("-")[1], 　　
+    quantity: parseInt(values[1]),　
+  });
+}
+  
+function price(order, priceList) {　
+  return order.quantity * priceList[order.productID];
+}
+```
+
+### 6.11.1 Motivation
 
 When I run into code that’s dealing with two different things, I look for a way to split it into separate modules. I endeavor to make this split because, if I need to make a change, I can deal with each topic separately and not have to hold both in my head together. If I’m lucky, I may only have to change one module without having to remember the details of the other one at all. One of the neatest ways to do a split like this is to divide the behavior into two sequential phases. A good example of this is when you have some processing whose inputs don’t reflect the model you need to carry out the logic. Before you begin, you can massage the input into a convenient form for your main processing. Or, you can take the logic you need to do and break it down into sequential steps, where each step is significantly different in what it does.
 
@@ -1836,128 +2206,226 @@ The most obvious example of this is a compiler. It’s a basic task is to take s
 
 Splitting phases like this is common in large software; the various phases in a compiler can each contain many functions and classes. But I can carry out the basic split­phase refactoring on any fragment of code—whenever I see an opportunity to usefully separate the code into different phases. The best clue is when different stages of the fragment use different sets of data and functions. By turning them into separate modules I can make this difference explicit, revealing the difference in the code.
 
-Mechanics
+每当看见一段代码在同时处理两件不同的事，我就想把它拆分成各自独立的模块，因为这样到了需要修改的时候，我就可以单独处理每个主题，而不必同时在脑子里考虑两个不同的主题。如果运气够好的话，我可能只需要修改其中一个模块，完全不用回忆起另一个模块的诸般细节。
 
-Extract the second phase code into its own function.
+最简洁的拆分方法之一，就是把一大段行为分成顺序执行的两个阶段。可能你有一段处理逻辑，其输入数据的格式不符合计算逻辑的要求，所以你得先对输入数据做一番调整，使其便于处理。也可能是你把数据处理逻辑分成顺序执行的多个步骤，每个步骤负责的任务全然不同。
 
-Test.
+编译器是最典型的例子。编译器的任务很直观：接受文本（用某种编程语言编写的代码）作为输入，将其转换成某种可执行的格式（例如针对某种特定硬件的目标码）。随着经验加深，我们发现把这项大任务拆分成一系列阶段会很有帮助：首先对文本做词法分析，然后把 token 解析成语法树，然后再对语法树做几步转换（如优化），最后生成目标码。每一步都有边界明确的范围，我可以聚焦思考其中一步，而不用理解其他步骤的细节。
 
-Introduce an intermediate data structure as an additional argument to the extracted function.
+在大型软件中，类似这样的阶段拆分很常见，例如编译器的每个阶段又包含若干函数和类。即便只有不大的一块代码，只要我发现了有益的将其拆分成多个阶段的机会，同样可以运用拆分阶段重构手法。如果一块代码中出现了上下几段，各自使用不同的一组数据和函数，这就是最明显的线索。将这些代码片段拆分成各自独立的模块，能更明确地标示出它们之间的差异。
 
-Test.
+### 6.11.2 Mechanics
 
-Examine each parameter of the extracted second phase. If it is used by first phase, move it to the intermediate data structure. Test after each move.
+1. Extract the second phase code into its own function.
 
-Sometimes, a parameter should not be used by the second phase. In this case, extract the results of each usage of the parameter into a field of the intermediate data structure and use Move Statements to Callers (217) on the line that populates it. Apply Extract Function (106) on the first­phase code, returning the intermediate data structure.
+2. Test.
 
-It’s also reasonable to extract the first phase into a transformer object.
+3. Introduce an intermediate data structure as an additional argument to the extracted function.
 
-Example
+4. Test.
+
+5. Examine each parameter of the extracted second phase. If it is used by first phase, move it to the intermediate data structure. Test after each move.
+
+6. Sometimes, a parameter should not be used by the second phase. In this case, extract the results of each usage of the parameter into a field of the intermediate data structure and use Move Statements to Callers (217) on the line that populates it. 
+
+7. Apply Extract Function (106) on the first­phase code, returning the intermediate data structure. It’s also reasonable to extract the first phase into a transformer object.
+
+1、将第二阶段的代码提炼成独立的函数。
+
+2、测试。
+
+3、引入一个中转数据结构，将其作为参数添加到提炼出的新函数的参数列表中。
+
+4、测试。
+
+5、逐一检查提炼出的「第二阶段函数」的每个参数。如果某个参数被第一阶段用到，就将其移入中转数据结构。每次搬移之后都要执行测试。有时第二阶段根本不应该使用某个参数。果真如此，就把使用该参数得到的结果全都提炼成中转数据结构的字段，然后用搬移语句到调用者（217）把使用该参数的代码行搬移到「第二阶段函数」之外。
+
+6、对第一阶段的代码运用提炼函数（106），让提炼出的函数返回中转数据结构。也可以把第一阶段提炼成一个变换（transform）对象。
+
+### 6.11.3 Example
 
 I’ll start with code to price an order for some vague and unimportant kind of goods:
 
-Click here to view code image
+我手上有一段「计算订单价格」的代码，至于订单中的商品是什么，我们从代码中看不出来，也不太关心。
 
-function priceOrder(product, quantity, shippingMethod) {
-
-const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; const shippingPerCase = (basePrice > shippingMethod.discountThreshold) ? shippingMethod.discountedFee : shippingMethod.feePerCase; const shippingCost = quantity * shippingPerCase; const price = basePrice ­ discount + shippingCost; return price;
-
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　
+  const shippingPerCase = (basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = quantity * shippingPerCase;　
+  const price = basePrice - discount + shippingCost; 　
+  return price;
 }
+```
 
 Although this is the usual kind of trivial example, there is a sense of two phases going on here. The first couple of lines of code use the product information to calculate the product­oriented price of the order, while the later code uses shipping information to determine the shipping cost. If I have changes coming up that complicate the pricing and shipping calculations, but they work relatively independently, then splitting this code into two phases is valuable.
 
 I begin by applying Extract Function (106) to the shipping calculation.
 
-Click here to view code image
+虽然只是个常见的、过于简单的范例，从中还是能看出有两个不同阶段存在的。前两行代码根据商品（product）信息计算订单中与商品相关的价格，随后的两行则根据配送（shipping）信息计算配送成本。后续的修改可能还会使价格和配送的计算逻辑变复杂，但只要这两块逻辑相对独立，将这段代码拆分成两个阶段就是有价值的。我首先用提炼函数（106）把计算配送成本的逻辑提炼出来。
 
-function priceOrder(product, quantity, shippingMethod) { const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; const price = applyShipping(basePrice, shippingMethod, quantity, discount); return price; } function applyShipping(basePrice, shippingMethod, quantity, discount) { const shippingPerCase = (basePrice > shippingMethod.discountThreshold) ? shippingMethod.discountedFee : shippingMethod.feePerCase; const shippingCost = quantity * shippingPerCase; const price = basePrice ­ discount + shippingCost; return price;
-
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　
+  const price = applyShipping(basePrice, shippingMethod, quantity, discount);　
+  return price;
 }
+
+function applyShipping(basePrice, shippingMethod, quantity, discount) {　
+  const shippingPerCase = (basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = quantity * shippingPerCase;　
+  const price = basePrice - discount + shippingCost; 　
+  return price;
+}
+```
 
 I pass in all the data that this second phase needs as individual parameters. In a more realistic case, there can be a lot of these, but I don’t worry about it as I’ll whittle them down later.
 
 Next, I introduce the intermediate data structure that will communicate between the two phases.
 
-Click here to view code image
+第二阶段需要的数据都以参数形式传入。在真实环境下，参数的数量可能会很多，但我对此并不担心，因为很快就会将这些参数消除掉。随后我会引入一个中转数据结构，使其在两阶段之间沟通信息。
 
-function priceOrder(product, quantity, shippingMethod) {
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　const priceData = {};　
+  const price = applyShipping(priceData, basePrice, shippingMethod, quantity, discount); 　
+  return price;
+}
 
-const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; const priceData = {}; const price = applyShipping(priceData, basePrice, shippingMethod, quantity, d return price;
-
-} function applyShipping(priceData, basePrice, shippingMethod, quantity, discount)
-
-const shippingPerCase = (basePrice > shippingMethod.discountThreshold) ? shippingMethod.discountedFee : shippingMethod.feePerCase;
-
-const shippingCost = quantity * shippingPerCase;
-
-const price = basePrice ­ discount + shippingCost;
-
-return price; }
+function applyShipping(priceData, basePrice, shippingMethod, quantity, discount) { 　
+  const shippingPerCase = (basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = quantity * shippingPerCase;　
+  const price = basePrice - discount + shippingCost; 　
+  return price;
+}
+```
 
 Now, I look at the various parameters to applyShipping. The first one is basePrice which is created by the first­phase code. So I move this into the intermediate data structure, removing it from the parameter list.
 
-Click here to view code image
+现在我会审视 applyShipping 的各个参数。第一个参数 basePrice 是在第一阶段代码中创建的，因此我将其移入中转数据结构，并将其从参数列表中去掉。
 
-function priceOrder(product, quantity, shippingMethod) {
-
-const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; const priceData = {basePrice: basePrice}; const price = applyShipping(priceData, basePrice, shippingMethod, quantity, d return price;
-
-} function applyShipping(priceData, basePrice, shippingMethod, quantity, discount) const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshol ? shippingMethod.discountedFee : shippingMethod.feePerCase; const shippingCost = quantity * shippingPerCase; const price = priceData.basePrice ­ discount + shippingCost; return price;
-
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate; 　
+  const priceData = {basePrice: basePrice};　
+  const price = applyShipping(priceData, basePrice, shippingMethod, quantity, discount); 　
+  return price;
 }
+  
+function applyShipping(priceData, basePrice, shippingMethod, quantity, discount) { 　
+  const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = quantity * shippingPerCase;　
+  const price = priceData.basePrice - discount + shippingCost; 　
+  return price;
+}
+```
 
 The next parameter in the list is shippingMethod. This one I leave as is, since it isn’t used by the first­phase code.
 
 After this, I have quantity. This is used by the first phase but not created by it, so I could actually leave this in the parameter list. My usual preference, however, is to move as much as I can to the intermediate data structure.
 
-Click here to view code image
+下一个参数是 shippingMethod。第一阶段中没有使用这项数据，所以它可以保留原样。再下一个参数是 quantity。这个参数在第一阶段中用到，但不是在那里创建的，所以其实可以将其留在参数列表中。但我更倾向于把尽可能多的参数搬移到中转数据结构中。
 
-function priceOrder(product, quantity, shippingMethod) {
-
-const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; const priceData = {basePrice: basePrice, quantity: quantity}; const price = applyShipping(priceData, shippingMethod, quantity, discount); return price;
-
-} function applyShipping(priceData, shippingMethod, quantity, discount) {
-
-const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshol ? shippingMethod.discountedFee : shippingMethod.feePerCase;
-
-const shippingCost = priceData.quantity * shippingPerCase;
-
-const price = priceData.basePrice ­ discount + shippingCost;
-
-return price; }
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　
+  const priceData = {basePrice: basePrice, quantity: quantity};　
+  const price = applyShipping(priceData, shippingMethod, quantity, discount); 　
+  return price;
+}
+  
+function applyShipping(priceData, shippingMethod, quantity, discount) {　
+  const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = priceData.quantity * shippingPerCase;　
+  const price = priceData.basePrice - discount + shippingCost; 　
+  return price;
+}
+```
 
 I do the same with discount.
 
-Click here to view code image
-
-function priceOrder(product, quantity, shippingMethod) {
-
-const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; const priceData = {basePrice: basePrice, quantity: quantity, discount:discount const price = applyShipping(priceData, shippingMethod, discount); return price;
-
-} function applyShipping(priceData, shippingMethod, discount) {
-
-const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshol ? shippingMethod.discountedFee : shippingMethod.feePerCase; const shippingCost = priceData.quantity * shippingPerCase; const price = return price;
-
-priceData.basePrice ­ priceData.discount + shippingCost;
-
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　
+  const priceData = {basePrice: basePrice, quantity: quantity, discount:discount}; 　
+  const price = applyShipping(priceData, shippingMethod, discount);　
+  return price;
 }
+  
+function applyShipping(priceData, shippingMethod, discount) {　
+  const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = priceData.quantity * shippingPerCase;　
+  const price = priceData.basePrice - priceData.discount + shippingCost; 　
+  return price;
+}
+```
 
 Once I’ve gone through all the function parameters, I have the intermediate data structure fully formed. So I can extract the first­phase code into its own function, returning this data.
 
-Click here to view code image
+处理完参数列表后，中转数据结构得到了完整的填充，现在我可以把第一阶段代码提炼成独立的函数，令其返回这份数据。
 
-function priceOrder(product, quantity, shippingMethod) { const priceData = calculatePricingData(product, quantity); const price = applyShipping(priceData, shippingMethod); return price; } function calculatePricingData(product, quantity) { const basePrice = product.basePrice * quantity; const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate; return {basePrice: basePrice, quantity: quantity, discount:discount}; } function applyShipping(priceData, shippingMethod) { const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshol ? shippingMethod.discountedFee : shippingMethod.feePerCase; const shippingCost = priceData.quantity * shippingPerCase; const price = priceData.basePrice ­ priceData.discount + shippingCost; return price; }
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const priceData = calculatePricingData(product, quantity); 　
+  const price = applyShipping(priceData, shippingMethod); 　
+  return price;
+}
+
+function calculatePricingData(product, quantity) {　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　
+    return {basePrice: basePrice, quantity: quantity, discount:discount};
+}
+
+function applyShipping(priceData, shippingMethod) {　
+  const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = priceData.quantity * shippingPerCase;　
+  const price = priceData.basePrice - priceData.discount + shippingCost; 　
+  return price;
+}
+```
 
 I can’t resist tidying out those final constants.
 
-Click here to view code image
+两个函数中，最后一个 const 变量都是多余的，我忍不住洁癖，将它们内联消除掉。
 
-function priceOrder(product, quantity, shippingMethod) { const priceData = calculatePricingData(product, quantity); return applyShipping(priceData, shippingMethod); } function calculatePricingData(product, quantity) {
+```js
+function priceOrder(product, quantity, shippingMethod) { 　
+  const priceData = calculatePricingData(product, quantity); 　
+  return applyShipping(priceData, shippingMethod);
+}
 
-const basePrice = product.basePrice * quantity;
+function calculatePricingData(product, quantity) { 　
+  const basePrice = product.basePrice * quantity;　
+  const discount = Math.max(quantity - product.discountThreshold, 0)　　　　　
+          * product.basePrice * product.discountRate;　
+  return {basePrice: basePrice, quantity: quantity, discount:discount};
+}
 
-const discount = Math.max(quantity ­ product.discountThreshold, 0) * product.basePrice * product.discountRate;
-
-return {basePrice: basePrice, quantity: quantity, discount:discount}; } function applyShipping(priceData, shippingMethod) {
-
-const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshol ? shippingMethod.discountedFee : shippingMethod.feePerCase; const shippingCost = priceData.quantity * shippingPerCase; return priceData.basePrice ­ priceData.discount + shippingCost;
+function applyShipping(priceData, shippingMethod) {　
+  const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)　　　　　
+          ? shippingMethod.discountedFee : shippingMethod.feePerCase; 　
+  const shippingCost = priceData.quantity * shippingPerCase;　
+  return priceData.basePrice - priceData.discount + shippingCost;
+}
+```
