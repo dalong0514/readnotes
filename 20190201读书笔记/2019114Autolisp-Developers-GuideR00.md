@@ -1,16 +1,145 @@
 # 2019114Autolisp-Developers-GuideR00
 
+## 记忆时间
+
+## 资源汇总
+
 [Pomoc: Introduction (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-A0E9D801-8BE9-4BF1-85E8-3807E15F3B71)
 
 [Forums - AutoCAD Forums](https://www.cadtutor.net/forum/)
 
-## 记忆时间
+[Tutorials | Lee Mac Programming](http://lee-mac.com/tutorials.html)
+
+[Free LISP Programs | Lee Mac Programming](http://lee-mac.com/programs.html)
+
+[Dynamic Block Functions | Lee Mac Programming](http://lee-mac.com/dynamicblockfunctions.html)
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——list 数据类型常用的操作函数
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+A list is a group of related values separated by spaces and enclosed in parentheses. Lists provide an efficient method of storing numerous related values. After all, LISP is so-named because it is the LISt Processing language. Once you understand the power of lists, you will find that you can create more powerful and flexible applications. Lists are used to represent 2D and 3D coordinate values, and entity data.
+
+Examples of lists are (1.0 1.0 0.0), ("this" "that" "the other"), and (1 . "ONE"). AutoLISP provides many functions for working with lists. The following are some of the most commonly used functions:
+
+1. list - Creates a new list with any number of values.
+
+2. append - Appends values to an existing list, and returns a new list.
+
+3. cons - Adds an element to the beginning of a list, or constructs a dotted list.
+
+4. length - Returns an integer indicating the number of elements in a list.
+
+5. assoc - Searches an association list for an element and returns that association list entry.
+
+6. car - Returns the first element of a list.
+
+7. cdr - Returns a list containing all but the first element of the specified list.
+
+8. nth - Returns the nth element of a list.
+
+9. subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
+
+创建 list 数据相关的函数：
+
+The list function provides a simple method of grouping related items. These items do not need to be of similar data types and can even be other lists. The following code groups three items as a list:
+
+```c
+(setq lst1 (list 1.0 "One" 1))
+
+// out
+(1.0 "One" 1)
+```
+
+1『试验过，list 函数后面的元素不能直接用 () 括起来。如果想简单用 () 声明的话，可以用下面讲到的 ' 符号，替代 list 函数名。回复：' 符号替代 list 函数名，经常看到，必须牢记。（2020-10-06）』
+
+A list can also be created using the quote (or ' ) function.
+
+```c
+(setq lst1 '(1.0 "One" 1))
+
+// out
+(1.0 "One" 1)
+```
+
+修改 list 数据相关的函数：
+
+The append function allows you to add new items to the end of a list, and the cons function allows you to add new items to the beginning of a list. The subst function can be used to substitute a new item for every occurrence of an old item. These functions do not modify the original list; they return a modified list. If you need to modify the original list, you explicitly replace the old list with the new list.
+
+1『函数式编程的思想，数据的不变性，反正不会修改原来的值，只是返回一个新值。（2020-10-06）』
+
+The append function takes any number of lists and runs them together as one list. Therefore, all arguments to this function must be lists. The following code adds another "One" to the list stored in lst1.
+
+```c
+(setq lst2 (append lst1 '("One")))
+
+// out
+(1.0 "One" 1 "One")
+```
+
+1『注意，append 函数的参数都必须是 list 数据类型。而 cons 函数的参数一个是单个元素，一个是 list 类型。（2020-10-06）』
+
+The cons function combines a single element with a list. You can add another string "One" to the beginning of a list, lst2, with the cons function.
+
+```c
+(setq lst3 (cons "One" lst2 ))
+
+// out
+("One" 1.0 "One" 1 "One")
+```
+
+You can substitute all occurrences of an item in a list with a new item using the subst function. The following code replaces all strings "One" with the string "one".
+
+```c
+(setq lst4 (subst "one" "One" lst3))
+
+// out
+("one" 1.0 "one" 1 "one")
+```
+
+获取 list 数据中某些元素：
+
+You can retrieve a specific item from a list with the nth function. This function accepts two arguments. The first argument is an integer that specifies which item to return. Lists start with a 0 index. A 0 specifies the first item in a list, 1 specifies the second item, and so on. The second argument is the list itself. The following code returns the second item in lst1.
+
+```c
+(nth 1 lst1)
+
+// out
+"One"
+```
+
+The car function returns the first item of a list. For example:
+
+```c
+(car lst1)
+
+// out
+1.0
+```
+
+The cdr function returns all items from a list as a new list, except the first item. For example:
+
+```c
+(cdr lst1)
+
+// out
+("One" 1)
+```
+
+AutoLISP also offers a number of additional functions that are variations of the car and cdr functions. For example, the cadr function returns the second element of a list and the caddr function returns the third item of a list. The cadr function is like using the cdr function on a list and then car on the resulting list.
+
+```c
+(cadr lst1)
+
+// out
+"One"
+
+(car (cdr lst1))
+// out
+"One"
+```
+
+### 0102. 主题卡——
 
 ### 0201. 术语卡——DXF group codes
 
@@ -22,7 +151,7 @@ The DXF Reference describes the drawing interchange format (DXF™) and the DXF 
 
 An entity name is a numeric label assigned to objects in a drawing. It is actually a pointer into a file maintained by AutoCAD, and can be used to find the object's database record and its vectors (if they are displayed). This label can be referenced by AutoLISP functions to allow selection of objects for processing in various ways. Internally, AutoCAD refers to objects as entities.
 
-Note: You can use the vlax-ename->vla-object function to convert an entity name to a VLA-object when working with ActiveX functions. The vlax-vla-object->ename function converts a VLA-object to an entity name. The following functions are useful when working with entity names: 1)entget - Retrieves an object's (entity's) definition data. 2) entlast - Returns the name of the last non-deleted main object (entity) in the drawing. 3) ssname - Returns the object (entity) name of the indexed element of a selection set. 4) entsel - Prompts the user to select a single object (entity) by specifying a point. 5) nentsel - Prompts the user to select an object (entity) by specifying a point, and provides access to the definition data contained within a complex object. 6) nentselp - Provides similar functionality to that of the nentsel function without the need for user input. 7) handent - Returns an object (entity) name based on its handle.
+Note: You can use the vlax-ename->vla-object function to convert an entity name to a VLA-object when working with ActiveX functions. The vlax-vla-object->ename function converts a VLA-object to an entity name. The following functions are useful when working with entity names: 1) entget - Retrieves an object's (entity's) definition data. 2) entlast - Returns the name of the last non-deleted main object (entity) in the drawing. 3) ssname - Returns the object (entity) name of the indexed element of a selection set. 4) entsel - Prompts the user to select a single object (entity) by specifying a point. 5) nentsel - Prompts the user to select an object (entity) by specifying a point, and provides access to the definition data contained within a complex object. 6) nentselp - Provides similar functionality to that of the nentsel function without the need for user input. 7) handent - Returns an object (entity) name based on its handle.
 
 Entity names assigned to objects in a drawing are only in effect during the current editing session. The next time you open the drawing, AutoCAD assigns new entity names to the objects. You can use an object's handle to refer to it from one editing session to another.
 
@@ -36,9 +165,49 @@ Objects in a drawing can be represented as ActiveX (VLA) objects. When working w
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡——
+### 0401. 任意卡——MNL 源文件
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
+AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
+
+1-2『 MNL 应该就是可以显示的自定义菜单，后面需要自己实现的。（2020-07-02）回复：数据流实现了菜单，新建了一个 dataflow.cuix 文件，使用的过程中自动生成了一个 dataflow.mnr 文件。受这里的信息启发，D 盘下的 dataflowcad 文件夹里，把原来的 lsp 文件更改为 dataflow.mnl，这样的话 cuix 文件底下的不用手动加载 lsp 文件了，经验证，可行，哈哈。做一张任意卡片。（2020-10-06）』
+
+For example, on Windows, when acad.cuix is loaded, the file named acad.mnl is also loaded if it is found in one of the folders listed as part of the AutoCAD Support File Search Path. If a CUIx file does not have a corresponding MNL file, no error is displayed, the product just moves and loading other support files.
+
+### 0402. 任意卡——quote (‘) 与使用 list 函数创建 list 数据的区别
+
+The latter uses the value of variable abc as the X component of the point list. If all members of a list are constant values, you can use the quote function to explicitly define the list, rather than the list function. The quote function returns an expression without evaluation, as follows:
+
+1『只有 list 元素是 constant 值是才可以用 quote。』
+
+```c
+(setq pt1 (quote (4.5 7.5)))
+
+// out
+(4.5 7.5)
+```
+
+The single quotation mark ( ' ) can be used as shorthand for the quote function. The following code produces the same result as the preceding code.
+
+```c
+(setq pt1 '(4.5 7.5))
+
+// out
+(4.5 7.5)
+```
+
+The quote and (‘) functions cannot be used to create a list using values that are stored in a variable. The following code does not return the excepted results:
+
+```c
+(setq abc 3.45)
+// out
+3.45
+
+(setq pt4 (quote abc 1.23))
+// out
+; error: syntax error
+```
+
+1-2『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。做一张任意卡片。』——已完成
 
 ## 0101Introduction.md
 
@@ -127,6 +296,8 @@ If executed within a document namespace, vl-doc-set is equivalent to the setq fu
 (vl-propagate 'fooyall)
 ```
 
+1『确实，使用函数 vl-propagate 后，变量在任何打开的图纸里都能够访问了。（2020-10-06）』
+
 The vl-propagate function not only copies the value of fooyall into all currently open document namespaces, but also causes fooyall to automatically be copied to the namespace of any new drawings opened during the current AutoCAD session.
 
 To set and retrieve variables from a document namespace (AutoLISP). Values can be stored and retrieved from AutoLISP variables while a drawing remains open. At the AutoCAD Command prompt or in an AutoLISP program, enter an AutoLISP statement that uses the setq function and press Enter. Enter the name of the variable you assigned a value to and prefix it with an ! (exclamation point) to return the value assigned to the variable and press Enter.
@@ -210,7 +381,7 @@ Each expression:
 
 For example, the following code example involves three functions:
 
-```
+```c
 (fun1 (fun2 arguments)(fun3 arguments))
 ```
 
@@ -220,7 +391,7 @@ The first function, fun1, has two arguments, which in this example are expressio
 
 The following example shows the use of the * (multiplication) function, which accepts one or more numbers as arguments:
 
-```
+```c
 (* 2 27)
 
 // out
@@ -229,7 +400,7 @@ The following example shows the use of the * (multiplication) function, which ac
 
 Because this code example has no surrounding expression, AutoLISP returns the result to the window from which you entered the code. Expressions nested within other expressions return their result to the surrounding expression. The following example uses the result from the + (addition) function as one of the arguments for the * (multiplication) function.
 
-```
+```c
 (* 2 (+ 5 10))
 
 // out
@@ -238,7 +409,7 @@ Because this code example has no surrounding expression, AutoLISP returns the re
 
 In the previous example, (+ 5 10) returns a value of 15. After the innermost expression is evaluated, the AutoLISP interpreter sees the following:
 
-```
+```c
 (* 2 15)
 
 // out
@@ -253,7 +424,7 @@ AutoLISP expressions can be entered directly at the AutoCAD Command prompt, load
 
 If you enter the incorrect number of close (right) parentheses, AutoLISP displays the following prompt:
 
-```
+```c
 (_>
 ```
 
@@ -261,7 +432,7 @@ If you enter the incorrect number of close (right) parentheses, AutoLISP display
 
 The number of open parentheses in this prompt indicates how many levels of open parentheses remain unclosed. If this prompt appears, you must enter the required number of close parentheses for the expression to be evaluated.
 
-```
+```c
 (* 2 (+ 5 10
 ((_> ) )
 
@@ -289,7 +460,7 @@ If you enter a number that is greater than the maximum integer allowed (resultin
 
 The following examples demonstrate how AutoLISP handles integer overflow. The largest positive integer value retains its specified value:
 
-```
+```c
 (setq int1 2147483647)
 
 // out
@@ -298,7 +469,7 @@ The following examples demonstrate how AutoLISP handles integer overflow. The la
 
 If you enter an integer that is greater than the largest allowable value, AutoLISP returns the value as a real:
 
-```
+```c
 (setq int2 2147483648)
 
 // out
@@ -307,7 +478,7 @@ If you enter an integer that is greater than the largest allowable value, AutoLI
 
 An arithmetic operation involving two valid integers, but resulting in integer overflow, produces an invalid result:
 
-```
+```c
 (setq int3 (+ 2147483646 3))
 
 // out
@@ -316,7 +487,7 @@ An arithmetic operation involving two valid integers, but resulting in integer o
 
 In the previous example the result is clearly invalid, as the addition of two positive numbers results in a negative number. But note how the following operation produces a valid result:
 
-```
+```c
 (setq int4 (+ 2147483648 2))
 
 // out
@@ -325,7 +496,7 @@ In the previous example the result is clearly invalid, as the addition of two po
 
 In this instance, AutoLISP converts 2147483648 to a valid real before adding 2 to the number. The result is a valid real. The largest negative integer value retains its specified value:
 
-```
+```c
 (setq int5 -2147483647)
 
 // out
@@ -334,7 +505,7 @@ In this instance, AutoLISP converts 2147483648 to a valid real before adding 2 t
 
 If you enter a negative integer larger than the greatest allowable negative value, AutoLISP returns the value as a real:
 
-```
+```c
 (setq int6 -2147483648)
 
 // out
@@ -343,7 +514,7 @@ If you enter a negative integer larger than the greatest allowable negative valu
 
 The following operation concludes successfully, because AutoLISP first converts the overflow negative integer to a valid real:
 
-```
+```c
 (setq int7 (- -2147483648 1))
 
 // out
@@ -390,18 +561,18 @@ Examples of lists are (1.0 1.0 0.0), ("this" "that" "the other"), and (1 . "ONE"
 
 The list function provides a simple method of grouping related items. These items do not need to be of similar data types and can even be other lists. The following code groups three items as a list:
 
-```
+```c
 (setq lst1 (list 1.0 "One" 1))
 
 // out
 (1.0 "One" 1)
 ```
 
-1『试验过，list 函数后面的元素不能直接用 () 括起来。如果想简单用 () 声明的话，可以用下面讲到的 ' 符号，替代 list 函数名。』
+1『试验过，list 函数后面的元素不能直接用 () 括起来。如果想简单用 () 声明的话，可以用下面讲到的 ' 符号，替代 list 函数名。回复：' 符号替代 list 函数名，经常看到，必须牢记。（2020-10-06）』
 
 A list can also be created using the quote (or ' ) function.
 
-```
+```c
 (setq lst1 '(1.0 "One" 1))
 
 // out
@@ -412,18 +583,22 @@ A list can also be created using the quote (or ' ) function.
 
 The append function allows you to add new items to the end of a list, and the cons function allows you to add new items to the beginning of a list. The subst function can be used to substitute a new item for every occurrence of an old item. These functions do not modify the original list; they return a modified list. If you need to modify the original list, you explicitly replace the old list with the new list.
 
+1『函数式编程的思想，数据的不变性，反正不会修改原来的值，只是返回一个新值。（2020-10-06）』
+
 The append function takes any number of lists and runs them together as one list. Therefore, all arguments to this function must be lists. The following code adds another "One" to the list stored in lst1.
 
-```
+```c
 (setq lst2 (append lst1 '("One")))
 
 // out
 (1.0 "One" 1 "One")
 ```
 
+1『注意，append 函数的参数都必须是 list 数据类型。而 cons 函数的参数一个是单个元素，一个是 list 类型。（2020-10-06）』
+
 The cons function combines a single element with a list. You can add another string "One" to the beginning of a list, lst2, with the cons function.
 
-```
+```c
 (setq lst3 (cons "One" lst2 ))
 
 // out
@@ -432,7 +607,7 @@ The cons function combines a single element with a list. You can add another str
 
 You can substitute all occurrences of an item in a list with a new item using the subst function. The following code replaces all strings "One" with the string "one".
 
-```
+```c
 (setq lst4 (subst "one" "One" lst3))
 
 // out
@@ -443,7 +618,7 @@ You can substitute all occurrences of an item in a list with a new item using th
 
 You can retrieve a specific item from a list with the nth function. This function accepts two arguments. The first argument is an integer that specifies which item to return. Lists start with a 0 index. A 0 specifies the first item in a list, 1 specifies the second item, and so on. The second argument is the list itself. The following code returns the second item in lst1.
 
-```
+```c
 (nth 1 lst1)
 
 // out
@@ -452,7 +627,7 @@ You can retrieve a specific item from a list with the nth function. This functio
 
 The car function returns the first item of a list. For example:
 
-```
+```c
 (car lst1)
 
 // out
@@ -461,7 +636,7 @@ The car function returns the first item of a list. For example:
 
 The cdr function returns all items from a list as a new list, except the first item. For example:
 
-```
+```c
 (cdr lst1)
 
 // out
@@ -470,7 +645,7 @@ The cdr function returns all items from a list as a new list, except the first i
 
 AutoLISP also offers a number of additional functions that are variations of the car and cdr functions. For example, the cadr function returns the second element of a list and the caddr function returns the third item of a list. The cadr function is like using the cdr function on a list and then car on the resulting list.
 
-```
+```c
 (cadr lst1)
 
 // out
@@ -485,7 +660,7 @@ AutoLISP also offers a number of additional functions that are variations of the
 
 Selection sets are groups of one or more objects (entities). You can interactively add objects to, or remove objects from, selection sets with AutoLISP routines. The following example uses the ssget function to return a selection set containing all the objects in a drawing.
 
-```
+```c
 (ssget "X")
 
 // out
@@ -518,7 +693,7 @@ Note: You can use the vlax-ename->vla-object function to convert an entity name 
 
 The following example uses the entlast function to get the name of the last object created in the drawing.
 
-```
+```c
 (entlast)
 
 // out
@@ -535,7 +710,7 @@ Objects in a drawing can be represented as ActiveX (VLA) objects. When working w
 
 Note: AutoCAD for Mac does not support ActiveX.
 
-2『VLA-object 的概念去多了解下。』
+2『 VLA-object 的概念去多了解下。』
 
 #### 3.3.8 About File Descriptors (AutoLISP)
 
@@ -563,7 +738,7 @@ You use the following functions when working with a file:
 
 要实现读写数据就得靠上面的这些函数，读取块属性里的实现肯定得结合这些。实现写数据方法：[Pomoc: write-line (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-CB4F3ABC-F0F6-41DA-A911-75B90D9F974A)
 
-```
+```c
 # open a file first
 (setq f (open "d:\\test.txt" "w"))
 (write-line "dalong" f)
@@ -571,18 +746,21 @@ You use the following functions when working with a file:
 (close file)
 ```
 
+回复：数据流开发直接用 princ 函数写数据进文件，比如 `(princ propertyValue f)`。（2020-10-06）
+
+
 』
 
 The following example opens the myinfo.dat file for reading. The open function returns a file descriptor which is stored in the file1 variable:
 
-```
+```c
 (setq file1 (open "c:\\myinfo.dat" "r"))
 #<file "c:\\myinfo.dat">
 ```
 
 Files remain open until you explicitly close them in your AutoLISP program. The close function closes a file. The following code closes the file whose file descriptor is stored in the file1 variable:
 
-```
+```c
 (close file1)
 // out
 nil
@@ -596,7 +774,7 @@ Although you can enter AutoLISP code at the AutoCAD Command prompt or Visual LIS
 
 AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
 
-1『 MNL 应该就是可以显示的自定义菜单，后面需要自己实现的。（2020-07-02）』
+1-2『 MNL 应该就是可以显示的自定义菜单，后面需要自己实现的。（2020-07-02）回复：数据流实现了菜单，新建了一个 dataflow.cuix 文件，使用的过程中自动生成了一个 dataflow.mnr 文件。受这里的信息启发，D 盘下的 dataflowcad 文件夹里，把原来的 lsp 文件更改为 dataflow.mnl，这样的话 cuix 文件底下的不用手动加载 lsp 文件了，经验证，可行，哈哈。做一张任意卡片。（2020-10-06）』——已完成
 
 For example, on Windows, when acad.cuix is loaded, the file named acad.mnl is also loaded if it is found in one of the folders listed as part of the AutoCAD Support File Search Path. If a CUIx file does not have a corresponding MNL file, no error is displayed, the product just moves and loading other support files.
 
@@ -614,7 +792,7 @@ Note: While AutoLISP source code is commonly saved in files with a .lsp or .mnl 
 
 AutoLISP code can span multiple lines, and contain empty lines and extra spaces. Empty lines and extra spaces do not have any significant meaning, but can make your code easier to read. Multiple spaces between function and variable names, and constants are equivalent to a single space. The end of a line and tab is also treated as a single space. The following two expressions produce the same result:
 
-```
+```c
 (setq test1 123 test2 456)
 
 (setq
@@ -625,7 +803,7 @@ AutoLISP code can span multiple lines, and contain empty lines and extra spaces.
 
 The extensive use of parentheses in AutoLISP code can make it difficult to read. The traditional techniques for combatting this confusion is indentation, and to align the open and close parentheses of a function. The more deeply nested a line of code is, the farther to the right the line is positioned. The following two functions are the same code, but the second one is much easier to read and determine visually if the parentheses of the AutoLISP expressions are balanced.
 
-```
+```c
 (defun c:mycmd ()
 (setq old_clayer (getvar "clayer"))
 (setq insPt (getpoint "\nSpecify text insertion: "))
@@ -658,7 +836,7 @@ The extensive use of parentheses in AutoLISP code can make it difficult to read.
 )
 ```
 
-1『上面的例子值得好好吸收消化。』
+1『上面的例子值得好好吸收消化。回复：这原来是一个插入单行文本的代码，借鉴过来开发插入「块」的功能，哈哈。（2020-10-06）』
 
 #### 3.4.2 About Comments in AutoLISP Program Files (AutoLISP)
 
@@ -666,20 +844,20 @@ Comments are useful to both the programmer and future users who may need to revi
 
 Comments begin with one or more semicolons ( ; ) and continue through the end of the line.
 
-```
+```c
 ; This entire line is a comment
 (setq area (* pi r r)) ; Compute area of circle
 ```
 
 Any text within ;| ... |; is ignored. Therefore, comments can be included within a line of code or extend for multiple lines. This type of comment is known as an in-line comment.
 
-```
+```c
 (setq tmode ;|some note here|; (getvar "tilemode"))
 ```
 
 The following example shows a comment that continues across multiple lines:
 
-```
+```c
 (setvar "orthomode" 1) ;|comment starts here
 and continues to this line,
 but ends way down here|; (princ "\nORTHOMODE set On.")
@@ -693,13 +871,13 @@ AutoLISP source code files can be created and edited using a plain ASCII text ed
 
 Variables are used to store a value or list of values in memory. The data type of a variable is determined when a value is assigned. Variables retain their value until a new value is assigned or the variable goes out of scope. The scope of a variable can either be global or local. Global variables are accessible by any AutoLISP program that is loaded into a drawing, while local variables are only available within a specific function or command. You use the AutoLISP setq function to assign values to variables. The syntax of the setq function is as follows:
 
-```
+```c
 (setq variable_name1 value1 [variable_name2 value2 ...])
 ```
 
 The setq function assigns the specified value to the variable name given, and returns the last assigned value as its function result. The following example creates two variables: val and abc. val is assigned the value of 3, while abc is assigned the value of 3.875.
 
-```
+```c
 (setq val 3 abc 3.875)
 
 // out
@@ -719,7 +897,7 @@ The following example creates a variable named layr and assigns it the value of 
 
 Once a value is assigned to a variable, it can be used in an expression as the value for an argument of a function. The following uses two of the previously created variables in a few AutoLISP expressions to create a layer and draw a line with a specific length at 0 degrees.
 
-```
+```c
 (command "_.-layer" "_make" layr "")
 (command "_.line" PAUSE (strcat "@" (itoa val) "<0") "")
 ```
@@ -730,7 +908,7 @@ You can use the following methods to determine the current value of a variable:
 
 At the AutoCAD Command prompt, add an ! (exclamation point) in front of the variable and press Enter.
 
-```
+```c
 (setq val 3 abc 3.875)
 // out
 3.875
@@ -742,7 +920,7 @@ At the AutoCAD Command prompt, add an ! (exclamation point) in front of the vari
 
 At the Visual LISP Console Window prompt, enter the name of the variable and press Enter. (Windows only).
 
-```
+```c
 _$ (setq val 3 abc 3.875)
 // out
 3.875
@@ -754,7 +932,7 @@ _$ val
 
 At the AutoCAD Command prompt or Visual LISP Console Window prompt (Windows only), or in an AutoLISP program, create an expression that uses the princ function and pass it the name of the variable. You should also follow the first expression with a second expression that uses the princ function, but do not pass it an argument to suppress the return value of the first princ function.
 
-```
+```c
 (setq val 3 abc 3.875)
 // out
 3.875
@@ -778,7 +956,7 @@ A variable that has not been assigned a value has a default value of nil. This i
 
 Each variable consumes a small amount of memory, so it is good programming practice to reuse variable names or set variables to nil when their values are no longer needed. Setting a variable to nil releases the memory used to store that variable's value. If you no longer need the val variable, you can release its value from memory with the following expression:
 
-```
+```c
 (setq val nil)
 // out
 nil
@@ -804,7 +982,7 @@ Note: Visual LISP, by default, protects these variables from redefinition. You c
 
 AutoLISP provides functions for working with integers and real numbers. In addition to performing basic and complex mathematical computations, you can use the number-handling functions to help you in your daily use of AutoCAD. If you are drawing a steel connection detail that uses a 2.5" bolt with a diameter of 0.5" and has 13 threads per inch, you could calculate the total number of threads for the bolt by multiplying 2.5 by 13. In AutoLISP, this is done with the multiplication ( * ) function. Remember, the name of a function comes before the arguments you are passing to a function.
 
-```
+```c
 (* 2.5 13)
 
 // out
@@ -813,7 +991,7 @@ AutoLISP provides functions for working with integers and real numbers. In addit
 
 The arithmetic functions that have a number argument (as opposed to num or angle, for example) return different values if you provide integers or reals as arguments. If all arguments are integers, the value returned is an integer. However, if one or all the arguments are reals, the value returned is a real.
 
-```
+```c
 (/ 12 5)
 // out
 2
@@ -847,7 +1025,7 @@ AutoLISP provides many functions for working with string values. The following a
 
 The alphabetic characters of a string can be converted to uppercase or lowercase with the strcase function. It accepts two arguments: a string and an optional argument that specifies the case in which the characters are returned. If the optional second argument is omitted, it evaluates to nil and strcase returns the characters converted to uppercase.
 
-```
+```c
 (strcase "This is a TEST.")
 
 // out
@@ -856,7 +1034,7 @@ The alphabetic characters of a string can be converted to uppercase or lowercase
 
 If you provide a second argument of T, the characters are returned as lowercase.
 
-```
+```c
 (strcase "This is a TEST." T)
 
 // out
@@ -871,7 +1049,7 @@ Note: The predefined variable T is often used to represent a True value when a f
 
 You can combine multiple strings into a single string value with the strcat function. This is useful for placing a variable string within a constant string, such as an error message or note in a drawing. The following code example sets a variable to a string value and then uses strcat to insert that string between two other strings.
 
-```
+```c
 (setq str "BIG")
 
 (setq bigstr (strcat "This is a " str " test."))
@@ -884,7 +1062,7 @@ You can combine multiple strings into a single string value with the strcat func
 
 The substr function allows you to return a portion of a string. This function requires two arguments and has one optional argument. The first argument is a string and the second argument is an integer that represents the start character of the string that you want to return as the substring. If the third argument is not provided, substr returns all characters including and following the specified start character.
 
-```
+```c
 (substr "Welcome to AutoLISP" 12)
 
 // out
@@ -893,7 +1071,7 @@ The substr function allows you to return a portion of a string. This function re
 
 If want to return a substring that is at the beginning or middle of the string provided to the substr function, you can specify an integer for the third argument that represents the number of characters that should be returned. For example, the following example code returns the first 7 characters of the provided string:
 
-```
+```c
 (substr "Welcome to AutoLISP" 1 7)
 
 // out
@@ -902,7 +1080,7 @@ If want to return a substring that is at the beginning or middle of the string p
 
 Often, when working with a string you might not know how long it is but might know the start position of the substring you want to return. The strlen function returns the number of characters (including spaces) in a string.
 
-```
+```c
 (setq filnam "bigfile.txt")
 (strlen filnam)
 
@@ -912,7 +1090,7 @@ Often, when working with a string you might not know how long it is but might kn
 
 The following example code returns all the characters in a filename except the last four (the period and the three-letter extension). This is done by using strlen to get the length of the string and subtract 4 from that value. Then substr is used to specify the first character of the substring and its length.
 
-```
+```c
 (setq newlen (- (strlen filnam) 4))
 // out
 7
@@ -926,7 +1104,7 @@ The following example code returns all the characters in a filename except the l
 
 You can combine the two previous lines of code into one if you do not need the length of the string stored in the newlen variable for other functions.
 
-```
+```c
 (substr filnam 1 (- (strlen filnam) 4))
 
 // out
@@ -943,7 +1121,7 @@ The vl-string-subst function can be used to replace text within a string. Simila
 
 The following code examples find and replace the text [WIDTH] in a string.
 
-```
+```c
 (setq note "All door openings are [WIDTH] unless otherwise noted.")
 // out
 "All door openings are [WIDTH] unless otherwise noted."
@@ -969,7 +1147,7 @@ Lists provide an efficient and powerful method of storing numerous related value
 
 Several AutoLISP functions provide a basis for programming two-dimensional and three-dimensional graphics applications. These functions return point values in the form of a list. The list function provides a simple method of grouping related items. These items do not need to be of similar data types. The following code groups three related items as a list:
 
-```
+```c
 (setq lst1 (list 1.0 "One" 1))
 
 // out
@@ -978,7 +1156,7 @@ Several AutoLISP functions provide a basis for programming two-dimensional and t
 
 You can retrieve a specific item from the list in the lst1 variable with the nth function. This function accepts two arguments. The first argument is an integer that specifies which item to return. A 0 specifies the first item in a list, 1 specifies the second item, and so on. The second argument is the list itself. The following code returns the second item in lst1.
 
-```
+```c
 (nth 1 lst1)
 
 // out
@@ -987,7 +1165,7 @@ You can retrieve a specific item from the list in the lst1 variable with the nth
 
 The cdr function returns all elements, except the first, from a list. For example:
 
-```
+```c
 (cdr lst1)
 
 // out
@@ -1000,7 +1178,7 @@ Three functions let you modify an existing list. The append function returns a l
 
 The append function takes any number of lists and runs them together as one list. Therefore, all arguments to this function must be lists. The following code adds another "One" to the list lst1. Note the use of the quote (or ' ) function as an easy way to make the string "One" into a list.
 
-```
+```c
 (setq lst2 (append lst1 '("One")))
 
 // out
@@ -1009,7 +1187,7 @@ The append function takes any number of lists and runs them together as one list
 
 The cons function combines a single element with a list. You can add another string "One" to the beginning of this new list, lst2, with the cons function.
 
-```
+```c
 (setq lst3 (cons "One" lst2 ))
 
 // out
@@ -1018,7 +1196,7 @@ The cons function combines a single element with a list. You can add another str
 
 You can substitute all occurrences of an item in a list with a new item with the subst function. The following code replaces all strings "One" with the string "one".
 
-```
+```c
 (setq lst4 (subst "one" "One" lst3))
 
 // out
@@ -1029,7 +1207,7 @@ You can substitute all occurrences of an item in a list with a new item with the
 
 AutoLISP utilizes the list data type to represent graphical coordinate values. Points are expressed as lists with either two or three numerical values. 1) 2D point - List with two integer or real numbers, (X and Y, respectively), as in (3.4 7.52). 2) 3D point – List with three integer or real numbers, (X, Y, and Z, respectively), as in (3.4 7.52 1.0). You can use the list function to form point lists, as shown in the following examples:
 
-```
+```c
 (list 3.875 1.23)
 // out
 (3.875 1.23)
@@ -1041,7 +1219,7 @@ AutoLISP utilizes the list data type to represent graphical coordinate values. P
 
 To assign particular coordinates to a point variable, you can use one of the following expressions:
 
-```
+```c
 (setq pt1 (list 3.875 1.23))
 // out
 (3.875 1.23)
@@ -1063,7 +1241,7 @@ The latter uses the value of variable abc as the X component of the point list. 
 
 1『只有 list 元素是 constant 值是才可以用 quote。』
 
-```
+```c
 (setq pt1 (quote (4.5 7.5)))
 
 // out
@@ -1072,7 +1250,7 @@ The latter uses the value of variable abc as the X component of the point list. 
 
 The single quotation mark ( ' ) can be used as shorthand for the quote function. The following code produces the same result as the preceding code.
 
-```
+```c
 (setq pt1 '(4.5 7.5))
 
 // out
@@ -1081,7 +1259,7 @@ The single quotation mark ( ' ) can be used as shorthand for the quote function.
 
 The quote and (‘) functions cannot be used to create a list using values that are stored in a variable. The following code does not return the excepted results:
 
-```
+```c
 (setq abc 3.45)
 // out
 3.45
@@ -1091,11 +1269,11 @@ The quote and (‘) functions cannot be used to create a list using values that 
 ; error: syntax error
 ```
 
-1『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。』
+1-2『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。做一张任意卡片。』——已完成
 
 Retrieve the X, Y, and Z components of a point list. You can retrieve the X, Y, and Z components of a point list using three additional built-in functions; car, cadr, and caddr. The following code examples show how to retrieve values from a 3D point list. The pt variable is set to the point 1.5,3.2,2:
 
-```
+```c
 (setq pt '(1.5 3.2 2.0))
 // out
 (1.5 3.2 2.0)
@@ -1103,7 +1281,7 @@ Retrieve the X, Y, and Z components of a point list. You can retrieve the X, Y, 
 
 The car function returns the first member of a list. In this example, it returns the X value of the point list to the x_val variable.
 
-```
+```c
 (setq x_val (car pt))
 // out
 1.5
@@ -1111,7 +1289,7 @@ The car function returns the first member of a list. In this example, it returns
 
 The cadr function returns the second member of a list. In this example it returns the Y value of the point list to the y_val variable.
 
-```
+```c
 (setq y_val (cadr pt))
 // out
 3.2
@@ -1119,7 +1297,7 @@ The cadr function returns the second member of a list. In this example it return
 
 The caddr function returns the third member of a list. In this example it returns the Z value of the point list to the z_val variable.
 
-```
+```c
 (setq z_val (caddr pt))
 // out
 2.0
@@ -1127,7 +1305,7 @@ The caddr function returns the third member of a list. In this example it return
 
 You can use the following code to define the lower-left and upper-right (pt1 and pt2) corners of a rectangle, as follows:
 
-```
+```c
 (setq pt1 '(1.0 2.0) pt2 '(3.0 4.0))
 // out
 (3.0 4.0)
@@ -1135,7 +1313,7 @@ You can use the following code to define the lower-left and upper-right (pt1 and
 
 You can use the car and cadr functions to set the pt3 variable to the upper-left corner of the rectangle, by extracting the X component of pt1 and the Y component of pt2, as follows:
 
-```
+```c
  (setq pt3 (list (car pt1) (cadr pt2)))
 // out
 (1.0 4.0)
@@ -1145,7 +1323,7 @@ The preceding statement sets pt3 equal to point (1.0, 4.0).
 
 AutoLISP supports combinations of the car and cdr functions up to four levels deep. Some examples of these functions are caaaar and cadr. Each a represents a call to car and each d represents a call to cdr. For example:
 
-```
+```c
 (caar x)    is equivalent to  (car (car x)) 
 (cdar x)    is equivalent to  (cdr (car x)) 
 (cadar x)   is equivalent to  (car (cdr (car x)))
@@ -1160,7 +1338,7 @@ Dotted pair lists must always contain two members and is the method AutoLISP use
 
 Dotted pairs are an example of an "improper list." An improper list is one in which the last cdr is not nil. In addition to adding an item to the beginning of a list, the cons function can create a dotted pair. If the second argument to the cons function is anything other than another list or nil, it creates a dotted pair.
 
-```
+```c
 (setq sublist (cons 'lyr "WALLS"))
 // out
 (LYR . "WALLS")
@@ -1178,7 +1356,7 @@ The following functions are useful for handling dotted pairs:
 
 The following code creates an association list of dotted pairs:
 
-```
+```c
 (setq wallinfo (list sublist (cons 'len 240.0) (cons 'hgt 96.0)))
 // out
 ((LYR . "WALLS") (LEN . 240.0) (HGT . 96.0))
@@ -1186,7 +1364,7 @@ The following code creates an association list of dotted pairs:
 
 The assoc function returns a specified list from within an association list regardless of the specified list's location within the association list. The assoc function searches for a specified key element in the lists and returns the first instance, as follows:
 
-```
+```c
 (assoc 'len wallinfo)
 // out
 (LEN . 240.0)
@@ -1232,7 +1410,7 @@ When entered from the Visual LISP Console window prompt, the prompt function dis
 
 The following examples demonstrate the differences between the basic output functions and how they handle the same string of text.
 
-```
+```c
 (setq str "The \"allowable\" tolerance is \261 \274\"")
 (prompt str)
 // out
@@ -1265,7 +1443,7 @@ Within quoted string values, the backslash (\) character allows control characte
 
 The prompt, princ, and getXXX functions expand the control characters in a string and display the expanded string at the AutoCAD Command prompt. The following example shows displaying a backslash character (\) and quotation mark (") within a quoted string:
 
-```
+```c
 (princ "The \"filename\" is: D:\\ACAD\\TEST.TXT.")
 // out
 The "filename" is: D:\ACAD\TEST.TXT
@@ -1273,7 +1451,7 @@ The "filename" is: D:\ACAD\TEST.TXT
 
 Text can be forced across multiple lines with the newline character (\n).
 
-```
+```c
 (prompt "An example of the \nnewline character. ")
 // out
 An example of the
@@ -1309,7 +1487,7 @@ Remarks: The terpri function is not used for file I/O. To write a newline to a f
 
 A Tab character (\t) can be used in strings to indent or to provide alignment with other tabbed text strings. In this example, note the use of the princ function to suppress the ending nil.
 
-```
+```c
 (prompt "\nName\tOffice\n- - - - -\t- - - - -
 (_> \nSue\t101\nJoe\t102\nSam\t103\n")(princ)
 
@@ -1338,7 +1516,7 @@ The following rules apply to wild-card patterns:
 
 In the following examples, a string variable called matchme has been declared and initialized:
 
-```
+```c
 (setq matchme "this is a string - test1 test2 the end")
 // out
 "this is a string - test1 test2 the end"
@@ -1346,7 +1524,7 @@ In the following examples, a string variable called matchme has been declared an
 
 The following code checks whether or not matchme begins with the four characters "this":
 
-```
+```c
 (wcmatch matchme "this*")
 // out
 T
@@ -1354,7 +1532,7 @@ T
 
 The following code illustrates the use of brackets in the pattern. In this case, wcmatch returns T if matchme contains "test4", "test5", "test6" (4-6), or "test9" (note the use of the * character):
 
-```
+```c
 (wcmatch matchme "*test[4-69]*")
 // out
 nil
@@ -1362,7 +1540,7 @@ nil
 
 In this case, wcmatch returns nil because matchme does not contain any of the strings indicated by the pattern. However, using the pattern "test[4-61]" does match the string because it contains “test1”.
 
-```
+```c
 (wcmatch matchme "*test[4-61]*")
 // out
 T
@@ -1370,7 +1548,7 @@ T
 
 The pattern string can specify multiple patterns, separated by commas. The following code returns T if matchme equals "ABC", or if it begins with "XYZ", or if it ends with "end".
 
-```
+```c
 (wcmatch matchme "ABC,XYZ*,*end")
 // out
 T
@@ -1396,7 +1574,7 @@ You can define your own functions. Once defined, these functions can be used at 
 
 You can also create your own commands, because commands are just a special type of function. The defun function combines a multiple expressions into a function or command. This function requires at least three arguments: 1) Name of the function (symbol name). 2) Argument list (a list of arguments and local variables used by the function). The argument list can be nil or an empty list (). 3) AutoLISP expressions to execute with the function or command. There must be at least one expression in a function definition.
 
-```
+```c
 (defun symbol_name ( arguments / local_variables )
   expressions
 )
@@ -1406,7 +1584,7 @@ You can also create your own commands, because commands are just a special type 
 
 The following example code defines a simple function that accepts no arguments and displays the message “bye” at the AutoCAD Command prompt. Note that the argument list is defined as an empty list (()):
 
-```
+```c
 (defun DONE ( ) (prompt "\nbye! "))
 // out
 DONE
@@ -1414,7 +1592,7 @@ DONE
 
 Once the DONE function is defined, you can use it as you would any other function. For example, the following code prints a message, then says “bye” at the AutoCAD Command prompt:
 
-```
+```c
 (prompt "The value is 127.") (DONE) (princ)
 
 The value is 127
@@ -1436,13 +1614,13 @@ Functions that accept no arguments may seem useless. However, you might use this
 
 The internal implementation of defun changed in AutoCAD 2000. This change is transparent to the great majority of AutoLISP users upgrading from earlier AutoCAD releases. The change only affects AutoLISP code that manipulated defun definitions as a list structure, such as by appending one function to another, as in the following code:
 
-```
+```c
 (append s::startup (cdr mystartup))
 ```
 
 For situations like this, you can use defun-q to define your functions. An attempt to use a defun function as a list results in an error. The following example illustrates the error:
 
-```
+```c
 (defun foo (x) 4)
 // out
 foo
@@ -1482,7 +1660,7 @@ New commands can be defined with the defun function and by prefixing a function 
 
 Functions that are defined as commands should not accept arguments directly, instead input for a command should be obtained using one of the getXXX functions. The following defines a function named HELLO. This function displays a simple message.
 
-```
+```c
 (defun HELLO () (princ "\nHello world.") (princ))
 // out
 HELLO
@@ -1490,7 +1668,7 @@ HELLO
 
 Functions can be issued from the AutoCAD Command prompt or an AutoLISP program. The HELLO function can be called from the AutoCAD Command prompt by entering the following:
 
-```
+```c
 Command: (hello)
 // out
 Hello world.
@@ -1498,13 +1676,13 @@ Hello world.
 
 The HELLO function must be wrapped in parentheses since it is not defined as a command. Entering HELLO without the parentheses at the AutoCAD Command prompt, returns the following error message:
 
-```
+```c
 Unknown command "HELLO". Press F1 for help.
 ```
 
 Adding c: to the front of the HELLO function name results in the function being declared as a command, and can then be entered at the AutoCAD Command prompt without being wrapped with parentheses. For example:
 
-```
+```c
 (defun C:HELLO () (princ "\nHello world.") (princ))
 // out
 C:HELLO
@@ -1512,7 +1690,7 @@ C:HELLO
 
 While HELLO is declared as a command, it is also an AutoLISP function as well. The command can now be entered at the AutoCAD Command prompt, as follows:
 
-```
+```c
 Command: hello
 // out
 Hello world.
@@ -1520,7 +1698,7 @@ Hello world.
 
 The HELLO command can also be used transparently because it does not make a call the command function. At the AutoCAD Command prompt, you could do the following:
 
-```
+```c
 Command: line
 
 From point: 'hello
@@ -1532,7 +1710,7 @@ From point:
 
 If an AutoLISP function is declared as a command, you can call the command from an AutoLISP program by wrapping the whole function name with parentheses. For example:
 
-```
+```c
 (c:hello)
 ```
 
@@ -1552,7 +1730,7 @@ It is recommended that you protect your menus, scripts, and AutoLISP programs by
 
 Consider the following example. Whenever you use the LINE command, you want AutoCAD to remind you about using the PLINE command. You can define the AutoLISP function C:LINE to substitute for the normal LINE command as follows:
 
-```
+```c
 (defun C:LINE ( )
   (princ "Shouldn't you be using PLINE?\n")
   (command ".LINE")
@@ -1565,7 +1743,7 @@ C:LINE
 
 In this example, the function C:LINE is designed to issue its message and then to execute the standard LINE command (using .LINE with the command function). Before AutoCAD can use your definition of the LINE command, you must undefine the built-in LINE command. Enter the following to undefine the built-in LINE command:
 
-```
+```c
 (command ".undefine" "line")
 ```
 
@@ -1573,7 +1751,7 @@ In this example, the function C:LINE is designed to issue its message and then t
 
 After undefining the command and entering line at the AutoCAD Command prompt, AutoCAD uses the C:LINE AutoLISP function:
 
-```
+```c
 Command: line
 
 // out
@@ -1584,7 +1762,7 @@ Shouldn't you be using PLINE?
 
 The previous code example assumes the CMDECHO system variable is set to 1 (On). If CMDECHO is set to 0 (Off), AutoCAD does not echo prompts during a command function call. The following code uses the CMDECHO system variable to prevent the LINE command prompt from repeating:
 
-```
+```c
 (defun C:LINE ( / cmdsave )
   (setq cmdsave (getvar "cmdecho"))
   (setvar "cmdecho" 0)
@@ -1602,7 +1780,7 @@ C:LINE
 
 Retrieves the value of an AutoCAD system variable.
 
-```
+```c
 (getvar varname)
 ```
 
@@ -1612,7 +1790,7 @@ Return Values. Type: Integer, Real, String, List, or nil. The value of the syste
 
 Examples. Get the current value of the fillet radius:
 
-```
+```c
 (getvar 'FILLETRAD)
 
 // out
@@ -1623,7 +1801,7 @@ Examples. Get the current value of the fillet radius:
 
 Now if you enter line at the AutoCAD Command prompt, the following text is displayed:
 
-```
+```c
 Shouldn't you be using PLINE?
 
 Specify first point:
@@ -1641,7 +1819,7 @@ Variables can be local or global in scope based on how they are defined. The use
 
 When you define a function or a command, any variables that you want to remain local must be added after the forward slash ( / ) in the arguments and local variables list. For example, the following example defines a function named ARGTEST which combines a constant string with other strings values. arg1 and arg2 are populated by the arguments you provide when using the function, but ccc is defined as a local variable for this function.
 
-```
+```c
 (defun ARGTEST ( arg1 arg2 / ccc )
   (setq ccc "Constant string")
   (strcat ccc ", " arg1 ", " arg2)
@@ -1651,7 +1829,7 @@ When you define a function or a command, any variables that you want to remain l
 ARGTEST
 ```
 
-```
+```c
 (ARGTEST "String 1" "String 2")
 
 // out
@@ -1660,7 +1838,7 @@ ARGTEST
 
 Once the function is done, the value of ccc is lost. You can test this by entering the following at the AutoCAD Command prompt:
 
-```
+```c
 !ccc
 
 // out
@@ -1677,7 +1855,7 @@ Global variables can be helpful if you want to retain values in between the uses
 
 All variables when they are initially declared are global. The following code demonstrates the use of both global and local variables.
 
-```
+```c
 (setq *dr-layer* "Doors")
 (defun list-layers ( / cur-layer)
   (setq cur-layer (getvar "clayer"))
@@ -1689,7 +1867,7 @@ All variables when they are initially declared are global. The following code de
 LIST-LAYERS
 ```
 
-```
+```c
 (list-layers)
 
 Current layer: 0
@@ -1699,7 +1877,7 @@ Door layer: Doors
 
 You can test the values stored in the variables by doing the following:
 
-```
+```c
 !cur-layer
 
 nil
@@ -1711,7 +1889,7 @@ nil
 
 While a variable can be declared as local in a function, a variable with the same name can also be declared as global. If a variable name is added to the local variables list of a function, the global variable with the same name is ignored. The following example code demonstrates this behavior:
 
-```
+```c
 (setq var-scope "Global")
 (defun list-scope ( / var-scope)
   (if (/= var-scope nil)
@@ -1725,7 +1903,7 @@ While a variable can be declared as local in a function, a variable with the sam
 )
 ```
 
-```
+```c
 (list-scope)
 
 // out
@@ -1741,7 +1919,7 @@ Scope: Local
 
 When the function is started, the variable var-scope is declared with a value of nil within the scope of the function. This is why the message var-scope is nil is returned when checking to see if the variable is nil. If var-scope was not added to the local variables list for the function, the message Scope: Global would have been displayed and the value of var-scope changed to "Local".
 
-```
+```c
 (setq var-scope "Global")
 (defun list-scope ( / )
   (if (/= var-scope nil)
@@ -1755,7 +1933,7 @@ When the function is started, the variable var-scope is declared with a value of
 )
 ```
 
-```
+```c
 (list-scope)
 // out
 Scope: Global
@@ -1774,7 +1952,7 @@ To declare local variables (AutoLISP). Local variables are only accessible withi
 
 The LOCAL function in the following example defines two local variables: aaa and bbb. At the AutoCAD Command prompt, enter the following code:
 
-```
+```c
 (defun LOCAL ( / aaa bbb)
   (setq aaa "A" bbb "B")
   (princ (strcat "\naaa has the value " aaa ))
@@ -1790,7 +1968,7 @@ Note: You can also add the example code to an existing or create a new LSP file.
 
 Enter the following code to define two global variables before using the LOCAL function:
 
-```
+```c
 (setq aaa 1 bbb 2)
 // out
 2
@@ -1798,7 +1976,7 @@ Enter the following code to define two global variables before using the LOCAL f
 
 Enter the following code to check the value of the two global variables:
 
-```
+```c
 !aaa
 // out
 1
@@ -1810,7 +1988,7 @@ Enter the following code to check the value of the two global variables:
 
 Enter the following code to check the value of the two local variables:
 
-```
+```c
 (local)
 
 // out
@@ -1820,7 +1998,7 @@ bbb has the value B
 
 You will notice the function used the values for aaa and bbb that are local within the function. The current values for aaa and bbb are still set to their global values and can be verified with the following statements:
 
-```
+```c
 !aaa
 // out
 1
@@ -1842,13 +2020,13 @@ Note: You can define multiple user functions with the same name, but have each d
 
 The symbols used as arguments are defined in the argument list before the local variables. Arguments are treated as a special type of local variable; argument variables are not available outside the function. You cannot define a function with multiple arguments of the same name. If you do use the same name for multiple arguments, the following error message is displayed at the AutoCAD Command prompt:
 
-```
+```c
 duplicate argument name:
 ```
 
 The following code defines a function that accepts two arguments. The code expects the arguments to both be of the string data type. The arguments are combined and returned as the resulting string.
 
-```
+```c
 (defun ARGTEST ( arg1 arg2 / ccc )
   (setq ccc "Constant string")
   (strcat ccc ", " arg1 ", " arg2)
@@ -1860,7 +2038,7 @@ ARGTEST
 
 The ARGTEST function returns the desired value because AutoLISP always returns the results of the last expression it evaluates. The last line in ARGTEST uses strcat to concatenate the strings, and the resulting value is returned. This is one example where you should not use the princ function to suppress the return value from your program. This type of function can be used a number of times within an application to combine two variable strings with one constant string in a specific order. Because it returns a value, you can save the value to a variable for use later in the application.
 
-```
+```c
 (setq newstr (ARGTEST "String 1" "String 2"))
 // out
 "Constant string, String 1, String 2"
@@ -1868,7 +2046,7 @@ The ARGTEST function returns the desired value because AutoLISP always returns t
 
 The newstr variable is now set to the value of the three strings combined. Note that the ccc variable was defined locally within the ARGTEST function. Once the function runs to completion, AutoLISP recaptures the memory allocated to the variable. You can use the following code to check the value assigned to ccc.
 
-```
+```c
 !ccc
 // out
 nil
@@ -1876,7 +2054,7 @@ nil
 
 If string values are not passed to the ARGTEST function, the strcat function will return the following error:
 
-```
+```c
 ; error: bad argument type: stringp 1
 ```
 
@@ -1884,7 +2062,7 @@ You can use the type function to verify the data type of an argument and respond
 
 1『 vl-catch-apply-all 是获取错误类型的函数，那么在写测试程序的时候应该很有用。』
 
-```
+```c
 (defun ARGTEST (arg1 arg2 / ccc retVal)
   (setq ccc "Constant string")
 
@@ -1924,13 +2102,13 @@ The following functions are useful to handle errors encountered by your programs
 
 If your program contains more than one error in the same expression, you cannot depend on the order in which AutoLISP detects the errors. For example, the inters function requires several arguments, each of which must be either a 2D or 3D point list. A call to inters like the following:
 
-```
+```c
 (inters 'a)
 ```
 
 Two errors are encountered: too few arguments and invalid argument type. You will receive either of the following error messages:
 
-```
+```c
 ; *** ERROR: too few arguments
 ; *** ERROR: bad argument type: 2D/3D point
 ```
@@ -1939,7 +2117,7 @@ Your program should be designed to handle either error.
 
 Note: AutoLISP evaluates all arguments before checking the argument types. In earlier releases of AutoCAD, AutoLISP evaluated and checked the type of each argument sequentially. To see the difference, look at the following code examples:
 
-```
+```c
 (defun foo ()
   (print "Evaluating foo")
   '(1 2))
@@ -1955,7 +2133,7 @@ Note: AutoLISP evaluates all arguments before checking the argument types. In ea
 
 Observe how an expression using the inters function is evaluated in AutoCAD:
 
-```
+```c
 Command: (inters (foo) (bar) (baz))
 
 "Evaluating foo"
@@ -1969,7 +2147,7 @@ Command: (inters (foo) (bar) (baz))
 
 Each argument was evaluated successfully before AutoLISP passed the results to inters and discovered that too few arguments were specified. In AutoCAD R14 and earlier, the same expression evaluated as follows:
 
-```
+```c
 Command: (inters (foo) (bar) (baz))
 
 "Evaluating foo"

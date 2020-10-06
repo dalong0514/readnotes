@@ -1,6 +1,4 @@
-Part II
-
-AutoLISP: Productivity through Programming
+Part II AutoLISP: Productivity through Programming
 
 Chapter 11: Quick Start for New AutoLISP Programmers
 
@@ -28,7 +26,7 @@ Chapter 22: Working with ActiveX/COM Libraries (Windows only)
 
 Chapter 23: Implementing Dialog Boxes (Windows only)
 
-# Chapter 11 Quick Start for New AutoLISP Programmers
+# 1101. Quick Start for New AutoLISP Programmers
 
 The AutoLISP® language and programming in general are two subjects that I have enjoyed for over 15 years now, but the same subjects make some people cringe and want to run in the opposite direction. I am not going to claim AutoLISP is easy to learn, but it can be learned by anyone, whether or not they have a programming background. When I first set out to learn AutoLISP, I didn't have any programming experience, but I wanted the benefits that AutoLISP could offer.
 
