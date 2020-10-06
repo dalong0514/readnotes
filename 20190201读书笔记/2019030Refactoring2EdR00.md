@@ -276,7 +276,7 @@ This is a first step to creating a range [mf­range] that can take on a lot of u
 
 这样我就迈出了第一步，开始逐渐打造一个真正有用的「范围」[mf-range] 类。一旦识别出「范围」这个概念，那么每当我在代码中发现「最大/最小值」这样一对数字时，我就会考虑是否可以将其改为使用「范围」类。（例如，我马上就会考虑把「运作计划」类中的 temperatureFloor 和 temperatureCeiling 替换为 temperatureRange。）在观察这些成对出现的数字如何被使用时，我会发现一些有用的行为，并将其搬移到「范围」类中，简化其使用方法。比如，我可能会先给这个类加上「基于数值判断相等性」的函数，使其成为一个真正的对象。
 
-## 重构卡片
+## 重构汇总
 
 ### 01. 提炼-内联相关
 
@@ -1006,6 +1006,189 @@ if (this.discountRate)
 When you see that a condition is assumed to be true, add an assertion to state it. Since assertions should not affect the running of a system, adding one is always behavior­preserving.
 
 如果你发现代码假设某个条件始终为真，就加入一个断言明确说明这种情况。因为断言应该不会对系统运行造成任何影响，所以「加入断言」永远都应该是行为保持的。
+
+### 03. 重新组织数据相关
+
+#### 3.1 拆分变量
+
+```js
+let temp = 2 * (height + width); 
+console.log(temp);
+temp = height * width; 
+console.log(temp);
+```
+
+After Refactoring:
+
+```js
+const perimeter = 2 * (height + width); 
+console.log(perimeter);
+const area = height * width; 
+console.log(area);
+```
+
+1. Change the name of the variable at its declaration and first assignment. If the later assignments are of the form i = i + something, that is a collecting variable, so don’t split it. A collecting variable is often used for calculating sums, string concatenation, writing to a stream, or adding to a collection.
+
+2. If possible, declare the new variable as immutable.
+
+3. Change all references of the variable up to its second assignment. 
+
+4. Test.
+
+5. Repeat in stages, at each stage renaming the variable at the declaration and changing references until the next assignment, until you reach the final assignment.
+
+1、在待分解变量的声明及其第一次被赋值处，修改其名称。如果稍后的赋值语句是「i = i + 某表达式形式」，意味着这是一个结果收集变量，就不要分解它。结果收集变量常用于累加、字符串拼接、写入流或者向集合添加元素。
+
+2、如果可能的话，将新的变量声明为不可修改。
+
+3、以该变量的第二次赋值动作为界，修改此前对该变量的所有引用，让它们引用新变量。
+
+4、测试。
+
+5、重复上述过程。每次都在声明处对变量改名，并修改下次赋值之前的引用，直至到达最后一处赋值。
+
+### 3.2 字段改名
+
+```js
+class Organization {   
+  get name() {...}
+}
+```
+
+After Refactoring;
+
+```js
+class Organization {   
+  get title() {...}
+}
+```
+
+1. If the record has limited scope, rename all accesses to the field and test; no need to do the rest of the mechanics.
+
+2. If the record isn’t already encapsulated, apply Encapsulate Record (162).
+
+3. Rename the private field inside the object, adjust internal methods to fit.
+
+4. Test. 
+
+5. If the constructor uses the name, apply Change Function Declaration (124) to rename it.
+
+6. Apply Rename Function (124) to the accessors.
+
+1、如果记录的作用域较小，可以直接修改所有该字段的代码，然后测试。后面的步骤就都不需要了。
+
+2、如果记录还未封装，请先使用封装记录（162）。
+
+3、在对象内部对私有字段改名，对应调整内部访问该字段的函数。
+
+4、测试。
+
+5、如果构造函数的参数用了旧的字段名，运用改变函数声明（124）将其改名。
+
+6、运用函数改名（124）给访问函数改名。
+
+### 3.3 以查询取代派生变量
+
+```js
+get discountedTotal() {return this._discountedTotal;} 
+set discount(aNumber) {　
+  const old = this._discount; 　
+  this._discount = aNumber; 　
+  this._discountedTotal += old - aNumber;
+}
+```
+
+After Refactoring:
+
+```js
+get discountedTotal() {return this._baseTotal - this._discount;} 
+set discount(aNumber) {this._discount = aNumber;}
+```
+
+1. Identify all points of update for the variable. If necessary, use Split Variable (240) to separate each point of update.
+
+2. Create a function that calculates the value of the variable.
+
+3. Use Introduce Assertion (302) to assert that the variable and the calculation give the same result whenever the variable is used. If necessary, use Encapsulate Variable (132) to provide a home for the assertion. 
+
+4. Test.
+
+5. Replace any reader of the variable with a call to the new function.
+
+6. Test.
+
+7. Apply Remove Dead Code (237) to the declaration and updates to the variable.
+
+1、识别出所有对变量做更新的地方。如有必要，用拆分变量（240）分割各个更新点。
+
+2、新建一个函数，用于计算该变量的值。
+
+3、用引入断言（302）断言该变量和计算函数始终给出同样的值。如有必要，用封装变量（132）将这个断言封装起来。
+
+4、测试。
+
+5、修改读取该变量的代码，令其调用新建的函数。
+
+6、测试。
+
+7、用移除死代码（237）去掉变量的声明和赋值。
+
+### 3.4 引用对象改为值对象
+
+```js
+class Product {  
+  applyDiscount(arg) {this._price.amount -= arg;
+}
+```
+
+After Refactoring:
+
+```js
+class Product {   
+  applyDiscount(arg) {    
+    this._price = new Money(this._price.amount - arg, this._price.currency);
+  }
+}
+```
+
+1. Check that the candidate class is immutable or can become immutable.
+
+2. For each setter, apply Remove Setting Method (331).
+
+3. Provide a value­based equality method that uses the fields of the value object.
+
+4. Most language environments provide an overridable equality function for this purpose. Usually you must override a hashcode generator method as well.
+
+1、检查重构目标是否为不可变对象，或者是否可修改为不可变对象。
+
+2、用移除设值函数（331）逐一去掉所有设值函数。
+
+3、提供一个基于值的相等性判断函数，在其中使用值对象的字段。
+
+大多数编程语言都提供了可覆写的相等性判断函数。通常你还必须同时覆写生成散列码的函数。
+
+### 3.5 值对象改为引用对象
+
+```js
+let customer = new Customer(customerData);
+```
+
+After Refactoring:
+
+```js
+let customer = customerRepository.get(customerData.id);
+
+1. Create a repository for instances of the related object (if one isn’t already present).
+
+2. Ensure the constructor has a way of looking up the correct instance of the related object.
+
+3. Change the constructors for the host object to use the repository to obtain the related object. Test after each change.
+
+1、为相关对象创建一个仓库（如果还没有这样一个仓库的话）。
+
+2、确保构造函数有办法找到关联对象的正确实例。
+
+3、修改宿主对象的构造函数，令其从仓库中获取关联对象。每次修改后执行测试。
 
 ## 重构列表
 
