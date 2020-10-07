@@ -2,6 +2,8 @@
 
 ## 记忆时间
 
+2020-10-07
+
 ## 0105. Manipulate-AutoCAD-Objects
 
 几种选择集列表（Selection Set Filter Lists）：1）过滤器列表里使用通配符。2）过滤 Extended Data 的选择集。3）过滤器列表里使用 Relational Tests。4）过滤器里用布尔逻辑运算。5）修改选择集（添加或删除选择集中的实体）。
@@ -699,6 +701,8 @@ entget of last entity:
 
 The -1 item at the start of the list contains the name of the entity. The entmod function, which is described in this section, uses the name to identify the entity to be modified. The individual dotted pairs that represent the values can be extracted by using assoc with the cdr function.
 
+1『比如用 `(setq value (cdr (assoc 0 entl)))` 把实体数据列表里的值提取出来。（2020-10-07）』
+
 Sublists for points are not represented as dotted pairs like the rest of the values returned. The convention is that the cdr of the sublist is the group code's value. Because a point is a list of two or three reals, the entire group is a three- (or four-) element list. The cdr of the group code value is the list representing the point, so the convention that cdr always returns the value is preserved.
 
 The group codes for the components of the entity are those used by DXF. As with DXF, the entity header items (color, linetype, thickness, the attributes-follow flag, and the entity handle) are returned only if they have values other than the default. Unlike DXF, optional entity definition fields are returned whether or not they equal their defaults and whether or not associated X, Y, and Z coordinates are returned as a single point variable, rather than as separate X (10), Y (20), and Z (30) group codes.
@@ -719,7 +723,19 @@ Caution: Before performing an entget on vertex entities, you should read or writ
 
 An entity can be modified directly by changing its entity list and posting the changes back to the database. The entmod function modifies an entity by passing it a list in the same format as a list returned by entget but with some of the entity group code values (presumably) modified by the application. This function complements entget. The primary mechanism by which an AutoLISP application updates the database is by retrieving an entity with entget, modifying its entity list, and then passing the list back to the database with entmod.
 
-1『修改实体数据的基本思路，通过 entget 获得实体的数据列表，直接通过 entmod 修改获取的数据列表，然后将修改后的数据列表传递进整个 CAD 数据库里。』
+1『
+
+修改实体数据的基本思路，通过 entget 获得实体的数据列表，直接通过 entmod 修改获取的数据列表，然后将修改后的数据列表传递进整个 CAD 数据库里。
+
+回复：举例修改块内某个属性值代码片段。（2020-10-07）
+
+```c
+(setq a (cons 1 "修改值"))
+(setq b (assoc 1 entl))
+(entmod (subst a b entl))
+```
+
+』
 
 The following example code retrieves the definition data of the first entity in the drawing and changes its layer property to MYLAYER.
 
@@ -778,7 +794,7 @@ Note: Handles are provided for block definitions, including subentities.
 
 Entities in drawings that are cross-referenced by way of XREF Attach are not actually part of the current drawing; their handles are unchanged but cannot be accessed by handent. However, when drawings are combined by means of INSERT, INSERT *, XREF Bind (XBIND), or partial DXFIN, the handles of entities in the incoming drawing are lost, and incoming entities are assigned new handle values to ensure each handle in the current drawing remains unique.
 
-#### About Entity Data Functions and the Graphics Screen (AutoLISP)
+#### 5.2.4 About Entity Data Functions and the Graphics Screen (AutoLISP)
 
 Changes to the drawing made by the entity data functions are reflected on the graphics screen, provided the entity being deleted, undeleted, modified, or created is in an area and on a layer that is currently visible.
 
@@ -818,7 +834,9 @@ When xdata is retrieved with entget, the beginning of extended data is indicated
 
 Extended data consists of one or more 1001 group codes, each of which begin with a unique application name. The xdata groups returned by entget follow the definition data in the order in which they are saved in the database. Within each application's group, the contents, meaning, and organization of the data are defined by the application. AutoCAD maintains the information but does not use it. The table also shows that the group codes for xdata are in the range 1000-1071. Many of these group codes are for familiar data types, as follows:
 
-About Registered Applications (AutoLISP). An application must register its name or names to be recognized by AutoCAD. Extended data must contain an application name before it can be attached to an entity and that application name must also exist in the APPID symbol table. Registration is done with the regapp function, which specifies a string to use as an application name. If it successfully adds the name to APPID, it returns the name of the application; otherwise it returns nil. A result of nil indicates that the name is already present in the symbol table. This is not an actual error condition but an expected return value, because the application name needs to be registered only once per drawing.
+#### 5.2.5 About Registered Applications (AutoLISP)
+
+An application must register its name or names to be recognized by AutoCAD. Extended data must contain an application name before it can be attached to an entity and that application name must also exist in the APPID symbol table. Registration is done with the regapp function, which specifies a string to use as an application name. If it successfully adds the name to APPID, it returns the name of the application; otherwise it returns nil. A result of nil indicates that the name is already present in the symbol table. This is not an actual error condition but an expected return value, because the application name needs to be registered only once per drawing.
 
 Before you register an application, you should first check to see if the name is not already in the APPID symbol table. If the name is not there, the application must register it. Otherwise, it can simply go ahead and attach the extended data to an entity for the application. The following example code demonstrates the typical use of regapp.
 
