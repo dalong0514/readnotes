@@ -169,10 +169,30 @@ Note: You can define multiple user functions with the same name, but have each d
 
 ### 0104. 主题卡——处理选择集的操作函数
 
+Selection sets are groups of one or more selected objects (entities). You can interactively add objects to, remove objects from, or list objects in a selection set. The following example code uses the ssget function to return a selection set containing all the objects in a drawing.
 
+```c
+(ssget "X")
+```
 
+AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets: 
+
+1. ssget - Prompts the user to select objects (entities), and returns a selection set; 
+
+2. ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
+
+3. ssdel - Removes an object (entity) from a selection set; 
+
+4. ssname - Returns the object (entity) name of the indexed element of a selection set; 
+
+5. sslength - Returns an integer containing the number of objects (entities) in a selection set.
+
+1『获得选择集之后，需要靠 ssname，比如获取块选择集里第一个块的实体信息：`(setq ent (entget (ssname ss 0)))`。』
+
+The ssget function provides the most general means of creating a selection set. It can create a selection set in one of the following ways: 1) Explicitly specifying the objects to select, using the Last, Previous, Window, Implied, Window Polygon, Crossing, Crossing Polygon, or Fence options; 2) Specifying a single point; 3) Selecting all objects in the database; 4) Prompting the user to select objects. With any option, you can use filtering to specify a list of properties and conditions that the selected objects must match.
 
 ### 0105. 主题卡——修改 CAD 实体数据的基本思路
+
 
 
 ### 0201. 术语卡——DXF group codes
@@ -225,6 +245,58 @@ Return Values. Type: List. The value returned depends on the data type of list-o
 (setq b (assoc 1 entx))
 (entmod (subst a b entx))
 ```
+
+[列表构造函数 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%88%97%E8%A1%A8%E6%A7%8B%E9%80%A0%E5%87%BD%E6%95%B8)
+
+列表构造函数是用来构造列表的基本函数，在大多数 LISP 体系的计算机编程语言中，使用的函数名称是 cons。cons 构成了存放两个变量与其指针的内存物件，这个物件被称为 CONS 单元、非原子的 S 表达式或 cons 对。LISP 编程中表达要把 x 加入 y 的语法：(cons x y)，构造了一个新物件。产生的结果具备了左半部，称为 CAR（第一元素或暂存器位址的内容）；以及右半部称为 CDR（其余元素或递减暂存器的内容）。
+
+以上约略与面向对象的构造器概念相关，即产生一个给定参数的新物件，而其与代数数据类型系统的构造函数，更密切相关。「cons」和诸如「cons onto」的词句，也是函数编程的通用术语。有时运算子有类似作用，特别是在列表处理的情况下，被读作「CONS」。（例如 ML，Scala，F＃和 Elm 编程的：运算符，或 Haskell 编程的：运算符，都是向列表的开头添加一个元素。）
+
+使用。虽然 cons 单元可用于储存有序的数据对，但它们更常用于组合为更复杂的复合数据结构，特别是列表和二叉树；有序对。例如 LISP 表达式 (cons 1 2) 产生一个有序的单元，在左半部存放 1，而右半部存放 2。左右次序不能互换（`(1 2)` 跟 `(2 1)` 不同）。在 LISP 表示法中，(cons 1 2) 结果会印出如下。须注意 1 和 2 之间的句点；这个 S 表达式是特殊的「点对」（所谓的 cons 对），并不是普通的「列表」。
+
+```c
+(1 . 2)
+```
+
+列表。列表 (42 69 613) 的 Cons 单元图，以 cons 构造函数写成：
+
+```c
+(cons 42 (cons 69 (cons 613 nil)))
+```
+
+此外可用 list 函数写成：
+
+```c
+(list 42 69 613)
+```
+
+LISP 编程中的列表实作在「cons 对」之上。具体地说，每个列表的结构都是：一个空列表 ()，通常被称为 nil 的特殊物件；一个 cons 单元，car 代表这列表的第一个元素，而 cdr 则是包含其余元素的一个子列表。这形成了简单基本的列表，而 cons，car 和 cdr 函数可以操作列表的内容。注意，nil 是个特殊的空列表，并不是「cons 对」。考虑元素为 1,2 和 3 的列表为例。这样的列表经由三个步骤产生：CONS 3 到 nil 空列表之上；CONS 2 到上一步的结果之上；CONS 1 到上一步的结果，产生最后的结果。这相当于单一表达式：
+
+```c
+(cons 1 (cons 2 (cons 3 nil)))
+```
+
+或可用 list 函数节略如下：
+
+```c
+(list 1 2 3)
+```
+
+最终结果是一个列表，形式如右：
+
+```c
+(1 . (2 . (3 . nil)))
+```
+
+通常结果会被打印为：(1 2 3)，因此 cons 操作会在既有列表的最前头，添加一个元素。例如，如果 x 是上面定义的列表，那么 (cons 5 x) 将产生列表：(5 1 2 3) 。另一个有用的函数是 append，用于合并两个列表。
+
+树。cons 也容易建构出在叶片中储存数据的二叉树。例如以下代码： (cons (cons 1 2) (cons 3 4)) 产生了一棵树：
+
+```c
+((1 . 2) . (3 . 4))
+```
+
+技术上，前例中的列表（1 2 3）恰巧是不平衡的二叉树。要看到这点，只需重新排列图。
 
 ### 0204. 术语卡——dotted pair
 
@@ -345,6 +417,14 @@ The pattern string can specify multiple patterns, separated by commas. The follo
 // out
 T
 ```
+
+About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names specified in filtering lists can include wild-card patterns. The wild-card patterns recognized by ssget are the same as those recognized by the wcmatch function. When filtering for anonymous blocks, you must precede the * character with a reverse single quotation mark ( ` ), also known as an escape character, because the * is read by ssget as a wild-card character. For example, you can retrieve an anonymous block named *U2 with the following:
+
+```c
+(ssget "X" '((2 . "`*U2")))
+```
+
+1-2『选择特定名称块的实现方式，mark 一下。可以用来提取块里的基本信息用，做设备表的一个环节。wild-card 是指通配符。\` 应该是转义用的。回复：很棒啊，这样的话数据流里筛选仪表块只需要使用 "Instrument`*" 过滤即可。合并到之前已经做好的通配符术语卡片。（2020-10-07）』
 
 ### 0205. 术语卡——lisp 里的函数
 
@@ -471,6 +551,54 @@ By specifying filters, you can obtain a selection set that includes all objects 
 // 查看数据列表，列表里是一个个 dotted pairs，键是 0 的即为该实体对象的类型，块的是 "INSERT"，单行文字的是 "TEXT"
 !ent
 ```
+
+### 0304. 任意卡——Relational Tests in Filter Lists
+
+About Relational Tests in Filter Lists for Selection Sets (AutoLISP). Unless otherwise specified, an equivalency is implied for each item in the filter-list. For numeric group codes (integers, reals, points, and vectors), you can specify other relations by including a special -4 group code that specifies a relational operator. The value of a -4 group code is a string indicating the test operator to be applied to the next group in the filter-list. The following selects all circles with a radius (group code 40) greater than or equal to 2.0:
+
+```c
+(ssget "X" '((0 . "CIRCLE") (-4 . ">=") (40 . 2.0)))
+```
+
+3『 group code 0, Text string indicating the entity type (fixed); group code -4, APP: conditional operator (used only with ssget); group code 40, Floating-point values. (text height, scale factors, and so on)』
+
+1-2『这个过滤集中增加条件语句实在是赞，`(-4 . ">=")`。Relational Tests in Filter Lists 做一张任意卡片。（2020-10-07）』
+
+The grouping operators are specified by -4 dxf group codes, like the relational operators. They are paired and must be balanced correctly in the filter list or the ssget call will fail.
+
+```c
+(ssget "X"
+  '(
+    (-4 . "<OR")
+      (-4 . "<AND")
+        (0 . "CIRCLE")
+        (40 . 1.0)
+      (-4 . "AND>")
+      (-4 . "<AND")
+        (0 . "LINE")
+        (8 . "ABC")
+      (-4 . "AND>")
+    (-4 . "OR>")
+  )
+)
+```
+
+This filter list allows the selection of all circles with a radius of 1.0 plus all lines on layer "ABC". The grouping operators are not case-sensitive; for example, you can specify "and>", "<or", instead of "AND>", "<OR". Grouping operators are not allowed within the -3 dxf group code. Multiple application names specified in a -3 dxf group code use an implied AND operator. If you want to test for extended data using other grouping operators, specify separate -3 dxf group codes and group them as desired.
+
+The following example code demonstrates how to select all circles having extended data for either application "APP1" or "APP2" but not both:
+
+```c
+(ssget "X"
+  '((0 . "CIRCLE")
+    (-4 . "<XOR")
+      (-3 ("APP1"))
+      (-3 ("APP2"))
+    (-4 . "XOR>")
+  )
+)
+```
+
+1『经验证，上面的代码里的 `XOR` 得改成 `OR` 才有效。』
 
 ## 实战源码解析
 
