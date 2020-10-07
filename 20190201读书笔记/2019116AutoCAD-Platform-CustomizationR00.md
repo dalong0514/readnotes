@@ -40,7 +40,7 @@ The AutoLISP programming language can be used to: Create custom functions that c
 
 AutoLISP code can be entered directly at the Command prompt or loaded using a LSP file. Once an AutoLISP program has been loaded, you can execute the custom functions from the Command prompt. Functions executed from the Command prompt can be similar to standard AutoCAD commands, but the programmer determines the prompts that should be displayed. It is also possible to use AutoLISP code with a command macro that is activated from the AutoCAD user interface or a tool on a tool palette.
 
-1『VBA 能实现的功能同上。』
+1『 VBA 能实现的功能同上。』
 
 VBA code statements are entered into the Visual Basic Editor and stored in a DVB file. Once a VBA project has been loaded, you can execute the macros through the Macros dialog box. Unlike standard AutoCAD commands, macros cannot be executed from the Command prompt, but once executed, a macro can prompt users for values at the Command prompt or with a user form. It is possible to execute a macro from a command macro that is activated with a command button displayed in the AutoCAD user interface or as a tool on a tool palette.
 
@@ -136,13 +136,9 @@ Bonus Chapter 3: Development Resources In this chapter, you discover resources t
 
 Well-established drawing standards ensure that your drawings all look the same when they are presented to the client, and they can make it easier to: Train new drafters and other professionals on your company's standards that use AutoCAD; Identify which drawing and externally referenced files are associated with a project; Determine the purpose of a named object in a drawing; Share project files with clients and contractors because your standards are well defined.
 
-## 0301. Building the Real World One Block at a Time
-
-### 1. 逻辑脉络
+## 0103. Building the Real World One Block at a Time
 
 定义块、修改块；提取块内的数据信息。
-
-### 2. 摘录及评论
 
 3『
 
@@ -212,7 +208,7 @@ One of the benefits of using attributes with your blocks is that you can extract
 
 NOTE: After you place a table using the Data Extraction Wizard, a Data Link icon that looks like two chain links appears in the application's status-bar tray. Right-click the icon or the table in the drawing, and click Update All Data Links to ensure the information displayed in the table is up to date.
 
-## 0501. Customizing the AutoCAD User Interface for Windows
+## 0105. Customizing the AutoCAD User Interface for Windows
 
 You customize the user interface through a combination of direct manipulation and the Customize User Interface Editor—or CUI Editor, as it is commonly known. Direct manipulation can make it fast and easy to reorganize elements, but there are limitations, as not all elements are supported and new user-interface elements can't be added. The CUI Editor provides the most control over the elements of the user interface.
 
