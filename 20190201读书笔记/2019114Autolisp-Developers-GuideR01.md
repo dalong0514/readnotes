@@ -29,7 +29,7 @@ AutoLISP uses symbol tables to maintain lists of graphic and non-graphic data re
 
 Selection sets are groups of one or more selected objects (entities). You can interactively add objects to, remove objects from, or list objects in a selection set. The following example code uses the ssget function to return a selection set containing all the objects in a drawing.
 
-```
+```c
 (ssget "X")
 ```
 
@@ -51,11 +51,41 @@ The ssget function provides the most general means of creating a selection set. 
 
 1『过滤器和选择集结合起来用。』
 
-3『 ssget 的官方文档：[Pomoc: ssget (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-0F37CC5E-1559-4011-B8CF-A3BA0973B2C3)』
+1-3『
+
+ssget 的官方文档：[Pomoc: ssget (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-0F37CC5E-1559-4011-B8CF-A3BA0973B2C3)
+
+```c
+(ssget [sel-method] [pt1 [pt2]] [pt-list] [filter-list])
+```
+
+By specifying filters, you can obtain a selection set that includes all objects of a given type, on a given layer, or of a given color. The following example returns a selection set that consists only of blue lines that are part of the implied selection set .
+
+```c
+(ssget "_I" '((0 . "LINE") (62 . 5)))
+
+// 获取特定块名称的块实体
+(setq ss (ssget '((0 . "INSERT") (2. "InstrumentP"))))
+```
+
+找到一个获取实体类型（entity type）的办法，比如获取块的类型（2020-10-07）。
+
+```c
+// 选择一个实体对象
+(setq ss (ssget))
+// 获取该实体对象的数据列表
+(setq ent (entget (ssname ss 0)))
+// 查看数据列表，列表里是一个个 dotted pairs，键是 0 的即为该实体对象的类型，块的是 "INSERT"，单行文字的是 "TEXT"
+!ent
+```
+
+做一张任意卡片。——已完成
+
+』
 
 Note: Selection set and entity names do not remain the same between drawing sessions.
 
-1『Selection set and entity names 即使是同一张图，也是在变的。』
+1『 Selection set and entity names 即使是同一张图，也是在变的。』
 
 The first argument to ssget is a string that describes which selection option to use. The next two arguments, pt1 and pt2, specify point values for the relevant options (they should be left out if they do not apply). A point list, pt-list, must be provided as an argument to the selection methods that allow selection by polygons (that is, Fence, Crossing Polygon, and Window Polygon). The last argument, filter-list, is optional. If filter-list is supplied, it specifies the list of entity field values used in filtering. For example, you can obtain a selection set that includes all objects of a given type, on a given layer, or of a given color. The following table shows examples of calls to ssget:
 
@@ -63,7 +93,7 @@ The first argument to ssget is a string that describes which selection option to
 
 For example, Creates a selection set from the most recently created selection set:
 
-```
+```c
 (setq ss1 (ssget "P"))
 ```
 
@@ -71,9 +101,13 @@ For example, Creates a selection set from the most recently created selection se
 
 When an application has finished using a selection set, it is important to release it from memory. This can be done by setting it to nil:
 
-    (setq ss1 nil)
+```c
+(setq ss1 nil)
+```
 
 Remember: You can also release the memory used by the values stored in a variable by defining it as a local variable in a function.
+
+1『所以强烈推荐在函数里使用局部变量，这样不用自己手动释放变量的内存。（2020-10-07）』
 
 Attempting to manage a large number of selection sets simultaneously is not recommended. An AutoLISP application cannot have more than 128 selection sets open at once. (The limit may be lower on your system.) When the limit is reached, AutoCAD will not create more selection sets. Keep a minimum number of sets open at a time, and set unneeded selection sets to nil as soon as possible. If the maximum number of selection sets is reached, you must call the gc function to free unused memory before another ssget will work.
 
@@ -87,7 +121,7 @@ An entity filter list is an association list that uses DXF group codes in the sa
 
 又见「DXF group codes」。选择集里的 DXF group codes 是通过 entget 函数获取的。比如下面，通过块名筛选出选择集，获取选择集里的第一个块实体的信息：
 
-```
+```c
 // insert 是块的 type
 (setq ss (ssget "X" '((0 . "insert") (2 . "testblock"))))
 (sslength ss)
@@ -119,7 +153,7 @@ If both the group code and the desired value are known, the list may be quoted a
 
 If the filter-list specifies more than one property, an entity is included in the selection set only if it matches all specified conditions, as in the following example code:
 
-```
+```c
 (ssget "X" (list (cons 0 "CIRCLE")(cons 8 lay_name)(cons 62 3)))
 ```
 
@@ -135,37 +169,37 @@ This code selects only Circle objects on layer FLOOR3 that are colored green. Th
 
 使用。虽然 cons 单元可用于储存有序的数据对，但它们更常用于组合为更复杂的复合数据结构，特别是列表和二叉树；有序对。例如 LISP 表达式 (cons 1 2) 产生一个有序的单元，在左半部存放 1，而右半部存放 2。左右次序不能互换（(1 2) 跟 (2 1) 不同）。在 LISP 表示法中，(cons 1 2) 结果会印出如下。须注意 1 和 2 之间的句点；这个 S 表达式是特殊的「点对」（所谓的 cons 对），并不是普通的「列表」。
 
-```
+```c
 (1 . 2)
 ```
 
 列表。列表 (42 69 613) 的 Cons 单元图，以 cons 构造函数写成：
 
-```
+```c
 (cons 42 (cons 69 (cons 613 nil)))
 ```
 
 此外可用 list 函数写成：
 
-```
+```c
 (list 42 69 613)
 ```
 
 LISP 编程中的列表实作在「cons 对」之上。具体地说，每个列表的结构都是：一个空列表 ()，通常被称为 nil 的特殊物件；一个 cons 单元，car 代表这列表的第一个元素，而 cdr 则是包含其余元素的一个子列表。这形成了简单基本的列表，而 cons，car 和 cdr 函数可以操作列表的内容。注意，nil 是个特殊的空列表，并不是「cons 对」。考虑元素为 1,2 和 3 的列表为例。这样的列表经由三个步骤产生：CONS 3 到 nil 空列表之上；CONS 2 到上一步的结果之上；CONS 1 到上一步的结果，产生最后的结果。这相当于单一表达式：
 
-```
+```c
 (cons 1 (cons 2 (cons 3 nil)))
 ```
 
 或可用 list 函数节略如下：
 
-```
+```c
 (list 1 2 3)
 ```
 
 最终结果是一个列表，形式如右：
 
-```
+```c
 (1 . (2 . (3 . nil)))
 ```
 
@@ -173,7 +207,7 @@ LISP 编程中的列表实作在「cons 对」之上。具体地说，每个列�
 
 树。cons 也容易建构出在叶片中储存数据的二叉树。例如以下代码： (cons (cons 1 2) (cons 3 4)) 产生了一棵树：
 
-```
+```c
 ((1 . 2) . (3 . 4))
 ```
 
@@ -191,7 +225,9 @@ When ssget filters a selection set, the selected objects it retrieves might incl
 
 About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names specified in filtering lists can include wild-card patterns. The wild-card patterns recognized by ssget are the same as those recognized by the wcmatch function. When filtering for anonymous blocks, you must precede the * character with a reverse single quotation mark ( ` ), also known as an escape character, because the * is read by ssget as a wild-card character. For example, you can retrieve an anonymous block named *U2 with the following:
 
-    (ssget "X" '((2 . "`*U2")))
+```c
+(ssget "X" '((2 . "`*U2")))
+```
 
 1『 wild-card 是指通配符。` 应该是转义用的；』
 
@@ -199,28 +235,38 @@ About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names 
 
 About Filtering for Extended Data in a Selection Set (AutoLISP). You can select all entities containing extended data for a particular application using the filter-list argument of ssget. The filter-list argument must be a list that contains -3 as its first element. The following example code selects all the objects in a drawing that include extended data for the "APPNAME" application:
 
-    (ssget "X" '((-3 ("APPNAME"))))
+```c
+(ssget "X" '((-3 ("APPNAME"))))
+```
 
 1『「extended data」的概念；Group Code 为 -3，是指 APP: extended data (XDATA) sentinel (fixed)。』
 
 You can also expand the scope of the filter to filter specific types of objects. The following example code selects all the circles in a drawing that include extended data for the "APPNAME" application:
 
-    (ssget "X" '((0 . "CIRCLE") (-3 ("APPNAME"))))
+```c
+(ssget "X" '((0 . "CIRCLE") (-3 ("APPNAME"))))
+```
 
 If more than one application name is included in the -3 group's list, an AND operation is implied and the entity must contain extended data for all of the specified applications. So, the following statement would select all the objects with extended data for both the "APP1" and "APP2" applications:
 
-    (ssget "X" '((-3 ("APP1")("APP2"))))
+```c
+(ssget "X" '((-3 ("APP1")("APP2"))))
+```
 
 Wild-card matching is also permitted, so either of the following statements will select all the objects with extended data for either or both of these applications.
 
-    (ssget "X" '((-3 ("APP[12]"))))
-    (ssget "X" '((-3 ("APP1,APP2"))))
+```c
+(ssget "X" '((-3 ("APP[12]"))))
+(ssget "X" '((-3 ("APP1,APP2"))))
+```
 
 About Relational Tests in Filter Lists for Selection Sets (AutoLISP). Unless otherwise specified, an equivalency is implied for each item in the filter-list. For numeric group codes (integers, reals, points, and vectors), you can specify other relations by including a special -4 group code that specifies a relational operator. The value of a -4 group code is a string indicating the test operator to be applied to the next group in the filter-list. The following selects all circles with a radius (group code 40) greater than or equal to 2.0:
 
-    (ssget "X" '((0 . "CIRCLE") (-4 . ">=") (40 . 2.0)))
+```c
+(ssget "X" '((0 . "CIRCLE") (-4 . ">=") (40 . 2.0)))
+```
 
-3『group code 0, Text string indicating the entity type (fixed); group code -4, APP: conditional operator (used only with ssget); group code 40, Floating-point values. (text height, scale factors, and so on)』
+3『 group code 0, Text string indicating the entity type (fixed); group code -4, APP: conditional operator (used only with ssget); group code 40, Floating-point values. (text height, scale factors, and so on)』
 
 The possible relational operators are shown in the following table. The use of relational operators depends on the kind of group code value you are testing:
 
@@ -244,7 +290,7 @@ About Logical Grouping of Selection Filter Tests (AutoLISP). You can define test
 
 The grouping operators are specified by -4 dxf group codes, like the relational operators. They are paired and must be balanced correctly in the filter list or the ssget call will fail.
 
-```
+```c
 (ssget "X"
   '(
     (-4 . "<OR")
@@ -265,7 +311,7 @@ This filter list allows the selection of all circles with a radius of 1.0 plus a
 
 The following example code demonstrates how to select all circles having extended data for either application "APP1" or "APP2" but not both:
 
-```
+```c
 (ssget "X"
   '((0 . "CIRCLE")
     (-4 . "<XOR")
@@ -278,7 +324,7 @@ The following example code demonstrates how to select all circles having extende
 
 You can simplify the coding of frequently used grouping operators by setting them equal to a symbol. The previous example could be rewritten as follows (notice that in this example you must explicitly quote each list):
 
-```
+```c
 (setq <xor '(-4 . "<XOR")
          xor> '(-4 . "XOR>"))
 
@@ -297,7 +343,7 @@ You can simplify the coding of frequently used grouping operators by setting the
 
 About Modifying Selection Sets (AutoLISP). Once a selection set has been created, you can add entities to it or remove entities from it with ssadd and ssdel. You can use the ssadd function to create a new selection set or add entities to an existing selection set. The following example code creates a selection set that includes the first and last entities in the current drawing (entnext and entlast):
 
-```
+```c
 (setq fname (entnext))                 ; Gets first entity in the drawing.
 (setq lname (entlast))                 ; Gets last entity in the drawing.
 (if (not fname)
@@ -311,11 +357,13 @@ About Modifying Selection Sets (AutoLISP). Once a selection set has been created
 
 The example runs correctly even if only one entity is in the database (in which case both entnext and entlast set their arguments to the same entity name). If ssadd is passed the name of an entity already in the selection set, it ignores the request and does not report an error. The following example code removes the first entity from the selection set created in the previous example:
 
-    (ssdel fname ourset)
+```c
+(ssdel fname ourset)
+```
 
 If there is more than one entity in the drawing (that is, if fname and lname are not equal), then the selection set ourset contains only lname, the last entity in the drawing. The function sslength returns the number of entities in a selection set, and ssmemb tests whether a particular entity is a member of a selection set. Finally, the function ssname returns the name of a particular entity in a selection set, using an index to the set (entities in a selection set are numbered from 0). The following example code shows calls to ssname:
 
-```
+```c
 (setq sset (ssget))                     ; Prompts the user to create a selection set.
 (setq ent1 (ssname sset 0))             ; Gets the name of the first entity in sset.
 (setq ent4 (ssname sset 3))             ; Gets the name of the fourth entity in sset.
@@ -334,13 +382,17 @@ About Passing Selection Sets Between AutoLISP and ObjectARX Applications (AutoLI
 
 This is true even if the value returned from the ObjectARX application was the original selection set. In the following example, if the adsfunc ObjectARX function returns the same selection set it was fed as an argument, then this selection set will be eligible for garbage collection even though it is still assigned to the same variable.
 
-    (setq var1 (ssget))
-    (setq var1 (adsfunc var1))
+```c
+(setq var1 (ssget))
+(setq var1 (adsfunc var1))
+```
 
 If you want the original selection set to be protected from garbage collection, then you must not assign the return value of the ObjectARX application to the AutoLISP variable that already references the selection set. Changing the previous example prevents the selection set referenced by var1 from being eligible for garbage collection.
 
-    (setq var1 (ssget))
-    (setq var2 (adsfunc var1))
+```c
+(setq var1 (ssget))
+(setq var2 (adsfunc var1))
+```
 
 About Object Handling (AutoLISP). AutoLISP provides functions for handling objects. The object-handling functions are organized into two categories: functions that retrieve the entity name of a particular object, and functions that retrieve or modify entity data. See Object-Handling Functions (AutoLISP) in AutoLISP Function Synopsis (AutoLISP), for a complete list of the object-handling functions.
 
@@ -360,7 +412,7 @@ The entlast function retrieves the name of the last entity in the database. The 
 
 You can set the entity name returned by entnext to the same variable name passed to this function. This “walks” a single entity name variable through the database, as shown in the following example code:
 
-```
+```c
 (setq one_ent (entnext))         ; Gets name of first entity.
 (while one_ent
 ..
@@ -372,7 +424,7 @@ You can set the entity name returned by entnext to the same variable name passed
 
 The following example code illustrates how ssadd can be used in conjunction with entnext to create selection sets and add members to an existing set.
 
-```
+```c
 (setq e1 (entnext))
 (if (not e1)                           ; Sets e1 to name of first entity.
   (princ "\nNo entities in drawing. ")
@@ -403,7 +455,7 @@ Selecting an attribute within a block reference returns the name of the attribut
 
 The list returned from selecting a block with nentsel is summarized as follows:
 
-```
+```c
 (<Entity Name: ename1>   ; Name of entity.
   (Px Py Pz)             ; Pick point.
   ( (X0 Y0 Z0)           ; Model to World Transformation Matrix.
@@ -420,11 +472,13 @@ The list returned from selecting a block with nentsel is summarized as follows:
 
 In the following example, create a block to use with the nentsel function. Use nentsel to select the lower-left side of the square.
 
-    (setq ndata (nentsel))
+```c
+(setq ndata (nentsel))
+```
 
 This code sets ndata equal to a list similar to the following:
 
-```
+```c
 (<Entity Name: 400000a0>   ; Entity name.
   (6.46616 -1.0606 0.0)    ; Pick point.
   ((0.707107 0.707107 0.0) ; Model to World
@@ -447,9 +501,12 @@ Note: This is the only AutoLISP function that uses a matrix of this type. The ne
 
 Using the entity name previously obtained with nentsel, the following example illustrates how to obtain the MCS start point of a line (group code 10) contained in a block definition:
 
-    (setq edata (assoc 10 (entget (car ndata))))
+```c
+(setq edata (assoc 10 (entget (car ndata))))
 
+// out
 (10 -1.0 1.0 0.0)
+```
 
 The following statement stores the Model to World Transformation Matrix sublist in the symbol matrix; The following statement applies the transformation formula for X' to change the X coordinate of the start point of the line from an MCS coordinate to a WCS coordinate:
 
@@ -459,7 +516,7 @@ About Adding an Entity without Using the Command Function (AutoLISP). An applica
 
 The following example code creates a circle on the MYLAYER layer:
 
-```
+```c
 (entmake '((0 . "CIRCLE") ; Object type
   (8 . "MYLAYER")         ; Layer
   (10 5.0 7.0 0.0)        ; Center point
@@ -479,7 +536,7 @@ The following entmake restrictions apply to all entities:
 
 For entity types introduced in AutoCAD Release 13 and later releases, you must also specify subclass markers (DXF group code 100) when creating the entity. All AutoCAD entities have the AcDbEntity subclass marker, and this must be explicitly included in the entmake list. In addition, one or more subclass marker entries are required to identify the specific sub-entity type. These entries must follow group code 0 and must precede group codes that are specifically used to define entity properties in the entmake list. For example, the following is the minimum code required to create a MTEXT entity with entmake:
 
-```
+```c
 (entmake '(
   (0 . "MTEXT")
   (100 . "AcDbEntity") ; Required for all post-R12 entities.
@@ -514,7 +571,9 @@ Block references can include an attributes-follow flag (dxf group code 66). If p
 
 About Working With Blocks (AutoLISP). There is no direct method for an application to check whether a block listed in the BLOCK table is actually referenced by an insert object in the drawing. You can use the following code to scan the drawing for instances of a block reference; You must also scan each block definition for instances of nested blocks.
 
-    (ssget "x" '((2 . "BLOCKNAME")))
+```c
+(ssget "x" '((2 . "BLOCKNAME")))
+```
 
 About Anonymous Blocks (AutoLISP). The block definitions (BLOCK) table in a drawing can contain anonymous blocks (also known as unnamed blocks), that AutoCAD creates to support dynamic blocks, tables, hatch patterns, and associative dimensions.
 
@@ -526,7 +585,7 @@ Note: Anonymous block names do not remain constant. Although a referenced anonym
 
 About Obtaining Entity Information (AutoLISP). The entget function returns the definition data of a specified entity as a list. Each item in the list is specified by a DXF group code. The first item in the list contains the entity's current name. An AutoLISP application can retrieve and output the definition data for the line by using the following example code:
 
-```
+```c
 (defun C:PRINTDXF ( )
   (setq ent (entlast))               ; Set ent to last entity.
   (setq entl (entget ent))           ; Set entl to association list of last entity.
@@ -543,7 +602,7 @@ About Obtaining Entity Information (AutoLISP). The entget function returns the d
 
 This would output the following:
 
-```
+```c
 entget of last entity:
 (-1 . <Entity name: 1bbd1c8>)
 (0 . "LINE")
@@ -571,7 +630,7 @@ All points associated with an object are expressed in terms of that object's Obj
 
 When writing functions to process entity lists, make sure the function logic is independent of the order of the sublists; use assoc to guarantee this. The assoc function searches a list for a group code of a specified type. The following code returns the object type "LINE" (0) from the list entl.
 
-```
+```c
 (cdr (assoc 0 entl))
 ```
 
@@ -585,7 +644,7 @@ About Modifying an Entity without the Command Function (AutoLISP). An entity can
 
 The following example code retrieves the definition data of the first entity in the drawing and changes its layer property to MYLAYER.
 
-```
+```c
 (setq en (entnext))         ; Sets en to first entity name in the drawing.
 (setq ed (entget en))       ; Sets ed to the entity data for entity name en.
 (setq ed
@@ -613,15 +672,11 @@ The entmod function can modify subentities such as polyline vertices and block a
 
 About Deleting an Entity (AutoLISP). Entities can be deleted using the entdel function or AutoCAD ERASE command (with command). Entities are not purged from the database until the end of the current drawing session, so if the application calls entdel on an entity that was deleted during that session, the entity is undeleted. Attributes and old-style polyline vertices cannot be deleted independently of their parent entities. The entdel function and AutoCAD ERASE command only operate on main entities. If you need to delete an attribute or vertex, you can use the AutoCAD ATTEDIT or PEDIT commands with command.
 
-
-
-
-
 About Entity Handles and Their Uses (AutoLISP). The handent function retrieves the name of an entity with a specific handle. As with entity names, handles are unique within a drawing. However, an entity's handle is constant throughout its life. AutoLISP applications that manipulate a specific database can use handent to obtain the current name of an entity they must use. You can use the AutoCAD LIST command to get the handle of a selected object. The following example code uses handent to obtain and display the entity name that is associated with the handle “5a2”.
 
 1『重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。』
 
-```
+```c
 (if (not (setq e1 (handent "5a2")))
   (princ "\nNo entity with that handle exists. ")
   (princ e1)
@@ -630,7 +685,9 @@ About Entity Handles and Their Uses (AutoLISP). The handent function retrieves t
 
 In one particular editing session, this code might display the following:
 
+```c
 <Entity name: 60004722>
+```
 
 In another editing session with the same drawing, the fragment might display an entirely different number. But in both cases the code would be accessing the same entity. The handent function has an additional use. Entities can be deleted from the database with entdel. The entities are not purged until the current drawing ends. This means that handent can recover the names of deleted entities, which can then be restored to the drawing by a second call to entdel.
 
@@ -644,7 +701,7 @@ There is one exception; when entmod modifies a subentity, it does not update the
 
 Consider the following; if the first entity in the current drawing is an old-style polyline with several vertices, the following code modifies the second vertex of the polyline and regenerates its display.
 
-```
+```c
 (setq e1 (entnext))    ; Sets e1 to the polyline's entity name.
 (setq v1 (entnext e1)) ; Sets v1 to its first vertex.
 (setq v2 (entnext v1)) ; Sets v2 to its second vertex.
@@ -680,7 +737,7 @@ About Registered Applications (AutoLISP). An application must register its name 
 
 Before you register an application, you should first check to see if the name is not already in the APPID symbol table. If the name is not there, the application must register it. Otherwise, it can simply go ahead and attach the extended data to an entity for the application. The following example code demonstrates the typical use of regapp.
 
-```
+```c
 (setq appname "MYAPP_2356")                            ; Unique application name.
 (if (tblsearch "appid" appname)                        ; Checks if already registered.
   (princ (strcat "\n" appname " already registered."))

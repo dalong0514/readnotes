@@ -137,11 +137,11 @@ New:
 
 command-s - Executes an AutoCAD command and the supplied input.
 
-*pop-error-mode* - Error-handling function that ends the previous call to *push-error-using-command* or *push-error-using-stack*.
+`*pop-error-mode*` - Error-handling function that ends the previous call to `*push-error-using-command*` or `*push-error-using-stack*`.
 
-*push-error-using-command* - Error-handling function that indicates the use of the command function within a custom *error* handler.
+`*push-error-using-command*` - Error-handling function that indicates the use of the command function within a custom `*error* `handler.
 
-*push-error-using-stack* - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom *error* handler.
+`*push-error-using-stack*` - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom `*error*` handler.
 
 ### AutoCAD 2011
 

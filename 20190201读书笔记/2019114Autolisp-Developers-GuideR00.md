@@ -139,7 +139,41 @@ AutoLISP also offers a number of additional functions that are variations of the
 "One"
 ```
 
-### 0102. 主题卡——
+### 0102. 主题卡——字符串数据的操作函数
+
+A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in AutoLISP, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
+
+AutoLISP provides many functions for working with string values. The following are some of the most commonly used functions:
+
+1. strcat – Returns a string that is the concatenation of multiple strings.
+
+2. strcase – Returns a string where all alphabetic characters have been converted to uppercase or lowercase.
+
+3. strlen – Returns an integer that is the number of characters in a string.
+
+4. substr – Returns a substring of a string.
+
+5. vl-string-search – Searches for the specified pattern in a string.
+
+6. vl-string-subst – Substitutes one string for another, within a string.
+
+### 0103. 主题卡——lisp 中的多态
+
+With AutoLISP, many functions require you to pass them values. These values are known as arguments. There are functions that also accept no arguments, and some in which accept optional arguments. User-defined functions cannot have optional arguments. When you call a user-defined function that accepts arguments, you must provide values for all arguments.
+
+1『注意：自定义的函数是没法使用默认形参的，必须明确掉。』
+
+Note: You can define multiple user functions with the same name, but have each definition accept a different number or type of arguments.
+
+1-2『同一个名字定义多个函数，每个函数设不同的形参。这倒是个折中的办法。回复：这不就是函数重载么，哈哈。（2020-07-03）回复：这个可以实现多态了，模拟面向对象范式，太 NB 了。做一张主题卡片。（2020-10-06）』——已完成
+
+### 0104. 主题卡——处理选择集的操作函数
+
+
+
+
+### 0105. 主题卡——修改 CAD 实体数据的基本思路
+
 
 ### 0201. 术语卡——DXF group codes
 
@@ -159,13 +193,214 @@ Entity names assigned to objects in a drawing are only in effect during the curr
 
 Objects in a drawing can be represented as ActiveX (VLA) objects. When working with ActiveX methods and properties, you must refer to VLA-objects, not the ename pointer returned by functions such as entlast. VLA-objects can be converted to an ename pointer with vlax-vla-object->ename. You can also use vlax-ename->vla-object to convert an ename pointer to a VLA-object.
 
-### 0203. 术语卡——
+### 0203. 术语卡——cons 函数
 
-### 0301. 人名卡——
+[cons (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B418E7-DB3D-4CBE-954E-F070F0A7CB2B)
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+```c
+(cons new-first-element list-or-atom)
+```
 
-### 0401. 任意卡——MNL 源文件
+new-first-element. Type: Integer, Real, String, List, T, or nil. Element to be added to the beginning of a list. This element can be an atom or a list.
+
+list-or-atom. Type: Integer, Real, String, List, or T. A list or an atom.
+
+Return Values. Type: List. The value returned depends on the data type of list-or-atom. If list-or-atom is a list, cons returns that list with new-first-element added as the first item in the list. If list-or-atom is an atom, cons returns a dotted pair consisting of new-first-element and list-or-atom.
+
+```c
+(cons 'a '(b c d))
+(A B C D)
+
+(cons '(a) '(b c d))
+((A) B C D)
+
+(cons 'a 2)
+(A . 2)
+```
+
+替换块内某一个属性值的源码里有一片段，这里的 cons 形成的就是一个 dotted pair。3.8.2 小结里有 dotted pair 的相关知识。（2020-10-06）——做一张术语卡片——已完成
+
+```c
+(setq a (cons 1 "17.03.10"))
+(setq b (assoc 1 entx))
+(entmod (subst a b entx))
+```
+
+### 0204. 术语卡——dotted pair
+
+Dotted pair lists must always contain two members and is the method AutoLISP uses to maintain entity definition data. When representing a dotted pair, members of the list are separated by a period ( . ). Most list-handling functions do not accept a dotted pair as an argument, so you should be sure you are passing the right kind of list to a function.
+
+Dotted pairs are an example of an "improper list." An improper list is one in which the last cdr is not nil. In addition to adding an item to the beginning of a list, the cons function can create a dotted pair. If the second argument to the cons function is anything other than another list or nil, it creates a dotted pair.
+
+```c
+(setq sublist (cons 'lyr "WALLS"))
+// out
+(LYR . "WALLS")
+```
+
+The following functions are useful for handling dotted pairs:
+
+1. car - Returns the first member of the specified dotted pair.
+
+2. cdr - Returns the second member of the specified dotted pair.
+
+3. assoc - Searches an association list for a member and returns that association list entry.
+
+4. nth - Returns the nth element of a list.
+
+The following code creates an association list of dotted pairs:
+
+```c
+(setq wallinfo (list sublist (cons 'len 240.0) (cons 'hgt 96.0)))
+// out
+((LYR . "WALLS") (LEN . 240.0) (HGT . 96.0))
+```
+
+The assoc function returns a specified list from within an association list regardless of the specified list's location within the association list. The assoc function searches for a specified key element in the lists and returns the first instance, as follows:
+
+```c
+(assoc 'len wallinfo)
+// out
+(LEN . 240.0)
+
+(cdr (assoc 'lyr wallinfo))
+// out
+"WALLS"
+
+(nth 1 wallinfo)
+// out
+(LEN . 240.0)
+
+(car (nth 1 wallinfo))
+// out
+LEN
+```
+
+1『
+
+醍醐灌顶。dotted pairs 就是 lisp 语言里的对象、「键-值」对、字典，哈哈。通过 assoc 函数可以提前特定「键」的值，这么一来，批量替换块内某一属性那边的源码片段渐渐看明白了。（2020-10-06）
+
+```c
+(setq a (cons 1 "17.03.10"))
+(setq b (assoc 1 entx))
+(entmod (subst a b entx))
+```
+
+autolisp 里一个高频操作 `cdr (assoc -1 ent)`，其中 -1 是 DXF group codes，表示 entity name，ent 是通过实体名获取的实体数据列表。
+
+』
+
+### 0204. 术语卡——Wild-Card Matching
+
+A string can be compared to a wild-card pattern with the wcmatch function. This can be helpful when needing to build a dynamic selection set (in conjunction with ssget) or to retrieve extended entity data by application name (in conjunction with entget). The wcmatch function compares a single string to a pattern. The function returns T if the string matches the pattern, and nil if it does not. The wild-card patterns are similar to the regular expressions used by many system and application programs.
+
+1-2『直觉这里又是一个关键点。讲的应该就是通配符的知识点。回复：通配符与选择集（ssget）配合构建动态选择集，还可以与 entget 配合，结合实体名筛选。其实跟正则的功能差不多。回复：通配符的用处实在太大了，数据流开发中，批量修改块内某一属性前，要做的过滤功能可以通过这个来实现。（2020-10-06）做一张术语卡片。』——已完成
+
+The following rules apply to wild-card patterns:
+
+1. Alphabetic characters and numerals are treated literally in the pattern.
+
+2. Brackets can be used to specify optional characters or a range of letters or digits.
+
+3. A question mark ( ? ) matches a single character.
+
+4. An asterisk ( * ) matches a sequence of characters; and, certain other special characters have special meanings within the pattern. When you use the * character at the beginning and end of the search pattern, you can locate the desired portion anywhere in the string.
+
+In the following examples, a string variable called matchme has been declared and initialized:
+
+```c
+(setq matchme "this is a string - test1 test2 the end")
+// out
+"this is a string - test1 test2 the end"
+```
+
+The following code checks whether or not matchme begins with the four characters "this":
+
+```c
+(wcmatch matchme "this*")
+// out
+T
+```
+
+The following code illustrates the use of brackets in the pattern. In this case, wcmatch returns T if matchme contains "test4", "test5", "test6" (4-6), or "test9" (note the use of the * character):
+
+```c
+(wcmatch matchme "*test[4-69]*")
+// out
+nil
+```
+
+In this case, wcmatch returns nil because matchme does not contain any of the strings indicated by the pattern. However, using the pattern "test[4-61]" does match the string because it contains “test1”.
+
+```c
+(wcmatch matchme "*test[4-61]*")
+// out
+T
+```
+
+The pattern string can specify multiple patterns, separated by commas. The following code returns T if matchme equals "ABC", or if it begins with "XYZ", or if it ends with "end".
+
+```c
+(wcmatch matchme "ABC,XYZ*,*end")
+// out
+T
+```
+
+### 0205. 术语卡——lisp 里的函数
+
+You can define your own functions. Once defined, these functions can be used at the AutoCAD Command prompt, the Visual LISP Console prompt, or within other AutoLISP expressions, just as you use the standard functions.
+
+You can also create your own commands, because commands are just a special type of function. The defun function combines a multiple expressions into a function or command. This function requires at least three arguments: 1) Name of the function (symbol name). 2) Argument list (a list of arguments and local variables used by the function). The argument list can be nil or an empty list (). 3) AutoLISP expressions to execute with the function or command. There must be at least one expression in a function definition.
+
+```c
+(defun symbol_name ( arguments / local_variables )
+  expressions
+)
+```
+
+1『 / 后面的就代表是局部变量。arguments 准确的翻译即为函数的形参。』
+
+The following example code defines a simple function that accepts no arguments and displays the message “bye” at the AutoCAD Command prompt. Note that the argument list is defined as an empty list (()):
+
+```c
+(defun DONE ( ) (prompt "\nbye! "))
+// out
+DONE
+```
+
+Once the DONE function is defined, you can use it as you would any other function. For example, the following code prints a message, then says “bye” at the AutoCAD Command prompt:
+
+```c
+(prompt "The value is 127.") (DONE) (princ)
+
+The value is 127
+
+bye!
+```
+
+1『这种代码定义出的命令跟我之前想的有出入，只能在源码里调用，在 CAD 里的话必须使用命令：(DONE)；正巧发现，lisp 的函数名是不分大小写的，用命令 (done) 也可以跑。』
+
+Note how the previous example invokes the princ function without an argument to suppress an ending nil and achieves a quiet exit.
+
+1『正巧弄明白了为什么语句最后要加 (princ)，是为了消除字符串尾部的「nil」，否则显示出来的尾部就是 bye!nil 了。』
+
+Functions that accept no arguments may seem useless. However, you might use this type of function to query the state of certain system variables or conditions and to return a value that indicates those values.
+
+1-2『这应该也是个关键点。回复：上面的信息直觉上很有用，但目前还是没看懂。lisp 里的函数做一张术语卡片。（2020-10-06）』——已完成
+
+If an AutoLISP function is defined with a name of the form C:xxx, it can be issued at the AutoCAD Command prompt in the same manner as a built-in AutoCAD command. This is true regardless of whether you define and load the function in VLISP or at the AutoCAD Command prompt. You can use this feature to add new commands to AutoCAD or to redefine existing commands.
+
+1『解答了前面的疑问。这样的话就可以在 CAD 里跟常规命令一样使用了。』
+
+To use functions as AutoCAD commands, be sure they adhere to the following rules:
+
+1. The function name must use the form C:xxx (upper- or lowercase characters). The C: portion of the name must always be present; the XXX portion is a command name of your choice. C:xxx functions can be used to override built-in AutoCAD commands. (See About Redefining AutoCAD Commands [AutoLISP].)
+
+2. The function must be defined with no arguments. However, local variables are permitted and it is a good programming practice to use them.
+
+1『不能有参数，但可以使用局部变量。』
+
+### 0301. 任意卡——MNL 源文件
 
 AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
 
@@ -173,7 +408,7 @@ AutoLISP source code can also be stored in files with a .mnl extension. A Menu A
 
 For example, on Windows, when acad.cuix is loaded, the file named acad.mnl is also loaded if it is found in one of the folders listed as part of the AutoCAD Support File Search Path. If a CUIx file does not have a corresponding MNL file, no error is displayed, the product just moves and loading other support files.
 
-### 0402. 任意卡——quote (‘) 与使用 list 函数创建 list 数据的区别
+### 0302. 任意卡——quote (‘) 与使用 list 函数创建 list 数据的区别
 
 The latter uses the value of variable abc as the X component of the point list. If all members of a list are constant values, you can use the quote function to explicitly define the list, rather than the list function. The quote function returns an expression without evaluation, as follows:
 
@@ -208,6 +443,41 @@ The quote and (‘) functions cannot be used to create a list using values that 
 ```
 
 1-2『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。做一张任意卡片。』——已完成
+
+### 0303. 任意卡——获取实体类型（entity type）
+
+ssget 的官方文档：[Pomoc: ssget (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-0F37CC5E-1559-4011-B8CF-A3BA0973B2C3)
+
+```c
+(ssget [sel-method] [pt1 [pt2]] [pt-list] [filter-list])
+```
+
+By specifying filters, you can obtain a selection set that includes all objects of a given type, on a given layer, or of a given color. The following example returns a selection set that consists only of blue lines that are part of the implied selection set .
+
+```c
+(ssget "_I" '((0 . "LINE") (62 . 5)))
+
+// 获取特定块名称的块实体
+(setq ss (ssget '((0 . "INSERT") (2. "InstrumentP"))))
+```
+
+找到一个获取实体类型（entity type）的办法，比如获取块的类型（2020-10-07）。
+
+```c
+// 选择一个实体对象
+(setq ss (ssget))
+// 获取该实体对象的数据列表
+(setq ent (entget (ssname ss 0)))
+// 查看数据列表，列表里是一个个 dotted pairs，键是 0 的即为该实体对象的类型，块的是 "INSERT"，单行文字的是 "TEXT"
+!ent
+```
+
+## 实战源码解析
+
+### 01. 批量替换特定块内的某一属性值
+
+
+
 
 ## 0101Introduction.md
 
@@ -952,7 +1222,7 @@ Note: If you do not add the second expression in the above example, a value of 3
 
 A variable that has not been assigned a value has a default value of nil. This is different from blank, which is considered a character string, and different from 0, which is a number. So, in addition to checking a variable for its current value, you can test to determine if the variable has been assigned a value.
 
-1『类似于 JavaScript 里的 undefined 的，哈哈。』
+1『类似于 JavaScript 里的 undefined 的，哈哈。回复：nil 用的地方超级多，很多地方会先判断该变量（比如选择集）是否为空，非空的后再做相关的逻辑处理，`(if (/= nil (ssname ss i)) (......))`。（2020-10-06）』
 
 Each variable consumes a small amount of memory, so it is good programming practice to reuse variable names or set variables to nil when their values are no longer needed. Setting a variable to nil releases the memory used to store that variable's value. If you no longer need the val variable, you can release its value from memory with the following expression:
 
@@ -1100,7 +1370,19 @@ The following example code returns all the characters in a filename except the l
 "bigfile"
 ```
 
-1『上面的方法可以获得一个文件的文件名。应该也可以直接用字符串函数来实现，待实现。（2020-07-03）』
+1『
+
+上面的方法可以获得一个文件的文件名。应该也可以直接用字符串函数来实现，待实现。（2020-07-03）
+
+回复：在 autolisp 里确实可以直接通过内置的函数来实现获取文件名，数据流开发过程中用到的（2020-10-06）。
+
+```c
+(set fn filename)
+(set currentDir (getvar "dwgprefix"))
+(set fn (strcat currentDir fn ".txt"))
+```
+
+』
 
 You can combine the two previous lines of code into one if you do not need the length of the string stored in the newlen variable for other functions.
 
@@ -1203,6 +1485,40 @@ You can substitute all occurrences of an item in a list with a new item with the
 ("one" 1.0 "one" 1 "one")
 ```
 
+3『[帮助: cons (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B418E7-DB3D-4CBE-954E-F070F0A7CB2B)
+
+```c
+(cons new-first-element list-or-atom)
+```
+
+new-first-element. Type: Integer, Real, String, List, T, or nil. Element to be added to the beginning of a list. This element can be an atom or a list.
+
+list-or-atom. Type: Integer, Real, String, List, or T. A list or an atom.
+
+Return Values. Type: List. The value returned depends on the data type of list-or-atom. If list-or-atom is a list, cons returns that list with new-first-element added as the first item in the list. If list-or-atom is an atom, cons returns a dotted pair consisting of new-first-element and list-or-atom.
+
+```c
+(cons 'a '(b c d))
+(A B C D)
+
+(cons '(a) '(b c d))
+((A) B C D)
+
+(cons 'a 2)
+(A . 2)
+```
+
+替换块内某一个属性值的源码里有一片段，这里的 cons 形成的就是一个 dotted pair。3.8.2 小结里有 dotted pair 的相关知识。（2020-10-06）——做一张术语卡片——已完成
+
+```c
+(setq a (cons 1 "17.03.10"))
+(setq b (assoc 1 entx))
+(entmod (subst a b entx))
+```
+
+』
+
+
 #### 3.8.1 About Point Lists (AutoLISP)
 
 AutoLISP utilizes the list data type to represent graphical coordinate values. Points are expressed as lists with either two or three numerical values. 1) 2D point - List with two integer or real numbers, (X and Y, respectively), as in (3.4 7.52). 2) 3D point – List with three integer or real numbers, (X, Y, and Z, respectively), as in (3.4 7.52 1.0). You can use the list function to form point lists, as shown in the following examples:
@@ -1271,7 +1587,7 @@ The quote and (‘) functions cannot be used to create a list using values that 
 
 1-2『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。做一张任意卡片。』——已完成
 
-Retrieve the X, Y, and Z components of a point list. You can retrieve the X, Y, and Z components of a point list using three additional built-in functions; car, cadr, and caddr. The following code examples show how to retrieve values from a 3D point list. The pt variable is set to the point 1.5,3.2,2:
+Retrieve the X, Y, and Z components of a point list. You can retrieve the X, Y, and Z components of a point list using three additional built-in functions; car, cadr, and caddr. The following code examples show how to retrieve values from a 3D point list. The pt variable is set to the point `1.5,3.2,2`:
 
 ```c
 (setq pt '(1.5 3.2 2.0))
@@ -1382,6 +1698,19 @@ The assoc function returns a specified list from within an association list rega
 LEN
 ```
 
+1『
+
+醍醐灌顶。dotted pairs 就是 lisp 语言里的对象、「键-值」对、字典，哈哈。通过 assoc 函数可以提前特定「键」的值，这么一来，批量替换块内某一属性那边的源码片段渐渐看明白了。（2020-10-06）
+
+```c
+(setq a (cons 1 "17.03.10"))
+(setq b (assoc 1 entx))
+(entmod (subst a b entx))
+```
+
+』
+
+
 ### 3.9 About Basic Output Functions (AutoLISP)
 
 AutoLISP includes functions for controlling the AutoCAD display, including both text and graphics windows. Some functions also display information in the Visual LISP Console window. The major text display functions are: 1) prin1. 2) princ. 3) print. 4) prompt.
@@ -1437,6 +1766,8 @@ returns "The \"allowable\" tolerance is 1/4\""
 
 If you invoke the princ function without passing an expression to it, it displays nothing and has no value to return. So if you add a call to princ without any arguments, after an expression, there is no return value. This is a great way to suppress the nil that is often returned by the last expression within a custom function. This practice is called exiting quietly.
 
+1『这里解释了为啥那么多语句是以 `(princ)` 收尾的。（2020-10-06）』
+
 #### 3.9.3 About Control Characters in Strings (AutoLISP)
 
 Within quoted string values, the backslash (\) character allows control characters (or escape codes) to be included. The following lists the currently recognized control characters:
@@ -1475,11 +1806,7 @@ Prints a newline to the command line
 ```
 No arguments.
 
-Return Values
-
-Type: nil
-
-Always returns nil.
+Return Values. Type: nil. Always returns nil.
 
 Remarks: The terpri function is not used for file I/O. To write a newline to a file, use prin1, princ, or print.
 
@@ -1502,7 +1829,7 @@ Sam 103
 
 A string can be compared to a wild-card pattern with the wcmatch function. This can be helpful when needing to build a dynamic selection set (in conjunction with ssget) or to retrieve extended entity data by application name (in conjunction with entget). The wcmatch function compares a single string to a pattern. The function returns T if the string matches the pattern, and nil if it does not. The wild-card patterns are similar to the regular expressions used by many system and application programs.
 
-1『直觉这里又是一个关键点。讲的应该就是通配符的知识点。回复：通配符与选择集（ssget）配合构建动态选择集，还可以与 entget 配合，结合实体名筛选。其实跟正则的功能差不多。』
+1-2『直觉这里又是一个关键点。讲的应该就是通配符的知识点。回复：通配符与选择集（ssget）配合构建动态选择集，还可以与 entget 配合，结合实体名筛选。其实跟正则的功能差不多。做一张术语卡片。』——已完成
 
 The following rules apply to wild-card patterns:
 
@@ -1580,7 +1907,7 @@ You can also create your own commands, because commands are just a special type 
 )
 ```
 
-1『/ 后面的就代表是局部变量。arguments 准确的翻译即为函数的形参。』
+1『 / 后面的就代表是局部变量。arguments 准确的翻译即为函数的形参。』
 
 The following example code defines a simple function that accepts no arguments and displays the message “bye” at the AutoCAD Command prompt. Note that the argument list is defined as an empty list (()):
 
@@ -1600,7 +1927,7 @@ The value is 127
 bye!
 ```
 
-1『这种代码定义出的命令跟我之前想的有出入，只能在源码里调用，在 CAD 里的话必须使用命令：(DONE)；这里正巧发现，lisp 的函数名是部分大小写的，用命令 (done) 也可以跑。』
+1『这种代码定义出的命令跟我之前想的有出入，只能在源码里调用，在 CAD 里的话必须使用命令：(DONE)；正巧发现，lisp 的函数名是不分大小写的，用命令 (done) 也可以跑。』
 
 Note how the previous example invokes the princ function without an argument to suppress an ending nil and achieves a quiet exit.
 
@@ -1608,7 +1935,7 @@ Note how the previous example invokes the princ function without an argument to 
 
 Functions that accept no arguments may seem useless. However, you might use this type of function to query the state of certain system variables or conditions and to return a value that indicates those values.
 
-1『这应该也是个关键点。』
+1-2『这应该也是个关键点。回复：上面的信息直觉上很有用，但目前还是没看懂。lisp 里的函数做一张术语卡片。（2020-10-06）』——已完成
 
 #### 3.11.2 About Compatibility of Defun with Earlier Releases of AutoCAD (AutoLISP)
 
@@ -1718,13 +2045,15 @@ Note: If you are using the Visual LISP Editor in the Windows release, the Consol
 
 You cannot usually use an AutoLISP statement to respond to prompts from an AutoLISP-implemented command. However, if your AutoLISP routine makes use of the initget function, you can use arbitrary keyboard input with certain functions. This allows an AutoLISP-implemented command to accept an AutoLISP statement as a response. Also, the values returned by a DIESEL expression can perform some evaluation of the current drawing and return these values to AutoLISP.
 
+1『直觉上这里的信息重要的，目前看不懂。（2020-10-06）』
+
 #### 3.11.3.2 About Redefining AutoCAD Commands (AutoLISP)
 
 Using AutoLISP, you can undefine and replace the functionality of a built-in AutoCAD command. The UNDEFINE command allows you to disable a built-in AutoCAD command, and then using AutoLISP it can be replaced by defining a user-defined command of the same name with the defun function. A command remains undefined for the current editing session only. The built-in definition of a command can be restored with the REDEFINE command.
 
 You can execute the built-in definition of a command after it has been undefined by specifying its name prefixed with a period (.). For example, if you undefine QUIT, you can access the command by entering .quit at the AutoCAD Command prompt. This is also the syntax that should be used within the AutoLISP command function to make sure your user-defined functions and commands work predictably even if a built-in command has been undefined.
 
-1『命令失效后，如果在命令前面加个 . 还是可以借着用的。』
+1『命令失效后，如果在命令前面加个 . 还是可以接着用的。』
 
 It is recommended that you protect your menus, scripts, and AutoLISP programs by using the period-prefixed forms of all commands. This ensures that your applications use the built-in command definitions rather than a redefined command.
 
@@ -2016,7 +2345,7 @@ With AutoLISP, many functions require you to pass them values. These values are 
 
 Note: You can define multiple user functions with the same name, but have each definition accept a different number or type of arguments.
 
-1『同一个名字定义多个函数，每个函数设不同的形参。这倒是个折中的办法。回复：这不就是函数重载么，哈哈。（2020-07-03）』
+1-2『同一个名字定义多个函数，每个函数设不同的形参。这倒是个折中的办法。回复：这不就是函数重载么，哈哈。（2020-07-03）回复：这个可以实现多态了，模拟面向对象范式，太 NB 了。做一张主题卡片。（2020-10-06）』——已完成
 
 The symbols used as arguments are defined in the argument list before the local variables. Arguments are treated as a special type of local variable; argument variables are not available outside the function. You cannot define a function with multiple arguments of the same name. If you do use the same name for multiple arguments, the following error message is displayed at the AutoCAD Command prompt:
 
@@ -2156,3 +2485,35 @@ Command: (inters (foo) (bar) (baz))
 ```
 
 AutoLISP evaluated (foo), then passed the result to inters. Since the result was a valid 2D point list, AutoLISP proceeds to evaluate (bar), where it determines that the evaluated result is a string, an invalid argument type for inters.
+
+## 0106. Error Codes and FQA
+
+### 6.1 Error Codes Reference (AutoLISP)
+
+The following table shows the values of error codes generated by AutoLISP. The ERRNO system variable is set to one of these values when an AutoLISP function call causes an error that AutoCAD detects. AutoLISP applications can inspect the current value of ERRNO with (getvar "errno").
+
+The ERRNO system variable is not always cleared to zero. Unless it is inspected immediately after an AutoLISP function has reported an error, the error that its value indicates may be misleading. This variable is always cleared when starting or opening a drawing.
+
+Note: The possible values of ERRNO, and their meanings, are subject to change.
+
+### 6.2 FAQ: What is the Difference Between Lightweight Polylines and Old-Style Polylines? (AutoLISP)
+
+A lightweight polyline (lwpolyline) is defined in the drawing database as a single graphic entity unlike the old-style polyline, which is defined as a group of subentities.
+
+Lwpolylines display faster and consume less disk space and RAM. As of AutoCAD Release 14, 3D polylines are always created as old-style polyline entities, and 2D polylines are created as lwpolyline entities, unless they are curved or fitted with the AutoCAD PEDIT command. When a drawing from an earlier release is opened in AutoCAD Release 14 or a later release, all 2D polylines convert to lwpolylines automatically, unless they have been curved or fitted or contain extended data (xdata).
+
+### 6.3 FAQ: What Symbol Table Entries Cannot Be Renamed or Modified? (AutoLISP)
+
+Most entries in the symbol tables can be renamed or modified with a few exceptions.
+
+The following table shows which symbol table entries cannot be modified or renamed, except that most LAYER symbol table entries can be renamed and xdata can be modified on all symbol table entries.
+
+### 6.4 FAQ: How Do I Process Curve-Fit and Spline-Fit Polylines? (AutoLISP)
+
+An old-style polyline might contain vertices that were not created explicitly; these auxiliary vertices were inserted automatically by the AutoCAD PEDIT command's Fit and Spline options.
+
+You can safely ignore these additional vertices when stepping through a polyline with entnext because changes to these vertices will be discarded the next time the AutoCAD PEDIT command is used to fit or convert the polyline to a spline. The old-style polyline entity's group code 70 flags indicate whether the polyline has been curve-fit (bit value 2) or spline-fit (bit value 4). If neither bit is set, all the polyline's vertices are regular user-defined vertices.
+
+However, if the curve-fit bit (2) is set, alternating vertices of the polyline have the bit value 1 set in their 70 group code to indicate that they were inserted by the curve-fitting process. If you use entmod to move the vertices of such a polyline with the intent of refitting the curve by means of the AutoCAD PEDIT command, ignore these vertices.
+
+Likewise, if the old-style polyline entity's spline-fit flag bit (bit 4) is set, an assortment of vertices will be found—some with flag bit 1 (inserted by curve fitting if the AutoCAD SPLINESEGS system variable was negative), some with bit value 8 (inserted by spline fitting), and all others with bit value 16 (spline frame-control point). Here again, if you use entmod to move the vertices and you intend to refit the spline afterward, move only the control-point vertices.
