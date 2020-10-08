@@ -44,7 +44,7 @@ AutoLISP code can be entered directly at the Command prompt or loaded using a LS
 
 VBA code statements are entered into the Visual Basic Editor and stored in a DVB file. Once a VBA project has been loaded, you can execute the macros through the Macros dialog box. Unlike standard AutoCAD commands, macros cannot be executed from the Command prompt, but once executed, a macro can prompt users for values at the Command prompt or with a user form. It is possible to execute a macro from a command macro that is activated with a command button displayed in the AutoCAD user interface or as a tool on a tool palette.
 
-Part I: AutoCAD Customization: Increasing Productivity through Personalization
+### Part I: AutoCAD Customization: Increasing Productivity through Personalization
 
 Chapter 1: Establishing the Foundation for Drawing Standards In this chapter, you'll learn how to establish drawing standards. Drawing standards allow you to enforce consistency across multiple drawings. By enforcing a set of standards, you can easily share your drawings and make them look the same when plotting them.
 
@@ -66,7 +66,7 @@ Chapter 9: Defining Shapes, Linetypes, and Hatch Patterns In this chapter, you w
 
 Chapter 10: Using, Loading, and Managing Custom Files In this chapter, you will learn how to use, manage, and migrate custom files. After you have spent the time customizing AutoCAD, all you have left to do is deploy and manage your files.
 
-Part II: AutoLISP: Productivity through Programming
+### Part II: AutoLISP: Productivity through Programming
 
 Chapter 11: Quick Start for New AutoLISP Programmers In this chapter, you'll get an introduction to the AutoLISP programming language. I begin by showing you how to enter AutoLISP expressions at the Command prompt and execute standard AutoCAD commands. After that, you are eased into some basic programming concepts that allow you to perform conditional tests and repeat expressions. The chapter wraps up with creating and loading an AutoLISP file into the AutoCAD program.
 
@@ -96,7 +96,7 @@ Chapter 22: Working with ActiveX/COM Libraries (Windows only) In this chapter, y
 
 Chapter 23: Implementing Dialog Boxes (Windows only) In this chapter, you will learn how to create and use dialog boxes with an AutoLISP program. Dialog boxes provide an alternative method of requesting input from the user and are implemented using Dialog Control Language (DCL).
 
-Part III: AutoCAD VBA: Programming with VBA and ActiveX (Windows only)
+### Part III: AutoCAD VBA: Programming with VBA and ActiveX (Windows only)
 
 Chapter 24: Understanding the AutoCAD VBA Environment In this chapter, you'll get an introduction to the Visual Basic Editor. I begin by showing you how to verify whether the VBA environment for AutoCAD has been installed and, if not, how to install it. After that, you are eased into navigating the Visual Basic Editor and managing VBA programs. The chapter wraps up with learning how to execute macros and access the help documentation.
 

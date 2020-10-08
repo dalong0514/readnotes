@@ -1,8 +1,18 @@
 # 2019117Practical-Common-LispR00
 
+## 记忆时间
+
+## 基本信息
+
 Copyright © 2005 by Peter Seibel
 
-## 记忆时间
+[Learn Common Lisp | Common Lisp](https://lisp-lang.org/learn/)
+
+[Common Lisp Books | Common Lisp](https://lisp-lang.org/books/#practical-common-lisp)
+
+电子书及源码：[Practical Common Lisp](http://www.gigamonkeys.com/book/)
+
+作者的博客：[gigamonkeys](http://www.gigamonkeys.com/)
 
 ## 卡片
 

@@ -10,123 +10,111 @@ I recommend that anyone who wants to create custom programs for AutoCAD consider
 
 AutoLISP was the first programming language I learned, and it took me a bit of time to grasp not only AutoLISP but general computation logic as well. However, once I got some traction with AutoLISP and programming concepts, things started to click for me. Even to this day, AutoLISP is still very near and dear to me as a programming option when it comes to creating custom programs for AutoCAD.
 
-When learning a programming language like AutoLISP, consider approaching it how you might learn a spoken language. First you need to learn some key fundamentals about the language and then spend time practicing to get good at it. As you start to learn AutoLISP, you will want to learn how to do the following:
-
-Construct an AutoLISP expression
-
-Execute an AutoLISP expression
-
-Select an environment to create and edit AutoLISP programs
-
-Store AutoLISP expressions in a file to reuse
+When learning a programming language like AutoLISP, consider approaching it how you might learn a spoken language. First you need to learn some key fundamentals about the language and then spend time practicing to get good at it. As you start to learn AutoLISP, you will want to learn how to do the following: 1) Construct an AutoLISP expression. 2) Execute an AutoLISP expression. 3) Select an environment to create and edit AutoLISP programs. 4) Store AutoLISP expressions in a file to reuse.
 
 I have no doubt that with time and practice you too can be successful in leveraging AutoLISP to be more productive in your daily work.
 
-## 2.2 Understanding the Syntax of an Expression
+### 2.1.1 Understanding the Syntax of an Expression
 
 An AutoLISP expression is the formation of one or more items known as atoms. An atom represents a function or variable name, operator, or value. A valid AutoLISP expression must start with one of the following characters:
 
-( —Opening Parenthesis An opening parenthesis indicates the beginning of an AutoLISP expression and must be paired with a closing parenthesis [ ) ] to indicate the end of an AutoLISP expression. The opening and closing parentheses do not need to be on the same lines in an AutoLISP program, but each AutoLISP program must contain the same number of opening and closing parentheses.
+1. ( —Opening Parenthesis. An opening parenthesis indicates the beginning of an AutoLISP expression and must be paired with a closing parenthesis `)` to indicate the end of an AutoLISP expression. The opening and closing parentheses do not need to be on the same lines in an AutoLISP program, but each AutoLISP program must contain the same number of opening and closing parentheses.
 
-! —Exclamation Point An exclamation point is used to retrieve the current value assigned to a variable. The exclamation point must be placed in front of the variable's name and can only be used at the AutoCAD Command prompt. I discuss variables later, in the「Storing and Retrieving Values」section.
+2. ! —Exclamation Point. An exclamation point is used to retrieve the current value assigned to a variable. The exclamation point must be placed in front of the variable's name and can only be used at the AutoCAD Command prompt. I discuss variables later, in the「Storing and Retrieving Values」section.
 
 Table 12.1 shows various AutoLISP expressions and a description of what happens when the expression is evaluated at the AutoCAD Command prompt.
 
-Table 12.1 AutoLISP expressions
+`!cenPT` Returns the current value of a user-defined variable named cenPT, which by default is nil.
 
-Expression Description
+`(setq cenPT '(5 5 0))` Defines a user-defined variable named cenPT and assigns it a list that represents a coordinate point of 5,5,0 in a drawing.
 
-!cenPT Returns the current value of a user-defined variable named cenPT, which by default is nil.
+`(command "._circle" cenPT 6.25)` Executes the AutoCAD circle command with the AutoLISP command function and draws a circle at the coordinate point assigned to the user-defined variable cenPT with a radius of 6.25 units.
 
-(setq cenPT '(5 5 0)) Defines a user-defined variable named cenPT and assigns it a list that represents a coordinate point of 5,5,0 in a drawing.
+`(- 10 (/ 6 3))` Returns a value of 8. When AutoLISP expressions are nested, the AutoLISP interpreter evaluates the innermost expression first. Then the next expression works its way to the outermost expression. (/ 6 3) is evaluated first and returns a value of 2. The outermost expression is then seen as being (- 10 2), which evaluates to the final value of 8.
 
-(command "._circle" cenPT 6.25) Executes the AutoCAD circle command with the AutoLISP command function and draws a circle at the coordinate point assigned to the user-defined variable cenPT with a radius of 6.25 units.
-
-(- 10 (/ 6 3)) Returns a value of 8. When AutoLISP expressions are nested, the AutoLISP interpreter evaluates the innermost expression first. Then the next expression works its way to the outermost expression. (/ 6 3) is evaluated first and returns a value of 2. The outermost expression is then seen as being (- 10 2), which evaluates to the final value of 8.
-
-(setq msg (strcat "Hello " "World!")) The AutoLISP strcat function concatenates multiple string values into a single string value. The value of「Hello World!」is returned by the strcat function and assigned to the user-defined variable msg.
+`(setq msg (strcat "Hello " "World!"))` The AutoLISP strcat function concatenates multiple string values into a single string value. The value of「Hello World!」is returned by the strcat function and assigned to the user-defined variable msg.
 
 Now that you have a basic understanding of what an AutoLISP expression looks like, the next step is to look at the inner workings of an AutoLISP expression's structure. A valid AutoLISP expression must start with an opening parenthesis and end with a closing one. Typically, between the two parentheses you will find the atoms that should be evaluated; remember that an atom represents a function name and the values that a function should perform an action on. There are two exceptions to this, though. The first exception is an exclamation point, which I mentioned earlier. The other exception is when an apostrophe is used instead of the AutoLISP list function. Figure 12.1 explains the structure of an AutoLISP expression.
 
-Figure 12.1 Structure of an AutoLISP expression
-
 When you type an AutoLISP expression, make sure that you have at least one space between each atom. You can have more than one space, but at least one space must be present. A space lets AutoCAD know where the name of the function or operator ends and the first value (if one is provided) begins. The following expression demonstrates what happens when a space after an operator is missing; the space is missing after the / operator.
 
+```c
 (- 10 (/6 3))
+```
 
 When the function is evaluated by AutoLISP, it thinks you are trying to use a function named /6 instead of the / operator. You'll see this error:
 
+```
 ; error: no function definition:
 
 /6 is displayed as a result of the missing space.
+```
 
-NOTE
+NOTE: The AutoLISP programming language, unlike other popular programming languages such as C# or C++, is not case sensitive. This means that the functions and user-defined variables are evaluated in exactly the same way, regardless of how you enter them—uppercase, lowercase, or mixed case. For example, COMMAND and command have the same meaning. The only time case matters is when you're using string values, which must start and end with quotation marks (").
 
-The AutoLISP programming language, unlike other popular programming languages such as C# or C++, is not case sensitive. This means that the functions and user-defined variables are evaluated in exactly the same way, regardless of how you enter them—uppercase, lowercase, or mixed case. For example, COMMAND and command have the same meaning. The only time case matters is when you're using string values, which must start and end with quotation marks (").
+1『 AutoLISP 里变量不区分大小写的。』
 
-Executing Expressions
+### 2.1.2 Executing Expressions
 
 AutoCAD supports a variety of ways to execute an AutoLISP expression. When first learning AutoLISP, you'll find being able to enter an AutoLISP expression directly at the AutoCAD Command prompt a huge benefit; you can see in real time the results of an entered expression. When you type an opening parenthesis or exclamation point at the Command prompt, AutoCAD passes control to the AutoLISP interpreter, which carries out the evaluation of the expression. After the expression is evaluated, control is then returned to AutoCAD and the standard Command prompt is displayed.
 
 The following exercise creates a circle with a center point of 5,5,0 and a radius of 6.25 units using AutoLISP expressions at the Command prompt:
 
-Launch AutoCAD, if it is not already running.
+1. Launch AutoCAD, if it is not already running.
 
-At the AutoCAD Command prompt, type (setq cenPT '(5 5 0)) and press Enter. This defines a variable named cenPt and assigns it the coordinate value of 5,5,0. AutoLISP returns (5 5 0) to the Command prompt because the AutoLISP setq function returns the value it assigned to the variable.
+2. At the AutoCAD Command prompt, type `(setq cenPT '(5 5 0))` and press Enter. This defines a variable named cenPt and assigns it the coordinate value of 5,5,0. AutoLISP returns (5 5 0) to the Command prompt because the AutoLISP setq function returns the value it assigned to the variable.
 
-Type !cenPT and press Enter.
+3. Type !cenPT and press Enter.
 
-Verify that the expected result, the value (5 5 0), is returned. If you see a value of nil, the expression you executed in step 2 was mistyped. Before continuing, repeat step 2 if a value of nil was returned.
+4. Verify that the expected result, the value (5 5 0), is returned. If you see a value of nil, the expression you executed in step 2 was mistyped. Before continuing, repeat step 2 if a value of nil was returned.
 
-Type (command "._circle" cenPt "6.25") and press Enter. The AutoLISP command function starts the circle command and draws a circle with a center point of 5,5,0 (or the current value assigned to the user-defined variable cenPt) and a radius of 6.25 units. I explain more about the command function in the section「Using the command Function」later in this chapter.
+5. Type `(command "._circle" cenPt "6.25")` and press Enter. The AutoLISP command function starts the circle command and draws a circle with a center point of 5,5,0 (or the current value assigned to the user-defined variable cenPt) and a radius of 6.25 units. I explain more about the command function in the section「Using the command Function」later in this chapter.
 
-Type (command "._zoom" "_e") and press Enter. The AutoLISP command function starts the zoom command and then uses the Extents option.
+6. Type `(command "._zoom" "_e")` and press Enter. The AutoLISP command function starts the zoom command and then uses the Extents option.
 
-NOTE
-
-The exclamation point is required only when you want to see the current value assigned to a variable. As you saw in step 5, variables can be used in an AutoLISP expression without first entering an exclamation point.
+NOTE: The exclamation point is required only when you want to see the current value assigned to a variable. As you saw in step 5, variables can be used in an AutoLISP expression without first entering an exclamation point.
 
 In addition to executing AutoLISP expressions at the AutoCAD Command prompt, you can use the following:
 
-Scripts and Command Macros AutoLISP expressions can be used in script (SCR) files and command macros that are defined for use with a user-interface element in a customization (CUIx/CUI) file, just as you enter expressions at the Command prompt. I discussed SCR files in Chapter 8,「Automating Repetitive Tasks,」and you learned about CUIx/CUI files in Chapter 5,「Customizing the AutoCAD User Interface for Windows,」and Chapter 6,「Customizing the AutoCAD User Interface for Mac.」
+1. Scripts and Command Macros AutoLISP expressions can be used in script (SCR) files and command macros that are defined for use with a user-interface element in a customization (CUIx/CUI) file, just as you enter expressions at the Command prompt. I discussed SCR files in Chapter 8,「Automating Repetitive Tasks,」and you learned about CUIx/CUI files in Chapter 5,「Customizing the AutoCAD User Interface for Windows,」and Chapter 6,「Customizing the AutoCAD User Interface for Mac.」
 
-A File You can store AutoLISP expressions in an ASCII text file and then load that file into AutoCAD. Entering expressions at the Command prompt is a great way to learn AutoLISP and is useful when only a few expressions need to be executed, but it is not ideal for complex programs or when you want to reuse the same expressions several times. I explain how to create and manage AutoLISP files in Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」
+2. A File You can store AutoLISP expressions in an ASCII text file and then load that file into AutoCAD. Entering expressions at the Command prompt is a great way to learn AutoLISP and is useful when only a few expressions need to be executed, but it is not ideal for complex programs or when you want to reuse the same expressions several times. I explain how to create and manage AutoLISP files in Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」
 
-Accessing the AutoLISP Documentation
+### 2.1.3 Accessing the AutoLISP Documentation
 
 The AutoLISP documentation is part of the AutoCAD Help system. The help system includes the AutoLISP Reference and AutoLISP Developer's Guide topics. Although this book is designed to make it easy to learn the AutoLISP programming language and doubles as a reference that you can refer to time and time again when working with AutoLISP, it just is not possible to cover every function and technique here.
 
 The AutoLISP Reference topics explain what each function does in the AutoLISP programming language. The AutoLISP Developer's Guide topics explore advanced techniques and features that are not covered in this book.
 
-You can see the AutoLISP documentation written for AutoCAD 2015 here:
-
-http://help.autodesk.com/view/ACD/2015/ENU/
+You can see the AutoLISP documentation written for AutoCAD 2015 here: http://help.autodesk.com/view/ACD/2015/ENU/
 
 On the Autodesk AutoCAD 2015 Help landing page, click the Developer Home Page link. On the AutoCAD Developer Help Home Page, use the Function Listing (By Name And Feature) and AutoLISP Developer's Topic Map links to access the AutoLISP documentation. The URL points to the AutoCAD 2015 on Windows documentation, but the AutoLISP documentation is designed for cross-platform development.
 
-Storing and Retrieving Values
+## 2.2 Storing and Retrieving Values
 
 Programs—and programming languages, for that matter—are typically designed with one of two basic concepts in mind: to receive/consume or return/give. Most AutoLISP functions are designed to receive one or more values in the form of arguments, and then return a single value that can then be used by another function or returned to the user. When a function returns a value, you can store that value for future use—in the current custom function that is executing or even between different AutoCAD sessions. After a value has been stored, you can then retrieve the value for use by your program when it is needed.
 
 You can store and retrieve values using these techniques:
 
-User-Defined Variables User-defined variables allow you to temporarily store a value within a function or globally while a drawing remains open. A variable is defined using the AutoLISP setq function. For example, you can use the expression (setq msg "Hello AutoLISP! ") to define a variable named msg and assign it the text string「Hello AutoLISP!」I discuss user-defined variables in the next section.
+1. User-Defined Variables. User-defined variables allow you to temporarily store a value within a function or globally while a drawing remains open. A variable is defined using the AutoLISP setq function. For example, you can use the expression `(setq msg "Hello AutoLISP! ")` to define a variable named msg and assign it the text string「Hello AutoLISP!」I discuss user-defined variables in the next section.
 
-System Variables System variables store values that are often used to control the behavior of AutoCAD commands or the drawing environment, and even allow access to the values that are calculated by some AutoCAD commands, such as area or distance. Unlike with user-defined variables, you can't create your own system variables. The system variable might represent a value that is stored in the current drawing or as part of the current AutoCAD user profile. See the section「Working with System Variables」later in this chapter.
+2. System Variables. System variables store values that are often used to control the behavior of AutoCAD commands or the drawing environment, and even allow access to the values that are calculated by some AutoCAD commands, such as area or distance. Unlike with user-defined variables, you can't create your own system variables. The system variable might represent a value that is stored in the current drawing or as part of the current AutoCAD user profile. See the section「Working with System Variables」later in this chapter.
 
-Environment Variables Similar to system variables, environment variables are used to control the behavior of AutoCAD commands or the drawing environment. You can access the values of environment variables that are defined by AutoCAD or even create your own as needed. Environment variables are stored as part of the AutoCAD user profile and as part of the Windows Registry or as a property list (Plist) file on Mac OS. I discuss accessing environment variables later in this chapter in the「Accessing Environment Variables」section.
+3. Environment Variables. Similar to system variables, environment variables are used to control the behavior of AutoCAD commands or the drawing environment. You can access the values of environment variables that are defined by AutoCAD or even create your own as needed. Environment variables are stored as part of the AutoCAD user profile and as part of the Windows Registry or as a property list (Plist) file on Mac OS. I discuss accessing environment variables later in this chapter in the「Accessing Environment Variables」section.
 
-Windows Registry (Windows Only) The Windows Registry is used to store settings that can be retrieved across different drawings and between application sessions. You can access the settings that AutoCAD reads and writes, and the Windows Registry is also a perfect place to store your own settings for your custom programs. I explain how to work with the Windows Registry in Chapter 18,「Working with the Operating System and External Files.」
+4. Windows Registry (Windows Only). The Windows Registry is used to store settings that can be retrieved across different drawings and between application sessions. You can access the settings that AutoCAD reads and writes, and the Windows Registry is also a perfect place to store your own settings for your custom programs. I explain how to work with the Windows Registry in Chapter 18,「Working with the Operating System and External Files.」
 
-Property List File (Mac OS Only) Similar to the Windows Registry, Plist files are used to store settings that can be retrieved across different drawings and between application sessions. As with the Window Registry, you can access the settings that AutoCAD reads and writes, and the Plist files are also a perfect place to store your own settings for your custom programs. I explain in Chapter 18 how to work with the Plist files.
+5. Property List File (Mac OS Only). Similar to the Windows Registry, Plist files are used to store settings that can be retrieved across different drawings and between application sessions. As with the Window Registry, you can access the settings that AutoCAD reads and writes, and the Plist files are also a perfect place to store your own settings for your custom programs. I explain in Chapter 18 how to work with the Plist files.
 
-Extended Data and Records Extended data (XData) and records (XRecords) allow you to attach custom information to a graphical object or create a custom dictionary in a drawing that can be used to store multiple entries containing custom information. XData is a great way to add unique information to an object in a drawing. AutoCAD uses XData to help facilitate dimension overrides, implement some multiline text features, and provide other features. You'll learn about XData in Chapter 16,「Creating and Modifying Graphical Objects,」and XRecords in Chapter 17,「Creating and Modifying Nongraphical Objects.」
+6. Extended Data and Records. Extended data (XData) and records (XRecords) allow you to attach custom information to a graphical object or create a custom dictionary in a drawing that can be used to store multiple entries containing custom information. XData is a great way to add unique information to an object in a drawing. AutoCAD uses XData to help facilitate dimension overrides, implement some multiline text features, and provide other features. You'll learn about XData in Chapter 16,「Creating and Modifying Graphical Objects,」and XRecords in Chapter 17,「Creating and Modifying Nongraphical Objects.」
 
-External Data Files AutoLISP allows you to write values to and read values from an ASCII text file that can be stored outside of AutoCAD on a local or network drive. I explain how to access external files in Chapter 18. If you are using Windows and have Microsoft Office installed, you can also access information that can be created and modified using an application that is part of Microsoft Office—ActiveX/COM. I discuss using COM with AutoLISP in Chapter 22,「Working with ActiveX/COM Libraries (Windows Only).」
+7. External Data Files. AutoLISP allows you to write values to and read values from an ASCII text file that can be stored outside of AutoCAD on a local or network drive. I explain how to access external files in Chapter 18. If you are using Windows and have Microsoft Office installed, you can also access information that can be created and modified using an application that is part of Microsoft Office—ActiveX/COM. I discuss using COM with AutoLISP in Chapter 22,「Working with ActiveX/COM Libraries (Windows Only).」
 
-Configuration Files Configuration (CFG) files are used to store settings that can be retrieved across different drawings and between application sessions. Storing values in a CFG file is not as common as it once was, but you should be familiar with storing and retrieving values from a CFG file just in case you are working on an older program. I recommend using one of the other techniques for storing values that can be accessed across multiple drawings or between application sessions, such as the Windows Registry, Plist files, or even external data files. You'll learn how to work with CFG files in Chapter 18.
+8. Configuration Files. Configuration (CFG) files are used to store settings that can be retrieved across different drawings and between application sessions. Storing values in a CFG file is not as common as it once was, but you should be familiar with storing and retrieving values from a CFG file just in case you are working on an older program. I recommend using one of the other techniques for storing values that can be accessed across multiple drawings or between application sessions, such as the Windows Registry, Plist files, or even external data files. You'll learn how to work with CFG files in Chapter 18.
 
-Setting and Using Variables
+1『汇总：1）第 6 点里，感觉 Extended Data and Records 有大用处，目前没遇到应用点，相关的知识也没去研读。2）妙啊，第 7 点提到，可以读取本地文件和网络文件作为输入数据，去看第 18 章的内容。（2020-10-08）』
+
+### 2.2.1 Setting and Using Variables
 
 In an AutoLISP program, it is not uncommon to want to use the same value more than once or to use a value returned by one function as a value for an argument in another function. Variables allow you to define a named location in memory to temporarily store a value. AutoLISP supports two types of variables: user-defined and predefined.
 
@@ -134,31 +122,35 @@ User-defined variables are those that you or another developer create for use in
 
 Predefined variables are those that are automatically defined and assigned a specific value by the AutoLISP environment for each drawing that is created or opened.
 
-Defining and Using User-Defined Variables
+### 2.2.2 Defining and Using User-Defined Variables
 
 You can define a variable, called a user-defined variable, by using the AutoLISP setq function. By default each user-defined variable exists only in the context of the drawing in which it is defined; once the drawing is closed, the variable and its value are lost.
 
-NOTE
-
-If you need to retain the value assigned to a variable beyond the drawing it was defined in, consider using a custom dictionary object to store the value in a drawing, or use the Registry (Windows) or Plist file (Mac OS). I discussed these and other ways of storing values earlier, in the「Storing and Retrieving Values」section.
+NOTE: If you need to retain the value assigned to a variable beyond the drawing it was defined in, consider using a custom dictionary object to store the value in a drawing, or use the Registry (Windows) or Plist file (Mac OS). I discussed these and other ways of storing values earlier, in the「Storing and Retrieving Values」section.
 
 The following shows the syntax of the setq function:
 
+```c
 (setq var_name value)
+```
 
-var_name The var_name argument represents the name of the user-defined variable you want to define and assign a value to.
+`var_name`. The `var_name` argument represents the name of the user-defined variable you want to define and assign a value to.
 
-value The value argument represents the data that you want to assign to the variable specified by the var_name argument.
+value. The value argument represents the data that you want to assign to the variable specified by `the var_name` argument.
 
 The setq function always returns the value that is assigned to the last variable in the expression.
 
 The following AutoLISP expressions assign a coordinate value of 2,2,0 and numeric value of 6.25 to user-defined variables named pt and dia:
 
+```c
 (setq pt '(2 2 0)) (setq dia 6.25)
+```
 
 Although the setq function is commonly used to define a variable and then assign that variable a value, it can also be used to define multiple variable and value pairings. The following AutoLISP expression defines multiple variables and then assigns them a value:
 
+```c
 (setq pt '(2 2 0) dia 6.25)
+```
 
 Once a variable has been defined and a value assigned, you can use it as an argument with another AutoLISP expression or return its current value at the AutoCAD Command prompt. There is nothing special you need to do in order to use a variable in an AutoLISP expression, but you need to include an exclamation point before the variable name in order to return its current value at the AutoCAD Command prompt. For example, to return the value of the variable dia at the AutoCAD Command prompt you would type !dia and press Enter. (The exclamation point isn't necessary when you're using the variable inside an AutoLISP expression that begins and ends with parentheses.)
 
@@ -178,11 +170,7 @@ At the Specify center point for circle or [3P/2P/Ttr (tan tan radius)]: prompt, 
 
 At the Specify radius of circle or [Diameter]: prompt, type !rad and press Enter. The value of the rad variable is returned and used for the circle's radius. The circle command ends and the circle is drawn.
 
-Using Predefined Variables
-
-
-
-
+### 2.2.3 Using Predefined Variables
 
 VBA projects (DVB) (Windows only)(Windows only)
 
@@ -250,9 +238,7 @@ JavaScript (Windows Only) JavaScript (JS), the most recent programming language 
 
 C++ and Objective-C C++ (Windows) and Objective-C (Mac OS) are two programming languages that are based on the C programming language. Both of these languages require you to download and obtain the ObjectARX SDK, which contains the libraries required to communicate with AutoCAD. An ObjectARX application must be compiled before it can be loaded into AutoCAD. If you want to develop applications with C++, you need to install Microsoft Visual Studio. (Again, Express is free, or you can purchase a license for Professional or higher.) If you are developing applications with Objective-C, you will need to install Xcode. Both languages support the development of graphical user interfaces with MFC (Windows) or Cocoa (Mac OS). ObjectARX programs must be compiled with the .arx (Windows) or .bundle (Mac OS) file extension. ARX and BUNDLE files can be loaded into AutoCAD using the appload command or with the arxload AutoLISP function.
 
-NOTE
-
-You can download the ObjectARX SDK (which you can use to develop a program using VB.NET, C#, C++, or Objective-C) from www.objectarx.com.
+NOTE: You can download the ObjectARX SDK (which you can use to develop a program using VB.NET, C#, C++, or Objective-C) from www.objectarx.com.
 
 Loading a Custom Program
 
@@ -358,11 +344,6 @@ TIP
 
 For additional information on issues that could affect migrating custom settings and files, or using custom program files from an earlier release, see the CAD Administration Guide in the AutoCAD Help system (docs.autodesk.com/ACD/2014/ENU/).
 
-
-
-
-
-
 In addition to the user-defined variables that you might create and use in AutoLISP expressions, the AutoLISP environment defines three variables that are assigned a specific value and are accessible from all drawing files that are opened. The variables that are predefined by the AutoLISP environment are as follows:
 
 PI The PI variable is assigned the value of 3.141592653589793, which is a constant value that represents the ratio of a circle's diameter to its circumference.
@@ -375,13 +356,13 @@ WARNING
 
 You should never change the value of a predefined variable; doing so could affect the execution of the AutoLISP programs that use them.
 
-Controlling the Scope of a Variable
+### 2.2.4 Controlling the Scope of a Variable
 
 Variables can be accessed from the global or local scope of the AutoLISP environment. By default, all variables defined with the setq function are accessible globally. Each of the predefined variables that are defined by the AutoLISP environment are accessible from the global scope of the AutoLISP environment. However, you typically want to limit the number of such variables in the current drawing. Variables that are defined with the global scope continue to consume system resources until you set the variable to the value of nil, whereas those defined as local variables have their system resources freed up when the execution of the function in which they are defined ends.
 
 Another reason to limit global variables is what I refer to as unexpected data. Unexpected data occurs when a variable is assigned one value by your program and changed to another value by a different program. For example, say you assigned a global variable the value of 6.25, but another program (one written by you or even a third-party program) is using that same variable name and assigns the variable the value of (1「A」). Based on how your program is designed, it might be using the variable as a way to persist the last value chosen by the user, much the same way the AutoCAD circle command remembers the last radius used. When your program goes to use the value, it gets a list instead of a numeric value, which must be handled differently and doesn't even hold a value that is useful to you any longer.
 
-Unique Function and Global Variable Names
+### Unique Function and Global Variable Names
 
 AutoLISP is kind of like the Wild West—at times it can feel lawless since you have the ability to stake a claim to a name and still have someone come in and take it from you. For example, you can create a function named MakeLayer or a user-defined global variable named pt. A third party could do the same. If the third-party LSP file contains the same function or it defines a variable with the same name, your loaded function and defined variable are replaced.
 
@@ -409,11 +390,9 @@ Type localvar and press Enter. Click OK to exit the alert message box. The varia
 
 Type globalvar and press Enter. Click OK to exit the alert message box. The alert message box displays the text string assigned to the *apc_var* variable in the global scope, which is the value Global. When the localvar function was executed in step 5, the*apc_var* variable was assigned a value that existed only while the function was executing; it did not overwrite the value of the globally defined *apc_var* variable.
 
-TIP
+TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP vl-bb-ref and vl-bb-set functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
 
-User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP vl-bb-ref and vl-bb-set functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
-
-Working with System Variables
+### 2.2.5 Working with System Variables
 
 System variables are used to alter the way commands work, describe the current state of a drawing or AutoCAD environment, and even specify where the support files are for your custom programs. Many of the settings that are exposed by system variables are associated with controls in dialog boxes and palettes; other settings are associated with various command options. For example, many of the settings in the Options (Windows) or Application Preferences (Mac OS) dialog box are accessible from system variables and even environment variables (which I discuss in the next section).
 
@@ -443,7 +422,7 @@ TIP
 
 The AutoCAD Help system is a great resource for learning about system variables. However, if you need to support multiple AutoCAD releases you will need to reference the documentation for each release. To make it easier to identify which system variables are supported in the recent and past AutoCAD releases, I created a list of system variables that spans a large number of AutoCAD releases; you can view the list here: www.hyperpics.com/system_variables/.
 
-Accessing Environment Variables
+### 2.2.6 Accessing Environment Variables
 
 Environment variables allow you to access settings that are, at times, accessible only from the Options (Windows) or Application Preferences (Mac OS) dialog box and not through system variables or from the Command prompt. Unlike with system variables, though, there is no official documentation that explains which environment variables are available or what values they can be assigned.
 
@@ -481,7 +460,7 @@ I created a list (though not complete or up to date) of the environment variable
 
 http://www.hyperpics.com/downloads/resources/customization/autolisp/AutoCAD%20Environment%20Variables.pdf
 
-Exploring Data Types
+## 2.3 Exploring Data Types
 
 Programming languages use data types to help you identify the following:
 
@@ -533,7 +512,7 @@ You can use the IsString function by entering it at the AutoCAD Command prompt o
 
 (IsString "2") T (IsString 2) nil (IsString PAUSE) T (IsString PI) nil
 
-Leveraging AutoCAD and Third-Party Commands
+## 2.4 Leveraging AutoCAD and Third-Party Commands
 
 The AutoLISP command and command-s functions allow you to leverage the functionality of a standard AutoCAD command or a command defined by a loaded third-party application. Because these functions allow you to use a command, they are often some of the first functions that many new to AutoLISP learn.
 
@@ -631,11 +610,11 @@ Type (command "._plot") and press Enter. The plot command starts and the Plot di
 
 When the Plot dialog box opens, click Cancel.
 
-Defining and Using Custom Functions
+## 2.5 Defining and Using Custom Functions
 
 Although you can execute AutoLISP expressions one at a time at the Command prompt, doing so makes it hard to repeat or use more than a few AutoLISP expressions at a time. You can group AutoLISP expressions together into a new custom function and then execute all of the expressions in the group by using the function name you specify.
 
-Defining a Custom Function
+### Defining a Custom Function
 
 The AutoLISP defun function is used to define a custom function. A custom function defined with defun behaves similar to a standard AutoLISP function, but it can also mimic a command that can be entered directly at the AutoCAD Command prompt or used in a script or command macro. Typically, a function is defined when you want to make it easier to execute and repeat a specific set of AutoLISP expressions.
 
@@ -689,7 +668,7 @@ TIP
 
 Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
 
-Example: Drawing a Rectangle
+## 2.6 Example: Drawing a Rectangle
 
 I don't introduce any new functions or techniques in this section, but I want to explain how to use many of the AutoLISP functions explored in this chapter to define a custom function that creates a new layer and draws a rectangle. I will break down each AutoLISP expression of the function in more detail in Table 12.3.
 
