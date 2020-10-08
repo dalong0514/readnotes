@@ -1,18 +1,10 @@
-# Chapter 12 Understanding AutoLISP
+# 0202. Understanding AutoLISP
 
 The AutoLISP® programming language allows you to automate workflows in the Autodesk® AutoCAD® drawing environment. At first glance, AutoLISP can feel more than a bit intimidating because of its syntax and use of parentheses. This is not an uncommon feeling for those who are new to AutoLISP and it's why some claim that LISP stands for「Lost in Stupid Parentheses」instead of its true meaning,「LISt Processing.」Although AutoLISP and even programming in general can take time to learn and understand, venturing down a path that is often less traveled can prove to be the difference that makes you and the company you work for stand out from others.
 
-Here are some of the reasons I recommend AutoLISP:
+Here are some of the reasons I recommend AutoLISP: 1) The programs can be entered directly at the AutoCAD Command prompt and can be used in a script or CUI/CUIx files. 2) AutoLISP leverages your existing understanding of AutoCAD commands and system variables. 3) AutoLISP programs can be executed on Windows or Mac OS with no changes based on the functions used. 4) AutoLISP programs are low maintenance; programs written last week or even a decade ago often run with few to no changes in the latest release.
 
-The programs can be entered directly at the AutoCAD Command prompt and can be used in a script or CUI/CUIx files.
-
-AutoLISP leverages your existing understanding of AutoCAD commands and system variables.
-
-AutoLISP programs can be executed on Windows or Mac OS with no changes based on the functions used.
-
-AutoLISP programs are low maintenance; programs written last week or even a decade ago often run with few to no changes in the latest release.
-
-Getting Started with AutoLISP
+## 2.1 Getting Started with AutoLISP
 
 I recommend that anyone who wants to create custom programs for AutoCAD consider AutoLISP as their first language to learn unless they have previous experience with another supported programming language, such as Visual Basic, VB.NET, C#, or C++. Even if you do know a programming language, you can use AutoLISP to quickly create a new custom program.
 
@@ -30,7 +22,7 @@ Store AutoLISP expressions in a file to reuse
 
 I have no doubt that with time and practice you too can be successful in leveraging AutoLISP to be more productive in your daily work.
 
-Understanding the Syntax of an Expression
+## 2.2 Understanding the Syntax of an Expression
 
 An AutoLISP expression is the formation of one or more items known as atoms. An atom represents a function or variable name, operator, or value. A valid AutoLISP expression must start with one of the following characters:
 
@@ -742,5 +734,3 @@ Expression Description
 Figure 12.2 Result of the drawplate custom function
 
 Now that you have seen the drawplate function in action, Table 12.3 provides a breakdown of what each expression is doing in the function.
-
-

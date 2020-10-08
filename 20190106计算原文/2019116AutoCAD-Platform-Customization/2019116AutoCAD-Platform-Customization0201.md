@@ -172,118 +172,98 @@ Entering individual expressions can be helpful when you are first learning AutoL
 
 The following steps demonstrate how to define a custom function named RectangularRevCloud that can be entered at the AutoCAD Command prompt:
 
-At the AutoCAD Command prompt, type the following and press Enter: (defun c:RectangularRevCloud ( / arclength)
+1. At the AutoCAD Command prompt, type the following and press Enter: `(defun c:RectangularRevCloud ( / arclength)`. The defun function is used to define a function. The function defined is named RectangularRevCloud and contains one local variable named arclength. Local variables are accessible only to the function in which they are defined.
 
-The defun function is used to define a function. The function defined is named RectangularRevCloud and contains one local variable named arclength. Local variables are accessible only to the function in which they are defined.
+2. Type the following and press Enter: `(if (= (tblsearch "layer" "RevCloud") nil) (command "-layer" "m" "RevCloud" "c" "1" "" "") )`. The expressions test to see if a layer named RevCloud exists, and if it doesn't, the layer is created and assigned the color red (1).
 
-Type the following and press Enter: (if (= (tblsearch "layer" "RevCloud") nil) (command "-layer" "m" "RevCloud" "c" "1" "" "") )
+3. Type the following and press Enter: `(command "rectang" PAUSE PAUSE)`. The rectang command is used to draw a rectangle based on the two points the user provides.
 
-The expressions test to see if a layer named RevCloud exists, and if it doesn't, the layer is created and assigned the color red (1).
+4. Type the following and press Enter: `(if (> (setq arclength (abs (getvar "dimscale"))) 1) (setq arclength (* arclength 2)) (setq arclength 1.0) )`. The `>` operator and the if function determine whether the value of the dimscale system variable is greater than 1. If so, the value is used to set the arc length for the revision cloud that will be created from the rectangle. If the value of dimscale is less than 1, then the value of 1 is used. The calculated maximum arc length value is assigned to the user-defined variable named arclength.
 
-Type the following and press Enter: (command "rectang" PAUSE PAUSE)
+5. Type the following and press Enter: `(command "revcloud" "a" (/ arclength 2) arclength "o" (entlast) "") (princ) )`. The revcloud command converts the rectangle that was drawn with the rectang command to a revision cloud. The princ function keeps the last expression in the function definition from returning a value and allowing the function to「exit quietly.」The final closing parenthesis closes the defun function.
 
-The rectang command is used to draw a rectangle based on the two points the user provides.
+6. Type the following and press Enter: `(defun c:RRC ( / )(c:RectangularRevCloud))`. The RRC custom function acts as an alias to the RectangulatRevCloud function and makes it easier to start the function from the Command prompt.
 
-Type the following and press Enter: (if (> (setq arclength (abs (getvar "dimscale"))) 1) (setq arclength (* arclength 2)) (setq arclength 1.0) )
+7. Type RectangularRevCloud and press Enter.
 
-The > operator and the if function determine whether the value of the dimscale system variable is greater than 1. If so, the value is used to set the arc length for the revision cloud that will be created from the rectangle. If the value of dimscale is less than 1, then the value of 1 is used. The calculated maximum arc length value is assigned to the user-defined variable named arclength.
+8. At the Specify first corner point or [Chamfer/Elevation/Fillet/Thickness/Width]: prompt, specify the first corner of the rectangle.
 
-Type the following and press Enter: (command "revcloud" "a" (/ arclength 2) arclength "o" (entlast) "") (princ) )
+9. At the Specify other corner point or [Area/Dimensions/Rotation]: prompt, specify the opposite corner of the rectangle. The rectangle is drawn on the layer「RevCloud」and converted to a revision cloud using the Object (o) option of the revcloud command; see Figure 11.3.
 
-The revcloud command converts the rectangle that was drawn with the rectang command to a revision cloud. The princ function keeps the last expression in the function definition from returning a value and allowing the function to「exit quietly.」The final closing parenthesis closes the defun function.
-
-Type the following and press Enter: (defun c:RRC ( / )(c:RectangularRevCloud))
-
-The RRC custom function acts as an alias to the RectangulatRevCloud function and makes it easier to start the function from the Command prompt.
-
-Type RectangularRevCloud and press Enter.
-
-At the Specify first corner point or [Chamfer/Elevation/Fillet/Thickness/Width]: prompt, specify the first corner of the rectangle.
-
-At the Specify other corner point or [Area/Dimensions/Rotation]: prompt, specify the opposite corner of the rectangle. The rectangle is drawn on the layer「RevCloud」and converted to a revision cloud using the Object (o) option of the revcloud command; see Figure 11.3.
-
-Type RRC and press Enter. Specify the two corners of the rectangle. RRC is simply a shortcut to the new RectangularRevCloud function.
-
-Figure 11.3 Converting a rectangle to a revision cloud
+10. Type RRC and press Enter. Specify the two corners of the rectangle. RRC is simply a shortcut to the new RectangularRevCloud function. Figure 11.3 Converting a rectangle to a revision cloud
 
 In the previous exercise, you did the following:
 
-Grouped a set of AutoLISP expressions into a custom function to make it easier to execute the expressions (see Chapter 12 for more information)
+1. Grouped a set of AutoLISP expressions into a custom function to make it easier to execute the expressions (see Chapter 12 for more information).
 
-Accessed the value of a system variable (see Chapter 12 for more information)
+2. Accessed the value of a system variable (see Chapter 12 for more information).
 
-Storing and Loading AutoLISP Expressions
+## 1.5 Storing and Loading AutoLISP Expressions
 
-AutoLISP expressions entered at the AutoCAD Command prompt are accessible from that drawing and only while that drawing remains open. You can store AutoLISP expressions in an LSP file that, once saved, can then be loaded into and executed from any drawing file that is opened in AutoCAD. The following exercise explains how to create and load an LSP file named acp_qs.lsp.
+AutoLISP expressions entered at the AutoCAD Command prompt are accessible from that drawing and only while that drawing remains open. You can store AutoLISP expressions in an LSP file that, once saved, can then be loaded into and executed from any drawing file that is opened in AutoCAD. The following exercise explains how to create and load an LSP file named `acp_qs.lsp`.
 
 If you are on Windows:
 
-Do one of the following: On Windows XP or Windows 7, click Start [All] Programs Accessories Notepad.
+1. Do one of the following: On Windows XP or Windows 7, click Start [All] Programs Accessories Notepad. On Windows 8, on the Start Screen, type note and then select Notepad from the Search bar.
 
-On Windows 8, on the Start Screen, type note and then select Notepad from the Search bar.
+2. In Notepad, click File Save As.
 
-In Notepad, click File Save As.
+3. In the Save As dialog box, browse to the Documents (or My Documents) folder or the MyCustomFiles folder that you created for the exercises and examples in this book.
 
-In the Save As dialog box, browse to the Documents (or My Documents) folder or the MyCustomFiles folder that you created for the exercises and examples in this book.
+4. In the File Name text box, type acp_qs.lsp.
 
-In the File Name text box, type acp_qs.lsp.
+5. Click the Save As Type drop-down list and select All Files (*.*).
 
-Click the Save As Type drop-down list and select All Files (*.*).
+6. Click the Encoding drop-down list and select ANSI. Click Save.
 
-Click the Encoding drop-down list and select ANSI. Click Save.
+7. In the text editor area, type the following expressions. Replace the square brackets and the text inside them with the current date and your name. 
 
-In the text editor area, type the following expressions. Replace the square brackets and the text inside them with the current date and your name. ; Created [Today's date] by [Your name] – Quick Start Examples ; Zoom shortcuts (defun c:ZE ( / ) (command "._zoom" "e")) (defun c:ZW ( / ) (command "._zoom" "w")) ; Repeat Purge command 3 times to remove nested objects ; and remove zero lines and empty objects (defun c:P3 ( / ) (repeat 3 (command "._-purge" "_all" "*" "_n") ) (command "._-purge" "_z") (command "._-purge" "_e") ) ; List which objects are in a selection set (defun c:ListObjects ( / selectedObjects count ent) (prompt "\nSelect objects to list: ") (setq selectedObjects (ssget) count 0 ) (if (/= selectedObjects nil) (progn (while (> (sslength selectedObjects) count) (setq ent (ssname selectedObjects count)) (terpri) (prompt (cdr (assoc 0 (entget ent)))) (setq count (1+ count)) ) (prompt (strcat "\nTotal objects processed: " (itoa count))) ) ) (princ) )
+    `; Created [Today's date] by [Your name] – Quick Start Examples ; Zoom shortcuts (defun c:ZE ( / ) (command "._zoom" "e")) (defun c:ZW ( / ) (command "._zoom" "w")) ; Repeat Purge command 3 times to remove nested objects ; and remove zero lines and empty objects (defun c:P3 ( / ) (repeat 3 (command "._-purge" "_all" "*" "_n") ) (command "._-purge" "_z") (command "._-purge" "_e") ) ; List which objects are in a selection set (defun c:ListObjects ( / selectedObjects count ent) (prompt "\nSelect objects to list: ") (setq selectedObjects (ssget) count 0 ) (if (/= selectedObjects nil) (progn (while (> (sslength selectedObjects) count) (setq ent (ssname selectedObjects count)) (terpri) (prompt (cdr (assoc 0 (entget ent)))) (setq count (1+ count)) ) (prompt (strcat "\nTotal objects processed: " (itoa count))) ) ) (princ) )`
 
-Click File Save.
+8. Click File Save.
 
 If you are running AutoCAD on Mac OS, use the following steps to create an LSP file named acp_qs.lsp:
 
-In the Mac OS Finder, click Go Applications. In the Finder window, double-click TextEdit.
+1. In the Mac OS Finder, click Go Applications. In the Finder window, double-click TextEdit.
 
-In TextEdit, click TextEdit Preferences. In the Preferences dialog box, on the New Document tab click Plain Text and deselect Smart Quotes. Close the dialog box.
+2. In TextEdit, click TextEdit Preferences. In the Preferences dialog box, on the New Document tab click Plain Text and deselect Smart Quotes. Close the dialog box.
 
-Click File New to create a plain ASCII text file.
+3. Click File New to create a plain ASCII text file.
 
-Click File Save and type acp_qs.lsp in the Save As text box. On the sidebar at the left, click Documents or the MyCustomFiles folder that you created for the exercises and examples in this book. Click Save.
+4. Click File Save and type acp_qs.lsp in the Save As text box. On the sidebar at the left, click Documents or the MyCustomFiles folder that you created for the exercises and examples in this book. Click Save.
 
-If prompted to use the .lsp extension, click Use.Lsp.
+5. If prompted to use the .lsp extension, click Use.Lsp.
 
-In the text editor area, type the following expressions. Replace the square brackets and the text inside them with the current date and your name. ; Created [Today's date] by [Your name] – Quick Start Examples ; Zoom shortcuts (defun c:ZE ( / ) (command "._zoom" "e")) (defun c:ZW ( / ) (command "._zoom" "w")) ; Repeat Purge command 3 times to remove nested objects ; and remove zero lines and empty objects (defun c:P3 ( / ) (repeat 3 (command "._-purge" "_all" "*" "_n") ) (command "._-purge" "_z") (command "._-purge" "_e") ) ; List which objects are in a selection set (defun c:ListObjects ( / selectedObjects count ent) (prompt "\nSelect objects to list: ") (setq selectedObjects (ssget) count 0 ) (if (/= selectedObjects nil) (progn (while (> (sslength selectedObjects) count) (setq ent (ssname selectedObjects count)) (terpri) (prompt (cdr (assoc 0 (entget ent)))) (setq count (1+ count)) ) (prompt (strcat "\nTotal objects processed: " (itoa count))) ) ) (princ) )
+6. In the text editor area, type the following expressions. Replace the square brackets and the text inside them with the current date and your name. 
 
-Click File menu Save.
+    `; Created [Today's date] by [Your name] – Quick Start Examples ; Zoom shortcuts (defun c:ZE ( / ) (command "._zoom" "e")) (defun c:ZW ( / ) (command "._zoom" "w")) ; Repeat Purge command 3 times to remove nested objects ; and remove zero lines and empty objects (defun c:P3 ( / ) (repeat 3 (command "._-purge" "_all" "*" "_n") ) (command "._-purge" "_z") (command "._-purge" "_e") ) ; List which objects are in a selection set (defun c:ListObjects ( / selectedObjects count ent) (prompt "\nSelect objects to list: ") (setq selectedObjects (ssget) count 0 ) (if (/= selectedObjects nil) (progn (while (> (sslength selectedObjects) count) (setq ent (ssname selectedObjects count)) (terpri) (prompt (cdr (assoc 0 (entget ent)))) (setq count (1+ count)) ) (prompt (strcat "\nTotal objects processed: " (itoa count))) ) ) (princ) )`
+
+7. Click File menu Save.
 
 The next exercise explains how to load the acp_qs.lsp file you created in the previous steps:
 
-Launch AutoCAD, or switch to AutoCAD if it is already running, and do one of the following:
+1. Launch AutoCAD, or switch to AutoCAD if it is already running, and do one of the following: 1) On the ribbon, click Manage tab Customization panel Load Application (Windows). 2) On the menu bar, click Tools Load Application (Mac OS). 3) At the Command prompt, type appload and press Enter (Windows and Mac OS).
 
-On the ribbon, click Manage tab Customization panel Load Application (Windows).
+2. When the Load/Unload Applications dialog box (see Figure 11.4) opens, browse to the Documents (or My Documents) folder or the MyCustomFiles folder, and select the acp_qs.lsp file. Click Load.
 
-On the menu bar, click Tools Load Application (Mac OS).
+3. If the File Loading - Security Concerns message box is displayed, click Load.
 
-At the Command prompt, type appload and press Enter (Windows and Mac OS).
+4. Click Close to return to the drawing area.
 
-When the Load/Unload Applications dialog box (see Figure 11.4) opens, browse to the Documents (or My Documents) folder or the MyCustomFiles folder, and select the acp_qs.lsp file. Click Load.
+5. Draw some objects and create about three layers in your drawing.
 
-If the File Loading - Security Concerns message box is displayed, click Load.
+6. At the Command prompt, type ze and press Enter. The drawing is zoomed to its extents.
 
-Click Close to return to the drawing area.
+7. Type zw and press Enter. Specify the two corners of the window. The drawing is zoomed in based on the defined window.
 
-Draw some objects and create about three layers in your drawing.
+8. Type listobjects and press Enter. Select the objects to list and press Enter. Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or open the AutoCAD Text Window on Windows). The object names of the selected objects are output to the command-line window. The following is sample output:
 
-At the Command prompt, type ze and press Enter. The drawing is zoomed to its extents.
+    `LINE LWPOLYLINE CIRCLE CIRCLE Total objects processed: 4`
 
-Type zw and press Enter. Specify the two corners of the window. The drawing is zoomed in based on the defined window.
-
-Type listobjects and press Enter. Select the objects to list and press Enter. Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or open the AutoCAD Text Window on Windows). The object names of the selected objects are output to the command-line window. The following is sample output:
-
-LINE LWPOLYLINE CIRCLE CIRCLE Total objects processed: 4
-
-Type p3 and press Enter. The layers that you created in step 5, which are not being used in the drawing, should now have been removed.
-
-Figure 11.4 Loading the acp_qs.lsp file
+9. Type p3 and press Enter. The layers that you created in step 5, which are not being used in the drawing, should now have been removed. Figure 11.4 Loading the acp_qs.lsp file
 
 In the previous exercise, you did the following:
 
-Created an LSP file to store AutoLISP expressions (see Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs,」for more information)
+1. Created an LSP file to store AutoLISP expressions (see Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs,」for more information).
 
-Loaded an LSP file into AutoCAD (see Chapter 20 for more information)
+2. Loaded an LSP file into AutoCAD (see Chapter 20 for more information).

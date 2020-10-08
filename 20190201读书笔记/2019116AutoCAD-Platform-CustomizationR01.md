@@ -122,3 +122,32 @@ In the previous exercise, you did the following:
 
 1『变量自增 1 的简化版写法：`(setq cnt (1+ cnt))`，其中 `1+` 也是一个函数。（2020-10-08）』
 
+### 1.4 Grouping Expressions
+
+Entering individual expressions can be helpful when you are first learning AutoLISP or when you are developing a new program, but it isn't ideal for you to do each time you want to execute a set of AutoLISP expressions. The AutoLISP programming language allows you to define a custom function that can be executed at the Command prompt or from a command macro assigned to a user-interface element, such as a ribbon or toolbar button.
+
+The following steps demonstrate how to define a custom function named RectangularRevCloud that can be entered at the AutoCAD Command prompt:
+
+......
+
+In the previous exercise, you did the following:
+
+1. Grouped a set of AutoLISP expressions into a custom function to make it easier to execute the expressions (see Chapter 12 for more information).
+
+2. Accessed the value of a system variable (see Chapter 12 for more information).
+
+### 1.5 Storing and Loading AutoLISP Expressions
+
+AutoLISP expressions entered at the AutoCAD Command prompt are accessible from that drawing and only while that drawing remains open. You can store AutoLISP expressions in an LSP file that, once saved, can then be loaded into and executed from any drawing file that is opened in AutoCAD. The following exercise explains how to create and load an LSP file named `acp_qs.lsp`.
+
+......
+
+In the previous exercise, you did the following:
+
+1. Created an LSP file to store AutoLISP expressions (see Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs,」for more information).
+
+2. Loaded an LSP file into AutoCAD (see Chapter 20 for more information).
+
+## 0202. Understanding AutoLISP
+
+
