@@ -116,17 +116,15 @@ You can store and retrieve values using these techniques:
 
 ### 2.2.1 Setting and Using Variables
 
-In an AutoLISP program, it is not uncommon to want to use the same value more than once or to use a value returned by one function as a value for an argument in another function. Variables allow you to define a named location in memory to temporarily store a value. AutoLISP supports two types of variables: user-defined and predefined.
+In an AutoLISP program, it is not uncommon to want to use the same value more than once or to use a value returned by one function as a value for an argument in another function. Variables allow you to define a named location in memory to temporarily store a value. AutoLISP supports two types of variables: user-defined and predefined. 1) User-defined variables are those that you or another developer create for use in an AutoLISP program. 2) Predefined variables are those that are automatically defined and assigned a specific value by the AutoLISP environment for each drawing that is created or opened.
 
-User-defined variables are those that you or another developer create for use in an AutoLISP program.
-
-Predefined variables are those that are automatically defined and assigned a specific value by the AutoLISP environment for each drawing that is created or opened.
-
-### 2.2.2 Defining and Using User-Defined Variables
+### 2.2.1.1 Defining and Using User-Defined Variables
 
 You can define a variable, called a user-defined variable, by using the AutoLISP setq function. By default each user-defined variable exists only in the context of the drawing in which it is defined; once the drawing is closed, the variable and its value are lost.
 
 NOTE: If you need to retain the value assigned to a variable beyond the drawing it was defined in, consider using a custom dictionary object to store the value in a drawing, or use the Registry (Windows) or Plist file (Mac OS). I discussed these and other ways of storing values earlier, in the「Storing and Retrieving Values」section.
+
+1『上面的知识点以后肯定会用到，用「custom dictionary object」或者「Registry」来存储数据，这样的数据可以在不同的图纸之间使用了。』
 
 The following shows the syntax of the setq function:
 
@@ -156,211 +154,39 @@ Once a variable has been defined and a value assigned, you can use it as an argu
 
 The following exercise demonstrates how to define two variables and use their values at the AutoCAD Command prompt:
 
-At the AutoCAD Command prompt, type !cenpt and press Enter. nil should be returned, unless the variable was previously defined.
+1. At the AutoCAD Command prompt, type !cenpt and press Enter. nil should be returned, unless the variable was previously defined.
 
-Type (setq cenpt '(1 2 0)) and press Enter. The variable cenpt is defined and assigned the coordinate value 1,2,0. (1 2 0) is returned by the setq function.
+2. Type (setq cenpt '(1 2 0)) and press Enter. The variable cenpt is defined and assigned the coordinate value 1,2,0. (1 2 0) is returned by the setq function.
 
-Type !cenpt and press Enter. The value of the cenpt variable is returned, which should be (1 2 0).
+3. Type !cenpt and press Enter. The value of the cenpt variable is returned, which should be (1 2 0).
 
-Type (setq rad 3.125) and press Enter. The variable rad is defined and assigned the real numeric value 3.125.
+4. Type (setq rad 3.125) and press Enter. The variable rad is defined and assigned the real numeric value 3.125.
 
-Type circle and press Enter. The circle command is started.
+5. Type circle and press Enter. The circle command is started.
 
-At the Specify center point for circle or [3P/2P/Ttr (tan tan radius)]: prompt, type !cenpt and press Enter. The value of the cenpt variable is returned and used for the circle's center point.
+6. At the Specify center point for circle or [3P/2P/Ttr (tan tan radius)]: prompt, type !cenpt and press Enter. The value of the cenpt variable is returned and used for the circle's center point.
 
-At the Specify radius of circle or [Diameter]: prompt, type !rad and press Enter. The value of the rad variable is returned and used for the circle's radius. The circle command ends and the circle is drawn.
+7. At the Specify radius of circle or [Diameter]: prompt, type !rad and press Enter. The value of the rad variable is returned and used for the circle's radius. The circle command ends and the circle is drawn.
 
-### 2.2.3 Using Predefined Variables
-
-VBA projects (DVB) (Windows only)(Windows only)
-
-Trusted Locations The Trusted Locations node contains the folders of the custom programs that AutoCAD should trust. For files loaded from these locations, AutoCAD does not display a security warning message. I discuss loading custom program files later, in the「Loading a Custom Program」section.
-
-Customization Files The Customization Files node contains the folders where the CUIx or CUI files that define many of the tools in the user interface are stored. You can also define the location that AutoCAD looks in for icons used by your custom tools in the user interface. I discussed customizing the AutoCAD user interface in Chapter 5,「Customizing the AutoCAD User Interface for Windows,」and Chapter 6,「Customizing the AutoCAD User Interface for Mac.」
-
-Printer Support File Path The Printer Support File Path node contains the folders where the printer configuration (PC3/PCM), printer description (PMP), and plot style (CTB/STB) files are stored. I discussed printer configuration and plot styles in Chapter 1,「Establishing the Foundation for Drawing Standards.」
-
-Template Settings The Template Settings node contains the folders where the drawing (DWT) and sheet set/project (DST) template files are stored. I discussed drawing templates in Chapter 1.
-
-Tool Palettes File Locations (Windows Only) The Tool Palettes File Locations node contains the folders where the tool palette (ATC) files are stored for the Tool Palettes window. I discussed tool palettes and the Tool Palettes window in Chapter 7,「Creating Tools and Tool Palettes.」
-
-Action Recorder Settings (Windows Only) The Action Recorder Settings node contains the folders where action macro (ACTM) files that AutoCAD can edit and play back are stored. I discussed action macros and the Action Recorder in Chapter 8,「Automating Repetitive Tasks.」
-
-The following steps explain how to add the MyCustomFiles folder to the Support File Search Path node in the Options dialog box on Windows. This folder is the expected location for the files created as a result of completing the exercises in this book.
-
-Click the Application menu button Options (or at the command prompt, type options and press Enter).
-
-When the Options dialog box opens, click the Files tab.
-
-Select the Support File Search Path node and click Add, and then click Browse.
-
-In the Browse For Folder dialog box, browse to the MyCustomFiles folder that you created for this book in the Documents (or My Documents) folder, or browse to the folder that contains your customized files.
-
-Select the folder that contains your customized files and click OK.
-
-Click OK to save the changes to the Options dialog box.
-
-If you are using AutoCAD on Mac OS, use these steps:
-
-On the menu bar, click AutoCAD <release> Preferences (or at the command prompt, type options and press Enter).
-
-When the Application Preferences dialog box opens, click the Application tab.
-
-Select the Support File Search Path node.
-
-Near the bottom of the dialog box, click the plus sign (+).
-
-In the Open dialog box, browse to the MyCustomFiles folder that you created for this book in the Documents folder, or browse to the folder that contains your customized files.
-
-Select the folder that contains your customized files and click Open.
-
-Click OK to save the changes to the Application Preferences dialog box.
-
-You can change an existing folder in the Options or Application Preferences dialog box by expanding a node and then selecting the node you want to edit. After selecting the folder to edit, click Browse on Windows and select the new folder, or double-click the folder on Mac OS and then select the new folder.
-
-Using and Loading Custom Programs
-
-Everything that I have discussed in this book until now has primarily focused on customizing AutoCAD. While customizing AutoCAD is a great way to increase your productivity, customization does have its limitations when you are trying to automate or simplify complex workflows.
-
-Leveraging one or more of the programming languages that AutoCAD supports with the customization features that you have learned about in this book will help you further increase your productivity. You do not need to learn how to program, but you should be familiar with the programming languages available so you can take advantage of the many custom programs that are available for free (or for a small fee) on the Internet.
-
-What Are Custom Programs?
-
-Custom programs are applications that extend the functionality of AutoCAD through the inclusion of new commands or custom objects, or the extension of a supported programming language. The programming languages that AutoCAD supports allow for a wide range of skills, from basic to advanced. Even if you do not want to learn to be a programmer, having a basic understanding of a language can be beneficial if you download programs from the Internet. If you do decide to learn a programming language, consider AutoLISP and Visual Basic for Applications (VBA), which are fairly easy to learn with no or little previous experience. Here are the programming languages that AutoCAD supports:
-
-AutoLISP AutoLISP is often the first programming language that a drafter or nonprogrammer learns to extend the functionality of AutoCAD. You can write an AutoLISP program using Notepad on Windows or TextEdit on Mac OS, or the Visual LISP® development environment built into the Windows release of AutoCAD. AutoLISP programs have the file extension .lsp. AutoLISP files, which can be compiled, have the file extensions .fas and .vlx. (VLX files are supported on Windows only.) You can load an AutoLISP file by using the appload command or the load AutoLISP function.
-
-VBA (Windows Only) VBA is an extension of the Visual Basic (VB) programming language. VBA is an object-oriented programming language that uses the concept of interactive objects defined with properties, methods, and events. When creating VBA programs, you communicate with AutoCAD using the AutoCAD Object Library to create and modify objects in a drawing or the AutoCAD environment. VBA programs are stored in project files with a .dvb file extension. DVB files can be loaded and executed using the vbaman or vbarun command or with the vl-vbaload or vl-vbarun AutoLISP function.
-
-VB.NET and C# (Windows Only) VB.NET and C# are two of the modern programming languages that AutoCAD supports. Both of these languages require the installation of the.NET Framework, as well as access to specific libraries that are installed with AutoCAD or as part of the ObjectARX software development kit (SDK). Applications created with VB.NET or C# require you to use Microsoft Visual Studio (Express is free, or you can purchase a license for Professional or higher). VB.NET and C# programs must be compiled with the .dll file extension and loaded into AutoCAD using the netload command.
-
-JavaScript (Windows Only) JavaScript (JS), the most recent programming language that AutoCAD supports, was first introduced with AutoCAD 2014. A JS program can be either a standalone file with the .js file extension and loaded with the webload command, or part of an HTML file and displayed with the showhtmlmodalwindow AutoLISP function. You can create a JS or HTML file using Notepad or a specialized editor.
-
-C++ and Objective-C C++ (Windows) and Objective-C (Mac OS) are two programming languages that are based on the C programming language. Both of these languages require you to download and obtain the ObjectARX SDK, which contains the libraries required to communicate with AutoCAD. An ObjectARX application must be compiled before it can be loaded into AutoCAD. If you want to develop applications with C++, you need to install Microsoft Visual Studio. (Again, Express is free, or you can purchase a license for Professional or higher.) If you are developing applications with Objective-C, you will need to install Xcode. Both languages support the development of graphical user interfaces with MFC (Windows) or Cocoa (Mac OS). ObjectARX programs must be compiled with the .arx (Windows) or .bundle (Mac OS) file extension. ARX and BUNDLE files can be loaded into AutoCAD using the appload command or with the arxload AutoLISP function.
-
-NOTE: You can download the ObjectARX SDK (which you can use to develop a program using VB.NET, C#, C++, or Objective-C) from www.objectarx.com.
-
-Loading a Custom Program
-
-As I previously mentioned, AutoCAD supports a variety of programming languages and each has its own method of being loaded into AutoCAD. The most common types of custom files that you will encounter are AutoLISP (LSP) and ObjectARX (ARX/BUNDLE). Understanding how to load an LSP, ARX, or BUNDLE file allows you to take advantage of the many free routines that others have created and made available for download from the Internet over the past two decades.
-
-Starting with AutoCAD 2013 Service Pack 1 and AutoCAD 2014, Autodesk implemented an additional layer of security that you should be aware of that restricts the loading and execution of custom programs without some user interaction. Prior to those two releases, there were no restrictions on loading and executing custom programs. The following list explains the settings and options that affect the loading and execution of custom programs in AutoCAD 2013 and AutoCAD 2014:
-
-AutoCAD 2013 with Service Pack 1 (Windows Only) The system variables and the command-line switch that affect the loading of custom programs in AutoCAD 2013 are as follows: autoload, which specifies whether AutoCAD can automatically load custom files with specific names at startup
-
-autoloadpath, which specifies the folders from which AutoCAD can automatically load custom files with specific names at startup
-
-lispenabled, which indicates whether AutoLISP has been disabled in the current session
-
-/nolisp, which disables the execution of AutoLISP (LSP/FAS/VLX) (Windows only) files in the current session
-
-AutoCAD 2014 The system variables and command-line switches that affect the loading of custom programs in AutoCAD 2014 are as follows: secureload, which specifies whether AutoCAD can load executable files from any folder with or without a warning, or whether it can load files only from the folders specified by the trustedpaths system variable.
-
-trustedpaths, which specifies the folders from which AutoLISP, VBA, Managed.NET, and ObjectARX files can be loaded without user interaction. VBA and Managed.NET are supported on Windows only.
-
-trusteddomains, which specifies the domains and URLs from which JS files can be loaded without user interaction (Windows only).
-
-safemode, which indicates whether executable files can be loaded and executed in the current session.
-
-/safemode, which disables the execution of executable files in the current session (Windows only).
-
--safemode, which disables the execution of executable files in the current session (Mac OS only).
-
-The following steps explain how to load an AutoLISP or ObjectARX application:
-
-Do one of the following: On the ribbon, click the Manage tab Applications panel Load Application (Windows).
-
-On the menu bar, click Tools Load Application (Mac OS).
-
-At the command prompt, type appload and press Enter (Windows and Mac OS).
-
-When the Load/Unload Application dialog box (see Figure 10.1) opens, browse to and select the AutoLISP or ObjectARX file you want to load. Click Load.
-
-If the File Loading - Security Concerns message box is displayed, click Load. See the topics on the secureload and trustedpaths system variables in the AutoCAD 2014 Help system for information on how to avoid this message each time you load a custom program.
-
-Click Close to return to the drawing area.
-
-Execute any new command that is made available after the custom program file is loaded.
-
-Figure 10.1 Loading a custom program
-
-You can use the Startup Suite section of the Load/Unload Applications dialog box to automatically load custom program files each time AutoCAD starts. For information on using the Startup Suite, see the appload command in the AutoCAD Help system.
-
-Locating Custom Programs on the Internet
-
-Custom programs can be found on the Internet by performing a search using your favorite search engine. You can find some custom program files by doing a search on a combination of the keywords autolisp, objectarx, programs, files, sample, download, and free. An example keyword search might be autolisp files; the results in Bing are shown in Figure 10.2.
-
-WARNING
-
-With any files that you download from the Internet, make sure you scan the files with virus software. Also, download files from a reputable website whenever possible. If you are unsure about a website that contains free custom program files for AutoCAD, check whether someone on the Autodesk (forums.autodesk.com) or AUGI (forums.augi.com) forums has downloaded files from the website.
-
-Figure 10.2 Internet search results on AutoLISP files
-
-The following lists my website (HyperPics) and other reputable sites that offer free custom programs that can be used with AutoCAD:
-
-AfraLISP: www.afralisp.net
-
-DotSoft: www.dotsoft.com
-
-HyperPics: www.hyperpics.com/customization/
-
-JTB World: www.jtbworld.com
-
-ManuSoft: www.manusoft.com
-
-If you are using AutoCAD 2013 or AutoCAD 2014 on Windows, you can also download and install custom programs through the Autodesk Exchange App Store (http://apps.exchange.autodesk.com/). The Autodesk Exchange App Store contains a variety of apps not only for AutoCAD, but also for AutoCAD-based vertical applications and other Autodesk products. You can find both free and paid for apps in the store.
-
-Backing Up and Migrating Customization
-
-Backing up your custom settings and files is often one of the last tasks you perform after customizing AutoCAD, but it is also an important one if something were to go wrong. I recommend backing up frequently—that comes out of habit after forgetting to back up a few times over the years and having to redo several days of customization work. While backing up files is often one of the last tasks you perform, migrating is one of the first tasks you will perform when upgrading to a new release.
-
-The most basic way to back up and migrate your files on either Windows or Mac OS is to manually copy your files between folders. The following lists the folders that AutoCAD uses by default to store the customized files it can make changes to:
-
-%AppData%\Autodesk\<product_name>\<release>\<language> (Windows)
-
-%LOCALAPPDATA%\Autodesk\<product_name>\<release>\<language> (Windows)
-
-˜Library/Application Support/Autodesk/roaming/<product_name>/<release>/<language> (Mac OS)
-
-˜Library/Application Support/Autodesk/local/<product_name>/<release>/<language> (Mac OS)
-
-As I discussed earlier in this chapter, I strongly recommend storing your customization in separate folders and files from those that AutoCAD creates after installation. If you follow my recommendation, be sure to back up the folders and files in those locations in addition to the ones that AutoCAD updates.
-
-If you are using AutoCAD on Windows, there are some additional utilities available for backing up custom settings and files, synchronizing custom settings with your Autodesk 360 account, and helping to migrate custom settings to a new release. These utilities include the following:
-
-Export AutoCAD <release> Settings The Export AutoCAD <release> Settings option on the Windows Start menu or Start screen allows you to export the custom settings and files of AutoCAD to a ZIP file.
-
-Import AutoCAD <release> Settings The Import AutoCAD <release> Settings option on the Windows Start menu or Start screen allows you to import the custom settings and files that were previously exported using Export AutoCAD <release> Settings.
-
-Synchronize Custom Settings The Synchronize Custom Settings feature allows you to back up your custom settings and files to your Autodesk 360 account. These settings can then be restored on another workstation or on the same workstation they were backed up from. You can control whether you want to use this feature, and the types of settings and files that can be backed up, on the Online tab of the Options dialog box (options command).
-
-Migrate From A Previous Release The Migrate From A Previous Release option on the Windows Start menu or Start screen allows you to migrate your custom settings and files from a previous release to a newer release. For example, you can migrate your settings from AutoCAD 2012 to AutoCAD 2014. Both releases need to be installed in order to migrate the custom settings and files.
-
-Customize User Interface, Transfer Tab The Transfer tab of the Customize User Interface (CUI) Editor allows you to transfer user-interface elements between two different CUIx files. This can be helpful if you want to migrate only some of the elements in your user interface to a new release. I discussed the CUI Editor in Chapter 5.
-
-For more information on these utilities, see the AutoCAD Help system.
-
-TIP
-
-For additional information on issues that could affect migrating custom settings and files, or using custom program files from an earlier release, see the CAD Administration Guide in the AutoCAD Help system (docs.autodesk.com/ACD/2014/ENU/).
+### 2.2.1.2 Using Predefined Variables
 
 In addition to the user-defined variables that you might create and use in AutoLISP expressions, the AutoLISP environment defines three variables that are assigned a specific value and are accessible from all drawing files that are opened. The variables that are predefined by the AutoLISP environment are as follows:
 
-PI The PI variable is assigned the value of 3.141592653589793, which is a constant value that represents the ratio of a circle's diameter to its circumference.
+1. PI. The PI variable is assigned the value of 3.141592653589793, which is a constant value that represents the ratio of a circle's diameter to its circumference.
 
-T The T variable always returns a value. This variable is commonly used when you test whether a condition returns True.
+2. T. The T variable always returns a value. This variable is commonly used when you test whether a condition returns True.
 
-PAUSE The PAUSE variable is assigned the string「\\」. The PAUSE variable is used in combination with the command function to suspend the execution of an AutoLISP expression and allow the user to respond to a command's request for input.
+3. PAUSE. The PAUSE variable is assigned the string「\\」. The PAUSE variable is used in combination with the command function to suspend the execution of an AutoLISP expression and allow the user to respond to a command's request for input.
 
-WARNING
+WARNING: You should never change the value of a predefined variable; doing so could affect the execution of the AutoLISP programs that use them.
 
-You should never change the value of a predefined variable; doing so could affect the execution of the AutoLISP programs that use them.
-
-### 2.2.4 Controlling the Scope of a Variable
+### 2.2.3 Controlling the Scope of a Variable
 
 Variables can be accessed from the global or local scope of the AutoLISP environment. By default, all variables defined with the setq function are accessible globally. Each of the predefined variables that are defined by the AutoLISP environment are accessible from the global scope of the AutoLISP environment. However, you typically want to limit the number of such variables in the current drawing. Variables that are defined with the global scope continue to consume system resources until you set the variable to the value of nil, whereas those defined as local variables have their system resources freed up when the execution of the function in which they are defined ends.
 
 Another reason to limit global variables is what I refer to as unexpected data. Unexpected data occurs when a variable is assigned one value by your program and changed to another value by a different program. For example, say you assigned a global variable the value of 6.25, but another program (one written by you or even a third-party program) is using that same variable name and assigns the variable the value of (1「A」). Based on how your program is designed, it might be using the variable as a way to persist the last value chosen by the user, much the same way the AutoCAD circle command remembers the last radius used. When your program goes to use the value, it gets a list instead of a numeric value, which must be handled differently and doesn't even hold a value that is useful to you any longer.
+
+---
 
 ### Unique Function and Global Variable Names
 
@@ -368,209 +194,241 @@ AutoLISP is kind of like the Wild West—at times it can feel lawless since you 
 
 To help protect your functions and variables, I recommend adding a unique prefix to their names. Typically, the unique prefix you create is derived from a company name. For example, you might use the unique prefix of mc3 if your company was My Cool CAD Company. In addition to adding the unique prefix to a variable name, I recommend prefixing and suffixing the names of any global variables with an asterisk to make it easier to identify which variables are defined globally.
 
-Instead of creating a function named MakeLayer, you would use the name mc3_MakeLayer and for a variable named size (which might store the size of a bolt) you would use *mc3_size*. Another consideration when naming global variables is whether they need to be program or function specific. For function-specific global variables, consider including the name of the function that defines the variable. For example, the two functions DrawBolt and DrawScrew were originally written to use a global variable named *mc3_size*, which stores the recent size the user selects when using either of the functions. The size is then used the next time the function is executed; AutoLISP offers users their previous selection, which (based on the current naming of the variable) would be a potential problem. By using the variable names *mc3_drawbolt_size* and *mc3_drawscrew_size*, you ensure that both functions have their own global variable.
+Instead of creating a function named MakeLayer, you would use the name `mc3_MakeLayer` and for a variable named size (which might store the size of a bolt) you would use `*mc3_size*.` Another consideration when naming global variables is whether they need to be program or function specific. For function-specific global variables, consider including the name of the function that defines the variable. For example, the two functions DrawBolt and DrawScrew were originally written to use a global variable named `*mc3_size*`, which stores the recent size the user selects when using either of the functions. The size is then used the next time the function is executed; AutoLISP offers users their previous selection, which (based on the current naming of the variable) would be a potential problem. By using the variable names `*mc3_drawbolt_size*` and `*mc3_drawscrew_size*`, you ensure that both functions have their own global variable.
+
+---
 
 The following explains the differences between global and local variables, and shows you how to define a variable in the local scope of a custom function:
 
-A global variable is accessible to all AutoLISP programs that are loaded into the drawing and to those expressions that are executed in the drawing from which the variable was defined. By default, all variables are defined with a global scope.
+1. A global variable is accessible to all AutoLISP programs that are loaded into the drawing and to those expressions that are executed in the drawing from which the variable was defined. By default, all variables are defined with a global scope.
 
-A local variable is accessible only from the function in which it is defined. You define the variable using the setq function, but the name of the variable is also added to the local_var argument of the defun function to restrict its use to just that function. I discuss the defun function later in this chapter in the section「Defining and Using Custom Functions.」If a variable is not added to this argument, it remains a global variable.
+2. A local variable is accessible only from the function in which it is defined. You define the variable using the setq function, but the name of the variable is also added to the `local_var` argument of the defun function to restrict its use to just that function. I discuss the defun function later in this chapter in the section「Defining and Using Custom Functions.」If a variable is not added to this argument, it remains a global variable.
 
 Although a variable can be defined with a global scope, a variable with the same name can exist in the local scope of a function. When this happens, the expressions inside your function are aware only of the local variable. The following steps show how a variable defined in the local scope of a custom function takes precedence over a variable defined with a global scope:
 
-At the AutoCAD Command prompt, type the following and press Enter:(setq *apc_var* "Global")
+1. At the AutoCAD Command prompt, type the following and press Enter: `(setq *apc_var* "Global")`
 
-Type the following and press Enter to define the GlobalVar function:(defun c:GlobalVar ( / )(alert *apc_var*))
+2. Type the following and press Enter to define the GlobalVar function: `(defun c:GlobalVar ( / )(alert *apc_var*))`
 
-Type the following and press Enter to define the LocalVar function: (defun c:LocalVar ( / *apc_var*) (setq *apc_var* "Local") (alert *apc_var*) )
+3. Type the following and press Enter to define the LocalVar function: `(defun c:LocalVar ( / *apc_var*) (setq *apc_var* "Local") (alert *apc_var*) )`
 
-Type globalvar and press Enter. Click OK to exit the alert message box. The alert message box displays the text string assigned to the *apc_var* variable in the global scope, which is the value Global.
+4. Type globalvar and press Enter. Click OK to exit the alert message box. The alert message box displays the text string assigned to the `*apc_var* `variable in the global scope, which is the value Global.
 
-Type localvar and press Enter. Click OK to exit the alert message box. The variable *apc_var* is assigned the value of the string "Local" and then an alert message box displays the text string assigned to the *apc_var* variable in the local scope, which is the value Local.
+5. Type localvar and press Enter. Click OK to exit the alert message box. The variable `*apc_var*` is assigned the value of the string "Local" and then an alert message box displays the text string assigned to the `*apc_var*` variable in the local scope, which is the value Local.
 
-Type globalvar and press Enter. Click OK to exit the alert message box. The alert message box displays the text string assigned to the *apc_var* variable in the global scope, which is the value Global. When the localvar function was executed in step 5, the*apc_var* variable was assigned a value that existed only while the function was executing; it did not overwrite the value of the globally defined *apc_var* variable.
+6. Type globalvar and press Enter. Click OK to exit the alert message box. The alert message box displays the text string assigned to the `*apc_var*` variable in the global scope, which is the value Global. When the localvar function was executed in step 5, the`*apc_var*` variable was assigned a value that existed only while the function was executing; it did not overwrite the value of the globally defined `*apc_var*` variable.
 
 TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP vl-bb-ref and vl-bb-set functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
 
-### 2.2.5 Working with System Variables
+1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）』——已完成
+
+### 2.2.4 Working with System Variables
 
 System variables are used to alter the way commands work, describe the current state of a drawing or AutoCAD environment, and even specify where the support files are for your custom programs. Many of the settings that are exposed by system variables are associated with controls in dialog boxes and palettes; other settings are associated with various command options. For example, many of the settings in the Options (Windows) or Application Preferences (Mac OS) dialog box are accessible from system variables and even environment variables (which I discuss in the next section).
 
-A system variable can store any one of the basic data types that AutoLISP supports (see「Exploring Data Types」later in this chapter). You can see the hundreds of system variables and the type of data each system variable holds by using the AutoCAD Help system. Whereas you might normally use the setvar command to list or change the value of a system variable at the AutoCAD Command prompt, with AutoLISP you use the getvar and setvar functions to query and set the value of a system variable.
+A system variable can store any one of the basic data types that AutoLISP supports (see「Exploring Data Types」later in this chapter). You can see the hundreds of system variables and the type of data each system variable holds by using the AutoCAD Help system. Whereas you might normally use the setvar command to list or change the value of a system variable at the AutoCAD Command prompt, with AutoLISP you use the getvar and setvar functions to query and set the value of a system variable. Here's the syntax of the getvar and setvar functions:
 
-Here's the syntax of the getvar and setvar functions:
-
+```c
 (getvar sysvar_name) (setvar sysvar_name value)
+```
 
-sysvar_name The sysvar_name argument represents the name of the system variable you want to query or set.
+`sysvar_name`. The `sysvar_name` argument represents the name of the system variable you want to query or set.
 
-value The value argument represents the data that you want to assign to the system variable.
+`value`. The value argument represents the data that you want to assign to the system variable.
 
 The next exercise demonstrates how to query and set the value of the osmode system variable, which controls the running object snap drafting aid. This setting is available in the Drafting Settings dialog box (dsettings command).
 
-At the AutoCAD Command prompt, type (setq *apc_cur_osmode* (getvar "osmode")) and press Enter. The function returns the current value of the osmode system variable and assigns it to the user-defined variable *apc_cur_osmode* with the setq function.
+1. At the AutoCAD Command prompt, type `(setq *apc_cur_osmode* (getvar "osmode"))` and press Enter. The function returns the current value of the osmode system variable and assigns it to the user-defined variable `*apc_cur_osmode*` with the setq function.
 
-Type (setvar "osmode" 33) and press Enter. The osmode system variable is assigned the integer value of 33, which represents the Endpoint and Intersection running object snap modes.
+2. Type `(setvar "osmode" 33)` and press Enter. The osmode system variable is assigned the integer value of 33, which represents the Endpoint and Intersection running object snap modes.
 
-Type osnap and press Enter. In the Drafting Settings dialog box, select the Object Snap tab and verify that the Endpoint and Intersection options are checked and all other options are unchecked. Click Cancel to return to the Command prompt.
+3. Type osnap and press Enter. In the Drafting Settings dialog box, select the Object Snap tab and verify that the Endpoint and Intersection options are checked and all other options are unchecked. Click Cancel to return to the Command prompt.
 
-Type (setvar "osmode" *apc_cur_osmode*) and press Enter. The previous value of the system variable is restored.
+4. Type `(setvar "osmode" *apc_cur_osmode*)` and press Enter. The previous value of the system variable is restored.
 
-Type osnap and press Enter. In the Drafting Settings dialog box, you will notice that the options checked will represent those of the restored running object snap settings value. Click Cancel to return to the Command prompt.
+5. Type osnap and press Enter. In the Drafting Settings dialog box, you will notice that the options checked will represent those of the restored running object snap settings value. Click Cancel to return to the Command prompt.
 
-TIP
+TIP: The AutoCAD Help system is a great resource for learning about system variables. However, if you need to support multiple AutoCAD releases you will need to reference the documentation for each release. To make it easier to identify which system variables are supported in the recent and past AutoCAD releases, I created a list of system variables that spans a large number of AutoCAD releases; you can view the list here: [HyperPics: AutoCAD System Variable References for AutoCAD R12 through AutoCAD 2013](http://www.hyperpics.com/system_variables/).
 
-The AutoCAD Help system is a great resource for learning about system variables. However, if you need to support multiple AutoCAD releases you will need to reference the documentation for each release. To make it easier to identify which system variables are supported in the recent and past AutoCAD releases, I created a list of system variables that spans a large number of AutoCAD releases; you can view the list here: www.hyperpics.com/system_variables/.
+3『顺藤摸瓜，找到这个好网站：[HyperPics: Resources for the AutoCAD and AutoCAD LT Programs](http://www.hyperpics.com/)。』
 
-### 2.2.6 Accessing Environment Variables
+### 2.2.5 Accessing Environment Variables
 
 Environment variables allow you to access settings that are, at times, accessible only from the Options (Windows) or Application Preferences (Mac OS) dialog box and not through system variables or from the Command prompt. Unlike with system variables, though, there is no official documentation that explains which environment variables are available or what values they can be assigned.
 
 Many of the environment variables that I am aware of can be found stored in the Windows Registry or a Plist file on Mac OS. Both of these storage locations include a General Configurations section for the AutoCAD program, and it is in this section that you will find the environment variables you can manipulate. You use the AutoLISP getenv and setenv functions to retrieve and set the value of an environment variable.
 
-WARNING
-
-Unlike system variables, environment variable names are case sensitive. For example, MaxHatch is not the same as maxhatch or MAXHATCH.
+WARNING: Unlike system variables, environment variable names are case sensitive. For example, MaxHatch is not the same as maxhatch or MAXHATCH.
 
 The following shows the syntax of the getenv and setenv functions:
 
+```c
 (getenv envvar_name) (setenv envvar_name "value")
+```
 
-envvar_name The envvar_name argument represents the name of the environment variable you want to query or set.
+`envvar_name`. The `envvar_name` argument represents the name of the environment variable you want to query or set.
 
-value The value argument represents the string value that you want to assign to the environment variable. Environment variables can only be assigned a string value, but that string could contain a number or even a list of values.
+`value`. The value argument represents the string value that you want to assign to the environment variable. Environment variables can only be assigned a string value, but that string could contain a number or even a list of values.
 
 Both the getenv and setenv functions return the current value of the environment variable or the value that was successfully assigned to an environment variable.
 
 The following steps show how to retrieve and set the value of the DefaultFormatForSave environment variable, which controls the default format for saving drawings. This setting is available in the Options dialog box on Windows, but not in the Application Preferences dialog box on AutoCAD 2013 and earlier on Mac OS. It does affect the behavior of saving a drawing file on both Windows and Mac OS.
 
-At the AutoCAD Command prompt, type (setq *apc_cur_val* (getenv "DefaultFormatForSave")) and press Enter. The function returns the current value of the environment variable and assigns it to the user-defined variable *apc_cur_val* with the setq function.
+1. At the AutoCAD Command prompt, type `(setq *apc_cur_val* (getenv "DefaultFormatForSave"))` and press Enter. The function returns the current value of the environment variable and assigns it to the user-defined variable `*apc_cur_val*` with the setq function.
 
-Type (setenv "DefaultFormatForSave" "48") and press Enter. The DefaultFormatForSave environment variable is assigned the value of 48, which represents the AutoCAD 2010 drawing file format. If you are using an earlier release, you may need to use a different value to set a previous drawing file format as current.
+2. Type `(setenv "DefaultFormatForSave" "48")` and press Enter. The DefaultFormatForSave environment variable is assigned the value of 48, which represents the AutoCAD 2010 drawing file format. If you are using an earlier release, you may need to use a different value to set a previous drawing file format as current.
 
-Type saveas and press Enter. In the SaveAs dialog box, notice that the Files Of Type drop-down list will list AutoCAD 2010/LT2010 Drawing (*.dwg) as the current option. Click Cancel to return to the Command prompt.
+3. Type saveas and press Enter. In the SaveAs dialog box, notice that the Files Of Type drop-down list will list AutoCAD 2010/LT2010 Drawing (*.dwg) as the current option. Click Cancel to return to the Command prompt.
 
-Type (setenv "DefaultFormatForSave" *apc_cur_val*) and press Enter. The previous value of the environment variable is restored.
+4. Type `(setenv "DefaultFormatForSave" *apc_cur_val*)` and press Enter. The previous value of the environment variable is restored.
 
-Type saveas and press Enter. In the SaveAs dialog box, notice that the Files Of Type drop-down list now lists the previous default drawing file format. Click Cancel to return to the Command prompt.
+5. Type saveas and press Enter. In the SaveAs dialog box, notice that the Files Of Type drop-down list now lists the previous default drawing file format. Click Cancel to return to the Command prompt.
 
-TIP
+TIP: I created a list (though not complete or up to date) of the environment variables available in a number of earlier releases of AutoCAD. You can find this list here: http://www.hyperpics.com/downloads/resources/customization/autolisp/AutoCAD%20Environment%20Variables.pdf
 
-I created a list (though not complete or up to date) of the environment variables available in a number of earlier releases of AutoCAD. You can find this list here:
-
-http://www.hyperpics.com/downloads/resources/customization/autolisp/AutoCAD%20Environment%20Variables.pdf
+2『已下载「AutoCAD-Environment-Variables.pdf」作为本书的附件。』
 
 ## 2.3 Exploring Data Types
 
-Programming languages use data types to help you identify the following:
-
-The type of data required by a function's argument
-
-The type of data that might be returned by a function
+Programming languages use data types to help you identify the following: 1) The type of data required by a function's argument. 2) The type of data that might be returned by a function.
 
 AutoLISP on Windows and Mac OS support the following data types:
 
-Integer An integer is a numeric value without a decimal point. The numeric value must be in the range of –32,768 to 32,767 and can be optionally prefixed with a plus sign (+) for positive numbers. You can use an integer value to represent an angular or linear distance or the number of columns or rows in an array or table, or to specify whether a system variable is enabled or disabled. Examples include -10, 0, 1, +45, and 400. You'll learn about using integer values with mathematical functions in Chapter 13,「Calculating and Working with Values.」
+1. Integer. An integer is a numeric value without a decimal point. The numeric value must be in the range of –32,768 to 32,767 and can be optionally prefixed with a plus sign (+) for positive numbers. You can use an integer value to represent an angular or linear distance or the number of columns or rows in an array or table, or to specify whether a system variable is enabled or disabled. Examples include -10, 0, 1, +45, and 400. You'll learn about using integer values with mathematical functions in Chapter 13,「Calculating and Working with Values.」
 
-Real A real value is numeric with a decimal point. The numeric value must be in the range of 1.80 × 10308 to –4.94 × 10–324 for negative numbers and 4.94 × 10–324 to 1.80 × 10308 for positive numbers. A positive number can optionally be prefixed with a plus sign and be expressed in exponential notation; 10e4 is the same as 100000.0. When using a value between –1.0 and 1.0, you must use a leading zero before the decimal;.5 is not a valid real number but 0.5 is. You might use a real number to represent an angular or linear distance or part of a coordinate. Examples of a real number are –10.01, 0.0, 1.125, +45.0, and 400.00001. Chapter 13 discusses using real values with mathematical functions.
+2. Real. A real value is numeric with a decimal point. The numeric value must be in the range of 1.80 × 10308 to –4.94 × 10–324 for negative numbers and 4.94 × 10–324 to 1.80 × 10308 for positive numbers. A positive number can optionally be prefixed with a plus sign and be expressed in exponential notation; 10e4 is the same as 100000.0. When using a value between –1.0 and 1.0, you must use a leading zero before the decimal;.5 is not a valid real number but 0.5 is. You might use a real number to represent an angular or linear distance or part of a coordinate. Examples of a real number are –10.01, 0.0, 1.125, +45.0, and 400.00001. Chapter 13 discusses using real values with mathematical functions.
 
-NOTE
+    NOTE: The real data type in AutoLISP is commonly referred to as a double or float in other programming languages.
 
-The real data type in AutoLISP is commonly referred to as a double or float in other programming languages.
+3. String. A string is a value that contains one or more characters enclosed in quotation marks. You might use a string value for a command or system variable name, a file path and name, messages and prompts that are displayed to the user, or even a real or integer number converted to a string. Examples of a string value are「Hello AutoLISP!", "._line", "\nSpecify next point: ", and "6.25". You'll learn more about working with string values in Chapter 13.
 
-String A string is a value that contains one or more characters enclosed in quotation marks. You might use a string value for a command or system variable name, a file path and name, messages and prompts that are displayed to the user, or even a real or integer number converted to a string. Examples of a string value are「Hello AutoLISP!", "._line", "\nSpecify next point: ", and "6.25". You'll learn more about working with string values in Chapter 13.
+4. List. A list is an expression of one or more atoms enclosed in parentheses. All AutoLISP expressions are known as lists, but lists often represent 2D points, 3D points, and data groupings. Examples of a list are `(1.5 2.75)`, `(1.5 2.75 0.5)`, `("Model" "Layout1" "Layout2")`, `(1 "A" 2 "B")`, and `()`. () represents an empty list. When you're assigning a list to a variable, either the list must be preceded by an apostrophe, as in `(setq pt '(1 2 0))`, or you must use the AutoLISP list function, as in `(setq pt (list 1 2 0))`. Chapter 14,「Working with Lists,」explores creating and manipulating lists.
 
-List A list is an expression of one or more atoms enclosed in parentheses. All AutoLISP expressions are known as lists, but lists often represent 2D points, 3D points, and data groupings. Examples of a list are (1.5 2.75), (1.5 2.75 0.5), ("Model" "Layout1" "Layout2"), (1 "A" 2 "B"), and (). () represents an empty list. When you're assigning a list to a variable, either the list must be preceded by an apostrophe, as in (setq pt '(1 2 0)), or you must use the AutoLISP list function, as in (setq pt (list 1 2 0)). Chapter 14,「Working with Lists,」explores creating and manipulating lists.
+    NOTE: The list data type in AutoLISP is similar to an array in other programming languages.
 
-NOTE
+5. Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
 
-The list data type in AutoLISP is similar to an array in other programming languages.
+6. Entity Name. An entity name is an in-memory numeric label used to reference an object stored in a drawing. You will often work with an entity name to modify an object's properties or after a request to select objects in a drawing has been completed. See Chapters 16 and 17 to learn how to work with entity names.
 
-Dotted Pair A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, (40.2.0) represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in (setq dxf_40 '(40. 2)), or you must use the AutoLISP cons function, as in (setq dxf_40 (cons 40 2)). You'll learn more about creating and manipulating dotted pairs in Chapter 16.
-
-Entity Name An entity name is an in-memory numeric label used to reference an object stored in a drawing. You will often work with an entity name to modify an object's properties or after a request to select objects in a drawing has been completed. See Chapters 16 and 17 to learn how to work with entity names.
+2『 Dotted Pair 做一张术语卡片。』——已完成
 
 AutoLISP on Windows supports a few additional data types, and I discuss these additional data types in depth and how they are used in Chapter 22. The data types that are specifically used for working with ActiveX libraries are as follows:
 
-VLA-Object A VLA-Object represents an ActiveX object that is used when working with methods and properties imported from the AutoCAD Object Library or another ActiveX library. An ActiveX object can be an object stored in a drawing, an open drawing, or the AutoCAD application itself.
+1. VLA-Object. A VLA-Object represents an ActiveX object that is used when working with methods and properties imported from the AutoCAD Object Library or another ActiveX library. An ActiveX object can be an object stored in a drawing, an open drawing, or the AutoCAD application itself.
 
-Variant A variant is a generic data type that can hold any type of data supported by the Component Object Model (COM) interface.
+2. Variant. A variant is a generic data type that can hold any type of data supported by the Component Object Model (COM) interface.
 
-Safearray A safearray is not really a data type, but rather a data structure that can contain multiple values similar to the list data type. You use a safearray when you need to represent a coordinate value, specify the objects used to define a closed boundary when creating a Region or Hatch object, or specify the data types and values that make up the XData attached to an object.
+3. Safearray. A safearray is not really a data type, but rather a data structure that can contain multiple values similar to the list data type. You use a safearray when you need to represent a coordinate value, specify the objects used to define a closed boundary when creating a Region or Hatch object, or specify the data types and values that make up the XData attached to an object.
 
 You can use the AutoLISP type function to identify the type of data retuned by a function or assigned to a variable. The following shows the syntax of the type function:
 
+```c
 (type value)
+```
 
-value The value argument represents any valid atom; an AutoLISP expression, a value, or a variable.
+value. The value argument represents any valid atom; an AutoLISP expression, a value, or a variable.
 
 The type function returns a symbol that can be used to determine if the value returned by a function or assigned to a variable is the type of data you are expecting. The following AutoLISP expressions define a custom function named IsString, which uses the type function to determine whether a value is of the string data type:
 
-(defun IsString (val / ) (if (= (type val) 'STR) T nil) )
+```c
+(defun IsString (val / ) 
+  (if (= (type val) 'STR) T nil) 
+)
+```
 
 You can use the IsString function by entering it at the AutoCAD Command prompt or loading it as part of an AutoLISP (LSP) file. When the function is executed, it will return T if the value it is passed is a string data type or nil for all other data types. The following shows several examples of the IsString function along with the values they return:
 
-(IsString "2") T (IsString 2) nil (IsString PAUSE) T (IsString PI) nil
+```c
+(IsString "2") 
+// out 
+T 
+
+(IsString 2) 
+// out
+nil 
+
+(IsString PAUSE) 
+// out
+T 
+
+(IsString PI) 
+// out
+nil
+```
+
+1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
 
 ## 2.4 Leveraging AutoCAD and Third-Party Commands
 
 The AutoLISP command and command-s functions allow you to leverage the functionality of a standard AutoCAD command or a command defined by a loaded third-party application. Because these functions allow you to use a command, they are often some of the first functions that many new to AutoLISP learn.
 
-NOTE
-
-When using the command and command-s functions, keep in mind that the command being executed in most cases behaves similar to when you use it from the AutoCAD Command prompt. That means you can use many system variables to control a command's behavior or outcome. For example, you can use the clayer system variable to set a layer as current before an object is drawn or even disable running object snaps with the osmode system variable before using the line and circle commands. After you make a call to the last command and command-s function in your AutoLISP programs, be sure to restore any changed system variables to their previous values.
+NOTE: When using the command and command-s functions, keep in mind that the command being executed in most cases behaves similar to when you use it from the AutoCAD Command prompt. That means you can use many system variables to control a command's behavior or outcome. For example, you can use the clayer system variable to set a layer as current before an object is drawn or even disable running object snaps with the osmode system variable before using the line and circle commands. After you make a call to the last command and command-s function in your AutoLISP programs, be sure to restore any changed system variables to their previous values.
 
 In Chapters 5 and 6 you learned about creating command macros. Some of the special characters used in command macros also apply to the command and command-s functions. Table 12.2 lists the special characters that can prefix a command name.
 
 Table 12.2 Special characters that can prefix a command name
 
-Special character Description
+1. `.` (period). Accesses an AutoCAD command's standard definition even when a command might have been undefined with the undefine command.
 
-. (period) Accesses an AutoCAD command's standard definition even when a command might have been undefined with the undefine command.
+2. `_ `(underscore). Instructs AutoCAD to use the global command name or option value instead of the localized name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release.
 
-_ (underscore) Instructs AutoCAD to use the global command name or option value instead of the localized name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release.
-
-Using the command Function
+### 2.4.1 Using the command Function
 
 The command function passes each argument it receives to the AutoCAD Command prompt. The first argument is the name of the command to execute. After the command name are the arguments that reflect the options and values that should be executed by the command. If a command is already active when the command function is evaluated, the arguments are passed to the current command.
 
-TIP
-
-Before using the command function, you should test to see if a command is active by querying the current value of the cmdactive system variable with the AutoLISP getvar function. A value greater than 0 indicates a command is active. You can issue the command function without any arguments to simulate pressing Esc to get to a clean Command prompt.
+TIP: Before using the command function, you should test to see if a command is active by querying the current value of the cmdactive system variable with the AutoLISP getvar function. A value greater than 0 indicates a command is active. You can issue the command function without any arguments to simulate pressing Esc to get to a clean Command prompt.
 
 The following shows the syntax of the command function:
 
+```c
 (command [cmdname [argN …]])
+```
 
-cmdname The cmdname argument represents the name of the command to execute. cmdname is optional.
+cmdname. The cmdname argument represents the name of the command to execute. cmdname is optional.
 
-argN The argN argument represents the options and values that should be executed at the AutoCAD Command prompt. argN is optional. Arguments are also known as command tokens.
+argN. The argN argument represents the options and values that should be executed at the AutoCAD Command prompt. argN is optional. Arguments are also known as command tokens.
 
-The following AutoLISP example assigns the coordinate values of 2,2,0 and 5,6,0 to the user-defined variables named *apc_pt1* and *apc_pt2*. The line command is then used to draw a line between the coordinate values assigned to the user-defined variables *apc_pt1* and *apc_pt2*.
+The following AutoLISP example assigns the coordinate values of 2,2,0 and 5,6,0 to the user-defined variables named `*apc_pt1*` and `*apc_pt2*`. The line command is then used to draw a line between the coordinate values assigned to the user-defined variables `*apc_pt1*` and `*apc_pt2*.`
 
-(setq *apc_pt1* '(2 2 0) *apc_pt2* '(5 6 0)) (command "._line" *apc_pt1* *apc_pt2* "")
+```c
+(setq *apc_pt1* '(2 2 0) 
+    *apc_pt2* '(5 6 0)) 
+(command "._line" *apc_pt1* *apc_pt2* "")
+```
 
-NOTE
+NOTE: The arguments that you might pass to the command function can span multiple expressions. The following produces the same results as the previous AutoLISP example code:
 
-The arguments that you might pass to the command function can span multiple expressions. The following produces the same results as the previous AutoLISP example code:
-
-(setq *apc_pt1* '(2 2 0) *apc_pt2* '(5 6 0)) (command "._line") (command *apc_pt1* *apc_pt2* "")
+```c
+(setq *apc_pt1* '(2 2 0) 
+    *apc_pt2* '(5 6 0)) 
+(command "._line") 
+(command *apc_pt1* *apc_pt2* "")
+```
 
 When the command function is used, you can suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt. You use the predefined PAUSE variable or the "\\" ASCII character sequence to allow the user to provide a value. The following AutoLISP expression starts the circle command and then allows the user to specify a center point. Once a center point is specified, the circle's diameter is set to 3 units.
 
+```c
 (command "._circle" PAUSE "_d" 3)
+```
 
-Controlling a Command's Version
+---
+
+### Controlling a Command's Version
 
 Internally each standard AutoCAD command is assigned a new version number when a change is made that affects an AutoLISP program, script, or command macro. You use the initcommandversion function to control which version of a command is used by the next use of the command or command-s function. The initcommandversion function doesn't require a value, but when one is provided it must be an integer value that represents the version of the command you want to use.
 
 The following example uses version 1 of the color command:
 
-(initcommandversion 1) (command "._color")
+```c
+(initcommandversion 1) 
+(command "._color")
+```
 
 Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
 
-Using the command-s Function
+---
+
+### 2.4.2 Using the command-s Function
 
 The command-s function is similar to the command function, with a few differences. Like the command function, the command-s function passes each argument it receives to the AutoCAD Command prompt. The first argument that is passed to the command-s function is the name of the command you want to execute. This is followed by the arguments that reflect the options and values you want executed.
 
@@ -582,17 +440,21 @@ Start the execution of a command in one expression and finish the command in ano
 
 The following shows the syntax of the command-s function:
 
+```c
 (command-s [cmdname [argN …]])
+```
 
-cmdname The cmdname argument represents the name of the command to execute. cmdname is optional.
+cmdname. The cmdname argument represents the name of the command to execute. cmdname is optional.
 
-argN The argN argument represents the options and values that should be executed at the AutoCAD Command prompt. argN is optional. Arguments are also known as command tokens.
+argN. The argN argument represents the options and values that should be executed at the AutoCAD Command prompt. argN is optional. Arguments are also known as command tokens.
 
-The following AutoLISP example assigns the coordinate value of 5,5,0 to the user-defined variable named *apc_cpt*. The circle command is then used to draw a circle using the coordinate value assigned to the user-defined variables *apc_cpt* and a radius of 5.
+The following AutoLISP example assigns the coordinate value of 5,5,0 to the user-defined variable named `*apc_cpt*`. The circle command is then used to draw a circle using the coordinate value assigned to the user-defined variables `*apc_cpt*` and a radius of 5.
 
+```c
 (setq *apc_cpt* '(5 5 0)) (command-s "._circle" *apc_cpt* 5)
+```
 
-Working with Commands That Display a Dialog Box
+### 2.4.3 Working with Commands That Display a Dialog Box
 
 When using the command and command-s functions, avoid commands that display a dialog box because doing so can lead to inconsistencies when your AutoLISP program is executed. Instead, you should use the alternative command-line equivalent of a command, or use the system and environment variables that might be changed with the dialog box. In most cases, adding a hyphen (-) in front of a command that normally displays a dialog box will cause the command to display a series of command prompts instead. For more information, see Chapter 8 or the AutoCAD Help system.
 
@@ -600,15 +462,15 @@ If you need to use the dialog box that a command normally displays, you must use
 
 The following exercise demonstrates how the initdia function affects the use of the command function when using the plot command:
 
-At the AutoCAD Command prompt, type (command "._plot") and press Enter. The plot command starts and the Detailed plot configuration? [Yes/No] <No>: prompt is displayed.
+1. At the AutoCAD Command prompt, type (command "._plot") and press Enter. The plot command starts and the Detailed plot configuration? [Yes/No] <No>: prompt is displayed.
 
-Press Esc to end the plot command.
+2. Press Esc to end the plot command.
 
-Type (initdia) and press Enter. It will seem like nothing happens, but rest assured a flag has been set in the background for AutoCAD to check with the next use of the command function.
+3. Type (initdia) and press Enter. It will seem like nothing happens, but rest assured a flag has been set in the background for AutoCAD to check with the next use of the command function.
 
-Type (command "._plot") and press Enter. The plot command starts and the Plot dialog box is displayed.
+4. Type (command "._plot") and press Enter. The plot command starts and the Plot dialog box is displayed.
 
-When the Plot dialog box opens, click Cancel.
+5. When the Plot dialog box opens, click Cancel.
 
 ## 2.5 Defining and Using Custom Functions
 

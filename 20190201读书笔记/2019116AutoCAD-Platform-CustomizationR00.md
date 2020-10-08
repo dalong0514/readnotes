@@ -2,15 +2,57 @@
 
 ## 记忆时间
 
+## 资源汇总
+
+[HyperPics: Resources for the AutoCAD and AutoCAD LT Programs](http://www.hyperpics.com/)
+
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡——封装判断数据类型的函数
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+You can use the AutoLISP type function to identify the type of data retuned by a function or assigned to a variable. The following shows the syntax of the type function:
 
-### 0201. 术语卡——
+```c
+(type value)
+```
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+value. The value argument represents any valid atom; an AutoLISP expression, a value, or a variable.
+
+The type function returns a symbol that can be used to determine if the value returned by a function or assigned to a variable is the type of data you are expecting. The following AutoLISP expressions define a custom function named IsString, which uses the type function to determine whether a value is of the string data type:
+
+```c
+(defun IsString (val / ) 
+  (if (= (type val) 'STR) T nil) 
+)
+```
+
+You can use the IsString function by entering it at the AutoCAD Command prompt or loading it as part of an AutoLISP (LSP) file. When the function is executed, it will return T if the value it is passed is a string data type or nil for all other data types. The following shows several examples of the IsString function along with the values they return:
+
+```c
+(IsString "2") 
+// out 
+T 
+
+(IsString 2) 
+// out
+nil 
+
+(IsString PAUSE) 
+// out
+T 
+
+(IsString PI) 
+// out
+nil
+```
+
+1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
+
+### 0201. 术语卡——Dotted Pair
+
+Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
+
+2『 Dotted Pair 做一张术语卡片。』——已完成
 
 ### 0202. 术语卡——
 
@@ -27,6 +69,15 @@
 ### 0501. 任意卡——生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。
+
+### 0502. 任意卡——数据存到公共变量（内存）
+
+TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP vl-bb-ref and vl-bb-set functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
+
+1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）』——已完成
+
+
+
 
 ## Introduction
 
