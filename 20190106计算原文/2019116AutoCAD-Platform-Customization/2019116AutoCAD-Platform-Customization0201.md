@@ -78,7 +78,7 @@ In this exercise, you did the following:
 
 3. Created a list that represented a 2D coordinate (see Chapter 14,「Working with Lists,」for more information)
 
-## 2.1 Working with Commands and Input
+## 1.2 Working with Commands and Input
 
 In addition to calculating values with AutoLISP and passing those values to a command, you can execute a command as part of an AutoLISP expression using the command function. Input can also be requested and passed to a command or saved to a user-defined variable.
 
@@ -124,51 +124,49 @@ In these exercises, you did the following:
 
 3. Converted values from one type of data to another (see Chapters 13 and 14 for more information)
 
-## 3.1 Conditionalizing and Repeating Expressions
+## 1.3 Conditionalizing and Repeating Expressions
 
 Complex programs often contain branches (different sets of expressions that are used to handle different conditions or choices by the user), and they might loop (execute a set of expressions multiple times). Conditional expressions allow your programs to use a programming concept known as branching. Branching gives your programs the ability to execute different expressions based on the input a user provides or the current value of a system variable. When modifying large sets of data or even prompting a user for input, you can use looping expressions to repeat a set of expressions while a condition is met.
 
 This exercise demonstrates some of the conditional and looping expressions that are available in AutoLISP:
 
-At the AutoCAD Command prompt, type (if (= (tblsearch "layer" "Circles") nil) and press Enter. The if function is used to test whether a condition is true or false. If the = comparison operator returns T, then the first expression is evaluated; otherwise, the second expression is. The tblsearch function is used to check to see if a layer, linetype, or some other nongraphical object already exists in a drawing.
+1. At the AutoCAD Command prompt, type `(if (= (tblsearch "layer" "Circles") nil)` and press Enter. The if function is used to test whether a condition is true or false. If the = comparison operator returns T, then the first expression is evaluated; otherwise, the second expression is. The tblsearch function is used to check to see if a layer, linetype, or some other nongraphical object already exists in a drawing.
 
-Type (command "-layer" "m" "Circles" "c" "30" " " " ") and press Enter. This command creates the new Circles layer if it doesn't exist in the drawing.
+2. Type `(command "-layer" "m" "Circles" "c" "30" " " " ")` and press Enter. This command creates the new Circles layer if it doesn't exist in the drawing.
 
-Type (prompt "\nLayer already exists.") and press Enter.
+3. Type `(prompt "\nLayer already exists.")` and press Enter.
 
-Type ) and press Enter. The closing parenthesis ends the if function. Either the Circles layer is created or the message Layer already exists. is displayed. Entering the four expressions again results in the displaying of the message.
+4. Type `)` and press Enter. The closing parenthesis ends the if function. Either the Circles layer is created or the message Layer already exists. is displayed. Entering the four expressions again results in the displaying of the message.
 
-Type (setq cnt 0) and press Enter. The setq function defines a user-defined variable named cnt and assigns it the value of 0.
+5. Type `(setq cnt 0)` and press Enter. The setq function defines a user-defined variable named cnt and assigns it the value of 0.
 
-Type (command "circle" (list 0 0) 1) and press Enter. This command draws a circle at 0,0 with a radius of 1 on the「Circles」layer.
+6. Type `(command "circle" (list 0 0) 1)` and press Enter. This command draws a circle at 0,0 with a radius of 1 on the「Circles」layer.
 
-TIP
+    TIP: If the new circle is not visible on the screen, pan and/or zoom to make it visible.
 
-If the new circle is not visible on the screen, pan and/or zoom to make it visible.
+7. Type `(repeat 7` and press Enter. The repeat function is used to repeat a set of AutoLISP expressions a specific number of times.
 
-Type (repeat 7 and press Enter. The repeat function is used to repeat a set of AutoLISP expressions a specific number of times.
+8. Type `(setq cnt (1+ cnt))` and press Enter. The `1+` function increments the current value of cnt by 1 each time the expression is evaluated.
 
-Type (setq cnt (1+ cnt)) and press Enter. The 1+ function increments the current value of cnt by 1 each time the expression is evaluated.
+9. Type `(command "circle" (list 0 0) (* (getvar "circlerad") 1.5))` and press Enter. Once you enter the expressions within the repeat loop and add the final closing parenthesis to complete the expression, AutoCAD draws a new circle at 0,0 with a radius that is 1.5 times larger than the previous circle that was drawn. The previous radius used to create a circle with the circle command is stored in the circlerad system variable. The getvar function returns the current value of a system variable.
 
-Type (command "circle" (list 0 0) (* (getvar "circlerad") 1.5)) and press Enter. Once you enter the expressions within the repeat loop and add the final closing parenthesis to complete the expression, AutoCAD draws a new circle at 0,0 with a radius that is 1.5 times larger than the previous circle that was drawn. The previous radius used to create a circle with the circle command is stored in the circlerad system variable. The getvar function returns the current value of a system variable.
+10. Type `(command "change" (entlast) " " "p" "c" cnt " ")` and press Enter. The change command modifies the color of the recently drawn circle, or more specifically the last object in the drawing. The entlast function returns the last object added to the drawing.
 
-Type (command "change" (entlast) " " "p" "c" cnt " ") and press Enter. The change command modifies the color of the recently drawn circle, or more specifically the last object in the drawing. The entlast function returns the last object added to the drawing.
-
-Type ) and press Enter. The closing parenthesis ends the repeat function. Seven concentric circles, as shown in Figure 11.2, are drawn around the circle that was drawn outside of the repeat loop. Each circle drawn inside the repeat loop is assigned a different color, and the radius of each circle is 1.5 times larger than the next inner circle.
-
-Figure 11.2 Drawing concentric circles with AutoLISP
+11. Type `)` and press Enter. The closing parenthesis ends the repeat function. Seven concentric circles, as shown in Figure 11.2, are drawn around the circle that was drawn outside of the repeat loop. Each circle drawn inside the repeat loop is assigned a different color, and the radius of each circle is 1.5 times larger than the next inner circle.
 
 In the previous exercise, you did the following:
 
-Used comparison operators and conditional functions to evaluate different expressions based on the results of a test condition (see Chapter 15 for more information)
+1. Used comparison operators and conditional functions to evaluate different expressions based on the results of a test condition (see Chapter 15 for more information)
 
-Used math-based functions to calculate the radius of a circle and to increment a counter used in a looping expression (see Chapter 13 for more information)
+2. Used math-based functions to calculate the radius of a circle and to increment a counter used in a looping expression (see Chapter 13 for more information)
 
-Checked to see if a layer existed in the drawing (see Chapter 17,「Creating and Modifying Nongraphical Objects,」for more information)
+3. Checked to see if a layer existed in the drawing (see Chapter 17,「Creating and Modifying Nongraphical Objects,」for more information)
 
-Repeated a set of AutoLISP expressions until a condition was met (see Chapter 15 for more information)
+4. Repeated a set of AutoLISP expressions until a condition was met (see Chapter 15 for more information)
 
-Grouping Expressions
+1『变量自增 1 的简化版写法：`(setq cnt (1+ cnt))`，其中 `1+` 也是一个函数。（2020-10-08）』
+
+## 1.4 Grouping Expressions
 
 Entering individual expressions can be helpful when you are first learning AutoLISP or when you are developing a new program, but it isn't ideal for you to do each time you want to execute a set of AutoLISP expressions. The AutoLISP programming language allows you to define a custom function that can be executed at the Command prompt or from a command macro assigned to a user-interface element, such as a ribbon or toolbar button.
 
