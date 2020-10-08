@@ -1,4 +1,4 @@
-# Chapter 17 Creating and Modifying Nongraphical Objects
+# 0207. Creating and Modifying Nongraphical Objects
 
 Nongraphical objects represent the block definitions, named styles, and other objects that are stored in a drawing but aren't present in model space or one of the named layouts. These objects can and typically do affect the display of graphical objects placed in model space or a named layout, though. While model space and named layouts are typically not thought of as nongraphical objects, they are. Model space is a special block definition, whereas a layout is an object that is based on a plot configuration—commonly called a page setup—with a reference to a block definition.
 

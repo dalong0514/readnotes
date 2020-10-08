@@ -1,4 +1,4 @@
-# Chapter 15 Requesting Input and Using Conditional and Looping Expressions
+# 0205. Requesting Input and Using Conditional and Looping Expressions
 
 Using static values in a custom AutoLISP® program can be helpful in automating tasks, but it also limits the functionality that can be introduced by custom AutoLISP programs. Using static values doesn't give the user the ability to specify a custom value, such as the insertion point of a block or which objects to modify. AutoLISP provides many functions that allow you to request input at the Command prompt or with controls in a dialog box. I cover working with dialog boxes in Chapter 23,「Implementing Dialog Boxes (Windows only).」
 
@@ -912,8 +912,4 @@ Execute the drawplate function again, and pick a point in the drawing without ch
 Continue trying the drawplate function with different input values.
 
 Figure 15.10 Completed plate
-
-
-
-
 

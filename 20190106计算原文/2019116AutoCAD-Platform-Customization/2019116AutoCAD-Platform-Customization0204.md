@@ -1,4 +1,4 @@
-# Chapter 14 Working with Lists
+# 0204. Working with Lists
 
 In the AutoLISP® programming language, an atom can be a function name, string, integer, real number, or another supported data type or symbol. A list is an expression that contains one or more atoms enclosed in parentheses. Each AutoLISP expression is a list, with the exception of those that start with an exclamation point. Lists often represent the following:
 
@@ -231,11 +231,6 @@ Much of the time you will likely be working at the current elevation, so you wil
 At the AutoCAD Command prompt, type (setq LL '(0 0) UR '(60 30)) and press Enter.
 
 Type (command "._rectang" LL UR) and press Enter.The rectang command draws a four-sided rectangle on the current working plane.
-
-
-
-
-
 
 Type (setq Z '(5)) and press Enter.
 

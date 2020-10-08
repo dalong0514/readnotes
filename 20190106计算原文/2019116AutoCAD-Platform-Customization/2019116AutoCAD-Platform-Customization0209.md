@@ -335,9 +335,3 @@ At the Specify label insertion point: prompt, press Esc. The plate that was draw
 Run the drawplate function again. Specify a point for the plate and label.
 
 At the Command prompt, type u and press Enter. The completed plate is undone as expected.
-
-
-
-
-
-

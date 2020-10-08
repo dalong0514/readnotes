@@ -1,4 +1,4 @@
-# Chapter 13 Calculating and Working with Values
+# 0203. Calculating and Working with Values
 
 Many of the standard AutoCAD® commands perform a lot of calculations as they are used from the user interface, but much of this work is shifted to you as a programmer when you work with AutoLISP®. AutoLISP supports a variety of functions that allow you to perform basic and complex math calculations, manipulate numeric or string values, and work with the elements contained in a list. I cover working with lists in Chapter 14,「Working with Lists.」
 

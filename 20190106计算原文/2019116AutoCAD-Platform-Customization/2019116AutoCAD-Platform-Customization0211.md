@@ -1,4 +1,4 @@
-# Chapter 21 Using the Visual LISP Editor (Windows only)
+# 0211. Using the Visual LISP Editor (Windows only)
 
 Up until now, when working with LSP files you have been using Notepad, which is designed primarily for creating and editing plain ASCII text files—not LSP files. The Autodesk® AutoCAD® program on Windows supports an integrated development environment (IDE) used to develop custom AutoLISP® applications. The IDE used to work with AutoLISP is called the Visual LISP® Editor and is often referred to as the VLIDE. Unlike Notepad, the Visual LISP Editor offers a range of tools that are designed specifically for working with LSP files.
 

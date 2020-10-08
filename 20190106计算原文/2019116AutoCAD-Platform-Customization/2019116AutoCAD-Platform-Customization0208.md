@@ -1,4 +1,4 @@
-# Chapter 18 Working with the Operating System and External Files
+# 0208. Working with the Operating System and External Files
 
 The AutoLISP® programming language can be used to reach beyond the boundaries of the Autodesk® AutoCAD® application window and objects in the current open drawing. Using AutoLISP, you can access settings managed by the operating system and installed applications on Windows or by the application-level settings of AutoCAD on both Windows and Mac OS. You can access operating system– and application-level settings from the Windows Registry. On Mac OS, you can access application-level settings for AutoCAD from the Plist (property list) files.
 
@@ -419,8 +419,6 @@ The steps in this exercise depend on the completion of the steps in the「Exerci
 Creating Layers Based on Data Stored in an External File
 
 Often you start a drawing from a drawing template, which contains a default set of layers, but any layers not used can accidentally be removed with the purge or -purge command. To restore the missing layers, you could create a drawing that contains your default layers and insert it into your drawing. As an alternative on Windows, you could restore the layers using the Content Explorer or the AutoCAD DesignCenter™ palette. An additional approach to restoring layers or named standards is through the use of external data files and AutoLISP.
-
-
 
 The ch18_layers.dat file (part of the sample files supplied with this book) contains information that can be used to create layers in a drawing. The createlayer function is defined in the utility.lsp file. The DAT file is tab-delimited and contains three pieces of information about a layer. The information in each line is a layer name, color, and linetype:
 

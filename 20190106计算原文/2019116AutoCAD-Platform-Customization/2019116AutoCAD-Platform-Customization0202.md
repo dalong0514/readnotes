@@ -370,13 +370,15 @@ Table 12.2 Special characters that can prefix a command name
 
 1. `.` (period). Accesses an AutoCAD command's standard definition even when a command might have been undefined with the undefine command.
 
-2. `_ `(underscore). Instructs AutoCAD to use the global command name or option value instead of the localized name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release.
+2. `_` (underscore). Instructs AutoCAD to use the global command name or option value instead of the localized name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release.
 
 ### 2.4.1 Using the command Function
 
 The command function passes each argument it receives to the AutoCAD Command prompt. The first argument is the name of the command to execute. After the command name are the arguments that reflect the options and values that should be executed by the command. If a command is already active when the command function is evaluated, the arguments are passed to the current command.
 
 TIP: Before using the command function, you should test to see if a command is active by querying the current value of the cmdactive system variable with the AutoLISP getvar function. A value greater than 0 indicates a command is active. You can issue the command function without any arguments to simulate pressing Esc to get to a clean Command prompt.
+
+1『查看一个命令是否在「激活」状态的方法，mark 一下。（2020-10-08）』
 
 The following shows the syntax of the command function:
 
@@ -411,6 +413,8 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 (command "._circle" PAUSE "_d" 3)
 ```
 
+2『宏命令里的悬停，做一张任意卡片。（2020-10-08）』——已完成
+
 ---
 
 ### Controlling a Command's Version
@@ -426,6 +430,8 @@ The following example uses version 1 of the color command:
 
 Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
 
+1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
+
 ---
 
 ### 2.4.2 Using the command-s Function
@@ -434,9 +440,9 @@ The command-s function is similar to the command function, with a few difference
 
 When you use the command-s function, you must supply all values to complete the command that you want to execute. Unlike with the command function, you can't do either of these things:
 
-Suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt with the predefined PAUSE variable.
+1. Suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt with the predefined PAUSE variable.
 
-Start the execution of a command in one expression and finish the command in another expression. The following is not a valid use of the command-s function: (command-s "._circle") (command-s '(5 5) 2)
+2. Start the execution of a command in one expression and finish the command in another expression. The following is not a valid use of the command-s function: `(command-s "._circle") (command-s '(5 5) 2)`
 
 The following shows the syntax of the command-s function:
 
@@ -466,9 +472,9 @@ The following exercise demonstrates how the initdia function affects the use of 
 
 2. Press Esc to end the plot command.
 
-3. Type (initdia) and press Enter. It will seem like nothing happens, but rest assured a flag has been set in the background for AutoCAD to check with the next use of the command function.
+3. Type `(initdia)` and press Enter. It will seem like nothing happens, but rest assured a flag has been set in the background for AutoCAD to check with the next use of the command function.
 
-4. Type (command "._plot") and press Enter. The plot command starts and the Plot dialog box is displayed.
+4. Type `(command "._plot")` and press Enter. The plot command starts and the Plot dialog box is displayed.
 
 5. When the Plot dialog box opens, click Cancel.
 
@@ -476,47 +482,49 @@ The following exercise demonstrates how the initdia function affects the use of 
 
 Although you can execute AutoLISP expressions one at a time at the Command prompt, doing so makes it hard to repeat or use more than a few AutoLISP expressions at a time. You can group AutoLISP expressions together into a new custom function and then execute all of the expressions in the group by using the function name you specify.
 
-### Defining a Custom Function
+### 2.5.1 Defining a Custom Function
 
 The AutoLISP defun function is used to define a custom function. A custom function defined with defun behaves similar to a standard AutoLISP function, but it can also mimic a command that can be entered directly at the AutoCAD Command prompt or used in a script or command macro. Typically, a function is defined when you want to make it easier to execute and repeat a specific set of AutoLISP expressions.
 
 The following shows the syntax of the defun function that you should follow when defining a function that doesn't need to mimic an AutoCAD command:
 
+```c
 (defun function_name ([argN] / [local_varN]) expressionN )
+```
 
-function_name The function_name argument represents the name of the function you want to define.
+`function_name`. The `function_name` argument represents the name of the function you want to define.
 
-argN The argN argument represents a list of arguments that the function can accept and then act upon. argN is optional.
+argN. The argN argument represents a list of arguments that the function can accept and then act upon. argN is optional.
 
-local_varN The local_varN argument represents a list of user-defined variables defined in the function that should be restricted to the local scope of the function. local_varN is optional. Variables defined within a function have a global scope if they aren't added to the local_varN argument.
+`local_varN`. The `local_varN` argument represents a list of user-defined variables defined in the function that should be restricted to the local scope of the function. `local_varN` is optional. Variables defined within a function have a global scope if they aren't added to the `local_varN` argument.
 
-expressionN The expressionN argument represents the AutoLISP expressions that should be executed by the function when it is used.
+expressionN. The expressionN argument represents the AutoLISP expressions that should be executed by the function when it is used.
 
 The following shows the syntax of the defun function when you want to define a function that can be accessed from the AutoCAD Command prompt, similar to a standard AutoCAD command:
 
+```c
 (defun c:function_name ( / [local_varN]) expressionN )
+```
 
-NOTE
-
-Custom functions that have the C: prefix shouldn't accept any arguments. If your function requires any values, those values should be requested from the user with the getxxx functions. Chapter 15,「Requesting Input and Using Conditional and Looping Expressions,」discusses getting input from the user.
+NOTE: Custom functions that have the C: prefix shouldn't accept any arguments. If your function requires any values, those values should be requested from the user with the getxxx functions. Chapter 15,「Requesting Input and Using Conditional and Looping Expressions,」discusses getting input from the user.
 
 The following steps show how to define two custom functions: a function named dtr that converts an angular value in degrees to radians, and another named c:zw, which executes the zoom command with the Window option. These functions can be executed at the AutoCAD Command prompt.
 
-At the AutoCAD Command prompt, type (defun dtr (deg / ) and press Enter. The defun function defines a function named dtr, which accepts a single argument named deg. In this example the dtr function will use no local user-defined variables, but if you decided to, you'd list them after the forward slash.
+1. At the AutoCAD Command prompt, type (defun dtr (deg / ) and press Enter. The defun function defines a function named dtr, which accepts a single argument named deg. In this example the dtr function will use no local user-defined variables, but if you decided to, you'd list them after the forward slash.
 
-Type (* deg (/ PI 180)) and press Enter. The value assigned to the variable PI will be divided by 180 and then multiplied by the value passed into the dtr function that is assigned to the deg variable.
+2. Type (* deg (/ PI 180)) and press Enter. The value assigned to the variable PI will be divided by 180 and then multiplied by the value passed into the dtr function that is assigned to the deg variable.
 
-Type ) and press Enter. The AutoLISP interpreter returns the name of the function that is defined; in this case DTR is returned. This parenthesis closes the AutoLISP expression that was started with the defun function.
+3. Type ) and press Enter. The AutoLISP interpreter returns the name of the function that is defined; in this case DTR is returned. This parenthesis closes the AutoLISP expression that was started with the defun function.
 
-Type (dtr 45) and press Enter. The value 0.785398 is returned.
+4. Type (dtr 45) and press Enter. The value 0.785398 is returned.
 
-Type (defun c:zw ( / ) and press Enter. The defun function defines a function named zw and it is prefixed with C:, indicating it can be entered at the AutoCAD Command prompt. This function doesn't accept any arguments and there are no variables that should be limited locally to this function.
+5. Type (defun c:zw ( / ) and press Enter. The defun function defines a function named zw and it is prefixed with C:, indicating it can be entered at the AutoCAD Command prompt. This function doesn't accept any arguments and there are no variables that should be limited locally to this function.
 
-Type (command "._zoom" "_w")) and press Enter. The AutoLISP interpreter returns C:ZW. The AutoLISP expression that uses the command function will be executed when the zw function is used. The command function starts the zoom command and then uses the Window option. The last closing parenthesis ends the AutoLISP expression that was started with the defun function.
+6. Type (command "._zoom" "_w")) and press Enter. The AutoLISP interpreter returns C:ZW. The AutoLISP expression that uses the command function will be executed when the zw function is used. The command function starts the zoom command and then uses the Window option. The last closing parenthesis ends the AutoLISP expression that was started with the defun function.
 
-Type zw and press Enter. You will be prompted to specify the corners of the window in which the drawing should be zoomed.
+7. Type zw and press Enter. You will be prompted to specify the corners of the window in which the drawing should be zoomed.
 
-Using a Custom Function
+### 2.5.2 Using a Custom Function
 
 After you define a custom AutoLISP function with the defun function, you can execute it at either the AutoCAD Command prompt or from an AutoLISP program. Chapter 20 discusses creating AutoLISP programs. In the previous section, you defined two functions: dtr and c:zw. The following rules explain how you can execute a custom AutoLISP function defined with the defun function:
 
@@ -526,9 +534,7 @@ If a function name has the C: prefix, you can enter the name of the function dir
 
 Functions used in a script or command macro for a user-interface element must follow the same syntax that can be entered at the AutoCAD Command prompt.
 
-TIP
-
-Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
+TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
 
 ## 2.6 Example: Drawing a Rectangle
 

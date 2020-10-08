@@ -492,3 +492,123 @@ nil
 
 1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
 
+### 2.4 Leveraging AutoCAD and Third-Party Commands
+
+The AutoLISP command and command-s functions allow you to leverage the functionality of a standard AutoCAD command or a command defined by a loaded third-party application. Because these functions allow you to use a command, they are often some of the first functions that many new to AutoLISP learn.
+
+NOTE: When using the command and command-s functions, keep in mind that the command being executed in most cases behaves similar to when you use it from the AutoCAD Command prompt. That means you can use many system variables to control a command's behavior or outcome. For example, you can use the clayer system variable to set a layer as current before an object is drawn or even disable running object snaps with the osmode system variable before using the line and circle commands. After you make a call to the last command and command-s function in your AutoLISP programs, be sure to restore any changed system variables to their previous values.
+
+In Chapters 5 and 6 you learned about creating command macros. Some of the special characters used in command macros also apply to the command and command-s functions. Table 12.2 lists the special characters that can prefix a command name.
+
+Table 12.2 Special characters that can prefix a command name
+
+1. `.` (period). Accesses an AutoCAD command's standard definition even when a command might have been undefined with the undefine command.
+
+2. `_` (underscore). Instructs AutoCAD to use the global command name or option value instead of the localized name or value provided. This allows the macro to function as expected when used with a different language of the AutoCAD release.
+
+#### 2.4.1 Using the command Function
+
+The command function passes each argument it receives to the AutoCAD Command prompt. The first argument is the name of the command to execute. After the command name are the arguments that reflect the options and values that should be executed by the command. If a command is already active when the command function is evaluated, the arguments are passed to the current command.
+
+TIP: Before using the command function, you should test to see if a command is active by querying the current value of the cmdactive system variable with the AutoLISP getvar function. A value greater than 0 indicates a command is active. You can issue the command function without any arguments to simulate pressing Esc to get to a clean Command prompt.
+
+1『查看一个命令是否在「激活」状态的方法，mark 一下。（2020-10-08）』
+
+The following shows the syntax of the command function:
+
+```c
+(command [cmdname [argN …]])
+```
+
+cmdname. The cmdname argument represents the name of the command to execute. cmdname is optional.
+
+argN. The argN argument represents the options and values that should be executed at the AutoCAD Command prompt. argN is optional. Arguments are also known as command tokens.
+
+The following AutoLISP example assigns the coordinate values of 2,2,0 and 5,6,0 to the user-defined variables named `*apc_pt1*` and `*apc_pt2*`. The line command is then used to draw a line between the coordinate values assigned to the user-defined variables `*apc_pt1*` and `*apc_pt2*.`
+
+```c
+(setq *apc_pt1* '(2 2 0) 
+    *apc_pt2* '(5 6 0)) 
+(command "._line" *apc_pt1* *apc_pt2* "")
+```
+
+NOTE: The arguments that you might pass to the command function can span multiple expressions. The following produces the same results as the previous AutoLISP example code:
+
+```c
+(setq *apc_pt1* '(2 2 0) 
+    *apc_pt2* '(5 6 0)) 
+(command "._line") 
+(command *apc_pt1* *apc_pt2* "")
+```
+
+When the command function is used, you can suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt. You use the predefined PAUSE variable or the "\\" ASCII character sequence to allow the user to provide a value. The following AutoLISP expression starts the circle command and then allows the user to specify a center point. Once a center point is specified, the circle's diameter is set to 3 units.
+
+```c
+(command "._circle" PAUSE "_d" 3)
+```
+
+2『宏命令里的悬停，做一张任意卡片。（2020-10-08）』——已完成
+
+---
+
+#### Controlling a Command's Version
+
+Internally each standard AutoCAD command is assigned a new version number when a change is made that affects an AutoLISP program, script, or command macro. You use the initcommandversion function to control which version of a command is used by the next use of the command or command-s function. The initcommandversion function doesn't require a value, but when one is provided it must be an integer value that represents the version of the command you want to use.
+
+The following example uses version 1 of the color command:
+
+```c
+(initcommandversion 1) 
+(command "._color")
+```
+
+Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
+
+1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
+
+---
+
+#### 2.4.2 Using the command-s Function
+
+The command-s function is similar to the command function, with a few differences. Like the command function, the command-s function passes each argument it receives to the AutoCAD Command prompt. The first argument that is passed to the command-s function is the name of the command you want to execute. This is followed by the arguments that reflect the options and values you want executed.
+
+When you use the command-s function, you must supply all values to complete the command that you want to execute. Unlike with the command function, you can't do either of these things:
+
+1. Suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt with the predefined PAUSE variable.
+
+2. Start the execution of a command in one expression and finish the command in another expression. The following is not a valid use of the command-s function: `(command-s "._circle") (command-s '(5 5) 2)`
+
+The following shows the syntax of the command-s function:
+
+```c
+(command-s [cmdname [argN …]])
+```
+
+cmdname. The cmdname argument represents the name of the command to execute. cmdname is optional.
+
+argN. The argN argument represents the options and values that should be executed at the AutoCAD Command prompt. argN is optional. Arguments are also known as command tokens.
+
+The following AutoLISP example assigns the coordinate value of 5,5,0 to the user-defined variable named `*apc_cpt*`. The circle command is then used to draw a circle using the coordinate value assigned to the user-defined variables `*apc_cpt*` and a radius of 5.
+
+```c
+(setq *apc_cpt* '(5 5 0)) (command-s "._circle" *apc_cpt* 5)
+```
+
+#### 2.4.3 Working with Commands That Display a Dialog Box
+
+When using the command and command-s functions, avoid commands that display a dialog box because doing so can lead to inconsistencies when your AutoLISP program is executed. Instead, you should use the alternative command-line equivalent of a command, or use the system and environment variables that might be changed with the dialog box. In most cases, adding a hyphen (-) in front of a command that normally displays a dialog box will cause the command to display a series of command prompts instead. For more information, see Chapter 8 or the AutoCAD Help system.
+
+If you need to use the dialog box that a command normally displays, you must use the AutoLISP initdia function. This function indicates to AutoCAD that the next command executed with the command or command-s function should display a dialog box, if it is supported. Using the initdia function before a command that doesn't display a dialog box has no effect on the command. The initdia function doesn't accept any arguments.
+
+The following exercise demonstrates how the initdia function affects the use of the command function when using the plot command:
+
+1. At the AutoCAD Command prompt, type (command "._plot") and press Enter. The plot command starts and the Detailed plot configuration? [Yes/No] <No>: prompt is displayed.
+
+2. Press Esc to end the plot command.
+
+3. Type `(initdia)` and press Enter. It will seem like nothing happens, but rest assured a flag has been set in the background for AutoCAD to check with the next use of the command function.
+
+4. Type `(command "._plot")` and press Enter. The plot command starts and the Plot dialog box is displayed.
+
+5. When the Plot dialog box opens, click Cancel.
+

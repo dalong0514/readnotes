@@ -1,4 +1,4 @@
-# Chapter 16 Creating and Modifying Graphical Objects
+# 0206. Creating and Modifying Graphical Objects
 
 The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
 

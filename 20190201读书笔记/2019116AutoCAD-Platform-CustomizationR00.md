@@ -54,7 +54,20 @@ Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted
 
 2『 Dotted Pair 做一张术语卡片。』——已完成
 
-### 0202. 术语卡——
+### 0202. 术语卡——Controlling a Command's Version
+
+Internally each standard AutoCAD command is assigned a new version number when a change is made that affects an AutoLISP program, script, or command macro. You use the initcommandversion function to control which version of a command is used by the next use of the command or command-s function. The initcommandversion function doesn't require a value, but when one is provided it must be an integer value that represents the version of the command you want to use.
+
+The following example uses version 1 of the color command:
+
+```c
+(initcommandversion 1) 
+(command "._color")
+```
+
+Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
+
+1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
 
 ### 0203. 术语卡——
 
@@ -76,8 +89,15 @@ TIP: User-defined variables are normally accessible only from the drawing in whi
 
 1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）』——已完成
 
+### 0502. 任意卡——宏命令里的悬停
 
+When the command function is used, you can suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt. You use the predefined PAUSE variable or the "\\" ASCII character sequence to allow the user to provide a value. The following AutoLISP expression starts the circle command and then allows the user to specify a center point. Once a center point is specified, the circle's diameter is set to 3 units.
 
+```c
+(command "._circle" PAUSE "_d" 3)
+```
+
+2『宏命令里的悬停，做一张任意卡片。』——已完成
 
 ## Introduction
 
