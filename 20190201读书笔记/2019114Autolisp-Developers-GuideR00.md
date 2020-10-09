@@ -195,7 +195,15 @@ The ssget function provides the most general means of creating a selection set. 
 
 ### 0105. 主题卡——修改 CAD 实体数据的基本思路
 
+### 0106. 主题卡——lsit 映射处理的几个函数
 
+[帮助: lambda (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-3B8BB020-1E1A-4FA3-B7B3-B5B20BA04CD9)
+
+[帮助: mapcar (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-8802AE73-1A05-457E-8A51-09677C23E26E)
+
+[帮助: apply (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-0574ADA0-0950-456A-9330-A2518421536E)
+
+哈哈，之前一直想找这方面的知识。
 
 ### 0201. 术语卡——DXF group codes
 

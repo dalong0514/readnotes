@@ -531,245 +531,374 @@ You can manipulate the interactive tiles of a dialog tile in a DCL file once you
 
 #### Setting the Default Value of an Interactive Tile
 
-When you use a dialog box, have you ever noticed that it often remembers the previously entered values or that values change based on the controls you interact with? You can assign a default value to a tile by using the value attribute in a DCL file or change the default value before a dialog box is displayed by using the set_tile function.
+When you use a dialog box, have you ever noticed that it often remembers the previously entered values or that values change based on the controls you interact with? You can assign a default value to a tile by using the value attribute in a DCL file or change the default value before a dialog box is displayed by using the `set_tile` function.
 
-
-
-
-
-I recommend setting the default value of a tile using the set_tile function, considering it is good practice to restore previously entered values each time the dialog box is redisplayed. The set_tile function can also be used to change the value of a tile when the user interacts with a tile while the dialog box is displayed. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section later in this chapter.
+I recommend setting the default value of a tile using the `set_tile` function, considering it is good practice to restore previously entered values each time the dialog box is redisplayed. The `set_tile` function can also be used to change the value of a tile when the user interacts with a tile while the dialog box is displayed. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section later in this chapter.
 
 The following shows the syntax of the set_tile function:
 
+```c
 (set_tile key val)
+```
 
 Here are its arguments:
 
-key The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
+key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
 
-val The val argument is the string value you want to assign to the tile. An alphanumeric string can be assigned to an edit_box tile, whereas an integer formatted as a string can be assigned to a list_box, popup_list, toggle, radio_button, or slider tile. The first item in the list of a list_box or popup_list tile is 0, the second is 1, and so on.
+val. The val argument is the string value you want to assign to the tile. An alphanumeric string can be assigned to an `edit_box` tile, whereas an integer formatted as a string can be assigned to a `list_box`, `popup_list`, toggle, `radio_button`, or slider tile. The first item in the list of a `list_box` or `popup_list` tile is 0, the second is 1, and so on.
 
-The following code shows how to set a value of 1, which means true, to a tile with the key of opt_circle using the set_tile function. The key opt_circle refers to the Circle radio_button tile of the ex_createLabelObject dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+1『注意啊，tile 的值都是字符串。（2020-10-09）』
 
+The following code shows how to set a value of 1, which means true, to a tile with the key of `opt_circle` using the `set_tile` function. The key `opt_circle` refers to the Circle `radio_button` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+
+```c
 (set_tile "opt_circle" "1")
+```
 
-NOTE
+NOTE: The `set_tile` function can't be executed until after the `new_dialog` function has been executed. Execute the `set_tile` function before the `start_dialog` function to ensure that the tile is updated before the dialog box is displayed.
 
-The set_tile function can't be executed until after the new_dialog function has been executed. Execute the set_tile function before the start_dialog function to ensure that the tile is updated before the dialog box is displayed.
+1『所以，设置默认值，应该在 `new_dialog` 之后以及 `start_dialog` 之前。（2020-10-09）』
 
 #### Enabling and Disabling an Interactive Tile
 
-The tiles of a dialog box are all enabled by default, meaning the user can click or enter text in any interactive tile of a dialog box. The is_enabled attribute of a tile controls the tile's default enabled state. When is_enabled is set to false, the user is unable to interact with the tile when the dialog box is displayed. The enabled state of a tile can be changed using the mode_tile function.
+The tiles of a dialog box are all enabled by default, meaning the user can click or enter text in any interactive tile of a dialog box. The `is_enabled` attribute of a tile controls the tile's default enabled state. When `is_enabled` is set to false, the user is unable to interact with the tile when the dialog box is displayed. The enabled state of a tile can be changed using the `mode_tile` function.
 
 I recommend setting the enabled state of a tile using the mode_tile function and not the is_enabled attribute. The main reason for doing so is because the disabling of a tile is often based on the condition of other tiles or choices made by the user in the dialog box. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section.
 
-The following shows the syntax of the mode_tile function:
+1『作者建议 `mode_tile` 来设置 tile 的激活状态，不用用 tile 自身的属性 `is_enabled` 来设置，记住这点。（2020-10-09）』
 
+The following shows the syntax of the `mode_tile` function:
+
+```c
 (mode_tile key mode)
+```
 
 Here are its arguments:
 
-key The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
+key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
 
-mode The mode argument is an integer value that specifies the mode that should be applied to the tile. Table 23.8 lists the available modes that can be applied to a tile.
+mode. The mode argument is an integer value that specifies the mode that should be applied to the tile. Table 23.8 lists the available modes that can be applied to a tile.
 
-Table 23.8 Modes available for use with the mode_tile function
+Table 23.8 Modes available for use with `the mode_tile` function
 
-Mode Description
+|  Mode | Description  |
+|---|---|
+| 0 | Enables an interactive tile |
+| 1 | Disables an interactive tile |
+| 2 | Sets focus to an interactive tile |
+| 3 | Selects the text in an edit_box tile |
+| 4 | Toggles highlighting for an image tile |
 
-0 Enables an interactive tile
+The following code shows how to disable and then enable a tile with the key of `opt_circle` using the `mode_tile` function. The key `opt_circle` refers to the Circle `radio_button` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
-1 Disables an interactive tile
+```c
+; Disables tile 
+(mode_tile "opt_circle" 1) 
+; Enables tile 
+(mode_tile "opt_circle" 0)
+```
 
-2 Sets focus to an interactive tile
-
-3 Selects the text in an edit_box tile
-
-4 Toggles highlighting for an image tile
-
-The following code shows how to disable and then enable a tile with the key of opt_circle using the mode_tile function. The key opt_circle refers to the Circle radio_button tile of the ex_createLabelObject dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
-
-; Disables tile (mode_tile "opt_circle" 1) ; Enables tile (mode_tile "opt_circle" 0)
-
-NOTE
-
-The mode_tile function can't be executed until after the new_dialog function has been executed. Execute the mode_tile function before the start_dialog function to ensure that the tile is updated before the dialog box is displayed.
+NOTE: The `mode_tile` function can't be executed until after the `new_dialog` function has been executed. Execute the `mode_tile` function before the `start_dialog` function to ensure that the tile is updated before the dialog box is displayed.
 
 #### Populating the Items of a `list_box` or `popup_list` Tile
 
-The list_box and popup_list tiles allow the user to select one or more predefined values from a list. The items available in the list of the two tiles can be specified using the tile's list attribute or AutoLISP functions. The start_list function is used to assign, update, or replace the list of values applied to a list_box or popup_list tile. When a list can be modified, the start_list function returns the name of the list; otherwise the function returns nil, indicating the list isn't accessible for modification. Typically, a list isn't available for modification because you provided an incorrect key to the start_list function or the function was called before the execution of the new_dialog function.
+The `list_box` and `popup_list` tiles allow the user to select one or more predefined values from a list. The items available in the list of the two tiles can be specified using the tile's list attribute or AutoLISP functions. The `start_list` function is used to assign, update, or replace the list of values applied to a `list_box` or `popup_list` tile. When a list can be modified, the `start_list` function returns the name of the list; otherwise the function returns nil, indicating the list isn't accessible for modification. Typically, a list isn't available for modification because you provided an incorrect key to the `start_list` function or the function was called before the execution of the `new_dialog` function.
 
-The following shows the syntax of the start_list function:
+The following shows the syntax of the `start_list` function:
 
+```c
 (start_list key [mode [idx]])
+```
 
 Here are its arguments:
 
-key The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
+key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
 
-mode The mode argument is an integer value that specifies how the list currently assigned to the tile can be modified. Table 23.9 describes each of the available modes.
+mode. The mode argument is an integer value that specifies how the list currently assigned to the tile can be modified. Table 23.9 describes each of the available modes.
 
-idx The idx argument is an integer value that specifies an item in the list. The item is used to indicate which item to change if the mode is set to 1; when the mode is set to 2, it indicates the starting item you want to begin appending new items to.
+idx. The idx argument is an integer value that specifies an item in the list. The item is used to indicate which item to change if the mode is set to 1; when the mode is set to 2, it indicates the starting item you want to begin appending new items to.
 
 Table 23.9 List-editing modes
 
-Mode Description
-
-1 Next call to add_list replaces the item indicated by the idx argument.
-
-2 Next call to add_list appends a new item after the item indicated by the idx argument. If an index isn't provided, the new item is appended after the last item in the list.
-
-3 Items in the list are cleared and a new item is appended.
-
 Table 23.9 describes the modification modes that can be used to edit a list.
 
-After a tile key, mode, and index have been specified with the start_list function, you can change or add new items with the add_list function. The add_list function accepts a single argument of a string value. This value is the text that will be displayed in the list of the list_box or popup_list tile. If the value is successfully added to the list, the string passed to the add_list function is returned; otherwise, nil is returned, indicating the item wasn't added.
+|  Mode | Description  |
+|---|---|
+| 1 | Next call to `add_list` replaces the item indicated by the idx argument. |
+| 2 | Next call to `add_list `appends a new item after the item indicated by the idx argument. If an index isn't provided, the new item is appended after the last item in the list. |
+| 3 | Items in the list are cleared and a new item is appended. |
 
-Once you have modified a list, use the end_list function. The end_list ends the modification of the list that was started with the start_list function. The end_list function returns a value of nil regardless of whether the list was successfully modified.
+After a tile key, mode, and index have been specified with the `start_list` function, you can change or add new items with the `add_list` function. The `add_list` function accepts a single argument of a string value. This value is the text that will be displayed in the list of the `list_box` or `popup_list` tile. If the value is successfully added to the list, the string passed to the `add_list` function is returned; otherwise, nil is returned, indicating the item wasn't added.
 
-The following code shows how to replace and assign a list of two values to a popup_list tile with the key of list_layers. The list_layers key refers to the Layer To Place Object On popup_list tile of the ex_createLabelObject dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+Once you have modified a list, use the `end_list` function. The `end_list` ends the modification of the list that was started with the `start_list` function. The `end_list` function returns a value of nil regardless of whether the list was successfully modified.
 
-; Clear and replace the list of the popup_list (start_list "list_layers" 2) ; Add two items that represent the layers to allow (add_list "A-Door") (add_list "A-Window") ; End list modification (end_list)
+1『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）』
 
-NOTE
+The following code shows how to replace and assign a list of two values to a `popup_list` tile with the key of `list_layers`. The `list_layers` key refers to the Layer To Place Object On `popup_list` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
-The set_tile and mode_tile functions shouldn't be executed between the use of the start_list and end_list functions. Execute the start_list and end_list functions before the start_dialog function to ensure that the list is updated before the dialog box is displayed.
+```c
+; Clear and replace the list of the popup_list 
+(start_list "list_layers" 2) 
+; Add two items that represent the layers to allow 
+(add_list "A-Door") 
+(add_list "A-Window") 
+; End list modification (end_list)
+```
 
-#### Working with image and image_button Tiles
+NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the use of the `start_list` and `end_list` functions. Execute the `start_list` and `end_list` functions before the `start_dialog` function to ensure that the list is updated before the dialog box is displayed.
 
-The image and image_button tiles allow you to display a slide in a frame or as a graphical button. Based on the image you want to display, you will need to use one of several AutoLISP functions to initialize the tile. In earlier AutoCAD releases, image_button tiles were used to display a preview of a block and then start an AutoLISP expression that would allow the insertion of the block. However, the relevance of the image and image_button tiles in a dialog box has diminished in recent releases with interfaces such as the ribbon and Tool Palettes window.
+1『注意几个函数的调用顺序。（2020-10-09）』
 
-If you want to display a slide (SLD) file in a dialog definition with an image or image_button tile, you will want to explore the functions listed in Table 23.10. You can learn more about these functions in the AutoCAD Help system.
+#### Working with image and `image_button` Tiles
 
-Table 23.10 AutoLISP functions used to work with image and image_button tiles
+The image and `image_button` tiles allow you to display a slide in a frame or as a graphical button. Based on the image you want to display, you will need to use one of several AutoLISP functions to initialize the tile. In earlier AutoCAD releases, `image_button` tiles were used to display a preview of a block and then start an AutoLISP expression that would allow the insertion of the block. However, the relevance of the image and `image_button` tiles in a dialog box has diminished in recent releases with interfaces such as the ribbon and Tool Palettes window.
 
-Function Name Description
+If you want to display a slide (SLD) file in a dialog definition with an image or `image_button` tile, you will want to explore the functions listed in Table 23.10. You can learn more about these functions in the AutoCAD Help system.
 
-dimx_tile Returns the width of an image or image_button tile
+Table 23.10 AutoLISP functions used to work with image and `image_button` tiles
 
-dimy_tile Returns the height of an image or image_button tile
-
-end_image Ends the modification of the current image set by the start_image function
-
-fill_image Draws a filled rectangle in the current image set by the start_image function
-
-slide_image Displays a slide (SLD) file or a slide in a slide library (SLB) file in the current image
-
-start_image Starts the modification of an image and sets it as the current image
-
-vector_image Draws a vector in the current image set by the start_image function
+|  Function Name | Description  |
+|---|---|
+|  `dimx_tile` | Returns the width of an image or `image_button` tile  |
+|  `dimy_tile` | Returns the height of an image or `image_button` tile  |
+|  `end_image` | Ends the modification of the current image set by the `start_image` function  |
+|  `fill_image` |  Draws a filled rectangle in the current image set by the `start_image` function  |
+|  `slide_image`  | Displays a slide (SLD) file or a slide in a slide library (SLB) file in the current image  |
+|  `start_image` |  Starts the modification of an image and sets it as the current image  |
+|  `vector_image` |  Draws a vector in the current image set by the `start_image` function  |
 
 ## 13.3 Interacting with and Responding to a User
 
 While a dialog box is displayed onscreen, the user is able to interact with the tiles that are enabled. As the user interacts with the tiles, the AutoLISP expressions assigned to the tile's action attribute are executed. The AutoLISP expressions can be used to get and set tile and attribute values, and to change the enabled state of a tile.
 
-Specifying the Action of a Tile
+### 13.3.1 Specifying the Action of a Tile
 
-An interactive tile can be assigned an AutoLISP expression that is to be executed when the tile is clicked or interacted with. You use the action attribute in a DCL file to assign an AutoLISP expression to a tile or the action_tile function. As part of the AutoLISP expression, you can get information about the tile that is being interacted with by using several predefined variables. Table 23.11 lists the predefined variables that can be referenced by the AutoLISP expression assigned to a tile's action attribute.
+An interactive tile can be assigned an AutoLISP expression that is to be executed when the tile is clicked or interacted with. You use the action attribute in a DCL file to assign an AutoLISP expression to a tile or the `action_tile` function. As part of the AutoLISP expression, you can get information about the tile that is being interacted with by using several predefined variables. Table 23.11 lists the predefined variables that can be referenced by the AutoLISP expression assigned to a tile's action attribute.
 
-NOTE
+NOTE: After you create an instance of a dialog box with the `new_dialog` function, you can assign a string value to a tile from the custom program with the `client_data_tile` function; this is in addition to the tile's value attribute. When the AutoLISP expressions assigned to the tile's action attribute are executed, you can reference this string value with the `$data` variable. For more information on the `client_data_tile` function, refer to the AutoCAD Help system.
 
-After you create an instance of a dialog box with the new_dialog function, you can assign a string value to a tile from the custom program with the client_data_tile function; this is in addition to the tile's value attribute. When the AutoLISP expressions assigned to the tile's action attribute are executed, you can reference this string value with the $data variable. For more information on the client_data_tile function, refer to the AutoCAD Help system.
+1-2『直觉上 `client_data_tile` 这个函数非常有用，去深挖。目前的感觉是在外面用这个函数把外面的数据传递给 tile，然后再通过 tile 的内置变量 `$data` 提取出来，但为啥要绕一圈呢，肯定是有原因的。（2020-10-09）』——未完成
 
 Table 23.11 Predefined variables that contain information about the current tile
 
-Variable Name Description
+|  Variable Name | Description  |
+|---|---|
+|  `$data` | Custom information assigned to a tile with the `client_data_tile` function.  |
+|  `$key` | Key name assigned to the tile.  |
+|  `$reason` | Callback reason based on the interaction performed by the user. Possible values are 1, 2, 3, or 4. 1 indicates the user has clicked or pressed Enter to activate a tile, 2 means the user exited an `edit_box` tile, 3 indicates the value of a slider tile has changed, and 4 is returned when a `list_box` or image tile is `double-clicked`.  |
+|  `$value` | Current value of the tile.  |
+|  `$x` | Coordinate value of an image along its x-axis when an `image_button` tile is clicked.  |
+|  `$y` | Coordinate value of an image along its y-axis when an `image_button` tile is clicked.  |
 
-$data Custom information assigned to a tile with the client_data_tile function.
+ 1『 `$reason` 这个内置变量感觉也有大用户。（2020-10-09）』
 
-$key Key name assigned to the tile.
+I recommend setting a tile's action using the `action_tile` function to give you the flexibility to dynamically change the AutoLISP expression that is assigned while the user is interacting with the dialog box. For example, you might want to assign a different action to a button tile based on the `radio_button` tile that the user chooses.
 
-$reason Callback reason based on the interaction performed by the user. Possible values are 1, 2, 3, or 4. 1 indicates the user has clicked or pressed Enter to activate a tile, 2 means the user exited an edit_box tile, 3 indicates the value of a slider tile has changed, and 4 is returned when a list_box or image tile is double-clicked.
+NOTE: By means of the action attribute or the `action_tile` function, an AutoLISP expression can be assigned to all tiles in a dialog box that don't have a specific expression assigned to them. This general action is assigned with the action argument of the `new_dialog` function mentioned earlier, in the「Displaying a Dialog」section.
 
-$value Current value of the tile.
+The following shows the syntax of the `action_tile` function:
 
-$x Coordinate value of an image along its x-axis when an image_button tile is clicked.
-
-$y Coordinate value of an image along its y-axis when an image_button tile is clicked.
-
-I recommend setting a tile's action using the action_tile function to give you the flexibility to dynamically change the AutoLISP expression that is assigned while the user is interacting with the dialog box. For example, you might want to assign a different action to a button tile based on the radio_button tile that the user chooses.
-
-NOTE
-
-By means of the action attribute or the action_tile function, an AutoLISP expression can be assigned to all tiles in a dialog box that don't have a specific expression assigned to them. This general action is assigned with the action argument of the new_dialog function mentioned earlier, in the「Displaying a Dialog」section.
-
-The following shows the syntax of the action_tile function:
-
+```c
 (action_tile key expr)
+```
 
 Here are its arguments:
 
-key The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
+key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
 
-expr The expr argument is a string value that represents the AutoLISP expression that should be executed when the user interacts with the tile.
+expr. The expr argument is a string value that represents the AutoLISP expression that should be executed when the user interacts with the tile.
 
-The following code shows how to assign the AutoLISP expression (alert (strcat "Tile key: " $key)) to the tile with the key of opt_circle using the action_tile function. The key opt_circle refers to the Circle radio_button tile of the ex_createLabelObject dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+1『
 
+这个地方的表达式也必要在字符串里。（2020-10-09）
+
+```c
+(defun modifyBlockProperty (tileName blockSSName / dcl_id property_name property_value status selectedName ss)
+  (setq dcl_id (load_dialog (strcat "D:\\dataflowcad\\" "dataflow.dcl")))
+  (if (not (new_dialog tileName dcl_id))
+    (exit)
+  )
+  ; optional setting for the popup_list tile
+  (set_tile "property_name" "0")
+  ;the default value of input box
+  (set_tile "property_value" "")
+  (mode_tile "property_name" 2)
+  (mode_tile "property_value" 2)
+  (action_tile "property_name" "(setq property_name $value)")
+  (action_tile "property_value" "(setq property_value $value)")
+  (if (= nil property_name)
+    (setq property_name "0")
+  )
+
+  (setq status (start_dialog))
+  (unload_dialog dcl_id)
+  
+  (if (= status 1)
+    (progn 
+      (setq selectedName (GetPropertyName property_name blockSSName))
+      (setq ss (GetBlockSS blockSSName))
+      (ModifyPropertyValue ss selectedName property_value)
+      (alert "更新数据成功")(princ)
+    )
+    ;(alert "取消选择")
+  )
+)
+```
+
+』
+
+The following code shows how to assign the AutoLISP expression `(alert (strcat "Tile key: " $key))` to the tile with the key of `opt_circle` using the `action_tile` function. The key `opt_circle` refers to the Circle `radio_button` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+
+```c
 (action_tile "opt_circle" "(alert (strcat \"Tile key: \" $key))")
+```
 
-NOTE
+1『注意啊，里面的双引号需要加转义字符。（2020-10-09）』
 
-Execute the action_tile function before the start_dialog function to ensure that the action is assigned to the tile before the dialog box is displayed.
+NOTE: Execute the `action_tile` function before the `start_dialog` function to ensure that the action is assigned to the tile before the dialog box is displayed.
 
-Getting Information about a Tile
+### 13.3.2 Getting Information about a Tile
 
-When a user interacts with the tiles of a dialog box, you will commonly want to get the current value of one or all tiles before the dialog box is closed. The current value of the value attribute of a tile can be obtained using the get_tile function. If you want to get the value of an attribute other than value, you can use the get_attr function. The get_tile and get_attr functions return a string value.
+When a user interacts with the tiles of a dialog box, you will commonly want to get the current value of one or all tiles before the dialog box is closed. The current value of the value attribute of a tile can be obtained using the `get_tile` function. If you want to get the value of an attribute other than value, you can use the `get_attr` function. The `get_tile` and `get_attr` functions return a string value.
 
-NOTE
+NOTE: The `get_tile` and `get_attr` functions must be executed before the `done_dialog` function is called to terminate the dialog box. I discuss the `done_dialog` function in the next section.
 
-The get_tile and get_attr functions must be executed before the done_dialog function is called to terminate the dialog box. I discuss the done_dialog function in the next section.
+1『感觉用 `get_tile` 获取内置变量 `$value` 可以解决之前遇到的一个 bug，下来列表默认不选的话返回 nil 的问题。待验证。（2020-10-09）』
 
-The following shows the syntax of the get_tile and get_attr functions:
+The following shows the syntax of the `get_tile` and `get_attr` functions:
 
-(get_tile key) (get_attr key attr)
+```c
+(get_tile key) 
+(get_attr key attr)
+```
 
 Here are their arguments:
 
-key The key argument is a string that specifies the value assigned to the key attribute of the tile to query.
+key. The key argument is a string that specifies the value assigned to the key attribute of the tile to query.
 
-attr The attr argument is a string value that specifies the name of the attribute to query.
+attr. The attr argument is a string value that specifies the name of the attribute to query.
 
-The following code shows how to get the current value of the tile with the key of opt_circle using the get_tile function, and get the items assigned to the list attribute of a popup_list tile with the key of list_layers. These tiles are part of the ex_createLabelObject dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+The following code shows how to get the current value of the tile with the key of `opt_circle` using the `get_tile` function, and get the items assigned to the list attribute of a `popup_list` tile with the key of `list_layers`. These tiles are part of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
-; Gets the current value of the tile (get_tile "opt_circle") "1" ; Gets the current value of the list attribute (get_attr "list_layers" "list") "A-Door\nA-Window"
+```c
+; Gets the current value of the tile 
+(get_tile "opt_circle") 
+"1" 
+; Gets the current value of the list attribute 
+(get_attr "list_layers" "list") 
+"A-Door\nA-Window"
+```
 
-Terminating or Closing a Dialog Box
+1『通过这个例子就明白了 `attr` 指什么数据，就是 `list_box` tile 里 list 属性里的值，哈哈。（2020-10-09）』
 
-A dialog box must be terminated—or closed—when it is no longer needed and the end user wants to return to the drawing area. The done_dialog function is used to indicate that the dialog box can be terminated. You commonly add this function as the last part of the AutoLISP expression assigned to the action attribute of a button tile such as OK or Cancel that terminates a dialog box. Before done_dialog is executed, you want to make sure you get the value of any tiles or tile attribute values by using the get_tile or get_attr function.
+### 13.3.3 Terminating or Closing a Dialog Box
 
-NOTE
+A dialog box must be terminated—or closed—when it is no longer needed and the end user wants to return to the drawing area. The `done_dialog` function is used to indicate that the dialog box can be terminated. You commonly add this function as the last part of the AutoLISP expression assigned to the action attribute of a button tile such as OK or Cancel that terminates a dialog box. Before `done_dialog` is executed, you want to make sure you get the value of any tiles or tile attribute values by using the `get_tile` or `get_attr` function.
 
-The OK and Cancel buttons defined in the predefined subassemblies automatically execute (done_dialog 1) and (done_dialog 0), respectively, when the button is clicked. done_dialog needs to be executed only for tiles that close a dialog box.
+NOTE: The OK and Cancel buttons defined in the predefined subassemblies automatically execute (done_dialog 1) and (done_dialog 0), respectively, when the button is clicked. `done_dialog` needs to be executed only for tiles that close a dialog box.
 
-The done_dialog function returns a 2D point list that represents the current placement of the dialog box onscreen. You can store this value as part of the Windows Registry, and then, to restore the location the next time the dialog box is displayed, pass the 2D point list to the new_dialog function.
+The `done_dialog` function returns a 2D point list that represents the current placement of the dialog box onscreen. You can store this value as part of the Windows Registry, and then, to restore the location the next time the dialog box is displayed, pass the 2D point list to the `new_dialog` function.
 
-The following shows the syntax of the done_dialog function:
+1『妙啊，做成第二个弹窗跟第一个一模一样的假象。（2020-10-09）』
 
+The following shows the syntax of the `done_dialog` function:
+
+```c
 (done_dialog [status])
+```
 
-The status argument is an integer value that will be returned by the start_dialog function. Typically, 0 indicates that the user clicked Cancel or the dialog box was canceled, whereas 1 indicates that the user clicked OK or an equivalent tile. A value greater than 2 can be passed to the status argument.
+The status argument is an integer value that will be returned by the `start_dialog` function. Typically, 0 indicates that the user clicked Cancel or the dialog box was canceled, whereas 1 indicates that the user clicked OK or an equivalent tile. A value greater than 2 can be passed to the status argument.
 
-The following code shows how to assign a custom action to the OK and Cancel buttons of a dialog box. The alert function is called before done_dialog to simply demonstrate that more than one AutoLISP function can be called from a tile's action.
+The following code shows how to assign a custom action to the OK and Cancel buttons of a dialog box. The alert function is called before `done_dialog` to simply demonstrate that more than one AutoLISP function can be called from a tile's action.
 
-; Assign an action to the OK button (action_tile "accept" "(alert \"OK clicked.\")(done_dialog 1)") ; Assign an action to the Cancel button (action_tile "cancel" "(alert \"Cancel clicked.\")(done_dialog 0)")
+```c
+; Assign an action to the OK button 
+(action_tile "accept" "(alert \"OK clicked.\")
+(done_dialog 1)") 
+; Assign an action to the Cancel button 
+(action_tile "cancel" "(alert \"Cancel clicked.\")
+(done_dialog 0)")
+```
 
-If you have more than one dialog box displayed, in the case of working with nested dialog boxes, the term_dialog function can be executed to close all open dialog boxes and return to the drawing area. The term_dialog function doesn't accept any argument values and always returns nil.
+If you have more than one dialog box displayed, in the case of working with nested dialog boxes, the `term_dialog` function can be executed to close all open dialog boxes and return to the drawing area. The `term_dialog` function doesn't accept any argument values and always returns nil.
 
-Hiding a Dialog Box Temporarily
+### 13.3.4 Hiding a Dialog Box Temporarily
 
-When getting input from the user with a dialog box, it isn't uncommon to allow the user to specify a point or select objects in the drawing area. Before a user can interact with the drawing area, the dialog box must be temporarily hidden. The concept of hiding a dialog box involves creating a dialog box with new_dialog and then starting user interaction with start_dialog in a looping expression that uses the while function. The done_dialog function is then used to terminate the dialog box. The status value passed to the done_dialog function is returned by the start_dialog function and used to exit or continue looping with the while function. The button that should hide the dialog box should use a status value greater than 2 to distinguish the status values returned by the OK or Cancel buttons.
+1『看到标题就知道是自己要找的功能了，哈哈。（2020-10-09）』
 
-The following DCL syntax defines a sample dialog box named ch23_ex_hidden that will be used to demonstrate hiding and showing a dialog box:
+When getting input from the user with a dialog box, it isn't uncommon to allow the user to specify a point or select objects in the drawing area. Before a user can interact with the drawing area, the dialog box must be temporarily hidden. The concept of hiding a dialog box involves creating a dialog box with `new_dialog` and then starting user interaction with `start_dialog` in a looping expression that uses the while function. The `done_dialog` function is then used to terminate the dialog box. The status value passed to the `done_dialog` function is returned by the `start_dialog` function and used to exit or continue looping with the while function. The button that should hide the dialog box should use a status value greater than 2 to distinguish the status values returned by the OK or Cancel buttons.
 
-ch23_ex_hidden : dialog { label = "Hide/Show Example"; key = "dlg_hide"; : text { key = "msg"; label = "Point: "; } : row { fixed_width = true; alignment = right; : button { key = "btn_PickPoint"; action = "pickPoint"; label = "Pick Point"; is_default = "true"; width = 12; } : spacer { width = 1; } cancel_button; } }
+The following DCL syntax defines a sample dialog box named `ch23_ex_hidden` that will be used to demonstrate hiding and showing a dialog box:
 
-The following AutoLISP code defines a custom function named hiddendlg that loads the ex_hidden.dcl file and displays the ch23_ex_hidden dialog box:
+```c
+ex_hidden : dialog
+{
+    label = "Hide/Show Example";
+    key = "dlg_hide";
+    : text
+    {
+        key = "msg";
+        label = "Point: ";
+    }
+    : row {
+        fixed_width = true;
+        alignment = right;      
+        : button {
+            key = "btn_PickPoint";
+            action = "pickPoint";
+            label = "Pick Point";
+            is_default = "true";
+            width = 12;
+        }
+        : spacer { width = 1; }
+        cancel_button;
+    }
+}
+```
 
-; Display the ch23_ex_hidden.dcl file (defun c:hiddendlg (/ dialog_name id status pt) (setq dialog_name "ch23_ex_hidden") ; Load the DCL file named ex_hidden.dcl (setq id (load_dialog (strcat dialog_name ".dcl"))) (setq status 2) (while (>= status 2) ; Create the dialog box (new_dialog dialog_name id "" '(-1 -1)) ; Added the actions to the Cancel and Pick Point button (action_tile "cancel" "(done_dialog 0)") (action_tile "btn_PickPoint" "(done_dialog 2)") ; Display the point value picked (if (/= pt nil) (set_tile "msg" (strcat "Point: " (rtos (car pt)) ", " (rtos (cadr pt)) ", " (rtos (caddr pt)))) ) ; Check the status returned (if (= status (setq status (start_dialog))) (setq pt (getpoint "\nSpecify a point: ")) ) ) ; Unload the dialog box (unload_dialog id) (princ) )
+The following AutoLISP code defines a custom function named hiddendlg that loads the `ex_hidden.dcl` file and displays the `ch23_ex_hidden` dialog box:
 
-NOTE
+```c
+; Display the ex_hidden.dcl file
+(defun c:hidden (/ dialog_name id status pt)
+  (setq dialog_name "ch23_ex_hidden")
 
-The sample DCL syntax and AutoLISP code can be found in the ch23_ex_hidden.dcl and ch23_ex_hidden.lsp files, which you can download from www.sybex.com/go/autocadcustomization. Place the files in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Load the LSP file and then enter hiddendlg at the Command prompt. Click the Pick Point button and specify a point in the drawing area to see the dialog box in action.
+  ; Load the DCL file named ex_hidden.dcl
+  (setq id (load_dialog (strcat dialog_name ".dcl")))
+  
+  (setq status 2)
+  (while (>= status 2)
+
+    ; Create the dialog box
+    (new_dialog dialog_name id "" '(-1 -1))
+
+    ; Added the actions to the Cancel and Pick Point button
+    (action_tile "cancel" "(done_dialog 0)")
+    (action_tile "btn_PickPoint" "(done_dialog 2)")
+
+    ; Display the point value picked
+    (if (/= pt nil)
+      (set_tile "msg" (strcat "Point: "
+                              (rtos (car pt)) ", "
+                              (rtos (cadr pt)) ", "
+                              (rtos (caddr pt))))
+    )
+    
+    ; Check the status returned
+    (if (= 2 (setq status (start_dialog)))
+      (setq pt (getpoint "\nSpecify a point: "))
+    )
+  )
+
+  ; Unload the dialog box
+  (unload_dialog id)
+ (princ)
+)
+```
+
+1『上面的例子值得研读，好好模仿学习。（2020-10-09）』
+
+NOTE: The sample DCL syntax and AutoLISP code can be found in the `ch23_ex_hidden.dcl` and `ch23_ex_hidden.lsp` files, which you can download from www.sybex.com/go/autocadcustomization. Place the files in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Load the LSP file and then enter hiddendlg at the Command prompt. Click the Pick Point button and specify a point in the drawing area to see the dialog box in action.
 
 ## 13.4 Exercise: Implementing a Dialog Box for the drawplate Function
 
@@ -779,9 +908,7 @@ Creating a DCL File A DCL file is used to hold a dialog box definition that can 
 
 Displaying a Dialog Box A dialog box contained in a DCL file can be loaded and displayed in the AutoCAD drawing environment. Once the dialog box has been displayed, the user can interact with the tiles (or controls) on the dialog box. The choices a user makes can then be used to control the behavior and output of a custom program.
 
-NOTE
-
-The steps in this exercise depend on the completion of the steps in the「Exercise: Deploying the drawplate Function」section of Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」If you didn't complete the steps, do so now or start with the ch23_drawplate.lsp and ch23_utility.lsp sample files available for download from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters ch23_ from the name of each file.
+NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Deploying the drawplate Function」section of Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」If you didn't complete the steps, do so now or start with the ch23_drawplate.lsp and ch23_utility.lsp sample files available for download from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters ch23_ from the name of each file.
 
 Creating the drawplate Dialog Box
 
@@ -803,7 +930,11 @@ Click the Save As Type drop-down list and choose DCL Source Files.
 
 Click Save.
 
-In the text editor window, type the following:/* Draw Plate dialog box Used by drawplate.lsp */ drawplate : dialog { label = "Draw Plate"; key = "dlg_drawplate"; // Width text box : edit_box { edit_width = 10; key = "txt_width"; label = "Width"; } // Height text box : edit_box { edit_width = 10; key = "txt_height"; label = "Height"; } // Check box for controlling addition of label : toggle { key = "chk_label"; label = " Add label"; } // Grouping for button tiles : row { fixed_width = true; alignment = right; // Create button : button { key = "btn_create_object"; action = "create_object"; label = "Create"; is_default = "true"; width = 12; } : spacer { width = 1; } // Cancel button cancel_button; } }
+In the text editor window, type the following:
+
+```c
+/* Draw Plate dialog box Used by drawplate.lsp */ drawplate : dialog { label = "Draw Plate"; key = "dlg_drawplate"; // Width text box : edit_box { edit_width = 10; key = "txt_width"; label = "Width"; } // Height text box : edit_box { edit_width = 10; key = "txt_height"; label = "Height"; } // Check box for controlling addition of label : toggle { key = "chk_label"; label = " Add label"; } // Grouping for button tiles : row { fixed_width = true; alignment = right; // Create button : button { key = "btn_create_object"; action = "create_object"; label = "Create"; is_default = "true"; width = 12; } : spacer { width = 1; } // Cancel button cancel_button; } }
+```
 
 Click File Save.
 
@@ -841,7 +972,326 @@ The following steps explain how to add the new version of the drawplate function
 
 Open the Visual LISP Editor and the drawplate.lsp file if they are not currently open.
 
-In the text editor area, scroll to the bottom of the file and add the following code:; Draws a rectangular plate and gets input from a dialog box (defun c:drawplate ( / dialog_name id status pt1 pt2 pt3 pt4 width height label insPt textValue cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list) ; Define the width, height, and label for the plate (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0)) (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75)) (if (= *drawplate_label* nil)(setq *drawplate_label* "1")) ; Get recently used values from the global variables (setq width *drawplate_width*) (setq height *drawplate_height*) (setq label *drawplate_label*) (setq dialog_name "drawplate") ; Load the DCL file named ex_hidden.dcl (setq id (load_dialog (strcat dialog_name ".dcl"))) ; Create the dialog box (new_dialog dialog_name id "" '(-1 -1)) ; Set the default values of the width and height (set_tile "txt_width" (rtos width)) (set_tile "txt_height" (rtos height)) ; Set the default for the label (set_tile "chk_label" label) ; Add the actions to the Cancel and Create button (action_tile "cancel" "(done_dialog 0)") (action_tile "btn_create_object" "(setq width (atof (get_tile \"txt_width\"))) (setq height (atof (get_tile \"txt_height\"))) (setq label (get_tile \"chk_label\")) (done_dialog 1)" ) (setq status (start_dialog)) ; Unload the dialog box (unload_dialog id) ; Check the status returned (if (= status 1) (progn (setq old_err *error* *error* err_drawplate) ; Command function being used in custom error handler (*push-error-using-command*) ; Store and change the value of the system variables (setq old_vars (get-sysvars '("osmode" "clayer" "cmdecho"))) (set-sysvars '("osmode" "clayer" "cmdecho") '(0 "0" 0)) (command "._undo" "_be") ; Create the layer named Plate or set it current (createlayer "Plate" 5) (setvar "clayer" "Plate") (setq basePt (getpoint "\nSpecify base point for plate: ")) ; Set the coordinates to draw the rectangle (setq pt1 basePt ;| lower-left corner |; pt2 (list (+ (car basePt) width) (cadr basePt) 0) ;| lower-right corner |; pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0) ;| upper-right corner |; pt4 (list (car basePt) (+ (cadr basePt) height) 0) ;| upper-left corner |; ) ; Draw the rectangle (createrectangle pt1 pt2 pt3 pt4) ; Create the layer named Holes or set it current (createlayer "Holes" 1) (setvar "clayer" "Holes") ; Calculate the placement of the circle in the lower-left corner ; Calculate a new point at 45 degrees and distance of 0.7071 from pt1 (setq cenPt1 (polar pt1 (/ PI 4) 0.7071)) ; Calculate the next point from cenPt along the same angle ; as the line drawn between pt1 and pt2, and 1 unit less ; than the distance between pt1 and pt2 (setq cenPt2 (polar cenPt1 (angle pt1 pt2) (- (distance pt1 pt2) 1))) ; Calculate the final two points based on cenPt1 and cenPt2 (setq cenPt3 (polar cenPt2 (angle pt2 pt3) (- height 1)) cenPt4 (polar cenPt1 (angle pt1 pt4) (- height 1))) ; Append all the calculated center points to a single list (setq hole_list (append (list cenPt1) (list cenPt2) (list cenPt3) (list cenPt4))) ; Execute the createcircle function for each point ; list in the in the hole_list variable (foreach cenPt hole_list (createcircle cenPt 0.1875) ) (if (= "1" label) (progn ; Set the insertion point for the text label (setq insPt (getpoint "\nSpecify label insertion point: ")) ; Define the label to add (setq textValue (strcat "Plate Size: " (vl-string-right-trim ".0" (rtos width 2 2)) "x" (vl-string-right-trim ".0" (rtos height 2 2)) ) ) ; Create label (createlayer "Label" 7) (setvar "clayer" "Label") (createtext insPt "_c" 0.5 0.0 textValue) ) ) ; Restore the value of the system variables (set-sysvars '("osmode" "clayer" "cmdecho") old_vars) ; Save previous values to global variables (setq *drawplate_width* width) (setq *drawplate_height* height) (setq *drawplate_label* label) (command "._undo" "_e") ; Restore previous error handler (setq *error* old_err) ; End using *push-error-using-command* (*pop-error-mode*) ) ) ; Exit "quietly" (princ) )
+In the text editor area, scroll to the bottom of the file and add the following code:
+
+```c
+; Load the utility.lsp file
+(load "utility.lsp")
+
+; Custom error handler with command functions
+(defun err_drawplate (msg)
+  (if (/= msg "Function cancelled")
+    (alert (strcat "\nError: " msg))
+  )
+
+  (command "._undo" "_e")
+  (command "._u")
+  
+  ; Restore previous error handler
+  (setq *error* old_err)
+ (princ)
+)
+
+; Draws a rectangular plate that is 5x2.75
+(defun c:-drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue
+                        cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
+
+  (setq old_err *error* *error* err_drawplate)
+
+  ; Command function being used in custom error handler
+  (*push-error-using-command*)
+
+  (command "._undo" "_be")
+
+  ; Store and change the value of the system variables
+  (setq old_vars (get-sysvars '("osmode" "clayer" "cmdecho")))
+  (set-sysvars '("osmode" "clayer" "cmdecho") '(0 "0" 0))
+
+  ; Create the layer named Plate or set it current
+  (createlayer "Plate" 5)
+  (setvar "clayer" "Plate")
+
+  ; Define the width and height for the plate
+  (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0))
+  (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75))
+
+  ; Get recently used values from the global variables
+  (setq width *drawplate_width*)
+  (setq height *drawplate_height*)
+
+  ; Prompt the current values
+  (prompt (strcat "\nCurrent width: "
+		  (rtos *drawplate_width* 2)
+		  "  Current height: "
+		  (rtos *drawplate_height* 2)))
+  
+  ; Setup default keywords
+  (initget "Width Height")
+
+  ; Continue to ask for input until a point is provided
+  (while (/= (type
+	       (setq basePt
+		      (getpoint "\nSpecify base point for plate or [Width/Height]: "))
+	     )
+	     'LIST
+	 )
+    (cond
+      ; Prompt for the width of the plate
+      ((= basePt "Width")
+          (setq width (getdist (strcat "\nSpecify the width of the plate <"
+			               (rtos *drawplate_width* 2) ">: ")))
+
+          ; If nil is returned, use the previous value from the global variable
+          (if (/= width nil)(setq *drawplate_width* width))
+      )
+
+      ; Prompt for the height of the plate
+      ((= basePt "Height")
+          (setq height (getdist (strcat "\nSpecify the height of the plate <"
+			                (rtos *drawplate_height* 2) ">: ")))
+
+          ; If nil is returned, use the previous value from the global variable
+          (if (/= height nil)(setq *drawplate_height* height))
+      )
+    )
+
+    ; Setup default keywords again
+    (initget "Width Height")
+  )
+  
+  ; Set the coordinates to draw the rectangle
+  (setq pt1 basePt
+	;| lower-left corner  |;
+        pt2 (list (+ (car basePt) width) (cadr basePt) 0)
+	;| lower-right corner |;
+        pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0)
+	;| upper-right corner |;
+        pt4 (list (car basePt) (+ (cadr basePt) height) 0)
+	;| upper-left corner  |;
+  )
+
+  ; Draw the rectangle
+  (createrectangle pt1 pt2 pt3 pt4)
+
+  ; Create the layer named Holes or set it current
+  (createlayer "Holes" 1)
+  (setvar "clayer" "Holes")
+
+  ; Calculate the placement of the circle in the lower-left corner  
+  ; Calculate a new point at 45 degrees and distance of 0.7071 from pt1
+  (setq cenPt1 (polar pt1 (/ PI 4) 0.7071))
+
+  ; Calculate the next point from cenPt along the same angle
+  ; as the line drawn between pt1 and pt2, and 1 unit less
+  ; than the distance between pt1 and pt2 
+  (setq cenPt2 (polar cenPt1 (angle pt1 pt2) (- (distance pt1 pt2) 1)))
+
+  ; Calculate the final two points based on cenPt1 and cenPt2
+  (setq cenPt3 (polar cenPt2 (angle pt2 pt3) (- height 1))
+        cenPt4 (polar cenPt1 (angle pt1 pt4) (- height 1)))
+  
+  ; Append all the calculated center points to a single list
+  (setq hole_list (append (list cenPt1)
+                          (list cenPt2)
+                          (list cenPt3)
+                          (list cenPt4)))
+
+  ; Execute the createcircle function for each point
+  ; list in the in the hole_list variable
+  (foreach cenPt hole_list
+    (createcircle cenPt 0.1875)
+  )
+
+  ; Set the insertion point for the text label
+  (setq insPt (getpoint "\nSpecify label insertion point: "))
+
+  ; Define the label to add
+  (setq textValue (strcat "Plate Size: "
+                          (vl-string-right-trim " .0" (rtos width 2 2))
+                          "x"
+                          (vl-string-right-trim " .0" (rtos height 2 2))
+                  )
+  )
+
+  ; Create label
+  (createlayer "Label" 7)
+  (setvar "clayer" "Label")
+  (createtext insPt "_c" 0.5 0.0 textValue)
+
+  ; Restore the value of the system variables
+  (set-sysvars '("osmode" "clayer" "cmdecho") old_vars)
+
+  ; Save previous values to global variables
+  (setq *drawplate_width* width)
+  (setq *drawplate_height* height)
+
+  (command "._undo" "_e")
+
+  ; Restore previous error handler
+  (setq *error* old_err)
+
+  ; End using *push-error-using-command*
+  (*pop-error-mode*)
+
+ ; Exit "quietly"
+ (princ)
+)
+
+; Register the help file for F1/contextual help support
+(if (findfile "DrawPlate.htm")
+  (setfunhelp "c:-drawplate" (findfile "DrawPlate.htm"))
+)
+
+; Draws a rectangular plate and gets input from a dialog box
+(defun c:drawplate ( / dialog_name id status pt1 pt2 pt3 pt4
+                       width height label insPt textValue cenPt1
+                       cenPt2 cenPt3 cenPt4 old_vars hole_list)
+
+  ; Define the width, height, and label for the plate
+  (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0))
+  (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75))
+  (if (= *drawplate_label* nil)(setq *drawplate_label* "1"))
+
+  ; Get recently used values from the global variables
+  (setq width *drawplate_width*)
+  (setq height *drawplate_height*)
+  (setq label *drawplate_label*)
+
+  (setq dialog_name "drawplate")
+
+  ; Load the DCL file named ex_hidden.dcl
+  (setq id (load_dialog (strcat dialog_name ".dcl")))
+  
+  ; Create the dialog box
+  (new_dialog dialog_name id "" '(-1 -1))
+
+  ; Sets the default values of the width and height
+  (set_tile "txt_width" (rtos width))
+  (set_tile "txt_height" (rtos height))
+
+  ; Set the default for the label
+  (set_tile "chk_label" label)
+
+  ; Added the actions to the Cancel and Create button
+  (action_tile "cancel" "(done_dialog 0)")
+  (action_tile "btn_create_object"
+               "(setq width (atof (get_tile \"txt_width\")))
+                (setq height (atof (get_tile \"txt_height\")))
+                (setq label (get_tile \"chk_label\"))
+                (done_dialog 1)"
+  )
+
+  (setq status (start_dialog))
+
+  ; Unload the dialog box
+  (unload_dialog id)
+
+  ; Check the status returned
+  (if (= status 1)
+    (progn
+      (setq old_err *error* *error* err_drawplate)
+
+      ; Command function being used in custom error handler
+      (*push-error-using-command*)
+
+      ; Store and change the value of the system variables
+      (setq old_vars (get-sysvars '("osmode" "clayer" "cmdecho")))
+      (set-sysvars '("osmode" "clayer" "cmdecho") '(0 "0" 0))
+
+      (command "._undo" "_be")
+      
+      ; Create the layer named Plate or set it current
+      (createlayer "Plate" 5)
+      (setvar "clayer" "Plate")
+
+      (setq basePt (getpoint "\nSpecify base point for plate: "))
+
+      ; Set the coordinates to draw the rectangle
+      (setq pt1 basePt
+        ;| lower-left corner  |;
+        pt2 (list (+ (car basePt) width) (cadr basePt) 0)
+        ;| lower-right corner |;
+        pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0)
+        ;| upper-right corner |;
+        pt4 (list (car basePt) (+ (cadr basePt) height) 0)
+        ;| upper-left corner  |;
+      )
+
+      ; Draw the rectangle
+      (createrectangle pt1 pt2 pt3 pt4)
+
+      ; Create the layer named Holes or set it current
+      (createlayer "Holes" 1)
+      (setvar "clayer" "Holes")
+
+      ; Calculate the placement of the circle in the lower-left corner  
+      ; Calculate a new point at 45 degrees and distance of 0.7071 from pt1
+      (setq cenPt1 (polar pt1 (/ PI 4) 0.7071))
+
+      ; Calculate the next point from cenPt along the same angle
+      ; as the line drawn between pt1 and pt2, and 1 unit less
+      ; than the distance between pt1 and pt2 
+      (setq cenPt2 (polar cenPt1 (angle pt1 pt2) (- (distance pt1 pt2) 1)))
+
+      ; Calculate the final two points based on cenPt1 and cenPt2
+      (setq cenPt3 (polar cenPt2 (angle pt2 pt3) (- height 1))
+            cenPt4 (polar cenPt1 (angle pt1 pt4) (- height 1)))
+  
+      ; Append all the calculated center points to a single list
+      (setq hole_list (append (list cenPt1)
+                              (list cenPt2)
+                              (list cenPt3)
+                              (list cenPt4)))
+
+      ; Execute the createcircle function for each point
+      ; list in the in the hole_list variable
+      (foreach cenPt hole_list
+        (createcircle cenPt 0.1875)
+      )
+
+      (if (= "1" label)
+        (progn
+          ; Set the insertion point for the text label
+          (setq insPt (getpoint "\nSpecify label insertion point: "))
+
+          ; Define the label to add
+          (setq textValue 
+            (strcat "Plate Size: "
+                    (vl-string-right-trim " .0" (rtos width 2 2))
+                    "x"
+                    (vl-string-right-trim " .0" (rtos height 2 2))
+            )
+          )
+
+          ; Create label
+          (createlayer "Label" 7)
+          (setvar "clayer" "Label")
+          (createtext insPt "_c" 0.5 0.0 textValue)
+        )
+      )
+
+      ; Restore the value of the system variables
+      (set-sysvars '("osmode" "clayer" "cmdecho") old_vars)
+
+      ; Save previous values to global variables
+      (setq *drawplate_width* width)
+      (setq *drawplate_height* height)
+      (setq *drawplate_label* label)
+
+      (command "._undo" "_e")
+
+      ; Restore previous error handler
+      (setq *error* old_err)
+
+      ; End using *push-error-using-command*
+      (*pop-error-mode*)
+    )
+  )
+
+ ; Exit "quietly"
+ (princ)
+)
+```
 
 Click File Save.
 
