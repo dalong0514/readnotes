@@ -6,7 +6,7 @@ When requesting input from a user, you should verify the input provided from the
 
 In this chapter, you will learn to get input at the Command prompt and provide information back to the user in the form of messages. Additionally, you will learn to use conditional and looping expressions to perform actions based on the result of a test condition.
 
-Interacting with the User
+## 5.1 Interacting with the User
 
 You've learned that you can use the PAUSE predefined variable with the command function to allow the user to provide a value. PAUSE works great for providing a response to the current prompt of the active command, but it is also a limitation. Any value provided in response to PAUSE is passed directly to the command and can't be captured or manipulated by your AutoLISP program.
 
@@ -276,9 +276,6 @@ Bitcode Description
 
 2 Zero can't be entered when requesting a numeric value.
 
-
-
-
 4 A negative value can't be entered when requesting a numeric value.
 
 8 The point can be specified outside of the drawing's limits; determined by the limcheck system variable.
@@ -541,7 +538,7 @@ Setting Focus to the Graphics Window (Windows Only)
 
 Earlier releases of AutoCAD supported two different screens, two physical monitors: graphics and text. More recent releases use a modern user interface that has a graphics and a text window. The AutoLISP graphscr function collapses the history of the command-line window or hides the AutoCAD Text Window, which are expanded or shown with the textscr or textpage function. I discussed the textscr or textpage functions earlier in the「Expanding or Showing the Command-Line History」section. The graphscr function doesn't accept any arguments.
 
-Conditionalizing and Branching Expressions
+## 5.2 Conditionalizing and Branching Expressions
 
 The expressions that make up an AutoLISP program are executed sequentially; this is commonly known as a linear program. In a linear program, execution starts with the first expression and continues until the last expression is executed. Although expressions are executed in a linear order, AutoLISP programs can contain branches. Think of a branch as being no different than a fork in the road.
 
@@ -771,7 +768,7 @@ The following are examples of the cond function:
 
 ; Gets the current value of the IMAGEFRAME system variable ; and returns a textual description of that value. (setq cur_imgfrm (getvar "imageframe")) (cond ((= cur_imgfrm 0)(prompt "\nImage frame not displayed or plotted.")) ((= cur_imgfrm 1)(prompt "\nImage frame displayed or plotted.")) ((= cur_imgfrm 2)(prompt "\nImage frame not plotted.")) ) ; Prompts the user for a keyword and if they press Enter ; without a value the nil value should be interpreted as Blue. (initget "Blue Green Red") (setq kword (getkword "\nEnter color option [Blue/Green/Red] <Blue>: ")) (cond ((or (= kword nil)(= kword "Blue"))(prompt "\nSelected Blue")) ((= kword "Red")(prompt "\nSelected Red")) ((= kword "Green")(prompt "\nSelected Green")) ) Enter color option [Blue/Green/Red] <Blue>: Press Enter without a value Selected Blue Enter color option [Blue/Green/Red] <Blue>: g Selected Green ; Prompts the user for a keyword or a numeric value (initget "A B C") (setq num (getreal "\nEnter a number or [A/B/C]: ")) (cond ((and (= (type num) 'REAL)(> num 0))(prompt "\nGreater than 0")) ((and (= (type num) 'REAL)(= num 0))(prompt "\nValue is 0")) ((and (= (type num) 'REAL)(< num 0))(prompt "\nLess than 0")) ((and (= (type num) 'REAL)(> num 0))(prompt "\nGreater than 0")) ((= num nil)(prompt "\nNo value or option provided")) (T (prompt "\nAn option was selected. ") (prompt (strcat "\nOption chosen: " (vl-princ-to-string num))) ) ) Enter a number or [A/B/C]: 1 Greater than 0 Enter a number or [A/B/C]: B An option was selected. Option chosen: B Enter a number or [A/B/C]: Press Enter without a value No value or option provided
 
-Repeating and Looping Expressions
+## 5.3 Repeating and Looping Expressions
 
 Early in my career as a drafter, I learned one key fact about myself: I don't handle repetition well at all. This discovery is what led me to AutoCAD customization and eventually AutoLISP programming. AutoLISP—and most programming languages, for that matter—have no problem with repetition, as they support a concept known as loops. Loops allow for a set of expressions to be executed either a finite number of times or infinitely while a condition is met.
 
@@ -839,7 +836,7 @@ Listing 15.3: Animated progress message in the status bar (Windows only)
 
 ; Initializes the variables and the status bar ; Usage: (progress-start) (defun progress-start ( / ) (setq *global-progress-value* nil *global-progress-increment* nil *global-progress-replace* nil) (grtext -1 "") (princ) ) (defun progress (prefixText / temp) (setq increment 10) ; Check to see if the global variable is initialized (if (= *global-progress-value* nil) (progn (setq *global-progress-value* prefixText *global-progress-increment* 0 *global-progress-replace* (list "_" "=")) (repeat 10 (setq *global-progress-value* (strcat *global-progress-value* "=")) ) ) ) ; Pause for 1/20 of a second to allow ; AutoCAD time to paint the application window (command "._delay" 50) ; Setup replacement character order (if (> *global-progress-increment* increment) (progn (setq *global-progress-replace* (reverse *global-progress-replace*) *global-progress-increment* 0) ) ) ; Display custom message in the status bar (grtext -1 (setq *global-progress-value* (vl-string-subst (nth 0 *global-progress-replace*) (nth 1 *global-progress-replace*) *global-progress-value*))) (setq *global-progress-increment* (1+ *global-progress-increment*)) (princ) ) ; Clear the global variable and the value posted to the status bar ; Usage: (progress-end) (defun progress-end ( / ) (setq *global-progress-value* nil *global-progress-increment* nil *global-progress-replace* nil) (grtext -1 "") (princ) ) (defun c:progress-test ( / count) (setvar "cmdecho" 0) (setq count 50) (progress-start) (while (> (setq count (1- count)) 0) (progress "Working: ") (princ) ) (progress-end) (setvar "cmdecho" 1) (princ) )
 
-Exercise: Getting Input from the User to Draw the Plate
+## 5.4 Exercise: Getting Input from the User to Draw the Plate
 
 In this section, you will continue to build on the drawplate function that was originally introduced in Chapter 12. The key concepts I cover in this exercise are as follows:
 
@@ -912,4 +909,3 @@ Execute the drawplate function again, and pick a point in the drawing without ch
 Continue trying the drawplate function with different input values.
 
 Figure 15.10 Completed plate
-

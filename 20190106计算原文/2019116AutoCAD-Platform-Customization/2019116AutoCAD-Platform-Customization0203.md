@@ -4,7 +4,7 @@ Many of the standard AutoCAD® commands perform a lot of calculations as they ar
 
 Although many of the math and data-manipulation functions in AutoLISP provide a solid foundation for working with values, you might need to combine many of these functions to create custom functions that return a value. In Chapter 12,「Understanding AutoLISP,」you learned how to create custom functions, but I didn't explain how to return a value like standard AutoLISP functions do. Later in this chapter, we'll explore how to define a custom function that returns a value using the defun function.
 
-Calculating Values with Math Functions
+## 3.1 Calculating Values with Math Functions
 
 When working with AutoCAD, you must consider the accuracy with which objects are placed and the precision with which objects are created in a drawing. The same is true with AutoLISP; you must consider both accuracy and precision when creating and modifying objects. The AutoLISP math functions allow you to perform a variety of basic and complex calculations. You can add or multiply numbers together, or even calculate the sine or arctangent of an angle.
 
@@ -232,7 +232,7 @@ Open the Drafting Settings dialog box and verify that the state of the Intersect
 
 Type toggleint and press Enter. The previous state of the INTersection object snap mode is restored.
 
-Manipulating Strings
+## Manipulating Strings
 
 Strings are used for a variety of purposes in AutoLISP, from displaying command prompts and messages to creating annotations in a drawing. The string values in an AutoLISP program can have a static or fixed value that never changes during execution, or a value that is more dynamic and is changed by the use of string-manipulation functions. You can manipulate a string by
 
@@ -291,10 +291,6 @@ The following demonstrates the strcat function and the values that are returned:
 (setq str1 "Hello" str2 "AutoLISP!") (strcat str1 str2) "HelloAutoLISP!" (strcat str1 " from " str2) "Hello from AutoLISP!" (setq kwd1 "Plate" kwd2 "Bolt" *prev_kwd* "Plate") (strcat "\nEnter object to place [" kwd1 "/" kwd2 "] <" *prev_kwd* ">: ") "\nEnter object to place [Plate/Bolt] <Plate>: "
 
 Getting the Length of and Searching for Strings
-
-
-
-
 
 When working with strings, you may want to know the number of characters in a string or the position in which a text pattern begins. You can use the length of a string to make sure a string doesn't exceed a specific number of characters, to remove characters from the end of a string, or to insert a string at a known location.
 
@@ -482,7 +478,7 @@ The following are examples of the vl-princ-to-string and vl-prin1-to-string func
 
 I discuss other AutoLISP functions that can be used to convert nonstring values to strings and strings to nonstring values next.
 
-Converting Data Types
+## Converting Data Types
 
 Variables in AutoLISP aren't defined to hold a specific data type, which allows the variable to be flexible and hold any valid type of data. However, data types are used by AutoLISP as a way to enforce data integrity and communicate the types of values an argument expects or a function might return. As your programs become more complex and you start requesting input from the user, there will be times when a function returns a value of one data type and you want to use that value with a function that expects a different data type.
 
@@ -572,7 +568,7 @@ The following are examples of the fix, float, and abs functions, and the values 
 
 For more information on these functions, see the AutoCAD Help system.
 
-Returning a Value from a Custom Function
+## 3.4 Returning a Value from a Custom Function
 
 Almost all AutoLISP functions return some sort of value—a number, string, or even nil. In Chapter 12 you learned how to create custom functions, but I didn't explain how you can specify a return value for a custom function. The value a custom AutoLISP function returns is always based on the last expression that is evaluated, which doesn't need to be an AutoLISP expression in the traditional sense; it doesn't need to contain a function and be surrounded by parentheses.
 
@@ -580,25 +576,92 @@ Listing 13.3 contains a custom AutoLISP function that divides two numbers and wi
 
 Listing 13.3: The /s function—dividing by 0 returns nil
 
-; Safely divides two numbers ; Checks to make sure that one or both of the numbers are not zero ; (/s 0 2) (defun /s (num1 num2 / quotient) (setq quotient 0) (if (and (not (zerop num1)) (not (zerop num2)) ) (setq quotient (/ num1 num2)) ) ) (/s 0 3) nil (/s 3 0) nil (/s 2 3) 0 (/s 2.0 3) 0.666667
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (setq quotient (/ num1 num2)) 
+  ) 
+) 
+
+(/s 0 3) 
+nil 
+(/s 3 0) 
+nil 
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
 
 Without the if function to verify that it is safe to divide the two numbers, there would be no point in creating the custom function, as it would be the same as the regular / (divide) function. However, it is valid to add a variable as the last expression in a function. The variable is then evaluated and its value is returned. Listing 13.4 contains a custom AutoLISP function similar to the one shown in Listing 13.3, but the resulting quotient is returned instead.
 
 Listing 13.4: The /s function—dividing by 0 returns 0
 
-; Safely divides two numbers ; Checks to make sure that one or both of the numbers are not zero ; (/s 0 2) (defun /s (num1 num2 / quotient) (setq quotient 0) (if (and (not (zerop num1)) (not (zerop num2)) ) (setq quotient (/ num1 num2)) ) quotient ) (/s 0 3) 0 (/s 3 0) 0 (/s 2 3) 0 (/s 2.0 3) 0.666667
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (setq quotient (/ num1 num2)) 
+  )
+  quotient
+) 
+
+(/s 0 3) 
+0
+(/s 3 0) 
+0
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
+
+1『哈哈，这个知识点很重要，可以直接函数结尾直接写这个变量名即可返回该变量，赞啊。（2020-10-08）』
 
 Listing 13.5 demonstrates how adding an Else statement to the /s custom function would have also solved the problem of nil being returned when a zero is passed as an argument to the function.
 
 Listing 13.5: The /s function—dividing by 0 returns 0 (revised)
 
-; Safely divides two numbers ; Checks to make sure that one or both of the numbers are not zero ; (/s 0 2) (defun /s (num1 num2 / ) (if (and (not (zerop num1)) (not (zerop num2)) ) (/ num1 num2) 0 ) ) (/s 0 3) 0 (/s 3 0) 0 (/s 2 3) 0 (/s 2.0 3) 0.666667
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (/ num1 num2)
+    0
+  )
+) 
 
-TIP
+(/s 0 3) 
+0
+(/s 3 0) 
+0
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
 
-Using the AutoLISP princ function in the last statement of a custom AutoLISP function allows that function to「exit quietly」and not return a value. This technique is commonly used when a function's name is prefixed with c:. I cover the princ function in Chapter 15.
+TIP: Using the AutoLISP princ function in the last statement of a custom AutoLISP function allows that function to「exit quietly」and not return a value. This technique is commonly used when a function's name is prefixed with c:. I cover the princ function in Chapter 15.
 
-Exercise: Drawing a Rectangle (Revisited)
+1『汇总：1）上面的写法更简洁，写条件语句的时候值得借鉴。2）算是搞明白函数结尾用 `(princ)` 的真正用途了，阻止返回最后一条语句返回的值。做一张任意卡片。（2020-10-08）』
+
+## 3.5 Exercise: Drawing a Rectangle (Revisited)
 
 In this section, I take another look at the drawplate function from Chapter 12, and apply some of the concepts that have been introduced in this chapter. The key concepts that are covered in this exercise are as follows:
 

@@ -99,6 +99,53 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 
 2『宏命令里的悬停，做一张任意卡片。』——已完成
 
+### 0503. 任意卡——自定义命令变为内置命令
+
+TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
+
+2『自定义命令变为内置命令的实现手段，做一张任意卡片。』——已完成
+
+### 0504. 任意卡——函数以 princ 结尾的真正用途
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (/ num1 num2)
+    0
+  )
+) 
+
+(/s 0 3) 
+0
+(/s 3 0) 
+0
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
+
+TIP: Using the AutoLISP princ function in the last statement of a custom AutoLISP function allows that function to「exit quietly」and not return a value. This technique is commonly used when a function's name is prefixed with c:. I cover the princ function in Chapter 15.
+
+1『汇总：1）上面的写法更简洁，写条件语句的时候值得借鉴。2）算是搞明白函数结尾用 `(princ)` 的真正用途了，阻止返回最后一条语句返回的值。做一张任意卡片。（2020-10-08）』
+
+### 0505. 任意卡——调整窗口布局
+
+Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
+
+1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』——已完成
+
+### 0506. 任意卡——加载显示窗口的 2 种方法
+
+You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
+
+1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』——已完成
+
 ## Introduction
 
 In 1996, Lee began learning the core concepts of customizing the AutoCAD user interface and AutoLISP. The introduction of VBA in AutoCAD R14 would once again redefine how Lee approached programming solutions for AutoCAD. VBA made it much easier to communicate with external databases and other applications that supported VBA. It transformed the way information could be moved between project management and manufacturing systems.

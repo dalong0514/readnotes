@@ -84,7 +84,7 @@ Anything in parentheses is a list, in this case a list of three elements, the sy
 
 ## 2.5 "Hello, World," Lisp Style
 
-No programming book is complete without a "hello, world"7 program. As it turns out, it's trivially easy to get the REPL to print "hello, world."
+No programming book is complete without a "hello, world" 7 program. As it turns out, it's trivially easy to get the REPL to print "hello, world."
 
 ```
 CL-USER> "hello, world" "hello, world"
@@ -94,31 +94,42 @@ This works because strings, like numbers, have a literal syntax that's understoo
 
 However, this may not really qualify as a "hello, world" program. It's more like the "hello, world" value.
 
-You can take a step toward a real program by writing some code that as a side effect prints the string "hello, world" to standard output. Common Lisp provides a couple ways to emit output, but the most flexible is the FORMAT function. FORMAT takes a variable number of arguments, but the only two required arguments are the place to send the output and a string. You'll see in the next chapter how the string can contain embedded directives that allow you to interpolate subsequent arguments into the string, ŕ la printf or Python's string-%. As long as the string doesn't contain an ~, it will be emitted as-is. If you pass t as its first argument, it sends its output to standard output. So a FORMAT expression that will print "hello, world" looks like this:8
+You can take a step toward a real program by writing some code that as a side effect prints the string "hello, world" to standard output. Common Lisp provides a couple ways to emit output, but the most flexible is the FORMAT function. FORMAT takes a variable number of arguments, but the only two required arguments are the place to send the output and a string. You'll see in the next chapter how the string can contain embedded directives that allow you to interpolate subsequent arguments into the string, ŕ la printf or Python's string-%. As long as the string doesn't contain an ~, it will be emitted as-is. If you pass t as its first argument, it sends its output to standard output. So a FORMAT expression that will print "hello, world" looks like this: 8
 
 ```
-CL-USER> (format t "hello, world") hello, world NIL
+CL-USER> (format t "hello, world") hello, world 
+NIL
 ```
 
-One thing to note about the result of the FORMAT expression is the NIL on the line after the "hello, world" output. That NIL is the result of evaluating the FORMAT expression, printed by the REPL. (NIL is Lisp's version of false and/or null. More on that in Chapter 4.) Unlike the other expressions we've seen so far, a FORMAT expression is more interesting for its side effect--printing to standard output in this case--than for its return value. But every expression in Lisp evaluates to some result.9
+One thing to note about the result of the FORMAT expression is the NIL on the line after the "hello, world" output. That NIL is the result of evaluating the FORMAT expression, printed by the REPL. (NIL is Lisp's version of false and/or null. More on that in Chapter 4.) Unlike the other expressions we've seen so far, a FORMAT expression is more interesting for its side effect--printing to standard output in this case--than for its return value. But every expression in Lisp evaluates to some result. 9
 
 However, it's still arguable whether you've yet written a true "program." But you're getting there. And you're seeing the bottom-up style of programming supported by the REPL: you can experiment with different approaches and build a solution from parts you've already tested. Now that you have a simple expression that does what you want, you just need to package it in a function. Functions are one of the basic program building blocks in Lisp and can be defined with a DEFUN expression such as this:
 
 ```
-CL-USER> (defun hello-world () (format t "hello, world")) HELLO-WORLD
+CL-USER> (defun hello-world () (format t "hello, world")) 
+HELLO-WORLD
 ```
 
 The hello-world after the DEFUN is the name of the function. In Chapter 4 we'll look at exactly what characters can be used in a name, but for now suffice it to say that lots of characters, such as -, that are illegal in names in other languages are legal in Common Lisp. It's standard Lisp style--not to mention more in line with normal English typography--to form compound names with hyphens, such as hello-world, rather than with underscores, as in hello_world, or with inner caps such as helloWorld. The ()s after the name delimit the parameter list, which is empty in this case because the function takes no arguments. The rest is the body of the function.
 
-At one level, this expression, like all the others you've seen, is just another expression to be read, evaluated, and printed by the REPL. The return value in this case is the name of the function you just defined.10 But like the FORMAT expression, this expression is more interesting for the side effects it has than for its return value. Unlike the FORMAT expression, however, the side effects are invisible: when this expression is evaluated, a new function that takes no arguments and with the body (format t "hello, world") is created and given the name HELLO-WORLD.
+At one level, this expression, like all the others you've seen, is just another expression to be read, evaluated, and printed by the REPL. The return value in this case is the name of the function you just defined. 10 But like the FORMAT expression, this expression is more interesting for the side effects it has than for its return value. Unlike the FORMAT expression, however, the side effects are invisible: when this expression is evaluated, a new function that takes no arguments and with the body (format t "hello, world") is created and given the name HELLO-WORLD.
 
 Once you've defined the function, you can call it like this:
 
 ```
-CL-USER> (hello-world) hello, world NIL
+CL-USER> (hello-world) hello, world 
+NIL
 ```
 
 You can see that the output is just the same as when you evaluated the FORMAT expression directly, including the NIL value printed by the REPL. Functions in Common Lisp automatically return the value of the last expression evaluated.
+
+7 The venerable "hello, world" predates even the classic Kernighan and Ritchie C book that played a big role in its popularization. The original "hello, world" seems to have come from Brian Kernighan's "A Tutorial Introduction to the Language B" that was part of the Bell Laboratories Computing Science Technical Report #8: The Programming Language B published in January 1973. (It's available online at http://cm.bell-labs.com/cm/cs/who/dmr/bintro.html.)
+
+8 These are some other expressions that also print the string "hello, world":
+
+9 Well, as you'll see when I discuss returning multiple values, it's technically possible to write expressions that evaluate to no value, but even such expressions are treated as returning NIL when evaluated in a context that expects a value.
+
+10 I'll discuss in Chapter 4 why the name has been converted to all uppercase.
 
 ## 2.6 Saving Your Work
 
@@ -135,7 +146,8 @@ Once you've created the file, you can type the definition you previously entered
 The message will disappear as you start to type each new element but will reappear each time you enter a space. When you're entering the definition in the file, you might choose to break the definition across two lines after the parameter list. If you hit Return and then Tab, SLIME will automatically indent the second line appropriately, like this:11
 
 ```
-(defun hello-world () (format t "hello, world"))
+(defun hello-world () 
+  (format t "hello, world"))
 ```
 
 SLIME will also help match up the parentheses--as you type a closing parenthesis, it will flash the corresponding opening parenthesis. Or you can just type C-c C-q to invoke the command slime-close-parens-at-point, which will insert as many closing parentheses as necessary to match all the currently open parentheses.
@@ -154,7 +166,23 @@ CL-USER> (hello-world) Hello, world! NIL
 
 You'll also probably want to save the file you've been working on; in the hello.lisp buffer, type C-x C-s to invoke the Emacs command save-buffer.
 
-Now to try reloading this function from the source file, you'll need to quit Lisp and restart. To quit you can use a SLIME shortcut: at the REPL, type a comma. At the bottom of the Emacs window, you will be prompted for a command. Type quit (or sayoonara), and then hit Enter. This will quit Lisp and close all the buffers created by SLIME such as the REPL buffer.12 Now restart SLIME by typing M-x slime.
+Now to try reloading this function from the source file, you'll need to quit Lisp and restart. To quit you can use a SLIME shortcut: at the REPL, type a comma. At the bottom of the Emacs window, you will be prompted for a command. Type quit (or sayoonara), and then hit Enter. This will quit Lisp and close all the buffers created by SLIME such as the REPL buffer. 12 Now restart SLIME by typing M-x slime.
+
+1-2『
+
+1、算是弄明白了整个编译过程。写好函数后，在该函数所在文件的 buffer 下，用命令 `C-c C-c` 来编译，编译通过的话最下面会有提示编译完成。然后用命令 `C-c C-z` 切换到 lisp 交互界面，输入命令 `(testname)` 即可调用该函数。
+
+2、重启 lisp 交互界面的步骤。在交互界面里输入逗号 `,`，底部会显示让你输入命令，输入 `quit` 即可退出 lisp 交互界面。接着重新启动，输入命令 `M-x slime`，即按住 command 再按 x，接着输入 slime，按回车即可启动 SLIME 界面（lisp 交互界面）。
+
+3、退出 debugger 的界面，按 `q`。
+
+4、在 lisp 交互界面里加载 lisp 文件。直接输入命令 `(load "test.lisp")`，交互界面返回 T 的话说明成功加载了，然后可以直接调用加载后的函数。知道这个操后后，完全可以在 vscode 里编写代码，然后直接在 lisp 交互界面里编译运行，太赞了。
+
+5、退出整个 emac，输入命令 `C-x C-c`。
+
+上面的几个高频操作补充进主题卡里。（2020-10-08）——已完成
+
+』
 
 Just for grins, you can try to invoke hello-world.
 
@@ -164,14 +192,34 @@ CL-USER> (hello-world)
 
 At that point SLIME will pop up a new buffer that starts with something that looks like this:
 
-attempt to call `HELLO-WORLD' which is an undefined function. [Condition of type UNDEFINED-FUNCTION] Restarts: 0: [TRY-AGAIN] Try calling HELLO-WORLD again. 1: [RETURN-VALUE] Return a value instead of calling HELLO-WORLD. 2: [USE-VALUE] Try calling a function other than HELLO-WORLD. 3: [STORE-VALUE] Setf the symbol-function of HELLO-WORLD and call it again. 4: [ABORT] Abort handling SLIME request. 5: [ABORT] Abort entirely from this process. Backtrace: 0: (SWANK::DEBUG-IN-EMACS #<UNDEFINED-FUNCTION @ #x716b082a>) 1: ((FLET SWANK:SWANK-DEBUGGER-HOOK SWANK::DEBUG-IT)) 2: (SWANK:SWANK-DEBUGGER-HOOK #<UNDEFINED-FUNCTION @ #x716b082a> #<Function SWANK-DEBUGGER-HOOK>) 3: (ERROR #<UNDEFINED-FUNCTION @ #x716b082a>) 4: (EVAL (HELLO-WORLD)) 5: (SWANK::EVAL-REGION "(hello-world) " T)
+```
+attempt to call `HELLO-WORLD' which is an undefined function. 
+[Condition of type UNDEFINED-FUNCTION] 
+
+Restarts: 
+0: [TRY-AGAIN] Try calling HELLO-WORLD again. 
+1: [RETURN-VALUE] Return a value instead of calling HELLO-WORLD. 
+2: [USE-VALUE] Try calling a function other than HELLO-WORLD. 
+3: [STORE-VALUE] Setf the symbol-function of HELLO-WORLD and call it again. 
+4: [ABORT] Abort handling SLIME request. 
+5: [ABORT] Abort entirely from this process. 
+
+Backtrace: 
+0: (SWANK::DEBUG-IN-EMACS #<UNDEFINED-FUNCTION @ #x716b082a>) 
+1: ((FLET SWANK:SWANK-DEBUGGER-HOOK SWANK::DEBUG-IT)) 
+2: (SWANK:SWANK-DEBUGGER-HOOK #<UNDEFINED-FUNCTION @ #x716b082a> #<Function SWANK-DEBUGGER-HOOK>) 
+3: (ERROR #<UNDEFINED-FUNCTION @ #x716b082a>) 
+4: (EVAL (HELLO-WORLD)) 
+5: (SWANK::EVAL-REGION "(hello-world) " T)
+```
 
 Blammo! What happened? Well, you tried to invoke a function that doesn't exist. But despite the burst of output, Lisp is actually handling this situation gracefully. Unlike Java or Python, Common Lisp doesn't just bail--throwing an exception and unwinding the stack. And it definitely doesn't dump core just because you tried to invoke a missing function. Instead Lisp drops you into the debugger.
 
 While you're in the debugger you still have full access to Lisp, so you can evaluate expressions to examine the state of our program and maybe even fix things. For now don't worry about that; just type q to exit the debugger and get back to the REPL. The debugger buffer will go away, and the REPL will show this:
 
 ```
-CL-USER> (hello-world) ; Evaluation aborted CL-USER>
+CL-USER> (hello-world) 
+; Evaluation aborted CL-USER>
 ```
 
 There's obviously more that can be done from within the debugger than just abort--we'll see, for instance, in Chapter 19 how the debugger integrates with the error handling system. For now, however, the important thing to know is that you can always get out of it, and back to the REPL, by typing q.
@@ -179,10 +227,12 @@ There's obviously more that can be done from within the debugger than just abort
 Back at the REPL you can try again. Things blew up because Lisp didn't know the definition of hello-world. So you need to let Lisp know about the definition we saved in the file hello.lisp. You have several ways you could do this. You could switch back to the buffer containing the file (type C-x b and then enter hello.lisp when prompted) and recompile the definition as you did before with C-c C-c. Or you can load the whole file, which would be a more convenient approach if the file contained a bunch of definitions, using the LOAD function at the REPL like this:
 
 ```
-CL-USER> (load "hello.lisp") ; Loading /home/peter/my-lisp-programs/hello.lisp T
+CL-USER> (load "hello.lisp") 
+; Loading /home/peter/my-lisp-programs/hello.lisp
+ T
 ```
 
-The T means everything loaded correctly.13 Loading a file with LOAD is essentially equivalent to typing each of the expressions in the file at the REPL in the order they appear in the file, so after the call to LOAD, hello-world should be defined:
+The T means everything loaded correctly. 13 Loading a file with LOAD is essentially equivalent to typing each of the expressions in the file at the REPL in the order they appear in the file, so after the call to LOAD, hello-world should be defined:
 
 ```
 CL-USER> (hello-world) Hello, world! NIL
@@ -191,7 +241,12 @@ CL-USER> (hello-world) Hello, world! NIL
 Another way to load a file's worth of definitions is to compile the file first with COMPILE-FILE and then LOAD the resulting compiled file, called a FASL file, which is short for fast-load file. COMPILE-FILE returns the name of the FASL file, so we can compile and load from the REPL like this:
 
 ```
-CL-USER> (load (compile-file "hello.lisp")) ;;; Compiling file hello.lisp ;;; Writing fasl file hello.fasl ;;; Fasl write complete ; Fast loading /home/peter/my-lisp-programs/hello.fasl T
+CL-USER> (load (compile-file "hello.lisp")) 
+;;; Compiling file hello.lisp 
+;;; Writing fasl file hello.fasl 
+;;; Fasl write complete 
+; Fast loading /home/peter/my-lisp-programs/hello.fasl 
+T
 ```
 
 SLIME also provides support for loading and compiling files without using the REPL. When you're in a source code buffer, you can use C-c C-l to load the file with slime-load-file. Emacs will prompt for the name of a file to load with the name of the current file already filled in; you can just hit Enter. Or you can type C-c C-k to compile and load the file represented by the current buffer. In some Common Lisp implementations, compiling code this way will make it quite a bit faster; in others, it won't, typically because they always compile everything.
@@ -205,16 +260,6 @@ An even more impressive instance of remote debugging occurred on NASA's 1998 Dee
 Debugging a program running on a $100M piece of hardware that is 100 million miles away is an interesting experience. Having a read-eval-print loop running on the spacecraft proved invaluable in finding and fixing the problem.
 
 You're not quite ready to send any Lisp code into deep space, but in the next chapter you'll take a crack at writing a program a bit more interesting than "hello, world."
-
-* * *
-
-7 The venerable "hello, world" predates even the classic Kernighan and Ritchie C book that played a big role in its popularization. The original "hello, world" seems to have come from Brian Kernighan's "A Tutorial Introduction to the Language B" that was part of the Bell Laboratories Computing Science Technical Report #8: The Programming Language B published in January 1973. (It's available online at http://cm.bell-labs.com/cm/cs/who/dmr/bintro.html.)
-
-8 These are some other expressions that also print the string "hello, world":
-
-9 Well, as you'll see when I discuss returning multiple values, it's technically possible to write expressions that evaluate to no value, but even such expressions are treated as returning NIL when evaluated in a context that expects a value.
-
-10 I'll discuss in Chapter 4 why the name has been converted to all uppercase.
 
 11 You could also have entered the definition as two lines at the REPL, as the REPL reads whole expressions, not lines.
 

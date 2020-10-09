@@ -1,4 +1,4 @@
-# 2019116AutoCAD-Platform-CustomizationR01
+# 2019116AutoCAD-Platform-CustomizationR02
 
 ## 记忆时间
 
@@ -611,4 +611,233 @@ The following exercise demonstrates how the initdia function affects the use of 
 4. Type `(command "._plot")` and press Enter. The plot command starts and the Plot dialog box is displayed.
 
 5. When the Plot dialog box opens, click Cancel.
+
+### 2.5 Defining and Using Custom Functions
+
+Although you can execute AutoLISP expressions one at a time at the Command prompt, doing so makes it hard to repeat or use more than a few AutoLISP expressions at a time. You can group AutoLISP expressions together into a new custom function and then execute all of the expressions in the group by using the function name you specify.
+
+#### 2.5.1 Defining a Custom Function
+
+The AutoLISP defun function is used to define a custom function. A custom function defined with defun behaves similar to a standard AutoLISP function, but it can also mimic a command that can be entered directly at the AutoCAD Command prompt or used in a script or command macro. Typically, a function is defined when you want to make it easier to execute and repeat a specific set of AutoLISP expressions.
+
+The following shows the syntax of the defun function that you should follow when defining a function that doesn't need to mimic an AutoCAD command:
+
+```c
+(defun function_name ([argN] / [local_varN]) expressionN )
+```
+
+`function_name`. The `function_name` argument represents the name of the function you want to define.
+
+argN. The argN argument represents a list of arguments that the function can accept and then act upon. argN is optional.
+
+`local_varN`. The `local_varN` argument represents a list of user-defined variables defined in the function that should be restricted to the local scope of the function. `local_varN` is optional. Variables defined within a function have a global scope if they aren't added to the `local_varN` argument.
+
+expressionN. The expressionN argument represents the AutoLISP expressions that should be executed by the function when it is used.
+
+The following shows the syntax of the defun function when you want to define a function that can be accessed from the AutoCAD Command prompt, similar to a standard AutoCAD command:
+
+```c
+(defun c:function_name ( / [local_varN]) expressionN )
+```
+
+NOTE: Custom functions that have the C: prefix shouldn't accept any arguments. If your function requires any values, those values should be requested from the user with the getxxx functions. Chapter 15,「Requesting Input and Using Conditional and Looping Expressions,」discusses getting input from the user.
+
+The following steps show how to define two custom functions: a function named dtr that converts an angular value in degrees to radians, and another named c:zw, which executes the zoom command with the Window option. These functions can be executed at the AutoCAD Command prompt.
+
+1. At the AutoCAD Command prompt, type `(defun dtr (deg / )` and press Enter. The defun function defines a function named dtr, which accepts a single argument named deg. In this example the dtr function will use no local user-defined variables, but if you decided to, you'd list them after the forward slash.
+
+2. Type `(* deg (/ PI 180))` and press Enter. The value assigned to the variable PI will be divided by 180 and then multiplied by the value passed into the dtr function that is assigned to the deg variable.
+
+3. Type ) and press Enter. The AutoLISP interpreter returns the name of the function that is defined; in this case DTR is returned. This parenthesis closes the AutoLISP expression that was started with the defun function.
+
+4. Type `(dtr 45)` and press Enter. The value 0.785398 is returned.
+
+5. Type `(defun c:zw ( / )` and press Enter. The defun function defines a function named zw and it is prefixed with C:, indicating it can be entered at the AutoCAD Command prompt. This function doesn't accept any arguments and there are no variables that should be limited locally to this function.
+
+6. Type `(command "._zoom" "_w"))` and press Enter. The AutoLISP interpreter returns C:ZW. The AutoLISP expression that uses the command function will be executed when the zw function is used. The command function starts the zoom command and then uses the Window option. The last closing parenthesis ends the AutoLISP expression that was started with the defun function.
+
+7. Type zw and press Enter. You will be prompted to specify the corners of the window in which the drawing should be zoomed.
+
+#### 2.5.2 Using a Custom Function
+
+After you define a custom AutoLISP function with the defun function, you can execute it at either the AutoCAD Command prompt or from an AutoLISP program. Chapter 20 discusses creating AutoLISP programs. In the previous section, you defined two functions: dtr and c:zw. The following rules explain how you can execute a custom AutoLISP function defined with the defun function:
+
+If a function name does not have the C: prefix, you must place the name of the function and any arguments that it accepts between opening and closing parentheses. It doesn't matter whether you are calling the function from the AutoCAD Command prompt or an AutoLISP program. For example, to call the dtr function defined in the previous section you would use `(dtr 45)` to call the dtr function with an argument value of 45.
+
+If a function name has the C: prefix, you can enter the name of the function directly at the AutoCAD Command prompt without entering the C: prefix first. However, if you want to use a function that has the C: prefix from an AutoLISP program, you don't use the command or command-s function since it is not a true, natively defined AutoCAD command. Instead you must place the name of the function along with the C: prefix between opening and closing parentheses. For example, to call the C:ZW function defined in the previous section you would use (c:zw).
+
+Functions used in a script or command macro for a user-interface element must follow the same syntax that can be entered at the AutoCAD Command prompt.
+
+TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
+
+2『自定义命令变为内置命令的实现手段，做一张任意卡片。』——已完成
+
+### 2.6 Example: Drawing a Rectangle
+
+I don't introduce any new functions or techniques in this section, but I want to explain how to use many of the AutoLISP functions explored in this chapter to define a custom function that creates a new layer and draws a rectangle. I will break down each AutoLISP expression of the function in more detail in Table 12.3.
+
+1. Create a new AutoCAD drawing.
+
+2. At the AutoCAD Command prompt, type the following and press Enter after eac. The drawplate function draws a rectangle that is 5 × 2.75 units in size, starting at the coordinate 0,0,0.
+
+3. Type drawplate and press Enter. Once the drawplate function completes, you'll have a rectangular object made up of four line segments on a new layer named Plate; see Figure 12.2.
+
+4. Create a new AutoCAD drawing.
+
+6. At the AutoCAD Command prompt, type drawplate and press Enter. The message Unknown command "DRAWPLATE". Press F1 for help. is displayed. This message is the expected result because AutoLISP entered or loaded into one drawing is accessible only to that drawing. Chapter 20 shows you how to create and load AutoLISP files.
+
+```c
+(defun c:drawplate ( / old_osmode pt1 pt2 pt3 pt4) 
+  (setq old_osmode (getvar "osmode")) 
+  (setvar "osmode" 0) 
+  (command "._-layer" "_m" "Plate" "_c" 5 "" "") 
+  (setq pt1 '(0 0 0)) 
+  (setq pt2 '(5 0 0)) 
+  (setq pt3 '(5 2.75 0)) 
+  (setq pt4 '(0 2.75 0)) 
+  (command "._line" pt1 pt2 pt3 pt4 "_c") 
+  (setvar "osmode" old_osmode) 
+)
+```
+
+Table 12.3 AutoLISP expressions used to define the drawplate function
+
+`(defun c:drawplate ( / old_osmode pt1 pt2 pt3 pt4)` Uses the defun function to define the custom function drawplate, which has the prefix C: and can be executed directly at the AutoCAD Command prompt. The argument list of the defun function is empty because a function that can be entered directly at the Command prompt should not accept arguments. The forward slash character separates the argument and local variable lists. The local variable list contains five variables; these variables are added to the list so they aren't defined as global variables.
+
+`(setq old_osmode (getvar "osmode"))` Assigns the current value of the osmode system variable to the variable named `old_osmode`.
+
+`(setvar "osmode" 0)` Sets the osmode system variable to a value of 0.
+
+`(command "._-layer" "_m" "Plate" "_c" 5 "" "")` Executes the -layer command with the Make option to create a layer with the name Plate. Once the layer is created (or if it already existed), the Make option sets the layer as current. The layer is also assigned the AutoCAD Color Index (ACI) value of 5.
+
+`(setq pt1 '(0 0 0))` Assigns a list of three values that represent the coordinate value 0,0,0 to the variable named pt1.
+
+`(setq pt2 '(5 0 0))` Assigns a list of three values that represent the coordinate value 5,0,0 to the variable named pt2.
+
+`(setq pt3 '(5 2.75 0))` Assigns a list of three values that represent the coordinate value 5,2.75,0 to the variable named pt3.
+
+`(setq pt4 '(0 2.75 0))` Assigns a list of three values that represent the coordinate value 0,2.75,0 to the variable named pt4.
+
+`(command "._line" pt1 pt2 pt3 pt4 "_c")` Executes the line command and uses the values assigned to the variables pt1, pt2, pt3, and pt4 to draw three sides of a rectangle. Once the first three segments are drawing, the Close option draws the fourth and final line segment to create a closed object.
+
+`(setvar "osmode" old_osmode)` Sets the osmode system variable to the current value of the `old_osmode` variable.
+
+`)` Closes the defun function.
+
+Now that you have seen the drawplate function in action, Table 12.3 provides a breakdown of what each expression is doing in the function.
+
+## 0203. Calculating and Working with Values
+
+Many of the standard AutoCAD® commands perform a lot of calculations as they are used from the user interface, but much of this work is shifted to you as a programmer when you work with AutoLISP®. AutoLISP supports a variety of functions that allow you to perform basic and complex math calculations, manipulate numeric or string values, and work with the elements contained in a list. I cover working with lists in Chapter 14,「Working with Lists.」
+
+Although many of the math and data-manipulation functions in AutoLISP provide a solid foundation for working with values, you might need to combine many of these functions to create custom functions that return a value. In Chapter 12,「Understanding AutoLISP,」you learned how to create custom functions, but I didn't explain how to return a value like standard AutoLISP functions do. Later in this chapter, we'll explore how to define a custom function that returns a value using the defun function.
+
+### 3.4 Returning a Value from a Custom Function
+
+Almost all AutoLISP functions return some sort of value—a number, string, or even nil. In Chapter 12 you learned how to create custom functions, but I didn't explain how you can specify a return value for a custom function. The value a custom AutoLISP function returns is always based on the last expression that is evaluated, which doesn't need to be an AutoLISP expression in the traditional sense; it doesn't need to contain a function and be surrounded by parentheses.
+
+Listing 13.3 contains a custom AutoLISP function that divides two numbers and will return either nil or a numeric value. nil is returned instead of the resulting quotient when a zero is passed as an argument value. The reason for the nil is because there is no Else statement to the if function and the if function is the last function to be evaluated.
+
+Listing 13.3: The /s function—dividing by 0 returns nil
+
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (setq quotient (/ num1 num2)) 
+  ) 
+) 
+
+(/s 0 3) 
+nil 
+(/s 3 0) 
+nil 
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
+
+Without the if function to verify that it is safe to divide the two numbers, there would be no point in creating the custom function, as it would be the same as the regular / (divide) function. However, it is valid to add a variable as the last expression in a function. The variable is then evaluated and its value is returned. Listing 13.4 contains a custom AutoLISP function similar to the one shown in Listing 13.3, but the resulting quotient is returned instead.
+
+Listing 13.4: The /s function—dividing by 0 returns 0
+
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (setq quotient (/ num1 num2)) 
+  )
+  quotient
+) 
+
+(/s 0 3) 
+0
+(/s 3 0) 
+0
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
+
+1『哈哈，这个知识点很重要，可以直接函数结尾直接写这个变量名即可返回该变量，赞啊。（2020-10-08）』
+
+Listing 13.5 demonstrates how adding an Else statement to the /s custom function would have also solved the problem of nil being returned when a zero is passed as an argument to the function.
+
+Listing 13.5: The /s function—dividing by 0 returns 0 (revised)
+
+```c
+; Safely divides two numbers 
+; Checks to make sure that one or both of the numbers are not zero 
+; (/s 0 2) 
+(defun /s (num1 num2 / quotient) 
+  (setq quotient 0) 
+  (if (and (not (zerop num1)) 
+        (not (zerop num2)) 
+      ) 
+    (/ num1 num2)
+    0
+  )
+) 
+
+(/s 0 3) 
+0
+(/s 3 0) 
+0
+(/s 2 3) 
+0 
+(/s 2.0 3) 
+0.666667
+```
+
+TIP: Using the AutoLISP princ function in the last statement of a custom AutoLISP function allows that function to「exit quietly」and not return a value. This technique is commonly used when a function's name is prefixed with c:. I cover the princ function in Chapter 15.
+
+1『汇总：1）上面的写法更简洁，写条件语句的时候值得借鉴。2）算是搞明白函数结尾用 `(princ)` 的真正用途了，阻止返回最后一条语句返回的值。做一张任意卡片。（2020-10-08）』
+
+1『其他小节的内容待消化。（2020-10-08）』
+
+## 0208. Working with the Operating System and External Files
+
+The AutoLISP® programming language can be used to reach beyond the boundaries of the Autodesk® AutoCAD® application window and objects in the current open drawing. Using AutoLISP, you can access settings managed by the operating system and installed applications on Windows or by the application-level settings of AutoCAD on both Windows and Mac OS. You can access operating system– and application-level settings from the Windows Registry. On Mac OS, you can access application-level settings for AutoCAD from the Plist (property list) files.
+
+Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
+
+## 0213. Implementing Dialog Boxes (Windows only)
+
+The goal of any program should be to make end users be productive and feel empowered without getting in their way. Your decisions about the number of options and how they are presented can make or break a custom function. Include too many, and the user becomes frustrated while responding to prompts about options that aren't used frequently; too few, and the usefulness of the custom function suffers. Dialog boxes allow users to see values that might normally be hidden behind a set of prompts and provide input for only those options they are interested in changing. A dialog box can also be used to combine multiple functions into a single, easy-to-use interface.
+
+1『上面的信息表示，A dialog box 真的可以做很多事情，哈哈。（2020-09-15）』
+
+For example, consider the difference between the insert command, which displays the Insert dialog box, and the -insert command, which displays a series of options at the Command prompt. The insert command allows you to explode a block upon insert and use geographical data without affecting the prompt sequence or functionality of the -insert command. In this chapter, you will learn to implement dialog boxes for use with AutoLISP® programs.
 

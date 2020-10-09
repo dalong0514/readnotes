@@ -4,7 +4,7 @@ The AutoLISP® programming language can be used to reach beyond the boundaries o
 
 Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
 
-Storing Information in the Windows Registry or a Plist File
+## 8.1 Storing Information in the Windows Registry or a Plist File
 
 AutoCAD stores information and setting values using many different methods. Some are proprietary; others are industry standard. Most setting values are stored as part of the drawing using system variables, extended data, or custom dictionaries. Those settings that aren't stored with the drawing are, for the most part, stored with the AutoCAD user profile.
 
@@ -88,7 +88,7 @@ The following gets the data from the "String" entity name:
 
 The setcfg and getcfg functions accept and return data of the string type only.
 
-Accessing Data from External Files
+## 8.2 Accessing Data from External Files
 
 AutoLISP supports the ability to read and write ASCII plain text, not binary files. You can read data stored in an ASCII file with AutoLISP and use that data to create general notes, add disclaimers, or even populate the values of the attributes in a title block. In addition to reading files, AutoLISP can be used to write data to an ASCII file, which might represent an exported BOM or the properties of the layers in a drawing. ASCII files can be used to define any number of file types, such as CSV, text (TXT), HTM/HTML, or even XML.
 
@@ -224,7 +224,7 @@ Here is an example of the close function:
 
 (close file_ptr) nil
 
-Working with Directories and Files in the Operating System
+## 8.3 Working with Directories and Files in the Operating System
 
 In addition to the ability to create, read, and write ASCII files, AutoLISP supports a wide range of file- and directory-management functions. Many of these file-management functions were added in AutoCAD 2000. The AutoLISP functions that are available for file-management tasks allow you to do the following:
 
@@ -400,7 +400,7 @@ NOTE
 
 On Windows, you can access a File System Object using ActiveX/COM, which can be used to access and manage files in the Windows operating system. I discuss how to use ActiveX with AutoLISP in Chapter 22.
 
-Exercise: Reading and Writing Data
+## 8.4 Exercise: Reading and Writing Data
 
 In this section, you will create two new functions that read data from and write data to external files. The first function reads information from a data file and uses that information to add new layers to a drawing. The second function is an extension of the BOM program that you created in Chapter 17. Instead of adding a table grid to a drawing, this new function exports the BOM content to a comma-delimited file that can be imported into a database or spreadsheet program.
 
