@@ -632,7 +632,7 @@ After a tile key, mode, and index have been specified with the `start_list` func
 
 Once you have modified a list, use the `end_list` function. The `end_list` ends the modification of the list that was started with the `start_list` function. The `end_list` function returns a value of nil regardless of whether the list was successfully modified.
 
-1『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）』
+1-2『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）回复：这个功能其实非常有用，比如想开发的功能，先根据某个属性值匹配通配符来筛选管道号块，筛出来的块只把属性值提取出来添加到这个列表让用户看到。第二部输入要替换的原字符以及新字符，这个功能一定要实现。（2020-10-10）做一张任意卡片。』——已完成
 
 The following code shows how to replace and assign a list of two values to a `popup_list` tile with the key of `list_layers`. The `list_layers` key refers to the Layer To Place Object On `popup_list` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
