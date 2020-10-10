@@ -195,7 +195,7 @@ The ssget function provides the most general means of creating a selection set. 
 
 ### 0105. 主题卡——修改 CAD 实体数据的基本思路
 
-### 0106. 主题卡——lsit 映射处理的几个函数
+### 0106. 主题卡——list 映射处理的几个函数
 
 [帮助: lambda (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-3B8BB020-1E1A-4FA3-B7B3-B5B20BA04CD9)
 
@@ -434,7 +434,7 @@ About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names 
 (ssget "X" '((2 . "`*U2")))
 ```
 
-1-2『选择特定名称块的实现方式，mark 一下。可以用来提取块里的基本信息用，做设备表的一个环节。wild-card 是指通配符。\` 应该是转义用的。回复：很棒啊，这样的话数据流里筛选仪表块只需要使用 "Instrument`*" 过滤即可。合并到之前已经做好的通配符术语卡片。（2020-10-07）』
+1-2『选择特定名称块的实现方式，mark 一下。可以用来提取块里的基本信息用，做设备表的一个环节。wild-card 是指通配符。\` 应该是转义用的。回复：很棒啊，这样的话数据流里筛选仪表块只需要使用 `"Instrument*"` 过滤即可。合并到之前已经做好的通配符术语卡片。（2020-10-07）』
 
 ### 0205. 术语卡——lisp 里的函数
 

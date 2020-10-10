@@ -833,11 +833,3 @@ The AutoLISP® programming language can be used to reach beyond the boundaries o
 
 Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
 
-## 0213. Implementing Dialog Boxes (Windows only)
-
-The goal of any program should be to make end users be productive and feel empowered without getting in their way. Your decisions about the number of options and how they are presented can make or break a custom function. Include too many, and the user becomes frustrated while responding to prompts about options that aren't used frequently; too few, and the usefulness of the custom function suffers. Dialog boxes allow users to see values that might normally be hidden behind a set of prompts and provide input for only those options they are interested in changing. A dialog box can also be used to combine multiple functions into a single, easy-to-use interface.
-
-1『上面的信息表示，A dialog box 真的可以做很多事情，哈哈。（2020-09-15）』
-
-For example, consider the difference between the insert command, which displays the Insert dialog box, and the -insert command, which displays a series of options at the Command prompt. The insert command allows you to explode a block upon insert and use geographical data without affecting the prompt sequence or functionality of the -insert command. In this chapter, you will learn to implement dialog boxes for use with AutoLISP® programs.
-

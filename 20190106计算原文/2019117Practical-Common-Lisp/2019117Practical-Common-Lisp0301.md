@@ -8,97 +8,176 @@ One terminology note: I'll discuss a handful of Lisp operators in this chapter. 
 
 Also, keep in mind that I won't bust out all the most sophisticated Common Lisp techniques for your very first post-"hello, world" program. The point of this chapter isn't that this is how you would write a database in Lisp; rather, the point is for you to get an idea of what programming in Lisp is like and to see how even a relatively simple Lisp program can be quite featureful.
 
-CDs and Records
+## 3.1 CDs and Records
 
 To keep track of CDs that need to be ripped to MP3s and which CDs should be ripped first, each record in the database will contain the title and artist of the CD, a rating of how much the user likes it, and a flag saying whether it has been ripped. So, to start with, you'll need a way to represent a single database record (in other words, one CD). Common Lisp gives you lots of choices of data structures from a simple four-item list to a user-defined class, using the Common Lisp Object System (CLOS).
 
 For now you can stay at the simple end of the spectrum and use a list. You can make a list with the LIST function, which, appropriately enough, returns a list of its arguments.
 
-CL-USER> (list 1 2 3) (1 2 3)
+```c
+CL-USER> (list 1 2 3) 
+(1 2 3)
+```
 
 You could use a four-item list, mapping a given position in the list to a given field in the record. However, another flavor of list--called a property list, or plist for short--is even more convenient. A plist is a list where every other element, starting with the first, is a symbol that describes what the next element in the list is. I won't get into all the details of exactly what a symbol is right now; basically it's a name. For the symbols that name the fields in the CD database, you can use a particular kind of symbol, called a keyword symbol. A keyword is any name that starts with a colon (:), for instance, :foo. Here's an example of a plist using the keyword symbols :a, :b, and :c as property names:
 
-CL-USER> (list :a 1 :b 2 :c 3) (:A 1 :B 2 :C 3)
+```c
+CL-USER> (list :a 1 :b 2 :c 3) 
+(:A 1 :B 2 :C 3)
+```
 
 Note that you can create a property list with the same LIST function as you use to create other lists; it's the contents that make it a plist.
 
 The thing that makes plists a convenient way to represent the records in a database is the function GETF, which takes a plist and a symbol and returns the value in the plist following the symbol, making a plist a sort of poor man's hash table. Lisp has real hash tables too, but plists are sufficient for your needs here and can more easily be saved to a file, which will come in handy later.
 
-CL-USER> (getf (list :a 1 :b 2 :c 3) :a) 1 CL-USER> (getf (list :a 1 :b 2 :c 3) :c) 3
+1『 autolisp 里是没有 getf 函数的。不过感觉它里面的 dotted pairs 就对应于这里的这种数据结构，其 assoc 函数对应于这里的 getf 函数。』
+
+```c
+CL-USER> (getf (list :a 1 :b 2 :c 3) :a) 
+1 
+CL-USER> (getf (list :a 1 :b 2 :c 3) :c) 
+3
+```
 
 Given all that, you can easily enough write a function make-cd that will take the four fields as arguments and return a plist representing that CD.
 
-(defun make-cd (title artist rating ripped) (list :title title :artist artist :rating rating :ripped ripped))
+```c
+(defun make-cd (title artist rating ripped) 
+  (list :title title :artist artist :rating rating :ripped ripped)
+)
+```
 
 The word DEFUN tells us that this form is defining a new function. The name of the function is make-cd. After the name comes the parameter list. This function has four parameters: title, artist, rating, and ripped. Everything after the parameter list is the body of the function. In this case the body is just one form, a call to LIST. When make-cd is called, the arguments passed to the call will be bound to the variables in the parameter list. For instance, to make a record for the CD Roses by Kathy Mattea, you might call make-cd like this:
 
-CL-USER> (make-cd "Roses" "Kathy Mattea" 7 t) (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)
+```c
+CL-USER> (make-cd "Roses" "Kathy Mattea" 7 t) 
+(:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)
+```
 
-Filing CDs
+## 3.2 Filing CDs
 
 A single record, however, does not a database make. You need some larger construct to hold the records. Again, for simplicity's sake, a list seems like a good choice. Also for simplicity you can use a global variable, *db*, which you can define with the DEFVAR macro. The asterisks (*) in the name are a Lisp naming convention for global variables.2
 
+```c
 (defvar *db* nil)
+```
 
-You can use the PUSH macro to add items to *db*. But it's probably a good idea to abstract things a tiny bit, so you should define a function add-record that adds a record to the database.
+You can use the PUSH macro to add items to `*db*`. But it's probably a good idea to abstract things a tiny bit, so you should define a function add-record that adds a record to the database.
 
+```c
 (defun add-record (cd) (push cd *db*))
+```
 
 Now you can use add-record and make-cd together to add CDs to the database.
 
-CL-USER> (add-record (make-cd "Roses" "Kathy Mattea" 7 t)) ((:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)) CL-USER> (add-record (make-cd "Fly" "Dixie Chicks" 8 t)) ((:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)) CL-USER> (add-record (make-cd "Home" "Dixie Chicks" 9 t)) ((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+```c
+CL-USER> (add-record (make-cd "Roses" "Kathy Mattea" 7 t)) 
+((:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)) 
+
+CL-USER> (add-record (make-cd "Fly" "Dixie Chicks" 8 t)) 
+((:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) 
+(:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T)) 
+
+CL-USER> (add-record (make-cd "Home" "Dixie Chicks" 9 t)) 
+((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) 
+(:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) 
+(:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+```
 
 The stuff printed by the REPL after each call to add-record is the return value, which is the value returned by the last expression in the function body, the PUSH. And PUSH returns the new value of the variable it's modifying. So what you're actually seeing is the value of the database after the record has been added.
 
-Looking at the Database Contents
+## 3.3 Looking at the Database Contents
 
-You can also see the current value of *db* whenever you want by typing *db* at the REPL.
+You can also see the current value of `*db*` whenever you want by typing `*db*` at the REPL.
 
-CL-USER> *db* ((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+```c
+CL-USER> *db* 
+((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) 
+(:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) 
+(:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 7 :RIPPED T))
+```
 
 However, that's not a very satisfying way of looking at the output. You can write a dump-db function that dumps out the database in a more human-readable format, like this:
 
-TITLE: Home ARTIST: Dixie Chicks RATING: 9 RIPPED: T TITLE: Fly ARTIST: Dixie Chicks RATING: 8 RIPPED: T TITLE: Roses ARTIST: Kathy Mattea RATING: 7 RIPPED: T
+```
+TITLE: Home 
+ARTIST: Dixie Chicks 
+RATING: 9 
+RIPPED: T 
+
+TITLE: Fly 
+ARTIST: Dixie 
+Chicks RATING: 8 
+RIPPED: T 
+
+TITLE: Roses 
+ARTIST: Kathy Mattea 
+RATING: 7 
+RIPPED: T
+```
 
 The function looks like this:
 
-(defun dump-db () (dolist (cd *db*) (format t "~{~a:~10t~a~%~}~%" cd)))
+```c
+(defun dump-db () 
+  (dolist (cd *db*) 
+    (format t "~{~a:~10t~a~%~}~%" cd))
+)
+```
 
-This function works by looping over all the elements of *db* with the DOLIST macro, binding each element to the variable cd in turn. For each value of cd, you use the FORMAT function to print it.
+This function works by looping over all the elements of `*db* `with the DOLIST macro, binding each element to the variable cd in turn. For each value of cd, you use the FORMAT function to print it.
 
-Admittedly, the FORMAT call is a little cryptic. However, FORMAT isn't particularly more complicated than C or Perl's printf function or Python's string-% operator. In Chapter 18 I'll discuss FORMAT in greater detail. For now we can take this call bit by bit. As you saw in Chapter 2, FORMAT takes at least two arguments, the first being the stream where it sends its output; t is shorthand for the stream *standard-output*.
+Admittedly, the FORMAT call is a little cryptic. However, FORMAT isn't particularly more complicated than C or Perl's printf function or Python's string-% operator. In Chapter 18 I'll discuss FORMAT in greater detail. For now we can take this call bit by bit. As you saw in Chapter 2, FORMAT takes at least two arguments, the first being the stream where it sends its output; t is shorthand for the stream `*standard-output*`.
 
 The second argument to FORMAT is a format string that can contain both literal text and directives telling FORMAT things such as how to interpolate the rest of its arguments. Format directives start with ~ (much the way printf's directives start with %). FORMAT understands dozens of directives, each with their own set of options.3 However, for now I'll just focus on the ones you need to write dump-db.
 
 The ~a directive is the aesthetic directive; it means to consume one argument and output it in a human-readable form. This will render keywords without the leading : and strings without quotation marks. For instance:
 
-CL-USER> (format t "~a" "Dixie Chicks") Dixie Chicks NIL
+```c
+CL-USER> (format t "~a" "Dixie Chicks") 
+Dixie Chicks 
+NIL
+```
 
 or:
 
-CL-USER> (format t "~a" :title) TITLE NIL
+```c
+CL-USER> (format t "~a" :title) 
+TITLE 
+NIL
+```
 
 The ~t directive is for tabulating. The ~10t tells FORMAT to emit enough spaces to move to the tenth column before processing the next ~a. A ~t doesn't consume any arguments.
 
-CL-USER> (format t "~a:~10t~a" :artist "Dixie Chicks") ARTIST: Dixie Chicks NIL
+```c
+CL-USER> (format t "~a:~10t~a" :artist "Dixie Chicks") 
+ARTIST: Dixie Chicks 
+NIL
+```
 
 Now things get slightly more complicated. When FORMAT sees ~{ the next argument to be consumed must be a list. FORMAT loops over that list, processing the directives between the ~{ and ~}, consuming as many elements of the list as needed each time through the list. In dump-db, the FORMAT loop will consume one keyword and one value from the list each time through the loop. The ~% directive doesn't consume any arguments but tells FORMAT to emit a newline. Then after the ~} ends the loop, the last ~% tells FORMAT to emit one more newline to put a blank line between each CD.
 
 Technically, you could have also used FORMAT to loop over the database itself, turning our dump-db function into a one-liner.
 
-(defun dump-db () (format t "~{~{~a:~10t~a~%~}~%~}" *db*))
+```c
+(defun dump-db () 
+  (format t "~{~{~a:~10t~a~%~}~%~}" *db*)
+)
+```
 
 That's either very cool or very scary depending on your point of view.
 
-Improving the User Interaction
+## 3.4 Improving the User Interaction
 
 While our add-record function works fine for adding records, it's a bit Lispy for the casual user. And if they want to add a bunch of records, it's not very convenient. So you may want to write a function to prompt the user for information about a set of CDs. Right away you know you'll need some way to prompt the user for a piece of information and read it. So let's write that.
 
+```c
 (defun prompt-read (prompt) (format *query-io* "~a: " prompt) (force-output *query-io*) (read-line *query-io*))
+```
 
 You use your old friend FORMAT to emit a prompt. Note that there's no ~% in the format string, so the cursor will stay on the same line. The call to FORCE-OUTPUT is necessary in some implementations to ensure that Lisp doesn't wait for a newline before it prints the prompt.
 
-Then you can read a single line of text with the aptly named READ-LINE function. The variable *query-io* is a global variable (which you can tell because of the * naming convention for global variables) that contains the input stream connected to the terminal. The return value of prompt-read will be the value of the last form, the call to READ-LINE, which returns the string it read (without the trailing newline.)
+Then you can read a single line of text with the aptly named READ-LINE function. The variable `*query-io*` is a global variable (which you can tell because of the * naming convention for global variables) that contains the input stream connected to the terminal. The return value of prompt-read will be the value of the last form, the call to READ-LINE, which returns the string it read (without the trailing newline.)
 
 You can combine your existing make-cd function with prompt-read to build a function that makes a new CD record from data it gets by prompting for each value in turn.
 

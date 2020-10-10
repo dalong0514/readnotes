@@ -1,4 +1,38 @@
-# 0213. Implementing Dialog Boxes (Windows only)
+# 2019116AutoCAD-Platform-CustomizationR03
+
+## 记忆时间
+
+## 目录
+
+Part II AutoLISP: Productivity through Programming
+
+0201——Chapter 11: Quick Start for New AutoLISP Programmers
+
+0202——Chapter 12: Understanding AutoLISP
+
+0203——Chapter 13: Calculating and Working with Values
+
+0204——Chapter 14: Working with Lists
+
+0205——Chapter 15: Requesting Input and Using Conditional and Looping Expressions
+
+0206——Chapter 16: Creating and Modifying Graphical Objects
+
+0207——Chapter 17: Creating and Modifying Nongraphical Objects
+
+0208——Chapter 18: Working with the Operating System and External Files
+
+0209——Chapter 19: Catching and Handling Errors
+
+0210——Chapter 20: Authoring, Managing, and Loading AutoLISP Programs
+
+0211——Chapter 21: Using the Visual LISP Editor (Windows only)
+
+0212——Chapter 22: Working with ActiveX/COM Libraries (Windows only)
+
+0213——Chapter 23: Implementing Dialog Boxes (Windows only)
+
+## 0213. Implementing Dialog Boxes (Windows only)
 
 The goal of any program should be to make end users be productive and feel empowered without getting in their way. Your decisions about the number of options and how they are presented can make or break a custom function. Include too many, and the user becomes frustrated while responding to prompts about options that aren't used frequently; too few, and the usefulness of the custom function suffers. Dialog boxes allow users to see values that might normally be hidden behind a set of prompts and provide input for only those options they are interested in changing. A dialog box can also be used to combine multiple functions into a single, easy-to-use interface.
 
@@ -6,7 +40,7 @@ The goal of any program should be to make end users be productive and feel empow
 
 For example, consider the difference between the insert command, which displays the Insert dialog box, and the -insert command, which displays a series of options at the Command prompt. The insert command allows you to explode a block upon insert and use geographical data without affecting the prompt sequence or functionality of the -insert command. In this chapter, you will learn to implement dialog boxes for use with AutoLISP® programs.
 
-## 13.1 What Is Dialog Control Language?
+### 13.1 What Is Dialog Control Language?
 
 Dialog Control Language (DCL) is the technology used to lay out and design dialog boxes that can be used with AutoLISP programs. Support for DCL was originally added to Autodesk® AutoCAD® R11 and has remained essentially unchanged through AutoCAD 2015. Dialog boxes are defined and stored in ASCII text files with a .dcl extension. Once a DCL file has been created, AutoLISP can then load and display the dialog contained in the DCL file. After the dialog is displayed, AutoLISP is used to control what happens when the user clicks or otherwise manipulates the controls in the dialog box.
 
@@ -60,7 +94,7 @@ Figure 23.1 shows what the alternative message box looks like when loaded into t
 
 ---
 
-### Modernized DCL Alternatives
+#### Modernized DCL Alternatives
 
 DCL has remained unchanged since AutoCAD R12, which is great from a compatibility perspective but not from a technology point of view. The controls that you can use on a dialog box defined with DCL will seem limited when you consider the countless controls that are available in Windows and Windows-based programs. Although the DCL that comes with AutoCAD is limited, there are a few alternatives that you can use to enrich the dialog boxes you create.
 
@@ -78,19 +112,19 @@ AutoCAD Managed.NET and the ObjectARX APIs provide alternatives for creating cus
 
 ---
 
-## 13.2 Defining and Laying Out a Dialog Box
+### 13.2 Defining and Laying Out a Dialog Box
 
 DCL files can be created and edited using Notepad, the Visual LISP® Editor, or whichever editor you are using for LSP files. Although you can use Notepad, the Visual LISP Editor offers a few advantages over Notepad for working with DCL files. It supports color syntax as it does with LSP files, but it also has a built-in DCL preview feature. Without the Visual LISP Editor's DCL preview feature, you must write an AutoLISP program that will at least load a DCL file and display a dialog box in the AutoCAD drawing environment to see the final appearance of a dialog box.
 
 ---
 
-### Simplifying User Interaction and Option Presentation
+#### Simplifying User Interaction and Option Presentation
 
 Have you ever sat and scratched your head in hopes of deciphering the options displayed as part of a prompt string for a command or custom function? Maybe you have tried to use a command that presented nested option prompts, and no matter how well you guessed, you got the wrong results. Both of these situations waste time. Fortunately, there is a solution to these problems and it is in the form of dialog boxes. Dialog boxes, or more specifically DCL in AutoLISP, can be used to improve users' experience by allowing them to follow a nonlinear workflow and provide only the information required to complete a task. Users can quickly scan and change values before completing a task. At the end of the day, a dialog box can help to reduce clicks, which means saving time—and time is money.
 
 ---
 
-### 13.2.1 Defining a Dialog
+#### 13.2.1 Defining a Dialog
 
 Each dialog box you define must contain a dialog tile. The attributes of a dialog tile are used to define the dialog's label (more commonly referred to as the title or caption), add a programmatic name known as a key, and set the tile that should have initial focus. The following shows the basic syntax of the dialog tile:
 
@@ -119,7 +153,7 @@ Table 23.1 Common attributes used with the dialog tile
 
 An example of a dialog tile was shown earlier in this chapter; see Listing 23.1 and Figure 23.1.
 
-### 13.2.2 Adding Tiles
+#### 13.2.2 Adding Tiles
 
 A dialog box can contain a variety of tiles—commonly referred to as controls—that can be used to get input from the user. The tiles that are available for placement in a dialog box are common to many Windows dialog boxes. The following shows the basic syntax of a tile:
 
@@ -246,7 +280,7 @@ Table 23.4 Tile subassemblies
 | ok_cancel  |  OK and Cancel buttons |
 | ok_cancel_help_   | OK, Cancel, and Help buttons  |
 
-### 13.2.3 Grouping, Aligning, and Laying Out Tiles
+#### 13.2.3 Grouping, Aligning, and Laying Out Tiles
 
 Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
 
@@ -387,7 +421,7 @@ ex_createLabelObject : dialog {
 }
 ```
 
-### 13.2.4 Creating and Previewing a Dialog in a DCL File
+#### 13.2.4 Creating and Previewing a Dialog in a DCL File
 
 You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
 
@@ -427,11 +461,11 @@ In this exercise, you will create a DCL file based on the dialog box defined in 
 
 12. Review the dialog box and click any control to return to the Visual LISP Editor. The dialog box you create should look like the one shown earlier, in Figure 23.4.
 
-## 13.3 Loading and Displaying a Dialog Box
+### 13.3 Loading and Displaying a Dialog Box
 
 The Visual LISP Editor makes it easy to preview a dialog box, but it doesn't allow you to interact with the tiles on the dialog box. A DCL file must be loaded and displayed with AutoLISP to enable user interaction. When a dialog box is being loaded, you can set the initial values of each tile and specify the enabled state of each tile. If your dialog box contains any list\_box, popup\_list, image, or image\_button tiles, you might have to perform some initialization tasks for these tiles. (I cover those tasks in the「Initializing Tiles」section later in this chapter.)
 
-### 13.3.1 Loading and Unloading a DCL File
+#### 13.3.1 Loading and Unloading a DCL File
 
 A DCL file must be loaded into the AutoCAD drawing environment before you can display one of the dialog-box definitions in the file. The `load_dialog` function loads a DCL file and returns a random integer value that represents a DCL file ID. A positive DCL file ID value indicates that the DCL file was located in the AutoCAD support-file search paths specified in the Options dialog box and was successfully loaded; a negative value notifies you that the DCL file wasn't located and loaded.
 
@@ -465,7 +499,7 @@ The dcl\_file\_id argument that the `unload_dialog` function expects is the same
 nil
 ```
 
-### 13.3.2 Displaying a Dialog
+#### 13.3.2 Displaying a Dialog
 
 After a DCL file has been loaded, an instance of a dialog box contained in the loaded DCL file can be created and displayed with the `new_dialog` function. The `new_dialog` function is also used to specify a default action for all interactive tiles that don't have an action assigned to them, and the onscreen display location. The `new_dialog` function returns T if the dialog box was successfully created, or it returns nil if the dialog box couldn't be created. The following shows the syntax of the `new_dialog` function:
 
@@ -525,7 +559,7 @@ The following example code shows how to load and unload a DCL file, and then cre
 )
 ```
 
-### 13.3.3 Initializing Tiles
+#### 13.3.3 Initializing Tiles
 
 You can manipulate the interactive tiles of a dialog tile in a DCL file once you create an instance of a dialog box in memory by using the `new_dialog` function. You use the value of the key attribute to reference a tile of a dialog box. Once you have a tile's key, you can set the default value of a tile, set the tile's enabled state, populate items in the list of a `list_box` or `popup_list` tile, or assign a slide to an image or `image_button` tile.
 
@@ -667,11 +701,11 @@ Table 23.10 AutoLISP functions used to work with image and `image_button` tiles
 |  `start_image` |  Starts the modification of an image and sets it as the current image  |
 |  `vector_image` |  Draws a vector in the current image set by the `start_image` function  |
 
-## 13.3 Interacting with and Responding to a User
+### 13.3 Interacting with and Responding to a User
 
 While a dialog box is displayed onscreen, the user is able to interact with the tiles that are enabled. As the user interacts with the tiles, the AutoLISP expressions assigned to the tile's action attribute are executed. The AutoLISP expressions can be used to get and set tile and attribute values, and to change the enabled state of a tile.
 
-### 13.3.1 Specifying the Action of a Tile
+#### 13.3.1 Specifying the Action of a Tile
 
 An interactive tile can be assigned an AutoLISP expression that is to be executed when the tile is clicked or interacted with. You use the action attribute in a DCL file to assign an AutoLISP expression to a tile or the `action_tile` function. As part of the AutoLISP expression, you can get information about the tile that is being interacted with by using several predefined variables. Table 23.11 lists the predefined variables that can be referenced by the AutoLISP expression assigned to a tile's action attribute.
 
@@ -757,7 +791,7 @@ The following code shows how to assign the AutoLISP expression `(alert (strcat "
 
 NOTE: Execute the `action_tile` function before the `start_dialog` function to ensure that the action is assigned to the tile before the dialog box is displayed.
 
-### 13.3.2 Getting Information about a Tile
+#### 13.3.2 Getting Information about a Tile
 
 When a user interacts with the tiles of a dialog box, you will commonly want to get the current value of one or all tiles before the dialog box is closed. The current value of the value attribute of a tile can be obtained using the `get_tile` function. If you want to get the value of an attribute other than value, you can use the `get_attr` function. The `get_tile` and `get_attr` functions return a string value.
 
@@ -791,7 +825,7 @@ The following code shows how to get the current value of the tile with the key o
 
 1『通过这个例子就明白了 `attr` 指什么数据，就是 `list_box` tile 里 list 属性里的值，哈哈。（2020-10-09）』
 
-### 13.3.3 Terminating or Closing a Dialog Box
+#### 13.3.3 Terminating or Closing a Dialog Box
 
 A dialog box must be terminated—or closed—when it is no longer needed and the end user wants to return to the drawing area. The `done_dialog` function is used to indicate that the dialog box can be terminated. You commonly add this function as the last part of the AutoLISP expression assigned to the action attribute of a button tile such as OK or Cancel that terminates a dialog box. Before `done_dialog` is executed, you want to make sure you get the value of any tiles or tile attribute values by using the `get_tile` or `get_attr` function.
 
@@ -822,7 +856,7 @@ The following code shows how to assign a custom action to the OK and Cancel butt
 
 If you have more than one dialog box displayed, in the case of working with nested dialog boxes, the `term_dialog` function can be executed to close all open dialog boxes and return to the drawing area. The `term_dialog` function doesn't accept any argument values and always returns nil.
 
-### 13.3.4 Hiding a Dialog Box Temporarily
+#### 13.3.4 Hiding a Dialog Box Temporarily
 
 1『看到标题就知道是自己要找的功能了，哈哈。（2020-10-09）』
 
@@ -900,7 +934,7 @@ The following AutoLISP code defines a custom function named hiddendlg that loads
 
 NOTE: The sample DCL syntax and AutoLISP code can be found in the `ch23_ex_hidden.dcl` and `ch23_ex_hidden.lsp` files, which you can download from www.sybex.com/go/autocadcustomization. Place the files in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Load the LSP file and then enter hiddendlg at the Command prompt. Click the Pick Point button and specify a point in the drawing area to see the dialog box in action.
 
-## 13.4 Exercise: Implementing a Dialog Box for the drawplate Function
+### 13.4 Exercise: Implementing a Dialog Box for the drawplate Function
 
 In this section, you will create a DCL file that defines a dialog box for use with a version of the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」The dialog box replaces the width and height prompts and adds an option that controls the creation of the label. The key concepts I cover in this exercise are as follows:
 
@@ -910,7 +944,7 @@ In this section, you will create a DCL file that defines a dialog box for use wi
 
 NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Deploying the drawplate Function」section of Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」If you didn't complete the steps, do so now or start with the `ch23_drawplate.lsp` and `ch23_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters `ch23_` from the name of each file.
 
-### 13.4.1 Creating the drawplate Dialog Box
+#### 13.4.1 Creating the drawplate Dialog Box
 
 Chapter 20 was the last chapter in which any changes were made to the drawplate function. At that time, the changes included loading the utility.lsp file and implementing custom help. Here you will create a DCL file named drawplate.dcl and then display it in the new version of the drawplate function.
 
@@ -983,7 +1017,7 @@ drawplate : dialog {
 }
 ```
 
-### 13.4.2 Renaming the Existing drawplate Function
+#### 13.4.2 Renaming the Existing drawplate Function
 
 AutoCAD has a few command-naming conventions, and one of those conventions includes prefixing command names with a hyphen. When an AutoCAD command displays a dialog box, often a second command has been created that carries the same name but is prefixed with a hyphen. Commands that are prefixed with a hyphen allow you to access most of the functionality of a dialog box from the Command prompt through a series of prompt options. Before implementing a new version of the drawplate function that displays a dialog box, you must rename the existing drawplate function to conform to the established AutoCAD command-naming standards.
 
@@ -1015,7 +1049,7 @@ The following steps explain how to rename the drawplate function to -drawplate:
 
 6. Click File Save.
 
-### 13.4.3 Defining a New drawplate Function
+#### 13.4.3 Defining a New drawplate Function
 
 Now that you have renamed the existing drawplate function to `-drawplate` and defined the drawplate.dcl file, it is time to implement a new version of the drawplate function. The following steps explain how to add the new version of the drawplate function that will display the Draw Plate dialog box:
 
@@ -1344,7 +1378,7 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 )
 ```
 
-### 13.4.4 Testing the drawplate.lsp Changes
+#### 13.4.4 Testing the drawplate.lsp Changes
 
 The following steps explain how to test the `-drawplate` function in the drawplate.lsp file:
 
