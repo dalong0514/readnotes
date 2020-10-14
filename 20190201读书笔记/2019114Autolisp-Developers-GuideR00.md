@@ -16,6 +16,10 @@
 
 [Dynamic Block Functions | Lee Mac Programming](http://lee-mac.com/dynamicblockfunctions.html)
 
+[AutoLisp 选择对象函数 ssget 用法 - 钉钉铛铛 - 博客园](https://www.cnblogs.com/chenjiafeng/p/7537786.html)
+
+[COND vs. IF | AfraLISP](https://www.afralisp.net/autolisp/tutorials/cond-vs-if.php)
+
 ## 卡片
 
 ### 0101. 主题卡——list 数据类型常用的操作函数
@@ -374,6 +378,14 @@ autolisp 里一个高频操作 `cdr (assoc -1 ent)`，其中 -1 是 DXF group co
 
 ### 0204. 术语卡——Wild-Card Matching
 
+通配符的使用说明：
+
+1、`*` 相当于任意数量的任意字符。比如：1） `VT*` 会匹配到任意以 VT 开头的管道；2）`VT-25-*` 会匹配任意管径为 25 的管道。3）`VT*-50-*2J1*` 会匹配任意管径为 50 的、等级号为 2J1 的管道。等等。
+
+2、`[]` 范围描述符。1）`[a-z]` 表示从 a 到 z 之间的任意一个。2）`[1-6]` 表示 1 到 6 之间的任意数据。
+
+3、`?` 会相当于任何一个字符。
+
 A string can be compared to a wild-card pattern with the wcmatch function. This can be helpful when needing to build a dynamic selection set (in conjunction with ssget) or to retrieve extended entity data by application name (in conjunction with entget). The wcmatch function compares a single string to a pattern. The function returns T if the string matches the pattern, and nil if it does not. The wild-card patterns are similar to the regular expressions used by many system and application programs.
 
 1-2『直觉这里又是一个关键点。讲的应该就是通配符的知识点。回复：通配符与选择集（ssget）配合构建动态选择集，还可以与 entget 配合，结合实体名筛选。其实跟正则的功能差不多。回复：通配符的用处实在太大了，数据流开发中，批量修改块内某一属性前，要做的过滤功能可以通过这个来实现。（2020-10-06）做一张术语卡片。』——已完成
@@ -689,6 +701,149 @@ The following example code demonstrates how to select all circles having extende
   )
 )
 ```
+
+### 03. 选择集按坐标排序
+
+[Sort Selectionset by X coord](https://forums.augi.com/showthread.php?137837-Sort-Selectionset-by-X-coord)
+
+[Selection Set Processing | Lee Mac Programming](http://www.lee-mac.com/selsetprocessing.html)
+
+1. Create list of enames.
+
+2. (vl-sort lst (function (lambda (a b) (> (cadr (assoc 10 (entget a))) (cadr (assoc 10 (entget b)))))))
+
+3. Create new selection set with ssadd.
+
+4. Step (foreach) through sorted (#2) list and ssadd enames to newly created selection set.
+
+Thanks for the direction, I'm still having issues though. Perhaps I'm not building my list properly, but for some reason the lambda function grabs the first item, then tries to grab the entire rest of the list as the second item, That obviously doesnt work, as it cant grab the entdata from a list of entities. How do you suggest creating the list, I know that there are multiple ways of doing it, I'm using (setq lst (list ss lst)) which based on my results isnt the proper way to do it.
+here is the error I'm receiving
+
+```c
+; error: bad argument type: lentityp (nil)
+```
+
+Nevermind, I figured it out. I had to set each item as a list, then append my lists together. Works great!
+
+```c
+(setq ss (ssget '((0 . "TEXT") (8 . "C-ROAD-STAN-OFFS")))) ;_ select all objects
+  (setvar "osmode" 64)
+  (setq stp (getpoint "\nSelect insert point of first text obj")) ;_ select start point
+  (setq    count1 (sslength ss)
+    count  1
+    xcoord (- (car stp) 0.135)
+    ss1    (ssadd)
+    ss4    (list (ssname ss (1- count)))
+    ss6    (ssadd)
+  ) ;_ end of setq
+  (while (<= (1+ count) count1)        ;SORT LIST BY X COORD LOW TO HIGH
+    (setq ss3 (list (ssname ss count)))
+    (setq ss4 (append ss4 ss3))
+    (setq count (1+ count))
+  ) ;_ end of while
+  (vl-sort ss4
+       (function (lambda (a b) (> (cadr (assoc 11 (entget a))) (cadr (assoc 11 (entget b))))))
+  ) ;_ end of vl-sort
+  (setq    count 0
+    counta 1
+  ) ;_ end of setq
+  (foreach ss5 (reverse ss4)
+    (setq ss6 (ssadd ss5 ss6))
+  )
+```
+
+I like to segregate the functionality of each step of the function so that I can build very general toolbox functions that allow me to make changes. Like here I convert a selection set to a list, change the list into a list of sublists including the xyz coordinates of the entities, sort by the x y and z coordinates (either up or down), convert the list of sublists back to a list of entities and then into a selection set. I like the list of sublists structure and use this sort function all the time.I also like storing selections sets as lists of entities or objects.
+
+```c
+(defun sortListofSublistsbyItemX (lstOfSublists intItem intDirection)
+ (if (> intDirection 0)
+  (vl-sort lstOfSublists '(lambda (X Y) (< (nth intItem X) (nth intItem Y))))
+  (vl-sort lstOfSublists '(lambda (X Y) (> (nth intItem X) (nth intItem Y))))
+ )
+)
+
+(defun SelectionSetToList (ssSelections / intCount lstReturn)
+ (if (and ssSelections 
+          (= (type ssSelections) 'PICKSET)
+     )
+  (repeat (setq intCount (sslength ssSelections))
+   (setq intCount  (1- intCount)
+         lstReturn (cons (ssname ssSelections intCount) lstReturn)
+   )
+  )
+ )
+ (reverse lstReturn)
+)
+
+(defun ListToSelectionSet (lstOfEntities / ssReturn)
+ (if lstOfEntities      
+  (foreach entItem lstOfEntities
+   (if (= (type entItem) 'ENAME)
+    (if ssReturn 
+     (setq ssReturn (ssadd entItem ssReturn))
+     (setq ssReturn (ssadd entItem))
+    )
+   )
+  )
+ )
+ ssReturn
+)
+
+(defun SortSelectionSetByXYZ (ssSelections /  lstOfSelections lstOfSublists lstSelections)
+ (if
+  (and 
+   (setq lstSelections (SelectionSetToList ssSelections))
+   (setq lstOfSublists (mapcar '(lambda (X)(cons X (cdr (assoc 10 (entget X))))) lstSelections))
+   (setq lstOfSublists (sortlistofsublistsbyitemX lstOfSublists 3 1))
+   (setq lstOfSublists (sortlistofsublistsbyitemX lstOfSublists 2 1))
+   (setq lstOfSublists (sortlistofsublistsbyitemX lstOfSublists 1 1))
+   (setq ssSelections  (listtoselectionset (mapcar 'car lstOfSublists)))
+  )
+  ssSelections
+ )
+)
+```
+
+## 函数库收集
+
+### 01. 替换字符串
+
+This subfunction will substitute all occurrences of a string for another string within a string. The functionality is similar to the Visual LISP vl-string-subst (and indeed uses this function), however, this subfunction performs a global replacement, hence all occurrences of the pattern string are replaced.
+
+```c
+;;--------------------=={ String Subst }==--------------------;;
+;;                                                            ;;
+;;  Substitutes a string for all occurrences of another       ;;
+;;  string within a string.                                   ;;
+;;------------------------------------------------------------;;
+;;  Author: Lee Mac, Copyright © 2011 - www.lee-mac.com       ;;
+;;------------------------------------------------------------;;
+;;  Arguments:                                                ;;
+;;  new - string to be substituted for 'old'                  ;;
+;;  old - string to be replaced                               ;;
+;;  str - the string to be searched                           ;;
+;;------------------------------------------------------------;;
+;;  Returns:  String with 'old' replaced with 'new'           ;;
+;;------------------------------------------------------------;;
+
+(defun StringSubst (new old str / inc len)
+    (setq len (strlen new)
+          inc 0
+    )
+    (while (setq inc (vl-string-search old str inc))
+        (setq str (vl-string-subst new old str inc)
+              inc (+ inc len)
+        )
+    )
+    str
+)
+```
+
+1『代码里 `inc (+ inc len)` 是有讲究的，替换一次后，往后移动一个步长 `strlen new` 是明智的。哈哈。（2020-10-12）』
+
+## 细节汇总
+
+1、if 判断，结果为真后的语句有多个，经常忘记写 `progn` 语句。
 
 ## 0101Introduction.md
 
