@@ -20,6 +20,18 @@
 
 [COND vs. IF | AfraLISP](https://www.afralisp.net/autolisp/tutorials/cond-vs-if.php)
 
+### 测试相关
+
+1、找到一个 autolisp 大牛的相关资料。
+
+[jdsandifer/ALUnit: The only unit testing framework for AutoLISP available on GitHub (as of its publication).](https://github.com/jdsandifer/ALUnit)
+
+[jdsandifer/AutoLISP: Programs written to help drafters work faster and automate common tasks in AutoCAD. (Professional Experience)](https://github.com/jdsandifer/AutoLISP)
+
+[jdsandifer/Reading-List: See if I've read your favorite software development book or get ideas for your next read!](https://github.com/jdsandifer/Reading-List)
+
+fork 了他 2 个仓库，里面的代码值得仔细研读，感觉是个宝藏。
+
 ## 卡片
 
 ### 0101. 主题卡——list 数据类型常用的操作函数
@@ -376,7 +388,7 @@ autolisp 里一个高频操作 `cdr (assoc -1 ent)`，其中 -1 是 DXF group co
 
 』
 
-### 0204. 术语卡——Wild-Card Matching
+### 0205. 术语卡——Wild-Card Matching
 
 通配符的使用说明：
 
@@ -448,7 +460,7 @@ About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names 
 
 1-2『选择特定名称块的实现方式，mark 一下。可以用来提取块里的基本信息用，做设备表的一个环节。wild-card 是指通配符。\` 应该是转义用的。回复：很棒啊，这样的话数据流里筛选仪表块只需要使用 `"Instrument*"` 过滤即可。合并到之前已经做好的通配符术语卡片。（2020-10-07）』
 
-### 0205. 术语卡——lisp 里的函数
+### 0206. 术语卡——lisp 里的函数
 
 You can define your own functions. Once defined, these functions can be used at the AutoCAD Command prompt, the Visual LISP Console prompt, or within other AutoLISP expressions, just as you use the standard functions.
 
@@ -622,6 +634,14 @@ The following example code demonstrates how to select all circles having extende
 
 1『经验证，上面的代码里的 `XOR` 得改成 `OR` 才有效。』
 
+### 0305. 任意卡——autolisp 中的逻辑判断
+
+AND returns true if all arguments are true.
+
+OR returns true if any of the arguments are true.
+
+NOT returns true if it's argument is false and returns false if it's argument is true. Let's look at some.
+
 ## 实战经验汇总
 
 ### 01. 函数返回值的问题
@@ -752,7 +772,7 @@ Nevermind, I figured it out. I had to set each item as a list, then append my li
   )
 ```
 
-I like to segregate the functionality of each step of the function so that I can build very general toolbox functions that allow me to make changes. Like here I convert a selection set to a list, change the list into a list of sublists including the xyz coordinates of the entities, sort by the x y and z coordinates (either up or down), convert the list of sublists back to a list of entities and then into a selection set. I like the list of sublists structure and use this sort function all the time.I also like storing selections sets as lists of entities or objects.
+I like to segregate the functionality of each step of the function so that I can build very general toolbox functions that allow me to make changes. Like here I convert a selection set to a list, change the list into a list of sublists ivgncluding the xyz coordinates of the entities, sort by the x y and z coordinates (either up or down), convert the list of sublists back to a list of entities and then into a selection set. I like the list of sublists structure and use this sort function all the time.I also like storing selections sets as lists of entities or objects.
 
 ```c
 (defun sortListofSublistsbyItemX (lstOfSublists intItem intDirection)
