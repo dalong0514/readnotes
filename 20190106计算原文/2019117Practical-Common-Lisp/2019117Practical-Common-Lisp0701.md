@@ -255,3 +255,16 @@ Othernik: "You think Lisp is good because of macros?! But macros are horrible an
 
 2Another important class of language constructs that are defined using macros are all the definitional constructs such as DEFUN, DEFPARAMETER, DEFVAR, and others. In Chapter 24 you'll define your own definitional macros that will allow you to concisely write code for reading and writing binary data.
 
+3You can't actually feed this definition to Lisp because it's illegal to redefine names in the COMMON-LISP package where WHEN comes from. If you really want to try writing such a macro, you'd need to change the name to something else, such as my-when.
+
+4The special operators, if you must know, are TAGBODY and GO. There's no need to discuss them now, but I'll cover them in Chapter 20.
+
+5DOLIST is similar to Perl's foreach or Python's for. Java added a similar kind of loop construct with the "enhanced" for loop in Java 1.5, as part of JSR-201. Notice what a difference macros make. A Lisp programmer who notices a common pattern in their code can write a macro to give themselves a source-level abstraction of that pattern. A Java programmer who notices the same pattern has to convince Sun that this particular abstraction is worth adding to the language. Then Sun has to publish a JSR and convene an industry-wide "expert group" to hash everything out. That process--according to Sun--takes an average of 18 months. After that, the compiler writers all have to go upgrade their compilers to support the new feature. And even once the Java programmer's favorite compiler supports the new version of Java, they probably still can't use the new feature until they're allowed to break source compatibility with older versions of Java. So an annoyance that Common Lisp programmers can resolve for themselves within five minutes plagues Java programmers for years.
+
+6A variant of DO, DO*, assigns each variable its value before evaluating the step form for subsequent variables. For more details, consult your favorite Common Lisp reference.
+
+7The DOTIMES is also preferred because the macro expansion will likely include declarations that allow the compiler to generate more efficient code.
+
+8Loop keywords is a bit of a misnomer since they aren't keyword symbols. In fact, LOOP doesn't care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted--:for, :across, and so on--because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn't matter if they're used for other purposes--as function or variable names.
+
+Copyright Š 2003-2005, Peter Seibel

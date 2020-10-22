@@ -659,7 +659,9 @@ Now that you've got nice generalized select and where functions, you're in a goo
 )
 ```
 
-One other new bit here is the use of SETF on a complex form such as (getf row :title). I'll discuss SETF in greater detail in Chapter 6, but for now you just need to know that it's a general assignment operator that can be used to assign lots of "places" other than just variables. (It's a coincidence that SETF and GETF have such similar names--they don't have any special relationship.) For now it's enough to know that after (setf (getf row :title) title), the plist referenced by row will have the value of the variable title following the property name :title. With this update function if you decide that you really dig the Dixie Chicks and that all their albums should go to 11, you can evaluate the following form:
+1『这里明显，函数的参数竟然可以直接传进 mapcar 回调函数里，autolisp 里不知道行不行，可行的话就太好了，待验证。（2020-10-22）』
+
+One other new bit here is the use of SETF on a complex form such as `(getf row :title)`. I'll discuss SETF in greater detail in Chapter 6, but for now you just need to know that it's a general assignment operator that can be used to assign lots of "places" other than just variables. (It's a coincidence that SETF and GETF have such similar names--they don't have any special relationship.) For now it's enough to know that after `(setf (getf row :title) title)`, the plist referenced by row will have the value of the variable title following the property name :title. With this update function if you decide that you really dig the Dixie Chicks and that all their albums should go to 11, you can evaluate the following form:
 
 ```c
 CL-USER> (update (where :artist "Dixie Chicks") :rating 11) 
@@ -682,11 +684,17 @@ You can even more easily add a function to delete rows from the database.
 )
 ```
 
-The function REMOVE-IF is the complement of REMOVE-IF-NOT; it returns a list with all the elements that do match the predicate removed. Like REMOVE-IF-NOT, it doesn't actually affect the list it's passed but by saving the result back into `*db*`, delete-rows8 actually changes the contents of the database.9
+The function REMOVE-IF is the complement of REMOVE-IF-NOT; it returns a list with all the elements that do match the predicate removed. Like REMOVE-IF-NOT, it doesn't actually affect the list it's passed but by saving the result back into `*db*`, delete-rows 8 actually changes the contents of the database. 9
+
+8 You need to use the name delete-rows rather than the more obvious delete because there’s already a function in Common Lisp called DELETE. The Lisp package system gives you a way to deal with such naming conflicts, so you could have a function named delete if you wanted. But I’m not ready to explain packages just yet.
+
+9 If you’re worried that this code creates a memory leak, rest assured: Lisp was the language that invented garbage collection (and heap allocation for that matter). The memory used by the old value of `*db*` will be automatically reclaimed, assuming no one else is holding on to a reference to it, which none of this code is.
 
 ## 3.8 Removing Duplication and Winning Big
 
 So far all the database code supporting insert, select, update, and delete, not to mention a command-line user interface for adding new records and dumping out the contents, is just a little more than 50 lines. Total. 10
+
+1『看到这里，突然意识到，完全可以把 CAD 图纸直接作为一个本地数据库，直接在 lisp 文件里实现对该数据库的增删改查。（2020-10-22）』
 
 Yet there's still some annoying code duplication. And it turns out you can remove the duplication and make the code more flexible at the same time. The duplication I'm thinking of is in the where function. The body of the where function is a bunch of clauses like this, one per field:
 
@@ -696,7 +704,7 @@ Yet there's still some annoying code duplication. And it turns out you can remov
 
 Right now it's not so bad, but like all code duplication it has the same cost: if you want to change how it works, you have to change multiple copies. And if you change the fields in a CD, you'll have to add or remove clauses to where. And update suffers from the same kind of duplication. It's doubly annoying since the whole point of the where function is to dynamically generate a bit of code that checks the values you care about; why should it have to do work at runtime checking whether title was even passed in?
 
-Imagine that you were trying to optimize this code and discovered that it was spending too much time checking whether title and the rest of the keyword parameters to where were even set?11 If you really wanted to remove all those runtime checks, you could go through a program and find all the places you call where and look at exactly what arguments you're passing. Then you could replace each call to where with an anonymous function that does only the computation necessary. For instance, if you found this snippet of code:
+Imagine that you were trying to optimize this code and discovered that it was spending too much time checking whether title and the rest of the keyword parameters to where were even set? 11 If you really wanted to remove all those runtime checks, you could go through a program and find all the places you call where and look at exactly what arguments you're passing. Then you could replace each call to where with an anonymous function that does only the computation necessary. For instance, if you found this snippet of code:
 
 ```c
 (select (where :title "Give Us a Break" :ripped t))
@@ -705,16 +713,25 @@ Imagine that you were trying to optimize this code and discovered that it was sp
 you could change it to this:
 
 ```c
-(select #'(lambda (cd) (and (equal (getf cd :title) "Give Us a Break") (equal (getf cd :ripped) t))))
+(select 
+  #'(lambda (cd) 
+      (and 
+        (equal (getf cd :title) "Give Us a Break") 
+        (equal (getf cd :ripped) t)
+      )
+    )
+)
 ```
 
 Note that the anonymous function is different from the one that where would have returned; you're not trying to save the call to where but rather to provide a more efficient selector function. This anonymous function has clauses only for the fields that you actually care about at this call site, so it doesn't do any extra work the way a function returned by where might.
 
 You can probably imagine going through all your source code and fixing up all the calls to where in this way. But you can probably also imagine that it would be a huge pain. If there were enough of them, and it was important enough, it might even be worthwhile to write some kind of preprocessor that converts where calls to the code you'd write by hand.
 
-The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++. Where the C pre-processor operates by textual substitution and understands almost nothing of the structure of C and C++, a Lisp macro is essentially a code generator that gets run for you automatically by the compiler.12 When a Lisp expression contains a call to a macro, instead of evaluating the arguments and passing them to the function, the Lisp compiler passes the arguments, unevaluated, to the macro code, which returns a new Lisp expression that is then evaluated in place of the original macro call.
+The Lisp feature that makes this trivially easy is its macro system. I can't emphasize enough that the Common Lisp macro shares essentially nothing but the name with the text-based macros found in C and C++. Where the C pre-processor operates by textual substitution and understands almost nothing of the structure of C and C++, a Lisp macro is essentially a code generator that gets run for you automatically by the compiler. 12 When a Lisp expression contains a call to a macro, instead of evaluating the arguments and passing them to the function, the Lisp compiler passes the arguments, unevaluated, to the macro code, which returns a new Lisp expression that is then evaluated in place of the original macro call.
 
-I'll start with a simple, and silly, example and then show how you can replace the where function with a where macro. Before I can write this example macro, I need to quickly introduce one new function: REVERSE takes a list as an argument and returns a new list that is its reverse. So (reverse '(1 2 3)) evaluates to (3 2 1). Now let's create a macro.
+1『感觉开始接触到 lisp 特有的模型了，macro code 的相关信息就是一种体现。（2020-10-22）』
+
+I'll start with a simple, and silly, example and then show how you can replace the where function with a where macro. Before I can write this example macro, I need to quickly introduce one new function: REVERSE takes a list as an argument and returns a new list that is its reverse. So `(reverse '(1 2 3))` evaluates to (3 2 1). Now let's create a macro.
 
 ```c
 (defmacro backwards (expr) (reverse expr))
@@ -723,14 +740,18 @@ I'll start with a simple, and silly, example and then show how you can replace t
 The main syntactic difference between a function and a macro is that you define a macro with DEFMACRO instead of DEFUN. After that a macro definition consists of a name, just like a function, a parameter list, and a body of expressions, both also like a function. However, a macro has a totally different effect. You can use this macro as follows:
 
 ```c
-CL-USER> (backwards ("hello, world" t format)) hello, world NIL
+CL-USER> (backwards ("hello, world" t format)) 
+hello, world 
+NIL
 ```
 
-How did that work? When the REPL started to evaluate the backwards expression, it recognized that backwards is the name of a macro. So it left the expression ("hello, world" t format) unevaluated, which is good because it isn't a legal Lisp form. It then passed that list to the backwards code. The code in backwards passed the list to REVERSE, which returned the list (format t "hello, world"). backwards then passed that value back out to the REPL, which then evaluated it in place of the original expression.
+How did that work? When the REPL started to evaluate the backwards expression, it recognized that backwards is the name of a macro. So it left the expression `("hello, world" t format)` unevaluated, which is good because it isn't a legal Lisp form. It then passed that list to the backwards code. The code in backwards passed the list to REVERSE, which returned the list `(format t "hello, world")`. backwards then passed that value back out to the REPL, which then evaluated it in place of the original expression.
 
-The backwards macro thus defines a new language that's a lot like Lisp--just backward--that you can drop into anytime simply by wrapping a backward Lisp expression in a call to the backwards macro. And, in a compiled Lisp program, that new language is just as efficient as normal Lisp because all the macro code--the code that generates the new expression--runs at compile time. In other words, the compiler will generate exactly the same code whether you write (backwards ("hello, world" t format)) or (format t "hello, world").
+The backwards macro thus defines a new language that's a lot like Lisp--just backward--that you can drop into anytime simply by wrapping a backward Lisp expression in a call to the backwards macro. And, in a compiled Lisp program, that new language is just as efficient as normal Lisp because all the macro code--the code that generates the new expression--runs at compile time. In other words, the compiler will generate exactly the same code whether you write `(backwards ("hello, world" t format))` or `(format t "hello, world")`.
 
 So how does that help with the code duplication in where? Well, you can write a macro that generates exactly the code you need for each particular call to where. Again, the best approach is to build our code bottom up. In the hand-optimized selector function, you had an expression of the following form for each actual field referred to in the original call to where:
+
+1『这里说了 macro 的用途。（2020-10-22）』
 
 ```c
 (equal (getf cd field) value)
@@ -738,42 +759,67 @@ So how does that help with the code duplication in where? Well, you can write a 
 
 So let's write a function that, given the name of a field and a value, returns such an expression. Since an expression is just a list, you might think you could write something like this:
 
-(defun make-comparison-expr (field value) ; wrong (list equal (list getf cd field) value))
+```c
+(defun make-comparison-expr (field value) ; wrong 
+  (list equal (list getf cd field) value)
+)
+```
 
 However, there's one trick here: as you know, when Lisp sees a simple name such as field or value other than as the first element of a list, it assumes it's the name of a variable and looks up its value. That's fine for field and value; it's exactly what you want. But it will treat equal, getf, and cd the same way, which isn't what you want. However, you also know how to stop Lisp from evaluating a form: stick a single forward quote (') in front of it. So if you write make-comparison-expr like this, it will do what you want:
 
 ```c
-(defun make-comparison-expr (field value) (list 'equal (list 'getf 'cd field) value))
+(defun make-comparison-expr (field value) 
+  (list 'equal (list 'getf 'cd field) value)
+)
 ```
+
+1-2『直觉上这里可以解释自己之前一直有的疑惑，`'` 到底是什么，有什么用处。不过目前上面的信息还看不太懂，也可以 Google 下相关知识。（2020-10-22）』
 
 You can test it out in the REPL.
 
 ```c
-CL-USER> (make-comparison-expr :rating 10) (EQUAL (GETF CD :RATING) 10) CL-USER> (make-comparison-expr :title "Give Us a Break") (EQUAL (GETF CD :TITLE) "Give Us a Break")
+CL-USER> (make-comparison-expr :rating 10) 
+(EQUAL (GETF CD :RATING) 10) 
+
+CL-USER> (make-comparison-expr :title "Give Us a Break") 
+(EQUAL (GETF CD :TITLE) "Give Us a Break")
 ```
 
 It turns out that there's an even better way to do it. What you'd really like is a way to write an expression that's mostly not evaluated and then have some way to pick out a few expressions that you do want evaluated. And, of course, there's just such a mechanism. A back quote (`) before an expression stops evaluation just like a forward quote.
 
 ```c
-CL-USER> `(1 2 3) (1 2 3) CL-USER> '(1 2 3) (1 2 3)
+CL-USER> `(1 2 3) 
+(1 2 3) 
+
+CL-USER> '(1 2 3) 
+(1 2 3)
 ```
+
+1『感觉它的作用去「消除」自动计算，即消除后面 `()` 函数要自动计算的东西。（2020-10-22）』
 
 However, in a back-quoted expression, any subexpression that's preceded by a comma is evaluated. Notice the effect of the comma in the second expression:
 
 ```c
-`(1 2 (+ 1 2)) ==> (1 2 (+ 1 2)) `(1 2 ,(+ 1 2)) ==> (1 2 3)
+`(1 2 (+ 1 2)) ==> (1 2 (+ 1 2)) 
+`(1 2 ,(+ 1 2)) ==> (1 2 3)
 ```
 
 Using a back quote, you can write make-comparison-expr like this:
 
 ```c
-(defun make-comparison-expr (field value) `(equal (getf cd ,field) ,value))
+(defun make-comparison-expr (field value) 
+  `(equal (getf cd ,field) ,value)
+)
 ```
 
 Now if you look back to the hand-optimized selector function, you can see that the body of the function consisted of one comparison expression per field/value pair, all wrapped in an AND expression. Assume for the moment that you'll arrange for the arguments to the where macro to be passed as a single list. You'll need a function that can take the elements of such a list pairwise and collect the results of calling make-comparison-expr on each pair. To implement that function, you can dip into the bag of advanced Lisp tricks and pull out the mighty and powerful LOOP macro.
 
 ```c
-(defun make-comparisons-list (fields) (loop while fields collecting (make-comparison-expr (pop fields) (pop fields))))
+(defun make-comparisons-list (fields) 
+  (loop while fields 
+    collecting (make-comparison-expr (pop fields) (pop fields))
+  )
+)
 ```
 
 A full discussion of LOOP will have to wait until Chapter 22; for now just note that this LOOP expression does exactly what you need: it loops while there are elements left in the fields list, popping off two at a time, passing them to make-comparison-expr, and collecting the results to be returned at the end of the loop. The POP macro performs the inverse operation of the PUSH macro you used to add records to `*db*`.
@@ -781,13 +827,16 @@ A full discussion of LOOP will have to wait until Chapter 22; for now just note 
 Now you just need to wrap up the list returned by make-comparison-list in an AND and an anonymous function, which you can do in the where macro itself. Using a back quote to make a template that you fill in by interpolating the value of make-comparisons-list, it's trivial.
 
 ```c
-(defmacro where (&rest clauses) `#'(lambda (cd) (and ,@(make-comparisons-list clauses))))
+(defmacro where (&rest clauses) 
+  `#'(lambda (cd) (and ,@(make-comparisons-list clauses)))
+)
 ```
 
 This macro uses a variant of , (namely, the ,@) before the call to make-comparisons-list. The ,@ "splices" the value of the following expression--which must evaluate to a list--into the enclosing list. You can see the difference between , and ,@ in the following two expressions:
 
 ```c
-`(and ,(list 1 2 3)) ==> (AND (1 2 3)) `(and ,@(list 1 2 3)) ==> (AND 1 2 3)
+`(and ,(list 1 2 3)) ==> (AND (1 2 3)) 
+`(and ,@(list 1 2 3)) ==> (AND 1 2 3)
 ```
 
 You can also use ,@ to splice into the middle of a list.
@@ -808,29 +857,37 @@ the variable clauses will contain the list.
 (:title "Give Us a Break" :ripped t)
 ```
 
+2『 `&key` 和 `&rest` 做一张术语卡片。（2020-10-22）』——未完成
+
 This list is passed to make-comparisons-list, which returns a list of comparison expressions. You can see exactly what code a call to where will generate using the function MACROEXPAND-1. If you pass MACROEXPAND-1, a form representing a macro call, it will call the macro code with appropriate arguments and return the expansion. So you can check out the previous where call like this:
 
 ```c
-CL-USER> (macroexpand-1 '(where :title "Give Us a Break" :ripped t)) #'(LAMBDA (CD) (AND (EQUAL (GETF CD :TITLE) "Give Us a Break") (EQUAL (GETF CD :RIPPED) T))) T
+CL-USER> 
+(macroexpand-1 '(where :title "Give Us a Break" :ripped t)) 
+#'(LAMBDA (CD) 
+  (AND (EQUAL (GETF CD :TITLE) "Give Us a Break") 
+    (EQUAL (GETF CD :RIPPED) T)
+  )
+) 
+T
 ```
 
 Looks good. Let's try it for real.
 
 ```c
-CL-USER> (select (where :title "Give Us a Break" :ripped t)) ((:TITLE "Give Us a Break" :ARTIST "Limpopo" :RATING 10 :RIPPED T))
+CL-USER> (select (where :title "Give Us a Break" :ripped t)) 
+((:TITLE "Give Us a Break" :ARTIST "Limpopo" :RATING 10 :RIPPED T))
 ```
 
 It works. And the where macro with its two helper functions is actually one line shorter than the old where function. And it's more general in that it's no longer tied to the specific fields in our CD records.
-
-8 You need to use the name delete-rows rather than the more obvious delete because there’s already a function in Common Lisp called DELETE. The Lisp package system gives you a way to deal with such naming conflicts, so you could have a function named delete if you wanted. But I’m not ready to explain packages just yet.
-
-9 If you’re worried that this code creates a memory leak, rest assured: Lisp was the language that invented garbage collection (and heap allocation for that matter). The memory used by the old value of *db* will be automatically reclaimed, assuming no one else is holding on to a reference to it, which none of this code is.
 
 10 A friend of mine was once interviewing an engineer for a programming job and asked him a typical interview question: how do you know when a function or method is too big? Well, said the candidate, I don’t like any method to be bigger than my head. You mean you can’t keep all the details in your head? No, I mean I put my head up against my monitor, and the code shouldn’t be bigger than my head.
 
 11 It’s unlikely that the cost of checking whether keyword parameters had been passed would be a detectible drag on performance since checking whether a variable is NIL is going to be pretty cheap. On the other hand, these functions returned by where are going to be right in the middle of the inner loop of any select, update, or delete-rows call, as they have to be called once per entry in the database. Anyway, for illustrative purposes, this will have to do.
 
-## Wrapping Up
+12 Macros are also run by the interpreter—however, it’s easier to understand the point of macros when you think about compiled code. As with everything else in this chapter, I’ll cover this in greater detail in future chapters.
+
+## 3.9 Wrapping Up
 
 Now, an interesting thing has happened. You removed duplication and made the code more efficient and more general at the same time. That's often the way it goes with a well-chosen macro. This makes sense because a macro is just another mechanism for creating abstractions--abstraction at the syntactic level, and abstractions are by definition more concise ways of expressing underlying generalities. Now the only code in the mini-database that's specific to CDs and the fields in them is in the make-cd, prompt-for-cd, and add-cd functions. In fact, our new where macro would work with any plist-based database.
 
