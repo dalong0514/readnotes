@@ -62,6 +62,108 @@ The nearest thing Common Lisp has to a motto is the koan-like description, "the 
 
 Consequently, a Common Lisp program tends to provide a much clearer mapping between your ideas about how the program works and the code you actually write. Your ideas aren't obscured by boilerplate code and endlessly repeated idioms. This makes your code easier to maintain because you don't have to wade through reams of code every time you need to make a change. Even systemic changes to a program's behavior can often be achieved with relatively small changes to the actual code. This also means you'll develop code more quickly; there's less code to write, and you don't waste time thrashing around trying to find a clean way to express yourself within the limitations of the language. 2
 
+### 0502. 任意卡——lisp 里数组过滤函数的实现
+
+Now suppose you want to wrap that whole expression in a function that takes the name of the artist as an argument. You can write that like this:
+
+```c
+(defun select-by-artist (artist) 
+  (remove-if-not 
+    #'(lambda (cd) (equal (getf cd :artist) artist)) 
+    *db*
+  )
+)
+```
+
+Note how the anonymous function, which contains code that won't run until it's invoked in REMOVE-IF-NOT, can nonetheless refer to the variable artist. In this case the anonymous function doesn't just save you from having to write a regular function--it lets you write a function that derives part of its meaning--the value of artist--from the context in which it's embedded.
+
+1-2-3『
+
+看到这里才意识到 `remove-if-not` 就是用来构造过滤函数的啊，这正式自己之前 PHP 里用的最多的 `array_filter` 函数，试着在 autolisp 的文档里搜了下，发现果然有 `vl-remove-if-not`，有了它的话，自己很多很多的功能开发都可以基于它变得简洁优雅，简直是捡到金子了，哈哈。做一张术语卡片。（2020-10-22）
+
+[vl-remove-if-not (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-53D12042-8DE3-4DAA-83BD-8ABB376ACA97)
+
+Returns all elements of the supplied list that pass the test function.
+
+```c
+(vl-remove-if-not predicate-function lst)
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts a single argument and returns T for any user-specified condition. The predicate-function value can take one of the following forms:
+
+```c
+A symbol (function name)
+'(LAMBDA (A1 A2) ...)
+(FUNCTION (LAMBDA (A1 A2) ...))
+```
+
+lst. Type: List. A list to be tested.
+
+Return Values. Type: List or nil.
+
+A list containing all elements of lst for which predicate-function returns a non-nil value
+
+```c
+(vl-remove-if-not 'vl-symbolp (list pi t 0 "abc"))
+(T)
+```
+
+自己写了个例子：
+
+```c
+(vl-remove-if-not 
+  '(lambda (x) (= x 2)) 
+  '(1 2 3 4)
+)
+```
+
+返回元素为 2 的列表 `(2)`。
+
+vl-remove-if (AutoLISP). Returns all elements of the supplied list that fail the test function.
+
+```c
+(vl-remove-if 'vl-symbolp (list pi t 0 "abc"))
+(3.14159 0 "abc")
+```
+
+vl-remove (AutoLISP). Removes elements from a list.
+
+```c
+(vl-remove element-to-remove lst)
+```
+
+element-to-remove. Type: Integer, Real, String, List, File, Ename (entity name), T, or nil. The value of the element to be removed; may be any LISP data type.
+
+lst. Type: List. Any list.
+
+Return Values. Type: List or nil. The lst with all elements except those equal to element-to-remove.
+
+```c
+(vl-remove pi (list pi t 0 "abc"))
+(T 0 "abc")
+```
+
+vl-member-if-not (AutoLISP). Determines if the predicate is nil for one of the list members.
+
+```c
+(vl-member-if-not predicate-function lst)
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts a single argument and returns T for any user-specified condition. The predicate-function value can take one of the following forms:
+
+Return Values. Type: List or nil. A list, starting with the first element that fails the test and containing all elements following this in the original argument. If none of the elements fails the test condition, vl-member-if-not returns nil.
+
+Remarks: The vl-member-if-not function passes each element in lst to the function specified in predicate-function. If the function returns nil, vl-member-if-not returns the rest of the list in the same manner as the member function.
+
+```c
+(vl-member-if-not 'atom '(1 "Str" (0 . "line") nil t))
+((0 . "line") nil T)
+```
+
+1「函数 `vl-member-if-not` 目前没吃透，不过直觉上感觉有大用途。（2020-10-22）」
+
+』
+
 ## Preface
 
 Practical Common Lisp ... isn't that an oxymoron? If you're like most programmers, you probably know something about Lisp—from a comp sci course in college or from learning enough Elisp to customize Emacs a bit. Or maybe you just know someone who won't shut up about Lisp, the greatest language ever. But you probably never figured you'd see practical and Lisp in the same book title.

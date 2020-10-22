@@ -290,7 +290,14 @@ NIL
 Having a convenient way to add records to the database is nice. But it's not so nice that the user is going to be very happy if they have to reenter all the records every time they quit and restart Lisp. Luckily, with the data structures you're using to represent the data, it's trivially easy to save the data to a file and reload it later. Here's a save-db function that takes a filename as an argument and saves the current state of the database:
 
 ```c
-(defun save-db (filename) (with-open-file (out filename :direction :output :if-exists :supersede) (with-standard-io-syntax (print *db* out))))
+(defun save-db (filename) 
+  (with-open-file 
+    (out filename 
+      :direction :output 
+      :if-exists :supersede) 
+    (with-standard-io-syntax (print *db* out))
+  )
+)
 ```
 
 The WITH-OPEN-FILE macro opens a file, binds the stream to a variable, executes a set of expressions, and then closes the file. It also makes sure the file is closed even if something goes wrong while evaluating the body. The list directly after WITH-OPEN-FILE isn't a function call but rather part of the syntax defined by WITH-OPEN-FILE. It contains the name of the variable that will hold the file stream to which you'll write within the body of WITH-OPEN-FILE, a value that must be a file name, and then some options that control how the file is opened. Here you specify that you're opening the file for writing with :direction :output and that you want to overwrite an existing file of the same name if it exists with :if-exists :supersede.
@@ -300,24 +307,34 @@ Once you have the file open, all you have to do is print the contents of the dat
 The argument to save-db should be a string containing the name of the file where the user wants to save the database. The exact form of the string will depend on what operating system they're using. For instance, on a Unix box they should be able to call save-db like this:
 
 ```c
-CL-USER> (save-db "~/my-cds.db") ((:TITLE "Lyle Lovett" :ARTIST "Lyle Lovett" :RATING 9 :RIPPED T) (:TITLE "Give Us a Break" :ARTIST "Limpopo" :RATING 10 :RIPPED T) (:TITLE "Rockin' the Suburbs" :ARTIST "Ben Folds" :RATING 6 :RIPPED T) (:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 9 :RIPPED T))
+CL-USER> (save-db "~/my-cds.db") 
+((:TITLE "Lyle Lovett" :ARTIST "Lyle Lovett" :RATING 9 :RIPPED T) 
+ (:TITLE "Give Us a Break" :ARTIST "Limpopo" :RATING 10 :RIPPED T) 
+ (:TITLE "Rockin' the Suburbs" :ARTIST "Ben Folds" :RATING 6 :RIPPED T) 
+ (:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) 
+ (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T) 
+ (:TITLE "Roses" :ARTIST "Kathy Mattea" :RATING 9 :RIPPED T))
 ```
 
-On Windows, the filename might be something like "c:/my-cds.db" or "c:\\my-cds.db."4
-
-You can open this file in any text editor to see what it looks like. You should see something a lot like what the REPL prints if you type `*db*`.
+On Windows, the filename might be something like "c:/my-cds.db" or "c:\\my-cds.db." 4 You can open this file in any text editor to see what it looks like. You should see something a lot like what the REPL prints if you type `*db*`.
 
 The function to load the database back in is similar.
 
 ```c
-(defun load-db (filename) (with-open-file (in filename) (with-standard-io-syntax (setf *db* (read in)))))
+(defun load-db (filename) 
+  (with-open-file (in filename) 
+    (with-standard-io-syntax 
+      (setf *db* (read in))
+    )
+  )
+)
 ```
 
 This time you don't need to specify :direction in the options to WITH-OPEN-FILE, since you want the default of :input. And instead of printing, you use the function READ to read from the stream in. This is the same reader used by the REPL and can read any Lisp expression you could type at the REPL prompt. However, in this case, you're just reading and saving the expression, not evaluating it. Again, the WITH-STANDARD-IO-SYNTAX macro ensures that READ is using the same basic syntax that save-db did when it PRINTed the data.
 
 The SETF macro is Common Lisp's main assignment operator. It sets its first argument to the result of evaluating its second argument. So in load-db the `*db*` variable will contain the object read from the file, namely, the list of lists written by save-db. You do need to be careful about one thing--load-db clobbers whatever was in `*db*` before the call. So if you've added records with add-record or add-cds that haven't been saved with save-db, you'll lose them.
 
-Querying the Database
+## 3.6 Querying the Database
 
 Now that you have a way to save and reload the database to go along with a convenient user interface for adding new records, you soon may have enough records that you won't want to be dumping out the whole database just to look at what's in it. What you need is a way to query the database. You might like, for instance, to be able to write something like this:
 
@@ -332,16 +349,27 @@ The function REMOVE-IF-NOT takes a predicate and a list and returns a list conta
 For instance, if you wanted to extract all the even elements from a list of numbers, you could use REMOVE-IF-NOT as follows:
 
 ```c
-CL-USER> (remove-if-not #'evenp '(1 2 3 4 5 6 7 8 9 10)) (2 4 6 8 10)
+CL-USER> (remove-if-not #'evenp '(1 2 3 4 5 6 7 8 9 10)) 
+(2 4 6 8 10)
 ```
 
 In this case, the predicate is the function EVENP, which returns true if its argument is an even number. The funny notation #' is shorthand for "Get me the function with the following name." Without the #', Lisp would treat evenp as the name of a variable and look up the value of the variable, not the function.
 
+1『原来 common lisp 里，函数名前面加上 `#'` 表示是个函数。感觉类似于 autolisp 里函数名前面的 `'`。（2020-10-22）』
+
 You can also pass REMOVE-IF-NOT an anonymous function. For instance, if EVENP didn't exist, you could write the previous expression as the following:
 
 ```c
-CL-USER> (remove-if-not #'(lambda (x) (= 0 (mod x 2))) '(1 2 3 4 5 6 7 8 9 10)) (2 4 6 8 10)
+CL-USER> 
+(remove-if-not 
+  #'(lambda (x) (= 0 (mod x 2))) 
+  '(1 2 3 4 5 6 7 8 9 10)
+) 
+
+(2 4 6 8 10)
 ```
+
+1『有点 autolisp 里 mapcar 函数的味道了，哈哈。测试了下，autolisp 里是没有 mod 函数的。（2020-10-22）』
 
 In this case, the predicate is this anonymous function:
 
@@ -352,47 +380,165 @@ In this case, the predicate is this anonymous function:
 which checks that its argument is equal to 0 modulus 2 (in other words, is even). If you wanted to extract only the odd numbers using an anonymous function, you'd write this:
 
 ```c
-CL-USER> (remove-if-not #'(lambda (x) (= 1 (mod x 2))) '(1 2 3 4 5 6 7 8 9 10)) (1 3 5 7 9)
+CL-USER> 
+(remove-if-not 
+  #'(lambda (x) (= 1 (mod x 2))) 
+  '(1 2 3 4 5 6 7 8 9 10)
+) 
+
+(1 3 5 7 9)
 ```
 
-Note that lambda isn't the name of the function--it's the indicator you're defining an anonymous function.5 Other than the lack of a name, however, a LAMBDA expression looks a lot like a DEFUN: the word lambda is followed by a parameter list, which is followed by the body of the function.
+Note that lambda isn't the name of the function--it's the indicator you're defining an anonymous function. 5 Other than the lack of a name, however, a LAMBDA expression looks a lot like a DEFUN: the word lambda is followed by a parameter list, which is followed by the body of the function.
 
-To select all the Dixie Chicks' albums in the database using REMOVE-IF-NOT, you need a function that returns true when the artist field of a record is "Dixie Chicks". Remember that we chose the plist representation for the database records because the function GETF can extract named fields from a plist. So assuming cd is the name of a variable holding a single database record, you can use the expression (getf cd :artist) to extract the name of the artist. The function EQUAL, when given string arguments, compares them character by character. So (equal (getf cd :artist) "Dixie Chicks") will test whether the artist field of a given CD is equal to "Dixie Chicks". All you need to do is wrap that expression in a LAMBDA form to make an anonymous function and pass it to REMOVE-IF-NOT.
+To select all the Dixie Chicks' albums in the database using REMOVE-IF-NOT, you need a function that returns true when the artist field of a record is "Dixie Chicks". Remember that we chose the plist representation for the database records because the function GETF can extract named fields from a plist. So assuming cd is the name of a variable holding a single database record, you can use the expression `(getf cd :artist)` to extract the name of the artist. The function EQUAL, when given string arguments, compares them character by character. So `(equal (getf cd :artist) "Dixie Chicks")` will test whether the artist field of a given CD is equal to "Dixie Chicks". All you need to do is wrap that expression in a LAMBDA form to make an anonymous function and pass it to REMOVE-IF-NOT.
 
 ```c
-CL-USER> (remove-if-not #'(lambda (cd) (equal (getf cd :artist) "Dixie Chicks")) *db*) ((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T))
+CL-USER> 
+
+(remove-if-not 
+  #'(lambda (cd) (equal (getf cd :artist) "Dixie Chicks")) 
+  *db*
+) 
+((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) 
+  (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T)
+)
 ```
 
 Now suppose you want to wrap that whole expression in a function that takes the name of the artist as an argument. You can write that like this:
 
 ```c
-(defun select-by-artist (artist) (remove-if-not #'(lambda (cd) (equal (getf cd :artist) artist)) *db*))
+(defun select-by-artist (artist) 
+  (remove-if-not 
+    #'(lambda (cd) (equal (getf cd :artist) artist)) 
+    *db*
+  )
+)
 ```
 
 Note how the anonymous function, which contains code that won't run until it's invoked in REMOVE-IF-NOT, can nonetheless refer to the variable artist. In this case the anonymous function doesn't just save you from having to write a regular function--it lets you write a function that derives part of its meaning--the value of artist--from the context in which it's embedded.
 
+1-2-3『
+
+看到这里才意识到 `remove-if-not` 就是用来构造过滤函数的啊，这正式自己之前 PHP 里用的最多的 `array_filter` 函数，试着在 autolisp 的文档里搜了下，发现果然有 `vl-remove-if-not`，有了它的话，自己很多很多的功能开发都可以基于它变得简洁优雅，简直是捡到金子了，哈哈。做一张术语卡片。（2020-10-22）
+
+[vl-remove-if-not (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-53D12042-8DE3-4DAA-83BD-8ABB376ACA97)
+
+Returns all elements of the supplied list that pass the test function.
+
+```c
+(vl-remove-if-not predicate-function lst)
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts a single argument and returns T for any user-specified condition. The predicate-function value can take one of the following forms:
+
+```c
+A symbol (function name)
+'(LAMBDA (A1 A2) ...)
+(FUNCTION (LAMBDA (A1 A2) ...))
+```
+
+lst. Type: List. A list to be tested.
+
+Return Values. Type: List or nil.
+
+A list containing all elements of lst for which predicate-function returns a non-nil value
+
+```c
+(vl-remove-if-not 'vl-symbolp (list pi t 0 "abc"))
+(T)
+```
+
+自己写了个例子：
+
+```c
+(vl-remove-if-not 
+  '(lambda (x) (= x 2)) 
+  '(1 2 3 4)
+)
+```
+
+返回元素为 2 的列表 `(2)`。
+
+vl-remove-if (AutoLISP). Returns all elements of the supplied list that fail the test function.
+
+```c
+(vl-remove-if 'vl-symbolp (list pi t 0 "abc"))
+(3.14159 0 "abc")
+```
+
+vl-remove (AutoLISP). Removes elements from a list.
+
+```c
+(vl-remove element-to-remove lst)
+```
+
+element-to-remove. Type: Integer, Real, String, List, File, Ename (entity name), T, or nil. The value of the element to be removed; may be any LISP data type.
+
+lst. Type: List. Any list.
+
+Return Values. Type: List or nil. The lst with all elements except those equal to element-to-remove.
+
+```c
+(vl-remove pi (list pi t 0 "abc"))
+(T 0 "abc")
+```
+
+vl-member-if-not (AutoLISP). Determines if the predicate is nil for one of the list members.
+
+```c
+(vl-member-if-not predicate-function lst)
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts a single argument and returns T for any user-specified condition. The predicate-function value can take one of the following forms:
+
+Return Values. Type: List or nil. A list, starting with the first element that fails the test and containing all elements following this in the original argument. If none of the elements fails the test condition, vl-member-if-not returns nil.
+
+Remarks: The vl-member-if-not function passes each element in lst to the function specified in predicate-function. If the function returns nil, vl-member-if-not returns the rest of the list in the same manner as the member function.
+
+```c
+(vl-member-if-not 'atom '(1 "Str" (0 . "line") nil t))
+((0 . "line") nil T)
+```
+
+1「函数 `vl-member-if-not` 目前没吃透，不过直觉上感觉有大用途。（2020-10-22）」
+
+』
+
 So that's select-by-artist. However, selecting by artist is only one of the kinds of queries you might like to support. You could write several more functions, such as select-by-title, select-by-rating, select-by-title-and-artist, and so on. But they'd all be about the same except for the contents of the anonymous function. You can instead make a more general select function that takes a function as an argument.
 
 ```c
-(defun select (selector-fn) (remove-if-not selector-fn *db*))
+(defun select (selector-fn) 
+  (remove-if-not selector-fn *db*)
+)
 ```
 
 So what happened to the #'? Well, in this case you don't want REMOVE-IF-NOT to use the function named selector-fn. You want it to use the anonymous function that was passed as an argument to select in the variable selector-fn. Though, the #' comes back in the call to select.
 
 ```c
-CL-USER> (select #'(lambda (cd) (equal (getf cd :artist) "Dixie Chicks"))) ((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T))
+CL-USER> 
+(select 
+  #'(lambda (cd) (equal (getf cd :artist) "Dixie Chicks"))
+) 
+((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) 
+  (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T))
 ```
 
 But that's really quite gross-looking. Luckily, you can wrap up the creation of the anonymous function.
 
 ```c
-(defun artist-selector (artist) #'(lambda (cd) (equal (getf cd :artist) artist)))
+(defun artist-selector (artist) 
+  #'(lambda (cd) (equal (getf cd :artist) artist))
+)
 ```
 
-This is a function that returns a function and one that references a variable that--it seems--won't exist after artist-selector returns.6 It may seem odd now, but it actually works just the way you'd want--if you call artist-selector with an argument of "Dixie Chicks", you get an anonymous function that matches CDs whose :artist field is "Dixie Chicks", and if you call it with "Lyle Lovett", you get a different function that will match against an :artist field of "Lyle Lovett". So now you can rewrite the call to select like this:
+This is a function that returns a function and one that references a variable that--it seems--won't exist after artist-selector returns. 6 It may seem odd now, but it actually works just the way you'd want--if you call artist-selector with an argument of "Dixie Chicks", you get an anonymous function that matches CDs whose :artist field is "Dixie Chicks", and if you call it with "Lyle Lovett", you get a different function that will match against an :artist field of "Lyle Lovett". So now you can rewrite the call to select like this:
 
 ```c
-CL-USER> (select (artist-selector "Dixie Chicks")) ((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T))
+CL-USER> 
+(select (artist-selector "Dixie Chicks")) 
+((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 9 :RIPPED T) 
+  (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 8 :RIPPED T))
 ```
 
 Now you just need some more functions to generate selectors. But just as you don't want to have to write select-by-title, select-by-rating, and so on, because they would all be quite similar, you're not going to want to write a bunch of nearly identical selector-function generators, one for each field. Why not write one general-purpose selector-function generator, a function that, depending on what arguments you pass it, will generate a selector function for different fields or maybe even a combination of fields? You can write such a function, but first you need a crash course in a feature called keyword parameters.
@@ -400,19 +546,26 @@ Now you just need some more functions to generate selectors. But just as you don
 In the functions you've written so far, you've specified a simple list of parameters, which are bound to the corresponding arguments in the call to the function. For instance, the following function:
 
 ```c
-(defun foo (a b c) (list a b c))
+(defun foo (a b c) 
+  (list a b c)
+)
 ```
 
 has three parameters, a, b, and c, and must be called with three arguments. But sometimes you may want to write a function that can be called with varying numbers of arguments. Keyword parameters are one way to achieve this. A version of foo that uses keyword parameters might look like this:
 
 ```c
-(defun foo (&key a b c) (list a b c))
+(defun foo (&key a b c) 
+  (list a b c)
+)
 ```
 
 The only difference is the &key at the beginning of the argument list. However, the calls to this new foo will look quite different. These are all legal calls with the result to the right of the ==>:
 
 ```c
-(foo :a 1 :b 2 :c 3) ==> (1 2 3) (foo :c 3 :b 2 :a 1) ==> (1 2 3) (foo :a 1 :c 3) ==> (1 NIL 3) (foo) ==> (NIL NIL NIL)
+(foo :a 1 :b 2 :c 3) ==> (1 2 3) 
+(foo :c 3 :b 2 :a 1) ==> (1 2 3) 
+(foo :a 1 :c 3) ==> (1 NIL 3) 
+(foo) ==> (NIL NIL NIL)
 ```
 
 As these examples show, the value of the variables a, b, and c are bound to the values that follow the corresponding keyword. And if a particular keyword isn't present in the call, the corresponding variable is set to NIL. I'm glossing over a bunch of details of how keyword parameters are specified and how they relate to other kinds of parameters, but you need to know one more detail.
@@ -420,13 +573,18 @@ As these examples show, the value of the variables a, b, and c are bound to the 
 Normally if a function is called with no argument for a particular keyword parameter, the parameter will have the value NIL. However, sometimes you'll want to be able to distinguish between a NIL that was explicitly passed as the argument to a keyword parameter and the default value NIL. To allow this, when you specify a keyword parameter you can replace the simple name with a list consisting of the name of the parameter, a default value, and another parameter name, called a supplied-p parameter. The supplied-p parameter will be set to true or false depending on whether an argument was actually passed for that keyword parameter in a particular call to the function. Here's a version of foo that uses this feature:
 
 ```c
-(defun foo (&key a (b 20) (c 30 c-p)) (list a b c c-p))
+(defun foo (&key a (b 20) (c 30 c-p)) 
+  (list a b c c-p)
+)
 ```
 
 Now the same calls from earlier yield these results:
 
 ```c
-(foo :a 1 :b 2 :c 3) ==> (1 2 3 T) (foo :c 3 :b 2 :a 1) ==> (1 2 3 T) (foo :a 1 :c 3) ==> (1 20 3 T) (foo) ==> (NIL 20 30 NIL)
+(foo :a 1 :b 2 :c 3) ==> (1 2 3 T) 
+(foo :c 3 :b 2 :a 1) ==> (1 2 3 T) 
+(foo :a 1 :c 3) ==> (1 20 3 T) 
+(foo) ==> (NIL 20 30 NIL)
 ```
 
 The general selector-function generator, which you can call where for reasons that will soon become apparent if you're familiar with SQL databases, is a function that takes four keyword parameters corresponding to the fields in our CD records and generates a selector function that selects any CDs that match all the values given to where. For instance, it will let you say things like this:
@@ -444,42 +602,91 @@ or this:
 The function looks like this:
 
 ```c
-(defun where (&key title artist rating (ripped nil ripped-p)) #'(lambda (cd) (and (if title (equal (getf cd :title) title) t) (if artist (equal (getf cd :artist) artist) t) (if rating (equal (getf cd :rating) rating) t) (if ripped-p (equal (getf cd :ripped) ripped) t))))
+(defun where (&key title artist rating (ripped nil ripped-p)) 
+  #'(lambda (cd) 
+      (and 
+        (if title (equal (getf cd :title) title) t) 
+        (if artist (equal (getf cd :artist) artist) t) 
+        (if rating (equal (getf cd :rating) rating) t) 
+        (if ripped-p (equal (getf cd :ripped) ripped) t)
+      )
+    )
+)
 ```
 
-This function returns an anonymous function that returns the logical AND of one clause per field in our CD records. Each clause checks if the appropriate argument was passed in and then either compares it to the value in the corresponding field in the CD record or returns t, Lisp's version of truth, if the parameter wasn't passed in. Thus, the selector function will return t only for CDs that match all the arguments passed to where.7 Note that you need to use a three-item list to specify the keyword parameter ripped because you need to know whether the caller actually passed :ripped nil, meaning, "Select CDs whose ripped field is nil," or whether they left out :ripped altogether, meaning "I don't care what the value of the ripped field is."
+This function returns an anonymous function that returns the logical AND of one clause per field in our CD records. Each clause checks if the appropriate argument was passed in and then either compares it to the value in the corresponding field in the CD record or returns t, Lisp's version of truth, if the parameter wasn't passed in. Thus, the selector function will return t only for CDs that match all the arguments passed to where. 7 Note that you need to use a three-item list to specify the keyword parameter ripped because you need to know whether the caller actually passed :ripped nil, meaning, "Select CDs whose ripped field is nil," or whether they left out :ripped altogether, meaning "I don't care what the value of the ripped field is."
 
-Updating Existing Records--Another Use for WHERE
+4 Windows actually understands forward slashes in filenames even though it normally uses a backslash as the directory separator. This is convenient since otherwise you have to write double backslashes because backslash is the escape character in Lisp strings.
 
-Now that you've got nice generalized select and where functions, you're in a good position to write the next feature that every database needs--a way to update particular records. In SQL the update command is used to update a set of records matching a particular where clause. That seems like a good model, especially since you've already got a where-clause generator. In fact, the update function is mostly just the application of a few ideas you've already seen: using a passed-in selector function to choose the records to update and using keyword arguments to specify the values to change. The main new bit is the use of a function MAPCAR that maps over a list, *db* in this case, and returns a new list containing the results of calling a function on each item in the original list.
+5 The word lambda is used in Lisp because of an early connection to the lambda calculus, a mathematical formalism invented for studying mathematical functions.
+
+6 The technical term for a function that references a variable in its enclosing scope is a closure because the function “closes over” the variable. I’ll discuss closures in more detail in Chapter 6.
+
+7 Note that in Lisp, an IF form, like everything else, is an expression that returns a value. It’s actually more like the ternary operator `(?:)` in Perl, Java, and C in that this is legal in those languages:
 
 ```c
-(defun update (selector-fn &key title artist rating (ripped nil ripped-p)) (setf *db* (mapcar #'(lambda (row) (when (funcall selector-fn row) (if title (setf (getf row :title) title)) (if artist (setf (getf row :artist) artist)) (if rating (setf (getf row :rating) rating)) (if ripped-p (setf (getf row :ripped) ripped))) row) *db*)))
+some_var = some_boolean ? value1 : value2;
+```
+
+while this isn’t:
+
+```
+some_var = if (some_boolean) value1; else value2;
+```
+
+because in those languages, if is a statement, not an expression.
+
+## 3.7 Updating Existing Records--Another Use for WHERE
+
+Now that you've got nice generalized select and where functions, you're in a good position to write the next feature that every database needs--a way to update particular records. In SQL the update command is used to update a set of records matching a particular where clause. That seems like a good model, especially since you've already got a where-clause generator. In fact, the update function is mostly just the application of a few ideas you've already seen: using a passed-in selector function to choose the records to update and using keyword arguments to specify the values to change. The main new bit is the use of a function MAPCAR that maps over a list, `*db*` in this case, and returns a new list containing the results of calling a function on each item in the original list.
+
+```c
+(defun update (selector-fn &key title artist rating (ripped nil ripped-p)) 
+  (setf *db* 
+    (mapcar 
+      #'(lambda (row) 
+          (when (funcall selector-fn row) 
+            (if title (setf (getf row :title) title)) 
+            (if artist (setf (getf row :artist) artist)) 
+            (if rating (setf (getf row :rating) rating)) 
+            (if ripped-p (setf (getf row :ripped) ripped))
+          ) 
+          row
+        ) 
+      *db*
+    )
+  )
+)
 ```
 
 One other new bit here is the use of SETF on a complex form such as (getf row :title). I'll discuss SETF in greater detail in Chapter 6, but for now you just need to know that it's a general assignment operator that can be used to assign lots of "places" other than just variables. (It's a coincidence that SETF and GETF have such similar names--they don't have any special relationship.) For now it's enough to know that after (setf (getf row :title) title), the plist referenced by row will have the value of the variable title following the property name :title. With this update function if you decide that you really dig the Dixie Chicks and that all their albums should go to 11, you can evaluate the following form:
 
 ```c
-CL-USER> (update (where :artist "Dixie Chicks") :rating 11) NIL
+CL-USER> (update (where :artist "Dixie Chicks") :rating 11) 
+NIL
 ```
 
 And it is so.
 
 ```c
-CL-USER> (select (where :artist "Dixie Chicks")) ((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 11 :RIPPED T) (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 11 :RIPPED T))
+CL-USER> (select (where :artist "Dixie Chicks")) 
+((:TITLE "Home" :ARTIST "Dixie Chicks" :RATING 11 :RIPPED T) 
+  (:TITLE "Fly" :ARTIST "Dixie Chicks" :RATING 11 :RIPPED T))
 ```
 
 You can even more easily add a function to delete rows from the database.
 
 ```c
-(defun delete-rows (selector-fn) (setf *db* (remove-if selector-fn *db*)))
+(defun delete-rows (selector-fn) 
+  (setf *db* (remove-if selector-fn *db*))
+)
 ```
 
 The function REMOVE-IF is the complement of REMOVE-IF-NOT; it returns a list with all the elements that do match the predicate removed. Like REMOVE-IF-NOT, it doesn't actually affect the list it's passed but by saving the result back into `*db*`, delete-rows8 actually changes the contents of the database.9
 
-Removing Duplication and Winning Big
+## 3.8 Removing Duplication and Winning Big
 
-So far all the database code supporting insert, select, update, and delete, not to mention a command-line user interface for adding new records and dumping out the contents, is just a little more than 50 lines. Total.10
+So far all the database code supporting insert, select, update, and delete, not to mention a command-line user interface for adding new records and dumping out the contents, is just a little more than 50 lines. Total. 10
 
 Yet there's still some annoying code duplication. And it turns out you can remove the duplication and make the code more flexible at the same time. The duplication I'm thinking of is in the where function. The body of the where function is a bunch of clauses like this, one per field:
 
@@ -615,7 +822,15 @@ CL-USER> (select (where :title "Give Us a Break" :ripped t)) ((:TITLE "Give Us a
 
 It works. And the where macro with its two helper functions is actually one line shorter than the old where function. And it's more general in that it's no longer tied to the specific fields in our CD records.
 
-Wrapping Up
+8 You need to use the name delete-rows rather than the more obvious delete because there’s already a function in Common Lisp called DELETE. The Lisp package system gives you a way to deal with such naming conflicts, so you could have a function named delete if you wanted. But I’m not ready to explain packages just yet.
+
+9 If you’re worried that this code creates a memory leak, rest assured: Lisp was the language that invented garbage collection (and heap allocation for that matter). The memory used by the old value of *db* will be automatically reclaimed, assuming no one else is holding on to a reference to it, which none of this code is.
+
+10 A friend of mine was once interviewing an engineer for a programming job and asked him a typical interview question: how do you know when a function or method is too big? Well, said the candidate, I don’t like any method to be bigger than my head. You mean you can’t keep all the details in your head? No, I mean I put my head up against my monitor, and the code shouldn’t be bigger than my head.
+
+11 It’s unlikely that the cost of checking whether keyword parameters had been passed would be a detectible drag on performance since checking whether a variable is NIL is going to be pretty cheap. On the other hand, these functions returned by where are going to be right in the middle of the inner loop of any select, update, or delete-rows call, as they have to be called once per entry in the database. Anyway, for illustrative purposes, this will have to do.
+
+## Wrapping Up
 
 Now, an interesting thing has happened. You removed duplication and made the code more efficient and more general at the same time. That's often the way it goes with a well-chosen macro. This makes sense because a macro is just another mechanism for creating abstractions--abstraction at the syntactic level, and abstractions are by definition more concise ways of expressing underlying generalities. Now the only code in the mini-database that's specific to CDs and the fields in them is in the make-cd, prompt-for-cd, and add-cd functions. In fact, our new where macro would work with any plist-based database.
 
