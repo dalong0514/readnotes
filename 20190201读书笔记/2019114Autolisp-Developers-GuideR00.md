@@ -157,6 +157,68 @@ AutoLISP also offers a number of additional functions that are variations of the
 "One"
 ```
 
+1『
+
+list 元素排序：[vl-sort (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-F3B27BD2-27FA-4185-B22C-85509175C171)
+
+Sorts the elements in a list according to a given compare function.
+
+```c
+(vl-sort lst comparison-function)
+```
+
+comparison-function. Type: Subroutine or Symbol. A comparison function. This can be any function that accepts two arguments and returns T (or any non-nil value). if the first argument precedes the second in the sort order. The comparison-function value can take one of the following forms:
+
+```
+A symbol (function name)
+'(LAMBDA (A1 A2) ...)
+(FUNCTION (LAMBDA (A1 A2) ...))
+```
+
+Return Values. Type: List. A list containing the elements of lst in the order specified by comparison-function. Duplicate elements may be eliminated from the list.
+
+注意这里会自动去重的。
+
+```c
+(vl-sort '(3 2 1 3) '<)
+(1 2 3)
+```
+
+Sort a list of 2D points by Y coordinate:
+
+```c
+(vl-sort '((1 3) (2 2) (3 1))
+             (function (lambda (e1 e2)
+                         (< (cadr e1) (cadr e2)))))
+((3 1) (2 2) (1 3))
+```
+
+Sort a list of symbols:
+
+```c
+(vl-sort
+   '(a d c b a)
+   '(lambda (s1 s2)
+    (< (vl-symbol-name s1) (vl-symbol-name s2))))
+(A B C D)       ;  Note that only one A remains in the result list
+```
+
+vl-sort-i (AutoLISP). Sorts the elements in a list according to a given compare function, and returns the element index numbers.
+
+设备位号按位号排序的代码实现：
+
+```c
+(defun c:foo (/ ss ss2)
+  (setq ss '("R1101" "E1103" "E1102" "R1201" "P1201"))
+  (setq ss2 '("甲醇反应釜" "换热器1" "换热器2" "反应釜1" "泵"))
+  (setq ss (mapcar '(lambda (x y) (list x y)) ss ss2))
+  (vl-sort ss '(lambda (x y) (< (car x) (car y))))
+)
+```
+
+』
+
+
 ### 0102. 主题卡——字符串数据的操作函数
 
 A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in AutoLISP, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
@@ -213,13 +275,102 @@ The ssget function provides the most general means of creating a selection set. 
 
 ### 0106. 主题卡——list 映射处理的几个函数
 
-[帮助: lambda (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-3B8BB020-1E1A-4FA3-B7B3-B5B20BA04CD9)
+[lambda (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-3B8BB020-1E1A-4FA3-B7B3-B5B20BA04CD9)
 
-[帮助: mapcar (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-8802AE73-1A05-457E-8A51-09677C23E26E)
+Defines an anonymous function.
 
-[帮助: apply (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-0574ADA0-0950-456A-9330-A2518421536E)
+```c
+(lambda arguments expr ...)
+```
 
-哈哈，之前一直想找这方面的知识。
+arguments. Type: List. Arguments passed to an expression.
+
+expr. Type: List. An AutoLISP expression.
+
+Return Values. Type: Integer, Real, String, List, Symbol, Ename (entity name), T, or nil. Value of the last expr.
+
+Remarks. Use the lambda function when the overhead of defining a new function is not justified. It also makes your intention more apparent by laying out the function at the spot where it is to be used. This function returns the value of its last expr, and is often used in conjunction with apply and/or mapcar to perform a function on a list.
+
+```c
+(apply '(lambda (x y z)
+          (* x (- y z))
+        )
+        '(5 20 14)
+)
+30
+
+(setq counter 0)
+(mapcar '(lambda (x)
+          (setq counter (1+ counter))
+          (* x 5)
+        ) 
+        '(2 4 -6 10.2)
+)
+0
+(10 20 -30 51.0)
+```
+
+[mapcar (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-8802AE73-1A05-457E-8A51-09677C23E26E)
+
+Returns a list that is the result of executing a function with a list (or lists) supplied as arguments to the function.
+
+```
+(mapcar function list1... listn)
+```
+
+function. Type: Subroutine. A function.
+
+list1... listn. Type: List. One or more lists. The number of lists must match the number of arguments required by function.
+
+Return Values. Type: List. A list.
+
+```
+(setq a 10 b 20 c 30)
+30
+
+(mapcar '1+ (list a b c))
+(11 21 31)
+```
+
+This is equivalent to the following series of expressions, except that mapcar returns a list of the results:
+
+```c
+(1+ a)
+(1+ b)
+(1+ c)
+```
+
+The lambda function can specify an anonymous function to be performed by mapcar. This is useful when some of the function arguments are constant or are supplied by some other means. The following example demonstrates the use of lambda with mapcar:
+
+```c
+(mapcar '(lambda (x) 
+          (+ x 3)
+          ) 
+         '(10 20 30)
+)
+(13 23 33)
+```
+
+[apply (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-0574ADA0-0950-456A-9330-A2518421536E)
+
+Passes a list of arguments to, and executes, a specified function.
+
+```c
+(apply 'function list)
+```
+'function. Type: Symbol. A function. The function argument can be either a symbol identifying a defun, or a lambda expression.
+
+list. Type: List or nil. A list. If the function accepts no arguments, the value can be nil.
+
+Return Values. Type: String, Integer, Real, List, T, or nil. The result of the function call.
+
+```
+(apply '+ '(1 2 3))
+6
+
+(apply 'strcat '("a" "b" "c"))
+"abc"
+```
 
 ### 0201. 术语卡——DXF group codes
 
@@ -641,6 +792,23 @@ AND returns true if all arguments are true.
 OR returns true if any of the arguments are true.
 
 NOT returns true if it's argument is false and returns false if it's argument is true. Let's look at some.
+
+### 0306. 任意卡——handle 与实体名之间的切换
+
+直接在 CAD 里用 `list` 命令选中一个实体，在显示的信息里，句柄即为 handle。
+
+1、通过实体名获取实体的 handle：借用任意卡 0303 里的信息，可以直接获取一个实体的数据信息，举个例子，里面的 `(5 . "59DAA")` 这个即为 handle。那么获取这个数据的办法就显而易见了，跟获取它的坐标 `(10 xx yy)`，图层 `(0 . "0")`，块名称 `(2 . "PipeArrowLeft")` 等等的信息一模一样。
+
+```
+(cdr (assoc 5 (entget ename)))
+```
+
+2、通过 handle 获取实体名。
+
+```
+(setq ename (handent "5a2"))
+```
+
 
 ## 实战经验汇总
 
