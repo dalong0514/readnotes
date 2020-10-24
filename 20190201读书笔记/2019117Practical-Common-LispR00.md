@@ -18,6 +18,8 @@ Copyright © 2005 by Peter Seibel
 
 ### 0101. 主题卡——emacs 的高频操作
 
+[https://www.gnu.org/software/emacs/](https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html#SEC_Contents)
+
 1、切换到 lisp 交互界面的 buffer。`C-c C-z`，即先按住 ctrl 再按 c，然后松手，接着按住 ctrl 再按 z。
 
 2、切换 buffer。`C-x b`，先按住 ctrl 再按 x，然后松手，接着按 b。接着对底部会出现所有的 buffer，打几个字母 tab 补全到想要切换的 buffer 即可。

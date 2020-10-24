@@ -12,22 +12,31 @@ The key feature of an automated testing framework is that the framework is respo
 (= (+ -1 -3) -4)
 ```
 
-Functions that have side effects will be tested slightly differently--you'll have to call the function and then check for evidence of the expected side effects.2 But in the end, every test case has to boil down to a boolean expression, thumbs up or thumbs down.
+Functions that have side effects will be tested slightly differently--you'll have to call the function and then check for evidence of the expected side effects. 2 But in the end, every test case has to boil down to a boolean expression, thumbs up or thumbs down.
 
 1 This is for illustrative purposes only--obviously, writing test cases for built-in functions such as + is a bit silly, since if such basic things aren't working, the chances the tests will be running the way you expect is pretty slim. On the other hand, most Common Lisps are implemented largely in Common Lisp, so it's not crazy to imagine writing test suites in Common Lisp to test the standard library functions.
+
+2 Side effects can include such things as signaling errors; I’ll discuss Common Lisp’s error handling system in Chapter 19. You may, after reading that chapter, want to think about how to incorporate tests that check whether a function does or does not signal a particular error in certain situations.
 
 ## 9.1 Two First Tries
 
 If you were doing ad hoc testing, you could enter these expressions at the REPL and check that they return T. But you want a framework that makes it easy to organize and run these test cases whenever you want. If you want to start with the simplest thing that could possibly work, you can just write a function that evaluates the test cases and ANDs the results together.
 
 ```c
-(defun test-+ () (and (= (+ 1 2) 3) (= (+ 1 2 3) 6) (= (+ -1 -3) -4)))
+(defun test-+ ()
+  (and 
+    (= (+ 1 2) 3)
+    (= (+ 1 2 3) 6)
+    (= (+ -1 -3) -4)
+  )
+)
 ```
 
 Whenever you want to run this set of test cases, you can call test-+.
 
 ```c
-CL-USER> (test-+) T
+CL-USER> (test-+) 
+T
 ```
 
 As long as it returns T, you know the test cases are passing. This way of organizing tests is also pleasantly concise--you don't have to write a bunch of test bookkeeping code. However, as you'll discover the first time a test case fails, the result reporting leaves something to be desired. When test-+ returns NIL, you'll know something failed, but you'll have no idea which test case it was.
@@ -35,22 +44,27 @@ As long as it returns T, you know the test cases are passing. This way of organi
 So let's try another simple--even simpleminded--approach. To find out what happens to each test case, you could write something like this:
 
 ```c
-(defun test-+ () (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3)) (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ -1 -3) -4) '(= (+ -1 -3) -4)))
+(defun test-+ () 
+  (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3)) 
+  (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) 
+  (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ -1 -3) -4) '(= (+ -1 -3) -4))
+)
 ```
 
-Now each test case will be reported individually. The` ~:[FAIL~;pass~]` part of the FORMAT directive causes FORMAT to print "FAIL" if the first format argument is false and "pass" otherwise.3 Then you label the result with the test expression itself. Now running test-+ shows you exactly what's going on.
+Now each test case will be reported individually. The` ~:[FAIL~;pass~]` part of the FORMAT directive causes FORMAT to print "FAIL" if the first format argument is false and "pass" otherwise. 3 Then you label the result with the test expression itself. Now running test-+ shows you exactly what's going on.
 
 ```c
-CL-USER> (test-+) pass ... (= (+ 1 2) 3) pass ... (= (+ 1 2 3) 6) pass ... (= (+ -1 -3) -4) NIL
+CL-USER> (test-+) 
+pass ... (= (+ 1 2) 3) 
+pass ... (= (+ 1 2 3) 6) 
+pass ... (= (+ -1 -3) -4) NIL
 ```
 
 This time the result reporting is more like what you want, but the code itself is pretty gross. The repeated calls to FORMAT as well as the tedious duplication of the test expression cry out to be refactored. The duplication of the test expression is particularly grating because if you mistype it, the test results will be mislabeled.
 
 Another problem is that you don't get a single indicator whether all the test cases passed. It's easy enough, with only three test cases, to scan the output looking for "FAIL"; however, when you have hundreds of test cases, it'll be more of a hassle.
 
-1 This is for illustrative purposes only—obviously, writing test cases for built-in functions such as + is a bit silly, since if such basic things aren’t working, the chances the tests will be running the way you expect is pretty slim. On the other hand, most Common Lisps are implemented largely in Common Lisp, so it’s not crazy to imagine writing test suites in Common Lisp to test the standard library functions.
-
-2 Side effects can include such things as signaling errors; I’ll discuss Common Lisp’s error handling system in Chapter 19. You may, after reading that chapter, want to think about how to incorporate tests that check whether a function does or does not signal a particular error in certain situations.
+3 I’ll discuss this and other FORMAT directives in more detail in Chapter 18.
 
 ## 9.2 Refactoring
 
@@ -59,7 +73,9 @@ What you'd really like is a way to write test functions as streamlined as the fi
 The simplest way to get rid of the repeated similar calls to FORMAT is to create a new function.
 
 ```c
-(defun report-result (result form) (format t "~:[FAIL~;pass~] ... ~a~%" result form))
+(defun report-result (result form) 
+  (format t "~:[FAIL~;pass~] ... ~a~%" result form)
+)
 ```
 
 Now you can write test-+ with calls to report-result instead of FORMAT. It's not a huge improvement, but at least now if you decide to change the way you report results, there's only one place you have to change.
