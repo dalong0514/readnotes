@@ -51,6 +51,18 @@ So let's try another simple--even simpleminded--approach. To find out what happe
 )
 ```
 
+1-3『
+
+`'(= (+ 1 2) 3))` 表示仅仅以字面量的形式展示 `(= (+ 1 2) 3))`，那么 `'` 在这的作用就很明确了，使后面的函数表达式丧失作用，仅显示字面量。
+
+编译器自带的说明：
+
+![](./res/2019001.png)
+
+经过试验，以写成函数语句后，重新加载进 emacs 里，`format` 函数会报错，直接把语句 `(format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3))` 拷到 emacs 里运行没问题，目前不知道为啥。（2020-10-24）回复：完全是自己的问题，封装完函数，在 emacs 里调用的时候漏掉了函数名外面的括号，之前一直是用 `test-+`，应该是 `(test-+)`，真实蠢。（2020-10-24）
+
+』
+
 Now each test case will be reported individually. The` ~:[FAIL~;pass~]` part of the FORMAT directive causes FORMAT to print "FAIL" if the first format argument is false and "pass" otherwise. 3 Then you label the result with the test expression itself. Now running test-+ shows you exactly what's going on.
 
 ```c
@@ -81,7 +93,11 @@ The simplest way to get rid of the repeated similar calls to FORMAT is to create
 Now you can write test-+ with calls to report-result instead of FORMAT. It's not a huge improvement, but at least now if you decide to change the way you report results, there's only one place you have to change.
 
 ```c
-(defun test-+ () (report-result (= (+ 1 2) 3) '(= (+ 1 2) 3)) (report-result (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) (report-result (= (+ -1 -3) -4) '(= (+ -1 -3) -4)))
+(defun test-+ () 
+  (report-result (= (+ 1 2) 3) '(= (+ 1 2) 3)) 
+  (report-result (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) 
+  (report-result (= (+ -1 -3) -4) '(= (+ -1 -3) -4))
+)
 ```
 
 Next you need to get rid of the duplication of the test case expression, with its attendant risk of mislabeling of results. What you'd really like is to be able to treat the expression as both code (to get the result) and data (to use as the label). Whenever you want to treat code as data, that's a sure sign you need a macro. Or, to look at it another way, what you need is a way to automate writing the error-prone report-result calls. You'd like to be able to say something like this:
@@ -98,18 +114,42 @@ and have it mean the following:
 
 Writing a macro to do this translation is trivial.
 
-(defmacro check (form) `(report-result ,form ',form))
+```c
+(defmacro check (form) 
+  `(report-result ,form ',form)
+)
+```
+
+1『
+
+改成了自己习惯的格式：
+
+```c
+(defmacro check (form) 
+  `(report-result, form', form)
+)
+```
+』
+
 
 Now you can change test-+ to use check.
 
 ```c
-(defun test-+ () (check (= (+ 1 2) 3)) (check (= (+ 1 2 3) 6)) (check (= (+ -1 -3) -4)))
+(defun test-+ () 
+  (check (= (+ 1 2) 3)) 
+  (check (= (+ 1 2 3) 6)) 
+  (check (= (+ -1 -3) -4))
+)
 ```
 
 Since you're on the hunt for duplication, why not get rid of those repeated calls to check? You can define check to take an arbitrary number of forms and wrap them each in a call to report-result.
 
 ```c
-(defmacro check (&body forms) `(progn ,@(loop for f in forms collect `(report-result ,f ',f))))
+(defmacro check (&body forms) 
+  `(progn 
+     ,@(loop for f in forms collect `(report-result ,f ',f))
+   )
+)
 ```
 
 This definition uses a common macro idiom of wrapping a PROGN around a series of forms in order to turn them into a single form. Notice also how you can use ,@ to splice in the result of an expression that returns a list of expressions that are themselves generated with a backquote template.
@@ -117,13 +157,25 @@ This definition uses a common macro idiom of wrapping a PROGN around a series of
 With the new version of check you can write a new version of test-+ like this:
 
 ```c
-(defun test-+ () (check (= (+ 1 2) 3) (= (+ 1 2 3) 6) (= (+ -1 -3) -4)))
+(defun test-+ () 
+  (check 
+    (= (+ 1 2) 3) 
+    (= (+ 1 2 3) 6) 
+    (= (+ -1 -3) -4)
+  )
+)
 ```
 
 that is equivalent to the following code:
 
 ```c
-(defun test-+ () (progn (report-result (= (+ 1 2) 3) '(= (+ 1 2) 3)) (report-result (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) (report-result (= (+ -1 -3) -4) '(= (+ -1 -3) -4))))
+(defun test-+ () 
+  (progn 
+    (report-result (= (+ 1 2) 3) '(= (+ 1 2) 3)) 
+    (report-result (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) 
+    (report-result (= (+ -1 -3) -4) '(= (+ -1 -3) -4))
+  )
+)
 ```
 
 Thanks to check, this version is as concise as the first version of test-+ but expands into code that does the same thing as the second version. And now any changes you want to make to how test-+ behaves, you can make by changing check.

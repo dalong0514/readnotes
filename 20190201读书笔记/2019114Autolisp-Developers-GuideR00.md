@@ -20,18 +20,6 @@
 
 [COND vs. IF | AfraLISP](https://www.afralisp.net/autolisp/tutorials/cond-vs-if.php)
 
-### 测试相关
-
-1、找到一个 autolisp 大牛的相关资料。
-
-[jdsandifer/ALUnit: The only unit testing framework for AutoLISP available on GitHub (as of its publication).](https://github.com/jdsandifer/ALUnit)
-
-[jdsandifer/AutoLISP: Programs written to help drafters work faster and automate common tasks in AutoCAD. (Professional Experience)](https://github.com/jdsandifer/AutoLISP)
-
-[jdsandifer/Reading-List: See if I've read your favorite software development book or get ideas for your next read!](https://github.com/jdsandifer/Reading-List)
-
-fork 了他 2 个仓库，里面的代码值得仔细研读，感觉是个宝藏。
-
 ## 卡片
 
 ### 0101. 主题卡——list 数据类型常用的操作函数
@@ -218,7 +206,6 @@ vl-sort-i (AutoLISP). Sorts the elements in a list according to a given compare 
 
 』
 
-
 ### 0102. 主题卡——字符串数据的操作函数
 
 A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in AutoLISP, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
@@ -371,6 +358,235 @@ Return Values. Type: String, Integer, Real, List, T, or nil. The result of the f
 (apply 'strcat '("a" "b" "c"))
 "abc"
 ```
+
+### Mapcar & Lambda
+
+Lee Mac 上有关映射函数的知识：[Mapcar & Lambda | Lee Mac Programming](http://www.lee-mac.com/mapcarlambda.html)。
+
+In my experience, the mapcar and lambda functions are two of the least understood functions in the AutoLISP programming language, however, when understood and used correctly, they can replace superfluous code and are powerful functions for dealing with lists.
+
+1『个人对此深有感触，映射函数用的好，基本可以取代原来的循环函数。』
+
+#### The Mapcar Function
+
+Put simply, mapcar will evaluate a function on every element of one or more lists and return a list of the result of each such evaluation. The mapcar function is used in the following way:
+
+```c
+(mapcar <function> <list-1> <list-2> ... <list-n>)
+```
+
+Where function is a function to be evaluated on each item in the supplied list(s); this can be any function, user-defined or otherwise, taking any number of arguments.
+
+list-1 ... list-n are a number of lists equal to the number of arguments required by the function to be evaluated. Hence if used with a function requiring a single argument, such as strcase (without the case flag), only one list need be supplied. Let me clarify this explanation with an example.
+
+Example 1
+
+Assume we have the following list of strings:
+
+```c
+("adam" "ben" "claire" "david")
+```
+
+Suppose we wish to convert each of these strings into uppercase (capitals). We could approach this task in a number of ways, for example, using the foreach function to shuffle through the list and create a new list of uppercase strings:
+
+```c
+(foreach str (reverse '("adam" "ben" "claire" "david"))
+    (setq lst (cons (strcase str) lst))
+)
+```
+
+The resultant value of the lst variable would then be:
+
+```c
+_$ lst
+("ADAM" "BEN" "CLAIRE" "DAVID")
+```
+
+However this same task can be accomplished with more concision using the mapcar function:
+
+```c
+_$ (mapcar 'strcase '("adam" "ben" "claire" "david"))
+("ADAM" "BEN" "CLAIRE" "DAVID")
+```
+
+Since the strcase function requires a single argument (a string) when converting to uppercase, only one list is supplied: the list of strings to be converted to uppercase.
+
+The result: mapcar evaluates the strcase function on each element of the supplied list - this is equivalent to:
+
+```c
+_$ (list (strcase "adam") (strcase "ben") (strcase "claire") (strcase "david"))
+("ADAM" "BEN" "CLAIRE" "DAVID")
+```
+
+1『有点悟到，`mapcar` 函数的本质实现途径了。』
+
+Notice also that mapcar has been supplied with the function strcase prefixed with an apostrophe so that the strcase symbol is not evaluated, but rather treated as an argument for the mapcar function. This could also be achieved using the quote function in the following way:
+
+```
+_$ (mapcar (quote strcase) (quote ("adam" "ben" "claire" "david")))
+("ADAM" "BEN" "CLAIRE" "DAVID")
+```
+
+Or using the function function to declare strcase as a function:
+
+```c
+_$ (mapcar (function strcase) (quote ("adam" "ben" "claire" "david")))
+("ADAM" "BEN" "CLAIRE" "DAVID")
+```
+
+Functions with More than One Argument
+
+In the example above, the strcase function is demonstrated, and only one list is supplied as strcase only requires a single argument when converting to uppercase; but what if we want to use a function that requires multiple arguments?
+
+Example 2
+
+Consider the following example to add the items of two lists:
+
+```c
+_$ (mapcar '+ '(1 2 3 4 5) '(3 4 5 6 7))
+(4 6 8 10 12)
+```
+
+Here mapcar is supplied with the + function, which takes any number of numerical arguments and adds them together. Hence in the above example, mapcar will evaluate the + function on each member of each list and return a list of the results:
+
+```c
+(4 6 8 10 12) = ((+ 1 3) (+ 2 4) (+ 3 5) (+ 4 6) (+ 5 7))
+```
+
+If the supplied lists are unequal in length, mapcar will cease evaluation when the shortest list has been processed, e.g.:
+
+```c
+_$ (mapcar '+ '(1 2 3 4 5) '(3 4 5))
+(4 6 8)
+```
+
+1『哈哈，终于在这里找到了参数列表数量不一致时，系统默认处理的方式。（2020-10-26）』
+
+#### The Lambda Function
+
+Let's go back to our original list of strings:
+
+```c
+("adam" "ben" "claire" "david")
+```
+
+Suppose that we wish to convert each string to 'Titlecase' such that the first letter of each word is capitalised, for example:
+
+```c
+("Adam" "Ben" "Claire" "David")
+```
+
+We could again implement a method using the foreach function, and shuffle through our list:
+
+```c
+(foreach str (reverse '("adam" "ben" "claire" "david"))
+    (setq lst (cons (strcat (strcase (substr str 1 1)) (substr str 2)) lst))
+)
+```
+
+But we could also use mapcar to avoid the need to reverse the list and involve the extra variables. However, there is no function in LISP that allows us to capitalise the first letter of a word, so how to can we provide mapcar with a function to evaluate? Since the function supplied to mapcar is arbitrary, one possible solution could be to define a function ourselves and supply it:
+
+```c
+(defun titlecase ( str )
+    (strcat (strcase (substr str 1 1)) (substr str 2))
+)
+
+_$ (mapcar 'titlecase '("adam" "ben" "claire" "david"))
+("Adam" "Ben" "Claire" "David")
+```
+
+Here we have defined a function titlecase which takes a single argument str, and returns the value of this argument with the first letter capitalised. But this means that we now have an extra function definition in our code that may only be used once and could potentially be located elsewhere in the code, making it far less readable. A far better way to accomplish this task would be to use the lambda function.
+
+The lambda function defines an anonymous function (a defun without a name if you like) and is usually used when the overhead of defining a new function is not justified - as in our case.
+
+```
+(mapcar '(lambda (s) (strcat (strcase (substr s 1 1)) (substr s 2))) 
+        '("adam" "ben" "claire" "david")
+)
+```
+
+The code is now far more comprehensible since the operations performed by the anonymous lambda function are in-line with the flow of the code.
+
+1『这里突然领悟到，匿名函数实现了「重构」里的「内联函数」经典手法。（2020-10-26）』
+
+Further Examples
+
+The mapcar and lambda functions are best illustrated and understood using examples, so here are a few more for you to study:
+
+Adding one to each element of a list:
+
+```c
+_$ (mapcar '1+ '(1 2 3 4 5))
+(2 3 4 5 6)
+```
+
+Adding two to each element of a list, using a defined function:
+
+```c
+(defun addtwo ( x ) (+ x 2))
+
+_$ (mapcar 'addtwo '(1 2 3 4 5))
+(3 4 5 6 7)
+```
+
+Using an anonymous lambda function:
+
+```
+_$ (mapcar '(lambda ( x ) (+ x 2)) '(1 2 3 4 5))
+(3 4 5 6 7)
+```
+
+Concatenating a string with an integer, using a defined function taking two arguments:
+
+```c
+(defun join (str int) 
+  (strcat str (itoa int))
+)
+
+_$ (mapcar 'join '("a" "b" "c") '(1 2 3))
+("a1" "b2" "c3")
+```
+
+Using an anonymous lambda function taking two arguments:
+
+```c
+_$ (mapcar '(lambda (str int) (strcat str (itoa int))) '("a" "b" "c") '(1 2 3))
+("a1" "b2" "c3")
+```
+
+One final example to scramble the brain: a function to return the average point of a list of points:
+
+```c
+(defun averagepoint (lst / n)
+    (setq n (float (length lst)))
+    (mapcar '/ (apply 'mapcar (cons '+ lst)) (list n n n))
+)
+```
+
+Notice that the above function exploits the fact that mapcar will cease evaluation when the shortest list is exhausted, since calling the function with 3D points will result in a 3D average point, and supplying 2D points will result in a 2D average point:
+
+```c
+_$ (averagepoint '((2 3 1) (2 4 1) (1 5 1)))
+(1.66667 4.0 1.0)
+
+_$ (averagepoint '((2 3) (2 1) (5 1)))
+(3.0 1.66667)
+```
+
+Observe that this behaviour could also be obtained by using a lambda function to perform the division:
+
+```c
+(defun averagepoint (lst / n)
+    (setq n (float (length lst)))
+    (mapcar (function (lambda ( x ) (/ x n))) (apply 'mapcar (cons '+ lst)))
+)
+```
+
+Further Reading
+
+If this tutorial has sparked your interest in all things mapcar and lambda, the following publication from the Autodesk University written by Darren Young also provides an outline of mapcar, lambda and the apply function: LISP: Advance Yourself Beyond A Casual Programmer.
+
+1-2『感觉又捡到金子了，已下载「附件1-CP401-1-Lisp-Advance-Yourself」作为本书的附件。』
 
 ### 0201. 术语卡——DXF group codes
 
@@ -1032,6 +1248,95 @@ This subfunction will substitute all occurrences of a string for another string 
 ## 细节汇总
 
 1、if 判断，结果为真后的语句有多个，经常忘记写 `progn` 语句。
+
+## 搭建测试框架的记录
+
+找到一个 autolisp 大牛的相关资料：
+
+[jdsandifer/ALUnit: The only unit testing framework for AutoLISP available on GitHub (as of its publication).](https://github.com/jdsandifer/ALUnit)
+
+[jdsandifer/AutoLISP: Programs written to help drafters work faster and automate common tasks in AutoCAD. (Professional Experience)](https://github.com/jdsandifer/AutoLISP)
+
+[jdsandifer/Reading-List: See if I've read your favorite software development book or get ideas for your next read!](https://github.com/jdsandifer/Reading-List)
+
+fork 了他 2 个仓库，里面的代码值得仔细研读，感觉是个宝藏。
+
+### 2020-10-24
+
+直接用成品「ALUnit」一直没有跑通。幸好在作者的第二个项目仓库「jdsandifer/AutoLISP」里看到一个「TEST.lsp」文件，直接借鉴里面的代码。但作者的 `DL:CountBooleans` 有问题，自己重写后跑通了基本测试。同时把失败案例的提示单独拎出来了。
+
+### 2020-10-26
+
+遇到的一个问题：断言的传参列表里如果还嵌入列表，就有报错。
+
+比如 `(AssertEqual 'GetIndexforSearchMemberInListUtils (list "PL1101" (list "PL1101" "PL1102")) 0)` 报错：`函数错误："PL1101"`。如果改成 `(AssertEqual 'GetIndexforSearchMemberInListUtils '("PL1101" '("PL1101" "PL1102")) 0)`，跑测试后会出现 `failed...return nil instead of 1` 信息，还是报错 `错误：参数类型错误`。
+
+早上看成品「ALUnit」里「Assert.lsp」的代码，发现一个关键信息：作者用 `vl-catch-all-apply` 取代了原来的 `eval` 函数，原来测试代码里最关键的语句就是：
+
+```c
+(equal (setq actualReturn (eval (cons functionName argumentList)))
+			  expectedReturn)
+```
+
+作者替换成了：
+
+```c
+(equal (setq actualReturn (vl-catch-all-apply functionName argumentList))
+			  expectedReturn)
+```
+
+接着去官方文档了解了下该函数：[vl-catch-all-apply (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-E08CC2A6-787A-422F-8BD3-18812996794C)。
+
+Passes a list of arguments to a specified function and traps any exceptions.
+
+```c
+(vl-catch-all-apply 'function list)
+```
+
+'function. Type: Symbol. A function. The function argument can be either a symbol identifying a defun or lambda expression.
+
+list. Type: List. A list containing arguments to be passed to the function.
+
+Return Values. Type: Integer, Real, String, List, Ename (entity name), T, nil, or catch-all-apply-error.
+
+The result of the function call, if successful. If an error occurs, vl-catch-all-apply returns an error object.
+
+Examples:
+
+If the function invoked by vl-catch-all-apply completes successfully, it is the same as using apply, as the following examples show:
+
+```c
+(setq catchit (apply '/ '(50 5)))
+10
+
+(setq catchit (vl-catch-all-apply '/ '(50 5)))
+10
+```
+
+The benefit of using vl-catch-all-apply is that it allows you to intercept errors and continue processing. See what happens when you try to divide by zero using apply:
+
+```c
+(setq catchit (apply '/ '(50 0)))
+; error: divide by zero
+```
+
+When you use apply, an exception occurs and an error message displays. Here is the same operation using vl-catch-all-apply:
+
+```c
+(setq catchit (vl-catch-all-apply '/ '(50 0)))
+#<%catch-all-apply-error%>
+```
+
+The vl-catch-all-apply function traps the error and returns an error object. Use vl-catch-all-error-message to see the error message contained in the error object:
+
+```c
+(vl-catch-all-error-message catchit)
+"divide by zero"
+```
+
+1『看到这里基本上也理解了 `apply` 函数的用法，哈哈。（2020-10-26）』
+
+测试框架里用 `vl-catch-all-apply` 重构后，再使用 `(AssertEqual 'GetIndexforSearchMemberInListUtils (list "PL1101" (list "PL1101" "PL1102")) 0)` 跑测试就 OK 了。
 
 ## 0101Introduction.md
 
