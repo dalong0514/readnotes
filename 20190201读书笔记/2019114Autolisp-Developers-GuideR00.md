@@ -881,6 +881,44 @@ To use functions as AutoCAD commands, be sure they adhere to the following rules
 
 1『不能有参数，但可以使用局部变量。』
 
+### 0207. 术语卡——cond 语句
+
+Let's start looking at some code. To begin with, we'll write code that returns the factorial of the number 4. If you're unfamiliar with factorials, it's the mathematical process where you take a number, multiply it by a number one less, multiplied by a number one less until you get to 1. So, the factorial for the number 4 is the following formula 4 * 3 * 2 * 1 =  24.
+
+```c
+(defun factorial (n) 
+  (cond 
+    ((= n 0) 1) 
+    (T (* n (factorial (1- n))))
+  )
+)
+```
+
+[cond (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-7BA45202-D95F-4F2D-8D83-965024826074)
+
+The cond function accepts any number of lists as arguments. It evaluates the first item in each list (in the order supplied) until one of these items returns a value other than nil. It then evaluates those expressions that follow the test that succeeded.
+
+```c
+(cond 
+   ((minusp a) (- a)) 
+   (t a)
+)
+```
+
+If the variable a is set to the value-10, this returns 10. As shown, cond can be used as a case type function. It is common to use T as the last (default) test expression. Here's another simple example. Given a user response string in the variable s, this function tests the response and returns 1 if it is Y or y, 0 if it is N or n; otherwise nil.
+
+```c
+(cond
+   ((= s "Y") 1) 
+   ((= s "y") 1) 
+   ((= s "N") 0) 
+   ((= s "n") 0) 
+   (t nil)
+)
+```
+
+cond 语句感觉还是很有用的，类似于其他语言里的 case 语句，多个不同的场景返回不同的值，这个场景可以通过 cond 来实现。看到这些例子，发现一般最后一条语句采用 `T` 结合默认结果来收尾。做一张术语卡片。（2020-10-27）——已完成
+
 ### 0301. 任意卡——MNL 源文件
 
 AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
