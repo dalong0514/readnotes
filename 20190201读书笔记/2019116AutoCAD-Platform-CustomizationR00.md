@@ -69,21 +69,17 @@ Version 1 of the color command displays options at the Command prompt; version 2
 
 1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
 
-### 0301. 金句卡——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
-
-### 0401. 任意卡——生成 VLX 文件
+### 0301. 任意卡——生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。
 
-### 0402. 任意卡——数据存到公共变量（内存）
+### 0302. 任意卡——数据存到公共变量（内存）
 
 TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP vl-bb-ref and vl-bb-set functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
 
 1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）』——已完成
 
-### 0403. 任意卡——宏命令里的悬停
+### 0303. 任意卡——宏命令里的悬停
 
 When the command function is used, you can suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt. You use the predefined PAUSE variable or the "\\" ASCII character sequence to allow the user to provide a value. The following AutoLISP expression starts the circle command and then allows the user to specify a center point. Once a center point is specified, the circle's diameter is set to 3 units.
 
@@ -93,24 +89,25 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 
 2『宏命令里的悬停，做一张任意卡片。』——已完成
 
-### 0404. 任意卡——自定义命令变为内置命令
+### 0304. 任意卡——自定义命令变为内置命令
 
 TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
 
 2『自定义命令变为内置命令的实现手段，做一张任意卡片。』——已完成
 
-### 0405. 任意卡——函数以 princ 结尾的真正用途
+### 0305. 任意卡——函数以 princ 结尾的真正用途
 ```c
 ; Safely divides two numbers 
 ; Checks to make sure that one or both of the numbers are not zero 
 ; (/s 0 2) 
 (defun /s (num1 num2 / quotient) 
   (setq quotient 0) 
-  (if (and (not (zerop num1)) 
+  (if (and 
+        (not (zerop num1)) 
         (not (zerop num2)) 
       ) 
-    (/ num1 num2)
-    0
+      (/ num1 num2)
+      0
   )
 ) 
 
@@ -128,19 +125,21 @@ TIP: Using the AutoLISP princ function in the last statement of a custom AutoLIS
 
 1『汇总：1）上面的写法更简洁，写条件语句的时候值得借鉴。2）算是搞明白函数结尾用 `(princ)` 的真正用途了，阻止返回最后一条语句返回的值。做一张任意卡片。（2020-10-08）』
 
-### 0406. 任意卡——调整窗口布局
+### 0306. 任意卡——调整窗口布局
 
 Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
 
 1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』——已完成
 
-### 0407. 任意卡——加载显示窗口的 2 种方法
+### 0307. 任意卡——加载显示窗口的 2 种方法
 
 You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
 
 1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』——已完成
 
-### 0408. 任意卡——通过特定的动作直接更新交互界面的下拉列表数据
+回复：目前一直用的是第一种方法，即在 autolisp 里加载 dcl 文件。（2020-10-27）
+
+### 0308. 任意卡——通过特定的动作直接更新交互界面的下拉列表数据
 
 Populating the Items of a `list_box` or `popup_list` Tile.
 
@@ -159,8 +158,6 @@ key. The key argument is a string that specifies the value assigned to the key a
 mode. The mode argument is an integer value that specifies how the list currently assigned to the tile can be modified. Table 23.9 describes each of the available modes.
 
 idx. The idx argument is an integer value that specifies an item in the list. The item is used to indicate which item to change if the mode is set to 1; when the mode is set to 2, it indicates the starting item you want to begin appending new items to.
-
-Table 23.9 List-editing modes
 
 Table 23.9 describes the modification modes that can be used to edit a list.
 
@@ -191,7 +188,7 @@ NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the
 
 1『注意几个函数的调用顺序。（2020-10-09）』
 
-### 0409. 任意卡——如何在一个 lsp 文件里调用另外一个 lsp 文件
+### 0309. 任意卡——如何在一个 lsp 文件里调用另外一个 lsp 文件
 
 直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。
 

@@ -1,3 +1,67 @@
+# 1101. Collections
+
+Like most programming languages, Common Lisp provides standard data types that collect multiple values into a single object. Every language slices up the collection problem a little bit differently, but the basic collection types usually boil down to an integer-indexed array type and a table type that can be used to map more or less arbitrary keys to values. The former are variously called arrays, lists, or tuples; the latter go by the names hash tables, associative arrays, maps, and dictionaries.
+
+Lisp is, of course, famous for its list data structure, and most Lisp books, following the ontogeny-recapitulates-phylogeny principle of language instruction, start their discussion of Lisp's collections with lists. However, that approach often leads readers to the mistaken conclusion that lists are Lisp's only collection type. To make matters worse, because Lisp's lists are such a flexible data structure, it is possible to use them for many of the things arrays and hash tables are used for in other languages. But it's a mistake to focus too much on lists; while they're a crucial data structure for representing Lisp code as Lisp data, in many situations other data structures are more appropriate.
+
+To keep lists from stealing the show, in this chapter I'll focus on Common Lisp's other collection types: vectors and hash tables.1 However, vectors and lists share enough characteristics that Common Lisp treats them both as subtypes of a more general abstraction, the sequence. Thus, you can use many of the functions I'll discuss in this chapter with both vectors and lists.
+
+Vectors
+
+Vectors are Common Lisp's basic integer-indexed collection, and they come in two flavors. Fixed-size vectors are a lot like arrays in a language such as Java: a thin veneer over a chunk of contiguous memory that holds the vector's elements.2 Resizable vectors, on the other hand, are more like arrays in Perl or Ruby, lists in Python, or the ArrayList class in Java: they abstract the actual storage, allowing the vector to grow and shrink as elements are added and removed.
+
+You can make fixed-size vectors containing specific values with the function VECTOR, which takes any number of arguments and returns a freshly allocated fixed-size vector containing those arguments.
+
+(vector) ==> #() (vector 1) ==> #(1) (vector 1 2) ==> #(1 2)
+
+The #(...) syntax is the literal notation for vectors used by the Lisp printer and reader. This syntax allows you to save and restore vectors by PRINTing them out and READing them back in. You can use the #(...) syntax to include literal vectors in your code, but as the effects of modifying literal objects aren't defined, you should always use VECTOR or the more general function MAKE-ARRAY to create vectors you plan to modify.
+
+MAKE-ARRAY is more general than VECTOR since you can use it to create arrays of any dimensionality as well as both fixed-size and resizable vectors. The one required argument to MAKE-ARRAY is a list containing the dimensions of the array. Since a vector is a one-dimensional array, this list will contain one number, the size of the vector. As a convenience, MAKE-ARRAY will also accept a plain number in the place of a one-item list. With no other arguments, MAKE-ARRAY will create a vector with uninitialized elements that must be set before they can be accessed.3 To create a vector with the elements all set to a particular value, you can pass an :initial-element argument. Thus, to make a five-element vector with its elements initialized to NIL, you can write the following:
+
+(make-array 5 :initial-element nil) ==> #(NIL NIL NIL NIL NIL)
+
+MAKE-ARRAY is also the function to use to make a resizable vector. A resizable vector is a slightly more complicated object than a fixed-size vector; in addition to keeping track of the memory used to hold the elements and the number of slots available, a resizable vector also keeps track of the number of elements actually stored in the vector. This number is stored in the vector's fill pointer, so called because it's the index of the next position to be filled when you add an element to the vector.
+
+To make a vector with a fill pointer, you pass MAKE-ARRAY a :fill-pointer argument. For instance, the following call to MAKE-ARRAY makes a vector with room for five elements; but it looks empty because the fill pointer is zero:
+
+(make-array 5 :fill-pointer 0) ==> #()
+
+To add an element to the end of a resizable vector, you can use the function VECTOR-PUSH. It adds the element at the current value of the fill pointer and then increments the fill pointer by one, returning the index where the new element was added. The function VECTOR-POP returns the most recently pushed item, decrementing the fill pointer in the process.
+
+(defparameter *x* (make-array 5 :fill-pointer 0)) (vector-push 'a *x*) ==> 0 *x* ==> #(A) (vector-push 'b *x*) ==> 1 *x* ==> #(A B) (vector-push 'c *x*) ==> 2 *x* ==> #(A B C) (vector-pop *x*) ==> C *x* ==> #(A B) (vector-pop *x*) ==> B *x* ==> #(A) (vector-pop *x*) ==> A *x* ==> #()
+
+However, even a vector with a fill pointer isn't completely resizable. The vector *x* can hold at most five elements. To make an arbitrarily resizable vector, you need to pass MAKE-ARRAY another keyword argument: :adjustable.
+
+(make-array 5 :fill-pointer 0 :adjustable t) ==> #()
+
+This call makes an adjustable vector whose underlying memory can be resized as needed. To add elements to an adjustable vector, you use VECTOR-PUSH-EXTEND, which works just like VECTOR-PUSH except it will automatically expand the array if you try to push an element onto a full vector--one whose fill pointer is equal to the size of the underlying storage.4
+
+Subtypes of Vector
+
+All the vectors you've dealt with so far have been general vectors that can hold any type of object. It's also possible to create specialized vectors that are restricted to holding certain types of elements. One reason to use specialized vectors is they may be stored more compactly and can provide slightly faster access to their elements than general vectors. However, for the moment let's focus on a couple kinds of specialized vectors that are important data types in their own right.
+
+One of these you've seen already--strings are vectors specialized to hold characters. Strings are important enough to get their own read/print syntax (double quotes) and the set of string-specific functions I discussed in the previous chapter. But because they're also vectors, all the functions I'll discuss in the next few sections that take vector arguments can also be used with strings. These functions will fill out the string library with functions for things such as searching a string for a substring, finding occurrences of a character within a string, and more.
+
+Literal strings, such as "foo", are like literal vectors written with the #() syntax--their size is fixed, and they must not be modified. However, you can use MAKE-ARRAY to make resizable strings by adding another keyword argument, :element-type. This argument takes a type descriptor. I won't discuss all the possible type descriptors you can use here; for now it's enough to know you can create a string by passing the symbol CHARACTER as the :element-type argument. Note that you need to quote the symbol to prevent it from being treated as a variable name. For example, to make an initially empty but resizable string, you can write this:
+
+(make-array 5 :fill-pointer 0 :adjustable t :element-type 'character) ""
+
+Bit vectors--vectors whose elements are all zeros or ones--also get some special treatment. They have a special read/print syntax that looks like #*00001111 and a fairly large library of functions, which I won't discuss, for performing bit-twiddling operations such as "anding" together two bit arrays. The type descriptor to pass as the :element-type to create a bit vector is the symbol BIT.
+
+Vectors As Sequences
+
+As mentioned earlier, vectors and lists are the two concrete subtypes of the abstract type sequence. All the functions I'll discuss in the next few sections are sequence functions; in addition to being applicable to vectors--both general and specialized--they can also be used with lists.
+
+The two most basic sequence functions are LENGTH, which returns the length of a sequence, and ELT, which allows you to access individual elements via an integer index. LENGTH takes a sequence as its only argument and returns the number of elements it contains. For vectors with a fill pointer, this will be the value of the fill pointer. ELT, short for element, takes a sequence and an integer index between zero (inclusive) and the length of the sequence (exclusive) and returns the corresponding element. ELT will signal an error if the index is out of bounds. Like LENGTH, ELT treats a vector with a fill pointer as having the length specified by the fill pointer.
+
+(defparameter *x* (vector 1 2 3)) (length *x*) ==> 3 (elt *x* 0) ==> 1 (elt *x* 1) ==> 2 (elt *x* 2) ==> 3 (elt *x* 3) ==> error
+
+ELT is also a SETFable place, so you can set the value of a particular element like this:
+
+(setf (elt *x* 0) 10) *x* ==> #(10 2 3)
+
+Sequence Iterating Functions
+
 While in theory all operations on sequences boil down to some combination of LENGTH, ELT, and SETF of ELT operations, Common Lisp provides a large library of sequence functions.
 
 One group of sequence functions allows you to express certain operations on sequences such as finding or filtering specific elements without writing explicit loops. Table 11-1 summarizes them.

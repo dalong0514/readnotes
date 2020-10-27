@@ -46,9 +46,9 @@ For the most part, a macro is similar to the input that you enter at the command
 
 2. At the Specify center point for circle or [3P/2P/Ttr (tan tan radius)]: prompt, specify a point with the input device or type a value at the command prompt.
 
-3. At the Specify radius of circle or [Diameter] <0.1875>: prompt, type d and press Enter.
+3. At the Specify radius of circle or [Diameter] `<0.1875>`: prompt, type d and press Enter.
 
-4. At the Specify diameter of circle <0.3750>: prompt, type 0.125 and press Enter.
+4. At the Specify diameter of circle `<0.3750>`: prompt, type 0.125 and press Enter.
 
 An example of a command macro using the same input as the previous example might look something like this:
 

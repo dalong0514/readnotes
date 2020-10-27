@@ -59,7 +59,7 @@ So let's try another simple--even simpleminded--approach. To find out what happe
 
 ![](./res/2019001.png)
 
-经过试验，以写成函数语句后，重新加载进 emacs 里，`format` 函数会报错，直接把语句 `(format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3))` 拷到 emacs 里运行没问题，目前不知道为啥。（2020-10-24）回复：完全是自己的问题，封装完函数，在 emacs 里调用的时候漏掉了函数名外面的括号，之前一直是用 `test-+`，应该是 `(test-+)`，真实蠢。（2020-10-24）
+经过试验，以写成函数语句后，重新加载进 emacs 里，`format` 函数会报错，直接把语句 `(format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3))` 拷到 emacs 里运行没问题，目前不知道为啥。（2020-10-24）回复：完全是自己的问题，封装完函数，在 emacs 里调用的时候漏掉了函数名外面的括号，之前一直是用 `test-+`，应该是 `(test-+)`，真是蠢。（2020-10-24）
 
 』
 
@@ -187,7 +187,10 @@ You can start with fixing test-+ so its return value indicates whether all the t
 As a first step, you can make a small change to report-result so it returns the result of the test case it's reporting.
 
 ```c
-(defun report-result (result form) (format t "~:[FAIL~;pass~] ... ~a~%" result form) result)
+(defun report-result (result form) 
+  (format t "~:[FAIL~;pass~] ... ~a~%" result form)
+  result
+)
 ```
 
 Now that report-result returns the result of its test case, it might seem you could just change the PROGN to an AND to combine the results. Unfortunately, AND doesn't do quite what you want in this case because of its short-circuiting behavior: as soon as one test case fails, AND will skip the rest. On the other hand, if you had a construct that worked like AND without the short-circuiting, you could use it in the place of PROGN, and you'd be done. Common Lisp doesn't provide such a construct, but that's no reason you can't use it: it's a trivial matter to write a macro to provide it yourself.
@@ -195,57 +198,105 @@ Now that report-result returns the result of its test case, it might seem you co
 Leaving test cases aside for a moment, what you want is a macro--let's call it combine-results--that will let you say this:
 
 ```c
-(combine-results (foo) (bar) (baz))
+(combine-results 
+  (foo) 
+  (bar) 
+  (baz)
+)
 ```
 
 and have it mean something like this:
 
 ```c
-(let ((result t)) (unless (foo) (setf result nil)) (unless (bar) (setf result nil)) (unless (baz) (setf result nil)) result)
+(let ((result t)) 
+  (unless (foo) (setf result nil)) 
+  (unless (bar) (setf result nil)) 
+  (unless (baz) (setf result nil)) 
+  result
+)
 ```
 
 The only tricky bit to writing this macro is that you need to introduce a variable--result in the previous code--in the expansion. As you saw in the previous chapter, using a literal name for variables in macro expansions can introduce a leak in your macro abstraction, so you'll need to create a unique name. This is a job for with-gensyms. You can define combine-results like this:
 
 ```c
-(defmacro combine-results (&body forms) (with-gensyms (result) `(let ((,result t)) ,@(loop for f in forms collect `(unless ,f (setf ,result nil))) ,result)))
+(defmacro combine-results (&body forms) 
+  (with-gensyms (result) 
+    `(let ((,result t)) 
+       ,@(loop for f in forms collect `(unless ,f (setf ,result nil))) 
+       ,result
+     )
+  )
+)
 ```
 
 Now you can fix check by simply changing the expansion to use combine-results instead of PROGN.
 
 ```c
-(defmacro check (&body forms) `(combine-results ,@(loop for f in forms collect `(report-result ,f ',f))))
+(defmacro check (&body forms) 
+  `(combine-results 
+     ,@(loop for f in forms collect `(report-result ,f ',f))
+   )
+)
 ```
 
-With that version of check, test-+ should emit the results of its three test expressions and then return T to indicate that everything passed.4
+With that version of check, test-+ should emit the results of its three test expressions and then return T to indicate that everything passed. 4
 
 ```c
-CL-USER> (test-+) pass ... (= (+ 1 2) 3) pass ... (= (+ 1 2 3) 6) pass ... (= (+ -1 -3) -4) T
+CL-USER> (test-+) 
+pass ... (= (+ 1 2) 3)
+pass ... (= (+ 1 2 3) 6)  
+pass ... (= (+ -1 -3) -4) 
+T
 ```
 
-And if you change one of the test cases so it fails,5 the final return value changes to NIL.
+1『目前用原书里的代码，没跑通。（2020-10-27）』
+
+And if you change one of the test cases so it fails, 5 the final return value changes to NIL.
 
 ```c
-CL-USER> (test-+) pass ... (= (+ 1 2) 3) pass ... (= (+ 1 2 3) 6) FAIL ... (= (+ -1 -3) -5) NIL
+CL-USER> (test-+) 
+pass ... (= (+ 1 2) 3) 
+pass ... (= (+ 1 2 3) 6) 
+FAIL ... (= (+ -1 -3) -5) NIL
 ```
+
+4 If test-+ has been compiled—which may happen implicitly in certain Lisp implementations—you may need to reevaluate the definition of test-+ to get the changed definition of check to affect the behavior of test-+. Interpreted code, on the other hand, typically expands macros anew each time the code is interpreted, allowing the effects of macro redefinitions to be seen immediately.
+
+5 You have to change the test to make it fail since you can’t change the behavior of +.
 
 ## 9.4 Better Result Reporting
 
 As long as you have only one test function, the current result reporting is pretty clear. If a particular test case fails, all you have to do is find the test case in the check form and figure out why it's failing. But if you write a lot of tests, you'll probably want to organize them somehow, rather than shoving them all into one function. For instance, suppose you wanted to add some test cases for the * function. You might write a new test function.
 
 ```c
-(defun test-* () (check (= (* 2 2) 4) (= (* 3 5) 15)))
+(defun test-* () 
+  (check 
+    (= (* 2 2) 4) 
+    (= (* 3 5) 15)
+  )
+)
 ```
 
 Now that you have two test functions, you'll probably want another function that runs all the tests. That's easy enough.
 
 ```c
-(defun test-arithmetic () (combine-results (test-+) (test-*)))
+(defun test-arithmetic () 
+  (combine-results 
+    (test-+) 
+    (test-*)
+  )
+)
 ```
 
 In this function you use combine-results instead of check since both test-+ and test-* will take care of reporting their own results. When you run test-arithmetic, you'll get the following results:
 
 ```c
-CL-USER> (test-arithmetic) pass ... (= (+ 1 2) 3) pass ... (= (+ 1 2 3) 6) pass ... (= (+ -1 -3) -4) pass ... (= (* 2 2) 4) pass ... (= (* 3 5) 15) T
+CL-USER> (test-arithmetic) 
+pass ... (= (+ 1 2) 3) 
+pass ... (= (+ 1 2 3) 6) 
+pass ... (= (+ -1 -3) -4) 
+pass ... (= (* 2 2) 4) 
+pass ... (= (* 3 5) 15) T
 ```
 
 Now imagine that one of the test cases failed and you need to track down the problem. With only five test cases and two test functions, it won't be too hard to find the code of the failing test case. But suppose you had 500 test cases spread across 20 functions. It might be nice if the results told you what function each test case came from.
@@ -269,19 +320,48 @@ Now you need to make another tiny change to report-result to include `*test-name
 With those changes, the test functions will still work but will produce the following output because `*test-name*` is never rebound:
 
 ```c
-CL-USER> (test-arithmetic) pass ... NIL: (= (+ 1 2) 3) pass ... NIL: (= (+ 1 2 3) 6) pass ... NIL: (= (+ -1 -3) -4) pass ... NIL: (= (* 2 2) 4) pass ... NIL: (= (* 3 5) 15) T
+CL-USER> (test-arithmetic) 
+pass ... NIL: (= (+ 1 2) 3) 
+pass ... NIL: (= (+ 1 2 3) 6) 
+pass ... NIL: (= (+ -1 -3) -4) 
+pass ... NIL: (= (* 2 2) 4) 
+pass ... NIL: (= (* 3 5) 15) 
+T
 ```
 
 For the name to be reported properly, you need to change the two test functions.
 
 ```c
-(defun test-+ () (let ((*test-name* 'test-+)) (check (= (+ 1 2) 3) (= (+ 1 2 3) 6) (= (+ -1 -3) -4)))) (defun test-* () (let ((*test-name* 'test-*)) (check (= (* 2 2) 4) (= (* 3 5) 15))))
+(defun test-+ () 
+  (let ((*test-name* 'test-+)) 
+    (check 
+      (= (+ 1 2) 3) 
+      (= (+ 1 2 3) 6) 
+      (= (+ -1 -3) -4)
+    )
+  )
+) 
+
+(defun test-* () 
+  (let ((*test-name* 'test-*)) 
+    (check 
+      (= (* 2 2) 4) 
+      (= (* 3 5) 15)
+    )
+  )
+)
 ```
 
 Now the results are properly labeled.
 
 ```c
-CL-USER> (test-arithmetic) pass ... TEST-+: (= (+ 1 2) 3) pass ... TEST-+: (= (+ 1 2 3) 6) pass ... TEST-+: (= (+ -1 -3) -4) pass ... TEST-*: (= (* 2 2) 4) pass ... TEST-*: (= (* 3 5) 15) T
+CL-USER> (test-arithmetic) 
+pass ... TEST-+: (= (+ 1 2) 3) 
+pass ... TEST-+: (= (+ 1 2 3) 6) 
+pass ... TEST-+: (= (+ -1 -3) -4)
+pass ... TEST-*: (= (* 2 2) 4) 
+pass ... TEST-*: (= (* 3 5) 15) 
+T
 ```
 
 ## 9.5 An Abstraction Emerges
@@ -295,13 +375,21 @@ Unfortunately, partial abstractions are a crummy tool for building software. Bec
 Because the pattern you're trying to capture is a DEFUN plus some boilerplate code, you need to write a macro that will expand into a DEFUN. You'll then use this macro, instead of a plain DEFUN to define test functions, so it makes sense to call it deftest.
 
 ```c
-(defmacro deftest (name parameters &body body) `(defun ,name ,parameters (let ((*test-name* ',name)) ,@body)))
+(defmacro deftest (name parameters &body body) 
+  `(defun ,name ,parameters (let ((*test-name* ',name)) ,@body))
+)
 ```
 
 With this macro you can rewrite test-+ as follows:
 
 ```c
-(deftest test-+ () (check (= (+ 1 2) 3) (= (+ 1 2 3) 6) (= (+ -1 -3) -4)))
+(deftest test-+ () 
+  (check 
+    (= (+ 1 2) 3) 
+    (= (+ 1 2 3) 6) 
+    (= (+ -1 -3) -4)
+  )
+)
 ```
 
 ## 9.6 A Hierarchy of Tests
@@ -333,34 +421,91 @@ Since APPEND returns a new list made up of the elements of its arguments, this v
 Now you can redefine test-arithmetic with deftest instead of DEFUN.
 
 ```c
-(deftest test-arithmetic () (combine-results (test-+) (test-*)))
+(deftest test-arithmetic () 
+  (combine-results 
+    (test-+) 
+    (test-*)
+  )
+)
 ```
 
 The results now show exactly how you got to each test expression.
 
 ```c
-CL-USER> (test-arithmetic) pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3) pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2 3) 6) pass ... (TEST-ARITHMETIC TEST-+): (= (+ -1 -3) -4) pass ... (TEST-ARITHMETIC TEST-*): (= (* 2 2) 4) pass ... (TEST-ARITHMETIC TEST-*): (= (* 3 5) 15) T
+CL-USER> (test-arithmetic) 
+pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3) 
+pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2 3) 6) 
+pass ... (TEST-ARITHMETIC TEST-+): (= (+ -1 -3) -4) 
+pass ... (TEST-ARITHMETIC TEST-*): (= (* 2 2) 4) 
+pass ... (TEST-ARITHMETIC TEST-*): (= (* 3 5) 15) 
+T
 ```
 
 As your test suite grows, you can add new layers of test functions; as long as they're defined with deftest, the results will be reported correctly. For instance, the following:
 
 ```c
-(deftest test-math () (test-arithmetic))
+(deftest test-math () 
+  (test-arithmetic)
+)
 ```
 
 would generate these results:
 
 ```c
-CL-USER> (test-math) pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3) pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ 1 2 3) 6) pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ -1 -3) -4) pass ... (TEST-MATH TEST-ARITHMETIC TEST-*): (= (* 2 2) 4) pass ... (TEST-MATH TEST-ARITHMETIC TEST-*): (= (* 3 5) 15) T
+CL-USER> (test-math)
+pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3) 
+pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ 1 2 3) 6) 
+pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ -1 -3) -4) 
+pass ... (TEST-MATH TEST-ARITHMETIC TEST-*): (= (* 2 2) 4) 
+pass ... (TEST-MATH TEST-ARITHMETIC TEST-*): (= (* 3 5) 15) 
+T
 ```
+
+6 Though, again, if the test functions have been compiled, you'll have to recompile them after changing the macro.
+
+7 As you'll see in Chapter 12, APPENDing to the end of a list isn't the most efficient way to build a list. But for now this is sufficient--as long as the test hierarchies aren't too deep, it should be fine. And if it becomes a problem, all you'll have to do is change the definition of deftest.
 
 ## 9.7 Wrapping Up
 
 You could keep going, adding more features to this test framework. But as a framework for writing tests with a minimum of busywork and easily running them from the REPL, this is a reasonable start. Here's the complete code, all 26 lines of it:
 
 ```c
-(defvar *test-name* nil) (defmacro deftest (name parameters &body body) "Define a test function. Within a test function we can call other test functions or use 'check' to run individual test cases." `(defun ,name ,parameters (let ((*test-name* (append *test-name* (list ',name)))) ,@body))) (defmacro check (&body forms) "Run each expression in 'forms' as a test case." `(combine-results ,@(loop for f in forms collect `(report-result ,f ',f)))) (defmacro combine-results (&body forms) "Combine the results (as booleans) of evaluating 'forms' in order." (with-gensyms (result) `(let ((,result t)) ,@(loop for f in forms collect `(unless ,f (setf ,result nil))) ,result))) (defun report-result (result form) "Report the results of a single test case. Called by 'check'." (format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form) result)
+(defvar *test-name* nil) 
+
+(defmacro deftest (name parameters &body body) 
+  "Define a test function. Within a test function we can call other test functions or use 'check' to run individual test cases." 
+  `(defun ,name ,parameters 
+     (let ((*test-name* (append *test-name* (list ',name)))) 
+      ,@body
+     )
+   )
+) 
+
+(defmacro check (&body forms) 
+  "Run each expression in 'forms' as a test case." 
+  `(combine-results 
+     ,@(loop for f in forms collect `(report-result ,f ',f))
+   )
+) 
+
+(defmacro combine-results (&body forms) 
+  "Combine the results (as booleans) of evaluating 'forms' in order." 
+  (with-gensyms (result) 
+    `(let ((,result t)) 
+       ,@(loop for f in forms collect `(unless ,f (setf ,result nil))) 
+       ,result
+     )
+  )
+) 
+
+(defun report-result (result form) 
+  "Report the results of a single test case. Called by 'check'." 
+  (format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form) 
+  result
+)
 ```
+
+1『目前没跑通，还是需要研读前面几章的内容才能找出问题所在。（2020-10-27）』
 
 It's worth reviewing how you got here because it's illustrative of how programming in Lisp often goes.
 
@@ -377,17 +522,3 @@ At that point all that was left was to make a few more improvements to the way y
 With deftest providing an abstraction barrier between the test definitions and the underlying machinery, you were able to enhance the result reporting without touching the test functions.
 
 Now, with the basics of functions, variables, and macros mastered, and a little practical experience using them, you're ready to start exploring Common Lisp's rich standard library of functions and data types.
-
-* * *
-
-2 Side effects can include such things as signaling errors; I'll discuss Common Lisp's error handling system in Chapter 19. You may, after reading that chapter, want to think about how to incorporate tests that check whether a function does or does not signal a particular error in certain situations.
-
-3 I'll discuss this and other FORMAT directives in more detail in Chapter 18.
-
-4 If test-+ has been compiled--which may happen implicitly in certain Lisp implementations--you may need to reevaluate the definition of test-+ to get the changed definition of check to affect the behavior of test-+. Interpreted code, on the other hand, typically expands macros anew each time the code is interpreted, allowing the effects of macro redefinitions to be seen immediately.
-
-5 You have to change the test to make it fail since you can't change the behavior of +.
-
-6 Though, again, if the test functions have been compiled, you'll have to recompile them after changing the macro.
-
-7 As you'll see in Chapter 12, APPENDing to the end of a list isn't the most efficient way to build a list. But for now this is sufficient--as long as the test hierarchies aren't too deep, it should be fine. And if it becomes a problem, all you'll have to do is change the definition of deftest.

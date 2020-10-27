@@ -297,6 +297,3 @@ exands into the following when it occurs in a context where it evaluated:
 (function (lambda () 42)) ; or #'(lambda () 42)
 
 This makes its use in a value position, such as an argument to FUNCALL, legal. In other words, it's pure syntactic sugar. Most folks either always use #' before LAMBDA expressions in value positions or never do. In this book, I always use #'.
-
-Copyright © 2003-2005, Peter Seibel
-
