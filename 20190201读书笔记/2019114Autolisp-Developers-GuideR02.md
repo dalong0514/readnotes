@@ -1,4 +1,8 @@
-# 附件1-CP401-1-Lisp-Advance-Yourself
+# 2019114Autolisp-Developers-GuideR02
+
+## 记忆时间
+
+## 附件1-CP401-1-Lisp-Advance-Yourself
 
 Are you a casual LISP programmer? Do you get what you want done but feel like you have to bludgeon your way through it? Do you have trouble getting what's under the hood into overdrive? Then, this class is for you. You'll learn many of the things that real power AutoLISP® programmers know, so you can get more done in less time.
 
@@ -9,15 +13,15 @@ A Midwestern transplant now based in Southern California, Darren has held a vari
 Work / dyoung@southlandind.com 
 Home / darren@mcwi.com
 
-## 01. Introduction
+### 01. Introduction
 
 This course is for anyone who‟s casually programmed AutoLISP but knows there's more untapped power under the hood. At the end of this class, You'll know exactly where to look and how to tap into that power increasing your coding abilities and enabling you to write more functional programs, with less code in less time.
 
 With ARX, VBA, and now .Net (Dot Net), there's always a rumor flying around that AutoLISP is dead or going away. that's simply not true. While there are plenty of reasons to use other APIs and languages, there's also plenty of reasons to continue using AutoLISP and Visual LISP. For the non-professional programmer, it's a great, easy to learn language with plenty of power. it's built into AutoCAD, it can do most of what VBA can do, and you don't have to purchase any special development software. If you want to automate AutoCAD, AutoLISP and Visual LISP is a perfectly suitable option. Take it for a test drive and put the petal to the floor. You'll be amazed at what it can do.
 
-## 02. Advanced AutoLISP
+### 02. Advanced AutoLISP
 
-### 2.1 apply
+#### 2.1 apply
 
 ```c
 (apply 'function list)
@@ -70,7 +74,7 @@ But is simpler with this…
 (apply ‘+ mylist))
 ```
 
-### 2.2 mapcar
+#### 2.2 mapcar
 
 ```c
 (mapcar 'function list {list} …etc…)
@@ -151,7 +155,7 @@ Returns this result…
 (1.1 2.2)
 ```
 
-### 2.3 lambda
+#### 2.3 lambda
 
 ```c
 (lambda arguments expression)
@@ -250,7 +254,7 @@ This results in the point (-0.37 5.79) being returned. Notice that one of the po
 
 In this example, (mapcar) isn't using a quoted function („), instead it's using the (function) function. This was introduced because when running compiled AutoLISP code (FAS or VLX files), if the code fails in the right place in the right conditions, the quoted (lambda) function‟s source code could be exposed and displayed on the text screen. By wrapping it the (function) statement, it's protected from viewing during these types of failures. Using either form is perfectly fine, and one is not more correct than the other. Using the quoted function is a little easier to read and typically all that's needed if you aren't worried about keeping people from viewing your source code. Just as there's a quote function (quote) that can be used in place of the quote symbol („), the (function) function does a similar thing at the function level. Now hopefully that wasn‟t too confusing with all the function functions and quote quotes.
 
-### 2.4 Putting It All Together Back At The Office
+#### 2.4 Putting It All Together Back At The Office
 
 When you can back to the office, try this for an exercise. This is the exact very same example I had years ago when I made the leap into using more advanced functions like (mapcar), (apply), and (lambda). I‟d seen those advanced functions used before, but I never took the time to use them or figure them out let alone mixing several all together nested. Then, I found the need to use the (nentsel) function, which returned nested data from a user selection. That is, I wanted information about a coordinate of an object within a block, not information about the block. The (nentsel) explanation in the AutoLISP reference explains the data it returns and how it's processed using the transformation matrix to get what you are looking for. The following code was what I came up with after 2 days where pt1 was the point and mat was the transformation matrix as turned by (nentsel) …
 
@@ -286,7 +290,7 @@ It worked, but frustrated with the amount of effort and knowing that there must 
 
 As you can see, it's a lot smaller and more efficient. It was upon viewing that code, that I committed to breaking down this small snippet and figuring out exactly what it does and how it does it. When you're back at the office, try doing the same. Refer back to the (nentsel) documentation in the AutoLISP Reference so you know what the code is attempting to do. I guarantee, that when you go through this snippet and actually understand how it works and why, You'll never have trouble with (apply), (mapcar), or (lambda) ever again. Use the following blank lines to make notes as you disassemble this code and figure out what it does.
 
-### 2.5 Recursive Programming – It’s Kind Of Like Talking To Yourself
+#### 2.5 Recursive Programming – It's Kind Of Like Talking To Yourself
 
 One of the oddest concepts that a lot of casual programmers have difficulty understanding, let alone implementing in code is known as Recursion. The simplest example of recursion is something most people have seen at one time or another. If you took a television camera and recorded the television itself, and played that to that same television you were recording, you'd see a recursive graphic. The television, would be displaying a picture of itself, displaying a picture of itself, displaying a picture of itself, etc.
 
@@ -551,9 +555,9 @@ Now that you've seen a couple examples, it's really not that hard. In fact, the 
 
 What this codes does, it takes a string character and increments it. Its intent is to generate the next revision letter based in the current revision. So Let's say your drawing is at revision “B”, calling the function (str+ “B”) would return “C”. Calling the program with (str+ “C”) would return “D” and so on. that's not that hard in itself, and you wouldn't need recursion to perform it. But what happens when you get to revision “Z” and need to go to “AA” or you're at revision “AZ” and need to go to “BA”. This program handles that and that's where the recursion comes in. So your homework when you get back to your office is to slice and dice this program up and see how it works. Play with it a little and see if you can truly understand what it's doing. And if you're really ambitious, try modifying the program so that it works as described, but does Not use the letters “O” (oh) and “I” (eye) which resemble 0 (zero) and 1 (one). Use the following lines to make notes on recursion, this class or how you might use it in your own environment.
 
-## 03. Visual LISP Primer
+### 03. Visual LISP Primer
 
-### 3.1 Why Visual LISP? – 2905 Reasons, That’s Why!
+#### 3.1 Why Visual LISP? – 2905 Reasons, That's Why!
 
 If you've ever wondered what's in Visual LISP that might make it attractive for you to use, Here's a little teaser to peek your interest.
 
@@ -587,7 +591,7 @@ Still another advantage of the Visual LISP editor is the ability to compile Appl
 
 there's simply a lot in the Visual LISP editor, which makes it very worth your while to learn how to use it. Unfortunately, there's just too much to cover completely in this course, which is why we've just covered some of the major highlights that can really affect your coding productivity.
 
-### 3.2 Reactors – Code That Knows Not Just What To Do, But When To Do It
+#### 3.2 Reactors – Code That Knows Not Just What To Do, But When To Do It
 
 Another nice thing about Visual LISP is the ability to create Reactors. Reactors are event triggers. That is, when certain “events” happen within your drawing or AutoCAD, the “trigger” calls some code or action. You, the programmer, define all the Events and the Actions that the Triggers call. Reactors aren't that difficult to master, but there are a few things to know so here's a rundown.
 
@@ -745,7 +749,7 @@ Some other things that are important to know about reactors are that you shouldn
 
 there's a lot to reactors. Review the AutoLISP reference for the various types of reactors available as well as their events and the various functions that help you manage reactors. If you're ambitious, dissect the 2 utility functions I've supplied and see how they work. If you can understand the logic and workings of those 2 utility functions, You'll have already mastered programming reactors in Visual LISP.
 
-## 04. ActiveX – The Power Of Visual Basic In Visual LISP
+### 04. ActiveX – The Power Of Visual Basic In Visual LISP
 
 There are a number of additional functions in Visual LISP that provide ActiveX functionality inside of AutoCAD and other applications. These functions aren't initially available inside Visual LISP unless support for them has been explicitly loaded. You can load and access these ActiveX functions easily with the Visual LISP function `(vl-load-com)`.
 

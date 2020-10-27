@@ -36,35 +36,9 @@ Copyright © 2005 by Peter Seibel
 
 8、退出整个 emac，输入命令 `C-x C-c`。
 
-### 0201. 术语卡——
+### 0102. 主题卡——lisp 里数组过滤函数的实现
 
-根据反常识，再补充三个证据——就产生三张术语卡。
-
-### 0202. 术语卡——
-
-### 0203. 术语卡——
-
-### 0301. 人名卡——
-
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-### 0401. 金句卡——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
-
-### 0501. 任意卡——几个语言的座右铭
-
-Perl: 1) makes easy things easy and hard things possible. 2) There's more than one way to do it.
-
-Python: There's only one way to do it.
-
-Lisp: the programmable programming language.
-
-The nearest thing Common Lisp has to a motto is the koan-like description, "the programmable programming language." While cryptic, that description gets at the root of the biggest advantage Common Lisp still has over other languages. More than any other language, Common Lisp follows the philosophy that what's good for the language's designer is good for the language's users. Thus, when you're programming in Common Lisp, you almost never find yourself wishing the language supported some feature that would make your program easier to write, because, as you'll see throughout this book, you can just add the feature yourself.
-
-Consequently, a Common Lisp program tends to provide a much clearer mapping between your ideas about how the program works and the code you actually write. Your ideas aren't obscured by boilerplate code and endlessly repeated idioms. This makes your code easier to maintain because you don't have to wade through reams of code every time you need to make a change. Even systemic changes to a program's behavior can often be achieved with relatively small changes to the actual code. This also means you'll develop code more quickly; there's less code to write, and you don't waste time thrashing around trying to find a clean way to express yourself within the limitations of the language. 2
-
-### 0502. 任意卡——lisp 里数组过滤函数的实现
+1『太重要了，升级为主题卡，哈哈。（2020-10-27）』
 
 Now suppose you want to wrap that whole expression in a function that takes the name of the artist as an argument. You can write that like this:
 
@@ -165,6 +139,36 @@ Remarks: The vl-member-if-not function passes each element in lst to the functio
 1「函数 `vl-member-if-not` 目前没吃透，不过直觉上感觉有大用途。（2020-10-22）」
 
 』
+
+### 0201. 术语卡——
+
+根据反常识，再补充三个证据——就产生三张术语卡。
+
+### 0202. 术语卡——
+
+### 0203. 术语卡——
+
+### 0301. 人名卡——
+
+根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+
+### 0401. 金句卡——
+
+最后根据他写的非常震撼的话语——产生一张金句卡。
+
+### 0501. 任意卡——几个语言的座右铭
+
+Perl: 1) makes easy things easy and hard things possible. 2) There's more than one way to do it.
+
+Python: There's only one way to do it.
+
+Lisp: the programmable programming language.
+
+The nearest thing Common Lisp has to a motto is the koan-like description, "the programmable programming language." While cryptic, that description gets at the root of the biggest advantage Common Lisp still has over other languages. More than any other language, Common Lisp follows the philosophy that what's good for the language's designer is good for the language's users. Thus, when you're programming in Common Lisp, you almost never find yourself wishing the language supported some feature that would make your program easier to write, because, as you'll see throughout this book, you can just add the feature yourself.
+
+Consequently, a Common Lisp program tends to provide a much clearer mapping between your ideas about how the program works and the code you actually write. Your ideas aren't obscured by boilerplate code and endlessly repeated idioms. This makes your code easier to maintain because you don't have to wade through reams of code every time you need to make a change. Even systemic changes to a program's behavior can often be achieved with relatively small changes to the actual code. This also means you'll develop code more quickly; there's less code to write, and you don't waste time thrashing around trying to find a clean way to express yourself within the limitations of the language. 2
+
+### 0502. 任意卡——
 
 ## Preface
 

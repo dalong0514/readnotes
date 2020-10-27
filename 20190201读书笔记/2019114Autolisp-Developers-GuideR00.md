@@ -258,7 +258,109 @@ AutoLISP provides a number of functions for handling selection sets. The followi
 
 The ssget function provides the most general means of creating a selection set. It can create a selection set in one of the following ways: 1) Explicitly specifying the objects to select, using the Last, Previous, Window, Implied, Window Polygon, Crossing, Crossing Polygon, or Fence options; 2) Specifying a single point; 3) Selecting all objects in the database; 4) Prompting the user to select objects. With any option, you can use filtering to specify a list of properties and conditions that the selected objects must match.
 
-### 0105. 主题卡——修改 CAD 实体数据的基本思路
+### 0105. 主题卡——lisp 里数组过滤函数的实现
+
+1『太重要了，升级为主题卡，哈哈。这张主题卡摘自数据「2019117Practical-Common-LispR00.md」（2020-10-27）』
+
+Now suppose you want to wrap that whole expression in a function that takes the name of the artist as an argument. You can write that like this:
+
+```c
+(defun select-by-artist (artist) 
+  (remove-if-not 
+    #'(lambda (cd) (equal (getf cd :artist) artist)) 
+    *db*
+  )
+)
+```
+
+Note how the anonymous function, which contains code that won't run until it's invoked in REMOVE-IF-NOT, can nonetheless refer to the variable artist. In this case the anonymous function doesn't just save you from having to write a regular function--it lets you write a function that derives part of its meaning--the value of artist--from the context in which it's embedded.
+
+1-2-3『
+
+看到这里才意识到 `remove-if-not` 就是用来构造过滤函数的啊，这正式自己之前 PHP 里用的最多的 `array_filter` 函数，试着在 autolisp 的文档里搜了下，发现果然有 `vl-remove-if-not`，有了它的话，自己很多很多的功能开发都可以基于它变得简洁优雅，简直是捡到金子了，哈哈。做一张术语卡片。（2020-10-22）
+
+[vl-remove-if-not (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-53D12042-8DE3-4DAA-83BD-8ABB376ACA97)
+
+Returns all elements of the supplied list that pass the test function.
+
+```c
+(vl-remove-if-not predicate-function lst)
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts a single argument and returns T for any user-specified condition. The predicate-function value can take one of the following forms:
+
+```c
+A symbol (function name)
+'(LAMBDA (A1 A2) ...)
+(FUNCTION (LAMBDA (A1 A2) ...))
+```
+
+lst. Type: List. A list to be tested.
+
+Return Values. Type: List or nil.
+
+A list containing all elements of lst for which predicate-function returns a non-nil value
+
+```c
+(vl-remove-if-not 'vl-symbolp (list pi t 0 "abc"))
+(T)
+```
+
+自己写了个例子：
+
+```c
+(vl-remove-if-not 
+  '(lambda (x) (= x 2)) 
+  '(1 2 3 4)
+)
+```
+
+返回元素为 2 的列表 `(2)`。
+
+vl-remove-if (AutoLISP). Returns all elements of the supplied list that fail the test function.
+
+```c
+(vl-remove-if 'vl-symbolp (list pi t 0 "abc"))
+(3.14159 0 "abc")
+```
+
+vl-remove (AutoLISP). Removes elements from a list.
+
+```c
+(vl-remove element-to-remove lst)
+```
+
+element-to-remove. Type: Integer, Real, String, List, File, Ename (entity name), T, or nil. The value of the element to be removed; may be any LISP data type.
+
+lst. Type: List. Any list.
+
+Return Values. Type: List or nil. The lst with all elements except those equal to element-to-remove.
+
+```c
+(vl-remove pi (list pi t 0 "abc"))
+(T 0 "abc")
+```
+
+vl-member-if-not (AutoLISP). Determines if the predicate is nil for one of the list members.
+
+```c
+(vl-member-if-not predicate-function lst)
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts a single argument and returns T for any user-specified condition. The predicate-function value can take one of the following forms:
+
+Return Values. Type: List or nil. A list, starting with the first element that fails the test and containing all elements following this in the original argument. If none of the elements fails the test condition, vl-member-if-not returns nil.
+
+Remarks: The vl-member-if-not function passes each element in lst to the function specified in predicate-function. If the function returns nil, vl-member-if-not returns the rest of the list in the same manner as the member function.
+
+```c
+(vl-member-if-not 'atom '(1 "Str" (0 . "line") nil t))
+((0 . "line") nil T)
+```
+
+1「函数 `vl-member-if-not` 目前没吃透，不过直觉上感觉有大用途。（2020-10-22）」
+
+』
 
 ### 0106. 主题卡——list 映射处理的几个函数
 
@@ -587,6 +689,8 @@ Further Reading
 If this tutorial has sparked your interest in all things mapcar and lambda, the following publication from the Autodesk University written by Darren Young also provides an outline of mapcar, lambda and the apply function: LISP: Advance Yourself Beyond A Casual Programmer.
 
 1-2『感觉又捡到金子了，已下载「附件1-CP401-1-Lisp-Advance-Yourself」作为本书的附件。』
+
+### 0107. 主题卡——修改 CAD 实体数据的基本思路
 
 ### 0201. 术语卡——DXF group codes
 
@@ -919,6 +1023,195 @@ If the variable a is set to the value-10, this returns 10. As shown, cond can be
 
 cond 语句感觉还是很有用的，类似于其他语言里的 case 语句，多个不同的场景返回不同的值，这个场景可以通过 cond 来实现。看到这些例子，发现一般最后一条语句采用 `T` 结合默认结果来收尾。做一张术语卡片。（2020-10-27）——已完成
 
+### 0208. 术语卡——递归
+
+Recursion in programming is essentially the same thing, it's when a program calls itself. Of course, unlike the television picture that goes on and on forever, with recursive programming, you need to have an “out” or your program would just go on forever and ever in an endless loop until your software or computer ran out of memory.
+
+It's a difficult concept to grasp beyond the basic definition of “a program that calls itself”. Anyone can understand that, but wrapping your head around how you'd use such a technique in your programs is a little more mind numbing. So to get you thinking about it and understanding it, let's look at a few examples, which might get you thinking about how you can apply this from a programming perspective.
+
+Suppose you built a machine that has one conveyor that fed into it, and one that fed out of it. The machine, removes cardboard boxes to reveal the contents of the box. Boxes move down the in feed conveyor, into the machine, the cardboard box is removed, and the contents come out on the exit conveyor. Now, what would happen if one of the boxes contained more cardboard boxes? As the machine processed the big box that had more, smaller cardboard boxes inside, it stopped accepting big boxes from the feed conveyor. It then took the smaller boxes, and fed those back into the machine again. The machine then stripped the cardboard off the small boxes, except one of those contained even more tiny boxes. The small boxes stopped feeding into the machine, and the tiny boxes went back in. When all the tiny boxes finished going into the machine, the small boxes started again, and when all those were done, the large boxes started again. This process that the machine we built was performing, can be thought of as recursion.
+
+Now instead of a conveyor of boxes, think of data in a List. Maybe the List has strings, integers, real numbers. Maybe some of the items are Lists and some of those may or may not contain Lists. How would you process this data not knowing how deep it was nested? you'd build a recursive function that processed the List, and when it encountered a nested List inside of the List, it would halt processing the List (temporarily), while it called itself and handled the nested List and when finished with the nested List, it would continue with the main list.
+
+Another good example is a program that processes folders on your hard drive and finds files. You can point it to a folder, but does that folder contain more folders? And do those folders contain more folders? And are files scattered through out at all levels within those “unknown” levels of sub-folders? This would be a good case for using recursion. This is the essence of recursive programming. Anytime you have an unknown set of potentially nested conditions or processes you need to perform, or data you need to examine, recursive programming can come to the rescue.
+
+Calling the above code (factorial4 4) will do the same thing as the recursive example. Except in this case, instead of calling itself, it calls a completely different function that's almost identical. As you can see, a lot of the code is the same. And the “unknown” nature of not knowing how many times (how deep is it nested) makes this a good application for recursion.
+
+1『判断何时应该使用递归的办法，遇到那种自己都不知道要计算多少次的场景时，自己要有意识的想想能不能用递归函数来实现。（2020-10-27）』
+
+Now that you've seen a couple examples, it's really not that hard. In fact, the hardest part of writing a program that uses recursion, is to make sure the program has an “out” or at some point stops processing and doesn't just blindly call itself forever. But it takes a while; you won't be an expert just by reading this. You'll become and expert only after using this technique many times. To help you with this, Here's a little sample code. This code was posted to the AutoCAD's Customization discussion group. It was created by Owen Wengerd ([ManuSoft Home](http://www.manusoft.com/) & [Cadlock.com](http://ww1.cadlock.com/)) and is a very good example of short, well-written recursive program.
+
+```c
+(defun Str+ (source / prefix rchar) 
+  (cond 
+    ((= source "") "A") 
+    ((= (setq prefix (substr source 1 (1- (strlen source))) 
+              rchar (substr source (strlen source))
+        ) 
+        "Z"
+     ) 
+     (strcat (Str+ prefix) "A") 
+    ) 
+    ((strcat prefix (chr (1+ (ascii rchar)))))
+  )
+)
+```
+
+What this codes does, it takes a string character and increments it. Its intent is to generate the next revision letter based in the current revision. So Let's say your drawing is at revision “B”, calling the function (str+ “B”) would return “C”. Calling the program with (str+ “C”) would return “D” and so on. that's not that hard in itself, and you wouldn't need recursion to perform it. But what happens when you get to revision “Z” and need to go to “AA” or you're at revision “AZ” and need to go to “BA”. This program handles that and that's where the recursion comes in. So your homework when you get back to your office is to slice and dice this program up and see how it works. Play with it a little and see if you can truly understand what it's doing. And if you're really ambitious, try modifying the program so that it works as described, but does Not use the letters “O” (oh) and “I” (eye) which resemble 0 (zero) and 1 (one). Use the following lines to make notes on recursion, this class or how you might use it in your own environment.
+
+### 0209. 术语卡——vl-some 和 vl-every 函数
+
+The fact that we're dealing with numbers in this example, means that it would really not be that hard to create a loop with a few counter variables to perform this same calculation. But not all cases would be that easy. Let's look at another example that deals with nested lists…
+
+```c
+(setq mylist '(1 2 3 (4 5 (6 7 (8 9) 10) 11) 12 13 (14 15 (16)))) 
+
+(defun item-in-list (L I) 
+  (vl-some '(lambda (x) 
+              (cond 
+                ((= x I) T) 
+                ((= (type x) 'LIST) (item-in-list x I)) 
+                (T nil))
+            ) 
+            L
+  )
+)
+```
+
+The code in this example looks for a user specified item within a list. The AutoLISP function (member) typically handles this type of need. But if the list contains other nested lists, (member) just doesn't do it anymore. In this case, we're using a function called (vl-some). This function takes a quoted function, just like (apply) or (mapcar). The purpose of (vl-some) is to return T if the function evaluates to T for at least 1 (one) item in the list. If the function evaluates to NIL for all items, it returns NIL. it's the perfect function for our needs. Next, we build our function. Just like (mapcar), (vl-some) will be handed each item in the list, one at a time. Your function then needs to check if that item matches what we're looking for. that's not hard. But what if the list item, is another list? Our function must also check for that, and if the list item is another list, it calls itself again to process the nested list. Now, (vl-some) itself isn't looking for our item, our (lambda) function is doing that. What (vl-some) does is looks for T or NIL and it returns T or NIL. (lambda) is pasting the T and/or NILs to (vl-some).
+
+1-2-3『
+
+看到 `vl-some` 后印象中「JS 忍者秘籍」讲数组操作的那章有一个函数功能相同，去查了下是 `some` 函数，顺带看到 JS 里配套的一个 `every` 函数，果然又在 autolisp 里查到 `vl-every` 函数，哈哈。相关知识做一张术语卡。（2020-10-27） ——已完成
+
+忍者秘籍里：
+
+测试数组，元素处理集合的元素时，常常遇到需要知道数组的全部元素或部分元素是否满足某些条件。为了尽可能有效地编写这段代码，JavaScript 数组具有内置的 every 和 some 方法，如清单 9.8 所示。1）every 方法接收回调函数，对集合中的每个 ninja 对象检查是否含有 name 属性。当且仅当全部的回调函数都返回 true 时，every 方法才返回 true，否则返回 false。
+
+```js
+var allNinjasAreNamed = ninjas.every(ninja => "name" in ninja);
+```
+
+some 方法从数组的第 1 项开始执行回调函数，直到回调函数返回 true。如果有一项元素执行回调函数时，返回 true, some 方法返回 true；否则，some 方法返回 false。
+
+```js
+const someNinjasAreArmed = ninjas.some(ninja => "weapon" in ninja);
+```
+
+[vl-every (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-8BF61C9E-1382-4168-A778-FEA394A361CC)
+
+Checks whether the predicate is true for every element combination.
+
+```c
+(vl-every predicate-function list [list ...])
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts as many arguments as there are lists provided with vl-every, and returns T on any user-specified condition. The predicate-function value can take one of the following forms:
+
+```c
+A symbol (function name)
+'(LAMBDA (A1 A2) ...)
+(FUNCTION (LAMBDA (A1 A2) ...))
+```
+
+list. Type: List. A list to be tested.
+
+Return Values. Type: T or nil. T, if predicate-function returns a non-nil value for every element combination; otherwise nil.
+
+Remarks. The `vl-every` function passes the first element of each supplied list as an argument to the test function, followed by the next element from each list, and so on. Evaluation stops as soon as one of the lists runs out.
+
+Examples
+
+Check whether there are any empty files in the current directory:
+
+```c
+(vl-every
+'(lambda (fnm) (> (vl-file-size fnm) 0))
+   (vl-directory-files nil nil 1))
+T
+```
+
+Check whether the list of numbers in nlst is ordered by `'<=`:
+
+```
+(setq nlst (list 0 2 pi pi 4))
+(0 2 3.14159 3.14159 4)
+
+(vl-every '<= nlst (cdr nlst))
+T
+```
+
+1『这个实现好，判断一个数组是否排好了序，直觉上以后肯定会遇到这个功能。（2020-10-27）』
+
+Compare the results of the following expressions:
+
+```c
+(vl-every '= '(1 2) '(1 3))
+nil
+
+(vl-every '= '(1 2) '(1 2 3))
+T
+```
+
+The first expression returned nil because vl-every compared the second element in each list and they were not numerically equal. The second expression returned T because vl-every stopped comparing elements after it had processed all the elements in the shorter list (1 2), at which point the lists were numerically equal. If the end of a list is reached, vl-every returns a non-nil value.
+
+The following example demonstrates the result when vl-every evaluates one list that contains integer elements and another list that is nil:
+
+```c
+(setq alist (list 1 2 3 4))
+(1 2 3 4)
+
+(setq junk nil)
+nil
+
+(vl-every '= junk alist)
+T
+```
+
+The return value is T because vl-every responds to the nil list as if it has reached the end of the list (even though the predicate has not yet been applied to any elements). And since the end of a list has been reached, vl-every returns a non-nil value.
+
+[vl-some (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-2840F793-DA88-4140-8A9D-EBAC47B62F9D)
+
+Checks whether the predicate is not nil for one element combination.
+
+```c
+(vl-some predicate-function lst [lst ...])
+```
+
+predicate-function. Type: Subroutine or Symbol. The test function. This can be any function that accepts as many arguments as there are lists provided with vl-some, and returns T on a user-specified condition. The predicate-function value can take one of the following forms:
+
+lst. Type: List. A list to be tested.
+
+Return Values. Type: List or nil.
+
+The predicate value, if predicate-function returned a value other than nil; otherwise nil.
+
+Remarks. The vl-some function passes the first element of each supplied list as an argument to the test function, then the next element from each list, and so on. Evaluation stops as soon as the predicate function returns a non-nil value for an argument combination, or until all elements have been processed in one of the lists.
+
+Examples
+
+The following example checks whether nlst (a number list) has equal elements in sequence:
+
+```c
+(setq nlst (list 0 2 pi pi 4))
+(0 2 3.14159 3.14159 4)
+
+(vl-some '= nlst (cdr nlst))
+T
+```
+
+自己写了一个例子：
+
+```c
+(defun foo () 
+  (vl-some '(lambda (x) (= x 2)) 
+    '(1 3 4 5 2)
+  )
+)
+```
+
+』
+
 ### 0301. 任意卡——MNL 源文件
 
 AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
@@ -927,7 +1220,7 @@ AutoLISP source code can also be stored in files with a .mnl extension. A Menu A
 
 For example, on Windows, when acad.cuix is loaded, the file named acad.mnl is also loaded if it is found in one of the folders listed as part of the AutoCAD Support File Search Path. If a CUIx file does not have a corresponding MNL file, no error is displayed, the product just moves and loading other support files.
 
-### 0302. 任意卡——quote (‘) 与使用 list 函数创建 list 数据的区别
+### 0302. 任意卡——quote (') 与使用 list 函数创建 list 数据的区别
 
 The latter uses the value of variable abc as the X component of the point list. If all members of a list are constant values, you can use the quote function to explicitly define the list, rather than the list function. The quote function returns an expression without evaluation, as follows:
 
@@ -1062,7 +1355,6 @@ NOT returns true if it's argument is false and returns false if it's argument is
 ```
 (setq ename (handent "5a2"))
 ```
-
 
 ## 实战经验汇总
 
@@ -1375,6 +1667,54 @@ The vl-catch-all-apply function traps the error and returns an error object. Use
 1『看到这里基本上也理解了 `apply` 函数的用法，哈哈。（2020-10-26）』
 
 测试框架里用 `vl-catch-all-apply` 重构后，再使用 `(AssertEqual 'GetIndexforSearchMemberInListUtils (list "PL1101" (list "PL1101" "PL1102")) 0)` 跑测试就 OK 了。
+
+## 问题记录
+
+### 01. 编码问题
+
+最大的问题是编码，导出的无论是 txt 还 csv 电脑里打开是好的，上到服务器中文是乱码，cad 默认出来的是 gb2312 编码的，弄了好久好久才解决。
+
+[用 lisp 调用 vb 把 ANSI 编码的文件转换成UTF-8 - AutoLISP/Visual LISP 编程技术 - CAD论坛 - 明经CAD社区 - Powered by Discuz!](http://bbs.mjtd.com/thread-82886-1-1.html)
+
+### 02. VLAX-GET-ACAD-OBJECT
+
+自己电脑上跑没问题，但在公司电脑上跑（包括公司里其他人的电脑），报错：
+
+```
+error: no function definition: VLAX-GET-ACAD-OBJECT
+```
+
+解决方案：[error: no function definition: VLAX-GET-ACAD-OBJECT - AutoLISP, Visual LISP & DCL - AutoCAD Forums](https://www.cadtutor.net/forum/topic/19261-error-no-function-definition-vlax-get-acad-object/)
+
+文件开始的地方（函数之外）加下面一行代码：
+
+```
+(vl-load-com)
+```
+
+目前放在命令说明的语句下面的。
+
+回复：看到官方文档才明白为什么会出现这个 bug。因为自己的代码里会用到 ActiveX 相关的支持，得靠这个语句来加载关联上。
+
+[Pomoc: vl-load-com (AutoLISP/ActiveX)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-6C7A8632-C12F-42BD-909E-68D804863AE2)
+
+Loads the extended AutoLISP functions related to ActiveX support.
+
+```c
+(vl-load-com)
+```
+
+No arguments.
+
+Return Values. Type: nil. Always returns nil.
+
+Remarks. This function loads the extended functions that implement ActiveX and AutoCAD reactor support for AutoLISP, and also provide ActiveX utility and data conversion, dictionary handling, and curve measurement functions. If the extensions are already loaded, vl-load-com does nothing.
+
+### 03. 仪表属性块内增加安装位置尺寸和方向属性后无法提取
+
+弄了半天才解决，奇怪的是发现仅仅是因为顺序的问题，把之前最后的正常流量拿到前面去，必须先安装尺寸再安装的方向。
+
+回复：目前找到的原因（不是很确定），lisp 里提取各个属性的顺序只要保持跟 cad 块中各属性的顺序相同即可。（2020-07-27）
 
 ## 0101Introduction.md
 
