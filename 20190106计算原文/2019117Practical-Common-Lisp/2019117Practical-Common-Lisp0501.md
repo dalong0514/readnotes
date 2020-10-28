@@ -6,11 +6,13 @@ The bulk of Lisp itself consists of functions. More than three quarters of the n
 
 And, despite the importance of macros to The Lisp Way, in the end all real functionality is provided by functions. Macros run at compile time, so the code they generate--the code that will actually make up the program after all the macros are expanded--will consist entirely of calls to functions and special operators. Not to mention, macros themselves are also functions, albeit functions that are used to generate code rather than to perform the actions of the program.1
 
-Defining New Functions
+## 5.1 Defining New Functions
 
 Normally functions are defined using the DEFUN macro. The basic skeleton of a DEFUN looks like this:
 
+```c
 (defun name (parameter*) "Optional documentation string." body-form*)
+```
 
 Any symbol can be used as a function name.2 Usually function names contain only alphabetic characters and hyphens, but other characters are allowed and are used in certain naming conventions. For instance, functions that convert one kind of value to another sometimes use -> in the name. For example, a function to convert strings to widgets might be called string->widget. The most important naming convention is the one mentioned in Chapter 2, which is that you construct compound names with hyphens rather than underscores or inner caps. Thus, frob-widget is better Lisp style than either frob_widget or frobWidget.
 
@@ -34,7 +36,7 @@ The following is a slightly more complex function:
 
 This function is named verbose-sum, takes two arguments that will be bound to the parameters x and y, has a documentation string, and has a body consisting of two expressions. The value returned by the call to + becomes the return value of verbose-sum.
 
-Function Parameter Lists
+## 5.2 Function Parameter Lists
 
 There's not a lot more to say about function names or documentation strings, and it will take a good portion of the rest of this book to describe all the things you can do in the body of a function, which leaves us with the parameter list.
 
@@ -42,7 +44,7 @@ The basic purpose of a parameter list is, of course, to declare the variables th
 
 However, Common Lisp's parameter lists also give you more flexible ways of mapping the arguments in a function call to the function's parameters. In addition to required parameters, a function can have optional parameters. Or a function can have a single parameter that's bound to a list containing any extra arguments. And, finally, arguments can be mapped to parameters using keywords rather than position. Thus, Common Lisp's parameter lists provide a convenient solution to several common coding problems.
 
-Optional Parameters
+## 5.3 Optional Parameters
 
 While many functions, like verbose-sum, need only required parameters, not all functions are quite so simple. Sometimes a function will have a parameter that only certain callers will care about, perhaps because there's a reasonable default value. An example is a function that creates a data structure that can grow as needed. Since the data structure can grow, it doesn't matter--from a correctness point of view--what the initial size is. But callers who have a good idea how many items they're going to put into the data structure may be able to improve performance by specifying a specific initial size. Most callers, though, would probably rather let the code that implements the data structure pick a good general-purpose value. In Common Lisp you can accommodate both kinds of callers by using an optional parameter; callers who don't care will get a reasonable default, and other callers can provide a specific value.5
 
@@ -78,7 +80,7 @@ This gives results like this:
 
 (foo 1 2) ==> (1 2 3 NIL) (foo 1 2 3) ==> (1 2 3 T) (foo 1 2 4) ==> (1 2 4 T)
 
-Rest Parameters
+## 5.4 Rest Parameters
 
 Optional parameters are just the thing when you have discrete parameters for which the caller may or may not want to provide values. But some functions need to take a variable number of arguments. Several of the built-in functions you've seen already work this way. FORMAT has two required arguments, the stream and the control string. But after that it needs a variable number of arguments depending on how many values need to be interpolated into the control string. The + function also takes a variable number of arguments--there's no particular reason to limit it to summing just two numbers; it will sum any number of values. (It even works with zero arguments, returning 0, the identity under addition.) The following are all legal calls of those two functions:
 
@@ -90,7 +92,7 @@ Instead, Lisp lets you include a catchall parameter after the symbol &rest. If a
 
 (defun format (stream string &rest values) ...) (defun + (&rest numbers) ...)
 
-Keyword Parameters
+## 5.5 Keyword Parameters
 
 Optional and rest parameters give you quite a bit of flexibility, but neither is going to help you out much in the following situation: Suppose you have a function that takes four optional parameters. Now suppose that most of the places the function is called, the caller wants to provide a value for only one of the four parameters and, further, that the callers are evenly divided as to which parameter they will use.
 
@@ -122,7 +124,7 @@ lets the caller call it like this:
 
 This style is mostly useful if you want to completely decouple the public API of the function from the internal details, usually because you want to use short variable names internally but descriptive keywords in the API. It's not, however, very frequently used.
 
-Mixing Different Parameter Types
+## 5.6 Mixing Different Parameter Types
 
 It's possible, but rare, to use all four flavors of parameters in a single function. Whenever more than one flavor of parameter is used, they must be declared in the order I've discussed them: first the names of the required parameters, then the optional parameters, then the rest parameter, and finally the keyword parameters. Typically, however, in functions that use multiple flavors of parameters, you'll combine required parameters with one other flavor or possibly combine &optional and &rest parameters. The other two combinations, either &optional or &rest parameters combined with &key parameters, can lead to somewhat surprising behavior.
 
@@ -154,7 +156,7 @@ you get this result:
 
 (foo :a 1 :b 2 :c 3) ==> ((:A 1 :B 2 :C 3) 1 2 3)
 
-Function Return Values
+## 5.7 Function Return Values
 
 All the functions you've written so far have used the default behavior of returning the value of the last expression evaluated as their own return value. This is the most common way to return a value from a function.
 
@@ -168,7 +170,7 @@ The following function uses nested loops to find the first pair of numbers, each
 
 Admittedly, having to specify the name of the function you're returning from is a bit of a pain--for one thing, if you change the function's name, you'll need to change the name used in the RETURN-FROM as well.8 But it's also the case that explicit RETURN-FROMs are used much less frequently in Lisp than return statements in C-derived languages, because all Lisp expressions, including control constructs such as loops and conditionals, evaluate to a value. So it's not much of a problem in practice.
 
-Functions As Data, a.k.a. Higher-Order Functions
+## 5.8 Functions As Data, a.k.a. Higher-Order Functions
 
 While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data.9
 
@@ -220,7 +222,7 @@ As a further convenience, APPLY can also accept "loose" arguments as long as the
 
 APPLY doesn't care about whether the function being applied takes &optional, &rest, or &key arguments--the argument list produced by combining any loose arguments with the final list must be a legal argument list for the function with enough arguments for all the required parameters and only appropriate keyword parameters.
 
-Anonymous Functions
+## 5.9 Anonymous Functions
 
 Once you start writing, or even simply using, functions that accept other functions as arguments, you're bound to discover that sometimes it's annoying to have to define and name a whole separate function that's used in only one place, especially when you never call it by name.
 
@@ -251,49 +253,3 @@ But it's easier, and arguably clearer, to write this:
 CL-USER> (plot #'(lambda (x) (* 2 x)) 0 10 1) ** **** ****** ******** ********** ************ ************** **************** ****************** ******************** NIL
 
 The other important use of LAMBDA expressions is in making closures, functions that capture part of the environment where they're created. You used closures a bit in Chapter 3, but the details of how closures work and what they're used for is really more about how variables work than functions, so I'll save that discussion for the next chapter.
-
-* * *
-
-1Despite the importance of functions in Common Lisp, it isn't really accurate to describe it as a functional language. It's true some of Common Lisp's features, such as its list manipulation functions, are designed to be used in a body-form* style and that Lisp has a prominent place in the history of functional programming--McCarthy introduced many ideas that are now considered important in functional programming--but Common Lisp was intentionally designed to support many different styles of programming. In the Lisp family, Scheme is the nearest thing to a "pure" functional language, and even it has several features that disqualify it from absolute purity compared to languages such as Haskell and ML.
-
-2Well, almost any symbol. It's undefined what happens if you use any of the names defined in the language standard as a name for one of your own functions. However, as you'll see in Chapter 21, the Lisp package system allows you to create names in different namespaces, so this isn't really an issue.
-
-3Parameter lists are sometimes also called lambda lists because of the historical relationship between Lisp's notion of functions and the lambda calculus.
-
-4For example, the following:
-
-(documentation 'foo 'function)
-
-returns the documentation string for the function foo. Note, however, that documentation strings are intended for human consumption, not programmatic access. A Lisp implementation isn't required to store them and is allowed to discard them at any time, so portable programs shouldn't depend on their presence. In some implementations an implementation-defined variable needs to be set before it will store documentation strings.
-
-5In languages that don't support optional parameters directly, programmers typically find ways to simulate them. One technique is to use distinguished "no-value" values that the caller can pass to indicate they want the default value of a given parameter. In C, for example, it's common to use NULL as such a distinguished value. However, such a protocol between the function and its callers is ad hoc--in some functions or for some arguments NULL may be the distinguished value while in other functions or for other arguments the magic value may be -1 or some #defined constant.
-
-6The constant CALL-ARGUMENTS-LIMIT tells you the implementation-specific value.
-
-7Four standard functions take both &optional and &key arguments--READ-FROM-STRING, PARSE-NAMESTRING, WRITE-LINE, and WRITE-STRING. They were left that way during standardization for backward compatibility with earlier Lisp dialects. READ-FROM-STRING tends to be the one that catches new Lisp programmers most frequently--a call such as (read-from-string s :start 10) seems to ignore the :start keyword argument, reading from index 0 instead of 10. That's because READ-FROM-STRING also has two &optional parameters that swallowed up the arguments :start and 10.
-
-8Another macro, RETURN, doesn't require a name. However, you can't use it instead of RETURN-FROM to avoid having to specify the function name; it's syntactic sugar for returning from a block named NIL. I'll cover it, along with the details of BLOCK and RETURN-FROM, in Chapter 20.
-
-9Lisp, of course, isn't the only language to treat functions as data. C uses function pointers, Perl uses subroutine references, Python uses a scheme similar to Lisp, and C# introduces delegates, essentially typed function pointers, as an improvement over Java's rather clunky reflection and anonymous class mechanisms.
-
-10The exact printed representation of a function object will differ from implementation to implementation.
-
-11The best way to think of FUNCTION is as a special kind of quotation. QUOTEing a symbol prevents it from being evaluated at all, resulting in the symbol itself rather than the value of the variable named by that symbol. FUNCTION also circumvents the normal evaluation rule but, instead of preventing the symbol from being evaluated at all, causes it to be evaluated as the name of a function, just the way it would if it were used as the function name in a function call expression.
-
-12There's actually a third, the special operator MULTIPLE-VALUE-CALL, but I'll save that for when I discuss expressions that return multiple values in Chapter 20.
-
-13In Common Lisp it's also possible to use a LAMBDA expression as an argument to FUNCALL (or some other function that takes a function argument such as SORT or MAPCAR) with no #' before it, like this:
-
-(funcall (lambda (x y) (+ x y)) 2 3)
-
-This is legal and is equivalent to the version with the #' but for a tricky reason. Historically LAMBDA expressions by themselves weren't expressions that could be evaluated. That is LAMBDA wasn't the name of a function, macro, or special operator. Rather, a list starting with the symbol LAMBDA was a special syntactic construct that Lisp recognized as a kind of function name.
-
-But if that were still true, then (funcall (lambda (...) ...)) would be illegal because FUNCALL is a function and the normal evaluation rule for a function call would require that the LAMBDA expression be evaluated. However, late in the ANSI standardization process, in order to make it possible to implement ISLISP, another Lisp dialect being standardized at the same time, strictly as a user-level compatibility layer on top of Common Lisp, a LAMBDA macro was defined that expands into a call to FUNCTION wrapped around the LAMBDA expression. In other words, the following LAMBDA expression:
-
-(lambda () 42)
-
-exands into the following when it occurs in a context where it evaluated:
-
-(function (lambda () 42)) ; or #'(lambda () 42)
-
-This makes its use in a value position, such as an argument to FUNCALL, legal. In other words, it's pure syntactic sugar. Most folks either always use #' before LAMBDA expressions in value positions or never do. In this book, I always use #'.

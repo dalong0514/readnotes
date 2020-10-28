@@ -347,4 +347,3 @@ However, most of the time you work with lists you won't have to deal with indivi
 (list 1) ==> (1) (list 1 2) ==> (1 2) (list 1 2 3) ==> (1 2 3)
 
 Similarly, when you're thinking in terms of lists, you don't have to use the meaningless names CAR and CDR; FIRST and REST are synonyms for CAR and CDR that you should use when you're dealing with cons cells as lists.
-

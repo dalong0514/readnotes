@@ -123,11 +123,15 @@ All other atoms--numbers and strings are the kinds you've seen so far--are self-
 
 It's also possible for symbols to be self-evaluating in the sense that the variables they name can be assigned the value of the symbol itself. Two important constants that are defined this way are T and NIL, the canonical true and false values. I'll discuss their role as booleans in the section "Truth, Falsehood, and Equality."
 
-Another class of self-evaluating symbols are the keyword symbols--symbols whose names start with :. When the reader interns such a name, it automatically defines a constant variable with the name and with the symbol as the value.
+Another class of self-evaluating symbols are the keyword symbols--symbols whose names start with `:`. When the reader interns such a name, it automatically defines a constant variable with the name and with the symbol as the value.
+
+1-2『这里提到的 symbols whose names start with `:`，目前没看到应用场景，有时间去研究一下。（2020-10-28）』——未完成
 
 Things get more interesting when we consider how lists are evaluated. All legal list forms start with a symbol, but three kinds of list forms are evaluated in three quite different ways. To determine what kind of form a given list is, the evaluator must determine whether the symbol that starts the list is the name of a function, a macro, or a special operator. If the symbol hasn't been defined yet--as may be the case if you're compiling code that contains references to functions that will be defined later--it's assumed to be a function name. 12 I'll refer to the three kinds of forms as function call forms, macro forms, and special forms.
 
-9 Of course, other levels of correctness exist in Lisp, as in other languages. For instance, the s-expression that results from reading (foo 1 2) is syntactically well-formed but can be evaluated only if foo is the name of a function or macro.
+2『三大类 list 的处理方式：函数、宏和操作符。做一张任意卡片。』——已完成
+
+9 Of course, other levels of correctness exist in Lisp, as in other languages. For instance, the s-expression that results from reading `(foo 1 2)` is syntactically well-formed but can be evaluated only if foo is the name of a function or macro.
 
 10 One other rarely used kind of Lisp form is a list whose first element is a lambda form. I’ll discuss this kind of form in Chapter 5.
 
@@ -164,10 +168,15 @@ As these examples show, functions are used for many of the things that require s
 That said, not all operations can be defined as functions. Because all the arguments to a function are evaluated before the function is called, there's no way to write a function that behaves like the IF operator you used in Chapter 3. To see why, consider this form:
 
 ```c
-(if x (format t "yes") (format t "no"))
+(if x 
+  (format t "yes") 
+  (format t "no")
+)
 ```
 
-If IF were a function, the evaluator would evaluate the argument expressions from left to right. The symbol x would be evaluated as a variable yielding some value; then (format t "yes") would be evaluated as a function call, yielding NIL after printing "yes" to standard output. Then (format t "no") would be evaluated, printing "no" and also yielding NIL. Only after all three expressions were evaluated would the resulting values be passed to IF, too late for it to control which of the two FORMAT expressions gets evaluated.
+If IF were a function, the evaluator would evaluate the argument expressions from left to right. The symbol x would be evaluated as a variable yielding some value; then `(format t "yes")` would be evaluated as a function call, yielding NIL after printing "yes" to standard output. Then `(format t "no")` would be evaluated, printing "no" and also yielding NIL. Only after all three expressions were evaluated would the resulting values be passed to IF, too late for it to control which of the two FORMAT expressions gets evaluated.
+
+1『这里收获一个知识点：lisp 中调用函数语句的执行顺序，都是先执行（计算）形参列表里的 list 语句，在把结果传递给函数名所指向的函数。（2020-10-28）』
 
 To solve this problem, Common Lisp defines a couple dozen so-called special operators, IF being one, that do things that functions can't do. There are 25 in all, but only a small handful are used directly in day-to-day programming. 13
 
@@ -179,9 +188,7 @@ The rule for IF is pretty easy: evaluate the first expression. If it evaluates t
 (if test-form then-form [ else-form ])
 ```
 
-The test-form will always be evaluated and then one or the other of the then-form or else-form.
-
-An even simpler special operator is QUOTE, which takes a single expression as its "argument" and simply returns it, unevaluated. For instance, the following evaluates to the list (+ 1 2), not the value 3:
+The test-form will always be evaluated and then one or the other of the then-form or else-form. An even simpler special operator is QUOTE, which takes a single expression as its "argument" and simply returns it, unevaluated. For instance, the following evaluates to the list (+ 1 2), not the value 3:
 
 ```c
 (quote (+ 1 2))
@@ -201,6 +208,8 @@ you can write this:
 '(+ 1 2)
 ```
 
+1-2『特殊符号，撇号 `'` 的含义及使用，做一张术语卡片。下面注释 14 里也提到，用这种形式创建的 list 里，各个元素是只能是常量，不能变的元素，否者就乖乖用 `list` 语句来创建 list 数据类型。（2020-10-28）』——已完成
+
 This syntax is a small extension of the s-expression syntax understood by the reader. From the point of view of the evaluator, both those expressions will look the same: a list whose first element is the symbol QUOTE and whose second element is the list (+ 1 2). 15
 
 In general, the special operators implement features of the language that require some special processing by the evaluator. For instance, several special operators manipulate the environment in which other forms will be evaluated. One of these, which I'll discuss in detail in Chapter 6, is LET, which is used to create new variable bindings. The following form evaluates to 10 because the second x is evaluated in an environment where it's the name of a variable established by the LET with the value 10:
@@ -215,7 +224,7 @@ The others provide useful, but somewhat esoteric, features. I’ll discuss them 
 
 14 Well, one difference exists—literal objects such as quoted lists, but also including double-quoted strings, literal arrays, and vectors (whose syntax you’ll see later), must not be modified. Consequently, any lists you plan to manipulate you should create with LIST.
 
-15 This syntax is an example of a reader macro. Reader macros modify the syntax the reader uses to translate text into Lisp objects. It is, in fact, possible to define your own reader macros, but that’s a rarely used facility of the language. When most Lispers talk about “extending the syntax” of the language, they’re talking about regular macros, as I’ll discuss in a moment.
+15 This syntax is an example of a reader macro. Reader macros modify the syntax the reader uses to translate text into Lisp objects. It is, in fact, possible to define your own reader macros, but that’s a rarely used facility of the language. When most Lispers talk about “extending the syntax” of the language, they’re talking about regular macros, as I'll discuss in a moment.
 
 ## 4.7 Macros
 
@@ -230,28 +239,34 @@ I'll talk quite a bit more about macros throughout this book. For now the import
 16 People without experience using Lisp’s macros or, worse yet, bearing the scars of C preprocessorinflicted wounds, tend to get nervous when they realize that macro calls look like regular function calls. This turns out not to be a problem in practice for several reasons. One is that macro forms are usually formatted differently than function calls. For instance, you write the following:
 
 ```c
-(dolist (x foo) (print x))
+(dolist (x foo) 
+  (print x))
+```
 
 rather than this:
 
+```c
 (dolist (x foo) (print x))
 ```
 
 or this:
 
 ```c
-(dolist (x foo) (print x))
+(dolist (x foo) 
+            (print x))
 ```
 
-the way you would if DOLIST was a function. A good Lisp environment will automatically format macro calls correctly, even for user-defined macros.
+the way you would if DOLIST was a function. A good Lisp environment will automatically format macro calls correctly, even for user-defined macros. And even if a DOLIST form was written on a single line, there are several clues that it’s a macro. For one, the expression (x foo) is meaningful by itself only if x is the name of a function or macro. Combine that with the later occurrence of x as a variable, and it’s pretty suggestive that DOLIST is a macro that’s creating a binding for a variable named x. Naming conventions also helplooping constructs, which are invariably macros, are frequently given names starting with do.
 
 ## 4.8 Truth, Falsehood, and Equality
 
 Two last bits of basic knowledge you need to get under your belt are Common Lisp's notion of truth and falsehood and what it means for two Lisp objects to be "equal." Truth and falsehood are--in this realm--straightforward: the symbol NIL is the only false value, and everything else is true. The symbol T is the canonical true value and can be used when you need to return a non-NIL value and don't have anything else handy. The only tricky thing about NIL is that it's the only object that's both an atom and a list: in addition to falsehood, it's also used to represent the empty list. 17 This equivalence between NIL and the empty list is built into the reader: if the reader sees (), it reads it as the symbol NIL. They're completely interchangeable. And because NIL, as I mentioned previously, is the name of a constant variable with the symbol NIL as its value, the expressions nil, (), 'nil, and '() all evaluate to the same thing--the unquoted forms are evaluated as a reference to the constant variable whose value is the symbol NIL, but in the quoted forms the QUOTE special operator evaluates to the symbol directly. For the same reason, both t and 't will evaluate to the same thing: the symbol T.
 
-Using phrases such as "the same thing" of course begs the question of what it means for two values to be "the same." As you'll see in future chapters, Common Lisp provides a number of type-specific equality predicates: = is used to compare numbers, CHAR= to compare characters, and so on. In this section I'll discuss the four "generic" equality predicates--functions that can be passed any two Lisp objects and will return true if they're equivalent and false otherwise. They are, in order of discrimination, EQ, EQL, EQUAL, and EQUALP.
+1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil 做一张术语卡片。』——已完成
 
-EQ tests for "object identity"--two objects are EQ if they're identical. Unfortunately, the object identity of numbers and characters depends on how those data types are implemented in a particular Lisp. Thus, EQ may consider two numbers or two characters with the same value to be equivalent, or it may not. Implementations have enough leeway that the expression (eq 3 3) can legally evaluate to either true or false. More to the point, (eq x x) can evaluate to either true or false if the value of x happens to be a number or character.
+Using phrases such as "the same thing" of course begs the question of what it means for two values to be "the same." As you'll see in future chapters, Common Lisp provides a number of type-specific equality predicates: `=` is used to compare numbers, `CHAR=` to compare characters, and so on. In this section I'll discuss the four "generic" equality predicates--functions that can be passed any two Lisp objects and will return true if they're equivalent and false otherwise. They are, in order of discrimination, EQ, EQL, EQUAL, and EQUALP.
+
+EQ tests for "object identity"--two objects are EQ if they're identical. Unfortunately, the object identity of numbers and characters depends on how those data types are implemented in a particular Lisp. Thus, EQ may consider two numbers or two characters with the same value to be equivalent, or it may not. Implementations have enough leeway that the expression `(eq 3 3)` can legally evaluate to either true or false. More to the point, `(eq x x)` can evaluate to either true or false if the value of x happens to be a number or character.
 
 Thus, you should never use EQ to compare values that may be numbers or characters. It may seem to work in a predictable way for certain values in a particular implementation, but you have no guarantee that it will work the same way if you switch implementations. And switching implementations may mean simply upgrading your implementation to a new version--if your Lisp implementer changes how they represent numbers or characters, the behavior of EQ could very well change as well.
 
@@ -269,7 +284,7 @@ EQUAL loosens the discrimination of EQL to consider lists equivalent if they hav
 
 EQUALP is similar to EQUAL except it's even less discriminating. It considers two strings equivalent if they contain the same characters, ignoring differences in case. It also considers two characters equivalent if they differ only in case. Numbers are equivalent under EQUALP if they represent the same mathematical value. Thus, (equalp 1 1.0) is true. Lists with EQUALP elements are EQUALP; likewise, arrays with EQUALP elements are EQUALP. As with EQUAL, there are a few other data types that I haven't covered yet for which EQUALP can consider two objects equivalent that neither EQL nor EQUAL will. For all other data types, EQUALP falls back on EQL.
 
-17 And even if a DOLIST form was written on a single line, there are several clues that it’s a macro. For one, the expression (x foo) is meaningful by itself only if x is the name of a function or macro. Combine that with the later occurrence of x as a variable, and it’s pretty suggestive that DOLIST is a macro that’s creating a binding for a variable named x. Naming conventions also helplooping constructs, which are invariably macros, are frequently given names starting with do. 17. Using the empty list as false is a reflection of Lisp’s heritage as a list-processing language much as the use of the integer 0 as false in C is a reflection of its heritage as a bit-twiddling language. Not all Lisps handle boolean values the same way. Another of the many subtle differences upon which a good Common Lisp vs. Scheme flame war can rage for days is Scheme’s use of a distinct false value #f, which isn’t the same value as either the symbol nil or the empty list, which are also distinct from each other.
+17 Using the empty list as false is a reflection of Lisp’s heritage as a list-processing language much as the use of the integer 0 as false in C is a reflection of its heritage as a bit-twiddling language. Not all Lisps handle boolean values the same way. Another of the many subtle differences upon which a good Common Lisp vs. Scheme flame war can rage for days is Scheme’s use of a distinct false value #f, which isn’t the same value as either the symbol nil or the empty list, which are also distinct from each other.
 
 18 Even the language standard is a bit ambivalent about which of EQ or EQL should be preferred. Object identity is defined by EQ, but the standard defines the phrase the same when talking about objects to mean EQL unless another predicate is explicitly mentioned. Thus, if you want to be 100 percent technically correct, you can say that (- 3 2) and (- 4 3) evaluate to “the same” object but not that they evaluate to “identical” objects. This is, admittedly, a bit of an angels-onpinheads kind of issue.
 
@@ -278,13 +293,16 @@ EQUALP is similar to EQUAL except it's even less discriminating. It considers tw
 While code formatting is, strictly speaking, neither a syntactic nor a semantic matter, proper formatting is important to reading and writing code fluently and idiomatically. The key to formatting Lisp code is to indent it properly. The indentation should reflect the structure of the code so that you don't need to count parentheses to see what goes with what. In general, each new level of nesting gets indented a bit more, and, if line breaks are necessary, items at the same level of nesting are lined up. Thus, a function call that needs to be broken up across multiple lines might be written like this:
 
 ```c
-(some-function arg-with-a-long-name another-arg-with-an-even-longer-name)
+(some-function arg-with-a-long-name 
+                        another-arg-with-an-even-longer-name)
 ```
 
 Macro and special forms that implement control constructs are typically indented a little differently: the "body" elements are indented two spaces relative to the opening parenthesis of the form. Thus:
 
 ```c
-(defun print-list (list) (dolist (i list) (format t "item: ~a~%" i)))
+(defun print-list (list) 
+  (dolist (i list) 
+    (format t "item: ~a~%" i)))
 ```
 
 However, you don't need to worry too much about these rules because a proper Lisp environment such as SLIME will take care of it for you. In fact, one of the advantages of Lisp's regular syntax is that it's fairly easy for software such as editors to know how to indent it. Since the indentation is supposed to reflect the structure of the code and the structure is marked by parentheses, it's easy to let the editor indent your code for you.
@@ -293,30 +311,73 @@ In SLIME, hitting Tab at the beginning of each line will cause it to be indented
 
 Indeed, experienced Lisp programmers tend to rely on their editor handling indenting automatically, not just to make their code look nice but to detect typos: once you get used to how code is supposed to be indented, a misplaced parenthesis will be instantly recognizable by the weird indentation your editor gives you. For example, suppose you were writing a function that was supposed to look like this:
 
-(defun foo () (if (test) (do-one-thing) (do-another-thing)))
+```c
+(defun foo () 
+  (if (test) 
+    (do-one-thing) 
+    (do-another-thing)))
+```
 
 Now suppose you accidentally left off the closing parenthesis after test. Because you don't bother counting parentheses, you quite likely would have added an extra parenthesis at the end of the DEFUN form, giving you this code:
 
-(defun foo () (if (test (do-one-thing) (do-another-thing))))
+```c
+(defun foo () 
+  (if (test 
+        (do-one-thing) 
+        (do-another-thing))))
+```
 
 However, if you had been indenting by hitting Tab at the beginning of each line, you wouldn't have code like that. Instead you'd have this:
 
-(defun foo () (if (test (do-one-thing) (do-another-thing))))
+```c
+(defun foo () 
+  (if (test 
+        (do-one-thing) 
+        (do-another-thing))))
+```
 
 Seeing the then and else clauses indented way out under the condition rather than just indented slightly relative to the IF shows you immediately that something is awry.
 
 Another important formatting rule is that closing parentheses are always put on the same line as the last element of the list they're closing. That is, don't write this:
 
-(defun foo () (dotimes (i 10) (format t "~d. hello~%" i) ) )
+```c
+(defun foo () 
+  (dotimes (i 10) 
+    (format t "~d. hello~%" i) 
+  ) 
+)
+```
+
+1『我个人一直采用上面的代码风格。（2020-10-28）』
 
 but instead write this:
 
-(defun foo () (dotimes (i 10) (format t "~d. hello~%" i)))
+```c
+(defun foo () 
+  (dotimes (i 10) 
+    (format t "~d. hello~%" i)))
+```
 
 The string of )))s at the end may seem forbidding, but as long your code is properly indented the parentheses should fade away--no need to give them undue prominence by spreading them across several lines.
 
 Finally, comments should be prefaced with one to four semicolons depending on the scope of the comment as follows:
 
-;;;; Four semicolons are used for a file header comment. ;;; A comment with three semicolons will usually be a paragraph ;;; comment that applies to a large section of code that follows, (defun foo (x) (dotimes (i x) ;; Two semicolons indicate this comment applies to the code ;; that follows. Note that this comment is indented the same ;; as the code that follows. (some-function-call) (another i) ; this comment applies to this line only (and-another) ; and this is for this line (baz)))
+```
+;;;; Four semicolons are used for a file header comment. 
+;;; A comment with three semicolons will usually be a paragraph
+;;; comment that applies to a large section of code that follows, 
+
+(defun foo (x) 
+  (dotimes (i x) 
+    ;; Two semicolons indicate this comment applies to the code 
+    ;; that follows. Note that this comment is indented the same 
+    ;; as the code that follows. 
+    (some-function-call) 
+    (another i) ; this comment applies to this line only 
+    (and-another) ; and this is for this line 
+    (baz))
+  )
+)
+```
 
 Now you're ready to start looking in greater detail at the major building blocks of Lisp programs, functions, variables, and macros. Up next: functions.

@@ -291,21 +291,3 @@ However, the implementation of once-only is a bit too involved for a blow-by-blo
 Beyond Simple Macros
 
 I could, of course, say a lot more about macros. All the macros you've seen so far have been fairly simple examples that save you a bit of typing but don't provide radical new ways of expressing things. In upcoming chapters you'll see examples of macros that allow you to express things in ways that would be virtually impossible without macros. You'll start in the very next chapter, in which you'll build a simple but effective unit test framework.
-
-* * *
-
-1As with functions, macros can also contain declarations, but you don't need to worry about those for now.
-
-2APPEND, which I haven't discussed yet, is a function that takes any number of list arguments and returns the result of splicing them together into a single list.
-
-3Another function, MACROEXPAND, keeps expanding the result as long as the first element of the resulting expansion is the name of the macro. However, this will often show you a much lower-level view of what the code is doing than you want, since basic control constructs such as DO are also implemented as macros. In other words, while it can be educational to see what your macro ultimately expands into, it isn't a very useful view into what your own macros are doing.
-
-4If the macro expansion is shown all on one line, it's probably because the variable *PRINT-PRETTY* is NIL. If it is, evaluating (setf *print-pretty* t) should make the macro expansion easier to read.
-
-5This is from Joel on Software by Joel Spolsky, also available at http://www.joelonsoftware.com/ articles/LeakyAbstractions.html. Spolsky's point in the essay is that all abstractions leak to some extent; that is, there are no perfect abstractions. But that doesn't mean you should tolerate leaks you can easily plug.
-
-6Of course, certain forms are supposed to be evaluated more than once, such as the forms in the body of a do-primes loop.
-
-7It may not be obvious that this loop is necessarily infinite given the nonuniform occurrences of prime numbers. The starting point for a proof that it is in fact infinite is Bertrand's postulate, which says for any n > 1, there exists a prime p, n < p < 2n. From there you can prove that for any prime number, P less than the sum of the preceding prime numbers, the next prime, P', is also smaller than the original sum plus P.
-
-Copyright © 2003-2005, Peter Seibel
