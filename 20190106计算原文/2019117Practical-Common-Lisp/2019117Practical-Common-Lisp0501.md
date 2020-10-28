@@ -4,37 +4,64 @@ After the rules of syntax and semantics, the three most basic components of all 
 
 The bulk of Lisp itself consists of functions. More than three quarters of the names defined in the language standard name functions. All the built-in data types are defined purely in terms of what functions operate on them. Even Lisp's powerful object system is built upon a conceptual extension to functions, generic functions, which I'll cover in Chapter 16.
 
-And, despite the importance of macros to The Lisp Way, in the end all real functionality is provided by functions. Macros run at compile time, so the code they generate--the code that will actually make up the program after all the macros are expanded--will consist entirely of calls to functions and special operators. Not to mention, macros themselves are also functions, albeit functions that are used to generate code rather than to perform the actions of the program.1
+And, despite the importance of macros to The Lisp Way, in the end all real functionality is provided by functions. Macros run at compile time, so the code they generate--the code that will actually make up the program after all the macros are expanded--will consist entirely of calls to functions and special operators. Not to mention, macros themselves are also functions, albeit functions that are used to generate code rather than to perform the actions of the program. 1
+
+1 Despite the importance of functions in Common Lisp, it isn’t really accurate to describe it as a functional language. It’s true some of Common Lisp’s features, such as its list manipulation functions, are designed to be used in a body-form* style and that Lisp has a prominent place in the history of functional programming—McCarthy introduced many ideas that are now considered important in functional programming—but Common Lisp was intentionally designed to support many different styles of programming. In the Lisp family, Scheme is the nearest thing to a “pure” functional language, and even it has several features that disqualify it from absolute purity compared to languages such as Haskell and ML.
 
 ## 5.1 Defining New Functions
 
 Normally functions are defined using the DEFUN macro. The basic skeleton of a DEFUN looks like this:
 
 ```c
-(defun name (parameter*) "Optional documentation string." body-form*)
+(defun name (parameter*) 
+  "Optional documentation string." 
+  body-form*
+)
 ```
 
-Any symbol can be used as a function name.2 Usually function names contain only alphabetic characters and hyphens, but other characters are allowed and are used in certain naming conventions. For instance, functions that convert one kind of value to another sometimes use -> in the name. For example, a function to convert strings to widgets might be called string->widget. The most important naming convention is the one mentioned in Chapter 2, which is that you construct compound names with hyphens rather than underscores or inner caps. Thus, frob-widget is better Lisp style than either frob_widget or frobWidget.
+Any symbol can be used as a function name. 2 Usually function names contain only alphabetic characters and hyphens, but other characters are allowed and are used in certain naming conventions. For instance, functions that convert one kind of value to another sometimes use -> in the name. For example, a function to convert strings to widgets might be called `string->widget`. The most important naming convention is the one mentioned in Chapter 2, which is that you construct compound names with hyphens rather than underscores or inner caps. Thus, frob-widget is better Lisp style than either frob_widget or frobWidget.
 
-A function's parameter list defines the variables that will be used to hold the arguments passed to the function when it's called.3 If the function takes no arguments, the list is empty, written as (). Different flavors of parameters handle required, optional, multiple, and keyword arguments. I'll discuss the details in the next section.
+A function's parameter list defines the variables that will be used to hold the arguments passed to the function when it's called. 3 If the function takes no arguments, the list is empty, written as (). Different flavors of parameters handle required, optional, multiple, and keyword arguments. I'll discuss the details in the next section.
 
-If a string literal follows the parameter list, it's a documentation string that should describe the purpose of the function. When the function is defined, the documentation string will be associated with the name of the function and can later be obtained using the DOCUMENTATION function.4
+If a string literal follows the parameter list, it's a documentation string that should describe the purpose of the function. When the function is defined, the documentation string will be associated with the name of the function and can later be obtained using the DOCUMENTATION function. 4
 
 Finally, the body of a DEFUN consists of any number of Lisp expressions. They will be evaluated in order when the function is called and the value of the last expression is returned as the value of the function. Or the RETURN-FROM special operator can be used to return immediately from anywhere in a function, as I'll discuss in a moment.
 
 In Chapter 2 we wrote a hello-world function, which looked like this:
 
+```c
 (defun hello-world () (format t "hello, world"))
+```
 
 You can now analyze the parts of this function. Its name is hello-world, its parameter list is empty so it takes no arguments, it has no documentation string, and its body consists of one expression.
 
+```c
 (format t "hello, world")
+```
 
 The following is a slightly more complex function:
 
-(defun verbose-sum (x y) "Sum any two numbers after printing a message." (format t "Summing ~d and ~d.~%" x y) (+ x y))
+```c
+(defun verbose-sum (x y) 
+  "Sum any two numbers after printing a message." 
+  (format t "Summing ~d and ~d.~%" x y) 
+  (+ x y)
+)
+```
 
 This function is named verbose-sum, takes two arguments that will be bound to the parameters x and y, has a documentation string, and has a body consisting of two expressions. The value returned by the call to + becomes the return value of verbose-sum.
+
+2 Well, almost any symbol. It’s undefined what happens if you use any of the names defined in the language standard as a name for one of your own functions. However, as you’ll see in Chapter 21, the Lisp package system allows you to create names in different namespaces, so this isn’t really an issue.
+
+3 Parameter lists are sometimes also called lambda lists because of the historical relationship between Lisp’s notion of functions and the lambda calculus.
+
+4 For example, the following:
+
+```c
+(documentation 'foo 'function)
+```
+
+returns the documentation string for the function foo. Note, however, that documentation strings are intended for human consumption, not programmatic access. A Lisp implementation isn’t required to store them and is allowed to discard them at any time, so portable programs shouldn’t depend on their presence. In some implementations an implementation-defined variable needs to be set before it will store documentation strings.
 
 ## 5.2 Function Parameter Lists
 
@@ -46,51 +73,76 @@ However, Common Lisp's parameter lists also give you more flexible ways of mappi
 
 ## 5.3 Optional Parameters
 
-While many functions, like verbose-sum, need only required parameters, not all functions are quite so simple. Sometimes a function will have a parameter that only certain callers will care about, perhaps because there's a reasonable default value. An example is a function that creates a data structure that can grow as needed. Since the data structure can grow, it doesn't matter--from a correctness point of view--what the initial size is. But callers who have a good idea how many items they're going to put into the data structure may be able to improve performance by specifying a specific initial size. Most callers, though, would probably rather let the code that implements the data structure pick a good general-purpose value. In Common Lisp you can accommodate both kinds of callers by using an optional parameter; callers who don't care will get a reasonable default, and other callers can provide a specific value.5
+While many functions, like verbose-sum, need only required parameters, not all functions are quite so simple. Sometimes a function will have a parameter that only certain callers will care about, perhaps because there's a reasonable default value. An example is a function that creates a data structure that can grow as needed. Since the data structure can grow, it doesn't matter--from a correctness point of view--what the initial size is. But callers who have a good idea how many items they're going to put into the data structure may be able to improve performance by specifying a specific initial size. Most callers, though, would probably rather let the code that implements the data structure pick a good general-purpose value. In Common Lisp you can accommodate both kinds of callers by using an optional parameter; callers who don't care will get a reasonable default, and other callers can provide a specific value. 5
 
 To define a function with optional parameters, after the names of any required parameters, place the symbol &optional followed by the names of the optional parameters. A simple example looks like this:
 
+```c
 (defun foo (a b &optional c d) (list a b c d))
+```
 
 When the function is called, arguments are first bound to the required parameters. After all the required parameters have been given values, if there are any arguments left, their values are assigned to the optional parameters. If the arguments run out before the optional parameters do, the remaining optional parameters are bound to the value NIL. Thus, the function defined previously gives the following results:
 
-(foo 1 2) ==> (1 2 NIL NIL) (foo 1 2 3) ==> (1 2 3 NIL) (foo 1 2 3 4) ==> (1 2 3 4)
+```c
+(foo 1 2) ==> (1 2 NIL NIL) 
+(foo 1 2 3) ==> (1 2 3 NIL) 
+(foo 1 2 3 4) ==> (1 2 3 4)
+```
 
 Lisp will still check that an appropriate number of arguments are passed to the function--in this case between two and four, inclusive--and will signal an error if the function is called with too few or too many.
 
 Of course, you'll often want a different default value than NIL. You can specify the default value by replacing the parameter name with a list containing a name and an expression. The expression will be evaluated only if the caller doesn't pass enough arguments to provide a value for the optional parameter. The common case is simply to provide a value as the expression.
 
+```c
 (defun foo (a &optional (b 10)) (list a b))
+```
 
 This function requires one argument that will be bound to the parameter a. The second parameter, b, will take either the value of the second argument, if there is one, or 10.
 
-(foo 1 2) ==> (1 2) (foo 1) ==> (1 10)
+```c
+(foo 1 2) ==> (1 2) 
+(foo 1) ==> (1 10)
+```
 
 Sometimes, however, you may need more flexibility in choosing the default value. You may want to compute a default value based on other parameters. And you can--the default-value expression can refer to parameters that occur earlier in the parameter list. If you were writing a function that returned some sort of representation of a rectangle and you wanted to make it especially convenient to make squares, you might use an argument list like this:
 
+```c
 (defun make-rectangle (width &optional (height width)) ...)
+```
 
 which would cause the height parameter to take the same value as the width parameter unless explicitly specified.
 
 Occasionally, it's useful to know whether the value of an optional argument was supplied by the caller or is the default value. Rather than writing code to check whether the value of the parameter is the default (which doesn't work anyway, if the caller happens to explicitly pass the default value), you can add another variable name to the parameter specifier after the default-value expression. This variable will be bound to true if the caller actually supplied an argument for this parameter and NIL otherwise. By convention, these variables are usually named the same as the actual parameter with a "-supplied-p" on the end. For example:
 
+```c
 (defun foo (a b &optional (c 3 c-supplied-p)) (list a b c c-supplied-p))
+```
 
 This gives results like this:
 
-(foo 1 2) ==> (1 2 3 NIL) (foo 1 2 3) ==> (1 2 3 T) (foo 1 2 4) ==> (1 2 4 T)
+```c
+(foo 1 2) ==> (1 2 3 NIL) 
+(foo 1 2 3) ==> (1 2 3 T) 
+(foo 1 2 4) ==> (1 2 4 T)
+```
+
+5 In languages that don’t support optional parameters directly, programmers typically find ways to simulate them. One technique is to use distinguished “no-value” values that the caller can pass to indicate they want the default value of a given parameter. In C, for example, it’s common to use NULL as such a distinguished value. However, such a protocol between the function and its callers is ad hoc—in some functions or for some arguments NULL may be the distinguished value while in other functions or for other arguments the magic value may be -1 or some #defined constant. In languages such as Java that support overloading a single method name with multiple definitions, optional parameters can also be simulated by providing methods with the same name but different numbers of arguments and having the methods with fewer arguments call the “real” method with default values for the missing arguments.
 
 ## 5.4 Rest Parameters
 
 Optional parameters are just the thing when you have discrete parameters for which the caller may or may not want to provide values. But some functions need to take a variable number of arguments. Several of the built-in functions you've seen already work this way. FORMAT has two required arguments, the stream and the control string. But after that it needs a variable number of arguments depending on how many values need to be interpolated into the control string. The + function also takes a variable number of arguments--there's no particular reason to limit it to summing just two numbers; it will sum any number of values. (It even works with zero arguments, returning 0, the identity under addition.) The following are all legal calls of those two functions:
 
+```c
 (format t "hello, world") (format t "hello, ~a" name) (format t "x: ~d y: ~d" x y) (+) (+ 1) (+ 1 2) (+ 1 2 3)
+```
 
 Obviously, you could write functions taking a variable number of arguments by simply giving them a lot of optional parameters. But that would be incredibly painful--just writing the parameter list would be bad enough, and that doesn't get into dealing with all the parameters in the body of the function. To do it properly, you'd have to have as many optional parameters as the number of arguments that can legally be passed in a function call. This number is implementation dependent but guaranteed to be at least 50. And in current implementations it ranges from 4,096 to 536,870,911.6 Blech. That kind of mind-bending tedium is definitely not The Lisp Way.
 
 Instead, Lisp lets you include a catchall parameter after the symbol &rest. If a function includes a &rest parameter, any arguments remaining after values have been doled out to all the required and optional parameters are gathered up into a list that becomes the value of the &rest parameter. Thus, the parameter lists for FORMAT and + probably look something like this:
 
+```c
 (defun format (stream string &rest values) ...) (defun + (&rest numbers) ...)
+```
 
 ## 5.5 Keyword Parameters
 
@@ -102,25 +154,41 @@ Of course it is. The problem is that optional parameters are still positional--i
 
 To give a function keyword parameters, after any required, &optional, and &rest parameters you include the symbol &key and then any number of keyword parameter specifiers, which work like optional parameter specifiers. Here's a function that has only keyword parameters:
 
+```c
 (defun foo (&key a b c) (list a b c))
+```
 
 When this function is called, each keyword parameters is bound to the value immediately following a keyword of the same name. Recall from Chapter 4 that keywords are names that start with a colon and that they're automatically defined as self-evaluating constants.
 
 If a given keyword doesn't appear in the argument list, then the corresponding parameter is assigned its default value, just like an optional parameter. Because the keyword arguments are labeled, they can be passed in any order as long as they follow any required arguments. For instance, foo can be invoked as follows:
 
-(foo) ==> (NIL NIL NIL) (foo :a 1) ==> (1 NIL NIL) (foo :b 1) ==> (NIL 1 NIL) (foo :c 1) ==> (NIL NIL 1) (foo :a 1 :c 3) ==> (1 NIL 3) (foo :a 1 :b 2 :c 3) ==> (1 2 3) (foo :a 1 :c 3 :b 2) ==> (1 2 3)
+```c
+(foo) ==> (NIL NIL NIL) 
+(foo :a 1) ==> (1 NIL NIL) 
+(foo :b 1) ==> (NIL 1 NIL) 
+(foo :c 1) ==> (NIL NIL 1) 
+(foo :a 1 :c 3) ==> (1 NIL 3) 
+(foo :a 1 :b 2 :c 3) ==> (1 2 3) 
+(foo :a 1 :c 3 :b 2) ==> (1 2 3)
+```
 
 As with optional parameters, keyword parameters can provide a default value form and the name of a supplied-p variable. In both keyword and optional parameters, the default value form can refer to parameters that appear earlier in the parameter list.
 
+```c
 (defun foo (&key (a 0) (b 0 b-supplied-p) (c (+ a b))) (list a b c b-supplied-p)) (foo :a 1) ==> (1 0 1 NIL) (foo :b 1) ==> (0 1 1 T) (foo :b 1 :c 4) ==> (0 1 4 T) (foo :a 2 :b 1 :c 4) ==> (2 1 4 T)
+```
 
 Also, if for some reason you want the keyword the caller uses to specify the parameter to be different from the name of the actual parameter, you can replace the parameter name with another list containing the keyword to use when calling the function and the name to be used for the parameter. The following definition of foo:
 
+```c
 (defun foo (&key ((:apple a)) ((:box b) 0) ((:charlie c) 0 c-supplied-p)) (list a b c c-supplied-p))
+```
 
 lets the caller call it like this:
 
+```c
 (foo :apple 10 :box 20 :charlie 30) ==> (10 20 30 T)
+```
 
 This style is mostly useful if you want to completely decouple the public API of the function from the internal details, usually because you want to use short variable names internally but descriptive keywords in the API. It's not, however, very frequently used.
 
