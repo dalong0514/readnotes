@@ -161,7 +161,8 @@ Obviously, you could write functions taking a variable number of arguments by si
 Instead, Lisp lets you include a catchall parameter after the symbol &rest. If a function includes a &rest parameter, any arguments remaining after values have been doled out to all the required and optional parameters are gathered up into a list that becomes the value of the &rest parameter. Thus, the parameter lists for FORMAT and + probably look something like this:
 
 ```c
-(defun format (stream string &rest values) ...) (defun + (&rest numbers) ...)
+(defun format (stream string &rest values) ...) 
+(defun + (&rest numbers) ...)
 ```
 
 6 The constant CALL-ARGUMENTS-LIMIT tells you the implementation-specific value.
@@ -177,7 +178,9 @@ Of course it is. The problem is that optional parameters are still positional--i
 To give a function keyword parameters, after any required, &optional, and &rest parameters you include the symbol &key and then any number of keyword parameter specifiers, which work like optional parameter specifiers. Here's a function that has only keyword parameters:
 
 ```c
-(defun foo (&key a b c) (list a b c))
+(defun foo (&key a b c) 
+  (list a b c)
+)
 ```
 
 When this function is called, each keyword parameters is bound to the value immediately following a keyword of the same name. Recall from Chapter 4 that keywords are names that start with a colon and that they're automatically defined as self-evaluating constants.
@@ -197,13 +200,22 @@ If a given keyword doesn't appear in the argument list, then the corresponding p
 As with optional parameters, keyword parameters can provide a default value form and the name of a supplied-p variable. In both keyword and optional parameters, the default value form can refer to parameters that appear earlier in the parameter list.
 
 ```c
-(defun foo (&key (a 0) (b 0 b-supplied-p) (c (+ a b))) (list a b c b-supplied-p)) (foo :a 1) ==> (1 0 1 NIL) (foo :b 1) ==> (0 1 1 T) (foo :b 1 :c 4) ==> (0 1 4 T) (foo :a 2 :b 1 :c 4) ==> (2 1 4 T)
+(defun foo (&key (a 0) (b 0 b-supplied-p) (c (+ a b))) 
+  (list a b c b-supplied-p)
+) 
+
+(foo :a 1) ==> (1 0 1 NIL) 
+(foo :b 1) ==> (0 1 1 T) 
+(foo :b 1 :c 4) ==> (0 1 4 T) 
+(foo :a 2 :b 1 :c 4) ==> (2 1 4 T)
 ```
 
 Also, if for some reason you want the keyword the caller uses to specify the parameter to be different from the name of the actual parameter, you can replace the parameter name with another list containing the keyword to use when calling the function and the name to be used for the parameter. The following definition of foo:
 
 ```c
-(defun foo (&key ((:apple a)) ((:box b) 0) ((:charlie c) 0 c-supplied-p)) (list a b c c-supplied-p))
+(defun foo (&key ((:apple a)) ((:box b) 0) ((:charlie c) 0 c-supplied-p)) 
+  (list a b c c-supplied-p)
+)
 ```
 
 lets the caller call it like this:
@@ -214,6 +226,8 @@ lets the caller call it like this:
 
 This style is mostly useful if you want to completely decouple the public API of the function from the internal details, usually because you want to use short variable names internally but descriptive keywords in the API. It's not, however, very frequently used.
 
+2『经验证 autolisp 里没法实现 key 的形参。（2020-10-28）』
+
 ## 5.6 Mixing Different Parameter Types
 
 It's possible, but rare, to use all four flavors of parameters in a single function. Whenever more than one flavor of parameter is used, they must be declared in the order I've discussed them: first the names of the required parameters, then the optional parameters, then the rest parameter, and finally the keyword parameters. Typically, however, in functions that use multiple flavors of parameters, you'll combine required parameters with one other flavor or possibly combine &optional and &rest parameters. The other two combinations, either &optional or &rest parameters combined with &key parameters, can lead to somewhat surprising behavior.
@@ -221,7 +235,9 @@ It's possible, but rare, to use all four flavors of parameters in a single funct
 Combining &optional and &key parameters yields surprising enough results that you should probably avoid it altogether. The problem is that if a caller doesn't supply values for all the optional parameters, then those parameters will eat up the keywords and values intended for the keyword parameters. For instance, this function unwisely mixes &optional and &key parameters:
 
 ```c
-(defun foo (x &optional y &key z) (list x y z))
+(defun foo (x &optional y &key z) 
+  (list x y z)
+)
 ```
 
 If called like this, it works fine:
@@ -244,12 +260,14 @@ But this will signal an error:
 
 This is because the keyword :z is taken as a value to fill the optional y parameter, leaving only the argument 3 to be processed. At that point, Lisp will be expecting either a keyword/value pair or nothing and will complain. Perhaps even worse, if the function had had two &optional parameters, this last call would have resulted in the values :z and 3 being bound to the two &optional parameters and the &key parameter z getting the default value NIL with no indication that anything was amiss.
 
-In general, if you find yourself writing a function that uses both &optional and &key parameters, you should probably just change it to use all &key parameters--they're more flexible, and you can always add new keyword parameters without disturbing existing callers of the function. You can also remove keyword parameters, as long as no one is using them.7 In general, using keyword parameters helps make code much easier to maintain and evolve--if you need to add some new behavior to a function that requires new parameters, you can add keyword parameters without having to touch, or even recompile, any existing code that calls the function.
+In general, if you find yourself writing a function that uses both &optional and &key parameters, you should probably just change it to use all &key parameters--they're more flexible, and you can always add new keyword parameters without disturbing existing callers of the function. You can also remove keyword parameters, as long as no one is using them. 7 In general, using keyword parameters helps make code much easier to maintain and evolve--if you need to add some new behavior to a function that requires new parameters, you can add keyword parameters without having to touch, or even recompile, any existing code that calls the function.
 
 You can safely combine &rest and &key parameters, but the behavior may be a bit surprising initially. Normally the presence of either &rest or &key in a parameter list causes all the values remaining after the required and &optional parameters have been filled in to be processed in a particular way--either gathered into a list for a &rest parameter or assigned to the appropriate &key parameters based on the keywords. If both &rest and &key appear in a parameter list, then both things happen--all the remaining values, which include the keywords themselves, are gathered into a list that's bound to the &rest parameter, and the appropriate values are also bound to the &key parameters. So, given this function:
 
 ```c
-(defun foo (&rest rest &key a b c) (list rest a b c))
+(defun foo (&rest rest &key a b c) 
+  (list rest a b c)
+)
 ```
 
 you get this result:
@@ -257,6 +275,8 @@ you get this result:
 ```c
 (foo :a 1 :b 2 :c 3) ==> ((:A 1 :B 2 :C 3) 1 2 3)
 ```
+
+7 Four standard functions take both &optional and &key arguments—READ-FROM-STRING, PARSE-NAMESTRING, WRITE-LINE, and WRITE-STRING. They were left that way during standardization for backward compatibility with earlier Lisp dialects. READ-FROM-STRING tends to be the one that catches new Lisp programmers most frequently—a call such as (read-from-string s :start 10) seems to ignore the :start keyword argument, reading from index 0 instead of 10. That’s because READ-FROM-STRING also has two &optional parameters that swallowed up the arguments :start and 10.
 
 ## 5.7 Function Return Values
 
@@ -269,33 +289,46 @@ You'll see in Chapter 20 that RETURN-FROM is actually not tied to functions at a
 The following function uses nested loops to find the first pair of numbers, each less than 10, whose product is greater than the argument, and it uses RETURN-FROM to return the pair as soon as it finds it:
 
 ```c
-(defun foo (n) (dotimes (i 10) (dotimes (j 10) (when (> (* i j) n) (return-from foo (list i j))))))
+(defun foo (n) 
+  (dotimes (i 10) 
+    (dotimes (j 10) 
+      (when (> (* i j) n) 
+        (return-from foo (list i j))
+      )
+    )
+  )
+)
 ```
 
-Admittedly, having to specify the name of the function you're returning from is a bit of a pain--for one thing, if you change the function's name, you'll need to change the name used in the RETURN-FROM as well.8 But it's also the case that explicit RETURN-FROMs are used much less frequently in Lisp than return statements in C-derived languages, because all Lisp expressions, including control constructs such as loops and conditionals, evaluate to a value. So it's not much of a problem in practice.
+Admittedly, having to specify the name of the function you're returning from is a bit of a pain--for one thing, if you change the function's name, you'll need to change the name used in the RETURN-FROM as well. 8 But it's also the case that explicit RETURN-FROMs are used much less frequently in Lisp than return statements in C-derived languages, because all Lisp expressions, including control constructs such as loops and conditionals, evaluate to a value. So it's not much of a problem in practice.
+
+8 Another macro, RETURN, doesn’t require a name. However, you can’t use it instead of RETURN-FROM to avoid having to specify the function name; it’s syntactic sugar for returning from a block named NIL. I’ll cover it, along with the details of BLOCK and RETURN-FROM, in Chapter 20.
 
 ## 5.8 Functions As Data, a.k.a. Higher-Order Functions
 
-While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data.9
+While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data. 9
 
 In Lisp, functions are just another kind of object. When you define a function with DEFUN, you're really doing two things: creating a new function object and giving it a name. It's also possible, as you saw in Chapter 3, to use LAMBDA expressions to create a function without giving it a name. The actual representation of a function object, whether named or anonymous, is opaque--in a native-compiling Lisp, it probably consists mostly of machine code. The only things you need to know are how to get hold of it and how to invoke it once you've got it.
 
 The special operator FUNCTION provides the mechanism for getting at a function object. It takes a single argument and returns the function with that name. The name isn't quoted. Thus, if you've defined a function foo, like so:
 
 ```c
-CL-USER> (defun foo (x) (* 2 x)) FOO
+CL-USER> (defun foo (x) (* 2 x)) 
+FOO
 ```
 
-you can get the function object like this:10
+you can get the function object like this: 10
 
 ```c
-CL-USER> (function foo) #<Interpreted Function FOO>
+CL-USER> (function foo) 
+#<Interpreted Function FOO>
 ```
 
 In fact, you've already used FUNCTION, but it was in disguise. The syntax #', which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way ' is syntactic sugar for QUOTE.11 Thus, you can also get the function object for foo like this:
 
 ```c
-CL-USER> #'foo #<Interpreted Function FOO>
+CL-USER> #'foo 
+#<Interpreted Function FOO>
 ```
 
 Once you've got the function object, there's really only one thing you can do with it--invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY.12 They differ only in how they obtain the arguments to pass to the function.
@@ -319,7 +352,13 @@ The FUNCALL expression computes the value of the function for each value of i. T
 Note that you don't use FUNCTION or #' to get the function value of fn; you want it to be interpreted as a variable because it's the variable's value that will be the function object. You can call plot with any function that takes a single numeric argument, such as the built-in function EXP that returns the value of e raised to the power of its argument.
 
 ```c
-CL-USER> (plot #'exp 0 4 1/2) * * ** **** ******* ************ ******************** ********************************* ****************************************************** NIL
+CL-USER> (plot #'exp 0 4 1/2) 
+*
+*
+**
+****
+*******
+NIL
 ```
 
 FUNCALL, however, doesn't do you any good when the argument list is known only at runtime. For instance, to stick with the plot function for another moment, suppose you've obtained a list containing a function object, a minimum and maximum value, and a step value. In other words, the list contains the values you want to pass as arguments to plot. Suppose this list is in the variable plot-data. You could invoke plot on the values in that list like this:
@@ -343,6 +382,10 @@ As a further convenience, APPLY can also accept "loose" arguments as long as the
 ```
 
 APPLY doesn't care about whether the function being applied takes &optional, &rest, or &key arguments--the argument list produced by combining any loose arguments with the final list must be a legal argument list for the function with enough arguments for all the required parameters and only appropriate keyword parameters.
+
+9 Lisp, of course, isn’t the only language to treat functions as data. C uses function pointers, Perl uses subroutine references, Python uses a scheme similar to Lisp, and C# introduces delegates, essentially typed function pointers, as an improvement over Java’s rather clunky reflection and anonymous class mechanisms.
+
+10 The exact printed representation of a function object will differ from implementation to implementation.
 
 ## 5.9 Anonymous Functions
 
@@ -377,13 +420,35 @@ Anonymous functions can be useful when you need to pass a function as an argumen
 which you could then pass to plot.
 
 ```c
-CL-USER> (plot #'double 0 10 1) ** **** ****** ******** ********** ************ ************** **************** ****************** ******************** NIL
+CL-USER> (plot #'double 0 10 1) 
+** 
+**** 
+****** 
+******** 
+********** 
+************ 
+************** 
+**************** 
+****************** 
+******************** 
+NIL
 ```
 
 But it's easier, and arguably clearer, to write this:
 
 ```c
-CL-USER> (plot #'(lambda (x) (* 2 x)) 0 10 1) ** **** ****** ******** ********** ************ ************** **************** ****************** ******************** NIL
+CL-USER> (plot #'(lambda (x) (* 2 x)) 0 10 1) 
+** 
+**** 
+****** 
+******** 
+********** 
+************ 
+************** 
+**************** 
+****************** 
+******************** 
+NIL
 ```
 
 The other important use of LAMBDA expressions is in making closures, functions that capture part of the environment where they're created. You used closures a bit in Chapter 3, but the details of how closures work and what they're used for is really more about how variables work than functions, so I'll save that discussion for the next chapter.
