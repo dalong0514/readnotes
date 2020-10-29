@@ -4,7 +4,7 @@ Daniel M. Russell
 
 ## Acknowledgments
 
-I’m grateful to Don Norman for saying,「You know, your SearchResearch blog really wants to be a book.」He’s the guy who really got this book project started with early guidance and encouragement. 
+I’m grateful to Don Norman for saying,「You know, your Search Research blog really wants to be a book.」He’s the guy who really got this book project started with early guidance and encouragement. 
 
 Thanks for the push.
 
@@ -30,47 +30,46 @@ And of course, a huge thanks to all the engineers, product managers, and researc
 
 Acknowledgments
 
-1 Introduction: How You Can Harness the Power of Online Research—Why You Should Improve Your Online Researching Skills
+0101 Introduction: How You Can Harness the Power of Online Research—Why You Should Improve Your Online Researching Skills
 
-2 Finding a Mysterious Location Somewhere in the World: How to Use Multiple Information Sources to Zero In on a Resource
+0201 Finding a Mysterious Location Somewhere in the World: How to Use Multiple Information Sources to Zero In on a Resource
 
-3 Do Lakes in Africa Sometimes Explode? How to Focus Your Search with「site:」and Using Specialized Terms
+0301 Do Lakes in Africa Sometimes Explode? How to Focus Your Search with「site:」and Using Specialized Terms
 
-4 Things You Notice While Traveling: How and When to Switch Search Modes to Find Information
+0401 Things You Notice While Traveling: How and When to Switch Search Modes to Find Information
 
-5 Is That Plant Poisonous or Not? How to Find Highly Localized and Domain-Specific Information
+0501 Is That Plant Poisonous or Not? How to Find Highly Localized and Domain-Specific Information
 
-6 What’s the Most Likely Way You’ll Die? How to Be Explicit about What You’re Searching to Find (and Why That Matters)
+0601 What’s the Most Likely Way You’ll Die? How to Be Explicit about What You’re Searching to Find (and Why That Matters)
 
-7 When Would You Want to Read the Italian Wikipedia? How to Look for Information from Other Languages in Wikipedia and Other Sources
+0701 When Would You Want to Read the Italian Wikipedia? How to Look for Information from Other Languages in Wikipedia and Other Sources
 
-8 Why Are the Coasts So Different? How to Use Online Maps Resources to Answer Broad Geographic Questions
+0801 Why Are the Coasts So Different? How to Use Online Maps Resources to Answer Broad Geographic Questions
 
-9 Mysterious Mission Stars: How to Read Snippets in the Search Results and Pay Attention to Search Details
+0901 Mysterious Mission Stars: How to Read Snippets in the Search Results and Pay Attention to Search Details
 
-10 When Was Oil First Discovered in California? How to Discover and Work Through Multiple Competing Claims in Online Resources
+1001 When Was Oil First Discovered in California? How to Discover and Work Through Multiple Competing Claims in Online Resources
 
-11 Can You Die from Apoplexy or Rose Catarrh? How to Find (and Use) Old, Sometimes-Archaic or Obsolete Terminology
+1101 Can You Die from Apoplexy or Rose Catarrh? How to Find (and Use) Old, Sometimes-Archaic or Obsolete Terminology
 
-12 What’s That Wreck Just Offshore? How to Find Archival Imagery and Use Metadata from Photographs
+1201 What’s That Wreck Just Offshore? How to Find Archival Imagery and Use Metadata from Photographs
 
-13 Do Flies Have the Pattern of a Spider on Their Wings? How to Check the Credibility of a Resource You’ve Found
+1301 Do Flies Have the Pattern of a Spider on Their Wings? How to Check the Credibility of a Resource You’ve Found
 
-14 What’s the Connection between「The Star-Spangled Banner」and the General Who Burned the White House? How to Search for Vaguely Remembered Connections between Ideas
+1401 What’s the Connection between「The Star-Spangled Banner」and the General Who Burned the White House? How to Search for Vaguely Remembered Connections between Ideas
 
-15 What Causes the Barren Zones around Some Plants? How to Know When You Should Go Offline and Do Research in the Real World
+1501 What Causes the Barren Zones around Some Plants? How to Know When You Should Go Offline and Do Research in the Real World
 
-16 Is Abyssinia the Same as Eritrea? How to Find Additional Context Information for Your Research
+1601 Is Abyssinia the Same as Eritrea? How to Find Additional Context Information for Your Research
 
-17 The Mystery of the Parrotfish, or Where Does That White Sand Really Come From? How to Triangulate Multiple Sources to Find a Definitive Answer
+1701 The Mystery of the Parrotfish, or Where Does That White Sand Really Come From? How to Triangulate Multiple Sources to Find a Definitive Answer
 
-18 Did Perry Ever Visit the Island of Delos? How to Follow a Long Chain of References to the Ultimate Answer
+1801 Did Perry Ever Visit the Island of Delos? How to Follow a Long Chain of References to the Ultimate Answer
 
-19 On Being a Great Searcher: Rules of Thumb for Asking Great Questions
+1901 On Being a Great Searcher: Rules of Thumb for Asking Great Questions
 
-20 The Future of Online Search: Why the Research Skills You Learn Today Will Continue to Be Useful in the Future
+2001 The Future of Online Search: Why the Research Skills You Learn Today Will Continue to Be Useful in the Future
 
 Notes
 
 Index
-

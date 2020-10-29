@@ -1,4 +1,4 @@
-# 01 Introduction: How You Can Harness the Power of Online Research—Why You Should Improve Your Online Researching Skills
+# 0101. Introduction: How You Can Harness the Power of Online Research—Why You Should Improve Your Online Researching Skills
 
 This book has a simple idea: you too can be a great online researcher. It’s not hard, and it’s not computer geeky, but it’s an incredibly useful skill to have. If you can do better online research, you can ask and answer questions better—you can be more accurate, and you find out the information you need faster and more completely.
 
@@ -6,13 +6,17 @@ I’m a professional researcher who works at Google on the team that built the s
 
 Consider this: we all know about the three R’s of education: reading, writing, and ’rithmetic—the three basic skills that schools have to teach (which obviously doesn’t include spelling). This book makes the case that there’s a fourth R that we should be teaching to all students and adults: that is, research.
 
+1『第四个 R，调研的能力。（2020-10-29）』
+
 I don’t mean that you’ll have to spend your time doing learned investigations into strange and inscrutable depths of obscure history, or weird and exotic scientific studies. What I DO mean is that everyone can learn to use online information much more effectively and efficiently, whether you’re a student, citizen, parent, or professional researcher; there are things you should know about online research.
 
 If you think about it, learning has changed from a school-only activity to a lifelong activity. And just as the person who can learn the best and know the most has a real advantage, so too does being a great online researcher give you a real advantage—in school, your work, and life. People fluent in search not only save time but are also far more likely to find higher-quality, more credible, more useful content. More important, they can ask questions that were impossible just a few years ago.
 
-As Samuel Johnson wrote, Knowledge is of two kinds. We know a subject ourselves, or we know where we can find information upon it.1
+As Samuel Johnson wrote, Knowledge is of two kinds. We know a subject ourselves, or we know where we can find information upon it. 1
 
-While that’s true, the common version of his quote usually leaves off the rest of his paragraph: When we enquire into any subject, the first thing we have to do is to know what books have treated of it. This leads us to look at catalogues, and at the backs of books in libraries.2
+While that’s true, the common version of his quote usually leaves off the rest of his paragraph: When we enquire into any subject, the first thing we have to do is to know what books have treated of it. This leads us to look at catalogues, and at the backs of books in libraries. 2
+
+2『两类知识，做一张术语卡片。』——已完成
 
 In Johnson’s day that meant knowing how to do research AND knowing that catalogs existed, that libraries were collections of books on topics of interest, and that the back of a book contains an index. It also meant that you knew how to get into a library, many of which were still private and by subscription (that is, by「invitation」) only.
 
@@ -30,7 +34,7 @@ So what kinds of things do you need to know?
 
 To start with, there’s so much information available online that you might be forgiven for thinking it’s all online somewhere. And it is truly amazing what is available with a quick Google search. We live in a time of fantastic information richness and depth. But it wasn’t always like this. And what’s more, you need to know where the limits are, and how to detect when you’ve hit them.
 
-One of the great discoveries of my young life was when I learned that there are books with answers in them that could satisfy my curiosity and let me do research almost instantaneously. Since I was a curious child, I found that by just picking up a volume of an encyclopedia.3 I could read about many wonderful things—Eritrea, Eisenhower, eggs (development of), Earth (planet), ecru (the color) … on and on. All these riches—and just in the volume of the letter「E.」What mysteries lay in「F」or「G」? Why was there a volume「X, Y, and Z,」and not「M, N, and O」?
+One of the great discoveries of my young life was when I learned that there are books with answers in them that could satisfy my curiosity and let me do research almost instantaneously. Since I was a curious child, I found that by just picking up a volume of an encyclopedia. 3 I could read about many wonderful things—Eritrea, Eisenhower, eggs (development of), Earth (planet), ecru (the color) … on and on. All these riches—and just in the volume of the letter「E.」What mysteries lay in「F」or「G」? Why was there a volume「X, Y, and Z,」and not「M, N, and O」?
 
 That was then, this is now, and it’s difficult to find any reference content that’s organized alphabetically. Why would you, when it’s so much faster to do a search for what you seek? Today we have vast resources online, indexed by search engines, or sometimes organized into websites and databases—all there for the questing mind to use.
 
@@ -60,11 +64,11 @@ Even though「research」is often thought to be what professional scientists do,
 
 I’ll also talk about the attitudes and research styles that will make you more productive and accurate. For instance, a common misconception is that you can search and learn about anything, starting with nothing. The reality is that many research quests are foiled by not knowing enough about how to search. There’s a bit of a skill here that we’ll talk about. I’ll talk about how to start learning something in an area about which you know almost nothing. Unsurprisingly, to learn something, you have to begin with something. But how do you do that when your knowledge is at zero? Chance favors the prepared mind. Why is that true? And how can you prepare your mind?
 
-There are skills and attitudes to learn from this book. My goal is to teach both: the skills to let you be an effective researcher, and a person with research-y attitudes. Both are important.
+There are skills and attitudes to learn from this book. My goal is to teach both: the skills to let you be an effective researcher, and a person with research-y attitudes. Both are important. Mostly, I HOPE to make you curious about the world and help you learn some of the skills it takes to successfully do online searches to get to good, high-quality, believable answers.
 
-Mostly, I HOPE to make you curious about the world and help you learn some of the skills it takes to successfully do online searches to get to good, high-quality, believable answers.
+2『技能和态度，做一张任意卡片。（2020-10-29）』——已完成
 
-## 01. How to Read This Book
+## 1.1 How to Read This Book
 
 This book is composed of sixteen stories about how I answered some questions that came up for me during the course of my life. These chapters walk you through my stories of discovery, laying out the journey I went through to find out the answers to some particularly interesting questions. Along the way, I’ll show you just how I solved them, and how you can do the same kind of thing.
 
@@ -78,11 +82,11 @@ Even though it’s a simple thing, just writing down the question has the side b
 
 That’s what I do in each chapter: I write down the questions, and then walk through the steps I took to find the answer. Instead of just telling you the answer, I’m trying to make it clear exactly how I went from really interesting question to an answer that I believe.
 
-As you read these stories, I’ll point out how I use each of the tools and information resources along the way. Every so often you’ll see some text in square brackets like this: [exploding lakes in Africa]. That’s a query. The text in the brackets is what I searched for in order to answer a particular question. But note that you shouldn’t include the brackets in your search; they’re just there to show you where the actual query starts and ends. Every chapter has the online searches I used along the way.
+As you read these stories, I’ll point out how I use each of the tools and information resources along the way. Every so often you’ll see some text in square brackets like this: `[exploding lakes in Africa]`. That’s a query. The text in the brackets is what I searched for in order to answer a particular question. But note that you shouldn’t include the brackets in your search; they’re just there to show you where the actual query starts and ends. Every chapter has the online searches I used along the way.
 
 At the end of each chapter is a set of research lessons that summarize the things you should have picked up during the story. These are the insights that you can use in answering your own questions.
 
-I’ve also added a bunch of「How to Do It」notes at the end of each chapter. When you see bolded text that has a superscript letter—such as this example of how to make a good query for searchingA—you’ll find a short note at the end of the chapter telling you how to do this particular step of the research process. (And of course, if that’s not enough information for you, you could always do another search to get even more details!)
+I’ve also added a bunch of「How to Do It」notes at the end of each chapter. When you see bolded text that has a superscript letter—such as this example of how to make a good query for searching[A]—you’ll find a short note at the end of the chapter telling you how to do this particular step of the research process. (And of course, if that’s not enough information for you, you could always do another search to get even more details!)
 
 As you read you’ll also see URLs that look like this: bit.LY/TJOS-1-1. These are links to online web pages that are easier to type than a full URL, which are often long and full of strange characters that nobody can transcribe correctly. But the bit.LY links are short and easy to type. This is a nice solution to the perennial problem of「How do you put links to online resources in a print document?」Note that these links are case sensitive. TJOS-1–1 is not the same as tjos-1–1! Be sure to use all capital letters.
 
@@ -96,43 +100,44 @@ I’ll start the next chapter with a photograph that a friend sent to me, asking
 
 Onward. Let’s do some research.
 
-## 02. How to Do It
+## 1.2 How to Do It
 
 A. How to make an effective query.
 
-One of the great pieces of search engine technology is that queries can be simple, just a few words long, and you’ll often find the information you’re seeking.
+One of the great pieces of search engine technology is that queries can be simple, just a few words long, and you’ll often find the information you’re seeking. Knowing a couple of things about how search engines work, however, will make your searching far better.
 
-Knowing a couple of things about how search engines work, however, will make your searching far better.
+You should know that there are a few different approaches to doing a query on a search engine such as Google, Bing, Wolfram Alpha, or DuckDuckGo. The classic query style is to use a few words (sometimes called keywords) that describe the kind of web result you seek. A classic query is best made by choosing a few terms that are central to the idea you’re searching for, and ones that you think will be on the web page. Classic queries look like this:
 
-You should know that there are a few different approaches to doing a query on a search engine such as Google, Bing, Wolfram Alpha, or DuckDuckGo.
-
-The classic query style is to use a few words (sometimes called keywords) that describe the kind of web result you seek. A classic query is best made by choosing a few terms that are central to the idea you’re searching for, and ones that you think will be on the web page. Classic queries look like this:
-
+```
 [Japan population]
 
 [most Olympic gold medals]
+```
 
 As search engines improve their question-handling ability, they are getting better at handling questions posed in a more natural fashion, such as a question-answering query style like this:
 
+```
 [What is the population of Japan?]
 
 [Who has won the most Olympic gold medals?]
+```
 
-Generally speaking, the best queries are those that use on-topic words (for the classical queries) or consist of clearly stated questions. When a question-query is answerable, the results usually give much more context information on that topic. (For instance, [What is the population of Japan?] will give some contextualized data as well.)
+Generally speaking, the best queries are those that use on-topic words (for the classical queries) or consist of clearly stated questions. When a question-query is answerable, the results usually give much more context information on that topic. (For instance, `[What is the population of Japan?]` will give some contextualized data as well.)
 
 While search engines let you use some special operators (that is, special terms that modify the meaning of your query), more than 99 percent of all queries don’t use anything special; they’re just classical queries or simple questions.
 
-In particular, people rarely, if ever, use Boolean queries in their classical searches.4 Both Google and Bing automatically put an implied AND between all the terms (although they might drop a term from the list if there aren’t any results with all the terms). On the other hand, sometimes using an OR in the query is a useful way to specify synonyms for a search term. For example, you can look for jobs in either (or both) of two cities with a query like this:
+In particular, people rarely, if ever, use Boolean queries in their classical searches. 4 Both Google and Bing automatically put an implied AND between all the terms (although they might drop a term from the list if there aren’t any results with all the terms). On the other hand, sometimes using an OR in the query is a useful way to specify synonyms for a search term. For example, you can look for jobs in either (or both) of two cities with a query like this:
 
+```
 [Dallas OR Houston jobs software development]
+```
 
 This query means that the search engine will look for either Dallas or Houston on the web pages.
 
 But if you don’t want anything from Houston, you can use the minus sign (−) before that term to exclude it from the search results. This query will show jobs in Dallas, but none from Houston.
 
+```
 [Dallas −Houston jobs software development]
+```
 
 Overall, the classical queries are best when they use terms that you’d expect to find on the ideal page that will answer your query. There’s much more to talk about, and that’s what the rest of the book will discuss.
-
-
-

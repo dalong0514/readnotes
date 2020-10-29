@@ -1,4 +1,4 @@
-# 03 Do Lakes in Africa Sometimes Explode? How to Focus Your Search with「site:」and Using Specialized Terms
+# 0301. Do Lakes in Africa Sometimes Explode? How to Focus Your Search with「site:」and Using Specialized Terms
 
 Can some lakes erupt and kill thousands of people? How would you find out?
 

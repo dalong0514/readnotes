@@ -1,4 +1,4 @@
-# 02 Finding a Mysterious Location Somewhere in the World: How to Use Multiple Information Sources to Zero In on a Resource
+# 0201. Finding a Mysterious Location Somewhere in the World: How to Use Multiple Information Sources to Zero In on a Resource
 
 Where in the world is this? How can you figure it out? A few tips to get started on doing really surprising searches.
 
@@ -14,7 +14,7 @@ There are several ways to do this, but the simplest one is to start with clues y
 
 In a case like this, you have to start with what you have. Look at the image carefully, noting what you might use to crack this where-in-the-world challenge.
 
-		Figure 2.1
+Figure 2.1
 
 A mystery picture sent by a friend, who asks,「Where was the photograph taken from?」
 
@@ -223,6 +223,3 @@ Here’s a lovely picture I took of the Notre-Dame Cathedral in Paris, France. A
 Figure 2.15
 
 Credit: Daniel M. Russell
-
-
-

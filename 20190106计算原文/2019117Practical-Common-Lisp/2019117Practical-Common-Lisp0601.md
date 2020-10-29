@@ -4,7 +4,7 @@ The next basic building block we need to look at are variables. Common Lisp supp
 
 To make matters a bit more confusing, many of the forms that deal with variables can be used with both lexical and dynamic variables. So I'll start by discussing a few aspects of Lisp's variables that apply to both kinds and then cover the specific characteristics of lexical and dynamic variables. Then I'll discuss Common Lisp's general-purpose assignment operator, SETF, which is used to assign new values to variables and just about every other place that can hold a value.
 
-Variable Basics
+## 6.1 Variable Basics
 
 As in other languages, in Common Lisp variables are named places that can hold a value. However, in Common Lisp, variables aren't typed the way they are in languages such as Java or C++. That is, you don't need to declare the type of object that each variable can hold. Instead, a variable can hold values of any type and the values carry type information that can be used to check types at runtime. Thus, Common Lisp is dynamically typed--type errors are detected dynamically. For instance, if you pass something other than a number to the + function, Common Lisp will signal a type error. On the other hand, Common Lisp is a strongly typed language in the sense that all type errors will be detected--there's no way to treat an object as an instance of a class that it's not.3
 
@@ -58,7 +58,7 @@ However, you could achieve the same result with nested LETs.
 
 (let ((x 10)) (let ((y (+ x 10))) (list x y)))
 
-Lexical Variables and Closures
+## 6.2 Lexical Variables and Closures
 
 By default all binding forms in Common Lisp introduce lexically scoped variables. Lexically scoped variables can be referred to only by code that's textually within the binding form. Lexical scoping should be familiar to anyone who has programmed in Java, C, Perl, or Python since they all provide lexically scoped "local" variables. For that matter, Algol programmers should also feel right at home, as Algol first introduced lexical scoping in the 1960s.
 
@@ -80,7 +80,7 @@ A single closure can close over many variable bindings simply by referring to th
 
 (let ((count 0)) (list #'(lambda () (incf count)) #'(lambda () (decf count)) #'(lambda () count)))
 
-Dynamic, a.k.a. Special, Variables
+## 6.3 Dynamic, a.k.a. Special, Variables
 
 Lexically scoped bindings help keep code understandable by limiting the scope, literally, in which a given name has meaning. This is why most modern languages use lexical scoping for local variables. Sometimes, however, you really want a global variable--a variable that you can refer to from anywhere in your program. While it's true that indiscriminate use of global variables can turn code into spaghetti nearly as quickly as unrestrained use of goto, global variables do have legitimate uses and exist in one form or another in almost every programming language.7 And as you'll see in a moment, Lisp's version of global variables, dynamic variables, are both more useful and more manageable.
 
@@ -162,7 +162,7 @@ It's also possible to declare a name locally special. If, in a binding form, you
 
 Dynamic bindings make global variables much more manageable, but it's important to notice they still allow action at a distance. Binding a global variable has two at a distance effects--it can change the behavior of downstream code, and it also opens the possibility that downstream code will assign a new value to a binding established higher up on the stack. You should use dynamic variables only when you need to take advantage of one or both of these characteristics.
 
-Constants
+## 6.4 Constants
 
 One other kind of variable I haven't mentioned at all is the oxymoronic "constant variable." All constants are global and are defined with DEFCONSTANT. The basic form of DEFCONSTANT is like DEFPARAMETER.
 
@@ -172,7 +172,7 @@ As with DEFVAR and DEFPARAMETER, DEFCONSTANT has a global effect on the name use
 
 Another thing to note about DEFCONSTANT is that while the language allows you to redefine a constant by reevaluating a DEFCONSTANT with a different initial-value-form, what exactly happens after the redefinition isn't defined. In practice, most implementations will require you to reevaluate any code that refers to the constant in order to see the new value since the old value may well have been inlined. Consequently, it's a good idea to use DEFCONSTANT only to define things that are really constant, such as the value of NIL. For things you might ever want to change, you should use DEFPARAMETER instead.
 
-Assignment
+## 6.5 Assignment
 
 Once you've created a binding, you can do two things with it: get the current value and set it to a new value. As you saw in Chapter 4, a symbol evaluates to the value of the variable it names, so you can get the current value simply by referring to the variable. To assign a new value to a binding, you use the SETF macro, Common Lisp's general-purpose assignment operator. The basic form of SETF is as follows:
 
@@ -204,7 +204,7 @@ SETF returns the newly assigned value, so you can also nest calls to SETF as in 
 
 (setf x (setf y (random 10)))
 
-Generalized Assignment
+## 6.6 Generalized Assignment
 
 Variable bindings, of course, aren't the only places that can hold values. Common Lisp supports composite data structures such as arrays, hash tables, and lists, as well as user-defined data structures, all of which consist of multiple places that can each hold a value.
 
@@ -230,7 +230,7 @@ Simple variable: (setf x 10) Array: (setf (aref a 0) 10) Hash table: (setf (geth
 
 Note that SETFing a place that's part of a larger object has the same semantics as SETFing a variable: the place is modified without any effect on the object that was previously stored in the place. Again, this is similar to how = behaves in Java, Perl, and Python.18
 
-Other Ways to Modify Places
+## 6.7 Other Ways to Modify Places
 
 While all assignments can be expressed with SETF, certain patterns involving assigning a new value based on the current value are sufficiently common to warrant their own operators. For instance, while you could increment a number with SETF, like this:
 

@@ -140,6 +140,22 @@ Remarks: The vl-member-if-not function passes each element in lst to the functio
 
 』
 
+
+### 0103. 主题卡——函数当作数据
+
+While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data. 9
+
+1-2『编程语言里，能把函数当作数据，个人感觉太有必要了，将函数作为参数传进另一个函数，构建复杂的模型。函数作为数据，做一张主题卡。（2020-10-28）』——已完成
+
+In Lisp, functions are just another kind of object. When you define a function with DEFUN, you're really doing two things: creating a new function object and giving it a name. It's also possible, as you saw in Chapter 3, to use LAMBDA expressions to create a function without giving it a name. The actual representation of a function object, whether named or anonymous, is opaque--in a native-compiling Lisp, it probably consists mostly of machine code. The only things you need to know are how to get hold of it and how to invoke it once you've got it.
+
+The special operator FUNCTION provides the mechanism for getting at a function object. It takes a single argument and returns the function with that name. The name isn't quoted. Thus, if you've defined a function foo, like so:
+
+```c
+CL-USER> (defun foo (x) (* 2 x)) 
+FOO
+```
+
 ### 0201. 术语卡——特殊符号撇号 `'` 
 
 The test-form will always be evaluated and then one or the other of the then-form or else-form. An even simpler special operator is QUOTE, which takes a single expression as its "argument" and simply returns it, unevaluated. For instance, the following evaluates to the list (+ 1 2), not the value 3:

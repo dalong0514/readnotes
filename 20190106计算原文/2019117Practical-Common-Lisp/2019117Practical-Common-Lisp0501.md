@@ -308,6 +308,8 @@ Admittedly, having to specify the name of the function you're returning from is 
 
 While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data. 9
 
+1-2『编程语言里，能把函数当作数据，个人感觉太有必要了，将函数作为参数传进另一个函数，构建复杂的模型。函数作为数据，做一张主题卡。（2020-10-28）』——已完成
+
 In Lisp, functions are just another kind of object. When you define a function with DEFUN, you're really doing two things: creating a new function object and giving it a name. It's also possible, as you saw in Chapter 3, to use LAMBDA expressions to create a function without giving it a name. The actual representation of a function object, whether named or anonymous, is opaque--in a native-compiling Lisp, it probably consists mostly of machine code. The only things you need to know are how to get hold of it and how to invoke it once you've got it.
 
 The special operator FUNCTION provides the mechanism for getting at a function object. It takes a single argument and returns the function with that name. The name isn't quoted. Thus, if you've defined a function foo, like so:
@@ -324,14 +326,16 @@ CL-USER> (function foo)
 #<Interpreted Function FOO>
 ```
 
-In fact, you've already used FUNCTION, but it was in disguise. The syntax #', which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way ' is syntactic sugar for QUOTE.11 Thus, you can also get the function object for foo like this:
+In fact, you've already used FUNCTION, but it was in disguise. The syntax #', which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way ' is syntactic sugar for QUOTE. 11 Thus, you can also get the function object for foo like this:
 
 ```c
 CL-USER> #'foo 
 #<Interpreted Function FOO>
 ```
 
-Once you've got the function object, there's really only one thing you can do with it--invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY.12 They differ only in how they obtain the arguments to pass to the function.
+1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）』
+
+Once you've got the function object, there's really only one thing you can do with it--invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY. 12 They differ only in how they obtain the arguments to pass to the function.
 
 FUNCALL is the one to use when you know the number of arguments you're going to pass to the function at the time you write the code. The first argument to FUNCALL is the function object to be invoked, and the rest of the arguments are passed onto that function. Thus, the following two expressions are equivalent:
 
@@ -344,7 +348,12 @@ However, there's little point in using FUNCALL to call a function whose name you
 The following function demonstrates a more apt use of FUNCALL. It accepts a function object as an argument and plots a simple ASCII-art histogram of the values returned by the argument function when it's invoked on the values from min to max, stepping by step.
 
 ```c
-(defun plot (fn min max step) (loop for i from min to max by step do (loop repeat (funcall fn i) do (format t "*")) (format t "~%")))
+(defun plot (fn min max step) 
+  (loop for i from min to max by step do 
+    (loop repeat (funcall fn i) do (format t "*")) 
+    (format t "~%")
+  )
+)
 ```
 
 The FUNCALL expression computes the value of the function for each value of i. The inner LOOP uses that computed value to determine how many times to print an asterisk to standard output.
@@ -364,7 +373,12 @@ NIL
 FUNCALL, however, doesn't do you any good when the argument list is known only at runtime. For instance, to stick with the plot function for another moment, suppose you've obtained a list containing a function object, a minimum and maximum value, and a step value. In other words, the list contains the values you want to pass as arguments to plot. Suppose this list is in the variable plot-data. You could invoke plot on the values in that list like this:
 
 ```c
-(plot (first plot-data) (second plot-data) (third plot-data) (fourth plot-data))
+(plot 
+  (first plot-data) 
+  (second plot-data) 
+  (third plot-data) 
+  (fourth plot-data)
+)
 ```
 
 This works fine, but it's pretty annoying to have to explicitly unpack the arguments just so you can pass them to plot.
@@ -386,6 +400,10 @@ APPLY doesn't care about whether the function being applied takes &optional, &re
 9 Lisp, of course, isn’t the only language to treat functions as data. C uses function pointers, Perl uses subroutine references, Python uses a scheme similar to Lisp, and C# introduces delegates, essentially typed function pointers, as an improvement over Java’s rather clunky reflection and anonymous class mechanisms.
 
 10 The exact printed representation of a function object will differ from implementation to implementation.
+
+11 The best way to think of FUNCTION is as a special kind of quotation. QUOTEing a symbol prevents it from being evaluated at all, resulting in the symbol itself rather than the value of the variable named by that symbol. FUNCTION also circumvents the normal evaluation rule but, instead of preventing the symbol from being evaluated at all, causes it to be evaluated as the name of a function, just the way it would if it were used as the function name in a function call expression.
+
+12 There’s actually a third, the special operator MULTIPLE-VALUE-CALL, but I’ll save that for when I discuss expressions that return multiple values in Chapter 20.
 
 ## 5.9 Anonymous Functions
 
