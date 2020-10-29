@@ -4,25 +4,33 @@ The AutoLISP® programming language is great for creating and modifying objects.
 
 The command function is the most common method that AutoLISP programmers use to create and modify objects, but it isn't the most efficient when you are trying to modify individual properties of an object. Even creating lots of objects in the Autodesk® AutoCAD® program can be slower with the command function. Along with the command function, objects can be created and modified directly by setting property values as part of an entity data list. Extended data (XData) can also be attached to an object as a way to differentiate one object from another or, in some cases, to affect the way an object might look in the drawing area.
 
-Working with Entity Names and Dotted Pairs
+## 6.1 Working with Entity Names and Dotted Pairs
 
 Creating and modifying objects with AutoLISP requires the understanding of two concepts: entity names and entity data. Entity names, also known as enames, are numeric values that are assigned to graphical and nongraphical objects stored in a drawing. An ename is expressed as the ENAME data type in AutoLISP. When you want to access an object, you use an ename. After an ename has been obtained, you can then access the object's properties through its entity data list. An entity data list is a list that contains information about an object. In addition to modifying an object using an entity data list, you can create objects with entity data lists. I discuss how to create an object with an entity data list in the「Adding Objects to a Drawing」section, and how to get an ename for an object and the entity data list in the「Modifying Objects」section.
+
+---
 
 Recovering from a Daydream
 
 It is Monday morning and you just got back from vacation. For the most part, you are still thinking about the great time you had with the family at the beach. Before you realize it, you have placed all your dimensions and hatch objects on an incorrect layer. Never fear—AutoLISP to the rescue. Using a few lines of AutoLISP code, you select the misplaced objects and move them onto the correct layer.
 
+---
+
 Each entity data list is made up of many smaller lists that describe the properties of an object. The smaller lists are value pairings commonly known as dotted pairs. They are called dotted pairs because a dot usually separates the key element from the value of the list. The key element is commonly a DXF group code (which is of the integer data type) and used to let AutoCAD know the type of data for the value in the dotted pair. Some DXF group codes have common uses, whereas others have a more general meaning. I discuss some DXF group codes during this chapter, but you will need to refer to the AutoCAD Help system for a listing of all supported DXF group codes by object.
 
 The value of a dotted pair can be made up of more than one item. When a value contains more than one item, no dot is provided, as is the case with coordinate values. Here is an example of an entity data list for a circle:
 
+```c
 ((-1. <Entity name: 7ff79b005dc0>) (0. "CIRCLE") (330. <Entity name: 7ff79b0039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 0.0 0.0 0.0) (40. 0.875) (210 0.0 0.0 1.0))
+```
 
 The DXF group codes 10 and 40 are used to describe the circle. The DXF group code 10 represents the center point of the circle (10 0.0 0.0 0.0), whereas the DXF group code 40 represents the radius of the circle, which is set to a value of 0.875. Even though you can use the circle command to create a circle based on a diameter value, AutoCAD stores only the circle's radius as part of the drawing.
 
 DXF group codes don't always have the same meaning. For example, the DXF group code 10 is used by both lines and circles, but for line objects the code represents the line's starting point, as shown in the following entity data list:
 
+```c
 ((-1. <Entity name: 7ff79b005e00>) (0. "LINE") (330. <Entity name: 7ff79b0039f0>) (5. "1D8") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbLine") (10 0.0 5.0 0.0) (11 5.0 5.0 0.0) (210 0.0 0.0 1.0))
+```
 
 Table 16.1 lists some of the most common DXF group codes that are used by objects in a drawing. For additional information on DXF group codes, search on「DXF entities section」in the AutoCAD Help system.
 
@@ -45,6 +53,8 @@ DXF group c0de Description
 
 62 Specifies the color that an object is assigned; not used if the color is assigned by layer
 
+---
+
 Referencing Objects Using Handles
 
 Enames aren't the only way you can reference an object in a drawing. When a drawing is closed and reopened, a new ename is assigned to each object in the drawing. However, each object created in a drawing is assigned a unique string value called a handle.
@@ -61,9 +71,13 @@ The handle argument represents an object's handle and must be expressed as a str
 
 You can get an object's handle using the list command or the AutoLISP entget function, which I discuss later, in the「Modifying Objects」section. The following is an example that gets the entity name of the Block symbol table (or a different object in your drawings)—which has a handle of "1"—with the handent function:
 
+```
 (handent "1") <Entity name: 7ff79b003810>
+```
 
-Creating a Dotted Pair
+---
+
+### 6.1.1 Creating a Dotted Pair
 
 A dotted pair is a list that is created using the AutoLISP cons or quote (') function. When creating a dotted pair, you need to know two things: the key element and the value to be associated with the key element. Although the key element can be of any data type with the exception of a list, it is commonly either a string or integer. In entity data lists, the key element is an integer value that represents a DXF group code.
 
@@ -85,7 +99,7 @@ You can also use the quote function to create a dotted pair. The following examp
 
 ; Dotted pair with a system variable name as the key and its value '("cmdecho". 0) ("cmdecho". 0) ; DXF group code 10 with a coordinate value of 0.5,5.5,0 '(10 0.5 5.5 0.0) (10 0.5 5.5 0.0) ; DXF group code 40 with a value of 0.875 '(40. 0.875) (40. 0.875)
 
-Accessing the Elements of an Entity Data List and Dotted Pair
+### 6.1.2 Accessing the Elements of an Entity Data List and Dotted Pair
 
 Accessing the elements of an entity data list and a dotted pair is like accessing the elements of a regular list. Although you can use many of the list-related functions that I discussed in Chapter 14,「Working with Lists,」the AutoLISP assoc function is one of the functions that is frequently used when working with an entity data list. The assoc function is used to return a dotted pair with a specific key element in an entity data list.
 
@@ -109,21 +123,29 @@ The AutoLISP car and cdr functions can also be helpful when working with dotted 
 
 ; Returns the key element of the dotted pair (car (assoc 40 ed)) 40 ; Returns the value of the dotted pair (cdr (assoc 40 ed)) 2.0
 
-Adding Objects to a Drawing
+## 6.2 Adding Objects to a Drawing
 
 Adding objects to a drawing can be done using standard AutoCAD commands with the command or entmake function. The entmake function accepts an entity data list that defines an object to be added to the drawing. All of the properties required to create an object must be contained in the entity data list; otherwise, the object won't be created. The properties required by the object are documented as part of the DXF Reference documentation in the AutoCAD Help system, but you might need to perform some trial and error to develop the proper entity data list that creates a new object.
+
+---
 
 Going Further without Commands
 
 Do you find yourself avoiding tables even though your boss likes the look they provide in drawings? Do you wish tables were more efficient for the type of information you add to them? You're not alone. Most objects can be created and modified using commands at the Command prompt, but tables unfortunately are not among them. AutoLISP can help you out. The AutoCAD table command provides limited functionality to create a table, but it can't be used to populate or modify a table. Using AutoLISP, you can create a table using the entmake function while modifying and populating the table with the entget and entmod functions. Once again, with AutoLISP you have reclaimed part of your day for other tasks, such as working on additional projects or freeing up time to learn more about AutoLISP.
 
+---
+
 For some objects it's easier to determine which properties are required; for example, a circle requires a center point and radius whereas a line requires a start and endpoint. The best way to figure out which properties are required when creating an object is to create a new object in a drawing of the type you want to create with the entmake function. Once the object is created, enter the following code at the AutoCAD Command prompt to see the entity data list associated with the object:
 
+```c
 (entget (entlast))
+```
 
 For example, if you drew a circle with a center point of 5,6.5,0 and a radius of 2.0, the entity data list that is returned might look like this:
 
+```c
 ((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+```
 
 In the previous example, the DXF group codes –1, 5, and 330 were automatically generated and assigned to the object. Those DXF group codes shouldn't be part of the entity data list when you create a new object with the entmake function. Table 16.2 describes the DXF group codes –1, 5, and 330.
 
@@ -221,15 +243,15 @@ The dotted pair with the DXF group code 10 sets the center point, DXF group code
 
 Figure 16.2 Plan view of a #12-24 machine screw, slotted round head
 
-Selecting Objects
+## 6.3 Selecting Objects
 
 AutoLISP enables you to step through the objects in a drawing or allow the user to interactively select one or more objects in the drawing area. Based on the selection technique used, an ename is returned; otherwise, a selection set (ssname) is returned that can contain one or more objects.
 
-Selecting an Individual Object
+### Selecting an Individual Object
 
 AutoLISP provides two different techniques that can be used to select an individual object within a drawing—through code or via user interaction. When you want to work with the most recent object or step through all of the objects in a drawing, you don't need any input from the user. The AutoLISP functions entlast and entnext can be used to get an individual object without any input from the user. If you do want to allow the user to interactively select an individual object, you can use the entsel and nentsel functions.
 
-Selecting an Object through Code
+### Selecting an Object through Code
 
 The entlast function returns the entity name of the last graphical object added to a drawing and doesn't require any arguments. This function can be helpful in getting the entity name for a new object created with the entmake function.
 
@@ -247,7 +269,7 @@ The following example code uses the entnext function to step through and list th
 
 The previous example used the entget function to return an entity data list of an object. I explain how to use this function later, in the「Updating an Object's Properties with an Entity Data List」section.
 
-Selecting an Object Interactively
+### Selecting an Object Interactively
 
 The user can select a single object in the drawing area using the entsel and nentsel functions. The entsel function returns a list of two values: the entity name of the object selected and the center point of the pick box when the object was selected. nil is returned by the entsel function if an object isn't selected as the result of either the user picking in an empty area of the drawing or pressing Enter.
 
@@ -271,13 +293,13 @@ The following examples show how to select an object with the entsel function:
 
 ; Prompts the user to select an individual object (setq entlist (entsel "\nSelect an object: ")) (<Entity name: 7ff72292cc10> (-0.75599 2.48144 0.0)) ; Uses the car function to get the entity name returned by entsel (setq entityName (car entlist)) <Entity name: 7ff72292cc10> ; Uses the cadr function to get the coordinate value returned by entsel (setq pickPoint (cadr entlist)) (-0.75599 2.48144 0.0)
 
-Working with Selection Sets
+### Working with Selection Sets
 
 A selection set, sometimes known as a selection set name or ssname for short, is a temporary container that holds a reference to objects in a drawing. AutoLISP represents a selection set with the PICKFIRST data type. You get a selection set, commonly based on the objects in a drawing that the user wants to modify or interact with. For example, when you see the Select objects: prompt AutoCAD is asking you to select the objects in the drawing you want to work with and it gets a selection set containing the objects you selected in return.
 
 In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
 
-Creating a Selection Set
+### Creating a Selection Set
 
 The most common way to create a selection set is to simply prompt the user to select objects in the drawing. The entsel and nentsel functions allow you to select a single object, but typically you will want to allow the user to select more than one object at a time. The ssget function allows the user to interactively select objects in a drawing using the selection methods that are commonly available at the Select objects: prompt. The ssget function can also be used to create a selection set without any user input. The ssget function returns a PICKSET value if at least one object was selected or returns nil if no objects were selected.
 
@@ -351,7 +373,7 @@ NOTE
 
 The ssnamex function can be used to get information about how the objects in a selection set were added, as well as how the selection set was created. This includes selection sets created with the ssget, ssgetfirst, and ssadd functions. The value returned by the ssnamex function is a list. For more information on the ssnamex function, search on「ssnamex」in the AutoCAD Help system.
 
-Managing Objects in a Selection Set
+### Managing Objects in a Selection Set
 
 After the user has been prompted to select objects, the resulting selection set can be revised by adding or removing objects. Objects that aren't in the selection set but are in the drawing can be added to the selection set using the ssadd function. If the user selected an object that shouldn't be in the selection set, it can be removed using the ssdel function. The ssadd and ssdel functions return the selection set that they are passed if the function was successful; otherwise, the function returns nil.
 
@@ -375,7 +397,7 @@ The following examples show how to add and remove objects in a selection set usi
 
 ; Create a line object (entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) ((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) ; Add the line to the selection set (setq ss1 (ssadd (entlast) ss1)) <Selection set: a1> ; Determine if the last graphical entity is in the selection set (ssmemb (entlast) ss1) <Entity name: 7ff6a1704f00> ; Remove the last entity from the selection set (ssdel (entlast) ss1) <Selection set: a1> ; Determine if the last graphical entity is in the selection set (ssmemb (entlast) ss1) nil
 
-Stepping through a Selection Set
+### Stepping through a Selection Set
 
 Selection sets contain the objects the user selected in the drawing for query or modification and might include one to several thousand objects. You can use the repeat or while looping functions in combination with the sslength and ssname functions to step through and access each object in a selection set. The sslength function returns the number of objects in a selection set as an integer, whereas the ssname function is used to return the entity name of an object located at a specific index within a selection set. The index of the first object in a selection set is 0. As part of a looping statement, you increment an integer value by 1 to get the next object until you reach the last object in the selection set. If an object isn't at the specified index in a selection set when using the ssname function, nil is returned.
 
@@ -415,7 +437,7 @@ Type the following and press Enter to change the color of each object in the sel
 
 The colors assigned to the objects range from ACI 1 through 9, and reset back to 1 when the counter reaches 10.
 
-Filtering Selected Objects
+### Filtering Selected Objects
 
 When selecting objects with the ssget function, you can control which objects are added to the selection set. A selection filter allows you to select objects of a specific type or even objects with certain property values. Selection filters are made up of dotted pairs and are similar to an entity data list. For example, the following selection filter will select all circles on the layer holes:
 
@@ -449,7 +471,7 @@ TIP
 
 On AutoCAD for Windows, you can use the filter command to create a filter selection and save it. Saving the filter adds it to the file named filter.nfl. You can use the AutoLISP statement (findfile "filter.nfl") to return the location of the file in the command-line window. Open the file with Notepad. The filter command writes the filter in two formats: as AutoLISP statements (:ai_lisp) and as a string description (:ai_str). You can copy the AutoLISP statements that are created to define an object selection filter for use with the ssget function. Although this technique can help simplify the testing and creation of complex selection filters, it is undocumented and something I just figured out years ago when I first started learning AutoLISP.
 
-Modifying Objects
+## 6.4 Modifying Objects
 
 The majority of time spent on a design isn't related to creating new objects, but rather to modifying the objects that are already in a drawing. When you need to modify an object, you can use an AutoCAD command with the command function or directly with AutoLISP functions. Directly modifying an object provides you with more choices in the properties you can change and gives you more flexibility than using commands.
 
@@ -467,7 +489,7 @@ The following are examples that demonstrate how to modify objects with AutoCAD c
 
 In this section, I explain how to work with entity names and directly modify an object without using the command function. The properties of an object can be queried or edited one at a time, or you can manipulate several properties of an object by changing the entity data list that represents the object.
 
-Listing and Changing the Properties of an Object Directly
+### Listing and Changing the Properties of an Object Directly
 
 AutoLISP offers two different methods for modifying the properties of an object directly. The easier of the two methods is to use the object property functions that were introduced with AutoCAD 2012. These functions require less code than the legacy approach of getting and manipulating the entity data list of an object. The property-related functions are less cryptic than entity data list manipulation as well, because you don't need to understand the various DXF group codes associated with a specific object. The downside to these functions is that they work only with AutoCAD 2012 and later, so if you need to support an earlier release you will need to manipulate entity data lists (which I cover in the next section).
 
@@ -485,7 +507,7 @@ setpropertyvalue Assigns a value to an object's property
 
 ispropertyreadonly Returns T or nil based on whether an object property is read-only
 
-Listing Object Properties
+### Listing Object Properties
 
 The dumpallproperties function outputs the properties and their current values for an object to the command-line window. Some property values, such as StartPoint for a line or Position of a block reference, can be output as a single value or as three individual values.
 
@@ -535,7 +557,7 @@ Area The global name of the object's property.
 
 = 12.566371 The value of the property.
 
-Getting and Setting the Value of an Object Property
+### Getting and Setting the Value of an Object Property
 
 The getpropertyvalue and setpropertyvalue functions allow you to set an object's property. Use the dumpallproperties function on an ename to see the properties available for an object and the type of data that is expected.
 
@@ -591,7 +613,7 @@ Figure 16.3 Basics of a callout balloon
 
 The three modified objects should now look like those on the right side of Figure 16.3.
 
-Updating an Object's Properties with an Entity Data List
+### Updating an Object's Properties with an Entity Data List
 
 Although the functions I mentioned in the previous section make working with object properties easier in recent releases, you should also understand how to modify the properties of an object with an entity data list. There are three main reasons why I recommend this:
 
@@ -651,7 +673,7 @@ Type the following and press Enter to shorten the line so it intersects with the
 
 The three modified objects should now look like those on the right side of Figure 16.3.
 
-Deleting an Object
+### Deleting an Object
 
 An object that is no longer needed can be deleted from a drawing with the AutoLISP entdel function. Deleting an object from a drawing with the entdel function removes it from the display but doesn't remove the object from the drawing immediately. It flags an object for removal; the object is removed when the drawing is saved and then closed. You can use the entdel function a second time to restore the object while the drawing remains open. Using the AutoCAD u or undo command will also restore an object that was flagged for removal with the entdel function. Objects removed with the erase command can also be restored with the entdel function.
 
@@ -669,7 +691,7 @@ The following examples show how to remove an object with the entdel function:
 
 ; Gets the last object added to the drawing (setq en (entlast)) <Entity name: 7ff618a0be20> ; Deletes the object assigned to the en variable (entdel en) <Entity name: 7ff618a0be20> ; Restores the object assigned to the en variable (entdel en) <Entity name: 7ff618a0be20>
 
-Highlighting Objects
+### Highlighting Objects
 
 Object highlighting is the feedback technique that AutoCAD uses to indicate which objects have been selected in the drawing area and are ready to be interacted with or modified. While highlighting is a great way to let a user know which objects will be modified, it can also impact the performance of a program when a large number of objects are selected. You can turn off general object-selection highlighting with the highlight system variable.
 
@@ -689,7 +711,7 @@ The following examples show how to highlight and display an object with the redr
 
 ; Highlights the last graphical object in the drawing (redraw (entlast) 3) ; Unighlights the object (redraw (entlast) 4) ; Hides the object (redraw (entlast) 2) ; Shows the object (redraw (entlast) 1)
 
-Working with Complex Objects
+## 6.5 Working with Complex Objects
 
 Some objects in AutoCAD represent basic geometry such as circles and lines, whereas other objects are complex and made up of several objects. Complex objects require a bit more work to create and modify with AutoLISP. The two most common complex objects that you will find yourself working with are polylines and block references.
 
@@ -710,7 +732,7 @@ Knowing that he's likely to ask for a layout of the whole floor—not just that 
 
 
 
-Creating and Modifying Polylines
+### Creating and Modifying Polylines
 
 AutoCAD drawings can contain two different types of polylines; old-style (legacy) and lightweight. Old-style polylines were the first type of polylines that were introduced in an early release of AutoCAD. An old-style polyline is composed of several objects: a main polyline object, vertex objects that define each vertex of the polyline, and a seqend object that defines the end of the polyline. Old-style polylines can be 2D or 3D and contain straight or curved segments.
 
@@ -742,7 +764,7 @@ The DXF group code 10 in the previous example appears multiple times in the enti
 
 The approaches to updating and querying an old-style and lightweight polyline vary, so you will need to handle each type using conditional statements in your programs. You can use the getpropertyvalue and setpropertyvalue functions to work with the Vertices property of both types of polylines to simplify the code you might need to write.
 
-Creating and Modifying with Block References
+### Creating and Modifying with Block References
 
 Block references are often misunderstood by new (and even experienced) AutoLISP developers. Blocks are implemented as two separate objects: block definitions and block references. Block definitions are nongraphical objects that are stored in a drawing and contain the geometry and attribute definitions that make up how the block should appear and behave in the drawing area. A block definition can also contain custom properties and dynamic properties.
 
@@ -784,7 +806,7 @@ For more information on the DXF entities insert, attrib, and seqend, use the Aut
 
 In addition to using entity data lists to query and modify block references, you can use the getpropertyvalue and setpropertyvalue functions. You learned about those functions in the「Listing and Changing the Properties of an Object Directly」section earlier in this chapter.
 
-Extending an Object's Information
+## Extending an Object's Information
 
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
@@ -794,7 +816,7 @@ The values in an XData list and what they represent is up to you, the creator of
 
 In addition to XData, graphical and nongraphical objects support what are known as extension dictionaries. Extension dictionaries are kind of like record tables that can be attached to an object. For example, you could store revision history of a drawing in an extension dictionary that is attached to model space, and then populate that information in the drawing's title block. I discuss creating custom dictionaries in Chapter 17.
 
-Working with XData
+### Working with XData
 
 Attaching XData to an object requires you to do some initial planning and perform several steps. The following outlines the steps that you must perform in order to attach an XData list to an object:
 
@@ -980,7 +1002,7 @@ Here are two examples of the ssget function that use a selection filter to allow
 
 ; Selects objects containing xdata and with the application name MyApp. (ssget '((-3 ("MyApp")))) ; Uses implied selection and selects objects with the application name ACAD. (ssget "_I" '((-3 ("ACAD"))))
 
-Exercise: Creating, Querying, and Modifying Objects
+## Exercise: Creating, Querying, and Modifying Objects
 
 In this section, you will continue to work with the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」Along with working with the drawplate function, you will define a new function that will be used to create a bill of materials (BOM) for a furniture layout. The key concepts I cover in this exercise are as follows:
 

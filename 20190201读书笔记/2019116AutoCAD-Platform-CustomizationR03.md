@@ -6,20 +6,6 @@
 
 Part II AutoLISP: Productivity through Programming
 
-0201——Chapter 11: Quick Start for New AutoLISP Programmers
-
-0202——Chapter 12: Understanding AutoLISP
-
-0203——Chapter 13: Calculating and Working with Values
-
-0204——Chapter 14: Working with Lists
-
-0205——Chapter 15: Requesting Input and Using Conditional and Looping Expressions
-
-0206——Chapter 16: Creating and Modifying Graphical Objects
-
-0207——Chapter 17: Creating and Modifying Nongraphical Objects
-
 0208——Chapter 18: Working with the Operating System and External Files
 
 0209——Chapter 19: Catching and Handling Errors
@@ -31,6 +17,12 @@ Part II AutoLISP: Productivity through Programming
 0212——Chapter 22: Working with ActiveX/COM Libraries (Windows only)
 
 0213——Chapter 23: Implementing Dialog Boxes (Windows only)
+
+## 0208. Working with the Operating System and External Files
+
+The AutoLISP® programming language can be used to reach beyond the boundaries of the Autodesk® AutoCAD® application window and objects in the current open drawing. Using AutoLISP, you can access settings managed by the operating system and installed applications on Windows or by the application-level settings of AutoCAD on both Windows and Mac OS. You can access operating system– and application-level settings from the Windows Registry. On Mac OS, you can access application-level settings for AutoCAD from the Plist (property list) files.
+
+Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
 
 ## 0213. Implementing Dialog Boxes (Windows only)
 
