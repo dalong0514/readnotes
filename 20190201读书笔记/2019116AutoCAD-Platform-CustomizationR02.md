@@ -814,4 +814,3 @@ TIP: Using the AutoLISP princ function in the last statement of a custom AutoLIS
 1『汇总：1）上面的写法更简洁，写条件语句的时候值得借鉴。2）算是搞明白函数结尾用 `(princ)` 的真正用途了，阻止返回最后一条语句返回的值。做一张任意卡片。（2020-10-08）』
 
 1『其他小节的内容待消化。（2020-10-08）』
-

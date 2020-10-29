@@ -2,7 +2,11 @@
 
 The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
 
+2『图形数据和非图形数据，做一张术语卡片。』——已完成
+
 The command function is the most common method that AutoLISP programmers use to create and modify objects, but it isn't the most efficient when you are trying to modify individual properties of an object. Even creating lots of objects in the Autodesk® AutoCAD® program can be slower with the command function. Along with the command function, objects can be created and modified directly by setting property values as part of an entity data list. Extended data (XData) can also be attached to an object as a way to differentiate one object from another or, in some cases, to affect the way an object might look in the drawing area.
+
+1-2『直接用 command，自己就遇到了瓶颈。1）确实效率低下。2）自动生成辅助流程组件，插进来的块，位置经常不是均匀的，目前一直找到不解决办法。正巧这里受到启发，改用直接创建实体数据的方法实现自动生成块。待实现。做一张任意卡片。（2020-10-29）』
 
 ## 6.1 Working with Entity Names and Dotted Pairs
 
@@ -21,7 +25,10 @@ Each entity data list is made up of many smaller lists that describe the propert
 The value of a dotted pair can be made up of more than one item. When a value contains more than one item, no dot is provided, as is the case with coordinate values. Here is an example of an entity data list for a circle:
 
 ```c
-((-1. <Entity name: 7ff79b005dc0>) (0. "CIRCLE") (330. <Entity name: 7ff79b0039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 0.0 0.0 0.0) (40. 0.875) (210 0.0 0.0 1.0))
+((-1. <Entity name: 7ff79b005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff79b0039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 0.0 0.0 0.0) (40. 0.875) (210 0.0 0.0 1.0))
 ```
 
 The DXF group codes 10 and 40 are used to describe the circle. The DXF group code 10 represents the center point of the circle (10 0.0 0.0 0.0), whereas the DXF group code 40 represents the radius of the circle, which is set to a value of 0.875. Even though you can use the circle command to create a circle based on a diameter value, AutoCAD stores only the circle's radius as part of the drawing.
@@ -29,29 +36,25 @@ The DXF group codes 10 and 40 are used to describe the circle. The DXF group cod
 DXF group codes don't always have the same meaning. For example, the DXF group code 10 is used by both lines and circles, but for line objects the code represents the line's starting point, as shown in the following entity data list:
 
 ```c
-((-1. <Entity name: 7ff79b005e00>) (0. "LINE") (330. <Entity name: 7ff79b0039f0>) (5. "1D8") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbLine") (10 0.0 5.0 0.0) (11 5.0 5.0 0.0) (210 0.0 0.0 1.0))
+((-1. <Entity name: 7ff79b005e00>) (0. "LINE") 
+ (330. <Entity name: 7ff79b0039f0>) (5. "1D8") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbLine") 
+ (10 0.0 5.0 0.0) (11 5.0 5.0 0.0) (210 0.0 0.0 1.0))
 ```
 
 Table 16.1 lists some of the most common DXF group codes that are used by objects in a drawing. For additional information on DXF group codes, search on「DXF entities section」in the AutoCAD Help system.
 
 Table 16.1 Common DXF group codes
 
-DXF group c0de Description
-
-
-0 Specifies the object's type
-
-6 Specifies the linetype that an object is assigned; not used if the linetype is assigned by layer
-
-8 Specifies the layer on which an object is placed
-
-10 Specifies the start, center, elevation, or insertion point for many different objects
-
-11 Specifies the endpoint or direction vector for many different objects
-
-40 Specifies the radius for circles, height for text, and ratio between the major and minor axis of an ellipse
-
-62 Specifies the color that an object is assigned; not used if the color is assigned by layer
+|  DXF group code | Description  |
+|---|---|
+|  0 |  Specifies the object's type |
+|  6 |  Specifies the linetype that an object is assigned; not used if the linetype is assigned by layer |
+|  8 |  Specifies the layer on which an object is placed |
+|  10 |  Specifies the start, center, elevation, or insertion point for many different objects |
+|  11 |  Specifies the endpoint or direction vector for many different objects |
+|  40 |  Specifies the radius for circles, height for text, and ratio between the major and minor axis of an ellipse |
+|  62 |  Specifies the color that an object is assigned; not used if the color is assigned by layer |
 
 ---
 
@@ -61,67 +64,126 @@ Enames aren't the only way you can reference an object in a drawing. When a draw
 
 A handle is a hexadecimal number value that is unique for each object in a drawing and can be used to reference an object when the drawing is closed and reopened. While the same handle can be used in more than one drawing, the handle remains unique and unchanged for an object in a drawing. The handle of an object can be accessed from an object's entity data list; the dotted pair with the DXF group code 5 contains the object's handle.
 
-Handles are commonly used to export information about the objects in a drawing and process the information externally before using the information to update the objects in the drawing. The AutoLISP handent function accepts a string value that represents an object's handle in the drawing and returns the object's current ename.
+3『「2019114Autolisp-Developers-GuideR00.md」
 
-The following shows the syntax of the handent function:
+0306 任意卡——handle 与实体名之间的切换
 
+直接在 CAD 里用 `list` 命令选中一个实体，在显示的信息里，句柄即为 handle。
+
+1、通过实体名获取实体的 handle：借用任意卡 0303 里的信息，可以直接获取一个实体的数据信息，举个例子，里面的 `(5 . "59DAA")` 这个即为 handle。那么获取这个数据的办法就显而易见了，跟获取它的坐标 `(10 xx yy)`，图层 `(0 . "0")`，块名称 `(2 . "PipeArrowLeft")` 等等的信息一模一样。
+
+```c
+(cdr (assoc 5 (entget ename)))
+```
+
+2、通过 handle 获取实体名。
+
+```c
+(setq ename (handent "5a2"))
+```
+
+』
+
+Handles are commonly used to export information about the objects in a drawing and process the information externally before using the information to update the objects in the drawing. The AutoLISP handent function accepts a string value that represents an object's handle in the drawing and returns the object's current ename. The following shows the syntax of the handent function:
+
+```c
 (handent handle)
+```
 
 The handle argument represents an object's handle and must be expressed as a string.
 
 You can get an object's handle using the list command or the AutoLISP entget function, which I discuss later, in the「Modifying Objects」section. The following is an example that gets the entity name of the Block symbol table (or a different object in your drawings)—which has a handle of "1"—with the handent function:
 
 ```
-(handent "1") <Entity name: 7ff79b003810>
+(handent "1") 
+<Entity name: 7ff79b003810>
 ```
 
 ---
 
 ### 6.1.1 Creating a Dotted Pair
 
-A dotted pair is a list that is created using the AutoLISP cons or quote (') function. When creating a dotted pair, you need to know two things: the key element and the value to be associated with the key element. Although the key element can be of any data type with the exception of a list, it is commonly either a string or integer. In entity data lists, the key element is an integer value that represents a DXF group code.
+A dotted pair is a list that is created using the AutoLISP cons or quote (') function. When creating a dotted pair, you need to know two things: the key element and the value to be associated with the key element. Although the key element can be of any data type with the exception of a list, it is commonly either a string or integer. In entity data lists, the key element is an integer value that represents a DXF group code. The following shows the syntax of the cons function:
 
-The following shows the syntax of the cons function:
-
+```c
 (cons key atom)
+```
 
-The arguments are as follows:
-
-key The key argument represents the index or unique identifier for the dotted pair.
-
-atom The atom argument represents the value that you want to associate with the index or unique identifier specified by the key argument.
+The arguments are as follows: 1) key. The key argument represents the index or unique identifier for the dotted pair. 2) atom. The atom argument represents the value that you want to associate with the index or unique identifier specified by the key argument.
 
 The following examples show how to create dotted pairs with the cons function, and the values that are returned:
 
-; Dotted pair with a system variable name as the key and its value (cons "cmdecho" 0) ("cmdecho". 0) ; DXF group code 10 with a coordinate value of 0.5,5.5,0 (cons 10 (list 0.5 5.5 0.0)) (10 0.5 5.5 0.0) ; DXF group code 40 with a value of 0.875 (cons 40 0.875) (40. 0.875)
+```c
+; Dotted pair with a system variable name as the key and its value 
+(cons "cmdecho" 0) 
+("cmdecho". 0) 
+
+; DXF group code 10 with a coordinate value of 0.5,5.5,0 
+(cons 10 (list 0.5 5.5 0.0)) 
+(10 0.5 5.5 0.0) 
+
+; DXF group code 40 with a value of 0.875 
+(cons 40 0.875) 
+(40. 0.875)
+```
 
 You can also use the quote function to create a dotted pair. The following examples show how to create dotted pairs with the quote function, and the values that are returned:
 
-; Dotted pair with a system variable name as the key and its value '("cmdecho". 0) ("cmdecho". 0) ; DXF group code 10 with a coordinate value of 0.5,5.5,0 '(10 0.5 5.5 0.0) (10 0.5 5.5 0.0) ; DXF group code 40 with a value of 0.875 '(40. 0.875) (40. 0.875)
+```c
+; Dotted pair with a system variable name as the key and its value 
+'("cmdecho". 0) 
+("cmdecho". 0) 
+
+; DXF group code 10 with a coordinate value of 0.5,5.5,0 
+'(10 0.5 5.5 0.0) 
+(10 0.5 5.5 0.0) 
+
+; DXF group code 40 with a value of 0.875 
+'(40. 0.875) 
+(40. 0.875)
+```
 
 ### 6.1.2 Accessing the Elements of an Entity Data List and Dotted Pair
 
-Accessing the elements of an entity data list and a dotted pair is like accessing the elements of a regular list. Although you can use many of the list-related functions that I discussed in Chapter 14,「Working with Lists,」the AutoLISP assoc function is one of the functions that is frequently used when working with an entity data list. The assoc function is used to return a dotted pair with a specific key element in an entity data list.
+Accessing the elements of an entity data list and a dotted pair is like accessing the elements of a regular list. Although you can use many of the list-related functions that I discussed in Chapter 14,「Working with Lists,」the AutoLISP assoc function is one of the functions that is frequently used when working with an entity data list. The assoc function is used to return a dotted pair with a specific key element in an entity data list. The following shows the syntax of the assoc function:
 
-The following shows the syntax of the assoc function:
-
+```c
 (assoc key edlist)
+```
 
 The arguments are as follows:
 
-key The key argument represents the key (left) element of a dotted pair and is used as a way to locate a dotted pair within the list specified by the edlist argument. This argument can be a string or integer value.
+key. The key argument represents the key (left) element of a dotted pair and is used as a way to locate a dotted pair within the list specified by the edlist argument. This argument can be a string or integer value.
 
-edlist The edlist argument represents the list in which you want to look for a dotted pair that contains the key argument as the key element. The first matching dotted pair is returned.
+edlist. The edlist argument represents the list in which you want to look for a dotted pair that contains the key argument as the key element. The first matching dotted pair is returned.
 
 Here is an example that shows how to return the first dotted pair in the entity data list that has a key (left) element of 40:
 
-; Returns the entity data list of the last object ; added to the drawing, which is a circle in this example (setq ed (entget (entlast))) ((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0)) ; Returns the dotted pair with the key element of 40 in the entity data list (assoc 40 ed) (40. 2.0)
+```c
+; Returns the entity data list of the last object 
+; added to the drawing, which is a circle in this example 
+(setq ed (entget (entlast))) 
+((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0)) 
 
-I explain the entlast and entget functions in the「Selecting an Individual Object」and「Updating an Object's Properties with an Entity Data List」sections later in this chapter.
+; Returns the dotted pair with the key element of 40 in the entity data list 
+(assoc 40 ed) 
+(40. 2.0)
+```
 
-The AutoLISP car and cdr functions can also be helpful when working with dotted pairs. The car function returns the key element of a dotted pair and the cdr function returns the value.
+I explain the entlast and entget functions in the「Selecting an Individual Object」and「Updating an Object's Properties with an Entity Data List」sections later in this chapter. The AutoLISP car and cdr functions can also be helpful when working with dotted pairs. The car function returns the key element of a dotted pair and the cdr function returns the value.
 
-; Returns the key element of the dotted pair (car (assoc 40 ed)) 40 ; Returns the value of the dotted pair (cdr (assoc 40 ed)) 2.0
+```c
+; Returns the key element of the dotted pair 
+(car (assoc 40 ed)) 
+40 
+
+; Returns the value of the dotted pair 
+(cdr (assoc 40 ed)) 
+2.0
+```
 
 ## 6.2 Adding Objects to a Drawing
 
@@ -144,100 +206,121 @@ For some objects it's easier to determine which properties are required; for exa
 For example, if you drew a circle with a center point of 5,6.5,0 and a radius of 2.0, the entity data list that is returned might look like this:
 
 ```c
-((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
 ```
 
 In the previous example, the DXF group codes –1, 5, and 330 were automatically generated and assigned to the object. Those DXF group codes shouldn't be part of the entity data list when you create a new object with the entmake function. Table 16.2 describes the DXF group codes –1, 5, and 330.
 
+1-2『这里捡到金子了，教你如何获取用 entmake 函数新建一个实体对象需要哪些必要 `entity data list`。1）在 CAD 图纸里用普通命令画一个实体，或插入一个块实体。2）用命令 `(entget (entlast))` 查看刚刚生成的实体所包含的 `entity data list`。3）扣除掉 DXF group codes 为 -1、5 和 300 的这三个数据。
+
+The DXF group codes 67, 410, 8, and 210 are optional; if they aren't provided as part of the entity data list, AutoCAD uses the current settings and context of the drawing to populate the values of the properties they represent. Table 16.3 describes the DXF group codes 67, 410, 8, and 210.
+
+做一张主题卡片。』——已完成
+
 Table 16.2 Automatically generated DXF group code values
 
-DXF group code Description
-
-–1 Ename assigned to the object while the drawing is open in memory; the value changes each time the drawing is opened.
-
-5 Unique handle that is assigned to the object; it's a string value.
-
-330 Pointer to the owner of the object.
+|  DXF group code | Description  |
+|---|---|
+|  -1 |  Ename assigned to the object while the drawing is open in memory; the value changes each time the drawing is opened. |
+|  5 |  Unique handle that is assigned to the object; it's a string value. |
+|  330 |  Pointer to the owner of the object. |
 
 After removing the DXF group codes that are automatically generated, the entity data list looks a bit less cluttered and easier to understand:
 
-((0. "CIRCLE") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+```c
+((0. "CIRCLE") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") 
+ (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+```
 
 The DXF group codes 67, 410, 8, and 210 are optional; if they aren't provided as part of the entity data list, AutoCAD uses the current settings and context of the drawing to populate the values of the properties they represent. Table 16.3 describes the DXF group codes 67, 410, 8, and 210.
 
 Table 16.3 Optional DXF group code values
 
-DXF group code Description
-
-67 Indicates that the object is in model space (0) or paper space (1)
-
-410 Named layout tab that the object exists on
-
-8 Layer in which the object is placed
-
-210 Extrusion direction of the object
+|  DXF group code | Description  |
+|---|---|
+|  67 |  Indicates that the object is in model space (0) or paper space (1) |
+|  410 |  Named layout tab that the object exists on |
+|  8 |  Layer in which the object is placed |
+|  210 |  Extrusion direction of the object |
 
 After removing the DXF group codes that are optional, the entity data list becomes even easier to understand:
 
+```c
 ((0. "CIRCLE") (100. "AcDbEntity") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0))
+```
 
 The entity data list that now remains with the DXF group codes 0, 100, 10, and 40 represents the entity data needed to create a new circle with the entmake function. For additional information on DXF group code values, search on「DXF entities section」in the AutoCAD Help system. Table 16.4 describes the DXF group codes 0, 100, 10, and 40.
 
 Table 16.4 Required DXF group code values
 
-DXF group code Description
+|  DXF group code | Description  |
+|---|---|
+|  0 |  Entity type. |
+|  100 |  Sub/entity class that the object is based on. Not all objects require these values. If the object doesn't get created without them, add them to the entity data list and the object should be created. |
+|  10 |  Center point of the circle. |
+|  40 |  Radius of the circle. |
 
-0 Entity type.
+Once you have the entity data list that describes the object you want to create, it can then be passed to the entmake function. If the entmake function is able to successfully create the new object, an entity data list is returned. If not, nil is returned. The following shows the syntax of the entmake function:
 
-100 Sub/entity class that the object is based on. Not all objects require these values. If the object doesn't get created without them, add them to the entity data list and the object should be created.
-
-10 Center point of the circle.
-
-40 Radius of the circle.
-
-Once you have the entity data list that describes the object you want to create, it can then be passed to the entmake function. If the entmake function is able to successfully create the new object, an entity data list is returned. If not, nil is returned.
-
-The following shows the syntax of the entmake function:
-
+```c
 (entmake [entlist])
+```
 
-The entlist argument represents the entity data list of the object to be created, and it is an optional argument. The list must contain all required dotted pairs to define the object and its properties.
+The entlist argument represents the entity data list of the object to be created, and it is an optional argument. The list must contain all required dotted pairs to define the object and its properties. The following examples show how to create an entity data list with the list and cons functions, and then use the resulting list to create an object with the enmake function:
 
-The following examples show how to create an entity data list with the list and cons functions, and then use the resulting list to create an object with the enmake function:
-
-; Creates a new circle at 2.5,3.5 with a radius of 0.75 (setq cenPt (list 2.5 3.5 0.0) rad 0.75) (entmake (list (cons 0 "CIRCLE") (cons 10 cenPt) (cons 40 rad))) ; creates a new line from 0,0,0 to 2.5,3.5 (setq startPt (list 0.0 0.0 0.0) endPt (list 2.5 3.5 0.0)) (entmake (list (cons 0 "LINE") (cons 10 startPt) (cons 11 endPt)))
+```c
+; Creates a new circle at 2.5,3.5 with a radius of 0.75 
+(setq cenPt (list 2.5 3.5 0.0) rad 0.75) 
+(entmake (list (cons 0 "CIRCLE") (cons 10 cenPt) (cons 40 rad))) 
+; creates a new line from 0,0,0 to 2.5,3.5 
+(setq startPt (list 0.0 0.0 0.0) endPt (list 2.5 3.5 0.0)) 
+(entmake (list (cons 0 "LINE") (cons 10 startPt) (cons 11 endPt)))
+```
 
 Figure 16.1 shows the result of the two previous examples.
 
-Figure 16.1 Circle and line objects created with the entmake function
-
 Remember that the quote (') function can't evaluate an atom, so you can't use variables in a list that is defined with the quote function. The following examples show how to create an entity data list with the quote function, and then use the resulting list to create an object with the entmake function:
 
+```c
 ; Creates a new circle at 2.5,3.5 with a radius of 0.75 (entmake '((0. "CIRCLE") (10 2.5 3.5 0.0) (40. 0.75))) ; creates a new line from 0,0,0 to 2.5,3.5 (entmake '((0. "LINE") (10 0.0 0.0 0.0) (11 2.5 3.5 0.0)))
+```
 
 In addition to using the entmake function, you can create objects with the entmakex function. The difference between the entmake and entmakex function is that an owner isn't assigned to the object created with the entmakex function. Owner assignment primarily affects the creation of nongraphical objects, as all graphical objects are assigned to the current space or named layout.
 
-WARNING
+WARNING: Objects created with the entmake and entmakex functions don't participate in undo recording like objects created with standard AutoCAD commands. Undo recording must be implemented in your function using the undo command, and its suboptions Begin and End. I provide an example of how to group functions into a single undo grouping in Chapter 19,「Catching and Handling Errors.」
 
-Objects created with the entmake and entmakex functions don't participate in undo recording like objects created with standard AutoCAD commands. Undo recording must be implemented in your function using the undo command, and its suboptions Begin and End. I provide an example of how to group functions into a single undo grouping in Chapter 19,「Catching and Handling Errors.」
-
-TIP
-
-Unless you need to drag an object onscreen, I recommend creating objects with the entmake function since it gives you greater control over the object being created. The entmake function (unlike commands executed with the command function) isn't affected by the current running object snap settings.
+TIP: Unless you need to drag an object onscreen, I recommend creating objects with the entmake function since it gives you greater control over the object being created. The entmake function (unlike commands executed with the command function) isn't affected by the current running object snap settings.
 
 This exercise shows how to create a plan view of a machine screw with a slotted round head (see Figure 16.2):
 
-Create a new drawing.
+1 Create a new drawing.
 
-At the AutoCAD Command prompt, type the following and press Enter to create a new circle that has a center point of 0,0 and radius of 0.4075. (entmake '((0. "CIRCLE") (10 0 0) (40. 0.4075)))
+2 At the AutoCAD Command prompt, type the following and press Enter to create a new circle that has a center point of 0,0 and radius of 0.4075. 
+
+```c
+(entmake '((0. "CIRCLE") (10 0 0) (40. 0.4075)))
+```
 
 The dotted pair with the DXF group code 10 sets the center point of the circle, and the dotted pair with the DXF group code 40 sets the radius of the circle.
 
-Type the following and press Enter to create the two lines that define the top and bottom of the slot in the head of the screw: (entmake '((0. "LINE") (10 -0.18 0.0275) (11 0.18 0.0275))) (entmake '((0. "LINE") (10 -0.18 -0.0275) (11 0.18 -0.0275)))
+3 Type the following and press Enter to create the two lines that define the top and bottom of the slot in the head of the screw: 
+
+```c
+(entmake '((0. "LINE") (10 -0.18 0.0275) (11 0.18 0.0275))) 
+(entmake '((0. "LINE") (10 -0.18 -0.0275) (11 0.18 -0.0275)))
+```
 
 The dotted pair with the DXF group code 10 sets the start point of the line, and the dotted pair with the DXF group code 11 sets the endpoint of the line.
 
-Type the following and press Enter to create the two arcs that define the left and right edges of the slot in the head of the screw: (entmake '((0. "ARC") (10 0.0032 0) (40. 0.1853) (50. 2.99261) (51. 3.29058))) (entmake '((0. "ARC") (10 -0.0032 0) (40. 0.1853) (50. 6.13431) (51. 0.148875)))
+4 Type the following and press Enter to create the two arcs that define the left and right edges of the slot in the head of the screw: 
+
+```c
+(entmake '((0. "ARC") (10 0.0032 0) (40. 0.1853) (50. 2.99261) (51. 3.29058))) 
+(entmake '((0. "ARC") (10 -0.0032 0) (40. 0.1853) (50. 6.13431) (51. 0.148875)))
+```
 
 The dotted pair with the DXF group code 10 sets the center point, DXF group code 40 sets the radius, DXF group code 50 sets the start angle (in radians), and DXF group code 51 sets the end angle (in radians) for each arc.
 
@@ -247,7 +330,7 @@ Figure 16.2 Plan view of a #12-24 machine screw, slotted round head
 
 AutoLISP enables you to step through the objects in a drawing or allow the user to interactively select one or more objects in the drawing area. Based on the selection technique used, an ename is returned; otherwise, a selection set (ssname) is returned that can contain one or more objects.
 
-### Selecting an Individual Object
+### 6.3.1 Selecting an Individual Object
 
 AutoLISP provides two different techniques that can be used to select an individual object within a drawing—through code or via user interaction. When you want to work with the most recent object or step through all of the objects in a drawing, you don't need any input from the user. The AutoLISP functions entlast and entnext can be used to get an individual object without any input from the user. If you do want to allow the user to interactively select an individual object, you can use the entsel and nentsel functions.
 

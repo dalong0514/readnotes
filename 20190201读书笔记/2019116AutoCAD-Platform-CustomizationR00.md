@@ -48,6 +48,47 @@ nil
 
 1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
 
+### 0102. 主题卡——如何获取用 entmake 函数新建一个实体对象所需的参数
+
+For some objects it's easier to determine which properties are required; for example, a circle requires a center point and radius whereas a line requires a start and endpoint. The best way to figure out which properties are required when creating an object is to create a new object in a drawing of the type you want to create with the entmake function. Once the object is created, enter the following code at the AutoCAD Command prompt to see the entity data list associated with the object:
+
+```c
+(entget (entlast))
+```
+
+For example, if you drew a circle with a center point of 5,6.5,0 and a radius of 2.0, the entity data list that is returned might look like this:
+
+```c
+((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+```
+
+In the previous example, the DXF group codes –1, 5, and 330 were automatically generated and assigned to the object. Those DXF group codes shouldn't be part of the entity data list when you create a new object with the entmake function. Table 16.2 describes the DXF group codes –1, 5, and 330.
+
+The DXF group codes 67, 410, 8, and 210 are optional; if they aren't provided as part of the entity data list, AutoCAD uses the current settings and context of the drawing to populate the values of the properties they represent. Table 16.3 describes the DXF group codes 67, 410, 8, and 210.
+
+After removing the DXF group codes that are optional, the entity data list becomes even easier to understand:
+
+```c
+((0. "CIRCLE") (100. "AcDbEntity") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0))
+```
+
+The entity data list that now remains with the DXF group codes 0, 100, 10, and 40 represents the entity data needed to create a new circle with the entmake function. For additional information on DXF group code values, search on「DXF entities section」in the AutoCAD Help system. Table 16.4 describes the DXF group codes 0, 100, 10, and 40.
+
+Once you have the entity data list that describes the object you want to create, it can then be passed to the entmake function. If the entmake function is able to successfully create the new object, an entity data list is returned. If not, nil is returned. The following shows the syntax of the entmake function:
+
+```c
+(entmake [entlist])
+```
+
+The entlist argument represents the entity data list of the object to be created, and it is an optional argument. The list must contain all required dotted pairs to define the object and its properties. The following examples show how to create an entity data list with the list and cons functions, and then use the resulting list to create an object with the enmake function:
+
+1-2『这里捡到金子了，教你如何获取用 entmake 函数新建一个实体对象需要哪些必要 `entity data list`。1）在 CAD 图纸里用普通命令画一个实体，或插入一个块实体。2）用命令 `(entget (entlast))` 查看刚刚生成的实体所包含的 `entity data list`。3）扣除掉 DXF group codes 为 -1、5 和 300 的这三个自动生成的数据。4）扣除一些可选数据。5）使用 entmake 函数创建。
+
+做一张主题卡片。』——已完成
+
 ### 0201. 术语卡——Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
@@ -68,6 +109,12 @@ The following example uses version 1 of the color command:
 Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
 
 1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
+
+### 0203. 术语卡——图形数据和非图形数据
+
+The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
+
+2『图形数据和非图形数据，做一张术语卡片。』——已完成
 
 ### 0301. 任意卡——生成 VLX 文件
 
@@ -191,6 +238,14 @@ NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the
 ### 0309. 任意卡——如何在一个 lsp 文件里调用另外一个 lsp 文件
 
 直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。
+
+### 0310. 任意卡——创建实体数据的 2 个方法
+
+The command function is the most common method that AutoLISP programmers use to create and modify objects, but it isn't the most efficient when you are trying to modify individual properties of an object. Even creating lots of objects in the Autodesk® AutoCAD® program can be slower with the command function. Along with the command function, objects can be created and modified directly by setting property values as part of an entity data list. Extended data (XData) can also be attached to an object as a way to differentiate one object from another or, in some cases, to affect the way an object might look in the drawing area.
+
+1-2『直接用 command，自己就遇到了瓶颈。1）确实效率低下。2）自动生成辅助流程组件，插进来的块，位置经常不是均匀的，目前一直找到不解决办法。正巧这里受到启发，改用直接创建实体数据的方法实现自动生成块。待实现。做一张任意卡片。（2020-10-29）』
+
+Using AutoLISP, you can create a table using the entmake function while modifying and populating the table with the entget and entmod functions.
 
 ## Introduction
 
