@@ -671,7 +671,7 @@ The colors assigned to the objects range from ACI 1 through 9, and reset back to
 When selecting objects with the ssget function, you can control which objects are added to the selection set. A selection filter allows you to select objects of a specific type or even objects with certain property values. Selection filters are made up of dotted pairs and are similar to an entity data list. For example, the following selection filter will select all circles on the layer holes:
 
 ```c
-'((0. "circle")(8. "holes"))
+'((0 . "circle")(8 . "holes"))
 ```
 
 As I mentioned earlier, the DXF group code 0 represents an object's name and the DXF group code 8 represents the name of the layer an object is placed on.
@@ -679,10 +679,38 @@ As I mentioned earlier, the DXF group code 0 represents an object's name and the
 In addition to object names and properties, a selection filter can include logical grouping and comparison operators to create complex filters. Complex filters can be used to allow for the selection of several object types, such as both text and mtext objects, or allow for the selection of circles with a radius in a given range. Logical grouping and comparison operators are specified by string values with the DXF group code -4. For example, the following selection filter allows for the selection of circles with a radius in the range of 1 to 5:
 
 ```c
-'((0. "circle") (-4. "<and")(-4. "<=")(40. 5.0)(-4. ">=")(40. 1.0)(-4. "and>"))
+'((0 . "circle") 
+  (-4 . "<and") 
+    (-4. "<=") (40. 5.0) 
+    (-4. ">=") (40. 1.0) 
+  (-4. "and>")
+)
 ```
 
 Selection filters support four logical grouping operators: and, or, not, and xor. Each logical grouping operator used in a selection filter must have a beginning and an ending operator. Beginning operators start with the character `<` and ending operators end with the character `>`. In addition to logical operators, you can use seven different comparison operators in a selection filter to evaluate the value of a property: = (equal to), != (not equal to), < (less than), > (greater than), <= (less than or equal to), >= (greater than or equal to), and * (wildcard for string comparisons).
+
+3『
+
+自己数据流里筛选 SS 的代码：
+
+```c
+(defun GetAllInstrumentAndPipeSSUtils ()
+  (setq ss (ssget "X" '((0 . "INSERT") 
+        (-4 . "<OR")
+          (2 . "InstrumentP")
+          (2 . "InstrumentL")
+          (2 . "InstrumentSIS")
+          (2 . "PipeArrowLeft")
+          (2 . "PipeArrowUp")
+        (-4 . "OR>")
+      )
+    )
+  )
+)
+```
+
+』
+
 
 After defining a selection filter, you then pass it to the filter argument of the ssget function. This exercise shows how to use selection filters with the ssget function:
 
@@ -694,11 +722,21 @@ After defining a selection filter, you then pass it to the filter argument of th
 
 4 Type `(command "._change" ssCircles "" "_p" "_c" 1 "")` and press Enter to change the color of all circles to red.
 
-5 At the AutoCAD Command prompt, type `(setq ssArcsLines (ssget '((-4. "<or")(0. "arc")(0. "line")(-4. "or>"))))` and press Enter. Select some of the lines and arcs in the drawing.
+5 At the AutoCAD Command prompt, type:
+
+ ```c
+ (setq ssArcsLines 
+  (ssget '((-4 . "<or") (0 . "arc") (0 . "line") (-4 . "or>")))
+)
+ ``` 
+ 
+ and press Enter. Select some of the lines and arcs in the drawing.
 
 6 Type `(command "._change" ssArcsLines "" "_p" "_c" 3 "") `and press Enter to change the color of the selected objects to green.
 
-TIP: On AutoCAD for Windows, you can use the filter command to create a filter selection and save it. Saving the filter adds it to the file named filter.nfl. You can use the AutoLISP statement (findfile "filter.nfl") to return the location of the file in the command-line window. Open the file with Notepad. The filter command writes the filter in two formats: as AutoLISP statements (:ai_lisp) and as a string description (:ai_str). You can copy the AutoLISP statements that are created to define an object selection filter for use with the ssget function. Although this technique can help simplify the testing and creation of complex selection filters, it is undocumented and something I just figured out years ago when I first started learning AutoLISP.
+TIP: On AutoCAD for Windows, you can use the filter command to create a filter selection and save it. Saving the filter adds it to the file named filter.nfl. You can use the AutoLISP statement `(findfile "filter.nfl")` to return the location of the file in the command-line window. Open the file with Notepad. The filter command writes the filter in two formats: as AutoLISP statements `(:ai_lisp)` and as a string description `(:ai_str)`. You can copy the AutoLISP statements that are created to define an object selection filter for use with the ssget function. Although this technique can help simplify the testing and creation of complex selection filters, it is undocumented and something I just figured out years ago when I first started learning AutoLISP.
+
+1『上面的信息有待消化，没看明白。（2020-10-30）』
 
 ## 6.4 Modifying Objects
 
@@ -714,11 +752,18 @@ I explained how to select objects and work with selection sets in the「Selectin
 
 The following are examples that demonstrate how to modify objects with AutoCAD commands:
 
-; Changes the selected objects to the color red (prompt "\nSelect objects to change to red: ") (setq ss (ssget)) (command "._change" ss "" "_p" "_c" 1 "") ; Scale the last graphical object by a user-defined base point and a factor of 2 (command "._scale" (entlast) "" PAUSE 2)
+```
+; Changes the selected objects to the color red 
+(prompt "\nSelect objects to change to red: ") 
+(setq ss (ssget)) (command "._change" ss "" "_p" "_c" 1 "") 
+
+; Scale the last graphical object by a user-defined base point and a factor of 2 
+(command "._scale" (entlast) "" PAUSE 2)
+```
 
 In this section, I explain how to work with entity names and directly modify an object without using the command function. The properties of an object can be queried or edited one at a time, or you can manipulate several properties of an object by changing the entity data list that represents the object.
 
-### Listing and Changing the Properties of an Object Directly
+### 6.4.1 Listing and Changing the Properties of an Object Directly
 
 AutoLISP offers two different methods for modifying the properties of an object directly. The easier of the two methods is to use the object property functions that were introduced with AutoCAD 2012. These functions require less code than the legacy approach of getting and manipulating the entity data list of an object. The property-related functions are less cryptic than entity data list manipulation as well, because you don't need to understand the various DXF group codes associated with a specific object. The downside to these functions is that they work only with AutoCAD 2012 and later, so if you need to support an earlier release you will need to manipulate entity data lists (which I cover in the next section).
 
@@ -736,7 +781,7 @@ setpropertyvalue Assigns a value to an object's property
 
 ispropertyreadonly Returns T or nil based on whether an object property is read-only
 
-### Listing Object Properties
+#### Listing Object Properties
 
 The dumpallproperties function outputs the properties and their current values for an object to the command-line window. Some property values, such as StartPoint for a line or Position of a block reference, can be output as a single value or as three individual values.
 
@@ -762,15 +807,17 @@ The following examples show how to output the properties of an object with the d
 
 Here is an example of the output created by the dumpallproperties function for a circle object. The output was generated with the expression (dumpallproperties (entlast)):
 
+```
 Begin dumping object (class: AcDbCircle) Annotative (type: bool) (LocalName: Annotative) = Failed to get value AnnotativeScale (type: AcString) (RO) (LocalName: Annotative scale) = Failed to get value Area (type: double) (RO) (LocalName: Area) = 12.566371 BlockId (type: AcDbObjectId) (RO) = 7ff618a039f0 CastShadows (type: bool) = 0 Center/X (type: double) (LocalName: Center X) = 0.000000 Center/Y (type: double) (LocalName: Center Y) = 5.000000 Center/Z (type: double) (LocalName: Center Z) = 0.000000 Circumference (type: double) (LocalName: Circumference) = 12.566371 ClassName (type: AcString) (RO) = Closed (type: bool) (RO) (LocalName: Closed) = Failed to get value CollisionType (type: AcDb::CollisionType) (RO) = 1 Color (type: AcCmColor) (LocalName: Color) = BYLAYER Diameter (type: double) (LocalName: Diameter) = 4.000000 EndParam (type: double) (RO) = 6.283185 EndPoint/X (type: double) (RO) (LocalName: End X) = Failed to get value EndPoint/Y (type: double) (RO) (LocalName: End Y) = Failed to get value EndPoint/Z (type: double) (RO) (LocalName: End Z) = Failed to get value ExtensionDictionary (type: AcDbObjectId) (RO) = 0 Handle (type: AcDbHandle) (RO) = 1f9 HasFields (type: bool) (RO) = 0 HasSaveVersionOverride (type: bool) = 0 Hyperlinks (type: AcDbHyperlink*) IsA (type: AcRxClass*) (RO) = AcDbCircle IsAProxy (type: bool) (RO) = 0 IsCancelling (type: bool) (RO) = 0 IsEraseStatusToggled (type: bool) (RO) = 0 IsErased (type: bool) (RO) = 0 IsModified (type: bool) (RO) = 0 IsModifiedGraphics (type: bool) (RO) = 0 IsModifiedXData (type: bool) (RO) = 0 IsNewObject (type: bool) (RO) = 0 IsNotifyEnabled (type: bool) (RO) = 0 IsNotifying (type: bool) (RO) = 0 IsObjectIdsInFlux (type: bool) (RO) = 0 IsPeriodic (type: bool) (RO) = 1 IsPersistent (type: bool) (RO) = 1 IsPlanar (type: bool) (RO) = 1 IsReadEnabled (type: bool) (RO) = 1 IsReallyClosing (type: bool) (RO) = 1 IsTransactionResident (type: bool) (RO) = 0 IsUndoing (type: bool) (RO) = 0 IsWriteEnabled (type: bool) (RO) = 0 LayerId (type: AcDbObjectId) (LocalName: Layer) = 7ff618a03900 LineWeight (type: AcDb::LineWeight) (LocalName: Lineweight) = -1 LinetypeId (type: AcDbObjectId) (LocalName: Linetype) = 7ff618a03950 LinetypeScale (type: double) (LocalName: Linetype scale) = 1.000000 LocalizedName (type: AcString) (RO) = Circle MaterialId (type: AcDbObjectId) (LocalName: Material) = 7ff618a03de0 MergeStyle (type: AcDb::DuplicateRecordCloning) (RO) = 1 Normal/X (type: double) (RO) (LocalName: Normal X) = 0.000000 Normal/Y (type: double) (RO) (LocalName: Normal Y) = 0.000000 Normal/Z (type: double) (RO) (LocalName: Normal Z) = 1.000000 ObjectId (type: AcDbObjectId) (RO) = 7ff618a0c090 OwnerId (type: AcDbObjectId) (RO) = 7ff618a039f0 PlotStyleName (type: AcString) (LocalName: Plot style) = ByLayer Radius (type: double) (LocalName: Radius) = 2.000000 ReceiveShadows (type: bool) = 0 ShadowDisplay (type: AcDb::ShadowFlags) (RO) (LocalName: Shadow Display) = Failed to get value StartParam (type: double) (RO) = 0.000000 StartPoint/X (type: double) (RO) (LocalName: Start X) = Failed to get value StartPoint/Y (type: double) (RO) (LocalName: Start Y) = Failed to get value StartPoint/Z (type: double) (RO) (LocalName: Start Z) = Failed to get value Thickness (type: double) (LocalName: Thickness) = 0.000000 Transparency (type: AcCmTransparency) (LocalName: Transparency) = 0 Visible (type: AcDb::Visibility) = 0 End object dump
+```
 
 Now that you have seen an example output of an object with the dumpallproperties function, it is time to take a closer look at an individual property. The following line shows the Area property from the previous output. Table 16.7 explains the elements.
 
+```
 Area (type: double) (RO) (LocalName: Area) = 12.566371
+```
 
-NOTE
-
-The data types that are listed by the dumpallproperties function aren't the same as those that you might be accustomed to for AutoLISP. For example, an AcString returns a string value, double is a real value, and AcDbObjectId is translated to an ename.
+NOTE: The data types that are listed by the dumpallproperties function aren't the same as those that you might be accustomed to for AutoLISP. For example, an AcString returns a string value, double is a real value, and AcDbObjectId is translated to an ename.
 
 Table 16.7 dumpallproperties Area property description
 
@@ -786,7 +833,7 @@ Area The global name of the object's property.
 
 = 12.566371 The value of the property.
 
-### Getting and Setting the Value of an Object Property
+### 6.4.2 Getting and Setting the Value of an Object Property
 
 The getpropertyvalue and setpropertyvalue functions allow you to set an object's property. Use the dumpallproperties function on an ename to see the properties available for an object and the type of data that is expected.
 
@@ -810,7 +857,9 @@ value The value argument represents the value you want to assign the property.
 
 The following examples show how to get and set the property values of a circle and a polyline with the getpropertyvalue and setpropertyvalue functions:
 
+```c
 ; Creates a circle and polyline (command "._circle" "0,0" 1) (setq circ (entlast)) (command "._pline" "2,3" "1,4" "-3,-2" "") (setq pline (entlast)) ; Outputs the radius of the circle (prompt (strcat "\nRadius: " (rtos (getpropertyvalue circ "radius")))) Radius: 1.0000nil ; Outputs the last vertex of the polyline (prompt (strcat "\nVertex 3: " (vl-princ-to-string (getpropertyvalue pline "vertices" 2 "position")) )) Vertex 3: (-3.0 -2.0 0.0)nil ; Changes the radius of the circle (setpropertyvalue circ "radius" 0.5) nil ; Changes the position of the polyline's last vertex to the center of the circle (setq cenPt (getpropertyvalue circ "center")) (setpropertyvalue pline "vertices" 2 "position" cenPt) nil
+```
 
 Before you try to change a property value with setpropertyvalue, use the ispropertyreadonly function to determine if the property is read-only. ispropertyreadonly returns 1 if a property is read-only; 0 is returned when a property can be changed. The following shows the syntax of the ispropertyreadonly function:
 
@@ -818,7 +867,9 @@ Before you try to change a property value with setpropertyvalue, use the isprope
 
 The following examples show how to determine if a property for a line object is read-only with the ispropertyreadonly:
 
+```c
 ; Creates a line (command "._line" "2,2" "5,6" "") (setq line (entlast)) ; Tests to see if the Angle property is read-only (ispropertyreadonly line "angle") 1 ; Tests to see if the StartPoint property is read-only (ispropertyreadonly line "startpoint") 0
+```
 
 This exercise shows how to modify the properties of a circle, line, and text object:
 
@@ -842,7 +893,7 @@ Figure 16.3 Basics of a callout balloon
 
 The three modified objects should now look like those on the right side of Figure 16.3.
 
-### Updating an Object's Properties with an Entity Data List
+### 6.4.3 Updating an Object's Properties with an Entity Data List
 
 Although the functions I mentioned in the previous section make working with object properties easier in recent releases, you should also understand how to modify the properties of an object with an entity data list. There are three main reasons why I recommend this:
 
@@ -868,13 +919,44 @@ apps The apps argument is optional; it is a string value that specifies the appl
 
 The following examples show how to get an entity data list with entget, modify an entity data list with entmod, and update an object in the drawing area with entupd:
 
+```c
 ; Creates a new ellipse and gets the new object's entity name (entmake '((0. "ELLIPSE") (100. "AcDbEntity") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (40. 0.5) (41. 0.0) (42. 6.28319))) (setq entityName (entlast)) <Entity name: 7ff6bc905dc0> ; Gets the entity data list for the last object, which is the ellipse (setq entityData (entget entityName)) ((-1. <Entity name: 7ff6bc905dc0>) (0. "ELLIPSE") (330. <Entity name: 7ff6bc9039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (210 0.0 0.0 1.0) (40. 0.5) (41. 0.0) (42. 6.28319)) ; Gets the object's insertion/center point, center of the ellipse (setq dxfGroupCode10 (assoc 10 entityData)) (10 6.0 2.0 0.0) ; Gets the object's color; in this case nil is returned as a color isn't assigned (setq dxfGroupCode62 (assoc 62 entityData)) nil ; Changes the object's center point to 0,0 (setq entityData (subst '(10 0.0 0.0 0.0) dxfGroupCode10 entityData)) (10 6.0 2.0 0.0) ; Appends a dotted pair to change the object's color (setq entityData (append entityData '((62. 3)))) ; Modifies the object with the revised entity data list (entmod entityData) (entupd entityName)
+```
 
 Listing 16.1 is a set of two custom functions that simplify the process of updating an object using entity data lists and DXF group codes.
 
 Listing 16.1: DXF helper functions
 
-; Returns the value of the specified DXF group code for the supplied entity name (defun Get-DXF-Value (entityName DXFcode / ) (cdr (assoc DXFcode (entget entityName))) ) ; Sets the value of the specified DXF group code for the supplied entity name (defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList oldPropList) ; Gets the entity data list for the object (setq entityData (entget entityName)) ; Creates the dotted pair for the new property value (setq newPropList (cons DXFcode newValue)) (if (setq oldPropList (assoc DXFcode entityData)) (setq entityData (subst newPropList oldPropList entityData)) (setq entityData (append entityData (list newPropList))) ) ; Updates the object's entity data list (entmod entityData) ; Refreshes the object onscreen (entupd entityName) ; Returns the new entity data list entityData )
+```c
+; Listing 16.1: DXF helper functions
+; Returns the value of the specified DXF group code for the supplied entity name
+(defun Get-DXF-Value (entityName DXFcode / )
+  (cdr (assoc DXFcode (entget entityName)))
+)
+
+; Sets the value of the specified DXF group code for the supplied entity name
+(defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList
+                                                    oldPropList)
+  ; Get the entity data list for the object
+  (setq entityData (entget entityName))
+
+  ; Create the dotted pair for the new property value
+  (setq newPropList (cons DXFcode newValue))
+  (if (setq oldPropList (assoc DXFcode entityData))
+    (setq entityData (subst newPropList oldPropList entityData))
+    (setq entityData (append entityData (list newPropList)))
+  )
+
+  ; Update the object’s entity data list 
+  (entmod entityData)
+
+  ; Refresh the object on-screen
+  (entupd entityName)
+ 
+ ; Return the new entity data list
+ entityData
+)
+```
 
 The custom functions in Listing 16.1 are used in the next exercise.
 
@@ -902,25 +984,27 @@ Type the following and press Enter to shorten the line so it intersects with the
 
 The three modified objects should now look like those on the right side of Figure 16.3.
 
-### Deleting an Object
+### 6.4.4 Deleting an Object
 
 An object that is no longer needed can be deleted from a drawing with the AutoLISP entdel function. Deleting an object from a drawing with the entdel function removes it from the display but doesn't remove the object from the drawing immediately. It flags an object for removal; the object is removed when the drawing is saved and then closed. You can use the entdel function a second time to restore the object while the drawing remains open. Using the AutoCAD u or undo command will also restore an object that was flagged for removal with the entdel function. Objects removed with the erase command can also be restored with the entdel function.
 
-NOTE
-
-The entdel function can be used to remove only graphical objects and objects associated with a dictionary, not symbol-table entries such as layers and block definitions. I discuss more about working with nongraphical objects in Chapter 17.
+NOTE: The entdel function can be used to remove only graphical objects and objects associated with a dictionary, not symbol-table entries such as layers and block definitions. I discuss more about working with nongraphical objects in Chapter 17.
 
 The following shows the syntax of the entdel function:
 
+```c
 (entdel ename)
+```
 
 The ename argument represents the entity name of the object to flag for deletion or restore.
 
 The following examples show how to remove an object with the entdel function:
 
+```c
 ; Gets the last object added to the drawing (setq en (entlast)) <Entity name: 7ff618a0be20> ; Deletes the object assigned to the en variable (entdel en) <Entity name: 7ff618a0be20> ; Restores the object assigned to the en variable (entdel en) <Entity name: 7ff618a0be20>
+```
 
-### Highlighting Objects
+### 6.4.5 Highlighting Objects
 
 Object highlighting is the feedback technique that AutoCAD uses to indicate which objects have been selected in the drawing area and are ready to be interacted with or modified. While highlighting is a great way to let a user know which objects will be modified, it can also impact the performance of a program when a large number of objects are selected. You can turn off general object-selection highlighting with the highlight system variable.
 
@@ -928,7 +1012,9 @@ The AutoLISP redraw function, not the same as the redraw command, can be used to
 
 The following shows the syntax of the redraw function:
 
+```c
 (redraw [ename [mode]])
+```
 
 Here are the arguments:
 
@@ -938,7 +1024,9 @@ mode The mode argument is an integer that specifies the highlight or display sta
 
 The following examples show how to highlight and display an object with the redraw function:
 
+```c
 ; Highlights the last graphical object in the drawing (redraw (entlast) 3) ; Unighlights the object (redraw (entlast) 4) ; Hides the object (redraw (entlast) 2) ; Shows the object (redraw (entlast) 1)
+```
 
 ## 6.5 Working with Complex Objects
 
