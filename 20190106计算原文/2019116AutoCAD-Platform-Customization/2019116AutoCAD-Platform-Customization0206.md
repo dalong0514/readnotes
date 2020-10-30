@@ -334,55 +334,98 @@ AutoLISP enables you to step through the objects in a drawing or allow the user 
 
 AutoLISP provides two different techniques that can be used to select an individual object within a drawing—through code or via user interaction. When you want to work with the most recent object or step through all of the objects in a drawing, you don't need any input from the user. The AutoLISP functions entlast and entnext can be used to get an individual object without any input from the user. If you do want to allow the user to interactively select an individual object, you can use the entsel and nentsel functions.
 
-### Selecting an Object through Code
+2『以上获取实体数据集的方式，做一张任意卡片。』
+
+#### Selecting an Object through Code
 
 The entlast function returns the entity name of the last graphical object added to a drawing and doesn't require any arguments. This function can be helpful in getting the entity name for a new object created with the entmake function.
 
-; Create an arc with a center point of -1,1, radius of 1.5, ; a start angle of 315, and end angle of 135 (entmake '((0. "ARC")(10 -1.0 1.0 0.0)(40. 1.5)(50. 5.49779)(51. 2.35619))) ((0. "ARC") (10 -1.0 1.0 0.0) (40. 1.41421) (50. 5.49779) (51. 2.35619)) (setq entityName (entlast)) <Entity name: 7ff72292cc10>
+```c
+; Create an arc with a center point of -1,1, radius of 1.5, 
+; a start angle of 315, and end angle of 135 
+(entmake '((0. "ARC")(10 -1.0 1.0 0.0)(40. 1.5)(50. 5.49779)(51. 2.35619))) 
+((0. "ARC") (10 -1.0 1.0 0.0) (40. 1.41421) (50. 5.49779) (51. 2.35619)) 
+(setq entityName (entlast)) 
+<Entity name: 7ff72292cc10>
+```
 
 The entnext function allows you to traverse a drawing from the first drawn to most recently added graphical object. When entnext is called without an argument, it returns the ename of the oldest graphical object in the drawing. If the function is passed a valid ename, the ename of the object drawn after the one passed to the function is returned. The following shows the syntax of the entnext function:
 
+```c
 (entnext [ename])
+```
 
 The ename argument is optional and represents the entity name of an object. The function returns the name of the next object in the drawing. When no ename argument is provided, the entity name of the first graphical object in the drawing is returned.
 
 The following example code uses the entnext function to step through and list the type of each object in the current drawing:
 
-; Lists the DXF group code 0 value for each object in the drawing (defun c:listobjects ( / ) (prompt "\nObjects in this drawing:") (setq entityName (entnext)) (while entityName (prompt (strcat "\n" (cdr (assoc 0 (entget entityName))))) (setq entityName (entnext entityName)) ) (princ) ) Objects in this drawing: CIRCLE DIMENSION DIMENSION INSERT ATTRIB SEQEND CIRCLE VIEWPORT VIEWPORT CIRCLE DIMENSION ARC
+```c
+; Lists the DXF group code 0 value for each object in the drawing 
+(defun c:listobjects ( / ) 
+  (prompt "\nObjects in this drawing:") 
+  (setq entityName (entnext)) 
+  (while entityName 
+    (prompt (strcat "\n" (cdr (assoc 0 (entget entityName))))) 
+    (setq entityName (entnext entityName)) 
+  ) 
+  (princ) 
+)
+
+Objects in this drawing: 
+CIRCLE 
+DIMENSION 
+DIMENSION 
+INSERT 
+ATTRIB 
+SEQEND 
+CIRCLE 
+VIEWPORT 
+VIEWPORT 
+CIRCLE 
+DIMENSION 
+ARC
+```
 
 The previous example used the entget function to return an entity data list of an object. I explain how to use this function later, in the「Updating an Object's Properties with an Entity Data List」section.
 
-### Selecting an Object Interactively
+1-2『这个例子看下来后，entlast、entnext 还有 entget 这几个函数结合起来可以做好多事，特别是 entnext 的用法灵活性很大。比如自动生成辅助流程里，又想到一个思路：1）先直接使用 entlast 获取图纸里的最后一个实体名保存下来。2）批量插入辅助流程组件块后，通过刚刚最后一个实体名外加 entnext 函数，可以获得所有批量插入的块的实体名列表。3）根据这个实体名列表批量修改属性值，这样又跟以前开发好的功能对接上了。把上面信息合并到「获取实体数据集的方式」任意卡里。』——已完成
+
+#### Selecting an Object Interactively
 
 The user can select a single object in the drawing area using the entsel and nentsel functions. The entsel function returns a list of two values: the entity name of the object selected and the center point of the pick box when the object was selected. nil is returned by the entsel function if an object isn't selected as the result of either the user picking in an empty area of the drawing or pressing Enter.
 
-The nentsel function is similar to entsel except that nentsel allows you to select a subentity within an object, such as an old-style polyline, dimension, or block. When a subentity in an object is selected with the nentsel function, a list of four elements is returned (in this order):
-
-The entity name of the subentity
-
-The point picked in the drawing
-
-A transformation matrix for the subentity
-
-The entity name of the parent object of the subentity
+The nentsel function is similar to entsel except that nentsel allows you to select a subentity within an object, such as an old-style polyline, dimension, or block. When a subentity in an object is selected with the nentsel function, a list of four elements is returned (in this order): 1) The entity name of the subentity. 2) The point picked in the drawing. 3) A transformation matrix for the subentity. 4) The entity name of the parent object of the subentity.
 
 The following shows the syntax of the entsel and nentsel functions:
 
-(entsel [prompt]) (nentsel [prompt])
+```c
+(entsel [prompt]) 
+(nentsel [prompt])
+```
 
-The prompt argument is optional and represents the message (a string) that should be displayed to the user when they are asked to select an object. If a prompt is not provided, the default prompt message of Select object: is displayed.
+The prompt argument is optional and represents the message (a string) that should be displayed to the user when they are asked to select an object. If a prompt is not provided, the default prompt message of Select object: is displayed. The following examples show how to select an object with the entsel function:
 
-The following examples show how to select an object with the entsel function:
+```c
+; Prompts the user to select an individual object 
+(setq entlist (entsel "\nSelect an object: ")) 
+(<Entity name: 7ff72292cc10> (-0.75599 2.48144 0.0)) 
 
-; Prompts the user to select an individual object (setq entlist (entsel "\nSelect an object: ")) (<Entity name: 7ff72292cc10> (-0.75599 2.48144 0.0)) ; Uses the car function to get the entity name returned by entsel (setq entityName (car entlist)) <Entity name: 7ff72292cc10> ; Uses the cadr function to get the coordinate value returned by entsel (setq pickPoint (cadr entlist)) (-0.75599 2.48144 0.0)
+; Uses the car function to get the entity name returned by entsel 
+(setq entityName (car entlist)) 
+<Entity name: 7ff72292cc10> 
 
-### Working with Selection Sets
+; Uses the cadr function to get the coordinate value returned by entsel 
+(setq pickPoint (cadr entlist)) 
+(-0.75599 2.48144 0.0)
+```
+
+### 6.3.2 Working with Selection Sets
 
 A selection set, sometimes known as a selection set name or ssname for short, is a temporary container that holds a reference to objects in a drawing. AutoLISP represents a selection set with the PICKFIRST data type. You get a selection set, commonly based on the objects in a drawing that the user wants to modify or interact with. For example, when you see the Select objects: prompt AutoCAD is asking you to select the objects in the drawing you want to work with and it gets a selection set containing the objects you selected in return.
 
 In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
 
-### Creating a Selection Set
+#### Creating a Selection Set
 
 The most common way to create a selection set is to simply prompt the user to select objects in the drawing. The entsel and nentsel functions allow you to select a single object, but typically you will want to allow the user to select more than one object at a time. The ssget function allows the user to interactively select objects in a drawing using the selection methods that are commonly available at the Select objects: prompt. The ssget function can also be used to create a selection set without any user input. The ssget function returns a PICKSET value if at least one object was selected or returns nil if no objects were selected.
 
@@ -456,7 +499,7 @@ NOTE
 
 The ssnamex function can be used to get information about how the objects in a selection set were added, as well as how the selection set was created. This includes selection sets created with the ssget, ssgetfirst, and ssadd functions. The value returned by the ssnamex function is a list. For more information on the ssnamex function, search on「ssnamex」in the AutoCAD Help system.
 
-### Managing Objects in a Selection Set
+#### Managing Objects in a Selection Set
 
 After the user has been prompted to select objects, the resulting selection set can be revised by adding or removing objects. Objects that aren't in the selection set but are in the drawing can be added to the selection set using the ssadd function. If the user selected an object that shouldn't be in the selection set, it can be removed using the ssdel function. The ssadd and ssdel functions return the selection set that they are passed if the function was successful; otherwise, the function returns nil.
 
@@ -480,7 +523,7 @@ The following examples show how to add and remove objects in a selection set usi
 
 ; Create a line object (entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) ((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) ; Add the line to the selection set (setq ss1 (ssadd (entlast) ss1)) <Selection set: a1> ; Determine if the last graphical entity is in the selection set (ssmemb (entlast) ss1) <Entity name: 7ff6a1704f00> ; Remove the last entity from the selection set (ssdel (entlast) ss1) <Selection set: a1> ; Determine if the last graphical entity is in the selection set (ssmemb (entlast) ss1) nil
 
-### Stepping through a Selection Set
+#### Stepping through a Selection Set
 
 Selection sets contain the objects the user selected in the drawing for query or modification and might include one to several thousand objects. You can use the repeat or while looping functions in combination with the sslength and ssname functions to step through and access each object in a selection set. The sslength function returns the number of objects in a selection set as an integer, whereas the ssname function is used to return the entity name of an object located at a specific index within a selection set. The index of the first object in a selection set is 0. As part of a looping statement, you increment an integer value by 1 to get the next object until you reach the last object in the selection set. If an object isn't at the specified index in a selection set when using the ssname function, nil is returned.
 
@@ -520,7 +563,7 @@ Type the following and press Enter to change the color of each object in the sel
 
 The colors assigned to the objects range from ACI 1 through 9, and reset back to 1 when the counter reaches 10.
 
-### Filtering Selected Objects
+#### Filtering Selected Objects
 
 When selecting objects with the ssget function, you can control which objects are added to the selection set. A selection filter allows you to select objects of a specific type or even objects with certain property values. Selection filters are made up of dotted pairs and are similar to an entity data list. For example, the following selection filter will select all circles on the layer holes:
 
@@ -798,32 +841,31 @@ The following examples show how to highlight and display an object with the redr
 
 Some objects in AutoCAD represent basic geometry such as circles and lines, whereas other objects are complex and made up of several objects. Complex objects require a bit more work to create and modify with AutoLISP. The two most common complex objects that you will find yourself working with are polylines and block references.
 
+---
+
 Thinking Ahead
 
 Your boss comes to you and asks for a mock furniture layout for a new area in the office that your company is planning to renovate. Typically this is all handled by an outside firm, but your boss figures you can get the job done faster. After all, your boss is more concerned with getting the office layout completed than how to do the actual work.
 
 Knowing that he's likely to ask for a layout of the whole floor—not just that small renovation area—you create blocks with attributes that allow you to get a quantity for each component. Instead of counting each component manually and then adding the component quantity to a table grid in the drawing, you automate the process. Using AutoLISP, you read the information from the attributes of each block and create an aggregated set of information that you use to create the table grid. Going forward, AutoLISP makes it easy to revise the table grid when your boss wants to change the layout at a later date.
 
+---
 
-
-
-
-
-
-
-
-
-
-
-### Creating and Modifying Polylines
+### 6.5.1 Creating and Modifying Polylines
 
 AutoCAD drawings can contain two different types of polylines; old-style (legacy) and lightweight. Old-style polylines were the first type of polylines that were introduced in an early release of AutoCAD. An old-style polyline is composed of several objects: a main polyline object, vertex objects that define each vertex of the polyline, and a seqend object that defines the end of the polyline. Old-style polylines can be 2D or 3D and contain straight or curved segments.
+
+
+
+
 
 Lightweight polylines, introduced with AutoCAD Release 14, take up less memory than old-style polylines but are 2D only. All 3D polylines are created using old-style polylines. Unlike old-style polylines, multiple objects aren't used to define a lightweight polyline. Most polylines created since AutoCAD Release 14 are most likely of the lightweight type. The plinetype system variable controls the type of polyline that is created with the pline command.
 
 The following example creates an old-style polyline that has the coordinate values (0 0), (5 5), (10 5), and (10 0) with the entmake function:
 
+```c
 ; Creates the base polyline object (entmake '((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1))) ((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1)) ; Adds the first vertex to the polyline at 0,0 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 5,5 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 10,5 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 10,0 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 10,0 (entmake '((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+```
 
 When you want to modify an old-style polyline, get the polyline object and then use the entnext function to step to the first vertex until you get to the seqend object. Using a while looping statement is the best way to step through the drawing looking for each vertex of the polyline. Continue looping until you encounter a dotted pair with a DXF group code 0 and a value of "SEQEND".
 
@@ -831,7 +873,9 @@ Listing 16.2 is a custom function that demonstrates how to get each of the subob
 
 Listing 16.2: Listing subobjects of an old-style polyline
 
+```c
 (defun c:ListOSPolyline ( / entityName entityData dxfGroupCode0) ; Set PLINETYPE to 0 to create an old-style polyline with the PLINE command (setq entityName (car (entsel "\nSelect an old-style polyline: "))) (setq entityData (entget entityName)) (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "POLYLINE") (progn (prompt (strcat "\n" dxfGroupCode0)) (setq entityName (entnext entityName)) (setq entityData (entget entityName)) (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND") (prompt (strcat "\n" dxfGroupCode0)) (prompt (strcat "\n" (vl-princ-to-string (assoc 10 entityData)))) (setq entityName (entnext entityName)) (setq entityData (entget entityName)) ) (prompt (strcat "\n" dxfGroupCode0)) ) ) (princ) )
+```
 
 The output generated by the custom ListOSPolyline function from Listing 16.2 will be similar to the following:
 
@@ -841,19 +885,27 @@ For more information on the DXF entities polyline, vertex, and seqend, use the A
 
 The following example creates a lightweight polyline that has the coordinate values (0 0), (5 5), (10 5), and (10 0) with the entmake function:
 
+```c
 ; Create a polyline object drawn along the path (0 0), (5 5), (10 5), and (10 0) (entmake '((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))) ((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))
+```
 
 The DXF group code 10 in the previous example appears multiple times in the entity data list. Each dotted pair with a DXF group code 10 represents a vertex in the polyline, and they appear in the order in which the polyline should be drawn. For more information on the lwpolyline DXF entity, search on「lwpolyline DXF」in the AutoCAD Help system.
 
 The approaches to updating and querying an old-style and lightweight polyline vary, so you will need to handle each type using conditional statements in your programs. You can use the getpropertyvalue and setpropertyvalue functions to work with the Vertices property of both types of polylines to simplify the code you might need to write.
 
-### Creating and Modifying with Block References
+### 6.5.2 Creating and Modifying with Block References
 
 Block references are often misunderstood by new (and even experienced) AutoLISP developers. Blocks are implemented as two separate objects: block definitions and block references. Block definitions are nongraphical objects that are stored in a drawing and contain the geometry and attribute definitions that make up how the block should appear and behave in the drawing area. A block definition can also contain custom properties and dynamic properties.
+
+---
 
 Understanding Block Definitions and Block References
 
 You can think of a block definition much like a cookie recipe. The recipe lists the ingredients that make up the cookie and explains how those ingredients are combined for a particular taste, but it doesn't control where the dough will be placed on the baking sheet or the size of the unbaked cookies. The placement and amount of the cookie dough on the sheet would be similar to a block reference in a drawing.
+
+---
+
+2『块定义和块参照，做一张术语卡片。』——已完成
 
 A block reference displays an instance, not a copy, of the geometry from a block definition; the geometry exists only as part of the block definition, with the exception of attributes. Attribute definitions that are part of a block definition are added to a block reference as attributes unless the attribute definition is defined as a constant attribute. Constant attributes are parts of the geometry inherited from a block definition and aren't part of the block reference.
 
@@ -863,33 +915,137 @@ Since attributes must be added to a block reference, it is possible to have a bl
 
 The following code adds a block definition named RoomNum (see Figure 16.4) to a drawing that has a single attribute with the tag ROOM#:
 
-; Creates the block definition RoomNum (entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) ; Creates the rectangle for around the block attribute (entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0)) (cons 10 (list 36.0 18.0 0.0)) (cons 10 (list 0.0 18.0 0.0)))) ; Adds the attribute definition (entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText") (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))) ; Ends block definition (entmake (list (cons 0 "ENDBLK")))
+```c
+; Creates the block definition RoomNum 
+(entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
+
+; Creates the rectangle for around the block attribute 
+(entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") 
+  (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0)) 
+  (cons 10 (list 36.0 18.0 0.0)) (cons 10 (list 0.0 18.0 0.0)))
+) 
+
+; Adds the attribute definition 
+(entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText") 
+  (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") 
+  (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") 
+  (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))
+) 
+
+; Ends block definition 
+(entmake (list (cons 0 "ENDBLK")))
+```
+
+1『上面的是定义块属性，可以自己在图形界面里新建属性块，就如同在数据流模板里做的各个模块。（2020-10-30）』
 
 Figure 16.4 RoomNum block reference inserted with AutoLISP
 
 Once the block definition is created, you can then use the following code to add a block reference to a drawing based on a block named RoomNum:
 
-; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 (entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) ((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "RoomNum") (10 1.0 -0.5 0.0)) ; Creates an attribute reference with the tag ROOM# and adds it to the block (entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))) (entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) (40. 0.4) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))) ; Adds the end marker for the block reference (entmake ' ((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+```c
+; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 
+(entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) 
+((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "RoomNum") (10 1.0 -0.5 0.0)) 
+
+; Creates an attribute reference with the tag ROOM# and adds it to the block 
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
+  (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
+) 
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
+  (40. 0.4) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
+) 
+
+; Adds the end marker for the block reference 
+(entmake ' ((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+```
 
 If you want to extract the values of the attributes attached to a block, you must get the constant attribute values from the block definition and the nonconstant attribute values that are attached as part of the block reference. You use the entnext function to step through each object in a block definition and block reference, collecting information from the reference objects. All attribute definitions (attdef) or attribute reference (attrib) objects must be read until the last or seqend object is encountered.
 
-Listing 16.3 shows a custom function that demonstrates how to step through a block reference and its block definition with the while function. You must load the custom functions in Listing 16.2 before executing the code in Listing 16.3. The code in Listing 16.2 and Listing 16.3 can be found in the ch16_code_listings.lsp file that is available for download from this book's website.
+Listing 16.3 shows a custom function that demonstrates how to step through a block reference and its block definition with the while function. You must load the custom functions in Listing 16.2 before executing the code in Listing 16.3. The code in Listing 16.2 and Listing 16.3 can be found in the `ch16_code_listings.lsp` file that is available for download from this book's website.
 
 Listing 16.3: Listing attribute tags and values of a block
 
-; Lists the attributes attached to a block reference and definition (defun c:ListBlockAtts ( / entityName entityData dxfGroupCode0 blkName) ; Get a block reference (setq entityName (car (entsel "\nSelect a block reference: "))) (setq entityData (entget entityName)) ; Check to see if the user selected a block reference (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "INSERT") (progn ; Output information about the block (prompt "\n*Block Reference*") (prompt (strcat "\n" dxfGroupCode0)) (prompt (strcat "\nBlock name: " (setq blkName (cdr (assoc 2 entityData))))) ; Get the next object in the block, an attrib or seqend (setq entityName (entnext entityName)) (setq entityData (entget entityName)) ; Step through the attributes in the block reference (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND") (prompt (strcat "\n" dxfGroupCode0)) (prompt (strcat "\nTag: " (cdr (assoc 2 entityData)))) (prompt (strcat "\nValue: " (cdr (assoc 1 entityData)))) (setq entityName (entnext entityName)) (setq entityData (entget entityName)) ) (prompt (strcat "\n" dxfGroupCode0)) ; Get the block definition (setq entityName (cdr (assoc -2 (tblsearch "block" blkName)))) (setq entityData (entget entityName)) (prompt "\n*Block Definition*") ; Get the constant attributes of the block definition (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) nil) (if (and (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "ATTDEF") (> (logand 2 (cdr (assoc 70 entityData))) 0) ) (progn (prompt (strcat "\n" dxfGroupCode0)) (prompt (strcat "\nTag: " (assoc 2 entityData))) (prompt (strcat "\nValue: " (assoc 1 entityData))) ) ) ; Get the next object (setq entityName (entnext entityName)) (if entityName (setq entityData (entget entityName)) (setq entityData nil) ) ) ) ) (princ) )
+```c
+; Listing 16.3: List attribute tags and values of a block
+; Lists the attributes attached to a block reference and definition
+(defun c:ListBlockAtts ( / entityName entityData dxfGroupCode0 blkName)
+
+  ; Get a block reference
+  (setq entityName (car (entsel "\nSelect a block reference: ")))
+  (setq entityData (entget entityName))
+
+  ; Check to see if the user selected a block reference
+  (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "INSERT")
+    (progn
+      ; Output information about the block
+      (prompt "\n*Block Reference*")
+      (prompt (strcat "\n" dxfGroupCode0))
+      (prompt (strcat "\nBlock name: " (setq blkName (cdr (assoc 2 entityData)))))
+
+      ; Get the next object in the block, an attrib or seqend
+      (setq entityName (entnext entityName))
+      (setq entityData (entget entityName))
+
+      ; Step through the attributes in the block reference
+      (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND")
+        (prompt (strcat "\n" dxfGroupCode0))
+        (prompt (strcat "\nTag: " (cdr (assoc 2 entityData))))
+        (prompt (strcat "\nValue: " (cdr (assoc 1 entityData))))
+        (setq entityName (entnext entityName))
+        (setq entityData (entget entityName))
+      )
+    
+      (prompt (strcat "\n" dxfGroupCode0))
+
+      ; Get the block definition
+      (setq entityName (cdr (assoc -2 (tblsearch "block" blkName))))
+      (setq entityData (entget entityName))
+
+      (prompt "\n*Block Definition*")
+      
+      ; Step through the block definition and look for constant
+      (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) nil)
+        (if (and (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "ATTDEF")
+                (> (logand 2 (cdr (assoc 70 entityData))) 0)
+          )
+          (progn
+            (prompt (strcat "\n" dxfGroupCode0))
+            (prompt (strcat "\nTag: " (assoc 2 entityData)))
+            (prompt (strcat "\nValue: " (assoc 1 entityData)))
+          )
+        )
+
+        ; Get the next object
+        (setq entityName (entnext entityName))
+        (if entityName
+          (setq entityData (entget entityName))
+          (setq entityData nil)
+        )
+      )    
+    )
+  )
+ (princ)
+)
+```
 
 Here is an example of the output generated by the custom ListBlockAtts function:
 
-*Block Reference* INSERT Block name: RoomNumber ATTRIB Tag: ROOM# Value: 101 SEQEND *Block Definition*
+```c
+*Block Reference* 
+INSERT Block name: RoomNumber 
+ATTRIB Tag: ROOM# 
+Value: 101 
+SEQEND 
+*Block Definition*
+```
 
-TIP
-
-For more information on the DXF entities insert, attrib, and seqend, use the AutoCAD Help system. Search on the type of object you want to learn more about and be sure to include「DXF」as a keyword in the search. For example, the keyword search on the insert object would be「insert DXF.」
+TIP: For more information on the DXF entities insert, attrib, and seqend, use the AutoCAD Help system. Search on the type of object you want to learn more about and be sure to include「DXF」as a keyword in the search. For example, the keyword search on the insert object would be「insert DXF.」
 
 In addition to using entity data lists to query and modify block references, you can use the getpropertyvalue and setpropertyvalue functions. You learned about those functions in the「Listing and Changing the Properties of an Object Directly」section earlier in this chapter.
 
-## Extending an Object's Information
+## 6.6 Extending an Object's Information
 
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
