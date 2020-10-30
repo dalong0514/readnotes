@@ -425,65 +425,86 @@ A selection set, sometimes known as a selection set name or ssname for short, is
 
 In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
 
+2『选择集的概念做一张术语卡片。』——已完成
+
 #### Creating a Selection Set
 
 The most common way to create a selection set is to simply prompt the user to select objects in the drawing. The entsel and nentsel functions allow you to select a single object, but typically you will want to allow the user to select more than one object at a time. The ssget function allows the user to interactively select objects in a drawing using the selection methods that are commonly available at the Select objects: prompt. The ssget function can also be used to create a selection set without any user input. The ssget function returns a PICKSET value if at least one object was selected or returns nil if no objects were selected.
 
-NOTE
-
-Unlike the entsel and nentsel functions, the ssget function doesn't have a prompt argument. If you want a lead-in to the Select objects: prompt that ssget displays, you will need to display one with the prompt or princ function.
+NOTE: Unlike the entsel and nentsel functions, the ssget function doesn't have a prompt argument. If you want a lead-in to the Select objects: prompt that ssget displays, you will need to display one with the prompt or princ function.
 
 The following shows the syntax of the ssget function:
 
+```c
 (ssget [method] [point1 [point2]] [points] [filter])
+```
 
 Here are the arguments:
 
-method The method argument is optional and represents the selection method that should be used to create the selection set. Many of the selection methods available are similar to those found at the Select objects: prompt, but additional ones are available from AutoLISP. Table 16.5 lists some of the common selection methods available; for a full list of options search on「ssget」in the AutoCAD Help system.
+method. The method argument is optional and represents the selection method that should be used to create the selection set. Many of the selection methods available are similar to those found at the Select objects: prompt, but additional ones are available from AutoLISP. Table 16.5 lists some of the common selection methods available; for a full list of options search on「ssget」in the AutoCAD Help system.
 
-point1 The point1 argument is an optional point list that is used to select the topmost object in the draw order at the specified point. This argument is also used to specify the first corner of a crossing window or window selection.
+point1. The point1 argument is an optional point list that is used to select the topmost object in the draw order at the specified point. This argument is also used to specify the first corner of a crossing window or window selection.
 
-point2 The point2 argument is an optional point list that is used to specify the second point for the crossing window or window selection.
+point2. The point2 argument is an optional point list that is used to specify the second point for the crossing window or window selection.
 
-points The points argument is an optional list that contains several point lists; it is used to specify the points of a fence, crossing polygon, or window polygon selection.
+points. The points argument is an optional list that contains several point lists; it is used to specify the points of a fence, crossing polygon, or window polygon selection.
 
-filter The filter argument is an optional association list that is similar to an entity data list, but it can also include comparison and grouping operators. Later in this chapter I explain how to create and use selection-set filters; see the sections「Filtering Selected Objects」and「Selecting Objects Based on XData.」
+filter. The filter argument is an optional association list that is similar to an entity data list, but it can also include comparison and grouping operators. Later in this chapter I explain how to create and use selection-set filters; see the sections「Filtering Selected Objects」and「Selecting Objects Based on XData.」
 
 Table 16.5 ssget selection methods
 
-Selection method Description
-
-C Crossing window selection
-
-CP Crossing polygon selection
-
-L Last object selection
-
-P Previous selection set
-
-W Window selection
-
-WP Window polygon selection
-
-X All entities in the database; locked and frozen also
-
-:S Single object selection
-
+|  Selection method | Description  |
+|---|---|
+|  C |  Crossing window selection |
+|  CP |  Crossing polygon selection |
+|  L |  Last object selection |
+|  P |  Previous selection set |
+|  W |  Window selectio |
+|  WP |  Window polygon selection |
+|  X |  All entities in the database; locked and frozen also |
+|  :S |  Single object selection |
+ 
 The following examples show how to select objects with the ssget function; the returned values will vary based on the drawing you have open. Open a drawing with some objects in it before trying these examples:
 
-; Freely lets the user to select objects (setq ss (ssget)) Select objects: Specify the first corner of the selection window Specify opposite corner: Specify a second point to define the selection window 7 found Select objects: Press Enter to end object selection <Selection set: 4d> ; Freely lets the user to select a single object (setq ssPt (ssget "_:S")) <Selection set: 1cd> ; Selects the last object drawn at 0,0,0 (setq ssPt (ssget '(0 0 0))) <Selection set: a9> 1 found Select objects: ; Selects all objects that intersect 0,0,0 and not just the topmost object (setq ssC (ssget "_C" '(0 0 0) '(0 0 0))) <Selection set: be> 3 found Select objects: ; Selects objects with fence selection crossing (0,0), (0,6), (12,9), and (12,0) (setq ssF (ssget "_F" '((0 0)(0 6)(12 9)(12 0)))) <Selection set: 190>
+```c
+; Freely lets the user to select objects 
+(setq ss (ssget)) 
+Select objects: Specify the first corner of the selection window Specify opposite corner: 
+Specify a second point to define the selection window 
+7 found Select objects: 
+Press Enter to end object selection 
+<Selection set: 4d> 
 
-TIP
+; Freely lets the user to select a single object 
+(setq ssPt (ssget "_:S")) 
+<Selection set: 1cd> 
 
-A limited number of selection sets can exist in memory while a drawing remains open; a total of 128 selection sets can be active at one time—the number of selection sets that have been created and assigned to different variables without the variable being set back to nil. Once this limit is reached, no new selection sets can be created. I recommend defining any variables that are assigned a selection set as being local to a function, except when you may need to access a selection set across multiple functions. It is always better to pass values and selection sets to a function than to rely on global variables. If you use global variables for selection sets, you should set all variables to nil when they are no longer needed in order to remove them from memory.
+; Selects the last object drawn at 0,0,0 
+(setq ssPt (ssget '(0 0 0))) 
+<Selection set: a9> 
+1 found Select objects: 
 
-The ssget function also supports implied selection with the I selection method. Just like many AutoCAD commands, such as move and copy, implied selection allows a user to select objects before starting your custom program. If no objects are selected when you use the statement (ssget "_I"), the ssget function returns nil. You can then test for the nil return value, and if nil is returned, you can prompt the user to select objects.
+; Selects all objects that intersect 0,0,0 and not just the topmost object 
+(setq ssC (ssget "_C" '(0 0 0) '(0 0 0))) 
+<Selection set: be> 
+3 found Select objects: 
+
+; Selects objects with fence selection crossing (0,0), (0,6), (12,9), and (12,0) 
+(setq ssF (ssget "_F" '((0 0)(0 6)(12 9)(12 0))))
+ <Selection set: 190>
+```
+
+TIP: A limited number of selection sets can exist in memory while a drawing remains open; a total of 128 selection sets can be active at one time—the number of selection sets that have been created and assigned to different variables without the variable being set back to nil. Once this limit is reached, no new selection sets can be created. I recommend defining any variables that are assigned a selection set as being local to a function, except when you may need to access a selection set across multiple functions. It is always better to pass values and selection sets to a function than to rely on global variables. If you use global variables for selection sets, you should set all variables to nil when they are no longer needed in order to remove them from memory.
+
+The ssget function also supports implied selection with the I selection method. Just like many AutoCAD commands, such as move and copy, implied selection allows a user to select objects before starting your custom program. If no objects are selected when you use the statement `(ssget "_I")`, the ssget function returns nil. You can then test for the nil return value, and if nil is returned, you can prompt the user to select objects.
 
 In addition to using the ssget function to get the objects selected with implied selection, you can use the ssgetfirst function to select objects that have their grips displayed. Grips are displayed only when no custom program or command is active and the user selects objects in the drawing area. The ssgetfirst function returns a list of two elements. The first element always returns nil in recent releases, but in earlier releases it returned a pickfirst value that represented the objects that displayed grips and weren't selected. The second element returns a pickfirst value that represents any objects that are currently selected and have their grips displayed. The ssgetfirst function doesn't accept any arguments.
 
 While the ssgetfirst function is used to get objects that are currently selected and have their grips displayed, you can use the sssetfirst function to select and display the grips for specific objects. The following shows the syntax of the sssetfirst function:
 
+```c
 (sssetfirst gripset [pickset])
+```
 
 Here are the arguments:
 
@@ -493,19 +514,27 @@ pickset The pickset argument is optional and must be a pickfirst value that cont
 
 The following examples show how to select and display the grips for the last object in a drawing with the sssetfirst function:
 
-; Creates a line object that is drawn from 0,0 to -5,5 with a color of red (entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) ((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) ; Displays grips for and selects the line that was added (sssetfirst nil (ssget "L")) (nil <Selection set: 353>) ; Erases the object with grips displayed (command "._erase" (cadr (ssgetfirst)) "") nil
+```c
+; Creates a line object that is drawn from 0,0 to -5,5 with a color of red 
+(entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) 
+((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) 
 
-NOTE
+; Displays grips for and selects the line that was added 
+(sssetfirst nil (ssget "L")) 
+(nil <Selection set: 353>) 
 
-The ssnamex function can be used to get information about how the objects in a selection set were added, as well as how the selection set was created. This includes selection sets created with the ssget, ssgetfirst, and ssadd functions. The value returned by the ssnamex function is a list. For more information on the ssnamex function, search on「ssnamex」in the AutoCAD Help system.
+; Erases the object with grips displayed 
+(command "._erase" (cadr (ssgetfirst)) "") 
+nil
+```
+
+NOTE: The ssnamex function can be used to get information about how the objects in a selection set were added, as well as how the selection set was created. This includes selection sets created with the ssget, ssgetfirst, and ssadd functions. The value returned by the ssnamex function is a list. For more information on the ssnamex function, search on「ssnamex」in the AutoCAD Help system.
 
 #### Managing Objects in a Selection Set
 
 After the user has been prompted to select objects, the resulting selection set can be revised by adding or removing objects. Objects that aren't in the selection set but are in the drawing can be added to the selection set using the ssadd function. If the user selected an object that shouldn't be in the selection set, it can be removed using the ssdel function. The ssadd and ssdel functions return the selection set that they are passed if the function was successful; otherwise, the function returns nil.
 
-NOTE
-
-In addition to adding objects to a selection set with the ssadd function, you can use the function to create a new selection set without user interaction.
+NOTE: In addition to adding objects to a selection set with the ssadd function, you can use the function to create a new selection set without user interaction.
 
 Normally when an object is selected in the drawing, it is added to a selection set once, as duplicate entries aren't allowed. Before adding an object to a selection set with the ssadd function, you can determine if an object is already present in a selection set with the ssmemb function. Duplicate objects in a selection set isn't a problem, but it could cause an issue if your program is extracting information from a drawing or could result in your program taking longer to complete. The ssmemb function returns the ename of the object if it is present in the selection set; otherwise, the function returns nil.
 

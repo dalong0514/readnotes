@@ -2,23 +2,23 @@
 
 [DXF Group Codes | AfraLISP](https://www.afralisp.net/reference/dxf-group-codes.php)
 
--5	APP: persistent reactor chain
+-5——APP: persistent reactor chain
 
--4	APP: conditional operator (used only with ssget)
+-4——APP: conditional operator (used only with ssget)
 
--3	APP: extended data (XDATA) sentinel (fixed)
+-3——APP: extended data (XDATA) sentinel (fixed)
 
--2	APP: entity name reference (fixed)
+-2——APP: entity name reference (fixed)
 
--1	APP: entity name. This changes each time a drawing is opened. It is never saved. (fixed)
+-1——APP: entity name. This changes each time a drawing is opened. It is never saved. (fixed)
 
-0	Text string indicating the entity type (fixed)
+0——Text string indicating the entity type (fixed)
 
-1	Primary text value for an entity
+1——Primary text value for an entity
 
-2	Name (attribute tag, block name, and so on)
+2——Name (attribute tag, block name, and so on)
 
-3-4	Other textual or name values
+3-4——Other textual or name values
 
 5	Entity handle. Text string of up to 16 hexadecimal digits (fixed)
 
@@ -32,9 +32,9 @@
 
 10	Primary point. This is the start point of a line or text entity, center of a circle, and so on. DXF: X value of the primary point. (followed by Y and Z value codes 20 and 30) APP: 3D point (list of three reals)
 
-11-18	Other points. DXF: X value of other points. (followed by Y value codes 21-28 and Z value codes 31-38) APP: 3D point (list of three reals)
+11-18 Other points. DXF: X value of other points. (followed by Y value codes 21-28 and Z value codes 31-38) APP: 3D point (list of three reals)
 
-20, 30	DXF: Y and Z values of the primary point
+20, 30 DXF: Y and Z values of the primary point
 
 21-28, 31-37	DXF: Y and Z values of other points
 
@@ -42,7 +42,7 @@
 
 39	Entity's thickness if nonzero (fixed)
 
-40-48	Floating-point values (text height, scale factors, and so on)
+40-48 Floating-point values (text height, scale factors, and so on)
 
 48	Linetype scale. Floating-point scalar value. Default value is defined for all entity types.
 
@@ -62,9 +62,9 @@
 
 69	APP: viewport identification number.
 
-70-78	Integer values, such as repeat counts, flag bits, or modes
+70-78——Integer values, such as repeat counts, flag bits, or modes
 
-90-99	32-bit integer values
+90-99 32-bit integer values
 
 100	Subclass data marker (with derived class name as a string). Required for all objects and entity classes that are derived from another concrete class to segregate data defined by different classes in the inheritance chain for the same object. This is in addition to the requirement for DXF names for each distinct concrete class derived from ARX (see "Subclass Markers").
 

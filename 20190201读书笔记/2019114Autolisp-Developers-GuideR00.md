@@ -1674,7 +1674,7 @@ The vl-catch-all-apply function traps the error and returns an error object. Use
 
 最大的问题是编码，导出的无论是 txt 还 csv 电脑里打开是好的，上到服务器中文是乱码，cad 默认出来的是 gb2312 编码的，弄了好久好久才解决。
 
-[用 lisp 调用 vb 把 ANSI 编码的文件转换成UTF-8 - AutoLISP/Visual LISP 编程技术 - CAD论坛 - 明经CAD社区 - Powered by Discuz!](http://bbs.mjtd.com/thread-82886-1-1.html)
+[用 lisp 调用 vb 把 ANSI 编码的文件转换成 UTF-8 - AutoLISP/Visual LISP 编程技术](http://bbs.mjtd.com/thread-82886-1-1.html)
 
 ### 02. VLAX-GET-ACAD-OBJECT
 
@@ -1715,6 +1715,28 @@ Remarks. This function loads the extended functions that implement ActiveX and A
 弄了半天才解决，奇怪的是发现仅仅是因为顺序的问题，把之前最后的正常流量拿到前面去，必须先安装尺寸再安装的方向。
 
 回复：目前找到的原因（不是很确定），lisp 里提取各个属性的顺序只要保持跟 cad 块中各属性的顺序相同即可。（2020-07-27）
+
+### 04. 有关生成单行文字实体对象的问题
+
+```c
+(defun GenerateTextByPositionAndContent (insPt textContent /)
+  (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 67 0) (cons 410 "Model") (cons 8 "管道编号") (cons 100 "AcDbText") 
+                  (cons 10 insPt) (cons 11 '(0.0 0.0 0.0)) (cons 40 3.0) (cons 1 textContent) (cons 50 1.5708) (cons 41 0.7) (cons 51 0.0) 
+                  (cons 7 "HZTXT") (cons 71 0) (cons 72 0) (cons 73 0) (cons 210 '(0.0 0.0 1.0)) (cons 100 "AcDbText") 
+             )
+  )(princ)
+)
+
+(defun GenerateEquipTagText (insPt textContent /)
+  (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 67 0) (cons 410 "Model") (cons 8 "设备位号") (cons 100 "AcDbText") 
+                  (cons 10 '(0.0 0.0 0.0)) (cons 11 insPt) (cons 40 3.0) (cons 1 textContent) (cons 50 0.0) (cons 41 0.7) (cons 51 0.0) 
+                  (cons 7 "HZTXT") (cons 71 0) (cons 72 1) (cons 73 0) (cons 210 '(0.0 0.0 1.0)) (cons 100 "AcDbText") 
+             )
+  )(princ)
+)
+```
+
+第一个函数是自动生成辅助流程时写文字的，竖直方向的、左对齐的。第二个函数是自动生成设备位号时用的，水平方向的、居中的。目前自己的理解。dxf code 71-73 是跟对其方式有关的：1）71、72、73 都为 0 的为左对齐；2）72 为 1，其余为 0 时为居中对齐；3）73 为 1，其余为 0 时为左下对齐。4）71 为 0，72、73 为 1 时为中下。那么其他对齐方式应该都可以通过这 3 个方式来组合实现。值得注意的时，对齐方式要跟插入点匹配。比如左对齐的时候，10 为插入点，11 设为 0 坐标，居中对其的时候，10 为 0 坐标，而 11 作为插入点。其中的规律目前没弄明白。（2020-10-30）
 
 ## 0101Introduction.md
 
@@ -1770,97 +1792,6 @@ AutoCAD Customization topics contain basic information on creating and modifying
 』
 
 1『原文中有各版本的主要更新信息。』
-
-## 0102. About Namespaces (AutoLISP)
-
-[Pomoc: Introduction (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-A0E9D801-8BE9-4BF1-85E8-3807E15F3B71)
-
-A namespace is a LISP environment containing a set of symbols (for example, variables and functions).
-
-The concept of namespaces was introduced to prevent applications running in one drawing window from unintentionally affecting applications running in other windows. Each open AutoCAD drawing document has its own namespace. Variables and functions defined in one document namespace are isolated from variables and functions defined in other namespaces.
-
-### 2.1 About Referencing Variables in Document Namespaces (AutoLISP)
-
-Variables defined in a separate-namespace VLX are not known to the document namespace associated with the VLX. However, a separate-namespace VLX can access variables defined in a document namespace using the vl-doc-ref and vl-doc-set functions. The vl-doc-set function is the same as using the setq function.
-
-The vl-doc-ref function copies the value of a variable from a document namespace. The function requires a single argument, a symbol identifying the variable to be copied. For example, the following copies the value of a variable named aruhu:
-
-```
-(vl-doc-ref 'aruhu)
-```
-
-If executed within a document namespace, vl-doc-ref is equivalent to the eval function. The vl-doc-set function sets the value of a variable in a document namespace. The function requires two arguments: a symbol identifying the variable to be set, and the value to set for the variable. For example, the following sets the value of a variable named ulus:
-
-```
-(vl-doc-set 'ulus "Go boldly to noone")
-```
-
-If executed within a document namespace, vl-doc-set is equivalent to the setq function. Use the vl-propagate function to set the value of a variable in all open document namespaces. For example, the following sets a variable named fooyall in all open document namespaces:
-
-```
-(setq fooyall "Go boldly and carry a soft stick")
-
-(vl-propagate 'fooyall)
-```
-
-1『确实，使用函数 vl-propagate 后，变量在任何打开的图纸里都能够访问了。（2020-10-06）』
-
-The vl-propagate function not only copies the value of fooyall into all currently open document namespaces, but also causes fooyall to automatically be copied to the namespace of any new drawings opened during the current AutoCAD session.
-
-To set and retrieve variables from a document namespace (AutoLISP). Values can be stored and retrieved from AutoLISP variables while a drawing remains open. At the AutoCAD Command prompt or in an AutoLISP program, enter an AutoLISP statement that uses the setq function and press Enter. Enter the name of the variable you assigned a value to and prefix it with an ! (exclamation point) to return the value assigned to the variable and press Enter.
-
-1『
-
-setq 是基本的赋值函数，可以赋，值、字符串等。获取变量的命令，前面要加个 ！。比如，在命令窗口里先给一个变量赋值，然后提取：
-
-```
-(setq foo "dalong")
-
-// 提取变量
-!foo
-```
-
-』
-
-To set and retrieve variables in the blackboard namespace (AutoLISP). Variables can be stored and retrieved across multiple open drawings using the blackboard namespace. At the AutoCAD Command prompt or from an AutoLISP program, use the vl-bb-set function to set the value of a variable in the blackboard. Use the vl-bb-ref function to retrieve the value of a variable from the blackboard.
-
-1『原文里有一个有关 vl-bb-set 函数的例子。』
-
-The blackboard variable named \*example* is still set to the value assigned in Step 1; setting the document variable of the same name in Step 4 had no effect on the variable in the blackboard. You can also the vl-doc-set and vl-doc-ref functions to set and retrieve document namespace variables from a separate-namespace VLX, and vl-propagate to set the value of a variable in all open document namespaces.
-
-### 2.3 To load functions across all document namespaces (AutoLISP)
-
-Normally, loading an application file loads it in the current drawing only, but the vl-load-all function can be used to load a file in all drawings. At the AutoCAD Command prompt, enter an AutoLISP statement that uses the vl-load-all function and press Enter.
-
-Note: The vl-load-all function is useful for testing new functions in multiple documents, but in general you should use acaddoc.lsp to load files that are needed in every document.
-
-1. At the AutoCAD Command prompt, enter (load "yinyang.lsp") and press Enter.
-
-2. Invoke a function defined in the AutoLISP source (LSP) file. The function should work as expected.
-
-3. Create a new or open an existing drawing.
-
-4. With the second drawing window active, try invoking the function again. The response will be an error message saying the function is not defined.
-
-5. At the AutoCAD Command prompt, enter (vl-load-all "yinyang.lsp") and press Enter.
-
-6. Create a new or open an existing drawing.
-
-7. Invoke the function again. This time the function will work correctly because the vl-load-all function loads the contents of an AutoLISP file into all open documents, and into any documents opened later in the session.
-
-1『
-
-这个知识点很有用，我将公司的提取程序「line-index.lsp」和贱人工具「cad_tools.vlx」放到 D 根目录下。在 CAD 里输入加载命令：
-
-```
-(vl-load-all "D:line-index.lsp")
-    
-(vl-load-all "D:cad_tools.vlx")
-```
-
-加载完后，之后打开的程序这些插件都可以用。
-
-』
 
 ## 0106. Error Codes and FQA
 
