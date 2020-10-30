@@ -982,7 +982,9 @@ If you want to replace a dotted pair in an entity data list to change the value 
 The following shows the syntax of the entget, entmod, and entupd functions:
 
 ```c
-(entget ename [apps]) (entmod ename) (entupd ename)
+(entget ename [apps]) 
+(entmod ename) 
+(entupd ename)
 ```
 
 Here are the arguments:
@@ -994,8 +996,74 @@ apps. The apps argument is optional; it is a string value that specifies the app
 The following examples show how to get an entity data list with entget, modify an entity data list with entmod, and update an object in the drawing area with entupd:
 
 ```c
-; Creates a new ellipse and gets the new object's entity name (entmake '((0. "ELLIPSE") (100. "AcDbEntity") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (40. 0.5) (41. 0.0) (42. 6.28319))) (setq entityName (entlast)) <Entity name: 7ff6bc905dc0> ; Gets the entity data list for the last object, which is the ellipse (setq entityData (entget entityName)) ((-1. <Entity name: 7ff6bc905dc0>) (0. "ELLIPSE") (330. <Entity name: 7ff6bc9039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (210 0.0 0.0 1.0) (40. 0.5) (41. 0.0) (42. 6.28319)) ; Gets the object's insertion/center point, center of the ellipse (setq dxfGroupCode10 (assoc 10 entityData)) (10 6.0 2.0 0.0) ; Gets the object's color; in this case nil is returned as a color isn't assigned (setq dxfGroupCode62 (assoc 62 entityData)) nil ; Changes the object's center point to 0,0 (setq entityData (subst '(10 0.0 0.0 0.0) dxfGroupCode10 entityData)) (10 6.0 2.0 0.0) ; Appends a dotted pair to change the object's color (setq entityData (append entityData '((62. 3)))) ; Modifies the object with the revised entity data list (entmod entityData) (entupd entityName)
+; Creates a new ellipse and gets the new object's entity name 
+(entmake '((0. "ELLIPSE") (100. "AcDbEntity") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (40. 0.5) (41. 0.0) (42. 6.28319))) 
+(setq entityName (entlast)) 
+<Entity name: 7ff6bc905dc0> 
+
+; Gets the entity data list for the last object, which is the ellipse 
+(setq entityData (entget entityName)) 
+((-1. <Entity name: 7ff6bc905dc0>) (0. "ELLIPSE") (330. <Entity name: 7ff6bc9039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (210 0.0 0.0 1.0) (40. 0.5) (41. 0.0) (42. 6.28319)) 
+
+; Gets the object's insertion/center point, center of the ellipse 
+(setq dxfGroupCode10 (assoc 10 entityData)) 
+(10 6.0 2.0 0.0) 
+
+; Gets the object's color
+; in this case nil is returned as a color isn't assigned 
+(setq dxfGroupCode62 (assoc 62 entityData)) 
+nil 
+
+; Changes the object's center point to 0,0 
+(setq entityData (subst '(10 0.0 0.0 0.0) dxfGroupCode10 entityData)) 
+(10 6.0 2.0 0.0) 
+
+; Appends a dotted pair to change the object's color 
+(setq entityData (append entityData '((62. 3)))) 
+
+; Modifies the object with the revised entity data list 
+(entmod entityData) 
+(entupd entityName)
 ```
+
+1-2-3『
+
+上面代码里，竟然可以通过扩展一个「点对值」达到修改颜色的目的，学到了，哈哈。下面的代码是数据流里修改块属性的逻辑，待重构。重构的时候正好结合作者的代码「Listing 16.1」。（2020-10-30）——未完成
+
+```c
+(defun ModifyPropertyValueByEntityName (entityNameList selectedName propertyValue / i ent blk entx propertyName)
+  (setq i 0)
+  (repeat (length entityNameList)
+    ; get the entity information of the i(th) block
+    (setq ent (entget (nth i entityNameList)))
+    ; save the entity name of the i(th) block
+    (setq blk (nth i entityNameList))
+    ; get the property information
+    (setq entx (entget (entnext (cdr (assoc -1 ent)))))
+    (while (= "ATTRIB" (cdr (assoc 0 entx)))
+      (setq propertyName (cdr (assoc 2 entx)))
+      (if (= propertyName selectedName)
+        (SwitchPropertyValueFromStringOrList propertyValue entx i)
+      )
+      ; get the next property information
+      (setq entx (entget (entnext (cdr (assoc -1 entx)))))
+    )
+    (entupd blk)
+    (setq i (+ 1 i))
+  )
+)
+
+(defun SwitchPropertyValueFromStringOrList (propertyValue entx i / oldValue newValue)
+  (setq oldValue (assoc 1 entx))
+  (if (= (type propertyValue) 'list)
+    (setq newValue (cons 1 (nth i propertyValue)))
+    (setq newValue (cons 1 propertyValue))
+  )
+  (entmod (subst newValue oldValue entx))
+)
+```
+
+』
 
 Listing 16.1 is a set of two custom functions that simplify the process of updating an object using entity data lists and DXF group codes.
 
@@ -1032,29 +1100,50 @@ Listing 16.1: DXF helper functions
 )
 ```
 
-The custom functions in Listing 16.1 are used in the next exercise.
+The custom functions in Listing 16.1 are used in the next exercise. This exercise shows how to modify the properties of a circle, line, and text object:
 
-This exercise shows how to modify the properties of a circle, line, and text object:
+1 Create a new drawing.
 
-Create a new drawing.
+2 Use the appload command to load the `ch16_listings.lsp` file once it is downloaded from www.sybex.com/go/autocadcustomization.
 
-Use the appload command to load the ch16_listings.lsp file once it is downloaded from www.sybex.com/go/autocadcustomization.
+3 Draw a circle (center at 4,5 and a radius of 3), a line (starts at -1,2 and ends at 8,15), and a single-line text object (insertion point of 0,0, a justification of middle center, a height of 4, and a value of A). Refer back to Figure 16.3; the left side shows what the objects look like before they are modified.
 
-Draw a circle (center at 4,5 and a radius of 3), a line (starts at -1,2 and ends at 8,15), and a single-line text object (insertion point of 0,0, a justification of middle center, a height of 4, and a value of A). Refer back to Figure 16.3; the left side shows what the objects look like before they are modified.
+4 At the AutoCAD Command prompt, type the code in Listing 16.1. This will allow you to use the custom functions to make it easier to modify the properties of an object with an entity data list.
 
-At the AutoCAD Command prompt, type the code in Listing 16.1. This will allow you to use the custom functions to make it easier to modify the properties of an object with an entity data list.
+5 Type the following, pressing Enter after each line, and select the object mentioned in the prompt.
 
-Type the following, pressing Enter after each line, and select the object mentioned in the prompt.(setq circ (car (entsel "\nSelect circle: "))) (setq line (car (entsel "\nSelect line: "))) (setq text (car (entsel "\nSelect text: ")))
+```c
+(setq circ (car (entsel "\nSelect circle: "))) 
+(setq line (car (entsel "\nSelect line: "))) 
+(setq text (car (entsel "\nSelect text: ")))
+```
 
-Type (dumpallproperties circ 1) and press Enter to display the properties of the circle. Do the same with the line and text variables.
+6 Type `(dumpallproperties circ 1)` and press Enter to display the properties of the circle. Do the same with the line and text variables.
 
-Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or display the Text History window on Windows if the command-line window is docked). Review the properties and values of the objects.
+7 Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or display the Text History window on Windows if the command-line window is docked). Review the properties and values of the objects.
 
-Type the following and press Enter to change the circle's color to cyan, the line's color to blue, and the text's color to red:(Set-DXF-Value circ 62 4) (Set-DXF-Value line 62 5) (Set-DXF-Value text 62 1)
+8 Type the following and press Enter to change the circle's color to cyan, the line's color to blue, and the text's color to red:
 
-Type the following and press Enter to change the line's start point and the text's alignment point to the circle's center point:(Set-DXF-Value line 10 (Get-DXF-Value circ 10)) (Set-DXF-Value text 11 (Get-DXF-Value circ 10))
+```c
+(Set-DXF-Value circ 62 4) 
+(Set-DXF-Value line 62 5) 
+(Set-DXF-Value text 62 1)
+```
 
-Type the following and press Enter to shorten the line so it intersects with the circle's radius:(setq ang (angle (Get-DXF-Value line 10) (Get-DXF-Value line 11) )) (setq newPt (polar (Get-DXF-Value circ 10) ang (Get-DXF-Value circ 40) )) (Set-DXF-Value line 10 newPt)
+9 Type the following and press Enter to change the line's start point and the text's alignment point to the circle's center point:
+
+```c
+(Set-DXF-Value line 10 (Get-DXF-Value circ 10)) 
+(Set-DXF-Value text 11 (Get-DXF-Value circ 10))
+```
+
+10 Type the following and press Enter to shorten the line so it intersects with the circle's radius:
+
+```c
+(setq ang (angle (Get-DXF-Value line 10) (Get-DXF-Value line 11) )) 
+(setq newPt (polar (Get-DXF-Value circ 10) ang (Get-DXF-Value circ 40) )) 
+(Set-DXF-Value line 10 newPt)
+```
 
 The three modified objects should now look like those on the right side of Figure 16.3.
 
@@ -1062,29 +1151,33 @@ The three modified objects should now look like those on the right side of Figur
 
 An object that is no longer needed can be deleted from a drawing with the AutoLISP entdel function. Deleting an object from a drawing with the entdel function removes it from the display but doesn't remove the object from the drawing immediately. It flags an object for removal; the object is removed when the drawing is saved and then closed. You can use the entdel function a second time to restore the object while the drawing remains open. Using the AutoCAD u or undo command will also restore an object that was flagged for removal with the entdel function. Objects removed with the erase command can also be restored with the entdel function.
 
-NOTE: The entdel function can be used to remove only graphical objects and objects associated with a dictionary, not symbol-table entries such as layers and block definitions. I discuss more about working with nongraphical objects in Chapter 17.
-
-The following shows the syntax of the entdel function:
+NOTE: The entdel function can be used to remove only graphical objects and objects associated with a dictionary, not symbol-table entries such as layers and block definitions. I discuss more about working with nongraphical objects in Chapter 17. The following shows the syntax of the entdel function:
 
 ```c
 (entdel ename)
 ```
 
-The ename argument represents the entity name of the object to flag for deletion or restore.
-
-The following examples show how to remove an object with the entdel function:
+The ename argument represents the entity name of the object to flag for deletion or restore. The following examples show how to remove an object with the entdel function:
 
 ```c
-; Gets the last object added to the drawing (setq en (entlast)) <Entity name: 7ff618a0be20> ; Deletes the object assigned to the en variable (entdel en) <Entity name: 7ff618a0be20> ; Restores the object assigned to the en variable (entdel en) <Entity name: 7ff618a0be20>
+; Gets the last object added to the drawing 
+(setq en (entlast)) 
+<Entity name: 7ff618a0be20> 
+
+; Deletes the object assigned to the en variable 
+(entdel en) 
+<Entity name: 7ff618a0be20> ;
+
+ Restores the object assigned to the en variable 
+ (entdel en) 
+ <Entity name: 7ff618a0be20>
 ```
 
 ### 6.4.5 Highlighting Objects
 
 Object highlighting is the feedback technique that AutoCAD uses to indicate which objects have been selected in the drawing area and are ready to be interacted with or modified. While highlighting is a great way to let a user know which objects will be modified, it can also impact the performance of a program when a large number of objects are selected. You can turn off general object-selection highlighting with the highlight system variable.
 
-The AutoLISP redraw function, not the same as the redraw command, can be used to highlight individual objects. Highlighting generated by the redraw function can be undone, either with the redraw function or the AutoCAD regen command. In addition to highlighting an object, the redraw function can be used to temporarily hide and then redisplay an object.
-
-The following shows the syntax of the redraw function:
+The AutoLISP redraw function, not the same as the redraw command, can be used to highlight individual objects. Highlighting generated by the redraw function can be undone, either with the redraw function or the AutoCAD regen command. In addition to highlighting an object, the redraw function can be used to temporarily hide and then redisplay an object. The following shows the syntax of the redraw function:
 
 ```c
 (redraw [ename [mode]])
@@ -1092,14 +1185,24 @@ The following shows the syntax of the redraw function:
 
 Here are the arguments:
 
-ename The ename argument represents the entity name of the object to highlight or display.
+ename .The ename argument represents the entity name of the object to highlight or display.
 
-mode The mode argument is an integer that specifies the highlight or display state of the object. Use the values 1 (show) and 2 (hide) to control the display of an object. The values 3 (on) and 4 (off) control the highlighting of the object.
+mode. The mode argument is an integer that specifies the highlight or display state of the object. Use the values 1 (show) and 2 (hide) to control the display of an object. The values 3 (on) and 4 (off) control the highlighting of the object.
 
 The following examples show how to highlight and display an object with the redraw function:
 
 ```c
-; Highlights the last graphical object in the drawing (redraw (entlast) 3) ; Unighlights the object (redraw (entlast) 4) ; Hides the object (redraw (entlast) 2) ; Shows the object (redraw (entlast) 1)
+; Highlights the last graphical object in the drawing 
+(redraw (entlast) 3) 
+
+; Unighlights the object 
+(redraw (entlast) 4) 
+
+; Hides the object 
+(redraw (entlast) 2) 
+
+; Shows the object 
+(redraw (entlast) 1)
 ```
 
 ## 6.5 Working with Complex Objects
@@ -1120,16 +1223,34 @@ Knowing that he's likely to ask for a layout of the whole floor—not just that 
 
 AutoCAD drawings can contain two different types of polylines; old-style (legacy) and lightweight. Old-style polylines were the first type of polylines that were introduced in an early release of AutoCAD. An old-style polyline is composed of several objects: a main polyline object, vertex objects that define each vertex of the polyline, and a seqend object that defines the end of the polyline. Old-style polylines can be 2D or 3D and contain straight or curved segments.
 
-
-
-
-
 Lightweight polylines, introduced with AutoCAD Release 14, take up less memory than old-style polylines but are 2D only. All 3D polylines are created using old-style polylines. Unlike old-style polylines, multiple objects aren't used to define a lightweight polyline. Most polylines created since AutoCAD Release 14 are most likely of the lightweight type. The plinetype system variable controls the type of polyline that is created with the pline command.
 
 The following example creates an old-style polyline that has the coordinate values (0 0), (5 5), (10 5), and (10 0) with the entmake function:
 
 ```c
-; Creates the base polyline object (entmake '((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1))) ((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1)) ; Adds the first vertex to the polyline at 0,0 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 5,5 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 10,5 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 10,0 (entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) ((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) ; Adds the next vertex to the polyline at 10,0 (entmake '((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+; Creates the base polyline object 
+(entmake '((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1))) 
+((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1)) 
+
+; Adds the first vertex to the polyline at 0,0 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 5,5 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 10,5 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 10,0 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 10,0 
+(entmake '((0. "SEQEND") (100. "AcDbEntity"))) 
+((0. "SEQEND") (100. "AcDbEntity"))
 ```
 
 When you want to modify an old-style polyline, get the polyline object and then use the entnext function to step to the first vertex until you get to the seqend object. Using a while looping statement is the best way to step through the drawing looking for each vertex of the polyline. Continue looping until you encounter a dotted pair with a DXF group code 0 and a value of "SEQEND".
@@ -1139,19 +1260,55 @@ Listing 16.2 is a custom function that demonstrates how to get each of the subob
 Listing 16.2: Listing subobjects of an old-style polyline
 
 ```c
-(defun c:ListOSPolyline ( / entityName entityData dxfGroupCode0) ; Set PLINETYPE to 0 to create an old-style polyline with the PLINE command (setq entityName (car (entsel "\nSelect an old-style polyline: "))) (setq entityData (entget entityName)) (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "POLYLINE") (progn (prompt (strcat "\n" dxfGroupCode0)) (setq entityName (entnext entityName)) (setq entityData (entget entityName)) (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND") (prompt (strcat "\n" dxfGroupCode0)) (prompt (strcat "\n" (vl-princ-to-string (assoc 10 entityData)))) (setq entityName (entnext entityName)) (setq entityData (entget entityName)) ) (prompt (strcat "\n" dxfGroupCode0)) ) ) (princ) )
+; Listing 16.2: List subobjects of old-style polyline
+(defun c:ListOSPolyline ( / entityName entityData dxfGroupCode0)
+  ; Set PLINETYPE to 0 to create an old-style polyline with the PLINE command
+  (setq entityName (car (entsel "\nSelect an old-style polyline: ")))
+  (setq entityData (entget entityName))
+
+  (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "POLYLINE")
+    (progn
+      (prompt (strcat "\n" dxfGroupCode0))
+      (setq entityName (entnext entityName))
+      (setq entityData (entget entityName))
+
+      (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND")
+        (prompt (strcat "\n" dxfGroupCode0))
+        (prompt (strcat "\n" (vl-princ-to-string (assoc 10 entityData))))
+        (setq entityName (entnext entityName))
+        (setq entityData (entget entityName))
+      )
+    
+      (prompt (strcat "\n" dxfGroupCode0))
+    )
+  )
+ (princ)
+)
 ```
 
 The output generated by the custom ListOSPolyline function from Listing 16.2 will be similar to the following:
 
-POLYLINE VERTEX (10 0.0 0.0 0.0) VERTEX (10 5.0 5.0 0.0) VERTEX (10 10.0 5.0 0.0) VERTEX (10 10.0 0.0 0.0) SEQEND
+```c
+POLYLINE 
+VERTEX 
+(10 0.0 0.0 0.0) 
+VERTEX 
+(10 5.0 5.0 0.0) 
+VERTEX 
+(10 10.0 5.0 0.0) 
+VERTEX 
+(10 10.0 0.0 0.0) 
+SEQEND
+```
 
 For more information on the DXF entities polyline, vertex, and seqend, use the AutoCAD Help system. Search on the type of object you want to learn more about and be sure to include「DXF」as a keyword in the search. For example, the keyword search on the polyline object would be「polyline DXF.」
 
 The following example creates a lightweight polyline that has the coordinate values (0 0), (5 5), (10 5), and (10 0) with the entmake function:
 
 ```c
-; Create a polyline object drawn along the path (0 0), (5 5), (10 5), and (10 0) (entmake '((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))) ((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))
+; Create a polyline object drawn along the path (0 0), (5 5), (10 5), and (10 0) 
+(entmake '((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))) 
+((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))
 ```
 
 The DXF group code 10 in the previous example appears multiple times in the entity data list. Each dotted pair with a DXF group code 10 represents a vertex in the polyline, and they appear in the order in which the polyline should be drawn. For more information on the lwpolyline DXF entity, search on「lwpolyline DXF」in the AutoCAD Help system.
@@ -1314,13 +1471,19 @@ In addition to using entity data lists to query and modify block references, you
 
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
+
+
+
+
+
+
 XData is structured similar to an entity data list except the values must be within a specific range of DXF group codes. Each XData list must contain an application name to identify one XData list from another since several XData lists can be attached to an object. After the application name, an XData list can contain any valid values and be of any type of data that AutoLISP supports.
 
 The values in an XData list and what they represent is up to you, the creator of the data. Data in an XData list can be used to identify where an object should be placed or which layer it should be on, to store information about an external database record that is related to an object, or to build relationships between objects in a drawing. The way data is used or enforced is up to you as the programmer.
 
 In addition to XData, graphical and nongraphical objects support what are known as extension dictionaries. Extension dictionaries are kind of like record tables that can be attached to an object. For example, you could store revision history of a drawing in an extension dictionary that is attached to model space, and then populate that information in the drawing's title block. I discuss creating custom dictionaries in Chapter 17.
 
-### Working with XData
+### 6.6.1 Working with XData
 
 Attaching XData to an object requires you to do some initial planning and perform several steps. The following outlines the steps that you must perform in order to attach an XData list to an object:
 
@@ -1348,7 +1511,7 @@ Substitute the current XData list attached to an object with the new XData list.
 
 Update the object.
 
-Defining and Registering an Application Name
+### 6.6.2 Defining and Registering an Application Name
 
 Before you can attach an XData list to an object, you must decide on an application name and then register that name with AutoCAD. The application name you choose should be unique to avoid conflicts with other XData lists. After an application name has been chosen, you register the name with the regapp function. The regapp function adds a new entry to the APPID symbol table and returns the name of the application if it is successfully registered. nil is returned if the application could not be registered or was already registered in the current drawing. You'll learn about symbol tables in Chapter 17.
 
@@ -1362,7 +1525,7 @@ The following example demonstrates how to register an application:
 
 ; Registers the application named MyApp (setq appName "MyApp") (regapp appName)
 
-Attaching XData to an Object
+### 6.6.3 Attaching XData to an Object
 
 Once you have defined an application name and registered it in a drawing, you can attach an XData list to an object within that drawing. An XData list is made up of two lists and has a total size limit of 16 KB per object (see the「Managing the Memory Used by XData for an Object」sidebar for information). The outer list contains a DXF group code -3 and an inner list that contains the application name and dotted pairs that represent the data values to store with the object. Each dotted pair contains a DXF group code that defines the type of data the pair represents and then the actual value of the pair.
 
@@ -1424,6 +1587,8 @@ Type the following and press Enter to commit the changes to the circle and updat
 
 The circle object won't look any different after the changes have been committed because the XData doesn't affect the appearance of the object. However, you can now differentiate this circle from those that might be created with the circle command. This makes it much easier to locate and update the radius of the circles that represent a drill hole in your drawing.
 
+---
+
 Managing the Memory Used by XData for an Object
 
 Each object in a drawing can have a total of 16 KB worth of XData attached to it. The 16 KB total is for all XData attached to an object, and not just for one application. If the limit of XData is close and you attach additional XData that exceeds the limit, the XData won't be attached. AutoLISP provides two functions to help determine the size of the XData being attached to an object and the amount of space already being used by the XData attached to an object.
@@ -1435,8 +1600,9 @@ xdroom—Returns the space available, in bytes, for attaching new XData to an ob
 xdsize—Returns the size of an XData list in bytes. The function expects a list as its single argument.
 
 You should use these two functions to determine whether XData can be attached to an object.
+---
 
-Querying and Modifying the XData Attached to an Object
+### 6.6.4 Querying and Modifying the XData Attached to an Object
 
 XData that has been previously attached to an object can be queried and modified by following a process that is similar to the one used to attach XData to an object. The entget function, which I discussed earlier, is used to get the entity data list and any XData lists attached to an object. By default, the entget function only returns the entity data list for the entity name that it is passed. You use the optional appname argument of the entget function to return all of the XData lists attached to an object or the one associated with a specific application name.
 
@@ -1466,9 +1632,7 @@ At the AutoCAD Command prompt, type (assoc -3 (entget (car (entsel "\nSelect obj
 
 (-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 343) (1005. "2BE") (1070. 173) (1070. 1) (1070. 344) (1005. "0") (1002. "}")))
 
-NOTE
-
-I mentioned earlier that XData doesn't affect the appearance of an object, and that is still true even when used as we did in the previous exercise. XData itself doesn't affect the object, but AutoCAD does look for its own XData and uses it to control the way an object might be drawn. If you implement an application with the Autodesk® ObjectARX® application programming interface, you could use ObjectARX and XData to control how an object is drawn onscreen. You could also control the way an object looks using object overrules with Managed.NET and XData. ObjectARX and Managed.NET are the two advanced programming options that Autodesk supports for AutoCAD development. You can learn more about ObjectARX and Managed.NET at www.objectarx.com.
+NOTE: I mentioned earlier that XData doesn't affect the appearance of an object, and that is still true even when used as we did in the previous exercise. XData itself doesn't affect the object, but AutoCAD does look for its own XData and uses it to control the way an object might be drawn. If you implement an application with the Autodesk® ObjectARX® application programming interface, you could use ObjectARX and XData to control how an object is drawn onscreen. You could also control the way an object looks using object overrules with Managed.NET and XData. ObjectARX and Managed.NET are the two advanced programming options that Autodesk supports for AutoCAD development. You can learn more about ObjectARX and Managed.NET at www.objectarx.com.
 
 The entget function can be used to determine whether an XData list for a specific application is already attached to an object. If an XData list already exists for an object, you can then modify that list. Use the subst function to update or replace one XData list with another.
 
@@ -1488,7 +1652,7 @@ Type the following and press Enter to update the linear dimension and commit the
 
 The colors of the lines in the dimension that are inherited from the dimension style are now overridden. This is similar to what happens when you select a dimension, right-click, and choose Precision.
 
-Removing XData from an Object
+### 6.6.5 Removing XData from an Object
 
 XData can be removed from an object when it is no longer needed. You do so by replacing an existing XData list with an XData list that contains only an application name. When AutoCAD evaluates an XData list with only an application name and no values, it removes the XData list from the object. Here is an example of an XData list that can be used to remove the XData associated with the MyApp application:
 
@@ -1498,7 +1662,7 @@ The following example removes the XData list associated with an application name
 
 (defun c:RemoveDimOverride ( / entityName entityData) (setq entityName (car (entsel "\nSelect dimension to remove overrides: "))) (setq entityData (entget entityName '("ACAD"))) (if (/= (assoc -3 entityData) nil) (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData)) ) (entmod entityData) (entupd entityName) (princ) )
 
-Selecting Objects Based on XData
+### 6.6.6 Selecting Objects Based on XData
 
 You can use the XData attached to an object as a way to select or filter out specific objects with the ssget function. (I explained how to use the filter argument of the ssget function in the「Filtering Selected Objects」section earlier in this chapter.) If you want to filter on the XData attached to an object, you use the DXF group code -3 along with the application name from the XData list.
 
@@ -1506,7 +1670,7 @@ Here are two examples of the ssget function that use a selection filter to allow
 
 ; Selects objects containing xdata and with the application name MyApp. (ssget '((-3 ("MyApp")))) ; Uses implied selection and selects objects with the application name ACAD. (ssget "_I" '((-3 ("ACAD"))))
 
-## Exercise: Creating, Querying, and Modifying Objects
+## 6.7 Exercise: Creating, Querying, and Modifying Objects
 
 In this section, you will continue to work with the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」Along with working with the drawplate function, you will define a new function that will be used to create a bill of materials (BOM) for a furniture layout. The key concepts I cover in this exercise are as follows:
 
