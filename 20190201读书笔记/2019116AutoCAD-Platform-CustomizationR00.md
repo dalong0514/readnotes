@@ -219,6 +219,91 @@ In addition to XData, graphical and nongraphical objects support what are known 
 
 2『 XData 做一张术语卡片。』——已完成
 
+Once you have defined an application name and registered it in a drawing, you can attach an XData list to an object within that drawing. An XData list is made up of two lists and has a total size limit of 16 KB per object (see the「Managing the Memory Used by XData for an Object」sidebar for information). The outer list contains a DXF group code -3 and an inner list that contains the application name and dotted pairs that represent the data values to store with the object. Each dotted pair contains a DXF group code that defines the type of data the pair represents and then the actual value of the pair.
+
+DXF group codes used for dotted pairs in an XData list must be within the range of 1000 to 1071. Each DXF group code value in that range represents a different type of data, and you can use each DXF group code more than once in an XData list. Table 16.8 lists some of the commonly used DXF group codes for XData.
+
+The following AutoLISP statements were used to create the previous XData list:
+
+```c
+(setq appName "MyApp") 
+(regapp "MyApp") 
+(setq xdataList 
+  (list -3 (list appName 
+                 (cons 1000 "My custom application") 
+                 (cons 1070 (fix (getvar "cdate")))))
+)
+```
+
+1『这里意外收获，通过系统函数获取时间，这个时间可以做一个时间戳，当作数据的临时 ID，时间戳基本不会重复的。（2020-10-31）』
+
+Once an XData list has been defined, it can be appended to an entity data list returned by the AutoLISP entget function with the append function. I explained how to append lists together in Chapter 14. After an XData list is appended to an entity data list, you use the entmod function to commit changes to the object and entupd to update the object in the drawing area. I explained the entmod and entupd functions earlier in this chapter. This exercise shows how to attach an XData list to a circle:
+
+1 At the AutoCAD Command prompt, type the following and press Enter to register the MyApp application:
+
+```c
+(setq appName "MyApp") 
+(regapp appName)
+```
+
+2 Type the following and press Enter to assign the XData list to the xdataList variable: 
+
+```c
+(setq xdataList 
+  (list -3 (list appName 
+                 (cons 1000 "My custom application") 
+                 (cons 1070 (fix (getvar "cdate")))))
+)
+```
+
+The XData list assigned to the xdataList variable is as follows:
+
+```c
+(-3 ("MyApp" (1000. "My custom application") (1070. 20140302)))
+```
+
+3 Type the following and press Enter to create a new circle: 
+
+```c
+(entmake (list (cons 0 "CIRCLE") (cons 10 (list 2 2 0)) (cons 40 1))) 
+(setq circ (entlast))
+```
+
+A circle with the center point of 2,2 is created with a radius of 1, and the entity name of the new circle is assigned to the circ variable.
+
+4 Type the following and press Enter to get the entity data list of the circle and assign it to the entData variable: 
+
+```c
+(setq entityData (entget circ))
+```
+
+The entity data list of the circle should be similar to the following:
+
+```c
+((-1. <Entity name: 7ff722905e90>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1E1") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0))
+```
+
+5 Type the following and press Enter to append the lists in the entityData and xdataList variables: 
+
+```c
+(setq entityData (append entityData (list xdataList)))
+```
+
+The resulting list is assigned to the entityData variable and should look similar to the following:
+
+```c
+((-1. <Entity name: 7ff722905e50>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1DD")(100. "AcDbEntity") (67. 0) (410. "Model") (8. "0")(100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0)(-3 ("MyApp" (1000. "Drill_Hole") (1070. 20140302))))
+```
+
+6 Type the following and press Enter to commit the changes to the circle and update the circle's display: 
+
+```c
+(entmod entityData) 
+(entupd circ)
+```
+
+The circle object won't look any different after the changes have been committed because the XData doesn't affect the appearance of the object. However, you can now differentiate this circle from those that might be created with the circle command. This makes it much easier to locate and update the radius of the circles that represent a drill hole in your drawing.
+
 ### 0301. 任意卡——生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。

@@ -1540,10 +1540,14 @@ Table 16.8 XData-related DXF group codes
 |  1070 |  16-bit (unsigned or signed) integer value |
 |  1071 |  32-bit signed integer value |
 
-The following example is an XData list that contains the application name MyApp and two dotted pairs. The first dotted pair is a string (DXF group code 1000) with the value「My custom application,」and the second dotted pair is an integer (DXF group code 1070) with a value that represents the current date:
+The following example is an XData list that contains the application name MyApp and two dotted pairs. The first dotted pair is a string `(DXF group code 1000)` with the value「My custom application,」and the second dotted pair is an integer (DXF group code 1070) with a value that represents the current date:
 
 ```c
-(-3 ("MyApp" (1000. "My custom application") (1070. (fix (getvar "cdate")))))
+(-3 ("MyApp" 
+      (1000. "My custom application") 
+      (1070. (fix (getvar "cdate")))
+    )
+)
 ```
 
 The following AutoLISP statements were used to create the previous XData list:
@@ -1551,38 +1555,79 @@ The following AutoLISP statements were used to create the previous XData list:
 ```c
 (setq appName "MyApp") 
 (regapp "MyApp") 
-(setq xdataList (list -3 (list appName (cons 1000 "My custom application") (cons 1070 (fix (getvar "cdate"))) )))
+(setq xdataList 
+  (list -3 (list appName 
+                 (cons 1000 "My custom application") 
+                 (cons 1070 (fix (getvar "cdate")))))
+)
 ```
 
-Once an XData list has been defined, it can be appended to an entity data list returned by the AutoLISP entget function with the append function. I explained how to append lists together in Chapter 14. After an XData list is appended to an entity data list, you use the entmod function to commit changes to the object and entupd to update the object in the drawing area. I explained the entmod and entupd functions earlier in this chapter.
+1『这里意外收获，通过系统函数获取时间，这个时间可以做一个时间戳，当作数据的临时 ID，时间戳基本不会重复的。（2020-10-31）』
 
-This exercise shows how to attach an XData list to a circle:
+Once an XData list has been defined, it can be appended to an entity data list returned by the AutoLISP entget function with the append function. I explained how to append lists together in Chapter 14. After an XData list is appended to an entity data list, you use the entmod function to commit changes to the object and entupd to update the object in the drawing area. I explained the entmod and entupd functions earlier in this chapter. This exercise shows how to attach an XData list to a circle:
 
-At the AutoCAD Command prompt, type the following and press Enter to register the MyApp application:(setq appName "MyApp") (regapp appName)
+1 At the AutoCAD Command prompt, type the following and press Enter to register the MyApp application:
 
-Type the following and press Enter to assign the XData list to the xdataList variable: (setq xdataList (list -3 (list appName (cons 1000 "My custom application") (cons 1070 (fix (getvar "cdate"))) )))
+```c
+(setq appName "MyApp") 
+(regapp appName)
+```
+
+2 Type the following and press Enter to assign the XData list to the xdataList variable: 
+
+```c
+(setq xdataList 
+  (list -3 (list appName 
+                 (cons 1000 "My custom application") 
+                 (cons 1070 (fix (getvar "cdate")))))
+)
+```
 
 The XData list assigned to the xdataList variable is as follows:
 
+```c
 (-3 ("MyApp" (1000. "My custom application") (1070. 20140302)))
+```
 
-Type the following and press Enter to create a new circle: (entmake (list (cons 0 "CIRCLE") (cons 10 (list 2 2 0)) (cons 40 1))) (setq circ (entlast))
+3 Type the following and press Enter to create a new circle: 
+
+```c
+(entmake (list (cons 0 "CIRCLE") (cons 10 (list 2 2 0)) (cons 40 1))) 
+(setq circ (entlast))
+```
 
 A circle with the center point of 2,2 is created with a radius of 1, and the entity name of the new circle is assigned to the circ variable.
 
-Type the following and press Enter to get the entity data list of the circle and assign it to the entData variable: (setq entityData (entget circ))
+4 Type the following and press Enter to get the entity data list of the circle and assign it to the entData variable: 
+
+```c
+(setq entityData (entget circ))
+```
 
 The entity data list of the circle should be similar to the following:
 
+```c
 ((-1. <Entity name: 7ff722905e90>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1E1") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0))
+```
 
-Type the following and press Enter to append the lists in the entityData and xdataList variables: (setq entityData (append entityData (list xdataList)))
+5 Type the following and press Enter to append the lists in the entityData and xdataList variables: 
+
+```c
+(setq entityData (append entityData (list xdataList)))
+```
 
 The resulting list is assigned to the entityData variable and should look similar to the following:
 
+```c
 ((-1. <Entity name: 7ff722905e50>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1DD")(100. "AcDbEntity") (67. 0) (410. "Model") (8. "0")(100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0)(-3 ("MyApp" (1000. "Drill_Hole") (1070. 20140302))))
+```
 
-Type the following and press Enter to commit the changes to the circle and update the circle's display: (entmod entityData) (entupd circ)
+6 Type the following and press Enter to commit the changes to the circle and update the circle's display: 
+
+```c
+(entmod entityData) 
+(entupd circ)
+```
 
 The circle object won't look any different after the changes have been committed because the XData doesn't affect the appearance of the object. However, you can now differentiate this circle from those that might be created with the circle command. This makes it much easier to locate and update the radius of the circles that represent a drill hole in your drawing.
 
@@ -1608,29 +1653,37 @@ XData that has been previously attached to an object can be queried and modified
 
 For example, the following code returns the entity data list and XData list attached to an object with the application name of MyApp. If there is no XData list associated with the application name MyApp, only the entity data list for the object is returned.
 
-; Return the entity data list and xdata list (entget (entlast) '("MyApp"))
+```c
+; Return the entity data list and xdata list 
+(entget (entlast) '("MyApp"))
+```
 
 Using an asterisk instead of an actual application name returns the XData lists for all applications attached to an object, as shown here:
 
-; Return the entity data list and xdata list (entget (entlast) '("*"))
+```c
+; Return the entity data list and xdata list 
+(entget (entlast) '("*"))
+```
 
 This exercise shows how to list the XData attached to a dimension with a dimension override:
 
-At the AutoCAD Command prompt, type dli press Enter.
+1 At the AutoCAD Command prompt, type dli press Enter.
 
-At the Specify first extension line origin or <select object>: prompt, specify a point in the drawing.
+2 At the Specify first extension line origin or `<select object>`: prompt, specify a point in the drawing.
 
-At the Specify second extension line origin: prompt, specify a second point in the drawing.
+3 At the Specify second extension line origin: prompt, specify a second point in the drawing.
 
-At the Specify dimension line location or [Mtext/Text/Angle/Horizontal/Vertical/Rotated]: prompt, specify a point in the drawing to place the linear dimension.
+4 At the Specify dimension line location or [Mtext/Text/Angle/Horizontal/Vertical/Rotated]: prompt, specify a point in the drawing to place the linear dimension.
 
-Select the linear dimension that you created, right-click, and then click Properties.
+5 Select the linear dimension that you created, right-click, and then click Properties.
 
-In the Properties palette (Windows) or Properties Inspector (Mac OS), click the Arrow 1 field under the Lines & Arrows section. Select None from the drop-down list. The first arrowhead of the linear dimension is suppressed as a result of a dimension override being created.
+6 In the Properties palette (Windows) or Properties Inspector (Mac OS), click the Arrow 1 field under the Lines & Arrows section. Select None from the drop-down list. The first arrowhead of the linear dimension is suppressed as a result of a dimension override being created.
 
-At the AutoCAD Command prompt, type (assoc -3 (entget (car (entsel "\nSelect object with attached xdata: ")) '("*"))) and press Enter. Attaching an XData list to the linear dimension is how AutoCAD handles dimension overrides for individual dimensions. Here is what the XData list that was attached to the linear dimension as a result of changing the Arrow 1 property in step 6 looks like:
+7 At the AutoCAD Command prompt, type `(assoc -3 (entget (car (entsel "\nSelect object with attached xdata: ")) '("*")))` and press Enter. Attaching an XData list to the linear dimension is how AutoCAD handles dimension overrides for individual dimensions. Here is what the XData list that was attached to the linear dimension as a result of changing the Arrow 1 property in step 6 looks like:
 
+```c
 (-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 343) (1005. "2BE") (1070. 173) (1070. 1) (1070. 344) (1005. "0") (1002. "}")))
+```
 
 NOTE: I mentioned earlier that XData doesn't affect the appearance of an object, and that is still true even when used as we did in the previous exercise. XData itself doesn't affect the object, but AutoCAD does look for its own XData and uses it to control the way an object might be drawn. If you implement an application with the Autodesk® ObjectARX® application programming interface, you could use ObjectARX and XData to control how an object is drawn onscreen. You could also control the way an object looks using object overrules with Managed.NET and XData. ObjectARX and Managed.NET are the two advanced programming options that Autodesk supports for AutoCAD development. You can learn more about ObjectARX and Managed.NET at www.objectarx.com.
 
@@ -1638,17 +1691,40 @@ The entget function can be used to determine whether an XData list for a specifi
 
 This exercise shows how to override the color assigned to dimension and extension lines, and restore the arrowhead for the dimension you created in the previous exercise:
 
-At the AutoCAD Command prompt, type the following and press Enter:(setq entityName (car (entsel "\nSelect dimension: ")))
+1 At the AutoCAD Command prompt, type the following and press Enter:
 
-At the Select dimension: prompt, select the linear dimension created in the previous exercise.
+```c
+(setq entityName (car (entsel "\nSelect dimension: ")))
+```
 
-At the AutoCAD Command prompt, type the following and press Enter to get the entity data list and XData list associated with an application named ACAD:(setq entityData (entget entityName '("ACAD")))
+2 At the Select dimension: prompt, select the linear dimension created in the previous exercise.
 
-Type the following and press Enter to assign the xdataList variable with the new XData list to change the color of the dimension line to ACI 40 and the color of the extension line to ACI 200:(setq xdataList '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}"))))
+3 At the AutoCAD Command prompt, type the following and press Enter to get the entity data list and XData list associated with an application named ACAD:
 
-Type the following and press Enter to check whether there is an XData list already attached to the object, and if so replace it with the new XData list:(if (/= (assoc -3 entityData) nil) (setq entityData (subst xdataList (assoc -3 entityData) entityData)) )
+```c
+(setq entityData (entget entityName '("ACAD")))
+```
 
-Type the following and press Enter to update the linear dimension and commit the changes to the drawing: (entmod entityData) (entupd entityName)
+4 Type the following and press Enter to assign the xdataList variable with the new XData list to change the color of the dimension line to ACI 40 and the color of the extension line to ACI 200:
+
+```c
+(setq xdataList '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}"))))
+```
+
+5 Type the following and press Enter to check whether there is an XData list already attached to the object, and if so replace it with the new XData list:
+
+```c
+(if (/= (assoc -3 entityData) nil) 
+  (setq entityData (subst xdataList (assoc -3 entityData) entityData)) 
+)
+```
+
+6 Type the following and press Enter to update the linear dimension and commit the changes to the drawing: 
+
+```c
+(entmod entityData) 
+(entupd entityName)
+```
 
 The colors of the lines in the dimension that are inherited from the dimension style are now overridden. This is similar to what happens when you select a dimension, right-click, and choose Precision.
 
@@ -1656,11 +1732,24 @@ The colors of the lines in the dimension that are inherited from the dimension s
 
 XData can be removed from an object when it is no longer needed. You do so by replacing an existing XData list with an XData list that contains only an application name. When AutoCAD evaluates an XData list with only an application name and no values, it removes the XData list from the object. Here is an example of an XData list that can be used to remove the XData associated with the MyApp application:
 
+```c
 (-3 ("MyApp"))
+```
 
 The following example removes the XData list associated with an application named ACAD from a dimension, which removes all overrides assigned to the dimension:
 
-(defun c:RemoveDimOverride ( / entityName entityData) (setq entityName (car (entsel "\nSelect dimension to remove overrides: "))) (setq entityData (entget entityName '("ACAD"))) (if (/= (assoc -3 entityData) nil) (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData)) ) (entmod entityData) (entupd entityName) (princ) )
+```c
+(defun c:RemoveDimOverride (/ entityName entityData) 
+  (setq entityName (car (entsel "\nSelect dimension to remove overrides: "))) 
+  (setq entityData (entget entityName '("ACAD"))) 
+  (if (/= (assoc -3 entityData) nil) 
+    (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData)) 
+  ) 
+  (entmod entityData) 
+  (entupd entityName) 
+  (princ) 
+)
+```
 
 ### 6.6.6 Selecting Objects Based on XData
 
@@ -1668,7 +1757,12 @@ You can use the XData attached to an object as a way to select or filter out spe
 
 Here are two examples of the ssget function that use a selection filter to allow for the selection of objects that only have XData attached to them with a specific application name:
 
-; Selects objects containing xdata and with the application name MyApp. (ssget '((-3 ("MyApp")))) ; Uses implied selection and selects objects with the application name ACAD. (ssget "_I" '((-3 ("ACAD"))))
+```c
+; Selects objects containing xdata and with the application name MyApp. 
+(ssget '((-3 ("MyApp")))) 
+; Uses implied selection and selects objects with the application name ACAD. 
+(ssget "_I" '((-3 ("ACAD"))))
+```
 
 ## 6.7 Exercise: Creating, Querying, and Modifying Objects
 
@@ -1680,9 +1774,7 @@ Creating Selection Sets Requesting objects from the user allows you to create cu
 
 Stepping Through Objects in a Selection Set Selection sets can contain one or several thousand objects. You must use a looping function, such as repeat or while, to step through and get each object in the selection set.
 
-NOTE
-
-The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 15,「Requesting Input and Using Conditional and Looping Expressions.」If you didn't complete the steps, do so now or start with the ch16_drawplate.lsp and ch16_utility.lsp sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters ch16_ from the name of each file.
+NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 15,「Requesting Input and Using Conditional and Looping Expressions.」If you didn't complete the steps, do so now or start with the ch16_drawplate.lsp and ch16_utility.lsp sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters ch16_ from the name of each file.
 
 Revising the Functions in utility.lsp
 
