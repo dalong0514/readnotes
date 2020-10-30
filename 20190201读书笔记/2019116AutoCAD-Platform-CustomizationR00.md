@@ -207,6 +207,18 @@ In addition to getting a selection set based on user input, you can create a sel
 
 2『选择集的概念做一张术语卡片。』——已完成
 
+### 0206. 术语卡——XData
+
+Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
+
+XData is structured similar to an entity data list except the values must be within a specific range of DXF group codes. Each XData list must contain an application name to identify one XData list from another since several XData lists can be attached to an object. After the application name, an XData list can contain any valid values and be of any type of data that AutoLISP supports.
+
+The values in an XData list and what they represent is up to you, the creator of the data. Data in an XData list can be used to identify where an object should be placed or which layer it should be on, to store information about an external database record that is related to an object, or to build relationships between objects in a drawing. The way data is used or enforced is up to you as the programmer.
+
+In addition to XData, graphical and nongraphical objects support what are known as extension dictionaries. Extension dictionaries are kind of like record tables that can be attached to an object. For example, you could store revision history of a drawing in an extension dictionary that is attached to model space, and then populate that information in the drawing's title block. I discuss creating custom dictionaries in Chapter 17.
+
+2『 XData 做一张术语卡片。』——已完成
+
 ### 0301. 任意卡——生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。

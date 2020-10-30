@@ -1471,59 +1471,57 @@ In addition to using entity data lists to query and modify block references, you
 
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
-
-
-
-
-
-
 XData is structured similar to an entity data list except the values must be within a specific range of DXF group codes. Each XData list must contain an application name to identify one XData list from another since several XData lists can be attached to an object. After the application name, an XData list can contain any valid values and be of any type of data that AutoLISP supports.
 
 The values in an XData list and what they represent is up to you, the creator of the data. Data in an XData list can be used to identify where an object should be placed or which layer it should be on, to store information about an external database record that is related to an object, or to build relationships between objects in a drawing. The way data is used or enforced is up to you as the programmer.
 
 In addition to XData, graphical and nongraphical objects support what are known as extension dictionaries. Extension dictionaries are kind of like record tables that can be attached to an object. For example, you could store revision history of a drawing in an extension dictionary that is attached to model space, and then populate that information in the drawing's title block. I discuss creating custom dictionaries in Chapter 17.
 
+2『 XData 做一张术语卡片。』——已完成
+
 ### 6.6.1 Working with XData
 
 Attaching XData to an object requires you to do some initial planning and perform several steps. The following outlines the steps that you must perform in order to attach an XData list to an object:
 
-Define and register the application name to use.
+1 Define and register the application name to use.
 
-Define the values that will make up the XData list.
+2 Define the values that will make up the XData list.
 
-Format the XData list; include a DXF group code -3, application name, and data values.
+3 Format the XData list; include a DXF group code -3, application name, and data values.
 
-Get the entity name and entity data list of an object.
+4 Get the entity name and entity data list of an object.
 
-Append the XData list and update the object.
+5 Append the XData list and update the object.
 
 Prior to appending an XData list, you should check to see if the object already has one with the same application name attached to it. If that's the case, you should replace the current XData list with the new list. The following outlines the steps that you must perform in order to modify an XData list previously attached to an object:
 
-Define the values that will make up the XData list.
+1 Define the values that will make up the XData list.
 
-Format the XData list; include a DXF group code -3, application name, and data values.
+2 Format the XData list; include a DXF group code -3, application name, and data values.
 
-Get the entity name and entity data list of an object.
+3 Get the entity name and entity data list of an object.
 
-Check for an existing occurrence of an XData list for an object.
+4 Check for an existing occurrence of an XData list for an object.
 
-Substitute the current XData list attached to an object with the new XData list.
+5 Substitute the current XData list attached to an object with the new XData list.
 
-Update the object.
+6 Update the object.
 
 ### 6.6.2 Defining and Registering an Application Name
 
-Before you can attach an XData list to an object, you must decide on an application name and then register that name with AutoCAD. The application name you choose should be unique to avoid conflicts with other XData lists. After an application name has been chosen, you register the name with the regapp function. The regapp function adds a new entry to the APPID symbol table and returns the name of the application if it is successfully registered. nil is returned if the application could not be registered or was already registered in the current drawing. You'll learn about symbol tables in Chapter 17.
+Before you can attach an XData list to an object, you must decide on an application name and then register that name with AutoCAD. The application name you choose should be unique to avoid conflicts with other XData lists. After an application name has been chosen, you register the name with the regapp function. The regapp function adds a new entry to the APPID symbol table and returns the name of the application if it is successfully registered. nil is returned if the application could not be registered or was already registered in the current drawing. You'll learn about symbol tables in Chapter 17. The following shows the syntax of the regapp function:
 
-The following shows the syntax of the regapp function:
-
+```c
 (regapp appname)
+```
 
-The appname argument specifies a name for an application you want to register.
+The appname argument specifies a name for an application you want to register. The following example demonstrates how to register an application:
 
-The following example demonstrates how to register an application:
-
-; Registers the application named MyApp (setq appName "MyApp") (regapp appName)
+```c
+; Registers the application named MyApp 
+(setq appName "MyApp") 
+(regapp appName)
+```
 
 ### 6.6.3 Attaching XData to an Object
 
@@ -1533,27 +1531,28 @@ DXF group codes used for dotted pairs in an XData list must be within the range 
 
 Table 16.8 XData-related DXF group codes
 
-DXF group code Description
-
-1000 String value
-
-1001 Application name
-
-1010 3D point
-
-1040 Real numeric value
-
-1070 16-bit (unsigned or signed) integer value
-
-1071 32-bit signed integer value
+|  DXF group code | Description  |
+|---|---|
+|  1000  |  String value |
+|  1001 |  Application name |
+|  1010  |  3D point |
+|  1040 |  Real numeric value |
+|  1070 |  16-bit (unsigned or signed) integer value |
+|  1071 |  32-bit signed integer value |
 
 The following example is an XData list that contains the application name MyApp and two dotted pairs. The first dotted pair is a string (DXF group code 1000) with the value「My custom application,」and the second dotted pair is an integer (DXF group code 1070) with a value that represents the current date:
 
+```c
 (-3 ("MyApp" (1000. "My custom application") (1070. (fix (getvar "cdate")))))
+```
 
 The following AutoLISP statements were used to create the previous XData list:
 
-(setq appName "MyApp") (regapp "MyApp") (setq xdataList (list -3 (list appName (cons 1000 "My custom application") (cons 1070 (fix (getvar "cdate"))) )))
+```c
+(setq appName "MyApp") 
+(regapp "MyApp") 
+(setq xdataList (list -3 (list appName (cons 1000 "My custom application") (cons 1070 (fix (getvar "cdate"))) )))
+```
 
 Once an XData list has been defined, it can be appended to an entity data list returned by the AutoLISP entget function with the append function. I explained how to append lists together in Chapter 14. After an XData list is appended to an entity data list, you use the entmod function to commit changes to the object and entupd to update the object in the drawing area. I explained the entmod and entupd functions earlier in this chapter.
 
@@ -1600,6 +1599,7 @@ xdroom—Returns the space available, in bytes, for attaching new XData to an ob
 xdsize—Returns the size of an XData list in bytes. The function expects a list as its single argument.
 
 You should use these two functions to determine whether XData can be attached to an object.
+
 ---
 
 ### 6.6.4 Querying and Modifying the XData Attached to an Object
