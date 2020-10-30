@@ -508,16 +508,16 @@ While the ssgetfirst function is used to get objects that are currently selected
 
 Here are the arguments:
 
-gripset The gripset argument no longer affects the outcome of the sssetfirst function. In earlier releases, this argument required a pickset value that would be used to display the grips of objects but not select them. In recent releases, nil should always pass this argument.
+gripset. The gripset argument no longer affects the outcome of the sssetfirst function. In earlier releases, this argument required a pickset value that would be used to display the grips of objects but not select them. In recent releases, nil should always pass this argument.
 
-pickset The pickset argument is optional and must be a pickfirst value that contains the objects that should be selected and have their grips displayed.
+pickset. The pickset argument is optional and must be a pickfirst value that contains the objects that should be selected and have their grips displayed.
 
 The following examples show how to select and display the grips for the last object in a drawing with the sssetfirst function:
 
 ```c
 ; Creates a line object that is drawn from 0,0 to -5,5 with a color of red 
 (entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) 
-((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) 
+((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62 . 1)) 
 
 ; Displays grips for and selects the line that was added 
 (sssetfirst nil (ssget "L")) 
@@ -530,101 +530,175 @@ nil
 
 NOTE: The ssnamex function can be used to get information about how the objects in a selection set were added, as well as how the selection set was created. This includes selection sets created with the ssget, ssgetfirst, and ssadd functions. The value returned by the ssnamex function is a list. For more information on the ssnamex function, search on「ssnamex」in the AutoCAD Help system.
 
+1『汇总：1）上面的有关 `ssgetfirst` 的代码没弄懂其应用场景。2）`ssnamex` 的应用场景也没 get 到，它跟 `ssname` 的功能有啥区别呢，看官方文档都是通过 index 获取一个选择集里某个实体对象的名称。（2020-10-30）』
+
 #### Managing Objects in a Selection Set
 
 After the user has been prompted to select objects, the resulting selection set can be revised by adding or removing objects. Objects that aren't in the selection set but are in the drawing can be added to the selection set using the ssadd function. If the user selected an object that shouldn't be in the selection set, it can be removed using the ssdel function. The ssadd and ssdel functions return the selection set that they are passed if the function was successful; otherwise, the function returns nil.
 
 NOTE: In addition to adding objects to a selection set with the ssadd function, you can use the function to create a new selection set without user interaction.
 
-Normally when an object is selected in the drawing, it is added to a selection set once, as duplicate entries aren't allowed. Before adding an object to a selection set with the ssadd function, you can determine if an object is already present in a selection set with the ssmemb function. Duplicate objects in a selection set isn't a problem, but it could cause an issue if your program is extracting information from a drawing or could result in your program taking longer to complete. The ssmemb function returns the ename of the object if it is present in the selection set; otherwise, the function returns nil.
+Normally when an object is selected in the drawing, it is added to a selection set once, as duplicate entries aren't allowed. Before adding an object to a selection set with the ssadd function, you can determine if an object is already present in a selection set with the ssmemb function. Duplicate objects in a selection set isn't a problem, but it could cause an issue if your program is extracting information from a drawing or could result in your program taking longer to complete. The ssmemb function returns the ename of the object if it is present in the selection set; otherwise, the function returns nil. The following shows the syntax of the ssadd, ssdel, and ssmemb functions:
 
-The following shows the syntax of the ssadd, ssdel, and ssmemb functions:
-
-(ssadd ename [ss]) (ssdel ename ss) (ssmemb ename ss)
+```c
+(ssadd ename [ss]) 
+(ssdel ename ss) 
+(ssmemb ename ss)
+```
 
 The arguments are as follows:
 
-ename When used with the ssadd or ssdel function, the ename argument represents the entity name that should be added to or removed from the selection set. When used with the ssmemb function, the ename argument specifies a particular ename to check for in the selection set.
+ename. When used with the ssadd or ssdel function, the ename argument represents the entity name that should be added to or removed from the selection set. When used with the ssmemb function, the ename argument specifies a particular ename to check for in the selection set.
 
-ss When you want to add, remove, or check for the existence of an entity name in a selection set, the ss argument specifies the selection set for the operation. The ss argument is optional for the ssadd function.
+ss. When you want to add, remove, or check for the existence of an entity name in a selection set, the ss argument specifies the selection set for the operation. The ss argument is optional for the ssadd function.
 
 The following examples show how to add and remove objects in a selection set using the ssadd, ssdel, and ssmemb functions:
 
-; Create a line object (entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) ((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) ; Add the line to the selection set (setq ss1 (ssadd (entlast) ss1)) <Selection set: a1> ; Determine if the last graphical entity is in the selection set (ssmemb (entlast) ss1) <Entity name: 7ff6a1704f00> ; Remove the last entity from the selection set (ssdel (entlast) ss1) <Selection set: a1> ; Determine if the last graphical entity is in the selection set (ssmemb (entlast) ss1) nil
+```c
+; Create a line object 
+(entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) 
+((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) 
+
+; Add the line to the selection set 
+(setq ss1 (ssadd (entlast) ss1)) 
+<Selection set: a1> 
+
+; Determine if the last graphical entity is in the selection set 
+(ssmemb (entlast) ss1) 
+<Entity name: 7ff6a1704f00> 
+
+; Remove the last entity from the selection set 
+(ssdel (entlast) ss1) 
+<Selection set: a1> 
+
+; Determine if the last graphical entity is in the selection set 
+(ssmemb (entlast) ss1) 
+nil
+```
 
 #### Stepping through a Selection Set
 
-Selection sets contain the objects the user selected in the drawing for query or modification and might include one to several thousand objects. You can use the repeat or while looping functions in combination with the sslength and ssname functions to step through and access each object in a selection set. The sslength function returns the number of objects in a selection set as an integer, whereas the ssname function is used to return the entity name of an object located at a specific index within a selection set. The index of the first object in a selection set is 0. As part of a looping statement, you increment an integer value by 1 to get the next object until you reach the last object in the selection set. If an object isn't at the specified index in a selection set when using the ssname function, nil is returned.
+Selection sets contain the objects the user selected in the drawing for query or modification and might include one to several thousand objects. You can use the repeat or while looping functions in combination with the sslength and ssname functions to step through and access each object in a selection set. The sslength function returns the number of objects in a selection set as an integer, whereas the ssname function is used to return the entity name of an object located at a specific index within a selection set. The index of the first object in a selection set is 0. As part of a looping statement, you increment an integer value by 1 to get the next object until you reach the last object in the selection set. If an object isn't at the specified index in a selection set when using the ssname function, nil is returned. The following shows the syntax of the sslength function:
 
-The following shows the syntax of the sslength function:
-
+```c
 (sslength ss)
+```
 
 The ss argument represents the selection set from which you want to get the number of objects.
 
 The following shows the syntax of the ssname function:
 
+```c
 (ssname ss index)
+```
 
 Its arguments are as follows:
 
-ss The ss argument represents the selection set from which you want to get an entity name at a specific index.
+ss. The ss argument represents the selection set from which you want to get an entity name at a specific index.
 
-index The index argument represents the location within the selection set specified by the ss argument that has the object you want to get. 0 is the index of the first object in the selection set.
+index. The index argument represents the location within the selection set specified by the ss argument that has the object you want to get. 0 is the index of the first object in the selection set.
 
 The following examples show how to get the number of objects in a selection set and get an object from a selection set with the sslength and ssname functions:
 
-; Get a selection set (setq ssNew (ssget)) Select objects: Specify the first corner of the object-selection window Specify opposite corner: Specify the other corner of the object-selection window 9 found Select objects: Press Enter to end object selection <Selection set: 13> ; Output the number of objects in a selection set (prompt (strcat "\nSelection set length: " (itoa (sslength ssNew))))(princ) Selection set length: 9 ; Get the entity name of the first object in the selection set (ssname ssNew 0) <Entity name: 7ff63f005d90>
+```c
+; Get a selection set 
+(setq ssNew (ssget)) 
+Select objects: Specify the first corner of the object-selection window 
+Specify opposite corner: Specify the other corner of the object-selection window 
+9 found 
+Select objects: Press Enter to end object selection 
+<Selection set: 13> 
+
+; Output the number of objects in a selection set 
+(prompt (strcat "\nSelection set length: " 
+(itoa (sslength ssNew))))(princ) 
+Selection set length: 9 
+
+; Get the entity name of the first object in the selection set 
+(ssname ssNew 0) 
+<Entity name: 7ff63f005d90>
+```
 
 This exercise shows how to create and step through a selection set:
 
-Open a drawing with some objects, or create a new drawing and then add some objects to the drawing.
+1 Open a drawing with some objects, or create a new drawing and then add some objects to the drawing.
 
-At the AutoCAD Command prompt, type the following and press Enter to create a selection set and assign it to the sset variable:(prompt "\nSelect objects to list: ") (setq sset (ssget))
+2 At the AutoCAD Command prompt, type the following and press Enter to create a selection set and assign it to the sset variable:
 
-Type the following and press Enter to create a new circle and then add the new circle to the selection set: (entmake '((0. "circle")(10 0.0 0.0)(40. 2))) (if (= (ssmemb (entlast) sset) nil) (setq sset (ssadd (entlast) sset)) )
+```c
+(prompt "\nSelect objects to list: ") 
+(setq sset (ssget))
+```
+
+3 Type the following and press Enter to create a new circle and then add the new circle to the selection set: 
+
+```c
+(entmake '((0. "circle") (10 0.0 0.0) (40. 2))) 
+(if (= (ssmemb (entlast) sset) nil) 
+  (setq sset (ssadd (entlast) sset)) 
+)
+```
 
 While the circle shouldn't be part of the objects you selected, the code shows how to use a comparison to test the results of the ssmemb function. The new object is added only if it isn't already part of the selection set.
 
-Type the following and press Enter to display the number of objects in the selection set:(prompt (strcat "\nObjects in selection set: " (itoa (sslength sset))))(princ)
+4 Type the following and press Enter to display the number of objects in the selection set:
 
-Type the following and press Enter to change the color of each object in the selection set: (setq cnt 0 clr 1) (while (> (sslength sset) cnt) (command "._change" (ssname sset cnt) "" "_p" "_c" clr "") (setq cnt (1+ cnt)) (setq clr (1+ clr)) (if (> clr 9)(setq clr 1)) )(princ)
+```c
+(prompt (strcat "\nObjects in selection set: " 
+(itoa (sslength sset))))(princ)
+```
+
+5 Type the following and press Enter to change the color of each object in the selection set: 
+
+```c
+(setq cnt 0 clr 1) 
+(while (> (sslength sset) cnt) 
+  (command "._change" (ssname sset cnt) "" "_p" "_c" clr "") 
+  (setq cnt (1+ cnt)) 
+  (setq clr (1+ clr)) 
+  (if (> clr 9) 
+    (setq clr 1)
+  ) 
+)(princ)
+```
 
 The colors assigned to the objects range from ACI 1 through 9, and reset back to 1 when the counter reaches 10.
 
-#### Filtering Selected Objects
+1『上面的代码目前没怎么看明白。（2020-10-30）』
+
+### 6.3.3 Filtering Selected Objects
 
 When selecting objects with the ssget function, you can control which objects are added to the selection set. A selection filter allows you to select objects of a specific type or even objects with certain property values. Selection filters are made up of dotted pairs and are similar to an entity data list. For example, the following selection filter will select all circles on the layer holes:
 
+```c
 '((0. "circle")(8. "holes"))
+```
 
 As I mentioned earlier, the DXF group code 0 represents an object's name and the DXF group code 8 represents the name of the layer an object is placed on.
 
 In addition to object names and properties, a selection filter can include logical grouping and comparison operators to create complex filters. Complex filters can be used to allow for the selection of several object types, such as both text and mtext objects, or allow for the selection of circles with a radius in a given range. Logical grouping and comparison operators are specified by string values with the DXF group code -4. For example, the following selection filter allows for the selection of circles with a radius in the range of 1 to 5:
 
+```c
 '((0. "circle") (-4. "<and")(-4. "<=")(40. 5.0)(-4. ">=")(40. 1.0)(-4. "and>"))
+```
 
-Selection filters support four logical grouping operators: and, or, not, and xor. Each logical grouping operator used in a selection filter must have a beginning and an ending operator. Beginning operators start with the character < and ending operators end with the character >. In addition to logical operators, you can use seven different comparison operators in a selection filter to evaluate the value of a property: = (equal to), != (not equal to), < (less than), > (greater than), <= (less than or equal to), >= (greater than or equal to), and * (wildcard for string comparisons).
+Selection filters support four logical grouping operators: and, or, not, and xor. Each logical grouping operator used in a selection filter must have a beginning and an ending operator. Beginning operators start with the character `<` and ending operators end with the character `>`. In addition to logical operators, you can use seven different comparison operators in a selection filter to evaluate the value of a property: = (equal to), != (not equal to), < (less than), > (greater than), <= (less than or equal to), >= (greater than or equal to), and * (wildcard for string comparisons).
 
-After defining a selection filter, you then pass it to the filter argument of the ssget function.
+After defining a selection filter, you then pass it to the filter argument of the ssget function. This exercise shows how to use selection filters with the ssget function:
 
-This exercise shows how to use selection filters with the ssget function:
+1 Create a new drawing. Add some circles, arcs, and lines to the drawing.
 
-Create a new drawing. Add some circles, arcs, and lines to the drawing.
+2 At the AutoCAD Command prompt, type `(setq ssCircles (ssget '((0. "circle"))))` and press Enter.
 
-At the AutoCAD Command prompt, type (setq ssCircles (ssget '((0. "circle")))) and press Enter.
+3 At the Select objects: prompt, select all the objects in the drawing. Notice only the circles are highlighted. Press Enter to end object selection.
 
-At the Select objects: prompt, select all the objects in the drawing. Notice only the circles are highlighted. Press Enter to end object selection.
+4 Type `(command "._change" ssCircles "" "_p" "_c" 1 "")` and press Enter to change the color of all circles to red.
 
-Type (command "._change" ssCircles "" "_p" "_c" 1 "") and press Enter to change the color of all circles to red.
+5 At the AutoCAD Command prompt, type `(setq ssArcsLines (ssget '((-4. "<or")(0. "arc")(0. "line")(-4. "or>"))))` and press Enter. Select some of the lines and arcs in the drawing.
 
-At the AutoCAD Command prompt, type (setq ssArcsLines (ssget '((-4. "<or")(0. "arc")(0. "line")(-4. "or>")))) and press Enter. Select some of the lines and arcs in the drawing.
+6 Type `(command "._change" ssArcsLines "" "_p" "_c" 3 "") `and press Enter to change the color of the selected objects to green.
 
-Type (command "._change" ssArcsLines "" "_p" "_c" 3 "") and press Enter to change the color of the selected objects to green.
-
-TIP
-
-On AutoCAD for Windows, you can use the filter command to create a filter selection and save it. Saving the filter adds it to the file named filter.nfl. You can use the AutoLISP statement (findfile "filter.nfl") to return the location of the file in the command-line window. Open the file with Notepad. The filter command writes the filter in two formats: as AutoLISP statements (:ai_lisp) and as a string description (:ai_str). You can copy the AutoLISP statements that are created to define an object selection filter for use with the ssget function. Although this technique can help simplify the testing and creation of complex selection filters, it is undocumented and something I just figured out years ago when I first started learning AutoLISP.
+TIP: On AutoCAD for Windows, you can use the filter command to create a filter selection and save it. Saving the filter adds it to the file named filter.nfl. You can use the AutoLISP statement (findfile "filter.nfl") to return the location of the file in the command-line window. Open the file with Notepad. The filter command writes the filter in two formats: as AutoLISP statements (:ai_lisp) and as a string description (:ai_str). You can copy the AutoLISP statements that are created to define an object selection filter for use with the ssget function. Although this technique can help simplify the testing and creation of complex selection filters, it is undocumented and something I just figured out years ago when I first started learning AutoLISP.
 
 ## 6.4 Modifying Objects
 
