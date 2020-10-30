@@ -744,9 +744,9 @@ The majority of time spent on a design isn't related to creating new objects, bu
 
 Modifying objects with AutoCAD commands is similar to creating new objects, with the exception of the way you pass objects to the command. Based on the command, you will need to pass one of the following to the Select object: or Select objects: prompt to select objects:
 
-Entity Name (ename) An ename can be used when a command expects or you want to modify a single object.
+Entity Name (ename). An ename can be used when a command expects or you want to modify a single object.
 
-Selection Set (ssname) An ssname can be used to pass several objects to a command that can modify one or more objects.
+Selection Set (ssname). An ssname can be used to pass several objects to a command that can modify one or more objects.
 
 I explained how to select objects and work with selection sets in the「Selecting Objects」section earlier in this chapter.
 
@@ -755,7 +755,8 @@ The following are examples that demonstrate how to modify objects with AutoCAD c
 ```
 ; Changes the selected objects to the color red 
 (prompt "\nSelect objects to change to red: ") 
-(setq ss (ssget)) (command "._change" ss "" "_p" "_c" 1 "") 
+(setq ss (ssget)) 
+(command "._change" ss "" "_p" "_c" 1 "") 
 
 ; Scale the last graphical object by a user-defined base point and a factor of 2 
 (command "._scale" (entlast) "" PAUSE 2)
@@ -769,46 +770,57 @@ AutoLISP offers two different methods for modifying the properties of an object 
 
 Table 16.6 lists the AutoLISP functions available in AutoCAD 2012 and later that can be used to list, get, and set the properties of an object.
 
-Table 16.6 AutoLISP object property functions
+|  Function | Description  |
+|---|---|
+|  dumpallproperties |  Returns all of the properties for the specified object |
+|  getpropertyvalue |  Returns the current value of an object's property |
+|  setpropertyvalue |  Assigns a value to an object's property |
+|  ispropertyreadonly |  Returns T or nil based on whether an object property is read-only |
 
-Function Description
-
-dumpallproperties Returns all of the properties for the specified object
-
-getpropertyvalue Returns the current value of an object's property
-
-setpropertyvalue Assigns a value to an object's property
-
-ispropertyreadonly Returns T or nil based on whether an object property is read-only
+1-2『看到这里才知道，之前一直用的传统方法：通过实体名称结合 `entget` 函数获取实体的「数据集」，通过替换数据集里的「点对」来实现修改属性。原来还有第二种方法，直接用 autolisp 封装好的函数，前提是只支持 AutoCAD 2012 以后的，可以接受。修改实体数据的 2 种方法，做一张主题卡片。』——已完成
 
 #### Listing Object Properties
 
-The dumpallproperties function outputs the properties and their current values for an object to the command-line window. Some property values, such as StartPoint for a line or Position of a block reference, can be output as a single value or as three individual values.
+The dumpallproperties function outputs the properties and their current values for an object to the command-line window. Some property values, such as StartPoint for a line or Position of a block reference, can be output as a single value or as three individual values. The following shows the syntax of the dumpallproperties function:
 
-The following shows the syntax of the dumpallproperties function:
-
+```c
 (dumpallproperties ename [mode])
+```
 
 Its arguments are as follows:
 
-ename The ename argument represents the entity name of the object for which you want to list properties.
+ename. The ename argument represents the entity name of the object for which you want to list properties.
 
-mode The mode argument is optional and represents how data types such as AcGePoint3d and AcGeVector3d are output. When mode is 0, a property such as Center is displayed as a single entry and not separate entries for the X, Y, and Z values of a property. For example, the following output is of the center point for a circle that has X, Y, and Z components to the value. The output shows all three components as part of a single property named Center.
+mode. The mode argument is optional and represents how data types such as AcGePoint3d and AcGeVector3d are output. When mode is 0, a property such as Center is displayed as a single entry and not separate entries for the X, Y, and Z values of a property. For example, the following output is of the center point for a circle that has X, Y, and Z components to the value. The output shows all three components as part of a single property named Center.
 
-Center (type: AcGePoint3d) (LocalName: Center X;Center Y;Center Z) = 0.000000 5.000000 0.000000
+```
+Center (type: AcGePoint3d) 
+    (LocalName: Center X;Center Y;Center Z) = 0.000000 5.000000 0.000000
+```
 
 A value of 1 for mode displays each element of a value as separate entries. This is the default behavior when mode isn't provided. The following output is of the same center point as before, but notice all three components of the point are expressed as separate properties with unique names: Center/X, Center/Y, and Center/Z.
 
-Center/X (type: double) (LocalName: Center X) = 0.000000 Center/Y (type: double) (LocalName: Center Y) = 5.000000 Center/Z (type: double) (LocalName: Center Z) = 0.000000
+```c
+Center/X (type: double) (LocalName: Center X) = 0.000000 
+Center/Y (type: double) (LocalName: Center Y) = 5.000000 
+Center/Z (type: double) (LocalName: Center Z) = 0.000000
+```
 
 The following examples show how to output the properties of an object with the dumpallproperties function:
 
-; Properties are output as a single entry (dumpallproperties (entlast) 1) ; Properties are output as separate entries (dumpallproperties (entlast))
+```
+; Properties are output as a single entry 
+(dumpallproperties (entlast) 1) 
 
-Here is an example of the output created by the dumpallproperties function for a circle object. The output was generated with the expression (dumpallproperties (entlast)):
+; Properties are output as separate entries 
+(dumpallproperties (entlast))
+```
+
+Here is an example of the output created by the dumpallproperties function for a circle object. The output was generated with the expression `(dumpallproperties (entlast))`:
 
 ```
-Begin dumping object (class: AcDbCircle) Annotative (type: bool) (LocalName: Annotative) = Failed to get value AnnotativeScale (type: AcString) (RO) (LocalName: Annotative scale) = Failed to get value Area (type: double) (RO) (LocalName: Area) = 12.566371 BlockId (type: AcDbObjectId) (RO) = 7ff618a039f0 CastShadows (type: bool) = 0 Center/X (type: double) (LocalName: Center X) = 0.000000 Center/Y (type: double) (LocalName: Center Y) = 5.000000 Center/Z (type: double) (LocalName: Center Z) = 0.000000 Circumference (type: double) (LocalName: Circumference) = 12.566371 ClassName (type: AcString) (RO) = Closed (type: bool) (RO) (LocalName: Closed) = Failed to get value CollisionType (type: AcDb::CollisionType) (RO) = 1 Color (type: AcCmColor) (LocalName: Color) = BYLAYER Diameter (type: double) (LocalName: Diameter) = 4.000000 EndParam (type: double) (RO) = 6.283185 EndPoint/X (type: double) (RO) (LocalName: End X) = Failed to get value EndPoint/Y (type: double) (RO) (LocalName: End Y) = Failed to get value EndPoint/Z (type: double) (RO) (LocalName: End Z) = Failed to get value ExtensionDictionary (type: AcDbObjectId) (RO) = 0 Handle (type: AcDbHandle) (RO) = 1f9 HasFields (type: bool) (RO) = 0 HasSaveVersionOverride (type: bool) = 0 Hyperlinks (type: AcDbHyperlink*) IsA (type: AcRxClass*) (RO) = AcDbCircle IsAProxy (type: bool) (RO) = 0 IsCancelling (type: bool) (RO) = 0 IsEraseStatusToggled (type: bool) (RO) = 0 IsErased (type: bool) (RO) = 0 IsModified (type: bool) (RO) = 0 IsModifiedGraphics (type: bool) (RO) = 0 IsModifiedXData (type: bool) (RO) = 0 IsNewObject (type: bool) (RO) = 0 IsNotifyEnabled (type: bool) (RO) = 0 IsNotifying (type: bool) (RO) = 0 IsObjectIdsInFlux (type: bool) (RO) = 0 IsPeriodic (type: bool) (RO) = 1 IsPersistent (type: bool) (RO) = 1 IsPlanar (type: bool) (RO) = 1 IsReadEnabled (type: bool) (RO) = 1 IsReallyClosing (type: bool) (RO) = 1 IsTransactionResident (type: bool) (RO) = 0 IsUndoing (type: bool) (RO) = 0 IsWriteEnabled (type: bool) (RO) = 0 LayerId (type: AcDbObjectId) (LocalName: Layer) = 7ff618a03900 LineWeight (type: AcDb::LineWeight) (LocalName: Lineweight) = -1 LinetypeId (type: AcDbObjectId) (LocalName: Linetype) = 7ff618a03950 LinetypeScale (type: double) (LocalName: Linetype scale) = 1.000000 LocalizedName (type: AcString) (RO) = Circle MaterialId (type: AcDbObjectId) (LocalName: Material) = 7ff618a03de0 MergeStyle (type: AcDb::DuplicateRecordCloning) (RO) = 1 Normal/X (type: double) (RO) (LocalName: Normal X) = 0.000000 Normal/Y (type: double) (RO) (LocalName: Normal Y) = 0.000000 Normal/Z (type: double) (RO) (LocalName: Normal Z) = 1.000000 ObjectId (type: AcDbObjectId) (RO) = 7ff618a0c090 OwnerId (type: AcDbObjectId) (RO) = 7ff618a039f0 PlotStyleName (type: AcString) (LocalName: Plot style) = ByLayer Radius (type: double) (LocalName: Radius) = 2.000000 ReceiveShadows (type: bool) = 0 ShadowDisplay (type: AcDb::ShadowFlags) (RO) (LocalName: Shadow Display) = Failed to get value StartParam (type: double) (RO) = 0.000000 StartPoint/X (type: double) (RO) (LocalName: Start X) = Failed to get value StartPoint/Y (type: double) (RO) (LocalName: Start Y) = Failed to get value StartPoint/Z (type: double) (RO) (LocalName: Start Z) = Failed to get value Thickness (type: double) (LocalName: Thickness) = 0.000000 Transparency (type: AcCmTransparency) (LocalName: Transparency) = 0 Visible (type: AcDb::Visibility) = 0 End object dump
+Begin dumping object (class: AcDbCircle) 
+Annotative (type: bool) (LocalName: Annotative) = Failed to get value AnnotativeScale (type: AcString) (RO) (LocalName: Annotative scale) = Failed to get value Area (type: double) (RO) (LocalName: Area) = 12.566371 BlockId (type: AcDbObjectId) (RO) = 7ff618a039f0 CastShadows (type: bool) = 0 Center/X (type: double) (LocalName: Center X) = 0.000000 Center/Y (type: double) (LocalName: Center Y) = 5.000000 Center/Z (type: double) (LocalName: Center Z) = 0.000000 Circumference (type: double) (LocalName: Circumference) = 12.566371 ClassName (type: AcString) (RO) = Closed (type: bool) (RO) (LocalName: Closed) = Failed to get value CollisionType (type: AcDb::CollisionType) (RO) = 1 Color (type: AcCmColor) (LocalName: Color) = BYLAYER Diameter (type: double) (LocalName: Diameter) = 4.000000 EndParam (type: double) (RO) = 6.283185 EndPoint/X (type: double) (RO) (LocalName: End X) = Failed to get value EndPoint/Y (type: double) (RO) (LocalName: End Y) = Failed to get value EndPoint/Z (type: double) (RO) (LocalName: End Z) = Failed to get value ExtensionDictionary (type: AcDbObjectId) (RO) = 0 Handle (type: AcDbHandle) (RO) = 1f9 HasFields (type: bool) (RO) = 0 HasSaveVersionOverride (type: bool) = 0 Hyperlinks (type: AcDbHyperlink*) IsA (type: AcRxClass*) (RO) = AcDbCircle IsAProxy (type: bool) (RO) = 0 IsCancelling (type: bool) (RO) = 0 IsEraseStatusToggled (type: bool) (RO) = 0 IsErased (type: bool) (RO) = 0 IsModified (type: bool) (RO) = 0 IsModifiedGraphics (type: bool) (RO) = 0 IsModifiedXData (type: bool) (RO) = 0 IsNewObject (type: bool) (RO) = 0 IsNotifyEnabled (type: bool) (RO) = 0 IsNotifying (type: bool) (RO) = 0 IsObjectIdsInFlux (type: bool) (RO) = 0 IsPeriodic (type: bool) (RO) = 1 IsPersistent (type: bool) (RO) = 1 IsPlanar (type: bool) (RO) = 1 IsReadEnabled (type: bool) (RO) = 1 IsReallyClosing (type: bool) (RO) = 1 IsTransactionResident (type: bool) (RO) = 0 IsUndoing (type: bool) (RO) = 0 IsWriteEnabled (type: bool) (RO) = 0 LayerId (type: AcDbObjectId) (LocalName: Layer) = 7ff618a03900 LineWeight (type: AcDb::LineWeight) (LocalName: Lineweight) = -1 LinetypeId (type: AcDbObjectId) (LocalName: Linetype) = 7ff618a03950 LinetypeScale (type: double) (LocalName: Linetype scale) = 1.000000 LocalizedName (type: AcString) (RO) = Circle MaterialId (type: AcDbObjectId) (LocalName: Material) = 7ff618a03de0 MergeStyle (type: AcDb::DuplicateRecordCloning) (RO) = 1 Normal/X (type: double) (RO) (LocalName: Normal X) = 0.000000 Normal/Y (type: double) (RO) (LocalName: Normal Y) = 0.000000 Normal/Z (type: double) (RO) (LocalName: Normal Z) = 1.000000 ObjectId (type: AcDbObjectId) (RO) = 7ff618a0c090 OwnerId (type: AcDbObjectId) (RO) = 7ff618a039f0 PlotStyleName (type: AcString) (LocalName: Plot style) = ByLayer Radius (type: double) (LocalName: Radius) = 2.000000 ReceiveShadows (type: bool) = 0 ShadowDisplay (type: AcDb::ShadowFlags) (RO) (LocalName: Shadow Display) = Failed to get value StartParam (type: double) (RO) = 0.000000 StartPoint/X (type: double) (RO) (LocalName: Start X) = Failed to get value StartPoint/Y (type: double) (RO) (LocalName: Start Y) = Failed to get value StartPoint/Z (type: double) (RO) (LocalName: Start Z) = Failed to get value Thickness (type: double) (LocalName: Thickness) = 0.000000 Transparency (type: AcCmTransparency) (LocalName: Transparency) = 0 Visible (type: AcDb::Visibility) = 0 End object dump
 ```
 
 Now that you have seen an example output of an object with the dumpallproperties function, it is time to take a closer look at an individual property. The following line shows the Area property from the previous output. Table 16.7 explains the elements.
@@ -821,73 +833,133 @@ NOTE: The data types that are listed by the dumpallproperties function aren't th
 
 Table 16.7 dumpallproperties Area property description
 
-Item Description
-
-Area The global name of the object's property.
-
-(type: double) The data type for the value for the property.
-
-(RO) The property is read-only.
-
-(LocalName: Area) The local name of the object property.
-
-= 12.566371 The value of the property.
+|  Item | Description  |
+|---|---|
+|  Area |  The global name of the object's property. |
+|  (type: double)  |  The data type for the value for the property. |
+|  (RO) |  The property is read-only. |
+|  (LocalName: Area) |  The local name of the object property. |
+|  = 12.566371 | The value of the property. |
 
 ### 6.4.2 Getting and Setting the Value of an Object Property
 
-The getpropertyvalue and setpropertyvalue functions allow you to set an object's property. Use the dumpallproperties function on an ename to see the properties available for an object and the type of data that is expected.
+The getpropertyvalue and setpropertyvalue functions allow you to set an object's property. Use the dumpallproperties function on an ename to see the properties available for an object and the type of data that is expected. The following shows the syntax of the getpropertyvalue and setpropertyvalue functions:
 
-The following shows the syntax of the getpropertyvalue and setpropertyvalue functions:
+```c
+(getpropertyvalue ename property) 
+(getpropertyvalue ename collection index subproperty) 
 
-(getpropertyvalue ename property) (getpropertyvalue ename collection index subproperty) (setpropertyvalue ename property value) (setpropertyvalue ename collection index subproperty value)
+(setpropertyvalue ename property value) 
+(setpropertyvalue ename collection index subproperty value)
+```
 
 Here are the arguments:
 
-ename The ename argument represents the entity name of the object for which you want to get or set a property value.
+ename. The ename argument represents the entity name of the object for which you want to get or set a property value.
 
-property Use the property argument to specify a single-value property.
+property. Use the property argument to specify a single-value property.
 
-collection Use the collection argument to specify a property that contains more than one value, such as vertices of a polyline.
+collection. Use the collection argument to specify a property that contains more than one value, such as vertices of a polyline.
 
-index Use the index argument to specify an item within a property collection.
+index. Use the index argument to specify an item within a property collection.
 
-subproperty Use the subproperty argument to specify a subproperty within a property collection.
+subproperty. Use the subproperty argument to specify a subproperty within a property collection.
 
-value The value argument represents the value you want to assign the property.
+value. The value argument represents the value you want to assign the property.
 
 The following examples show how to get and set the property values of a circle and a polyline with the getpropertyvalue and setpropertyvalue functions:
 
 ```c
-; Creates a circle and polyline (command "._circle" "0,0" 1) (setq circ (entlast)) (command "._pline" "2,3" "1,4" "-3,-2" "") (setq pline (entlast)) ; Outputs the radius of the circle (prompt (strcat "\nRadius: " (rtos (getpropertyvalue circ "radius")))) Radius: 1.0000nil ; Outputs the last vertex of the polyline (prompt (strcat "\nVertex 3: " (vl-princ-to-string (getpropertyvalue pline "vertices" 2 "position")) )) Vertex 3: (-3.0 -2.0 0.0)nil ; Changes the radius of the circle (setpropertyvalue circ "radius" 0.5) nil ; Changes the position of the polyline's last vertex to the center of the circle (setq cenPt (getpropertyvalue circ "center")) (setpropertyvalue pline "vertices" 2 "position" cenPt) nil
+; Creates a circle and polyline 
+(command "._circle" "0,0" 1) 
+(setq circ (entlast)) 
+(command "._pline" "2,3" "1,4" "-3,-2" "") 
+(setq pline (entlast)) 
+
+; Outputs the radius of the circle 
+(prompt (strcat "\nRadius: " (rtos (getpropertyvalue circ "radius")))) 
+Radius: 1.0000nil 
+
+; Outputs the last vertex of the polyline 
+(prompt (strcat "\nVertex 3: " (vl-princ-to-string (getpropertyvalue pline "vertices" 2 "position")) )) 
+Vertex 3: (-3.0 -2.0 0.0)nil 
+
+; Changes the radius of the circle 
+(setpropertyvalue circ "radius" 0.5) 
+nil 
+
+; Changes the position of the polyline's last vertex to the center of the circle 
+(setq cenPt (getpropertyvalue circ "center")) 
+(setpropertyvalue pline "vertices" 2 "position" cenPt) 
+nil
 ```
+
+1『上面的代码可以借鉴，实现直接修改块里面的属性值。待实现。（2020-10-30）』
 
 Before you try to change a property value with setpropertyvalue, use the ispropertyreadonly function to determine if the property is read-only. ispropertyreadonly returns 1 if a property is read-only; 0 is returned when a property can be changed. The following shows the syntax of the ispropertyreadonly function:
 
-(ispropertyreadonly ename property) (ispropertyreadonly ename collection index subproperty)
+```c
+(ispropertyreadonly ename property) 
+(ispropertyreadonly ename collection index subproperty)
+```
 
 The following examples show how to determine if a property for a line object is read-only with the ispropertyreadonly:
 
 ```c
-; Creates a line (command "._line" "2,2" "5,6" "") (setq line (entlast)) ; Tests to see if the Angle property is read-only (ispropertyreadonly line "angle") 1 ; Tests to see if the StartPoint property is read-only (ispropertyreadonly line "startpoint") 0
+; Creates a line 
+(command "._line" "2,2" "5,6" "") 
+(setq line (entlast)) 
+
+; Tests to see if the Angle property is read-only 
+(ispropertyreadonly line "angle") 
+1 
+
+; Tests to see if the StartPoint property is read-only 
+(ispropertyreadonly line "startpoint")
+0
 ```
 
 This exercise shows how to modify the properties of a circle, line, and text object:
 
-Create a new drawing.
+1 Create a new drawing.
 
-Draw a circle (center at 4,5 and a radius of 3), a line (starts at -1,2 and ends at 8,15), and a single-line text object (insertion point of 0,0, a justification of middle center, a height of 4, and a value of A). The left side of Figure. 16.3 shows what the objects look like before they are modified.
+2 Draw a circle (center at 4,5 and a radius of 3), a line (starts at -1,2 and ends at 8,15), and a single-line text object (insertion point of 0,0, a justification of middle center, a height of 4, and a value of A). The left side of Figure. 16.3 shows what the objects look like before they are modified.
 
-At the AutoCAD Command prompt, type the following, pressing Enter after each line and selecting the object mentioned in the prompt:(setq circ (car (entsel "\nSelect circle: "))) (setq line (car (entsel "\nSelect line: "))) (setq text (car (entsel "\nSelect text: ")))
+3 At the AutoCAD Command prompt, type the following, pressing Enter after each line and selecting the object mentioned in the prompt:
 
-Type (dumpallproperties circ 1) and press Enter to display the properties of the circle. Do the same with the line and text variables.
+```c
+(setq circ (car (entsel "\nSelect circle: "))) 
+(setq line (car (entsel "\nSelect line: "))) 
+(setq text (car (entsel "\nSelect text: ")))
+```
 
-Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or display the Text History window on Windows if the command-line window is docked). Review the properties and values of the objects.
+4 Type `(dumpallproperties circ 1)` and press Enter to display the properties of the circle. Do the same with the line and text variables.
 
-Type the following and press Enter to change the circle's color to cyan, the line's color to blue, and the text's color to red:(setpropertyvalue circ "color" 4) (setpropertyvalue line "color" 5) (setpropertyvalue text "color" 1)
+5 Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or display the Text History window on Windows if the command-line window is docked). Review the properties and values of the objects.
 
-Type the following and press Enter to change the line's start point and the text's alignment point to the circle's center point:(setpropertyvalue line "startpoint" (getpropertyvalue circ "center")) (setpropertyvalue text "alignmentpoint" (getpropertyvalue circ "center"))
+6 Type the following and press Enter to change the circle's color to cyan, the line's color to blue, and the text's color to red:
 
-Type the following and press Enter to shorten the line so it intersects with the circle's radius:(setq ang (angle (getpropertyvalue line "startpoint") (getpropertyvalue line "endpoint") )) (setq newPt (polar (getpropertyvalue circ "center") ang (getpropertyvalue circ "radius") )) (setpropertyvalue line "startpoint" newPt)
+```c
+(setpropertyvalue circ "color" 4) 
+(setpropertyvalue line "color" 5) 
+(setpropertyvalue text "color" 1)
+```
+
+7 Type the following and press Enter to change the line's start point and the text's alignment point to the circle's center point:
+
+```c
+(setpropertyvalue line "startpoint" (getpropertyvalue circ "center")) 
+(setpropertyvalue text "alignmentpoint" (getpropertyvalue circ "center"))
+```
+
+8 Type the following and press Enter to shorten the line so it intersects with the circle's radius:
+
+```c
+(setq ang (angle (getpropertyvalue line "startpoint") 
+(getpropertyvalue line "endpoint") )) 
+(setq newPt (polar (getpropertyvalue circ "center") ang (getpropertyvalue circ "radius") )) 
+(setpropertyvalue line "startpoint" newPt)
+```
 
 Figure 16.3 Basics of a callout balloon
 
@@ -897,11 +969,11 @@ The three modified objects should now look like those on the right side of Figur
 
 Although the functions I mentioned in the previous section make working with object properties easier in recent releases, you should also understand how to modify the properties of an object with an entity data list. There are three main reasons why I recommend this:
 
-Older programs modify objects using entity data lists; understanding how to update entity data lists will make it easier for you to update an existing program.
+1 Older programs modify objects using entity data lists; understanding how to update entity data lists will make it easier for you to update an existing program.
 
-AutoCAD releases earlier than AutoCAD 2012 only support editing the properties of objects through entity data lists.
+2 AutoCAD releases earlier than AutoCAD 2012 only support editing the properties of objects through entity data lists.
 
-Entity data lists are used to create and define selection filters.
+3 Entity data lists are used to create and define selection filters.
 
 The entget function is used to return the entity data list of an object. Once you have an entity data list, you can then use the assoc function to locate the dotted pair that has the DXF group code as the key element you are interested in querying or modifying. After a dotted pair is retuned, you can then use the car function to get the key element of the list and the cdr function to get the value element of the dotted pair.
 
@@ -909,13 +981,15 @@ If you want to replace a dotted pair in an entity data list to change the value 
 
 The following shows the syntax of the entget, entmod, and entupd functions:
 
+```c
 (entget ename [apps]) (entmod ename) (entupd ename)
+```
 
 Here are the arguments:
 
-ename The ename argument specifies the entity name of the object you want update or to get an entity data list for.
+ename. The ename argument specifies the entity name of the object you want update or to get an entity data list for.
 
-apps The apps argument is optional; it is a string value that specifies the application name of an extended data (XData) list that you want to retrieve. XData is custom information that can be attached to an object, such as a link to an external data source or date when an object was revised, and is similar to an entity data list associated with an ename. If an XData list with the application name is attached to the object, a list with both the entity data and XData is returned. Otherwise, just the entity data list for the object is returned. For more information on XData, see the「Extending the Information of an Object」section later in this chapter.
+apps. The apps argument is optional; it is a string value that specifies the application name of an extended data (XData) list that you want to retrieve. XData is custom information that can be attached to an object, such as a link to an external data source or date when an object was revised, and is similar to an entity data list associated with an ename. If an XData list with the application name is attached to the object, a list with both the entity data and XData is returned. Otherwise, just the entity data list for the object is returned. For more information on XData, see the「Extending the Information of an Object」section later in this chapter.
 
 The following examples show how to get an entity data list with entget, modify an entity data list with entmod, and update an object in the drawing area with entupd:
 
