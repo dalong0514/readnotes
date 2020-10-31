@@ -106,6 +106,106 @@ Table 16.6 lists the AutoLISP functions available in AutoCAD 2012 and later that
 
 1-2『看到这里才知道，之前一直用的传统方法：通过实体名称结合 `entget` 函数获取实体的「数据集」，通过替换数据集里的「点对」来实现修改属性。原来还有第二种方法，直接用 autolisp 封装好的函数，前提是只支持 AutoCAD 2012 以后的，可以接受。修改实体数据的 2 种方法，做一张主题卡片。』——已完成
 
+### 0104. 主题卡——获取并修改实体对象上的 XData
+
+XData that has been previously attached to an object can be queried and modified by following a process that is similar to the one used to attach XData to an object. The entget function, which I discussed earlier, is used to get the entity data list and any XData lists attached to an object. By default, the entget function only returns the entity data list for the entity name that it is passed. You use the optional appname argument of the entget function to return all of the XData lists attached to an object or the one associated with a specific application name.
+
+For example, the following code returns the entity data list and XData list attached to an object with the application name of MyApp. If there is no XData list associated with the application name MyApp, only the entity data list for the object is returned.
+
+```c
+; Return the entity data list and xdata list 
+(entget (entlast) '("MyApp"))
+```
+
+Using an asterisk instead of an actual application name returns the XData lists for all applications attached to an object, as shown here:
+
+```c
+; Return the entity data list and xdata list 
+(entget (entlast) '("*"))
+```
+
+This exercise shows how to list the XData attached to a dimension with a dimension override:
+
+1 At the AutoCAD Command prompt, type dli press Enter.
+
+2 At the Specify first extension line origin or `<select object>`: prompt, specify a point in the drawing.
+
+3 At the Specify second extension line origin: prompt, specify a second point in the drawing.
+
+4 At the Specify dimension line location or [Mtext/Text/Angle/Horizontal/Vertical/Rotated]: prompt, specify a point in the drawing to place the linear dimension.
+
+5 Select the linear dimension that you created, right-click, and then click Properties.
+
+6 In the Properties palette (Windows) or Properties Inspector (Mac OS), click the Arrow 1 field under the Lines & Arrows section. Select None from the drop-down list. The first arrowhead of the linear dimension is suppressed as a result of a dimension override being created.
+
+7 At the AutoCAD Command prompt, type `(assoc -3 (entget (car (entsel "\nSelect object with attached xdata: ")) '("*")))` and press Enter. Attaching an XData list to the linear dimension is how AutoCAD handles dimension overrides for individual dimensions. Here is what the XData list that was attached to the linear dimension as a result of changing the Arrow 1 property in step 6 looks like:
+
+```c
+(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 343) (1005. "2BE") (1070. 173) (1070. 1) (1070. 344) (1005. "0") (1002. "}")))
+```
+
+NOTE: I mentioned earlier that XData doesn't affect the appearance of an object, and that is still true even when used as we did in the previous exercise. XData itself doesn't affect the object, but AutoCAD does look for its own XData and uses it to control the way an object might be drawn. If you implement an application with the Autodesk® ObjectARX® application programming interface, you could use ObjectARX and XData to control how an object is drawn onscreen. You could also control the way an object looks using object overrules with Managed.NET and XData. ObjectARX and Managed.NET are the two advanced programming options that Autodesk supports for AutoCAD development. You can learn more about ObjectARX and Managed.NET at www.objectarx.com.
+
+The entget function can be used to determine whether an XData list for a specific application is already attached to an object. If an XData list already exists for an object, you can then modify that list. Use the subst function to update or replace one XData list with another.
+
+This exercise shows how to override the color assigned to dimension and extension lines, and restore the arrowhead for the dimension you created in the previous exercise:
+
+1 At the AutoCAD Command prompt, type the following and press Enter:
+
+```c
+(setq entityName (car (entsel "\nSelect dimension: ")))
+```
+
+2 At the Select dimension: prompt, select the linear dimension created in the previous exercise.
+
+3 At the AutoCAD Command prompt, type the following and press Enter to get the entity data list and XData list associated with an application named ACAD:
+
+```c
+(setq entityData (entget entityName '("ACAD")))
+```
+
+4 Type the following and press Enter to assign the xdataList variable with the new XData list to change the color of the dimension line to ACI 40 and the color of the extension line to ACI 200:
+
+```c
+(setq xdataList 
+  '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}")))
+)
+```
+
+5 Type the following and press Enter to check whether there is an XData list already attached to the object, and if so replace it with the new XData list:
+
+```c
+(if (/= (assoc -3 entityData) nil) 
+  (setq entityData (subst xdataList (assoc -3 entityData) entityData)) 
+)
+```
+
+6 Type the following and press Enter to update the linear dimension and commit the changes to the drawing: 
+
+```c
+(entmod entityData) 
+(entupd entityName)
+```
+
+The colors of the lines in the dimension that are inherited from the dimension style are now overridden. This is similar to what happens when you select a dimension, right-click, and choose Precision.
+
+1-2『上面介绍了修改 XData 的具体方法，以后要实现的一个重要功能需要借鉴里面的代码。管道号块的插入点结合多段线的坐标点（单一直线有 2 个 dxf code 为 10 的点、折一下的有 3 个点，折 2 下有 4 个点），给每个多段线打上管道号的标签，此标签存在 XData。反向再通过多段线给每个阀门（采用区域覆盖的块）打上管线号的标签。那么阀门和管线号的数据就关联上了，管段表和材料表就可以自动生成了，哈哈。做一张主题卡片。（2020-10-32）』
+
+The following example removes the XData list associated with an application named ACAD from a dimension, which removes all overrides assigned to the dimension:
+
+```c
+(defun c:RemoveDimOverride (/ entityName entityData) 
+  (setq entityName (car (entsel "\nSelect dimension to remove overrides: "))) 
+  (setq entityData (entget entityName '("ACAD"))) 
+  (if (/= (assoc -3 entityData) nil) 
+    (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData)) 
+  ) 
+  (entmod entityData) 
+  (entupd entityName) 
+  (princ) 
+)
+```
+
 ### 0201. 术语卡——Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.

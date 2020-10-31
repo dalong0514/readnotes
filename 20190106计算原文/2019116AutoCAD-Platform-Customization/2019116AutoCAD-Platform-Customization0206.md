@@ -1708,7 +1708,9 @@ This exercise shows how to override the color assigned to dimension and extensio
 4 Type the following and press Enter to assign the xdataList variable with the new XData list to change the color of the dimension line to ACI 40 and the color of the extension line to ACI 200:
 
 ```c
-(setq xdataList '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}"))))
+(setq xdataList 
+  '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}")))
+)
 ```
 
 5 Type the following and press Enter to check whether there is an XData list already attached to the object, and if so replace it with the new XData list:
@@ -1727,6 +1729,8 @@ This exercise shows how to override the color assigned to dimension and extensio
 ```
 
 The colors of the lines in the dimension that are inherited from the dimension style are now overridden. This is similar to what happens when you select a dimension, right-click, and choose Precision.
+
+1-2『上面介绍了修改 XData 的具体方法，以后要实现的一个重要功能需要借鉴里面的代码。管道号块的插入点结合多段线的坐标点（单一直线有 2 个 dxf code 为 10 的点、折一下的有 3 个点，折 2 下有 4 个点），给每个多段线打上管道号的标签，此标签存在 XData。反向再通过多段线给每个阀门（采用区域覆盖的块）打上管线号的标签。那么阀门和管线号的数据就关联上了，管段表和材料表就可以自动生成了，哈哈。做一张主题卡片。（2020-10-32）』
 
 ### 6.6.5 Removing XData from an Object
 
@@ -1760,6 +1764,7 @@ Here are two examples of the ssget function that use a selection filter to allow
 ```c
 ; Selects objects containing xdata and with the application name MyApp. 
 (ssget '((-3 ("MyApp")))) 
+
 ; Uses implied selection and selects objects with the application name ACAD. 
 (ssget "_I" '((-3 ("ACAD"))))
 ```
@@ -1768,15 +1773,15 @@ Here are two examples of the ssget function that use a selection filter to allow
 
 In this section, you will continue to work with the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」Along with working with the drawplate function, you will define a new function that will be used to create a bill of materials (BOM) for a furniture layout. The key concepts I cover in this exercise are as follows:
 
-Creating and Modifying Objects without Commands AutoCAD commands make getting started with AutoLISP easier, but not all objects can be created from the Command prompt, nor can all the properties of an object be modified from the Command prompt. The entmake, entget, entmod, and entupd functions give you much greater control over the objects you are creating or modifying.
+1 Creating and Modifying Objects without Commands AutoCAD commands make getting started with AutoLISP easier, but not all objects can be created from the Command prompt, nor can all the properties of an object be modified from the Command prompt. The entmake, entget, entmod, and entupd functions give you much greater control over the objects you are creating or modifying.
 
-Creating Selection Sets Requesting objects from the user allows you to create custom functions that can modify select objects instead of all objects in a drawing.
+2 Creating Selection Sets Requesting objects from the user allows you to create custom functions that can modify select objects instead of all objects in a drawing.
 
-Stepping Through Objects in a Selection Set Selection sets can contain one or several thousand objects. You must use a looping function, such as repeat or while, to step through and get each object in the selection set.
+3 Stepping Through Objects in a Selection Set Selection sets can contain one or several thousand objects. You must use a looping function, such as repeat or while, to step through and get each object in the selection set.
 
-NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 15,「Requesting Input and Using Conditional and Looping Expressions.」If you didn't complete the steps, do so now or start with the ch16_drawplate.lsp and ch16_utility.lsp sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters ch16_ from the name of each file.
+NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 15,「Requesting Input and Using Conditional and Looping Expressions.」If you didn't complete the steps, do so now or start with the `ch16_drawplate.lsp` and `ch16_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters `ch16_ from` the name of each file.
 
-Revising the Functions in utility.lsp
+### 6.7.1 Revising the Functions in utility.lsp
 
 The changes to the utility.lsp file replace the use of AutoCAD commands to create objects with the entmake function and entity data lists. With these changes, you don't need to worry about the current setting of the osmode and other drafting-related system variables. Creating objects with the entmake function also doesn't display Command prompt strings at the command-line window; such strings would need to be suppressed with the cmdecho system variable otherwise. Remember, if something happens to go wrong, the fewer system variables you have changed, the better off you and your end users are.
 
@@ -1784,13 +1789,118 @@ As you revise the functions, notice how easy it can be to change the underlying 
 
 The following steps explain how to update the various functions in the utility.lsp file:
 
-Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS.
+Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS. In the text editor area, update the createrectangle, createtext, and createcircle functions to match the following:
 
-In the text editor area, update the createrectangle, createtext, and createcircle functions to match the following:; CreateRectangle function draws a four-sided closed object. (defun createrectangle (pt1 pt2 pt3 pt4 /) (entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 pt1) (cons 10 pt2) (cons 10 pt3) (cons 10 pt4))) ) ; CreateText function creates a single-line text object. (defun createtext (insertionPoint alignment height rotation textString / ) (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 100 "AcDbText") (cons 10 insertionPoint) (cons 40 height) (cons 1 textString) (cons 50 0.0) (cons 7 "Standard") (cons 72 1) (cons 11 insertionPoint) (cons 100 "AcDbText") (cons 73 0))) ) ; CreateCircle function draws a circle object. (defun createcircle (cenpt rad / ) (entmake (list (cons 0 "circle") (cons 10 cenpt) (cons 40 rad))) )
+```c
+; CreateLayer function creates/modifies a layer and
+; expects to argument values.
+(defun createlayer (name color / )
+  (command "._-layer" "_m" name "_c" color "" "")
+)
+
+; Createrectangle function draws a four-sided closed object.
+(defun createrectangle (pt1 pt2 pt3 pt4 /)
+  (entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity")
+                 (cons 100 "AcDbPolyline") (cons 90 4) (cons 70 1) (cons 43 0)
+                 (cons 10 pt1) (cons 10 pt2) (cons 10 pt3) (cons 10 pt4)))
+)
+
+; Createtext function creates a single line text object.
+(defun createtext (insertionPoint alignment height rotation textString / )
+  (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 100 "AcDbText")
+                 (cons 10 insertionPoint) (cons 40 height) (cons 1 textString)
+                 (cons 50 0.0) (cons 7 "Standard") (cons 72 1)
+                 (cons 11 insertionPoint) (cons 100 "AcDbText") (cons 73 0)))
+)
+
+; Get-Sysvars function returns a list of the current values
+; of the list of system variables it is passed.
+; 
+; Arguments:
+;  sysvar-list - A list of system variables
+; 
+; Usage: (get-sysvars (list "clayer" "osmode"))
+;
+(defun get-sysvars (sysvar-list / values-list)
+
+  ; Creates a new list based on the values of the
+  ; system variables in sysvar-list
+  (foreach sysvar sysvar-list
+    ; Get the value of the system variable and add it to the list
+    (setq values-list (append values-list (list (getvar sysvar))))
+  )
+
+ ; List to return
+ values-list
+)
+
+; Set-Sysvars function sets the system variables in the
+; sysvar-list to the values in values-list.
+; 
+; Arguments:
+;  sysvar-list - A list of system variables
+;  values-list - A list of values to set to the system variables
+; 
+; Usage: (set-sysvars (list "clayer" "osmode") (list "Plate" 0))
+;
+(defun set-sysvars (sysvar-list values-list / cnt)
+  ; Set the counter to 0
+  (setq cnt 0)
+
+  ; Step through each variable and set its value.
+  (foreach sysvar sysvar-list
+    (setvar sysvar (nth cnt values-list))
+
+    ; Increment the counter
+    (setq cnt (1+ cnt))
+  )
+  
+ (princ)
+)
+
+; CreateCircle function draws a circle object.
+; 
+; Arguments:
+;  cenpt - A string or list that represents the center point of the circle
+;  rad - A string, integer, or real number that represents the circle’s radius
+; 
+; Usage: (createcircle "0,0" 0.25)
+;
+(defun createcircle (cenpt rad / )
+  (entmake (list (cons 0 "circle") (cons 10 cenpt) (cons 40 rad)))
+)
+
+; Returns the value of the specified DXF group code for the supplied entity name
+(defun Get-DXF-Value (entityName DXFcode / )
+  (cdr (assoc DXFcode (entget entityName)))
+)
+
+; Sets the value of the specified DXF group code for the supplied entity name
+(defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList oldPropList)
+  ; Get the entity data list for the object
+  (setq entityData (entget entityName))
+
+  ; Create the dotted pair for the new property value
+  (setq newPropList (cons DXFcode newValue))
+  (if (setq oldPropList (assoc DXFcode entityData))
+    (setq entityData (subst newPropList oldPropList entityData))
+    (setq entityData (append entityData (list newPropList)))
+  )
+
+  ; Update the object’s entity data list 
+  (entmod entityData)
+
+  ; Refresh the object on-screen
+  (entupd entityName)
+ 
+ ; Return the new entity data list
+ entityData
+)
+```
 
 Click File Save.
 
-Testing the Changes to the drawplate Function
+### 6.7.2 Testing the Changes to the drawplate Function
 
 Although the changes you made to the utility.lsp file weren't made directly to the drawplate function, drawplate uses the createrectangle, createtext, and createcircle functions to simplify its code. If the changes were made correctly to the utility.lsp file, you should see no differences in the objects created by the drawplate function when compared the one created in Chapter 15.
 
@@ -1818,7 +1928,7 @@ Zoom to the extents of the drawing. Figure 16.5 shows the completed plate.
 
 Figure 16.5 The completed plate created using the updated utility functions
 
-Defining the New Get-DXF-Value and Set-DXF-Value Utility Functions
+### 6.7.3 Defining the New Get-DXF-Value and Set-DXF-Value Utility Functions
 
 Modifying objects using entity data lists might seem confusing to you—and you aren't alone if you feel that way. Entity data lists can even be confusing to some of the most veteran programmers at times, as they are not used all the time. Most veteran programmers create utility functions that simplify the work.
 
@@ -1830,7 +1940,7 @@ In the text editor area, position the cursor after the last expression in the fi
 
 Click File Save.
 
-Moving Objects to Correct Layers
+### 6.7.4 Moving Objects to Correct Layers
 
 Not everyone will agree on the naming conventions, plot styles, and other various aspects of layers, but there are a few things drafters can agree on when it comes to layers—that objects should do the following:
 
@@ -1844,9 +1954,67 @@ In these steps, you create a custom function named furnlayers that is used to id
 
 Create a new LSP file named furntools.lsp with Notepad on Windows or TextEdit on Mac OS.
 
-In the text editor area of the furntools.lsp file, type the following:; Moves objects to the correct layers based on a set of established rules (defun c:FurnLayers ( / ssFurn cnt entityName entityData entityType) ; Request the user to select objects (setq ssFurn (ssget)) ; Proceed if ssFurn is not nil (if ssFurn (progn ; Set up the default counter (setq cnt 0) ; Step through each block in the selection set (while (> (sslength ssFurn) cnt) ; Get the entity name and entity data of the object (setq entityName (ssname ssFurn cnt) entityData (entget entityName) entityType (strcase (Get-DXF-Value entityName 0))) ; Conditional statement used to branch based on object type (cond ; If object is a block, continue ((= entityType "INSERT") (cond ; If the block name starts with RD or CD, ; then place it on the surfaces layer ((wcmatch (strcase (Get-DXF-Value entityName 2)) "RD*,CD*") (Set-DXF-Value entityName 8 "surfaces") ) ; If the block name starts with PNL, PE, and PX, ; then place it on the panels layer ((wcmatch (strcase (Get-DXF-Value entityName 2)) "PNL*,PE*,PX*") (Set-DXF-Value entityName 8 "panels") ) ; If the block name starts with SF, ; then place it on the panels layer ((wcmatch (strcase (Get-DXF-Value entityName 2)) "SF*") (Set-DXF-Value entityName 8 "storage") ) ) ) ; If object is a dimension, continue ((= entityType "DIMENSION") ; Place the dimension on the dimensions layer (Set-DXF-Value entityName 8 "dimensions") ) ) ; Increment the counter by 1 (setq cnt (1+ cnt)) ) ) ) (princ) )
+In the text editor area of the furntools.lsp file, type the following:
 
-Creating a Basic Block Attribute Extraction Program
+```c
+; Moves objects to the correct layers based on a set of established rules
+(defun c:FurnLayers ( / ssFurn cnt entityName entityData entityType) 
+
+  ; Request the user to select objects
+  (setq ssFurn (ssget))
+
+  ; Proceed if ssFurn is not nil
+  (if ssFurn
+    (progn
+      ; Set up the default counter
+      (setq cnt 0)
+
+      ; Step through each block in the selection set
+      (while (> (sslength ssFurn) cnt)
+        ; Get the entity name and entity data of the object
+        (setq entityName (ssname ssFurn cnt)
+              entityData (entget entityName)
+              entityType (strcase (Get-DXF-Value entityName 0)))
+
+	; Conditional statement used to branch based on object type
+	(cond
+	  ; If object is a block, continue
+	  ((= entityType "INSERT")
+            (cond
+	      ; If the block name starts with RD or CD,
+	      ; then place it on the surfaces layer
+	      ((wcmatch (strcase (Get-DXF-Value entityName 2)) "RD*,CD*")
+                (Set-DXF-Value entityName 8 "surfaces")
+	      )
+	      ; If the block name starts with PNL, PE, and PX,
+	      ; then place it on the panels layer
+	      ((wcmatch (strcase (Get-DXF-Value entityName 2)) "PNL*,PE*,PX*")
+                (Set-DXF-Value entityName 8 "panels")
+	      )
+	      ; If the block name starts with SF,
+	      ; then place it on the panels layer
+	      ((wcmatch (strcase (Get-DXF-Value entityName 2)) "SF*")
+                (Set-DXF-Value entityName 8 "storage")
+	      )	      
+	    )
+	  )
+	  ; If object is a dimension, continue
+	  ((= entityType "DIMENSION")
+	    ; Place the dimension on the dimensions layer
+            (Set-DXF-Value entityName 8 "dimensions")
+	  )
+	)
+
+        ; Increment the counter by 1
+        (setq cnt (1+ cnt))
+      )
+    )
+  )
+ (princ)
+)
+```
+
+### 6.7.5 Creating a Basic Block Attribute Extraction Program
 
 The designs you create take time and, based on the industry you are in, are often what is used to earn income for your company or even save money. Based on the types of objects in a drawing, you can step through a drawing and get attribute information from blocks or even geometric values such as lengths and radii of circles. You can use the objects in a drawing to estimate the potential cost of a project or even provide information to manufacturing.
 
@@ -1854,19 +2022,219 @@ In these steps, you create a custom function named furnbom that is used to get t
 
 Open the furntools.lsp file with Notepad on Windows or TextEdit on Mac OS, if it is not already open.
 
-In the text editor area of the furntools.lsp file, type the following:; extAttsFurnBOM - Extracts, sorts, and quanitifies the attribute information (defun extAttsFurnBOM (ssFurn / cnt preVal part label furnList) ; Set up the default counter (setq cnt 0) ; Step through each block in the selection set (while (> (sslength ssFurn) cnt) ; Get the entity name and entity data of the block (setq entityName (entnext (ssname ssFurn cnt))) (setq entityData (entget entityName)) ; Step through the objects that appear after ; the block reference, looking for attributes (while (/= (cdr (assoc 0 entityData)) "SEQEND") ; Check to see which if the attribute tag is PART or TAG (cond ((= (strcase (Get-DXF-Value entityName 2)) "PART") (setq part (Get-DXF-Value entityName 1)) ) ((= (strcase (Get-DXF-Value entityName 2)) "LABEL") (setq label (Get-DXF-Value entityName 1)) ) ) ; Get the next entity (attribute or sequence end) (setq entityName (entnext entityName)) (setq entityData (entget entityName)) ) ; Add the part and label values to the list (setq furnList (append furnList (list (strcat label "\t" part)) )) ; Increment the counter by 1 (setq cnt (1+ cnt)) ) ; Sort the list of parts and labels (setq furnListSorted (acad_strlsort furnList)) ; Reset and set variables that will be used in the looping statement (setq cnt 0 furnList nil preVal nil) ; Quantify the list of parts and labels ; Step through each value in the sorted list (foreach val furnListSorted ; Check to see if the previous value is the same as the current value (if (or (= preVal val)(= preVal nil)) (progn ; Increment the counter by 1 (setq cnt (1+ cnt)) ) ; Values weren't the same, so record the quanity (progn ; Add the quanity and the value (part/label) to the final list (setq furnList (append furnList (list (list (itoa cnt) (substr preVal 1 (vl-string-search "\t" preVal)) (substr preVal (+ (vl-string-search "\t" preVal) 2))) ))) ; Reset the counter (setq cnt 1) ) ) ; keep the previous value for comparison (setq preVal val) ) ; Add the quanity and the value (part/label) to the final list (setq furnList (append furnList (list (list (itoa cnt) (substr preVal 1 (vl-string-search "\t" preVal)) (substr preVal (+ (vl-string-search "\t" preVal) 2))) ))) ; Return the quantified and control character-delimited "\t" furnList ) ; Create the bill of materials table/grid (defun tableFurnBOM (qtyList insPt / colWidths tableWidth rowHeight tableHeight headers textHeight col insText item insTextCol bottomRow) ; Define the sizes of the table and grid (setq colWidths (list 0 15 45 50) tableWidth 0 row 1 rowHeight 4 tableHeight 0 textHeight (- rowHeight 1)) ; Get the table width by adding all column widths (foreach colWidth colWidths (setq tableWidth (+ colWidth tableWidth)) ) ; Define the standard table headers (setq headers (list "QTY" "LABELS" "PARTS")) ; Create the top of the table (entmake (list (cons 0 "LINE") (cons 10 insPt) (cons 11 (polar insPt 0 tableWidth)))) ; Get the bottom of the header row (setq bottomRow (polar insPt (* -1 (/ PI 2)) rowHeight)) ; Add headers to the table (rowValuesFurnBOM headers bottomRow colWidths) ;; (setq tableHeight (+ tableHeight rowHeight)) ; Step through each item in the list (foreach item qtyList (setq row (1+ row)) (setq bottomRow (polar insPt (* -1 (/ PI 2)) (* row rowHeight))) (rowValuesFurnBOM item bottomRow colWidths) ) ; Create the vertical lines for each column (setq colWidthTotal 0) (foreach colWidth colWidths ; Calculate the placement of each vertical line (left to right) (setq colWidthTotal (+ colWidth colWidthTotal)) (setq colBasePt (polar insPt 0 colWidthTotal)) ; Draw the vertical line (entmake (list (cons 0 "LINE") (cons 10 colBasePt) (cons 11 (polar colBasePt (* -1 (/ PI 2)) (distance insPt bottomRow))))) ) ) (defun rowValuesFurnBOM (itemsList bottomRow colWidths / tableWidth) ; Calculate the insertion point for the header text (setq rowText (list (+ 0.5 (nth 0 bottomRow)) (+ 0.5 (nth 1 bottomRow)) (nth 2 bottomRow)) tableWidth 0 ) ; Get the table width by adding all column widths (foreach colWidth colWidths (setq tableWidth (+ colWidth tableWidth)) ) ; Lay out the text in each row (setq col 0 colWidthTotal 0) (foreach item itemsList ; Calculate the placement of each text object (left to right) (setq colWidthTotal (+ (nth col colWidths) colWidthTotal)) (setq insTextCol (polar rowText 0 colWidthTotal)) ; Draw the single-line text object (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 100 "AcDbText") (cons 10 insTextCol) (cons 40 textHeight) (cons 1 item) (cons 50 0.0) (cons 7 "Standard") (cons 11 insTextCol) (cons 100 "AcDbText"))) ; Create the top of the table (entmake (list (cons 0 "LINE") (cons 10 bottomRow) (cons 11 (polar bottomRow 0 tableWidth)))) ; Increment the counter (setq col (1+ col)) ) ) ; Extracts, aggregates, and counts attributes from the furniture blocks (defun c:FurnBOM ( / ssFurn eaList) ; Get the blocks to extract (setq ssFurn (ssget '((0. "INSERT")))) ; Use the extAttsFurnBOM to extract and quantify the attributes in the blocks ; If ssFurn is not nil proceed (if ssFurn (progn ; Extract and quantify the parts in the drawing (setq eaList (extAttsFurnBOM ssFurn)) ; Create the layer named BOM or set it as current (createlayer "BOM" 8) ; Prompt the user for the point to create the BOM (setq insPt (getpoint "\nSpecify upper-left corner of BOM: ")) ; Start the function that creates the table grid (tableFurnBOM eaList insPt) ) ) (princ) )
+In the text editor area of the furntools.lsp file, type the following:
+
+```c
+; extAttsFurnBOM - Extracts, sorts, and quanitifies the attribute information
+(defun extAttsFurnBOM (ssFurn / cnt preVal part label furnList)
+  ; Set up the default counter
+  (setq cnt 0)
+
+  ; Step through each block in the selection set
+  (while (> (sslength ssFurn) cnt)
+    ; Get the entity name and entity data of the block
+    (setq entityName (entnext (ssname ssFurn cnt)))
+    (setq entityData (entget entityName))
+
+    ; Step through the objects that appear after
+    ; the block reference, looking for attributes
+    (while (/= (cdr (assoc 0 entityData)) "SEQEND")
+      ; Check to see which if the attribute tag is PART or TAG
+      (cond
+        ((= (strcase (Get-DXF-Value entityName 2)) "PART")
+          (setq part (Get-DXF-Value entityName 1))
+        )
+        ((= (strcase (Get-DXF-Value entityName 2)) "LABEL")
+          (setq label (Get-DXF-Value entityName 1))
+        )
+      )
+      
+      ; Get the next entity (attribute or sequence end)
+      (setq entityName (entnext entityName))
+      (setq entityData (entget entityName))
+    )
+
+    ; Add the part and label values to the list
+    (setq furnList (append furnList
+                           (list (strcat label "\t" part))
+			   ))
+
+    ; Increment the counter by 1
+    (setq cnt (1+ cnt))
+  )
+
+  ; Sort the list of parts and labels
+  (setq furnListSorted (acad_strlsort furnList))
+
+  ; Reset and set variables that will be used in the looping statement
+  (setq cnt 0
+        furnList nil preVal nil)
+
+  ; Quantify the list of parts and labels
+  ; Step through each value in the sorted list
+  (foreach val furnListSorted
+    ; Check to see if the previous value is the same as the current value
+    (if (or (= preVal val)(= preVal nil))
+      (progn
+        ; Increment the counter by 1
+        (setq cnt (1+ cnt))
+      )
+      
+      ; Values weren't the same, so record the quanity
+      (progn
+	
+        ; Add the quanity and the value (part/label) to the final list
+        (setq furnList (append furnList 
+                           (list (list (itoa cnt)
+                                 (substr preVal 1 (vl-string-search "\t" preVal))
+                                 (substr preVal (+ (vl-string-search "\t" preVal) 2)))
+                           )))
+        ; Reset the counter
+        (setq cnt 1)
+      )
+    )
+
+    ; keep the previous value for comparison
+    (setq preVal val)   
+  )
+
+  ; Add the quanity and the value (part/label) to the final list
+  (setq furnList (append furnList 
+                     (list (list (itoa cnt)
+                           (substr preVal 1 (vl-string-search "\t" preVal))
+                           (substr preVal (+ (vl-string-search "\t" preVal) 2)))
+                     )))
+
+  ; Return the quantified and control chracter delimated "\t"
+  furnList
+)
+
+
+; Create the bill of materials table/grid
+(defun tableFurnBOM (qtyList insPt / colWidths tableWidth rowHeight
+                                     tableHeight headers textHeight
+		                     col insText item insTextCol bottomRow)
+
+  ; Define the sizes of the table and grid
+  (setq colWidths (list 0 15 45 50)
+        tableWidth 0
+	row 1
+	rowHeight 4
+	tableHeight 0
+	textHeight (- rowHeight 1))
+
+  ; Get the table width by adding all column widths
+  (foreach colWidth colWidths
+    (setq tableWidth (+ colWidth tableWidth))
+  )
+  
+  ; Define the standard table headers
+  (setq headers (list "QTY" "LABELS" "PARTS"))
+
+  ; Create the top of the table
+  (entmake (list (cons 0 "LINE") (cons 10 insPt)
+                 (cons 11 (polar insPt 0 tableWidth))))
+
+  ; Get the bottom of the header row
+  (setq bottomRow (polar insPt (* -1 (/ PI 2)) rowHeight))
+  
+  ; Add headers to the table
+  (rowValuesFurnBOM headers bottomRow colWidths)
+
+  ;; (setq tableHeight (+ tableHeight rowHeight))
+  
+  ; Step through each item in the list
+  (foreach item qtyList
+    (setq row (1+ row))
+    (setq bottomRow (polar insPt (* -1 (/ PI 2)) (* row rowHeight)))
+    (rowValuesFurnBOM item bottomRow colWidths)
+  )
+
+  ; Create the vertical lines for each column
+  (setq colWidthTotal 0)
+  (foreach colWidth colWidths
+    ; Calculate the placement of each vertical line (left to right)
+    (setq colWidthTotal (+ colWidth colWidthTotal))
+    (setq colBasePt (polar insPt 0 colWidthTotal))
+
+    ; Draw the vertical line
+    (entmake (list (cons 0 "LINE") (cons 10 colBasePt)
+                   (cons 11 (polar colBasePt (* -1 (/ PI 2))
+                                   (distance insPt bottomRow)))))  
+  )
+)
+
+(defun rowValuesFurnBOM (itemsList bottomRow colWidths / tableWidth)
+  ; Calculate the insertion point for the header text
+  (setq rowText (list (+ 0.5 (nth 0 bottomRow))
+		      (+ 0.5 (nth 1 bottomRow))
+		      (nth 2 bottomRow))
+	tableWidth 0
+  )
+
+  ; Get the table width by adding all column widths
+  (foreach colWidth colWidths
+    (setq tableWidth (+ colWidth tableWidth))
+  )
+
+  ; Layout the text in each row
+  (setq col 0 colWidthTotal 0)
+  (foreach item itemsList
+    ; Calculate the placement of each text object (left to right)
+    (setq colWidthTotal (+ (nth col colWidths) colWidthTotal))
+    (setq insTextCol (polar rowText 0 colWidthTotal))
+
+    ; Draw the single-line text object
+    (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 100 "AcDbText")
+                   (cons 10 insTextCol) (cons 40 textHeight) (cons 1 item)
+                   (cons 50 0.0) (cons 7 "Standard") (cons 11 insTextCol)
+                   (cons 100 "AcDbText")))
+
+    ; Create the top of the table
+    (entmake (list (cons 0 "LINE") (cons 10 bottomRow)
+                   (cons 11 (polar bottomRow 0 tableWidth))))
+
+    ; Increment the counter
+    (setq col (1+ col))
+  )
+)
+
+; Extracts, aggregates, and counts attributes from the furniture blocks
+(defun c:FurnBOM ( / ssFurn eaList) 
+
+  ; Get the blocks to extract
+  (setq ssFurn (ssget '((0 . "INSERT"))))
+
+  ; Use the extAttsFurnBOM to extract and quanity the attributes in the blocks
+  ; If ssFurn is not nil proceed
+  (if ssFurn
+    (progn
+      ; Extract and quantify the parts in the drawing
+      (setq eaList (extAttsFurnBOM ssFurn))
+
+      ; Create the layer named BOM or set it current
+      (createlayer "BOM" 8)
+
+      ; Prompt the user for the point to create the BOM
+      (setq insPt (getpoint "\nSpecify upper-left corner of BOM: "))
+
+      ; Start the function that creates the table grid
+      (tableFurnBOM eaList insPt)
+    )
+  )
+ (princ)
+)
+```
 
 Click File Save.
 
-Using the Functions in the furntools.lsp File
+### 6.7.6 Using the Functions in the furntools.lsp File
 
 The functions you added to furntools.lsp leverage some of those defined in utility.lsp. These functions allow you to change the layers of objects in a drawing and extract information from the objects in a drawing as well. More specifically, they let you work with blocks that represent an office furniture layout.
 
 Although you might be working in a civil engineering– or mechanical design–related field, these concepts can and do apply to the work you do—just in different ways. Instead of extracting information from a furniture block, you could get and set information in a title block, a callout, or even an elevation marker. Making sure a hatch is placed on the correct layers, along with dimensions, can improve the quality of output for the designs your company creates.
 
-NOTE
-
-The following steps require a drawing file named Ch16_Office_Layout.dwg. If you didn't download the sample files earlier, download them now from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder.
+NOTE: The following steps require a drawing file named Ch16_Office_Layout.dwg. If you didn't download the sample files earlier, download them now from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder.
 
 The following steps explain how to use the furnlayers function that is in the furntools.lsp file:
 
@@ -1882,7 +2250,7 @@ Figure 16.6 Office furniture layout
 
 The following steps explain how to use the furnbom function that is in the furntools.lsp file:
 
-Open the Ch16_Office_Layout.dwg if it is not open from the previous steps.
+Open the `Ch16_Office_Layout.dwg` if it is not open from the previous steps.
 
 Load the furntools.lsp and utility.lsp files if you opened the drawing in step 1.
 
