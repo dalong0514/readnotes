@@ -20,11 +20,11 @@ When the CUI Editor is displayed, notice that there are two tabs. Each tab is di
 
 Customize Tab. Use the Customize tab to create, modify, and organize the user-interface elements that come with AutoCAD or those that you create. You will also use this tab to create workspaces that allow you to control when and where specific user-interface elements are displayed. This tab is divided into three panes: 
 
-1. Customizations In Pane. Here you will find a listing of the CUIx files that are currently loaded and the user-interface elements that they contain. When a user-interface element is expanded, you see each of the items that make up that particular element, such as the buttons on a ribbon panel or the items on a pull-down menu. When you select a user-interface element, command, or control in this pane, its properties can be changed in the Dynamic pane.
+1 Customizations In Pane. Here you will find a listing of the CUIx files that are currently loaded and the user-interface elements that they contain. When a user-interface element is expanded, you see each of the items that make up that particular element, such as the buttons on a ribbon panel or the items on a pull-down menu. When you select a user-interface element, command, or control in this pane, its properties can be changed in the Dynamic pane.
 
-2. Command List Pane. Here you'll find a list of the commands and controls that you can add to the user-interface elements in the Customizations In pane. New custom commands for use in the user-interface are created in this pane. Selecting a command from this pane displays its properties in the Dynamic pane, where you can change the image, name, macro, and other settings that define how a command appears in the user interface.
+2 Command List Pane. Here you'll find a list of the commands and controls that you can add to the user-interface elements in the Customizations In pane. New custom commands for use in the user-interface are created in this pane. Selecting a command from this pane displays its properties in the Dynamic pane, where you can change the image, name, macro, and other settings that define how a command appears in the user interface.
 
-3. Dynamic Pane. Displays the properties of an item selected from either the Customizations In or Command List pane. Based on the item selected, one or more of eight different subpanes could be displayed. I cover each of these panes later in this chapter as I explain how to customize the elements of the user interface.
+3 Dynamic Pane. Displays the properties of an item selected from either the Customizations In or Command List pane. Based on the item selected, one or more of eight different subpanes could be displayed. I cover each of these panes later in this chapter as I explain how to customize the elements of the user interface.
 
 Transfer Tab. Use the Transfer tab to copy user-interface elements between customization (CUIx) files, migrate user-interface elements from an earlier release, and create new or save existing CUIx files.
 
@@ -42,29 +42,29 @@ A macro defines the input that is sent to the AutoCAD command prompt when a user
 
 For the most part, a macro is similar to the input that you enter at the command prompt to start and complete an AutoCAD command, but it can also contain special characters that control its execution. For example, the following might be what you normally would do to draw a circle with a diameter of one-eighth of an inch:
 
-1. At the command prompt, type circle and press Enter.
+1 At the command prompt, type circle and press Enter.
 
-2. At the Specify center point for circle or [3P/2P/Ttr (tan tan radius)]: prompt, specify a point with the input device or type a value at the command prompt.
+2 At the Specify center point for circle or [3P/2P/Ttr (tan tan radius)]: prompt, specify a point with the input device or type a value at the command prompt.
 
-3. At the Specify radius of circle or [Diameter] `<0.1875>`: prompt, type d and press Enter.
+3 At the Specify radius of circle or [Diameter] `<0.1875>`: prompt, type d and press Enter.
 
-4. At the Specify diameter of circle `<0.3750>`: prompt, type 0.125 and press Enter.
+4 At the Specify diameter of circle `<0.3750>`: prompt, type 0.125 and press Enter.
 
 An example of a command macro using the same input as the previous example might look something like this:
 
-```
+```c
 ^C^C._circle;\_d;0.125;
 ```
 
 As you can see, I used five special characters in the example macro that were not present as part of the original input entered at the command prompt: 
 
-```
+```c
 ^ (caret), . (period), _ (underscore), ; (semicolon), and \ (backslash). 
 ```
 
 Table 5.1 explains the significance of each macro component.
 
-```
+```c
 Macro Component Description
 
 ^C^C Simulates the pressing of the Esc key twice.
@@ -120,7 +120,6 @@ $M=$(if,$(and,$(getvar,ucsicon),1),^C^C_ucsicon _off,^C^C_ucsicon _on)
 
 When combining multiple commands into a single menu macro, you will want to first step through the sequence at the command prompt. Doing this can help you identify which commands, options, and values you want to use. The following example demonstrates the commands and options you might use to create and set as current a layer named Notes and then draw a multiline text object:
 
-```
 At the command prompt, type -layer and press Enter.
 
 At the Enter an option prompt, type m and press Enter.
@@ -160,13 +159,12 @@ At the MText: prompt, type NOTE: ADA requires a minimum turn radius of and press
 At the MText: prompt, type 60" (1525mm) for wheelchairs. and press Enter.
 
 Press Enter again to end the mtext command and leave the command-line window open.
-```
 
 What's That Hyphen? As I discussed earlier, commands that display dialog boxes or palettes should be avoided in macros when you want to use specific values. Adding a leading hyphen to many commands that normally display a dialog box or palette starts an alternate command that displays a series of prompts instead. For example, use -layer instead of layer when you want to create a layer from a command macro, or -insert instead of insert to insert a block. See Chapter 8,「Automating Repetitive Tasks,」for a listing of alternative commands and system variables that allow you to avoid opening dialog boxes and palettes.
 
 After you've worked through the process at the command prompt, you can use that information to convert the process to a macro. The next steps walk you through the process of converting input entered at the command prompt into a command macro:
 
-```
+
 Press F2 to expand the command-line history or display the AutoCAD Text Window.
 
 In the History area, select the command prompts that were displayed and input that you entered (see Figure 5.2). Right-click and click Copy.
@@ -194,17 +192,18 @@ In the Save As dialog box, browse to the MyCustomFiles folder that you created u
 In the File Name text box, type mynotemacro.txt and click Save.
 
 Do not close Notepad; you will use the macro you just created in the next section, when you create a command for use in the user interface.
-```
 
-```
 TIP
 
 Add the text ._ (period underscore) in front of each command name and an _ (underscore) in front of the values that represent an option name. This ensures that your macro works correctly if a command is undefined or the command macro is used on a non-English AutoCAD release.
 
 Here's how the macro you just created would look after prefixing commands with ._ and options with _:
 
-^C^C._-layer;_m;Notes;_c;8;;;._-mtext;\_j;_tl;_h;0.25;_r;0;_w;7.5; NOTE: ADA requires a minimum turn radius of;60" (1525mm) for wheelchairs.;;
+```c
+^C^C._-layer;_m;Notes;_c;8;;;._-mtext;\_j;_tl;_h;0.25;_r;0;_w;7.5; 
 ```
+NOTE: ADA requires a minimum turn radius of;60" (1525mm) for wheelchairs.;;
+
 
 Figure 5.2 Command-line history of the input you previously entered
 
@@ -214,7 +213,7 @@ Before you can use your macro, you first need to learn how to create a new comma
 
 The following example explains how to create a command for the macro that you created in the previous section in a current CUIx file. If you did not complete the steps for the previous example, you can open the NoteMacro.txt exercise file that is available for download from www.sybex.com/go/autocadcustomization. If you did complete the previous example but closed Notepad, launch Notepad and open the file MyNoteMacro.txt from the MyCustomFiles subfolder under the Documents (or My Documents) folder, or the location you used.
 
-```
+
 On the ribbon, click Manage tab Customization panel User Interface (or at the command prompt, type cui and press Enter).
 
 In the CUI Editor, from the Command List pane select Create A New Command.
@@ -240,7 +239,7 @@ NOTE
 Tags make it easier to locate a command without looking for it in the user interface. You can search for a command that is assigned a tag using the Search field of the Application menu; the Search field is accessed by clicking the Application button located near the upper-left corner of the AutoCAD application window.
 
 Click Apply to save the changes you made to the properties of the new command (see Figure 5.4).
-```
+
 
 Figure 5.3 Defining the properties of a command
 
@@ -338,7 +337,7 @@ Out of the box, the AutoCAD user interface is designed for everyone, but not to 
 
 The following elements of the user interface can be edited with the CUI Editor:
 
-```
+
 Quick Access toolbar (QAT)
 
 Ribbon; panels and tabs
@@ -356,7 +355,6 @@ Mouse buttons
 Properties displayed as part of the Quick Properties palette or rollover tooltips
 
 Legacy elements; tablet menus and buttons; image tile and screen menus
-```
 
 #### 5.3.1 Quick Access Toolbar
 
@@ -366,13 +364,13 @@ Figure 5.8 Accessing the customization options for the Quick Access toolbar
 
 You can customize the QAT using one of the following methods:
 
-1. QAT Customize Menu. Clicking the Customize button on the far right side of the QAT displays the Customize menu. From this menu, you can toggle the display of several additional select commands, click More Commands to display the CUI Editor, or click Show Below/Above The Ribbon to change the placement of the QAT.
+1 QAT Customize Menu. Clicking the Customize button on the far right side of the QAT displays the Customize menu. From this menu, you can toggle the display of several additional select commands, click More Commands to display the CUI Editor, or click Show Below/Above The Ribbon to change the placement of the QAT.
 
-2. QAT Shortcut Menu Right-clicking a command or control on the QAT displays a shortcut menu that allows you to remove the element below the cursor, add a vertical separator bar to the right of the element under the cursor, click Customize Quick Access Toolbar to display the CUI Editor, or click Show Quick Access Toolbar Below/Above The Ribbon to change its placement.
+2 QAT Shortcut Menu Right-clicking a command or control on the QAT displays a shortcut menu that allows you to remove the element below the cursor, add a vertical separator bar to the right of the element under the cursor, click Customize Quick Access Toolbar to display the CUI Editor, or click Show Quick Access Toolbar Below/Above The Ribbon to change its placement.
 
-3. Ribbon Button Right-clicking a command on the ribbon displays a shortcut that contains the Add To Quick Access Toolbar item. This item adds the command to the QAT.
+3 Ribbon Button Right-clicking a command on the ribbon displays a shortcut that contains the Add To Quick Access Toolbar item. This item adds the command to the QAT.
 
-4. CUI Editor The CUI Editor provides you with the same functionality that is found on the QAT's Customize and shortcut menus, and a few additional options as well. With the CUI Editor, you can choose to customize the default QAT or create a new one, and you can also change the order in which commands and controls are displayed.
+4 CUI Editor The CUI Editor provides you with the same functionality that is found on the QAT's Customize and shortcut menus, and a few additional options as well. With the CUI Editor, you can choose to customize the default QAT or create a new one, and you can also change the order in which commands and controls are displayed.
 
 1『
 
@@ -392,7 +390,7 @@ You can customize the QAT using one of the following methods:
 
 The next example explains how to customize the default QAT. You will add the Wheelchair Note command that you created earlier in this chapter.
 
-```
+
 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
 In the Customizations In pane of the CUI Editor, expand the Quick Access Toolbars node. Expand the Quick Access Toolbar 1 node, or any other QAT you want to customize.
@@ -402,13 +400,13 @@ In the Command List pane, select Custom Commands from the Filter The Command Lis
 From the Command list, drag the Wheelchair Note command below the Ribbon Combo Box - Workspace control. Release the mouse button when the horizontal bar is displayed below the control (see Figure 5.9). After a command or control is added to the QAT, you can change how it is displayed by changing its properties under the Properties pane.
 
 Click Apply to save the changes.
-```
+
 
 Figure 5.9 Adding a command to the QAT
 
 Now that the Wheelchair Note command has been added, let's add a separator and Layer controls to the QAT that we are customizing in this exercise:
 
-```
+
 Use the command-list filter to access the Ribbon Control Elements. In the Command List pane, open the Filter The Command List By Category drop-down list and select Ribbon Control Elements (see Figure 5.10).
 
 In the Search Command List text box (located just above the Filter The Command List By Category drop-down list), type layer.
@@ -420,7 +418,7 @@ In the Customizations In pane, right-click the Wheelchair Note command you added
 Right-click the Ribbon Combo Box - Workspace control under the QAT node and click Insert Separator. A separator element is added to the end of the toolbar.
 
 Click Apply to save the changes.
-```
+
 
 Figure 5.10 Accessing the controls that can be placed on the QAT
 

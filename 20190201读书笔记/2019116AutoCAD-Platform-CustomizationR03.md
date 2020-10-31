@@ -6,1079 +6,1792 @@
 
 Part II AutoLISP: Productivity through Programming
 
-0208——Chapter 18: Working with the Operating System and External Files
+0206——Chapter 16: Creating and Modifying Graphical Objects
 
-0209——Chapter 19: Catching and Handling Errors
+0207——Chapter 17: Creating and Modifying Nongraphical Objects
 
-0210——Chapter 20: Authoring, Managing, and Loading AutoLISP Programs
+## 0206. Creating and Modifying Graphical Objects
 
-0211——Chapter 21: Using the Visual LISP Editor (Windows only)
+The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
 
-0212——Chapter 22: Working with ActiveX/COM Libraries (Windows only)
+2『图形数据和非图形数据，做一张术语卡片。』——已完成
 
-0213——Chapter 23: Implementing Dialog Boxes (Windows only)
+The command function is the most common method that AutoLISP programmers use to create and modify objects, but it isn't the most efficient when you are trying to modify individual properties of an object. Even creating lots of objects in the Autodesk® AutoCAD® program can be slower with the command function. Along with the command function, objects can be created and modified directly by setting property values as part of an entity data list. Extended data (XData) can also be attached to an object as a way to differentiate one object from another or, in some cases, to affect the way an object might look in the drawing area.
 
-## 0208. Working with the Operating System and External Files
+1-2『直接用 command，自己就遇到了瓶颈。1）确实效率低下。2）自动生成辅助流程组件，插进来的块，位置经常不是均匀的，目前一直找到不解决办法。正巧这里受到启发，改用直接创建实体数据的方法实现自动生成块。待实现。做一张任意卡片。（2020-10-29）』
 
-The AutoLISP® programming language can be used to reach beyond the boundaries of the Autodesk® AutoCAD® application window and objects in the current open drawing. Using AutoLISP, you can access settings managed by the operating system and installed applications on Windows or by the application-level settings of AutoCAD on both Windows and Mac OS. You can access operating system– and application-level settings from the Windows Registry. On Mac OS, you can access application-level settings for AutoCAD from the Plist (property list) files.
+### 6.1 Working with Entity Names and Dotted Pairs
 
-Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
+Creating and modifying objects with AutoLISP requires the understanding of two concepts: entity names and entity data. Entity names, also known as enames, are numeric values that are assigned to graphical and nongraphical objects stored in a drawing. An ename is expressed as the ENAME data type in AutoLISP. When you want to access an object, you use an ename. After an ename has been obtained, you can then access the object's properties through its entity data list. An entity data list is a list that contains information about an object. In addition to modifying an object using an entity data list, you can create objects with entity data lists. I discuss how to create an object with an entity data list in the「Adding Objects to a Drawing」section, and how to get an ename for an object and the entity data list in the「Modifying Objects」section.
 
-## 0213. Implementing Dialog Boxes (Windows only)
+---
 
-The goal of any program should be to make end users be productive and feel empowered without getting in their way. Your decisions about the number of options and how they are presented can make or break a custom function. Include too many, and the user becomes frustrated while responding to prompts about options that aren't used frequently; too few, and the usefulness of the custom function suffers. Dialog boxes allow users to see values that might normally be hidden behind a set of prompts and provide input for only those options they are interested in changing. A dialog box can also be used to combine multiple functions into a single, easy-to-use interface.
+Recovering from a Daydream
 
-1『上面的信息表示，A dialog box 真的可以做很多事情，哈哈。（2020-09-15）』
+It is Monday morning and you just got back from vacation. For the most part, you are still thinking about the great time you had with the family at the beach. Before you realize it, you have placed all your dimensions and hatch objects on an incorrect layer. Never fear—AutoLISP to the rescue. Using a few lines of AutoLISP code, you select the misplaced objects and move them onto the correct layer.
 
-For example, consider the difference between the insert command, which displays the Insert dialog box, and the -insert command, which displays a series of options at the Command prompt. The insert command allows you to explode a block upon insert and use geographical data without affecting the prompt sequence or functionality of the -insert command. In this chapter, you will learn to implement dialog boxes for use with AutoLISP® programs.
+---
 
-### 13.1 What Is Dialog Control Language?
+Each entity data list is made up of many smaller lists that describe the properties of an object. The smaller lists are value pairings commonly known as dotted pairs. They are called dotted pairs because a dot usually separates the key element from the value of the list. The key element is commonly a DXF group code (which is of the integer data type) and used to let AutoCAD know the type of data for the value in the dotted pair. Some DXF group codes have common uses, whereas others have a more general meaning. I discuss some DXF group codes during this chapter, but you will need to refer to the AutoCAD Help system for a listing of all supported DXF group codes by object.
 
-Dialog Control Language (DCL) is the technology used to lay out and design dialog boxes that can be used with AutoLISP programs. Support for DCL was originally added to Autodesk® AutoCAD® R11 and has remained essentially unchanged through AutoCAD 2015. Dialog boxes are defined and stored in ASCII text files with a .dcl extension. Once a DCL file has been created, AutoLISP can then load and display the dialog contained in the DCL file. After the dialog is displayed, AutoLISP is used to control what happens when the user clicks or otherwise manipulates the controls in the dialog box.
-
-A DCL file can contain multiple dialog-box definitions. Each dialog box and control is defined through the use of a tile. The appearance of a tile is affected by what are known as attributes—think of attributes as the properties of a drawing object.
-
-With the exception of the tile that defines the dialog box (the dialog tile), tiles typically start with a colon followed by the name of the tile type you want to place on the dialog box. The dialog tile must start with a user-defined name that is unique in the DCL file; this name is used to display the dialog box in the AutoCAD drawing environment. A pair of curly brackets that contain the attributes of the tile typically follows the name or type of a tile. Each attribute must end with a semicolon.
-
-In addition to attributes, some tiles contain nested tiles, which are placed within a tile's curly brackets. Some tile names aren't followed by a pair of curly brackets because they don't support attributes; these tiles are known as subassemblies. Subassemblies help you implement standardized tile groupings. The OK and Cancel button tiles used in most dialogs created with DCL are examples of subassemblies.
-
-1『语法汇总：1）各个 tile 是以冒号 `:` 开头的，无论是弹窗还是按钮之类的。2）tile 后面紧跟着 `{}`，跟对象语法一样，里面全是这个 tile 的属性，各个属性是以分号 `;` 结束的。不过有些 tile 不支持属性（被称为 subassemblies），那么后面就没有 `{}`。3）tile 里是可以嵌套 tile 的。（2020-10-08）』
-
-Listing 23.1 shows an example of a dialog box definition that could be used as part of an alternative to the message box that is automatically displayed with the alert function. Remember, the alert function displays a message box with an OK button only.
-
-Listing 23.1: Alternative message box
+The value of a dotted pair can be made up of more than one item. When a value contains more than one item, no dot is provided, as is the case with coordinate values. Here is an example of an entity data list for a circle:
 
 ```c
-/* Example message box Created on: 5/11/14 */ 
-ex_alert : dialog { 
-  label = "Title"; 
-  key = "dlg_main"; 
-  : text { 
-    // Custom message 
-    key = "msg"; 
-    label = "Custom message here."; 
-  } 
-  ok_cancel; // Subassembly 
-}
+((-1. <Entity name: 7ff79b005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff79b0039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 0.0 0.0 0.0) (40. 0.875) (210 0.0 0.0 1.0))
 ```
 
-1『
+The DXF group codes 10 and 40 are used to describe the circle. The DXF group code 10 represents the center point of the circle (10 0.0 0.0 0.0), whereas the DXF group code 40 represents the radius of the circle, which is set to a value of 0.875. Even though you can use the circle command to create a circle based on a diameter value, AutoCAD stores only the circle's radius as part of the drawing.
 
-在 lisp 文件里调用这个 box。
+DXF group codes don't always have the same meaning. For example, the DXF group code 10 is used by both lines and circles, but for line objects the code represents the line's starting point, as shown in the following entity data list:
 
 ```c
-; get the current file direction
-(defun c:dcltest (/ dcl_id)
-  (setq dcl_id (load_dialog (strcat "D:\\dataflowcad\\" "dataflow.dcl")))
-  (if (not (new_dialog "ex_alert" dcl_id))
-    (exit)
-  )
+((-1. <Entity name: 7ff79b005e00>) (0. "LINE") 
+ (330. <Entity name: 7ff79b0039f0>) (5. "1D8") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbLine") 
+ (10 0.0 5.0 0.0) (11 5.0 5.0 0.0) (210 0.0 0.0 1.0))
+```
 
-  (start_dialog)
-  (unload_dialog dcl_id)
-)
+Table 16.1 lists some of the most common DXF group codes that are used by objects in a drawing. For additional information on DXF group codes, search on「DXF entities section」in the AutoCAD Help system.
+
+Table 16.1 Common DXF group codes
+
+|  DXF group code | Description  |
+|---|---|
+|  0 |  Specifies the object's type |
+|  6 |  Specifies the linetype that an object is assigned; not used if the linetype is assigned by layer |
+|  8 |  Specifies the layer on which an object is placed |
+|  10 |  Specifies the start, center, elevation, or insertion point for many different objects |
+|  11 |  Specifies the endpoint or direction vector for many different objects |
+|  40 |  Specifies the radius for circles, height for text, and ratio between the major and minor axis of an ellipse |
+|  62 |  Specifies the color that an object is assigned; not used if the color is assigned by layer |
+
+---
+
+Referencing Objects Using Handles
+
+Enames aren't the only way you can reference an object in a drawing. When a drawing is closed and reopened, a new ename is assigned to each object in the drawing. However, each object created in a drawing is assigned a unique string value called a handle.
+
+A handle is a hexadecimal number value that is unique for each object in a drawing and can be used to reference an object when the drawing is closed and reopened. While the same handle can be used in more than one drawing, the handle remains unique and unchanged for an object in a drawing. The handle of an object can be accessed from an object's entity data list; the dotted pair with the DXF group code 5 contains the object's handle.
+
+3『「2019114Autolisp-Developers-GuideR00.md」
+
+0306 任意卡——handle 与实体名之间的切换
+
+直接在 CAD 里用 `list` 命令选中一个实体，在显示的信息里，句柄即为 handle。
+
+1、通过实体名获取实体的 handle：借用任意卡 0303 里的信息，可以直接获取一个实体的数据信息，举个例子，里面的 `(5 . "59DAA")` 这个即为 handle。那么获取这个数据的办法就显而易见了，跟获取它的坐标 `(10 xx yy)`，图层 `(0 . "0")`，块名称 `(2 . "PipeArrowLeft")` 等等的信息一模一样。
+
+```c
+(cdr (assoc 5 (entget ename)))
+```
+
+2、通过 handle 获取实体名。
+
+```c
+(setq ename (handent "5a2"))
 ```
 
 』
 
-
-Figure 23.1 shows what the alternative message box looks like when loaded into the AutoCAD drawing environment. A DCL file can also contain comments, which are prefixed with // or located between the character groupings /* and */. Both comment styles are shown in Listing 23.1.
-
----
-
-#### Modernized DCL Alternatives
-
-DCL has remained unchanged since AutoCAD R12, which is great from a compatibility perspective but not from a technology point of view. The controls that you can use on a dialog box defined with DCL will seem limited when you consider the countless controls that are available in Windows and Windows-based programs. Although the DCL that comes with AutoCAD is limited, there are a few alternatives that you can use to enrich the dialog boxes you create.
-
-Here are the two DCL alternatives that I am aware of:
-
-1. ObjectDCL—A technology that must be licensed from DuctiSoft ([ObjectDCL](http://objectdcl.com/))
-
-2. OpenDCL—An open source application based on the ObjectDCL application; OpenDCL can be downloaded from [OpenDCL](https://opendcl.com/wordpress/).
-
-1-2『感觉是捡到金子了，这 2 个做交互界面的工具太赞了，一定要去研读。（2020-10-08）』
-
-ObjectDCL and OpenDCL allow you to implement modern Windows and third-party controls in an AutoLISP custom dialog box. You can use tree view, data grid, and HTML viewer controls, among many others. Both software solutions also provide WYSIWYG (what you see is what you get) design capabilities through their dialog-box editors.
-
-AutoCAD Managed.NET and the ObjectARX APIs provide alternatives for creating custom AutoLISP functions that display custom dialog boxes created with Microsoft's Windows Presentation Foundation (WPF) and Microsoft Foundation Class (MFC). Developing your own dialog boxes using WPF and MFC can take additional time (compared to ObjectDCL or OpenDCL), but you own all the source code and don't need to worry about external dependencies.
-
----
-
-### 13.2 Defining and Laying Out a Dialog Box
-
-DCL files can be created and edited using Notepad, the Visual LISP® Editor, or whichever editor you are using for LSP files. Although you can use Notepad, the Visual LISP Editor offers a few advantages over Notepad for working with DCL files. It supports color syntax as it does with LSP files, but it also has a built-in DCL preview feature. Without the Visual LISP Editor's DCL preview feature, you must write an AutoLISP program that will at least load a DCL file and display a dialog box in the AutoCAD drawing environment to see the final appearance of a dialog box.
-
----
-
-#### Simplifying User Interaction and Option Presentation
-
-Have you ever sat and scratched your head in hopes of deciphering the options displayed as part of a prompt string for a command or custom function? Maybe you have tried to use a command that presented nested option prompts, and no matter how well you guessed, you got the wrong results. Both of these situations waste time. Fortunately, there is a solution to these problems and it is in the form of dialog boxes. Dialog boxes, or more specifically DCL in AutoLISP, can be used to improve users' experience by allowing them to follow a nonlinear workflow and provide only the information required to complete a task. Users can quickly scan and change values before completing a task. At the end of the day, a dialog box can help to reduce clicks, which means saving time—and time is money.
-
----
-
-#### 13.2.1 Defining a Dialog
-
-Each dialog box you define must contain a dialog tile. The attributes of a dialog tile are used to define the dialog's label (more commonly referred to as the title or caption), add a programmatic name known as a key, and set the tile that should have initial focus. The following shows the basic syntax of the dialog tile:
+Handles are commonly used to export information about the objects in a drawing and process the information externally before using the information to update the objects in the drawing. The AutoLISP handent function accepts a string value that represents an object's handle in the drawing and returns the object's current ename. The following shows the syntax of the handent function:
 
 ```c
-dialog_name : dialog { 
-  [attributes] 
-  [tiles] 
-}
+(handent handle)
 ```
 
-Here are its arguments:
+The handle argument represents an object's handle and must be expressed as a string.
 
-`dialog_name`. The `dialog_name` argument represents the name used to reference a dialog box within a DCL file. A DCL file can contain more than one dialog tile, but each must have a unique name. The same name can be used in different DCL files without any problems.
+You can get an object's handle using the list command or the AutoLISP entget function, which I discuss later, in the「Modifying Objects」section. The following is an example that gets the entity name of the Block symbol table (or a different object in your drawings)—which has a handle of "1"—with the handent function:
 
-attributes. The attributes argument is a list of optional attributes that describe the dialog tile. An attribute consists of a name and value, separated by an equals sign, and ends with a semicolon. For example, `label = "Title";` specifies the use of the attribute named label and that it should be assigned the value of Title. See Table 23.1 for a list of the attributes that the dialog tile supports.
-
-tiles. The tiles argument is a list of optional tiles that define the controls that you want to display in the dialog box. For information on the tiles that are available, see the「Adding Tiles」and「Grouping, Aligning, and Laying Out Tiles」sections later in this chapter.
-
-Table 23.1 Common attributes used with the dialog tile
-
-1. label. The title that is assigned to the dialog box.
-
-2. value. Alternative to the title attribute. This attribute can be set only with the `set_tile` function. I discuss the `set_tile` function later in this chapter, in the「Setting the Default Value of an Interactive Tile」section.
-
-3. `initial_focus`. The key assigned to the tile in the dialog tile that should have focus by default when the dialog box is displayed.
-
-An example of a dialog tile was shown earlier in this chapter; see Listing 23.1 and Figure 23.1.
-
-#### 13.2.2 Adding Tiles
-
-A dialog box can contain a variety of tiles—commonly referred to as controls—that can be used to get input from the user. The tiles that are available for placement in a dialog box are common to many Windows dialog boxes. The following shows the basic syntax of a tile:
-
-```c
-: tile_name { 
-  [attributes] 
-}
+```
+(handent "1") 
+<Entity name: 7ff79b003810>
 ```
 
-Here are its arguments:
+---
 
-`tile_name`. `The tile_name` argument represents the name of the tile type to place in the dialog box. See Table 23.2 for the tile names that are supported.
+#### 6.1.1 Creating a Dotted Pair
 
-attributes. The attributes argument is a list of optional attributes that describe the tile. An attribute consists of a name and value, separated by an equals sign, and ends with a semicolon. For example, `label = "Control1";` specifies the use of the attribute named label and that it should be assigned the value of Control1. See Table 23.3 for a list of the common attributes that tiles support.
-
-Table 23.2 Interactive tiles available with the dialog tile
-
-Table 23.2 lists and describes the interactive tiles that can be added to a dialog tile for getting input from the user when a dialog box is displayed.
-
-1. button. Push or command button that, when clicked, executes a function.
-
-2. `edit_box`. Free-form text box in which the user can enter an alphanumeric value.
-
-3. image. Container that displays a slide image. The slide image can be a stand-alone SLB file or one from a compiled slide library SLD file.
-
-4. `image_button`. Graphical button that displays a slide image that, when clicked, executes a function.
-
-5. `list_box`. List box that contains a set of predefined items from which the user can select one or more items.
-
-6. `popup_list`. Drop-down list that contains a set of predefined items from which the user can choose a single item.
-
-7. `radio_button`. Option button that allows for a single choice among multiple option buttons.
-
-8. slider. Scroll bar–like control that allows the user to specify a value within a specific range.
-
-9. text. Label that displays information to the user or identifies the intention of a control.
-
-10. toggle. Check-box button that allows for multiple choices.
-
-Table 23.3 Common attributes used with control tiles
-
-Table 23.3 lists and describes some of the most commonly used attributes to control the behavior of tiles other than a dialog tile.
-
-|  Attribute | Supported Tile(s)  | Description   |
-|---|---|---|
-| action  |   All interactive tiles |  Function to be executed when the tile is clicked.  |
-|  allow_accept | edit_box, image_button, and list_box  |  Activates the button that is specified with the is_default attribute. |
-| edit_limit  | edit_box  |  Maximum number of characters that can be entered into the text box. |
-| is_cancel  | button  | Indicates that the function associated with the button tile's action attribute should be executed when Esc is pressed.  |
-| is_default  | button  | Indicates that the function associated with the button tile's action attribute should be executed when Enter is pressed.  |
-|  is_enabled | All interactive  | control tiles Indicates that the tile is enabled or disabled.  |
-| key  | All interactive  | control tiles Unique name used to programmatically reference the tile.  |
-| label  | button, edit_box, list_box, popup_list, radio_button, text, and toggle  | Label that describes the intention of the tile and is displayed adjacent to the tile.  |
-| list  | list_box and popup_list  | Items that are displayed and selectable by the user in the list. The character sequence \n is used to separate each item in the list.  |
-| multiple_select  | list_box |  Indicates that the list supports multiple selections. |
-|  value  | text_box and interactive tiles except button and image_button tiles  |  Current value of a tile. |
-
-To see what values an attribute supports, search on the keywords「programmable dialog box reference」in the AutoCAD Help system. Search on the keywords「synopsis predefined attributes」in the AutoCAD Help system to see the other attributes that are available.
-
-NOTE: All the tiles listed in Table 23.2 are interactive tiles, with the exceptions of the image and text tiles.
-
-Listing 23.2 shows an example of a dialog box that contains a `popup_list`, two `radio_button` tiles, and a button tile. Figure 23.2 shows what the dialog box would look like if displayed in the AutoCAD drawing environment using AutoLISP.
-
-Listing 23.2: Create Label Object dialog box
+A dotted pair is a list that is created using the AutoLISP cons or quote (') function. When creating a dotted pair, you need to know two things: the key element and the value to be associated with the key element. Although the key element can be of any data type with the exception of a list, it is commonly either a string or integer. In entity data lists, the key element is an integer value that represents a DXF group code. The following shows the syntax of the cons function:
 
 ```c
-/* Create label object */ 
-ex_createLabelObject : dialog { 
-  label = "Create Label Object"; 
-  key = "dlg_layer"; 
-  : popup_list { 
-    // Drop-down list 
-    key = "list_layers"; 
-    label = "Layer to place object on"; 
-  } 
-  : radio_button { 
-    // Circle 
-    key = "opt_circle"; 
-    label = "Circle"; 
-  } 
-  : radio_button { 
-    // Octagon 
-    key = "opt_octagon"; 
-    label = "Octagon"; 
-  } 
-  : button { 
-    // Create object button 
-    key = "btn_create_object"; 
-    action = "create_object"; 
-    label = "Create"; 
-    is_default = "true"; 
-  }
-  cancel_button; // Cancel only button 
-}
+(cons key atom)
 ```
 
-1『
+The arguments are as follows: 1) key. The key argument represents the index or unique identifier for the dotted pair. 2) atom. The atom argument represents the value that you want to associate with the index or unique identifier specified by the key argument.
 
-在 lisp 文件里调用这个 box。
+The following examples show how to create dotted pairs with the cons function, and the values that are returned:
 
 ```c
-; get the current file direction
-(defun c:dcltest (/ dcl_id)
-  (setq dcl_id (load_dialog (strcat "D:\\dataflowcad\\" "dataflow.dcl")))
-  (if (not (new_dialog "ex_createLabelObject" dcl_id))
-    (exit)
-  )
+; Dotted pair with a system variable name as the key and its value 
+(cons "cmdecho" 0) 
+("cmdecho". 0) 
 
-  (start_dialog)
-  (unload_dialog dcl_id)
+; DXF group code 10 with a coordinate value of 0.5,5.5,0 
+(cons 10 (list 0.5 5.5 0.0)) 
+(10 0.5 5.5 0.0) 
+
+; DXF group code 40 with a value of 0.875 
+(cons 40 0.875) 
+(40. 0.875)
+```
+
+You can also use the quote function to create a dotted pair. The following examples show how to create dotted pairs with the quote function, and the values that are returned:
+
+```c
+; Dotted pair with a system variable name as the key and its value 
+'("cmdecho". 0) 
+("cmdecho". 0) 
+
+; DXF group code 10 with a coordinate value of 0.5,5.5,0 
+'(10 0.5 5.5 0.0) 
+(10 0.5 5.5 0.0) 
+
+; DXF group code 40 with a value of 0.875 
+'(40. 0.875) 
+(40. 0.875)
+```
+
+#### 6.1.2 Accessing the Elements of an Entity Data List and Dotted Pair
+
+Accessing the elements of an entity data list and a dotted pair is like accessing the elements of a regular list. Although you can use many of the list-related functions that I discussed in Chapter 14,「Working with Lists,」the AutoLISP assoc function is one of the functions that is frequently used when working with an entity data list. The assoc function is used to return a dotted pair with a specific key element in an entity data list. The following shows the syntax of the assoc function:
+
+```c
+(assoc key edlist)
+```
+
+The arguments are as follows:
+
+key. The key argument represents the key (left) element of a dotted pair and is used as a way to locate a dotted pair within the list specified by the edlist argument. This argument can be a string or integer value.
+
+edlist. The edlist argument represents the list in which you want to look for a dotted pair that contains the key argument as the key element. The first matching dotted pair is returned.
+
+Here is an example that shows how to return the first dotted pair in the entity data list that has a key (left) element of 40:
+
+```c
+; Returns the entity data list of the last object 
+; added to the drawing, which is a circle in this example 
+(setq ed (entget (entlast))) 
+((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0)) 
+
+; Returns the dotted pair with the key element of 40 in the entity data list 
+(assoc 40 ed) 
+(40. 2.0)
+```
+
+I explain the entlast and entget functions in the「Selecting an Individual Object」and「Updating an Object's Properties with an Entity Data List」sections later in this chapter. The AutoLISP car and cdr functions can also be helpful when working with dotted pairs. The car function returns the key element of a dotted pair and the cdr function returns the value.
+
+```c
+; Returns the key element of the dotted pair 
+(car (assoc 40 ed)) 
+40 
+
+; Returns the value of the dotted pair 
+(cdr (assoc 40 ed)) 
+2.0
+```
+
+### 6.2 Adding Objects to a Drawing
+
+Adding objects to a drawing can be done using standard AutoCAD commands with the command or entmake function. The entmake function accepts an entity data list that defines an object to be added to the drawing. All of the properties required to create an object must be contained in the entity data list; otherwise, the object won't be created. The properties required by the object are documented as part of the DXF Reference documentation in the AutoCAD Help system, but you might need to perform some trial and error to develop the proper entity data list that creates a new object.
+
+---
+
+Going Further without Commands
+
+Do you find yourself avoiding tables even though your boss likes the look they provide in drawings? Do you wish tables were more efficient for the type of information you add to them? You're not alone. Most objects can be created and modified using commands at the Command prompt, but tables unfortunately are not among them. AutoLISP can help you out. The AutoCAD table command provides limited functionality to create a table, but it can't be used to populate or modify a table. Using AutoLISP, you can create a table using the entmake function while modifying and populating the table with the entget and entmod functions. Once again, with AutoLISP you have reclaimed part of your day for other tasks, such as working on additional projects or freeing up time to learn more about AutoLISP.
+
+---
+
+For some objects it's easier to determine which properties are required; for example, a circle requires a center point and radius whereas a line requires a start and endpoint. The best way to figure out which properties are required when creating an object is to create a new object in a drawing of the type you want to create with the entmake function. Once the object is created, enter the following code at the AutoCAD Command prompt to see the entity data list associated with the object:
+
+```c
+(entget (entlast))
+```
+
+For example, if you drew a circle with a center point of 5,6.5,0 and a radius of 2.0, the entity data list that is returned might look like this:
+
+```c
+((-1. <Entity name: 7ff773005dc0>) (0. "CIRCLE") 
+ (330. <Entity name: 7ff7730039f0>) (5. "1D4") (100. "AcDbEntity") 
+ (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") 
+ (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+```
+
+In the previous example, the DXF group codes –1, 5, and 330 were automatically generated and assigned to the object. Those DXF group codes shouldn't be part of the entity data list when you create a new object with the entmake function. Table 16.2 describes the DXF group codes –1, 5, and 330.
+
+1-2『这里捡到金子了，教你如何获取用 entmake 函数新建一个实体对象需要哪些必要 `entity data list`。1）在 CAD 图纸里用普通命令画一个实体，或插入一个块实体。2）用命令 `(entget (entlast))` 查看刚刚生成的实体所包含的 `entity data list`。3）扣除掉 DXF group codes 为 -1、5 和 300 的这三个数据。
+
+The DXF group codes 67, 410, 8, and 210 are optional; if they aren't provided as part of the entity data list, AutoCAD uses the current settings and context of the drawing to populate the values of the properties they represent. Table 16.3 describes the DXF group codes 67, 410, 8, and 210.
+
+做一张主题卡片。』——已完成
+
+Table 16.2 Automatically generated DXF group code values
+
+|  DXF group code | Description  |
+|---|---|
+|  -1 |  Ename assigned to the object while the drawing is open in memory; the value changes each time the drawing is opened. |
+|  5 |  Unique handle that is assigned to the object; it's a string value. |
+|  330 |  Pointer to the owner of the object. |
+
+After removing the DXF group codes that are automatically generated, the entity data list looks a bit less cluttered and easier to understand:
+
+```c
+((0. "CIRCLE") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") 
+ (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0) (210 0.0 0.0 1.0))
+```
+
+The DXF group codes 67, 410, 8, and 210 are optional; if they aren't provided as part of the entity data list, AutoCAD uses the current settings and context of the drawing to populate the values of the properties they represent. Table 16.3 describes the DXF group codes 67, 410, 8, and 210.
+
+Table 16.3 Optional DXF group code values
+
+|  DXF group code | Description  |
+|---|---|
+|  67 |  Indicates that the object is in model space (0) or paper space (1) |
+|  410 |  Named layout tab that the object exists on |
+|  8 |  Layer in which the object is placed |
+|  210 |  Extrusion direction of the object |
+
+After removing the DXF group codes that are optional, the entity data list becomes even easier to understand:
+
+```c
+((0. "CIRCLE") (100. "AcDbEntity") (100. "AcDbCircle") (10 5.0 6.5 0.0) (40. 2.0))
+```
+
+The entity data list that now remains with the DXF group codes 0, 100, 10, and 40 represents the entity data needed to create a new circle with the entmake function. For additional information on DXF group code values, search on「DXF entities section」in the AutoCAD Help system. Table 16.4 describes the DXF group codes 0, 100, 10, and 40.
+
+Table 16.4 Required DXF group code values
+
+|  DXF group code | Description  |
+|---|---|
+|  0 |  Entity type. |
+|  100 |  Sub/entity class that the object is based on. Not all objects require these values. If the object doesn't get created without them, add them to the entity data list and the object should be created. |
+|  10 |  Center point of the circle. |
+|  40 |  Radius of the circle. |
+
+Once you have the entity data list that describes the object you want to create, it can then be passed to the entmake function. If the entmake function is able to successfully create the new object, an entity data list is returned. If not, nil is returned. The following shows the syntax of the entmake function:
+
+```c
+(entmake [entlist])
+```
+
+The entlist argument represents the entity data list of the object to be created, and it is an optional argument. The list must contain all required dotted pairs to define the object and its properties. The following examples show how to create an entity data list with the list and cons functions, and then use the resulting list to create an object with the enmake function:
+
+```c
+; Creates a new circle at 2.5,3.5 with a radius of 0.75 
+(setq cenPt (list 2.5 3.5 0.0) rad 0.75) 
+(entmake (list (cons 0 "CIRCLE") (cons 10 cenPt) (cons 40 rad))) 
+; creates a new line from 0,0,0 to 2.5,3.5 
+(setq startPt (list 0.0 0.0 0.0) endPt (list 2.5 3.5 0.0)) 
+(entmake (list (cons 0 "LINE") (cons 10 startPt) (cons 11 endPt)))
+```
+
+Figure 16.1 shows the result of the two previous examples.
+
+Remember that the quote (') function can't evaluate an atom, so you can't use variables in a list that is defined with the quote function. The following examples show how to create an entity data list with the quote function, and then use the resulting list to create an object with the entmake function:
+
+```c
+; Creates a new circle at 2.5,3.5 with a radius of 0.75 (entmake '((0. "CIRCLE") (10 2.5 3.5 0.0) (40. 0.75))) ; creates a new line from 0,0,0 to 2.5,3.5 (entmake '((0. "LINE") (10 0.0 0.0 0.0) (11 2.5 3.5 0.0)))
+```
+
+In addition to using the entmake function, you can create objects with the entmakex function. The difference between the entmake and entmakex function is that an owner isn't assigned to the object created with the entmakex function. Owner assignment primarily affects the creation of nongraphical objects, as all graphical objects are assigned to the current space or named layout.
+
+WARNING: Objects created with the entmake and entmakex functions don't participate in undo recording like objects created with standard AutoCAD commands. Undo recording must be implemented in your function using the undo command, and its suboptions Begin and End. I provide an example of how to group functions into a single undo grouping in Chapter 19,「Catching and Handling Errors.」
+
+TIP: Unless you need to drag an object onscreen, I recommend creating objects with the entmake function since it gives you greater control over the object being created. The entmake function (unlike commands executed with the command function) isn't affected by the current running object snap settings.
+
+This exercise shows how to create a plan view of a machine screw with a slotted round head (see Figure 16.2):
+
+1 Create a new drawing.
+
+2 At the AutoCAD Command prompt, type the following and press Enter to create a new circle that has a center point of 0,0 and radius of 0.4075. 
+
+```c
+(entmake '((0. "CIRCLE") (10 0 0) (40. 0.4075)))
+```
+
+The dotted pair with the DXF group code 10 sets the center point of the circle, and the dotted pair with the DXF group code 40 sets the radius of the circle.
+
+3 Type the following and press Enter to create the two lines that define the top and bottom of the slot in the head of the screw: 
+
+```c
+(entmake '((0. "LINE") (10 -0.18 0.0275) (11 0.18 0.0275))) 
+(entmake '((0. "LINE") (10 -0.18 -0.0275) (11 0.18 -0.0275)))
+```
+
+The dotted pair with the DXF group code 10 sets the start point of the line, and the dotted pair with the DXF group code 11 sets the endpoint of the line.
+
+4 Type the following and press Enter to create the two arcs that define the left and right edges of the slot in the head of the screw: 
+
+```c
+(entmake '((0. "ARC") (10 0.0032 0) (40. 0.1853) (50. 2.99261) (51. 3.29058))) 
+(entmake '((0. "ARC") (10 -0.0032 0) (40. 0.1853) (50. 6.13431) (51. 0.148875)))
+```
+
+The dotted pair with the DXF group code 10 sets the center point, DXF group code 40 sets the radius, DXF group code 50 sets the start angle (in radians), and DXF group code 51 sets the end angle (in radians) for each arc.
+
+Figure 16.2 Plan view of a #12-24 machine screw, slotted round head
+
+### 6.3 Selecting Objects
+
+AutoLISP enables you to step through the objects in a drawing or allow the user to interactively select one or more objects in the drawing area. Based on the selection technique used, an ename is returned; otherwise, a selection set (ssname) is returned that can contain one or more objects.
+
+#### 6.3.1 Selecting an Individual Object
+
+AutoLISP provides two different techniques that can be used to select an individual object within a drawing—through code or via user interaction. When you want to work with the most recent object or step through all of the objects in a drawing, you don't need any input from the user. The AutoLISP functions entlast and entnext can be used to get an individual object without any input from the user. If you do want to allow the user to interactively select an individual object, you can use the entsel and nentsel functions.
+
+2『以上获取实体数据集的方式，做一张任意卡片。』
+
+#### Selecting an Object through Code
+
+The entlast function returns the entity name of the last graphical object added to a drawing and doesn't require any arguments. This function can be helpful in getting the entity name for a new object created with the entmake function.
+
+```c
+; Create an arc with a center point of -1,1, radius of 1.5, 
+; a start angle of 315, and end angle of 135 
+(entmake '((0. "ARC")(10 -1.0 1.0 0.0)(40. 1.5)(50. 5.49779)(51. 2.35619))) 
+((0. "ARC") (10 -1.0 1.0 0.0) (40. 1.41421) (50. 5.49779) (51. 2.35619)) 
+(setq entityName (entlast)) 
+<Entity name: 7ff72292cc10>
+```
+
+The entnext function allows you to traverse a drawing from the first drawn to most recently added graphical object. When entnext is called without an argument, it returns the ename of the oldest graphical object in the drawing. If the function is passed a valid ename, the ename of the object drawn after the one passed to the function is returned. The following shows the syntax of the entnext function:
+
+```c
+(entnext [ename])
+```
+
+The ename argument is optional and represents the entity name of an object. The function returns the name of the next object in the drawing. When no ename argument is provided, the entity name of the first graphical object in the drawing is returned.
+
+The following example code uses the entnext function to step through and list the type of each object in the current drawing:
+
+```c
+; Lists the DXF group code 0 value for each object in the drawing 
+(defun c:listobjects ( / ) 
+  (prompt "\nObjects in this drawing:") 
+  (setq entityName (entnext)) 
+  (while entityName 
+    (prompt (strcat "\n" (cdr (assoc 0 (entget entityName))))) 
+    (setq entityName (entnext entityName)) 
+  ) 
+  (princ) 
 )
+
+Objects in this drawing: 
+CIRCLE 
+DIMENSION 
+DIMENSION 
+INSERT 
+ATTRIB 
+SEQEND 
+CIRCLE 
+VIEWPORT 
+VIEWPORT 
+CIRCLE 
+DIMENSION 
+ARC
 ```
 
-』
+The previous example used the entget function to return an entity data list of an object. I explain how to use this function later, in the「Updating an Object's Properties with an Entity Data List」section.
 
-In addition to the tiles listed in Table 23.2, DCL makes use of tile subassemblies. Tile subassemblies are used to provide common arrangements of exit buttons. Table 23.4 shows several of the available tile subassemblies that can be used in a dialog tile. You can view the names of the subassemblies in the base.dcl file located in the AutoCAD Support folder. A subassembly ends with a semicolon, as shown in Listings 23.1 and 23.2. You can't change the attribute values of a subassembly provided by AutoCAD, but you can re-create a subassembly with different attribute values in your own DCL files. Use the syntax found in the base.dcl file as the basis for your new subassembly code. The base.dcl file can be found in the AutoCAD support-file search path by entering (findfile "base.dcl") at the Command prompt.
+1-2『这个例子看下来后，entlast、entnext 还有 entget 这几个函数结合起来可以做好多事，特别是 entnext 的用法灵活性很大。比如自动生成辅助流程里，又想到一个思路：1）先直接使用 entlast 获取图纸里的最后一个实体名保存下来。2）批量插入辅助流程组件块后，通过刚刚最后一个实体名外加 entnext 函数，可以获得所有批量插入的块的实体名列表。3）根据这个实体名列表批量修改属性值，这样又跟以前开发好的功能对接上了。把上面信息合并到「获取实体数据集的方式」任意卡里。』——已完成
 
-Table 23.4 Tile subassemblies
+#### Selecting an Object Interactively
 
-|  Tile Subassembly | Description  |
-|---|---|
-|  cancel_button |  Cancel only button |
-| ok_button  |  OK only button  |
-| ok_cancel  |  OK and Cancel buttons |
-| ok_cancel_help_   | OK, Cancel, and Help buttons  |
+The user can select a single object in the drawing area using the entsel and nentsel functions. The entsel function returns a list of two values: the entity name of the object selected and the center point of the pick box when the object was selected. nil is returned by the entsel function if an object isn't selected as the result of either the user picking in an empty area of the drawing or pressing Enter.
 
-#### 13.2.3 Grouping, Aligning, and Laying Out Tiles
+The nentsel function is similar to entsel except that nentsel allows you to select a subentity within an object, such as an old-style polyline, dimension, or block. When a subentity in an object is selected with the nentsel function, a list of four elements is returned (in this order): 1) The entity name of the subentity. 2) The point picked in the drawing. 3) A transformation matrix for the subentity. 4) The entity name of the parent object of the subentity.
 
-Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
-
-1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』——已完成
-
-#### Grouping Tiles into Clusters
-
-Grouping tiles into a cluster allows you to better control how they are aligned or organized in the dialog box, in addition to controlling which `radio_button` tiles are related to each other. A cluster tile must be used to restrict the choice of multiple `radio_button` tiles in a dialog box so only one option button can be selected at a time. Tiles can be grouped into columns and rows with or without a visual grouping box. Table 23.5 lists and describes the cluster tiles that can be used to group tiles.
-
-Table 23.5 Cluster tiles
-
-|  Tile Name | Description  |
-|---|---|
-| boxed_column  | Groups tiles into a column and draws a box with a label around the tiles.  |
-|  boxed_radio_column | Groups related radio_button tiles into a column and draws a box with a label around the tiles; tiles are treated as exclusive to each other.  |
-| boxed_radio_row  | Groups related radio_button tiles into a row and draws a box with a label around the tiles; tiles are treated as exclusive to each other.  |
-| boxed_row  |  Groups tiles into a row and draws a box with a label around the tiles. |
-| column   | Groups tiles into a column; no grouping box is drawn around the tiles.  |
-|  radio_column | Groups related radio_button tiles into a column; tiles are treated as exclusive to each other. No grouping box is drawn around the tiles.  |
-| radio_row  | Groups related radio_button tiles into a row; tiles are treated as exclusive to each other. No grouping box is drawn around the tiles.  |
-| row  | Groups tiles into a row; no grouping box is drawn around the tiles.  |
-
-Listing 23.3 shows a revised version of the DCL syntax shown in Listing 23.2. The revised syntax uses the `boxed_radio_column` and `row` cluster tiles to group tiles. Figure 23.3 shows what the dialog box would look like if displayed in the AutoCAD drawing environment using AutoLISP.
-
-Listing 23.3: Create Label Object dialog box with cluster tiles
+The following shows the syntax of the entsel and nentsel functions:
 
 ```c
-/* Create label object */ 
-ex_createLabelObject : dialog { 
-  label = "Create Label Object"; 
-  key = "dlg_layer"; 
-  : popup_list { 
-    // Drop-down list 
-    key = "list_layers"; 
-    label = "Layer to place object on"; 
-  } 
-  : boxed_radio_row { 
-    label = "Shape"; 
-    : radio_button { 
-      // Circle 
-      key = "opt_circle"; 
-      label = "Circle"; 
-      } 
-    : radio_button { 
-      // Octagon 
-      key = "opt_octagon"; 
-      label = "Octagon"; 
-      } 
-    } 
-  
-  : row { 
-    : button { 
-      // Create object button 
-      key = "btn_create_object"; 
-      action = "create_object"; 
-      label = "Create"; 
-      is_default = "true"; 
-    } 
-    cancel_button; 
-  } 
-}
+(entsel [prompt]) 
+(nentsel [prompt])
 ```
 
-#### Aligning and Sizing Tiles
-
-When a dialog box is displayed, tiles have a default alignment and size assigned to them. In most cases, a tile's size is based on the label text that it is assigned, or the width of the dialog box or cluster tile that it is placed within. Table 23.6 describes the tile attributes that can be used to control the alignment and size of the tiles in a dialog tile.
-
-Table 23.6 Attributes used with aligning and sizing tiles
-
-|  Attribute | Supported Tile(s)  | Description   |
-|---|---|---|
-| alignment  | All tiles  | Horizontal or vertical alignment of a tile  |
-| children_alignment |  column, row, boxed_row, boxed_column, boxed_radio_column, boxed_radio_row, radio_column, and radio_row  |  Overrides the horizontal or vertical alignment for all tiles contained in a cluster tile |
-| children_fixed_height | column, row, boxed_row, boxed_column, boxed_radio_column, boxed_radio_row, radio_column, and radio_row  | Overrides the fixed height for all tiles contained in a cluster tile  |
-| children_fixed_width | column, row, boxed_row, boxed_column, boxed_radio_column, boxed_radio_row, radio_column, and radio_row  |  Overrides the fixed width for all tiles contained in a cluster tile |
-| edit_width |  edit_box and popup_list  |  Width of the input field, not the tile  |
-| fixed_height  |  All tiles |  Absolute height of a tile  |
-| fixed_width  |  All tiles  |  Absolute width of a tile  |
-| height |   All tiles | Minimum height of a tile; might increase when the dialog box is displayed  |
-| width |   All tiles |  Minimum width of a tile; might increase when the dialog box is displayed |
-
-To see which values an attribute supports, search on the keywords「programmable dialog box reference」in the AutoCAD Help system.
-
-In addition or as an alternative to using tile attributes, spacer tiles can be used to increase the space between tiles. Table 23.7 lists and describes the spacer tiles that can be used to align tiles and control tile size.
-
-Table 23.7 Spacer tiles
-
-|  Tile Name | Description  |
-|---|---|
-| spacer  | Inserts a gap of the specified size in the horizontal or vertical direction; the direction that the gap is created in is defined by how the tile is clustered with other tiles.  |
-| spacer_0  | Inserts a gap that restricts the distribution or automatic resizing of tiles to the left or above the spacer tile.  |
-| spacer_1  | Inserts a gap of one unit wide by one unit high.  |
-
-Listing 23.4 shows a revised version of the DCL syntax shown in Listing 23.3. The revised syntax uses the `edit_width` attribute to size the `popup_list` tile, the `fixed_width` and alignment attributes on the row tile, the width attribute for the button tile, and a spacer tile to control the alignment and sizing of the tiles in the dialog box. Figure 23.4 shows what the dialog box would look like if displayed in the AutoCAD drawing environment using AutoLISP.
-
-Listing 23.4: Aligning and sizing tiles in the Create Label Object dialog box
+The prompt argument is optional and represents the message (a string) that should be displayed to the user when they are asked to select an object. If a prompt is not provided, the default prompt message of Select object: is displayed. The following examples show how to select an object with the entsel function:
 
 ```c
-/* Create label object */ 
-ex_createLabelObject : dialog { 
-  label = "Create Label Object"; 
-  key = "dlg_layer"; 
-  : popup_list { 
-    // Drop-down list 
-    edit_width = 10; 
-    key = "list_layers"; 
-    label = "Layer to place object on"; 
-  } 
-  : boxed_radio_row { 
-    label = "Shape"; 
-    : radio_button { 
-      // Circle 
-      key = "opt_circle"; 
-      label = "Circle"; 
-      } 
-      : radio_button { 
-        // Octagon 
-        key = "opt_octagon"; 
-        label = "Octagon"; 
-      } 
-  } 
-  : row { 
-    fixed_width = true; 
-    alignment = right; 
-    : button { 
-      // Create object button 
-      key = "btn_create_object"; 
-      action = "create_object"; 
-      label = "Create"; 
-      is_default = "true"; 
-      width = 12; 
-    } 
-    : spacer { 
-      width = 1; 
-    } 
-    cancel_button; 
-  }
-}
+; Prompts the user to select an individual object 
+(setq entlist (entsel "\nSelect an object: ")) 
+(<Entity name: 7ff72292cc10> (-0.75599 2.48144 0.0)) 
+
+; Uses the car function to get the entity name returned by entsel 
+(setq entityName (car entlist)) 
+<Entity name: 7ff72292cc10> 
+
+; Uses the cadr function to get the coordinate value returned by entsel 
+(setq pickPoint (cadr entlist)) 
+(-0.75599 2.48144 0.0)
 ```
 
-#### 13.2.4 Creating and Previewing a Dialog in a DCL File
+#### 6.3.2 Working with Selection Sets
 
-You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
+A selection set, sometimes known as a selection set name or ssname for short, is a temporary container that holds a reference to objects in a drawing. AutoLISP represents a selection set with the PICKFIRST data type. You get a selection set, commonly based on the objects in a drawing that the user wants to modify or interact with. For example, when you see the Select objects: prompt AutoCAD is asking you to select the objects in the drawing you want to work with and it gets a selection set containing the objects you selected in return.
 
-1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』——已完成
+In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
 
-The Visual LISP Editor makes it easy to create, modify, and preview a DCL file. When a DCL file is open and in the current window of the editor, you can click Tools Interface Tools Preview in DCL Editor to preview the dialog box. A dialog box allows you to specify which dialog in the DCL file to preview. The Visual LISP Editor sends some AutoLISP code to the AutoCAD Command prompt and displays the dialog box. Click Cancel or another tile to close the dialog box and return to the Visual LISP Editor.
+2『选择集的概念做一张术语卡片。』——已完成
 
-NOTE: The DCL Preview feature requires you to have full read/write access to the AutoCAD installation folder. If you don't have those permissions, you will need to request them from your company's IT department or adjust the permissions yourself using the User Account settings through the Windows Control Panel.
+#### Creating a Selection Set
 
-In this exercise, you will create a DCL file based on the dialog box defined in Listing 23.4 and then preview it using the Visual LISP Editor:
+The most common way to create a selection set is to simply prompt the user to select objects in the drawing. The entsel and nentsel functions allow you to select a single object, but typically you will want to allow the user to select more than one object at a time. The ssget function allows the user to interactively select objects in a drawing using the selection methods that are commonly available at the Select objects: prompt. The ssget function can also be used to create a selection set without any user input. The ssget function returns a PICKSET value if at least one object was selected or returns nil if no objects were selected.
 
-1. In AutoCAD, click the Manage tab Applications panel Visual LISP Editor.
+NOTE: Unlike the entsel and nentsel functions, the ssget function doesn't have a prompt argument. If you want a lead-in to the Select objects: prompt that ssget displays, you will need to display one with the prompt or princ function.
 
-2. In the Visual LISP Editor, click File New File.
+The following shows the syntax of the ssget function:
 
-3. Click File Save As.
-
-4. In the Save-as dialog box, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store DCL files.
-
-5. In the File Name text box, type ex_createLabelObject.
-
-6. Click the Save As Type drop-down list and choose DCL Source Files.
-
-7. Click Save.
-
-8. In the text editor window, type the following:
-
-    ```c
-    Listing 23.4
-    ```
-
-9. Click File Save.
-
-10. Click Tools Interface Tools Preview DCL In Editor.
-
-11. In the Enter The Dialog Name dialog box, click OK. That dialog box lists all the dialog-box definitions in the DCL file that is open in the editor.
-
-12. Review the dialog box and click any control to return to the Visual LISP Editor. The dialog box you create should look like the one shown earlier, in Figure 23.4.
-
-### 13.3 Loading and Displaying a Dialog Box
-
-The Visual LISP Editor makes it easy to preview a dialog box, but it doesn't allow you to interact with the tiles on the dialog box. A DCL file must be loaded and displayed with AutoLISP to enable user interaction. When a dialog box is being loaded, you can set the initial values of each tile and specify the enabled state of each tile. If your dialog box contains any list\_box, popup\_list, image, or image\_button tiles, you might have to perform some initialization tasks for these tiles. (I cover those tasks in the「Initializing Tiles」section later in this chapter.)
-
-#### 13.3.1 Loading and Unloading a DCL File
-
-A DCL file must be loaded into the AutoCAD drawing environment before you can display one of the dialog-box definitions in the file. The `load_dialog` function loads a DCL file and returns a random integer value that represents a DCL file ID. A positive DCL file ID value indicates that the DCL file was located in the AutoCAD support-file search paths specified in the Options dialog box and was successfully loaded; a negative value notifies you that the DCL file wasn't located and loaded.
-
-The following shows the syntax of the load_dialog function:
-
-```
-(load_dialog dcl_filename)
+```c
+(ssget [method] [point1 [point2]] [points] [filter])
 ```
 
-The `dcl_filename` argument that the `load_dialog` function expects is a string that represents the path to and the filename of the DCL file you want to load. I recommend placing DCL files in the AutoCAD support-file search paths. When you do so, only the filename needs to be specified, making it easier to move the files on your network if needed.
+Here are the arguments:
 
-Here is an example that loads a DCL file named ex\_createLabelObject.dcl with the load\_dialog function and the return of the DCL file ID, in this instance a value of 101. You should always store the DCL file ID in a variable so that you can display and unload a dialog box defined in the DCL file. The DCL file was created as part of the exercise in the「Creating and Previewing a Dialog in a DCL File」section earlier in this chapter.
+method. The method argument is optional and represents the selection method that should be used to create the selection set. Many of the selection methods available are similar to those found at the Select objects: prompt, but additional ones are available from AutoLISP. Table 16.5 lists some of the common selection methods available; for a full list of options search on「ssget」in the AutoCAD Help system.
 
+point1. The point1 argument is an optional point list that is used to select the topmost object in the draw order at the specified point. This argument is also used to specify the first corner of a crossing window or window selection.
+
+point2. The point2 argument is an optional point list that is used to specify the second point for the crossing window or window selection.
+
+points. The points argument is an optional list that contains several point lists; it is used to specify the points of a fence, crossing polygon, or window polygon selection.
+
+filter. The filter argument is an optional association list that is similar to an entity data list, but it can also include comparison and grouping operators. Later in this chapter I explain how to create and use selection-set filters; see the sections「Filtering Selected Objects」and「Selecting Objects Based on XData.」
+
+Table 16.5 ssget selection methods
+
+|  Selection method | Description  |
+|---|---|
+|  C |  Crossing window selection |
+|  CP |  Crossing polygon selection |
+|  L |  Last object selection |
+|  P |  Previous selection set |
+|  W |  Window selectio |
+|  WP |  Window polygon selection |
+|  X |  All entities in the database; locked and frozen also |
+|  :S |  Single object selection |
+ 
+The following examples show how to select objects with the ssget function; the returned values will vary based on the drawing you have open. Open a drawing with some objects in it before trying these examples:
+
+```c
+; Freely lets the user to select objects 
+(setq ss (ssget)) 
+Select objects: Specify the first corner of the selection window Specify opposite corner: 
+Specify a second point to define the selection window 
+7 found Select objects: 
+Press Enter to end object selection 
+<Selection set: 4d> 
+
+; Freely lets the user to select a single object 
+(setq ssPt (ssget "_:S")) 
+<Selection set: 1cd> 
+
+; Selects the last object drawn at 0,0,0 
+(setq ssPt (ssget '(0 0 0))) 
+<Selection set: a9> 
+1 found Select objects: 
+
+; Selects all objects that intersect 0,0,0 and not just the topmost object 
+(setq ssC (ssget "_C" '(0 0 0) '(0 0 0))) 
+<Selection set: be> 
+3 found Select objects: 
+
+; Selects objects with fence selection crossing (0,0), (0,6), (12,9), and (12,0) 
+(setq ssF (ssget "_F" '((0 0)(0 6)(12 9)(12 0))))
+ <Selection set: 190>
 ```
-(setq id (load_dialog "ex_createLabelObject.dcl")) 
-// out
-101
+
+TIP: A limited number of selection sets can exist in memory while a drawing remains open; a total of 128 selection sets can be active at one time—the number of selection sets that have been created and assigned to different variables without the variable being set back to nil. Once this limit is reached, no new selection sets can be created. I recommend defining any variables that are assigned a selection set as being local to a function, except when you may need to access a selection set across multiple functions. It is always better to pass values and selection sets to a function than to rely on global variables. If you use global variables for selection sets, you should set all variables to nil when they are no longer needed in order to remove them from memory.
+
+The ssget function also supports implied selection with the I selection method. Just like many AutoCAD commands, such as move and copy, implied selection allows a user to select objects before starting your custom program. If no objects are selected when you use the statement `(ssget "_I")`, the ssget function returns nil. You can then test for the nil return value, and if nil is returned, you can prompt the user to select objects.
+
+In addition to using the ssget function to get the objects selected with implied selection, you can use the ssgetfirst function to select objects that have their grips displayed. Grips are displayed only when no custom program or command is active and the user selects objects in the drawing area. The ssgetfirst function returns a list of two elements. The first element always returns nil in recent releases, but in earlier releases it returned a pickfirst value that represented the objects that displayed grips and weren't selected. The second element returns a pickfirst value that represents any objects that are currently selected and have their grips displayed. The ssgetfirst function doesn't accept any arguments.
+
+While the ssgetfirst function is used to get objects that are currently selected and have their grips displayed, you can use the sssetfirst function to select and display the grips for specific objects. The following shows the syntax of the sssetfirst function:
+
+```c
+(sssetfirst gripset [pickset])
 ```
 
-The `unload_dialog` function unloads a dialog box definition from memory; the particular dialog is identified by the DCL file ID that was returned by the `load_dialog` function. The DCL file ID changes each time the DCL file is loaded, and the value returned should be stored in a variable until the dialog box is no longer needed in the current drawing session. A dialog box can be loaded more than once; each time a dialog box is loaded, a new instance of the dialog box is stored in memory until it is unloaded. The following shows the syntax of the `unload_dialog` function:
+Here are the arguments:
 
-```
-(unload_dialog dcl_file_id)
-```
+gripset. The gripset argument no longer affects the outcome of the sssetfirst function. In earlier releases, this argument required a pickset value that would be used to display the grips of objects but not select them. In recent releases, nil should always pass this argument.
 
-The dcl\_file\_id argument that the `unload_dialog` function expects is the same value that was returned by the `load_dialog` function. The `unload_dialog` function always returns a value of nil, and that value has no significant meaning; successfully or unsuccessfully unloading the dialog box results in the same value of nil. Here is an example of the `unload_dialog` function:
+pickset. The pickset argument is optional and must be a pickfirst value that contains the objects that should be selected and have their grips displayed.
 
-```
-(unload_dialog id) 
-// out
+The following examples show how to select and display the grips for the last object in a drawing with the sssetfirst function:
+
+```c
+; Creates a line object that is drawn from 0,0 to -5,5 with a color of red 
+(entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) 
+((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62 . 1)) 
+
+; Displays grips for and selects the line that was added 
+(sssetfirst nil (ssget "L")) 
+(nil <Selection set: 353>) 
+
+; Erases the object with grips displayed 
+(command "._erase" (cadr (ssgetfirst)) "") 
 nil
 ```
 
-#### 13.3.2 Displaying a Dialog
+NOTE: The ssnamex function can be used to get information about how the objects in a selection set were added, as well as how the selection set was created. This includes selection sets created with the ssget, ssgetfirst, and ssadd functions. The value returned by the ssnamex function is a list. For more information on the ssnamex function, search on「ssnamex」in the AutoCAD Help system.
 
-After a DCL file has been loaded, an instance of a dialog box contained in the loaded DCL file can be created and displayed with the `new_dialog` function. The `new_dialog` function is also used to specify a default action for all interactive tiles that don't have an action assigned to them, and the onscreen display location. The `new_dialog` function returns T if the dialog box was successfully created, or it returns nil if the dialog box couldn't be created. The following shows the syntax of the `new_dialog` function:
+1『汇总：1）上面的有关 `ssgetfirst` 的代码没弄懂其应用场景。2）`ssnamex` 的应用场景也没 get 到，它跟 `ssname` 的功能有啥区别呢，看官方文档都是通过 index 获取一个选择集里某个实体对象的名称。（2020-10-30）』
 
-```
-(new_dialog dialog_name dcl_file_id [action [point]])
-```
+#### Managing Objects in a Selection Set
 
-Here are its arguments:
+After the user has been prompted to select objects, the resulting selection set can be revised by adding or removing objects. Objects that aren't in the selection set but are in the drawing can be added to the selection set using the ssadd function. If the user selected an object that shouldn't be in the selection set, it can be removed using the ssdel function. The ssadd and ssdel functions return the selection set that they are passed if the function was successful; otherwise, the function returns nil.
 
-1. dialog\_name. The dialog\_name argument is a case-sensitive string that specifies the unique name of the dialog to create an instance of from the DCL file specified by the dcl\_file\_id argument. The value must exactly match the name applied to the dialog tile and is case sensitive.
+NOTE: In addition to adding objects to a selection set with the ssadd function, you can use the function to create a new selection set without user interaction.
 
-2. dcl\_file\_id. The dcl\_file\_id argument that the new\_dialog function expects is the value that was returned by the load\_dialog function.
-
-3. action. The action argument is an optional string that represents an AutoLISP expression. This expression is applied to the action attribute of all interactive tiles that aren't assigned an action as part of the DCL file; the function is executed when the tile is clicked. Provide "" when you want to specify the point argument but no default action.
-
-4. point. The point argument is an optional 2D point list that represents the onscreen location of the dialog box's upper-left corner. The dialog box is centered by default and can be specified with a value of ‘(-1 -1). The upper-left corner of the screen is 0,0.
-
-Once an instance of a dialog box has been created with the `new_dialog` function, the `start_dialog` function must eventually be called. The `start_dialog` function informs AutoCAD that the dialog box is ready for user interaction. Before `start_dialog` is executed, you should make sure that all initial default values and enabled states have been specified. The next section explains how to set the default values for and specify the enabled state of tiles, as well as initialize lists and images.
-
-1『
-
-数据流的源码如下：
-
-
-』
-
-The `start_dialog` function doesn't accept any arguments and returns a status value based on how the user exited the dialog box. A status value of 1 generally means the user clicked OK or a similar button, whereas a value of 0 indicates the user clicked Cancel or the Close button. The status value returned by a tile is determined by the value passed to the `done_dialog` function. I cover the `done_dialog` function later in this chapter, in the「Terminating or Closing a Dialog Box」section. You don't need to worry about executing the `done_dialog` function if you use one of the tile subassemblies that contains the OK or Cancel button mentioned earlier, in the「Adding Tiles」section.
-
-The following example code shows how to load and unload a DCL file, and then create and display a dialog box. `ex_createLabelObject.dcl` is the name of the DCL file that will be loaded. The dialog box definition name is `ex_createLabelObject`. Although in this example the DCL file and dialog name are the same, they don't need to be. I recommend having one dialog box per DCL file and using the same name, but that is just a personal preference.
+Normally when an object is selected in the drawing, it is added to a selection set once, as duplicate entries aren't allowed. Before adding an object to a selection set with the ssadd function, you can determine if an object is already present in a selection set with the ssmemb function. Duplicate objects in a selection set isn't a problem, but it could cause an issue if your program is extracting information from a drawing or could result in your program taking longer to complete. The ssmemb function returns the ename of the object if it is present in the selection set; otherwise, the function returns nil. The following shows the syntax of the ssadd, ssdel, and ssmemb functions:
 
 ```c
-; Define a function named createlabelobject 
-(defun c:createlabelobject (/ dialog_name id) 
-  (setq dialog_name "ex_createLabelObject") 
-  ; Load the DCL file named ex_createLabelObject.dcl 
-  (setq id (load_dialog (strcat dialog_name ".dcl"))) 
-  ; Create a new instance of the dialog named ex_createLabelObject 
-  ; in the center of the screen 
-  (new_dialog dialog_name id "" '(-1 -1)) 
-  ; Perform additional tasks here 
-  ; 1. Set default values for tiles here with the set_tile function 
-  ; 2. Set up lists and images here 
-  ; 3. Assign actions here for tiles with the action_tile function 
-  ; 4. Get information about a tile with get_tile as part of the 
-  ;   action assigned with action_tile 
-  ; 5. Terminate the dialog box with the done_dialog function as 
-  ;   part of the action assigned with action_tile 
-  ; Display the dialog box and get the exit status 
-  (setq status (start_dialog)) 
-  ; Unload the DCL file from memory 
-  (unload_dialog id) 
-  ; Display a custom message based on the exit status of the dialog 
-  (if (= status 1) 
-    (alert "User clicked Create.") 
-    (alert "User clicked Cancel.") 
-  ) (princ) 
+(ssadd ename [ss]) 
+(ssdel ename ss) 
+(ssmemb ename ss)
+```
+
+The arguments are as follows:
+
+ename. When used with the ssadd or ssdel function, the ename argument represents the entity name that should be added to or removed from the selection set. When used with the ssmemb function, the ename argument specifies a particular ename to check for in the selection set.
+
+ss. When you want to add, remove, or check for the existence of an entity name in a selection set, the ss argument specifies the selection set for the operation. The ss argument is optional for the ssadd function.
+
+The following examples show how to add and remove objects in a selection set using the ssadd, ssdel, and ssmemb functions:
+
+```c
+; Create a line object 
+(entmake '((0. "line")(10 0.0 0.0)(11 -5.0 5.0)(62. 1))) 
+((0. "line") (10 0.0 0.0) (11 -5.0 5.0) (62. 1)) 
+
+; Add the line to the selection set 
+(setq ss1 (ssadd (entlast) ss1)) 
+<Selection set: a1> 
+
+; Determine if the last graphical entity is in the selection set 
+(ssmemb (entlast) ss1) 
+<Entity name: 7ff6a1704f00> 
+
+; Remove the last entity from the selection set 
+(ssdel (entlast) ss1) 
+<Selection set: a1> 
+
+; Determine if the last graphical entity is in the selection set 
+(ssmemb (entlast) ss1) 
+nil
+```
+
+#### Stepping through a Selection Set
+
+Selection sets contain the objects the user selected in the drawing for query or modification and might include one to several thousand objects. You can use the repeat or while looping functions in combination with the sslength and ssname functions to step through and access each object in a selection set. The sslength function returns the number of objects in a selection set as an integer, whereas the ssname function is used to return the entity name of an object located at a specific index within a selection set. The index of the first object in a selection set is 0. As part of a looping statement, you increment an integer value by 1 to get the next object until you reach the last object in the selection set. If an object isn't at the specified index in a selection set when using the ssname function, nil is returned. The following shows the syntax of the sslength function:
+
+```c
+(sslength ss)
+```
+
+The ss argument represents the selection set from which you want to get the number of objects.
+
+The following shows the syntax of the ssname function:
+
+```c
+(ssname ss index)
+```
+
+Its arguments are as follows:
+
+ss. The ss argument represents the selection set from which you want to get an entity name at a specific index.
+
+index. The index argument represents the location within the selection set specified by the ss argument that has the object you want to get. 0 is the index of the first object in the selection set.
+
+The following examples show how to get the number of objects in a selection set and get an object from a selection set with the sslength and ssname functions:
+
+```c
+; Get a selection set 
+(setq ssNew (ssget)) 
+Select objects: Specify the first corner of the object-selection window 
+Specify opposite corner: Specify the other corner of the object-selection window 
+9 found 
+Select objects: Press Enter to end object selection 
+<Selection set: 13> 
+
+; Output the number of objects in a selection set 
+(prompt (strcat "\nSelection set length: " 
+(itoa (sslength ssNew))))(princ) 
+Selection set length: 9 
+
+; Get the entity name of the first object in the selection set 
+(ssname ssNew 0) 
+<Entity name: 7ff63f005d90>
+```
+
+This exercise shows how to create and step through a selection set:
+
+1 Open a drawing with some objects, or create a new drawing and then add some objects to the drawing.
+
+2 At the AutoCAD Command prompt, type the following and press Enter to create a selection set and assign it to the sset variable:
+
+```c
+(prompt "\nSelect objects to list: ") 
+(setq sset (ssget))
+```
+
+3 Type the following and press Enter to create a new circle and then add the new circle to the selection set: 
+
+```c
+(entmake '((0. "circle") (10 0.0 0.0) (40. 2))) 
+(if (= (ssmemb (entlast) sset) nil) 
+  (setq sset (ssadd (entlast) sset)) 
 )
 ```
 
-#### 13.3.3 Initializing Tiles
+While the circle shouldn't be part of the objects you selected, the code shows how to use a comparison to test the results of the ssmemb function. The new object is added only if it isn't already part of the selection set.
 
-You can manipulate the interactive tiles of a dialog tile in a DCL file once you create an instance of a dialog box in memory by using the `new_dialog` function. You use the value of the key attribute to reference a tile of a dialog box. Once you have a tile's key, you can set the default value of a tile, set the tile's enabled state, populate items in the list of a `list_box` or `popup_list` tile, or assign a slide to an image or `image_button` tile.
-
-#### Setting the Default Value of an Interactive Tile
-
-When you use a dialog box, have you ever noticed that it often remembers the previously entered values or that values change based on the controls you interact with? You can assign a default value to a tile by using the value attribute in a DCL file or change the default value before a dialog box is displayed by using the `set_tile` function.
-
-I recommend setting the default value of a tile using the `set_tile` function, considering it is good practice to restore previously entered values each time the dialog box is redisplayed. The `set_tile` function can also be used to change the value of a tile when the user interacts with a tile while the dialog box is displayed. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section later in this chapter.
-
-The following shows the syntax of the set_tile function:
+4 Type the following and press Enter to display the number of objects in the selection set:
 
 ```c
-(set_tile key val)
+(prompt (strcat "\nObjects in selection set: " 
+(itoa (sslength sset))))(princ)
 ```
 
-Here are its arguments:
-
-key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
-
-val. The val argument is the string value you want to assign to the tile. An alphanumeric string can be assigned to an `edit_box` tile, whereas an integer formatted as a string can be assigned to a `list_box`, `popup_list`, toggle, `radio_button`, or slider tile. The first item in the list of a `list_box` or `popup_list` tile is 0, the second is 1, and so on.
-
-1『注意啊，tile 的值都是字符串。（2020-10-09）』
-
-The following code shows how to set a value of 1, which means true, to a tile with the key of `opt_circle` using the `set_tile` function. The key `opt_circle` refers to the Circle `radio_button` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+5 Type the following and press Enter to change the color of each object in the selection set: 
 
 ```c
-(set_tile "opt_circle" "1")
+(setq cnt 0 clr 1) 
+(while (> (sslength sset) cnt) 
+  (command "._change" (ssname sset cnt) "" "_p" "_c" clr "") 
+  (setq cnt (1+ cnt)) 
+  (setq clr (1+ clr)) 
+  (if (> clr 9) 
+    (setq clr 1)
+  ) 
+)(princ)
 ```
 
-NOTE: The `set_tile` function can't be executed until after the `new_dialog` function has been executed. Execute the `set_tile` function before the `start_dialog` function to ensure that the tile is updated before the dialog box is displayed.
+The colors assigned to the objects range from ACI 1 through 9, and reset back to 1 when the counter reaches 10.
 
-1『所以，设置默认值，应该在 `new_dialog` 之后以及 `start_dialog` 之前。（2020-10-09）』
+1『上面的代码目前没怎么看明白。（2020-10-30）』
 
-#### Enabling and Disabling an Interactive Tile
+#### 6.3.3 Filtering Selected Objects
 
-The tiles of a dialog box are all enabled by default, meaning the user can click or enter text in any interactive tile of a dialog box. The `is_enabled` attribute of a tile controls the tile's default enabled state. When `is_enabled` is set to false, the user is unable to interact with the tile when the dialog box is displayed. The enabled state of a tile can be changed using the `mode_tile` function.
-
-I recommend setting the enabled state of a tile using the mode_tile function and not the is_enabled attribute. The main reason for doing so is because the disabling of a tile is often based on the condition of other tiles or choices made by the user in the dialog box. I discuss how to handle user interaction with tiles in the「Interacting with and Responding to a User」section.
-
-1『作者建议 `mode_tile` 来设置 tile 的激活状态，不用用 tile 自身的属性 `is_enabled` 来设置，记住这点。（2020-10-09）』
-
-The following shows the syntax of the `mode_tile` function:
+When selecting objects with the ssget function, you can control which objects are added to the selection set. A selection filter allows you to select objects of a specific type or even objects with certain property values. Selection filters are made up of dotted pairs and are similar to an entity data list. For example, the following selection filter will select all circles on the layer holes:
 
 ```c
-(mode_tile key mode)
+'((0 . "circle")(8 . "holes"))
 ```
 
-Here are its arguments:
+As I mentioned earlier, the DXF group code 0 represents an object's name and the DXF group code 8 represents the name of the layer an object is placed on.
 
-key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
-
-mode. The mode argument is an integer value that specifies the mode that should be applied to the tile. Table 23.8 lists the available modes that can be applied to a tile.
-
-Table 23.8 Modes available for use with `the mode_tile` function
-
-|  Mode | Description  |
-|---|---|
-| 0 | Enables an interactive tile |
-| 1 | Disables an interactive tile |
-| 2 | Sets focus to an interactive tile |
-| 3 | Selects the text in an edit_box tile |
-| 4 | Toggles highlighting for an image tile |
-
-The following code shows how to disable and then enable a tile with the key of `opt_circle` using the `mode_tile` function. The key `opt_circle` refers to the Circle `radio_button` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
+In addition to object names and properties, a selection filter can include logical grouping and comparison operators to create complex filters. Complex filters can be used to allow for the selection of several object types, such as both text and mtext objects, or allow for the selection of circles with a radius in a given range. Logical grouping and comparison operators are specified by string values with the DXF group code -4. For example, the following selection filter allows for the selection of circles with a radius in the range of 1 to 5:
 
 ```c
-; Disables tile 
-(mode_tile "opt_circle" 1) 
-; Enables tile 
-(mode_tile "opt_circle" 0)
+'((0 . "circle") 
+  (-4 . "<and") 
+    (-4. "<=") (40. 5.0) 
+    (-4. ">=") (40. 1.0) 
+  (-4. "and>")
+)
 ```
 
-NOTE: The `mode_tile` function can't be executed until after the `new_dialog` function has been executed. Execute the `mode_tile` function before the `start_dialog` function to ensure that the tile is updated before the dialog box is displayed.
+Selection filters support four logical grouping operators: and, or, not, and xor. Each logical grouping operator used in a selection filter must have a beginning and an ending operator. Beginning operators start with the character `<` and ending operators end with the character `>`. In addition to logical operators, you can use seven different comparison operators in a selection filter to evaluate the value of a property: = (equal to), != (not equal to), < (less than), > (greater than), <= (less than or equal to), >= (greater than or equal to), and * (wildcard for string comparisons).
 
-#### Populating the Items of a `list_box` or `popup_list` Tile
+3『
 
-The `list_box` and `popup_list` tiles allow the user to select one or more predefined values from a list. The items available in the list of the two tiles can be specified using the tile's list attribute or AutoLISP functions. The `start_list` function is used to assign, update, or replace the list of values applied to a `list_box` or `popup_list` tile. When a list can be modified, the `start_list` function returns the name of the list; otherwise the function returns nil, indicating the list isn't accessible for modification. Typically, a list isn't available for modification because you provided an incorrect key to the `start_list` function or the function was called before the execution of the `new_dialog` function.
-
-The following shows the syntax of the `start_list` function:
+自己数据流里筛选 SS 的代码：
 
 ```c
-(start_list key [mode [idx]])
-```
-
-Here are its arguments:
-
-key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
-
-mode. The mode argument is an integer value that specifies how the list currently assigned to the tile can be modified. Table 23.9 describes each of the available modes.
-
-idx. The idx argument is an integer value that specifies an item in the list. The item is used to indicate which item to change if the mode is set to 1; when the mode is set to 2, it indicates the starting item you want to begin appending new items to.
-
-Table 23.9 List-editing modes
-
-Table 23.9 describes the modification modes that can be used to edit a list.
-
-|  Mode | Description  |
-|---|---|
-| 1 | Next call to `add_list` replaces the item indicated by the idx argument. |
-| 2 | Next call to `add_list `appends a new item after the item indicated by the idx argument. If an index isn't provided, the new item is appended after the last item in the list. |
-| 3 | Items in the list are cleared and a new item is appended. |
-
-After a tile key, mode, and index have been specified with the `start_list` function, you can change or add new items with the `add_list` function. The `add_list` function accepts a single argument of a string value. This value is the text that will be displayed in the list of the `list_box` or `popup_list` tile. If the value is successfully added to the list, the string passed to the `add_list` function is returned; otherwise, nil is returned, indicating the item wasn't added.
-
-Once you have modified a list, use the `end_list` function. The `end_list` ends the modification of the list that was started with the `start_list` function. The `end_list` function returns a value of nil regardless of whether the list was successfully modified.
-
-1-2『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）回复：这个功能其实非常有用，比如想开发的功能，先根据某个属性值匹配通配符来筛选管道号块，筛出来的块只把属性值提取出来添加到这个列表让用户看到。第二部输入要替换的原字符以及新字符，这个功能一定要实现。（2020-10-10）做一张任意卡片。』——已完成
-
-The following code shows how to replace and assign a list of two values to a `popup_list` tile with the key of `list_layers`. The `list_layers` key refers to the Layer To Place Object On `popup_list` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
-
-```c
-; Clear and replace the list of the popup_list 
-(start_list "list_layers" 2) 
-; Add two items that represent the layers to allow 
-(add_list "A-Door") 
-(add_list "A-Window") 
-; End list modification (end_list)
-```
-
-NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the use of the `start_list` and `end_list` functions. Execute the `start_list` and `end_list` functions before the `start_dialog` function to ensure that the list is updated before the dialog box is displayed.
-
-1『注意几个函数的调用顺序。（2020-10-09）』
-
-#### Working with image and `image_button` Tiles
-
-The image and `image_button` tiles allow you to display a slide in a frame or as a graphical button. Based on the image you want to display, you will need to use one of several AutoLISP functions to initialize the tile. In earlier AutoCAD releases, `image_button` tiles were used to display a preview of a block and then start an AutoLISP expression that would allow the insertion of the block. However, the relevance of the image and `image_button` tiles in a dialog box has diminished in recent releases with interfaces such as the ribbon and Tool Palettes window.
-
-If you want to display a slide (SLD) file in a dialog definition with an image or `image_button` tile, you will want to explore the functions listed in Table 23.10. You can learn more about these functions in the AutoCAD Help system.
-
-Table 23.10 AutoLISP functions used to work with image and `image_button` tiles
-
-|  Function Name | Description  |
-|---|---|
-|  `dimx_tile` | Returns the width of an image or `image_button` tile  |
-|  `dimy_tile` | Returns the height of an image or `image_button` tile  |
-|  `end_image` | Ends the modification of the current image set by the `start_image` function  |
-|  `fill_image` |  Draws a filled rectangle in the current image set by the `start_image` function  |
-|  `slide_image`  | Displays a slide (SLD) file or a slide in a slide library (SLB) file in the current image  |
-|  `start_image` |  Starts the modification of an image and sets it as the current image  |
-|  `vector_image` |  Draws a vector in the current image set by the `start_image` function  |
-
-### 13.3 Interacting with and Responding to a User
-
-While a dialog box is displayed onscreen, the user is able to interact with the tiles that are enabled. As the user interacts with the tiles, the AutoLISP expressions assigned to the tile's action attribute are executed. The AutoLISP expressions can be used to get and set tile and attribute values, and to change the enabled state of a tile.
-
-#### 13.3.1 Specifying the Action of a Tile
-
-An interactive tile can be assigned an AutoLISP expression that is to be executed when the tile is clicked or interacted with. You use the action attribute in a DCL file to assign an AutoLISP expression to a tile or the `action_tile` function. As part of the AutoLISP expression, you can get information about the tile that is being interacted with by using several predefined variables. Table 23.11 lists the predefined variables that can be referenced by the AutoLISP expression assigned to a tile's action attribute.
-
-NOTE: After you create an instance of a dialog box with the `new_dialog` function, you can assign a string value to a tile from the custom program with the `client_data_tile` function; this is in addition to the tile's value attribute. When the AutoLISP expressions assigned to the tile's action attribute are executed, you can reference this string value with the `$data` variable. For more information on the `client_data_tile` function, refer to the AutoCAD Help system.
-
-1-2『直觉上 `client_data_tile` 这个函数非常有用，去深挖。目前的感觉是在外面用这个函数把外面的数据传递给 tile，然后再通过 tile 的内置变量 `$data` 提取出来，但为啥要绕一圈呢，肯定是有原因的。（2020-10-09）』——未完成
-
-Table 23.11 Predefined variables that contain information about the current tile
-
-|  Variable Name | Description  |
-|---|---|
-|  `$data` | Custom information assigned to a tile with the `client_data_tile` function.  |
-|  `$key` | Key name assigned to the tile.  |
-|  `$reason` | Callback reason based on the interaction performed by the user. Possible values are 1, 2, 3, or 4. 1 indicates the user has clicked or pressed Enter to activate a tile, 2 means the user exited an `edit_box` tile, 3 indicates the value of a slider tile has changed, and 4 is returned when a `list_box` or image tile is `double-clicked`.  |
-|  `$value` | Current value of the tile.  |
-|  `$x` | Coordinate value of an image along its x-axis when an `image_button` tile is clicked.  |
-|  `$y` | Coordinate value of an image along its y-axis when an `image_button` tile is clicked.  |
-
- 1『 `$reason` 这个内置变量感觉也有大用户。（2020-10-09）』
-
-I recommend setting a tile's action using the `action_tile` function to give you the flexibility to dynamically change the AutoLISP expression that is assigned while the user is interacting with the dialog box. For example, you might want to assign a different action to a button tile based on the `radio_button` tile that the user chooses.
-
-NOTE: By means of the action attribute or the `action_tile` function, an AutoLISP expression can be assigned to all tiles in a dialog box that don't have a specific expression assigned to them. This general action is assigned with the action argument of the `new_dialog` function mentioned earlier, in the「Displaying a Dialog」section.
-
-The following shows the syntax of the `action_tile` function:
-
-```c
-(action_tile key expr)
-```
-
-Here are its arguments:
-
-key. The key argument is a string that specifies the value assigned to the key attribute of the tile you want to modify.
-
-expr. The expr argument is a string value that represents the AutoLISP expression that should be executed when the user interacts with the tile.
-
-1『
-
-这个地方的表达式也必要在字符串里。（2020-10-09）
-
-```c
-(defun modifyBlockProperty (tileName blockSSName / dcl_id property_name property_value status selectedName ss)
-  (setq dcl_id (load_dialog (strcat "D:\\dataflowcad\\" "dataflow.dcl")))
-  (if (not (new_dialog tileName dcl_id))
-    (exit)
-  )
-  ; optional setting for the popup_list tile
-  (set_tile "property_name" "0")
-  ;the default value of input box
-  (set_tile "property_value" "")
-  (mode_tile "property_name" 2)
-  (mode_tile "property_value" 2)
-  (action_tile "property_name" "(setq property_name $value)")
-  (action_tile "property_value" "(setq property_value $value)")
-  (if (= nil property_name)
-    (setq property_name "0")
-  )
-
-  (setq status (start_dialog))
-  (unload_dialog dcl_id)
-  
-  (if (= status 1)
-    (progn 
-      (setq selectedName (GetPropertyName property_name blockSSName))
-      (setq ss (GetBlockSS blockSSName))
-      (ModifyPropertyValue ss selectedName property_value)
-      (alert "更新数据成功")(princ)
+(defun GetAllInstrumentAndPipeSSUtils ()
+  (setq ss (ssget "X" '((0 . "INSERT") 
+        (-4 . "<OR")
+          (2 . "InstrumentP")
+          (2 . "InstrumentL")
+          (2 . "InstrumentSIS")
+          (2 . "PipeArrowLeft")
+          (2 . "PipeArrowUp")
+        (-4 . "OR>")
+      )
     )
-    ;(alert "取消选择")
   )
 )
 ```
 
 』
 
-The following code shows how to assign the AutoLISP expression `(alert (strcat "Tile key: " $key))` to the tile with the key of `opt_circle` using the `action_tile` function. The key `opt_circle` refers to the Circle `radio_button` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
-```c
-(action_tile "opt_circle" "(alert (strcat \"Tile key: \" $key))")
+After defining a selection filter, you then pass it to the filter argument of the ssget function. This exercise shows how to use selection filters with the ssget function:
+
+1 Create a new drawing. Add some circles, arcs, and lines to the drawing.
+
+2 At the AutoCAD Command prompt, type `(setq ssCircles (ssget '((0. "circle"))))` and press Enter.
+
+3 At the Select objects: prompt, select all the objects in the drawing. Notice only the circles are highlighted. Press Enter to end object selection.
+
+4 Type `(command "._change" ssCircles "" "_p" "_c" 1 "")` and press Enter to change the color of all circles to red.
+
+5 At the AutoCAD Command prompt, type:
+
+ ```c
+ (setq ssArcsLines 
+  (ssget '((-4 . "<or") (0 . "arc") (0 . "line") (-4 . "or>")))
+)
+ ``` 
+ 
+ and press Enter. Select some of the lines and arcs in the drawing.
+
+6 Type `(command "._change" ssArcsLines "" "_p" "_c" 3 "") `and press Enter to change the color of the selected objects to green.
+
+TIP: On AutoCAD for Windows, you can use the filter command to create a filter selection and save it. Saving the filter adds it to the file named filter.nfl. You can use the AutoLISP statement `(findfile "filter.nfl")` to return the location of the file in the command-line window. Open the file with Notepad. The filter command writes the filter in two formats: as AutoLISP statements `(:ai_lisp)` and as a string description `(:ai_str)`. You can copy the AutoLISP statements that are created to define an object selection filter for use with the ssget function. Although this technique can help simplify the testing and creation of complex selection filters, it is undocumented and something I just figured out years ago when I first started learning AutoLISP.
+
+1『上面的信息有待消化，没看明白。（2020-10-30）』
+
+### 6.4 Modifying Objects
+
+The majority of time spent on a design isn't related to creating new objects, but rather to modifying the objects that are already in a drawing. When you need to modify an object, you can use an AutoCAD command with the command function or directly with AutoLISP functions. Directly modifying an object provides you with more choices in the properties you can change and gives you more flexibility than using commands.
+
+Modifying objects with AutoCAD commands is similar to creating new objects, with the exception of the way you pass objects to the command. Based on the command, you will need to pass one of the following to the Select object: or Select objects: prompt to select objects:
+
+Entity Name (ename). An ename can be used when a command expects or you want to modify a single object.
+
+Selection Set (ssname). An ssname can be used to pass several objects to a command that can modify one or more objects.
+
+I explained how to select objects and work with selection sets in the「Selecting Objects」section earlier in this chapter.
+
+The following are examples that demonstrate how to modify objects with AutoCAD commands:
+
+```
+; Changes the selected objects to the color red 
+(prompt "\nSelect objects to change to red: ") 
+(setq ss (ssget)) 
+(command "._change" ss "" "_p" "_c" 1 "") 
+
+; Scale the last graphical object by a user-defined base point and a factor of 2 
+(command "._scale" (entlast) "" PAUSE 2)
 ```
 
-1『注意啊，里面的双引号需要加转义字符。（2020-10-09）』
+In this section, I explain how to work with entity names and directly modify an object without using the command function. The properties of an object can be queried or edited one at a time, or you can manipulate several properties of an object by changing the entity data list that represents the object.
 
-NOTE: Execute the `action_tile` function before the `start_dialog` function to ensure that the action is assigned to the tile before the dialog box is displayed.
+#### 6.4.1 Listing and Changing the Properties of an Object Directly
 
-#### 13.3.2 Getting Information about a Tile
+AutoLISP offers two different methods for modifying the properties of an object directly. The easier of the two methods is to use the object property functions that were introduced with AutoCAD 2012. These functions require less code than the legacy approach of getting and manipulating the entity data list of an object. The property-related functions are less cryptic than entity data list manipulation as well, because you don't need to understand the various DXF group codes associated with a specific object. The downside to these functions is that they work only with AutoCAD 2012 and later, so if you need to support an earlier release you will need to manipulate entity data lists (which I cover in the next section).
 
-When a user interacts with the tiles of a dialog box, you will commonly want to get the current value of one or all tiles before the dialog box is closed. The current value of the value attribute of a tile can be obtained using the `get_tile` function. If you want to get the value of an attribute other than value, you can use the `get_attr` function. The `get_tile` and `get_attr` functions return a string value.
+Table 16.6 lists the AutoLISP functions available in AutoCAD 2012 and later that can be used to list, get, and set the properties of an object.
 
-NOTE: The `get_tile` and `get_attr` functions must be executed before the `done_dialog` function is called to terminate the dialog box. I discuss the `done_dialog` function in the next section.
+|  Function | Description  |
+|---|---|
+|  dumpallproperties |  Returns all of the properties for the specified object |
+|  getpropertyvalue |  Returns the current value of an object's property |
+|  setpropertyvalue |  Assigns a value to an object's property |
+|  ispropertyreadonly |  Returns T or nil based on whether an object property is read-only |
 
-1『感觉用 `get_tile` 获取内置变量 `$value` 可以解决之前遇到的一个 bug，下来列表默认不选的话返回 nil 的问题。待验证。（2020-10-09）』
+1-2『看到这里才知道，之前一直用的传统方法：通过实体名称结合 `entget` 函数获取实体的「数据集」，通过替换数据集里的「点对」来实现修改属性。原来还有第二种方法，直接用 autolisp 封装好的函数，前提是只支持 AutoCAD 2012 以后的，可以接受。修改实体数据的 2 种方法，做一张主题卡片。』——已完成
 
-The following shows the syntax of the `get_tile` and `get_attr` functions:
+#### Listing Object Properties
+
+The dumpallproperties function outputs the properties and their current values for an object to the command-line window. Some property values, such as StartPoint for a line or Position of a block reference, can be output as a single value or as three individual values. The following shows the syntax of the dumpallproperties function:
 
 ```c
-(get_tile key) 
-(get_attr key attr)
+(dumpallproperties ename [mode])
 ```
 
-Here are their arguments:
+Its arguments are as follows:
 
-key. The key argument is a string that specifies the value assigned to the key attribute of the tile to query.
+ename. The ename argument represents the entity name of the object for which you want to list properties.
 
-attr. The attr argument is a string value that specifies the name of the attribute to query.
+mode. The mode argument is optional and represents how data types such as AcGePoint3d and AcGeVector3d are output. When mode is 0, a property such as Center is displayed as a single entry and not separate entries for the X, Y, and Z values of a property. For example, the following output is of the center point for a circle that has X, Y, and Z components to the value. The output shows all three components as part of a single property named Center.
 
-The following code shows how to get the current value of the tile with the key of `opt_circle` using the `get_tile` function, and get the items assigned to the list attribute of a `popup_list` tile with the key of `list_layers`. These tiles are part of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
-
-```c
-; Gets the current value of the tile 
-(get_tile "opt_circle") 
-"1" 
-; Gets the current value of the list attribute 
-(get_attr "list_layers" "list") 
-"A-Door\nA-Window"
+```
+Center (type: AcGePoint3d) 
+    (LocalName: Center X;Center Y;Center Z) = 0.000000 5.000000 0.000000
 ```
 
-1『通过这个例子就明白了 `attr` 指什么数据，就是 `list_box` tile 里 list 属性里的值，哈哈。（2020-10-09）』
-
-#### 13.3.3 Terminating or Closing a Dialog Box
-
-A dialog box must be terminated—or closed—when it is no longer needed and the end user wants to return to the drawing area. The `done_dialog` function is used to indicate that the dialog box can be terminated. You commonly add this function as the last part of the AutoLISP expression assigned to the action attribute of a button tile such as OK or Cancel that terminates a dialog box. Before `done_dialog` is executed, you want to make sure you get the value of any tiles or tile attribute values by using the `get_tile` or `get_attr` function.
-
-NOTE: The OK and Cancel buttons defined in the predefined subassemblies automatically execute (done_dialog 1) and (done_dialog 0), respectively, when the button is clicked. `done_dialog` needs to be executed only for tiles that close a dialog box.
-
-The `done_dialog` function returns a 2D point list that represents the current placement of the dialog box onscreen. You can store this value as part of the Windows Registry, and then, to restore the location the next time the dialog box is displayed, pass the 2D point list to the `new_dialog` function.
-
-1『妙啊，做成第二个弹窗跟第一个一模一样的假象。（2020-10-09）』
-
-The following shows the syntax of the `done_dialog` function:
+A value of 1 for mode displays each element of a value as separate entries. This is the default behavior when mode isn't provided. The following output is of the same center point as before, but notice all three components of the point are expressed as separate properties with unique names: Center/X, Center/Y, and Center/Z.
 
 ```c
-(done_dialog [status])
+Center/X (type: double) (LocalName: Center X) = 0.000000 
+Center/Y (type: double) (LocalName: Center Y) = 5.000000 
+Center/Z (type: double) (LocalName: Center Z) = 0.000000
 ```
 
-The status argument is an integer value that will be returned by the `start_dialog` function. Typically, 0 indicates that the user clicked Cancel or the dialog box was canceled, whereas 1 indicates that the user clicked OK or an equivalent tile. A value greater than 2 can be passed to the status argument.
+The following examples show how to output the properties of an object with the dumpallproperties function:
 
-The following code shows how to assign a custom action to the OK and Cancel buttons of a dialog box. The alert function is called before `done_dialog` to simply demonstrate that more than one AutoLISP function can be called from a tile's action.
+```
+; Properties are output as a single entry 
+(dumpallproperties (entlast) 1) 
 
-```c
-; Assign an action to the OK button 
-(action_tile "accept" "(alert \"OK clicked.\")
-(done_dialog 1)") 
-; Assign an action to the Cancel button 
-(action_tile "cancel" "(alert \"Cancel clicked.\")
-(done_dialog 0)")
+; Properties are output as separate entries 
+(dumpallproperties (entlast))
 ```
 
-If you have more than one dialog box displayed, in the case of working with nested dialog boxes, the `term_dialog` function can be executed to close all open dialog boxes and return to the drawing area. The `term_dialog` function doesn't accept any argument values and always returns nil.
+Here is an example of the output created by the dumpallproperties function for a circle object. The output was generated with the expression `(dumpallproperties (entlast))`:
 
-#### 13.3.4 Hiding a Dialog Box Temporarily
+Now that you have seen an example output of an object with the dumpallproperties function, it is time to take a closer look at an individual property. The following line shows the Area property from the previous output. Table 16.7 explains the elements.
 
-1『看到标题就知道是自己要找的功能了，哈哈。（2020-10-09）』
-
-When getting input from the user with a dialog box, it isn't uncommon to allow the user to specify a point or select objects in the drawing area. Before a user can interact with the drawing area, the dialog box must be temporarily hidden. The concept of hiding a dialog box involves creating a dialog box with `new_dialog` and then starting user interaction with `start_dialog` in a looping expression that uses the while function. The `done_dialog` function is then used to terminate the dialog box. The status value passed to the `done_dialog` function is returned by the `start_dialog` function and used to exit or continue looping with the while function. The button that should hide the dialog box should use a status value greater than 2 to distinguish the status values returned by the OK or Cancel buttons.
-
-The following DCL syntax defines a sample dialog box named `ch23_ex_hidden` that will be used to demonstrate hiding and showing a dialog box:
-
-```c
-ex_hidden : dialog
-{
-    label = "Hide/Show Example";
-    key = "dlg_hide";
-    : text
-    {
-        key = "msg";
-        label = "Point: ";
-    }
-    : row {
-        fixed_width = true;
-        alignment = right;      
-        : button {
-            key = "btn_PickPoint";
-            action = "pickPoint";
-            label = "Pick Point";
-            is_default = "true";
-            width = 12;
-        }
-        : spacer { width = 1; }
-        cancel_button;
-    }
-}
+```
+Area (type: double) (RO) (LocalName: Area) = 12.566371
 ```
 
-The following AutoLISP code defines a custom function named hiddendlg that loads the `ex_hidden.dcl` file and displays the `ch23_ex_hidden` dialog box:
+NOTE: The data types that are listed by the dumpallproperties function aren't the same as those that you might be accustomed to for AutoLISP. For example, an AcString returns a string value, double is a real value, and AcDbObjectId is translated to an ename.
+
+Table 16.7 dumpallproperties Area property description
+
+|  Item | Description  |
+|---|---|
+|  Area |  The global name of the object's property. |
+|  (type: double)  |  The data type for the value for the property. |
+|  (RO) |  The property is read-only. |
+|  (LocalName: Area) |  The local name of the object property. |
+|  = 12.566371 | The value of the property. |
+
+#### 6.4.2 Getting and Setting the Value of an Object Property
+
+The getpropertyvalue and setpropertyvalue functions allow you to set an object's property. Use the dumpallproperties function on an ename to see the properties available for an object and the type of data that is expected. The following shows the syntax of the getpropertyvalue and setpropertyvalue functions:
 
 ```c
-; Display the ex_hidden.dcl file
-(defun c:hidden (/ dialog_name id status pt)
-  (setq dialog_name "ch23_ex_hidden")
+(getpropertyvalue ename property) 
+(getpropertyvalue ename collection index subproperty) 
 
-  ; Load the DCL file named ex_hidden.dcl
-  (setq id (load_dialog (strcat dialog_name ".dcl")))
-  
-  (setq status 2)
-  (while (>= status 2)
+(setpropertyvalue ename property value) 
+(setpropertyvalue ename collection index subproperty value)
+```
 
-    ; Create the dialog box
-    (new_dialog dialog_name id "" '(-1 -1))
+Here are the arguments:
 
-    ; Added the actions to the Cancel and Pick Point button
-    (action_tile "cancel" "(done_dialog 0)")
-    (action_tile "btn_PickPoint" "(done_dialog 2)")
+ename. The ename argument represents the entity name of the object for which you want to get or set a property value.
 
-    ; Display the point value picked
-    (if (/= pt nil)
-      (set_tile "msg" (strcat "Point: "
-                              (rtos (car pt)) ", "
-                              (rtos (cadr pt)) ", "
-                              (rtos (caddr pt))))
+property. Use the property argument to specify a single-value property.
+
+collection. Use the collection argument to specify a property that contains more than one value, such as vertices of a polyline.
+
+index. Use the index argument to specify an item within a property collection.
+
+subproperty. Use the subproperty argument to specify a subproperty within a property collection.
+
+value. The value argument represents the value you want to assign the property.
+
+The following examples show how to get and set the property values of a circle and a polyline with the getpropertyvalue and setpropertyvalue functions:
+
+```c
+; Creates a circle and polyline 
+(command "._circle" "0,0" 1) 
+(setq circ (entlast)) 
+(command "._pline" "2,3" "1,4" "-3,-2" "") 
+(setq pline (entlast)) 
+
+; Outputs the radius of the circle 
+(prompt (strcat "\nRadius: " (rtos (getpropertyvalue circ "radius")))) 
+Radius: 1.0000nil 
+
+; Outputs the last vertex of the polyline 
+(prompt (strcat "\nVertex 3: " (vl-princ-to-string (getpropertyvalue pline "vertices" 2 "position")) )) 
+Vertex 3: (-3.0 -2.0 0.0)nil 
+
+; Changes the radius of the circle 
+(setpropertyvalue circ "radius" 0.5) 
+nil 
+
+; Changes the position of the polyline's last vertex to the center of the circle 
+(setq cenPt (getpropertyvalue circ "center")) 
+(setpropertyvalue pline "vertices" 2 "position" cenPt) 
+nil
+```
+
+1『上面的代码可以借鉴，实现直接修改块里面的属性值。待实现。（2020-10-30）』
+
+Before you try to change a property value with setpropertyvalue, use the ispropertyreadonly function to determine if the property is read-only. ispropertyreadonly returns 1 if a property is read-only; 0 is returned when a property can be changed. The following shows the syntax of the ispropertyreadonly function:
+
+```c
+(ispropertyreadonly ename property) 
+(ispropertyreadonly ename collection index subproperty)
+```
+
+The following examples show how to determine if a property for a line object is read-only with the ispropertyreadonly:
+
+```c
+; Creates a line 
+(command "._line" "2,2" "5,6" "") 
+(setq line (entlast)) 
+
+; Tests to see if the Angle property is read-only 
+(ispropertyreadonly line "angle") 
+1 
+
+; Tests to see if the StartPoint property is read-only 
+(ispropertyreadonly line "startpoint")
+0
+```
+
+This exercise shows how to modify the properties of a circle, line, and text object:
+
+1 Create a new drawing.
+
+2 Draw a circle (center at 4,5 and a radius of 3), a line (starts at -1,2 and ends at 8,15), and a single-line text object (insertion point of 0,0, a justification of middle center, a height of 4, and a value of A). The left side of Figure. 16.3 shows what the objects look like before they are modified.
+
+3 At the AutoCAD Command prompt, type the following, pressing Enter after each line and selecting the object mentioned in the prompt:
+
+```c
+(setq circ (car (entsel "\nSelect circle: "))) 
+(setq line (car (entsel "\nSelect line: "))) 
+(setq text (car (entsel "\nSelect text: ")))
+```
+
+4 Type `(dumpallproperties circ 1)` and press Enter to display the properties of the circle. Do the same with the line and text variables.
+
+5 Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or display the Text History window on Windows if the command-line window is docked). Review the properties and values of the objects.
+
+6 Type the following and press Enter to change the circle's color to cyan, the line's color to blue, and the text's color to red:
+
+```c
+(setpropertyvalue circ "color" 4) 
+(setpropertyvalue line "color" 5) 
+(setpropertyvalue text "color" 1)
+```
+
+7 Type the following and press Enter to change the line's start point and the text's alignment point to the circle's center point:
+
+```c
+(setpropertyvalue line "startpoint" (getpropertyvalue circ "center")) 
+(setpropertyvalue text "alignmentpoint" (getpropertyvalue circ "center"))
+```
+
+8 Type the following and press Enter to shorten the line so it intersects with the circle's radius:
+
+```c
+(setq ang (angle (getpropertyvalue line "startpoint") 
+(getpropertyvalue line "endpoint") )) 
+(setq newPt (polar (getpropertyvalue circ "center") ang (getpropertyvalue circ "radius") )) 
+(setpropertyvalue line "startpoint" newPt)
+```
+
+Figure 16.3 Basics of a callout balloon
+
+The three modified objects should now look like those on the right side of Figure 16.3.
+
+#### 6.4.3 Updating an Object's Properties with an Entity Data List
+
+Although the functions I mentioned in the previous section make working with object properties easier in recent releases, you should also understand how to modify the properties of an object with an entity data list. There are three main reasons why I recommend this:
+
+1 Older programs modify objects using entity data lists; understanding how to update entity data lists will make it easier for you to update an existing program.
+
+2 AutoCAD releases earlier than AutoCAD 2012 only support editing the properties of objects through entity data lists.
+
+3 Entity data lists are used to create and define selection filters.
+
+The entget function is used to return the entity data list of an object. Once you have an entity data list, you can then use the assoc function to locate the dotted pair that has the DXF group code as the key element you are interested in querying or modifying. After a dotted pair is retuned, you can then use the car function to get the key element of the list and the cdr function to get the value element of the dotted pair.
+
+If you want to replace a dotted pair in an entity data list to change the value of a property, use the subst function. Then, after you update an entity data list, the changed entity data list must be committed to the object with the entmod function. After calling entmod, you should call the entupd function with the same object that was passed to the entget function to update the object's graphics onscreen.
+
+The following shows the syntax of the entget, entmod, and entupd functions:
+
+```c
+(entget ename [apps]) 
+(entmod ename) 
+(entupd ename)
+```
+
+Here are the arguments:
+
+ename. The ename argument specifies the entity name of the object you want update or to get an entity data list for.
+
+apps. The apps argument is optional; it is a string value that specifies the application name of an extended data (XData) list that you want to retrieve. XData is custom information that can be attached to an object, such as a link to an external data source or date when an object was revised, and is similar to an entity data list associated with an ename. If an XData list with the application name is attached to the object, a list with both the entity data and XData is returned. Otherwise, just the entity data list for the object is returned. For more information on XData, see the「Extending the Information of an Object」section later in this chapter.
+
+The following examples show how to get an entity data list with entget, modify an entity data list with entmod, and update an object in the drawing area with entupd:
+
+```c
+; Creates a new ellipse and gets the new object's entity name 
+(entmake '((0. "ELLIPSE") (100. "AcDbEntity") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (40. 0.5) (41. 0.0) (42. 6.28319))) 
+(setq entityName (entlast)) 
+<Entity name: 7ff6bc905dc0> 
+
+; Gets the entity data list for the last object, which is the ellipse 
+(setq entityData (entget entityName)) 
+((-1. <Entity name: 7ff6bc905dc0>) (0. "ELLIPSE") (330. <Entity name: 7ff6bc9039f0>) (5. "1D4") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbEllipse") (10 6.0 2.0 0.0) (11 -4.0 0.0 0.0) (210 0.0 0.0 1.0) (40. 0.5) (41. 0.0) (42. 6.28319)) 
+
+; Gets the object's insertion/center point, center of the ellipse 
+(setq dxfGroupCode10 (assoc 10 entityData)) 
+(10 6.0 2.0 0.0) 
+
+; Gets the object's color
+; in this case nil is returned as a color isn't assigned 
+(setq dxfGroupCode62 (assoc 62 entityData)) 
+nil 
+
+; Changes the object's center point to 0,0 
+(setq entityData (subst '(10 0.0 0.0 0.0) dxfGroupCode10 entityData)) 
+(10 6.0 2.0 0.0) 
+
+; Appends a dotted pair to change the object's color 
+(setq entityData (append entityData '((62. 3)))) 
+
+; Modifies the object with the revised entity data list 
+(entmod entityData) 
+(entupd entityName)
+```
+
+1-2-3『
+
+上面代码里，竟然可以通过扩展一个「点对值」达到修改颜色的目的，学到了，哈哈。下面的代码是数据流里修改块属性的逻辑，待重构。重构的时候正好结合作者的代码「Listing 16.1」。（2020-10-30）——未完成
+
+```c
+(defun ModifyPropertyValueByEntityName (entityNameList selectedName propertyValue / i ent blk entx propertyName)
+  (setq i 0)
+  (repeat (length entityNameList)
+    ; get the entity information of the i(th) block
+    (setq ent (entget (nth i entityNameList)))
+    ; save the entity name of the i(th) block
+    (setq blk (nth i entityNameList))
+    ; get the property information
+    (setq entx (entget (entnext (cdr (assoc -1 ent)))))
+    (while (= "ATTRIB" (cdr (assoc 0 entx)))
+      (setq propertyName (cdr (assoc 2 entx)))
+      (if (= propertyName selectedName)
+        (SwitchPropertyValueFromStringOrList propertyValue entx i)
+      )
+      ; get the next property information
+      (setq entx (entget (entnext (cdr (assoc -1 entx)))))
     )
+    (entupd blk)
+    (setq i (+ 1 i))
+  )
+)
+
+(defun SwitchPropertyValueFromStringOrList (propertyValue entx i / oldValue newValue)
+  (setq oldValue (assoc 1 entx))
+  (if (= (type propertyValue) 'list)
+    (setq newValue (cons 1 (nth i propertyValue)))
+    (setq newValue (cons 1 propertyValue))
+  )
+  (entmod (subst newValue oldValue entx))
+)
+```
+
+』
+
+Listing 16.1 is a set of two custom functions that simplify the process of updating an object using entity data lists and DXF group codes.
+
+Listing 16.1: DXF helper functions
+
+```c
+; Listing 16.1: DXF helper functions
+; Returns the value of the specified DXF group code for the supplied entity name
+(defun Get-DXF-Value (entityName DXFcode / )
+  (cdr (assoc DXFcode (entget entityName)))
+)
+
+; Sets the value of the specified DXF group code for the supplied entity name
+(defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList
+                                                    oldPropList)
+  ; Get the entity data list for the object
+  (setq entityData (entget entityName))
+
+  ; Create the dotted pair for the new property value
+  (setq newPropList (cons DXFcode newValue))
+  (if (setq oldPropList (assoc DXFcode entityData))
+    (setq entityData (subst newPropList oldPropList entityData))
+    (setq entityData (append entityData (list newPropList)))
+  )
+
+  ; Update the object’s entity data list 
+  (entmod entityData)
+
+  ; Refresh the object on-screen
+  (entupd entityName)
+ 
+ ; Return the new entity data list
+ entityData
+)
+```
+
+The custom functions in Listing 16.1 are used in the next exercise. This exercise shows how to modify the properties of a circle, line, and text object:
+
+1 Create a new drawing.
+
+2 Use the appload command to load the `ch16_listings.lsp` file once it is downloaded from www.sybex.com/go/autocadcustomization.
+
+3 Draw a circle (center at 4,5 and a radius of 3), a line (starts at -1,2 and ends at 8,15), and a single-line text object (insertion point of 0,0, a justification of middle center, a height of 4, and a value of A). Refer back to Figure 16.3; the left side shows what the objects look like before they are modified.
+
+4 At the AutoCAD Command prompt, type the code in Listing 16.1. This will allow you to use the custom functions to make it easier to modify the properties of an object with an entity data list.
+
+5 Type the following, pressing Enter after each line, and select the object mentioned in the prompt.
+
+```c
+(setq circ (car (entsel "\nSelect circle: "))) 
+(setq line (car (entsel "\nSelect line: "))) 
+(setq text (car (entsel "\nSelect text: ")))
+```
+
+6 Type `(dumpallproperties circ 1)` and press Enter to display the properties of the circle. Do the same with the line and text variables.
+
+7 Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window (or display the Text History window on Windows if the command-line window is docked). Review the properties and values of the objects.
+
+8 Type the following and press Enter to change the circle's color to cyan, the line's color to blue, and the text's color to red:
+
+```c
+(Set-DXF-Value circ 62 4) 
+(Set-DXF-Value line 62 5) 
+(Set-DXF-Value text 62 1)
+```
+
+9 Type the following and press Enter to change the line's start point and the text's alignment point to the circle's center point:
+
+```c
+(Set-DXF-Value line 10 (Get-DXF-Value circ 10)) 
+(Set-DXF-Value text 11 (Get-DXF-Value circ 10))
+```
+
+10 Type the following and press Enter to shorten the line so it intersects with the circle's radius:
+
+```c
+(setq ang (angle (Get-DXF-Value line 10) (Get-DXF-Value line 11) )) 
+(setq newPt (polar (Get-DXF-Value circ 10) ang (Get-DXF-Value circ 40) )) 
+(Set-DXF-Value line 10 newPt)
+```
+
+The three modified objects should now look like those on the right side of Figure 16.3.
+
+#### 6.4.4 Deleting an Object
+
+An object that is no longer needed can be deleted from a drawing with the AutoLISP entdel function. Deleting an object from a drawing with the entdel function removes it from the display but doesn't remove the object from the drawing immediately. It flags an object for removal; the object is removed when the drawing is saved and then closed. You can use the entdel function a second time to restore the object while the drawing remains open. Using the AutoCAD u or undo command will also restore an object that was flagged for removal with the entdel function. Objects removed with the erase command can also be restored with the entdel function.
+
+NOTE: The entdel function can be used to remove only graphical objects and objects associated with a dictionary, not symbol-table entries such as layers and block definitions. I discuss more about working with nongraphical objects in Chapter 17. The following shows the syntax of the entdel function:
+
+```c
+(entdel ename)
+```
+
+The ename argument represents the entity name of the object to flag for deletion or restore. The following examples show how to remove an object with the entdel function:
+
+```c
+; Gets the last object added to the drawing 
+(setq en (entlast)) 
+<Entity name: 7ff618a0be20> 
+
+; Deletes the object assigned to the en variable 
+(entdel en) 
+<Entity name: 7ff618a0be20> ;
+
+ Restores the object assigned to the en variable 
+ (entdel en) 
+ <Entity name: 7ff618a0be20>
+```
+
+#### 6.4.5 Highlighting Objects
+
+Object highlighting is the feedback technique that AutoCAD uses to indicate which objects have been selected in the drawing area and are ready to be interacted with or modified. While highlighting is a great way to let a user know which objects will be modified, it can also impact the performance of a program when a large number of objects are selected. You can turn off general object-selection highlighting with the highlight system variable.
+
+The AutoLISP redraw function, not the same as the redraw command, can be used to highlight individual objects. Highlighting generated by the redraw function can be undone, either with the redraw function or the AutoCAD regen command. In addition to highlighting an object, the redraw function can be used to temporarily hide and then redisplay an object. The following shows the syntax of the redraw function:
+
+```c
+(redraw [ename [mode]])
+```
+
+Here are the arguments:
+
+ename .The ename argument represents the entity name of the object to highlight or display.
+
+mode. The mode argument is an integer that specifies the highlight or display state of the object. Use the values 1 (show) and 2 (hide) to control the display of an object. The values 3 (on) and 4 (off) control the highlighting of the object.
+
+The following examples show how to highlight and display an object with the redraw function:
+
+```c
+; Highlights the last graphical object in the drawing 
+(redraw (entlast) 3) 
+
+; Unighlights the object 
+(redraw (entlast) 4) 
+
+; Hides the object 
+(redraw (entlast) 2) 
+
+; Shows the object 
+(redraw (entlast) 1)
+```
+
+### 6.5 Working with Complex Objects
+
+Some objects in AutoCAD represent basic geometry such as circles and lines, whereas other objects are complex and made up of several objects. Complex objects require a bit more work to create and modify with AutoLISP. The two most common complex objects that you will find yourself working with are polylines and block references.
+
+---
+
+Thinking Ahead
+
+Your boss comes to you and asks for a mock furniture layout for a new area in the office that your company is planning to renovate. Typically this is all handled by an outside firm, but your boss figures you can get the job done faster. After all, your boss is more concerned with getting the office layout completed than how to do the actual work.
+
+Knowing that he's likely to ask for a layout of the whole floor—not just that small renovation area—you create blocks with attributes that allow you to get a quantity for each component. Instead of counting each component manually and then adding the component quantity to a table grid in the drawing, you automate the process. Using AutoLISP, you read the information from the attributes of each block and create an aggregated set of information that you use to create the table grid. Going forward, AutoLISP makes it easy to revise the table grid when your boss wants to change the layout at a later date.
+
+---
+
+#### 6.5.1 Creating and Modifying Polylines
+
+AutoCAD drawings can contain two different types of polylines; old-style (legacy) and lightweight. Old-style polylines were the first type of polylines that were introduced in an early release of AutoCAD. An old-style polyline is composed of several objects: a main polyline object, vertex objects that define each vertex of the polyline, and a seqend object that defines the end of the polyline. Old-style polylines can be 2D or 3D and contain straight or curved segments.
+
+Lightweight polylines, introduced with AutoCAD Release 14, take up less memory than old-style polylines but are 2D only. All 3D polylines are created using old-style polylines. Unlike old-style polylines, multiple objects aren't used to define a lightweight polyline. Most polylines created since AutoCAD Release 14 are most likely of the lightweight type. The plinetype system variable controls the type of polyline that is created with the pline command.
+
+The following example creates an old-style polyline that has the coordinate values (0 0), (5 5), (10 5), and (10 0) with the entmake function:
+
+```c
+; Creates the base polyline object 
+(entmake '((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1))) 
+((0. "POLYLINE") (100. "AcDbEntity") (100. "AcDb2dPolyline") (10 0.0 0.0 0.0) (70. 1)) 
+
+; Adds the first vertex to the polyline at 0,0 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 0.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 5,5 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 5.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 10,5 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 5.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 10,0 
+(entmake '((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0))) 
+((0. "VERTEX") (100. "AcDbEntity") (100. "AcDbVertex") (100. "AcDb2dVertex") (10 10.0 0.0 0.0) (91. 0) (70. 0) (50. 0.0)) 
+
+; Adds the next vertex to the polyline at 10,0 
+(entmake '((0. "SEQEND") (100. "AcDbEntity"))) 
+((0. "SEQEND") (100. "AcDbEntity"))
+```
+
+When you want to modify an old-style polyline, get the polyline object and then use the entnext function to step to the first vertex until you get to the seqend object. Using a while looping statement is the best way to step through the drawing looking for each vertex of the polyline. Continue looping until you encounter a dotted pair with a DXF group code 0 and a value of "SEQEND".
+
+Listing 16.2 is a custom function that demonstrates how to get each of the subobjects of an old-style polyline with the while function.
+
+Listing 16.2: Listing subobjects of an old-style polyline
+
+```c
+; Listing 16.2: List subobjects of old-style polyline
+(defun c:ListOSPolyline ( / entityName entityData dxfGroupCode0)
+  ; Set PLINETYPE to 0 to create an old-style polyline with the PLINE command
+  (setq entityName (car (entsel "\nSelect an old-style polyline: ")))
+  (setq entityData (entget entityName))
+
+  (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "POLYLINE")
+    (progn
+      (prompt (strcat "\n" dxfGroupCode0))
+      (setq entityName (entnext entityName))
+      (setq entityData (entget entityName))
+
+      (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND")
+        (prompt (strcat "\n" dxfGroupCode0))
+        (prompt (strcat "\n" (vl-princ-to-string (assoc 10 entityData))))
+        (setq entityName (entnext entityName))
+        (setq entityData (entget entityName))
+      )
     
-    ; Check the status returned
-    (if (= 2 (setq status (start_dialog)))
-      (setq pt (getpoint "\nSpecify a point: "))
+      (prompt (strcat "\n" dxfGroupCode0))
     )
   )
-
-  ; Unload the dialog box
-  (unload_dialog id)
  (princ)
 )
 ```
 
-1『上面的例子值得研读，好好模仿学习。（2020-10-09）』
-
-NOTE: The sample DCL syntax and AutoLISP code can be found in the `ch23_ex_hidden.dcl` and `ch23_ex_hidden.lsp` files, which you can download from www.sybex.com/go/autocadcustomization. Place the files in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Load the LSP file and then enter hiddendlg at the Command prompt. Click the Pick Point button and specify a point in the drawing area to see the dialog box in action.
-
-### 13.4 Exercise: Implementing a Dialog Box for the drawplate Function
-
-In this section, you will create a DCL file that defines a dialog box for use with a version of the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」The dialog box replaces the width and height prompts and adds an option that controls the creation of the label. The key concepts I cover in this exercise are as follows:
-
-1. Creating a DCL File A DCL file is used to hold a dialog box definition that can be displayed with the AutoLISP programming language.
-
-2. Displaying a Dialog Box A dialog box contained in a DCL file can be loaded and displayed in the AutoCAD drawing environment. Once the dialog box has been displayed, the user can interact with the tiles (or controls) on the dialog box. The choices a user makes can then be used to control the behavior and output of a custom program.
-
-NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Deploying the drawplate Function」section of Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」If you didn't complete the steps, do so now or start with the `ch23_drawplate.lsp` and `ch23_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters `ch23_` from the name of each file.
-
-#### 13.4.1 Creating the drawplate Dialog Box
-
-Chapter 20 was the last chapter in which any changes were made to the drawplate function. At that time, the changes included loading the utility.lsp file and implementing custom help. Here you will create a DCL file named drawplate.dcl and then display it in the new version of the drawplate function.
-
-The following steps explain how to create the DCL file for the drawplate function:
-
-1. In AutoCAD, click the Manage tab Applications panel Visual LISP Editor.
-
-2. In the Visual LISP Editor, click File New File.
-
-3. Click File Save As.
-
-4. In the Save-as dialog box, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store DCL files.
-
-5. In the File Name text box, type drawplate.
-
-6. Click the Save As Type drop-down list and choose DCL Source Files.
-
-7. Click Save.
-
-8. In the text editor window, type the following: souce code blow.
-
-9. Click File Save.
-
-10. Click Tools Interface Tools Preview DCL In Editor.
-
-11. In the Enter The Dialog Name dialog box, choose drawplate and click OK.
-
-12. Review the dialog box (see Figure 23.5), and click any control to return to the Visual LISP Editor.
-
-Figure 23.5 New dialog box for the drawplate function
+The output generated by the custom ListOSPolyline function from Listing 16.2 will be similar to the following:
 
 ```c
-/* Draw Plate dialog box Used by drawplate.lsp */ 
-drawplate : dialog { 
-  label = "Draw Plate"; 
-  key = "dlg_drawplate"; 
-  // Width text box 
-  : edit_box { 
-    edit_width = 10; 
-    key = "txt_width"; 
-    label = "Width"; 
-  } 
-  // Height text box 
-  : edit_box { 
-    edit_width = 10; 
-    key = "txt_height"; 
-    label = "Height"; 
-  } 
-  // Check box for controlling addition of label 
-  : toggle { 
-    key = "chk_label"; 
-    label = " Add label"; 
-  } 
-  // Grouping for button tiles 
-  : row { 
-    fixed_width = true; 
-    alignment = right; 
-    // Create button 
-    : button { 
-      key = "btn_create_object"; 
-      action = "create_object"; 
-      label = "Create"; 
-      is_default = "true"; 
-      width = 12; 
-    } 
-    : spacer { width = 1; } 
-    // Cancel button 
-    cancel_button; 
-  } 
-}
+POLYLINE 
+VERTEX 
+(10 0.0 0.0 0.0) 
+VERTEX 
+(10 5.0 5.0 0.0) 
+VERTEX 
+(10 10.0 5.0 0.0) 
+VERTEX 
+(10 10.0 0.0 0.0) 
+SEQEND
 ```
 
-#### 13.4.2 Renaming the Existing drawplate Function
+For more information on the DXF entities polyline, vertex, and seqend, use the AutoCAD Help system. Search on the type of object you want to learn more about and be sure to include「DXF」as a keyword in the search. For example, the keyword search on the polyline object would be「polyline DXF.」
 
-AutoCAD has a few command-naming conventions, and one of those conventions includes prefixing command names with a hyphen. When an AutoCAD command displays a dialog box, often a second command has been created that carries the same name but is prefixed with a hyphen. Commands that are prefixed with a hyphen allow you to access most of the functionality of a dialog box from the Command prompt through a series of prompt options. Before implementing a new version of the drawplate function that displays a dialog box, you must rename the existing drawplate function to conform to the established AutoCAD command-naming standards.
-
-1『上面有关「command-naming」的知识点直觉上很有用。（2020-10-10）』
-
-The following steps explain how to rename the drawplate function to -drawplate:
-
-1. In the Visual LISP Editor, click File Open File.
-
-2. In the Open File To Edit/View dialog box, click the Files Of Type drop-down list, and choose Lisp Source Files.
-
-3. Browse to and select the drawplate.lsp file and click Open.
-
-4. In the text editor area, revise the boldface text:
-
-    ```c
-    ; Draws a rectangular plate that is 5x2.75 
-    (defun c:-drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
-    ```
-
-5. Revise the boldface text:
-
-    ```c
-    ; Register the help file for F1/contextual help support 
-    (if (findfile "DrawPlate.htm") 
-      (setfunhelp "c:-drawplate" (findfile "DrawPlate.htm")) 
-    )
-    ```
-
-6. Click File Save.
-
-#### 13.4.3 Defining a New drawplate Function
-
-Now that you have renamed the existing drawplate function to `-drawplate` and defined the drawplate.dcl file, it is time to implement a new version of the drawplate function. The following steps explain how to add the new version of the drawplate function that will display the Draw Plate dialog box:
-
-1. Open the Visual LISP Editor and the drawplate.lsp file if they are not currently open.
-
-2. In the text editor area, scroll to the bottom of the file and add the following code: source code below.
-
-3. Click File Save.
+The following example creates a lightweight polyline that has the coordinate values (0 0), (5 5), (10 5), and (10 0) with the entmake function:
 
 ```c
-; Load the utility.lsp file
-(load "utility.lsp")
+; Create a polyline object drawn along the path (0 0), (5 5), (10 5), and (10 0) 
+(entmake '((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))) 
+((0. "LWPOLYLINE") (100. "AcDbEntity") (100. "AcDbPolyline") (90. 4) (70. 1) (43. 0) (10 0 0) (10 5 5) (10 10 5) (10 10 0))
+```
 
-; Custom error handler with command functions
-(defun err_drawplate (msg)
-  (if (/= msg "Function cancelled")
-    (alert (strcat "\nError: " msg))
+The DXF group code 10 in the previous example appears multiple times in the entity data list. Each dotted pair with a DXF group code 10 represents a vertex in the polyline, and they appear in the order in which the polyline should be drawn. For more information on the lwpolyline DXF entity, search on「lwpolyline DXF」in the AutoCAD Help system.
+
+The approaches to updating and querying an old-style and lightweight polyline vary, so you will need to handle each type using conditional statements in your programs. You can use the getpropertyvalue and setpropertyvalue functions to work with the Vertices property of both types of polylines to simplify the code you might need to write.
+
+#### 6.5.2 Creating and Modifying with Block References
+
+Block references are often misunderstood by new (and even experienced) AutoLISP developers. Blocks are implemented as two separate objects: block definitions and block references. Block definitions are nongraphical objects that are stored in a drawing and contain the geometry and attribute definitions that make up how the block should appear and behave in the drawing area. A block definition can also contain custom properties and dynamic properties.
+
+---
+
+Understanding Block Definitions and Block References
+
+You can think of a block definition much like a cookie recipe. The recipe lists the ingredients that make up the cookie and explains how those ingredients are combined for a particular taste, but it doesn't control where the dough will be placed on the baking sheet or the size of the unbaked cookies. The placement and amount of the cookie dough on the sheet would be similar to a block reference in a drawing.
+
+---
+
+2『块定义和块参照，做一张术语卡片。』——已完成
+
+A block reference displays an instance, not a copy, of the geometry from a block definition; the geometry exists only as part of the block definition, with the exception of attributes. Attribute definitions that are part of a block definition are added to a block reference as attributes unless the attribute definition is defined as a constant attribute. Constant attributes are parts of the geometry inherited from a block definition and aren't part of the block reference.
+
+When creating a block reference with AutoLISP, as opposed to inserting it with the insert command, you are responsible for adding any attributes to the block reference that aren't designated as constant within the block definition. Like the old-style polyline, block references use the seqend object to designate the end of an insert object. Between the insert and seqend objects of a block reference are attrib objects that represent the attribute references that aren't set as constant and must be added to a block reference.
+
+Since attributes must be added to a block reference, it is possible to have a block definition that contains attribute definitions and a block reference that points to that block definition without any attributes. It is also possible to have a block reference that has attributes attached to it and a block reference that doesn't have any attribute definitions.
+
+The following code adds a block definition named RoomNum (see Figure 16.4) to a drawing that has a single attribute with the tag ROOM#:
+
+```c
+; Creates the block definition RoomNum 
+(entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
+
+; Creates the rectangle for around the block attribute 
+(entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") 
+  (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0)) 
+  (cons 10 (list 36.0 18.0 0.0)) (cons 10 (list 0.0 18.0 0.0)))
+) 
+
+; Adds the attribute definition 
+(entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText") 
+  (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") 
+  (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") 
+  (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))
+) 
+
+; Ends block definition 
+(entmake (list (cons 0 "ENDBLK")))
+```
+
+1『上面的是定义块属性，可以自己在图形界面里新建属性块，就如同在数据流模板里做的各个模块。（2020-10-30）』
+
+Figure 16.4 RoomNum block reference inserted with AutoLISP
+
+Once the block definition is created, you can then use the following code to add a block reference to a drawing based on a block named RoomNum:
+
+```c
+; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 
+(entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) 
+((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "RoomNum") (10 1.0 -0.5 0.0)) 
+
+; Creates an attribute reference with the tag ROOM# and adds it to the block 
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
+  (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
+) 
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
+  (40. 0.4) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
+) 
+
+; Adds the end marker for the block reference 
+(entmake ' ((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+```
+
+If you want to extract the values of the attributes attached to a block, you must get the constant attribute values from the block definition and the nonconstant attribute values that are attached as part of the block reference. You use the entnext function to step through each object in a block definition and block reference, collecting information from the reference objects. All attribute definitions (attdef) or attribute reference (attrib) objects must be read until the last or seqend object is encountered.
+
+Listing 16.3 shows a custom function that demonstrates how to step through a block reference and its block definition with the while function. You must load the custom functions in Listing 16.2 before executing the code in Listing 16.3. The code in Listing 16.2 and Listing 16.3 can be found in the `ch16_code_listings.lsp` file that is available for download from this book's website.
+
+Listing 16.3: Listing attribute tags and values of a block
+
+```c
+; Listing 16.3: List attribute tags and values of a block
+; Lists the attributes attached to a block reference and definition
+(defun c:ListBlockAtts ( / entityName entityData dxfGroupCode0 blkName)
+
+  ; Get a block reference
+  (setq entityName (car (entsel "\nSelect a block reference: ")))
+  (setq entityData (entget entityName))
+
+  ; Check to see if the user selected a block reference
+  (if (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "INSERT")
+    (progn
+      ; Output information about the block
+      (prompt "\n*Block Reference*")
+      (prompt (strcat "\n" dxfGroupCode0))
+      (prompt (strcat "\nBlock name: " (setq blkName (cdr (assoc 2 entityData)))))
+
+      ; Get the next object in the block, an attrib or seqend
+      (setq entityName (entnext entityName))
+      (setq entityData (entget entityName))
+
+      ; Step through the attributes in the block reference
+      (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "SEQEND")
+        (prompt (strcat "\n" dxfGroupCode0))
+        (prompt (strcat "\nTag: " (cdr (assoc 2 entityData))))
+        (prompt (strcat "\nValue: " (cdr (assoc 1 entityData))))
+        (setq entityName (entnext entityName))
+        (setq entityData (entget entityName))
+      )
+    
+      (prompt (strcat "\n" dxfGroupCode0))
+
+      ; Get the block definition
+      (setq entityName (cdr (assoc -2 (tblsearch "block" blkName))))
+      (setq entityData (entget entityName))
+
+      (prompt "\n*Block Definition*")
+      
+      ; Step through the block definition and look for constant
+      (while (/= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) nil)
+        (if (and (= (setq dxfGroupCode0 (cdr (assoc 0 entityData))) "ATTDEF")
+                (> (logand 2 (cdr (assoc 70 entityData))) 0)
+          )
+          (progn
+            (prompt (strcat "\n" dxfGroupCode0))
+            (prompt (strcat "\nTag: " (assoc 2 entityData)))
+            (prompt (strcat "\nValue: " (assoc 1 entityData)))
+          )
+        )
+
+        ; Get the next object
+        (setq entityName (entnext entityName))
+        (if entityName
+          (setq entityData (entget entityName))
+          (setq entityData nil)
+        )
+      )    
+    )
   )
-
-  (command "._undo" "_e")
-  (command "._u")
-  
-  ; Restore previous error handler
-  (setq *error* old_err)
  (princ)
 )
+```
 
+Here is an example of the output generated by the custom ListBlockAtts function:
+
+```c
+*Block Reference* 
+INSERT Block name: RoomNumber 
+ATTRIB Tag: ROOM# 
+Value: 101 
+SEQEND 
+*Block Definition*
+```
+
+TIP: For more information on the DXF entities insert, attrib, and seqend, use the AutoCAD Help system. Search on the type of object you want to learn more about and be sure to include「DXF」as a keyword in the search. For example, the keyword search on the insert object would be「insert DXF.」
+
+In addition to using entity data lists to query and modify block references, you can use the getpropertyvalue and setpropertyvalue functions. You learned about those functions in the「Listing and Changing the Properties of an Object Directly」section earlier in this chapter.
+
+### 6.6 Extending an Object's Information
+
+Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
+
+XData is structured similar to an entity data list except the values must be within a specific range of DXF group codes. Each XData list must contain an application name to identify one XData list from another since several XData lists can be attached to an object. After the application name, an XData list can contain any valid values and be of any type of data that AutoLISP supports.
+
+The values in an XData list and what they represent is up to you, the creator of the data. Data in an XData list can be used to identify where an object should be placed or which layer it should be on, to store information about an external database record that is related to an object, or to build relationships between objects in a drawing. The way data is used or enforced is up to you as the programmer.
+
+In addition to XData, graphical and nongraphical objects support what are known as extension dictionaries. Extension dictionaries are kind of like record tables that can be attached to an object. For example, you could store revision history of a drawing in an extension dictionary that is attached to model space, and then populate that information in the drawing's title block. I discuss creating custom dictionaries in Chapter 17.
+
+2『 XData 做一张术语卡片。』——已完成
+
+#### 6.6.1 Working with XData
+
+Attaching XData to an object requires you to do some initial planning and perform several steps. The following outlines the steps that you must perform in order to attach an XData list to an object:
+
+1 Define and register the application name to use.
+
+2 Define the values that will make up the XData list.
+
+3 Format the XData list; include a DXF group code -3, application name, and data values.
+
+4 Get the entity name and entity data list of an object.
+
+5 Append the XData list and update the object.
+
+Prior to appending an XData list, you should check to see if the object already has one with the same application name attached to it. If that's the case, you should replace the current XData list with the new list. The following outlines the steps that you must perform in order to modify an XData list previously attached to an object:
+
+1 Define the values that will make up the XData list.
+
+2 Format the XData list; include a DXF group code -3, application name, and data values.
+
+3 Get the entity name and entity data list of an object.
+
+4 Check for an existing occurrence of an XData list for an object.
+
+5 Substitute the current XData list attached to an object with the new XData list.
+
+6 Update the object.
+
+#### 6.6.2 Defining and Registering an Application Name
+
+Before you can attach an XData list to an object, you must decide on an application name and then register that name with AutoCAD. The application name you choose should be unique to avoid conflicts with other XData lists. After an application name has been chosen, you register the name with the regapp function. The regapp function adds a new entry to the APPID symbol table and returns the name of the application if it is successfully registered. nil is returned if the application could not be registered or was already registered in the current drawing. You'll learn about symbol tables in Chapter 17. The following shows the syntax of the regapp function:
+
+```c
+(regapp appname)
+```
+
+The appname argument specifies a name for an application you want to register. The following example demonstrates how to register an application:
+
+```c
+; Registers the application named MyApp 
+(setq appName "MyApp") 
+(regapp appName)
+```
+
+#### 6.6.3 Attaching XData to an Object
+
+Once you have defined an application name and registered it in a drawing, you can attach an XData list to an object within that drawing. An XData list is made up of two lists and has a total size limit of 16 KB per object (see the「Managing the Memory Used by XData for an Object」sidebar for information). The outer list contains a DXF group code -3 and an inner list that contains the application name and dotted pairs that represent the data values to store with the object. Each dotted pair contains a DXF group code that defines the type of data the pair represents and then the actual value of the pair.
+
+DXF group codes used for dotted pairs in an XData list must be within the range of 1000 to 1071. Each DXF group code value in that range represents a different type of data, and you can use each DXF group code more than once in an XData list. Table 16.8 lists some of the commonly used DXF group codes for XData.
+
+Table 16.8 XData-related DXF group codes
+
+|  DXF group code | Description  |
+|---|---|
+|  1000  |  String value |
+|  1001 |  Application name |
+|  1010  |  3D point |
+|  1040 |  Real numeric value |
+|  1070 |  16-bit (unsigned or signed) integer value |
+|  1071 |  32-bit signed integer value |
+
+The following example is an XData list that contains the application name MyApp and two dotted pairs. The first dotted pair is a string `(DXF group code 1000)` with the value「My custom application,」and the second dotted pair is an integer (DXF group code 1070) with a value that represents the current date:
+
+```c
+(-3 ("MyApp" 
+      (1000. "My custom application") 
+      (1070. (fix (getvar "cdate")))
+    )
+)
+```
+
+The following AutoLISP statements were used to create the previous XData list:
+
+```c
+(setq appName "MyApp") 
+(regapp "MyApp") 
+(setq xdataList 
+  (list -3 (list appName 
+                 (cons 1000 "My custom application") 
+                 (cons 1070 (fix (getvar "cdate")))))
+)
+```
+
+1『这里意外收获，通过系统函数获取时间，这个时间可以做一个时间戳，当作数据的临时 ID，时间戳基本不会重复的。（2020-10-31）』
+
+Once an XData list has been defined, it can be appended to an entity data list returned by the AutoLISP entget function with the append function. I explained how to append lists together in Chapter 14. After an XData list is appended to an entity data list, you use the entmod function to commit changes to the object and entupd to update the object in the drawing area. I explained the entmod and entupd functions earlier in this chapter. This exercise shows how to attach an XData list to a circle:
+
+1 At the AutoCAD Command prompt, type the following and press Enter to register the MyApp application:
+
+```c
+(setq appName "MyApp") 
+(regapp appName)
+```
+
+2 Type the following and press Enter to assign the XData list to the xdataList variable: 
+
+```c
+(setq xdataList 
+  (list -3 (list appName 
+                 (cons 1000 "My custom application") 
+                 (cons 1070 (fix (getvar "cdate")))))
+)
+```
+
+The XData list assigned to the xdataList variable is as follows:
+
+```c
+(-3 ("MyApp" (1000. "My custom application") (1070. 20140302)))
+```
+
+3 Type the following and press Enter to create a new circle: 
+
+```c
+(entmake (list (cons 0 "CIRCLE") (cons 10 (list 2 2 0)) (cons 40 1))) 
+(setq circ (entlast))
+```
+
+A circle with the center point of 2,2 is created with a radius of 1, and the entity name of the new circle is assigned to the circ variable.
+
+4 Type the following and press Enter to get the entity data list of the circle and assign it to the entData variable: 
+
+```c
+(setq entityData (entget circ))
+```
+
+The entity data list of the circle should be similar to the following:
+
+```c
+((-1. <Entity name: 7ff722905e90>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1E1") (100. "AcDbEntity") (67. 0) (410. "Model") (8. "0") (100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0))
+```
+
+5 Type the following and press Enter to append the lists in the entityData and xdataList variables: 
+
+```c
+(setq entityData (append entityData (list xdataList)))
+```
+
+The resulting list is assigned to the entityData variable and should look similar to the following:
+
+```c
+((-1. <Entity name: 7ff722905e50>) (0. "CIRCLE") (330. <Entity name: 7ff7229039f0>) (5. "1DD")(100. "AcDbEntity") (67. 0) (410. "Model") (8. "0")(100. "AcDbCircle") (10 2.0 2.0 0.0) (40. 1.0) (210 0.0 0.0 1.0)(-3 ("MyApp" (1000. "Drill_Hole") (1070. 20140302))))
+```
+
+6 Type the following and press Enter to commit the changes to the circle and update the circle's display: 
+
+```c
+(entmod entityData) 
+(entupd circ)
+```
+
+The circle object won't look any different after the changes have been committed because the XData doesn't affect the appearance of the object. However, you can now differentiate this circle from those that might be created with the circle command. This makes it much easier to locate and update the radius of the circles that represent a drill hole in your drawing.
+
+---
+
+Managing the Memory Used by XData for an Object
+
+Each object in a drawing can have a total of 16 KB worth of XData attached to it. The 16 KB total is for all XData attached to an object, and not just for one application. If the limit of XData is close and you attach additional XData that exceeds the limit, the XData won't be attached. AutoLISP provides two functions to help determine the size of the XData being attached to an object and the amount of space already being used by the XData attached to an object.
+
+The two AutoLISP functions used to manage XData are as follows:
+
+xdroom—Returns the space available, in bytes, for attaching new XData to an object. The function expects an entity name as its single argument.
+
+xdsize—Returns the size of an XData list in bytes. The function expects a list as its single argument.
+
+You should use these two functions to determine whether XData can be attached to an object.
+
+---
+
+#### 6.6.4 Querying and Modifying the XData Attached to an Object
+
+XData that has been previously attached to an object can be queried and modified by following a process that is similar to the one used to attach XData to an object. The entget function, which I discussed earlier, is used to get the entity data list and any XData lists attached to an object. By default, the entget function only returns the entity data list for the entity name that it is passed. You use the optional appname argument of the entget function to return all of the XData lists attached to an object or the one associated with a specific application name.
+
+For example, the following code returns the entity data list and XData list attached to an object with the application name of MyApp. If there is no XData list associated with the application name MyApp, only the entity data list for the object is returned.
+
+```c
+; Return the entity data list and xdata list 
+(entget (entlast) '("MyApp"))
+```
+
+Using an asterisk instead of an actual application name returns the XData lists for all applications attached to an object, as shown here:
+
+```c
+; Return the entity data list and xdata list 
+(entget (entlast) '("*"))
+```
+
+This exercise shows how to list the XData attached to a dimension with a dimension override:
+
+1 At the AutoCAD Command prompt, type dli press Enter.
+
+2 At the Specify first extension line origin or `<select object>`: prompt, specify a point in the drawing.
+
+3 At the Specify second extension line origin: prompt, specify a second point in the drawing.
+
+4 At the Specify dimension line location or [Mtext/Text/Angle/Horizontal/Vertical/Rotated]: prompt, specify a point in the drawing to place the linear dimension.
+
+5 Select the linear dimension that you created, right-click, and then click Properties.
+
+6 In the Properties palette (Windows) or Properties Inspector (Mac OS), click the Arrow 1 field under the Lines & Arrows section. Select None from the drop-down list. The first arrowhead of the linear dimension is suppressed as a result of a dimension override being created.
+
+7 At the AutoCAD Command prompt, type `(assoc -3 (entget (car (entsel "\nSelect object with attached xdata: ")) '("*")))` and press Enter. Attaching an XData list to the linear dimension is how AutoCAD handles dimension overrides for individual dimensions. Here is what the XData list that was attached to the linear dimension as a result of changing the Arrow 1 property in step 6 looks like:
+
+```c
+(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 343) (1005. "2BE") (1070. 173) (1070. 1) (1070. 344) (1005. "0") (1002. "}")))
+```
+
+NOTE: I mentioned earlier that XData doesn't affect the appearance of an object, and that is still true even when used as we did in the previous exercise. XData itself doesn't affect the object, but AutoCAD does look for its own XData and uses it to control the way an object might be drawn. If you implement an application with the Autodesk® ObjectARX® application programming interface, you could use ObjectARX and XData to control how an object is drawn onscreen. You could also control the way an object looks using object overrules with Managed.NET and XData. ObjectARX and Managed.NET are the two advanced programming options that Autodesk supports for AutoCAD development. You can learn more about ObjectARX and Managed.NET at www.objectarx.com.
+
+The entget function can be used to determine whether an XData list for a specific application is already attached to an object. If an XData list already exists for an object, you can then modify that list. Use the subst function to update or replace one XData list with another.
+
+This exercise shows how to override the color assigned to dimension and extension lines, and restore the arrowhead for the dimension you created in the previous exercise:
+
+1 At the AutoCAD Command prompt, type the following and press Enter:
+
+```c
+(setq entityName (car (entsel "\nSelect dimension: ")))
+```
+
+2 At the Select dimension: prompt, select the linear dimension created in the previous exercise.
+
+3 At the AutoCAD Command prompt, type the following and press Enter to get the entity data list and XData list associated with an application named ACAD:
+
+```c
+(setq entityData (entget entityName '("ACAD")))
+```
+
+4 Type the following and press Enter to assign the xdataList variable with the new XData list to change the color of the dimension line to ACI 40 and the color of the extension line to ACI 200:
+
+```c
+(setq xdataList 
+  '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}")))
+)
+```
+
+5 Type the following and press Enter to check whether there is an XData list already attached to the object, and if so replace it with the new XData list:
+
+```c
+(if (/= (assoc -3 entityData) nil) 
+  (setq entityData (subst xdataList (assoc -3 entityData) entityData)) 
+)
+```
+
+6 Type the following and press Enter to update the linear dimension and commit the changes to the drawing: 
+
+```c
+(entmod entityData) 
+(entupd entityName)
+```
+
+The colors of the lines in the dimension that are inherited from the dimension style are now overridden. This is similar to what happens when you select a dimension, right-click, and choose Precision.
+
+1-2『上面介绍了修改 XData 的具体方法，以后要实现的一个重要功能需要借鉴里面的代码。管道号块的插入点结合多段线的坐标点（单一直线有 2 个 dxf code 为 10 的点、折一下的有 3 个点，折 2 下有 4 个点），给每个多段线打上管道号的标签，此标签存在 XData。反向再通过多段线给每个阀门（采用区域覆盖的块）打上管线号的标签。那么阀门和管线号的数据就关联上了，管段表和材料表就可以自动生成了，哈哈。做一张主题卡片。（2020-10-32）』
+
+#### 6.6.5 Removing XData from an Object
+
+XData can be removed from an object when it is no longer needed. You do so by replacing an existing XData list with an XData list that contains only an application name. When AutoCAD evaluates an XData list with only an application name and no values, it removes the XData list from the object. Here is an example of an XData list that can be used to remove the XData associated with the MyApp application:
+
+```c
+(-3 ("MyApp"))
+```
+
+The following example removes the XData list associated with an application named ACAD from a dimension, which removes all overrides assigned to the dimension:
+
+```c
+(defun c:RemoveDimOverride (/ entityName entityData) 
+  (setq entityName (car (entsel "\nSelect dimension to remove overrides: "))) 
+  (setq entityData (entget entityName '("ACAD"))) 
+  (if (/= (assoc -3 entityData) nil) 
+    (setq entityData (subst '(-3 ("ACAD")) (assoc -3 entityData) entityData)) 
+  ) 
+  (entmod entityData) 
+  (entupd entityName) 
+  (princ) 
+)
+```
+
+#### 6.6.6 Selecting Objects Based on XData
+
+You can use the XData attached to an object as a way to select or filter out specific objects with the ssget function. (I explained how to use the filter argument of the ssget function in the「Filtering Selected Objects」section earlier in this chapter.) If you want to filter on the XData attached to an object, you use the DXF group code -3 along with the application name from the XData list.
+
+Here are two examples of the ssget function that use a selection filter to allow for the selection of objects that only have XData attached to them with a specific application name:
+
+```c
+; Selects objects containing xdata and with the application name MyApp. 
+(ssget '((-3 ("MyApp")))) 
+
+; Uses implied selection and selects objects with the application name ACAD. 
+(ssget "_I" '((-3 ("ACAD"))))
+```
+
+### 6.7 Exercise: Creating, Querying, and Modifying Objects
+
+In this section, you will continue to work with the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」Along with working with the drawplate function, you will define a new function that will be used to create a bill of materials (BOM) for a furniture layout. The key concepts I cover in this exercise are as follows:
+
+1 Creating and Modifying Objects without Commands AutoCAD commands make getting started with AutoLISP easier, but not all objects can be created from the Command prompt, nor can all the properties of an object be modified from the Command prompt. The entmake, entget, entmod, and entupd functions give you much greater control over the objects you are creating or modifying.
+
+2 Creating Selection Sets Requesting objects from the user allows you to create custom functions that can modify select objects instead of all objects in a drawing.
+
+3 Stepping Through Objects in a Selection Set Selection sets can contain one or several thousand objects. You must use a looping function, such as repeat or while, to step through and get each object in the selection set.
+
+NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 15,「Requesting Input and Using Conditional and Looping Expressions.」If you didn't complete the steps, do so now or start with the `ch16_drawplate.lsp` and `ch16_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters `ch16_ from` the name of each file.
+
+```c
 ; Draws a rectangular plate that is 5x2.75
-(defun c:-drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue
-                        cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
-
-  (setq old_err *error* *error* err_drawplate)
-
-  ; Command function being used in custom error handler
-  (*push-error-using-command*)
-
-  (command "._undo" "_be")
+(defun c:drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue
+                       cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
 
   ; Store and change the value of the system variables
   (setq old_vars (get-sysvars '("osmode" "clayer" "cmdecho")))
@@ -1086,11 +1799,14 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 
   ; Create the layer named Plate or set it current
   (createlayer "Plate" 5)
-  (setvar "clayer" "Plate")
 
   ; Define the width and height for the plate
-  (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0))
-  (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75))
+  (if (= *drawplate_width* nil) 
+    (setq *drawplate_width* 5.0)
+  )
+  (if (= *drawplate_height* nil) 
+    (setq *drawplate_height* 2.75)
+  )
 
   ; Get recently used values from the global variables
   (setq width *drawplate_width*)
@@ -1100,7 +1816,9 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
   (prompt (strcat "\nCurrent width: "
 		  (rtos *drawplate_width* 2)
 		  "  Current height: "
-		  (rtos *drawplate_height* 2)))
+		  (rtos *drawplate_height* 2)
+    )
+  )
   
   ; Setup default keywords
   (initget "Width Height")
@@ -1111,27 +1829,27 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 		      (getpoint "\nSpecify base point for plate or [Width/Height]: "))
 	     )
 	     'LIST
-	 )
+	  ) 
     (cond
       ; Prompt for the width of the plate
-      ((= basePt "Width")
+      ((= basePt "Width") 
           (setq width (getdist (strcat "\nSpecify the width of the plate <"
 			               (rtos *drawplate_width* 2) ">: ")))
-
           ; If nil is returned, use the previous value from the global variable
-          (if (/= width nil)(setq *drawplate_width* width))
+          (if (/= width nil) 
+            (setq *drawplate_width* width)
+          )
       )
-
       ; Prompt for the height of the plate
-      ((= basePt "Height")
+      ((= basePt "Height") 
           (setq height (getdist (strcat "\nSpecify the height of the plate <"
 			                (rtos *drawplate_height* 2) ">: ")))
-
           ; If nil is returned, use the previous value from the global variable
-          (if (/= height nil)(setq *drawplate_height* height))
+          (if (/= height nil) 
+            (setq *drawplate_height* height)
+          )
       )
     )
-
     ; Setup default keywords again
     (initget "Width Height")
   )
@@ -1152,7 +1870,6 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 
   ; Create the layer named Holes or set it current
   (createlayer "Holes" 1)
-  (setvar "clayer" "Holes")
 
   ; Calculate the placement of the circle in the lower-left corner  
   ; Calculate a new point at 45 degrees and distance of 0.7071 from pt1
@@ -1192,7 +1909,6 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 
   ; Create label
   (createlayer "Label" 7)
-  (setvar "clayer" "Label")
   (createtext insPt "_c" 0.5 0.0 textValue)
 
   ; Restore the value of the system variables
@@ -1202,214 +1918,510 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
   (setq *drawplate_width* width)
   (setq *drawplate_height* height)
 
-  (command "._undo" "_e")
-
-  ; Restore previous error handler
-  (setq *error* old_err)
-
-  ; End using *push-error-using-command*
-  (*pop-error-mode*)
-
- ; Exit "quietly"
- (princ)
-)
-
-; Register the help file for F1/contextual help support
-(if (findfile "DrawPlate.htm")
-  (setfunhelp "c:-drawplate" (findfile "DrawPlate.htm"))
-)
-
-; Draws a rectangular plate and gets input from a dialog box
-(defun c:drawplate ( / dialog_name id status pt1 pt2 pt3 pt4
-                       width height label insPt textValue cenPt1
-                       cenPt2 cenPt3 cenPt4 old_vars hole_list)
-
-  ; Define the width, height, and label for the plate
-  (if (= *drawplate_width* nil)(setq *drawplate_width* 5.0))
-  (if (= *drawplate_height* nil)(setq *drawplate_height* 2.75))
-  (if (= *drawplate_label* nil)(setq *drawplate_label* "1"))
-
-  ; Get recently used values from the global variables
-  (setq width *drawplate_width*)
-  (setq height *drawplate_height*)
-  (setq label *drawplate_label*)
-
-  (setq dialog_name "drawplate")
-
-  ; Load the DCL file named ex_hidden.dcl
-  (setq id (load_dialog (strcat dialog_name ".dcl")))
-  
-  ; Create the dialog box
-  (new_dialog dialog_name id "" '(-1 -1))
-
-  ; Sets the default values of the width and height
-  (set_tile "txt_width" (rtos width))
-  (set_tile "txt_height" (rtos height))
-
-  ; Set the default for the label
-  (set_tile "chk_label" label)
-
-  ; Added the actions to the Cancel and Create button
-  (action_tile "cancel" "(done_dialog 0)")
-  (action_tile "btn_create_object"
-               "(setq width (atof (get_tile \"txt_width\")))
-                (setq height (atof (get_tile \"txt_height\")))
-                (setq label (get_tile \"chk_label\"))
-                (done_dialog 1)"
-  )
-
-  (setq status (start_dialog))
-
-  ; Unload the dialog box
-  (unload_dialog id)
-
-  ; Check the status returned
-  (if (= status 1)
-    (progn
-      (setq old_err *error* *error* err_drawplate)
-
-      ; Command function being used in custom error handler
-      (*push-error-using-command*)
-
-      ; Store and change the value of the system variables
-      (setq old_vars (get-sysvars '("osmode" "clayer" "cmdecho")))
-      (set-sysvars '("osmode" "clayer" "cmdecho") '(0 "0" 0))
-
-      (command "._undo" "_be")
-      
-      ; Create the layer named Plate or set it current
-      (createlayer "Plate" 5)
-      (setvar "clayer" "Plate")
-
-      (setq basePt (getpoint "\nSpecify base point for plate: "))
-
-      ; Set the coordinates to draw the rectangle
-      (setq pt1 basePt
-        ;| lower-left corner  |;
-        pt2 (list (+ (car basePt) width) (cadr basePt) 0)
-        ;| lower-right corner |;
-        pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0)
-        ;| upper-right corner |;
-        pt4 (list (car basePt) (+ (cadr basePt) height) 0)
-        ;| upper-left corner  |;
-      )
-
-      ; Draw the rectangle
-      (createrectangle pt1 pt2 pt3 pt4)
-
-      ; Create the layer named Holes or set it current
-      (createlayer "Holes" 1)
-      (setvar "clayer" "Holes")
-
-      ; Calculate the placement of the circle in the lower-left corner  
-      ; Calculate a new point at 45 degrees and distance of 0.7071 from pt1
-      (setq cenPt1 (polar pt1 (/ PI 4) 0.7071))
-
-      ; Calculate the next point from cenPt along the same angle
-      ; as the line drawn between pt1 and pt2, and 1 unit less
-      ; than the distance between pt1 and pt2 
-      (setq cenPt2 (polar cenPt1 (angle pt1 pt2) (- (distance pt1 pt2) 1)))
-
-      ; Calculate the final two points based on cenPt1 and cenPt2
-      (setq cenPt3 (polar cenPt2 (angle pt2 pt3) (- height 1))
-            cenPt4 (polar cenPt1 (angle pt1 pt4) (- height 1)))
-  
-      ; Append all the calculated center points to a single list
-      (setq hole_list (append (list cenPt1)
-                              (list cenPt2)
-                              (list cenPt3)
-                              (list cenPt4)))
-
-      ; Execute the createcircle function for each point
-      ; list in the in the hole_list variable
-      (foreach cenPt hole_list
-        (createcircle cenPt 0.1875)
-      )
-
-      (if (= "1" label)
-        (progn
-          ; Set the insertion point for the text label
-          (setq insPt (getpoint "\nSpecify label insertion point: "))
-
-          ; Define the label to add
-          (setq textValue 
-            (strcat "Plate Size: "
-                    (vl-string-right-trim " .0" (rtos width 2 2))
-                    "x"
-                    (vl-string-right-trim " .0" (rtos height 2 2))
-            )
-          )
-
-          ; Create label
-          (createlayer "Label" 7)
-          (setvar "clayer" "Label")
-          (createtext insPt "_c" 0.5 0.0 textValue)
-        )
-      )
-
-      ; Restore the value of the system variables
-      (set-sysvars '("osmode" "clayer" "cmdecho") old_vars)
-
-      ; Save previous values to global variables
-      (setq *drawplate_width* width)
-      (setq *drawplate_height* height)
-      (setq *drawplate_label* label)
-
-      (command "._undo" "_e")
-
-      ; Restore previous error handler
-      (setq *error* old_err)
-
-      ; End using *push-error-using-command*
-      (*pop-error-mode*)
-    )
-  )
-
  ; Exit "quietly"
  (princ)
 )
 ```
 
-#### 13.4.4 Testing the drawplate.lsp Changes
+#### 6.7.1 Revising the Functions in utility.lsp
 
-The following steps explain how to test the `-drawplate` function in the drawplate.lsp file:
+The changes to the utility.lsp file replace the use of AutoCAD commands to create objects with the entmake function and entity data lists. With these changes, you don't need to worry about the current setting of the osmode and other drafting-related system variables. Creating objects with the entmake function also doesn't display Command prompt strings at the command-line window; such strings would need to be suppressed with the cmdecho system variable otherwise. Remember, if something happens to go wrong, the fewer system variables you have changed, the better off you and your end users are.
 
-1. Create a new drawing.
+As you revise the functions, notice how easy it can be to change the underlying functionality of your programs when they are divided into several smaller functions. Smaller functions are easier not only to change, but to retest if a problem is encountered.
 
-2. Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concern message box is displayed, click Load.
+1『一直在贯彻这一思维，拆分成一个个功能单一的小函数。（2002-10-31）』
 
-3. At the Command prompt, type `-drawplate` and press Enter.
+The following steps explain how to update the various functions in the utility.lsp file:
 
-4. At the Specify base point for the plate or `[Width/Height]: prompt`, type w and press Enter.
+Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS. In the text editor area, update the createrectangle, createtext, and createcircle functions to match the following:
 
-5. At the Specify the width of the plate `<5.0000>: prompt`, type 3 and press Enter.
+```c
+; CreateLayer function creates/modifies a layer and expects to argument values.
+(defun createlayer (name color / )
+  (command "._-layer" "_m" name "_c" color "" "")
+)
 
-6. At the Specify base point for the plate or `[Width/Height]: prompt`, type h and press Enter.
+; Createrectangle function draws a four-sided closed object.
+(defun createrectangle (pt1 pt2 pt3 pt4 /)
+  (entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity")
+                 (cons 100 "AcDbPolyline") (cons 90 4) (cons 70 1) (cons 43 0)
+                 (cons 10 pt1) (cons 10 pt2) (cons 10 pt3) (cons 10 pt4)))
+)
 
-7. At the Specify the height of the plate `<2.7500>: prompt`, type 4 and press Enter.
+; Createtext function creates a single line text object.
+(defun createtext (insertionPoint alignment height rotation textString / )
+  (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 100 "AcDbText")
+                 (cons 10 insertionPoint) (cons 40 height) (cons 1 textString)
+                 (cons 50 0.0) (cons 7 "Standard") (cons 72 1)
+                 (cons 11 insertionPoint) (cons 100 "AcDbText") (cons 73 0)))
+)
 
-8. At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
+; Get-Sysvars function returns a list of the current values
+; of the list of system variables it is passed.
+; 
+; Arguments:
+;  sysvar-list - A list of system variables
+; 
+; Usage: (get-sysvars (list "clayer" "osmode"))
+;
+(defun get-sysvars (sysvar-list / values-list)
+  ; Creates a new list based on the values of the
+  ; system variables in sysvar-list
+  (foreach sysvar sysvar-list
+    ; Get the value of the system variable and add it to the list
+    (setq values-list (append values-list (list (getvar sysvar))))
+  )
 
-9. At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label. AutoCAD draws the completed plate, as expected.
+ ; List to return
+ values-list
+)
 
-1-2『如何在一个 lsp 文件里调用另外一个 lsp 文件。直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。做一张任意卡片。』——已完成
+; Set-Sysvars function sets the system variables in the
+; sysvar-list to the values in values-list.
+; 
+; Arguments:
+;  sysvar-list - A list of system variables
+;  values-list - A list of values to set to the system variables
+; 
+; Usage: (set-sysvars (list "clayer" "osmode") (list "Plate" 0))
+;
+(defun set-sysvars (sysvar-list values-list / cnt)
+  ; Set the counter to 0
+  (setq cnt 0)
+  ; Step through each variable and set its value.
+  (foreach sysvar sysvar-list
+    (setvar sysvar (nth cnt values-list))
+    ; Increment the counter
+    (setq cnt (1+ cnt))
+  )
+ (princ)
+)
 
-The following steps explain how to test the revised version of the drawplate function:
+; CreateCircle function draws a circle object.
+; 
+; Arguments:
+;  cenpt - A string or list that represents the center point of the circle
+;  rad - A string, integer, or real number that represents the circle’s radius
+; 
+; Usage: (createcircle "0,0" 0.25)
+;
+(defun createcircle (cenpt rad / )
+  (entmake (list (cons 0 "circle") (cons 10 cenpt) (cons 40 rad)))
+)
 
-1. At the Command prompt, type drawplate and press Enter. The Draw Plate dialog box is displayed and uses the width and height values specified by the -drawplate function.
+; Returns the value of the specified DXF group code for the supplied entity name
+(defun Get-DXF-Value (entityName DXFcode / )
+  (cdr (assoc DXFcode (entget entityName)))
+)
 
-2. In the Draw Plate dialog box, in the Width text box, enter 5.
+; Sets the value of the specified DXF group code for the supplied entity name
+(defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList oldPropList)
+  ; Get the entity data list for the object
+  (setq entityData (entget entityName))
 
-3. In the Height text box, enter 5.
+  ; Create the dotted pair for the new property value
+  (setq newPropList (cons DXFcode newValue))
+  (if (setq oldPropList (assoc DXFcode entityData))
+    (setq entityData (subst newPropList oldPropList entityData))
+    (setq entityData (append entityData (list newPropList)))
+  )
 
-4. Clear the Add Label check box.
+  ; Update the object’s entity data list 
+  (entmod entityData)
 
-5. Click Create.
+  ; Refresh the object on-screen
+  (entupd entityName)
+ 
+ ; Return the new entity data list
+ entityData
+)
+```
 
-6. At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified. AutoCAD draws the completed plate without the label, as expected.
+Click File Save.
 
-7. At the Command prompt, type drawplate and press Enter.
+#### 6.7.2 Testing the Changes to the drawplate Function
 
-8. In the Draw Plate dialog box, select Add Label.
+Although the changes you made to the utility.lsp file weren't made directly to the drawplate function, drawplate uses the createrectangle, createtext, and createcircle functions to simplify its code. If the changes were made correctly to the utility.lsp file, you should see no differences in the objects created by the drawplate function when compared the one created in Chapter 15.
 
-9. Click Create, and specify the insertion point for the plate and label. AutoCAD draws the completed plate with a label this time.
+The following steps explain how to load the LSP files into AutoCAD and then start the drawplate function:
+
+1 Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
+
+2 At the Command prompt, type drawplate and press Enter.
+
+3 Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window. The current width and height values for the plate are displayed in the command-line history.Current width: 5.0000 Current height: 2.7500
+
+4 At the Specify base point for the plate or [Width/Height]: prompt, type w and press Enter.
+
+5 At the Specify the width of the plate `<5.0000>`: prompt, type 3 and press Enter.
+
+6 At the Specify base point for the plate or [Width/Height]: prompt, type h and press Enter.
+
+7 At the Specify the height of the plate `<2.7500>`: prompt, type 4 and press Enter.
+
+8 At the Specify base point for the plate or [Width/Height]: prompt, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
+
+9 At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label.
+
+10 Zoom to the extents of the drawing. Figure 16.5 shows the completed plate.
+
+Figure 16.5 The completed plate created using the updated utility functions
+
+#### 6.7.3 Defining the New Get-DXF-Value and Set-DXF-Value Utility Functions
+
+Modifying objects using entity data lists might seem confusing to you—and you aren't alone if you feel that way. Entity data lists can even be confusing to some of the most veteran programmers at times, as they are not used all the time. Most veteran programmers create utility functions that simplify the work.
+
+In my personal utility library, I have two functions named Get-DXF-Value and Set-DXF-Values that can be used to manipulate entity data lists. The Get-DXF-Value function gets the value of a dotted pair based on a DXF group code in an entity data list, whereas Set-DXF-Values replaces a dotted pair or appends a new dotted pair in an entity data list. Set-DXF-Values can be used to construct an entity data list as well. The following steps explain how to define the Get-DXF-Value and Set-DXF-Values custom functions:
+
+Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS, if it is not already open from the previous steps.
+
+In the text editor area, position the cursor after the last expression in the file and press Enter twice. Then type the following:
+
+```c
+; Returns the value of the specified DXF group code for the supplied entity name
+(defun Get-DXF-Value (entityName DXFcode / )
+  (cdr (assoc DXFcode (entget entityName)))
+)
+
+; Sets the value of the specified DXF group code for the supplied entity name
+(defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList oldPropList)
+  ; Get the entity data list for the object
+  (setq entityData (entget entityName))
+
+  ; Create the dotted pair for the new property value
+  (setq newPropList (cons DXFcode newValue))
+  (if (setq oldPropList (assoc DXFcode entityData))
+    (setq entityData (subst newPropList oldPropList entityData))
+    (setq entityData (append entityData (list newPropList)))
+  )
+
+  ; Update the object’s entity data list 
+  (entmod entityData)
+
+  ; Refresh the object on-screen
+  (entupd entityName)
+ 
+ ; Return the new entity data list
+ entityData
+)
+```
+
+Click File Save.
+
+#### 6.7.4 Moving Objects to Correct Layers
+
+Not everyone will agree on the naming conventions, plot styles, and other various aspects of layers, but there are a few things drafters can agree on when it comes to layers—that objects should do the following: 1) Inherit their properties, for the most part, from the layers in which they are placed. 2)Only be placed on layer 0 when creating blocks.
+
+While I would like to think all the drawings I've created are perfect, I know that rush deadlines or other distractions may have affected quality. Maybe the objects were placed on the wrong layer or maybe it wasn't my fault and standards simply changed during the course of a project. With AutoLISP, you can identify potential problems in a drawing to let the user know about them so they can be fixed, or you can make the changes using AutoLISP.
+
+In these steps, you create a custom function named furnlayers that is used to identify objects by type and value to ensure they are placed on the correct layer. This is achieved using selection sets and entity data lists, along with looping and conditional statements. 
+
+Create a new LSP file named furntools.lsp with Notepad on Windows or TextEdit on Mac OS. In the text editor area of the furntools.lsp file, type the following:
+
+```c
+; Moves objects to the correct layers based on a set of established rules
+(defun c:FurnLayers ( / ssFurn cnt entityName entityData entityType) 
+
+  ; Request the user to select objects
+  (setq ssFurn (ssget))
+
+  ; Proceed if ssFurn is not nil
+  (if ssFurn
+    (progn
+      ; Set up the default counter
+      (setq cnt 0)
+
+      ; Step through each block in the selection set
+      (while (> (sslength ssFurn) cnt)
+        ; Get the entity name and entity data of the object
+        (setq entityName (ssname ssFurn cnt)
+              entityData (entget entityName)
+              entityType (strcase (Get-DXF-Value entityName 0)))
+
+	; Conditional statement used to branch based on object type
+	(cond
+	  ; If object is a block, continue
+	  ((= entityType "INSERT")
+            (cond
+	      ; If the block name starts with RD or CD,
+	      ; then place it on the surfaces layer
+	      ((wcmatch (strcase (Get-DXF-Value entityName 2)) "RD*,CD*")
+                (Set-DXF-Value entityName 8 "surfaces")
+	      )
+	      ; If the block name starts with PNL, PE, and PX,
+	      ; then place it on the panels layer
+	      ((wcmatch (strcase (Get-DXF-Value entityName 2)) "PNL*,PE*,PX*")
+                (Set-DXF-Value entityName 8 "panels")
+	      )
+	      ; If the block name starts with SF,
+	      ; then place it on the panels layer
+	      ((wcmatch (strcase (Get-DXF-Value entityName 2)) "SF*")
+                (Set-DXF-Value entityName 8 "storage")
+	      )	      
+	    )
+	  )
+	  ; If object is a dimension, continue
+	  ((= entityType "DIMENSION")
+	    ; Place the dimension on the dimensions layer
+            (Set-DXF-Value entityName 8 "dimensions")
+	  )
+	)
+
+        ; Increment the counter by 1
+        (setq cnt (1+ cnt))
+      )
+    )
+  )
+ (princ)
+)
+```
+
+#### 6.7.5 Creating a Basic Block Attribute Extraction Program
+
+The designs you create take time and, based on the industry you are in, are often what is used to earn income for your company or even save money. Based on the types of objects in a drawing, you can step through a drawing and get attribute information from blocks or even geometric values such as lengths and radii of circles. You can use the objects in a drawing to estimate the potential cost of a project or even provide information to manufacturing.
+
+In these steps, you create a custom function named furnbom that is used to get the values of two attributes (part and label) attached to a block. The attribute values are added to a list and then sorted using the acad_strlsort function. Once sorted, the list is then parsed and quantified into a new list, which is used to create the a BOM table made up of lines and text.
+
+1 Open the furntools.lsp file with Notepad on Windows or TextEdit on Mac OS, if it is not already open. 
+
+2 In the text editor area of the furntools.lsp file, type the following:
+
+```c
+; extAttsFurnBOM - Extracts, sorts, and quanitifies the attribute information
+(defun extAttsFurnBOM (ssFurn / cnt preVal part label furnList)
+  ; Set up the default counter
+  (setq cnt 0)
+
+  ; Step through each block in the selection set
+  (while (> (sslength ssFurn) cnt)
+    ; Get the entity name and entity data of the block
+    (setq entityName (entnext (ssname ssFurn cnt)))
+    (setq entityData (entget entityName))
+
+    ; Step through the objects that appear after
+    ; the block reference, looking for attributes
+    (while (/= (cdr (assoc 0 entityData)) "SEQEND")
+      ; Check to see which if the attribute tag is PART or TAG
+      (cond
+        ((= (strcase (Get-DXF-Value entityName 2)) "PART")
+          (setq part (Get-DXF-Value entityName 1))
+        )
+        ((= (strcase (Get-DXF-Value entityName 2)) "LABEL")
+          (setq label (Get-DXF-Value entityName 1))
+        )
+      )
+      
+      ; Get the next entity (attribute or sequence end)
+      (setq entityName (entnext entityName))
+      (setq entityData (entget entityName))
+    )
+
+    ; Add the part and label values to the list
+    (setq furnList (append furnList
+                           (list (strcat label "\t" part))
+			   ))
+
+    ; Increment the counter by 1
+    (setq cnt (1+ cnt))
+  )
+
+  ; Sort the list of parts and labels
+  (setq furnListSorted (acad_strlsort furnList))
+
+  ; Reset and set variables that will be used in the looping statement
+  (setq cnt 0
+        furnList nil preVal nil)
+
+  ; Quantify the list of parts and labels
+  ; Step through each value in the sorted list
+  (foreach val furnListSorted
+    ; Check to see if the previous value is the same as the current value
+    (if (or (= preVal val)(= preVal nil))
+      (progn
+        ; Increment the counter by 1
+        (setq cnt (1+ cnt))
+      )
+      
+      ; Values weren't the same, so record the quanity
+      (progn
+	
+        ; Add the quanity and the value (part/label) to the final list
+        (setq furnList (append furnList 
+                           (list (list (itoa cnt)
+                                 (substr preVal 1 (vl-string-search "\t" preVal))
+                                 (substr preVal (+ (vl-string-search "\t" preVal) 2)))
+                           )))
+        ; Reset the counter
+        (setq cnt 1)
+      )
+    )
+
+    ; keep the previous value for comparison
+    (setq preVal val)   
+  )
+
+  ; Add the quanity and the value (part/label) to the final list
+  (setq furnList (append furnList 
+                     (list (list (itoa cnt)
+                           (substr preVal 1 (vl-string-search "\t" preVal))
+                           (substr preVal (+ (vl-string-search "\t" preVal) 2)))
+                     )))
+
+  ; Return the quantified and control chracter delimated "\t"
+  furnList
+)
+
+
+; Create the bill of materials table/grid
+(defun tableFurnBOM (qtyList insPt / colWidths tableWidth rowHeight
+                                     tableHeight headers textHeight
+		                     col insText item insTextCol bottomRow)
+
+  ; Define the sizes of the table and grid
+  (setq colWidths (list 0 15 45 50)
+        tableWidth 0
+	row 1
+	rowHeight 4
+	tableHeight 0
+	textHeight (- rowHeight 1))
+
+  ; Get the table width by adding all column widths
+  (foreach colWidth colWidths
+    (setq tableWidth (+ colWidth tableWidth))
+  )
+  
+  ; Define the standard table headers
+  (setq headers (list "QTY" "LABELS" "PARTS"))
+
+  ; Create the top of the table
+  (entmake (list (cons 0 "LINE") (cons 10 insPt)
+                 (cons 11 (polar insPt 0 tableWidth))))
+
+  ; Get the bottom of the header row
+  (setq bottomRow (polar insPt (* -1 (/ PI 2)) rowHeight))
+  
+  ; Add headers to the table
+  (rowValuesFurnBOM headers bottomRow colWidths)
+
+  ;; (setq tableHeight (+ tableHeight rowHeight))
+  
+  ; Step through each item in the list
+  (foreach item qtyList
+    (setq row (1+ row))
+    (setq bottomRow (polar insPt (* -1 (/ PI 2)) (* row rowHeight)))
+    (rowValuesFurnBOM item bottomRow colWidths)
+  )
+
+  ; Create the vertical lines for each column
+  (setq colWidthTotal 0)
+  (foreach colWidth colWidths
+    ; Calculate the placement of each vertical line (left to right)
+    (setq colWidthTotal (+ colWidth colWidthTotal))
+    (setq colBasePt (polar insPt 0 colWidthTotal))
+
+    ; Draw the vertical line
+    (entmake (list (cons 0 "LINE") (cons 10 colBasePt)
+                   (cons 11 (polar colBasePt (* -1 (/ PI 2))
+                                   (distance insPt bottomRow)))))  
+  )
+)
+
+(defun rowValuesFurnBOM (itemsList bottomRow colWidths / tableWidth)
+  ; Calculate the insertion point for the header text
+  (setq rowText (list (+ 0.5 (nth 0 bottomRow))
+		      (+ 0.5 (nth 1 bottomRow))
+		      (nth 2 bottomRow))
+	tableWidth 0
+  )
+
+  ; Get the table width by adding all column widths
+  (foreach colWidth colWidths
+    (setq tableWidth (+ colWidth tableWidth))
+  )
+
+  ; Layout the text in each row
+  (setq col 0 colWidthTotal 0)
+  (foreach item itemsList
+    ; Calculate the placement of each text object (left to right)
+    (setq colWidthTotal (+ (nth col colWidths) colWidthTotal))
+    (setq insTextCol (polar rowText 0 colWidthTotal))
+
+    ; Draw the single-line text object
+    (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 100 "AcDbText")
+                   (cons 10 insTextCol) (cons 40 textHeight) (cons 1 item)
+                   (cons 50 0.0) (cons 7 "Standard") (cons 11 insTextCol)
+                   (cons 100 "AcDbText")))
+
+    ; Create the top of the table
+    (entmake (list (cons 0 "LINE") (cons 10 bottomRow)
+                   (cons 11 (polar bottomRow 0 tableWidth))))
+
+    ; Increment the counter
+    (setq col (1+ col))
+  )
+)
+
+; Extracts, aggregates, and counts attributes from the furniture blocks
+(defun c:FurnBOM ( / ssFurn eaList) 
+
+  ; Get the blocks to extract
+  (setq ssFurn (ssget '((0 . "INSERT"))))
+
+  ; Use the extAttsFurnBOM to extract and quanity the attributes in the blocks
+  ; If ssFurn is not nil proceed
+  (if ssFurn
+    (progn
+      ; Extract and quantify the parts in the drawing
+      (setq eaList (extAttsFurnBOM ssFurn))
+
+      ; Create the layer named BOM or set it current
+      (createlayer "BOM" 8)
+
+      ; Prompt the user for the point to create the BOM
+      (setq insPt (getpoint "\nSpecify upper-left corner of BOM: "))
+
+      ; Start the function that creates the table grid
+      (tableFurnBOM eaList insPt)
+    )
+  )
+ (princ)
+)
+```
+
+3 Click File Save.
+
+#### 6.7.6 Using the Functions in the furntools.lsp File
+
+The functions you added to furntools.lsp leverage some of those defined in utility.lsp. These functions allow you to change the layers of objects in a drawing and extract information from the objects in a drawing as well. More specifically, they let you work with blocks that represent an office furniture layout.
+
+Although you might be working in a civil engineering– or mechanical design–related field, these concepts can and do apply to the work you do—just in different ways. Instead of extracting information from a furniture block, you could get and set information in a title block, a callout, or even an elevation marker. Making sure a hatch is placed on the correct layers, along with dimensions, can improve the quality of output for the designs your company creates.
+
+NOTE: The following steps require a drawing file named Ch16_Office_Layout.dwg. If you didn't download the sample files earlier, download them now from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder.
+
+The following steps explain how to use the furnlayers function that is in the furntools.lsp file:
+
+1 Open `Ch16_Office_Layout.dwg`. Figure 16.6 shows the office layout that is in the drawing.
+
+2 Start the appload command. Load the LSP files furntools.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
+
+3 At the Command prompt, type furnlayers and press Enter.
+
+4 At the Select objects: prompt, select all the objects in the drawing and press Enter. The objects in the drawing are placed on the correct layers. Earlier the objects were placed on layer 0 and had a color of white (or black) based on the background color of the drawing area.
+
+Figure 16.6 Office furniture layout
+
+The following steps explain how to use the furnbom function that is in the furntools.lsp file:
+
+1 Open the `Ch16_Office_Layout.dwg` if it is not open from the previous steps.
+
+2 Load the furntools.lsp and utility.lsp files if you opened the drawing in step 1.
+
+3 At the Command prompt, type furnbom and press Enter.
+
+4 At the Select objects: prompt, select all the objects in the drawing. Don't press Enter yet. Notice that the dimension objects aren't highlighted. This is because the ssget function is only allowing block references (insert object types) to be selected as a result of the filter being applied.
+
+5 Press Enter to end the object selection.
+
+6 At the Specify upper-left corner of BOM: prompt, specify a point to the right of the furniture layout in the drawing. The BOM that represents the furniture blocks is placed in a table grid, as shown in Figure 16.7.
+
+Figure 16.7 Bill of materials generated from the office furniture layout

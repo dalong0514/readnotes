@@ -1781,19 +1781,155 @@ In this section, you will continue to work with the drawplate function that was 
 
 NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 15,「Requesting Input and Using Conditional and Looping Expressions.」If you didn't complete the steps, do so now or start with the `ch16_drawplate.lsp` and `ch16_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters `ch16_ from` the name of each file.
 
+```c
+; Draws a rectangular plate that is 5x2.75
+(defun c:drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue
+                       cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
+
+  ; Store and change the value of the system variables
+  (setq old_vars (get-sysvars '("osmode" "clayer" "cmdecho")))
+  (set-sysvars '("osmode" "clayer" "cmdecho") '(0 "0" 0))
+
+  ; Create the layer named Plate or set it current
+  (createlayer "Plate" 5)
+
+  ; Define the width and height for the plate
+  (if (= *drawplate_width* nil) 
+    (setq *drawplate_width* 5.0)
+  )
+  (if (= *drawplate_height* nil) 
+    (setq *drawplate_height* 2.75)
+  )
+
+  ; Get recently used values from the global variables
+  (setq width *drawplate_width*)
+  (setq height *drawplate_height*)
+
+  ; Prompt the current values
+  (prompt (strcat "\nCurrent width: "
+		  (rtos *drawplate_width* 2)
+		  "  Current height: "
+		  (rtos *drawplate_height* 2)
+    )
+  )
+  
+  ; Setup default keywords
+  (initget "Width Height")
+
+  ; Continue to ask for input until a point is provided
+  (while (/= (type
+	       (setq basePt
+		      (getpoint "\nSpecify base point for plate or [Width/Height]: "))
+	     )
+	     'LIST
+	  ) 
+    (cond
+      ; Prompt for the width of the plate
+      ((= basePt "Width") 
+          (setq width (getdist (strcat "\nSpecify the width of the plate <"
+			               (rtos *drawplate_width* 2) ">: ")))
+          ; If nil is returned, use the previous value from the global variable
+          (if (/= width nil) 
+            (setq *drawplate_width* width)
+          )
+      )
+      ; Prompt for the height of the plate
+      ((= basePt "Height") 
+          (setq height (getdist (strcat "\nSpecify the height of the plate <"
+			                (rtos *drawplate_height* 2) ">: ")))
+          ; If nil is returned, use the previous value from the global variable
+          (if (/= height nil) 
+            (setq *drawplate_height* height)
+          )
+      )
+    )
+    ; Setup default keywords again
+    (initget "Width Height")
+  )
+  
+  ; Set the coordinates to draw the rectangle
+  (setq pt1 basePt
+	;| lower-left corner  |;
+        pt2 (list (+ (car basePt) width) (cadr basePt) 0)
+	;| lower-right corner |;
+        pt3 (list (+ (car basePt) width) (+ (cadr basePt) height) 0)
+	;| upper-right corner |;
+        pt4 (list (car basePt) (+ (cadr basePt) height) 0)
+	;| upper-left corner  |;
+  )
+
+  ; Draw the rectangle
+  (createrectangle pt1 pt2 pt3 pt4)
+
+  ; Create the layer named Holes or set it current
+  (createlayer "Holes" 1)
+
+  ; Calculate the placement of the circle in the lower-left corner  
+  ; Calculate a new point at 45 degrees and distance of 0.7071 from pt1
+  (setq cenPt1 (polar pt1 (/ PI 4) 0.7071))
+
+  ; Calculate the next point from cenPt along the same angle
+  ; as the line drawn between pt1 and pt2, and 1 unit less
+  ; than the distance between pt1 and pt2 
+  (setq cenPt2 (polar cenPt1 (angle pt1 pt2) (- (distance pt1 pt2) 1)))
+
+  ; Calculate the final two points based on cenPt1 and cenPt2
+  (setq cenPt3 (polar cenPt2 (angle pt2 pt3) (- height 1))
+        cenPt4 (polar cenPt1 (angle pt1 pt4) (- height 1)))
+  
+  ; Append all the calculated center points to a single list
+  (setq hole_list (append (list cenPt1)
+                          (list cenPt2)
+                          (list cenPt3)
+                          (list cenPt4)))
+
+  ; Execute the createcircle function for each point
+  ; list in the in the hole_list variable
+  (foreach cenPt hole_list
+    (createcircle cenPt 0.1875)
+  )
+
+  ; Set the insertion point for the text label
+  (setq insPt (getpoint "\nSpecify label insertion point: "))
+
+  ; Define the label to add
+  (setq textValue (strcat "Plate Size: "
+                          (vl-string-right-trim " .0" (rtos width 2 2))
+                          "x"
+                          (vl-string-right-trim " .0" (rtos height 2 2))
+                  )
+  )
+
+  ; Create label
+  (createlayer "Label" 7)
+  (createtext insPt "_c" 0.5 0.0 textValue)
+
+  ; Restore the value of the system variables
+  (set-sysvars '("osmode" "clayer" "cmdecho") old_vars)
+
+  ; Save previous values to global variables
+  (setq *drawplate_width* width)
+  (setq *drawplate_height* height)
+
+ ; Exit "quietly"
+ (princ)
+)
+```
+
 ### 6.7.1 Revising the Functions in utility.lsp
 
 The changes to the utility.lsp file replace the use of AutoCAD commands to create objects with the entmake function and entity data lists. With these changes, you don't need to worry about the current setting of the osmode and other drafting-related system variables. Creating objects with the entmake function also doesn't display Command prompt strings at the command-line window; such strings would need to be suppressed with the cmdecho system variable otherwise. Remember, if something happens to go wrong, the fewer system variables you have changed, the better off you and your end users are.
 
 As you revise the functions, notice how easy it can be to change the underlying functionality of your programs when they are divided into several smaller functions. Smaller functions are easier not only to change, but to retest if a problem is encountered.
 
+1『一直在贯彻这一思维，拆分成一个个功能单一的小函数。（2002-10-31）』
+
 The following steps explain how to update the various functions in the utility.lsp file:
 
 Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS. In the text editor area, update the createrectangle, createtext, and createcircle functions to match the following:
 
 ```c
-; CreateLayer function creates/modifies a layer and
-; expects to argument values.
+; CreateLayer function creates/modifies a layer and expects to argument values.
 (defun createlayer (name color / )
   (command "._-layer" "_m" name "_c" color "" "")
 )
@@ -1822,7 +1958,6 @@ Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS. In the te
 ; Usage: (get-sysvars (list "clayer" "osmode"))
 ;
 (defun get-sysvars (sysvar-list / values-list)
-
   ; Creates a new list based on the values of the
   ; system variables in sysvar-list
   (foreach sysvar sysvar-list
@@ -1846,15 +1981,12 @@ Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS. In the te
 (defun set-sysvars (sysvar-list values-list / cnt)
   ; Set the counter to 0
   (setq cnt 0)
-
   ; Step through each variable and set its value.
   (foreach sysvar sysvar-list
     (setvar sysvar (nth cnt values-list))
-
     ; Increment the counter
     (setq cnt (1+ cnt))
   )
-  
  (princ)
 )
 
@@ -1906,25 +2038,25 @@ Although the changes you made to the utility.lsp file weren't made directly to t
 
 The following steps explain how to load the LSP files into AutoCAD and then start the drawplate function:
 
-Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
+1 Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
 
-At the Command prompt, type drawplate and press Enter.
+2 At the Command prompt, type drawplate and press Enter.
 
-Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window. The current width and height values for the plate are displayed in the command-line history.Current width: 5.0000 Current height: 2.7500
+3 Press F2 on Windows or Fn-F2 on Mac OS to expand the command-line window. The current width and height values for the plate are displayed in the command-line history.Current width: 5.0000 Current height: 2.7500
 
-At the Specify base point for the plate or [Width/Height]: prompt, type w and press Enter.
+4 At the Specify base point for the plate or [Width/Height]: prompt, type w and press Enter.
 
-At the Specify the width of the plate <5.0000>: prompt, type 3 and press Enter.
+5 At the Specify the width of the plate `<5.0000>`: prompt, type 3 and press Enter.
 
-At the Specify base point for the plate or [Width/Height]: prompt, type h and press Enter.
+6 At the Specify base point for the plate or [Width/Height]: prompt, type h and press Enter.
 
-At the Specify the height of the plate <2.7500>: prompt, type 4 and press Enter.
+7 At the Specify the height of the plate `<2.7500>`: prompt, type 4 and press Enter.
 
-At the Specify base point for the plate or [Width/Height]: prompt, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
+8 At the Specify base point for the plate or [Width/Height]: prompt, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
 
-At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label.
+9 At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label.
 
-Zoom to the extents of the drawing. Figure 16.5 shows the completed plate.
+10 Zoom to the extents of the drawing. Figure 16.5 shows the completed plate.
 
 Figure 16.5 The completed plate created using the updated utility functions
 
@@ -1936,25 +2068,48 @@ In my personal utility library, I have two functions named Get-DXF-Value and Set
 
 Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS, if it is not already open from the previous steps.
 
-In the text editor area, position the cursor after the last expression in the file and press Enter twice. Then type the following:; Returns the value of the specified DXF group code (defun Get-DXF-Value (entityName DXFcode / ) (cdr (assoc DXFcode (entget entityName))) ) ; Sets the value of the specified DXF group code for the supplied entity name (defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList oldPropList) ; Get the entity data list for the object (setq entityData (entget entityName)) ; Create the dotted pair for the new property value (setq newPropList (cons DXFcode newValue)) (if (setq oldPropList (assoc DXFcode entityData)) (setq entityData (subst newPropList oldPropList entityData)) (setq entityData (append entityData (list newPropList))) ) ; Update the object's entity data list (entmod entityData) ; Refresh the object onscreen (entupd entityName) ; Return the new entity data list entityData )
+In the text editor area, position the cursor after the last expression in the file and press Enter twice. Then type the following:
+
+```c
+; Returns the value of the specified DXF group code for the supplied entity name
+(defun Get-DXF-Value (entityName DXFcode / )
+  (cdr (assoc DXFcode (entget entityName)))
+)
+
+; Sets the value of the specified DXF group code for the supplied entity name
+(defun Set-DXF-Value (entityName DXFcode newValue / entityData newPropList oldPropList)
+  ; Get the entity data list for the object
+  (setq entityData (entget entityName))
+
+  ; Create the dotted pair for the new property value
+  (setq newPropList (cons DXFcode newValue))
+  (if (setq oldPropList (assoc DXFcode entityData))
+    (setq entityData (subst newPropList oldPropList entityData))
+    (setq entityData (append entityData (list newPropList)))
+  )
+
+  ; Update the object’s entity data list 
+  (entmod entityData)
+
+  ; Refresh the object on-screen
+  (entupd entityName)
+ 
+ ; Return the new entity data list
+ entityData
+)
+```
 
 Click File Save.
 
 ### 6.7.4 Moving Objects to Correct Layers
 
-Not everyone will agree on the naming conventions, plot styles, and other various aspects of layers, but there are a few things drafters can agree on when it comes to layers—that objects should do the following:
-
-Inherit their properties, for the most part, from the layers in which they are placed
-
-Only be placed on layer 0 when creating blocks
+Not everyone will agree on the naming conventions, plot styles, and other various aspects of layers, but there are a few things drafters can agree on when it comes to layers—that objects should do the following: 1) Inherit their properties, for the most part, from the layers in which they are placed. 2)Only be placed on layer 0 when creating blocks.
 
 While I would like to think all the drawings I've created are perfect, I know that rush deadlines or other distractions may have affected quality. Maybe the objects were placed on the wrong layer or maybe it wasn't my fault and standards simply changed during the course of a project. With AutoLISP, you can identify potential problems in a drawing to let the user know about them so they can be fixed, or you can make the changes using AutoLISP.
 
-In these steps, you create a custom function named furnlayers that is used to identify objects by type and value to ensure they are placed on the correct layer. This is achieved using selection sets and entity data lists, along with looping and conditional statements.
+In these steps, you create a custom function named furnlayers that is used to identify objects by type and value to ensure they are placed on the correct layer. This is achieved using selection sets and entity data lists, along with looping and conditional statements. 
 
-Create a new LSP file named furntools.lsp with Notepad on Windows or TextEdit on Mac OS.
-
-In the text editor area of the furntools.lsp file, type the following:
+Create a new LSP file named furntools.lsp with Notepad on Windows or TextEdit on Mac OS. In the text editor area of the furntools.lsp file, type the following:
 
 ```c
 ; Moves objects to the correct layers based on a set of established rules
@@ -2020,9 +2175,9 @@ The designs you create take time and, based on the industry you are in, are ofte
 
 In these steps, you create a custom function named furnbom that is used to get the values of two attributes (part and label) attached to a block. The attribute values are added to a list and then sorted using the acad_strlsort function. Once sorted, the list is then parsed and quantified into a new list, which is used to create the a BOM table made up of lines and text.
 
-Open the furntools.lsp file with Notepad on Windows or TextEdit on Mac OS, if it is not already open.
+1 Open the furntools.lsp file with Notepad on Windows or TextEdit on Mac OS, if it is not already open. 
 
-In the text editor area of the furntools.lsp file, type the following:
+2 In the text editor area of the furntools.lsp file, type the following:
 
 ```c
 ; extAttsFurnBOM - Extracts, sorts, and quanitifies the attribute information
@@ -2226,7 +2381,7 @@ In the text editor area of the furntools.lsp file, type the following:
 )
 ```
 
-Click File Save.
+3 Click File Save.
 
 ### 6.7.6 Using the Functions in the furntools.lsp File
 
@@ -2238,28 +2393,28 @@ NOTE: The following steps require a drawing file named Ch16_Office_Layout.dwg. I
 
 The following steps explain how to use the furnlayers function that is in the furntools.lsp file:
 
-Open Ch16_Office_Layout.dwg. Figure 16.6 shows the office layout that is in the drawing.
+1 Open `Ch16_Office_Layout.dwg`. Figure 16.6 shows the office layout that is in the drawing.
 
-Start the appload command. Load the LSP files furntools.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
+2 Start the appload command. Load the LSP files furntools.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
 
-At the Command prompt, type furnlayers and press Enter.
+3 At the Command prompt, type furnlayers and press Enter.
 
-At the Select objects: prompt, select all the objects in the drawing and press Enter. The objects in the drawing are placed on the correct layers. Earlier the objects were placed on layer 0 and had a color of white (or black) based on the background color of the drawing area.
+4 At the Select objects: prompt, select all the objects in the drawing and press Enter. The objects in the drawing are placed on the correct layers. Earlier the objects were placed on layer 0 and had a color of white (or black) based on the background color of the drawing area.
 
 Figure 16.6 Office furniture layout
 
 The following steps explain how to use the furnbom function that is in the furntools.lsp file:
 
-Open the `Ch16_Office_Layout.dwg` if it is not open from the previous steps.
+1 Open the `Ch16_Office_Layout.dwg` if it is not open from the previous steps.
 
-Load the furntools.lsp and utility.lsp files if you opened the drawing in step 1.
+2 Load the furntools.lsp and utility.lsp files if you opened the drawing in step 1.
 
-At the Command prompt, type furnbom and press Enter.
+3 At the Command prompt, type furnbom and press Enter.
 
-At the Select objects: prompt, select all the objects in the drawing. Don't press Enter yet. Notice that the dimension objects aren't highlighted. This is because the ssget function is only allowing block references (insert object types) to be selected as a result of the filter being applied.
+4 At the Select objects: prompt, select all the objects in the drawing. Don't press Enter yet. Notice that the dimension objects aren't highlighted. This is because the ssget function is only allowing block references (insert object types) to be selected as a result of the filter being applied.
 
-Press Enter to end the object selection.
+5 Press Enter to end the object selection.
 
-At the Specify upper-left corner of BOM: prompt, specify a point to the right of the furniture layout in the drawing. The BOM that represents the furniture blocks is placed in a table grid, as shown in Figure 16.7.
+6 At the Specify upper-left corner of BOM: prompt, specify a point to the right of the furniture layout in the drawing. The BOM that represents the furniture blocks is placed in a table grid, as shown in Figure 16.7.
 
 Figure 16.7 Bill of materials generated from the office furniture layout
