@@ -28,23 +28,23 @@ A list is a group of related values separated by spaces and enclosed in parenthe
 
 Examples of lists are (1.0 1.0 0.0), ("this" "that" "the other"), and (1 . "ONE"). AutoLISP provides many functions for working with lists. The following are some of the most commonly used functions:
 
-1. list - Creates a new list with any number of values.
+1 list - Creates a new list with any number of values.
 
-2. append - Appends values to an existing list, and returns a new list.
+2 append - Appends values to an existing list, and returns a new list.
 
-3. cons - Adds an element to the beginning of a list, or constructs a dotted list.
+3 cons - Adds an element to the beginning of a list, or constructs a dotted list.
 
-4. length - Returns an integer indicating the number of elements in a list.
+4 length - Returns an integer indicating the number of elements in a list.
 
-5. assoc - Searches an association list for an element and returns that association list entry.
+5 assoc - Searches an association list for an element and returns that association list entry.
 
-6. car - Returns the first element of a list.
+6 car - Returns the first element of a list.
 
-7. cdr - Returns a list containing all but the first element of the specified list.
+7 cdr - Returns a list containing all but the first element of the specified list.
 
-8. nth - Returns the nth element of a list.
+8 nth - Returns the nth element of a list.
 
-9. subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
+9 subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
 
 创建 list 数据相关的函数：
 
@@ -212,17 +212,17 @@ A string is a group of characters surrounded by quotation marks. Within quoted s
 
 AutoLISP provides many functions for working with string values. The following are some of the most commonly used functions:
 
-1. strcat – Returns a string that is the concatenation of multiple strings.
+1 strcat – Returns a string that is the concatenation of multiple strings.
 
-2. strcase – Returns a string where all alphabetic characters have been converted to uppercase or lowercase.
+2 strcase – Returns a string where all alphabetic characters have been converted to uppercase or lowercase.
 
-3. strlen – Returns an integer that is the number of characters in a string.
+3 strlen – Returns an integer that is the number of characters in a string.
 
-4. substr – Returns a substring of a string.
+4 substr – Returns a substring of a string.
 
-5. vl-string-search – Searches for the specified pattern in a string.
+5 vl-string-search – Searches for the specified pattern in a string.
 
-6. vl-string-subst – Substitutes one string for another, within a string.
+6 vl-string-subst – Substitutes one string for another, within a string.
 
 ### 0103. 主题卡——lisp 中的多态
 
@@ -244,15 +244,15 @@ Selection sets are groups of one or more selected objects (entities). You can in
 
 AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets: 
 
-1. ssget - Prompts the user to select objects (entities), and returns a selection set; 
+1 ssget - Prompts the user to select objects (entities), and returns a selection set; 
 
-2. ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
+2 ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
 
-3. ssdel - Removes an object (entity) from a selection set; 
+3 ssdel - Removes an object (entity) from a selection set; 
 
-4. ssname - Returns the object (entity) name of the indexed element of a selection set; 
+4 ssname - Returns the object (entity) name of the indexed element of a selection set; 
 
-5. sslength - Returns an integer containing the number of objects (entities) in a selection set.
+5 sslength - Returns an integer containing the number of objects (entities) in a selection set.
 
 1『获得选择集之后，需要靠 ssname，比如获取块选择集里第一个块的实体信息：`(setq ent (entget (ssname ss 0)))`。』
 
@@ -809,13 +809,13 @@ Dotted pairs are an example of an "improper list." An improper list is one in wh
 
 The following functions are useful for handling dotted pairs:
 
-1. car - Returns the first member of the specified dotted pair.
+1 car - Returns the first member of the specified dotted pair.
 
-2. cdr - Returns the second member of the specified dotted pair.
+2 cdr - Returns the second member of the specified dotted pair.
 
-3. assoc - Searches an association list for a member and returns that association list entry.
+3 assoc - Searches an association list for a member and returns that association list entry.
 
-4. nth - Returns the nth element of a list.
+4 nth - Returns the nth element of a list.
 
 The following code creates an association list of dotted pairs:
 
@@ -875,13 +875,13 @@ A string can be compared to a wild-card pattern with the wcmatch function. This 
 
 The following rules apply to wild-card patterns:
 
-1. Alphabetic characters and numerals are treated literally in the pattern.
+1 Alphabetic characters and numerals are treated literally in the pattern.
 
-2. Brackets can be used to specify optional characters or a range of letters or digits.
+2 Brackets can be used to specify optional characters or a range of letters or digits.
 
-3. A question mark ( ? ) matches a single character.
+3 A question mark ( ? ) matches a single character.
 
-4. An asterisk ( * ) matches a sequence of characters; and, certain other special characters have special meanings within the pattern. When you use the * character at the beginning and end of the search pattern, you can locate the desired portion anywhere in the string.
+4 An asterisk ( * ) matches a sequence of characters; and, certain other special characters have special meanings within the pattern. When you use the * character at the beginning and end of the search pattern, you can locate the desired portion anywhere in the string.
 
 In the following examples, a string variable called matchme has been declared and initialized:
 
