@@ -202,13 +202,80 @@ Two last bits of basic knowledge you need to get under your belt are Common Lisp
 
 1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil 做一张术语卡片。』——已完成
 
-### 0203. 术语卡——
+### 0203. 术语卡——动态语言
 
-### 0301. 人名卡——
+As in other languages, in Common Lisp variables are named places that can hold a value. However, in Common Lisp, variables aren't typed the way they are in languages such as Java or C++. That is, you don't need to declare the type of object that each variable can hold. Instead, a variable can hold values of any type and the values carry type information that can be used to check types at runtime. Thus, Common Lisp is dynamically typed--type errors are detected dynamically. For instance, if you pass something other than a number to the + function, Common Lisp will signal a type error. On the other hand, Common Lisp is a strongly typed language in the sense that all type errors will be detected--there's no way to treat an object as an instance of a class that it's not. 3
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+1-2『这里又见「动态语言」的概念，做一张术语卡片。』——已完成
 
-### 0401. 任意卡——几个语言的座右铭
+3 Actually, it’s not quite true to say that all type errors will always be detected—it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
+
+All values in Common Lisp are, conceptually at least, references to objects. 4 Consequently, assigning a variable a new value changes what object the variable refers to but has no effect on the previously referenced object. However, if a variable holds a reference to a mutable object, you can use that reference to modify the object, and the modification will be visible to any code that has a reference to the same object.
+
+One way to introduce new variables you've already used is to define function parameters. As you saw in the previous chapter, when you define a function with DEFUN, the parameter list defines the variables that will hold the function's arguments when it's called. For example, this function defines three variables--x, y, and z--to hold its arguments.
+
+```c
+(defun foo (x y z) 
+  (+ x y z)
+)
+```
+
+4 As an optimization certain kinds of objects, such as integers below a certain size and characters, may be represented directly in memory where other objects would be represented by a pointer to the actual object. However, since integers and characters are immutable, it doesn’t matter that there may be multiple copies of “the same” object in different variables. This is the root of the difference between EQ and EQL discussed in Chapter 4.
+
+1『这里又见到「不可变性」，函数式编程里核心的一个概念。上面提到的，整数和字符串在 lisp 里是不可变型的数据类型，但作为变量，整数是可以赋值不同的数的啊，难道是分配给整数的内存空间只能放整数的意思？所以说目前还是不太明白其不变性。（2020-11-03）』
+
+Each time a function is called, Lisp creates new bindings to hold the arguments passed by the function's caller. A binding is the runtime manifestation of a variable. A single variable--the thing you can point to in the program's source code--can have many different bindings during a run of the program. A single variable can even have multiple bindings at the same time; parameters to a recursive function, for example, are rebound for each call to the function.
+
+As with all Common Lisp variables, function parameters hold object references. 5 Thus, you can assign a new value to a function parameter within the body of the function, and it will not affect the bindings created for another call to the same function. But if the object passed to a function is mutable and you change it in the function, the changes will be visible to the caller since both the caller and the callee will be referencing the same object.
+
+5 In compiler-writer terms Common Lisp functions are “pass-by-value.” However, the values that are passed are references to objects. This is similar to how Java and Python work.
+
+1『看到这里提到的「可变」，渐渐对「不可变性」有那么一点点感觉了。（2020-11-03）』
+
+### 0203. 术语卡—— closure
+
+By default all binding forms in Common Lisp introduce lexically scoped variables. Lexically scoped variables can be referred to only by code that's textually within the binding form. Lexical scoping should be familiar to anyone who has programmed in Java, C, Perl, or Python since they all provide lexically scoped "local" variables. For that matter, Algol programmers should also feel right at home, as Algol first introduced lexical scoping in the 1960s.
+
+However, Common Lisp's lexical variables are lexical variables with a twist, at least compared to the original Algol model. The twist is provided by the combination of lexical scoping with nested functions. By the rules of lexical scoping, only code textually within the binding form can refer to a lexical variable. But what happens when an anonymous function contains a reference to a lexical variable from an enclosing scope? For instance, in this expression:
+
+```c
+(let ((count 0)) #'(lambda () (setf count (1+ count))))
+```
+
+the reference to count inside the LAMBDA form should be legal according to the rules of lexical scoping. Yet the anonymous function containing the reference will be returned as the value of the LET form and can be invoked, via FUNCALL, by code that's not in the scope of the LET. So what happens? As it turns out, when count is a lexical variable, it just works. The binding of count created when the flow of control entered the LET form will stick around for as long as needed, in this case for as long as someone holds onto a reference to the function object returned by the LET form. The anonymous function is called a closure because it "closes over" the binding created by the LET.
+
+1-2『又见闭包 closure，不过这里目前介绍的闭包概念没弄明白。做一张术语卡片。（2020-11-03）』——已完成
+
+The key thing to understand about closures is that it's the binding, not the value of the variable, that's captured. Thus, a closure can not only access the value of the variables it closes over but can also assign new values that will persist between calls to the closure. For instance, you can capture the closure created by the previous expression in a global variable like this:
+
+```c
+(defparameter *fn* (let ((count 0)) #'(lambda () (setf count (1+ count)))))
+```
+
+Then each time you invoke it, the value of count will increase by one.
+
+```c
+CL-USER> (funcall *fn*) 
+1 
+CL-USER> (funcall *fn*) 
+2 
+CL-USER> (funcall *fn*) 
+3
+```
+
+A single closure can close over many variable bindings simply by referring to them. Or multiple closures can capture the same binding. For instance, the following expression returns a list of three closures, one that increments the value of the closed over count binding, one that decrements it, and one that returns the current value:
+
+```c
+(let ((count 0)) 
+  (list 
+    #'(lambda () (incf count)) 
+    #'(lambda () (decf count)) 
+    #'(lambda () count)
+  )
+)
+```
+
+### 0301. 任意卡——几个语言的座右铭
 
 Perl: 1) makes easy things easy and hard things possible. 2) There's more than one way to do it.
 
@@ -220,7 +287,7 @@ The nearest thing Common Lisp has to a motto is the koan-like description, "the 
 
 Consequently, a Common Lisp program tends to provide a much clearer mapping between your ideas about how the program works and the code you actually write. Your ideas aren't obscured by boilerplate code and endlessly repeated idioms. This makes your code easier to maintain because you don't have to wade through reams of code every time you need to make a change. Even systemic changes to a program's behavior can often be achieved with relatively small changes to the actual code. This also means you'll develop code more quickly; there's less code to write, and you don't waste time thrashing around trying to find a clean way to express yourself within the limitations of the language. 2
 
-### 0402. 任意卡——三大类 list 的处理方式
+### 0302. 任意卡——三大类 list 的处理方式
 
 Things get more interesting when we consider how lists are evaluated. All legal list forms start with a symbol, but three kinds of list forms are evaluated in three quite different ways. To determine what kind of form a given list is, the evaluator must determine whether the symbol that starts the list is the name of a function, a macro, or a special operator. If the symbol hasn't been defined yet--as may be the case if you're compiling code that contains references to functions that will be defined later--it's assumed to be a function name. 12 I'll refer to the three kinds of forms as function call forms, macro forms, and special forms.
 

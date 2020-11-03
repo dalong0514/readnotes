@@ -1,62 +1,144 @@
 # 0601. Variables
 
-The next basic building block we need to look at are variables. Common Lisp supports two kinds of variables: lexical and dynamic.1 These two types correspond roughly to "local" and "global" variables in other languages. However, the correspondence is only approximate. On one hand, some languages' "local" variables are in fact much like Common Lisp's dynamic variables.2 And on the other, some languages' local variables are lexically scoped without providing all the capabilities provided by Common Lisp's lexical variables. In particular, not all languages that provide lexically scoped variables support closures.
+The next basic building block we need to look at are variables. Common Lisp supports two kinds of variables: lexical and dynamic. 1 These two types correspond roughly to "local" and "global" variables in other languages. However, the correspondence is only approximate. On one hand, some languages' "local" variables are in fact much like Common Lisp's dynamic variables. 2 And on the other, some languages' local variables are lexically scoped without providing all the capabilities provided by Common Lisp's lexical variables. In particular, not all languages that provide lexically scoped variables support closures.
 
 To make matters a bit more confusing, many of the forms that deal with variables can be used with both lexical and dynamic variables. So I'll start by discussing a few aspects of Lisp's variables that apply to both kinds and then cover the specific characteristics of lexical and dynamic variables. Then I'll discuss Common Lisp's general-purpose assignment operator, SETF, which is used to assign new values to variables and just about every other place that can hold a value.
 
+1『晕死，这里才突然意识到，command lisp 里的 `setf` 如同 autolisp 里的 `setq`。（2020-11-03）』
+
+1 Dynamic variables are also sometimes called special variables for reasons you’ll see later in this chapter. It’s important to be aware of this synonym, as some folks (and Lisp implementations) use one term while others use the other.
+
+2 Early Lisps tended to use dynamic variables for local variables, at least when interpreted. Elisp, the Lisp dialect used in Emacs, is a bit of a throwback in this respect, continuing to support only dynamic variables. Other languages have recapitulated this transition from dynamic to lexical variables—Perl’s local variables, for instance, are dynamic while its my variables, introduced in Perl 5, are lexical. Python never had true dynamic variables but only introduced true lexical scoping in version 2.2. (Python’s lexical variables are still somewhat limited compared to Lisp’s because of the conflation of assignment and binding in the language’s syntax.)
+
 ## 6.1 Variable Basics
 
-As in other languages, in Common Lisp variables are named places that can hold a value. However, in Common Lisp, variables aren't typed the way they are in languages such as Java or C++. That is, you don't need to declare the type of object that each variable can hold. Instead, a variable can hold values of any type and the values carry type information that can be used to check types at runtime. Thus, Common Lisp is dynamically typed--type errors are detected dynamically. For instance, if you pass something other than a number to the + function, Common Lisp will signal a type error. On the other hand, Common Lisp is a strongly typed language in the sense that all type errors will be detected--there's no way to treat an object as an instance of a class that it's not.3
+As in other languages, in Common Lisp variables are named places that can hold a value. However, in Common Lisp, variables aren't typed the way they are in languages such as Java or C++. That is, you don't need to declare the type of object that each variable can hold. Instead, a variable can hold values of any type and the values carry type information that can be used to check types at runtime. Thus, Common Lisp is dynamically typed--type errors are detected dynamically. For instance, if you pass something other than a number to the + function, Common Lisp will signal a type error. On the other hand, Common Lisp is a strongly typed language in the sense that all type errors will be detected--there's no way to treat an object as an instance of a class that it's not. 3
 
-All values in Common Lisp are, conceptually at least, references to objects.4 Consequently, assigning a variable a new value changes what object the variable refers to but has no effect on the previously referenced object. However, if a variable holds a reference to a mutable object, you can use that reference to modify the object, and the modification will be visible to any code that has a reference to the same object.
+1-2『这里又见「动态语言」的概念，做一张术语卡片。』——已完成
+
+All values in Common Lisp are, conceptually at least, references to objects. 4 Consequently, assigning a variable a new value changes what object the variable refers to but has no effect on the previously referenced object. However, if a variable holds a reference to a mutable object, you can use that reference to modify the object, and the modification will be visible to any code that has a reference to the same object.
 
 One way to introduce new variables you've already used is to define function parameters. As you saw in the previous chapter, when you define a function with DEFUN, the parameter list defines the variables that will hold the function's arguments when it's called. For example, this function defines three variables--x, y, and z--to hold its arguments.
 
-(defun foo (x y z) (+ x y z))
+```c
+(defun foo (x y z) 
+  (+ x y z)
+)
+```
 
 Each time a function is called, Lisp creates new bindings to hold the arguments passed by the function's caller. A binding is the runtime manifestation of a variable. A single variable--the thing you can point to in the program's source code--can have many different bindings during a run of the program. A single variable can even have multiple bindings at the same time; parameters to a recursive function, for example, are rebound for each call to the function.
 
-As with all Common Lisp variables, function parameters hold object references.5 Thus, you can assign a new value to a function parameter within the body of the function, and it will not affect the bindings created for another call to the same function. But if the object passed to a function is mutable and you change it in the function, the changes will be visible to the caller since both the caller and the callee will be referencing the same object.
+As with all Common Lisp variables, function parameters hold object references. 5 Thus, you can assign a new value to a function parameter within the body of the function, and it will not affect the bindings created for another call to the same function. But if the object passed to a function is mutable and you change it in the function, the changes will be visible to the caller since both the caller and the callee will be referencing the same object.
+
+1『看到这里提到的「可变」，渐渐对「不可变性」有那么一点点感觉了。（2020-11-03）』
 
 Another form that introduces new variables is the LET special operator. The skeleton of a LET form looks like this:
 
-(let (variable*) body-form*)
+```c
+(let (variable*) 
+  body-form*
+)
+```
 
 where each variable is a variable initialization form. Each initialization form is either a list containing a variable name and an initial value form or--as a shorthand for initializing the variable to NIL--a plain variable name. The following LET form, for example, binds the three variables x, y, and z with initial values 10, 20, and NIL:
 
-(let ((x 10) (y 20) z) ...)
+```c
+(let ((x 10) (y 20) z) 
+  ...
+)
+```
 
 When the LET form is evaluated, all the initial value forms are first evaluated. Then new bindings are created and initialized to the appropriate initial values before the body forms are executed. Within the body of the LET, the variable names refer to the newly created bindings. After the LET, the names refer to whatever, if anything, they referred to before the LET.
 
-The value of the last expression in the body is returned as the value of the LET expression. Like function parameters, variables introduced with LET are rebound each time the LET is entered.6
+The value of the last expression in the body is returned as the value of the LET expression. Like function parameters, variables introduced with LET are rebound each time the LET is entered. 6
 
 The scope of function parameters and LET variables--the area of the program where the variable name can be used to refer to the variable's binding--is delimited by the form that introduces the variable. This form--the function definition or the LET--is called the binding form. As you'll see in a bit, the two types of variables--lexical and dynamic--use two slightly different scoping mechanisms, but in both cases the scope is delimited by the binding form.
 
 If you nest binding forms that introduce variables with the same name, then the bindings of the innermost variable shadows the outer bindings. For instance, when the following function is called, a binding is created for the parameter x to hold the function's argument. Then the first LET creates a new binding with the initial value 2, and the inner LET creates yet another binding, this one with the initial value 3. The bars on the right mark the scope of each binding.
 
-(defun foo (x) (format t "Parameter: ~a~%" x) ; |<------ x is argument (let ((x 2)) ; | (format t "Outer LET: ~a~%" x) ; | |<---- x is 2 (let ((x 3)) ; | | (format t "Inner LET: ~a~%" x)) ; | | |<-- x is 3 (format t "Outer LET: ~a~%" x)) ; | | (format t "Parameter: ~a~%" x)) ; |
+```c
+(defun foo (x) ; x is argument
+  (format t "Parameter: ~a~%" x) 
+  (let ((x 2)) ; x is 2 
+    (format t "Outer LET: ~a~%" x) 
+    (let ((x 3)) ; x is 3 
+      (format t "Inner LET: ~a~%" x)
+    ) 
+    (format t "Outer LET: ~a~%" x)
+  )
+  (format t "Parameter: ~a~%" x)
+) 
+```
 
 Each reference to x will refer to the binding with the smallest enclosing scope. Once control leaves the scope of one binding form, the binding from the immediately enclosing scope is unshadowed and x refers to it instead. Thus, calling foo results in this output:
 
-CL-USER> (foo 1) Parameter: 1 Outer LET: 2 Inner LET: 3 Outer LET: 2 Parameter: 1 NIL
+```c
+CL-USER> (foo 1) 
+Parameter: 1 
+Outer LET: 2 
+Inner LET: 3 
+Outer LET: 2 
+Parameter: 1 
+NIL
+```
 
 In future chapters I'll discuss other constructs that also serve as binding forms--any construct that introduces a new variable name that's usable only within the construct is a binding form.
 
 For instance, in Chapter 7 you'll meet the DOTIMES loop, a basic counting loop. It introduces a variable that holds the value of a counter that's incremented each time through the loop. The following loop, for example, which prints the numbers from 0 to 9, binds the variable x:
 
-(dotimes (x 10) (format t "~d " x))
+```c
+(dotimes (x 10) 
+  (format t "~d " x)
+)
+```
 
-Another binding form is a variant of LET, LET*. The difference is that in a LET, the variable names can be used only in the body of the LET--the part of the LET after the variables list--but in a LET*, the initial value forms for each variable can refer to variables introduced earlier in the variables list. Thus, you can write the following:
+Another binding form is a variant of LET, `LET*.` The difference is that in a LET, the variable names can be used only in the body of the LET--the part of the LET after the variables list--but in a `LET*`, the initial value forms for each variable can refer to variables introduced earlier in the variables list. Thus, you can write the following:
 
-(let* ((x 10) (y (+ x 10))) (list x y))
+```c
+(let* ((x 10) 
+       (y (+ x 10))) 
+  (list x y)
+)
+```
 
 but not this:
 
-(let ((x 10) (y (+ x 10))) (list x y))
+```c
+(let ((x 10) 
+      (y (+ x 10))) 
+  (list x y)
+)
+```
 
 However, you could achieve the same result with nested LETs.
 
-(let ((x 10)) (let ((y (+ x 10))) (list x y)))
+```c
+(let ((x 10)) 
+  (let ((y (+ x 10))) 
+    (list x y)
+  )
+)
+```
+
+3 Actually, it’s not quite true to say that all type errors will always be detected—it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
+
+4 As an optimization certain kinds of objects, such as integers below a certain size and characters, may be represented directly in memory where other objects would be represented by a pointer to the actual object. However, since integers and characters are immutable, it doesn’t matter that there may be multiple copies of “the same” object in different variables. This is the root of the difference between EQ and EQL discussed in Chapter 4.
+
+1『这里又见到「不可变性」，函数式编程里核心的一个概念。上面提到的，整数和字符串在 lisp 里是不可变型的数据类型，但作为变量，整数是可以赋值不同的数的啊，难道是分配给整数的内存空间只能放整数的意思？所以说目前还是不太明白其不变性。（2020-11-03）』
+
+5 In compiler-writer terms Common Lisp functions are “pass-by-value.” However, the values that are passed are references to objects. This is similar to how Java and Python work.
+
+6 The variables in LET forms and function parameters are created by exactly the same mechanism. In fact, in some Lisp dialects—though not Common Lisp—LET is simply a macro that expands into a call to an anonymous function. That is, in those dialects, the following:
+
+```c
+(let ((x 10)) (format t "~a" x))
+```
+
+is a macro form that expands into this:
+
+```c
+((lambda (x) (format t "~a" x)) 10)
+```
 
 ## 6.2 Lexical Variables and Closures
 
@@ -64,99 +146,149 @@ By default all binding forms in Common Lisp introduce lexically scoped variables
 
 However, Common Lisp's lexical variables are lexical variables with a twist, at least compared to the original Algol model. The twist is provided by the combination of lexical scoping with nested functions. By the rules of lexical scoping, only code textually within the binding form can refer to a lexical variable. But what happens when an anonymous function contains a reference to a lexical variable from an enclosing scope? For instance, in this expression:
 
+```c
 (let ((count 0)) #'(lambda () (setf count (1+ count))))
+```
 
 the reference to count inside the LAMBDA form should be legal according to the rules of lexical scoping. Yet the anonymous function containing the reference will be returned as the value of the LET form and can be invoked, via FUNCALL, by code that's not in the scope of the LET. So what happens? As it turns out, when count is a lexical variable, it just works. The binding of count created when the flow of control entered the LET form will stick around for as long as needed, in this case for as long as someone holds onto a reference to the function object returned by the LET form. The anonymous function is called a closure because it "closes over" the binding created by the LET.
 
+1-2『又见闭包 closure，不过这里目前介绍的闭包概念没弄明白。做一张术语卡片。（2020-11-03）』——已完成
+
 The key thing to understand about closures is that it's the binding, not the value of the variable, that's captured. Thus, a closure can not only access the value of the variables it closes over but can also assign new values that will persist between calls to the closure. For instance, you can capture the closure created by the previous expression in a global variable like this:
 
+```c
 (defparameter *fn* (let ((count 0)) #'(lambda () (setf count (1+ count)))))
+```
 
 Then each time you invoke it, the value of count will increase by one.
 
-CL-USER> (funcall *fn*) 1 CL-USER> (funcall *fn*) 2 CL-USER> (funcall *fn*) 3
+```c
+CL-USER> (funcall *fn*) 
+1 
+CL-USER> (funcall *fn*) 
+2 
+CL-USER> (funcall *fn*) 
+3
+```
 
 A single closure can close over many variable bindings simply by referring to them. Or multiple closures can capture the same binding. For instance, the following expression returns a list of three closures, one that increments the value of the closed over count binding, one that decrements it, and one that returns the current value:
 
-(let ((count 0)) (list #'(lambda () (incf count)) #'(lambda () (decf count)) #'(lambda () count)))
+```c
+(let ((count 0)) 
+  (list 
+    #'(lambda () (incf count)) 
+    #'(lambda () (decf count)) 
+    #'(lambda () count)
+  )
+)
+```
 
 ## 6.3 Dynamic, a.k.a. Special, Variables
 
 Lexically scoped bindings help keep code understandable by limiting the scope, literally, in which a given name has meaning. This is why most modern languages use lexical scoping for local variables. Sometimes, however, you really want a global variable--a variable that you can refer to from anywhere in your program. While it's true that indiscriminate use of global variables can turn code into spaghetti nearly as quickly as unrestrained use of goto, global variables do have legitimate uses and exist in one form or another in almost every programming language.7 And as you'll see in a moment, Lisp's version of global variables, dynamic variables, are both more useful and more manageable.
 
+
+
+
+
+
 Common Lisp provides two ways to create global variables: DEFVAR and DEFPARAMETER. Both forms take a variable name, an initial value, and an optional documentation string. After it has been DEFVARed or DEFPARAMETERed, the name can be used anywhere to refer to the current binding of the global variable. As you've seen in previous chapters, global variables are conventionally named with names that start and end with *. You'll see later in this section why it's quite important to follow that naming convention. Examples of DEFVAR and DEFPARAMETER look like this:
 
+```c
 (defvar *count* 0 "Count of widgets made so far.") (defparameter *gap-tolerance* 0.001 "Tolerance to be allowed in widget gaps.")
+```
 
 The difference between the two forms is that DEFPARAMETER always assigns the initial value to the named variable while DEFVAR does so only if the variable is undefined. A DEFVAR form can also be used with no initial value to define a global variable without giving it a value. Such a variable is said to be unbound.
 
-Practically speaking, you should use DEFVAR to define variables that will contain data you'd want to keep even if you made a change to the source code that uses the variable. For instance, suppose the two variables defined previously are part of an application for controlling a widget factory. It's appropriate to define the *count* variable with DEFVAR because the number of widgets made so far isn't invalidated just because you make some changes to the widget-making code.8
+Practically speaking, you should use DEFVAR to define variables that will contain data you'd want to keep even if you made a change to the source code that uses the variable. For instance, suppose the two variables defined previously are part of an application for controlling a widget factory. It's appropriate to define the `*count*` variable with DEFVAR because the number of widgets made so far isn't invalidated just because you make some changes to the widget-making code.8
 
-On the other hand, the variable *gap-tolerance* presumably has some effect on the behavior of the widget-making code itself. If you decide you need a tighter or looser tolerance and change the value in the DEFPARAMETER form, you'd like the change to take effect when you recompile and reload the file.
+On the other hand, the variable `*gap-tolerance*` presumably has some effect on the behavior of the widget-making code itself. If you decide you need a tighter or looser tolerance and change the value in the DEFPARAMETER form, you'd like the change to take effect when you recompile and reload the file.
 
 After defining a variable with DEFVAR or DEFPARAMETER, you can refer to it from anywhere. For instance, you might define this function to increment the count of widgets made:
 
+```c
 (defun increment-widget-count () (incf *count*))
+```
 
 The advantage of global variables is that you don't have to pass them around. Most languages store the standard input and output streams in global variables for exactly this reason--you never know when you're going to want to print something to standard out, and you don't want every function to have to accept and pass on arguments containing those streams just in case someone further down the line needs them.
 
 However, once a value, such as the standard output stream, is stored in a global variable and you have written code that references that global variable, it's tempting to try to temporarily modify the behavior of that code by changing the variable's value.
 
-For instance, suppose you're working on a program that contains some low-level logging functions that print to the stream in the global variable *standard-output*. Now suppose that in part of the program you want to capture all the output generated by those functions into a file. You might open a file and assign the resulting stream to *standard-output*. Now the low-level functions will send their output to the file.
+For instance, suppose you're working on a program that contains some low-level logging functions that print to the stream in the global variable `*standard-output*`. Now suppose that in part of the program you want to capture all the output generated by those functions into a file. You might open a file and assign the resulting stream to `*standard-output*`. Now the low-level functions will send their output to the file.
 
-This works fine until you forget to set *standard-output* back to the original stream when you're done. If you forget to reset *standard-output*, all the other code in the program that uses *standard-output* will also send its output to the file.9
+This works fine until you forget to set `*standard-output*` back to the original stream when you're done. If you forget to reset `*standard-output*`, all the other code in the program that uses `*standard-output*` will also send its output to the file.9
 
-What you really want, it seems, is a way to wrap a piece of code in something that says, "All code below here--all the functions it calls, all the functions they call, and so on, down to the lowest-level functions--should use this value for the global variable *standard-output*." Then when the high-level function returns, the old value of *standard-output* should be automatically restored.
+What you really want, it seems, is a way to wrap a piece of code in something that says, "All code below here--all the functions it calls, all the functions they call, and so on, down to the lowest-level functions--should use this value for the global variable `*standard-output*`." Then when the high-level function returns, the old value of `*standard-output*` should be automatically restored.
 
 It turns out that that's exactly what Common Lisp's other kind of variable--dynamic variables--let you do. When you bind a dynamic variable--for example, with a LET variable or a function parameter--the binding that's created on entry to the binding form replaces the global binding for the duration of the binding form. Unlike a lexical binding, which can be referenced by code only within the lexical scope of the binding form, a dynamic binding can be referenced by any code that's invoked during the execution of the binding form.10 And it turns out that all global variables are, in fact, dynamic variables.
 
-Thus, if you want to temporarily redefine *standard-output*, the way to do it is simply to rebind it, say, with a LET.
+Thus, if you want to temporarily redefine `*standard-output*`, the way to do it is simply to rebind it, say, with a LET.
 
+```c
 (let ((*standard-output* *some-other-stream*)) (stuff))
+```
 
-In any code that runs as a result of the call to stuff, references to *standard-output* will use the binding established by the LET. And when stuff returns and control leaves the LET, the new binding of *standard-output* will go away and subsequent references to *standard-output* will see the binding that was current before the LET. At any given time, the most recently established binding shadows all other bindings. Conceptually, each new binding for a given dynamic variable is pushed onto a stack of bindings for that variable, and references to the variable always use the most recent binding. As binding forms return, the bindings they created are popped off the stack, exposing previous bindings.11
+In any code that runs as a result of the call to stuff, references to `*standard-output*` will use the binding established by the LET. And when stuff returns and control leaves the LET, the new binding of `*standard-output*` will go away and subsequent references to `*standard-output*` will see the binding that was current before the LET. At any given time, the most recently established binding shadows all other bindings. Conceptually, each new binding for a given dynamic variable is pushed onto a stack of bindings for that variable, and references to the variable always use the most recent binding. As binding forms return, the bindings they created are popped off the stack, exposing previous bindings.11
 
 A simple example shows how this works.
 
+```c
 (defvar *x* 10) (defun foo () (format t "X: ~d~%" *x*))
+```
 
-The DEFVAR creates a global binding for the variable *x* with the value 10. The reference to *x* in foo will look up the current binding dynamically. If you call foo from the top level, the global binding created by the DEFVAR is the only binding available, so it prints 10.
+The DEFVAR creates a global binding for the variable `*x*` with the value 10. The reference to `*x*` in foo will look up the current binding dynamically. If you call foo from the top level, the global binding created by the DEFVAR is the only binding available, so it prints 10.
 
+```c
 CL-USER> (foo) X: 10 NIL
+```
 
 But you can use LET to create a new binding that temporarily shadows the global binding, and foo will print a different value.
 
+```c
 CL-USER> (let ((*x* 20)) (foo)) X: 20 NIL
+```
 
 Now call foo again, with no LET, and it again sees the global binding.
 
+```c
 CL-USER> (foo) X: 10 NIL
+```
 
 Now define another function.
 
+```c
 (defun bar () (foo) (let ((*x* 20)) (foo)) (foo))
+```
 
-Note that the middle call to foo is wrapped in a LET that binds *x* to the new value 20. When you run bar, you get this result:
+Note that the middle call to foo is wrapped in a LET that binds `*x*` to the new value 20. When you run bar, you get this result:
 
+```c
 CL-USER> (bar) X: 10 X: 20 X: 10 NIL
+```
 
 As you can see, the first call to foo sees the global binding, with its value of 10. The middle call, however, sees the new binding, with the value 20. But after the LET, foo once again sees the global binding.
 
-As with lexical bindings, assigning a new value affects only the current binding. To see this, you can redefine foo to include an assignment to *x*.
+As with lexical bindings, assigning a new value affects only the current binding. To see this, you can redefine foo to include an assignment to `*x*`.
 
+```c
 (defun foo () (format t "Before assignment~18tX: ~d~%" *x*) (setf *x* (+ 1 *x*)) (format t "After assignment~18tX: ~d~%" *x*))
+```
 
-Now foo prints the value of *x*, increments it, and prints it again. If you just run foo, you'll see this:
+Now foo prints the value of `*x*`, increments it, and prints it again. If you just run foo, you'll see this:
 
+```c
 CL-USER> (foo) Before assignment X: 10 After assignment X: 11 NIL
+```
 
 Not too surprising. Now run bar.
 
+```c
 CL-USER> (bar) Before assignment X: 11 After assignment X: 12 Before assignment X: 20 After assignment X: 21 Before assignment X: 12 After assignment X: 13 NIL
+```
 
-Notice that *x* started at 11--the earlier call to foo really did change the global value. The first call to foo from bar increments the global binding to 12. The middle call doesn't see the global binding because of the LET. Then the last call can see the global binding again and increments it from 12 to 13.
+Notice that `*x*` started at 11--the earlier call to foo really did change the global value. The first call to foo from bar increments the global binding to 12. The middle call doesn't see the global binding because of the LET. Then the last call can see the global binding again and increments it from 12 to 13.
 
-So how does this work? How does LET know that when it binds *x* it's supposed to create a dynamic binding rather than a normal lexical binding? It knows because the name has been declared special.12 The name of every variable defined with DEFVAR and DEFPARAMETER is automatically declared globally special. This means whenever you use such a name in a binding form--in a LET or as a function parameter or any other construct that creates a new variable binding--the binding that's created will be a dynamic binding. This is why the *naming* *convention* is so important--it'd be bad news if you used a name for what you thought was a lexical variable and that variable happened to be globally special. On the one hand, code you call could change the value of the binding out from under you; on the other, you might be shadowing a binding established by code higher up on the stack. If you always name global variables according to the * naming convention, you'll never accidentally use a dynamic binding where you intend to establish a lexical binding.
+So how does this work? How does LET know that when it binds `*x*` it's supposed to create a dynamic binding rather than a normal lexical binding? It knows because the name has been declared special.12 The name of every variable defined with DEFVAR and DEFPARAMETER is automatically declared globally special. This means whenever you use such a name in a binding form--in a LET or as a function parameter or any other construct that creates a new variable binding--the binding that's created will be a dynamic binding. This is why the `*naming*` `*convention*` is so important--it'd be bad news if you used a name for what you thought was a lexical variable and that variable happened to be globally special. On the one hand, code you call could change the value of the binding out from under you; on the other, you might be shadowing a binding established by code higher up on the stack. If you always name global variables according to the * naming convention, you'll never accidentally use a dynamic binding where you intend to establish a lexical binding.
 
 It's also possible to declare a name locally special. If, in a binding form, you declare a name special, then the binding created for that variable will be dynamic rather than lexical. Other code can locally declare a name special in order to refer to the dynamic binding. However, locally special variables are relatively rare, so you needn't worry about them.13
 
