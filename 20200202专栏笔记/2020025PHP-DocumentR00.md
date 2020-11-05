@@ -50,14 +50,6 @@
 
 最后还有一张任意卡，记录个人阅读感想。
 
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是在这个专栏的整个地图里，这一章节所在的节点。
-
-### 2. 摘录及评论
-
 ## 0101. Array 数组
 
 [PHP: Array 数组 - Manual](https://www.php.net/manual/zh/language.types.array.php)

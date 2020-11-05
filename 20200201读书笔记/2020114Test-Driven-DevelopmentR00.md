@@ -20,14 +20,6 @@ Readers of Extreme Programming Explained will notice a difference in tone betwee
 
 ### 0401. 金句卡——TDD is an awareness of the gap between decision and feedback during programming, and techniques to control that gap
 
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
-
 ## 书评
 
 ### 01
@@ -359,6 +351,3 @@ Dollar 就如同加权平均里的一个计数器：因此，为使其支持多�
 1、在你写任何代码之前，先写一个会失败的自动测试程序。2、消除重复设计，优化设计结构。
 
 到底要如何这样做？如何巧妙地分阶段应用这些规则？这两条简单的规则可以运用多深？这正是本书要讲的主题。我们将从 Ward 在灵感爆发瞬间所创造的对象一一多币种资金（muli-currency money）开始谈起。
-
-
-
