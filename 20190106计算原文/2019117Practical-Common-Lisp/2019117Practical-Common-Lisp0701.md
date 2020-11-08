@@ -111,6 +111,8 @@ By convention, the branch representing the final else clause in an if/else-if ch
           (t (do-z)))
 ```
 
+2『在 autolisp 里 `cond` 语句是有效的，真不错。（2020-11-08）』
+
 ## 7.3 AND, OR, and NOT
 
 When writing the conditions in IF, WHEN, UNLESS, and COND forms, three operators that will come in handy are the boolean logic operators, AND, OR, and NOT.
@@ -151,17 +153,22 @@ DOLIST loops across the items of a list, executing the loop body with a variable
 When the loop starts, the list-form is evaluated once to produce a list. Then the body of the loop is evaluated once for each item in the list with the variable var holding the value of the item. For instance:
 
 ```c
-CL-USER> (dolist (x '(1 2 3)) (print x)) 
+CL-USER> 
+(dolist (x '(1 2 3)) 
+  (print x)
+)
 1 2 3 
 NIL
 ```
 
-Used this way, the DOLIST form as a whole evaluates to NIL.
-
-If you want to break out of a DOLIST loop before the end of the list, you can use RETURN.
+Used this way, the DOLIST form as a whole evaluates to NIL. If you want to break out of a DOLIST loop before the end of the list, you can use RETURN.
 
 ```c
-CL-USER> (dolist (x '(1 2 3)) (print x) (if (evenp x) (return))) 
+CL-USER> 
+(dolist (x '(1 2 3)) 
+  (print x) 
+  (if (evenp x) (return))
+)
 1 2 
 NIL
 ```
@@ -175,20 +182,43 @@ DOTIMES is the high-level looping construct for counting loops. The basic templa
 The count-form must evaluate to an integer. Each time through the loop var holds successive integers from 0 to one less than that number. For instance:
 
 ```c
-CL-USER> (dotimes (i 4) (print i)) 
+CL-USER> 
+(dotimes (i 4) (print i)) 
 0 1 2 3 
 NIL
 ```
 
 As with DOLIST, you can use RETURN to break out of the loop early.
 
-Because the body of both DOLIST and DOTIMES loops can contain any kind of expressions, you can also nest loops. For example, to print out the times tables from 1 × 1 = 1 to 20 × 20 = 400, you can write this pair of nested DOTIMES loops:
+Because the body of both DOLIST and DOTIMES loops can contain any kind of expressions, you can also nest loops. For example, to print out the times tables from `1 × 1 = 1` to `20 × 20 = 400,` you can write this pair of nested DOTIMES loops:
 
 ```c
-(dotimes (x 20) (dotimes (y 20) (format t "~3d " (* (1+ x) (1+ y)))) (format t "~%"))
+(dotimes (x 20) 
+  (dotimes (y 20) 
+    (format t "~3d " (* (1+ x) (1+ y)))
+  ) 
+  (format t "~%")
+)
 ```
 
+1『试了下，上面的代码跑出来是一个矩阵。（2020-11-08）』
+
 5 DOLIST is similar to Perl’s foreach or Python’s for. Java added a similar kind of loop construct with the “enhanced” for loop in Java 1.5, as part of JSR-201. Notice what a difference macros make. A Lisp programmer who notices a common pattern in their code can write a macro to give themselves a source-level abstraction of that pattern. A Java programmer who notices the same pattern has to convince Sun that this particular abstraction is worth adding to the language. Then Sun has to publish a JSR and convene an industry-wide “expert group” to hash everything out. That process—according to Sun—takes an average of 18 months. After that, the compiler writers all have to go upgrade their compilers to support the new feature. And even once the Java programmer’s favorite compiler supports the new version of Java, they probably still can’t use the new feature until they’re allowed to break source compatibility with older versions of Java. So an annoyance that Common Lisp programmers can resolve for themselves within five minutes plagues Java programmers for years.
+
+1『
+
+在 autolisp 里也是使用的 `foreach` 语句。
+
+```c
+(defun StrListToListListUtils (strList / resultList)
+  (foreach item strList 
+    (setq resultList (append resultList (list (StrToListUtils item ","))))
+  )
+  resultList
+)
+```
+
+』
 
 ## 7.6 DO
 
@@ -210,12 +240,15 @@ The init-form will be evaluated at the beginning of the loop and the resulting v
 
 At the beginning of each iteration, after all the loop variables have been given their new values, the end-test-form is evaluated. As long as it evaluates to NIL, the iteration proceeds, evaluating the statements in order.
 
-When the end-test-form evaluates to true, the result-forms are evaluated, and the value of the last result form is returned as the value of the DO expression.
-
-At each step of the iteration the step forms for all the variables are evaluated before assigning any of the values to the variables. This means you can refer to any of the other loop variables in the step forms.6 That is, in a loop like this:
+When the end-test-form evaluates to true, the result-forms are evaluated, and the value of the last result form is returned as the value of the DO expression. At each step of the iteration the step forms for all the variables are evaluated before assigning any of the values to the variables. This means you can refer to any of the other loop variables in the step forms. 6 That is, in a loop like this:
 
 ```c
-(do ((n 0 (1+ n)) (cur 0 next) (next 1 (+ cur next))) ((= 10 n) cur))
+(do ((n 0 (1+ n)) 
+     (cur 0 next) 
+     (next 1 (+ cur next))
+    ) 
+  ((= 10 n) cur)
+)
 ```
 
 the step forms (1+ n), next, and (+ cur next) are all evaluated using the old values of n, cur, and next. Only after all the step forms have been evaluated are the variables given their new values. (Mathematically inclined readers may notice that this is a particularly efficient way of computing the eleventh Fibonacci number.)
@@ -232,7 +265,7 @@ The six parentheses in that template are the only ones required by the DO itself
 (do ((i 0 (1+ i))) ((>= i 4)) (print i))
 ```
 
-Notice that the result form has been omitted. This is, however, not a particularly idiomatic use of DO, as this loop is much more simply written using DOTIMES.7
+Notice that the result form has been omitted. This is, however, not a particularly idiomatic use of DO, as this loop is much more simply written using DOTIMES. 7
 
 ```c
 (dotimes (i 4) (print i))
@@ -247,7 +280,11 @@ As another example, here's the bodiless Fibonacci-computing loop:
 Finally, the next loop demonstrates a DO loop that binds no variables. It loops while the current time is less than the value of a global variable, printing "Waiting" once a minute. Note that even with no loop variables, you still need the empty variables list.
 
 ```c
-(do () ((> (get-universal-time) *some-future-date*)) (format t "Waiting~%") (sleep 60))
+(do () 
+  ((> (get-universal-time) *some-future-date*)) 
+  (format t "Waiting~%") 
+  (sleep 60)
+)
 ```
 
 6 A variant of DO, DO*, assigns each variable its value before evaluating the step form for subsequent variables. For more details, consult your favorite Common Lisp reference.
@@ -269,7 +306,13 @@ The LOOP macro actually comes in two flavors--simple and extended. The simple ve
 The forms in body are evaluated each time through the loop, which will iterate forever unless you use RETURN to break out. For example, you could write the previous DO loop with a simple LOOP.
 
 ```c
-(loop (when (> (get-universal-time) *some-future-date*) (return)) (format t "Waiting~%") (sleep 60))
+(loop 
+  (when (> (get-universal-time) *some-future-date*) 
+    (return)
+  ) 
+  (format t "Waiting~%") 
+  (sleep 60)
+)
 ```
 
 The extended LOOP is quite a different beast. It's distinguished by the use of certain loop keywords that implement a special-purpose language for expressing looping idioms. It's worth noting that not all Lispers love the extended LOOP language. At least one of Common Lisp's original designers hated it. LOOP's detractors complain that its syntax is totally un-Lispy (in other words, not enough parentheses). LOOP's fans counter that that's the point: complicated looping constructs are hard enough to understand without wrapping them up in DO's cryptic syntax. It's better, they say, to have a slightly more verbose syntax that gives you some clues what the heck is going on.
@@ -277,25 +320,29 @@ The extended LOOP is quite a different beast. It's distinguished by the use of c
 For instance, here's an idiomatic DO loop that collects the numbers from 1 to 10 into a list:
 
 ```c
-(do ((nums nil) (i 1 (1+ i))) ((> i 10) (nreverse nums)) (push i nums)) ==> (1 2 3 4 5 6 7 8 9 10)
+(do ((nums nil) (i 1 (1+ i))) ((> i 10) (nreverse nums)) (push i nums)) 
+==> (1 2 3 4 5 6 7 8 9 10)
 ```
 
 A seasoned Lisper won't have any trouble understanding that code--it's just a matter of understanding the basic form of a DO loop and recognizing the PUSH/NREVERSE idiom for building up a list. But it's not exactly transparent. The LOOP version, on the other hand, is almost understandable as an English sentence.
 
 ```c
-(loop for i from 1 to 10 collecting i) ==> (1 2 3 4 5 6 7 8 9 10)
+(loop for i from 1 to 10 collecting i) 
+==> (1 2 3 4 5 6 7 8 9 10)
 ```
 
 The following are some more examples of simple uses of LOOP. This sums the first ten squares:
 
 ```c
-(loop for x from 1 to 10 summing (expt x 2)) ==> 385
+(loop for x from 1 to 10 summing (expt x 2)) 
+==> 385
 ```
 
 This counts the number of vowels in a string:
 
 ```c
-(loop for x across "the quick brown fox jumps over the lazy dog" counting (find x "aeiou")) ==> 11
+(loop for x across "the quick brown fox jumps over the lazy dog" counting (find x "aeiou")) 
+==> 11
 ```
 
 This computes the eleventh Fibonacci number, similar to the DO loop used earlier:
@@ -312,4 +359,4 @@ And it's worth pointing out one more time that while the LOOP macro is quite a b
 
 With that I'll conclude our tour of the basic control-construct macros. Now you're ready to take a closer look at how to define your own macros.
 
-8 Loop keywords is a bit of a misnomer since they aren’t keyword symbols. In fact, LOOP doesn’t care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted:for, :across, and so on—because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn’t matter if they’re used for other purposes—as function or variable names.
+8 Loop keywords is a bit of a misnomer since they aren’t keyword symbols. In fact, LOOP doesn’t care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted:for, :across, and so on—because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn’t matter if they’re used for other purposes—as function or variable names.a
