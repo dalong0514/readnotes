@@ -18,7 +18,9 @@ Now, it may seem that the benefits of having another way to extend the language 
 
 As you've already seen, the most basic form of conditional execution--if x, do y; otherwise do z--is provided by the IF special operator, which has this basic form:
 
-    (if condition then-form [else-form])
+```c
+(if condition then-form [else-form])
+```
 
 The condition is evaluated and, if its value is non-NIL, the then-form is evaluated and the resulting value returned. Otherwise, the else-form, if any, is evaluated and its value returned. If condition is NIL and there's no else-form, then the IF returns NIL.
 
@@ -30,7 +32,7 @@ The condition is evaluated and, if its value is non-NIL, the then-form is evalua
 
 However, IF isn't actually such a great syntactic construct because the then-form and else-form are each restricted to being a single Lisp form. This means if you want to perform a sequence of actions in either clause, you need to wrap them in some other syntax. For instance, suppose in the middle of a spam-filtering program you wanted to both file a message as spam and update the spam database when a message is spam. You can't write this:
 
-```
+```c
 (if (spam-p current-message) 
   (file-in-spam-folder current-message) 
   (update-spam-database current-message))
@@ -38,7 +40,7 @@ However, IF isn't actually such a great syntactic construct because the then-for
 
 because the call to update-spam-database will be treated as the else clause, not as part of the then clause. Another special operator, PROGN, executes any number of forms in order and returns the value of the last form. So you could get the desired behavior by writing the following:
 
-```
+```c
 (if (spam-p current-message) 
   (progn 
     (file-in-spam-folder current-message) 
@@ -49,29 +51,29 @@ That's not too horrible. But given the number of times you'll likely have to use
 
 This is exactly what macros provide. In this case, Common Lisp comes with a standard macro, WHEN, which lets you write this:
 
-```
+```c
 (when (spam-p current-message) 
   (file-in-spam-folder current-message) 
   (update-spam-database current-message))
 ```
 
-But if it wasn't built into the standard library, you could define WHEN yourself with a macro such as this, using the backquote notation I discussed in Chapter 3:[3]
+But if it wasn't built into the standard library, you could define WHEN yourself with a macro such as this, using the backquote notation I discussed in Chapter 3: 3
 
-```
+```c
 (defmacro when (condition &rest body) 
   `(if ,condition (progn ,@body)))
 ```
 
 A counterpart to the WHEN macro is UNLESS, which reverses the condition, evaluating its body forms only if the condition is false. In other words:
 
-```
+```c
 (defmacro unless (condition &rest body) 
   `(if (not ,condition) (progn ,@body)))
 ```
 
 Admittedly, these are pretty trivial macros. There's no deep black magic here; they just abstract away a few language-level bookkeeping details, allowing you to express your true intent a bit more clearly. But their very triviality makes an important point: because the macro system is built right into the language, you can write trivial macros like WHEN and UNLESS that give you small but real gains in clarity that are then multiplied by the thousands of times you use them. In Chapters 24, 26, and 31 you'll see how macros can also be used on a larger scale, creating whole domain-specific embedded languages. But first let's finish our discussion of the standard control-construct macros.
 
-1『直觉告诉我这是 lisp 的一个关键知识点。难道 lisp 语言内部可以自有的定制「宏」？』
+1『直觉告诉我这是 lisp 的一个关键知识点。难道 lisp 语言内部可以自有的定制「宏」？回复：可惜了，经测试，autolisp 里是没有内置宏 `when`，连 `defmacro` 都没有，哎。不过总觉得还可以通过其他途径来实现同样的目的，待挖掘。（2020-11-08）』
 
 3 You can’t actually feed this definition to Lisp because it’s illegal to redefine names in the COMMON-LISP package where WHEN comes from. If you really want to try writing such a macro, you’d need to change the name to something else, such as my-when.
 
@@ -79,7 +81,7 @@ Admittedly, these are pretty trivial macros. There's no deep black magic here; t
 
 Another time raw IF expressions can get ugly is when you have a multibranch conditional: if a do x, else if b do y; else do z. There's no logical problem writing such a chain of conditional expressions with just IF, but it's not pretty.
 
-```
+```c
 (if a 
   (do-x) 
   (if b 
@@ -88,7 +90,7 @@ Another time raw IF expressions can get ugly is when you have a multibranch cond
 ```
 And it would be even worse if you needed to include multiple forms in the then clauses, requiring PROGNs. So, not surprisingly, Common Lisp provides a macro for expressing multibranch conditionals: COND. This is the basic skeleton:
 
-```
+```c
 (cond 
   (test-1 form*) 
   .
@@ -103,7 +105,7 @@ At that point, the remaining forms in that branch are evaluated, and the value o
 
 By convention, the branch representing the final else clause in an if/else-if chain is written with a condition of T. Any non-NIL value will work, but a T serves as a useful landmark when reading the code. Thus, you can write the previous nested IF expression using COND like this:
 
-```
+```c
 (cond (a (do-x)) 
           (b (do-y)) 
           (t (do-z)))
@@ -142,31 +144,49 @@ I'll start with the easy-to-use DOLIST and DOTIMES macros.
 
 DOLIST loops across the items of a list, executing the loop body with a variable holding the successive items of the list. 5 This is the basic skeleton (leaving out some of the more esoteric options):
 
+```c
 (dolist (var list-form) body-form*)
+```
 
 When the loop starts, the list-form is evaluated once to produce a list. Then the body of the loop is evaluated once for each item in the list with the variable var holding the value of the item. For instance:
 
-CL-USER> (dolist (x '(1 2 3)) (print x)) 1 2 3 NIL
+```c
+CL-USER> (dolist (x '(1 2 3)) (print x)) 
+1 2 3 
+NIL
+```
 
 Used this way, the DOLIST form as a whole evaluates to NIL.
 
 If you want to break out of a DOLIST loop before the end of the list, you can use RETURN.
 
-CL-USER> (dolist (x '(1 2 3)) (print x) (if (evenp x) (return))) 1 2 NIL
+```c
+CL-USER> (dolist (x '(1 2 3)) (print x) (if (evenp x) (return))) 
+1 2 
+NIL
+```
 
 DOTIMES is the high-level looping construct for counting loops. The basic template is much the same as DOLIST's.
 
+```c
 (dotimes (var count-form) body-form*)
+```
 
 The count-form must evaluate to an integer. Each time through the loop var holds successive integers from 0 to one less than that number. For instance:
 
-CL-USER> (dotimes (i 4) (print i)) 0 1 2 3 NIL
+```c
+CL-USER> (dotimes (i 4) (print i)) 
+0 1 2 3 
+NIL
+```
 
 As with DOLIST, you can use RETURN to break out of the loop early.
 
 Because the body of both DOLIST and DOTIMES loops can contain any kind of expressions, you can also nest loops. For example, to print out the times tables from 1 × 1 = 1 to 20 × 20 = 400, you can write this pair of nested DOTIMES loops:
 
+```c
 (dotimes (x 20) (dotimes (y 20) (format t "~3d " (* (1+ x) (1+ y)))) (format t "~%"))
+```
 
 5 DOLIST is similar to Perl’s foreach or Python’s for. Java added a similar kind of loop construct with the “enhanced” for loop in Java 1.5, as part of JSR-201. Notice what a difference macros make. A Lisp programmer who notices a common pattern in their code can write a macro to give themselves a source-level abstraction of that pattern. A Java programmer who notices the same pattern has to convince Sun that this particular abstraction is worth adding to the language. Then Sun has to publish a JSR and convene an industry-wide “expert group” to hash everything out. That process—according to Sun—takes an average of 18 months. After that, the compiler writers all have to go upgrade their compilers to support the new feature. And even once the Java programmer’s favorite compiler supports the new version of Java, they probably still can’t use the new feature until they’re allowed to break source compatibility with older versions of Java. So an annoyance that Common Lisp programmers can resolve for themselves within five minutes plagues Java programmers for years.
 
@@ -208,15 +228,21 @@ This example also illustrates another characteristic of DO--because you can step
 
 The six parentheses in that template are the only ones required by the DO itself. You need one pair to enclose the variable declarations, one pair to enclose the end test and result forms, and one pair to enclose the whole expression. Other forms within the DO may require their own parentheses--variable definitions are usually lists, for instance. And the test form is often a function call. But the skeleton of a DO loop will always be the same. Here are some example DO loops with the skeleton in bold:
 
+```c
 (do ((i 0 (1+ i))) ((>= i 4)) (print i))
+```
 
 Notice that the result form has been omitted. This is, however, not a particularly idiomatic use of DO, as this loop is much more simply written using DOTIMES.7
 
+```c
 (dotimes (i 4) (print i))
+```
 
 As another example, here's the bodiless Fibonacci-computing loop:
 
+```c
 (do ((n 0 (1+ n)) (cur 0 next) (next 1 (+ cur next))) ((= 10 n) cur))
+```
 
 Finally, the next loop demonstrates a DO loop that binds no variables. It loops while the current time is less than the value of a global variable, printing "Waiting" once a minute. Note that even with no loop variables, you still need the empty variables list.
 
@@ -236,7 +262,9 @@ Well, it turns out a handful of looping idioms come up over and over again, such
 
 The LOOP macro actually comes in two flavors--simple and extended. The simple version is as simple as can be--an infinite loop that doesn't bind any variables. The skeleton looks like this:
 
+```c
 (loop body-form*)
+```
 
 The forms in body are evaluated each time through the loop, which will iterate forever unless you use RETURN to break out. For example, you could write the previous DO loop with a simple LOOP.
 
@@ -248,23 +276,33 @@ The extended LOOP is quite a different beast. It's distinguished by the use of c
 
 For instance, here's an idiomatic DO loop that collects the numbers from 1 to 10 into a list:
 
+```c
 (do ((nums nil) (i 1 (1+ i))) ((> i 10) (nreverse nums)) (push i nums)) ==> (1 2 3 4 5 6 7 8 9 10)
+```
 
 A seasoned Lisper won't have any trouble understanding that code--it's just a matter of understanding the basic form of a DO loop and recognizing the PUSH/NREVERSE idiom for building up a list. But it's not exactly transparent. The LOOP version, on the other hand, is almost understandable as an English sentence.
 
+```c
 (loop for i from 1 to 10 collecting i) ==> (1 2 3 4 5 6 7 8 9 10)
+```
 
 The following are some more examples of simple uses of LOOP. This sums the first ten squares:
 
+```c
 (loop for x from 1 to 10 summing (expt x 2)) ==> 385
+```
 
 This counts the number of vowels in a string:
 
+```c
 (loop for x across "the quick brown fox jumps over the lazy dog" counting (find x "aeiou")) ==> 11
+```
 
 This computes the eleventh Fibonacci number, similar to the DO loop used earlier:
 
+```c
 (loop for i below 10 and a = 0 then b and b = 1 then (+ b a) finally (return a))
+```
 
 The symbols across, and, below, collecting, counting, finally, for, from, summing, then, and to are some of the loop keywords whose presence identifies these as instances of the extended LOOP. 8
 
