@@ -157,7 +157,11 @@ the reference to count inside the LAMBDA form should be legal according to the r
 The key thing to understand about closures is that it's the binding, not the value of the variable, that's captured. Thus, a closure can not only access the value of the variables it closes over but can also assign new values that will persist between calls to the closure. For instance, you can capture the closure created by the previous expression in a global variable like this:
 
 ```c
-(defparameter *fn* (let ((count 0)) #'(lambda () (setf count (1+ count)))))
+(defparameter *fn* 
+  (let ((count 0)) 
+       #'(lambda () (setf count (1+ count)))
+  )
+)
 ```
 
 Then each time you invoke it, the value of count will increase by one.
@@ -185,29 +189,27 @@ A single closure can close over many variable bindings simply by referring to th
 
 ## 6.3 Dynamic, a.k.a. Special, Variables
 
-Lexically scoped bindings help keep code understandable by limiting the scope, literally, in which a given name has meaning. This is why most modern languages use lexical scoping for local variables. Sometimes, however, you really want a global variable--a variable that you can refer to from anywhere in your program. While it's true that indiscriminate use of global variables can turn code into spaghetti nearly as quickly as unrestrained use of goto, global variables do have legitimate uses and exist in one form or another in almost every programming language.7 And as you'll see in a moment, Lisp's version of global variables, dynamic variables, are both more useful and more manageable.
+Lexically scoped bindings help keep code understandable by limiting the scope, literally, in which a given name has meaning. This is why most modern languages use lexical scoping for local variables. Sometimes, however, you really want a global variable--a variable that you can refer to from anywhere in your program. While it's true that indiscriminate use of global variables can turn code into spaghetti nearly as quickly as unrestrained use of goto, global variables do have legitimate uses and exist in one form or another in almost every programming language. 7 And as you'll see in a moment, Lisp's version of global variables, dynamic variables, are both more useful and more manageable.
 
-
-
-
-
-
-Common Lisp provides two ways to create global variables: DEFVAR and DEFPARAMETER. Both forms take a variable name, an initial value, and an optional documentation string. After it has been DEFVARed or DEFPARAMETERed, the name can be used anywhere to refer to the current binding of the global variable. As you've seen in previous chapters, global variables are conventionally named with names that start and end with *. You'll see later in this section why it's quite important to follow that naming convention. Examples of DEFVAR and DEFPARAMETER look like this:
+Common Lisp provides two ways to create global variables: DEFVAR and DEFPARAMETER. Both forms take a variable name, an initial value, and an optional documentation string. After it has been DEFVARed or DEFPARAMETERed, the name can be used anywhere to refer to the current binding of the global variable. As you've seen in previous chapters, global variables are conventionally named with names that start and end with `*`. You'll see later in this section why it's quite important to follow that naming convention. Examples of DEFVAR and DEFPARAMETER look like this:
 
 ```c
-(defvar *count* 0 "Count of widgets made so far.") (defparameter *gap-tolerance* 0.001 "Tolerance to be allowed in widget gaps.")
+(defvar *count* 0 "Count of widgets made so far.") 
+(defparameter *gap-tolerance* 0.001 "Tolerance to be allowed in widget gaps.")
 ```
 
 The difference between the two forms is that DEFPARAMETER always assigns the initial value to the named variable while DEFVAR does so only if the variable is undefined. A DEFVAR form can also be used with no initial value to define a global variable without giving it a value. Such a variable is said to be unbound.
 
-Practically speaking, you should use DEFVAR to define variables that will contain data you'd want to keep even if you made a change to the source code that uses the variable. For instance, suppose the two variables defined previously are part of an application for controlling a widget factory. It's appropriate to define the `*count*` variable with DEFVAR because the number of widgets made so far isn't invalidated just because you make some changes to the widget-making code.8
+Practically speaking, you should use DEFVAR to define variables that will contain data you'd want to keep even if you made a change to the source code that uses the variable. For instance, suppose the two variables defined previously are part of an application for controlling a widget factory. It's appropriate to define the `*count*` variable with DEFVAR because the number of widgets made so far isn't invalidated just because you make some changes to the widget-making code. 8
 
 On the other hand, the variable `*gap-tolerance*` presumably has some effect on the behavior of the widget-making code itself. If you decide you need a tighter or looser tolerance and change the value in the DEFPARAMETER form, you'd like the change to take effect when you recompile and reload the file.
 
 After defining a variable with DEFVAR or DEFPARAMETER, you can refer to it from anywhere. For instance, you might define this function to increment the count of widgets made:
 
 ```c
-(defun increment-widget-count () (incf *count*))
+(defun increment-widget-count () 
+  (incf *count*)
+)
 ```
 
 The advantage of global variables is that you don't have to pass them around. Most languages store the standard input and output streams in global variables for exactly this reason--you never know when you're going to want to print something to standard out, and you don't want every function to have to accept and pass on arguments containing those streams just in case someone further down the line needs them.
@@ -216,11 +218,13 @@ However, once a value, such as the standard output stream, is stored in a global
 
 For instance, suppose you're working on a program that contains some low-level logging functions that print to the stream in the global variable `*standard-output*`. Now suppose that in part of the program you want to capture all the output generated by those functions into a file. You might open a file and assign the resulting stream to `*standard-output*`. Now the low-level functions will send their output to the file.
 
-This works fine until you forget to set `*standard-output*` back to the original stream when you're done. If you forget to reset `*standard-output*`, all the other code in the program that uses `*standard-output*` will also send its output to the file.9
+This works fine until you forget to set `*standard-output*` back to the original stream when you're done. If you forget to reset `*standard-output*`, all the other code in the program that uses `*standard-output*` will also send its output to the file. 9
 
 What you really want, it seems, is a way to wrap a piece of code in something that says, "All code below here--all the functions it calls, all the functions they call, and so on, down to the lowest-level functions--should use this value for the global variable `*standard-output*`." Then when the high-level function returns, the old value of `*standard-output*` should be automatically restored.
 
 It turns out that that's exactly what Common Lisp's other kind of variable--dynamic variables--let you do. When you bind a dynamic variable--for example, with a LET variable or a function parameter--the binding that's created on entry to the binding form replaces the global binding for the duration of the binding form. Unlike a lexical binding, which can be referenced by code only within the lexical scope of the binding form, a dynamic binding can be referenced by any code that's invoked during the execution of the binding form.10 And it turns out that all global variables are, in fact, dynamic variables.
+
+1『上面信息目前的理解，在 Common Lisp 里 dynamic variables 是结合了局部变量和全局变量的优点，而且还能避免全局变量时常忘记重置的缺点。（2020-11-08）』
 
 Thus, if you want to temporarily redefine `*standard-output*`, the way to do it is simply to rebind it, say, with a LET.
 
@@ -228,30 +232,37 @@ Thus, if you want to temporarily redefine `*standard-output*`, the way to do it 
 (let ((*standard-output* *some-other-stream*)) (stuff))
 ```
 
-In any code that runs as a result of the call to stuff, references to `*standard-output*` will use the binding established by the LET. And when stuff returns and control leaves the LET, the new binding of `*standard-output*` will go away and subsequent references to `*standard-output*` will see the binding that was current before the LET. At any given time, the most recently established binding shadows all other bindings. Conceptually, each new binding for a given dynamic variable is pushed onto a stack of bindings for that variable, and references to the variable always use the most recent binding. As binding forms return, the bindings they created are popped off the stack, exposing previous bindings.11
+In any code that runs as a result of the call to stuff, references to `*standard-output*` will use the binding established by the LET. And when stuff returns and control leaves the LET, the new binding of `*standard-output*` will go away and subsequent references to `*standard-output*` will see the binding that was current before the LET. At any given time, the most recently established binding shadows all other bindings. Conceptually, each new binding for a given dynamic variable is pushed onto a stack of bindings for that variable, and references to the variable always use the most recent binding. As binding forms return, the bindings they created are popped off the stack, exposing previous bindings. 11
 
 A simple example shows how this works.
 
 ```c
-(defvar *x* 10) (defun foo () (format t "X: ~d~%" *x*))
+(defvar *x* 10) 
+(defun foo () (format t "X: ~d~%" *x*))
 ```
 
 The DEFVAR creates a global binding for the variable `*x*` with the value 10. The reference to `*x*` in foo will look up the current binding dynamically. If you call foo from the top level, the global binding created by the DEFVAR is the only binding available, so it prints 10.
 
 ```c
-CL-USER> (foo) X: 10 NIL
+CL-USER> (foo) 
+X: 10 
+NIL
 ```
 
 But you can use LET to create a new binding that temporarily shadows the global binding, and foo will print a different value.
 
 ```c
-CL-USER> (let ((*x* 20)) (foo)) X: 20 NIL
+CL-USER> (let ((*x* 20)) (foo)) 
+X: 20 
+NIL
 ```
 
 Now call foo again, with no LET, and it again sees the global binding.
 
 ```c
-CL-USER> (foo) X: 10 NIL
+CL-USER> (foo) 
+X: 10 
+NIL
 ```
 
 Now define another function.
@@ -263,7 +274,11 @@ Now define another function.
 Note that the middle call to foo is wrapped in a LET that binds `*x*` to the new value 20. When you run bar, you get this result:
 
 ```c
-CL-USER> (bar) X: 10 X: 20 X: 10 NIL
+CL-USER> (bar) 
+X: 10 
+X: 20 
+X: 10 
+NIL
 ```
 
 As you can see, the first call to foo sees the global binding, with its value of 10. The middle call, however, sees the new binding, with the value 20. But after the LET, foo once again sees the global binding.
@@ -271,34 +286,66 @@ As you can see, the first call to foo sees the global binding, with its value of
 As with lexical bindings, assigning a new value affects only the current binding. To see this, you can redefine foo to include an assignment to `*x*`.
 
 ```c
-(defun foo () (format t "Before assignment~18tX: ~d~%" *x*) (setf *x* (+ 1 *x*)) (format t "After assignment~18tX: ~d~%" *x*))
+(defun foo () 
+  (format t "Before assignment~18tX: ~d~%" *x*) 
+  (setf *x* (+ 1 *x*)) 
+  (format t "After assignment~18tX: ~d~%" *x*)
+)
 ```
 
 Now foo prints the value of `*x*`, increments it, and prints it again. If you just run foo, you'll see this:
 
 ```c
-CL-USER> (foo) Before assignment X: 10 After assignment X: 11 NIL
+CL-USER> (foo) 
+Before assignment X: 10 
+After assignment X: 11 
+NIL
 ```
 
 Not too surprising. Now run bar.
 
 ```c
-CL-USER> (bar) Before assignment X: 11 After assignment X: 12 Before assignment X: 20 After assignment X: 21 Before assignment X: 12 After assignment X: 13 NIL
+CL-USER> (bar) 
+Before assignment X: 11 
+After assignment X: 12 
+Before assignment X: 20 
+After assignment X: 21 
+Before assignment X: 12 
+After assignment X: 13 
+NIL
 ```
 
 Notice that `*x*` started at 11--the earlier call to foo really did change the global value. The first call to foo from bar increments the global binding to 12. The middle call doesn't see the global binding because of the LET. Then the last call can see the global binding again and increments it from 12 to 13.
 
-So how does this work? How does LET know that when it binds `*x*` it's supposed to create a dynamic binding rather than a normal lexical binding? It knows because the name has been declared special.12 The name of every variable defined with DEFVAR and DEFPARAMETER is automatically declared globally special. This means whenever you use such a name in a binding form--in a LET or as a function parameter or any other construct that creates a new variable binding--the binding that's created will be a dynamic binding. This is why the `*naming*` `*convention*` is so important--it'd be bad news if you used a name for what you thought was a lexical variable and that variable happened to be globally special. On the one hand, code you call could change the value of the binding out from under you; on the other, you might be shadowing a binding established by code higher up on the stack. If you always name global variables according to the * naming convention, you'll never accidentally use a dynamic binding where you intend to establish a lexical binding.
+So how does this work? How does LET know that when it binds `*x*` it's supposed to create a dynamic binding rather than a normal lexical binding? It knows because the name has been declared special. 12 The name of every variable defined with DEFVAR and DEFPARAMETER is automatically declared globally special. This means whenever you use such a name in a binding form--in a LET or as a function parameter or any other construct that creates a new variable binding--the binding that's created will be a dynamic binding. This is why the `*naming*` `*convention*` is so important--it'd be bad news if you used a name for what you thought was a lexical variable and that variable happened to be globally special. On the one hand, code you call could change the value of the binding out from under you; on the other, you might be shadowing a binding established by code higher up on the stack. If you always name global variables according to the `*` naming convention, you'll never accidentally use a dynamic binding where you intend to establish a lexical binding.
+
+2『目前还是没弄明白，`*` 命名全局变量，与普通命名全局变量的本质区别。（2020-11-08）』
 
 It's also possible to declare a name locally special. If, in a binding form, you declare a name special, then the binding created for that variable will be dynamic rather than lexical. Other code can locally declare a name special in order to refer to the dynamic binding. However, locally special variables are relatively rare, so you needn't worry about them.13
 
 Dynamic bindings make global variables much more manageable, but it's important to notice they still allow action at a distance. Binding a global variable has two at a distance effects--it can change the behavior of downstream code, and it also opens the possibility that downstream code will assign a new value to a binding established higher up on the stack. You should use dynamic variables only when you need to take advantage of one or both of these characteristics.
 
+7 Java disguises global variables as public static fields, C uses extern variables, and Python’s module-level and Perl’s package-level variables can likewise be accessed from anywhere.
+
+8 If you specifically want to reset a DEFVARed variable, you can either set it directly with SETF or make it unbound using MAKUNBOUND and then reevaluate the DEFVAR form.
+
+9 The strategy of temporarily reassigning `*standard-output*` also breaks if the system is multithreaded—if there are multiple threads of control trying to print to different streams at the same time, they’ll all try to set the global variable to the stream they want to use, stomping all over each other. You could use a lock to control access to the global variable, but then you’re not really getting the benefit of multiple concurrent threads, since whatever thread is printing has to lock out all the other threads until it’s done even if they want to print to a different stream.
+
+10 The technical term for the interval during which references may be made to a binding is its extent. Thus, scope and extent are complementary notions—scope refers to space while extent refers to time. Lexical variables have lexical scope but indefinite extent, meaning they stick around for an indefinite interval, determined by how long they’re needed. Dynamic variables, by contrast, have indefinite scope since they can be referred to from anywhere but dynamic extent. To further confuse matters, the combination of indefinite scope and dynamic extent is frequently referred to by the misnomer dynamic scope.
+
+11 Though the standard doesn’t specify how to incorporate multithreading into Common Lisp, implementations that provide multithreading follow the practice established on the Lisp machines and create dynamic bindings on a per-thread basis. A reference to a global variable will find the binding most recently established in the current thread, or the global binding.
+
+12 This is why dynamic variables are also sometimes called special variables.
+
+13 If you must know, you can look up DECLARE, SPECIAL, and LOCALLY in the HyperSpec.
+
 ## 6.4 Constants
 
 One other kind of variable I haven't mentioned at all is the oxymoronic "constant variable." All constants are global and are defined with DEFCONSTANT. The basic form of DEFCONSTANT is like DEFPARAMETER.
 
+```c
 (defconstant name initial-value-form [ documentation-string ])
+```
 
 As with DEFVAR and DEFPARAMETER, DEFCONSTANT has a global effect on the name used--thereafter the name can be used only to refer to the constant; it can't be used as a function parameter or rebound with any other binding form. Thus, many Lisp programmers follow a naming convention of using names starting and ending with + for constants. This convention is somewhat less universally followed than the *-naming convention for globally special names but is a good idea for the same reason.14
 
@@ -308,33 +355,45 @@ Another thing to note about DEFCONSTANT is that while the language allows you to
 
 Once you've created a binding, you can do two things with it: get the current value and set it to a new value. As you saw in Chapter 4, a symbol evaluates to the value of the variable it names, so you can get the current value simply by referring to the variable. To assign a new value to a binding, you use the SETF macro, Common Lisp's general-purpose assignment operator. The basic form of SETF is as follows:
 
+```c
 (setf place value)
+```
 
 Because SETF is a macro, it can examine the form of the place it's assigning to and expand into appropriate lower-level operations to manipulate that place. When the place is a variable, it expands into a call to the special operator SETQ, which, as a special operator, has access to both lexical and dynamic bindings.15 For instance, to assign the value 10 to the variable x, you can write this:
 
+```c
 (setf x 10)
+```
 
 As I discussed earlier, assigning a new value to a binding has no effect on any other bindings of that variable. And it doesn't have any effect on the value that was stored in the binding prior to the assignment. Thus, the SETF in this function:
 
+```c
 (defun foo (x) (setf x 10))
+```
 
 will have no effect on any value outside of foo. The binding that was created when foo was called is set to 10, immediately replacing whatever value was passed as an argument. In particular, a form such as the following:
 
+```c
 (let ((y 20)) (foo y) (print y))
+```
 
-will print 20, not 10, as it's the value of y that's passed to foo where it's briefly the value of the variable x before the SETF gives x a new value.
+will print 20, not 10, as it's the value of y that's passed to foo where it's briefly the value of the variable x before the SETF gives x a new value. SETF can also assign to multiple places in sequence. For instance, instead of the following:
 
-SETF can also assign to multiple places in sequence. For instance, instead of the following:
-
+```c
 (setf x 1) (setf y 2)
+```
 
 you can write this:
 
+```c
 (setf x 1 y 2)
+```
 
 SETF returns the newly assigned value, so you can also nest calls to SETF as in the following expression, which assigns both x and y the same random value:
 
+```c
 (setf x (setf y (random 10)))
+```
 
 ## 6.6 Generalized Assignment
 
@@ -346,19 +405,28 @@ In this regard SETF is no different from the = assignment operator in most C-der
 
 Table 6-1. Assignment with = in Other Languages
 
-Assigning to ... Java, C, C++ Perl Python
-
-... variable x = 10; $x = 10; x = 10
-
-... array element a[0] = 10; $a[0] = 10; a[0] = 10
-
-... hash table entry -- $hash{'key'} = 10; hash['key'] = 10
-
-... field in object o.field = 10; $o->{'field'} = 10; o.field = 10
+|  Assigning to ... |  Java, C, C++  |  Perl  | Python  |
+|---|---|---|---|
+|  ... variable |  x = 10; |  `$x = 10;` |  x = 10 |
+|  ... array element |  a[0] = 10;   |  `$a[0] = 10;` |  a[0] = 10 |
+|  ... hash table entry |  |  `$hash{'key'} = 10;` |  hash['key'] = 10 |
+|  ... field in object |   o.field = 10; | ` $o->{'field'} = 10;` |  o.field = 10 |
 
 SETF works the same way--the first "argument" to SETF is a place to store the value, and the second argument provides the value. As with the = operator in these languages, you use the same form to express the place as you'd normally use to fetch the value.17 Thus, the Lisp equivalents of the assignments in Table 6-1--given that AREF is the array access function, GETHASH does a hash table lookup, and field might be a function that accesses a slot named field of a user-defined object--are as follows:
 
-Simple variable: (setf x 10) Array: (setf (aref a 0) 10) Hash table: (setf (gethash 'key hash) 10) Slot named 'field': (setf (field o) 10)
+```c
+Simple variable: 
+(setf x 10) 
+
+Array: 
+(setf (aref a 0) 10) 
+
+Hash table: 
+(setf (gethash 'key hash) 10) 
+
+Slot named 'field': 
+(setf (field o) 10)
+```
 
 Note that SETFing a place that's part of a larger object has the same semantics as SETFing a variable: the place is modified without any effect on the object that was previously stored in the place. Again, this is similar to how = behaves in Java, Perl, and Python.18
 
@@ -366,54 +434,74 @@ Note that SETFing a place that's part of a larger object has the same semantics 
 
 While all assignments can be expressed with SETF, certain patterns involving assigning a new value based on the current value are sufficiently common to warrant their own operators. For instance, while you could increment a number with SETF, like this:
 
+```c
 (setf x (+ x 1))
+```
 
 or decrement it with this:
 
+```c
 (setf x (- x 1))
+```
 
 it's a bit tedious, compared to the C-style ++x and --x. Instead, you can use the macros INCF and DECF, which increment and decrement a place by a certain amount that defaults to 1.
 
+```c
 (incf x) === (setf x (+ x 1)) (decf x) === (setf x (- x 1)) (incf x 10) === (setf x (+ x 10))
+```
 
 INCF and DECF are examples of a kind of macro called modify macros. Modify macros are macros built on top of SETF that modify places by assigning a new value based on the current value of the place. The main benefit of modify macros is that they're more concise than the same modification written out using SETF. Additionally, modify macros are defined in a way that makes them safe to use with places where the place expression must be evaluated only once. A silly example is this expression, which increments the value of an arbitrary element of an array:
 
+```c
 (incf (aref *array* (random (length *array*))))
+```
 
 A naive translation of that into a SETF expression might look like this:
 
+```c
 (setf (aref *array* (random (length *array*))) (1+ (aref *array* (random (length *array*)))))
+```
 
 However, that doesn't work because the two calls to RANDOM won't necessarily return the same value--this expression will likely grab the value of one element of the array, increment it, and then store it back as the new value of a different element. The INCF expression, however, does the right thing because it knows how to take apart this expression:
 
+```c
 (aref *array* (random (length *array*)))
+```
 
 to pull out the parts that could possibly have side effects to make sure they're evaluated only once. In this case, it would probably expand into something more or less equivalent to this:
 
+```c
 (let ((tmp (random (length *array*)))) (setf (aref *array* tmp) (1+ (aref *array* tmp))))
+```
 
 In general, modify macros are guaranteed to evaluate both their arguments and the subforms of the place form exactly once each, in left-to-right order.
 
-The macro PUSH, which you used in the mini-database to add elements to the *db* variable, is another modify macro. You'll take a closer look at how it and its counterparts POP and PUSHNEW work in Chapter 12 when I talk about how lists are represented in Lisp.
+The macro PUSH, which you used in the mini-database to add elements to the `*db*` variable, is another modify macro. You'll take a closer look at how it and its counterparts POP and PUSHNEW work in Chapter 12 when I talk about how lists are represented in Lisp.
 
 Finally, two slightly esoteric but useful modify macros are ROTATEF and SHIFTF. ROTATEF rotates values between places. For instance, if you have two variables, a and b, this call:
 
+```c
 (rotatef a b)
+```
 
 swaps the values of the two variables and returns NIL. Since a and b are variables and you don't have to worry about side effects, the previous ROTATEF expression is equivalent to this:
 
+```c
 (let ((tmp a)) (setf a b b tmp) nil)
+```
 
 With other kinds of places, the equivalent expression using SETF would be quite a bit more complex.
 
 SHIFTF is similar except instead of rotating values it shifts them to the left--the last argument provides a value that's moved to the second-to-last argument while the rest of the values are moved one to the left. The original value of the first argument is simply returned. Thus, the following:
 
+```c
 (shiftf a b 10)
+```
 
 is equivalent--again, since you don't have to worry about side effects--to this:
 
+```c
 (let ((tmp a)) (setf a b b 10) tmp)
+```
 
-Both ROTATEF and SHIFTF can be used with any number of arguments and, like all modify macros, are guaranteed to evaluate them exactly once, in left to right order.
-
-With the basics of Common Lisp's functions and variables under your belt, now you're ready to move onto the feature that continues to differentiate Lisp from other languages: macros.
+Both ROTATEF and SHIFTF can be used with any number of arguments and, like all modify macros, are guaranteed to evaluate them exactly once, in left to right order. With the basics of Common Lisp's functions and variables under your belt, now you're ready to move onto the feature that continues to differentiate Lisp from other languages: macros.
