@@ -347,9 +347,11 @@ One other kind of variable I haven't mentioned at all is the oxymoronic "constan
 (defconstant name initial-value-form [ documentation-string ])
 ```
 
-As with DEFVAR and DEFPARAMETER, DEFCONSTANT has a global effect on the name used--thereafter the name can be used only to refer to the constant; it can't be used as a function parameter or rebound with any other binding form. Thus, many Lisp programmers follow a naming convention of using names starting and ending with + for constants. This convention is somewhat less universally followed than the *-naming convention for globally special names but is a good idea for the same reason.14
+As with DEFVAR and DEFPARAMETER, DEFCONSTANT has a global effect on the name used--thereafter the name can be used only to refer to the constant; it can't be used as a function parameter or rebound with any other binding form. Thus, many Lisp programmers follow a naming convention of using names starting and ending with + for constants. This convention is somewhat less universally followed than the *-naming convention for globally special names but is a good idea for the same reason. 14
 
 Another thing to note about DEFCONSTANT is that while the language allows you to redefine a constant by reevaluating a DEFCONSTANT with a different initial-value-form, what exactly happens after the redefinition isn't defined. In practice, most implementations will require you to reevaluate any code that refers to the constant in order to see the new value since the old value may well have been inlined. Consequently, it's a good idea to use DEFCONSTANT only to define things that are really constant, such as the value of NIL. For things you might ever want to change, you should use DEFPARAMETER instead.
+
+14 Several key constants defined by the language itself don’t follow this convention—not least of which are T and NIL. This is occasionally annoying when one wants to use t as a local variable name. Another is PI, which holds the best long-float approximation of the mathematical constant π.
 
 ## 6.5 Assignment
 
@@ -368,19 +370,25 @@ Because SETF is a macro, it can examine the form of the place it's assigning to 
 As I discussed earlier, assigning a new value to a binding has no effect on any other bindings of that variable. And it doesn't have any effect on the value that was stored in the binding prior to the assignment. Thus, the SETF in this function:
 
 ```c
-(defun foo (x) (setf x 10))
+(defun foo (x) 
+  (setf x 10)
+)
 ```
 
 will have no effect on any value outside of foo. The binding that was created when foo was called is set to 10, immediately replacing whatever value was passed as an argument. In particular, a form such as the following:
 
 ```c
-(let ((y 20)) (foo y) (print y))
+(let ((y 20)) 
+  (foo y) 
+  (print y)
+)
 ```
 
 will print 20, not 10, as it's the value of y that's passed to foo where it's briefly the value of the variable x before the SETF gives x a new value. SETF can also assign to multiple places in sequence. For instance, instead of the following:
 
 ```c
-(setf x 1) (setf y 2)
+(setf x 1) 
+(setf y 2)
 ```
 
 you can write this:
@@ -395,11 +403,15 @@ SETF returns the newly assigned value, so you can also nest calls to SETF as in 
 (setf x (setf y (random 10)))
 ```
 
+15 Some old-school Lispers prefer to use SETQ with variables, but modern style tends to use SETF for all assignments.
+
+1『怪不得 autolisp 里用 `setq` 给变量赋值，果然是老古董，哈哈。（2020-11-08）』
+
 ## 6.6 Generalized Assignment
 
 Variable bindings, of course, aren't the only places that can hold values. Common Lisp supports composite data structures such as arrays, hash tables, and lists, as well as user-defined data structures, all of which consist of multiple places that can each hold a value.
 
-I'll cover those data structures in future chapters, but while we're on the topic of assignment, you should note that SETF can assign any place a value. As I cover the different composite data structures, I'll point out which functions can serve as "SETFable places." The short version, however, is if you need to assign a value to a place, SETF is almost certainly the tool to use. It's even possible to extend SETF to allow it to assign to user-defined places though I won't cover that.16
+I'll cover those data structures in future chapters, but while we're on the topic of assignment, you should note that SETF can assign any place a value. As I cover the different composite data structures, I'll point out which functions can serve as "SETFable places." The short version, however, is if you need to assign a value to a place, SETF is almost certainly the tool to use. It's even possible to extend SETF to allow it to assign to user-defined places though I won't cover that. 16
 
 In this regard SETF is no different from the = assignment operator in most C-derived languages. In those languages, the = operator assigns new values to variables, array elements, and fields of classes. In languages such as Perl and Python that support hash tables as a built-in data type, = can also set the values of individual hash table entries. Table 6-1 summarizes the various ways = is used in those languages.
 
@@ -412,7 +424,9 @@ Table 6-1. Assignment with = in Other Languages
 |  ... hash table entry |  |  `$hash{'key'} = 10;` |  hash['key'] = 10 |
 |  ... field in object |   o.field = 10; | ` $o->{'field'} = 10;` |  o.field = 10 |
 
-SETF works the same way--the first "argument" to SETF is a place to store the value, and the second argument provides the value. As with the = operator in these languages, you use the same form to express the place as you'd normally use to fetch the value.17 Thus, the Lisp equivalents of the assignments in Table 6-1--given that AREF is the array access function, GETHASH does a hash table lookup, and field might be a function that accesses a slot named field of a user-defined object--are as follows:
+1『发现 Perl 的语法跟 PHP 一样的，突然间想起来，PHP 语言本身就是用 Perl 写的。（2020-11-08）』
+
+SETF works the same way--the first "argument" to SETF is a place to store the value, and the second argument provides the value. As with the = operator in these languages, you use the same form to express the place as you'd normally use to fetch the value. 17 Thus, the Lisp equivalents of the assignments in Table 6-1--given that AREF is the array access function, GETHASH does a hash table lookup, and field might be a function that accesses a slot named field of a user-defined object--are as follows:
 
 ```c
 Simple variable: 
@@ -428,7 +442,13 @@ Slot named 'field':
 (setf (field o) 10)
 ```
 
-Note that SETFing a place that's part of a larger object has the same semantics as SETFing a variable: the place is modified without any effect on the object that was previously stored in the place. Again, this is similar to how = behaves in Java, Perl, and Python.18
+Note that SETFing a place that's part of a larger object has the same semantics as SETFing a variable: the place is modified without any effect on the object that was previously stored in the place. Again, this is similar to how = behaves in Java, Perl, and Python. 18
+
+16 Look up DEFSETF, DEFINE-SETF-EXPANDER for more information.
+
+17 The prevalence of Algol-derived syntax for assignment with the “place” on the left side of the = and the new value on the right side has spawned the terminology lvalue, short for “left value,” meaning something that can be assigned to, and rvalue, meaning something that provides a value. A compiler hacker would say, “SETF treats its first argument as an lvalue.”
+
+18 C programmers may want to think of variables and other places as holding a pointer to the real object; assigning to a variable simply changes what object it points to while assigning to a part of a composite object is similar to indirecting through the pointer to the actual object. C++ programmers should note that the behavior of = in C++ when dealing with objects—namely, a memberwise copy—is quite idiosyncratic.
 
 ## 6.7 Other Ways to Modify Places
 
@@ -447,7 +467,9 @@ or decrement it with this:
 it's a bit tedious, compared to the C-style ++x and --x. Instead, you can use the macros INCF and DECF, which increment and decrement a place by a certain amount that defaults to 1.
 
 ```c
-(incf x) === (setf x (+ x 1)) (decf x) === (setf x (- x 1)) (incf x 10) === (setf x (+ x 10))
+(incf x) === (setf x (+ x 1)) 
+(decf x) === (setf x (- x 1)) 
+(incf x 10) === (setf x (+ x 10))
 ```
 
 INCF and DECF are examples of a kind of macro called modify macros. Modify macros are macros built on top of SETF that modify places by assigning a new value based on the current value of the place. The main benefit of modify macros is that they're more concise than the same modification written out using SETF. Additionally, modify macros are defined in a way that makes them safe to use with places where the place expression must be evaluated only once. A silly example is this expression, which increments the value of an arbitrary element of an array:
@@ -459,7 +481,9 @@ INCF and DECF are examples of a kind of macro called modify macros. Modify macro
 A naive translation of that into a SETF expression might look like this:
 
 ```c
-(setf (aref *array* (random (length *array*))) (1+ (aref *array* (random (length *array*)))))
+(setf (aref *array* (random (length *array*))) 
+  (1+ (aref *array* (random (length *array*))))
+)
 ```
 
 However, that doesn't work because the two calls to RANDOM won't necessarily return the same value--this expression will likely grab the value of one element of the array, increment it, and then store it back as the new value of a different element. The INCF expression, however, does the right thing because it knows how to take apart this expression:
@@ -471,7 +495,9 @@ However, that doesn't work because the two calls to RANDOM won't necessarily ret
 to pull out the parts that could possibly have side effects to make sure they're evaluated only once. In this case, it would probably expand into something more or less equivalent to this:
 
 ```c
-(let ((tmp (random (length *array*)))) (setf (aref *array* tmp) (1+ (aref *array* tmp))))
+(let ((tmp (random (length *array*)))) 
+  (setf (aref *array* tmp) (1+ (aref *array* tmp)))
+)
 ```
 
 In general, modify macros are guaranteed to evaluate both their arguments and the subforms of the place form exactly once each, in left-to-right order.
@@ -487,7 +513,10 @@ Finally, two slightly esoteric but useful modify macros are ROTATEF and SHIFTF. 
 swaps the values of the two variables and returns NIL. Since a and b are variables and you don't have to worry about side effects, the previous ROTATEF expression is equivalent to this:
 
 ```c
-(let ((tmp a)) (setf a b b tmp) nil)
+(let ((tmp a)) 
+  (setf a b b tmp) 
+  nil
+)
 ```
 
 With other kinds of places, the equivalent expression using SETF would be quite a bit more complex.
@@ -501,7 +530,10 @@ SHIFTF is similar except instead of rotating values it shifts them to the left--
 is equivalent--again, since you don't have to worry about side effects--to this:
 
 ```c
-(let ((tmp a)) (setf a b b 10) tmp)
+(let ((tmp a)) 
+  (setf a b b 10) 
+  tmp
+)
 ```
 
 Both ROTATEF and SHIFTF can be used with any number of arguments and, like all modify macros, are guaranteed to evaluate them exactly once, in left to right order. With the basics of Common Lisp's functions and variables under your belt, now you're ready to move onto the feature that continues to differentiate Lisp from other languages: macros.

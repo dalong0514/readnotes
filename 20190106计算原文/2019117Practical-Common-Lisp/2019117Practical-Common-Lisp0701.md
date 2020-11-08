@@ -117,7 +117,12 @@ NOT is a function so strictly speaking doesn't belong in this chapter, but it's 
 
 AND and OR, however, are macros. They implement logical conjunction and disjunction of any number of subforms and are defined as macros so they can short-circuit. That is, they evaluate only as many of their subforms--in left-to-right order--as necessary to determine the overall truth value. Thus, AND stops and returns NIL as soon as one of its subforms evaluates to NIL. If all the subforms evaluate to non-NIL, it returns the value of the last subform. OR, on the other hand, stops as soon as one of its subforms evaluates to non-NIL and returns the resulting value. If none of the subforms evaluate to true, OR returns NIL. Here are some examples:
 
-(not nil) ==> T (not (= 1 1)) ==> NIL (and (= 1 2) (= 3 3)) ==> NIL (or (= 1 2) (= 3 3)) ==> T
+```c
+(not nil) ==> T 
+(not (= 1 1)) ==> NIL 
+(and (= 1 2) (= 3 3)) ==> NIL 
+(or (= 1 2) (= 3 3)) ==> T
+```
 
 ## 7.4 Looping
 
