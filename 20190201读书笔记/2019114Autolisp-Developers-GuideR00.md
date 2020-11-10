@@ -1284,6 +1284,8 @@ By specifying filters, you can obtain a selection set that includes all objects 
 !ent
 ```
 
+1『目前发现直接用「entsel」获取实体数据更方便，获得的数据也更简洁。』
+
 ### 0304. 任意卡——Relational Tests in Filter Lists
 
 About Relational Tests in Filter Lists for Selection Sets (AutoLISP). Unless otherwise specified, an equivalency is implied for each item in the filter-list. For numeric group codes (integers, reals, points, and vectors), you can specify other relations by including a special -4 group code that specifies a relational operator. The value of a -4 group code is a string indicating the test operator to be applied to the next group in the filter-list. The following selects all circles with a radius (group code 40) greater than or equal to 2.0:
