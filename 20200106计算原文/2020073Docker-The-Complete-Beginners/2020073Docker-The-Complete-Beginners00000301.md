@@ -1,4 +1,4 @@
-# 03 Understand Container, Images and Storage Drives
+# 0301. Understand Container, Images and Storage Drives
 
 To effectively use your storage device, you should learn how docker creates and stores different images. You have to understand that these images will be utilized by containers. You should have short introduction to this technology to enable container and image operations.
 

@@ -1,4 +1,4 @@
-# 02 Tips to Install Docker for Mac
+# 0201. Tips to Install Docker for Mac
 
 If you want to install docker, you have to check your system requirements. You can create a docker machine on Mac and copy your images and container from default machine to new docker for HyperKit VM. For Mac, you have to check these requirements:
 
@@ -113,4 +113,3 @@ Bash completion Installation
 If you want to use bash completion, including “homebrew-bash-completion on your Mac” and bash completion script for the docker compose, docker machine and docker is easy to find in the docker.app and you can get it in resources or contents folder.
 
 You can activate the completion of bash and these files should be symlinked or copied to the bash_completion.d directory. For instance, you can use Homebrew:
-
