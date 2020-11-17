@@ -98,6 +98,8 @@ So what we're going to do in this class is actually spend a lot of the time talk
 
 So I'm actually going to spend a lot of time teaching you those sorts of best practices in machine learning and AI and how to get the stuff to work and how the best people do it in Silicon Valley and around the world. I hope to make you one of the best people in knowing how to design and build serious machine learning and AI systems. So that's machine learning, and these are the main topics I hope to teach. In the next video, I'm going to define what is supervised learning and after that what is unsupervised learning. And also time to talk about when you would use each of them.
 
+---
+
 Reading 部分：
 
 What is Machine Learning?
@@ -115,6 +117,8 @@ T = the task of playing checkers.
 P = the probability that the program will win the next game.
 
 In general, any machine learning problem can be assigned to one of two broad classifications: Supervised learning and Unsupervised learning.
+
+---
 
 什么是神经网络？(What is a Neural Network)
 
@@ -140,53 +144,328 @@ In general, any machine learning problem can be assigned to one of two broad cla
 
 这就是一个基础的神经网络。你可能发现你自己的神经网络在监督学习的环境下是如此的有效和强大，也就是说你只要尝试输入一个 𝑥，即可把它映射成 𝑦，就好像我们在刚才房价预测的例子中看到的效果。在下一个视频中，让我们复习一下更多监督学习的例子，有些例子会让你觉得你的网络 会十分有用，并且你实际应用起来也是如此。
 
-## 1.3. Supervised Learning
+## 1.3 Supervised Learning
 
 视频文稿：
 
-In this video, I'm going to define what is probably the most common type of Machine Learning problem, which is Supervised Learning. I'll define Supervised Learning more formally later, but it's probably best to explain or start with an example of what it is, and we'll do the formal definition later. Let's say you want to predict housing prices. A while back a student collected data sets from the City of Portland, Oregon, and let's say you plot the data set and it looks like this. Here on the horizontal axis, the size of different houses in square feet, and on the vertical axis, the price of different houses in thousands of dollars. So, given this data, let's say you have a friend who owns a house that is say 750 square feet, and they are hoping to sell the house, and they want to know how much they can get for the house. So, how can the learning algorithm help you? One thing a learning algorithm might be want to do is put a straight line through the data, also fit a straight line to the data. Based on that, it looks like maybe their house can be sold for maybe about `$`150,000. But maybe this isn't the only learning algorithm you can use, and there might be a better one. For example, instead of fitting a straight line to the data, we might decide that it's better to fit a quadratic function, or a second-order polynomial to this data. If you do that and make a prediction here, then it looks like, well, maybe they can sell the house for closer to $200,000. One of the things we'll talk about later is how to choose, and how to decide, do you want to fit a straight line to the data? Or do you want to fit a quadratic function to the data? There's no fair picking whichever one gives your friend the better house to sell. But each of these would be a fine example of a learning algorithm. So, this is an example of a Supervised Learning algorithm. The term Supervised Learning refers to the fact that we gave the algorithm a data set in which the, called, "right answers" were given. That is we gave it a data set of houses in which for every example in this data set, we told it what is the right price. So, what was the actual price that that house sold for, and the task of the algorithm was to just produce more of these right answers such as for this new house that your friend may be trying to sell. To define a bit more terminology, this is also called a regression problem. By regression problem, I mean we're trying to predict a continuous valued output. Namely the price. So technically, I guess prices can be rounded off to the nearest cent. So, maybe prices are actually discrete value. But usually, we think of the price of a house as a real number, as a scalar value, as a continuous value number, and the term regression refers to the fact that we're trying to predict the sort of continuous values attribute. Here's another Supervised Learning examples. Some friends and I were actually working on this earlier. Let's say you want to look at medical records and try to predict of a breast cancer as malignant or benign. If someone discovers a breast tumor, a lump in their breast, a malignant tumor is a tumor that is harmful and dangerous, and a benign tumor is a tumor that is harmless. So obviously, people care a lot about this. Let's see collected data set. Suppose you are in your dataset, you have on your horizontal axis the size of the tumor, and on the vertical axis, I'm going to plot one or zero, yes or no, whether or not these are examples of tumors we've seen before are malignant, which is one, or zero or not malignant or benign. So, let's say your dataset looks like this, where we saw a tumor of this size that turned out to be benign, one of this size, one of this size, and so on. Sadly, we also saw a few malignant tumors cell, one of that size, one of that size, one of that size, so on. So in this example, I have five examples of benign tumors shown down here, and five examples of malignant tumors shown with a vertical axis value of one. Let's say a friend who tragically has a breast tumor, and let's say her breast tumor size is maybe somewhere around this value, the Machine Learning question is, can you estimate what is the probability, what's the chance that a tumor as malignant versus benign? To introduce a bit more terminology, this is an example of a classification problem. The term classification refers to the fact, that here, we're trying to predict a discrete value output zero or one, malignant or benign. It turns out that in classification problems, sometimes you can have more than two possible values for the output. As a concrete example, maybe there are three types of breast cancers. So, you may try to predict a discrete value output zero, one, two, or three, where zero may mean benign, benign tumor, so no cancer, and one may mean type one cancer, maybe three types of cancer, whatever type one means, and two mean a second type of cancer, and three may mean a third type of cancer. But this will also be a classification problem because this are the discrete value set of output corresponding to you're no cancer, or cancer type one, or cancer type two, or cancer types three. In classification problems, there is another way to plot this data. Let me show you what I mean. I'm going to use a slightly different set of symbols to plot this data. So, if tumor size is going to be the attribute that I'm going to use to predict malignancy or benignness, I can also draw my data like this. I'm going to use different symbols to denote my benign and malignant, or my negative and positive examples. So, instead of drawing crosses, I'm now going to draw O's for the benign tumors, like so, and I'm going to keep using X's to denote my malignant tumors. I hope this figure makes sense. All I did was I took my data set on top, and I just mapped it down to this real line like so, and started to use different symbols, circles and crosses to denote malignant versus benign examples. Now, in this example, we use only one feature or one attribute, namely the tumor size in order to predict whether a tumor is malignant or benign. In other machine learning problems, when we have more than one feature or more than one attribute. Here's an example, let's say that instead of just knowing the tumor size, we know both the age of the patients and the tumor size. In that case, maybe your data set would look like this, where I may have a set of patients with those ages, and that tumor size, and they look like this, and different set of patients that look a little different, whose tumors turn out to be malignant as denoted by the crosses. So, let's say you have a friend who tragically has a tumor, and maybe their tumor size and age falls around there. So, given a data set like this, what the learning algorithm might do is fit a straight line to the data to try to separate out the malignant tumors from the benign ones, and so the learning algorithm may decide to put a straight line like that to separate out the two causes of tumors. With this, hopefully we can decide that your friend's tumor is more likely, if it's over there that hopefully your learning algorithm will say that your friend's tumor falls on this benign side and is therefore more likely to be benign than malignant. In this example, we had two features namely, the age of the patient and the size of the tumor. In other Machine Learning problems, we will often have more features. My friends that worked on this problem actually used other features like these, which is clump thickness, clump thickness of the breast tumor, uniformity of cell size of the tumor, uniformity of cell shape the tumor, and so on, and other features as well. It turns out one of the most interesting learning algorithms that we'll see in this course, as the learning algorithm that can deal with not just two, or three, or five features, but an infinite number of features. On this slide, I've listed a total of five different features. Two on the axis and three more up here. But it turns out that for some learning problems what you really want is not to use like three or five features, but instead you want to use an infinite number of features, an infinite number of attributes, so that your learning algorithm has lots of attributes, or features, or cues with which to make those predictions. So, how do you deal with an infinite number of features? How do you even store an infinite number of things in the computer when your computer is going to run out of memory? It turns out that when we talk about an algorithm called the Support Vector Machine, there will be a neat mathematical trick that will allow a computer to deal with an infinite number of features. Imagine that I didn't just write down two features here and three features on the right, but imagine that I wrote down an infinitely long list. I just kept writing more and more features, like an infinitely long list of features. It turns out we will come up with an algorithm that can deal with that. So, just to recap, in this course, we'll talk about Supervised Learning, and the idea is that in Supervised Learning, in every example in our data set, we are told what is the correct answer that we would have quite liked the algorithms have predicted on that example. Such as the price of the house, or whether a tumor is malignant or benign. We also talked about the regression problem, and by regression that means that our goal is to predict a continuous valued output. We talked about the classification problem where the goal is to predict a discrete value output. Just a quick wrap up question. Suppose you're running a company and you want to develop learning algorithms to address each of two problems. In the first problem, you have a large inventory of identical items. So, imagine that you have thousands of copies of some identical items to sell, and you want to predict how many of these items you sell over the next three months. In the second problem, problem two, you have lots of users, and you want to write software to examine each individual of your customer's accounts, so each one of your customer's accounts. For each account, decide whether or not the account has been hacked or compromised. So, for each of these problems, should they be treated as a classification problem or as a regression problem? When the video pauses, please use your mouse to select whichever of these four options on the left you think is the correct answer.
+In this video, I'm going to define what is probably the most common type of Machine Learning problem, which is Supervised Learning. I'll define Supervised Learning more formally later, but it's probably best to explain or start with an example of what it is, and we'll do the formal definition later. 
 
-So hopefully, you got that. This is the answer. For problem one, I would treat this as a regression problem because if I have thousands of items, well, I would probably just treat this as a real value, as a continuous value. Therefore, the number of items I sell as a continuous value. For the second problem, I would treat that as a classification problem, because I might say set the value I want to predict with zero to denote the account has not been hacked, and set the value one to denote an account that has been hacked into. So, just like your breast cancers where zero is benign, one is malignant. So, I might set this be zero or one depending on whether it's been hacked, and have an algorithm try to predict each one of these two discrete values. Because there's a small number of discrete values, I would therefore treat it as a classification problem. So, that's it for Supervised Learning. In the next video, I'll talk about Unsupervised Learning, which is the other major category of learning algorithm.
+![](./res/2020001.png)
+
+Let's say you want to predict housing prices. A while back a student collected data sets from the City of Portland, Oregon, and let's say you plot the data set and it looks like this. Here on the horizontal axis, the size of different houses in square feet, and on the vertical axis, the price of different houses in thousands of dollars. So, given this data, let's say you have a friend who owns a house that is say 750 square feet, and they are hoping to sell the house, and they want to know how much they can get for the house. So, how can the learning algorithm help you? 
+
+![](./res/2020002.png)
+
+One thing a learning algorithm might be want to do is put a straight line through the data, also fit a straight line to the data. Based on that, it looks like maybe their house can be sold for maybe about `$`150,000. But maybe this isn't the only learning algorithm you can use, and there might be a better one. For example, instead of fitting a straight line to the data, we might decide that it's better to fit a quadratic function, or a second-order polynomial to this data. If you do that and make a prediction here, then it looks like, well, maybe they can sell the house for closer to $200,000. 
+
+One of the things we'll talk about later is how to choose, and how to decide, do you want to fit a straight line to the data? Or do you want to fit a quadratic function to the data? There's no fair picking whichever one gives your friend the better house to sell. But each of these would be a fine example of a learning algorithm. 
+
+So, this is an example of a Supervised Learning algorithm. The term Supervised Learning refers to the fact that we gave the algorithm a data set in which the, called, "right answers" were given. That is we gave it a data set of houses in which for every example in this data set, we told it what is the right price. So, what was the actual price that that house sold for, and the task of the algorithm was to just produce more of these right answers such as for this new house that your friend may be trying to sell. 
+
+To define a bit more terminology, this is also called a regression problem. By regression problem, I mean we're trying to predict a continuous valued output. Namely the price. So technically, I guess prices can be rounded off to the nearest cent. So, maybe prices are actually discrete value. But usually, we think of the price of a house as a real number, as a scalar value, as a continuous value number, and the term regression refers to the fact that we're trying to predict the sort of continuous values attribute. 
+
+![](./res/2020003.png)
+
+Here's another Supervised Learning examples. Some friends and I were actually working on this earlier. Let's say you want to look at medical records and try to predict of a breast cancer as malignant or benign. If someone discovers a breast tumor, a lump in their breast, a malignant tumor is a tumor that is harmful and dangerous, and a benign tumor is a tumor that is harmless. 
+
+So obviously, people care a lot about this. Let's see collected data set. Suppose you are in your dataset, you have on your horizontal axis the size of the tumor, and on the vertical axis, I'm going to plot one or zero, yes or no, whether or not these are examples of tumors we've seen before are malignant, which is one, or zero or not malignant or benign. 
+
+So, let's say your dataset looks like this, where we saw a tumor of this size that turned out to be benign, one of this size, one of this size, and so on. Sadly, we also saw a few malignant tumors cell, one of that size, one of that size, one of that size, so on. 
+
+So in this example, I have five examples of benign tumors shown down here, and five examples of malignant tumors shown with a vertical axis value of one. Let's say a friend who tragically has a breast tumor, and let's say her breast tumor size is maybe somewhere around this value, the Machine Learning question is, can you estimate what is the probability, what's the chance that a tumor as malignant versus benign? 
+
+To introduce a bit more terminology, this is an example of a classification problem. The term classification refers to the fact, that here, we're trying to predict a discrete value output zero or one, malignant or benign. It turns out that in classification problems, sometimes you can have more than two possible values for the output. As a concrete example, maybe there are three types of breast cancers. So, you may try to predict a discrete value output zero, one, two, or three, where zero may mean benign, benign tumor, so no cancer, and one may mean type one cancer, maybe three types of cancer, whatever type one means, and two mean a second type of cancer, and three may mean a third type of cancer. But this will also be a classification problem because this are the discrete value set of output corresponding to you're no cancer, or cancer type one, or cancer type two, or cancer types three. 
+
+In classification problems, there is another way to plot this data. Let me show you what I mean. I'm going to use a slightly different set of symbols to plot this data. So, if tumor size is going to be the attribute that I'm going to use to predict malignancy or benignness, I can also draw my data like this. 
+
+![](./res/2020004.png)
+
+I'm going to use different symbols to denote my benign and malignant, or my negative and positive examples. So, instead of drawing crosses, I'm now going to draw O's for the benign tumors, like so, and I'm going to keep using X's to denote my malignant tumors. I hope this figure makes sense. All I did was I took my data set on top, and I just mapped it down to this real line like so, and started to use different symbols, circles and crosses to denote malignant versus benign examples. 
+
+Now, in this example, we use only one feature or one attribute, namely the tumor size in order to predict whether a tumor is malignant or benign. In other machine learning problems, when we have more than one feature or more than one attribute. 
+
+![](./res/2020005.png)
+
+Here's an example, let's say that instead of just knowing the tumor size, we know both the age of the patients and the tumor size. In that case, maybe your data set would look like this, where I may have a set of patients with those ages, and that tumor size, and they look like this, and different set of patients that look a little different, whose tumors turn out to be malignant as denoted by the crosses. 
+
+So, let's say you have a friend who tragically has a tumor, and maybe their tumor size and age falls around there. So, given a data set like this, what the learning algorithm might do is fit a straight line to the data to try to separate out the malignant tumors from the benign ones, and so the learning algorithm may decide to put a straight line like that to separate out the two causes of tumors. 
+
+With this, hopefully we can decide that your friend's tumor is more likely, if it's over there that hopefully your learning algorithm will say that your friend's tumor falls on this benign side and is therefore more likely to be benign than malignant. In this example, we had two features namely, the age of the patient and the size of the tumor. 
+
+In other Machine Learning problems, we will often have more features. My friends that worked on this problem actually used other features like these, which is clump thickness, clump thickness of the breast tumor, uniformity of cell size of the tumor, uniformity of cell shape the tumor, and so on, and other features as well. It turns out one of the most interesting learning algorithms that we'll see in this course, as the learning algorithm that can deal with not just two, or three, or five features, but an infinite number of features. 
+
+On this slide, I've listed a total of five different features. Two on the axis and three more up here. But it turns out that for some learning problems what you really want is not to use like three or five features, but instead you want to use an infinite number of features, an infinite number of attributes, so that your learning algorithm has lots of attributes, or features, or cues with which to make those predictions. 
+
+So, how do you deal with an infinite number of features? How do you even store an infinite number of things in the computer when your computer is going to run out of memory? It turns out that when we talk about an algorithm called the Support Vector Machine, there will be a neat mathematical trick that will allow a computer to deal with an infinite number of features. 
+
+Imagine that I didn't just write down two features here and three features on the right, but imagine that I wrote down an infinitely long list. I just kept writing more and more features, like an infinitely long list of features. It turns out we will come up with an algorithm that can deal with that. 
+
+So, just to recap, in this course, we'll talk about Supervised Learning, and the idea is that in Supervised Learning, in every example in our data set, we are told what is the correct answer that we would have quite liked the algorithms have predicted on that example. Such as the price of the house, or whether a tumor is malignant or benign. 
+
+We also talked about the regression problem, and by regression that means that our goal is to predict a continuous valued output. We talked about the classification problem where the goal is to predict a discrete value output. Just a quick wrap up question. 
+
+Suppose you're running a company and you want to develop learning algorithms to address each of two problems. In the first problem, you have a large inventory of identical items. So, imagine that you have thousands of copies of some identical items to sell, and you want to predict how many of these items you sell over the next three months. In the second problem, problem two, you have lots of users, and you want to write software to examine each individual of your customer's accounts, so each one of your customer's accounts. For each account, decide whether or not the account has been hacked or compromised. So, for each of these problems, should they be treated as a classification problem or as a regression problem? When the video pauses, please use your mouse to select whichever of these four options on the left you think is the correct answer.
+
+So hopefully, you got that. This is the answer. For problem one, I would treat this as a regression problem because if I have thousands of items, well, I would probably just treat this as a real value, as a continuous value. Therefore, the number of items I sell as a continuous value. For the second problem, I would treat that as a classification problem, because I might say set the value I want to predict with zero to denote the account has not been hacked, and set the value one to denote an account that has been hacked into. 
+
+So, just like your breast cancers where zero is benign, one is malignant. So, I might set this be zero or one depending on whether it's been hacked, and have an algorithm try to predict each one of these two discrete values. Because there's a small number of discrete values, I would therefore treat it as a classification problem. So, that's it for Supervised Learning. In the next video, I'll talk about Unsupervised Learning, which is the other major category of learning algorithm.
+
+---
+
+Reading 部分：
+
+### Supervised Learning
+
+In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output. Supervised learning problems are categorized into "regression" and "classification" problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories.
+
+Example 1:
+
+Given data about the size of houses on the real estate market, try to predict their price. Price as a function of size is a continuous output, so this is a regression problem. We could turn this example into a classification problem by instead making our output about whether the house "sells for more or less than the asking price." Here we are classifying the houses based on price into two discrete categories.
+
+Example 2:
+
+a) Regression - Given a picture of a person, we have to predict their age on the basis of the given picture.
+
+b) Classification - Given a patient with a tumor, we have to predict whether the tumor is malignant or benign.
+
+---
 
 神经网络的监督学习（Supervised Learning with Neural Networks）。关于神经网络也有很多的种类，考虑到它们的使用效果，有些使用起来恰到好处，但事实表明，到目前几乎所有由神经网络创造的经济价值，本质上都离不开一种叫做监督学习的机器学习类别，让我们举例看看。
 
-在监督学习中你有一些输入𝑥，你想学习到一个函数来映射到一些输出𝑦，比如我们之前 提到的房价预测的例子，你只要输入有关房屋的一些特征，试着去输出或者估计价格𝑦。我 们举一些其它的例子，来说明神经网络已经被高效应用到其它地方。
+在监督学习中你有一些输入 𝑥，你想学习到一个函数来映射到一些输出 𝑦，比如我们之前提到的房价预测的例子，你只要输入有关房屋的一些特征，试着去输出或者估计价格 𝑦。我 们举一些其它的例子，来说明神经网络已经被高效应用到其它地方。
 
-如今应用深度学习获利最多的一个领域，就是在线广告。这也许不是最鼓舞人心的，但 真的很赚钱。具体就是通过在网站上输入一个广告的相关信息，因为也输入了用户的信息，于是网站就会考虑是否向你展示广告。
+如今应用深度学习获利最多的一个领域，就是在线广告。这也许不是最鼓舞人心的，但真的很赚钱。具体就是通过在网站上输入一个广告的相关信息，因为也输入了用户的信息，于是网站就会考虑是否向你展示广告。神经网络已经非常擅长预测你是否会点开这个广告，通过向用户展示最有可能点开的广告，这就是神经网络在很多家公司难以置信地提高获利的一种应用。因为有了这种向你展示，你最有可能点击的广告的能力，而这一点击的行为的改变会直接影响到一些大型的在线广告公司的收入。
 
-神经网络已经非常擅长预测你是否会点开这个广告，通过向用户展示最有可能点开的广 告，这就是神经网络在很多家公司难以置信地提高获利的一种应用。因为有了这种向你展示 你最有可能点击的广告的能力，而这一点击的行为的改变会直接影响到一些大型的在线广告 公司的收入。
+计算机视觉在过去的几年里也取得了长足的进步，这也多亏了深度学习。你可以输入一 个图像，然后想输出一个索引，范围从 1 到 1000 来试着告诉你这张照片，它可能是，比方说，1000 个不同的图像中的任何一个，所以你可能会选择用它来给照片打标签。
 
-计算机视觉在过去的几年里也取得了长足的进步，这也多亏了深度学习。你可以输入一 个图像，然后想输出一个索引，范围从 1 到 1000 来试着告诉你这张照片，它可能是，比方 说，1000 个不同的图像中的任何一个，所以你可能会选择用它来给照片打标签。
+深度学习最近在语音识别方面的进步也是非常令人兴奋的，你现在可以将音频片段输入神经网络，然后让它输出文本记录。得益于深度学习，机器翻译也有很大的发展。你可以利用神经网络输入英语句子，接着输出一个中文句子。
 
-深度学习最近在语音识别方面的进步也是非常令人兴奋的，你现在可以将音频片段输入
+在自动驾驶技术中，你可以输入一幅图像，就好像一个信息雷达展示汽车前方有什么，据此，你可以训练一个神经网络，来告诉汽车在马路上面具体的位置，这就是神经网络在自动驾驶系统中的一个关键成分。
 
-神经网络，然后让它输出文本记录。得益于深度学习，机器翻译也有很大的发展。你可以利 用神经网络输入英语句子，接着输出一个中文句子。
+那么深度学习系统已经可以创造如此多的价值，通过智能的选择，哪些作为 𝑥 哪些作为 𝑦，来针对于你当前的问题，然后拟合监督学习部分，往往是一个更大的系统，比如自动驾驶。这表明神经网络类型的轻微不同，也可以产生不同的应用，比如说，应用到我们在上一个视频提到的房地产领域，我们不就使用了一个普遍标准神经网络架构吗？
 
-在自动驾驶技术中，你可以输入一幅图像，就好像一个信息雷达展示汽车前方有什么，据此，你可以训练一个神经网络，来告诉汽车在马路上面具体的位置，这就是神经网络在自 动驾驶系统中的一个关键成分。
+也许对于房地产和在线广告来说可能是相对的标准一些的神经网络，正如我们之前见到的。对于图像应用，我们经常在神经网络上使用卷积（Convolutional Neural Network），通 常缩写为 CNN。对于序列数据，例如音频，有一个时间组件，随着时间的推移，音频被播放出来，所以音频是最自然的表现。作为一维时间序列（两种英文说法 one-dimensional time series / temporal sequence），对于序列数据，经常使用 RNN，一种递归神经网络（Recurrent Neural Network），语言，英语和汉语字母表或单词都是逐个出现的，所以语言也是最自然 的序列数据，因此更复杂的 RNNs 版本经常用于这些应用。
 
-那么深度学习系统已经可以创造如此多的价值，通过智能的选择，哪些作为𝑥哪些作为 𝑦，来针对于你当前的问题，然后拟合监督学习部分，往往是一个更大的系统，比如自动驾 驶。这表明神经网络类型的轻微不同，也可以产生不同的应用，比如说，应用到我们在上一 个视频提到的房地产领域，我们不就使用了一个普遍标准神经网络架构吗？
-
-也许对于房地产和在线广告来说可能是相对的标准一些的神经网络，正如我们之前见到 的。对于图像应用，我们经常在神经网络上使用卷积（Convolutional Neural Network），通 常缩写为 CNN。对于序列数据，例如音频，有一个时间组件，随着时间的推移，音频被播放 出来，所以音频是最自然的表现。作为一维时间序列（两种英文说法 one-dimensional time series /temporal sequence）. 对于序列数据，经常使用 RNN，一种递归神经网络（Recurrent Neural Network），语言，英语和汉语字母表或单词都是逐个出现的，所以语言也是最自然 的序列数据，因此更复杂的 RNNs 版本经常用于这些应用。
-
-对于更复杂的应用比如自动驾驶，你有一张图片，可能会显示更多的 CNN 卷积神经网 络结构，其中的雷达信息是完全不同的，你可能会有一个更定制的，或者一些更复杂的混合 的神经网络结构。所以为了更具体地说明什么是标准的 CNN 和 RNN 结构，在文献中你可能 见过左图这样的图片，这是一个标准的神经网络。而右图是一个卷积神经网络的例子。
+对于更复杂的应用比如自动驾驶，你有一张图片，可能会显示更多的 CNN 卷积神经网络结构，其中的雷达信息是完全不同的，你可能会有一个更定制的，或者一些更复杂的混合的神经网络结构。所以为了更具体地说明什么是标准的 CNN 和 RNN 结构，在文献中你可能见过左图这样的图片，这是一个标准的神经网络。而右图是一个卷积神经网络的例子。
 
 我们会在后面的课程了解这幅图的原理和实现，卷积网络 (CNN) 通常用于图像数据。你可能也会看到这样的图片，而且你将在以后的课程中学习如何实现它。
 
-递归神经网络 (RNN) 非常适合这种一维序列，数据可能是一个时间组成部分。你可能也听说过机器学习对于结构化数据和非结构化数据的应用，结构化数据意味着数 据的基本数据库。例如在房价预测中，你可能有一个数据库，有专门的几列数据告诉你卧室 的大小和数量，这就是结构化数据。或预测用户是否会点击广告，你可能会得到关于用户的 信息，比如年龄以及关于广告的一些信息，然后对你的预测分类标注，这就是结构化数据，意思是每个特征，比如说房屋大小卧室数量，或者是一个用户的年龄，都有一个很好的定义。
+递归神经网络（RNN）非常适合这种一维序列，数据可能是一个时间组成部分。你可能也听说过机器学习对于结构化数据和非结构化数据的应用，结构化数据意味着数据的基本数据库。例如在房价预测中，你可能有一个数据库，有专门的几列数据告诉你卧室的大小和数量，这就是结构化数据。或预测用户是否会点击广告，你可能会得到关于用户的信息，比如年龄以及关于广告的一些信息，然后对你的预测分类标注，这就是结构化数据，意思是每个特征，比如说房屋大小卧室数量，或者是一个用户的年龄，都有一个很好的定义。
 
-相反非结构化数据是指比如音频，原始音频或者你想要识别的图像或文本中的内容。这 里的特征可能是图像中的像素值或文本中的单个单词。
+相反非结构化数据是指比如音频，原始音频或者你想要识别的图像或文本中的内容。这里的特征可能是图像中的像素值或文本中的单个单词。从历史经验上看，处理非结构化数据是很难的，与结构化数据比较，让计算机理解非结构化数据很难，而人类进化得非常善于理解音频信号和图像，文本是一个更近代的发明，但是人们真的很擅长解读非结构化数据。
 
-从历史经验上看，处理非结构化数据是很难的，与结构化数据比较，让计算机理解非结 构化数据很难，而人类进化得非常善于理解音频信号和图像，文本是一个更近代的发明，但 是人们真的很擅长解读非结构化数据。
+神经网络的兴起就是这样最令人兴奋的事情之一，多亏了深度学习和神经网络，计算机现在能更好地解释非结构化数据，这是与几年前相比的结果，这为我们创造了机会。许多新的令人兴奋的应用被使用，语音识别、图像识别、自然语言文字处理，甚至可能比两三年前的还要多。因为人们天生就有本领去理解非结构化数据，你可能听说了神经网络更多在媒体非结构化数据的成功，当神经网络识别了一只猫时那真的很酷，我们都知道那意味着什么。但结果也表明，神经网络在许多短期经济价值的创造，也是基于结构化数据的。比如更好的广告系统、更好的利润建议，还有更好的处理大数据的能力。许多公司不得不根据神经网络做出准确的预测。
 
-神经网络的兴起就是这样最令人兴奋的事情之一，多亏了深度学习和神经网络，计算机现在能更好地解释非结构化数据，这是与几年前相比的结果，这为我们创造了机会。许多新 的令人兴奋的应用被使用，语音识别、图像识别、自然语言文字处理，甚至可能比两三年前 的还要多。因为人们天生就有本领去理解非结构化数据，你可能听说了神经网络更多在媒体 非结构化数据的成功，当神经网络识别了一只猫时那真的很酷，我们都知道那意味着什么。
+因此在这门课中，我们将要讨论的许多技术都将适用，不论是对结构化数据还是非结构化数据。为了解释算法，我们将在使用非结构化数据的示例中多画一点图片，但正如你所想 的，你自己团队里通过运用神经网络，我希望你能发现，神经网络算法对于结构化和非结构化数据都有用处。
 
-但结果也表明，神经网络在许多短期经济价值的创造，也是基于结构化数据的。比如更 好的广告系统、更好的利润建议，还有更好的处理大数据的能力。许多公司不得不根据神经 网络做出准确的预测。
+神经网络已经改变了监督学习，正创造着巨大的经济价值，事实证明，基本的神经网络背后的技术理念大部分都离我们不遥远，有的是几十年，那么为什么他们现在才刚刚起步，效果那么好，下一集视频中我们将讨论为什么最近的神经网络已经成为你可以使用的强大工具。
 
-因此在这门课中，我们将要讨论的许多技术都将适用，不论是对结构化数据还是非结构 化数据。为了解释算法，我们将在使用非结构化数据的示例中多画一点图片，但正如你所想 的，你自己团队里通过运用神经网络，我希望你能发现，神经网络算法对于结构化和非结构 化数据都有用处。
+## 1.4 Unsupervised Learning
 
-神经网络已经改变了监督学习，正创造着巨大的经济价值，事实证明，基本的神经网络 背后的技术理念大部分都离我们不遥远，有的是几十年，那么为什么他们现在才刚刚起步，效果那么好，下一集视频中我们将讨论为什么最近的神经网络已经成为你可以使用的强大工具。
+In this video, we'll talk about the second major type of machine learning problem, called Unsupervised Learning. In the last video, we talked about Supervised Learning. Back then, recall data sets that look like this, where each example was labeled either as a positive or negative example, whether it was a benign or a malignant tumor.
 
-## 1.4 为什么深度学习会兴起？(Why is Deep Learning taking off?)
+So for each example in Supervised Learning, we were told explicitly what is the so-called right answer, whether it's benign or malignant. In Unsupervised Learning, we're given data that looks different than data that looks like this that doesn't have any labels or that all has the same label or really no labels.
+
+So we're given the data set and we're not told what to do with it and we're not told what each data point is. Instead we're just told, here is a data set. Can you find some structure in the data? Given this data set, an Unsupervised Learning algorithm might decide that the data lives in two different clusters. And so there's one cluster and there's a different cluster.
+
+And yes, Supervised Learning algorithm may break these data into these two separate clusters.
+
+So this is called a clustering algorithm. And this turns out to be used in many places.
+
+One example where clustering is used is in Google News and if you have not seen this before, you can actually go to this URL news.google.com to take a look. What Google News does is everyday it goes and looks at tens of thousands or hundreds of thousands of new stories on the web and it groups them into cohesive news stories.
+
+For example, let's look here.
+
+The URLs here link to different news stories about the BP Oil Well story.
+
+So, let's click on one of these URL's and we'll click on one of these URL's. What I'll get to is a web page like this. Here's a Wall Street Journal article about, you know, the BP Oil Well Spill stories of "BP Kills Macondo", which is a name of the spill and if you click on a different URL
+
+from that group then you might get the different story. Here's the CNN story about a game, the BP Oil Spill,
+
+and if you click on yet a third link, then you might get a different story. Here's the UK Guardian story about the BP Oil Spill.
+
+So what Google News has done is look for tens of thousands of news stories and automatically cluster them together. So, the news stories that are all about the same topic get displayed together. It turns out that clustering algorithms and Unsupervised Learning algorithms are used in many other problems as well.
+
+Here's one on understanding genomics.
+
+Here's an example of DNA microarray data. The idea is put a group of different individuals and for each of them, you measure how much they do or do not have a certain gene. Technically you measure how much certain genes are expressed. So these colors, red, green, gray and so on, they show the degree to which different individuals do or do not have a specific gene.
+
+And what you can do is then run a clustering algorithm to group individuals into different categories or into different types of people.
+
+So this is Unsupervised Learning because we're not telling the algorithm in advance that these are type 1 people, those are type 2 persons, those are type 3 persons and so on and instead what were saying is yeah here's a bunch of data. I don't know what's in this data. I don't know who's and what type. I don't even know what the different types of people are, but can you automatically find structure in the data from the you automatically cluster the individuals into these types that I don't know in advance? Because we're not giving the algorithm the right answer for the examples in my data set, this is Unsupervised Learning.
+
+Unsupervised Learning or clustering is used for a bunch of other applications.
+
+It's used to organize large computer clusters.
+
+I had some friends looking at large data centers, that is large computer clusters and trying to figure out which machines tend to work together and if you can put those machines together, you can make your data center work more efficiently.
+
+This second application is on social network analysis.
+
+So given knowledge about which friends you email the most or given your Facebook friends or your Google+ circles, can we automatically identify which are cohesive groups of friends, also which are groups of people that all know each other?
+
+Market segmentation.
+
+Many companies have huge databases of customer information. So, can you look at this customer data set and automatically discover market segments and automatically
+
+group your customers into different market segments so that you can automatically and more efficiently sell or market your different market segments together?
+
+Again, this is Unsupervised Learning because we have all this customer data, but we don't know in advance what are the market segments and for the customers in our data set, you know, we don't know in advance who is in market segment one, who is in market segment two, and so on. But we have to let the algorithm discover all this just from the data.
+
+Finally, it turns out that Unsupervised Learning is also used for surprisingly astronomical data analysis and these clustering algorithms gives surprisingly interesting useful theories of how galaxies are formed. All of these are examples of clustering, which is just one type of Unsupervised Learning. Let me tell you about another one. I'm gonna tell you about the cocktail party problem.
+
+So, you've been to cocktail parties before, right? Well, you can imagine there's a party, room full of people, all sitting around, all talking at the same time and there are all these overlapping voices because everyone is talking at the same time, and it is almost hard to hear the person in front of you. So maybe at a cocktail party with two people,
+
+two people talking at the same time, and it's a somewhat small cocktail party. And we're going to put two microphones in the room so there are microphones, and because these microphones are at two different distances from the speakers, each microphone records a different combination of these two speaker voices.
+
+Maybe speaker one is a little louder in microphone one and maybe speaker two is a little bit louder on microphone 2 because the 2 microphones are at different positions relative to the 2 speakers, but each microphone would cause an overlapping combination of both speakers' voices.
+
+So here's an actual recording
+
+of two speakers recorded by a researcher. Let me play for you the first, what the first microphone sounds like. One (uno), two (dos), three (tres), four (cuatro), five (cinco), six (seis), seven (siete), eight (ocho), nine (nueve), ten (y diez).
+
+All right, maybe not the most interesting cocktail party, there's two people counting from one to ten in two languages but you know. What you just heard was the first microphone recording, here's the second recording.
+
+Uno (one), dos (two), tres (three), cuatro (four), cinco (five), seis (six), siete (seven), ocho (eight), nueve (nine) y diez (ten). So we can do, is take these two microphone recorders and give them to an Unsupervised Learning algorithm called the cocktail party algorithm, and tell the algorithm - find structure in this data for you. And what the algorithm will do is listen to these audio recordings and say, you know it sounds like the two audio recordings are being added together or that have being summed together to produce these recordings that we had. Moreover, what the cocktail party algorithm will do is separate out these two audio sources that were being added or being summed together to form other recordings and, in fact, here's the first output of the cocktail party algorithm.
+
+One, two, three, four, five, six, seven, eight, nine, ten.
+
+So, I separated out the English voice in one of the recordings.
+
+And here's the second of it. Uno, dos, tres, quatro, cinco, seis, siete, ocho, nueve y diez. Not too bad, to give you
+
+one more example, here's another recording of another similar situation, here's the first microphone : One, two, three, four, five, six, seven, eight, nine, ten.
+
+OK so the poor guy's gone home from the cocktail party and he 's now sitting in a room by himself talking to his radio.
+
+Here's the second microphone recording.
+
+One, two, three, four, five, six, seven, eight, nine, ten.
+
+When you give these two microphone recordings to the same algorithm, what it does, is again say, you know, it sounds like there are two audio sources, and moreover,
+
+the album says, here is the first of the audio sources I found.
+
+One, two, three, four, five, six, seven, eight, nine, ten.
+
+So that wasn't perfect, it got the voice, but it also got a little bit of the music in there. Then here's the second output to the algorithm.
+
+Not too bad, in that second output it managed to get rid of the voice entirely. And just, you know, cleaned up the music, got rid of the counting from one to ten.
+
+So you might look at an Unsupervised Learning algorithm like this and ask how complicated this is to implement this, right? It seems like in order to, you know, build this application, it seems like to do this audio processing you need to write a ton of code or maybe link into like a bunch of synthesizer Java libraries that process audio, seems like a really complicated program, to do this audio, separating out audio and so on.
+
+It turns out the algorithm, to do what you just heard, that can be done with one line of code - shown right here.
+
+It take researchers a long time to come up with this line of code. I'm not saying this is an easy problem, But it turns out that when you use the right programming environment, many learning algorithms can be really short programs.
+
+So this is also why in this class we're going to use the Octave programming environment.
+
+Octave, is free open source software, and using a tool like Octave or Matlab, many learning algorithms become just a few lines of code to implement. Later in this class, I'll just teach you a little bit about how to use Octave and you'll be implementing some of these algorithms in Octave. Or if you have Matlab you can use that too.
+
+It turns out the Silicon Valley, for a lot of machine learning algorithms, what we do is first prototype our software in Octave because software in Octave makes it incredibly fast to implement these learning algorithms.
+
+Here each of these functions like for example the SVD function that stands for singular value decomposition; but that turns out to be a linear algebra routine, that is just built into Octave.
+
+If you were trying to do this in C++ or Java, this would be many many lines of code linking complex C++ or Java libraries. So, you can implement this stuff as C++ or Java or Python, it's just much more complicated to do so in those languages.
+
+What I've seen after having taught machine learning for almost a decade now, is that, you learn much faster if you use Octave as your programming environment, and if you use Octave as your learning tool and as your prototyping tool, it'll let you learn and prototype learning algorithms much more quickly.
+
+And in fact what many people will do to in the large Silicon Valley companies is in fact, use an algorithm like Octave to first prototype the learning algorithm, and only after you've gotten it to work, then you migrate it to C++ or Java or whatever. It turns out that by doing things this way, you can often get your algorithm to work much faster than if you were starting out in C++.
+
+So, I know that as an instructor, I get to say "trust me on this one" only a finite number of times, but for those of you who've never used these Octave type programming environments before, I am going to ask you to trust me on this one, and say that you, you will, I think your time, your development time is one of the most valuable resources.
+
+And having seen lots of people do this, I think you as a machine learning researcher, or machine learning developer will be much more productive if you learn to start in prototype, to start in Octave, in some other language.
+
+Finally, to wrap up this video, I have one quick review question for you.
+
+We talked about Unsupervised Learning, which is a learning setting where you give the algorithm a ton of data and just ask it to find structure in the data for us. Of the following four examples, which ones, which of these four do you think would will be an Unsupervised Learning algorithm as opposed to Supervised Learning problem. For each of the four check boxes on the left, check the ones for which you think Unsupervised Learning algorithm would be appropriate and then click the button on the lower right to check your answer. So when the video pauses, please answer the question on the slide.
+
+So, hopefully, you've remembered the spam folder problem. If you have labeled data, you know, with spam and non-spam e-mail, we'd treat this as a Supervised Learning problem.
+
+The news story example, that's exactly the Google News example that we saw in this video, we saw how you can use a clustering algorithm to cluster these articles together so that's Unsupervised Learning.
+
+The market segmentation example I talked a little bit earlier, you can do that as an Unsupervised Learning problem because I am just gonna get my algorithm data and ask it to discover market segments automatically.
+
+And the final example, diabetes, well, that's actually just like our breast cancer example from the last video. Only instead of, you know, good and bad cancer tumors or benign or malignant tumors we instead have diabetes or not and so we will use that as a supervised, we will solve that as a Supervised Learning problem just like we did for the breast tumor data.
+
+So, that's it for Unsupervised Learning and in the next video, we'll delve more into specific learning algorithms and start to talk about just how these algorithms work and how we can, how you can go about implementing them.
+
+---
+
+Reading:
+
+### Unsupervised Learning
+
+Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables.
+
+We can derive this structure by clustering the data based on relationships among the variables in the data.
+
+With unsupervised learning there is no feedback based on the prediction results.
+
+Example:
+
+Clustering: Take a collection of 1,000,000 different genes, and find a way to automatically group these genes into groups that are somehow similar or related by different variables, such as lifespan, location, roles, and so on.
+
+Non-clustering: The "Cocktail Party Algorithm", allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a cocktail party).
+
+### Who are Mentors?
+
+Mentor Program Overview:
+
+Community Mentors are successful, dedicated Coursera learners who volunteer to assist with support and discussion forum moderation in courses that they have already completed. They have been recruited by Coursera to encourage newer learners, answer questions, set an example by posting thoughtful and timely content, and report platform bugs and inappropriate content to Coursera.
+
+As you use the discussion areas, please be aware that the ideas expressed by participants in this course, including the Mentors, do not represent the views of Stanford University. The mentors are not employed by Stanford University and they have not been vetted by Stanford University as experts on course content or course facilitation.
+
+### Frequently Asked Questions
+
+The following Machine Learning Mentors volunteered time to compile this list of Frequently Asked Questions: Colin Beckingham, Kevin Burnham, Maxim Haytovich, Tom Mosher, Richard Gayle, Simon Crase, Michael Reardon and Paul Mielke.
+
+Be sure to thank them when you see them in the discussion forums!
+
+General Questions
+
+Q: Is the grader server down? A: First step is to check here.
+
+Q: The audio in the videos is quite bad sometimes, muffled or low volume. Please fix it. A: You can mitigate the audio issues by turning down the bass and up the treble if you have those controls, or using a headset, which naturally emphasizes the higher frequencies. Also you may want to switch on the English closed captioning. It is unlikely to be fixed in the near term because most students do not have serious problems and therefore it is low on the priority list.
+
+Q: What does it mean when I see “Math Processing Error?” A: The page is attempting to use MathJax to render math symbols. Sometimes the content delivery network can be sluggish or you have caught the web page Ajax javascript code in an incomplete state. Normally just refreshing the page to make it load fully fixes the problem
+
+Q: How can I download lectures? A: On Demand videos cannot be downloaded.
+
+Q: Is there a prerequisite for this course?A: Students are expected to have the following background:
+
+Knowledge of basic computer science principles and skills, at a level sufficient to write a reasonably non-trivial computer program.
+Familiarity with the basic probability theory.
+Familiarity with the basic linear algebra.
+Q: Why do we have to use Matlab or Octave? Why not Clojure, Julia, Python, R or [Insert favourite language here]?A: As Prof. Ng explained in the 1st video of the Octave tutorial, he has tried teaching Machine Learning in a variety of languages, and found that students come up to speed faster with Matlab/Octave. Therefore the course was designed using Octave/Matlab, and the automatic submission grader uses those program interfaces. Octave and Matlab are optimized for rapid vectorized calculations, which is very useful in Machine Learning. R is a nice tool, but:
+
+1. It is a bit too high level. This course shows how to actually implement the algorithms of machine learning, while R already has them implemented. Since the focus of this course is to show you what happens in ML algorithms under the hood, you need to use Octave 2. This course offers some starter code in Octave/Matlab, which will really save you tons of time solving the tasks.
+
+Q: Has anyone figured out the how to solve this problem? Here is my code [Insert code]. A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+
+Q: I've submitted correct answers for [insert problem]. However I would like to compare my implementation with other who did correctly. A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+
+Q: This is my email: [insert email]. Can we get the answer for the quiz? A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+
+Q: Do I receive a certificate once I complete this course? A: Course Certificate is available in this course. Click here to learn about how Course Certificate works and how to purchase.
+
+Q: Why do all the answers in a multiple correct question say correct response when you submit the answer to an in-video question? A: Coursera's software is designed to suggest the correctness of each state of the check box. Therefore, an answer having a correct answer tag below it means that the state of that check box is correct.
+
+Q: What is the correct technique of entering a numeric answer to a text box question ? A: Coursera's software for numeric answers only supports '.' as the decimal delimiter (not ',') and require that fractions be simplified to decimals. For answers with many decimal digits, please use a 2 digits after decimal point rounding method when entering solutions if not mentioned in the question.
+
+Q: What is the correct technique of entering a 1 element matrix ? A: They should be entered as just the element without brackets.
+
+Q: What does a A being a 3 element vector or a 3 dimensional vector mean? A: If not described a vector as mentioned in the questions is A =
+
+
+
+Q: I think I found an error in a video. What should I do? A: First, check the errata section under resources menu. If you are unsure if it is an error, create a new thread in the discussion forum describing the error.
+
+Q: My quiz grade displayed is wrong or I have a verification issue or I cannot retake a quiz. What should I do? A: Contact Help Center. These queries can only be resolved by learner support and it is best if they are contacted directly.
+
+---
+
+### 为什么深度学习会？（Why is Deep Learning taking off?）
 
 本节视频主要讲了推动深度学习变得如此热门的主要因素。包括数据规模、计算量及算 法的创新。
 
@@ -204,39 +483,24 @@ So hopefully, you got that. This is the answer. For problem one, I would treat t
 
 作为一个具体的例子，神经网络方面的一个巨大突破是从 sigmoid 函数转换到一个 ReLU 函数，这个函数我们在之前的课程里提到过。
 
-如果你无法理解刚才我说的某个细节，也不需要担心，可以知道的一个使用 sigmoid 函 数和机器学习问题是，在这个区域，也就是这个 sigmoid 函数的梯度会接近零，所以学习的 速度会变得非常缓慢，因为当你实现梯度下降以及梯度接近零的时候，参数会更新的很慢，所以学习的速率也会变的很慢，而通过改变这个被叫做激活函数的东西，神经网络换用这一 个函数，叫做 ReLU 的函数（修正线性单元），ReLU 它的梯度对于所有输入的负值都是零，因此梯度更加不会趋向逐渐减少到零。而这里的梯度，这条线的斜率在这左边是零，仅仅通 过将 Sigmod 函数转换成 ReLU 函数，便能够使得一个叫做梯度下降（gradient descent）的算 法运行的更快，这就是一个或许相对比较简单的算法创新的例子。但是根本上算法创新所带 来的影响，实际上是对计算带来的优化，所以有很多像这样的例子，我们通过改变算法，使 得代码运行的更快，这也使得我们能够训练规模更大的神经网络，或者是多端口的网络。即
-
-
-使我们从所有的数据中拥有了大规模的神经网络，快速计算显得更加重要的另一个原因是，训练你的神经网络的过程，很多时候是凭借直觉的，往往你对神经网络架构有了一个想法，于是你尝试写代码实现你的想法，然后让你运行一个试验环境来告诉你，你的神经网络效果 有多好，通过参考这个结果再返回去修改你的神经网络里面的一些细节，然后你不断的重复 上面的操作，当你的神经网络需要很长时间去训练，需要很长时间重复这一循环，在这里就 有很大的区别，根据你的生产效率去构建更高效的神经网络。当你能够有一个想法，试一试，看效果如何。在 10 分钟内，或者也许要花上一整天，如果你训练你的神经网络用了一个月 的时间，有时候发生这样的事情，也是值得的，因为你很快得到了一个结果。在 10 分钟内 或者一天内，你应该尝试更多的想法，那极有可能使得你的神经网络在你的应用方面工作的 更好、更快的计算，在提高速度方面真的有帮助，那样你就能更快地得到你的实验结果。这 也同时帮助了神经网络的实验人员和有关项目的研究人员在深度学习的工作中迭代的更快，也能够更快的改进你的想法，所有这些都使得整个深度学习的研究社群变的如此繁荣，包括 令人难以置信地发明新的算法和取得不间断的进步，这些都是开拓者在做的事情，这些力量 使得深度学习不断壮大。
+如果你无法理解刚才我说的某个细节，也不需要担心，可以知道的一个使用 sigmoid 函 数和机器学习问题是，在这个区域，也就是这个 sigmoid 函数的梯度会接近零，所以学习的 速度会变得非常缓慢，因为当你实现梯度下降以及梯度接近零的时候，参数会更新的很慢，所以学习的速率也会变的很慢，而通过改变这个被叫做激活函数的东西，神经网络换用这一 个函数，叫做 ReLU 的函数（修正线性单元），ReLU 它的梯度对于所有输入的负值都是零，因此梯度更加不会趋向逐渐减少到零。而这里的梯度，这条线的斜率在这左边是零，仅仅通 过将 Sigmod 函数转换成 ReLU 函数，便能够使得一个叫做梯度下降（gradient descent）的算 法运行的更快，这就是一个或许相对比较简单的算法创新的例子。但是根本上算法创新所带 来的影响，实际上是对计算带来的优化，所以有很多像这样的例子，我们通过改变算法，使 得代码运行的更快，这也使得我们能够训练规模更大的神经网络，或者是多端口的网络。即使我们从所有的数据中拥有了大规模的神经网络，快速计算显得更加重要的另一个原因是，训练你的神经网络的过程，很多时候是凭借直觉的，往往你对神经网络架构有了一个想法，于是你尝试写代码实现你的想法，然后让你运行一个试验环境来告诉你，你的神经网络效果 有多好，通过参考这个结果再返回去修改你的神经网络里面的一些细节，然后你不断的重复 上面的操作，当你的神经网络需要很长时间去训练，需要很长时间重复这一循环，在这里就 有很大的区别，根据你的生产效率去构建更高效的神经网络。当你能够有一个想法，试一试，看效果如何。在 10 分钟内，或者也许要花上一整天，如果你训练你的神经网络用了一个月 的时间，有时候发生这样的事情，也是值得的，因为你很快得到了一个结果。在 10 分钟内 或者一天内，你应该尝试更多的想法，那极有可能使得你的神经网络在你的应用方面工作的 更好、更快的计算，在提高速度方面真的有帮助，那样你就能更快地得到你的实验结果。这 也同时帮助了神经网络的实验人员和有关项目的研究人员在深度学习的工作中迭代的更快，也能够更快的改进你的想法，所有这些都使得整个深度学习的研究社群变的如此繁荣，包括 令人难以置信地发明新的算法和取得不间断的进步，这些都是开拓者在做的事情，这些力量 使得深度学习不断壮大。
 
 好消息是这些力量目前也正常不断的奏效，使得深度学习越来越好。研究表明我们的社 会仍然正在抛出越来越多的数字化数据，或者用一些特殊的硬件来进行计算，比如说 GPU，以及更快的网络连接各种硬件。我非常有信心，我们可以做一个超级大规模的神经网络，而 计算的能力也会进一步的得到改善，还有算法相对的学习研究社区连续不断的在算法前沿产 生非凡的创新。根据这些我们可以乐观地回答，同时对深度学习保持乐观态度，在接下来的 这些年它都会变的越来越好。
 
 ## 1.5 关于这门课 (About this Course)
 
-你的学习进度已经快接近这个专项课程的第一门课的第一周结尾了，首先，快速地介绍 一下下周的学习内容：
-
-在第一个视频已经提到，这个专项有五门课程，目前正处于第一门课：神经网络与深度 学习。在这门课中将教会你最重要的基础知识。当学习到第一门课末尾，你将学到如何建立 一个深度神经网络并且使之奏效。
+你的学习进度已经快接近这个专项课程的第一门课的第一周结尾了，首先，快速地介绍一下下周的学习内容：在第一个视频已经提到，这个专项有五门课程，目前正处于第一门课：神经网络与深度学习。在这门课中将教会你最重要的基础知识。当学习到第一门课末尾，你将学到如何建立一个深度神经网络并且使之奏效。
 
 下面是关于第一门课的一些细节，这门课有四周的学习资料：
 
-第一周：关于深度学习的介绍。在每一周的结尾也会有十个多选题用来检验自己对材料 的理解；
+第一周：关于深度学习的介绍。在每一周的结尾也会有十个多选题用来检验自己对材料的理解；
 
-第二周：关于神经网络的编程知识，了解神经网络的结构，逐步完善算法并思考如何使 得神经网络高效地实现。从第二周开始做一些编程训练（付费项目），自己实现算法；
+第二周：关于神经网络的编程知识，了解神经网络的结构，逐步完善算法并思考如何使得神经网络高效地实现。从第二周开始做一些编程训练（付费项目），自己实现算法；
 
-第三周：在学习了神经网络编程的框架之后，你将可以编写一个隐藏层神经网络，所以 需要学习所有必须的关键概念来实现神经网络的工作；
+第三周：在学习了神经网络编程的框架之后，你将可以编写一个隐藏层神经网络，所以需要学习所有必须的关键概念来实现神经网络的工作；
 
 第四周：建立一个深层的神经网络。
 
-这段视频即将结束，希望在这段视频之后，你们可以看看课程网站的十道选择题来检查 自己的理解，不必复习前面的知识，有的知识是你现在不知道的，可以不断尝试，直到全部 做对以理解全部概念。
+这段视频即将结束，希望在这段视频之后，你们可以看看课程网站的十道选择题来检查自己的理解，不必复习前面的知识，有的知识是你现在不知道的，可以不断尝试，直到全部做对以理解全部概念。
 
-## 1.6 课程资源 (Course Resources)
 
-我希望你们喜欢这门课程，为了帮助你们完成课程，本次课程将列举一些课程资源。首先，如果你有任何疑问，或是想和其他同学讨论问题，或是想和包括我在内的教学人 员讨论任何问题，或是想要归档一个错误，论坛是最好的去处，我和其他教学人员将定期关 注论坛的内容。论坛也是一个你从同学那里得到问题答案的好地方，如果想要回答同学的问 题，可以从课程首页来到论坛：
-
-点击论坛标签可以进入论坛 在论坛上是提问的最佳途径，但是出于一些原因，可能要直接联系我们，可以将邮件发 送到这个地址，我们会尽力阅读每一份邮件并尝试解决普遍出现的问。由于邮件数量庞大，不一定能迅速回复每一封邮件。另外，一些公司会尝试给员工做深度学习培训，如果你们想 对员工负责，聘请专家培训上百甚至更多员工深度学习，请用企业邮箱与我们联系。我们处 在大学学术开发的初始阶段，如果你是大学领导或者是管理人员，并且希望在你们学校开设 一门深度学习课程，请通过大学邮箱联系我们。邮箱地址如下，祝你们好运！
-
-Contact us: feedback@deeplearning.ai 
-
-Companies: enterprise@deeplearning.ai 
-
-Universities: academic@deeplearning.ai 

@@ -1577,6 +1577,17 @@ This subfunction will substitute all occurrences of a string for another string 
 
 1『代码里 `inc (+ inc len)` 是有讲究的，替换一次后，往后移动一个步长 `strlen new` 是明智的。哈哈。（2020-10-12）』
 
+### 02. 按正则表达式提取字符串
+
+
+### 03. 数组去重
+
+[Unique & Duplicate List Functions | Lee Mac Programming](http://lee-mac.com/uniqueduplicate.html)
+
+Here are various subfunctions for manipulating lists in which items appear more than once. The list may be tested for or irradicated of all duplicate items, with a set of functions offering optional tolerances below which items are considered duplicate; or such duplicate items may instead be returned by the function. Alternatively, the number of occurrences of each item in a list may be displayed. Information about the purpose of each function is detailed in the comments above each function, and the required arguments and returns are demonstrated in the examples.
+
+
+
 ## 细节汇总
 
 1、if 判断，结果为真后的语句有多个，经常忘记写 `progn` 语句。

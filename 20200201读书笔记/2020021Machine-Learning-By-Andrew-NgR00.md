@@ -1,3 +1,9 @@
+# 2020021Machine-Learning-By-Andrew-NgR00
+
+[Welcome | Coursera](https://www.coursera.org/learn/machine-learning/lecture/RKFpn/welcome)
+
+[Lecture 1.1 — What Is Machine Learning — [ Machine Learning | Andrew Ng ] - YouTube](https://www.youtube.com/watch?v=PPLop4L2eGk&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&index=1)
+
 ## 记忆时间
 
 ## 卡片
