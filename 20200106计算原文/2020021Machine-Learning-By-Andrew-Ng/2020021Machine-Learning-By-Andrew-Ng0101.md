@@ -262,57 +262,47 @@ b) Classification - Given a patient with a tumor, we have to predict whether the
 
 ## 1.4 Unsupervised Learning
 
+![](./res/2020006.png)
+
 In this video, we'll talk about the second major type of machine learning problem, called Unsupervised Learning. In the last video, we talked about Supervised Learning. Back then, recall data sets that look like this, where each example was labeled either as a positive or negative example, whether it was a benign or a malignant tumor.
 
 So for each example in Supervised Learning, we were told explicitly what is the so-called right answer, whether it's benign or malignant. In Unsupervised Learning, we're given data that looks different than data that looks like this that doesn't have any labels or that all has the same label or really no labels.
 
-So we're given the data set and we're not told what to do with it and we're not told what each data point is. Instead we're just told, here is a data set. Can you find some structure in the data? Given this data set, an Unsupervised Learning algorithm might decide that the data lives in two different clusters. And so there's one cluster and there's a different cluster.
+![](./res/2020007.png)
 
-And yes, Supervised Learning algorithm may break these data into these two separate clusters.
+So we're given the data set and we're not told what to do with it and we're not told what each data point is. Instead we're just told, here is a data set. Can you find some structure in the data? Given this data set, an Unsupervised Learning algorithm might decide that the data lives in two different clusters. And so there's one cluster and there's a different cluster. 
 
-So this is called a clustering algorithm. And this turns out to be used in many places.
+And yes, Supervised Learning algorithm may break these data into these two separate clusters. So this is called a clustering algorithm. And this turns out to be used in many places.
 
-One example where clustering is used is in Google News and if you have not seen this before, you can actually go to this URL news.google.com to take a look. What Google News does is everyday it goes and looks at tens of thousands or hundreds of thousands of new stories on the web and it groups them into cohesive news stories.
+One example where clustering is used is in Google News and if you have not seen this before, you can actually go to this URL news.google.com to take a look. What Google News does is everyday it goes and looks at tens of thousands or hundreds of thousands of new stories on the web and it groups them into cohesive news stories. For example, let's look here.
 
-For example, let's look here.
+The URLs here link to different news stories about the BP Oil Well story. So, let's click on one of these URL's and we'll click on one of these URL's. What I'll get to is a web page like this. Here's a Wall Street Journal article about, you know, the BP Oil Well Spill stories of "BP Kills Macondo", which is a name of the spill and if you click on a different URL
 
-The URLs here link to different news stories about the BP Oil Well story.
-
-So, let's click on one of these URL's and we'll click on one of these URL's. What I'll get to is a web page like this. Here's a Wall Street Journal article about, you know, the BP Oil Well Spill stories of "BP Kills Macondo", which is a name of the spill and if you click on a different URL
-
-from that group then you might get the different story. Here's the CNN story about a game, the BP Oil Spill,
-
-and if you click on yet a third link, then you might get a different story. Here's the UK Guardian story about the BP Oil Spill.
+from that group then you might get the different story. Here's the CNN story about a game, the BP Oil Spill, and if you click on yet a third link, then you might get a different story. Here's the UK Guardian story about the BP Oil Spill.
 
 So what Google News has done is look for tens of thousands of news stories and automatically cluster them together. So, the news stories that are all about the same topic get displayed together. It turns out that clustering algorithms and Unsupervised Learning algorithms are used in many other problems as well.
 
-Here's one on understanding genomics.
+![](./res/2020008.png)
 
-Here's an example of DNA microarray data. The idea is put a group of different individuals and for each of them, you measure how much they do or do not have a certain gene. Technically you measure how much certain genes are expressed. So these colors, red, green, gray and so on, they show the degree to which different individuals do or do not have a specific gene.
+Here's one on understanding genomics. Here's an example of DNA microarray data. The idea is put a group of different individuals and for each of them, you measure how much they do or do not have a certain gene. Technically you measure how much certain genes are expressed. So these colors, red, green, gray and so on, they show the degree to which different individuals do or do not have a specific gene.
 
 And what you can do is then run a clustering algorithm to group individuals into different categories or into different types of people.
 
 So this is Unsupervised Learning because we're not telling the algorithm in advance that these are type 1 people, those are type 2 persons, those are type 3 persons and so on and instead what were saying is yeah here's a bunch of data. I don't know what's in this data. I don't know who's and what type. I don't even know what the different types of people are, but can you automatically find structure in the data from the you automatically cluster the individuals into these types that I don't know in advance? Because we're not giving the algorithm the right answer for the examples in my data set, this is Unsupervised Learning.
 
-Unsupervised Learning or clustering is used for a bunch of other applications.
+Unsupervised Learning or clustering is used for a bunch of other applications. It's used to organize large computer clusters. I had some friends looking at large data centers, that is large computer clusters and trying to figure out which machines tend to work together and if you can put those machines together, you can make your data center work more efficiently.
 
-It's used to organize large computer clusters.
+![](./res/2020009.png)
 
-I had some friends looking at large data centers, that is large computer clusters and trying to figure out which machines tend to work together and if you can put those machines together, you can make your data center work more efficiently.
+This second application is on social network analysis. So given knowledge about which friends you email the most or given your Facebook friends or your Google+ circles, can we automatically identify which are cohesive groups of friends, also which are groups of people that all know each other?
 
-This second application is on social network analysis.
-
-So given knowledge about which friends you email the most or given your Facebook friends or your Google+ circles, can we automatically identify which are cohesive groups of friends, also which are groups of people that all know each other?
-
-Market segmentation.
-
-Many companies have huge databases of customer information. So, can you look at this customer data set and automatically discover market segments and automatically
-
-group your customers into different market segments so that you can automatically and more efficiently sell or market your different market segments together?
+Market segmentation. Many companies have huge databases of customer information. So, can you look at this customer data set and automatically discover market segments and automatically group your customers into different market segments so that you can automatically and more efficiently sell or market your different market segments together?
 
 Again, this is Unsupervised Learning because we have all this customer data, but we don't know in advance what are the market segments and for the customers in our data set, you know, we don't know in advance who is in market segment one, who is in market segment two, and so on. But we have to let the algorithm discover all this just from the data.
 
 Finally, it turns out that Unsupervised Learning is also used for surprisingly astronomical data analysis and these clustering algorithms gives surprisingly interesting useful theories of how galaxies are formed. All of these are examples of clustering, which is just one type of Unsupervised Learning. Let me tell you about another one. I'm gonna tell you about the cocktail party problem.
+
+![](./res/2020010.png)
 
 So, you've been to cocktail parties before, right? Well, you can imagine there's a party, room full of people, all sitting around, all talking at the same time and there are all these overlapping voices because everyone is talking at the same time, and it is almost hard to hear the person in front of you. So maybe at a cocktail party with two people,
 
@@ -320,31 +310,25 @@ two people talking at the same time, and it's a somewhat small cocktail party. A
 
 Maybe speaker one is a little louder in microphone one and maybe speaker two is a little bit louder on microphone 2 because the 2 microphones are at different positions relative to the 2 speakers, but each microphone would cause an overlapping combination of both speakers' voices.
 
-So here's an actual recording
+So here's an actual recording of two speakers recorded by a researcher. Let me play for you the first, what the first microphone sounds like. One (uno), two (dos), three (tres), four (cuatro), five (cinco), six (seis), seven (siete), eight (ocho), nine (nueve), ten (y diez).
 
-of two speakers recorded by a researcher. Let me play for you the first, what the first microphone sounds like. One (uno), two (dos), three (tres), four (cuatro), five (cinco), six (seis), seven (siete), eight (ocho), nine (nueve), ten (y diez).
+All right, maybe not the most interesting cocktail party, there's two people counting from one to ten in two languages but you know. What you just heard was the first microphone recording, here's the second recording. Uno (one), dos (two), tres (three), cuatro (four), cinco (five), seis (six), siete (seven), ocho (eight), nueve (nine) y diez (ten). 
 
-All right, maybe not the most interesting cocktail party, there's two people counting from one to ten in two languages but you know. What you just heard was the first microphone recording, here's the second recording.
+1『上面的 2 段录音超级有意思，可以时常去视频里听听，哈哈。（2020-11-18）』
 
-Uno (one), dos (two), tres (three), cuatro (four), cinco (five), seis (six), siete (seven), ocho (eight), nueve (nine) y diez (ten). So we can do, is take these two microphone recorders and give them to an Unsupervised Learning algorithm called the cocktail party algorithm, and tell the algorithm - find structure in this data for you. And what the algorithm will do is listen to these audio recordings and say, you know it sounds like the two audio recordings are being added together or that have being summed together to produce these recordings that we had. Moreover, what the cocktail party algorithm will do is separate out these two audio sources that were being added or being summed together to form other recordings and, in fact, here's the first output of the cocktail party algorithm.
-
-One, two, three, four, five, six, seven, eight, nine, ten.
-
-So, I separated out the English voice in one of the recordings.
-
-And here's the second of it. Uno, dos, tres, quatro, cinco, seis, siete, ocho, nueve y diez. Not too bad, to give you
-
-one more example, here's another recording of another similar situation, here's the first microphone : One, two, three, four, five, six, seven, eight, nine, ten.
-
-OK so the poor guy's gone home from the cocktail party and he 's now sitting in a room by himself talking to his radio.
-
-Here's the second microphone recording.
+So we can do, is take these two microphone recorders and give them to an Unsupervised Learning algorithm called the cocktail party algorithm, and tell the algorithm - find structure in this data for you. And what the algorithm will do is listen to these audio recordings and say, you know it sounds like the two audio recordings are being added together or that have being summed together to produce these recordings that we had. Moreover, what the cocktail party algorithm will do is separate out these two audio sources that were being added or being summed together to form other recordings and, in fact, here's the first output of the cocktail party algorithm.
 
 One, two, three, four, five, six, seven, eight, nine, ten.
 
-When you give these two microphone recordings to the same algorithm, what it does, is again say, you know, it sounds like there are two audio sources, and moreover,
+So, I separated out the English voice in one of the recordings. And here's the second of it. Uno, dos, tres, quatro, cinco, seis, siete, ocho, nueve y diez. 
 
-the album says, here is the first of the audio sources I found.
+Not too bad, to give you one more example, here's another recording of another similar situation, here's the first microphone : One, two, three, four, five, six, seven, eight, nine, ten.
+
+OK so the poor guy's gone home from the cocktail party and he 's now sitting in a room by himself talking to his radio. Here's the second microphone recording.
+
+One, two, three, four, five, six, seven, eight, nine, ten.
+
+When you give these two microphone recordings to the same algorithm, what it does, is again say, you know, it sounds like there are two audio sources, and moreover, the album says, here is the first of the audio sources I found.
 
 One, two, three, four, five, six, seven, eight, nine, ten.
 
@@ -356,15 +340,13 @@ So you might look at an Unsupervised Learning algorithm like this and ask how co
 
 It turns out the algorithm, to do what you just heard, that can be done with one line of code - shown right here.
 
-It take researchers a long time to come up with this line of code. I'm not saying this is an easy problem, But it turns out that when you use the right programming environment, many learning algorithms can be really short programs.
+![](./res/2020011.png)
 
-So this is also why in this class we're going to use the Octave programming environment.
+It take researchers a long time to come up with this line of code. I'm not saying this is an easy problem, But it turns out that when you use the right programming environment, many learning algorithms can be really short programs. 
 
-Octave, is free open source software, and using a tool like Octave or Matlab, many learning algorithms become just a few lines of code to implement. Later in this class, I'll just teach you a little bit about how to use Octave and you'll be implementing some of these algorithms in Octave. Or if you have Matlab you can use that too.
+So this is also why in this class we're going to use the Octave programming environment. Octave, is free open source software, and using a tool like Octave or Matlab, many learning algorithms become just a few lines of code to implement. Later in this class, I'll just teach you a little bit about how to use Octave and you'll be implementing some of these algorithms in Octave. Or if you have Matlab you can use that too.
 
-It turns out the Silicon Valley, for a lot of machine learning algorithms, what we do is first prototype our software in Octave because software in Octave makes it incredibly fast to implement these learning algorithms.
-
-Here each of these functions like for example the SVD function that stands for singular value decomposition; but that turns out to be a linear algebra routine, that is just built into Octave.
+It turns out the Silicon Valley, for a lot of machine learning algorithms, what we do is first prototype our software in Octave because software in Octave makes it incredibly fast to implement these learning algorithms. Here each of these functions like for example the SVD function that stands for singular value decomposition; but that turns out to be a linear algebra routine, that is just built into Octave.
 
 If you were trying to do this in C++ or Java, this would be many many lines of code linking complex C++ or Java libraries. So, you can implement this stuff as C++ or Java or Python, it's just much more complicated to do so in those languages.
 
@@ -372,9 +354,7 @@ What I've seen after having taught machine learning for almost a decade now, is 
 
 And in fact what many people will do to in the large Silicon Valley companies is in fact, use an algorithm like Octave to first prototype the learning algorithm, and only after you've gotten it to work, then you migrate it to C++ or Java or whatever. It turns out that by doing things this way, you can often get your algorithm to work much faster than if you were starting out in C++.
 
-So, I know that as an instructor, I get to say "trust me on this one" only a finite number of times, but for those of you who've never used these Octave type programming environments before, I am going to ask you to trust me on this one, and say that you, you will, I think your time, your development time is one of the most valuable resources.
-
-And having seen lots of people do this, I think you as a machine learning researcher, or machine learning developer will be much more productive if you learn to start in prototype, to start in Octave, in some other language.
+So, I know that as an instructor, I get to say "trust me on this one" only a finite number of times, but for those of you who've never used these Octave type programming environments before, I am going to ask you to trust me on this one, and say that you, you will, I think your time, your development time is one of the most valuable resources. And having seen lots of people do this, I think you as a machine learning researcher, or machine learning developer will be much more productive if you learn to start in prototype, to start in Octave, in some other language.
 
 Finally, to wrap up this video, I have one quick review question for you.
 
@@ -396,11 +376,7 @@ Reading:
 
 ### Unsupervised Learning
 
-Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables.
-
-We can derive this structure by clustering the data based on relationships among the variables in the data.
-
-With unsupervised learning there is no feedback based on the prediction results.
+Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables. We can derive this structure by clustering the data based on relationships among the variables in the data. With unsupervised learning there is no feedback based on the prediction results.
 
 Example:
 
@@ -408,99 +384,122 @@ Clustering: Take a collection of 1,000,000 different genes, and find a way to au
 
 Non-clustering: The "Cocktail Party Algorithm", allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a cocktail party).
 
-### Who are Mentors?
-
-Mentor Program Overview:
-
-Community Mentors are successful, dedicated Coursera learners who volunteer to assist with support and discussion forum moderation in courses that they have already completed. They have been recruited by Coursera to encourage newer learners, answer questions, set an example by posting thoughtful and timely content, and report platform bugs and inappropriate content to Coursera.
-
-As you use the discussion areas, please be aware that the ideas expressed by participants in this course, including the Mentors, do not represent the views of Stanford University. The mentors are not employed by Stanford University and they have not been vetted by Stanford University as experts on course content or course facilitation.
-
 ### Frequently Asked Questions
-
-The following Machine Learning Mentors volunteered time to compile this list of Frequently Asked Questions: Colin Beckingham, Kevin Burnham, Maxim Haytovich, Tom Mosher, Richard Gayle, Simon Crase, Michael Reardon and Paul Mielke.
-
-Be sure to thank them when you see them in the discussion forums!
 
 General Questions
 
-Q: Is the grader server down? A: First step is to check here.
+Q: Is the grader server down? 
 
-Q: The audio in the videos is quite bad sometimes, muffled or low volume. Please fix it. A: You can mitigate the audio issues by turning down the bass and up the treble if you have those controls, or using a headset, which naturally emphasizes the higher frequencies. Also you may want to switch on the English closed captioning. It is unlikely to be fixed in the near term because most students do not have serious problems and therefore it is low on the priority list.
+A: First step is to check here.
 
-Q: What does it mean when I see “Math Processing Error?” A: The page is attempting to use MathJax to render math symbols. Sometimes the content delivery network can be sluggish or you have caught the web page Ajax javascript code in an incomplete state. Normally just refreshing the page to make it load fully fixes the problem
+Q: The audio in the videos is quite bad sometimes, muffled or low volume. Please fix it. 
 
-Q: How can I download lectures? A: On Demand videos cannot be downloaded.
+A: You can mitigate the audio issues by turning down the bass and up the treble if you have those controls, or using a headset, which naturally emphasizes the higher frequencies. Also you may want to switch on the English closed captioning. It is unlikely to be fixed in the near term because most students do not have serious problems and therefore it is low on the priority list.
 
-Q: Is there a prerequisite for this course?A: Students are expected to have the following background:
+Q: What does it mean when I see “Math Processing Error?” 
 
-Knowledge of basic computer science principles and skills, at a level sufficient to write a reasonably non-trivial computer program.
-Familiarity with the basic probability theory.
-Familiarity with the basic linear algebra.
-Q: Why do we have to use Matlab or Octave? Why not Clojure, Julia, Python, R or [Insert favourite language here]?A: As Prof. Ng explained in the 1st video of the Octave tutorial, he has tried teaching Machine Learning in a variety of languages, and found that students come up to speed faster with Matlab/Octave. Therefore the course was designed using Octave/Matlab, and the automatic submission grader uses those program interfaces. Octave and Matlab are optimized for rapid vectorized calculations, which is very useful in Machine Learning. R is a nice tool, but:
+A: The page is attempting to use MathJax to render math symbols. Sometimes the content delivery network can be sluggish or you have caught the web page Ajax javascript code in an incomplete state. Normally just refreshing the page to make it load fully fixes the problem
 
-1. It is a bit too high level. This course shows how to actually implement the algorithms of machine learning, while R already has them implemented. Since the focus of this course is to show you what happens in ML algorithms under the hood, you need to use Octave 2. This course offers some starter code in Octave/Matlab, which will really save you tons of time solving the tasks.
+Q: How can I download lectures? 
 
-Q: Has anyone figured out the how to solve this problem? Here is my code [Insert code]. A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+A: On Demand videos cannot be downloaded.
 
-Q: I've submitted correct answers for [insert problem]. However I would like to compare my implementation with other who did correctly. A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+Q: Is there a prerequisite for this course?
 
-Q: This is my email: [insert email]. Can we get the answer for the quiz? A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+A: Students are expected to have the following background: 1) Knowledge of basic computer science principles and skills, at a level sufficient to write a reasonably non-trivial computer program. 2) Familiarity with the basic probability theory. 3) Familiarity with the basic linear algebra.
 
-Q: Do I receive a certificate once I complete this course? A: Course Certificate is available in this course. Click here to learn about how Course Certificate works and how to purchase.
+1『机器学习所需的基本背景知识：编程、统计学和线性代数。（2020-11-18）』
 
-Q: Why do all the answers in a multiple correct question say correct response when you submit the answer to an in-video question? A: Coursera's software is designed to suggest the correctness of each state of the check box. Therefore, an answer having a correct answer tag below it means that the state of that check box is correct.
+Q: Why do we have to use Matlab or Octave? Why not Clojure, Julia, Python, R or [Insert favourite language here]?
 
-Q: What is the correct technique of entering a numeric answer to a text box question ? A: Coursera's software for numeric answers only supports '.' as the decimal delimiter (not ',') and require that fractions be simplified to decimals. For answers with many decimal digits, please use a 2 digits after decimal point rounding method when entering solutions if not mentioned in the question.
+A: As Prof. Ng explained in the 1st video of the Octave tutorial, he has tried teaching Machine Learning in a variety of languages, and found that students come up to speed faster with Matlab/Octave. Therefore the course was designed using Octave/Matlab, and the automatic submission grader uses those program interfaces. Octave and Matlab are optimized for rapid vectorized calculations, which is very useful in Machine Learning. 
 
-Q: What is the correct technique of entering a 1 element matrix ? A: They should be entered as just the element without brackets.
+R is a nice tool, but: It is a bit too high level. This course shows how to actually implement the algorithms of machine learning, while R already has them implemented. Since the focus of this course is to show you what happens in ML algorithms under the hood, you need to use Octave 2. This course offers some starter code in Octave/Matlab, which will really save you tons of time solving the tasks.
 
-Q: What does a A being a 3 element vector or a 3 dimensional vector mean? A: If not described a vector as mentioned in the questions is A =
+Q: Has anyone figured out the how to solve this problem? Here is my code [Insert code]. 
 
+A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
 
+Q: I've submitted correct answers for [insert problem]. However I would like to compare my implementation with other who did correctly. 
 
-Q: I think I found an error in a video. What should I do? A: First, check the errata section under resources menu. If you are unsure if it is an error, create a new thread in the discussion forum describing the error.
+A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
 
-Q: My quiz grade displayed is wrong or I have a verification issue or I cannot retake a quiz. What should I do? A: Contact Help Center. These queries can only be resolved by learner support and it is best if they are contacted directly.
+Q: This is my email: [insert email]. Can we get the answer for the quiz? 
+
+A: This is a violation of the Coursera Honor Code. Find the Honor Code here.
+
+Q: Do I receive a certificate once I complete this course? 
+
+A: Course Certificate is available in this course. Click here to learn about how Course Certificate works and how to purchase.
+
+Q: Why do all the answers in a multiple correct question say correct response when you submit the answer to an in-video question? 
+
+A: Coursera's software is designed to suggest the correctness of each state of the check box. Therefore, an answer having a correct answer tag below it means that the state of that check box is correct.
+
+Q: What is the correct technique of entering a numeric answer to a text box question? 
+
+A: Coursera's software for numeric answers only supports '.' as the decimal delimiter (not ',') and require that fractions be simplified to decimals. For answers with many decimal digits, please use a 2 digits after decimal point rounding method when entering solutions if not mentioned in the question.
+
+Q: What is the correct technique of entering a 1 element matrix ? 
+
+A: They should be entered as just the element without brackets.
+
+Q: What does a A being a 3 element vector or a 3 dimensional vector mean? 
+
+A: If not described a vector as mentioned in the questions is A =
+
+Q: I think I found an error in a video. What should I do? 
+
+A: First, check the errata section under resources menu. If you are unsure if it is an error, create a new thread in the discussion forum describing the error.
+
+Q: My quiz grade displayed is wrong or I have a verification issue or I cannot retake a quiz. What should I do? 
+
+A: Contact Help Center. These queries can only be resolved by learner support and it is best if they are contacted directly.
 
 ---
 
 ### 为什么深度学习会？（Why is Deep Learning taking off?）
 
-本节视频主要讲了推动深度学习变得如此热门的主要因素。包括数据规模、计算量及算 法的创新。
+本节视频主要讲了推动深度学习变得如此热门的主要因素。包括数据规模、计算量及算法的创新。
 
-深度学习和神经网络之前的基础技术理念已经存在大概几十年了，为什么它们现在才突 然流行起来呢？本节课程主要讲述一些使得深度学习变得如此热门的主要驱动因素，这将会 帮助你在你的组织机构内发现最好的时机来应用这些东西。
+深度学习和神经网络之前的基础技术理念已经存在大概几十年了，为什么它们现在才突然流行起来呢？本节课程主要讲述一些使得深度学习变得如此热门的主要驱动因素，这将会帮助你在你的组织机构内发现最好的时机来应用这些东西。
 
-在过去的几年里，很多人都问我为什么深度学习能够如此有效。当我回答这个问题时，我通常给他们画个图，在水平轴上画一个形状，在此绘制出所有任务的数据量，而在垂直轴 上，画出机器学习算法的性能。比如说准确率体现在垃圾邮件过滤或者广告点击预测，或者 是神经网络在自动驾驶汽车时判断位置的准确性，根据图像可以发现，如果你把一个传统机 器学习算法的性能画出来，作为数据量的一个函数，你可能得到一个弯曲的线，就像图中这 样，它的性能一开始在增加更多数据时会上升，但是一段变化后它的性能就会像一个高原一 样。假设你的水平轴拉的很长很长，它们不知道如何处理规模巨大的数据，而过去十年的社 会里，我们遇到的很多问题只有相对较少的数据量。
+在过去的几年里，很多人都问我为什么深度学习能够如此有效。当我回答这个问题时，我通常给他们画个图，在水平轴上画一个形状，在此绘制出所有任务的数据量，而在垂直轴上，画出机器学习算法的性能。比如说准确率体现在垃圾邮件过滤或者广告点击预测，或者是神经网络在自动驾驶汽车时判断位置的准确性，根据图像可以发现，如果你把一个传统机器学习算法的性能画出来，作为数据量的一个函数，你可能得到一个弯曲的线，就像图中这样，它的性能一开始在增加更多数据时会上升，但是一段变化后它的性能就会像一个高原一样。假设你的水平轴拉的很长很长，它们不知道如何处理规模巨大的数据，而过去十年的社会里，我们遇到的很多问题只有相对较少的数据量。
 
-多亏数字化社会的来临，现在的数据量都非常巨大，我们花了很多时间活动在这些数字 的领域，比如在电脑网站上、在手机软件上以及其它数字化的服务，它们都能创建数据，同 时便宜的相机被配置到移动电话，还有加速仪及各类各样的传感器，同时在物联网领域我们
+多亏数字化社会的来临，现在的数据量都非常巨大，我们花了很多时间活动在这些数字的领域，比如在电脑网站上、在手机软件上以及其它数字化的服务，它们都能创建数据，同时便宜的相机被配置到移动电话，还有加速仪及各类各样的传感器，同时在物联网领域我们也收集到了越来越多的数据。仅仅在过去的 20 年里对于很多应用，我们便收集到了大量的数据，远超过机器学习算法能够高效发挥它们优势的规模。
 
-也收集到了越来越多的数据。仅仅在过去的 20 年里对于很多应用，我们便收集到了大量的 数据，远超过机器学习算法能够高效发挥它们优势的规模。神经网络展现出的是，如果你训练一个小型的神经网络，那么这个性能可能会像下图黄 色曲线表示那样；如果你训练一个稍微大一点的神经网络，比如说一个中等规模的神经网络 （下图蓝色曲线），它在某些数据上面的性能也会更好一些；如果你训练一个非常大的神经 网络，它就会变成下图绿色曲线那样，并且保持变得越来越好。因此可以注意到两点：如果 你想要获得较高的性能体现，那么你有两个条件要完成，第一个是你需要训练一个规模足够 大的神经网络，以发挥数据规模量巨大的优点，另外你需要能画到𝑥轴的这个位置，所以你 需要很多的数据。因此我们经常说规模一直在推动深度学习的进步，这里的规模指的也同时 是神经网络的规模，我们需要一个带有许多隐藏单元的神经网络，也有许多的参数及关联性，就如同需要大规模的数据一样。事实上如今最可靠的方法来在神经网络上获得更好的性能，往往就是要么训练一个更大的神经网络，要么投入更多的数据，这只能在一定程度上起作用，因为最终你耗尽了数据，或者最终你的网络是如此大规模导致将要用太久的时间去训练，但 是仅仅提升规模的的确确地让我们在深度学习的世界中摸索了很多时间。为了使这个图更加 从技术上讲更精确一点，我在𝑥轴下面已经写明的数据量，这儿加上一个标签（label）量，通过添加这个标签量，也就是指在训练样本时，我们同时输入𝑥和标签𝑦，接下来引入一点符 号，使用小写的字母𝑚表示训练集的规模，或者说训练样本的数量，这个小写字母𝑚就横轴 结合其他一些细节到这个图像中。
+神经网络展现出的是，如果你训练一个小型的神经网络，那么这个性能可能会像下图黄色曲线表示那样；如果你训练一个稍微大一点的神经网络，比如说一个中等规模的神经网络 （下图蓝色曲线），它在某些数据上面的性能也会更好一些；如果你训练一个非常大的神经网络，它就会变成下图绿色曲线那样，并且保持变得越来越好。
 
-在这个小的训练集中，各种算法的优先级事实上定义的也不是很明确，所以如果你没有大量的训练集，那效果会取决于你的特征工程能力，那将决定最终的性能。假设有些人训练 出了一个 SVM（支持向量机）表现的更接近正确特征，然而有些人训练的规模大一些，可能 在这个小的训练集中 SVM 算法可以做的更好。因此你知道在这个图形区域的左边，各种算 法之间的优先级并不是定义的很明确，最终的性能更多的是取决于你在用工程选择特征方面 的能力以及算法处理方面的一些细节，只是在某些大数据规模非常庞大的训练集，也就是在 右边这个𝑚会非常的大时，我们能更加持续地看到更大的由神经网络控制的其它方法，因此 如果你的任何某个朋友问你为什么神经网络这么流行，我会鼓励你也替他们画这样一个图 形。
+因此可以注意到两点：如果你想要获得较高的性能体现，那么你有两个条件要完成，第一个是你需要训练一个规模足够大的神经网络，以发挥数据规模量巨大的优点，另外你需要能画到 𝑥 轴的这个位置，所以你需要很多的数据。因此我们经常说规模一直在推动深度学习的进步，这里的规模指的也同时是神经网络的规模，我们需要一个带有许多隐藏单元的神经网络，也有许多的参数及关联性，就如同需要大规模的数据一样。
 
-所以可以这么说，在深度学习萌芽的初期，数据的规模以及计算量，局限在我们对于训 练一个特别大的神经网络的能力，无论是在 CPU 还是 GPU 上面，那都使得我们取得了巨大 的进步。但是渐渐地，尤其是在最近这几年，我们也见证了算法方面的极大创新。许多算法 方面的创新，一直是在尝试着使得神经网络运行的更快。
+事实上如今最可靠的方法来在神经网络上获得更好的性能，往往就是要么训练一个更大的神经网络，要么投入更多的数据，这只能在一定程度上起作用，因为最终你耗尽了数据，或者最终你的网络是如此大规模导致将要用太久的时间去训练，但 是仅仅提升规模的的确确地让我们在深度学习的世界中摸索了很多时间。为了使这个图更加，从技术上讲更精确一点，我在 𝑥 轴下面已经写明的数据量，这儿加上一个标签（label）量，通过添加这个标签量，也就是指在训练样本时，我们同时输入 𝑥 和标签 𝑦，接下来引入一点符号，使用小写的字母 𝑚 表示训练集的规模，或者说训练样本的数量，这个小写字母 𝑚 就横轴结合其他一些细节到这个图像中。
+
+在这个小的训练集中，各种算法的优先级事实上定义的也不是很明确，所以如果你没有大量的训练集，那效果会取决于你的特征工程能力，那将决定最终的性能。假设有些人训练出了一个 SVM（支持向量机）表现的更接近正确特征，然而有些人训练的规模大一些，可能在这个小的训练集中 SVM 算法可以做的更好。因此你知道在这个图形区域的左边，各种算法之间的优先级并不是定义的很明确，最终的性能更多的是取决于你在用工程选择特征方面的能力以及算法处理方面的一些细节，只是在某些大数据规模非常庞大的训练集，也就是在右边这个 𝑚 会非常的大时，我们能更加持续地看到更大的由神经网络控制的其它方法，因此如果你的任何某个朋友问你为什么神经网络这么流行，我会鼓励你也替他们画这样一个图形。
+
+所以可以这么说，在深度学习萌芽的初期，数据的规模以及计算量，局限在我们对于训练一个特别大的神经网络的能力，无论是在 CPU 还是 GPU 上面，那都使得我们取得了巨大的进步。但是渐渐地，尤其是在最近这几年，我们也见证了算法方面的极大创新。许多算法方面的创新，一直是在尝试着使得神经网络运行的更快。
 
 作为一个具体的例子，神经网络方面的一个巨大突破是从 sigmoid 函数转换到一个 ReLU 函数，这个函数我们在之前的课程里提到过。
 
-如果你无法理解刚才我说的某个细节，也不需要担心，可以知道的一个使用 sigmoid 函 数和机器学习问题是，在这个区域，也就是这个 sigmoid 函数的梯度会接近零，所以学习的 速度会变得非常缓慢，因为当你实现梯度下降以及梯度接近零的时候，参数会更新的很慢，所以学习的速率也会变的很慢，而通过改变这个被叫做激活函数的东西，神经网络换用这一 个函数，叫做 ReLU 的函数（修正线性单元），ReLU 它的梯度对于所有输入的负值都是零，因此梯度更加不会趋向逐渐减少到零。而这里的梯度，这条线的斜率在这左边是零，仅仅通 过将 Sigmod 函数转换成 ReLU 函数，便能够使得一个叫做梯度下降（gradient descent）的算 法运行的更快，这就是一个或许相对比较简单的算法创新的例子。但是根本上算法创新所带 来的影响，实际上是对计算带来的优化，所以有很多像这样的例子，我们通过改变算法，使 得代码运行的更快，这也使得我们能够训练规模更大的神经网络，或者是多端口的网络。即使我们从所有的数据中拥有了大规模的神经网络，快速计算显得更加重要的另一个原因是，训练你的神经网络的过程，很多时候是凭借直觉的，往往你对神经网络架构有了一个想法，于是你尝试写代码实现你的想法，然后让你运行一个试验环境来告诉你，你的神经网络效果 有多好，通过参考这个结果再返回去修改你的神经网络里面的一些细节，然后你不断的重复 上面的操作，当你的神经网络需要很长时间去训练，需要很长时间重复这一循环，在这里就 有很大的区别，根据你的生产效率去构建更高效的神经网络。当你能够有一个想法，试一试，看效果如何。在 10 分钟内，或者也许要花上一整天，如果你训练你的神经网络用了一个月 的时间，有时候发生这样的事情，也是值得的，因为你很快得到了一个结果。在 10 分钟内 或者一天内，你应该尝试更多的想法，那极有可能使得你的神经网络在你的应用方面工作的 更好、更快的计算，在提高速度方面真的有帮助，那样你就能更快地得到你的实验结果。这 也同时帮助了神经网络的实验人员和有关项目的研究人员在深度学习的工作中迭代的更快，也能够更快的改进你的想法，所有这些都使得整个深度学习的研究社群变的如此繁荣，包括 令人难以置信地发明新的算法和取得不间断的进步，这些都是开拓者在做的事情，这些力量 使得深度学习不断壮大。
+如果你无法理解刚才我说的某个细节，也不需要担心，可以知道的一个使用 sigmoid 函数和机器学习问题是，在这个区域，也就是这个 sigmoid 函数的梯度会接近零，所以学习的速度会变得非常缓慢，因为当你实现梯度下降以及梯度接近零的时候，参数会更新的很慢，所以学习的速率也会变的很慢，而通过改变这个被叫做激活函数的东西，神经网络换用这一个函数，叫做 ReLU 的函数（修正线性单元），ReLU 它的梯度对于所有输入的负值都是零，因此梯度更加不会趋向逐渐减少到零。而这里的梯度，这条线的斜率在这左边是零，仅仅通过将 Sigmod 函数转换成 ReLU 函数，便能够使得一个叫做梯度下降（gradient descent）的算法运行的更快，这就是一个或许相对比较简单的算法创新的例子。
 
-好消息是这些力量目前也正常不断的奏效，使得深度学习越来越好。研究表明我们的社 会仍然正在抛出越来越多的数字化数据，或者用一些特殊的硬件来进行计算，比如说 GPU，以及更快的网络连接各种硬件。我非常有信心，我们可以做一个超级大规模的神经网络，而 计算的能力也会进一步的得到改善，还有算法相对的学习研究社区连续不断的在算法前沿产 生非凡的创新。根据这些我们可以乐观地回答，同时对深度学习保持乐观态度，在接下来的 这些年它都会变的越来越好。
+但是根本上算法创新所带来的影响，实际上是对计算带来的优化，所以有很多像这样的例子，我们通过改变算法，使得代码运行的更快，这也使得我们能够训练规模更大的神经网络，或者是多端口的网络。即使我们从所有的数据中拥有了大规模的神经网络，快速计算显得更加重要的另一个原因是，训练你的神经网络的过程，很多时候是凭借直觉的，往往你对神经网络架构有了一个想法，于是你尝试写代码实现你的想法，然后让你运行一个试验环境来告诉你，你的神经网络效果有多好，通过参考这个结果再返回去修改你的神经网络里面的一些细节，然后你不断的重复上面的操作，当你的神经网络需要很长时间去训练，需要很长时间重复这一循环，在这里就有很大的区别，根据你的生产效率去构建更高效的神经网络。
 
-## 1.5 关于这门课 (About this Course)
+当你能够有一个想法，试一试，看效果如何。在 10 分钟内，或者也许要花上一整天，如果你训练你的神经网络用了一个月的时间，有时候发生这样的事情，也是值得的，因为你很快得到了一个结果。在 10 分钟内或者一天内，你应该尝试更多的想法，那极有可能使得你的神经网络在你的应用方面工作的 更好、更快的计算，在提高速度方面真的有帮助，那样你就能更快地得到你的实验结果。这也同时帮助了神经网络的实验人员和有关项目的研究人员在深度学习的工作中迭代的更快，也能够更快的改进你的想法，所有这些都使得整个深度学习的研究社群变的如此繁荣，包括令人难以置信地发明新的算法和取得不间断的进步，这些都是开拓者在做的事情，这些力量使得深度学习不断壮大。
+
+好消息是这些力量目前也正常不断的奏效，使得深度学习越来越好。研究表明我们的社会仍然正在抛出越来越多的数字化数据，或者用一些特殊的硬件来进行计算，比如说 GPU，以及更快的网络连接各种硬件。我非常有信心，我们可以做一个超级大规模的神经网络，而计算的能力也会进一步的得到改善，还有算法相对的学习研究社区连续不断的在算法前沿产生非凡的创新。根据这些我们可以乐观地回答，同时对深度学习保持乐观态度，在接下来的这些年它都会变的越来越好。
+
+### 关于这门课
 
 你的学习进度已经快接近这个专项课程的第一门课的第一周结尾了，首先，快速地介绍一下下周的学习内容：在第一个视频已经提到，这个专项有五门课程，目前正处于第一门课：神经网络与深度学习。在这门课中将教会你最重要的基础知识。当学习到第一门课末尾，你将学到如何建立一个深度神经网络并且使之奏效。
 
 下面是关于第一门课的一些细节，这门课有四周的学习资料：
 
-第一周：关于深度学习的介绍。在每一周的结尾也会有十个多选题用来检验自己对材料的理解；
+第一周：关于深度学习的介绍。在每一周的结尾也会有十个多选题用来检验自己对材料的理解。
 
-第二周：关于神经网络的编程知识，了解神经网络的结构，逐步完善算法并思考如何使得神经网络高效地实现。从第二周开始做一些编程训练（付费项目），自己实现算法；
+第二周：关于神经网络的编程知识，了解神经网络的结构，逐步完善算法并思考如何使得神经网络高效地实现。从第二周开始做一些编程训练（付费项目），自己实现算法。
 
-第三周：在学习了神经网络编程的框架之后，你将可以编写一个隐藏层神经网络，所以需要学习所有必须的关键概念来实现神经网络的工作；
+第三周：在学习了神经网络编程的框架之后，你将可以编写一个隐藏层神经网络，所以需要学习所有必须的关键概念来实现神经网络的工作。
 
 第四周：建立一个深层的神经网络。
 
 这段视频即将结束，希望在这段视频之后，你们可以看看课程网站的十道选择题来检查自己的理解，不必复习前面的知识，有的知识是你现在不知道的，可以不断尝试，直到全部做对以理解全部概念。
-
-
