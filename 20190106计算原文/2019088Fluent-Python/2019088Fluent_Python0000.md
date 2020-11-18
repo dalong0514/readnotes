@@ -12,11 +12,15 @@ This book covers:
 
 1. Python data model: understand how special methods are the key to the consistent behavior of objects.
 
-1. Data structures: take full advantage of built-in types, and understand the text vs bytes duality in the Unicode age.
-1. Functions as objects: view Python functions as first-class objects, and understand how this affects popular design patterns.
-1. Object-oriented idioms: build classes by learning about references, mutability, interfaces, operator overloading, and multiple inheritance.
-1. Control flow: leverage context managers, generators, coroutines, and concurrency with the concurrent.futures and asyncio packages.
-1. Metaprogramming: understand how properties, attribute descriptors, class decorators, and metaclasses work.
+2. Data structures: take full advantage of built-in types, and understand the text vs bytes duality in the Unicode age.
+
+3. Functions as objects: view Python functions as first-class objects, and understand how this affects popular design patterns.
+
+4. Object-oriented idioms: build classes by learning about references, mutability, interfaces, operator overloading, and multiple inheritance.
+
+5. Control flow: leverage context managers, generators, coroutines, and concurrency with the concurrent futures and asyncio packages.
+
+6. Metaprogramming: understand how properties, attribute descriptors, class decorators, and metaclasses work.
 
 # Preface
 

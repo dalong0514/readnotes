@@ -1,3 +1,5 @@
+# 2020166Hands-On-Machine-Learning-with-R00
+
 ## 记忆时间
 
 ## 卡片
@@ -6,9 +8,23 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——
+### 0201. 术语卡——Machine Learning
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+Machine Learning is the science (and art) of programming computers so they can learn from data. Here is a slightly more general definition:
+
+[Machine Learning is the] field of study that gives computers the ability to learn without being explicitly programmed.
+
+—Arthur Samuel, 1959
+
+And a more engineering-oriented one:
+
+A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.
+
+—Tom Mitchell, 1997
+
+For example, your spam filter is a Machine Learning program that can learn to flag spam given examples of spam emails (e.g., flagged by users) and examples of regular (nonspam, also called “ham”) emails. The examples that the system uses to learn are called the training set. Each training example is called a training instance (or sample). In this case, the task T is to flag spam for new emails, the experience E is the training data, and the performance measure P needs to be defined; for example, you can use the ratio of correctly classified emails. This particular performance measure is called accuracy and it is often used in classification tasks. If you just download a copy of Wikipedia, your computer has a lot more data, but it is not suddenly better at any task. Thus, it is not Machine Learning.
+
+2『机器学习的定义，做一张术语卡片。』——已完成
 
 ### 0202. 术语卡——
 
@@ -16,7 +32,7 @@
 
 ### 0301. 人名卡——Aurélien Géron
 
-Aurélien Géron，本书作者，机器学习领域的大牛。
+Aurélien Géron，本书作者，机器学习领域的大牛。文笔很好的作者。
 
 Aurélien Géron is a Machine Learning consultant. A former Googler, he led the YouTube video classification team from 2013 to 2016. He was also a founder and CTO of Wifirst from 2002 to 2012, a leading Wireless ISP in France; and a founder and CTO of Polyconseil in 2001, the firm that now manages the electric car sharing service Autolib’.
 
@@ -38,17 +54,21 @@ A few fun facts: he taught his three children to count in binary with their fing
 
 ## Preface
 
+1『明显又是一个文笔很好的作者，读了几段下来感觉很舒服。（2020-11-18）』
+
 ### 01. The Machine Learning Tsunami
 
-In 2006, Geoffrey Hinton et al. published a paper 1 showing how to train a deep neural network capable of recognizing handwritten digits with state-of-the-art precision (>98%). They branded this technique “Deep Learning.” Training a deep neural net was widely considered impossible at the time, 2 and most researchers had abandoned the idea since the 1990s. This paper revived the interest of the scientific community and before long many new papers demonstrated that Deep Learning was not only possible, but capable of mind-blowing achievements that no other Machine Learning (ML) technique could hope to match (with the help of tremendous computing power and great amounts of data). This enthusiasm soon extended to many other areas of Machine Learning.
+In 2006, Geoffrey Hinton et al. published a paper [1] showing how to train a deep neural network capable of recognizing handwritten digits with state-of-the-art precision (>98%). They branded this technique “Deep Learning.” Training a deep neural net was widely considered impossible at the time, [2] and most researchers had abandoned the idea since the 1990s. This paper revived the interest of the scientific community and before long many new papers demonstrated that Deep Learning was not only possible, but capable of mind-blowing achievements that no other Machine Learning (ML) technique could hope to match (with the help of tremendous computing power and great amounts of data). This enthusiasm soon extended to many other areas of Machine Learning.
 
 Fast-forward 10 years and Machine Learning has conquered the industry: it is now at the heart of much of the magic in today’s high-tech products, ranking your web search results, powering your smartphone’s speech recognition, recommending videos, and beating the world champion at the game of Go. Before you know it, it will be driving your car.
+
+1『目前的理解，machine learning 其实在 1990s 年代被提出来了，印象中就是西蒙提出来的，但局限于当时计算机的性能（无法高效处理大批量数据），一直找不到实际应用。但在 06 年，Geoffrey Hinton 的论文又点燃了 ML 的实际应用。（2020-11-18）』
 
 1 Available on Hinton’s home page at [Home Page of Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/).
 
 2 Despite the fact that Yann Lecun’s deep convolutional neural networks had worked well for image recognition since the 1990s, although they were not as general purpose.
 
-2『在 Hinton 的主页里，正巧看到他在 nature 上发表的深度学习相关的论文，已下载作为本书附件「」。』
+2『在 Hinton 的主页里，正巧看到他在 nature 上发表的深度学习相关的论文，已下载作为本书附件「2020166附件0101-Nature-Deep-Review」。』
 
 ### 02. Machine Learning in Your Projects
 
@@ -184,11 +204,11 @@ Some chapters were added, others were rewritten and a few were reordered. Table 
 
 More specifically, here are the main changes for each 2 nd edition chapter (other than clarifications, corrections and code updates):
 
-• Chapter 1 
+Chapter 1 
 
 — Added a section on handling mismatch between the training set and the validation & test sets.
 
-• Chapter 2 
+Chapter 2 
 
 — Added how to compute a confidence interval.
 
@@ -196,17 +216,15 @@ More specifically, here are the main changes for each 2 nd edition chapter (othe
 
 — Introduced the upgraded OneHotEncoder and the new ColumnTransformer.
 
-• Chapter 4 
+Chapter 4 
 
 — Explained the need for training instances to be Independent and Identically Distributed (IID).
 
-• Chapter 7 
+Chapter 7 
 
 — Added a short section about XGBoost.
 
-Chapter 9 
-
-– new chapter including:
+Chapter 9, new chapter including:
 
 — Clustering with K-Means, how to choose the number of clusters, how to use it for dimensionality reduction, semi-supervised learning, image segmentation, and more.
 
@@ -216,11 +234,11 @@ Chapter 9
 
 — Overview of other anomaly detection and novelty detection algorithms.
 
-• Chapter 10 (mostly new) 
+Chapter 10 (mostly new) 
 
 — Added an introduction to the Keras API, including all its APIs (Sequential, Functional and Subclassing), persistence and callbacks (including the Tensor Board callback).
 
-• Chapter 11 (many changes) — Introduced self-normalizing nets, the SELU activation function and Alpha Dropout.
+Chapter 11 (many changes) — Introduced self-normalizing nets, the SELU activation function and Alpha Dropout.
 
 — Introduced self-supervised learning.
 
@@ -232,23 +250,33 @@ Chapter 9
 
 — Updated the practical guidelines.
 
-• Chapter 12 
+Chapter 12, completely rewritten chapter, including:
 
-— completely rewritten chapter, including:
+— A tour of TensorFlow 2 
 
-— A tour of TensorFlow 2 — TensorFlow’s lower-level Python API — Writing custom loss functions, metrics, layers, models — Using auto-differentiation and creating custom training algorithms. — TensorFlow Functions and graphs (including tracing and autograph).
+— TensorFlow’s lower-level Python API 
 
-• Chapter 13 
+— Writing custom loss functions, metrics, layers, models 
 
-— new chapter, including:
+— Using auto-differentiation and creating custom training algorithms. 
 
-— The Data API — Loading/Storing data efficiently using TFRecords — The Features API (including an introduction to embeddings).
+— TensorFlow Functions and graphs (including tracing and autograph).
 
-— An overview of TF Transform and TF Datasets — Moved the low-level implementation of the neural network to the exercises.
+Chapter 13, new chapter, including:
+
+— The Data API. 
+
+— Loading/Storing data efficiently using TFRecords 
+
+— The Features API (including an introduction to embeddings).
+
+— An overview of TF Transform and TF Datasets 
+
+— Moved the low-level implementation of the neural network to the exercises.
 
 — Removed details about queues and readers that are now superseded by the Data API.
 
-• Chapter 14 
+Chapter 14 
 
 — Added Xception and SENet architectures.
 
@@ -264,13 +292,13 @@ Chapter 9
 
 — Introduced object detection using the YOLO architecture. — Introduced semantic segmentation using R-CNN.
 
-• Chapter 15 
+Chapter 15 
 
 — Added an introduction to Wavenet.
 
-— Moved the Encoder–Decoder architecture and Bidirectional RNNs to Chapter
+— Moved the Encoder–Decoder architecture and Bidirectional RNNs to Chapter.
 
-• Chapter 16 
+Chapter 16 
 
 — Explained how to use the Data API to handle sequential data.
 
@@ -294,47 +322,4 @@ Chapter 9
 
 — Added an overview of recent language models (2018).
 
-• Chapters 17, 18 and 19: coming soon.
-
-## 2020166Hands-On-Machine-Learning-with-0101.md
-
-In this chapter we have covered some of the most important concepts in Machine Learning. In the next chapters we will dive deeper and write more code, but before we do, make sure you know how to answer the following questions:
-
-1. How would you define Machine Learning?
-
-2. Can you name four types of problems where it shines?
-
-3. What is a labeled training set?
-
-4. What are the two most common supervised tasks?
-
-5. Can you name four common unsupervised tasks?
-
-6. What type of Machine Learning algorithm would you use to allow a robot to walk in various unknown terrains?
-
-7. What type of algorithm would you use to segment your customers into multiple groups?
-
-8. Would you frame the problem of spam detection as a supervised learning problem or an unsupervised learning problem?
-
-9. What is an online learning system?
-
-10. What is out-of-core learning?
-
-11. What type of learning algorithm relies on a similarity measure to make predictions?
-
-12. What is the difference between a model parameter and a learning algorithm’s hyperparameter?
-
-13. What do model-based learning algorithms search for? What is the most common strategy they use to succeed? How do they make predictions?
-
-14. Can you name four of the main challenges in Machine Learning?
-
-15. If your model performs great on the training data but generalizes poorly to new instances, what is happening? Can you name three possible solutions?
-
-16. What is a test set and why would you want to use it?
-
-17. What is the purpose of a validation set?
-
-18. What can go wrong if you tune hyperparameters using the test set?
-
-19. What is repeated cross-validation and why would you prefer it to using a single validation set?
-
+Chapters 17, 18 and 19: coming soon.

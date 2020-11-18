@@ -32,6 +32,8 @@ For example, your spam filter is a Machine Learning program that can learn to fl
 
 If you just download a copy of Wikipedia, your computer has a lot more data, but it is not suddenly better at any task. Thus, it is not Machine Learning.
 
+2『机器学习的定义，做一张术语卡片。』——已完成
+
 ## 1.2 Why Use Machine Learning?
 
 Consider how you would write a spam filter using traditional programming techniques (Figure 1-1):

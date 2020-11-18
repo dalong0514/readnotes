@@ -10,7 +10,7 @@ Fast-forward 10 years and Machine Learning has conquered the industry: it is now
 
 2 Despite the fact that Yann Lecun’s deep convolutional neural networks had worked well for image recognition since the 1990s, although they were not as general purpose.
 
-2『在 Hinton 的主页里，正巧看到他在 nature 上发表的深度学习相关的论文，已下载作为本书附件「」。』
+2『在 Hinton 的主页里，正巧看到他在 nature 上发表的深度学习相关的论文，已下载作为本书附件「2020166附件0101-Nature-Deep-Review」。』
 
 ### 02. Machine Learning in Your Projects
 
@@ -194,11 +194,11 @@ Some chapters were added, others were rewritten and a few were reordered. Table 
 
 More specifically, here are the main changes for each 2 nd edition chapter (other than clarifications, corrections and code updates):
 
-• Chapter 1 
+Chapter 1 
 
 — Added a section on handling mismatch between the training set and the validation & test sets.
 
-• Chapter 2 
+Chapter 2 
 
 — Added how to compute a confidence interval.
 
@@ -206,17 +206,15 @@ More specifically, here are the main changes for each 2 nd edition chapter (othe
 
 — Introduced the upgraded OneHotEncoder and the new ColumnTransformer.
 
-• Chapter 4 
+Chapter 4 
 
 — Explained the need for training instances to be Independent and Identically Distributed (IID).
 
-• Chapter 7 
+Chapter 7 
 
 — Added a short section about XGBoost.
 
-Chapter 9 
-
-– new chapter including:
+Chapter 9, new chapter including:
 
 — Clustering with K-Means, how to choose the number of clusters, how to use it for dimensionality reduction, semi-supervised learning, image segmentation, and more.
 
@@ -226,11 +224,11 @@ Chapter 9
 
 — Overview of other anomaly detection and novelty detection algorithms.
 
-• Chapter 10 (mostly new) 
+Chapter 10 (mostly new) 
 
 — Added an introduction to the Keras API, including all its APIs (Sequential, Functional and Subclassing), persistence and callbacks (including the Tensor Board callback).
 
-• Chapter 11 (many changes) — Introduced self-normalizing nets, the SELU activation function and Alpha Dropout.
+Chapter 11 (many changes) — Introduced self-normalizing nets, the SELU activation function and Alpha Dropout.
 
 — Introduced self-supervised learning.
 
@@ -242,23 +240,33 @@ Chapter 9
 
 — Updated the practical guidelines.
 
-• Chapter 12 
+Chapter 12, completely rewritten chapter, including:
 
-— completely rewritten chapter, including:
+— A tour of TensorFlow 2 
 
-— A tour of TensorFlow 2 — TensorFlow’s lower-level Python API — Writing custom loss functions, metrics, layers, models — Using auto-differentiation and creating custom training algorithms. — TensorFlow Functions and graphs (including tracing and autograph).
+— TensorFlow’s lower-level Python API 
 
-• Chapter 13 
+— Writing custom loss functions, metrics, layers, models 
 
-— new chapter, including:
+— Using auto-differentiation and creating custom training algorithms. 
 
-— The Data API — Loading/Storing data efficiently using TFRecords — The Features API (including an introduction to embeddings).
+— TensorFlow Functions and graphs (including tracing and autograph).
 
-— An overview of TF Transform and TF Datasets — Moved the low-level implementation of the neural network to the exercises.
+Chapter 13, new chapter, including:
+
+— The Data API. 
+
+— Loading/Storing data efficiently using TFRecords 
+
+— The Features API (including an introduction to embeddings).
+
+— An overview of TF Transform and TF Datasets 
+
+— Moved the low-level implementation of the neural network to the exercises.
 
 — Removed details about queues and readers that are now superseded by the Data API.
 
-• Chapter 14 
+Chapter 14 
 
 — Added Xception and SENet architectures.
 
@@ -274,13 +282,13 @@ Chapter 9
 
 — Introduced object detection using the YOLO architecture. — Introduced semantic segmentation using R-CNN.
 
-• Chapter 15 
+Chapter 15 
 
 — Added an introduction to Wavenet.
 
-— Moved the Encoder–Decoder architecture and Bidirectional RNNs to Chapter
+— Moved the Encoder–Decoder architecture and Bidirectional RNNs to Chapter.
 
-• Chapter 16 
+Chapter 16 
 
 — Explained how to use the Data API to handle sequential data.
 
@@ -304,7 +312,7 @@ Chapter 9
 
 — Added an overview of recent language models (2018).
 
-• Chapters 17, 18 and 19: coming soon.
+Chapters 17, 18 and 19: coming soon.
 
 ## Acknowledgments
 
