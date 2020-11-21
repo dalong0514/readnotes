@@ -307,27 +307,27 @@ function printOwing(invoice) {　
 }
 ```
 
-1. Create a new function, and name it after the intent of the function (name it by what it does, not by how it does it).
+1 Create a new function, and name it after the intent of the function (name it by what it does, not by how it does it).
 
-    If the code I want to extract is very simple, such as a single function call, I still extract it if the name of the new function will reveal the intent of the code in a better way. If I can’t come up with a more meaningful name, that’s a sign that I shouldn’t extract the code. However, I don’t have to come up with the best name right away; sometimes a good name only appears as I work with the extraction. It’s OK to extract a function, try to work with it, realize it isn’t helping, and then inline it back again. As long as I’ve learned something, my time wasn’t wasted.
+If the code I want to extract is very simple, such as a single function call, I still extract it if the name of the new function will reveal the intent of the code in a better way. If I can’t come up with a more meaningful name, that’s a sign that I shouldn’t extract the code. However, I don’t have to come up with the best name right away; sometimes a good name only appears as I work with the extraction. It’s OK to extract a function, try to work with it, realize it isn’t helping, and then inline it back again. As long as I’ve learned something, my time wasn’t wasted.
 
-    If the language supports nested functions, nest the extracted function inside the source function. That will reduce the amount of out­of­scope variables to deal with after the next couple of steps. I can always use Move Function (198) later. 
+If the language supports nested functions, nest the extracted function inside the source function. That will reduce the amount of out­of­scope variables to deal with after the next couple of steps. I can always use Move Function (198) later. 
 
-2. Copy the extracted code from the source function into the new target function.
+2 Copy the extracted code from the source function into the new target function.
 
-3. Scan the extracted code for references to any variables that are local in scope to the source function and will not be in scope for the extracted function. Pass them as parameters. If I extract into a nested function of the source function, I don’t run into these problems. Usually, these are local variables and parameters to the function. The most general approach is to pass all such parameters in as arguments. There are usually no difficulties for variables that are used but not assigned to.
+3 Scan the extracted code for references to any variables that are local in scope to the source function and will not be in scope for the extracted function. Pass them as parameters. If I extract into a nested function of the source function, I don’t run into these problems. Usually, these are local variables and parameters to the function. The most general approach is to pass all such parameters in as arguments. There are usually no difficulties for variables that are used but not assigned to.
 
-    If a variable is only used inside the extracted code but is declared outside, move the declaration into the extracted code. Any variables that are assigned to need more care if they are passed by value. If there’s only one of them, I try to treat the extracted code as a query and assign the result to the variable concerned.
+If a variable is only used inside the extracted code but is declared outside, move the declaration into the extracted code. Any variables that are assigned to need more care if they are passed by value. If there’s only one of them, I try to treat the extracted code as a query and assign the result to the variable concerned.
 
-    Sometimes, I find that too many local variables are being assigned by the extracted code. It’s better to abandon the extraction at this point. When this happens, I consider other refactorings such as Split Variable (240) or Replace Temp with Query (178) to simplify variable usage and revisit the extraction later.
+Sometimes, I find that too many local variables are being assigned by the extracted code. It’s better to abandon the extraction at this point. When this happens, I consider other refactorings such as Split Variable (240) or Replace Temp with Query (178) to simplify variable usage and revisit the extraction later.
 
-4. Compile after all variables are dealt with. Once all the variables are dealt with, it can be useful to compile if the language environment does compile­time checks. Often, this will help find any variables that haven’t been dealt with properly.
+4 Compile after all variables are dealt with. Once all the variables are dealt with, it can be useful to compile if the language environment does compile­time checks. Often, this will help find any variables that haven’t been dealt with properly.
 
-5. Replace the extracted code in the source function with a call to the target function.
+5 Replace the extracted code in the source function with a call to the target function.
 
-6. Test.
+6 Test.
 
-7. Look for other code that’s the same or similar to the code just extracted, and consider using Replace Inline Code with Function Call (222) to call the new function. Some refactoring tools support this directly. Otherwise, it can be worth doing some quick searches to see if duplicate code exists elsewhere.
+7 Look for other code that’s the same or similar to the code just extracted, and consider using Replace Inline Code with Function Call (222) to call the new function. Some refactoring tools support this directly. Otherwise, it can be worth doing some quick searches to see if duplicate code exists elsewhere.
 
 1、创造一个新函数，根据这个函数的意图来对它命名（以它「做什么」来命名，而不是以它「怎样做」命名）。如果想要提炼的代码非常简单，例如只是一个函数调用，只要新函数的名称能够以更好的方式昭示代码意图，我还是会提炼它；但如果想不出一个更有意义的名称，这就是一个信号，可能我不应该提炼这块代码。不过，我不一定非得马上想出最好的名字，有时在提炼的过程中好的名字才会出现。有时我会提炼一个函数，尝试使用它，然后发现不太合适，再把它内联回去，这完全没问题。只要在这个过程中学到了东西，我的时间就没有白费。如果编程语言支持嵌套函数，就把新函数嵌套在源函数里，这能减少后面需要处理的超出作用域的变量个数。我可以稍后再使用搬移函数（198）把它从源函数中搬移出去。
 
@@ -365,15 +365,15 @@ function getRating(driver) {　
 }
 ```
 
-1. Check that this isn’t a polymorphic method. If this is a method in a class, and has subclasses that override it, then I can’t inline it. Find all the callers of the function.
+1 Check that this isn’t a polymorphic method. If this is a method in a class, and has subclasses that override it, then I can’t inline it. Find all the callers of the function.
 
-2. Replace each call with the function’s body.
+2 Replace each call with the function’s body.
 
-3. Test after each replacement.
+3 Test after each replacement.
 
-4. The entire inlining doesn’t have to be done all at once. If some parts of the inline are tricky, they can be done gradually as opportunity permits.
+4 The entire inlining doesn’t have to be done all at once. If some parts of the inline are tricky, they can be done gradually as opportunity permits.
 
-5. Remove the function definition.
+5 Remove the function definition.
 
 Written this way, Inline Function is simple. In general, it isn’t. I could write pages on how to handle recursion, multiple return points, inlining a method into another object when you don’t have accessors, and the like. The reason I don’t is that if you encounter these complexities, you shouldn’t do this refactoring.
 
@@ -406,13 +406,13 @@ const shipping = Math.min(basePrice * 0.1, 100);
 return basePrice - quantityDiscount + shipping;
 ```
 
-1. Ensure that the expression you want to extract does not have side effects. 
+1 Ensure that the expression you want to extract does not have side effects. 
 
-2. Declare an immutable variable. Set it to a copy of the expression you want to name.
+2 Declare an immutable variable. Set it to a copy of the expression you want to name.
 
-3. Replace the original expression with the new variable.
+3 Replace the original expression with the new variable.
 
-4. Test.
+4 Test.
 
 If the expression appears more than once, replace each occurrence with the variable, testing after each replacement.
 
@@ -439,19 +439,19 @@ After Refactoring:
 return anOrder.basePrice > 1000;
 ```
 
-1. Check that the right­hand side of the assignment is free of side effects.
+1 Check that the right­hand side of the assignment is free of side effects.
 
-2. If the variable isn’t already declared immutable, do so and test.
+2 If the variable isn’t already declared immutable, do so and test.
 
-3. This checks that it’s only assigned to once. Find the first reference to the variable and replace it with the right­hand side of the assignment.
+3 This checks that it’s only assigned to once. Find the first reference to the variable and replace it with the right­hand side of the assignment.
 
-4. Test.
+4 Test.
 
-5. Repeat replacing references to the variable until you’ve replaced all of them. 
+5 Repeat replacing references to the variable until you’ve replaced all of them. 
 
-6. Remove the declaration and assignment of the variable.
+6 Remove the declaration and assignment of the variable.
 
-7. Test.
+7 Test.
 
 1、检查确认变量赋值语句的右侧表达式没有副作用。
 
@@ -481,13 +481,13 @@ function circumference(radius) {...}
 
 #### Simple Mechanics
 
-1. If you’re removing a parameter, ensure it isn’t referenced in the body of the function.
+1 If you’re removing a parameter, ensure it isn’t referenced in the body of the function.
 
-2. Change the method declaration to the desired declaration.
+2 Change the method declaration to the desired declaration.
 
-3. Find all references to the old method declaration, update them to the new one.
+3 Find all references to the old method declaration, update them to the new one.
 
-4. Test.
+4 Test.
 
 It’s often best to separate changes, so if you want to both change the name and add a parameter, do these as separate steps. (In any case, if you run into trouble, revert and use the migration mechanics instead.)
 
@@ -503,19 +503,19 @@ It’s often best to separate changes, so if you want to both change the name an
 
 #### Migration Mechanics
 
-1. If necessary, refactor the body of the function to make it easy to do the following extraction step. Use Extract Function (106) on the function body to create the new function.
+1 If necessary, refactor the body of the function to make it easy to do the following extraction step. Use Extract Function (106) on the function body to create the new function.
 
-2. If the new function will have the same name as the old one, give the new function a temporary name that’s easy to search for.
+2 If the new function will have the same name as the old one, give the new function a temporary name that’s easy to search for.
 
-3. If the extracted function needs additional parameters, use the simple mechanics to add them.
+3 If the extracted function needs additional parameters, use the simple mechanics to add them.
 
-4. Test.
+4 Test.
 
-5. Apply Inline Function (115) to the old function.
+5 Apply Inline Function (115) to the old function.
 
-6. If you used a temporary name, use Change Function Declaration (124) again to restore it to the original name.
+6 If you used a temporary name, use Change Function Declaration (124) again to restore it to the original name.
 
-7. Test.
+7 Test.
 
 If you’re changing a method on a class with polymorphism, you’ll need to add indirection for each binding. If the method is polymorphic within a single class hierarchy, you only need the forwarding method on the superclass. If the polymorphism has no superclass link, then you’ll need forwarding methods on each implementation class.
 
@@ -559,19 +559,19 @@ export function setDefaultOwner(arg) {
 }
 ```
 
-1. Create encapsulating functions to access and update the variable.
+1 Create encapsulating functions to access and update the variable.
 
-2. Run static checks.
+2 Run static checks.
 
-3. For each reference to the variable, replace with a call to the appropriate encapsulating function. Test after each replacement.
+3 For each reference to the variable, replace with a call to the appropriate encapsulating function. Test after each replacement.
 
-4. Restrict the visibility of the variable.
+4 Restrict the visibility of the variable.
 
-5. Sometimes it’s not possible to prevent access to the variable. If so, it may be useful to detect any remaining references by renaming the variable and testing.
+5 Sometimes it’s not possible to prevent access to the variable. If so, it may be useful to detect any remaining references by renaming the variable and testing.
 
-6. Test.
+6 Test.
 
-7. If the value of the variable is a record, consider Encapsulate Record (162).
+7 If the value of the variable is a record, consider Encapsulate Record (162).
 
 1、创建封装函数，在其中访问和更新变量值。
 
@@ -597,11 +597,11 @@ After Refactoring:
 let area = height * width;
 ```
 
-1. If the variable is used widely, consider Encapsulate Variable (132).
+1 If the variable is used widely, consider Encapsulate Variable (132).
 
-2. Find all references to the variable, and change every one. If there are references from another code base, the variable is a published variable, and you cannot do this refactoring. If the variable does not change, you can copy it to one with the new name, then change gradually, testing after each change.
+2 Find all references to the variable, and change every one. If there are references from another code base, the variable is a published variable, and you cannot do this refactoring. If the variable does not change, you can copy it to one with the new name, then change gradually, testing after each change.
 
-3. Test.
+3 Test.
 
 1、如果变量被广泛使用，考虑运用封装变量（132）将其封装起来。
 
@@ -625,17 +625,17 @@ function amountReceived(aDateRange) {...}
 function amountOverdue(aDateRange) {...}
 ```
 
-1. If there isn’t a suitable structure already, create one. I prefer to use a class, as that makes it easier to group behavior later on. I usually like to ensure these structures are value objects [mf­vo].
+1 If there isn’t a suitable structure already, create one. I prefer to use a class, as that makes it easier to group behavior later on. I usually like to ensure these structures are value objects [mf­vo].
 
-2. Test. 
+2 Test. 
 
-3. Use Change Function Declaration (124) to add a parameter for the new structure.
+3 Use Change Function Declaration (124) to add a parameter for the new structure.
 
-4. Test.
+4 Test.
 
-5. Adjust each caller to pass in the correct instance of the new structure. Test after each one.
+5 Adjust each caller to pass in the correct instance of the new structure. Test after each one.
 
-6. For each element of the new structure, replace the use of the original parameter with the element of the structure. Remove the parameter. Test.
+6 For each element of the new structure, replace the use of the original parameter with the element of the structure. Remove the parameter. Test.
 
 1、如果暂时还没有一个合适的数据结构，就创建一个。我倾向于使用类，因为稍后把行为放进来会比较容易。我通常会尽量确保这些新建的数据结构是值对象 [mf-vo]。
 
@@ -667,11 +667,11 @@ class Reading {
 }
 ```
 
-1. Apply Encapsulate Record (162) to the common data record that the functions share. If the data that is common between the functions isn’t already grouped into a record structure, use Introduce Parameter Object (140) to create a record to group it together.
+1 Apply Encapsulate Record (162) to the common data record that the functions share. If the data that is common between the functions isn’t already grouped into a record structure, use Introduce Parameter Object (140) to create a record to group it together.
 
-2. Take each function that uses the common record and use Move Function (198) to move it into the new class. Any arguments to the function call that are members can be removed from the argument list.
+2 Take each function that uses the common record and use Move Function (198) to move it into the new class. Any arguments to the function call that are members can be removed from the argument list.
 
-3. Each bit of logic that manipulates the data can be extracted with Extract Function (106) and then moved into the new class.
+3 Each bit of logic that manipulates the data can be extracted with Extract Function (106) and then moved into the new class.
 
 1、运用封装记录（162）对多个函数共用的数据记录加以封装。如果多个函数共用的数据还未组织成记录结构，则先运用引入参数对象（140）将其组织成记录。
 
@@ -697,13 +697,13 @@ function enrichReading(argReading) {
 }
 ```
 
-1. Create a transformation function that takes the record to be transformed and returns the same values. This will usually involve a deep copy of the record. It is often worthwhile to write a test to ensure the transform does not alter the original record.
+1 Create a transformation function that takes the record to be transformed and returns the same values. This will usually involve a deep copy of the record. It is often worthwhile to write a test to ensure the transform does not alter the original record.
 
-2. Pick some logic and move its body into the transform to create a new field in the record. Change the client code to access the new field. If the logic is complex, use Extract Function (106) first.
+2 Pick some logic and move its body into the transform to create a new field in the record. Change the client code to access the new field. If the logic is complex, use Extract Function (106) first.
 
-3. Test.
+3 Test.
 
-4. Repeat for the other relevant functions.
+4 Repeat for the other relevant functions.
 
 1、创建一个变换函数，输入参数是需要变换的记录，并直接返回该记录的值。这一步通常需要对输入的记录做深复制（deep copy）。此时应该写个测试，确保变换不会修改原来的记录。
 
@@ -740,19 +740,19 @@ function price(order, priceList) {　
 }
 ```
 
-1. Extract the second phase code into its own function.
+1 Extract the second phase code into its own function.
 
-2. Test.
+2 Test.
 
-3. Introduce an intermediate data structure as an additional argument to the extracted function.
+3 Introduce an intermediate data structure as an additional argument to the extracted function.
 
-4. Test.
+4 Test.
 
-5. Examine each parameter of the extracted second phase. If it is used by first phase, move it to the intermediate data structure. Test after each move.
+5 Examine each parameter of the extracted second phase. If it is used by first phase, move it to the intermediate data structure. Test after each move.
 
-6. Sometimes, a parameter should not be used by the second phase. In this case, extract the results of each usage of the parameter into a field of the intermediate data structure and use Move Statements to Callers (217) on the line that populates it. 
+6 Sometimes, a parameter should not be used by the second phase. In this case, extract the results of each usage of the parameter into a field of the intermediate data structure and use Move Statements to Callers (217) on the line that populates it. 
 
-7. Apply Extract Function (106) on the first­phase code, returning the intermediate data structure. It’s also reasonable to extract the first phase into a transformer object.
+7 Apply Extract Function (106) on the first­phase code, returning the intermediate data structure. It’s also reasonable to extract the first phase into a transformer object.
 
 1、将第二阶段的代码提炼成独立的函数。
 
@@ -809,15 +809,15 @@ function isNotEligibleForDisability() {　
 }
 ```
 
-1. Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
+1 Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
 
-2. Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
+2 Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
 
-3. Test.
+3 Test.
 
-4. Repeat combining conditionals until they are all in a single condition.
+4 Repeat combining conditionals until they are all in a single condition.
 
-5. Consider using Extract Function (106) on the resulting condition.
+5 Consider using Extract Function (106) on the resulting condition.
 
 1、确定这些条件表达式都没有副作用。如果某个条件表达式有副作用，可以先用将查询函数和修改函数分离（306）处理。
 
@@ -861,13 +861,13 @@ function getPayAmount() {　
 }
 ```
 
-1. Select outermost condition that needs to be replaced, and change it into a guard clause.
+1 Select outermost condition that needs to be replaced, and change it into a guard clause.
 
-2. Test.
+2 Test.
 
-3. Repeat as needed.
+3 Repeat as needed.
 
-4. If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
+4 If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
 
 1、选中最外层需要被替换的条件逻辑，将其替换为卫语句。
 
@@ -912,17 +912,17 @@ class NorwegianBlueParrot { 　
 }
 ```
 
-1. If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
+1 If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
 
-2. Use the factory function in calling code.
+2 Use the factory function in calling code.
 
-3. Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
+3 Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
 
-4. Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
+4 Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
 
-5. Repeat for each leg of the conditional.
+5 Repeat for each leg of the conditional.
 
-6. Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
+6 Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
 
 1、如果现有的类尚不具备多态行为，就用工厂函数创建之，令工厂函数返回恰当的对象实例。
 
@@ -954,21 +954,21 @@ class UnknownCustomer {
 
 Begin with a container data structure (or class) that contains a property which is the subject of the refactoring. Clients of the container compare the subject property of the container to a special­case value. We wish to replace the special­case value of the subject with a special case class or data structure.
 
-1. Add a special­case check property to the subject, returning false.
+1 Add a special­case check property to the subject, returning false.
 
-2. Create a special­case object with only the special­case check property, returning true.
+2 Create a special­case object with only the special­case check property, returning true.
 
-3. Apply Extract Function (106) to the special­case comparison code. Ensure that all clients use the new function instead of directly comparing it.
+3 Apply Extract Function (106) to the special­case comparison code. Ensure that all clients use the new function instead of directly comparing it.
 
-4. Introduce the new special­case subject into the code, either by returning it from a function call or by applying a transform function.
+4 Introduce the new special­case subject into the code, either by returning it from a function call or by applying a transform function.
 
-5. Change the body of the special­case comparison function so that it uses the specialcase check property.
+5 Change the body of the special­case comparison function so that it uses the specialcase check property.
 
-6. Test.
+6 Test.
 
-7. Use Combine Functions into Class (144) or Combine Functions into Transform (149) to move all of the common special­case behavior into the new element. Since the special­case class usually returns fixed values to simple requests, these may be handled by making the special case a literal record.
+7 Use Combine Functions into Class (144) or Combine Functions into Transform (149) to move all of the common special­case behavior into the new element. Since the special­case class usually returns fixed values to simple requests, these may be handled by making the special case a literal record.
 
-8. Use Inline Function (115) on the special­case comparison function for the places where it’s still needed.
+8 Use Inline Function (115) on the special­case comparison function for the places where it’s still needed.
 
 我们从一个作为容器的数据结构（或者类）开始，其中包含一个属性，该属性就是我们要重构的目标。容器的客户端每次使用这个属性时，都需要将其与某个特例值做比对。我们希望把这个特例值替换为代表这种特例情况的类或数据结构。
 
@@ -1027,15 +1027,15 @@ const area = height * width;
 console.log(area);
 ```
 
-1. Change the name of the variable at its declaration and first assignment. If the later assignments are of the form i = i + something, that is a collecting variable, so don’t split it. A collecting variable is often used for calculating sums, string concatenation, writing to a stream, or adding to a collection.
+1 Change the name of the variable at its declaration and first assignment. If the later assignments are of the form i = i + something, that is a collecting variable, so don’t split it. A collecting variable is often used for calculating sums, string concatenation, writing to a stream, or adding to a collection.
 
-2. If possible, declare the new variable as immutable.
+2 If possible, declare the new variable as immutable.
 
-3. Change all references of the variable up to its second assignment. 
+3 Change all references of the variable up to its second assignment. 
 
-4. Test.
+4 Test.
 
-5. Repeat in stages, at each stage renaming the variable at the declaration and changing references until the next assignment, until you reach the final assignment.
+5 Repeat in stages, at each stage renaming the variable at the declaration and changing references until the next assignment, until you reach the final assignment.
 
 1、在待分解变量的声明及其第一次被赋值处，修改其名称。如果稍后的赋值语句是「i = i + 某表达式形式」，意味着这是一个结果收集变量，就不要分解它。结果收集变量常用于累加、字符串拼接、写入流或者向集合添加元素。
 
@@ -1047,7 +1047,7 @@ console.log(area);
 
 5、重复上述过程。每次都在声明处对变量改名，并修改下次赋值之前的引用，直至到达最后一处赋值。
 
-### 3.2 字段改名
+#### 3.2 字段改名
 
 ```js
 class Organization {   
@@ -1063,17 +1063,17 @@ class Organization {
 }
 ```
 
-1. If the record has limited scope, rename all accesses to the field and test; no need to do the rest of the mechanics.
+1 If the record has limited scope, rename all accesses to the field and test; no need to do the rest of the mechanics.
 
-2. If the record isn’t already encapsulated, apply Encapsulate Record (162).
+2 If the record isn’t already encapsulated, apply Encapsulate Record (162).
 
-3. Rename the private field inside the object, adjust internal methods to fit.
+3 Rename the private field inside the object, adjust internal methods to fit.
 
-4. Test. 
+4 Test. 
 
-5. If the constructor uses the name, apply Change Function Declaration (124) to rename it.
+5 If the constructor uses the name, apply Change Function Declaration (124) to rename it.
 
-6. Apply Rename Function (124) to the accessors.
+6 Apply Rename Function (124) to the accessors.
 
 1、如果记录的作用域较小，可以直接修改所有该字段的代码，然后测试。后面的步骤就都不需要了。
 
@@ -1087,7 +1087,7 @@ class Organization {
 
 6、运用函数改名（124）给访问函数改名。
 
-### 3.3 以查询取代派生变量
+#### 3.3 以查询取代派生变量
 
 ```js
 get discountedTotal() {return this._discountedTotal;} 
@@ -1105,19 +1105,19 @@ get discountedTotal() {return this._baseTotal - this._discount;}
 set discount(aNumber) {this._discount = aNumber;}
 ```
 
-1. Identify all points of update for the variable. If necessary, use Split Variable (240) to separate each point of update.
+1 Identify all points of update for the variable. If necessary, use Split Variable (240) to separate each point of update.
 
-2. Create a function that calculates the value of the variable.
+2 Create a function that calculates the value of the variable.
 
-3. Use Introduce Assertion (302) to assert that the variable and the calculation give the same result whenever the variable is used. If necessary, use Encapsulate Variable (132) to provide a home for the assertion. 
+3 Use Introduce Assertion (302) to assert that the variable and the calculation give the same result whenever the variable is used. If necessary, use Encapsulate Variable (132) to provide a home for the assertion. 
 
-4. Test.
+4.Test.
 
-5. Replace any reader of the variable with a call to the new function.
+5 Replace any reader of the variable with a call to the new function.
 
-6. Test.
+6 Test.
 
-7. Apply Remove Dead Code (237) to the declaration and updates to the variable.
+7 Apply Remove Dead Code (237) to the declaration and updates to the variable.
 
 1、识别出所有对变量做更新的地方。如有必要，用拆分变量（240）分割各个更新点。
 
@@ -1133,7 +1133,7 @@ set discount(aNumber) {this._discount = aNumber;}
 
 7、用移除死代码（237）去掉变量的声明和赋值。
 
-### 3.4 引用对象改为值对象
+#### 3.4 引用对象改为值对象
 
 ```js
 class Product {  
@@ -1151,13 +1151,13 @@ class Product {
 }
 ```
 
-1. Check that the candidate class is immutable or can become immutable.
+1 Check that the candidate class is immutable or can become immutable.
 
-2. For each setter, apply Remove Setting Method (331).
+2 For each setter, apply Remove Setting Method (331).
 
-3. Provide a value­based equality method that uses the fields of the value object.
+3 Provide a value­based equality method that uses the fields of the value object.
 
-4. Most language environments provide an overridable equality function for this purpose. Usually you must override a hashcode generator method as well.
+4 Most language environments provide an overridable equality function for this purpose. Usually you must override a hashcode generator method as well.
 
 1、检查重构目标是否为不可变对象，或者是否可修改为不可变对象。
 
@@ -1177,12 +1177,13 @@ After Refactoring:
 
 ```js
 let customer = customerRepository.get(customerData.id);
+```
 
-1. Create a repository for instances of the related object (if one isn’t already present).
+1 Create a repository for instances of the related object (if one isn’t already present).
 
-2. Ensure the constructor has a way of looking up the correct instance of the related object.
+2 Ensure the constructor has a way of looking up the correct instance of the related object.
 
-3. Change the constructors for the host object to use the repository to obtain the related object. Test after each change.
+3 Change the constructors for the host object to use the repository to obtain the related object. Test after each change.
 
 1、为相关对象创建一个仓库（如果还没有这样一个仓库的话）。
 
