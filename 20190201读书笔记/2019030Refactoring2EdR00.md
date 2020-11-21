@@ -1167,7 +1167,7 @@ class Product {
 
 大多数编程语言都提供了可覆写的相等性判断函数。通常你还必须同时覆写生成散列码的函数。
 
-### 3.5 值对象改为引用对象
+#### 3.5 值对象改为引用对象
 
 ```js
 let customer = new Customer(customerData);
