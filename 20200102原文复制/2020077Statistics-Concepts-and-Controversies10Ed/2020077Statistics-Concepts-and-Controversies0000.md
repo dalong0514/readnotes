@@ -146,33 +146,27 @@ Statistics uses data to gain insight and to draw conclusions. The tools are grap
 
 ### 02. Data beats anecdotes
 
-Belief is no substitute for arithmetic.
-
-HENRY SPENCER
+Belief is no substitute for arithmetic. —— HENRY SPENCER
 
 An anecdote is a striking story that sticks in our minds exactly because it is striking. Anecdotes humanize an issue, so news reports usually start (and often stop) with anecdotes. But anecdotes are weak ground for making up your mind—they are often misleading exactly because they are striking. Always ask if a claim is backed by data, not just by an appealing personal story.
 
-Does living near power lines cause leukemia in children? The National Cancer Institute spent 5 years and $5 million gathering data on the question. Result: no connection between leukemia and exposure to magnetic fields of the kind produced by power lines. The editorial that accompanied the study report in the New England Journal of Medicine thundered,「It is time to stop wasting our research resources」on the question.
+Does living near power lines cause leukemia in children? The National Cancer Institute spent 5 years and `$5` million gathering data on the question. Result: no connection between leukemia and exposure to magnetic fields of the kind produced by power lines. The editorial that accompanied the study report in the New England Journal of Medicine thundered,「It is time to stop wasting our research resources」on the question.
 
-Now compare the impact of a television news report of a 5-year, $5 million investigation with that of a televised interview with an articulate mother whose child has leukemia and who happens to live near a power line. In the public mind, the anecdote wins every time. Be skeptical. Data are more reliable than anecdotes because they systematically describe an overall picture rather than focus on a few incidents.
+Now compare the impact of a television news report of a 5-year, `$5` million investigation with that of a televised interview with an articulate mother whose child has leukemia and who happens to live near a power line. In the public mind, the anecdote wins every time. Be skeptical. Data are more reliable than anecdotes because they systematically describe an overall picture rather than focus on a few incidents.
 
 We are tempted to add,「Data beat self-proclaimed experts.」The idea of balance held by much of the news industry is to present a quick statement by an「expert」on either side. We never learn that one expert expresses the consensus of an entire field of science and the other is a quack with a special-interest axe to grind. As a result of the media’s taste for conflict, the public now thinks that for every expert, there is an equal and opposite expert. If you really care about an issue, try to find out what the data say and how good the data are. Many issues do remain unsettled, but many others are unsettled only in the minds of people who don’t care about evidence. You can start by looking at the credentials of the「experts」and at whether the studies they cite have appeared in journals that require careful outside review before they publish a claim.
 
-Where the data come from is important
+### 03. Where the data come from is important
 
-Figures won’t lie but liars will figure.
-
-CHARLES GROSVENOR
+Figures won’t lie but liars will figure. —— CHARLES GROSVENOR
 
 Data are numbers, and numbers always seem solid. Some are and some are not. Where the data come from is the single most important fact about any statistical study. When Ann Landers asked readers of her advice column whether they would have chosen to have children again and 70% of those who replied shouted「No,」readers should have just amused themselves with Ann’s excerpts from tear-stained letters describing what beasts the writers’ children are. Ann Landers was in the entertainment business. Her invitation attracted parents who regretted having their children. Most parents don’t regret having children. We know this because opinion polls have asked large numbers of parents, chosen at random to avoid attracting one opinion or another. Opinion polls have their problems, as we will see, but they beat just asking upset people to write in their views.
 
 Even the most reputable publications have not been immune to bad data. The Journal of the American Medical Association once printed an article claiming that pumping refrigerated liquid through tubes in the stomach relieves ulcers. The patients did respond, but only because patients often respond to any treatment given with the authority of a trusted doctor. That is, placebos (dummy treatments) work. When a skeptic finally tried a properly controlled study in which some patients got the tube and some got a placebo, the placebo actually did a bit better.「No comparison, no conclusion」is a good starting point for judging medical studies. We would be skeptical about the ongoing interest in「natural remedies,」for example. Few of these have passed a comparative trial to show that they are more than just placebos sold in bottles bearing pretty pictures of plants.
 
-Beware the lurking variable
+### 04. Beware the lurking variable
 
-I have enough money to last me the rest of my life, unless I buy something.
-
-JACKIE MASON
+I have enough money to last me the rest of my life, unless I buy something. —— JACKIE MASON
 
 You read that crime is higher in counties with gambling casinos. A college teacher says that students who took a course online did better than the students in the classroom. Government reports emphasize that well-educated people earn a lot more than people with less education. Don’t jump to conclusions. Ask first,「What is there that they didn’t tell me that might explain this?」
 
@@ -180,11 +174,9 @@ Crime is higher in counties with casinos, but it is also higher in urban countie
 
 All these studies report a connection between two variables and invite us to conclude that one of these variables influences the other.「Casinos increase crime」and「Stay in school if you want to be rich」are the messages we hear. Perhaps these messages are true. But perhaps much of the connection is explained by other variables lurking in the background, such as the nature of counties that accept casinos and the advantages that highly educated people were born with. Good statistical studies look at lots of background variables. This is tricky, but you can at least find out if it was done.
 
-Variation is everywhere
+### 05. Variation is everywhere
 
-When the facts change, I change my mind. What do you do, sir?
-
-JOHN MAYNARD KEYNES
+When the facts change, I change my mind. What do you do, sir? —— JOHN MAYNARD KEYNES
 
 If a thermometer under your tongue reads higher than 98.6°F, do you have a fever? Maybe not. People vary in their「normal」temperature. Your own temperature also varies—it is lower around 6 A.M. and higher around 6 P.M. The government announces that the unemployment rate rose a tenth of a percent last month and that new home starts fell by 3%. The stock market promptly jumps (or sinks). Stocks are jumpier than is sensible. The government data come from samples that give good estimates but not the exact truth. Another run of the same samples would give slightly different answers. And economic facts jump around anyway, due to weather, strikes, holidays, and all sorts of other reasons.
 
@@ -194,21 +186,17 @@ Too many business people assign equal validity to all numbers printed on paper. 
 
 Variation is everywhere. Individuals vary; repeated measurements on the same individual vary; almost everything varies over time. Ignore the pundits who try to explain the deep reasons behind each day’s stock market moves, or who condemn a team’s ability and character after a game decided by a last-second shot that did or didn’t go in.
 
-Conclusions are not certain
+### 06. Conclusions are not certain
 
-As far as the laws of mathematics refer to reality they are not certain, and as far as they are certain they do not refer to reality.
-
-ALBERT EINSTEIN
+As far as the laws of mathematics refer to reality they are not certain, and as far as they are certain they do not refer to reality. —— ALBERT EINSTEIN
 
 Because variation is everywhere, statistical conclusions are not certain. Most women who reach middle age have regular mammograms to detect breast cancer. Do mammograms really reduce the risk of dying of breast cancer? Statistical studies of high quality find that mammograms reduce the risk of death in women aged 50 to 64 years by 26%. That’s an average over all women in the age group. Because variation is everywhere, the results are different for different women. Some women who have mammograms every year die of breast cancer, and some who never have mammograms live to 100 and die when they crash their motorcycles.
 
 What the summary study actually said was「mammography reduces the risk of dying of breast cancer by 26 percent (95 percent confidence interval, 17 to 34 percent).」That 26% is, in Arthur Nielsen’s words,「shorthand for a range that describes our actual knowledge of the underlying condition.」The range is 17% to 34%, and we are 95% confident that the truth lies in that range. We’re pretty sure, in other words, but not certain. Once you get beyond news reports, you can look for phrases like「95% confident」and「statistically significant」that tell us that a study did produce findings that, while not certain, are pretty sure.
 
-Data reflect social values
+### 07. Data reflect social values
 
-It’s easy to lie with statistics. But it is easier to lie without them.
-
-FREDERICK MOSTELLER
+It’s easy to lie with statistics. But it is easier to lie without them. —— FREDERICK MOSTELLER
 
 Good data do beat anecdotes. Data are more objective than anecdotes or loud arguments about what might happen. Statistics certainly lies on the factual, scientific, rational side of public discourse. Statistical studies deserve more weight than most other evidence about controversial issues. There is, however, no such thing as perfect objectivity. Statistics shares a social context that influences what we decide to measure and how we measure it.
 
@@ -218,19 +206,19 @@ Social values influence data on matters less sensitive than suicide. The percent
 
 Our point is not that you should mistrust the unemployment rate. The definition of「unemployment」has been stable over time, so that we can see trends. The definition is reasonably consistent across nations, so that we can make international comparisons. The data are produced by professionals free of political interference. The unemployment rate is important and useful information. Our point is that not everything important can be reduced to numbers and that reducing things to numbers is done by people influenced by many pressures, conscious and unconscious.
 
-Statistics and You
+### 08. Statistics and You
 
-What Lies Ahead in This Book
+What Lies Ahead in This Book. This isn’t a book about the tools of statistics. It is a book about statistical ideas and their impact on everyday life, public policy, and many different fields of study. You will learn some tools, of course. Life will be easier if you have in hand a calculator with built-in statistical functions. Specifically, you need a calculator that will find means, standard deviations, and correlations. Look for a calculator that claims to do「two-variable statistics」or mentions「correlation.」If you have access to a computer with statistical software, so much the better. On the other hand, you need little formal mathematics. If you can read and use simple equations, you are in good shape. Be warned, however, that you will be asked to think. Thinking exercises the mind more deeply than following mathematical recipes. Statistics: Concepts and Controversies presents statistical ideas in four parts:
 
-This isn’t a book about the tools of statistics. It is a book about statistical ideas and their impact on everyday life, public policy, and many different fields of study. You will learn some tools, of course. Life will be easier if you have in hand a calculator with built-in statistical functions. Specifically, you need a calculator that will find means, standard deviations, and correlations. Look for a calculator that claims to do「two-variable statistics」or mentions「correlation.」If you have access to a computer with statistical software, so much the better. On the other hand, you need little formal mathematics. If you can read and use simple equations, you are in good shape. Be warned, however, that you will be asked to think. Thinking exercises the mind more deeply than following mathematical recipes. Statistics: Concepts and Controversies presents statistical ideas in four parts:
+1『数据分布的 3 个关键参数出来了：平均值、方差和相关性（拟合度）。（2020-11-21）』
 
-Data production describes methods for producing data that can give clear answers to specific questions. Where the data come from really is important—basic concepts about how to select samples and design experiments are the most influential ideas in statistics.
+1 Data production describes methods for producing data that can give clear answers to specific questions. Where the data come from really is important—basic concepts about how to select samples and design experiments are the most influential ideas in statistics.
 
-Data analysis concerns methods and strategies for exploring, organizing, and describing data using graphs and numerical summaries. You can learn to look at data intelligently even with quite simple tools.
+2 Data analysis concerns methods and strategies for exploring, organizing, and describing data using graphs and numerical summaries. You can learn to look at data intelligently even with quite simple tools.
 
-Probability is the language we use to describe chance, variation, and risk. Because variation is everywhere, probabilistic thinking helps separate reality from background noise.
+3 Probability is the language we use to describe chance, variation, and risk. Because variation is everywhere, probabilistic thinking helps separate reality from background noise.
 
-Statistical inference moves beyond the data in hand to draw conclusions about some wider universe, taking into account that variation is everywhere and that conclusions are uncertain.
+4 Statistical inference moves beyond the data in hand to draw conclusions about some wider universe, taking into account that variation is everywhere and that conclusions are uncertain.
 
 Ultimately, data are used to draw conclusions or make decisions. The process of reasoning from data consists of several steps that yield a case for the validity of the final conclusion. Each part of this book discusses issues that affect the quality of the steps in this process. It is easy to focus on mastering the details in each chapter and lose track of how these details contribute to the overall argument. To help you see how the individual chapters fit into the overall argument, we end each chapter with a section that we call Link It, which briefly describes how the contents of the chapter fit into the overall reasoning process. You will find this section within the Statistics in Summary subsection.
 

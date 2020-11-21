@@ -6,15 +6,9 @@ You can find data in the library or on the Internet (that’s where we found the
 
 # 0101. Where Do Data Come From?
 
-In this chapter you will:
+In this chapter you will: 1) Learn the different types of studies used to collect data. 2) Understand the purpose of these different types of studies used to collect data. 3) Examine the types of data a study might collect.
 
-Learn the different types of studies used to collect data.
-
-Understand the purpose of these different types of studies used to collect data.
-
-Examine the types of data a study might collect.
-
-Case Study: An Online Poll
+## Case Study: An Online Poll
 
 You can read the newspaper and watch TV news for months without seeing an algebraic formula. No wonder algebra seems unconnected to life. You can’t go a day, however, without meeting data and statistical studies. You hear that last month’s unemployment rate was 3.9%. A news article says that 87% of AAAS (the American Association for the Advancement of Science) scientists agree that climate change is mostly due to human activity, while only 50% of all U.S. residents 18 years of age and over agree. A longer article says that low-income children who received high-quality day care did better on academic tests given years later and were more likely to go to college and hold good jobs than other similar children.
 
@@ -24,7 +18,7 @@ In 2012, Colorado voters legalized marijuana. Subsequently, voters in several ot
 
 What can we say about data from this poll? By the end of this chapter you will have learned some basic questions to ask about data from the MLive online poll. The answers to these questions will help us assess whether the data from the poll are good or bad, as we will explore further in Chapter 2.
 
-Talking about Data: Individuals and Variables
+## 1.1 Talking about Data: Individuals and Variables
 
 Statistics is the science of data. We could almost say「the art of data」because good judgment and even good taste, along with good math, make good statistics. A big part of good judgment lies in deciding what you must measure in order to produce data that will shed light on your concerns. We begin with some vocabulary to describe the raw materials that go into data.
 
@@ -272,7 +266,7 @@ If more people were counted in Question 1, continue with Person 2.
 
 The fight over「race」reminds us that data reflect society. Race is a social idea, not a biological fact. In the census, you say what race you consider yourself to be. Race is a sensitive issue in the United States, so the fight is no surprise and the Census Bureau’s diplomacy seems a good compromise.
 
-Observational Studies
+## 1.2 Observational Studies
 
 As Yogi Berra, the former catcher and manager of the New York Yankees who is renowned for his humorous quotes, said,「You can observe a lot by watching.」Sometimes all you can do is watch. To learn how chimpanzees in the wild behave, watch. To study how a teacher and young children interact in a schoolroom, watch. It helps if the watcher knows what to look for. The chimpanzee expert may be interested in how males and females interact, in whether some chimps in the troop are dominant, in whether the chimps hunt and eat meat. Indeed, chimps were thought to be vegetarians until Jane Goodall watched them carefully in Gombe National Park, Tanzania. Now it is clear that meat is a natural part of the chimpanzee diet.
 
@@ -522,69 +516,7 @@ Chapter 1 Exercises
 
 1.8 Miles per gallon. Here is a small part of a data set that describes the fuel economy (in miles per gallon) of 2019 model motor vehicles:
 
-Make and model
 
-Vehicle type
-
-Transmission type
-
-Number of cylinders
-
-City mpg
-
-Highway mpg
-
-⋮
-
-BMW 430i
-
-Compact car
-
-Manual
-
-4
-
-21
-
-33
-
-Ford Flex AWD
-
-Sport utility vehicle (4WD)
-
-Automatic
-
-6
-
-16
-
-22
-
-Genesis G70 RWD
-
-Compact car
-
-Manual
-
-4
-
-18
-
-28
-
-Toyota Avalon
-
-Midsize car
-
-Automatic
-
-6
-
-22
-
-31
-
-⋮
 
 What are the individuals in this data set?
 
@@ -592,59 +524,7 @@ For each individual, what variables are given? Which of these variables take num
 
 1.9 Athletes’ salaries. Here is a small part of a data set that describes Major League Baseball players as of opening day of the 2018 season:
 
-Player
 
-Team
-
-Position
-
-Age
-
-Salary
-
-⋮
-
-Trout, Mike
-
-Angels
-
-Outfielder
-
-26
-
-34,083
-
-Headley, Chase
-
-Padres
-
-Third base
-
-33
-
-13,000
-
-Axford, John
-
-Blue Jays
-
-Pitcher
-
-35
-
-1,500
-
-Sabathia, C. C.
-
-Yankees
-
-Pitcher
-
-38
-
-10,000
-
-⋮
 
 What individuals does this data set describe?
 
@@ -728,7 +608,6 @@ Exploring the Web
 
 Access these exercises on the text website: macmillanlearning.com/scc10e.
 
-
 第 1 部分 数据的生产
 
 你和你的朋友不是典型人物。比如，你喜欢听的广播节目可能就和我喜欢的不一样。当然，我和我的朋友也不是典型人物。如果想要知道整个国家（或只是大学生）的状况，我们必须认清一个事实，那就是，整体状况也许和我们自己或我们周围的状况并不相似。所以，我们需要数据。从 Arbitron（一家媒体研究机构）得到的资料显示，美国最受欢迎的广播节目是成人当代音乐（2009 年秋天，每周的听众总人数达到 7200 万人）和乡村音乐（每周的听众总人数为 6400 万人）。如果你喜欢当代流行打击乐（每周的听众总人数为 5900 万人），而我喜欢各种新闻节目（每周的听众总人数为 1500 万人），那么我们可能对整个唱片消费群体的音乐品位一无所知。如果我们身处唱片业，或只对通俗文化感兴趣，就必须把自己的喜好放在一边，好好地检视数据。
@@ -737,9 +616,9 @@ Access these exercises on the text website: macmillanlearning.com/scc10e.
 
 # 0101. 数据从哪里来
 
-案例分析
+## 案例分析
 
-你可能读了几个月的报纸，或者看了几个月的电视新闻，却没有见过一个代数公式。难怪你会认为代数看上去和日常生活完全无关。但是，你不可能一整天都接触不到统计数据和结果。比如，一则新闻提到在 18~24 岁年龄段的人中，有 70% 的人认为从互联网上下载音乐与购买二手音乐光碟或从朋友那里借来转录的做法没有区别。而对于 65 岁或以上的人来说，持相同观点的人只有 36%。一篇更长的文章写道，得到高质量日间看护的低收入家庭的孩子，几年后在学业方面的表现更佳，与其他低收入家庭的孩子相比，未来更有可能考上大学、找到好工作。
+你可能读了几个月的报纸，或者看了几个月的电视新闻，却没有见过一个代数公式。难怪你会认为代数看上去和日常生活完全无关。但是，你不可能一整天都接触不到统计数据和结果。比如，一则新闻提到在 18-24 岁年龄段的人中，有 70% 的人认为从互联网上下载音乐与购买二手音乐光碟或从朋友那里借来转录的做法没有区别。而对于 65 岁或以上的人来说，持相同观点的人只有 36%。一篇更长的文章写道，得到高质量日间看护的低收入家庭的孩子，几年后在学业方面的表现更佳，与其他低收入家庭的孩子相比，未来更有可能考上大学、找到好工作。
 
 这些数据是从哪里来的呢？为什么我们可以相信这些数据，或者不应该相信这些数据？好的数据是人类智慧劳动的成果，坏的数据则源于懒惰或者不求甚解的行为，只能误导他人。当有人向你抛来一个数字时，你应该问的第一个问题就是：它来自何处？
 
@@ -749,29 +628,27 @@ Access these exercises on the text website: macmillanlearning.com/scc10e.
 
 对于这个投票结果，我们该如何解读呢？在本章的最后，你将了解到，针对这个软糖投票活动产生的数据，如何提出一些基础性问题。对这些提问的回答，将帮助我们评估这个投票数据的优劣，我们将在第 2 章深入探讨这个问题。
 
-个体和变量
+## 1.1 个体和变量
 
 统计学是关于数据的科学。我们甚至可以说它是「数据的艺术」，因为只有通过正确的判断乃至好的品位和扎实的数学知识，才能得出好的统计数据。好的判断中的一大部分取决于你应该度量什么，以使得出的数据有助于解释你所关心的问题。我们先从一些与数据相关的基本术语入手。
 
-个体与变量
+个体与变量 —— 个体是一组数据所描述的对象。个体可以是一群人，也可以是一些动物或者其他物品。变量指的是某一个体的特征，不同个体的变量可以取不同的值。
 
-个体是一组数据所描述的对象。个体可以是一群人，也可以是一些动物或者其他物品。变量指的是某一个体的特征，不同个体的变量可以取不同的值。
+1『对应于编程里的对象和属性。（2020-11-21）』
 
 举个例子，这是统计学课程结束时，教授手中的成绩数据库中的头几行：
 
-在这里，个体指的是选修这门课程的学生。除了学生的姓名之外，还有三个变量。第一个变量是这名学生的专业，第二个变量是该名学生所得的分数（总分为 500 分），第三个变量是该名学生的成绩等级。
-
-尽管统计学是和数字打交道，但并非所有的变量都要用数字表示。有些变量代表的是「类别」，只需将个体归入不同的组别或种类即可。在这个例子的三个变量中，只有总分数是用数值表示的，专业和等级都是类别变量。统计类别变量时，我们采用的是计数或者百分比的方式。例如，我们可以给出得到等级 A 的学生的百分比，或者给出主修心理学的学生的百分比。
+在这里，个体指的是选修这门课程的学生。除了学生的姓名之外，还有三个变量。第一个变量是这名学生的专业，第二个变量是该名学生所得的分数（总分为 500 分），第三个变量是该名学生的成绩等级。尽管统计学是和数字打交道，但并非所有的变量都要用数字表示。有些变量代表的是「类别」，只需将个体归入不同的组别或种类即可。在这个例子的三个变量中，只有总分数是用数值表示的，专业和等级都是类别变量。统计类别变量时，我们采用的是计数或者百分比的方式。例如，我们可以给出得到等级 A 的学生的百分比，或者给出主修心理学的学生的百分比。
 
 选择变量时的错误判断，可能导致在数据上浪费大量时间和金钱却徒劳无功。怎样才能做出好的判断，这可能是个富有争议性的问题。下面的例子展示了在判断应该收集哪些数据时面临的挑战。
 
-例 1 谁在做资源回收？
+### 例 1 谁在做资源回收？
 
 是谁不嫌麻烦地在做资源回收呢？在加利福尼亚州某个城市的两个社区，暂且命名为「上流社区」和「中低社区」，实验人员花费了大量的时间和金钱，将住户拿到屋外的垃圾过磅称重。因为垃圾和回收物的数量是按照住户而不是人头计算，在这里，个体就是两个社区的所有住户，变量是每周路边回收箱里垃圾的重量。
 
 「上流社区」每周平均的垃圾重量要比「中低社区」大，我们是否可以据此说富人更严肃地对待垃圾回收这件事呢？不能。有人注意到，「上流社区」的垃圾桶里有很多沉重的玻璃酒瓶。而在「中低社区」，人们扔进垃圾箱的多是轻质塑料汽水瓶和啤酒铝罐。结论是，重量很难告诉我们人们履行资源回收承诺的实际情况。
 
-例 2 你是哪个种族？
+### 例 2 你是哪个种族？
 
 全美人口普查时调查人员会问「你属于哪个种族」，每个家庭成员都要回答这一问题。「种族」是一个变量，美国人口普查局必须给出种族的准确定义。普查表格上列出了一个种族名单，多年来美国政治能够顺顺当当不出问题，主要归功于这个名单。
 
@@ -783,13 +660,13 @@ Access these exercises on the text website: macmillanlearning.com/scc10e.
 
 图 1–1 2010 年美国人口普查表第 1 页
 
-观察研究
+## 1.2 观察研究
 
 纽约扬基队的前接球手和经理约吉·贝拉，以其幽默的话语为人所知。他曾说：「你只要观察，就能看到很多东西。」有的时候，你能做的也只有观察了。想知道黑猩猩在野外的行为，你得观察。想研究老师和小朋友在教室中的互动行为，你也得观察。若观察者知道自己应该看的是什么，就会容易一些。黑猩猩专家可能对雌猩猩和雄猩猩的相互影响有兴趣，或者想知道黑猩猩群中的某几只黑猩猩是否有统治权，以及黑猩猩会不会猎食动物。事实上，大家一直以为黑猩猩是食草动物，直到珍妮·古道尔在坦桑尼亚的贡贝国家公园仔细观察了它们的行为。现在人们已经清楚地知道，肉类是黑猩猩日常饮食的一部分。
 
 刚开始的时候，观察者可能不知道应该记录些什么。然而迟早会出现一些模式，帮助我们决定应该衡量哪些变量。比如，黑猩猩多久猎食一次？单独行动还是群体行动？多少只一起行动？只有雄性还是雌、雄都有？在它们的食物中肉类占多大比重？系统地观察，再加上清楚地定义变量，会比只观察更有说服力。以下是一个计划完善（且很花钱）的观察研究案例。
 
-例 3 高压电缆会引发儿童白血病吗？
+### 例 3 高压电缆会引发儿童白血病吗？
 
 电流产生磁场，所以电力会让人们暴露在磁场之中，住在高压电缆附近则增加了这种暴露的程度。强磁场确实会干扰实验室里做研究用的活细胞。如果我们住在高压电缆附近，那么磁场会对我们产生何种影响呢？一些数据表明，住在这种环境里，可能会有更多的儿童患上白血病。
 
@@ -911,57 +788,35 @@ Access these exercises on the text website: macmillanlearning.com/scc10e.
 
 实验可以提供好的证据，证明某项处理的确产生了某种反应，这是统计学的一个重要概念。这个概念还附带了一个重要的提醒：统计结论是针对一群个体从「平均的角度」（on the average）得出的结论，而非针对任何特定的个体。从平均的角度看，参加工作培训的实验对象的收入比没参加的人高。这说明我们预期的目标达成了，但并不代表每个参加培训的人都会受益。这个概念也会引发一个大大的疑问：如果我们希望工作培训计划能增加实验对象的收入，那么，只让某些女性参加，却不让其他人参加，会不会有点儿不道德？在第 5 章和第 6 章中，我们将会说明怎样设计好的实验，在第 7 章中我们将会讨论相关的伦理问题。
 
-小结
+## 小结
 
-本章要点
+1、任何一个统计研究都会记录关于一些个体（人、动物或物品）的数据，也就是一个或多个变量的值。
 
-·任何一个统计研究都会记录关于一些个体（人、动物或物品）的数据，也就是一个或多个变量的值。
+2、有些变量，比如年龄和收入，属于定量数据数值，而有些变量，比如职业或性别，则属于定性数据。要确保研究变量可以给你想要的信息。
 
-·有些变量，比如年龄和收入，属于定量数据数值，而有些变量，比如职业或性别，则属于定性数据。要确保研究变量可以给你想要的信息。
+3、对于任何一项统计研究，你最需要知道的是数据是如何产生的。观察研究是指，在只观察而不造成干扰的情况下搜集信息。
 
-·对于任何一项统计研究，你最需要知道的是数据是如何产生的。观察研究是指，在只观察而不造成干扰的情况下搜集信息。
+4、抽样调查是观察研究当中很重要的一种方式。抽样调查是从某个特定的总体中抽取样本，然后从样本中获得有关总体的信息。
 
-·抽样调查是观察研究当中很重要的一种方式。抽样调查是从某个特定的总体中抽取样本，然后从样本中获得有关总体的信息。
+5、普查试图对总体中的每个个体进行测量。
 
-·普查试图对总体中的每个个体进行测量。
+6、实验会对个体做某种处理，然后观察个体的反应。实验的目的通常是，了解某种处理是否会引起某种反应。
 
-·实验会对个体做某种处理，然后观察个体的反应。实验的目的通常是，了解某种处理是否会引起某种反应。
+在依靠数据信息推导出结论的过程中，我们面临的第一个问题就是数据来自何处。统计研究结论的本质和有效性都取决于这一点。数据来自两个渠道：观察研究和实验。观察研究适合在无干扰的情况下描述某个群体或状况并得出结论。抽样调查是一种观察研究，我们通过观察总体的一部分（样本），得出有关总体的结论。实验适用于判断一种处理是否会产生不同的反应。在后面几章，我们将更深入地讨论数据的来源。我们将会看到怎样进行良好的观察研究和实验，我们还会看到糟糕的观察研究或实验是如何破坏我们想要获得的结论的有效性的。
 
-在依靠数据信息推导出结论的过程中，我们面临的第一个问题就是数据来自何处。统计研究结论的本质和有效性都取决于这一点。数据来自两个渠道：观察研究和实验。观察研究适合在无干扰的情况下描述某个群体或状况并得出结论。抽样调查是一种观察研究，我们通过观察总体的一部分（样本），得出有关总体的结论。实验适用于判断一种处理是否会产生不同的反应。
+### 案例分析与评估
 
-在后面几章，我们将更深入地讨论数据的来源。我们将会看到怎样进行良好的观察研究和实验，我们还会看到糟糕的观察研究或实验是如何破坏我们想要获得的结论的有效性的。
+用你从本章所学知识来回答本章开头的软糖民意调查案例中的几个基本问题。为了参加这项调查，人们必须走进商店，并从碗里选择一块软糖。1）这项调查是一个抽样调查、普查还是实验？2）调查的总体是谁？3）调查中的个体是谁？4）对于每个个体，该研究测量了什么变量？5）这些变量的值是数字吗？
 
-案例分析与评估
-
-用你从本章所学知识来回答本章开头的软糖民意调查案例中的几个基本问题。为了参加这项调查，人们必须走进商店，并从碗里选择一块软糖。
-
-·这项调查是一个抽样调查、普查还是实验？
-
-·调查的总体是谁？
-
-·调查中的个体是谁？
-
-·对于每个个体，该研究测量了什么变量？
-
-·这些变量的值是数字吗？
-
-练习
+### 练习
 
 1.1 见本书第 12 页。
 
 1.2 见本书第 16 页。
 
-1.3 每加仑 [3] 英里 [4] 数。以下是描述 2011 年不同型号汽车的油耗状况（MPG，每加仑英里数）的数据集的一小部分。
+1.3 每加仑 [3] 英里 [4] 数。以下是描述 2011 年不同型号汽车的油耗状况（MPG，每加仑英里数）的数据集的一小部分。a）在这个数据集里，个体是什么？b）对于每个个体，该研究衡量了哪些变量？其中哪些变量的值是数字？
 
-（a）在这个数据集里，个体是什么？
-
-（b）对于每个个体，该研究衡量了哪些变量？其中哪些变量的值是数字？
-
-1.4 美国棒球运动员的年薪。以下是美国职业棒球大联盟在 2011 赛季的第一天公布的部分球员资料：
-
-（a）这个数据集描述的个体是什么？
-
-（b）除了球员姓名外，这个数据集还包括哪几个变量？哪些变量的值是数字？
+1.4 美国棒球运动员的年薪。以下是美国职业棒球大联盟在 2011 赛季的第一天公布的部分球员资料：a）这个数据集描述的个体是什么？b）除了球员姓名外，这个数据集还包括哪几个变量？哪些变量的值是数字？
 
 1.5 谁在做资源回收？在例 1 当中我们提到在同一个城市的两个不同社区间比较资源回收的成效时，重量不是理想的变量。那么，你建议用什么变量来替代重量？
 
@@ -971,21 +826,9 @@ Access these exercises on the text website: macmillanlearning.com/scc10e.
 
 1.8 政治倾向的性别差异。在美国，政治倾向似乎存在性别差异，女性比男性更倾向于支持民主党。一位政治学者访问了许多选民，男性和女性都有。她问他们，上一次国会选举时把票投给了民主党还是共和党。这项研究是不是实验？你做出判断的理由是什么？该项研究测量了哪些变量？
 
-1.9 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。
+1.9 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。a）一项民意调查联络了 972 位成年人，问他们：「你更愿意为政府工作还是在公司工作？」b）视频接口线的一端有能插入电脑显示器插口的针型槽。如果里面的插针弯曲或损坏了，这条接口线就不能用了。一家电脑商店从供应商处批量采购视频接口线，从每批中抽出 5 条线检查插针情况。如果发现有插针弯曲或损坏的情况，则将整批接口线退回给供应商。c）美国社区调查计划联络 300 万个美国住户，全美每一个县中都有一些住户会被调查。该调查会询问每个住户关于居住状况、经济情况及社会地位等问题。
 
-（a）一项民意调查联络了 972 位成年人，问他们：「你更愿意为政府工作还是在公司工作？」
-
-（b）视频接口线的一端有能插入电脑显示器插口的针型槽。如果里面的插针弯曲或损坏了，这条接口线就不能用了。一家电脑商店从供应商处批量采购视频接口线，从每批中抽出 5 条线检查插针情况。如果发现有插针弯曲或损坏的情况，则将整批接口线退回给供应商。
-
-（c）美国社区调查计划联络 300 万个美国住户，全美每一个县中都有一些住户会被调查。该调查会询问每个住户关于居住状况、经济情况及社会地位等问题。
-
-1.10 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。
-
-（a）一位社会学者想知道，有多大比例的青少年认为美国各州应把法定最低饮酒年龄降至 18 岁。她选择了一个样本，是一个大城市的 5 所高中，并访谈了每所学校所有的 12 年级学生。
-
-（b）一名医学研究者想知道前美国国家橄榄球联盟（NFL）运动员中患阿尔茨海默病的比例。他从仍在世的人员名单中随机挑选了 20 名，并通过访谈来判断他们是否患有阿尔茨海默病的迹象。
-
-（c）当地电台脱口秀主持人想知道有宗教信仰的人是否比没有宗教信仰的人更信任他们的邻居。电台收到了 51 个听众的电话反馈。
+1.10 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。a）一位社会学者想知道，有多大比例的青少年认为美国各州应把法定最低饮酒年龄降至 18 岁。她选择了一个样本，是一个大城市的 5 所高中，并访谈了每所学校所有的 12 年级学生。b）一名医学研究者想知道前美国国家橄榄球联盟（NFL）运动员中患阿尔茨海默病的比例。他从仍在世的人员名单中随机挑选了 20 名，并通过访谈来判断他们是否患有阿尔茨海默病的迹象。c）当地电台脱口秀主持人想知道有宗教信仰的人是否比没有宗教信仰的人更信任他们的邻居。电台收到了 51 个听众的电话反馈。
 
 1.11 青少年的睡眠需求。《华盛顿邮报》一篇文章报道了一个关于青少年睡眠需求的研究。实验人员测量了一天当中各个时间段青少年唾液中产生的促进睡眠的褪黑素的含量。他们发现，青少年的褪黑素水平在夜间要比成年人和儿童的褪黑素水平高，在早上仍保持在较高水平上。参加该项研究的青少年都是自愿的。褪黑素水平较高表明需要睡眠，因此实验人员建议高中生的上课时间应该推迟一些，以满足学生的睡眠需求。这项研究是一个实验、抽样调查还是观察研究？请给出答案并说明你的理由。
 
@@ -997,48 +840,18 @@ Access these exercises on the text website: macmillanlearning.com/scc10e.
 
 第一种方法是：一位研究者找到 500 位 40 岁以上的成年人，他们都定期食用燕麦或燕麦类食品。他将每个人都和一位不定期食用燕麦或燕麦类食品的同龄成年人进行比较，测量他们的坏胆固醇水平。
 
-第二种方法是：另一位研究者找了 1000 位 40 岁以上的成年人，他们都没有定期食用燕麦或燕麦类食品，也都愿意参与这项研究。她随机安排其中 500 人每天早餐食用燕麦，而其他人继续按平时的习惯吃早餐。6 个月后，她比较了两组人的坏胆固醇水平。
+第二种方法是：另一位研究者找了 1000 位 40 岁以上的成年人，他们都没有定期食用燕麦或燕麦类食品，也都愿意参与这项研究。她随机安排其中 500 人每天早餐食用燕麦，而其他人继续按平时的习惯吃早餐。6 个月后，她比较了两组人的坏胆固醇水平。a）请说明为什么第一种研究方法是观察研究，而第二种研究方法是实验。b）为什么在燕麦是否可以降低坏胆固醇水平的问题上，实验可以提供更多的有效信息？
 
-（a）请说明为什么第一种研究方法是观察研究，而第二种研究方法是实验。
-
-（b）为什么在燕麦是否可以降低坏胆固醇水平的问题上，实验可以提供更多的有效信息？
-
-1.15 酒精和女性癌症患者。《华盛顿邮报》有一篇关于女性饮酒与癌症的研究报道。从 1996 年起，一群英国的实验人员开始收集 128 万名 50~64 岁女性的详细信息。实验人员记录了三年中这些自愿参加该研究的女性报告的饮酒量，并探究了在平均 7 年后出现的 68775 个女性癌症患者与她们饮酒之间是否有关联。他们发现，即使这些女性每天平均只摄入 10 克酒精（大约相当于一杯酒），她们患乳腺癌、肝癌和直肠癌的风险也会增加。
-
-（a）这是不是实验？请说明理由。
-
-（b）我们更喜欢在志愿参加调查研究的人中做抽样调查。那么，实验人员感兴趣的总体是什么？他们测量了哪些变量？
+1.15 酒精和女性癌症患者。《华盛顿邮报》有一篇关于女性饮酒与癌症的研究报道。从 1996 年起，一群英国的实验人员开始收集 128 万名 50~64 岁女性的详细信息。实验人员记录了三年中这些自愿参加该研究的女性报告的饮酒量，并探究了在平均 7 年后出现的 68775 个女性癌症患者与她们饮酒之间是否有关联。他们发现，即使这些女性每天平均只摄入 10 克酒精（大约相当于一杯酒），她们患乳腺癌、肝癌和直肠癌的风险也会增加。a）这是不是实验？请说明理由。b）我们更喜欢在志愿参加调查研究的人中做抽样调查。那么，实验人员感兴趣的总体是什么？他们测量了哪些变量？
 
 1.16 课本的成本。一名学生想知道一本教材的成本是否取决于其页数。于是，该学生走进校园书店，从书架上随机选择了一本教材，并记录下它的页数和价格。这项研究的总体是什么？样本是什么？该学生测量的变量是什么？
 
-1.17 选择你的研究类型。你认为，要回答下列三个问题，实验、抽样调查或观察研究，哪种方式最好？
+1.17 选择你的研究类型。你认为，要回答下列三个问题，实验、抽样调查或观察研究，哪种方式最好？a）你们学校的篮球队在主场比赛中犯规次数多还是在客场比赛中犯规次数多？b）大学生对学校提供给他们的娱乐设施满意吗？c）可以进行课程录音的大学生是否比那些不能进行课程录音的学生表现更好？
 
-（a）你们学校的篮球队在主场比赛中犯规次数多还是在客场比赛中犯规次数多？
+1.18 选择研究目标。研究一个有关大学生或其行为、想法的问题，最适合用以下哪种方法。a）抽样调查。b）观察研究。c）实验。
 
-（b）大学生对学校提供给他们的娱乐设施满意吗？
+1.19 网上练习。从例 4 到例 7 所提到的抽样调查都可以在网上找到：1）盖洛普民意调查（例 4）：www.gallup.com。2）当前人口调查（例 5）：www.bls.gov/cps。3）电视收视率调查（例 6）：www.nielsen.com/us/en/measurement/television-measurement.html。4）综合社会调查（例 7）：www.norc.org/Research/Projects/Pages/general-society-survey.aspx。
 
-（c）可以进行课程录音的大学生是否比那些不能进行课程录音的学生表现更好？
-
-1.18 选择研究目标。研究一个有关大学生或其行为、想法的问题，最适合用以下哪种方法。
-
-（a）抽样调查。
-
-（b）观察研究。
-
-（c）实验。
-
-1.19 网上练习。从例 4 到例 7 所提到的抽样调查都可以在网上找到：
-
-·盖洛普民意调查（例 4）：www.gallup.com。
-
-·当前人口调查（例 5）：www.bls.gov/cps。
-
-·电视收视率调查（例 6）：www.nielsen.com/us/en/measurement/television-measurement.html。
-
-·综合社会调查（例 7）：www.norc.org/Research/Projects/Pages/general-society-survey.aspx。
-
-我们建议读者浏览盖洛普网站，了解当前民意调查的结果和有关调查方法的说明。
-
-访问盖洛普调查网站，选择一个可供非订阅用户浏览的民意调查，判断其中的总体和样本是什么，以及样本中包含了多少人。
+我们建议读者浏览盖洛普网站，了解当前民意调查的结果和有关调查方法的说明。访问盖洛普调查网站，选择一个可供非订阅用户浏览的民意调查，判断其中的总体和样本是什么，以及样本中包含了多少人。
 
 1.20 网上练习。你可以在美国国家环境健康科学研究所（NIEHS）的网站（网址为：www.niehs.nih.gov/health/topics.agents/emf）上找到有关暴露在高压电缆下对健康的影响报告。尽管少量对于成年人暴露在高压电缆下的研究，表明成年人患癌症与住所的电磁场没有必然联系，但该网站上提到的 NIEHS 科学家对此问题的结论是什么？为什么？
