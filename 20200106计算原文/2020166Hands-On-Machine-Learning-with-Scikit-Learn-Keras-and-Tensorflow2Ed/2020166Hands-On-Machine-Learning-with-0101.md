@@ -108,6 +108,8 @@ In supervised learning, the training data you feed to the algorithm includes the
 
 Figure 1-5. A labeled training set for supervised learning (e.g., spam classification)
 
+1『明白了，监督式学习的数据都是有「属性」的，即数据已经是被打了标签的，而非监督式学习的数据没有标签。（2020-11-22）』
+
 A typical supervised learning task is classification. The spam filter is a good example of this: it is trained with many example emails along with their class (spam or ham), and it must learn how to classify new emails.
 
 Another typical task is to predict a target numeric value, such as the price of a car, given a set of features (mileage, age, brand, etc.) called predictors. This sort of task is called regression (Figure 1-6). 1 To train the system, you need to give it many examples of cars, including both their predictors and their labels (i.e., their prices).
@@ -132,7 +134,13 @@ Here are some of the most important supervised learning algorithms (covered in t
 
 • Decision Trees and Random Forests
 
-• Neural networks2 
+• Neural networks 2 
+
+1 Fun fact: this odd-sounding name is a statistics term introduced by Francis Galton while he was studying the fact that the children of tall people tend to be shorter than their parents. Since children were shorter, he called this regression to the mean. This name was then applied to the methods he used to analyze correlations between variables.
+
+2 Some neural network architectures can be unsupervised, such as autoencoders and restricted Boltzmann machines. They can also be semisupervised, such as in deep belief networks and unsupervised pretraining.
+
+3『回归这个术语，原来是高尔顿定义的，统计学的鼻祖，哈哈。（2020-11-22）』
 
 #### Unsupervised learning
 
@@ -144,9 +152,19 @@ Figure 1-7. An unlabeled training set for unsupervised learning
 
 Here are some of the most important unsupervised learning algorithms (most of these are covered in Chapter 8 and Chapter 9):
 
-• Clustering — K-Means — DBSCAN — Hierarchical Cluster Analysis (HCA)
+• Clustering 
 
-• Anomaly detection and novelty detection — One-class SVM — Isolation Forest
+— K-Means 
+
+— DBSCAN 
+
+— Hierarchical Cluster Analysis (HCA)
+
+• Anomaly detection and novelty detection 
+
+— One-class SVM 
+
+— Isolation Forest
 
 • Visualization and dimensionality reduction
 
@@ -180,6 +198,8 @@ A related task is dimensionality reduction, in which the goal is to simplify the
 
 It is often a good idea to try to reduce the dimension of your training data using a dimensionality reduction algorithm before you feed it to another Machine Learning algorithm (such as a supervised learning algorithm). It will run much faster, the data will take up less disk and memory space, and in some cases it may also perform better.
 
+1『学到了，在用监督式学习去跑数据前，可以通过 dimensionality reduction 算法去浓缩数据的维度（属性），比如汽车公里数和车龄这 2 个属性提炼成 1 个。（2020-11-22）』
+
 Yet another important unsupervised task is anomaly detection—for example, detecting unusual credit card transactions to prevent fraud, catching manufacturing defects, or automatically removing outliers from a dataset before feeding it to another learning algorithm. The system is shown mostly normal instances during training, so it learns to recognize them and when it sees a new instance it can tell whether it looks like a normal one or whether it is likely an anomaly (see Figure 1-10). A very similar task is novelty detection: the difference is that novelty detection algorithms expect to see only normal data during training, while anomaly detection algorithms are usually more tolerant, they can often perform well even with a small percentage of outliers in the training set.
 
 ![](./res/2020010.png)
@@ -188,17 +208,21 @@ Figure 1-10. Anomaly detection
 
 Finally, another common unsupervised task is association rule learning, in which the goal is to dig into large amounts of data and discover interesting relations between attributes. For example, suppose you own a supermarket. Running an association rule on your sales logs may reveal that people who purchase barbecue sauce and potato chips also tend to buy steak. Thus, you may want to place these items close to each other.
 
+3 Notice how animals are rather well separated from vehicles, how horses are close to deer but far from birds, and so on. Figure reproduced with permission from Socher, Ganjoo, Manning, and Ng (2013), “T-SNE visualization of the semantic word space.”
+
 #### Semisupervised learning
 
 Some algorithms can deal with partially labeled training data, usually a lot of unlabeled data and a little bit of labeled data. This is called semisupervised learning (Figure 1-11).
 
-Some photo-hosting services, such as Google Photos, are good examples of this. Once you upload all your family photos to the service, it automatically recognizes that the same person A shows up in photos 1, 5, and 11, while another person B shows up in photos 2, 5, and 7. This is the unsupervised part of the algorithm (clustering). Now all the system needs is for you to tell it who these people are. Just one label per person,4  and it is able to name everyone in every photo, which is useful for searching photos.
+Some photo-hosting services, such as Google Photos, are good examples of this. Once you upload all your family photos to the service, it automatically recognizes that the same person A shows up in photos 1, 5, and 11, while another person B shows up in photos 2, 5, and 7. This is the unsupervised part of the algorithm (clustering). Now all the system needs is for you to tell it who these people are. Just one label per person, 4  and it is able to name everyone in every photo, which is useful for searching photos.
 
 ![](./res/2020011.png)
 
 Figure 1-11. Semisupervised learning 
 
 Most semisupervised learning algorithms are combinations of unsupervised and supervised algorithms. For example, deep belief networks (DBNs) are based on unsupervised components called restricted Boltzmann machines (RBMs) stacked on top of one another. RBMs are trained sequentially in an unsupervised manner, and then the whole system is fine-tuned using supervised learning techniques.
+
+4 That’s when the system works perfectly. In practice it often creates a few clusters per person, and sometimes mixes up two people who look alike, so you need to provide a few labels per person and manually clean up some clusters.
 
 #### Reinforcement Learning
 
@@ -213,6 +237,8 @@ For example, many robots implement Reinforcement Learning algorithms to learn ho
 ### 1.3.2 Batch and Online Learning
 
 Another criterion used to classify Machine Learning systems is whether or not the system can learn incrementally from a stream of incoming data.
+
+1-3『跟间歇反应、连续反应关联上了，区别在于有没有连续进料，类比于连续进数据，妙哉。（2020-11-22）』
 
 #### Batch learning
 
@@ -280,69 +306,107 @@ Figure 1-16. Model-based learning
 
 For example, suppose you want to know if money makes people happy, so you download the Better Life Index data from the OECD’s website as well as stats about GDP per capita from the IMF’s website. Then you join the tables and sort by GDP per capita. Table 1-1 shows an excerpt of what you get.
 
+![](./res/2020017.png)
+
 Let’s plot the data for a few random countries (Figure 1-17).
 
-![](./res/2020017.png)
+![](./res/2020018.png)
 
 Figure 1-17. Do you see a trend here?
 
 There does seem to be a trend here! Although the data is noisy (i.e., partly random), it looks like life satisfaction goes up more or less linearly as the country’s GDP per capita increases. So you decide to model life satisfaction as a linear function of GDP per capita. This step is called model selection: you selected a linear model of life satisfaction with just one attribute, GDP per capita (Equation 1-1).
 
-Equation 1-1. A simple linear model life_satisfaction = θ 0 + θ 1 × GDP_per_capita
+Equation 1-1. A simple linear model 
 
-This model has two model parameters, θ 0 and θ1 . 5 By tweaking these parameters, you can make your model represent any linear function, as shown in Figure 1-18.
+```
+life_satisfaction = θ0 + θ1 × GDP_per_capita
+```
 
-![](./res/2020018.png)
-
-Figure 1-18. A few possible linear models
-
-Before you can use your model, you need to define the parameter values θ 0 and θ1 . How can you know which values will make your model perform best? To answer this question, you need to specify a performance measure. You can either define a utility function (or fitness function) that measures how good your model is, or you can define a cost function that measures how bad it is. For linear regression problems, people typically use a cost function that measures the distance between the linear model’s predictions and the training examples; the objective is to minimize this distance.
-
-This is where the Linear Regression algorithm comes in: you feed it your training examples and it finds the parameters that make the linear model fit best to your data. This is called training the model. In our case the algorithm finds that the optimal parameter values are θ 0 = 4.85 and θ 1 = 4.91 × 10–5 .
-
-Now the model fits the training data as closely as possible (for a linear model), as you can see in Figure 1-19.
+This model has two model parameters, θ0 and θ1. 5 By tweaking these parameters, you can make your model represent any linear function, as shown in Figure 1-18.
 
 ![](./res/2020019.png)
 
-You are finally ready to run the model to make predictions. For example, say you want to know how happy Cypriots are, and the OECD data does not have the answer. Fortunately, you can use your model to make a good prediction: you look up Cyprus’s GDP per capita, find `$22,587`, and then apply your model and find that life satisfaction is likely to be somewhere around 4.85 + 22,587 × 4.91 × 10 -5 = 5.96.
+Figure 1-18. A few possible linear models
 
-To whet your appetite, Example 1-1 shows the Python code that loads the data, prepares it, 6 creates a scatterplot for visualization, and then trains a linear model and makes a prediction.7 
+Before you can use your model, you need to define the parameter values θ0 and θ1. How can you know which values will make your model perform best? To answer this question, you need to specify a performance measure. You can either define a utility function (or fitness function) that measures how good your model is, or you can define a cost function that measures how bad it is. For linear regression problems, people typically use a cost function that measures the distance between the linear model’s predictions and the training examples; the objective is to minimize this distance.
+
+1『功效方程和成本方程这两个术语出来了，原来这两个函数都是用来衡量模型好坏的，第一次看到 cost function 是在吴恩达的 ML 课里。（2020-11-22）』
+
+This is where the Linear Regression algorithm comes in: you feed it your training examples and it finds the parameters that make the linear model fit best to your data. This is called training the model. In our case the algorithm finds that the optimal parameter values are `θ0 = 4.85` and `θ1 = 4.91 × 10^–5`. Now the model fits the training data as closely as possible (for a linear model), as you can see in Figure 1-19.
+
+![](./res/2020020.png)
+
+You are finally ready to run the model to make predictions. For example, say you want to know how happy Cypriots are, and the OECD data does not have the answer. Fortunately, you can use your model to make a good prediction: you look up Cyprus’s GDP per capita, find `$22,587`, and then apply your model and find that life satisfaction is likely to be somewhere around `4.85 + 22,587 × 4.91 × 10^-5 = 5.96`.
+
+To whet your appetite, Example 1-1 shows the Python code that loads the data, prepares it, 6 creates a scatterplot for visualization, and then trains a linear model and makes a prediction. 7 
 
 Example 1-1. Training and running a linear model using Scikit-Learn
 
-import matplotlib.pyplot as plt import numpy as np import pandas as pd import sklearn.linear_model
-
 ```py
-# Load the data oecd_bli = pd.read_csv("oecd_bli_2015.csv", thousands=',') gdp_per_capita = pd.read_csv("gdp_per_capita.csv",thousands=',',delimiter='\t',
+import matplotlib.pyplot as plt 
+import numpy as np 
+import pandas as pd
+import sklearn.linear_model
 
-encoding='latin1', na_values="n/a")
+def prepare_country_stats(oecd_bli, gdp_per_capita):
+    oecd_bli = oecd_bli[oecd_bli["INEQUALITY"]=="TOT"]
+    oecd_bli = oecd_bli.pivot(index="Country", columns="Indicator", values="Value")
+    gdp_per_capita.rename(columns={"2015": "GDP per capita"}, inplace=True)
+    gdp_per_capita.set_index("Country", inplace=True)
+    full_country_stats = pd.merge(left=oecd_bli, right=gdp_per_capita,
+                                  left_index=True, right_index=True)
+    full_country_stats.sort_values(by="GDP per capita", inplace=True)
+    remove_indices = [0, 1, 6, 8, 33, 34, 35]
+    keep_indices = list(set(range(36)) - set(remove_indices))
+    return full_country_stats[["GDP per capita", 'Life satisfaction']].iloc[keep_indices]
 
-# Prepare the data country_stats = prepare_country_stats(oecd_bli, gdp_per_capita) X = np.c_[country_stats["GDP per capita"]] y = np.c_[country_stats["Life satisfaction"]]
+# Load the data 
+oecd_bli = pd.read_csv("oecd_bli_2015.csv", thousands=',') 
+gdp_per_capita = pd.read_csv("gdp_per_capita.csv", thousands=',', delimiter='\t', encoding='latin1', na_values="n/a")
+
+# Prepare the data 
+country_stats = prepare_country_stats(oecd_bli, gdp_per_capita) 
+X = np.c_[country_stats["GDP per capita"]] 
+y = np.c_[country_stats["Life satisfaction"]]
 
 # Visualize the data
-
 country_stats.plot(kind='scatter', x="GDP per capita", y='Life satisfaction')
-
 plt.show()
 
-# Select a linear model model = sklearn.linear_model.LinearRegression()
+# Select a linear model 
+model = sklearn.linear_model.LinearRegression()
 
-# Train the model model.fit(X, y)
+# Train the model 
+model.fit(X, y)
 
-# Make a prediction for Cyprus X_new = [[22587]] # Cyprus' GDP per capita print(model.predict(X_new)) # outputs [[ 5.96242338]]
+# Make a prediction for Cyprus 
+X_new = [[22587]] # Cyprus' GDP per capita 
+print(model.predict(X_new)) # outputs [[ 5.96242338]]
 ```
 
-If you had used an instance-based learning algorithm instead, you would have found that Slovenia has the closest GDP per capita to that of Cyprus ($20,732), and since the OECD data tells us that Slovenians’ life satisfaction is 5.7, you would have predicted a life satisfaction of 5.7 for Cyprus. If you zoom out a bit and look at the two next closest countries, you will find Portugal and Spain with life satisfactions of 5.1 and 6.5, respectively. Averaging these three values, you get 5.77, which is pretty close to your model-based prediction. This simple algorithm is called k-Nearest Neighbors regression (in this example, k = 3).
+1『
+
+[ageron/handson-ml2: A series of Jupyter notebooks that walk you through the fundamentals of Machine Learning and Deep Learning in Python using Scikit-Learn, Keras and TensorFlow 2.](https://github.com/ageron/handson-ml2)
+
+首先，在注释 6 里看到 `prepare_country_stats()` 函数要去作者 GitHub 上那个 Jupyter notebook 仓库里找。之前已经把这个仓库的文件放到「MachineLearning」文件夹下了，可以用「VScode」直接打开看里面的 `ipynb` 文件。但因为自己之前用过 Jupyter，直接 shell 里跑 Jupyter，看源码，把 `prepare_country_stats()` 拷了出来，贼舒服，哈哈。不过目前没跑通这个文件，报错：`7584 segmentation fault`，搜了下报错这个的原因有很多，目前没能力解决。（2020-11-22）
+
+』
+
+If you had used an instance-based learning algorithm instead, you would have found that Slovenia has the closest GDP per capita to that of Cyprus (`$20,732`), and since the OECD data tells us that Slovenians’ life satisfaction is 5.7, you would have predicted a life satisfaction of 5.7 for Cyprus. If you zoom out a bit and look at the two next closest countries, you will find Portugal and Spain with life satisfactions of 5.1 and 6.5, respectively. Averaging these three values, you get 5.77, which is pretty close to your model-based prediction. This simple algorithm is called k-Nearest Neighbors regression (in this example, k = 3).
 
 Replacing the Linear Regression model with k-Nearest Neighbors regression in the previous code is as simple as replacing these two lines:
 
-import sklearn.linear_model model = sklearn.linear_model.LinearRegression()
+```py
+import sklearn.linear_model 
+model = sklearn.linear_model.LinearRegression()
+```
 
 with these two:
 
+```py
 import sklearn.neighbors
-
 model = sklearn.neighbors.KNeighborsRegressor(n_neighbors=3)
+```
 
 If all went well, your model will make good predictions. If not, you may need to use more attributes (employment rate, health, air pollution, etc.), get more or better quality training data, or perhaps select a more powerful model (e.g., a Polynomial Regression model).
 
@@ -360,6 +424,12 @@ This is what a typical Machine Learning project looks like. In Chapter 2 you wil
 
 We have covered a lot of ground so far: you now know what Machine Learning is really about, why it is useful, what some of the most common categories of ML systems are, and what a typical project workflow looks like. Now let’s look at what can go wrong in learning and prevent you from making accurate predictions.
 
+5 By convention, the Greek letter θ (theta) is frequently used to represent model parameters.
+
+6 The `prepare_country_stats()` function’s definition is not shown here (see this chapter’s Jupyter notebook if you want all the gory details). It’s just boring Pandas code that joins the life satisfaction data from the OECD with the GDP per capita data from the IMF.
+
+7 It’s okay if you don’t understand all the code yet; we will present Scikit-Learn in the following chapters.
+
 ## 1.4 Main Challenges of Machine Learning
 
 In short, since your main task is to select a learning algorithm and train it on some data, the two things that can go wrong are “bad algorithm” and “bad data.” Let’s start with examples of bad data.
@@ -370,11 +440,11 @@ For a toddler to learn what an apple is, all it takes is for you to point to an 
 
 Machine Learning is not quite there yet; it takes a lot of data for most Machine Learning algorithms to work properly. Even for very simple problems you typically need thousands of examples, and for complex problems such as image or speech recognition you may need millions of examples (unless you can reuse parts of an existing model).
 
-The Unreasonable Effectiveness of Data
+#### The Unreasonable Effectiveness of Data
 
 In a famous paper published in 2001, Microsoft researchers Michele Banko and Eric Brill showed that very different Machine Learning algorithms, including fairly simple ones, performed almost identically well on a complex problem of natural language disambiguation 8 once they were given enough data (as you can see in Figure 1-20).
 
-![](./res/2020020.png)
+![](./res/2020021.png)
 
 Figure 1-20. The importance of data versus algorithms9 
 
@@ -382,13 +452,13 @@ As the authors put it: “these results suggest that we may want to reconsider t
 
 The idea that data matters more than algorithms for complex problems was further popularized by Peter Norvig et al. in a paper titled “The Unreasonable Effectiveness of Data” published in 2009. 10 It should be noted, however, that small- and medium-sized datasets are still very common, and it is not always easy or cheap to get extra training data, so don’t abandon algorithms just yet.
 
-### Nonrepresentative Training Data
+### 1.4.2 Nonrepresentative Training Data
 
 In order to generalize well, it is crucial that your training data be representative of the new cases you want to generalize to. This is true whether you use instance-based learning or model-based learning.
 
 For example, the set of countries we used earlier for training the linear model was not perfectly representative; a few countries were missing. Figure 1-21 shows what the data looks like when you add the missing countries.
 
-![](./res/2020021.png)
+![](./res/2020022.png)
 
 Figure 1-21. A more representative training sample 
 
@@ -398,7 +468,7 @@ By using a nonrepresentative training set, we trained a model that is unlikely t
 
 It is crucial to use a training set that is representative of the cases you want to generalize to. This is often harder than it sounds: if the sample is too small, you will have sampling noise (i.e., nonrepresentative data as a result of chance), but even very large samples can be nonrepresentative if the sampling method is flawed. This is called sampling bias.
 
-A Famous Example of Sampling Bias
+#### A Famous Example of Sampling Bias
 
 Perhaps the most famous example of sampling bias happened during the US presidential election in 1936, which pitted Landon against Roosevelt: the Literary Digest conducted a very large poll, sending mail to about 10 million people. It got 2.4 million answers, and predicted with high confidence that Landon would get 57% of the votes.
 
@@ -410,7 +480,7 @@ Instead, Roosevelt won with 62% of the votes. The flaw was in the Literary Diges
 
 Here is another example: say you want to build a system to recognize funk music videos. One way to build your training set is to search “funk music” on YouTube and use the resulting videos. But this assumes that YouTube’s search engine returns a set of videos that are representative of all the funk music videos on YouTube. In reality, the search results are likely to be biased toward popular artists (and if you live in Brazil you will get a lot of “funk carioca” videos, which sound nothing like James Brown). On the other hand, how else can you get a large training set?
 
-### Poor-Quality Data
+### 1.4.3 Poor-Quality Data
 
 Obviously, if your training data is full of errors, outliers, and noise (e.g., due to poor-quality measurements), it will make it harder for the system to detect the underlying patterns, so your system is less likely to perform well. It is often well worth the effort to spend time cleaning up your training data. The truth is, most data scientists spend a significant part of their time doing just that. For example:
 
@@ -418,7 +488,7 @@ Obviously, if your training data is full of errors, outliers, and noise (e.g., d
 
 • If some instances are missing a few features (e.g., 5% of your customers did not specify their age), you must decide whether you want to ignore this attribute altogether, ignore these instances, fill in the missing values (e.g., with the median age), or train one model with the feature and one model without it, and so on.
 
-### Irrelevant Features
+### 1.4.4 Irrelevant Features
 
 As the saying goes: garbage in, garbage out. Your system will only be capable of learning if the training data contains enough relevant features and not too many irrelevant ones. A critical part of the success of a Machine Learning project is coming up with a good set of features to train on. This process, called feature engineering, involves:
 
@@ -430,11 +500,11 @@ As the saying goes: garbage in, garbage out. Your system will only be capable of
 
 Now that we have looked at many examples of bad data, let’s look at a couple of examples of bad algorithms.
 
-### Overfitting the Training Data
+### 1.4.5 Overfitting the Training Data
 
 Say you are visiting a foreign country and the taxi driver rips you off. You might be tempted to say that all taxi drivers in that country are thieves. Overgeneralizing is something that we humans do all too often, and unfortunately machines can fall into the same trap if we are not careful. In Machine Learning this is called overfitting: it means that the model performs well on the training data, but it does not generalize well.
 
-![](./res/2020022.png)
+![](./res/2020023.png)
 
 Figure 1-22 shows an example of a high-degree polynomial life satisfaction model that strongly overfits the training data. Even though it performs much better on the training data than the simple linear model, would you really trust its predictions?
 
@@ -454,13 +524,13 @@ Constraining a model to make it simpler and reduce the risk of overfitting is ca
 
 Figure 1-23 shows three models: the dotted line represents the original model that was trained with a few countries missing, the dashed line is our second model trained with all countries, and the solid line is a linear model trained with the same data as the first model but with a regularization constraint. You can see that regularization forced the model to have a smaller slope, which fits a bit less the training data that the model was trained on, but actually allows it to generalize better to new examples.
 
-![](./res/2020023.png)
+![](./res/2020024.png)
 
 Figure 1-23. Regularization reduces the risk of overfitting
 
 The amount of regularization to apply during learning can be controlled by a hyperparameter. A hyperparameter is a parameter of a learning algorithm (not of the model). As such, it is not affected by the learning algorithm itself; it must be set prior to training and remains constant during training. If you set the regularization hyperparameter to a very large value, you will get an almost flat model (a slope close to zero); the learning algorithm will almost certainly not overfit the training data, but it will be less likely to find a good solution. Tuning hyperparameters is an important part of building a Machine Learning system (you will see a detailed example in the next chapter).
 
-### Underfitting the Training Data
+### 1.4.6 Underfitting the Training Data
 
 As you might guess, underfitting is the opposite of overfitting: it occurs when your model is too simple to learn the underlying structure of the data. For example, a linear model of life satisfaction is prone to underfit; reality is just more complex than the model, so its predictions are bound to be inaccurate, even on the training examples.
 
@@ -472,7 +542,7 @@ The main options to fix this problem are:
 
 • Reducing the constraints on the model (e.g., reducing the regularization hyperparameter)
 
-### Stepping Back
+### 1.4.7 Stepping Back
 
 By now you already know a lot about Machine Learning. However, we went through so many concepts that you may be feeling a little lost, so let’s step back and look at the big picture:
 
