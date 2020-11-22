@@ -44,17 +44,23 @@ Consider how you would write a spam filter using traditional programming techniq
 
 3. You would test your program, and repeat steps 1 and 2 until it is good enough.
 
+![](./res/2020001.png)
+
 Figure 1-1. The traditional approach
 
 Since the problem is not trivial, your program will likely become a long list of complex rules—pretty hard to maintain.
 
 In contrast, a spam filter based on Machine Learning techniques automatically learns which words and phrases are good predictors of spam by detecting unusually frequent patterns of words in the spam examples compared to the ham examples (Figure 1-2). The program is much shorter, easier to maintain, and most likely more accurate.
 
+![](./res/2020002.png)
+
 Figure 1-2. Machine Learning approach
 
 Moreover, if spammers notice that all their emails containing “4U” are blocked, they might start writing “For U” instead. A spam filter using traditional programming techniques would need to be updated to flag “For U” emails. If spammers keep working around your spam filter, you will need to keep writing new rules forever.
 
 In contrast, a spam filter based on Machine Learning techniques automatically notices that “For U” has become unusually frequent in spam flagged by users, and it starts flagging them without your intervention (Figure 1-3).
+
+![](./res/2020003.png)
 
 Figure 1-3. Automatically adapting to change
 
@@ -63,6 +69,8 @@ Another area where Machine Learning shines is for problems that either are too c
 Finally, Machine Learning can help humans learn (Figure 1-4): ML algorithms can be inspected to see what they have learned (although for some algorithms this can be tricky). For instance, once the spam filter has been trained on enough spam, it can easily be inspected to reveal the list of words and combinations of words that it believes are the best predictors of spam. Sometimes this will reveal unsuspected correlations or new trends, and thereby lead to a better understanding of the problem.
 
 Applying ML techniques to dig into large amounts of data can help discover patterns that were not immediately apparent. This is called data mining.
+
+![](./res/2020004.png)
 
 Figure 1-4. Machine Learning can help humans learn
 
