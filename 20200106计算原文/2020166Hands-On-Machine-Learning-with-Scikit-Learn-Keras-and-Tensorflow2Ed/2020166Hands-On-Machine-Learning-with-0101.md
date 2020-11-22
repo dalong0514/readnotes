@@ -70,7 +70,7 @@ Finally, Machine Learning can help humans learn (Figure 1-4): ML algorithms can 
 
 Applying ML techniques to dig into large amounts of data can help discover patterns that were not immediately apparent. This is called data mining.
 
-![](./res/2020004.png)
+![](./res/2020005.png)
 
 Figure 1-4. Machine Learning can help humans learn
 
@@ -94,17 +94,17 @@ There are so many different types of Machine Learning systems that it is useful 
 
 • Whether they work by simply comparing new data points to known data points, or instead detect patterns in the training data and build a predictive model, much like scientists do (instance-based versus model-based learning)
 
-These criteria are not exclusive; you can combine them in any way you like. For example, a state-of-the-art spam filter may learn on the fly using a deep neural network model trained using examples of spam and ham; this makes it an online, modelbased, supervised learning system.
+These criteria are not exclusive; you can combine them in any way you like. For example, a state-of-the-art spam filter may learn on the fly using a deep neural network model trained using examples of spam and ham; this makes it an online, modelbased, supervised learning system. Let’s look at each of these criteria a bit more closely.
 
-Let’s look at each of these criteria a bit more closely.
-
-Supervised/Unsupervised Learning
+### 1.3.1 Supervised/Unsupervised Learning
 
 Machine Learning systems can be classified according to the amount and type of supervision they get during training. There are four major categories: supervised learning, unsupervised learning, semisupervised learning, and Reinforcement Learning.
 
-### 1.3.1 Supervised learning
+#### Supervised learning
 
 In supervised learning, the training data you feed to the algorithm includes the desired solutions, called labels (Figure 1-5).
+
+![](./res/2020005.png)
 
 Figure 1-5. A labeled training set for supervised learning (e.g., spam classification)
 
@@ -113,6 +113,8 @@ A typical supervised learning task is classification. The spam filter is a good 
 Another typical task is to predict a target numeric value, such as the price of a car, given a set of features (mileage, age, brand, etc.) called predictors. This sort of task is called regression (Figure 1-6). 1 To train the system, you need to give it many examples of cars, including both their predictors and their labels (i.e., their prices).
 
 In Machine Learning an attribute is a data type (e.g., “Mileage”), while a feature has several meanings depending on the context, but generally means an attribute plus its value (e.g., “Mileage = 15,000”). Many people use the words attribute and feature interchangeably, though.
+
+![](./res/2020006.png)
 
 Figure 1-6. Regression
 
@@ -132,9 +134,11 @@ Here are some of the most important supervised learning algorithms (covered in t
 
 • Neural networks2 
 
-Unsupervised learning
+#### Unsupervised learning
 
 In unsupervised learning, as you might guess, the training data is unlabeled (Figure 1-7). The system tries to learn without a teacher.
+
+![](./res/2020007.png)
 
 Figure 1-7. An unlabeled training set for unsupervised learning
 
@@ -162,39 +166,55 @@ Here are some of the most important unsupervised learning algorithms (most of th
 
 For example, say you have a lot of data about your blog’s visitors. You may want to run a clustering algorithm to try to detect groups of similar visitors (Figure 1-8). At no point do you tell the algorithm which group a visitor belongs to: it finds those connections without your help. For example, it might notice that 40% of your visitors are males who love comic books and generally read your blog in the evening, while 20% are young sci-fi lovers who visit during the weekends, and so on. If you use a hierarchical clustering algorithm, it may also subdivide each group into smaller groups. This may help you target your posts for each group.
 
-Figure 1-8. Clustering Visualization algorithms are also good examples of unsupervised learning algorithms: you feed them a lot of complex and unlabeled data, and they output a 2D or 3D representation of your data that can easily be plotted (Figure 1-9). These algorithms try to preserve as much structure as they can (e.g., trying to keep separate clusters in the input space from overlapping in the visualization), so you can understand how the data is organized and perhaps identify unsuspected patterns.
+![](./res/2020008.png)
 
-Figure 1-9. Example of a t-SNE visualization highlighting semantic clusters3  A related task is dimensionality reduction, in which the goal is to simplify the data without losing too much information. One way to do this is to merge several correlated features into one. For example, a car’s mileage may be very correlated with its age, so the dimensionality reduction algorithm will merge them into one feature that represents the car’s wear and tear. This is called feature extraction.
+Figure 1-8. Clustering 
+
+Visualization algorithms are also good examples of unsupervised learning algorithms: you feed them a lot of complex and unlabeled data, and they output a 2D or 3D representation of your data that can easily be plotted (Figure 1-9). These algorithms try to preserve as much structure as they can (e.g., trying to keep separate clusters in the input space from overlapping in the visualization), so you can understand how the data is organized and perhaps identify unsuspected patterns.
+
+![](./res/2020009.png)
+
+Figure 1-9. Example of a t-SNE visualization highlighting semantic clusters 3  
+
+A related task is dimensionality reduction, in which the goal is to simplify the data without losing too much information. One way to do this is to merge several correlated features into one. For example, a car’s mileage may be very correlated with its age, so the dimensionality reduction algorithm will merge them into one feature that represents the car’s wear and tear. This is called feature extraction.
 
 It is often a good idea to try to reduce the dimension of your training data using a dimensionality reduction algorithm before you feed it to another Machine Learning algorithm (such as a supervised learning algorithm). It will run much faster, the data will take up less disk and memory space, and in some cases it may also perform better.
 
 Yet another important unsupervised task is anomaly detection—for example, detecting unusual credit card transactions to prevent fraud, catching manufacturing defects, or automatically removing outliers from a dataset before feeding it to another learning algorithm. The system is shown mostly normal instances during training, so it learns to recognize them and when it sees a new instance it can tell whether it looks like a normal one or whether it is likely an anomaly (see Figure 1-10). A very similar task is novelty detection: the difference is that novelty detection algorithms expect to see only normal data during training, while anomaly detection algorithms are usually more tolerant, they can often perform well even with a small percentage of outliers in the training set.
 
+![](./res/2020010.png)
+
 Figure 1-10. Anomaly detection
 
 Finally, another common unsupervised task is association rule learning, in which the goal is to dig into large amounts of data and discover interesting relations between attributes. For example, suppose you own a supermarket. Running an association rule on your sales logs may reveal that people who purchase barbecue sauce and potato chips also tend to buy steak. Thus, you may want to place these items close to each other.
 
-Semisupervised learning
+#### Semisupervised learning
 
 Some algorithms can deal with partially labeled training data, usually a lot of unlabeled data and a little bit of labeled data. This is called semisupervised learning (Figure 1-11).
 
 Some photo-hosting services, such as Google Photos, are good examples of this. Once you upload all your family photos to the service, it automatically recognizes that the same person A shows up in photos 1, 5, and 11, while another person B shows up in photos 2, 5, and 7. This is the unsupervised part of the algorithm (clustering). Now all the system needs is for you to tell it who these people are. Just one label per person,4  and it is able to name everyone in every photo, which is useful for searching photos.
 
-Figure 1-11. Semisupervised learning Most semisupervised learning algorithms are combinations of unsupervised and supervised algorithms. For example, deep belief networks (DBNs) are based on unsupervised components called restricted Boltzmann machines (RBMs) stacked on top of one another. RBMs are trained sequentially in an unsupervised manner, and then the whole system is fine-tuned using supervised learning techniques.
+![](./res/2020011.png)
 
-Reinforcement Learning
+Figure 1-11. Semisupervised learning 
+
+Most semisupervised learning algorithms are combinations of unsupervised and supervised algorithms. For example, deep belief networks (DBNs) are based on unsupervised components called restricted Boltzmann machines (RBMs) stacked on top of one another. RBMs are trained sequentially in an unsupervised manner, and then the whole system is fine-tuned using supervised learning techniques.
+
+#### Reinforcement Learning
 
 Reinforcement Learning is a very different beast. The learning system, called an agent in this context, can observe the environment, select and perform actions, and get rewards in return (or penalties in the form of negative rewards, as in Figure 1-12). It must then learn by itself what is the best strategy, called a policy, to get the most reward over time. A policy defines what action the agent should choose when it is in a given situation.
+
+![](./res/2020012.png)
 
 Figure 1-12. Reinforcement Learning
 
 For example, many robots implement Reinforcement Learning algorithms to learn how to walk. DeepMind’s AlphaGo program is also a good example of Reinforcement Learning: it made the headlines in May 2017 when it beat the world champion Ke Jie at the game of Go. It learned its winning policy by analyzing millions of games, and then playing many games against itself. Note that learning was turned off during the games against the champion; AlphaGo was just applying the policy it had learned.
 
-### Batch and Online Learning
+### 1.3.2 Batch and Online Learning
 
 Another criterion used to classify Machine Learning systems is whether or not the system can learn incrementally from a stream of incoming data.
 
-Batch learning
+#### Batch learning
 
 In batch learning, the system is incapable of learning incrementally: it must be trained using all the available data. This will generally take a lot of time and computing resources, so it is typically done offline. First the system is trained, and then it is launched into production and runs without learning anymore; it just applies what it has learned. This is called offline learning.
 
@@ -210,9 +230,11 @@ Finally, if your system needs to be able to learn autonomously and it has limite
 
 Fortunately, a better option in all these cases is to use algorithms that are capable of learning incrementally.
 
-Online learning
+#### Online learning
 
 In online learning, you train the system incrementally by feeding it data instances sequentially, either individually or by small groups called mini-batches. Each learning step is fast and cheap, so the system can learn about new data on the fly, as it arrives (see Figure 1-13).
+
+![](./res/2020013.png)
 
 Figure 1-13. Online learning
 
@@ -222,19 +244,21 @@ Online learning algorithms can also be used to train systems on huge datasets th
 
 Out-of-core learning is usually done offline (i.e., not on the live system), so online learning can be a confusing name. Think of it as incremental learning.
 
+![](./res/2020014.png)
+
 Figure 1-14. Using online learning to handle huge datasets
 
 One important parameter of online learning systems is how fast they should adapt to changing data: this is called the learning rate. If you set a high learning rate, then your system will rapidly adapt to new data, but it will also tend to quickly forget the old data (you don’t want a spam filter to flag only the latest kinds of spam it was shown). Conversely, if you set a low learning rate, the system will have more inertia; that is, it will learn more slowly, but it will also be less sensitive to noise in the new data or to sequences of nonrepresentative data points (outliers).
 
 A big challenge with online learning is that if bad data is fed to the system, the system’s performance will gradually decline. If we are talking about a live system, your clients will notice. For example, bad data could come from a malfunctioning sensor on a robot, or from someone spamming a search engine to try to rank high in search results. To reduce this risk, you need to monitor your system closely and promptly switch learning off (and possibly revert to a previously working state) if you detect a drop in performance. You may also want to monitor the input data and react to abnormal data (e.g., using an anomaly detection algorithm).
 
-Instance-Based Versus Model-Based Learning
+### 1.3.3 Instance-Based Versus Model-Based Learning
 
 One more way to categorize Machine Learning systems is by how they generalize. Most Machine Learning tasks are about making predictions. This means that given a number of training examples, the system needs to be able to generalize to examples it has never seen before. Having a good performance measure on the training data is good, but insufficient; the true goal is to perform well on new instances.
 
 There are two main approaches to generalization: instance-based learning and model-based learning.
 
-### Instance-based learning
+#### Instance-based learning
 
 Possibly the most trivial form of learning is simply to learn by heart. If you were to create a spam filter this way, it would just flag all emails that are identical to emails that have already been flagged by users—not the worst solution, but certainly not the best.
 
@@ -242,17 +266,23 @@ Instead of just flagging emails that are identical to known spam emails, your sp
 
 This is called instance-based learning: the system learns the examples by heart, then generalizes to new cases by comparing them to the learned examples (or a subset of them), using a similarity measure. For example, in Figure 1-15 the new instance would be classified as a triangle because the majority of the most similar instances belong to that class.
 
+![](./res/2020015.png)
+
 Figure 1-15. Instance-based learning
 
-Model-based learning
+#### Model-based learning
 
 Another way to generalize from a set of examples is to build a model of these examples, then use that model to make predictions. This is called model-based learning (Figure 1-16).
+
+![](./res/2020016.png)
 
 Figure 1-16. Model-based learning
 
 For example, suppose you want to know if money makes people happy, so you download the Better Life Index data from the OECD’s website as well as stats about GDP per capita from the IMF’s website. Then you join the tables and sort by GDP per capita. Table 1-1 shows an excerpt of what you get.
 
 Let’s plot the data for a few random countries (Figure 1-17).
+
+![](./res/2020017.png)
 
 Figure 1-17. Do you see a trend here?
 
@@ -262,6 +292,8 @@ Equation 1-1. A simple linear model life_satisfaction = θ 0 + θ 1 × GDP_per_c
 
 This model has two model parameters, θ 0 and θ1 . 5 By tweaking these parameters, you can make your model represent any linear function, as shown in Figure 1-18.
 
+![](./res/2020018.png)
+
 Figure 1-18. A few possible linear models
 
 Before you can use your model, you need to define the parameter values θ 0 and θ1 . How can you know which values will make your model perform best? To answer this question, you need to specify a performance measure. You can either define a utility function (or fitness function) that measures how good your model is, or you can define a cost function that measures how bad it is. For linear regression problems, people typically use a cost function that measures the distance between the linear model’s predictions and the training examples; the objective is to minimize this distance.
@@ -270,7 +302,9 @@ This is where the Linear Regression algorithm comes in: you feed it your trainin
 
 Now the model fits the training data as closely as possible (for a linear model), as you can see in Figure 1-19.
 
-You are finally ready to run the model to make predictions. For example, say you want to know how happy Cypriots are, and the OECD data does not have the answer. Fortunately, you can use your model to make a good prediction: you look up Cyprus’s GDP per capita, find $22,587, and then apply your model and find that life satisfaction is likely to be somewhere around 4.85 + 22,587 × 4.91 × 10 -5 = 5.96.
+![](./res/2020019.png)
+
+You are finally ready to run the model to make predictions. For example, say you want to know how happy Cypriots are, and the OECD data does not have the answer. Fortunately, you can use your model to make a good prediction: you look up Cyprus’s GDP per capita, find `$22,587`, and then apply your model and find that life satisfaction is likely to be somewhere around 4.85 + 22,587 × 4.91 × 10 -5 = 5.96.
 
 To whet your appetite, Example 1-1 shows the Python code that loads the data, prepares it, 6 creates a scatterplot for visualization, and then trains a linear model and makes a prediction.7 
 
@@ -340,6 +374,8 @@ The Unreasonable Effectiveness of Data
 
 In a famous paper published in 2001, Microsoft researchers Michele Banko and Eric Brill showed that very different Machine Learning algorithms, including fairly simple ones, performed almost identically well on a complex problem of natural language disambiguation 8 once they were given enough data (as you can see in Figure 1-20).
 
+![](./res/2020020.png)
+
 Figure 1-20. The importance of data versus algorithms9 
 
 As the authors put it: “these results suggest that we may want to reconsider the tradeoff between spending time and money on algorithm development versus spending it on corpus development.”
@@ -352,7 +388,11 @@ In order to generalize well, it is crucial that your training data be representa
 
 For example, the set of countries we used earlier for training the linear model was not perfectly representative; a few countries were missing. Figure 1-21 shows what the data looks like when you add the missing countries.
 
-Figure 1-21. A more representative training sample If you train a linear model on this data, you get the solid line, while the old model is represented by the dotted line. As you can see, not only does adding a few missing countries significantly alter the model, but it makes it clear that such a simple linear model is probably never going to work well. It seems that very rich countries are not happier than moderately rich countries (in fact they seem unhappier), and conversely some poor countries seem happier than many rich countries.
+![](./res/2020021.png)
+
+Figure 1-21. A more representative training sample 
+
+If you train a linear model on this data, you get the solid line, while the old model is represented by the dotted line. As you can see, not only does adding a few missing countries significantly alter the model, but it makes it clear that such a simple linear model is probably never going to work well. It seems that very rich countries are not happier than moderately rich countries (in fact they seem unhappier), and conversely some poor countries seem happier than many rich countries.
 
 By using a nonrepresentative training set, we trained a model that is unlikely to make accurate predictions, especially for very poor and very rich countries.
 
@@ -394,7 +434,7 @@ Now that we have looked at many examples of bad data, let’s look at a couple o
 
 Say you are visiting a foreign country and the taxi driver rips you off. You might be tempted to say that all taxi drivers in that country are thieves. Overgeneralizing is something that we humans do all too often, and unfortunately machines can fall into the same trap if we are not careful. In Machine Learning this is called overfitting: it means that the model performs well on the training data, but it does not generalize well.
 
-
+![](./res/2020022.png)
 
 Figure 1-22 shows an example of a high-degree polynomial life satisfaction model that strongly overfits the training data. Even though it performs much better on the training data than the simple linear model, would you really trust its predictions?
 
@@ -413,6 +453,8 @@ Overfitting happens when the model is too complex relative to the amount and noi
 Constraining a model to make it simpler and reduce the risk of overfitting is called regularization. For example, the linear model we defined earlier has two parameters, θ 0 and θ1 . This gives the learning algorithm two degrees of freedom to adapt the model to the training data: it can tweak both the height (θ0 ) and the slope (θ1 ) of the line. If we forced θ 1 = 0, the algorithm would have only one degree of freedom and would have a much harder time fitting the data properly: all it could do is move the line up or down to get as close as possible to the training instances, so it would end up around the mean. A very simple model indeed! If we allow the algorithm to modify θ1  but we force it to keep it small, then the learning algorithm will effectively have somewhere in between one and two degrees of freedom. It will produce a simpler model than with two degrees of freedom, but more complex than with just one. You want to find the right balance between fitting the training data perfectly and keeping the model simple enough to ensure that it will generalize well.
 
 Figure 1-23 shows three models: the dotted line represents the original model that was trained with a few countries missing, the dashed line is our second model trained with all countries, and the solid line is a linear model trained with the same data as the first model but with a regularization constraint. You can see that regularization forced the model to have a smaller slope, which fits a bit less the training data that the model was trained on, but actually allows it to generalize better to new examples.
+
+![](./res/2020023.png)
 
 Figure 1-23. Regularization reduces the risk of overfitting
 
