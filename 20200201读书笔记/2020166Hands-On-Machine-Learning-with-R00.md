@@ -26,7 +26,13 @@ For example, your spam filter is a Machine Learning program that can learn to fl
 
 2『机器学习的定义，做一张术语卡片。』——已完成
 
-### 0202. 术语卡——
+### 0202. 术语卡—— No Free Lunch Theorem
+
+A model is a simplified version of the observations. The simplifications are meant to discard the superfluous details that are unlikely to generalize to new instances. However, to decide what data to discard and what data to keep, you must make assumptions. For example, a linear model makes the assumption that the data is fundamentally linear and that the distance between the instances and the straight line is just noise, which can safely be ignored.
+
+In a famous 1996 paper, [11] David Wolpert demonstrated that if you make absolutely no assumption about the data, then there is no reason to prefer one model over any other. This is called the No Free Lunch (NFL) theorem. For some datasets the best model is a linear model, while for other datasets it is a neural network. There is no model that is a priori guaranteed to work better (hence the name of the theorem). The only way to know for sure which model is best is to evaluate them all. Since this is not possible, in practice you make some reasonable assumptions about the data and you evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization, and for a complex problem you may evaluate various neural networks.
+
+2『 No Free Lunch Theorem，做一张术语卡片。』——已完成
 
 ### 0203. 术语卡——
 

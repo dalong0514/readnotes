@@ -38,11 +38,11 @@ If you just download a copy of Wikipedia, your computer has a lot more data, but
 
 Consider how you would write a spam filter using traditional programming techniques (Figure 1-1):
 
-1. First you would look at what spam typically looks like. You might notice that some words or phrases (such as “4U,” “credit card,” “free,” and “amazing”) tend to come up a lot in the subject. Perhaps you would also notice a few other patterns in the sender’s name, the email’s body, and so on.
+1 First you would look at what spam typically looks like. You might notice that some words or phrases (such as “4U,” “credit card,” “free,” and “amazing”) tend to come up a lot in the subject. Perhaps you would also notice a few other patterns in the sender’s name, the email’s body, and so on.
 
-2. You would write a detection algorithm for each of the patterns that you noticed, and your program would flag emails as spam if a number of these patterns are detected.
+2 You would write a detection algorithm for each of the patterns that you noticed, and your program would flag emails as spam if a number of these patterns are detected.
 
-3. You would test your program, and repeat steps 1 and 2 until it is good enough.
+3 You would test your program, and repeat steps 1 and 2 until it is good enough.
 
 ![](./res/2020001.png)
 
@@ -112,7 +112,7 @@ Figure 1-5. A labeled training set for supervised learning (e.g., spam classific
 
 A typical supervised learning task is classification. The spam filter is a good example of this: it is trained with many example emails along with their class (spam or ham), and it must learn how to classify new emails.
 
-Another typical task is to predict a target numeric value, such as the price of a car, given a set of features (mileage, age, brand, etc.) called predictors. This sort of task is called regression (Figure 1-6). 1 To train the system, you need to give it many examples of cars, including both their predictors and their labels (i.e., their prices).
+Another typical task is to predict a target numeric value, such as the price of a car, given a set of features (mileage, age, brand, etc.) called predictors. This sort of task is called regression (Figure 1-6). [1] To train the system, you need to give it many examples of cars, including both their predictors and their labels (i.e., their prices).
 
 In Machine Learning an attribute is a data type (e.g., “Mileage”), while a feature has several meanings depending on the context, but generally means an attribute plus its value (e.g., “Mileage = 15,000”). Many people use the words attribute and feature interchangeably, though.
 
@@ -134,7 +134,7 @@ Here are some of the most important supervised learning algorithms (covered in t
 
 • Decision Trees and Random Forests
 
-• Neural networks 2 
+• Neural networks [2] 
 
 1 Fun fact: this odd-sounding name is a statistics term introduced by Francis Galton while he was studying the fact that the children of tall people tend to be shorter than their parents. Since children were shorter, he called this regression to the mean. This name was then applied to the methods he used to analyze correlations between variables.
 
@@ -214,7 +214,7 @@ Finally, another common unsupervised task is association rule learning, in which
 
 Some algorithms can deal with partially labeled training data, usually a lot of unlabeled data and a little bit of labeled data. This is called semisupervised learning (Figure 1-11).
 
-Some photo-hosting services, such as Google Photos, are good examples of this. Once you upload all your family photos to the service, it automatically recognizes that the same person A shows up in photos 1, 5, and 11, while another person B shows up in photos 2, 5, and 7. This is the unsupervised part of the algorithm (clustering). Now all the system needs is for you to tell it who these people are. Just one label per person, 4  and it is able to name everyone in every photo, which is useful for searching photos.
+Some photo-hosting services, such as Google Photos, are good examples of this. Once you upload all your family photos to the service, it automatically recognizes that the same person A shows up in photos 1, 5, and 11, while another person B shows up in photos 2, 5, and 7. This is the unsupervised part of the algorithm (clustering). Now all the system needs is for you to tell it who these people are. Just one label per person, [4]  and it is able to name everyone in every photo, which is useful for searching photos.
 
 ![](./res/2020011.png)
 
@@ -322,7 +322,7 @@ Equation 1-1. A simple linear model
 life_satisfaction = θ0 + θ1 × GDP_per_capita
 ```
 
-This model has two model parameters, θ0 and θ1. 5 By tweaking these parameters, you can make your model represent any linear function, as shown in Figure 1-18.
+This model has two model parameters, θ0 and θ1. [5] By tweaking these parameters, you can make your model represent any linear function, as shown in Figure 1-18.
 
 ![](./res/2020019.png)
 
@@ -338,7 +338,7 @@ This is where the Linear Regression algorithm comes in: you feed it your trainin
 
 You are finally ready to run the model to make predictions. For example, say you want to know how happy Cypriots are, and the OECD data does not have the answer. Fortunately, you can use your model to make a good prediction: you look up Cyprus’s GDP per capita, find `$22,587`, and then apply your model and find that life satisfaction is likely to be somewhere around `4.85 + 22,587 × 4.91 × 10^-5 = 5.96`.
 
-To whet your appetite, Example 1-1 shows the Python code that loads the data, prepares it, 6 creates a scatterplot for visualization, and then trains a linear model and makes a prediction. 7 
+To whet your appetite, Example 1-1 shows the Python code that loads the data, prepares it, [6] creates a scatterplot for visualization, and then trains a linear model and makes a prediction. [7] 
 
 Example 1-1. Training and running a linear model using Scikit-Learn
 
@@ -442,15 +442,21 @@ Machine Learning is not quite there yet; it takes a lot of data for most Machine
 
 #### The Unreasonable Effectiveness of Data
 
-In a famous paper published in 2001, Microsoft researchers Michele Banko and Eric Brill showed that very different Machine Learning algorithms, including fairly simple ones, performed almost identically well on a complex problem of natural language disambiguation 8 once they were given enough data (as you can see in Figure 1-20).
+In a famous paper published in 2001, Microsoft researchers Michele Banko and Eric Brill showed that very different Machine Learning algorithms, including fairly simple ones, performed almost identically well on a complex problem of natural language disambiguation [8] once they were given enough data (as you can see in Figure 1-20).
 
 ![](./res/2020021.png)
 
-Figure 1-20. The importance of data versus algorithms9 
+Figure 1-20. The importance of data versus algorithms [9] 
 
 As the authors put it: “these results suggest that we may want to reconsider the tradeoff between spending time and money on algorithm development versus spending it on corpus development.”
 
-The idea that data matters more than algorithms for complex problems was further popularized by Peter Norvig et al. in a paper titled “The Unreasonable Effectiveness of Data” published in 2009. 10 It should be noted, however, that small- and medium-sized datasets are still very common, and it is not always easy or cheap to get extra training data, so don’t abandon algorithms just yet.
+The idea that data matters more than algorithms for complex problems was further popularized by Peter Norvig et al. in a paper titled “The Unreasonable Effectiveness of Data” published in 2009. [10] It should be noted, however, that small- and medium-sized datasets are still very common, and it is not always easy or cheap to get extra training data, so don’t abandon algorithms just yet.
+
+8 For example, knowing whether to write “to,” “two,” or “too” depending on the context.
+
+9 Figure reproduced with permission from Banko and Brill (2001), “Learning Curves for Confusion Set Disambiguation.”
+
+10 “The Unreasonable Effectiveness of Data,” Peter Norvig et al. (2009).
 
 ### 1.4.2 Nonrepresentative Training Data
 
@@ -514,13 +520,13 @@ Complex models such as deep neural networks can detect subtle patterns in the da
 
 Overfitting happens when the model is too complex relative to the amount and noisiness of the training data. The possible solutions are:
 
-• To simplify the model by selecting one with fewer parameters (e.g., a linear model rather than a high-degree polynomial model), by reducing the number of attributes in the training data or by constraining the model
+• To simplify the model by selecting one with fewer parameters (e.g., a linear model rather than a high-degree polynomial model), by reducing the number of attributes in the training data or by constraining the model.
 
-• To gather more training data
+• To gather more training data.
 
-• To reduce the noise in the training data (e.g., fix data errors and remove outliers)
+• To reduce the noise in the training data (e.g., fix data errors and remove outliers).
 
-Constraining a model to make it simpler and reduce the risk of overfitting is called regularization. For example, the linear model we defined earlier has two parameters, θ 0 and θ1 . This gives the learning algorithm two degrees of freedom to adapt the model to the training data: it can tweak both the height (θ0 ) and the slope (θ1 ) of the line. If we forced θ 1 = 0, the algorithm would have only one degree of freedom and would have a much harder time fitting the data properly: all it could do is move the line up or down to get as close as possible to the training instances, so it would end up around the mean. A very simple model indeed! If we allow the algorithm to modify θ1  but we force it to keep it small, then the learning algorithm will effectively have somewhere in between one and two degrees of freedom. It will produce a simpler model than with two degrees of freedom, but more complex than with just one. You want to find the right balance between fitting the training data perfectly and keeping the model simple enough to ensure that it will generalize well.
+Constraining a model to make it simpler and reduce the risk of overfitting is called regularization. For example, the linear model we defined earlier has two parameters, θ0 and θ1. This gives the learning algorithm two degrees of freedom to adapt the model to the training data: it can tweak both the height (θ0) and the slope (θ1) of the line. If we forced θ1 = 0, the algorithm would have only one degree of freedom and would have a much harder time fitting the data properly: all it could do is move the line up or down to get as close as possible to the training instances, so it would end up around the mean. A very simple model indeed! If we allow the algorithm to modify θ1  but we force it to keep it small, then the learning algorithm will effectively have somewhere in between one and two degrees of freedom. It will produce a simpler model than with two degrees of freedom, but more complex than with just one. You want to find the right balance between fitting the training data perfectly and keeping the model simple enough to ensure that it will generalize well.
 
 Figure 1-23 shows three models: the dotted line represents the original model that was trained with a few countries missing, the dashed line is our second model trained with all countries, and the solid line is a linear model trained with the same data as the first model but with a regularization constraint. You can see that regularization forced the model to have a smaller slope, which fits a bit less the training data that the model was trained on, but actually allows it to generalize better to new examples.
 
@@ -560,7 +566,7 @@ There’s just one last important topic to cover: once you have trained a model,
 
 The only way to know how well a model will generalize to new cases is to actually try it out on new cases. One way to do that is to put your model in production and monitor how well it performs. This works well, but if your model is horribly bad, your users will complain—not the best idea.
 
-A better option is to split your data into two sets: the training set and the test set. As these names imply, you train your model using the training set, and you test it using the test set. The error rate on new cases is called the generalization error (or out-ofsample error), and by evaluating your model on the test set, you get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before.
+A better option is to split your data into two sets: the training set and the test set. As these names imply, you train your model using the training set, and you test it using the test set. The error rate on new cases is called the generalization error (or out-of-sample error), and by evaluating your model on the test set, you get an estimate of this error. This value tells you how well your model will perform on instances it has never seen before.
 
 If the training error is low (i.e., your model makes few mistakes on the training set) but the generalization error is high, it means that your model is overfitting the training data.
 
@@ -582,52 +588,60 @@ This solution usually works quite well. However, if the validation set is too sm
 
 ### 1.5.2 Data Mismatch
 
-In some cases, it is easy to get a large amount of data for training, but it is not perfectly representative of the data that will be used in production. For example, suppose you want to create a mobile app to take pictures of flowers and automatically determine their species. You can easily download millions of pictures of flowers on the web, but they won’t be perfectly representative of the pictures that will actually be taken using the app on a mobile device. Perhaps you only have 10,000 representative pictures (i.e., actually taken with the app). In this case, the most important rule to remember is that the validation set and the test must be as representative as possible of the data you expect to use in production, so they should be composed exclusively of representative pictures: you can shuffle them and put half in the validation set, and half in the test set (making sure that no duplicates or near-duplicates end up in both sets). After training your model on the web pictures, if you observe that the performance of your model on the validation set is disappointing, you will not know whether this is because your model has overfit the training set, or whether this is just due to the mismatch between the web pictures and the mobile app pictures. One solution is to hold out part of the training pictures (from the web) in yet another set that Andrew Ng calls the train-dev set. After the model is trained (on the training set, not on the train-dev set), you can evaluate it on the train-dev set: if it performs well, then the model is not overfitting the training set, so if performs poorly on the validation set, the problem must come from the data mismatch. You can try to tackle this problem by preprocessing the web images to make them look more like the pictures that will be taken by the mobile app, and then retraining the model. Conversely, if the model performs poorly on the train-dev set, then the model must have overfit the training set, so you should try to simplify or regularize the model, get more training data and clean up the training data, as discussed earlier.
+In some cases, it is easy to get a large amount of data for training, but it is not perfectly representative of the data that will be used in production. For example, suppose you want to create a mobile app to take pictures of flowers and automatically determine their species. You can easily download millions of pictures of flowers on the web, but they won’t be perfectly representative of the pictures that will actually be taken using the app on a mobile device. Perhaps you only have 10,000 representative pictures (i.e., actually taken with the app). In this case, the most important rule to remember is that the validation set and the test must be as representative as possible of the data you expect to use in production, so they should be composed exclusively of representative pictures: you can shuffle them and put half in the validation set, and half in the test set (making sure that no duplicates or near-duplicates end up in both sets). After training your model on the web pictures, if you observe that the performance of your model on the validation set is disappointing, you will not know whether this is because your model has overfit the training set, or whether this is just due to the mismatch between the web pictures and the mobile app pictures. 
 
-No Free Lunch Theorem
+One solution is to hold out part of the training pictures (from the web) in yet another set that Andrew Ng calls the train-dev set. After the model is trained (on the training set, not on the train-dev set), you can evaluate it on the train-dev set: if it performs well, then the model is not overfitting the training set, so if performs poorly on the validation set, the problem must come from the data mismatch. You can try to tackle this problem by preprocessing the web images to make them look more like the pictures that will be taken by the mobile app, and then retraining the model. 
+
+Conversely, if the model performs poorly on the train-dev set, then the model must have overfit the training set, so you should try to simplify or regularize the model, get more training data and clean up the training data, as discussed earlier.
+
+1『这里识别花的种类不就是「形色」app 嘛，而且这里又看到了吴恩达教授。（2020-11-23）』
+
+#### No Free Lunch Theorem
 
 A model is a simplified version of the observations. The simplifications are meant to discard the superfluous details that are unlikely to generalize to new instances. However, to decide what data to discard and what data to keep, you must make assumptions. For example, a linear model makes the assumption that the data is fundamentally linear and that the distance between the instances and the straight line is just noise, which can safely be ignored.
 
-In a famous 1996 paper, 11 David Wolpert demonstrated that if you make absolutely no assumption about the data, then there is no reason to prefer one model over any other. This is called the No Free Lunch (NFL) theorem. For some datasets the best model is a linear model, while for other datasets it is a neural network. There is no model that is a priori guaranteed to work better (hence the name of the theorem). The only way to know for sure which model is best is to evaluate them all. Since this is not possible, in practice you make some reasonable assumptions about the data and you evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization, and for a complex problem you may evaluate various neural networks.
+In a famous 1996 paper, [11] David Wolpert demonstrated that if you make absolutely no assumption about the data, then there is no reason to prefer one model over any other. This is called the No Free Lunch (NFL) theorem. For some datasets the best model is a linear model, while for other datasets it is a neural network. There is no model that is a priori guaranteed to work better (hence the name of the theorem). The only way to know for sure which model is best is to evaluate them all. Since this is not possible, in practice you make some reasonable assumptions about the data and you evaluate only a few reasonable models. For example, for simple tasks you may evaluate linear models with various levels of regularization, and for a complex problem you may evaluate various neural networks.
+
+2『 No Free Lunch Theorem，做一张术语卡片。』——已完成
 
 ## Exercises
 
 In this chapter we have covered some of the most important concepts in Machine Learning. In the next chapters we will dive deeper and write more code, but before we do, make sure you know how to answer the following questions:
 
-1. How would you define Machine Learning?
+1 How would you define Machine Learning?
 
-2. Can you name four types of problems where it shines?
+2 Can you name four types of problems where it shines?
 
-3. What is a labeled training set?
+3 What is a labeled training set?
 
-4. What are the two most common supervised tasks?
+4 What are the two most common supervised tasks?
 
-5. Can you name four common unsupervised tasks?
+5 Can you name four common unsupervised tasks?
 
-6. What type of Machine Learning algorithm would you use to allow a robot to walk in various unknown terrains?
+6 What type of Machine Learning algorithm would you use to allow a robot to walk in various unknown terrains?
 
-7. What type of algorithm would you use to segment your customers into multiple groups?
+7 What type of algorithm would you use to segment your customers into multiple groups?
 
-8. Would you frame the problem of spam detection as a supervised learning problem or an unsupervised learning problem?
+8 Would you frame the problem of spam detection as a supervised learning problem or an unsupervised learning problem?
 
-9. What is an online learning system?
+9 What is an online learning system?
 
-10. What is out-of-core learning?
+10 What is out-of-core learning?
 
-11. What type of learning algorithm relies on a similarity measure to make predictions?
+11 What type of learning algorithm relies on a similarity measure to make predictions?
 
-12. What is the difference between a model parameter and a learning algorithm’s hyperparameter?
+12 What is the difference between a model parameter and a learning algorithm’s hyperparameter?
 
-13. What do model-based learning algorithms search for? What is the most common strategy they use to succeed? How do they make predictions?
+13 What do model-based learning algorithms search for? What is the most common strategy they use to succeed? How do they make predictions?
 
-14. Can you name four of the main challenges in Machine Learning?
+14 Can you name four of the main challenges in Machine Learning?
 
-15. If your model performs great on the training data but generalizes poorly to new instances, what is happening? Can you name three possible solutions?
+15 If your model performs great on the training data but generalizes poorly to new instances, what is happening? Can you name three possible solutions?
 
-16. What is a test set and why would you want to use it?
+16 What is a test set and why would you want to use it?
 
-17. What is the purpose of a validation set?
+17 What is the purpose of a validation set?
 
-18. What can go wrong if you tune hyperparameters using the test set?
+18 What can go wrong if you tune hyperparameters using the test set?
 
-19. What is repeated cross-validation and why would you prefer it to using a single validation set?
+19 What is repeated cross-validation and why would you prefer it to using a single validation set?
