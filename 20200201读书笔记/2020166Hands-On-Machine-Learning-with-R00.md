@@ -4,9 +4,85 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡——数据清洗之填补缺失数据
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+Most Machine Learning algorithms cannot work with missing features, so let’s create a few functions to take care of them. You noticed earlier that the `total_bedrooms` attribute has some missing values, so let’s fix this. You have three options:
+
+• Get rid of the corresponding districts.
+
+• Get rid of the whole attribute.
+
+• Set the values to some value (zero, the mean, the median, etc.).
+
+You can accomplish these easily using DataFrame’s `dropna()`, `drop()`, and `fillna()` methods:
+
+```py
+# option 1
+housing.dropna(subset=["total_bedrooms"])
+# option 2
+housing.drop("total_bedrooms", axis=1)
+# option 3
+median = housing["total_bedrooms"].median() 
+housing["total_bedrooms"].fillna(median, inplace=True)
+```
+
+If you choose option 3, you should compute the median value on the training set, and use it to fill the missing values in the training set, but also don’t forget to save the median value that you have computed. You will need it later to replace missing values in the test set when you want to evaluate your system, and also once the system goes live to replace missing values in new data.
+
+Scikit-Learn provides a handy class to take care of missing values: SimpleImputer. Here is how to use it. First, you need to create a SimpleImputer instance, specifying that you want to replace each attribute’s missing values with the median of that attribute:
+
+```py
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(strategy="median")
+```
+
+Since the median can only be computed on numerical attributes, we need to create a copy of the data without the text attribute `ocean_proximity`:
+
+```py
+housing_num = housing.drop("ocean_proximity", axis=1)
+```
+
+Now you can fit the imputer instance to the training data using the `fit()` method:
+
+```py
+imputer.fit(housing_num)
+```
+
+The imputer has simply computed the median of each attribute and stored the result in its `statistics_` instance variable. Only the `total_bedrooms` attribute had missing values, but we cannot be sure that there won’t be any missing values in new data after the system goes live, so it is safer to apply the imputer to all the numerical attributes:
+
+```py
+>>> imputer.statistics_ 
+array([ -118.51 , 34.26 , 29. , 2119.5 , 433. , 1164. , 408. , 3.5409])
+>>> housing_num.median().values 
+array([ -118.51 , 34.26 , 29. , 2119.5 , 433. , 1164. , 408. , 3.5409])
+```
+
+Now you can use this “trained” imputer to transform the training set by replacing missing values by the learned medians:
+
+```py
+X = imputer.transform(housing_num)
+```
+
+The result is a plain NumPy array containing the transformed features. If you want to put it back into a Pandas DataFrame, it’s simple:
+
+```py
+housing_tr = pd.DataFrame(X, columns=housing_num.columns)
+```
+
+2『上面整套处理缺失数据的方法，完全可以套用到其他地方，做一张主题卡片。』——已完成
+
+### 0102. 主题卡——数据清洗之归一化标准化
+
+One of the most important transformations you need to apply to your data is feature scaling. With few exceptions, Machine Learning algorithms don’t perform well when the input numerical attributes have very different scales. This is the case for the housing data: the total number of rooms ranges from about 6 to 39,320, while the median incomes only range from 0 to 15. Note that scaling the target values is generally not required.
+
+There are two common ways to get all attributes to have the same scale: min-max scaling and standardization.
+
+Min-max scaling (many people call this normalization) is quite simple: values are shifted and rescaled so that they end up ranging from 0 to 1. We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called MinMaxScaler for this. It has a `feature_range` hyperparameter that lets you change the range if you don’t want 0–1 for some reason.
+
+Standardization is quite different: first it subtracts the mean value (so standardized values always have a zero mean), and then it divides by the standard deviation so that the resulting distribution has unit variance. Unlike min-max scaling, standardization does not bound values to a specific range, which may be a problem for some algorithms (e.g., neural networks often expect an input value ranging from 0 to 1). However, standardization is much less affected by outliers. For example, suppose a district had a median income equal to 100 (by mistake). Min-max scaling would then crush all the other values from 0–15 down to 0–0.15, whereas standardization would not be much affected. Scikit-Learn provides a transformer called StandardScaler for standardization.
+
+As with all the transformations, it is important to fit the scalers to the training data only, not to the full dataset (including the test set). Only then can you use them to transform the training set and the test set (and new data).
+
+2『数据清洗之归一化标准化，做一张主题卡片。』——已完成
 
 ### 0201. 术语卡——Machine Learning
 

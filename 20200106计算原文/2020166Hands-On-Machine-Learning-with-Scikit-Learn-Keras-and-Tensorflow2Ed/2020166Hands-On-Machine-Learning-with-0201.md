@@ -460,14 +460,14 @@ def split_train_test_by_id(data, test_ratio, id_column):
 
 Unfortunately, the housing dataset does not have an identifier column. The simplest solution is to use the row index as the ID:
 
-```
+```py
 housing_with_id = housing.reset_index() # adds an `index` column 
 train_set, test_set = split_train_test_by_id(housing_with_id, 0.2, "index")
 ```
 
 If you use the row index as a unique identifier, you need to make sure that new data gets appended to the end of the dataset, and no row ever gets deleted. If this is not possible, then you can try to use the most stable features to build a unique identifier. For example, a district’s latitude and longitude are guaranteed to be stable for a few million years, so you could combine them into an ID like so: [15] 
 
-```
+```py
 housing_with_id["id"] = housing["longitude"] * 1000 + housing["latitude"]
 train_set, test_set = split_train_test_by_id(housing_with_id, 0.2, "id")
 ```
@@ -481,21 +481,14 @@ train_set, test_set = train_test_split(housing, test_size=0.2, random_state=42)
 
 So far we have considered purely random sampling methods. This is generally fine if your dataset is large enough (especially relative to the number of attributes), but if it is not, you run the risk of introducing a significant sampling bias. When a survey company decides to call 1,000 people to ask them a few questions, they don’t just pick 1,000 people randomly in a phone book. They try to ensure that these 1,000 people are representative of the whole population. For example, the US population is composed of 51.3% female and 48.7% male, so a well-conducted survey in the US would try to maintain this ratio in the sample: 513 female and 487 male. This is called stratified sampling: the population is divided into homogeneous subgroups called strata, and the right number of instances is sampled from each stratum to guarantee that the test set is representative of the overall population. If they used purely random sampling, there would be about 12% chance of sampling a skewed test set with either less than 49% female or more than 54% female. Either way, the survey results would be significantly biased.
 
+Suppose you chatted with experts who told you that the median income is a very important attribute to predict median housing prices. You may want to ensure that the test set is representative of the various categories of incomes in the whole dataset. Since the median income is a continuous numerical attribute, you first need to create an income category attribute. Let’s look at the median income histogram more closely (back in Figure 2-8): 
 
-
-
-
-
-
-
-Suppose you chatted with experts who told you that the median income is a very important attribute to predict median housing prices. You may want to ensure that the test set is representative of the various categories of incomes in the whole dataset. Since the median income is a continuous numerical attribute, you first need to create an income category attribute. Let’s look at the median income histogram more closely (back in Figure 2-8): most median income values are clustered around 1.5 to 6 (i.e., `$15,000`–`$60,000`), but some median incomes go far beyond 6. It is important to have a sufficient number of instances in your dataset for each stratum, or else the estimate of the stratum’s importance may be biased. This means that you should not have too many strata, and each stratum should be large enough. The following code uses the pd.cut() function to create an income category attribute with 5 categories (labeled from 1 to 5): category 1 ranges from 0 to 1.5 (i.e., less than `$15,000`), category 2 from 1.5 to 3, and so on:
+most median income values are clustered around 1.5 to 6 (i.e., `$15,000`–`$60,000`), but some median incomes go far beyond 6. It is important to have a sufficient number of instances in your dataset for each stratum, or else the estimate of the stratum’s importance may be biased. This means that you should not have too many strata, and each stratum should be large enough. The following code uses the `pd.cut()` function to create an income category attribute with 5 categories (labeled from 1 to 5): category 1 ranges from 0 to 1.5 (i.e., less than `$15,000`), category 2 from 1.5 to 3, and so on:
 
 ```py
-housing["income_cat"] = pd.cut(housing["median_income"],
-
-bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
-
-labels=[1, 2, 3, 4, 5])
+housing["income_cat"] = pd.cut(housing["median_income"], 
+                                bins=[0., 1.5, 3.0, 4.5, 6., np.inf], 
+                                labels=[1, 2, 3, 4, 5])
 ```
 
 These income categories are represented in Figure 2-9:
@@ -503,6 +496,8 @@ These income categories are represented in Figure 2-9:
 ```py
 housing["income_cat"].hist()
 ```
+
+![](./res/2020033.png)
 
 Figure 2-9. Histogram of income categories
 
@@ -512,30 +507,34 @@ Now you are ready to do stratified sampling based on the income category. For th
 from sklearn.model_selection import StratifiedShuffleSplit
 
 split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
-
 for train_index, test_index in split.split(housing, housing["income_cat"]):
-
-strat_train_set = housing.loc[train_index]
-
-strat_test_set = housing.loc[test_index]
+    strat_train_set = housing.loc[train_index]
+    strat_test_set = housing.loc[test_index]
 ```
 
 Let’s see if this worked as expected. You can start by looking at the income category proportions in the test set:
 
 ```py
->>> strat_test_set["income_cat"].value_counts() / len(strat_test_set) 3 0.350533 2 0.318798 4 0.176357 5 0.114583 1 0.039729 Name: income_cat, dtype: float64
+>>> strat_test_set["income_cat"].value_counts() / len(strat_test_set) 
+3 0.350533 
+2 0.318798 
+4 0.176357 
+5 0.114583 
+1 0.039729 
+Name: income_cat, dtype: float64
 ```
 
 With similar code you can measure the income category proportions in the full dataset. Figure 2-10 compares the income category proportions in the overall dataset, in the test set generated with stratified sampling, and in a test set generated using purely random sampling. As you can see, the test set generated using stratified sampling has income category proportions almost identical to those in the full dataset, whereas the test set generated using purely random sampling is quite skewed.
 
+![](./res/2020034.png)
+
 Figure 2-10. Sampling bias comparison of stratified versus purely random sampling
 
-Now you should remove the income_cat attribute so the data is back to its original state:
+Now you should remove the `income_cat` attribute so the data is back to its original state:
 
 ```py
 for set_ in (strat_train_set, strat_test_set):
-
-set_.drop("income_cat", axis=1, inplace=True)
+    set_.drop("income_cat", axis=1, inplace=True)
 ```
 
 We spent quite a bit of time on test set generation for a good reason: this is an often neglected but critical part of a Machine Learning project. Moreover, many of these ideas will be useful later when we discuss cross-validation. Now it’s time to move on to the next stage: exploring the data.
@@ -546,47 +545,50 @@ We spent quite a bit of time on test set generation for a good reason: this is a
 
 15 The location information is actually quite coarse, and as a result many districts will have the exact same ID, so they will end up in the same set (test or train). This introduces some unfortunate sampling bias.
 
-## Discover and Visualize the Data to Gain Insights
+## 2.4 Discover and Visualize the Data to Gain Insights
 
 So far you have only taken a quick glance at the data to get a general understanding of the kind of data you are manipulating. Now the goal is to go a little bit more in depth.
 
-First, make sure you have put the test set aside and you are only exploring the training set. Also, if the training set is very large, you may want to sample an exploration
+First, make sure you have put the test set aside and you are only exploring the training set. Also, if the training set is very large, you may want to sample an exploration set, to make manipulations easy and fast. In our case, the set is quite small so you can just work directly on the full set. Let’s create a copy so you can play with it without harming the training set:
 
-set, to make manipulations easy and fast. In our case, the set is quite small so you can just work directly on the full set. Let’s create a copy so you can play with it without harming the training set:
-
+```py
 housing = strat_train_set.copy()
+```
 
-Visualizing Geographical Data
+### 2.4.1 Visualizing Geographical Data
 
 Since there is geographical information (latitude and longitude), it is a good idea to create a scatterplot of all districts to visualize the data (Figure 2-11):
 
+```py
 housing.plot(kind="scatter", x="longitude", y="latitude")
+```
+
+![](./res/2020035.png)
 
 Figure 2-11. A geographical scatterplot of the data
 
 This looks like California all right, but other than that it is hard to see any particular pattern. Setting the alpha option to 0.1 makes it much easier to visualize the places where there is a high density of data points (Figure 2-12):
 
+```py
 housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.1)
+```
 
-Discover and Visualize the Data to Gain Insights
+![](./res/2020036.png)
 
 Figure 2-12. A better visualization highlighting high-density areas
 
-Now that’s much better: you can clearly see the high-density areas, namely the Bay Area and around Los Angeles and San Diego, plus a long line of fairly high density in the Central Valley, in particular around Sacramento and Fresno.
+Now that’s much better: you can clearly see the high-density areas, namely the Bay Area and around Los Angeles and San Diego, plus a long line of fairly high density in the Central Valley, in particular around Sacramento and Fresno. More generally, our brains are very good at spotting patterns on pictures, but you may need to play around with visualization parameters to make the patterns stand out.
 
-More generally, our brains are very good at spotting patterns on pictures, but you may need to play around with visualization parameters to make the patterns stand out.
+Now let’s look at the housing prices (Figure 2-13). The radius of each circle represents the district’s population (option s), and the color represents the price (option c). We will use a predefined color map (option cmap) called jet, which ranges from blue (low values) to red (high prices): [16] 
 
-Now let’s look at the housing prices (Figure 2-13). The radius of each circle represents the district’s population (option s), and the color represents the price (option c). We will use a predefined color map (option cmap) called jet, which ranges from blue (low values) to red (high prices):16 
+```py
+housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4, 
+            s=housing["population"]/100, label="population", figsize=(10,7), 
+            c="median_house_value", cmap=plt.get_cmap("jet"), colorbar=True,) 
+plt.legend()
+```
 
-housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4,
-
-s=housing["population"]/100, label="population", figsize=(10,7),
-
-c="median_house_value", cmap=plt.get_cmap("jet"), colorbar=True,
-
-) plt.legend()
-
-16 If you are reading this in grayscale, grab a red pen and scribble over most of the coastline from the Bay Area down to San Diego (as you might expect). You can add a patch of yellow around Sacramento as well.
+![](./res/2020037.png)
 
 Figure 2-13. California housing prices
 
@@ -594,35 +596,52 @@ Discover and Visualize the Data to Gain Insights
 
 This image tells you that the housing prices are very much related to the location (e.g., close to the ocean) and to the population density, as you probably knew already. It will probably be useful to use a clustering algorithm to detect the main clusters, and add new features that measure the proximity to the cluster centers. The ocean proximity attribute may be useful as well, although in Northern California the housing prices in coastal districts are not too high, so it is not a simple rule.
 
-Looking for Correlations
+16 If you are reading this in grayscale, grab a red pen and scribble over most of the coastline from the Bay Area down to San Diego (as you might expect). You can add a patch of yellow around Sacramento as well.
 
-Since the dataset is not too large, you can easily compute the standard correlation coefficient (also called Pearson’s r) between every pair of attributes using the corr() method:
+### 2.4.2 Looking for Correlations
 
+Since the dataset is not too large, you can easily compute the standard correlation coefficient (also called Pearson’s r) between every pair of attributes using the `corr()` method:
+
+```py
 corr_matrix = housing.corr()
+```
 
 Now let’s look at how much each attribute correlates with the median house value:
 
+```py
 >>> corr_matrix["median_house_value"].sort_values(ascending=False)
+median_house_value 1.000000 
+median_income 0.687170 
+total_rooms 0.135231 
+housing_median_age 0.114220 
+households 0.064702 
+total_bedrooms 0.047865 
+population -0.026699 
+longitude -0.047279 
+latitude -0.142826 
+Name: median_house_value, dtype: float64
+```
 
-median_house_value 1.000000 median_income 0.687170 total_rooms 0.135231 housing_median_age 0.114220 households 0.064702 total_bedrooms 0.047865 population -0.026699 longitude -0.047279 latitude -0.142826 Name: median_house_value, dtype: float64
+1『 `corr_matrix` 这个函数好强大，可以以一个属性为基准点，直接算出其他属性与其的相关性。（2020-11-24）』
 
 The correlation coefficient ranges from –1 to 1. When it is close to 1, it means that there is a strong positive correlation; for example, the median house value tends to go up when the median income goes up. When the coefficient is close to –1, it means that there is a strong negative correlation; you can see a small negative correlation between the latitude and the median house value (i.e., prices have a slight tendency to go down when you go north). Finally, coefficients close to zero mean that there is no linear correlation. Figure 2-14 shows various plots along with the correlation coefficient between their horizontal and vertical axes.
+
+![](./res/2020038.png)
 
 Figure 2-14. Standard correlation coefficient of various datasets (source: Wikipedia; public domain image)
 
 The correlation coefficient only measures linear correlations (“if x goes up, then y generally goes up/down”). It may completely miss out on nonlinear relationships (e.g., “if x is close to zero then y generally goes up”). Note how all the plots of the bottom row have a correlation coefficient equal to zero despite the fact that their axes are clearly not independent: these are examples of nonlinear relationships. Also, the second row shows examples where the correlation coefficient is equal to 1 or –1; notice that this has nothing to do with the slope. For example, your height in inches has a correlation coefficient of 1 with your height in feet or in nanometers.
 
-Another way to check for correlation between attributes is to use Pandas’ scatter_matrix function, which plots every numerical attribute against every other numerical attribute. Since there are now 11 numerical attributes, you would get 11 2 = 121 plots, which would not fit on a page, so let’s just focus on a few promising attributes that seem most correlated with the median housing value (Figure 2-15):
+Another way to check for correlation between attributes is to use Pandas’ `scatter_matrix` function, which plots every numerical attribute against every other numerical attribute. Since there are now 11 numerical attributes, you would get 11^2 = 121 plots, which would not fit on a page, so let’s just focus on a few promising attributes that seem most correlated with the median housing value (Figure 2-15):
 
+```py
 from pandas.plotting import scatter_matrix
 
-attributes = ["median_house_value", "median_income", "total_rooms",
-
-"housing_median_age"]
-
+attributes = ["median_house_value", "median_income", "total_rooms", "housing_median_age"]
 scatter_matrix(housing[attributes], figsize=(12, 8))
+```
 
-Discover and Visualize the Data to Gain Insights
+![](./res/2020039.png)
 
 Figure 2-15. Scatter matrix
 
@@ -630,41 +649,57 @@ The main diagonal (top left to bottom right) would be full of straight lines if 
 
 The most promising attribute to predict the median house value is the median income, so let’s zoom in on their correlation scatterplot (Figure 2-16):
 
-housing.plot(kind="scatter", x="median_income", y="median_house_value",
+```py
+housing.plot(kind="scatter", x="median_income", y="median_house_value", alpha=0.1)
+```
 
-alpha=0.1)
+This plot reveals a few things. First, the correlation is indeed very strong; you can clearly see the upward trend and the points are not too dispersed. Second, the price cap that we noticed earlier is clearly visible as a horizontal line at `$500,000`. But this plot reveals other less obvious straight lines: a horizontal line around `$450,000`, another around `$350,000`, perhaps one around `$280,000`, and a few more below that. You may want to try removing the corresponding districts to prevent your algorithms from learning to reproduce these data quirks.
 
-This plot reveals a few things. First, the correlation is indeed very strong; you can clearly see the upward trend and the points are not too dispersed. Second, the price cap that we noticed earlier is clearly visible as a horizontal line at $500,000. But this plot reveals other less obvious straight lines: a horizontal line around $450,000, another around $350,000, perhaps one around $280,000, and a few more below that. You may want to try removing the corresponding districts to prevent your algorithms from learning to reproduce these data quirks.
+1『目前不明白，那几根水平横线代表的显示意义是什么？（2020-11-24）』
+
+![](./res/2020040.png)
 
 Figure 2-16. Median income versus median house value
 
-Experimenting with Attribute Combinations
+### 2.4.3 Experimenting with Attribute Combinations
 
 Hopefully the previous sections gave you an idea of a few ways you can explore the data and gain insights. You identified a few data quirks that you may want to clean up before feeding the data to a Machine Learning algorithm, and you found interesting correlations between attributes, in particular with the target attribute. You also noticed that some attributes have a tail-heavy distribution, so you may want to transform them (e.g., by computing their logarithm). Of course, your mileage will vary considerably with each project, but the general ideas are similar.
 
 One last thing you may want to do before actually preparing the data for Machine Learning algorithms is to try out various attribute combinations. For example, the total number of rooms in a district is not very useful if you don’t know how many households there are. What you really want is the number of rooms per household. Similarly, the total number of bedrooms by itself is not very useful: you probably want to compare it to the number of rooms. And the population per household also seems like an interesting attribute combination to look at. Let’s create these new attributes:
 
+```py
 housing["rooms_per_household"] = housing["total_rooms"]/housing["households"]
-
 housing["bedrooms_per_room"] = housing["total_bedrooms"]/housing["total_rooms"]
-
 housing["population_per_household"]=housing["population"]/housing["households"]
+```
 
 And now let’s look at the correlation matrix again:
 
->>> corr_matrix = housing.corr() median_house_value 1.000000
-
+```py
+>>> corr_matrix = housing.corr() 
 >>> corr_matrix["median_house_value"].sort_values(ascending=False)
+median_house_value 1.000000
+median_income 0.687160 
+rooms_per_household 0.146285 
+total_rooms 0.135097 
+housing_median_age 0.114110 
+households 0.064506 
+total_bedrooms 0.047689 
+population_per_household -0.021985 
+population -0.026920 
+longitude -0.047432 
+latitude -0.142724 
+bedrooms_per_room -0.259984 
+Name: median_house_value, dtype: float64
+```
 
-Discover and Visualize the Data to Gain Insights
-
-median_income 0.687160 rooms_per_household 0.146285 total_rooms 0.135097 housing_median_age 0.114110 households 0.064506 total_bedrooms 0.047689 population_per_household -0.021985 population -0.026920 longitude -0.047432 latitude -0.142724 bedrooms_per_room -0.259984 Name: median_house_value, dtype: float64
-
-Hey, not bad! The new bedrooms_per_room attribute is much more correlated with the median house value than the total number of rooms or bedrooms. Apparently houses with a lower bedroom/room ratio tend to be more expensive. The number of rooms per household is also more informative than the total number of rooms in a district—obviously the larger the houses, the more expensive they are.
+Hey, not bad! The new `bedrooms_per_room` attribute is much more correlated with the median house value than the total number of rooms or bedrooms. Apparently houses with a lower bedroom/room ratio tend to be more expensive. The number of rooms per household is also more informative than the total number of rooms in a district — obviously the larger the houses, the more expensive they are.
 
 This round of exploration does not have to be absolutely thorough; the point is to start off on the right foot and quickly gain insights that will help you get a first reasonably good prototype. But this is an iterative process: once you get a prototype up and running, you can analyze its output to gain more insights and come back to this exploration step.
 
-Prepare the Data for Machine Learning Algorithms
+1『这一套下来，感觉变换数据产生新属性，超级有用，但难点在于你用能力发现这个「新属性」。（2020-11-24）』
+
+## 2.5 Prepare the Data for Machine Learning Algorithms
 
 It’s time to prepare the data for your Machine Learning algorithms. Instead of just doing this manually, you should write functions to do that, for several good reasons:
 
@@ -676,15 +711,16 @@ It’s time to prepare the data for your Machine Learning algorithms. Instead of
 
 • This will make it possible for you to easily try various transformations and see which combination of transformations works best.
 
-But first let’s revert to a clean training set (by copying strat_train_set once again), and let’s separate the predictors and the labels since we don’t necessarily want to apply the same transformations to the predictors and the target values (note that drop() creates a copy of the data and does not affect strat_train_set):
+But first let’s revert to a clean training set (by copying `strat_train_set` once again), and let’s separate the predictors and the labels since we don’t necessarily want to apply the same transformations to the predictors and the target values (note that `drop()` creates a copy of the data and does not affect `strat_train_set`):
 
+```py
 housing = strat_train_set.drop("median_house_value", axis=1)
-
 housing_labels = strat_train_set["median_house_value"].copy()
+```
 
-Data Cleaning
+### 2.5.1 Data Cleaning
 
-Most Machine Learning algorithms cannot work with missing features, so let’s create a few functions to take care of them. You noticed earlier that the total_bedrooms attribute has some missing values, so let’s fix this. You have three options:
+Most Machine Learning algorithms cannot work with missing features, so let’s create a few functions to take care of them. You noticed earlier that the `total_bedrooms` attribute has some missing values, so let’s fix this. You have three options:
 
 • Get rid of the corresponding districts.
 
@@ -692,17 +728,15 @@ Most Machine Learning algorithms cannot work with missing features, so let’s c
 
 • Set the values to some value (zero, the mean, the median, etc.).
 
-You can accomplish these easily using DataFrame’s dropna(), drop(), and fillna() methods:
+You can accomplish these easily using DataFrame’s `dropna()`, `drop()`, and `fillna()` methods:
 
-```
+```py
+# option 1
 housing.dropna(subset=["total_bedrooms"])
-
+# option 2
 housing.drop("total_bedrooms", axis=1)
-
-# option 1 # option 2
-
-median = housing["total_bedrooms"].median() # option 3
-
+# option 3
+median = housing["total_bedrooms"].median() 
 housing["total_bedrooms"].fillna(median, inplace=True)
 ```
 
@@ -710,49 +744,65 @@ If you choose option 3, you should compute the median value on the training set,
 
 Scikit-Learn provides a handy class to take care of missing values: SimpleImputer. Here is how to use it. First, you need to create a SimpleImputer instance, specifying that you want to replace each attribute’s missing values with the median of that attribute:
 
+```py
 from sklearn.impute import SimpleImputer
-
 imputer = SimpleImputer(strategy="median")
+```
 
-Since the median can only be computed on numerical attributes, we need to create a copy of the data without the text attribute ocean_proximity:
+Since the median can only be computed on numerical attributes, we need to create a copy of the data without the text attribute `ocean_proximity`:
 
+```py
 housing_num = housing.drop("ocean_proximity", axis=1)
+```
 
-Now you can fit the imputer instance to the training data using the fit() method:
+Now you can fit the imputer instance to the training data using the `fit()` method:
 
+```py
 imputer.fit(housing_num)
+```
 
-The imputer has simply computed the median of each attribute and stored the result in its statistics_ instance variable. Only the total_bedrooms attribute had missing values, but we cannot be sure that there won’t be any missing values in new data after the system goes live, so it is safer to apply the imputer to all the numerical attributes:
+The imputer has simply computed the median of each attribute and stored the result in its `statistics_` instance variable. Only the `total_bedrooms` attribute had missing values, but we cannot be sure that there won’t be any missing values in new data after the system goes live, so it is safer to apply the imputer to all the numerical attributes:
 
->>> imputer.statistics_ array([ -118.51 , 34.26 , 29. , 2119.5 , 433. , 1164. , 408. , 3.5409])
-
-Prepare the Data for Machine Learning Algorithms
-
->>> housing_num.median().values array([ -118.51 , 34.26 , 29. , 2119.5 , 433. , 1164. , 408. , 3.5409])
+```py
+>>> imputer.statistics_ 
+array([ -118.51 , 34.26 , 29. , 2119.5 , 433. , 1164. , 408. , 3.5409])
+>>> housing_num.median().values 
+array([ -118.51 , 34.26 , 29. , 2119.5 , 433. , 1164. , 408. , 3.5409])
+```
 
 Now you can use this “trained” imputer to transform the training set by replacing missing values by the learned medians:
 
+```py
 X = imputer.transform(housing_num)
+```
 
 The result is a plain NumPy array containing the transformed features. If you want to put it back into a Pandas DataFrame, it’s simple:
 
+```py
 housing_tr = pd.DataFrame(X, columns=housing_num.columns)
+```
 
-Scikit-Learn Design
+2『上面整套处理缺失数据的方法，完全可以套用到其他地方，做一张主题卡片。』——已完成
 
-Scikit-Learn’s API is remarkably well designed. The main design principles are:17 
+#### Scikit-Learn Design
+
+Scikit-Learn’s API is remarkably well designed. The main design principles are: [17] 
+
+2-3『
+
+[[1309.0238] API design for machine learning software: experiences from the scikit-learn project](https://arxiv.org/abs/1309.0238)
+
+已下论文「2020020API design for machine learning software: experiences from the scikit-learn project」并存入 Zotero，作为本书附件「附件0201-API-design-for-machine-learning-software.md」，待消化吸收。（2020-11-24）
+
+』——未完成
 
 • Consistency. All objects share a consistent and simple interface:
 
-— Estimators. Any object that can estimate some parameters based on a dataset is called an estimator (e.g., an imputer is an estimator). The estimation itself is performed by the fit() method, and it takes only a dataset as a parameter (or two for supervised learning algorithms; the second dataset contains the labels). Any other parameter needed to guide the estimation process is considered a hyperparameter (such as an imputer’s strategy), and it must be set as an instance variable (generally via a constructor parameter).
+— Estimators. Any object that can estimate some parameters based on a dataset is called an estimator (e.g., an imputer is an estimator). The estimation itself is performed by the `fit()` method, and it takes only a dataset as a parameter (or two for supervised learning algorithms; the second dataset contains the labels). Any other parameter needed to guide the estimation process is considered a hyperparameter (such as an imputer’s strategy), and it must be set as an instance variable (generally via a constructor parameter).
 
-— Transformers. Some estimators (such as an imputer) can also transform a dataset; these are called transformers. Once again, the API is quite simple: the transformation is performed by the transform() method with the dataset to transform as a parameter. It returns the transformed dataset. This transformation generally relies on the learned parameters, as is the case for an imputer. All transformers also have a convenience method called fit_transform() that is equivalent to calling fit() and then transform() (but sometimes fit_transform() is optimized and runs much faster).
+— Transformers. Some estimators (such as an imputer) can also transform a dataset; these are called transformers. Once again, the API is quite simple: the transformation is performed by the `transform()` method with the dataset to transform as a parameter. It returns the transformed dataset. This transformation generally relies on the learned parameters, as is the case for an imputer. All transformers also have a convenience method called `fit_transform()` that is equivalent to calling `fit()` and then `transform()` (but sometimes `fit_transform()` is optimized and runs much faster).
 
-— Predictors. Finally, some estimators are capable of making predictions given a dataset; they are called predictors. For example, the LinearRegression model in the previous chapter was a predictor: it predicted life satisfaction given a country’s GDP per capita. A predictor has a predict() method that takes a dataset of new instances and returns a dataset of corresponding predictions. It also has a score() method that measures the quality of the predictions given
-
-17 For more details on the design principles, see “API design for machine learning software: experiences from the scikit-learn project,” L. Buitinck, G. Louppe, M. Blondel, F. Pedregosa, A. Müller, et al. (2013).
-
-a test set (and the corresponding labels in the case of supervised learning algorithms).18 
+— Predictors. Finally, some estimators are capable of making predictions given a dataset; they are called predictors. For example, the LinearRegression model in the previous chapter was a predictor: it predicted life satisfaction given a country’s GDP per capita. A predictor has a `predict()` method that takes a dataset of new instances and returns a dataset of corresponding predictions. It also has a `score()` method that measures the quality of the predictions given a test set (and the corresponding labels in the case of supervised learning algorithms). [18] 
 
 • Inspection. All the estimator’s hyperparameters are accessible directly via public instance variables (e.g., imputer.strategy), and all the estimator’s learned parameters are also accessible via public instance variables with an underscore suffix (e.g., imputer.statistics_).
 
@@ -762,329 +812,366 @@ a test set (and the corresponding labels in the case of supervised learning algo
 
 • Sensible defaults. Scikit-Learn provides reasonable default values for most parameters, making it easy to create a baseline working system quickly.
 
-Handling Text and Categorical Attributes
-
-Earlier we left out the categorical attribute ocean_proximity because it is a text attribute so we cannot compute its median:
-
->>> housing_cat = housing[["ocean_proximity"]]
-
->>> housing_cat.head(10) ocean_proximity 17606 <1H OCEAN 18632 <1H OCEAN 14650 NEAR OCEAN 3230 INLAND 3555 <1H OCEAN 19480 INLAND 8879 <1H OCEAN 13685 INLAND 4937 <1H OCEAN 4861 <1H OCEAN
-
-Most Machine Learning algorithms prefer to work with numbers anyway, so let’s convert these categories from text to numbers. For this, we can use Scikit-Learn’s Ordina lEncoder class19 :
-
->>> from sklearn.preprocessing import OrdinalEncoder
-
->>> ordinal_encoder = OrdinalEncoder()
+17 For more details on the design principles, see “API design for machine learning software: experiences from the scikit-learn project,” L. Buitinck, G. Louppe, M. Blondel, F. Pedregosa, A. Müller, et al. (2013).
 
 18 Some predictors also provide methods to measure the confidence of their predictions.
 
-19 This class is available since Scikit-Learn 0.20. If you use an earlier version, please consider upgrading, or use Pandas’ Series.factorize() method.
+### 2.5.2 Handling Text and Categorical Attributes
 
-Prepare the Data for Machine Learning Algorithms
+Earlier we left out the categorical attribute `ocean_proximity` because it is a text attribute so we cannot compute its median:
 
+```py
+>>> housing_cat = housing[["ocean_proximity"]]
+>>> housing_cat.head(10) 
+ocean_proximity 
+17606 <1H OCEAN 
+18632 <1H OCEAN 
+14650 NEAR OCEAN 
+3230 INLAND 
+3555 <1H OCEAN 
+19480 INLAND 
+8879 <1H OCEAN 
+13685 INLAND 
+4937 <1H OCEAN 
+4861 <1H OCEAN
+```
+
+Most Machine Learning algorithms prefer to work with numbers anyway, so let’s convert these categories from text to numbers. For this, we can use Scikit-Learn’s Ordina lEncoder class [19] :
+
+1『发现 Scikit-Learn 包里「类」很丰富啊。（2020-11-24）』
+
+```py
+>>> from sklearn.preprocessing import OrdinalEncoder
+>>> ordinal_encoder = OrdinalEncoder()
 >>> housing_cat_encoded = ordinal_encoder.fit_transform(housing_cat)
+>>> housing_cat_encoded[:10] 
+array([[0.], [0.], [4.], [1.], [0.], [1.], [0.], [1.], [0.], [0.]])
+```
 
->>> housing_cat_encoded[:10] array([[0.], [0.], [4.], [1.], [0.], [1.], [0.], [1.], [0.], [0.]])
+You can get the list of categories using the `categories_` instance variable. It is a list containing a 1D array of categories for each categorical attribute (in this case, a list containing a single array since there is just one categorical attribute):
 
-You can get the list of categories using the categories_ instance variable. It is a list containing a 1D array of categories for each categorical attribute (in this case, a list containing a single array since there is just one categorical attribute):
+```py
+>>> ordinal_encoder.categories_ 
+[array(['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN'], dtype=object)]
+```
 
->>> ordinal_encoder.categories_ [array(['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN'], dtype=object)]
+One issue with this representation is that ML algorithms will assume that two nearby values are more similar than two distant values. This may be fine in some cases (e.g., for ordered categories such as “bad”, “average”, “good”, “excellent”), but it is obviously not the case for the `ocean_proximity` column (for example, categories 0 and 4 are clearly more similar than categories 0 and 1). To fix this issue, a common solution is to create one binary attribute per category: one attribute equal to 1 when the category is “<1H OCEAN” (and 0 otherwise), another attribute equal to 1 when the category is “INLAND” (and 0 otherwise), and so on. This is called one-hot encoding, because only one attribute will be equal to 1 (hot), while the others will be 0 (cold). The new attributes are sometimes called dummy attributes. Scikit-Learn provides a OneHotEn coder class to convert categorical values into one-hot vectors [20] :
 
-One issue with this representation is that ML algorithms will assume that two nearby values are more similar than two distant values. This may be fine in some cases (e.g., for ordered categories such as “bad”, “average”, “good”, “excellent”), but it is obviously not the case for the ocean_proximity column (for example, categories 0 and 4 are clearly more similar than categories 0 and 1). To fix this issue, a common solution is to create one binary attribute per category: one attribute equal to 1 when the category is “<1H OCEAN” (and 0 otherwise), another attribute equal to 1 when the category is “INLAND” (and 0 otherwise), and so on. This is called one-hot encoding, because only one attribute will be equal to 1 (hot), while the others will be 0 (cold). The new attributes are sometimes called dummy attributes. Scikit-Learn provides a OneHotEn coder class to convert categorical values into one-hot vectors20 :
-
+```py
 >>> from sklearn.preprocessing import OneHotEncoder
-
 >>> cat_encoder = OneHotEncoder()
-
 >>> housing_cat_1hot = cat_encoder.fit_transform(housing_cat)
-
 >>> housing_cat_1hot
-
 <16512x5 sparse matrix of type '<class 'numpy.float64'>' with 16512 stored elements in Compressed Sparse Row format>
+```
 
-Notice that the output is a SciPy sparse matrix, instead of a NumPy array. This is very useful when you have categorical attributes with thousands of categories. After onehot encoding we get a matrix with thousands of columns, and the matrix is full of zeros except for a single 1 per row. Using up tons of memory mostly to store zeros would be very wasteful, so instead a sparse matrix only stores the location of the non‐
+Notice that the output is a SciPy sparse matrix, instead of a NumPy array. This is very useful when you have categorical attributes with thousands of categories. After onehot encoding we get a matrix with thousands of columns, and the matrix is full of zeros except for a single 1 per row. Using up tons of memory mostly to store zeros would be very wasteful, so instead a sparse matrix only stores the location of the non‐zero elements. You can use it mostly like a normal 2D array, [21] but if you really want to convert it to a (dense) NumPy array, just call the `toarray()` method:
+
+```py
+>>> housing_cat_1hot.toarray() 
+array([[1., 0., 0., 0., 0.], [1., 0., 0., 0., 0.], [0., 0., 0., 0., 1.], ..., [0., 1., 0., 0., 0.], [1., 0., 0., 0., 0.], [0., 0., 0., 1., 0.]])
+```
+
+Once again, you can get the list of categories using the encoder’s `categories_` instance variable:
+
+```py
+>>> cat_encoder.categories_ 
+[array(['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN'], dtype=object)]
+```
+
+If a categorical attribute has a large number of possible categories (e.g., country code, profession, species, etc.), then one-hot encoding will result in a large number of input features. This may slow down training and degrade performance. If this happens, you may want to replace the categorical input with useful numerical features related to the categories: for example, you could replace the `ocean_proximity` feature with the distance to the ocean (similarly, a country code could be replaced with the country’s population and GDP per capita). Alternatively, you could replace each category with a learnable low dimensional vector called an embedding. Each category’s representation would be learned during training: this is an example of representation learning (see Chapter 13 and ??? for more details).
+
+1『难训练的属性可以用其他「好训练的属性」替代的。（2020-11-24）』
+
+19 This class is available since Scikit-Learn 0.20. If you use an earlier version, please consider upgrading, or use Pandas’ `Series.factorize()` method.
 
 20 Before Scikit-Learn 0.20, it could only encode integer categorical values, but since 0.20 it can also handle other types of inputs, including text categorical inputs.
 
-zero elements. You can use it mostly like a normal 2D array, 21 but if you really want to convert it to a (dense) NumPy array, just call the toarray() method:
+### 2.5.3 Custom Transformers
 
->>> housing_cat_1hot.toarray() array([[1., 0., 0., 0., 0.], [1., 0., 0., 0., 0.], [0., 0., 0., 0., 1.], ..., [0., 1., 0., 0., 0.], [1., 0., 0., 0., 0.], [0., 0., 0., 1., 0.]])
+Although Scikit-Learn provides many useful transformers, you will need to write your own for tasks such as custom cleanup operations or combining specific attributes. You will want your transformer to work seamlessly with Scikit-Learn functionalities (such as pipelines), and since Scikit-Learn relies on duck typing (not inheritance), all you need is to create a class and implement three methods: `fit()` (returning self), `transform()`, and `fit_transform()`. You can get the last one for free by simply adding TransformerMixin as a base class. Also, if you add BaseEstima tor as a base class (and avoid `*args` and `**kargs` in your constructor) you will get two extra methods (`get_params()` and `set_params()`) that will be useful for auto‐matic hyperparameter tuning. For example, here is a small transformer class that adds the combined attributes we discussed earlier:
 
-Once again, you can get the list of categories using the encoder’s categories_ instance variable:
+1『想不到这里看到了 duck typing，学习设计模式时，在面向对象编程范式里，涉及到「多态」时遇到的。走起来像鸭子、叫起来像鸭子，它就是鸭子。』
 
->>> cat_encoder.categories_ [array(['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN'], dtype=object)]
+```py
+from sklearn.base import BaseEstimator, TransformerMixin
 
-If a categorical attribute has a large number of possible categories (e.g., country code, profession, species, etc.), then one-hot encoding will result in a large number of input features. This may slow down training and degrade performance. If this happens, you may want to replace the categorical input with useful numerical features related to the categories: for example, you could replace the ocean_proximity feature with the distance to the ocean (similarly, a country code could be replaced with the country’s population and GDP per capita). Alternatively, you could replace each category with a learnable low dimensional vector called an embedding. Each category’s representation would be learned during training: this is an example of representation learning (see Chapter 13 and ??? for more details).
+rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6 
 
-Custom Transformers
+class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
+    def __init__(self, add_bedrooms_per_room = True): # no *args or **kargs 
+        self.add_bedrooms_per_room = add_bedrooms_per_room 
+    def fit(self, X, y=None):
+        return self # nothing else to do
+    def transform(self, X, y=None):
+        rooms_per_household = X[:, rooms_ix] / X[:, households_ix]
+        population_per_household = X[:, population_ix] / X[:, households_ix]
+        if self.add_bedrooms_per_room:
+            bedrooms_per_room = X[:, bedrooms_ix] / X[:, rooms_ix]
+            return np.c_[X, rooms_per_household, population_per_household, bedrooms_per_room] 
+        else:
+            return np.c_[X, rooms_per_household, population_per_household] 
 
-Although Scikit-Learn provides many useful transformers, you will need to write your own for tasks such as custom cleanup operations or combining specific attributes. You will want your transformer to work seamlessly with Scikit-Learn functionalities (such as pipelines), and since Scikit-Learn relies on duck typing (not inheritance), all you need is to create a class and implement three methods: fit() (returning self), transform(), and fit_transform(). You can get the last one for free by simply adding TransformerMixin as a base class. Also, if you add BaseEstima tor as a base class (and avoid *args and **kargs in your constructor) you will get two extra methods (get_params() and set_params()) that will be useful for auto‐
+attr_adder = CombinedAttributesAdder(add_bedrooms_per_room=False) 
+housing_extra_attribs = attr_adder.transform(housing.values)
+```
+
+In this example the transformer has one hyperparameter, `add_bedrooms_per_room`, set to True by default (it is often helpful to provide sensible defaults). This hyperparameter will allow you to easily find out whether adding this attribute helps the Machine Learning algorithms or not. More generally, you can add a hyperparameter to gate any data preparation step that you are not 100% sure about. The more you automate these data preparation steps, the more combinations you can automatically try out, making it much more likely that you will find a great combination (and saving you a lot of time).
 
 21 See SciPy’s documentation for more details.
 
-Prepare the Data for Machine Learning Algorithms
-
-matic hyperparameter tuning. For example, here is a small transformer class that adds the combined attributes we discussed earlier:
-
-from sklearn.base import BaseEstimator, TransformerMixin
-
-rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
-
-def __init__(self, add_bedrooms_per_room = True): # no *args or **kargs self.add_bedrooms_per_room = add_bedrooms_per_room return self # nothing else to do
-
-def fit(self, X, y=None):
-
-def transform(self, X, y=None):
-
-rooms_per_household = X[:, rooms_ix] / X[:, households_ix]
-
-population_per_household = X[:, population_ix] / X[:, households_ix]
-
-if self.add_bedrooms_per_room:
-
-bedrooms_per_room = X[:, bedrooms_ix] / X[:, rooms_ix]
-
-return np.c_[X, rooms_per_household, population_per_household, bedrooms_per_room] else:
-
-return np.c_[X, rooms_per_household, population_per_household] attr_adder = CombinedAttributesAdder(add_bedrooms_per_room=False) housing_extra_attribs = attr_adder.transform(housing.values)
-
-In this example the transformer has one hyperparameter, add_bedrooms_per_room, set to True by default (it is often helpful to provide sensible defaults). This hyperparameter will allow you to easily find out whether adding this attribute helps the Machine Learning algorithms or not. More generally, you can add a hyperparameter to gate any data preparation step that you are not 100% sure about. The more you automate these data preparation steps, the more combinations you can automatically try out, making it much more likely that you will find a great combination (and saving you a lot of time).
-
-Feature Scaling
+### 2.5.4 Feature Scaling
 
 One of the most important transformations you need to apply to your data is feature scaling. With few exceptions, Machine Learning algorithms don’t perform well when the input numerical attributes have very different scales. This is the case for the housing data: the total number of rooms ranges from about 6 to 39,320, while the median incomes only range from 0 to 15. Note that scaling the target values is generally not required.
 
 There are two common ways to get all attributes to have the same scale: min-max scaling and standardization.
 
-Min-max scaling (many people call this normalization) is quite simple: values are shifted and rescaled so that they end up ranging from 0 to 1. We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a
-
-transformer called MinMaxScaler for this. It has a feature_range hyperparameter that lets you change the range if you don’t want 0–1 for some reason.
+Min-max scaling (many people call this normalization) is quite simple: values are shifted and rescaled so that they end up ranging from 0 to 1. We do this by subtracting the min value and dividing by the max minus the min. Scikit-Learn provides a transformer called MinMaxScaler for this. It has a `feature_range` hyperparameter that lets you change the range if you don’t want 0–1 for some reason.
 
 Standardization is quite different: first it subtracts the mean value (so standardized values always have a zero mean), and then it divides by the standard deviation so that the resulting distribution has unit variance. Unlike min-max scaling, standardization does not bound values to a specific range, which may be a problem for some algorithms (e.g., neural networks often expect an input value ranging from 0 to 1). However, standardization is much less affected by outliers. For example, suppose a district had a median income equal to 100 (by mistake). Min-max scaling would then crush all the other values from 0–15 down to 0–0.15, whereas standardization would not be much affected. Scikit-Learn provides a transformer called StandardScaler for standardization.
 
 As with all the transformations, it is important to fit the scalers to the training data only, not to the full dataset (including the test set). Only then can you use them to transform the training set and the test set (and new data).
 
-Transformation Pipelines
+2『数据清洗之归一化标准化，做一张主题卡片。』——已完成
+
+### 2.5.5 Transformation Pipelines
 
 As you can see, there are many data transformation steps that need to be executed in the right order. Fortunately, Scikit-Learn provides the Pipeline class to help with such sequences of transformations. Here is a small pipeline for the numerical attributes:
 
-from sklearn.pipeline import Pipeline from sklearn.preprocessing import StandardScaler
+```py
+from sklearn.pipeline import Pipeline 
+from sklearn.preprocessing import StandardScaler
 
 num_pipeline = Pipeline([
-
-('imputer', SimpleImputer(strategy="median")),
-
-('attribs_adder', CombinedAttributesAdder()), ('std_scaler', StandardScaler()),
-
-])
-
+        ('imputer', SimpleImputer(strategy="median")),
+        ('attribs_adder', CombinedAttributesAdder()), 
+        ('std_scaler', StandardScaler()),
+    ])
 housing_num_tr = num_pipeline.fit_transform(housing_num)
+```
 
-The Pipeline constructor takes a list of name/estimator pairs defining a sequence of steps. All but the last estimator must be transformers (i.e., they must have a fit_transform() method). The names can be anything you like (as long as they are unique and don’t contain double underscores “__”): they will come in handy later for hyperparameter tuning.
+1『管道化，又是一个熟悉的概念，耗子叔编程范式里，函数式编程那边讲到过，管道化后的代码真的好简洁、优雅。（2020-11-24）』
 
-When you call the pipeline’s fit() method, it calls fit_transform() sequentially on all transformers, passing the output of each call as the parameter to the next call, until it reaches the final estimator, for which it just calls the fit() method.
+The Pipeline constructor takes a list of name/estimator pairs defining a sequence of steps. All but the last estimator must be transformers (i.e., they must have a `fit_transform()` method). The names can be anything you like (as long as they are unique and don’t contain double underscores “__”): they will come in handy later for hyperparameter tuning.
 
-Prepare the Data for Machine Learning Algorithms
+When you call the pipeline’s `fit()` method, it calls `fit_transform()` sequentially on all transformers, passing the output of each call as the parameter to the next call, until it reaches the final estimator, for which it just calls the `fit()` method.
 
-|
-
-73 The pipeline exposes the same methods as the final estimator. In this example, the last estimator is a StandardScaler, which is a transformer, so the pipeline has a trans form() method that applies all the transforms to the data in sequence (and of course also a fit_transform() method, which is the one we used).
+The pipeline exposes the same methods as the final estimator. In this example, the last estimator is a StandardScaler, which is a transformer, so the pipeline has a trans `form()` method that applies all the transforms to the data in sequence (and of course also a `fit_transform()` method, which is the one we used).
 
 So far, we have handled the categorical columns and the numerical columns separately. It would be more convenient to have a single transformer able to handle all columns, applying the appropriate transformations to each column. In version 0.20, Scikit-Learn introduced the ColumnTransformer for this purpose, and the good news is that it works great with Pandas DataFrames. Let’s use it to apply all the transformations to the housing data:
 
+```py
 from sklearn.compose import ColumnTransformer
 
 num_attribs = list(housing_num)
-
 cat_attribs = ["ocean_proximity"]
 
 full_pipeline = ColumnTransformer([
-
-("num", num_pipeline, num_attribs), ("cat", OneHotEncoder(), cat_attribs), ])
+        ("num", num_pipeline, num_attribs), 
+        ("cat", OneHotEncoder(), cat_attribs), 
+    ])
 
 housing_prepared = full_pipeline.fit_transform(housing)
+```
 
-Here is how this works: first we import the ColumnTransformer class, next we get the list of numerical column names and the list of categorical column names, and we construct a ColumnTransformer. The constructor requires a list of tuples, where each tuple contains a name22 , a transformer and a list of names (or indices) of columns that the transformer should be applied to. In this example, we specify that the numerical columns should be transformed using the num_pipeline that we defined earlier, and the categorical columns should be transformed using a OneHotEncoder. Finally, we apply this ColumnTransformer to the housing data: it applies each transformer to the appropriate columns and concatenates the outputs along the second axis (the transformers must return the same number of rows).
+Here is how this works: first we import the ColumnTransformer class, next we get the list of numerical column names and the list of categorical column names, and we construct a ColumnTransformer. The constructor requires a list of tuples, where each tuple contains a name [22] , a transformer and a list of names (or indices) of columns that the transformer should be applied to. In this example, we specify that the numerical columns should be transformed using the `num_pipeline` that we defined earlier, and the categorical columns should be transformed using a OneHotEncoder. Finally, we apply this ColumnTransformer to the housing data: it applies each transformer to the appropriate columns and concatenates the outputs along the second axis (the transformers must return the same number of rows).
 
-Note that the OneHotEncoder returns a sparse matrix, while the num_pipeline returns a dense matrix. When there is such a mix of sparse and dense matrices, the Colum nTransformer estimates the density of the final matrix (i.e., the ratio of non-zero cells), and it returns a sparse matrix if the density is lower than a given threshold (by default, sparse_threshold=0.3). In this example, it returns a dense matrix. And that’s it! We have a preprocessing pipeline that takes the full housing data and applies the appropriate transformations to each column.
-
-22 Just like for pipelines, the name can be anything as long as it does not contain double underscores.
+Note that the OneHotEncoder returns a sparse matrix, while the `num_pipeline` returns a dense matrix. When there is such a mix of sparse and dense matrices, the Colum nTransformer estimates the density of the final matrix (i.e., the ratio of non-zero cells), and it returns a sparse matrix if the density is lower than a given threshold (by default, `sparse_threshold=0.3`). In this example, it returns a dense matrix. And that’s it! We have a preprocessing pipeline that takes the full housing data and applies the appropriate transformations to each column.
 
 Instead of a transformer, you can specify the string "drop" if you want the columns to be dropped. Or you can specify "pass through" if you want the columns to be left untouched. By default, the remaining columns (i.e., the ones that were not listed) will be dropped, but you can set the remainder hyperparameter to any transformer (or to "passthrough") if you want these columns to be handled differently.
 
 If you are using Scikit-Learn 0.19 or earlier, you can use a third-party library such as sklearn-pandas, or roll out your own custom transformer to get the same functionality as the ColumnTransformer. Alternatively, you can use the FeatureUnion class which can also apply different transformers and concatenate their outputs, but you cannot specify different columns for each transformer, they all apply to the whole data. It is possible to work around this limitation using a custom transformer for column selection (see the Jupyter notebook for an example).
 
-Select and Train a Model
+22 Just like for pipelines, the name can be anything as long as it does not contain double underscores.
+
+## 2.6 Select and Train a Model
 
 At last! You framed the problem, you got the data and explored it, you sampled a training set and a test set, and you wrote transformation pipelines to clean up and prepare your data for Machine Learning algorithms automatically. You are now ready to select and train a Machine Learning model.
 
-Training and Evaluating on the Training Set
+### 2.6.1 Training and Evaluating on the Training Set
 
 The good news is that thanks to all these previous steps, things are now going to be much simpler than you might think. Let’s first train a Linear Regression model, like we did in the previous chapter:
 
+```py
 from sklearn.linear_model import LinearRegression
 
-lin_reg = LinearRegression() lin_reg.fit(housing_prepared, housing_labels)
+lin_reg = LinearRegression() 
+lin_reg.fit(housing_prepared, housing_labels)
+```
 
 Done! You now have a working Linear Regression model. Let’s try it out on a few instances from the training set:
 
+```py
 >>> some_data = housing.iloc[:5]
-
 >>> some_labels = housing_labels.iloc[:5]
-
 >>> some_data_prepared = full_pipeline.transform(some_data)
-
->>> print("Predictions:", lin_reg.predict(some_data_prepared)) Predictions: [ 210644.6045 317768.8069 210956.4333 59218.9888
-
+>>> print("Predictions:", lin_reg.predict(some_data_prepared)) 
+Predictions: [ 210644.6045 317768.8069 210956.4333 59218.9888 189747.5584]
 >>> print("Labels:", list(some_labels))
-
 Labels: [286600.0, 340600.0, 196900.0, 46300.0, 254500.0]
+```
 
-189747.5584]
+It works, although the predictions are not exactly accurate (e.g., the first prediction is off by close to 40%!). Let’s measure this regression model’s RMSE on the whole training set using Scikit-Learn’s `mean_squared_error` function:
 
-Select and Train a Model
-
-It works, although the predictions are not exactly accurate (e.g., the first prediction is off by close to 40%!). Let’s measure this regression model’s RMSE on the whole training set using Scikit-Learn’s mean_squared_error function:
-
+```py
 >>> from sklearn.metrics import mean_squared_error
-
 >>> housing_predictions = lin_reg.predict(housing_prepared)
-
 >>> lin_mse = mean_squared_error(housing_labels, housing_predictions)
-
 >>> lin_rmse = np.sqrt(lin_mse)
-
 >>> lin_rmse
-
 68628.19819848922
+```
 
-Okay, this is better than nothing but clearly not a great score: most districts’ median_housing_values range between $120,000 and $265,000, so a typical prediction error of $68,628 is not very satisfying. This is an example of a model underfitting the training data. When this happens it can mean that the features do not provide enough information to make good predictions, or that the model is not powerful enough. As we saw in the previous chapter, the main ways to fix underfitting are to select a more powerful model, to feed the training algorithm with better features, or to reduce the constraints on the model. This model is not regularized, so this rules out the last option. You could try to add more features (e.g., the log of the population), but first let’s try a more complex model to see how it does.
+Okay, this is better than nothing but clearly not a great score: most districts’ `median_housing_values` range between `$120,000` and `$265,000`, so a typical prediction error of `$68,628` is not very satisfying. This is an example of a model underfitting the training data. When this happens it can mean that the features do not provide enough information to make good predictions, or that the model is not powerful enough. As we saw in the previous chapter, the main ways to fix underfitting are to select a more powerful model, to feed the training algorithm with better features, or to reduce the constraints on the model. This model is not regularized, so this rules out the last option. You could try to add more features (e.g., the log of the population), but first let’s try a more complex model to see how it does.
 
 Let’s train a DecisionTreeRegressor. This is a powerful model, capable of finding complex nonlinear relationships in the data (Decision Trees are presented in more detail in Chapter 6). The code should look familiar by now:
 
+```py
 from sklearn.tree import DecisionTreeRegressor
 
-tree_reg = DecisionTreeRegressor() tree_reg.fit(housing_prepared, housing_labels)
+tree_reg = DecisionTreeRegressor() 
+tree_reg.fit(housing_prepared, housing_labels)
+```
 
 Now that the model is trained, let’s evaluate it on the training set:
 
+```py
 >>> housing_predictions = tree_reg.predict(housing_prepared)
-
 >>> tree_mse = mean_squared_error(housing_labels, housing_predictions)
-
 >>> tree_rmse = np.sqrt(tree_mse)
-
 >>> tree_rmse
-
 0.0
+```
 
 Wait, what!? No error at all? Could this model really be absolutely perfect? Of course, it is much more likely that the model has badly overfit the data. How can you be sure? As we saw earlier, you don’t want to touch the test set until you are ready to launch a model you are confident about, so you need to use part of the training set for training, and part for model validation.
 
-Better Evaluation Using Cross-Validation
+### 2.6.2 Better Evaluation Using Cross-Validation
 
-One way to evaluate the Decision Tree model would be to use the train_test_split function to split the training set into a smaller training set and a validation set, then
-
-train your models against the smaller training set and evaluate them against the validation set. It’s a bit of work, but nothing too difficult and it would work fairly well.
+One way to evaluate the Decision Tree model would be to use the `train_test_split` function to split the training set into a smaller training set and a validation set, then train your models against the smaller training set and evaluate them against the validation set. It’s a bit of work, but nothing too difficult and it would work fairly well.
 
 A great alternative is to use Scikit-Learn’s K-fold cross-validation feature. The following code randomly splits the training set into 10 distinct subsets called folds, then it trains and evaluates the Decision Tree model 10 times, picking a different fold for evaluation every time and training on the other 9 folds. The result is an array containing the 10 evaluation scores:
 
-from sklearn.model_selection import cross_val_score scores = cross_val_score(tree_reg, housing_prepared, housing_labels,
-
-scoring="neg_mean_squared_error", cv=10)
-
+```py
+from sklearn.model_selection import cross_val_score 
+scores = cross_val_score(tree_reg, housing_prepared, housing_labels,
+                        scoring="neg_mean_squared_error", cv=10)
 tree_rmse_scores = np.sqrt(-scores)
+```
 
 Scikit-Learn’s cross-validation features expect a utility function (greater is better) rather than a cost function (lower is better), so the scoring function is actually the opposite of the MSE (i.e., a negative value), which is why the preceding code computes -scores before calculating the square root.
 
 Let’s look at the results:
 
->>> def display_scores(scores):
-
-... print("Scores:", scores) ... print("Mean:", scores.mean()) ... print("Standard deviation:", scores.std()) ...
+```py
+>>> 
+def display_scores(scores):
+    print("Scores:", scores)
+    print("Mean:", scores.mean())
+    print("Standard deviation:", scores.std())
 
 >>> display_scores(tree_rmse_scores)
 
-Scores: [70194.33680785 66855.16363941 72432.58244769 70758.73896782 71115.88230639 75585.14172901 70262.86139133 70273.6325285 75366.87952553 71231.65726027] Mean: 71407.68766037929 Standard deviation: 2439.4345041191004
+Scores: [70194.33680785 66855.16363941 72432.58244769 70758.73896782 71115.88230639 75585.14172901 70262.86139133 70273.6325285 75366.87952553 71231.65726027] 
+Mean: 71407.68766037929 
+Standard deviation: 2439.4345041191004
+```
 
-Now the Decision Tree doesn’t look as good as it did earlier. In fact, it seems to perform worse than the Linear Regression model! Notice that cross-validation allows you to get not only an estimate of the performance of your model, but also a measure of how precise this estimate is (i.e., its standard deviation). The Decision Tree has a score of approximately 71,407, generally ±2,439. You would not have this information if you just used one validation set. But cross-validation comes at the cost of training the model several times, so it is not always possible.
+Now the Decision Tree doesn’t look as good as it did earlier. In fact, it seems to perform worse than the Linear Regression model! Notice that cross-validation allows you to get not only an estimate of the performance of your model, but also a measure of how precise this estimate is (i.e., its standard deviation). The Decision Tree has a score of approximately 71,407, generally ±2,439. You would not have this information if you just used one validation set. But cross-validation comes at the cost of training the model several times, so it is not always possible. Let’s compute the same scores for the Linear Regression model just to be sure:
 
-Let’s compute the same scores for the Linear Regression model just to be sure:
-
->>> lin_scores = cross_val_score(lin_reg, housing_prepared, housing_labels, ...
-
-scoring="
-
+```py
+>>> lin_scores = cross_val_score(lin_reg, housing_prepared, housing_labels, scoring="neg_mean_squared_error", cv=10)
 >>> lin_rmse_scores = np.sqrt(-lin_scores)
-
-...
-
 >>> display_scores(lin_rmse_scores)
 
-neg_mean_squared_error"
-
-,
-
-cv=10)
-
-Select and Train a Model
-
-|
-
-77 Scores: [66782.73843989 66960.118071 70347.95244419 74739.57052552 68031.13388938 71193.84183426 64969.63056405 68281.61137997 71552.91566558 67665.10082067] Mean: 69052.46136345083 Standard deviation: 2731.674001798348
+Scores: [66782.73843989 66960.118071 70347.95244419 74739.57052552 68031.13388938 71193.84183426 64969.63056405 68281.61137997 71552.91566558 67665.10082067] 
+Mean: 69052.46136345083 
+Standard deviation: 2731.674001798348
+```
 
 That’s right: the Decision Tree model is overfitting so badly that it performs worse than the Linear Regression model.
 
 Let’s try one last model now: the RandomForestRegressor. As we will see in Chapter 7, Random Forests work by training many Decision Trees on random subsets of the features, then averaging out their predictions. Building a model on top of many other models is called Ensemble Learning, and it is often a great way to push ML algorithms even further. We will skip most of the code since it is essentially the same as for the other models:
 
+```py
 >>> from sklearn.ensemble import RandomForestRegressor
-
 >>> forest_reg = RandomForestRegressor()
-
 >>> forest_reg.fit(housing_prepared, housing_labels)
 
->>> [...]
+>>> housing_predictions = forest_reg.predict(housing_prepared)
+>>> forest_mse = mean_squared_error(housing_labels, housing_predictions)
+>>> forest_rmse = np.sqrt(forest_mse)
+>>> forest_rmse
+18603.515021376355
 
->>> forest_rmse 18603.515021376355
+>>> 
+from sklearn.model_selection import cross_val_score
 
->>> display_scores(forest_rmse_scores)
+forest_scores = cross_val_score(forest_reg, housing_prepared, housing_labels,
+                                scoring="neg_mean_squared_error", cv=10)
+forest_rmse_scores = np.sqrt(-forest_scores)
+display_scores(forest_rmse_scores)
 
-Scores: [49519.80364233 47461.9115823 50029.02762854 52325.28068953 49308.39426421 53446.37892622 48634.8036574 47585.73832311 53490.10699751 50021.5852922 ] Mean: 50182.303100336096 Standard deviation: 2097.0810550985693
+Scores: [49519.80364233 47461.9115823 50029.02762854 52325.28068953 49308.39426421 53446.37892622 48634.8036574 47585.73832311 53490.10699751 50021.5852922 ] 
+Mean: 50182.303100336096 
+Standard deviation: 2097.0810550985693
+```
+
+1『
+
+上面后半截代码书籍里都省略了，在作者的源码里找到补充的。最后训练的时候记得 mac 上跑了好几分钟才跑出结果来。（2020-11-24）
+
+我跑的结果更好：
+
+```
+Scores: [49635.36105951 47630.52387133 50128.36979249 52688.25348038
+ 49681.11654892 53563.22189422 49189.0396986  48338.25485427
+ 52896.90375568 49873.10489039]
+Mean: 50362.41498457796
+Standard deviation: 1905.32312877284
+```
+
+』
 
 Wow, this is much better: Random Forests look very promising. However, note that the score on the training set is still much lower than on the validation sets, meaning that the model is still overfitting the training set. Possible solutions for overfitting are to simplify the model, constrain it (i.e., regularize it), or get a lot more training data. However, before you dive much deeper in Random Forests, you should try out many other models from various categories of Machine Learning algorithms (several Support Vector Machines with different kernels, possibly a neural network, etc.), without spending too much time tweaking the hyperparameters. The goal is to shortlist a few (two to five) promising models.
 
 You should save every model you experiment with, so you can come back easily to any model you want. Make sure you save both the hyperparameters and the trained parameters, as well as the cross-validation scores and perhaps the actual predictions as well. This will allow you to easily compare scores across model types, and compare the types of errors they make. You can easily save Scikit-Learn models by using Python’s pickle module, or using sklearn.externals.joblib, which is more efficient at serializing large NumPy arrays:
 
+```py
 from sklearn.externals import joblib
 
 joblib.dump(my_model, "my_model.pkl") # and later...
-
 my_model_loaded = joblib.load("my_model.pkl")
+```
 
-Fine-Tune Your Model
+1『发现作者在源码里好像把上面几个算法都跑了下，而且意外发现作者的 jupyter notebook 源码里竟然有每章最后练习题的答案。（2020-11-24）』
+
+## 2.7 Fine-Tune Your Model
 
 Let’s assume that you now have a shortlist of promising models. You now need to fine-tune them. Let’s look at a few ways you can do that.
 
-Grid Search
+### 2.7.1 Grid Search
 
 One way to do that would be to fiddle with the hyperparameters manually, until you find a great combination of hyperparameter values. This would be very tedious work, and you may not have time to explore many combinations.
 
 Instead you should get Scikit-Learn’s GridSearchCV to search for you. All you need to do is tell it which hyperparameters you want it to experiment with, and what values to try out, and it will evaluate all the possible combinations of hyperparameter values, using cross-validation. For example, the following code searches for the best combination of hyperparameter values for the RandomForestRegressor:
 
+```py
 from sklearn.model_selection import GridSearchCV
 
 param_grid = [
+    # try 12 (3×4) combinations of hyperparameters
+    {'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]},
+    # then try 6 (2×3) combinations with bootstrap set as False
+    {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]},
+  ]
 
-{'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]}, {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]}, ]
-
-forest_reg = RandomForestRegressor()
-
+forest_reg = RandomForestRegressor(random_state=42)
+# train across 5 folds, that's a total of (12+6)*5=90 rounds of training 
 grid_search = GridSearchCV(forest_reg, param_grid, cv=5,
-
-scoring='neg_mean_squared_error', return_train_score=True)
-
+                           scoring='neg_mean_squared_error',
+                           return_train_score=True)
 grid_search.fit(housing_prepared, housing_labels)
-
-Fine-Tune Your Model
+```
 
 When you have no idea what value a hyperparameter should have, a simple approach is to try out consecutive powers of 10 (or a smaller number if you want a more fine-grained search, as shown in this example with the n_estimators hyperparameter).
 
@@ -1092,41 +1179,60 @@ This param_grid tells Scikit-Learn to first evaluate all 3 × 4 = 12 combination
 
 All in all, the grid search will explore 12 + 6 = 18 combinations of RandomForestRe gressor hyperparameter values, and it will train each model five times (since we are using five-fold cross validation). In other words, all in all, there will be 18 × 5 = 90 rounds of training! It may take quite a long time, but when it is done you can get the best combination of parameters like this:
 
->>> grid_search.best_params_ {'max_features': 8, 'n_estimators': 30}
+```py
+>>> grid_search.best_params_ 
+{'max_features': 8, 'n_estimators': 30}
+```
 
 Since 8 and 30 are the maximum values that were evaluated, you should probably try searching again with higher values, since the score may continue to improve.
 
 You can also get the best estimator directly:
 
->>> grid_search.best_estimator_ RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
-
-max_features=8, max_leaf_nodes=None, min_impurity_decrease=0.0,
-
-min_impurity_split=None, min_samples_leaf=1,
-
-min_samples_split=2, min_weight_fraction_leaf=0.0,
-
-n_estimators=30, n_jobs=None, oob_score=False, random_state=None,
-
-verbose=0, warm_start=False)
+```py
+>>> grid_search.best_estimator_ 
+RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+    max_features=8, max_leaf_nodes=None, min_impurity_decrease=0.0,
+    min_impurity_split=None, min_samples_leaf=1,
+    min_samples_split=2, min_weight_fraction_leaf=0.0,
+    n_estimators=30, n_jobs=None, oob_score=False, random_state=None,
+    verbose=0, warm_start=False)
+```
 
 If GridSearchCV is initialized with refit=True (which is the default), then once it finds the best estimator using crossvalidation, it retrains it on the whole training set. This is usually a good idea since feeding it more data will likely improve its performance.
 
 And of course the evaluation scores are also available:
 
+```py
 >>> cvres = grid_search.cv_results_
-
 >>> for mean_score, params in zip(cvres["mean_test_score"], cvres["params"]):
+>>> print(np.sqrt(-mean_score), params) 
+...
 
-... print(np.sqrt(-mean_score), params) ...
-
-63669.05791727153 {'max_features': 2, 'n_estimators': 3} 55627.16171305252 {'max_features': 2, 'n_estimators': 10} 53384.57867637289 {'max_features': 2, 'n_estimators': 30} 60965.99185930139 {'max_features': 4, 'n_estimators': 3} 52740.98248528835 {'max_features': 4, 'n_estimators': 10} 50377.344409590376 {'max_features': 4, 'n_estimators': 30} 58663.84733372485 {'max_features': 6, 'n_estimators': 3} 52006.15355973719 {'max_features': 6, 'n_estimators': 10} 50146.465964159885 {'max_features': 6, 'n_estimators': 30} 57869.25504027614 {'max_features': 8, 'n_estimators': 3} 51711.09443660957 {'max_features': 8, 'n_estimators': 10} 49682.25345942335 {'max_features': 8, 'n_estimators': 30} 62895.088889905004 {'bootstrap': False, 'max_features': 2, 'n_estimators': 3} 54658.14484390074 {'bootstrap': False, 'max_features': 2, 'n_estimators': 10} 59470.399594730654 {'bootstrap': False, 'max_features': 3, 'n_estimators': 3} 52725.01091081235 {'bootstrap': False, 'max_features': 3, 'n_estimators': 10} 57490.612956065226 {'bootstrap': False, 'max_features': 4, 'n_estimators': 3} 51009.51445842374 {'bootstrap': False, 'max_features': 4, 'n_estimators': 10}
+63669.05791727153 {'max_features': 2, 'n_estimators': 3}
+55627.16171305252 {'max_features': 2, 'n_estimators': 10}
+53384.57867637289 {'max_features': 2, 'n_estimators': 30}
+60965.99185930139 {'max_features': 4, 'n_estimators': 3}
+52740.98248528835 {'max_features': 4, 'n_estimators': 10}
+50377.344409590376 {'max_features': 4, 'n_estimators': 30}
+58663.84733372485 {'max_features': 6, 'n_estimators': 3}
+52006.15355973719 {'max_features': 6, 'n_estimators': 10}
+50146.465964159885 {'max_features': 6, 'n_estimators': 30}
+57869.25504027614 {'max_features': 8, 'n_estimators': 3}
+51711.09443660957 {'max_features': 8, 'n_estimators': 10}
+49682.25345942335 {'max_features': 8, 'n_estimators': 30}
+62895.088889905004 {'bootstrap': False, 'max_features': 2, 'n_estimators': 3}
+54658.14484390074 {'bootstrap': False, 'max_features': 2, 'n_estimators': 10}
+59470.399594730654 {'bootstrap': False, 'max_features': 3, 'n_estimators': 3}
+52725.01091081235 {'bootstrap': False, 'max_features': 3, 'n_estimators': 10}
+57490.612956065226 {'bootstrap': False, 'max_features': 4, 'n_estimators': 3}
+51009.51445842374 {'bootstrap': False, 'max_features': 4, 'n_estimators': 10}
+```
 
 In this example, we obtain the best solution by setting the max_features hyperparameter to 8, and the n_estimators hyperparameter to 30. The RMSE score for this combination is 49,682, which is slightly better than the score you got earlier using the default hyperparameter values (which was 50,182). Congratulations, you have successfully fine-tuned your best model!
 
 Don’t forget that you can treat some of the data preparation steps as hyperparameters. For example, the grid search will automatically find out whether or not to add a feature you were not sure about (e.g., using the add_bedrooms_per_room hyperparameter of your CombinedAttributesAdder transformer). It may similarly be used to automatically find the best way to handle outliers, missing features, feature selection, and more.
 
-Randomized Search
+### 2.7.2 Randomized Search
 
 The grid search approach is fine when you are exploring relatively few combinations, like in the previous example, but when the hyperparameter search space is large, it is often preferable to use RandomizedSearchCV instead. This class can be used in much the same way as the GridSearchCV class, but instead of trying out all possible combinations, it evaluates a given number of random combinations by selecting a random value for each hyperparameter at every iteration. This approach has two main benefits:
 
@@ -1134,77 +1240,90 @@ The grid search approach is fine when you are exploring relatively few combinati
 
 • You have more control over the computing budget you want to allocate to hyperparameter search, simply by setting the number of iterations.
 
-Ensemble Methods
+### 2.7.3 Ensemble Methods
 
 Another way to fine-tune your system is to try to combine the models that perform best. The group (or “ensemble”) will often perform better than the best individual model (just like Random Forests perform better than the individual Decision Trees they rely on), especially if the individual models make very different types of errors. We will cover this topic in more detail in Chapter 7.
 
-Analyze the Best Models and Their Errors
+### 2.7.4 Analyze the Best Models and Their Errors
 
 You will often gain good insights on the problem by inspecting the best models. For example, the RandomForestRegressor can indicate the relative importance of each attribute for making accurate predictions:
 
+```py
 >>> feature_importances = grid_search.best_estimator_.feature_importances_
-
 >>> feature_importances
-
 array([7.33442355e-02, 6.29090705e-02, 4.11437985e-02, 1.46726854e-02,
-
-1.41064835e-02, 1.48742809e-02, 1.42575993e-02, 3.66158981e-01,
-
-5.64191792e-02, 1.08792957e-01, 5.33510773e-02, 1.03114883e-02,
-
-1.64780994e-01, 6.02803867e-05, 1.96041560e-03, 2.85647464e-03])
+    1.41064835e-02, 1.48742809e-02, 1.42575993e-02, 3.66158981e-01,
+    5.64191792e-02, 1.08792957e-01, 5.33510773e-02, 1.03114883e-02,
+    1.64780994e-01, 6.02803867e-05, 1.96041560e-03, 2.85647464e-03])
+```
 
 Let’s display these importance scores next to their corresponding attribute names:
 
+```py
 >>> extra_attribs = ["rooms_per_hhold", "pop_per_hhold", "bedrooms_per_room"]
-
 >>> cat_encoder = full_pipeline.named_transformers_["cat"]
-
 >>> cat_one_hot_attribs = list(cat_encoder.categories_[0])
-
 >>> attributes = num_attribs + extra_attribs + cat_one_hot_attribs
+>>> sorted(zip(feature_importances, attributes), reverse=True)
+[(0.3661589806181342, 'median_income'),
+ (0.1647809935615905, 'INLAND'),
+ (0.10879295677551573, 'pop_per_hhold'),
+ (0.07334423551601242, 'longitude'),
+ (0.0629090704826203, 'latitude'),
+ (0.05641917918195401, 'rooms_per_hhold'),
+ (0.05335107734767581, 'bedrooms_per_room'),
+ (0.041143798478729635, 'housing_median_age'),
+ (0.014874280890402767, 'population'),
+ (0.014672685420543237, 'total_rooms'),
+ (0.014257599323407807, 'households'),
+ (0.014106483453584102, 'total_bedrooms'),
+ (0.010311488326303787, '<1H OCEAN'),
+ (0.002856474637320158, 'NEAR OCEAN'),
+ (0.00196041559947807, 'NEAR BAY'),
+ (6.028038672736599e-05, 'ISLAND')]
+```
 
->>> sorted(zip(feature_importances, attributes), reverse=True) [(0.3661589806181342, 'median_income'), (0.1647809935615905, 'INLAND'), (0.10879295677551573, 'pop_per_hhold'), (0.07334423551601242, 'longitude'), (0.0629090704826203, 'latitude'), (0.05641917918195401, 'rooms_per_hhold'), (0.05335107734767581, 'bedrooms_per_room'), (0.041143798478729635, 'housing_median_age'), (0.014874280890402767, 'population'), (0.014672685420543237, 'total_rooms'), (0.014257599323407807, 'households'), (0.014106483453584102, 'total_bedrooms'), (0.010311488326303787, '<1H OCEAN'), (0.002856474637320158, 'NEAR OCEAN'),
-
-(0.00196041559947807, 'NEAR BAY'), (6.028038672736599e-05, 'ISLAND')]
-
-With this information, you may want to try dropping some of the less useful features (e.g., apparently only one ocean_proximity category is really useful, so you could try dropping the others).
+With this information, you may want to try dropping some of the less useful features (e.g., apparently only one `ocean_proximity` category is really useful, so you could try dropping the others).
 
 You should also look at the specific errors that your system makes, then try to understand why it makes them and what could fix the problem (adding extra features or, on the contrary, getting rid of uninformative ones, cleaning up outliers, etc.).
 
-Evaluate Your System on the Test Set
+### 2.7.5 Evaluate Your System on the Test Set
 
 After tweaking your models for a while, you eventually have a system that performs sufficiently well. Now is the time to evaluate the final model on the test set. There is nothing special about this process; just get the predictors and the labels from your test set, run your full_pipeline to transform the data (call transform(), not fit_transform(), you do not want to fit the test set!), and evaluate the final model on the test set:
 
+```py
 final_model = grid_search.best_estimator_
 
 X_test = strat_test_set.drop("median_house_value", axis=1)
-
 y_test = strat_test_set["median_house_value"].copy()
 
-X_test_prepared = full_pipeline.transform(X_test) final_predictions = final_model.predict(X_test_prepared) final_mse = mean_squared_error(y_test, final_predictions) final_rmse = np.sqrt(final_mse) # => evaluates to 47,730.2
+X_test_prepared = full_pipeline.transform(X_test)
+final_predictions = final_model.predict(X_test_prepared)
+
+final_mse = mean_squared_error(y_test, final_predictions)
+final_rmse = np.sqrt(final_mse)
+```
 
 In some cases, such a point estimate of the generalization error will not be quite enough to convince you to launch: what if it is just 0.1% better than the model currently in production? You might want to have an idea of how precise this estimate is. For this, you can compute a 95% confidence interval for the generalization error using scipy.stats.t.interval():
 
->>> from scipy import stats
+```py
+from scipy import stats
 
->>> confidence = 0.95
+confidence = 0.95
+squared_errors = (final_predictions - y_test) ** 2
+np.sqrt(stats.t.interval(confidence, len(squared_errors) - 1,
+                         loc=squared_errors.mean(),
+                         scale=stats.sem(squared_errors)))
 
->>> squared_errors = (final_predictions - y_test) ** 2
-
->>> np.sqrt(stats.t.interval(confidence, len(squared_errors) - 1, ... loc=squared_errors.mean(), ... scale=stats.sem(squared_errors))) ...
-
+# out
 array([45685.10470776, 49691.25001878])
+```
 
-The performance will usually be slightly worse than what you measured using crossvalidation if you did a lot of hyperparameter tuning (because your system ends up fine-tuned to perform well on the validation data, and will likely not perform as well
-
-Fine-Tune Your Model
-
-on unknown datasets). It is not the case in this example, but when this happens you must resist the temptation to tweak the hyperparameters to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data.
+The performance will usually be slightly worse than what you measured using crossvalidation if you did a lot of hyperparameter tuning (because your system ends up fine-tuned to perform well on the validation data, and will likely not perform as well on unknown datasets). It is not the case in this example, but when this happens you must resist the temptation to tweak the hyperparameters to make the numbers look good on the test set; the improvements would be unlikely to generalize to new data.
 
 Now comes the project prelaunch phase: you need to present your solution (highlighting what you have learned, what worked and what did not, what assumptions were made, and what your system’s limitations are), document everything, and create nice presentations with clear visualizations and easy-to-remember statements (e.g., “the median income is the number one predictor of housing prices”). In this California housing example, the final performance of the system is not better than the experts’, but it may still be a good idea to launch it, especially if this frees up some time for the experts so they can work on more interesting and productive tasks.
 
-Launch, Monitor, and Maintain Your System
+## 2.8 Launch, Monitor, and Maintain Your System
 
 Perfect, you got approval to launch! You need to get your solution ready for production, in particular by plugging the production input data sources into your system and writing tests.
 
@@ -1215,6 +1334,8 @@ Evaluating your system’s performance will require sampling the system’s pred
 You should also make sure you evaluate the system’s input data quality. Sometimes performance will degrade slightly because of a poor quality signal (e.g., a malfunctioning sensor sending random values, or another team’s output becoming stale), but it may take a while before your system’s performance degrades enough to trigger an alert. If you monitor your system’s inputs, you may catch this earlier. Monitoring the inputs is particularly important for online learning systems.
 
 Finally, you will generally want to train your models on a regular basis using fresh data. You should automate this process as much as possible. If you don’t, you are very likely to refresh your model only every six months (at best), and your system’s performance may fluctuate severely over time. If your system is an online learning system, you should make sure you save snapshots of its state at regular intervals so you can easily roll back to a previously working state.
+
+## 2.9 Try It Out
 
 Hopefully this chapter gave you a good idea of what a Machine Learning project looks like, and showed you some of the tools you can use to train a great system. As you can see, much of the work is in the data preparation step, building monitoring tools, setting up human evaluation pipelines, and automating regular model training. The Machine Learning algorithms are also important, of course, but it is probably preferable to be comfortable with the overall process and know three or four algorithms well rather than to spend all your time exploring advanced algorithms and not enough time on the overall process.
 
