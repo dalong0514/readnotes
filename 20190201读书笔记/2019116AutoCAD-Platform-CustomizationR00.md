@@ -124,70 +124,13 @@ Using an asterisk instead of an actual application name returns the XData lists 
 (entget (entlast) '("*"))
 ```
 
-This exercise shows how to list the XData attached to a dimension with a dimension override:
-
-1 At the AutoCAD Command prompt, type dli press Enter.
-
-2 At the Specify first extension line origin or `<select object>`: prompt, specify a point in the drawing.
-
-3 At the Specify second extension line origin: prompt, specify a second point in the drawing.
-
-4 At the Specify dimension line location or [Mtext/Text/Angle/Horizontal/Vertical/Rotated]: prompt, specify a point in the drawing to place the linear dimension.
-
-5 Select the linear dimension that you created, right-click, and then click Properties.
-
-6 In the Properties palette (Windows) or Properties Inspector (Mac OS), click the Arrow 1 field under the Lines & Arrows section. Select None from the drop-down list. The first arrowhead of the linear dimension is suppressed as a result of a dimension override being created.
-
-7 At the AutoCAD Command prompt, type `(assoc -3 (entget (car (entsel "\nSelect object with attached xdata: ")) '("*")))` and press Enter. Attaching an XData list to the linear dimension is how AutoCAD handles dimension overrides for individual dimensions. Here is what the XData list that was attached to the linear dimension as a result of changing the Arrow 1 property in step 6 looks like:
-
-```c
-(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 343) (1005. "2BE") (1070. 173) (1070. 1) (1070. 344) (1005. "0") (1002. "}")))
-```
+This exercise shows how to list the XData attached to a dimension with a dimension override.
 
 NOTE: I mentioned earlier that XData doesn't affect the appearance of an object, and that is still true even when used as we did in the previous exercise. XData itself doesn't affect the object, but AutoCAD does look for its own XData and uses it to control the way an object might be drawn. If you implement an application with the Autodesk® ObjectARX® application programming interface, you could use ObjectARX and XData to control how an object is drawn onscreen. You could also control the way an object looks using object overrules with Managed.NET and XData. ObjectARX and Managed.NET are the two advanced programming options that Autodesk supports for AutoCAD development. You can learn more about ObjectARX and Managed.NET at www.objectarx.com.
 
 The entget function can be used to determine whether an XData list for a specific application is already attached to an object. If an XData list already exists for an object, you can then modify that list. Use the subst function to update or replace one XData list with another.
 
-This exercise shows how to override the color assigned to dimension and extension lines, and restore the arrowhead for the dimension you created in the previous exercise:
-
-1 At the AutoCAD Command prompt, type the following and press Enter:
-
-```c
-(setq entityName (car (entsel "\nSelect dimension: ")))
-```
-
-2 At the Select dimension: prompt, select the linear dimension created in the previous exercise.
-
-3 At the AutoCAD Command prompt, type the following and press Enter to get the entity data list and XData list associated with an application named ACAD:
-
-```c
-(setq entityData (entget entityName '("ACAD")))
-```
-
-4 Type the following and press Enter to assign the xdataList variable with the new XData list to change the color of the dimension line to ACI 40 and the color of the extension line to ACI 200:
-
-```c
-(setq xdataList 
-  '(-3 ("ACAD" (1000. "DSTYLE") (1002. "{") (1070. 177) (1070. 200) (1070. 176) (1070. 40) (1002. "}")))
-)
-```
-
-5 Type the following and press Enter to check whether there is an XData list already attached to the object, and if so replace it with the new XData list:
-
-```c
-(if (/= (assoc -3 entityData) nil) 
-  (setq entityData (subst xdataList (assoc -3 entityData) entityData)) 
-)
-```
-
-6 Type the following and press Enter to update the linear dimension and commit the changes to the drawing: 
-
-```c
-(entmod entityData) 
-(entupd entityName)
-```
-
-The colors of the lines in the dimension that are inherited from the dimension style are now overridden. This is similar to what happens when you select a dimension, right-click, and choose Precision.
+This exercise shows how to override the color assigned to dimension and extension lines, and restore the arrowhead for the dimension you created in the previous exercise.
 
 1-2『上面介绍了修改 XData 的具体方法，以后要实现的一个重要功能需要借鉴里面的代码。管道号块的插入点结合多段线的坐标点（单一直线有 2 个 dxf code 为 10 的点、折一下的有 3 个点，折 2 下有 4 个点），给每个多段线打上管道号的标签，此标签存在 XData。反向再通过多段线给每个阀门（采用区域覆盖的块）打上管线号的标签。那么阀门和管线号的数据就关联上了，管段表和材料表就可以自动生成了，哈哈。做一张主题卡片。（2020-10-32）』
 
@@ -212,102 +155,7 @@ Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted
 
 2『 Dotted Pair 做一张术语卡片。』——已完成
 
-### 0202. 术语卡——Controlling a Command's Version
-
-Internally each standard AutoCAD command is assigned a new version number when a change is made that affects an AutoLISP program, script, or command macro. You use the initcommandversion function to control which version of a command is used by the next use of the command or command-s function. The initcommandversion function doesn't require a value, but when one is provided it must be an integer value that represents the version of the command you want to use.
-
-The following example uses version 1 of the color command:
-
-```c
-(initcommandversion 1) 
-(command "._color")
-```
-
-Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
-
-1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
-
-### 0203. 术语卡——图形数据和非图形数据
-
-The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
-
-2『图形数据和非图形数据，做一张术语卡片。』——已完成
-
-### 0204. 术语卡——Block Definitions and Block References
-
-Block references are often misunderstood by new (and even experienced) AutoLISP developers. Blocks are implemented as two separate objects: block definitions and block references. Block definitions are nongraphical objects that are stored in a drawing and contain the geometry and attribute definitions that make up how the block should appear and behave in the drawing area. A block definition can also contain custom properties and dynamic properties.
-
-Understanding Block Definitions and Block References. You can think of a block definition much like a cookie recipe. The recipe lists the ingredients that make up the cookie and explains how those ingredients are combined for a particular taste, but it doesn't control where the dough will be placed on the baking sheet or the size of the unbaked cookies. The placement and amount of the cookie dough on the sheet would be similar to a block reference in a drawing.
-
-A block reference displays an instance, not a copy, of the geometry from a block definition; the geometry exists only as part of the block definition, with the exception of attributes. Attribute definitions that are part of a block definition are added to a block reference as attributes unless the attribute definition is defined as a constant attribute. Constant attributes are parts of the geometry inherited from a block definition and aren't part of the block reference.
-
-When creating a block reference with AutoLISP, as opposed to inserting it with the insert command, you are responsible for adding any attributes to the block reference that aren't designated as constant within the block definition. Like the old-style polyline, block references use the seqend object to designate the end of an insert object. Between the insert and seqend objects of a block reference are attrib objects that represent the attribute references that aren't set as constant and must be added to a block reference.
-
-Since attributes must be added to a block reference, it is possible to have a block definition that contains attribute definitions and a block reference that points to that block definition without any attributes. It is also possible to have a block reference that has attributes attached to it and a block reference that doesn't have any attribute definitions.
-
-The following code adds a block definition named RoomNum (see Figure 16.4) to a drawing that has a single attribute with the tag ROOM#:
-
-```c
-; Creates the block definition RoomNum 
-(entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
-
-; Creates the rectangle for around the block attribute 
-(entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") 
-  (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0)) 
-  (cons 10 (list 36.0 18.0 0.0)) (cons 10 (list 0.0 18.0 0.0)))
-) 
-
-; Adds the attribute definition 
-(entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText") 
-  (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") 
-  (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") 
-  (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))
-) 
-
-; Ends block definition 
-(entmake (list (cons 0 "ENDBLK")))
-```
-
-1『上面的是定义块属性，可以自己在图形界面里新建属性块，就如同在数据流模板里做的各个模块。（2020-10-30）』
-
-Figure 16.4 RoomNum block reference inserted with AutoLISP
-
-Once the block definition is created, you can then use the following code to add a block reference to a drawing based on a block named RoomNum:
-
-```c
-; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 
-(entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) 
-((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "RoomNum") (10 1.0 -0.5 0.0)) 
-
-; Creates an attribute reference with the tag ROOM# and adds it to the block 
-(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
-  (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
-  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
-) 
-(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
-  (40. 0.4) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
-  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
-) 
-
-; Adds the end marker for the block reference 
-(entmake ' ((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
-```
-
-If you want to extract the values of the attributes attached to a block, you must get the constant attribute values from the block definition and the nonconstant attribute values that are attached as part of the block reference. You use the entnext function to step through each object in a block definition and block reference, collecting information from the reference objects. All attribute definitions (attdef) or attribute reference (attrib) objects must be read until the last or seqend object is encountered.
-
-Listing 16.3 shows a custom function that demonstrates how to step through a block reference and its block definition with the while function. You must load the custom functions in Listing 16.2 before executing the code in Listing 16.3. The code in Listing 16.2 and Listing 16.3 can be found in the `ch16_code_listings.lsp` file that is available for download from this book's website.
-
-1『目前无法生成完整的块实体，生成的块只有参照没属性值。用 `entmake` 结合 `ATTRIB` 无效。（2020-10-30）』
-
-### 0205. 术语卡——选择集
-
-A selection set, sometimes known as a selection set name or ssname for short, is a temporary container that holds a reference to objects in a drawing. AutoLISP represents a selection set with the PICKFIRST data type. You get a selection set, commonly based on the objects in a drawing that the user wants to modify or interact with. For example, when you see the Select objects: prompt AutoCAD is asking you to select the objects in the drawing you want to work with and it gets a selection set containing the objects you selected in return.
-
-In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
-
-2『选择集的概念做一张术语卡片。』——已完成
-
-### 0206. 术语卡——XData
+### 0202. 术语卡——XData
 
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
@@ -403,6 +251,86 @@ The resulting list is assigned to the entityData variable and should look simila
 ```
 
 The circle object won't look any different after the changes have been committed because the XData doesn't affect the appearance of the object. However, you can now differentiate this circle from those that might be created with the circle command. This makes it much easier to locate and update the radius of the circles that represent a drill hole in your drawing.
+
+### 0203. 术语卡——图形数据和非图形数据
+
+The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
+
+2『图形数据和非图形数据，做一张术语卡片。』——已完成
+
+### 0204. 术语卡——Block Definitions and Block References
+
+Block references are often misunderstood by new (and even experienced) AutoLISP developers. Blocks are implemented as two separate objects: block definitions and block references. Block definitions are nongraphical objects that are stored in a drawing and contain the geometry and attribute definitions that make up how the block should appear and behave in the drawing area. A block definition can also contain custom properties and dynamic properties.
+
+Understanding Block Definitions and Block References. You can think of a block definition much like a cookie recipe. The recipe lists the ingredients that make up the cookie and explains how those ingredients are combined for a particular taste, but it doesn't control where the dough will be placed on the baking sheet or the size of the unbaked cookies. The placement and amount of the cookie dough on the sheet would be similar to a block reference in a drawing.
+
+A block reference displays an instance, not a copy, of the geometry from a block definition; the geometry exists only as part of the block definition, with the exception of attributes. Attribute definitions that are part of a block definition are added to a block reference as attributes unless the attribute definition is defined as a constant attribute. Constant attributes are parts of the geometry inherited from a block definition and aren't part of the block reference.
+
+When creating a block reference with AutoLISP, as opposed to inserting it with the insert command, you are responsible for adding any attributes to the block reference that aren't designated as constant within the block definition. Like the old-style polyline, block references use the seqend object to designate the end of an insert object. Between the insert and seqend objects of a block reference are attrib objects that represent the attribute references that aren't set as constant and must be added to a block reference.
+
+Since attributes must be added to a block reference, it is possible to have a block definition that contains attribute definitions and a block reference that points to that block definition without any attributes. It is also possible to have a block reference that has attributes attached to it and a block reference that doesn't have any attribute definitions.
+
+The following code adds a block definition named RoomNum (see Figure 16.4) to a drawing that has a single attribute with the tag ROOM#:
+
+```c
+; Creates the block definition RoomNum 
+(entmake (list (cons 0 "BLOCK") (cons 2 "roomnum") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
+
+; Creates the rectangle for around the block attribute 
+(entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") 
+  (cons 90 4) (cons 70 1) (cons 43 0) (cons 10 (list 0.0 0.0 0.0)) (cons 10 (list 36.0 0.0 0.0)) 
+  (cons 10 (list 36.0 18.0 0.0)) (cons 10 (list 0.0 18.0 0.0)))
+) 
+
+; Adds the attribute definition 
+(entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 100 "AcDbText") 
+  (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") 
+  (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") 
+  (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))
+) 
+
+; Ends block definition 
+(entmake (list (cons 0 "ENDBLK")))
+```
+
+1『上面的是定义块属性，可以自己在图形界面里新建属性块，就如同在数据流模板里做的各个模块。（2020-10-30）』
+
+Figure 16.4 RoomNum block reference inserted with AutoLISP
+
+Once the block definition is created, you can then use the following code to add a block reference to a drawing based on a block named RoomNum:
+
+```c
+; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 
+(entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) 
+((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "RoomNum") (10 1.0 -0.5 0.0)) 
+
+; Creates an attribute reference with the tag ROOM# and adds it to the block 
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
+  (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
+) 
+(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
+  (40. 0.4) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
+  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
+) 
+
+; Adds the end marker for the block reference 
+(entmake ' ((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+```
+
+If you want to extract the values of the attributes attached to a block, you must get the constant attribute values from the block definition and the nonconstant attribute values that are attached as part of the block reference. You use the entnext function to step through each object in a block definition and block reference, collecting information from the reference objects. All attribute definitions (attdef) or attribute reference (attrib) objects must be read until the last or seqend object is encountered.
+
+Listing 16.3 shows a custom function that demonstrates how to step through a block reference and its block definition with the while function. You must load the custom functions in Listing 16.2 before executing the code in Listing 16.3. The code in Listing 16.2 and Listing 16.3 can be found in the `ch16_code_listings.lsp` file that is available for download from this book's website.
+
+1『目前无法生成完整的块实体，生成的块只有参照没属性值。用 `entmake` 结合 `ATTRIB` 无效。（2020-10-30）』
+
+### 0205. 术语卡——选择集
+
+A selection set, sometimes known as a selection set name or ssname for short, is a temporary container that holds a reference to objects in a drawing. AutoLISP represents a selection set with the PICKFIRST data type. You get a selection set, commonly based on the objects in a drawing that the user wants to modify or interact with. For example, when you see the Select objects: prompt AutoCAD is asking you to select the objects in the drawing you want to work with and it gets a selection set containing the objects you selected in return.
+
+In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
+
+2『选择集的概念做一张术语卡片。』——已完成
 
 ### 0301. 任意卡——生成 VLX 文件
 
@@ -592,6 +520,21 @@ ARC
 The previous example used the entget function to return an entity data list of an object. I explain how to use this function later, in the「Updating an Object's Properties with an Entity Data List」section.
 
 1-2『这个例子看下来后，entlast、entnext 还有 entget 这几个函数结合起来可以做好多事，特别是 entnext 的用法灵活性很大。比如自动生成辅助流程里，又想到一个思路：1）先直接使用 entlast 获取图纸里的最后一个实体名保存下来。2）批量插入辅助流程组件块后，通过刚刚最后一个实体名外加 entnext 函数，可以获得所有批量插入的块的实体名列表。3）根据这个实体名列表批量修改属性值，这样又跟以前开发好的功能对接上了。把上面信息合并到「获取实体数据集的方式」任意卡里。』——已完成
+
+### 0312. 任意卡——Controlling a Command's Version
+
+Internally each standard AutoCAD command is assigned a new version number when a change is made that affects an AutoLISP program, script, or command macro. You use the initcommandversion function to control which version of a command is used by the next use of the command or command-s function. The initcommandversion function doesn't require a value, but when one is provided it must be an integer value that represents the version of the command you want to use.
+
+The following example uses version 1 of the color command:
+
+```c
+(initcommandversion 1) 
+(command "._color")
+```
+
+Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
+
+1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
 
 ## Introduction
 

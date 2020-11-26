@@ -40,7 +40,7 @@ Wes Mckinney，本书作者，pandas 的创建者。
 
 Director of https://ursalabs.org/. Creator of Python pandas. Co-creator Apache Arrow. @apache Member and Apache Parquet PMC.
 
-### 0401. 金句卡——创建变量即创建了一个指向等号右边对象的引用
+### 0401. 任意卡——创建变量即创建了一个指向等号右边对象的引用
 
 变量和参数传递。在 Python 中对一个变量（或者变量名）赋值时，你就创建了一个指向等号右边对象的引用。考虑一个整数列表；假设将 a 赋值给一个新变量 b，在某些语言中，会是数据 [1, 2, 3] 被拷贝的过程。但在 Python 中，a 和 b 实际上是指向了相同的对象，即原来的 [1, 2, 3]（在图 2-7 中示范）。你可以通过向 a 中添加一个元素，然后检查 b 来证明；理解 Python 引用语义中复制数据的时机、方法和原因的机制，对于利用 Python 处理大数据集尤其重要。
 
