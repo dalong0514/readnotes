@@ -4,46 +4,33 @@ Drawing standards, also known as CAD standards, are guidelines that help you nam
 
 Without having a well-defined set of standards, you will find it harder to share and output files within a company, and in turn this can lead to delays and make it nearly impossible to achieve a consistent look to all the drawings that your client receives. In addition, it is difficult to customize AutoCAD to help enforce your company's standards if there really are no standards.
 
-Can you imagine what a client might think when a company sends them a set of drawings that contain different fonts or title blocks, or the inconsistent use of lineweights?
-
-Well-established drawing standards ensure that your drawings all look the same when they are presented to the client, and they can make it easier to:
-
-1. Train new drafters and other professionals on your company's standards that use AutoCAD.
-
-2. Identify which drawing and externally referenced files are associated with a project.
-
-3. Determine the purpose of a named object in a drawing.
-
-4. Share project files with clients and contractors because your standards are well defined.
+Can you imagine what a client might think when a company sends them a set of drawings that contain different fonts or title blocks, or the inconsistent use of lineweights? Well-established drawing standards ensure that your drawings all look the same when they are presented to the client, and they can make it easier to: 1) Train new drafters and other professionals on your company's standards that use AutoCAD. 2) Identify which drawing and externally referenced files are associated with a project. 3) Determine the purpose of a named object in a drawing. 4) Share project files with clients and contractors because your standards are well defined.
 
 ## 01. Naming Standards for Projects and Files
 
 As you might have gathered, it is not in your company's best interest to let everyone define their own drafting standards; this same approach applies to naming standards for projects or the files associated with a project, and how files should be stored. At the end of the day, the files created are owned by the company, and there is a pretty good chance that more than one individual will be working on a project over its entire lifetime. There is nothing more frustrating than when changes to a project are requested and the files can't be located because they are missing or no one understands how the files were saved.
 
-
-
-
-
-
-
-
 The first step your company should consider if you have no current file-naming standard, or if you are considering a change to your existing system, is a way to log and name a project. Project logging can be as simple as posting a spreadsheet on the network drive or using a project-collaboration site on Microsoft SharePoint to ensure everyone is logging projects using the same system. Once the logging system is determined, you can determine how projects and files should be named. As with the project-logging system, all files should be stored in a central location on a networked drive or a system that allows you to check files in and out, such as Autodesk Vault.
 
-You can take two approaches to the way you name projects and files: you can establish a system yourself using the guidelines that I offer in the next few sections, or you can use the standards set by a consortium or other professional governing body. Based on your industry or the country you work in, you might consider the guidelines established by the American Institute of Architects (www.aia.org), National Institute of Building Sciences (www.nibs.org), Royal Institute of British Architects (www.architecture.com), or American National Standards Institute (www.ansi.org).
+You can take two approaches to the way you name projects and files: you can establish a system yourself using the guidelines that I offer in the next few sections, or you can use the standards set by a consortium or other professional governing body. Based on your industry or the country you work in, you might consider the guidelines established by the American Institute of Architects ([AIA](https://www.aia.org/)), National Institute of Building Sciences ([National Institute of Building Sciences](https://www.nibs.org/default.aspx)), Royal Institute of British Architects ([Royal Institute of British Architects](https://www.architecture.com/)), or American National Standards Institute ([American National Standards Institute - ANSI Home](https://www.ansi.org/)).
 
-### 1. Project Names
+### 1.1 Project Names
 
 The project-naming structure you choose to use should be short and sequential. For example, you might consider just a basic numeric value such as 000001, 000002, and so on. I do not recommend that you use the year as part of the numbering system since projects can span multiple years.
 
 Project names commonly include an alphabetic prefix with one or more letters to make it easy to start a secondary naming system if you decide to organize your projects by business type or some other classification. For example, say your company works on residential, commercial, and government projects. In this case, you might consider prefixing the project's number with R, C, or G, so they would be R00001, C00002, or G00003.
 
-Other information you might want to represent as part of a project name could be
+1『不错的建议，把类别放在序号的前面。（2020-11-26）』
 
-Phase Often a numeric value of one alphabetic letter or number (for example, -A or -1 to represent the first phase of a project).
+Other information you might want to represent as part of a project name could be:
 
-Location Optional; often a combination of alphabetic letters and numbers to help identify multiple locations on a single and very large job site (for example, -A1 to represent the first location and -B1 to represent a second location). Using a Building attribute in a filename might be a better choice for you since all work is being done under a single project instead of multiple projects for a single job.
+Phase —— Often a numeric value of one alphabetic letter or number (for example, -A or -1 to represent the first phase of a project).
+
+Location —— Optional; often a combination of alphabetic letters and numbers to help identify multiple locations on a single and very large job site (for example, -A1 to represent the first location and -B1 to represent a second location). Using a Building attribute in a filename might be a better choice for you since all work is being done under a single project instead of multiple projects for a single job.
 
 If a project has only a single phase, it is up to you to determine whether you want to indicate that as part of a project name. A project always has a first phase, but it might never have a second phase, based on the size of the project. Information such as floor, discipline, file type, and sheet type should be reserved for use by files within a project and not included as part of a project's name. Figure 1.1 shows what a structure for a project number might look like.
+
+![](./res/2019002.png)
 
 Figure 1.1 Possible project numbering structure
 
@@ -51,9 +38,17 @@ The project-naming information I've presented is only one of many possible ways 
 
 After you have defined the requirements and structure for your project name, assign that name to the folder on the network in which all files related to that project should be stored. Alternatively, you can use the name as an attribute in your file-management system of choice.
 
-### 2. Filenames
+### 1.2 Filenames
 
 There are two schools of thought when it comes to naming the files that are part of a project: one is to include the project name as part of the filename and the other is not to include it, since it is already the project folder's name. I subscribe to the school of thought that a project name should be part of a file's name, and my main reason is that a file can accidentally be placed in the wrong project folder. If the project name is not part of the filename, the file in a way could be lost forever. No matter which approach you choose, you will want to be consistent. Either prefix all your files with the project name, or don't.
+
+
+
+
+
+
+
+
 
 Similar to a project name, the files in a project should use consistent, short, and meaningful names. A basic filename might contain the following information:
 

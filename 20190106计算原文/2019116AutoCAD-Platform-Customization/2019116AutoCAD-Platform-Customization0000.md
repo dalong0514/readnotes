@@ -26,15 +26,15 @@ Drawing customization affects the appearance of and settings in a drawing file o
 
 The AutoCAD Platform Customization: User Interface, AutoLISP, VBA, and Beyond book covers many of the customization and programming features that can be found in AutoCAD on Windows and Mac OS X. This book covers most of the customization features available along with two of the easier to learn programming languages that AutoCAD supports. If any of the following are true, this book will be useful to you:
 
-1. Want to learn about which customization and programming options are available in AutoCAD.
+1 Want to learn about which customization and programming options are available in AutoCAD.
 
-2. Want to customize the user interface or support files, such as linetypes and hatch patterns, that AutoCAD utilizes.
+2 Want to customize the user interface or support files, such as linetypes and hatch patterns, that AutoCAD utilizes.
 
-3. Want to automate repetitive tasks.
+3 Want to automate repetitive tasks.
 
-4. Want to create and manage CAD standards for your company.
+4 Want to create and manage CAD standards for your company.
 
-5. Want to learn how to create custom programs with AutoLISP or Visual Basic for Applications (VBA).
+5 Want to learn how to create custom programs with AutoLISP or Visual Basic for Applications (VBA).
 
 ### 2. Customization in AutoCAD
 

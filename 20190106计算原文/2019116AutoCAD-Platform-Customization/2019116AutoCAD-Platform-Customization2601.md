@@ -1,668 +1,667 @@
-When the Macros dialog box opens, click the Macros In drop-down list and choose ch24_hexbolt.dvb. Figure 24.9 shows the macro that is stored in and can be executed from the ch24_hexbolt.dvb file with the Macros dialog box.
+Variables in VBA hold a specific data type, which helps to enforce data integrity and communicate the type of data an argument expects or a function might return. As your programs become more complex and you start requesting input from the user, there will be times when a function returns a value of one data type and you want to use that value with a function that expects a different data type. VBA supports a wide range of functions that can convert a string to a number, a number to a string, and most common data types to a specific data type.
 
-In the Macros list, choose basHexBolt.HexBolt and click Run. The Draw Hex Bolt View dialog box, shown in Figure 24.10, is displayed.
+Table 25.5 lists many of the data conversion functions that you will use with VBA in this book.
 
-In the Diameter list box, choose 3/8 and click Insert.
+Table 25.5 VBA data conversion functions
 
-At the Specify center of bolt head: prompt, specify a point in the drawing area to draw the top view of the hex bolt.
+Function Description
 
-When the Draw Hex Bolt View dialog box reappears, in the View section click the Side option or image. Click Insert.
+Abs Returns the absolute value of a numeric value, integer, or double number. The absolute value is a positive value—never negative.
 
-At the Specify middle of bolt head: prompt, specify a point in the drawing area to draw the side view of the hex bolt.
+Syntax: retVal = Abs(number)
 
-When the Draw Hex Bolt View dialog box reappears again, click Cancel. Figure 24.11 shows the top and side views of the hex bolt that were drawn with the macro.
+Asc Returns an integer that represents the ASCII code value of the string character that is passed to the function.
 
-Figure 24.9 Edit, debug, and execute macros from the Macros dialog box.
+Syntax: retVal = Asc(string)
 
-Figure 24.10 Custom dialog box used to draw a top or side view of a hex bolt
+CBool Converts a value to a Boolean value.
 
-Figure 24.11 Views of the completed hex bolt
+Syntax: retVal = CBool(value)
 
-Accessing the AutoCAD VBA Documentation
+CByte Converts a value to a byte value.
 
-The AutoCAD VBA documentation is available from the AutoCAD product Help landing page and the VBA Editor. The documentation is composed of two documentation sets: the AutoCAD Object Library Reference and the ActiveX Developer's Guide. Although this book is designed to make it easy to learn how to use the AutoCAD Object library and the VBA programming language, you will want to refer to the documentation that is provided with the AutoCAD product too, as it just isn't possible to cover every function and technique here.
+Syntax: retVal = CByte(value)
 
-The topics of the AutoCAD Object Library Reference explain the classes, methods, properties, and constants that make up the AutoCAD Object library. The ActiveX Developer's Guide topics can be used to explore advanced techniques and features that aren't covered in this book.
+CCur Converts a value to a currency value.
 
-You can see the AutoCAD VBA and ActiveX documentation written for AutoCAD 2015 here:
+Syntax: retVal = CCur(value)
 
-http://help.autodesk.com/view/ACD/2015/ENU/
+CDate Converts a value to a date value.
 
-On the Autodesk AutoCAD 2015 Help landing page, click the Developer Home Page link. On the AutoCAD Developer Help Home Page, use the AutoCAD Object Library Reference and Developer's Guide links under the ActiveX/VBA section to access the AutoCAD VBA and ActiveX documentation.
+Syntax: retVal = CDate(value)
 
-When working in the VBA Editor, you can access the AutoCAD Object Library Reference and Microsoft Visual Basic for Applications Help by doing the following:
+CDbl Converts a value to a double value.
 
-In a code editor window, highlight the keyword, statement, data type, method, property, or constant that you want to learn more about.
+Syntax: retVal = CDbl(value)
 
-Press F1.
+CDec Converts a value to a decimal value.
 
-Help can also be accessed from the Object Browser. In the Object Browser, select a class, method, property, or constant and then press F1 to open the associated help topic. I discussed the Object Browser earlier, in the「Exploring Loaded Libraries with the Object Browser」section.
+Syntax: retVal = CDec(value)
 
-Chapter 25
+Chr Returns the character equivalent of the ASCII code value that is passed to the function.
 
-Understanding Visual Basic for Applications
+Syntax: retVal = Chr(number)
 
-The Visual Basic for Applications (VBA) programming language is a variant of the Visual Basic 6 (VB6) programming language that was introduced in 1998. Though similar, VB6 isn't exactly the same as the current version of Visual Basic (known as VB.NET). Unlike VB6, which allows you to develop stand-alone applications, VBA programs require a host application. The host application provides the framework in which the VBA program can be executed; Microsoft Word and the Autodesk® AutoCAD® program are examples of host applications.
+CInt Converts a value to an integer value.
 
-VBA was first introduced as a preview technology and modern programming alternative to AutoLISP® and ObjectARX® with AutoCAD Release 14 back in 1997. It was not until after the release of AutoCAD R14.01 that VBA was officially supported. The implementation of VBA in the AutoCAD program at that time was huge to the industry, as the learning curve between AutoLISP and C++ was steep, and the number of developers who knew VBA was growing rapidly.
+Syntax: retVal = CInt(value)
 
-Here are some of the reasons I recommend using VBA for your custom programs:
+CLng Converts a value to a long value.
 
-Individuals with VB/VBA experience often can be found in-house (check in your company's IS/IT department); finding someone fluent in AutoLISP or ObjectARX is much rarer.
+Syntax: retVal = CLng(value)
 
-VB/VBA resources are easier to locate—on the Internet or at your local library.
+CLngLng Converts a value to a LongLong value that is valid on 64-bit systems only.
 
-Connecting to external applications and data sources is simpler using VB/VBA.
+Syntax: retVal = CLngLng(value)
 
-VBA programs are relatively low maintenance; programs written for the last release of the AutoCAD program (even those written a decade ago) often run in the latest release with little to no change.
+CLngPtr Converts a value to a long value on 32-bit systems or a LongLong value on 64-bit systems.
 
-Learning the Fundamentals of the VBA Language
+Syntax: retVal = CLngPtr(value)
 
-Before you learn to use VBA to automate the AutoCAD drawing environment, it is essential to have a basic understanding of the VBA or VB6 programming language. If you are not familiar with the VBA or VB6 programming language, I recommend reading this chapter before moving on.
+CSng Converts a value to a single value.
 
-In addition to this chapter, the Microsoft Visual Basic for Applications Help from the Help menu on the VBA Editor's menu bar and your favorite Internet search engine can be great resources for information on the VBA programming language. The following are a couple of web resources that can help you get started on locating additional information on VBA and VB6:
+Syntax: retVal = CSng(value)
 
-Microsoft's Programming Resources for Visual Basic for Applications page (http://support.microsoft.com/kb/163435)
+CStr Converts a value to a string value.
 
-Microsoft Developer Network: Visual Basic 6.0 Language Reference (http://msdn.microsoft.com/en-us/library/aa338033(v=vs.60).aspx)
+Syntax: retVal = CStr(value)
 
-Creating a Procedure
+CVar Converts a value to a variant value.
 
-Most of the code you write in VBA will be grouped into a named code block called a procedure. If you are familiar with AutoLISP or another programming language, you might be familiar with the terms function or method. VBA supports two types of procedures:
+Syntax: retVal = CVar(value)
 
-Subroutine (or Sub) A named code block that doesn't return a value
+Fix Returns the nearest integer of a double number after discarding the fractional value after the decimal. When a negative double value is passed to the function, the first negative number greater than or equal to the number passed is returned.
 
-Function A named code block that does return a value
+Syntax: retVal = Fix(number)
 
-The definition of a procedure always starts with the keyword Sub or Function followed by its designated name. The procedure name should be descriptive and should give you a quick idea of the purpose of the procedure. The naming of a procedure is personal preference—I like to use title casing for the names of the functions I define to help identify misspelled function names. For example, I use the name CreateLayer for a function that creates a new layer. If I enter createlayer in the VBA Editor window, the VBA Editor will change the typed text to CreateLayer to match the procedure's definition.
+Format Returns a string that contains a formatted numeric or date value.
 
-After the procedure name is a balanced set of parentheses that contains the arguments that the procedure expects. Arguments aren't required for a procedure, but the parentheses must be present. The End Sub or End Function keywords (depending on the type of procedure defined) must be placed after the last code statement of the procedure to indicate where the procedure ends.
+Syntax: retVal = Format(value[, format[,firstweekday[, firstweekofyear]]])
 
-The following shows the basic structures of a Sub procedure:
+The optional format argument controls the number or date formatting, and the optional firstweekday and firstweekofyear specify the first day of the week or first week of the year.
 
-Sub ProcedureName() End Sub Sub ProcedureName(Arg1 As DataType, ArgN As DataType) End Sub
+Hex Returns a hexadecimal value as a string based on the number provided.
 
-Here's an example of a custom procedure named MyDraftingAids that changes the values of two system variables—osmode to 35 and orthomode to 1.
+Syntax: retVal = Hex(number)
 
-Sub MyDraftingAids() ThisDrawing.SetVariable "osmode", 35 ThisDrawing.SetVariable "orthomode", 1 End Sub
+Int Returns the nearest integer of a double number after discarding the fractional value after the decimal. When a negative double value is passed to the function, the first negative number less than or equal to the number passed is returned.
 
-When defining a procedure of the Function type, you must indicate the type of data that the procedure will return. In addition to indicating the type of data to return, at least one code statement in the procedure must return a value. You return a value by assigning the value to the procedure's name.
+Syntax: retVal = Int(number)
 
-The following shows the basic structures of a Function procedure:
+Oct Returns an octal value as a string based on the number provided.
 
-Function ProcedureName() As DataType ProcedureName = Value End Function Function ProcedureName(Arg1 As DataType, ArgN As DataType) As DataType ProcedureName = Value End Function
+Syntax: retVal = Oct(number)
 
-The arguments and return values you specify as part of a procedure follow the structure of dimensioning a variable. I explain how to dimension a variable in the next section.
+For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
 
-Arguments can be prefixed with one of three optional keywords: Optional, ByRef, or ByVal. The Optional keyword can be used to pass a value to a procedure that might be needed only occasionally. You can learn more about these keywords from the VBA Editor Help system. The following demonstrates the definition of a function named CreateLayer that accepts an optional color argument using the Optional keyword:
+Comparing Values
 
-Function CreateLayer(lyrName As String, _ Optional lyrColor As ACAD_COLOR = acGreen) As AcadLayer Dim objLayer As AcadLayer Set objLayer = ThisDrawing.Layers.Add(lyrName) objLayer.color = lyrColor Set CreateLayer = objLayer End Function
+As the complexity of a program grows, so too does the need to perform conditional tests, also referred to as test conditions. Test conditions are used to compare values or settings in the AutoCAD environment against a known condition. VBA operators and functions that are used to test conditions return a Boolean value of True or False. The VBA operators and functions used to test a condition allow you to
 
-The value returned by that function is the new layer created by the Add method based on the name passed to the lyrName argument. The Add method returns an object of the AcadLayer type. After the layer is created, the color passed to lyrColor is assigned to the new layer's Color property. Finally, the new layer is returned by the assigning the value to CreateLayer. Since an object is being returned, the Set statement must be placed to the left of the variable name to assign the object to the variable. I discuss the Set statement in the「Working with Objects」section later in this chapter.
+Compare two values for equality
 
-The following demonstrates how to use the CreateLayer procedure:
+Determine if a value is numeric, zero, or negative
 
-Dim newLayer as AcadLayer Set newLayer = CreateLayer("Object", acWhite)
+Compare two values to see which is greater or less than or equal to the other
 
-Another concept that can be used when defining an optional argument is setting a default value. A default value is assigned to an argument using the equal symbol ( = ). In the previous example, the default value of the lyrColor argument is assigned the value of acGreen, which is a constant in the AutoCAD COM library that represents the integer value of 3. The optional value is used if no color value is passed to the CreateLayer function.
+Check for a value being Nothing, an array, or an object
 
-NOTE
+Testing Values for Equality
 
-The keywords Public and Private can be added in front of the Sub and Function keywords used to define a procedure. The Public keyword allows a procedure to be accessed across most code modules in a VBA project, whereas the Private keyword limits the procedure to be accessed only from the module in which it is defined. I explain these keywords further in the「Controlling the Scope of a Procedure or Variable」section later in this chapter.
+Testing for equality is probably the most common test condition you will perform in most of your programs. For example, you might want to see if the user provided any input with one of the GetXXXX functions that are part of the AutoCAD COM library. In this case, you could check to see if the value returned is expected. The VBA = (equal to) and <> (not equal to) operators are how values are commonly compared to each other. The = operator returns True if the values are equal; otherwise, False is returned. The <> operator returns True if the values are not equal; False is returned if the values are equal.
 
-You Want Me to Measure Hungary? Really?
+The following shows the syntax of the = and <> operators:
 
-No, I really don't. However, as you learn about VBA, you'll be exposed to some new (and seemingly strange) terms.
+value1 = value2 value1 <> value2
 
-When instructions in a procedure want you to declare and define a variable in VBA, you'll be asked to dimension the variable. This will be accomplished using a Dim statement that looks something like this: Dim objLayer As AcadLayer.
+Here are examples of the = and <> operators:
 
-When you begin working with user forms and variables, you'll be asked to add a Hungarian notation prefix, which helps you to identify UserForm objects and controls or the data type that variables are declared. Hungarian notation is a shorthand used by programmers to quickly provide identifying information. Here are a few common prefixes and their uses:
+' Returns True, numbers are equal 1 = 1 1 = 1.0 ' Returns True, strings are equal "ABC" = "ABC" ' Returns False, numbers are not equal 1 <> 2 ' Returns False, strings are not equal "ABC" = "abc"
 
-c or str: string data d: double i: integer o or obj: object btn: button cbo or cmb: combo box lbl: label txt: text box
+In addition to the = operator, the Like operator can be used to compare string values. I discuss the Like operator in the next section.
 
-Just remember, you're learning a new language. I'll do my best to explain the new terms in plain English in context as I use them, although you might have to wait until later in the chapter or book to get all the details.
+TIP
 
-Declaring and Using Variables
+The Not operator can be used to invert a Boolean value returned by an operator or function. A value of True is returned as False, whereas a value of False is returned as True.
 
-Variables are used to allocate space in memory to store a value, which can then be retrieved later using the name assigned to the variable. You can declare variables to have a specific value or assign it a new value as a program is being executed. I explain the basics of working with variables in the following sections.
+The = operator isn't ideal for comparing to see if two objects are the same. If you want to compare two objects for equality, you use the Is operator. The syntax for using the Is operator is the same as for using the = operator. A value of True is returned if both objects are the same when using the Is operator; otherwise, False is returned.
 
-Declaring a Variable
+Here are examples of the Is operator:
 
-VBA by default allows you to dynamically create a variable the first time it is used within a procedure, but I don't recommend using this approach. Although it can save you time, the VBA Editor isn't able to assist in catching issues related to incorrect data types in a code statement.
+' Gets the current layer of the drawing Dim objCurLayer as AcadLayer Set objCurLayer = ThisDrawing.ActiveLayer ' Creates a new layer Dim objNewLayer as AcadLayer Set objNewLayer = ThisDrawing.Layers.Add("ABC") ' Returns True since both objects are the same objCurLayer Is ThisDrawing.ActiveLayer ' Returns False since both objects are not the same objCurLayer Is objNewLayer
 
-The proper approach to declaring a variable is to use the Dim keyword and follow the keyword with the name of the variable to dimension. The Option statement can be helpful in ensuring that all variables are declared before being used. I mention the Option statement in the「Forcing the Declaration of Variables」sidebar.
+Comparing String Values
 
-Unlike procedure names, the industry uses Hungarian notation as a standard for naming variables in VBA programs. For example, you would add c or str in front of a variable name to represent a string or d for a double. The variable name for a layer name might look like cName or strLayerName, whereas a variable name that holds a double number for the radius of a circle might be dRadius.
+The = operator isn't the only way to compare two string values. The Like operator allows you to compare a string value to a string pattern that can contain one or more wildcard characters. If the string matches the pattern, True is returned, and False is returned if the string doesn't match the pattern.
 
-The following shows the minimal syntax used to declare a variable:
+The following shows the syntax of the Like operator:
 
-Dim VariableName
+retVal = string Like pattern
 
-That syntax would declare a variable of the variant data type. The variant data type can hold a value of any type; though that might sound convenient, the VBA Editor isn't able to assist in catching issues related to the usage of an incorrect data type. It is good practice to use the As keyword and follow it with a specific type of data. The following shows the syntax used to declare a variable:
+Here are examples of the Like operator:
 
-Dim VariableName As DataType
+' Returns True since both strings match "ABC" Like "ABC" ' Returns False since both strings don't match "ABC" Like "AC" ' Returns True since both strings match the pattern "DOOR_DEMO" Like "DOOR*"
 
-The following declares a variable named strName as a string and iRow as an integer:
+The StrComp and InStr functions can be used to compare two string values using an optional comparison mode. The StrComp and InStr functions don't return a Boolean value like the = operator; instead they return an integer value based on the comparison mode passed to the function. 0 is returned if the strings are equal, 1 is returned if the binary value of the first string is greater than the second string or the two strings are not equal when doing a textual comparison, and -1 is returned if the binary value of the first string is less than the second string.
 
-Dim strName As String Dim iRow As Integer
+The following shows the syntax of the StrComp function:
 
-I discuss the general types of data that VBA supports in the「Exploring Data Types」section.
+retVal = StrComp(string1, string2[, comparison])
 
-NOTE
+For more information on the StrComp function and a list of values that the comparison argument expects, see the Microsoft Visual Basic for Applications Help.
 
-The Dim keyword is used when defining a variable as part of a procedure, but in the General Declaration of a VBA code module you must use the Public, Global, and Private keywords. The General Declaration is located at the very top of a code module before the first procedure definition. The Public and Global keywords allow a variable to be accessed across all code modules in a VBA project, whereas the Private keyword limits the access of a variable to the module where it is defined. I explain these keywords further in the「Controlling the Scope of a Procedure or Variable」section.
+The InStr function is similar to the StrComp function with one exception: it has an optional start argument, which specifies the location within the first string that the comparison should start. The following shows the syntax of the InStr function:
 
-Assigning a Value to and Retrieving a Value from a Variable
+retVal = InStr([start, ][string1, ][string2, ][comparison])
 
-After a variable has been declared, a value can be assigned to or retrieved from a variable using the = symbol. A value can be assigned to a variable by placing the name of the variable on the left side of the = symbol and placing the value to be assigned on the right. The value could be a static value or a value returned by a procedure.
+Determining If a Value Is Greater or Less Than Another
 
-For example, the following shows how to assign a string value of「Error: Bad string」to a variable named strMsg and the value of 5 to the variable named iRow.
+The values that a user provides or the settings that define the AutoCAD environment aren't always easily comparable for equality. Values such as the radius of a circle or the length of a line are often compared to see if a value is greater or less than another. The VBA > (greater than) and < (less than) operators can be used to ensure that a value is or isn't greater than or less than another value.
 
-strMsg = "Error: Bad string" iRow = 5
+These two operators are great for making sure a value is within a specific range, more than a value, or less than a value. You can also use the > and < operators with the Do and While statements to count down or up and make sure that while incrementing or decrementing a value you don't exceed a specific value. You might also use the > and < operators with a logical grouping operator to make sure a value is within a specific range of values. I discuss logical groupings in the「Grouping Comparisons」section.
 
-The value of a variable can be retrieved by using it as one of the arguments that a procedure expects. The following demonstrates how to display the value of the strMsg variable in a message box with the MsgBox function:
+The > (greater than) operator returns True if the first number is greater than the second number; otherwise, False is returned. The < (less than) operator returns True if the first number is less than the second number; otherwise, False is returned. If the values being compared are equal, then False is returned.
 
-MsgBox strMsg
+The following shows the syntax of the > and < operators:
 
-The MsgBox function is part of the VBA programming language and is used to display a basic message box with a string and set of predefined buttons and icons. I cover providing feedback to the user in Chapter 28,「Interacting with the User and Controlling the Current View.」You can also learn more about the MsgBox function from the Microsoft VBA Help system. In the VBA Editor, click Help Microsoft Visual Basic For Applications Help.
+value1 > value2 value1 < value2
 
-Declaring Constant Variables
+In addition to comparing values to see if a value is greater or less than another, you can check for equality at the same time. The >= (greater than or equal to) and <= (less than or equal to) operators allow you to check to see if a value is greater or less than another or if the two values are equal. The syntax and return values for the >= and <= operators are the same as for the > and < operators, except True is returned if the values being compared are equal to each other.
 
-There are special variables known as constants that can only be assigned a value in the editor window and cannot be changed when the VBA program is executed. A constant variable is declared using the Const statement; the Const statement is used instead of the Dim statement. After the data type is assigned to the variable, you then assign the value to the constant variable using the = symbol. I recommend adding a prefix of c_ to the name of a constant variable. Adding the prefix can be a helpful reminder that the value of the variable can't be updated.
+Here are examples of comparing values with the >, <, >=, and <= operators, along with the values that are returned:
 
-The following shows the syntax to declare a constant variable:
+' Returns True as 2 is greater than 1 2 > 1 ' Returns False as the values are equal 1 > 1.0 ' Returns False as 2 is not less than 1 2 < 1 ' Returns False as the values are equal 1 < 1.0 ' Returns True as the values are equal 1 >= 1.0 ' Returns False as 1 is not greater than or equal to 2 1 >= 2 ' Returns True as the values are equal 1 <= 1.0 ' Returns True as 1 is less than or equal to 2 1 <= 2
 
-Const VariableName As DataType = Value
+TIP
 
-Here's an example of declaring a constant variable named c_PI of the double data type and then assigning it the value of 3.14159:
+You can compare a value within a range of values by using logical groupings, which I cover in the「Grouping Comparisons」section.
 
-Const c_PI as Double = 3.14159
+Checking for Null, Empty, or Nothing Values
 
-Forcing the Declaration of Variables
+Values assigned to a variable or returned by a statement can be checked to see whether they evaluate to null, empty, or nothing. A null value occurs when no valid data is assigned to a variable. The IsNull function returns True if a value is null; otherwise, False is returned. A variable can be set to a value of null using this syntax:
 
-The VBA environment supports a statement named Option. The Option statement is used to control several coding practices at the code module level. For example, entering the Option statement with the Explicit keyword in the General Declaration of a module forces you to declare all variables before they can be used. To force the declaration of variables, you type Option Explicit in the General Declaration; the keyword always follows the Option statement. The Option statement also supports the following keywords:
+variable = Null
 
-Base—Specifies if the lower limit of an array should be 0 or 1. By default, arrays start at index 0 in VBA. I discuss arrays in the "Storing Data in Arrays" section. Example statement: Option Base 1 Compare—Specifies the default string comparison method used within a code module. Valid values are Binary, Database, or Text. Example statement: Option Compare Text Private—All procedures that are declared with the Public keyword in a code module are available only within the current project and are not accessible when the project is referenced by other projects.
+A variable declared with the variant data type can hold any type of data, but if it is not initialized and assigned a value, it is empty. The IsEmpty function returns True if a value is empty; otherwise, False is returned. A variable can be set to a value of empty using this syntax:
 
-Controlling the Scope of a Procedure or Variable
+variable = Empty
 
-Procedures and variables can be designated as being global in scope or local to a VBA project, component, or procedure. Global scope in VBA is referred to as public, whereas local scope is referred to as private. By default, a procedure that is defined with the Sub or Function statement is declared as public and is accessible from any module in the VBA project; in the case of a class module, the procedure can be used when an instance of the class is created.
+Values that are of an object type can't be compared for a null or empty value, but rather you compare them against a value of nothing. Unlike checking for a null or empty value, there is no IsNothing function that can be used to check for a value of nothing. Checking for a Nothing value requires the use of the Is operator, which I mentioned in the「Testing Values for Equality」section. The following syntax shows how to compare an object for a value of nothing:
 
-You typically want to limit the procedures that are public because a public procedure can be executed by a user from the AutoCAD user interface with the vbarun or -vbarun command. The Public and Private keywords can be added in front of a Sub or Function statement to control the scope of the variable. Since all procedures have a public scope by default, the use of the Public keyword is optional. However, if you want to make a procedure only accessible from the module in which it is defined, use the Private keyword.
+' Creates new variable of the AcadLayer object type Dim objCurLayer as AcadLayer ' Evaluates to True since no object has been assigned to the variable objCurLayer Is Nothing ' Gets the current layer of the drawing Set objCurLayer = ThisDrawing.ActiveLayer ' Evaluates to False since the current layer has been assigned to the variable Debug.Print objCurLayer Is Nothing
 
-The following shows how to define a public Sub and private Function procedure:
+A variable can be set to a value of nothing using the syntax:
 
-Public Sub HelloWorld() CustomMsg "Hello World!" End Sub Private Function CustomMsg(strMsg As String) _ As VbMsgBoxResult CustomMsg = MsgBox(strMsg) End Function
+Set variable = Nothing
 
-The CustomMsg function is executed from the Hello subroutine. Because the CustomMsg function is private, it cannot be executed from the AutoCAD user interface with the vbarun or -vbarun command.
+Validating Values
 
-All variables declared within a procedure are local to that procedure and can't be accessed from another procedure or component. If you want to define a public variable, the variable must be declared in a module's General Declarations at the very top of a module. When declaring a variable that can be accessed from any module in a project or just all procedures in a module, use the Public or Private keyword, respectively, instead of Dim.
+Prior to using a variable, I recommend testing to see if the variable holds the type of value that you might reasonably expect. Although it does increase the complexity of a program, the additional statements used to test variables are worth the effort; they help to protect your programs from unexpected values. The following lists some of the functions that can be used to test the values of a variable:
 
-A Dim statement in the General Declarations can be used to declare a public variable, though. The Public or Private keyword can also be placed in front of the Const statement to declare a public or private constant variable, which by default is declared as private and is accessible only from the module in which it is defined. The Public keyword can be used only in a code module, not in a class module or user form, when declaring a constant variable.
+IsArray: Determines if a value represents a valid array; returns True or False.
 
-NOTE
+IsDate: Determines if a value represents a valid calendar date or time; returns True or False.
 
-When you're defining a variable in the General Declaration, I recommend adding a prefix of g_ to help you identify that the variable is in the global scope of a code module or VBA project.
+IsMissing: Checks to see if an optional argument of a procedure was provided; returns True or False.
 
-The following example shows how to declare a public variable that can hold the most recent generated error:
+IsNumeric: Determines if a value is a number; returns True or False.
 
-Public g_lastErr As ErrObject
+IsObject: Determines if a value is an object; returns True or False.
 
-The next example shows how to declare a private constant variable that holds a double value of 3.14159:
+Sgn: Determines the sign of a numeric value; 1 is returned if the value is greater than zero, 0 is returned if equal to zero, or –1 is returned if the number is less than zero.
 
-Private Const c_PI As Double = 3.14159
+For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
 
-This last example shows how to declare a private variable that holds a layer object:
+Grouping Comparisons
 
-Private objLyr As AcadLayer
+There are many times when one test condition isn't enough to verify a value. One of the best examples of when you want to use more than one test condition is to see if a value is within a specific numeric range. Logical grouping operators are used to determine if the results of one or more test conditions evaluates to True.
 
-If you want to make a value accessible to multiple projects or between AutoCAD sessions, you can write values to a custom dictionary or the Windows Registry. I explain how to work with custom dictionaries and use the Windows Registry in Chapter 32,「Storing and Retrieving Custom Data.」
+The And and Or operators are the two logical grouping operators that can be used to evaluate two or more test conditions. The And operator returns True if all test conditions in a grouping return True; otherwise, False is returned. The Or operator returns True if at least one test condition in a grouping returns True; otherwise it returns False.
 
-Continuing Long Statements
+The following shows the syntax of the And and Or operators:
 
-A code statement is typically a single line in the editor window that can result in relatively long and harder-to-read code statements. The underscore character can be placed anywhere within a code statement to let the VBA environment know a code statement continues to the next line. A space must be placed in front of the underscore character as well—otherwise the VBA editor will display an error message.
+test_condition1 And test_condition2 test_condition1 Or test_condition2
 
-The following shows a code statement presented on a single line:
+The test_condition1 and test_condition2 arguments represent the test conditions that you want to group together and evaluate.
 
-Set objCircle = ThisDrawing.ModelSpace.AddCircle(dCenPt, 2)
+Here are examples of the And and Or operators, along with the values that are returned:
 
-The following shows several ways the underscore character can be used to continue the statement to the next line:
+' Checks to see if a number is between 1 and 5 Dim num as Integer ' Evaluates to and displays True since num is 3 and between 1 and 5 num = 3 MsgBox 5 >= num And 1 <= num ' Evaluates to and displays False since num is 6 and is not between 1 and 5 num = 6 MsgBox 5 >= num And 1 <= num ' Checks to see if values are numeric or strings Dim val1, val2 val1 = 1.5: val2 = "1.5" ' Evaluates to and displays True since va11 is a double or integer MsgBox VarType(val1) = vbDouble Or VarType(val1) = vbInteger ' Evaluates to and displays False since va12 is not a double or integer MsgBox VarType(val2) = vbDouble Or VarType(val2) = vbInteger
 
-Set objCircle = _ ThisDrawing.ModelSpace.AddCircle(dCenPt, 2) Set objCircle = ThisDrawing.ModelSpace. _ AddCircle(dCenPt, 2) Set objCircle = ThisDrawing.ModelSpace.AddCircle(dCenPt, _ 2)
+I discussed the VarType function in the「Exploring Data Types」section.
 
-Adding Comments
+Conditionalizing and Branching Statements
 
-As a veteran programmer of more than 16 years, I can honestly say that I formed my fair share of bad habits early on. One of the habits that I had to correct was adding very few comments (or not adding any) to my code. Comments are nonexecutable statements that are stored as part of code in a VBA project. The concept of comments is not specific to VBA; it is part of most modern programming languages. The syntax used to indicate a comment does vary from programming language to programing language.
+The statements in a procedure are executed sequentially, in what is commonly known as a linear program. In a linear program, execution starts with the first statement and continues until the last statement is executed. Although statements are executed in a linear order, a procedure can contain branches. Think of a branch as a fork in the road.
 
-The following are common reasons why and when you might want to add comments to your code:
+Branches allow a procedure to make a choice as to which statements should be executed next based on the results of a test condition. I covered test conditions in the「Comparing Values」section. The If and Select Case statements are used to branch the statements in a procedure.
 
-To document when the program or component was created and who created it.
+Evaluating If a Condition Is Met
 
-To maintain a history of changes made to the program—what changes were made, when, and by whom.
+The operators and functions discussed in the previous sections allow a program to compare and test values to determine which expressions to execute by using a programming technique called branching. The most common branching method is the If…Then statement. Using the If…Then statement, a set of statements can be executed if the test condition is evaluated as True.
 
-To indicate copyright or legal statements related to the code contained in a code module.
+The following shows the syntax of the If…Then statement:
 
-To explain how to use a procedure, the values each argument might expect.
-
-To explain what several code statements might be doing; you might remember the task several code statements perform today, but it can become more of a challenge to remember what they are doing months or years later.
-
-To mask a code statement that you currently don't want to execute; during testing or while making changes to a program, you might want to temporarily not execute a code statement but keep the expression for historical purposes.
-
-Comments in VBA are typically denoted with the use of an apostrophe (‘) or the Rem keyword added to the beginning of a code statement. When using the Rem keyword, the keyword must be followed by a space. Although a space isn't required after the use of the apostrophe character, I recommend adding one. Code statements and text to the right of the apostrophe or Rem keyword are not executed; this allows you to add comments on a line by themselves or even on the same line after a code statement.
-
-The following example demonstrates the use of the comments in a code module. The comments are used to explain when the procedure was added and what the procedure does.
-
-' Last updated: 7/13/14 ' Updated by: Lee Ambrosius ' Revision History: ' HYP1 (7/13/14) - Added optional color argument ' Module Description: ' Shared utility code module that contains many ' procedures that are reusable across VBA projects. ' Creates a new layer and returns the AcadLayer object ' that was created. ' Revision(s): HYP1 Function CreateLayer(strLyrName As String, _ Optional nLyrColor As ACAD_COLOR = acGreen) _ As AcadLayer ' Create a variable to hold the new layer Dim objLayer As AcadLayer ' Create the new layer Set objLayer = ThisDrawing.Layers.Add(strLyrName) objLayer.color = nLyrColor ' Assign the color to the new layer 'MsgBox "Layer created." ' Return the new layer Set CreateLayer = objLayer End Function
-
-Understanding the Differences Between VBA 32- and 64-Bit
-
-The VBA programming language is supported on both Windows 32-bit and 64-bit systems, but there are a few differences that you will need to consider. The following outlines a few of these differences:
-
-The LongLong data type is supported on 64-bit systems to allow larger numbers compared to the Long data type. I recommend using the LongPtr data type when possible to allow your program to use either the Long or LongLong data type based on the system it is executing on.
-
-Not all third-party libraries and UserForm controls work on both 32-bit and 64-bit systems. Some third-party libraries and controls are only supported on 32-bit systems, so be sure to test your programs on both 32-bit and 64-bit systems if possible.
-
-Prior to the AutoCAD 2014 release, the AutoCAD COM library had separate procedures that were required when working on a 32-bit or 64-bit system.
-
-Because of potential problems with library and control references, I recommend creating a 32-bit and 64-bit version of your VBA projects. Then when you make changes in one project, export and import the changed code modules and UserForms between projects. The examples and exercises shown in this book are designed to work on 32-bit and 64-bit systems.
-
-Exploring Data Types
-
-Programming languages use data types to help you identify the type of data:
-
-Required by a procedure's argument
-
-Returned by a procedure defined as a function
-
-Table 25.1 lists the basic data types that VBA supports. The Data Type column lists the name of a data type and the Hungarian notation that is commonly added as a prefix to a variable that is declared with that data type. I mentioned the purpose of Hungarian notation earlier in this chapter. The Range column gives a basic understanding of the values a data type supports, and the Description column offers a brief introduction to the data type.
-
-NOTE
-
-The double data type in VBA is referred to as a real or a float in other programming languages.
-
-Table 25.1 VBA data types
-
-Data Type
-
-(Hungarian Notation) Range Description
-
-Byte (by) 0 to 255 Binary data or small integer
-
-Boolean (b) True or False True or False value; used to condition code statements
-
-Date (dt) January 1, 100 to December 31, 9999 Date and time as a double value
-
-Double (d) 1.80 × 10308 to –4.94 × 10–324 for negative numbers and 4.94 × 10–324 to 1.80 × 10308 for positive numbers Large decimal number with an accuracy of up to 16 places
-
-Integer (n) -32,768 to 32,767 Numeric value without a decimal point
-
-Long (l) -2,147,483,648 to 2,147,483,647 Large numeric value without a decimal point
-
-String (c or str) 0 to 65,400 for fixed-length strings, or 0 to approximately 2 billion for variable-length strings One or more characters enclosed in quotation marks
-
-Variant (v) Same as the data type of the value assigned to the variable Value of any data type
-
-Objects and arrays are two other data types that are commonly found in a VBA program. I cover these two data types in the next sections.
-
-You can use the TypeName and VarType functions to identify the type of data returned by a function or assigned to a variable. These two procedures are commonly used to determine how to handle the data assigned to a variable with conditionalized expressions, which I discuss in the「Conditionalizing and Branching Statements」section. The TypeName function returns a string value, and the VarType function returns an integer that represents the data type of a value.
-
-The following shows the syntax of the TypeName and VarType functions:
-
-retVal = TypeName(value) retVal = VarType(value)
-
-The value argument represents any valid procedure that returns a value or variable name. The string or integer value returned by the TypeName or VarType function is represented by the retVal variable. The variable name you use in your programs doesn't need to be named retVal.
-
-NOTE
-
-Each integer value returned by the VarType function has a specific meaning. For example, a value of 2 represents an integer data type, whereas a value of 8 represents a string data type. You can learn about the meaning of each integer value that is returned by looking up the VbVarType constant in the Object Browser of the VBA Editor. I explained how to use the Object Browser in the Chapter 24,「Understanding the AutoCAD VBA Environment.」
-
-Here are examples of the TypeName and VarType functions:
-
-' Displays a message box with the text String MsgBox TypeName("Hello World!") ' Displays a message box with the text Double MsgBox TypeName(1.0) ' Displays a message box with the text Integer MsgBox TypeName(1) ' Displays a message box with the text 8 MsgBox VarType("Hello World!") ' Displays a message box with the text 5 MsgBox VarType(1.0) ' Displays a message box with the text 2 MsgBox VarType(1)
-
-I explain more about the MsgBox procedure and other ways of providing feedback to the user in Chapter 28.
-
-Working with Objects
-
-An object represents an instance of a class from a referenced library, which might be a layer in a drawing or a control on a user form. A class is a template from which an object can be created, and it defines the behavior of an object. A new object can be created with
-
-A procedure, such as Add or AddObject. (The procedure you use depends on the object being created.)
-
-The New keyword when declaring a variable.
-
-The following syntax creates a new object of the specific object data type with the New keyword:
-
-Dim VariableName As New ObjectType
-
-An object can't simply be assigned to a variable with the = symbol like a string or integer value can be. The Set statement must precede the name of the variable when you want to assign an object to a variable. The following shows the syntax of assigning an object to a variable:
-
-Set VariableName = object
-
-The following example shows how to create a new circle object in model space and assign the new circle to a variable named objCircle:
-
-Dim dCenPt(0 To 2) As Double dCenPt(0) = 0: dCenPt(1) = 0: dCenPt(2) = 0 Dim objCircle As AcadCircle Set objCircle = ThisDrawing.ModelSpace.AddCircle(dCenPt, 2)
-
-Once a reference to an object is obtained, you can query and modify the object using its properties and methods. Place a period after a variable name that contains a reference to an object to access one of the object's properties or methods. The following shows the syntax for accessing a property or method of an object:
-
-VariableName.PropertyName VariableName.MethodName
-
-You can assign a new value to a property using the same approach as assigning a value to a variable. The following shows how to assign the string Objects-Light to the Layer property of a circle:
-
-objCircle.Layer = "Objects-Light"
-
-The current value assigned to a property can be retrieved by placing the object and its property name on the right side of the = symbol. The following shows how to retrieve the current value of the Name property of a circle object and assign it to a variable that was declared as a string:
-
-Dim strLayerName as String strLayerName = objCircle.Layer
-
-When you create a new object with the New keyword, you should release the object from memory when it is no longer needed. The VBA environment will automatically free up system resources when it can, but it is best to assign the Nothing keyword to a variable that contains an object before the end of the procedure where the object was created. It is okay to assign Nothing to variables that contain an object reference; the value of the variable will be cleared but might not free up any system memory. The following shows how to free up the memory allocated for the creation of a new AutoCAD Color Model object:
-
-Dim objColor As New AcadAcCmColor Set objColor = Nothing
-
-Using an Object Across Multiple Statements
-
-The With statement can be used to work with a referenced object across multiple statements and can help to reduce the amount of code that needs to be written. The following shows the syntax of the With statement:
-
-With variable statementsN End With
-
-The variable argument represents the object that can be referenced throughout the With statement. You type a period between the With and End With statements to access the object's methods or properties. Here is an example of using the ThisDrawing object with the With statement to set the value of multiple system variables:
-
-With ThisDrawing .SetVariable "BLIPMODE", 0 .SetVariable "OSMODE", 32 .SetVariable "ORTHOMODE", 1 End With
-
-Exploring the AutoCAD Object Model
-
-The AutoCAD Object library is designed to have a hierarchical structure, with the AutoCAD Application object at the top. From the AutoCAD Application object, you can access and open drawing files in the AutoCAD drawing environment. Once you have a reference to a drawing file, you can then access its settings, as well as the graphical and nongraphical objects stored in the drawing.
-
-You can use the Object Browser to explore the classes and their members of the AutoCAD Object library, but it simply provides you with a flat listing of the available classes. The AutoCAD VBA documentation offers an object model map (shown in the following graphic) that allows you to graphically see the relationship between each object in the AutoCAD Object library. Clicking a node on the object model displays the object's topic in the Autodesk AutoCAD: ActiveX Reference Guide.
-
-You can display the AutoCAD Object Model by following these steps:
-
-Open your web browser and navigate to http://help.autodesk.com/view/ACD/2015/ENU/. If you are using AutoCAD 2015, display the AutoCAD product Help system.
-
-On the Autodesk AutoCAD 2015 Help landing page, click the Developer Home Page link.
-
-On the AutoCAD Developer Help home page, use the AutoCAD Object Model link under the ActiveX/VBA section.
-
-If you open the Autodesk AutoCAD: ActiveX Reference Guide, scroll to the top of the Contents list and expand the Object Model node to access the Object Model topic.
-
-Accessing Objects in a Collection
-
-A collection is a container object that holds one or more objects of the same type. For example, the AutoCAD Object library contains collections named Layers and DimStyles. The Layers collection provides access to all the layers in a drawing, whereas DimSyles provides access to the dimension styles stored in a drawing. Since collections are objects, they have properties and methods as well, which are accessed using a period, as I explained in the previous section.
-
-Objects in a collection have a unique index or key value assigned to them. Most collections start with an index of 0, but some start with an index of 1; you will need to refer to the documentation for the collection type to know the index of its first item. The following example shows how to set the first layer in the Layers collection and set it as the current layer:
-
-ThisDrawing.ActiveLayer = ThisDrawing.Layers.Item(0)
-
-The Item method returns the layer object at the index of 0 and the layer is then assigned to the ActiveLayer property. The Item method is the default method of most collections, so the previous code example could be written as follows:
-
-ThisDrawing.ActiveLayer = ThisDrawing.Layers(0)
-
-A key value is a string that is unique to the object in the collection. The Item method can accept a key value in addition to an integer that represents an index, as shown in the following examples:
-
-ThisDrawing.ActiveLayer = ThisDrawing.Layers.Item("Objects-Light") ThisDrawing.ActiveLayer = ThisDrawing.Layers("Objects-Light")
-
-In addition to the Item method, the exclamation point (!) can be used to reference a key value in a collection. When using the ! symbol, a key value that contains spaces must be enclosed in square brackets. The following shows how to access a key value in the Layers collection using the ! symbol:
-
-ThisDrawing.ActiveLayer = ThisDrawing.Layers!CenterLine ThisDrawing.ActiveLayer = ThisDrawing.Layers![Center Line]
-
-The Item method and examples I have shown in this section return a specific object from a collection. If you want to step through all the objects in a collection, you can use the For statement. I introduce the For statement in the「Repeating and Looping Expressions」section. To learn about using collections in the AutoCAD Object library, see the following chapters:
-
-Chapter 26,「Interacting with the Application and Documents Objects,」for working with the Documents collection
-
-Chapter 28,「Interacting with the User and Controlling the Current View,」for working with the Views collection
-
-Chapter 29,「Annotating Objects,」for working with the DimStyles and TextStyles collections
-
-Bonus Chapter 1,「Working with 2D Objects and Object Properties,」for working with the Layers and Linetypes collections in AutoCAD Platform Customization: User Interface, AutoLISP, VBA, and Beyond
-
-Bonus Chapter 2,「Modeling in 3D Space,」for working with the UCSs and Materials collections in AutoCAD Platform Customization: User Interface, AutoLISP, VBA, and Beyond
-
-Storing Data in Arrays
-
-An array is not really a data type but a data structure that can contain multiple values. Unlike the objects in a collection, the elements of an array can be of different data types and do not all need to be of the same data type. The first element in an array typically starts at an index of 0, but you can specify the index of the first element using a range. Arrays are used to represent a coordinate value in a drawing, to specify the objects used to define a closed boundary when creating a Region or Hatch object, or to specify the data types and values that make up the XData attached to an object.
-
-The processes for declaring an array and variable are similar—with one slight difference. When declaring an array, you add opening and closing parentheses after the variable name. The value in the parentheses determines whether you declare a fixed-length or dynamic array.
-
-NOTE
-
-The Option Base 1 statement can be used to change the default index of 0 to 1 for the lower limit of an array. I explained the Option statement earlier in the「Forcing the Declaration of Variables」sidebar.
-
-Declaring a Fixed-Length Array
-
-A fixed-length array, as its name implies, is an array that can hold a specific number of values. When declaring a fixed-length array, you can specify a single- or multidimensional array. You define a single-dimensional array by specifying the number of rows, whereas you typically define a multidimensional array by specifying the number of rows and columns for the array. Rows and columns are based on the first row or column having an index of 0, the second one having an index of 1, and so on. The first row or column in an array is known as the lower limit, and the last row or column is known as the upper limit of the array.
-
-Entering a single integer value within the parentheses when declaring an array specifies the upper limit of the rows in the array. Remember, the first row is 0, so specifying an upper limit of 1 declares an array of two rows. The following shows how to declare a fixed-length array with two rows, a single column, and a starting index of 0:
-
-Dim names(1) As String
-
-As an alternative, you can specify the lower and upper limit of an array. Enter the starting and ending index of the array separated by the To keyword. The following shows how to declare a fixed-length array with three rows, a single column, and a starting index of 1:
-
-Dim centerPt(1 To 3) As Double
-
-An array with a single dimension is the most common, but a multidimensional array can be used to create an in-memory data grid of values. You can specify the upper limit or range of the columns in the array. The following three examples show how to declare a fixed-length array that is four rows by four columns with a starting index of 0:
-
-Dim matrix(3, 3) As Double Dim matrix(0 To 3, 1 To 4) As Double
-
-Declaring a Dynamic Array
-
-A dynamic array is an array that isn't declared with a specific lower or upper limit, so it isn't initialized with any elements. Unlike a fixed-length array, the lower and upper limit of a dynamic array can be changed as needed. Typically, the upper limit of an array is increased to allow additional values to be added to the array. The ReDim statement, short for redimension, is used to decrease or increase the number of elements in an array by changing the lower and upper limits of the array. The following shows how to declare a dynamic array and then redimension the array to five elements:
-
-Dim names() As String ReDim names(4)
-
-When you use the ReDim statement, all values that have been assigned to the array are lost. The current values of the elements remaining from the original array can be retained by using the Preserve keyword. The following shows how to increase an array to seven elements and retain any current values:
-
-ReDim Preserve names(6)
-
-The following shows how to decrease an array to four elements and retain any current values:
-
-ReDim Preserve names(3)
-
-In the previous example, any values in elements 4 through 6 are lost, but all other values would be retained. It is possible to dynamically resize an array by starting with the array's current lower and upper limits. I explain how to get the lower and upper limits of an array in the「Getting the Size of an Array」section.
-
-Working with Array Elements
-
-After an array has been declared and the number of elements established, you can assign a value to and retrieve a value from an element. Working with an element in an array is similar to working with a variable with the exception of needing to specify an element index.
-
-The following shows how to declare a three-element array that represents a coordinate value of 0,5,0:
-
-Dim dCenPt(0 To 2) As Double dCenPt(0) = 0 dCenPt(1) = 5 dCenPt(2) = 0
-
-You retrieve the value of an element by using it as an argument of a procedure or placing it to the right of the = symbol. The following shows how to get the current value of the element in the dCenPt with an index of 0 and display it in a message box with the MsgBox procedure:
-
-MsgBox dCenPt(0)
-
-If you want to step through all the elements in an array, you can use a For statement. I introduce the For statement in the「Repeating and Looping Expressions」section.
-
-Getting the Size of an Array
-
-When you want to resize an array or step through all the elements of an array, you need to know how many elements are in an array. The LBound and UBound procedures are used to return an integer that represents the lower and upper limits of an array, respectively.
-
-The following shows the syntax of the LBound and UBound procedures:
-
-LBound array [, dimension] UBound array [, dimension]
+If test_condition Then true_statementsN End If
 
 Here are the arguments:
 
-array The array argument represents the variable that contains the array of the lower or upper limit you want to return.
+test_condition The test_condition argument represents the test condition that you want to evaluate and determine which statements to execute.
 
-dimension The dimension argument is optional and represents the dimension in a multidimensional array that you want to query. When no argument value is provided, the upper limit of the first dimension is queried. The first dimension in an array has an index of 1 and not 0 like the elements of an array.
+then_statementN The then_statementN argument represents the statements to evaluate if the test_condition argument evaluates to True.
 
-The following shows examples of the LBound and UBound procedures:
+The If…Then statement supports an optional Else statement, which can be used to execute a set of statements when the test condition is evaluated as False. The following shows the syntax of the If…Then statement with the Else statement:
 
-' Declares a single dimension array Dim dCenPt(0 To 2) As Double ' Displays 0 Debug.Print LBound(dCenPt) ' Displays 2 Debug.Print UBound(dCenPt) ' Declares a multi-dimensional array Dim matrix(0 To 3, 1 To 4) As Double ' Displays 3 which is the upper-limit of the first dimension Debug.Print UBound(matrix, 1) ' Displays 4 which is the upper-limit of the second dimension Debug.Print UBound(matrix, 2)
+If test_condition Then true_statementsN Else else_statementN End If
 
-The output is displayed in the Output window of the VBA Editor with the Print procedure of the Debug object. You'll learn more about using the Debug object in Chapter 36,「Handling Errors and Deploying VBA Projects.」
+The else_statementN argument represents the statements that should be executed if the test_condition argument evaluates to False. In addition to the Else statement, the If…Then statement can support one or more optional ElseIf statements. An ElseIf statement allows for the evaluation of additional test conditions. The following shows the syntax of the If…Then statement with the inclusion of the ElseIf and Else statements:
 
-Calculating Values with Math Functions and Operators
+If test_condition Then true_statementsN [ElseIf test_condition Then elseif_statementN] [Else else_statementN] End If
 
-When working with AutoCAD, you must consider the accuracy with which objects are placed and the precision with which objects are created in a drawing. The same is true with using VBA. You must consider both accuracy and precision when creating and modifying objects. The VBA math functions allow you to perform a variety of basic and complex calculations. You can add or multiply two numbers, or even calculate the sine or arctangent of an angle.
+When the test_condition argument of the If…Then statement evaluates to a value of False, the test_condition of the ElseIf statement is evaluated. If the test_condition of the ElseIf statement evaluates to a value of True, the set of statements after it is executed. If the test_condition of the ElseIf statement evaluates to a value of False, the next ElseIf statement is evaluated if one is present. If no other ElseIf statements are present, the Else statement is executed if one is present.
 
-Table 25.2 lists many of the math functions and operators that you will use with VBA in this book.
+The following is an example of an If…Then statement that uses the ElseIf and Else statements to compare the value of a number entered:
 
-Table 25.2 VBA math functions and operators
+' Prompts the user for a number Dim num As Integer num = CInt(InputBox("Enter a number: ")) ' Checks to see if the number is greater than, less than, or equal to 4 If num > 4 Then MsgBox "Number is greater than 4" ElseIf num < 4 Then MsgBox "Number is less than 4" Else MsgBox "Number is equal to 4" End If
 
-Function/Operator Description
+Validating for an Object of a Specific Type
 
-+ Returns the sum of two numeric values.
+You can use the TypeOf object Is objecttype clause of the If statement to determine an object's type. This can be helpful if your program expects the user to select or work with a specific type of object. Selection filters, discussed in Chapter 28, can be used to allow only the user to select an object of a specific type.
 
-Syntax: retVal = number + number
+The following example displays one of two messages based on whether the first object in model space is a circle:
 
-- Returns the difference between two numeric values.
+' Gets the first object in model space Dim oFirstEnt As AcadEntity Set oFirstEnt = ThisDrawing.ModelSpace(0) ' Display a message based on if the ' first object is a circle or not If TypeOf oFirstEnt Is AcadCircle Then MsgBox "Object is a circle." Else MsgBox "The object isn't a circle." End If
 
-Syntax: retVal = number - number
+Testing Multiple Conditions
 
-* Returns the product of two numeric values.
+The If…Then statement allows a procedure to execute one or more possible sets of statements based on the use of the ElseIf and Else statements. In addition to the If…Then statement, the Select Case statement can be used to evaluate multiple test conditions. The Select Case statement is a more efficient approach to testing multiple conditions when compared to the If…Then statement.
 
-Syntax: retVal = number * number
+Each test condition of a Select Case statement starts with the Case statement and can be used to compare more than one value. Similar to the If…Then statement, the Select Case statement also supports an optional statement if none of the test conditions are valued as True; the optional statement is named Case Else.
 
-/ Returns the quotient after dividing two numeric values. A double value is returned.
+The following shows the syntax of the Select Case statement:
 
-Syntax: retVal = number / number
+Select Case Case test_condition case_statementsN [Case test_condition case_statementsN] [Case Else else_statementN ] End Select
 
-\ Returns the quotient after dividing two numeric values. A double value is returned.
+test_condition The test_condition argument represents the test condition that you want to evaluate and determine which statements to execute.
 
-Syntax: retVal = number \ number
+case_statementsN The case_statementsN argument represents the statements to evaluate if the test_condition argument evaluates to True.
 
-Mod Returns the remainder after dividing two numeric values.
+else_statementsN The else_statementsN argument represents the expressions to evaluate if none of the test conditions represented by the Case statements evaluates to True. The Case Else statement must also be used.
 
-Syntax: retVal = number Mod number
+The following is an example of the Select Case statement:
 
-Atn Calculates the arctangent of an angular value expressed in radians.
+' Displays a message based on the number entered Select Case CInt(InputBox("Enter a number: ")) Case 1 MsgBox "1 was entered" Case 2 To 4 MsgBox "2 to 4 was entered" Case 5, 6 MsgBox "5 or 6 was entered" Case Is >= 7 MsgBox "7 or greater was entered" Case Else MsgBox "0 or less was entered" End Select
 
-Syntax: retVal = Atn(number)
+Repeating and Looping Expressions
 
-Cos Returns the cosine of an angular value expressed in radians.
+Repetition helps to form habits and learn how to perform a task, but repetition can also be counterproductive. If you know a task is repeated many times a day and you know how to complete that task, it is ideal to automate and simplify the process as much as possible, if not eliminate the process altogether. VBA—and most programming languages, for that matter—have no problem with repetition because they support a concept known as loops. Loops allow for a set of expressions to be executed either a finite number of times or infinitely while a condition is met.
 
-Syntax: retVal = Cos(number)
+Repeating Expressions a Set Number of Times
 
-Exp Returns a numeric value that has been raised to its natural antilogarithm.
+The easiest way to loop a set of expressions in VBA is to use the For statement. The first argument of the For statement is known as the counter, which is a variable name that is incremented or decremented each time the For statement is executed. The initial value of the counter and number of times the For statement should be executed are determined by a range of two values.
 
-Syntax: retVal = Exp(number)
+Typically, the range starts with 0 or 1 and the difference between the start and ending of the range is used to specify how many times the For statement is executed. By default, the counter is incremented by 1 each time the For statement is executed. Optionally, the For statement supports the Step keyword, which can be used to specify a larger increment value than the default of 1 or a decrement value to count down instead of up.
 
-Log Calculates the natural logarithm of a numeric value.
+The following shows the syntax of the For statement:
 
-Syntax: retVal = Log(number)
+For counter = start To end [Step stepper] statementN Next [counter]
 
-Rnd Generates a random value of the single data type, which is similar to a double data value with less precision.
+Its arguments are as follows:
 
-Syntax: retVal = Rnd([seed])
+counter The counter argument represents the variable name that is assigned to the current loop counter. The variable should be of a number data type, such as an integer or short. When the For statement is executed the first time, the counter variable is assigned the value passed to the start argument.
 
-The optional seed argument is used to generate the same random number.
+start The start argument represents the start of the numeric range.
 
-Sin Returns the sine of an angular value expressed in radians.
+end The end argument represents the end of the numeric range.
 
-Syntax: retVal = Sin(number)
+stepper The stepper argument is optional and represents the numeric value that counter should be stepped each time the For statement is executed. Use a positive number to increment counter or a negative number to decrement counter.
 
-Sqr Gets the square root of a numeric value.
+statementN The statementN argument represents the statements that should be executed each time the loop is started.
 
-Syntax: retVal = Sqr(number)
+NOTE
 
-Tan Calculates the tangent of an angular value expressed in radians.
+The Exit For statement can be used to end a For statement before the counter reaches the end of the specified range.
 
-Syntax: retVal = Tan(number)
+The following is an example of using the For statement:
 
-For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
+' Executes the statements 5 times, the variable ' cnt is incremented by 1 with each loop Dim cnt as Integer For cnt = 1 To 5 Debug.Print cnt Next cnt
 
-Manipulating Strings
+Here is the output that the previous statements create:
 
-Strings are used for a variety of purposes in VBA, from displaying command prompts and messages to creating annotation objects in a drawing. String values in a VBA program can have a static or fixed value that never changes during execution, or a value that is more dynamic and is changed by the use of string manipulation functions.
+1 2 3 4 5
 
-Table 25.3 lists many of the string manipulation functions and operators that you will use with VBA in this book.
+Stepping Through an Array or Collection
 
-Table 25.3 VBA string manipulation functions and operators
+The For Each statement is similar to the For statement described in the previous section. Instead of specifying a counter variable, a range, and an optional step, the For Each statement requires an element variable and a grouping, such as an array or a collection object. When the For Each statement is executed, the first value of the array or object of the collection is assigned to the element variable. As the For Each statement continues to be executed, the next value or object is assigned to the variable until all values or objects have been retrieved.
 
-Function/Operator Description
+The following shows the syntax of the For Each statement:
 
-+ Concatenates two strings together.
+For Each element In grouping statementN Next [element]
 
-Syntax: retVal = string + string
+Its arguments are as follows:
 
-& Concatenates two strings together.
+element The element argument represents the variable name that is assigned to the current loop element. When the For Each statement is executed the first time, the element variable is assigned the first value or object of the grouping argument.
 
-Syntax: retVal = string & string
+grouping The grouping argument represents the array or collection object that you want to step through one value or object at a time.
 
-LCase Converts the characters in a string to all lowercase.
+statementN The statementN argument represents the statements that should be executed each time the loop is started.
 
-Syntax: retVal = UCase(string)
+NOTE
 
-Left Returns a substring based on a specified number of characters from the left side of a string.
+The Exit For statement can be used to end a For statement before the last value or object in an array or a collection is retrieved.
 
-Syntax: retVal = Left(string, length)
+The following is an example of using the For Each statement:
 
-Len Returns an integer that represents the number of characters in a string.
+' Steps through all layer objects in the Layers collection ' of the current drawing and displays the names of each layer Dim objLayer as AcadLayer For Each objLayer In ThisDrawing.Layers Debug.Print objLayer.Name Next objLayer
 
-Syntax: retVal = Len(string)
+Here is the output that the previous statements create:
 
-LTrim Removes leading spaces from a string.
+0 Plan_Walls Plan_Doors Plan_Cabinets Plan_Furniture Labels Panels Surfaces Storage Defpoints Dimensions
 
-Syntax: retVal = LTrim(string)
+The order in which values or objects are retrieved is the same in which they were added to the array or collection.
 
-Mid Returns a substring based on a starting position from the left side of a string and going to the right for a specified number of characters.
+Performing a Task While or Until a Condition Is Met
 
-Syntax: retVal = Mid(string, start,length)
+The For and For Each statements, as I mentioned in the previous sections, can be used to execute a set of statements a finite number of times. However, it isn't always easy to know just how many times a set of statements might need to be executed to get the desired results. When you are unsure of the number of times a set of statements might need to be executed, you can use the Do or While statement.
 
-A starting position of 1 indicates the substring should start at the first character of the string.
+The Do and While statements use a test condition, just like the If statement, to determine whether the set of statements should be executed. The set of statements are executed as long as the test condition returns True. The test conditions that can be used are the same ones mentioned earlier in the「Comparing Values」and「Grouping Comparisons」sections.
 
-Right Returns a substring based on a specified number of characters from the right side of a string.
+There are two uses for the Do statement. The first is to evaluate a test condition before it executes any statements, whereas the other executes a set of statements and then evaluates a test condition to determine whether the statements should be executed again. Which version you use simply depends on whether you want to execute the statements at least once each time the Do statement is executed.
 
-Syntax: retVal = Right(string, length)
+A Do statement also requires the use of either the While or Until keyword. The While keyword indicates that the Do statement should execute until the test condition is no longer True, and the Until keyword indicates that the Do loop should execute while the test is False.
 
-RTrim Removes trailing spaces from a string.
+The following shows the syntax of the Do statement that evaluates a test condition to determine whether the set of statements should be executed:
 
-Syntax: retVal = RTrim(string)
+Do [{While | Until} test_condition] statementN Loop
 
-Space Returns a string containing the specified number of spaces.
+The next example shows the syntax of the Do statement that executes a set of statements before evaluating a test condition:
 
-Syntax: retVal = Space(number)
+Do statementN Loop [{While | Until} test_condition]
 
-Split Returns an array of strings based on the delimited character.
+Its arguments are as follows:
 
-Syntax: retVal = Split(string [, delimiter [, limit [, comparison]]])
+test_condition The test_condition argument represents the statement that should be used to determine if the expressions represented by the statementN argument should be executed or continue to be executed.
 
-StrConv Returns a string based on a specified conversion option.
+statementN The statementN argument represents the statements that should be executed each time the loop is started.
 
-Syntax: retVal = StrConv(string, mode,localeID)
+The following are examples of the Do function:
 
-For a list of supported conversion modes and locale IDs, see the StrConv Function topic in the Microsoft Visual Basic for Applications Help system.
+' Executes the statements 5 times, the variable ' cnt is decremented by 1 with each loop Dim cnt As Integer cnt = 5 Do While cnt > 0 Debug.Print cnt cnt = cnt - 1 Loop
 
-String Returns a string containing a character repeated a specified number of times.
+Here is the output that the previous statements create:
 
-Syntax: retVal = String(number, character)
+5 4 3 2 1 ' Executes the statements once since the test condition ' only returns True while cnt is greater than 4 Dim cnt As Integer cnt = 5 Do Debug.Print cnt cnt = cnt + 1 Loop Until cnt > 4
 
-StrReverse Inverts the characters in a string and returns a new string.
+Here is the output that the previous statements create:
 
-Syntax: retVal = StrReverse(string)
+5
 
-Trim Removes leading and trailing spaces from a string.
+NOTE
 
-Syntax: retVal = Trim(string)
+The Exit Do statement can be used to end a Do statement before the test condition returns True or False based on whether the While or Until keyword is used.
 
-UCase Converts the characters in a string to all uppercase.
+The While statement is similar to the Do statement with the While keyword when evaluating a test condition before it executes a set of statements. The one difference between the Do and While statements is that the While statement doesn't support the ability to end early with the use of the Exit statement. Ending a While statement early would require statements to manipulate the test condition being used to determine when to end the looping.
 
-Syntax: retVal = UCase(string)
+The following shows the syntax of the While statement:
 
-For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
+While test_condition statementN Wend
 
-The + and & operators are used to concatenate two strings together into a single string. In addition to concatenating two strings, you can concatenate special constants that represent an ASCII value to a string. For example, you can add a tab or linefeed character. Table 25.4 lists the special constants that the VBA programming language supports.
+The test_condition and statement arguments are the same as those in the Do statement. Here is an example of the While function:
 
-Table 25.4 Special constants with ASCII values
+' Executes the statements 5 times, the variable ' cnt is decremented by 1 with each loop Dim cnt As Integer cnt = 5 While cnt > 0 Debug.Print cnt cnt = cnt - 1 Wend
 
-Constant Description
+Here is the output that the previous statements create:
 
-vbBack Backspace character equal to Chr(8)
+5 4 3 2 1
 
-vbCr Carriage return character equal to Chr(13)
+Chapter 26
 
-vbCrLf Carriage return and linefeed characters equal to Chr(13) + Chr(10)
+Interacting with the Application and Documents Objects
 
-vbLf Linefeed character equal to Chr(10)
+The top object in the AutoCAD® Object library is the AcadApplication object, which allows you to access and manipulate the AutoCAD application window. From the AcadApplication object, you can also access the AcadDocuments collection, which allows you to work with not only the current drawing but all open drawings in the current AutoCAD session. As mentioned in earlier chapters, the ThisDrawing object can be used to access the current drawing.
 
-vbTab Tab character equal to Chr(9)
+Working with the Application
 
-The Chr function is used to return the character equivalent of the ASCII code value that is passed to the function. I introduce the Chr function and other data conversion functions in the next section.
+The AcadApplication object is the topmost object in the AutoCAD Object library. Although it isn't the most used object, it does provide access to the many features that you will use in VBA projects. All objects in the AutoCAD Object library provide access to the AcadApplication object with the object's Application property. You can access the AcadApplication object from the ThisDrawing object with the following code statement in the VBA Editor:
 
-The following code statements use the vbLf constant to break a string into two lines before displaying it in a message box with the MsgBox function:
+ThisDrawing.Application
 
-' Displays information about the active linetype MsgBox "Name: " & ThisDrawing.ActiveLinetype.Name & vbLf & _ "Description: " & ThisDrawing.ActiveLinetype.Description
+You can also use the following code statement to access the AcadApplication object from a code, class, or UserForm module:
 
-Converting Between Data Types
+AcadApplication.Application
 
+The following tasks can be performed once you have a reference to the AcadApplication object:
+
+Get the current drawing or the AcadDocuments collection object to work with all open drawings (see the section「Managing Documents」later in this chapter for more information).
+
+List, load, and unload ObjectARX® applications.
+
+Load and unload VBA project files and execute a macro (see Chapter 36,「Handling Errors and Deploying VBA Projects」).
+
+Manipulate the menus on the menu bar and toolbars in the user interface (see Chapter 33,「Modifying the Application and Working with Events」).
+
+Monitor changes to the application, system variables, commands, and more using event handlers (see Chapter 36).
+
+Update the display in the drawing window or zoom in the current viewport (see Chapter 28,「Interacting with the User and Controlling the Current View」).
+
+Access application preferences (see the section「Querying and Setting Application and Document Preferences」later in this chapter for more information).
+
+Get the name of and path to an application executable.
+
+Manipulate the size and position of the application window.
+
+The following shows a few code statements that allow you to query or manipulate an application:
+
+' Gets and displays the caption of the application window MsgBox ThisDrawing.Application.Caption ' Zooms to the extents of all drawing objects in the current viewport AcadApplication.Application.ZoomExtents ' Maximizes the application window ThisDrawing.Application.WindowState = acMax
+
+For a full list of the methods and properties that the AcadApplication object supports, look up the AcadApplication class in the Object Browser of the VBA Editor and the AutoCAD Help system.
+
+Getting Information about the Current AutoCAD Session
+
+The properties of the AcadApplication object can be used to access information about the current instance of the application. You can learn the application name and where the executable is stored, as well as which drawing is current or which drawings are open.
+
+Table 26.1 lists the properties of the AcadApplication object that can be used to get information about the AutoCAD executable.
+
+Table 26.1 Application-related properties
+
+Property Description
+
+FullName Returns a string that contains the full name of the executable file used to start the application. This property is read-only.
+
+HWND Returns a long integer that contains the handle of the application in memory. A handle is a unique value assigned to an application by Windows while it is executing in memory. A different number is assigned to the application each time it is started. This property is read-only.
+
+HWND32 Returns a long integer that contains the handle of the application in memory on a Windows 64-bit platform. This property is read-only and is available in AutoCAD 2014 and earlier releases that didn't support a true implementation of VBA 64-bit on the Windows 64-bit platform.
+
+LocaleId Returns an integer that represents the locale or language being used in the current session. This property is read-only.
+
+Name Returns a string that contains the name and file extension of the executable file used to start the application. This property is read-only.
+
+Path Returns a string that contains the path of the executable file used to start the application. This property is read-only.
+
+Version Returns a string that contains the version number of the application. This property is read-only.
+
+The following demonstrates how to display a message box containing the name, path, and version number of the application:
+
+Sub DisplayAppInfo() MsgBox "Name: " & ThisDrawing.Application.Name & vbLf & _ "Path: " & ThisDrawing.Application.Path & vbLf & _ "FullName : " & ThisDrawing.Application.FullName & vbLf & _ "Version : " & ThisDrawing.Application.Version, _ vbInformation, "Application Info" End Sub
+
+TIP
+
+The FullName and Path properties can be helpful in identifying whether the current AutoCAD session was started from a plain or from a vertical AutoCAD installation. For example, the installation path might be C:\Program Files\Autodesk\AutoCAD 2015\ACA, which lets you know that instance of AutoCAD 2015 should have access to the AutoCAD® Architecture features. You can also use the product system variable to check whether the current AutoCAD instance is a vertical-based product. I discuss working with system variables in the「Working with System Variables」section later in this chapter.
+
+Manipulating the Placement of the Application Window
+
+Some properties of the AcadApplication object can be used to resize, reposition, or even hide the AutoCAD application window from the user.
+
+Table 26.2 lists the AcadApplication object properties that can be used to resize and get information about the application window.
+
+Table 26.2 Application window–related properties
+
+Property Description
+
+Caption Returns a string that contains the title of the application window. This property is read-only.
+
+Height Specifies the height of the application window. The value returned is an integer and represents the window height in pixels.
+
+Visible Specifies the visibility of the application window. The value returned is Boolean. True indicates that the application window is visible, whereas False indicates the window is hidden.
+
+Width Specifies the width of the application window. The value is an integer and represents the window width in pixels.
+
+WindowLeft Specifies the location of the application window's left edge. The value is an integer. 0 sets the window to the leftmost visible position. A negative value moves the window to the left and off the screen, whereas a value greater than 0 moves the window to the right.
+
+WindowState Returns an integer value that represents the current state of the application window. The integer values allowed are defined as part of the AcWindowState enumerator. A value of 1 (or acNorm) indicates the window is neither minimized nor maximized, whereas a value of 2 (or acMin) or 3 (or acMax) indicates the window is minimized or maximized, respectively.
+
+WindowTop Specifies the location of the application window's top edge. The value is an integer. 0 sets the window to the topmost visible position. A negative value moves the window up and off the screen, whereas a value greater than 0 moves the window down.
+
+For more information on these properties, use the Object Browser in the VBA Editor or check the AutoCAD Help system.
+
+Managing Documents
+
+When a drawing file is opened in the AutoCAD drawing environment, it is presented in a drawing window. A drawing window in the AutoCAD Object library is referred to as a document and is represented by an AcadDocument object. The AcadDocument object provides access to the objects in a drawing file and the window in which the drawing is displayed.
+
+The AcadDocuments collection object is used to manage all the drawings open in the current AutoCAD session. You can access the AcadDocuments collection object with the Documents property of the AcadApplication object. In addition to working with drawings in the current session, you can create new and open existing drawing files, save and close open drawings, and get information from an open drawing.
+
+NOTE
+
+As I explained in Chapter 25,「Understanding Visual Basic for Applications,」the For statement can be used to step through and get each drawing in the AcadDocuments collection object. The Item method can also be used to get a specific document in the AcadDocuments collection object.
+
+Working with the Current Drawing
+
+The ThisDrawing object is the most common way to access the current drawing from a VBA project. ThisDrawing is equivalent to using the code statement AcadApplication.ActiveDocument.
+
+From the current drawing, you can perform the following tasks:
+
+Add, query, and modify graphical and nongraphical objects (see Chapter 27,「Creating and Modifying Drawing Objects,」Chapter 29,「Annotating Objects,」and Chapter 30,「Working with Blocks and External References」).
+
+Set a nongraphical object as current (see Chapter 27, Chapter 29, and Chapter 30).
+
+Use utility functions to get user input and perform geometric calculations (see Chapter 28).
+
+Monitor changes to the drawing, commands, objects, and more using event handlers (see Chapter 36).
+
+Select objects using selection sets (see Chapter 27).
+
+Get the name and path to the drawing file stored on disc.
+
+Access and modify drawing properties.
+
+The following shows a few example code statements that access the properties of a current drawing:
+
+' Sets the model space elevation to 10.0 ThisDrawing.ElevationModelSpace = 10# ' Displays a message box with the name of the current layer MsgBox ThisDrawing.ActiveLayer.Name ' Maximizes the drawing window ThisDrawing.WindowState = acMax
+
+For a full list of the methods and properties that the ThisDrawing object supports, look up the AcadDocument class in the Object Browser of the VBA Editor or check the AutoCAD Help system.
+
+Creating and Opening Drawings
+
+Not only can you work with the current drawing, but you can create a new drawing or open an existing drawing file that had been stored on disc. The Add method of the AcadDocuments collection object can be used to create a new drawing from scratch or based on a drawing template (DWT) file. If you don't pass the name of a drawing template file to the Add method, the measurement units of the new drawing is determined by the current value of the measureinit system variable. A value of 0 for the measureinit system variable indicates the new drawing will use imperial units, whereas a value of 1 indicates the use of metric units. The Add method returns an AcadDocument object that represents the new drawing file that has been created in memory.
+
+The following example code statements show how to create a new drawing that uses metric units from scratch or based on the Tutorial-iArch.dwt file that is installed with AutoCAD:
+
+' Set the measurement system for new drawings to metric ThisDrawing.SetVariable "measureinit", 1 ' Create a new drawing from scratch Dim newDWG1 As AcadDocument Set newDWG1 = Application.Documents.Add ' Create a new drawing based on Tutorial-iArch.dwt Dim newDWG2 As AcadDocument Set newDWG2 = Application.Documents.Add("Tutorial-iArch.dwt")
+
+NOTE
+
+If the DWT file passed to the Add method isn't located in a path listed under the Drawing Template File Location node on the Files tab of the Options dialog box, you must specify the full path to the DWT file. The TemplateDwgPath property of the AcadPreferencesFiles object can be used to add additional paths for AutoCAD to look in for DWT files. I discuss application preferences later, in the「Querying and Setting Application and Document Preferences」section.
+
+The New method of an AcadDocument object can also be used to create a new drawing file when the AutoCAD drawing environment is in single document interface (SDI) mode. Autodesk doesn't recommend using SDI mode; it affects the functionality of some features in the AutoCAD drawing environment. You can determine whether AutoCAD is in SDI mode by checking the value of the sdimode system variable or checking the SingleDocumentMode property of the AcadPreferencesSystem object. The New method returns an AcadDocument object that represents the new drawing file that has been created in memory.
+
+When you want to work with an existing drawing file that is stored on a local or network drive, use the Open method of the AcadDocument or AcadDocuments collection object. Here's the syntax of the Open methods:
+
+retVal = document.Open(fullname [, password]) retVal = documents.Open(fullname [, read-only] [, password])
+
+The arguments are as follows:
+
+fullname The fullname argument is a string that represents the DWG file you want to open. You can also open a DWS or DWT file.
+
+password The password argument is an optional string that represents the password that is required to open a password-protected DWG file.
+
+read-only The read-only argument is an optional Boolean that specifies whether the drawing should be open for read-write or read-only. A value of True indicates the drawing should be open for read-only access.
+
+retVal The retVal argument specifies a user-defined variable that you want to assign the AcadDocument object that is returned by the Open method.
+
+The following example code statements show how to open a DWG file named Building_Plan.dwg stored at C:\Drawings, first for read-write and then for read-only access:
+
+' Open Building_Plan.dwg for read-write Dim objDoc1 As AcadDocument set objDoc1 = ThisDrawing.Open("c:\drawings\building_plan.dwg") ' Open Building_Plan.dwg for read-only Dim objDoc2 As AcadDocument set objDoc2 = Application.Documents.Open("c:\drawings\building_plan.dwg", True)
+
+NOTE
+
+Before you try to use a DWT file or open a DWG file, you should make sure the file exists on your workstation. The VBA Dir method can be used to check for the existence of a file or folder. I explain how to work with files in Windows in Chapter 35,「Communicating with Other Applications.」
+
+Saving and Closing Drawings
+
+After you create a new drawing or make changes to an existing drawing file, you most likely will want to save the drawing to a file. Saving a drawing can be accomplished with the Save or SaveAs method of the AcadDocument object. Similar to the user interface, the Save method should be used to save a drawing file that was opened from disc or was previously saved with the SaveAs method.
+
+The Save method accepts no arguments and saves a drawing to the location it was opened from. If you use the Save method on a new drawing that wasn't previously saved, the Save method saves the drawing to the location stored in the Path property of the AcadDocument object. You can determine whether the drawing was previously saved by checking the FullName property of the AcadDocument object; if the property returns an empty string, the drawing hasn't been saved to disc yet.
+
+When you want to save a new drawing, save an existing drawing with a new name or location or in a different file format, or change the password protection, save the drawing with the SaveAs method. Here's the syntax of the SaveAs method:
+
+document.SaveAs(fullname [, SaveAsType] [,SecurityParams])
+
+The arguments are as follows:
+
+fullname The fullname argument is a string that represents the name and path of the drawing or drawing interchange file on disc.
+
+SaveAsType The SaveAsType argument is an optional integer that represents one of the supported file formats. The supported values can be found in the Object Browser of the VBA Editor under the enumerator named AcSaveAsType or in the SaveAs Method topic in the AutoCAD Help system. When not provided, the default format (the native drawing file format for the AutoCAD release you are using) is used. For AutoCAD 2013 and later, the default file format is the AutoCAD 2013 DWG file format.
+
+SecurityParams The SecurityParams argument is an optional AcadSecurityParams object that specifies the password or digital signature settings to apply to the drawing. For information on the AcadSecurityParams object, see the AutoCAD Help system.
+
+Before saving a drawing, you should check to see if the file was opened as read-only or if the drawing already has been saved. The ReadOnly property returns a Boolean value of True when the drawing is opened for read-only access, and the Saved property returns a Boolean value of True if the drawing doesn't need to be saved.
+
+The following example demonstrates how to save a DWG file named SampleVBASave.dwg to the Documents (or My Documents) folder:
+
+' Check to see if the drawing is read-write If ThisDrawing.ReadOnly = False Then ' Check to see if the drawing file was previously saved If ThisDrawing.FullName = "" Then ' Drawing wasn't previously saved ThisDrawing.SaveAs ThisDrawing.GetVariable("MyDocumentsPrefix") & _ "\SampleVBASave.dwg" Else ' Drawing was previously saved to disc ' Check to see if the drawing has been modifed If ThisDrawing.Saved = False Then ThisDrawing.Save End If End If End If
+
+Once a drawing file no longer needs to remain open in the AutoCAD drawing environment, you can close it using the Close method of the AcadDocument object. Alternatively, you can use the Close method of the AcadDocuments collection object, which will close all open drawings and ignore any changes that haven't previously been saved.
+
+Here's the syntax of the Close methods:
+
+document.Close([SaveChanges] [, fullname]) documents.Close
+
+Here are the arguments:
+
+SaveChanges The SaveChanges argument is an optional Boolean that specifies whether the changes made to the drawing should be saved or discarded.
+
+fullname The fullname argument is an optional string that represents a new name and path to use when saving the drawing file if SaveChanges was passed a value of True.
+
+TIP
+
+If you want to close all open drawings, I recommend using the For statement with the AcadDocuments collection object and then close each drawing one at a time with the Close method of the AcadDocument object returned by the For statement. This approach will give you a chance to specify how changes are handled for each drawing as it is closed.
+
+The following example demonstrates a procedure that mimics some of the functionality available with the AutoCAD closeall command:
+
+Sub CloseAll() Dim oDoc As AcadDocument For Each oDoc In Application.Documents ' Activates the document window oDoc.Activate ' Close the drawing if no changes have been made since last save If oDoc.Saved = True Then oDoc.Close False Else Dim nRetVal As Integer nRetVal = MsgBox("Save changes to " & _ oDoc.Path & "\" & oDoc.Name & "?", vbYesNoCancel) Select Case nRetVal Case vbYes ' Save the drawing using its default name or last saved name ' if not open as read-only. If oDoc.ReadOnly = False Then oDoc.Save ' Close the drawing oDoc.Close Else ' Close file and discard changes if file is read-only If vbYes = MsgBox("File is read-only." & vbLf & vbLf & _ "Discard changes and close file?", vbYesNo) Then oDoc.Close False End If End If ' You should prompt the user here if the file was not previously ' saved to disc for a file name and path, or how read-only files ' should be handled. Case vbNo ' Close file and discard changes oDoc.Close False Case vbCancel ' Exit the procedure and return to AutoCAD Exit Sub End Select End If Next oDoc End Sub
+
+NOTE
+
+The previous example doesn't handle all situations that might be encountered when closing and saving changes to a drawing. The Ch26_ExSamples.dvb file, which you can download from www.sybex.com/go/autocadcustomization, contains a more comprehensive and complete solution. Place the file in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the DVB files. Then load the VBA project into the AutoCAD drawing environment to use it. This sample file also contains a custom class that wraps two functions that can be used to display an open or save file-navigation dialog box.
+
+Accessing Information about a Drawing
+
+The properties of an AcadDocument object can be used to access information about the drawing file it represents. You can learn where the drawing file is stored, identify the graphical and nongraphical objects stored in a drawing file, and access the drawing properties that are used to identify a drawing file. I discuss how to access graphical and nongraphical objects later in this book.
+
+Table 26.3 lists the properties of the AcadDocument object that can be used to get the name, location, and drawing properties of a drawing file open in the current AutoCAD session.
+
+NOTE
+
+Use the SaveAs method of the AcadDocument object to save a drawing file with a new name or location.
+
+Table 26.3 Drawing file–related properties
+
+Property Description
+
+FullName Returns a string that contains the full name of the drawing file when it is stored on disc. If the drawing has not been saved yet, this property returns an empty string. This property is read-only.
+
+Name Returns a string that contains the name and file extension of the drawing file. If the drawing has not been saved yet, it returns the default name assigned to the drawing file (that is, Drawing1.dwg, Drawing2.dwg, …). This property is read-only.
+
+Path Returns a string that contains the path of the drawing file when it is stored on disc or the Documents (or My Documents) folder by default if the drawing has not been saved. This property is read-only.
+
+SummaryInfo Returns a reference to an AcadSummaryInfo object, which represents the drawing properties that can be displayed and modified using the AutoCAD dwgprops command. This property is read-only.
+
+The following demonstrates how to display a message box containing the path and name of the current drawing:
+
+Sub DisplayDWGName() MsgBox "Name: " & ThisDrawing.Name & vbLf & _ "Path: " & ThisDrawing.Path & vbLf & _ "FullName : " & ThisDrawing.FullName, _ vbInformation, "File Name and Path" End Sub
+
+To query and set the Author and Comments properties of the AcadSummaryInfo object for the current drawing, you'd use this code:
+
+Sub DWGSumInfo() Dim oSumInfo As AcadSummaryInfo Set oSumInfo = ThisDrawing.SummaryInfo MsgBox "Author: " & oSumInfo.Author & vbLf & _ "Comments: " & oSumInfo.Comments, _ vbInformation, "Drawing Properties" oSumInfo.Author = "Drafter" oSumInfo.Comments = "Phase 1: Demolishion of first floor" MsgBox "Author: " & oSumInfo.Author & vbLf & _ "Comments: " & oSumInfo.Comments, _ vbInformation, "Drawing Properties" End Sub
+
+For more information on the AcadSummaryInfo object, use the Object Browser in the VBA Editor or check the AutoCAD Help system.
