@@ -197,21 +197,21 @@ At heart, a design pattern consists of four parts: the name, the problem, the so
 
 There are a number of well-defined pattern structures, including the original form developed by Christopher Alexander (the Alexandrian form), and the narrative approach favored by the Portland Pattern Repository (the Portland form). Because the Gang of Four book is so influential, and because we will cover many of the patterns they describe, let’s examine a few of the sections they include in their patterns:
 
-1. Intent: A brief statement of the pattern’s purpose. You should be able to see the point of the pattern at a glance.
+1 Intent: A brief statement of the pattern’s purpose. You should be able to see the point of the pattern at a glance.
 
-2. Motivation: The problem described, often in terms of a typical situation. The anecdotal approach can help make the pattern easy to grasp.
+2 Motivation: The problem described, often in terms of a typical situation. The anecdotal approach can help make the pattern easy to grasp.
 
-3. Applicability: An examination of the different situations in which you might apply the pattern. While the motivation describes a typical problem, this section defines specific situations and weighs the merits of the solution in the context of each.
+3 Applicability: An examination of the different situations in which you might apply the pattern. While the motivation describes a typical problem, this section defines specific situations and weighs the merits of the solution in the context of each.
 
-4. Structure/Interaction: These sections may contain UML class and interaction diagrams describing the relationships among classes and objects in the solution.
+4 Structure/Interaction: These sections may contain UML class and interaction diagrams describing the relationships among classes and objects in the solution.
 
-5. Implementation: This section looks at the details of the solution. It examines any issues that may come up when applying the technique and provides tips for deployment.
+5 Implementation: This section looks at the details of the solution. It examines any issues that may come up when applying the technique and provides tips for deployment.
 
-6. Sample Code: I always skip ahead to this section. I find that a simple code example often provides a way into a pattern. The example is often chopped down to the basics in order to lay the solution bare. It could be in any object-oriented language. Of course, in this book, it will always be PHP.
+6 Sample Code: I always skip ahead to this section. I find that a simple code example often provides a way into a pattern. The example is often chopped down to the basics in order to lay the solution bare. It could be in any object-oriented language. Of course, in this book, it will always be PHP.
 
-7. Known Uses: These describe real systems in which the pattern (problem, context, and solution) occurs. Some people say that for a pattern to be genuine, it must be found in at least three publicly available contexts. This is sometimes called the「rule of three.」
+7 Known Uses: These describe real systems in which the pattern (problem, context, and solution) occurs. Some people say that for a pattern to be genuine, it must be found in at least three publicly available contexts. This is sometimes called the「rule of three.」
 
-8. Related Patterns: Some patterns imply others. In applying one solution, you can create the context in which another becomes useful. This section examines these synergies. It may also discuss patterns that have similarities to the problem or the solution, as well as any antecedents (i.e., patterns defined elsewhere on which the current pattern builds).
+8 Related Patterns: Some patterns imply others. In applying one solution, you can create the context in which another becomes useful. This section examines these synergies. It may also discuss patterns that have similarities to the problem or the solution, as well as any antecedents (i.e., patterns defined elsewhere on which the current pattern builds).
 
 ### 0214. 术语卡——紧耦合
 
@@ -472,12 +472,6 @@ Although I’m an inveterate reinventor of wheels, the thrust of my argument is 
 
 ## 0101. PHP: Design and Management
 
-### 1. 逻辑脉络
-
-一些面向编程的诉求；编程范式的发展。
-
-### 2. 摘录及评论
-
 I hope this book goes some way toward helping PHP developers apply design-oriented insights to their platforms and libraries, and provides some the conceptual tools needed when it’s time to go it alone. This is a book about object-oriented design and programming. It is also about tools for managing a PHP codebase from collaboration through to deployment.
 
 These two themes address the same problem from different but complementary angles. The primary aim is to build systems that achieve their objectives and lend themselves well to collaborative development. A secondary goal lies in the aesthetics of software systems. 
@@ -601,12 +595,6 @@ In previous editions, I included a chapter on the PEAR package repository. Compo
 I include a new chapter on the previously mentioned Vagrant. In another new chapter, I examine PHP Standards. Since I endorse the value of complying with a style guide, I have reworked every code example in the book to meet the PSR-1 and PSR-2 standards. This was a much bigger commitment than I realized, and tech editor Paul Tregoing has worked valiantly to keep me honest.
 
 ## 0102.  PHP and Objects
-
-### 1. 逻辑脉络
-
-PHP 各版本的特性，特别是面向对象在各个版本中的演化。
-
-### 2. 摘录及评论
 
 This short chapter placed objects in their context in the PHP language. The future for PHP is very much bound up with object-oriented design. In the next few chapters, I take a snapshot of PHP’s current support for object features, and introduce some design issues.
 
