@@ -8,25 +8,25 @@ Copyright © 2016 by Matt Zandstra
 
 ## 目录
 
-0101PHP: Design and Management
+0101 PHP: Design and Management
 
-0102PHP and Objects
+0102 PHP and Objects
 
-0103Object Basics
+0103 Object Basics
 
-0104Advanced Features
+0104 Advanced Features
 
-0105Object Tools
+0105 Object Tools
 
-0106Objects and Design
+0106 Objects and Design
 
-0201What Are Design Patterns? Why Use Them?
+0201 What Are Design Patterns? Why Use Them?
 
-0202Some Pattern Principles
+0202 Some Pattern Principles
 
-0203Generating Objects
+0203 Generating Objects
 
-0305Testing with PHPUnit
+0305 Testing with PHPUnit
 
 ## 卡片
 
@@ -50,9 +50,25 @@ Related topics also grew in prominence. Among them was eXtreme Programming (XP),
 
 XP also dictates that projects should be broken down into small (very small) iterations. Both code and requirements should be scrutinized at all times. Architecture and design should be a shared and constant issue, leading to the frequent revision of code.
 
-### 0202. 术语卡——PHP 的本质内容
+### 0202. 术语卡——mock 对象和 stub 对象
 
-In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two tools developed by Rasmus Lerdorf using Perl. PHP stood for Personal Homepage Tools. FI stood for Form Interpreter. Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. 
+Another approach is to fake the context of the class you are testing. This involves creating objects that pretend to be the objects that do real stuff. For example, you might pass a fake database mapper to your test object’s constructor. Because this fake object shares a type with the real mapper class (extends from a common abstract base or even overrides the genuine class itself), your subject is none the wiser. You can prime the fake object with valid data. Objects that provide a sandbox of this sort for unit tests are known as stubs. They can be useful because they allow you to focus in on the class you want to test without inadvertently testing the entire edifice of your system at the same time.
+
+Fake objects can be taken a stage further than this, however. Because the object you are testing is likely to call a fake object in some way, you can prime it to confirm the invocations you are expecting. Using a fake object as a spy in this way is known as behavior verification, and it is what distinguishes a mock object from a stub.
+
+另一种方式就是伪造测试类的环境。该方式会创建假装在进行真实工作的对象。例如，你可能会传一个伪造的数据库映射给测试对象的构造函数。因为伪造对象和真实的映射类（继承自一个共同的抽象基类或甚至重写该类本身）是相同类型，所以测试目标对此一无所知。你可以预先准备好具有正确数据的虚拟对象（fake object）。这类为单元测试提供沙箱的对象就是所谓的桩。它们非常有用，因为它们使你能仅关注于要测试的类本身而无需同时注意整个系统。
+
+但虚拟对象的功能还不止于此。因为你所测试的对象可能会以某种方式调用虚拟对象，所以你可以准备好虚拟对象以便它按照预期那样确保调用可以进行。以这种类似间谍的方式使用虚拟对象被称为「行为确认」。对于对象行为的预期正是 mock 对象与 stub 对象不同的地方。
+
+Stub，可理解为占位用的假对象。简单地说，stub 只是占位，而 mock 对象还关注于对行为的预期，这是两者的区别。如果读者想了解更多内容，建议阅读 Martin Fowler 的 Mocks Aren't Stubs 一文。一一译者注
+
+3『 PHPUnit 的官方文档「0901测试替身.md」
+
+将对象替换为能验证预期行为（例如断言某个方法必会被调用）的测试替身的实践方法称为「模仿」（mocking）。
+
+可以用仿件对象（mock object）作为观察点来核实被测试系统在测试中的间接输出。通常，仿件对象还需要包括桩件的功能，因为如果测试尚未失败则仿件对象需要向被测系统返回一些值，但是其重点还是在对间接输出的核实上。因此，仿件对象远不止是桩件加断言，它是以一种从根本上完全不同的方式来使用的（Gerard Meszaros）。
+
+』
 
 ### 0203. 术语卡——继承
 
@@ -255,26 +271,6 @@ One approach to testing starts at the interface of a project, modeling the vario
 
 测试在任何项目中都是一个基本要素。即使你的测试流程并不规范，也一定使用了一系列确认系统是否正常工作的操作。这种不规范的测试流程很快就会变得乏味，并且会逐渐让人形成种撞大运的心态。有一种测试方法是从一个项目的接口开始，为用户可能使用系统的各种方式建模。而这也是手工测试时通常会使用的方式，虽然也有众多的框架可以自动化该过程。这些功能测试有时又被称为验收测试（acceptance test），因为一个成功执行的动作列表可以作为一个项目阶段完成的依据。使用该方法时，通常会把系统看做一个黑盒一一测试只针对产品功能，并不关注项目内部结构和处理过程。
 
-### 0219. 术语卡——mock 对象和 stub 对象
-
-Another approach is to fake the context of the class you are testing. This involves creating objects that pretend to be the objects that do real stuff. For example, you might pass a fake database mapper to your test object’s constructor. Because this fake object shares a type with the real mapper class (extends from a common abstract base or even overrides the genuine class itself), your subject is none the wiser. You can prime the fake object with valid data. Objects that provide a sandbox of this sort for unit tests are known as stubs. They can be useful because they allow you to focus in on the class you want to test without inadvertently testing the entire edifice of your system at the same time.
-
-Fake objects can be taken a stage further than this, however. Because the object you are testing is likely to call a fake object in some way, you can prime it to confirm the invocations you are expecting. Using a fake object as a spy in this way is known as behavior verification, and it is what distinguishes a mock object from a stub.
-
-另一种方式就是伪造测试类的环境。该方式会创建假装在进行真实工作的对象。例如，你可能会传一个伪造的数据库映射给测试对象的构造函数。因为伪造对象和真实的映射类（继承自一个共同的抽象基类或甚至重写该类本身）是相同类型，所以测试目标对此一无所知。你可以预先准备好具有正确数据的虚拟对象（fake object）。这类为单元测试提供沙箱的对象就是所谓的桩。它们非常有用，因为它们使你能仅关注于要测试的类本身而无需同时注意整个系统。
-
-但虚拟对象的功能还不止于此。因为你所测试的对象可能会以某种方式调用虚拟对象，所以你可以准备好虚拟对象以便它按照预期那样确保调用可以进行。以这种类似间谍的方式使用虚拟对象被称为「行为确认」。对于对象行为的预期正是 mock 对象与 stub 对象不同的地方。
-
-Stub，可理解为占位用的假对象。简单地说，stub 只是占位，而 mock 对象还关注于对行为的预期，这是两者的区别。如果读者想了解更多内容，建议阅读 Martin Fowler 的 Mocks Aren't Stubs 一文。一一译者注
-
-3『 PHPUnit 的官方文档「0901测试替身.md」
-
-将对象替换为能验证预期行为（例如断言某个方法必会被调用）的测试替身的实践方法称为「模仿」（mocking）。
-
-可以用仿件对象（mock object）作为观察点来核实被测试系统在测试中的间接输出。通常，仿件对象还需要包括桩件的功能，因为如果测试尚未失败则仿件对象需要向被测系统返回一些值，但是其重点还是在对间接输出的核实上。因此，仿件对象远不止是桩件加断言，它是以一种从根本上完全不同的方式来使用的（Gerard Meszaros）。
-
-』
-
 ### 0301. 人名卡——Matt Zandstra
 
 人名卡：Matt Zandstra。
@@ -409,6 +405,10 @@ Remember to always opt for dependency injections through the constructor instead
 Line 30 is where we call the areaOfSquare method of the dependency (`$this->calculate`).
 
 关键知识点：1）通过构造函数依赖注入一个对象而非 new 一个对象，构造函数注入对象大大便于测试。2）不要用静态方法。
+
+### 0512. 任意卡——PHP 的本质内容
+
+In the Beginning: PHP/FI. The genesis of PHP as we know it today lies with two tools developed by Rasmus Lerdorf using Perl. PHP stood for Personal Homepage Tools. FI stood for Form Interpreter. Together, they comprised macros for sending SQL statements to databases, processing forms, and flow control. 
 
 ## 书评
 
