@@ -1,3 +1,7 @@
+# 2019848Metaphors-We-Live-ByR00.md
+
+## 记忆时间
+
 ## 卡片
 
 ### 0101. 反常识卡——思维是隐喻的
@@ -231,13 +235,21 @@
 
 本译丛将开放式陆续出版。希望它的出版，对读者了解国外人文学科的发展现状与趋势、关注人文精神培育与养成、倡导学术阅读与开放意识、启发从多重视角审视古今与现实、激起追问理论与现实问题的激情，获得领悟真善美的享受，能有所助益。由于我们的视野和知识所限，特别是对所选译的著作是否符合设计本译丛的初衷，总是心存志忑，内容表达不甚准确、翻译措辞存在错讹也在所难免，因此，更希望它的出版能得到学界专家同仁和广大读者的批评指教，成为人文学科译介、研究园地中一棵有生命力的小树，在大家的关心与呵护下茁成长。
 
-庞学铨
+## Preface
 
-2011 年 6 月于西子湖畔浙江大学
+Much of the material in all or parts of chapters 1 through 5, 9 through 12, 14, 18, and 21 originally appeared in the article "Conceptual Metaphor in Everyday Language, "  Journal of Philosophy  77, no. 8 (August 1980) : 453-86, and is reprinted here with the kind permission of the editors of the  Journal of Philosophy. 
 
-1 《简明不列百科全书》第 6 卷，「人文学科」条目，北京：中国大百科全书出版社，1986 年，第 760 页
+1-2『原来本书的大部分内容是上面这篇论文的内容。下载一下去。』——未完成   
 
-## 前言
+This book grew out of a concern, on both our parts, with how people understand their language and their experience. When we first met, in early January 1979, we found that we shared, also, a sense that the dominant views on  meaning  in Western philosophy and linguistics are inadequate—that "meaning" in these traditions has very little to do with what people find meaningful in their lives. 
+
+We were brought together by a joint interest in metaphor. Mark had found that most traditional philosophical views permit metaphor little, if any, role in understanding our world and ourselves. George had discovered linguistic evidence showing that metaphor is pervasive in everyday language and thought—evidence that did not fit any contemporary Anglo-American theory of meaning within either linguistics or philosophy. Metaphor has traditionally been viewed in both fields as a matter of peripheral interest. We shared the intuition that it is, instead, a matter of central concern, perhaps the key to giving an adequate account of understanding. 
+
+Shortly after we met, we decided to collaborate on what we thought would be a brief paper giving some linguistic evidence to point up shortcomings in recent theories of meaning. Within a week we discovered that certain assumptions of contemporary philosophy and linguistics that have been taken for granted within the Western tradition since the Greeks precluded us from even raising the kind of issues we wanted to address. The problem was not one of extending or patching up some existing theory of meaning but of revising central assumptions in the Western philosophical tradition. In particular, this meant rejecting the possibility of any objective or absolute truth and a host of related assumptions. It also meant supplying an alternative account in which human experience and understanding, rather than objective truth, played the central role. In the process, we have worked out elements of an experientialist approach, not only to issues of language, truth, and understanding but to questions about the meaningfulness of our everyday experience.
+
+Berkeley California 
+
+July  1,   1979 
 
 这本书源起于我们两人对人们如何理解其语言和经验的关注。1979 年 1 月上旬初次见面时，我们发现彼此都觉得，西方哲学和语言学上对于意义的主导观点是不恰当的 —— 在这些传统里，「意义」跟人们所认为的生活中什么是有意义的没有多少关系。
 
@@ -245,11 +257,11 @@
 
 这次见面后不久，我们就决定合作来写一篇当时本以为会是很简短的论文，来提出一些语言学证据，指出最近的意义理论中的缺陷。一个星期之内，我们就发现，古希腊以来的西方传统中，当代哲学和语学的某些假设被视为理所当然，这将妨碍我们即便只是提出我们要解决的问题。我们要做的不是扩展或修补某个现有的意义理论，而是要修正西方哲学传统中的核心假设，特别是这将意味着抛弃任何客观或绝对真理以及其他一系列相关假设。这也意味着我们要提出另外一个阐释，即在意义中发挥着核心作用的是人类经验和理解而非客观真理。在这个过程中，我们已经摸索出初步的经验论方法来阐释不仅包括语言、真理和理解的问题，而且还有我们日常经验的意义性问题。
 
-美国加州大学伯克利分校
+## Afterword
 
-1979 年 7 月 1 日
+Collaborating on this book has given us the opportunity to explore our ideas not only with each other but with literally hundreds of people—students and colleagues, friends, relatives, acquaintances, even strangers at the next cafe table. And after having worked out all of the consequences we could think of, for philosophy and for linguistics, what stands out most in our minds are the metaphors themselves and the insights they have given us into our own daily experiences. We still react with awe when we notice ourselves and those around us living by metaphors like  TIME IS MONEY, LOVE IS A JOURNEY, and PROBLEMS ARE PUZZLES.  We continually find it important to realize that the way we have been brought up to perceive our world is not the only way and that it is possible to see beyond the "truths" of our culture.
 
-## 后记
+But metaphors are not merely things to be seen beyond. In fact, one can see beyond them only by using other metaphors. It is as though the ability to comprehend experience through metaphor were a sense, like seeing or touching or hearing, with metaphors providing the only ways to perceive and experience much of the world. Metaphor is as much a part of our functioning as our sense of touch, and as precious.
 
 合作撰写这本书给了我俩一个很好的机会，来探究我们的想法，不仅是相互探究，而且是与真正数以百计的人一一学生、同事、朋友、亲戚、熟人，甚至是咖啡馆里邻桌的陌生人一探究。思考出我们能想到的对哲学和语言学的所有结果之后，我们的脑海中最突显的就是隐喻本身以及隐喻提供给我们的洞察日常经验的能力。当我们发现自己和周围的人依隐喻生活，如「时就是金钱」，「爱情是一个旅程」、「问题是难题」，我们充满了敬畏。我们不断地发现，从小到大人们教给我们感知世界的方式并不是唯一的方式，我们有可能看到超越我们文化「真理」之外的东西。认识到这一点非常重要。
 
