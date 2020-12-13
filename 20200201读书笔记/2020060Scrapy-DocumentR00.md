@@ -26,20 +26,6 @@
 
 最后还有一张任意卡，记录个人阅读感想。
 
-## 模板
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
-
-1『自己的观点』
-
-2『行动指南』
-
-3『与其他知识的连接』
-
 ## 总体
 
 Scrapy is a fast high-level web crawling [https://en.wikipedia.org/wiki/Web_crawler] and web scraping [https://en.wikipedia.org/wiki/Web_scraping] framework, used to crawl websites and extract structured data from their pages. It can be used for a wide range of purposes, from data mining to monitoring and automated testing.
@@ -136,27 +122,6 @@ We are going to scrape quotes.toscrape.com [http://quotes.toscrape.com/], a webs
 [Learn Python the Hard Way](https://learnpythonthehardway.org/python3/)
 
 Our first Spider. Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass Spider and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
