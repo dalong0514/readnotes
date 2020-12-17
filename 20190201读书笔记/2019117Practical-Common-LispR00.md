@@ -200,7 +200,7 @@ Two last bits of basic knowledge you need to get under your belt are Common Lisp
 
 17 Using the empty list as false is a reflection of Lisp’s heritage as a list-processing language much as the use of the integer 0 as false in C is a reflection of its heritage as a bit-twiddling language. Not all Lisps handle boolean values the same way. Another of the many subtle differences upon which a good Common Lisp vs. Scheme flame war can rage for days is Scheme’s use of a distinct false value #f, which isn’t the same value as either the symbol nil or the empty list, which are also distinct from each other.
 
-1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil 做一张术语卡片。』——已完成
+1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil, (), 'nil, and '() 是等价的。nil 做一张术语卡片。』——已完成
 
 ### 0203. 术语卡——动态语言
 
