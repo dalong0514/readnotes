@@ -8,6 +8,8 @@
 
 [Pomoc: Introduction (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-A0E9D801-8BE9-4BF1-85E8-3807E15F3B71)
 
+[AutoLISP | AfraLISP](https://www.afralisp.net/autolisp/)
+
 [Forums - AutoCAD Forums](https://www.cadtutor.net/forum/)
 
 [Tutorials | Lee Mac Programming](http://lee-mac.com/tutorials.html)
@@ -16,13 +18,9 @@
 
 [Dynamic Block Functions | Lee Mac Programming](http://lee-mac.com/dynamicblockfunctions.html)
 
-[AutoLisp 选择对象函数 ssget 用法 - 钉钉铛铛 - 博客园](https://www.cnblogs.com/chenjiafeng/p/7537786.html)
-
-[COND vs. IF | AfraLISP](https://www.afralisp.net/autolisp/tutorials/cond-vs-if.php)
-
 ## 卡片
 
-### 0101. 主题卡——list 数据类型常用的操作函数
+### 0101. 主题卡 —— list 数据类型常用的操作函数
 
 A list is a group of related values separated by spaces and enclosed in parentheses. Lists provide an efficient method of storing numerous related values. After all, LISP is so-named because it is the LISt Processing language. Once you understand the power of lists, you will find that you can create more powerful and flexible applications. Lists are used to represent 2D and 3D coordinate values, and entity data.
 
@@ -206,7 +204,7 @@ vl-sort-i (AutoLISP). Sorts the elements in a list according to a given compare 
 
 』
 
-### 0102. 主题卡——字符串数据的操作函数
+### 0102. 主题卡 —— 字符串数据的操作函数
 
 A string is a group of characters surrounded by quotation marks. Within quoted strings the backslash (\) character allows control characters (or escape codes) to be included. When you explicitly use a quoted string in AutoLISP, that value is known as a literal string or a string constant. Examples of valid strings are “string 1” and “\nEnter first point:”.
 
@@ -224,7 +222,7 @@ AutoLISP provides many functions for working with string values. The following a
 
 6 vl-string-subst – Substitutes one string for another, within a string.
 
-### 0103. 主题卡——lisp 中的多态
+### 0103. 主题卡 —— lisp 中的多态
 
 With AutoLISP, many functions require you to pass them values. These values are known as arguments. There are functions that also accept no arguments, and some in which accept optional arguments. User-defined functions cannot have optional arguments. When you call a user-defined function that accepts arguments, you must provide values for all arguments.
 
@@ -234,7 +232,7 @@ Note: You can define multiple user functions with the same name, but have each d
 
 1-2『同一个名字定义多个函数，每个函数设不同的形参。这倒是个折中的办法。回复：这不就是函数重载么，哈哈。（2020-07-03）回复：这个可以实现多态了，模拟面向对象范式，太 NB 了。做一张主题卡片。（2020-10-06）』——已完成
 
-### 0104. 主题卡——处理选择集的操作函数
+### 0104. 主题卡 —— 处理选择集的操作函数
 
 Selection sets are groups of one or more selected objects (entities). You can interactively add objects to, remove objects from, or list objects in a selection set. The following example code uses the ssget function to return a selection set containing all the objects in a drawing.
 
@@ -258,7 +256,7 @@ AutoLISP provides a number of functions for handling selection sets. The followi
 
 The ssget function provides the most general means of creating a selection set. It can create a selection set in one of the following ways: 1) Explicitly specifying the objects to select, using the Last, Previous, Window, Implied, Window Polygon, Crossing, Crossing Polygon, or Fence options; 2) Specifying a single point; 3) Selecting all objects in the database; 4) Prompting the user to select objects. With any option, you can use filtering to specify a list of properties and conditions that the selected objects must match.
 
-### 0105. 主题卡——lisp 里数组过滤函数的实现
+### 0105. 主题卡 —— lisp 里数组过滤函数的实现
 
 1『太重要了，升级为主题卡，哈哈。这张主题卡摘自数据「2019117Practical-Common-LispR00.md」（2020-10-27）』
 
@@ -362,7 +360,7 @@ Remarks: The vl-member-if-not function passes each element in lst to the functio
 
 』
 
-### 0106. 主题卡——list 映射处理的几个函数
+### 0106. 主题卡 —— list 映射处理的几个函数
 
 [lambda (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-3B8BB020-1E1A-4FA3-B7B3-B5B20BA04CD9)
 
@@ -690,15 +688,15 @@ If this tutorial has sparked your interest in all things mapcar and lambda, the 
 
 1-2『感觉又捡到金子了，已下载「附件1-CP401-1-Lisp-Advance-Yourself」作为本书的附件。』
 
-### 0107. 主题卡——修改 CAD 实体数据的基本思路
+### 0107. 主题卡—— 修改 CAD 实体数据的基本思路
 
-### 0201. 术语卡——DXF group codes
+### 0201. 术语卡 —— DXF group codes
 
 CAD 里实体对象的唯一标识。重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。
 
 The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. 
 
-### 0202. 术语卡——Entity Names
+### 0202. 术语卡 —— Entity Names
 
 An entity name is a numeric label assigned to objects in a drawing. It is actually a pointer into a file maintained by AutoCAD, and can be used to find the object's database record and its vectors (if they are displayed). This label can be referenced by AutoLISP functions to allow selection of objects for processing in various ways. Internally, AutoCAD refers to objects as entities.
 
@@ -710,7 +708,7 @@ Entity names assigned to objects in a drawing are only in effect during the curr
 
 Objects in a drawing can be represented as ActiveX (VLA) objects. When working with ActiveX methods and properties, you must refer to VLA-objects, not the ename pointer returned by functions such as entlast. VLA-objects can be converted to an ename pointer with vlax-vla-object->ename. You can also use vlax-ename->vla-object to convert an ename pointer to a VLA-object.
 
-### 0203. 术语卡——cons 函数
+### 0203. 术语卡 —— cons 函数
 
 [cons (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B418E7-DB3D-4CBE-954E-F070F0A7CB2B)
 
@@ -795,7 +793,7 @@ LISP 编程中的列表实作在「cons 对」之上。具体地说，每个列�
 
 技术上，前例中的列表（1 2 3）恰巧是不平衡的二叉树。要看到这点，只需重新排列图。
 
-### 0204. 术语卡——dotted pair
+### 0204. 术语卡 —— dotted pair
 
 Dotted pair lists must always contain two members and is the method AutoLISP uses to maintain entity definition data. When representing a dotted pair, members of the list are separated by a period ( . ). Most list-handling functions do not accept a dotted pair as an argument, so you should be sure you are passing the right kind of list to a function.
 
@@ -859,7 +857,7 @@ autolisp 里一个高频操作 `cdr (assoc -1 ent)`，其中 -1 是 DXF group co
 
 』
 
-### 0205. 术语卡——Wild-Card Matching
+### 0205. 术语卡 —— Wild-Card Matching
 
 通配符的使用说明：
 
@@ -931,7 +929,7 @@ About Wild-Card Patterns in Selection Set Filter Lists (AutoLISP). Symbol names 
 
 1-2『选择特定名称块的实现方式，mark 一下。可以用来提取块里的基本信息用，做设备表的一个环节。wild-card 是指通配符。\` 应该是转义用的。回复：很棒啊，这样的话数据流里筛选仪表块只需要使用 `"Instrument*"` 过滤即可。合并到之前已经做好的通配符术语卡片。（2020-10-07）』
 
-### 0206. 术语卡——lisp 里的函数
+### 0206. 术语卡 —— lisp 里的函数
 
 You can define your own functions. Once defined, these functions can be used at the AutoCAD Command prompt, the Visual LISP Console prompt, or within other AutoLISP expressions, just as you use the standard functions.
 
@@ -985,7 +983,7 @@ To use functions as AutoCAD commands, be sure they adhere to the following rules
 
 1『不能有参数，但可以使用局部变量。』
 
-### 0207. 术语卡——cond 语句
+### 0207. 术语卡 —— cond 语句
 
 Let's start looking at some code. To begin with, we'll write code that returns the factorial of the number 4. If you're unfamiliar with factorials, it's the mathematical process where you take a number, multiply it by a number one less, multiplied by a number one less until you get to 1. So, the factorial for the number 4 is the following formula 4 * 3 * 2 * 1 =  24.
 
@@ -1023,7 +1021,7 @@ If the variable a is set to the value-10, this returns 10. As shown, cond can be
 
 cond 语句感觉还是很有用的，类似于其他语言里的 case 语句，多个不同的场景返回不同的值，这个场景可以通过 cond 来实现。看到这些例子，发现一般最后一条语句采用 `T` 结合默认结果来收尾。做一张术语卡片。（2020-10-27）——已完成
 
-### 0208. 术语卡——递归
+### 0208. 术语卡 —— 递归
 
 Recursion in programming is essentially the same thing, it's when a program calls itself. Of course, unlike the television picture that goes on and on forever, with recursive programming, you need to have an “out” or your program would just go on forever and ever in an endless loop until your software or computer ran out of memory.
 
@@ -1059,7 +1057,7 @@ Now that you've seen a couple examples, it's really not that hard. In fact, the 
 
 What this codes does, it takes a string character and increments it. Its intent is to generate the next revision letter based in the current revision. So Let's say your drawing is at revision “B”, calling the function (str+ “B”) would return “C”. Calling the program with (str+ “C”) would return “D” and so on. that's not that hard in itself, and you wouldn't need recursion to perform it. But what happens when you get to revision “Z” and need to go to “AA” or you're at revision “AZ” and need to go to “BA”. This program handles that and that's where the recursion comes in. So your homework when you get back to your office is to slice and dice this program up and see how it works. Play with it a little and see if you can truly understand what it's doing. And if you're really ambitious, try modifying the program so that it works as described, but does Not use the letters “O” (oh) and “I” (eye) which resemble 0 (zero) and 1 (one). Use the following lines to make notes on recursion, this class or how you might use it in your own environment.
 
-### 0209. 术语卡——vl-some 和 vl-every 函数
+### 0209. 术语卡 —— vl-some 和 vl-every 函数
 
 The fact that we're dealing with numbers in this example, means that it would really not be that hard to create a loop with a few counter variables to perform this same calculation. But not all cases would be that easy. Let's look at another example that deals with nested lists…
 
@@ -1212,7 +1210,7 @@ T
 
 』
 
-### 0301. 任意卡——MNL 源文件
+### 0301. 任意卡 —— MNL 源文件
 
 AutoLISP source code can also be stored in files with a .mnl extension. A Menu AutoLISP (MNL) file contains custom functions and commands that are required for the elements defined in a customization (CUIx) file. A MNL file is loaded automatically when it has the same name as a customization (CUIx) file that is loaded into the AutoCAD-based product.
 
@@ -1220,7 +1218,7 @@ AutoLISP source code can also be stored in files with a .mnl extension. A Menu A
 
 For example, on Windows, when acad.cuix is loaded, the file named acad.mnl is also loaded if it is found in one of the folders listed as part of the AutoCAD Support File Search Path. If a CUIx file does not have a corresponding MNL file, no error is displayed, the product just moves and loading other support files.
 
-### 0302. 任意卡——quote (') 与使用 list 函数创建 list 数据的区别
+### 0302. 任意卡 —— quote (') 与使用 list 函数创建 list 数据的区别
 
 The latter uses the value of variable abc as the X component of the point list. If all members of a list are constant values, you can use the quote function to explicitly define the list, rather than the list function. The quote function returns an expression without evaluation, as follows:
 
@@ -1256,7 +1254,7 @@ The quote and (‘) functions cannot be used to create a list using values that 
 
 1-2『这里终于弄明白 quote (‘) 与使用 list 的区别，简化函数是有条件的，只能是常数，而不能传入变量。做一张任意卡片。』——已完成
 
-### 0303. 任意卡——获取实体类型（entity type）
+### 0303. 任意卡 —— 获取实体类型（entity type）
 
 ssget 的官方文档：[Pomoc: ssget (AutoLISP)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-0F37CC5E-1559-4011-B8CF-A3BA0973B2C3)
 
@@ -1286,7 +1284,7 @@ By specifying filters, you can obtain a selection set that includes all objects 
 
 1『目前发现直接用「entsel」获取实体数据更方便，获得的数据也更简洁。』
 
-### 0304. 任意卡——Relational Tests in Filter Lists
+### 0304. 任意卡 —— Relational Tests in Filter Lists
 
 About Relational Tests in Filter Lists for Selection Sets (AutoLISP). Unless otherwise specified, an equivalency is implied for each item in the filter-list. For numeric group codes (integers, reals, points, and vectors), you can specify other relations by including a special -4 group code that specifies a relational operator. The value of a -4 group code is a string indicating the test operator to be applied to the next group in the filter-list. The following selects all circles with a radius (group code 40) greater than or equal to 2.0:
 
@@ -1334,7 +1332,7 @@ The following example code demonstrates how to select all circles having extende
 
 1『经验证，上面的代码里的 `XOR` 得改成 `OR` 才有效。』
 
-### 0305. 任意卡——autolisp 中的逻辑判断
+### 0305. 任意卡 —— autolisp 中的逻辑判断
 
 AND returns true if all arguments are true.
 
@@ -1342,7 +1340,7 @@ OR returns true if any of the arguments are true.
 
 NOT returns true if it's argument is false and returns false if it's argument is true. Let's look at some.
 
-### 0306. 任意卡——handle 与实体名之间的切换
+### 0306. 任意卡 —— handle 与实体名之间的切换
 
 直接在 CAD 里用 `list` 命令选中一个实体，在显示的信息里，句柄即为 handle。
 
@@ -1357,6 +1355,10 @@ NOT returns true if it's argument is false and returns false if it's argument is
 ```
 (setq ename (handent "5a2"))
 ```
+
+### 0307. 任意卡 —— AutoLisp 历史
+
+AutoLISP is based on the LISP programming language but was written by Autodesk specifically for AutoCAD. It was introduced with AutoCAD version 2.18 (a minor version update of AutoCAD 2.1) in January 1986. Autodesk continued to enhance and extend AutoLISP up to and including AutoCAD Release 13 in November 1994. From Release 14 onwards, Autodesk have not developed AutoLISP, choosing to focus efforts on the then new Visual LISP version of the language. Despite the fact that AutoLISP has not changed in almost two decades, it remains incredibly popular with AutoCAD users. This is mainly due to its ease of use and the massive productivity gains that can be earned through its implementation. See the AutoLISP Wikipedia article for more information.
 
 ## 实战经验汇总
 
@@ -1579,6 +1581,7 @@ This subfunction will substitute all occurrences of a string for another string 
 
 ### 02. 按正则表达式提取字符串
 
+详见数据流源码。
 
 ### 03. 数组去重
 
@@ -1586,11 +1589,7 @@ This subfunction will substitute all occurrences of a string for another string 
 
 Here are various subfunctions for manipulating lists in which items appear more than once. The list may be tested for or irradicated of all duplicate items, with a set of functions offering optional tolerances below which items are considered duplicate; or such duplicate items may instead be returned by the function. Alternatively, the number of occurrences of each item in a list may be displayed. Information about the purpose of each function is detailed in the comments above each function, and the required arguments and returns are demonstrated in the examples.
 
-
-
-## 细节汇总
-
-1、if 判断，结果为真后的语句有多个，经常忘记写 `progn` 语句。
+详见数据流源码。
 
 ## 搭建测试框架的记录
 
@@ -1751,6 +1750,10 @@ Remarks. This function loads the extended functions that implement ActiveX and A
 
 第一个函数是自动生成辅助流程时写文字的，竖直方向的、左对齐的。第二个函数是自动生成设备位号时用的，水平方向的、居中的。目前自己的理解。dxf code 71-73 是跟对其方式有关的：1）71、72、73 都为 0 的为左对齐；2）72 为 1，其余为 0 时为居中对齐；3）73 为 1，其余为 0 时为左下对齐。4）71 为 0，72、73 为 1 时为中下。那么其他对齐方式应该都可以通过这 3 个方式来组合实现。值得注意的时，对齐方式要跟插入点匹配。比如左对齐的时候，10 为插入点，11 设为 0 坐标，居中对其的时候，10 为 0 坐标，而 11 作为插入点。其中的规律目前没弄明白。（2020-10-30）
 
+### 05. 条件语句注意事项
+
+if 判断，结果为真后的语句有多个，经常忘记写 `progn` 语句。
+
 ## 0101Introduction.md
 
 可以搜索问题的官方地址，可以按 Google 搜索的规则来：
@@ -1785,18 +1788,18 @@ The following is covered by the AutoLISP Developer's documentation: Details on t
 
 In addition to the AutoLISP reference and tutorial topics, several other AutoCAD documentation resources might be required for building and deploying applications. You might need to use these resources when working with AutoLISP:
 
-1. AutoCAD ActiveX Reference and Developer's Guides contain information on accessing ActiveX methods, properties, objects, and events. If you develop AutoLISP applications that use ActiveX automation to reference AutoCAD objects, you will need to refer to these guides. The help files can be accessed from %ProgramFiles%\Common Files\Autodesk Shared. (AutoCAD for Mac does not support ActiveX)
+1 AutoCAD ActiveX Reference and Developer's Guides contain information on accessing ActiveX methods, properties, objects, and events. If you develop AutoLISP applications that use ActiveX automation to reference AutoCAD objects, you will need to refer to these guides. The help files can be accessed from %ProgramFiles%\Common Files\Autodesk Shared. (AutoCAD for Mac does not support ActiveX)
 AutoCAD Customization topics contain basic information on creating and modifying customizable files. For example, they include information on customizing the user interface, and creating custom linetypes and hatch patterns. These topics can be found in the AutoCAD product help.
 
-2. The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. The DXF Reference is available through the AutoCAD product help or the Autodesk website (www.autodesk.com/dxf).
+2 The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. The DXF Reference is available through the AutoCAD product help or the Autodesk website (www.autodesk.com/dxf).
 
-4. The ObjectARX Reference and Developer's Guides contain information on using ObjectARX® to develop custom AutoCAD applications. AutoCAD reactor functionality is implemented through ObjectARX. If you develop AutoLISP applications that implement reactor functions, you may want to refer to the ObjectARX Reference . The ObjectARX Reference and Developer's Guides are not installed with the AutoCAD program. To obtain this documentation, download the ObjectARX SDK (Software Development Kit) from the www.autodesk.com/objectarx.
+4 The ObjectARX Reference and Developer's Guides contain information on using ObjectARX® to develop custom AutoCAD applications. AutoCAD reactor functionality is implemented through ObjectARX. If you develop AutoLISP applications that implement reactor functions, you may want to refer to the ObjectARX Reference . The ObjectARX Reference and Developer's Guides are not installed with the AutoCAD program. To obtain this documentation, download the ObjectARX SDK (Software Development Kit) from the www.autodesk.com/objectarx.
 
-5. The Managed .NET Reference and Developer's Guides contain information on using the Managed .NET API to develop custom AutoCAD applications. The Managed .NET Reference is not installed with the AutoCAD program. To obtain this documentation, download the ObjectARX SDK (Software Development Kit) from the www.autodesk.com/objectarx. The Managed .NET Developer's Guide is available from the AutoCAD product help. (AutoCAD for Mac does not support Managed .NET development)
+5 The Managed .NET Reference and Developer's Guides contain information on using the Managed .NET API to develop custom AutoCAD applications. The Managed .NET Reference is not installed with the AutoCAD program. To obtain this documentation, download the ObjectARX SDK (Software Development Kit) from the www.autodesk.com/objectarx. The Managed .NET Developer's Guide is available from the AutoCAD product help. (AutoCAD for Mac does not support Managed .NET development)
 
-2『hatch patterns 的概念；DXF group codes 的概念做一张术语卡片；已下载书籍「2020038dxf_reference2012」。』——已完成
+2-3『
 
-3『
+hatch patterns 的概念；DXF group codes 的概念做一张术语卡片；已下载书籍「2020038dxf-reference2012」。
 
 [Free AutoCAD Hatch Patterns | CADHatch](http://www.cadhatch.com/)
 

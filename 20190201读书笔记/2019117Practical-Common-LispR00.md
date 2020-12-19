@@ -494,11 +494,21 @@ By 1986 the first Common Lisp implementations were available, and the writing wa
 
 So, on one hand, Lisp is one of computer science's "classical" languages, based on ideas that have stood the test of time. 8 On the other, it's a thoroughly modern, general-purpose language whose design reflects a deeply pragmatic approach to solving real problems as efficiently and robustly as possible. The only downside of Lisp's "classical" heritage is that lots of folks are still walking around with ideas about Lisp based on some particular flavor of Lisp they were exposed to at some particular time in the nearly half century since McCarthy invented Lisp. If someone tells you Lisp is only interpreted, that it's slow, or that you have to use recursion for everything, ask them what dialect of Lisp they're talking about and whether people were wearing bell-bottoms when they learned it. 9
 
+1『 Common Lisp 已经可以编译成机器码，脱离了解释型语言的范畴了。（2020-12-19）』
+
 7 Lisp 1.5 Programmer's Manual (M.I.T. Press, 1962)
 
 8 Ideas first introduced in Lisp include the if/then/else construct, recursive function calls, dynamic memory allocation, garbage collection, first-class functions, lexical closures, interactive programming, incremental compilation, and dynamic typing.
 
 9 One of the most commonly repeated myths about Lisp is that it's "dead." While it's true that Common Lisp isn't as widely used as, say, Visual Basic or Java, it seems strange to describe a language that continues to be used for new development and that continues to attract new users as "dead." Some recent Lisp success stories include Paul Graham's Viaweb, which became Yahoo Store when Yahoo bought his company; ITA Software's airfare pricing and shopping system, QPX, used by the online ticket seller Orbitz and others; Naughty Dog's game for the PlayStation 2, Jak and Daxter, which is largely written in a domain-specific Lisp dialect Naughty Dog invented called GOAL, whose compiler is itself written in Common Lisp; and the Roomba, the autonomous robotic vacuum cleaner, whose software is written in L, a downwardly compatible subset of Common Lisp. Perhaps even more telling is the growth of the Common-Lisp.net Web site, which hosts open-source Common Lisp projects, and the number of local Lisp user groups that have sprung up in the past couple of years.
+
+3『
+
+[CLiki: the common lisp wiki](https://www.cliki.net/)
+
+[Welcome to Common-Lisp.net!](https://common-lisp.net/)
+
+』
 
 #### But I learned Lisp Once, And IT Wasn't Like what you're describing
 
