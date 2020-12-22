@@ -127,4 +127,3 @@ The three paradigms included in this overview chapter are structured programming
 21
 
 Chapter 3  Paradigm Overview
-
