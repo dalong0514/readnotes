@@ -175,6 +175,8 @@ Technically, you could have also used FORMAT to loop over the database itself, t
 
 That's either very cool or very scary depending on your point of view.
 
+3『这一小结讲了大量 format 函数的信息，目前因为用不到可以跳过，以后遇到使用场景时再研读。（2020-12-22）』
+
 3 One of the coolest FORMAT directives is the ~R directive. Ever want to know how to say a really big number in English words? Lisp knows. Evaluate this:
 
 ```c
