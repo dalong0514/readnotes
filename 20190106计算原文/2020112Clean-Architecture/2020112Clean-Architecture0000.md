@@ -34,7 +34,7 @@ Copyright © 2018 Pearson Education, Inc.
 
 —— 陈皓，左耳朵耗子
 
-## 推荐序二 —— 久远的教诲，古老的智慧
+## 推荐序二  —  —  久远的教诲，古老的智慧
 
 如果让你接手一套不稳定但要紧的在线系统，这套系统还有各种问题：变量命名非常随意，依赖逻辑错综复杂，层次结构乱七八糟，部署流程一糊涂，监控系統一片空白。你该怎么办？
 
@@ -42,7 +42,7 @@ Copyright © 2018 Pearson Education, Inc.
 
 怎么办？大家说了很多办法：把单元测试都补全，重构代码拆分核心功能和非核心功能，跟业务方谈暂停需求。这些办法都很对，但是，都需要时间才能见效，而我们最缺的就是时间。
 
-我提了一个很「笨」的办法：把所有「共享变量」都抽到 Redist 中进行读写，消灭本地副本，然后把稳定版本程序多部署几份，这样就可以多启动几个实例，将这些实例标记为 AB 两组。同时，在前面搭建代理服务，用于分流请求 一一 核心功能请求分配到 A 组（程序基本不更新），外围功能请求分配到 B 组（程序按业务需求更新）。这样做看起来有点多此一举 —— AB 两组都只有部分代码提供服务，而且要通过 Redis 共享状态，但是却实现了无论 B 组的程序如何更新，都不会影响 A 组所承载的核心服务的目的。
+我提了一个很「笨」的办法：把所有「共享变量」都抽到 Redist 中进行读写，消灭本地副本，然后把稳定版本程序多部署几份，这样就可以多启动几个实例，将这些实例标记为 AB 两组。同时，在前面搭建代理服务，用于分流请求 一一 核心功能请求分配到 A 组（程序基本不更新），外围功能请求分配到 B 组（程序按业务需求更新）。这样做看起来有点多此一举  —  —  AB 两组都只有部分代码提供服务，而且要通过 Redis 共享状态，但是却实现了无论 B 组的程序如何更新，都不会影响 A 组所承载的核心服务的目的。
 
 虽然当时不少人说「怎么能这样玩呢」，但它确实有效。当天部署，当天生效，在线服务迅速稳定下来，即便新开发的外围功能有问题，核心服务也不受任何影响。这样业务人员满意了，开发人员也可以安心对系统倣改造了。
 
@@ -80,55 +80,55 @@ What do we talk about when we talk about architecture?
 
 As with any metaphor, describing software through the lens of architecture can hide as much as it can reveal. It can both promise more than it can deliver and deliver more than it promises.
 
-The obvious appeal of architecture is structure, and structure is something that dominates the paradigms and discussions of software development—components, classes, functions, modules, layers, and services, micro or macro. But the gross structure of so many software systems often defies either belief or understanding—Enterprise Soviet schemes destined for legacy, improbable Jenga towers reaching toward the cloud, archaeological layers buried in a big-ball-of-mud slide. It’s not obvious that software structure obeys our intuition the way building structure does.
+The obvious appeal of architecture is structure, and structure is something that dominates the paradigms and discussions of software development — components, classes, functions, modules, layers, and services, micro or macro. But the gross structure of so many software systems often defies either belief or understanding — Enterprise Soviet schemes destined for legacy, improbable Jenga towers reaching toward the cloud, archaeological layers buried in a big-ball-of-mud slide. It’s not obvious that software structure obeys our intuition the way building structure does.
 
-Buildings have an obvious physical structure, whether rooted in stone or concrete, whether arching high or sprawling wide, whether large or small, whether magnificent or mundane. Their structures have little choice but to respect the physics of gravity and their materials. On the other hand—except in its sense of seriousness—software has little time for gravity. And what is software made of? Unlike buildings, which may be made of bricks, concrete,
+Buildings have an obvious physical structure, whether rooted in stone or concrete, whether arching high or sprawling wide, whether large or small, whether magnificent or mundane. Their structures have little choice but to respect the physics of gravity and their materials. On the other hand — except in its sense of seriousness — software has little time for gravity. And what is software made of? Unlike buildings, which may be made of bricks, concrete,
 
 wood, steel, and glass, software is made of software. Large software constructs are made from smaller software components, which are in turn made of smaller software components still, and so on. It’s coding turtles all the way down.
 
-When we talk about software architecture, software is recursive and fractal in nature, etched and sketched in code. Everything is details. Interlocking levels of detail also contribute to a building’s architecture, but it doesn’t make sense to talk about physical scale in software. Software has structure—many structures and many kinds of structures—but its variety eclipses the range of physical structure found in buildings. You can even argue quite convincingly that there is more design activity and focus in software than in building architecture—in this sense, it’s not unreasonable to consider software architecture more architectural than building architecture!
+When we talk about software architecture, software is recursive and fractal in nature, etched and sketched in code. Everything is details. Interlocking levels of detail also contribute to a building’s architecture, but it doesn’t make sense to talk about physical scale in software. Software has structure — many structures and many kinds of structures — but its variety eclipses the range of physical structure found in buildings. You can even argue quite convincingly that there is more design activity and focus in software than in building architecture — in this sense, it’s not unreasonable to consider software architecture more architectural than building architecture!
 
-But physical scale is something humans understand and look for in the world. Although appealing and visually obvious, the boxes on a PowerPoint diagram are not a software system’s architecture. There’s no doubt they represent a particular view of an architecture, but to mistake boxes for the big picture—for the architecture—is to miss the big picture and the architecture: Software architecture doesn’t look like anything. A particular visualization is a choice, not a given. It is a choice founded on a further set of choices: what to include; what to exclude; what to emphasize by shape or color; what to de-emphasize through uniformity or omission. There is nothing natural or intrinsic about one view over another.
+But physical scale is something humans understand and look for in the world. Although appealing and visually obvious, the boxes on a PowerPoint diagram are not a software system’s architecture. There’s no doubt they represent a particular view of an architecture, but to mistake boxes for the big picture — for the architecture — is to miss the big picture and the architecture: Software architecture doesn’t look like anything. A particular visualization is a choice, not a given. It is a choice founded on a further set of choices: what to include; what to exclude; what to emphasize by shape or color; what to de-emphasize through uniformity or omission. There is nothing natural or intrinsic about one view over another.
 
 Although it might not make sense to talk about physics and physical scale in software architecture, we do appreciate and care about certain physical constraints. Processor speed and network bandwidth can deliver a harsh verdict on a system’s performance. Memory and storage can limit the ambitions of any code base. Software may be such stuff as dreams are made on, but it runs in the physical world.
 
-This is the monstrosity in love, lady, that the will is infinite, and the execution confined; that the desire is boundless, and the act a slave to limit. —— William Shakespeare
+This is the monstrosity in love, lady, that the will is infinite, and the execution confined; that the desire is boundless, and the act a slave to limit.  —  —  William Shakespeare
 
 The physical world is where we and our companies and our economies live. This gives us another calibration we can understand software architecture by, other less physical forces and quantities through which we can talk and reason.
 
-Architecture represents the significant design decisions that shape a system, where significant is measured by cost of  change. —— Grady Booch
+Architecture represents the significant design decisions that shape a system, where significant is measured by cost of  change.  —  —  Grady Booch
 
 Time, money, and effort give us a sense of scale to sort between the large and the small, to distinguish the architectural stuff from the rest. This measure also tells us how we can determine whether an architecture is good or not: Not only does a good architecture meet the needs of its users, developers, and owners at a given point in time, but it also meets them over time.
 
-If  you think good architecture is expensive, try bad architecture. —— Brian Foote and Joseph Yoder
+If  you think good architecture is expensive, try bad architecture.  —  —  Brian Foote and Joseph Yoder
 
 The kinds of changes a system’s development typically experiences should not be the changes that are costly, that are hard to make, that take managed projects of their own rather than being folded into the daily and weekly flow of work.
 
 That point leads us to a not-so-small physics-related problem: time travel. How do we know what those typical changes will be so that we can shape those significant decisions around them? How do we reduce future development effort and cost without crystal balls and time machines?
 
-Architecture is the decisions that you wish you could get right early in a project, but that you are not necessarily more likely to get them right than any other. —— Ralph Johnson
+Architecture is the decisions that you wish you could get right early in a project, but that you are not necessarily more likely to get them right than any other.  —  —  Ralph Johnson
 
 Understanding the past is hard enough as it is; our grasp of the present is slippery at best; predicting the future is nontrivial.
 
 This is where the road forks many ways.
 
-Down the darkest path comes the idea that strong and stable architecture comes from authority and rigidity. If change is expensive, change is eliminated—its causes subdued or headed off into a bureaucratic ditch. The architect’s mandate is total and totalitarian, with the architecture becoming a dystopia for its developers and a constant source of frustration for all.
+Down the darkest path comes the idea that strong and stable architecture comes from authority and rigidity. If change is expensive, change is eliminated — its causes subdued or headed off into a bureaucratic ditch. The architect’s mandate is total and totalitarian, with the architecture becoming a dystopia for its developers and a constant source of frustration for all.
 
 Down another path comes a strong smell of speculative generality. A route filled with hard-coded guesswork, countless parameters, tombs of dead code, and more accidental complexity than you can shake a maintenance budget at.
 
 The path we are most interested is the cleanest one. It recognizes the softness of software and aims to preserve it as a first-class property of the system. It recognizes that we operate with incomplete knowledge, but it also understands that, as humans, operating with incomplete knowledge is something we do, something we’re good at. It plays more to our strengths than to our weaknesses. We create things and we discover things. We ask questions and we run experiments. A good architecture comes from understanding it more as a journey than as a destination, more as an ongoing process of enquiry than as a frozen artifact.
 
-Architecture is a hypothesis, that needs to be proven by implementation and measurement. —— Tom Gilb
+Architecture is a hypothesis, that needs to be proven by implementation and measurement.  —  —  Tom Gilb
 
 To walk this path requires care and attention, thought and observation, practice and principle. This might at first sound slow, but it’s all in the way that you walk.
 
 The only way to go fast, is to go well.
 
-—Robert C. Martin
+ — Robert C. Martin
 
 Enjoy the journey.
 
-—Kevlin HenneyMay 2017
+ — Kevlin HenneyMay 2017
 
 软件架构（architecture）究竟是什么？不论从哪个角度分析软件系统，都不可能面面俱到。如果从架构学角度来分析，在一定程度上能够做到抓大放小，把握住重点，但是也不可避免地会错失某些重要的细节信息。
 
@@ -142,19 +142,19 @@ Enjoy the journey.
 
 虽然软件无法很好地用比例模型展示，但它还是要在现实世界中运行的。在设计软件架构的过程中，我们必须理解和遵守现实的约束条件。CPU 速度和网络帯宽往往在很大程度上決定了系统的性能，而内存和存储空间的大小也会大幅影响代码的设计野心。
 
-女士，这就是爱情的穷凶极恶之处，人的意愿是无穷的，而实际行动却处处受限。人的欲望是无止境的，行为却不得不从现实的限制。—— 威廉·莎士比亚
+女士，这就是爱情的穷凶极恶之处，人的意愿是无穷的，而实际行动却处处受限。人的欲望是无止境的，行为却不得不从现实的限制。 —— 威廉·莎士比亚
 
 人类的整个经济活动都是存在于现实世界中的，所以我们可以利用现实世界的一些准则来衡量和推理软件开发过程中那些不好量化和物化的因素。
 
-软件架构是系统设计过程中的重要设计决定的集合，可以通过交更成本来衡量毎个设计决定的重要程度。—— Grady Booch
+软件架构是系统设计过程中的重要设计决定的集合，可以通过交更成本来衡量毎个设计决定的重要程度。 —— Grady Booch
 
 需要付出的时间、金钱和人力成本是区分软件架构规模大小的衡量标准，也可以用来区分架构设计和细节设计。同时，我们还可以依据这个信息来判断某个特定架构设计是好还是坏好的架构，不仅要在某一特定时刻满足软件用户、开发者和所有者的需求，更要在一段时间内持续满足他们的后续需求。
 
-如果你觉得好架构的成本太高，那你可以试试选择差的架构加上返工重来的成本。—— Brian Foote and Joseph Yoder
+如果你觉得好架构的成本太高，那你可以试试选择差的架构加上返工重来的成本。——  Brian Foote and Joseph Yoder
 
 一个系统的常规变更不应该是成本高的，也不应该需要难以決策的大型设计调整，更不应该需要单独立项来推进。这些常规変更应该可以融入每日或者每周的日常系统维护中去完成。我们怎么能够预知某个系未来的变更需求，以便提前做准备呢？我们怎么能在没有水晶球与时光穿梭机的情况下，未卜先知，降低未来的变更成本呢？
 
-所软件架构，就是你希望在项目一开始就能对，但是却不一定能够做得对的决策的集合。—— Ralph Johnson
+所软件架构，就是你希望在项目一开始就能对，但是却不一定能够做得对的决策的集合。 ——  Ralph Johnson
 
 了解历史已经够难了，我们对现实的认知也不够可靠，预言未来就更难了。这就是不同的软件开发理论的主要分歧点。
 
@@ -172,7 +172,7 @@ Enjoy the journey.
 
 The title of this book is Clean Architecture. That’s an audacious name. Some would even call it arrogant. So why did I choose that title, and why did I write this book?
 
-I wrote my very first line of code in 1964, at the age of 12. The year is now 2016, so I have been writing code for more than half a century. In that time, I have learned a few things about how to structure software systems—things that I believe others would likely find valuable.
+I wrote my very first line of code in 1964, at the age of 12. The year is now 2016, so I have been writing code for more than half a century. In that time, I have learned a few things about how to structure software systems — things that I believe others would likely find valuable.
 
 I learned these things by building many systems, both large and small. I have built small embedded systems and large batch processing systems. I have built real-time systems and web systems. I have built console apps, GUI apps, process control apps, games, accounting systems, telecommunications systems, design tools, drawing apps, and many, many others.
 
@@ -186,17 +186,15 @@ This is startling because the systems that I have built have all been so radical
 
 This is even more startling when you consider the change that has taken place in hardware over the same half-century. I started programming on machines the size of kitchen refrigerators that had half-megahertz cycle times, 4K of core memory, 32K of disk memory, and a 10 character per second teletype interface. I am writing this preface on a bus while touring in South Africa. I am using a MacBook with four i7 cores running at 2.8 gigahertz each. It has 16 gigabytes of RAM, a terabyte of SSD, and a 2880*1800 retina display capable of showing extremely high-definition video. The difference in computational power is staggering. Any reasonable analysis will show that this MacBook is at least 1022 more powerful than those early computers that I started using half a century ago.
 
-Twenty-two orders of magnitude is a very large number. It is the number of angstroms from Earth to Alpha-Centuri. It is the number of electrons in the change in your pocket or purse. And yet that number—that number at least—is the computational power increase that I have experienced in my own lifetime.
+Twenty-two orders of magnitude is a very large number. It is the number of angstroms from Earth to Alpha-Centuri. It is the number of electrons in the change in your pocket or purse. And yet that number — that number at least — is the computational power increase that I have experienced in my own lifetime.
 
 And with all that vast change in computational power, what has been the effect on the software I write? It’s gotten bigger certainly. I used to think 2000 lines was a big program. After all, it was a full box of cards that weighed 10 pounds. Now, however, a program isn’t really big until it exceeds 100,000 lines.
 
-The software has also gotten much more performant. We can do things today that we could scarcely dream about in the 1960s. The Forbin Project, The
-
-Moon Is a Harsh Mistress, and 2001: A Space Odyssey all tried to imagine our current future, but missed the mark rather significantly. They all imagined huge machines that gained sentience. What we have instead are impossibly small machines that are still … just machines.
+The software has also gotten much more performant. We can do things today that we could scarcely dream about in the 1960s. The Forbin Project, The Moon Is a Harsh Mistress, and 2001: A Space Odyssey all tried to imagine our current future, but missed the mark rather significantly. They all imagined huge machines that gained sentience. What we have instead are impossibly small machines that are still … just machines.
 
 And there is one thing more about the software we have now, compared to the software from back then: It’s made of  the same stuff. It’s made of if statements, assignment statements, and while loops.
 
-Oh, you might object and say that we’ve got much better languages and superior paradigms. After all, we program in Java, or C#, or Ruby, and we use object-oriented design. True—and yet the code is still just an assemblage of sequence, selection, and iteration, just as it was back in the 1960s and 1950s.
+Oh, you might object and say that we’ve got much better languages and superior paradigms. After all, we program in Java, or C#, or Ruby, and we use object-oriented design. True — and yet the code is still just an assemblage of sequence, selection, and iteration, just as it was back in the 1960s and 1950s.
 
 When you really look closely at the practice of programming computers, you realize that very little has changed in 50 years. The languages have gotten a little better. The tools have gotten fantastically better. But the basic building blocks of a computer program have not changed.
 
@@ -214,7 +212,7 @@ Younger programmers might think this is nonsense. They might insist that everyth
 
 But one thing has changed: Back then, we didn’t know what the rules were. Consequently, we broke them, over and over again. Now, with half a century of experience behind us, we have a grasp of those rules.
 
-And it is those rules—those timeless, changeless, rules—that this book is all about.
+And it is those rules — those timeless, changeless, rules — that this book is all about.
 
 Register your copy of Clean Architecture on the InformIT site for convenient access to updates and/or corrections as they become available. To start the registration process, go to informit.com/register and log in or create an account. Enter the product ISBN (9780134494166) and click Submit. Look on the Registered Products tab for an Access Bonus Content link next to this product, and follow that link to access the bonus materials.
 
