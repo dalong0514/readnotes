@@ -80,25 +80,23 @@ As an example, consider the following case study. It includes real data from a r
 
 First, let’s look at the growth of the engineering staff. I’m sure you’ll agree that this trend is very encouraging. Growth like that shown in Figure 1.1 must be an indication of significant success!
 
-Market-Leading Software Product Life Cycle
+![](./res/2020001.png)
 
-Figure 1.1  Growth of the engineering staffReproduced with permission from a slide presentation by Jason Gorman
+Figure 1.1  Growth of the engineering staff
 
 Now let’s look at the company’s productivity over the same time period, as measured by simple lines of code (Figure 1.2).
 
-Market-Leading Software Product Life Cycle
+![](./res/2020002.png)
 
 Figure 1.2  Productivity over the same period of time
 
-Clearly something is going wrong here. Even though every release is supported by an ever-increasing number of developers, the growth of the code looks like it is approaching an asymptote.
-
-Now here’s the really scary graph: Figure 1.3 shows how the cost per line of code has changed over time.
+Clearly something is going wrong here. Even though every release is supported by an ever-increasing number of developers, the growth of the code looks like it is approaching an asymptote. Now here’s the really scary graph: Figure 1.3 shows how the cost per line of code has changed over time.
 
 These trends aren’t sustainable. It doesn’t matter how profitable the company might be at the moment: Those curves will catastrophically drain the profit from the business model and drive the company into a stall, if not into a downright collapse.
 
 What caused this remarkable change in productivity? Why was the code 40 times more expensive to produce in release 8 as opposed to release 1?
 
-Market-Leading Software Product Life Cycle
+![](./res/2020003.png)
 
 Figure 1.3  Cost per line of code over time
 
@@ -116,6 +114,8 @@ What you are looking at is the signature of a mess. When systems are thrown toge
 
 Figure 1.4 shows what this curve looks like to the developers. They started out at nearly 100% productivity, but with each release their productivity declined. By the fourth release, it was clear that their productivity was going to bottom out in an asymptotic approach to zero.
 
+![](./res/2020004.png)
+
 Figure 1.4  Productivity by release
 
 From the developers’ point of view, this is tremendously frustrating, because everyone is working hard. Nobody has decreased their effort.
@@ -124,7 +124,7 @@ And yet, despite all their heroics, overtime, and dedication, they simply aren�
 
 乱麻系统的特点
 
-我们在这里看到的是一个典型的乱麻系统。这种系統一般都是没有经过设计，匆匆忙忙被构建起来的。然后为了加快发布的速度，拼命地往团队里加入新人，同时加上決策层对代码质量提升和设计结构优化存在着持续的、长久的忽视，这种状态能持续下去就怪了。
+我们在这里看到的是一个典型的乱麻系统。这种系统一般都是没有经过设计，匆匆忙忙被构建起来的。然后为了加快发布的速度，拼命地往团队里加入新人，同时加上決策层对代码质量提升和设计结构优化存在着持续的、长久的忽视，这种状态能持续下去就怪了。
 
 图 1.4 展示了系统开发者的切身体会。他们一开始的效率都接近 100%，然而伴随着每次产品的发布，他们的生产力直线下降。到了产品的第 4 版本时，很明显大家的生产力已经不可避免地趋近为零了。对系统的开发者来说，这会来很大的挫败感，因为团队中并没有人偷懒，每个人还都是和之前一样在拼命工作。
 
@@ -133,6 +133,8 @@ And yet, despite all their heroics, overtime, and dedication, they simply aren�
 ### 1.2.2 The Executive View
 
 If you think that’s bad, imagine what this picture looks like to the executives! Consider Figure 1.5, which depicts monthly development payroll for the same period.
+
+![](./res/2020005.png)
 
 Figure 1.5  Monthly development payroll by release
 
@@ -150,13 +152,11 @@ But which action can be taken? What has gone wrong? What has caused this incredi
 
 如你所见，产品的第 1 版是在月总工 10 万美元左右的时候上线的。第 2 版又花掉了几十万美元。当发布第 8 版的时候，部门月工资已经达到了 2 千万美元，而且还在持续上升也许我们可以指望该公司的营收增长远远超出成本增长，这样公司就还能维持正常运转。但是这么惊人的曲线还是值得我们深入挖掘其中存在的巨大问题的。
 
-现在，只要将图 1.5 的月工资曲线和图 1.2 的每次发布代码行数曲线对比一下，任何一个理性的 CEO 都会一眼看出其中的问题：最开始的十几万美元工资给公司帯来了很多新功能、新收益，而最后的 2 千万美元几乎全打了水漂。应立刻采取行动解決这个问题，刻不容缓但是具体采取什么样的行动才能解決向题呢？究竟问题出在哪里？是什么造成了工程师生产力的直线下降？高管们除了跺脚、发，还能做什么呢？
+现在，只要将图 1.5 的月工资曲线和图 1.2 的每次发布代码行数曲线对比一下，任何一个理性的 CEO 都会一眼看出其中的问题：最开始的十几万美元工资给公司带来了很多新功能、新收益，而最后的 2 千万美元几乎全打了水漂。应立刻采取行动解决这个问题，刻不容缓但是具体采取什么样的行动才能解决向题呢？究竟问题出在哪里？是什么造成了工程师生产力的直线下降？高管们除了跺脚、发飙，还能做什么呢？
 
 ### 1.2.3 What  Went  Wrong?
 
-Nearly 2600 years ago, Aesop told the story of the Tortoise and the Hare. The moral of that story has been stated many times in many different ways:
-
-(cid:129)「Slow and steady wins the race.」(cid:129)「The race is not to the swift, nor the battle to the strong.」(cid:129)「The more haste, the less speed.」
+Nearly 2600 years ago, Aesop told the story of the Tortoise and the Hare. The moral of that story has been stated many times in many different ways: 1) Slow and steady wins the race. 2) The race is not to the swift, nor the battle to the strong. 3) The more haste, the less speed.
 
 The story itself illustrates the foolishness of overconfidence. The Hare, so confident in its intrinsic speed, does not take the race seriously, and so naps while the Tortoise crosses the finish line.
 
@@ -171,6 +171,8 @@ Just as the Hare was overconfident in its speed, so the developers are overconfi
 The bigger lie that developers buy into is the notion that writing messy code makes them go fast in the short term, and just slows them down in the long term. Developers who accept this lie exhibit the hare’s overconfidence in their ability to switch modes from making messes to cleaning up messes sometime in the future, but they also make a simple error of fact. The fact is that making messes is always slower than staying clean, no matter which time scale you are using.
 
 Consider the results of a remarkable experiment performed by Jason Gorman depicted in Figure 1.6. Jason conducted this test over a period of six days. Each day he completed a simple program to convert integers into Roman numerals. He knew his work was complete when his predefined set of acceptance tests passed. Each day the task took a little less than 30 minutes. Jason used a well-known cleanliness discipline named test-driven development (TDD) on the first, third, and fifth days. On the other three days, he wrote the code without that discipline.
+
+![](./res/2020006.png)
 
 Figure 1.6  Time to completion by iterations and use/non-use of TDD
 
