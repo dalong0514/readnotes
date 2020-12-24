@@ -62,15 +62,32 @@ But then came OO in the form of C++ — and the perfect encapsulation of C was b
 point.h
 
 ```c
-class Point {public:  Point(double x, double y);  double distance(const Point& p) const; private:  double x;  double y;};
+class Point {
+    public:  
+        Point(double x, double y);  
+        double distance(const Point& p) const; 
+    
+    private:  
+        double x;  
+        double y;
+};
 ```
 
 point.cc
 
 ```c
-#include "point.h"#include <math.h> Point::Point(double x, double y): x(x), y(y){}
+#include "point.h"
+#include <math.h> 
 
-double Point::distance(const Point& p) const {  double dx = x-p.x;  double dy = y-p.y;  return sqrt(dx*dx + dy*dy);}
+Point::Point(double x, double y)
+: x(x), y(y)
+{}
+
+double Point::distance(const Point& p) const {  
+    double dx = x-p.x;  
+    double dy = y-p.y;  
+    return sqrt(dx*dx + dy*dy);
+}
 ```
 
 Clients of the header file point.h know about the member variables x and y! The compiler will prevent access to them, but the client still knows they exist. For example, if those member names are changed, the point.cc file must be recompiled! Encapsulation has been broken.
@@ -126,18 +143,43 @@ namedPoint.c
 #include "namedPoint.h"
 #include <stdlib.h> 
 
-struct NamedPoint {  double x,y;  char* name;}; 
-struct NamedPoint* makeNamedPoint(double x, double y, char* name) {  struct NamedPoint* p = malloc(sizeof(struct NamedPoint));  p->x = x;  p->y = y;  p->name = name;  return p;} void setName(struct NamedPoint* np, char* name) {  np->name = name;} char* getName(struct NamedPoint* np) {  return np->name;}
+struct NamedPoint {  
+    double x,y;  
+    char* name;
+}; 
+
+struct NamedPoint* makeNamedPoint(double x, double y, char* name) {  
+    struct NamedPoint* p = malloc(sizeof(struct NamedPoint));  
+    p->x = x;  
+    p->y = y; 
+    p->name = name;  
+    return p;
+} 
+
+void setName(struct NamedPoint* np, char* name) {  
+    np->name = name;
+} 
+
+char* getName(struct NamedPoint* np) {  
+    return np->name;
+}
 ```
 
 main.c
 
 ```c
-#include "point.h"#include "namedPoint.h"#include <stdio.h> int main(int ac, char** av) {  struct NamedPoint* origin = makeNamedPoint(0.0, 0.0, "origin");   struct NamedPoint* upperRight = makeNamedPoint
+#include "point.h"
+#include "namedPoint.h"
+#include <stdio.h> 
 
-(1.0, 1.0, "upperRight");
-
-printf("distance=%f\n",    distance(             (struct Point*) origin,              (struct Point*) upperRight));}
+int main(int ac, char** av) {  
+    struct NamedPoint* origin = makeNamedPoint(0.0, 0.0, "origin");   
+    struct NamedPoint* upperRight = makeNamedPoint(1.0, 1.0, "upperRight");
+    printf("distance=%f\n",    
+        distance(
+            (struct Point*) origin, 
+            (struct Point*) upperRight));
+}
 ```
 
 If you look carefully at the main program, you’ll see that the NamedPoint data structure acts as though it is a derivative of the Point data structure. This is because the order of the first two fields in NamedPoint is the same as Point. In short, NamedPoint can masquerade as Point because NamedPoint is a pure superset of Point and maintains the ordering of the members that correspond to Point.
@@ -173,7 +215,11 @@ Did we have polymorphic behavior before OO languages? Of course we did. Consider
 ```c
 #include <stdio.h>
 
-void copy() {  int c;  while ((c=getchar()) != EOF)    putchar(c);}
+void copy() {  
+    int c;  
+    while ((c=getchar()) != EOF)    
+        putchar(c);
+}
 ```
 
 The function getchar() reads from STDIN. But which device is STDIN? The putchar() function writes to STDOUT. But which device is that? These functions are polymorphic — their behavior depends on the type of STDIN and STDOUT.
@@ -185,13 +231,24 @@ The answer to that question is pretty straightforward. The UNIX operating system
 The FILE data structure contains five pointers to functions. In our example, it might look like this:
 
 ```c
-struct FILE {  void (*open)(char* name, int mode);  void (*close)();  int (*read)();  void (*write)(char);  void (*seek)(long index, int mode);};
+struct FILE {  
+    void (*open)(char* name, int mode);  
+    void (*close)();  int (*read)();  
+    void (*write)(char);  
+    void (*seek)(long index, int mode);
+};
 ```
 
 The IO driver for the console will define those functions and load up a FILE data structure with their addresses — something like this:
 
 ```c
-#include "file.h" void open(char* name, int mode) {/*...*/}void close() {/*...*/};int read() {int c;/*...*/ return c;}void write(char c) {/*...*/}void seek(long index, int mode) {/*...*/} struct FILE console = {open, close, read, write, seek};
+#include "file.h" 
+
+void open(char* name, int mode) {/*...*/}void close() {/*...*/};
+int read() {int c;/*...*/ return c;}
+void write(char c) {/*...*/}
+void seek(long index, int mode) {/*...*/} 
+struct FILE console = {open, close, read, write, seek};
 ```
 
 Now if STDIN is defined as a FILE*, and if it points to the console data structure, then getchar() might be implemented this way:
