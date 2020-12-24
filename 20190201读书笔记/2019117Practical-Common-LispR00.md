@@ -687,7 +687,7 @@ Once you've created the file, you can type the definition you previously entered
 (defun name varlist &rest body)
 ```
 
-The message will disappear as you start to type each new element but will reappear each time you enter a space. When you're entering the definition in the file, you might choose to break the definition across two lines after the parameter list. If you hit Return and then Tab, SLIME will automatically indent the second line appropriately, like this:11
+The message will disappear as you start to type each new element but will reappear each time you enter a space. When you're entering the definition in the file, you might choose to break the definition across two lines after the parameter list. If you hit Return and then Tab, SLIME will automatically indent the second line appropriately, like this: 11
 
 ```
 (defun hello-world () 

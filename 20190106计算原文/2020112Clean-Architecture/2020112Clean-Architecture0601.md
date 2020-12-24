@@ -1,4 +1,4 @@
-Chapter 6  Functional Programming
+# 0601. Functional Programming
 
 In many ways, the concepts of functional programming predate programming itself. This paradigm is strongly based on the l-calculus invented by Alonzo Church in the 1930s.
 
