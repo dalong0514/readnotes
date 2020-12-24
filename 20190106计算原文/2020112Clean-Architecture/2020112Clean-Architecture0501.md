@@ -35,16 +35,29 @@ point.c
 #include <stdlib.h>
 #include <math.h> 
 
-struct Point {  double x,y;}; struct Point* makepoint(double x, double y) {  struct Point* p = malloc(sizeof(struct Point));  p->x = x;  p->y = y;  return p;} double distance(struct Point* p1, struct Point* p2) {  double dx = p1->x - p2->x;  double dy = p1->y - p2->y;  return sqrt(dx*dx+dy*dy);}
+struct Point {  
+    double x,y;
+}; 
+
+struct Point* makepoint(double x, double y) {  
+    struct Point* p = malloc(sizeof(struct Point));  
+    p->x = x;  
+    p->y = y;  
+    return p;
+} 
+
+double distance(struct Point* p1, struct Point* p2) {  
+    double dx = p1->x - p2->x;  
+    double dy = p1->y - p2->y;  
+    return sqrt(dx*dx+dy*dy);
+}
 ```
 
 The users of point.h have no access whatsoever to the members of struct Point. They can call the makePoint() function, and the distance() function, but they have absolutely no knowledge of the implementation of either the Point data structure or the functions.
 
-This is perfect encapsulation — in a non-OO language. C programmers used to do this kind of thing all the time. We would forward declare data structures and functions in header files, and then implement them in implementation files. Our users never had access to the elements in those implementation files.
+This is perfect encapsulation — in a non-OO language. C programmers used to do this kind of thing all the time. We would forward declare data structures and functions in header files, and then implement them in implementation files. Our users never had access to the elements in those implementation files. 
 
-But then came OO in the form of C++ — and the perfect encapsulation of C was broken.
-
-The C++ compiler, for technical reasons,1 needed the member variables of a class to be declared in the header file of that class. So our Point program changed to look like this:
+But then came OO in the form of C++ — and the perfect encapsulation of C was broken. The C++ compiler, for technical reasons,1 needed the member variables of a class to be declared in the header file of that class. So our Point program changed to look like this:
 
 point.h
 
