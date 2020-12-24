@@ -52,9 +52,7 @@ squaring function on each element, producing a new never-ending list of all the 
 
 list with only the first 25 elements.
 
-(cid:129) The println function prints its input, which is a list of the first 25 squares
-
-of integers.
+(cid:129) The println function prints its input, which is a list of the first 25 squares of integers.
 
 If you find yourself terrified by the concept of never-ending lists, don’t worry. Only the first 25 elements of those never-ending lists are actually created. That’s because no element of a never-ending list is evaluated until it is accessed.
 
@@ -63,10 +61,6 @@ If you found all of that confusing, then you can look forward to a glorious time
 Instead, my goal here is to point out something very dramatic about the difference between the Clojure and Java programs. The Java program uses a mutable variable—a variable that changes state during the execution of the program. That variable is i—the loop control variable. No such mutable variable exists in the Clojure program. In the Clojure program, variables like x are initialized, but they are never modified.
 
 This leads us to a surprising statement: Variables in functional languages do not vary.
-
-51
-
-Chapter 6  Functional Programming
 
 Immutabilit y  and  Architecture
 
@@ -176,17 +170,9 @@ With that realization, we have to face an unwelcome fact: Software is not a rapi
 
 Software—the stuff of computer programs—is composed of sequence, selection, iteration, and indirection. Nothing more. Nothing less.
 
-56
-
-Design  Principles
-
-III
+Design  Principles III
 
 Good software systems begin with clean code. On the one hand, if the bricks aren’t well made, the architecture of the building doesn’t matter much. On the other hand, you can make a substantial mess with well-made bricks. This is where the SOLID principles come in.
-
-57
-
-Part III  Design Principles
 
 The SOLID principles tell us how to arrange our functions and data structures into classes, and how those classes should be interconnected. The use of the word「class」does not imply that these principles are applicable only to object-oriented software. A class is simply a coupled grouping of functions and data. Every software system has such groupings, whether they are called classes or not. The SOLID principles apply to those groupings.
 
@@ -201,10 +187,6 @@ Just as it is possible to create a substantial mess with well-made bricks, so it
 The history of the SOLID principles is long. I began to assemble them in the late 1980s while debating software design principles with others on USENET (an early kind of Facebook). Over the years, the principles have shifted and changed. Some were deleted. Others were merged. Still others were added. The final grouping stabilized in the early 2000s, although I presented them in a different order.
 
 In 2004 or thereabouts, Michael Feathers sent me an email saying that if I rearranged the principles, their first words would spell the word SOLID—and thus the SOLID principles were born.
-
-58
-
-Part III  Design Principles
 
 The chapters that follow describe each principle more thoroughly. Here is the executive summary:
 
@@ -233,16 +215,3 @@ These principles have been described in detail in many different publications1 o
 1.  For example, Agile Software Development, Principles, Patterns, and Practices, Robert C. Martin,
 
 Prentice Hall, 2002, http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod, and https://en.wikipedia.org/wiki/SOLID_(object-oriented_design) (or just google SOLID).
-
-59
-
-This page intentionally left blank
-
-7SRP:  The  Single
-
-Responsibility
-
-Principle
-
-61
-

@@ -1,4 +1,4 @@
-Chapter 7  SRP: The Single Responsibility Principle
+# 0701. SRP: The Single Responsibility Principle
 
 Of all the SOLID principles, the Single Responsibility Principle (SRP) might be the least well understood. That’s likely because it has a particularly inappropriate name. It is too easy for programmers to hear the name and then assume that it means that every module should do just one thing.
 
@@ -120,19 +120,6 @@ You might object to these solutions on the basis that every class would contain 
 
 Each of the classes that contain such a family of methods is a scope. Outside of that scope, no one knows that the private members of the family exist.
 
-Conclusion
+## Conclusion
 
 The Single Responsibility Principle is about functions and classes—but it reappears in a different form at two more levels. At the level of components, it becomes the Common Closure Principle. At the architectural level, it becomes the Axis of Change responsible for the creation of Architectural Boundaries. We’ll be studying all of these ideas in the chapters to come.
-
-67
-
-This page intentionally left blank
-
-8OCP:  The  Open-
-
-Closed  Principle
-
-69
-
-Chapter 8  OCP: The Open-Closed Principle
-

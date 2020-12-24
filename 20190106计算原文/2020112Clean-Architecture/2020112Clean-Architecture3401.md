@@ -1,4 +1,4 @@
-Chapter 34  The Missing Chapter
+# 3401. The Missing Chapter
 
 All of the advice you’ve read so far will certainly help you design better software, composed of classes and components with well-defined boundaries, clear responsibilities, and controlled dependencies. But it turns out that the devil is in the implementation details, and it’s really easy to fall at the last hurdle if you don’t give that some thought, too.
 

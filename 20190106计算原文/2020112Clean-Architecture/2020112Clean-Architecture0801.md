@@ -1,3 +1,5 @@
+# 0801
+
 The Open-Closed Principle (OCP) was coined in 1988 by Bertrand Meyer.1 It says:
 
 A software artifact should be open for extension but closed for modification.
@@ -101,16 +103,3 @@ So, even though our first priority is to protect the Interactor from changes to 
 Conclusion
 
 The OCP is one of the driving forces behind the architecture of systems. The goal is to make the system easy to extend without incurring a high impact of change. This goal is accomplished by partitioning the system into components, and arranging those components into a dependency hierarchy that protects higher-level components from changes in lower-level components.
-
-75
-
-This page intentionally left blank
-
-9LSP:  The  Liskov
-
-Substitution
-
-Principle
-
-77
-

@@ -1,4 +1,4 @@
-Chapter 9  LSP: The Liskov Substitution Principle
+# 0901. LSP: The Liskov Substitution Principle
 
 In 1988, Barbara Liskov wrote the following as a way of defining subtypes.
 
@@ -106,21 +106,6 @@ Dispatch Format/pickupAddress/%s/pickupTime/%s/dest/%s/pickupAddress/%s/pickupTi
 
 And so our architect has had to add a significant and complex mechanism to deal with the fact that the interfaces of the restful services are not all substitutable.
 
-Conclusion
+## Conclusion
 
 The LSP can, and should, be extended to the level of architecture. A simple violation of substitutability, can cause a system’s architecture to be polluted with a significant amount of extra mechanisms.
-
-82
-
-ISP:  The  Interface
-
-Segregation
-
-10
-
-Principle
-
-83
-
-Chapter 10
-

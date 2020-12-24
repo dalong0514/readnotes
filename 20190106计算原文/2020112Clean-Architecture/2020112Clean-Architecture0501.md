@@ -23,20 +23,24 @@ The reason encapsulation is cited as part of the definition of OO is that OO la
 point.h
 
 ```c
-struct Point;struct Point* makePoint(double x, double y);double distance (struct Point *p1, struct Point *p2);
+struct Point;
+struct Point* makePoint(double x, double y);
+double distance (struct Point *p1, struct Point *p2);
 ```
 
 point.c
 
 ```c
-#include "point.h"#include <stdlib.h>#include <math.h> struct Point {  double x,y;}; struct Point* makepoint(double x, double y) {  struct Point* p = malloc(sizeof(struct Point));  p->x = x;  p->y = y;  return p;} double distance(struct Point* p1, struct Point* p2) {  double dx = p1->x - p2->x;  double dy = p1->y - p2->y;  return sqrt(dx*dx+dy*dy);}
+#include "point.h"
+#include <stdlib.h>
+#include <math.h> 
+
+struct Point {  double x,y;}; struct Point* makepoint(double x, double y) {  struct Point* p = malloc(sizeof(struct Point));  p->x = x;  p->y = y;  return p;} double distance(struct Point* p1, struct Point* p2) {  double dx = p1->x - p2->x;  double dy = p1->y - p2->y;  return sqrt(dx*dx+dy*dy);}
 ```
 
 The users of point.h have no access whatsoever to the members of struct Point. They can call the makePoint() function, and the distance() function, but they have absolutely no knowledge of the implementation of either the Point data structure or the functions.
 
-This is perfect encapsulation — in a non-OO language. C programmers used to do this kind of thing all the time. We would forward declare data structures and functions in header files, and then implement them in
-
-implementation files. Our users never had access to the elements in those implementation files.
+This is perfect encapsulation — in a non-OO language. C programmers used to do this kind of thing all the time. We would forward declare data structures and functions in header files, and then implement them in implementation files. Our users never had access to the elements in those implementation files.
 
 But then came OO in the form of C++ — and the perfect encapsulation of C was broken.
 
@@ -97,13 +101,20 @@ Consider this addition to our original point.h C program:
 namedPoint.h
 
 ```c
-struct NamedPoint; struct NamedPoint* makeNamedPoint(double x, double y, char* name);void setName(struct NamedPoint* np, char* name);char* getName(struct NamedPoint* np);
+struct NamedPoint; 
+struct NamedPoint* makeNamedPoint(double x, double y, char* name);
+void setName(struct NamedPoint* np, char* name);
+char* getName(struct NamedPoint* np);
 ```
 
 namedPoint.c
 
 ```c
-#include "namedPoint.h"#include <stdlib.h> struct NamedPoint {  double x,y;  char* name;}; struct NamedPoint* makeNamedPoint(double x, double y, char* name) {  struct NamedPoint* p = malloc(sizeof(struct NamedPoint));  p->x = x;  p->y = y;  p->name = name;  return p;} void setName(struct NamedPoint* np, char* name) {  np->name = name;} char* getName(struct NamedPoint* np) {  return np->name;}
+#include "namedPoint.h"
+#include <stdlib.h> 
+
+struct NamedPoint {  double x,y;  char* name;}; 
+struct NamedPoint* makeNamedPoint(double x, double y, char* name) {  struct NamedPoint* p = malloc(sizeof(struct NamedPoint));  p->x = x;  p->y = y;  p->name = name;  return p;} void setName(struct NamedPoint* np, char* name) {  np->name = name;} char* getName(struct NamedPoint* np) {  return np->name;}
 ```
 
 main.c
@@ -122,8 +133,6 @@ This kind of trickery was a common practice4 of programmers prior to the advent 
 
 Thus we might say that we had a kind of inheritance long before OO languages were invented. That statement wouldn’t quite be true, though. We had a trick, but it’s not nearly as convenient as true inheritance. Moreover, multiple inheritance is a considerably more difficult to achieve by such trickery.
 
-4 Indeed it still is.
-
 Note also that in main.c, I was forced to cast the NamedPoint arguments to Point. In a real OO language, such upcasting would be implicit.
 
 It’s fair to say that while OO languages did not give us something completely brand new, it did make the masquerading of data structures significantly more convenient.
@@ -131,6 +140,8 @@ It’s fair to say that while OO languages did not give us something completely 
 To recap: We can award no point to OO for encapsulation, and perhaps a half-point for inheritance. So far, that’s not such a great score.
 
 But there’s one more attribute to consider.
+
+4 Indeed it still is.
 
 既然面向对象编程语言并没有提供更好的封装性，那么在继承性方面又如何呢？嗯，其实也就一般般吧。简而言之，继承的主要作用是让我们可以在某个作用域内对外部定义的某一组变量与函数进行覆盖。这事实上也是 C 程序员早在面向对象编程语言发明之前就一直在做的事了。下面，看一下刚才的 C 程序 point.h 的扩展版。
 
