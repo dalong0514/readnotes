@@ -44,15 +44,15 @@ Many other variables are used to hold the result of a long­winded bit of code f
 
 #### 9.1.2 Mechanics
 
-1. Change the name of the variable at its declaration and first assignment. If the later assignments are of the form i = i + something, that is a collecting variable, so don’t split it. A collecting variable is often used for calculating sums, string concatenation, writing to a stream, or adding to a collection.
+1 Change the name of the variable at its declaration and first assignment. If the later assignments are of the form i = i + something, that is a collecting variable, so don’t split it. A collecting variable is often used for calculating sums, string concatenation, writing to a stream, or adding to a collection.
 
-2. If possible, declare the new variable as immutable.
+2 If possible, declare the new variable as immutable.
 
-3. Change all references of the variable up to its second assignment. 
+3 Change all references of the variable up to its second assignment. 
 
-4. Test.
+4 Test.
 
-5. Repeat in stages, at each stage renaming the variable at the declaration and changing references until the next assignment, until you reach the final assignment.
+5 Repeat in stages, at each stage renaming the variable at the declaration and changing references until the next assignment, until you reach the final assignment.
 
 1、在待分解变量的声明及其第一次被赋值处，修改其名称。如果稍后的赋值语句是「i = i + 某表达式形式」，意味着这是一个结果收集变量，就不要分解它。结果收集变量常用于累加、字符串拼接、写入流或者向集合添加元素。
 
@@ -213,17 +213,17 @@ You may want to rename a field in a record structure, but the idea also applies 
 
 #### 9.2.2 Mechanics
 
-1. If the record has limited scope, rename all accesses to the field and test; no need to do the rest of the mechanics.
+1 If the record has limited scope, rename all accesses to the field and test; no need to do the rest of the mechanics.
 
-2. If the record isn’t already encapsulated, apply Encapsulate Record (162).
+2 If the record isn’t already encapsulated, apply Encapsulate Record (162).
 
-3. Rename the private field inside the object, adjust internal methods to fit.
+3 Rename the private field inside the object, adjust internal methods to fit.
 
-4. Test. 
+4 Test. 
 
-5. If the constructor uses the name, apply Change Function Declaration (124) to rename it.
+5 If the constructor uses the name, apply Change Function Declaration (124) to rename it.
 
-6. Apply Rename Function (124) to the accessors.
+6 Apply Rename Function (124) to the accessors.
 
 1、如果记录的作用域较小，可以直接修改所有该字段的代码，然后测试。后面的步骤就都不需要了。
 
@@ -393,19 +393,19 @@ A reasonable exception to this is when the source data for the calculation is im
 
 #### 9.3.2 Mechanics 
 
-1. Identify all points of update for the variable. If necessary, use Split Variable (240) to separate each point of update.
+1 Identify all points of update for the variable. If necessary, use Split Variable (240) to separate each point of update.
 
-2. Create a function that calculates the value of the variable.
+2 Create a function that calculates the value of the variable.
 
-3. Use Introduce Assertion (302) to assert that the variable and the calculation give the same result whenever the variable is used. If necessary, use Encapsulate Variable (132) to provide a home for the assertion. 
+3 Use Introduce Assertion (302) to assert that the variable and the calculation give the same result whenever the variable is used. If necessary, use Encapsulate Variable (132) to provide a home for the assertion. 
 
-4. Test.
+4 Test.
 
-5. Replace any reader of the variable with a call to the new function.
+5 Replace any reader of the variable with a call to the new function.
 
-6. Test.
+6 Test.
 
-7. Apply Remove Dead Code (237) to the declaration and updates to the variable.
+7 Apply Remove Dead Code (237) to the declaration and updates to the variable.
 
 1、识别出所有对变量做更新的地方。如有必要，用拆分变量（240）分割各个更新点。
 
@@ -579,13 +579,13 @@ This also suggests when I shouldn’t do this refactoring. If I want to share an
 
 #### 9.4.2 Mechanics
 
-1. Check that the candidate class is immutable or can become immutable.
+1 Check that the candidate class is immutable or can become immutable.
 
-2. For each setter, apply Remove Setting Method (331).
+2 For each setter, apply Remove Setting Method (331).
 
-3. Provide a value­based equality method that uses the fields of the value object.
+3 Provide a value­based equality method that uses the fields of the value object.
 
-4. Most language environments provide an overridable equality function for this purpose. Usually you must override a hashcode generator method as well.
+4 Most language environments provide an overridable equality function for this purpose. Usually you must override a hashcode generator method as well.
 
 1、检查重构目标是否为不可变对象，或者是否可修改为不可变对象。
 
@@ -743,11 +743,11 @@ Changing a value to a reference results in only one object being present for an 
 
 #### 9.5.2 Mechanics
 
-1. Create a repository for instances of the related object (if one isn’t already present).
+1 Create a repository for instances of the related object (if one isn’t already present).
 
-2. Ensure the constructor has a way of looking up the correct instance of the related object.
+2 Ensure the constructor has a way of looking up the correct instance of the related object.
 
-3. Change the constructors for the host object to use the repository to obtain the related object. Test after each change.
+3 Change the constructors for the host object to use the repository to obtain the related object. Test after each change.
 
 1、为相关对象创建一个仓库（如果还没有这样一个仓库的话）。
 
@@ -1004,15 +1004,15 @@ The reasons in favor of consolidating conditionals also point to the reasons aga
 
 #### 10.2.2 Mechanics
 
-1. Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
+1 Ensure that none of the conditionals have any side effects. If any do, use Separate Query from Modifier (306) on them first.
 
-2. Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
+2 Take two of the conditional statements and combine their conditions using a logical operator. Sequences combine with or, nested if statements combine with and.
 
-3. Test.
+3 Test.
 
-4. Repeat combining conditionals until they are all in a single condition.
+4 Repeat combining conditionals until they are all in a single condition.
 
-5. Consider using Extract Function (106) on the resulting condition.
+5 Consider using Extract Function (106) on the resulting condition.
 
 1、确定这些条件表达式都没有副作用。如果某个条件表达式有副作用，可以先用将查询函数和修改函数分离（306）处理。
 
@@ -1147,13 +1147,13 @@ I often find I use Replace Nested Conditional with Guard Clauses when I’m work
 
 #### 10.3.2 Mechanics
 
-1. Select outermost condition that needs to be replaced, and change it into a guard clause.
+1 Select outermost condition that needs to be replaced, and change it into a guard clause.
 
-2. Test.
+2 Test.
 
-3. Repeat as needed.
+3 Repeat as needed.
 
-4. If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
+4 If all the guard clauses return the same result, use Consolidate Conditional Expression (263).
 
 1、选中最外层需要被替换的条件逻辑，将其替换为卫语句。
 
@@ -1391,17 +1391,17 @@ Polymorphism is one of the key features of object­oriented programming — and,
 
 #### 10.4.2 Mechanics
 
-1. If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
+1 If classes do not exist for polymorphic behavior, create them together with a factory function to return the correct instance.
 
-2. Use the factory function in calling code.
+2 Use the factory function in calling code.
 
-3. Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
+3 Move the conditional function to the superclass. If the conditional logic is not a self­contained function, use Extract Function (106) to make it so.
 
-4. Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
+4 Pick one of the subclasses. Create a subclass method that overrides the conditional statement method. Copy the body of that leg of the conditional statement into the subclass method and adjust it to fit.
 
-5. Repeat for each leg of the conditional.
+5 Repeat for each leg of the conditional.
 
-6. Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
+6 Leave a default case for the superclass method. Or, if superclass should be abstract, declare that method as abstract or throw an error to show it should be the responsibility of a subclass.
 
 1、如果现有的类尚不具备多态行为，就用工厂函数创建之，令工厂函数返回恰当的对象实例。
 
@@ -2186,21 +2186,21 @@ A common value that needs special­case processing is null, which is why this pa
 
 Begin with a container data structure (or class) that contains a property which is the subject of the refactoring. Clients of the container compare the subject property of the container to a special­case value. We wish to replace the special­case value of the subject with a special case class or data structure.
 
-1. Add a special­case check property to the subject, returning false.
+1 Add a special­case check property to the subject, returning false.
 
-2. Create a special­case object with only the special­case check property, returning true.
+2 Create a special­case object with only the special­case check property, returning true.
 
-3. Apply Extract Function (106) to the special­case comparison code. Ensure that all clients use the new function instead of directly comparing it.
+3 Apply Extract Function (106) to the special­case comparison code. Ensure that all clients use the new function instead of directly comparing it.
 
-4. Introduce the new special­case subject into the code, either by returning it from a function call or by applying a transform function.
+4 Introduce the new special­case subject into the code, either by returning it from a function call or by applying a transform function.
 
-5. Change the body of the special­case comparison function so that it uses the specialcase check property.
+5 Change the body of the special­case comparison function so that it uses the specialcase check property.
 
-6. Test.
+6 Test.
 
-7. Use Combine Functions into Class (144) or Combine Functions into Transform (149) to move all of the common special­case behavior into the new element. Since the special­case class usually returns fixed values to simple requests, these may be handled by making the special case a literal record.
+7 Use Combine Functions into Class (144) or Combine Functions into Transform (149) to move all of the common special­case behavior into the new element. Since the special­case class usually returns fixed values to simple requests, these may be handled by making the special case a literal record.
 
-8. Use Inline Function (115) on the special­case comparison function for the places where it’s still needed.
+8 Use Inline Function (115) on the special­case comparison function for the places where it’s still needed.
 
 我们从一个作为容器的数据结构（或者类）开始，其中包含一个属性，该属性就是我们要重构的目标。容器的客户端每次使用这个属性时，都需要将其与某个特例值做比对。我们希望把这个特例值替换为代表这种特例情况的类或数据结构。
 
