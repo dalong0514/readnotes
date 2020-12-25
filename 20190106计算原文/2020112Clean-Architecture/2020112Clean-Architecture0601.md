@@ -1,12 +1,12 @@
 # 0601. Functional Programming
 
-In many ways, the concepts of functional programming predate programming itself. This paradigm is strongly based on the l-calculus invented by Alonzo Church in the 1930s.
+In many ways, the concepts of functional programming predate programming itself. This paradigm is strongly based on the λ-calculus invented by Alonzo Church in the 1930s.
 
 函数式编程所依赖的原理，在很多方面其实是早于编程本身出现的。因为函数式编程这种范式强烈依赖于 Alonzo Church 在 20 世纪 30 年代发明的 λ 演算。
 
 ## 6.1 Squares of Integers
 
-To explain what functional programming is, it’s best to examine some examples. Let’s investigate a simple problem: printing the squares of the first 25 integers. In a language like Java, we might write the following:
+To explain what functional programming is, it's best to examine some examples. Let’s investigate a simple problem: printing the squares of the first 25 integers. In a language like Java, we might write the following:
 
 ```c
 public class Squint {
@@ -54,7 +54,7 @@ This leads us to a surprising statement: Variables in functional languages do n
 
 相反，我们讨论它的主要目标是要突显出 Clojure 和 Java 这两种语言之间的巨大区别。在 Java 程序中，我们使用的是可变量，即变量，该变量的值会随着程序执行的过程而改变，故被称为循环控制変量。而 Clojure 程序中是不存在这种变量的，变量 x 旦被初始化之后，就不会再被更改了。这句话有点出人意料：函数式编程语言中的变量（Variable）是不可变（Vary）的。
 
-## 6.2 Immutability  and  Architecture
+## 6.2 Immutability and Architecture
 
 Why is this point important as an architectural consideration? Why would an architect be concerned with the mutability of variables? The answer is absurdly simple: All race conditions, deadlock conditions, and concurrent update problems are due to mutable variables. You cannot have a race condition or a concurrent update problem if no variable is ever updated. You cannot have deadlocks without mutable locks.
 
@@ -66,7 +66,7 @@ The answer to that question is affirmative, if you have infinite storage and inf
 
 为什么不可变性是软件架构设计需要考虑的重点呢？为什么软件架构师要操心变量的可变性呢？答案显而易见：所有的竞争问题、死锁问题、并发更新问题都是由可变变量导致的。如果变量永远不会被更改，那就不可能产生竞争或者并发更新问题。如果锁状态是不可变的，那就永远不会产生死锁问题。换句话说，一切并发应用遇到的问题，一切由于使用多线程、多处理器而引起的问题，如果没有可变变量的话都不可能发生。
 
-作为ー个软件架构师，当然应该要对并发问题保持高度关注。我们需要确保自己设计的系统在多线程、多处理器环境中能稳定工作。所以在这里，我们实际应该要问的问题是：不可变性是否实际可行？
+作为一个软件架构师，当然应该要对并发问题保持高度关注。我们需要确保自己设计的系统在多线程、多处理器环境中能稳定工作。所以在这里，我们实际应该要问的问题是：不可变性是否实际可行？
 
 如果我们能忽略存储器与处理器在速度上的限制，那么答案是肯定的。否则的话，不可变性只有在一定情況下是可行的。下面让我们来看一下它具体该如何做到可行。
 
@@ -74,7 +74,9 @@ The answer to that question is affirmative, if you have infinite storage and inf
 
 One of the most common compromises in regard to immutability is to segregate the application, or the services within the application, into mutable and immutable components. The immutable components perform their tasks in a purely functional way, without using any mutable variables. The immutable components communicate with one or more other components that are not purely functional, and allow for the state of variables to be mutated (Figure 6.1).
 
-Figure 6.1  Mutating state and transactional memory
+![](./res/2020010.png)
+
+Figure 6.1 Mutating state and transactional memory
 
 Since mutating state exposes those components to all the problems of concurrency, it is common practice to use some kind of transactional memory to protect the mutable variables from concurrent updates and race conditions. Transactional memory simply treats variables in memory the same way a database treats records on disk. 1 It protects those variables with a transaction- or retry-based scheme.
 
@@ -93,9 +95,7 @@ The strategy used by swap! is a traditional compare and swap algorithm. The valu
 
 The atom facility is adequate for simple applications. Unfortunately, it cannot completely safeguard against concurrent updates and deadlocks when multiple dependent variables come into play. In those instances, more elaborate facilities can be used.
 
-The point is that well-structured applications will be segregated into those components that do not mutate variables and those that do. This kind of segregation is supported by the use of appropriate disciplines to protect those mutated variables.
-
-Architects would be wise to push as much processing as possible into the immutable components, and to drive as much code as possible out of those components that must allow mutation.
+The point is that well-structured applications will be segregated into those components that do not mutate variables and those that do. This kind of segregation is supported by the use of appropriate disciplines to protect those mutated variables. Architects would be wise to push as much processing as possible into the immutable components, and to drive as much code as possible out of those components that must allow mutation.
 
 1 I know… What’s a disk?
 
@@ -111,7 +111,7 @@ Architects would be wise to push as much processing as possible into the immutab
 
 当然，atom 这个机制只适用于上面这种简单的应用程序，它并不适用于解决由多个相关变量同时需要更改所引发的并发更新问题和死锁问题，要想解决这些问题，我们就需要用到更复杂的机制。这里的要点是：一个架构设计良好的应用程序应该将状态修改的部分和不需要修改状的部分隔离成单独的组件，然后用合适的机制来保护可变量。软件架构师应该着力于将大部分处理逻辑都归于不可变组件中，可变状态组件的逻辑应该越少越好。
 
-## 6.4 Event  Sourcing
+## 6.4 Event Sourcing
 
 The limits of storage and processing power have been rapidly receding from view. Nowadays it is common for processors to execute billions of instructions per second and to have billions of bytes of RAM. The more memory we have, and the faster our machines are, the less we need mutable state.
 
@@ -123,9 +123,9 @@ Obviously, this approach sounds absurd. Over time, the number of transactions wo
 
 But perhaps we don’t have to make the scheme work forever. And perhaps we have enough storage and enough processing power to make the scheme work for the reasonable lifetime of the application.
 
-This is the idea behind event sourcing.2 Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time.
+This is the idea behind event sourcing. 2 Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time. Of course, we can take shortcuts. For example, we can compute and save the state every midnight. Then, when the state information is required, we need compute only the transactions since midnight.
 
-Of course, we can take shortcuts. For example, we can compute and save the state every midnight. Then, when the state information is required, we need compute only the transactions since midnight.
+2『时间溯源，做一张术语卡片。』——已完成
 
 Now consider the data storage required for this scheme: We would need a lot of it. Realistically, offline data storage has been growing so fast that we now consider trillions of bytes to be small — so we have a lot of it.
 
