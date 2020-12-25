@@ -6,51 +6,37 @@ In many ways, the concepts of functional programming predate programming itself.
 
 ## 6.1 Squares of Integers
 
-To explain what functional programming is, it’s best to examine some examples. Let’s investigate a simple problem: printing the squares of the first 25 integers.
+To explain what functional programming is, it’s best to examine some examples. Let’s investigate a simple problem: printing the squares of the first 25 integers. In a language like Java, we might write the following:
 
-In a language like Java, we might write the following:
-
+```c
 public class Squint {
-
-public static void main(String args[]) {
-
-for (int i=0; i<25; i++)
-
-System.out.println(i*i);
-
+    public static void main(String args[]) {
+        for (int i=0; i<25; i++)
+            System.out.println(i*i);
+    }
 }
-
-}
+```
 
 In a language like Clojure, which is a derivative of Lisp, and is functional, we might implement this same program as follows:
 
+```c
 (println (take 25 (map (fn [x] (* x x)) (range))))
+```
 
 If you don’t know Lisp, then this might look a little strange. So let me reformat it a bit and add some comments.
 
+```c
 (println ;___________________ Print
+  (take 25 ;_________________ the first 25
+    (map (fn [x] (* x x)) ;__ squares
+      (range)))) ;___________ of Integers
+```
 
-(take 25 ;_________________ the first 25
+It should be clear that println, take, map, and range are all functions. In Lisp, you call a function by putting it in parentheses. For example, `(range)` calls the range function. The expression `(fn [x] (* x x))` is an anonymous function that calls the multiply function, passing its input argument in twice. In other words, it computes the square of its input.
 
-(map (fn [x] (* x x)) ;__ squares
+Looking at the whole thing again, it’s best to start with the innermost function call. The range function returns a never-ending list of integers starting with 0. This list is passed into the map function, which calls the anonymous squaring function on each element, producing a new never-ending list of all the squares.
 
-(range)))) ;___________ of Integers
-
-It should be clear that println, take, map, and range are all functions. In Lisp, you call a function by putting it in parentheses. For example, (range) calls the range function.
-
-The expression (fn [x] (* x x)) is an anonymous function that calls the multiply function, passing its input argument in twice. In other words, it computes the square of its input.
-
-Looking at the whole thing again, it’s best to start with the innermost function call.
-
-(cid:129) The range function returns a never-ending list of integers starting with 0.  (cid:129) This list is passed into the map function, which calls the anonymous
-
-squaring function on each element, producing a new never-ending list of all the squares.
-
-(cid:129) The list of squares is passed into the take function, which returns a new
-
-list with only the first 25 elements.
-
-(cid:129) The println function prints its input, which is a list of the first 25 squares of integers.
+The list of squares is passed into the take function, which returns a new list with only the first 25 elements. The println function prints its input, which is a list of the first 25 squares of integers.
 
 If you find yourself terrified by the concept of never-ending lists, don’t worry. Only the first 25 elements of those never-ending lists are actually created. That’s because no element of a never-ending list is evaluated until it is accessed.
 
@@ -76,9 +62,7 @@ In other words, all the problems that we face in concurrent applications — all
 
 As an architect, you should be very interested in issues of concurrency. You want to make sure that the systems you design will be robust in the presence of multiple threads and processors. The question you must be asking yourself, then, is whether immutability is practicable.
 
-The answer to that question is affirmative, if you have infinite storage and infinite processor speed. Lacking those infinite resources, the answer is a bit more nuanced. Yes, immutability can be practicable, if certain compromises are made.
-
-Let’s look at some of those compromises.
+The answer to that question is affirmative, if you have infinite storage and infinite processor speed. Lacking those infinite resources, the answer is a bit more nuanced. Yes, immutability can be practicable, if certain compromises are made. Let’s look at some of those compromises.
 
 为什么不可变性是软件架构设计需要考虑的重点呢？为什么软件架构师要操心变量的可变性呢？答案显而易见：所有的竞争问题、死锁问题、并发更新问题都是由可变变量导致的。如果变量永远不会被更改，那就不可能产生竞争或者并发更新问题。如果锁状态是不可变的，那就永远不会产生死锁问题。换句话说，一切并发应用遇到的问题，一切由于使用多线程、多处理器而引起的问题，如果没有可变变量的话都不可能发生。
 
@@ -157,23 +141,13 @@ If this still sounds absurd, it might help if you remembered that this is precis
 
 随着存储和处理能力的大幅进步，现在拥有每秒可以执行数十亿条指令的处理器，以及数十亿字节内存的计算机已经很常见了。而内存越大，处理速度越快，我们对可变状态的依赖就会越少。
 
-举个简单的例子，假设某个银行应用程序需要维护客户账户余额信息，当它执行存取款事务时，就要同时负责修改余额记录。
+举个简单的例子，假设某个银行应用程序需要维护客户账户余额信息，当它执行存取款事务时，就要同时负责修改余额记录。如果我们不保存具体账户余额，仅仅保存事务日志，那么当有人想查询账户余额时，我们就将全部交易记录取出，并且每次都得从最开始到当下进行累计。当然，这样的设计就不需要维护任何可变变量了。
 
-如果我们不保存具体账户余额，仅仅保存事务日志，那么当有人想查询账户余额时，我们就将全部交易记录取出，并且每次都得从最开始到当下进行累计。当然，这样的设计就不需要维护任何可变变量了
+但显而易见，这种实现是有些不合理的。因为随着时间的推移，事务的数目会无限制增长，每次处理总额所需要的处理能力很快就会变得不能接受。如果想使这种设计永远可行的话，我们将需要无限容量的存储，以及无限的处理能力。但是可能我们并不需要这个设计永远可行，而且可能在整个程序的生命周期内，我们有足够的存储和处理能力来满足它。
 
-但显而易见，这种实现是有些不合理的。因为随着时间的推移，事务的数目会无限制增长，每次处理总额所需要的处理能力很快就会变得不能接受。如果想使这种设计永远可行的话，我们将需要无限容量的存储，以及无限的处理能力
+这就是事件溯源，在这种体系下，我们只存储事务记录，不存储具体状态。当需要具体状态时，我们只要从头开始计算所有的事务即可。在存储方面，这种架构的确要很大的存储容量。如今离线数据存储器的增长是非常快的，现在 1TB 对我们来说也已经不算什么了。更重要的是，这种数据存储模式中不存在除和更新的情况，我们的应用程序不是 CRUD，而是 CR。因为更新和删除这两种操作都不存在了，自然也就不存在并发问题。
 
-但是可能我们并不需要这个设计永远可行，而且可能在整个程序的生命周期内，我们有足够的存储和处理能力来满足它。
-
-这就是事件溯源，在这种体系下，我们只存储事务记录，不存储具体状态。当需要具体状态时，我们只要从头开始计算所有的事务即可。
-
-在存储方面，这种架构的确要很大的存储容量。如今离线数据存储器的增长是非常快的，现在 1TB 对我们来说也已经不算什么了。
-
-更重要的是，这种数据存储模式中不存在除和更新的情况，我们的应用程序不是 CRUD，而是 CR。因为更新和删除这两种操作都不存在了，自然也就不存在并发问题
-
-如果我们有足够大的存储量和处理能力，应用程序就可以用完全不可变的、纯函数式的方式来编程
-
-如果读者还是觉得这听起来不太靠谱，可以想想我们现在用的源代码管理程序，它们正是用这种方式工作的！
+如果我们有足够大的存储量和处理能力，应用程序就可以用完全不可变的、纯函数式的方式来编程。如果读者还是觉得这听起来不太靠谱，可以想想我们现在用的源代码管理程序，它们正是用这种方式工作的！
 
 ## Conclusion
 
