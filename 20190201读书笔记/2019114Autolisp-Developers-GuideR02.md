@@ -77,6 +77,55 @@ But is simpler with this…
 (apply ‘+ mylist))
 ```
 
+1『
+
+apply 函数更重要的作用是把函数转化为另一个函数的参数，让我能够拆解函数成颗粒度更细的模块（函数），已数据流中刷管道等级号变更的功能为例。
+
+```c
+(defun c:brushPipeClassChangeMacro (/ sourceData pipeClassChangeData instrumentAndPipeData pipeClassChangeInfo)
+  (prompt "\n选择变管道等级块以及要刷的管道或仪表数据（变等级块只能选一个）：")
+  (setq sourceData (GetInstrumentAndPipeAndPipeClassChangeData))
+  (setq pipeClassChangeData (GetPipeClassChangeDataForBrushPipeClassChange sourceData))
+  (setq instrumentAndPipeData (GetInstrumentAndPipeDataForBrushPipeClassChange sourceData))
+  (setq pipeClassChangeInfo (GetPipeClassChangeInfo (car pipeClassChangeData)))
+  (ExecuteFunctionForOneSourceDataUtils (length pipeClassChangeData) 'BrushOnePropertyDataForInstrumentAndPipe 
+    (list instrumentAndPipeData pipeClassChangeInfo "PIPECLASSCHANGE")
+  )
+)
+
+(defun c:brushReducerInfoMacro (/ sourceData ReducerData instrumentAndPipeData reducerInfo entityNameList)
+  (prompt "\n选择异径管块以及要刷的管道或仪表数据（异径管块只能选一个）：")
+  (setq sourceData (GetInstrumentAndPipeAndReducerData))
+  (setq ReducerData (GetReducerDataForBrushReducerInfo sourceData))
+  (setq instrumentAndPipeData (GetInstrumentAndPipeDataForBrushReducerInfo sourceData))
+  (setq reducerInfo (cdr (assoc "REDUCER" (car ReducerData))))
+  (ExecuteFunctionForOneSourceDataUtils (length ReducerData) 'BrushOnePropertyDataForInstrumentAndPipe 
+    (list instrumentAndPipeData reducerInfo "REDUCERINFO")
+  )
+)
+
+; very importance for me, convert a function to the parameter for another function - 2020-12-25
+(defun ExecuteFunctionForOneSourceDataUtils (dataListLength functionName argumentList /)
+  (if (= dataListLength 1)
+    (vl-catch-all-apply functionName argumentList)
+    (progn 
+      (alert "数据源只能选一个！")
+      (princ)
+    )
+  ) 
+)
+
+(defun BrushOnePropertyDataForInstrumentAndPipe (instrumentAndPipeData ChangedInfo propertyName / entityNameList)
+  (setq entityNameList (GetEntityNameListByEntityHandleListUtils (GetEntityHandleListByPropertyDictListUtils instrumentAndPipeData)))
+  (ModifyMultiplePropertyForBlockUtils entityNameList (list propertyName) (list ChangedInfo))
+  (alert "刷数据完成！")(princ)
+)
+```
+
+这里的关键函数是 `ExecuteFunctionForOneSourceDataUtils`，它帮忙消除了条件语句。其实还可以通过多态来重构，消除 `brushPipeClassChangeMacro` 和 `brushReducerInfoMacro` 里不少重复的代码。(2020-12-25)
+
+』
+
 #### 1.2.2 mapcar
 
 ```c
