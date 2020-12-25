@@ -57,7 +57,7 @@ The users of point.h have no access whatsoever to the members of struct Point. T
 
 This is perfect encapsulation — in a non-OO language. C programmers used to do this kind of thing all the time. We would forward declare data structures and functions in header files, and then implement them in implementation files. Our users never had access to the elements in those implementation files. 
 
-But then came OO in the form of C++ — and the perfect encapsulation of C was broken. The C++ compiler, for technical reasons,1 needed the member variables of a class to be declared in the header file of that class. So our Point program changed to look like this:
+But then came OO in the form of C++ — and the perfect encapsulation of C was broken. The C++ compiler, for technical reasons, 1 needed the member variables of a class to be declared in the header file of that class. So our Point program changed to look like this:
 
 point.h
 
@@ -96,11 +96,13 @@ Indeed, the way encapsulation is partially repaired is by introducing the public
 
 Java and C# simply abolished the header/implementation split altogether, thereby weakening encapsulation even more. In these languages, it is impossible to separate the declaration and definition of a class.
 
-For these reasons, it is difficult to accept that OO depends on strong encapsulation. Indeed, many OO languages2 have little or no enforced encapsulation.
+For these reasons, it is difficult to accept that OO depends on strong encapsulation. Indeed, many OO languages 2 have little or no enforced encapsulation.
 
 OO certainly does depend on the idea that programmers are well-behaved enough to not circumvent encapsulated data. Even so, the languages that claim to provide OO have only weakened the once perfect encapsulation we enjoyed with C.
 
 1 The C++ compiler needs to know the size of the instances of each class.
+
+2 For example, Smalltalk, Python, JavaScript, Lua, and Ruby.
 
 由于面向对象编程语言为我们方便而有效地封装数据和函数提供了有力的支持，导致封装这个概念经常被引用为面向对象编程定义的一部分。通过采用封装特性，我们可以把一组相关联的数据和函数圈起来，使圈外面的代码只能看见部分函数，数据则完全不可见。如，在实际应用中，类（class）中的公共函数和私有成员变量就是这样。然而，这个特性其实并不是面向对象编程所独有的。其实，C 语言也支持完整的封装，下面来看一个简单的 C 程序。
 
@@ -120,13 +122,7 @@ OO certainly does depend on the idea that programmers are well-behaved enough to
 
 If OO languages did not give us better encapsulation, then they certainly gave us inheritance.
 
-Well — sort of. Inheritance is simply the redeclaration of a group of variables and functions within an enclosing scope. This is something C programmers3 were able to do manually long before there was an OO language.
-
-2 For example, Smalltalk, Python, JavaScript, Lua, and Ruby.3.   Not just C programmers: Most languages of that era had the capability to masquerade one data struc-
-
-ture as another.
-
-Consider this addition to our original point.h C program:
+Well — sort of Inheritance is simply the redeclaration of a group of variables and functions within an enclosing scope. This is something C programmers 3 were able to do manually long before there was an OO language. Consider this addition to our original point.h C program:
 
 namedPoint.h
 
@@ -184,17 +180,15 @@ int main(int ac, char** av) {
 
 If you look carefully at the main program, you’ll see that the NamedPoint data structure acts as though it is a derivative of the Point data structure. This is because the order of the first two fields in NamedPoint is the same as Point. In short, NamedPoint can masquerade as Point because NamedPoint is a pure superset of Point and maintains the ordering of the members that correspond to Point.
 
-This kind of trickery was a common practice4 of programmers prior to the advent of OO. In fact, such trickery is how C++ implements single inheritance.
-
-Thus we might say that we had a kind of inheritance long before OO languages were invented. That statement wouldn’t quite be true, though. We had a trick, but it’s not nearly as convenient as true inheritance. Moreover, multiple inheritance is a considerably more difficult to achieve by such trickery.
+This kind of trickery was a common practice 4 of programmers prior to the advent of OO. In fact, such trickery is how C++ implements single inheritance. Thus we might say that we had a kind of inheritance long before OO languages were invented. That statement wouldn’t quite be true, though. We had a trick, but it’s not nearly as convenient as true inheritance. Moreover, multiple inheritance is a considerably more difficult to achieve by such trickery.
 
 Note also that in main.c, I was forced to cast the NamedPoint arguments to Point. In a real OO language, such upcasting would be implicit.
 
 It’s fair to say that while OO languages did not give us something completely brand new, it did make the masquerading of data structures significantly more convenient.
 
-To recap: We can award no point to OO for encapsulation, and perhaps a half-point for inheritance. So far, that’s not such a great score.
+To recap: We can award no point to OO for encapsulation, and perhaps a half-point for inheritance. So far, that’s not such a great score. But there’s one more attribute to consider.
 
-But there’s one more attribute to consider.
+3 Not just C programmers: Most languages of that era had the capability to masquerade one data structure as another.
 
 4 Indeed it still is.
 
@@ -226,7 +220,7 @@ The function getchar() reads from STDIN. But which device is STDIN? The putchar(
 
 It’s as though STDIN and STDOUT are Java-style interfaces that have implementations for each device. Of course, there are no interfaces in the example C program — so how does the call to getchar() actually get delivered to the device driver that reads the character?
 
-The answer to that question is pretty straightforward. The UNIX operating system requires that every IO device driver provide five standard functions:5 open, close, read, write, and seek. The signatures of those functions must be identical for every IO driver.
+The answer to that question is pretty straightforward. The UNIX operating system requires that every IO device driver provide five standard functions: 5 open, close, read, write, and seek. The signatures of those functions must be identical for every IO driver.
 
 The FILE data structure contains five pointers to functions. In our example, it might look like this:
 
@@ -248,12 +242,19 @@ void open(char* name, int mode) {/*...*/}void close() {/*...*/};
 int read() {int c;/*...*/ return c;}
 void write(char c) {/*...*/}
 void seek(long index, int mode) {/*...*/} 
+
 struct FILE console = {open, close, read, write, seek};
 ```
 
 Now if STDIN is defined as a FILE*, and if it points to the console data structure, then getchar() might be implemented this way:
 
-extern struct FILE* STDIN; int getchar() {  return STDIN->read();}
+```c
+extern struct FILE* STDIN; 
+
+int getchar() {  
+    return STDIN->read();
+}
+```
 
 In other words, getchar() simply calls the function pointed to by the read pointer of the FILE data structure pointed to by STDIN.
 
@@ -265,9 +266,9 @@ Ah, but that’s not quite correct. OO languages may not have given us polymorph
 
 The problem with explicitly using pointers to functions to create polymorphic behavior is that pointers to functions are dangerous. Such use is driven by a set of manual conventions. You have to remember to follow the convention to initialize those pointers. You have to remember to follow the convention to call all your functions through those pointers. If any programmer fails to remember these conventions, the resulting bug can be devilishly hard to track down and eliminate.
 
-OO languages eliminate these conventions and, therefore, these dangers. Using an OO language makes polymorphism trivial. That fact provides an enormous power that old C programmers could only dream of. On this
+OO languages eliminate these conventions and, therefore, these dangers. Using an OO language makes polymorphism trivial. That fact provides an enormous power that old C programmers could only dream of. 
 
-basis, we can conclude that OO imposes discipline on indirect transfer of control.
+On this basis, we can conclude that OO imposes discipline on indirect transfer of control.
 
 5 UNIX systems vary; this is just an example.
 
@@ -275,7 +276,7 @@ basis, we can conclude that OO imposes discipline on indirect transfer of contro
 
 在上述程序中，函数 getchar() 主要负责从 STDN 中读取数据。但是 STDN 究竟指代的是哪个设备呢？同样的道理，putchar() 主要负责将数据写入 STDOUT，而 STDOUT 又指代的是哪个设备呢？很显然，这类函数其实就具有多态性，因为它们的行为依赖于 STDN 和 STDOUTE 的具体类型。这里的 STDIN 和 STDOUT，与 Java 中的接口类似，各种设备都有各自的实现。当然，这个 C 程序中是没有接口这个概念的，那么 getchar() 这个调用的动作是如何真正传递到设备驱动程序中，从而读取到具体内容的呢？
 
-其实很简单，UNIX 操作系统强制要求每个 IO 设备都要提供 open、close、read、write 和 seek 这 5 个标准函数。也就是说，每个 O 设备驱动程序对这 5 种函数的实现在函数调用上必须保持一致。
+其实很简单，UNIX 操作系统强制要求每个 IO 设备都要提供 open、close、read、write 和 seek 这 5 个标准函数。也就是说，每个 IO 设备驱动程序对这 5 种函数的实现在函数调用上必须保持一致。
 
 首先，FILE 数据结构体中包含了相对应的 5 个函数指针，分别用于指向这些函数。换句话说，getchar() 只是调用了 STDIN 所指向的 FILE 数据结构体中的 read 函数指针指向的函数。
 
@@ -293,15 +294,13 @@ In short, the IO devices have become plugins to the copy program.
 
 Why did the UNIX operating system make IO devices plugins? Because we learned, in the late 1950s, that our programs should be device independent. Why? Because we wrote lots of programs that were device dependent, only to discover that we really wanted those programs to do the same job but use a different device.
 
-For example, we often wrote programs that read input data from decks of cards,6 and then punched new decks of cards as output. Later, our customers stopped giving us decks of cards and started giving us reels of magnetic tape. This was very inconvenient, because it meant rewriting large portions of the original program. It would be very convenient if the same program worked interchangeably with cards or tape.
-
-6 Punched cards — IBM Hollerith cards, 80 columns wide. I’m sure many of you have never even seen one
-
-of these, but they were commonplace in the 1950s, 1960s, and even 1970s.
+For example, we often wrote programs that read input data from decks of cards, 6 and then punched new decks of cards as output. Later, our customers stopped giving us decks of cards and started giving us reels of magnetic tape. This was very inconvenient, because it meant rewriting large portions of the original program. It would be very convenient if the same program worked interchangeably with cards or tape.
 
 The plugin architecture was invented to support this kind of IO device independence, and has been implemented in almost every operating system since its introduction. Even so, most programmers did not extend the idea to their own programs, because using pointers to functions was dangerous.
 
 OO allows the plugin architecture to be used anywhere, for anything.
+
+6 Punched cards — IBM Hollerith cards, 80 columns wide. I'm sure many of you have never even seen one of these, but they were commonplace in the 1950s, 1960s, and even 1970s.
 
 那么多态的优势在哪里呢？为了让读者更好地理解多态的好处，我们需要再来看一下刚才的 copy 程序。如果要支持新的 IO 设备，该程序需要做什么改动呢？譬如，假设我们想要用该 copy 程序从一个手写识别设备将数据复制到另一个语音合成设备中，我们需要针对 copy 程序做什么改动，才能实现这个目标呢？
 
@@ -315,21 +314,21 @@ OO allows the plugin architecture to be used anywhere, for anything.
 
 Imagine what software was like before a safe and convenient mechanism for polymorphism was available. In the typical calling tree, main functions called high-level functions, which called mid-level functions, which called low-level functions. In that calling tree, however, source code dependencies inexorably followed the flow of control (Figure 5.1).
 
-Source CodeDependency
-
-Flow of Control
+![](./res/2020007.png)
 
 Figure 5.1  Source code dependencies versus flow of control
 
-For main to call one of the high-level functions, it had to mention the name of the module that contained that function In C, this was a #include. In Java, it was an import statement. In C#, it was a using statement. Indeed, every caller was forced to mention the name of the module that contained the callee.
+For main to call one of the high-level functions, it had to mention the name of the module that contained that function In C, this was a `#include`. In Java, it was an `import` statement. In C#, it was a `using` statement. Indeed, every caller was forced to mention the name of the module that contained the callee.
 
 This requirement presented the software architect with few, if any, options. The flow of control was dictated by the behavior of the system, and the source code dependencies were dictated by that flow of control.
 
 When polymorphism is brought into play, however, something very different can happen (Figure 5.2).
 
+![](./res/2020008.png)
+
 Figure 5.2  Dependency inversion
 
-In Figure 5.2, module HL1 calls the F() function in module ML1. The fact that it calls this function through an interface is a source code contrivance. At runtime, the interface doesn’t exist. HL1 simply calls F() within ML1.7
+In Figure 5.2, module HL1 calls the F() function in module ML1. The fact that it calls this function through an interface is a source code contrivance. At runtime, the interface doesn’t exist. HL1 simply calls F() within ML1. [7]
 
 Note, however, that the source code dependency (the inheritance relationship) between ML1 and the interface I points in the opposite direction compared to the flow of control. This is called dependency inversion, and its implications for the software architect are profound.
 
@@ -357,11 +356,13 @@ If the modules in your system can be deployed independently, then they can be de
 
 7 Albeit indirectly.
 
+1-2『依赖倒置的核心是通过增加一个「接口」实现依赖的反转，这样的话任何「控制流」的流向都可以通过实际情况来调整。目前不明白的是，加「接口」跟「面向对象」编程范式有啥必要的联系，加接口就一定属于面向对象？这节的信息，让自己对依赖导致有了一个更深的印象。回复：前面的疑虑，关键点应该在「多态」上，继承是从子类的角度往上看父类，多态是从父类的角度往下看子类。依赖倒置做一张术语卡片。（2020-12-25）』——已完成
+
 我们可以想象一下在安全和便利的多态支持出现之前，软件是什么样子的。下面有一个典型的调用树的例子，main 函数调用了一些高层函数，这些高层函数又调用了一些中层函数，这些中层函数又继续调用了一些底层函数。在这里，源代码层面的依赖不可避免地要跟随程序的控制流（详见图 5.2）。
 
 如你所见，main 函数为了调用高层函数，它就必须能够看到这个函数所在的模块。在 C 中，我们会通过 #include 来实现，在 Java 中则通过 import 来实现，而在 C# 中则用的是 using 语句。总之，每个函数的调用方都必须要引用被调用方所在的模块。显然，这样做就导致了我们在软件架构上别无选择。在这里，系统行为决定了控制流，而控制流则决定了源代码依赖关系。但一旦我们使用了多态，情况就不一样了（详见图 5.2）。
 
-在图 5.2 中，模块 HL1 调用了 ML1 模块中的 F() 函数，这里的调用是通过源代码级别的接口来实现的。当然在程序实际运行时，接口这个概念是不存在的，HL1 会调用 ML1 中的 F() 函数请注意模块 ML1 和接口在源代码上的依赖关系（或者叫继承关系），该关系的方向和控制流正好是相反的，我们称之为依赖反转。这种反转对软件架构设计的影响是非常大的。事实上，通过利用面向编程语言所提供的这种安全便利的多态实现，无论我们面对怎样的源代码级别的依赖关系，都可以将其反转。现在，我们可以再回头来看图 5.1 中的调用树，就会发现其中的众多源代码依赖关系都可以通过引入接口的方式来进行反转。
+在图 5.2 中，模块 HL1 调用了 ML1 模块中的 F() 函数，这里的调用是通过源代码级别的接口来实现的。当然在程序实际运行时，接口这个概念是不存在的，HL1 会调用 ML1 中的 F() 函数。请注意模块 ML1 和接口在源代码上的依赖关系（或者叫继承关系），该关系的方向和控制流正好是相反的，我们称之为依赖反转。这种反转对软件架构设计的影响是非常大的。事实上，通过利用面向编程语言所提供的这种安全便利的多态实现，无论我们面对怎样的源代码级别的依赖关系，都可以将其反转。现在，我们可以再回头来看图 5.1 中的调用树，就会发现其中的众多源代码依赖关系都可以通过引入接口的方式来进行反转。
 
 通过这种方法，软件架构师可以完全控制采用了面向对象这种编程方式的系统中所有的源代码依赖关系，而不再受到系统控制流的限制。不管哪个模块调用或者被调用，软件架构师都可以随意更改源代码依赖关系。这就是面向对象编程的好处，同时也是面向对象编程这种范式的核心本质 —— 至少对一个软件架构师来说是这样的。
 
