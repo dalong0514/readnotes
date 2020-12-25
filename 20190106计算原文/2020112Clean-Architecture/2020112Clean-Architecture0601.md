@@ -60,7 +60,9 @@ Instead, my goal here is to point out something very dramatic about the differen
 
 This leads us to a surprising statement: Variables in functional languages do not vary.
 
-很明显，这里的 println、take、map 和 lrange 都是函数。在 LISP 中，函数是通过括号来调用的，例如 `(range)` 表达式就是在调用 range 函数。而表达式 `(fn [x] (*xx))` 则是一个匿名函数，该函数用同样的值作为参数调用了乘法函数。换句话说，该函数计算的是平方值。现在让我们回过头来再看一下这整句代码，从最内侧的函数调用开始  ranger 函数会返回一个从 0 开始的整数无穷列表。然后该列表会被传入 map 函数，并针对列表中的每个元素，调用求平方值的匿名函数，产生了一个无穷多的、包含平方值的列表接着再将这个列表传入 take 函数，后者会返回一个仅包含前 25 个元素的新列表。println 函数将它的参数输出，该参数就是上面这个包含了 25 个平方值的列表。
+很明显，这里的 println、take、map 和 lrange 都是函数。在 LISP 中，函数是通过括号来调用的，例如 `(range)` 表达式就是在调用 range 函数。而表达式 `(fn [x] (*xx))` 则是一个匿名函数，该函数用同样的值作为参数调用了乘法函数。换句话说，该函数计算的是平方值。
+
+现在让我们回过头来再看一下这整句代码，从最内侧的函数调用开始  ranger 函数会返回一个从 0 开始的整数无穷列表。然后该列表会被传入 map 函数，并针对列表中的每个元素，调用求平方值的匿名函数，产生了一个无穷多的、包含平方值的列表接着再将这个列表传入 take 函数，后者会返回一个仅包含前 25 个元素的新列表。println 函数将它的参数输出，该参数就是上面这个包含了 25 个平方值的列表。
 
 读者不用担心上面提到的无穷列表。因为这些列表中的元素只有在被访时会被创建，所以实际上只有前 25 个元素是真正被创建了的。如果上述内容还是让读者觉得云里雾里的话，可以自行学习ー下 Clojure 和函数式编程，本书的目标并不是要教你学会这门语言，因此不再展开。
 
@@ -78,41 +80,30 @@ The answer to that question is affirmative, if you have infinite storage and inf
 
 Let’s look at some of those compromises.
 
-不可变性与软件架构
-
-为什么不可变性是软件架构设计需要考虑的重点呢？为什么软件架构师要操心变量的可变性呢？答案显而易见：所有的竞争问题、死锁问题、并发更新问题都是由可变变量导致的。如果变量永远不会被更改，那就不可能产生竞争或者并发更新问题。如果锁状态是不可变的，那就永远不会产生死锁问
-
-换句话说，一切并发应用遇到的问题，一切由于使用多线程、多处理器而引起的问题，如果没有可变变量的话都不可能发生
+为什么不可变性是软件架构设计需要考虑的重点呢？为什么软件架构师要操心变量的可变性呢？答案显而易见：所有的竞争问题、死锁问题、并发更新问题都是由可变变量导致的。如果变量永远不会被更改，那就不可能产生竞争或者并发更新问题。如果锁状态是不可变的，那就永远不会产生死锁问题。换句话说，一切并发应用遇到的问题，一切由于使用多线程、多处理器而引起的问题，如果没有可变变量的话都不可能发生。
 
 作为ー个软件架构师，当然应该要对并发问题保持高度关注。我们需要确保自己设计的系统在多线程、多处理器环境中能稳定工作。所以在这里，我们实际应该要问的问题是：不可变性是否实际可行？
 
-如果我们能略存储器与处理器在速度上的限制，那么答案是肯定的。否则的话，不可变性只有在一定情況下是可行的
+如果我们能忽略存储器与处理器在速度上的限制，那么答案是肯定的。否则的话，不可变性只有在一定情況下是可行的。下面让我们来看一下它具体该如何做到可行。
 
-下面让我们来看一下它具体该如何做到可行
-
-## 6.3 Segregation of  Mutability
+## 6.3 Segregation of Mutability
 
 One of the most common compromises in regard to immutability is to segregate the application, or the services within the application, into mutable and immutable components. The immutable components perform their tasks in a purely functional way, without using any mutable variables. The immutable components communicate with one or more other components that are not purely functional, and allow for the state of variables to be mutated (Figure 6.1).
 
 Figure 6.1  Mutating state and transactional memory
 
-Since mutating state exposes those components to all the problems of concurrency, it is common practice to use some kind of transactional memory to protect the mutable variables from concurrent updates and race conditions.
-
-Transactional memory simply treats variables in memory the same way a database treats records on disk.1 It protects those variables with a transaction- or retry-based scheme.
+Since mutating state exposes those components to all the problems of concurrency, it is common practice to use some kind of transactional memory to protect the mutable variables from concurrent updates and race conditions. Transactional memory simply treats variables in memory the same way a database treats records on disk. 1 It protects those variables with a transaction- or retry-based scheme.
 
 A simple example of this approach is Clojure’s atom facility:
 
+```c
 (def counter (atom 0)) ; initialize counter to 0
-
 (swap! counter inc)    ; safely increment counter.
+```
 
 In this code, the counter variable is defined as an atom. In Clojure, an atom is a special kind of variable whose value is allowed to mutate under very disciplined conditions that are enforced by the swap! function.
 
-The swap! function, shown in the preceding code, takes two arguments: the atom to be mutated, and a function that computes the new value to be stored
-
-1 I know… What’s a disk?
-
-in the atom. In our example code, the counter atom will be changed to the value computed by the inc function, which simply increments its argument.
+The swap! function, shown in the preceding code, takes two arguments: the atom to be mutated, and a function that computes the new value to be stored in the atom. In our example code, the counter atom will be changed to the value computed by the inc function, which simply increments its argument.
 
 The strategy used by swap! is a traditional compare and swap algorithm. The value of counter is read and passed to inc. When inc returns, the value of counter is locked and compared to the value that was passed to inc. If the value is the same, then the value returned by inc is stored in counter and the lock is released. Otherwise, the lock is released, and the strategy is retried from the beginning.
 
@@ -121,6 +112,20 @@ The atom facility is adequate for simple applications. Unfortunately, it cannot 
 The point is that well-structured applications will be segregated into those components that do not mutate variables and those that do. This kind of segregation is supported by the use of appropriate disciplines to protect those mutated variables.
 
 Architects would be wise to push as much processing as possible into the immutable components, and to drive as much code as possible out of those components that must allow mutation.
+
+1 I know… What’s a disk?
+
+可变性的隔离
+
+一种常见方式是将应用程序，或者是应用程序的内部服务进行切分，划分为可变的和不可变的两种组件。不可变组件用纯函数的方式来执行任务，期间不更改任何状态。这些不可变的组件将通过与一个或多个非函数式组件通信的方式来修改变量状态（参见图 6.1）。
+
+由于状态的修改会导致一系列并发问题的产生，所以我们通常会采用某种事务型内存来保护可变变量，避免同步更新和竞争状态的发生。事务型内存基本上与数据库保护磁盘数据的方式类似，通常采用的是事务或者重试机制。下面我们可以用 Clojure 中的 atom 机制来写一个简单的例子。
+
+在这段代码中，counter 变量被定义为 atom 类型。在 Clojurer 中，atom 是一类特殊的变量，它被允许在 swap! 函数定义的严格条件下进行更改。至于 swap! 函数，如同上面代码所写，它需要两个参数：一个是被用来修改的 atom 类型实例，另一个是用来计算新值的函数。在上面的代码中，inc 函数会将参数加 1 并存入 counter 这个 atom 实例。
+
+在这里，swap! 所采用的策略是传统的比较替换算法。即先读取 counter 变量的值，再将其传入 inc 函数。然后当 inc 函数返回时，将原先用锁保护起来的 counter 值与传入 inc 时的值进行比较。如果两边的值一致，则将 inc 函数返回的值存入 counter，释放锁。否则，先释放锁，再从头进行重试。
+
+当然，atom 这个机制只适用于上面这种简单的应用程序，它并不适用于解决由多个相关变量同时需要更改所引发的并发更新问题和死锁问题，要想解决这些问题，我们就需要用到更复杂的机制。这里的要点是：一个架构设计良好的应用程序应该将状态修改的部分和不需要修改状的部分隔离成单独的组件，然后用合适的机制来保护可变量。软件架构师应该着力于将大部分处理逻辑都归于不可变组件中，可变状态组件的逻辑应该越少越好。
 
 ## 6.4 Event  Sourcing
 
@@ -148,46 +153,9 @@ If this still sounds absurd, it might help if you remembered that this is precis
 
 2 Thanks to Greg Young for teaching me about this concept.
 
-## Conclusion
-
-To summarize: 1) Structured programming is discipline imposed upon direct transfer of control. 2) Object-oriented programming is discipline imposed upon indirect transfer of control. 3) Functional programming is discipline imposed upon variable assignment.
-
-Each of these three paradigms has taken something away from us. Each restricts some aspect of the way we write code. None of them has added to our power or our capabilities. What we have learned over the last half-century is what not to do.
-
-With that realization, we have to face an unwelcome fact: Software is not a rapidly advancing technology. The rules of software are the same today as they were in 1946, when Alan Turing wrote the very first code that would execute in an electronic computer. The tools have changed, and the hardware has changed, but the essence of software remains the same.
-
-Software — the stuff of computer programs — is composed of sequence, selection, iteration, and indirection. Nothing more. Nothing less.
-
-下面我们来总结一下：1）结构化编程是对程序控制权的直接转移的限制。2）面向对象编程是对程序控制权的间接转移的限制。3）函数式编程是对程序中賦值操作的限制。
-
-这三个编程范式都对程序员提出了新的限制。每个范式都约束了某种编写代码的方式，没有一个编程范式是在增加新能力。也就是说，我们过去 50 年学到的东西主要是什么不应该做。我们必须面对这种不友好的现实：软件构建并不是一个迅速前进的技术。今天构建软件的规则和 1946 年阿兰图灵写下电子计算机的第一行代码时是一样的。尽管工具変化了，硬件变化了，但是软件编程的核心没有变。总而言之，软件，或者说计算机程序无一例外是由顺序结构、分支结构、循环结构和间接转移这几种行为组合而成的，无可增加，也缺一不可。
-
-
-
-
-
-
-
-
-
-
-
-
-可变性的隔离
-
-种常见方式是将应用程序，或者是应用程序的内部服务进行切分，划分为可变的和不可变的两种组件。不可变组件用纯函数的方式来执行任务，期间不更改任何状态。这些不可变的组件将通过与ー个或多个非函数式组件通信的方式来修改变量状态（参见图 6.1)。
-
-由于状态的修改会导致一系列并发题的产生，所以我们通常会采用某种事务型内存来保护可变变量，避免同步更新和竞争状态的发生。事务型内存基本上与数据库保护磁盘数据的方式。类似，通常采用的是事务或者重试机制下面我们可以用 Clojure 中的 atom 机制来写一个简单的例子（def counter (atom)）；初始化计数器为 0   (swap! counter inc）安全地进行计器递增
-
-在这段代码中，counter 变量被定义为 atom 类型。在 Clojurer 中，atom 是一类特殊的变量，它被允许在 swap！函数定义的严格条件下进行更改。
-
-至于 swap！函数，如同上面代码所写，它需要两个参数是被用来修改的 atom 类型实例，另个是用来计算新值的函数。在上面的代码中，inc 函数会将参数加 1 并存入 counter 这个 atom 实例。
-
-在这里，swap！所采用的策略是传统的比较替换算法。即先读取 counter 变量的值，再将其传入 inc 函数。然后当 inc 函数返回时，将原先用锁保护起来的 counterf 值与传入 inc 时的值进行比较。如果两边的值一致，则将 inc 函数返回的值存入 counter，释放锁。否则，先释放锁，再从头进行重试当然，atom 这个机制只适用于上面这种简单的应用程序，它并不适用于解決由多个相关变量同时需要更改所引发的并发更新问题和死锁问题，要想解决这些问题，我们就需要用到更复杂的机制这里的要点是：一个架构设计良好的应用程序应该将状态修改的部分和不需要修改状的部分隔离成单独的组件，然后用合适的机制来保护可变量。软件架构师应该着力于将大部分处理逻辑都归于不可变组件中，可变状态组件的逻辑应该越少越好
-
 事件溯源
 
-随着存储和处理能力的大幅进步，现在拥有每秒可以执行数十亿条指令的处理器，以及数十亿字节内存的计算机已经很常见了。而内存越大，处理速度越快，我们对可变状态的依赖就会越少
+随着存储和处理能力的大幅进步，现在拥有每秒可以执行数十亿条指令的处理器，以及数十亿字节内存的计算机已经很常见了。而内存越大，处理速度越快，我们对可变状态的依赖就会越少。
 
 举个简单的例子，假设某个银行应用程序需要维护客户账户余额信息，当它执行存取款事务时，就要同时负责修改余额记录。
 
@@ -207,3 +175,16 @@ Software — the stuff of computer programs — is composed of sequence, selecti
 
 如果读者还是觉得这听起来不太靠谱，可以想想我们现在用的源代码管理程序，它们正是用这种方式工作的！
 
+## Conclusion
+
+To summarize: 1) Structured programming is discipline imposed upon direct transfer of control. 2) Object-oriented programming is discipline imposed upon indirect transfer of control. 3) Functional programming is discipline imposed upon variable assignment.
+
+Each of these three paradigms has taken something away from us. Each restricts some aspect of the way we write code. None of them has added to our power or our capabilities. What we have learned over the last half-century is what not to do.
+
+With that realization, we have to face an unwelcome fact: Software is not a rapidly advancing technology. The rules of software are the same today as they were in 1946, when Alan Turing wrote the very first code that would execute in an electronic computer. The tools have changed, and the hardware has changed, but the essence of software remains the same.
+
+Software — the stuff of computer programs — is composed of sequence, selection, iteration, and indirection. Nothing more. Nothing less.
+
+下面我们来总结一下：1）结构化编程是对程序控制权的直接转移的限制。2）面向对象编程是对程序控制权的间接转移的限制。3）函数式编程是对程序中賦值操作的限制。
+
+这三个编程范式都对程序员提出了新的限制。每个范式都约束了某种编写代码的方式，没有一个编程范式是在增加新能力。也就是说，我们过去 50 年学到的东西主要是什么不应该做。我们必须面对这种不友好的现实：软件构建并不是一个迅速前进的技术。今天构建软件的规则和 1946 年阿兰图灵写下电子计算机的第一行代码时是一样的。尽管工具変化了，硬件变化了，但是软件编程的核心没有变。总而言之，软件，或者说计算机程序无一例外是由顺序结构、分支结构、循环结构和间接转移这几种行为组合而成的，无可增加，也缺一不可。

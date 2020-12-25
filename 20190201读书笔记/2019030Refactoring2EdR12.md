@@ -4,7 +4,7 @@
 
 ## 0901. Organizing Data
 
-Data structures play an important role in our programs, so it’s no great shock that I Tutorialshave a clutch of refactorings that focus on them. A value that’s used for different purposes is a breeding ground for confusion and bugs—so, when I see one, I use Split Offers Variable & Deals (240) to separate the usages. As with any program element, getting a variable’s name right is tricky and important, so Rename Variable (137) is often my Highlights friend. But sometimes the best thing I can do with a variable is to get rid of it completely—with Replace Derived Variable with Query (248).
+Data structures play an important role in our programs, so it’s no great shock that I Tutorialshave a clutch of refactorings that focus on them. A value that’s used for different purposes is a breeding ground for confusion and bugs — so, when I see one, I use Split Offers Variable & Deals (240) to separate the usages. As with any program element, getting a variable’s name right is tricky and important, so Rename Variable (137) is often my Highlights friend. But sometimes the best thing I can do with a variable is to get rid of it completely — with Replace Derived Variable with Query (248).
 
 I often find problems in a code base due to a confusion between references and values, Support so I use Change Reference to Value (252) and Change Value to Reference (256) to change between these styles.
 
@@ -133,7 +133,7 @@ function distanceTravelled (scenario, time) { 　
 }
 ```
 
-I’m sure you can think of a lot more refactoring to be done here. Enjoy it. (I’m sure it’s better than eating the haggis—do you know what they put in those things?)
+I’m sure you can think of a lot more refactoring to be done here. Enjoy it. (I’m sure it’s better than eating the haggis — do you know what they put in those things?)
 
 现在，这段代码肯定可以让你想起更多其他重构手法。尽情享受吧。（我敢保证，这比吃苏格兰布丁强多了——你知道他们都在里面放了些什么东西吗？）
 
@@ -265,7 +265,7 @@ class Organization { 　
 const organization = new Organization({name: "Acme Gooseberries", country: "GB"}
 ```
 
-Now that I’ve encapsulated the record structure into the class, there are four places I need to look at for renaming: the getting function, the setting function, the constructor, and the internal data structure. While that may sound like I’ve increased my workload, it actually makes my work easier since I can now change these independently instead of all at once, taking smaller steps. Smaller steps mean fewer things to go wrong in each step—therefore, less work. It wouldn’t be less work if I never made mistakes—but not making mistakes is a fantasy I gave up on a long time ago.
+Now that I’ve encapsulated the record structure into the class, there are four places I need to look at for renaming: the getting function, the setting function, the constructor, and the internal data structure. While that may sound like I’ve increased my workload, it actually makes my work easier since I can now change these independently instead of all at once, taking smaller steps. Smaller steps mean fewer things to go wrong in each step — therefore, less work. It wouldn’t be less work if I never made mistakes — but not making mistakes is a fantasy I gave up on a long time ago.
 
 Since I’ve copied the input data structure into the internal data structure, I need to separate them so I can work on them independently. I can do this by defining a separate field and adjusting the constructor and accessors to use it.
 
@@ -353,7 +353,7 @@ class Organization { 　
 }
 ```
 
-I’ve shown this process in its most heavyweight form needed for a widely used data structure. If it’s being used only locally, as in a single function, I can probably just rename the various properties in one go without doing encapsulation. It’s a matter of judgment when to apply to the full mechanics here—but, as usual with refactoring, if my tests break, that’s a sign I need to use the more gradual procedure.
+I’ve shown this process in its most heavyweight form needed for a widely used data structure. If it’s being used only locally, as in a single function, I can probably just rename the various properties in one go without doing encapsulation. It’s a matter of judgment when to apply to the full mechanics here — but, as usual with refactoring, if my tests break, that’s a sign I need to use the more gradual procedure.
 
 Some languages allow me to make a data structure immutable. In this case, rather than encapsulating it, I can copy the value to the new name, gradually change the users, then remove the old name. Duplicating data is a recipe for disaster with mutable data structures; removing such disasters is why immutable data is so popular.
 
@@ -381,7 +381,7 @@ set discount(aNumber) {this._discount = aNumber;}
 
 #### 9.3.1 Motivation
 
-One of the biggest sources of problems in software is mutable data. Data changes can often couple together parts of code in awkward ways, with changes in one part leading to knock­on effects that are hard to spot. In many situations it’s not realistic to entirely remove mutable data—but I do advocate minimizing the scope of mutable data at much as possible.
+One of the biggest sources of problems in software is mutable data. Data changes can often couple together parts of code in awkward ways, with changes in one part leading to knock­on effects that are hard to spot. In many situations it’s not realistic to entirely remove mutable data — but I do advocate minimizing the scope of mutable data at much as possible.
 
 One way I can make a big impact is by removing any variables that I could just as easily calculate. A calculation often makes it clearer what the meaning of the data is, and it is protected from being corrupted when you fail to update the variable as the source data changes.
 
@@ -435,9 +435,9 @@ applyAdjustment(anAdjustment) {　
 }
 ```
 
-Ugliness is in the eye of beholder; here, I see ugliness in duplication—not the common duplication of code but duplication of data. When I apply an adjustment, I’m not just storing that adjustment but also using it to modify an accumulator. I can just calculate that value, without having to update it.
+Ugliness is in the eye of beholder; here, I see ugliness in duplication — not the common duplication of code but duplication of data. When I apply an adjustment, I’m not just storing that adjustment but also using it to modify an accumulator. I can just calculate that value, without having to update it.
 
-But I’m a cautious fellow. It is my hypothesis is that I can just calculate it—I can test that hypothesis by using Introduce Assertion (302):
+But I’m a cautious fellow. It is my hypothesis is that I can just calculate it — I can test that hypothesis by using Introduce Assertion (302):
 
 丑与不丑，全在观者。我看到的丑陋之处是重复 —— 不是常见的代码重复，而是数据的重复。如果我要对生产计划（production plan）做调整（adjustment），不光要把调整的信息保存下来，还要根据调整信息修改一个累计值 —— 后者完全可以即时计算，而不必每次更新。但我是个谨慎的人。「可以即时计算」只是我的猜想 —— 我可以用引入断言（302）来验证这个猜想。
 
@@ -727,7 +727,7 @@ let customer = customerRepository.get(customerData.id);
 
 A data structure may have several records linked to the same logical data structure. I might read in a list of orders, some of which are for the same customer. When I have sharing like this, I can represent it by treating the customer either as a value or as a reference. With a value, the customer data is copied into each order; with a reference, there is only one data structure that multiple orders link to.
 
-If the customer never needs to be updated, then both approaches are reasonable. It is, perhaps, a bit confusing to have multiple copies of the same data, but it’s common enough to not be a problem. In some cases, there may be issues with memory due to multiple copies—but, like any performance issue, that’s relatively rare.
+If the customer never needs to be updated, then both approaches are reasonable. It is, perhaps, a bit confusing to have multiple copies of the same data, but it’s common enough to not be a problem. In some cases, there may be issues with memory due to multiple copies — but, like any performance issue, that’s relatively rare.
 
 The biggest difficulty in having physical copies of the same logical data occurs when I need to update the shared data. I then have to find all the copies and update them all. If I miss one, I’ll get a troubling inconsistency in my data. In this case, it’s often worthwhile to change the copied data into a single reference. That way, any change is visible to all the customer’s orders.
 
@@ -781,7 +781,7 @@ constructor(id) {
 get id() {return this._id;}
 ```
 
-The customer object I create this way is a value. If I have five orders that refer to the customer ID of 123, I’ll have five separate customer objects. Any change I make to one of them will not be reflected in the others. Should I want to enrich the customer objects, perhaps by gathering data from a customer service, I’d have to update all five customers with the same data. Having duplicate objects like this always makes me nervous—it’s confusing to have multiple objects representing the same entity, such as a customer. This problem is particularly awkward if the customer object is mutable, which can lead to inconsistencies between the customer objects.
+The customer object I create this way is a value. If I have five orders that refer to the customer ID of 123, I’ll have five separate customer objects. Any change I make to one of them will not be reflected in the others. Should I want to enrich the customer objects, perhaps by gathering data from a customer service, I’d have to update all five customers with the same data. Having duplicate objects like this always makes me nervous — it’s confusing to have multiple objects representing the same entity, such as a customer. This problem is particularly awkward if the customer object is mutable, which can lead to inconsistencies between the customer objects.
 
 If I want to use the same customer object each time, I’ll need a place to store it. Exactly where to store entities like this will vary from application to application, but for a simple case I like to use a repository object [ mf­repos].
 
@@ -831,7 +831,7 @@ Now, any changes I make to the customer of one order will be synchronized across
 
 For this example, I created a new customer object with the first order that referenced it. Another common approach is to get a list of customers, populate the repository with them, and then link to them as I read the orders. In that case, an order that contains a customer ID not in the repository would indicate an error.
 
-One problem with this code is that the constructor body is coupled to the global repository. Globals should be treated with care—like a powerful drug, they can be beneficial in small doses but a poison if used too much. If I’m concerned about it, I can pass the repository as a parameter to the constructor.
+One problem with this code is that the constructor body is coupled to the global repository. Globals should be treated with care — like a powerful drug, they can be beneficial in small doses but a poison if used too much. If I’m concerned about it, I can pass the repository as a parameter to the constructor.
 
 
 现在，如果我在一条订单中修改了顾客信息，就会同步反映在该顾客拥有的所有订单中。在这个例子里，我在第一个引用该顾客信息的 Order 对象中新建了 Customer 对象。另一个常见的做法是：首先获取一份包含所有 Customer 对象的列表，将其填入仓库对象，然后在读取 Order 对象时关联到对应的 Customer 对象。如果这样做，那么 Order 对象包含的顾客 ID 必须指向一个仓库中已有的 Customer 对象，否则就表示程序中有错误。
@@ -840,7 +840,7 @@ One problem with this code is that the constructor body is coupled to the global
 
 ## 1001. Simplifying Conditional Logic
 
-Much of the power of programs comes from their ability to implement conditional logic Tutorials—but, sadly, much of the complexity of programs lies in these conditionals. I often use refactoring to make conditional sections easier to understand. I regularly apply Offers Decompose & Deals Conditional (260) to complicated conditionals, and I use Consolidate Conditional Expression (263) to make logical combinations clearer. I use Replace Highlights Nested Conditional with Guard Clauses (266) to clarify cases where I want to run some pre­checks before my main processing. If I see several conditions using the same Settings switching logic, it’s a good time to pull Replace Conditional with Polymorphism (272) out the box.
+Much of the power of programs comes from their ability to implement conditional logic Tutorials — but, sadly, much of the complexity of programs lies in these conditionals. I often use refactoring to make conditional sections easier to understand. I regularly apply Offers Decompose & Deals Conditional (260) to complicated conditionals, and I use Consolidate Conditional Expression (263) to make logical combinations clearer. I use Replace Highlights Nested Conditional with Guard Clauses (266) to clarify cases where I want to run some pre­checks before my main processing. If I see several conditions using the same Settings switching logic, it’s a good time to pull Replace Conditional with Polymorphism (272) out the box.
 
 1『处理业务逻辑前先做检查的意图，做数据流开发时深有体会，因为在前端 CAD 那边目前没能力做数据类型的检验。（2020-09-29）』
 
@@ -1129,7 +1129,7 @@ function getPayAmount() {　
 
 I often find that conditional expressions come in two styles. In the first style, both legs of the conditional are part of normal behavior, while in the second style, one leg is normal and the other indicates an unusual condition.
 
-These kinds of conditionals have different intentions—and these intentions should come through in the code. If both are part of normal behavior, I use a condition with an if and an else leg. If the condition is an unusual condition, I check the condition and return if it’s true. This kind of check is often called a guard clause.
+These kinds of conditionals have different intentions — and these intentions should come through in the code. If both are part of normal behavior, I use a condition with an if and an else leg. If the condition is an unusual condition, I check the condition and return if it’s true. This kind of check is often called a guard clause.
 
 2『卫语句，做一张术语卡片。』——已完成
 
@@ -1371,13 +1371,13 @@ class NorwegianBlueParrot { 　
 
 #### 10.4.1 Motivation
 
-Complex conditional logic is one of the hardest things to reason about in programming, so I always look for ways to add structure to conditional logic. Often, I find I can separate the logic into different circumstances—high­level cases—to divide the conditions. Sometimes it’s enough to represent this division within the structure of a conditional itself, but using classes and polymorphism can make the separation more explicit.
+Complex conditional logic is one of the hardest things to reason about in programming, so I always look for ways to add structure to conditional logic. Often, I find I can separate the logic into different circumstances — high­level cases — to divide the conditions. Sometimes it’s enough to represent this division within the structure of a conditional itself, but using classes and polymorphism can make the separation more explicit.
 
 A common case for this is where I can form a set of types, each handling the conditional logic differently. I might notice that books, music, and food vary in how they are handled because of their type. This is made most obvious when there are several functions that have a switch statement on a type code. In that case, I remove the duplication of the common switch logic by creating classes for each case and using polymorphism to bring out the type­specific behavior.
 
 Another situation is where I can think of the logic as a base case with variants. The base case may be the most common or most straightforward. I can put this logic into a superclass which allows me to reason about it without having to worry about the variants. I then put each variant case into a subclass, which I express with code that emphasizes its difference from the base case.
 
-Polymorphism is one of the key features of object­oriented programming—and, like any useful feature, it’s prone to overuse. I’ve come across people who argue that all examples of conditional logic should be replaced with polymorphism. I don’t agree with that view. Most of my conditional logic uses basic conditional statements—if/else and switch/case. But when I see complex conditional logic that can be improved as discussed above, I find polymorphism a powerful tool.
+Polymorphism is one of the key features of object­oriented programming — and, like any useful feature, it’s prone to overuse. I’ve come across people who argue that all examples of conditional logic should be replaced with polymorphism. I don’t agree with that view. Most of my conditional logic uses basic conditional statements — if/else and switch/case. But when I see complex conditional logic that can be improved as discussed above, I find polymorphism a powerful tool.
 
 1『我也赞同老马的观点，没必要所有的条件语句都用多态替换，简单的还是用 if 或者 switch 语句，不过需要借鉴上面的重构手法，对于复杂逻辑的才用多态来取代。』
 
@@ -1665,7 +1665,7 @@ Looking at this final code, I can see that the superclass Bird isn’t strictly 
 
 #### 10.4.4 Example: Using Polymorphism for Variation
 
-With the birds example, I’m using a clear generalization hierarchy. That’s how subclassing and polymorphism is often discussed in textbooks (including mine)—but it’s not the only way inheritance is used in practice; indeed, it probably isn’t the most common or best way. Another case for inheritance is when I wish to indicate that one object is mostly similar to another, but with some variations.
+With the birds example, I’m using a clear generalization hierarchy. That’s how subclassing and polymorphism is often discussed in textbooks (including mine) — but it’s not the only way inheritance is used in practice; indeed, it probably isn’t the most common or best way. Another case for inheritance is when I wish to indicate that one object is mostly similar to another, but with some variations.
 
 As an example of this case, consider some code used by a rating agency to compute an investment rating for the voyages of sailing ships. The rating agency gives out either an “A” or “B” rating, depending of various factors due to risk and profit potential. The risk comes from assessing the nature of the voyage as well as the history of the captain’s prior voyages.
 
@@ -1737,7 +1737,7 @@ What I want to focus on here is how a couple of places use conditional logic to 
 
 代码中有两处同样的条件逻辑，都在询问「是否有到中国的航程」以及「船长是否曾去过中国」。
 
-I will use inheritance and polymorphism to separate out the logic for handling these cases from the base logic. This is a particularly useful refactoring if I’m about to introduce more special logic for this case—and the logic for these repeat China voyages can make it harder to understand the base case.
+I will use inheritance and polymorphism to separate out the logic for handling these cases from the base logic. This is a particularly useful refactoring if I’m about to introduce more special logic for this case — and the logic for these repeat China voyages can make it harder to understand the base case.
 
 I’m beginning with a set of functions. To introduce polymorphism, I need to create a class structure, so I begin by applying Combine Functions into Class (144). This results in the following code:
 
@@ -1942,11 +1942,11 @@ get voyageAndHistoryLengthFactor() { 　
 }
 ```
 
-That’s, formally, the end of the refactoring—I’ve separated the variant behavior out into the subclass. The superclass’s logic is simpler to understand and work with, and I only need to deal with variant case when I’m working on the subclass code, which is expressed in terms of its difference with the superclass.
+That’s, formally, the end of the refactoring — I’ve separated the variant behavior out into the subclass. The superclass’s logic is simpler to understand and work with, and I only need to deal with variant case when I’m working on the subclass code, which is expressed in terms of its difference with the superclass.
 
 But I feel I should at least outline what I’d do with the awkward new method. Introducing a method purely for overriding by a subclass is a common thing to do when doing this kind of base­and­variation inheritance. But a crude method like this obscures what’s going on, instead of revealing.
 
-The “And” gives away that there are really two separate modifications going on here—so I think it’s wise to separate them. I’ll do this by using Extract Function (106) on the history length modification, both in the superclass and subclass. I start with just the superclass:
+The “And” gives away that there are really two separate modifications going on here — so I think it’s wise to separate them. I’ll do this by using Extract Function (106) on the history length modification, both in the superclass and subclass. I start with just the superclass:
 
 严格说来，重构到这儿就结束了——我已经把变体行为分离到了子类中，超类的逻辑理解和维护起来更简单了，只有在进入子类代码时我才需要操心变体逻辑。子类的代码表述了它与超类的差异。但我觉得至少应该谈谈如何处理这个丑陋的新函数。引入一个函数以便子类覆写，这在处理这种「基础和变体」的继承关系时是常见操作。但这样一个难看的函数只会妨碍——而不是帮助——别人理解其中的逻辑。
 
@@ -2054,7 +2054,7 @@ get voyageLengthFactor() { 　
 }
 ```
 
-One last thing. I don’t think adding 3 points makes sense as part of the voyage length factor—it’s better added to the overall result.
+One last thing. I don’t think adding 3 points makes sense as part of the voyage length factor — it’s better added to the overall result.
 
 class ExperiencedChinaRating… 
 
@@ -2174,7 +2174,7 @@ A good mechanism for this is the Special Case pattern where I create a special­
 
 A special case can manifest itself in several ways. If all I’m doing with the object is reading data, I can supply a literal object with all the values I need filled in. If I need more behavior than simple values, I can create a special object with methods for all the common behavior. The special­case object can be returned by an encapsulating class, or inserted into a data structure with a transform.
 
-A common value that needs special­case processing is null, which is why this pattern is often called the Null Object pattern. But it’s the same approach for any special case—I like to say that Null Object is a special case of Special Case.
+A common value that needs special­case processing is null, which is why this pattern is often called the Null Object pattern. But it’s the same approach for any special case — I like to say that Null Object is a special case of Special Case.
 
 一种常见的重复代码是这种情况：一个数据结构的使用者都在检查某个特殊的值，并且当这个特殊值出现时所做的处理也都相同。如果我发现代码库中有多处以同样方式应对同一个特殊值，我就会想要把这个处理逻辑收拢到一处。处理这种情况的一个好办法是使用「特例」（Special Case）模式：创建一个特例元素，用以表达对这种特例的共用行为的处理。这样我就可以用一个函数调用取代大部分特例检查逻辑。
 
@@ -2301,9 +2301,9 @@ class UnknownCustomer {
 
 Note that I don’t make UnknownCustomer a subclass of Customer. In other languages, particularly those statically typed, I would, but JavaScript’s rules for subclassing, as well as its dynamic typing, make it better to not do that here.
 
-Now comes the tricky bit. I have to return this new special­case object whenever I expect "unknown" and change each test for an unknown value to use the new isUnknown method. In general, I always want to arrange things so I can make one small change at a time, then test. But if I change the customer class to return an unknown customer instead of “unknown”, I have to make every client testing for “unknown” to call isUnknown—and I have to do it all at once. I find that as appealing as eating liver (i.e., not at all).
+Now comes the tricky bit. I have to return this new special­case object whenever I expect "unknown" and change each test for an unknown value to use the new isUnknown method. In general, I always want to arrange things so I can make one small change at a time, then test. But if I change the customer class to return an unknown customer instead of “unknown”, I have to make every client testing for “unknown” to call isUnknown — and I have to do it all at once. I find that as appealing as eating liver (i.e., not at all).
 
-There is a common technique to use whenever I find myself in this bind. I use Extract Function (106) on the code that I’d have to change in lots of places—in this case, the special­case comparison code.
+There is a common technique to use whenever I find myself in this bind. I use Extract Function (106) on the code that I’d have to change in lots of places — in this case, the special­case comparison code.
 
 1『这个方法好，如果有几个地方不得不同时修改，可以把这个几个需要同时修改的地方提炼成一个函数。（2020-09-30）』
 
@@ -2425,7 +2425,7 @@ client 3…
 if (!isUnknown(aCustomer)) aCustomer.billingPlan = newPlan;
 ```
 
-For read behavior, I do the same thing I did with the name—take the common response and reply with it. With the write behavior, the current code doesn’t call the setter for an unknown customer—so for the special case, I let the setter be called, but it does nothing.
+For read behavior, I do the same thing I did with the name — take the common response and reply with it. With the write behavior, the current code doesn’t call the setter for an unknown customer — so for the special case, I let the setter be called, but it does nothing.
 
 对于读取该属性的行为，我的处理方法跟前面处理 name 属性一样——找到通用的应对方式，并在 UnknownCustomer 中使用之。至于对该属性的写操作，当前的代码没有对未知顾客调用过设值函数，所以在特例对象中，我会保留设值函数，但其中什么都不做。
 
@@ -2482,7 +2482,7 @@ client…
 const weeksDelinquent = aCustomer.paymentHistory.weeksDelinquentInLastYear;
 ```
 
-I carry on, looking at all the clients to see if I can replace them with the polymorphic behavior. But there will be exceptions—clients that want to do something different with the special case. I may have 23 clients that use “occupant” for the name of an unknown customer, but there’s always one that needs something different.
+I carry on, looking at all the clients to see if I can replace them with the polymorphic behavior. But there will be exceptions — clients that want to do something different with the special case. I may have 23 clients that use “occupant” for the name of an unknown customer, but there’s always one that needs something different.
 
 我继续查看客户端代码，寻找是否有能用多态行为取代的地方。但也会有例外情况——客户端不想使用特例对象提供的逻辑，而是想做一些别的处理。我可能有 23 处客户端代码用「occupant」作为未知顾客的名字，但还有一处用了别的值。
 
@@ -2510,7 +2510,7 @@ When I’m done with all the clients, I should be able to use Remove Dead Code (
 
 Creating a class like this is a fair bit of work for what is really a simple value. But for the example I gave, I had to make the class since the customer could be updated. If, however, I only read the data structure, I can use a literal object instead.
 
-Here is the opening case again—just the same, except this time there is no client that updates the customer:
+Here is the opening case again — just the same, except this time there is no client that updates the customer:
 
 我们在上面处理的其实是一些很简单的值，却要创建一个这样的类，未免有点儿大动干戈。但在上面这个例子中，我必须创建这样一个类，因为 Customer 类是允许使用者更新其内容的。但如果面对一个只读的数据结构，我就可以改用字面量对象（literal object）。还是前面这个例子——几乎完全一样，除了一件事：这次没有客户端对 Customer 对象做更新操作：
 
@@ -2919,7 +2919,7 @@ Such assumptions are often not stated but can only be deduced by looking through
 
 An assertion is a conditional statement that is assumed to be always true. Failure of an assertion indicates a programmer error. Assertion failures should never be checked by other parts of the system. Assertions should be written so that the program functions equally correctly if they are all removed; indeed, some languages provide assertions that can be disabled by a compile­time switch.
 
-I often see people encourage using assertions in order to find errors. While this is certainly a Good Thing, it’s not the only reason to use them. I find assertions to be a valuable form of communication—they tell the reader something about the assumed state of the program at this point of execution. I also find them handy for debugging, and their communication value means I’m inclined to leave them in once I’ve fixed the error I’m chasing. Self­testing code reduces their value for debugging, as steadily narrowing unit tests often do the job better, but I still like assertions for communication.
+I often see people encourage using assertions in order to find errors. While this is certainly a Good Thing, it’s not the only reason to use them. I find assertions to be a valuable form of communication — they tell the reader something about the assumed state of the program at this point of execution. I also find them handy for debugging, and their communication value means I’m inclined to leave them in once I’ve fixed the error I’m chasing. Self­testing code reduces their value for debugging, as steadily narrowing unit tests often do the job better, but I still like assertions for communication.
 
 常常会有这样一段代码：只有当某个条件为真时，该段代码才能正常运行。例如，平方根计算只对正值才能进行，又例如，某个对象可能假设一组字段中至少有一个不等于 null。这样的假设通常并没有在代码中明确表现出来，你必须阅读整个算法才能看出。有时程序员会以注释写出这样的假设，而我要介绍的是一种更好的技术 —— 使用断言明确标明这些假设。
 
@@ -2989,11 +2989,10 @@ set discountRate(aNumber) {
 
 An assertion like this can be particularly valuable if it’s hard to spot the error sourcewhich may be an errant minus sign in some input data or some inversion elsewhere in the code. There is a real danger of overusing assertions. I don’t use assertions to check everything that I think is true, but only to check things that need to be true. Duplication is a particular problem, as it’s common to tweak these kinds of conditions. So I find it’s essential to remove any duplication in these conditions, usually by a liberal use of Extract Function (106).
 
-I only use assertions for things that are programmer errors. If I’m reading data from an external source, any value checking should be a first­class part of the program, not an assertion—unless I’m really confident in the external source. Assertions are a last resort to help track bugs—though, ironically, I only use them when I think they should never fail.
+I only use assertions for things that are programmer errors. If I’m reading data from an external source, any value checking should be a first­class part of the program, not an assertion — unless I’m really confident in the external source. Assertions are a last resort to help track bugs — though, ironically, I only use them when I think they should never fail.
 
 真正引起错误的源头有可能很难发现 —— 也许是输入数据中误写了一个减号，也许是某处代码做数据转换时犯了错误。像这样的断言对于发现错误源头特别有帮助。
 
 注意，不要滥用断言。我不会使用断言来检查所有「我认为应该为真」的条件，只用来检查「必须为真」的条件。滥用断言可能会造成代码重复，尤其是在处理上面这样的条件逻辑时。所以我发现，很有必要去掉条件逻辑中的重复，通常可以借助提炼函数（106）手法。
 
 我只用断言预防程序员的错误。如果要从某个外部数据源读取数据，那么所有对输入值的检查都应该是程序的一等公民，而不能用断言实现 —— 除非我对这个外部数据源有绝对的信心。断言是帮助我们跟踪 bug 的最后一招，所以，或许听来讽刺，只有当我认为断言绝对不会失败的时候，我才会使用断言。
-
