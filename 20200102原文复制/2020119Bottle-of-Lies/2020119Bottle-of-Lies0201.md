@@ -28,11 +28,11 @@ India gained independence in 1947 (Gandhi was tragically assassinated just one y
 
 Known as Yuku to family and friends, Yusuf had his father’s keen scientific mind, striking features, intense narrow eyes, and wry smile. At eighteen, he left to study chemistry at Cambridge and earned his PhD by the time he was twenty-three.
 
-He returned in 1960 to work at Cipla, only to run into a thicket of red tape. Indian rules stated that, because the company was publicly traded, the government had to approve the hire of anyone related to a company director and set that person’s salary. Consequently, for a year, Yuku earned nothing, and then for the next three years he made the equivalent of $20 a month, until he could reapply to the government for a raise.
+He returned in 1960 to work at Cipla, only to run into a thicket of red tape. Indian rules stated that, because the company was publicly traded, the government had to approve the hire of anyone related to a company director and set that person’s salary. Consequently, for a year, Yuku earned nothing, and then for the next three years he made the equivalent of `$20` a month, until he could reapply to the government for a raise.
 
 Like his father, Yuku became a voracious reader of scientific literature. He essentially taught himself how to manufacture tablets and injectable drugs. He also revolutionized the making of active ingredients, a drug’s essential components. These are often manufactured separately and sold to other pharma companies, which then add ingredients known as excipients to make a finished drug. Under Yuku’s leadership, Cipla eventually became one of India’s biggest manufacturers of bulk drugs. At the time, India followed the outdated British patent laws of 1911, which made medications in India even more expensive than in Europe. Under these laws, most pharmaceuticals were blocked for development. But Yuku found possibility in one medical area, where most of the patents had expired in the 1940s.
 
-Looking around Bombay, with its profound poverty and exploding population, Yuku set out to develop a line of birth control medication. He offered it to the government, India’s main purchaser and distributor of medicines, for two rupees (then around 20 cents) a month. Birth control in the United States cost around $8 a month. The government turned him down, seemingly indifferent to its population problem.
+Looking around Bombay, with its profound poverty and exploding population, Yuku set out to develop a line of birth control medication. He offered it to the government, India’s main purchaser and distributor of medicines, for two rupees (then around 20 cents) a month. Birth control in the United States cost around `$8` a month. The government turned him down, seemingly indifferent to its population problem.
 
 The birth control disappointment came at the same time as one of his biggest accomplishments. In 1961, he helped form the Indian Drug Manufacturers’ Association (IDMA), which set out to amend India’s antiquated patent laws. Prime Minister Indira Gandhi was highly sympathetic and would later say at the World Health Organization in 1981:「My idea of a better ordered world is one in which medical discoveries would be free of patents and there would be no profiteering from life or death.」
 
@@ -94,15 +94,13 @@ Shivinder went to work in a separate family-owned hospital business. Malvinder w
 
 Parvinder had set up Ranbaxy for a globalized world. But for all his foresight and preparation, he never could have planned what would ultimately bring the world to Ranbaxy’s doorstep. An immense crisis was looming, one that would eclipse the skills of even the most professional manager. It would require moral imagination on a vast scale—and summon Cipla’s CEO Yusuf Hamied to action.
 
-Chapter 7
-
-One Dollar a Day
+## 0202. One Dollar a Day
 
 1986
 
 Mumbai, India
 
-Dr. Yusuf Hamied of Cipla was a prolific reader of medical journals, with an annual subscription budget that topped $150,000. One day in 1986, he was introduced to something he knew nothing about. A colleague mentioned,「According to the Tufts report, AZT is the only drug available for AIDS.」
+Dr. Yusuf Hamied of Cipla was a prolific reader of medical journals, with an annual subscription budget that topped `$150,000`. One day in 1986, he was introduced to something he knew nothing about. A colleague mentioned,「According to the Tufts report, AZT is the only drug available for AIDS.」
 
 「What is AIDS?」Dr. Hamied responded.
 
@@ -112,11 +110,11 @@ At the time of Dr. Hamied’s question, the disease had barely surfaced in most 
 
 Within a decade, AIDS was destroying Africa. More than five thousand people a day were dying. In certain African countries, one-quarter of the population was infected. In some local communities, the biggest industry was making wooden coffins. Africa was becoming a continent of orphans, the number of children without parents doubling every year. The disease was projected to kill up to 90 million Africans by 2025.
 
-In 1991, Dr. Rama Rao, the research head of an Indian government laboratory, told Hamied that he had developed a chemical synthesis of AZT, or azidothymidine, and wanted Cipla to manufacture it. It was the only drug that postponed the onset of AIDS. But just one company, Burroughs Wellcome in the United States, made it, and it was selling the drug at roughly $8,000 per patient a year. Hamied readily agreed to manufacture it and launched the drug in 1993 at less than one-tenth of the international price, or about $2 a day. Even that price was still well beyond what most Indians could afford.「Our sales were zero,」Hamied recalled.
+In 1991, Dr. Rama Rao, the research head of an Indian government laboratory, told Hamied that he had developed a chemical synthesis of AZT, or azidothymidine, and wanted Cipla to manufacture it. It was the only drug that postponed the onset of AIDS. But just one company, Burroughs Wellcome in the United States, made it, and it was selling the drug at roughly `$8,000` per patient a year. Hamied readily agreed to manufacture it and launched the drug in 1993 at less than one-tenth of the international price, or about `$2` a day. Even that price was still well beyond what most Indians could afford.「Our sales were zero,」Hamied recalled.
 
 At that point, Hamied asked the government if it could purchase and distribute the drug. But the Indian government refused: it had money only for detection and prevention, not treatment. In total disgust, Hamied ended up discarding 200,000 capsules. With the stigma surrounding AIDS, he had no one to sell them to—or even give them to.
 
-A few years later, Hamied read in a medical journal that a cocktail of three drugs called HAART (highly active anti-retroviral therapy) was effective in controlling AIDS. The three drugs in question—stavudine, lamivudine, and nevirapine—were made by three different multinational drug companies. The combined price for a single patient reached $12,000 a year. Not only was the treatment regimen onerous, but few could afford it. Hamied immediately set out to make the drugs in the cocktail.
+A few years later, Hamied read in a medical journal that a cocktail of three drugs called HAART (highly active anti-retroviral therapy) was effective in controlling AIDS. The three drugs in question—stavudine, lamivudine, and nevirapine—were made by three different multinational drug companies. The combined price for a single patient reached `$12,000` a year. Not only was the treatment regimen onerous, but few could afford it. Hamied immediately set out to make the drugs in the cocktail.
 
 In 1997, under the leadership of Nelson Mandela, South Africa altered its law to make it easier to sidestep pharmaceutical patents and import low-cost medicine. No country needed the AIDS cocktail more badly than South Africa, which had emerged as an epicenter of the epidemic. But South Africa, along with over 130 nations, was bound by an international trade agreement called TRIPS (Trade-Related Aspects of Intellectual Property Rights), which required that all members of the World Trade Organization (WTO) ensure basic protection for intellectual property.
 
@@ -128,11 +126,11 @@ He had gotten Hamied’s name from Agnes Varis, who told him,「He’s a brillia
 
 Four days after contacting Hamied, Bill Haddad, Jamie Love, and three others, including a French doctor with the group Doctors Without Borders, arrived at the elegant London duplex where Hamied sat out the brutal Indian summer. He led them up the stairs to a glass dining table. Surrounded by costly art, including a work from one of India’s most famous artists, M. F. Husain, and overlooking the exclusive Gloucester Square garden, they asked him: how low could he price the AIDS cocktail, and how much of it could he make?
 
-As they spoke, Hamied scrawled calculations with a pencil and paper. He concluded that he could cut his price by more than half, to about $800 a year. The men talked into the night, and the group vowed that they would support Hamied in the inevitable battles with the multinational drug companies that lay ahead. Together, an Indian drug maker and international activists had forged an extraordinary alliance, pledging to upend the established global commercial and pharmaceutical order in order to save millions of lives.
+As they spoke, Hamied scrawled calculations with a pencil and paper. He concluded that he could cut his price by more than half, to about `$800` a year. The men talked into the night, and the group vowed that they would support Hamied in the inevitable battles with the multinational drug companies that lay ahead. Together, an Indian drug maker and international activists had forged an extraordinary alliance, pledging to upend the established global commercial and pharmaceutical order in order to save millions of lives.
 
 About a month later, in part through their efforts, Hamied received an invitation to speak at the European Commission’s conference in Brussels on HIV/AIDS, malaria, tuberculosis, and poverty reduction. He readily accepted and was given three minutes for his address. On September 28, 2000, he took to the podium and looked out over the gathering of staid, skeptical—and white—Europeans, who included health ministers, ex–prime ministers, and representatives of multinational drug companies.「Friends,」he told the unfriendly group,「I represent the third world. I represent the needs and aspirations of the third world. I represent the capabilities of the third world, and above all, I represent an opportunity.」
 
-He then proceeded to unveil three offers: he would sell the AIDS cocktail for $800 a year ($600 to governments buying in bulk); give the technology to make the drugs free to any African government willing to produce its own drugs; and provide nevirapine, the drug that limited transmission of the disease from mother to child, for free. He was literally slashing his own prices before their eyes. He closed with a challenge:「We call upon the participants of this conference to do what their conscience dictates.」
+He then proceeded to unveil three offers: he would sell the AIDS cocktail for `$800` a year (`$600` to governments buying in bulk); give the technology to make the drugs free to any African government willing to produce its own drugs; and provide nevirapine, the drug that limited transmission of the disease from mother to child, for free. He was literally slashing his own prices before their eyes. He closed with a challenge:「We call upon the participants of this conference to do what their conscience dictates.」
 
 Hamied had been expecting a pharmaceutical revolution as governments embraced his offer. The world did not often hear the word「discount,」let alone「free,」attached to expensive medicine. But he finished to a stone-silent room. No one took him up on his proposal. Partly, this was because Hamied was offering discounted medicine in the middle of a minefield. The global pharmaceutical marketplace was intersected by patents and trade agreements, which precluded many countries from reaching out for cheap medicine. But the other problem was credibility. Much of the world viewed Indian generics as poor-quality knockoffs, a perception that Hamied had labored against for years.
 
@@ -140,15 +138,15 @@ In 2000, that perception led New York Times reporter Donald G. McNeil Jr. to Ind
 
 On January 26, 2001, one of the most devastating earthquakes ever recorded rocked the western state of Gujarat. It killed 20,000 people and injured 160,000 more. The world scrambled to respond. Bill Clinton, who’d just left office, raised money and traveled to India to offer aid. Dr. Hamied opened his warehouses and donated vast amounts of medicine. But for him, the event was a different sort of wake-up call. As the world scrambled to save the victims trapped under buildings or left homeless, Hamied realized that AIDS dwarfed the Gujarat earthquake by orders of magnitude. He decided then that he could not simply wait for governments to take him up on the offer he’d made in Brussels.
 
-Just as he was pondering his next steps, the way forward presented itself. A few days after the earthquake, William Haddad called Hamied back, this time with a specific question. Would Cipla be able to offer the AIDS cocktail for $1 a day? After some back-of-the-envelope calculations, Hamied agreed. He would offer the price exclusively to Doctors Without Borders. It was a number low enough to be world-changing.
+Just as he was pondering his next steps, the way forward presented itself. A few days after the earthquake, William Haddad called Hamied back, this time with a specific question. Would Cipla be able to offer the AIDS cocktail for `$1` a day? After some back-of-the-envelope calculations, Hamied agreed. He would offer the price exclusively to Doctors Without Borders. It was a number low enough to be world-changing.
 
-On February 6, 2001, at around midnight, Hamied was at a dinner party in Mumbai when his cell phone rang. The caller was the New York Times reporter Donald McNeil.「Dr. Hamied, is it true you offered $1 a day [to Doctors Without Borders]?」McNeil asked him. Once Hamied confirmed this, McNeil laughed aloud:「Dr. Hamied, your life will not be the same from tomorrow.」
+On February 6, 2001, at around midnight, Hamied was at a dinner party in Mumbai when his cell phone rang. The caller was the New York Times reporter Donald McNeil.「Dr. Hamied, is it true you offered `$1` a day [to Doctors Without Borders]?」McNeil asked him. Once Hamied confirmed this, McNeil laughed aloud:「Dr. Hamied, your life will not be the same from tomorrow.」
 
-McNeil’s story was published the next morning on the front page of the Times. According to the article, Cipla was offering to sell the AIDS cocktail for $350 a year per patient, or roughly $1 a day, as compared to Western prices of between $10,000 and $15,000 a year, but was being blocked by the multinational drug makers that held the patents, who were being backed by the Bush administration. McNeil’s story「completely broke the dikes,」Jamie Love recalled.
+McNeil’s story was published the next morning on the front page of the Times. According to the article, Cipla was offering to sell the AIDS cocktail for `$350` a year per patient, or roughly `$1` a day, as compared to Western prices of between `$10,000` and `$15,000` a year, but was being blocked by the multinational drug makers that held the patents, who were being backed by the Bush administration. McNeil’s story「completely broke the dikes,」Jamie Love recalled.
 
 Papers all over the world picked it up. News of Big Pharma’s patent protection efforts in the face of the global pandemic and the Bush administration’s support of them sparked international outrage and stoked street protests from Philadelphia to Pretoria, even accusations of genocide. The result was a PR debacle for Big Pharma. Even among the industry’s lowest moments—the illegal marketing of drugs for off-label uses; the payoffs to doctors who acted as promotional mouthpieces; the concealment of negative safety data for high-profile drugs—its stance in South Africa seemed uniquely horrible. As the Wall Street Journal summed it up:「Can the pharmaceuticals industry inflict any more damage upon its ailing public image? Well, how about suing Nelson Mandela?」
 
-It was an outrage that William Haddad would never forget.「Big Pharma, those cock-sucking bastards,」he yelled to a journalist years later.「Thirty-four million people had AIDS and every single one of them would die without the medicine. Would die and were dying. And they charged $15,000 dollars a year, and only four thousand people [in Africa] could afford the medicine.」
+It was an outrage that William Haddad would never forget.「Big Pharma, those cock-sucking bastards,」he yelled to a journalist years later.「Thirty-four million people had AIDS and every single one of them would die without the medicine. Would die and were dying. And they charged `$15,000` dollars a year, and only four thousand people [in Africa] could afford the medicine.」
 
 The disgust was mutual. As GlaxoSmithKline’s CEO Jean-Pierre Garnier declared of Cipla and the Indian generics companies at a 2001 health care forum,「They are pirates. That’s about what they are. They have never done a day of research in their lives.」Some in Big Pharma accused Hamied of trying to grab market share in Africa, to which he responded:「I am accused of having an ulterior motive. Of course I have an ulterior motive: before I die, I want to do some good.」
 
@@ -158,9 +156,9 @@ Hamied and the activists prevailed. The following month, the multinational drug 
 
 The Clinton Foundation stepped in and hammered out a deal in which Indian drug makers agreed to slash their prices even further, to 38 cents a day, in exchange for guaranteed large-volume purchases from African governments. The foundation even brought in process chemists to help the companies find ways to reduce the number of steps required to manufacture the drugs, which also brought down costs.
 
-However, it was the $1 a day figure that changed the calculus of the West—from「we can’t afford to help」to「we can’t afford not to.」The AIDS activists had not counted on President George W. Bush as an ally. But on January 28, 2003, he stunned them by announcing in his State of the Union address a new program that would spend $15 billion on AIDS drugs over five years. He explained that the dramatic drop in costs「places a tremendous possibility within our grasp. . . . Seldom has history offered a greater opportunity to do so much for so many.」The program, which still operates today, was named PEPFAR (President’s Emergency Plan for AIDS Relief). Finally, the world, in its halting way, had caught up to the revolution that Hamied had launched.
+However, it was the `$1 `a day figure that changed the calculus of the West—from「we can’t afford to help」to「we can’t afford not to.」The AIDS activists had not counted on President George W. Bush as an ally. But on January 28, 2003, he stunned them by announcing in his State of the Union address a new program that would spend `$15` billion on AIDS drugs over five years. He explained that the dramatic drop in costs「places a tremendous possibility within our grasp. . . . Seldom has history offered a greater opportunity to do so much for so many.」The program, which still operates today, was named PEPFAR (President’s Emergency Plan for AIDS Relief). Finally, the world, in its halting way, had caught up to the revolution that Hamied had launched.
 
-For Big Pharma, PEPFAR was a nightmare scenario: a U.S.-taxpayer-funded effort to spend billions on generics bound for Africa. Just days after Bush unveiled the plan, some CEOs of multinational drug companies petitioned the White House to undo the commitment of the $1 a day cost. The answer was no. As a concession, however, Bush allowed the group to choose the head of PEPFAR. To the dismay of AIDS activists, they installed Randall Tobias, the former CEO of the drug company Eli Lilly.
+For Big Pharma, PEPFAR was a nightmare scenario: a U.S.-taxpayer-funded effort to spend billions on generics bound for Africa. Just days after Bush unveiled the plan, some CEOs of multinational drug companies petitioned the White House to undo the commitment of the `$1 `a day cost. The answer was no. As a concession, however, Bush allowed the group to choose the head of PEPFAR. To the dismay of AIDS activists, they installed Randall Tobias, the former CEO of the drug company Eli Lilly.
 
 Beyond the problem of cost, another question still loomed: quality. How could the West guarantee the quality of all the AIDS drugs it was buying for Africa? The generics advocates turned to the World Health Organization, which agreed to serve as an international clearinghouse for quality generics. It would inspect companies that wanted to sell AIDS drugs internationally and, if approved, would add those names to a prequalified list. But this solution didn’t satisfy everyone. Suddenly, under Tobias’s leadership, PEPFAR introduced a new requirement: any AIDS drugs being purchased for sale to Africa with U.S. taxpayer dollars had to be approved by the U.S. Food and Drug Administration.
 
@@ -172,9 +170,7 @@ Finally, in the face of intense bipartisan pressure, a compromise emerged. The F
 
 Some of the world’s poorest people owe their lives to Dr. Hamied. However, his revolution came with an unintended consequence. As more Indian companies got approval from the FDA to sell their drugs in Africa, this led to a realization that would in short order upend the generic drug industry and transform the American drug supply: if Indians could make affordable medicine good enough to be approved by American regulators, then the drugs were good enough for Americans to take too.
 
-Chapter 8
-
-A Clever Way of Doing Things
+## 0203. A Clever Way of Doing Things
 
 DECEMBER 2005
 
@@ -240,9 +236,7 @@ His rapid ascent seemed proof that he’d mastered the tensions between cost, qu
 
 But at Mylan, as Malik and his team seemed to hit every formulation deadline, some employees began to wonder whether Gandhian innovation was the only explanation for their success.
 
-Chapter 9
-
-The Assignment
+## 0204. The Assignment
 
 AUGUST 18, 2004
 
