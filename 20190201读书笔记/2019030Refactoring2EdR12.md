@@ -135,9 +135,9 @@ function distanceTravelled (scenario, time) { 　
 
 I’m sure you can think of a lot more refactoring to be done here. Enjoy it. (I’m sure it’s better than eating the haggis — do you know what they put in those things?)
 
-现在，这段代码肯定可以让你想起更多其他重构手法。尽情享受吧。（我敢保证，这比吃苏格兰布丁强多了——你知道他们都在里面放了些什么东西吗？）
+现在，这段代码肯定可以让你想起更多其他重构手法。尽情享受吧。（我敢保证，这比吃苏格兰布丁强多了 —— 你知道他们都在里面放了些什么东西吗？）
 
-苏格兰布丁（haggis）是一种苏格兰菜，把羊心等内脏装在羊胃里煮成。由于它被羊胃包成个球体，因此可以像球一样踢来踢去，这就是本例的由来。把羊心装在羊胃里煮成，呃，有些人难免对这道菜恶心，Martin Fowler 想必是其中之ー。——译者注
+苏格兰布丁（haggis）是一种苏格兰菜，把羊心等内脏装在羊胃里煮成。由于它被羊胃包成个球体，因此可以像球一样踢来踢去，这就是本例的由来。把羊心装在羊胃里煮成，呃，有些人难免对这道菜恶心，Martin Fowler 想必是其中之ー。 —— 译者注
 
 #### 9.1.4 Example: Assigning to an Input Parameter
 
@@ -181,7 +181,7 @@ function discount (inputValue, quantity) { 　
 
 You’ll notice that I changed the second line to use inputValue as its data source. Although the two are the same, I think that line is really about applying the modification to the result value based on the original input value, not the (coincidentally same) value of the result accumulator.
 
-我修改了第二行代码，把 inputValue 作为判断条件的基准数据。虽说这里用 inputValue 还是 result 效果都一样，但在我看来，这行代码的含义是「根据原始输入值做判断，然后修改结果值」，而不是「根据当前结果值做判断」——尽管两者的效果恰好一样。
+我修改了第二行代码，把 inputValue 作为判断条件的基准数据。虽说这里用 inputValue 还是 result 效果都一样，但在我看来，这行代码的含义是「根据原始输入值做判断，然后修改结果值」，而不是「根据当前结果值做判断」 —— 尽管两者的效果恰好一样。
 
 ### 9.2 Rename Filed
 
@@ -1131,7 +1131,7 @@ I often find that conditional expressions come in two styles. In the first style
 
 These kinds of conditionals have different intentions — and these intentions should come through in the code. If both are part of normal behavior, I use a condition with an if and an else leg. If the condition is an unusual condition, I check the condition and return if it’s true. This kind of check is often called a guard clause.
 
-2『卫语句，做一张术语卡片。』——已完成
+2『卫语句，做一张术语卡片。』 —— 已完成
 
 The key point of Replace Nested Conditional with Guard Clauses is emphasis. If I’m using an if­-then-­else construct, I’m giving equal weight to the if leg and the else leg. This communicates to the reader that the legs are equally likely and important. Instead, the guard clause says, “This isn’t the core to this function, and if it happens, do something and get out.”
 
@@ -1387,7 +1387,7 @@ Polymorphism is one of the key features of object­oriented programming — and,
 
 另一种情况是：有一个基础逻辑，在其上又有一些变体。基础逻辑可能是最常用的，也可能是最简单的。我可以把基础逻辑放进超类，这样我可以首先理解这部分逻辑，暂时不管各种变体，然后我可以把每种变体逻辑单独放进一个子类，其中的代码着重强调与基础逻辑的差异。
 
-多态是面向对象编程的关键特性之一。跟其他一切有用的特性一样，它也很容易被滥用。我曾经遇到有人争论说所有条件逻辑都应该用多态取代。我不赞同这种观点。我的大部分条件逻辑只用到了基本的条件语句 ——if/else 和 switch/case，并不需要劳师动众地引入多态。但如果发现如前所述的复杂条件逻辑，多态是改善这种情况的有力工具。
+多态是面向对象编程的关键特性之一。跟其他一切有用的特性一样，它也很容易被滥用。我曾经遇到有人争论说所有条件逻辑都应该用多态取代。我不赞同这种观点。我的大部分条件逻辑只用到了基本的条件语句  —— if/else 和 switch/case，并不需要劳师动众地引入多态。但如果发现如前所述的复杂条件逻辑，多态是改善这种情况的有力工具。
 
 #### 10.4.2 Mechanics
 
@@ -1741,7 +1741,7 @@ I will use inheritance and polymorphism to separate out the logic for handling t
 
 I’m beginning with a set of functions. To introduce polymorphism, I need to create a class structure, so I begin by applying Combine Functions into Class (144). This results in the following code:
 
-我会用继承和多态将处理「中国因素」的逻辑从基础逻辑中分离出来。如果还要引入更多的特殊逻辑，这个重构就很有用——这些重复的「中国因素」会混淆视听，让基础逻辑难以理解。起初代码里只有一堆函数，如果要引入多态的话，我需要先建立一个类结构，因此我首先使用函数组合成类（144）。
+我会用继承和多态将处理「中国因素」的逻辑从基础逻辑中分离出来。如果还要引入更多的特殊逻辑，这个重构就很有用 —— 这些重复的「中国因素」会混淆视听，让基础逻辑难以理解。起初代码里只有一堆函数，如果要引入多态的话，我需要先建立一个类结构，因此我首先使用函数组合成类（144）。
 
 ```js
 function rating(voyage, history) {　
@@ -1948,7 +1948,7 @@ But I feel I should at least outline what I’d do with the awkward new method. 
 
 The “And” gives away that there are really two separate modifications going on here — so I think it’s wise to separate them. I’ll do this by using Extract Function (106) on the history length modification, both in the superclass and subclass. I start with just the superclass:
 
-严格说来，重构到这儿就结束了——我已经把变体行为分离到了子类中，超类的逻辑理解和维护起来更简单了，只有在进入子类代码时我才需要操心变体逻辑。子类的代码表述了它与超类的差异。但我觉得至少应该谈谈如何处理这个丑陋的新函数。引入一个函数以便子类覆写，这在处理这种「基础和变体」的继承关系时是常见操作。但这样一个难看的函数只会妨碍——而不是帮助——别人理解其中的逻辑。
+严格说来，重构到这儿就结束了 —— 我已经把变体行为分离到了子类中，超类的逻辑理解和维护起来更简单了，只有在进入子类代码时我才需要操心变体逻辑。子类的代码表述了它与超类的差异。但我觉得至少应该谈谈如何处理这个丑陋的新函数。引入一个函数以便子类覆写，这在处理这种「基础和变体」的继承关系时是常见操作。但这样一个难看的函数只会妨碍 —— 而不是帮助 —— 别人理解其中的逻辑。
 
 函数名中的「And」字样说明其中包含了两件事，所以我觉得应该将它们分开。我会用提炼函数（106）把「历史航行数」（history length）的相关逻辑提炼出来。这一步提炼在超类和子类中都要发生，我首先从超类开始。
 
@@ -2427,7 +2427,7 @@ if (!isUnknown(aCustomer)) aCustomer.billingPlan = newPlan;
 
 For read behavior, I do the same thing I did with the name — take the common response and reply with it. With the write behavior, the current code doesn’t call the setter for an unknown customer — so for the special case, I let the setter be called, but it does nothing.
 
-对于读取该属性的行为，我的处理方法跟前面处理 name 属性一样——找到通用的应对方式，并在 UnknownCustomer 中使用之。至于对该属性的写操作，当前的代码没有对未知顾客调用过设值函数，所以在特例对象中，我会保留设值函数，但其中什么都不做。
+对于读取该属性的行为，我的处理方法跟前面处理 name 属性一样 —— 找到通用的应对方式，并在 UnknownCustomer 中使用之。至于对该属性的写操作，当前的代码没有对未知顾客调用过设值函数，所以在特例对象中，我会保留设值函数，但其中什么都不做。
 
 class UnknownCustomer…
 
@@ -2484,7 +2484,7 @@ const weeksDelinquent = aCustomer.paymentHistory.weeksDelinquentInLastYear;
 
 I carry on, looking at all the clients to see if I can replace them with the polymorphic behavior. But there will be exceptions — clients that want to do something different with the special case. I may have 23 clients that use “occupant” for the name of an unknown customer, but there’s always one that needs something different.
 
-我继续查看客户端代码，寻找是否有能用多态行为取代的地方。但也会有例外情况——客户端不想使用特例对象提供的逻辑，而是想做一些别的处理。我可能有 23 处客户端代码用「occupant」作为未知顾客的名字，但还有一处用了别的值。
+我继续查看客户端代码，寻找是否有能用多态行为取代的地方。但也会有例外情况 —— 客户端不想使用特例对象提供的逻辑，而是想做一些别的处理。我可能有 23 处客户端代码用「occupant」作为未知顾客的名字，但还有一处用了别的值。
 
 client…
 
@@ -2512,7 +2512,7 @@ Creating a class like this is a fair bit of work for what is really a simple val
 
 Here is the opening case again — just the same, except this time there is no client that updates the customer:
 
-我们在上面处理的其实是一些很简单的值，却要创建一个这样的类，未免有点儿大动干戈。但在上面这个例子中，我必须创建这样一个类，因为 Customer 类是允许使用者更新其内容的。但如果面对一个只读的数据结构，我就可以改用字面量对象（literal object）。还是前面这个例子——几乎完全一样，除了一件事：这次没有客户端对 Customer 对象做更新操作：
+我们在上面处理的其实是一些很简单的值，却要创建一个这样的类，未免有点儿大动干戈。但在上面这个例子中，我必须创建这样一个类，因为 Customer 类是允许使用者更新其内容的。但如果面对一个只读的数据结构，我就可以改用字面量对象（literal object）。还是前面这个例子 —— 几乎完全一样，除了一件事：这次没有客户端对 Customer 对象做更新操作：
 
 class Site…
 
