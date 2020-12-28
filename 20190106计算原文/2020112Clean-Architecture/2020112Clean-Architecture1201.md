@@ -1,4 +1,23 @@
-Chapter 12  Components
+# 1201. Components
+
+This page intentionally left blank
+
+Component Principles
+
+IV
+
+If the SOLID principles tell us how to arrange the bricks into walls and rooms, then the component principles tell us how to arrange the rooms into buildings. Large software systems, like large buildings, are built out of smaller components.
+
+In Part IV, we will discuss what software components are, which elements should compose them, and how they should be composed together into systems.
+
+93
+
+This page intentionally left blank
+
+12Components
+
+95
+
 
 Components are the units of deployment. They are the smallest entities that can be deployed as part of a system. In Java, they are jar files. In Ruby, they are gem files. In .Net, they are DLLs. In compiled languages, they are aggregations of binary files. In interpreted languages, they are aggregations of source files. In all languages, they are the granule of deployment.
 

@@ -240,9 +240,37 @@ Martin has authored and edited many books, including The Clean Coder, Clean Code
 
 行动卡是能够指导自己的行动的卡。
 
-### 0601. 任意卡——
+### 0601. 任意卡 —— 单一职责原则 SRP 定义的演化
 
-最后还有一张任意卡，记录个人阅读感想。
+Of all the SOLID principles, the Single Responsibility Principle (SRP) might be the least well understood. That’s likely because it has a particularly inappropriate name. It is too easy for programmers to hear the name and then assume that it means that every module should do just one thing.
+
+Make no mistake, there is a principle like that. A function should do one, and only one, thing. We use that principle when we are refactoring large functions into smaller functions; we use it at the lowest levels. But it is not one of the SOLID principles — it is not the SRP.
+
+Historically, the SRP has been described this way: 
+
+A module should have one, and only one, reason to change.
+
+Software systems are changed to satisfy users and stakeholders; those users and stakeholders are the「reason to change」that the principle is talking about. Indeed, we can rephrase the principle to say this:
+
+A module should be responsible to one, and only one, user or stakeholder.
+
+Unfortunately, the words「user」and「stakeholder」aren’t really the right words to use here. There will likely be more than one user or stakeholder who wants the system changed in the same way. Instead, we’re really referring to a group — one or more people who require that change. We’ll refer to that group as an actor. Thus the final version of the SRP is:
+
+A module should be responsible to one, and only one, actor.
+
+Now, what do we mean by the word「module」? The simplest definition is just a source file. Most of the time that definition works fine. Some languages and development environments, though, don’t use source files to contain their code. In those cases a module is just a cohesive set of functions and data structures.
+
+2『 SRP 定义的演化，做一张任意卡片。』——已完成
+
+That word「cohesive」implies the SRP. Cohesion is the force that binds together the code responsible to a single actor. Perhaps the best way to understand this principle is by looking at the symptoms of violating it.
+
+SRP 是 SOLID 五大设计原则中最容易被误解的一个。也许是名字的原因，很多程序员根据 SRP 这个名字想当然地认为这个原则就是指：每个模块都应该只做一件事。没错，后者的确也是一个设计原则，即确保一个函数只完成一个功能。我们在将大型函数重构成小函数时经常会用到这个原则，但这只是一个面向底层实现细节的设计原则，并不是 SRP 的全部。在历史上，我们曾经这样描述 SRP 这一设计原则：任何一个软件模块都应该有且仅有一个被修改的原因。
+
+在现实环境中，软件系统为了满足用户和所有者的要求，必然要经常做出这样那样的修改。而该系统的用户或者所有者就是该设计原则中所指的「被修改的原因」。所以，我们也可以这样描述 SRP：任何一个软件模块都应该只对一个用户（User）或系统利益相关者（Stakeholder）负责。
+
+不过，这里的「用户」和「系统利益相关者」在用词上也并不完全准确，它们很有可能指的是一个或多个用户和利益相关者，只要这些人希望对系统进行的变更是相似的，就可以归为一类个或多个有共同需求的人。在这里，我们将其称为行为者（actor）。所以，对于 SRP 的最终描述就变成了：任何一个软件模块都应该只对某一类行为者负责。
+
+那么，上文中提到的「软件模块」究竟又是在指什么呢？大部分情況下，其最简单的定义就是指一个源代码文件。然而，有些编程语言和编程环境并不是用源代码文件来存储程序的。在这些情況下，「软件模块」指的就是一组紧密相关的函数和数据结构。在这里，「相关」这个词实际上就隐含了 SRP 这一原则。代码与数据就是靠着与某一类行为者的相关性被组合在一起的。或许，理解这个设计原则最好的办法就是让大家来看一些反面案例。
 
 ## 内容简介
 
