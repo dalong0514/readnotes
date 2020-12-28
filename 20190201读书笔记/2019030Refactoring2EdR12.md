@@ -2685,7 +2685,7 @@ If I use a literal like this, I should make it immutable, which I might do with 
 
 如果使用了这样的字面量，应该使用诸如 Object.freeze 的方法将其冻结，使其不可变。通常，我还是喜欢用类多一点。
 
-### 10.5.5 Example: Using a Transform
+#### 10.5.5 Example: Using a Transform
 
 Both previous cases involve a class, but the same idea can be applied to a record by using a transform step. Let’s assume our input is a simple record structure that looks something like this:
 

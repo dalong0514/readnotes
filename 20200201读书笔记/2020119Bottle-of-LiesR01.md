@@ -1,10 +1,12 @@
-# Part I Shifting Ground
+# 2020119Bottle-of-LiesR01
+
+## 记忆时间
+
+Part I Shifting Ground
 
 ## 0101. The Man Who Saw Further
 
-LATE FALL 2001
-
-Hopewell, New Jersey
+LATE FALL 2001 | Hopewell, New Jersey
 
 Dinesh S. Thakur was fastidious. He wore perfectly ironed khakis, a white button-down shirt, a dark sports jacket, and well-polished loafers. Stocky and of medium height, he had a round face, full head of dark hair, and deep-set eyes that gave him a doleful appearance. On this chilly afternoon, the leaves just beginning to turn gold and crimson, the thirty-three-year-old information scientist set out across the grassy slope toward the man-made lake. It was a favorite destination on the Bristol-Myers Squibb campus, where employees went to clear their heads or escape the highly regimented corporate culture, if only for their lunch hour.
 
@@ -122,9 +124,7 @@ BMS 的研发中心叫坐落于一块修剪整齐的园区，它的边上是一�
 
 ## 0102. The Gold Rush
 
-AUGUST 17, 2002
-
-New Delhi, India
+AUGUST 17, 2002 | New Delhi, India
 
 On a humid day one year before Dinesh Thakur arrived at Ranbaxy, a company executive boarded a plane at the Indira Gandhi International Airport, bound for Newark, New Jersey. He’d left the office in a「crazy rush,」an employee recalled, to catch the almost sixteen-hour flight.
 
@@ -362,9 +362,7 @@ But shortly after the Sotret meeting, the executives memorialized the faulty qua
 
 ## 0103. A Slum for the Rich
 
-AUGUST 2003
-
-Gurgaon, India
+AUGUST 2003 | Gurgaon, India
 
 If globalization can be said to have a headquarters, then it may well be Gurgaon, an entire city built from the outsourcing efforts of the world’s Fortune 500 companies. Gurgaon lies just eighteen miles southwest of New Delhi. Two decades ago, it was a sleepy farming town ringed by forest, nestled below the beautiful Aravalli mountain range. As global multinational companies looked to move their back-office functions to India, developers sensed opportunity. Office towers rose from the fields. Roads named Cyber City and Golf Course were built. In short order, Gurgaon became known as「Millennium City.」
 
@@ -504,9 +502,7 @@ After his stop at Ranbaxy, President Clinton used the same visit to head to Agra
 
 ## 0104. The Language of Quality
 
-FEBRUARY 25, 2000
-
-New Iberia, Louisiana
+FEBRUARY 25, 2000 | New Iberia, Louisiana
 
 Jose Hernandez sniffed the air. The forty-three-year-old FDA investigator stepped deeper into the K&K Seafoods crab-processing plant, which looked none too appetizing. His mind clicked over the regulations enshrined in the U.S. Food, Drug, and Cosmetic Act. Gazing inside the plant, he could practically see the relevant pages: the fish and fishery products「Hazard Analysis Critical Control Point」plan, Title 21, Code of Federal Regulations, part 123, 6 (b).
 
@@ -708,9 +704,7 @@ Globalization cast a shadow over a process that required transparency, making di
 
 2004
 
-Gurgaon
-
-Haryana, India
+Gurgaon | Haryana, India
 
 Bristol-Myers Squibb had been a staid, legalistic environment. Every employee at every level was expected to attend workshops on topics ranging from how to maintain proper audit trails to matters of gender sensitivity.
 
