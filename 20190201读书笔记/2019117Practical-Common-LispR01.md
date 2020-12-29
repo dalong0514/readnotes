@@ -757,7 +757,7 @@ The backwards macro thus defines a new language that's a lot like Lisp -- just b
 
 So how does that help with the code duplication in where? Well, you can write a macro that generates exactly the code you need for each particular call to where. Again, the best approach is to build our code bottom up. In the hand-optimized selector function, you had an expression of the following form for each actual field referred to in the original call to where:
 
-1『这里说了 macro 的用途。（2020-10-22）』
+1『这里说了 macro 的用途。（2020-10-22）回复：上面的信息是可以帮助理解 macro 的，但目前还是看不懂。（2020-12-29）』
 
 ```c
 (equal (getf cd field) value)
@@ -891,7 +891,7 @@ It works. And the where macro with its two helper functions is actually one line
 
 11 It’s unlikely that the cost of checking whether keyword parameters had been passed would be a detectible drag on performance since checking whether a variable is NIL is going to be pretty cheap. On the other hand, these functions returned by where are going to be right in the middle of the inner loop of any select, update, or delete-rows call, as they have to be called once per entry in the database. Anyway, for illustrative purposes, this will have to do.
 
-12 Macros are also run by the interpreter—however, it’s easier to understand the point of macros when you think about compiled code. As with everything else in this chapter, I’ll cover this in greater detail in future chapters.
+12 Macros are also run by the interpreter — however, it’s easier to understand the point of macros when you think about compiled code. As with everything else in this chapter, I’ll cover this in greater detail in future chapters.
 
 ### 3.9 Wrapping Up
 
