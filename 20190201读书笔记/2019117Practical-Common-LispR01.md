@@ -237,7 +237,7 @@ But there's still one problem: if it can't find an integer amidst all the junk, 
 
 to get a default value of 0.
 
-1『在 autolisp 里试验过，or 只是一个逻辑或的功能，不能实现这里，前一个语句是 nil 时自动取后一个语句为默认值的功能。比如 `(or nil 0)` 返回的是 `T`。（2020-10-22）』
+1『在 autolisp 里试验过，or 只是一个逻辑或的功能，不能实现这里，前一个语句是 nil 时自动取后一个语句为默认值的功能。比如 `(or nil 0)` 返回的是 `T`。（2020-10-22）回复：完全可以借鉴这里的思想，自己封装一个函数，赞。（2020-12-29）』
 
 Fixing the code to prompt for Ripped is quite a bit simpler. You can just use the Common Lisp function Y-OR-N-P.
 
