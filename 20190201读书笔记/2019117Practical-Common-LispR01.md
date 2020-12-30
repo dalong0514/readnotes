@@ -863,7 +863,7 @@ the variable clauses will contain the list.
 (:title "Give Us a Break" :ripped t)
 ```
 
-2『 `&key` 和 `&rest` 做一张术语卡片。（2020-10-22）』——未完成
+2『 `&key` 和 `&rest` 做一张术语卡片。（2020-10-22）』 —  — 未完成
 
 This list is passed to make-comparisons-list, which returns a list of comparison expressions. You can see exactly what code a call to where will generate using the function MACROEXPAND-1. If you pass MACROEXPAND-1, a form representing a macro call, it will call the macro code with appropriate arguments and return the expansion. So you can check out the previous where call like this:
 
@@ -917,6 +917,8 @@ In other words, the people who have actually used Lisp over the past 45 years ha
 
 1 [The implementation of LISP](http://www-formal.stanford.edu/jmc/history/lisp/node3.html)
 
+2『已下载「附件0401-History-of-Lisp.md」，待消化吸收。（2020-12-29）』——未完成
+
 ### 4.2 Breaking Open the Black Box
 
 Before we look at the specifics of Lisp's syntax and semantics, it's worth taking a moment to look at how they're defined and how this differs from many other languages.
@@ -924,6 +926,8 @@ Before we look at the specifics of Lisp's syntax and semantics, it's worth takin
 In most programming languages, the language processor -- whether an interpreter or a compiler -- operates as a black box: you shove a sequence of characters representing the text of a program into the black box, and it -- depending on whether it's an interpreter or a compiler -- either executes the behaviors indicated or produces a compiled version of the program that will execute the behaviors when it's run.
 
 Inside the black box, of course, language processors are usually divided into subsystems that are each responsible for one part of the task of translating a program text into behavior or object code. A typical division is to split the processor into three phases, each of which feeds into the next: a lexical analyzer breaks up the stream of characters into tokens and feeds them to a parser that builds a tree representing the expressions in the program, according to the language's grammar. This tree -- called an abstract syntax tree -- is then fed to an evaluator that either interprets it directly or compiles it into some other language such as machine code. Because the language processor is a black box, the data structures used by the processor, such as the tokens and abstract syntax trees, are of interest only to the language implementer.
+
+1-2『这里的信息让自己对语言的运行时、编译过程有了更多的认识，但其中不少东西没吃透，先做一张主题卡。（2020-12-30）』 —  — 已完成
 
 In Common Lisp things are sliced up a bit differently, with consequences for both the implementer and for how the language is defined. Instead of a single black box that goes from text to program behavior in one step, Common Lisp defines two black boxes, one that translates text into Lisp objects and another that implements the semantics of the language in terms of those objects. The first box is called the reader, and the second is called the evaluator. 2
 
@@ -980,7 +984,7 @@ Two important characteristics of the way the reader translates names to symbol o
 
 1『在 lisp 里，变量名都会自动转为大写的。（2020-10-28）』
 
-To ensure that the same textual name is always read as the same symbol, the reader interns symbols -- after it has read the name and converted it to all uppercase, the reader looks in a table called a package for an existing symbol with the same name. If it can't find one, it creates a new symbol and adds it to the table. Otherwise, it returns the symbol already in the table. Thus, anywhere the same name appears in any s-expression, the same object will be used to represent it.8
+To ensure that the same textual name is always read as the same symbol, the reader interns symbols -- after it has read the name and converted it to all uppercase, the reader looks in a table called a package for an existing symbol with the same name. If it can't find one, it creates a new symbol and adds it to the table. Otherwise, it returns the symbol already in the table. Thus, anywhere the same name appears in any s-expression, the same object will be used to represent it. 8
 
 Because names can contain many more characters in Lisp than they can in Algol-derived languages, certain naming conventions are distinct to Lisp, such as the use of hyphenated names like hello-world. Another important convention is that global variables are given names that start and end with `*`. Similarly, constants are given names starting and ending in +. And some programmers will name particularly low-level functions with names that start with `%` or even `%%`. The names defined in the language standard use only the alphabetic characters (A-Z) plus `*, +, -, /, 1, 2, <, =, >,` and &.
 
@@ -1022,25 +1026,27 @@ Of course, the interesting thing about Lisp forms isn't their syntax but how the
 
 The simplest Lisp forms, atoms, can be divided into two categories: symbols and everything else. A symbol, evaluated as a form, is considered the name of a variable and evaluates to the current value of the variable. 11 I'll discuss in Chapter 6 how variables get their values in the first place. You should also note that certain "variables" are that old oxymoron of programming: "constant variables." For instance, the symbol PI names a constant variable whose value is the best possible floating-point approximation to the mathematical constant pi.
 
+1-2『多次看到了 Lisp forms、atoms，atoms 做一张术语卡片。』
+
 All other atoms -- numbers and strings are the kinds you've seen so far -- are self-evaluating objects. This means when such an expression is passed to the notional evaluation function, it's simply returned. You saw examples of self-evaluating objects in Chapter 2 when you typed 10 and "hello, world" at the REPL.
 
 It's also possible for symbols to be self-evaluating in the sense that the variables they name can be assigned the value of the symbol itself. Two important constants that are defined this way are T and NIL, the canonical true and false values. I'll discuss their role as booleans in the section "Truth, Falsehood, and Equality."
 
 Another class of self-evaluating symbols are the keyword symbols -- symbols whose names start with `:`. When the reader interns such a name, it automatically defines a constant variable with the name and with the symbol as the value.
 
-1-2『这里提到的 symbols whose names start with `:`，目前没看到应用场景，有时间去研究一下。（2020-10-28）』——未完成
+1-2『这里提到的 symbols whose names start with `:`，目前没看到应用场景，有时间去研究一下。（2020-10-28）』 —  — 未完成
 
 Things get more interesting when we consider how lists are evaluated. All legal list forms start with a symbol, but three kinds of list forms are evaluated in three quite different ways. To determine what kind of form a given list is, the evaluator must determine whether the symbol that starts the list is the name of a function, a macro, or a special operator. If the symbol hasn't been defined yet -- as may be the case if you're compiling code that contains references to functions that will be defined later -- it's assumed to be a function name. 12 I'll refer to the three kinds of forms as function call forms, macro forms, and special forms.
 
-2『三大类 list 的处理方式：函数、宏和操作符。做一张任意卡片。』——已完成
+2『三大类 list 的处理方式：函数、宏和操作符。做一张任意卡片。回复：突然领悟到在 Lisp 里「一切皆 lisp」，函数、表达式、变量等等。（2020-12-30）』 —  — 已完成
 
 9 Of course, other levels of correctness exist in Lisp, as in other languages. For instance, the s-expression that results from reading `(foo 1 2)` is syntactically well-formed but can be evaluated only if foo is the name of a function or macro.
 
 10 One other rarely used kind of Lisp form is a list whose first element is a lambda form. I’ll discuss this kind of form in Chapter 5.
 
-11 One other possibility exists—it’s possible to define symbol macros that are evaluated slightly differently. We won’t worry about them.
+11 One other possibility exists — it’s possible to define symbol macros that are evaluated slightly differently. We won’t worry about them.
 
-12 In Common Lisp a symbol can name both an operator—function, macro, or special operatorand a variable. This is one of the major differences between Common Lisp and Scheme. The difference is sometimes described as Common Lisp being a Lisp-2 vs. Scheme being a Lisp-1a Lisp-2 has two namespaces, one for operators and one for variables, but a Lisp-1 uses a single namespace. Both choices have advantages, and partisans can debate endlessly which is better.
+12 In Common Lisp a symbol can name both an operator — function, macro, or special operatorand a variable. This is one of the major differences between Common Lisp and Scheme. The difference is sometimes described as Common Lisp being a Lisp-2 vs. Scheme being a Lisp-1a Lisp-2 has two namespaces, one for operators and one for variables, but a Lisp-1 uses a single namespace. Both choices have advantages, and partisans can debate endlessly which is better.
 
 ### 4.5 Function Calls
 
@@ -1111,7 +1117,7 @@ you can write this:
 '(+ 1 2)
 ```
 
-1-2『特殊符号，撇号 `'` 的含义及使用，做一张术语卡片。下面注释 14 里也提到，用这种形式创建的 list 里，各个元素是只能是常量，不能变的元素，否者就乖乖用 `list` 语句来创建 list 数据类型。（2020-10-28）』——已完成
+1-2『特殊符号，撇号 `'` 的含义及使用，做一张术语卡片。下面注释 14 里也提到，用这种形式创建的 list 里，各个元素是只能是常量，不能变的元素，否者就乖乖用 `list` 语句来创建 list 数据类型。（2020-10-28）』 —  — 已完成
 
 This syntax is a small extension of the s-expression syntax understood by the reader. From the point of view of the evaluator, both those expressions will look the same: a list whose first element is the symbol QUOTE and whose second element is the list (+ 1 2). 15
 
@@ -1125,7 +1131,7 @@ The others provide useful, but somewhat esoteric, features. I’ll discuss them 
 
 13 The others provide useful, but somewhat esoteric, features. I’ll discuss them as the features they support come up.
 
-14 Well, one difference exists—literal objects such as quoted lists, but also including double-quoted strings, literal arrays, and vectors (whose syntax you’ll see later), must not be modified. Consequently, any lists you plan to manipulate you should create with LIST.
+14 Well, one difference exists — literal objects such as quoted lists, but also including double-quoted strings, literal arrays, and vectors (whose syntax you’ll see later), must not be modified. Consequently, any lists you plan to manipulate you should create with LIST.
 
 15 This syntax is an example of a reader macro. Reader macros modify the syntax the reader uses to translate text into Lisp objects. It is, in fact, possible to define your own reader macros, but that’s a rarely used facility of the language. When most Lispers talk about “extending the syntax” of the language, they’re talking about regular macros, as I'll discuss in a moment.
 
@@ -1165,7 +1171,7 @@ the way you would if DOLIST was a function. A good Lisp environment will automat
 
 Two last bits of basic knowledge you need to get under your belt are Common Lisp's notion of truth and falsehood and what it means for two Lisp objects to be "equal." Truth and falsehood are -- in this realm -- straightforward: the symbol NIL is the only false value, and everything else is true. The symbol T is the canonical true value and can be used when you need to return a non-NIL value and don't have anything else handy. The only tricky thing about NIL is that it's the only object that's both an atom and a list: in addition to falsehood, it's also used to represent the empty list. 17 This equivalence between NIL and the empty list is built into the reader: if the reader sees (), it reads it as the symbol NIL. They're completely interchangeable. And because NIL, as I mentioned previously, is the name of a constant variable with the symbol NIL as its value, the expressions nil, (), 'nil, and '() all evaluate to the same thing -- the unquoted forms are evaluated as a reference to the constant variable whose value is the symbol NIL, but in the quoted forms the QUOTE special operator evaluates to the symbol directly. For the same reason, both t and 't will evaluate to the same thing: the symbol T.
 
-1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil 做一张术语卡片。』——已完成
+1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil 做一张术语卡片。』 —  — 已完成
 
 Using phrases such as "the same thing" of course begs the question of what it means for two values to be "the same." As you'll see in future chapters, Common Lisp provides a number of type-specific equality predicates: `=` is used to compare numbers, `CHAR=` to compare characters, and so on. In this section I'll discuss the four "generic" equality predicates -- functions that can be passed any two Lisp objects and will return true if they're equivalent and false otherwise. They are, in order of discrimination, EQ, EQL, EQUAL, and EQUALP.
 
@@ -1293,7 +1299,7 @@ The bulk of Lisp itself consists of functions. More than three quarters of the n
 
 And, despite the importance of macros to The Lisp Way, in the end all real functionality is provided by functions. Macros run at compile time, so the code they generate -- the code that will actually make up the program after all the macros are expanded -- will consist entirely of calls to functions and special operators. Not to mention, macros themselves are also functions, albeit functions that are used to generate code rather than to perform the actions of the program. 1
 
-1 Despite the importance of functions in Common Lisp, it isn’t really accurate to describe it as a functional language. It’s true some of Common Lisp’s features, such as its list manipulation functions, are designed to be used in a body-form* style and that Lisp has a prominent place in the history of functional programming—McCarthy introduced many ideas that are now considered important in functional programming—but Common Lisp was intentionally designed to support many different styles of programming. In the Lisp family, Scheme is the nearest thing to a “pure” functional language, and even it has several features that disqualify it from absolute purity compared to languages such as Haskell and ML.
+1 Despite the importance of functions in Common Lisp, it isn’t really accurate to describe it as a functional language. It’s true some of Common Lisp’s features, such as its list manipulation functions, are designed to be used in a body-form* style and that Lisp has a prominent place in the history of functional programming — McCarthy introduced many ideas that are now considered important in functional programming — but Common Lisp was intentionally designed to support many different styles of programming. In the Lisp family, Scheme is the nearest thing to a “pure” functional language, and even it has several features that disqualify it from absolute purity compared to languages such as Haskell and ML.
 
 ### 5.1 Defining New Functions
 
@@ -1425,7 +1431,7 @@ This gives results like this:
 (foo 1 2 4) ==> (1 2 4 T)
 ```
 
-5 In languages that don’t support optional parameters directly, programmers typically find ways to simulate them. One technique is to use distinguished “no-value” values that the caller can pass to indicate they want the default value of a given parameter. In C, for example, it’s common to use NULL as such a distinguished value. However, such a protocol between the function and its callers is ad hoc—in some functions or for some arguments NULL may be the distinguished value while in other functions or for other arguments the magic value may be -1 or some #defined constant. In languages such as Java that support overloading a single method name with multiple definitions, optional parameters can also be simulated by providing methods with the same name but different numbers of arguments and having the methods with fewer arguments call the “real” method with default values for the missing arguments.
+5 In languages that don’t support optional parameters directly, programmers typically find ways to simulate them. One technique is to use distinguished “no-value” values that the caller can pass to indicate they want the default value of a given parameter. In C, for example, it’s common to use NULL as such a distinguished value. However, such a protocol between the function and its callers is ad hoc — in some functions or for some arguments NULL may be the distinguished value while in other functions or for other arguments the magic value may be -1 or some #defined constant. In languages such as Java that support overloading a single method name with multiple definitions, optional parameters can also be simulated by providing methods with the same name but different numbers of arguments and having the methods with fewer arguments call the “real” method with default values for the missing arguments.
 
 1『上面教你如何来模拟可选形参，在 autolisp 那边试验过，同样的函数名不同个数的形参，系统会自动根据参数个数正确的匹配到对应的函数调用，当时就想利用这个特点来模拟函数的多态行为。（2020-10-28）』
 
@@ -1563,7 +1569,7 @@ you get this result:
 (foo :a 1 :b 2 :c 3) ==> ((:A 1 :B 2 :C 3) 1 2 3)
 ```
 
-7 Four standard functions take both &optional and &key arguments—READ-FROM-STRING, PARSE-NAMESTRING, WRITE-LINE, and WRITE-STRING. They were left that way during standardization for backward compatibility with earlier Lisp dialects. READ-FROM-STRING tends to be the one that catches new Lisp programmers most frequently—a call such as (read-from-string s :start 10) seems to ignore the :start keyword argument, reading from index 0 instead of 10. That’s because READ-FROM-STRING also has two &optional parameters that swallowed up the arguments :start and 10.
+7 Four standard functions take both &optional and &key arguments — READ-FROM-STRING, PARSE-NAMESTRING, WRITE-LINE, and WRITE-STRING. They were left that way during standardization for backward compatibility with earlier Lisp dialects. READ-FROM-STRING tends to be the one that catches new Lisp programmers most frequently — a call such as (read-from-string s :start 10) seems to ignore the :start keyword argument, reading from index 0 instead of 10. That’s because READ-FROM-STRING also has two &optional parameters that swallowed up the arguments :start and 10.
 
 ### 5.7 Function Return Values
 
@@ -1595,7 +1601,7 @@ Admittedly, having to specify the name of the function you're returning from is 
 
 While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data. 9
 
-1-2『编程语言里，能把函数当作数据，个人感觉太有必要了，将函数作为参数传进另一个函数，构建复杂的模型。函数作为数据，做一张主题卡。（2020-10-28）』——已完成
+1-2『编程语言里，能把函数当作数据，个人感觉太有必要了，将函数作为参数传进另一个函数，构建复杂的模型。函数作为数据，做一张主题卡。（2020-10-28）』 —  — 已完成
 
 In Lisp, functions are just another kind of object. When you define a function with DEFUN, you're really doing two things: creating a new function object and giving it a name. It's also possible, as you saw in Chapter 3, to use LAMBDA expressions to create a function without giving it a name. The actual representation of a function object, whether named or anonymous, is opaque -- in a native-compiling Lisp, it probably consists mostly of machine code. The only things you need to know are how to get hold of it and how to invoke it once you've got it.
 
@@ -1768,13 +1774,13 @@ To make matters a bit more confusing, many of the forms that deal with variables
 
 1 Dynamic variables are also sometimes called special variables for reasons you’ll see later in this chapter. It’s important to be aware of this synonym, as some folks (and Lisp implementations) use one term while others use the other.
 
-2 Early Lisps tended to use dynamic variables for local variables, at least when interpreted. Elisp, the Lisp dialect used in Emacs, is a bit of a throwback in this respect, continuing to support only dynamic variables. Other languages have recapitulated this transition from dynamic to lexical variables—Perl’s local variables, for instance, are dynamic while its my variables, introduced in Perl 5, are lexical. Python never had true dynamic variables but only introduced true lexical scoping in version 2.2. (Python’s lexical variables are still somewhat limited compared to Lisp’s because of the conflation of assignment and binding in the language’s syntax.)
+2 Early Lisps tended to use dynamic variables for local variables, at least when interpreted. Elisp, the Lisp dialect used in Emacs, is a bit of a throwback in this respect, continuing to support only dynamic variables. Other languages have recapitulated this transition from dynamic to lexical variables — Perl’s local variables, for instance, are dynamic while its my variables, introduced in Perl 5, are lexical. Python never had true dynamic variables but only introduced true lexical scoping in version 2.2. (Python’s lexical variables are still somewhat limited compared to Lisp’s because of the conflation of assignment and binding in the language’s syntax.)
 
 ### 6.1 Variable Basics
 
 As in other languages, in Common Lisp variables are named places that can hold a value. However, in Common Lisp, variables aren't typed the way they are in languages such as Java or C++. That is, you don't need to declare the type of object that each variable can hold. Instead, a variable can hold values of any type and the values carry type information that can be used to check types at runtime. Thus, Common Lisp is dynamically typed -- type errors are detected dynamically. For instance, if you pass something other than a number to the + function, Common Lisp will signal a type error. On the other hand, Common Lisp is a strongly typed language in the sense that all type errors will be detected -- there's no way to treat an object as an instance of a class that it's not. 3
 
-1-2『这里又见「动态语言」的概念，做一张术语卡片。』——已完成
+1-2『这里又见「动态语言」的概念，做一张术语卡片。』 —  — 已完成
 
 All values in Common Lisp are, conceptually at least, references to objects. 4 Consequently, assigning a variable a new value changes what object the variable refers to but has no effect on the previously referenced object. However, if a variable holds a reference to a mutable object, you can use that reference to modify the object, and the modification will be visible to any code that has a reference to the same object.
 
@@ -1880,7 +1886,7 @@ However, you could achieve the same result with nested LETs.
 )
 ```
 
-3 Actually, it’s not quite true to say that all type errors will always be detected—it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
+3 Actually, it’s not quite true to say that all type errors will always be detected — it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
 
 4 As an optimization certain kinds of objects, such as integers below a certain size and characters, may be represented directly in memory where other objects would be represented by a pointer to the actual object. However, since integers and characters are immutable, it doesn’t matter that there may be multiple copies of “the same” object in different variables. This is the root of the difference between EQ and EQL discussed in Chapter 4.
 
@@ -1888,7 +1894,7 @@ However, you could achieve the same result with nested LETs.
 
 5 In compiler-writer terms Common Lisp functions are “pass-by-value.” However, the values that are passed are references to objects. This is similar to how Java and Python work.
 
-6 The variables in LET forms and function parameters are created by exactly the same mechanism. In fact, in some Lisp dialects—though not Common Lisp—LET is simply a macro that expands into a call to an anonymous function. That is, in those dialects, the following:
+6 The variables in LET forms and function parameters are created by exactly the same mechanism. In fact, in some Lisp dialects — though not Common Lisp — LET is simply a macro that expands into a call to an anonymous function. That is, in those dialects, the following:
 
 ```c
 (let ((x 10)) (format t "~a" x))
@@ -1912,7 +1918,7 @@ However, Common Lisp's lexical variables are lexical variables with a twist, at 
 
 the reference to count inside the LAMBDA form should be legal according to the rules of lexical scoping. Yet the anonymous function containing the reference will be returned as the value of the LET form and can be invoked, via FUNCALL, by code that's not in the scope of the LET. So what happens? As it turns out, when count is a lexical variable, it just works. The binding of count created when the flow of control entered the LET form will stick around for as long as needed, in this case for as long as someone holds onto a reference to the function object returned by the LET form. The anonymous function is called a closure because it "closes over" the binding created by the LET.
 
-1-2『又见闭包 closure，不过这里目前介绍的闭包概念没弄明白。做一张术语卡片。（2020-11-03）』——已完成
+1-2『又见闭包 closure，不过这里目前介绍的闭包概念没弄明白。做一张术语卡片。（2020-11-03）』 —  — 已完成
 
 The key thing to understand about closures is that it's the binding, not the value of the variable, that's captured. Thus, a closure can not only access the value of the variables it closes over but can also assign new values that will persist between calls to the closure. For instance, you can capture the closure created by the previous expression in a global variable like this:
 
@@ -2089,9 +2095,9 @@ Dynamic bindings make global variables much more manageable, but it's important 
 
 8 If you specifically want to reset a DEFVARed variable, you can either set it directly with SETF or make it unbound using MAKUNBOUND and then reevaluate the DEFVAR form.
 
-9 The strategy of temporarily reassigning `*standard-output*` also breaks if the system is multithreaded—if there are multiple threads of control trying to print to different streams at the same time, they’ll all try to set the global variable to the stream they want to use, stomping all over each other. You could use a lock to control access to the global variable, but then you’re not really getting the benefit of multiple concurrent threads, since whatever thread is printing has to lock out all the other threads until it’s done even if they want to print to a different stream.
+9 The strategy of temporarily reassigning `*standard-output*` also breaks if the system is multithreaded — if there are multiple threads of control trying to print to different streams at the same time, they’ll all try to set the global variable to the stream they want to use, stomping all over each other. You could use a lock to control access to the global variable, but then you’re not really getting the benefit of multiple concurrent threads, since whatever thread is printing has to lock out all the other threads until it’s done even if they want to print to a different stream.
 
-10 The technical term for the interval during which references may be made to a binding is its extent. Thus, scope and extent are complementary notions—scope refers to space while extent refers to time. Lexical variables have lexical scope but indefinite extent, meaning they stick around for an indefinite interval, determined by how long they’re needed. Dynamic variables, by contrast, have indefinite scope since they can be referred to from anywhere but dynamic extent. To further confuse matters, the combination of indefinite scope and dynamic extent is frequently referred to by the misnomer dynamic scope.
+10 The technical term for the interval during which references may be made to a binding is its extent. Thus, scope and extent are complementary notions — scope refers to space while extent refers to time. Lexical variables have lexical scope but indefinite extent, meaning they stick around for an indefinite interval, determined by how long they’re needed. Dynamic variables, by contrast, have indefinite scope since they can be referred to from anywhere but dynamic extent. To further confuse matters, the combination of indefinite scope and dynamic extent is frequently referred to by the misnomer dynamic scope.
 
 11 Though the standard doesn’t specify how to incorporate multithreading into Common Lisp, implementations that provide multithreading follow the practice established on the Lisp machines and create dynamic bindings on a per-thread basis. A reference to a global variable will find the binding most recently established in the current thread, or the global binding.
 
@@ -2111,7 +2117,7 @@ As with DEFVAR and DEFPARAMETER, DEFCONSTANT has a global effect on the name use
 
 Another thing to note about DEFCONSTANT is that while the language allows you to redefine a constant by reevaluating a DEFCONSTANT with a different initial-value-form, what exactly happens after the redefinition isn't defined. In practice, most implementations will require you to reevaluate any code that refers to the constant in order to see the new value since the old value may well have been inlined. Consequently, it's a good idea to use DEFCONSTANT only to define things that are really constant, such as the value of NIL. For things you might ever want to change, you should use DEFPARAMETER instead.
 
-14 Several key constants defined by the language itself don’t follow this convention—not least of which are T and NIL. This is occasionally annoying when one wants to use t as a local variable name. Another is PI, which holds the best long-float approximation of the mathematical constant π.
+14 Several key constants defined by the language itself don’t follow this convention — not least of which are T and NIL. This is occasionally annoying when one wants to use t as a local variable name. Another is PI, which holds the best long-float approximation of the mathematical constant π.
 
 ### 6.5 Assignment
 
@@ -2208,7 +2214,7 @@ Note that SETFing a place that's part of a larger object has the same semantics 
 
 17 The prevalence of Algol-derived syntax for assignment with the “place” on the left side of the = and the new value on the right side has spawned the terminology lvalue, short for “left value,” meaning something that can be assigned to, and rvalue, meaning something that provides a value. A compiler hacker would say, “SETF treats its first argument as an lvalue.”
 
-18 C programmers may want to think of variables and other places as holding a pointer to the real object; assigning to a variable simply changes what object it points to while assigning to a part of a composite object is similar to indirecting through the pointer to the actual object. C++ programmers should note that the behavior of = in C++ when dealing with objects—namely, a memberwise copy—is quite idiosyncratic.
+18 C programmers may want to think of variables and other places as holding a pointer to the real object; assigning to a variable simply changes what object it points to while assigning to a part of a composite object is similar to indirecting through the pointer to the actual object. C++ programmers should note that the behavior of = in C++ when dealing with objects — namely, a memberwise copy — is quite idiosyncratic.
 
 ### 6.7 Other Ways to Modify Places
 
