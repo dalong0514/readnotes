@@ -304,6 +304,22 @@ It's also possible for symbols to be self-evaluating in the sense that the varia
 
 Another class of self-evaluating symbols are the keyword symbols -- symbols whose names start with `:`. When the reader interns such a name, it automatically defines a constant variable with the name and with the symbol as the value.
 
+### 0205. 术语卡 —— Lisp 里的函数调用
+
+The evaluation rule for function call forms is simple: evaluate the remaining elements of the list as Lisp forms and pass the resulting values to the named function. This rule obviously places some additional syntactic constraints on a function call form: all the elements of the list after the first must themselves be well-formed Lisp forms. In other words, the basic syntax of a function call form is as follows, where each of the arguments is itself a Lisp form:
+
+```c
+(function-name argument*)
+```
+
+Thus, the following expression is evaluated by first evaluating 1, then evaluating 2, and then passing the resulting values to the + function, which returns 3:
+
+```c
+(+ 1 2)
+```
+
+2『说出了 Lisp 里函数调用的本质，做一张术语卡片。』——已完成
+
 ### 0301. 任意卡 —— 几个语言的座右铭
 
 Perl: 1) makes easy things easy and hard things possible. 2) There's more than one way to do it.

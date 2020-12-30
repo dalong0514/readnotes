@@ -1062,6 +1062,8 @@ Thus, the following expression is evaluated by first evaluating 1, then evaluati
 (+ 1 2)
 ```
 
+2『说出了 Lisp 里函数调用的本质，做一张术语卡片。』——已完成
+
 A more complex expression such as the following is evaluated in similar fashion except that evaluating the arguments (+ 1 2) and (- 3 4) entails first evaluating their arguments and applying the appropriate functions to them:
 
 ```c
@@ -1085,7 +1087,7 @@ That said, not all operations can be defined as functions. Because all the argum
 
 If IF were a function, the evaluator would evaluate the argument expressions from left to right. The symbol x would be evaluated as a variable yielding some value; then `(format t "yes")` would be evaluated as a function call, yielding NIL after printing "yes" to standard output. Then `(format t "no")` would be evaluated, printing "no" and also yielding NIL. Only after all three expressions were evaluated would the resulting values be passed to IF, too late for it to control which of the two FORMAT expressions gets evaluated.
 
-1『这里收获一个知识点：lisp 中调用函数语句的执行顺序，都是先执行（计算）形参列表里的 list 语句，在把结果传递给函数名所指向的函数。（2020-10-28）』
+1『这里收获一个知识点：lisp 中调用函数语句的执行顺序，都是先执行（计算）形参列表里的 list 语句，在把结果传递给函数名所指向的函数。（2020-10-28）补充：if 做函数行不通的这个讲解，对自己启发很大。作者是通过这个例子引出了特殊操作符的意义，典型如 IF、QUOTE。（2020-12-30）』
 
 To solve this problem, Common Lisp defines a couple dozen so-called special operators, IF being one, that do things that functions can't do. There are 25 in all, but only a small handful are used directly in day-to-day programming. 13
 
@@ -1128,6 +1130,8 @@ In general, the special operators implement features of the language that requir
 ```
 
 The others provide useful, but somewhat esoteric, features. I’ll discuss them as the features they support come up.
+
+1-3『 let 的真正用法没弄明白，不过在 Stack Overflow 上看到一个信息应该用户很大：[lisp - Difference between LET and SETQ? - Stack Overflow](https://stackoverflow.com/questions/19067632/difference-between-let-and-setq)。』
 
 13 The others provide useful, but somewhat esoteric, features. I’ll discuss them as the features they support come up.
 
