@@ -320,6 +320,40 @@ Thus, the following expression is evaluated by first evaluating 1, then evaluati
 
 2『说出了 Lisp 里函数调用的本质，做一张术语卡片。』——已完成
 
+### 0205. 术语卡 —— macro
+
+While special operators extend the syntax of Common Lisp beyond what can be expressed with just function calls, the set of special operators is fixed by the language standard. Macros, on the other hand, give users of the language a way to extend its syntax. As you saw in Chapter 3, a macro is a function that takes s-expressions as arguments and returns a Lisp form that's then evaluated in place of the macro form. The evaluation of a macro form proceeds in two phases: First, the elements of the macro form are passed, unevaluated, to the macro function. Second, the form returned by the macro function -- called its expansion -- is evaluated according to the normal evaluation rules.
+
+It's important to keep the two phases of evaluating a macro form clear in your mind. It's easy to lose track when you're typing expressions at the REPL because the two phases happen one after another and the value of the second phase is immediately returned. But when Lisp code is compiled, the two phases happen at completely different times, so it's important to keep clear what's happening when. For instance, when you compile a whole file of source code with the function COMPILE-FILE, all the macro forms in the file are recursively expanded until the code consists of nothing but function call forms and special forms. This macroless code is then compiled into a FASL file that the LOAD function knows how to load. The compiled code, however, isn't executed until the file is loaded. Because macros generate their expansion at compile time, they can do relatively large amounts of work generating their expansion without having to pay for it when the file is loaded or the functions defined in the file are called.
+
+Since the evaluator doesn't evaluate the elements of the macro form before passing them to the macro function, they don't need to be well-formed Lisp forms. Each macro assigns a meaning to the s-expressions in the macro form by virtue of how it uses them to generate its expansion. In other words, each macro defines its own local syntax. For instance, the backwards macro from Chapter 3 defines a syntax in which an expression is a legal backwards form if it's a list that's the reverse of a legal Lisp form.
+
+I'll talk quite a bit more about macros throughout this book. For now the important thing for you to realize is that macros -- while syntactically similar to function calls -- serve quite a different purpose, providing a hook into the compiler. 16
+
+16 People without experience using Lisp’s macros or, worse yet, bearing the scars of C preprocessor-inflicted wounds, tend to get nervous when they realize that macro calls look like regular function calls. This turns out not to be a problem in practice for several reasons. One is that macro forms are usually formatted differently than function calls. For instance, you write the following:
+
+```c
+(dolist (x foo) 
+  (print x))
+```
+
+rather than this:
+
+```c
+(dolist (x foo) (print x))
+```
+
+or this:
+
+```c
+(dolist (x foo) 
+            (print x))
+```
+
+the way you would if DOLIST was a function. A good Lisp environment will automatically format macro calls correctly, even for user-defined macros. And even if a DOLIST form was written on a single line, there are several clues that it’s a macro. For one, the expression (x foo) is meaningful by itself only if x is the name of a function or macro. Combine that with the later occurrence of x as a variable, and it’s pretty suggestive that DOLIST is a macro that’s creating a binding for a variable named x. Naming conventions also help-looping constructs, which are invariably macros, are frequently given names starting with do.
+
+1『宏 Marco 到目前为止还是不太明白，哎，这可是 lisp 的核心知识。（2020-12-30）』
+
 ### 0301. 任意卡 —— 几个语言的座右铭
 
 Perl: 1) makes easy things easy and hard things possible. 2) There's more than one way to do it.

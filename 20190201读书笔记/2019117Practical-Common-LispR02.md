@@ -207,7 +207,7 @@ Because the body of both DOLIST and DOTIMES loops can contain any kind of expres
 
 1『试了下，上面的代码跑出来是一个矩阵。（2020-11-08）』
 
-5 DOLIST is similar to Perl’s foreach or Python’s for. Java added a similar kind of loop construct with the “enhanced” for loop in Java 1.5, as part of JSR-201. Notice what a difference macros make. A Lisp programmer who notices a common pattern in their code can write a macro to give themselves a source-level abstraction of that pattern. A Java programmer who notices the same pattern has to convince Sun that this particular abstraction is worth adding to the language. Then Sun has to publish a JSR and convene an industry-wide “expert group” to hash everything out. That process—according to Sun—takes an average of 18 months. After that, the compiler writers all have to go upgrade their compilers to support the new feature. And even once the Java programmer’s favorite compiler supports the new version of Java, they probably still can’t use the new feature until they’re allowed to break source compatibility with older versions of Java. So an annoyance that Common Lisp programmers can resolve for themselves within five minutes plagues Java programmers for years.
+5 DOLIST is similar to Perl’s foreach or Python’s for. Java added a similar kind of loop construct with the “enhanced” for loop in Java 1.5, as part of JSR-201. Notice what a difference macros make. A Lisp programmer who notices a common pattern in their code can write a macro to give themselves a source-level abstraction of that pattern. A Java programmer who notices the same pattern has to convince Sun that this particular abstraction is worth adding to the language. Then Sun has to publish a JSR and convene an industry-wide “expert group” to hash everything out. That process — according to Sun — takes an average of 18 months. After that, the compiler writers all have to go upgrade their compilers to support the new feature. And even once the Java programmer’s favorite compiler supports the new version of Java, they probably still can’t use the new feature until they’re allowed to break source compatibility with older versions of Java. So an annoyance that Common Lisp programmers can resolve for themselves within five minutes plagues Java programmers for years.
 
 1『
 
@@ -363,7 +363,7 @@ And it's worth pointing out one more time that while the LOOP macro is quite a b
 
 With that I'll conclude our tour of the basic control-construct macros. Now you're ready to take a closer look at how to define your own macros.
 
-8 Loop keywords is a bit of a misnomer since they aren’t keyword symbols. In fact, LOOP doesn’t care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted:for, :across, and so on—because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn’t matter if they’re used for other purposes—as function or variable names.a
+8 Loop keywords is a bit of a misnomer since they aren’t keyword symbols. In fact, LOOP doesn’t care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted:for, :across, and so on — because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn’t matter if they’re used for other purposes — as function or variable names.a
 
 ## 0901. Practical: Building a Unit Test Framework
 
@@ -625,7 +625,7 @@ pass ... (= (+ 1 2 3) 6)
 FAIL ... (= (+ -1 -3) -5) NIL
 ```
 
-4 If test-+ has been compiled—which may happen implicitly in certain Lisp implementations—you may need to reevaluate the definition of test-+ to get the changed definition of check to affect the behavior of test-+. Interpreted code, on the other hand, typically expands macros anew each time the code is interpreted, allowing the effects of macro redefinitions to be seen immediately.
+4 If test-+ has been compiled — which may happen implicitly in certain Lisp implementations — you may need to reevaluate the definition of test-+ to get the changed definition of check to affect the behavior of test-+. Interpreted code, on the other hand, typically expands macros anew each time the code is interpreted, allowing the effects of macro redefinitions to be seen immediately.
 
 5 You have to change the test to make it fail since you can’t change the behavior of +.
 

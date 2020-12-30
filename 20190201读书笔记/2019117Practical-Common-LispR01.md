@@ -1131,7 +1131,7 @@ In general, the special operators implement features of the language that requir
 
 The others provide useful, but somewhat esoteric, features. I’ll discuss them as the features they support come up.
 
-1-3『 let 的真正用法没弄明白，不过在 Stack Overflow 上看到一个信息应该用户很大：[lisp - Difference between LET and SETQ? - Stack Overflow](https://stackoverflow.com/questions/19067632/difference-between-let-and-setq)。』
+1-3『 let 的真正用法没弄明白，不过在 Stack Overflow 上看到一个信息应该用处很大：[lisp - Difference between LET and SETQ? - Stack Overflow](https://stackoverflow.com/questions/19067632/difference-between-let-and-setq)。』
 
 13 The others provide useful, but somewhat esoteric, features. I’ll discuss them as the features they support come up.
 
@@ -1149,7 +1149,7 @@ Since the evaluator doesn't evaluate the elements of the macro form before passi
 
 I'll talk quite a bit more about macros throughout this book. For now the important thing for you to realize is that macros -- while syntactically similar to function calls -- serve quite a different purpose, providing a hook into the compiler. 16
 
-16 People without experience using Lisp’s macros or, worse yet, bearing the scars of C preprocessorinflicted wounds, tend to get nervous when they realize that macro calls look like regular function calls. This turns out not to be a problem in practice for several reasons. One is that macro forms are usually formatted differently than function calls. For instance, you write the following:
+16 People without experience using Lisp’s macros or, worse yet, bearing the scars of C preprocessor-inflicted wounds, tend to get nervous when they realize that macro calls look like regular function calls. This turns out not to be a problem in practice for several reasons. One is that macro forms are usually formatted differently than function calls. For instance, you write the following:
 
 ```c
 (dolist (x foo) 
@@ -1169,11 +1169,15 @@ or this:
             (print x))
 ```
 
-the way you would if DOLIST was a function. A good Lisp environment will automatically format macro calls correctly, even for user-defined macros. And even if a DOLIST form was written on a single line, there are several clues that it’s a macro. For one, the expression (x foo) is meaningful by itself only if x is the name of a function or macro. Combine that with the later occurrence of x as a variable, and it’s pretty suggestive that DOLIST is a macro that’s creating a binding for a variable named x. Naming conventions also helplooping constructs, which are invariably macros, are frequently given names starting with do.
+the way you would if DOLIST was a function. A good Lisp environment will automatically format macro calls correctly, even for user-defined macros. And even if a DOLIST form was written on a single line, there are several clues that it’s a macro. For one, the expression (x foo) is meaningful by itself only if x is the name of a function or macro. Combine that with the later occurrence of x as a variable, and it’s pretty suggestive that DOLIST is a macro that’s creating a binding for a variable named x. Naming conventions also help-looping constructs, which are invariably macros, are frequently given names starting with do.
+
+1『宏 Marco 到目前为止还是不太明白，哎，这可是 lisp 的核心知识。（2020-12-30）』
 
 ### 4.8 Truth, Falsehood, and Equality
 
-Two last bits of basic knowledge you need to get under your belt are Common Lisp's notion of truth and falsehood and what it means for two Lisp objects to be "equal." Truth and falsehood are -- in this realm -- straightforward: the symbol NIL is the only false value, and everything else is true. The symbol T is the canonical true value and can be used when you need to return a non-NIL value and don't have anything else handy. The only tricky thing about NIL is that it's the only object that's both an atom and a list: in addition to falsehood, it's also used to represent the empty list. 17 This equivalence between NIL and the empty list is built into the reader: if the reader sees (), it reads it as the symbol NIL. They're completely interchangeable. And because NIL, as I mentioned previously, is the name of a constant variable with the symbol NIL as its value, the expressions nil, (), 'nil, and '() all evaluate to the same thing -- the unquoted forms are evaluated as a reference to the constant variable whose value is the symbol NIL, but in the quoted forms the QUOTE special operator evaluates to the symbol directly. For the same reason, both t and 't will evaluate to the same thing: the symbol T.
+Two last bits of basic knowledge you need to get under your belt are Common Lisp's notion of truth and falsehood and what it means for two Lisp objects to be "equal". 
+
+Truth and falsehood are -- in this realm -- straightforward: the symbol NIL is the only false value, and everything else is true. The symbol T is the canonical true value and can be used when you need to return a non-NIL value and don't have anything else handy. The only tricky thing about NIL is that it's the only object that's both an atom and a list: in addition to falsehood, it's also used to represent the empty list. 17 This equivalence between NIL and the empty list is built into the reader: if the reader sees(), it reads it as the symbol NIL. They're completely interchangeable. And because NIL, as I mentioned previously, is the name of a constant variable with the symbol NIL as its value, the expressions nil, (), 'nil, and '() all evaluate to the same thing -- the unquoted forms are evaluated as a reference to the constant variable whose value is the symbol NIL, but in the quoted forms the QUOTE special operator evaluates to the symbol directly. For the same reason, both t and 't will evaluate to the same thing: the symbol T.
 
 1-2『意外的一个收获：nil 既是一个 atom 也是一个 list。所以它能用来表示空列表。nil 做一张术语卡片。』 —  — 已完成
 
@@ -1197,7 +1201,7 @@ EQUAL loosens the discrimination of EQL to consider lists equivalent if they hav
 
 EQUALP is similar to EQUAL except it's even less discriminating. It considers two strings equivalent if they contain the same characters, ignoring differences in case. It also considers two characters equivalent if they differ only in case. Numbers are equivalent under EQUALP if they represent the same mathematical value. Thus, (equalp 1 1.0) is true. Lists with EQUALP elements are EQUALP; likewise, arrays with EQUALP elements are EQUALP. As with EQUAL, there are a few other data types that I haven't covered yet for which EQUALP can consider two objects equivalent that neither EQL nor EQUAL will. For all other data types, EQUALP falls back on EQL.
 
-17 Using the empty list as false is a reflection of Lisp’s heritage as a list-processing language much as the use of the integer 0 as false in C is a reflection of its heritage as a bit-twiddling language. Not all Lisps handle boolean values the same way. Another of the many subtle differences upon which a good Common Lisp vs. Scheme flame war can rage for days is Scheme’s use of a distinct false value #f, which isn’t the same value as either the symbol nil or the empty list, which are also distinct from each other.
+17 Using the empty list as false is a reflection of Lisp’s heritage as a list-processing language much as the use of the integer 0 as false in C is a reflection of its heritage as a bit-twiddling language. Not all Lisps handle boolean values the same way. Another of the many subtle differences upon which a good Common Lisp vs. Scheme flame war can rage for days is Scheme’s use of a distinct false value #f, which isn't the same value as either the symbol nil or the empty list, which are also distinct from each other.
 
 18 Even the language standard is a bit ambivalent about which of EQ or EQL should be preferred. Object identity is defined by EQ, but the standard defines the phrase the same when talking about objects to mean EQL unless another predicate is explicitly mentioned. Thus, if you want to be 100 percent technically correct, you can say that (- 3 2) and (- 4 3) evaluate to “the same” object but not that they evaluate to “identical” objects. This is, admittedly, a bit of an angels-onpinheads kind of issue.
 
@@ -1261,7 +1265,7 @@ Another important formatting rule is that closing parentheses are always put on 
 )
 ```
 
-1『我个人一直采用上面的代码风格。（2020-10-28）』
+1『我个人一直采用上面的代码风格。（2020-10-28）回复：才注意到，作者不建议这种风格，后面的括号还是集中放在最后一行，在纠结要不要更正自己的 lisp 代码风格。（2020-12-30）』
 
 but instead write this:
 
@@ -1288,9 +1292,7 @@ Finally, comments should be prefaced with one to four semicolons depending on th
     (some-function-call) 
     (another i) ; this comment applies to this line only 
     (and-another) ; and this is for this line 
-    (baz))
-  )
-)
+    (baz))))
 ```
 
 Now you're ready to start looking in greater detail at the major building blocks of Lisp programs, functions, variables, and macros. Up next: functions.
