@@ -2,6 +2,1019 @@
 
 ## 记忆时间
 
+## 0501. Functions
+
+After the rules of syntax and semantics, the three most basic components of all Lisp programs are functions, variables and macros. You used all three while building the database in Chapter 3, but I glossed over a lot of the details of how they work and how to best use them. I'll devote the next few chapters to these three topics, starting with functions, which -- like their counterparts in other languages -- provide the basic mechanism for abstracting, well, functionality.
+
+The bulk of Lisp itself consists of functions. More than three quarters of the names defined in the language standard name functions. All the built-in data types are defined purely in terms of what functions operate on them. Even Lisp's powerful object system is built upon a conceptual extension to functions, generic functions, which I'll cover in Chapter 16.
+
+And, despite the importance of macros to The Lisp Way, in the end all real functionality is provided by functions. Macros run at compile time, so the code they generate -- the code that will actually make up the program after all the macros are expanded -- will consist entirely of calls to functions and special operators. Not to mention, macros themselves are also functions, albeit functions that are used to generate code rather than to perform the actions of the program. 1
+
+1 Despite the importance of functions in Common Lisp, it isn’t really accurate to describe it as a functional language. It’s true some of Common Lisp’s features, such as its list manipulation functions, are designed to be used in a body-form* style and that Lisp has a prominent place in the history of functional programming — McCarthy introduced many ideas that are now considered important in functional programming — but Common Lisp was intentionally designed to support many different styles of programming. In the Lisp family, Scheme is the nearest thing to a “pure” functional language, and even it has several features that disqualify it from absolute purity compared to languages such as Haskell and ML.
+
+### 5.1 Defining New Functions
+
+Normally functions are defined using the DEFUN macro. The basic skeleton of a DEFUN looks like this:
+
+```c
+(defun name (parameter*) 
+  "Optional documentation string." 
+  body-form*
+)
+```
+
+Any symbol can be used as a function name. 2 Usually function names contain only alphabetic characters and hyphens, but other characters are allowed and are used in certain naming conventions. For instance, functions that convert one kind of value to another sometimes use -> in the name. For example, a function to convert strings to widgets might be called `string->widget`. The most important naming convention is the one mentioned in Chapter 2, which is that you construct compound names with hyphens rather than underscores or inner caps. Thus, frob-widget is better Lisp style than either frob_widget or frobWidget.
+
+A function's parameter list defines the variables that will be used to hold the arguments passed to the function when it's called. 3 If the function takes no arguments, the list is empty, written as (). Different flavors of parameters handle required, optional, multiple, and keyword arguments. I'll discuss the details in the next section.
+
+If a string literal follows the parameter list, it's a documentation string that should describe the purpose of the function. When the function is defined, the documentation string will be associated with the name of the function and can later be obtained using the DOCUMENTATION function. 4
+
+Finally, the body of a DEFUN consists of any number of Lisp expressions. They will be evaluated in order when the function is called and the value of the last expression is returned as the value of the function. Or the RETURN-FROM special operator can be used to return immediately from anywhere in a function, as I'll discuss in a moment.
+
+1『真好，common lisp 就有直接从函数体里返回的函数 `return-from`，目前 autolisp 里没找到，所以没法实现多个函数出口啊。（2020-10-28）』
+
+In Chapter 2 we wrote a hello-world function, which looked like this:
+
+```c
+(defun hello-world () 
+  (format t "hello, world")
+)
+```
+
+You can now analyze the parts of this function. Its name is hello-world, its parameter list is empty so it takes no arguments, it has no documentation string, and its body consists of one expression.
+
+```c
+(format t "hello, world")
+```
+
+The following is a slightly more complex function:
+
+```c
+(defun verbose-sum (x y) 
+  "Sum any two numbers after printing a message." 
+  (format t "Summing ~d and ~d.~%" x y) 
+  (+ x y)
+)
+```
+
+This function is named verbose-sum, takes two arguments that will be bound to the parameters x and y, has a documentation string, and has a body consisting of two expressions. The value returned by the call to + becomes the return value of verbose-sum.
+
+2 Well, almost any symbol. It’s undefined what happens if you use any of the names defined in the language standard as a name for one of your own functions. However, as you’ll see in Chapter 21, the Lisp package system allows you to create names in different namespaces, so this isn’t really an issue.
+
+3 Parameter lists are sometimes also called lambda lists because of the historical relationship between Lisp’s notion of functions and the lambda calculus.
+
+4 For example, the following:
+
+```c
+(documentation 'foo 'function)
+```
+
+returns the documentation string for the function foo. Note, however, that documentation strings are intended for human consumption, not programmatic access. A Lisp implementation isn’t required to store them and is allowed to discard them at any time, so portable programs shouldn’t depend on their presence. In some implementations an implementation-defined variable needs to be set before it will store documentation strings.
+
+### 5.2 Function Parameter Lists
+
+There's not a lot more to say about function names or documentation strings, and it will take a good portion of the rest of this book to describe all the things you can do in the body of a function, which leaves us with the parameter list.
+
+The basic purpose of a parameter list is, of course, to declare the variables that will receive the arguments passed to the function. When a parameter list is a simple list of variable names -- as in verbose-sum -- the parameters are called required parameters. When a function is called, it must be supplied with one argument for every required parameter. Each parameter is bound to the corresponding argument. If a function is called with too few or too many arguments, Lisp will signal an error.
+
+However, Common Lisp's parameter lists also give you more flexible ways of mapping the arguments in a function call to the function's parameters. In addition to required parameters, a function can have optional parameters. Or a function can have a single parameter that's bound to a list containing any extra arguments. And, finally, arguments can be mapped to parameters using keywords rather than position. Thus, Common Lisp's parameter lists provide a convenient solution to several common coding problems.
+
+### 5.3 Optional Parameters
+
+While many functions, like verbose-sum, need only required parameters, not all functions are quite so simple. Sometimes a function will have a parameter that only certain callers will care about, perhaps because there's a reasonable default value. An example is a function that creates a data structure that can grow as needed. Since the data structure can grow, it doesn't matter -- from a correctness point of view -- what the initial size is. But callers who have a good idea how many items they're going to put into the data structure may be able to improve performance by specifying a specific initial size. Most callers, though, would probably rather let the code that implements the data structure pick a good general-purpose value. In Common Lisp you can accommodate both kinds of callers by using an optional parameter; callers who don't care will get a reasonable default, and other callers can provide a specific value. 5
+
+To define a function with optional parameters, after the names of any required parameters, place the symbol `&optional` followed by the names of the optional parameters. A simple example looks like this:
+
+```c
+(defun foo (a b &optional c d) 
+  (list a b c d)
+)
+```
+
+When the function is called, arguments are first bound to the required parameters. After all the required parameters have been given values, if there are any arguments left, their values are assigned to the optional parameters. If the arguments run out before the optional parameters do, the remaining optional parameters are bound to the value NIL. Thus, the function defined previously gives the following results:
+
+```c
+(foo 1 2) ==> (1 2 NIL NIL) 
+(foo 1 2 3) ==> (1 2 3 NIL) 
+(foo 1 2 3 4) ==> (1 2 3 4)
+```
+
+Lisp will still check that an appropriate number of arguments are passed to the function -- in this case between two and four, inclusive -- and will signal an error if the function is called with too few or too many.
+
+Of course, you'll often want a different default value than NIL. You can specify the default value by replacing the parameter name with a list containing a name and an expression. The expression will be evaluated only if the caller doesn't pass enough arguments to provide a value for the optional parameter. The common case is simply to provide a value as the expression.
+
+```c
+(defun foo (a &optional (b 10)) 
+  (list a b)
+)
+```
+
+1『默认值都能实现，赞！（2020-10-28）』
+
+This function requires one argument that will be bound to the parameter a. The second parameter, b, will take either the value of the second argument, if there is one, or 10.
+
+```c
+(foo 1 2) ==> (1 2) 
+(foo 1) ==> (1 10)
+```
+
+Sometimes, however, you may need more flexibility in choosing the default value. You may want to compute a default value based on other parameters. And you can -- the default-value expression can refer to parameters that occur earlier in the parameter list. If you were writing a function that returned some sort of representation of a rectangle and you wanted to make it especially convenient to make squares, you might use an argument list like this:
+
+```c
+(defun make-rectangle (width &optional (height width)) ...)
+```
+
+which would cause the height parameter to take the same value as the width parameter unless explicitly specified.
+
+Occasionally, it's useful to know whether the value of an optional argument was supplied by the caller or is the default value. Rather than writing code to check whether the value of the parameter is the default (which doesn't work anyway, if the caller happens to explicitly pass the default value), you can add another variable name to the parameter specifier after the default-value expression. This variable will be bound to true if the caller actually supplied an argument for this parameter and NIL otherwise. By convention, these variables are usually named the same as the actual parameter with a "-supplied-p" on the end. For example:
+
+```c
+(defun foo (a b &optional (c 3 c-supplied-p)) 
+  (list a b c c-supplied-p)
+)
+```
+
+This gives results like this:
+
+```c
+(foo 1 2) ==> (1 2 3 NIL) 
+(foo 1 2 3) ==> (1 2 3 T) 
+(foo 1 2 4) ==> (1 2 4 T)
+```
+
+5 In languages that don’t support optional parameters directly, programmers typically find ways to simulate them. One technique is to use distinguished “no-value” values that the caller can pass to indicate they want the default value of a given parameter. In C, for example, it’s common to use NULL as such a distinguished value. However, such a protocol between the function and its callers is ad hoc — in some functions or for some arguments NULL may be the distinguished value while in other functions or for other arguments the magic value may be -1 or some #defined constant. In languages such as Java that support overloading a single method name with multiple definitions, optional parameters can also be simulated by providing methods with the same name but different numbers of arguments and having the methods with fewer arguments call the “real” method with default values for the missing arguments.
+
+1『上面教你如何来模拟可选形参，在 autolisp 那边试验过，同样的函数名不同个数的形参，系统会自动根据参数个数正确的匹配到对应的函数调用，当时就想利用这个特点来模拟函数的多态行为。（2020-10-28）』
+
+### 5.4 Rest Parameters
+
+Optional parameters are just the thing when you have discrete parameters for which the caller may or may not want to provide values. But some functions need to take a variable number of arguments. Several of the built-in functions you've seen already work this way. FORMAT has two required arguments, the stream and the control string. But after that it needs a variable number of arguments depending on how many values need to be interpolated into the control string. The + function also takes a variable number of arguments -- there's no particular reason to limit it to summing just two numbers; it will sum any number of values. (It even works with zero arguments, returning 0, the identity under addition.) The following are all legal calls of those two functions:
+
+```c
+(format t "hello, world") 
+(format t "hello, ~a" name) 
+(format t "x: ~d y: ~d" x y) 
+(+) 
+(+ 1) 
+(+ 1 2) 
+(+ 1 2 3)
+```
+
+Obviously, you could write functions taking a variable number of arguments by simply giving them a lot of optional parameters. But that would be incredibly painful -- just writing the parameter list would be bad enough, and that doesn't get into dealing with all the parameters in the body of the function. To do it properly, you'd have to have as many optional parameters as the number of arguments that can legally be passed in a function call. This number is implementation dependent but guaranteed to be at least 50. And in current implementations it ranges from 4,096 to 536,870,911.6 Blech. That kind of mind-bending tedium is definitely not The Lisp Way.
+
+Instead, Lisp lets you include a catchall parameter after the symbol &rest. If a function includes a &rest parameter, any arguments remaining after values have been doled out to all the required and optional parameters are gathered up into a list that becomes the value of the &rest parameter. Thus, the parameter lists for FORMAT and + probably look something like this:
+
+```c
+(defun format (stream string &rest values) ...) 
+(defun + (&rest numbers) ...)
+```
+
+6 The constant CALL-ARGUMENTS-LIMIT tells you the implementation-specific value.
+
+### 5.5 Keyword Parameters
+
+Optional and rest parameters give you quite a bit of flexibility, but neither is going to help you out much in the following situation: Suppose you have a function that takes four optional parameters. Now suppose that most of the places the function is called, the caller wants to provide a value for only one of the four parameters and, further, that the callers are evenly divided as to which parameter they will use.
+
+The callers who want to provide a value for the first parameter are fine -- they just pass the one optional argument and leave off the rest. But all the other callers have to pass some value for between one and three arguments they don't care about. Isn't that exactly the problem optional parameters were designed to solve?
+
+Of course it is. The problem is that optional parameters are still positional -- if the caller wants to pass an explicit value for the fourth optional parameter, it turns the first three optional parameters into required parameters for that caller. Luckily, another parameter flavor, keyword parameters, allow the caller to specify which values go with which parameters.
+
+To give a function keyword parameters, after any required, &optional, and &rest parameters you include the symbol &key and then any number of keyword parameter specifiers, which work like optional parameter specifiers. Here's a function that has only keyword parameters:
+
+```c
+(defun foo (&key a b c) 
+  (list a b c)
+)
+```
+
+When this function is called, each keyword parameters is bound to the value immediately following a keyword of the same name. Recall from Chapter 4 that keywords are names that start with a colon and that they're automatically defined as self-evaluating constants.
+
+If a given keyword doesn't appear in the argument list, then the corresponding parameter is assigned its default value, just like an optional parameter. Because the keyword arguments are labeled, they can be passed in any order as long as they follow any required arguments. For instance, foo can be invoked as follows:
+
+```c
+(foo) ==> (NIL NIL NIL) 
+(foo :a 1) ==> (1 NIL NIL) 
+(foo :b 1) ==> (NIL 1 NIL) 
+(foo :c 1) ==> (NIL NIL 1) 
+(foo :a 1 :c 3) ==> (1 NIL 3) 
+(foo :a 1 :b 2 :c 3) ==> (1 2 3) 
+(foo :a 1 :c 3 :b 2) ==> (1 2 3)
+```
+
+As with optional parameters, keyword parameters can provide a default value form and the name of a supplied-p variable. In both keyword and optional parameters, the default value form can refer to parameters that appear earlier in the parameter list.
+
+```c
+(defun foo (&key (a 0) (b 0 b-supplied-p) (c (+ a b))) 
+  (list a b c b-supplied-p)
+) 
+
+(foo :a 1) ==> (1 0 1 NIL) 
+(foo :b 1) ==> (0 1 1 T) 
+(foo :b 1 :c 4) ==> (0 1 4 T) 
+(foo :a 2 :b 1 :c 4) ==> (2 1 4 T)
+```
+
+Also, if for some reason you want the keyword the caller uses to specify the parameter to be different from the name of the actual parameter, you can replace the parameter name with another list containing the keyword to use when calling the function and the name to be used for the parameter. The following definition of foo:
+
+```c
+(defun foo (&key ((:apple a)) ((:box b) 0) ((:charlie c) 0 c-supplied-p)) 
+  (list a b c c-supplied-p)
+)
+```
+
+lets the caller call it like this:
+
+```c
+(foo :apple 10 :box 20 :charlie 30) ==> (10 20 30 T)
+```
+
+This style is mostly useful if you want to completely decouple the public API of the function from the internal details, usually because you want to use short variable names internally but descriptive keywords in the API. It's not, however, very frequently used.
+
+2『经验证 autolisp 里没法实现 key 的形参。（2020-10-28）』
+
+### 5.6 Mixing Different Parameter Types
+
+It's possible, but rare, to use all four flavors of parameters in a single function. Whenever more than one flavor of parameter is used, they must be declared in the order I've discussed them: first the names of the required parameters, then the optional parameters, then the rest parameter, and finally the keyword parameters. Typically, however, in functions that use multiple flavors of parameters, you'll combine required parameters with one other flavor or possibly combine &optional and &rest parameters. The other two combinations, either &optional or &rest parameters combined with &key parameters, can lead to somewhat surprising behavior.
+
+Combining &optional and &key parameters yields surprising enough results that you should probably avoid it altogether. The problem is that if a caller doesn't supply values for all the optional parameters, then those parameters will eat up the keywords and values intended for the keyword parameters. For instance, this function unwisely mixes &optional and &key parameters:
+
+```c
+(defun foo (x &optional y &key z) 
+  (list x y z)
+)
+```
+
+If called like this, it works fine:
+
+```c
+(foo 1 2 :z 3) ==> (1 2 3)
+```
+
+And this is also fine:
+
+```c
+(foo 1) ==> (1 nil nil)
+```
+
+But this will signal an error:
+
+```c
+(foo 1 :z 3) ==> ERROR
+```
+
+This is because the keyword :z is taken as a value to fill the optional y parameter, leaving only the argument 3 to be processed. At that point, Lisp will be expecting either a keyword/value pair or nothing and will complain. Perhaps even worse, if the function had had two &optional parameters, this last call would have resulted in the values :z and 3 being bound to the two &optional parameters and the &key parameter z getting the default value NIL with no indication that anything was amiss.
+
+In general, if you find yourself writing a function that uses both &optional and &key parameters, you should probably just change it to use all &key parameters -- they're more flexible, and you can always add new keyword parameters without disturbing existing callers of the function. You can also remove keyword parameters, as long as no one is using them. 7 In general, using keyword parameters helps make code much easier to maintain and evolve -- if you need to add some new behavior to a function that requires new parameters, you can add keyword parameters without having to touch, or even recompile, any existing code that calls the function.
+
+You can safely combine &rest and &key parameters, but the behavior may be a bit surprising initially. Normally the presence of either &rest or &key in a parameter list causes all the values remaining after the required and &optional parameters have been filled in to be processed in a particular way -- either gathered into a list for a &rest parameter or assigned to the appropriate &key parameters based on the keywords. If both &rest and &key appear in a parameter list, then both things happen -- all the remaining values, which include the keywords themselves, are gathered into a list that's bound to the &rest parameter, and the appropriate values are also bound to the &key parameters. So, given this function:
+
+```c
+(defun foo (&rest rest &key a b c) 
+  (list rest a b c)
+)
+```
+
+you get this result:
+
+```c
+(foo :a 1 :b 2 :c 3) ==> ((:A 1 :B 2 :C 3) 1 2 3)
+```
+
+7 Four standard functions take both &optional and &key arguments — READ-FROM-STRING, PARSE-NAMESTRING, WRITE-LINE, and WRITE-STRING. They were left that way during standardization for backward compatibility with earlier Lisp dialects. READ-FROM-STRING tends to be the one that catches new Lisp programmers most frequently — a call such as (read-from-string s :start 10) seems to ignore the :start keyword argument, reading from index 0 instead of 10. That’s because READ-FROM-STRING also has two &optional parameters that swallowed up the arguments :start and 10.
+
+### 5.7 Function Return Values
+
+All the functions you've written so far have used the default behavior of returning the value of the last expression evaluated as their own return value. This is the most common way to return a value from a function.
+
+However, sometimes it's convenient to be able to return from the middle of a function such as when you want to break out of nested control constructs. In such cases you can use the RETURN-FROM special operator to immediately return any value from the function.
+
+You'll see in Chapter 20 that RETURN-FROM is actually not tied to functions at all; it's used to return from a block of code defined with the BLOCK special operator. However, DEFUN automatically wraps the whole function body in a block with the same name as the function. So, evaluating a RETURN-FROM with the name of the function and the value you want to return will cause the function to immediately exit with that value. RETURN-FROM is a special operator whose first "argument" is the name of the block from which to return. This name isn't evaluated and thus isn't quoted.
+
+The following function uses nested loops to find the first pair of numbers, each less than 10, whose product is greater than the argument, and it uses RETURN-FROM to return the pair as soon as it finds it:
+
+```c
+(defun foo (n) 
+  (dotimes (i 10) 
+    (dotimes (j 10) 
+      (when (> (* i j) n) 
+        (return-from foo (list i j))
+      )
+    )
+  )
+)
+```
+
+Admittedly, having to specify the name of the function you're returning from is a bit of a pain -- for one thing, if you change the function's name, you'll need to change the name used in the RETURN-FROM as well. 8 But it's also the case that explicit RETURN-FROMs are used much less frequently in Lisp than return statements in C-derived languages, because all Lisp expressions, including control constructs such as loops and conditionals, evaluate to a value. So it's not much of a problem in practice.
+
+8 Another macro, RETURN, doesn’t require a name. However, you can’t use it instead of RETURN-FROM to avoid having to specify the function name; it’s syntactic sugar for returning from a block named NIL. I’ll cover it, along with the details of BLOCK and RETURN-FROM, in Chapter 20.
+
+### 5.8 Functions As Data, a.k.a. Higher-Order Functions
+
+While the main way you use functions is to call them by name, a number of situations exist where it's useful to be able treat functions as data. For instance, if you can pass one function as an argument to another, you can write a general-purpose sorting function while allowing the caller to provide a function that's responsible for comparing any two elements. Then the same underlying algorithm can be used with many different comparison functions. Similarly, callbacks and hooks depend on being able to store references to code in order to run it later. Since functions are already the standard way to abstract bits of code, it makes sense to allow functions to be treated as data. 9
+
+1-2『编程语言里，能把函数当作数据，个人感觉太有必要了，将函数作为参数传进另一个函数，构建复杂的模型。函数作为数据，做一张主题卡。（2020-10-28）』 —  — 已完成
+
+In Lisp, functions are just another kind of object. When you define a function with DEFUN, you're really doing two things: creating a new function object and giving it a name. It's also possible, as you saw in Chapter 3, to use LAMBDA expressions to create a function without giving it a name. The actual representation of a function object, whether named or anonymous, is opaque -- in a native-compiling Lisp, it probably consists mostly of machine code. The only things you need to know are how to get hold of it and how to invoke it once you've got it.
+
+The special operator FUNCTION provides the mechanism for getting at a function object. It takes a single argument and returns the function with that name. The name isn't quoted. Thus, if you've defined a function foo, like so:
+
+```c
+CL-USER> (defun foo (x) (* 2 x)) 
+FOO
+```
+
+you can get the function object like this: 10
+
+```c
+CL-USER> (function foo) 
+#<Interpreted Function FOO>
+```
+
+In fact, you've already used FUNCTION, but it was in disguise. The syntax #', which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way ' is syntactic sugar for QUOTE. 11 Thus, you can also get the function object for foo like this:
+
+```c
+CL-USER> #'foo 
+#<Interpreted Function FOO>
+```
+
+1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）』
+
+Once you've got the function object, there's really only one thing you can do with it -- invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY. 12 They differ only in how they obtain the arguments to pass to the function.
+
+FUNCALL is the one to use when you know the number of arguments you're going to pass to the function at the time you write the code. The first argument to FUNCALL is the function object to be invoked, and the rest of the arguments are passed onto that function. Thus, the following two expressions are equivalent:
+
+```c
+(foo 1 2 3) === (funcall #'foo 1 2 3)
+```
+
+However, there's little point in using FUNCALL to call a function whose name you know when you write the code. In fact, the previous two expressions will quite likely compile to exactly the same machine instructions.
+
+The following function demonstrates a more apt use of FUNCALL. It accepts a function object as an argument and plots a simple ASCII-art histogram of the values returned by the argument function when it's invoked on the values from min to max, stepping by step.
+
+```c
+(defun plot (fn min max step) 
+  (loop for i from min to max by step do 
+    (loop repeat (funcall fn i) do (format t "*")) 
+    (format t "~%")
+  )
+)
+```
+
+The FUNCALL expression computes the value of the function for each value of i. The inner LOOP uses that computed value to determine how many times to print an asterisk to standard output.
+
+Note that you don't use FUNCTION or #' to get the function value of fn; you want it to be interpreted as a variable because it's the variable's value that will be the function object. You can call plot with any function that takes a single numeric argument, such as the built-in function EXP that returns the value of e raised to the power of its argument.
+
+```c
+CL-USER> (plot #'exp 0 4 1/2) 
+*
+*
+**
+****
+*******
+NIL
+```
+
+FUNCALL, however, doesn't do you any good when the argument list is known only at runtime. For instance, to stick with the plot function for another moment, suppose you've obtained a list containing a function object, a minimum and maximum value, and a step value. In other words, the list contains the values you want to pass as arguments to plot. Suppose this list is in the variable plot-data. You could invoke plot on the values in that list like this:
+
+```c
+(plot 
+  (first plot-data) 
+  (second plot-data) 
+  (third plot-data) 
+  (fourth plot-data)
+)
+```
+
+This works fine, but it's pretty annoying to have to explicitly unpack the arguments just so you can pass them to plot.
+
+That's where APPLY comes in. Like FUNCALL, the first argument to APPLY is a function object. But after the function object, instead of individual arguments, it expects a list. It then applies the function to the values in the list. This allows you to write the following instead:
+
+```c
+(apply #'plot plot-data)
+```
+
+As a further convenience, APPLY can also accept "loose" arguments as long as the last argument is a list. Thus, if plot-data contained just the min, max, and step values, you could still use APPLY like this to plot the EXP function over that range:
+
+```c
+(apply #'plot #'exp plot-data)
+```
+
+APPLY doesn't care about whether the function being applied takes &optional, &rest, or &key arguments -- the argument list produced by combining any loose arguments with the final list must be a legal argument list for the function with enough arguments for all the required parameters and only appropriate keyword parameters.
+
+9 Lisp, of course, isn’t the only language to treat functions as data. C uses function pointers, Perl uses subroutine references, Python uses a scheme similar to Lisp, and C# introduces delegates, essentially typed function pointers, as an improvement over Java’s rather clunky reflection and anonymous class mechanisms.
+
+10 The exact printed representation of a function object will differ from implementation to implementation.
+
+11 The best way to think of FUNCTION is as a special kind of quotation. QUOTEing a symbol prevents it from being evaluated at all, resulting in the symbol itself rather than the value of the variable named by that symbol. FUNCTION also circumvents the normal evaluation rule but, instead of preventing the symbol from being evaluated at all, causes it to be evaluated as the name of a function, just the way it would if it were used as the function name in a function call expression.
+
+12 There’s actually a third, the special operator MULTIPLE-VALUE-CALL, but I’ll save that for when I discuss expressions that return multiple values in Chapter 20.
+
+### 5.9 Anonymous Functions
+
+Once you start writing, or even simply using, functions that accept other functions as arguments, you're bound to discover that sometimes it's annoying to have to define and name a whole separate function that's used in only one place, especially when you never call it by name.
+
+When it seems like overkill to define a new function with DEFUN, you can create an "anonymous" function using a LAMBDA expression. As discussed in Chapter 3, a LAMBDA expression looks like this:
+
+```c
+(lambda (parameters) body)
+```
+
+One way to think of LAMBDA expressions is as a special kind of function name where the name itself directly describes what the function does. This explains why you can use a LAMBDA expression in the place of a function name with #'.
+
+```c
+(funcall #'(lambda (x y) (+ x y)) 2 3) ==> 5
+```
+
+You can even use a LAMBDA expression as the "name" of a function in a function call expression. If you wanted, you could write the previous FUNCALL expression more concisely.
+
+```c
+((lambda (x y) (+ x y)) 2 3) ==> 5
+```
+
+But this is almost never done; it's merely worth noting that it's legal in order to emphasize that LAMBDA expressions can be used anywhere a normal function name can be.13
+
+Anonymous functions can be useful when you need to pass a function as an argument to another function and the function you need to pass is simple enough to express inline. For instance, suppose you wanted to plot the function 2x. You could define the following function:
+
+```c
+(defun double (x) (* 2 x))
+```
+
+which you could then pass to plot.
+
+```c
+CL-USER> (plot #'double 0 10 1) 
+** 
+**** 
+****** 
+******** 
+********** 
+************ 
+************** 
+**************** 
+****************** 
+******************** 
+NIL
+```
+
+But it's easier, and arguably clearer, to write this:
+
+```c
+CL-USER> (plot #'(lambda (x) (* 2 x)) 0 10 1) 
+** 
+**** 
+****** 
+******** 
+********** 
+************ 
+************** 
+**************** 
+****************** 
+******************** 
+NIL
+```
+
+The other important use of LAMBDA expressions is in making closures, functions that capture part of the environment where they're created. You used closures a bit in Chapter 3, but the details of how closures work and what they're used for is really more about how variables work than functions, so I'll save that discussion for the next chapter.
+
+## 0601. Variables
+
+The next basic building block we need to look at are variables. Common Lisp supports two kinds of variables: lexical and dynamic. 1 These two types correspond roughly to "local" and "global" variables in other languages. However, the correspondence is only approximate. On one hand, some languages' "local" variables are in fact much like Common Lisp's dynamic variables. 2 And on the other, some languages' local variables are lexically scoped without providing all the capabilities provided by Common Lisp's lexical variables. In particular, not all languages that provide lexically scoped variables support closures.
+
+To make matters a bit more confusing, many of the forms that deal with variables can be used with both lexical and dynamic variables. So I'll start by discussing a few aspects of Lisp's variables that apply to both kinds and then cover the specific characteristics of lexical and dynamic variables. Then I'll discuss Common Lisp's general-purpose assignment operator, SETF, which is used to assign new values to variables and just about every other place that can hold a value.
+
+1『晕死，这里才突然意识到，command lisp 里的 `setf` 如同 autolisp 里的 `setq`。（2020-11-03）』
+
+1 Dynamic variables are also sometimes called special variables for reasons you’ll see later in this chapter. It’s important to be aware of this synonym, as some folks (and Lisp implementations) use one term while others use the other.
+
+2 Early Lisps tended to use dynamic variables for local variables, at least when interpreted. Elisp, the Lisp dialect used in Emacs, is a bit of a throwback in this respect, continuing to support only dynamic variables. Other languages have recapitulated this transition from dynamic to lexical variables — Perl’s local variables, for instance, are dynamic while its my variables, introduced in Perl 5, are lexical. Python never had true dynamic variables but only introduced true lexical scoping in version 2.2. (Python’s lexical variables are still somewhat limited compared to Lisp’s because of the conflation of assignment and binding in the language’s syntax.)
+
+### 6.1 Variable Basics
+
+As in other languages, in Common Lisp variables are named places that can hold a value. However, in Common Lisp, variables aren't typed the way they are in languages such as Java or C++. That is, you don't need to declare the type of object that each variable can hold. Instead, a variable can hold values of any type and the values carry type information that can be used to check types at runtime. Thus, Common Lisp is dynamically typed -- type errors are detected dynamically. For instance, if you pass something other than a number to the + function, Common Lisp will signal a type error. On the other hand, Common Lisp is a strongly typed language in the sense that all type errors will be detected -- there's no way to treat an object as an instance of a class that it's not. 3
+
+1-2『这里又见「动态语言」的概念，做一张术语卡片。』 —  — 已完成
+
+All values in Common Lisp are, conceptually at least, references to objects. 4 Consequently, assigning a variable a new value changes what object the variable refers to but has no effect on the previously referenced object. However, if a variable holds a reference to a mutable object, you can use that reference to modify the object, and the modification will be visible to any code that has a reference to the same object.
+
+One way to introduce new variables you've already used is to define function parameters. As you saw in the previous chapter, when you define a function with DEFUN, the parameter list defines the variables that will hold the function's arguments when it's called. For example, this function defines three variables -- x, y, and z -- to hold its arguments.
+
+```c
+(defun foo (x y z) 
+  (+ x y z)
+)
+```
+
+Each time a function is called, Lisp creates new bindings to hold the arguments passed by the function's caller. A binding is the runtime manifestation of a variable. A single variable -- the thing you can point to in the program's source code -- can have many different bindings during a run of the program. A single variable can even have multiple bindings at the same time; parameters to a recursive function, for example, are rebound for each call to the function.
+
+As with all Common Lisp variables, function parameters hold object references. 5 Thus, you can assign a new value to a function parameter within the body of the function, and it will not affect the bindings created for another call to the same function. But if the object passed to a function is mutable and you change it in the function, the changes will be visible to the caller since both the caller and the callee will be referencing the same object.
+
+1『看到这里提到的「可变」，渐渐对「不可变性」有那么一点点感觉了。（2020-11-03）』
+
+Another form that introduces new variables is the LET special operator. The skeleton of a LET form looks like this:
+
+```c
+(let (variable*) 
+  body-form*
+)
+```
+
+where each variable is a variable initialization form. Each initialization form is either a list containing a variable name and an initial value form or -- as a shorthand for initializing the variable to NIL -- a plain variable name. The following LET form, for example, binds the three variables x, y, and z with initial values 10, 20, and NIL:
+
+```c
+(let ((x 10) (y 20) z) 
+  ...
+)
+```
+
+When the LET form is evaluated, all the initial value forms are first evaluated. Then new bindings are created and initialized to the appropriate initial values before the body forms are executed. Within the body of the LET, the variable names refer to the newly created bindings. After the LET, the names refer to whatever, if anything, they referred to before the LET.
+
+The value of the last expression in the body is returned as the value of the LET expression. Like function parameters, variables introduced with LET are rebound each time the LET is entered. 6
+
+The scope of function parameters and LET variables -- the area of the program where the variable name can be used to refer to the variable's binding -- is delimited by the form that introduces the variable. This form -- the function definition or the LET -- is called the binding form. As you'll see in a bit, the two types of variables -- lexical and dynamic -- use two slightly different scoping mechanisms, but in both cases the scope is delimited by the binding form.
+
+If you nest binding forms that introduce variables with the same name, then the bindings of the innermost variable shadows the outer bindings. For instance, when the following function is called, a binding is created for the parameter x to hold the function's argument. Then the first LET creates a new binding with the initial value 2, and the inner LET creates yet another binding, this one with the initial value 3. The bars on the right mark the scope of each binding.
+
+```c
+(defun foo (x) ; x is argument
+  (format t "Parameter: ~a~%" x) 
+  (let ((x 2)) ; x is 2 
+    (format t "Outer LET: ~a~%" x) 
+    (let ((x 3)) ; x is 3 
+      (format t "Inner LET: ~a~%" x)
+    ) 
+    (format t "Outer LET: ~a~%" x)
+  )
+  (format t "Parameter: ~a~%" x)
+) 
+```
+
+Each reference to x will refer to the binding with the smallest enclosing scope. Once control leaves the scope of one binding form, the binding from the immediately enclosing scope is unshadowed and x refers to it instead. Thus, calling foo results in this output:
+
+```c
+CL-USER> (foo 1) 
+Parameter: 1 
+Outer LET: 2 
+Inner LET: 3 
+Outer LET: 2 
+Parameter: 1 
+NIL
+```
+
+In future chapters I'll discuss other constructs that also serve as binding forms -- any construct that introduces a new variable name that's usable only within the construct is a binding form.
+
+For instance, in Chapter 7 you'll meet the DOTIMES loop, a basic counting loop. It introduces a variable that holds the value of a counter that's incremented each time through the loop. The following loop, for example, which prints the numbers from 0 to 9, binds the variable x:
+
+```c
+(dotimes (x 10) 
+  (format t "~d " x)
+)
+```
+
+Another binding form is a variant of LET, `LET*.` The difference is that in a LET, the variable names can be used only in the body of the LET -- the part of the LET after the variables list -- but in a `LET*`, the initial value forms for each variable can refer to variables introduced earlier in the variables list. Thus, you can write the following:
+
+```c
+(let* ((x 10) 
+       (y (+ x 10))) 
+  (list x y)
+)
+```
+
+but not this:
+
+```c
+(let ((x 10) 
+      (y (+ x 10))) 
+  (list x y)
+)
+```
+
+However, you could achieve the same result with nested LETs.
+
+```c
+(let ((x 10)) 
+  (let ((y (+ x 10))) 
+    (list x y)
+  )
+)
+```
+
+3 Actually, it’s not quite true to say that all type errors will always be detected — it’s possible to use optional declarations to tell the compiler that certain variables will always contain objects of a particular type and to turn off runtime type checking in certain regions of code. However, declarations of this sort are used to optimize code after it has been developed and debugged, not during normal development.
+
+4 As an optimization certain kinds of objects, such as integers below a certain size and characters, may be represented directly in memory where other objects would be represented by a pointer to the actual object. However, since integers and characters are immutable, it doesn’t matter that there may be multiple copies of “the same” object in different variables. This is the root of the difference between EQ and EQL discussed in Chapter 4.
+
+1『这里又见到「不可变性」，函数式编程里核心的一个概念。上面提到的，整数和字符串在 lisp 里是不可变型的数据类型，但作为变量，整数是可以赋值不同的数的啊，难道是分配给整数的内存空间只能放整数的意思？所以说目前还是不太明白其不变性。（2020-11-03）』
+
+5 In compiler-writer terms Common Lisp functions are “pass-by-value.” However, the values that are passed are references to objects. This is similar to how Java and Python work.
+
+6 The variables in LET forms and function parameters are created by exactly the same mechanism. In fact, in some Lisp dialects — though not Common Lisp — LET is simply a macro that expands into a call to an anonymous function. That is, in those dialects, the following:
+
+```c
+(let ((x 10)) (format t "~a" x))
+```
+
+is a macro form that expands into this:
+
+```c
+((lambda (x) (format t "~a" x)) 10)
+```
+
+### 6.2 Lexical Variables and Closures
+
+By default all binding forms in Common Lisp introduce lexically scoped variables. Lexically scoped variables can be referred to only by code that's textually within the binding form. Lexical scoping should be familiar to anyone who has programmed in Java, C, Perl, or Python since they all provide lexically scoped "local" variables. For that matter, Algol programmers should also feel right at home, as Algol first introduced lexical scoping in the 1960s.
+
+However, Common Lisp's lexical variables are lexical variables with a twist, at least compared to the original Algol model. The twist is provided by the combination of lexical scoping with nested functions. By the rules of lexical scoping, only code textually within the binding form can refer to a lexical variable. But what happens when an anonymous function contains a reference to a lexical variable from an enclosing scope? For instance, in this expression:
+
+```c
+(let ((count 0)) #'(lambda () (setf count (1+ count))))
+```
+
+the reference to count inside the LAMBDA form should be legal according to the rules of lexical scoping. Yet the anonymous function containing the reference will be returned as the value of the LET form and can be invoked, via FUNCALL, by code that's not in the scope of the LET. So what happens? As it turns out, when count is a lexical variable, it just works. The binding of count created when the flow of control entered the LET form will stick around for as long as needed, in this case for as long as someone holds onto a reference to the function object returned by the LET form. The anonymous function is called a closure because it "closes over" the binding created by the LET.
+
+1-2『又见闭包 closure，不过这里目前介绍的闭包概念没弄明白。做一张术语卡片。（2020-11-03）』 —  — 已完成
+
+The key thing to understand about closures is that it's the binding, not the value of the variable, that's captured. Thus, a closure can not only access the value of the variables it closes over but can also assign new values that will persist between calls to the closure. For instance, you can capture the closure created by the previous expression in a global variable like this:
+
+```c
+(defparameter *fn* 
+  (let ((count 0)) 
+       #'(lambda () (setf count (1+ count)))
+  )
+)
+```
+
+Then each time you invoke it, the value of count will increase by one.
+
+```c
+CL-USER> (funcall *fn*) 
+1 
+CL-USER> (funcall *fn*) 
+2 
+CL-USER> (funcall *fn*) 
+3
+```
+
+A single closure can close over many variable bindings simply by referring to them. Or multiple closures can capture the same binding. For instance, the following expression returns a list of three closures, one that increments the value of the closed over count binding, one that decrements it, and one that returns the current value:
+
+```c
+(let ((count 0)) 
+  (list 
+    #'(lambda () (incf count)) 
+    #'(lambda () (decf count)) 
+    #'(lambda () count)
+  )
+)
+```
+
+### 6.3 Dynamic, a.k.a. Special, Variables
+
+Lexically scoped bindings help keep code understandable by limiting the scope, literally, in which a given name has meaning. This is why most modern languages use lexical scoping for local variables. Sometimes, however, you really want a global variable -- a variable that you can refer to from anywhere in your program. While it's true that indiscriminate use of global variables can turn code into spaghetti nearly as quickly as unrestrained use of goto, global variables do have legitimate uses and exist in one form or another in almost every programming language. 7 And as you'll see in a moment, Lisp's version of global variables, dynamic variables, are both more useful and more manageable.
+
+Common Lisp provides two ways to create global variables: DEFVAR and DEFPARAMETER. Both forms take a variable name, an initial value, and an optional documentation string. After it has been DEFVARed or DEFPARAMETERed, the name can be used anywhere to refer to the current binding of the global variable. As you've seen in previous chapters, global variables are conventionally named with names that start and end with `*`. You'll see later in this section why it's quite important to follow that naming convention. Examples of DEFVAR and DEFPARAMETER look like this:
+
+```c
+(defvar *count* 0 "Count of widgets made so far.") 
+(defparameter *gap-tolerance* 0.001 "Tolerance to be allowed in widget gaps.")
+```
+
+The difference between the two forms is that DEFPARAMETER always assigns the initial value to the named variable while DEFVAR does so only if the variable is undefined. A DEFVAR form can also be used with no initial value to define a global variable without giving it a value. Such a variable is said to be unbound.
+
+Practically speaking, you should use DEFVAR to define variables that will contain data you'd want to keep even if you made a change to the source code that uses the variable. For instance, suppose the two variables defined previously are part of an application for controlling a widget factory. It's appropriate to define the `*count*` variable with DEFVAR because the number of widgets made so far isn't invalidated just because you make some changes to the widget-making code. 8
+
+On the other hand, the variable `*gap-tolerance*` presumably has some effect on the behavior of the widget-making code itself. If you decide you need a tighter or looser tolerance and change the value in the DEFPARAMETER form, you'd like the change to take effect when you recompile and reload the file.
+
+After defining a variable with DEFVAR or DEFPARAMETER, you can refer to it from anywhere. For instance, you might define this function to increment the count of widgets made:
+
+```c
+(defun increment-widget-count () 
+  (incf *count*)
+)
+```
+
+The advantage of global variables is that you don't have to pass them around. Most languages store the standard input and output streams in global variables for exactly this reason -- you never know when you're going to want to print something to standard out, and you don't want every function to have to accept and pass on arguments containing those streams just in case someone further down the line needs them.
+
+However, once a value, such as the standard output stream, is stored in a global variable and you have written code that references that global variable, it's tempting to try to temporarily modify the behavior of that code by changing the variable's value.
+
+For instance, suppose you're working on a program that contains some low-level logging functions that print to the stream in the global variable `*standard-output*`. Now suppose that in part of the program you want to capture all the output generated by those functions into a file. You might open a file and assign the resulting stream to `*standard-output*`. Now the low-level functions will send their output to the file.
+
+This works fine until you forget to set `*standard-output*` back to the original stream when you're done. If you forget to reset `*standard-output*`, all the other code in the program that uses `*standard-output*` will also send its output to the file. 9
+
+What you really want, it seems, is a way to wrap a piece of code in something that says, "All code below here -- all the functions it calls, all the functions they call, and so on, down to the lowest-level functions -- should use this value for the global variable `*standard-output*`." Then when the high-level function returns, the old value of `*standard-output*` should be automatically restored.
+
+It turns out that that's exactly what Common Lisp's other kind of variable -- dynamic variables -- let you do. When you bind a dynamic variable -- for example, with a LET variable or a function parameter -- the binding that's created on entry to the binding form replaces the global binding for the duration of the binding form. Unlike a lexical binding, which can be referenced by code only within the lexical scope of the binding form, a dynamic binding can be referenced by any code that's invoked during the execution of the binding form.10 And it turns out that all global variables are, in fact, dynamic variables.
+
+1『上面信息目前的理解，在 Common Lisp 里 dynamic variables 是结合了局部变量和全局变量的优点，而且还能避免全局变量时常忘记重置的缺点。（2020-11-08）』
+
+Thus, if you want to temporarily redefine `*standard-output*`, the way to do it is simply to rebind it, say, with a LET.
+
+```c
+(let ((*standard-output* *some-other-stream*)) (stuff))
+```
+
+In any code that runs as a result of the call to stuff, references to `*standard-output*` will use the binding established by the LET. And when stuff returns and control leaves the LET, the new binding of `*standard-output*` will go away and subsequent references to `*standard-output*` will see the binding that was current before the LET. At any given time, the most recently established binding shadows all other bindings. Conceptually, each new binding for a given dynamic variable is pushed onto a stack of bindings for that variable, and references to the variable always use the most recent binding. As binding forms return, the bindings they created are popped off the stack, exposing previous bindings. 11
+
+A simple example shows how this works.
+
+```c
+(defvar *x* 10) 
+(defun foo () (format t "X: ~d~%" *x*))
+```
+
+The DEFVAR creates a global binding for the variable `*x*` with the value 10. The reference to `*x*` in foo will look up the current binding dynamically. If you call foo from the top level, the global binding created by the DEFVAR is the only binding available, so it prints 10.
+
+```c
+CL-USER> (foo) 
+X: 10 
+NIL
+```
+
+But you can use LET to create a new binding that temporarily shadows the global binding, and foo will print a different value.
+
+```c
+CL-USER> (let ((*x* 20)) (foo)) 
+X: 20 
+NIL
+```
+
+Now call foo again, with no LET, and it again sees the global binding.
+
+```c
+CL-USER> (foo) 
+X: 10 
+NIL
+```
+
+Now define another function.
+
+```c
+(defun bar () (foo) (let ((*x* 20)) (foo)) (foo))
+```
+
+Note that the middle call to foo is wrapped in a LET that binds `*x*` to the new value 20. When you run bar, you get this result:
+
+```c
+CL-USER> (bar) 
+X: 10 
+X: 20 
+X: 10 
+NIL
+```
+
+As you can see, the first call to foo sees the global binding, with its value of 10. The middle call, however, sees the new binding, with the value 20. But after the LET, foo once again sees the global binding.
+
+As with lexical bindings, assigning a new value affects only the current binding. To see this, you can redefine foo to include an assignment to `*x*`.
+
+```c
+(defun foo () 
+  (format t "Before assignment~18tX: ~d~%" *x*) 
+  (setf *x* (+ 1 *x*)) 
+  (format t "After assignment~18tX: ~d~%" *x*)
+)
+```
+
+Now foo prints the value of `*x*`, increments it, and prints it again. If you just run foo, you'll see this:
+
+```c
+CL-USER> (foo) 
+Before assignment X: 10 
+After assignment X: 11 
+NIL
+```
+
+Not too surprising. Now run bar.
+
+```c
+CL-USER> (bar) 
+Before assignment X: 11 
+After assignment X: 12 
+Before assignment X: 20 
+After assignment X: 21 
+Before assignment X: 12 
+After assignment X: 13 
+NIL
+```
+
+Notice that `*x*` started at 11 -- the earlier call to foo really did change the global value. The first call to foo from bar increments the global binding to 12. The middle call doesn't see the global binding because of the LET. Then the last call can see the global binding again and increments it from 12 to 13.
+
+So how does this work? How does LET know that when it binds `*x*` it's supposed to create a dynamic binding rather than a normal lexical binding? It knows because the name has been declared special. 12 The name of every variable defined with DEFVAR and DEFPARAMETER is automatically declared globally special. This means whenever you use such a name in a binding form -- in a LET or as a function parameter or any other construct that creates a new variable binding -- the binding that's created will be a dynamic binding. This is why the `*naming*` `*convention*` is so important -- it'd be bad news if you used a name for what you thought was a lexical variable and that variable happened to be globally special. On the one hand, code you call could change the value of the binding out from under you; on the other, you might be shadowing a binding established by code higher up on the stack. If you always name global variables according to the `*` naming convention, you'll never accidentally use a dynamic binding where you intend to establish a lexical binding.
+
+2『目前还是没弄明白，`*` 命名全局变量，与普通命名全局变量的本质区别。（2020-11-08）』
+
+It's also possible to declare a name locally special. If, in a binding form, you declare a name special, then the binding created for that variable will be dynamic rather than lexical. Other code can locally declare a name special in order to refer to the dynamic binding. However, locally special variables are relatively rare, so you needn't worry about them.13
+
+Dynamic bindings make global variables much more manageable, but it's important to notice they still allow action at a distance. Binding a global variable has two at a distance effects -- it can change the behavior of downstream code, and it also opens the possibility that downstream code will assign a new value to a binding established higher up on the stack. You should use dynamic variables only when you need to take advantage of one or both of these characteristics.
+
+7 Java disguises global variables as public static fields, C uses extern variables, and Python’s module-level and Perl’s package-level variables can likewise be accessed from anywhere.
+
+8 If you specifically want to reset a DEFVARed variable, you can either set it directly with SETF or make it unbound using MAKUNBOUND and then reevaluate the DEFVAR form.
+
+9 The strategy of temporarily reassigning `*standard-output*` also breaks if the system is multithreaded — if there are multiple threads of control trying to print to different streams at the same time, they’ll all try to set the global variable to the stream they want to use, stomping all over each other. You could use a lock to control access to the global variable, but then you’re not really getting the benefit of multiple concurrent threads, since whatever thread is printing has to lock out all the other threads until it’s done even if they want to print to a different stream.
+
+10 The technical term for the interval during which references may be made to a binding is its extent. Thus, scope and extent are complementary notions — scope refers to space while extent refers to time. Lexical variables have lexical scope but indefinite extent, meaning they stick around for an indefinite interval, determined by how long they’re needed. Dynamic variables, by contrast, have indefinite scope since they can be referred to from anywhere but dynamic extent. To further confuse matters, the combination of indefinite scope and dynamic extent is frequently referred to by the misnomer dynamic scope.
+
+11 Though the standard doesn’t specify how to incorporate multithreading into Common Lisp, implementations that provide multithreading follow the practice established on the Lisp machines and create dynamic bindings on a per-thread basis. A reference to a global variable will find the binding most recently established in the current thread, or the global binding.
+
+12 This is why dynamic variables are also sometimes called special variables.
+
+13 If you must know, you can look up DECLARE, SPECIAL, and LOCALLY in the HyperSpec.
+
+### 6.4 Constants
+
+One other kind of variable I haven't mentioned at all is the oxymoronic "constant variable." All constants are global and are defined with DEFCONSTANT. The basic form of DEFCONSTANT is like DEFPARAMETER.
+
+```c
+(defconstant name initial-value-form [ documentation-string ])
+```
+
+As with DEFVAR and DEFPARAMETER, DEFCONSTANT has a global effect on the name used -- thereafter the name can be used only to refer to the constant; it can't be used as a function parameter or rebound with any other binding form. Thus, many Lisp programmers follow a naming convention of using names starting and ending with + for constants. This convention is somewhat less universally followed than the *-naming convention for globally special names but is a good idea for the same reason. 14
+
+Another thing to note about DEFCONSTANT is that while the language allows you to redefine a constant by reevaluating a DEFCONSTANT with a different initial-value-form, what exactly happens after the redefinition isn't defined. In practice, most implementations will require you to reevaluate any code that refers to the constant in order to see the new value since the old value may well have been inlined. Consequently, it's a good idea to use DEFCONSTANT only to define things that are really constant, such as the value of NIL. For things you might ever want to change, you should use DEFPARAMETER instead.
+
+14 Several key constants defined by the language itself don’t follow this convention — not least of which are T and NIL. This is occasionally annoying when one wants to use t as a local variable name. Another is PI, which holds the best long-float approximation of the mathematical constant π.
+
+### 6.5 Assignment
+
+Once you've created a binding, you can do two things with it: get the current value and set it to a new value. As you saw in Chapter 4, a symbol evaluates to the value of the variable it names, so you can get the current value simply by referring to the variable. To assign a new value to a binding, you use the SETF macro, Common Lisp's general-purpose assignment operator. The basic form of SETF is as follows:
+
+```c
+(setf place value)
+```
+
+Because SETF is a macro, it can examine the form of the place it's assigning to and expand into appropriate lower-level operations to manipulate that place. When the place is a variable, it expands into a call to the special operator SETQ, which, as a special operator, has access to both lexical and dynamic bindings.15 For instance, to assign the value 10 to the variable x, you can write this:
+
+```c
+(setf x 10)
+```
+
+As I discussed earlier, assigning a new value to a binding has no effect on any other bindings of that variable. And it doesn't have any effect on the value that was stored in the binding prior to the assignment. Thus, the SETF in this function:
+
+```c
+(defun foo (x) 
+  (setf x 10)
+)
+```
+
+will have no effect on any value outside of foo. The binding that was created when foo was called is set to 10, immediately replacing whatever value was passed as an argument. In particular, a form such as the following:
+
+```c
+(let ((y 20)) 
+  (foo y) 
+  (print y)
+)
+```
+
+will print 20, not 10, as it's the value of y that's passed to foo where it's briefly the value of the variable x before the SETF gives x a new value. SETF can also assign to multiple places in sequence. For instance, instead of the following:
+
+```c
+(setf x 1) 
+(setf y 2)
+```
+
+you can write this:
+
+```c
+(setf x 1 y 2)
+```
+
+SETF returns the newly assigned value, so you can also nest calls to SETF as in the following expression, which assigns both x and y the same random value:
+
+```c
+(setf x (setf y (random 10)))
+```
+
+15 Some old-school Lispers prefer to use SETQ with variables, but modern style tends to use SETF for all assignments.
+
+1『怪不得 autolisp 里用 `setq` 给变量赋值，果然是老古董，哈哈。（2020-11-08）』
+
+### 6.6 Generalized Assignment
+
+Variable bindings, of course, aren't the only places that can hold values. Common Lisp supports composite data structures such as arrays, hash tables, and lists, as well as user-defined data structures, all of which consist of multiple places that can each hold a value.
+
+I'll cover those data structures in future chapters, but while we're on the topic of assignment, you should note that SETF can assign any place a value. As I cover the different composite data structures, I'll point out which functions can serve as "SETFable places." The short version, however, is if you need to assign a value to a place, SETF is almost certainly the tool to use. It's even possible to extend SETF to allow it to assign to user-defined places though I won't cover that. 16
+
+In this regard SETF is no different from the = assignment operator in most C-derived languages. In those languages, the = operator assigns new values to variables, array elements, and fields of classes. In languages such as Perl and Python that support hash tables as a built-in data type, = can also set the values of individual hash table entries. Table 6-1 summarizes the various ways = is used in those languages.
+
+Table 6-1. Assignment with = in Other Languages
+
+|  Assigning to ... |  Java, C, C++  |  Perl  | Python  |
+| -- -| -- -| -- -| -- -|
+|  ... variable |  x = 10; |  `$x = 10;` |  x = 10 |
+|  ... array element |  a[0] = 10;   |  `$a[0] = 10;` |  a[0] = 10 |
+|  ... hash table entry |  |  `$hash{'key'} = 10;` |  hash['key'] = 10 |
+|  ... field in object |   o.field = 10; | ` $o->{'field'} = 10;` |  o.field = 10 |
+
+1『发现 Perl 的语法跟 PHP 一样的，突然间想起来，PHP 语言本身就是用 Perl 写的。（2020-11-08）』
+
+SETF works the same way -- the first "argument" to SETF is a place to store the value, and the second argument provides the value. As with the = operator in these languages, you use the same form to express the place as you'd normally use to fetch the value. 17 Thus, the Lisp equivalents of the assignments in Table 6-1 -- given that AREF is the array access function, GETHASH does a hash table lookup, and field might be a function that accesses a slot named field of a user-defined object -- are as follows:
+
+```c
+Simple variable: 
+(setf x 10) 
+
+Array: 
+(setf (aref a 0) 10) 
+
+Hash table: 
+(setf (gethash 'key hash) 10) 
+
+Slot named 'field': 
+(setf (field o) 10)
+```
+
+Note that SETFing a place that's part of a larger object has the same semantics as SETFing a variable: the place is modified without any effect on the object that was previously stored in the place. Again, this is similar to how = behaves in Java, Perl, and Python. 18
+
+16 Look up DEFSETF, DEFINE-SETF-EXPANDER for more information.
+
+17 The prevalence of Algol-derived syntax for assignment with the “place” on the left side of the = and the new value on the right side has spawned the terminology lvalue, short for “left value,” meaning something that can be assigned to, and rvalue, meaning something that provides a value. A compiler hacker would say, “SETF treats its first argument as an lvalue.”
+
+18 C programmers may want to think of variables and other places as holding a pointer to the real object; assigning to a variable simply changes what object it points to while assigning to a part of a composite object is similar to indirecting through the pointer to the actual object. C++ programmers should note that the behavior of = in C++ when dealing with objects — namely, a memberwise copy — is quite idiosyncratic.
+
+### 6.7 Other Ways to Modify Places
+
+While all assignments can be expressed with SETF, certain patterns involving assigning a new value based on the current value are sufficiently common to warrant their own operators. For instance, while you could increment a number with SETF, like this:
+
+```c
+(setf x (+ x 1))
+```
+
+or decrement it with this:
+
+```c
+(setf x (- x 1))
+```
+
+it's a bit tedious, compared to the C-style ++x and  -- x. Instead, you can use the macros INCF and DECF, which increment and decrement a place by a certain amount that defaults to 1.
+
+```c
+(incf x) === (setf x (+ x 1)) 
+(decf x) === (setf x (- x 1)) 
+(incf x 10) === (setf x (+ x 10))
+```
+
+INCF and DECF are examples of a kind of macro called modify macros. Modify macros are macros built on top of SETF that modify places by assigning a new value based on the current value of the place. The main benefit of modify macros is that they're more concise than the same modification written out using SETF. Additionally, modify macros are defined in a way that makes them safe to use with places where the place expression must be evaluated only once. A silly example is this expression, which increments the value of an arbitrary element of an array:
+
+```c
+(incf (aref *array* (random (length *array*))))
+```
+
+A naive translation of that into a SETF expression might look like this:
+
+```c
+(setf (aref *array* (random (length *array*))) 
+  (1+ (aref *array* (random (length *array*))))
+)
+```
+
+However, that doesn't work because the two calls to RANDOM won't necessarily return the same value -- this expression will likely grab the value of one element of the array, increment it, and then store it back as the new value of a different element. The INCF expression, however, does the right thing because it knows how to take apart this expression:
+
+```c
+(aref *array* (random (length *array*)))
+```
+
+to pull out the parts that could possibly have side effects to make sure they're evaluated only once. In this case, it would probably expand into something more or less equivalent to this:
+
+```c
+(let ((tmp (random (length *array*)))) 
+  (setf (aref *array* tmp) (1+ (aref *array* tmp)))
+)
+```
+
+In general, modify macros are guaranteed to evaluate both their arguments and the subforms of the place form exactly once each, in left-to-right order.
+
+The macro PUSH, which you used in the mini-database to add elements to the `*db*` variable, is another modify macro. You'll take a closer look at how it and its counterparts POP and PUSHNEW work in Chapter 12 when I talk about how lists are represented in Lisp.
+
+Finally, two slightly esoteric but useful modify macros are ROTATEF and SHIFTF. ROTATEF rotates values between places. For instance, if you have two variables, a and b, this call:
+
+```c
+(rotatef a b)
+```
+
+swaps the values of the two variables and returns NIL. Since a and b are variables and you don't have to worry about side effects, the previous ROTATEF expression is equivalent to this:
+
+```c
+(let ((tmp a)) 
+  (setf a b b tmp) 
+  nil
+)
+```
+
+With other kinds of places, the equivalent expression using SETF would be quite a bit more complex.
+
+SHIFTF is similar except instead of rotating values it shifts them to the left -- the last argument provides a value that's moved to the second-to-last argument while the rest of the values are moved one to the left. The original value of the first argument is simply returned. Thus, the following:
+
+```c
+(shiftf a b 10)
+```
+
+is equivalent -- again, since you don't have to worry about side effects -- to this:
+
+```c
+(let ((tmp a)) 
+  (setf a b b 10) 
+  tmp
+)
+```
+
+Both ROTATEF and SHIFTF can be used with any number of arguments and, like all modify macros, are guaranteed to evaluate them exactly once, in left to right order. With the basics of Common Lisp's functions and variables under your belt, now you're ready to move onto the feature that continues to differentiate Lisp from other languages: macros.
+
 ## 0701. Macros: Standard Control Constructs
 
 While many of the ideas that originated in Lisp, from the conditional expression to garbage collection, have been incorporated into other languages, the one language feature that continues to set Common Lisp apart is its macro system. Unfortunately, the word macro describes a lot of things in computing to which Common Lisp's macros bear only a vague and metaphorical similarity. This causes no end of misunderstanding when Lispers try to explain to non-Lispers what a great feature macros are. 1 To understand Lisp's macros, you really need to come at them fresh, without preconceptions based on other things that also happen to be called macros. So let's start our discussion of Lisp's macros by taking a step back and looking at various ways languages support extensibility.
@@ -363,527 +1376,4 @@ And it's worth pointing out one more time that while the LOOP macro is quite a b
 
 With that I'll conclude our tour of the basic control-construct macros. Now you're ready to take a closer look at how to define your own macros.
 
-8 Loop keywords is a bit of a misnomer since they aren’t keyword symbols. In fact, LOOP doesn’t care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted:for, :across, and so on — because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn’t matter if they’re used for other purposes — as function or variable names.a
-
-## 0901. Practical: Building a Unit Test Framework
-
-In this chapter you'll return to cutting code and develop a simple unit testing framework for Lisp. This will give you a chance to use some of the features you've learned about since Chapter 3, including macros and dynamic variables, in real code.
-
-The main design goal of the test framework will be to make it as easy as possible to add new tests, to run various suites of tests, and to track down test failures. For now you'll focus on designing a framework you can use during interactive development.
-
-The key feature of an automated testing framework is that the framework is responsible for telling you whether all the tests passed. You don't want to spend your time slogging through test output checking answers when the computer can do it much more quickly and accurately. Consequently, each test case must be an expression that yields a boolean value -- true or false, pass or fail. For instance, if you were writing tests for the built-in + function, these might be reasonable test cases: 1
-
-```c
-(= (+ 1 2) 3) 
-(= (+ 1 2 3) 6) 
-(= (+ -1 -3) -4)
-```
-
-Functions that have side effects will be tested slightly differently -- you'll have to call the function and then check for evidence of the expected side effects. 2 But in the end, every test case has to boil down to a boolean expression, thumbs up or thumbs down.
-
-1 This is for illustrative purposes only -- obviously, writing test cases for built-in functions such as + is a bit silly, since if such basic things aren't working, the chances the tests will be running the way you expect is pretty slim. On the other hand, most Common Lisps are implemented largely in Common Lisp, so it's not crazy to imagine writing test suites in Common Lisp to test the standard library functions.
-
-2 Side effects can include such things as signaling errors; I’ll discuss Common Lisp’s error handling system in Chapter 19. You may, after reading that chapter, want to think about how to incorporate tests that check whether a function does or does not signal a particular error in certain situations.
-
-### 9.1 Two First Tries
-
-If you were doing ad hoc testing, you could enter these expressions at the REPL and check that they return T. But you want a framework that makes it easy to organize and run these test cases whenever you want. If you want to start with the simplest thing that could possibly work, you can just write a function that evaluates the test cases and ANDs the results together.
-
-```c
-(defun test-+ ()
-  (and 
-    (= (+ 1 2) 3)
-    (= (+ 1 2 3) 6)
-    (= (+ -1 -3) -4)
-  )
-)
-```
-
-Whenever you want to run this set of test cases, you can call test-+.
-
-```c
-CL-USER> (test-+) 
-T
-```
-
-As long as it returns T, you know the test cases are passing. This way of organizing tests is also pleasantly concise -- you don't have to write a bunch of test bookkeeping code. However, as you'll discover the first time a test case fails, the result reporting leaves something to be desired. When test-+ returns NIL, you'll know something failed, but you'll have no idea which test case it was.
-
-So let's try another simple -- even simpleminded -- approach. To find out what happens to each test case, you could write something like this:
-
-```c
-(defun test-+ () 
-  (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3)) 
-  (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) 
-  (format t "~:[FAIL~;pass~] ... ~a~%" (= (+ -1 -3) -4) '(= (+ -1 -3) -4))
-)
-```
-
-1-3『
-
-`'(= (+ 1 2) 3))` 表示仅仅以字面量的形式展示 `(= (+ 1 2) 3))`，那么 `'` 在这的作用就很明确了，使后面的函数表达式丧失作用，仅显示字面量。
-
-编译器自带的说明：（详见原文）
-
-经过试验，以写成函数语句后，重新加载进 emacs 里，`format` 函数会报错，直接把语句 `(format t "~:[FAIL~;pass~] ... ~a~%" (= (+ 1 2) 3) '(= (+ 1 2) 3))` 拷到 emacs 里运行没问题，目前不知道为啥。（2020-10-24）回复：完全是自己的问题，封装完函数，在 emacs 里调用的时候漏掉了函数名外面的括号，之前一直是用 `test-+`，应该是 `(test-+)`，真是蠢。（2020-10-24）
-
-』
-
-Now each test case will be reported individually. The` ~:[FAIL~;pass~]` part of the FORMAT directive causes FORMAT to print "FAIL" if the first format argument is false and "pass" otherwise. 3 Then you label the result with the test expression itself. Now running test-+ shows you exactly what's going on.
-
-```c
-CL-USER> (test-+) 
-pass ... (= (+ 1 2) 3) 
-pass ... (= (+ 1 2 3) 6) 
-pass ... (= (+ -1 -3) -4) NIL
-```
-
-This time the result reporting is more like what you want, but the code itself is pretty gross. The repeated calls to FORMAT as well as the tedious duplication of the test expression cry out to be refactored. The duplication of the test expression is particularly grating because if you mistype it, the test results will be mislabeled.
-
-Another problem is that you don't get a single indicator whether all the test cases passed. It's easy enough, with only three test cases, to scan the output looking for "FAIL"; however, when you have hundreds of test cases, it'll be more of a hassle.
-
-3 I’ll discuss this and other FORMAT directives in more detail in Chapter 18.
-
-### 9.2 Refactoring
-
-What you'd really like is a way to write test functions as streamlined as the first test-+ that return a single T or NIL value but that also report on the results of individual test cases like the second version. Since the second version is close to what you want in terms of functionality, your best bet is to see if you can factor out some of the annoying duplication.
-
-The simplest way to get rid of the repeated similar calls to FORMAT is to create a new function.
-
-```c
-(defun report-result (result form) 
-  (format t "~:[FAIL~;pass~] ... ~a~%" result form)
-)
-```
-
-Now you can write test-+ with calls to report-result instead of FORMAT. It's not a huge improvement, but at least now if you decide to change the way you report results, there's only one place you have to change.
-
-```c
-(defun test-+ () 
-  (report-result (= (+ 1 2) 3) '(= (+ 1 2) 3)) 
-  (report-result (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) 
-  (report-result (= (+ -1 -3) -4) '(= (+ -1 -3) -4))
-)
-```
-
-Next you need to get rid of the duplication of the test case expression, with its attendant risk of mislabeling of results. What you'd really like is to be able to treat the expression as both code (to get the result) and data (to use as the label). Whenever you want to treat code as data, that's a sure sign you need a macro. Or, to look at it another way, what you need is a way to automate writing the error-prone report-result calls. You'd like to be able to say something like this:
-
-```c
-(check (= (+ 1 2) 3))
-```
-
-and have it mean the following:
-
-```c
-(report-result (= (+ 1 2) 3) '(= (+ 1 2) 3))
-```
-
-Writing a macro to do this translation is trivial.
-
-```c
-(defmacro check (form) 
-  `(report-result ,form ',form)
-)
-```
-
-1『
-
-改成了自己习惯的格式：
-
-```c
-(defmacro check (form) 
-  `(report-result, form', form)
-)
-```
-』
-
-
-Now you can change test-+ to use check.
-
-```c
-(defun test-+ () 
-  (check (= (+ 1 2) 3)) 
-  (check (= (+ 1 2 3) 6)) 
-  (check (= (+ -1 -3) -4))
-)
-```
-
-Since you're on the hunt for duplication, why not get rid of those repeated calls to check? You can define check to take an arbitrary number of forms and wrap them each in a call to report-result.
-
-```c
-(defmacro check (&body forms) 
-  `(progn 
-     ,@(loop for f in forms collect `(report-result ,f ',f))
-   )
-)
-```
-
-This definition uses a common macro idiom of wrapping a PROGN around a series of forms in order to turn them into a single form. Notice also how you can use ,@ to splice in the result of an expression that returns a list of expressions that are themselves generated with a backquote template.
-
-With the new version of check you can write a new version of test-+ like this:
-
-```c
-(defun test-+ () 
-  (check 
-    (= (+ 1 2) 3) 
-    (= (+ 1 2 3) 6) 
-    (= (+ -1 -3) -4)
-  )
-)
-```
-
-that is equivalent to the following code:
-
-```c
-(defun test-+ () 
-  (progn 
-    (report-result (= (+ 1 2) 3) '(= (+ 1 2) 3)) 
-    (report-result (= (+ 1 2 3) 6) '(= (+ 1 2 3) 6)) 
-    (report-result (= (+ -1 -3) -4) '(= (+ -1 -3) -4))
-  )
-)
-```
-
-Thanks to check, this version is as concise as the first version of test-+ but expands into code that does the same thing as the second version. And now any changes you want to make to how test-+ behaves, you can make by changing check.
-
-### 9.3 Fixing the Return Value
-
-You can start with fixing test-+ so its return value indicates whether all the test cases passed. Since check is responsible for generating the code that ultimately runs the test cases, you just need to change it to generate code that also keeps track of the results.
-
-As a first step, you can make a small change to report-result so it returns the result of the test case it's reporting.
-
-```c
-(defun report-result (result form) 
-  (format t "~:[FAIL~;pass~] ... ~a~%" result form)
-  result
-)
-```
-
-Now that report-result returns the result of its test case, it might seem you could just change the PROGN to an AND to combine the results. Unfortunately, AND doesn't do quite what you want in this case because of its short-circuiting behavior: as soon as one test case fails, AND will skip the rest. On the other hand, if you had a construct that worked like AND without the short-circuiting, you could use it in the place of PROGN, and you'd be done. Common Lisp doesn't provide such a construct, but that's no reason you can't use it: it's a trivial matter to write a macro to provide it yourself.
-
-Leaving test cases aside for a moment, what you want is a macro -- let's call it combine-results -- that will let you say this:
-
-```c
-(combine-results 
-  (foo) 
-  (bar) 
-  (baz)
-)
-```
-
-and have it mean something like this:
-
-```c
-(let ((result t)) 
-  (unless (foo) (setf result nil)) 
-  (unless (bar) (setf result nil)) 
-  (unless (baz) (setf result nil)) 
-  result
-)
-```
-
-The only tricky bit to writing this macro is that you need to introduce a variable -- result in the previous code -- in the expansion. As you saw in the previous chapter, using a literal name for variables in macro expansions can introduce a leak in your macro abstraction, so you'll need to create a unique name. This is a job for with-gensyms. You can define combine-results like this:
-
-```c
-(defmacro combine-results (&body forms) 
-  (with-gensyms (result) 
-    `(let ((,result t)) 
-       ,@(loop for f in forms collect `(unless ,f (setf ,result nil))) 
-       ,result
-     )
-  )
-)
-```
-
-Now you can fix check by simply changing the expansion to use combine-results instead of PROGN.
-
-```c
-(defmacro check (&body forms) 
-  `(combine-results 
-     ,@(loop for f in forms collect `(report-result ,f ',f))
-   )
-)
-```
-
-With that version of check, test-+ should emit the results of its three test expressions and then return T to indicate that everything passed. 4
-
-```c
-CL-USER> (test-+) 
-pass ... (= (+ 1 2) 3)
-pass ... (= (+ 1 2 3) 6)  
-pass ... (= (+ -1 -3) -4) 
-T
-```
-
-1『目前用原书里的代码，没跑通。（2020-10-27）』
-
-And if you change one of the test cases so it fails, 5 the final return value changes to NIL.
-
-```c
-CL-USER> (test-+) 
-pass ... (= (+ 1 2) 3) 
-pass ... (= (+ 1 2 3) 6) 
-FAIL ... (= (+ -1 -3) -5) NIL
-```
-
-4 If test-+ has been compiled — which may happen implicitly in certain Lisp implementations — you may need to reevaluate the definition of test-+ to get the changed definition of check to affect the behavior of test-+. Interpreted code, on the other hand, typically expands macros anew each time the code is interpreted, allowing the effects of macro redefinitions to be seen immediately.
-
-5 You have to change the test to make it fail since you can’t change the behavior of +.
-
-### 9.4 Better Result Reporting
-
-As long as you have only one test function, the current result reporting is pretty clear. If a particular test case fails, all you have to do is find the test case in the check form and figure out why it's failing. But if you write a lot of tests, you'll probably want to organize them somehow, rather than shoving them all into one function. For instance, suppose you wanted to add some test cases for the * function. You might write a new test function.
-
-```c
-(defun test-* () 
-  (check 
-    (= (* 2 2) 4) 
-    (= (* 3 5) 15)
-  )
-)
-```
-
-Now that you have two test functions, you'll probably want another function that runs all the tests. That's easy enough.
-
-```c
-(defun test-arithmetic () 
-  (combine-results 
-    (test-+) 
-    (test-*)
-  )
-)
-```
-
-In this function you use combine-results instead of check since both test-+ and test-* will take care of reporting their own results. When you run test-arithmetic, you'll get the following results:
-
-```c
-CL-USER> (test-arithmetic) 
-pass ... (= (+ 1 2) 3) 
-pass ... (= (+ 1 2 3) 6) 
-pass ... (= (+ -1 -3) -4) 
-pass ... (= (* 2 2) 4) 
-pass ... (= (* 3 5) 15) T
-```
-
-Now imagine that one of the test cases failed and you need to track down the problem. With only five test cases and two test functions, it won't be too hard to find the code of the failing test case. But suppose you had 500 test cases spread across 20 functions. It might be nice if the results told you what function each test case came from.
-
-Since the code that prints the results is centralized in report-result, you need a way to pass information about what test function you're in to report-result. You could add a parameter to report-result to pass this information, but check, which generates the calls to report-result, doesn't know what function it's being called from, which means you'd also have to change the way you call check, passing it an argument that it simply passes onto report-result.
-
-This is exactly the kind of problem dynamic variables were designed to solve. If you create a dynamic variable that each test function binds to the name of the function before calling check, then report-result can use it without check having to know anything about it.
-
-Step one is to declare the variable at the top level.
-
-```c
-(defvar *test-name* nil)
-```
-
-Now you need to make another tiny change to report-result to include `*test-name*` in the FORMAT output.
-
-```c
-(format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form)
-```
-
-With those changes, the test functions will still work but will produce the following output because `*test-name*` is never rebound:
-
-```c
-CL-USER> (test-arithmetic) 
-pass ... NIL: (= (+ 1 2) 3) 
-pass ... NIL: (= (+ 1 2 3) 6) 
-pass ... NIL: (= (+ -1 -3) -4) 
-pass ... NIL: (= (* 2 2) 4) 
-pass ... NIL: (= (* 3 5) 15) 
-T
-```
-
-For the name to be reported properly, you need to change the two test functions.
-
-```c
-(defun test-+ () 
-  (let ((*test-name* 'test-+)) 
-    (check 
-      (= (+ 1 2) 3) 
-      (= (+ 1 2 3) 6) 
-      (= (+ -1 -3) -4)
-    )
-  )
-) 
-
-(defun test-* () 
-  (let ((*test-name* 'test-*)) 
-    (check 
-      (= (* 2 2) 4) 
-      (= (* 3 5) 15)
-    )
-  )
-)
-```
-
-Now the results are properly labeled.
-
-```c
-CL-USER> (test-arithmetic) 
-pass ... TEST-+: (= (+ 1 2) 3) 
-pass ... TEST-+: (= (+ 1 2 3) 6) 
-pass ... TEST-+: (= (+ -1 -3) -4)
-pass ... TEST-*: (= (* 2 2) 4) 
-pass ... TEST-*: (= (* 3 5) 15) 
-T
-```
-
-### 9.5 An Abstraction Emerges
-
-In fixing the test functions, you've introduced several new bits of duplication. Not only does each function have to include the name of the function twice -- once as the name in the DEFUN and once in the binding of `*test-name*` -- but the same three-line code pattern is duplicated between the two functions. You could remove the duplication simply on the grounds that duplication is bad. But if you look more closely at the root cause of the duplication, you can learn an important lesson about how to use macros.
-
-The reason both these functions start the same way is because they're both test functions. The duplication arises because, at the moment, test function is only half an abstraction. The abstraction exists in your mind, but in the code there's no way to express "this is a test function" other than to write code that follows a particular pattern.
-
-Unfortunately, partial abstractions are a crummy tool for building software. Because a half abstraction is expressed in code by a manifestation of the pattern, you're guaranteed to have massive code duplication with all the normal bad consequences that implies for maintainability. More subtly, because the abstraction exists only in the minds of programmers, there's no mechanism to make sure different programmers (or even the same programmer working at different times) actually understand the abstraction the same way. To make a complete abstraction, you need a way to express "this is a test function" and have all the code required by the pattern be generated for you. In other words, you need a macro.
-
-Because the pattern you're trying to capture is a DEFUN plus some boilerplate code, you need to write a macro that will expand into a DEFUN. You'll then use this macro, instead of a plain DEFUN to define test functions, so it makes sense to call it deftest.
-
-```c
-(defmacro deftest (name parameters &body body) 
-  `(defun ,name ,parameters (let ((*test-name* ',name)) ,@body))
-)
-```
-
-With this macro you can rewrite test-+ as follows:
-
-```c
-(deftest test-+ () 
-  (check 
-    (= (+ 1 2) 3) 
-    (= (+ 1 2 3) 6) 
-    (= (+ -1 -3) -4)
-  )
-)
-```
-
-### 9.6 A Hierarchy of Tests
-
-Now that you've established test functions as first-class citizens, the question might arise, should test-arithmetic be a test function? As things stand, it doesn't really matter -- if you did define it with deftest, its binding of `*test-name*` would be shadowed by the bindings in test-+ and test-* before any results are reported.
-
-But now imagine you've got thousands of test cases to organize. The first level of organization is provided by test functions such as test-+ and test-* that directly call check. But with thousands of test cases, you'll likely need other levels of organization. Functions such as test-arithmetic can group related test functions into test suites. Now suppose some low-level test functions are called from multiple test suites. It's not unheard of for a test case to pass in one context but fail in another. If that happens, you'll probably want to know more than just what low-level test function contains the test case.
-
-If you define the test suite functions such as test-arithmetic with deftest and make a small change to the `*test-name*` bookkeeping, you can have results reported with a "fully qualified" path to the test case, something like this:
-
-```
-pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3)
-```
-
-Because you've already abstracted the process of defining a test function, you can change the bookkeeping details without modifying the code of the test functions.6 To make `*test-name*` hold a list of test function names instead of just the name of the most recently entered test function, you just need to change this binding form:
-
-```c
-(let ((*test-name* ',name))
-```
-
-to the following:
-
-```c
-(let ((*test-name* (append *test-name* (list ',name))))
-```
-
-Since APPEND returns a new list made up of the elements of its arguments, this version will bind `*test-name*` to a list containing the old contents of `*test-name* `with the new name tacked onto the end.7 When each test function returns, the old value of `*test-name*` will be restored.
-
-Now you can redefine test-arithmetic with deftest instead of DEFUN.
-
-```c
-(deftest test-arithmetic () 
-  (combine-results 
-    (test-+) 
-    (test-*)
-  )
-)
-```
-
-The results now show exactly how you got to each test expression.
-
-```c
-CL-USER> (test-arithmetic) 
-pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3) 
-pass ... (TEST-ARITHMETIC TEST-+): (= (+ 1 2 3) 6) 
-pass ... (TEST-ARITHMETIC TEST-+): (= (+ -1 -3) -4) 
-pass ... (TEST-ARITHMETIC TEST-*): (= (* 2 2) 4) 
-pass ... (TEST-ARITHMETIC TEST-*): (= (* 3 5) 15) 
-T
-```
-
-As your test suite grows, you can add new layers of test functions; as long as they're defined with deftest, the results will be reported correctly. For instance, the following:
-
-```c
-(deftest test-math () 
-  (test-arithmetic)
-)
-```
-
-would generate these results:
-
-```c
-CL-USER> (test-math)
-pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ 1 2) 3) 
-pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ 1 2 3) 6) 
-pass ... (TEST-MATH TEST-ARITHMETIC TEST-+): (= (+ -1 -3) -4) 
-pass ... (TEST-MATH TEST-ARITHMETIC TEST-*): (= (* 2 2) 4) 
-pass ... (TEST-MATH TEST-ARITHMETIC TEST-*): (= (* 3 5) 15) 
-T
-```
-
-6 Though, again, if the test functions have been compiled, you'll have to recompile them after changing the macro.
-
-7 As you'll see in Chapter 12, APPENDing to the end of a list isn't the most efficient way to build a list. But for now this is sufficient -- as long as the test hierarchies aren't too deep, it should be fine. And if it becomes a problem, all you'll have to do is change the definition of deftest.
-
-### 9.7 Wrapping Up
-
-You could keep going, adding more features to this test framework. But as a framework for writing tests with a minimum of busywork and easily running them from the REPL, this is a reasonable start. Here's the complete code, all 26 lines of it:
-
-```c
-(defvar *test-name* nil) 
-
-(defmacro deftest (name parameters &body body) 
-  "Define a test function. Within a test function we can call other test functions or use 'check' to run individual test cases." 
-  `(defun ,name ,parameters 
-     (let ((*test-name* (append *test-name* (list ',name)))) 
-      ,@body
-     )
-   )
-) 
-
-(defmacro check (&body forms) 
-  "Run each expression in 'forms' as a test case." 
-  `(combine-results 
-     ,@(loop for f in forms collect `(report-result ,f ',f))
-   )
-) 
-
-(defmacro combine-results (&body forms) 
-  "Combine the results (as booleans) of evaluating 'forms' in order." 
-  (with-gensyms (result) 
-    `(let ((,result t)) 
-       ,@(loop for f in forms collect `(unless ,f (setf ,result nil))) 
-       ,result
-     )
-  )
-) 
-
-(defun report-result (result form) 
-  "Report the results of a single test case. Called by 'check'." 
-  (format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form) 
-  result
-)
-```
-
-1『目前没跑通，还是需要研读前面几章的内容才能找出问题所在。（2020-10-27）』
-
-It's worth reviewing how you got here because it's illustrative of how programming in Lisp often goes.
-
-You started by defining a simple version of your problem -- how to evaluate a bunch of boolean expressions and find out if they all returned true. Just ANDing them together worked and was syntactically clean but revealed the need for better result reporting. So you wrote some really simpleminded code, chock-full of duplication and error-prone idioms that reported the results the way you wanted.
-
-The next step was to see if you could refactor the second version into something as clean as the former. You started with a standard refactoring technique of extracting some code into a function, report-result. Unfortunately, you could see that using report-result was going to be tedious and error-prone since you had to pass the test expression twice, once for the value and once as quoted data. So you wrote the check macro to automate the details of calling report-result correctly.
-
-While writing check, you realized as long as you were generating code, you could make a single call to check to generate multiple calls to report-result, getting you back to a version of test-+ about as concise as the original AND version.
-
-At that point you had the check API nailed down, which allowed you to start mucking with how it worked on the inside. The next task was to fix check so the code it generated would return a boolean indicating whether all the test cases had passed. Rather than immediately hacking away at check, you paused to indulge in a little language design by fantasy. What if -- you fantasized -- there was already a non-short-circuiting AND construct. Then fixing check would be trivial. Returning from fantasyland you realized there was no such construct but that you could write one in a few lines. After writing combine-results, the fix to check was indeed trivial.
-
-At that point all that was left was to make a few more improvements to the way you reported test results. Once you started making changes to the test functions, you realized those functions represented a special category of function that deserved its own abstraction. So you wrote deftest to abstract the pattern of code that turns a regular function into a test function.
-
-With deftest providing an abstraction barrier between the test definitions and the underlying machinery, you were able to enhance the result reporting without touching the test functions.
-
-Now, with the basics of functions, variables, and macros mastered, and a little practical experience using them, you're ready to start exploring Common Lisp's rich standard library of functions and data types.
+8 Loop keywords is a bit of a misnomer since they aren’t keyword symbols. In fact, LOOP doesn’t care what package the symbols are from. When the LOOP macro parses its body, it considers any appropriately named symbols equivalent. You could even use true keywords if you wanted:for, :across, and so on — because they also have the correct name. But most folks just use plain symbols. Because the loop keywords are used only as syntactic markers, it doesn’t matter if they’re used for other purposes — as function or variable names.
