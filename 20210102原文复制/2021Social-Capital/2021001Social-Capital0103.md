@@ -1,3 +1,5 @@
+# 0103. Resources, Hierarchy, Networks, and Homophily
+
 The Structural Foundation
 
 It has been proposed that social capital, as an investment in social relations with an expected return in the marketplace, should be defined as  resources embedded in a social structure that are accessed and/or mobilized in purposive actions . In this definition, three critical components present themselves for analysis: (1) the resources, (2) being embedded in a social structure, and (3) action. I contend that resources are at the core of all capital theories, especially social capital. A theory of social capital should accomplish three tasks: First, it should explain how resources take on values and how the valued resources are distributed in society –
