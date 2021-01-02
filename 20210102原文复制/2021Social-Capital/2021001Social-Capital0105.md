@@ -8,7 +8,7 @@ The Theory of Social Capital
 
 The theory of social capital focuses on the resources embedded in one’s social network and how access to and use of such resources benefit the individual’s actions. Resources are defined as valued goods in a society, however consensually determined, the possession of which maintains and promotes an individual’s self-interest for survival and preservation. The values are normative judgments rendered on these goods. For most societies, they correspond to wealth, reputation, and power. The theory focuses on those actions that are taken for the purpose of either maintaining or gaining valued resources.
 
-Resources can be either ascribed or acquired.   Ascribed resources   are those one is born with, such as gender and race. Other resources are pre-scribed by inheritance, such as caste and sometimes religion, and may include parental resources. Resources can also be acquired, such as education, or prestigious or authoritative jobs. When resources are being invested for expected returns in the marketplace, they become social capital.
+Resources can be either ascribed or acquired. Ascribed resources are those one is born with, such as gender and race. Other resources are pre-scribed by inheritance, such as caste and sometimes religion, and may include parental resources. Resources can also be acquired, such as education, or prestigious or authoritative jobs. When resources are being invested for expected returns in the marketplace, they become social capital.
 
 Capital can be classified into two types: (1) personal or human capital and (2) social capital.1 Human capital consists of resources possessed by the individual, who can use and dispose of them with great freedom and 1 As stated in footnote 2 of Chapter 4, social resources may also include cultural capital.
 
@@ -30,7 +30,7 @@ A position closer to the top of the structure has greater access to and control 
 
 With such an image of the social structure and an understanding of embedded resources, it is apparent that there is a direct relationship between the level of a position in the hierarchical structure and the amount of influence it may exert on other (lower) positions for instrumental purposes (obtaining additional resources), as well as the amount of information it possesses about the locations of resources in the structure. The influence factor derives from the ability of higher positions to cumulate resources at a higher rate than lower positions. Thus, any favor an individual at the higher position may provide can be expected to have a greater future payoff, since the higher position has more to offer the lower position than vice versa. The information factor is associated with
 
-Theory and Theoretical Propositions  57
+Theory and Theoretical Propositions 57
 
 asymmetric network relations across levels of positions. A higher position tends to have more information or a better view of the structure than a lower position; thus, it is more capable of locating the specific resources embedded in the structure.
 
@@ -42,7 +42,7 @@ An empirical structure may not actually look pyramidal because each such structu
 
 For example, as industrialization progresses (defined as the process of developing technology to make machine tools and assumed to be observable in every modern society), the occupational structure deviates from the pyramidal structure as occupants shift from the agricultural to the nonagricultural sector. While the size of the agricultural population deceases and the size of the low-level nonagricultural sector increases, the occupational structure, in terms of numbers of occupants at various levels, tends to be vase-shaped. Similarly, as the level of education in a society rises, there is always a small trailing tail at the lowest level representing the「residual」groups consisting of the most poorly educated individuals.
 
-For the meso- and microstructures, the theory makes two assumptions about interactions and actions. First, it assumes that social interactions are more likely to take place among individuals at similar or adjacent hierarchical levels – the principle of homophilous interactions. Following from the structural assumption about congruence and transferability of resources, expected or fair exchange involves partners who can offer as well as receive resources. Thus, the closer or more similar the social positions, the more likely it is that the occupants will interact with one another. The theory assumes that   two primary driving forces  account for most individuals’ actions: maintaining valued resources and
+For the meso- and microstructures, the theory makes two assumptions about interactions and actions. First, it assumes that social interactions are more likely to take place among individuals at similar or adjacent hierarchical levels – the principle of homophilous interactions. Following from the structural assumption about congruence and transferability of resources, expected or fair exchange involves partners who can offer as well as receive resources. Thus, the closer or more similar the social positions, the more likely it is that the occupants will interact with one another. The theory assumes that two primary driving forces account for most individuals’ actions: maintaining valued resources and
 
 58
 
@@ -54,7 +54,7 @@ Expressive actions are expected to result in interactions consistent with the pr
 
 Instrumental action, in contrast, may not result in interaction patterns consistent with the homophilous principle and the structural expectations. To gain additional or new resources, by definition, requires access to other social positions (especially those with more or better resources).
 
-That is, for the purpose of obtaining additional resources, more   effective   actions tend to be initiated toward others who have dissimilar (and presumably better) resources, consistent with the heterophilous principle of interactions.2
+That is, for the purpose of obtaining additional resources, more effective actions tend to be initiated toward others who have dissimilar (and presumably better) resources, consistent with the heterophilous principle of interactions.2
 
 Thus, a theory linking individuals to structure must first distinguish the two classes of action: instrumental actions and expressive actions.
 
@@ -62,7 +62,7 @@ Instrumental actions are those actions taken for the purpose of achieving certai
 
 2 Instrumental actions can also be initiated by an occupant of a higher position toward an occupant of a lower position, since the latter provides many necessary services. Since the higher position commands and has greater access to resources than the lower position, the occupant of the lower position is normally obligated to respond to the action initiated by the higher-level occupant in the hope of receiving a reward. In this chapter, the focus will be on individuals who seek better resources. In Chapter 9, I will further elaborate the rationale for asymmetric exchanges.
 
-Theory and Theoretical Propositions  59
+Theory and Theoretical Propositions 59
 
 Second, the theory must take into account the consistency or tension between action and interaction. An expressive action motivates the individual to seek out others with similar characteristics and lifestyles in order to share and confide so that the expected return, sympathetic and appreciative understanding and counseling, can be obtained. Since homophilous interaction is the normative type of interaction, the expressive action evokes normative interaction (the homophilous interaction).
 
@@ -102,7 +102,7 @@ The first proposition is the pivotal proposition expressing the expected return 
 
 Return to Social Capital
 
-(1) The Social-Capital Proposition: The success of action is positively   associated with social capital.   The primary proposition of the theory states that access to and use of better social capital leads to more successful action – the return to social capital. A simple strategy to accomplish a purposive action is to access an actor who possesses or can access more highly valued resources. Such access, as stated in Chapter 2, makes use of social capital for several important advantages. First, it makes use of the influence this intermediary may exercise on behalf of ego. The 3 The earliest version of this theory and some of its propositions appear in Lin (1982), and subsequent versions and revisions appear in several other publications (Lin 1986, 1990, 1992a, 1995a, 1999a).
+(1) The Social-Capital Proposition: The success of action is positively associated with social capital. The primary proposition of the theory states that access to and use of better social capital leads to more successful action – the return to social capital. A simple strategy to accomplish a purposive action is to access an actor who possesses or can access more highly valued resources. Such access, as stated in Chapter 2, makes use of social capital for several important advantages. First, it makes use of the influence this intermediary may exercise on behalf of ego. The 3 The earliest version of this theory and some of its propositions appear in Lin (1982), and subsequent versions and revisions appear in several other publications (Lin 1986, 1990, 1992a, 1995a, 1999a).
 
 Theory and Theoretical Propositions
 
@@ -112,7 +112,7 @@ Figure 5.1 Relative effects of social capital.
 
 better positioned the intermediary, and thus the better embedded and commanded resources, the more such influence should benefit ego.
 
-Second, the intermediary, given its advantageous view of the structure, may provide better information to ego. Third, a better-positioned intermediary, with its embedded and commanded resources, projects better social credentials, so that its willingness to serve as an intermediary assures or elevates ego’s credentials. And, finally, the ability to access a better-positioned intermediary itself enhances ego’s confidence and self-esteem in further interactions and actions (e.g., conduct in job interviews) that may be necessary to accomplish the goal of the action. Thus, the first and most important proposition for the theory is:   The success of   action is positively associated with social capital . It is argued that the relationship should hold for both expressive and instrumental actions.
+Second, the intermediary, given its advantageous view of the structure, may provide better information to ego. Third, a better-positioned intermediary, with its embedded and commanded resources, projects better social credentials, so that its willingness to serve as an intermediary assures or elevates ego’s credentials. And, finally, the ability to access a better-positioned intermediary itself enhances ego’s confidence and self-esteem in further interactions and actions (e.g., conduct in job interviews) that may be necessary to accomplish the goal of the action. Thus, the first and most important proposition for the theory is: The success of action is positively associated with social capital . It is argued that the relationship should hold for both expressive and instrumental actions.
 
 Graphically, this proposition is depicted in Figure 5.1. The hierarchical nature of a social structure can be represented by the pyramid: levels of positions with varying degrees of valued resources can be plotted along its vertical axis. For two egos (identified as e1 and e2 in the figure), at approximately the same structural position, the proposition hypothesizes that e1 will have a competitive advantage over e2 as it accesses a social tie, a1, at a relatively higher position than that of the tie, a2, that e2 accesses.
 
@@ -132,7 +132,7 @@ The second criterion, resource heterogeneity, reflects the vertical range of res
 
 The resource heterogeneity criterion is not so obvious, but it is important. For example, an individual who does not know how to increase computer memory to run an application may not need to contact a high-status programmer; it should be sufficient to call on someone friendly who can quickly help. Nor is it necessary to call on a neighbor with many resources when ego needs a babysitter at the last minute. Getting one’s basket emptied or floor swept at the office depends more on friendly rela-
 
-Theory and Theoretical Propositions  63
+Theory and Theoretical Propositions 63
 
 tions with the custodians than on making demands on one’s supervisor.
 
@@ -156,9 +156,9 @@ Theory and Research
 
 (3) the strength of the location of the tie, and (4) the joint (interaction) effect of the position, the tie, and the location.
 
-Structural Advantage.   The principle of homophily has been used to describe normative and expressive interactive patterns. This principle suggests that persons, for expressive reasons, tend to interact with others who are like themselves. When this principle is applied to the issue of who tends to attain better social capital, it should be obvious that those whose initial positions are relatively high in the social structure should have the advantage over others. The initial position may be inherited from parents or achieved by the individual. Once such an initial position is located, the normative interactive patterns for the position’s particular occupant link it with others at similar or higher positions. The higher the initial position, the more likely the occupant will have access to more highly-valued resources. Thus, it is hypothesized that the level of the initial position is positively related to the social capital reached through a contact, known as the strength-of-position proposition.
+Structural Advantage. The principle of homophily has been used to describe normative and expressive interactive patterns. This principle suggests that persons, for expressive reasons, tend to interact with others who are like themselves. When this principle is applied to the issue of who tends to attain better social capital, it should be obvious that those whose initial positions are relatively high in the social structure should have the advantage over others. The initial position may be inherited from parents or achieved by the individual. Once such an initial position is located, the normative interactive patterns for the position’s particular occupant link it with others at similar or higher positions. The higher the initial position, the more likely the occupant will have access to more highly-valued resources. Thus, it is hypothesized that the level of the initial position is positively related to the social capital reached through a contact, known as the strength-of-position proposition.
 
-(2) The Strength-of-Position Proposition: The better the position of   origin, the more likely the actor will access and use better social capital.
+(2) The Strength-of-Position Proposition: The better the position of origin, the more likely the actor will access and use better social capital.
 
 Figure 5.3 illustrates two egos, e1 and e2, with relative positions in the hierarchy that are predicted to access alters at different higher positions.
 
@@ -166,19 +166,19 @@ Thus, e1 is said to have a better positional or structural advantage over e2 in 
 
 Figure 5.3 Relative advantages of structural positions for accessing social capital.
 
-Theory and Theoretical Propositions  65
+Theory and Theoretical Propositions 65
 
-This proposition predicts a structural effect on social capital: those in better social positions will have the advantage in accessing and mobilizing social ties with better resources.   Position of origin   refers to both ascribed and attained positions of ego.   Ascribed position   is a position inherited by ego, usually from parents.   Attained positions   refer to social positions and social roles acquired and occupied by ego. Thus, the strength-of-position proposition predicts that those in better ascribed and occupied positions will also have a better chance of accessing and using social ties with better resources. This proposition is entirely consistent with the conventional structural theory; it reflects the structural advantage for actors and extends this structural effect to social capital.
+This proposition predicts a structural effect on social capital: those in better social positions will have the advantage in accessing and mobilizing social ties with better resources. Position of origin refers to both ascribed and attained positions of ego. Ascribed position is a position inherited by ego, usually from parents. Attained positions refer to social positions and social roles acquired and occupied by ego. Thus, the strength-of-position proposition predicts that those in better ascribed and occupied positions will also have a better chance of accessing and using social ties with better resources. This proposition is entirely consistent with the conventional structural theory; it reflects the structural advantage for actors and extends this structural effect to social capital.
 
 The haves will have more. It is argued that this relationship holds for both expressive and instrumental actions.
 
 The strength-of-position proposition extends resources accessed beyond the homophily principle. Not only is an individual occupying a higher position more likely to have social connections with similar positions, but these other positions have their own connections whose social capital also becomes accessible to ego. By the same principle, these positions and their social capital should be similar to those with which ego has direct connections. Thus, these indirect connections further increase ego’s propensity to access even wider resources. The strength-of-position proposition, therefore, suggests that the higher the individuals’ own positions, the greater their likelihood of having access to better social capital.
 
-Networking Advantages.   The upshot of the strength-of-position proposition is that the structural opportunity for reaching better social capital is much better for those whose initial positions are relatively high. The next question is whether there is a mechanism by which persons at relatively low initial positions can reach better social capital. Or, when two actors occupy approximately the same position in the structure, would their actions make any difference in the outcome?
+Networking Advantages. The upshot of the strength-of-position proposition is that the structural opportunity for reaching better social capital is much better for those whose initial positions are relatively high. The next question is whether there is a mechanism by which persons at relatively low initial positions can reach better social capital. Or, when two actors occupy approximately the same position in the structure, would their actions make any difference in the outcome?
 
 The proposal here is that access to social capital is also affected by ego’s relationships with others in social networks. However, several principles would lead to different propositions. We will consider these in a logical sequence – from a structural perspective, to an opportunity perspective, to a choice perspective, and to a combination of these perspectives.
 
-(3) The Strength-of-Strong-Tie Proposition: The stronger the tie, the   more likely that the social capital accessed will positively affect the   success of expressive action.   The structural principle is straightforward: accessible resources are positively related to social ties to those alters with whom ego shares stronger sentiment. We may call this principle the
+(3) The Strength-of-Strong-Tie Proposition: The stronger the tie, the more likely that the social capital accessed will positively affect the success of expressive action. The structural principle is straightforward: accessible resources are positively related to social ties to those alters with whom ego shares stronger sentiment. We may call this principle the
 
 66
 
@@ -186,13 +186,13 @@ Theory and Research
 
 strength-of-strong-tie proposition . The strength of a relationship among those with social ties reflects their degree of intensity, frequency of intimacy (trustworthiness), reciprocity, and acknowledged obligations (Granovetter 1973). The stronger the relationship, the more likely the sharing and exchange of resources.
 
-Mutual support and recognition go hand in hand with promotion of the ego and alter’s resources, including their reputation. Thus, such a relationship is mutually tolerant and even encourages social debts and credits, as well as forgiveness of debt. Coleman (1990) describes any social structure with a higher than average density of obligations as a group with   closure . The present proposition focuses on the likelihood of ego accessing others’ resources because of the strength of ego’s relationship with them. That is, even if alter has better resources, alter may not respond to ego’s desire to gain access to them if their relationship does not reflect normative reciprocity, trust, and mutual obligations. Closer relationships are a necessary condition for getting access to social capital. There has been substantial argument (Bourdieu 1980, 1983/
+Mutual support and recognition go hand in hand with promotion of the ego and alter’s resources, including their reputation. Thus, such a relationship is mutually tolerant and even encourages social debts and credits, as well as forgiveness of debt. Coleman (1990) describes any social structure with a higher than average density of obligations as a group with closure . The present proposition focuses on the likelihood of ego accessing others’ resources because of the strength of ego’s relationship with them. That is, even if alter has better resources, alter may not respond to ego’s desire to gain access to them if their relationship does not reflect normative reciprocity, trust, and mutual obligations. Closer relationships are a necessary condition for getting access to social capital. There has been substantial argument (Bourdieu 1980, 1983/
 
 1986; Coleman 1990; Portes and Sensenbrenner 1993) for the effectiveness of dense, cohesive, interactive, reciprocatory, trustworthy networks as resources for participating actors.
 
 These analyses suggest that stronger ties based on sentiment, trust, and sharing of resources and lifestyles support the maintenance and reinforcement of existing resources – consistency with expressive action.
 
-Thus, the proposition:   the stronger the tie, the more likely the social   capital accessed will positively affect the success of expressive action .
+Thus, the proposition: the stronger the tie, the more likely the social capital accessed will positively affect the success of expressive action .
 
 However, the modified principle of homophily (Figure 2.1) tells us that interaction, sentiments, and similarity in resources are positively related.
 
@@ -200,15 +200,15 @@ Thus, stronger ties allow access to social capital that is similar or perhaps sl
 
 The interesting aspect of interaction and networking is that, unlike social positions, which are more or less fixed unless or until social change takes place (a topic to be dealt with in Chapter 11), strength of ties and location of resources in the networks are variable. An individual has weaker as well as stronger sentiments for the interacting partners. The strength of these partners’ relationships with others also varies. Also, in networks, because of both direct and indirect ties, ego’s location in the network varies. These variations in tie strength and network location suggest that further propositions need to be developed regarding how such variations may affect an individual’s access to social capital. In other
 
-Theory and Theoretical Propositions  67
+Theory and Theoretical Propositions 67
 
 words, is there any benefit for ego if the strength of the tie is weaker rather than stronger and if ego’s position is closer to the fringe than to the core of the network?
 
-(4) The Strength-of-Weak-Tie Proposition: The weaker the tie, the more   likely ego will have access to better social capital for instrumental action.
+(4) The Strength-of-Weak-Tie Proposition: The weaker the tie, the more likely ego will have access to better social capital for instrumental action.
 
 Granovetter (1973, 1974) was among the first to theoretically examine issues involving the strength of weaker ties. Following Homans’s conceptualization and the homophily principle, he envisioned social circles as being distinguished by denser and more reciprocally interactive partners. An individual embedded in a social circle tends to have characteristics homophilous with those of the circle’s other members; these similarities also extend to information. In addition, knowledge about larger social structures is homophilous among members of a social circle.
 
-If individuals need different information, then they may be more likely to find it in different social circles than their own. To reach another social circle, ego would need to find ties that link the two circles. The ties between different social circles are   bridges ; without the linkage, the two social circles would be independent of each other.
+If individuals need different information, then they may be more likely to find it in different social circles than their own. To reach another social circle, ego would need to find ties that link the two circles. The ties between different social circles are bridges ; without the linkage, the two social circles would be independent of each other.
 
 Granovetter further argues that the tie between two individuals forming a bridge, for example, is weaker because each individual participates in a different social circle. There is also the implication, although he does not state it, that these bridging individuals tend to be on the margin of their respective social circles, as evidenced by their maintaining ties to other social circles, perhaps reducing the strength of their interactions with others in their own circles. Since stronger ties can be characterized by intensity, intimacy, frequency of contacts, acknowledged obligations, and provision of reciprocal services, individuals’
 
@@ -232,9 +232,9 @@ These attributes were seen as desirable in sustaining members’ relations as we
 
 Granovetter’s strength-of-weak-ties argument pointed out how weak ties might contribute to information flow. Through this bridge, and perhaps only through this bridge, a member in one group may learn and gain information about the other group. If that information is useful, then whoever has access to the bridge and uses it will gain an advantage over another member of the same group. Presumably the group also benefits from the information regarding the other group flowing through the bridge, even though this was not pointed out in Granovetter’s original statements (1973, 1974).
 
-Theory and Theoretical Propositions  69
+Theory and Theoretical Propositions 69
 
-modified strength-of-weak-ties proposition states that   the weaker the tie,   the more likely ego will have access to heterogeneous resources .
+modified strength-of-weak-ties proposition states that the weaker the tie, the more likely ego will have access to heterogeneous resources .
 
 However, the weak-tie argument itself does not suggest that weaker ties will always link ego to better resources (upper reachability [alter 2
 
@@ -242,11 +242,11 @@ rather than alter 3] and extensity). After all, resource heterogeneity is only o
 
 Empirical observations (Laumann 1966) suggest that individuals prefer to associate with others of somewhat higher social status.
 
-Laumann calls this the   prestige principle . Preference in association, of course, is different from actual behavior in interactions, but it does explain why empirical evidence shows that individuals tend to pursue interaction with others of similar or slightly higher, rather than lower, socioeconomic status.5 That is, given a choice between alter 2 and alter 3 in Figure 5.4, ego will tend to prefer interacting with alter 2. Thus, we may further modify the strength-of-weak-ties proposition as follows:   the   weaker the tie, the more likely ego will have access to better social capital   (at least in terms of resource heterogeneity and upper reachability) .
+Laumann calls this the prestige principle . Preference in association, of course, is different from actual behavior in interactions, but it does explain why empirical evidence shows that individuals tend to pursue interaction with others of similar or slightly higher, rather than lower, socioeconomic status.5 That is, given a choice between alter 2 and alter 3 in Figure 5.4, ego will tend to prefer interacting with alter 2. Thus, we may further modify the strength-of-weak-ties proposition as follows: the weaker the tie, the more likely ego will have access to better social capital (at least in terms of resource heterogeneity and upper reachability) .
 
 The strength-of-weak-ties argument is now clear. The remaining issue is whether it is necessary to have the strength-of-weak-ties hypothesis in order to understand the advantage of network locations in getting access to social capital. To explore this question, we will now examine an alternative conceptualization.
 
-(5) The Strength-of-Location Proposition: The closer individuals are to   a bridge in a network, the better social capital they will access for instrumental action.   Granovetter’s discussion of the「bridge in the network」
+(5) The Strength-of-Location Proposition: The closer individuals are to a bridge in a network, the better social capital they will access for instrumental action. Granovetter’s discussion of the「bridge in the network」
 
 (1973) pointed to the utility of network locations in allowing information to flow from one social circle to another. It led to his formulation of the strength-of-weak-ties argument. However, he then shifted the argument from a focus on network location to one on social ties. The advantage was that the strength of ties, as measured by intimacy, intensity, frequency of contacts, and reciprocal services – especially other surrogate measures, such as role relationships (e.g., kin, friend, acquaintance) – could be readily studied in sample surveys, since such measures 5 In actual behavior, individuals do interact with others of lower socioeconomic status.
 
@@ -258,21 +258,21 @@ Theory and Research
 
 could readily be assessed from respondents’ self-reports. It would have been much more difficult to gather data on how individuals form ties in social networks. The problem is whether such measures, or even the notion of the strength of ties, captures the significance of network locations such as bridges.
 
-A    social bridge   may be defined as a linkage between two individual actors in a social network, the absence of which would cause the breakup of a cluster into two separate clusters, each of which has two or more individual actors. In other words, a bridge is the sole link between two groups of actors. This definition can be relaxed somewhat in that two clusters may be linked through several bridges. Bridges serve the important function of making possible access to resources embedded in both groups.
+A social bridge may be defined as a linkage between two individual actors in a social network, the absence of which would cause the breakup of a cluster into two separate clusters, each of which has two or more individual actors. In other words, a bridge is the sole link between two groups of actors. This definition can be relaxed somewhat in that two clusters may be linked through several bridges. Bridges serve the important function of making possible access to resources embedded in both groups.
 
-The notion of a bridge is more explicitly explored by Burt (1992) in his theory of the   structural hole , defined as「the separation between nonredundant contacts」and a「relationship of nonredundancy between two contacts.」Burt further specifies that「the hole is a buffer, like an insulator in an electric circuit. As a result of the hole between them, the two contacts provide network benefits that are in some degree additive rather than overlapping」(Burt 1992, p. 18). An example of structural holes is provided in Figure 5.5. Three holes are represented here: between the cluster of ties around A and those around ego (「you」) cluster, between ego’s cluster and the cluster around B, and between A’s cluster and B’s cluster. While the structural hole indicates nonredundancies or near emptiness of linkages between clusters, the connections, if they do Figure 5.5 Structural holes (bridges) and strength of ties (horizontal clusters). (Adapted from Burt 1992, p. 27)
+The notion of a bridge is more explicitly explored by Burt (1992) in his theory of the structural hole , defined as「the separation between nonredundant contacts」and a「relationship of nonredundancy between two contacts.」Burt further specifies that「the hole is a buffer, like an insulator in an electric circuit. As a result of the hole between them, the two contacts provide network benefits that are in some degree additive rather than overlapping」(Burt 1992, p. 18). An example of structural holes is provided in Figure 5.5. Three holes are represented here: between the cluster of ties around A and those around ego (「you」) cluster, between ego’s cluster and the cluster around B, and between A’s cluster and B’s cluster. While the structural hole indicates nonredundancies or near emptiness of linkages between clusters, the connections, if they do Figure 5.5 Structural holes (bridges) and strength of ties (horizontal clusters). (Adapted from Burt 1992, p. 27)
 
-Theory and Theoretical Propositions  71
+Theory and Theoretical Propositions 71
 
 exist, between ego and A, ego and B, and A and B constitute bridges.
 
 The concept of structural holes focuses on the lack of access between clusters, while bridges emphasize access between clusters over the (nearly empty) holes. Thus, structural holes and bridges are two ways of describing similar network features and the strategic importance of certain locations.
 
-Bridges allow individual actors in one cluster to have access to resources embedded in nodes in another cluster that otherwise would not be accessible. Burt argues that the benefit of bridges over structural holes is that they control the flow of information, very similar to Granovetter’s argument. With no loss of generality, we may extend the benefit to include access to all social capital. Thus, this argument can be stated as the strength-of-location hypothesis:   the closer individuals are   to a bridge in a network, the better the social capital to which they will   have access .
+Bridges allow individual actors in one cluster to have access to resources embedded in nodes in another cluster that otherwise would not be accessible. Burt argues that the benefit of bridges over structural holes is that they control the flow of information, very similar to Granovetter’s argument. With no loss of generality, we may extend the benefit to include access to all social capital. Thus, this argument can be stated as the strength-of-location hypothesis: the closer individuals are to a bridge in a network, the better the social capital to which they will have access .
 
 The strength-of-weak-tie argument can then be conceived as a surrogate proposition for the strength-of-location proposition. Since bridges tend to represent weak links between two clusters, using a weaker tie increases one’s likelihood of gaining access to a bridge. This surrogate proposition is useful when it is difficult to rely on ego’s cognition for complete mapping of a network. Rather than probing for all possible bridges in ego’s network, ego’s decision strategy can be simplified by looking for ego’s weaker ties. This surrogate argument also simplifies the researcher’s task. Rather than mapping an entire network for each ego, the researcher can use measures of the strength of ties instead. Of course, since this is a surrogate measure, evidence from research that tests the strength-of-location proposition may be weakened.
 
-(6) The Location-by-Position Proposition: The strength of a location (in   proximity to a bridge), for instrumental action, is contingent on the   resource differential across the bridge.   While the structural hole perspective shifts the formulation of social bridges from Granovetter’s focus on the strength of ties to network locations, it also needs modification.
+(6) The Location-by-Position Proposition: The strength of a location (in proximity to a bridge), for instrumental action, is contingent on the resource differential across the bridge. While the structural hole perspective shifts the formulation of social bridges from Granovetter’s focus on the strength of ties to network locations, it also needs modification.
 
 Considering the vertical axis in Figure 5.6 as the hierarchy of a structure; then it is clear that ego’s (「your」) connection to A will be much more beneficial to members of ego’s group than ego’s connection to B, since A’s cluster consists of positions richer in resources compared to those in ego’s cluster, and B’s cluster consists of poorer positions. This situation is a sharp contrast to the situation in Figure 5.5, where the three clusters are「flattened」to the same level in the hierarchy. The three structural holes and bridges remain the same as in Figure 5.6, but the relative benefit of resources accessed through the three bridges is minimal.
 
@@ -282,15 +282,15 @@ Theory and Research
 
 Figure 5.6 Differential advantages of structural holes (bridges) and weaker ties in a hierarchical structure.
 
-Thus, the benefit of a strategic location such as the bridge in a social network depends on the resources accessed. Location near a bridge may not be very useful if the bridge simply leads to nodes that have similar or less highly valued resources. In other words, the relative advantage of proximity to a bridge in a network is contingent on the relative resourcefulness of the nodes to which that bridge provides access. This can be stated as an interaction proposition:   the strength of a location (in proximity to a bridge) is contingent on the resource differential across the   bridge .
+Thus, the benefit of a strategic location such as the bridge in a social network depends on the resources accessed. Location near a bridge may not be very useful if the bridge simply leads to nodes that have similar or less highly valued resources. In other words, the relative advantage of proximity to a bridge in a network is contingent on the relative resourcefulness of the nodes to which that bridge provides access. This can be stated as an interaction proposition: the strength of a location (in proximity to a bridge) is contingent on the resource differential across the bridge .
 
-Since differential resources among individual actors are best represented by their positions in the hierarchy, we can further specify this interactive proposition:   access to better social capital tends to occur for   an individual actor who occupies a location closer to a bridge that links   the actor to those in relatively higher hierarchical positions . Thus, locational advantage is contingent on the resources of the accessible network.
+Since differential resources among individual actors are best represented by their positions in the hierarchy, we can further specify this interactive proposition: access to better social capital tends to occur for an individual actor who occupies a location closer to a bridge that links the actor to those in relatively higher hierarchical positions . Thus, locational advantage is contingent on the resources of the accessible network.
 
 Since it is assumed here that better resources are embedded, by definition, in higher positions in a hierarchical structure, this means that the locational advantage in a network is contingent on the vertical extent of its accessible positions.
 
 This location-by-position proposition does not entirely negate the significance of vertical bridges to lower as well as upper clusters. As seen in Figure 5.6, having bridges from ego to both A’s and B’s clusters increases resource heterogeneity for members in ego’s cluster. However, since the strength-of-position proposition involves resource heterogeneity (the higher positions also have a greater vertical range in the resources accessible through their ties and networks) as well as upper reachability,
 
-Theory and Theoretical Propositions  73
+Theory and Theoretical Propositions 73
 
 we expect B to maintain the connection with ego so that it expands the heterogeneity of resources for members in B’s cluster to ego’s cluster and A’s cluster.
 
@@ -312,9 +312,9 @@ among themselves if everyone is assumed to have the same propensity for interact
 
 It is in the middle range of the hierarchical structure, therefore, that we should expect to detect the strength of networking effects. As the relative sizes of contiguous social positions are similar and the opportunity structure is extensive, the vertical reach should have the best probability of reaching upward. If this proposition is valid, we are also therefore predicting that action is most meaningful and effective when ego’s position is in the middle range of the hierarchical structure. Actors at the lower level of the structure have little opportunity to exert meaningful actions. Similarly, but for different reasons, actors at the upper echelons have less incentive to take actions that would disrupt the structural effect (i.e., rocking the boat). This leads to the following proposition.
 
-(7) The Structural Contingency Proposition: Networking (tie and location) effects are constrained by the hierarchical structure for actors   located near or at the top and bottom of the hierarchy.   Figure 5.7 illustrates this interaction between structure and action. Ego 1, near the upper ceiling, is shown to have limited opportunity to reach upward if Figure 5.7 Structural constraints on networking effects.
+(7) The Structural Contingency Proposition: Networking (tie and location) effects are constrained by the hierarchical structure for actors located near or at the top and bottom of the hierarchy. Figure 5.7 illustrates this interaction between structure and action. Ego 1, near the upper ceiling, is shown to have limited opportunity to reach upward if Figure 5.7 Structural constraints on networking effects.
 
-Theory and Theoretical Propositions  75
+Theory and Theoretical Propositions 75
 
 he or she chooses vertical access. Ego 3, near the lower ceiling, is structurally constrained in opportunities to access vertically in either direction. Ego 2, somewhere in the middle range of the hierarchy, should have the advantages of both extensive upper reaches and opportunities to achieve such access.
 
@@ -326,13 +326,13 @@ We now summarize the major points in the theory of social capital as a set of po
 
 3. The network postulate (Chapters 3 and 4): in social networks, directly and indirectly interacting actors carry varying types of resources. Some of these resources are in their personal possession (personal resources or human capital), but most of the resources are embedded in others with whom each actor is in contact, directly or indirectly, or they are embedded in structural positions each actor occupies or is in contact with.
 
-4. The definition (Chapters 2–4): these structurally embedded resources are   social capital   for the actors in the networks.
+4. The definition (Chapters 2–4): these structurally embedded resources are social capital for the actors in the networks.
 
 5. The action postulates (Chapter 4): actors are motivated to either maintain or gain their resources in social actions –
 
 purposive actions. Action to maintain resources can be called expressive action, and action to gain resources can be called instrumental action. Maintaining resources is the primary motivation for action; therefore, expressive action is the primary form of action.
 
-6. The social-capital proposition:   the success of action is positively   associated with social capital .
+6. The social-capital proposition: the success of action is positively associated with social capital .
 
 76
 
@@ -340,630 +340,270 @@ Theory and Research
 
 Figure 5.8 Model of the social capital theory.
 
-7. The strength-of-position proposition:   the better the position of   origin, the more likely the actor will access and use better social   capital .
+7. The strength-of-position proposition: the better the position of origin, the more likely the actor will access and use better social capital .
 
-8. The strength-of-strong-tie proposition:   the stronger the tie, the   more likely the social capital accessed will positively affect the   success of expressive action .
+8. The strength-of-strong-tie proposition: the stronger the tie, the more likely the social capital accessed will positively affect the success of expressive action .
 
-9. The strength-of-weak-tie proposition:   the weaker the tie, the   more likely ego will have access to better social capital for instrumental action .
+9. The strength-of-weak-tie proposition: the weaker the tie, the more likely ego will have access to better social capital for instrumental action .
 
-10. The strength-of-location proposition:   the closer individuals are   to a bridge in a network, the better social capital they will access   for instrumental action .
+10. The strength-of-location proposition: the closer individuals are to a bridge in a network, the better social capital they will access for instrumental action .
 
-11. The location-by-position proposition:   the strength of a location   (in proximity to a bridge) for instrumental action is contingent   on the resource differential across the bridge .
+11. The location-by-position proposition: the strength of a location (in proximity to a bridge) for instrumental action is contingent on the resource differential across the bridge .
 
-12. The structural contingency proposition:   the networking (tie and   location) effects are constrained by the hierarchical structure for   actors located near or at the top and bottom of the hierarchy .
+12. The structural contingency proposition: the networking (tie and location) effects are constrained by the hierarchical structure for actors located near or at the top and bottom of the hierarchy .
 
 A model based on these propositions is depicted in Figure 5.8.
 
-These postulates and propositions have made it explicit that the proposed theory of social capital has four characteristics: (1) Its concepts are   relational   in nature and cannot be reduced to the individualistic or psychological level. (2) The theory is intrinsically interwoven within   a   hierarchical structure . In fact, it attains meaning only in the context of a hierarchical structure. (3) It entails   actions   on the part of the individuals, thus requiring a micro-level analysis. (4) Its development has been based on close reciprocal integration of   theorizing and empirical
+These postulates and propositions have made it explicit that the proposed theory of social capital has four characteristics: (1) Its concepts are relational in nature and cannot be reduced to the individualistic or psychological level. (2) The theory is intrinsically interwoven within a hierarchical structure . In fact, it attains meaning only in the context of a hierarchical structure. (3) It entails actions on the part of the individuals, thus requiring a micro-level analysis. (4) Its development has been based on close reciprocal integration of theorizing and empirical
 
-Theory and Theoretical Propositions  77
+Theory and Theoretical Propositions 77
 
 research , thus avoiding pitfalls of infinite abstract-to-abstract deductions from assumed theories or mindless empiricism. These characteristics, I argue, place it in a unique position to address the macro–micro gap and development in sociology.
 
 Finally, we should note that assumptions are made only to allow the theoretical propositions to be specified. Thus, assumptions may be exogenous (given) to the explication of a theory, but there is no guarantee that they are empirically valid. Theoretical development anticipates research not only on the validity of the propositions, but on the validity of the assumptions as well. That is, it is anticipated that when instruments become available, the assumptions themselves must be subject to research and empirical examination. There is nothing sacred about the assumptions. The theory itself is subjected to modification or even refutation when assumptions are invalidated. Theory guides research, and it must continuously be subjected to verification and possible modifications.
 
-# 0106. Social Capital and Status Attainment
 
-A Research Tradition
 
-This chapter1 presents a research tradition reflecting the proposed linkage between social capital and instrumental action. Specifically, it investigates how social capital enhances the likelihood of getting better jobs. It thus falls within the general research paradigm known as the   status attainment process .
+## 05
 
-Status attainment can be understood as a process by which individuals mobilize and invest resources for returns in socioeconomic standing.
+前三章里，对社会资本的结构、互动与行动方面的讨论，已经为具体阐述指导研究的假设奠定了基础。这一章将总结到目前为止所提出的主要原则，然后提出理论的主要命题。
 
-The theoretical and empirical work for understanding and assessing the status attainment process can be traced to the seminal study reported by Blau and Duncan (1967). The major conclusion was that even accounting for both the direct and indirect effects of ascribed status (parental status), achieved status (education and prior occupational status) remains the most important factor accounting for the individual’s ultimate attained status. The study thus set the theoretical baseline for further modifications and expansions. All subsequent theoretical revisions and expansions must be evaluated for their contribution to the explanation of status attainment beyond those accounted for by the Blau–Duncan paradigm (Kelley 1990; Smith 1990). Several later lines of work, including the addition of sociopsychological variables (Sewell and Hauser 1975), the recasting of statuses as classes (Wright 1979; Goldthorpe 1980), the incorporation of「structural」entities and positions as both contributing and attained statuses (Baron and Bielby 1980; Kalleberg 1988), and the identification of comparative development or institutions as contingent conditions (Treiman 1970) have significantly amplified rather than altered the original Blau–Duncan conclusion concerning the relative merits of achieved versus ascribed   personal resources  in status attainment.
+社会资本理论
 
-1 A significant portion of this chapter was adapted from Lin (1999b) with permission.
+社会资本理论关注嵌人在个体的社会网络中的资源，以及如何获取和使用这些资源使个体的行动受益。资源被定义为社会中有价值的物品，然而由双方共同决定，对资源的拥有维持和促进了个体生存和延续的自身利益。价值是施加在这些物品上的规范性判断。对于大部分社会，它们是与财富、声望和权力相一致的。社会资本理论关注的是：个体为了维持或获得有价值资源而采取的那些行动。
 
-78
+资源可以是先赋的或自致的。先赋资源是与生俱来的，如性别和种族其他资源是被继承限定的，如等级和宗教，还可以包括父母的资源。资源也可以自致，如教育、有声望或有权威的工作。当资源在市场中被投资以产生期待的回报时，它们就变成了社会资本。
 
-Social Capital and Status Attainment  79
+资本可以分为炳类：(1）个人或人力资本；(2）社会资本。人力资本由人所拥有的资源组成，个人可以自由地、不需要补偿地使用和处置它们。社会资本由嵌人在个人的网络和联系中的资源组成。我们这里关注的是社会资本，它不是个体所拥有的物品，而是通过直接和间接的关系获取的资源。
 
-In the last three decades, a research tradition has focused on the effects of social capital on attained statuses. The principal proposition is that social capital exerts an important and significant effect beyond that accounted for by personal resources. Systematic investigations of this proposition have included (1) developing theoretical explanations and hypotheses; (2) developing measurements for social capital; (3) conducting empirical studies verifying the hypotheses; and (4) assessing the relative importance of social resources compared to personal resources in the process of status attainment. These investigations have been carried out in North America, Europe, and Asia, in multiple political economies, and have involved scholars of many nations and cultures.
+[1 如第四章脚注【2 所注明的，社会资源也可以包括文化资本。
 
-The accumulation of and advances in theory and research have considerably expanded the intellectual horizon of sociological analysis in status attainment, and thus in social stratification and social mobility. It probably also represents the most prominent research area where explicit, systematic application and analysis of the theory and methods of social capital for instrumental actions has occurred. To a great extent, this research tradition has directly contributed to the development of the theory of social capital itself.
 
-The purposes of this chapter are to (1) review the theoretical and empirical foundations of these lines of investigation; (2) summarize sampled studies and results; and (3) propose issues and directions for future research. Before proceeding with these tasks, I wish to identify the limitations of this review. It will focus on social capital – embedded resources in the networks accessed and used to attain statuses; as such, it does not review the effects of properties of social networks per se (e.g., density, centrality, bridging) unless they implicate accessed resources (what influence these characteristics may exert on the access and use of embedded resources). Second, the outcome of this focus is the status attained rather than whether a job search is successful. The latter has a substantial literature of its own and is better summarized elsewhere (e.g., Granovetter 1995). This chapter will touch on aspects of job searches to the extent that they affect attained statuses. Finally, only the literature available in English will be reviewed. I am aware of an expanding literature in Europe, but unfortunately, my language limitations do not allow for coverage here.
 
-Formative Studies and Theoretical Foundations Contributions of social network analysis to status attainment can be traced to the seminal study conducted by Mark Granovetter (1974), who interviewed 282 professional and managerial men in Newton,
+获取和使用这些资源，在行动者并不拥有它们这个意义上，是临时的和借取的。一位朋友的自行车是一个人的社会资本，你可以使用它来实现某一个目标，但是它一定要归还朋友。使用社会资本的一个含意是，假定互惠或补偿的义务存在。
 
-80
+假定
 
-Theory and Research
+社会资本理论由一组关于社会的宏观、中观和微观假定构成。对于宏观结构，有三个假定。首先，假定社会结构由一系列位置组成，它们根据某些规范认可的有价值资源如阶级、权威和地位来确定等级次序。进而假定结构在这些资源的可获取性和控制方面具有金字塔形状。位置越，占据者越少；位置越高，具有的结构视野越好（特别是对下面看得清楚）。在占据者的数量和位置的可获取性（accessibility 方面，金字塔结构意味着靠近上部的位置具有优势。
 
-Massachusetts. The data suggested that those who used interpersonal channels seemed to land more satisfactory and better (e.g., higher-paid) jobs. Based on this empirical research and substantiated by a review of job-search studies, Granovetter proposed (1973) a network theory for information flow. The hypothesis of the strength of weak ties states that weaker ties tend to form bridges that link individuals to other social circles for information not likely to be available in their own circles, and such information should be useful to the individuals.2
+靠近结构上部的位置对有价值资源具有更大的获取机会和控制，这不仅因为更多的有价值资源内在地与位置相联系，而且因为这些位置可以更多地接近其他等级（更低等级）的位置。因此，一个占据更高位置的个体，因为他可以接近更多的位置，因此对社会资本就有更大的控制。
 
-However, Granovetter never suggests that access to or help from weaker rather than stronger ties would result in higher-status jobs thus obtained (1995, p. 148). Clues about the linkage between strength of ties and attained statuses came indirectly from a small world study conducted in a tri-city metropolitan area in upstate New York (Lin, Dayton, and Greenwald 1978). The task of the participants in the study was to forward packets containing information about certain target persons to others they knew on a first-name basis so that the packets might eventually reach the target persons. The study found that successful chains (those packets successfully forwarded to the targets) involved higher-status intermediaries until the last nodes (dipping down in the hierarchy toward the locations of the targets) compared to the unsuccessful chains.
+有了社会结构的这么一个「形象」和对嵌人性资源的理解，很容易看出，等级制结构的位置层级，与为了工具性目的（获得额外资源）而对其他（更低的）位置施加影响的力度，以及它拥有的关于结构中有资源的位置的信息的数量之间有直接的关系。影响因素来自高位置比低位置能以更高的速率积累资源的能力。高位置的个体提供的任何恩惠都可以期待着在将来有个更大的报偿，因为高位置有更多的资源可以提供给低位置，而不是相反。信息因素与跨越位置层级的不对称的网络关系相联系。高位置往往比低位置拥有更多的信息或更好的结构性视野，因此更能够对嵌入在结构中的具体资源进行定位
 
-Successful chains also implicated nodes that had more extensive social contacts (who claimed more social ties) and yet tended to forward the packets to someone they had not seen recently (weaker ties). The small world study thus made two contributions. First, it suggested that access to hierarchical positions might be the critical factor in the process of status attainment. Thus, the possible linkage between strength of ties and status attainment might be indirect: the strength of weak ties might lie in their accessing social positions higher in the social hierarchy, which have the advantage in facilitating instrumental action. Second, the study implicated behavior rather than a paper-and-pencil exercise, as each step in the packet-forwarding process required actual actions from each participant. Thus, the study results lend behavioral validity to the results of previous status attainment paper-and-pencil studies.
+第二，社会资本理论假定，虽然各种有价值资源形成了等级制结构的基
 
-Based on these studies, a theory of social resources has emerged (Lin 1982, 1990). The theory begins with an image of the macrosocial structure consisting of positions ranked according to certain normatively 2 On the surface, this hypothesis might be seen as simply the inverse of the long-known hypothesis that stronger ties are formed among those who share similar characteristics and lifestyles, known as the homophily principle or the like-me hypothesis (Homans 1950; Lazarsfeld and Merton 1954; Laumann 1966; Lin 1982). What the strength-of-weak-ties argument contributed, however, was a challenge to the taken-for-granted and attributed value given to strong ties, or the homophily principle: strong ties, which promote group solidarity, are socially valuable. By shifting our attention to the weaker ties, Granovetter alerted us that weak ties, which promote access to different and new information, are socially valuable as well.
+础，每一种资源界定了一个特定的等级制，但是这些等级制往往是一致的具有可转换性。也即，在跨资源维度的等级制位置之间存在一致性。在一个资源维度上具有相对高地位的位置占据者，往往也在另一个资源维度上占据相对高的位置。例如，在职业结构中拥有相对高地位的人，也可能拥有很多的财富和权力。当这样的趋同是功能不完全的时候（不是同构的），跨维度的资源交换不仅是可能的，而且在大部分社会里是明确的、被期待的。例如，一个权力资源的占据者，可以与财富资源的占据者谈判与交易，通过「借出」权力以获得后者的一些财富
 
-Social Capital and Status Attainment  81
+第三，社会资本理论假定，这个等级制结构往往是金字塔状的，上层的占据者比下层的少。经验的结构看起来可能不是金字塔状的，因为每一个结构都在朝着需要重新改动的一套层级发展与变动。例如，随着工业化的进步（定义为发展制造机器工具的技术的过程，并假定在每一个现代社会中都是可以观察到的），随着占据者从农业向非农部门的转移，职业结构偏离了金字塔结构。当农业人口的规模下降，低层次的非农部的规模扩大的时候，职业结构在不同层级的占据者的数量方面往往是瓶状的。类似地，随着社会中教育层次的提高，总是存在着在最低层的、落在后面的一小撮，代表着由教育水平最差的个体组成的「剩余」群体
 
-valued resources such as wealth, status, and power. This structure has a pyramidal shape in terms of accessibility and control of such resources: the higher the position, the fewer the occupants; and the higher the position, the better the view it has of the structure (especially down below).
+对于中观与微观结构，社会资本理论有关于互动与行动的两个假定。首先，假定社会互动更可发生在相似的与临近的等级制层级的个体之中一一同质性互动原则。按照资源的一致性与转换性的结构性假定，被期待的或公平的交换，涉及到的是能够彼此提供和接受资源的参与者。因此，社会位置越近或者更相似，占据者彼此互动的可能性越大。理论假定两个主要的驱动力可以解释大部分个体的行动：维持有价值的资源与获得有价值的资源。第个意味着从事维护和保护有价值资源的行动已经在个体的支配之中，而第个促进了增加有价值资源的行动，但还没有处在个体的支配之中。我们可以分别把它们描述为表达性与工具性行动。
 
-The pyramidal structure suggests advantages for positions closer to the top, in terms of both number of occupants (fewer) and accessibility to positions (more). Within these structural constraints and opportunities, individuals act for expressive and instrumental purposes. For the latter (attaining status in the social structure being one prime example), the better strategy would be for ego to reach toward contacts higher up in the hierarchy. These contacts would be better able to exert influence on positions (e.g., a recruiter for a firm) whose actions might benefit ego’s interest. This reaching-up process might be facilitated if ego uses weaker ties, since these are more likely to reach out vertically (presumably upward) rather than horizontally relative to ego’s position in the hierarchy.
+表达性行动可能会导致与同质性互动原则相一致的互动。对资源相似性的认可与对相互关心和相互保护的需要的认可，成为满意互动的基础。这个
 
-Three propositions have thus been formulated: (1) the social-resources proposition – social resources (e.g., resources accessed in social networks) exert influence on the outcome of an instrumental action (e.g., attained status), (2) the strength-of-position proposition – social resources, in turn, are affected by the original position of ego (as represented by parental resources or previous resources), and (3) the strength-of-ties proposition – social resources are also affected by the use of weaker rather than stronger ties.
+猜想与观察是一致的：在拥有相似的社会经济地位特征、生活方式和态度的参加者之间的互动，不仅经常发生，而且是更令互动者满意的（Homans 1950; Lazarsfeld 和 Merton,1954)。这些相似性反映了等级制结构中社会位置的接近。在有价值的资源被分配到所有层级（也即在体系中的每个个体都得到一定数量的资源）的社会体系中，同质性互动在所有层级中都是普遍性的。在最经验层次的各个社会体系中，这个模式也是正确的。
 
-Social Resources and Social Capital:
+相反，工具性行动可能不会导致与同质原则和结构性期待相一致的互动模式。为了获得额外的或新的资源，根据定乂，需要接近其他社会位置（特别是那些拥有更多、更好资源的位置）。就是说，为了获得额外的资源，更有效的行动往往指向拥有非相似（可能是更好的）资源的人，这与异质性互动原则相一致
 
-A Theoretical Convergence
+因此，连接个体与结构的理论必须先区分两类行动：工具性行动与表达性行动。工具性行动是那些为了实现某些目标的人采取的行动。这类行动的明显的特征是手段与目标是分离的、不同的。一个典型的例子是找工作或找人。而采取表达性行动是为了自身的缘故：行动既是手段又是目的，二者是一体的、不可分割的。吐露自己的感情是典型的例子。社会资本理论的命题对于工具性行动和表达性行动是不同的。
 
-This theoretical development occurred in the late 1970s and early 1980s, when parallel but independent discussions on social capital (Bourdieu 1980, 1983/1986; Coleman 1988) were emerging as well. While social capital refers to a variety of features in the social structure, according to different scholars (e.g., community norms – Coleman 1990; group solidarity – Hechter 1983, Portes and Sensenbrenner 1993; participation in voluntary and civil organizations – Putnam 1995a, 1995b), it eventually became clear (Lin 1982, 1995a; Flap 1996; Tardos 1996; Burt 1997; Portes 1998) that social capital refers primarily to resources accessed in social networks. Further, the theory also focuses on the instrumental utility of such resources (capital as investment or mobilization). The convergence of the social resources and social capital theories complements and strengthens the development of a social theory focusing on the instrumental utility of accessed and mobilized resources embedded in social networks. It places the significance of social resources
+第二，理论必须考虑行动与互动之间的一致性或张力。为了分享和倾诉，表达性行动驱动着个体去寻找相似特征和生活方式的人，以致可以获得期望的回报与同情的和有价值的理解和建议。既然同质性互动是规范性的互动，那么表达性行动引起的就是规范性的互动（同质性互动）。也即，在努力与回报之间存在着一个规范的搭配。而另一方面，为了获取能实现更多和 / 或更好的资源回报的信息和影响，工具性行动驱使一个人去寻找具有非相似（希望更好）特征和生活方式的人。因此异质性互动代表着目的
 
-82
+[2」工具性行动也可以被高位置的占据者发起，指向更低位置的占据者，因为后者提供了很多必需的服务。因为高位置比低位置控制和接近更多的资源，低位置的占据者希望得到报答，通常不得不回应高层级的占据者发起的行动。这一章，关注寻找更好的资源的个体。我会在第九章进一步详细阐述非对称交换的理论解释。
 
-Theory and Research
 
-in the broader theoretical discussion of social capital and sharpens the definition and operationality of social capital as a research concept. The three propositions previously stated (i.e., social capital, strength of position, and strength of ties) remain valid in the framework of social capital, although other propositions have subsequently been proposed (see Chapter 5). The following discussion will reflect the merged notions of social capital and social resources and will examine the research conducted on the three propositions: (1) the social-capital proposition (Proposition 1 in Chapter 5): better embedded resources accessed in the social networks lead to better attained status; (2) the strength-of-position proposition (Proposition 2 in Chapter 5): the better the structural position of origin, the better the attained status; and (3) the strength-of-weak-ties proposition (Proposition 4 in Chapter 5): the weaker the ties, the better the attained status (in the instrumental action of a job search). At the empirical and research levels, social resources are used; at the general theoretical level, social capital is employed.
 
-Research Models and Evidence
+性（工具性）行动中特别的或「异常的」努力与期望的回报之间潜在的不匹配。
 
-Research on the relationships between social resources and status attainment examines two processes, as illustrated in Figure 6.1. One process focuses on the access to social capital – resources accessed in the ego’s general social networks. In this process, human capital (education, experiences), initial positions (parental or prior job statuses), and ego’s social ties (e.g., extensity of ties) are hypothesized to determine the extent of resources the ego can access through such connections (network resources). Further, network resources, education, and initial positions are expected to affect attained statuses such as occupational status, authority positions, sectors, or earnings. We may describe this model as the   accessed social capital model .
+因为工具性行动与规范性互动类型之间的不匹配，社会资本理论应该特注意工具性行动通过社会资本取得成功的过程。
 
-Another process focuses on the mobilization of social capital in the process of status attainment – the use of social contacts and the resources provided by the contact in the job-search process. As can be seen in Figure 6.1, contact status used is seen as the mobilized social capital in the status attainment process. It is hypothesized that contact status, along with education and initial positions, will exert a significant and important effect on the status of the job obtained. Contact status, in turn, is affected by education, network resources, and the tie strength between ego and the contact. Strength of ties may be measured either with a perceived strength (e.g., intimacy of the relationship) or with a role category (e.g., kin, friends, and acquaintances). We shall call this model the  mobilized social capital model .
+理论命题：结构的嵌
 
-Social Capital and Status Attainment
+性资源与目的性行动
 
-83
+这里所阐述的理论也只是适用于使其他行动者作为中间人的一类行动在某些情况下，行动可以不通过中间人而完成。例如，在完备劳动力市场体系中，所有的工作空职与它们要求的技能为所有的找工作者所知，对填补空职的求职者的招聘完全依赖于工作所要求的技能与每一候选人的技能的匹配，这样很少需要使用关系，直接申请应该可以实现所有目标。同样地，如果搜寻者认识社会体系中的每一人，也不需要通过关系去査找他们。只有当搜寻者不能直接了解要找的人时，才需要关系。因此，社会资本理论适用于目标信息传播不完善的不完备市场中。我估计，这种情况如果不能反映所有真实的市场情况也能覆盖大部分。
 
-Figure 6.1 The social capital model of status attainment.
+对于连接社会资本与行动的理论，有七个命题要详细说明：
 
-In both types of analysis, other factors may be added to the basic model, including age, gender, race/ethnicity, indications of job experience or tenure, the work sector, and the industry or organization, either as control variables or as opportunity/constraint factors. We turn now to a brief review of the literature, which will proceed first with the mobilized social capital model, as it received initial research attention, followed by the accessed social capital model and models incorporating both access and mobilization processes. A summary of the studies and findings appears in Table 6.1.
+1. 社会资本的回报（命题 1: 社会资本命题）
 
-Mobilized Social Capital
+2. 社会资本的获取
 
-The initial empirical examination of the mobilized social capital model3
+结枃位置的优势（命题 2:「地位强度」命题）
 
-was conducted by Lin and his associates (Lin, Ensel, and Vaughn 1981; 3 The fact that this estimation procedure studies only a subsample of labor force participants who use personal contacts in job searches raised concern about the selectivity bias on the estimations. It has been shown that in surveys of community labor populations,
+社会关系的优势（命题 3:「强关系强度」命题与命题 4:「弱关系强度」命题
 
-84
+网络位置的优势（命题 5:「位置强度」命题）
 
-Theory and Research
+网络位置与结位置之间的互动（命题 6: 位置一地位交又命题）
 
-Table 6.1.   Summary of Studies and Findings on Social Capital and   Status Attainment
+结构位置（position）与关系 / 网络位置（ocation）互动（命题 7: 结构相依命题）3
 
-Social Resources
+第一个命题是表述社会资本的预期回报的关键命题，它假设获取和使用好的社会资本往往导致一个更成功的结果。其他五个命题，假设的是能导致更好地获取和使用社会资本的因素。地位强度命题表明，初始社会位置（position）对好的社会资本的获取和使用有正面的影响。关系强度命题，假定强或弱社会关系的使用（同质或异质性互动）对获取和使用社会资本有正向的影响。地位强度命题反映了工具性行动的结构效应，而关系强度命题可能反映了行动效应。最后一个假设是，位置（position）、关系与位置（location）之间存在着互动效应。通常认为结构效应比行动效应更大。因此，结构对于行动的相对强度，应在靠近等级制结构的顶端或底部处更明显。下面部分将具体阐述这些命题。
 
-Effect (Outcome
+社会资本的回报
 
-Position
+(1）社会资本命题：行动的成功与社会资本正相关。理论的主要命题是，获取和使用好的社会资本导致更成功的行动。实现目的性行动的一个简单策略是，接近自身拥有或能够获取更高价值资源的行动者。如第二章所表明的，这样的接近对于利用社会资本有几个重要的优。首先，它利用中间人的影响，中间人可以代表自我施加影响。中间人的位置（position）越好，嵌和控制的资源越好，有益于自我的影响越多。第二，中间人有优势的结构性视野，可以给自我提供更好的信息。第三，一个处在好位置（position 的中间人，拥有嵌人性和控制性资源，呈现出有好的社会信用，因此，如果他愿意作为中间人，会确保或提高自我的社会信用。最后，接触一个好位置
 
-Tie
+3】这个理论的最早版本和一部分命题出自林南（in,1982），随后的版本和修正出现在其他几个刊物中（in,1986,1990,1992,1995a,199)
 
-Study
+的中间人的能力，本身就提高了自我在下一步的互动与行动（如参加工作面试）中的信心和自尊，这可能是实现行动目标所必需的。因此，理论中最重要的命题是：行动的成功与社会资本正相关。可以认为，关系对表达性与工具性行动都是有效的。
 
-Var.)
+这个命题用图描绘出来就是图 5.1。社会结构的等级制性质用金字塔来表示，拥有不同等级的有价值资源的位置层级用纵轴标出。两个自我（在图中用 c1 与 e2 区分），有大致相同的结构位置，命题假设，当 e1 利用社会关系 a1, c2 利用社会关系 a2, 且 a1 比 a2 的位置相对要高时，那么 1 比 c2 具有竞争优势。
 
-Effect
+个体行动者通过直接和间接关系获得不同的资源，那么什么可以作为社会资本的测量指标呢？按照韦伯的观点，我们可以提出行动者使用的社会关系资源的三种类型，作为社会资本的内容：(1）财富：经济财产；(2）权力政治财产；(3）名声：社会财产。我们可以提出每一种资本都具有的三个共同特征：(1）达高性：通过社会关系获取的最好资源；(2）异质性：位置（positon）一通过社会关系，其资源是可以触及到的的幅度（3）广泛性：可触及的位置的数量。这些标准和测量可以用图 5.2 来描绘
 
-Effect
+第一个达高性的标准看上去很直白：自我通过社会关系可以在等级制结构中触及到的最顶端位置的资源。如图 5.2, 自我与结构中的其他位置相联系，自我能够触及的最高位置代表着自我最上可触及的社会资源。位置以其所拥有的有价值资源为特征，通常反映了结构中和社区中的相对地位阶级或权威。
 
-Mobilized social capital model
+第二个标准一资源异质性，反映了自我通过跨越结构等级制位置的社会关系可触及的资源的纵向幅度。如图 5.2, 这代表着通过自我关系最高和最低可触及的资源幅度。资源异质性标准不是那么明显、但是它很重要。例如，不知道如何提高计算机的内存来运行一个应用程序的个人，可能不需要联系一个高地位的程序员，请一个友好的能很快帮忙的人就足够了。当在紧要关头需要一位保姆时，也不需要请拥有很多资源的邻居帮忙。在办公室中倒纸篓或拖地，更依赖于与保洁员的友好关系，而不是求助于自己的上级。拥有全是高地位的社会关系，可能并不能满足很多生活需要。因此，通过社会关系所提供的资源的类型、层级和数量的异质性，组成了对社会资本的好的获取的一个重要标准。第三个标准一一广泛性，只是反映了自我通过社会关系触及的位置及其嵌人性资源的多样性。
 
-Lin, Ensel, and Vaughn (1981, USA)
+这些经济、政治和社会地位的实际测量因每一社会，甚或每一社区的不
 
-Yes
+同而不同。因此，确定一个给定社会的有地方意义的社会资本的测量方法是一个经验任务。只要这些有局部意义的测量可以确定和检验，那么提出的命题就可以假设成立。
 
-Yes
+我猜想，社会资本的不同测量之间会高度相关，但也可能因社会和社区而变化。评估所研究的每一社会之间的一致性，对反映这些测量中的趋同或趋异程度运用适当的方法控制，也是一个经验任务。而且，社会资本测量的相对功用可能依赖于行动的目的或动机。前面已经说明，表达性的（维持资源）或工具性（获得资源）的原因都可能导致行动。不管社会资本测量中的相对优势是否因行动的不同类型而不同，也都可能随着社会或社区而变化。在一些社会中，在社会资本的三个测量大部分重叠或一致性很高的地方，它们对于两类行动的功用可能也趋同。在其他社会中，当这些财产的分割性或独立性更强的时候，考察它们对两种类型行动的相对效果变得很重要。
 
-Yes
+社会资本命题是理论的主要命题，因为除非它被研究所证实，否则所有其他的命题都变得无意义。另一方面，如果这个命题被证实了，就为下面的命题和论述奠定了基础。在这一章的剩余部分，我们将关注涉及社会资本的原因说明或原因的其他几个命题一一决定得到好的社会资本的可能性的因素。
 
-Marsden and Hurlbert (1988, USA)
+获取社会资本
 
-Yes
+那么谁更可能获取好的社会资本呢？我们提出三个可能的因素：(1）自我在等级制结构中的位置；(2）自我与其他行动者之间关系的性质；(3）网络中关系的位置。这三个因素导致了关于获取社会资本的四个理论命题：(1）自我的结构性位置的强度；(2）关系的强度；(3）关系的位置的强度；(4）结构位置（position）、关系与网络位置（location）的共同（互动）效应
 
-Yes
+结构性优势同质原则已经被用来描述规范性与表达性的互动类型。这个原则表明，人们为了表达性的原因往往与类似的人互动。当这个原则被应用到想获得更好的社会资本的人的问题上时，非常明显，那些在社会结构中
 
-No
+的初始位置相对高的人应该比其他人有优势。初始位置可以是从父母继承来的或个体自致的。这个初始位置一旦被确定，位置的占据者的规范互动模式就会将它与相似的或更高位置的人相联系。初始位置越高，占据者越可能获取更多高价值的资源。因此，假设初始位置的层级与通过联系所触及的社会资本是正相关的，这就是地位强度命题。
 
-Ensel (1979, USA)
+(2）地位强度命题：初始位置越好，行动者越可能获取和使用好的社会资本。图 5.3 中标有两个自我，e1 和 e2, 在等级制中拥有相对不同的位置将会以不同级别的位置与他人接触。在获取好的社会资本上，e1 比 e2 有个好的位置或结构优势。
 
-Yes
 
-—
 
-—
+这个命题揭示的是结构对社会资本的影响：那些有好的社会位置的人，在获取和动员拥有好的资源的社会关系上具有优势。初始位置指自我的先赋位置与自致位置。先斌位是自我继承的位置，通常来自父母。自致位置指自我获得与占据的社会位置和社会角色。这样地位强度命题可以表述为，那些有好的先赋位置、占据着好的位置的行动者，也将有好的机会获取和使用拥有好的资源的社会关系。这个命题与传统的结构理论是完全一致的，它反映了行动者的结构优势，并将这个结构性效应扩展到社会资本中。富人拥有的更多关系对表达性与工具性行动都有效。
 
-DeGraaf and Flap (1988, the Netherlands)
 
-Yes
 
-—
+地位强度命题将可获取的资源扩展到超出同质原则的范围以外。不仅占据更高位置的个体更可能与相似的位置有社会联系，而且这些其他位置有它们自己的联系，其社会资本也是可以使用的。根据同样的原则，这些位置及其社会资本，同与自我有直接联系的那些位置及其社会资本应该是相似的。因此，这些间接联系进一步增强了自我获取更广泛的资源的倾向。地位强度命题意味着，个体自身的地位越高，获取好的社会资本的可能性越大。
 
-—
+网络优势地位强度命题的要点是，触及好的社会资本的结构机会对那些初始位置相对高的人更好。下一个问题是，是否存在一个初始位置相对低的人获取好的社会资本的机制。或者说，当两个行动者在结构中占据大体相同的位置时，他们的行动结果会有差别吗？
 
-Moerbeek, Utle, and Flap (1995, the
+这个提法是说，对社会资本的获取也受到自我与社会网络中的他人的关系的影响。然而，几个原则将引向不同的命题。我们用一个逻辑顺序来考虑这些一从结构的视角，到机会的视角，到选择的视角，到这些视角的结合
 
-Yes
+(3）强关系强度命题：关系越强，获取的社会资本越可能正向地影响表达性行动的成功。结构原则是直白的：可获取的资源，与同自我共享更强烈情感的那些人的社会关系是正相关的。我们可以称这个原则为强关系强度命题。那些有社会关系的人之间的关系强度，反映了关系的强烈程度、交往频率（可信赖性）互惠和承认的义务（tanovettet,1973)。关系越强，越可能共享和交换资源。
 
-Yes
+相互的支持与认可，同自我和他人的资源（包括他们的声望）的改善是结合在一起的。因此，这样一个关系是相互宽容的，甚至鼓励社会借贷和债务的免除。科尔曼（Coleman,199）将拥有比平均义务密度（average density of obligations）高的社会结构描述为ー个封闭的群体。本命题关注，因自我与他人的关系强度而导致的使用他人的资源的可能性。也即，即使他人有更好的资源，如果自我与他人的关系没有反映规范的互惠、信任和相互义务他人可能也不会对自我获得资源的愿望作出回应。封闭的关系是得到社会资本的必要条件。学界存在大量的对于紧密的、内聚的、相互作用的、互惠
 
-—
+的、可靠的网络作为参与互动的行动者的资源一的有效性的争论 Bourdieu, 1980, 1983/1986 Coleman, 1990; Portes Fi Sensenbrenner, 1993)
 
-Netherlands)
+这些分析表明，建立在情感、信任与共享资源和生活方式基础上的强关系，有利于维持和强化既有的资源，这与表达性行动相一致。因此，得出命题：关系越强，获取的社会资本越可能对表达性行动的成功有正向的影响。
 
-Wegener (1991, Germany)
+然而，修正后的同质原则图 3.1 告诉我们，互动、情感与资源的相似性是正相关的。因此，强关系允许使用与自己的社会资本相似的或可能稍微不同的（如更好的）社会资本一一这恰好是地位强度命题的内容。一旦同质原则护展到资源，强关系对社会资本获取的效应得以解释。因此，强关系原则反映了结构的优势。
 
-Yes
+除非社会发生变迁，社会位置或多或少是固定的（第十章要解决的问题），互动和络运作的兴趣方面则与此不同，网络中的关系强度和资源位置是易变的。个体对互动的参与者有或弱或强的情感，这些参与者与他人的关系强度也是变化的。而且，在网络中，因为直接和间接的关系，自我在络中的位置也是变化的。关系强度与网络位置中的这些变动表明，需要发展关于这些变动如何影响到个体获取社会资本的进一步的命题。换言之，如果关系强度更弱而不是更强，如果自我的位置更靠近网络的边而不是核心，对自我有好处吗？
 
-—
+(4）弱关系强度命题：关系越弱，自我在工具性行动中越可能获取好的社会资本。格拉诺维特（Granovetter,1973,1974）是最早从理论上探讨有关弱关系强度问题的学者之一。按照霍曼斯的概念与同质原则，他设想用更紧密、更具互惠性互动性质的参与者来区分社会圈子。嵌人在社会圈子中的个体，往往与圈子里的其他成员有同质性的特征，这些相似处也扩展到信息方面。而且，在个社会圏子的成员中，他们关于更大的社会结构的知识是同质的。如果个体需要不同的信息，那么他们更可能在不同的、而不是自己的社会圈子中寻找。为了接触另一个社会圈子，自我需寻找连接两个圈子的关系。不同社会圈子之间的关系称作桥梁。没有连接，两个社会圈子将是彼此独立的。
 
-—
+格拉诺维特进一步指出，形成桥梁的两个个体之间的关系更弱，因为每
 
-Requena (1991, Spain)
+个个体参加不同的社会圈子。尽管他没有说出来，但是其中隐含的意思是，这些处于桥梁位置的个体往往在他们各自社会圈子的边缘，很明显，当他们维持与其他社会圈子的关系时，可能会降低他们与自己圈中人的互动。既然强关系以强度、亲密度、交往频率、承认的义务和互惠服务的提供为特
 
-No
+征，那么如果个体在他们的关系中寻找弱关系而不是强关系，找到可能通向其他社会圈子的桥梁，个体获得好的信息的机会就会增加。格拉诺维特把这个策略与好处称为「弱关系强度
 
-—
+弱关系的好处也可以扩展到社会资本上。修正后的同质原则表明，资源的非相似性与互动和情感的缺乏有关（图 3.1)。因此，以更小的亲密度、强度、交往频率、更少的义务和更弱的互惠服务为特征的弱关系，也应该与更多的非相似资源相联系。如图 5.4 所反映的，当自我利用弱关系时，根据弱关系强度的假设可以得知，自我会触及到等级制结构的上
 
-—
+[4」弱关系的关系特征并没有开拓新的领域，因为它们可以直接从同质性互动原则中推出来。我们回忆一下，这个原则表述的是，互动往往发生在有相似特征和生活方式的行动者中。这个表述反过来说就是，互动不会常常发生在具有非相似特征和生活方式的行动者中。如果一个社会群体和社会圈子以紧密的互动和联系为特征，那么根据同质原则我们可以知道，其成员一定共享相似的特征和生活方式，以及信息。既然与其他群体的联系很微弱（只是通过一个桥梁），那么同质原则告诉我们，两个群体的成员可以通过他们的不同特征、生活方式和信息得以区分。
 
-Barbieri (1996, Italy)
+而弱关系强度观点的意义在于，它指出了弱关系因为其微弱的关系，促进了两个群体之间的信息流动。在社会心理学 20 世纪二三十年代诞生后的几十年里，同质原则事实上导致了很多理论的和研究的发展，在强关系促进了内聚、满意以及态度和意见一致的前提假设下，很多研究关注强关系群体（如初级群体、参照群体、小群体和私密关系）。人们认为，这些属性对于维持成员关系和群体是有用的。即，关注点在强关系的强度上。这个发展在很大程度上忽视了桥梁和弱关系，因为它们被视为强关系一一具有所有的社会群体的正面特征一的对立面
 
-Yes
+格拉诺维特的弱关系强度论点，指出了弱关系如何促进信息的流动。通过这个桥梁，可能只有通过这个桥梁，一个群体中的成员才可能获知另一群体的信息。如果信息是有用的，无论谁获取并使用这个桥梁，都会获得对本群体的其他成员的优势。尽管格拉诺维特最初并没有指出来，可能这个群体也会从通过桥梁流的关于其他群体的信息中获益（Granovetter, 1973, 1974)
 
-Yes
+端（他人 2）或下端（他人 3)。弱关系更有助于接触到异质性资源。因此，修正的弱关系强度命题表明：关系越弱，自我越可能获取异质性资
 
-No
+源
 
-Hsung and Sun (1988, Taiwan)
+然而，弱关系论点本身并不表明弱关系总是将自我与好的资源（达高性【他人 2 而不是他人 3] 与广泛性）相联系。毕竟，资源异质性只是好的资源（如增加到自我的信息库中新的与不同的信息）的一个标准。更重要的是，我们需要进一步修正最初的弱关系强度假设，以把它与获取社会资本的达高性标准相联系。这里我们可以使用扩展的同质原则
 
-Yes
+经验观察（Laumann,1966）表明，个体喜欢把他们与某种更高社会地位的人相联系。劳曼将这称为声望原则。联系的偏好当然不同于实际的互动行为，但是，它确实解释了为什么经验证据显示个体往往与相似或稍高、而不是更低社会经济地位的人寻求互动。也即，如果在图 54 中的他人 2 与他人 3 之间作一个选择，自我往往喜欢与他人 2 互动。因此，我们可以进一步修正弱关系强度命题如下：关系越弱，自我越可能获取好的社会资本（至少
 
-—
+[5）在实际行为中，个体确实与更低社会经济地位者互动。这是肯定的，因为当个体与喜欢的他人（那些更高地位者）互动时，对这些他人而言，是在与低地位者互动。那么个体与低地位者互动的动机是什么？这个题将在第九章讨论。
 
-—
 
-Hsung and Hwang (1992, Taiwan)
 
-Yes
+在资源异质性与达高性方面）。
 
-Yes
+弱关系强度论点现在清楚了。剩下的问题是，为了理解络位置在获取社会资本中的优势，弱关系强度假设是否必要。为了探讨这个问题，我们现在先看另一个概念。
 
-No
+(5）位置强度命题：个体越靠近网络中的桥梁，他们在工具性行动中获取的社会资本越好。格拉诺维特对「网络桥梁」（Granovetter,1973）的讨论指出了网络位置的功用：使信息从一个社会子流向另一个社会圈子。这导致他关于弱关系强度观点的提出。然而，他后来将关注点从网络位置转向了社会关系。优势在于，关系强度可以用亲密度、强度、联系烦率和互惠服务测量一特别是其他替代物测量，如角色关系（如亲属、朋友、熟人）一在个案调中很容易研究，因为这些测量可以很容易地从回答者的自我报告中确定。而收集关于个体如何形成社会网中的关系的数据要困难得多。河题是，是否这些测量，甚或关系强度的概念，抓住了像桥梁这样的网络位置的含意。
 
-Bian and Ang (1997, Singapore)
+社会桥（social bridge）可以定义为社会网络中两个个体行动者之间的联系，桥梁的缺乏会导致一个关系丛断裂为两个分离的关系，每一个关系从有两个或多个个体行动者。换言之，桥梁是两个群体的行动者之间的惟一连接。这个定义可以放宽一些，因为两个关系从可以通过几个桥梁连接。桥梁承担着尽可能地获取嵌人在两个群体中的资源的重要功能。
 
-Yes
+伯特（Bur,1992）在结构洞理论中，更详尽地探讨了桥梁的概念。结构洞可以定义为，「非多余联系之间的分离」与「两个联系间的非多余关系」。白特进一步说明，「结构洞是一个缓冲器，像一个电路中的绝缘体。由于它们之间的结构洞，两个联系在某种程度上提供了附加的、而不是重叠的网络效用」（Burt,1992, p18)。结构洞的一个例子是图 5.5 所给出的。这里，三个结构洞分别位于：A 与自我（「你」）周围的关系丛之间、自我与 B 周围的关系丛之间以及 A 与 B 的关系丛之间。结构洞表示关系丛之间的连接的非多余性或接近空白，如果自我与 A、自我与 B 以及 A 与 B 之间的联系确实存
 
-—
+在，那么它们组成了桥梁。结构洞概念关注关系丛之间联系渠道的缺乏，而桥梁则强调了跨越（接近空当的）结构洞的关系从之间的联系渠道。因此，结构洞与桥梁是描述相似的络特征和某种网络位置的战略重要性的两种方法
 
-Yes*
+桥梁使一个关系丛中的个体行动者可以获取嵌入在另一个关系从的节点中的资源，否则这些资源将不可得。非常类似于格拉诺维特的观点，伯特认为，跨越结构洞的桥梁的效用在于它们控制着信息的流动。为了不失一般性，我们可以将这个效用扩展到包括对所有社会资本的获取上。因此，这个观点也可以表述为位置强度假设：个体越靠近网络中的桥梁，他们获取的社会资本越好。
 
-Volker and Flap (1999, East Germany)
+弱关系强度观点可以视为位置强度命题的一个替代命题。因为桥梁往往代表着两个关系丛之间的弱关系连接，使用弱关系提高了获取桥梁的可能性。当自我对网络的全貌的认知发生困难时，这个替代命题是有用的。自我的决策不是搜寻自己网络中所有可能的桥梁，而是简单化为寻找自己的弱关系。这个替代论点也使研究者的任务变得简单，研究者不需要绘制每一个自我的整个网络地图，而可以使用弱关系强度的测量来代替。当然，因为是一个替代测量，来自验证位置强度命题的研究中的证据可能被削弱了。
 
-Yes
+(6）位置与地位变叉命题：对于工具性行动，网络位置（location)（靠近桥梁）强度枧桥梁所连接的不同资源而定。虽然结构洞视角，从格拉诺维特对网络位置的关系强度的关注转移到社会桥的阐述上，它也需要修正。注意一下图 56 中作为等级制结构的纵轴，就非常清楚，自我（「你」）与 A 的联系比起自我与 B 的联系对于自我所在群体的成员更有好处，因为与自我的关系丛和 B 的关系丛相比，A 的关系丛由富含资源的位置组成。这种情况与图 5.5 形成了明的对比，图 55 中的三个关系丛被「拉平」到等级制的相同层级。虽然三个结构洞和桥梁与图 5.6 中的相同，但是通过三个桥梁可获得的资源是最少的。
 
-Yes*
+图 5.6 结构洞（桥梁）与弱关系在等级制结构中的不同优势
 
-No
+因此，在社会网中像桥梁这样的战略位置（location）的好处，取决于接近的资源。如果桥只是通向相似或不高的有价值资源的节点，那么靠近桥梁的位置可能不是很有用。换言之，靠近络中桥梁的相对优势，取决于桥梁所接近的节点的资源相对丰富度。这可以表述为互动命题：位置强度（靠近桥梁）依桥梁所连接的不同资源而定。
 
-Bian (1997, China)
+既然个体行动者的不同资源很好地代表了等级制中他们的位置，我们可以进一步闻述这个互动命题：对好的社会资本的获取，往往发生在那些占据靠近桥梁位置（location）的个体行动者身上，这个桥梁连接着那些处在相对较高等级制位置（position）上的行动者。因此，网络位置（location）优势取
 
-Yes
+决于可接近的网络资源。既然这里假定好的资源嵌入在等级制结构中更高的位置上，这就意味着网络中的位置优势取决于它可接近结构位置（position 的纵向维度。
 
-—
+位置与地位交叉命题并不完全否定低的与高的关系丛的纵向桥梁的重要性。如图 5.6, 自我与 A 和 B 的关系从之间的桥梁，提高了自我关系丛中成员的资源异质性。然而，既然地位强度命题涉及到资源异质性（【位置（position）越高，通过它们的关系和网络所获取的资源的纵向幅度越大）和达高性，那么 B 为了将其关系从中成员的资源异质性扩展到自我和 A 的关系中，他会维持与自我的联系。
 
-No
+总之，无论将网络位置视为桥梁还是关系强度，其重要性都取决于被沟通或连接的个体的相对等级制结构位置。拥有桥梁或弱关系的相对优势，是关系或关系丛之间的相对纵向距离的函数 6
 
-Accessed social capital model
+行动效果的结构相依性
 
-Name generator methodology
+刚才提出的命题，特别是导致好的社会资本的因素，可以区分为两个效应：结构中的初始位置效应，络运作（关系与网络位置）效应，以及它们联合的效应。地位强度命题清楚地反映了结构的效应，而网络运作命题反映了机会与选择的混合物。机会与选择是否以及在什么程度上反映了目的性行动，值得进一步考虑。
 
-Campbell, Marsden, and Hurlbert (1986,
+第四章讨论的弱关系强度观点与位置强度观点，都代表着机会和选择，并涉及到行动。几乎没有疑问，结构约束了机会与选择。现在考虑一下弱关系的观点。朝着等级制结构向上的方向（见图 5.3），朝向最顶端的纵向接触幅度不断减小。因此，当纵向连接（弱关系）产生的时候，上行比下行的可能性小。实际上，在最顶端，任何的纵向连接都是一个下行的连接。因此，强
 
-Yes
+[6 注意，我们没有假定网络的容量一一反映在个体行动者的数量上，是好的社会资本的决定因素。我们推不出好的社会位置（position）、资源丰富的网络或异质性络、与更大人口规模的结构或网络相联系。
 
-—
 
-—
 
-USA)
+关系（水平关系）而不是弱关系（纵向关系），对获取好的社会资本更有效。换言之，当一个人在等级制结构中的位置朝顶部移动时，同质原则比异质原则更有效
 
-Sprengers, Tazelaar, and Flap (1988, the
+同时，网络运作强度的效应也可能受到来自下面的约束。根据假设，在等级制的底部存在着更多的位置（position）与占据者。根据布芳（Bau 1977）提出的结构理论，互动的可能性是群体规模的函数。因此，随着位置与占据者的人口规模的增加，如果假定每人有相同的互动倾向，他们当中存在着更大的互动可能性。可以设想，随着群体规模的增大，社会网络变得更具同质性、更少多样性。一个衍生的假设是，在社会等级制底部，同质性网络越多，越会增加与强关系的互动机会，而减少与弱关系的互动机会。同时可能出现的是，机会结构的缺乏，减少了作为获取好的社会资本的一个途径的网络运作的效应。
 
-Yes
+因此，我们应该在等级制结构的中部考察网络运作效应的强度。因为邻近的社会位置（Position）的相对规模相似，机会结构是延伸性的，其纵向接触范围应该最有可能向上发展。如果这个命题是有效的，那么当自我的位置（position）在等级制结构的中部时，行动是最有意义、最有效的。在结构底层的行动者，很少有机会进行有意义的行动。同样的，但是出于不同的原因，上层行动者很少有刺激采取打破结构效应的行动（也即破坏秩序）。这导致了下一个命题。
 
-Yes
+(7）结构相依命题：对位于等级制顶部及附近和底部及附近的行动者而言，网络运作（关系与位置【location）效应受到等级制结构的约東。图 5.7 显示了结构与行动之间的互动。在等级制顶端的自我 1, 如果选择纵向的接触，向上延伸的机会受到约東。在底部的自我 3, 纵向两个方向的接触机会都受到结构的约束。在中部某处的自我 2, 拥有向上延伸与实现这些接触的机会。
 
-Yes*
 
-Netherlands)
 
-Barbieri (1996, Italy)
+结束语
 
-Yes
+现在我们总结一下社会资本理论的一组假设（未检验的假定）与命题，要点如下
 
-Yes
+1. 结构假设（第三章）：有价的资源嵌入在社会结构中。在社会结构中，位置、权成、规则和占据者（代理人）通常在有价值资源的分布、位置的数量、权成的层级和占据者的数量方面形成金字塔型等级制。在等级制中的层级越高，有价值资源的聚集越多，位置的数量越少，权威的控制越大，占据者的数量越少。2. 互动假设（第三章和第四章）：互动通常发生在具有相似或相近的资源与生活方式特征的行动者之间一一遵循同质原则。资源特征越相似，在互动中需要付出的努力越小。
 
-—
+3. 网络假设（第三章和第四章）：在社会网络中，直接和间接互动的行动者拥有不同类型的资源。其中一些资源为他们个人所拥有（如个人资源或人力资本），但是大多数资源嵌入在每一个行动者都联系的他人中，或者嵌入在每一个行动者都占据或联系的结位置中。4. 定义（第二章至第四章）：这些结性的嵌入性资源就是网络中行动者的社会资本。
 
-Boxman, DeGraaf, and Flap (1991, the
+5. 行动假设（第四章）：行动者在社会行动中的动机是维持或获取资源一目的性行动。维持资源的行动可以称为表达性行动，获得资源行动称为工具性行动。维持资源是行动的首要动机，因此，表达性行动是行动的首要形式。6. 社会资本命：行动的成功与社会资本正相关。
 
-Yes
+7. 地位强度命题：初始位置越好，行动者越可能获取和使用好的社会资本。
 
-—
+8 强关系强度命题：关系越强，获取的社会资本越可能正向地影响表达性行动的成功。
 
-—
+9. 弱关系强度命题：关系越弱，自我在工具性行动中越可能获取好的社会资本。
 
-Netherlands)
+10. 位置强度命题：个体越靠近网络中的桥梁，他们在工具性行动
 
-Boxman and Flap (1990, the Netherlands)
+中获取的社会资本越好。
 
-Yes
+1 位置一地位交叉命题：对于工具性行动，位置（靠近桥梁）强
 
-—
+度依桥梁所连接的不同资源而定。
 
-—
+12. 结构相依命题：对位于等级制顶部及附近和底部及附近的行动者
 
-Burt (1992, USA)
+而言，网络运作（关系与网络位置）效应受到等级制结构的约東图 5.8 给出了以这些命题为基础的模型。
 
-Yes
+这些假设与例题已经明确地表达出了社会资本理论的四个特征：(1）它的概念在本质上是关系性的，不能化约到个体的或心理的层次；(2）理论在等级制结构内是相互联系在一起的，实际上，它只有在等级制结构的背景中才有意义；(3）它使行动者承担行动，因此需要一个微观层次的分析；(4）它的发展建立在理论与经验研究紧密整合的基础之上，因此避免了落人从假想的理论或没有头脑的经验主义出发，无休止地从抽象到抽象演绎的窠臼。我认为这些特征将社会资本置于弥合宏观一微观的鸿沟与发展社会学的独特位置。
 
-—
-
-—
-
-Burt (1997, 1998 USA)
-
-Yes*
-
-—
-
-—
-
-Position Generator Methodology
-
-Lin and Dumin (1986, USA)
-
-Yes
-
-Yes
-
-Yes*
-
-Hsung and Hwang (1992, Taiwan)
-
-Yes
-
-—
-
-—
-
-Volker and Flap (1999, East Germany)
-
-Yes
-
-Yes
-
-Yes
-
-Angelusz and Tardos (1991, Hungary)
-
-Yes
-
-No
-
-—
-
-Erickson (1995, 1996, Canada)
-
-Yes
-
-—
-
-Yes*
-
-Erickson (1998, Canada)
-
-Yes
-
-—
-
-—
-
-Belliveau, O’Reilly, and Wade (1996, USA)
-
-Yes
-
-—
-
-—
-
-Joint accessed/mobilized model
-
-Boxman (1992)
-
-Yes
-
-—
-
-—
-
-Flap and Boxman (1996, 1998, the
-
-Yes
-
-—
-
-—
-
-Netherlands)
-
-Volker and Flap (1997, Germany)
-
-Yes
-
-—
-
-—
-
-Lai, Lin, and Leung (1998, USA)
-
-Yes
-
-Yes
-
-Yes
-
-—: not reported.
-
-* Conditional confirmation; detail in text.
-
-Social Capital and Status Attainment  85
-
-Lin, Vaughn, and Ensel 1981). The study used data from a representative community sample in metropolitan Albany, New York, of more than 400 employed men, and confirmed that contact status exerted effects on attained status beyond and after accounting for parental status and education effects. It also confirmed that contact status was affected positively by the father’s status and negatively by the strength of ties between ego and the contact. The results provided the initial confirmation of all three propositions of the social capital theory. Ensel (1979) extended the investigation to both men and women in a study of employed adults in New York State. While confirming that contact status significantly affected attained status, he found that male contacts were much more likely to reach higher-status contacts than female contacts. Further, women were more likely to use female contacts in job searches, while men overwhelmingly used male contacts. When women did use male contacts, their disadvantage in reaching higher-status contacts as compared to men was significantly reduced. This study was one of the first to provide direct evidence that men, being positioned advantageously in the hierarchy, had better social capital than women. Secondly, women’s disadvantages in mobilizing male contacts, and thereby accessing better social capital, accounted in part for their inferior status attainment.
-
-Further replication and extension of the model were done by Marsden and Hurlbert (1988), who analyzed the transition to current jobs for 456 men in the 1970 Detroit Area Study. This confirmed that contact status (occupational prestige and sector) exerted the strongest effects on attained prestige and sector, respectively. The authors also found that the contact’s prestige and position in the core sector were related to the prestige and sector of the prior job, respectively, confirming the strength-of-position proposition. On the other hand, the authors did not confirm the strength-of-tie proposition; contact status was not associated with the strength of ties between ego and the contact.
-
-Extension of the model to other societies quickly followed. De Graaf and Flap (1988) lent further support to the social resources proposition in their analyses of 628 males in a 1980 West German survey and 466
-
-males in a 1982 Dutch survey. They did not examine the strength-of-position or the strength-of-tie propositions for social resources. The Netherlands Family Survey of 1992 provided data on male–female com-anywhere from 20 percent to over 61 percent of the job seekers indicate the use of personal contacts (for a summary, see Granovetter 1995, pp. 139–141). Yet, studies of selectivity bias have revealed no major differences in the characteristics of those who used personal contacts compared to those who used formal channels or direct applications in job searches. Younger and less experienced workers do show a slightly greater tendency to use personal contacts. Thus, most studies have incorporated age and/or work experience as controls to account for possible bias.
-
-86
-
-Theory and Research
-
-parisons in the social capital effect. Moerbeek, Ultee, and Flap (1995) used father’s occupation as the indicator of social capital when the father was mentioned as the social contact, and found that it exerted a positive and significant effect on the statuses of first and current/last jobs for both men and women. Wegener (1991) analyzed a 1987 data set from Germany of 604 men and women aged forty-two and thirty-two, and found that contact status significantly affected the prestige of the job found, confirming the social resources proposition. However, the strength-of-ties proposition and the strength-of-position hypotheses were not examined. Barbieri (1996), reporting a study of 500 newly hired persons in the administrative area of Milan, Italy, confirmed the social-resources proposition by finding that contact status significantly affected present job status, having already accounted for effects from father’s status, education, and first and previous job statuses. Further, he found that father’s status indirectly affected contact status through education, lending some support to the strength-of-tie proposition. When Barbieri subdivided the sample into those who used strong versus weak ties, he found no advantage of using weaker ties in the association between contact status and attainted status. In fact, there was some evidence that stronger ties increased the association between contact status and statuses of first and previous jobs. Requena’s (1991) study in Spain provided the only disconfirming evidence for the social resources proposition, as it showed that greater social resources did not provide better jobs, even though they did affect income attainment. He speculated that the lack of social-resources effects was due in part to the rigid bureau-cratization of Spain’s employment policies and practices.
-
-Systematic tests of the theory have been carried out in Asia as well. A series of studies were conducted by Hsung and others in Taiwan, which is also a capitalist state. One study (Hsung and Sun 1988) surveyed the labor force in the manufacturing industry, and another (Hsung and Hwang 1992) examined the labor force in a metropolitan area (Taichung). Both studies supported the social resources proposition that contact status significantly affects the status of obtained first and current jobs after accounting for father’s education and occupational status, education, and, in the case of the current job, prior job status. Hsung and Hwang (1992) also found modest support for the strength-of-position argument, but father’s education and occupational status had only a modest effect on contact status for the first job and no significant effects on the current job’s contact status. For strength of ties, a composite measure (closeness with contacts, frequency of visits, frequency of calls, and content of the relationship) indicated only a slightly negative relationship with the first job’s contact status and no relationship with the current job’s contact status. In addition, in 1994, Bian and Ang (1997)
-
-Social Capital and Status Attainment  87
-
-conducted a study of 512 men and women in Singapore that strongly confirmed the social resources proposition: contact status significantly affected obtained status. Helper status was strongly related to the current job’s occupational status, along with age, education, and prior job status.
-
-For all respondents, weaker ties reached higher-status contacts. However, the weakest ties (not intimate at all) had no effect on contact status, a finding similar to that of a 1988 Tianjin study that will be described shortly. For those who reached helpers indirectly, the association between tie strength and contact status was negative. However, stronger ties between the intermediary and the helper were more likely to result in reaching a higher-status helper.
-
-A major extension of the research paradigm has examined the propositions in different political economies, such as state socialism. Bian (1997), in a 1988 study conducted in Tianjin, China, including 1,008
-
-men and women, found that helper’s job status (measured by the hierarchical level of his or her work unit) was strongly associated with attained work unit status in the job change, along with education and prior job status. The overall effect of the tie strength between ego and the helper on the helper’s status was insignificant. Further analyses showed that medium-strength ties reached helpers with better status; this was true for the tie strength between ego and intermediaries, as well as between intermediaries and helpers. Moreover, in a retrospective panel study conducted by Volker and Flap (1999) in Leipzig and Dresden, two cities in the former German Democratic Republic, the occupational prestige of the contact person had strong and significant effects on both the first job and job prestige in 1989. Thus, the social resources proposition was confirmed. However, strength of ties (measured by the intensity of the relationship between ego and the contact) had no effect on contact statuses or on attained occupational status and income. Neither father’s education nor occupational prestige affected contact status for the 1989
-
-job search. However, education had a significant effect on contact status.
-
-Since the father’s status had direct effects on education, these results confirmed the indirect effect of the strength of positions, mediated through education.
-
-Accessed Social Capital
-
-Two methods are used to measure accessed social capital: name generators and position generators. The   name generator   method is the more common method and has been used extensively in the network literature. The general technique is to pose one or more questions about ego’s contacts in certain role relationships (e.g., neighborhood, work), content areas (e.g., work matters, household chores), or intimacy (e.g., confi-
-
-88
-
-Theory and Research
-
-Table 6.2.   Position Generator for Measuring Accessed Social Capital: An   Example
-
-Here is a list of jobs (  show card ). Would you please tell me if you happen to know someone (on a first-name basis) who has each job?
-
-Job
-
-1. Do you
-
-2. How long
-
-3. What is your
-
-4. How
-
-5. His/her
-
-6. His/her
-
-know anyone
-
-have you known
-
-relationship
-
-close are
-
-gender
-
-job
-
-who has
-
-this person
-
-with this
-
-you to this
-
-this job?*
-
-(no. of years)?
-
-person?
-
-person?
-
-Job A
-
-Job B
-
-Job C
-
-(etc.)
-
-* If you know more than one person, think of the one person whom you have known the longest.
-
-dential, most intimate interactions). Such questions generate a list of contacts ranging from three to five or as many as volunteered by ego. From these lists, relationships between ego and contacts, and among contacts, as well as contacts’ characteristics, are generated. Social capital measures are constructed to reflect the contacts’ diversity and range of resources (education, occupation) as well as characteristics (gender, race, age).
-
-There are a number of problems associated with the use of name generators to measure social capital, including variations in distributions being affected by the content or role and number of names. As a result, the data tend to reflect stronger ties, stronger role relations, or geographically limited ties (Campbell and Lee 1991).
-
-Position generators , first proposed by Lin and associates (Lin and Dumin 1986), use a sample of structural positions that are salient in a society (occupations, authorities, work units, class, or sector) and ask respondents to indicate contacts (e.g., those known on a first-name basis), if any, in each of the positions. In addition, relationships between ego and the contact for each position can be identified. Thus, instead of sampling content or role areas, the position generator samples hierarchical positions. It is content free and role/location neutral. Instead of counting and measuring data from specific names (persons) generated, the position generator counts and measures access to structural positions.
-
-An example of the position-generator instrument is shown in Table 6.2.
-
-The name-generator methodology has been employed in research over a longer period of time, while the position-generator methodology has emerged in more recent studies. The following section will report on the studies and results for each methodology on accessed social capital and status attainment.
-
-Social Capital and Status Attainment  89
-
-Name-Generators Studies.   Campbell, Marsden, and Hurlbert (1986) examined the associations between network resources and socioeconomic statuses with name-generator data from the 1965–1966 Detroit Area Study and found that the resource compositions of networks (mean and maximal education, mean and maximal prestige) were significantly associated with attained statuses such as occupational prestige and family income. In the Milan study, Barbieri (1996) also constructed three measures for social capital from name-generator data and found them to affect present job status after accounting for parental statuses, experience, human capital (years of schooling), and first and previous job statuses. Further, social capital was affected by father’s status, confirming the strength-of-position proposition.
-
-Several studies have assessed the associations between accessed social capital and attained statuses among certain labor populations. Access to social capital by the unemployed was the focus of a study conducted by Sprengers, Tazelaar, and Flap (1988). Among a group of 242 Dutch men aged forty to fifty-five who were unemployed in or before 1978, those with better social capital were more likely to find jobs within a year after unemployment, especially those with access to social capital through weak ties. Those with better social capital did not find a better occupational status or a higher income when they found reemployment.
-
-However, better social capital increased optimism about job opportunities, which in turn increased the intensity of the job search, leading to more and better jobs. Further, it was found that the more restricted the labor market, the more intense those with greater social capital tended to be in job searches. After a year of unemployment, those with better social capital among strong ties (relatives) also tended to have a better chance of being rehired in the next one to three years. The study also found that those with better education, former occupations, and higher incomes also tended to have better social capital, confirming the strength-of-position hypothesis. Focusing on 1,359 top managers of large companies in the Netherlands, Boxman, De Graaf, and Flap (1991) found that both education and social capital (measured with work contacts in other organizations and membership in clubs and professional associations) had direct effects on income. The job-search activities of 365
-
-persons in the Netherlands who finished vocational training were also studied by Boxman and Flap (1990) in 1989. Data were obtained from job seekers and employers, as well as from contacts used by the job seekers. Preliminary analyses showed that for income, the more important predictors were gender (in favor of men), social capital, career perspective, and company-specific skills.
-
-Early promotion and better bonuses were the outcomes assessed by Burt (1992) for managers in a large electronic components and com-
-
-90
-
-Theory and Research
-
-puting equipment firm. Using the extent to which each ego was embedded in a constrained network (fewer contacts, more dense relations, and more contacts related to a single contact) as a measure of social capital, he found that there was a negative association between structural constraints and early promotion. That is, he suggested that access to diverse resources in one’s networks enhanced the opportunity to locate useful information and influence for promoting one’s position in the firm. For men in senior positions in the investment banking division of a large American financial organization, a similar negative association between constrained networks and bonuses was found (Burt 1997).
-
-Position-Generators Studies.   Lin and Dumin (1986) analyzed the data from an Albany, New York, study in which twenty occupations were sampled from the U.S. 1960 census listing of occupations, with all occupations ranked according to job prestige scores. At equal intervals on the job prestige scale scores, occupations were identified. From this group, the most popular (frequency of occupants) occupation was selected. Each respondent was asked if he had any contact (person he knew on a first-name basis) in each of the positions. If more than one contact was indicated, the respondent was asked to focus on the most familiar one. For each accessed position, the respondent identified the contact’s relationship (relative, friend, or acquaintance). From the data matrix, Lin and Dumin constructed two social resources access measures: the highest status accessible (the position accessed with the highest prestige score) and the range of statuses accessed (the difference between the highest and lowest accessed statuses). Analyses showed that the two measures were positively and significantly related to current occupational status.
-
-Further analysis showed that respondents’ original positions (father’s occupational prestige score or white–blue and high–low occupational groupings) and these two measures were positively and significantly related, confirming the strength-of-position hypothesis. When Lin and Dumin analyzed the relationships between the three types of ties (relatives, friends, acquaintances) and the access variables, they found that friends as well as acquaintances provided the best access to both the highest-status position and the range of accessed statuses.
-
-Hsung and Hwang (1992) also incorporated network resources in their Taichung study, as cited earlier. Adapting the position-generator methodology with twenty occupations, they failed to find significant effects for the highest status accessed and for the difference between the lowest and highest occupational statuses accessed. However, they did find significant effects on the first job status of a measure of the「total amount of network resources,」which was based on the sum status scores of all occupations accessed. This measure, however, did not have any
-
-Social Capital and Status Attainment  91
-
-effect on current job status. Volker and Flap (1999), in their Germany study, used the position-generator methodology to ask respondents to identify, among thirty-three occupations, whether they knew anyone in any of the occupations, and if so, what their relationships were (relatives, friends, and acquaintances). For 1989 occupational status, the effect of the highest status accessed was positive and significant, controlling for fathers’ education and occupation, the respondents’ own education and sex, and the prestige of their first job. This variable also had a positive and moderately significant (  p  < .10) effect on 1989 income when 1989 occupational prestige was added to the equation along with all other independent variables. This result confirmed the social resources proposition. Further, Volker and Flap found that both relatives and acquaintances accessed better occupations (upper-white-collar or higher prestige) than friends. On the other hand, acquaintances accessed a greater range (the difference between the highest- and lowest-prestige jobs) of occupations than either relatives or friends. Since the highest occupational prestige accessed turned out to be the best predictor of attained status, the effects of weak ties were not found (as relatives and acquaintances were almost equally likely to access high-prestige occupations). The father’s occupational prestige was positively related to the highest occupational prestige accessed in general, as well as for each group of occupations accessed through relatives, friends, and acquaintances. Thus, the strength-of-position proposition was confirmed. In pre-1989 Hungary (1987–1988), Angelusz and Tardos (1991) also used the position generator to identify「weakly tied」relations or resources. This variable was found to be significantly associated with wages, after accounting for the effects of sex, education, residence, and age.
-
-In her study of the private security industry (161 guard, investigation, and security companies) in Toronto in 1991–1992, Erickson (1995, 1996) used Wright’s (1979) class dimensions (control of property, control of organizations, and control of skill) to select nineteen job positions.
-
-Data were gathered from 155 employees, 46 supervisors, 80 managers, and 112 owners. Erickson found that social capital (diversity in accessing various positions) contributed to job autonomy and authority, which in turn generated better job returns. The major conclusions are that (1) accessed social capital helps people to rise to higher positions (in comparisons between mangers versus lower-level employees and owners versus employees) and (2) social capital pays off even if people do not use a contact to get a job (see Recruitment and Social Capital in the next section). In another study on social capital, Erickson (1998) differentiated two types of social capital: global and local. Local settings refer to geographic areas (neighborhoods), ethnic areas (ethnic communities and enclave economies), or organizations (schools, voluntary organizations,
-
-92
-
-Theory and Research
-
-social movements, or firms). In a telephone survey of 352 participants in the Toronto Local Employment and Trading System (LETS), Erickson asked the respondents to identify contacts in a list of thirty occupations both inside and outside the LETS system. Analyses showed that local social capital was associated with income in the LETS system (the local economy), while global social capital was not associated with income in the general economy, pointing to the fact that social capital’s effect is more contingent in the global economy system.
-
-Joint Effects of Accessed and Mobilized Social Capital  Since there are two types of social capital in the process of status attainment, a logical step would be to examine accessed and mobilized social capital in a single study. The theoretical question posed is the extent to which accessed social capital facilitates social capital: that is, whether having more accessed social capital increases the likelihood of mobilizing better social capital. The structural opportunity and advantage implied in this hypothesis is apparent. However, it is also to be expected that the correspondence will not be overwhelming: not all persons accessed with rich social capital are expected to take advantage of or be able to mobilize social capital for the purpose of obtaining better socioeconomic status. An element of action and choice should also be significant. Several studies have lent support to this hypothesis.
-
-For example, in their study of vocational training graduates, Boxman and Flap (Boxman 1992; Flap and Boxman 1996) showed that contact status (mobilized social capital) affects attained occupational status, whereas accessed social capital does not. The Germany study (Volker and Flap 1996) is another study in which both accessed and mobilized social capital were measured. It was found that the highest occupational prestige accessed using the position-generator methodology was significantly and positively related to the status of the contact person used in the 1989 job search, but its direct effect on 1989 job prestige, while positive, was only modest in significance (  p  < .10). The contact person’s prestige had a much stronger effect. In fact, its direct effect on 1989 job prestige was stronger than education once the prestige of the first job was also incorporated (and was the most significant predictor).
-
-Lai, Lin, and Leung (1998) also examined the joint effects of accessed and mobilized social capital on status attainment using the Albany data (Lin, Ensel, and Vaughn 1981). Incorporating both the network resources measures from the position generator (Lin and Dumin 1986) and the contact resources (contact status in the job search) in structural equation models, they showed that current job status is significantly and directly affected by education (achieved status) and by contact status.
-
-Social Capital and Status Attainment  93
-
-Contact status, in turn, is affected by parental statuses (ascribed status), education, network resources, and weaker ties with the contact. Thus, it is clear that mobilized social capital directly influences status outcome and mobilized social capital is affected by accessed social capital, along with ascribed and achieved statuses.
-
-Issues and Research Directions
-
-Research has provided consistent support for the proposition that social capital, in the form of social resources, makes a significant contribution to status attainment beyond personal resources. This association persists across societies (different nation-states and political economies), industrialization and development levels, labor market populations (recent graduates, new hires, job changers), different economic sectors (industries, organizations, positions in organizations), and status outcomes (occupation, authority, sector, promotion, bonuses). The association remains significant across differential conceptualization (accessed versus mobilized capital) and measurement (name generators versus position generators). Yet, there remain important issues to be conceptualized and studied in the future. In the following subsections, a number of these issues will be briefly identified and discussed.
-
-Informal and Formal Job Search Channels
-
-It is clear by now that the use of informal channels by itself offers no advantage over other channels, especially formal channels, in attained status. In fact, if anything, informal channels tend to be used by the disadvantaged: women, the less educated, and the less skilled. The statuses attained therefore tend to be lower. Yet, among those who use informal channels, social resources (contact statuses) make a major difference.
-
-Several issues remain. First, is it really true that the advantaged do not need to use informal channels, as they possess greater human capital and can apply directly to high-status positions? The evidence is mixed. For some jobs that have specific requirements (dealing with technology and hardware, for example), credentials regarding skills and training in the formal application may be sufficient to obtain positions. However, for other critical jobs (high-level managerial and human-interfaced positions), formal credentials are often insufficient to convey the social skills and resources so essential for occupants’ performances. The necessary informal or shadow channels through which such information is conveyed, yet not detected in survey instruments, remain an important methodological challenge. Secondly, for the disadvantaged, social capital
-
-94
-
-Theory and Research
-
-is restricted (the strength-of-position argument). Within this restricted range of resources, there is little information on whether the disadvantaged are also less likely to mobilize the optimal resources available to them, thus creating double jeopardy. Knowledge about the choice behaviors of the advantaged and the disadvantaged will be helpful in sorting through the structural constraints and choice constraints.
-
-Strength of Ties or Network Locations?
-
-While the social resources proposition and the strength-of-position propositions have been consistently confirmed (see Table 6.1), much ambiguity has resulted regarding the strength-of-ties proposition.
-
-Strength of ties in and of itself should not be expected to exert a direct effect on status outcomes (Granovetter 1995), and much research evidence points to the absence of a direct association (e.g., Bridges and Villemez 1986; Marsden and Hurlbert 1988; Forse 1997). The modified proposition that weaker ties might access better social resources also lacks consistent empirical support (see Table 6.1). Yet, social capital is theorized to contain both structural effects and agency effects; further specifications of network or tie choices within structural constraints may eventually turn out to be meaningful. Several lines of investigation have provided some leads. For example, it has been argued that the effect of strength of ties on social resources accessed or mobilized may be contingent on the original status. Some studies have pointed to the ceiling effect of tie strength: at or near the top level of the hierarchy, it is strong ties that tend to yield successful job attainment (Lin, Ensel, and Vaughn 1981; Erickson 1995, 1996). Also, the weakest ties are clearly not useful (Bian 1997; Bian and Ang 1997), since ties with no strength offer no incentive for exchanges. On the other hand, the strongest ties, by the same token, may be useful despite the restricted range of resources accessed. There ties, by definition, represent commitment, trust, and obligation and therefore the motivation to help. Willingness and effort to search for other ties using these strong ties may be critical under institutional uncertainties or constraints (e.g., under state socialism: Rus 1995, Bian 1997; or tight market situations: Sprengers, Tazelaar, and Flap 1988). Organizational constraints and opportunities may also condition the relative utility of weaker or stronger ties (Lin 1990).
-
-Another source of possible clarification suggests a possible modification in the conceptualization of the strength of ties in network terms.
-
-For example, strength of tie may be reflected in the length of the links between ego and the alter whose resources are eventually accessed. If each link is assumed to be of equal strength, then the strength of the tie between ego and the alter may become an inverse function of the length
-
-Social Capital and Status Attainment  95
-
-of the links between them: the longer the chain of connection, the weaker the tie. While the multiple links necessarily weaken the degree of obligations, trust, and reciprocity between ego and the ultimate alter, such a chain also extends the reach for resources not present in the proximal areas of ego in the networks. To the extent that heterogeneous or rich resources are present in distant parts of the network, the chain length or weaker ties may in fact become useful. Further analysis along this line (e.g., Bian 1997) will clarify the utility of both the bridge effect and the strength-of-tie effect.
-
-Other considerations point to locations in the social networks. The utility of social ties may be more dependent on the locations of the actors in the social networks or on the hierarchical structure rather than the strength of ties (e.g., Lin and Dumin 1986; Angelusz and Tardos 1991; Burt 1997). Positions at or near strategic locations, such as bridges or structural holes, may provide a competitive advantage to actors accessing heterogeneous and thus rich resources.
-
-These findings and considerations have led to further articulation of the propositions for the theory of social capital, as reflected in Chapter 5, where network positions, in conjunction with structural positions, provide the key to predict how likely an instrumental action is to lead to better social capital.
-
-Further Development of the Position Generator  In order to ascertain the causal sequence, the time framework of the contacts needs to be specified. For example, the generator may wish to ask,
-
-「When you were looking for the first (or current) job, did you know of anyone who had this kind of work?」Also, it is important to sample the positions from a meaningful hierarchy in a given society. In addition to occupational status or prestige, work units, sectors, authority, or autonomy may confer important statuses in certain societies. Catering to the significance of meaningful statuses/classes in a given society is thus an important consideration in identifying the positions in the generators (Erickson 1995).
-
-Inequality of Social Capital
-
-Differential access to social capital deserves much greater research attention. It is conceivable that social groups (gender, race) have different access to social capital because of their advantaged or disadvantaged structural positions and social networks. Thus, for example, inequality of social capital offers fewer opportunities for women and minorities to mobilize better social resources to attain and promote careers. For the
-
-96
-
-Theory and Research
-
-disadvantaged to gain a better status, strategic behaviors require accessing resources beyond their usual social circles (e.g., women) using male ties (Ensel 1979) to find sponsors in the firm (Burt 1998) and to join clubs dominated by men (Beggs and Hurlbert 1997); or for blacks to find ties outside their own neighborhood or those employed (Green, Tigges, and Browne 1995); or for scholars of Mexican origin to find ties of non-Mexican origin or to establish ties with institutional agents such as teachers and counselors (Stanton-Salazar and Dornbusch 1995; Stanton-Salazar 1997). Systematic data on inequalities in social capital will provide an explanatory framework for inequality in social stratification and mobility and offer behavioral choices to overcome such inequalities.
-
-The next chapter, in fact, will describe one such effort.
-
-Recruitment and Social Capital
-
-The relationships between social capital and status attainment apply to both the supply and demand sides of the labor market. So far, research literature has primarily concentrated on the supply side – the status attainment process from job seekers’ perspective. The demand side of the model – the recruitment process from the organization’s perspective –
-
-has only begun to emerge (Boxman and Flap 1990; Boxman, De Graaf and Flap 1991; Erickson 1995, 1996; Burt 1997; Fernandez and Weinberg 1997). There are reasons to believe that social capital is important for firms in selective recruitment, as firms must operate in an environment where social skills and networks play critical roles in transactions and exchanges. This is especially true of certain types of positions. Thus, we may anticipate that certain positions require more social capital than other positions in a firm. First, top-level executives are expected to possess rich social capital, as they need to deal with and manage people both within and outside the firm. In fact, we may postulate that at the highest level of management, social capital far outweighs human capital for occupants. Thus, it can be hypothesized that firms such as IBM and Microsoft are more likely to recruit experienced managers with social skills rather than computer expertise for their CEOs, and that top universities need presidents who have the social skills to negotiate with faculty, students, parents, and alumni, and to raise funds rather than produce distinguished scholarships. Second, we should expect positions that deal with persons (e.g., nurses) rather than machines or technologies (e.g., programmers) to be filled with occupants who have better social capital. Third, positions at the edge of the firm are more likely to be filled by those with better social capital than others (e.g., salesperson, public relations personnal, or managers at remote sites; Burt 1997).
-
-Firms with more needs for such positions, therefore, should be expected
-
-Social Capital and Status Attainment  97
-
-to use informal sources in recruitment more extensively. Such hypotheses will help empirical specifications and testing.
-
-Social Capital versus Human Capital
-
-The relationship between social capital and human capital is theoretically important. Some scholars (Bourdieu 1983/1986; Coleman 1990) have proposed that social capital helps produce human capital. Well-connected parents and social ties can indeed enhance the opportunities for individuals to obtain better education, training, and skill and knowledge credentials. On the other hand, it is clear that human capital induces social capital. Better-educated and better-trained individuals tend to move in social circles and clubs rich in resources. The harder question is: given both, which is more important in enhancing status attainment?
-
-Several studies cited in this chapter suggest that social capital may be as important as or even more important than human capital (education and work experience) in status attainment (Lin, Ensel, and Vaughn 1981; Marsden and Hurlbert 1988), while others show the opposite (Hsung and Sun 1988; DeGraaf and Flap 1988; Hsung and Hwang 1992). Industrialization probably is not the explanation, as the former group includes studies conducted in the United States and the latter in the Netherlands and Taiwan. More likely, there is an association between specific educational institutions and methods of job allocations and searches. As Krymkowski (1991) showed in a comparative analysis of data from the United States, West Germany, and Poland in the 1970s, both West Germany and Poland showed stronger associations between social origins and education and between education and occupational allocations than the United States. Yet, there is no clear evidence that the educational system in Taiwan resembles the West German and Dutch systems more than it does the U.S. system. The contrasting results from these countries thus remain to be explained.
-
-Still more intriguing are the possible interactions between human capital and social capital. Boxman, De Graaf, and Flap (1991) found that human capital had its greatest effect on income when social capital was low, and human capital had its least effect on income when social capital was high. Further, in the study of Dutch managers, Flap and Boxman (1998) found that for top managers, social capital led to higher income at all levels of human capital, but the returns on human capital decreased at higher levels of social capital. If these patterns can be confirmed, they would suggest that human capital supplements social capital in status attainment. That is, when social capital is high, attained status will be high, regardless of the level of human capital; and when social capital is low, human capital exerts a strong effect on attainment. Or,
-
-98
-
-Theory and Research
-
-given certain minimal levels of human and social capital, social capital is the more important factor in accounting for status attainment.
-
-Concluding Remarks
-
-This brief chapter can only provide an abbreviated presentation of the rich and sizable research literature on social capital and status attainment. Many studies are currently being conducted in many parts of the world and have not been covered here. Nevertheless, it should be apparent that this research tradition has contributed significantly to the development of the social capital theory itself, as well as providing detailed and varied empirical data for its verification and continuous evolution.
-
-The research enterprise truly exemplifies the importance and fruitfulness of the continuing interplay and reciprocal feedback between theory and research.
+最后，我们应该注意，作出假定只是为了阐述理论命题的需要。因此，假定可以外在于（给定的）理论的解释，但是并不能保证它们是经验有效的。理论的发展期望着，不仅研究的命题有效，而且假定也有效。也就是说，当手段具备了，假定本身必须经受研究与经验的验证。假定没有什么神圣的，当假定无效的时侯，理论本身要修正，甚或被驳斥。理论指导着研究，而且它必须不断地被证实和进行可能的修正。

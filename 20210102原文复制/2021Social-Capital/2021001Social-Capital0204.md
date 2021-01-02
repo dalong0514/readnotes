@@ -2,15 +2,9 @@ Societal Transformations
 
 In Chapter 8, it was proposed that actions motivated by expressive and instrumental needs propel interactions with others beyond primordial groups so that social capital may be accessed. These purposive actions sustain two types of exchanges, as described in Chapter 9 – to gain and maintain two elementary payoffs: wealth and reputation. These two chapters describe the process from action to structure. Chapter 10 turns to the structure-to-action process by showing how hierarchical structures constrain actions accessing social capital. These are ideal types of linkage between action and structure; in reality, such processes are complicated by structures and processes mediating between actors and hierarchical structures. Unless we identify and describe how these middle-level structures and processes operate, we will be unable to understand how action and structure interact. Further, the two processes – from micro to macro and vice versa – should not be seen in isolation or each depicted as a one-way process. A comprehensive theory of social capital must capture the two-way process between action and structure, as mediated through certain middle-level structures and processes.
 
-In this chapter, I argue that two such middle-level structures –
-
-institutions and networks – constitute the infrastructure of society. The framework conceives institutions and networks as the two main social forces guiding the interactions between actors and hierarchical structures and the flows of capital.
+In this chapter, I argue that two such middle-level structures – institutions and networks – constitute the infrastructure of society. The framework conceives institutions and networks as the two main social forces guiding the interactions between actors and hierarchical structures and the flows of capital.
 
 Many scholars have used network analysis to delineate this micro-to-macro process, including Coleman, White, Granovetter, Burt, Breiger, Wellman, Erickson, Marsden, Flap, and many others. For those engaged in social networks analysis, social resources or social capital constitute the core element of a sociological explanation. Purposive actions based on two motivational principles, minimization of loss and maximization of gain, lead to the formation of social networks (first the primary group and then secondary ties) for both sentimental and instrumental purposes.
-
-184
-
-Societal Transformations  185
 
 Thus, social networks, as has been pointed out in this monograph, exist not only in hierarchical (e.g., economic) organizations (e.g., the social embeddedness of economic organizations; see Granovetter 1985) but also in the interrelations among individual actors (Granovetter 1973, 1974; Lin 1982; Burt 1992), so that transactions and exchanges take place not only within organizations and between organizations, but also among actors.
 
@@ -22,23 +16,19 @@ A major assumption in institutional analysis is that institutions affect and eve
 
 Another gap is in how institutions and networks are related. One obvious answer is that networks reinforce institutions as they add coher-ence to the structure (Zucker 1988). How then does one explain social movements, which usually involve an interconnected group of actors mobilizing capital to counteract prevailing institutions? Or, to be more specific, is it possible to specify how social capital is useful for instru-
 
-186
-
-Conceptual Extensions
-
 Figure 11.1 Four basic social processes. (Adapted from Coleman 1990, p. 8)
 
 mental actions leading to gains in the prevailing institutions and organizations in some situations, and yet becomes an instrument for institutional transformation in other situations?
 
 This chapter is a modest attempt to explore some of these issues and questions. My approach is to propose a conceptual framework that identifies what I consider the key components in the two-way processes depicted in Figure 11.1: namely, process 1 (macro-to-micro effects) and process 3 (micro-to-macro effects). To do so in a single chapter, I have made two choices. First, I will focus on the key points central to the proposed framework and sacrifice other points that are also significant but that, for the time being, must be pushed to the background. For example, this chapter has little to say about the state or technology, although both are implicated in the descriptions of how various components interact. I will have more to say about technology and social capital in Chapter 12.
 
-Second, I will focus on the more general issues and sacrifice specifics. For example, I will leave out descriptions of certain specific factors, such as gender and ethnicity, which are universal in societies, and opt for generalities (using the term   prevailing institutions ).
+Second, I will focus on the more general issues and sacrifice specifics. For example, I will leave out descriptions of certain specific factors, such as gender and ethnicity, which are universal in societies, and opt for generalities (using the term prevailing institutions ).
 
 Basically, I conceive institutions and networks as the infrastructure of society – the vital social forces that link, hold, and consolidate actors and organizations in society. They may not be the most efficient mechanisms, but they define the internal cohesion and external differentiation for the actors and organizations. Of the two, institutions provide the organizing principles for actions and interactions. They offer rhetoric rationality and thus the map for organization and function. Most important, they uphold individual and collective identities. Networks, on the other hand, enhance flexibility for reducing transaction costs beyond what organizations can supply. They also provide mobile forces that fill and link the gaps necessarily existing in society. Just as important, they serve as possible vehicles for institutional transformation.
 
 The remainder of the chapter describes how institutions and networks work in tandem. Specifically, it will show how institutions organize and
 
-Societal Transformations  187
+Societal Transformations 187
 
 interact with other major components of society (i.e., institutionalizing organizations, other social and economic organizations, and social networks) and facilitate the flow of capital among these components. The final section highlights the significance of social networks in institutional transformation.
 
@@ -52,7 +42,7 @@ keyboard).1 Institutions are cultural rather than scientific, because they do no
 
 These rules create favored values for actions and interactions in the forms of morality, faith, ideology, decency, or capability (of healing and performing).
 
-When organizations and individuals subject themselves to a similar set of institutions, they are said to be in an   institutional field  (Lin 1994b).
+When organizations and individuals subject themselves to a similar set of institutions, they are said to be in an institutional field (Lin 1994b).
 
 Within an institutional field, actors (including individuals, networks, and organizations) recognize, demonstrate, and share rituals and behaviors, and subscribe to constraints and incentives as dictated by the social institutions. As such, they reduce transaction costs in measurement (computational abilities) and enforcement (North 1990) for actions and interactions among the actors.
 
@@ -64,9 +54,9 @@ historically emerged first represented a real advantage and was an important fac
 
 Conceptual Extensions
 
-ethnic Chinese communities in many urban ghettos around the world belong to the same institutional field as the proper Chinese society, defined within the boundary of the nation-state of China. Even though these communities and their members may speak different languages, live under the rules and laws of different states, and are subjected to different stratification and mobility constraints and opportunities, they obey the same fundamental rules extending and emanating from the structured relationships among family members (Lin 1989, 1995b). These rules guide their family lives, the celebration of certain holidays and festivities, ancestor worship, deferent treatment of elders, the upbringing of children with discipline and passion, the preference for tacit and informal agreements to formal or legal contracts in business transactions, the recognition of certain differential associations (given priority to family, clan, and village affiliations), and idiosyncratic rules of succession (transfer of authority by the rule of primogeniture and transfer of property by the rule of division among sons). Thus, institutional China is more encompassing than the state of China. Other institutional fields exist within a given a state. In the following discussion, the term   society   is used to refer to an institutional field.
+ethnic Chinese communities in many urban ghettos around the world belong to the same institutional field as the proper Chinese society, defined within the boundary of the nation-state of China. Even though these communities and their members may speak different languages, live under the rules and laws of different states, and are subjected to different stratification and mobility constraints and opportunities, they obey the same fundamental rules extending and emanating from the structured relationships among family members (Lin 1989, 1995b). These rules guide their family lives, the celebration of certain holidays and festivities, ancestor worship, deferent treatment of elders, the upbringing of children with discipline and passion, the preference for tacit and informal agreements to formal or legal contracts in business transactions, the recognition of certain differential associations (given priority to family, clan, and village affiliations), and idiosyncratic rules of succession (transfer of authority by the rule of primogeniture and transfer of property by the rule of division among sons). Thus, institutional China is more encompassing than the state of China. Other institutional fields exist within a given a state. In the following discussion, the term society is used to refer to an institutional field.
 
-In an institutional field, the extent to which organizations survive and persist depends on both their economic (technical) and social (institutional) performance. DiMaggio and Powell (1983, p. 148) used the notion of an organizational field to designate a「recognized area of institutional life: key suppliers, resources and product consumers, regulatory agencies, and other organizations that produce similar services or products」and hypothesized that organizations belonging to an organizational field become institutionally isomorphic in that their forms and practices becomes homogeneous because of increased sharing of interactions, information, and awareness of involvement in a common enterprise. An institutional field also involves the process of institutional definition and structuration (Giddens 1979), but it extends beyond specific types of organization (e.g., economic enterprises) or the requirement for interaction among all organizations. Organizations are said to belong to an institutional field when they are conscious of and abide by the rules of a specific set of institutions. By adjusting their internal structure and patterns of behavior, the organizations reduce transaction costs in interacting with other organizations dictated by the same institutions. The  organization-society institutional isomorphism  (Lin 1994b), therefore, is the prerequisite and imperative condition for organizational isomorphism. One assumption derivable from this imperative is that there is a positive correspondence between an organization’s ability to perform institutional tasks and its hierarchical position in the society. Likewise, it can be assumed that most of the social networks constructed also attain
+In an institutional field, the extent to which organizations survive and persist depends on both their economic (technical) and social (institutional) performance. DiMaggio and Powell (1983, p. 148) used the notion of an organizational field to designate a「recognized area of institutional life: key suppliers, resources and product consumers, regulatory agencies, and other organizations that produce similar services or products」and hypothesized that organizations belonging to an organizational field become institutionally isomorphic in that their forms and practices becomes homogeneous because of increased sharing of interactions, information, and awareness of involvement in a common enterprise. An institutional field also involves the process of institutional definition and structuration (Giddens 1979), but it extends beyond specific types of organization (e.g., economic enterprises) or the requirement for interaction among all organizations. Organizations are said to belong to an institutional field when they are conscious of and abide by the rules of a specific set of institutions. By adjusting their internal structure and patterns of behavior, the organizations reduce transaction costs in interacting with other organizations dictated by the same institutions. The organization-society institutional isomorphism (Lin 1994b), therefore, is the prerequisite and imperative condition for organizational isomorphism. One assumption derivable from this imperative is that there is a positive correspondence between an organization’s ability to perform institutional tasks and its hierarchical position in the society. Likewise, it can be assumed that most of the social networks constructed also attain
 
 Societal Transformations
 
@@ -74,7 +64,7 @@ Societal Transformations
 
 Figure 11.2 Institutional field.
 
-isomorphism with the organizations. The   organization-network institutional isomorphism   is reflected in the overlapping rules of the game and the values assigned to certain resources (ideology) between networks (and informal organizations such as churches, chambers of commerce, veterans’ groups, and bowling clubs). Figure 11.2 depicts a functioning institutional field where organizations, networks, and individuals are synchronized in terms of the rules of the game and the values of certain resources.
+isomorphism with the organizations. The organization-network institutional isomorphism is reflected in the overlapping rules of the game and the values assigned to certain resources (ideology) between networks (and informal organizations such as churches, chambers of commerce, veterans’ groups, and bowling clubs). Figure 11.2 depicts a functioning institutional field where organizations, networks, and individuals are synchronized in terms of the rules of the game and the values of certain resources.
 
 The Flow of Capital
 
@@ -92,7 +82,7 @@ The goods, as mentioned earlier, can be either material or symbolic.
 
 When certain goods are deliberately mobilized for a purposive action, they become capital. Capital is an investment of resources intended to generate returns. Thus, it is tailored by the actor to meet an organization’s demand. In return, the actor may be rewarded with social (reputation), economic (wealth), or political (power) resources. For organizations as actors, such capital generates returns so that they can survive and thrive in the society or institutional field. For individual actors, it is capital that is transacted in the labor market.
 
-Two types of capital dominate these transactions:   human capital   and  institutional capital  (Lin 1994b). Human capital reflects technical knowledge and skills. It is needed by organizations to compete successfully in the market. Institutional capital reflects sociocultural knowledge and skills about rules in the institutional field. Organizations need agents to exercise such knowledge and skills in performing as their representatives.
+Two types of capital dominate these transactions: human capital and institutional capital (Lin 1994b). Human capital reflects technical knowledge and skills. It is needed by organizations to compete successfully in the market. Institutional capital reflects sociocultural knowledge and skills about rules in the institutional field. Organizations need agents to exercise such knowledge and skills in performing as their representatives.
 
 Institutional capital contains elements of what is usually described as cultural capital (Bourdieu 1972/1977, 1980, 1983/1986) and social capital (Bourdieu 1983/1986; Coleman 1988, 1990; Flap and De Graaf 1988; Flap 1991). Cultural capital contains values, rules, and norms sanctioned by the dominant institutional field. Social capital reflects the extent of social connections, where embedded resources can be used to maintain or gain resources – including wealth, power, and reputation – valued in the institutional field. Individual actors who possess or can access cultural and social capital are potential laborers who can perform and fulfill an organization’s obligations in the institutional field. Thus, organizations seek out such candidates in the labor market.
 
@@ -102,7 +92,7 @@ Demonstration of institutional capital is much more complicated.
 
 Certain examinations or other methods of identification have been devised for this purpose. For example, in historical China, knowledge of Marxist–Leninist ideology, Mao Zedong’s or Sun Yat-sen’s thought, or
 
-Societal Transformations  191
+Societal Transformations 191
 
 Confucianism appeared in examinations, and patrilineal ancestries, clan and regional affinities, or class/ideological credentials had to be accounted for. For the most part, this demonstration was reflected in certification, credentials, and testimonies. These symbolic identifications reflected the actor’s acquisition of and affinity for prevailing institutions, and they might vary in different institutional fields. Even in contemporary China, these identifications may include Communist Party membership, clan and ethnic memberships, and affiliation with state-owned work units, but not membership in a church, temple, or social or professional association.2 Complicating the situation is the fact that many societies use the same certification and testimonial procedures to demonstrate both institutional and human capital. We shall return to this issue shortly.
 
@@ -122,17 +112,17 @@ ties and connections for testimonies. Training is accomplished through an import
 
 While the following discussion focuses mainly on the process of mobilizing resources into institutional capital, a similar process for human capital also applies.
 
-Institutionalizing organizations   are one special type of organization whose purpose or mission is to train and indoctrinate actors with values and skills in performing rituals and behaviors associated with the prevailing institutions. They also differ from other organizations in that they process actors but do not employ or keep them.3 Although some of them are specifically established to provide institutionalizing training, most of them also provide technical training in the form of schools, institutes, and colleges (e.g., cadre schools, military and police academies, seminaries, and scouting organizations). Thus, education through such organizations and the credentials thereby gained signify acquisition of both human capital and institutional capital.4 The disentangling of the two types of capital embedded in educational credentials is a complicated task, but rough estimations are possible. For example, recent studies in China and Taiwan (Lin 1994a, b, 1995b) suggest that education can be decomposed as two-thirds representing human capital and one-third institutional capital.
+Institutionalizing organizations are one special type of organization whose purpose or mission is to train and indoctrinate actors with values and skills in performing rituals and behaviors associated with the prevailing institutions. They also differ from other organizations in that they process actors but do not employ or keep them.3 Although some of them are specifically established to provide institutionalizing training, most of them also provide technical training in the form of schools, institutes, and colleges (e.g., cadre schools, military and police academies, seminaries, and scouting organizations). Thus, education through such organizations and the credentials thereby gained signify acquisition of both human capital and institutional capital.4 The disentangling of the two types of capital embedded in educational credentials is a complicated task, but rough estimations are possible. For example, recent studies in China and Taiwan (Lin 1994a, b, 1995b) suggest that education can be decomposed as two-thirds representing human capital and one-third institutional capital.
 
 Society and prevailing organizations also use institutionalizing organizations to enforce rules, rituals, and controlling behaviors. These organizations include prisons, mental hospitals, and labor and concentration camps. Actors in the institutional field are submitted to be processed if their behaviors are deemed deviant from those dictated in the prevailing institutions. Individual actors may be allowed to gain certification or credentials for institutional capital through these processes. Otherwise, they are in danger of being decertified or discredited, deemed inappropriate as players in the institutional field, and subjected to lower returns on their investment.
 
 Social networks provide another avenue for turning resources into capital. Through social ties and networking, actors gain additional resources by accessing the resources of direct and indirect ties. Many networks are formed because of shared processes and experiences in institutionalization (e.g., alumni, occupational, and industrial associations). However, networks also form on the basis of other shared interests or experiences (e.g., bridge and bowling clubs, knitting and 3 Institutionalizing organizations have regular staff primarily as trainers.
 
-4 Bourdieu (Bourdieu 1972/1977; Bourdieu and Passeron 1977) uses the term   cultural   capital    to describe the process of indoctrinating students with dominant class values.
+4 Bourdieu (Bourdieu 1972/1977; Bourdieu and Passeron 1977) uses the term cultural capital to describe the process of indoctrinating students with dominant class values.
 
 What I am suggesting here is that cultural capital should be considered a subcategory of institutional capital in the context of organizations and markets.
 
-Societal Transformations  193
+Societal Transformations 193
 
 exercise clubs, Elvis Presley and Michael Jackson fan clubs, or neighborhood groups). Through informal and often indirect ties, loose networks extend actors’ reach beyond their immediate social circles.
 
@@ -140,7 +130,7 @@ These socially embedded resources may be turned into social capital when an acto
 
 More importantly, these testimonies may offer assurance that the initiating actor possesses institutional knowledge and skills as well (trustworthiness, social skills, collegiality, loyalty, willingness to follow orders and carry out tasks, and other「appropriate」behaviors). Through the influence of these testimonies, an affiliation with an organization may be realized. This is an investment, because it results in eventual socioeconomic returns to the actor.
 
-Further, while institutionalizing organizations and social networks process resources into capital, many organizations themselves also provide access to further technical and institutional skills, thus allowing selected workers to acquire additional capital. The concept of the   internal firm labor market  (Baron and Bielby 1980) describes investment in on-the-job training for human capital. Affiliation with a resource-rich organization itself signifies institutional capital, because it can generate further returns for the actor inside and outside the organization. Inside the organization, actors have the opportunity to learn and acquire additional institutional skills as the organization successfully engages in exchanges with other organizations in the institutional field. Experiences gained from participating in such exchanges are part of institutional skills training. Further institutional capital is gained as actors acquire authoritative positions within the organization, and are thus endowed with statuses and symbols associated with skills and knowledge of how to perform institutional tasks. Outside the organization, affiliation with a resource-rich organization signifies the actor’s institutional skills, as well as his or her access to capital that is important for exchanges in the institutional field.
+Further, while institutionalizing organizations and social networks process resources into capital, many organizations themselves also provide access to further technical and institutional skills, thus allowing selected workers to acquire additional capital. The concept of the internal firm labor market (Baron and Bielby 1980) describes investment in on-the-job training for human capital. Affiliation with a resource-rich organization itself signifies institutional capital, because it can generate further returns for the actor inside and outside the organization. Inside the organization, actors have the opportunity to learn and acquire additional institutional skills as the organization successfully engages in exchanges with other organizations in the institutional field. Experiences gained from participating in such exchanges are part of institutional skills training. Further institutional capital is gained as actors acquire authoritative positions within the organization, and are thus endowed with statuses and symbols associated with skills and knowledge of how to perform institutional tasks. Outside the organization, affiliation with a resource-rich organization signifies the actor’s institutional skills, as well as his or her access to capital that is important for exchanges in the institutional field.
 
 The preceding discussion describes how the infrastructure of society –
 
@@ -160,7 +150,7 @@ The personal charm and charisma of Mao Zedong in heralding the Great Cultural Re
 
 The more interesting and powerful indigenous transformation process, I argue, begins with social networking. When a number of actors share
 
-Societal Transformations  195
+Societal Transformations 195
 
 alternative rules or values and begin to connect, the network may sustain their shared interests through solidarity and reciprocal reinforcement.
 
@@ -186,7 +176,7 @@ The growth of women’s studies programs in the United States in the 1970s and 1
 
 What accounted for this sensational success story of the decade in
 
-Societal Transformations  197
+Societal Transformations 197
 
 American higher education? Several critical external factors created opportunities that made this new academic institution possible. The civil rights movement and the women’s liberation movement found sympathy and synergy on American campuses, as antiwar and antidraft activities were generalized to questions and challenges to the status quo.
 
@@ -194,9 +184,9 @@ At the same time, two-income families increased rapidly throughout the 1950s (Ke
 
 percent of all doctorates, and by 1979, 29 percent of all doctorates were conferred on women; see Stimpson 1986). Female faculty likewise continued to rise (e.g., by 1977, close to 32 percent of college faculty were women [Stimpson 1986, p. 31]). Thus, the pressure to change, as well as demographic changes in the higher education system itself, provided favorable structural opportunities for possible institutional transformation.
 
-A closer examination of the actual process identifies four elements that made women’s studies programs grow so rapidly. The most innovative element was the distribution and sharing of course syllabi, initiated by Sheila Tobias (first at Wesleyan and then at Cornell; see Chamberlain 1988, p. 134) in 1969. Following a conference on women in the winter of 1969, she collected the syllabi of seventeen women’s courses and distributed the list at the annual meetings of professional associations in 1970 (  Feminist Studies I , the collection, was initially printed and distributed from Cornell; Stimpson 1986, p. 4). The list was then distributed at the American Psychological Association’s annual meeting in the fall of 1970 (Chamberlain 1988, p. 134) and was published by KNOW
+A closer examination of the actual process identifies four elements that made women’s studies programs grow so rapidly. The most innovative element was the distribution and sharing of course syllabi, initiated by Sheila Tobias (first at Wesleyan and then at Cornell; see Chamberlain 1988, p. 134) in 1969. Following a conference on women in the winter of 1969, she collected the syllabi of seventeen women’s courses and distributed the list at the annual meetings of professional associations in 1970 ( Feminist Studies I , the collection, was initially printed and distributed from Cornell; Stimpson 1986, p. 4). The list was then distributed at the American Psychological Association’s annual meeting in the fall of 1970 (Chamberlain 1988, p. 134) and was published by KNOW
 
-of Pittsburgh at about that time (Boxer 1982). The distribution was so successful and well received that   Feminist Studies   grew to ten volumes of syllabi and other course-related materials (Boxer 1982; Stimpson 1986). This distribution and sharing of course materials dramatically generated course development throughout American colleges. The ready-made student market (i.e., women students) responded enthusiastically.
+of Pittsburgh at about that time (Boxer 1982). The distribution was so successful and well received that Feminist Studies grew to ten volumes of syllabi and other course-related materials (Boxer 1982; Stimpson 1986). This distribution and sharing of course materials dramatically generated course development throughout American colleges. The ready-made student market (i.e., women students) responded enthusiastically.
 
 For example, a multidisciplinary course on「female personality」taught by Tobias and others at Cornell registered 400 students in the spring of 1970 (Tobias 1970). In the fall of the same year, coordinated courses about women began to appear on many campuses. The first officially integrated women’s studies program was established at San Diego State University in September 1970.
 
@@ -216,7 +206,7 @@ the Ford Foundation began a program to promote the advancement of women and help
 
 According to the Ford Foundation’s own report, between 1972 and 1975, it gave out 130 postdoctoral fellowships and dissertation awards in women’s studies. Fifty percent of the senior people it supported became prominent in women’s studies, as did at least one-third of the people in the dissertation program. Between 1964 and 1979, Ford gave
 
-Societal Transformations  199
+Societal Transformations 199
 
 a total of $30 million to advocacy, research, and curriculum projects in women’s studies (Stimpson 1986, p. 23). By 1986, the Ford Foundation had allocated $70 million since 1972 to support「a broad array of programming on behalf of women,」including fellowship awards; grants to campus-based and independent centers for research; grants for「corol-lary」activities, especially publishing and national associations; and support for programs and centers mainstreaming minority women’s studies (Guy-Sheftall 1995, pp. 5–6).
 
@@ -254,7 +244,7 @@ of networking both within and across campuses and its potential control by elite
 
 「cultural feminists」(「Marxists」and「Matriarchs」), or feminist activities versus acade-micians, or practice versus theory (Boxer 1982); (c) the necessity or possible dominance of the construction of a feminist theory (Boxer 1982); and (d) the neglect of women of color and lesbians (Guy-Sheftall 1995).
 
-Societal Transformations  201
+Societal Transformations 201
 
 establishing alternative institutionalizing organizations when such opportunities were not available. In the end, it was the alternative institutionalizing organizations that helped transform the scale of the movement. It may be informative to describe in a brief historical account here how such strategies were implemented.
 
@@ -288,7 +278,7 @@ workers. The Self-Study University is regarded as the first training institution
 
 7 Mao was not the only radical education reformist. Liang Shuming declared that the new education was of no use to anyone. He was enthusiastic about Tao Xingzhi’s experimental normal school project and turned similarly to rural reconstruction. These projects were most extensively implemented in Zouping (Tsou-p’ing) County, Shangdong, between 1931 and 1937. Liang founded the Shangdong Rural Reconstruction Institute, which trained his new-style rural administrators and managers. James Yen conducted
 
-Societal Transformations  203
+Societal Transformations 203
 
 The strategy of infiltrating existing institutionalizing organizations was also much in evidence during a period when the Nationalist Party (KMT) and the CCP joined forces during the late 1920s. In 1927 the KMT
 
@@ -316,7 +306,7 @@ The CCP schools included the Central Research Institute, which trained「theoret
 
 According to the「Educational Method at K’angta」(Mobilization Society of Wuhan 1939, pp. 81–97; Seybolt 1973, pp. 333–348), Kangda 8 Other schools open to both cadres and noncadres included the Lu Xun Academy of Art and Literature, the Natural Science Academy, the Chinese Medical University, and the National Minorities Institute (Pepper 1996, pp. 150–151).
 
-Societal Transformations  205
+Societal Transformations 205
 
 was「a school for the anti-Japanese United Front, and [did] not belong to any party or faction. Enrollment [was] not closed to members of any anti-Japanese party, nor to any classes of society, and at the same no one
 
@@ -350,7 +340,7 @@ While the early 1940s were the hardest years in the Border Region and the educat
 
 Some participants realized the need and proposed to establish a Democracy University, but the movement was forcefully put down on June 4.
 
-Societal Transformations  207
+Societal Transformations 207
 
 Summary
 
@@ -386,7 +376,7 @@ Concluding Remarks
 
 In this chapter, institutions and networks are conceived as the two basic components of society; they provide the basic rules for the flow of capital in society. The framework and its components allow us to integrate a number of existing and potential theories/hypotheses. For example, the human capital theory and the institutional capital theory are reflected in the processes linking actors through institutionalizing organizations to organizations. Social capital theories are captured in the processes linking actors through social networks to organizations. Social movements (e.g., the resource mobilization theory) can be described in the
 
-Societal Transformations  209
+Societal Transformations 209
 
 processes linking actors through social networks to institutionalizing organizations and organizations and to institutions themselves.
 

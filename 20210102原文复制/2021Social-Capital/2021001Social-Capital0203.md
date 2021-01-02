@@ -2,7 +2,7 @@ Structures
 
 In the previous two chapters, I initiated a conceptual formulation in which motivations of actions are shown to lead to certain types of interactions and the utility of social capital. I suggested that actions lead to the emergence of social structures with increasing complexity of positions, authority, rules, and agency (Chapter 8). The purpose of this chapter is to extend this line of conceptualization by examining access to and use of social capital in the context of a complex social structure – an organization. Here I begin by assuming stable and functioning hierarchies such as organizations and assess how actors, through their positions, may or may not access better social capital – resources embedded in other positions, especially hierarchically higher positions. Thus, the concern here is, first, to demonstrate structural constraints and, second, to show how actions to access social capital operate within these constraints.
 
-Recall that the theory of social capital proposes that, in addition to the principal proposition that social capital generates returns, two factors affect access to social capital (Chapter 5). The strength-of-position proposition hypothesizes that a given position of origin in the hierarchical structure determines in part how well one may gain access to better social capital. It is a structural factor and is independent of individuals in the structure, although individuals may benefit as occupants of the positions. In contrast, the strength-of-(network)-locations proposition hypothesizes the potential payoff for individual action. Since normal interactions are dictated by the homophily principle, going beyond the routine set of frequent interactions and seeking out weaker ties or bridges represents action choices beyond most of the interactions and structural positions’ normative expectations.   In relative terms, the strength of position should have greater effects on social capital than the strength of   network locations.   This statement recognizes the significance of structural constraints everywhere in the social structure. The theoretical implications of these propositions will be further discussed later. In empirical 165
+Recall that the theory of social capital proposes that, in addition to the principal proposition that social capital generates returns, two factors affect access to social capital (Chapter 5). The strength-of-position proposition hypothesizes that a given position of origin in the hierarchical structure determines in part how well one may gain access to better social capital. It is a structural factor and is independent of individuals in the structure, although individuals may benefit as occupants of the positions. In contrast, the strength-of-(network)-locations proposition hypothesizes the potential payoff for individual action. Since normal interactions are dictated by the homophily principle, going beyond the routine set of frequent interactions and seeking out weaker ties or bridges represents action choices beyond most of the interactions and structural positions’ normative expectations. In relative terms, the strength of position should have greater effects on social capital than the strength of network locations. This statement recognizes the significance of structural constraints everywhere in the social structure. The theoretical implications of these propositions will be further discussed later. In empirical 165
 
 166
 
@@ -18,13 +18,13 @@ Or the strength of weak ties has been measured more as role identifications (rel
 
 Another line of conceptual reasoning proposes that this result may be due to the interaction between the two exogenous variables: the strength of position and the strength of network locations (e.g., weaker ties) (see Chapters 5 and 6) for instrumental actions. Lin, Ensel, and Vaughn (1981) hypothesized a ceiling effect for weak ties. At the top of the hierarchy there is no advantage to using weak ties, since such ties are likely to lead to inferior positions and therefore inferior resources. The authors did not anticipate that weaker ties would be similarly ineffective toward the bottom of the structure. Marsden and Hurlbert (1988) also found that actors with the lowest origins did not derive greater benefit from contacts with weaker ties in gaining access to better resources than from contacts with stronger ties. Assuming that the interaction effects between the strength of position and the strength of ties occur only at both very high and very low positions of origin, it is interesting to speculate on why such interactions take place there. This is not so difficult to explain for positions near or at the top of the hierarchy. But it is more difficult to understand why positions near or at the bottom of the hierarchy do not derive more benefit from weak ties, since the theory suggests that the increased likelihood of reaching better social capital through such contacts should hold true for occupants of the lowest positions in a hierarchical social structure.
 
-Social Capital in Hierarchical Structures  167
+Social Capital in Hierarchical Structures 167
 
 To pursue this line of reasoning, we need to consider structural parameters that dictate the interplay between strength of position and strength of network locations. What is needed is a formulation in which predictions can be made regarding the relative significance of structural constraints (as represented by strength of position) and individual actions (as represented by strength of network locations), given such structural characteristics. These considerations have led to the exploration of structural parameters and an assessment of their effects on the propositions.
 
 The remainder of this chapter delineates a set of structural parameters, variations of which provide the context for further specification of the two theoretical propositions.
 
-Some terms require clarification here. I assume that a social structure consists of different levels, each of which can include a set of structurally equivalent positions. They are equivalent primarily on the basis of levels of similarly valued resources and authority and secondarily on the basis of similar lifestyles, attitudes, and other cultural and psychological factors. For our purposes here, the terms   levels   and    positions   are used interchangeably. Also,   social mobility , as used here, refers to the voluntary aspect in an internal labor market. Involuntary social mobility, due to job dissatisfaction, lack of alternatives, or other「pushing」or forced factors, is excluded from consideration. As Granovetter (1986) pointed out, voluntary social mobility generally results in wage growth. Likewise, it is argued that voluntary social mobility accounts for the majority of rewards (greater authority, better wages and bonuses, and faster promotions) in hierarchies such as organizations.1
+Some terms require clarification here. I assume that a social structure consists of different levels, each of which can include a set of structurally equivalent positions. They are equivalent primarily on the basis of levels of similarly valued resources and authority and secondarily on the basis of similar lifestyles, attitudes, and other cultural and psychological factors. For our purposes here, the terms levels and positions are used interchangeably. Also, social mobility , as used here, refers to the voluntary aspect in an internal labor market. Involuntary social mobility, due to job dissatisfaction, lack of alternatives, or other「pushing」or forced factors, is excluded from consideration. As Granovetter (1986) pointed out, voluntary social mobility generally results in wage growth. Likewise, it is argued that voluntary social mobility accounts for the majority of rewards (greater authority, better wages and bonuses, and faster promotions) in hierarchies such as organizations.1
 
 Structural Parameters and Their Effects
 
@@ -36,17 +36,17 @@ Many job leads become available on casual occasions (e.g., parties) and through 
 
 Conceptual Extensions
 
-level differential ), the distribution (absolute and relative number) of the occupants across the levels (the   size differential ), the distribution (absolute and relative amount) of valued resources across levels and among occupants (the   resource differential ), and the sum of all occupants and resources in the structure. The first and last parameters are computed for the entire structure; the second and third parameters can be computed for either the entire structure or portions of it.
+level differential ), the distribution (absolute and relative number) of the occupants across the levels (the size differential ), the distribution (absolute and relative amount) of valued resources across levels and among occupants (the resource differential ), and the sum of all occupants and resources in the structure. The first and last parameters are computed for the entire structure; the second and third parameters can be computed for either the entire structure or portions of it.
 
-In general, the social capital proposition, the primary proposition of the social capital theory, should hold regardless of the variations in these parameters. As long as the structure is hierarchical, access to and use of better social capital are expected to facilitate socioeconomic returns under any structural variations. However, the other two hypotheses require further specification relative to variations in the structural parameters. In the following sections, I will describe each parameter and assess the impact of its variation on the two propositions. For simplic-ity, the two propositions will be identified as the   positional effect  (the strength of the original position) and the   location effect  (the strength of network locations). Again, we must remain conscious of the dominant effect of structural constraints. Strength of position should have a relatively stronger effect than strength of locations everywhere in the structure, whereas each factor may vary in different parts of the structure.
+In general, the social capital proposition, the primary proposition of the social capital theory, should hold regardless of the variations in these parameters. As long as the structure is hierarchical, access to and use of better social capital are expected to facilitate socioeconomic returns under any structural variations. However, the other two hypotheses require further specification relative to variations in the structural parameters. In the following sections, I will describe each parameter and assess the impact of its variation on the two propositions. For simplic-ity, the two propositions will be identified as the positional effect (the strength of the original position) and the location effect (the strength of network locations). Again, we must remain conscious of the dominant effect of structural constraints. Strength of position should have a relatively stronger effect than strength of locations everywhere in the structure, whereas each factor may vary in different parts of the structure.
 
-Also, for generality, I will examine the relative effects of structure (the strength of positions) and networking (the strength of locations). For networking effects, I will employ the general location argument: that is, for instrumental actions, locations at or near a bridge – variously referred to as   structural holes ,   weaker ties , or less   structurally constrained   locations  – reflect the strength of better locations in their likelihood of accessing better social capital. While the descriptions often implicate organizations or firms, it is hoped that the propositions can be generalized to all hierarchical structures.
+Also, for generality, I will examine the relative effects of structure (the strength of positions) and networking (the strength of locations). For networking effects, I will employ the general location argument: that is, for instrumental actions, locations at or near a bridge – variously referred to as structural holes , weaker ties , or less structurally constrained locations – reflect the strength of better locations in their likelihood of accessing better social capital. While the descriptions often implicate organizations or firms, it is hoped that the propositions can be generalized to all hierarchical structures.
 
 The Level Differential
 
-First, the hierarchical structure can be specified by the number of levels within it. A   level   is defined as a set of social positions that have a similar command of resources and access to capital (including social capital) per occupant. In the occupational structure, for example, the crudest differentiation is based on occupational classifications consensually agreed upon in a given society. Each such classification, however, may be based on a combination of requirements, including the degree and presence of certain skills, training, experience, tenure, and location in an industry, as well as resources. A better differentiation would be one based on
+First, the hierarchical structure can be specified by the number of levels within it. A level is defined as a set of social positions that have a similar command of resources and access to capital (including social capital) per occupant. In the occupational structure, for example, the crudest differentiation is based on occupational classifications consensually agreed upon in a given society. Each such classification, however, may be based on a combination of requirements, including the degree and presence of certain skills, training, experience, tenure, and location in an industry, as well as resources. A better differentiation would be one based on
 
-Social Capital in Hierarchical Structures  169
+Social Capital in Hierarchical Structures 169
 
 Figure 10.1 Three differentials and the relative significance of the location effect: (a) level differential; (b) size differential; (c) resources differential.
 
@@ -72,7 +72,7 @@ Variations in the relative number of occupants across levels are expected to inf
 
 In the equal-size structure, the opportunity for heterophilous interaction is maximal for all occupants. That is, each occupant has an equal opportunity to contact a person at a different level. In Blau’s analysis of intergroup associations (Blau and Schwartz 1984; Blau 1985), he hypothesizes that in a two-group interaction situation, the intergroup association would be greater for the small group (i.e., the probability per
 
-Social Capital in Hierarchical Structures  171
+Social Capital in Hierarchical Structures 171
 
 person in Group A of associating with a person in Group B increases as the size of Group A relative to the size of Group B decreases). If it is assumed that in a hierarchical structure the relative sizes tend to decrease toward the top, then the derivation is that intergroup association initiated from a lower (and presumably larger) level (e.g., Group B) to a higher (and presumably smaller) level (e.g., Group A) decreases as the difference between the relative sizes of the two levels increases. However, as the difference in the relative sizes of the levels decreases, such upward association would be increased. Thus, it is argued that in the extreme case, in which all hierarchical levels have a similar number of occupants, there is maximal opportunity for heterophilous interactions across all levels and therefore equal opportunity for socioeconomic returns. In other words, an individual at each level has an equal chance to move up the ladder. This does not mean that everyone in the structure will have an equal opportunity to attain the same highest status. Depending on his or her initial position in the structure, each person will have an equal opportunity to interact with another person at a different level and move up the ladder.
 
@@ -90,7 +90,7 @@ but rather from their same-level contacts. In contrast, at or near the bottom of
 
 The Resource Differential
 
-A third feature of the hierarchical structure is differential distribution of resources at various levels. Differentiation of levels can therefore be described in terms of distribution of resources as well as number of occupants. The resource differential can be calculated for the variation in resources across levels in a social structure or for a comparison between two levels. For the description of a social structure, as illustrated in the lower panel (c) in Figure 10.1, the resource differential may vary from minimal (when the resource differential is the same for every pair of contiguous levels) in the left figure to large (when it is different for every pair of contiguous levels) in the right figure. In the former case, the levels are said to be   equidistant   in resources. In the latter case, we assume that the differentials increase from the bottom to the top of the structure.
+A third feature of the hierarchical structure is differential distribution of resources at various levels. Differentiation of levels can therefore be described in terms of distribution of resources as well as number of occupants. The resource differential can be calculated for the variation in resources across levels in a social structure or for a comparison between two levels. For the description of a social structure, as illustrated in the lower panel (c) in Figure 10.1, the resource differential may vary from minimal (when the resource differential is the same for every pair of contiguous levels) in the left figure to large (when it is different for every pair of contiguous levels) in the right figure. In the former case, the levels are said to be equidistant in resources. In the latter case, we assume that the differentials increase from the bottom to the top of the structure.
 
 That is, the higher up in the structure, the greater the resource differential between two contiguous levels, with the upper level having many more resources per capita than the lower level. Although this assumption is yet to be examined empirically, it is based on the theoretical argument that a marginal incentive or reward of a given amount of resources decreases toward the top of the hierarchical structure. Therefore, an increasing amount of resources is expected toward the top to maintain the same degree of incentive or reward.
 
@@ -100,7 +100,7 @@ For the positional effect, the opposite should be true. As the resource differen
 
 If this hypothesis is valid, two consequences follow within any given empirical structure. First, since the hierarchical structure, by definition,
 
-Social Capital in Hierarchical Structures  173
+Social Capital in Hierarchical Structures 173
 
 rank-orders its levels by resources, it can be deduced that cross-level interactions are most frequent across contiguous levels and decrease for any two levels, depending on how far apart they are in the structure.
 
@@ -114,7 +114,7 @@ The Totality of Occupants and Resources
 
 The final feature of the social structure concerns the absolute number of occupants and resources in the entire structure (e.g., industrial sector).
 
-Critical mass   is used here to characterize the minimal requirements for a structure’s absolute quantities of population and resources. These requirements vary, depending on the relative sizes of populations and resources in the external environment with which the structure interacts.
+Critical mass is used here to characterize the minimal requirements for a structure’s absolute quantities of population and resources. These requirements vary, depending on the relative sizes of populations and resources in the external environment with which the structure interacts.
 
 Nevertheless, absolute numbers are important features of a structure.
 
@@ -136,13 +136,13 @@ Nevertheless, the initiation and establishment of such interactions by lower-lev
 
 Structural Constraints versus Social Capital The theory describes structural conditions under which structural constraints and individual actions affect social mobility. Thus, it is relevant
 
-Social Capital in Hierarchical Structures  175
+Social Capital in Hierarchical Structures 175
 
 to the debate concerning structural versus action effects. In contemporary sociology, the structural view dominates. Much of the theoretical development and empirical work in the past three decades have supported and advanced the structural perspective. The theory presented here does not disagree with the view that structural effects are predom-inant. It also argues that the positional effect, for example, is relatively more important than the tie effect throughout the structure. However, the specification of structural parameters enables us to ask where and to what extent individual actions become possible and meaningful. The following discussion gives further attention to the relationship between this theory and selected prevailing structural theories.
 
 Blau’s theory of heterogeneity and inequality, along with Emerson and associates’ dependence theory, exemplifies well the structural perspective.
 
-In a nutshell, Blau (1977, 1985; Blau and Schwartz, 1984) has argued that the distribution of a dimension (attribute) and the number of variables differing among groups in a population dictate the extent of association across groups. When the distribution of a dimension varies over a number of   nominal   or   graded   groups, such heterogeneity (for nominal groups) and inequality (for graded groups) promote intergroup association and can be examined over multiple dimensions (attributes).
+In a nutshell, Blau (1977, 1985; Blau and Schwartz, 1984) has argued that the distribution of a dimension (attribute) and the number of variables differing among groups in a population dictate the extent of association across groups. When the distribution of a dimension varies over a number of nominal or graded groups, such heterogeneity (for nominal groups) and inequality (for graded groups) promote intergroup association and can be examined over multiple dimensions (attributes).
 
 The extent of the congruence between the different heterogeneities and inequalities also affects intergroup association. When the differences in characteristics are closely related (consolidated), intergroup association should be low; when they are not closely related (cross-cutting), intergroup association should be high.
 
@@ -168,7 +168,7 @@ Categories of ethnicity and religion may be ranked in some social systems but no
 
 Finally, Blau focuses on variation in the distribution of the number of individuals as the major source of structural variation. For both the heterogeneity and inequality principles, population distribution over the various categories or statuses affects intergroup associations. Although he has also identified the number of subgroups as having an impact, he assumes in the bulk of his work that the number of subgroups can be standardized for comparative analysis (1985, pp. 10–11). In other words, his theory tends to treat the number of subgroups as a constant.
 
-Social Capital in Hierarchical Structures  177
+Social Capital in Hierarchical Structures 177
 
 The present theory specifically identifies the level differential and the size differential, along with the resource differential, as separate structural parameters. The effects of heterogeneity and inequality as proposed by Blau, therefore, can and should be further specified relative to the variations in both the number of levels (or groups) and the number of persons in them. For example, if a pyramidal structure is compared with an inverse-pyramidal structure, the inequality coefficient may be similar but the interlevel (group) associations may differ drastically. Empirically, an inverse-pyramidal structure may not exist, as discussed earlier, but most structures will have portions in which a lower level has fewer occupants than an adjacent higher level (e.g., agricultural vs. service sectors).
 
@@ -196,7 +196,7 @@ Individual Action versus Social Capital
 
 As stated earlier, the individual perspective, rather than the psychological deductive viewpoint, has emerged in the American sociological liter-
 
-Social Capital in Hierarchical Structures  179
+Social Capital in Hierarchical Structures 179
 
 ature. The effects of individual actions can be explored from two perspectives. The first focuses on the structural formations or changes due to such actions. For example, Coleman (1986a, 1986b, 1990) argues that social actors promoting their interests engage in social relations that, depending on the specific purposes of the actions involved, may result in a market system, an authority system, or a normative system. He describes the process by which each system evolves, emphasizing the emergence of norms and sanctions from the interacting actors with their respective interests. Rational or cognitive action is the assumed force in the forging of social relations and subsequent structures. In contrast, Collins (1981) sees emotion as the ultimate force behind interactions, in which individuals seek positive reinforcement and claim membership.
 
@@ -224,9 +224,9 @@ As a crude illustration, let us assume that the American occupational structure 
 
 operations, and farm) by sex and race is shown in Table 10.1. For each race-by-sex combination, we may construct the occupant differential between two assumed contiguous occupation categories by dividing the occupant size of the「higher」category by that of the「lower」one. For example, for white males, the occupant differential between service occupations and production/operations occupations is .25 (5,694/23,084) and the occupant differential between administrative support occupa-
 
-Social Capital in Hierarchical Structures  181
+Social Capital in Hierarchical Structures 181
 
-Table 10.1.   U.S. Employed Workers by Gender, Race, and   Occupational Category (1999)
+Table 10.1. U.S. Employed Workers by Gender, Race, and Occupational Category (1999)
 
 Employed Workers (thousands)
 
@@ -290,9 +290,9 @@ Farm
 
 16
 
-Source : U.S. Department of Labor,   Employment and Earnings  (1999, p. 20).
+Source : U.S. Department of Labor, Employment and Earnings (1999, p. 20).
 
-Table 10.2.   Occupant Differentials by Gender, Race, and   Occupational Category
+Table 10.2. Occupant Differentials by Gender, Race, and Occupational Category
 
 Occupant Differential
 
@@ -376,7 +376,7 @@ Is it possible to create vacancies to equalize the size differential? Is it poss
 
 At the individual level, awareness of structural constraints and of flexibility within them may be reflected in the process of cognitive evalua-
 
-Social Capital in Hierarchical Structures  183
+Social Capital in Hierarchical Structures 183
 
 tion. To the extent that such evaluation is engaged in, the individual has the option of initiating action by seeking out heterophilous ties and better social capital. Because the nature, range, and quality of such ties vary at different levels in the hierarchy, the benefits of seeking them out also vary. There is also a risk of nonreciprocated action when the structural gap is too great, along with a loss of identification with other occupants of the initial level. Both may lead to a sense of alienation.
 
