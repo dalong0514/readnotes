@@ -126,6 +126,10 @@
 
 ### 0201. 术语卡 —— 资本
 
+Capital is resources when these resources are invested and mobilized in pursuit of a profit – as a goal in action. Thus, capital is resources twice processed. In the first process, resources are being produced or altered as investment; in the second, the produced or altered resources are being offered in the marketplace for a profit. In one instance, capital is the outcome of a production process (producing or adding value to a resource); in the other, it is the causal factor in a production (the resource is exchanged to generate a profit). These are processes because both investment and mobilization involve time and effort. In the past two decades, social capital in its various forms and contexts has emerged as one of the most salient forms of capital. While much excitement has been generated, divergent views, perspectives, and expectations have also raised a serious question: is this a fad, or does it have enduring qualities that will herald a new intellectual enterprise?
+
+The purpose of this volume is to present a theory of social capital, a theory eliciting the central theme that capital is captured in social relations and that its capture evokes structural constraints and opportunities as well as actions and choices on the part of the actors. Firmly anchored in the general theory of capital, this theory will, it is hoped, contribute to an understanding of capitalization processes explicitly engaging hierarchical structures, social networks, and actors. This theory, and its research enterprise, argue that social capital is best understood by examining the mechanisms and processes by which embedded resources in social networks are captured as investment. It is these mechanisms and processes that help bridge the conceptual gap in the understanding of the macro–micro linkage between structure and individuals.
+
 资本概念是当代社会学和经济学中影响深远的解释图式之一。什么是资本？我将之定义为期望在市场中获得回报的资源投资。资本是在以追求利润为目标的行动中被投资和动员的资源。因而，资本是经过两次处理的资源。在第一个过程中，资源作为投资得以生产或改变；在第二个过程中，将生产或改变后的资源投放市场从而实现利润。一方面，资本是生产过程的结果（对资源进行生产或追加价值）。另一方面，它又是生产的因子（为了获取利润而进行资源交换）。投资和动员都需要时间和精力，因此它们都是资本形成的过程。在过去 20 年里，社会资本作为资本的最显著的类型之一，以不同的形式和背景出现。令人倍感兴奋之余，那些纷繁多样的观点、视角和期待也产生了一个重要的问题：这只是一时的狂热，还是具有持久的性质，预示着一个新的知识事业的来临？
 
 2『林南对资本的定义，做一张术语卡片。』——已完成
@@ -154,9 +158,13 @@
 
 ### 0601. 数据信息卡 ——
 
-### 0701. 任意卡 ——
+### 0701. 任意卡 —— 社会资本与文化资本区别
 
-最后还有一张任意卡，记录个人阅读感想。
+虽然两个视角所描述的社会资本在功用或结果评估的层次上有差异，但是所有的学者都坚持认为，互动中的成员维持和再生产了这种可能的社会财产。这种共识牢牢地将社会资本置于新资本理论的阵营 [2]。这样，布迪厄、科尔曼、林南、弗拉普、伯特、埃里克森（Erickson）、波茨（Portes）和其他学者都认为，社会资本由嵌入在社会关系和社会结构中的资源组成，当行动者希望提高目的性行动成功的可能性时，他们可以动员社会资本。与人力资本一样，社会资本是行动者提高目的性行动成功的可能性的投资。不像人力资本 —— 代表着在培训和其他获得技能、知识和证书的活动计划中的投资，社会资本是在社会关系中的投资，通过社会关系可以使用和借取其他行动者的资源。这个概念被运用到大范围的行动中（如为了孩子更安全而迁到个不同的社区，在一个社会运动中动员参与者；参见 Coleman, 1990），以及宏观层次（如在志愿组织、社区组织和社会群集中，参与者的数量和自愿参加的范围；参见 Putnam,1993,1995a）和微观层次（如求职和晋升；参见 Lin, Ensl, and Vaughn,1981; Bur,1997）的研究中。同时逐渐产生了一个共识，社会资本作为一个在理论中产生的概念，应该在社会网络背景中考虑：作为通过占据战略网络位置 (location）和 / 或重要组织位置（position）的社会关系而获取的资源。在本书中我将使用这个概念。
+
+2『社会资本与文化资本区别，做一张任意卡片。』——已完成
+
+在这个概念中，社会资本可以操作化地定义为，行动者在行动中获取和使用的嵌入在社会网络中的资源。这个概念有两个重要的组成部分：1）它代表着嵌入在社会关系中而不是个人中的资源；2）这些资源的获取和使用取决于行动者。第一个特征 —— 社会的嵌入性资源，容许在社会资本和其他资本形式之间进行相对应的分析。例如，人力资本被经济学家（Schultz,  Becker）视为代表着个人为获得在某种市场中（如劳动力市场）有用的某种技能和证书的投资。社会资本也可以被视为个人在市场中对有用的人际关系的投资。社会资本的第二个组成部分必须反映出，自我在认知上意识到这些资源在她或他的关系和网络中是存在的，并且决定唤起这些特殊的资源。可能有些关系不出现在自我的认知地图之中，它们的存在不在她或他的意识之中。只有当个人意识到它们的存在，意识到他们拥有或能够获取的资源（这些关系也有它们的网络），他们才能将这些关系和资源资本化。下一章将对社会资本概念进行系统的闻述。
 
 ## Social Capital: A Theory of Social Structure and Action
 

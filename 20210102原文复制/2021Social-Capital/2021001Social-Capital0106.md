@@ -1,3 +1,7 @@
+# 0107. Inequality in Social Capital
+
+A Research Agenda
+
 This chapter1 examines a critical issue in social capital research –
 
 inequality in social capital, or the extent to which social capital is unequally distributed across social groups in a community or population. First, I will consider some general issues and approaches to the analysis of inequality in all types of capital. These considerations will lead to formulations of research agenda, and data from urban China will then be used to illustrate them. The chapter will conclude with a brief statement about the future research agenda.
@@ -7,12 +11,6 @@ Theoretical Considerations
 Social inequality is a major research issue; its etiology demands attention. From the capital theoretic perspective, we may make the initial proposition that inequality in different types of capital, such as human capital and social capital, brings about social inequality, such as in socioeconomic standing and quality of life. Given this proposition, we may further explore the processes leading to inequality in capital. In this formulation, the plan is to identify the specific mechanisms that lead to inequality in capital, which in turn affects social inequality. Thus, the research task is twofold: identification and verification of mechanisms leading to inequality in capital, and demonstration of the linkage between inequality in capital and social inequality among social groups.
 
 The initial proposition, linkage between capital inequality and social inequality, has been the guiding theory regarding different types of 1 I want to acknowledge Marc Magee’s assistance in this analysis. The study reported here was supported in part by a grant from the Chiang Ching-Kuo Foundation. An earlier version was presented at the twenty-eighth Sino-American Conference held on June 12–14, 1999, at Duke University.
-
-99
-
-100
-
-Theory and Research
 
 capital (Chapters 1–6). This chapter explores the formulation of processes accounting for inequality in capital, including social capital.
 
@@ -3178,7 +3176,5 @@ Conceptual Extensions
 
 8
 
-Social Capital and the Emergence of
 
-Social Structure
 

@@ -1,398 +1,388 @@
-Societal Transformations
+Structures
 
-In Chapter 8, it was proposed that actions motivated by expressive and instrumental needs propel interactions with others beyond primordial groups so that social capital may be accessed. These purposive actions sustain two types of exchanges, as described in Chapter 9 – to gain and maintain two elementary payoffs: wealth and reputation. These two chapters describe the process from action to structure. Chapter 10 turns to the structure-to-action process by showing how hierarchical structures constrain actions accessing social capital. These are ideal types of linkage between action and structure; in reality, such processes are complicated by structures and processes mediating between actors and hierarchical structures. Unless we identify and describe how these middle-level structures and processes operate, we will be unable to understand how action and structure interact. Further, the two processes – from micro to macro and vice versa – should not be seen in isolation or each depicted as a one-way process. A comprehensive theory of social capital must capture the two-way process between action and structure, as mediated through certain middle-level structures and processes.
+In the previous two chapters, I initiated a conceptual formulation in which motivations of actions are shown to lead to certain types of interactions and the utility of social capital. I suggested that actions lead to the emergence of social structures with increasing complexity of positions, authority, rules, and agency (Chapter 8). The purpose of this chapter is to extend this line of conceptualization by examining access to and use of social capital in the context of a complex social structure – an organization. Here I begin by assuming stable and functioning hierarchies such as organizations and assess how actors, through their positions, may or may not access better social capital – resources embedded in other positions, especially hierarchically higher positions. Thus, the concern here is, first, to demonstrate structural constraints and, second, to show how actions to access social capital operate within these constraints.
 
-In this chapter, I argue that two such middle-level structures –
+Recall that the theory of social capital proposes that, in addition to the principal proposition that social capital generates returns, two factors affect access to social capital (Chapter 5). The strength-of-position proposition hypothesizes that a given position of origin in the hierarchical structure determines in part how well one may gain access to better social capital. It is a structural factor and is independent of individuals in the structure, although individuals may benefit as occupants of the positions. In contrast, the strength-of-(network)-locations proposition hypothesizes the potential payoff for individual action. Since normal interactions are dictated by the homophily principle, going beyond the routine set of frequent interactions and seeking out weaker ties or bridges represents action choices beyond most of the interactions and structural positions’ normative expectations.   In relative terms, the strength of position should have greater effects on social capital than the strength of   network locations.   This statement recognizes the significance of structural constraints everywhere in the social structure. The theoretical implications of these propositions will be further discussed later. In empirical 165
 
-institutions and networks – constitute the infrastructure of society. The framework conceives institutions and networks as the two main social forces guiding the interactions between actors and hierarchical structures and the flows of capital.
-
-Many scholars have used network analysis to delineate this micro-to-macro process, including Coleman, White, Granovetter, Burt, Breiger, Wellman, Erickson, Marsden, Flap, and many others. For those engaged in social networks analysis, social resources or social capital constitute the core element of a sociological explanation. Purposive actions based on two motivational principles, minimization of loss and maximization of gain, lead to the formation of social networks (first the primary group and then secondary ties) for both sentimental and instrumental purposes.
-
-184
-
-Societal Transformations  185
-
-Thus, social networks, as has been pointed out in this monograph, exist not only in hierarchical (e.g., economic) organizations (e.g., the social embeddedness of economic organizations; see Granovetter 1985) but also in the interrelations among individual actors (Granovetter 1973, 1974; Lin 1982; Burt 1992), so that transactions and exchanges take place not only within organizations and between organizations, but also among actors.
-
-Institutional analysis proposes yet another meaningful tool to understand how organizations should be seen as tied to the larger environment (DiMaggio and Powell 1983, 1991; North 1990; Powell and DiMaggio 1991; Meyer and Scott 1992; Scott and Meyer 1994). The survival and persistence of an organization are seen as dependent not only on its efficiency or competitiveness in the marketplace, but also on its ability to adjust to and to comply with expected behaviors as dictated by larger social institutions in society. Subscribing to such social rules leads to isomorphic structuring and behaviors of multiple organizations, or institutional isomorphism (DiMaggio and Powell 1983), which cannot be explained by competitiveness or performance criteria alone.
-
-The institutional and network perspectives are exciting because they clearly propose ways in which we can analyze how social forces, along with economic forces, describe interactions and transactions. They clarify, for example, why transaction costs are always positive and unevenly distributed. They also explain why motives and rationalizations for action by individuals as well as organizations extend beyond economic considerations. Without taking these forces into account, it is clear that we cannot begin to understand how or why individuals and organizations behave or even persist. The excitement, however, is tempered by the fact that gaps remain between concepts and the processes linking the concepts. Several examples illustrate this point.
-
-A major assumption in institutional analysis is that institutions affect and even dictate behaviors of actors and organizations. What is not clear is how this process works. How do individuals learn the rules, and why should they subscribe to them? How are organizations matched with individual actors to improve their institutional resources and thus their chances for survival? In other words, what are the social mechanisms that credit and enforce the compliance of individual actors and organizations with institutional rituals and behaviors?
-
-Another gap is in how institutions and networks are related. One obvious answer is that networks reinforce institutions as they add coher-ence to the structure (Zucker 1988). How then does one explain social movements, which usually involve an interconnected group of actors mobilizing capital to counteract prevailing institutions? Or, to be more specific, is it possible to specify how social capital is useful for instru-
-
-186
+166
 
 Conceptual Extensions
 
-Figure 11.1 Four basic social processes. (Adapted from Coleman 1990, p. 8)
+systems, both factors are expected to operate, even though their relative effects may vary.
 
-mental actions leading to gains in the prevailing institutions and organizations in some situations, and yet becomes an instrument for institutional transformation in other situations?
+In the studies examining social capital in the status attainment process (Chapter 6), empirical evidence thus far strongly supports two of the three hypotheses: the social-capital hypothesis and the strength-of-positions hypothesis. Those with better origins tend to find sources of better social capital in job searches, and contacting a source of better resources or generally having better social capital increases the likelihood of finding a better job. These relations hold even after the usual status-attainment variables (e.g., education and first-job status) are taken into account.
 
-This chapter is a modest attempt to explore some of these issues and questions. My approach is to propose a conceptual framework that identifies what I consider the key components in the two-way processes depicted in Figure 11.1: namely, process 1 (macro-to-micro effects) and process 3 (micro-to-macro effects). To do so in a single chapter, I have made two choices. First, I will focus on the key points central to the proposed framework and sacrifice other points that are also significant but that, for the time being, must be pushed to the background. For example, this chapter has little to say about the state or technology, although both are implicated in the descriptions of how various components interact. I will have more to say about technology and social capital in Chapter 12.
+However, evidence is equivocal on the strength-of-weak-ties hypothesis. A number of reasons have been offered for this; one could argue, for example, that strength of ties is not an adequate measure of the strength of network locations. More appropriate measures should reflect being part of a bridge or near a bridge, or being at or near structural holes, or being at locations with fewer structural constraints (Burt 1992, 1997).
 
-Second, I will focus on the more general issues and sacrifice specifics. For example, I will leave out descriptions of certain specific factors, such as gender and ethnicity, which are universal in societies, and opt for generalities (using the term   prevailing institutions ).
+Or the strength of weak ties has been measured more as role identifications (relatives, friends, or acquaintances) or lack of intimacy (Marsden and Campbell 1984) rather than as network locations. Currently, there is a lack of empirical evidence confirming that these alternative measures would yield different results.
 
-Basically, I conceive institutions and networks as the infrastructure of society – the vital social forces that link, hold, and consolidate actors and organizations in society. They may not be the most efficient mechanisms, but they define the internal cohesion and external differentiation for the actors and organizations. Of the two, institutions provide the organizing principles for actions and interactions. They offer rhetoric rationality and thus the map for organization and function. Most important, they uphold individual and collective identities. Networks, on the other hand, enhance flexibility for reducing transaction costs beyond what organizations can supply. They also provide mobile forces that fill and link the gaps necessarily existing in society. Just as important, they serve as possible vehicles for institutional transformation.
+Another line of conceptual reasoning proposes that this result may be due to the interaction between the two exogenous variables: the strength of position and the strength of network locations (e.g., weaker ties) (see Chapters 5 and 6) for instrumental actions. Lin, Ensel, and Vaughn (1981) hypothesized a ceiling effect for weak ties. At the top of the hierarchy there is no advantage to using weak ties, since such ties are likely to lead to inferior positions and therefore inferior resources. The authors did not anticipate that weaker ties would be similarly ineffective toward the bottom of the structure. Marsden and Hurlbert (1988) also found that actors with the lowest origins did not derive greater benefit from contacts with weaker ties in gaining access to better resources than from contacts with stronger ties. Assuming that the interaction effects between the strength of position and the strength of ties occur only at both very high and very low positions of origin, it is interesting to speculate on why such interactions take place there. This is not so difficult to explain for positions near or at the top of the hierarchy. But it is more difficult to understand why positions near or at the bottom of the hierarchy do not derive more benefit from weak ties, since the theory suggests that the increased likelihood of reaching better social capital through such contacts should hold true for occupants of the lowest positions in a hierarchical social structure.
 
-The remainder of the chapter describes how institutions and networks work in tandem. Specifically, it will show how institutions organize and
+Social Capital in Hierarchical Structures  167
 
-Societal Transformations  187
+To pursue this line of reasoning, we need to consider structural parameters that dictate the interplay between strength of position and strength of network locations. What is needed is a formulation in which predictions can be made regarding the relative significance of structural constraints (as represented by strength of position) and individual actions (as represented by strength of network locations), given such structural characteristics. These considerations have led to the exploration of structural parameters and an assessment of their effects on the propositions.
 
-interact with other major components of society (i.e., institutionalizing organizations, other social and economic organizations, and social networks) and facilitate the flow of capital among these components. The final section highlights the significance of social networks in institutional transformation.
+The remainder of this chapter delineates a set of structural parameters, variations of which provide the context for further specification of the two theoretical propositions.
 
-The Institutional Field and
+Some terms require clarification here. I assume that a social structure consists of different levels, each of which can include a set of structurally equivalent positions. They are equivalent primarily on the basis of levels of similarly valued resources and authority and secondarily on the basis of similar lifestyles, attitudes, and other cultural and psychological factors. For our purposes here, the terms   levels   and    positions   are used interchangeably. Also,   social mobility , as used here, refers to the voluntary aspect in an internal labor market. Involuntary social mobility, due to job dissatisfaction, lack of alternatives, or other「pushing」or forced factors, is excluded from consideration. As Granovetter (1986) pointed out, voluntary social mobility generally results in wage growth. Likewise, it is argued that voluntary social mobility accounts for the majority of rewards (greater authority, better wages and bonuses, and faster promotions) in hierarchies such as organizations.1
 
-Organization-Society Isomorphism
+Structural Parameters and Their Effects
 
-Institutions , seen as the organizing principles of interaction, can simply be defined as rules of the game (North 1990, p. 3) in a society and can be either formal or informal. These rules serve as the traffic guides in the flow and transactions of goods (both material and symbolic) among actors, including both individuals and organizations. Some rules are more important than others in that the actors are more consciously aware of them and feel the need to demonstrate more deliberately that the rules are followed in their actions and transactions. There are various explanations of how certain rules or institutions come into existence and assume dominant positions in a society. They may result from wars, revolutions, rebellions, colonization, occupation, disasters, acts of charismatic and authoritarian leaders, dominant class interests, or post facto rationality. To a large extent, they may be the result of historical path dependence (see David 1985 for the institutionalization of the QWERTY
+A hierarchy, I argue, can be described with variations and permutations of four general parameters: the number of levels in the hierarchy (the 1 It is true that the beginning of a job search is often unplanned (see Granovetter 1974).
 
-keyboard).1 Institutions are cultural rather than scientific, because they do not require logical or empirical proofs or appreciate falsification.
+Many job leads become available on casual occasions (e.g., parties) and through interactions with acquaintances. It is not necessarily the case that a job search begins with the purposive and active seeking out of contacts. However, this does not negate the basic premise that individuals are situated at different levels in the structure and therefore have access to casual settings involving persons who command certain types and amounts of resources and social capital. In fact, it has been empirically demonstrated (Campbell, Marsden, and Hurlbert 1986; Lin and Dumin 1986) that occupants of higher-level positions have greater access to more diverse and heterogeneous levels in the hierarchical structure than do occupants of lower-level positions and hence have greater command of social capital. Thus, it can be expected that casual settings for the higher-level positions are structurally richer in job information, as well as other types of information and influence. This structural advantage, deducible from the pyramidal assumption of the theory, has a distinct effect when the individual eventually launches a job search.
 
-These rules create favored values for actions and interactions in the forms of morality, faith, ideology, decency, or capability (of healing and performing).
-
-When organizations and individuals subject themselves to a similar set of institutions, they are said to be in an   institutional field  (Lin 1994b).
-
-Within an institutional field, actors (including individuals, networks, and organizations) recognize, demonstrate, and share rituals and behaviors, and subscribe to constraints and incentives as dictated by the social institutions. As such, they reduce transaction costs in measurement (computational abilities) and enforcement (North 1990) for actions and interactions among the actors.
-
-An institutional field may define a society. However, the field may transcend a society’s usual spatial boundary. For example, we can argue that 1 There have been debates as to whether QWERTY actually performed less well than, say, the Dvorak system. However, even if they performed equally well, the fact that QWERTY
-
-historically emerged first represented a real advantage and was an important factor in its prevalence today.
-
-188
+168
 
 Conceptual Extensions
 
-ethnic Chinese communities in many urban ghettos around the world belong to the same institutional field as the proper Chinese society, defined within the boundary of the nation-state of China. Even though these communities and their members may speak different languages, live under the rules and laws of different states, and are subjected to different stratification and mobility constraints and opportunities, they obey the same fundamental rules extending and emanating from the structured relationships among family members (Lin 1989, 1995b). These rules guide their family lives, the celebration of certain holidays and festivities, ancestor worship, deferent treatment of elders, the upbringing of children with discipline and passion, the preference for tacit and informal agreements to formal or legal contracts in business transactions, the recognition of certain differential associations (given priority to family, clan, and village affiliations), and idiosyncratic rules of succession (transfer of authority by the rule of primogeniture and transfer of property by the rule of division among sons). Thus, institutional China is more encompassing than the state of China. Other institutional fields exist within a given a state. In the following discussion, the term   society   is used to refer to an institutional field.
+level differential ), the distribution (absolute and relative number) of the occupants across the levels (the   size differential ), the distribution (absolute and relative amount) of valued resources across levels and among occupants (the   resource differential ), and the sum of all occupants and resources in the structure. The first and last parameters are computed for the entire structure; the second and third parameters can be computed for either the entire structure or portions of it.
 
-In an institutional field, the extent to which organizations survive and persist depends on both their economic (technical) and social (institutional) performance. DiMaggio and Powell (1983, p. 148) used the notion of an organizational field to designate a「recognized area of institutional life: key suppliers, resources and product consumers, regulatory agencies, and other organizations that produce similar services or products」and hypothesized that organizations belonging to an organizational field become institutionally isomorphic in that their forms and practices becomes homogeneous because of increased sharing of interactions, information, and awareness of involvement in a common enterprise. An institutional field also involves the process of institutional definition and structuration (Giddens 1979), but it extends beyond specific types of organization (e.g., economic enterprises) or the requirement for interaction among all organizations. Organizations are said to belong to an institutional field when they are conscious of and abide by the rules of a specific set of institutions. By adjusting their internal structure and patterns of behavior, the organizations reduce transaction costs in interacting with other organizations dictated by the same institutions. The  organization-society institutional isomorphism  (Lin 1994b), therefore, is the prerequisite and imperative condition for organizational isomorphism. One assumption derivable from this imperative is that there is a positive correspondence between an organization’s ability to perform institutional tasks and its hierarchical position in the society. Likewise, it can be assumed that most of the social networks constructed also attain
+In general, the social capital proposition, the primary proposition of the social capital theory, should hold regardless of the variations in these parameters. As long as the structure is hierarchical, access to and use of better social capital are expected to facilitate socioeconomic returns under any structural variations. However, the other two hypotheses require further specification relative to variations in the structural parameters. In the following sections, I will describe each parameter and assess the impact of its variation on the two propositions. For simplic-ity, the two propositions will be identified as the   positional effect  (the strength of the original position) and the   location effect  (the strength of network locations). Again, we must remain conscious of the dominant effect of structural constraints. Strength of position should have a relatively stronger effect than strength of locations everywhere in the structure, whereas each factor may vary in different parts of the structure.
 
-Societal Transformations
+Also, for generality, I will examine the relative effects of structure (the strength of positions) and networking (the strength of locations). For networking effects, I will employ the general location argument: that is, for instrumental actions, locations at or near a bridge – variously referred to as   structural holes ,   weaker ties , or less   structurally constrained   locations  – reflect the strength of better locations in their likelihood of accessing better social capital. While the descriptions often implicate organizations or firms, it is hoped that the propositions can be generalized to all hierarchical structures.
 
-189
+The Level Differential
 
-Figure 11.2 Institutional field.
+First, the hierarchical structure can be specified by the number of levels within it. A   level   is defined as a set of social positions that have a similar command of resources and access to capital (including social capital) per occupant. In the occupational structure, for example, the crudest differentiation is based on occupational classifications consensually agreed upon in a given society. Each such classification, however, may be based on a combination of requirements, including the degree and presence of certain skills, training, experience, tenure, and location in an industry, as well as resources. A better differentiation would be one based on
 
-isomorphism with the organizations. The   organization-network institutional isomorphism   is reflected in the overlapping rules of the game and the values assigned to certain resources (ideology) between networks (and informal organizations such as churches, chambers of commerce, veterans’ groups, and bowling clubs). Figure 11.2 depicts a functioning institutional field where organizations, networks, and individuals are synchronized in terms of the rules of the game and the values of certain resources.
+Social Capital in Hierarchical Structures  169
 
-The Flow of Capital
+Figure 10.1 Three differentials and the relative significance of the location effect: (a) level differential; (b) size differential; (c) resources differential.
 
-Given the organization-network-society isomorphism imperative and the incentive for better positioning in the stratified system, organizations are expected to obtain and retain goods useful for transactions of both an institutional and a technical nature. One important type of such goods is workers capable of performing institutional and/or technical tasks.
+empirical examination of each occupational position’s command of resources and access to social capital. The clustering of equivalent positions would then constitute a level in the structure.2
 
-Correspondingly, the implication for individual actors seeking rewards or returns in society is clear: they need to demonstrate their possession of knowledge and skills, as well as their willingness and ability to be further trained and indoctrinated. The labor market therefore can be conceived as a marketplace where transactions of such goods between individual actors and organizations take place. Before the transaction of
+As illustrated in the top two figures (a) in Figure 10.1, we can describe the variation by identifying two theoretical extremes. At one extreme, the left figure, there are only two levels in the structure, and at the other, the right figure, there are many levels. The two-level system is expected to resemble a caste system in which one level has either all or most of the valued resources and the other has none or few. Thus, the positional effect should be stronger. In the multilevel system, the differentiation of levels reduces the relative inequality of valued resources across levels and therefore the positional effect. Thus, the expectation is that the number of levels will be negatively related to the positional effect.
 
-190
+The two-level structure minimizes interactions between levels, reducing the opportunity for finding and using bridges. In the multilevel struc-2 Breiger’s work (1981) specifying a class hierarchy of occupations is based on the principles of internal and external heterogeneity of mobility. Thus, the classification system is deduced from mobility patterns rather than from resources and social capital. I suspect that there is a strong correspondence in the resulting empirical classifications based on the mobility and resource criteria. For theoretical and tautological reasons, an empirical derivation and demonstration of the resource-based hierarchies is necessary.
 
-Conceptual Extensions
-
-goods in the labor market is discussed further, it is important to explore the nature of the goods that flow into the institutional field.
-
-The goods, as mentioned earlier, can be either material or symbolic.
-
-When certain goods are deliberately mobilized for a purposive action, they become capital. Capital is an investment of resources intended to generate returns. Thus, it is tailored by the actor to meet an organization’s demand. In return, the actor may be rewarded with social (reputation), economic (wealth), or political (power) resources. For organizations as actors, such capital generates returns so that they can survive and thrive in the society or institutional field. For individual actors, it is capital that is transacted in the labor market.
-
-Two types of capital dominate these transactions:   human capital   and  institutional capital  (Lin 1994b). Human capital reflects technical knowledge and skills. It is needed by organizations to compete successfully in the market. Institutional capital reflects sociocultural knowledge and skills about rules in the institutional field. Organizations need agents to exercise such knowledge and skills in performing as their representatives.
-
-Institutional capital contains elements of what is usually described as cultural capital (Bourdieu 1972/1977, 1980, 1983/1986) and social capital (Bourdieu 1983/1986; Coleman 1988, 1990; Flap and De Graaf 1988; Flap 1991). Cultural capital contains values, rules, and norms sanctioned by the dominant institutional field. Social capital reflects the extent of social connections, where embedded resources can be used to maintain or gain resources – including wealth, power, and reputation – valued in the institutional field. Individual actors who possess or can access cultural and social capital are potential laborers who can perform and fulfill an organization’s obligations in the institutional field. Thus, organizations seek out such candidates in the labor market.
-
-How does an individual actor demonstrate his or her human capital and institutional capital? Human capital, of course, can be demonstrated in examinations. Many organizations employ this method in assessing technical knowledge and skills. But examinations by themselves seldom capture the breadth and depth of human capital. More often, the assessment requires evidence of effort, commitment, and success in the process of acquiring such capital in the form of certification, credentials, or the evaluations of trusted assessors. Degrees, diplomas, certificates, and, equally important, testimonials have become important symbolic demonstrations of human capital.
-
-Demonstration of institutional capital is much more complicated.
-
-Certain examinations or other methods of identification have been devised for this purpose. For example, in historical China, knowledge of Marxist–Leninist ideology, Mao Zedong’s or Sun Yat-sen’s thought, or
-
-Societal Transformations  191
-
-Confucianism appeared in examinations, and patrilineal ancestries, clan and regional affinities, or class/ideological credentials had to be accounted for. For the most part, this demonstration was reflected in certification, credentials, and testimonies. These symbolic identifications reflected the actor’s acquisition of and affinity for prevailing institutions, and they might vary in different institutional fields. Even in contemporary China, these identifications may include Communist Party membership, clan and ethnic memberships, and affiliation with state-owned work units, but not membership in a church, temple, or social or professional association.2 Complicating the situation is the fact that many societies use the same certification and testimonial procedures to demonstrate both institutional and human capital. We shall return to this issue shortly.
-
-Now we turn to the issue of how resources are mobilized into capital and how capital is certified.
-
-Institutionalizing Organizations and Social Networks: Crediting and Enforcing Agents
-
-The process of acquiring both types of capital begins with intergenerational transfers of resources. Several processes are involved in the transfer. One process is socialization, wherein the family provides the setting in which training is conducted to develop actors (by way of imitation and cognitive training) with such valued resources. Another process is through the family’s social networks. Parental networks provide opportunities to contact actors with valued resources. In still another process, parental resources afford an opportunity for actors to acquire additional resources on their own (e.g., through schooling).
-
-Once differentially equipped with the transferred resources, the individual actor needs to mobilize such resources and turn them into capital, an investment for the purpose of matching with, and thus generating, returns from affiliation with an organization. Two avenues are available for turning resources into capital: processing by institutionalizing organizations or using resources embedded in social networks. An actor may go through a process of training, the result of which is certification clearly announcing the actor’s acquisition of capital. Degrees, diplomas, and certificates are the usual signals. Another route is the use of social 2 For an example of a taboo association and identification, read about the 1999 Falun Gong incidents in China (use Internet search engines such as Copernic 99 to find Falun Gong or Falun Dafa listings).
-
-192
+170
 
 Conceptual Extensions
 
-ties and connections for testimonies. Training is accomplished through an important component of society: institutionalizing organizations.
+ture, however, bridging is maximized. This is not to deny that the networking effect should be present even in the two-level system whenever social ties across the two levels are formed. However, in this castelike arrangement, such ties are difficult to form and follow up on because there is little need for an upper-level occupant to respond to a relationship offered by a lower-level occupant, as all rewards (wealth, power, and reputation) can be found through social ties within the upper level.
 
-While the following discussion focuses mainly on the process of mobilizing resources into institutional capital, a similar process for human capital also applies.
+The expectation is that the number of levels in the structure will be positively related to the networking effect.
 
-Institutionalizing organizations   are one special type of organization whose purpose or mission is to train and indoctrinate actors with values and skills in performing rituals and behaviors associated with the prevailing institutions. They also differ from other organizations in that they process actors but do not employ or keep them.3 Although some of them are specifically established to provide institutionalizing training, most of them also provide technical training in the form of schools, institutes, and colleges (e.g., cadre schools, military and police academies, seminaries, and scouting organizations). Thus, education through such organizations and the credentials thereby gained signify acquisition of both human capital and institutional capital.4 The disentangling of the two types of capital embedded in educational credentials is a complicated task, but rough estimations are possible. For example, recent studies in China and Taiwan (Lin 1994a, b, 1995b) suggest that education can be decomposed as two-thirds representing human capital and one-third institutional capital.
+Thus, the number of levels in a structure has opposite consequences for structural constraint and individual action. On the one hand, in the two-level system, the structural constraint is strongest and provides little opportunity for effects of individual actions. On the other hand, differentiation of many levels in a structure lessens structural constraints and provides more opportunity for individual actions that gain valued resources. These effects are consistent with the general empirical observation that social mobility is related to the gradations or number of strata in an occupational structure or a labor market. Rather than explaining such a relationship solely in structural terms, these subhypotheses argue that it is both the loosening of structural constraints and the greater opportunity for action choices that account for greater social mobility across levels in a multilevel structure. However, these effects assume that either the number of occupants at each level is the same or variations in the number of occupants do not have any effect. In most hierarchical structures, this is not true.
 
-Society and prevailing organizations also use institutionalizing organizations to enforce rules, rituals, and controlling behaviors. These organizations include prisons, mental hospitals, and labor and concentration camps. Actors in the institutional field are submitted to be processed if their behaviors are deemed deviant from those dictated in the prevailing institutions. Individual actors may be allowed to gain certification or credentials for institutional capital through these processes. Otherwise, they are in danger of being decertified or discredited, deemed inappropriate as players in the institutional field, and subjected to lower returns on their investment.
+The Size Differential
 
-Social networks provide another avenue for turning resources into capital. Through social ties and networking, actors gain additional resources by accessing the resources of direct and indirect ties. Many networks are formed because of shared processes and experiences in institutionalization (e.g., alumni, occupational, and industrial associations). However, networks also form on the basis of other shared interests or experiences (e.g., bridge and bowling clubs, knitting and 3 Institutionalizing organizations have regular staff primarily as trainers.
+Variations in the relative number of occupants across levels are expected to influence positional and location effects. As in the preceding section, we can discuss this influence by examining two extreme situations, as illustrated in the two figures in the middle panel (b) of Figure 10.1. At one extreme (the left figure), every level has the same number of occupants, and at the other (the right figure), every level has a different number of occupants, the relative number decreasing from the bottom to the top of the structure. In this discussion, the number of levels is held constant. For convenience, we assume a sufficient number of levels so that both the positional and tie effects may occur.
 
-4 Bourdieu (Bourdieu 1972/1977; Bourdieu and Passeron 1977) uses the term   cultural   capital    to describe the process of indoctrinating students with dominant class values.
+In the equal-size structure, the opportunity for heterophilous interaction is maximal for all occupants. That is, each occupant has an equal opportunity to contact a person at a different level. In Blau’s analysis of intergroup associations (Blau and Schwartz 1984; Blau 1985), he hypothesizes that in a two-group interaction situation, the intergroup association would be greater for the small group (i.e., the probability per
 
-What I am suggesting here is that cultural capital should be considered a subcategory of institutional capital in the context of organizations and markets.
+Social Capital in Hierarchical Structures  171
 
-Societal Transformations  193
+person in Group A of associating with a person in Group B increases as the size of Group A relative to the size of Group B decreases). If it is assumed that in a hierarchical structure the relative sizes tend to decrease toward the top, then the derivation is that intergroup association initiated from a lower (and presumably larger) level (e.g., Group B) to a higher (and presumably smaller) level (e.g., Group A) decreases as the difference between the relative sizes of the two levels increases. However, as the difference in the relative sizes of the levels decreases, such upward association would be increased. Thus, it is argued that in the extreme case, in which all hierarchical levels have a similar number of occupants, there is maximal opportunity for heterophilous interactions across all levels and therefore equal opportunity for socioeconomic returns. In other words, an individual at each level has an equal chance to move up the ladder. This does not mean that everyone in the structure will have an equal opportunity to attain the same highest status. Depending on his or her initial position in the structure, each person will have an equal opportunity to interact with another person at a different level and move up the ladder.
 
-exercise clubs, Elvis Presley and Michael Jackson fan clubs, or neighborhood groups). Through informal and often indirect ties, loose networks extend actors’ reach beyond their immediate social circles.
+As variations in the number of occupants across levels increase, they inhibit upward cross-level contacts. Intralevel interaction opportunities increase as the size differential increases at all levels, because most of the occupants of the larger levels tend to interact with others at the same level. Assuming that the relatively small levels are higher in the structure, the relative lack of interlevel actions initiated by the lower-level occupants reduces the potential probability effects of weak ties. Thus, the expectation is that the size differential is negatively related to the network location effect.
 
-These socially embedded resources may be turned into social capital when an actor activates and mobilizes a particular chain of ties for the purpose of pursuing purposive actions, such as finding a job. The mobilized resources are deemed useful because of the perceptions of the initiating and facilitating actors that they are institutionally valued. Thus, the testimonies provided by these ties on behalf of the initiating actor may further assure the target organization of his or her human capital.
+However, when a lower level is relatively smaller, this expectation does not hold. In such a structure, the chance is greater that lower-level occupants will have a relatively larger number of contacts with occupants at an upper level, which in turn promotes opportunity for mobility to that upper level. For example, in a structure where farm-related levels have relatively fewer occupants than do nonfarm blue-collar sectors, the tie effect should be relatively strong in the status-attainment process.
 
-More importantly, these testimonies may offer assurance that the initiating actor possesses institutional knowledge and skills as well (trustworthiness, social skills, collegiality, loyalty, willingness to follow orders and carry out tasks, and other「appropriate」behaviors). Through the influence of these testimonies, an affiliation with an organization may be realized. This is an investment, because it results in eventual socioeconomic returns to the actor.
+As for positional effects, variations in occupant numbers across levels have a positive effect. As the size differential increases, intralevel interactions increase among occupants in the larger, and presumably lower, level. These intralevel interactions reinforce the positional effect. The paradox is that as size differentials increase, they also increase the relative opportunity of contacts for these occupants in the smaller level with those in the larger level. In a pyramidal hierarchy (the higher the level, the fewer the occupants), the closer the level to the top, the broader the range of contacts across levels for its occupants; yet these occupants benefit not from heterophilous interactions for socioeconomic returns,
 
-Further, while institutionalizing organizations and social networks process resources into capital, many organizations themselves also provide access to further technical and institutional skills, thus allowing selected workers to acquire additional capital. The concept of the   internal firm labor market  (Baron and Bielby 1980) describes investment in on-the-job training for human capital. Affiliation with a resource-rich organization itself signifies institutional capital, because it can generate further returns for the actor inside and outside the organization. Inside the organization, actors have the opportunity to learn and acquire additional institutional skills as the organization successfully engages in exchanges with other organizations in the institutional field. Experiences gained from participating in such exchanges are part of institutional skills training. Further institutional capital is gained as actors acquire authoritative positions within the organization, and are thus endowed with statuses and symbols associated with skills and knowledge of how to perform institutional tasks. Outside the organization, affiliation with a resource-rich organization signifies the actor’s institutional skills, as well as his or her access to capital that is important for exchanges in the institutional field.
-
-The preceding discussion describes how the infrastructure of society –
-
-namely, institutionalizing organizations and social networks – operates in tandem with other social and economic organizations, reinforcing and sustaining each other. In other words, it describing a stable and functioning institutional field. Figure 11.3 depicts a functioning institutional field.
-
-194
+172
 
 Conceptual Extensions
 
-Figure 11.3 A functioning institutional field.
+but rather from their same-level contacts. In contrast, at or near the bottom of the structure, the opportunity for occupants who need heterophilous interactions for socioeconomic returns is structurally restricted by the large size of their level.
 
-Networks as Vehicles for Institutional Transformation However, embedded in these elements are the potential sources and processes for challenges to existing and prevailing institutions, as well as the emergence of alternative institutions. It is possible that organizations (Zucker 1988) or even individual actors (DiMaggio 1988:「institutional entrepreneurs」) may trigger transformations. For example, organizations isomorphic with an alternative, external institutional field may be able to survive, persist, and eventually replace or be incorporated into existing prevailing institutions. Western religion, popular culture, and lifestyles are examples of alternative institutions to indigenous institutions in other societies, and they can transform indigenous institutions so long as participating actors’ capital investment generates expected returns (e.g., social status), as the alternative institutional field holds an advantage in capital to indigenous institutions.
+The Resource Differential
 
-Charismatic leaders can also offer challenges to prevailing institutions.
+A third feature of the hierarchical structure is differential distribution of resources at various levels. Differentiation of levels can therefore be described in terms of distribution of resources as well as number of occupants. The resource differential can be calculated for the variation in resources across levels in a social structure or for a comparison between two levels. For the description of a social structure, as illustrated in the lower panel (c) in Figure 10.1, the resource differential may vary from minimal (when the resource differential is the same for every pair of contiguous levels) in the left figure to large (when it is different for every pair of contiguous levels) in the right figure. In the former case, the levels are said to be   equidistant   in resources. In the latter case, we assume that the differentials increase from the bottom to the top of the structure.
 
-The personal charm and charisma of Mao Zedong in heralding the Great Cultural Revolution, mobilizing millions of youths, and up-ending existing institutions in 1960s China is a vivid example of the latter (「Rebellion is rational and revolution is not guilty!」was used to uproot existing organizations, cadres, and professionals who had invested capital in those institutions and organizations). However, actor-generated transformations are infrequent and rarely succeed.
+That is, the higher up in the structure, the greater the resource differential between two contiguous levels, with the upper level having many more resources per capita than the lower level. Although this assumption is yet to be examined empirically, it is based on the theoretical argument that a marginal incentive or reward of a given amount of resources decreases toward the top of the hierarchical structure. Therefore, an increasing amount of resources is expected toward the top to maintain the same degree of incentive or reward.
 
-The more interesting and powerful indigenous transformation process, I argue, begins with social networking. When a number of actors share
+It is expected that the equidistant structure increases the opportunity for the location effect. Heterophilous ties are equally likely to be initiated at each level. In the unequal-distance structure, however, it is harder for lower-level occupants to overcome the resource distance across levels, especially toward the top of the structure. Thus, the expectation is that the resource differential will be negatively related to the location effect.
 
-Societal Transformations  195
+For the positional effect, the opposite should be true. As the resource differential increases, so does the importance of the position of origin for socioeconomic returns. In a structure with a large resource differential, any upward mobility is difficult. But in such a system, when upward mobility does take place, the position of origin rather than the use of network locations should account for the movements. If the structure is equidistant, the positional effect should be relatively small.
 
-alternative rules or values and begin to connect, the network may sustain their shared interests through solidarity and reciprocal reinforcement.
+If this hypothesis is valid, two consequences follow within any given empirical structure. First, since the hierarchical structure, by definition,
 
-For example, actors perceived as deprived or actually deprived of opportunities to acquire human or institutional capital may form networks and forge a collective identity. Whether such deprivation is based on gender, ethnic, religious, class, family origin, or other institutional criteria, networking is the first and essential step in developing collective consciousness. As the network expands and the number of participating actors increases, the pool of social capital increases. As shared resources grow, there is an increasing likelihood of a social movement, a process that can transform one or more prevailing institutions.
+Social Capital in Hierarchical Structures  173
 
-One straightforward way of generating institutional transformation by way of a social movement is to turn the movement directly into a rebellion or revolution. In extreme circumstances (e.g., mass starvation, external threat, or massive despair), a social movement can quickly generate overwhelming participation leading directly to the overthrow of prevailing institutions. The Russian Revolution in 1917 and the collapse of the former Soviet Union and the Communist states in Eastern Europe are examples. However, in most situations, the social movement involves a minority of actors and requires more elaborate processing in order to generate institutional transformation. Further, the usual goal is not to reject prevailing institutions, but rather to substitute an alternative institution for a prevailing one or to incorporate the alternative institution into the configuration of prevailing institutions.
+rank-orders its levels by resources, it can be deduced that cross-level interactions are most frequent across contiguous levels and decrease for any two levels, depending on how far apart they are in the structure.
 
-A social movement can be sustained by turning the shared resources into capital and generating returns. That is, the movement must develop its own institutionalizing organizations in which alternative values and rituals are taught and new members are indoctrinated. Further, it must build or persuade organizations to recruit and retain the actors who have acquired such capital. Through these processes, the movement can then sustain itself and challenge existing institutions.
+Thus, we predict that social mobility (especially socioeconomic returns) should most likely occur across contiguous levels.
 
-The mounting and sustaining of alternative programs in either existing or alternative institutionalizing organizations may generate and process alternative capital for actors. As the number of actors equipped with the alternative institutional capital increases, along with the growing pooled social capital through networking, the likelihood that other organizations may recognize the need to take the alternative institution into account in their actions increases. This recognition triggers the need to recruit and retain workers with the knowledge and skills to perform tasks dictated by the alternative institution. The alternative institutional capital will thus increasingly become a legitimate form of capital in the labor market, and the likelihood of the alternative institution’s being absorbed into prevailing institutions is increased.
+Furthermore, inhibition of cross-level interactions is contingent on the difference in the relative amount of per capita resources at the two levels; the interactions between contiguous levels may be attenuated or suppressed as the resource differential increases. In a structure where resource differentials increase toward the top, we predict that social mobility in that direction becomes increasingly difficult. At the very bottom, however, the resource differential between levels may be quite trivial, and thus the cross-level interactions will be substantial.
 
-196
+One interesting aspect of these variations is the implication they hold for any interaction related to socioeconomic returns. It is clear from the discussion so far that, toward the upper levels, there is much advantage in initiating (upward) cross-level interactions, since there is much more to gain because of the resource differentials. However, such initiatives are less likely to be reciprocated, since higher-level occupants have much less to gain from interacting with others at the lower levels. The result should be fewer cross-level interactions and generally a smaller effect from such interactions, since upper-level occupants are less likely to reciprocate actions initiated by lower-level occupants. When the interactions are successful, probably owing mostly to the positional effect, however, the payoff for the job seeker should be substantial. At the bottom, in contrast, cross-level interactions have little advantage or disadvantage since the resource differentials are small. Therefore, although it is expected that cross-level interactions will be frequent, such interactions will not generate significant benefit for the participants.
 
-Conceptual Extensions
+The Totality of Occupants and Resources
 
-Figure 11.4 Processes of institutional transformation.
+The final feature of the social structure concerns the absolute number of occupants and resources in the entire structure (e.g., industrial sector).
 
-These two alternative routes of institutional transformation are depicted in Figure 11.4. In the following discussion, I will provide two examples of successful transformations using each of the two routes. The emergence of women’s studies in American colleges illustrates how a successful transformation can occur when networking among interested actors infiltrates existing institutionalizing organizations, and the success of the Communist revolution in China demonstrates the successful (though much harder) building of alternative institutionalizing organizations.
+Critical mass   is used here to characterize the minimal requirements for a structure’s absolute quantities of population and resources. These requirements vary, depending on the relative sizes of populations and resources in the external environment with which the structure interacts.
 
-Transforming from Within: Women’s Studies in the United States
+Nevertheless, absolute numbers are important features of a structure.
 
-The growth of women’s studies programs in the United States in the 1970s and 1980s is recognized as a stunning example of a new institution successfully infiltrating an existing institutionalizing organization (college) in a matter of years. The process can be traced back to the 1960s, when the civil rights movement ignited the women’s liberation movement. A number of female faculty members such as Jessie Bernard, Alice Rossi, Gerda Lerner, Anne Firor Scott, and Sara Evans began to write about the perils of women in society and academia. Courses on women began to appear on several campuses in 1965 (the Free University of Seattle [Howe and Ahlum 1973]) and 1966 (at the New Orleans Free School, the University of Chicago, and Barnard College [Boxer 1982]). Yet, within a decade (by 1976), there were more than 200 programs in women’s studies and some 10,000 courses being developed by 6,500 faculty members in 1,500 different institutions (Howe 1977).
+Associations within the structure are strongly affected by the constraints as well as the opportunities to gain resources in the external environment. Thus, analysis must be extended to the larger structure of which the initial focal structure is but a substructure. For example, in under-
 
-What accounted for this sensational success story of the decade in
-
-Societal Transformations  197
-
-American higher education? Several critical external factors created opportunities that made this new academic institution possible. The civil rights movement and the women’s liberation movement found sympathy and synergy on American campuses, as antiwar and antidraft activities were generalized to questions and challenges to the status quo.
-
-At the same time, two-income families increased rapidly throughout the 1950s (Kessler-Harris 1982), and female students enrolled in college in growing numbers and proportions (e.g., in 1965, women earned 10
-
-percent of all doctorates, and by 1979, 29 percent of all doctorates were conferred on women; see Stimpson 1986). Female faculty likewise continued to rise (e.g., by 1977, close to 32 percent of college faculty were women [Stimpson 1986, p. 31]). Thus, the pressure to change, as well as demographic changes in the higher education system itself, provided favorable structural opportunities for possible institutional transformation.
-
-A closer examination of the actual process identifies four elements that made women’s studies programs grow so rapidly. The most innovative element was the distribution and sharing of course syllabi, initiated by Sheila Tobias (first at Wesleyan and then at Cornell; see Chamberlain 1988, p. 134) in 1969. Following a conference on women in the winter of 1969, she collected the syllabi of seventeen women’s courses and distributed the list at the annual meetings of professional associations in 1970 (  Feminist Studies I , the collection, was initially printed and distributed from Cornell; Stimpson 1986, p. 4). The list was then distributed at the American Psychological Association’s annual meeting in the fall of 1970 (Chamberlain 1988, p. 134) and was published by KNOW
-
-of Pittsburgh at about that time (Boxer 1982). The distribution was so successful and well received that   Feminist Studies   grew to ten volumes of syllabi and other course-related materials (Boxer 1982; Stimpson 1986). This distribution and sharing of course materials dramatically generated course development throughout American colleges. The ready-made student market (i.e., women students) responded enthusiastically.
-
-For example, a multidisciplinary course on「female personality」taught by Tobias and others at Cornell registered 400 students in the spring of 1970 (Tobias 1970). In the fall of the same year, coordinated courses about women began to appear on many campuses. The first officially integrated women’s studies program was established at San Diego State University in September 1970.
-
-The second networking element in this development was the use of professional meetings by female faculty and students to exchange information and reinforce the institutionalizing process. It was no surprise that the Modern Language Association (MLA) was the first association to provide this impetus, as women constituted a large proportion of its
-
-198
+174
 
 Conceptual Extensions
 
-membership. In the spring of 1969, the MLA established a Commission on the Status and Education of Women, chaired by Florence Howe (Boxer 1982, p. 664), and charged it to study the status of female faculty in 5,000 English and modern language departments and to review the content of the curriculum in those departments. At the December 1970
+standing social mobility in a particular labor market, we may wish to analyze the structural parameters of that segment. Analyses, however, must eventually be extended to considerations of other segments, so that relative mobility patterns may be assessed across segments. For the larger structure, similar parameters (the level differential, the location differential, and the resource differential) may be utilized to examine possible cross-segment mobility. No further elaboration and extension of these parts are necessary in this chapter.
 
-MLA annual meeting, the Commission「offered to an audience of more than 1,000 women and men a forum that included a paper on the status of women faculty, another on the literary curriculum’s male biases and female stereotypes, and two of the first lectures in feminist literary criticism to be heard」(Chamberlain 1988, p. 135). It also issued the first guide to women’s studies under the title「Current Guide to Female Studies,」listing over 110 courses. The second guide, published only a year later, listed 610 courses and fifteen organized women’s studies programs, five of which granted degrees, with one at the Master’s level (Howe 1977). Soon women’s caucuses appeared in numerous other social science and humanity associations, whose annual meetings provided ready-made occasions for sessions, seminars, and exchanges. The association as the medium culminated in the founding of the National Women’s Studies Association (NWSA) in 1977. The preamble to the constitution of the NWSA, drafted at the Founding Convention in San Fran-cisco (January 13–17), stated that the organization was to「promote and sustain the educational strategy of a breakthrough in consciousness and knowledge」that would「transform」individuals, institutions, relationships, and, ultimately, the entire society (Boxer 1982, p. 661).
+Implications for Structure and Individuals
 
-A third critical element in developing and institutionalizing women’s studies in American colleges was the resources provided by a number of private foundations to support students, programs, and centers. In 1972
+In summary, a consideration of the structural parameters has enabled us to specify conditions under which the positional effect and the tie effect vary. In ideal-typical terms, the positional effect should be maximal when the structure contains (1) a minimal number of levels, (2) a large occupant differential across levels, and (3) a large resource differential across levels. The network location effect should be maximal when the structure has (1) a large number of levels, (2) a small occupant differential across levels, and (3) a small resource differential across levels. Again, we must keep in mind that, even when the tie effect is strongest, the positional effect remains dominant.
 
-the Ford Foundation began a program to promote the advancement of women and help eliminate sex discrimination in all phases of education (Stimpson 1986). By 1979, more than $9 million had been granted to address these various issues. In 1980, the Foundation’s board of trustees more than doubled previous Foundation allocations for women’s programs. In 1972, the Foundation created the first national program of faculty and doctoral dissertation fellowships for research on women’s roles. A series of grants established centers for research on women at leading colleges and universities throughout the country, including Stanford, the University of California (Berkeley), Wellesley, Brown, Duke, and the University of Arizona.
+The positional effect can be seen as an indicator of structural effects, and the location effect (especially the use of weaker ties) suggests the consequences of individual action. As explicated earlier, the normative mode of interactions is homophilous, involving participants with similar socioeconomic characteristics. In contrast, the use of weak ties tends to result in interactions involving participants with dissimilar socioeconomic characteristics. Heterophilous interactions are not totally without benefit for participants from higher status levels, since they may subsequently request or demand services from the lower-level participants.
 
-According to the Ford Foundation’s own report, between 1972 and 1975, it gave out 130 postdoctoral fellowships and dissertation awards in women’s studies. Fifty percent of the senior people it supported became prominent in women’s studies, as did at least one-third of the people in the dissertation program. Between 1964 and 1979, Ford gave
+Nevertheless, the initiation and establishment of such interactions by lower-level persons represent action and effort. Viewed in this context, these principles have theoretical implications for the relative effects of structural constraints and individual choices. They also stimulate consideration of the dynamic balance between vertical (heterophilous) and horizontal (homophilous) interactions in a stable social structure. These implications will be briefly examined here.
 
-Societal Transformations  199
+Structural Constraints versus Social Capital The theory describes structural conditions under which structural constraints and individual actions affect social mobility. Thus, it is relevant
 
-a total of $30 million to advocacy, research, and curriculum projects in women’s studies (Stimpson 1986, p. 23). By 1986, the Ford Foundation had allocated $70 million since 1972 to support「a broad array of programming on behalf of women,」including fellowship awards; grants to campus-based and independent centers for research; grants for「corol-lary」activities, especially publishing and national associations; and support for programs and centers mainstreaming minority women’s studies (Guy-Sheftall 1995, pp. 5–6).
+Social Capital in Hierarchical Structures  175
 
-Other private foundations such as the Carnegie Foundation, the Rockefeller Foundation, the Rockefeller Brothers Foundation, the Andrew W. Mellon Foundation, the Helena Rubinstein Foundation, the Russell Sage Foundation, the Exxon Education Foundation, the Eli P.
+to the debate concerning structural versus action effects. In contemporary sociology, the structural view dominates. Much of the theoretical development and empirical work in the past three decades have supported and advanced the structural perspective. The theory presented here does not disagree with the view that structural effects are predom-inant. It also argues that the positional effect, for example, is relatively more important than the tie effect throughout the structure. However, the specification of structural parameters enables us to ask where and to what extent individual actions become possible and meaningful. The following discussion gives further attention to the relationship between this theory and selected prevailing structural theories.
 
-Lilly Foundation, and the Revlon Foundation quickly joined in support endeavors (Stimpson 1986, p. 23). This substantive support allowed the hiring and retention of many faculty associated with these programs and sustained the development of students dedicated to women’s studies and ideology.
+Blau’s theory of heterogeneity and inequality, along with Emerson and associates’ dependence theory, exemplifies well the structural perspective.
 
-Finally, the networking approach adopted by many women’s studies faculty and programs is also worth noting. The innovators made the conscious decision that rather than creating a discipline or department in isolation, they would adopt the model whereby the program would be run by a coordinator and faculty and students’ committees (Merrit 1984). While the debate continues to the present, the prevailing organization remains this coordinator-committee structure. Most women’s studies programs have opted for the gains of networking, collectivity, and multidiscipline/transdiscipline over possible resource losses and faculty tenure usually budgeted through college departments.
+In a nutshell, Blau (1977, 1985; Blau and Schwartz, 1984) has argued that the distribution of a dimension (attribute) and the number of variables differing among groups in a population dictate the extent of association across groups. When the distribution of a dimension varies over a number of   nominal   or   graded   groups, such heterogeneity (for nominal groups) and inequality (for graded groups) promote intergroup association and can be examined over multiple dimensions (attributes).
 
-Thus, faculty appointed in traditional departments and disciplines and students work together to develop courses and curricula across disciplinary lines.
+The extent of the congruence between the different heterogeneities and inequalities also affects intergroup association. When the differences in characteristics are closely related (consolidated), intergroup association should be low; when they are not closely related (cross-cutting), intergroup association should be high.
 
-The rapid development of women’s studies in the late 1960s and early 1970s represents an institutional response to「an intellectual feast long denied」and「a classical instance of a movement without unified organization or direction,」whose spread followed the geography of the new women’s movement (Howe and Ahlum 1973; Boxer 1982). Yet it is clear that active initiation and networking among pioneers through informal exchanges of course syllabi and materials, their collective efforts through associations and meetings, and the adoption of the coordinator-committee structure coincided with the decision of private foundations to provide resources generating critical masses of faculty and students.
+Although the present theory can be seen as an elaboration and extension of Blau’s theory, there are several differences between the two. First, the present theory focuses on two types of social action: instrumental actions for gaining valued resources and expressive actions for maintaining valued resources. Though this chapter deals specifically with socioeconomic returns and mobility, and therefore instrumental actions, the distinction between instrumental and expressive actions plays a central role in the theoretical structure and has immediate consequences for patterns of interactions. Patterns of association differ for instrumental and expressive actions (Lin 1982). The expectation is that vertical (heterophilous) actions and interactions are effective for instrumental purposes, whereas horizontal (homophilous) actions and interactions are effective for expressive purposes. In Blau’s formulation, there is a mixture of the two types of action, with the main emphasis perhaps on the latter.
 
-All of this contributed to a massive participation and penetration of existing institutionalizing organizations (the colleges in the changing world of the 1960s and early 1970s), demonstrating how a rapid
+Intergroup marriage, for example, might be seen as primarily expressive, yet there are circumstances in which marriage takes on an instrumental aspect as well. The specification of the two types of action should clarify potentially conflicting empirical results. It can be argued that Blau’s
 
-200
-
-Conceptual Extensions
-
-transformation from within prevailing institutionalizing organizations can occur.5
-
-In summary, the process of women’s studies program development shows that networking among actors with a shared ideology and dedication took advantage of both external and internal opportunities for the prevailing organizations to mobilize and institutionalize potential labor (women students) quickly. Once such cumulated labor (capital) gained a sufficient number and capital, there was little resistance both within the institutionalizing organizations and within society at large.
-
-We should also note that this example refutes the great-man theory of institutional transformation. Despite some notable innovators in the movement (Tobias, Howe, and others), it was clear that the movement, through the networking of many actors, would move forward and keep gaining momentum without charismatic or intellectual stars.
-
-Examples of such successful institutional transformation from within are few and infrequent, because few emerging institutions are accorded so many favorable external and internal conditions (i.e., the changing pattern of female participation in the workforce, the breakdown of the status quo, the increasing presence of actors [female students] in the institutionalizing organizations sharing and demanding identity-supporting ideology and knowledge, and the readily receptive sources of resources
-
-[the private foundations]). Furthermore, some emerging or alternative institutions may demand more than integration or mainstreaming within the framework of existing institutions; they may demand substitution and subversion. When an alternative institution directly challenges and intends to subvert prevailing institutions, institutionalization may take a direct route and process. The following section offers a successful example of this type: the Communist revolution in China.
-
-Constructing Alternative Institutionalization: The Communist Revolution in China
-
-When the Communist Party was first organized in the 1920s, it was clear that it was attempting to use both transforming strategies: infiltrating existing institutionalizing organizations when opportunities arose and/or 5 Women’s studies programs are not without their problems and controversies. Since the very early days, debates have raged over significant issues such as (a)「structurelessness」
-
-of networking both within and across campuses and its potential control by elites (Freeman 1972–1973); (b) the ideological split between the「socialist feminists」and
-
-「cultural feminists」(「Marxists」and「Matriarchs」), or feminist activities versus acade-micians, or practice versus theory (Boxer 1982); (c) the necessity or possible dominance of the construction of a feminist theory (Boxer 1982); and (d) the neglect of women of color and lesbians (Guy-Sheftall 1995).
-
-Societal Transformations  201
-
-establishing alternative institutionalizing organizations when such opportunities were not available. In the end, it was the alternative institutionalizing organizations that helped transform the scale of the movement. It may be informative to describe in a brief historical account here how such strategies were implemented.
-
-An account of the revolutionary institutional transformation of the Communist educational system inevitably starts with Mao Zedong’s personal efforts to establish alternative educational institutions. These「official」historical constructions should be understood in the context of modern school reform in early-twentieth-century China, which preceded the formal establishment of the Chinese Communist Party (CCP) in 1920
-
-and the advent of Mao. Nevertheless, it was true that the Russian Revolution generated much intellectual interest in China, and after May 4, 1919, when students took to the streets in Beijing, Shanghai, and other cities in protest against possible territorial concessions to the Japanese, intellectuals and educators took on added important roles in educational reforms and innovations. Many Chinese intellectuals, including Marxists, led the way and set the stage before Mao’s interest and participation in innovative educational institutions. Li Dazhao and Cai Yuanpei, two leading intellectuals in the 1910s, for example, advocated
-
-「dignity of labor」(Pepper 1996, pp. 96–97).
-
-These progressive movements were echoed in the provinces as well. In the province of Hunan, for example, in 1916, the normal school at Changsha inaugurated a「labor association」designed to accustom students and teachers to manual labor. Among other things, they performed janitorial duties and practiced farming on campus (Shanghai Jiaoyu Chubanshe 1983, pp. 66–69). A workers’ night school had also been set up in 1916, but interest soon flagged among teachers and staff, so students took over the project. Student activist Mao Zedong was director of the night school for about a year during 1917–1918 (Shanghai Jiaoyu Chubanshe 1983, pp. 62–63; Pepper 1996, p. 96). Soon after he finished his formal education at the First Hunan Provincial Normal School in Changsha, Mao was appointed as the acting principal of the elementary school attached to the normal school in 1920 by Yi Peiji, director of the school system and the highest education official in the provincial government (Pepper 1996, p. 96).6 Mao thus became directly involved in educational reform within the context of existing innovative school systems.
-
-6 Yi was a leading progressive education in the province, and Mao’s appointment was one of many that he made to inaugurate his reform-minded administration at First Normal.
-
-Yi took over as the headmaster at First Normal in September 1920. He hired progressive teachers, these teachers moved onto campus, and girls were enrolled in 1921 (Pepper 1996, p. 97).
-
-202
+176
 
 Conceptual Extensions
 
-In 1920, when small Communist cells were being formed in cities around the country, Mao took the lead in organizing one for Changsha as well, and at about the same time, he took up his duties at the elementary school. Representatives from all of these groups gathered in Shanghai in July 1921, the official founding date of the CCP. Mao returned to Changsha as secretary of the CCP for Hunan Province. By this time, he had become a critic of the system itself and saw education reform as only a place to begin to teach Marxism (Pepper 1996, p. 99).
+theory should be relatively more valid for the class of interactions intended for expressive purposes.
 
-Also in 1920, Bertrand Russell visited Changsha, suggesting that socialism and even communism could be achieved without war, violent revolution, or limitations on personal freedom. The use of education was to change the consciousness of the propertied classes. Mao wrote in letters to friends that Russell’s view was good in theory but would not work in practice, as education required money, people, and facilities. But all these resources, most importantly the schools and the press, were already capitalist-controlled. In addition, capitalists controlled all the other societal institutions necessary for perpetuating their existence.
+Second, the two theories’ primary elements by which groups and positions are identified differ. Though both assume that these elements must be consensually arrived at, the basic criteria are different. For Blau, they are based on the attributes that people take into account in their social relations. For the theory presented here, they are based on resources.
 
-Hence, the nonpropertied class, despite its numerical superiority, would be helpless to turn education to its own ends. The only solution was for the Communists to「seize political power」(two letters to Ts’ai Ho-shen
+Whereas Blau convincingly argues that the use of attributes based on their influence on social relations at the microlevel does not necessarily affect consequent intergroup relations, the criterion of resources used in the present theory does not involve such a conceptual tautology. In later writings (e.g., 1985), Blau recognized the significance of resources in the identification of attributes. A modification of the definition of attributes in resource terms may resolve the difficulty.
 
-[Cai Hesen] dated November 1920 and January 1921; trans. in Schram 1963, pp. 214–216).
+A further consequence of the difference in criteria used to define groups or positions is that Blau’s theory applies to both unranked and ranked groups, whereas the present theory assumes a hierarchical structure based on ranked positions. In the present theory, the determining factor of a social structure is the different amounts of valued resources various levels command. Therefore, the levels are hierarchically ordered.
 
-In August 1921 Mao left the elementary school and, with a few friends, founded the Self-Study University, with the aim of combining the form of the old academy with the content of modern learning, and creating an institution appropriate to「human nature and convenient for study.」It would strive to become an institution of「truly popular learning」(Pepper 1996, pp. 98–99). It was clear that Mao understood the importance of alternative institutionalization. The Self-Study University opened in the autumn of 1921, with a strong Marxist orientation. The university sponsored a series of public lectures on Marxist theory in 1922, and by its second year was openly recruiting and training CCP
+This more restricted view of social structure offers an advantage in that it eliminates further controversy in ranking categorical variables.
 
-workers. The Self-Study University is regarded as the first training institution for revolutionary cadres in China (Cleverley 1985, p. 89), although it passed quickly into history when it was closed down by the military governor in late 1923 on the grounds that it was promoting unorthodox ideas and threatening public order.7
+Categories of ethnicity and religion may be ranked in some social systems but not in others. For the present theory, the valued resources must be gradable, even if some of them represent social categories (e.g., race and gender). As long as they are consensually considered to be valued resources for a social system, they form the basis of the hierarchy in the structure. Even for expressive actions, as I have argued elsewhere (Lin 1982, 1986), such a hierarchical view of the structure helps to formulate predictions about patterns of action and interaction within or across levels. This specification may help elaborate differential patterns of intergroup associations. One may postulate, for example, that when categorical variables represent valued resources in a given social system, both the heterogeneity hypothesis and the inequality hypothesis may hold, whereas they diverge for other categorical variables.
 
-7 Mao was not the only radical education reformist. Liang Shuming declared that the new education was of no use to anyone. He was enthusiastic about Tao Xingzhi’s experimental normal school project and turned similarly to rural reconstruction. These projects were most extensively implemented in Zouping (Tsou-p’ing) County, Shangdong, between 1931 and 1937. Liang founded the Shangdong Rural Reconstruction Institute, which trained his new-style rural administrators and managers. James Yen conducted
+Finally, Blau focuses on variation in the distribution of the number of individuals as the major source of structural variation. For both the heterogeneity and inequality principles, population distribution over the various categories or statuses affects intergroup associations. Although he has also identified the number of subgroups as having an impact, he assumes in the bulk of his work that the number of subgroups can be standardized for comparative analysis (1985, pp. 10–11). In other words, his theory tends to treat the number of subgroups as a constant.
 
-Societal Transformations  203
+Social Capital in Hierarchical Structures  177
 
-The strategy of infiltrating existing institutionalizing organizations was also much in evidence during a period when the Nationalist Party (KMT) and the CCP joined forces during the late 1920s. In 1927 the KMT
+The present theory specifically identifies the level differential and the size differential, along with the resource differential, as separate structural parameters. The effects of heterogeneity and inequality as proposed by Blau, therefore, can and should be further specified relative to the variations in both the number of levels (or groups) and the number of persons in them. For example, if a pyramidal structure is compared with an inverse-pyramidal structure, the inequality coefficient may be similar but the interlevel (group) associations may differ drastically. Empirically, an inverse-pyramidal structure may not exist, as discussed earlier, but most structures will have portions in which a lower level has fewer occupants than an adjacent higher level (e.g., agricultural vs. service sectors).
 
-formed a coalition with the CCP with the aim of defeating the northern warlords and forming a national government. CCP cadres joined KMT
+For such a structure or substructure, the interlevel (intergroup) association is expected to be different from the usual one, in which the upper level has relatively fewer occupants. Likewise, while two structures have similar level and occupant differentials, their resource differentials may differ, and therefore their patterns of interlevel association may differ.
 
-officials in several training ventures, the most urgent of which was the preparation of the new army at the Whampoa Military Academy. From July 1924 to September 1926, the KMT Propaganda Department organized with the Peasant Movement Training Institution, which was established to train rural organizers for the First United Front. The Communists Peng Pai, Lu Yiyuan, Ruan Xiaoxian, Tend Zitang, and Mao Zedong all served as directors, and many Communists served as lecturer-teachers (Han 1987, pp. 52–53). In 1926 Mao led a field study group from the Peasant Institute to Haifeng to observe the rural activities of Peng Pai, a student who had returned from Japan and the CCP
+For example, in a two-level caste system, where a small minority holds most of the resources, the association between the occupants of the two levels should be substantially different from that in another system in which the level and size differentials of the two levels are similar and there is little difference in their resources.
 
-peasant mobilization leader. The Hai Lu Feng Soviet had its own school system, which included a Party school, as well as Communist Youth Corps and Pioneers organizations (Cleverley 1985, p. 92). In the seminal paper「Investigations of the Peasant Movement in Hunan,」published in 1927, Mao confessed to a switch of allegiance from support for modern schools in the countryside to rural schools acceptable to peasants (Cleverley 1985, pp. 93–94).
+Having noted these differences, we can now describe Blau’s association theory in greater detail. Chance encounters across levels or groups due to variations in a hierarchical structure can then be predicted according to the level differentials (the more levels or groups, the greater the number of such chance encounters), the size differentials (the more evenly distributed the occupants across levels or groups, the greater the number of such chance encounters), and the resource differentials (the smaller the difference in resources per capita across levels, the greater the number of chance encounters). The effects of the hierarchy (especially the resource differential), however, restrict these general principles of association. In the case of instrumental actions taken for the purpose of socioeconomic returns, reciprocity of association becomes problematic. For a person from a higher level to have a chance encounter with a person from a lower level may be structurally unavoidable (e.g., a banker and a cleaning lady), yet a more substantive and especially status-changing association (e.g., marriage) requires efforts to overcome the structural gap. It is for this type of association that the present theory attempts to clarify the potential effects of individual actions.
 
-At both Whampoa and the Peasant Movement Institution, Communists including Mao actively recruited and indoctrinated students into the Marxist ideology and the CCP. In each case, an institutionalizing organization established by the KMT for training its own cadres was infiltrated effectively by the Communists for their own purposes. By 1929, the KMT realized how effectively the CCP was able to infiltrate the institutionalizing organizations as well as other government and military units, and it conducted a「Party purification」campaign to expel the Communists and eliminate their influence on the KMT.
+Similarly, the structural theory of Emerson and Cook can be explicated in view of the present theory. In their power-dependence theory, Emerson and Cook specify that structural parameters dictate exchange patterns and consequences, even though individuals engage in
 
-Having failed to continue their infiltrating strategy, the Communists had no option but to begin establishing their own institutionalizing organizations. The first attempt by the CCP to introduce a socialist education began in the Jiangxi Soviet and lasted from 1929 to 1934. As it evolved, the Jiangxi school system was based on Lenin elementary large-scale education reforms in Ding County, Hebie, in the mid-1920s (Pepper 1996, pp. 103–105). The KMT attempted rural reconstruction, with an education component, in Jiangxi in the early 1930s. George Sheperd, with the participation and help of many missionaries and Christian universities in China, also experimented with educational reform in Lichuan County, Jiangxi (Pepper 1996, pp. 123–124). All these educational reforms were short-lived, as Japan soon invaded many of China’s coastal provinces in the 1930s.
-
-204
+178
 
 Conceptual Extensions
 
-schools, a middle school in each township, and a Lenin Normal School in Ruijin for teacher training. In these schools, classes were open to adults, school textbooks had socialist content, technical facilities were promised, and full use was made of the resources of the Youth Vanguard, the Children’s Corps, and the labor unions in social education (Cleverley 1985, pp. 95–96). As the Communists engaged in a desperate battle against the KMT’s repeated attempts to encircle and eliminate the Communist stronghold in Jiangxi, the Jiangxi schools operated at a low level of efficiency. Student attendance was irregular, school buildings and facilities were inadequate and often commandeered for war purposes, and desks were taken away as props for air raid shelters (Cleverly 1985, p. 97).
+such exchanges to maximize their resources (Emerson 1962; Cook and Emerson 1978; Cook 1982; Cook, Emerson, Gillmore, and Yamagishi 1983; Emerson, Cook, Gillmore, and Yamagishi 1983). In their theoretical formulation of exchanges, structural dependence, or constraints (number of available exchange partners and distance to sources possessing resources), the type of exchange (e.g., negatively connected networks, in which only one pair of individuals can engage in transactions with one type of resource, and positively connected networks, in which new resources depend on combining two or more types of resources) and the resource salience (amount of resources available to each individual) result in further resource differentiation among individuals.
 
-Finally, in the autumn of 1934, about 75,000 to 100,000 Communists broke out of the KMT blockade in Jiangxi, embarking on the exodus later known as the Long March. A year and 6,000 miles later, a small number (no more than 20,000) arrived in the northwest (Pepper 1996, pp. 127–128). Yan’an became the capital of the Shaanxi-Gansu-Ningxia (Shaan-Gan-Ning) Border Region in early 1937. One important task for Mao and his comrades was to create a school system in which Communist political and military cadres could be trained and produced quickly. Xu Teli, a former teacher of Mao from Hunan, initially headed the border region’s education office. He was succeeded as head of the department by Zhou Yang, another cultural luminary from Shanghai (Pepper 1996, p. 130). Gaining breathing room as the KMT fought battles against the invading Japanese and reached a compromise with the CCP in establishing a united front against the Japanese, Mao and others urgently organized many higher-level institutions for CCP members and
+By specifying these parameters in a hierarchical structure, the present theory helps to predict in what types or parts of structures the rate of increasing dependence or resource differentiation will be faster or slower.
 
-「united front」youths to fill and expand depleted positions for political and military cadres and managers.
+If it is assumed that the resource differential increases toward the top of the structure, one would predict that power or resource differentiation increases faster for occupants positioned closer to the top of the structure. The size differential also predicts differences in the speed of differentiation. The greater the differential, the greater this differentiation, since the larger number of occupants at the lower levels will have fewer opportunities to interact with occupants at the higher levels. The level differential delineates resource distance and should help generalize to larger structures the experimental results of the Emerson–Cook studies, in which the number of positions/levels and occupants is necessarily limited.
 
-The CCP schools included the Central Research Institute, which trained「theoretical」cadres; the Central Party School, which trained senior and middle-ranking cadres at both the tertiary and secondary academic levels; and the Military Academy, which trained senior and middle-ranking military cadres. The best-known united front school was the Chinese People’s Anti-Japanese Resistance Military and Political University (Zhongguo renmin kangri zhunshi zhengzhi daxue), or Kangda.8
+Furthermore, the present theory fleshes out possible variations in actions taken by individuals in similarly structured positions. Cook and Emerson (1978) briefly examined such variations by demonstrating the effects of a stronger sense of equity and a stronger sense of commitment on resource differentials; they found some evidence that exercise of power or demand for resources was either curtailed (especially for women) or increased (especially for men). Such data hint at the possibility that individual actions vary beyond predictions based on their structural characteristics. The present theory, with its explicit specification of structural parameters that predict where such individual actions may be relatively large or small, may well refine and elaborate the strictly structural interpretation of the dependence theory to accommodate such empirical variations.
 
-According to the「Educational Method at K’angta」(Mobilization Society of Wuhan 1939, pp. 81–97; Seybolt 1973, pp. 333–348), Kangda 8 Other schools open to both cadres and noncadres included the Lu Xun Academy of Art and Literature, the Natural Science Academy, the Chinese Medical University, and the National Minorities Institute (Pepper 1996, pp. 150–151).
+Individual Action versus Social Capital
 
-Societal Transformations  205
+As stated earlier, the individual perspective, rather than the psychological deductive viewpoint, has emerged in the American sociological liter-
 
-was「a school for the anti-Japanese United Front, and [did] not belong to any party or faction. Enrollment [was] not closed to members of any anti-Japanese party, nor to any classes of society, and at the same no one
+Social Capital in Hierarchical Structures  179
 
-[was] excluded on the basis of race, religion, creed, sex, or occupation.
+ature. The effects of individual actions can be explored from two perspectives. The first focuses on the structural formations or changes due to such actions. For example, Coleman (1986a, 1986b, 1990) argues that social actors promoting their interests engage in social relations that, depending on the specific purposes of the actions involved, may result in a market system, an authority system, or a normative system. He describes the process by which each system evolves, emphasizing the emergence of norms and sanctions from the interacting actors with their respective interests. Rational or cognitive action is the assumed force in the forging of social relations and subsequent structures. In contrast, Collins (1981) sees emotion as the ultimate force behind interactions, in which individuals seek positive reinforcement and claim membership.
 
-In terms of its mission and objectives, K’angta [was] a school devoted to filling the needs of the national war of resistance by creating elementary-and intermediate-level military and political cadres for the anti-Japanese war」(Mobilization Society of Wuhan 1939, p. 81). It was based on
+Chains of such interaction rituals eventually form and provide cultural (conversational) and energy resources for repeated interactions, which develop into formal organizations and informal groups. These proposals focus on how individual actions can result in structural forms.
 
-「K’angta’s own educational policy: politically (a National United Front against Japan), militarily (offensive warfare), and spiritually (a revolutionary tradition)」(p. 81).
+From the second perspective, individual actions are possible and meaningful under structural constraints. Burt’s work (1982, 1992) explores structural actions, or actions taken by individuals who are at the same or neighboring positions to protect or promote their common resources and interests. He argues that individuals from different positions can coopt to alleviate structural constraints, and in the process can modify the structure of relationships.
 
-Yan’an University (Yanda), which was created in 1941, merged most of the united front institutes, with the overriding aim of applying mass-line principles and practical applications. It was reorganized as a comprehensive university in 1944. Mao’s address at the opening ceremony in May indicated that it was mainly a university for the study of politics, economics, and culture, and students had to learn how to put those subjects to work in the service of the border region. It was clearly a descendant, in spirit at least, of Mao’s old Self-Study University (Pepper 1996, p. 152).
+Integration of these two perspectives and the present theory has interesting results. In Chapter 8, it was argued that social capital provides the critical link between individual interests and the emergence of structure.
 
-Training in the management of border education took place at Yan’an University, where a specialized two-year curriculum covered the general situation of education and culture in the Border Region; elementary and middle school education; social education; the investigation of teaching materials; and educational thought in present-day China (Pepper 1996, p. 103). Students also took courses in Chinese revolutionary history, Border Region reconstruction, revolutionary philosophy, and current affairs.
+To have resources, one must form ties with others initially to protect and eventually to gain resources. Maintenance and protection of resources are seen here as driven by emotional or expressive forces, whereas resource gain requires mobilization of instrumental and cognitive motives and action. The resulting horizontal (homophilous) and vertical (heterophilous) interactions and relations constitute the elementary forms of social structure. Social structure allows access to and use of resources not necessarily in each individual’s possession. Differential ability to manage and manipulate social capital helps dictate the emergence of hierarchical positions. Variations in the structural parameters are the evolutionary consequences of the emerging process and its interaction with external structures and resources.
 
-These schools implemented the so-called ten exemplary socialist education principles: correct objectives, firm leadership, good school spirit, political education, integration of theory and practice, simplified content, shortened schooling, lively teaching, revolutionary-minded teachers, and self-reliance (Cleverly 1985, p. 103). In reality, courses were generally six months long, with students specializing in either politics or military strategy (Cleverly 1985, p. 102) and sometimes being moved on quickly to assignments in the field even before they graduated (Pepper 1996, p. 151).
+Once structural parameters have become dominant forces, access to and use of social capital continue to motivate individual actions wher-ever and whenever possible in the hierarchical structure. The parameters (level differentials, size differentials, and resource differentials) assume different significance for different types and parts of the hierarchical structure. For example, the extent of collective actions by a given level’s
 
-In actuality, these institutionalizing organizations were charged with several missions. First, they produced educated youth who served in production, labor, and military forces for the Border Region, namely, the CCP-controlled region. Second, they promoted the united front of anti-Japanese forces. On the surface, this could be interpreted as the CCP’s willingness to work with the KMT in resisting the Japanese. But in
-
-206
+180
 
 Conceptual Extensions
 
-substance, it extended welcoming arms to all who were willing to work with the CCP, even if they were formerly or presently associated with the KMT or self-proclaimed no-party members. This tactic effectively eroded solidarity within the KMT and weakened the potential alliance between the no-party members and the KMT.
+occupants, as well as the outcomes of such actions, are dictated by the relative number of occupants not only at the given level but also across levels. It would be interesting to postulate the structural conditions under which such collective actions will result in further consolidation of the given levels or elimination of variations in structural parameters. In the next section, one such analysis is offered as an illustration.
 
-Third, the CCP insisted that all educational units be under the direct control of the CCP in ideology and administration. The ideology, as proclaimed by Mao Zedong, was「the cultural ideology of communism led by the CCP」and the「culture of new democracy.」In other words,「the mass culture of anti-imperialism and anti-feudalism」was the「theoretical foundation, on which the proletarians, through the CCP, lead the cultural and educational work」(Mao Zedong 1940, 1942, 1949; Qu 1985, pp. 1–9). In administration, each school was designated under the jurisdiction of a party organ. In 1941, in the「Decisions Regarding Yan’an Cadre Schools,」it was made explicit that every school would be under the jurisdiction of a central CCP unit; for example, Yanda was under the jurisdiction of the CCP Cultural Commission. The Propaganda Bureau was responsible for joining each school in the planning, investigation, and supervision of uniform curricula, teachers, teaching materials, and budgets (Qu 1985, p. 7).
+Mobility and Solidarity: Some Policy Implications I have speculated (Lin 1982) that a stable social system requires a balance of opportunities for both homophilous and heterophilous exchanges. A system that does not provide sufficient opportunities for heterophilous exchanges reduces the opportunity for mobility and will experience fragmented populations with strong intralevel solidarity. This intralevel solidarity will promote the development of level (class) consciousness and potential class conflict. In contrast, a system that encourages a great degree of heterophilous exchange will experience much mobility and hence structural instability since solidarity will not prevail within population groups. The consequence may be a chaotic society in which transient interactions and lack of group solidarity threaten the integration of the system itself.
 
-Under the banners of anti-Japanese and united fronts, the CCP actively recruited youth throughout China to its schools. Between May and August 1938, 2,288 educated youths signed up (Qu 1985, pp. 17–18).
+What this implies is that the structure must strive for adjustments in the number of levels, the distribution of occupants and resources among those levels, and the cumulation of occupants and resources. An increase in the differentiation of levels, perhaps inevitable in the industrialization process, must be accompanied by a redistribution of occupants and resources. That is, the size differential and the resource differential must be kept at reasonable ratios between levels. Significant size and resource differentials usually indicate a rigid structure.
 
-While the early 1940s were the hardest years in the Border Region and the education process was haphazard, these schools trained hundreds of thousands of revolutionary cadres. Kangda alone graduated about 200,000 political and military personnel from its various campuses between 1937 and 1946. By the time World War II ended in 1945, the Communists had not only replenished lost cadres but, much more significantly, had established their own institutionalizing organizations, effectively producing hundreds of thousands of diehard cadres who provided the backbone in organizing armies, peasants, intellectuals, and the urban poor. The institutionalizing organizations at Yanan and throughout the Border Region must share the credit for the defeat of the KMT in a matter of four years.9
+As a crude illustration, let us assume that the American occupational structure is segmented by sex and race. We assume that occupational mobility follows sex and race specifications (e.g., a position vacated by a white male is filled by another white male). The 1999 distribution of occupants of the five major U.S. occupational categories (managerial and professional, technical, sales and administrative support, production/
 
-9 In contrast, a social movement without the opportunity or structure to institutionalize members may evaporate. The 1989 Tiananmen incident in Beijing is a good example of a social movement that failed (Lin 1992b). While the movement drew millions to Tiananmen Square at its peak, it never had the opportunity to indoctrinate followers.
+operations, and farm) by sex and race is shown in Table 10.1. For each race-by-sex combination, we may construct the occupant differential between two assumed contiguous occupation categories by dividing the occupant size of the「higher」category by that of the「lower」one. For example, for white males, the occupant differential between service occupations and production/operations occupations is .25 (5,694/23,084) and the occupant differential between administrative support occupa-
 
-Some participants realized the need and proposed to establish a Democracy University, but the movement was forcefully put down on June 4.
+Social Capital in Hierarchical Structures  181
 
-Societal Transformations  207
+Table 10.1.   U.S. Employed Workers by Gender, Race, and   Occupational Category (1999)
 
-Summary
+Employed Workers (thousands)
 
-We may summarize the framework and outline of a theory proposing institutions and networks as the infrastructure through which capital building results in societal maintenance and transformation. The theory begins with several definitions. An institutional field is one in which individual and organizational actors are consciously aware of the rules dictated by a set of institutions and abide by them or enact them accordingly in their actions and interactions. Organization-society institutional isomorphism is the extent to which organizations in an institutional field act and transact in accordance with the rules dictated by prevailing institutions. Likewise, organization-network institutional isomorphism promotes and reinforces prevailing institutions. An institutionalizing organization is one that processes individual actors for the purpose of acquiring and indoctrinating them with the knowledge and skills to perform rituals and behaviors consistent with the rules dictated by prevailing institutions.
+Occupational Category
 
-The theory employs several assumptions (explaining mechanisms) as well: (1) striving for organization-society isomorphism is the general tendency of all organizations in the institutional field; (2) the rank (or status) of an organization reflects the extent of its isomorphism with prevailing institutions; and (3) one indication of organization-society institutional isomorphism is the extent to which an organization recruits and retains actors with institutional capital.
+White Male
 
-From these definitions and assumptions, a number of propositions may be constructed, categorized into two social functions: social integration and social change. For social integration, the following hypotheses have been formulated:
+Black Male
 
-Hypothesis 1 (for transfer of personal resources): there is an intergenerational transfer of personal (institutional and human) resources. That is, the greater the parental personal and social (institutional and human) resources, the greater the children’s personal resources.
+White Female
 
-Hypothesis 2 (for accumulation of social resources): personal resources are positively associated with the heterogeneity and richness (reaching to the top) of resources in one’s social ties and social network.
+Black Female
 
-Hypothesis 3 (for conversion of resources into capital): personal resources (both human and institutional) and social resources are positively associated with the likelihood of being included in processing by institutionalizing organizations.
+Managerial/professional
 
-208
+18,196
+
+1,231
+
+17,074
+
+1,954
+
+Administrative support
+
+12,069
+
+1,273
+
+20,652
+
+3,032
+
+Service
+
+5,694
+
+1,216
+
+8,333
+
+2,204
+
+Production/operations
+
+23,084
+
+3,244
+
+4,345
+
+836
+
+Farm
+
+2,847
+
+164
+
+767
+
+16
+
+Source : U.S. Department of Labor,   Employment and Earnings  (1999, p. 20).
+
+Table 10.2.   Occupant Differentials by Gender, Race, and   Occupational Category
+
+Occupant Differential
+
+Occupational Category
+
+Pairs
+
+White Male
+
+Black Male
+
+White Female
+
+Black Female
+
+Managerial: adm.
+
+1.51
+
+.97
+
+.83
+
+.64
+
+support
+
+Adm. Support: Service
+
+2.12
+
+1.05
+
+2.48
+
+1.38
+
+Service: Production
+
+.25
+
+.38
+
+1.92
+
+2.63
+
+Production: Farm
+
+8.11
+
+19.83
+
+5.67
+
+52.00
+
+Note : Differentials based on number of workers in Table 10.1, calculated by the ratio of the upper level to the lower level. The smaller number suggests a reduced opportunity for the lower-level occupants to move to the next higher level.
+
+tions and service occupations is 2.12 (12,069/5,694). Assuming that the resource differentials are the same across these three occupational categories, the present theory would predict that structural constraints on mobility from production/operation occupations to service occupations are quite high: the positional effect would be strong and the tie effect weak. Structural constraints, however, should be quite low for mobility from service to administrative support occupations, where the positional effect is expected to be small and the tie effect large. These and other occupant differentials are presented in Table 10.2.
+
+Now we can compare the patterns of mobility opportunities and the relative positive and tie effects for white and black males and females.
+
+As Table 10.2 shows, both black males and black females have greater structural constraints than their white counterparts for mobility to higher white-collar occupations (from service to administrative support, 1.05
+
+and 1.38 for black males and females and 2.12 and 2.48 for their white counterparts; and from administrative support to managerial occupa-
+
+182
 
 Conceptual Extensions
 
-Certification of institutionalization reflects human and institutional capital.
+tions, .97 and .64 for black males and females and 1.51 and .83 for their white counterparts). Thus, we would expect that for black males and females to move up in these white-collar occupations, they should expect relatively stronger position effects and weaker tie effects. Comparing males and females, we find that females do not suffer as much structural constraint in moving from service to administrative support jobs, but they do suffer greater structural constraint than their male counterparts in moving from administrative support to managerial occupations (1.51
 
-Hypothesis 4 (for the flow of capital in the labor market): institutional capital (including social capital), along with human capital, is positively related to recruitment and retention by a higher-ranking organization.
+and .97 for white and black males, respectively, and .83 and .64 for white and black females respectively). In attempting to move to the top tier of the occupational pyramid, then, females should expect relatively stronger position effects and weaker tie effects.
 
-For social change, the following hypotheses have been formulated: Hypothesis 5 (networking for alternative institutions): a network that is homogeneous relative to an alternative institutional value makes a positive contribution to group solidarity and identity (as reflected in pooling and sharing of resources).
+These are very crude data. We are not sure if, in fact, the American occupational structure is rigidly segmented by race and sex (in fact, we know that to some extent that this is a false assumption). The occupational categories here have been kept to a minimum (Breiger 1981, for example, proposed an eight-category classification for a hierarchical structure of American occupations). And the assumption that the resource differentials are constant across levels (occupational categories) is probably invalid. But given these assumptions, the theory informs us that, in such a structure, race and gender do make a difference in occupational mobility. Faced with greater structural constraints in moving up in white-collar occupations, blacks and females would experience difficulty in mobilizing social capital to overcome such structural deficiencies. Thus, the research agenda should shift to finding out how to make access to social capital more likely for structurally disadvantaged blacks and females.
 
-Hypothesis 6 (constructing alternative programs in institutionalizing organizations): the size of the pooled resources of a social network catering to an alternative institution is positively related to the efforts made and the likelihood of success in establishing alternative programs in institutionalizing organizations.
+This demonstration (within the limitations set by our assumptions) illustrates the utility of the social capital theory from both the structural and the individual perspectives. At the macrostructural level, the search for ways to overcome such constraints stimulates policy considerations.
 
-Hypothesis 7 (for accepting alternative institutional capital by organizations): the extent of alternative programs and their processed actors is positively related to the recruitment and retention by higher-ranking organizations of actors with the alternative institutional capital.
+Is it possible to create vacancies to equalize the size differential? Is it possible to equalize the resource differential? Is it possible to combine these moves in some way? Or should the structure address the issue of real-location of vacancies across sex and racial categories, thereby emphasizing the interfirm labor market rather than the internal labor market perspective (see such a position advocated in Granovetter 1986)? Unless the structure is capable of making such adjustments, chances are that mobility opportunities will remain structurally unequal and discontent will increase. In extreme cases, such immobility is cause for social revolution.
 
-Hypothesis 8 (for institutional transformation): the extent of alternative institutional capital processed by institutionalizing organizations and organizations is positively related to the integration of the alternative institution into prevailing institutions (or the substitution by the alternative institution for a prevailing institution).
+At the individual level, awareness of structural constraints and of flexibility within them may be reflected in the process of cognitive evalua-
 
-Concluding Remarks
+Social Capital in Hierarchical Structures  183
 
-In this chapter, institutions and networks are conceived as the two basic components of society; they provide the basic rules for the flow of capital in society. The framework and its components allow us to integrate a number of existing and potential theories/hypotheses. For example, the human capital theory and the institutional capital theory are reflected in the processes linking actors through institutionalizing organizations to organizations. Social capital theories are captured in the processes linking actors through social networks to organizations. Social movements (e.g., the resource mobilization theory) can be described in the
+tion. To the extent that such evaluation is engaged in, the individual has the option of initiating action by seeking out heterophilous ties and better social capital. Because the nature, range, and quality of such ties vary at different levels in the hierarchy, the benefits of seeking them out also vary. There is also a risk of nonreciprocated action when the structural gap is too great, along with a loss of identification with other occupants of the initial level. Both may lead to a sense of alienation.
 
-Societal Transformations  209
+11
 
-processes linking actors through social networks to institutionalizing organizations and organizations and to institutions themselves.
+Institutions, Networks, and
 
-The ultimate contribution of this conceptual scheme may lie in its ability to highlight how the two major social forces, institutions and networks, provide the basis for actions and transactions in economic and other markets. These forces help explain why a society remains stable even when transaction costs are always positive and uneven. Organizations and individual actors can coordinate and transact because they share same rules in an institutional field, through the mediation and processes of institutionalizing organizations and social networks. The same scheme suggests the dynamics by which institutional transformation may occur. Once the principles of how institutions and networks create, sustain, and change the rules of actions and transactions are set, it is then logical to bring the contributions of the state and technology into the analysis and examine how interest and agency complement or contend in these processes. In the next chapter, I will examine the intimate relationship between technology and social capital.
-
-12
-
-Cybernetworks and the Global Village
+Capital Building
 

@@ -2,7 +2,7 @@ Part I Theory and Research
 
 # 0101. Theories of Capital: The Historical Foundation
 
-One of the far-reaching explanatory schemes in contemporary sociology and economics focuses on the concept of capital. What is capital? I define it as   investment of resources with expected returns in the marketplace .
+One of the far-reaching explanatory schemes in contemporary sociology and economics focuses on the concept of capital. What is capital? I define it as   investment of resources with expected returns in the marketplace.
 
 Capital is resources when these resources are invested and mobilized in pursuit of a profit – as a goal in action. Thus, capital is resources twice processed. In the first process, resources are being produced or altered as investment; in the second, the produced or altered resources are being offered in the marketplace for a profit. In one instance, capital is the outcome of a production process (producing or adding value to a resource); in the other, it is the causal factor in a production (the resource is exchanged to generate a profit). These are processes because both investment and mobilization involve time and effort. In the past two decades, social capital in its various forms and contexts has emerged as one of the most salient forms of capital. While much excitement has been generated, divergent views, perspectives, and expectations have also raised a serious question: is this a fad, or does it have enduring qualities that will herald a new intellectual enterprise?
 

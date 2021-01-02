@@ -1,3126 +1,442 @@
-The Future of the Theory
+The Rise of Social Capital
 
-The present volume does not allow full treatment of all aspects of a social capital theory. The immediate future of such a theory depends on continuing refinement of both the theory itself and measurements of the concepts involved. As mentioned in the Preface, I chose to focus on the instrumental aspect of social capital and thus shortchanged its expressive aspect, not that my own research efforts have ignored the latter (Lin, Simeone, Ensel, and Kuo 1979; Lin, Dean, and Ensel 1986; Lin and Ensel 1989; Lin and Lai 1995; Lin and Peek 1999). There is a substantial and thriving literature on the effects on mental health and the well-being of social support, social networks, and social resources. To do justice to the expressive aspect of social capital would require perhaps another monograph of comparable size. I also abbreviated the coverage of social capital as a collective asset, because my evaluation convinced me that its theoretical and research viability can be extrapolated from the formulations as outlined in this monograph rather than being treated as a separate and independent entity (see Chapters 2, 8, and 12). However, it is appropriate to use this last chapter to present, no matter how briefly, some thoughts on issues of theoretical integrations incorporating these aspects as well.
+One recent controversy in the study of social capital has been an issue raised by Putnam (1993, 1995a, 1995b): whether social capital has been on the decline in the United States for the past three or four decades.
 
-Modeling Social Capital
+Putnam argues that there should be a positive association between social capital and political participation, and he measures social capital in terms of participation rates in social associations or secondary/tertiary associations such as PTAs, Red Cross associations, unions, church-affiliated groups, sports groups, and bowling leagues. Political participation is indicated by voting, writing to Congress, participating in rallies and political meetings, and so on. Putnam has observed that both participation rates have declined in the United States over the past thirty years or so. This has led him to conclude that social capital or civic engagement has been on the decline, and this decline might be responsible for a decline in democratic and political participation. Further, he suggests that the culprit may be the rise of television viewing. As television has gained popularity, the younger generations of Americans are no longer interested in participating in civil associations. Indeed, he suggests, even when they go bowling, they may bowl as individuals rather than as groups or leagues.
 
-A comprehensive social capital model needs to investigate (1) investment in social capital, (2) access to and mobilization of social capital, and (3) returns on social capital. While the discussions throughout this monograph have clarified social capital’s definition, elements, and measurements, it is necessary to discuss briefly the types of outcomes that can be considered expected returns. I propose two major types of outcomes: (1) returns on instrumental action and (2) returns on expressive action (Lin 243
+Putnam’s thesis and research have been challenged from a variety of theoretical and methodological perspectives. These challenges fault Putnam’s work primarily on two grounds. First, he committed errors in measuring social capital. For example, it has been pointed out that he erred in the analyses of the General Social Survey data (Greeley 1997a); he should have used「amount of time dedicated to voluntary work」
 
-244
+(Greeley 1997b, 1997c; Newton 1997) rather than mere membership in certain organizations; he excluded certain types of associations (especially organizations emerging in contemporary America [Schudson 1996; Greeley 1997a, 1997b, 1997c; Minkoff 1997; Newton 1997]); and membership in an association is not the same as civic-mindedness or civic 210
 
-Epilogue
+Cybernetworks and the Global Village  211
 
-1986, 1990, 1992a). Instrumental action is taken to obtain resources not possessed by the actor, whereas expressive action is taken to maintain resources already possessed by the actor.
+energy (Schudson 1996). Second, assuming that his measurements of social capital were acceptable, Putnam blamed the wrong culprit; other factors have been more critical than television viewing (Schudson 1996; Skocpol 1996).1
 
-For instrumental action, we may identify three possible returns: economic, political, and social. Each return can be seen as added capital.
+Whether social capital is rising or declining largely depends on how it is defined and measured (Greeley 1997b; Portes 1998; Lin 1999a). In addition, its significance lies in the consequences selected for analysis.
 
-Economic return is straightforward and is in terms of wealth, including earnings, assets, and so on. Political return is similarly straightforward, as it is represented by hierarchical positions in a collective. Social gain needs some clarification. It has been argued that reputation is an indication of social gain (Chapter 9). Reputation can be defined as the extent of favorable/unfavorable opinions about an individual in a collective. As delineated in Chapter 9, a critical issue in social exchange where social capital is transacted is that the transaction may be asymmetric: a favor is given by alter to ego. Ego’s action is facilitated, but what is the gain for alter, the giver of the favor? Unlike economic exchange, where reciprocal and symmetric transactions are expected in the short or long term, social exchange may not entail such an expectation. What is expected is that ego and alter both acknowledge the asymmetric transactions that create the former’s social debt to the latter, who accrues social credit. Social debt must be publicly acknowledged for ego to maintain his or her relationship with alter. Public recognition in the network spreads the reputation of alter. The greater the debt, the larger the network, and the stronger the need for ego and alter to maintain the relationship; the greater the propensity to spread the word in the network, the greater the reputation gained by alter. In this process, alter is gratified by the reputation, which, along with material resources (such as wealth) and hierarchical positions (such as power), constitutes one of the three returns fundamental in instrumental actions.
+When it is measured using multiple concepts such as memberships, norms, and trust, there is a danger of confusing a causal proposition (e.g., networks promote trust or vice versa) with multiple indicators of the same thing (networks, trust, and norms all measure social capital).
 
-For expressive action, social capital is a means to consolidate resources and defend against possible resource losses (Lin 1986, 1990). The principle is to access and mobilize others who share interests and control of similar resources so that embedded resources can be pooled and shared in order to preserve and protect existing resources. In this process, alters are willing to share their resources with ego because the preservation of ego and its resources enhances and reinforce the legitimacy of alters’ claim to like resources. Three types of return may be specified: physical health, mental health, and life satisfaction. Physical health involves maintenance of physical functional competence and freedom from diseases and injuries. Mental health reflects the ability to with-stand stresses and to maintain cognitive and emotional balance. The homophily principle informs us that persons with similar characteristics, attitudes, and lifestyles tend to congregate in similar residential, social, and work environments that promote interactions and associations. Sim-
+When it is applied to a collectivity as well as to individuals, there is also a danger of the ecological fallacy (e.g., conclusions drawn from one level are assumed to be valid for another).
 
-The Future of the Theory  245
+Following the theory proposed in this volume, I argue that social capital should be measured as embedded resources in social networks.
 
-ilarly, the frequency and intensity of interactions increase similar attitudes and lifestyles.
+This definition ensures consistency in the measurement and in theory as originally conceived (Bourdieu, Coleman, Lin). It also demands and allows macrophenomena to be examined for the processes and mechanisms by which social capital, thus defined and measured, is invested and mobilized to achieve certain goals at the community or societal level.
 
-Thus formulated, the theory permits certain predictions regarding the process of maintaining mental health; namely, that access and use of strong and homophilous ties promote mental health. Maintenance of a health status, regardless of its definition and origin (which can be either instrumental, i.e., losing a job or expressive, i.e., having arguments with a spouse), requires sharing and confiding among intimates who can understand and appreciate the problems involved. Likewise, it is expected that strong and homophilous ties promote sharing of resources, which in turn enhances life satisfaction, as indicated by optimism and satisfaction with various life domains such as family, marriage, work, and community and neighborhood environments.
+From this perspective, then, the debate on whether social capital has been declining or rising in the United States or any society remains to be demonstrated and verified, as none of the studies carried out so far clearly employ the notion that social capital is reflected in the investment and mobilization of embedded resources in social networks. Membership in associations or social trust may or may not be adequate surrogate measures of social capital; their linkage or association with social capital must be clearly demonstrated before any meaningful debate can proceed.
 
-Returns to instrumental actions and expressive actions often reinforce each other. Physical health offers the capacity to endure a heavy work load and responsibility to attain economic, political, and social statuses.
+By focusing the definition and measurement of social capital on embedded resources in networks, I will argue in this chapter that there is clear evidence that social capital has been on the ascent in the past decade – in the form of networks in cyberspace (Lin 1999a). Further, this ascent has consequences beyond community or national boundaries. The 1 There is substantial literature blaming Putnam for using the wrong dependent variable (e.g., importance of good government: Skocpol 1996; the importance of political organizations: Valelly 1996; the importance of national community: Brinkley 1996; the importance of inequality in political participation: Verba, Schlozman, and Brady 1995, 1997; the importance of national elites: Heying 1997; the importance of political institutions: Berman 1997; the importance of institutional incentives: Kenworthy 1997; the importance of culture: Wood 1997). This literature does not address issues directly related to social capital.
 
-Likewise, economic, political, or social statuses often offer resources to maintain physical health (exercises, diet, and health maintenance).
+212
 
-Mental health and life satisfaction are likewise expected to have reciprocal effects with economic, political, and social gains. However, factors leading to instrumental and expressive returns are expected to show differential patterns. As mentioned earlier, it may well be that open networks and relations are more likely to enable access to and use of bridges to reach resources lacking in one’s social circle and to enhance one’s chances of gaining resources/instrumental returns. On the other hand, a denser network with more intimate and reciprocal relations among members may increase the likelihood of mobilizing others with shared interests and resources to defend and protect existing resources/
+Conceptual Extensions
 
-expressive returns. Further, exogenous factors, such as community and institutional arrangements and prescriptive versus competitive incentives, may contribute differentially to the density and openness of networks and relations and to the success of instrumental or expressive actions.
+hypotheses advanced here are two: (1) social capital in the form of cybernetworks is clearly on the rise in many parts of the world, and (2) the rise of cybernetworks transcends national or local community boundaries; therefore, its consequences (both positive and negative) must be assessed in the global context. I begin with a broad survey of the emergence of cybernetworks and the time- and space-transcending social capital they offer.
 
-With the core elements of social capital, types of returns, and differential patterns of causal effects identified, it is possible to conceive an analytic model (Lin 1999a). As can be seen in Figure 13.1, the model contains three blocks of variables in causal sequences. One block represents preconditions and precursors of social capital: the factors in the social structure and each individual’s position in the social structure, both of which facilitate or constrain the investment of social capital.
+The Internet and Cybernetworks:
 
-Another block represents social capital elements, and a third block represents possible returns for social capital.
+Emerging Social Capital
 
-The process leading from the first block to the second block describes the formation of inequality of social capital: structural elements and
+Cybernetworks are defined as the social networks in cyberspace, and   specifically on the Internet .2 These networks are constructed by individuals and groups of individuals – through e-mail, chat rooms, news groups, and clubs (Jones 1997b; Smith and Kollock 1999) – as well as by informal and formal (e.g., economic, political, religious, media) organizations for the purpose of exchanges, including resource transactions and relations reinforcement. Cybernetworks have become a major avenue of communication globally since the early 1990s; an overview of their extent and scope is informative here.
 
-246
+Since late the 1970s and early 1980s, personal computers (PCs) have penetrated workplaces and homes around the globe. Their presence and pervasiveness have overtaken many other communication commodities in North America, Europe, and East Asian countries. In 1997, U.S. consumers bought more computers than automobiles, according to Steven Landefeld, director of the Bureau of Economic Analysis (  USA Today , March 17, 1999). Worldwide PC sales has overtaken television sales in 2000, according to Paul Otellini of the Intel Architecture Business Group (Intel Developer Forum, February 25, 1999). In fact, PC sales already outnumbered sales of TV sets in 1998 in Australia, Canada, Denmark, and Korea. In 1999, 50 percent of U.S. households had computers, and 33 percent were online (Metcalfe 1999).
 
-Epilogue
+E-commerce has become big business (Irving 1995, 1998, 1999). In 1998, online shopping orders totaled $13 billion (with an average order amount of $55), and it was projected to reach $30 to $40 billion in 1999
 
-Figure 13.1 Modeling a theory of social capital.
+(the Boston Consulting Group, as quoted in   PC Magazine , March 9, 1999, p. 9). The greatest growth is expected in travel (88 percent in 1999
 
-positional elements in the structure affect opportunities to construct and maintain social capital. This delineates patterns of differential distributions for social resources that are embedded, accessed, or mobilized (capital deficit [Chapter 7]). It should further demonstrate that there are social forces that determine such differential distributions. Thus, it is incumbent on a theory of social capital to delineate the patterns and determinants of the three ingredients of social capital or the   inequality   of social capital   as collective assets, accessible social resources, and mobilized social resources. Two types of causation forces are of special interest to scholars in this analysis: structural and positional variations. A structure may be characterized by many variations, such as diversity in culture and ideology, level of industrialization and technology, level of education, extent of physical and natural resources, economic productivity, and so on. Within a structure, individuals may be described as occupying different positions in social, cultural, political, and economic strata. These variations may be hypothesized to affect differential investment (i.e., the norm differentially encourages or discourages certain members from investing in social capital) and opportunities (i.e., certain positions offer better or worse chances of acquiring social capital).
+over 1998), PC hardware (46 percent), books (75 percent), groceries (137 percent), music (108 percent), and videos (109 percent) (Jupiter Communication, as quoted in   PC Magazine , March 9, 1999, p. 10). It 2 A portion of this section is taken from Lin (1999a).
 
-Within the second block, there is a process linking two elements of social capital: access to social capital and use of social capital. The process linking the two elements is the process of social capital mobilization. That is, given the unequal distributions of social capital, how would an individual be enabled or disabled to mobilize such capital for
+Cybernetworks and the Global Village  213
 
-The Future of the Theory  247
+has been estimated that 24 million U.S. adults plan to buy gifts online in 1999, or almost quadruple the 7.8 million who said they bought gifts online in 1998; online holiday shopping alone in 1999 could exceed $13
 
-specific actions? This is where the model, while recognizing structural contributions to social capital as captured in the inequality process, also emphasizes possible choice action in mobilization.
+billion (International Communications Research, as quoted in   PC Week , March 1, 1999, p. 6). During 1999, Internet commerce, which is growing thirty times faster than most world economies, will reach $68 billion (Metcalfe 1999, quoting International Data Corp.). By the year 2002, the projection is that online shopping will account for $32 billion in convenience items such as books and flowers, $56 billion in researched purchases like travel and computers, and $19 billion in replenishment goods such as groceries (Forrester Research Inc., as quoted in   PC Week , January 4, 1999, p. 25). Another projection suggests that 40 percent of Web users will be online buyers by 2002, resulting in $400 billion in e-commerce transactions (International Data Corporation, as quoted in ZDNet Radar, Jesse Berst,「Technology of Tomorrow,」January 6, 1999). In the first half of 1998, one out of every five retail stock trades occurred online. There are now an estimated 4.3 million people shopping for stocks and funds online, and online trading is expected to reach 31 percent of the total U.S. investment market by 2003 (Wilson 1999, quoting Piper Jaffray,   PC Computing , March 1999, p. 14).
 
-Third, the theory needs to demonstrate that the three ingredients are connected. Thus, it needs to propose a causal sequence in which embedded resources constrain and enable individual choices and actions. The general expectation is that the better the accessible embedded resources, the more likely they can and will be mobilized in purposive actions by an individual.
+On March 16, 1999, the U.S. Commerce Department scrapped a sixty-year-old industry classification system that had little relevance to an information-based economy (  USA Today , March 17, 1999, p. A1). For example, computers had not even been an industry category; they were grouped with adding machines. A new system was installed that better reflected the new categories created by the information revolution. The system is also designed to be similar to those in Mexico and Canada as trade with those countries continues to grow (  USA Today , March 17, 1999, p. A1). Further, the Commerce Department will begin publishing figures that show the impact of online shopping on retail activity, a key indicator of the nation’s economic health. Until now, the Commerce Department has lumped online shopping figures together with catalogue sales in its overall retail sales numbers. New figures that break out Internet sales as a separate entity will be available by the middle of 2000 for 1998 and 1999 (  Info World , February 15, 1999, p. 71).
 
-Finally, the process linking the second block (social capital) and the third block (outcomes) represents the process whereby social capital produces returns or yields. Here the theory should demonstrate how social capital is capital or how it generates return or gain. That is, it should propose how one or more of the elements of social capital directly or indirectly impact an individual’s economic, political, and social capital (resources) or her or his physical, mental, and life well-being. The more intriguing questions are (1) why certain individuals have better or worse cognitive maps to the locations of better embedded resources; (2) why, given adequate perceptions, some actors are more or less willing to mobilize optimal ties and resources; (3) why certain intermediary agents are more or less willing to make appropriate efforts on their behalf; and (4) why certain organizations are more or less receptive to being influenced by social capital.
+Use of the Internet for communications and networking has been more recent but even more phenomenal in growth than PCs themselves. Since the invention of the hypertext technique by Tim Berners-Lee in the 1980s at CERN (the European Particle Physics Laboratory in Geneva, Switzerland) and the introduction of the World Wide Web to the Internet in the summer of 1991, Internet growth in the past decade has been nothing short of revolutionary. In 1995, 14.1 million of 32 million U.S. households had modems, and by January 1999, 37.7 million of 50 million U.S.
 
-Macro- and Microimplications
+214
 
-These conceptualizations – as individual components and processes discussed in this monograph – are not new; they merely synthesize accumulated knowledge and findings. Research (as reviewed in Lin 1999b) has verified the proposition that social capital enhances an individual’s attained statuses, such as occupational status, authority, and placement in certain industries. Through these attained positions, social capital enhances economic earnings as well. These relationships hold up after family background and education are taken into account. Burt (1997, 1998) and others (Podolny and Baron 1997) have shown that advances and economic rewards are also enhanced in organizations for individuals at strategic locations in informal networks. Those closer to structural holes or bridges (and thus less structurally constrained) seem to gain better returns, presumably because such locations give these individuals better opportunities to access certain capital in the organization.
+Conceptual Extensions
 
-Research is progressing on how organizations use social capital in recruiting and retaining individuals. Fernandez and associates
+households had modems (  USA Today , March 17, 1999, p. 9D). Worldwide, there were 68.7 million Web users in 1997 and 97.3 million in 1998, and the projection is that the number of Web users will exceed 300 million by 2001 (World Trade Organization estimate, March 12, 1998). Two-thirds of the people who will be online by 2002 were not online in early 1999 (Metcalfe 1999, quoting International Data Corp.).
 
-248
+More than 45 million PC users in the United States accessed the Internet regularly in early 1998, a 43 percent increase in the first quarter of 1998 versus the first quarter of 1997. Nearly 49 percent of all U.S. households had at least one PC (  ZD Market Intelligence , January, 1999). In 1999, for the first time, most users – 51 percent – lived outside the United States (Metcalfe 1999, quoting International Data Corp.). The number of Internet users in China surged to 1.5 million in 1998 from 600,000
 
-Epilogue
+in 1997 (Xinhua News Agency, January 15, 1999). There were report-edly 4 million Internet users in China in 1999. U.S. Internet guru Nicholas Negroponte predicted in January 1999 that the number of Internet users in China would balloon to 10 million by the year 2000
 
-(Fernandez and Weinberg 1997) have shown that referrals increase applications, lead to better-qualified candidate recruitment, and reduce costs in the screening process. Putnam’s studies (1993, 1995a, 1995b) indicate the same in terms of participation in civic associations (e.g., churches, PTAs, the Red Cross) and social groups (bowling leagues). Coleman (1990) provides examples of diffusion of information and mobilization through social circles among radical Korean students (i.e., a network as capital), a mother moving from Detroit to Jerusalem in order to have her child walk to a playground or school safely (a norm as capital), and diamond traders in New York utilizing informal ties and informal agreements (network and trust as capital). Portes (1998) also specifies「consummatory」and instrumental consequences of social capital (see Portes and Sensenbrenner 1993 for the consummatory consequences – solidarity and reciprocal support – of social capital for immigrant groups). The primary focus here is on the development, maintenance, or decline of collective assets.
+(Reuters, January 15, 1999).
 
-At the mesonetwork level, the focus shifts to how individuals have differential access to resources embedded in the collective. The question posed is why certain individuals in a given collective have better access to embedded resources than others. The nature of social networks and social ties becomes the focus of analysis. Granovetter (1973, 1974, 1982, 1985, 1995) proposes that bridges, as usually reflected in weaker ties, provide better access to information. Burt (1992, 1997, 1998) sees that strategic locations in the networks (structural holes or constraints) imply better or worse access to information, influence, or control. Lin (1982, 1990, 1994a, 1995a, 1999a) has suggested that hierarchical positions as well as network locations facilitate or hinder access to embedded resources. Embedded resources are indicated by the wealth, status, and power of social ties.
+Female participation on the Internet has also increased dramatically.
 
-At the microaction level, social capital is reflected in the actual linkage between the use of embedded resources in instrumental actions. For example, there is substantial literature on how informal sources and their resources (contact resources) are mobilized in job searches and their effects on attained socioeconomic statuses (Lin, Ensel, and Vaughn 1981; De Graaf and Flap 1988; Marsden and Hurlbert 1988).
+In January 1996, only 18 percent of Net users aged eighteen or above were female; by January 1999, fully 50 percent of the users were female (  USA Today , March 17, 1999, p. 9D). By the end of the year, it was expected that women will become the majority of users on the Internet (Metcalfe 1999, quoting International Data Corp.). In 1997, more e-mail was sent than letters via the post office for the first time.
 
-Research in the area of returns on expressive actions has also been extensive. Much is known about the indirect effects of networks on mental health and life satisfaction (Berkman and Syme 1979; Wellman 1981; Kadushin 1983; Berkman 1984; Hall and Wellman 1985; Lin 1986; House, Umberson, and Landis 1988; Lin, Ye, and Ensel 1999).
+PC experts have announced, to no one’s surprise, that the Internet is changing everything. Michael J. Miller, editor-in-chief of   PC Magazine,  wrote in February 1999 that the Internet changes「the ways we com-municate, get information, entertain ourselves, and run our businesses」
 
-That is, network locations enhance the likelihood of accessing social support, which in turn improves one’s physical or mental well-being.
+(  PC Magazine , February 2, 1999, p. 4). In January 1999, Paul Somerson stated the same thing in   PC Computing . It is practically impossible to get a credible estimate of how many discussion groups, forums, and clubs of multiple types have been formed and are continually being formed. What is the implication of cyberspace and cybernetwork growth for the studies of social networks and social capital? The short answer is: incredible.
 
-Another arena for potential theoretical and research work concerns the
+In view of the dramatic growth of cybernetworks, a fundamental question can be raised: do cybernetworks carry social capital? If so, there is strong evidence either that the recent argument that social capital has been on the decline is false or that the decline has been arrested. I suggest that indeed we are witnessing   a revolutionary rise of social capital , as represented by cybernetworks. In fact, we are witnessing a new era in
 
-The Future of the Theory  249
+Cybernetworks and the Global Village  215
 
-synergy and tension between instrumental and expressive actions for the well-being of individuals as well as society. The fact that success in society, either for expressive or instrumental purposes, relies significantly on who you know and who you「use」modifies both the functional explanation of social mobility and the structural determinism of individual behavior. While structural characteristics impose a range of possible behaviors, including communication access, individuals have certain degrees of freedom in the manipulation of the social structure for their own benefits. The degree of such freedom is determined both by the individual’s position in the structure and by his or her own strategic choices.
+which social capital will soon supersede personal capital in significance and effect.
 
-On a still broader level, this theory reminds us that both instrumental and expressive behaviors have structural significance. Expressive behaviors, which have received much research attention in the past, point to the types of social interactions that promote horizontal linkages among individuals with similar characteristics and lifestyles. Such behaviors reinforce the solidarity and stability of social groups. However, instrumental behaviors dictate equally significant social interactions providing vertical linkages. Such behaviors allow greater social mobility and greater sharing of resources in society.
+Cybernetworks provide social capital in the sense that they carry resources that go beyond mere information purposes. E-commerce is a case in point. Many sites offer free information, but they carry adver-tisements presumably enticing the user to purchase certain merchandise or services. They also provide incentives to motivate users to take actions. The Internet has also provided avenues for exchanges and possible formation of collectivities (Fernback 1997; Jones 1997b; Watson 1997) These「virtual」connections allow users to connect with others with few time or space constraints. Access to information in conjunction with interactive facilities makes cybernetworks not only rich in social capital, but also an important investment for participants’ purposive actions in both the production and consumption markets.
 
-There is intrinsic complementarity as well as tension between the two types of behavior. Excessive instrumental actions risk the loss of group identity and solidarity as one attempts to move from one position to another. On the other hand, excessive expressive behaviors promote the stagnation of social segmentation and nurture the development of class consciousness and class conflict. The relative frequency and intensity of instrumental and expressive interactions in a society, I believe, holds the key in determining the dynamics of stability and change. I postulate that the persistence of a given social structure depends on the relative amounts of expressive and instrumental interaction actually taking place among its members. The optimal points of such interactions for both persistence and change should be the focus of future theoretical and empirical explorations.
+Just as pertinent is the debate on whether globalization of cybernetworks represents a reproduction of the world system where the core states or actors continue to dominate and indeed「colonize」peripheral states/
 
-References
+actors by incorporating the latter into global economic systems dominated by the former (Brecher and Costello 1998; Browne and Fishwick 1998; Sassen and Appiah 1998). This argument is supported by evidence that international organizations, international corporations, and international economic forms, such as commodity chains, are dominated by the values, culture, and authority of dominant states’ corporations or by these states themselves. There is much concern about the increasing inequality of access to cyberspace around the world. As the rich countries and actors gain greater access to capital in cyberspace, the poor countries and actors are largely shut out from the cybercommunity.
 
-Abell, Peter. 1992.「Is Rational Choice Theory a Rational Choice of Theory?」
+Yet, cybernetworks suggest, at least for those who gain access to cyberspace, the possibility of a bottom-up globalization process whereby entrepreneurship and group formations become viable without the dominance of any particular class of actors (Wellman 1998). Do cybernetworks suggest a neo-globalization process? While not denying that the dominant states and actors remain actively interested in controlling the development of cyberspace, I argue that cybernetworks represent a new era of democratic and entrepreneur networks and relations in which resources flow and are shared by a large number of participants with new rules and practices, many of which are devoid of colonial intent or capability.
 
-Pp. 183–206 in   Rational Choice Theory: Advocacy and Critique , edited by J. S. Coleman and T. J. Fararo. Newbury Park, CA: Sage.
+With the increasing availability of inexpensive devices and ever-increasing Web capabilities that transcend space and time, we are facing a new era of social networks in the form of global villages. Globalization of cybernetworks is a double-edged sword. More sharply than ever,
 
-Agre, Philip E. 1998.「Designing Genres for New Media: Social, Economic, and Political Contexts.」Pp. 69–99 in   Cybersociety 2.0: Revisiting Computer-Mediated Communication and Community , edited by S. G. Jones. Thousand Oaks, CA: Sage.
+216
 
-Alchian, Armen. 1965.「Some Economics of Property Rights.」  Il Politico  30(4):816–829.
+Conceptual Extensions
 
-Alchian, Armen and Harold Demsetz. 1973.「The Property Right Paradigm.」
+it demarcates the haves and the have-nots in terms of accessing capital embedded in cyberspace. Access to computers, other devices, and the Internet remains distributed unequally because of social (e.g., lack of education and facility in the language), economic (e.g., ability to acquire computers and gain access to the communications infrastructure), and political (e.g., authoritarian control over access) constraints. Yet, within the cybernetworks, it is no longer necessary or possible to reproduce the core-peripheral world system, in which the core actors establish links and networks to peripheral actors for their continuing domination of information, resources, and surplus values. Instead, information is freer and more available to more individuals than ever before in human history. It is also clear that constraints and control over access are waning fast as computer and communication costs decrease and technology leapfrogs the traditional authoritarian control of access.
 
-Journal of Economic History   33:16–27.
+There is strong evidence that an increasing number of individuals are engaged in this new form of social networks and relations, and there is little doubt that a significant part of the activities involve the creation and use of social capital. Access to free sources of information, data, and other actors has created growing networks and social capital at an unprecedented pace. Networks are expansive and yet at the same time intimate. Networking transcends time (connecting whenever one can and wants to) and space (accessing sites around the globe directly or indirectly if direct access is denied). Rules and practices are being formulated as such networks are constructed. Institutions – borrowed from past practices, deliberately deviating from past practices, or consensually developed by participants – are being created as such networks (e.g., villages) are being built.
 
-Allen, Franklin. 1984.「Reputation and Product Quality.」  Rand Journal of   Economics   15:311–327.
+There is little doubt that the hypothesis that social capital is declining can be refuted if one goes beyond the traditional interpersonal networks and analyzes the cybernetworks that emerged in the 1990s. We are witnessing the beginning of a new era in which social capital is far outpacing personal capital in significance and effect. We need to compile basic data and information on the extent to which individuals are spending time and effort engaging others over cybernetworks, compared to the use of time and effort for interpersonal communications, other leisure activities (TV watching, travel, eating out, movie- and theatergoing), attend-ing civic and local meetings, and so on. We also need to estimate the amount of useful information gathered through cybernetworks compared to traditional media.
 
-Angelusz, Robert and Robert Tardos. 1991.「The Strength and Weakness of
+In the next section, I will offer a case study, concerning the recent Falun Gong movement in China, as an example of how cybernetworks provide social capital in a social movement and sustain collective action even within an extremely constrained institutional field. This example shows
 
-「Weak Ties.」Pp. 7–23 in   Values, Networks and Cultural Reproduction in   Hungary , edited by P. Somlai. Budapest: Coordinating Council of Programs.
+Cybernetworks and the Global Village  217
 
-Barber, Bernard. 1983.   The Logic and Limits of Trust . New Brunswick, NJ: Rutgers University Press.
+how cybernetworks facilitate the use of social capital over space and time, and demonstrates effectiveness in generating and sustaining a social movement in a global context. Whether the movement itself has any merit is of no interest here.
 
-Barbieri, Paolo. 1996.「Household, Social Capital and Labour Market Attainment.」Presented at the ECSR Workshop, August 26–27, Max Planck Institute for Human Development and Education, Berlin.
+Falun Gong: A Case Study of Social Capital
 
-Baron, James N. and William T. Bielby. 1980.「Bringing the Firm Back In: Stratification, Segmentation, and the Organization of Work.」  American   Sociological Review   45 (October):737–765.
+and Social Movement
 
-Becker, Gary S. 1964/1993.   Human Capital . Chicago: University of Chicago Press.
+Falun Gong (Cultivation of the Wheel of the Law), also known as Falu Dafa (the Great Law of the Wheel), is a Chinese meditation and exercise technique proposed by Li Hongzhi (Li 1993). Li contends that it evolved out of Buddhism and captures the truth of the universe through both Buddhism and Taoism, the two highest-level religions in the world.
 
-Beggs, John J. and Jeanne S. Hurlbert. 1997.「The Social Context of Men’s and Women’s Job Search Ties: Voluntary Organization Memberships, Social Resources, and Job Search Outcomes.」  Sociological Perspectives   40(4): 601–622.
+According to Li, the principle of the universe is contained in a turning Wheel that, upon cultivation, can be contained in the lower abdomen of the cultivator. The Law can be expressed in three principles: Zhen (truth or truthfulness), Shan (compassion, kindness, or benevolence), and Ren (tolerance or forbearance). Practicing these principles helps the individual acquire the Wheel and keep it turning. The Wheel may turn in either direction. When it is turning clockwise, it brings the principles of the universe into the body as energy; when it is turning counterclockwise, it projects the principles outward to share the energy with others. Not everyone, in fact seldom anyone, acquires such energy at its powerful maximum, but most people can learn to keep the Wheel turning. As cultivation advances, more wheels can be built in the body from the root Wheel at the lower abdomen.3
 
-Ben-Porath, Yoram. 1980.「The F-Connection: Families, Friends, and Firms and the Organization of Exchange.」  Population and Development Review  6:1–29.
+3 Li was born in 1951, in a city in Jinlin Province, in northeastern China. According to Li, he was born on May 13, 1951 (Li 1994, p. 333), but the government has claimed that he changed the original date of birth on his official registration card from July 7, 1952 (www.peopledaily.com.cn/item/flg/news/072306.html) to May 13 in order to have it coincide, by the lunar calendar, with the birth day of Sakyamuni, or Siddhartha Gautama, the founder of Buddhism, on April 8). Li has contended that the original record was incorrect, and he has no interest in becoming a modern-day Sakyamuni. From 1970
 
-251
+to 1978, he worked at an army stud farm and played the trumpet in a forest police unit in Jilin, and worked as an attendant at a hotel run by the police unit. In 1982, after leaving the army, he worked at the security department of the Changchun Cereals Company (  People’s Daily , July 22, 1999). In 1991 he quit that job and became involved in the practice and instruction of   qigong  (cultivation of inner energy, a general and popular term for many forms of Chinese exercise to enhance inner energy).
 
-252
+According to the biography attached to one of the books he wrote (Li 1994), he started learning the Law from a master between the ages of four and twelve. He learned the principles of Zhen, Shan, and Ren and achieved the highest level of cultivation when he was eight, at which time he allegedly could become invisible, pull rusted nails from frozen pipes without effort, float off the ground, and penetrate through walls. He then met another master at the age of twelve and learned martial arts. In 1972, he met a third master who taught him to cultivate his mind for two years. The next master was a woman
 
-References
+218
 
-Berkman, Lisa F. 1984.「Assessing the Physical Health Effects of Social Networks and Social Support.」  Annual Review of Public Health   5:413–432.
-
-Berkman, Lisa F. and S. Leonard Syme. 1979.「Social Networks, Host Resistance, and Mortality: A Nine-Year Follow-up Study of Alameda County Residents.」  American Journal of Epidemiology   109:186–204.
-
-Berkman, Sheir. 1997.「Civil Society and Political Institutions.」  American   Behavioral Scientist  (March–April) 40(5):562–574.
-
-Bian, Yanjie. 1994.   Work and Inequality in Urban China . Albany: State University of New York Press.
-
-1997.「Bringing Strong Ties Back In: Indirect Connection, Bridges, and Job Search in China.」  American Sociological Review   62(3, June):366–
-
-385.
-
-Bian, Yanjie and Soon Ang. 1997.「Guanxi Networks and Job Mobility in China and Singapore.」  Social Forces   75:981–1006.
-
-Bielby, William T. and James N. Baron. 1986.「Men and Women at Work: Sex Segregation and Statistical Discrimination.」  American Journal of Sociology  91:759–799.
-
-Blau, Peter M. 1964.   Exchange and Power in Social Life . New York: Wiley.
-
-1977.   Inequality and Heterogeneity . New York: Free Press.
-
-1985.「Contrasting Theoretical Perspectives,」Department of Sociology, Columbia University.
-
-Blau, Peter M. and Otis Dudley Duncan. 1967.   The American Occupational   Structure . New York: Wiley.
-
-Blau, Peter M. and Joseph E. Schwartz. 1984.   Crosscutting Social Circles .
-
-Orlando, FL: Academic Press.
-
-Bloomberg, Michael R. 1999.「Ties That Bind.」  Bloomberg , June:11.
-
-Bose, Christine and Peter H. Rossi. 1983.「Gender and Jobs: Prestige Standings of Occupations as Affected by Gender.」  American Sociological Review  48:316–330.
-
-Bourdieu, Pierre. 1972/1977.   Outline of a Theory of Practice . Cambridge: Cambridge University Press.
-
-1980.「Le Capital Social: Notes Provisoires.」  Actes de la Recherche en   Sciences Sociales   3:2–3.
-
-1983/1986.「The Forms of Capital.」Pp. 241–258 in   Handbook of Theory   and Research for the Sociology of Education , edited by J. G. Richardson.
-
-Westport, CT: Greenwood Press.
-
-1990.   The Logic of Practice . Cambridge: Polity.
-
-Bourdieu, Pierre and Jean-Claude Passeron. 1977.   Reproduction in Education,   Society, Culture . Beverly Hills, CA: Sage.
-
-Boxer, Marilyn J. 1982.「For and About Women: The Theory and Practice of Women’s Studies in the United States.」  Sings: Journal of Women in Culture   and Society   7(3):661–695.
-
-Boxman, E. A. W. 1992.「Contacts and Careers.」Ph.D. diss., University of Utrecht, the Netherlands.
-
-Boxman, E. A. W., P. M. De Graaf, and Henk D. Flap. 1991.「The Impact of Social and Human Capital on the Income Attainment of Dutch Managers.」
-
-Social Networks   13:51–73.
-
-References
-
-253
-
-Boxman, E. A. W. and Hendrik Derk Flap. 1990.「Social Capital and Occupational Chances.」Presented at the the International Sociological Association XII World Congress of Sociology, July, Madrid.
-
-Brecher, Jeremy and Tim Costello. 1998.   Global Village or Global Pillage .
-
-Boston: South End Press.
-
-Breiger, Ronald L. 1981.「The Social Class Structure of Occupational Mobility.」
-
-American Journal of Sociology   87(3):578–611.
-
-Breslow, Harris. 1997.「Civil Society, Political Economy, and the Internet.」
-
-Pp. 236–257 in   Virtue Culture , edited by S. G. Jones. London: Sage.
-
-Brewer, Anthony. 1984.   A Guide to Marx’s Capital . Cambridge: Cambridge University Press.
-
-Bridges, William P. and Wayne J. Villemez. 1986.「Informal Hiring and Income in the Labor Market.」  American Sociological Review   51:574–582.
-
-Brinkley, Alan. 1996.「Liberty, Community, and the National Idea.」  The   American Prospect   29:53–59.
-
-Browne, Ray Broadus and Marshall William Fishwick, eds. 1998.   The Global   Village: Dead or Alive . Bowling Green, OH: Bowling Green State University Popular Press.
-
-Burkhalter, Byron. 1999.「Reading Race Online: Discovering Racial Identity in Usenet Discussions.」Pp. 60–75 in   Communities in Cyberspace , edited by M. A. Smith and Peter Pollock. London: Routledge.
-
-Burt, Ronald S. 1982.   Toward a Structural Theory of Action . Orlando, FL: Academic Press.
-
-1992.   Structural Holes: The Social Structure of Competition . Cambridge, MA: Harvard University Press.
-
-1997.「The Contingent Value of Social Capital.」  Administrative Science   Quarterly   42:339–365.
-
-1998a.「The Gender of Social Capital.」  Rationality and Society   10(1):5–
-
-46.
-
-1998b.「Trust Reputation, and Third Parties.」Unpublished paper. Chicago: University of Chicago.
-
-Campbell, Karen E. and Barrett A. Lee. 1991.「Name Generators in Surveys of Personal Networks.」  Social Networks   13:203–221.
-
-Campbell, Karen E., Peter V. Marsden, and Jeanne S. Hurlbert. 1986.「Social Resources and Socioeconomic Status.」  Social Networks   8(1):97–116.
-
-Castells, Manuel. 1998.   End of Millennium . Malden, MA: Blackwell.
-
-Chamberlain, Mariam K., ed. 1988.   Women in Academe: Progress and   Prospects . New York: Russell Sage Foundation.
-
-China Internet Network Information Center (CNNIC). 1999.「The Development of the Internet in China: A Statistical Report」(translated by the China Matrix).
-
-Cleverley, John. 1985.   The Schooling of China: Tradition and Modernity in   Chinese Education . Sydney: George Allen & Unwin.
-
-Coase, Ronald H. 1984.「The New Institutional Economics.」  Journal of   Institutional and Theoretical Economics   140:229–231.
-
-Coleman, James S. 1986a.   Individual Interests and Collective Action .
-
-Cambridge: Cambridge University Press.
-
-254
-
-References
-
-1986b.「Social Theory, Social Research: A Theory of Action.」  American   Journal of Sociology   91:1309–1335.
-
-1988.「Social Capital in the Creation of Human Capital.」  American Journal   of Sociology   94:S95–S121.
-
-1990.   Foundations of Social Theory . Cambridge, MA: Harvard University Press.
-
-Collins, Randall. 1981.「On the Microfoundations of Macrosociology.」  American Journal of Sociology   86:984–1014.
-
-Comte, Auguste. 1848.   General View of Positivism . Stanford, CA: Academic Reprintes.
-
-Cook, Karen S. 1982.「Network Structure from an Exchagne Perspective.」Pp.
-
-177–199 in   Social Structure and Network Analysis , edited by P. V. Marsden and N. Lin. Beverly Hills, CA: Sage.
-
-Cook, Karen S. and Richard M. Emerson. 1978.「Power, Equity and Commitment in Exchange Networks.」  American Sociological Review   43:721–739.
-
-Cook, Karen S., Richard M. Emerson, Mary R. Gillmore, and Toshio Yamagishi. 1983.「The Distribution of Power in Exchange Networks: Theory and Experimental Results.」  American Journal of Sociology   89(2):275–305.
-
-Dahrendorf, Ralf. 1959.   Class and Class Conflict in Industrial Society . Stanford, CA: Stanford University Press.
-
-David, Paul. 1985.「Clio and the Economics of QWERTY.」  American Economic   Review   75:332–337.
-
-De Graaf, Nan Dirk, and Hendrik Derk Flap. 1988.「With a Little Help from My Friends.」  Social Forces   67(2):452–472.
-
-Diamond, Douglas W. 1989.「Reputation Acquisition in Debt Markets.」  Journal   of Political Economy   97:828–862.
-
-DiMaggio, Paul J. 1988.「Interest and Agency in Institutional Theory.」Pp. 3–22
-
-in    Institutional Patterns and Organizations: Culture and Environment , edited by L. G. Zucker. Cambridge, MA: Ballinger.
-
-DiMaggio, Paul. J. and Walter W. Powell. 1983.「The Iron Cage Revisited: Institutional Isomorphism and Collective Rationality in Organizational Fields.」
-
-American Sociological Review   48 (April):147–160.
-
-1991.「Introduction.」Pp. 1–38 in   The New Institutionalism in Organizational Analysis , edited by Walter W. Powell and Paul J. DiMaggio. Chicago: University of Chicago Press.
-
-Donath, Judith S. 1999.「Identity and Deception in the Virtual Community.」
-
-Pp. 29–59 in   Communities in Cyberspace , edited by M. A. Smith. London: Routledge.
-
-Durkheim, Emile (trans. G. Simpson). 1964.   The Division of Labour in Society .
-
-New York: Free Press.
-
-1973.   Moral Education: A Study in the Theory and Application of the   Sociology of Education . New York: Free Press.
-
-Ekeh, Peter P. 1974.   Social Exchange Theory: The Two Traditions . Cambridge, MA: Harvard University Press.
-
-Elias, Norbert. 1939/1978.   History of Manners . New York: Pantheon.
-
-Emerson, Richard M. 1962.「Power-Dependence Relations.」  American Sociological Review   27:31–40.
-
-References
-
-255
-
-Emerson, Richard M., Karen S. Cook, Mary R. Gillmore, and Toshio Yamagishi. 1983.「Valid Predictions from Invalid Comparisons: Response to Heckathorn.」  Social Forces   61:1232–1247.
-
-England, Paula. 1992a.   Comparable Worth: Theories and Evidence . New York: Aldine de Gruyter.
-
-1992b.「From Status Attainment to Segregation and Devaluation.」  Contemporary Sociology   21:643–647.
-
-England, Paula, George Farkas, Barbara Kilbourne, and Thomas Dou. 1988.
-
-「Explaining Occupational Sex Segregation and Wages: Findings from a Model with Fixed Effects.」  American Sociological Review   53:544–558.
-
-Ensel, Walter M. 1979.「Sex, Social Ties, and Status Attainment.」Albany: State University of New York at Albany.
-
-Erickson, Bonnie H. 1995.「Networks, Success, and Class Structure: A Total View.」Presented at the Sunbelt Social Networks Conference, February, Charleston, SC.
-
-1996.「Culture, Class and Connections.」  American Journal of Sociology  102(1, July):217–251.
-
-1998.「Social Capital and Its Profits, Local and Global.」Presented at the Sunbelt XVIII and 5th European International Conference on Social Networks, Sitges, Spain, May 27–31.
-
-Fei, Xiaotong. 1947/1992.   From the Soil . Berkeley: University of California Press.
-
-Fernandez, Roberto M. and Nancy Weinberg. 1997.「Sifting and Sorting: Personal Contacts and Hiring in a Retail Bank.」  American Sociological Review  62 (December):883–902.
-
-Fernback, Jan. 1997.「The Individual within the Collective: Virtual Ideology and the Realization of Collective Principles.」Pp. 36–54 in   Virtual Culture , edited by Steven G. Jones. London: Sage.
-
-Fisher, Irving. 1906.   The Nature of Capital and Income . New York: Macmillan.
-
-Flap, Henk D. 1991.「Social Capital in the Reproduction of Inequality.」  Comparative Sociology of Family, Health and Education   20:6179–6202.
-
-1994.「No Man Is an Island: The Research Program of a Social Capital Theory.」Presented at the World Congress of Sociology, Bielefeld, Germany, July.
-
-1996.「Creation and Returns of Social Capital.」Presented at the the European Consortium for Political Research on Social Capital and Democracy, October 3–6, Milan.
-
-Flap, Henk D. and Ed Boxman. 1996.「Getting Started. The Influence of Social Capital on the Start of the Occupational Career,」University of Utrecht, the Netherlands.
-
-1998.「Getting a Job as a Manager,」University of Utrecht, the Netherlands.
-
-Flap, Henk D. and Nan Dirk De Graaf. 1986.「Social Capital and Attained Occupational Status.」  Netherlands Journal of Sociology   22:145–161.
-
-Forse, Michel. 1997.「Capital Social et Emploi.」  L’Année Sociologique   47(1): 143–181.
-
-Freeman, Jo. 1972–1973.「The Tyranny of Structurelessness.」  Berkeley Journal   of Sociology   17:151–164.
-
-256
-
-References
-
-Giddens, Authory. 1979.   Central Problems in Social Theory: Action, Structure,   and Contradiction in Social Analysis . Berkeley: University of California Press.
-
-Gilham, Steven A. 1981.「State, Law and Modern Economic Exchange.」
-
-Pp. 129–152 in   Networks, Exchange and Coercion , edited by D. Willer and B. Ander. New York: Elsevier/Greenwood.
-
-Goldthorpe, John H. 1980.   Social Mobility and Class Structure in Modern   Britain . New York: Oxford University Press.
-
-Granovetter, Mark. 1973.「The Strength of Weak Ties.」  American Journal of   Sociology   78:1360–1380.
-
-1974.   Getting a Job . Cambridge, MA: Harvard University Press.
-
-1982.「The Strength of Weak Ties: A Network Theory Revisited.」Pp.
-
-105–130 in   Social Structure and Network Analysis , edited by Nan Lin and Peter V. Marsden. Beverly Hills, CA: Sage.
-
-1985.「Economic Action and Social Structure: The Problem of Embeddedness.」  American Journal of Sociology   91:481–510.
-
-1986.「Labor Mobility, Internal Markets, and Job Matching: A Comparison of the Sociological and Economic Approaches.」  Research in Social Stratification and Mobility   5:3–39.
-
-1995.   Getting a Job  (rev. ed.). Chicago: University of Chicago Press.
-
-Greeley, Andrew. 1997a.「Coleman Revisited: Religious Structures as a Source of Social Capital.」  American Behavioral Scientist   40(5, March–April): 587–594.
-
-1997b.「The Other Civic America: Religion and Social Capital.」  The American Prospect   32 (May–June):68–73.
-
-1997c.「The Strange Reappearance of Civic America: Religion and Volunteering,」Department of Sociology, University of Chicago.
-
-Green, Gary P., Leann M. Tigges, and Irene Browne. 1995.「Social Resources, Job Search, and Poverty in Atlanta.」  Research in Community Sociology  5:161–182.
-
-Grief, Avner. 1989.「Reputation and Coalitions in Medieval Trade: Evidence of the Haghribi Traders.」  Journal of Economic History   49 (December):857–
-
-882.
-
-Gurak, Laura J. 1999.「The Promise and the Peril of Social Action in Cyberspace: Ethos, Delivery, and the Protests Over Marketplace and the Clipper Chip.」Pp. 243–263 in   Communities in Cyberspace , edited by M. A. Smith and P. Kollock. London: Routledge.
-
-Guy-Sheftall, Beverly. 1995.   Women’s Studies: A Retrospective . New York: Ford Foundation.
-
-Hall, Alan and Barry Wellman. 1985.「Social Networks and Social Support.」
-
-Pp. 23–42 in   Social Support and Health , edited by S. Cohen and S. L. Syme.
-
-Orlando, FL: Academic Press.
-
-Han, Minmo. 1987.   History of Chinese Sociology . Tianjin: Tianjin Renmin Press.
-
-Hannan, Michael T. 1992.「Rationality and Robustness in Multilevel Systems.」
-
-Pp. 120–136 in   Rational Choice Theory: Advocacy and Critique , edited by J. S. Coleman and T. J. Fararo. Newbury Park, CA: Sage.
-
-References
-
-257
-
-Hardin, Russell. 1998.「Conceptions of Social Capital.」Presented at the International Conference on Social Networks and Social Capital, October 30–November 1, Duke University.
-
-Hechter, Michael. 1983.「A Theory of Group Solidarity.」Pp. 16–57 in   The   Microfoundations of Macrosociology , edited by M. Hechter. Philadelphia: Temple University Press.
-
-Heying, Charles H. 1997.「Civil Elites and Corporate Delocalization.」  American Behavioral Scientist  (March–April) 408(5):657–668.
-
-Homans, George C. 1950.   The Human Group . New York: Harcourt, Brace.
-
-1958.「Human Behavior as Exchange.」  American Journal of Sociology  63(6, May):597–606.
-
-1961.   Social Behavior: Its Elementary Forms . New York: Harcourt, Brace & World.
-
-House, James, Debra Umberson, and K. R. Landis. 1988.「Structures and Processes of Social Support.」  Annual Review of Sociology   14:293–318.
-
-Howe, Florence. 1977.   Seven Years Later: Women’s Studies Programs in 1976 .
-
-Washington, DC: National Advisory Council on Women’s Educational Programs.
-
-Howe, Florence and Carol Ahlum. 1973.「Women’s Studies and Social Change.」
-
-Pp. 393–423 in   Academic Women on the Move , edited by A. S. Rossi and A. Calderwood. New York: Russell Sage Foundation.
-
-Hsung, Ray-May and Hwang, Yih-Jib. 1992.「Social Resources and Petit Bourgeois.」  Chinese Sociological Quarterly   16:107–138.
-
-Hsung, Ray-May and Ching-Shan Sun. 1988.   Social Resources and Social   Mobility: Manufacturing Employees . Taiwan: National Science Council.
-
-Irving, Larry. July 1995, 1998, 1999.   Falling Through the Net: Defining the   Digital Divide : I, II, III. Washington, DC: U.S. Department of Commerce.
-
-Jacobs, Jerry. 1989.   Revolving Doors: Sex Segregation and Women’s Careers .
-
-Stanford, CA: Stanford University Press.
-
-Jarvis, Craig. 1999.「Engineer Admits Securities Fraud.」  News & Observers , June 22, pp. 1–2.
-
-Jenkins, Richard. 1992.   Pierre Bourdieu . Long: Loutledge.
-
-Jeter, Jon. 1999.「Internet Romance Ends with Death.」  The Washington Post , March 6, p. A2.
-
-Johnson, Harry G. 1960.「The Political Economy of Opulence.」  Canadian   Journal of Economics and Political Science   26:552–564.
-
-Jones, Steven G., ed. 1997a.   Virtual Culture . London: Sage.
-
-Jones, Steven G. 1997b.「The Internet and Its Social Landscape.」In   Virtual   Culture , edited by S. G. Jones. London: Sage.
-
-Kadushin, Charles. 1983.「Mental Health and the Interpersonal Environment: A Re-Examination of Some Effects of Social Structure on Mental Health.」
-
-American Sociological Review   48:188–198.
-
-Kalleberg, Arne L. 1988.「Comparative Perspectives on Work Structures and Inequality.」  Annual Review of Sociology   14:203–225.
-
-Kalleberg, Arne L. and James R. Lincoln. 1988.「The Structure of Earnings Inequality in the United States and Japan.」  American Journal of Sociology  94(Supplement):S121–S153.
-
-258
-
-References
-
-Kelley, Jonathan. 1990.「The Failure of a Paradigm: Log-Linear Models of Social Mobility.」Pp. 319–346, 349–357 in   John H. Goldthorpe: Consensus and   Controversy , edited by J. Clark, C. Modgil, and S. Modgil. London: Falmer Press.
-
-Kelly, Kevin. 1998.   New Rules for the New Economy . New York: Penguin.
-
-Kelman, H. C. 1961.「Processes of Opinion Change.」  Public Opinion Quarterly  25:57–78.
-
-Kenworthy, Lane. 1997.「Civil Engagement, Social Capital, and Economic Corporation.」  American Behavioral Scientist  (March–April) 40(5):645–656.
-
-Kessler-Harris, Alice. 1982.   Out to Work: A History of Wage-Earning Women   in the United States . New York: Oxford University Press.
-
-Kilbourne, Barbara Stanek, Paula England, George Farkas, Kurt Beron, and Dorothea Weir. 1994.「Returns to Skill, Compensating Differentials, and Gender Bias: Effects of Occupational Characteristics on the Wages of White Women and Men.」  American Journal of Sociology   100(3, November): 689–719.
-
-Klein, B. and K. Leffler. 1981.「The Role of Market Forces in Assuring Contractual Performance.」  Journal of Political Economy   81:615–641.
-
-Kollock, Peter. 1999.「The Economics of Online Cooperation: Gifts and Goods in Cyberspace.」Pp. 220–239 in   Communities in Cyberspace , edited by Marc A. Smith and Peter Kollock. London: Routledge.
-
-Kornai, Janos. 1992.   The Socialist System: The Political Economy of Communism . Princeton, NJ: Princeton University Press.
-
-Kreps, David and Robert Wilson. 1982.「Reputation and Imperfect Information.」  Journal of Economic Theory   27:253–279.
-
-Krymkowski, Daniel H. 1991.「The Process of Status Attainment Among Men in Poland, the U.S., and West Germany.」  American Sociological Review  56:46–59.
-
-Lai, Gina Wan-Foon, Nan Lin, and Shu-Yin Leung. 1998.「Network Resources, Contact Resources, and Status Attainment.」  Social Networks   20(2, April): 159–178.
-
-Laumann, Edward O. 1966.   Prestige and Association in an Urban Community .
-
-Indianapolis: Bobbs-Merrill.
-
-Lazarsfeld, Paul F. and Robert K. Merton. 1954.「Friendship as Social Process: A Substantive and Methodological Analysis.」Pp. 298–348 in   The Varied   Sociology of Paul F. Lazarsfeld , edited by P. L. Kendall. New York: Columbia University Press.
-
-Ledeneva, Alena. 1998.   Russia’s Economy of Favours: Blat, Networking, and   Informal Exchange . New York: Cambridge University Press.
-
-Levi-Strauss, Claude. 1949.   Les Structures Elementaires de la Parente . Paris: Presses Universitaires de France.
-
-1989.   The Elementary Structure of Kinship . Boston: Beacon Press.
-
-Li, Hongzhi. 1993 and 1994 (2nd ed.).   Zhong-Guo Fa-Lun Gong (Chinese   Cultivation of the Wheel of the Law) . Beijing: Military Literature Press.
-
-1996.   Fa-Lun Da-Fa Yi Jie (Explicating the Principles of the Wheel of the   Law) . Changchun: Changchun Press.
-
-References
-
-259
-
-Lin, Nan. 1973.   The Study of Human Communication . Indianapolis: Bobbs-Merrill.
-
-1982.「Social Resources and Instrumental Action.」Pp. 131–145 in   Social   Structure and Network Analysis , edited by P. V. Marsden and N. Lin.
-
-Beverly Hills, CA: Sage.
-
-1986.「Conceptualizing Social Support.」Pp. 17–30 in   Social Support, Life   Events, and Depression , edited by N. Lin, A. Dean, and W. Ensel. Orlando, FL: Academic Press.
-
-1989.「Chinese Family Structure and Chinese Society.」  Bulletin of the Institute of Ethnology   65:382–399.
-
-1990.「Social Resources and Social Mobility: A Structural Theory of Status Attainment.」Pp. 247–271 in   Social Mobility and Social Structure , edited by R. L. Breiger. New York: Cambridge University Press.
-
-1992a.「Social Resources Theory.」Pp. 1936–1942 in   Encyclopedia of   Sociology , Volume 4, edited by E. F. Borgatta and M. L. Borgatta. New York: Macmillan.
-
-1992b.   The Struggle for Tiananmen: Anatomy of the 1989 Mass Movement .
-
-Westport, CT: Praeger.
-
-1994a.「Action, Social Resources, and the Emergence of Social Structure: A Rational Choice Theory.」  Advances in Group Processes   11:67–85.
-
-1994b.「Institutional Capital and Work Attainment.」Unpublished manuscript, Durham, NC.
-
-1995a.「Les Resources Sociales: Une Theorie Du Capital Social.」  Revue   Française de Sociologie   XXXVI(4, October–December):685–704.
-
-1995b.「Persistence and Erosion of Institutional Resources and Institutional Capital: Social Stratification and Mobility in Taiwan.」Presented at the International Conference on Social Change in Contemporary Taiwan, June, Academia Sinica, Taipei, Taiwan.
-
-1999a.「Building a Network Theory of Social Capital.」  Connections   22(1): 28–51.
-
-1999b.「Social Networks and Status Attainment.」  Annual Review of Sociology   25:467–487.
-
-Forthcoming.「Guanxi: A Conceptual Analysis.」In   The Chinese Triangle of   Mainland, Taiwan, and Hong Kong: Comparative Institutional Analysis , edited by A. So, N. Lin, and D. Poston. Westport, CT: Greenwood.
-
-Lin, Nan and Yanjie Bian. 1991.「Getting Ahead in Urban China.」  American   Journal of Sociology   97(3, November):657–688.
-
-Lin, Nan, Paul Dayton, and Peter Greenwald. 1978.「Analyzing the Instrumental Use of Relations in the Context of Social Structure.」  Sociological   Methods and Research   7:149–166.
-
-Lin, Nan, Alfred Dean, and Walter Ensel. 1986.   Social Support, Life Events, and   Depression . Orlando, FL: Academic Press.
-
-Lin, Nan and Mary Dumin. 1986.「Access to Occupations Through Social Ties.」
-
-Social Networks   8:365–385.
-
-Lin, Nan and Walter M. Ensel. 1989.「Life Stress and Health: Stressors and Resources.」  American Sociological Review   54:382–399.
-
-260
-
-References
-
-Lin, Nan, Walter M. Ensel, and John C. Vaughn. 1981.「Social Resources and Strength of Ties: Structural Factors in Occupational Status Attainment.」
-
-American Sociological Review   46(4, August):393–405.
-
-Lin, Nan and Gina Lai. 1995.「Urban Stress in China.」  Social Science and   Medicine   41(8):1131–1145.
-
-Lin, Nan and M. Kristen Peek. 1999.「Social Networks and Mental Health.」
-
-Pp. 241–258 in   The Sociology of Mental Health and Illness , edited by A. Horwitze and T. L. Scheid. New York: Cambridge University Press.
-
-Lin, Nan, R. S. Simeone, W. M. Ensel, and W. Kuo. 1979.「Social Support, Stress-ful Life Events, and Illness: A Model and an Empirical Test.」  Journal of   Health and Social Behavior   20:108–119.
-
-Lin, N., Vaughn, John C., and Ensel, Walter M. 1981.「Social Resources and Occupational Status Attainment.」  Social Forces   59(4):1163–1181.
-
-Lin, Nan and Xiaolan Ye. 1997.「Revisiting Social Support: Integration of Its Dimensions.」Presented at the International Conference on Life Events/
-
-Stress, Social Support and Mental Health: Cross-Cultural Perspectives, June 17–19, Taipei, Taiwan.
-
-Lin, Nan, Xiaolan Ye, and Walter M. Ensel. 1999.「Social Support and Mental Health: A Structural Approach.」  Journal of Health and Social Behavior  40:344–359.
-
-Lindenberg, Siegwart. 1992.「The Method of Decreasing Abstraction.」Pp. 3–20
-
-in   Rational Choice Theory: Advocacy and Critique , edited by J. S. Coleman and T. J. Fararo. Newbury Park, CA: Sage.
-
-Loury, G. 1977.「A Dynamic Theory of Racial Income Differences.」Pp.
-
-153–186 in   Women, Minorities, and Employment Discrimination , edited by P. A. Wallace and A. Le Mund. Lexington, MA: Lexington Books.
-
-1987.「Why Should We Care About Group Inequality?」  Social Philosophy   and Policy   5:249–271.
-
-Luhmann, Niklas. 1979.   Trust and Power . Chichester, UK: Wiley.
-
-1988.「Familiarity, Confidence, Trust: Problems and Alternatives.」Pp.
-
-94–107 in   Trust: Making and Breaking Cooperative Relations , edited by D. Gambetta. New York: Basil Blackwell.
-
-MacKinnon, Richard C. 1997.「Punishing the Persona: Correctional Strategies for the Virtual Offender.」Pp. 206–235 in   Virtue Culture , edited by S. G.
-
-Jones. London: Sage.
-
-Malinowski, Bronslaw. 1922.   Argonauts of the Western Pacific . London: Routledge & Kegan Paul.
-
-Mao, Zedong. 1940.「On New Democracy.」Pp. 106–156 in   Selected Works of   Mao Tse-Tung , Vol. III. London: Lawrence Wishant, 1954.
-
-1942.「Talks at the Yenan Forum on Literature and Art.」Pp. 250–286
-
-in    Selected Readings from the Works of Mao Zedong . Peking: Foreign Language Press, 1971.
-
-1949.「On the People’s Democratic Dictatorship.」Pp. 371–388 in   Selected   Works of Mao Zedong . Peking: Foreign Language Press, 1971.
-
-Marini, Margaret Mooney. 1992.「The Role of Models of Purposive Action in Sociology.」Pp. 21–48 in   Rational Choice Theory: Advocacy and Critique , edited by J. S. Coleman and T. J. Fararo. Newbury Park, CA: Sage.
-
-References
-
-261
-
-Marsden, Peter V. and Karen E. Campbell. 1984.「Measuring Tie Strength.」
-
-Social Forces   63 (December):482–501.
-
-Marsden, Peter V. and Jeanne S. Hurlbert. 1988.「Social Resources and Mobility Outcomes: A Replication and Extension.」  Social Forces   66(4):1038–
-
-1059.
-
-Marx, Karl. 1933 (1849).   Wage-Labour and Capital . New York: International Publishers.
-
-1935 (1865).   Value, Price and Profit . New York: International Publishers.
-
-Marx, Karl (David McLellan, ed.). 1995 (1867, 1885, 1894).   Capital: A New   Abridgement . Oxford: Oxford University Press.
-
-McLaughlin, Magaret L., Kerry K. Osborne, and Nicole B. Ellison. 1997.
-
-「Virtual Community in a Telepresence Environment.」Pp. 146–168 in  Virtual Culture , edited by S. G. Jones. London: Sage.
-
-Mele, Christopher. 1999.「Cyberspace and Disadvantaged Communities: The Internet as a Tool for Collective Action.」Pp. 290–310 in   Communities in   Cyberspace , edited by M. A. Smith and P. Kollock. London: Routledge.
-
-Merrit, Karen. 1984.「Women’s Studies: A Discipline Takes Shape.」Pp. 253–262
-
-in    Women and Education: Equity or Equality , edited by E. Fennema and M. J. Ayer. Berkeley, CA: McCutchan.
-
-Merton, Robert K. 1940.「Bureaucratic Structure and Personality.」  Social Forces  18:560–568.
-
-1995.「Opportunity Structure: The Emergence, Diffusion, and Differentiation of a Sociological Concept, 1930s–1950s.」Pp. 3–78 in   Advances in Crimi-nological Theory: The Legacy of Anomie Theory , edited by F. Adler and W. S. Laufer. New Brunswick, NJ: Transaction Books.
-
-Metcalfe, Bob. 1999.「The Internet in 1999: This Will Prove to Be the Year of the Bills, Bills, and Bills.」  Infoworld , January 18, p. 90.
-
-Meyer, John W. and Brian Rowan. 1977.「Institutionalized Organizations: Formal Structure as Myth and Ceremony.」  American Journal of Sociology  83:340–363.
-
-Meyer, John W. and W. Richard Scott. 1992.   Organizational Environments:   Ritual and Rationality . Newbury Park, CA: Sage.
-
-Miller, Michael J. 1999.「The Net Changes Everything.」  PC Magazine  (February 9):4.
-
-Minkoff, Debra C. 1997.「Producing Social Capital: National Social Movements and Civil Society.」  American Behavioral Scientist   40(5, March–April): 606–619.
-
-Misztal, Barbara A. 1996.   Trust in Modern Societies: The Search for the Bases   of Social Order . Cambridge: Polity Press.
-
-Mitra, Ananda. 1997.「Virtual Commonality: Looking for India on the Internet.」Pp. 55–79 in   Virtue Culture , edited by S. G. Jones. London: Sage.
-
-Mobilization Society of Wuhan. 1939.   K’ang-Ta Ti Chiao-Yu Fang-Fa   (Pedagogical Methods of K’ang-Da) . Wuhan: Mobilization Society of Wuhan.
-
-Moerbeek, Hester, Wout Ultee, and Henk Flap. 1995.「That’s What Friends Are For: Ascribed and Achieved Social Capital in the Occupational Career.」
-
-Presented at the The European Social Network Conference, London.
-
-262
-
-References
-
-Morrow, James. 1999.「Watching Web Speech.」  U.S. News & World Report , February 15, p. 32.
-
-Newton, Kenneth. 1997.「Social Capital and Democracy.」  American Behavioral   Scientist   40(5, March–April):575–586.
-
-North, Douglass C. 1990.   Institutions, Institutional Change and Economic   Performance . Cambridge: Cambridge University Press.
-
-Parsons, Talcott. 1963.「On the Concept of Influence.」  Public Opinion   Quarterly   27:37–62.
-
-Paxton, Pamela. 1999.「Is Social Capital Declining in the United States? A Multiple Indicator Assessment.」  American Journal of Sociology   105(1, July):88–127.
-
-Pepper, Suzanne. 1996.   Radicalism and Education Reform in 20th-Century   China . New York: Cambridge University Press.
-
-Pizzorno, Alessandro. 1991.「On the Individualistic Theory of Social Order.」
-
-Pp. 209–231 in   Social Theory for a Changing Society , edited by P. Bourdieu and J. S. Coleman. Boulder, CO: Westview Press.
-
-Podolny, Joel M. and James N. Baron. 1997.「Social Networks and Mobility.」
-
-American Sociological Review   62 (October):673–693.
-
-Portes, Alejandro. 1998.「Social Capital: Its Origins and Applications in Modern Sociology.」  Annual Review of Sociology   22:1–24.
-
-Portes, Alejandro and Julia Sensenbrenner. 1993.「Embeddedness and Immigra-tion: Notes on the Social Determinants of Economic Action.」  American   Journal of Sociology   98(6, May):1320–1350.
-
-Poster, Mark. 1998.「Virtual Ethnicity: Tribal Identity in an Age of Global Communications.」Pp. 184–211 in   Cybersociety 2.0: Revisiting Computer-Mediated Communication and Community , edited by S. G. Jones.
-
-Thousand Oaks, CA: Sage.
-
-Powell, Walter W. and Paul J. DiMaggio, eds. 1991.   The New Institutionalism   in Organizational Analysis . Chicago: University of Chicago Press.
-
-Putnam, Robert D. 1993.「The Prosperous Community: Social Capital and Public Life.」  The American Prospect   13 (Spring):35–42.
-
-1995a.「Bowling Alone: American’s Declining Social Capital.」  Journal of   Democracy   6(1, January):65–78.
-
-1995b.「Tuning In, Tuning Out: The Strange Disappearance of Social Capital in America.」  P.S.: Political Science and Politics   28(4, December): 1–20.
-
-Qiu Shi. 1999.「Insisting on Atheism and Criticizing Falun Gong.」Editorial,  Seeking the Truth , 15, August 1, pp. 2–4.
-
-Qu, Shipei. 1985.   Higher Education in the Liberated Areas in the Period of the   War of Resistance Against Japan . Beijing: Beijing University Press.
-
-Radcliffe-Brown, A. R. 1952.   Structure and Function in Primitive Society . New York: Free Press.
-
-Reid, Elizabeth. 1999.「Hierarchy and Power: Social Control in Cyberspace.」
-
-Pp. 107–133 in   Communities in Cyberspace , edited by M. A. Smith and P. Kollock. London: Routledge.
-
-Requena, Felix. 1991.「Social Resources and Occupational Status Attainment in Spain: A Cross-National Comparison with the United States and the
-
-References
-
-263
-
-Netherlands.」  International Journal of Comparative Sociology   XXXII(3–
-
-4):233–242.
-
-Reskin, Barbara. 1988.「Bringing the Men Back In: Sex Differentiation and the Devaluation of Women’s Work.」  Gender and Society   2:58–81.
-
-1993.「Sex Segregation in the Workplace.」  Annual Review of Sociology  19:241–270.
-
-Reskin, Barbara and Patricia Roos. 1990.   Job Queues, Gender Queues: Explaining Women’s Inroads Into Male Occupations . Philadelphia: Temple University Press.
-
-Ruan, Danching. 1998.「The Content of the General Social Survey Discussion Networks: An Exploration of General Social Survey Discussion Name Generator in a Chinese Context.」  Social Networks   20(3, July):247–
-
-264.
-
-Rus, Andrej. 1995.「Access and Mobilization – Dual Character of Social Capital: Managerial Networks and Privatization in Eastern Europe.」Unpublished manuscript, Columbia University.
-
-Sassen, Saskia and Kwame Anthony Appiah. 1998.   Globalization and Its   Discontents . New York: New Press.
-
-Scheff, Thomas J. 1992.「Rationality and Emotion: Homage to Norbert Elias.」
-
-Pp. 101–119 in   Rational Choice Theory: Advocacy and Critique , edited by J. S. Coleman and T. J. Fararo. Newbury Park, CA: Sage.
-
-Schmitz, Joseph. 1997.「Structural Relations, Electronic Media, and Social Change: The Public Electronic Network and the Homeless.」Pp. 80–101 in  Virtue Culture , edited by S. G. Jones. London: Sage.
-
-Schram, Stuart R. 1963.   The Political Thought of Mao Tse-Tung . New York: Praeger.
-
-Schudson, Michael. 1996.「What If Civic Life Didn’t Die?」  The American   Prospect   25 (March–April):17–20.
-
-Schultz, Theodore W. 1961.「Investment in Human Capital.」  The American   Economic Review   LI(1, March):1–17.
-
-Scott, W. Richard and John W. Meyer. 1994.   Institutional Environments and   Organizations: Structural Complexity and Individualism . Beverley Hills, CA: Sage.
-
-Sewell, William H., Jr. 1992.「A Theory of Structure: Duality, Agency, and Transformation.」  American Journal of Sociology   98(1, July):1–29.
-
-Sewell, William H., Jr. and Robert M. Hauser. 1975.   Education, Occupation   and Earnings: Achievement in the Early Career . New York: Academic Press.
-
-Seybolt, Perter J. 1973.   Revolutionary Education in China . White Plains, NY: International Arts and Sciences Press.
-
-Shanghai Jiaoyu Chubanshe (Shanghai Educational Press). 1983.   Hunan Diyi   Shifan Xiaoshi 1903–49 (History of Hunan  #  1 Normal School 1903–49) .
-
-Shanghai: Shanghai Jiaoyu Chubanshe.
-
-Shapiro, Carl and Hal R. Varian. 1999.   Information Rules: A Strategic Guide   to the Network Economy . Boston: Harvard Business School Press.
-
-Simmel, Georg (trans. and ed. Kurt H. Wolff). 1950.   The Sociology of Georg   Simmel . Glencoe, IL: Free Press.
-
-264
-
-References
-
-(ed. Donald N. Levine). 1971.   Georg Simmel on Individuality and Social   Forms . Chicago: University of Chicago Press.
-
-1978.   The Philosophy of Money . London: Routledge.
-
-Skocpol, Theda. 1996.「Unravelling from Above.」  The American Prospect   25
-
-(March–April):20–25.
-
-Smith, Adam. 1937.   The Wealth of Nations . New York: Modern Library.
-
-Smith, Marc A. 1999.「The Economies of Online Cooperation: Gifts and Public Goods in Cyberspace.」Pp. 220–242 in   Communities in Cyberspace , edited by M. A. Smith and P. Kollock. London: Routledge.
-
-Smith, Marc A. and Peter Kollock, eds. 1999.   Communities in Cyberspace .
-
-London: Routledge.
-
-Smith, Michael R. 1990.「What Is New in ‘New Structuralist’ Analyses of Earnings?」  American Sociological Review   55 (December):827–841.
-
-Sprengers, Maarten, Fritz Tazelaar, and Hendrik Derk Flap. 1988.「Social Resources, Situational Constraints, and Reemployment.」  Netherlands   Journal of Sociology   24:98–116.
-
-Stanton-Salazar, Ricardo D. 1997.「A Social Capital Framework for Understanding the Socialization of Racial Minority Children and Youths.」
-
-Harvard Educational Review   67(1, Spring):1–40.
-
-Stanton-Salazar, Ricard D. and Sanford M. Dornbusch. 1995.「Social Capital and the Reproduction of Inequality: Information Networks Among Mexican-Origin High School Students.」  Sociology of Education   68 (April):116–
-
-135.
-
-Stimpson, Catharine R. 1986.   Women’s Studies in the United States . New York: Ford Foundation.
-
-Tam, Tony. 1997.「Sex Segregation and Occupational Gender Inequality in the United States: Devaluation or Specialized Training?」  American Journal of   Sociology   102(6, May):1652–1692.
-
-Tardos, Robert. 1996.「Some Remarks on the Interpretation and Possible Uses of the ‘Social Capital’ Concept with Special Regard to the Hungarian Case.」
-
-Bulletin de Methodologie Sociologique   53 (December):52–62.
-
-Taylor & Jerome. 1999.「Karma.」  PC Computing , June, p. 87.
-
-Thomas, Karen. 1999.「Hate Groups Snare Youths with Web Games.」  USA   Today , July 8, p. D1.
-
-Tobias, Sheila. 1970.「Female Studies – an Immodest Proposal,」Ithaca, NY: Cornell University.
-
-Tomaskovic-Devey, Donald. 1993.   Gender and Race Inequality at Work:   The Sources and Consequences of Job Segregation . Ithaca, NY: ILR
-
-Press.
-
-Treiman, Donald. 1970.「Industrialization and Social Stratification,」Pp.
-
-207–234 in   Social Stratification: Research and Theory for the 1970s , edited by E. O. Laumann. Indianapolis: Bobbs-Merrill.
-
-Treiman, Donald and Kermit Terrell. 1975.「Women, Work, and Wages – Trends in the Female Occupational Structure Since 1940.」Pp. 157–200 in   Social   Indicator Models , edited by K. C. Land and S. Spilerman. New York: Russell Sage Foundation.
-
-References
-
-265
-
-Uncapher, Willard. 1999.「Electronic Homesteading on the Rural Frontier: Big Sky Telegraph and Its Community.」Pp. 264–289 in   Communities in   Cyberspace , edited by M. A. Smith and P. Kollock. London: Routledge.
-
-Verba, Sidney, Schlozman, Kay Lehman, and Henry E. Brady. 1995.   Voice and   Equality: Civil Voluntarism in American Politics . Cambridge, MA: Harvard University Press.
-
-1997.「The Big Tilt: Participatory Inequality in America.」  The American   Prospect   32:74–80.
-
-Volker, Beate and Henk Flap. 1999.「Getting Ahead in the GDR: Social Capital and Status Attainment Under Communism.」  Acta Sociologica   41(1, April): 17–34.
-
-von Thunen, H. (trans. B. F. Hoselitz). 1875.   Der Isolierte Staat . Chicago: Comparative Education Center, University of Chicago.
-
-Wacquant, L. D. 1989.「Toward a Reflexive Sociology: A Workshop with Pierre Bourdieu.」  Sociological Theory   7:26–63.
-
-Watson, Nessim. 1997.「Why We Argue About Virtual Community: A Case Study of the Phish.Net Fan Community.」Pp. 102–132 in   Virtual Culture , edited by S. G. Jones. London: Sage.
-
-Weber, Max. 1946.   Max Weber: Essays in Sociology  (trans. H. H. Gerth and C. Wright Mills). New York: Oxford University Press.
-
-1947.   The Theory of Social and Economic Organizations . New York: Oxford University Press.
-
-Weber, Max. (ed. G. Roth and C. Wittich). 1968.   Economy and Society.
-
-Berkeley: University of California Press.
-
-Wegener, Bernd. 1991.「Job Mobility and Social Ties: Social Resources, Prior Job and Status Attainment.」  American Sociological Review   56 (February):1–12.
-
-Wellman, Barry. 1981.「Applying Network Analysis to the Study of Social Support.」Pp. 171–200 in   Social Networks and Social Support , edited by B. H. Gottlieb. Beverly Hills: Sage.
-
-Wellman, Barry, ed. 1998.   Networks in the Global Village . Boulder, CO: Westview Press.
-
-Wellman, Barry and Milena Gulia. 1999.「Virtual Communities as Communities: Net Surfers Don’t Ride Alone.」Pp. 167–194 in   Communities in Cyberspace , edited by M. A. Smith and P. Kollock. London: Routledge.
-
-Willer, David. 1985.「Property and Social Exchange.」Pp. 123–142 in  Advances in Group Processes , edited by E. J. Lawler. Greenwich, CT: JAI Press.
-
-Williamson, Oliver E. 1985.   Markets and Hierarchies: Analysis and Antitrust   Implications . New York: Free Press.
-
-1993.「Calculativeness, Trust, and Economic Organization.」  Journal of Law   and Economics   36(1–2, April):453–486.
-
-1985.   The Economic Institutions of Capitalism.   New York: Free Press.
-
-Wilson, Beth. 1999.「Vital Signs.」  PC Computing , March, p. 14.
-
-Wood, Richard L. 1997.「Social Capital and Political Culture.」  American   Behavioral Scientist  (March–April) 40(5):595–605.
-
-266
-
-References
-
-Wright, Erik Olin. 1979.   Class Structure and Income Determination . New York: Academic Press.
-
-Yamagishi, Toshio, Mary R. Gillmore, and Karen S. Cook. 1988.「Network Connections and the Distribution of Power in Exchange Networks.」  American   Journal of Sociology   93(4, January):833–851.
-
-Zhou, Xueguang. 1999.「Reputation as a Social Institution: A Macrosociologi-cal Approach.」Unpublished manuscript, Duke University.
-
-Zickmund, Susan. 1997.「Approaching the Radical Other: The Discursive Culture of Cyberspace.」Pp. 185–205 in   Virtue Culture , edited by S. G.
-
-Jones. London: Sage.
-
-Zucker, Lynne G. 1988.「Where Do Instituional Patterns Come From? Organizations as Actors in Social Systems.」Pp. 23–49 in   Institutional Patterns   and Organizations: Culture and Environment , edited by L. G. Zucker.
-
-Cambridge, MA: Ballinger.
-
-Zuckerman, Mortimer B. 1999.「The Time of Our Lives.」  U.S. News & World   Report  (May 17):72.
-
-Index
-
-Abell, Peter, 130
-
-Ang, Soon, 86–7
-
-access, to social capital: and
-
-Angelusz, Robert, 91
-
-inequalities of social capital in
-
-anthropology, and theories of
-
-China, 108,   109t ,   112t ,   113t ; and exchange, 146
-
-social capital theory, 63–73.   See
-
-ascribed position, 65
-
-also   bridges
-
-ascribed resources, 55
-
-accessed social capital model, and
-
-Associated Press, 225
-
-status attainment, 82–3,   84t , 87–93
-
-asymmetric exchanges, 50
-
-accumulation rates, for human and
-
-attained position, 65
-
-social capital, 134–5, 136
-
-authority, and social structure, 33–4
-
-actions: hierarchical structures and
-
-individual, 178–80; and neo-capital
-
-Barbieri, Paolo, 86, 89
-
-theories, 17–18; and postulates of
-
-Baron, James N., 247
-
-social capital theory, 75, 76;
-
-Becker, Gary S., 9, 16
-
-primary forces accounting for in
-
-Berkman, Sheir, 211n1
-
-social capital theory, 57–8;
-
-Bernard, Jessie, 196
-
-sociology and theory of, 129–30;
-
-Berners-Lee, Tim, 213
-
-and value of resources, 31–3.   See
-
-Bian, Yanjie, 86–7
-
-also   expressive action; instrumental Blau, Peter M., 73, 78, 145, 147,
-
-action; interactions; motivation;
-
-170, 175–7
-
-purposive actions
-
-Bloomberg, Michael R., 238
-
-actors: and knowledge of resources,
-
-Bourdieu, Pierre, 14, 15–17, 22–3,
-
-43–3n4; and value of resources,
-
-24, 25, 52, 192n4
-
-31–2.   See also   actions
-
-Boxman, E. A. W., 89, 92, 97
-
-Advisory Commission on Electronic
-
-Brady, Henry E., 211n1
-
-Commerce, 229
-
-Breiger, Ronald L., 169n2, 184
-
-Africa, and information technology,
-
-bridges, between social networks, and
-
-229
-
-access to social capital, 67, 70, 71,
-
-age, and job experience and tenure in
-
-72–3.   See also   access
-
-Chinese context, 115–16
-
-Brinkley, Alan, 211n1
-
-agents, and social structure, 33, 34
-
-Brown University, 198
-
-America Online, 228
-
-Buddhism, and Falun Gong, 217,
-
-Andrew W. Mellon Foundation, 199
-
-218n3
-
-267
-
-268
-
-Index
-
-Burt, Ronald S., 22, 24, 53, 70, 71,
-
-87; and traditional system of
-
-89–90, 179, 184, 247, 248
-
-inheritance, 133n8
-
-Chinese Communist Party (CCP),
-
-cable companies, and Internet, 228
-
-105, 191, 200–6, 220–2, 224–5
-
-Cai, Yuanpei, 201
-
-Chinese People’s Anti-Japanese
-
-Campbell, Karen E., 89
-
-Resistance Military and Political
-
-Canada, and studies of status
-
-University (Kangda), 204–5, 206
-
-attainment, 91–2
-
-choice, and neo-capital theories, 17–
-
-capital: cultural capital theory of,
-
-18.   See also   rational choice
-
-14–18; definition of, 3; institutions
-
-civic engagement, and social capital,
-
-and flow of, 189–91; Marxian or
-
-210–11
-
-classical theory of, 4–8, 17–18, 52;
-
-civil rights movement, 196, 197
-
-neo-capital theory of, 8–14, 17–18.
-
-class, socioeconomic: and cultural
-
-See also   economic capital; human
-
-capital, 14–15, 18; and hierarchy
-
-capital; political capital; social
-
-of occupations, 169n2; and
-
-capital
-
-inequalities of social capital in
-
-capital deficit: definition of, 120–1;
-
-China, 106; and power in social
-
-and gendered labor market, 100–1;
-
-structure, 36–7; and social
-
-gender and inequalities of social
-
-interaction, 69n5
-
-capital in China, 110–14, 123.   See
-
-classic theory of capital: explanation
-
-also   return deficit
-
-of, 4–8; and human capital, 10–14,
-
-Carnegie Foundation, 199
-
-17–18; and structural constraints
-
-causality, and models of social
-
-or opportunities, 52
-
-capital, 247
-
-coercion, and value of resources, 30
-
-Central Party School (China), 204
-
-Coleman, James S., 22, 23, 24, 25,
-
-Central Research Institute (China),
-
-27–8, 52, 66, 140n9, 145, 147,
-
-204
-
-151, 179, 184
-
-children, and Internet use, 235, 236
-
-collective goods, and social capital, 26
-
-Children’s Online Privacy Protection
-
-collectivity, rational choice and public
-
-Act , 236
-
-capital, 137–8.   See also   community
-
-China: Communist Revolution and
-
-Collins, Randall, 179
-
-institutionalization, 200–6;
-
-Commerce Department (U.S.), 213,
-
-education and human versus
-
-229
-
-institutional capital, 192; ethnic
-
-Communist Party.   See   Chinese
-
-Chinese communities in other
-
-Communist Party
-
-countries and institutional field
-
-community: and social exchange,
-
-concept, 188; exchange relations
-
-163–4; and status of actors
-
-and   guanxi , 159, 160; and Falun
-
-possessing valuable resources, 31.
-
-Gong as case study of social
-
-See also   collectivity
-
-movement, 217–26; gender and
-
-compliance, and collective obligations
-
-inequalities in social capital, 102–
-
-and rewards, 139
-
-23; Great Cultural Revolution and
-
-computer hacking, 225
-
-institutional transformation, 194;
-
-computers.   See   cybernetworks
-
-and institutional capital, 190–1;
-
-Comte, Auguste, 146
-
-and Internet users, 214, 230–1;
-
-consumption, and Marxian view of
-
-and studies of status attainment,
-
-capital, 5–6
-
-Index
-
-269
-
-control, and social capital theory,
-
-education: and Communist
-
-20n1
-
-Revolution in China, 201–6;
-
-Cook, Karen S., 140n9, 177–8
-
-gender and inequalities of social
-
-Cornell University, 197
-
-capital in China, 105; and human
-
-cost, of accumulation and use of
-
-capital analysis, 13–14; and
-
-social capital, 135
-
-institutionalizing organizations,
-
-critical mass, and hierarchical
-
-192; and Internet use, 229, 230,
-
-structures, 173–4
-
-232f , 236–7.   See also   universities cultural capital: and differentiation of
-
-ego resources, 44
-
-social capital, 43n3; and
-
-Eli P. Lilly Foundation, 199
-
-institutions, 190, 192n4; and
-
-e-mail, 214, 224
-
-structural constraints or
-
-Emerson, Richard M., 140n9, 175,
-
-opportunities, 52; and theories of
-
-177–8
-
-capital, 14–18
-
-Ensel, Walter M., 83, 85, 166
-
-culture: and context of kin ties in
-
-equidistant structure, and resource
-
-Chinese society, 110–11; and
-
-differentials in hierarchies, 172
-
-inequalities of social capital, 123
-
-Erickson, Bonnie H., 24, 91–2, 184
-
-cybernetworks: and Falun Gong,
-
-esteem, and social recognition, 158
-
-222–5; and growth of social
-
-Evans, Sara, 196
-
-capital, 237–9; and research on
-
-exchange: and acquisition of personal
-
-social capital, 226–37; and social
-
-resources, 42; definition of, 143.
-
-networks, 212–17
-
-See also   social exchange
-
-exchange value, 4–5
-
-David, Paul, 187
-
-Exxon Education Foundation, 199
-
-Dayton, Paul, 80
-
-expressive action: and homophilous
-
-De Graaf, Nan Dirk, 85, 89, 97
-
-interactions, 49; and motives for
-
-differential obligations and rewards,
-
-maintenance of valued resources,
-
-and collectivity, 137–8
-
-45–6; and social capital theory,
-
-differential values, assignment of to
-
-58, 59; and types of returns, 244–
-
-resources, 30
-
-5
-
-Digital Millennium Copyright Act ,
-
-236
-
-Falun Dafa Research Society, 218,
-
-DiMaggio, Paul J., 188
-
-219, 222–3
-
-Duke University, 198
-
-Falun Gong, 191n2, 217–26
-
-Dumin, Mary, 88, 90
-
-family: Chinese definition of, 110–11;
-
-Duncan, Otis Dudley, 78
-
-and primacy of primordial group,
-
-Durkheim, Emile, 146, 148
-
-133.   See also   kin ties; relationships feminist theory, and women’s studies
-
-Eastern Europe, and collapse of
-
-programs, 200n5
-
-communist states, 195
-
-Fernandez, Roberto M., 247–8
-
-e-commerce, 212–13, 215
-
-First Hunan Provincial Normal
-
-economic capital: and social capital,
-
-School (China), 201
-
-22; and social exchange, 162–
-
-Flap, Henk D., 21–2, 24, 85, 86, 87,
-
-4
-
-89, 91, 92, 97, 184
-
-economic exchange, and social
-
-Ford Foundation, 198–9
-
-exchange, 144,   155t
-
-formal job search channels, 93–4
-
-270
-
-Index
-
-Framework for Global Electronic
-
-hierarchies and hierarchical structure:
-
-Commerce, A  (U.S. government),
-
-and assumptions of social capital
-
-236
-
-theory, 57, 76; implications of
-
-structure for individuals, 174; and
-
-Gabelhouse, Gary, 237–8
-
-individual action, 178–80; and
-
-gender: and inequalities of social
-
-macrostructure of resources, 34–6;
-
-capital, 95–6, 102–23; and Internet
-
-and strength-of-position
-
-use, 214, 230–1; labor market
-
-proposition, 165–6; and structural
-
-and differential earnings, 100–1;
-
-constraints versus social capital,
-
-occupations and hierarchical
-
-174–8; and structural parameters,
-
-structures, 180–2; status of and
-
-167–74; and weak ties, 166
-
-assigned value of resources, 30;
-
-Homans, George, 39, 67, 144–5,
-
-and status attainment, 85
-
-147, 149, 159
-
-General Social Survey data, 210
-
-homophilous interactions: and
-
-Georgetown Internet Privacy Policy
-
-acquisition and maintenance of
-
-Study, 235n11
-
-resources, 46–52; and assumptions
-
-Germany, and studies of status
-
-of social capital theory, 57, 58, 59
-
-attainment, 86, 87, 91, 92, 97
-
-homophily hypothesis and homophily
-
-globalization, and cybernetworks,
-
-principle: and access to social
-
-215–16, 238
-
-capital, 66, 165; and social
-
-government, and Internet, 228–9.
-
-networks, 39–40; and weak ties,
-
-See also   state
-
-67n4, 68
-
-Government Paperwork Elimination
-
-household type, and Internet use,
-
-Act , 236
-
-234f
-
-graded groups, and hierarchical
-
-Howe, Florence, 198
-
-structure, 175
-
-Hsung, Ray-May, 86, 90–1
-
-Granovetter, Mark, 53, 67, 68n4,
-
-human capital: and choice behavior
-
-69, 71, 79–80, 110, 167, 184,
-
-in capitalization, 18; definition of,
-
-248
-
-55–6; flow of in institutions, 190;
-
-Great Cultural Revolution (China),
-
-and inequalities of social capital,
-
-194
-
-104–5, 116, 119, 122; and neo-
-
-Greenwald, Peter, 80
-
-capital theory, 8–14; and personal
-
-Grief, Avner, 158
-
-resources, 42–3; and purposive
-
-gross national product (GNP), and
-
-action, 52; and rational choice,
-
-information technology, 229
-
-133–6; and social capital, 24, 25,
-
-Guangming Daily  (newspaper), 220
-
-97–8.   See also   capital
-
-Hungary, and studies of status
-
-Hannan, Michael T., 142
-
-attainment, 91
-
-hate information, and Internet, 235
-
-Hurlbert, Jeanne S., 85, 89, 166
-
-Hechter, Michael, 140n9, 148
-
-Hwang, Yih-Jib, 86, 90–1
-
-Helena Rubenstein Foundation, 199
-
-heterophilous interactions: and
-
-identification, and collective
-
-acquisition and maintenance of
-
-obligations and rewards, 139
-
-resources, 46–52; and social capital
-
-ideology: Chinese Communist Party
-
-theory, 59
-
-and education, 206; and Falun
-
-Heying, Charles H., 211n1
-
-Gong, 226; social exchange and
-
-He, Zhuo-xiu, 220
-
-rationality as dominant, 160;
-
-Index
-
-271
-
-women’s studies programs and
-
-and motives for seeking and
-
-feminist theory, 200n5
-
-gaining valued resources, 46; and
-
-income: and Internet use, 229, 230;
-
-social capital theory, 58, 59; and
-
-and study of gender and
-
-types of returns, 244, 245
-
-inequalities of social capital in
-
-interactions: and homophily
-
-China, 115, 118–19,   120t .   See also  principle, 165; and postulates of
-
-wages
-
-social capital theory, 75; rational
-
-individual goods, and social capital,
-
-choice and principles of, 131–2;
-
-26
-
-and social networks, 38–9.   See also
-
-individuals.   See   actions; actors
-
-heterophilous interactions;
-
-inequality, of social capital: and
-
-homophilous interactions
-
-gender in China, 102–23; and
-
-internal firm labor market, 193
-
-Internet use, 231, 232; and status
-
-internalization, and collective
-
-attainment, 95–6; and structural
-
-obligations and rewards, 139
-
-and positional variations, 246; and
-
-International Data
-
-theoretical considerations, 99–102
-
-Corporation/World Times
-
-influence, and social capital theory,
-
-Information Society Index, 229
-
-20
-
-Internet: and Falun Gong, 222–5;
-
-informal job search channels, 93–4
-
-and growth of social capital, 237–
-
-information, social capital theory and
-
-9; and research on social capital,
-
-flow of, 20.   See also   Internet
-
-226–37; and social networks,
-
-inheritance: Chinese traditional
-
-212–17
-
-system of, 133n8; of personal
-
-Internet Monitoring Bureau (China),
-
-resources, 42.   See also   succession
-
-225
-
-institutional analysis, 185
-
-Internet Tax Freedom Act , 236
-
-institutional capital: flow of in
-
-investment: and human capital, 11–
-
-institutions, 190–1; and inequalities
-
-12; and Marxian theory of capital,
-
-of social capital, 104–5, 116–17,
-
-7
-
-119, 122, 123
-
-involuntary social mobility, 167
-
-institutional field, 187–9,   194f , 207
-
-isomorphic utility function, 162
-
-institutionalizing organizations, 192
-
-Italy, and studies of status
-
-institutions: and Communist
-
-attainment, 86, 89
-
-Revolution in China, 200–6;
-
-cybernetworks and creation of,
-
-Japan, World War II and kamikaze
-
-216, 236; definition of, 35n5; and
-
-missions, 32
-
-flow of capital, 189–91; framework
-
-Jiangxi school system (China), 203–
-
-and outline of theory on networks
-
-4
-
-and, 207–8; and infrastructure of
-
-Jiang, Zemin, 221
-
-society, 184–7, 208–9; and
-
-job prestige, and study of gender and
-
-institutional field, 187–9; networks
-
-inequalities of social capital in
-
-and transformation of, 194–6; and
-
-China, 117–18
-
-social exchange, 159–60; and
-
-job searches: and selectivity bias, 83–
-
-social networks, 191–3; and
-
-5n3; status attainment and informal
-
-women’s studies programs in U.S.
-
-versus formal, 93–4; unplanned
-
-universities, 196–200
-
-versus purposive action, 167n1.   See
-
-instrumental action: and
-
-also   labor
-
-heterophilous interactions, 50, 51;
-
-Johnson, Harry G., 8, 11
-
-272
-
-Index
-
-joint accessed/mobilized social capital
-
-Mao, Zedong, 194, 201–6
-
-model, of status attainment,   84t ,
-
-Marsden, Peter V., 85, 89, 166, 184
-
-92–3
-
-Marxism: and classic theory of
-
-capital, 4–8, 10–14; and cultural
-
-Kangda.   See   Chinese People’s Anti-
-
-capital theory, 15–17
-
-Japanese Resistance Military and
-
-maximization of gain, and theory of
-
-Political University
-
-rational choice, 130–1, 141–2
-
-Kelman, H. C., 139
-
-McWee, Bob, 225
-
-kin ties, and inequalities of social
-
-media, and social recognition, 152
-
-capital in China, 110–12, 119,   121t , mental health, and expressive action,
-
-122.   See also   family; relationships 244–5
-
-Merton, Robert K., 32
-
-labor: gendered market and
-
-Microsoft, 228
-
-differential earnings, 100–1; and
-
-microtheory, and sociology, 128–9
-
-human capital theory, 11.   See also
-
-Miller, Michael J., 214
-
-job searches; occupations
-
-minimization of loss, and theory of
-
-Lai, Gina Wan-Foon, 92–3
-
-rational choice, 130–1, 141–2
-
-Landefeld, Steven, 212
-
-Misztal, Barbara A., 147–8, 149
-
-language, and Internet use, 231–2
-
-mobility: and hierarchical structures,
-
-lateral positions, 35–6
-
-180–3; and solidarity in social
-
-Laumann, Edward O., 69
-
-systems, 140–1.   See also   social
-
-least-effort interactions, 49
-
-mobility
-
-Lerner, Gerda, 196
-
-mobilized social capital model, of
-
-levels: hierarchical structures and
-
-status attainment, 82–7, 92–3
-
-differentials in, 168–70, 177; use
-
-models and modeling, of social
-
-of term, 167
-
-capital theory,   76f ,   83f , 243–7
-
-Levi-Strauss, Claude, 146
-
-Modern Language Association
-
-Li, Dazhao, 201
-
-(MLA), 197–8
-
-Liang, Shuming, 202n7
-
-Moerbeek, Hester, 85
-
-life satisfaction, and expressive
-
-motivation: labor and human
-
-action, 244–5
-
-capital, 12; and purposive actions,
-
-Li, Hongzhi, 217, 218, 219, 221,
-
-45–6
-
-223, 224, 225, 226
-
-mutual recognition, 131–2
-
-Lin, Nan, 21, 24, 60n3, 80, 83, 84,
-
-88, 90, 92–3, 115, 133n8, 166,
-
-name generator methodology, and
-
-247, 248
-
-studies of status attainment,   84t ,
-
-location effect: and structure of
-
-87–8, 89–90
-
-hierarchies, 174; use of term, 168
-
-Nationalist Party (KMT), 203–4,
-
-location-by-position proposition, and
-
-205–6
-
-access to social capital, 71–3, 76
-
-National Women’s Studies
-
-Lo, Gan, 220
-
-Association (NWSA), 198
-
-Long March (China), 204
-
-negative recognition, and social
-
-Luhmann, Niklas, 148
-
-exchange, 161
-
-Lu, Yiyuan, 203
-
-Negroponte, Nicholas, 214
-
-neo-capital theory: description of,
-
-macrotheory, and sociology, 128–9
-
-8–14, 17–18; and social capital
-
-Malinowski, Bronslaw, 146
-
-theory, 19
-
-Index
-
-273
-
-neo-Darwinian theory, and social
-
-personal computers (PCs), 212.   See
-
-exchanges, 155
-
-also   Internet
-
-Netherlands, and studies of status
-
-personal resources: as human capital,
-
-attainment, 85–6, 89, 97
-
-42–3; and status attainment, 78
-
-network analysis, 184–5
-
-persuasion, and value of resources, 30
-
-networks and networking: and access
-
-petition, and value of resources, 30
-
-to social capital, 65, 73n6; and
-
-physical capital, and neo-capital
-
-formulation of reputation, 152n6;
-
-theory, 9
-
-framework and outline of theory
-
-physical health, and expressive
-
-on institutions and, 207–8; and
-
-action, 244–5
-
-infrastructure of society, 184–7,
-
-Pizzorno, Alessandro, 157
-
-208–9; and institutional
-
-Podolny, Joel M., 247
-
-transformation, 194–6; and
-
-Poland, and studies of status
-
-macrostructure of resources, 38–
-
-attainment, 97
-
-40; and postulates of social capital
-
-policy, and mobility and solidarity in
-
-theory, 75; structural constraints
-
-hierarchical social structures, 180–
-
-on, 74–5; and women’s studies,
-
-3.   See also   state
-
-199, 200.   See also   cybernetworks;
-
-political capital, and study of
-
-social networks
-
-inequalities of social capital in
-
-Nielsen survey, 237
-
-China, 106,   107t , 108, 109, 111–
-
-nominal groups, and hierarchical
-
-12, 116, 119, 122
-
-structures, 175
-
-political participation, and social
-
-capital, 210–11
-
-occupations, and hierarchical
-
-pornography, and Internet, 234–5
-
-structures, 169n2, 180–2.   See also
-
-Portes, Alejandro, 24, 248
-
-job searches; labor
-
-positional effect: and inequality of
-
-Organization for Economic
-
-social capital, 246; and resource
-
-Cooperation and Development
-
-differentials in hierarchical
-
-(OECD), 236
-
-structures, 172; and size
-
-organization-network institutional
-
-differentials in hierarchical
-
-isomorphism, 189, 207
-
-structures, 171–2; and structure of
-
-organizations: and Falun Gong, 226;
-
-hierarchies, 174; use of term, 168.
-
-and institutional fields, 188–9
-
-See also   positions; social position organization-society institutional
-
-positional resources, 44–5
-
-isomorphism, 188, 207
-
-position generator methodology: and
-
-Otellini, Paul, 212
-
-studies of inequalities in social
-
-Overseas Coordinating Office
-
-capital in China, 106, 122,   124t ;
-
-(FDRS), 222–3
-
-and studies of status attainment,
-
-ownership, of personal resources, 42–
-
-84t , 89, 90–2, 95
-
-3
-
-position of origin, 65
-
-positions, use of term, 167.   See also
-
-Parsons, Talcott, 148
-
-positional effect; social position
-
-parties, and power in social structure,
-
-Powell, Walter W., 188
-
-36–7
-
-power: dimensions of in social
-
-Peasant Movement Institution
-
-structure, 36–7; and social
-
-(China), 203
-
-exchange, 150n4; use of term,
-
-Peng, Pai, 203
-
-37n7
-
-274
-
-Index
-
-predictions, formation of for
-
-reciprocity, and exchange, 145n3
-
-heterophilous interactions, 47–51
-
-recognition: multiplicity and
-
-prestige: hypothesis and principle of,
-
-complexity of social relations and
-
-48, 69; and reputation, 37n6, 158
-
-rules of, 137; and rational choice,
-
-prevailing institutions, 186
-
-131–2; and social exchange, 156,
-
-primary rewards, and exchange, 149
-
-158, 161–2
-
-primordial group: size of and
-
-recruitment, and relationship between
-
-accumulation of social capital, 136;
-
-status attainment and social
-
-and transfer of resources, 132–3
-
-capital, 96
-
-privacy, and Internet, 234–5
-
-regions, and Internet use, 230,   233f
-
-production, and Marxian view of
-
-regulation, of Internet, 235–6
-
-capital, 4–6
-
-reinforcements, and social capital
-
-profit, and rational choice, 131–2
-
-theory, 20
-
-propagation of indebtedness, and
-
-relationships, and social exchange,
-
-social exchange, 152
-
-146–7, 149–57, 159–60, 164.
-
-property rights: and Internet, 235;
-
-See also   family; kin ties; social
-
-and status of individuals in
-
-relations
-
-community, 31
-
-reputation: definition of, 244; and
-
-protest movement, and Falun Gong
-
-social exchange, 152–4, 156, 157–
-
-in China, 219–22
-
-8, 161–2, 163–4; use of term, 37n6,
-
-public capital, rational choice and
-
-150n5
-
-collectivity, 137–8
-
-Requena, Felix, 86
-
-purposive actions: and human
-
-resources: definition of, 29, 55;
-
-capital, 52; motives for, 45–6, 48;
-
-extensity of in structural hierarchy,
-
-and job searches, 167n1; and social
-
-62, 63; and formation of
-
-capital theory, 59–73
-
-predictions, 47–51; heterogeneity
-
-Putnam, Robert D., 22, 23, 24n2, 52,
-
-of in structural hierarchy, 62–3;
-
-210, 237, 248
-
-hierarchical structures and
-
-pyramids, and hierarchical structures,
-
-differentials in,   169f , 172–4, 177,
-
-36, 57
-
-178, 180, 181; homophilous and
-
-heterophilous interactions, 46–7;
-
-race: and inequalities of social
-
-macrostructure of, 33–8;
-
-capital, 95–6; and Internet use,
-
-microstructure of, 41–5; and
-
-231f ; occupations and hierarchical
-
-motives for purposive actions,
-
-structures, 180–2
-
-45–6; and rational choice, 132–3;
-
-Radcliffe-Brown, A. R., 146
-
-social allocation of, 29–33; and
-
-rational choice: collectivity and public
-
-social structures, 53–4; and status
-
-capital, 137–8; and emergence of
-
-attainment, 80–98; structural
-
-structure, 136–7; minimization of
-
-constraints and opportunities in
-
-loss and maximization of gain,
-
-capitalization of, 51–2; as
-
-130–1, 141–2; recognition and
-
-structural foundation for social
-
-profit, 131–2; resources and
-
-capital, 40
-
-primacy of primordial group,
-
-return, to social capital: expressive
-
-132–3; and social contracts,
-
-and instrumental actions and, 244–
-
-139–40; and social systems, 140–1;
-
-5; and social-capital proposition,
-
-and sociological theorizing, 129–30
-
-60–3; and study of gender and
-
-Index
-
-275
-
-inequalities of social capital in
-
-structures,   169f , 170–2, 173–4,
-
-China, 114–19
-
-177, 178, 180
-
-return deficit, and inequalities in
-
-Skocpol, Theda, 211n1
-
-social capital, 100, 101, 102,
-
-Smith, Adam, 8
-
-121, 122, 123.   See also   capital
-
-social allocation, of resources, 29–33
-
-deficit
-
-social approval and social attraction,
-
-Revlon Foundation, 199
-
-157
-
-robustness, social systems and
-
-social behavior, definition of, 144n1
-
-principle of, 142
-
-social capital, theory of: and
-
-Rockefeller Foundation, 199
-
-assumptions, 56–9, 77; central
-
-Rossi, Alice, 196
-
-theme of, 3; and civic engagement,
-
-Ruan, Xiaoxian, 203
-
-210–11; and clarification of issues,
-
-rules: of recognition and complexity
-
-25–8; cybernetworks and research
-
-of social relations, 137; and social
-
-on, 226–37; definition of, 19, 29,
-
-structure, 33–4
-
-190; description of, 55–6;
-
-rural areas, and Internet use, 230,
-
-embedded resources in networks
-
-233f
-
-and measurement of, 211–12;
-
-Russell, Bertrand, 202
-
-explanations for operation of,
-
-Russell Sage Foundation, 199
-
-19–20; Internet and cybernetworks,
-
-Russia: and collapse of communism,
-
-212–17, 226–39; macro- and
-
-195; exchange relations and   blat ,
-
-microimplications of, 247–9;
-
-159
-
-models and modeling of,   76f ,   83f , Russian Revolution of 1917, 195,
-
-243–7; perspectives on and
-
-201
-
-conceptualizations of, 21–5; and
-
-purposive actions, 59–73; and
-
-San Diego State University, 197
-
-structural contingency of action
-
-satellite firms, and Internet, 228
-
-effects, 73–5; summary of major
-
-Schlozman, Kay Lehman, 211n1
-
-points in, 75–7.   See also   access, to Schultz, Theodore W., 9, 11, 12, 16
-
-social capital; hierarchies and
-
-Scott, Anne Firor, 196
-
-hierarchical structure; inequality, of
-
-selectivity bias, and job searches, 83–
-
-social capital; institutions; rational
-
-5n3
-
-choice; resources; reputation;
-
-self-reporting, of social capital,
-
-return, to social capital; social
-
-44n4
-
-exchange; status attainment
-
-Self-Study University (China), 202,
-
-social-capital proposition, 60–3
-
-205
-
-social change, and hypotheses for
-
-sentiment-interaction hypothesis, 39
-
-institutional transformation, 207,
-
-Sewell, William H., Jr., 29n1, 31
-
-208
-
-Shangdong Rural Reconstruction
-
-social contracts, and rational choice,
-
-Institute, 202n7
-
-139–40
-
-Sheperd, George, 203n7
-
-social credentials, 20
-
-shopping, and Internet, 212–13
-
-social exchange: and economic
-
-Simmel, Georg, 148
-
-exchange, 144; and
-
-Singapore, and studies of status
-
-institutionalization of rationalities,
-
-attainment, 87
-
-159–60; and reputation, 157–8,
-
-size differentials, and hierarchical
-
-161–2; social and economic
-
-276
-
-Index
-
-social exchange: (  cont.  )
-
-social systems: and institutional fields,
-
-elements of, 143–9, 162–4; and
-
-188; institutions and networks as
-
-social recognition, 161–2; and
-
-basic components of, 184–7, 208–
-
-transactional and relational
-
-9; and principle of robustness, 142;
-
-rationalities, 149–57, 159–60, 162,
-
-and rational choice, 140–1
-
-164.   See also   exchange
-
-sociology: and individual perspective,
-
-social integration, and institutional
-
-178–9; and structural perspective,
-
-transformation, 207–8
-
-175; and theories of exchange, 146;
-
-social mobility: definition of, 167;
-
-and theory of rational choice, 128–
-
-and hierarchical structures, 170,
-
-30
-
-173, 174–8
-
-solidarity: and hierarchical structures,
-
-social movements: Falun Gong in
-
-180–3; and mobility in social
-
-China as case study of, 217–26;
-
-systems, 140–1; and social
-
-and institutional transformation,
-
-exchange, 153–4
-
-195, 208–9; and Internet, 237; and
-
-Somerson, Paul, 214
-
-Tiananmen Square incident (1989),
-
-Spain: and studies of status
-
-206n9
-
-attainment, 86
-
-social networks: and concept of social
-
-Sprengers, Maarten, 89
-
-capital, 26–7; and institutions,
-
-Stanford University, 198
-
-191–3; and macrostructure of
-
-state, and institutional fields, 188.
-
-resources, 38–40; and rational
-
-See also   government; policy
-
-choice, 133–6; and status
-
-status attainment: definition of, 78;
-
-attainment, 79–80.   See also
-
-formative studies and theoretical
-
-networks and networking
-
-foundations of, 79–81; and
-
-social position, and macrostructure of
-
-relationship between social capital
-
-resources, 33–8.   See also   positional and human capital, 97–8; social
-
-effect; positions
-
-resources and theory of social
-
-social processes, components of, 186
-
-capital, 81–98; and study of
-
-social recognition, and social
-
-inequalities of social capital in
-
-exchange, 152
-
-China, 114–19
-
-social relations: and human capital
-
-status groups, and power in social
-
-theory, 14; multiplicity and
-
-structure, 36–7
-
-complexity of and rules of
-
-strength-of-location proposition, and
-
-recognition and legitimation, 137.
-
-access to social capital, 69–71, 76,
-
-See also   relationships
-
-165–6
-
-social reproduction, and cultural
-
-strength-of-networking proposition:
-
-capital, 15
-
-and access to social capital, 73–4,
-
-social resources, as social capital, 43–
-
-167; and status attainment, 94–5
-
-5
-
-strength-of-position proposition, and
-
-social structure: and assumptions of
-
-access to social capital, 64–5, 76,
-
-social capital theory, 56; definition
-
-165–6, 167
-
-of, 33; and human capital theory,
-
-strength-of-strong-tie proposition:
-
-10; and individual use of resources,
-
-and access to social capital, 65–7,
-
-53–4; and macrostructure of
-
-76; and status attainment, 94–
-
-resources, 33–4; resources and
-
-5
-
-transactions in complex, 36–8; and
-
-strength-of-weak-ties proposition:
-
-social capital, 27–8
-
-and access to social capital, 67–9,
-
-Index
-
-277
-
-71, 73, 76, 166; and status
-
-trust: and recognition, 131n6; and
-
-attainment, 80n2, 94–5.   See also
-
-social exchange, 147–9
-
-weak ties
-
-structural advantage, and access to
-
-Ultee, Wout, 96
-
-social capital, 64, 75
-
-universities: and Internet systems, 228;
-
-structural contingency proposition:
-
-and women’s studies as example of
-
-and networking effects, 74–5; and
-
-institutional transformation, 196–
-
-social capital theory, 76
-
-200.   See also   education
-
-structural holes, and access to social
-
-University of Arizona, 198
-
-capital, 70–1,   72f
-
-University of California (Berkeley),
-
-structure.   See   hierarchies and
-
-198
-
-hierarchical structure; social
-
-urban areas, and Internet use, 230,
-
-structure
-
-233f
-
-success, of action associated with
-
-social capital, 61, 75.   See also
-
-values, assignment of to resources, 30
-
-return, to social capital
-
-Vaughn, John C., 83, 85, 166
-
-succession, primordial group and
-
-Verba, Sidney, 211n1
-
-rules of, 133.   See also   inheritance village: and Internet, 236, 237, 239;
-
-suppression, of Falun Gong in China,
-
-use of term, 227n9.   See also
-
-219–22
-
-globalization
-
-surplus value, and Marxian theory of
-
-Volker, Beate, 87, 91
-
-capital, 4–8
-
-voluntary social mobility, 167
-
-symbolic rewards, and collectivity,
-
-138
-
-wages, and human capital analysis,
-
-symbolic utility, and social resources,
-
-13–14.   See also   income
-
-44
-
-weak ties: ceiling effect for, 166; and
-
-symbolic violence, 14–15
-
-homophily principle, 67n4, 68.   See
-
-also   strength-of-weak-ties
-
-Taiwan: education and human capital
-
-proposition
-
-versus institutional capital, 192;
-
-wealth, and social exchange, 150,
-
-and studies of status attainment,
-
-160, 163–4
-
-86, 97
-
-Weber, Max, 37n7, 61, 144, 145n3
-
-Taoism, and Falun Gong, 217, 218n3
-
-Wegener, Bernd, 86
-
-Tao, Xingzhi, 202n7
-
-Wellesley College, 198
-
-Tardos, Robert, 91
-
-Wellman, Barry, 184
-
-Tazelaar, Fritz, 89
-
-Whampoa Military Academy (China),
-
-telephone companies, and Internet,
-
-203, 204
-
-228
-
-Willer, David, 42n1
-
-television, and civic engagement, 210,
-
-Williamson, Oliver E., 149
-
-237–8
-
-women.   See   gender; women’s studies
-
-Tend, Zitang, 203
-
-women’s liberation movement, 196,
-
-Tiananmen Square incident (1989),
-
-197
-
-206n9, 255–6
-
-women’s studies, and institutional
-
-Tobias, Sheila, 197
-
-transformation in U.S., 196–200
-
-transactional rationality, and social
-
-Wood, Richard L., 211n1
-
-exchange, 150–1, 154–5, 156,
-
-World Intellectual Property
-
-159–60, 162, 164
-
-Organization (WIPO), 236
-
-278
-
-Index
-
-World Trade Organization (WTO),
-
-Yan’an University (Yanda), 205, 206
-
-236
-
-Ye, Xiaolan, 115
-
-World Wide Web, 212–17.   See also
-
-Yen, James, 202–3n7
-
-Internet
-
-Yi, Peiji, 201
-
-Wright, Erik Olin, 91
-
-Zhou, Yang, 204
-
-Xu, Teli, 204
-
-Zhu, Rongji, 220
-
-Document Outline
-
-Cover
-
-Half Title
-
-Series-Title
-
-Title
-
-Copyright
-
-Contents
-
-Preface
-
-Part I Theory and Research
-
-1 Theories of Capital
-
-The Classic Theory: The Marxian View of Capital
-
-Neo-Capital Theory: Human Capital
-
-Cultural Capital: A Contention
-
-Neo-Capital Theoretical Explanation: Structurally Constrained Actions
-
-2 Social Capital
-
-Why Does Social Capital Work?
-
-Differing Perspectives and Converging Conceptualizations
-
-Issues and Clarifications
-
-3 Resources, Hierarchy, Networks, and Homophily
-
-Resources and Their Social Allocation
-
-The Macrostructure of Resources: Hierarchies and Social Positions
-
-Social Structure
-
-Hierarchical Structure
-
-The Pyramid of a Hierarchy
-
-Transactions in Complex Social Structures
-
-Interaction and Homophily: Networking and Social Capital
-
-Concluding Remarks
-
-4 Resources, Motivations, and Interactions
-
-「It’s Not Just What You Know but Who You Know」: The Microstructure of Resources
-
-Personal Resources as Human Capital
-
-Social Resources as Social Capital
-
-Motives for Resources: Purposive Actions
-
-Homophilous and Heterophilous Interactions
-
-Action Guiding Interaction: Formation of Predictions
-
-Structural Constraint and Opportunity in Capitalization
-
-Concluding Remarks
-
-5 The Theory and Theoretical Propositions
-
-The Theory of Social Capital
-
-Assumptions
-
-Theoretical Propositions: Structurally Embedded Resources and Purposive Actions
-
-Return to Social Capital
-
-Accessing Social Capital
-
-Structural Contingency of Action Effects
-
-Concluding Remarks
-
-6 Social Capital and Status Attainment
-
-Formative Studies and Theoretical Foundations
-
-Social Resources and Social Capital: A Theoretical Convergence
-
-Research Models and Evidence
-
-Mobilized Social Capital
-
-Accessed Social Capital
-
-Joint Effects of Accessed and Mobilized Social Capital
-
-Issues and Research Directions
-
-Informal and Formal Job Search Channels
-
-Strength of Ties or Network Locations?
-
-Further Development of the Position Generator
-
-Inequality of Social Capital
-
-Recruitment and Social Capital
-
-Social Capital versus Human Capital
-
-Concluding Remarks
-
-7 Inequality in Social Capital
-
-Theoretical Considerations
-
-The Study, Sample, and Data
-
-Deficit in Human and Institutional Capital
-
-Measures of Social Capital: The Position Generator
-
-Deficit in Social Capital for Females
-
-Further Analysis for Social Capital Deficit
-
-Kin versus Nonkin Ties
-
-Patterns of Capital Deficits
-
-Return on Social Capital
-
-Summary and Discussion
-
-Part II Conceptual Extensions
-
-8 Social Capital and the Emergence of Social Structure
-
-Sociological Theorizing
-
-Principles of Action: Minimization of Loss and Maximization of Gain
-
-Recognition and Profit: Principles of Interaction
-
-Succession and Transfer of Resources: The Primacy of the Primordial Group
-
-Human Capital, Social Capital, and Social Network
-
-The Emergence of Structure
-
-Collectivity and Public Capital
-
-Social Contracts
-
-Sources of Tension in Social Systems
-
-Concluding Remarks
-
-9 Reputation and Social Capital
-
-Exchange: Social and Economic Elements
-
-Transactional and Relational Rationalities
-
-Relational Rationality Elaborated
-
-A Summary
-
-Further Analyses
-
-Reputation as Individual and Group Capital
-
-Institutionalization of Rationalities
-
-Misrecognition and Ill Reputation
-
-Complementarity and Choice Between Social and Economic Capital
-
-10 Social Capital in Hierarchical Structures
-
-Structural Parameters and Their Effects
-
-The Level Differential
-
-The Size Differential
-
-The Resource Differential
-
-The Totality of Occupants and Resources
-
-Implications for Structure and Individuals
-
-Structural Constraints versus Social Capital
-
-Individual Action versus Social Capital
-
-Mobility and Solidarity: Some Policy Implications
-
-11 Institutions, Networks, and Capital Building
-
-The Institutional Field and Organization-Society Isomorphism
-
-The Flow of Capital
-
-Institutionalizing Organizations and Social Networks: Crediting and Enforcing Agents
-
-Networks as Vehicles for Institutional Transformation
-
-Transforming from Within: Women’s Studies in the United States
-
-Constructing Alternative Institutionalization: The Communist Revolution in China
-
-Summary
-
-Concluding Remarks
-
-12 Cybernetworks and the Global Village
-
-The Internet and Cybernetworks: Emerging Social Capital
-
-Falun Gong: A Case Study of Social Capital and Social Movement
+Conceptual Extensions
 
 The Falun Gong Organization
 
+Li started propagating Falun Gong in 1992 in his native region of Changchung, Jinling, and then moved to Beijing and other cities throughout China. He charged no fees and claimed that all his income from workshops was donated to furthering the Falun Gong. Falun Gong spread quickly, and Li’s workshops and lectures drew huge audiences.
+
+He found the Falun Dafa Research Society in Beijing, and his lectures were compiled into volumes.4 Over the next two years, an informal yet rigid structure emerged (Li 1996, pp. 132–133). The Society served as the highest national coordinating office under his direct command. In various provinces, regions, and cities, general teaching/assisting centers (  fudao zhong zhan ) were established. According to the Chinese government report, there were thirty-nine of them by July 1999 (  People’s Daily , July 30, 1999), each led by a coordinator appointed by Li and the Society (Li 1996, p. 135). These centers, in turn, coordinated teaching stations (1,900, according to the government report) scattered throughout cities and townships and, under these stations, cultivation or exercise spots or sites (28,000, according to the government report). In most cases, the coordinator had to participate in workshops conducted by Li himself, and no one else was allowed to conduct workshops (Li 1996, p. 144).
+
+At each exercise site (  niengong dian ), there were tutors (  fudaoyuan ) and practitioners. Practitioners gathered at each site regularly to cultivate, or perform exercises and study Li’s writings and lectures (from audio- and videotapes) (Li 1996, pp. 144–145, 148). Centers, stations, and sites could cooperate (p. 150) and lean on (  guakau , or affiliated with) local work units (1996, p. 152).5 However, their leaders could not also par-who taught him the principles of Buddhism. In this fashion, he continued encountering new Buddhist or Taoist masters as he elevated himself to higher levels. He then began teaching others. After observing and studying various forms of   qigong , he decided in 1984 to popularize his teachings by writing and editing his lectures. During this process, amazingly, all fourteen of his masters returned to help and instruct him. The Wheel of Law method, Falun Gong, was finalized in 1989. He spent the next two years observing how his disciples followed these instructions and elevated themselves to high levels.
+
+However, according to official reports (  People’s Daily , July 22, 1999), Li did not begin learning    qigong   until 1988. He studied with two masters of   qigong , mixing in some movements from Thai dance that he had learned while visiting Thailand.
+
+In 1992, he「was ordered to go out of the mountain」(Li 1993, p. 112; 1994, p. 341) and started general training and lecturing throughout China.
+
+4 As of April 1999, The Falun Dafa Web site listed fourteen volumes, which are mostly compilations of Li’s lectures (falundafa.ca/works/eng/mgjf/mgjf4.html).
+
+5 For example, a site could「borrow」the yard of a work unit. Centers could be listed as affiliated with various work units for administrative reporting purposes, because voluntary or civic groups or associations, even professional associations, do not carry official administrative status and must「lean on」(be officially affiliated with) a work unit to gain recognition by the government.
+
+Cybernetworks and the Global Village  219
+
+ticipate in other forms of cultivation (e.g., qigong, or energy cultivation) or other groups and associations, and the stations and points could not participate in other associations’ activities, except in exhibitions and
+
+「athletic event」demonstrations.
+
+Thus, despite his persistent claim that Falun Gong or Dafa had no organization, Li had created a hierarchical organization with powerful and efficient top-to-bottom control. This organization, built on social networks and under the direction of a single leader and ideology, created its own institutions and institutionalizing organizations (see Chapter 11) through which new members were recruited, trained, and placed in an ever-expanding labor market.
+
+Li left China in 1995 and the Society, under his direct guidance, continued to play the role of national coordination (Li 1996, pp. 169–170).
+
+However, he stressed that cultivation was more important than organization (p. 175), and leaders and practitioners were urged to learn his writings and lectures through thorough memorization (pp. 105, 138, 169). Since Li was the only one who could conduct workshops, the leaders and practitioners could only read, repeat, and discuss his「scrip-tures」(  jinwen , or quotations from his books and lectures) together at each exercise site or on their own. Leaders were forbidden to freely interpret and extend his teachings (p. 171). Thus, Li remained the only authority in the hierarchical organization.
+
+Li employed the same strategies in deploying and extending his organization globally. He began lecturing in the United States in 1996. In November 1996, the first international「experience sharing」meeting of Falun Gong was held in China, attended by practitioners from fourteen countries and regions. In 1998, the first North American「experience sharing」meeting was held in New York. Other meetings were held in Canada, Germany, Singapore, and Switzerland. Falun Gong has grown like wildfire throughout China, especially in cities since 1992, and has spread to North America, Australia, Asia, and Europe. By early 1999, Li claimed to have over 100 million practitioners worldwide. Some scholars have estimated the number of practitioners in China to range between 20 to 60 million; the Chinese government puts the number at around 2 million (Reuters, July 25, 1999).
+
 The Suppression and the Protest Movement
+
+As Falun Gong grew, it caught the attention of the Chinese media and government, first fascinating them with its claims of incredible feats of curing and supernatural powers and then alarming them by its hierarchical organization; enthusiastic, cohesive, disciplined practitioners; and enormous popularity. In June 1996 one of the largest newspapers in
+
+220
+
+Conceptual Extensions
+
+China,   Guangming Daily , started criticizing Falun Gong, drawing strong responses from the practitioners. The responses further alarmed the government. In the same year, the government banned five Falun Gong books. In 1997, the Ministry of Security investigated Falun Gong for possible illegal religious activities but did not draw any conclusions. In July 1998, the Ministry designated Falun Gong as a devious religious sect and conducted investigations. The Ministry of Civil Affairs also conducted investigations. Practitioners responded vigorously by staging sit-ins at various official sites and buildings. Cultivation continued to flourish at many exercise sites, and Li’s writings and lectures were readily available in print, and on audio- and videotape. In fact, there was a growing industry in China and abroad in the production of Falun Gong–related publications and materials, without the awareness or approval of Li or his Research Society.
+
+The final confrontation began with the publication of an article by He Zhuo-xiu, a scientist and a member of the Chinese Academy of Sciences, in   Science and Technology Review for Youth  (  Qing Shao Nian Ke Ji Bao   Nan ), a monthly publication issued by the Tianjin Normal University. In the article (issue 4, 1999), He challenged the claimed scientific basis of Falun Gong and warned that it might be harmful for youth to practice. This article drew immediate responses from Falun Gong followers in Tianjin, who visited the publishing office and demanded a retraction of the article and a public apology. Starting on April 20, the Falun Gong practitioners began a sit-in demonstration. The gathering drew 3,000 on April 22 and 6,300 on April 23 (  People’s Daily , July 23, 1999). Without satisfactory responses from the publisher, the Tianjin cultivators decided to appeal to the national government and CCP leaders in Beijing.
+
+Practitioners began to converge on Zhongnanhai, the compound in central Beijing housing the core government and CCP leaders and their families, on the evening of April 24. On April 25, more than 10,000
+
+Falun Gong practitioners from several provinces and cities6 gathered at Zhongnanhai.7 They held silent sit-ins outside the compound, demanded a meeting with Party leaders, submitted an appeal, and sought official approval of their activities. Two representatives met Lo Gan, secretary of the Political and Legal Commission of the Central Committee, as well as Zhu Rongji, who joined in the conversation, but no commitments 6 According to the official report (  People’s Daily , August 4, 1999), demonstrators came from Hebei, Liaoning, Beijing, Tianjin, Shangdong, Helongjiang, Anhui, and other locations.
+
+7 The official estimate put the number of protesters at over 10,000. Other eyewitness reports estimated between 20,000 and 30,000 protesters. It was difficult to separate some bystanders from participants, and the police eventually blocked off the area except for through traffic, preventing other practitioners from joining in.
+
+Cybernetworks and the Global Village  221
+
+were received. At the urging of the police, they eventually scattered after 9 p.m.
+
+This incident sent a shock wave through the CCP leadership, for it was probably the first time since the Party gained control of the country in 1949 that the Party and the government failed to receive any information beforehand that an unauthorized gathering of any reasonable size would take place. Furthermore, such a gathering took place at Zhongnanhai, the nerve center of control. The Party not only saw this as a failure of intelligence but also sensed a strong threat to its authority and immediately swung into action. Jiang Zemin apparently issued a directive that evening for immediate investigations. A thorough review of the intelligence apparatus followed, and a nationwide investigation of Falun Gong proceeded with haste and determination. Realizing that Falun Gong practitioners had penetrated many Party and government bureau-cracies, offices, and institutes; that the number of Falun Gong cultivators was considerable (some scholars estimate it to be up to 60 million in China – the same size as the CCP membership, even though the Falun Gong and Li claim to have over 100 million cultivators, most of whom reside in China); and that the Falun Gong was well organized, thoroughly disciplined, and quick to mobilize, the Communist leadership considered it a serious threat to the core political ideology, to the Party organization, and to the absolute command of the Party in all spheres of life (Central Committee Circular 19, July 19, 1999). Efficiently coordinated organization, extensive participation, and collective cohesion convinced the CCP leadership that Falun Gong constituted a serious threat to the Party’s ideological and organizational hold over the country.
+
+Also stunning was the large number of Falun Gong practitioners in the Party’s most sensitive offices and work units.
+
+The Party outlawed Falun Gong on July 19 and immediately began arresting coordinators and important trainers throughout China, searching and ransacking their homes, confiscating and destroying books and related materials, and conducting a major reeducation campaign to eradicate Falun Gong involvement in the Party and the government. The campaign had three phases: elevating learning, or a reindoctrination in Marxist ideology; educational transformation, or persuading those involved in Falun Gong to recognize and admit wrongdoings (involvement in the Falun Gong); and organizational treatment, or ridding work units and areas of all elements of Falun Gong. All Party apparatuses, including investigative and disciplinary units, propaganda, the united front, Communist youth, and united women’s groups were to be mobilized to unveil Li’s and Falun Gong’s activities and intents, and were to control all situations so as to accomplish「early discovery, early reporting, early control, and an early solution」in「defending social and polit-
+
+222
+
+Conceptual Extensions
+
+ical stability」(Central Committee Circular, July 19, 1999). For the next month, sustained, all-out efforts were made to eliminate Falun Gong in China.8
 
 Cybernetworks and Falun Gong
 
+What is fascinating from our perspective is that these events provide a vivid and powerful demonstration, for the first time in history, of how cybernetworks were implicated in a major social movement and countermovement. Moreover, it is most interesting, but probably not surprising, that this happened in a society under the rigid and powerful political command of a single political party and ideology: China.
+
+As soon as Li left China in 1995, an Internet system was created by Falun Gong (falundafa.ca; falundafa.org; falundafa.com) through which direct communication and interactions were established between Li, who now resided in the United States, and his followers throughout the world, including China. The Web site, called Minhui (roughly,「clear understanding」), was supplemented by an e-mail system. These systems sustained the efficiency of the organization at all levels (from the Research Society and general teaching centers all the way down to many exercise sites and individual practitioners). There were more than forty linked sites in many countries, including the United States, Canada, Australia, Sweden, Germany, Russia, Singapore, and Taiwan. It is not known how many PCs in China were linked to these sites, but no doubt the connections were massive. Several pieces of evidence support this assertion. Li’s site was originally identified as the Overseas Coordinating Office of the Falun Dafa Research Society. By 1997, exchanges over the networks were so rampant that the Unit had to issue a statement to rein in control.
+
+This statement, issued on June 15, 1997, warned that cybernetworks had been used to include other religious ideologies or   qigong  (cultivation of inner energy, a common exercise in China) content; to insert materials not approved by Li and the Research Society, including personal interpretations and the marketing of products; and to include materials illegally. The statement reminded all users that any materials, conversation records, or correspondence not contained in Li’s public lectures or publications could not be included on the Internet, and materials to be sent through the Internet had to be checked by teaching centers’ coordinators in various countries and regions. It asked all users to report violations of these rules, via e-mail, to the Overseas Coordinating Office (www.falundafa.org/fldfbb/gg970615.htm).
+
+8 The Party claimed that it was all right to practice Falun Gong as a   qigong   exercise. But in reality, all public Falun Gong practices were dispersed and not allowed.
+
+Cybernetworks and the Global Village  223
+
+On August 5, 1997, the Overseas Unit’s site (www.falundafa.org) was formally merged with the site of the China Falun Dafa Research Society, and it issued an Internet statement to overseas practitioners advocating the holding of various meetings, in various languages, to increase the voice of Dafa in media around the world; the selection and inclusions of Caucasian practitioners as trainers and facilitators of Caucasian practitioners’ participation; the spread of Li’s publications through translation and the Internet; and an organization of visiting groups to China to learn and practice Dafa (www.falundafa.org/fldfbb/tz970805.htm).
+
+On August 8, 1998, the Research Society issued an Internet message to Falun research associations and teaching centers in all countries, indicating that the cybernetworks for Falun Gong had achieved, or almost achieved, total and comprehensive linkage with all teaching centers around the world, including those in China. In this notice (www.falundafa.org/fldfbb/setup c.htm), the Society expressed satisfaction at the use of the Internet to spread the true words of Li (his published and publicly stated works only), as well as the activities of associations and teaching centers around the world. However, due to the enormous increase in personal e-mail addresses, the Society had discovered the dissemination of information not related to Dafa or related to religions, unverified statements by Li, and even misinformation in the name of the various associations or the Research Society. Thus, it announced the establishment of a Bulletin Board that would carry Li’s instructions and the Research Society’s announcements, the content of which could be copied and forwarded. Other individualized content would be modified or eliminated from all sites. All「irrelevant」
+
+sites would be notified and corrected through the Bulletin Board (www.falundafa.ca/fldfbb).
+
+Thus, by the summer of 1998, the Research Society and Li had established a comprehensive cybernetwork linking all or most teaching centers, as well as many individual practitioners, and exercised control over the flow of content. The extent to which this cybernetwork played a critical role in the mobilization of practitioners from many provinces and cities to converge on Beijing and Zhongnanhai on April 25, 1999, remained unknown. The fact that the CCP and government intelligence apparatus, which penetrates deeply into every corner of Chinese society, had no prior knowledge about the movements of thousands of practitioners, many of whom took trains and buses, suggests that the cybernetworks with direct linkages and access to information from the Research Society (now run in the United States), and among the teaching centers, exercise sites, and individual Internet users, might have played a key role in dissemination of information about the upcoming sit-down demonstrations.
+
+224
+
+Conceptual Extensions
+
+This suspicion was confirmed in part by Li himself. On May 2, 1999, in interviews with Chinese and foreign media in Australia, Li was asked how he kept in touch with the 1 billion practitioners around the world. He replied:「Not any direct channels, because as you found out that here was a conference and so I found out too. Why should I say that we all know what is happening anywhere? Everyone knows about the Internet; this thing is very convenient throughout the world. Wherever there is a meeting, it appears in the Internet and many regions around the world learn soon and I learn too. I really do not have any exchanges with them, not even telephone calls」(www.falundafa.org/fldfbb/tomedia/
+
+tochinesemedia.html). When reporters asked Li how the practitioners knew to go to Zhongnanhai on April 25, if they were not organized, as Li claimed, he replied:「You all know about the Internet; they found out on the Internet. Also, the practitioners in different regions were friends and relayed this information to others」(www.falundafa.org/fldfbb/tomedia/
+
+toenglishmedia.html). To deny having any organization might be true in the legal sense (the Falun Dafa Research Society had not registered with the Ministry of Civil Affairs), but certainly there was every evidence that the Society, teaching centers, and exercise sites formed a hierarchical structure throughwhichinformationflowand authority were commanded.
+
+Thus, we could not consider Li’s reply as valid. But the fact remained that the cybernetworks were well placed by then to be used by the organization to disseminate any information it wanted, and Li’s statement did not deny that the networks were involved in the mobilization process.
+
+After the April 25 incident and the strong and shocking responses from the Party and the government, the use of the Internet between the Minhui Site and individual users was intensive and extensive. To facilitate the flow of information, the Minhui Site constructed a file, called News and Reports, to carry information from China through the Internet. For the month of June 1999, this file (www.falundafa.org/china) contained 156
+
+messages (all but 14 messages were specifically dated), and at least half of them were identified as originating from inside China. The locations identified included Beijing, Tianjin, Shanghai, Shangdong, Nanchang, Weifang, Qingdao (Shangdong), Hebei, BenXi, Linyi (Shangdong), Shenyang, Dalian, Qiqihar, Shijiazhuang, Guangzhou, Qinghungdao, Daqing, Fuzhou, Tonghua, Zhengzhou, Jaingsu, Hangzhou, Fujian, Taiyuan, Weihai, Jiangshu Qidong, Wuhan, Harbin, Hubei (Xishui), Changsha, and others.
+
+The extensive use of the Internet was again confirmed when the government shut down several Internet sites in China that provided free or paid e-mail services. For example, 263.net shut down more than 1,000,000 of its free e-mail addresses on July 22 for several days, and when it came back on, the service was greatly curtailed and monitored.
+
+Cybernetworks and the Global Village  225
+
+In the meantime, the Internet was used widely by the Party and the government to attack Li and Falun Gong. Extensive essays were written and transmitted over Web sites (e.g.,   People’s Daily , Xinhua Press, and many other Web-site links to the Chinese government and the media) to discredit Li (e.g., about his falsified birth date, his tax evasion, the lowly jobs he held, the brevity of his   qigong   education, and his possible connections with the Central Intelligence Agency). Other reports provided personal and eyewitness accounts of individuals being victimized by Falun Gong. Articles reported confessions and renunciations of Falun Gong practitioners, especially among Party members and cadres. Finally on July 29, 1999, a new Web site (www.ppflg.china.com.cn) was created by    People’s Daily   dedicated to「unveiling Falun Gong, for the Health and Life of the People.」It contained columns including「reporting and commenting, surveying and analyzing, comments from the people, tragic stories, selected letters, relevant websites, and messages from visitors.」
+
+There were also reports that many of the Falun Gong Web sites experienced hacking (AP, July 31, 1999) and at least one attempt that appeared to originate from the Chinese national police bureau in Beijing.
+
+Bob McWee, a Falun Gong practitioner and manager of a Web site, falunusa.net, uncovered the Internet address from which hacking was attempted on his machine, along with two telephone numbers in Beijing.
+
+When the Associated Press called the numbers, the person who answered the phone identified them as belonging to the Public Security Ministry.
+
+A telephone operator at the Ministry said they belonged to the Internet Monitoring Bureau.
+
+It is clear that for the first time in history, a movement and a countermovement occurred in cyberspace, apparently with dramatic effect.
+
 Discussion
+
+The Falun Gong incident serves as a vivid contemporary illustration of how social networks and capital provide the mechanisms and processes by which an alternative ideology, challenging prevailing ideology and institutions (see Chapter 11), can be institutionalized. The Falun Gong incident was considered the most serious challenge to the CCP since the Tiananman Square incident in 1989 (Lin 1992b). However, there are significant differences between the two social movements. Falun Gong involved much broader participation, drawing practitioners from all age groups, all social and occupational strata, and both urban and rural populations (though probably disproportionately from cities and townships), as well as enjoying a well-organized and strongly hierarchical structure of command, and having the advantage of the Internet as well as cell phones (the Tiananmen Square participants could only use the newly
+
+226
+
+Conceptual Extensions
+
+available fax machines effectively). While the Tiananman Square incident died down quickly after June 4, 1989, Falun Gong had the benefit of a cybernetwork that remained in operation after July 20, 1999, and in communication with some users inside China.
+
+Falun Gong provided no political ideology in the traditional sense, but it did offer an alternative ideology to the prevailing ideology. The events of 1999 illustrate that social networks built on a singular alternative ideology can mobilize individuals into a cohesive collectivity. From this collectivity have emerged alternative institutionalizing organizations in the form of teaching centers and exercise sites where「cultivation」involves not only exercises and meditations, but, more importantly, reading and studying the ideology – Li’s teachings. These effective organizations provided the training ground for new recruits, indoctrinated them with the ideology, and absorbed them into the social networks. With the aid of the cybernetworks, these social networks have created revolutionary and powerful means to mobilize capital, social and others, making viable massive social movements even in a most constrained and repressive institutional field. The leaders of the prevailing ideology and institutions correctly recognized these challenges and considered them a serious political struggle. In the Central Committee’s circular banning Falun Dafa, the first point made was that Party members「must recognize the political nature and serious damage of the Falun Gong organization.」A subsequent essay recognized the Falun Gong organization’s serious challenge to the CCP’s guiding principles (Qiu Shi, 1999).
+
+Li and his followers steadfastly denied that there was any organization (  zuzhi ), on the ground that they had no physical location, no visible hierarchy, and no visible leaders. But it was clear that Li had put together a most efficient organization, with sophisticated means of communication such as a cybernetwork, to recruit, train, retain, and mobilize followers and create collective social capital. It is doubtful that Li intended to challenge the sovereignty of the Communist Party in China, but the alternative ideology and institutions he created could have eroded the Party by winning over its members and penetrating its organizations, thus chipping away at its institutional capital and human capital to the extent that its effectiveness and capability for absolute one-party and one-ideology rule would have been seriously if not irretrievably damaged.
 
 Research Agenda
 
+The growth of cyberspace and the emergence of social, economic, and political networks in cyberspace signal a new era in the construction and
+
+Cybernetworks and the Global Village  227
+
+development of social capital. No longer is social capital constrained by time or space; cybernetworks open up the possibility of global reaches in social capital. Social ties can now transcend geopolitical boundaries, and exchanges can occur as fast and as willingly as the actors care to participate. These new developments provide new opportunities as well as challenges for accessing social capital, and thus alert us to reconsider theories and hypotheses on social capital that have so far been built largely on observations and analyses of localized, time-constrained social connections. Systematic research efforts must be made to understand and assess this new form of social capital. Here I offer several contradictions and challenges worthy of research attention.
+
+1. How can we extend notions and theories of localized social capital to global social capital and to social capital captured in cybernetworks?
+
+For example, what is a civil society in the global village? How can we extend our analysis of the contribution of social capital to national assets such as democratic society or political participation or to community assets such as trust and cohesion? What are the equivalent global assets?
+
+Do we need to develop new notions, or can we apply the theories and methods we have developed to understand a global civic society or a global engagement? Even if we can make such extensions, which I doubt we can without modifications, how do we compare localized versus global social capital and their consequences? Are the traditional localized embedded resources losing their utility (e.g., local cohesion can no longer rely solely on localized social capital) or will they retain their returns for the local community? If these localized networks remain meaningful, what do cybernetworks mean in this context? How can national participation be seen as a component of this larger global context or village (Ananda Mitra 1997 in Jones 1997a)?9 Do cybernetworks represent added social capital or do they replace localized social capital? Does being a citizen of a community or a nation takes precedence over being a resident of a global village, or vice versa, and under what conditions? In cases of conflicting interests or loyalties for an actor in her or his access to localized and global social capital, how does the actor choose between the privileges and responsibilities of each?
+
+2. In one sense, cybernetworks provide an equalizing opportunity in the access to social capital. Given the easy, low-cost access to cybernetworks that is being provided to more and more people around the world, the abundance and flow of information, the multiplicity of alternative channels as sources and partners, and the increasing need for and gratification of almost instantaneous exchanges, power differentials will 9 I use the term   village   to suggest that rules, practices, and institutions for cybernetworks are still largely in flux and are being developed.
+
+228
+
+Conceptual Extensions
+
+inevitably suffer degradation. Multiple routes may mean less dependence on certain nodes and less power to these nodes. Will such alternative routes reduce the significance of network locations or bridges? Does this mean, then, that there will be an equalizing or democratization process in cybernetworks? Likewise, authority will become harder to exercise.
+
+As the Falun Gong case demonstrates, social capital is now carried across time and space, and traditional authorities can no longer control and command resources, as before. Alternative and counterprevailing ideologies will not be so easily stamped out or suppressed.
+
+This process has already appeared in the economic sector. For example, emerging companies like Dell and Gateway entered the Internet early, and by reducing transaction costs involving intermediaries and stockpiling of inventories, they sold computers faster and at a lower price. This has offered them a significant competitive advantage over traditional companies such as IBM, Compaq, and Hewlett Packard, which rely on third parties for sales and services. These companies will have to either switch or lose business and competition as they face the enormous task of maintaining the traditional way of doing business and adapting to new avenues to interact directly with buyers. In stock trading, electronic trading companies such as Charles Schwab, E-Trade, and Datek similarly allow individuals to trade at a lower cost and a faster transaction rate, forcing companies such as Merrill Lynch to adapt to the new rules, again at the risk of losing relations with their local and regional dealers. The pressure on traditional firms and industries is enormous.
+
+Travel agencies, car dealers, insurance companies, banks, and stock-brokers all face the challenge of either changing fast in adopting cybernetworks to do business or facing death (Taylor and Jerome 1999). Such is the force of cybernetworks for equalizing power.
+
+Yet, will power disappear? Hardly (Reid 1999). Resourceful actors in cyberspace will accrue more resources, make alliances, acquire or merge with other resourceful actors, and block off alternative routes with pro-prietary hardware and software to establish themselves as the essential bridges or structural holes in the cybernetworks. New rules and practices are being developed for firms to deal and take advantage of the information economy (Breslow 1997; Kelly 1998; Shapiro and Varian 1999). Microsoft is doing it by cornering operating systems and major applications. America Online is attempting to do it by blocking off access to its users from outside. Telephone companies, cable companies, and satellite firms are all competing or combining to gain a competitive edge over the Internet. Elite universities and research institutions have established their own supercomputing and Internet systems. Government and other agencies and firms will acquire extensive information on individuals and make such information available to actors and agents who have
+
+Cybernetworks and the Global Village  229
+
+the power, authority, or wealth to pay for or gain access to such information. The federal Advisory Commission on Electronic Commerce, convened in June 1999, was to devise recommendations on e-commerce taxation policies. In April 2000, it recommended to Congress that the moratorium on the Internet tax be continued for six years.
+
+At the same time, access to cyberspace itself has enlarged the gulf between the haves and the have-nots. The Internet, for example, may have equalizing effects for citizens of North America, Europe, Australia, New Zealand, and East Asia, allowing them to acquire social capital.
+
+Yet, it may also have further differentiated these societies and their citizens from the rest of the world, especially Africa. According to the 1999
+
+International Data Corporation/World Times Information Society Index (  PC   magazine June 8, 1999, p. 10), which tracked fifty-five countries that accounted for 97 percent of the global gross national product (GNP) and 99 percent of information technology expenditures, the information gap between rich and poor countries has continued to widen.10 About 150
+
+countries representing 40 percent of the world’s population were not included in the Index; they accounted for 3 percent of the world GNP
+
+and less than 0.5 percent of all information technology expenditures.
+
+Without computers, linguistic facilities, and electricity and telephones, many citizens around the world have been excluded from accessing, participating in, and exchanging within cybernetworks.
+
+The digital divide in social capital may also be further differentiating people along socioeconomic class, ethnic, religious, and residential lines.
+
+In the United States, the top-ranked information economy in the world, inequality in access to computers and the Internet is substantial. In the 1999 report   Falling Through the Net: Defining the Digital Divide , the U.S. Department of Commerce (Irving 1999) showed significant gaps in households with and without e-mail across income, urban-rural, race/
+
+origin, education, and marital status categories. These gaps increased from 1994 to 1999. As can be seen in Figure 12.1, in 1999, 40 to 45
+
+percent of U.S. households with incomes of more than $75,000 had access to e-mail, compared to only 4 to 6 percent of those with incomes of $14,999 or less. Figure 12.2 shows that over one-fifth (21.5 percent) of white households had access to e-mail, whereas less than 8 percent of black and Hispanic households did. Education (Figure 12.3) told the same story: Over two-fifths (38.3 percent) of the households with persons holding bachelor’s or higher degrees had access to e-mail, whereas less than 4 percent of those with some high school or less did.
+
+10 The top ten countries in information technology expenditure were, in order, the United States, Sweden, Finland, Singapore, Norway, Denmark, the Netherlands, Australia, Japan, and Canada.
+
+230
+
+Conceptual Extensions
+
+Figure 12.1 Percentage of U.S. households with e-mail by income and by rural, urban, and central city areas. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
+
+Regional divides (Figure 12.4) likewise showed inequality: residents in urban and central cities had much greater access to e-mail than rural households (except in the Northeast). Married couples (with no children or with children less than eighteen years old) were much more likely to have access to e-mail than other types of households (Figure 12.5).
+
+The gaps between the rich and the poor, the urban and the rural, the educated and the uneducated, and the dominant ethnic/racial/religious groups versus others have undoubtedly become worse between developed and less developed countries. For example, in the United States, almost half of all Internet users are females, whereas in China, females
+
+Cybernetworks and the Global Village
+
+231
+
+Figure 12.2 Percentage of U.S. households with e-mail by race/origin, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
+
+accounted for only 15 percent of Internet use in a recent survey (CNNIC
+
+1999). About 60 percent of Chinese users were college educated (versus 38 percent of U.S. users).
+
+Thus, ethnic and gender differences in Internet use (Poster 1998; Sassen 1998, Chaps. 5 and 9) and the level of the country’s technological development increase inequality (Castells 1998, Chap. 2), and are compounded by societal development. In other words, because technological capabilities and all forms of capital differ across nations, inequality in social capital is growing fast and further in cybernetworks. Social class differences in accessing social capital in cybernetworks may be diminishing in advantaged societies, yet they may be increasing in disadvantaged societies. Take language as an example: computers, the Internet, and communication around the globe are dominated by the English language, ranging from the development of codes to routine user
+
+232
+
+Conceptual Extensions
+
+Figure 12.3 Percentage of U.S. households with e-mail by education, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
+
+commands. English-language countries, already advantaged through earlier industrial developments in the nineteenth and twentieth centuries, have continued to gain an advantage through the growing capabilities of computers and the Internet. It is true that other countries, due to their large populations (e.g., China), may develop their own linguistic cybercommunities, but the language gap will continue to increase the inequality of social capital in cybernetworks. Analysis of inequality of social capital inevitably relies on the comparison of subunits such as nations, regions, or communities. In this sense, traditional communities and national boundaries will remain meaningful so long as gaps in social capital remain significant along these lines.
+
+This divide involves more than the availability of technologies. As computers decrease in cost and satellite services begin to provide wide coverage around the world, the more demanding resources or the absence of capabilities to access cyberspace and cybernetworks such as
+
+Cybernetworks and the Global Village
+
+233
+
+Figure 12.4 Percentage of U.S. households with e-mail by relation, by rural, urban, and central city areas, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S.
+
+Census Bureau, U.S. Department of Commerce, using November 1994
+
+and December 1998 Current Population Surveys) education, linguistic facilities, and sociopolitical constraints will require far greater efforts and difficult changes.
+
+3. The mixing of material and idea goods as social capital in cybernetworks is unprecedented. Information may be free, but the cost is exposure to imposed idea/material messages, especially commercial messages. While this cost is traditional, as it has been in printed media for centuries and in television for decades, the integration of economic and marketing messages in cybernetworks is much more thorough. There is no clear demarcation between senders and receivers of such mixed messages; all exchanges are potential (voluntary or involuntary) carriers of such messages. Although currently they are primarily commercial/
+
+material in nature, they may extend to political, religious, and other
+
+234
+
+Conceptual Extensions
+
+Figure 12.5 Percentage of U.S. households with e-mail by household type, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
+
+content/idea arenas. Thus, free information in cybernetworks may become increasingly「expensive.」Can technology to block out such unwanted messages keep up with the technology and political leverage to plant them?
+
+4. Free access to and networking in cyberspace have blurred the boundary of social capital – the privilege of privacy (personal resources) and freedom to access information (social resources). Cyberspace has attained unprecedented freedom to transmit information. Privacy issues loom large, as the ability to seek and find information about others expands at a shocking rate (Burkhalter 1999; Donath 1999). For example, there is unprecedented access to pornography on the Internet
+
+Cybernetworks and the Global Village  235
+
+compared to traditional print and visual media. Transmission of hate messages (Zickmund 1997; Thomas 1999) and crime (Castells 1998, Chapter 3), as well as love or romance, has led to opportunities as well as tragedies (see Jeter 1999 for an account of an Internet romance ending in death).
+
+Still more serious is the clash between freedom of information and privacy. The issue is no longer that of preventing children from gaining access to certain information; it concerns anyone’s right to gain access to information about anyone else. In the United States, for example, it is possible, at no cost or minimal cost, to gain access to digitized information about other people’s bank accounts, mortgage accounts, stock accounts, prison records, driving licenses and violations, substance abuse records, and much more information associated with the Social Security number. One person’s freedom to gain information may be the invasion of someone else’s privacy. Does social capital have a boundary, and if so, who sets the boundary? Unlike traditional social networks, where interpersonal relationships constrain the flow and content of shared resources, cybernetworks reduce such relationships and constraints to a minimum.
+
+Freedom to provide information on the cybernetworks has also caused unprecedented sociolegal problems. When is something considered pornography by the community standard as the notion of community blurs? When is hate information sufficiently damaging to a group of individuals to be banned? When is violence advocated sufficiently to be considered as motivating or urging actions? Courts are involved, for example, in ruling on whether and to what extent information about certain social taboos can be propagated over the Internet (MacKinnon 1997; Morrow 1999). What legal actions are possible or necessary for planting false information for gains in the stock market (Jarvis 1999)?
+
+When such messages are transmitted across community and national boundaries, who has the legal authority to regulate them? If legal entities such as national governments engage in cyberwars (e.g., hacking other governments’ data or sending hate or revolutionary messages), are international organizations capable of mediating and regulating them?
+
+There will be tremendous debates and implementation issues on the balance between social control and the newfound freedom over the cybernetworks.11
+
+In the economic and commercial sector, some national and international actions are being taken to address issues of property rights and 11 According to the Georgetown Internet Privacy Policy Study conducted in 1999, 94
+
+percent of the top 100 Web sites and 66 percent of all sampled Web sites surveyed had privacy policies. However, which policies are implemented and the consequences of these policies remain to be studied.
+
+236
+
+Conceptual Extensions
+
+regulations (e.g., taxation). On July 1, 1997, the Clinton administration issued    A Framework for Global Electronic Commerce , presenting the U.S. government’s strategy to facilitate the growth of e-commerce.
+
+Subsequently, Congress enacted legislation that accomplished four of the president’s objectives: (1) the   Internet Tax Freedom Act   placed a three-year moratorium on new and discriminatory taxes on Internet commerce; (2) the   Digital Millennium Copyright Act   ratified and implemented the World Intellectual Property Organization (WIPO) Copyright Treaty and the WIPO Performances and Phonograms Treaty, protecting copyrighted material online; (3) the   Government Paperwork Elimination   Act   encouraged prompt implementation of e-filing and record-keeping systems by the federal government; and (4) the   Children’s Online Privacy   Protection Act   protected the privacy of young children online. In May 1998, the World Trade Organization (WTO) reached an agreement by which members would continue the practice of not imposing customs duties on e-commerce transmissions. The Organization for Economic Cooperation and Development (OECD) and industry groups issued a declaration in October 1998 supporting the tax principles outlined in Clinton’s strategy and opposing discriminatory taxation imposed on Internet and e-commerce. But at the moment, the growth of cybernetworks is substantially outpacing such national and international efforts to regulate them.
+
+5. Actions seem to gain the upper hand in interactions with structures in cybernetworks (McLaughlin, Osborne, and Ellison 1997; Smith 1999; Wellman and Gulia 1999). Individuals, groups, and organizations can create institutions and capital by forming chat rooms, clubs, and groups without many structural constraints. Rules and practices are being created and implemented as these「villages」evolve (Agre 1998). What are the motives for extending networks in cyberspace, and what are the intended goals and payoffs (Kollock 1999)? Is wealth superseded by reputation, power, or sentiment as the expected return in such villages? Are there definitions and declarations of membership, control of boundaries, and rules of exchange and commitment in sharing resources?
+
+Capital in the form of credentials is being created and conferred, and markets for the capital are being created. In higher education, for example, tens of thousands of courses were available online in 1999 (tele-campus.edu), and the estimate was that the number of people taking at least one college course over the Internet would triple by the year 2002
+
+to about 2.2 million in the United States alone (  PC World , July 1999, p. 39). Virtual degrees were rapidly being granted online (e.g., virtual universities such as Jones International University, accredited by the North Central Association of Colleges and Schools, 1999,
+
+Cybernetworks and the Global Village  237
+
+www.jonesinternational.edu and virtual masters in business administration offered by Duke University, among others).
+
+Social movements challenging existing institutions have benefited from the opportunity afforded by cybernetworks to mobilize social capital.
+
+The Falun Gong incident created a new ball game in challenging existing ideologies and institutions. Will cybernetworks improve the opportunities for peaceful transitions and transformations, or will they accelerate dramatic changes in social institutions (Gurak 1999; Uncapher 1999)? Will they supplement or replace face-to-face exchanges for social capital? Will they help the disadvantaged in mounting collective actions (Schmitz 1997; Mele 1999)?
+
+Inevitably there will be tensions, conflicts, violence, competition, and coordination issues among the villages in cyberspace. When and how do villages claim self-defense or self-interest and invade other villages for resources? How do villages become imperial or colonial powers?
+
+How do villages defend themselves and form coalitions? Will a
+
+「United Nations」emerge in cyberspace, and under what rules and practices? Would such a global body be dominated by the core villages?
+
 Concluding Remarks
 
-Part III Epilogue
+The thesis that social capital is on the decline in the United States and elsewhere is obviously premature and, in fact, false. The rise of the Internet and cybernetworks signals a revolutionary growth of social capital.
 
-13 The Future of the Theory
+This form of communication has begun to show a「correcting」trend if we take seriously Putnam’s hypothesis that TV viewing is the culprit accounting for the decline of social capital in the more traditional form of participation in social associations and groups. A Nielsen survey conducted in July 1999 shows that since it began monitoring in August 1998, home use of the Internet and online services has continued to cut into TV viewing. Wired homes watched an average of 13 percent less TV (about one hour daily) than others – equivalent to thirty-two hours per month. The number of wired homes rose from 22 million in 1997
 
-Modeling Social Capital
+to 35 million in 1999, an increase rate of 60 percent in less than two years. Gary Gabelhouse of Fairfield Research in Lincoln, Nebraska, reported (  USA Today , July 20, 1999) that TV viewing was down from four and a half hours daily in 1995 to about two hours in June 1999, when the survey of 1,000 U.S. adults was conducted. He stated,「People are shifting away from passive TV-style entertainment.」His data further showed that researching and communicating on the Internet, rather than
 
-Macro- and Microimplications
+238
 
-References
+Conceptual Extensions
 
-Index
+being entertained, took up 70 percent of the average sixty-four minutes a day of online time. The term   couch potato   may still characterize certain age groups, but the fact that TV viewing time is down significantly on weekdays, after school and work (4:30–6 p.m.) – 17 percent less TV
+
+watching than other groups, and even during prime time (8–11 p.m.) (wired homes’ TV use was 6 percent less than that of others) – indicates that a new wired generation that clearly prefers to seek information and interactions through cybernetworks is quickly emerging.
+
+This revolution, based on「the triumph of capitalism, the English language, and technology」(Bloomberg 1999, p. 11), has indeed transformed individuals, groups, and the world with shocking speed and in shocking ways (Miller 1999; Zuckerman 1999). Yet, at the same time, it has brought about a further unequal distribution of capital among societies and individuals. The paradox is that while the revolution widens the divide between those who gain access to more and richer capital and others who are being shut out of such opportunities and benefits, those in the cybernetworks have seen an equalization of opportunities and benefits as wide-open competition and channels reduce power, and thus capital differentials, among groups and individuals.
+
+With the increasing development of technology and the continuing presence of commercial interests, cybernetworks fuse socio-economic-technological elements in social relations and social capital. This new feature poses new questions regarding access to and use of social capital.
+
+As technology has already made it possible to create virtual reality (e.g., audiovisual, three-dimensional, touch-sensitive) and transcend time (using wireless and inexpensive equipment, for example), such that love, passion, hatred, and murder are being「real-ized」and personalized (e.g., Internet romances and murders have occurred:   Washington Post , March 6, 1999, p. A2; decency and free speech are clashing:   Time , February 15, 1999, p. 52; personal data and histories are becoming increasingly public:   USA Today , January 18, 1999, p. 3B; Yugoslav sites used e-mail to engage in cyberwar during the Kosovo conflict:   Wall Street Journal , April 8, 1999), will cybernetworks break the dominance of elite classes and differential utility in social capital? Yet, technology requires resources and skills. While the globalization process is underway, cybernetworks may tend to exclude many underdeveloped societies and disadvantaged members of many societies. Will these developments further unequalize the distribution of social capital? And under what conditions?
+
+Will these developments further segregate the world into the haves and the have-nots? Analyses must evaluate these questions relative to different aspects of social capital (information, influence, social credentials, and reinforcement) and different outcomes (instrumental and expressive).
+
+Cybernetworks and the Global Village  239
+
+I suspect that the entire spectrum of the development and utility of all forms of capital can be examined on cybernetworks, which fundamentally are relations and embedded resources – a form of social capital. We need data on cybernetworks as global villages – the formation and development of social groups and social organizations (the villages), especially (1) how each group and territory is defined or undefined (closure versus openness); (2) how membership is claimed, defined, or acknowledged (i.e., residents and citizens); (3) what the membership is composed of (e.g., demographics: individuals, households, and clusters; age, gender, ethnicity, linguistics, socioeconomic assets); and (4) how resources are distributed within a village and across villages: class and inequality among villages. In short, then, much work is urgently needed to understand how cybernetworks build and segment social capital. The topics just mentioned will provide data that will allow scholars to understand new institutions and cultures as they emerge, as well as the interactions between human and social capital. Most importantly, I suggest, they will provide clues as to whether and how social capital may be outpacing personal capital in significance and effect, and how civil society, instead of dying, may be expanding and becoming global.
 

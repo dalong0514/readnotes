@@ -1,3 +1,5 @@
+# 0104. Resources, Motivations, and Interactions
+
 The Action Foundation
 
 As conceptualized in the previous chapter, social capital is rooted in social networks and social relations and is conceived as resources embedded in a social structure that are accessed and/or mobilized in purposive actions. Thus conceived, social capital contains three components intersecting structure and action: structure (embeddedness), opportunity (accessibility through social networks), and action (use). The previous chapter has articulated the structural and opportunity aspects of social capital. This chapter will add the component of action to complete the theoretical foundation.
@@ -10,9 +12,6 @@ Individuals, like groups and organizations, gain and maintain valued resources t
 
 Just as important, possession of or access to resources protects and promotes an individual’s standing in the social structure. Social recognition confers identity and reputation, providing recognized individuals with still more resources and a sense of worth and security within the structure. In general, two types of resources 41
 
-42
-
-Theory and Research
 
 can be defined for individual actors: personal resources and social resources.
 
@@ -257,8 +256,3 @@ It is these structurally empowered relationships among positions and embedded re
 the agents – to gain access to structural resources for their own interests.
 
 That is, these structural opportunities become social capital of the actors/occupants.
-
-5
-
-The Theory and Theoretical
-

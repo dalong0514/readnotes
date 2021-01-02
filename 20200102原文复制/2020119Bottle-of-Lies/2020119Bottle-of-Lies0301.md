@@ -122,9 +122,7 @@ Why Ranbaxy was using the refrigerator would become one of the most contentious,
 
 Not surprisingly, his findings were minimal. He gave the plant a clean bill of health and determined that it was in「overall compliance」with current good manufacturing practices. His conclusion was NAI: No Action Indicated.
 
-Chapter 11
-
-Map of the World
+## 0302. Map of the World
 
 AUGUST 2005
 
@@ -208,9 +206,7 @@ The five-page assignment memo set out a host of alleged frauds for which the ins
 
 The agency needed an unvarnished view of the company. In January 2006, however, Thakur urgently relayed to Rivera-Martinez what he had learned from former colleagues: the senior leadership of the company was「camped out in the plant locations, both at Paonta Sahib and at Dewas,」he wrote, warning of「a massive cover-up effort underway to ‘produce’」any documentation that agency investigators might request. Given what Ranbaxy seemed to know about the upcoming inspection, Thakur demanded to know whether the investigation had been compromised in some way. The answer stunned him: Ranbaxy had been notified months in advance that the regulators were coming, because overseas companies always were. It’s the way things were done.
 
-Chapter 12
-
-The Pharaoh of Pharma
+## 0303. The Pharaoh of Pharma
 
 JANUARY 19, 2006
 

@@ -1,388 +1,386 @@
-Structures
+The Rational Basis for Social Exchange
 
-In the previous two chapters, I initiated a conceptual formulation in which motivations of actions are shown to lead to certain types of interactions and the utility of social capital. I suggested that actions lead to the emergence of social structures with increasing complexity of positions, authority, rules, and agency (Chapter 8). The purpose of this chapter is to extend this line of conceptualization by examining access to and use of social capital in the context of a complex social structure – an organization. Here I begin by assuming stable and functioning hierarchies such as organizations and assess how actors, through their positions, may or may not access better social capital – resources embedded in other positions, especially hierarchically higher positions. Thus, the concern here is, first, to demonstrate structural constraints and, second, to show how actions to access social capital operate within these constraints.
+This chapter continues the dialogue on action and social structure initiated in the previous chapter. As has been pointed out, the multiplicity and complexity of routinized social relations in a collectivity demand increasing rules of recognition and legitimation that recognize the basic right to human capital (property) while at the same time specifying responsibilities and obligations for actors contributing resources. Thus, recognition was also suggested as an important process for individual actors overcoming possible costs to unequal exchanges – why someone higher in social position and richer in resources would be engaged in repeated exchanges with someone lower in social position and poorer in resources. How this process operates at the interactional level has not been articulated. What needs to be understood is that unequal transactions in exchanges can and do occur because there are payoffs for the actors who give more resources than they receive and why this is somewhat related to recognition. This chapter will focus on this issue. I will set aside the legitimation issue and concentrate on the social process of recognition and its significance in exchange – a process of repeated interactions between actors and the fundamental building block of a collectivity.
 
-Recall that the theory of social capital proposes that, in addition to the principal proposition that social capital generates returns, two factors affect access to social capital (Chapter 5). The strength-of-position proposition hypothesizes that a given position of origin in the hierarchical structure determines in part how well one may gain access to better social capital. It is a structural factor and is independent of individuals in the structure, although individuals may benefit as occupants of the positions. In contrast, the strength-of-(network)-locations proposition hypothesizes the potential payoff for individual action. Since normal interactions are dictated by the homophily principle, going beyond the routine set of frequent interactions and seeking out weaker ties or bridges represents action choices beyond most of the interactions and structural positions’ normative expectations.   In relative terms, the strength of position should have greater effects on social capital than the strength of   network locations.   This statement recognizes the significance of structural constraints everywhere in the social structure. The theoretical implications of these propositions will be further discussed later. In empirical 165
+Exchange: Social and Economic Elements
 
-166
+Exchange , a central concept in sociological analysis, can be defined as a series of interactions between two (or more) actors in which a transaction of resources takes place. By this definition, exchange has two central components: it requires a relationship between the actors, and it leads to resource transaction. Thus, exchange is social in that the relationship can be seen as interactions (Simmel 1950) in which the action of one actor during the process takes into account the action of the other 143
 
-Conceptual Extensions
-
-systems, both factors are expected to operate, even though their relative effects may vary.
-
-In the studies examining social capital in the status attainment process (Chapter 6), empirical evidence thus far strongly supports two of the three hypotheses: the social-capital hypothesis and the strength-of-positions hypothesis. Those with better origins tend to find sources of better social capital in job searches, and contacting a source of better resources or generally having better social capital increases the likelihood of finding a better job. These relations hold even after the usual status-attainment variables (e.g., education and first-job status) are taken into account.
-
-However, evidence is equivocal on the strength-of-weak-ties hypothesis. A number of reasons have been offered for this; one could argue, for example, that strength of ties is not an adequate measure of the strength of network locations. More appropriate measures should reflect being part of a bridge or near a bridge, or being at or near structural holes, or being at locations with fewer structural constraints (Burt 1992, 1997).
-
-Or the strength of weak ties has been measured more as role identifications (relatives, friends, or acquaintances) or lack of intimacy (Marsden and Campbell 1984) rather than as network locations. Currently, there is a lack of empirical evidence confirming that these alternative measures would yield different results.
-
-Another line of conceptual reasoning proposes that this result may be due to the interaction between the two exogenous variables: the strength of position and the strength of network locations (e.g., weaker ties) (see Chapters 5 and 6) for instrumental actions. Lin, Ensel, and Vaughn (1981) hypothesized a ceiling effect for weak ties. At the top of the hierarchy there is no advantage to using weak ties, since such ties are likely to lead to inferior positions and therefore inferior resources. The authors did not anticipate that weaker ties would be similarly ineffective toward the bottom of the structure. Marsden and Hurlbert (1988) also found that actors with the lowest origins did not derive greater benefit from contacts with weaker ties in gaining access to better resources than from contacts with stronger ties. Assuming that the interaction effects between the strength of position and the strength of ties occur only at both very high and very low positions of origin, it is interesting to speculate on why such interactions take place there. This is not so difficult to explain for positions near or at the top of the hierarchy. But it is more difficult to understand why positions near or at the bottom of the hierarchy do not derive more benefit from weak ties, since the theory suggests that the increased likelihood of reaching better social capital through such contacts should hold true for occupants of the lowest positions in a hierarchical social structure.
-
-Social Capital in Hierarchical Structures  167
-
-To pursue this line of reasoning, we need to consider structural parameters that dictate the interplay between strength of position and strength of network locations. What is needed is a formulation in which predictions can be made regarding the relative significance of structural constraints (as represented by strength of position) and individual actions (as represented by strength of network locations), given such structural characteristics. These considerations have led to the exploration of structural parameters and an assessment of their effects on the propositions.
-
-The remainder of this chapter delineates a set of structural parameters, variations of which provide the context for further specification of the two theoretical propositions.
-
-Some terms require clarification here. I assume that a social structure consists of different levels, each of which can include a set of structurally equivalent positions. They are equivalent primarily on the basis of levels of similarly valued resources and authority and secondarily on the basis of similar lifestyles, attitudes, and other cultural and psychological factors. For our purposes here, the terms   levels   and    positions   are used interchangeably. Also,   social mobility , as used here, refers to the voluntary aspect in an internal labor market. Involuntary social mobility, due to job dissatisfaction, lack of alternatives, or other「pushing」or forced factors, is excluded from consideration. As Granovetter (1986) pointed out, voluntary social mobility generally results in wage growth. Likewise, it is argued that voluntary social mobility accounts for the majority of rewards (greater authority, better wages and bonuses, and faster promotions) in hierarchies such as organizations.1
-
-Structural Parameters and Their Effects
-
-A hierarchy, I argue, can be described with variations and permutations of four general parameters: the number of levels in the hierarchy (the 1 It is true that the beginning of a job search is often unplanned (see Granovetter 1974).
-
-Many job leads become available on casual occasions (e.g., parties) and through interactions with acquaintances. It is not necessarily the case that a job search begins with the purposive and active seeking out of contacts. However, this does not negate the basic premise that individuals are situated at different levels in the structure and therefore have access to casual settings involving persons who command certain types and amounts of resources and social capital. In fact, it has been empirically demonstrated (Campbell, Marsden, and Hurlbert 1986; Lin and Dumin 1986) that occupants of higher-level positions have greater access to more diverse and heterogeneous levels in the hierarchical structure than do occupants of lower-level positions and hence have greater command of social capital. Thus, it can be expected that casual settings for the higher-level positions are structurally richer in job information, as well as other types of information and influence. This structural advantage, deducible from the pyramidal assumption of the theory, has a distinct effect when the individual eventually launches a job search.
-
-168
+144
 
 Conceptual Extensions
 
-level differential ), the distribution (absolute and relative number) of the occupants across the levels (the   size differential ), the distribution (absolute and relative amount) of valued resources across levels and among occupants (the   resource differential ), and the sum of all occupants and resources in the structure. The first and last parameters are computed for the entire structure; the second and third parameters can be computed for either the entire structure or portions of it.
+actor(s) (Weber 1947, pp. 111–115). The process can be seen as economic, since transaction of resources is typical of economic acts. Therefore, an elementary exchange, evoking a relationship between two actors and a transaction of resource(s), contains both social and economic elements. It is useful here to refer to the   relational   aspect of the exchange as   social exchange   and to the   transactional   aspect as   economic exchange .
 
-In general, the social capital proposition, the primary proposition of the social capital theory, should hold regardless of the variations in these parameters. As long as the structure is hierarchical, access to and use of better social capital are expected to facilitate socioeconomic returns under any structural variations. However, the other two hypotheses require further specification relative to variations in the structural parameters. In the following sections, I will describe each parameter and assess the impact of its variation on the two propositions. For simplic-ity, the two propositions will be identified as the   positional effect  (the strength of the original position) and the   location effect  (the strength of network locations). Again, we must remain conscious of the dominant effect of structural constraints. Strength of position should have a relatively stronger effect than strength of locations everywhere in the structure, whereas each factor may vary in different parts of the structure.
+This distinction between exchange’s social and economic elements is often blurred in the research literature due to the common co-occurrence of both elements. This is especially true of the use of the term   social   exchange . That social exchange is more than social interaction is reflected in the understanding that social exchange contains the added element of resource transactions. As a result of this common usage, social exchange as a concept has been employed by scholars who have selectively focused on one of the two elements in their theoretical or research schemes.
 
-Also, for generality, I will examine the relative effects of structure (the strength of positions) and networking (the strength of locations). For networking effects, I will employ the general location argument: that is, for instrumental actions, locations at or near a bridge – variously referred to as   structural holes ,   weaker ties , or less   structurally constrained   locations  – reflect the strength of better locations in their likelihood of accessing better social capital. While the descriptions often implicate organizations or firms, it is hoped that the propositions can be generalized to all hierarchical structures.
+The focus on the economic element in the discourse on social exchange can be traced to Weber. While pointing to four types of action (goal-oriented, valued-oriented, effectual, and traditional action), he concentrated his analytic effort on instrumentally rational (or rational goal-oriented) actions, which are based on the calculation of alternative means to the end (Weber 1968, p. 25). Value-oriented action is determined by a conscious belief in the value (for its own sake) of some ethical, aes-thetic, religious, or other form of behavior independent of its prospect.
 
-The Level Differential
+Both types of action are based on consciously regulated comparison and choice – that is, on rationality (Misztal 1996, p. 54). The theoretical embedding of the transactional aspect of exchange in rationality of action was thus identified.
 
-First, the hierarchical structure can be specified by the number of levels within it. A   level   is defined as a set of social positions that have a similar command of resources and access to capital (including social capital) per occupant. In the occupational structure, for example, the crudest differentiation is based on occupational classifications consensually agreed upon in a given society. Each such classification, however, may be based on a combination of requirements, including the degree and presence of certain skills, training, experience, tenure, and location in an industry, as well as resources. A better differentiation would be one based on
+This line of argument was brought home forcefully by George Homans (1958), who clearly stated this position:「Interaction between persons is an exchange of goods, material and nonmaterial. An incidental advantage of an exchange theory is that it might bring sociology closer to economics – that science of man most advanced, most capable of application, and, intellectually, most isolated」(p. 597). For Homans, social behavior or exchange1 focuses on the gain (value) and cost for an actor in the transaction;「the problem of the elementary sociology is to state propositions relating the variations in the values and costs of each man to his frequency distribution of behavior among alternatives, where the value (in the mathematical sense) taken by these variables for one man determine in part their values for the other」(p. 598). Thus, the interest of two actors in continuing the interactions or the relationship is con-1 Homans sees social behavior「as an exchange of activity, tangible or intangible, and more or less rewarding or costly, between at least two persons」(1958 and 1961, p. 13).
 
-Social Capital in Hierarchical Structures  169
+Reputation and Social Capital  145
 
-Figure 10.1 Three differentials and the relative significance of the location effect: (a) level differential; (b) size differential; (c) resources differential.
+tingent on the relative utility or payoff to each in each transaction. Interest in the relationship diminishes as the relative payoff (the marginal utility) decreases. It is logical, therefore, for Homans to argue that「the principles of elementary economics are perfectly reconcilable with those of elementary social behavior, once the special conditions in which each applies are taken into account」(1961, p. 68).
 
-empirical examination of each occupational position’s command of resources and access to social capital. The clustering of equivalent positions would then constitute a level in the structure.2
+Blau’s (1964) work on exchange also reflects this emphasis. While admitting that social exchange may follow from social attractions, a primitive psychological tendency left as exogenous,2 the major theoretical focus of his analysis is the linkage between transactions in exchanges and distribution of power. When an actor (ego) is unwilling or unable to reciprocate3 transactions of equal value in an exchange with another actor (alter), one choice available to ego to maintain the relationship with the alter is to subordinate or comply with the alter’s wishes – the emergence of a power relationship (p. 22). Collective approval of power gives legitimacy to authority, the backbone of social organizations. Thus, in Blau’s theoretical scheme, patterns of transactions dictate patterns of relationships, and this fundamental microstructural process evokes, though not necessarily explains, the much more complex macrostructural (organizational) process.
 
-As illustrated in the top two figures (a) in Figure 10.1, we can describe the variation by identifying two theoretical extremes. At one extreme, the left figure, there are only two levels in the structure, and at the other, the right figure, there are many levels. The two-level system is expected to resemble a caste system in which one level has either all or most of the valued resources and the other has none or few. Thus, the positional effect should be stronger. In the multilevel system, the differentiation of levels reduces the relative inequality of valued resources across levels and therefore the positional effect. Thus, the expectation is that the number of levels will be negatively related to the positional effect.
+Coleman (1990) carried this analysis further in his theory of social action, in which social exchange is a means by which actors with differential interests and controls over resources (events) negotiate (through the relative value of the resources they control, or power) with each other to maximize their control over interested resources (a new equilibrium) (pp. 134–135). The mechanism between exchanges and power seems quite similar to Blau’s scheme, but the focus is on an actor’s maximization of gain (control over desired resources) in this process.
 
-The two-level structure minimizes interactions between levels, reducing the opportunity for finding and using bridges. In the multilevel struc-2 Breiger’s work (1981) specifying a class hierarchy of occupations is based on the principles of internal and external heterogeneity of mobility. Thus, the classification system is deduced from mobility patterns rather than from resources and social capital. I suspect that there is a strong correspondence in the resulting empirical classifications based on the mobility and resource criteria. For theoretical and tautological reasons, an empirical derivation and demonstration of the resource-based hierarchies is necessary.
+By now, the sociological explication of the process of exchange seems to have fulfilled Homan’s prophecy or design that sociology is being brought very close, if not identical, to the economic stance on the centrality of rational choices in economic behaviors. That is, given choices in the marketplace, an actor will choose a transaction to maximize his 2「The basic social processes that govern associations among men have their roots in primitive psychological processes, such as those underlying the feelings of attraction between individuals and their desires for various kinds of rewards. These psychological tendencies are primitive only in respect to our subject matter, that is, they are taken as given without further inquiry into the motivating forces that produce them, for our concern is with the social forces that emanate from them」(Blau 1964, p. 19).
 
-170
+3 Reciprocity, in this case and in many other sociological works, implies balanced exchange or transactions of equal value (e.g., in price or money). This requirement for interaction goes beyond Weber’s original conceptualization about social action, which only requires taking the other actor’s interests into consideration. In that context, reciprocity does not require balanced exchange.
 
-Conceptual Extensions
-
-ture, however, bridging is maximized. This is not to deny that the networking effect should be present even in the two-level system whenever social ties across the two levels are formed. However, in this castelike arrangement, such ties are difficult to form and follow up on because there is little need for an upper-level occupant to respond to a relationship offered by a lower-level occupant, as all rewards (wealth, power, and reputation) can be found through social ties within the upper level.
-
-The expectation is that the number of levels in the structure will be positively related to the networking effect.
-
-Thus, the number of levels in a structure has opposite consequences for structural constraint and individual action. On the one hand, in the two-level system, the structural constraint is strongest and provides little opportunity for effects of individual actions. On the other hand, differentiation of many levels in a structure lessens structural constraints and provides more opportunity for individual actions that gain valued resources. These effects are consistent with the general empirical observation that social mobility is related to the gradations or number of strata in an occupational structure or a labor market. Rather than explaining such a relationship solely in structural terms, these subhypotheses argue that it is both the loosening of structural constraints and the greater opportunity for action choices that account for greater social mobility across levels in a multilevel structure. However, these effects assume that either the number of occupants at each level is the same or variations in the number of occupants do not have any effect. In most hierarchical structures, this is not true.
-
-The Size Differential
-
-Variations in the relative number of occupants across levels are expected to influence positional and location effects. As in the preceding section, we can discuss this influence by examining two extreme situations, as illustrated in the two figures in the middle panel (b) of Figure 10.1. At one extreme (the left figure), every level has the same number of occupants, and at the other (the right figure), every level has a different number of occupants, the relative number decreasing from the bottom to the top of the structure. In this discussion, the number of levels is held constant. For convenience, we assume a sufficient number of levels so that both the positional and tie effects may occur.
-
-In the equal-size structure, the opportunity for heterophilous interaction is maximal for all occupants. That is, each occupant has an equal opportunity to contact a person at a different level. In Blau’s analysis of intergroup associations (Blau and Schwartz 1984; Blau 1985), he hypothesizes that in a two-group interaction situation, the intergroup association would be greater for the small group (i.e., the probability per
-
-Social Capital in Hierarchical Structures  171
-
-person in Group A of associating with a person in Group B increases as the size of Group A relative to the size of Group B decreases). If it is assumed that in a hierarchical structure the relative sizes tend to decrease toward the top, then the derivation is that intergroup association initiated from a lower (and presumably larger) level (e.g., Group B) to a higher (and presumably smaller) level (e.g., Group A) decreases as the difference between the relative sizes of the two levels increases. However, as the difference in the relative sizes of the levels decreases, such upward association would be increased. Thus, it is argued that in the extreme case, in which all hierarchical levels have a similar number of occupants, there is maximal opportunity for heterophilous interactions across all levels and therefore equal opportunity for socioeconomic returns. In other words, an individual at each level has an equal chance to move up the ladder. This does not mean that everyone in the structure will have an equal opportunity to attain the same highest status. Depending on his or her initial position in the structure, each person will have an equal opportunity to interact with another person at a different level and move up the ladder.
-
-As variations in the number of occupants across levels increase, they inhibit upward cross-level contacts. Intralevel interaction opportunities increase as the size differential increases at all levels, because most of the occupants of the larger levels tend to interact with others at the same level. Assuming that the relatively small levels are higher in the structure, the relative lack of interlevel actions initiated by the lower-level occupants reduces the potential probability effects of weak ties. Thus, the expectation is that the size differential is negatively related to the network location effect.
-
-However, when a lower level is relatively smaller, this expectation does not hold. In such a structure, the chance is greater that lower-level occupants will have a relatively larger number of contacts with occupants at an upper level, which in turn promotes opportunity for mobility to that upper level. For example, in a structure where farm-related levels have relatively fewer occupants than do nonfarm blue-collar sectors, the tie effect should be relatively strong in the status-attainment process.
-
-As for positional effects, variations in occupant numbers across levels have a positive effect. As the size differential increases, intralevel interactions increase among occupants in the larger, and presumably lower, level. These intralevel interactions reinforce the positional effect. The paradox is that as size differentials increase, they also increase the relative opportunity of contacts for these occupants in the smaller level with those in the larger level. In a pyramidal hierarchy (the higher the level, the fewer the occupants), the closer the level to the top, the broader the range of contacts across levels for its occupants; yet these occupants benefit not from heterophilous interactions for socioeconomic returns,
-
-172
+146
 
 Conceptual Extensions
 
-but rather from their same-level contacts. In contrast, at or near the bottom of the structure, the opportunity for occupants who need heterophilous interactions for socioeconomic returns is structurally restricted by the large size of their level.
+or her profit (e.g., more reward at less cost). Neo-classical economists have realized that certain assumptions of this profit-seeking theory are not likely to be met in reality (a perfect market, full information, and open competition), and have proceeded to specify conditions or institutions (bounded rationality, transaction costs) under which profit-seeking behavior may be moderated (see Williamson 1975; Coase 1984; North 1990). Many of the same arguments and conditions have been adopted by sociologists in analyzing organizational behaviors, power relationships, institutions, and social network and social exchange under the general rubrics of neo-institutionalism or economic sociology.
 
-The Resource Differential
+However, the significance of   relationships   in exchanges has not been ignored. From early on, anthropologists have paid attention to the relational aspect of exchanges and have argued strongly that many of these patterns are not based on economic or rational calculations. For example, Radcliffe-Brown (1952) described the exchanges among the Andaman Islanders as「a moral one – to bring about a friendly feeling between the two persons who participate」(p. 471). Malinowski (1922) drew sharp distinctions between economic exchange and social exchange (ceremonial exchange) in his analysis of Kula exchanges in the Trobriand Islands and suggested that「the real reward (of exchanges) lies in the prestige, power, and privileges which his position confers upon him」(p. 61).
 
-A third feature of the hierarchical structure is differential distribution of resources at various levels. Differentiation of levels can therefore be described in terms of distribution of resources as well as number of occupants. The resource differential can be calculated for the variation in resources across levels in a social structure or for a comparison between two levels. For the description of a social structure, as illustrated in the lower panel (c) in Figure 10.1, the resource differential may vary from minimal (when the resource differential is the same for every pair of contiguous levels) in the left figure to large (when it is different for every pair of contiguous levels) in the right figure. In the former case, the levels are said to be   equidistant   in resources. In the latter case, we assume that the differentials increase from the bottom to the top of the structure.
+Levi-Strauss (1949) cited studies by Mauss, Firth, and other anthropologists in his argument that exchanges, including economic transactions, are
 
-That is, the higher up in the structure, the greater the resource differential between two contiguous levels, with the upper level having many more resources per capita than the lower level. Although this assumption is yet to be examined empirically, it is based on the theoretical argument that a marginal incentive or reward of a given amount of resources decreases toward the top of the hierarchical structure. Therefore, an increasing amount of resources is expected toward the top to maintain the same degree of incentive or reward.
+「vehicles and instruments for realities of another order: influence, power, sympathy, status, emotion」and stated that「it is the exchange which counts and not the things exchanged」(Levi-Strauss 1969, p. 139). Gifts, for example, are exchanged between actors, but buying oneself a gift at Christmas time is meaningless (Ekeh 1974, p. 47).
 
-It is expected that the equidistant structure increases the opportunity for the location effect. Heterophilous ties are equally likely to be initiated at each level. In the unequal-distance structure, however, it is harder for lower-level occupants to overcome the resource distance across levels, especially toward the top of the structure. Thus, the expectation is that the resource differential will be negatively related to the location effect.
+Among the sociologists, Comte (1848) spoke of subordinating personal to social considerations, and Durkheim refuted Spencer’s economic assumptions regarding the development of social groups. None of these scholars deny the implications of economic transactions in social exchanges, but they also emphasize the supraindividual (Levi-Strauss) and supraeconomic (Radcliffe-Brown 1952) nature of social exchanges and the significance of relationships. In each of these schemes, the relational orientation to social exchange is demonstrated in the commitment of specific actors to the exchanges on grounds other than the utility of specific resources transacted.
 
-For the positional effect, the opposite should be true. As the resource differential increases, so does the importance of the position of origin for socioeconomic returns. In a structure with a large resource differential, any upward mobility is difficult. But in such a system, when upward mobility does take place, the position of origin rather than the use of network locations should account for the movements. If the structure is equidistant, the positional effect should be relatively small.
+How are the two perspectives on exchanges to be reconciled? Several positions have been taken. One approach simply dismisses the significance of relationships in that any particular relationship is subjected to the decision-making choice of maximizing or optimizing profit. When a relationship generates a profit in transactions, it may be maintained;
 
-If this hypothesis is valid, two consequences follow within any given empirical structure. First, since the hierarchical structure, by definition,
+Reputation and Social Capital  147
 
-Social Capital in Hierarchical Structures  173
+when it does not, it is discarded. However, most neo-classical economists and their sociological allies take a moderate position, treating relations as the necessary「transaction cost」or「calculative trust」(Williamson 1985, 1993) in an imperfect market and under the condition of incomplete information. In this modified position, the relationship is recognized but is clearly subsumed under the transactional analysis.
 
-rank-orders its levels by resources, it can be deduced that cross-level interactions are most frequent across contiguous levels and decrease for any two levels, depending on how far apart they are in the structure.
+Alternatively, those relationship-inclined scholars have argued that relationships are necessary and significant because not all behaviors and interactions are rational. This argument agrees that economic behavior follows the principle of rational choices, but it points out that not all behaviors are economic and thus rational. Social attractions and attach-ments are primitive survival instincts rather than the result of a calculation of gains and losses in alternatives. The problem here is that rational choices are seen as natural tendencies: rewards or reinforcements elicit actions and transactions, and the fittest survive. Consciousness or unconsciousness is irrelevant, as this principle applies to pigeons as well as to humans (Homans 1961, p. 80). Carrying this analysis further, it becomes problematic why some instincts are rational and others are not.
 
-Thus, we predict that social mobility (especially socioeconomic returns) should most likely occur across contiguous levels.
+Still another identifiable argument concedes, sometimes more implicitly than explicitly, that rationality applies to social exchanges, but there are rational principles other than the individual profit-seeking motive.
 
-Furthermore, inhibition of cross-level interactions is contingent on the difference in the relative amount of per capita resources at the two levels; the interactions between contiguous levels may be attenuated or suppressed as the resource differential increases. In a structure where resource differentials increase toward the top, we predict that social mobility in that direction becomes increasingly difficult. At the very bottom, however, the resource differential between levels may be quite trivial, and thus the cross-level interactions will be substantial.
+Because human beings take into account each other’s interests in interactions and exchanges, relationships may be maintained to accommodate this rationality. There are many subarguments along this line of reasoning. Two seems quite pervasive in the literature. First, there is the argument that social approval, esteem, liking, attraction, and such are important motives for exchange. Notably in exchanges where the transactions are imbalanced, the reward for the shortchanged actor may be approval, esteem, liking, or attraction from the other actor. In this case, these symbolic rewards, rather than the material rewards (and its generalized medium, money) usually identified with economic exchanges, constitute meaningful rewards. However, for Homans, Blau, and Coleman, such rewards are different in kind but not in nature. Whether material or symbolic, as long as they represent value (or profit or interest), they are part of the rational calculation. Further, how such values have been developed is irrelevant to the theoretical development of social exchanges.
 
-One interesting aspect of these variations is the implication they hold for any interaction related to socioeconomic returns. It is clear from the discussion so far that, toward the upper levels, there is much advantage in initiating (upward) cross-level interactions, since there is much more to gain because of the resource differentials. However, such initiatives are less likely to be reciprocated, since higher-level occupants have much less to gain from interacting with others at the lower levels. The result should be fewer cross-level interactions and generally a smaller effect from such interactions, since upper-level occupants are less likely to reciprocate actions initiated by lower-level occupants. When the interactions are successful, probably owing mostly to the positional effect, however, the payoff for the job seeker should be substantial. At the bottom, in contrast, cross-level interactions have little advantage or disadvantage since the resource differentials are small. Therefore, although it is expected that cross-level interactions will be frequent, such interactions will not generate significant benefit for the participants.
+Another subargument is that human beings need trust (Luhmann 1979; Barber 1983; Misztal 1996).   Trust   may be defined as confidence or expectation that an alter will take ego’s interests into account in exchanges. It represents faith that an event or action will or will not occur, and such faith is expected to be mutual in repeated exchanges.
 
-The Totality of Occupants and Resources
+It is faith in morality, Misztal (1996) argues, that trust serves three
 
-The final feature of the social structure concerns the absolute number of occupants and resources in the entire structure (e.g., industrial sector).
-
-Critical mass   is used here to characterize the minimal requirements for a structure’s absolute quantities of population and resources. These requirements vary, depending on the relative sizes of populations and resources in the external environment with which the structure interacts.
-
-Nevertheless, absolute numbers are important features of a structure.
-
-Associations within the structure are strongly affected by the constraints as well as the opportunities to gain resources in the external environment. Thus, analysis must be extended to the larger structure of which the initial focal structure is but a substructure. For example, in under-
-
-174
+148
 
 Conceptual Extensions
 
-standing social mobility in a particular labor market, we may wish to analyze the structural parameters of that segment. Analyses, however, must eventually be extended to considerations of other segments, so that relative mobility patterns may be assessed across segments. For the larger structure, similar parameters (the level differential, the location differential, and the resource differential) may be utilized to examine possible cross-segment mobility. No further elaboration and extension of these parts are necessary in this chapter.
+functions: it promotes social stability (as a habitus), social cohesion (friendships), and collaborations. In other words, its motive is to maintain a group or community. Durkheim (1973) suggested that feelings of obligation and altruism as well as moral pressure, which restrains egoistic behavior, are the bases of solidarity.「Men cannot live together without acknowledging, and, consequently, making mutual sacrifices, without tying themselves to one another with strong, durable bonds」
 
-Implications for Structure and Individuals
+(Durkheim, 1964, p. 228). Durkheim strongly asserted the existence of a moral element in social life, which may entail the sacrifice of rewards, in quality and/or quality, on the part of the actors.
 
-In summary, a consideration of the structural parameters has enabled us to specify conditions under which the positional effect and the tie effect vary. In ideal-typical terms, the positional effect should be maximal when the structure contains (1) a minimal number of levels, (2) a large occupant differential across levels, and (3) a large resource differential across levels. The network location effect should be maximal when the structure has (1) a large number of levels, (2) a small occupant differential across levels, and (3) a small resource differential across levels. Again, we must keep in mind that, even when the tie effect is strongest, the positional effect remains dominant.
+If solidarity and community are fundamental elements in human survival, why can they not be based on rational choices or economic behaviors? Simmel attempted one response, positing that exchange involves「a sacrifice in return for a gain」(Simmel 1971, p. 51) and that exchange is
 
-The positional effect can be seen as an indicator of structural effects, and the location effect (especially the use of weaker ties) suggests the consequences of individual action. As explicated earlier, the normative mode of interactions is homophilous, involving participants with similar socioeconomic characteristics. In contrast, the use of weak ties tends to result in interactions involving participants with dissimilar socioeconomic characteristics. Heterophilous interactions are not totally without benefit for participants from higher status levels, since they may subsequently request or demand services from the lower-level participants.
+「one of the functions that creates an inner bond between people – a society, in place of a mere collection of individuals」(Simmel 1978, p.
 
-Nevertheless, the initiation and establishment of such interactions by lower-level persons represent action and effort. Viewed in this context, these principles have theoretical implications for the relative effects of structural constraints and individual choices. They also stimulate consideration of the dynamic balance between vertical (heterophilous) and horizontal (homophilous) interactions in a stable social structure. These implications will be briefly examined here.
+175). He adds,「Without the general trust that people have in each other, society itself would disintegrate, for very few relationships are based entirely upon what is known with certainty about another person, and very few relationships would endure if trust were not as strong as, or stronger than, rational proof or personal observation」(Simmel 1978, pp. 178–179). The functioning of complex societies depends on a multitude of promises, contracts, and arrangements. Since「the single individual cannot trace and verify their roots at all,」we must「take them on faith」(Simmel 1950, p. 313).   Faithfulness , or   loyalty , refers to the feeling of「preservation of the relationship to the other」(1950, p. 387).
 
-Structural Constraints versus Social Capital The theory describes structural conditions under which structural constraints and individual actions affect social mobility. Thus, it is relevant
+This need for rules of interaction and trust in complex modern society is clearly demonstrated in Parsons’s proposal that trust is the basis for legitimating power to achieve collective goals and societal integration (Parsons 1963). Hechter’s (1983) analysis of group solidarity also advances the rational basis for collectivity.
 
-Social Capital in Hierarchical Structures  175
+Luhmann (1988) further elaborates Parsons’s media theory and his concept of symbolic generalization. Trust is seen as one of the generalized media of communication (others being love, money, and power), and as such reduces the complexity of the world faced by the individual actor by providing the capacity for「intersubjective transmission of acts of selection over shorter or longer chains」(Luhmann 1979, p. 49). But Misztal points out that「Luhmann is less forthcoming on the issue of how this function of trust helps to explain the actual formation of trust」
 
-to the debate concerning structural versus action effects. In contemporary sociology, the structural view dominates. Much of the theoretical development and empirical work in the past three decades have supported and advanced the structural perspective. The theory presented here does not disagree with the view that structural effects are predom-inant. It also argues that the positional effect, for example, is relatively more important than the tie effect throughout the structure. However, the specification of structural parameters enables us to ask where and to what extent individual actions become possible and meaningful. The following discussion gives further attention to the relationship between this theory and selected prevailing structural theories.
+(1996, p. 74).
 
-Blau’s theory of heterogeneity and inequality, along with Emerson and associates’ dependence theory, exemplifies well the structural perspective.
+The explanatory basis for trust, then, is the need in a complex society for individuals to rely on rules that are accepted by many people and that guide both interpersonal and impersonal exchanges – the institutions. Without such consensual rules and trust in them, societal func-
 
-In a nutshell, Blau (1977, 1985; Blau and Schwartz, 1984) has argued that the distribution of a dimension (attribute) and the number of variables differing among groups in a population dictate the extent of association across groups. When the distribution of a dimension varies over a number of   nominal   or   graded   groups, such heterogeneity (for nominal groups) and inequality (for graded groups) promote intergroup association and can be examined over multiple dimensions (attributes).
+Reputation and Social Capital  149
 
-The extent of the congruence between the different heterogeneities and inequalities also affects intergroup association. When the differences in characteristics are closely related (consolidated), intergroup association should be low; when they are not closely related (cross-cutting), intergroup association should be high.
+tioning would cease. But Homans reminds us that「institutions, as explicit rules governing the behavior of many people, are obeyed because rewards other than the primary ones come to be gotten by obeying them, but that these other rewards cannot do the work alone. Sooner or later the primary rewards must be provided. Institutions do not keep on going forever of their own momentum」(1961, pp. 382–383). By   primary   rewards , of course, Homans is referring to basic individual needs for profits. Misztal agreed:「In Parsons’ theory the significance of trust as a single explanatory device is clearly overstated. The notion of trust, used as a substitute for familiarity, conformity and symbolic legitimation, does not provide us with an effective instrument with which to analyze social reality」(1996, p. 72). According to Williamson (1985), unless cooperation also serves an egoistic motivation, the practices of cooperation will be unstable. This means that a social order based on trust not grounded in self-interest will be unpredictable and unstable; for this reason, trust is not always functional.
 
-Although the present theory can be seen as an elaboration and extension of Blau’s theory, there are several differences between the two. First, the present theory focuses on two types of social action: instrumental actions for gaining valued resources and expressive actions for maintaining valued resources. Though this chapter deals specifically with socioeconomic returns and mobility, and therefore instrumental actions, the distinction between instrumental and expressive actions plays a central role in the theoretical structure and has immediate consequences for patterns of interactions. Patterns of association differ for instrumental and expressive actions (Lin 1982). The expectation is that vertical (heterophilous) actions and interactions are effective for instrumental purposes, whereas horizontal (homophilous) actions and interactions are effective for expressive purposes. In Blau’s formulation, there is a mixture of the two types of action, with the main emphasis perhaps on the latter.
+In summary, none of the arguments thus far that defend the significance of relationships in exchanges, once the transactional rationality is presented, seem satisfactory. What I will propose in the remainder of the chapter is another attempt to assert the significance of relationships in exchanges. The argument begins with the premise that rationality should be used as the basis for the theoretical development. Rationality is not a matter of conscious versus unconscious behavior. Nor does it rely on some norms or institutions; these come later. And it is not based on an expectation of ultimate transactional balance in the long run (e.g., repeated transactions will balance out gains and losses) (see Homans’s refutation of these arguments for treating elementary social behaviors as rational: 1961, pp. 80–81). Here, simply, an exchange is seen as a process engaging two actors whose actions are based on calculations of gains and losses and on alternative choices in relationships and transactions.
 
-Intergroup marriage, for example, might be seen as primarily expressive, yet there are circumstances in which marriage takes on an instrumental aspect as well. The specification of the two types of action should clarify potentially conflicting empirical results. It can be argued that Blau’s
+As long as such calculations and choices are made, the process is considered rational. Further, I assume that these calculations and choices are based on self-interest. This assumption does not rule out considerations of collective interest. What is assumed is that collective interest comes into the calculation only when it is embedded in self-interest; there is a self gain if the collective interest is served. What is not assumed is that collective interest, excluding self-interest, drives calculations and choices.
 
-176
+Transactional and Relational Rationalities
 
-Conceptual Extensions
+The critical element, instead, is the ultimate payoff: the kinds of rewards or resources that sustain or interrupt relationships and/or transactions.
 
-theory should be relatively more valid for the class of interactions intended for expressive purposes.
+There are two ultimate (or primitive) rewards for human beings in a
 
-Second, the two theories’ primary elements by which groups and positions are identified differ. Though both assume that these elements must be consensually arrived at, the basic criteria are different. For Blau, they are based on the attributes that people take into account in their social relations. For the theory presented here, they are based on resources.
-
-Whereas Blau convincingly argues that the use of attributes based on their influence on social relations at the microlevel does not necessarily affect consequent intergroup relations, the criterion of resources used in the present theory does not involve such a conceptual tautology. In later writings (e.g., 1985), Blau recognized the significance of resources in the identification of attributes. A modification of the definition of attributes in resource terms may resolve the difficulty.
-
-A further consequence of the difference in criteria used to define groups or positions is that Blau’s theory applies to both unranked and ranked groups, whereas the present theory assumes a hierarchical structure based on ranked positions. In the present theory, the determining factor of a social structure is the different amounts of valued resources various levels command. Therefore, the levels are hierarchically ordered.
-
-This more restricted view of social structure offers an advantage in that it eliminates further controversy in ranking categorical variables.
-
-Categories of ethnicity and religion may be ranked in some social systems but not in others. For the present theory, the valued resources must be gradable, even if some of them represent social categories (e.g., race and gender). As long as they are consensually considered to be valued resources for a social system, they form the basis of the hierarchy in the structure. Even for expressive actions, as I have argued elsewhere (Lin 1982, 1986), such a hierarchical view of the structure helps to formulate predictions about patterns of action and interaction within or across levels. This specification may help elaborate differential patterns of intergroup associations. One may postulate, for example, that when categorical variables represent valued resources in a given social system, both the heterogeneity hypothesis and the inequality hypothesis may hold, whereas they diverge for other categorical variables.
-
-Finally, Blau focuses on variation in the distribution of the number of individuals as the major source of structural variation. For both the heterogeneity and inequality principles, population distribution over the various categories or statuses affects intergroup associations. Although he has also identified the number of subgroups as having an impact, he assumes in the bulk of his work that the number of subgroups can be standardized for comparative analysis (1985, pp. 10–11). In other words, his theory tends to treat the number of subgroups as a constant.
-
-Social Capital in Hierarchical Structures  177
-
-The present theory specifically identifies the level differential and the size differential, along with the resource differential, as separate structural parameters. The effects of heterogeneity and inequality as proposed by Blau, therefore, can and should be further specified relative to the variations in both the number of levels (or groups) and the number of persons in them. For example, if a pyramidal structure is compared with an inverse-pyramidal structure, the inequality coefficient may be similar but the interlevel (group) associations may differ drastically. Empirically, an inverse-pyramidal structure may not exist, as discussed earlier, but most structures will have portions in which a lower level has fewer occupants than an adjacent higher level (e.g., agricultural vs. service sectors).
-
-For such a structure or substructure, the interlevel (intergroup) association is expected to be different from the usual one, in which the upper level has relatively fewer occupants. Likewise, while two structures have similar level and occupant differentials, their resource differentials may differ, and therefore their patterns of interlevel association may differ.
-
-For example, in a two-level caste system, where a small minority holds most of the resources, the association between the occupants of the two levels should be substantially different from that in another system in which the level and size differentials of the two levels are similar and there is little difference in their resources.
-
-Having noted these differences, we can now describe Blau’s association theory in greater detail. Chance encounters across levels or groups due to variations in a hierarchical structure can then be predicted according to the level differentials (the more levels or groups, the greater the number of such chance encounters), the size differentials (the more evenly distributed the occupants across levels or groups, the greater the number of such chance encounters), and the resource differentials (the smaller the difference in resources per capita across levels, the greater the number of chance encounters). The effects of the hierarchy (especially the resource differential), however, restrict these general principles of association. In the case of instrumental actions taken for the purpose of socioeconomic returns, reciprocity of association becomes problematic. For a person from a higher level to have a chance encounter with a person from a lower level may be structurally unavoidable (e.g., a banker and a cleaning lady), yet a more substantive and especially status-changing association (e.g., marriage) requires efforts to overcome the structural gap. It is for this type of association that the present theory attempts to clarify the potential effects of individual actions.
-
-Similarly, the structural theory of Emerson and Cook can be explicated in view of the present theory. In their power-dependence theory, Emerson and Cook specify that structural parameters dictate exchange patterns and consequences, even though individuals engage in
-
-178
+150
 
 Conceptual Extensions
 
-such exchanges to maximize their resources (Emerson 1962; Cook and Emerson 1978; Cook 1982; Cook, Emerson, Gillmore, and Yamagishi 1983; Emerson, Cook, Gillmore, and Yamagishi 1983). In their theoretical formulation of exchanges, structural dependence, or constraints (number of available exchange partners and distance to sources possessing resources), the type of exchange (e.g., negatively connected networks, in which only one pair of individuals can engage in transactions with one type of resource, and positively connected networks, in which new resources depend on combining two or more types of resources) and the resource salience (amount of resources available to each individual) result in further resource differentiation among individuals.
+social structure: economic standing and social standing.4 Economic standing is based on the accumulation and distribution of wealth (as indicated by commodities and their symbolic value representations, such as money), and social standing is based on the accumulation and distribution of reputation (as indicated by the extent of recognition in social networks and collectivities).5 Each standing reflects the ranking of an individual relative to others in the structure over the command of the
 
-By specifying these parameters in a hierarchical structure, the present theory helps to predict in what types or parts of structures the rate of increasing dependence or resource differentiation will be faster or slower.
+「capital」concerned. Wealth, therefore, is a functional calculus of the worth of commodities in terms of their value representation, money; reputation is a functional calculus of the worth of public awareness in social networks in terms of its value representation, recognition. Wealth is indicative of economic capital because the commodities and their value representation can be invested to generate certain returns. Likewise, reputation reflects social capital because the social networks and their value representation can be mobilized to generate certain returns. Through reputation, it becomes possible to mobilize the support of others for both instrumental and expressive actions. It is the capacity of resource mobilization through social ties, or social capital, that makes social relationships a powerful motivation for individual actors to engage in exchanges.
 
-If it is assumed that the resource differential increases toward the top of the structure, one would predict that power or resource differentiation increases faster for occupants positioned closer to the top of the structure. The size differential also predicts differences in the speed of differentiation. The greater the differential, the greater this differentiation, since the larger number of occupants at the lower levels will have fewer opportunities to interact with occupants at the higher levels. The level differential delineates resource distance and should help generalize to larger structures the experimental results of the Emerson–Cook studies, in which the number of positions/levels and occupants is necessarily limited.
+Both economic and social standings enhance an individual’s power and influence in the structure (over other members) and, thus, the individual’s psychic well-being and physical survival as well.
 
-Furthermore, the present theory fleshes out possible variations in actions taken by individuals in similarly structured positions. Cook and Emerson (1978) briefly examined such variations by demonstrating the effects of a stronger sense of equity and a stronger sense of commitment on resource differentials; they found some evidence that exercise of power or demand for resources was either curtailed (especially for women) or increased (especially for men). Such data hint at the possibility that individual actions vary beyond predictions based on their structural characteristics. The present theory, with its explicit specification of structural parameters that predict where such individual actions may be relatively large or small, may well refine and elaborate the strictly structural interpretation of the dependence theory to accommodate such empirical variations.
+Economic standing and social standing are complementary in that the former requires social legitimation and enforcement for its symbolic value (money), and the latter builds on the economic well-being of the group (or embedded resources in the network) in which the reputation is sustained. Without social enforcement, economic standing collapses; without collective wealth, social standing is meaningless. Yet, each standing can be seen as an independent motive in exchanges. Exchanges can be used to extract economic capital (resources through transactions) or social capital (resources through social relations).
 
-Individual Action versus Social Capital
+Thus, transactional rationality drives the calculations of transactional gains and costs in exchanges, and relational rationality propels the calculations of relational gains and costs. Transactional rationality sees relationships as part of transactional gain–loss calculations, and relational rationality sees transactions as part of relational cost–benefit calcula-4 A third reward, political standing (or power), is also important, but probably is not as primitive as the other two rewards. Power, or the process of legitimation, reflects a process by which the other two primitive rewards are preserved or gained. The relationships among wealth, reputation, and power (legitimation) emerge in the discussions in the previous chapter and this chapter.
 
-As stated earlier, the individual perspective, rather than the psychological deductive viewpoint, has emerged in the American sociological liter-
+5 The usual indicators of social standing include status (for position) and prestige (for occupant) (see Table 3.1 in Chapter 3). I adopt the more general term reputation to capture both, as overall esteem given to an actor by others.
 
-Social Capital in Hierarchical Structures  179
+Reputation and Social Capital  151
 
-ature. The effects of individual actions can be explored from two perspectives. The first focuses on the structural formations or changes due to such actions. For example, Coleman (1986a, 1986b, 1990) argues that social actors promoting their interests engage in social relations that, depending on the specific purposes of the actions involved, may result in a market system, an authority system, or a normative system. He describes the process by which each system evolves, emphasizing the emergence of norms and sanctions from the interacting actors with their respective interests. Rational or cognitive action is the assumed force in the forging of social relations and subsequent structures. In contrast, Collins (1981) sees emotion as the ultimate force behind interactions, in which individuals seek positive reinforcement and claim membership.
+tions. Relational rationality favors the maintenance and promotion of the relationship even when the transactions are less than optimal. Transactional rationality favors the optimal outcome of transactions even if it is necessary to terminate specific relations. While both rationalities are enacted by actors in most exchanges, for a given society at a particular time, institutions favor one rationality over the other, allowing moral judgment on the relative merits of one type of capital (economic or social) over the other. The remainder of this chapter will elaborate on these arguments.
 
-Chains of such interaction rituals eventually form and provide cultural (conversational) and energy resources for repeated interactions, which develop into formal organizations and informal groups. These proposals focus on how individual actions can result in structural forms.
+Relational Rationality Elaborated
 
-From the second perspective, individual actions are possible and meaningful under structural constraints. Burt’s work (1982, 1992) explores structural actions, or actions taken by individuals who are at the same or neighboring positions to protect or promote their common resources and interests. He argues that individuals from different positions can coopt to alleviate structural constraints, and in the process can modify the structure of relationships.
+It seems intuitive, due to natural law and natural instinct, to understand the argument of transactional rationality – gain over cost in transactions and maintenance and accumulation of resources through transactions.
 
-Integration of these two perspectives and the present theory has interesting results. In Chapter 8, it was argued that social capital provides the critical link between individual interests and the emergence of structure.
+Further, its calculation is helped enormously by the generalized medium of money (Simmel 1978). Gains and losses can be counted, and credits and debts documented, with ease. Accounting in relational rationality is not so easy or clear, even though Coleman (1990) notes that social credits (or credit slips) are central to the notion of social capital as well. In economic exchanges, not every episode is symmetric or balanced in the trade of goods. Imbalanced transactions incur economic credits and debts.
 
-To have resources, one must form ties with others initially to protect and eventually to gain resources. Maintenance and protection of resources are seen here as driven by emotional or expressive forces, whereas resource gain requires mobilization of instrumental and cognitive motives and action. The resulting horizontal (homophilous) and vertical (heterophilous) interactions and relations constitute the elementary forms of social structure. Social structure allows access to and use of resources not necessarily in each individual’s possession. Differential ability to manage and manipulate social capital helps dictate the emergence of hierarchical positions. Variations in the structural parameters are the evolutionary consequences of the emerging process and its interaction with external structures and resources.
+However, it is strongly assumed that the balance of credits and debts will be achieved in the long run, but in a finite time frame, in repeated transactions.
 
-Once structural parameters have become dominant forces, access to and use of social capital continue to motivate individual actions wher-ever and whenever possible in the hierarchical structure. The parameters (level differentials, size differentials, and resource differentials) assume different significance for different types and parts of the hierarchical structure. For example, the extent of collective actions by a given level’s
+In social exchanges where persistent relationships take on significance, episodic transactions are not necessarily symmetric or balanced.
 
-180
+However, even in repeated transactions in a finite time frame, balanced transactions are not required. The critical element in maintaining relationships between partners is social credits (and social debts). In a persistent relationship where transactions are not symmetric even in the long run, the engaging actors are engaging in an ever greater creditor–debtor relationship – the tendency of one actor to give favors to another in imbalanced transactions. While the debtor gains, why would the creditor want to maintain the relationship and thus suffer transactionally? It is argued that the crediting actor gains social capital in maintaining the relationship. How? Presumably the creditor could call on (or threaten) the debtor to repay the debt. But so long as the creditor does not make such a demand, the debtor is perpetually indebted to the creditor. To be able to maintain the relationship with the creditor, the debtor is expected to take certain social actions to reduce the relational cost (or increase the utility of exchanges) for the creditor. That is, the debtor should
+
+152
 
 Conceptual Extensions
 
-occupants, as well as the outcomes of such actions, are dictated by the relative number of occupants not only at the given level but also across levels. It would be interesting to postulate the structural conditions under which such collective actions will result in further consolidation of the given levels or elimination of variations in structural parameters. In the next section, one such analysis is offered as an illustration.
+propagate to others through his or her social ties his or her indebtedness to the creditor – a social recognition of credit–debt transactions, or social credit given to the creditor.   Propagation of indebtedness, or social recognition , is a necessary action on the debtor’s part for maintaining the relationship with the creditor. It leads to greater visibility of the creditor in the larger social network or community, and it increases general awareness (his or her reputation) as an actor who is willing to take a transactional loss in order to sustain the well-being of another actor in the community. The greater the social debt, the greater the need for the debtor to make an effort to disseminate (recognize) the indebtedness.
 
-Mobility and Solidarity: Some Policy Implications I have speculated (Lin 1982) that a stable social system requires a balance of opportunities for both homophilous and heterophilous exchanges. A system that does not provide sufficient opportunities for heterophilous exchanges reduces the opportunity for mobility and will experience fragmented populations with strong intralevel solidarity. This intralevel solidarity will promote the development of level (class) consciousness and potential class conflict. In contrast, a system that encourages a great degree of heterophilous exchange will experience much mobility and hence structural instability since solidarity will not prevail within population groups. The consequence may be a chaotic society in which transient interactions and lack of group solidarity threaten the integration of the system itself.
+From the creditor’s point of view, imbalanced transactions promote the creditor–debtor relationship and the propensity to generate recognition.
 
-What this implies is that the structure must strive for adjustments in the number of levels, the distribution of occupants and resources among those levels, and the cumulation of occupants and resources. An increase in the differentiation of levels, perhaps inevitable in the industrialization process, must be accompanied by a redistribution of occupants and resources. That is, the size differential and the resource differential must be kept at reasonable ratios between levels. Significant size and resource differentials usually indicate a rigid structure.
+Furthermore, two actors can maintain a relationship when both become creditors and debtors to each as imbalanced transactions over different kinds of commodities take place between them (giving different favors to each other). Each, then, is expected to propagate the favors rendered by the other in his or her social circles, thus promoting recognition of the other. Transactions are means to maintain and promote social relations, create social credits and social debts, and accumulate social recognition.
 
-As a crude illustration, let us assume that the American occupational structure is segmented by sex and race. We assume that occupational mobility follows sex and race specifications (e.g., a position vacated by a white male is filled by another white male). The 1999 distribution of occupants of the five major U.S. occupational categories (managerial and professional, technical, sales and administrative support, production/
+In a mass society, recognition can be accelerated with the use of public media as the means of transmission. Public recognition in a mass society makes recognition a public good, just as money is. Public recognition may take a variety of forms, including testimonies and banquets in one’s honor, honorific titles, medals of honor, awards of distinction, certifications of service, and ceremonies of all types, none of which need involve a substantial economic payback. Thus, recognition can transcend particular social networks and become a mass-circulated asset, like money, in a social group.
 
-operations, and farm) by sex and race is shown in Table 10.1. For each race-by-sex combination, we may construct the occupant differential between two assumed contiguous occupation categories by dividing the occupant size of the「higher」category by that of the「lower」one. For example, for white males, the occupant differential between service occupations and production/operations occupations is .25 (5,694/23,084) and the occupant differential between administrative support occupa-
+Reputation, then, is defined as a function of (1) the creditor’s ability to sustain unequal transactions (human and social capital), (2) the persisting credit–debt relationship, (3) the debtor’s propensity (willingness and ability) to acknowledge the relationship through his or her social networks (recognition), and (4) the propensity (size) of the social networks (and generalized network – the mass network) to relay and spread recognition.6 Reputation, then, is the aggregate asset of recognitions 6 Another element, density of the network or strength of relations among actors, may also figure in the formulation of reputation. However, the association is not necessarily a linear one (either positive [the denser the network, the more likely recognition will spread] or negative [the sparser the network, the more likely it will spread]), as rumors do spread (Burt 1998b), sometimes quickly in less dense networks, as presumably more bridges become available. Because of the uncertainty in the association, I have left it out of the present formulation. Further research may identify the proper form of association, if any.
 
-Social Capital in Hierarchical Structures  181
+Reputation and Social Capital
 
-Table 10.1.   U.S. Employed Workers by Gender, Race, and   Occupational Category (1999)
+153
 
-Employed Workers (thousands)
+Figure 9.1 From social exchanges to capitalization.
 
-Occupational Category
+received. It is a function of the extent to which one receives recognition in a social group. Collectively, a group’s reputation is defined as the number of reputed actors in the group and the extent to which recognition is shared by the members known in other groups. Thus, the reputation of actors in social networks and a social group promotes the collective reputation of the social group.
 
-White Male
+Social credits, recognition, and reputation are all relationally and structurally based utilities. Without persistent social relations, these profits vanish. It is therefore rational for actors to engage in and commit to persistent relations that allow social credits and social debts to remain meaningful and to facilitate recognition. The greater the reputation of certain actors and the more actors enjoying a high reputation, the more the group’s reputation increases. Identification with a more reputable group also enhances an actor’s own reputation. Thus, there is an association between a group’s reputation and the incentive for individual members to engage in persistent and maintained social exchanges and to identify with the group – group identification and group solidarity. Likewise, the groups’ reputation and the reputation of an actor in the group propel the actor to continue engaging in exchanges in which he or she may remain a creditor. Reputation and group solidarity enhance the sharing of resources – the creation and sustaining of public capital. At the same time, reputation and group solidarity provide positive feedback and reinforcement of unequal transactions, social creditor–debtor relationships, and thus social capital for the actors.
 
-Black Male
+Figure 9.1 depicts the hypothesized processes between microlevel exchanges and macrolevel reputation and group solidarity. For the sake
 
-White Female
+154
 
-Black Female
+Conceptual Extensions
 
-Managerial/professional
+of description, the process may begin with exchanges where transactions are seen as the means by which social creditor–debtor relationships emerge. Such creditor–debtor relationships then propel the spread of recognition in social networks, which eventually creates a generalized reputation that reinforces group solidarity and encourages public capital.
 
-18,196
+With reputation and group solidarity, the social creditors and debtors gain social capital (embedded in social networks with strong ties and rich resources) and are further reinforced to engage in exchanges. Here the reciprocal and interactive processes between micro- and macrolevel linkages are seen as being facilitated by social networking – an essential element between exchanges and capitalization.
 
-1,231
+A group may promote solidarity and reputation by recruiting actors with a reputation established elsewhere in the society. By conferring recognition on specific actors, the group expects that these actors will identify with the group and be prepared to engage other members of the group in future exchanges. In this process, reputation and recognition are not consequences of microlevel exchanges, but antecedents to them.
 
-17,074
+While the actors granted such recognition and reputation may not have been exchange partners with others in this particular group, they will become obligated to carry out such exchanges in the future, should they accept such recognition and added reputation. In this sense, microlevel exchanges and more macrolevel recognition and reputation are eventually reciprocal in causal relations.
 
-1,954
+A Summary
 
-Administrative support
+To summarize, some distinguishing characteristics of the two rationalities are presented in Table 9.1. The contrasts are necessarily sharp to highlight the comparison. In transactional rationality, typically implicated in the analysis of economic exchange, the purpose is to gain   economic capital (resources through transactions)   and the interest lies in the transactional aspect of the exchange – the extent to which resources are transacted, and sometimes mediated, by price and money. The utility of the exchange is to optimize transactional profit, and the rational choice is based on an analysis of alternative relationships producing varying transactional gains and costs. On this basis, the rules of exchange participation are two. First, if the relationship with a particular alter produces relative gain, then the decision is to continue the relationship for further transactions. If the relationship fails to produce relative gain, then there are two decision choices: (1) to find an alternate relationship that may produce relative gain or (2) to maintain the relationship but to suffer or to reduce the transactional cost. The decision between the two choices
 
-12,069
+Reputation and Social Capital  155
 
-1,273
+Table 9.1.   Rationality of Economic Exchange and Social Exchange  Element
 
-20,652
+Economic Exchange
 
-3,032
+Social Exchange
 
-Service
+Exchange focus
 
-5,694
+Transactions
 
-1,216
+Relationships
 
-8,333
+Utility (optimization)
 
-2,204
+Relative gain to cost
 
-Production/operations
+Relative gain to cost in
 
-23,084
+in transactions
 
-3,244
+relations (relationship at a
 
-4,345
+(transaction at a cost)
 
-836
+cost)
 
-Farm
+Rational choices
 
-2,847
+Alternative relations
+
+Alternative transactions
+
+Transactional cost and
+
+Relational cost and reduction
+
+reduction
+
+Episodic payoff
+
+Money (economic
+
+Recognition (social credit,
+
+credit, economic debt)
+
+social debt)
+
+Generalized payoff
+
+Wealth (economic
+
+Reputation (social standing)
+
+standing)
+
+Explanatory logic
+
+Law of nature
+
+Law of humans
+
+Survival of the actor
+
+Survival of the group
+
+Optimization of gains
+
+Minimization of loss
+
+is based on the relative weights given to the likely gain from a likely alternative relationship and to the likely transactional cost or its reduction in the maintenance of the current relationship. The critical analysis in economic exchanges focuses on symmetric transactions in episodic or repeated transactions.
+
+Transactional rationality can be seen as a neo-Darwinian theory applied to exchanges – the survival of the fittest individuals. It is the instinct to find the partners who optimize resource gains through transactions with ego. The ability of ego to find relationships so that the transactional gain is relatively high or positive and the transactional cost is relatively low or nonexistent follows this instinct. Commitment to a particular alter-actor tends to be episodic and short-term, and the expectation is that the transactions are fair (more gain and less cost).
+
+Partnerships are incidental to the transactional requirements and may become binding through contractual rules so that the relationships reduce the transactional cost and justify their persistence. Therefore, transactional rationality follows the natural law and the rationality of natural choice. The actors who benefit more from repeated transactions not only enrich themselves, but collectively build a richer collectivity.
+
+Such is the argument for the invisible hand of transactional rationality.
+
+Relational rationality, on the other hand, as implicated in social exchange, focuses on the relational aspect of the exchange – the extent to which a relationship is maintained and promoted, usually mediated by recognition (or the expectation that the other actor will spread it).
+
+156
+
+Conceptual Extensions
+
+The motivation is to gain   reputation through recognition in networks   and groups , and the utility of an exchange is to optimize relational gain (maintenance of social relationships) – also an analysis of gain and cost.
+
+On this basis, there are also two exchange participation rules: One, if a specific transaction promotes a persistent relationship and the spread of recognition, then the transaction will be continued. Two, if the transaction fails to promote a persistent relationship, then two choices are considered: either (1) to find alternative transactions that will (e.g., to increase favors in transactions to entice and encourage recognition) or (2) to maintain the transaction and to suffer or reduce the relational cost (no gain or reduced gain in recognition). Again, the decision is a weighing process involving the relative likelihood of finding an alternative transaction and the relative relational cost.
+
+Persistent relations promote the extension and dissemination of one’s recognition through social connections. More persistent relations increase the likelihood of the spread of recognition. For recognition to keep spreading, the maintenance and promotion of persistent relationships are paramount. Social standing takes on meaning only when a network or group of individuals sharing and spreading the sentiment toward a particular actor persists. Thus, the larger the social connections, direct and indirect, the greater the effect of recognition and reputation. Individuals depend on the survival, persistence, and, indeed, ever-expanding nature of social circles to sustain and promote their social standing. Even those lower in social standing may gain transactionally if they remain participants in the social network and the group.
+
+Transactional rationality is seen as invisible as it builds collective capital from individual capital, yet it depends on the generalized medium of money – a very visible form of capital requiring documentation in every transaction. Relational rationality also builds collective capital from individual capital; the more reputation its members possess, the greater the standing of the group. This relies on an even less invisible medium: recognition, or the spread of the sentiment toward an actor in a social group. It is this invisible hand that drives persistent social relations and group solidarity.
+
+Transactional rationality can survive on an individual basis when partners in exchanges are interchangeable as long as they meet the requirements of transactional utility. Relational rationality depends on the survival of the group and the group’s members. The more resources embedded in the social networks and the stronger the ties, the greater the collective benefit to the group and the relative benefit to each actor in the group.
+
+Relational rationality is based on the principle of survival of the fittest group, a group with persisting relationships among its members. While
+
+Reputation and Social Capital  157
+
+animal instincts also show such relational rationality for family and clan members, it is only humans who show extensive and generalized relational rationality for solidarity of constructed groups beyond kin and clan criteria. Humans show an interest and ability to maintain persistent and profitable relationships at a reasonable transactional cost. Thus, relational rationality is a human law and is based on the rationality of human choice.
+
+Further Analyses
+
+The remainder of the chapter will be used to clarify some further issues.
+
+First, why is the term   reputation   preferred to other terms such as   social   approval ,   social attraction , and particularly   mutual recognition   or   social   credits , already available in the literature? Second, why is there a tendency in one community or society to focus on one type of rationality (transactional or relational) rather than another, and is it an indication of a historical tendency to have one rationality (transactional) supersed-ing another (relational)? Third, what breaks down this exchange–collective solidarity linkage? Finally, are social capital and economic capital two polarized points on a single dimension, thus dictating a choice?
+
+Reputation as Individual and Group Capital  So far, the argument for social standing such as reputation or social capital does not seem to differ from other similar arguments. Credits are seen as debts to be collected in later exchanges. Pizzorno (1991), for example, argues that mutual recognition promotes self-preservation. In order to preserve oneself, the price to be paid is the recognition that others will preserve, which presumably leads to others’ recognition of one’s right to preserve, a principle consistent with the argument here.
+
+However, one difficulty in using mutual recognition as the motive or jus-tification for exchange is that mutuality implies reciprocal and symmetric actions and equity in ranking among actors. These actions and interactions lead to cohesive but homophilous memberships in a group
+
+– group solidarity without differentiation among members. What has been developed here is that recognition can be asymmetric in return for favors received in transactions and an episodic account of actions and reactions. Other terms, such as   social approval   and   social attraction , also suffer from a similar problem. What is argued here is the need to take the next step: to recognize that it is possible to have unequal transactions in relationships and that these unequal transactions form the basis of differential social standing (reputation) among actors in a group.
+
+158
+
+Conceptual Extensions
+
+Recognition offers legitimacy to the alter’s (the creditor) claim to his or her resources. As recognition increases in episodes and spreads in the networks, we need a more generalized notion to capture the aggregation of episodes of such recognition accrued to an actor in a social group or community.   Reputation   is the choice proposed here, as it captures the notion that the asset can be possessed and differentiated by groups or individuals. A group can build, maintain, or lose a reputation. Likewise, within a group, individuals acquire, attain, or suffer different levels of reputation or ill repute. Thus, like wealth in economic exchanges, reputation is both an individual and a collective asset. Two other concepts seem to capture such an asset:   prestige   and    esteem . However, prestige has been appropriated and is understood in the literature to grade positions in the hierarchical structure (e.g., occupational prestige). Esteem is widely used as either a social or a psychological process (e.g., self-esteem).
+
+It should be noted that economists use reputation to account for the failure of economic explanations (e.g., market failures or imperfect information market). It is used as the latent variable accounting for investment in information or signaling (Klein and Leffler 1981), quality (Allen 1984), discipline (Diamond 1989), and commitment (Kreps and Wilson 1982). These other factors, then, are seen as being transmitted between transacting actors to reduce the moral hazard or transaction cost (Williamson 1985) or even to increase the price (Klein and Leffler 1981) and thus the payoff (see Zhou 1999 for a review of these accounts). Even though Grief (1989) mentions a coalition as a boundary within which reputation can be built and sustained, there is little concern or discussion among economists about the social or collective nature of reputation. Without an appreciation of its social nature, the term is reduced to an unobservable notion used to account for unexpected economic phenomena such as market failure.
+
+In the present argument, reputation is understood as a network asset (see, e.g., Burt 1998b, for a similar yet different view). It is built on the processes of transactions and creditor–debtor relations and on the acts of recognition and dissemination in social and mass networks (see Figure 9.1). It reinforces the legitimacy of certain actors who claim their resources and positions and, at the same time, offers incentives for further social exchanges and unequal transactions among actors, enhancing their social capital. It also enhances the group or collective reputation, and thus solidarity and the building of public capital. I do not rule out other pathways leading to reputation; however, the present argument makes explicit a pathway to the construction and utility of reputation.
+
+Reputation and Social Capital  159
+
+Institutionalization of Rationalities
+
+If transactional rationality follows neo-Darwinism and natural law, it may be deduced that the natural selection process will eventually favors transactional rationality over relational rationality. Indeed, many examples and studies demonstrating the relational imperative of exchanges, especially from anthropological studies, draw on data and observations from ancient or primitive societies. It has been suggested that emphasis on interpersonal relationships reflects the nature of communities that are more homogeneous, less technologically developed, and less industrially developed, and where rituals, ascription, and emotion define exchanges. As a society develops technologically and industrially and becomes more diverse in skills, knowledge, and production, division of labor requires more rational allocation of resources, including the increasing importance of rationality for resource transactions in exchanges. It has further been argued that the relational significance of economic exchanges today represents residual effects from the past. As the selective process proceeds apace, relational significance will eventually be superseded and replaced by transactional significance. An analysis of exchange relations can be seen in a particular society, such as  guanxi   in the Chinese context (Lin forthcoming), or   blat   in the Russian context (Ledeneva 1998).
+
+This view is paradoxical in that if transactional rationality is the law of nature, one would find that exchanges in the more primitive or archaic communities resemble natural instincts more closely. Indeed, Homans (1961) sees the development of more complex societies with increasing institutions as evidence of why more「primary」social behaviors (and exchanges) are becoming less visible. But these「subinstitutions」remain powerful, and unless they are satisfied by the new institutions and「good administration,」they can come into conflict and disrupt them. Modern society and its multitude of institutions, then, is seen as the enemy of both transactional rationality and relational rationality.
+
+Further, this thesis simply is not supported by facts. In studies of contemporary societies (such as China, Japan, northern Italy, and much of East Asia), even well-developed and economically competitive societies as the United States, Britain, Germany, and France, relationships remain an important factor even in economic transactions. The evidence shows that relationships in exchanges not only exist but thrive in diverse contemporary societies (Lin 1989).
+
+If there is no logical ground or evidence to support a developmental view of relational rationality and transactional rationality, what accounts for the dominance of one rationality over the other? I propose that the
+
+160
+
+Conceptual Extensions
+
+dominance of a rationality as an ideology reflects the stylized accounting of a society for its survival using its own historical experiences as data. The theorized accounting becomes「truth」as it becomes embedded in its institutions (Lin forthcoming).
+
+It is not hard to document that in some societies, survival and persistence are attributed to the development of wealth. Theories of wealth and its development dictate institutionalization of transactional rationality as it characterizes the building of individual wealth and thus collective wealth. Competition, an open market (and thus free choice of relations in transactions), and reduction of transactional costs dictate analytic assumptions and organizational principles. In other societies, survival and persistence are attributed to the development of social solidarity. Theories of group sentiment dictate institutionalization of relational rationality, as it characterizes the building of collective solidarity, and thus individual loyalty. Cooperation, networking, and thus maintaining   guanxi , even at the cost of transactions, dictate analytic assumptions and organizational principles.
+
+Once a rationality becomes the dominant ideology, institutions are developed to implement, operationalize, and reinforce specific individual and collective actions. Further, its explanatory scheme treats the other rationality as either irrationality or noise or constraint.
+
+The prevalence of institutional rules and the dominant ideology ebb and flow in accordance with the rise or fall of historical experiences.
+
+Since the nineteenth century, the Anglo-American experiences of industrialization, technological innovations, and electoral democracy have clearly led to its theorizing of accounting as the dominant ideology. Wealth-building takes central stage in political strategies and intellectual analysis. Social exchanges are markets for transactions.
+
+Any relations that sacrifice transactional gain are attributed to an imperfect market due to lack of information, and social organizations and social networks are necessary constraints due to such imperfections. Even then, they inevitably incur transactional costs and should be analyzed as such.
+
+On the other hand, in many societies and communities, or, for example,   guanxi   in the Chinese context, the willingness to maintain social relations is seen as the expression and practice of the higher-order law of morality, ethics, and obligations to other human beings. An actor’s social reputation and social standing are paramount. Reputation and face are the core concepts in political strategies and intellectual enterprises, and transactions in exchanges are of secondary importance.
+
+Sacrificing relationships for the sake of transactional gain is considered a lower-order rationality – as immoral, inhuman, unethical, or animalistic.
+
+Reputation and Social Capital  161
+
+Misrecognition and Ill Reputation
+
+Breakdown among exchanges, relationships, recognition, and reputation can take place at every link in the process. It may begin at the exchange level, when a rendered favor in transactions is not recognized. When a creditor–debtor relationship is not recognized, the only basis for persistent exchanges is transactional utility, where relations and partners are accidental and secondary in choice considerations. When the transactional cost exceeds the benefit, the incentive to maintain the relationship no longer exists.
+
+When a favor is recognized, the creditor can still disengage from the relationship if the network in which the recognition takes place is not resource-rich for the creditor. Recognition in a circle of baggers is not meaningful for a fashion designer or a scholar. Recognition in the wrong network or group may also be useless or even undesirable for a creditor.
+
+Acknowledging a scholar’s advice in an article published in a third-tier journal will not enhance the reputation of the scholar, and in an article published in a mimeographed journal it may even damage the scholar’s reputation. Further, if the recognition is not sufficient to reflect the extent of the favor given, disengagement may result. For example, acknowledging someone’s help in a footnote when the helper did all the data collection and analysis would provide a disincentive for such help in the future.
+
+Negative recognition may also occur if the debtor does not believe that the favor rendered meets the expectation. Spreading a bad word in the network can lead to negative recognition and a bad reputation (ill repute). In this case, the creditor can decide either to increase the favor in future transactions, reverse the direction of recognition, or avoid future transactions. The decision is a weighing process in which the relational gain (or recognition gain) is weighed against the added transactional cost or the cost of disengaging from the debtor and possibly from the network is weighed against having a tarnished reputation but remaining in a resource-rich group.
+
+Similar considerations apply to a debtor or group perspective.
+
+When would a debtor be expelled from further exchanges? Is it the behavior of spreading a bad word while gaining transactional profit or playing the debtor game without ever considering granting favors? When would a group’s solidarity begin to break down? If group solidarity is indeed based in part on the extent of reputation among its members and the extent of reputation of its leading「citizens,」
+
+then is it the group size, or the relative number of debtors and creditors, or a function of both that would bring about the erosion of group solidarity?
+
+162
+
+Conceptual Extensions
+
+In short, while this chapter focuses on the positive processes, there is a great deal to be developed regarding breakdowns in the social exchange processes. Such developments are equally important for a theory of social exchanges.
+
+Complementarity and Choice Between Social and   Economic Capital
+
+The preceding stylized arguments suggest that both economic and social standing are meaningful criteria for survival and constitute fundamental bases for rational choices. Lest it sound as if it is being argued that the two types of rationality are polarized values on a continuum, and that the two types of rationality are mutually exclusive (an either-or proposition), let me hasten to add that there is no theoretical or empirical reason to propose that this should be the case. It is conceivable that relational and transactional exchanges are complementary and mutually reinforcing under certain conditions. In an ideal situation, a particular relationship may be profitable for both relational and transactional purposes. It may generate transactional gain for both actors, and both actors may engage in social propagation of the other party’s contribution to their own gain, thus increasing each other’s social capital. In this case, it is said that there is an   isomorphic utility function   for both the relationship and the transactions. An isomorphic utility function promotes exchanges between two actors, as the survival of each individual and the survival of the interacting group are both enhanced. In this idealized situation, the two types of rationality coexist, complement each other, and interact.
+
+This does not hide the potential violence between the two rationalities. Transactional rationality recommends abandoning a particular relationship in favor of better transactions. Partners in exchanges are incidental; they exist so long as and only to the extent that such part-nerships generate transactional gain. This principle clearly puts relational rationality in the second order of choice criterion. Thus, more often than not, a choice needs to be made between transactional rationality and relational rationality.7 That is, optimal transactions do not match optimal relationships. According to the decision rules specified earlier, then, optimizing transactions would lead to a search for alternative relationships, and optimizing relationships would lead to imbalanced transactions. We may speculate that the choice between the two types of exchange is related to public capital – wealth and reputation – in the 7 For primordial groups, the choice seems to favor relational rationality over transactional rationality (succession of children to properties; see Chapter 8).
+
+Reputation and Social Capital  163
+
+larger group. Several alternative hypotheses may be posited. First, when one collective capital, say wealth, is low, it is expected that individuals favor the gaining of another collective capital, say, reputation. In this situation, two alternative and competing hypotheses are possible. In one formulation, the marginal utility principle would guide the explanation.
+
+What is expected, then, is that in a community with abundant wealth but lacking in reputational consensus (say, in a community with a large number of newcomers and immigrants but plenty of physical and economic resources), reputation is more valuable for individuals than wealth. Likewise, in a community with a good reputation but no wealth (say, a stable community with scarce physical or economic resources), individuals would tend to favor gaining wealth. However, in another formulation, the collective utility drives individual desires as well. When the collective asset is low on one form of capital, say wealth, but high on another, say reputation, the collective would favor standings based on the more abundant capital, reputation. Individuals would ascribe a higher value to reputation as well. Here I speculate that it is the collective utility principle that should operate.
+
+Second, when both types of public capital are abundant, there is expected to be a strong correspondence and calculus between the two types of capital. That is, having more of one type of capital increases the desire for and likelihood of having more of the other type of capital. In a community where both wealth and reputation are abundant, either choice – striving for more wealth or for reputation – is rational. Gaining one type of capital would also increase the likelihood of gaining the other type of capital. Thus, in a stable community with abundant physical and economic resources, both wealth and reputation are important and complementary.
+
+When a community lacks both wealth and reputation (an unstable population and a scarcity of physical and economic resources), it is expected that the community will be fragmented and contested in terms of the valuation assigned to wealth and reputation. Individuals are expected to strive for either wealth, reputation, or both, depending on the size of the social network in which they are embedded (the larger the network, the more likely reputational gains will be favored) and accessibility to physical and economic resources. The lack of collective consensus and patterns of exchanges make such a collectivity vulnerable to chaos or change. These conjectures should be investigated.
+
+Nevertheless, beyond a level where bare survival is at stake or where capital has been accumulated by only a few members, desirable economic and social capital can be obtained in exchange relationships. An actor with high social status and a wealthy actor can borrow each other’s capital in further promoting their own capital or building up the other
 
 164
 
-767
-
-16
-
-Source : U.S. Department of Labor,   Employment and Earnings  (1999, p. 20).
-
-Table 10.2.   Occupant Differentials by Gender, Race, and   Occupational Category
-
-Occupant Differential
-
-Occupational Category
-
-Pairs
-
-White Male
-
-Black Male
-
-White Female
-
-Black Female
-
-Managerial: adm.
-
-1.51
-
-.97
-
-.83
-
-.64
-
-support
-
-Adm. Support: Service
-
-2.12
-
-1.05
-
-2.48
-
-1.38
-
-Service: Production
-
-.25
-
-.38
-
-1.92
-
-2.63
-
-Production: Farm
-
-8.11
-
-19.83
-
-5.67
-
-52.00
-
-Note : Differentials based on number of workers in Table 10.1, calculated by the ratio of the upper level to the lower level. The smaller number suggests a reduced opportunity for the lower-level occupants to move to the next higher level.
-
-tions and service occupations is 2.12 (12,069/5,694). Assuming that the resource differentials are the same across these three occupational categories, the present theory would predict that structural constraints on mobility from production/operation occupations to service occupations are quite high: the positional effect would be strong and the tie effect weak. Structural constraints, however, should be quite low for mobility from service to administrative support occupations, where the positional effect is expected to be small and the tie effect large. These and other occupant differentials are presented in Table 10.2.
-
-Now we can compare the patterns of mobility opportunities and the relative positive and tie effects for white and black males and females.
-
-As Table 10.2 shows, both black males and black females have greater structural constraints than their white counterparts for mobility to higher white-collar occupations (from service to administrative support, 1.05
-
-and 1.38 for black males and females and 2.12 and 2.48 for their white counterparts; and from administrative support to managerial occupa-
-
-182
-
 Conceptual Extensions
 
-tions, .97 and .64 for black males and females and 1.51 and .83 for their white counterparts). Thus, we would expect that for black males and females to move up in these white-collar occupations, they should expect relatively stronger position effects and weaker tie effects. Comparing males and females, we find that females do not suffer as much structural constraint in moving from service to administrative support jobs, but they do suffer greater structural constraint than their male counterparts in moving from administrative support to managerial occupations (1.51
+type of capital. Accumulation of one type of capital also allows the actor to engage in exchanges promoting his or her other type of capital. If a banker donates money to the needy and the transaction is well publi-cized, it generates social credit and social recognition for the banker.
 
-and .97 for white and black males, respectively, and .83 and .64 for white and black females respectively). In attempting to move to the top tier of the occupational pyramid, then, females should expect relatively stronger position effects and weaker tie effects.
+Likewise, an esteemed physicist may lend her or his reputation in adver-tising a product and generate handsome monetary returns. Good capitalists understand that they must be both instinctive and human, and that it is good for them and for others as well.
 
-These are very crude data. We are not sure if, in fact, the American occupational structure is rigidly segmented by race and sex (in fact, we know that to some extent that this is a false assumption). The occupational categories here have been kept to a minimum (Breiger 1981, for example, proposed an eight-category classification for a hierarchical structure of American occupations). And the assumption that the resource differentials are constant across levels (occupational categories) is probably invalid. But given these assumptions, the theory informs us that, in such a structure, race and gender do make a difference in occupational mobility. Faced with greater structural constraints in moving up in white-collar occupations, blacks and females would experience difficulty in mobilizing social capital to overcome such structural deficiencies. Thus, the research agenda should shift to finding out how to make access to social capital more likely for structurally disadvantaged blacks and females.
+It is also important to note that, in the final analysis, both transactional and relational rationalities are socially based. Without the legitimation and support of a social and political system and its constitutive members, the economic system, based on its symbolic and generalized medium, money, simply cannot exist. To say that relational rationality is subsumed under transactional rationality is instinctively attractive but humanly impossible.
 
-This demonstration (within the limitations set by our assumptions) illustrates the utility of the social capital theory from both the structural and the individual perspectives. At the macrostructural level, the search for ways to overcome such constraints stimulates policy considerations.
+10
 
-Is it possible to create vacancies to equalize the size differential? Is it possible to equalize the resource differential? Is it possible to combine these moves in some way? Or should the structure address the issue of real-location of vacancies across sex and racial categories, thereby emphasizing the interfirm labor market rather than the internal labor market perspective (see such a position advocated in Granovetter 1986)? Unless the structure is capable of making such adjustments, chances are that mobility opportunities will remain structurally unequal and discontent will increase. In extreme cases, such immobility is cause for social revolution.
-
-At the individual level, awareness of structural constraints and of flexibility within them may be reflected in the process of cognitive evalua-
-
-Social Capital in Hierarchical Structures  183
-
-tion. To the extent that such evaluation is engaged in, the individual has the option of initiating action by seeking out heterophilous ties and better social capital. Because the nature, range, and quality of such ties vary at different levels in the hierarchy, the benefits of seeking them out also vary. There is also a risk of nonreciprocated action when the structural gap is too great, along with a loss of identification with other occupants of the initial level. Both may lead to a sense of alienation.
-
-11
-
-Institutions, Networks, and
-
-Capital Building
+Social Capital in Hierarchical
 

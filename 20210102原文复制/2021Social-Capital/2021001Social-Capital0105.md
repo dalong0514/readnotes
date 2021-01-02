@@ -1,3 +1,5 @@
+# 0105. The Theory and Theoretical
+
 Propositions
 
 The discussions of the structure, interaction, and action aspects of social capital described in the previous three chapters have laid the ground-work for specifying propositions to guide research. This chapter will summarize the major principles presented so far and will then present the theory’s principal propositions.
@@ -360,9 +362,7 @@ research , thus avoiding pitfalls of infinite abstract-to-abstract deductions fr
 
 Finally, we should note that assumptions are made only to allow the theoretical propositions to be specified. Thus, assumptions may be exogenous (given) to the explication of a theory, but there is no guarantee that they are empirically valid. Theoretical development anticipates research not only on the validity of the propositions, but on the validity of the assumptions as well. That is, it is anticipated that when instruments become available, the assumptions themselves must be subject to research and empirical examination. There is nothing sacred about the assumptions. The theory itself is subjected to modification or even refutation when assumptions are invalidated. Theory guides research, and it must continuously be subjected to verification and possible modifications.
 
-6
-
-Social Capital and Status Attainment
+# 0106. Social Capital and Status Attainment
 
 A Research Tradition
 
@@ -967,10 +967,3 @@ Concluding Remarks
 This brief chapter can only provide an abbreviated presentation of the rich and sizable research literature on social capital and status attainment. Many studies are currently being conducted in many parts of the world and have not been covered here. Nevertheless, it should be apparent that this research tradition has contributed significantly to the development of the social capital theory itself, as well as providing detailed and varied empirical data for its verification and continuous evolution.
 
 The research enterprise truly exemplifies the importance and fruitfulness of the continuing interplay and reciprocal feedback between theory and research.
-
-7
-
-Inequality in Social Capital
-
-A Research Agenda
-

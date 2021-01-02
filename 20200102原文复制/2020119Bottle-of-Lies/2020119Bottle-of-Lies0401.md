@@ -62,9 +62,7 @@ He turned up an unauthorized notebook in the desk drawer of a warehouse supervis
 
 Hernandez stayed for just three and a half days, all the time the FDA gave him. Although his inspection was tough and yielded some findings, he hadn’t nailed it, despite his legendary nose for malfeasance. But he knew that something was wrong, and he vowed to find it on his next visit.
 
-Chapter 14
-
-「Do Not Give to FDA」
+## 0402. Do Not Give to FDA
 
 FEBRUARY 14, 2007
 
@@ -124,7 +122,7 @@ Thakur went to sleep thinking about the phone number Robertson gave him, and it 
 
 At age thirty-seven, Andrew Beato was finding his way at the prominent firm of Stein, Mitchell, Muse & Cipollone LLP in Washington, D.C. The young lawyer had thinning brown hair, wore steel-rimmed glasses, and spoke in hushed tones so low that visitors had to lean forward to hear him. He typically wore a neutral expression, which did little to mask his air of intensity. When he smiled, which was infrequent, slight dimples emerged. He had been representing whistleblowers for about five years and was told by TAFEF to expect a call from a potential client.
 
-His firm had a history of representing whistleblowers. In 2002, it had represented Cynthia Cooper, the internal auditor at WorldCom who’d uncovered an almost $4 billion accounting fraud. One of the firm’s founding partners, Jacob Stein, had represented Monica Lewinsky during the Clinton impeachment hearings. But Beato was still proving himself, and his judgments were subject to review.
+His firm had a history of representing whistleblowers. In 2002, it had represented Cynthia Cooper, the internal auditor at WorldCom who’d uncovered an almost `$4` billion accounting fraud. One of the firm’s founding partners, Jacob Stein, had represented Monica Lewinsky during the Clinton impeachment hearings. But Beato was still proving himself, and his judgments were subject to review.
 
 It was late in the day on a Friday, and Beato was packing up to leave the office, running late (as usual) to meet his wife, who had also worked as an attorney and was now a stay-at-home mom. He had just gotten his coat on and was almost out the door when the phone rang. He was certain it was his wife, calling to ask where he was. The voicemail picked up. Instead, he heard the soft polite voice of a man with an Indian accent and a formal manner: the whistleblower.
 
@@ -142,7 +140,7 @@ In many ways, Beato was the perfect lawyer to make sense of the Ranbaxy case. He
 
 As some of his siblings entered health care, Beato turned to the law; he had arrived at Stein Mitchell right out of law school. At first, he represented companies in their dealings with the Federal Trade Commission. But the work left him cold. He didn’t want to get up every morning figuring out a way to get a company off the hook. How could he help people, not just corporations, from inside a corporate law firm, where he had to remain to pay off student loans? While Beato was still struggling to answer this question, his father died from a rare brain tumor. Though his father left the family with no savings, he had「wealth of character,」Beato recalled. Hundreds of his grateful patients turned out for the wake, proof that his father had lived a meaningful life dedicated to helping others.
 
-Beato’s desire to do the same led him to a fledgling area of the law: representing whistleblowers. The practice dated back to the Civil War and fell under a part of the federal False Claims Act known as qui tam, an abbreviated Latin version of the phrase translated as「he who brings this action for the king as well as for himself.」It allowed whistleblowers to sue those defrauding the government and collect a portion of any recovered funds. The law had initially been intended to stop profiteers from selling defective supplies to the Union army. In the 1940s, after an amendment to the False Claims Act reduced the amount that a whistleblower could recoup, the law fell into disuse. In 1987, however, after reporting of widespread fraud by defense contractors (like the infamous $640 toilet seat sold to the Pentagon), the law was again amended to increase a whistleblower’s reward, creating a new incentive to report fraud, and for lawyers to take such cases.
+Beato’s desire to do the same led him to a fledgling area of the law: representing whistleblowers. The practice dated back to the Civil War and fell under a part of the federal False Claims Act known as qui tam, an abbreviated Latin version of the phrase translated as「he who brings this action for the king as well as for himself.」It allowed whistleblowers to sue those defrauding the government and collect a portion of any recovered funds. The law had initially been intended to stop profiteers from selling defective supplies to the Union army. In the 1940s, after an amendment to the False Claims Act reduced the amount that a whistleblower could recoup, the law fell into disuse. In 1987, however, after reporting of widespread fraud by defense contractors (like the infamous `$640` toilet seat sold to the Pentagon), the law was again amended to increase a whistleblower’s reward, creating a new incentive to report fraud, and for lawyers to take such cases.
 
 Though Beato lost his first whistleblowing case, which involved a cardiologist doing unnecessary procedures, he saw the righting of wrongs against the people and their government as an essentially moral pursuit.
 
@@ -156,9 +154,7 @@ In a quiet moment, Thakur asked Beato,「How do I pay you and what do I pay you?
 
 Beato’s answer came as a revelation. Thakur would pay them nothing. Instead, the firm would roll the dice on representing Thakur for free and work to help build the government’s case against Ranbaxy, with Thakur’s evidence as its primary guide. The firm would then file its findings in a confidential lawsuit against the company, which would remain under seal. While the government investigated, Thakur’s identity would remain secret. If there was a settlement, Thakur could net up to a third of the government’s recovery and Beato’s firm would get a portion of that. Under the arrangement, Thakur would become a legally protected whistleblower. Until that moment, he had not even known such a protection existed.
 
-Chapter 15
-
-「How Big Is the Problem?」
+## 0403. How Big Is the Problem?
 
 2007
 
@@ -276,9 +272,7 @@ Hernandez explained to Ranbaxy’s senior executives that he was planning to rec
 
 The FDA refused to certify Batamandi as a separate plant, and Ranbaxy withdrew its tacrolimus application. It was yet another round in a global game of whack-a-mole. Each time the FDA found fraud inside Ranbaxy, it responded with a small regulatory restriction, only to find fraud pop up somewhere else. The agency had done nothing yet to clamp down on Ranbaxy’s entire method of operating. But the game was about to change.
 
-Chapter 16
-
-Diamond and Ruby
+## 0404. Diamond and Ruby
 
 OCTOBER 2007
 
@@ -342,7 +336,7 @@ Weeks later, in an executive meeting with Malvinder in London, Deshmukh was thun
 
 Afterward, Deshmukh sought out Kate Beardsley for legal advice about his responsibility for deliberately withholding information from Daiichi Sankyo. Distraught, he told her that he was suffering a「crisis of conscience.」Beardsley said that she couldn’t advise Deshmukh personally, as her client was Ranbaxy. But Malvinder’s directive to withhold information about the SAR was so serious that she consulted with her law partner about whether it was even possible to continue representing Ranbaxy. They concluded that if Daiichi Sankyo contacted them with questions about the government’s investigation, they would have to resign rather than lie.
 
-But Daiichi Sankyo never contacted them. Within weeks, the Japanese company had signed the agreement to become Ranbaxy’s majority shareholder and retain Malvinder as CEO for five years. At a press conference in June 2008, Malvinder stunned the Indian business world by announcing that he and his brother, Shivinder, had agreed to sell their 34 percent stake in Ranbaxy to the Japanese for an astonishing $2 billion. The Japanese would then purchase additional shares to bring their controlling ownership to just over 50 percent of the company.
+But Daiichi Sankyo never contacted them. Within weeks, the Japanese company had signed the agreement to become Ranbaxy’s majority shareholder and retain Malvinder as CEO for five years. At a press conference in June 2008, Malvinder stunned the Indian business world by announcing that he and his brother, Shivinder, had agreed to sell their 34 percent stake in Ranbaxy to the Japanese for an astonishing `$2` billion. The Japanese would then purchase additional shares to bring their controlling ownership to just over 50 percent of the company.
 
 Malvinder called the sale an「emotional decision,」but one that would enhance the value of both companies and leave Ranbaxy debt-free. Just because he was no longer a shareholder, he said,「the visions, the dreams, the aspirations, none of that is going to change.」He faced fierce criticism that he’d betrayed national entrepreneurial pride by selling Ranbaxy to the Japanese.「Ranbaxy was the all-conquering Indian hero and should have been the last man standing instead of being the first to capitulate,」a former Ranbaxy executive told the Economic Times.
 
@@ -364,9 +358,7 @@ As though in preparation for questions from Congress, an internal summary of ste
 
 The memo concluded that appropriate next steps had been a difficult judgment call and had triggered scientific disagreement within CDER. This made it sound as though the agency had been actively wrestling with the case as a prelude to taking action, rather than simply sleeping on it. But in its own ponderous manner — facing the specter of congressional oversight — the agency was finally gearing up for action.
 
-Chapter 17
-
-「You Just Don’t Get It」
+## 0405. You Just Don’t Get It
 
 JULY 2008
 

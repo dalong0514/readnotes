@@ -82,9 +82,7 @@ The parallel economy operates wherever the official state lies in tatters. In dr
 
 The congressional investigator David Nelson knew nothing about Jugaad. But he knew a lot about the industry he had investigated. Paging through the prosecutors’ motion on Ranbaxy, Nelson saw a dangerous junction between the「get rich quick」schemes of the generic drug industry and the FDA’s「see no evil」approach to foreign drug regulation. The result, he feared, was a public health disaster in the making.
 
-Chapter 19
-
-Solving for X
+## 0502. Solving for X
 
 MAY 25, 2007
 
@@ -164,9 +162,7 @@ But at Cleveland Clinic, Starling and his team felt little reassurance. Months a
 
 Both Starling’s and Lever’s patients had served as sentinels. In their fluctuating heart rhythms, Lever sensed that something was awry. It was a problem he couldn’t see and had no way to fix, but he suspected it lay in the distant manufacturing plants where his patients’ drugs were made. In the months that followed, as he took his quest to the FDA and to the news media, his instincts were proven true.「In all my innocence,」he said,「I stumbled on a mess.」
 
-Chapter 20
-
-A Test of Endurance
+## 0503. A Test of Endurance
 
 SEPTEMBER 2009
 
@@ -292,9 +288,7 @@ The two spoke briefly. She mentioned that Ranbaxy’s new CEO had moved into the
 
 As much as he tried to disappear, he felt surrounded by the company and the consequences of his time there. He relayed the encounter to his lawyer, Beato, typing notes as they spoke in his ongoing effort to document the case. In a single sentence, he wrote to himself:「When the news becomes public, leave here.」
 
-Chapter 21
-
-A Deep, Dark Well
+## 0504. A Deep, Dark Well
 
 1998–2010
 
@@ -382,9 +376,7 @@ Much like the doubtful patients, Graedon had lost his trust in the FDA.「I had 
 
 This flipped Graedon’s thinking on its head. He had assumed all along that the drugs the FDA approved met the agency’s standards, but the standards, he realized, were flawed. What if the drugs plaguing America’s patients were so bad that they did not meet even the FDA’s flawed standards and were being wrongly approved? That would mean that both the FDA’s standards and its approval process were broken. Even if the FDA fixed both, however, that would do nothing to solve the larger manufacturing problem: America no longer made its own drugs.
 
-Chapter 22
-
-The `$600` Million Jacket
+## 0505. The `$600` Million Jacket
 
 2011
 
