@@ -12,6 +12,8 @@ And, despite the importance of macros to The Lisp Way, in the end all real funct
 
 1 Despite the importance of functions in Common Lisp, it isn’t really accurate to describe it as a functional language. It’s true some of Common Lisp’s features, such as its list manipulation functions, are designed to be used in a body-form* style and that Lisp has a prominent place in the history of functional programming — McCarthy introduced many ideas that are now considered important in functional programming — but Common Lisp was intentionally designed to support many different styles of programming. In the Lisp family, Scheme is the nearest thing to a “pure” functional language, and even it has several features that disqualify it from absolute purity compared to languages such as Haskell and ML.
 
+2『 Lisp 语言的三大核心元素：函数、变量和宏，做一张主题卡片。』——已完成
+
 ### 5.1 Defining New Functions
 
 Normally functions are defined using the DEFUN macro. The basic skeleton of a DEFUN looks like this:
