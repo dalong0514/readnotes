@@ -1,16 +1,10 @@
-# Cybernetworks and the Global Village
-
-The Rise of Social Capital
+# 0205. Cybernetworks and the Global Village: The Rise of Social Capital
 
 One recent controversy in the study of social capital has been an issue raised by Putnam (1993, 1995a, 1995b): whether social capital has been on the decline in the United States for the past three or four decades.
 
 Putnam argues that there should be a positive association between social capital and political participation, and he measures social capital in terms of participation rates in social associations or secondary/tertiary associations such as PTAs, Red Cross associations, unions, church-affiliated groups, sports groups, and bowling leagues. Political participation is indicated by voting, writing to Congress, participating in rallies and political meetings, and so on. Putnam has observed that both participation rates have declined in the United States over the past thirty years or so. This has led him to conclude that social capital or civic engagement has been on the decline, and this decline might be responsible for a decline in democratic and political participation. Further, he suggests that the culprit may be the rise of television viewing. As television has gained popularity, the younger generations of Americans are no longer interested in participating in civil associations. Indeed, he suggests, even when they go bowling, they may bowl as individuals rather than as groups or leagues.
 
-Putnam’s thesis and research have been challenged from a variety of theoretical and methodological perspectives. These challenges fault Putnam’s work primarily on two grounds. First, he committed errors in measuring social capital. For example, it has been pointed out that he erred in the analyses of the General Social Survey data (Greeley 1997a); he should have used「amount of time dedicated to voluntary work」
-
-(Greeley 1997b, 1997c; Newton 1997) rather than mere membership in certain organizations; he excluded certain types of associations (especially organizations emerging in contemporary America [Schudson 1996; Greeley 1997a, 1997b, 1997c; Minkoff 1997; Newton 1997]); and membership in an association is not the same as civic-mindedness or civic 210
-
-energy (Schudson 1996). Second, assuming that his measurements of social capital were acceptable, Putnam blamed the wrong culprit; other factors have been more critical than television viewing (Schudson 1996; Skocpol 1996).1
+Putnam’s thesis and research have been challenged from a variety of theoretical and methodological perspectives. These challenges fault Putnam’s work primarily on two grounds. First, he committed errors in measuring social capital. For example, it has been pointed out that he erred in the analyses of the General Social Survey data (Greeley 1997a); he should have used「amount of time dedicated to voluntary work」(Greeley 1997b, 1997c; Newton 1997) rather than mere membership in certain organizations; he excluded certain types of associations (especially organizations emerging in contemporary America [Schudson 1996; Greeley 1997a, 1997b, 1997c; Minkoff 1997; Newton 1997]); and membership in an association is not the same as civic-mindedness or civic energy (Schudson 1996). Second, assuming that his measurements of social capital were acceptable, Putnam blamed the wrong culprit; other factors have been more critical than television viewing (Schudson 1996; Skocpol 1996). 1
 
 Whether social capital is rising or declining largely depends on how it is defined and measured (Greeley 1997b; Portes 1998; Lin 1999a). In addition, its significance lies in the consequences selected for analysis.
 
@@ -28,21 +22,33 @@ By focusing the definition and measurement of social capital on embedded resourc
 
 hypotheses advanced here are two: (1) social capital in the form of cybernetworks is clearly on the rise in many parts of the world, and (2) the rise of cybernetworks transcends national or local community boundaries; therefore, its consequences (both positive and negative) must be assessed in the global context. I begin with a broad survey of the emergence of cybernetworks and the time- and space-transcending social capital they offer.
 
-The Internet and Cybernetworks:
+最近，普特南（Putnam, 1993, 1995a, 1995b）在社会资本研究中挑起一场争论：在过去三四十年内，美国的社会资本是否在下降。普特南认为，社会资本与政治参与之间存在着正向的关联，他使用社团或第二类 / 第三类社团 一一 如家长-教师协会（PTA）、红十字协会、工会、与教会有关的团体、体育运动小组、保龄球联合会 —— 的参与率来测量社会资本。政治参与通过投票、给国会写信、参加集会和政治会议等形式测量。普特南发现，美国公民的这两种参与率在过去的 30 年里都是下降的。他由此得出结论，社会资本或公民参与在下降，这可能是由民主和政治参与的下降引起的。此外，他指出这可能要归咎于人们收看电视的增多。因为电视的流行，美国的年轻一代已经不再对公民参与感兴趣。他还提出，即使他们去打保龄球，也是独来独往而不是结伴而行。
 
-Emerging Social Capital
+普特南的观点和研究已经受到了不同的理论与方法论视角的挑战。这些挑战主要从两个方面置疑普特南的研究。
 
-Cybernetworks are defined as the social networks in cyberspace, and specifically on the Internet .2 These networks are constructed by individuals and groups of individuals – through e-mail, chat rooms, news groups, and clubs (Jones 1997b; Smith and Kollock 1999) – as well as by informal and formal (e.g., economic, political, religious, media) organizations for the purpose of exchanges, including resource transactions and relations reinforcement. Cybernetworks have become a major avenue of communication globally since the early 1990s; an overview of their extent and scope is informative here.
+第一，他在测量社会资本上犯了错误。例如，在分析一般性社会调査数据中出现的错误（Greeley, 1997a）；他应该使用「投入在志愿性工作中的时间数量」（Greeley, 1997, 1997c; Newton, 1997），而不能只用属于某个组织的成员身份；他排除了某些类型的社团（特别是美国当代正在出现的组织「Schudson 1996; Greeley 1997a, 1997b, 1997c; Minkoff 1997; Newton 1997」；属于某一社团的成员身份不同于热心于公民事务（Schudson, 1996）。
+
+第二，即使普特南对社会资本的测量是可以接受的，他对社会资本下降的归因也是错误的，其他因素比收看电视更重要（Schudson 1996; Skocpol 1996）。[1]
+
+社会资本是上升还是下降，主要取决于如何定义和测量（Greeley 1997b; Portes 1998; Lin 1999a）。此外，还在于选择哪部分结果来分析。如果使用多重概念 一一 如成员身份、规范和信任 一一 来测量，就存在着将同一事物的多个方面（网络、信任和规范都是对社会资本的测量）混淆为因果命题的危险（例如，网络促进了信任或者信任促进了网络的发展）。如果将适用于集体的原理套在个体身上，就会出现生态谬误（ecological fallacy）（从某一个层次上得出的结论被运用到其他层次）。
+
+根据我前面提出的理论，社会资本应该通过嵌入在社会网络中的资源来測量。这个定义可以确保测量与理论构想的一致性（Bourdieu, Coleman, Lin）。这样定义也便于通过一系列的过程与机制来考察宏观现象，社会资本就是这样的机制，它是为了实现某些社区或社会层次上的目标而被投资和动员的。如果从这个视角出发，那么关于美国或者任何其他社会中的社会资本是上升还是下降的争论就有待于证实，因为迄今为止还没有研究明确地使用这个定义社会资本反映在对嵌入在社会网络中的资源的投资和动员上。属于某一社团的成员身份或者社会信任，能够、也可能不能够代表社会资本。在进行任何有意义的争论之前，我们必须先搞清楚它们与社会资本之间的联系。
+
+根据我对社会资本的定义与测量标准 一一 嵌入在网络中的资源，我认为有明显的证据证明，社会资本在过去的 10 年内以电子网络空间的形式在不断地上升（Lin, 1999a）。此外，这种上升已经超越了社区或国家的边界。我的假设有两点：1）以电子网络形式出现的社会资本在世界各地都有明显的上升；2）电子网络的兴起跨越了国家或地方社区的边界，因此，必须把它的影响（积极的与消极的）放在全球的背景下考虑。我从电子网络及其所产生的超越时空的社会资本的出现开始谈起。
+
+`*` the General Social Survey data，它是 National Opinion Research Center [NORC] 所进行的综合性个人访谈调，其目的是为社会科学研究提供及时的、高质量的、可用于科学研究的数据。—— 中译注
+
+[1] 有很多文献批评普特南使用了错误的因变量（例如，好政府的重要性：Skocpol, 1996；政治组织的重要性：Valelly, 1996；国家社区的重要性：Brinkley, 1996；政治参与中的不平等的重要性：Verba, Schlozman, and Brady, 1995, 1997；国家精英的重要性：Heying, 1997；政治制度的重要性：Berman, 1997；制度激励的重要性：Kenworthy, 1997；文化的重要性：Wood, 1997）。这些文献并没有处理与社会资本直接相关的问题。
+
+## 5.1 The Internet and Cybernetworks: Emerging Social Capital
+
+Cybernetworks are defined as the social networks in cyberspace, and specifically on the Internet. 2 These networks are constructed by individuals and groups of individuals – through e-mail, chat rooms, news groups, and clubs (Jones 1997b; Smith and Kollock 1999) – as well as by informal and formal (e.g., economic, political, religious, media) organizations for the purpose of exchanges, including resource transactions and relations reinforcement. Cybernetworks have become a major avenue of communication globally since the early 1990s; an overview of their extent and scope is informative here.
 
 Since late the 1970s and early 1980s, personal computers (PCs) have penetrated workplaces and homes around the globe. Their presence and pervasiveness have overtaken many other communication commodities in North America, Europe, and East Asian countries. In 1997, U.S. consumers bought more computers than automobiles, according to Steven Landefeld, director of the Bureau of Economic Analysis ( USA Today , March 17, 1999). Worldwide PC sales has overtaken television sales in 2000, according to Paul Otellini of the Intel Architecture Business Group (Intel Developer Forum, February 25, 1999). In fact, PC sales already outnumbered sales of TV sets in 1998 in Australia, Canada, Denmark, and Korea. In 1999, 50 percent of U.S. households had computers, and 33 percent were online (Metcalfe 1999).
 
 E-commerce has become big business (Irving 1995, 1998, 1999). In 1998, online shopping orders totaled `$13` billion (with an average order amount of `$55`), and it was projected to reach `$30` to `$40` billion in 1999
 
-(the Boston Consulting Group, as quoted in PC Magazine , March 9, 1999, p. 9). The greatest growth is expected in travel (88 percent in 1999
-
-over 1998), PC hardware (46 percent), books (75 percent), groceries (137 percent), music (108 percent), and videos (109 percent) (Jupiter Communication, as quoted in PC Magazine , March 9, 1999, p. 10). It 2 A portion of this section is taken from Lin (1999a).
-
-Cybernetworks and the Global Village 213
+(the Boston Consulting Group, as quoted in PC Magazine , March 9, 1999, p. 9). The greatest growth is expected in travel (88 percent in 1999 over 1998), PC hardware (46 percent), books (75 percent), groceries (137 percent), music (108 percent), and videos (109 percent) (Jupiter Communication, as quoted in PC Magazine , March 9, 1999, p. 10). It 2 A portion of this section is taken from Lin (1999a).
 
 has been estimated that 24 million U.S. adults plan to buy gifts online in 1999, or almost quadruple the 7.8 million who said they bought gifts online in 1998; online holiday shopping alone in 1999 could exceed `$13`
 
@@ -68,17 +74,11 @@ PC experts have announced, to no one’s surprise, that the Internet is changing
 
 ( PC Magazine , February 2, 1999, p. 4). In January 1999, Paul Somerson stated the same thing in PC Computing . It is practically impossible to get a credible estimate of how many discussion groups, forums, and clubs of multiple types have been formed and are continually being formed. What is the implication of cyberspace and cybernetwork growth for the studies of social networks and social capital? The short answer is: incredible.
 
-In view of the dramatic growth of cybernetworks, a fundamental question can be raised: do cybernetworks carry social capital? If so, there is strong evidence either that the recent argument that social capital has been on the decline is false or that the decline has been arrested. I suggest that indeed we are witnessing a revolutionary rise of social capital , as represented by cybernetworks. In fact, we are witnessing a new era in
-
-Cybernetworks and the Global Village 215
-
-which social capital will soon supersede personal capital in significance and effect.
+In view of the dramatic growth of cybernetworks, a fundamental question can be raised: do cybernetworks carry social capital? If so, there is strong evidence either that the recent argument that social capital has been on the decline is false or that the decline has been arrested. I suggest that indeed we are witnessing a revolutionary rise of social capital , as represented by cybernetworks. In fact, we are witnessing a new era in which social capital will soon supersede personal capital in significance and effect.
 
 Cybernetworks provide social capital in the sense that they carry resources that go beyond mere information purposes. E-commerce is a case in point. Many sites offer free information, but they carry adver-tisements presumably enticing the user to purchase certain merchandise or services. They also provide incentives to motivate users to take actions. The Internet has also provided avenues for exchanges and possible formation of collectivities (Fernback 1997; Jones 1997b; Watson 1997) These「virtual」connections allow users to connect with others with few time or space constraints. Access to information in conjunction with interactive facilities makes cybernetworks not only rich in social capital, but also an important investment for participants’ purposive actions in both the production and consumption markets.
 
-Just as pertinent is the debate on whether globalization of cybernetworks represents a reproduction of the world system where the core states or actors continue to dominate and indeed「colonize」peripheral states/
-
-actors by incorporating the latter into global economic systems dominated by the former (Brecher and Costello 1998; Browne and Fishwick 1998; Sassen and Appiah 1998). This argument is supported by evidence that international organizations, international corporations, and international economic forms, such as commodity chains, are dominated by the values, culture, and authority of dominant states’ corporations or by these states themselves. There is much concern about the increasing inequality of access to cyberspace around the world. As the rich countries and actors gain greater access to capital in cyberspace, the poor countries and actors are largely shut out from the cybercommunity.
+Just as pertinent is the debate on whether globalization of cybernetworks represents a reproduction of the world system where the core states or actors continue to dominate and indeed「colonize」peripheral states/actors by incorporating the latter into global economic systems dominated by the former (Brecher and Costello 1998; Browne and Fishwick 1998; Sassen and Appiah 1998). This argument is supported by evidence that international organizations, international corporations, and international economic forms, such as commodity chains, are dominated by the values, culture, and authority of dominant states’ corporations or by these states themselves. There is much concern about the increasing inequality of access to cyberspace around the world. As the rich countries and actors gain greater access to capital in cyberspace, the poor countries and actors are largely shut out from the cybercommunity.
 
 Yet, cybernetworks suggest, at least for those who gain access to cyberspace, the possibility of a bottom-up globalization process whereby entrepreneurship and group formations become viable without the dominance of any particular class of actors (Wellman 1998). Do cybernetworks suggest a neo-globalization process? While not denying that the dominant states and actors remain actively interested in controlling the development of cyberspace, I argue that cybernetworks represent a new era of democratic and entrepreneur networks and relations in which resources flow and are shared by a large number of participants with new rules and practices, many of which are devoid of colonial intent or capability.
 
@@ -92,9 +92,43 @@ In the next section, I will offer a case study, concerning the recent Falun Gong
 
 how cybernetworks facilitate the use of social capital over space and time, and demonstrates effectiveness in generating and sustaining a social movement in a global context. Whether the movement itself has any merit is of no interest here.
 
-Falun Gong: A Case Study of Social Capital
+因特网与电子网络：新社会资本的出现
 
-and Social Movement
+电子网络可以定义为，电子空间中特别是因特网中的社会网络 [2]。这些网络是由个体或一群个体通过电子邮件、聊天室、新闻群组和俱乐部（Jones, 1997b, Smith 和 Kollock,1999）等形式建立起来的，或者是由非正式和正式的（例如经济的、政治的、宗教的、媒体的）组织为了交换（包括资源交易与关系强化）的目的而建立的。到 20 世纪 90 年代早期，电子网络已经成为全球性交流的一个主要渠道，对其程度与范围进行透视是很有趣的。
+
+自从 70 年代晚期和 80 年代早期开始，个人电脑（PC 机）已经渗透到全世界的工厂与家庭中。在北美、欧洲和东亚国家中，个人电脑的出现与普及速度超过了其他很多通讯产品。根据经济分析局（Bureau of Economic Analysis）局长史蒂文·兰德费尔德（Steven Landefeld）的报告（USA Today March 17, 1999）,1997 年美国消费者购买的电脑数量超过汽车。根据 the Intel Architecture Business Group `*` 的执行副总裁兼总经理保罗·奥特里尼（Paul Otellini）的报告（Intel Developer Forum, February 25,1999），2000 年世界个人电脑销量已经超过电视机。事实上，澳大利亚、加拿大、丹麦和韩国的个人电脑销量在 1998 年就已经超过了电视机。在 1999 年，50% 的美国家庭拥有电脑，33% 的家庭可以联网（Metcalfe,1999）。
+
+电子商务（E-commerce）已经成为一笔大生意。1998 年，网上购物的订单达到 130 亿美元（平均每张订单 55 美元），1999 年预计可以达到 300-400 亿美元（the Boston Consulting Group，引自 PC Magazine, March 9,1999, p9）。预计増长最大的将是旅游（1999 年比 1998 年增加了 88%）、PC 机硬件（46%）、图书（75%）、食品杂货（137%）、音乐（108%）和录像（109%）。
+
+估计 1999 年有 240 万美国成年人在网上购物，大约是 1998 年的网上购物人数（780 万）的四倍，单是假日网上购物金额，1999 年就可以超过 130 亿美元。在 1999 年，电子商务的增长速度是大多数世界经济体经济增长速度的 30 倍，将达到 680 亿美元。估计到 2002 年，在网上购买的物品中，图书和花卉等易携品的价值将达到 320 亿美元，旅游与电脑等发展性购置将达到 560 亿美元，食品杂货等补充品将达到 190 亿美元。另一项估计显示，到 2002 年将有 40% 的网络用户成为在线购买者，电子商务交易将达到 4000 亿美元。1998 年上半年，五分之一的股票零售交易是在网上进行的。现在估计有 430 万人在线购买股票和基金，预计到 2003 年在线交易可以占到美国投资市场总量的 31%。
+
+1999 年 3 月 16 日，美国商业部废止了使用了 60 年的工业分类体系，因为这个体系没有包含信息经济。例如，计算机甚至不作为个独立的工业分类，只被归为计算器一类。新分类体系更好地反映了信息革命所产生的新经济类别。随着美国与墨西哥和加拿大这些国家的贸易的持续增长，新体系的设计也类似于这些国家的分类体系。此外，商业部将开始公布网上购物对零售活动影响的数字，这将是国家经济健康发展的一个重要指标。到目前为止，商业部已经将网上购物的数字与分类销售混在一起，纳入了总销售额中。作为独立部分统计的 1998 年和 1990 年的因特网销售数据，可以在 2000 年中看到。
+
+通过因特网交流与结成社会络的现象虽然是近来的事情，但却比个人电脑本身的发展还要快。由于 80 年代 CERN（在瑞士日内瓦的欧洲粒子物理实验室 the European Particle Physics Laboratory）的提姆·伯纳斯·李（Tim Berners-Lee）的超文本技术的发明，以及 1991 年夏天万维网（World Wide web）的引入，因特在过去 10 年里发生了革命性的变化。1995 年，美国的 3200 万家庭中有 1410 万拥有调制解调器，到 1999 年的 1 月，5000 万美国家庭中有 3770 万拥有调制解调器。1997 年全球的网络用户有 6870 万，1998 年达到 9730 万，预计到 2001 年络用户数量将超过 3 亿。与 1999 年初相比，2002 年将有三分之二的在线用户是新用户。
+
+1998 年初，美国有超过 4500 万的个人电脑用户定期上网，1998 年第季度比 1997 年第一季度增长了 43%。接近 49%6 的美国家庭至少拥有一台个人电脑。1990 年，美国以外的用户数量首次超过美国，占到全球用户总量的 51%。中国的因特网用户数从 1997 年的 60 万激增到的 1998 年的 150 万（新华社，1999 年 1 月 15 日）。1999 年中国报告的因特网用户达到 400 万。美国的因特网大师尼古拉斯尼葛洛庞帝（Nicholas Negroponte）预测，中国的因特网用户数量到 2000 年将激增到 1 千万。
+
+女性上网人数也急剧增长。1996 年 1 月，18 岁以上的网络用户中女性只占 18%，到 199 年 1 月，女性用户占了整整一半。预计到 1990 年底，女性网络用户将占到多数。1997 年，通过関络发送的电子邮件数量第一次超过了通过邮局寄送的邮件数量。
+
+个人电脑专家惊呼，因特网正在改変着一切。《个人电脑杂志》（PC Magazine）主编迈克尔·J·米勒（Michael. Miller）在 1999 年 2 月写道，因特正在改变我们「交流、获取信息、娱乐和做生意的方式」（PC Magazine, February 2,1990 p4）。1999 年 1 月，保罗·萨莫森（Paul Someson）在《个人电脑杂志》上表达了相同的观点。我们不可能准确地估计出，到底有多少讨论会、论坛和各种类型的俱乐部已经形成和正在形成。但是我们必须要问，电子空间与电子网络的发展对社会网络和社会资本的研究会带来什么影响？一个简单的回答是：其影响令人难以置信。
+
+对于电子网络的激增，我们可以提出一个基本问题：电子网络承载着社会资本吗？如果是，我们就有充分的证据证明最近关于社会资本下降的论点是不正确的，或者说社会资本的下降趋势已经被阻止住了。实际上我们正在经历着由电子网络所代表的社会资本的革命性上升时代。也即，我们正在进入一个社会资本在意义与影响上将会很快超过个人资本的新时代。
+
+电子网络所承载的资源超出了单纯的信息用途，从这个意义上讲电子网络提供了社会资本。电子商务就是一个例子。很多网站提供了免費信息，但是网页上的广告会引诱用户购买一些商品或服务，提供了激发用户行动的刺激。因特网也提供了交换与集体形成的渠道（Fernback, 1997; Jon, 1997b; Watson,1997）。这些「虚拟」的连接使用户与他人的联系几平不受时间和空间的约束。由于通过电子网络获取信息与互动都很方便，因此电子网络不仅富含社会资本，而且成为参与者在生产和消费市场中目的性行动的重要投资。
+
+与之相关的一个争论是，电子网络的全球化是否代表着世界体系的再生产 —— 中心国家或者行动者通过将边缘国家 / 行动者纳入到自己控制的全球经济体系中的方式，继续控制和「殖民」着边缘国家 / 行动者（Brecher 和 Costello, 1998; Browne 和 Fishwick, 1998; Sassen 和 Appiah, 1998）。这个观点为下列证据所支持：国际组织、跨国公司和国际经济形式（如，商品链），被处于支配地位的国家的公司与这些国家本身的价值、文化和权威所控制。随着全球的电子空间获取机会不平等的不断加剧，越来越多的学者开始关注这现象。富有的国家与行动者获取电子空间的机会逐渐多，而贫穷的国家与行动者则被拒于电子社区的门外。
+
+但是至少对于那些有机会进入电子空间的人而言，电子网络意味着一个自下而上的全球化过程是可能的，企业家和群体可以在不受任何阶级的行动者控制的情况下得以形成（Wellman, 1998）。那么电子网络的发展意味着个新全球化过程的开始吗？虽然不能否认占支配地位的国家和行动者仍然会尽力地控制电子空间的发展，但是我认为电子网络代表着民主和企业家网络与关系的新时代，其中资源会在大量新参与者中间流动、被他们共享，他们遵守着新规则，进行着新实践，并且没有殖民式的意图或能力。
+
+随着电脑网络设备价格的降低与网络跨时空能力的增强，我们正在面对着一个以地球村形式出现的社会网络的新时代。电子网络的全球化是一把双刃剑。在获取嵌到电子空间中的资本方面，电子网络使富人 / 富国与穷人 / 穷国的差别比以前更悬殊。由于社会的（缺乏教育和缺乏语言能力）、经济的（获得电脑与通讯设施的能力）和政治的（权威对获取机会的控制）约束，获取电脑、其他设备和因特网上的不平等仍然存在。但是在电子网络内部，不再需要或者不再可能产生中心 —— 边缘的世界体系 一一 核心行动者通过联系和网络，继续控制着信息、资源和边行动者的剩余价值。相反，信息在网络时代比在人类历史上的任何其他时代都更容易获得，其流动性更强。随着电脑与通讯成本的降低，技术对传统权威控制的削弱，资源获取的约束与控制正在迅速减少。
+
+有充足的证据表明，越来越多的个体行动者参与到新形式的社会网络和社会关系之中，毫无疑问，其中相当一部分活动涉及到社会资本的创造和使用。由于网上可以免费地获取很多信息、数据，联系其他行动者也很方便，因此网络和社会资本以前所未有的速度发展起来。网络是扩展性的，同时也是亲密性的。网终的运作可以超越时间（一个人可以在任何喜欢的时间里建立连接）和空间（可以直接或间接地「如果不能直接访问」访问遍布全球的网站）。随着这些网络（例如「村庄」）的建立，规则与实践正在形成，制度 一一 通过借鉴过去的实践，有意地偏离过去的实践，或者通过参与者的共同发展也正在被创造出来。
+
+如果我们的视野能够超越传统的人际网络，对 20 世纪 90 年代刚出现的电子网络进行分析，我们就可以大胆地驳斥社会资本正在下降的观点。我们正在进入一个社会资本的意义与影响远远超过个人资本的新时代。我们需要搜集个体花费在电子网络中与他人进行「交往」的时间和精力的基本数据和信息，从而与个体用在人际交往、其他娱乐活动（例如看电视、旅游、外出就餐、看电影和看戏剧）、参加公民集会与地方集会等事情上的时间和精力作一个比较。我们也需要对通过电子网络所收集的有用信息数量进行估计以与传统媒体进行比较。
+
+[2] 这部分主要选自 Lin（1999a）
+
+## 5.2 Falun Gong: A Case Study of Social Capital and Social Movement
 
 Falun Gong (Cultivation of the Wheel of the Law), also known as Falu Dafa (the Great Law of the Wheel), is a Chinese meditation and exercise technique proposed by Li Hongzhi (Li 1993). Li contends that it evolved out of Buddhism and captures the truth of the universe through both Buddhism and Taoism, the two highest-level religions in the world.
 
@@ -106,7 +140,7 @@ to 1978, he worked at an army stud farm and played the trumpet in a forest polic
 
 According to the biography attached to one of the books he wrote (Li 1994), he started learning the Law from a master between the ages of four and twelve. He learned the principles of Zhen, Shan, and Ren and achieved the highest level of cultivation when he was eight, at which time he allegedly could become invisible, pull rusted nails from frozen pipes without effort, float off the ground, and penetrate through walls. He then met another master at the age of twelve and learned martial arts. In 1972, he met a third master who taught him to cultivate his mind for two years. The next master was a woman
 
-The Falun Gong Organization
+### 5.2.1 The Falun Gong Organization
 
 Li started propagating Falun Gong in 1992 in his native region of Changchung, Jinling, and then moved to Beijing and other cities throughout China. He charged no fees and claimed that all his income from workshops was donated to furthering the Falun Gong. Falun Gong spread quickly, and Li’s workshops and lectures drew huge audiences.
 
@@ -122,9 +156,7 @@ In 1992, he「was ordered to go out of the mountain」(Li 1993, p. 112; 1994, p.
 
 5 For example, a site could「borrow」the yard of a work unit. Centers could be listed as affiliated with various work units for administrative reporting purposes, because voluntary or civic groups or associations, even professional associations, do not carry official administrative status and must「lean on」(be officially affiliated with) a work unit to gain recognition by the government.
 
-ticipate in other forms of cultivation (e.g., qigong, or energy cultivation) or other groups and associations, and the stations and points could not participate in other associations’ activities, except in exhibitions and
-
-「athletic event」demonstrations.
+ticipate in other forms of cultivation (e.g., qigong, or energy cultivation) or other groups and associations, and the stations and points could not participate in other associations’ activities, except in exhibitions and「athletic event」demonstrations.
 
 Thus, despite his persistent claim that Falun Gong or Dafa had no organization, Li had created a hierarchical organization with powerful and efficient top-to-bottom control. This organization, built on social networks and under the direction of a single leader and ideology, created its own institutions and institutionalizing organizations (see Chapter 11) through which new members were recruited, trained, and placed in an ever-expanding labor market.
 
@@ -134,7 +166,7 @@ However, he stressed that cultivation was more important than organization (p. 1
 
 Li employed the same strategies in deploying and extending his organization globally. He began lecturing in the United States in 1996. In November 1996, the first international「experience sharing」meeting of Falun Gong was held in China, attended by practitioners from fourteen countries and regions. In 1998, the first North American「experience sharing」meeting was held in New York. Other meetings were held in Canada, Germany, Singapore, and Switzerland. Falun Gong has grown like wildfire throughout China, especially in cities since 1992, and has spread to North America, Australia, Asia, and Europe. By early 1999, Li claimed to have over 100 million practitioners worldwide. Some scholars have estimated the number of practitioners in China to range between 20 to 60 million; the Chinese government puts the number at around 2 million (Reuters, July 25, 1999).
 
-The Suppression and the Protest Movement
+### 5.2.2 The Suppression and the Protest Movement
 
 As Falun Gong grew, it caught the attention of the Chinese media and government, first fascinating them with its claims of incredible feats of curing and supernatural powers and then alarming them by its hierarchical organization; enthusiastic, cohesive, disciplined practitioners; and enormous popularity. In June 1996 one of the largest newspapers in China, Guangming Daily , started criticizing Falun Gong, drawing strong responses from the practitioners. The responses further alarmed the government. In the same year, the government banned five Falun Gong books. In 1997, the Ministry of Security investigated Falun Gong for possible illegal religious activities but did not draw any conclusions. In July 1998, the Ministry designated Falun Gong as a devious religious sect and conducted investigations. The Ministry of Civil Affairs also conducted investigations. Practitioners responded vigorously by staging sit-ins at various official sites and buildings. Cultivation continued to flourish at many exercise sites, and Li’s writings and lectures were readily available in print, and on audio- and videotape. In fact, there was a growing industry in China and abroad in the production of Falun Gong–related publications and materials, without the awareness or approval of Li or his Research Society.
 
@@ -156,7 +188,7 @@ The Party outlawed Falun Gong on July 19 and immediately began arresting coordin
 
 ical stability」(Central Committee Circular, July 19, 1999). For the next month, sustained, all-out efforts were made to eliminate Falun Gong in China.8
 
-Cybernetworks and Falun Gong
+### 5.2.3 Cybernetworks and Falun Gong
 
 What is fascinating from our perspective is that these events provide a vivid and powerful demonstration, for the first time in history, of how cybernetworks were implicated in a major social movement and countermovement. Moreover, it is most interesting, but probably not surprising, that this happened in a society under the rigid and powerful political command of a single political party and ideology: China.
 
@@ -210,21 +242,17 @@ Falun Gong provided no political ideology in the traditional sense, but it did o
 
 Li and his followers steadfastly denied that there was any organization ( zuzhi ), on the ground that they had no physical location, no visible hierarchy, and no visible leaders. But it was clear that Li had put together a most efficient organization, with sophisticated means of communication such as a cybernetwork, to recruit, train, retain, and mobilize followers and create collective social capital. It is doubtful that Li intended to challenge the sovereignty of the Communist Party in China, but the alternative ideology and institutions he created could have eroded the Party by winning over its members and penetrating its organizations, thus chipping away at its institutional capital and human capital to the extent that its effectiveness and capability for absolute one-party and one-ideology rule would have been seriously if not irretrievably damaged.
 
-Research Agenda
+## 5.3 Research Agenda
 
-The growth of cyberspace and the emergence of social, economic, and political networks in cyberspace signal a new era in the construction and
+The growth of cyberspace and the emergence of social, economic, and political networks in cyberspace signal a new era in the construction and development of social capital. No longer is social capital constrained by time or space; cybernetworks open up the possibility of global reaches in social capital. Social ties can now transcend geopolitical boundaries, and exchanges can occur as fast and as willingly as the actors care to participate. These new developments provide new opportunities as well as challenges for accessing social capital, and thus alert us to reconsider theories and hypotheses on social capital that have so far been built largely on observations and analyses of localized, time-constrained social connections. Systematic research efforts must be made to understand and assess this new form of social capital. Here I offer several contradictions and challenges worthy of research attention.
 
-Cybernetworks and the Global Village 227
-
-development of social capital. No longer is social capital constrained by time or space; cybernetworks open up the possibility of global reaches in social capital. Social ties can now transcend geopolitical boundaries, and exchanges can occur as fast and as willingly as the actors care to participate. These new developments provide new opportunities as well as challenges for accessing social capital, and thus alert us to reconsider theories and hypotheses on social capital that have so far been built largely on observations and analyses of localized, time-constrained social connections. Systematic research efforts must be made to understand and assess this new form of social capital. Here I offer several contradictions and challenges worthy of research attention.
-
-1. How can we extend notions and theories of localized social capital to global social capital and to social capital captured in cybernetworks?
+1 How can we extend notions and theories of localized social capital to global social capital and to social capital captured in cybernetworks?
 
 For example, what is a civil society in the global village? How can we extend our analysis of the contribution of social capital to national assets such as democratic society or political participation or to community assets such as trust and cohesion? What are the equivalent global assets?
 
 Do we need to develop new notions, or can we apply the theories and methods we have developed to understand a global civic society or a global engagement? Even if we can make such extensions, which I doubt we can without modifications, how do we compare localized versus global social capital and their consequences? Are the traditional localized embedded resources losing their utility (e.g., local cohesion can no longer rely solely on localized social capital) or will they retain their returns for the local community? If these localized networks remain meaningful, what do cybernetworks mean in this context? How can national participation be seen as a component of this larger global context or village (Ananda Mitra 1997 in Jones 1997a)?9 Do cybernetworks represent added social capital or do they replace localized social capital? Does being a citizen of a community or a nation takes precedence over being a resident of a global village, or vice versa, and under what conditions? In cases of conflicting interests or loyalties for an actor in her or his access to localized and global social capital, how does the actor choose between the privileges and responsibilities of each?
 
-2. In one sense, cybernetworks provide an equalizing opportunity in the access to social capital. Given the easy, low-cost access to cybernetworks that is being provided to more and more people around the world, the abundance and flow of information, the multiplicity of alternative channels as sources and partners, and the increasing need for and gratification of almost instantaneous exchanges, power differentials will 9 I use the term village to suggest that rules, practices, and institutions for cybernetworks are still largely in flux and are being developed.
+2 In one sense, cybernetworks provide an equalizing opportunity in the access to social capital. Given the easy, low-cost access to cybernetworks that is being provided to more and more people around the world, the abundance and flow of information, the multiplicity of alternative channels as sources and partners, and the increasing need for and gratification of almost instantaneous exchanges, power differentials will 9 I use the term village to suggest that rules, practices, and institutions for cybernetworks are still largely in flux and are being developed.
 
 inevitably suffer degradation. Multiple routes may mean less dependence on certain nodes and less power to these nodes. Will such alternative routes reduce the significance of network locations or bridges? Does this mean, then, that there will be an equalizing or democratization process in cybernetworks? Likewise, authority will become harder to exercise.
 
@@ -284,7 +312,7 @@ Census Bureau, U.S. Department of Commerce, using November 1994
 
 and December 1998 Current Population Surveys) education, linguistic facilities, and sociopolitical constraints will require far greater efforts and difficult changes.
 
-3. The mixing of material and idea goods as social capital in cybernetworks is unprecedented. Information may be free, but the cost is exposure to imposed idea/material messages, especially commercial messages. While this cost is traditional, as it has been in printed media for centuries and in television for decades, the integration of economic and marketing messages in cybernetworks is much more thorough. There is no clear demarcation between senders and receivers of such mixed messages; all exchanges are potential (voluntary or involuntary) carriers of such messages. Although currently they are primarily commercial/
+3 The mixing of material and idea goods as social capital in cybernetworks is unprecedented. Information may be free, but the cost is exposure to imposed idea/material messages, especially commercial messages. While this cost is traditional, as it has been in printed media for centuries and in television for decades, the integration of economic and marketing messages in cybernetworks is much more thorough. There is no clear demarcation between senders and receivers of such mixed messages; all exchanges are potential (voluntary or involuntary) carriers of such messages. Although currently they are primarily commercial/
 
 material in nature, they may extend to political, religious, and other
 
@@ -292,11 +320,7 @@ Figure 12.5 Percentage of U.S. households with e-mail by household type, 1994 an
 
 content/idea arenas. Thus, free information in cybernetworks may become increasingly「expensive.」Can technology to block out such unwanted messages keep up with the technology and political leverage to plant them?
 
-4. Free access to and networking in cyberspace have blurred the boundary of social capital – the privilege of privacy (personal resources) and freedom to access information (social resources). Cyberspace has attained unprecedented freedom to transmit information. Privacy issues loom large, as the ability to seek and find information about others expands at a shocking rate (Burkhalter 1999; Donath 1999). For example, there is unprecedented access to pornography on the Internet
-
-Cybernetworks and the Global Village 235
-
-compared to traditional print and visual media. Transmission of hate messages (Zickmund 1997; Thomas 1999) and crime (Castells 1998, Chapter 3), as well as love or romance, has led to opportunities as well as tragedies (see Jeter 1999 for an account of an Internet romance ending in death).
+4 Free access to and networking in cyberspace have blurred the boundary of social capital – the privilege of privacy (personal resources) and freedom to access information (social resources). Cyberspace has attained unprecedented freedom to transmit information. Privacy issues loom large, as the ability to seek and find information about others expands at a shocking rate (Burkhalter 1999; Donath 1999). For example, there is unprecedented access to pornography on the Internet compared to traditional print and visual media. Transmission of hate messages (Zickmund 1997; Thomas 1999) and crime (Castells 1998, Chapter 3), as well as love or romance, has led to opportunities as well as tragedies (see Jeter 1999 for an account of an Internet romance ending in death).
 
 Still more serious is the clash between freedom of information and privacy. The issue is no longer that of preventing children from gaining access to certain information; it concerns anyone’s right to gain access to information about anyone else. In the United States, for example, it is possible, at no cost or minimal cost, to gain access to digitized information about other people’s bank accounts, mortgage accounts, stock accounts, prison records, driving licenses and violations, substance abuse records, and much more information associated with the Social Security number. One person’s freedom to gain information may be the invasion of someone else’s privacy. Does social capital have a boundary, and if so, who sets the boundary? Unlike traditional social networks, where interpersonal relationships constrain the flow and content of shared resources, cybernetworks reduce such relationships and constraints to a minimum.
 
@@ -314,15 +338,11 @@ regulations (e.g., taxation). On July 1, 1997, the Clinton administration issued
 
 Subsequently, Congress enacted legislation that accomplished four of the president’s objectives: (1) the Internet Tax Freedom Act placed a three-year moratorium on new and discriminatory taxes on Internet commerce; (2) the Digital Millennium Copyright Act ratified and implemented the World Intellectual Property Organization (WIPO) Copyright Treaty and the WIPO Performances and Phonograms Treaty, protecting copyrighted material online; (3) the Government Paperwork Elimination Act encouraged prompt implementation of e-filing and record-keeping systems by the federal government; and (4) the Children’s Online Privacy Protection Act protected the privacy of young children online. In May 1998, the World Trade Organization (WTO) reached an agreement by which members would continue the practice of not imposing customs duties on e-commerce transmissions. The Organization for Economic Cooperation and Development (OECD) and industry groups issued a declaration in October 1998 supporting the tax principles outlined in Clinton’s strategy and opposing discriminatory taxation imposed on Internet and e-commerce. But at the moment, the growth of cybernetworks is substantially outpacing such national and international efforts to regulate them.
 
-5. Actions seem to gain the upper hand in interactions with structures in cybernetworks (McLaughlin, Osborne, and Ellison 1997; Smith 1999; Wellman and Gulia 1999). Individuals, groups, and organizations can create institutions and capital by forming chat rooms, clubs, and groups without many structural constraints. Rules and practices are being created and implemented as these「villages」evolve (Agre 1998). What are the motives for extending networks in cyberspace, and what are the intended goals and payoffs (Kollock 1999)? Is wealth superseded by reputation, power, or sentiment as the expected return in such villages? Are there definitions and declarations of membership, control of boundaries, and rules of exchange and commitment in sharing resources?
+5 Actions seem to gain the upper hand in interactions with structures in cybernetworks (McLaughlin, Osborne, and Ellison 1997; Smith 1999; Wellman and Gulia 1999). Individuals, groups, and organizations can create institutions and capital by forming chat rooms, clubs, and groups without many structural constraints. Rules and practices are being created and implemented as these「villages」evolve (Agre 1998). What are the motives for extending networks in cyberspace, and what are the intended goals and payoffs (Kollock 1999)? Is wealth superseded by reputation, power, or sentiment as the expected return in such villages? Are there definitions and declarations of membership, control of boundaries, and rules of exchange and commitment in sharing resources?
 
 Capital in the form of credentials is being created and conferred, and markets for the capital are being created. In higher education, for example, tens of thousands of courses were available online in 1999 (tele-campus.edu), and the estimate was that the number of people taking at least one college course over the Internet would triple by the year 2002
 
-to about 2.2 million in the United States alone ( PC World , July 1999, p. 39). Virtual degrees were rapidly being granted online (e.g., virtual universities such as Jones International University, accredited by the North Central Association of Colleges and Schools, 1999,
-
-Cybernetworks and the Global Village 237
-
-www.jonesinternational.edu and virtual masters in business administration offered by Duke University, among others).
+to about 2.2 million in the United States alone ( PC World , July 1999, p. 39). Virtual degrees were rapidly being granted online (e.g., virtual universities such as Jones International University, accredited by the North Central Association of Colleges and Schools, 1999, www.jonesinternational.edu and virtual masters in business administration offered by Duke University, among others).
 
 Social movements challenging existing institutions have benefited from the opportunity afforded by cybernetworks to mobilize social capital.
 
@@ -330,11 +350,105 @@ The Falun Gong incident created a new ball game in challenging existing ideologi
 
 Inevitably there will be tensions, conflicts, violence, competition, and coordination issues among the villages in cyberspace. When and how do villages claim self-defense or self-interest and invade other villages for resources? How do villages become imperial or colonial powers?
 
-How do villages defend themselves and form coalitions? Will a
+How do villages defend themselves and form coalitions? Will a「United Nations」emerge in cyberspace, and under what rules and practices? Would such a global body be dominated by the core villages?
 
-「United Nations」emerge in cyberspace, and under what rules and practices? Would such a global body be dominated by the core villages?
+研究日程
 
-Concluding Remarks
+电子空间的发展以及电子空间中的社会、经济和政治网络的出现，预示着社会资本的建构与发展的新时代到来。社会资本不再为时间或空间所约束，电子网络开启了社会资本全球化的可能性。社会关系现在可以超越地理政治边界的约束，行动者可以在想交换的时侯迅速地实现交换。这些新情况为行动者获取社会资本提供了新的机会与挑战，从而也提醒我们要重新考虑社会资本的理论与假设，这些假设迄今为止仍然主要建立在对地方化的、受时间约束的社会联系的观察与分析的基础之上。要理解和评价这种新形式的社会资本，必须进行系统的研究。这里我提出几个值得研究人员注意的矛盾和假设。
+
+1、我们如何将地方化的社会资本概念和理论扩展为全球性的、在电子网络中获得的社会资本的概念和理论？例如，地球村中的市民社会是个什么样子？我们如何将理论扩展到对诸如民主社会和政治参与等国家性社会资本的分析？我们如何将理论扩展到对诸如信任和凝聚力等集体性社会资本的分析？与此相对的全球性社会资本是什么？我们需要发展新概念吗？或者说我们是否可以利用我们已有的理论和方法来理解一种全球性的市民社会或全球式参与？即使我们可以进行这样的扩展我对没有修改的扩展效果是感到怀疑的，我们如何对地方化与全球化的社会资本及其影响进
+
+行比较？传统的地方性嵌入资源失去效应了吗（例如地方凝聚力可能不再单纯地依靠地方性社会资本）？或者说它们能够保证地方社区的回报吗？如果这些地方性的网络仍然有意义，在这种情况下电子网络意味着什么？如何看待国家在更大的地球村中的参与（Ananda Mitra,199; in Jones,1997a）?2 电子网络代表了追加的社会资本，还是对地方性社会资本的取代？做一个社区或者国家的公民优越于做一个地球村的居民吗，抑或相反？各在什么条件下成立？如果一个行动者获取地方性社会资本与获取全球性社会资本的利益或者忠诚性存在冲突，那么这个行动者如何在每一方所带来的好处与要承担的责任之间进行选择呢？
+
+2、在某种意义上，电子网络为行动者获取社会资本提供了一个平等化的机会。由于电子网络的低成本与易获取性，世界上越来越多的人可以使用电子网络，信息从而变得更丰富、流动性更强，另类（alternative）渠道的来源与合作伙伴变得多样化，行动者对短暂性交易的需要不断增加、也更喜欢这种交易，这样权力差异必然会减小。多个路径意味着可以减少对某些节点的依赖，减少这些节点的权力。这些另类的路径降低了网络位置或桥梁的重要性吗？那么这意味着电子网络中将会出现平等化与民主化的进程吗？与此相联系的是，权威将会很难行使吗？
+
+上面的过程已经出现在经济部门中。例如，像 Del 和 Gateway 这样的公司很早就进人因特网世界，它们通过减少中间商与减少存货的方式来降低交易成本，因此它们销售电脑的速度很快，价格也很便宜，这使它们具有重要的竟争优势。因为像 IBM、康柏和惠普等传统的电脑公司主要靠第三方销售与服务。这些传统的电脑公司要么转变经营战略，要么就会失掉生意与竞争，因此它们面临着巨大的任务：一方面要继续采用传统的方法做生意；另方面还要适应直接与顾客互动的新经营策略。在股票交易中，像 Charles Schwab、E- Trade 和 Datek 等电子交易公司使个人的交易成本降低、交易速度
+
+[3 我使用「村」的概念，是想表达电子网络的规则、实践和制度仍然在变动，并处于发展过程中。
+
+
+
+加快，而迫使美林（Merrill Lynch）冒着失掉与地方和地区证券商的生意关系的风险，去适应新的规则。传统公司与行业的压力非常大。旅行社、汽车商、保险公司、银行和股票经纪人都面临着挑战，要么迅速采用电子络做生意，要么面临着死亡（Taylor and Jerome,199）。这是电子网络夷平权力的力量。
+
+然而，权力会消失吗？这几乎不可能（Reid,1990 电子空间中资源丰富的行动者将获得更多的资源，他们会与其他资源丰富的行动者结成联盟，合并或者吞掉后者，并且会用所有的硬件和软件资源封锁其他途径，以使自己成为电子网络中的重要桥梁或结构洞。各种公司正在发展新规则与新实践，以应付和利用信息经济（Breslow,1997Kl,198 Shapiro and Varian,1999 微软垄断操作系统与主要的应用程序的做法就是一个例子。美国在线（American Online）也是一个例子，它正在尽力阻止用户使用其他公司的网络。电话公司、有线电缆公司和卫星通讯公司都在竞争或者合并，以在因特中得竞争优势。著名的大学和研究机构已经建立了自己的超级计算机与因特网体系。政府以及其他机构与公司可以通过网络获得个人的全面信息，有权限的、已经支付信息费用的或者专门获取这些信息的行动者与机构也可以利用这些个人信息。1990 年 6 月，联邦电子商务咨询委员会（the Federal Advisory Commission on Electronic Commerce）举行会议，负设计电子商务的税收方案。2000 年 4 月，联邦电子商务咨询委员会建议国会 6 年后再推行因特网税收政策。
+
+同时，电子空间的获取本身已经扩大了富人 / 富国与穷人 / 穷国之间的 差距。对于北美、欧洲、澳大利亚、新西兰和东亚的公民而言，因特网可能具有平等化的效应，有助于他们对社会资本的获取。但是因特网也可能扩大这些社会及其公民，与世界其他社会特别是非洲的社会之间的差距。根据 1999 年国际数据集团（International Data Corporation）/ 世界时报的全球资讯社会指标（World Times Information Society Index）的数据（PC magazine, June8,1990p10）一它们追踪了占全球国民生产总值（GNP）的 97% 和全球信息技术支出的 99% 的 55 个国家，富国与穷国之间
+
+的信息差距在继续扩大。占世界人ロ 40% 的 159 个左右的国家不包括在这个指标体系中，它们只占世界国民生产总值的 3%，不足世界信息技术支出的 0.5%。由于没有电脑、语言设备、电和电话，世界上的很多公民将被挡在因特网世界之外，不能在电子网络中获取资源、相互参与和进行交换。
+
+社会资本的数字化区隔，可能会沿着社会经济地位、种族、宗教和居住地的方向使人们产生进一步的分化。即使在处于世界信息经济领头羊位置的美国，人们使用计算机与因特上的机会也存在着很大的不平等。美国商业部（Irving,1999）在 1999 年的《从网络中跌落：界定数字化区隔》（Falling Through the Net: Defining the Digital Divide）报告中，以收入、城 市一农村、种族 / 血统、教育和婚姻地位为分类，指出各类别的家庭在使用电子邮件上存在着巨大的差别。从 1994 年到 1999 年，这些差距一直在扩大。如图 12.1 所示，在 1999 年，收人超过 75000 美元的美国家庭使用电子邮件的比例是 40%-45%, 而收入低于 14999 美元的家庭使用电子邮件的 比例只有 4%-6%。图 12.2 显示，超过 1/5（21.5%）的白人家庭使用电子邯件，而黑人与西班牙裔家庭的这一比例不足 8%。教育分类（图 12.3）表明了同样的情况：拥有大学以上学历成员的家庭，使用电子邮件的比例接近五分之ニ（38.3%），而拥有高中以下学历成员的家庭使用电子邮件的比例不足 4%。地区（图 12.4）差别也表现出了不平等：居住在城市与中心城市的家庭比住在农村的家庭更多使用电子邮件（东北地区除外）。夫妻家庭（有孩子或者孩子未满 18 岁）比其他类型的家庭更可能使用电子邮件（图 12.5）。
+
+[4 信息技术支出排在前 10 位的国家依次是美国、瑞典、芬兰、新加坡、挪威、丹麦、荷兰、澳大利亚、日本和加拿大。
+
+
+
+图 12.1 根据收入与农村、域市、中心城市的交又分类，使用电子邮件的美国家庭所占的比例（1994 年和 199 年）。（数据来自美国国家电信与资讯管理局【Nationatelecommunications and Information Administration [NTIA】和美国人口统计局【us. Census Bureau】，美国商业部【U. S. Department of Commerce：使用的是 1994 年 11 月和 1998 年 12 月的当期人口调查数据【Gurrent Population Surveys，是评估美国家庭人口学特征的最佳资料来源。一中译注】）
+
+图 12.2 根据种族 / 血统的分类，使用电子邮件的美国家庭所占的比例
+
+（1994 年和 199 年）。（数据来自美国国家电信与资讯管理局和美国人口统计局，美国商业部；使用的是 1994 年 11 月和 1998 年 12 月的当期人口调查数据）
+
+
+
+图 12.3 根据教育分类，使用电子邮件的美国家庭所占的比例（1994 年
+
+和 1998 年）。（数据来自美国国家电信与资讯管理局和美国人口
+
+统计局，美国商业部；使用的是 1994 年 11 月和 1998 年 12 月的当期人口调查数据）
+
+图 12.4 根据地理区域与农村、城市和中心城市的交叉分类，使
+
+用电子邮件的美国家庭所占的比例（1994 年和 1998 年）。（数据来自美国国家电信与资讯管理局和美国人口统计局，美国商业部；使用的是 1994 年 11 月和 1998 年 12 月的当期人口调查数据）
+
+与发达国家相比，发展中国家的富人与穷人、城市与农村、教育程度高 与教育程度低、占优势地位的族群 / 种族 / 宗教群体与其他群体之间的差距更大。例如最近的调査（中国互联网信息中心【CNIC,199 显示，美国有将近一半的因特网用户是女性，而中国的女性因特网用户只占 15%。
+
+因此，因特网使用上的族群与性别差异（Poster,1998;,198, 第五章和第九章），以及国家技术发展层次上的差异都增加了不平等性（Castells 1998, 第二章）。换言之，由于各国在技术能力与各类资本上存在着差异，因此社会资本的不平等在电子网络中迅速发展。在发达国家中，各社会阶级在获取电子网络性社会资本上的差异正在变小，但是不发达国家的情况可能恰恰相反。以语言为例，计算机、因特网与全球性交流都被英语垄断了，这种情况从编码的发展到常用的用户命令程度各异。英语世界通过 19 世纪和 20
+
+世纪的早期工业发展而处于世界体系的有利地位，现在它们通过发展计算机与因特网，继续在世界体系中占据着优势地位。其他国家（例如中国）由于庞大的人口原因，可能要发展自己语言的电子社区，但是语言差距仍然会扩大电子网络中的社会资本的不平等性。社会资本的不平等性分析，必然要涉及到国家、地区或社区等亚单位的对比。在这个意义上，只要社会资本的差距在传统社区与国家的维度上存在，社区和国家就仍然具有意义。
+
+数字化区隔所涉及到的不仅仅是技术的使用。随着电脑成本的降低与卫星服务所覆盖地区的増多，很多资源的获取都需要付出更大的努力，要获得利用电子空间和电子网络的能力（教育、语言能力和社会政治约東），也更
+
+加困难。
+
+3. 在电子络中，作为社会资本的物质商品和思想商品的混合达到了前 所未有的程度。信息可能是免费的，但其成本强加在人们眼前的思想 / 物质信息，特别是商业信息上面。虽然这个成本是传统性的一这与已经诞生了几个世纪的印刷性媒体 ' 和诞生了几十年的电视一样，但是电子网络中的经济信息和市场营销信息的整合更加彻底。对于这些混合的信息，根本不存在发送者与接受者的明确划分，所有的交换都是这些信息的潜在（自愿的或非 自愿的）传递者。尽管这些交换在当时主要是商业性 / 物质性的，但是它们 可以扩护展到政治的、宗教的和其他内容 / 思想的领域中。因此，电子网络中的免费信息可能变得越来越「贵」。屏蔽这些不想要的信息的技术能跟得上培植它们的技术手段与政治手段的步伐吗？
+
+4. 电子空间的免费获取与网络运作已经模糊了社会资本隐私权（个人资源）和获取信息的自由（社会资源）的边界。电子空间在传递信息上获得了前所木有的自由，从而隐私问题也突出出来，因为络搜素他人信息的能力以惊人的速度发展起来（Burkhalter,1990 Donath,1999）。例如，通过因特网获取色情作品比通过印刷媒体与视觉媒体要容易得多。攻击性（Zikmund,1997; Thomas,199、犯罪性信息（Castells,1998; 第三章）以及爱情或恋爱信息的传播带来了机遇，也带来了悲剧（参见 Jeter199 对因特网浪漫爱情的完结的描述）。
+
+更严重的是信息自由与隐私权之间的冲突。现在已经不是阻止孩子获取某些信息的问题，而是一个人获取他人信息的权力问题。例如，在美国人们完全可以免费或者以最低的成本，获取他人的银行存款、抵押借款、股票账户、犯罪记录、驾驶执照、违章行为和吸毒记录的数字化信息，以及更多的与社会安全号码相联系的信息。一个人获得信息的自由，可能正是对他人隐私的侵犯。社会资本有一个明确的边界吗？如果有，谁来设置这个边
+
+指传统的书籍、期刊等。一中译注
+
+Social Security number 在美国是个相当重要的个人索引号码，类似于身份证号码。中译注
+
+
+
+界？在传统的社会网络中，人际关系约束了共享资源的流动与容量，与此不同的是，电子网络将这些关系与约束降到了最低水平
+
+在电子网络上提供信息的自由，也引起了前所未有的社会法律问題。什么时候社区可以将自认为是色情作品的东西标定为社区的污损物？足以伤害些个体的仇恨信息什么时候能被禁止？什么时候能将暴力视为鼓动性的行动？至于法庭，可能要裁决某些社会禁忌的信息是否以及在什么程度上可以在因特网上传播（Mac kinnon,1997; Morrow,199。对于那些为了获利而在股票市场上散布假信息的行为，可能或者需要采取什么法律措施（Jarvis, 1999）?
+
+信息的传播什么时候会跨越社区与国家的边界？谁有权规范它们？如果像国家这样的法律实体参与电子战（Cyberwars）（例如窃取其他国家的数据，或者散布攻击性的信息、煽动革命的信息），国际组织有能力调解和规范它们吗？如何在加强社会控制与保障电子网络新获得的自由之间进行平衡，这个问题目前还存在着很大的争论与执行的困难
+
+在经济与商业部门，为了解决产权和管理的问题（例如税收），一些国家和国际政策纷纷出台。1997 年 7 月 1 日，克林顿政府发布了《全球电子商
+
+务纲要》（A Framework for Global Electronic Commerce），它代表着美国政府促进电子商务发展的战略。随后，国会通过了多个法案，实现了克林顿提出的四个目标：（1）《因特网免税法案》（Internet Tax Freedom Act）决定三年内不对电子商务征收新税种和有失公平的税种；（2）《数字千年版权法案》（Digital Millennium Copyright Act），正式批准和执行《世界知识产权组织版权条约》（World Intellectual Property Organization Copyright Treaty；简称 WIPO Copyright Treaty）与《世界知识产权组织表演和录音条约》（WIPO Performances and Phonograms Treaty），保护在线材料的产权；（3）《政府文书简化法案》（Government F aperwork Elimination Ac），鼓励迅速采用联邦政府的电子签字
+
+5 根据 199 年的乔治敦因特网隐私政策研究（Georgetown Internet Privacy Policy Study）提供的数据，排在前 100 位的网站中，949 的有隐私政策；随机抽取的网站中，6% 的有隐私政策。但是哪些政策执行了，以及这些政策的执行效果如何，都有待于进一步研究。
+
+与记录保持系统；（4）《儿童在线隐私保护法案》（Children' s Online Privacy Protection Act），保护幼小的在线儿童的隐私。198 年 5 月，世界贸易组织 WTO）的成员国达成了一项协议，决定继续对电子商务的在线交易实施零关税政策。1998 年 10 月，经济合作与发展组织（Organization for Economic Cooperation and Development；简称 OBCD）和各相关产业团体发布联合声明，支持克林顿在《全球电子商务纲要》中提出的税收原则，对因特网和电子商务实行区别税收政策。但是目前电子网络的发展速度，已经大大超过了这些国家的与国际的政策规划速度。
+
+5 在电子网络中，行动似乎在与结构的互动中占了上风（Mclaughlin, Osborne, and Ellison,1997; Smith,1999; Wellman and Gulia,199）。个体、群体和组织可以通过建立聊天室、俱乐部和约束松散的团体等方式来创造制度与资本。随着这些「村庄」（villages）' 的形成，新的规则与实践也逐渐被创造出来并得以实施（Agre,1998）。在电子空间中，护展网络的动机是什么，其目标和回报又是什么（Kolock,1999）？在这些「村庄」中，财富回报会被名声、权力或情感回报所取代吗？这些共享资源有身份的约束、边界的控制以及交换与承诺的规则吗？
+
+以证书为形式的资本正在被创造和授予，其市场也正在扩大。例如 1999 年美国的高等教育在线课程（telecampus.edu）达到几万门，估计到 2002 年，在因特网上至少上过一门大学课程的人数将会增至三倍，达到 220 万（PC World, Jly199, p39）。虚拟学位（virtual degrees）已经可以在线授予（例如美国北部地区大学认证委员会【North Central Association of Colleges and Schools 所承认的虚拟大学「virtual university 琼斯国际大学【Jonse Intemational University] l,19, www. Jonesinternational. Edu；杜克大学【Duke University】可以授予虚拟工商管理硕士学位。这样的虚拟学位还有很多）。
+
+挑战现行制度的社会运动已经开始利用电子网络所提供的机会去动员社会资本。电子网络提高了和平过渡与转型的机会吗？或者说它们加速了社会
+
+这里指网络空间。 一一 中译注
+
+制度的剧烈变迁吗（Gurak,190 Uncapher,199? 它们是补充还是会替代社会资本的面对面的交换？它们有助于弱势群体的集体行动吗（Schmitz,199Mele, 1999）?
+
+这些电子空间中的各个「村庄」之间必然存在着紧张、冲突、暴力、竟争与合作。「村庄」如何以及在什么时候进行自我保护、维护自己的利益与侵占其他「村庄」的资源？「村庄」如何成为帝国或者获得殖民权力？电子空间中会出现「联合国」吗？在什么样的規则与实践下会出现？这样一个全球体会被核心「村庄」所控制吗？
+
+## 5.4 Concluding Remarks
 
 The thesis that social capital is on the decline in the United States and elsewhere is obviously premature and, in fact, false. The rise of the Internet and cybernetworks signals a revolutionary growth of social capital.
 
@@ -355,3 +469,25 @@ As technology has already made it possible to create virtual reality (e.g., audi
 Will these developments further segregate the world into the haves and the have-nots? Analyses must evaluate these questions relative to different aspects of social capital (information, influence, social credentials, and reinforcement) and different outcomes (instrumental and expressive).
 
 I suspect that the entire spectrum of the development and utility of all forms of capital can be examined on cybernetworks, which fundamentally are relations and embedded resources – a form of social capital. We need data on cybernetworks as global villages – the formation and development of social groups and social organizations (the villages), especially (1) how each group and territory is defined or undefined (closure versus openness); (2) how membership is claimed, defined, or acknowledged (i.e., residents and citizens); (3) what the membership is composed of (e.g., demographics: individuals, households, and clusters; age, gender, ethnicity, linguistics, socioeconomic assets); and (4) how resources are distributed within a village and across villages: class and inequality among villages. In short, then, much work is urgently needed to understand how cybernetworks build and segment social capital. The topics just mentioned will provide data that will allow scholars to understand new institutions and cultures as they emerge, as well as the interactions between human and social capital. Most importantly, I suggest, they will provide clues as to whether and how social capital may be outpacing personal capital in significance and effect, and how civil society, instead of dying, may be expanding and becoming global.
+
+
+
+
+
+结束语
+
+得出美国以及任何其他地方的社会资本正在下降的结论未免太早，甚至可以说是错误的。因特网与电子络的兴起标志着社会资本的革命性增长。如果我们接受普特南的观点 一一 看电视导致了人们更少地参与传统形式的社团与社会团体从而导致社会资本的下降，那么这种交流形式开始表现出一种「矫正」的趋势。199 年 7 月的 Nielsen survey 显示，自从 1998 年 8 月开始眼踪调査以来，因特与在线服务的使用使家庭的电视收看时间持续降低。入网家庭收看电视的时间比其他家庭平均要少 13%（每天大约有 1 小时） 一一 每月加起来有 32 个小时。网家庭的数量从 1997 年的 2200 万增加到 1999 年 350 万，在不到两年内增加了 60。据内布拉斯加州林肯市（Lincoln, Nebraska）的 Fairfield Rescarch 的首席执行官 Gary Gabelhouse 报告（USA Today, July20, 1999），美国人每天收看电视的时间已经从 1995 年的 4 个半小时降到了 199 年 6 月的两个小时左右一他根据一项 1000 名美国成年人参加的调査统计出来的数据。他指出，「人们正在改变被动的电视娱乐方式」。他的数据还
+
+米 AC Nielsen Company 为美国知名的市场调査公司，擅长电视收视率调査，在并购 Netratings 之后也跨人电脑与网络使用情况的调査。一中译注
+
+美国的一家电视游戏市场调査公。一中译注
+
+表明，人们平均每天上网 64 分钟，其中 70%6 的时间用于网上査阅资料与交流，而不是娱乐。终日懒散在家看电视这一种情况用在某些年龄群体身上仍然合适，但是人网群体在周末、放学和下班后（下午 4:30-6:00），比其他群体收看电视的时间要少 17%，甚至在黄金时段（晚上 8:00-11:00）（人网家庭的电视使用率要比其他家庭低 6%），收看申视的时间都大大降低。这一事实表明，一个在线新生代正在迅速形成，他们喜欢通过电子络互动与搜索信息
+
+这个建立在「资本主义、英语和技术的胜利」基础上的革命（Bloomberg, 199p11），以令人巖惊的速度和方式，使个体、群体和整个世界发生了转型（Mlr,19 Zuckerman,199）。但同时，这个革命也导致了资本在社会与个体中的分配更加不平等。似乎矛盾的是，虽然这场革命加深了那些可以获取更多和更丰富资本的人与其他正在被排除在这些机会和好处之外的人之间的分化，但是随着完全开放的竞争降低了群体和个体中的权力与资本差异，电子网络中的人们已经看到了机会与利益的平等化。
+
+随着技术的不断发展与商业利益的不断出现，电子网络逐渐地将社会一经济一技术要素融人到社会关系和社会资本之中。这个新特征使社会资本的获取和使用产生了新问题。现在技术已经可以创造虚拟现实（例如视听、三维、触控）与超越时空（通过便宜的无线设备即可实现），甚至网络爱情激情、仇恨和谋杀也正在「现实化」与个人化（例如，因特网浪漫爱情和谋杀已经发生：Washington Post, March6,199, pA2; 规则与言论自由正在发生冲突：Time, February15,1990p52; 个人的材料和历史逐渐変得公共化： USA Today, January18,199、3B 在科索沃冲突期间，南斯拉夫的网站使用电子邮件进行「电子战」：Wall Street Joural, Apl8,199），那么电子网络会打破精英阶层的统治、消除社会资本的分化效应吗？但是技术仍然需要资源和技能。全球化正在进行之中，电子络可能将很多不发达社会与社会的弱势群体排除在外。事态的发展会使社会资本的分配更加不平等吗？在什么条 件下会出现这种情况？事态的发展会进一步将世界分割为富人 / 富国和穷人 / 穷国吗？理论必须分析社会资本的不同方面（信息、影响、社会信任和强化）
+
+与不同结果（工具性的和表达性的）会出现什么样的新情况
+
+我猜想，所有形式的资本的全部发展形态与效应形式都可以在电子网络中得以考察。电子网络从根本上讲是关系和嵌入性资源种社会资本。我们现在需要收集地球村式的电子网络的各种数据。地球村是指社会群体与社会组织（「村庄」）的形成和发展，特别是：（1）每一群体及其领地如何界定或者根本就无法界定（封闭性对开放性）;（2）成员身份如何获取、界定或确认（例如居民和市民身份）;（3）成员身份是由什么组成的（例如人口统计学特征：个体、家庭、人口群、年岭、性别、种族、语言和社会经济特征）;（4）资源如何在「村庄」内和「村庄」之间进行分配一「村庄」中的阶级与不平等。简言之，我们迫切需要搞清楚电子网络是如何建立起来的，它们如何分割社会资本。这一章为学者们理解刚出现的新制度与新文化，以及人力资本与社会资本之间的互动，提供了参考和数据。最重要的是，我的论述为理解下述问题提供了线索：社会资本是否以及如何超过了个人资本的意义和影响；市民社会没有消亡，而是在逐渐扩大、变得全球化。
