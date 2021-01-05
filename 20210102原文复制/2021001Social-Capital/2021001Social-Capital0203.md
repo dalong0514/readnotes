@@ -1,3 +1,5 @@
+# Social Capital in Hierarchical
+
 Structures
 
 In the previous two chapters, I initiated a conceptual formulation in which motivations of actions are shown to lead to certain types of interactions and the utility of social capital. I suggested that actions lead to the emergence of social structures with increasing complexity of positions, authority, rules, and agency (Chapter 8). The purpose of this chapter is to extend this line of conceptualization by examining access to and use of social capital in the context of a complex social structure – an organization. Here I begin by assuming stable and functioning hierarchies such as organizations and assess how actors, through their positions, may or may not access better social capital – resources embedded in other positions, especially hierarchically higher positions. Thus, the concern here is, first, to demonstrate structural constraints and, second, to show how actions to access social capital operate within these constraints.
@@ -379,10 +381,3 @@ At the individual level, awareness of structural constraints and of flexibility 
 Social Capital in Hierarchical Structures 183
 
 tion. To the extent that such evaluation is engaged in, the individual has the option of initiating action by seeking out heterophilous ties and better social capital. Because the nature, range, and quality of such ties vary at different levels in the hierarchy, the benefits of seeking them out also vary. There is also a risk of nonreciprocated action when the structural gap is too great, along with a loss of identification with other occupants of the initial level. Both may lead to a sense of alienation.
-
-11
-
-Institutions, Networks, and
-
-Capital Building
-

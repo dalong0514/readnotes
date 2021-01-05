@@ -1,3 +1,5 @@
+# Reputation and Social Capital
+
 The Rational Basis for Social Exchange
 
 This chapter continues the dialogue on action and social structure initiated in the previous chapter. As has been pointed out, the multiplicity and complexity of routinized social relations in a collectivity demand increasing rules of recognition and legitimation that recognize the basic right to human capital (property) while at the same time specifying responsibilities and obligations for actors contributing resources. Thus, recognition was also suggested as an important process for individual actors overcoming possible costs to unequal exchanges – why someone higher in social position and richer in resources would be engaged in repeated exchanges with someone lower in social position and poorer in resources. How this process operates at the interactional level has not been articulated. What needs to be understood is that unequal transactions in exchanges can and do occur because there are payoffs for the actors who give more resources than they receive and why this is somewhat related to recognition. This chapter will focus on this issue. I will set aside the legitimation issue and concentrate on the social process of recognition and its significance in exchange – a process of repeated interactions between actors and the fundamental building block of a collectivity.
@@ -375,8 +377,3 @@ type of capital. Accumulation of one type of capital also allows the actor to en
 Likewise, an esteemed physicist may lend her or his reputation in adver-tising a product and generate handsome monetary returns. Good capitalists understand that they must be both instinctive and human, and that it is good for them and for others as well.
 
 It is also important to note that, in the final analysis, both transactional and relational rationalities are socially based. Without the legitimation and support of a social and political system and its constitutive members, the economic system, based on its symbolic and generalized medium, money, simply cannot exist. To say that relational rationality is subsumed under transactional rationality is instinctively attractive but humanly impossible.
-
-10
-
-Social Capital in Hierarchical
-

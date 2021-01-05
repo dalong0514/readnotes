@@ -1,3 +1,5 @@
+# Institutions, Networks, and Capital Building
+
 Societal Transformations
 
 In Chapter 8, it was proposed that actions motivated by expressive and instrumental needs propel interactions with others beyond primordial groups so that social capital may be accessed. These purposive actions sustain two types of exchanges, as described in Chapter 9 – to gain and maintain two elementary payoffs: wealth and reputation. These two chapters describe the process from action to structure. Chapter 10 turns to the structure-to-action process by showing how hierarchical structures constrain actions accessing social capital. These are ideal types of linkage between action and structure; in reality, such processes are complicated by structures and processes mediating between actors and hierarchical structures. Unless we identify and describe how these middle-level structures and processes operate, we will be unable to understand how action and structure interact. Further, the two processes – from micro to macro and vice versa – should not be seen in isolation or each depicted as a one-way process. A comprehensive theory of social capital must capture the two-way process between action and structure, as mediated through certain middle-level structures and processes.
@@ -381,8 +383,3 @@ Societal Transformations 209
 processes linking actors through social networks to institutionalizing organizations and organizations and to institutions themselves.
 
 The ultimate contribution of this conceptual scheme may lie in its ability to highlight how the two major social forces, institutions and networks, provide the basis for actions and transactions in economic and other markets. These forces help explain why a society remains stable even when transaction costs are always positive and uneven. Organizations and individual actors can coordinate and transact because they share same rules in an institutional field, through the mediation and processes of institutionalizing organizations and social networks. The same scheme suggests the dynamics by which institutional transformation may occur. Once the principles of how institutions and networks create, sustain, and change the rules of actions and transactions are set, it is then logical to bring the contributions of the state and technology into the analysis and examine how interest and agency complement or contend in these processes. In the next chapter, I will examine the intimate relationship between technology and social capital.
-
-12
-
-Cybernetworks and the Global Village
-

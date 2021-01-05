@@ -290,6 +290,18 @@ All the functions you've written so far have used the default behavior of return
 
 However, sometimes it's convenient to be able to return from the middle of a function such as when you want to break out of nested control constructs. In such cases you can use the RETURN-FROM special operator to immediately return any value from the function.
 
+1-2『
+
+在 autolisp 里总算找到了替代函数 [vl-exit-with-value (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-80622A39-A5E8-4E68-824E-E66BD8D3E9DE)。通过它可以实现函数的多个出口。
+
+```c
+
+```
+
+函数多出口的实现，做一张任意卡片。（2021-01-05）——已完成
+
+』
+
 You'll see in Chapter 20 that RETURN-FROM is actually not tied to functions at all; it's used to return from a block of code defined with the BLOCK special operator. However, DEFUN automatically wraps the whole function body in a block with the same name as the function. So, evaluating a RETURN-FROM with the name of the function and the value you want to return will cause the function to immediately exit with that value. RETURN-FROM is a special operator whose first "argument" is the name of the block from which to return. This name isn't evaluated and thus isn't quoted.
 
 The following function uses nested loops to find the first pair of numbers, each less than 10, whose product is greater than the argument, and it uses RETURN-FROM to return the pair as soon as it finds it:
@@ -332,16 +344,16 @@ CL-USER> (function foo)
 #<Interpreted Function FOO>
 ```
 
-In fact, you've already used FUNCTION, but it was in disguise. The syntax #', which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way ' is syntactic sugar for QUOTE. 11 Thus, you can also get the function object for foo like this:
+In fact, you've already used FUNCTION, but it was in disguise. The syntax `#'`, which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way `'` is syntactic sugar for QUOTE. 11 Thus, you can also get the function object for foo like this:
 
 ```c
 CL-USER> #'foo 
 #<Interpreted Function FOO>
 ```
 
-1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）』
-
 Once you've got the function object, there's really only one thing you can do with it -- invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY. 12 They differ only in how they obtain the arguments to pass to the function.
+
+1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）回复：这里的 `#'` 相当于 autolisp 里的 `'`。这里总算把一些只是断串起来了。定义函数（常规定义或 lambda 匿名函数）=> 通过 `'` 通说获取定义的函数体 => 通过 apply 函数调用这个函数体（需传入参数列表）从而实现调用函数。（2021-01-05）』
 
 FUNCALL is the one to use when you know the number of arguments you're going to pass to the function at the time you write the code. The first argument to FUNCALL is the function object to be invoked, and the rest of the arguments are passed onto that function. Thus, the following two expressions are equivalent:
 
@@ -364,7 +376,7 @@ The following function demonstrates a more apt use of FUNCALL. It accepts a func
 
 The FUNCALL expression computes the value of the function for each value of i. The inner LOOP uses that computed value to determine how many times to print an asterisk to standard output.
 
-Note that you don't use FUNCTION or #' to get the function value of fn; you want it to be interpreted as a variable because it's the variable's value that will be the function object. You can call plot with any function that takes a single numeric argument, such as the built-in function EXP that returns the value of e raised to the power of its argument.
+Note that you don't use FUNCTION or `#'` to get the function value of fn; you want it to be interpreted as a variable because it's the variable's value that will be the function object. You can call plot with any function that takes a single numeric argument, such as the built-in function EXP that returns the value of e raised to the power of its argument.
 
 ```c
 CL-USER> (plot #'exp 0 4 1/2) 
@@ -434,6 +446,8 @@ You can even use a LAMBDA expression as the "name" of a function in a function c
 ```
 
 But this is almost never done; it's merely worth noting that it's legal in order to emphasize that LAMBDA expressions can be used anywhere a normal function name can be.13
+
+1『有趣有趣，整个匿名函数表达式可以当作一个「函数名」用。通过上面的信息，进一步理解了 autolisp 里 `mapcar` 函数调用的实质，`(mapcar '(lambda (parameters) body) List)`，mapcar 所需的一个参数是匿名函数对象，而这个对象是通过撇号 `'` 来获取的。将此处信息补充进主题卡「函数对象」里。到了此处，有一种串起知识点通透的感觉，大赞。（2021-01-05）』
 
 Anonymous functions can be useful when you need to pass a function as an argument to another function and the function you need to pass is simple enough to express inline. For instance, suppose you wanted to plot the function 2x. You could define the following function:
 
@@ -897,7 +911,7 @@ In this regard SETF is no different from the = assignment operator in most C-der
 Table 6-1. Assignment with = in Other Languages
 
 |  Assigning to ... |  Java, C, C++  |  Perl  | Python  |
-| -- -| -- -| -- -| -- -|
+| --- | --- | --- | --- |
 |  ... variable |  x = 10; |  `$x = 10;` |  x = 10 |
 |  ... array element |  a[0] = 10;   |  `$a[0] = 10;` |  a[0] = 10 |
 |  ... hash table entry |  |  `$hash{'key'} = 10;` |  hash['key'] = 10 |

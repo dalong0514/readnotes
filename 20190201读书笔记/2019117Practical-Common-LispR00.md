@@ -185,6 +185,61 @@ And, despite the importance of macros to The Lisp Way, in the end all real funct
 
 2『 Lisp 语言的三大核心元素：函数、变量和宏，做一张主题卡片。』——已完成
 
+### 0106. 主题卡 —— 函数对象
+
+In Lisp, functions are just another kind of object. When you define a function with DEFUN, you're really doing two things: creating a new function object and giving it a name. It's also possible, as you saw in Chapter 3, to use LAMBDA expressions to create a function without giving it a name. The actual representation of a function object, whether named or anonymous, is opaque -- in a native-compiling Lisp, it probably consists mostly of machine code. The only things you need to know are how to get hold of it and how to invoke it once you've got it.
+
+The special operator FUNCTION provides the mechanism for getting at a function object. It takes a single argument and returns the function with that name. The name isn't quoted. Thus, if you've defined a function foo, like so:
+
+```c
+CL-USER> (defun foo (x) (* 2 x)) 
+FOO
+```
+
+you can get the function object like this: 10
+
+```c
+CL-USER> (function foo) 
+#<Interpreted Function FOO>
+```
+
+In fact, you've already used FUNCTION, but it was in disguise. The syntax `#'`, which you used in Chapter 3, is syntactic sugar for FUNCTION, just the way `'` is syntactic sugar for QUOTE. 11 Thus, you can also get the function object for foo like this:
+
+```c
+CL-USER> #'foo 
+#<Interpreted Function FOO>
+```
+
+Once you've got the function object, there's really only one thing you can do with it -- invoke it. Common Lisp provides two functions for invoking a function through a function object: FUNCALL and APPLY. 12 They differ only in how they obtain the arguments to pass to the function.
+
+1-2『经验证，`#'` 在 autolisp 里无效。（2020-10-28）回复：这里的 `#'` 相当于 autolisp 里的 `'`。这里总算把一些只是断串起来了。定义函数（常规定义或 lambda 匿名函数）=> 通过 `'` 通说获取定义的函数体 => 通过 apply 函数调用这个函数体（需传入参数列表）从而实现调用函数。（2021-01-05）』
+
+Once you start writing, or even simply using, functions that accept other functions as arguments, you're bound to discover that sometimes it's annoying to have to define and name a whole separate function that's used in only one place, especially when you never call it by name.
+
+When it seems like overkill to define a new function with DEFUN, you can create an "anonymous" function using a LAMBDA expression. As discussed in Chapter 3, a LAMBDA expression looks like this:
+
+```c
+(lambda (parameters) body)
+```
+
+One way to think of LAMBDA expressions is as a special kind of function name where the name itself directly describes what the function does. This explains why you can use a LAMBDA expression in the place of a function name with #'.
+
+```c
+(funcall #'(lambda (x y) (+ x y)) 2 3) ==> 5
+```
+
+You can even use a LAMBDA expression as the "name" of a function in a function call expression. If you wanted, you could write the previous FUNCALL expression more concisely.
+
+```c
+((lambda (x y) (+ x y)) 2 3) ==> 5
+```
+
+But this is almost never done; it's merely worth noting that it's legal in order to emphasize that LAMBDA expressions can be used anywhere a normal function name can be.13
+
+1『有趣有趣，整个匿名函数表达式可以当作一个「函数名」用。通过上面的信息，进一步理解了 autolisp 里 `mapcar` 函数调用的实质，`(mapcar '(lambda (parameters) body) List)`，mapcar 所需的一个参数是匿名函数对象，而这个对象是通过撇号 `'` 来获取的。将此处信息补充进主题卡「函数对象」里。到了此处，有一种串起知识点通透的感觉，大赞。（2021-01-05）』
+
+Anonymous functions can be useful when you need to pass a function as an argument to another function and the function you need to pass is simple enough to express inline. The other important use of LAMBDA expressions is in making closures, functions that capture part of the environment where they're created. You used closures a bit in Chapter 3, but the details of how closures work and what they're used for is really more about how variables work than functions, so I'll save that discussion for the next chapter. (chapter 6)
+
 ### 0201. 术语卡 —— 特殊符号撇号 `'` 
 
 The test-form will always be evaluated and then one or the other of the then-form or else-form. An even simpler special operator is QUOTE, which takes a single expression as its "argument" and simply returns it, unevaluated. For instance, the following evaluates to the list (+ 1 2), not the value 3:
@@ -332,7 +387,7 @@ Thus, the following expression is evaluated by first evaluating 1, then evaluati
 
 2『说出了 Lisp 里函数调用的本质，做一张术语卡片。』——已完成
 
-### 0205. 术语卡 —— macro
+### 0206. 术语卡 —— macro
 
 While special operators extend the syntax of Common Lisp beyond what can be expressed with just function calls, the set of special operators is fixed by the language standard. Macros, on the other hand, give users of the language a way to extend its syntax. As you saw in Chapter 3, a macro is a function that takes s-expressions as arguments and returns a Lisp form that's then evaluated in place of the macro form. The evaluation of a macro form proceeds in two phases: First, the elements of the macro form are passed, unevaluated, to the macro function. Second, the form returned by the macro function -- called its expansion -- is evaluated according to the normal evaluation rules.
 
@@ -385,6 +440,30 @@ Things get more interesting when we consider how lists are evaluated. All legal 
 2『三大类 list 的处理方式：函数、宏和操作符。做一张任意卡片。回复：突然领悟到在 Lisp 里「一切皆 lisp」，函数、表达式、变量等等。（2020-12-30）』 —  — 已完成
 
 12 In Common Lisp a symbol can name both an operator—function, macro, or special operatorand a variable. This is one of the major differences between Common Lisp and Scheme. The difference is sometimes described as Common Lisp being a Lisp-2 vs. Scheme being a Lisp-1a Lisp-2 has two namespaces, one for operators and one for variables, but a Lisp-1 uses a single namespace. Both choices have advantages, and partisans can debate endlessly which is better.
+
+### 0303. 任意卡 —— lisp 中函数名变量名的命名规则
+
+第 5 章（函数那章）里提到函数名采用的是连字符，比如 get-entityname。不过目前在开发数据流（autolisp）时采用的还是类似 Java 的风格，普通变量 entityName，函数名 GetEntityName。（2021-01-05）
+
+### 0304. 任意卡 —— 函数多出口的实现
+
+All the functions you've written so far have used the default behavior of returning the value of the last expression evaluated as their own return value. This is the most common way to return a value from a function.
+
+However, sometimes it's convenient to be able to return from the middle of a function such as when you want to break out of nested control constructs. In such cases you can use the RETURN-FROM special operator to immediately return any value from the function.
+
+1-2『
+
+在 autolisp 里总算找到了替代函数 [vl-exit-with-value (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-80622A39-A5E8-4E68-824E-E66BD8D3E9DE)。通过它可以实现函数的多个出口。
+
+```c
+
+```
+
+函数多出口的实现，做一张任意卡片。（2021-01-05）——已完成
+
+』
+
+You'll see in Chapter 20 that RETURN-FROM is actually not tied to functions at all; it's used to return from a block of code defined with the BLOCK special operator. However, DEFUN automatically wraps the whole function body in a block with the same name as the function. So, evaluating a RETURN-FROM with the name of the function and the value you want to return will cause the function to immediately exit with that value. RETURN-FROM is a special operator whose first "argument" is the name of the block from which to return. This name isn't evaluated and thus isn't quoted.
 
 ## Preface
 

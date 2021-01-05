@@ -1,3 +1,5 @@
+# Cybernetworks and the Global Village
+
 The Rise of Social Capital
 
 One recent controversy in the study of social capital has been an issue raised by Putnam (1993, 1995a, 1995b): whether social capital has been on the decline in the United States for the past three or four decades.
@@ -7,8 +9,6 @@ Putnam argues that there should be a positive association between social capital
 Putnam’s thesis and research have been challenged from a variety of theoretical and methodological perspectives. These challenges fault Putnam’s work primarily on two grounds. First, he committed errors in measuring social capital. For example, it has been pointed out that he erred in the analyses of the General Social Survey data (Greeley 1997a); he should have used「amount of time dedicated to voluntary work」
 
 (Greeley 1997b, 1997c; Newton 1997) rather than mere membership in certain organizations; he excluded certain types of associations (especially organizations emerging in contemporary America [Schudson 1996; Greeley 1997a, 1997b, 1997c; Minkoff 1997; Newton 1997]); and membership in an association is not the same as civic-mindedness or civic 210
-
-Cybernetworks and the Global Village 211
 
 energy (Schudson 1996). Second, assuming that his measurements of social capital were acceptable, Putnam blamed the wrong culprit; other factors have been more critical than television viewing (Schudson 1996; Skocpol 1996).1
 
@@ -26,10 +26,6 @@ From this perspective, then, the debate on whether social capital has been decli
 
 By focusing the definition and measurement of social capital on embedded resources in networks, I will argue in this chapter that there is clear evidence that social capital has been on the ascent in the past decade – in the form of networks in cyberspace (Lin 1999a). Further, this ascent has consequences beyond community or national boundaries. The 1 There is substantial literature blaming Putnam for using the wrong dependent variable (e.g., importance of good government: Skocpol 1996; the importance of political organizations: Valelly 1996; the importance of national community: Brinkley 1996; the importance of inequality in political participation: Verba, Schlozman, and Brady 1995, 1997; the importance of national elites: Heying 1997; the importance of political institutions: Berman 1997; the importance of institutional incentives: Kenworthy 1997; the importance of culture: Wood 1997). This literature does not address issues directly related to social capital.
 
-212
-
-Conceptual Extensions
-
 hypotheses advanced here are two: (1) social capital in the form of cybernetworks is clearly on the rise in many parts of the world, and (2) the rise of cybernetworks transcends national or local community boundaries; therefore, its consequences (both positive and negative) must be assessed in the global context. I begin with a broad survey of the emergence of cybernetworks and the time- and space-transcending social capital they offer.
 
 The Internet and Cybernetworks:
@@ -40,7 +36,7 @@ Cybernetworks are defined as the social networks in cyberspace, and specifically
 
 Since late the 1970s and early 1980s, personal computers (PCs) have penetrated workplaces and homes around the globe. Their presence and pervasiveness have overtaken many other communication commodities in North America, Europe, and East Asian countries. In 1997, U.S. consumers bought more computers than automobiles, according to Steven Landefeld, director of the Bureau of Economic Analysis ( USA Today , March 17, 1999). Worldwide PC sales has overtaken television sales in 2000, according to Paul Otellini of the Intel Architecture Business Group (Intel Developer Forum, February 25, 1999). In fact, PC sales already outnumbered sales of TV sets in 1998 in Australia, Canada, Denmark, and Korea. In 1999, 50 percent of U.S. households had computers, and 33 percent were online (Metcalfe 1999).
 
-E-commerce has become big business (Irving 1995, 1998, 1999). In 1998, online shopping orders totaled $13 billion (with an average order amount of $55), and it was projected to reach $30 to $40 billion in 1999
+E-commerce has become big business (Irving 1995, 1998, 1999). In 1998, online shopping orders totaled `$13` billion (with an average order amount of `$55`), and it was projected to reach `$30` to `$40` billion in 1999
 
 (the Boston Consulting Group, as quoted in PC Magazine , March 9, 1999, p. 9). The greatest growth is expected in travel (88 percent in 1999
 
@@ -48,17 +44,13 @@ over 1998), PC hardware (46 percent), books (75 percent), groceries (137 percent
 
 Cybernetworks and the Global Village 213
 
-has been estimated that 24 million U.S. adults plan to buy gifts online in 1999, or almost quadruple the 7.8 million who said they bought gifts online in 1998; online holiday shopping alone in 1999 could exceed $13
+has been estimated that 24 million U.S. adults plan to buy gifts online in 1999, or almost quadruple the 7.8 million who said they bought gifts online in 1998; online holiday shopping alone in 1999 could exceed `$13`
 
-billion (International Communications Research, as quoted in PC Week , March 1, 1999, p. 6). During 1999, Internet commerce, which is growing thirty times faster than most world economies, will reach $68 billion (Metcalfe 1999, quoting International Data Corp.). By the year 2002, the projection is that online shopping will account for $32 billion in convenience items such as books and flowers, $56 billion in researched purchases like travel and computers, and $19 billion in replenishment goods such as groceries (Forrester Research Inc., as quoted in PC Week , January 4, 1999, p. 25). Another projection suggests that 40 percent of Web users will be online buyers by 2002, resulting in $400 billion in e-commerce transactions (International Data Corporation, as quoted in ZDNet Radar, Jesse Berst,「Technology of Tomorrow,」January 6, 1999). In the first half of 1998, one out of every five retail stock trades occurred online. There are now an estimated 4.3 million people shopping for stocks and funds online, and online trading is expected to reach 31 percent of the total U.S. investment market by 2003 (Wilson 1999, quoting Piper Jaffray, PC Computing , March 1999, p. 14).
+billion (International Communications Research, as quoted in PC Week , March 1, 1999, p. 6). During 1999, Internet commerce, which is growing thirty times faster than most world economies, will reach `$68` billion (Metcalfe 1999, quoting International Data Corp.). By the year 2002, the projection is that online shopping will account for `$32` billion in convenience items such as books and flowers, `$56` billion in researched purchases like travel and computers, and `$19` billion in replenishment goods such as groceries (Forrester Research Inc., as quoted in PC Week , January 4, 1999, p. 25). Another projection suggests that 40 percent of Web users will be online buyers by 2002, resulting in `$400` billion in e-commerce transactions (International Data Corporation, as quoted in ZDNet Radar, Jesse Berst,「Technology of Tomorrow,」January 6, 1999). In the first half of 1998, one out of every five retail stock trades occurred online. There are now an estimated 4.3 million people shopping for stocks and funds online, and online trading is expected to reach 31 percent of the total U.S. investment market by 2003 (Wilson 1999, quoting Piper Jaffray, PC Computing , March 1999, p. 14).
 
 On March 16, 1999, the U.S. Commerce Department scrapped a sixty-year-old industry classification system that had little relevance to an information-based economy ( USA Today , March 17, 1999, p. A1). For example, computers had not even been an industry category; they were grouped with adding machines. A new system was installed that better reflected the new categories created by the information revolution. The system is also designed to be similar to those in Mexico and Canada as trade with those countries continues to grow ( USA Today , March 17, 1999, p. A1). Further, the Commerce Department will begin publishing figures that show the impact of online shopping on retail activity, a key indicator of the nation’s economic health. Until now, the Commerce Department has lumped online shopping figures together with catalogue sales in its overall retail sales numbers. New figures that break out Internet sales as a separate entity will be available by the middle of 2000 for 1998 and 1999 ( Info World , February 15, 1999, p. 71).
 
 Use of the Internet for communications and networking has been more recent but even more phenomenal in growth than PCs themselves. Since the invention of the hypertext technique by Tim Berners-Lee in the 1980s at CERN (the European Particle Physics Laboratory in Geneva, Switzerland) and the introduction of the World Wide Web to the Internet in the summer of 1991, Internet growth in the past decade has been nothing short of revolutionary. In 1995, 14.1 million of 32 million U.S. households had modems, and by January 1999, 37.7 million of 50 million U.S.
-
-214
-
-Conceptual Extensions
 
 households had modems ( USA Today , March 17, 1999, p. 9D). Worldwide, there were 68.7 million Web users in 1997 and 97.3 million in 1998, and the projection is that the number of Web users will exceed 300 million by 2001 (World Trade Organization estimate, March 12, 1998). Two-thirds of the people who will be online by 2002 were not online in early 1999 (Metcalfe 1999, quoting International Data Corp.).
 
@@ -90,21 +82,13 @@ actors by incorporating the latter into global economic systems dominated by the
 
 Yet, cybernetworks suggest, at least for those who gain access to cyberspace, the possibility of a bottom-up globalization process whereby entrepreneurship and group formations become viable without the dominance of any particular class of actors (Wellman 1998). Do cybernetworks suggest a neo-globalization process? While not denying that the dominant states and actors remain actively interested in controlling the development of cyberspace, I argue that cybernetworks represent a new era of democratic and entrepreneur networks and relations in which resources flow and are shared by a large number of participants with new rules and practices, many of which are devoid of colonial intent or capability.
 
-With the increasing availability of inexpensive devices and ever-increasing Web capabilities that transcend space and time, we are facing a new era of social networks in the form of global villages. Globalization of cybernetworks is a double-edged sword. More sharply than ever,
-
-216
-
-Conceptual Extensions
-
-it demarcates the haves and the have-nots in terms of accessing capital embedded in cyberspace. Access to computers, other devices, and the Internet remains distributed unequally because of social (e.g., lack of education and facility in the language), economic (e.g., ability to acquire computers and gain access to the communications infrastructure), and political (e.g., authoritarian control over access) constraints. Yet, within the cybernetworks, it is no longer necessary or possible to reproduce the core-peripheral world system, in which the core actors establish links and networks to peripheral actors for their continuing domination of information, resources, and surplus values. Instead, information is freer and more available to more individuals than ever before in human history. It is also clear that constraints and control over access are waning fast as computer and communication costs decrease and technology leapfrogs the traditional authoritarian control of access.
+With the increasing availability of inexpensive devices and ever-increasing Web capabilities that transcend space and time, we are facing a new era of social networks in the form of global villages. Globalization of cybernetworks is a double-edged sword. More sharply than ever, it demarcates the haves and the have-nots in terms of accessing capital embedded in cyberspace. Access to computers, other devices, and the Internet remains distributed unequally because of social (e.g., lack of education and facility in the language), economic (e.g., ability to acquire computers and gain access to the communications infrastructure), and political (e.g., authoritarian control over access) constraints. Yet, within the cybernetworks, it is no longer necessary or possible to reproduce the core-peripheral world system, in which the core actors establish links and networks to peripheral actors for their continuing domination of information, resources, and surplus values. Instead, information is freer and more available to more individuals than ever before in human history. It is also clear that constraints and control over access are waning fast as computer and communication costs decrease and technology leapfrogs the traditional authoritarian control of access.
 
 There is strong evidence that an increasing number of individuals are engaged in this new form of social networks and relations, and there is little doubt that a significant part of the activities involve the creation and use of social capital. Access to free sources of information, data, and other actors has created growing networks and social capital at an unprecedented pace. Networks are expansive and yet at the same time intimate. Networking transcends time (connecting whenever one can and wants to) and space (accessing sites around the globe directly or indirectly if direct access is denied). Rules and practices are being formulated as such networks are constructed. Institutions – borrowed from past practices, deliberately deviating from past practices, or consensually developed by participants – are being created as such networks (e.g., villages) are being built.
 
 There is little doubt that the hypothesis that social capital is declining can be refuted if one goes beyond the traditional interpersonal networks and analyzes the cybernetworks that emerged in the 1990s. We are witnessing the beginning of a new era in which social capital is far outpacing personal capital in significance and effect. We need to compile basic data and information on the extent to which individuals are spending time and effort engaging others over cybernetworks, compared to the use of time and effort for interpersonal communications, other leisure activities (TV watching, travel, eating out, movie- and theatergoing), attend-ing civic and local meetings, and so on. We also need to estimate the amount of useful information gathered through cybernetworks compared to traditional media.
 
 In the next section, I will offer a case study, concerning the recent Falun Gong movement in China, as an example of how cybernetworks provide social capital in a social movement and sustain collective action even within an extremely constrained institutional field. This example shows
-
-Cybernetworks and the Global Village 217
 
 how cybernetworks facilitate the use of social capital over space and time, and demonstrates effectiveness in generating and sustaining a social movement in a global context. Whether the movement itself has any merit is of no interest here.
 
@@ -122,10 +106,6 @@ to 1978, he worked at an army stud farm and played the trumpet in a forest polic
 
 According to the biography attached to one of the books he wrote (Li 1994), he started learning the Law from a master between the ages of four and twelve. He learned the principles of Zhen, Shan, and Ren and achieved the highest level of cultivation when he was eight, at which time he allegedly could become invisible, pull rusted nails from frozen pipes without effort, float off the ground, and penetrate through walls. He then met another master at the age of twelve and learned martial arts. In 1972, he met a third master who taught him to cultivate his mind for two years. The next master was a woman
 
-218
-
-Conceptual Extensions
-
 The Falun Gong Organization
 
 Li started propagating Falun Gong in 1992 in his native region of Changchung, Jinling, and then moved to Beijing and other cities throughout China. He charged no fees and claimed that all his income from workshops was donated to furthering the Falun Gong. Falun Gong spread quickly, and Li’s workshops and lectures drew huge audiences.
@@ -142,8 +122,6 @@ In 1992, he「was ordered to go out of the mountain」(Li 1993, p. 112; 1994, p.
 
 5 For example, a site could「borrow」the yard of a work unit. Centers could be listed as affiliated with various work units for administrative reporting purposes, because voluntary or civic groups or associations, even professional associations, do not carry official administrative status and must「lean on」(be officially affiliated with) a work unit to gain recognition by the government.
 
-Cybernetworks and the Global Village 219
-
 ticipate in other forms of cultivation (e.g., qigong, or energy cultivation) or other groups and associations, and the stations and points could not participate in other associations’ activities, except in exhibitions and
 
 「athletic event」demonstrations.
@@ -158,13 +136,7 @@ Li employed the same strategies in deploying and extending his organization glob
 
 The Suppression and the Protest Movement
 
-As Falun Gong grew, it caught the attention of the Chinese media and government, first fascinating them with its claims of incredible feats of curing and supernatural powers and then alarming them by its hierarchical organization; enthusiastic, cohesive, disciplined practitioners; and enormous popularity. In June 1996 one of the largest newspapers in
-
-220
-
-Conceptual Extensions
-
-China, Guangming Daily , started criticizing Falun Gong, drawing strong responses from the practitioners. The responses further alarmed the government. In the same year, the government banned five Falun Gong books. In 1997, the Ministry of Security investigated Falun Gong for possible illegal religious activities but did not draw any conclusions. In July 1998, the Ministry designated Falun Gong as a devious religious sect and conducted investigations. The Ministry of Civil Affairs also conducted investigations. Practitioners responded vigorously by staging sit-ins at various official sites and buildings. Cultivation continued to flourish at many exercise sites, and Li’s writings and lectures were readily available in print, and on audio- and videotape. In fact, there was a growing industry in China and abroad in the production of Falun Gong–related publications and materials, without the awareness or approval of Li or his Research Society.
+As Falun Gong grew, it caught the attention of the Chinese media and government, first fascinating them with its claims of incredible feats of curing and supernatural powers and then alarming them by its hierarchical organization; enthusiastic, cohesive, disciplined practitioners; and enormous popularity. In June 1996 one of the largest newspapers in China, Guangming Daily , started criticizing Falun Gong, drawing strong responses from the practitioners. The responses further alarmed the government. In the same year, the government banned five Falun Gong books. In 1997, the Ministry of Security investigated Falun Gong for possible illegal religious activities but did not draw any conclusions. In July 1998, the Ministry designated Falun Gong as a devious religious sect and conducted investigations. The Ministry of Civil Affairs also conducted investigations. Practitioners responded vigorously by staging sit-ins at various official sites and buildings. Cultivation continued to flourish at many exercise sites, and Li’s writings and lectures were readily available in print, and on audio- and videotape. In fact, there was a growing industry in China and abroad in the production of Falun Gong–related publications and materials, without the awareness or approval of Li or his Research Society.
 
 The final confrontation began with the publication of an article by He Zhuo-xiu, a scientist and a member of the Chinese Academy of Sciences, in Science and Technology Review for Youth ( Qing Shao Nian Ke Ji Bao Nan ), a monthly publication issued by the Tianjin Normal University. In the article (issue 4, 1999), He challenged the claimed scientific basis of Falun Gong and warned that it might be harmful for youth to practice. This article drew immediate responses from Falun Gong followers in Tianjin, who visited the publishing office and demanded a retraction of the article and a public apology. Starting on April 20, the Falun Gong practitioners began a sit-in demonstration. The gathering drew 3,000 on April 22 and 6,300 on April 23 ( People’s Daily , July 23, 1999). Without satisfactory responses from the publisher, the Tianjin cultivators decided to appeal to the national government and CCP leaders in Beijing.
 
@@ -174,8 +146,6 @@ Falun Gong practitioners from several provinces and cities6 gathered at Zhongnan
 
 7 The official estimate put the number of protesters at over 10,000. Other eyewitness reports estimated between 20,000 and 30,000 protesters. It was difficult to separate some bystanders from participants, and the police eventually blocked off the area except for through traffic, preventing other practitioners from joining in.
 
-Cybernetworks and the Global Village 221
-
 were received. At the urging of the police, they eventually scattered after 9 p.m.
 
 This incident sent a shock wave through the CCP leadership, for it was probably the first time since the Party gained control of the country in 1949 that the Party and the government failed to receive any information beforehand that an unauthorized gathering of any reasonable size would take place. Furthermore, such a gathering took place at Zhongnanhai, the nerve center of control. The Party not only saw this as a failure of intelligence but also sensed a strong threat to its authority and immediately swung into action. Jiang Zemin apparently issued a directive that evening for immediate investigations. A thorough review of the intelligence apparatus followed, and a nationwide investigation of Falun Gong proceeded with haste and determination. Realizing that Falun Gong practitioners had penetrated many Party and government bureau-cracies, offices, and institutes; that the number of Falun Gong cultivators was considerable (some scholars estimate it to be up to 60 million in China – the same size as the CCP membership, even though the Falun Gong and Li claim to have over 100 million cultivators, most of whom reside in China); and that the Falun Gong was well organized, thoroughly disciplined, and quick to mobilize, the Communist leadership considered it a serious threat to the core political ideology, to the Party organization, and to the absolute command of the Party in all spheres of life (Central Committee Circular 19, July 19, 1999). Efficiently coordinated organization, extensive participation, and collective cohesion convinced the CCP leadership that Falun Gong constituted a serious threat to the Party’s ideological and organizational hold over the country.
@@ -183,10 +153,6 @@ This incident sent a shock wave through the CCP leadership, for it was probably 
 Also stunning was the large number of Falun Gong practitioners in the Party’s most sensitive offices and work units.
 
 The Party outlawed Falun Gong on July 19 and immediately began arresting coordinators and important trainers throughout China, searching and ransacking their homes, confiscating and destroying books and related materials, and conducting a major reeducation campaign to eradicate Falun Gong involvement in the Party and the government. The campaign had three phases: elevating learning, or a reindoctrination in Marxist ideology; educational transformation, or persuading those involved in Falun Gong to recognize and admit wrongdoings (involvement in the Falun Gong); and organizational treatment, or ridding work units and areas of all elements of Falun Gong. All Party apparatuses, including investigative and disciplinary units, propaganda, the united front, Communist youth, and united women’s groups were to be mobilized to unveil Li’s and Falun Gong’s activities and intents, and were to control all situations so as to accomplish「early discovery, early reporting, early control, and an early solution」in「defending social and polit-
-
-222
-
-Conceptual Extensions
 
 ical stability」(Central Committee Circular, July 19, 1999). For the next month, sustained, all-out efforts were made to eliminate Falun Gong in China.8
 
@@ -200,8 +166,6 @@ This statement, issued on June 15, 1997, warned that cybernetworks had been used
 
 8 The Party claimed that it was all right to practice Falun Gong as a qigong exercise. But in reality, all public Falun Gong practices were dispersed and not allowed.
 
-Cybernetworks and the Global Village 223
-
 On August 5, 1997, the Overseas Unit’s site (www.falundafa.org) was formally merged with the site of the China Falun Dafa Research Society, and it issued an Internet statement to overseas practitioners advocating the holding of various meetings, in various languages, to increase the voice of Dafa in media around the world; the selection and inclusions of Caucasian practitioners as trainers and facilitators of Caucasian practitioners’ participation; the spread of Li’s publications through translation and the Internet; and an organization of visiting groups to China to learn and practice Dafa (www.falundafa.org/fldfbb/tz970805.htm).
 
 On August 8, 1998, the Research Society issued an Internet message to Falun research associations and teaching centers in all countries, indicating that the cybernetworks for Falun Gong had achieved, or almost achieved, total and comprehensive linkage with all teaching centers around the world, including those in China. In this notice (www.falundafa.org/fldfbb/setup c.htm), the Society expressed satisfaction at the use of the Internet to spread the true words of Li (his published and publicly stated works only), as well as the activities of associations and teaching centers around the world. However, due to the enormous increase in personal e-mail addresses, the Society had discovered the dissemination of information not related to Dafa or related to religions, unverified statements by Li, and even misinformation in the name of the various associations or the Research Society. Thus, it announced the establishment of a Bulletin Board that would carry Li’s instructions and the Research Society’s announcements, the content of which could be copied and forwarded. Other individualized content would be modified or eliminated from all sites. All「irrelevant」
@@ -209,10 +173,6 @@ On August 8, 1998, the Research Society issued an Internet message to Falun rese
 sites would be notified and corrected through the Bulletin Board (www.falundafa.ca/fldfbb).
 
 Thus, by the summer of 1998, the Research Society and Li had established a comprehensive cybernetwork linking all or most teaching centers, as well as many individual practitioners, and exercised control over the flow of content. The extent to which this cybernetwork played a critical role in the mobilization of practitioners from many provinces and cities to converge on Beijing and Zhongnanhai on April 25, 1999, remained unknown. The fact that the CCP and government intelligence apparatus, which penetrates deeply into every corner of Chinese society, had no prior knowledge about the movements of thousands of practitioners, many of whom took trains and buses, suggests that the cybernetworks with direct linkages and access to information from the Research Society (now run in the United States), and among the teaching centers, exercise sites, and individual Internet users, might have played a key role in dissemination of information about the upcoming sit-down demonstrations.
-
-224
-
-Conceptual Extensions
 
 This suspicion was confirmed in part by Li himself. On May 2, 1999, in interviews with Chinese and foreign media in Australia, Li was asked how he kept in touch with the 1 billion practitioners around the world. He replied:「Not any direct channels, because as you found out that here was a conference and so I found out too. Why should I say that we all know what is happening anywhere? Everyone knows about the Internet; this thing is very convenient throughout the world. Wherever there is a meeting, it appears in the Internet and many regions around the world learn soon and I learn too. I really do not have any exchanges with them, not even telephone calls」(www.falundafa.org/fldfbb/tomedia/
 
@@ -227,8 +187,6 @@ After the April 25 incident and the strong and shocking responses from the Party
 messages (all but 14 messages were specifically dated), and at least half of them were identified as originating from inside China. The locations identified included Beijing, Tianjin, Shanghai, Shangdong, Nanchang, Weifang, Qingdao (Shangdong), Hebei, BenXi, Linyi (Shangdong), Shenyang, Dalian, Qiqihar, Shijiazhuang, Guangzhou, Qinghungdao, Daqing, Fuzhou, Tonghua, Zhengzhou, Jaingsu, Hangzhou, Fujian, Taiyuan, Weihai, Jiangshu Qidong, Wuhan, Harbin, Hubei (Xishui), Changsha, and others.
 
 The extensive use of the Internet was again confirmed when the government shut down several Internet sites in China that provided free or paid e-mail services. For example, 263.net shut down more than 1,000,000 of its free e-mail addresses on July 22 for several days, and when it came back on, the service was greatly curtailed and monitored.
-
-Cybernetworks and the Global Village 225
 
 In the meantime, the Internet was used widely by the Party and the government to attack Li and Falun Gong. Extensive essays were written and transmitted over Web sites (e.g., People’s Daily , Xinhua Press, and many other Web-site links to the Chinese government and the media) to discredit Li (e.g., about his falsified birth date, his tax evasion, the lowly jobs he held, the brevity of his qigong education, and his possible connections with the Central Intelligence Agency). Other reports provided personal and eyewitness accounts of individuals being victimized by Falun Gong. Articles reported confessions and renunciations of Falun Gong practitioners, especially among Party members and cadres. Finally on July 29, 1999, a new Web site (www.ppflg.china.com.cn) was created by People’s Daily dedicated to「unveiling Falun Gong, for the Health and Life of the People.」It contained columns including「reporting and commenting, surveying and analyzing, comments from the people, tragic stories, selected letters, relevant websites, and messages from visitors.」
 
@@ -245,10 +203,6 @@ It is clear that for the first time in history, a movement and a countermovement
 Discussion
 
 The Falun Gong incident serves as a vivid contemporary illustration of how social networks and capital provide the mechanisms and processes by which an alternative ideology, challenging prevailing ideology and institutions (see Chapter 11), can be institutionalized. The Falun Gong incident was considered the most serious challenge to the CCP since the Tiananman Square incident in 1989 (Lin 1992b). However, there are significant differences between the two social movements. Falun Gong involved much broader participation, drawing practitioners from all age groups, all social and occupational strata, and both urban and rural populations (though probably disproportionately from cities and townships), as well as enjoying a well-organized and strongly hierarchical structure of command, and having the advantage of the Internet as well as cell phones (the Tiananmen Square participants could only use the newly
-
-226
-
-Conceptual Extensions
 
 available fax machines effectively). While the Tiananman Square incident died down quickly after June 4, 1989, Falun Gong had the benefit of a cybernetwork that remained in operation after July 20, 1999, and in communication with some users inside China.
 
@@ -272,10 +226,6 @@ Do we need to develop new notions, or can we apply the theories and methods we h
 
 2. In one sense, cybernetworks provide an equalizing opportunity in the access to social capital. Given the easy, low-cost access to cybernetworks that is being provided to more and more people around the world, the abundance and flow of information, the multiplicity of alternative channels as sources and partners, and the increasing need for and gratification of almost instantaneous exchanges, power differentials will 9 I use the term village to suggest that rules, practices, and institutions for cybernetworks are still largely in flux and are being developed.
 
-228
-
-Conceptual Extensions
-
 inevitably suffer degradation. Multiple routes may mean less dependence on certain nodes and less power to these nodes. Will such alternative routes reduce the significance of network locations or bridges? Does this mean, then, that there will be an equalizing or democratization process in cybernetworks? Likewise, authority will become harder to exercise.
 
 As the Falun Gong case demonstrates, social capital is now carried across time and space, and traditional authorities can no longer control and command resources, as before. Alternative and counterprevailing ideologies will not be so easily stamped out or suppressed.
@@ -284,11 +234,7 @@ This process has already appeared in the economic sector. For example, emerging 
 
 Travel agencies, car dealers, insurance companies, banks, and stock-brokers all face the challenge of either changing fast in adopting cybernetworks to do business or facing death (Taylor and Jerome 1999). Such is the force of cybernetworks for equalizing power.
 
-Yet, will power disappear? Hardly (Reid 1999). Resourceful actors in cyberspace will accrue more resources, make alliances, acquire or merge with other resourceful actors, and block off alternative routes with pro-prietary hardware and software to establish themselves as the essential bridges or structural holes in the cybernetworks. New rules and practices are being developed for firms to deal and take advantage of the information economy (Breslow 1997; Kelly 1998; Shapiro and Varian 1999). Microsoft is doing it by cornering operating systems and major applications. America Online is attempting to do it by blocking off access to its users from outside. Telephone companies, cable companies, and satellite firms are all competing or combining to gain a competitive edge over the Internet. Elite universities and research institutions have established their own supercomputing and Internet systems. Government and other agencies and firms will acquire extensive information on individuals and make such information available to actors and agents who have
-
-Cybernetworks and the Global Village 229
-
-the power, authority, or wealth to pay for or gain access to such information. The federal Advisory Commission on Electronic Commerce, convened in June 1999, was to devise recommendations on e-commerce taxation policies. In April 2000, it recommended to Congress that the moratorium on the Internet tax be continued for six years.
+Yet, will power disappear? Hardly (Reid 1999). Resourceful actors in cyberspace will accrue more resources, make alliances, acquire or merge with other resourceful actors, and block off alternative routes with pro-prietary hardware and software to establish themselves as the essential bridges or structural holes in the cybernetworks. New rules and practices are being developed for firms to deal and take advantage of the information economy (Breslow 1997; Kelly 1998; Shapiro and Varian 1999). Microsoft is doing it by cornering operating systems and major applications. America Online is attempting to do it by blocking off access to its users from outside. Telephone companies, cable companies, and satellite firms are all competing or combining to gain a competitive edge over the Internet. Elite universities and research institutions have established their own supercomputing and Internet systems. Government and other agencies and firms will acquire extensive information on individuals and make such information available to actors and agents who have the power, authority, or wealth to pay for or gain access to such information. The federal Advisory Commission on Electronic Commerce, convened in June 1999, was to devise recommendations on e-commerce taxation policies. In April 2000, it recommended to Congress that the moratorium on the Internet tax be continued for six years.
 
 At the same time, access to cyberspace itself has enlarged the gulf between the haves and the have-nots. The Internet, for example, may have equalizing effects for citizens of North America, Europe, Australia, New Zealand, and East Asia, allowing them to acquire social capital.
 
@@ -312,19 +258,11 @@ percent of U.S. households with incomes of more than $75,000 had access to e-mai
 
 10 The top ten countries in information technology expenditure were, in order, the United States, Sweden, Finland, Singapore, Norway, Denmark, the Netherlands, Australia, Japan, and Canada.
 
-230
-
-Conceptual Extensions
-
 Figure 12.1 Percentage of U.S. households with e-mail by income and by rural, urban, and central city areas. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
 
 Regional divides (Figure 12.4) likewise showed inequality: residents in urban and central cities had much greater access to e-mail than rural households (except in the Northeast). Married couples (with no children or with children less than eighteen years old) were much more likely to have access to e-mail than other types of households (Figure 12.5).
 
 The gaps between the rich and the poor, the urban and the rural, the educated and the uneducated, and the dominant ethnic/racial/religious groups versus others have undoubtedly become worse between developed and less developed countries. For example, in the United States, almost half of all Internet users are females, whereas in China, females
-
-Cybernetworks and the Global Village
-
-231
 
 Figure 12.2 Percentage of U.S. households with e-mail by race/origin, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
 
@@ -334,19 +272,11 @@ accounted for only 15 percent of Internet use in a recent survey (CNNIC
 
 Thus, ethnic and gender differences in Internet use (Poster 1998; Sassen 1998, Chaps. 5 and 9) and the level of the country’s technological development increase inequality (Castells 1998, Chap. 2), and are compounded by societal development. In other words, because technological capabilities and all forms of capital differ across nations, inequality in social capital is growing fast and further in cybernetworks. Social class differences in accessing social capital in cybernetworks may be diminishing in advantaged societies, yet they may be increasing in disadvantaged societies. Take language as an example: computers, the Internet, and communication around the globe are dominated by the English language, ranging from the development of codes to routine user
 
-232
-
-Conceptual Extensions
-
 Figure 12.3 Percentage of U.S. households with e-mail by education, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
 
 commands. English-language countries, already advantaged through earlier industrial developments in the nineteenth and twentieth centuries, have continued to gain an advantage through the growing capabilities of computers and the Internet. It is true that other countries, due to their large populations (e.g., China), may develop their own linguistic cybercommunities, but the language gap will continue to increase the inequality of social capital in cybernetworks. Analysis of inequality of social capital inevitably relies on the comparison of subunits such as nations, regions, or communities. In this sense, traditional communities and national boundaries will remain meaningful so long as gaps in social capital remain significant along these lines.
 
 This divide involves more than the availability of technologies. As computers decrease in cost and satellite services begin to provide wide coverage around the world, the more demanding resources or the absence of capabilities to access cyberspace and cybernetworks such as
-
-Cybernetworks and the Global Village
-
-233
 
 Figure 12.4 Percentage of U.S. households with e-mail by relation, by rural, urban, and central city areas, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S.
 
@@ -357,10 +287,6 @@ and December 1998 Current Population Surveys) education, linguistic facilities, 
 3. The mixing of material and idea goods as social capital in cybernetworks is unprecedented. Information may be free, but the cost is exposure to imposed idea/material messages, especially commercial messages. While this cost is traditional, as it has been in printed media for centuries and in television for decades, the integration of economic and marketing messages in cybernetworks is much more thorough. There is no clear demarcation between senders and receivers of such mixed messages; all exchanges are potential (voluntary or involuntary) carriers of such messages. Although currently they are primarily commercial/
 
 material in nature, they may extend to political, religious, and other
-
-234
-
-Conceptual Extensions
 
 Figure 12.5 Percentage of U.S. households with e-mail by household type, 1994 and 1998. (From National Telecommunications and Information Administration [NTIA] and U.S. Census Bureau, U.S. Department of Commerce, using November 1994 and December 1998 Current Population Surveys)
 
@@ -383,10 +309,6 @@ There will be tremendous debates and implementation issues on the balance betwee
 In the economic and commercial sector, some national and international actions are being taken to address issues of property rights and 11 According to the Georgetown Internet Privacy Policy Study conducted in 1999, 94
 
 percent of the top 100 Web sites and 66 percent of all sampled Web sites surveyed had privacy policies. However, which policies are implemented and the consequences of these policies remain to be studied.
-
-236
-
-Conceptual Extensions
 
 regulations (e.g., taxation). On July 1, 1997, the Clinton administration issued A Framework for Global Electronic Commerce , presenting the U.S. government’s strategy to facilitate the growth of e-commerce.
 
@@ -420,10 +342,6 @@ This form of communication has begun to show a「correcting」trend if we take s
 
 to 35 million in 1999, an increase rate of 60 percent in less than two years. Gary Gabelhouse of Fairfield Research in Lincoln, Nebraska, reported ( USA Today , July 20, 1999) that TV viewing was down from four and a half hours daily in 1995 to about two hours in June 1999, when the survey of 1,000 U.S. adults was conducted. He stated,「People are shifting away from passive TV-style entertainment.」His data further showed that researching and communicating on the Internet, rather than
 
-238
-
-Conceptual Extensions
-
 being entertained, took up 70 percent of the average sixty-four minutes a day of online time. The term couch potato may still characterize certain age groups, but the fact that TV viewing time is down significantly on weekdays, after school and work (4:30–6 p.m.) – 17 percent less TV
 
 watching than other groups, and even during prime time (8–11 p.m.) (wired homes’ TV use was 6 percent less than that of others) – indicates that a new wired generation that clearly prefers to seek information and interactions through cybernetworks is quickly emerging.
@@ -436,7 +354,4 @@ As technology has already made it possible to create virtual reality (e.g., audi
 
 Will these developments further segregate the world into the haves and the have-nots? Analyses must evaluate these questions relative to different aspects of social capital (information, influence, social credentials, and reinforcement) and different outcomes (instrumental and expressive).
 
-Cybernetworks and the Global Village 239
-
 I suspect that the entire spectrum of the development and utility of all forms of capital can be examined on cybernetworks, which fundamentally are relations and embedded resources – a form of social capital. We need data on cybernetworks as global villages – the formation and development of social groups and social organizations (the villages), especially (1) how each group and territory is defined or undefined (closure versus openness); (2) how membership is claimed, defined, or acknowledged (i.e., residents and citizens); (3) what the membership is composed of (e.g., demographics: individuals, households, and clusters; age, gender, ethnicity, linguistics, socioeconomic assets); and (4) how resources are distributed within a village and across villages: class and inequality among villages. In short, then, much work is urgently needed to understand how cybernetworks build and segment social capital. The topics just mentioned will provide data that will allow scholars to understand new institutions and cultures as they emerge, as well as the interactions between human and social capital. Most importantly, I suggest, they will provide clues as to whether and how social capital may be outpacing personal capital in significance and effect, and how civil society, instead of dying, may be expanding and becoming global.
-
