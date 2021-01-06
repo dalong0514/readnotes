@@ -1,6 +1,6 @@
 Part II Conceptual Extensions
 
-# 0108. Social Capital and the Emergence of Social Structure
+# 0108. Social Capital and the Emergence of Social Structure: A Theory of Rational Choice
 
 This chapter1 focuses on the problem of how rational actions lead to social structure. So far in this monograph, the social capital theory has been developed and research undertaken to understand the meaningful-ness of actions within the context of social structure. That is, the theory has addressed the issue of actions while acknowledging and recognizing the a priori existence and effect of social structure. What I propose to explore in this chapter is the plausibility that actions may lead to social structure. That is, I seek to develop some theoretical arguments to answer the question of whether rationality based on resource maintenance or defense, as well as resource expansion and gain, allows us to better understand the rules of interaction and the formation of primary social groups (e.g., the primordial group). And further, whether consideration of social capital’s relative utility to personal capital offers the theoretical plausibility that rational actions may indeed lead to the emergence of social structure beyond the primordial group.
 
@@ -18,7 +18,23 @@ This chapter will follow some fundamental propositions concerning action and int
 
 Before we begin, it is useful to locate this problem in the context of theorization about social structure and action.
 
-Sociological Theorizing
+这一章 [1] 关注理性的行动如何导致了社会结构的生成。到目前为止，本书所闻述的社会资本理论与进行的研究都是在社会结构的背景内来理解行动的意义。也即，在承认社会结构的预先存在与影响的同时，理论已经提出了行动的问题。在这一章中我想提出来探讨的是行动是否可以导致结构的生成。我试着提出一些理论观点，来回答建立在资源维持或保护以及资源扩展或获得基础之上的理性，是否有助于我们更好地理解互动的规则与基本社会群体（如首要群体）的形成。从而进一步探讨，与个人资本相比，社会资本视角是否提供了一种似乎合理的理论解释：理性行动可能确实导致了超越首要群体（如家族）的社会结构的生成。
+
+这一章简述了行动如何导致社会结构生成的理论。我选择阐述这个过程，是因为它在理论上（逻辑上）先于论述结构与行动之间的相互依存和互为因果关系的过程。闻述了导致结构生成的行动问题之后，我们就接着论述结构与行动之间的相互依赖与互动问题（行动影响着结构，同时结构也影响着行动）。弄清社会结构的生成问题，有助于解决涉及到行动理论的其他重要问题：理性是什么，什么原则指导着行动和互动，以及为什么从这些行动和互动原则出发，可以推导出社会结构（群体和集体）的生成不仅是可能的，而且是不可避免的。
+
+我有三个基本观点。第一，面对有价值资源，理性行动具有多方面的动机。其中至少有两个是基本的：损失最小化和收益最大化。虽然经验上相关，但是这些计算是独立的，前者比后者具有优先性（参见第四章）。第二，这些计算和继承问题导致了资源转移的规则与首要群体（如家族）的优先性的形成。首要群体中的互动与集体行动，首先被维持和保护资源的情感所引导，其次被获得资源的需要所引导。第三，一般而言，社会资本（嵌入在社会关系中的资源）的效用大大超过了个人与人力资本的效用。在有价值资源缺乏的情况下，这种估计推动了超越首要群体的互动的扩展。一旦这些关系与交换形成，特定的集体规则随之形成。这些规则超越了参与互动的行动者原来的意图与利益，成为社会结构形成的基础。
+
+这一章上承第五章讨论的关于社会资本理论的行动与互动的一些基本命题，阐述首要群体的形成与重要性。然后，具体说明人力资本和社会资本的效用，社会资本的相对效用成为与首要群体以外的行动者互动和交换的动机。最后以对生成的社会结构的性质的进一步讨论为总结。这些探讨在本质上是推测性的，不免有些简略，不过这里的主要目的是提出主要论点和一组命题，为进一步详细述与评价作一个铺垫。
+
+在我们开始讨论之前，先将问题定位在社会结构与行动理论的背景之内。
+
+
+[1] 这一章的很大一部分经同意选自 Lin（1994a）。
+
+
+
+
+## 8.1 Sociological Theorizing
 
 One way to categorize theorization in sociology is to capture how a theory specifies its causing and consequent concepts relative to two levels of society: structure and actors. If these two levels constitute a dichotomy, a simple typology may look like the one presented in Table 8.1. This typology identifies four types of theory. A macrotheory specifies both cause and effect concepts at the structural level, while a microtheory posits a relationship between them at the actor level. A structural theory links causal structural concepts to effectual actor-level concepts, and an action theory hypothesizes structural effects of actor-level concepts.
 
@@ -62,7 +78,7 @@ An action theory faces the constant challenge to demonstrate whether and how eff
 
 「interdependent individual actions produce system (or collective) level outcomes.」
 
-Principles of Action: Minimization of Loss and Maximization of Gain
+## 8.2 Principles of Action: Minimization of Loss and Maximization of Gain
 
 The theory begins with two simple assumptions about motives for action: actions are primarily driven or motivated by the innate need for survival, and survival is seen as dependent upon the accumulation of valued resources. These assumptions regarding the motives (springs) for action require no further elaboration. What needs to be explored are the principles for action – choices and priority among choices. Again, for simplicity, I assume that action is driven by the desire to defend (maintain) resources or to seek (expand) resources.3 Action driven by resource defense is a calculation for minimizing resource loss (relative loss to cost).
 
@@ -80,7 +96,9 @@ Proposition 2: Gaining and expanding resources is the next primary motive for ac
 
 These propositions present two important arguments. First, minimization of loss and maximization of gain are two different functions rather than inverse functions of each other.5 They may involve different choices (what kind and how much of a resource) and therefore different preferences. Second, they form a ranked action set rather than a dichotomy. A series of actions may manifest two motives: minimizing loss and maximizing gain. Given the opportunity, actions are taken to fulfill both motives. However, when the actor must make a choice, preference is given to maintaining resources: the higher priority is given to the calculation that minimizes loss.
 
-Recognition and Profit: Principles of Interaction How would these two action principles implicate interactions? They would, first of all, suggest that interactions are engaged primarily for minimizing resource loss and secondarily for maximizing gain. An interaction following the principle of loss minimization strives to defend loss of resources to another actor. The best possible outcome is that there is no loss. If both actors employ the minimization principle, one local equilibrium is that both actors accept the no-loss outcome for both actors.
+## 8.3 Recognition and Profit: Principles of Interaction 
+
+How would these two action principles implicate interactions? They would, first of all, suggest that interactions are engaged primarily for minimizing resource loss and secondarily for maximizing gain. An interaction following the principle of loss minimization strives to defend loss of resources to another actor. The best possible outcome is that there is no loss. If both actors employ the minimization principle, one local equilibrium is that both actors accept the no-loss outcome for both actors.
 
 In social terminology, this outcome is a mutual recognition of each other’s claim to their respective resources – property rights.6 Recognition therefore is a cost to each actor in that ego abandons any challenge to the alter’s sovereignty over its resources.7 It is a minimal cost.
 
@@ -100,7 +118,7 @@ The element of recognition, I argue, is consistent with some concepts acknowledg
 
 I will skip further discussion of interactions based on the principle of maximization of gain, for they would merely reflect the usual economic calculations as developed extensively in the literature. What needs to be studied at this point is how these principles of action and interaction offer clues to the emergence of social structure.
 
-Succession and Transfer of Resources: The Primacy of the Primordial Group
+## 8.4 Succession and Transfer of Resources: The Primacy of the Primordial Group
 
 Human actions are further compounded by additional innate but prominent life circumstances: finality of life and reproductivity of life. Survival of an individual actor is limited in time. One possible consequence of an actor’s exit might be that all resources associated with the actor revert back to a pool for other actors to compete for. However, this strategy
 
@@ -118,7 +136,9 @@ Thus, recognition and legitimation considerations are given increasing priority 
 
 This last conclusion does not lead to another conclusion: that actions are not rational. If rationality is defined as the process of reasoning by way of calculation over choices, then it is clear, as argued earlier, that recognition and profit provide rational bases for interaction choices.
 
-Human Capital, Social Capital, and Social Network The need to minimize loss and maximize gain establishes two building blocks to understand interactions beyond the primordial group. However, we need to introduce another building block: consideration of 8 Elsewhere (Lin 1989), I discuss rules of transfer and types of resources transferred. There are variations in transfer rules within the context of family. For example, inheritance rules vary across societies, and there is no uniformity regarding unigeniture, primogeniture, or even-distribution principles, even though there seems to be a strong tendency toward male primacy. In the most interesting case, the Chinese traditional system uses split rules: primogeniture for authority inheritance but even distribution among sons for property inheritance. The resulting conflict and chaos, as well as the diminishing pooled resources, cannot be explained by any economic principles. Nor is the family group (pre-dominantly the primordial group in most systems) the only primordial group. A primordial group can be and has been constructed on other bases (e.g., ethnic, religious, and gender identities). These variations, however, do not affect subsequent arguments in the chapter.
+## 8.5 Human Capital, Social Capital, and Social Network 
+
+The need to minimize loss and maximize gain establishes two building blocks to understand interactions beyond the primordial group. However, we need to introduce another building block: consideration of 8 Elsewhere (Lin 1989), I discuss rules of transfer and types of resources transferred. There are variations in transfer rules within the context of family. For example, inheritance rules vary across societies, and there is no uniformity regarding unigeniture, primogeniture, or even-distribution principles, even though there seems to be a strong tendency toward male primacy. In the most interesting case, the Chinese traditional system uses split rules: primogeniture for authority inheritance but even distribution among sons for property inheritance. The resulting conflict and chaos, as well as the diminishing pooled resources, cannot be explained by any economic principles. Nor is the family group (pre-dominantly the primordial group in most systems) the only primordial group. A primordial group can be and has been constructed on other bases (e.g., ethnic, religious, and gender identities). These variations, however, do not affect subsequent arguments in the chapter.
 
 the relative utility of two kinds of resources, human capital and social capital.
 
@@ -160,7 +180,7 @@ An alternative to enslavement in the face of material scarcity is access to and 
 
 Such access is also entirely consistent with the motives for actions (minimizing loss and maximizing gain) and the principles of interactions (recognition and profit). Social capital can be mobilized to accomplish both purposes.
 
-The Emergence of Structure
+## 8.6 The Emergence of Structure
 
 Such access comes at an important cost – willingness and preparedness to reciprocate in terms of recognition and profit. There must be a commitment to provide one’s own resources as social capital to others. To ensure stable access to social capital and to demonstrate reciprocity, interactions are routinized – that is, social relations are formed. The maintenance of social relations is likewise based on the two rational principles specified in Propositions 1 and 2. Social capital is used primarily and is relied on to maintain, sustain, and defend one’s resources. It is used secondarily to gain additional resources. Legitimation guides reciprocity and the calculation process. The calculation is complicated by the fact that routinized social relations directly and indirectly involve
 
@@ -168,7 +188,7 @@ multiple actors and their primordial (and extended) groups. While such relations
 
 The multiplicity and complexity of routinized social relations demand increasing rules of recognition and legitimation. These rules recognize the basic right to human capital (property) and, at the same time, specify responsibilities and obligations for actors in the interacting network to contribute resources. Recognition, in fact, is an important way to overcome a possible cost of unequal exchanges – why someone in a higher social position and with richer resources would be engaged in repeated exchanges with someone in a lower social position and with poorer resources. I will elaborate on this function further in the next chapter.
 
-Collectivity and Public Capital
+## 8.7 Collectivity and Public Capital
 
 Once such social relations and sharing of resources are established and maintained, a collectivity is formed. A collectivity is an aggregation of actors and primordial groups bound together for the sharing of social capital. A collectivity can also decide to produce further resources that belong to the collectivity rather than to specific actors – the public capital . The persistence of a collectivity depends on a set of formal and informal rules governing actors relative to each other and to the access and use of shared resources. These rules establish differential obligations and rewards for member actors.
 
@@ -192,7 +212,7 @@ As the size of the collectivity increases, interactions become fragmented (local
 
 As a result, the proportion of collective obligations and responsibility overlapping with individual actors and their primordial groups decreases. Routinized recognition and legitimation will decrease in their utility to bind actors to the collectivity.
 
-Social Contracts
+## 8.8 Social Contracts
 
 To ensure that collective obligations and rewards are perceived as matched with those of member actors, structural problems of fragmentation and segmentation are overcome, loyalty and performance are exercised, and exits and free rides are minimized, a collectivity can develop and employ three strategies: (1) cultivate actors through education and acculturation to internalize collective obligations and rewards (Bourdieu and Passeron 1977; Marini 1992); (2) engage in mass campaigns promoting the identification of the actors with the attractiveness of shared resources and the collectivity (Putnam 1993); and (3) develop and enforce rules for forced compliance . Kelman’s (1961) discussion of the three processes (internalization, identification, and compliance) implies that these strategies form points along two axes. Compliance can be achieved with maximal speed but a minimal span of effect. When control is present, compliance is quickly achieved (e.g., war prisoner’s behaviors). But when it is absent or lifted, such behaviors will also quickly change or disappear. Internalization, on the other hand, takes the longest time to achieve, but the consequent behaviors presumably persist with minimal control. Discussion of the employment of these strategies is beyond the scope of this chapter. What needs to be emphasized is that each of these strategies entails the development of rules of engagement for actors in the collectivity. Further, agents and agencies of enforcement must be developed.
 
@@ -202,7 +222,7 @@ As scarcity of resources increases and the collectivity grows in size, the enfor
 
 These obligations, rewards, and opportunities form the basis of agency relative to the positions they occupy.
 
-Sources of Tension in Social Systems
+## 8.9 Sources of Tension in Social Systems
 
 Space does not permit further elaboration of the relationships between corporal (enforcing) actors and natural actors, the formalization of legitimation and profit rules in the realized social system, and the perpetual tension between loyalty and profit for a social system and its individual and corporal actors. However, I can point out several sources of tension in social systems that can develop. The most obvious one is the tension between human capital and public capital. Because of the ultimate survival instinct and the cost of accessing public capital, there is a much stronger tendency for a natural person to strive for human capital. A social system needs to strike a balance between providing opportunities for the participants to maintain and gain reasonable amounts of human capital and enforcing their willingness to produce and maintain public capital.
 
@@ -214,7 +234,7 @@ Still another source of tension is related to the system’s size. One consequen
 
 This creates a tendency for member actors to form subsets of relations with others who share resources of common interest and value. Special interests and lobbying efforts by the subsets of actors and collectivities competing for rules in their favor can tip the legitimacy of the rules regarding the distribution of shared, especially public, resources available to the system. As shared resources become relatively more scarce, these competitions, if unchecked or unresolved, may lead to fragmenta-tion of loyalty. Loyalty then shifts to groups or clusters within the system rather than embracing the structure as a whole, endangering the identity and continued existence of the system as a whole. How to maintain the structure while it continues to grow in size and faces increasingly shared resources is an issue no open social system can avoid (see a similar discussion in Coleman 1986a, 1986b).
 
-## Concluding Remarks
+## 8.10 Concluding Remarks
 
 In this chapter, I have proposed two types of rational principles for action, minimization of resource loss and maximization of gain, with the former claiming primacy. This position, in support of the primacy of action and the viability of rationality as a theoretical argument, challenges the exclusive use of the economic profit-maximization (or even profit-optimization) approach as the sole basis of accounting for human actions, interactions, and the functioning of social organizations. Further noneconomic but quite rational calculations naturally and logically flow from issues fundamentally linked to the nature of human life, such as reproduction and succession, sovereignty of property, and the need for recognition of such sovereignty – issues that any theory of human society cannot ignore but that the economic approach does.
 
@@ -232,23 +252,8 @@ Once a social system is in place, it inevitably becomes the dominant aspect of s
 
 Ultimately, a viable social theory must integrate both individual and structural elements. A comprehensive and balanced treatment of these two elements, I suspect, is the challenge sociologists must accept in order to offer theories that are both analytically and descriptively valid. In the next chapter, I will continue the line of theorization commenced in this chapter and pursue the issue of why recognition, rather than resource gain, is an important element in exchanges.
 
-这一章川关注理性的行动如何导致了社会结构的生成。到目前为止，本
-
-书所闻述的社会资本理论与进行的研究都是在社会结构的背景内来理解行动的意义。也即，在承认社会结构的预先存在与影响的同时，理论已经提出了行动的问题。在这一章中我想提出来探讨的是行动是否可以导致结构的生成。我试着提出一些理论观点，来回答建立在资源维持或保护以及资源扩展或获得基础之上的理性，是否有助于我们更好地理解互动的规则与基本社会群体（如首要群体）的形成。从而进一步探讨，与个人资本相比，社会资本视角是否提供了一种似乎合理的理论解释：理性行动可能确实导致了超越首要群体（如家族）的社会结构的生成。
-
-这一章简述了行动如何导致社会结构生成的理论。我选择阐述这个过程，是因为它在理论上（逻辑上）先于论述结构与行动之间的相互依存和互为因果关系的过程。闻述了导致结构生成的行动问题之后，我们就接着论述结构与行动之间的相互依赖与互动问题（行动影响着结构，同时结构也影响着行动）。弄清社会结构的生成问题，有助于解决涉及到行动理论的其他重要问题：理性是什么，什么原则指导着行动和互动，以及为什么从这些行动和互动原则出发，可以推导出社会结构（群体和集体）的生成不仅是可能的，而且是不可避免的。
-
-我有三个基本观点。第一，面对有价值资源，理性行动具有多方面的动机。其中至少有两个是基本的：损失最小化和收益最大化。虽然经验上相关，但
-
-[1 这一章的很大一部分经同意选自 Iin（1994a）。
 
 
-
-是这些计算是独立的，前者比后者具有优先性（参见第四章）。第二，这些计算和继承问题导致了资源转移的规则与首要群体（如家族）的优先性的形成。首要群体中的互动与集体行动，首先被维持和保护资源的情感所引导，其次被获得资源的需要所引导。第三，一般而言，社会资本（嵌入在社会关系中的资源）的效用大大超过了个人与人力资本的效用。在有价值资源缺乏的情况下，这种估计推动了超越首要群体的互动的扩展。一旦这些关系与交换形成，特定的集体规则随之形成。这些规则超越了参与互动的行动者原来的意图与利益，成为社会结构形成的基础。
-
-这一章上承第五章讨论的关于社会资本理论的行动与互动的一些基本命题，阐述首要群体的形成与重要性。然后，具体说明人力资本和社会资本的效用，社会资本的相对效用成为与首要群体以外的行动者互动和交换的动机。最后以对生成的社会结构的性质的进一步讨论为总结。这些探讨在本质上是推测性的，不免有些简略，不过这里的主要目的是提出主要论点和一组命题，为进一步详细述与评价作一个铺垫。
-
-在我们开始讨论之前，先将问题定位在社会结构与行动理论的背景之内
 
 社会学的理论说明
 
