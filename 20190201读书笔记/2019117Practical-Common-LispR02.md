@@ -1043,6 +1043,8 @@ While Common Lisp supports both these methods of extending the language, macros 
 
 Now, it may seem that the benefits of having another way to extend the language would be easy to recognize. But for some reason a lot of folks who haven't actually used Lisp macros -- folks who think nothing of spending their days creating new functional abstractions or defining hierarchies of classes to solve their programming problems -- get spooked by the idea of being able to define new syntactic abstractions. The most common cause of macrophobia seems to be bad experiences with other "macro" systems. Simple fear of the unknown no doubt plays a role, too. To avoid triggering any macrophobic reactions, I'll ease into the subject by discussing several of the standard control-construct macros defined by Common Lisp. These are some of the things that, if Lisp didn't have macros, would have to be built into the language core. When you use them, you don't have to care that they're implemented as macros, but they provide a good example of some of the things you can do with macros. 2 In the next chapter, I'll show you how you can define your own macros.
 
+2『这里有关 lisp 宏的信息补充进宏的术语卡片里。』——已完成
+
 1 To see what this misunderstanding looks like, find any longish Usenet thread cross-posted between comp.lang.lisp and any other comp.lang.* group with macro in the subject. A rough paraphrase goes like this: Lispnik: “Lisp is the best because of its macros!” Othernik: “You think Lisp is good because of macros?! But macros are horrible and evil; Lisp must be horrible and evil.”
 
 2 Another important class of language constructs that are defined using macros are all the definitional constructs such as DEFUN, DEFPARAMETER, DEFVAR, and others. In Chapter 24 you’ll define your own definitional macros that will allow you to concisely write code for reading and writing binary data.
@@ -1239,6 +1241,8 @@ Because the body of both DOLIST and DOTIMES loops can contain any kind of expres
 5 DOLIST is similar to Perl’s foreach or Python’s for. Java added a similar kind of loop construct with the “enhanced” for loop in Java 1.5, as part of JSR-201. Notice what a difference macros make. A Lisp programmer who notices a common pattern in their code can write a macro to give themselves a source-level abstraction of that pattern. A Java programmer who notices the same pattern has to convince Sun that this particular abstraction is worth adding to the language. Then Sun has to publish a JSR and convene an industry-wide “expert group” to hash everything out. That process — according to Sun — takes an average of 18 months. After that, the compiler writers all have to go upgrade their compilers to support the new feature. And even once the Java programmer’s favorite compiler supports the new version of Java, they probably still can’t use the new feature until they’re allowed to break source compatibility with older versions of Java. So an annoyance that Common Lisp programmers can resolve for themselves within five minutes plagues Java programmers for years.
 
 1『
+
+这时才发现，dolist 与 autolisp 里的函数 `mapcar` 以及 `foreach` 语句功能相当。（2021-01-07）
 
 在 autolisp 里也是使用的 `foreach` 语句。
 
