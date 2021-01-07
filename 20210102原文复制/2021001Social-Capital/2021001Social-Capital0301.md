@@ -2,6 +2,8 @@ Part III Epilogue
 
 # 0301. The Future of the Theory
 
+原书第十三章
+
 The present volume does not allow full treatment of all aspects of a social capital theory. The immediate future of such a theory depends on continuing refinement of both the theory itself and measurements of the concepts involved. As mentioned in the Preface, I chose to focus on the instrumental aspect of social capital and thus shortchanged its expressive aspect, not that my own research efforts have ignored the latter (Lin, Simeone, Ensel, and Kuo 1979; Lin, Dean, and Ensel 1986; Lin and Ensel 1989; Lin and Lai 1995; Lin and Peek 1999). 
 
 There is a substantial and thriving literature on the effects on mental health and the well-being of social support, social networks, and social resources. To do justice to the expressive aspect of social capital would require perhaps another monograph of comparable size. I also abbreviated the coverage of social capital as a collective asset, because my evaluation convinced me that its theoretical and research viability can be extrapolated from the formulations as outlined in this monograph rather than being treated as a separate and independent entity (see Chapters 2, 8, and 12). However, it is appropriate to use this last chapter to present, no matter how briefly, some thoughts on issues of theoretical integrations incorporating these aspects as well.

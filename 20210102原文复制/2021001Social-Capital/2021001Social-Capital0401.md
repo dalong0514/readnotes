@@ -3035,4 +3035,3 @@ Macro- and Microimplications
 References
 
 Index
-

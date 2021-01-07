@@ -1,5 +1,7 @@
 # 0205. Cybernetworks and the Global Village: The Rise of Social Capital
 
+原书第十二章
+
 One recent controversy in the study of social capital has been an issue raised by Putnam (1993, 1995a, 1995b): whether social capital has been on the decline in the United States for the past three or four decades.
 
 Putnam argues that there should be a positive association between social capital and political participation, and he measures social capital in terms of participation rates in social associations or secondary/tertiary associations such as PTAs, Red Cross associations, unions, church-affiliated groups, sports groups, and bowling leagues. Political participation is indicated by voting, writing to Congress, participating in rallies and political meetings, and so on. Putnam has observed that both participation rates have declined in the United States over the past thirty years or so. This has led him to conclude that social capital or civic engagement has been on the decline, and this decline might be responsible for a decline in democratic and political participation. Further, he suggests that the culprit may be the rise of television viewing. As television has gained popularity, the younger generations of Americans are no longer interested in participating in civil associations. Indeed, he suggests, even when they go bowling, they may bowl as individuals rather than as groups or leagues.

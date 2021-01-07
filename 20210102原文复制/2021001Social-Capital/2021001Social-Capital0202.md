@@ -1,10 +1,14 @@
-# Reputation and Social Capital
+# 0202. Reputation and Social Capital: The Rational Basis for Social Exchange
 
-The Rational Basis for Social Exchange
+原书第九章
 
 This chapter continues the dialogue on action and social structure initiated in the previous chapter. As has been pointed out, the multiplicity and complexity of routinized social relations in a collectivity demand increasing rules of recognition and legitimation that recognize the basic right to human capital (property) while at the same time specifying responsibilities and obligations for actors contributing resources. Thus, recognition was also suggested as an important process for individual actors overcoming possible costs to unequal exchanges – why someone higher in social position and richer in resources would be engaged in repeated exchanges with someone lower in social position and poorer in resources. How this process operates at the interactional level has not been articulated. What needs to be understood is that unequal transactions in exchanges can and do occur because there are payoffs for the actors who give more resources than they receive and why this is somewhat related to recognition. This chapter will focus on this issue. I will set aside the legitimation issue and concentrate on the social process of recognition and its significance in exchange – a process of repeated interactions between actors and the fundamental building block of a collectivity.
 
-Exchange: Social and Economic Elements
+这一章继续前一章所展开的关于行动与社会结构之间的对话。前面已经指出，集体中例行化的社会关系的多样性与复杂性越来越需要认可与合法化的规则，来承认人力资本（财产）的基本权利，同时明确说明提供资源的行动者的责任与义务。因此，认可也是个体行动者克服不平等交换中的可能成本的一个重要过程。
+
+为什么社会地位较高、资源丰富的人会多次与社会地位较低、资源贫乏的人互动呢？这个过程是如何在互动层次上展开的还没有被阐释清楚。需要解释的是交换中可能而且确实发生的不平等交易。给出资源比收到资源多的行动者也有报偿，这报偿为什么会与认可联系起来。这一章将关注这个问题。我先把合法化问题放在一边，将精力集中在认可的社会过程与它在交换中的重要性上 —— 行动者与集体的基本要素之间重复互动的过程。
+
+## 2.1 Exchange: Social and Economic Elements
 
 Exchange , a central concept in sociological analysis, can be defined as a series of interactions between two (or more) actors in which a transaction of resources takes place. By this definition, exchange has two central components: it requires a relationship between the actors, and it leads to resource transaction. Thus, exchange is social in that the relationship can be seen as interactions (Simmel 1950) in which the action of one actor during the process takes into account the action of the other 143
 
@@ -18,8 +22,6 @@ Both types of action are based on consciously regulated comparison and choice �
 
 This line of argument was brought home forcefully by George Homans (1958), who clearly stated this position:「Interaction between persons is an exchange of goods, material and nonmaterial. An incidental advantage of an exchange theory is that it might bring sociology closer to economics – that science of man most advanced, most capable of application, and, intellectually, most isolated」(p. 597). For Homans, social behavior or exchange1 focuses on the gain (value) and cost for an actor in the transaction;「the problem of the elementary sociology is to state propositions relating the variations in the values and costs of each man to his frequency distribution of behavior among alternatives, where the value (in the mathematical sense) taken by these variables for one man determine in part their values for the other」(p. 598). Thus, the interest of two actors in continuing the interactions or the relationship is con-1 Homans sees social behavior「as an exchange of activity, tangible or intangible, and more or less rewarding or costly, between at least two persons」(1958 and 1961, p. 13).
 
-Reputation and Social Capital 145
-
 tingent on the relative utility or payoff to each in each transaction. Interest in the relationship diminishes as the relative payoff (the marginal utility) decreases. It is logical, therefore, for Homans to argue that「the principles of elementary economics are perfectly reconcilable with those of elementary social behavior, once the special conditions in which each applies are taken into account」(1961, p. 68).
 
 Blau’s (1964) work on exchange also reflects this emphasis. While admitting that social exchange may follow from social attractions, a primitive psychological tendency left as exogenous,2 the major theoretical focus of his analysis is the linkage between transactions in exchanges and distribution of power. When an actor (ego) is unwilling or unable to reciprocate3 transactions of equal value in an exchange with another actor (alter), one choice available to ego to maintain the relationship with the alter is to subordinate or comply with the alter’s wishes – the emergence of a power relationship (p. 22). Collective approval of power gives legitimacy to authority, the backbone of social organizations. Thus, in Blau’s theoretical scheme, patterns of transactions dictate patterns of relationships, and this fundamental microstructural process evokes, though not necessarily explains, the much more complex macrostructural (organizational) process.
@@ -29,10 +31,6 @@ Coleman (1990) carried this analysis further in his theory of social action, in 
 By now, the sociological explication of the process of exchange seems to have fulfilled Homan’s prophecy or design that sociology is being brought very close, if not identical, to the economic stance on the centrality of rational choices in economic behaviors. That is, given choices in the marketplace, an actor will choose a transaction to maximize his 2「The basic social processes that govern associations among men have their roots in primitive psychological processes, such as those underlying the feelings of attraction between individuals and their desires for various kinds of rewards. These psychological tendencies are primitive only in respect to our subject matter, that is, they are taken as given without further inquiry into the motivating forces that produce them, for our concern is with the social forces that emanate from them」(Blau 1964, p. 19).
 
 3 Reciprocity, in this case and in many other sociological works, implies balanced exchange or transactions of equal value (e.g., in price or money). This requirement for interaction goes beyond Weber’s original conceptualization about social action, which only requires taking the other actor’s interests into consideration. In that context, reciprocity does not require balanced exchange.
-
-146
-
-Conceptual Extensions
 
 or her profit (e.g., more reward at less cost). Neo-classical economists have realized that certain assumptions of this profit-seeking theory are not likely to be met in reality (a perfect market, full information, and open competition), and have proceeded to specify conditions or institutions (bounded rationality, transaction costs) under which profit-seeking behavior may be moderated (see Williamson 1975; Coase 1984; North 1990). Many of the same arguments and conditions have been adopted by sociologists in analyzing organizational behaviors, power relationships, institutions, and social network and social exchange under the general rubrics of neo-institutionalism or economic sociology.
 
@@ -46,8 +44,6 @@ Among the sociologists, Comte (1848) spoke of subordinating personal to social c
 
 How are the two perspectives on exchanges to be reconciled? Several positions have been taken. One approach simply dismisses the significance of relationships in that any particular relationship is subjected to the decision-making choice of maximizing or optimizing profit. When a relationship generates a profit in transactions, it may be maintained;
 
-Reputation and Social Capital 147
-
 when it does not, it is discarded. However, most neo-classical economists and their sociological allies take a moderate position, treating relations as the necessary「transaction cost」or「calculative trust」(Williamson 1985, 1993) in an imperfect market and under the condition of incomplete information. In this modified position, the relationship is recognized but is clearly subsumed under the transactional analysis.
 
 Alternatively, those relationship-inclined scholars have argued that relationships are necessary and significant because not all behaviors and interactions are rational. This argument agrees that economic behavior follows the principle of rational choices, but it points out that not all behaviors are economic and thus rational. Social attractions and attach-ments are primitive survival instincts rather than the result of a calculation of gains and losses in alternatives. The problem here is that rational choices are seen as natural tendencies: rewards or reinforcements elicit actions and transactions, and the fittest survive. Consciousness or unconsciousness is irrelevant, as this principle applies to pigeons as well as to humans (Homans 1961, p. 80). Carrying this analysis further, it becomes problematic why some instincts are rational and others are not.
@@ -58,31 +54,19 @@ Because human beings take into account each other’s interests in interactions 
 
 Another subargument is that human beings need trust (Luhmann 1979; Barber 1983; Misztal 1996). Trust may be defined as confidence or expectation that an alter will take ego’s interests into account in exchanges. It represents faith that an event or action will or will not occur, and such faith is expected to be mutual in repeated exchanges.
 
-It is faith in morality, Misztal (1996) argues, that trust serves three
-
-148
-
-Conceptual Extensions
-
-functions: it promotes social stability (as a habitus), social cohesion (friendships), and collaborations. In other words, its motive is to maintain a group or community. Durkheim (1973) suggested that feelings of obligation and altruism as well as moral pressure, which restrains egoistic behavior, are the bases of solidarity.「Men cannot live together without acknowledging, and, consequently, making mutual sacrifices, without tying themselves to one another with strong, durable bonds」
+It is faith in morality, Misztal (1996) argues, that trust serves three functions: it promotes social stability (as a habitus), social cohesion (friendships), and collaborations. In other words, its motive is to maintain a group or community. Durkheim (1973) suggested that feelings of obligation and altruism as well as moral pressure, which restrains egoistic behavior, are the bases of solidarity.「Men cannot live together without acknowledging, and, consequently, making mutual sacrifices, without tying themselves to one another with strong, durable bonds」
 
 (Durkheim, 1964, p. 228). Durkheim strongly asserted the existence of a moral element in social life, which may entail the sacrifice of rewards, in quality and/or quality, on the part of the actors.
 
 If solidarity and community are fundamental elements in human survival, why can they not be based on rational choices or economic behaviors? Simmel attempted one response, positing that exchange involves「a sacrifice in return for a gain」(Simmel 1971, p. 51) and that exchange is
 
-「one of the functions that creates an inner bond between people – a society, in place of a mere collection of individuals」(Simmel 1978, p.
-
-175). He adds,「Without the general trust that people have in each other, society itself would disintegrate, for very few relationships are based entirely upon what is known with certainty about another person, and very few relationships would endure if trust were not as strong as, or stronger than, rational proof or personal observation」(Simmel 1978, pp. 178–179). The functioning of complex societies depends on a multitude of promises, contracts, and arrangements. Since「the single individual cannot trace and verify their roots at all,」we must「take them on faith」(Simmel 1950, p. 313). Faithfulness , or loyalty , refers to the feeling of「preservation of the relationship to the other」(1950, p. 387).
+「one of the functions that creates an inner bond between people – a society, in place of a mere collection of individuals」(Simmel 1978, p.175). He adds,「Without the general trust that people have in each other, society itself would disintegrate, for very few relationships are based entirely upon what is known with certainty about another person, and very few relationships would endure if trust were not as strong as, or stronger than, rational proof or personal observation」(Simmel 1978, pp. 178–179). The functioning of complex societies depends on a multitude of promises, contracts, and arrangements. Since「the single individual cannot trace and verify their roots at all,」we must「take them on faith」(Simmel 1950, p. 313). Faithfulness , or loyalty , refers to the feeling of「preservation of the relationship to the other」(1950, p. 387).
 
 This need for rules of interaction and trust in complex modern society is clearly demonstrated in Parsons’s proposal that trust is the basis for legitimating power to achieve collective goals and societal integration (Parsons 1963). Hechter’s (1983) analysis of group solidarity also advances the rational basis for collectivity.
 
-Luhmann (1988) further elaborates Parsons’s media theory and his concept of symbolic generalization. Trust is seen as one of the generalized media of communication (others being love, money, and power), and as such reduces the complexity of the world faced by the individual actor by providing the capacity for「intersubjective transmission of acts of selection over shorter or longer chains」(Luhmann 1979, p. 49). But Misztal points out that「Luhmann is less forthcoming on the issue of how this function of trust helps to explain the actual formation of trust」
-
-(1996, p. 74).
+Luhmann (1988) further elaborates Parsons’s media theory and his concept of symbolic generalization. Trust is seen as one of the generalized media of communication (others being love, money, and power), and as such reduces the complexity of the world faced by the individual actor by providing the capacity for「intersubjective transmission of acts of selection over shorter or longer chains」(Luhmann 1979, p. 49). But Misztal points out that「Luhmann is less forthcoming on the issue of how this function of trust helps to explain the actual formation of trust」(1996, p. 74).
 
 The explanatory basis for trust, then, is the need in a complex society for individuals to rely on rules that are accepted by many people and that guide both interpersonal and impersonal exchanges – the institutions. Without such consensual rules and trust in them, societal func-
-
-Reputation and Social Capital 149
 
 tioning would cease. But Homans reminds us that「institutions, as explicit rules governing the behavior of many people, are obeyed because rewards other than the primary ones come to be gotten by obeying them, but that these other rewards cannot do the work alone. Sooner or later the primary rewards must be provided. Institutions do not keep on going forever of their own momentum」(1961, pp. 382–383). By primary rewards , of course, Homans is referring to basic individual needs for profits. Misztal agreed:「In Parsons’ theory the significance of trust as a single explanatory device is clearly overstated. The notion of trust, used as a substitute for familiarity, conformity and symbolic legitimation, does not provide us with an effective instrument with which to analyze social reality」(1996, p. 72). According to Williamson (1985), unless cooperation also serves an egoistic motivation, the practices of cooperation will be unstable. This means that a social order based on trust not grounded in self-interest will be unpredictable and unstable; for this reason, trust is not always functional.
 
@@ -90,17 +74,59 @@ In summary, none of the arguments thus far that defend the significance of relat
 
 As long as such calculations and choices are made, the process is considered rational. Further, I assume that these calculations and choices are based on self-interest. This assumption does not rule out considerations of collective interest. What is assumed is that collective interest comes into the calculation only when it is embedded in self-interest; there is a self gain if the collective interest is served. What is not assumed is that collective interest, excluding self-interest, drives calculations and choices.
 
-Transactional and Relational Rationalities
+交换：社会要素与经济要素
+
+
+
+
+
+
+
+交換是社会学分析的一个中心概念，可以定义为两个（或更多）行动者之间进行资源交易的一系列互动。根据这个定义，交换有两个核心要素：它要求行动者之间具有一定的关系；它导致了资源交易。这样交换具有社会性，因为关系可以视为互动（Simmel, 1950），在互动过程中一个行动者要考虑另一个（些）行动者的行动（Weber, 1947, pp11-115）。这个过程具有经济性，因为资源交易是一种典型的经济行动。因此，引起两个行动者之间产生关系与进行资源交易的基本交换包含着社会性的要素与经济性的要素。在这里将交换的关系方面称为社会换，交易方面称为经济交换是很有用的。
+
+由于交换的社会要素与经济要素通常是同时出现的，因此这二者的区分在研究文献中经常很模糊。使用社会交一词是特別准确的，因为社会交换比社会互动更能反映出交换中所包含的资源交易要素。由于这个词很常用，那些在理论或研究图式中只关注其中一个要素的学者也使用社会交换这个概念。
+
+在关于社会交换的论文中，最先关注经济要素的是韦伯。韦伯指出了行动的四种类型（目标取向的、价值取向的、情感的和传统的行动），他集中分析了建立在对实现目标的手段进行计算的基础上的工具理性（或理性的目标取向）行动（Weber,1968, P25）。价值取向的行动是由对一些价值（本身即目的）伦理的、审美的、宗教的或其他不计后果的行为形式一的有意识的信仰所决定的。这两种类型的行动都是建立在有意识的比较与选择基础上也即理性基础之上的（Misztal,1996, p54）。这样，交换的交易方面进人了行动理性之中。
+
+乔治·翟曼斯（George Homans,1958）清楚、有力地说明了这个方向上的观点，他明确地陈述了立场：「人们之间的互动是一种商品、物质与非物质的交換。交换理论的一个附带优势是，它可能使社会学与经济学一人类最先进、应用性最强和在学术界最孤立的科学 一一 靠得更近。」（p597）霍曼斯认为，社会行为或交换关注行动者在交易中的收益（价值）与成本「社会学的基本问题是陈述将每一个人的收益和成本的变化与各种行为的频数分布联系起来的命题，对一个人而言，在各种行为中这些变量所决定的收益（在数学的意义上）也部分地决定着另ー个人的收益」（P598）。因此，两个行动者在持续的互动或关系中的利益一在每一次交易中每人的相对效用或报偿一是相依的。随着相对报偿（边际效用）的递减，关系中的利益也相应减少。因此霍曼斯的观点是符合逻辑的 一一 「一旦每一个原则所适应的特殊条件被考虑进去，基本的经济学原则与基本的社会行为原则是完全一致的」（Homans,1961, -68）。
+
+布劳（1964）有关交的著作也强调了这一点。虽然他承认社会交换可能源于社会吸引种外生的原始心理倾向，但是他主要关注的是交换中的交易与权力分配之间的联系。在与另一个行动者的交换中，如果行动者（自我）不愿意或不能进行等价的互惠刚交易，那么自我维持与他人的关系的一个选择是服从他人的意愿一权力关系的产生（Banu,1964, P22）。对权力的集体赞同赋予权威合法性，这是社会组织的基础。因此，在布劳的理论图式中，交易的类型规定着关系的类型，这个基本的微观结构过程引起了ー一尽管不必然解释了 一一 更复杂的宏观结构（组织）过程
+
+科尔曼（Coleman,1990）在其社会行动理论中将分析继续向前推进，他指出，社会交换是对资源（事件）有不同的利益与控制的行动者彼此（通过他们控制的资源的相对价值或权力）谈判的一个手段，以使他们对有利害关系的资源的控制最大化（一个新的均衡）（P134-135）。这个交换与权力之间的机制似乎非常类似于布劳的图式，但是科尔曼关注的是行动者在这个过程中的收益（对所需要的资源的控制）最大化。
+
+到目前为止，社会学对交换过程的解释似乎已经实现了霍曼斯的预言或设计：社会学正在靠近 一一 如果不是接近经济学将理性选择置于经济行为的中心地位的立场。也即，假定在市场中可以进行选择，一个行动者将会选择能使他或她的利润最大化的交易（例如，以较少的成本换取较多的报酬）。新古典经济学家已经认识到这种寻利理论（profit-seeking theory）的某些假定在现实中不可能被满足（完备市场、完全信息和开放竟争），开始具体闻述可能节制寻利行为的条件或制度（有限理性、交易成本）（参见 Williamson,1975: Coase,1984; North,1990）。很多相同的观点与条件已经被称为新制度主义或经济社会学的社会学家所采用，被他们用来分析组织行为、权力关系、制度以及社会网络与社会交换。
+
+然而，交换中的关系的重要性依然没有被忽视。人类学家从很早就开始注意到交换的关系方面，指出很多类型的交换并不是建立在经济或理性计算基础上的。例如，拉德克利夫·布朗（Radcliffe. - Brown,1952）将安达曼群岛上的交换描述为「一种道德的交换一给参与交换的两个人带来友好的感情」（P471）。马林诺夫斯基（Malinowski,1922）在分析特罗布里恩群岛的库拉交换（Kula exchanges）时，指出了经济交换与社会交换之间的巨大区别，「（交换的）真正报酬在于他的位置赋予他的声望、权力和特权」（p61）。列维一斯特劳斯（Levi- Strauss1949）在论证自己的观点时列举了莫斯（Mauss）弗思（Firh）和其他人类学家的研究，指出包括经济交易在内的交换是「另个秩序世界的媒介与工具：影响、权力、同情、地位、情感」，「是交换本身而不是交换物真正具有意义」（Levi-straus1969, p-139）。例如，礼物是在行动者之间进行交换的，在圣诞节时给自己买一个礼物是毫无意义的（Ekeh,1974, P.47）。
+
+在社会学家中，孔德（Comte,1848）提出个人的考虑要服从社会的考虑，涂尔干（Durkheim）驳斥了斯宾塞（Spencer）关于社会群体发展的经济学假定。这些学者都没有否定社会交换中含有经济交易，但是他们也强调了社会交换的超个人性（Ievi-strauss）与超经济性（Radcliffe-brown,1952）以及关系的重要性。每一种图式都论证到，社会交换的关系取向表现在具体行动者的交换承诺中而不是在交易的具体资源的功用上。
+
+如何协调交换的这两个视角？可以采取以下几种立场。其一，完全不考虑关系的重要性，因为任何特定的关系都服务于利润最大化或最优化的决策选择。当关系能够在交易中产生利润的时候，它可以被维持；如果不能，它会被抛弃。但是大多数新古典经济学家和他们的社会学同行采取了一种调和的立场，将关系视为不完备市场与不完全竞争信息条件下所必需付出的「交易成本」或「计算性信任」（calculative trust）（Williamson,1985,1993）。这个修正的立场承认关系的存在，但是明确地将其置于交易成本的分析框架之内
+
+其二，那些关系倾向的学者认为关系是必要的、重要的，因为并不是所有的行为与互动都是理性的。这个观点承认经济行为遵循着理性选择原则，但是指出并不是所有的行为都是经济的、理性的。社会吸引和依恋是原始的生存本能，而不是对选择的收益与损失计算的结果。这里的问题是，理性选择被视为自然的倾向奖赏或强化引起了行动与互动，导致了适者生存意识或无意识是不重要的，因为这个原则既适应于鸽子，又适应于人类 Homans,1961, p80）。进一步向前推进这个分析就会出现问题，为什么一些本能是理性的而另一些却不是。
+
+还有一种观点承认理性有时侯隐含地而不是明显地适应于社会交换，但是这种理性是理性原则而不是个人的寻利动机。因为人类在互动与交换中要考虑彼此的利益，所以关系的维持可能是为了适应这个理性。沿着这条推线索有很多子观点。有两种观点似乎在文献中很流行。一种观点认为社会赞同、尊敬、喜爱、吸引，诸如此类是交换的重要动机。在交易明显不均衡的交换中，对吃亏」一方的回报可能是另一方的赞同、尊故、喜爱或吸引。在这种情况下，这些符号性的报酬而不是通常与经济交换相联系的物质性报酬（与一般化的媒介一货币）成为有意义的报酬。然而，对于霍曼斯、布劳和科尔曼而言，这些报酬只是在种类上的差别，而不是本质的不同。无论是物质的还是符号的，只要它们代表着价值（或利润或利益），就都属于理性计算部分。此外，社会交换的理论并不关心这些价值是如何发展而来的。
+
+另一个子观点是，人类需要信任（Luhmann,1979, Barber,1983, Misztal 1996）。信任可以定义为对他人在交换中会考虑到自我的利益的信心或期待。它代表着对一个事件或行动将会发生或不会发生的信念，这种信念是在重复的交换中被相互期待的。它是对道徳的信念，米茨塔尔（1996）认为信任履行着三个功能：它促进了社会稳定（作为惯习）、社会凝聚（友谊）与合作。换言之、它的目的是维持一个群体或社区的存在与持续。涂尔干（1973）指出，义务与利他主义的感情以及约束自我行为的道徳压力是团结的基础。「不接受、不相互作出牺牲，不彼此尽力维持牢固的、持久的组带，人类就不能生活在一起」（Durkheim,1964, P228）。涂尔于坚信社会生活中道德要素的存在，这可能需要行动者在报酬的质量和数量上作出牺牲。
+
+如果团结与共同体是人类生存的基本要素，为什么它们不能建立在理性选择或经济行为的基础上？齐美尔（Simmel）试着作出了回答，他认为交换涉及到「对回报收益的牺牲」（Simmel,1971, p51），「交换的功能之一是在人们之间创造一个内在的组帯 一一 形成一个社会，而不只是个人的集合」（Simmel,1978, p175）。他补充道、「如果人们之间没有通常的信任，社会本身将会瓦解，因为非常少的关系是建立在对另一个人完全了解的基础上的，如果信任不与理性的证据或者个人的观察一样强、或更强，很少有关系会持久下去」（Simmel,1978, P178-179）。复杂社会的运行依赖于很多的承诺、契约和安排。因为「单一的个人根本不能追溯与证明自己的历史」，我们必须「信以为真」（Simmel,1950, p.313）。忠诚指「与另一个人保持关系」（1950, P387）的感情。帕森斯清晰地论证了复杂的现代社会对互动与信任规则的需要。他提出，信任是为集体目标与社会整合的实现提供合法化权力的基础（Parsons,1963）。赫克特（Hechter,1983）在分析群体团结时也论述了集体的理性基础。
+
+卢曼（Luhmann,1988）进一步阐述了帕森斯的媒介理论与符号一般化的概念。信任被视为沟通的一个一般化的媒介（其他的是爱、货币和权力它为行动者提供了「在主体通过选择或短或长的链条来传递行动」的能力，从而降低了个体行动者所面对的世界的复杂性（Luhmann,1979, p-49）。但是米茨塔尔指出，「卢曼并没有直接论述信任的功能如何有助于解释信任的实际形成问题」（Misztal,199, p.74）。
+
+信任的解释基础是复杂社会中的个人对规则的依靠的需要，这些规则被很多人所接受并且指导着人际间的、非个人间的交换。这也就是制度。没有这些达成共识的规则与对它们的相信，社会将会停止运行。但是霍曼斯提醒我们，「制度是规范很多人的行为的明确的规则，它被遵守的原因是由此可以获得奖赏，但不是原始性奖赏，这些其他的奖赏不能独自起作用。原始性奖赏迟早要被提供。制度不能永远保持自己的势头」（Homans,1961, Pp382 383）。霍曼斯用原始性奖賞来指代个体对利润的基本需要。米茨塔尔表示同意：「在帕森斯的理论中，信任作为单一的解释手段的重要性显然被扩大了。用信任的概念来代替熟悉、遵从与符号的合法化的做法是不可行的，因为它并不能给我们提供一个有效的工具来分析社会现实」（Misztal,1996, p72）。按照威廉姆森（Wiliamson,1985）的观点，除非合作也符合自我的动机，否则合作将会不稳定。这意味着一个建立在信任而不是有根基的自我利益基础上的社会秩序是难以预测的、不稳定的。由于这个原因，信任不总是起作用的。
+
+总之，当交易理性被提出来之后，所有有关对交换中关系再进一步分析的观点，都不能令人满意。这一章的剩余部分我要提出来的是论述交换中的关系的重要性的另一种尝试。我的论述从理性前提开始 一一 理性应该用作理论发展的基础。理性不是与无意识行为相对的有意识行为。它不依靠一些规范或制度，这些是后来才出现的。它也不是建立在对长时期内最终的交易均衡的期待的基础之上（如重复的交易将会使收益与损失之间出现均衡）（参见霍曼斯对这些将基本的社会行为视为理性的观点的驳斥；Homans,1961 Pp.80-81）。这里简单地说，交换是一个涉及到两个行动者的过程，他们的行动建立在对收益与损失的计算以及对进行关系还是进行交易的选择的基础之上。只要做过计算与选择，这个过程就被认为是理性的。此外，我假定这些计算和选择是建立在自我利益的基础之上的。这个假定没有排除对集体利益的考虑。我假定的是只有当集体利益嵌入到自我利益之中的时侯，集体利益才会被考虑，这样如果集体利益实现了，自我也会有收益。我没有假定排除自我利益的集体利益在驱动着计算和选择。
+
+[1 霍曼斯将社会行为视为「至少两个人之间的有形的或无形的、或多或少有报偿的或有代价的交换活动」（Homans,1958 和 1961, p13）。
+
+[2「支配着人类之间进行交往的基本社会过程植根于原始的心理过程，如那些引起个人之间相互吸引的感情和对各种奖赏的欲求的心理过程。这些心理倾向就我们所讨论的主题而言是原始的，也即它们是预先给定的，不需要进一步寻找激发它们产生的因素，因为我们关心的是源于它们的社会力量」（Blau,1964, p-19）。
+
+[3」在这里以及许多其他社会学著作中，互惠表示均衡交换或者等价（如价格或货币）交易。这个互动的要求超出了韦伯最初关于社会行动的定义。在那里，互惠并不要求交换达到均衡。
+
+## 2.2 Transactional and Relational Rationalities
 
 The critical element, instead, is the ultimate payoff: the kinds of rewards or resources that sustain or interrupt relationships and/or transactions.
 
-There are two ultimate (or primitive) rewards for human beings in a
-
-150
-
-Conceptual Extensions
-
-social structure: economic standing and social standing.4 Economic standing is based on the accumulation and distribution of wealth (as indicated by commodities and their symbolic value representations, such as money), and social standing is based on the accumulation and distribution of reputation (as indicated by the extent of recognition in social networks and collectivities).5 Each standing reflects the ranking of an individual relative to others in the structure over the command of the
+There are two ultimate (or primitive) rewards for human beings in a social structure: economic standing and social standing.4 Economic standing is based on the accumulation and distribution of wealth (as indicated by commodities and their symbolic value representations, such as money), and social standing is based on the accumulation and distribution of reputation (as indicated by the extent of recognition in social networks and collectivities).5 Each standing reflects the ranking of an individual relative to others in the structure over the command of the
 
 「capital」concerned. Wealth, therefore, is a functional calculus of the worth of commodities in terms of their value representation, money; reputation is a functional calculus of the worth of public awareness in social networks in terms of its value representation, recognition. Wealth is indicative of economic capital because the commodities and their value representation can be invested to generate certain returns. Likewise, reputation reflects social capital because the social networks and their value representation can be mobilized to generate certain returns. Through reputation, it becomes possible to mobilize the support of others for both instrumental and expressive actions. It is the capacity of resource mobilization through social ties, or social capital, that makes social relationships a powerful motivation for individual actors to engage in exchanges.
 
@@ -112,11 +138,29 @@ Thus, transactional rationality drives the calculations of transactional gains a
 
 5 The usual indicators of social standing include status (for position) and prestige (for occupant) (see Table 3.1 in Chapter 3). I adopt the more general term reputation to capture both, as overall esteem given to an actor by others.
 
-Reputation and Social Capital 151
-
 tions. Relational rationality favors the maintenance and promotion of the relationship even when the transactions are less than optimal. Transactional rationality favors the optimal outcome of transactions even if it is necessary to terminate specific relations. While both rationalities are enacted by actors in most exchanges, for a given society at a particular time, institutions favor one rationality over the other, allowing moral judgment on the relative merits of one type of capital (economic or social) over the other. The remainder of this chapter will elaborate on these arguments.
 
-Relational Rationality Elaborated
+交易理性与关系理性
+
+关键的要素是最终的报偿一维持或中断关系和交易的各种报酬或资源。对人类而言，社会结构中存在着两类最终的（或原始的）报酬：经济地
+
+位和社会地位。经济地位是建立在财富（商品和它们的符号价值表示，如货币）的积累和分配基础上的，社会地位是建立在名声（由社会络和集体的认可程度来表示）的积累和分配基础上的。每一种地位都反映了个体相对于结构中的其他人在支配相关「资本」上的等级。财富是以货币为价值表现形式的商品价值的函数计算；名声是以认可为价值的表现形式的社会网络中的公共意识价值的函数计算。财富是经济资本的象征，因为商品和它们的价值表现物可以用来投资产生某种回报。同样，名声代表着社会资本，因为社会网络和它们的价值表现物也可以被动员起来产生某种回报。行动者在工具性和表达性行动中可以通过名声来动员他人的支持。通过社会关系进行资源动员的能力或者说社会资本，使社会关系的获得成为个体行动者参与交换的强烈动机。经济地位和社会地位都提高了个体在结构中的权力和影响（对其他成员而言），也有利于个体的心理健康和身体健康。
+
+经济地位和社会地位是互补的，因为前者需要社会对它的符号价值（货币）进行合法化和强制推行，后者的名声维持是建立在群体的经济福利（或者网络中的嵌入性资源）基础之上的。没有社会的强制，经济地位会坍塌；没有集体财富，社会地位也是没有意义的。但是在交换中，可以将获取每一种地位的动机视为独立的。可以通过交换获取经济资本（通过交易获得资源）或社会资本（通过社会关系获得资源）。
+
+因此，交易理性驱动着行动者对交换中的交易收益和成本进行计算，而关系理性推动着行动者对关系收益和成本进行计算。交易理性将关系视为交易收益一损失计算的一部分，关系理性将交易视为关系成本一收益计算的部分。关系理性即使在交易不是最优化的情况下，也会维持和促进关系。而
+
+4 第三种报酬 一一 政治地位（或权力）也很重要，但可能不是与其他两种报酬一样原始。权力或合法化的过程，反映了维持或获得其他两种原始报酬的过程。财富、声望和权力（合法化）之间的关系出现在前一章和本章的讨论中。
+
+[5 社会地位的指标通常包括地位（对位置而言）和声望（prestage）（对占据者而言）（参见第三章表 31）。我采用更一般的词一名声（reputaton）作为他人给予行动者的整体的尊敬，以涵盖这两者。
+
+
+
+交易理性即使在必须中断某种关系的情况下，也会致力于交易结果的最优化。虽然这两种理性在大多数交换中都会被行动者付诸实践，但是在一个特定的时间内的特定社会中，制度更有利于其中的一种理性，对这一种类型的资本（经济的或社会的）的相对优点存在着道徳判断。下面我会闻述这些观点。
+
+
+
+## 2.3 Relational Rationality Elaborated
 
 It seems intuitive, due to natural law and natural instinct, to understand the argument of transactional rationality – gain over cost in transactions and maintenance and accumulation of resources through transactions.
 
@@ -128,10 +172,6 @@ In social exchanges where persistent relationships take on significance, episodi
 
 However, even in repeated transactions in a finite time frame, balanced transactions are not required. The critical element in maintaining relationships between partners is social credits (and social debts). In a persistent relationship where transactions are not symmetric even in the long run, the engaging actors are engaging in an ever greater creditor–debtor relationship – the tendency of one actor to give favors to another in imbalanced transactions. While the debtor gains, why would the creditor want to maintain the relationship and thus suffer transactionally? It is argued that the crediting actor gains social capital in maintaining the relationship. How? Presumably the creditor could call on (or threaten) the debtor to repay the debt. But so long as the creditor does not make such a demand, the debtor is perpetually indebted to the creditor. To be able to maintain the relationship with the creditor, the debtor is expected to take certain social actions to reduce the relational cost (or increase the utility of exchanges) for the creditor. That is, the debtor should
 
-152
-
-Conceptual Extensions
-
 propagate to others through his or her social ties his or her indebtedness to the creditor – a social recognition of credit–debt transactions, or social credit given to the creditor. Propagation of indebtedness, or social recognition , is a necessary action on the debtor’s part for maintaining the relationship with the creditor. It leads to greater visibility of the creditor in the larger social network or community, and it increases general awareness (his or her reputation) as an actor who is willing to take a transactional loss in order to sustain the well-being of another actor in the community. The greater the social debt, the greater the need for the debtor to make an effort to disseminate (recognize) the indebtedness.
 
 From the creditor’s point of view, imbalanced transactions promote the creditor–debtor relationship and the propensity to generate recognition.
@@ -142,10 +182,6 @@ In a mass society, recognition can be accelerated with the use of public media a
 
 Reputation, then, is defined as a function of (1) the creditor’s ability to sustain unequal transactions (human and social capital), (2) the persisting credit–debt relationship, (3) the debtor’s propensity (willingness and ability) to acknowledge the relationship through his or her social networks (recognition), and (4) the propensity (size) of the social networks (and generalized network – the mass network) to relay and spread recognition.6 Reputation, then, is the aggregate asset of recognitions 6 Another element, density of the network or strength of relations among actors, may also figure in the formulation of reputation. However, the association is not necessarily a linear one (either positive [the denser the network, the more likely recognition will spread] or negative [the sparser the network, the more likely it will spread]), as rumors do spread (Burt 1998b), sometimes quickly in less dense networks, as presumably more bridges become available. Because of the uncertainty in the association, I have left it out of the present formulation. Further research may identify the proper form of association, if any.
 
-Reputation and Social Capital
-
-153
-
 Figure 9.1 From social exchanges to capitalization.
 
 received. It is a function of the extent to which one receives recognition in a social group. Collectively, a group’s reputation is defined as the number of reputed actors in the group and the extent to which recognition is shared by the members known in other groups. Thus, the reputation of actors in social networks and a social group promotes the collective reputation of the social group.
@@ -153,10 +189,6 @@ received. It is a function of the extent to which one receives recognition in a 
 Social credits, recognition, and reputation are all relationally and structurally based utilities. Without persistent social relations, these profits vanish. It is therefore rational for actors to engage in and commit to persistent relations that allow social credits and social debts to remain meaningful and to facilitate recognition. The greater the reputation of certain actors and the more actors enjoying a high reputation, the more the group’s reputation increases. Identification with a more reputable group also enhances an actor’s own reputation. Thus, there is an association between a group’s reputation and the incentive for individual members to engage in persistent and maintained social exchanges and to identify with the group – group identification and group solidarity. Likewise, the groups’ reputation and the reputation of an actor in the group propel the actor to continue engaging in exchanges in which he or she may remain a creditor. Reputation and group solidarity enhance the sharing of resources – the creation and sustaining of public capital. At the same time, reputation and group solidarity provide positive feedback and reinforcement of unequal transactions, social creditor–debtor relationships, and thus social capital for the actors.
 
 Figure 9.1 depicts the hypothesized processes between microlevel exchanges and macrolevel reputation and group solidarity. For the sake
-
-154
-
-Conceptual Extensions
 
 of description, the process may begin with exchanges where transactions are seen as the means by which social creditor–debtor relationships emerge. Such creditor–debtor relationships then propel the spread of recognition in social networks, which eventually creates a generalized reputation that reinforces group solidarity and encourages public capital.
 
@@ -166,11 +198,11 @@ A group may promote solidarity and reputation by recruiting actors with a reputa
 
 While the actors granted such recognition and reputation may not have been exchange partners with others in this particular group, they will become obligated to carry out such exchanges in the future, should they accept such recognition and added reputation. In this sense, microlevel exchanges and more macrolevel recognition and reputation are eventually reciprocal in causal relations.
 
-A Summary
+## 2.4 A Summary
 
 To summarize, some distinguishing characteristics of the two rationalities are presented in Table 9.1. The contrasts are necessarily sharp to highlight the comparison. In transactional rationality, typically implicated in the analysis of economic exchange, the purpose is to gain economic capital (resources through transactions) and the interest lies in the transactional aspect of the exchange – the extent to which resources are transacted, and sometimes mediated, by price and money. The utility of the exchange is to optimize transactional profit, and the rational choice is based on an analysis of alternative relationships producing varying transactional gains and costs. On this basis, the rules of exchange participation are two. First, if the relationship with a particular alter produces relative gain, then the decision is to continue the relationship for further transactions. If the relationship fails to produce relative gain, then there are two decision choices: (1) to find an alternate relationship that may produce relative gain or (2) to maintain the relationship but to suffer or to reduce the transactional cost. The decision between the two choices
 
-Reputation and Social Capital 155
+
 
 Table 9.1. Rationality of Economic Exchange and Social Exchange Element
 
@@ -252,10 +284,6 @@ Such is the argument for the invisible hand of transactional rationality.
 
 Relational rationality, on the other hand, as implicated in social exchange, focuses on the relational aspect of the exchange – the extent to which a relationship is maintained and promoted, usually mediated by recognition (or the expectation that the other actor will spread it).
 
-156
-
-Conceptual Extensions
-
 The motivation is to gain reputation through recognition in networks and groups , and the utility of an exchange is to optimize relational gain (maintenance of social relationships) – also an analysis of gain and cost.
 
 On this basis, there are also two exchange participation rules: One, if a specific transaction promotes a persistent relationship and the spread of recognition, then the transaction will be continued. Two, if the transaction fails to promote a persistent relationship, then two choices are considered: either (1) to find alternative transactions that will (e.g., to increase favors in transactions to entice and encourage recognition) or (2) to maintain the transaction and to suffer or reduce the relational cost (no gain or reduced gain in recognition). Again, the decision is a weighing process involving the relative likelihood of finding an alternative transaction and the relative relational cost.
@@ -266,27 +294,21 @@ Transactional rationality is seen as invisible as it builds collective capital f
 
 Transactional rationality can survive on an individual basis when partners in exchanges are interchangeable as long as they meet the requirements of transactional utility. Relational rationality depends on the survival of the group and the group’s members. The more resources embedded in the social networks and the stronger the ties, the greater the collective benefit to the group and the relative benefit to each actor in the group.
 
-Relational rationality is based on the principle of survival of the fittest group, a group with persisting relationships among its members. While
+Relational rationality is based on the principle of survival of the fittest group, a group with persisting relationships among its members. While animal instincts also show such relational rationality for family and clan members, it is only humans who show extensive and generalized relational rationality for solidarity of constructed groups beyond kin and clan criteria. Humans show an interest and ability to maintain persistent and profitable relationships at a reasonable transactional cost. Thus, relational rationality is a human law and is based on the rationality of human choice.
 
-Reputation and Social Capital 157
-
-animal instincts also show such relational rationality for family and clan members, it is only humans who show extensive and generalized relational rationality for solidarity of constructed groups beyond kin and clan criteria. Humans show an interest and ability to maintain persistent and profitable relationships at a reasonable transactional cost. Thus, relational rationality is a human law and is based on the rationality of human choice.
-
-Further Analyses
+## 2.5 Further Analyses
 
 The remainder of the chapter will be used to clarify some further issues.
 
 First, why is the term reputation preferred to other terms such as social approval , social attraction , and particularly mutual recognition or social credits , already available in the literature? Second, why is there a tendency in one community or society to focus on one type of rationality (transactional or relational) rather than another, and is it an indication of a historical tendency to have one rationality (transactional) supersed-ing another (relational)? Third, what breaks down this exchange–collective solidarity linkage? Finally, are social capital and economic capital two polarized points on a single dimension, thus dictating a choice?
 
-Reputation as Individual and Group Capital So far, the argument for social standing such as reputation or social capital does not seem to differ from other similar arguments. Credits are seen as debts to be collected in later exchanges. Pizzorno (1991), for example, argues that mutual recognition promotes self-preservation. In order to preserve oneself, the price to be paid is the recognition that others will preserve, which presumably leads to others’ recognition of one’s right to preserve, a principle consistent with the argument here.
+### 2.5.1 Reputation as Individual and Group Capital 
+
+So far, the argument for social standing such as reputation or social capital does not seem to differ from other similar arguments. Credits are seen as debts to be collected in later exchanges. Pizzorno (1991), for example, argues that mutual recognition promotes self-preservation. In order to preserve oneself, the price to be paid is the recognition that others will preserve, which presumably leads to others’ recognition of one’s right to preserve, a principle consistent with the argument here.
 
 However, one difficulty in using mutual recognition as the motive or jus-tification for exchange is that mutuality implies reciprocal and symmetric actions and equity in ranking among actors. These actions and interactions lead to cohesive but homophilous memberships in a group
 
 – group solidarity without differentiation among members. What has been developed here is that recognition can be asymmetric in return for favors received in transactions and an episodic account of actions and reactions. Other terms, such as social approval and social attraction , also suffer from a similar problem. What is argued here is the need to take the next step: to recognize that it is possible to have unequal transactions in relationships and that these unequal transactions form the basis of differential social standing (reputation) among actors in a group.
-
-158
-
-Conceptual Extensions
 
 Recognition offers legitimacy to the alter’s (the creditor) claim to his or her resources. As recognition increases in episodes and spreads in the networks, we need a more generalized notion to capture the aggregation of episodes of such recognition accrued to an actor in a social group or community. Reputation is the choice proposed here, as it captures the notion that the asset can be possessed and differentiated by groups or individuals. A group can build, maintain, or lose a reputation. Likewise, within a group, individuals acquire, attain, or suffer different levels of reputation or ill repute. Thus, like wealth in economic exchanges, reputation is both an individual and a collective asset. Two other concepts seem to capture such an asset: prestige and esteem . However, prestige has been appropriated and is understood in the literature to grade positions in the hierarchical structure (e.g., occupational prestige). Esteem is widely used as either a social or a psychological process (e.g., self-esteem).
 
@@ -294,9 +316,7 @@ It should be noted that economists use reputation to account for the failure of 
 
 In the present argument, reputation is understood as a network asset (see, e.g., Burt 1998b, for a similar yet different view). It is built on the processes of transactions and creditor–debtor relations and on the acts of recognition and dissemination in social and mass networks (see Figure 9.1). It reinforces the legitimacy of certain actors who claim their resources and positions and, at the same time, offers incentives for further social exchanges and unequal transactions among actors, enhancing their social capital. It also enhances the group or collective reputation, and thus solidarity and the building of public capital. I do not rule out other pathways leading to reputation; however, the present argument makes explicit a pathway to the construction and utility of reputation.
 
-Reputation and Social Capital 159
-
-Institutionalization of Rationalities
+### 2.5.2 Institutionalization of Rationalities
 
 If transactional rationality follows neo-Darwinism and natural law, it may be deduced that the natural selection process will eventually favors transactional rationality over relational rationality. Indeed, many examples and studies demonstrating the relational imperative of exchanges, especially from anthropological studies, draw on data and observations from ancient or primitive societies. It has been suggested that emphasis on interpersonal relationships reflects the nature of communities that are more homogeneous, less technologically developed, and less industrially developed, and where rituals, ascription, and emotion define exchanges. As a society develops technologically and industrially and becomes more diverse in skills, knowledge, and production, division of labor requires more rational allocation of resources, including the increasing importance of rationality for resource transactions in exchanges. It has further been argued that the relational significance of economic exchanges today represents residual effects from the past. As the selective process proceeds apace, relational significance will eventually be superseded and replaced by transactional significance. An analysis of exchange relations can be seen in a particular society, such as guanxi in the Chinese context (Lin forthcoming), or blat in the Russian context (Ledeneva 1998).
 
@@ -304,13 +324,7 @@ This view is paradoxical in that if transactional rationality is the law of natu
 
 Further, this thesis simply is not supported by facts. In studies of contemporary societies (such as China, Japan, northern Italy, and much of East Asia), even well-developed and economically competitive societies as the United States, Britain, Germany, and France, relationships remain an important factor even in economic transactions. The evidence shows that relationships in exchanges not only exist but thrive in diverse contemporary societies (Lin 1989).
 
-If there is no logical ground or evidence to support a developmental view of relational rationality and transactional rationality, what accounts for the dominance of one rationality over the other? I propose that the
-
-160
-
-Conceptual Extensions
-
-dominance of a rationality as an ideology reflects the stylized accounting of a society for its survival using its own historical experiences as data. The theorized accounting becomes「truth」as it becomes embedded in its institutions (Lin forthcoming).
+If there is no logical ground or evidence to support a developmental view of relational rationality and transactional rationality, what accounts for the dominance of one rationality over the other? I propose that the dominance of a rationality as an ideology reflects the stylized accounting of a society for its survival using its own historical experiences as data. The theorized accounting becomes「truth」as it becomes embedded in its institutions (Lin forthcoming).
 
 It is not hard to document that in some societies, survival and persistence are attributed to the development of wealth. Theories of wealth and its development dictate institutionalization of transactional rationality as it characterizes the building of individual wealth and thus collective wealth. Competition, an open market (and thus free choice of relations in transactions), and reduction of transactional costs dictate analytic assumptions and organizational principles. In other societies, survival and persistence are attributed to the development of social solidarity. Theories of group sentiment dictate institutionalization of relational rationality, as it characterizes the building of collective solidarity, and thus individual loyalty. Cooperation, networking, and thus maintaining guanxi , even at the cost of transactions, dictate analytic assumptions and organizational principles.
 
@@ -326,9 +340,7 @@ On the other hand, in many societies and communities, or, for example, guanxi in
 
 Sacrificing relationships for the sake of transactional gain is considered a lower-order rationality – as immoral, inhuman, unethical, or animalistic.
 
-Reputation and Social Capital 161
-
-Misrecognition and Ill Reputation
+### 2.5.3 Misrecognition and Ill Reputation
 
 Breakdown among exchanges, relationships, recognition, and reputation can take place at every link in the process. It may begin at the exchange level, when a rendered favor in transactions is not recognized. When a creditor–debtor relationship is not recognized, the only basis for persistent exchanges is transactional utility, where relations and partners are accidental and secondary in choice considerations. When the transactional cost exceeds the benefit, the incentive to maintain the relationship no longer exists.
 
@@ -344,19 +356,13 @@ When would a debtor be expelled from further exchanges? Is it the behavior of sp
 
 then is it the group size, or the relative number of debtors and creditors, or a function of both that would bring about the erosion of group solidarity?
 
-162
-
-Conceptual Extensions
-
 In short, while this chapter focuses on the positive processes, there is a great deal to be developed regarding breakdowns in the social exchange processes. Such developments are equally important for a theory of social exchanges.
 
-Complementarity and Choice Between Social and Economic Capital
+### 2.5.4 Complementarity and Choice Between Social and Economic Capital
 
 The preceding stylized arguments suggest that both economic and social standing are meaningful criteria for survival and constitute fundamental bases for rational choices. Lest it sound as if it is being argued that the two types of rationality are polarized values on a continuum, and that the two types of rationality are mutually exclusive (an either-or proposition), let me hasten to add that there is no theoretical or empirical reason to propose that this should be the case. It is conceivable that relational and transactional exchanges are complementary and mutually reinforcing under certain conditions. In an ideal situation, a particular relationship may be profitable for both relational and transactional purposes. It may generate transactional gain for both actors, and both actors may engage in social propagation of the other party’s contribution to their own gain, thus increasing each other’s social capital. In this case, it is said that there is an isomorphic utility function for both the relationship and the transactions. An isomorphic utility function promotes exchanges between two actors, as the survival of each individual and the survival of the interacting group are both enhanced. In this idealized situation, the two types of rationality coexist, complement each other, and interact.
 
 This does not hide the potential violence between the two rationalities. Transactional rationality recommends abandoning a particular relationship in favor of better transactions. Partners in exchanges are incidental; they exist so long as and only to the extent that such part-nerships generate transactional gain. This principle clearly puts relational rationality in the second order of choice criterion. Thus, more often than not, a choice needs to be made between transactional rationality and relational rationality.7 That is, optimal transactions do not match optimal relationships. According to the decision rules specified earlier, then, optimizing transactions would lead to a search for alternative relationships, and optimizing relationships would lead to imbalanced transactions. We may speculate that the choice between the two types of exchange is related to public capital – wealth and reputation – in the 7 For primordial groups, the choice seems to favor relational rationality over transactional rationality (succession of children to properties; see Chapter 8).
-
-Reputation and Social Capital 163
 
 larger group. Several alternative hypotheses may be posited. First, when one collective capital, say wealth, is low, it is expected that individuals favor the gaining of another collective capital, say, reputation. In this situation, two alternative and competing hypotheses are possible. In one formulation, the marginal utility principle would guide the explanation.
 
@@ -372,91 +378,12 @@ Likewise, an esteemed physicist may lend her or his reputation in adver-tising a
 
 It is also important to note that, in the final analysis, both transactional and relational rationalities are socially based. Without the legitimation and support of a social and political system and its constitutive members, the economic system, based on its symbolic and generalized medium, money, simply cannot exist. To say that relational rationality is subsumed under transactional rationality is instinctively attractive but humanly impossible.
 
-这章继续前一章所展开的关于行动与社会结构之间的对话。前面已经
-
-指出，集体中例行化的社会关系的多样性与复杂性越来越需要认可与合法化的规则，来承认人力资本（财产）的基本权利，同时明确说明提供资源的行动者的责任与义务。因此，认可也是个体行动者克服不平等交换中的可能成本的一个重要过程。为什么社会地位较高、资源丰富的人会多次与社会地位较低、资源贫乏的人互动呢？这个过程是如何在互动层次上展开的还没有被阐释清楚。需要解释的是交换中可能而且确实发生的不平等交易。给出资源比收到资源多的行动者也有报偿，这报偿为什么会与认可联系起来。这一章将关注这个问题。我先把合法化问题放在一边，将精力集中在认可的社会过程与它在交换中的重要性上一行动者与集体的基本要素之间重复互动的过程。
-
-交换：社会要素与经济要素
-
-交換是社会学分析的一个中心概念，可以定义为两个（或更多）行动者之间进行资源交易的一系列互动。根据这个定义，交换有两个核心要素：它要求行动者之间具有一定的关系；它导致了资源交易。这样交换具有社会性，因为关系可以视为互动（Simmel,1950），在互动过程中一个行动者要考虑另一个（些）行动者的行动（Weber,1947, pp11-115）。这个过程具有经济性，因为资源交易是一种典型的经济行动。因此，引起两个行动者之间产生关系与进行资源交易的基本交换包含着社会性的要素与经济性的要
-
-素。在这里将交换的关系方面称为社会换，交易方面称为经济交换是很有用的。
-
-由于交换的社会要素与经济要素通常是同时出现的，因此这二者的区分在研究文献中经常很模糊。使用社会交一词是特別准确的，因为社会交换比社会互动更能反映出交换中所包含的资源交易要素。由于这个词很常用，那些在理论或研究图式中只关注其中一个要素的学者也使用社会交换这个概念。
-
-在关于社会交换的论文中，最先关注经济要素的是韦伯。韦伯指出了行动的四种类型（目标取向的、价值取向的、情感的和传统的行动），他集中分析了建立在对实现目标的手段进行计算的基础上的工具理性（或理性的目标取向）行动（Weber,1968, P25）。价值取向的行动是由对一些价值（本身即目的）伦理的、审美的、宗教的或其他不计后果的行为形式一的有意识的信仰所决定的。这两种类型的行动都是建立在有意识的比较与选择基础上也即理性基础之上的（Misztal,1996, p54）。这样，交换的交易方面进人了行动理性之中。
-
-乔治·翟曼斯（George Homans,1958）清楚、有力地说明了这个方向上的观点，他明确地陈述了立场：「人们之间的互动是一种商品、物质与非物质的交換。交换理论的一个附带优势是，它可能使社会学与经济学一人类最先进、应用性最强和在学术界最孤立的科学 一一 靠得更近。」（p597）霍曼斯认为，社会行为或交换关注行动者在交易中的收益（价值）与成本「社会学的基本问题是陈述将每一个人的收益和成本的变化与各种行为的频数分布联系起来的命题，对一个人而言，在各种行为中这些变量所决定的收益（在数学的意义上）也部分地决定着另ー个人的收益」（P598）。因此，两个行动者在持续的互动或关系中的利益一在每一次交易中每人的相对效用或报偿一是相依的。随着相对报偿（边际效用）的递减，关系中的利益也相应减少。因此霍曼斯的观点是符合逻辑的 一一 「一旦每一个原则所适应
-
-[1 霍曼斯将社会行为视为「至少两个人之间的有形的或无形的、或多或少有报偿的或有代价的交换活动」（Homans,1958 和 1961, p13）。
 
 
 
-的特殊条件被考虑进去，基本的经济学原则与基本的社会行为原则是完全一致的」（Homans,1961, -68）。
-
-布劳（1964）有关交的著作也强调了这一点。虽然他承认社会交换可
-
-能源于社会吸引种外生的原始心理倾向，但是他主要关注的是交换中的交易与权力分配之间的联系。在与另一个行动者的交换中，如果行动者（自我）不愿意或不能进行等价的互惠刚交易，那么自我维持与他人的关系的一个选择是服从他人的意愿一权力关系的产生（Banu,1964, P22）。对权力的集体赞同赋予权威合法性，这是社会组织的基础。因此，在布劳的理论图式中，交易的类型规定着关系的类型，这个基本的微观结构过程引起了ー一尽管不必然解释了 一一 更复杂的宏观结构（组织）过程
-
-科尔曼（Coleman,1990）在其社会行动理论中将分析继续向前推进，他
-
-指出，社会交换是对资源（事件）有不同的利益与控制的行动者彼此（通过他们控制的资源的相对价值或权力）谈判的一个手段，以使他们对有利害关系的资源的控制最大化（一个新的均衡）（P134-135）。这个交换与权力之间的机制似乎非常类似于布劳的图式，但是科尔曼关注的是行动者在这个过程中的收益（对所需要的资源的控制）最大化。
-
-到目前为止，社会学对交换过程的解释似乎已经实现了霍曼斯的预言或设计：社会学正在靠近 一一 如果不是接近经济学将理性选择置于经济行为的中心地位的立场。也即，假定在市场中可以进行选择，一个行动者将会选择能使他或她的利润最大化的交易（例如，以较少的成本换取较多的报酬）。新古典经济学家已经认识到这种寻利理论（profit-seeking theory）的某些假定在现实中不可能被满足（完备市场、完全信息和开放竟争），开始具
-
-[2「支配着人类之间进行交往的基本社会过程植根于原始的心理过程，如那些引起个人之间相互吸引的感情和对各种奖赏的欲求的心理过程。这些心理倾向就我们所讨论的主题而言是原始的，也即它们是预先给定的，不需要进一步寻找激发它们产生的因素，因为我们关心的是源于它们的社会力量」（Blau,1964, p-19）。
-
-[3」在这里以及许多其他社会学著作中，互惠表示均衡交换或者等价（如价格或货币）交易。这个互动的要求超出了韦伯最初关于社会行动的定义。在那里，互惠并不要求交换达到均衡。
 
 
-
-体闻述可能节制寻利行为的条件或制度（有限理性、交易成本）（参见 Williamson,1975: Coase,1984; North,1990）。很多相同的观点与条件已经被称为新制度主义或经济社会学的社会学家所采用，被他们用来分析组织行为、权力关系、制度以及社会网络与社会交换。
-
-然而，交换中的关系的重要性依然没有被忽视。人类学家从很早就开始注意到交换的关系方面，指出很多类型的交换并不是建立在经济或理性计算基础上的。例如，拉德克利夫·布朗（Radcliffe. - Brown,1952）将安达曼群岛上的交换描述为「一种道德的交换一给参与交换的两个人带来友好的感情」（P471）。马林诺夫斯基（Malinowski,1922）在分析特罗布里恩群岛的库拉交换（Kula exchanges）时，指出了经济交换与社会交换之间的巨大区别，「（交换的）真正报酬在于他的位置赋予他的声望、权力和特权」（p61）。列维一斯特劳斯（Levi- Strauss1949）在论证自己的观点时列举了莫斯（Mauss）弗思（Firh）和其他人类学家的研究，指出包括经济交易在内的交换是「另个秩序世界的媒介与工具：影响、权力、同情、地位、情感」，「是交换本身而不是交换物真正具有意义」（Levi-straus1969, p-139）。例如，礼物是在行动者之间进行交换的，在圣诞节时给自己买一个礼物是毫无意义的（Ekeh,1974, P.47）。
-
-在社会学家中，孔德（Comte,1848）提出个人的考虑要服从社会的考虑，涂尔干（Durkheim）驳斥了斯宾塞（Spencer）关于社会群体发展的经济学假定。这些学者都没有否定社会交换中含有经济交易，但是他们也强调了社会交换的超个人性（Ievi-strauss）与超经济性（Radcliffe-brown,1952）以及关系的重要性。每一种图式都论证到，社会交换的关系取向表现在具体行动者的交换承诺中而不是在交易的具体资源的功用上。
-
-如何协调交换的这两个视角？可以采取以下几种立场。其一，完全不考虑关系的重要性，因为任何特定的关系都服务于利润最大化或最优化的决策选择。当关系能够在交易中产生利润的时候，它可以被维持；如果不能，它会被抛弃。但是大多数新古典经济学家和他们的社会学同行采取了一种调和的立场，将关系视为不完备市场与不完全竞争信息条件下所必需付出的「交
-
-易成本」或「计算性信任」（calculative trust）（Williamson,1985,1993）。这个修正的立场承认关系的存在，但是明确地将其置于交易成本的分析框架之内
-
-其二，那些关系倾向的学者认为关系是必要的、重要的，因为并不是所有的行为与互动都是理性的。这个观点承认经济行为遵循着理性选择原则，但是指出并不是所有的行为都是经济的、理性的。社会吸引和依恋是原始的生存本能，而不是对选择的收益与损失计算的结果。这里的问题是，理性选择被视为自然的倾向奖赏或强化引起了行动与互动，导致了适者生存意识或无意识是不重要的，因为这个原则既适应于鸽子，又适应于人类 Homans,1961, p80）。进一步向前推进这个分析就会出现问题，为什么一些本能是理性的而另一些却不是。
-
-还有一种观点承认理性有时侯隐含地而不是明显地适应于社会交换，但是这种理性是理性原则而不是个人的寻利动机。因为人类在互动与交换中要考虑彼此的利益，所以关系的维持可能是为了适应这个理性。沿着这条推线索有很多子观点。有两种观点似乎在文献中很流行。一种观点认为社会赞同、尊敬、喜爱、吸引，诸如此类是交换的重要动机。在交易明显不均衡的交换中，对吃亏」一方的回报可能是另一方的赞同、尊故、喜爱或吸引。在这种情况下，这些符号性的报酬而不是通常与经济交换相联系的物质性报酬（与一般化的媒介一货币）成为有意义的报酬。然而，对于霍曼斯、布劳和科尔曼而言，这些报酬只是在种类上的差别，而不是本质的不同。无论是物质的还是符号的，只要它们代表着价值（或利润或利益），就都属于理性计算部分。此外，社会交换的理论并不关心这些价值是如何发展而来的。
-
-另一个子观点是，人类需要信任（Luhmann,1979, Barber,1983, Misztal 1996）。信任可以定义为对他人在交换中会考虑到自我的利益的信心或期待。它代表着对一个事件或行动将会发生或不会发生的信念，这种信念是在重复的交换中被相互期待的。它是对道徳的信念，米茨塔尔（1996）认为信任履行着三个功能：它促进了社会稳定（作为惯习）、社会凝聚（友谊）与合作。换言之、它的目的是维持一个群体或社区的存在与持续。涂尔干（1973）指
-
-出，义务与利他主义的感情以及约束自我行为的道徳压力是团结的基础。「不接受、不相互作出牺牲，不彼此尽力维持牢固的、持久的组带，人类就不能生活在一起」（Durkheim,1964, P228）。涂尔于坚信社会生活中道德要素的存在，这可能需要行动者在报酬的质量和数量上作出牺牲。
-
-如果团结与共同体是人类生存的基本要素，为什么它们不能建立在理性选择或经济行为的基础上？齐美尔（Simmel）试着作出了回答，他认为交换涉及到「对回报收益的牺牲」（Simmel,1971, p51），「交换的功能之一是在人们之间创造一个内在的组帯 一一 形成一个社会，而不只是个人的集合」（Simmel,1978, p175）。他补充道、「如果人们之间没有通常的信任，社会本身将会瓦解，因为非常少的关系是建立在对另一个人完全了解的基础上的，如果信任不与理性的证据或者个人的观察一样强、或更强，很少有关系会持久下去」（Simmel,1978, P178-179）。复杂社会的运行依赖于很多的承诺、契约和安排。因为「单一的个人根本不能追溯与证明自己的历史」，我们必须「信以为真」（Simmel,1950, p.313）。忠诚指「与另一个人保持关系」（1950, P387）的感情。帕森斯清晰地论证了复杂的现代社会对互动与信任规则的需要。他提出，信任是为集体目标与社会整合的实现提供合法化权力的基础（Parsons,1963）。赫克特（Hechter,1983）在分析群体团结时也论述了集体的理性基础。
-
-卢曼（Luhmann,1988）进一步阐述了帕森斯的媒介理论与符号一般化的概念。信任被视为沟通的一个一般化的媒介（其他的是爱、货币和权力它为行动者提供了「在主体通过选择或短或长的链条来传递行动」的能力，从而降低了个体行动者所面对的世界的复杂性（Luhmann,1979, p-49）。但是米茨塔尔指出，「卢曼并没有直接论述信任的功能如何有助于解释信任的实际形成问题」（Misztal,199, p.74）。
-
-信任的解释基础是复杂社会中的个人对规则的依靠的需要，这些规则被很多人所接受并且指导着人际间的、非个人间的交换。这也就是制度。没有这些达成共识的规则与对它们的相信，社会将会停止运行。但是霍曼斯提醒我们，「制度是规范很多人的行为的明确的规则，它被遵守的原因是由此可
-
-以获得奖赏，但不是原始性奖赏，这些其他的奖赏不能独自起作用。原始性奖赏迟早要被提供。制度不能永远保持自己的势头」（Homans,1961, Pp382 383）。霍曼斯用原始性奖賞来指代个体对利润的基本需要。米茨塔尔表示同意：「在帕森斯的理论中，信任作为单一的解释手段的重要性显然被扩大了。用信任的概念来代替熟悉、遵从与符号的合法化的做法是不可行的，因为它并不能给我们提供一个有效的工具来分析社会现实」（Misztal,1996, p72）。按照威廉姆森（Wiliamson,1985）的观点，除非合作也符合自我的动机，否则合作将会不稳定。这意味着一个建立在信任而不是有根基的自我利益基础上的社会秩序是难以预测的、不稳定的。由于这个原因，信任不总是起作用的。
-
-总之，当交易理性被提出来之后，所有有关对交换中关系再进一步分析的观点，都不能令人满意。这一章的剩余部分我要提出来的是论述交换中的关系的重要性的另一种尝试。我的论述从理性前提开始 一一 理性应该用作理论发展的基础。理性不是与无意识行为相对的有意识行为。它不依靠一些规范或制度，这些是后来才出现的。它也不是建立在对长时期内最终的交易均衡的期待的基础之上（如重复的交易将会使收益与损失之间出现均衡）（参见霍曼斯对这些将基本的社会行为视为理性的观点的驳斥；Homans,1961 Pp.80-81）。这里简单地说，交换是一个涉及到两个行动者的过程，他们的行动建立在对收益与损失的计算以及对进行关系还是进行交易的选择的基础之上。只要做过计算与选择，这个过程就被认为是理性的。此外，我假定这些计算和选择是建立在自我利益的基础之上的。这个假定没有排除对集体利益的考虑。我假定的是只有当集体利益嵌入到自我利益之中的时侯，集体利益才会被考虑，这样如果集体利益实现了，自我也会有收益。我没有假定排除自我利益的集体利益在驱动着计算和选择
-
-交易理性与关系理性
-
-关键的要素是最终的报偿一维持或中断关系和交易的各种报酬或资源。对人类而言，社会结构中存在着两类最终的（或原始的）报酬：经济地
-
-位和社会地位。经济地位是建立在财富（商品和它们的符号价值表示，如货币）的积累和分配基础上的，社会地位是建立在名声（由社会络和集体的认可程度来表示）的积累和分配基础上的。每一种地位都反映了个体相对于结构中的其他人在支配相关「资本」上的等级。财富是以货币为价值表现形式的商品价值的函数计算；名声是以认可为价值的表现形式的社会网络中的公共意识价值的函数计算。财富是经济资本的象征，因为商品和它们的价值表现物可以用来投资产生某种回报。同样，名声代表着社会资本，因为社会网络和它们的价值表现物也可以被动员起来产生某种回报。行动者在工具性和表达性行动中可以通过名声来动员他人的支持。通过社会关系进行资源动员的能力或者说社会资本，使社会关系的获得成为个体行动者参与交换的强烈动机。经济地位和社会地位都提高了个体在结构中的权力和影响（对其他成员而言），也有利于个体的心理健康和身体健康。
-
-经济地位和社会地位是互补的，因为前者需要社会对它的符号价值（货币）进行合法化和强制推行，后者的名声维持是建立在群体的经济福利（或者网络中的嵌入性资源）基础之上的。没有社会的强制，经济地位会坍塌；没有集体财富，社会地位也是没有意义的。但是在交换中，可以将获取每一种地位的动机视为独立的。可以通过交换获取经济资本（通过交易获得资源）或社会资本（通过社会关系获得资源）。
-
-因此，交易理性驱动着行动者对交换中的交易收益和成本进行计算，而关系理性推动着行动者对关系收益和成本进行计算。交易理性将关系视为交易收益一损失计算的一部分，关系理性将交易视为关系成本一收益计算的部分。关系理性即使在交易不是最优化的情况下，也会维持和促进关系。而
-
-4 第三种报酬 一一 政治地位（或权力）也很重要，但可能不是与其他两种报酬一样原始。权力或合法化的过程，反映了维持或获得其他两种原始报酬的过程。财富、声望和权力（合法化）之间的关系出现在前一章和本章的讨论中。
-
-[5 社会地位的指标通常包括地位（对位置而言）和声望（prestage）（对占据者而言）（参见第三章表 31）。我采用更一般的词一名声（reputaton）作为他人给予行动者的整体的尊敬，以涵盖这两者。
-
-
-
-交易理性即使在必须中断某种关系的情况下，也会致力于交易结果的最优化。虽然这两种理性在大多数交换中都会被行动者付诸实践，但是在一个特定的时间内的特定社会中，制度更有利于其中的一种理性，对这一种类型的资本（经济的或社会的）的相对优点存在着道徳判断。下面我会闻述这些观点
-
-对关系理性的述
+对关系理性的阐述
 
 由于自然法则与自然本能的存在，似乎凭直觉就可以理解交易理性的观点 一一 在交易中对成本与收益的计算以及通过交易来维持与积累资源。此外，可以在一般化的媒介 一一 货币的大量的帮助下对它进行计算（Simmel, 1978）。收益与损失可以计算，货款与借款可以很容易地记录下来。尽管科尔曼（Coleman,1990）指出社会信用（或信用票据）也是社会资本的中心概念，但是关系理性的计算并不是那么容易和清楚。在经济交换中，并不是每时段的商品贸易都是对称的或均衡的。不均衡的交易产生了经济的借贷关系。但是我们假定，在一个长时期内一但必须在一个有限的时间框架内重复交易会实现借货的均衡。
 
@@ -470,11 +397,7 @@ It is also important to note that, in the final analysis, both transactional and
 
 因此，名声可以定义为下列因素的函数：（1）贷方维持不平等交易的能力（人力资本与社会资本）;（2）持久的借货关系；（3）借方通过他或她的社会网络（认可）来承认关系的倾向（意愿与能力）;（4）借方可用来传递和传播认可的社会络（与普遍化的网络大众网络）的规模。因此，名声是得到的认可的总和。它是一个人在一个社会群体中得到认可的程度的函数。从群体而言，个群体的集体声望可以定义为，群体中有名声的行动者的数量和他们被其他群
 
-[6] 另一个要素，络的紧密度或行动者之间的关系强度，可能也出现在名声公式中。但是它们之间的关联不必然是线性的（或者是正向的【网越密，认可越可能传播或者是负向的【网越松，越可能传播】），因为有时候谣言确实在不那么紧密的网络中得到迅速的传播（Bur,1998b），可能是因为有很多的桥梁可以利用的缘故。由于这个关联的不确定性，我把它排除在外。如果有关联的话，可以通过进一步的研究来确定关联的真正形式
-
-
-
-体所熟悉的程度。因此，行动者在社会网络与社会群体中的名声促进了社会
+[6] 另一个要素，络的紧密度或行动者之间的关系强度，可能也出现在名声公式中。但是它们之间的关联不必然是线性的（或者是正向的【网越密，认可越可能传播或者是负向的【网越松，越可能传播】），因为有时候谣言确实在不那么紧密的网络中得到迅速的传播（Bur,1998b），可能是因为有很多的桥梁可以利用的缘故。由于这个关联的不确定性，我把它排除在外。如果有关联的话，可以通过进一步的研究来确定关联的真正形式体所熟悉的程度。因此，行动者在社会网络与社会群体中的名声促进了社会。
 
 群体的集体声望
 
@@ -490,7 +413,7 @@ It is also important to note that, in the final analysis, both transactional and
 
 一个群体可以通过招募已经在社会中建立起声望的行动者的方式，来提高集体的团结和名声。群体通过赋予特定的行动者以认可，期望着这些行动者能够认同群体，并准备在今后与群体的其他成员进行交换。在这个过程中，声望与认可不是微观层次交换的结果，而是在它们之前就出现了。虽然这些被给予认可与名声的行动者在以前可能不是这个群体的成员的交换伙伴，但是他们如果接受了这些认可和增加的名声，在将来就有义务进行交换。在这个意义上，微观层次的交换与更宏观层次的认可和声望最终是互为因果关系的。
 
-个总结
+一个总结
 
 总之，这两种理性的一些显著的特征如表 91 所示。为了形成鲜明的对比，我们对二者进行比较。在典型经济交换的分析中所涉及到的交易理性其目的是获得经济资本（通过交易获得资源），关注点在交换的交易方面一资源是以价格和货币的形式进行交易的，有时候是通过中介交易的。交换的效用是使交易利润最优化。理性选择是建立在对具有不同的交易收益与成本的各种关系的分析基础之上。在这个基础上，存在着两个交换参与规则。首先，如果与某一个人保持关系可以产生相对收益，那么会作出维持关系、进行进一步交易的决策。如果关系不能产生相对收益，那么又有两个决策选择：（1）寻找另一个可以产生相对收益的关系；（2）维持关系，承受或降低交易成本。要在这两个选择之间进行决策，就要对新的替代关系可能产生的收益与维持当前关系可能要付出的或可能降低的交易成本进行权衡。经济交换的关键分析关注短暂性或重复性交易中的对称交易。
 
