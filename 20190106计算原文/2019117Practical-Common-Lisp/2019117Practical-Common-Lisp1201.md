@@ -32,9 +32,9 @@ Other functions take similar advantage of lists' ability to share structure. Som
 
 If Common Lisp were a purely functional language, that would be the end of the story. However, because it's possible to modify a cons cell after it has been created by SETFing its CAR or CDR, you need to think a bit about how side effects and structure sharing mix.
 
-Because of Lisp's functional heritage, operations that modify existing objects are called destructive--in functional programming, changing an object's state "destroys" it since it no longer represents the same value. However, using the same term to describe all state-modifying operations leads to a certain amount of confusion since there are two very different kinds of destructive operations, for-side-effect operations and recycling operations.5
+Because of Lisp's functional heritage, operations that modify existing objects are called destructive -- in functional programming, changing an object's state "destroys" it since it no longer represents the same value. However, using the same term to describe all state-modifying operations leads to a certain amount of confusion since there are two very different kinds of destructive operations, for-side-effect operations and recycling operations.5
 
-For-side-effect operations are those used specifically for their side effects. All uses of SETF are destructive in this sense, as are functions that use SETF under the covers to change the state of an existing object such as VECTOR-PUSH or VECTOR-POP. But it's a bit unfair to describe these operations as destructive--they're not intended to be used in code written in a functional style, so they shouldn't be described using functional terminology. However, if you mix nonfunctional, for-side-effect operations with functions that return structure-sharing results, then you need to be careful not to inadvertently modify the shared structure. For instance, consider these three definitions:
+For-side-effect operations are those used specifically for their side effects. All uses of SETF are destructive in this sense, as are functions that use SETF under the covers to change the state of an existing object such as VECTOR-PUSH or VECTOR-POP. But it's a bit unfair to describe these operations as destructive -- they're not intended to be used in code written in a functional style, so they shouldn't be described using functional terminology. However, if you mix nonfunctional, for-side-effect operations with functions that return structure-sharing results, then you need to be careful not to inadvertently modify the shared structure. For instance, consider these three definitions:
 
 (defparameter *list-1* (list 1 2)) (defparameter *list-2* (list 3 4)) (defparameter *list-3* (append *list-1* *list-2*))
 
@@ -56,7 +56,7 @@ To see how a recycling function works, let's compare REVERSE, the nondestructive
 
 By assigning the result of REVERSE back to *list*, you've removed the reference to the original value of *list*. Assuming the cons cells in the original list aren't referenced anywhere else, they're now eligible to be garbage collected. However, in many Lisp implementations it'd be more efficient to immediately reuse the existing cons cells rather than allocating new ones and letting the old ones become garbage.
 
-NREVERSE allows you to do exactly that. The N stands for non-consing, meaning it doesn't need to allocate any new cons cells. The exact side effects of NREVERSE are intentionally not specified--it's allowed to modify any CAR or CDR of any cons cell in the list--but a typical implementation might walk down the list changing the CDR of each cons cell to point to the previous cons cell, eventually returning the cons cell that was previously the last cons cell in the old list and is now the head of the reversed list. No new cons cells need to be allocated, and no garbage is created.
+NREVERSE allows you to do exactly that. The N stands for non-consing, meaning it doesn't need to allocate any new cons cells. The exact side effects of NREVERSE are intentionally not specified -- it's allowed to modify any CAR or CDR of any cons cell in the list -- but a typical implementation might walk down the list changing the CDR of each cons cell to point to the previous cons cell, eventually returning the cons cell that was previously the last cons cell in the old list and is now the head of the reversed list. No new cons cells need to be allocated, and no garbage is created.
 
 Most recycling functions, like NREVERSE, have nondestructive counterparts that compute the same result. In general, the recycling functions have names that are the same as their non-destructive counterparts except with a leading N. However, not all do, including several of the more commonly used recycling functions such as NCONC, the recycling version of APPEND, and DELETE, DELETE-IF, DELETE-IF-NOT, and DELETE-DUPLICATES, the recycling versions of the REMOVE family of sequence functions.
 
@@ -70,7 +70,7 @@ Like APPEND, NCONC returns a concatenation of its list arguments, but it builds 
 
 NSUBSTITUTE and variants can be relied on to walk down the list structure of the list argument and to SETF the CARs of any cons cells holding the old value to the new value and to otherwise leave the list intact. It then returns the original list, which now has the same value as would've been computed by SUBSTITUTE. 6
 
-The key thing to remember about NCONC and NSUBSTITUTE is that they're the exceptions to the rule that you can't rely on the side effects of recycling functions. It's perfectly acceptable--and arguably good style--to ignore the reliability of their side effects and use them, like any other recycling function, only for the value they return.
+The key thing to remember about NCONC and NSUBSTITUTE is that they're the exceptions to the rule that you can't rely on the side effects of recycling functions. It's perfectly acceptable -- and arguably good style -- to ignore the reliability of their side effects and use them, like any other recycling function, only for the value they return.
 
 Combining Recycling with Shared Structure
 
@@ -88,7 +88,7 @@ The next most common recycling idiom9 is to immediately reassign the value retur
 
 (setf foo (delete nil foo))
 
-This sets the value of foo to its old value except with all the NILs removed. However, even this idiom must be used with some care--if foo shares structure with lists referenced elsewhere, using DELETE instead of REMOVE can destroy the structure of those other lists. For example, consider the two lists *list-2* and *list-3* from earlier that share their last two cons cells.
+This sets the value of foo to its old value except with all the NILs removed. However, even this idiom must be used with some care -- if foo shares structure with lists referenced elsewhere, using DELETE instead of REMOVE can destroy the structure of those other lists. For example, consider the two lists *list-2* and *list-3* from earlier that share their last two cons cells.
 
 *list-2* ==> (0 4) *list-3* ==> (1 2 0 4)
 
@@ -104,7 +104,7 @@ If you had used REMOVE instead of DELETE, it would've built a list containing th
 
 The PUSH/NREVERSE and SETF/DELETE idioms probably account for 80 percent of the uses of recycling functions. Other uses are possible but require keeping careful track of which functions return shared structure and which do not.
 
-In general, when manipulating lists, it's best to write your own code in a functional style--your functions should depend only on the contents of their list arguments and shouldn't modify them. Following that rule will, of course, rule out using any destructive functions, recycling or otherwise. Once you have your code working, if profiling shows you need to optimize, you can replace nondestructive list operations with their recycling counterparts but only if you're certain the argument lists aren't referenced from anywhere else.
+In general, when manipulating lists, it's best to write your own code in a functional style -- your functions should depend only on the contents of their list arguments and shouldn't modify them. Following that rule will, of course, rule out using any destructive functions, recycling or otherwise. Once you have your code working, if profiling shows you need to optimize, you can replace nondestructive list operations with their recycling counterparts but only if you're certain the argument lists aren't referenced from anywhere else.
 
 One last gotcha to watch out for is that the sorting functions SORT, STABLE-SORT, and MERGE mentioned in Chapter 11 are also recycling functions when applied to lists.10 However, these functions don't have nondestructive counterparts, so if you need to sort a list without destroying it, you need to pass the sorting function a copy made with COPY-LIST. In either case you need to be sure to save the result of the sorting function because the original argument is likely to be in tatters. For instance:
 
@@ -114,7 +114,7 @@ List-Manipulation Functions
 
 With that background out of the way, you're ready to look at the library of functions Common Lisp provides for manipulating lists.
 
-You've already seen the basic functions for getting at the elements of a list: FIRST and REST. Although you can get at any element of a list by combining enough calls to REST (to move down the list) with a FIRST (to extract the element), that can be a bit tedious. So Common Lisp provides functions named for the other ordinals from SECOND to TENTH that return the appropriate element. More generally, the function NTH takes two arguments, an index and a list, and returns the nth (zero-based) element of the list. Similarly, NTHCDR takes an index and a list and returns the result of calling CDR n times. (Thus, (nthcdr 0 ...) simply returns the original list, and (nthcdr 1 ...) is equivalent to REST.) Note, however, that none of these functions is any more efficient, in terms of work done by the computer, than the equivalent combinations of FIRSTs and RESTs--there's no way to get to the nth element of a list without following n CDR references.11
+You've already seen the basic functions for getting at the elements of a list: FIRST and REST. Although you can get at any element of a list by combining enough calls to REST (to move down the list) with a FIRST (to extract the element), that can be a bit tedious. So Common Lisp provides functions named for the other ordinals from SECOND to TENTH that return the appropriate element. More generally, the function NTH takes two arguments, an index and a list, and returns the nth (zero-based) element of the list. Similarly, NTHCDR takes an index and a list and returns the result of calling CDR n times. (Thus, (nthcdr 0 ...) simply returns the original list, and (nthcdr 1 ...) is equivalent to REST.) Note, however, that none of these functions is any more efficient, in terms of work done by the computer, than the equivalent combinations of FIRSTs and RESTs -- there's no way to get to the nth element of a list without following n CDR references.11
 
 The 28 composite CAR/CDR functions are another family of functions you may see used from time to time. Each function is named by placing a sequence of up to four As and Ds between a C and R, with each A representing a call to CAR and each D a call to CDR. Thus:
 
@@ -170,13 +170,13 @@ MAPCAR is the function most like MAP. Because it always returns a list, it doesn
 
 MAPLIST is just like MAPCAR except instead of passing the elements of the list to the function, it passes the actual cons cells.13 Thus, the function has access not only to the value of each element of the list (via the CAR of the cons cell) but also to the rest of the list (via the CDR).
 
-MAPCAN and MAPCON work like MAPCAR and MAPLIST except for the way they build up their result. While MAPCAR and MAPLIST build a completely new list to hold the results of the function calls, MAPCAN and MAPCON build their result by splicing together the results--which must be lists--as if by NCONC. Thus, each function invocation can provide any number of elements to be included in the result.14MAPCAN, like MAPCAR, passes the elements of the list to the mapped function while MAPCON, like MAPLIST, passes the cons cells.
+MAPCAN and MAPCON work like MAPCAR and MAPLIST except for the way they build up their result. While MAPCAR and MAPLIST build a completely new list to hold the results of the function calls, MAPCAN and MAPCON build their result by splicing together the results -- which must be lists -- as if by NCONC. Thus, each function invocation can provide any number of elements to be included in the result.14MAPCAN, like MAPCAR, passes the elements of the list to the mapped function while MAPCON, like MAPLIST, passes the cons cells.
 
-Finally, the functions MAPC and MAPL are control constructs disguised as functions--they simply return their first list argument, so they're useful only when the side effects of the mapped function do something interesting. MAPC is the cousin of MAPCAR and MAPCAN while MAPL is in the MAPLIST/MAPCON family.
+Finally, the functions MAPC and MAPL are control constructs disguised as functions -- they simply return their first list argument, so they're useful only when the side effects of the mapped function do something interesting. MAPC is the cousin of MAPCAR and MAPCAN while MAPL is in the MAPLIST/MAPCON family.
 
 Other Structures
 
-While cons cells and lists are typically considered to be synonymous, that's not quite right--as I mentioned earlier, you can use lists of lists to represent trees. Just as the functions discussed in this chapter allow you to treat structures built out of cons cells as lists, other functions allow you to use cons cells to represent trees, sets, and two kinds of key/value maps. I'll discuss some of those functions in the next chapter.
+While cons cells and lists are typically considered to be synonymous, that's not quite right -- as I mentioned earlier, you can use lists of lists to represent trees. Just as the functions discussed in this chapter allow you to treat structures built out of cons cells as lists, other functions allow you to use cons cells to represent trees, sets, and two kinds of key/value maps. I'll discuss some of those functions in the next chapter.
 
 * * *
 
@@ -184,13 +184,13 @@ While cons cells and lists are typically considered to be synonymous, that's not
 
 2CONS was originally short for the verb construct.
 
-3When the place given to SETF is a CAR or CDR, it expands into a call to the function RPLACA or RPLACD; some old-school Lispers--the same ones who still use SETQ--will still use RPLACA and RPLACD directly, but modern style is to use SETF of CAR or CDR.
+3When the place given to SETF is a CAR or CDR, it expands into a call to the function RPLACA or RPLACD; some old-school Lispers -- the same ones who still use SETQ -- will still use RPLACA and RPLACD directly, but modern style is to use SETF of CAR or CDR.
 
-4Typically, simple objects such as numbers are drawn within the appropriate box, and more complex objects will be drawn outside the box with an arrow from the box indicating the reference. This actually corresponds well with how many Common Lisp implementations work--although all objects are conceptually stored by reference, certain simple immutable objects can be stored directly in a cons cell.
+4Typically, simple objects such as numbers are drawn within the appropriate box, and more complex objects will be drawn outside the box with an arrow from the box indicating the reference. This actually corresponds well with how many Common Lisp implementations work -- although all objects are conceptually stored by reference, certain simple immutable objects can be stored directly in a cons cell.
 
 5The phrase for-side-effect is used in the language standard, but recycling is my own invention; most Lisp literature simply uses the term destructive for both kinds of operations, leading to the confusion I'm trying to dispel.
 
-6The string functions NSTRING-CAPITALIZE, NSTRING-DOWNCASE, and NSTRING-UPCASE are similar--they return the same results as their N-less counterparts but are specified to modify their string argument in place.
+6The string functions NSTRING-CAPITALIZE, NSTRING-DOWNCASE, and NSTRING-UPCASE are similar -- they return the same results as their N-less counterparts but are specified to modify their string argument in place.
 
 7For example, in an examination of all uses of recycling functions in the Common Lisp Open Code Collection (CLOCC), a diverse set of libraries written by various authors, instances of the PUSH/NREVERSE idiom accounted for nearly half of all uses of recycling functions.
 
@@ -212,7 +212,7 @@ Like this:
 
 ;; the body, as a list (cddr '(when (> x 10) (print x))) ==> ((PRINT X))
 
-13Thus, MAPLIST is the more primitive of the two functions--if you had only MAPLIST, you could build MAPCAR on top of it, but you couldn't build MAPLIST on top of MAPCAR.
+13Thus, MAPLIST is the more primitive of the two functions -- if you had only MAPLIST, you could build MAPCAR on top of it, but you couldn't build MAPLIST on top of MAPCAR.
 
 14In Lisp dialects that didn't have filtering functions like REMOVE, the idiomatic way to filter a list was with MAPCAN.
 
@@ -226,7 +226,7 @@ As you saw in the previous chapter, the list data type is an illusion created by
 
 Trees
 
-Treating structures built from cons cells as trees is just about as natural as treating them as lists. What is a list of lists, after all, but another way of thinking of a tree? The difference between a function that treats a bunch of cons cells as a list and a function that treats the same bunch of cons cells as a tree has to do with which cons cells the functions traverse to find the values of the list or tree. The cons cells traversed by a list function, called the list structure, are found by starting at the first cons cell and following CDR references until reaching a NIL. The elements of the list are the objects referenced by the CARs of the cons cells in the list structure. If a cons cell in the list structure has a CAR that references another cons cell, the referenced cons cell is considered to be the head of a list that's an element of the outer list.1Tree structure, on the other hand, is traversed by following both CAR and CDR references for as long as they point to other cons cells. The values in a tree are thus the atomic--non-cons-cell-values referenced by either the CARs or the CDRs of the cons cells in the tree structure.
+Treating structures built from cons cells as trees is just about as natural as treating them as lists. What is a list of lists, after all, but another way of thinking of a tree? The difference between a function that treats a bunch of cons cells as a list and a function that treats the same bunch of cons cells as a tree has to do with which cons cells the functions traverse to find the values of the list or tree. The cons cells traversed by a list function, called the list structure, are found by starting at the first cons cell and following CDR references until reaching a NIL. The elements of the list are the objects referenced by the CARs of the cons cells in the list structure. If a cons cell in the list structure has a CAR that references another cons cell, the referenced cons cell is considered to be the head of a list that's an element of the outer list.1Tree structure, on the other hand, is traversed by following both CAR and CDR references for as long as they point to other cons cells. The values in a tree are thus the atomic -- non-cons-cell-values referenced by either the CARs or the CDRs of the cons cells in the tree structure.
 
 For instance, the following box-and-arrow diagram shows the cons cells that make up the list of lists: ((1 2) (3 4) (5 6)). The list structure includes only the three cons cells inside the dashed box while the tree structure includes all the cons cells.
 
@@ -242,31 +242,31 @@ Some other tree-centric functions are the tree analogs to the SUBSTITUTE and NSU
 
 CL-USER> (subst 10 1 '(1 2 (3 2 1) ((1 1) (2 2)))) (10 2 (3 2 10) ((10 10) (2 2)))
 
-SUBST-IF is analogous to SUBSTITUTE-IF. Instead of an old item, it takes a one-argument function--the function is called with each atomic value in the tree, and whenever it returns true, the position in the new tree is filled with the new value. SUBST-IF-NOT is the same except the values where the test returns NIL are replaced. NSUBST, NSUBST-IF, and NSUBST-IF-NOT are the recycling versions of the SUBST functions. As with most other recycling functions, you should use these functions only as drop-in replacements for their nondestructive counterparts in situations where you know there's no danger of modifying a shared structure. In particular, you must continue to save the return value of these functions since you have no guarantee that the result will be EQ to the original tree.2
+SUBST-IF is analogous to SUBSTITUTE-IF. Instead of an old item, it takes a one-argument function -- the function is called with each atomic value in the tree, and whenever it returns true, the position in the new tree is filled with the new value. SUBST-IF-NOT is the same except the values where the test returns NIL are replaced. NSUBST, NSUBST-IF, and NSUBST-IF-NOT are the recycling versions of the SUBST functions. As with most other recycling functions, you should use these functions only as drop-in replacements for their nondestructive counterparts in situations where you know there's no danger of modifying a shared structure. In particular, you must continue to save the return value of these functions since you have no guarantee that the result will be EQ to the original tree.2
 
 Sets
 
-Sets can also be implemented in terms of cons cells. In fact, you can treat any list as a set--Common Lisp provides several functions for performing set-theoretic operations on lists. However, you should bear in mind that because of the way lists are structured, these operations get less and less efficient the bigger the sets get.
+Sets can also be implemented in terms of cons cells. In fact, you can treat any list as a set -- Common Lisp provides several functions for performing set-theoretic operations on lists. However, you should bear in mind that because of the way lists are structured, these operations get less and less efficient the bigger the sets get.
 
 That said, using the built-in set functions makes it easy to write set-manipulation code. And for small sets they may well be more efficient than the alternatives. If profiling shows you that these functions are a performance bottleneck in your code, you can always replace the lists with sets built on top of hash tables or bit vectors.
 
 To build up a set, you can use the function ADJOIN. ADJOIN takes an item and a list representing a set and returns a list representing the set containing the item and all the items in the original set. To determine whether the item is present, it must scan the list; if the item isn't found, ADJOIN creates a new cons cell holding the item and pointing to the original list and returns it. Otherwise, it returns the original list.
 
-ADJOIN also takes :key and :test keyword arguments, which are used when determining whether the item is present in the original list. Like CONS, ADJOIN has no effect on the original list--if you want to modify a particular list, you need to assign the value returned by ADJOIN to the place where the list came from. The modify macro PUSHNEW does this for you automatically.
+ADJOIN also takes :key and :test keyword arguments, which are used when determining whether the item is present in the original list. Like CONS, ADJOIN has no effect on the original list -- if you want to modify a particular list, you need to assign the value returned by ADJOIN to the place where the list came from. The modify macro PUSHNEW does this for you automatically.
 
 CL-USER> (defparameter *set* ()) *SET* CL-USER> (adjoin 1 *set*) (1) CL-USER> *set* NIL CL-USER> (setf *set* (adjoin 1 *set*)) (1) CL-USER> (pushnew 2 *set*) (2 1) CL-USER> *set* (2 1) CL-USER> (pushnew 2 *set*) (2 1)
 
-You can test whether a given item is in a set with MEMBER and the related functions MEMBER-IF and MEMBER-IF-NOT. These functions are similar to the sequence functions FIND, FIND-IF, and FIND-IF-NOT except they can be used only with lists. And instead of returning the item when it's present, they return the cons cell containing the item--in other words, the sublist starting with the desired item. When the desired item isn't present in the list, all three functions return NIL.
+You can test whether a given item is in a set with MEMBER and the related functions MEMBER-IF and MEMBER-IF-NOT. These functions are similar to the sequence functions FIND, FIND-IF, and FIND-IF-NOT except they can be used only with lists. And instead of returning the item when it's present, they return the cons cell containing the item -- in other words, the sublist starting with the desired item. When the desired item isn't present in the list, all three functions return NIL.
 
 The remaining set-theoretic functions provide bulk operations: INTERSECTION, UNION, SET-DIFFERENCE, and SET-EXCLUSIVE-OR. Each of these functions takes two lists and :key and :test keyword arguments and returns a new list representing the set resulting from performing the appropriate set-theoretic operation on the two lists: INTERSECTION returns a list containing all the elements found in both arguments. UNION returns a list containing one instance of each unique element from the two arguments.3SET-DIFFERENCE returns a list containing all the elements from the first argument that don't appear in the second argument. And SET-EXCLUSIVE-OR returns a list containing those elements appearing in only one or the other of the two argument lists but not in both. Each of these functions also has a recycling counterpart whose name is the same except with an N prefix.
 
-Finally, the function SUBSETP takes two lists and the usual :key and :test keyword arguments and returns true if the first list is a subset of the second--if every element in the first list is also present in the second list. The order of the elements in the lists doesn't matter.
+Finally, the function SUBSETP takes two lists and the usual :key and :test keyword arguments and returns true if the first list is a subset of the second -- if every element in the first list is also present in the second list. The order of the elements in the lists doesn't matter.
 
 CL-USER> (subsetp '(3 2 1) '(1 2 3 4)) T CL-USER> (subsetp '(1 2 3 4) '(3 2 1)) NIL
 
 Lookup Tables: Alists and Plists
 
-In addition to trees and sets, you can build tables that map keys to values out of cons cells. Two flavors of cons-based lookup tables are commonly used, both of which I've mentioned in passing in previous chapters. They're association lists, also called alists, and property lists, also known as plists. While you wouldn't use either alists or plists for large tables--for that you'd use a hash table--it's worth knowing how to work with them both because for small tables they can be more efficient than hash tables and because they have some useful properties of their own.
+In addition to trees and sets, you can build tables that map keys to values out of cons cells. Two flavors of cons-based lookup tables are commonly used, both of which I've mentioned in passing in previous chapters. They're association lists, also called alists, and property lists, also known as plists. While you wouldn't use either alists or plists for large tables -- for that you'd use a hash table -- it's worth knowing how to work with them both because for small tables they can be more efficient than hash tables and because they have some useful properties of their own.
 
 An alist is a data structure that maps keys to values and also supports reverse lookups, finding the key when given a value. Alists also support adding key/value mappings that shadow existing mappings in such a way that the shadowing mapping can later be removed and the original mappings exposed again.
 

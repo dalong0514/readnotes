@@ -34,23 +34,23 @@ However, even a vector with a fill pointer isn't completely resizable. The vecto
 
 (make-array 5 :fill-pointer 0 :adjustable t) ==> #()
 
-This call makes an adjustable vector whose underlying memory can be resized as needed. To add elements to an adjustable vector, you use VECTOR-PUSH-EXTEND, which works just like VECTOR-PUSH except it will automatically expand the array if you try to push an element onto a full vector--one whose fill pointer is equal to the size of the underlying storage.4
+This call makes an adjustable vector whose underlying memory can be resized as needed. To add elements to an adjustable vector, you use VECTOR-PUSH-EXTEND, which works just like VECTOR-PUSH except it will automatically expand the array if you try to push an element onto a full vector -- one whose fill pointer is equal to the size of the underlying storage.4
 
 Subtypes of Vector
 
 All the vectors you've dealt with so far have been general vectors that can hold any type of object. It's also possible to create specialized vectors that are restricted to holding certain types of elements. One reason to use specialized vectors is they may be stored more compactly and can provide slightly faster access to their elements than general vectors. However, for the moment let's focus on a couple kinds of specialized vectors that are important data types in their own right.
 
-One of these you've seen already--strings are vectors specialized to hold characters. Strings are important enough to get their own read/print syntax (double quotes) and the set of string-specific functions I discussed in the previous chapter. But because they're also vectors, all the functions I'll discuss in the next few sections that take vector arguments can also be used with strings. These functions will fill out the string library with functions for things such as searching a string for a substring, finding occurrences of a character within a string, and more.
+One of these you've seen already -- strings are vectors specialized to hold characters. Strings are important enough to get their own read/print syntax (double quotes) and the set of string-specific functions I discussed in the previous chapter. But because they're also vectors, all the functions I'll discuss in the next few sections that take vector arguments can also be used with strings. These functions will fill out the string library with functions for things such as searching a string for a substring, finding occurrences of a character within a string, and more.
 
-Literal strings, such as "foo", are like literal vectors written with the #() syntax--their size is fixed, and they must not be modified. However, you can use MAKE-ARRAY to make resizable strings by adding another keyword argument, :element-type. This argument takes a type descriptor. I won't discuss all the possible type descriptors you can use here; for now it's enough to know you can create a string by passing the symbol CHARACTER as the :element-type argument. Note that you need to quote the symbol to prevent it from being treated as a variable name. For example, to make an initially empty but resizable string, you can write this:
+Literal strings, such as "foo", are like literal vectors written with the #() syntax -- their size is fixed, and they must not be modified. However, you can use MAKE-ARRAY to make resizable strings by adding another keyword argument, :element-type. This argument takes a type descriptor. I won't discuss all the possible type descriptors you can use here; for now it's enough to know you can create a string by passing the symbol CHARACTER as the :element-type argument. Note that you need to quote the symbol to prevent it from being treated as a variable name. For example, to make an initially empty but resizable string, you can write this:
 
 (make-array 5 :fill-pointer 0 :adjustable t :element-type 'character) ""
 
-Bit vectors--vectors whose elements are all zeros or ones--also get some special treatment. They have a special read/print syntax that looks like #*00001111 and a fairly large library of functions, which I won't discuss, for performing bit-twiddling operations such as "anding" together two bit arrays. The type descriptor to pass as the :element-type to create a bit vector is the symbol BIT.
+Bit vectors -- vectors whose elements are all zeros or ones -- also get some special treatment. They have a special read/print syntax that looks like #*00001111 and a fairly large library of functions, which I won't discuss, for performing bit-twiddling operations such as "anding" together two bit arrays. The type descriptor to pass as the :element-type to create a bit vector is the symbol BIT.
 
 Vectors As Sequences
 
-As mentioned earlier, vectors and lists are the two concrete subtypes of the abstract type sequence. All the functions I'll discuss in the next few sections are sequence functions; in addition to being applicable to vectors--both general and specialized--they can also be used with lists.
+As mentioned earlier, vectors and lists are the two concrete subtypes of the abstract type sequence. All the functions I'll discuss in the next few sections are sequence functions; in addition to being applicable to vectors -- both general and specialized -- they can also be used with lists.
 
 The two most basic sequence functions are LENGTH, which returns the length of a sequence, and ELT, which allows you to access individual elements via an integer index. LENGTH takes a sequence as its only argument and returns the number of elements it contains. For vectors with a fill pointer, this will be the value of the fill pointer. ELT, short for element, takes a sequence and an integer index between zero (inclusive) and the length of the sequence (exclusive) and returns the corresponding element. ELT will signal an error if the index is out of bounds. Like LENGTH, ELT treats a vector with a fill pointer as having the length specified by the fill pointer.
 
@@ -128,7 +128,7 @@ For each of the functions just discussed, Common Lisp provides two higher-order 
 
 (count-if #'evenp #(1 2 3 4 5)) ==> 2 (count-if-not #'evenp #(1 2 3 4 5)) ==> 3 (position-if #'digit-char-p "abcd0001") ==> 4 (remove-if-not #'(lambda (x) (char= (elt x 0) #\f)) #("foo" "bar" "baz" "foom")) ==> #("foo" "foom")
 
-According to the language standard, the -IF-NOT variants are deprecated. However, that deprecation is generally considered to have itself been ill-advised. If the standard is ever revised, it's more likely the deprecation will be removed than the -IF-NOT functions. For one thing, the REMOVE-IF-NOT variant is probably used more often than REMOVE-IF. Despite its negative-sounding name, REMOVE-IF-NOT is actually the positive variant--it returns the elements that do satisfy the predicate. 7
+According to the language standard, the -IF-NOT variants are deprecated. However, that deprecation is generally considered to have itself been ill-advised. If the standard is ever revised, it's more likely the deprecation will be removed than the -IF-NOT functions. For one thing, the REMOVE-IF-NOT variant is probably used more often than REMOVE-IF. Despite its negative-sounding name, REMOVE-IF-NOT is actually the positive variant -- it returns the elements that do satisfy the predicate. 7
 
 The -IF and -IF-NOT variants accept all the same keyword arguments as their vanilla counterparts except for :test, which isn't needed since the main argument is already a function.8 With a :key argument, the value extracted by the :key function is passed to the function instead of the actual element.
 
@@ -140,7 +140,7 @@ The REMOVE family of functions also support a fourth variant, REMOVE-DUPLICATES,
 
 Whole Sequence Manipulations
 
-A handful of functions perform operations on a whole sequence (or sequences) at a time. These tend to be simpler than the other functions I've described so far. For instance, COPY-SEQ and REVERSE each take a single argument, a sequence, and each returns a new sequence of the same type. The sequence returned by COPY-SEQ contains the same elements as its argument while the sequence returned by REVERSE contains the same elements but in reverse order. Note that neither function copies the elements themselves--only the returned sequence is a new object.
+A handful of functions perform operations on a whole sequence (or sequences) at a time. These tend to be simpler than the other functions I've described so far. For instance, COPY-SEQ and REVERSE each take a single argument, a sequence, and each returns a new sequence of the same type. The sequence returned by COPY-SEQ contains the same elements as its argument while the sequence returned by REVERSE contains the same elements but in reverse order. Note that neither function copies the elements themselves -- only the returned sequence is a new object.
 
 The CONCATENATE function creates a new sequence containing the concatenation of any number of sequences. However, unlike REVERSE and COPY-SEQ, which simply return a sequence of the same type as their single argument, CONCATENATE must be told explicitly what kind of sequence to produce in case the arguments are of different types. Its first argument is a type descriptor, like the :element-type argument to MAKE-ARRAY. In this case, the type descriptors you'll most likely use are the symbols VECTOR, LIST, or STRING.9 For example:
 
@@ -154,7 +154,7 @@ The functions SORT and STABLE-SORT provide two ways of sorting a sequence. They 
 
 The difference is that STABLE-SORT is guaranteed to not reorder any elements considered equivalent by the predicate while SORT guarantees only that the result is sorted and may reorder equivalent elements.
 
-Both these functions are examples of what are called destructive functions. Destructive functions are allowed--typically for reasons of efficiency--to modify their arguments in more or less arbitrary ways. This has two implications: one, you should always do something with the return value of these functions (such as assign it to a variable or pass it to another function), and, two, unless you're done with the object you're passing to the destructive function, you should pass a copy instead. I'll say more about destructive functions in the next chapter.
+Both these functions are examples of what are called destructive functions. Destructive functions are allowed -- typically for reasons of efficiency -- to modify their arguments in more or less arbitrary ways. This has two implications: one, you should always do something with the return value of these functions (such as assign it to a variable or pass it to another function), and, two, unless you're done with the object you're passing to the destructive function, you should pass a copy instead. I'll say more about destructive functions in the next chapter.
 
 Typically you won't care about the unsorted version of a sequence after you've sorted it, so it makes sense to allow SORT and STABLE-SORT to destroy the sequence in the course of sorting it. But it does mean you need to remember to write the following:10
 
@@ -196,7 +196,7 @@ It returns NIL if the strings match. MISMATCH also takes many of the standard ke
 
 Sequence Predicates
 
-Four other handy functions are EVERY, SOME, NOTANY, and NOTEVERY, which iterate over sequences testing a boolean predicate. The first argument to all these functions is the predicate, and the remaining arguments are sequences. The predicate should take as many arguments as the number of sequences passed. The elements of the sequences are passed to the predicate--one element from each sequence--until one of the sequences runs out of elements or the overall termination test is met: EVERY terminates, returning false, as soon as the predicate fails. If the predicate is always satisfied, it returns true. SOME returns the first non-NIL value returned by the predicate or returns false if the predicate is never satisfied. NOTANY returns false as soon as the predicate is satisfied or true if it never is. And NOTEVERY returns true as soon as the predicate fails or false if the predicate is always satisfied. Here are some examples of testing just one sequence:
+Four other handy functions are EVERY, SOME, NOTANY, and NOTEVERY, which iterate over sequences testing a boolean predicate. The first argument to all these functions is the predicate, and the remaining arguments are sequences. The predicate should take as many arguments as the number of sequences passed. The elements of the sequences are passed to the predicate -- one element from each sequence -- until one of the sequences runs out of elements or the overall termination test is met: EVERY terminates, returning false, as soon as the predicate fails. If the predicate is always satisfied, it returns true. SOME returns the first non-NIL value returned by the predicate or returns false if the predicate is never satisfied. NOTANY returns false as soon as the predicate is satisfied or true if it never is. And NOTEVERY returns true as soon as the predicate fails or false if the predicate is always satisfied. Here are some examples of testing just one sequence:
 
 (every #'evenp #(1 2 3 4 5)) ==> NIL (some #'evenp #(1 2 3 4 5)) ==> T (notany #'evenp #(1 2 3 4 5)) ==> NIL (notevery #'evenp #(1 2 3 4 5)) ==> T
 
@@ -210,7 +210,7 @@ Finally, the last of the sequence functions are the generic mapping functions. M
 
 (map 'vector #'* #(1 2 3 4 5) #(10 9 8 7 6)) ==> #(10 18 24 28 30)
 
-MAP-INTO is like MAP except instead of producing a new sequence of a given type, it places the results into a sequence passed as the first argument. This sequence can be the same as one of the sequences providing values for the function. For instance, to sum several vectors--a, b, and c--into one, you could write this:
+MAP-INTO is like MAP except instead of producing a new sequence of a given type, it places the results into a sequence passed as the first argument. This sequence can be the same as one of the sequences providing values for the function. For instance, to sum several vectors -- a, b, and c -- into one, you could write this:
 
 (map-into a #'+ a b c)
 
@@ -220,19 +220,19 @@ The last sequence function is REDUCE, which does another kind of mapping: it map
 
 (reduce #'+ #(1 2 3 4 5 6 7 8 9 10)) ==> 55
 
-REDUCE is a surprisingly useful function--whenever you need to distill a sequence down to a single value, chances are you can write it with REDUCE, and it will often be quite a concise way to express what you want. For instance, to find the maximum value in a sequence of numbers, you can write (reduce #'max numbers). REDUCE also takes a full complement of keyword arguments (:key, :from-end, :start, and :end) and one unique to REDUCE (:initial-value). The latter specifies a value that's logically placed before the first element of the sequence (or after the last if you also specify a true :from-end argument).
+REDUCE is a surprisingly useful function -- whenever you need to distill a sequence down to a single value, chances are you can write it with REDUCE, and it will often be quite a concise way to express what you want. For instance, to find the maximum value in a sequence of numbers, you can write (reduce #'max numbers). REDUCE also takes a full complement of keyword arguments (:key, :from-end, :start, and :end) and one unique to REDUCE (:initial-value). The latter specifies a value that's logically placed before the first element of the sequence (or after the last if you also specify a true :from-end argument).
 
 Hash Tables
 
-The other general-purpose collection provided by Common Lisp is the hash table. Where vectors provide an integer-indexed data structure, hash tables allow you to use arbitrary objects as the indexes, or keys. When you add a value to a hash table, you store it under a particular key. Later you can use the same key to retrieve the value. Or you can associate a new value with the same key--each key maps to a single value.
+The other general-purpose collection provided by Common Lisp is the hash table. Where vectors provide an integer-indexed data structure, hash tables allow you to use arbitrary objects as the indexes, or keys. When you add a value to a hash table, you store it under a particular key. Later you can use the same key to retrieve the value. Or you can associate a new value with the same key -- each key maps to a single value.
 
-With no arguments MAKE-HASH-TABLE makes a hash table that considers two keys equivalent if they're the same object according to EQL. This is a good default unless you want to use strings as keys, since two strings with the same contents aren't necessarily EQL. In that case you'll want a so-called EQUAL hash table, which you can get by passing the symbol EQUAL as the :test keyword argument to MAKE-HASH-TABLE. Two other possible values for the :test argument are the symbols EQ and EQUALP. These are, of course, the names of the standard object comparison functions, which I discussed in Chapter 4. However, unlike the :test argument passed to sequence functions, MAKE-HASH-TABLE's :test can't be used to specify an arbitrary function--only the values EQ, EQL, EQUAL, and EQUALP. This is because hash tables actually need two functions, an equivalence function and a hash function that computes a numerical hash code from the key in a way compatible with how the equivalence function will ultimately compare two keys. However, although the language standard provides only for hash tables that use the standard equivalence functions, most implementations provide some mechanism for defining custom hash tables.
+With no arguments MAKE-HASH-TABLE makes a hash table that considers two keys equivalent if they're the same object according to EQL. This is a good default unless you want to use strings as keys, since two strings with the same contents aren't necessarily EQL. In that case you'll want a so-called EQUAL hash table, which you can get by passing the symbol EQUAL as the :test keyword argument to MAKE-HASH-TABLE. Two other possible values for the :test argument are the symbols EQ and EQUALP. These are, of course, the names of the standard object comparison functions, which I discussed in Chapter 4. However, unlike the :test argument passed to sequence functions, MAKE-HASH-TABLE's :test can't be used to specify an arbitrary function -- only the values EQ, EQL, EQUAL, and EQUALP. This is because hash tables actually need two functions, an equivalence function and a hash function that computes a numerical hash code from the key in a way compatible with how the equivalence function will ultimately compare two keys. However, although the language standard provides only for hash tables that use the standard equivalence functions, most implementations provide some mechanism for defining custom hash tables.
 
-The GETHASH function provides access to the elements of a hash table. It takes two arguments--a key and the hash table--and returns the value, if any, stored in the hash table under that key or NIL.11 For example:
+The GETHASH function provides access to the elements of a hash table. It takes two arguments -- a key and the hash table -- and returns the value, if any, stored in the hash table under that key or NIL.11 For example:
 
 (defparameter *h* (make-hash-table)) (gethash 'foo *h*) ==> NIL (setf (gethash 'foo *h*) 'quux) (gethash 'foo *h*) ==> QUUX
 
-Since GETHASH returns NIL if the key isn't present in the table, there's no way to tell from the return value the difference between a key not being in a hash table at all and being in the table with the value NIL. GETHASH solves this problem with a feature I haven't discussed yet--multiple return values. GETHASH actually returns two values; the primary value is the value stored under the given key or NIL. The secondary value is a boolean indicating whether the key is present in the hash table. Because of the way multiple values work, the extra return value is silently discarded unless the caller explicitly handles it with a form that can "see" multiple values.
+Since GETHASH returns NIL if the key isn't present in the table, there's no way to tell from the return value the difference between a key not being in a hash table at all and being in the table with the value NIL. GETHASH solves this problem with a feature I haven't discussed yet -- multiple return values. GETHASH actually returns two values; the primary value is the value stored under the given key or NIL. The secondary value is a boolean indicating whether the key is present in the hash table. Because of the way multiple values work, the extra return value is silently discarded unless the caller explicitly handles it with a form that can "see" multiple values.
 
 I'll discuss multiple return values in greater detail in Chapter 20, but for now I'll give you a sneak preview of how to use the MULTIPLE-VALUE-BIND macro to take advantage of GETHASH's extra return value. MULTIPLE-VALUE-BIND creates variable bindings like LET does, filling them with the multiple values returned by a form.
 
@@ -266,7 +266,7 @@ I could say a lot more about the nonlist collections supported by Common Lisp. F
 
 3Array elements "must" be set before they're accessed in the sense that the behavior is undefined; Lisp won't necessarily stop you.
 
-4While frequently used together, the :fill-pointer and :adjustable arguments are independent--you can make an adjustable array without a fill pointer. However, you can use VECTOR-PUSH and VECTOR-POP only with vectors that have a fill pointer and VECTOR-PUSH-EXTEND only with vectors that have a fill pointer and are adjustable. You can also use the function ADJUST-ARRAY to modify adjustable arrays in a variety of ways beyond just extending the length of a vector.
+4While frequently used together, the :fill-pointer and :adjustable arguments are independent -- you can make an adjustable array without a fill pointer. However, you can use VECTOR-PUSH and VECTOR-POP only with vectors that have a fill pointer and VECTOR-PUSH-EXTEND only with vectors that have a fill pointer and are adjustable. You can also use the function ADJUST-ARRAY to modify adjustable arrays in a variety of ways beyond just extending the length of a vector.
 
 5Another parameter, :test-not parameter, specifies a two-argument predicate to be used like a :test argument except with the boolean result logically reversed. This parameter is deprecated, however, in preference for using the COMPLEMENT function. COMPLEMENT takes a function argu-ment and returns a function that takes the same number of arguments as the original and returns the logical complement of the original function. Thus, you can, and should, write this:
 
@@ -290,7 +290,7 @@ rather than the following:
 
 10When the sequence passed to the sorting functions is a vector, the "destruction" is actually guaranteed to entail permuting the elements in place, so you could get away without saving the returned value. However, it's good style to always do something with the return value since the sorting functions can modify lists in much more arbitrary ways.
 
-11By an accident of history, the order of arguments to GETHASH is the opposite of ELT--ELT takes the collection first and then the index while GETHASH takes the key first and then the collection.
+11By an accident of history, the order of arguments to GETHASH is the opposite of ELT -- ELT takes the collection first and then the index while GETHASH takes the key first and then the collection.
 
 12LOOP's hash table iteration is typically implemented on top of a more primitive form, WITH-HASH-TABLE-ITERATOR, that you don't need to worry about; it was added to the language specifically to support implementing things such as LOOP and is of little use unless you need to write completely new control constructs for iterating over hash tables.
 
@@ -298,9 +298,9 @@ Copyright © 2003-2005, Peter Seibel
 
 12. They Called It LISP for a Reason: List Processing
 
-Lists play an important role in Lisp--for reasons both historical and practical. Historically, lists were Lisp's original composite data type, though it has been decades since they were its only such data type. These days, a Common Lisp programmer is as likely to use a vector, a hash table, or a user-defined class or structure as to use a list.
+Lists play an important role in Lisp -- for reasons both historical and practical. Historically, lists were Lisp's original composite data type, though it has been decades since they were its only such data type. These days, a Common Lisp programmer is as likely to use a vector, a hash table, or a user-defined class or structure as to use a list.
 
-Practically speaking, lists remain in the language because they're an excellent solution to certain problems. One such problem--how to represent code as data in order to support code-transforming and code-generating macros--is particular to Lisp, which may explain why other languages don't feel the lack of Lisp-style lists. More generally, lists are an excellent data structure for representing any kind of heterogeneous and/or hierarchical data. They're also quite lightweight and support a functional style of programming that's another important part of Lisp's heritage.
+Practically speaking, lists remain in the language because they're an excellent solution to certain problems. One such problem -- how to represent code as data in order to support code-transforming and code-generating macros -- is particular to Lisp, which may explain why other languages don't feel the lack of Lisp-style lists. More generally, lists are an excellent data structure for representing any kind of heterogeneous and/or hierarchical data. They're also quite lightweight and support a functional style of programming that's another important part of Lisp's heritage.
 
 Thus, you need to understand lists on their own terms; as you gain a better understanding of how lists work, you'll be in a better position to appreciate when you should and shouldn't use them.
 
@@ -322,15 +322,15 @@ CONS takes two arguments and returns a new cons cell containing the two values.2
 
 (cons 1 2) ==> (1 . 2)
 
-The two values in a cons cell are called the CAR and the CDR after the names of the functions used to access them. At the dawn of time, these names were mnemonic, at least to the folks implementing the first Lisp on an IBM 704. But even then they were just lifted from the assembly mnemonics used to implement the operations. However, it's not all bad that these names are somewhat meaningless--when considering individual cons cells, it's best to think of them simply as an arbitrary pair of values without any particular semantics. Thus:
+The two values in a cons cell are called the CAR and the CDR after the names of the functions used to access them. At the dawn of time, these names were mnemonic, at least to the folks implementing the first Lisp on an IBM 704. But even then they were just lifted from the assembly mnemonics used to implement the operations. However, it's not all bad that these names are somewhat meaningless -- when considering individual cons cells, it's best to think of them simply as an arbitrary pair of values without any particular semantics. Thus:
 
 (car (cons 1 2)) ==> 1 (cdr (cons 1 2)) ==> 2
 
-Both CAR and CDR are also SETFable places--given an existing cons cell, it's possible to assign a new value to either of its values.3
+Both CAR and CDR are also SETFable places -- given an existing cons cell, it's possible to assign a new value to either of its values.3
 
 (defparameter *cons* (cons 1 2)) *cons* ==> (1 . 2) (setf (car *cons*) 10) ==> 10 *cons* ==> (10 . 2) (setf (cdr *cons*) 20) ==> 20 *cons* ==> (10 . 20)
 
-Because the values in a cons cell can be references to any kind of object, you can build larger structures out of cons cells by linking them together. Lists are built by linking together cons cells in a chain. The elements of the list are held in the CARs of the cons cells while the links to subsequent cons cells are held in the CDRs. The last cell in the chain has a CDR of NIL, which--as I mentioned in Chapter 4--represents the empty list as well as the boolean value false.
+Because the values in a cons cell can be references to any kind of object, you can build larger structures out of cons cells by linking them together. Lists are built by linking together cons cells in a chain. The elements of the list are held in the CARs of the cons cells while the links to subsequent cons cells are held in the CDRs. The last cell in the chain has a CDR of NIL, which -- as I mentioned in Chapter 4 -- represents the empty list as well as the boolean value false.
 
 This arrangement is by no means unique to Lisp; it's called a singly linked list. However, few languages outside the Lisp family provide such extensive support for this humble data type.
 
@@ -342,7 +342,7 @@ When talking about structures built out of cons cells, a few diagrams can be a b
 
 The box on the left represents the CAR, and the box on the right is the CDR. The values stored in a particular cons cell are either drawn in the appropriate box or represented by an arrow from the box to a representation of the referenced value.4 For instance, the list (1 2 3), which consists of three cons cells linked together by their CDRs, would be diagrammed like this:
 
-However, most of the time you work with lists you won't have to deal with individual cons cells--the functions that create and manipulate lists take care of that for you. For example, the LIST function builds a cons cells under the covers for you and links them together; the following LIST expressions are equivalent to the previous CONS expressions:
+However, most of the time you work with lists you won't have to deal with individual cons cells -- the functions that create and manipulate lists take care of that for you. For example, the LIST function builds a cons cells under the covers for you and links them together; the following LIST expressions are equivalent to the previous CONS expressions:
 
 (list 1) ==> (1) (list 1 2) ==> (1 2) (list 1 2 3) ==> (1 2 3)
 

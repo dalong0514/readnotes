@@ -4,7 +4,7 @@ In this chapter you'll return to cutting code and develop a simple unit testing 
 
 The main design goal of the test framework will be to make it as easy as possible to add new tests, to run various suites of tests, and to track down test failures. For now you'll focus on designing a framework you can use during interactive development.
 
-The key feature of an automated testing framework is that the framework is responsible for telling you whether all the tests passed. You don't want to spend your time slogging through test output checking answers when the computer can do it much more quickly and accurately. Consequently, each test case must be an expression that yields a boolean value--true or false, pass or fail. For instance, if you were writing tests for the built-in + function, these might be reasonable test cases: 1
+The key feature of an automated testing framework is that the framework is responsible for telling you whether all the tests passed. You don't want to spend your time slogging through test output checking answers when the computer can do it much more quickly and accurately. Consequently, each test case must be an expression that yields a boolean value -- true or false, pass or fail. For instance, if you were writing tests for the built-in + function, these might be reasonable test cases: 1
 
 ```c
 (= (+ 1 2) 3) 
@@ -12,9 +12,9 @@ The key feature of an automated testing framework is that the framework is respo
 (= (+ -1 -3) -4)
 ```
 
-Functions that have side effects will be tested slightly differently--you'll have to call the function and then check for evidence of the expected side effects. 2 But in the end, every test case has to boil down to a boolean expression, thumbs up or thumbs down.
+Functions that have side effects will be tested slightly differently -- you'll have to call the function and then check for evidence of the expected side effects. 2 But in the end, every test case has to boil down to a boolean expression, thumbs up or thumbs down.
 
-1 This is for illustrative purposes only--obviously, writing test cases for built-in functions such as + is a bit silly, since if such basic things aren't working, the chances the tests will be running the way you expect is pretty slim. On the other hand, most Common Lisps are implemented largely in Common Lisp, so it's not crazy to imagine writing test suites in Common Lisp to test the standard library functions.
+1 This is for illustrative purposes only -- obviously, writing test cases for built-in functions such as + is a bit silly, since if such basic things aren't working, the chances the tests will be running the way you expect is pretty slim. On the other hand, most Common Lisps are implemented largely in Common Lisp, so it's not crazy to imagine writing test suites in Common Lisp to test the standard library functions.
 
 2 Side effects can include such things as signaling errors; I’ll discuss Common Lisp’s error handling system in Chapter 19. You may, after reading that chapter, want to think about how to incorporate tests that check whether a function does or does not signal a particular error in certain situations.
 
@@ -39,9 +39,9 @@ CL-USER> (test-+)
 T
 ```
 
-As long as it returns T, you know the test cases are passing. This way of organizing tests is also pleasantly concise--you don't have to write a bunch of test bookkeeping code. However, as you'll discover the first time a test case fails, the result reporting leaves something to be desired. When test-+ returns NIL, you'll know something failed, but you'll have no idea which test case it was.
+As long as it returns T, you know the test cases are passing. This way of organizing tests is also pleasantly concise -- you don't have to write a bunch of test bookkeeping code. However, as you'll discover the first time a test case fails, the result reporting leaves something to be desired. When test-+ returns NIL, you'll know something failed, but you'll have no idea which test case it was.
 
-So let's try another simple--even simpleminded--approach. To find out what happens to each test case, you could write something like this:
+So let's try another simple -- even simpleminded -- approach. To find out what happens to each test case, you could write something like this:
 
 ```c
 (defun test-+ () 
@@ -195,7 +195,7 @@ As a first step, you can make a small change to report-result so it returns the 
 
 Now that report-result returns the result of its test case, it might seem you could just change the PROGN to an AND to combine the results. Unfortunately, AND doesn't do quite what you want in this case because of its short-circuiting behavior: as soon as one test case fails, AND will skip the rest. On the other hand, if you had a construct that worked like AND without the short-circuiting, you could use it in the place of PROGN, and you'd be done. Common Lisp doesn't provide such a construct, but that's no reason you can't use it: it's a trivial matter to write a macro to provide it yourself.
 
-Leaving test cases aside for a moment, what you want is a macro--let's call it combine-results--that will let you say this:
+Leaving test cases aside for a moment, what you want is a macro -- let's call it combine-results -- that will let you say this:
 
 ```c
 (combine-results 
@@ -216,7 +216,7 @@ and have it mean something like this:
 )
 ```
 
-The only tricky bit to writing this macro is that you need to introduce a variable--result in the previous code--in the expansion. As you saw in the previous chapter, using a literal name for variables in macro expansions can introduce a leak in your macro abstraction, so you'll need to create a unique name. This is a job for with-gensyms. You can define combine-results like this:
+The only tricky bit to writing this macro is that you need to introduce a variable -- result in the previous code -- in the expansion. As you saw in the previous chapter, using a literal name for variables in macro expansions can introduce a leak in your macro abstraction, so you'll need to create a unique name. This is a job for with-gensyms. You can define combine-results like this:
 
 ```c
 (defmacro combine-results (&body forms) 
@@ -366,7 +366,7 @@ T
 
 ## 9.5 An Abstraction Emerges
 
-In fixing the test functions, you've introduced several new bits of duplication. Not only does each function have to include the name of the function twice--once as the name in the DEFUN and once in the binding of `*test-name*`--but the same three-line code pattern is duplicated between the two functions. You could remove the duplication simply on the grounds that duplication is bad. But if you look more closely at the root cause of the duplication, you can learn an important lesson about how to use macros.
+In fixing the test functions, you've introduced several new bits of duplication. Not only does each function have to include the name of the function twice -- once as the name in the DEFUN and once in the binding of `*test-name*` -- but the same three-line code pattern is duplicated between the two functions. You could remove the duplication simply on the grounds that duplication is bad. But if you look more closely at the root cause of the duplication, you can learn an important lesson about how to use macros.
 
 The reason both these functions start the same way is because they're both test functions. The duplication arises because, at the moment, test function is only half an abstraction. The abstraction exists in your mind, but in the code there's no way to express "this is a test function" other than to write code that follows a particular pattern.
 
@@ -394,7 +394,7 @@ With this macro you can rewrite test-+ as follows:
 
 ## 9.6 A Hierarchy of Tests
 
-Now that you've established test functions as first-class citizens, the question might arise, should test-arithmetic be a test function? As things stand, it doesn't really matter--if you did define it with deftest, its binding of `*test-name*` would be shadowed by the bindings in test-+ and test-* before any results are reported.
+Now that you've established test functions as first-class citizens, the question might arise, should test-arithmetic be a test function? As things stand, it doesn't really matter -- if you did define it with deftest, its binding of `*test-name*` would be shadowed by the bindings in test-+ and test-* before any results are reported.
 
 But now imagine you've got thousands of test cases to organize. The first level of organization is provided by test functions such as test-+ and test-* that directly call check. But with thousands of test cases, you'll likely need other levels of organization. Functions such as test-arithmetic can group related test functions into test suites. Now suppose some low-level test functions are called from multiple test suites. It's not unheard of for a test case to pass in one context but fail in another. If that happens, you'll probably want to know more than just what low-level test function contains the test case.
 
@@ -463,7 +463,7 @@ T
 
 6 Though, again, if the test functions have been compiled, you'll have to recompile them after changing the macro.
 
-7 As you'll see in Chapter 12, APPENDing to the end of a list isn't the most efficient way to build a list. But for now this is sufficient--as long as the test hierarchies aren't too deep, it should be fine. And if it becomes a problem, all you'll have to do is change the definition of deftest.
+7 As you'll see in Chapter 12, APPENDing to the end of a list isn't the most efficient way to build a list. But for now this is sufficient -- as long as the test hierarchies aren't too deep, it should be fine. And if it becomes a problem, all you'll have to do is change the definition of deftest.
 
 ## 9.7 Wrapping Up
 
@@ -509,13 +509,13 @@ You could keep going, adding more features to this test framework. But as a fram
 
 It's worth reviewing how you got here because it's illustrative of how programming in Lisp often goes.
 
-You started by defining a simple version of your problem--how to evaluate a bunch of boolean expressions and find out if they all returned true. Just ANDing them together worked and was syntactically clean but revealed the need for better result reporting. So you wrote some really simpleminded code, chock-full of duplication and error-prone idioms that reported the results the way you wanted.
+You started by defining a simple version of your problem -- how to evaluate a bunch of boolean expressions and find out if they all returned true. Just ANDing them together worked and was syntactically clean but revealed the need for better result reporting. So you wrote some really simpleminded code, chock-full of duplication and error-prone idioms that reported the results the way you wanted.
 
 The next step was to see if you could refactor the second version into something as clean as the former. You started with a standard refactoring technique of extracting some code into a function, report-result. Unfortunately, you could see that using report-result was going to be tedious and error-prone since you had to pass the test expression twice, once for the value and once as quoted data. So you wrote the check macro to automate the details of calling report-result correctly.
 
 While writing check, you realized as long as you were generating code, you could make a single call to check to generate multiple calls to report-result, getting you back to a version of test-+ about as concise as the original AND version.
 
-At that point you had the check API nailed down, which allowed you to start mucking with how it worked on the inside. The next task was to fix check so the code it generated would return a boolean indicating whether all the test cases had passed. Rather than immediately hacking away at check, you paused to indulge in a little language design by fantasy. What if--you fantasized--there was already a non-short-circuiting AND construct. Then fixing check would be trivial. Returning from fantasyland you realized there was no such construct but that you could write one in a few lines. After writing combine-results, the fix to check was indeed trivial.
+At that point you had the check API nailed down, which allowed you to start mucking with how it worked on the inside. The next task was to fix check so the code it generated would return a boolean indicating whether all the test cases had passed. Rather than immediately hacking away at check, you paused to indulge in a little language design by fantasy. What if -- you fantasized -- there was already a non-short-circuiting AND construct. Then fixing check would be trivial. Returning from fantasyland you realized there was no such construct but that you could write one in a few lines. After writing combine-results, the fix to check was indeed trivial.
 
 At that point all that was left was to make a few more improvements to the way you reported test results. Once you started making changes to the test functions, you realized those functions represented a special category of function that deserved its own abstraction. So you wrote deftest to abstract the pattern of code that turns a regular function into a test function.
 
