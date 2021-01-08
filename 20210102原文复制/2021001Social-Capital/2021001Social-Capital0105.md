@@ -10,7 +10,7 @@ The theory of social capital focuses on the resources embedded in one’s social
 
 Resources can be either ascribed or acquired. Ascribed resources are those one is born with, such as gender and race. Other resources are pre-scribed by inheritance, such as caste and sometimes religion, and may include parental resources. Resources can also be acquired, such as education, or prestigious or authoritative jobs. When resources are being invested for expected returns in the marketplace, they become social capital.
 
-Capital can be classified into two types: (1) personal or human capital and (2) social capital.1 Human capital consists of resources possessed by the individual, who can use and dispose of them with great freedom and 1 As stated in footnote 2 of Chapter 4, social resources may also include cultural capital.
+Capital can be classified into two types: 1) personal or human capital and 2) social capital.[1] Human capital consists of resources possessed by the individual, who can use and dispose of them with great freedom and 1 As stated in footnote 2 of Chapter 4, social resources may also include cultural capital.
 
 without much concern for compensation. Social capital consists of resources embedded in one’s network or associations. Our focus here is on social capital, which is not the individual’s possessed goods, but resources accessible through direct and indirect ties. Access to and use of these resources is temporary and borrowed in the sense that the actor does not possess them. A friend’s bicycle is one’s social capital. One can use it to achieve a certain goal, but it must be returned to the friend.
 
@@ -20,7 +20,7 @@ One implication of the use of social capital is its assumed obligation for recip
 
 社会资本理论关注嵌入在个体的社会网络中的资源，以及如何获取和使用这些资源使个体的行动受益。资源被定义为社会中有价值的物品，然而由双方共同决定，对资源的拥有维持和促进了个体生存和延续的自身利益。价值是施加在这些物品上的规范性判断。对于大部分社会，它们是与财富、声望和权力相一致的。社会资本理论关注的是：个体为了维持或获得有价值资源而采取的那些行动。
 
-资源可以是先赋的或自致的。先赋资源是与生俱来的，如性别和种族其他资源是被继承限定的，如等级和宗教，还可以包括父母的资源。资源也可以自致，如教育、有声望或有权威的工作。当资源在市场中被投资以产生期待的回报时，它们就变成了社会资本。
+资源可以是先赋的或自致的。先赋资源是与生俱来的，如性别和种族。其他资源是被继承限定的，如等级和宗教，还可以包括父母的资源。资源也可以自致，如教育、有声望或有权威的工作。当资源在市场中被投资以产生期待的回报时，它们就变成了社会资本。
 
 资本可以分为两类：1）个人或人力资本；2）社会资本 [1]。人力资本由人所拥有的资源组成，个人可以自由地、不需要补偿地使用和处置它们。社会资本由嵌入在个人的网络和联系中的资源组成。我们这里关注的是社会资本，它不是个体所拥有的物品，而是通过直接和间接的关系获取的资源。
 
