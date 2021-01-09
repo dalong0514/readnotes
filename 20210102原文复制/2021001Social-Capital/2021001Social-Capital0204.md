@@ -1,5 +1,7 @@
 # 0204. Institutions, Networks, and Capital Building Societal Transformations
 
+原书第十一章
+
 In Chapter 8, it was proposed that actions motivated by expressive and instrumental needs propel interactions with others beyond primordial groups so that social capital may be accessed. These purposive actions sustain two types of exchanges, as described in Chapter 9 – to gain and maintain two elementary payoffs: wealth and reputation. These two chapters describe the process from action to structure. Chapter 10 turns to the structure-to-action process by showing how hierarchical structures constrain actions accessing social capital. These are ideal types of linkage between action and structure; in reality, such processes are complicated by structures and processes mediating between actors and hierarchical structures. Unless we identify and describe how these middle-level structures and processes operate, we will be unable to understand how action and structure interact. Further, the two processes – from micro to macro and vice versa – should not be seen in isolation or each depicted as a one-way process. A comprehensive theory of social capital must capture the two-way process between action and structure, as mediated through certain middle-level structures and processes.
 
 In this chapter, I argue that two such middle-level structures – institutions and networks – constitute the infrastructure of society. The framework conceives institutions and networks as the two main social forces guiding the interactions between actors and hierarchical structures and the flows of capital.
@@ -28,9 +30,37 @@ Basically, I conceive institutions and networks as the infrastructure of society
 
 The remainder of the chapter describes how institutions and networks work in tandem. Specifically, it will show how institutions organize and interact with other major components of society (i.e., institutionalizing organizations, other social and economic organizations, and social networks) and facilitate the flow of capital among these components. The final section highlights the significance of social networks in institutional transformation.
 
-The Institutional Field and
+我在第八章中提出，表达性需要和工具性需要激发的行动推动了与首要群体之外的人的互动，这样才能获得社会资本。第九章进一步指出，这些目的性行动维持着两种类型的交换 一一 获得与维持财富和名声这两种基本报偿。这两章描述了从行动到结构的过程。第十章通过说明等级制结构如何约束获取社会资本的行动，转向从结构到行动过程的论述。这些论述建立的是行动与结构之间关系的理想类型。在现实中，这些过程由于行动者与等级制结构之间的一系列中间过程和结构而变得复杂化。除非我们确定这些中层结构和过程如何运作，否则我们不能理解行动与结构如何互动。此外，这两个过程 一一 从微观到宏观，从宏观到微观 一一 不应该视为孤立的或单向的过程。一个全面的社会资本理论必须抓住以某些中层结构和过程作为中介的行动与结构之间的双向过程。
 
-Organization-Society Isomorphism
+在本章中，我将指出，两个中层结构 一一 制度和网络 —— 组成了社会的基础结构。制度和网络是引导着行动者与等级制结构之间的互动以及社会资本流动的两种主要社会力量。
+
+2『个人目的性行为是微观层，结构是宏观层，制度、网络是中间层。社会资本的微观层、宏观层和中间层，做一张主题卡片。（2021-01-09）』——已完成
+
+很多学者已经使用网络分析来描述这个从微观到宏观的过程，其中包括科尔曼、怀特（White）、格拉诺维特、伯特、布莱格、韦尔曼、埃里克森、马斯顿、弗拉普和很多其他学者。对于进行社会网络分析的那些学者，社会资源或社会资本组成了社会学解释的核心要素。建立在两种动机原则损失最小化与获得最大化 —— 基础上的目的性行动，导致了表达性与工具性目的的社会网络（首先是首要群体，其次是关系）的形成。因此，正如前面所指出的，社会网络不仅存在于（例如经济的）等级制组织之中（例如经济组织的社会性嵌入；参见 Granovetter, 1985），而且存在于个体行动者的相互关系之中（Granovetter, 1973, 1974; Lin, 1982; Burt, 1992），因此交易和交换不仅发生在组织内部和组织之间，而且发生在个体行动者之中。
+
+制度分析提出了另一个理解组织与更大环境之间关系的重要分析工具（DiMaggio and Powell 1983, 1991; North 1990; Powell and DiMaggio 1991; Meyer and Scott 1992; Scott and Meyer 1994）。组织的生存和延续不仅依赖于它在市场中的效率或竞争力，而且依赖于它适应与遵从更高级别的社会制度和规则的能力。对这些社会规则的遵从导致了多样化组织的结构同构与行为趋同，或者说制度同构现象（Dimaggio and Powell, 1983），这是单纯的竞争力力或绩效标准所无法解释的。
+
+制度和网络的视角很振奋人心，因为它们明确提出了分析社会力量与经济力量如何塑造互动和交易的方法。例如，它们澄清了为什么交易成本总是存在的，以及不均衡分布的。它们也解释了为什么个体与组织的行动动机和理性化超出了经济的考虑。如果不考虑这些力量，很明显我们就不能理解个体与组织如何行为或者延续，以及行为的原因是什么。但是概念与将这些概念连接起来的过程之间存在着断裂，几个例子将证明这点。
+
+制度分析的一个主要假定是，制度影响甚至支配着行动者和组织的行为。不清楚的是这个过程是如何发生的。个体如何学习规则？他们为什么要遵从它？与个体行动者相类似的组织如何增加它们的制度资源和它们的生存机会？换言之，使个体行动者和组织顺从制度性的仪式与行为的社会机制是什么？
+
+另一个问题是制度与网络是如何相联系的。一个很显然的答案是网络强化了制度，因为网络增强了结构的内聚性（Zucker, 1988）。那么如何解释社会运动？因为社会运动通常涉及到相互联系的行动者群体，它们通过动员资本的方式来反对现行制度。或者更具体地讲，如何解释社会资本在一些情况下促进了从现行的制度和组织中获得收益的工具性行动，而在另一些情况下成为制度转型的工具？
+
+![](./res/2021027.png)
+
+图 11.1 四种基本的社会过程（来自 Coleman, 1990, p8）
+
+这一章试着对这些问题作出回答。我的方法是先提出一个概念框架，以明确我在图 11.1 中所给出的双向过程 一一 也即过程 1（从宏观到微观）和过程 3（从微观到宏观）中的关键部分。在短短的一章中完成这个任务是很困难的，因此我作了两个调整。
+
+第一，我将关注我所提出的框架中最核心的问题，忍痛割舍掉其他一些也很重要、但是必须暂时放到后面的问题。例如，这一章很少谈到国家或技术，尽管在对各部分如何互动的描述中都要涉及到它们。我会在第十二章更多谈到技术与社会资本的关系。
+
+第二，我会关注更一般性的，放弃一些特殊性的问题。例如，我将不考虑某些特殊因素，而关注一些一般性的普遍制度，如任何社会都存在的性别和族群现象。
+
+我把制度和网络作为社会的基础结构 —— 连接、控制和黏合社会中的行动者与组织的必不可少的社会力量。它们可能不是最有效率的机制，但是它们解释了行动者与组织的内部团结和外部分化。在这两者之中，制度提供了组织行动与互动的原则，提供了修辞理性（rhetoric rationality）以及组织与功能的地图。最重要的是，制度维持着个体和集体的认同。另一方面，网络提高了可以降低超出组织所能负担的交易成本的弹性。网络也提供了填充与联结社会中所必然存在的断裂的活力。同样重要的是，它们还充当着制度转型的媒介。
+
+这一章剩下的部分将描述制度与网络如何共同起作用。特别地，我还将解释制度如何组织社会的其他主要部分（也即制度化的组织，其他的社会、经济组织和社会网络）并与其互动，如何促进资本在这些部分中的流动。最后关注社会网络在制度转型中的重要性。
+
+## 4.1 The Institutional Field and Organization-Society Isomorphism
 
 Institutions , seen as the organizing principles of interaction, can simply be defined as rules of the game (North 1990, p. 3) in a society and can be either formal or informal. These rules serve as the traffic guides in the flow and transactions of goods (both material and symbolic) among actors, including both individuals and organizations. Some rules are more important than others in that the actors are more consciously aware of them and feel the need to demonstrate more deliberately that the rules are followed in their actions and transactions. There are various explanations of how certain rules or institutions come into existence and assume dominant positions in a society. They may result from wars, revolutions, rebellions, colonization, occupation, disasters, acts of charismatic and authoritarian leaders, dominant class interests, or post facto rationality. To a large extent, they may be the result of historical path dependence (see David 1985 for the institutionalization of the QWERTY
 
@@ -54,7 +84,25 @@ Figure 11.2 Institutional field.
 
 isomorphism with the organizations. The organization-network institutional isomorphism is reflected in the overlapping rules of the game and the values assigned to certain resources (ideology) between networks (and informal organizations such as churches, chambers of commerce, veterans’ groups, and bowling clubs). Figure 11.2 depicts a functioning institutional field where organizations, networks, and individuals are synchronized in terms of the rules of the game and the values of certain resources.
 
-The Flow of Capital
+制度场域与组织 —— 社会同构
+
+制度 —— 组织互动的原则 —— 可以简单地定义为一个社会中的博弈规则（North, 1990, p3），分为正式制度和非正式制度。这些规则在行动者 一一 包括个人与组织一之间的物品（物质的和符号的）流动与交易中扮演着交通指挥系统的角色。一些规则比另一些更重要，因为行动者更容易意识到它们，感到需要有意地证明自己在行动与交易中正遵守着这些规则。规则或者制度是如何形成的，它们是如何占据到社会支配地位的，对此存在着不同的解释。它们可能源自战争、革命、叛乱、殖民化、占领、灾难、克里斯玛型权威型领袖的行动、统治阶级的利益或者事后理性（post facto rationality）。在很大程度上，它们可能是对历史路径依赖的结果（参见 David 1985 对 QWERTY 式键盘的制度化的研究）。[1] 制度是文化性的，而不是科学性的，因为它们并不需要逻辑或者经验证实、或者证伪。这些规则会对某些种类的行动和互动产生价值偏好，通常以道徳、信念、意识形态、礼仪或（治愈和表现的）能力的形式出现。
+
+2『制度，做一张术语卡片。』——已完成
+
+当组织与个体服从同一套制度时，它们就处在一个制度场域之中（Lin, 1994b）。在制度场域之内，行动者（包括个体、网络和组织）认可、体现和共享着仪式与行为，受到社会制度所施加的约束与激励。这样，它们降低了对行动者之的行动和互动进行估计（计算能力）与强化的交易成本（North, 1990）。
+
+制度场域可以界定一个社会。但是，场域可以超越社会的空间边界。例如，我们可以认为在世界各地很多城市的少数民族聚居区中的华人社区属于相同的制度场域 一一 中国社会，在民族一国家意义上来界定就是中国。尽管这些社区与它们的成员可能讲不同的语言，生活在不同国家的规则与法律下，具有不同的分层与流动的约束和机会，但是他们遵守着从家庭成员之间的结构化关系扩展而来的相同的基本规则（Lin, 1989, 1995b）。这些规则指导着人们的家庭生活、节日庆祝、祖先崇拜、尊敬长者、严慈相济的育儿方式、差序格局式的交往方式、特殊的继承规则（对权威施行长子继承制；对财产施行诸子均分制），以及在生意交易中对默许与非正式的协议而不是正式的法律合同方式的偏好。因此，制度意义上的中国的范围要大于国家意义上的中国。但是一般而言，制度场域存在于国家的范围内。在下面的讨论中，社会与制度场域是等价的。
+
+在制度场域中，组织的生存与延续取决于经济的（技术的）和社会的（制度的）绩效。迪马乔和鲍威尔（Dimaggio and Powell, 1983, p148）使用组织场域的概念来指称「制度生活所认可的领域 一一 关键的供应者、资源与产品消费者、管理机构和提供相似服务或产品的其他组织」，并假定制度场域中的组织会变得制度同构起来，由于它们越来越多地共享着互动、信息和对共同事业的参与意识，所以在形式和实践上会变得具有同质性。制度场域也涉及到制度定义与结构化的过程（Giddens, 1979），但是制度场域的扩展超出了具体的组织类型（如经济性质的企业）或对所有组织的具体互动要求。当组织意识到、并且遵守一套具体的制度规则时，它就属于制度场域。组织通过调节内部结构和行为模式，降低了与相同的制度所支配的其他组织相互动的交易成本。因此，组织-社会的制度同构（Lin, 1994b）是组织同构的先决条件与必要条件。从这个必要条件中可以推出一个假定：在组织执行制度任务的能力与它在社会中的等级制地位之间存在着正向的一致性。同样可以假定，建立的大多数社会网络也与组织同构。组织-网络的制度同构反映在博弈规则的重叠和网络体系间（与非正式组织，如教堂、商会、老兵群体和保岭球俱乐部）对某些资源的价值赋予（意识形态）的重叠上。图 11.2 描述了一个运作的制度场域，在制度场域中，组织、络和个体在博弈规则与某些资源的价值上是一致的。
+
+![](./res/2021028.png)
+
+图 11.2 制度场域
+
+[1] 在 QWERTY 式键盘是否真的比其他形式的键盘，如 Dvorak 系统效率低的题上存在着很多争论。但是，即使 QWERTY 式键盘的效率相当高，QWERTY 式键盘在历史上的首先出现代表着一个真正的优勢，成为它在今天能够得到广泛流行的一个重要因素。（QWERTY 式键盘，即我们现在所使用的键盘 —— 中译注）
+
+## 4.2 The Flow of Capital
 
 Given the organization-network-society isomorphism imperative and the incentive for better positioning in the stratified system, organizations are expected to obtain and retain goods useful for transactions of both an institutional and a technical nature. One important type of such goods is workers capable of performing institutional and/or technical tasks.
 
@@ -76,7 +124,21 @@ Certain examinations or other methods of identification have been devised for th
 
 Now we turn to the issue of how resources are mobilized into capital and how capital is certified.
 
-Institutionalizing Organizations and Social Networks: Crediting and Enforcing Agents
+资本的流动
+
+考虑到组织-网络-社会的同构以及处于分层体系中的好位置上的有利因素，我们可以断言，组织会获得和保留对制度性与技术性交易有用的物品。一种重要的此类物品是工人执行制度和 / 或技术任务的能力。因此，很显然，个体行动者想要在社会中寻求报酬或回报，他们就要证明他们拥有知识和技能，他们愿意和有能力接受进一步的培训和深造。这样，劳动力市场就可以视为个体行动者与组织之间进行这些物品交易的市场。在深入讨论劳动力市场中的物品交易之前，探讨流入制度场域中的物品的性质是很重要的。
+
+前面已经提到，物品可以是物质的或符号的。当某些物品在目的性行动中被有意地动员起来时，它们就成为资本。资本是为了产生回报的资源投资。行动者首先要满足组织的需要，作为回报，行动者可以获得社会的（名声）、经济的（财富）或政治的（权力）资源。对于作为行动者的组织而言，只有这些资本产生回报，它们才可以在社会或者制度场域中生存和壮大。对个体行动者而言，在劳动力市场中交易的是资本。
+
+两种类型的资本支配着这些交易：人カ资本和制度资本（Lin, 1994b）。人力资本反映了技术性的知识和技能，它是组织在市场中成功进行竞争所需要的。制度资本反映了制度场域中有关规则的社会文化知识和技能，组织需要行动者在履行代理人职责时运用这些知识和技能。制度资本包括通常描述为文化资本（Bourdieu, 1972/1977）与社会资本（Bourdieu 1983/1986; Coleman 1988, 1990; Flap and De Graaf 1988; Flap 1991）的因素。文化资本包括居于统治地位的制度场域所认可的价值、规则和规范。社会资本反映了社会联系的范围，社会联系中的嵌入性资源可以用来维持或获得制度场域中的有价值资源 —— 包括财富、权力和名声。拥有或者可以获取文化资本与社会资本的个体行动者，是可以帮助组织执行和履行制度场域中的义务的有潜力的劳动者。因此，组织要在劳动力市场中寻找这样的行动者。
+
+那么个体行动者如何证明他的人力资本与制度资本呢？当然，人力资本可以通过考试来证明。很多组织使用这个方法来考察技术知识和技能。但是考试很少能够测出人力资本的广度和深度。更经常的是，个体行动者需要证明自己愿意付出努力，作出承诺，以及出示已经获得的证书、文凭或者可信赖的评估员的评估。学位、文凭、证明以及同样重要的介绍信已经成为人力资本的重要标志。
+
+制度资本的证明更复杂。某些考试或其他的识别方法已经专门为此而设计。例如在中国历史上，马克思列宁主义、毛泽东思想、孙中山思想或者儒家思想的内容都曾出现在考试中，父系祖先、家族和地方性的姻亲关系，或者阶级 / 意识形态证明也不得不考虑。在很大程度上，这种制度资本反映在证书、文凭和证明上。这些符号性的证明反映了行动者与现行制度的密切关系，不同的制度场域中的符号性证明可能是不同的。即使在当代中国，这些证明可能包括党员身份、家族和少数民族成员身份以及与国有单位的从属关系，而不是教会、寺院或者社会性、职业性社团的成员身份。使情况变得复杂的是，很多社会对制度资本与人力资本使用相同的证明程序。我们马上要回到这个问题上。
+
+现在我们先转向资源如何被动员成资本以及资本如何被证明的问题。
+
+## 4.3 Institutionalizing Organizations and Social Networks: Crediting and Enforcing Agents
 
 The process of acquiring both types of capital begins with intergenerational transfers of resources. Several processes are involved in the transfer. One process is socialization, wherein the family provides the setting in which training is conducted to develop actors (by way of imitation and cognitive training) with such valued resources. Another process is through the family’s social networks. Parental networks provide opportunities to contact actors with valued resources. In still another process, parental resources afford an opportunity for actors to acquire additional resources on their own (e.g., through schooling).
 
@@ -110,7 +172,35 @@ namely, institutionalizing organizations and social networks – operates in tan
 
 Figure 11.3 A functioning institutional field.
 
-Networks as Vehicles for Institutional Transformation However, embedded in these elements are the potential sources and processes for challenges to existing and prevailing institutions, as well as the emergence of alternative institutions. It is possible that organizations (Zucker 1988) or even individual actors (DiMaggio 1988:「institutional entrepreneurs」) may trigger transformations. For example, organizations isomorphic with an alternative, external institutional field may be able to survive, persist, and eventually replace or be incorporated into existing prevailing institutions. Western religion, popular culture, and lifestyles are examples of alternative institutions to indigenous institutions in other societies, and they can transform indigenous institutions so long as participating actors’ capital investment generates expected returns (e.g., social status), as the alternative institutional field holds an advantage in capital to indigenous institutions.
+制度化组织与社会网络：置信和强化机构
+
+获得两类资本的过程都始于世代之间的资源转移。转移中要涉及到几个过程，一个过程是社会化。家庭为孩子提供了社会化的环境，（通过模仿和认知训练）对其进行训练，使之掌握有价值资源。第二个过程是通过家庭的社会网络。父母的网络为孩子提供了接触拥有有价值资源的行动者的机会。在第三个过程中，父母的资源为孩子获得自己的额外资源创造了机会（例如通过教育）。
+
+个体行动者一旦被赋予不同的资源，就需要动员这些资源，将它们转化为资本，这是一种为了从与组织的联系中获得回报的投资。把资源转变成资本的途径有两个：1）已经制度化了的组织的「加工」或者使用嵌入在社会网中的资源。行动者可以接受一个训练的过程，这个过程的结果可以清楚地表明行动者已经获得资本。学位、文凭和证书通常都是标志。2）另一个方法是用社会关系和联系作为证明。训练是通过社会的一个重要部分来实现的 一一 制度化的组织。虽然下面的讨论主要关注的是将资源动员成制度资本的过程，但是人力资本的过程也是如此。
+
+制度化的组织是一类特别的组织，它的目的或使命是对行动者进行训练与灌输，使之具有符合现行制度的仪式与行为的价值和技能。它们不同于其他组织，因为它们是「加エ」而不是使用或保留行动者。[2] 尽管一些组织的建立是专门为了进行制度化训练的，但是大多数组织是以学校、研究所和学院的形式提供技术训练的（例如行政学院，军官与警察学校，神学院和童子军组织）。通过这些组织而获得的教育和文凭标志着行动者已经获得了人力资本与制度资本。[3] 理清嵌入在教育文凭中的这两类资本是一个复杂的任务，但是粗略的估计是可能的。例如，近期在中国大陆和台湾作的研究（Lin, 1994a, 1994b, 1995b）表明，教育可以分解为三分之二的人力资本与三分之一的制度资本。
+
+社会与国家机构也使用制度化的组织来强化规则和仪式，来控制行动者的行为。这些组织包括监狱、精神病院和劳改所。如果行动者在制度场域中的行为被认为偏离了现行制度的规定，他们就要听任处理。个体行动者可以通过制度化的训练过程获得标示着制度资本的证书或文凭。否则他们就有被收回证件或置疑的危险，被视为不适于在制度场域中行动的博弈者，其投资只能收到低回报。
+
+社会网络提供了将资源转化成资本的另一条途径。行动者在社会关系与网络运作中，通过使用直接和间接关系的资源而获得额外的资源。很多网络的形成是因为行动者共享过制度化的过程与经历（如校友、职业和行业关系）。然而，网络也可以在其他的共享资源或经历的基础上形成（例如，桥牌与保球俱乐部、健身俱乐部、埃尔维斯·普雷斯利和迈克尔·杰克逊迷俱乐部，或者是邻里关系）。松网（loose networks）通过非正式关系和间接关系，使行动者的交往范围超出了邻近的社会圈子。
+
+当行动者为了实现工具性行动的目的，例如找工作，而激活和动员某关系链的时侯，这些社会嵌入性资源可以转化成社会资本。被动员的资源是有用的，因为行动发起者与帮助者都认为它们具有价值。因此，代表行动发起者的这些关系所提供的证明，会使准备接收行动者的组织确信他们具有人力资本。更重要的是，这些证明也可以表明行动发起者拥有制度性知识与技能（可信赖性、社会技巧、同僚、忠诚、愿意服从命令与执行任务以及其他的「适宜」行为）。通过这些证明的影响，行动者可以与组织建立联系。这是一种投资，因为这最终会给行动者带来社会经济回报。
+
+此外，不仅制度化的组织与社会网络可以将资源转变成资本，很多组织本身也提供了技术和制度性技能的获取机会，并且会选择一些工人，使之获得这部分额外的资本。公司内部劳动力市场（Baron and Bielby, 1980）描述了对人力资本在职培训的投资现象。与资源丰富的组织有联系本身标示着制度资本，因为无论在组织内还是组织外的行动者都会因此而获得回报。在组织内部，当组织成功地与制度场域中的其他组织进行交换时，行动者有机会学习和获得额外的制度性技能。从参与这样的交换中获得的经验，是制度性技能训练的一部分。当行动者获得了组织内的权威位置，从而被赋予与执行制度任务所需要的技能和知识相联系的地位与符号时，也获得了一些制度资本。在组织外部，与资源丰富的组织有联系标示着行动者具有制度性技能，可以获得对制度场域中的交换具有重要意义的资本。
+
+前面的讨论描述了社会的基础结构 —— 也即制度化组织与社会络如何与其他的社会、经济组织协同运作，互相强化与维持。换言之，我描述的是一个稳定的与正在运作的制度场域，如图 11.3 所示。
+
+![](./res/2021029.png)
+
+图 11.3 制度场域的运作
+
+[2] 制度化的组织有固定的职员作为教员。
+
+[3] 布迪厄（Bourdieu, 1972/1977; Bourdieu 和 Passeron, 1977）用文化资本来描述统治阶级用自己的价值对学生进行灌输的过程。我在这里想表明的是，文化资本在组织和市场的环境中应该作为制度资本的一个分类。
+
+## 4.4 Networks as Vehicles for Institutional Transformation 
+
+However, embedded in these elements are the potential sources and processes for challenges to existing and prevailing institutions, as well as the emergence of alternative institutions. It is possible that organizations (Zucker 1988) or even individual actors (DiMaggio 1988:「institutional entrepreneurs」) may trigger transformations. For example, organizations isomorphic with an alternative, external institutional field may be able to survive, persist, and eventually replace or be incorporated into existing prevailing institutions. Western religion, popular culture, and lifestyles are examples of alternative institutions to indigenous institutions in other societies, and they can transform indigenous institutions so long as participating actors’ capital investment generates expected returns (e.g., social status), as the alternative institutional field holds an advantage in capital to indigenous institutions.
 
 Charismatic leaders can also offer challenges to prevailing institutions.
 
@@ -132,7 +222,29 @@ Figure 11.4 Processes of institutional transformation.
 
 These two alternative routes of institutional transformation are depicted in Figure 11.4. In the following discussion, I will provide two examples of successful transformations using each of the two routes. The emergence of women’s studies in American colleges illustrates how a successful transformation can occur when networking among interested actors infiltrates existing institutionalizing organizations, and the success of the Communist revolution in China demonstrates the successful (though much harder) building of alternative institutionalizing organizations.
 
-Transforming from Within: Women’s Studies in the United States
+作为制度转型媒介的网络
+
+然而，挑战现行制度与生成新制度的潜在根源和过程就嵌入在上面这些要素之中。组织（2 Zucker,1988）甚或个体行动者（Dimaggio [1988】：「制度性企业家」）可以引起制度转型。例如，与另类的（alternative）、外部制度场域同构的组织，可以在现行制度下生存和延续下来，最后甚至可能纳人或者取代现行制度。西方的宗教、流行文化和生活方式对于其他社会的本士文化
+
+而言是另类的制度，只要参与互动的行动者的资本投资产生了预期的回报（例如社会地位），另类制度可以转变成内生制度，因为另类制度场域在资本上赢得了对本土制度的优势。
+
+克里斯玛式的领袖也可能挑战现行制度。一个生动的例子是毛泽东凭借个人魅力发动了文化大革命（the Great Cultural Revolution），动员起千百万的红卫兵，极大地改变了中国 20 世纪 60 年代的制度（「造反有理，革命无罪！」的口号被用来动员群众，扫除当时的组织、干部与专家学者）。然而，靠单个人来改变制度的情况并不是经常的，也很少成功。
+
+我认为更有趣的、更有力的内生性转型过程始于社会的络运作。当很多行动者共享另类规则或价值，开始相互联系时，网络可以通过团结与相互强化的方式来维持行动者的共同兴趣。例如，有被剥夺感或者已经被剥夺了获得人力资本或制度资本的机会的行动者，可以形成网络，塑造集体认同。不管这些剥夺是建立在性别、族群、宗教、阶级、家庭出身上还是其他制度标准上，络运作都是发展集体意识的第一步和重要的一步。当网络得到扩展，参与的行动者数量增多时，社会资本的储量也会增加。当共享资源增加以后，社会运动的可能性也会增大，这会导致一个或多个现行制度的转型。
+
+通过社会运动的方式来实现制度转型的一个直截了当的方法，是将运动直接转变成反叛或革命。在极端的情况下（例如大规模的饥荒、外部的威胁或者普遍的绝望），社会运动可以势不可挡地迅速发展起来，直接推翻现行制度。俄国十月革命、东欧剧变与前苏联解体都是例子。然而在大多数情况下，社会运动只涉及到一小部分行动者，为了实现制度转型，它需要更多的合作过程。此外，通常的目标不是拒绝现行制度，而是用另类制度来替代现行制度，或者将另类制度纳人现行制度的建制之中。
+
+社会运动可以通过将共享资源转变成资本并产生回报的方式来维持。也即，运动必须发展出自己的制度化的组织，这样才可以传播另类价值与规范，对新成员进行思想灌输。此外，运动必须建立组织或者说服组织招募和留佳已经获得这样资本的行动者。通过这些过程，运动オ可以维持下去，从而挑战现行制度。
+
+在现行组织或者另类制度化的组织中的另类方案的发展与维持，可以产生和「加工」行动者的另类资本。随着拥有另类制度资本的行动者数量的增加，以及通过网络运作而聚集的社会资本的增加，其他组织认识到需要将此另类制度考虑进行动中的可能性也会增加。这个认识引发了一类新的需要一招募和留住拥有履行此另类制度所规定的任务的知识与技能的行动者。另类制度资本将逐渐变成劳动力市场中的合法资本形式，另类制度被纳现行制度的可能性也会增加。
+
+![](./res/2021030.png)
+
+图 11.4 制度转型的过程
+
+制度转型的两条路径如图 1.4 所示。在下面的讨论中，我将提供两个例子，它们各采用了其中的一条路径成功地实现了转型。女性研究在美国学院中形成的例子，说明了当主张实行制度转型的行动者的络渗透进现行制度化的组织时，一个成功的转型如何发生；而中国的共产主义革命的成功，则显示了另类制度化组织被成功建立的过程（尽管这一过程更艰难）。
+
+## 4.5 Transforming from Within: Women’s Studies in the United States
 
 The growth of women’s studies programs in the United States in the 1970s and 1980s is recognized as a stunning example of a new institution successfully infiltrating an existing institutionalizing organization (college) in a matter of years. The process can be traced back to the 1960s, when the civil rights movement ignited the women’s liberation movement. A number of female faculty members such as Jessie Bernard, Alice Rossi, Gerda Lerner, Anne Firor Scott, and Sara Evans began to write about the perils of women in society and academia. Courses on women began to appear on several campuses in 1965 (the Free University of Seattle [Howe and Ahlum 1973]) and 1966 (at the New Orleans Free School, the University of Chicago, and Barnard College [Boxer 1982]). Yet, within a decade (by 1976), there were more than 200 programs in women’s studies and some 10,000 courses being developed by 6,500 faculty members in 1,500 different institutions (Howe 1977).
 
@@ -182,13 +294,9 @@ Examples of such successful institutional transformation from within are few and
 
 [the private foundations]). Furthermore, some emerging or alternative institutions may demand more than integration or mainstreaming within the framework of existing institutions; they may demand substitution and subversion. When an alternative institution directly challenges and intends to subvert prevailing institutions, institutionalization may take a direct route and process. The following section offers a successful example of this type: the Communist revolution in China.
 
-Constructing Alternative Institutionalization: The Communist Revolution in China
+## 4.6 Constructing Alternative Institutionalization: The Communist Revolution in China
 
-When the Communist Party was first organized in the 1920s, it was clear that it was attempting to use both transforming strategies: infiltrating existing institutionalizing organizations when opportunities arose and/or 5 Women’s studies programs are not without their problems and controversies. Since the very early days, debates have raged over significant issues such as (a)「structurelessness」
-
-of networking both within and across campuses and its potential control by elites (Freeman 1972–1973); (b) the ideological split between the「socialist feminists」and「cultural feminists」(「Marxists」and「Matriarchs」), or feminist activities versus acade-micians, or practice versus theory (Boxer 1982); (c) the necessity or possible dominance of the construction of a feminist theory (Boxer 1982); and (d) the neglect of women of color and lesbians (Guy-Sheftall 1995).
-
-Societal Transformations 201
+When the Communist Party was first organized in the 1920s, it was clear that it was attempting to use both transforming strategies: infiltrating existing institutionalizing organizations when opportunities arose and/or 5 Women’s studies programs are not without their problems and controversies. Since the very early days, debates have raged over significant issues such as (a)「structurelessness」of networking both within and across campuses and its potential control by elites (Freeman 1972–1973); (b) the ideological split between the「socialist feminists」and「cultural feminists」(「Marxists」and「Matriarchs」), or feminist activities versus acade-micians, or practice versus theory (Boxer 1982); (c) the necessity or possible dominance of the construction of a feminist theory (Boxer 1982); and (d) the neglect of women of color and lesbians (Guy-Sheftall 1995).
 
 establishing alternative institutionalizing organizations when such opportunities were not available. In the end, it was the alternative institutionalizing organizations that helped transform the scale of the movement. It may be informative to describe in a brief historical account here how such strategies were implemented.
 
@@ -265,148 +373,6 @@ While the early 1940s were the hardest years in the Border Region and the educat
 9 In contrast, a social movement without the opportunity or structure to institutionalize members may evaporate. The 1989 Tiananmen incident in Beijing is a good example of a social movement that failed (Lin 1992b). While the movement drew millions to Tiananmen Square at its peak, it never had the opportunity to indoctrinate followers.
 
 Some participants realized the need and proposed to establish a Democracy University, but the movement was forcefully put down on June 4.
-
-## Summary
-
-We may summarize the framework and outline of a theory proposing institutions and networks as the infrastructure through which capital building results in societal maintenance and transformation. The theory begins with several definitions. An institutional field is one in which individual and organizational actors are consciously aware of the rules dictated by a set of institutions and abide by them or enact them accordingly in their actions and interactions. Organization-society institutional isomorphism is the extent to which organizations in an institutional field act and transact in accordance with the rules dictated by prevailing institutions. Likewise, organization-network institutional isomorphism promotes and reinforces prevailing institutions. An institutionalizing organization is one that processes individual actors for the purpose of acquiring and indoctrinating them with the knowledge and skills to perform rituals and behaviors consistent with the rules dictated by prevailing institutions.
-
-The theory employs several assumptions (explaining mechanisms) as well: (1) striving for organization-society isomorphism is the general tendency of all organizations in the institutional field; (2) the rank (or status) of an organization reflects the extent of its isomorphism with prevailing institutions; and (3) one indication of organization-society institutional isomorphism is the extent to which an organization recruits and retains actors with institutional capital.
-
-From these definitions and assumptions, a number of propositions may be constructed, categorized into two social functions: social integration and social change. For social integration, the following hypotheses have been formulated:
-
-Hypothesis 1 (for transfer of personal resources): there is an intergenerational transfer of personal (institutional and human) resources. That is, the greater the parental personal and social (institutional and human) resources, the greater the children’s personal resources.
-
-Hypothesis 2 (for accumulation of social resources): personal resources are positively associated with the heterogeneity and richness (reaching to the top) of resources in one’s social ties and social network.
-
-Hypothesis 3 (for conversion of resources into capital): personal resources (both human and institutional) and social resources are positively associated with the likelihood of being included in processing by institutionalizing organizations.
-
-Certification of institutionalization reflects human and institutional capital.
-
-Hypothesis 4 (for the flow of capital in the labor market): institutional capital (including social capital), along with human capital, is positively related to recruitment and retention by a higher-ranking organization.
-
-For social change, the following hypotheses have been formulated: Hypothesis 5 (networking for alternative institutions): a network that is homogeneous relative to an alternative institutional value makes a positive contribution to group solidarity and identity (as reflected in pooling and sharing of resources).
-
-Hypothesis 6 (constructing alternative programs in institutionalizing organizations): the size of the pooled resources of a social network catering to an alternative institution is positively related to the efforts made and the likelihood of success in establishing alternative programs in institutionalizing organizations.
-
-Hypothesis 7 (for accepting alternative institutional capital by organizations): the extent of alternative programs and their processed actors is positively related to the recruitment and retention by higher-ranking organizations of actors with the alternative institutional capital.
-
-Hypothesis 8 (for institutional transformation): the extent of alternative institutional capital processed by institutionalizing organizations and organizations is positively related to the integration of the alternative institution into prevailing institutions (or the substitution by the alternative institution for a prevailing institution).
-
-Concluding Remarks
-
-In this chapter, institutions and networks are conceived as the two basic components of society; they provide the basic rules for the flow of capital in society. The framework and its components allow us to integrate a number of existing and potential theories/hypotheses. For example, the human capital theory and the institutional capital theory are reflected in the processes linking actors through institutionalizing organizations to organizations. Social capital theories are captured in the processes linking actors through social networks to organizations. Social movements (e.g., the resource mobilization theory) can be described in the
-
-Societal Transformations 209
-
-processes linking actors through social networks to institutionalizing organizations and organizations and to institutions themselves.
-
-The ultimate contribution of this conceptual scheme may lie in its ability to highlight how the two major social forces, institutions and networks, provide the basis for actions and transactions in economic and other markets. These forces help explain why a society remains stable even when transaction costs are always positive and uneven. Organizations and individual actors can coordinate and transact because they share same rules in an institutional field, through the mediation and processes of institutionalizing organizations and social networks. The same scheme suggests the dynamics by which institutional transformation may occur. Once the principles of how institutions and networks create, sustain, and change the rules of actions and transactions are set, it is then logical to bring the contributions of the state and technology into the analysis and examine how interest and agency complement or contend in these processes. In the next chapter, I will examine the intimate relationship between technology and social capital.
-
-我在第八章中提出，表达性需要和工具性需要激发的行动推动了与首要群体之外的人的互动，这样オ能获得社会资本。第九章进一步指出，这些目的性行动维持着两种类型的交换 一一 获得与维持财富和名声这两种基本报偿。这两章描述了从行动到结构的过程。第十章通过说明等级制结构如何约束获取社会资本的行动，转向从结构到行动过程的论述。这些论述建立的是行动与结构之间关系的理想类型。在现实中，这些过程由于行动者与等级制结构之间的一系列中间过程和结构而変得复杂化。除非我们确定这些中层结构和过程如何运作，否则我们不能理解行动与结构如何互动。此外，这两个过程 一一 从微观到宏观，从宏观到微观 一一 不应该视为孤立的或单向的过程。一个全面的社会资本理论必须抓住以某些中层结构和过程作为中介的行动与结构之间的双向过程。
-
-在本章中，我将指出，两个中层结构 一一 制度和网络组成了社会的基础结构。制度和网络是引导着行动者与等级制结构之间的互动以及社会资本流动的两种主要社会力量。
-
-很多学者已经使用网络分析来描述这个从微观到宏观的过程，其中包括科尔曼、怀特（White）、格拉诺维特、伯特、布莱格、韦尔曼、埃里克森、马斯顿、弗拉普和很多其他学者。对于进行社会网络分析的那些学者，社会资源或社会资本组成了社会学解释的核心要素。建立在两种动机原则损失最小化与获得最大化基础上的目的性行动，导致了表达性与工具性目的的社会网络（首先是首要群体，其次是关系）的形成。因此，正如前面所指出的，社会网络不仅存在于（例如经济的）等级制组织之中（例如经济组
-
-织的社会性嵌入；参见 Granovetter,1985），而且存在于个体行动者的相互关系之中（Granovetter1973,1974; Iin,1982; Burt,199），因此交易和交换不仅发生在组织内部和组织之间，而且发生在个体行动者之中。
-
-制度分析提出了另一个理解组织与更大环境之间关系的重要分析工具（Dimaggio and Powell, 1983, 1991: North, 1990; Powell and Dimaggio, 1991; Meyer and Scott,1992; Scott and Meyer,1994）。组织的生存和延续不仅依赖于它在市场中的效率或竞争力，而且依赖于它适应与遵从更高级别的社会制度和规贝的能力。对这些社会规则的遵从导致了多样化组织的结构同构与行为趋同，或者说制度同构现象（Dimaggio and Powell,1983），这是单纯的争力或绩效标准所无法解释的。
-
-制度和网络的视角很振奋人心，因为它们明确提出了分析社会力量与经济力量如何塑造互动和交易的方法。例如，它们澄清了为什么交易成本总是存在的和不均衡分布的。它们也解释了为什么个体与组织的行动动机和理性化超出了经济的考虑。如果不考虑这些力量，很明显我们就不能理解个体与组织如何行为或者延续，以及行为的原因是什么。但是概念与将这些概念连接起来的过程之间存在着断裂，几个例子将证明这点。
-
-制度分析的一个主要假定是，制度影响甚至支配着行动者和组织的行为。不清楚的是这个过程是如何发生的。个体如何学习规则？他们为什么要遵从它？与个体行动者相类似的组织如何增加它们的制度资源和它们的生存机会？换言之，使个体行动者和组织顺从制度性的仪式与行为的社会机制是什么？
-
-另一个问题是制度与网络是如何相联系的。一个很显然的答案是网络强化了制度，因为网络增强了结构的内聚性（Zucker,1988）。那么如何解释社会运动？因为社会运动通常涉及到相互联系的行动者群体，它们通过动员资本的方式来反对现行制度。或者更具体地讲，如何解释社会资本在一些情况下促进了从现行的制度和组织中获得收益的工具性行动，而在另一些情况下成为制度转型的工具？
-
-图 111 四种基本的社会过程。（来自 Coleman,1990, p8）
-
-这一章试着对这些问题作出回答。我的方法是先提出一个概念框架，以明确我在图 111 中所给出的双向过程 一一 也即过程 1（从宏观到微观）和过程 3（从微观到宏观）一中的关键部分。在短短的一章中完成这个任务是很困难的，因此我作了两个调整。第一，我将关注我所提出的框架中最核心的问题，忍痛割舍掉其他一些也很重要、但是必须暂时放到后面的问题。例如，这一章很少谈到国家或技术，尽管在对各部分如何互动的描述中都要涉及到它们。我会在第十二章更多谈到技术与社会资本的关系。第二，我会关注更一般性的，放弃一些特殊性的间题。例如，我将不考虑某些特殊因素，而关注一些一般性的普遍制度，如任何社会都存在的性别和族群现象。
-
-我把制度和网络作为社会的基础结构一连接、控制和黏合社会中的行动者与组织的必不可少的社会力量。它们可能不是最有效率的机制，但是它们解释了行动者与组织的内部团结和外部分化。在这两者之中，制度提供了组织行动与互动的原则，提供了修辞理性（rhetoric rationality）以及组织与功能的地图。最重要的是，制度维持着个体和集体的认同。另一方面，网络提高了可以降低超出组织所能负担的交易成本的弹性。网络也提供了填充与联结社会中所必然存在的断裂的活力。同样重要的是，它们还充当着制度转型的媒介。
-
-这一章剩下的部分将描述制度与网络如何共同起作用。特别地，我还将解释制度如何组织社会的其他主要部分（也即制度化的组织，其他的社会、经济组织和社会网络）并与其互动，如何促进资本在这些部分中的流动。最后关注社会网络在制度转型中的重要性。
-
-度场域与组织一社会同构
-
-制度一组织互动的原则一可以简单地定义为一个社会中的博弈规则（North,1990, p3），分为正式制度和非正式制度。这些规则在行动者 一一 包括个人与组织一之间的物品（物质的和符号的）流动与交易中扮演着交通指挥系统的角色。一些规则比另一些更重要，因为行动者更容易意识到它们，感到需要有意地证明自己在行动与交易中正遵守着这些规则。规则或者制度是如何形成的，它们是如何占据到社会支配地位的，对此存在着不同的解释。它们可能源自战争、革命、叛乱、殖民化、占领、灾难、克里斯玛型权威型领袖的行动、统治阶级的利益或者事后理性（post facto rationality）。在很大程度上，它们可能是对历史路径依赖的结果（参见 David [1985] 对 QWERTY 式键盘的制度化的研究）。制度是文化性的，而不是科学性的，因为它们并不晑要逻辑或者经验证实、或者证伪。这些规则会对某些种类的行动和互动产生价值偏好，通常以道徳、信念、意识形态、礼仪或（治愈和表现的）能力的形式出现。
-
-当组织与个体服从同一套制度时，它们就处在一个制度场域之中（Lin, 1994b）。在制度场域之内，行动者（包括个体、网络和组织）认可、体现和共享着仪式与行为，受到社会制度所施加的约束与激励。这样，它们降低了对行动者之的行动和互动进行估计（计算能力）与强化的交易成本 North, 1990）
-
-制度场域可以界定一个社会。但是，场域可以超越社会的空间边界。例如，我们可以认为在世界各地很多城市的少数民族聚居区中的华人社区属于相同的制度场域 一一 中国社会，在民族一国家意义上来界定就是中国。尽管
-
-[1 在 QWERTY 式键盘是否真的比其他形式的键盘一如 Dvorak 系统效率低的题上存在着很多争论。但是，即使 QWERTY 式键盘的效率相当高，QWERTY 式键盘在历史上的首先出现代表着一个真正的优勢，成为它在今天能够得到广泛流行的一个重要因素。（QWERTY 式键盘，即我们现在所使用的键盘中译注）
-
-
-
-这些社区与它们的成员可能讲不同的语言，生活在不同国家的规则与法律下，具有不同的分层与流动的约束和机会，但是他们遵守着从家庭成员之间的结构化关系扩展而来的相同的基本规则（Iin,1989,1995b）。这些规则指导着人们的家庭生活、节日庆祝、祖先崇拜、尊敬长者、严慈相济的育儿方式、差序格局式的交往方式、特殊的继承规则（对权威施行长子继承制；对财产施行诸子均分制），以及在生意交易中对默许与非正式的协议而不是正式的法律合同方式的偏好。因此，制度意义上的中国的范围要大于国家意义上的中国。但是一般而言，制度场域存在于国家的范围内。在下面的讨论中，社会与制度场域是等价的。
-
-在制度场域中，组织的生存与延续取决于经济的（技术的）和社会的（制度的）绩效。迪马乔和鲍威尔（Dimaggio and Powell,1983, p-148）使用组织场域的概念来指称「制度生活所认可的领域 一一 关键的供应者、资源与产品消费者、管理机构和提供相似服务或产品的其他组织」，并假定制度场域中的组织会变得制度同构起来，由于它们越来越多地共享着互动、信息和对共同事业的参与意识，所以在形式和实践上会变得具有同质性。制度场域也涉及到制度定义与结构化的过程（Giddens,1979），但是制度场域的扩展超出了具体的组织类型（如经济性质的企业）或对所有组织的具体互动要求。当组织意识到、并且遵守一套具体的制度规则时，它就属于制度场域。组织通过调节内部结构和行为模式，降低了与相同的制度所支配的其他组织相互动的交易成本。因此，组织一社会的制度同构（Lin,1994b）是组织同构的先决条件与必要条件。从这个必要条件中可以推出一个假定：在组织执行制度任务的能力与它在社会中的等级制地位之间存在着正向的一致性。同样可以假定，建立的大多数社会网络也与组织同构。组织一网络的制度同构反映在博弈规则的重叠和网络体系间（与非正式组织，如教堂、商会、老兵群体和保岭球俱乐部）对某些资源的价值赋予（意识形态）的重叠上。图 112 描述了一个运作的制度场域，在制度场域中，组织、络和个体在博弈规则与某些资源的价值上是一致的。
-
-资本的流动
-
-考虑到组织一络一社会的同构以及处于分层体系中的好位置上的有利因素，我们可以断言，组织会获得和保留对制度性与技术性交易有用的物品。一种重要的此类物品是工人执行制度和 / 或技术任务的能力。因此，很显然，个体行动者想要在社会中寻求报酬或回报，他们就要证明他们拥有知识和技能，他们愿意和有能力接受进一步的培训和深造。这样，劳动力市场就可以视为个体行动者与组织之间进行这些物品交易的市场。在深人讨论劳动力市场中的物品交易之前，探讨流人制度场域中的物品的性质是很重要的。
-
-前面已经提到，物品可以是物质的或符号的。当某些物品在目的性行动中被有意地动员起来时，它们就成为资本。资本是为了产生回报的资源投资。行动者首先要满足组织的需要，作为回报，行动者可以获得社会的（名声）、经济的（财富）或政治的（权力）资源。对于作为行动者的组织而言只有这些资本产生回报，它们オ可以在社会或者制度场域中生存和壮大。对个体行动者而言，在劳动力市场中交易的是资本。
-
-两种类型的资本支配着这些交易：人カ资本和制度资本（Iin,1994）。
-
-人力资本反映了技术性的知识和技能，它是组织在市场中成功进行竞争所需要的。制度资本反映了制度场域中有关规则的社会文化知识和技能，组织需要行动者在履行代理人职责时运用这些知识和技能。制度资本包括通常描述为文化资本（Bourdieu,1972/1977）与社会资本（Bourdieu,1983/1986; Coleman, 1988,199 lap and De Graaf,198Fap,199）的因素。文化资本包括居于统治地位的制度场域所认可的价值、规则和规范。社会资本反映了社会联系的范围，社会联系中的嵌入性资源可以用来维持或获得制度场域中的有价值资源一包括财富、权力和名声。拥有或者可以获取文化资本与社会资本的个体行动者，是可以帮助组织执行和履行制度场域中的义务的有潜力的劳动者。因此，组织要在劳动力市场中寻找这样的行动者。
-
-那么个体行动者如何证明他的人力资本与制度资本呢？当然，人力资本可以通过考试来证明。很多组织使用这个方法来考察技术知识和技能。但是考试很少能够测出人力资本的广度和深度。更经常的是，个体行动者需要证明自己愿意付出努力，作出承诺，以及出示已经获得的证书、文凭或者可信赖的评估员的评估。学位、文凭、证明以及同样重要的介绍信已经成为人力资本的重要标志。
-
-制度资本的证明更复杂。某些考试或其他的识别方法已经专门为此而设计。例如在中国历史上，马克思列宁主义、毛泽东思想、孙中山思想或者儒家思想的内容都曾出现在考试中，父系祖先、家族和地方性的姻亲关系，或者阶级 / 意识形态证明也不得不考虑。在很大程度上，这种制度资本反映在 证书、文凭和证明上。这些符号性的证明反映了行动者与现行制度的密切关系，不同的制度场域中的符号性证明可能是不同的。即使在当代中国，这些证明可能包括党员身份、家族和少数民族成员身份以及与国有单位的从属关系，而不是教会、寺院或者社会性、职业性社团的成员身份。使情况变得复杂的是，很多社会对制度资本与人力资本使用相同的证明程序。我们马上要回到这个问题上。
-
-现在我们先转向资源如何被动员成资本以及资本如何被证明的问题。
-
-制度化组织与社会网络：置信和强化机构
-
-获得两类资本的过程都始于世代之间的资源转移。转移中要涉及到几个过程，一个过程是社会化。家庭为孩子提供了社会化的环境，（通过模仿和认知训练）对其进行训练，使之掌握有价值资源。第二个过程是通过家庭的社会网络。父母的网络为孩子提供了接触拥有有价值资源的行动者的机会。在第三个过程中，父母的资源为孩子获得自己的额外资源创造了机会（例如通过教育）。
-
-个体行动者一旦被赋予不同的资源，就需要动员这些资源，将它们转化为资本，这是一种为了从与组织的联系中获得回报的投资。把资源转变成资本的途径有两个：已经制度化了的组织的「加工」或者使用嵌入在社会网中的资源。行动者可以接受一个训练的过程，这个过程的结果可以清楚地表明行动者已经获得资本。学位、文凭和证书通常都是标志。另一个方法是用社会关系和联系作为证明。训练是通过社会的一个重要部分来实现的 一一 制度化的组织。虽然下面的讨论主要关注的是将资源动员成制度资本的过程，但是人力资本的过程也是如此。
-
-制度化的组织是一类特别的组织，它的目的或使命是对行动者进行训练与灌输，使之具有符合现行制度的仪式与行为的价值和技能。它们不同于其他组织，因为它们是「加エ」而不是使用或保留行动者。尽管一些组织的建立是专门为了进行制度化训练的，但是大多数组织是以学校、研究所和学院的形式提供技术训练的（例如行政学院，军官与警察学校，神学院和童子军组织）。通过这些组织而获得的教育和文凭标志着行动者已经获得了人力资本与制度资本。理清嵌在教育文凭中的这两类资本是一个复杂的任
-
-2] 制度化的组织有固定的职员作为教员。
-
-[3] 布迪厄（Bourdieu,1972/1977; Bourdieu 和 Passeron,1977）用文化资本来描述统治阶级用自己的价值对学生进行灌输的过程。我在这里想表明的是，文化资本在组织和市场的环境中应该作为制度资本的一个分类。
-
-
-
-务，但是粗略的估计是可能的。例如，近期在中国大陆和台湾作的研究（Lin,1994a,1994b,195b）表明，教育可以分解为三分之二的人力资本与分之一的制度资本。
-
-社会与国家机构也使用制度化的组织来强化规则和仪式，来控制行动者的行为。这些组织包括监狱、精神病院和劳改所。如果行动者在制度场域中的行为被认为偏离了现行制度的规定，他们就要听任处理。个体行动者可以通过制度化的训练过程获得标示着制度资本的证书或文凭。否则他们就有被收回证件或置疑的危险，被视为不适于在制度场域中行动的博弈者，其投资只能收到低回报。
-
-社会网络提供了将资源转化成资本的另一条途径。行动者在社会关系与网络运作中，通过使用直接和间接关系的资源而获得额外的资源。很多网络的形成是因为行动者共享过制度化的过程与经历（如校友、职业和行业关系）。然而，网络也可以在其他的共享资源或经历的基础上形成（例如，桥牌与保球俱乐部、健身俱乐部、埃尔维斯·普雷斯利和迈克尔·杰克逊迷俱乐部，或者是邻里关系）。松网（loose networks）通过非正式关系和间接关系，使行动者的交往范围超出了邻近的社会圈子。
-
-当行动者为了实现工具性行动的目的，例如找工作，而激活和动员某关系链的时侯，这些社会嵌入性资源可以转化成社会资本。被动员的资源是有用的，因为行动发起者与帮助者都认为它们具有价值。因此，代表行动发起者的这些关系所提供的证明，会使准备接收行动者的组织确信他们具有人力资本。更重要的是，这些证明也可以表明行动发起者拥有制度性知识与技能（可信赖性、社会技巧、同僚、忠诚、愿意服从命令与执行任务以及其他的「适宜」行为）。通过这些证明的影响，行动者可以与组织建立联系。这是一种投资，因为这最终会给行动者带来社会经济回报。
-
-此外，不仅制度化的组织与社会씨络可以将资源转変成资本，很多组织本身也提供了技术和制度性技能的获取机会，并且会选择一些工人，使之获得这部分额外的资本。公司内部劳动力市场（Baron and Bielby,1980）描述了对人力资本在职培训的投资现象。与资源丰富的组织有联系本身标示着制度
-
-资本，因为无论在组织内还是组织外的行动者都会因此而获得回报。在组织内部，当组织成功地与制度场域中的其他组织进行交换时，行动者有机会学习和获得额外的制度性技能。从参与这样的交换中获得的经验，是制度性技能训练的一部分。当行动者获得了组织内的权威位置，从而被赋予与执行制度任务所需要的技能和知识相联系的地位与符号时，也获得了一些制度资本。在组织外部，与资源丰富的组织有联系标示着行动者具有制度性技能，可以获得对制度场域中的交换具有重要意义的资本。
-
-前面的讨论描述了社会的基础结构一也即制度化组织与社会络如何与其他的社会、经济组织协同运作，互相强化与维持。换言之，我描述的是一个稳定的与正在运作的制度场域，如图 11.3 所示。
-
-作为制度转型媒介的网络
-
-然而，挑战现行制度与生成新制度的潜在根源和过程就嵌入在上面这些要素之中。组织（2 Zucker,1988）甚或个体行动者（Dimaggio [1988】：「制度性企业家」）可以引起制度转型。例如，与另类的（alternative）、外部制度场域同构的组织，可以在现行制度下生存和延续下来，最后甚至可能纳人或者取代现行制度。西方的宗教、流行文化和生活方式对于其他社会的本士文化
-
-而言是另类的制度，只要参与互动的行动者的资本投资产生了预期的回报（例如社会地位），另类制度可以转变成内生制度，因为另类制度场域在资本上赢得了对本土制度的优势。
-
-克里斯玛式的领袖也可能挑战现行制度。一个生动的例子是毛泽东凭借个人魅力发动了文化大革命（the Great Cultural Revolution），动员起千百万的红卫兵，极大地改变了中国 20 世纪 60 年代的制度（「造反有理，革命无罪！」的口号被用来动员群众，扫除当时的组织、干部与专家学者）。然而，靠单个人来改变制度的情况并不是经常的，也很少成功。
-
-我认为更有趣的、更有力的内生性转型过程始于社会的络运作。当很多行动者共享另类规则或价值，开始相互联系时，网络可以通过团结与相互强化的方式来维持行动者的共同兴趣。例如，有被剥夺感或者已经被剥夺了获得人力资本或制度资本的机会的行动者，可以形成网络，塑造集体认同。不管这些剥夺是建立在性别、族群、宗教、阶级、家庭出身上还是其他制度标准上，络运作都是发展集体意识的第一步和重要的一步。当网络得到扩展，参与的行动者数量增多时，社会资本的储量也会增加。当共享资源增加以后，社会运动的可能性也会增大，这会导致一个或多个现行制度的转型。
-
-通过社会运动的方式来实现制度转型的一个直截了当的方法，是将运动直接转变成反叛或革命。在极端的情况下（例如大规模的饥荒、外部的威胁或者普遍的绝望），社会运动可以势不可挡地迅速发展起来，直接推翻现行制度。俄国十月革命、东欧剧变与前苏联解体都是例子。然而在大多数情况下，社会运动只涉及到一小部分行动者，为了实现制度转型，它需要更多的合作过程。此外，通常的目标不是拒绝现行制度，而是用另类制度来替代现行制度，或者将另类制度纳人现行制度的建制之中。
-
-社会运动可以通过将共享资源转变成资本并产生回报的方式来维持。也即，运动必须发展出自己的制度化的组织，这样才可以传播另类价值与规范，对新成员进行思想灌输。此外，运动必须建立组织或者说服组织招募和留佳已经获得这样资本的行动者。通过这些过程，运动オ可以维持下去，从
-
-而挑战现行制度。
-
-在现行组织或者另类制度化的组织中的另类方案的发展与维持，可以产生和「加工」行动者的另类资本。随着拥有另类制度资本的行动者数量的增加，以及通过网络运作而聚集的社会资本的增加，其他组织认识到需要将此另类制度考虑进行动中的可能性也会增加。这个认识引发了一类新的需要一招募和留住拥有履行此另类制度所规定的任务的知识与技能的行动者。另类制度资本将逐渐变成劳动力市场中的合法资本形式，另类制度被纳现行制度的可能性也会增加。
-
-图 11.4 制度转型的过程
-
-制度转型的两条路径如图 1.4 所示。在下面的讨论中，我将提供两个例子，它们各采用了其中的一条路径成功地实现了转型。女性研究在美国学院中形成的例子，说明了当主张实行制度转型的行动者的络渗透进现行制度化的组织时，一个成功的转型如何发生；而中国的共产主义革命的成功，则显示了另类制度化组织被成功建立的过程（尽管这一过程更艰难）。
 
 从内部转型：美国的女性研究
 
@@ -518,11 +484,35 @@ Sheftall. 1995
 
 第三，中国共产党坚持将所有的教育单位都置于党的意识形态与行政管理的直接控制之下。正如毛泽东所强调的，意识形态是「中国共产党领导的共产主义的文化意识形态」和「新民主主义文化」。换言之，「反帝、反封建的大众文化」是「理论基础，在这个基础上，无产阶级通过共产党来领导文化和教育工作」（毛泽东，1940,1942,1949; Qu,1985, P1-9）。在行政管理上，每个学校都置于党的机构的管辖之下。1941 年，「关于延安干部学校的决定」清楚地表明，所有的学校都要处于共产党中央机构的管辖之下，例如，延大就在中国共产党文化委员会的管辖之下。宣传局负责对每个学校部署任务与调查研究，并统一管理课程安排、教师、教学材料和财政预算 Qu,1985, p7）。
 
-在抗日和统一战线的旗帜下，中国共产党积极地通过学校来吸收全中国的有志青年。从 1938 年的 5 月到 8 月间，2288 名受过教育的青年报名人学（Qu,1985, P17-18）。尽管 40 年代早期是边区最困难的几年，教育也处于无计状态，但是这些学校培养了几十万革命干部。单是抗大，从 1937 年到 1946 年间毕业的军政人员总共有大约 20 万名。到 1945 年二战结束时，共产党不仅补充了损失的干部，而且更重要的是建立了自己的制度化组织，成功地培养了几十万的忠诚干部。他们成为组织军队、农民、知识分子和城市
+在抗日和统一战线的旗帜下，中国共产党积极地通过学校来吸收全中国的有志青年。从 1938 年的 5 月到 8 月间，2288 名受过教育的青年报名人学（Qu,1985, P17-18）。尽管 40 年代早期是边区最困难的几年，教育也处于无计状态，但是这些学校培养了几十万革命干部。单是抗大，从 1937 年到 1946 年间毕业的军政人员总共有大约 20 万名。到 1945 年二战结束时，共产党不仅补充了损失的干部，而且更重要的是建立了自己的制度化组织，成功地培养了几十万的忠诚干部。他们成为组织军队、农民、知识分子和城市贫民的骨干。在抗战胜利后的四年，共产党很快击败了国民党。在这一过程中，延安与整个边区的制度化组织是居功很大的。
 
-贫民的骨干。在抗战胜利后的四年，共产党很快击败了国民党。在这一过程中，延安与整个边区的制度化组织是居功很大的
 
-总结
+
+## 4.7 Summary
+
+We may summarize the framework and outline of a theory proposing institutions and networks as the infrastructure through which capital building results in societal maintenance and transformation. The theory begins with several definitions. An institutional field is one in which individual and organizational actors are consciously aware of the rules dictated by a set of institutions and abide by them or enact them accordingly in their actions and interactions. Organization-society institutional isomorphism is the extent to which organizations in an institutional field act and transact in accordance with the rules dictated by prevailing institutions. Likewise, organization-network institutional isomorphism promotes and reinforces prevailing institutions. An institutionalizing organization is one that processes individual actors for the purpose of acquiring and indoctrinating them with the knowledge and skills to perform rituals and behaviors consistent with the rules dictated by prevailing institutions.
+
+The theory employs several assumptions (explaining mechanisms) as well: (1) striving for organization-society isomorphism is the general tendency of all organizations in the institutional field; (2) the rank (or status) of an organization reflects the extent of its isomorphism with prevailing institutions; and (3) one indication of organization-society institutional isomorphism is the extent to which an organization recruits and retains actors with institutional capital.
+
+From these definitions and assumptions, a number of propositions may be constructed, categorized into two social functions: social integration and social change. For social integration, the following hypotheses have been formulated:
+
+Hypothesis 1 (for transfer of personal resources): there is an intergenerational transfer of personal (institutional and human) resources. That is, the greater the parental personal and social (institutional and human) resources, the greater the children’s personal resources.
+
+Hypothesis 2 (for accumulation of social resources): personal resources are positively associated with the heterogeneity and richness (reaching to the top) of resources in one’s social ties and social network.
+
+Hypothesis 3 (for conversion of resources into capital): personal resources (both human and institutional) and social resources are positively associated with the likelihood of being included in processing by institutionalizing organizations.
+
+Certification of institutionalization reflects human and institutional capital.
+
+Hypothesis 4 (for the flow of capital in the labor market): institutional capital (including social capital), along with human capital, is positively related to recruitment and retention by a higher-ranking organization.
+
+For social change, the following hypotheses have been formulated: Hypothesis 5 (networking for alternative institutions): a network that is homogeneous relative to an alternative institutional value makes a positive contribution to group solidarity and identity (as reflected in pooling and sharing of resources).
+
+Hypothesis 6 (constructing alternative programs in institutionalizing organizations): the size of the pooled resources of a social network catering to an alternative institution is positively related to the efforts made and the likelihood of success in establishing alternative programs in institutionalizing organizations.
+
+Hypothesis 7 (for accepting alternative institutional capital by organizations): the extent of alternative programs and their processed actors is positively related to the recruitment and retention by higher-ranking organizations of actors with the alternative institutional capital.
+
+Hypothesis 8 (for institutional transformation): the extent of alternative institutional capital processed by institutionalizing organizations and organizations is positively related to the integration of the alternative institution into prevailing institutions (or the substitution by the alternative institution for a prevailing institution).
 
 前面我们论述了制度和网络是社会的基础结构，通过它们的资本建构可以实现社会的维持和转型，下面我们可以总结一下理论的框架和提纲。理论始于几个定义。一个是制度场域，个体与组织行动者在制度场域中可以意识到规则的存在，这些规则是由一套制度规定的，行动者在行动与互动中要遵守或者实践它们。组织一社会的制度同构是指，制度场域中组织的行动和交易要符合现行制度所规定的规则。同样地，组织一网络的制度同构也维持和强化了现行制度。制度化的组织是一个「加工」个体行动者的组织，它用知识和技能来灌输行动者，使之掌握，以履行与现行制度所规定的规则相一致的仪式与行为。
 
@@ -564,10 +554,12 @@ Sheftall. 1995
 
 度资本的范围，与此另类制度整合进现行制度（或者是此另类制度替代现行组织）的程度正相关。
 
-结束语
+## 4.8 Concluding Remarks
 
-在这一章中，我提出制度与网络是社会的两个基本组成部分，它们为社会中的资本流动提供了基本规则。我们可以使用这个分析框架来整合一些理论与假设。例如，我们可以对一些理论提出这样的解释：人力资本和制度资本理论是通过制度化的组织来解释行动者与组织的连接；社会资本理论是通过社会网络来解释行动者与组织之间的连接；而社会运动（例如资源动员理
+In this chapter, institutions and networks are conceived as the two basic components of society; they provide the basic rules for the flow of capital in society. The framework and its components allow us to integrate a number of existing and potential theories/hypotheses. For example, the human capital theory and the institutional capital theory are reflected in the processes linking actors through institutionalizing organizations to organizations. Social capital theories are captured in the processes linking actors through social networks to organizations. Social movements (e.g., the resource mobilization theory) can be described in the processes linking actors through social networks to institutionalizing organizations and organizations and to institutions themselves.
 
-论）是通过社会网络来解释行动者与制度化组织以及组织与制度本身的连接。
+The ultimate contribution of this conceptual scheme may lie in its ability to highlight how the two major social forces, institutions and networks, provide the basis for actions and transactions in economic and other markets. These forces help explain why a society remains stable even when transaction costs are always positive and uneven. Organizations and individual actors can coordinate and transact because they share same rules in an institutional field, through the mediation and processes of institutionalizing organizations and social networks. The same scheme suggests the dynamics by which institutional transformation may occur. Once the principles of how institutions and networks create, sustain, and change the rules of actions and transactions are set, it is then logical to bring the contributions of the state and technology into the analysis and examine how interest and agency complement or contend in these processes. In the next chapter, I will examine the intimate relationship between technology and social capital.
+
+在这一章中，我提出制度与网络是社会的两个基本组成部分，它们为社会中的资本流动提供了基本规则。我们可以使用这个分析框架来整合一些理论与假设。例如，我们可以对一些理论提出这样的解释：人力资本和制度资本理论是通过制度化的组织来解释行动者与组织的连接；社会资本理论是通过社会网络来解释行动者与组织之间的连接；而社会运动（例如资源动员理论）是通过社会网络来解释行动者与制度化组织以及组织与制度本身的连接。
 
 这个理论图式的最根本的贡献可能在于，它可以解释制度和网络这两种主要的社会力量如何为经济市场以及其他市场中的行动与交易提供了基础。这两种力量有助于解释，为什么在交易成本存在且不均衡分布的情况下社会仍然能够保持稳定。组织与个体行动者可以相互协调并进行交易的原因是，它们在制度场域中通过制度化的组织与网络的中介作用而共享相同的规则。这一理论图式同样可以解释制度转型得以发生的动力学过程。一制度与网络如何建立、维持和改变行动与交易的规则的过程被阐述清楚了，我们就可以将国家与技术的因素纳到分析中来，考察利益与代理身份在这过程中如何互补或者竞争。下一章将论述技术与社会资本的密切关系。

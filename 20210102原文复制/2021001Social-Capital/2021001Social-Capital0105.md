@@ -34,9 +34,7 @@ The theory of social capital is framed in a set of assumptions about the macro-,
 
 A position closer to the top of the structure has greater access to and control of the valued resources not only because more valued resources are intrinsically attached to that position, but also because of the position’s greater accessibility to positions at other (primarily lower) rankings. Thus, an individual occupying a higher position, because of its accessibility to more positions, also has a greater command of social capital.
 
-With such an image of the social structure and an understanding of embedded resources, it is apparent that there is a direct relationship between the level of a position in the hierarchical structure and the amount of influence it may exert on other (lower) positions for instrumental purposes (obtaining additional resources), as well as the amount of information it possesses about the locations of resources in the structure. The influence factor derives from the ability of higher positions to cumulate resources at a higher rate than lower positions. Thus, any favor an individual at the higher position may provide can be expected to have a greater future payoff, since the higher position has more to offer the lower position than vice versa. The information factor is associated with
-
-asymmetric network relations across levels of positions. A higher position tends to have more information or a better view of the structure than a lower position; thus, it is more capable of locating the specific resources embedded in the structure.
+With such an image of the social structure and an understanding of embedded resources, it is apparent that there is a direct relationship between the level of a position in the hierarchical structure and the amount of influence it may exert on other (lower) positions for instrumental purposes (obtaining additional resources), as well as the amount of information it possesses about the locations of resources in the structure. The influence factor derives from the ability of higher positions to cumulate resources at a higher rate than lower positions. Thus, any favor an individual at the higher position may provide can be expected to have a greater future payoff, since the higher position has more to offer the lower position than vice versa. The information factor is associated with asymmetric network relations across levels of positions. A higher position tends to have more information or a better view of the structure than a lower position; thus, it is more capable of locating the specific resources embedded in the structure.
 
 Second, the theory assumes that while various valued resources form the bases of hierarchical structures and each valued resource defines a particular hierarchy, these hierarchies tend toward congruence and transferability. That is, there tends to be a correspondence among hierarchical positioning across resource dimensions. An occupant of a relatively high-standing position on one resource dimension also tends to occupy a relatively high position on another resource dimension. For example, a person with a relatively high standing on the occupational structure is also likely to have great wealth and power. When such convergence is not functionally complete (not isomorphic), exchange of resources across dimensions is not only possible but, in most societies, explicit and expected. For example, an occupant with power resources can negotiate and trade with an occupant with wealth resources to acquire some of the latter’s wealth in exchange for lending power to the latter.
 
@@ -46,25 +44,27 @@ An empirical structure may not actually look pyramidal because each such structu
 
 For example, as industrialization progresses (defined as the process of developing technology to make machine tools and assumed to be observable in every modern society), the occupational structure deviates from the pyramidal structure as occupants shift from the agricultural to the nonagricultural sector. While the size of the agricultural population deceases and the size of the low-level nonagricultural sector increases, the occupational structure, in terms of numbers of occupants at various levels, tends to be vase-shaped. Similarly, as the level of education in a society rises, there is always a small trailing tail at the lowest level representing the「residual」groups consisting of the most poorly educated individuals.
 
-For the meso- and microstructures, the theory makes two assumptions about interactions and actions. First, it assumes that social interactions are more likely to take place among individuals at similar or adjacent hierarchical levels – the principle of homophilous interactions. Following from the structural assumption about congruence and transferability of resources, expected or fair exchange involves partners who can offer as well as receive resources. Thus, the closer or more similar the social positions, the more likely it is that the occupants will interact with one another. The theory assumes that two primary driving forces account for most individuals’ actions: maintaining valued resources and gaining valued resources. The first dictates actions undertaken to preserve and defend valued resources already at the individual’s disposal, whereas the second promotes actions undertaken to add valued resources not yet at the individual’s disposal. We may characterize them as expressive and instrumental actions, respectively.
+For the meso- and microstructures, the theory makes two assumptions about interactions and actions. 
+
+First, it assumes that social interactions are more likely to take place among individuals at similar or adjacent hierarchical levels – the principle of homophilous interactions. Following from the structural assumption about congruence and transferability of resources, expected or fair exchange involves partners who can offer as well as receive resources. Thus, the closer or more similar the social positions, the more likely it is that the occupants will interact with one another. The theory assumes that two primary driving forces account for most individuals’ actions: maintaining valued resources and gaining valued resources. The first dictates actions undertaken to preserve and defend valued resources already at the individual’s disposal, whereas the second promotes actions undertaken to add valued resources not yet at the individual’s disposal. We may characterize them as expressive and instrumental actions, respectively.
 
 Expressive actions are expected to result in interactions consistent with the principle of homophilous interaction. Recognition of the similarity of resources and of the need to reciprocate concerns about them and protect them constitutes the basis for satisfying interactions. This expectation is consistent with the observation that interactions tend not only to take place more often but also to be more satisfying among participants with similar socioeconomic characteristics, lifestyles, and attitudes (Homans 1950; Lazarsfeld and Merton 1954). These similarities are assumed to reflect the proximity of social positions in the hierarchical structure. In social systems where valued resources are distributed across all levels (i.e., where every individual in the system has some quantity of the resources), homophilous interactions are pervasive at all levels. In most empirical social systems, therefore, this pattern holds true.
 
 Instrumental action, in contrast, may not result in interaction patterns consistent with the homophilous principle and the structural expectations. To gain additional or new resources, by definition, requires access to other social positions (especially those with more or better resources).
 
-That is, for the purpose of obtaining additional resources, more effective actions tend to be initiated toward others who have dissimilar (and presumably better) resources, consistent with the heterophilous principle of interactions.2
+That is, for the purpose of obtaining additional resources, more effective actions tend to be initiated toward others who have dissimilar (and presumably better) resources, consistent with the heterophilous principle of interactions.[2]
 
 Thus, a theory linking individuals to structure must first distinguish the two classes of action: instrumental actions and expressive actions.
 
 Instrumental actions are those actions taken for the purpose of achieving certain goals. The distinctive feature of this class of actions is that the means and ends are separate and distinct. A typical example is the search for a job or a person. Expressive actions are taken for their own sake: the actions are both means and ends, and are integrated and inseparable. Confiding one’s feelings is a typical example. The social capital theory varies in its propositions relative to instrumental and expressive actions.
-
-2 Instrumental actions can also be initiated by an occupant of a higher position toward an occupant of a lower position, since the latter provides many necessary services. Since the higher position commands and has greater access to resources than the lower position, the occupant of the lower position is normally obligated to respond to the action initiated by the higher-level occupant in the hope of receiving a reward. In this chapter, the focus will be on individuals who seek better resources. In Chapter 9, I will further elaborate the rationale for asymmetric exchanges.
 
 Second, the theory must take into account the consistency or tension between action and interaction. An expressive action motivates the individual to seek out others with similar characteristics and lifestyles in order to share and confide so that the expected return, sympathetic and appreciative understanding and counseling, can be obtained. Since homophilous interaction is the normative type of interaction, the expressive action evokes normative interaction (the homophilous interaction).
 
 That is, there is a normative match between effort and return. On the other hand, an instrumental action motivates one to seek out others with dissimilar (and, it is hoped, better) characteristics and lifestyles in order to access information and influence to achieve the expected return of more and/or better resources. Thus, heterophilous interactions represent a potential mismatch between the extraordinary or「abnormative」effort and expected returns for the purposive (instrumental) action.
 
 Because of the mismatch between instrumental action and normative patterns of interaction, a theory of social capital should pay special attention to the process by which instrumental action becomes successful through social capital.
+
+[2] Instrumental actions can also be initiated by an occupant of a higher position toward an occupant of a lower position, since the latter provides many necessary services. Since the higher position commands and has greater access to resources than the lower position, the occupant of the lower position is normally obligated to respond to the action initiated by the higher-level occupant in the hope of receiving a reward. In this chapter, the focus will be on individuals who seek better resources. In Chapter 9, I will further elaborate the rationale for asymmetric exchanges.
 
 假定
 
@@ -102,61 +102,133 @@ The theory specified here also applies only to a class of actions that evoke oth
 
 For the theory linking social capital to action, seven propositions are specified:
 
-1. For the return of social capital (Proposition 1: the social-capital proposition)
+1 For the return of social capital (Proposition 1: the social-capital proposition)
 
-2. For the access to social capital
+2 For the access to social capital:
 
-• The advantage of structural positions (Proposition 2: the
+- The advantage of structural positions (Proposition 2: the「strength-of-positions」proposition)
 
-「strength-of-positions」proposition)
+- The advantages of social ties (Proposition 3: the「strength-of-strong-tie」proposition and Proposition 4: the「strength-of-weak-tie」proposition)
 
-• The advantages of social ties (Proposition 3: the「strength-of-strong-tie」proposition and Proposition 4: the「strength-of-weak-tie」proposition)
+- The advantage of network locations (Proposition 5: the「strength-of-location」proposition)
 
-• The advantage of network locations (Proposition 5: the
+- The interaction between network locations and structural positions (Proposition 6: the location-by-position proposition)
 
-「strength-of-location」proposition)
+- The interaction of structural positions and ties/locations (Proposition 7: the structural contingency proposition) [3]
 
-• The interaction between network locations and structural positions (Proposition 6: the location-by-position proposition)
+The first proposition is the pivotal proposition expressing the expected return of social capital; it hypothesizes that better social capital accessed and used will tend to lead to a more successful outcome. The five other propositions hypothesize factors leading to better access and use of social capital. 
 
-• The interaction of structural positions and ties/locations (Proposition 7: the structural contingency proposition)3
+The strength-of-position proposition argues that the social position of origin has a positive effect on accessing and using better social capital. 
 
-The first proposition is the pivotal proposition expressing the expected return of social capital; it hypothesizes that better social capital accessed and used will tend to lead to a more successful outcome. The five other propositions hypothesize factors leading to better access and use of social capital. The strength-of-position proposition argues that the social position of origin has a positive effect on accessing and using better social capital. The strength-of-tie proposition posits that the use of weaker social ties (more heterophilous interactions) will have a positive effect on accessing and using social capital. The strength-of-position proposition reflects structural effects on instrumental action, whereas the strength-of-tie proposition may reflect action effects. It is also hypothesized that there will be interaction effects between position, tie, and location. In general, it is expected that the structural effect is stronger than the action effect. The relative strength of structure over action is more prominent near the top or bottom of the hierarchical structure. In the following section, these propositions will be explicated.
+The strength-of-tie proposition posits that the use of weaker social ties (more heterophilous interactions) will have a positive effect on accessing and using social capital. 
+
+The strength-of-position proposition reflects structural effects on instrumental action, whereas the strength-of-tie proposition may reflect action effects. It is also hypothesized that there will be interaction effects between position, tie, and location. In general, it is expected that the structural effect is stronger than the action effect. The relative strength of structure over action is more prominent near the top or bottom of the hierarchical structure. In the following section, these propositions will be explicated.
+
+[3] The earliest version of this theory and some of its propositions appear in Lin (1982), and subsequent versions and revisions appear in several other publications (Lin 1986, 1990, 1992a, 1995a, 1999a).
+
+理论命题：结构的嵌入性资源与目的性行动
+
+这里所阐述的理论也只是适用于使其他行动者作为中间人的一类行动。在某些情况下，行动可以不通过中间人而完成。例如，在完备劳动力市场体系中，所有的工作空职与它们要求的技能为所有的找工作者所知，对填补空职的求职者的招聘完全依赖于工作所要求的技能与每一候选人的技能的匹配，这样很少需要使用关系，直接申请应该可以实现所有目标。同样地，如果搜寻者认识社会体系中的每一人，也不需要通过关系去査找他们。只有当搜寻者不能直接了解要找的人时，才需要关系。因此，社会资本理论适用于目标信息传播不完善的不完备市场中。我估计，这种情况如果不能反映所有真实的市场情况也能覆盖大部分。
+
+对于连接社会资本与行动的理论，有七个命题要详细说明：
+
+1、社会资本的回报（命题 1：社会资本命题）
+
+2、社会资本的获取：
+
+结构位置的优势（命题 2：「地位强度」命题）
+
+社会关系的优势（命题 3：「强关系强度」命题与命题 4：「弱关系强度」命题）
+
+网络位置的优势（命题 5：「位置强度」命题）
+
+网络位置与结位置之间的互动（命题 6：位置-地位交叉命题）
+
+结构位置（position）与关系 / 网络位置（location）互动（命题 7：结构相依命题）[3]
+
+第一个命题是表述社会资本的预期回报的关键命题，它假设获取和使用好的社会资本往往导致一个更成功的结果。其他五个命题，假设的是能导致更好地获取和使用社会资本的因素。
+
+地位强度命题表明，初始社会位置（position）对好的社会资本的获取和使用有正面的影响。
+
+关系强度命题，假定强或弱社会关系的使用（同质或异质性互动）对获取和使用社会资本有正向的影响。地位强度命题反映了工具性行动的结构效应，而关系强度命题可能反映了行动效应。
+
+最后一个假设是，位置（position）、关系与位置（location）之间存在着互动效应。通常认为结构效应比行动效应更大。因此，结构对于行动的相对强度，应在靠近等级制结构的顶端或底部处更明显。下面部分将具体阐述这些命题。
+
+[3] 这个理论的最早版本和一部分命题出自林南（Lin, 1982），随后的版本和修正出现在其他几个刊物中（Lin, 1986, 1990, 1992, 1995a, 1999a）。
 
 ### Return to Social Capital
 
-(1) The Social-Capital Proposition: The success of action is positively associated with social capital. The primary proposition of the theory states that access to and use of better social capital leads to more successful action – the return to social capital. A simple strategy to accomplish a purposive action is to access an actor who possesses or can access more highly valued resources. Such access, as stated in Chapter 2, makes use of social capital for several important advantages. First, it makes use of the influence this intermediary may exercise on behalf of ego. The 3 The earliest version of this theory and some of its propositions appear in Lin (1982), and subsequent versions and revisions appear in several other publications (Lin 1986, 1990, 1992a, 1995a, 1999a).
+The Social-Capital Proposition: The success of action is positively associated with social capital. 
+
+The primary proposition of the theory states that access to and use of better social capital leads to more successful action – the return to social capital. A simple strategy to accomplish a purposive action is to access an actor who possesses or can access more highly valued resources. Such access, as stated in Chapter 2, makes use of social capital for several important advantages. 
+
+First, it makes use of the influence this intermediary may exercise on behalf of ego. The better positioned the intermediary, and thus the better embedded and commanded resources, the more such influence should benefit ego. Second, the intermediary, given its advantageous view of the structure, may provide better information to ego. Third, a better-positioned intermediary, with its embedded and commanded resources, projects better social credentials, so that its willingness to serve as an intermediary assures or elevates ego’s credentials. And, finally, the ability to access a better-positioned intermediary itself enhances ego’s confidence and self-esteem in further interactions and actions (e.g., conduct in job interviews) that may be necessary to accomplish the goal of the action. 
+
+Thus, the first and most important proposition for the theory is: The success of action is positively associated with social capital . It is argued that the relationship should hold for both expressive and instrumental actions.
+
+![](./res/2021017.png)
 
 Figure 5.1 Relative effects of social capital.
 
-better positioned the intermediary, and thus the better embedded and commanded resources, the more such influence should benefit ego.
-
-Second, the intermediary, given its advantageous view of the structure, may provide better information to ego. Third, a better-positioned intermediary, with its embedded and commanded resources, projects better social credentials, so that its willingness to serve as an intermediary assures or elevates ego’s credentials. And, finally, the ability to access a better-positioned intermediary itself enhances ego’s confidence and self-esteem in further interactions and actions (e.g., conduct in job interviews) that may be necessary to accomplish the goal of the action. Thus, the first and most important proposition for the theory is: The success of action is positively associated with social capital . It is argued that the relationship should hold for both expressive and instrumental actions.
-
 Graphically, this proposition is depicted in Figure 5.1. The hierarchical nature of a social structure can be represented by the pyramid: levels of positions with varying degrees of valued resources can be plotted along its vertical axis. For two egos (identified as e1 and e2 in the figure), at approximately the same structural position, the proposition hypothesizes that e1 will have a competitive advantage over e2 as it accesses a social tie, a1, at a relatively higher position than that of the tie, a2, that e2 accesses.
 
-Through direct and indirect ties, an individual actor gains access to a variety of resources; what measures can be suggested as indicators of social capital? Following Weber’s argument, we may suggest three types of resources of social ties accessed as the contents of social capital: (1)
+Through direct and indirect ties, an individual actor gains access to a variety of resources; what measures can be suggested as indicators of social capital? Following Weber’s argument, we may suggest three types of resources of social ties accessed as the contents of social capital: 1) wealth: economic assets, 2) power: political assets, and 3) reputation: social assets. Three summarizing characteristics can be suggested relative to each capital: 1) upper reachability: the best resource accessed through social ties; 2) heterogeneity: the range of positions whose resources are reachable through social ties; and 3) extensity: the number of positions that are reachable. These criteria and their measures are graphically depicted in Figure 5.2.
+
+![](./res/2021018.png)
 
 Figure 5.2 Measures of social capital.
-
-wealth: economic assets, (2) power: political assets, and (3) reputation: social assets. Three summarizing characteristics can be suggested relative to each capital: (1) upper reachability: the best resource accessed through social ties; (2) heterogeneity: the range of positions whose resources are reachable through social ties; and (3) extensity: the number of positions that are reachable. These criteria and their measures are graphically depicted in Figure 5.2.
 
 The first criterion of upper reachability seems straightforward: the resource of an uppermost position ego can reach in the hierarchical structure through social ties. As in Figure 2.2, ego is connected to other positions in the structure; the highest position ego can reach represents the upper-reachable social resource for ego. That position is characterized by the values of resources it possesses, usually reflecting relative status, class, or authority in the structure or community.
 
 The second criterion, resource heterogeneity, reflects the vertical range of resources reachable by ego through social ties across positions in a structural hierarchy. As in Figure 1.2, this is represented by the range between the highest- and lowest-reachable resources through ego’s ties.
 
-The resource heterogeneity criterion is not so obvious, but it is important. For example, an individual who does not know how to increase computer memory to run an application may not need to contact a high-status programmer; it should be sufficient to call on someone friendly who can quickly help. Nor is it necessary to call on a neighbor with many resources when ego needs a babysitter at the last minute. Getting one’s basket emptied or floor swept at the office depends more on friendly rela-
+The resource heterogeneity criterion is not so obvious, but it is important. For example, an individual who does not know how to increase computer memory to run an application may not need to contact a high-status programmer; it should be sufficient to call on someone friendly who can quickly help. Nor is it necessary to call on a neighbor with many resources when ego needs a babysitter at the last minute. Getting one’s basket emptied or floor swept at the office depends more on friendly relations with the custodians than on making demands on one’s supervisor. 
 
-tions with the custodians than on making demands on one’s supervisor.
+Thus, having all social ties of high status may not meet many life needs. Thus, heterogeneity in the types, levels, and amounts of resources provided through social ties constitutes an important criterion of better access to social capital. 
 
-Thus, having all social ties of high status may not meet many life needs.
-
-Thus, heterogeneity in the types, levels, and amounts of resources provided through social ties constitutes an important criterion of better access to social capital. The third criterion, extensity, simply reflects the diversity of positions, and their embedded resources, reachable by ego through social ties.
+The third criterion, extensity, simply reflects the diversity of positions, and their embedded resources, reachable by ego through social ties.
 
 Actual measures of these economic, political, and social standings vary for each society or even each community. Therefore, identifying the locally meaningful measures of social capital for a given society is an empirical task. As long as such locally meaningful measures can be identified and examined, the proposed proposition is hypothesized to hold.
 
 The correlations among the various measures of social capital, while generally assumed to be high, may also vary across societies and communities. To assess their correspondences for each society under study, and to exercise appropriate methodological controls to reflect the degree of convergence or distinction among the measures, is again an empirical task. Further, the relative utility of the social capital measures may depend on the purposes or motivations for action. As has been stated, action may be undertaken for expressive (maintaining resources) or instrumental (gaining resources) reasons. Whether the relative advantage among the social capital measures differs or not for different types of actions again may vary across societies and communities. In some societies, where the three measures of social capital largely overlap or correspond well, their utilities may also converge for both types of action. In other societies, when these assets are more segmented or independent, it becomes critical to assess their relative effects for the two types of actions.
 
 The social-capital proposition is the primary proposition of the theory in that unless it can be verified in research, all other propositions become irrelevant. On the other hand, if this proposition is verified, then the stage is set for further propositions and elaborations. In the remainder of this chapter, we will focus on several other propositions concerning the etiology or causes of social capital – the factors determining the likelihood of achieving better social capital.
+
+### 社会资本的回报
+
+1、社会资本命题：行动的成功与社会资本正相关。
+
+理论的主要命题是，获取和使用好的社会资本导致更成功的行动。实现目的性行动的一个简单策略是，接近自身拥有或能够获取更高价值资源的行动者。如第二章所表明的，这样的接近对于利用社会资本有几个重要的优势。
+
+首先，它利用中间人的影响，中间人可以代表自我施加影响。中间人的位置（position）越好，嵌入和控制的资源越好，有益于自我的影响越多。第二，中间人有优势的结构性视野，可以给自我提供更好的信息。第三，一个处在好位置（position 的中间人，拥有嵌入性和控制性资源，呈现出有好的社会信用，因此，如果他愿意作为中间人，会确保或提高自我的社会信用。最后，接触一个好位置的中间人的能力，本身就提高了自我在下一步的互动与行动（如参加工作面试）中的信心和自尊，这可能是实现行动目标所必需的。
+
+因此，理论中最重要的命题是：行动的成功与社会资本正相关。可以认为，关系对表达性与工具性行动都是有效的。
+
+这个命题用图描绘出来就是图 5.1。社会结构的等级制性质用金字塔来表示，拥有不同等级的有价值资源的位置层级用纵轴标出。两个自我（在图中用 e1 与 e2 区分），有大致相同的结构位置，命题假设，当 e1 利用社会关系 a1, e2 利用社会关系 a2，且 a1 比 a2 的位置相对要高时，那么 e1 比 c2 具有竞争优势。
+
+![](./res/2021004.png)
+
+图 5.1 社会资本的相对效应
+
+个体行动者通过直接和间接关系获得不同的资源，那么什么可以作为社会资本的测量指标呢？按照韦伯的观点，我们可以提出行动者使用的社会关系资源的三种类型，作为社会资本的内容：1）财富：经济财产；2）权力：政治财产；3）名声：社会财产。我们可以提出每一种资本都具有的三个共同特征：1）达高性：通过社会关系获取的最好资源；2）异质性：位置（positon）—— 通过社会关系，其资源是可以触及到的的幅度；3）广泛性：可触及的位置的数量。这些标准和测量可以用图 5.2 来描绘。
+
+![](./res/2021005.png)
+
+图 5.2 社会资本的测量
+
+第一个达高性的标准看上去很直白：自我通过社会关系可以在等级制结构中触及到的最顶端位置的资源。如图 5.2，自我与结构中的其他位置相联系，自我能够触及的最高位置代表着自我最上可触及的社会资源。位置以其所拥有的有价值资源为特征，通常反映了结构中和社区中的相对地位阶级或权威。
+
+第二个标准 —— 资源异质性，反映了自我通过跨越结构等级制位置的社会关系可触及的资源的纵向幅度。如图 5.2，这代表着通过自我关系最高和最低可触及的资源幅度。
+
+资源异质性标准不是那么明显，但是它很重要。例如，不知道如何提高计算机的内存来运行一个应用程序的个人，可能不需要联系一个高地位的程序员，请一个友好的能很快帮忙的人就足够了。当在紧要关头需要一位保姆时，也不需要请拥有很多资源的邻居帮忙。在办公室中倒纸篓或拖地，更依赖于与保洁员的友好关系，而不是求助于自己的上级。拥有全是高地位的社会关系，可能并不能满足很多生活需要。因此，通过社会关系所提供的资源的类型、层级和数量的异质性，组成了对社会资本的好的获取的一个重要标准。
+
+第三个标准 一一 广泛性，只是反映了自我通过社会关系触及的位置及其嵌入性资源的多样性。
+
+这些经济、政治和社会地位的实际测量因每一社会，甚或每一社区的不同而不同。因此，确定一个给定社会的有地方意义的社会资本的测量方法是一个经验任务。只要这些有局部意义的测量可以确定和检验，那么提出的命题就可以假设成立。
+
+我猜想，社会资本的不同测量之间会高度相关，但也可能因社会和社区而变化。评估所研究的每一社会之间的一致性，对反映这些测量中的趋同或趋异程度运用适当的方法控制，也是一个经验任务。而且，社会资本测量的相对功用可能依赖于行动的目的或动机。前面已经说明，表达性的（维持资源）或工具性（获得资源）的原因都可能导致行动。不管社会资本测量中的相对优势是否因行动的不同类型而不同，也都可能随着社会或社区而变化。在一些社会中，在社会资本的三个测量大部分重叠或一致性很高的地方，它们对于两类行动的功用可能也趋同。在其他社会中，当这些财产的分割性或独立性更强的时候，考察它们对两种类型行动的相对效果变得很重要。
+
+社会资本命题是理论的主要命题，因为除非它被研究所证实，否则所有其他的命题都变得无意义。另一方面，如果这个命题被证实了，就为下面的命题和论述奠定了基础。在这一章的剩余部分，我们将关注涉及社会资本的原因说明或原因的其他几个命题 一一 决定得到好的社会资本的可能性的因素。
 
 ### Accessing Social Capital
 
@@ -268,67 +340,9 @@ we expect B to maintain the connection with ego so that it expands the heterogen
 
 In summary, the significance of network locations, whether conceived as bridges or as tie strengths, is contingent on the relative hierarchical structural positions of the individuals thus bridged or linked. The relative advantage of having bridges or weaker ties is a function of the relative vertical distance between ties or clusters of ties.6
 
-理论命题：结构的嵌入性资源与目的性行动
-
-这里所阐述的理论也只是适用于使其他行动者作为中间人的一类行动在某些情况下，行动可以不通过中间人而完成。例如，在完备劳动力市场体系中，所有的工作空职与它们要求的技能为所有的找工作者所知，对填补空职的求职者的招聘完全依赖于工作所要求的技能与每一候选人的技能的匹配，这样很少需要使用关系，直接申请应该可以实现所有目标。同样地，如果搜寻者认识社会体系中的每一人，也不需要通过关系去査找他们。只有当搜寻者不能直接了解要找的人时，才需要关系。因此，社会资本理论适用于目标信息传播不完善的不完备市场中。我估计，这种情况如果不能反映所有真实的市场情况也能覆盖大部分。
-
-对于连接社会资本与行动的理论，有七个命题要详细说明：
-
-1、社会资本的回报（命题 1：社会资本命题）
-
-2、社会资本的获取：
-
-结构位置的优势（命题 2：「地位强度」命题）
-
-社会关系的优势（命题 3：「强关系强度」命题与命题 4：「弱关系强度」命题）
-
-网络位置的优势（命题 5：「位置强度」命题）
-
-网络位置与结位置之间的互动（命题 6：位置-地位交叉命题）
-
-结构位置（position）与关系 / 网络位置（location）互动（命题 7：结构相依命题）[3]
-
-第一个命题是表述社会资本的预期回报的关键命题，它假设获取和使用好的社会资本往往导致一个更成功的结果。其他五个命题，假设的是能导致更好地获取和使用社会资本的因素。地位强度命题表明，初始社会位置（position）对好的社会资本的获取和使用有正面的影响。关系强度命题，假定强或弱社会关系的使用（同质或异质性互动）对获取和使用社会资本有正向的影响。地位强度命题反映了工具性行动的结构效应，而关系强度命题可能反映了行动效应。最后一个假设是，位置（position）、关系与位置（location）之间存在着互动效应。通常认为结构效应比行动效应更大。因此，结构对于行动的相对强度，应在靠近等级制结构的顶端或底部处更明显。下面部分将具体阐述这些命题。
-
-[3] 这个理论的最早版本和一部分命题出自林南（Lin, 1982），随后的版本和修正出现在其他几个刊物中（Lin, 1986, 1990, 1992, 1995a, 1999a）。
-
-### 社会资本的回报
-
-### 命题 1：社会资本命题
-
-1、社会资本命题：行动的成功与社会资本正相关。
-
-理论的主要命题是，获取和使用好的社会资本导致更成功的行动。实现目的性行动的一个简单策略是，接近自身拥有或能够获取更高价值资源的行动者。如第二章所表明的，这样的接近对于利用社会资本有几个重要的优势。
-
-首先，它利用中间人的影响，中间人可以代表自我施加影响。中间人的位置（position）越好，嵌入和控制的资源越好，有益于自我的影响越多。第二，中间人有优势的结构性视野，可以给自我提供更好的信息。第三，一个处在好位置（position 的中间人，拥有嵌入性和控制性资源，呈现出有好的社会信用，因此，如果他愿意作为中间人，会确保或提高自我的社会信用。最后，接触一个好位置的中间人的能力，本身就提高了自我在下一步的互动与行动（如参加工作面试）中的信心和自尊，这可能是实现行动目标所必需的。因此，理论中最重要的命题是：行动的成功与社会资本正相关。可以认为，关系对表达性与工具性行动都是有效的。
-
-这个命题用图描绘出来就是图 5.1。社会结构的等级制性质用金字塔来表示，拥有不同等级的有价值资源的位置层级用纵轴标出。两个自我（在图中用 e1 与 e2 区分），有大致相同的结构位置，命题假设，当 e1 利用社会关系 a1, e2 利用社会关系 a2，且 a1 比 a2 的位置相对要高时，那么 e1 比 c2 具有竞争优势。
-
-![](./res/2021004.png)
-
-图 5.1 社会资本的相对效应
-
-个体行动者通过直接和间接关系获得不同的资源，那么什么可以作为社会资本的测量指标呢？按照韦伯的观点，我们可以提出行动者使用的社会关系资源的三种类型，作为社会资本的内容：1）财富：经济财产；2）权力：政治财产；3）名声：社会财产。我们可以提出每一种资本都具有的三个共同特征：1）达高性：通过社会关系获取的最好资源；2）异质性：位置（positon）—— 通过社会关系，其资源是可以触及到的的幅度；3）广泛性：可触及的位置的数量。这些标准和测量可以用图 5.2 来描绘。
-
-![](./res/2021005.png)
-
-图 5.2 社会资本的测量
-
-第一个达高性的标准看上去很直白：自我通过社会关系可以在等级制结构中触及到的最顶端位置的资源。如图 5.2，自我与结构中的其他位置相联系，自我能够触及的最高位置代表着自我最上可触及的社会资源。位置以其所拥有的有价值资源为特征，通常反映了结构中和社区中的相对地位阶级或权威。
-
-第二个标准 —— 资源异质性，反映了自我通过跨越结构等级制位置的社会关系可触及的资源的纵向幅度。如图 5.2，这代表着通过自我关系最高和最低可触及的资源幅度。资源异质性标准不是那么明显，但是它很重要。例如，不知道如何提高计算机的内存来运行一个应用程序的个人，可能不需要联系一个高地位的程序员，请一个友好的能很快帮忙的人就足够了。当在紧要关头需要一位保姆时，也不需要请拥有很多资源的邻居帮忙。在办公室中倒纸篓或拖地，更依赖于与保洁员的友好关系，而不是求助于自己的上级。拥有全是高地位的社会关系，可能并不能满足很多生活需要。因此，通过社会关系所提供的资源的类型、层级和数量的异质性，组成了对社会资本的好的获取的一个重要标准。第三个标准 一一 广泛性，只是反映了自我通过社会关系触及的位置及其嵌入性资源的多样性。
-
-这些经济、政治和社会地位的实际测量因每一社会，甚或每一社区的不同而不同。因此，确定一个给定社会的有地方意义的社会资本的测量方法是一个经验任务。只要这些有局部意义的测量可以确定和检验，那么提出的命题就可以假设成立。
-
-我猜想，社会资本的不同测量之间会高度相关，但也可能因社会和社区而变化。评估所研究的每一社会之间的一致性，对反映这些测量中的趋同或趋异程度运用适当的方法控制，也是一个经验任务。而且，社会资本测量的相对功用可能依赖于行动的目的或动机。前面已经说明，表达性的（维持资源）或工具性（获得资源）的原因都可能导致行动。不管社会资本测量中的相对优势是否因行动的不同类型而不同，也都可能随着社会或社区而变化。在一些社会中，在社会资本的三个测量大部分重叠或一致性很高的地方，它们对于两类行动的功用可能也趋同。在其他社会中，当这些财产的分割性或独立性更强的时候，考察它们对两种类型行动的相对效果变得很重要。
-
-社会资本命题是理论的主要命题，因为除非它被研究所证实，否则所有其他的命题都变得无意义。另一方面，如果这个命题被证实了，就为下面的命题和论述奠定了基础。在这一章的剩余部分，我们将关注涉及社会资本的原因说明或原因的其他几个命题 一一 决定得到好的社会资本的可能性的因素。
-
 ### 获取社会资本
 
 那么谁更可能获取好的社会资本呢？我们提出三个可能的因素：1）自我在等级制结构中的位置；2）自我与其他行动者之间关系的性质；3）网络中关系的位置。这三个因素导致了关于获取社会资本的四个理论命题：1）自我的结构性位置的强度；2）关系的强度；3）关系的位置的强度；4）结构位置（position）、关系与网络位置（location）的共同（互动）效应。
-
-### 命题 2：「地位强度」命题
 
 结构性优势。同质原则已经被用来描述规范性与表达性的互动类型。这个原则表明，人们为了表达性的原因往往与类似的人互动。当这个原则被应用到想获得更好的社会资本的人的问题上时，非常明显，那些在社会结构中的初始位置相对高的人应该比其他人有优势。初始位置可以是从父母继承来的或个体自致的。这个初始位置一旦被确定，位置的占据者的规范互动模式就会将它与相似的或更高位置的人相联系。初始位置越高，占据者越可能获取更多高价值的资源。因此，假设初始位置的层级与通过联系所触及的社会资本是正相关的，这就是地位强度命题。
 
