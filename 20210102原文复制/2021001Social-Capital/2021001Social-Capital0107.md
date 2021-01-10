@@ -36,35 +36,27 @@ The preceding can thus be seen as hypotheses regarding inequality in different t
 
 approach can be in shedding light on the critical issue of inequality in social capital and its consequences for male and female attainment in the urban Chinese labor market.
 
-
 理论探讨
 
 社会不平等是一个重要的研究问题；它的起因值得关注。从资本理论的视角，我们可以提出初始命题：不同类型的资本（如人力资本和社会资本）的不平等，导致了诸如社会经济地位和生活质量等的社会不平等。以这个命题为前提，我们可以进一步探讨导致资本不平等的过程。在这个阐述中，我们们的计划是确定导致资本不平等的具体机制，这个机制影响到社会的不平等。因此，研究任务是双重的：确定与证实导致资本不平等的机制；证明社会群体间资本不平等与社会不平等的关联。关于资本不平等与社会不平等之联系的初始命题，已经成为论述不同类型的资本的指导性理论（第一章至第六章）。这一章要探讨对包括社会资本在内的资本不平等过程的解释。
 
-资本的不平等可能是由两个过程引起的：资本欠缺（capital deficit）和回报欠缺（return deficit）。资本欠缺是指不同的投资或机会所导致的某一群体的资本在数量或质量上相对不足（与另一群体相比较）的结果。例如，家庭对儿子的人力资本或社会资本的投资可能要比女儿多。不同的社会群体可能嵌入在不同的社会等级制或社会网络中，这些等级制或网络促进或约束了其成员的资本获得。回报欠缺是指一定质量或数量的资本对于不同社会群体的成员会产生不同的回报或结果。例如，拥有一定质量或数量社会资本的男性和女性，在地位获得中得到的回报会有差别如在组织中的职位、职业声望或收人。
+资本的不平等可能是由两个过程引起的：资本欠缺（capital deficit）和回报欠缺（return deficit）。资本欠缺是指不同的投资或机会所导致的某一群体的资本在数量或质量上相对不足（与另一群体相比较）的结果。例如，家庭对儿子的人力资本或社会资本的投资可能要比女儿多。不同的社会群体可能嵌入在不同的社会等级制或社会网络中，这些等级制或网络促进或约束了其成员的资本获得。回报欠缺是指一定质量或数量的资本对于不同社会群体的成员会产生不同的回报或结果。例如，拥有一定质量或数量社会资本的男性和女性，在地位获得中得到的回报会有差别如在组织中的职位、职业声望或收入。
 
-社会群体间的资本不平等可能是由于资本欠缺、回报欠缺或二者共同引起的。现在我们考虑一下劳动力市场中的性别不平等问题。大量的文献显示，性別劳动力市场解释了男性和女性在不同职业中的收入差异（Treiman and Terrell, 1975; Bose and Rossi, 1983; Bielby and Baron, 1986 Jacobs, 1989; England Farkas, Kilbourne Don, 1988; Reskin, 1988, 1993; Kibourne, England, Farkas, Beron Weir, 1994; Reskin ROOS, 1990; England, 1992a, 1992b; Tomaskovic-devey 1993）。然而，很少有理论和究去深究性别职业结构的经验发现，系统地探讨不同群体成员的有差别的结构性位置分配及相应的回报机制（参见 Tam,1997 关于竞争的观点）。我们可以从资本理论的视角，对这些可能的关系提供两个可能的解释。
+社会群体间的资本不平等可能是由于资本欠缺、回报欠缺或二者共同引起的。现在我们考虑一下劳动力市场中的性别不平等问题。大量的文献显示，性別劳动力市场解释了男性和女性在不同职业中的收入差异（Treiman and Terrell, 1975; Bose and Rossi, 1983; Bielby and Baron, 1986 Jacobs, 1989; England Farkas, Kilbourne Don, 1988; Reskin, 1988, 1993; Kibourne, England, Farkas, Beron Weir, 1994; Reskin ROOS, 1990; England, 1992a, 1992b; Tomaskovic-devey, 1993）。然而，很少有理论和研究去深究性别职业结构的经验发现，系统地探讨不同群体成员的有差别的结构性位置分配及相应的回报机制（参见 Tam, 1997 关于竞争的观点）。我们可以从资本理论的视角，对这些可能的关系提供两个可能的解释。
 
 资本欠缺的解释关注资本获得上的差异。其中一种资本获得差异可能是由于投资的不同引起的：假设家庭在男孩和女孩身上的资本投资是有差别的。我们可以推测，在大多数社会中，家庭预计劳动力市场与经济将对男性和女性提供有差别的回报，往往把更多的资本投给儿子而不是女儿，以提高竟争力。因此可以预见，男性在教育（人力资本）和社会网络（社会资本）的扩展上都比女性有优势。第二种资本获得差异可能由于机会的不同：主流的社会结构与制度（规则与实践或者文化；参见第十一章）为男性和女性发展资本提供了不同的机会。男孩被鼓动和激励着去建立广泛的、异质性的社会关系纽带，如果女孩这么做则会被约束甚或惩罚。这两个过程导致了某些群体的资本欠缺，女性获得的资本在质量和数量上会少于男性。资本欠缺概念可以解释为什么男性和女性会得到有差别的工作安排和报酬。
 
-另一方面，回报欠缺的解释关注资本的回报一如在劳动力市场中的例子。劳动力市场中的资本回报具有重要的性别差异。我们可以假定，即使男性和女性拥有相同质量或数量的资本，他们在劳动力市场中也会有不同的地位结果。亦即，劳动力市场対男性和女性的资本的奖励是有差别的。假定男性和女性拥有相同质量或数量的资本，在劳动力市场中男性将比女性得到更
+另一方面，回报欠缺的解释关注资本的回报 —— 如在劳动力市场中的例子。劳动力市场中的资本回报具有重要的性别差异。我们可以假定，即使男性和女性拥有相同质量或数量的资本，他们在劳动力市场中也会有不同的地位结果。也即，劳动力市场対男性和女性的资本的奖励是有差别的。假定男性和女性拥有相同质量或数量的资本，在劳动力市场中男性将比女性得到更多的奖励在组织中的地位、职称、职业声望和收入。对于这种情况有三个不同的解释。
 
-多的奖励在组织中的地位、职称、职业声望和收人。对于这种情况有三个不同的解释。第一，在劳动力市场中，女性的工具性获得行动可能没有使用或动员合适的资本。例如，她们在获得过程中可能没有使用最好的社会关系、最好的社会资本，这可能是因为她们不能确定哪些是最好的社会关系和社会资本，也可能是因为她们在动员这些社会资本时产生了犹豫，感到缺乏资源或能力回报这些恩恵。第二，合适的社会关系虽然被动员了，但是由于真实的或想像的原因，这些关系不愿意为了女性的利益进行资本投资。这些关系可能怀疑雇主会抵制女性侯选人，而不会认真地考虑他们的推荐或影响。这些浪费掉的影响成为对候选人投资的成本而不是奖励。不「抛头露面」可能也是文化或制度所期待的行为，即使女性自身与她们的家庭也很少期望她们能在社会关系上有所作为。第三，回报欠缺可能是由劳动力市场结构本身的有差别的回应所致： 即使男性和女性拥有相似的人力和 / 或社会资 本，雇主对男性和女性的职位 / 晋升候选人的回应也是有差别的一制度场域中的组织所共享的偏见（制度场域是一个社会共同体，在其中组织共享着套主流的价值与实践；参见第十一章和 Iin,1994b）。
+第一，在劳动力市场中，女性的工具性获得行动可能没有使用或动员合适的资本。例如，她们在获得过程中可能没有使用最好的社会关系、最好的社会资本，这可能是因为她们不能确定哪些是最好的社会关系和社会资本，也可能是因为她们在动员这些社会资本时产生了犹豫，感到缺乏资源或能力回报这些恩恵。
 
-总之，我们可以从资本理论的视角提出社会不平等的下刎机制：
+第二，合适的社会关系虽然被动员了，但是由于真实的或想像的原因，这些关系不愿意为了女性的利益进行资本投资。这些关系可能怀疑雇主会抵制女性侯选人，而不会认真地考虑他们的推荐或影响。这些浪费掉的影响成为对候选人投资的成本而不是奖励。不「抛头露面」可能也是文化或制度所期待的行为，即使女性自身与她们的家庭也很少期望她们能在社会关系上有所作为。
 
-1. 资本缺是由于（a）投资差异或者（b）机会的不同。
+第三，回报欠缺可能是由劳动力市场结构本身的有差别的回应所致： 即使男性和女性拥有相似的人力和 / 或社会资本，雇主对男性和女性的职位 / 晋升候选人的回应也是有差别的 —— 制度场域中的组织所共享的偏见（制度场域是一个社会共同体，在其中组织共享着套主流的价值与实践；参见第十一章和 Lin, 1994b）。
 
-2. 回报欠缺是由于（a）对合适资本的动员的差异由于认识能的火缺或不愿意动员；（b）中间代理人的努力程度不同；（c）组织和制度对于已动员资本的不同回应。
+总之，我们可以从资本理论的视角提出社会不平等的下列机制：1）资本缺是由于（a）投资差异或者（b）机会的不同。2） 回报欠缺是由于（a）对合适资本的动员的差异由于认识能的欠缺或不愿意动员；（b）中间代理人的努力程度不同；（c）组织和制度对于已动员资本的不同回应。3）回报欠缺可能独立于资本欠缺，也可能不独立于资本欠缺。某些社会不平等可能是由不同的社会群体中所分布的资本欠缺所致。其他一些类型的不平等可能主要是因为回报的欠缺：社会群体可能拥有相同质量和数量的资本，但是回报可能不同。还有些类型的不平等，是由于资本欠缺与回报欠缺二者的共同作用。这些机制在不同的共同体或社会中可能是不同的。
 
-3. 回报火缺可能独立于资本欠缺，也可能不独立于资本缺。某些
-
-社会不平等可能是由不同的社会群体中所分布的资本欠缺所致。其他一些类型的不平等可能主要是因为回报的火缺：社会群体可能拥有相同质量和数量的资本，但是回报可能不同。还有些类型的不平等，是由于资本火缺与回报火缺二者的共同作用。这些机制在不同的共同体或社会中可能是不同的。
-
-上述机制可以视为关于不同类型的资本（如人力资本、制度资本和社会资本）, 不同的社会群体（如性别、种族 / 族群、宗教等）, 不同的劳动力市 场（如经济的、政治的、教育的）和不同社会的不平等假设。本章的剩余部分使用最近从中国城市收集的一组数据，来说明这些阐述与分析如何应用在社会资本的性别不平等的解释上。虽然分析的重点是社会资本，但是我们也分析了男女两个群体的人力资本与制度资本。这些数据不可能用来阐述和分析前面提到的所有机制。但是希望这个分析能证明，这样一个「分解的」方法在解释社会资本不平等及其所导致的中国城市劳动力市场中男性和女性地位获得不平等的重要题上是富有成效的。
-
-
-
+上述机制可以视为关于不同类型的资本（如人力资本、制度资本和社会资本）, 不同的社会群体（如性别、种族 / 族群、宗教等）, 不同的劳动力市场（如经济的、政治的、教育的）和不同社会的不平等假设。本章的剩余部分使用最近从中国城市收集的一组数据，来说明这些阐述与分析如何应用在社会资本的性别不平等的解释上。虽然分析的重点是社会资本，但是我们也分析了男女两个群体的人力资本与制度资本。这些数据不可能用来阐述和分析前面提到的所有机制。但是希望这个分析能证明，这样一个「分解的」方法在解释社会资本不平等及其所导致的中国城市劳动力市场中男性和女性地位获得不平等的重要题上是富有成效的。
 
 ## 7.2 The Study, Sample, and Data
 
@@ -75,6 +67,14 @@ survey of eighteen cities. Fifteen of these cities were sampled from a stratifie
 The sample consists of 3,050 respondents, aged nineteen to sixty-nine inclusive, who were participating or had participated in the labor force of these eighteen cities at the time of the survey. The basic characteristics of these respondents appear in Table 7.1. The sample consists of 43.5 percent males and 56.4 percent females. The average age is forty-one, and there is no significant difference in age between the male and female respondents. Nine of ten respondents were married, 6.7 percent were single, and 3.3 percent were divorced or widowed. About half (52 percent) of the respondents lived in large cities when they were sixteen years old. Female respondents were slightly more likely to have lived in large cities than males.
 
 Table 7.1. Summary of Sample Characteristics (N = 3,050) 
+
+研究、样本与数据
+
+在这个探索性的研究中要提出三个研究问题：1）男性和女性有不同的社会资本吗？2）如果是，这个不同是由于资本欠缺、回报欠缺还是由于者的共同作用？3）男性和女性的社会资本不平等的后果是什么？
+
+这里使用的数据来自 1998 年对 18 个城市的调査。其中 15 个城市来自所有城市的分层抽样样本。分层是建立在地区（沿海、中部和内地）与经济地位（高中、低）的基础之上。其他三个城市是从边远地区抽取的样本（平凉、格尔木和塔城）。附录 7.1 列出了来自这些地点的城市与样本规模。收集城市水平的数据是为了多层次分析的需要。但是目前的研究作为ー个初步分析，只关心个体层次的数据。
+
+样本由 3050 名 19-69 岁的回答者组成，他们在调查时是或者曾经是这 18 个城市的劳动力人口。这些回答者的基本特征如表 7.1 所示。样本中男性占 43.5%，女性占 56.4%。平均年岭 41 岁，男性和女性回答者在年龄上没有显著差异。90% 的回答者已婚，6.7% 单身，3.3% 离婚或丧偶。大约有半（52%）的回答者 16 岁时佳在大城市，女性回答者的这一比例比男性稍高。
 
 ## 7.3 Deficit in Human and Institutional Capital
 
@@ -92,6 +92,18 @@ Close to a quarter (23.6 percent) of the males held ranks at and above departmen
 
 In short, then, males held an overwhelming advantage over females in institutional capital.
 
+人力资本欠缺与制度资本欠缺
+
+研究检验了三种类型的资本：人力资本、制度资本和社会资本。人力资本用教育、工龄、任期和在职培训表示。教育用受教育年限测量。如表 7.1 所示，大约有三分之一的回答者受过高中以下教育，41% 的回答者受过高中教育，还有四分之一的回答者受过大学以上教育。男性受教育程度比女性要高。男性（平均 22.3 年）也比女性（平均 21.1 年）有更长的工龄，但是在当前工作单位的任期或年数差别不显著。男性比女性受到更多的在职培训（不同类型的培训数目和培训证书数目）。总之，男性在人力资本上比女性显示出更大的优势。
+
+制度资本是与主流的意识形态和权力的认同相联系的资本（Lin, 1994b 1995b；另外参见第十一章）。这里用党员身份、工作单位性质和当前职位的级别来表示。党员身份分三类：1）非党员；2）在当前工作期间是党员；3）首次参加工作时已经是党员。如表 7.1 所示，男性（36.2%）是党员的比例显著高于女性（19.9%），男性的党龄也要比女性长。
+
+直到最近，工作单位的所有制性质依然是中国双重劳动力市场中区分工人的重要变量（Lin 和 Bian, 1991; Bian, 1994）。然而在 20 世纪 90 年代个多样化、市场化的劳动力市场出现了。这个虽然很小但日渐重要的市场是合资企业（尽管这些公司中的大多数中国方面的合资者是国家或集体的企业或机构）、私营企业和家庭企业（个体户）创造的。所有这些类型的工作单位中，集体企业是最不利的，因为它们既没有国有企业的福利和地位，又没有合资企业的经济与市场优势。当前，私有企业和家庭企业的经济规模往往比较小。我们可以看到，女性（15.5%）在集体企业中的比例显著高于男性（9.2%）。
+
+「当前职位的级别」是制度资本的另一个指标，因为这些职位控制着超过 90% 的回答者所工作的国有和集体企业中的各种资源。而且男性和女性所处的级别差异是显著的。超过五分之四（84%）的女性没有级别，而男性的这一比例不到三分之ニ（64.7%）。接近四分之一（23.6%）的男性拥有科级以上的级别，而女性的比例不到十分之ー（8.3%）。
+
+总之，与女性相比，男性在制度资本上具有压倒性优势。
+
 ## 7.4 Measures of Social Capital: The Position Generator 
 
 The third type of capital studied was social capital. I employed the position-generator method for measurement (for a review of this method, see Chapter 6). Two types of social capital were constructed: general social capital and political social capital. The instrument used is reproduced in English in Appendix 7.2.
@@ -101,6 +113,18 @@ For general social capital, thirteen occupations were sampled from a full list o
 From these data, three variables were constructed: (1) the number of positions accessed, (2) the prestige score of the highest accessed position, and (3) the range of the prestige scores of positions accessed (the difference between the highest and lowest prestige scores among accessed positions). These were indicators of access to general social capital.
 
 Since political connections may remain significant in state socialist China, the instrument also listed three Party cadre positions: (1) provincial or city Party secretary, (2) Party secretary of a bureau, and (3) Party secretary of a factory or institute; these positions formed a political power hierarchy. Again, three variables were constructed: (1) the number of positions accessed, (2) the rank score of the highest accessed position, and (3) the rank scores range of positions accessed. Variations of the three scores, as will be seen, were very limited, but results suggest that they were meaningful.
+
+社会资本的测量：定位法
+
+我们研究的第三种资本是社会资本，我使用定位法测量来它（对这种方法的评论参见第六章）。两种类型的社会资本被构造出来：一般社会资本与政治社会资本。测量工具如附录 7.2 所示。
+
+对于一般社会资本，从包括全部职业的量表中抽取了 13 个职业，这些职业代表着不同的社会经济地位（SFS）（参见 Bin, 1994; Lin 和 Ye, 1997，职业社会经济量表的发展与中国不同职业的地位分数）。其中包括大学教授（SES 分数 91），市长（83），局长（76），律师（72），记者（68），厂长（67），部门主管（60），小学教师（58），人（45），行政人员（45），电工（44），农民（30）和保姆（11）。定位法的问题是：「在你的亲属、朋友和熟人当中有从事下面表格中所列出的职业的吗？」如果回答「有」，继续问她或他在找当前这份工作时是否认识这个人。如果回答再次是肯定的，回答者就得到一个分数，并继续回答有关回答者与这个职位的占据者之间关系的一系列问题。如果回答者所认识的人不止一个，我们让他或她考虑其最先想到那个。我们也收集了有关间接接触的信息（通过中间人接触），但是这个研究没有用到。
+
+我根据这些数据构造了三个变量：1）接触的职位数目；2）最高可接触职位的声望；3）接触的职位的声分数幅度（所接触的最高与最低职位的声望分数之差）。这些就是测量所获取的一般社会资本的指标。
+
+表 7.2 获取两种类型社会资本的途径
+
+政治联系在实行国家社会主义制度的中国可能仍然很重要，因此表 7.2 中有对三个党的领导职位的测量：1）省委或市委书记；2）局党委书记；3）工厂或机关的党委书记。这些职位形成了政治权力等级制。此外，还有三个变量被构造出来：1）接触的职位数目；2）最高可接触职位的等级分数；3）接触的职位的等级分数幅度。我们会看到这三个分数的变量设置是非常有限的，但是结果显示这个设置很有意义。
 
 ## 7.5 Deficit in Social Capital for Females
 
@@ -123,8 +147,6 @@ For general social capital, the first factor had an eigenvalue of 2.47, while th
 
 Table 7.3. Factor Structures of Access to Social Capital Variable
 
-
-
 `*` Principal component, minimal eigenvalue of 1, and varimax rotation.
 
 use the same scoring weights to construct a general social capital score for all respondents.
@@ -133,13 +155,35 @@ For political social capital, a three-factor solution also showed concentration 
 
 It is clear that inequality between urban Chinese males and females in social capital as of 1998 was due at least in part to capital deficit. This capital deficit by females prevailed in all three types of capital: human capital, institutional capital, and social capital.
 
+女性的社会资本欠缺
+
+表 7.2 显示了两种类型的社会资本变量的基本统计数据。首先，我们总结一下一般社会资本。我们可以看到，对于抽取的 13 个职位，平均接触的职位数目是 67 个，男性平均接触数目为 7，女性为 65，统计差异显著。最高可接触职位的声望是 74（大体在局长的位置上），男性比女性具有显著的优势（75 比 73）。所接触的最高与最低职位的声望分数幅度是 44，男性比女性有优势（46 比 43）。从这三个指标看，男性明显地比女性拥有更好的一般社会资本。
+
+最容易接触到的职位是工人（占回答者的 94%），接下来是部门主管（82%），电工（79%），小学教师（75%），农民（72%），行政人员（71%）和厂长（62%）。对下面职位的可接触性上有一个明显的下降，从超过一半的回答者减少到不足 1/3，其中律师（28%），记者（27%），保姆（26%）和局长（24%）。最难接触到的职位是市长，只有 10% 的回答者接触过。这个模式反映了城市回答者的代表性样本在社会交往上的差异。不足为奇，在声望等级制的中级位置上的回答者有更多的交往者，他们常常接触那些与自己相似或稍高、稍低职位上的人。
+
+男性对女性的优势反映在抽取的大多数职位上。如表 7.2 所示，男性回答者比女性回答者更可能接触到除了小学教师、工人、农民和保姆（这些职位的声望等级分数都低于 50）之外的其他所有职位。因此，男性在接触声望等级中与自己相似或更高的职位上是有优势的。
+
+至于政治社会资本（见表 7.2），男性在所有三个变量上都比女性有优势。他们可以接触到更多的领导职位，更高级别的干部，更大幅度的职位。在每一个等级制水平上，男性也都有更大的接触百分比。
+
+为了确定社会资本的每种类型的三个变量是否可以作为一族，或者作为「接触的社会资本」这样一个单一维度的指标，我们对三个变量进行了因子分析。如表 7.3 所示，每种类型的社会资本分析（主成分分析与最大方差旋转法）都产生出三因子的输出结果。
+
+对于一般社会资本，第一个因子的特征值是 2.47，而第二和第三个因子的特征值非常小。这样的结果强有力地表明这三个变量只有一个维度。当我们控制了特征值远大于 1.0 的因子以后，这三个变量的单因子载荷都非常高（0.84、0.96 和 0.92）。如果将三个变量赋予不同的权重，幅度变量给予最大权重（接触的职位数目权重为 0.13，幅度权重为 0.63，最高可接触职位的声望权重为 0.25），我们就得到了因子得分。当对男性和女性进行独立分析的时，相似的模式出现了。因此，我决定用同样的权重构建所有回答者的一般社会资本得分。
+
+对于政治社会资本，三因子的输出结果也集中在第一个因子所解释的方差上，而且男性和女性的情况相似。三个变量的主因子得分在男性和女性身上几平呈现出同一模式。在一般社会资本中，幅度变量具有最高的权重值和系数值，与此不同的是，这里可接触职位数目以及最高等级具有最高的系数。这是可以理解的，因为幅度变量是严格受限的，并且与另外两个变量高度重叠。
+
+很明显，1998 年中国城市调査数据所显示的男性和女性在社会资本上的不平等，至少部分由资本欠缺所引起的。女性的资本欠缺在所有三种类型的资本 ー一 人力资本、制度资本和社会资本 一一 中都是很明显的。
+
+表 7.3 获取的社会资本的因子结构
+
 ## 7.6 Further Analysis for Social Capital Deficit
 
-How, then, is social capital related to the other two types of capital –
+How, then, is social capital related to the other two types of capital – human capital and institutional capital? Would such relations account for the relative deficit of social capital for females? Human capital and social capital, as conceptualized (see Chapter 2), are expected to be related. It would be interesting to assess whether such a relationship varies for males and females. As argued elsewhere (Chapter 11), institutional capital is significant in the labor market for both organizations and individuals as they attempt to match and interact with the larger society’s prevailing values and practices. In Chinese society, even in the 1990s, the Communist Party held much of the valued resources and exercised power over much of the population. Whether such institutional capital was differentially related to social capital for males and females, especially to political social capital, deserves research attention.
 
-human capital and institutional capital? Would such relations account for the relative deficit of social capital for females? Human capital and social capital, as conceptualized (see Chapter 2), are expected to be related. It would be interesting to assess whether such a relationship varies for males and females. As argued elsewhere (Chapter 11), institutional capital is significant in the labor market for both organizations and individuals as they attempt to match and interact with the larger society’s prevailing values and practices. In Chinese society, even in the 1990s, the Communist Party held much of the valued resources and exercised power over much of the population. Whether such institutional capital was differentially related to social capital for males and females, especially to political social capital, deserves research attention.
+对资本欠缺的进一步分析
 
-Kin versus Nonkin Ties
+社会资本是如何与其他两种类型的资本 —— 人力资本和制度资本相关联的？这些关联能解释女性的社会资本的相对欠缺吗？人力资本与社会资本，从定义（参见第二章）上看是相关联的。确定这样一个关联是否因性别的不同而变化是很有趣的问题。如其他地方（第十一章）所论述的，制度资本在劳动力市场中无论对于组织还是个人都很重要，因为它们都要努力与更大社会的主流价值和实践相适应与互动。即使是在 20 世纪 90 年代的中国社会，共产党仍然掌握着大量的有价值资源，对很多人口行使权力。这些制度资本是否与男性和女性的不同社会资本，特别是政治社会资本相关，值得研究。
+
+### 7.6.1 Kin versus Nonkin Ties
 
 In addition to these two types of capital, the nature of social ties evoked in accessing social capital was considered. The question posed was: do different types of social ties lead to differential access to social capital?
 
@@ -147,11 +191,7 @@ As conceived by the network location scholars (see Chapters 3 and 5), ties that 
 
 Thus, this measure is a relatively weak and conservative estimate of tie strength. The initial hypothesis is that, following Granovetter’s argument (1973, 1974), weaker ties (i.e., nonkin ties) tend to access better general social capital .
 
-However, the cultural context of Chinese society presents an alternative consideration. Much has been said about the significance of familial ties among the Chinese (Fei, 1947/1992). Some have ventured to suggest that familial ties constitute the meaningful core social structure in a Chinese society (Lin 1989). Because the Chinese definition of family
-
-Inequality in Social Capital 111
-
-extends beyond the immediate nuclear family to include multiple generations and multiple clan and marital linkages, it may well be that such extensive networks provide sufficient access to many parts of the society.
+However, the cultural context of Chinese society presents an alternative consideration. Much has been said about the significance of familial ties among the Chinese (Fei, 1947/1992). Some have ventured to suggest that familial ties constitute the meaningful core social structure in a Chinese society (Lin 1989). Because the Chinese definition of family extends beyond the immediate nuclear family to include multiple generations and multiple clan and marital linkages, it may well be that such extensive networks provide sufficient access to many parts of the society.
 
 Further, in a society where formal institutions block many forms of legitimate access to resources, trust is paramount when interpersonal relations are evoked for utilitarian purposes. There is evidence (Bian, 1997) that stronger ties rather than weaker ties are preferred when seeking effective help in job searches. Thus, accessing power positions (Party cadres) in a state socialist system may signal informal access to resources that cannot be accessed through formal channels and processes. Such relationships are better if they remain informal and
 
@@ -165,15 +205,25 @@ In Table 7.4, the relative advantages or disadvantages of kin versus nonkin ties
 
 Since we know that males are advantaged in accessing social capital, these data strongly hint that nonkin ties are more likely to access better social capital. This speculation is confirmed when we examine the zero-order correlations between the use of kin ties and the three variables of general social capital. As can be seen in the next three rows of the table, all coefficients were negative, indicating that the use of kin ties was negatively related to the number of positions accessed, the range of prestige scores among accessed positions, and the highest prestige score of an accessed position. Thus, we conclude that nonkin ties are more advantaged in accessing the general social capital. If nonkin ties represent weaker ties, then this result confirms the strength-of-weak-tie argument proposed by Granovetter.
 
-The lower panel of Table 7.4 examines the relationship between the use of kin ties and access to political social capital. While there was no
+The lower panel of Table 7.4 examines the relationship between the use of kin ties and access to political social capital. While there was no difference between males and females in using kin ties to access city secretaries, females were again more likely to use kin ties to access bureau and factory secretaries. However, in contrast to the negative association between kin ties and better general social capital, there were positive correlations between kin ties and access to political social capital. These associations were much more pronounced for females than for males. If kin ties represent stronger ties, then there is some evidence that, perhaps for females, stronger ties may have a slight advantage than weaker ties in their accessing political social capital.
 
 Table 7.4. Access to Social Capital by Kin Percentage Using
 
+亲属与非亲属关系
 
+除了这两种类型的资本以外，获取社会资本时所使用的社会关系的性质也要考虑。引出的问题是：不同类型的社会关系导致了获取的社会资本不同吗？持网络位置观点的学者认为（参见第三章和第五章），在网络中起着桥梁作用的关系在获取社会结构中好的嵌入性资源时可能更有用。在调査中通过直接测量的方法来确定接触的每一个位置是否是共享网络中的桥梁是不可能的。但是调査确实可以确定回答者与所接触位置上的占据者之间的关系（参见附录 2）。一个简单的亲属与非亲属的分类被构造出来。我使用这个测量方法来代表强关系与弱关系。在中国的情景中，亲属关系代表着广泛存在的强关系（Lin, 1989）。这不表明只有亲属关系是强关系，即使在中国情景中，其他的社会关系（如同事、校友、地缘关系）也可以是强关系（Bian, 1997; Ruan, 1998）。因此，这个测量是对关系强度的相对弱的和保守的估计。按照格拉诺维特的观点（1973, 1974），最初的假设是：弱关系（如，非亲属关系）往往可以获取更好的一般社会资本。
 
-difference between males and females in using kin ties to access city secretaries, females were again more likely to use kin ties to access bureau and factory secretaries. However, in contrast to the negative association between kin ties and better general social capital, there were positive correlations between kin ties and access to political social capital. These associations were much more pronounced for females than for males. If kin ties represent stronger ties, then there is some evidence that, perhaps for females, stronger ties may have a slight advantage than weaker ties in their accessing political social capital.
+但是，在中国社会的文化背景下可能是另一种情况。中国的学者（Fei 1947/1992）已经有很多关于家庭关系的重要性的论述。一些学者大胆地提出，家庭关系是中国社会中富有意义的核心社会结构（Lin, 1989）。因为中国人对家庭的定义超出了直系核心家庭的范围，而包括多世代、多家族和婚姻联系，完全可以说这些扩展的网络提供了充分接触社会的很多部分的机会。而且，在中国社会，很多情况下不能通过正式制度来合法地取得资源，当为了功利的目的而动用人际关系时，信任是最重要的。
 
-Patterns of Capital Deficits
+有证据显示（Bin, 1997），在求职中人们喜欢通过强关系而不是弱关系来获得有效的帮助。因此，在一个国家社会主义体系中，接触有权力的职位（党员干部）可能意味着在通过非正式的途径获取通过正式渠道和程序所无法获取的资源。如果关系是非正式的、「不露声色」的更好，因为这样交易就可以在受约束的结构中继续下去。要维持这样的非正式关系，可能需要超越偶然的交换与交易而对关系作出承诺（参见第九章）。因此，在这里强关系很可能进人网络。根据这些考虑可以假定，在中国社会，亲属关系在政治性的交换中意味着具有某种优势。因此，我们提出替代假设：亲属关系而不是非亲属关系可以获取更好的政治社会资本。我们将把这两个假设付诸经验检验。
+
+表 7.4 检验了亲属与非亲属在接触职位上的相对优势和劣势。对于一般社会资本（表 7.4 的前 13 行），女性比男性更可能使用亲属关系来接触大多数职位。惟一的例外是小学教师与保姆的职位，男性要接触她们，需要使用与女性一样多甚至更多的亲属关系。换言之，与女性相比，男性更可能使用非亲属关系来接触大多数职位。当接触小学教师与保姆时，男性才更可能使用亲属关系 一一 可能是他们的配偶。因为我们知道男性在获取社会资本上是有优势的，所以这些数据有力地表明了非亲属关系更可能获取好的社会资本。当我们检验到使用亲属关系与一般社会资本的三个变量之间是零次相关（zero-order correlation）时，这个推测被证实了。我们可以看到，表的接下来三行的所有系数都是负向的，这表明亲属关系的使用与接触的职位数目、所接触职位的声望分数幅度和最高可接触职位的声望分数是负相关的。因此我们可以下结论，非亲属关系在获取一般社会资本上更有优势。如果非亲属关系代表着弱关系，那么这个结论证实了格拉诺维特的弱关系强度观点。
+
+表 7.4 通过亲属来获取社会资本
+
+表 7.4 的下面一组变量检验了亲属关系的使用与政治社会资本的获取之间的关系。虽然男性和女性在使用亲属关系接触市委书记上没有差别，但是女性更可能使用亲属关系接触局党委书记与厂党委书记。然而，与亲属关系和好的一般社会资本之间的负相关形成对比的是，亲属关系与政治社会资本的获取之间存在着正相关关系。女性在这些相关水平上比男性更显著。如果亲属关系代表着强关系，那么一些证据显示，对于女性而言，强关系在获取政治社会资本上可能比弱关系有微弱的优势。
+
+### 7.6.2 Patterns of Capital Deficits
 
 Next, I conducted a multivariate analysis in which access to social capital was regressed on the nature of social networks (percentage of kin ties in the access to social capital), human capital (education), and institutional capital (party membership) simultaneously. Different equations were constructed for the two types of social capital (general and political) and for males and females. Also, for each equation, age, marital status (married), and household size (logged) were controlled for. As presented in Table 7.5, access to social capital for both males and females was affected by human capital (education), as expected. Institutional capital (Party membership) had only a slightly positive effect on social capital.
 
@@ -181,11 +231,17 @@ Network effects were significant but, as shown earlier, were more complex. Use o
 
 Also, the network effects were more significant for females than for males.
 
-
-
 Table 7.5. Determinants of Access to Social Capital (Partial Regression Coefficients, with Standardized Coefficients in Parentheses) 
 
 We may summarize the findings thus far regarding the distribution of social capital for females and males – the issue of capital deficit. There was a substantial capital deficit for females. Males showed access to a greater number of occupational and political positions, to higher positions in the hierarchies, and to a greater variety of positions. Social capital was found to be significantly related to human capital. Because males had higher educational attainment than females, there was a corresponding advantage in their social capital as well. There did not seem to be much difference in whether institutional capital (Party membership) affected social capital for females and males. Weaker ties (nonkin ties) facilitated access to general social capital, and stronger ties (kin ties) enhanced access to political social capital. Females seemed to rely more on such network ties to access social capital than males. Whether such differential access to social capital translated into advantages or disadvantages in generating returns in the labor market will be examined next.
+
+资本欠缺的模式
+
+下面我进行一个多变量的分析，将获取的社会资本与社会网络的性质（通过亲属关系获取社会资本的百分比）、人资本（教育）以及制度资本（党员身份）同时回归。我根据两种类型的社会资本（一般社会资本与政治社会资本）与男性、女性的分类建立了不同的方程。而且，每一个方程都控制年岭、婚姻地位（已婚）和家庭规模（取对数）。如表 7.5 所示，不出意料，男性和女性对社会资本的获取都受到人力资本（教育）的影响。制度资本（党员身份）对社会资本只有很小的正影响。如前面的表格所显示的那样，网络影响很显著，但也更复杂。使用亲属关系对一般社会资本有负影响，而对政治社会资本有正影响。此外，网络影响对于女性比男性更显著。
+
+到现在，我们可以总结一下有关男性和女性的社会资本分布的发现社会资本欠缺问题。女性确实存在着资本欠缺现象。男性可以接触到更多数量的职业与政治职位、更高的等级制职位和更多样化的职位。社会资本与人力资本显著相关。因为男性比女性的教育程度高，所以他们在社会资本上也存在着相应的优势。制度资本（党员身份）影响社会资本的性差异似乎不大。弱关系（非亲属关系）有利于获取一般社会资本，而强关系（亲属关系）促进了政治社会资本的获取。女性似乎比男性更多地依靠这些网络关系获取社会资本。这些在社会资本的获取上的差异是否在劳动力市场中转化成了回报的优势或弱势，还有待于进一步检验。
+
+表 7.5 获取社会资本的决定因（偏回归系数，括号中的是标准系数）
 
 ## 7.7 Return on Social Capital
 
@@ -203,13 +259,7 @@ These variables are seen as a sequential set of statuses of attainment: an indiv
 
 Table 7.6. Determinants of the Sector of the Current Job (Multinomial Logistic Regression Coefficients, with State Sector as the Comparison Group)
 
-
-
-
-Experience and tenure were both highly correlated with age (.94 and .54). In the Chinese context, most workers still enjoy lifetime employment; and experience and tenure do not add any additional asset to 
-
-
-seniority, as represented by age. Since age, training, and certificates are already in the equations, experience and tenure were excluded, as their inclusion would have simply created multicolinearity biases to the estimates.
+Experience and tenure were both highly correlated with age (.94 and .54). In the Chinese context, most workers still enjoy lifetime employment; and experience and tenure do not add any additional asset to seniority, as represented by age. Since age, training, and certificates are already in the equations, experience and tenure were excluded, as their inclusion would have simply created multicolinearity biases to the estimates.
 
 Since most of the respondents were in either the state or the collective sector, the analyses for the remaining sectors (i.e., joint ventures, private enterprises, and self-employed) were based on small sample sizes, with unreliable estimates. Nevertheless, the patterns seem consistent. As expected, education had a negative effect in any sector other than the state sector. This effect was most pronounced for those in the collective sector. Training also showed some negative effects for those in private or household enterprises compared with those in the state sector.
 
@@ -231,19 +281,13 @@ The third and fourth columns in Table 7.7 examine the effects of these variables
 
 Table 7.7. Determinants of Sector, Rank of Position, and Job Prestige (State Sector as Reference)
 
-
-
 Political social capital had a positive effect on the ranking of the position, especially for females.
 
 The last two columns in Table 7.7 estimate the effects of these variables, plus the rank of the position, on job prestige. Again, both males and females benefited from education. Social capital no longer had any direct effects; rather, their effects on job prestige, especially the effect of political social capital, were mediated through being in the state sector and the position ranking – also institutional capital. Position rank benefited males more than females in getting more prestigious jobs. While being in the state sector (in contrast to being in the collective sector) benefited males in getting more prestigious jobs, females seemed to get better jobs if they were in the collective sector. Since the collective sector is a peripheral sector in comparison to the state sector, it is clear that institutional capital was a more effective mediating factor in political social capital effects on job prestige for males but not for females.
 
-
-
 Table 7.8. Determinants of Salary 1
 
-
 1 Multiple regression coefficients (standardized coefficients in parentheses).
-
 
 Finally, we turn to income (monthly salary and income logged). In Table 7.8, the first two columns examine effects of human capital and institutional capital on salary for males and females. While females seemed to benefit more from human capital (education), males tended to benefit more from institutional capital. Both rank and job prestige showed much stronger effects on salary for males than for females. Being in the joint-venture sector generated the best returns for both males and females. However, being in the state sector, in contrast to being in the collective sector, greatly benefited males but not females. When the two social capital variables were added to the equations (the third and fourth columns), both males and females generated returns from general social capital. Females, however, gained added, though moderate, benefits from political social capital. Analysis for income (salary and bonus), as shown in Table 7.9, yielded results that were almost identical to those obtained for salary alone.
 
@@ -261,6 +305,43 @@ Table 7.9. Determinants of Income 1
 
 1 Multiple regression coefficients (standardized coefficients in parentheses).
 
+社会资本的回报
+
+下一个分析任务是确定社会资本对地位获得的影响。这里使用四个地位获得变量：1）工作单位（工作单位所有制）；2）职位级别；3）职业声望；4）月收入（取对数）。如表 7.1 所示，回答者当前的工作单位包括国有单位、集体单位、合资企业、私有企业与个体户。在国有单位工作是个明显的优势（Lin and Bian, 1991; Bian, 1994），被很多人视为地位获得而不是工作或收入本身的主要目标。虽然社会分层体系与国有企业体制自 20 世纪 80 年代后期起所发生的迅速转变可能影响了工人的工作偏好，但是国家单位 一一 特别是在机关、组织与机构上具有优势 一一 在职业保险、住房津贴、健康医疗和养老保险方面，可能仍然比刚出现的私有与合资企业具有优势。
+
+职位级别（参见表 7.1）反映了职位在等级制结构中的排列。为了现在分析的需要，将这些职位转换成从代表没有职务的「1」到局级以上级别的「9」的一个定序序列。如表 7.1 所示，职业分组作为虚拟变量进行检验。在多元逻辑斯蒂回归分析中，这些分组在升序或降序中都显示出线性关系（根据估计系数），在其他重要量上（如单位、职位级别和收入），农业与制造业交替出现最小系数。简单地说，关键是要根据林南和叶（1997）在中国进行研究时所发展的测量方案，将每一位回答者的当前职业转换成一个声望分数。这里使用两种方法来测量收入：当前的月薪与当前的月收入（包括薪水和奖金）。
+
+这些变量可以视为地位获得的一个序列组：一个个体先进人一个工作单位，在组织中占据一个有级别的职位，从事一份工作，并获得经济回报。分析将关注序列中这些作为内生变量（因变量）的地位获得变量。当分析到序列中后面的内生变量时，前面的内生变量也变成了外生变量。第一组分析确定了人力资本（教育、培训和证书）、制度资本（党员身份）与社会资本（一般社会资本与政治社会资本）对当前职业落在某一种工作单位时的影响。因为有 5 种单位（国有、集体、合资、私有和个体），所以使用逻辑斯蒂回归来估计回答者在某一种单位中的发生概率 一一 在考虑到这些外生变量的情况下。如表 7.6 所示，国有单位是（缺省）参照单位。因此，这些估计显示了人力资本、制度资本和社会资本对其他性质单位的相对影响（与对国有单位的影响相比较）。此外，对男性和女性分别进行分析。「年龄」与「在 16 岁时住在城市」两个变量也被控制。
+
+工龄和任期都与年龄高度相关（0.94 和 0.54）。在中国的情景下，大多数工人仍然喜欢终生雇用；工龄与任期没有为年长者（由年龄来表示）增加任何额外的财产。因为年龄、培训和证书都已经在方程中，工龄和任期被排除了，当它们被包括进来时，只是产生了估计的多元共线性偏差。
+
+表 7.6 当前工作单位的决定因素（逻辑斯蒂回归系数，国有单位作为参照群体）
+
+因为大多数回答者在国有或集体单位工作，对其余单位（如合资、私有和个体）的分析是建立在小样本规模的基础上，所以这些估计可能不可靠。但是，这个模式似乎是一致的。正如所料，教育对国有以外的其他性质的单位有负影响。这个影响对集体单位的回答者最显著。与国有单位相比，培训对私有和家庭企业的回答者也表现出了负影响。但是，由于样本规模很小这些分析结果是不可靠的。与国有单位相比，党员身份对在其他性质的单位工作的回答者也有一个微弱而一致的负影响。特别是对于集体单位的男性与家庭企业的女性，社会资本有微弱的负影响。因此，我们发现人力资本、制度资本和社会资本对除了国有单位以外的其他性质的单位的回答者都具有中等而一致的负影响。
+
+现在我们转向对三个定序内生变量（因变量）—— 在国有单位中、职位级别和职业声望一的分析。如表 7.7 所示，我使用了路径分析的方法，因为这三个因变量被作为因果关系考虑，假定先进入工作单位，接着占据一个级别或职位，获得一份具有某种声望的工作，从而导致了不同的收入。此外，对男性和女性分别进行分析。
+
+表 7.7 单位、职位级别和职业声望的决定因尞（以国有单位为参照）
+
+表 7.7 中的前两栏是「进人国有单位」与其他单位相比较的逻辑斯蒂回归分析的结果。「在国有单位」与教育程度相关。「培训」和「证书」与教育（0.24 和 0.21）相关，但是没有表现出任何显著的边际影响。「党员身份」也与「在国有单位」显著相关。社会资本显示出正向但是很微小的影响（不包括女性）。女性进入国有单位是得益于政治社会资本。没有证据表明进人国有单位的女性遭受着社会资本的回报欠缺。
+
+表 7.7 的第三栏和第四栏检验了这些变量对于获得高级别职位的影响。此外，「单位」作为外生变量进人普通回归分析中（国有单位作为参照单位）。我们可以看到，无论男性还是女性都因人力资本（教育和年龄）产生回报，其中男性的受益比女性要明显。制度资本（党员身份）使男性和女性同等受益。政治社会资本对职位级别有正向影响，其中对于女性的影响更显著。
+
+表 7.7 中的最后两栏估计了这些変量加上职位等级，对职业声望的影响。男性和女性又都从教育中受益。社会资本不再有任何直接影响，它们对于职业声望的影响，特别是对于政治社会资本的影响，是通过「在国有单位」与「职位级别」 一一 制度资本间接传递的。在获得更有声望的工作上，职位级别对男性的益处要多于女性。虽然在获得更有声望的工作上在国有单位」（与在集体单位相对照）对于男性更有益，但是如果女性在集体单位中，她们似乎会获得更好的工作。既然与国有单位相比，集体单位是一个次要部门，那么非常明显，在政治社会资本对职业声望的影响上，对于男性而言，制度资本是一个更有效的中介因素。
+
+最后，我们转向收入（对月薪和月收取对数）。在表 7.8 中，前两栏检验了人力资本与制度资本对男性和女性薪水的影响。女性似乎从人力资本（教育）上获益更多，而男性往往从制度资本上获益更多。级别与职业声望对薪水的影响，在男性身上表现得更明显。「在合资单位」对男性和女性都产生了最好的回报。然而，与「在集体单位」相对照，在「在国有单位」更有利于男性。当两个社会资本变量加到方程中的时候（第三栏和第四栏），无论男性还是女性都从一般社会资本中得到回报。但是女性还从政治社会资本中获得收益（虽然不大）。如表 79 所示，对收入（薪水和奖金）的分析结果几乎与对薪水的分析结果相同。
+
+表 7.8 薪水的决定因素
+
+表 7.9 收入的决定因素
+
+总之，有证据表明，女性在进人国有单位、获得高级职位或挣取更高的工资上，并没有特别遭受到社会资本的回报欠缺。事实上，她们在从政治社会资本中获得回报、进人国有单位以及获得高级职位与好的工资上有微弱的优势。这些发现并不意味着女性在职称、职业或工资上获得了平等的地位。事实上，对分层体系中的地位测量表明，女性的情况要比男性糟得多（参见表 7.1）。这些发现只是表明女性需要动员政治社会资本来有效地弥合这些差距。
+
+表 7.10 通过关系来接触厂党委书记和局党委书记
+
+如何解释政治社会资本对女性的影响？正如我们已经从表 7.2 中所看到的，与男性相比，女性在一般社会资本与政治社会资本上都遭受着资本欠缺。当把社会资本与人力资本和制度资本联系起来时，没有证据表明女性因为这些其他类型的资本而比男性有任何优势。实际上，女性在这两个领域里也遭受着资本欠缺。女性之所以能够转移这些欠缺，是由于其获取的政治社会资本具有社会关系的性质。如表 4 与前面的讨论所显示的，亲属关系组成了获取治社会资本的一个积极因素，与男性相比，有更多的女性使用亲属关系。
+
+在进一步探讨这些获取政治社会资本的社会关系时，我推测接触工厂和局党委书记很重要，因为女性比男性更可能使用亲属关系来接触这些重要职位（参见表 7.4）。表 7.10 中的数据显示，特别是在接触厂党委书记上，女性倾向于通过配偶和兄弟姐妺的配偶来寻找关系。因此，女性在获取地方性政治资源中，可能通过这些强关系获得好处，因为这些家庭关系有助于一些女工人在工作单位中的升迁与工资的提高。
 
 ## Summary and Discussion
 
@@ -268,17 +349,9 @@ A critical issue for social capital research is the extent to which inequality i
 
 This chapter conceptualizes this issue by proposing the analysis of two processes from the capital perspective: capital deficit and return deficit.
 
-Capital deficit is the extent to which different social groups, for reasons
-
-Inequality in Social Capital 121
-
 Table 7.10. Access to Factory and Bureau Secretary by Tie Relationship
 
-
-
-
-
-of investment or opportunities, have come to possess a different quality or quantity of capital. Return deficit is the extent to which a given quality or quantity of capital generates differential returns for different social groups due to differential mobilization strategies, agent efforts, or institutional responses. Since it is assumed that social inequality results from inequality in capital, it becomes important to understand inequality in capital. These formulations help clarify the mechanisms by which inequality in various types of capital, including social capital, emerges for different social groups, and how it potentially affects social inequality among members of different groups.
+Capital deficit is the extent to which different social groups, for reasons of investment or opportunities, have come to possess a different quality or quantity of capital. Return deficit is the extent to which a given quality or quantity of capital generates differential returns for different social groups due to differential mobilization strategies, agent efforts, or institutional responses. Since it is assumed that social inequality results from inequality in capital, it becomes important to understand inequality in capital. These formulations help clarify the mechanisms by which inequality in various types of capital, including social capital, emerges for different social groups, and how it potentially affects social inequality among members of different groups.
 
 Data from urban China residents were used to explore these mechanisms for male and female attainment in the labor market. With the position-generator instrument used to measure both general and political social capital, the results confirm that Chinese female workers suffer a deficit in social capital as well as human and institutional capital. Males show access to a greater number of occupational and political positions, to higher positions in hierarchies, and to a greater variety of positions.
 
@@ -300,146 +373,18 @@ Appendix 7.1. Sampled Cities and Number of Respondents in the Urban China Study,
 
 Appendix 7.2.
 
-研究、样本与数据
-
-在这个探索性的研究中要提出三个研究问题：（1）男性和女性有不同的社会资本吗？（2）如果是，这个不同是由于资本欠缺、回报欠缺还是由于者的共同作用？（3）男性和女性的社会资本不平等的后果是什么？这里使用的数据来自 1998 年对 18 个城市的调査。其中 15 个城市来自所有城市的分层抽样样本。分层是建立在地区（沿海、中部和内地）与经济地位（高中、低）的基础之上。其他三个城市是从边远地区抽取的样本（平凉、格尔木和塔城）。附录 71 列出了来自这些地点的城市与样本规模。收集城市水平的数据是为了多层次分析的需要。但是目前的研究作为ー个初步分析，只关心个体层次的数据。
-
-样本由 3050 名 19-69 岁的回答者组成，他们在调查时是或者曾经是这 18 个城市的劳动力人口。这些回答者的基本特征如表 71 所示。样本中男性占 43.5%，女性占 56.4%。平均年岭 41 岁，男性和女性回答者在年龄上没有显著差异。90% 的回答者已婚，6.7% 单身，3.3% 离婚或丧偶。大约有半（52%）的回答者 16 岁时佳在大城市，女性回答者的这一比例比男性稍高。
-
-人力资本欠缺与制度资本欠缺
-
-研究检验了三种类型的资本：人力资本、制度资本和社会资本。人力资本用教育、工龄、任期和在职培训表示。教育用受教育年限测量。如表 71 所示，大约有三分之一的回答者受过高中以下教育，41% 的回答者受过高中教育，还有四分之一的回答者受过大学以上教育。男性受教育程度比女性要高。男性（平均 223 年）也比女性（平均 211 年）有更长的工龄，但是在当前工作单位的任期或年数差别不显著。男性比女性受到更多的在职培训（不同类型的培训数目和培训证书数目）。总之，男性在人力资本上比女性显示出更大的优势。
-
-制度资本是与主流的意识形态和权力的认同相联系的资本（Lin,1994b 1995b；另外参见第十一章）。这里用党员身份、工作单位性质和当前职位的级别来表示。党员身份分三类：（1）非党员；（2）在当前工作期间是党员（3）首次参加工作时已经是党员。如表 71 所示，男性（36.2%）是党员的比例显著高于女性（19.9%），男性的党龄也要比女性长。
-
-直到最近，工作单位的所有制性质依然是中国双重劳动力市场中区分工人的重要变量（in 和 Bian,1991; Bian,1994）。然而在 20 世纪 90 年代个多样化、市场化的劳动力市场出现了。这个虽然很小但日渐重要的市场是合资企业（尽管这些公司中的大多数中国方面的合资者是国家或集体的企业或机构）、私营企业和家庭企业（个体户）创造的。所有这些类型的工作单位中，集体企业是最不利的，因为它们既没有国有企业的福利和地位，又没
-
-有合资企业的经济与市场优势。当前，私有企业和家庭企业的经济规模往往比较小。我们可以看到，女性（15.5%）在集体企业中的比例显著高于男性
-
-（9.2%）。
-
-「当前职位的级别」是制度资本的另一个指标，因为这些职位控制着超过 90% 的回答者所工作的国有和集体企业中的各种资源。而且男性和女性所处的级别差异是显著的。超过五分之四（84%）的女性没有级别，而男性的这一比例不到三分之ニ（64.7%）。接近四分之一（23.6%）的男性拥有科级以上的级别，而女性的比例不到十分之ー（8.3%）。
-
-总之，与女性相比，男性在制度资本上具有压倒性优势。
-
-社会资本的测量：定位法
-
-我们研究的第三种资本是社会资本，我使用定位法测量来它（对这种方法的评论参见第六章）。两种类型的社会资本被构造出来般社会资本与政治社会资本。测量工具如附录 72 所示
-
-对于一般社会资本，从包括全部职业的量表中抽取了 13 个职业，这些职业代表着不同的社会经济地位（SFS）（参见 Bin,1994; Iin 和 Ye,1997, 职业社会经济量表的发展与中国不同职业的地位分数）。其中包括大学教授（SES 分数 91），市长（83），局长（76），律师（72），记者（68），厂长（67），部门主管（60），小学教师（58），人（45），行政人员（45）电工（44），农民（30）和保姆（11）。定位法的问题是：「在你的亲属、朋友和熟人当中有从事下面表格中所列出的职业的吗？」如果回答「有」，继续问她或他在找当前这份工作时是否认识这个人。如果回答再次是肯定的，回答者就得到一个分数，并继续回答有关回答者与这个职位的占据者之间关系的一系列问题。如果回答者所认识的人不止一个，我们让他或她考虑其最先想到那个。我们也收集了有关间接接触的信息（通过中间人接触），但是这个研究没有
-
-用到。
-
-我根据这些数据构造了三个变量：（1）接触的职位数目；（2）最高可接
-
-触职位的声望；（3）接触的职位的声分数幅度（所接触的最高与最低职位的声望分数之差）。这些就是测量所获取的一般社会资本的指标
-
-表 7.2 获取两种类型社会资本的途径
-
-政治联系在实行国家社会主义制度的中国可能仍然很重要，因此表 72 中有对三个党的领导职位的测量：（1）省委或市委书记；（2）局党委书记；（3）工厂或机关的党委书记。这些职位形成了政治权力等级制。此外，还有三个变量被构造出来：（1）接触的职位数目；（2）最高可接触职位的等级分数；（3）接触的职位的等级分数幅度。我们会看到这三个分数的变量设置是非常有限的，但是结果显示这个设置很有意义
-
-女性的社会资本欠缺
-
-表 72 显示了两种类型的社会资本变量的基本统计数据。首先，我们总结一下一般社会资本。我们可以看到，对于抽取的 13 个职位，平均接触的职位数目是 67 个，男性平均接触数目为 7, 女性为 65, 统计差异显著。最高可接触职位的声望是 74（大体在局长的位置上），男性比女性具有显著的优势（75 比 73）。所接触的最高与最低职位的声望分数幅度是 44, 男性比女性有优势（46 比 43）。从这三个指标看，男性明显地比女性拥有更好的一般社会资本。
-
-最容易接触到的职位是工人（占回答者的 94%），接下来是部门主管（82%），电工（79%），小学教师（75%），农民（72%）, 行政人员（71%）和厂长（62%）。对下面职位的可接触性上有一个明显的下降，从超过一半的 回答者减少到不足 1/3, 其中律师（28%），记者（27%），保姆（26%）和局长（24%）。最难接触到的职位是市长，只有 10% 的回答者接触过。这个模式反映了城市回答者的代表性样本在社会交往上的差异。不足为奇，在声望等级制的中级位置上的回答者有更多的交往者，他们常常接触那些与自己相似或稍高、稍低职位上的人。
-
-男性对女性的优势反映在抽取的大多数职位上。如表 72 所示，男性回答者比女性回答者更可能接触到除了小学教师、工人、农民和保姆（这些职位的声望等级分数都低于 50）之外的其他所有职位。因此，男性在接触声望等级中与自己相似或更高的职位上是有优势的
-
-至于政治社会资本（见表 72），男性在所有三个变量上都比女性有优势。他们可以接触到更多的领导职位，更高级别的干部，更大幅度的职位。在每一个等级制水平上，男性也都有更大的接触百分比。
-
-为了确定社会资本的每种类型的三个变量是否可以作为一族，或者作为「接触的社会资本」这样一个单一维度的指标，我们对三个变量进行了因子分析。如表 7.3 所示，每种类型的社会资本分析（主成分分析与最大方差旋转法）都产生出三因子的输出结果。
-
-对于一般社会资本，第一个因子的特征值是 2.47, 而第二和第三个因子的特征值非常小。这样的结果强有力地表明这三个变量只有一个维度。当我们控制了特征值远大于 1.0 的因子以后，这三个变量的单因子载荷都非常高（0.84,0.9%6 和 092）。如果将三个变量赋予不同的权重，幅度变量给予最大权重（接触的职位数目权重为 0.13, 幅度权重为 Q63, 最高可接触职位的声望权重为 0.25），我们就得到了因子得分。当对男性和女性进行独立分析的时，相似的模式出现了。因此，我决定用同样的权重构建所有回答者的一般社会资本得分。
-
-对于政治社会资本，三因子的输出结果也集中在第一个因子所解释的方差上，而且男性和女性的情况相似。三个变量的主因子得分在男性和女性身上几平呈现出同一模式。在一般社会资本中，幅度变量具有最高的权重值和系数值，与此不同的是，这里可接触职位数目以及最高等级具有最高的系数。这是可以理解的，因为幅度变量是严格受限的，并且与另外两个变量高度重叠。
-
-很明显，1998 年中国城市调査数据所显示的男性和女性在社会资本上的不平等，至少部分由资本欠缺所引起的。女性的资本欠缺在所有三种类型的资本ー一人力资本、制度资本和社会资本 一一 中都是很明显的。
-
-表 7.3 获取的社会资本的因子结构
-
-对资本欠缺的进一步分析
-
-社会资本是如何与其他两种类型的资本一人力资本和制度资本相关
-
-联的？这些关联能解释女性的社会资本的相对欠缺吗？人力资本与社会资本，从定义（参见第二章）上看是相关联的。确定这样一个关联是否因性别的不同而变化是很有趣的问题。如其他地方（第十ー章）所论述的，制度资本在劳动力市场中无论对于组织还是个人都很重要，因为它们都要努力与更大社会的主流价值和实践相适应与互动。即使是在 20 世纪 90 年代的中国社会，共产党仍然掌握着大量的有价值资源，对很多人口行使权力。这些制度资本是否与男性和女性的不同社会资本，特别是政治社会资本相关，值得研究。
-
-亲属与非亲属关系
-
-除了这两种类型的资本以外，获取社会资本时所使用的社会关系的性质也要考虑。引出的问题是：不同类型的社会关系导致了获取的社会资本不同吗？持网络位置观点的学者认为（参见第三章和第五章），在网络中起着桥梁作用的关系在获取社会结构中好的嵌人性资源时可能更有用。在调査中通过直接测量的方法来确定接触的每一个位置是否是共享网络中的桥梁是不可能的。但是调査确实可以确定回答者与所接触位置上的占据者之间的关系（参见附录 2）。一个简单的亲属与非亲属的分类被构造出来。我使用这个測量方法来代表强关系与弱关系。在中国的情景中，亲属关系代表着广泛存在的强关系（Iin,1989）。这不表明只有亲属关系是强关系，即使在中国情景中，其他的社会关系（如同事、校友、地缘关系）也可以是强关系（Bian, 1997; Ruan,1998）。因此，这个测量是对关系强度的相对弱的和保守的估计。按照格拉诺维特的观点（1973,1974），最初的假设是：弱关系（如，非亲属关系）往往可以获取更好的一般社会资本。
-
-但是，在中国社会的文化背景下可能是另一种情况。中国的学者（Fei 1947/1992）已经有很多关于家庭关系的重要性的论述。一些学者大胆地提出，家庭关系是中国社会中富有意义的核心社会结构（Lin,1989）。因为中国人对家庭的定义超出了直系核心家庭的范围，而包括多世代、多家族和婚姻
-
-联系，完全可以说这些扩展的网络提供了充分接触社会的很多部分的机会。而且，在中国社会，很多情况下不能通过正式制度来合法地取得资源，当为了功利的目的而动用人际关系时，信任是最重要的。有证据显示（Bin,1997），在求职中人们喜欢通过强关系而不是弱关系来获得有效的帮助。因此，在一个国家社会主义体系中，接触有权力的职位（党员干部）可能意味着在通过非正式的途径获取通过正式渠道和程序所无法获取的资源。如果关系是非正式的、「不露声色」的更好，因为这样交易就可以在受约束的结构中继续下去。要维持这样的非正式关系，可能需要超越偶然的交换与交易而对关系作出承诺（参见第九章）。因此，在这里强关系很可能进人网络。根据这些考虑可以假定，在中国社会，亲属关系在政治性的交换中意味着具有某种优势。因此，我们提出替代假设：亲属关系而不是非亲属关系可以获取更好的政治社会资本。我们将把这两个假设付诸经验检验。
-
-表 74 检验了亲属与非亲属在接触职位上的相对优势和劣势。对于一般社会资本（表 7.4 的前 13 行），女性比男性更可能使用亲属关系来接触大多数职位。惟一的例外是小学教师与保姆的职位，男性要接触她们，需要使用与女性一样多甚至更多的亲属关系。换言之，与女性相比，男性更可能使用非亲属关系来接触大多数职位。当接触小学教师与保姆时，男性才更可能使用亲属关系 一一 可能是他们的配偶。因为我们知道男性在获取社会资本上是有优势的，所以这些数据有力地表明了非亲属关系更可能获取好的社会资本。当我们检验到使用亲属关系与一般社会资本的三个变量之间是零次相关（zero-order correlation）时，这个推测被证实了。我们可以看到，表的接下来三行的所有系数都是负向的，这表明亲属关系的使用与接触的职位数目、所接触职位的声望分数幅度和最高可接触职位的声望分数是负相关的。因此我们可以下结论，非亲属关系在获取一般社会资本上更有优势。如果非亲属关系代表着弱关系，那么这个结论证实了格拉诺维特的弱关系强度观点。
-
-表 7.4 通过亲属来获取社会资本
-
-表 74 的下面一组变量检验了亲属关系的使用与政治社会资本的获取之间的关系。虽然男性和女性在使用亲属关系接触市委书记上没有差别，但是女性更可能使用亲属关系接触局党委书记与厂党委书记。然而，与亲属关系和好的一般社会资本之间的负相关形成对比的是，亲属关系与政治社会资本的获取之间存在着正相关关系。女性在这些相关水平上比男性更显著。如果亲属关系代表着强关系，那么一些证据显示，对于女性而言，强关系在获取政治社会资本上可能比弱关系有微弱的优势。
-
-资本欠缺的模式
-
-下面我进行一个多变量的分析，将获取的社会资本与社会网络的性质（通过亲属关系获取社会资本的百分比）、人资本（教育）以及制度资本（党员身份）同时回归。我根据两种类型的社会资本（一般社会资本与政治社会资本）与男性、女性的分类建立了不同的方程。而且，每一个方程都控制年岭、婚姻地位（已婚）和家庭规模（取对数）。如表 75 所示，不出意料，男性和女性对社会资本的获取都受到人力资本（教育）的影响。制度资本（党员身份）对社会资本只有很小的正影响。如前面的表格所显示的那样，网络影响很显著，但也更复杂。使用亲属关系对一般社会资本有负影响，而对政治社会资本有正影响。此外，网络影响对于女性比男性更显著。
-
-到现在，我们可以总结一下有关男性和女性的社会资本分布的发现社会资本欠缺问题。女性确实存在着资本欠缺现象。男性可以接触到更多数量的职业与政治职位、更高的等级制职位和更多样化的职位。社会资本与人力资本显著相关。因为男性比女性的教育程度高，所以他们在社会资本上也存在着相应的优势。制度资本（党员身份）影响社会资本的性差异似乎不大。弱关系（非亲属关系）有利于获取一般社会资本，而强关系（亲属关系）促进了政治社会资本的获取。女性似乎比男性更多地依靠这些网络关系获取社会资本。这些在社会资本的获取上的差异是否在劳动力市场中转化成了回报的优势或弱势，还有待于进一步检验。
-
-表 7.5 获取社会资本的决定因（偏回归系数，括号中的是标准系数）
-
-社会资本的回报
-
-下一个分析任务是确定社会资本对地位获得的影响。这里使用四个地位获得变量：（1）工作单位（工作单位所有制）;（2）职位级别；（3）职业声望；（4）月收人（取对数）。如表 71 所示，回答者当前的工作单位包括国有单位、集体单位、合资企业、私有企业与个体户。在国有单位工作是个明显的优势（Lin and Bian,1991; Bian,1994），被很多人视为地位获得而不是工作或收人本身的主要目标。虽然社会分层体系与国有企业体制自 20 世纪 80 年代后期起所发生的迅速转变可能影响了工人的工作偏好，但是国家单位 一一 特别是在机关、组织与机构上具有优势 一一 在职业保险、住房津贴、健康医疗和养老保险方面，可能仍然比刚出现的私有与合资企业具
-
-有优势。
-
-职位级别（参见表 71）反映了职位在等级制结构中的排列。为了现在分析的需要，将这些职位转换成从代表没有职务的「1」到局级以上级别的「9」的一个定序序列。如表 71 所示，职业分组作为虚拟变量进行检验。在多元逻辑斯蒂回归分析中，这些分组在升序或降序中都显示出线性关系（根据估计系数），在其他重要量上（如单位、职位级别和收人），农业与制造业交替出现最小系数。简单地说，关键是要根据林南和叶（1997）在中国进行研究时所发展的测量方案，将每一位回答者的当前职业转换成一个声望分数。这里使用两种方法来测量收人：当前的月薪与当前的月收人（包括薪水和奖金）。
-
-这些变量可以视为地位获得的一个序列组：一个个体先进人一个工作单位，在组织中占据一个有级别的职位，从事一份工作，并获得经济回报。分析将关注序列中这些作为内生变量（因变量）的地位获得变量。当分析到序列中后面的内生变量时，前面的内生变量也变成了外生变量。第一组分析确定了人力资本（教育、培训和证书）、制度资本（党员身份）与社会资本（一般社会资本与政治社会资本）对当前职业落在某一种工作单位时的影响。因为有 5 种单位（国有、集体、合资、私有和个体），所以使用逻辑斯蒂回归来估计回答者在某一种单位中的发生概率 一一 在考虑到这些外生变量的情况下。如表 7.6 所示，国有单位是（缺省）参照单位。因此，这些估计显示了人力资本、制度资本和社会资本对其他性质单位的相对影响（与对国有单位的影响相比较）。此外，对男性和女性分别进行分析。「年龄」与「在 16 岁时住在城市」两个变量也被控制。
-
-工和任期都与年龄高度相关（0.94 和 0Q54）。在中国的情景下，大多数工人仍然喜欢终生雇用；工岭与任期没有为年长者（由年龄来表示）增加任何额外的财产。因为年龄、培训和证书都已经在方程中，工龄和任期被排除了，当它们被包括进来时，只是产生了估计的多元共线性偏差。
-
-表 76 当前工作单位的决定因素（逻辑斯蒂回归系数，国有单位作为参照群体）
-
-因为大多数回答者在国有或集体单位工作，对其余单位（如合资、私有和个体）的分析是建立在小样本规模的基础上，所以这些估计可能不可靠。但是，这个模式似乎是一致的。正如所料，教育对国有以外的其他性质的单位有负影响。这个影响对集体单位的回答者最显著。与国有单位相比，培训对私有和家庭企业的回答者也表现出了负影响。但是，由于样本规模很小这些分析结果是不可靠的。与国有单位相比，党员身份对在其他性质的单位工作的回答者也有一个微弱而一致的负影响。特别是对于集体单位的男性与家庭企业的女性，社会资本有微弱的负影响。因此，我们发现人力资本、制度资本和社会资本对除了国有单位以外的其他性质的单位的回答者都具有中等而一致的负影响。
-
-现在我们转向对三个定序内生变量（因变量）一在国有单位中、职位级别和职业声望一的分析。如表 77 所示，我使用了路径分析的方法，因为这三个因变量被作为因果关系考虑，假定先进入工作单位，接着占据一个级别或职位，获得一份具有某种声望的工作，从而导致了不同的收入。此外，对男性和女性分别进行分析。
-
-表 7.7 单位、职位级别和职业声望的决定因尞（以国有单位为参照）
-
-表 77 中的前两栏是「进人国有单位」与其他单位相比较的逻辑斯蒂回归分析的结果。「在国有单位」与教育程度相关。「培训」和「证书」与教育（0.24 和 0.21）相关，但是没有表现出任何显著的边际影响。「党员身份」也与「在国有单位」显著相关。社会资本显示出正向但是很微小的影响（不包括女性）。女性进入国有单位是得益于政治社会资本。没有证据表明进人国有单位的女性遭受着社会资本的回报欠缺。
-
-表 77 的第三栏和第四栏检验了这些变量对于获得高级别职位的影响。此外，「单位」作为外生变量进人普通回归分析中（国有单位作为参照单位）。我们可以看到，无论男性还是女性都因人力资本（教育和年龄）产生回报，其中男性的受益比女性要明显。制度资本（党员身份）使男性和女性同等受益。政治社会资本对职位级别有正向影响，其中对于女性的影响更显著
-
-表 77 中的最后两栏估计了这些変量加上职位等级，对职业声望的影响。男性和女性又都从教育中受益。社会资本不再有任何直接影响，它们对于职业声望的影响，特别是对于政治社会资本的影响，是通过「在国有单位」与「职位级别」 一一 制度资本间接传递的。在获得更有声望的工作上，职位级别对男性的益处要多于女性。虽然在获得更有声望的工作上在国有单位」（与在集体单位相对照）对于男性更有益，但是如果女性在集体单位中，她们似乎会获得更好的工作。既然与国有单位相比，集体单位是一个次要部门，那么非常明显，在政治社会资本对职业声望的影响上，对于男性而言，制度资本是一个更有效的中介因素。
-
-最后，我们转向收入（对月薪和月收取对数）。在表 78 中，前两栏检验了人力资本与制度资本对男性和女性薪水的影响。女性似乎从人力资本（教育）上获益更多，而男性往往从制度资本上获益更多。级别与职业声望对薪水的影响，在男性身上表现得更明显。「在合资单位」对男性和女性都产生了最好的回报。然而，与「在集体单位」相对照，在「在国有单位」更有利于男性。当两个社会资本变量加到方程中的时候（第三栏和第四栏），无论男性还是女性都从一般社会资本中得到回报。但是女性还从政治社会资本中获得收益（虽然不大）。如表 79 所示，对收入（薪水和奖金）的分析结果几乎与对薪水的分析结果相同。
-
-表 7.8 薪水的决定因素
-
-表 79 收入的决定因素
-
-资上，并没有特别遭受到社会资本的回报欠缺。事实上，她们在从政治社会资本中获得回报、进人国有单位以及获得高级职位与好的工资上有微弱的优势。这些发现并不意味着女性在职称、职业或工资上获得了平等的地位。事实上，对分层体系中的地位测量表明，女性的情况要比男性糟得多（参见表 71）。这些发现只是表明女性需要动员政治社会资本来有效地弥合这些差距。
-
-表 7.10 通过关系来接触厂党委书记和局党委书记
-
-如何解释政治社会资本对女性的影响？正如我们已经从表 72 中所看到的，与男性相比，女性在一般社会资本与政治社会资本上都遭受着资本欠缺。当把社会资本与人力资本和制度资本联系起来时，没有证据表明女性因为这些其他类型的资本而比男性有任何优势。实际上，女性在这两个领域里也遭受着资本欠缺。女性之所以能够转移这些欠缺，是由于其获取的政治社会资本具有社会关系的性质。如表 4 与前面的讨论所显示的，亲属关系组成了获取治社会资本的一个积极因素，与男性相比，有更多的女性使用亲属关系。
-
-在进一步探讨这些获取政治社会资本的社会关系时，我推测接触工厂和局党委书记很重要，因为女性比男性更可能使用亲属关系来接触这些重要职位（参见表 7.4）。表 710 中的数据显示，特别是在接触厂党委书记上，女性倾向于通过配偶和兄弟姐妺的配偶来寻找关系。因此，女性在获取地方性政治资源中，可能通过这些强关系获得好处，因为这些家庭关系有助于一些女工人在工作单位中的升迁与工资的提高。
-
-总结与讨论
-
-社会资本研究的一个重要问题是，社会资本的不平等在何种程度上导致了社会群体的社会不平等。这一章将这个问题概念化，从资本的视角分析了资本欠缺与回报欠缺两个过程。资本欠缺是指由于投资或机会的不同，不同的社会群体拥有不同质量或数量的资本。回报欠缺是指，对于不同的社会群体，由于动员策略、行动努力或制度性反应的不同，一定质量或数量的资本会产生不同的回报。既然假定社会不平等是由资本不平等引起的，那么理解资本不平等变得很重要。这些述有助于澄清不同类型的资本包括社会资本的不平等出现在不同的社会群体中的机制，以及它如何潜在地影响了不同群体成员的社会不平等
+社会资本研究的一个重要问题是，社会资本的不平等在何种程度上导致了社会群体的社会不平等。这一章将这个问题概念化，从资本的视角分析了资本欠缺与回报欠缺两个过程。资本欠缺是指由于投资或机会的不同，不同的社会群体拥有不同质量或数量的资本。回报欠缺是指，对于不同的社会群体，由于动员策略、行动努力或制度性反应的不同，一定质量或数量的资本会产生不同的回报。既然假定社会不平等是由资本不平等引起的，那么理解资本不平等变得很重要。这些述有助于澄清不同类型的资本包括社会资本的不平等出现在不同的社会群体中的机制，以及它如何潜在地影响了不同群体成员的社会不平等。
 
 我使用中国城市居民的数据来探讨男性和女性在劳动力市场中的地位获得机制。用定位法测量的一般社会资本与政治社会资本的数据，证实了中国女性在社会资本、人力资本与制度资本上存在着欠缺。男性可以接触到更多的职业与政治性职位，更高的等级制职位与更多样化的职位。我发现社会资本与人力资本显著相关。因为男性获取的职业地位更高，他们在社会资本上也具有相应的优势。制度资本（党员身份）对社会资本的性别影响似乎不显著。
 
-另一方面，有证据表明，女性在进人国有单位、获得高级职位或挣取更高的工资上，并没有特别地遭受到社会资本的回报欠缺。事实上，她们在从政治社会资本中获得回报、进入国有单位以及获得高级职位与高工资上有微弱的优势。这些发现并不意味着女性在职称、职务或工资上获得了平等的地位。事实上，对分层体系中的地位测量表明，女性的情况要比男性槽得多参见表 71）。这些发现只是表明女性需要动员政治社会资本来有效地弥合这些差距。
+另一方面，有证据表明，女性在进入国有单位、获得高级职位或挣取更高的工资上，并没有特别地遭受到社会资本的回报欠缺。事实上，她们在从政治社会资本中获得回报、进入国有单位以及获得高级职位与高工资上有微弱的优势。这些发现并不意味着女性在职称、职务或工资上获得了平等的地位。事实上，对分层体系中的地位测量表明，女性的情况要比男性槽得多参见表 7.1）。这些发现只是表明女性需要动员政治社会资本来有效地弥合这些差距。
 
 用来获取社会资本的关系的性质是理解女性为什么能够弥合差距的一条线索。女性似乎比男性更依赖于亲属关系来获取社会资本。因为弱关系（非亲属关系）促进了对一般社会资本的获取，所以女性在资本获取中变得不利。但是强关系（亲属关系）提高了对政治社会资本的获取，因为在中国，这样的关系需要信任与承诺。因此，一些依靠配偶与配偶的亲属的女性，可能获取更好的政治社会资本，这有助于克服她们在进人国有单位以及获取高职位与高工资上的弱势。
 
-如第六章所提到的，在获取社会资本上的差异应该受到更多的研究关注。社会群体（性别、种族）由于其或优势或弱势的结构性位置与社会网络，而对社会资本有不同的获取能力。弱势群体为了获得更好的地位，其策略性行为需要超出他们通常的社会圈子（Ensel,1979）。在公司中寻找担保人（Burt,1998）和加男性支配的俱乐部（Begs 和 Hurlbert,199）；在他们自己的邻居之外找关系或者与那些有工作的人建立联系（Gteen, Tigges 和 Browne,1995）；或者跨越族群边界找关系（Stanton- -Salazar 和 Dornbusch,1995 Stanton- Salazar,1997）。这个研究部分展现了资本的视角在分析社会不平等中的有效性。
+如第六章所提到的，在获取社会资本上的差异应该受到更多的研究关注。社会群体（性别、种族）由于其或优势或弱势的结构性位置与社会网络，而对社会资本有不同的获取能力。弱势群体为了获得更好的地位，其策略性行为需要超出他们通常的社会圈子（Ensel, 1979）。在公司中寻找担保人（Burt, 1998）和加男性支配的俱乐部（Begs 和 Hurlbert, 1997）；在他们自己的邻居之外找关系或者与那些有工作的人建立联系（Gteen, Tigges 和 Browne, 1995）；或者跨越族群边界找关系（Stanton-Salazar 和 Dornbusch, 1995; Stanton-Salazar,1997）。这个研究部分展现了资本的视角在分析社会不平等中的有效性。
 
 资本不平等、资本欠缺和回报欠缺的概念，可以帮助我们分离和澄资本（特别是社会资本）的不平等所导致的社会群体之间的社会不平等的机制。同时，它们有助于把特定社会的这些不平等的文化与制度的性质分离出来，说弱势群体在这些制度情景内的策略的重要性（如女性使用亲属关系来获取政治社会资本）。这个概述性的研究日程与这一章所进行的经验研究探讨表明，配以排除了制度和文化变量的具体的测量与设计的系统性的经验调査研究，在提高对不同社会群体、不同社区和社会中的资本不平等与社会不平等的理解上是有效的。
 
-附录 71 1998 年中国城市研究中抽取的城市与样本规模
+附录 7.1 1998 年中国城市研究中抽取的城市与样本规模
 
-附录 72 测量社会资本的定位法
+附录 7.2 测量社会资本的定位法
