@@ -434,7 +434,7 @@ In summary, the significance of network locations, whether conceived as bridges 
 
 [6] 注意，我们没有假定网络的容量 一一 反映在个体行动者的数量上，是好的社会资本的决定因素。我们推不出好的社会位置（position）、资源丰富的网络或异质性络、与更大人口规模的结构或网络相联系。
 
-## 5.3 Structural Contingency of Action Effects
+## 5.4 Structural Contingency of Action Effects
 
 The propositions just presented, especially the factors leading to better social capital, have identified two effects: effects due to positions of origin in the structure and effects due to networking (ties and locations) and their joint effects. While the strength-of-position proposition clearly reflects structural effects, the networking propositions reflect a mixture of opportunity and choice. Whether and to what extent opportunity and choice reflect purposive actions deserves some further consideration.
 
