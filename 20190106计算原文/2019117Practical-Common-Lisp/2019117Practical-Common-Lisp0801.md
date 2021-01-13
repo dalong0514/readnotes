@@ -8,6 +8,8 @@ Once you understand the difference between macros and functions, the tight integ
 
 ## 8.1 The Story of Mac: A Just-So Story
 
+1-2『这一小节的故事，对理解「宏」的概念很有帮助，合并进宏的术语卡片里。』——已完成
+
 Once upon a time, long ago, there was a company of Lisp programmers. It was so long ago, in fact, that Lisp had no macros. Anything that couldn't be defined with a function or done with a special operator had to be written in full every time, which was rather a drag. Unfortunately, the programmers in this company -- though brilliant -- were also quite lazy. Often in the middle of their programs -- when the tedium of writing a bunch of code got to be too much -- they would instead write a note describing the code they needed to write at that place in the program. Even more unfortunately, because they were lazy, the programmers also hated to go back and actually write the code described by the notes. Soon the company had a big stack of programs that nobody could run because they were full of notes about code that still needed to be written.
 
 In desperation, the big bosses hired a junior programmer, Mac, whose job was to find the notes, write the required code, and insert it into the program in place of the notes. Mac never ran the programs -- they weren't done yet, of course, so he couldn't. But even if they had been completed, Mac wouldn't have known what inputs to feed them. So he just wrote his code based on the contents of the notes and sent it back to the original programmer.
@@ -31,13 +33,19 @@ The key to understanding macros is to be quite clear about the distinction betwe
 It's important to keep this distinction firmly in mind because code running at macro expansion time runs in a very different environment than code running at runtime. Namely, at macro expansion time, there's no way to access the data that will exist at runtime. Like Mac, who couldn't run the programs he was working on because he didn't know what the correct inputs were, code running at macro expansion time can deal only with the data that's inherent in the source code. For instance, suppose the following source code appears somewhere in a program:
 
 ```c
-(defun foo (x) (when (> x 10) (print 'big)))
+(defun foo (x) 
+  (when (> x 10) 
+    (print 'big)
+  )
+)
 ```
 
 Normally you'd think of x as a variable that will hold the argument passed in a call to foo. But at macro expansion time, such as when the compiler is running the WHEN macro, the only data available is the source code. Since the program isn't running yet, there's no call to foo and thus no value associated with x. Instead, the values the compiler passes to WHEN are the Lisp lists representing the source code, namely, (> x 10) and (print 'big). Suppose that WHEN is defined, as you saw in the previous chapter, with something like the following macro:
 
 ```c
-(defmacro when (condition &rest body) `(if ,condition (progn ,@body)))
+(defmacro when (condition &rest body) 
+  `(if ,condition (progn ,@body))
+)
 ```
 
 When the code in foo is compiled, the WHEN macro will be run with those two forms as arguments. The parameter condition will be bound to the form (> x 10), and the form (print 'big) will be collected into a list that will become the value of the &rest body parameter. The backquote expression will then generate this code:
@@ -55,7 +63,10 @@ When Lisp is interpreted, rather than compiled, the distinction between macro ex
 As you saw in Chapter 3, macros really are defined with DEFMACRO forms, though it stands -- of course -- for DEFine MACRO, not Definition for Mac. The basic skeleton of a DEFMACRO is quite similar to the skeleton of a DEFUN.
 
 ```c
-(defmacro name (parameter*) "Optional documentation string." body-form*)
+(defmacro name (parameter*) 
+  "Optional documentation string." 
+  body-form*
+)
 ```
 
 Like a function, a macro consists of a name, a parameter list, an optional documentation string, and a body of Lisp expressions.1 However, as I just discussed, the job of a macro isn't to do anything directly -- its job is to generate code that will later do what you want.
@@ -98,7 +109,9 @@ to express a loop that executes the body once each for each prime number greater
 
 Without the do-primes macro, you could write such a loop with DO (and the two utility functions defined previously) like this:
 
+```c
 (do ((p (next-prime 0) (next-prime (1+ p)))) ((> p 19)) (format t "~d " p))
+```
 
 Now you're ready to start writing the macro code that will translate from the former to the latter.
 
@@ -110,7 +123,9 @@ But this approach, it seems, will not suffice for do-primes. The first argument 
 
 You could define do-primes with two parameters, one to hold the list and a &rest parameter to hold the body forms, and then take apart the list by hand, something like this:
 
+```c
 (defmacro do-primes (var-and-range &rest body) (let ((var (first var-and-range)) (start (second var-and-range)) (end (third var-and-range))) `(do ((,var (next-prime ,start) (next-prime (1+ ,var)))) ((> ,var ,end)) ,@body)))
+```
 
 In a moment I'll explain how the body generates the correct expansion; for now you can just note that the variables var, start, and end each hold a value, extracted from var-and-range, that's then interpolated into the backquote expression that generates do-primes's expansion.
 
@@ -122,15 +137,21 @@ Another special feature of macro parameter lists is that you can use &body as a 
 
 So you can streamline the definition of do-primes and give a hint to both human readers and your development tools about its intended use by defining it like this:
 
+```c
 (defmacro do-primes ((var start end) &body body) `(do ((,var (next-prime ,start) (next-prime (1+ ,var)))) ((> ,var ,end)) ,@body))
+```
 
 In addition to being more concise, destructuring parameter lists also give you automatic error checking -- with do-primes defined this way, Lisp will be able to detect a call whose first argument isn't a three-element list and will give you a meaningful error message just as if you had called a function with too few or too many arguments. Also, in development environments such as SLIME that indicate what arguments are expected as soon as you type the name of a function or macro, if you use a destructuring parameter list, the environment will be able to tell you more specifically the syntax of the macro call. With the original definition, SLIME would tell you do-primes is called like this:
 
+```c
 (do-primes var-and-range &rest body)
+```
 
 But with the new definition, it can tell you that a call should look like this:
 
+```c
 (do-primes (var start end) &body body)
+```
 
 Destructuring parameter lists can contain &optional, &key, and &rest parameters and can contain nested destructuring lists. However, you don't need any of those options to write do-primes.
 
@@ -148,6 +169,7 @@ Table 8-1. Backquote Examples
 
 Backquote Syntax Equivalent List-Building Code Result
 
+```
 `(a (+ 1 2) c) (list 'a '(+ 1 2) 'c) (a (+ 1 2) c)
 
 `(a ,(+ 1 2) c) (list 'a (+ 1 2) 'c) (a 3 c)
@@ -157,18 +179,26 @@ Backquote Syntax Equivalent List-Building Code Result
 `(a ,(list 1 2) c) (list 'a (list 1 2) 'c) (a (1 2) c)
 
 `(a ,@(list 1 2) c) (append (list 'a) (list 1 2) (list 'c)) (a 1 2 c)
+```
 
 It's important to note that backquote is just a convenience. But it's a big convenience. To appreciate how big, compare the backquoted version of do-primes to the following version, which uses explicit list-building code:
 
+```c
 (defmacro do-primes-a ((var start end) &body body) (append '(do) (list (list (list var (list 'next-prime start) (list 'next-prime (list '1+ var))))) (list (list (list '> var end))) body))
+```
 
 As you'll see in a moment, the current implementation of do-primes doesn't handle certain edge cases correctly. But first you should verify that it at least works for the original example. You can test it in two ways. You can test it indirectly by simply using it -- presumably, if the resulting behavior is correct, the expansion is correct. For instance, you can type the original example's use of do-primes to the REPL and see that it indeed prints the right series of prime numbers.
 
-CL-USER> (do-primes (p 0 19) (format t "~d " p)) 2 3 5 7 11 13 17 19 NIL
+```c
+CL-USER> (do-primes (p 0 19) (format t "~d " p)) 
+2 3 5 7 11 13 17 19 NIL
+```
 
 Or you can check the macro directly by looking at the expansion of a particular call. The function MACROEXPAND-1 takes any Lisp expression as an argument and returns the result of doing one level of macro expansion.3 Because MACROEXPAND-1 is a function, to pass it a literal macro form you must quote it. You can use it to see the expansion of the previous call.4
 
+```c
 CL-USER> (macroexpand-1 '(do-primes (p 0 19) (format t "~d " p))) (DO ((P (NEXT-PRIME 0) (NEXT-PRIME (1+ P)))) ((> P 19)) (FORMAT T "~d " P)) T
+```
 
 Or, more conveniently, in SLIME you can check a macro's expansion by placing the cursor on the opening parenthesis of a macro form in your source code and typing C-c RET to invoke the Emacs function slime-macroexpand-1, which will pass the macro form to MACROEXPAND-1 and "pretty print" the result in a temporary buffer.
 
@@ -182,11 +212,15 @@ As it turns out, a macro can leak details of its inner workings in three ways. L
 
 The current definition suffers from one of the three possible macro leaks: namely, it evaluates the end subform too many times. Suppose you were to call do-primes with, instead of a literal number such as 19, an expression such as (random 100) in the end position.
 
+```c
 (do-primes (p 0 (random 100)) (format t "~d " p))
+```
 
 Presumably the intent here is to loop over the primes from zero to whatever random number is returned by (random 100). However, this isn't what the current implementation does, as MACROEXPAND-1 shows.
 
+```c
 CL-USER> (macroexpand-1 '(do-primes (p 0 (random 100)) (format t "~d " p))) (DO ((P (NEXT-PRIME 0) (NEXT-PRIME (1+ P)))) ((> P (RANDOM 100))) (FORMAT T "~d " P)) T
+```
 
 When this expansion code is run, RANDOM will be called each time the end test for the loop is evaluated. Thus, instead of looping until p is greater than an initially chosen random number, this loop will iterate until it happens to draw a random number less than or equal to the current value of p. While the total number of iterations will still be random, it will be drawn from a much different distribution than the uniform distribution RANDOM returns.
 
@@ -194,7 +228,9 @@ This is a leak in the abstraction because, to use the macro correctly, the calle
 
 You can fix the multiple evaluation easily enough; you just need to generate code that evaluates end once and saves the value in a variable to be used later. Recall that in a DO loop, variables defined with an initialization form and no step form don't change from iteration to iteration. So you can fix the multiple evaluation problem with this definition:
 
+```c
 (defmacro do-primes ((var start end) &body body) `(do ((ending-value ,end) (,var (next-prime ,start) (next-prime (1+ ,var)))) ((> ,var ending-value)) ,@body))
+```
 
 Unfortunately, this fix introduces two new leaks to the macro abstraction.
 
@@ -202,25 +238,35 @@ One new leak is similar to the multiple-evaluation leak you just fixed. Because 
 
 This leak is trivially plugged by swapping the order of the two variable definitions.
 
+```c
 (defmacro do-primes ((var start end) &body body) `(do ((,var (next-prime ,start) (next-prime (1+ ,var))) (ending-value ,end)) ((> ,var ending-value)) ,@body))
+```
 
 The last leak you need to plug was created by using the variable name ending-value. The problem is that the name, which ought to be a purely internal detail of the macro implementation, can end up interacting with code passed to the macro or in the context where the macro is called. The following seemingly innocent call to do-primes doesn't work correctly because of this leak:
 
+```c
 (do-primes (ending-value 0 10) (print ending-value))
+```
 
 Neither does this one:
 
+```c
 (let ((ending-value 0)) (do-primes (p 0 10) (incf ending-value p)) ending-value)
+```
 
 Again, MACROEXPAND-1 can show you the problem. The first call expands to this:
 
+```c
 (do ((ending-value (next-prime 0) (next-prime (1+ ending-value))) (ending-value 10)) ((> ending-value ending-value)) (print ending-value))
+```
 
 Some Lisps may reject this code because ending-value is used twice as a variable name in the same DO loop. If not rejected outright, the code will loop forever since ending-value will never be greater than itself.
 
 The second problem call expands to the following:
 
+```c
 (let ((ending-value 0)) (do ((p (next-prime 0) (next-prime (1+ p))) (ending-value 10)) ((> p ending-value)) (incf ending-value p)) ending-value)
+```
 
 In this case the generated code is perfectly legal, but the behavior isn't at all what you want. Because the binding of ending-value established by the LET outside the loop is shadowed by the variable with the same name inside the DO, the form (incf ending-value p) increments the loop variable ending-value instead of the outer variable with the same name, creating another infinite loop.7
 
@@ -228,27 +274,37 @@ Clearly, what you need to patch this leak is a symbol that will never be used ou
 
 The function GENSYM returns a unique symbol each time it's called. This is a symbol that has never been read by the Lisp reader and never will be because it isn't interned in any package. Thus, instead of using a literal name like ending-value, you can generate a new symbol each time do-primes is expanded.
 
+```c
 (defmacro do-primes ((var start end) &body body) (let ((ending-value-name (gensym))) `(do ((,var (next-prime ,start) (next-prime (1+ ,var))) (,ending-value-name ,end)) ((> ,var ,ending-value-name)) ,@body)))
+```
 
 Note that the code that calls GENSYM isn't part of the expansion; it runs as part of the macro expander and thus creates a new symbol each time the macro is expanded. This may seem a bit strange at first -- ending-value-name is a variable whose value is the name of another variable. But really it's no different from the parameter var whose value is the name of a variable -- the difference is the value of var was created by the reader when the macro form was read, and the value of ending-value-name is generated programmatically when the macro code runs.
 
 With this definition the two previously problematic forms expand into code that works the way you want. The first form:
 
+```c
 (do-primes (ending-value 0 10) (print ending-value))
+```
 
 expands into the following:
 
+```c
 (do ((ending-value (next-prime 0) (next-prime (1+ ending-value))) (#:g2141 10)) ((> ending-value #:g2141)) (print ending-value))
+```
 
 Now the variable used to hold the ending value is the gensymed symbol, #:g2141. The name of the symbol, G2141, was generated by GENSYM but isn't significant; the thing that matters is the object identity of the symbol. Gensymed symbols are printed in the normal syntax for uninterned symbols, with a leading #:.
 
 The other previously problematic form:
 
+```c
 (let ((ending-value 0)) (do-primes (p 0 10) (incf ending-value p)) ending-value)
+```
 
 looks like this if you replace the do-primes form with its expansion:
 
+```c
 (let ((ending-value 0)) (do ((p (next-prime 0) (next-prime (1+ p))) (#:g2140 10)) ((> p #:g2140)) (incf ending-value p)) ending-value)
+```
 
 Again, there's no leak since the ending-value variable bound by the LET surrounding the do-primes loop is no longer shadowed by any variables introduced in the expanded code.
 
@@ -272,21 +328,29 @@ In this section you'll write a macro, with-gensyms, that does just that. In othe
 
 You want to be able to write something like this:
 
+```c
 (defmacro do-primes ((var start end) &body body) (with-gensyms (ending-value-name) `(do ((,var (next-prime ,start) (next-prime (1+ ,var))) (,ending-value-name ,end)) ((> ,var ,ending-value-name)) ,@body)))
+```
 
 and have it be equivalent to the previous version of do-primes. In other words, the with-gensyms needs to expand into a LET that binds each named variable, ending-value-name in this case, to a gensymed symbol. That's easy enough to write with a simple backquote template.
 
+```c
 (defmacro with-gensyms ((&rest names) &body body) `(let ,(loop for n in names collect `(,n (gensym))) ,@body))
+```
 
 Note how you can use a comma to interpolate the value of the LOOP expression. The loop generates a list of binding forms where each binding form consists of a list containing one of the names given to with-gensyms and the literal code (gensym). You can test what code the LOOP expression would generate at the REPL by replacing names with a list of symbols.
 
+```c
 CL-USER> (loop for n in '(a b c) collect `(,n (gensym))) ((A (GENSYM)) (B (GENSYM)) (C (GENSYM)))
+```
 
 After the list of binding forms, the body argument to with-gensyms is spliced in as the body of the LET. Thus, in the code you wrap in a with-gensyms you can refer to any of the variables named in the list of variables passed to with-gensyms.
 
 If you macro-expand the with-gensyms form in the new definition of do-primes, you should see something like this:
 
+```c
 (let ((ending-value-name (gensym))) `(do ((,var (next-prime ,start) (next-prime (1+ ,var))) (,ending-value-name ,end)) ((> ,var ,ending-value-name)) ,@body))
+```
 
 Looks good. While this macro is fairly trivial, it's important to keep clear about when the different macros are expanded: when you compile the DEFMACRO of do-primes, the with-gensyms form is expanded into the code just shown and compiled. Thus, the compiled version of do-primes is just the same as if you had written the outer LET by hand. When you compile a function that uses do-primes, the code generated by with-gensyms runs generating the do-primes expansion, but with-gensyms itself isn't needed to compile a do-primes form since it has already been expanded, back when do-primes was compiled.
 
