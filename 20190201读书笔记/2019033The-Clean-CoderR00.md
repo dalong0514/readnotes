@@ -4,7 +4,7 @@
 
 英语原书出版时间：2011 年
 
-中文版出版时间：2012年 第一版；得到上的电子书出版时间是 2016 年，应该是再印刷的版次。
+中文版出版时间：2012 年第一版；得到上的电子书出版时间是 2016 年，应该是再印刷的版次。
 
 本书是编程大师「Bob 大叔」40 余年编程生涯的心得体会的总结，讲解要成为真正专业的程序员需要具备什么样的态度，需要遵循什么样的原则，需要采取什么样的行动。作者以自己以及身边的同事走过的弯路、犯过的错误为例，意在为后来者引路，助其职业生涯迈上更高台阶本书适合所有程序员阅读，也可供所有想成为具备职业素的职场人士参考。
 
@@ -24,23 +24,23 @@
 
 ### 0301. 人名卡——Robert C. Martin
 
-Robert C. Martin（19-），人称 Bob 大叔，大师中的大师。代码作有：。
+Robert C. Martin（19-），人称 Bob 大叔，大师中的大师。代表作有：。
 
 Robert C. Martin (“Uncle Bob”) has been a programmer since 1970. He is founder and president of Object Mentor, Inc., an international firm of highly experienced software developers and managers who specialize in helping companies get their projects done. Object Mentor offers process improvement consulting, object-oriented software design consulting, training, and skill development services to major corporations worldwide. Martin has published dozens of articles in various trade journals and is a regular speaker at international conferences and trade shows. He has authored and edited many books, including:
 
-• Designing Object Oriented C++ Applications Using the Booch Method
+• Designing Object Oriented C++ Applications Using the Booch Method.
 
-• Patterns Languages of Program Design 3
+• Patterns Languages of Program Design 3.
 
-• More C++ Gems
+• More C++ Gems.
 
-• Extreme Programming in Practice
+• Extreme Programming in Practice.
 
-• Agile Software Development: Principles, Patterns, and Practices
+• Agile Software Development: Principles, Patterns, and Practices.
 
-• UML for Java Programmers
+• UML for Java Programmers.
 
-• Clean Code
+• Clean Code.
 
 A leader in the industry of software development, Martin served for three years as editor-in-chief of the C++ Report, and he served as the first chairman of the Agile Alliance. Robert is also the founder of Uncle Bob Consulting, LLC, and cofounder with his son Micah Martin of The Clean Coders LLC.
 
@@ -407,7 +407,3 @@ A leader in the industry of software development, Martin served for three years 
 按照传统的太极阴阳思维来看，如果说 ASD 和《代码整洁之道》中的内容是硬性的、技术性的、显性的，故而可以归为「阳」的范時，那么本书中的「专业主义」「技艺之道」便是软性的、哲学性的、隐性的，故而可以归为「阴」的范時。「孤明不生，独阳不长」，《老子》说「万物负阴而抱阳，充气以为和」。Bob 大叔这三本书为何都选择星云图片作为封面呢？我忽有顿悟。
 
 严肃地选择以软件开发为自身职业方向的软件工程师（我更喜欢称为「软件工匠」）们，如果你同我一样，此前感觉颇为受益于 Bob 大叔的谆谆教诲，那么请不要错过本书。将本书和 ASD、《代码整洁之道》并列案头，三书互为参照，一并静心细读、揣摩体悟、时时对照、检验调整，到负阴抱阳、知行合一，相信定能渐入佳境。本书本该早日完成翻译面市，但因我个人方面的一些原因，翻译进度搁时日多，使我内心极为惴惴不安，这点必须向各位读者，尤其是 Bob 大叔的粉丝和在从事软件开发过程中遇到困顿境地的读者们，深深致歉！
-
-
-
-
