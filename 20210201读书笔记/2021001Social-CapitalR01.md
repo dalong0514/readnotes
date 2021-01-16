@@ -34,7 +34,9 @@ One implication of the use of social capital is its assumed obligation for recip
 
 ### 5.2 Assumptions
 
-The theory of social capital is framed in a set of assumptions about the macro-, meso-, and microstructures of society. For the macrostructure, the theory posits three assumptions. First, the theory begins with an image of the social structure, which consists of a set of positions that are rank-ordered according to certain normatively valued resources such as class, authority, and status. It further assumes that the structure has a pyramidal shape in terms of accessibility to and control of such resources. The higher the position, the fewer the occupants; and the higher the position, the better the view it has of the structure (especially down below). In terms of both number of occupants and accessibility to positions, the pyramidal structure suggests advantages for positions closer to the top.
+The theory of social capital is framed in a set of assumptions about the macro-, meso-, and microstructures of society. For the macrostructure, the theory posits three assumptions. 
+
+First, the theory begins with an image of the social structure, which consists of a set of positions that are rank-ordered according to certain normatively valued resources such as class, authority, and status. It further assumes that the structure has a pyramidal shape in terms of accessibility to and control of such resources. The higher the position, the fewer the occupants; and the higher the position, the better the view it has of the structure (especially down below). In terms of both number of occupants and accessibility to positions, the pyramidal structure suggests advantages for positions closer to the top.
 
 A position closer to the top of the structure has greater access to and control of the valued resources not only because more valued resources are intrinsically attached to that position, but also because of the position’s greater accessibility to positions at other (primarily lower) rankings. Thus, an individual occupying a higher position, because of its accessibility to more positions, also has a greater command of social capital.
 
