@@ -1,14 +1,25 @@
 # 0101. Structure Determines Properties
 
-An emerging field of study called “Big History” is nothing if not ambitious. It could also be called “The History of Everything” and covers the period from when the universe was formed in a “Big Bang” 13 billion years ago until the present. During the first few seconds of time, protons and electrons combined to give hydrogen and helium atoms. Then, some 4.7 billion years ago, local gravitational forces caused the region of the universe around a particular star to assume that unique feature we call our solar system. Earth was located at the proper distance from the sun to allow the spontaneous formation of molecules, assemblies of molecules, replication of molecular assemblies, and so on. The earliest living things appeared about 4 billion years ago, the earliest ape-like animals 10 million years ago, and modern humans less than 100,000 years ago.
+An emerging field of study called「Big History」is nothing if not ambitious. It could also be called「The History of Everything」and covers the period from when the universe was formed in a「Big Bang」13 billion years ago until the present. During the first few seconds of time, protons and electrons combined to give hydrogen and helium atoms. Then, some 4.7 billion years ago, local gravitational forces caused the region of the universe around a particular star to assume that unique feature we call our solar system. Earth was located at the proper distance from the sun to allow the spontaneous formation of molecules, assemblies of molecules, replication of molecular assemblies, and so on. The earliest living things appeared about 4 billion years ago, the earliest ape-like animals 10 million years ago, and modern humans less than 100,000 years ago.
 
-A Neanderthal looking at the lights in the night sky, for example, is not science. But it can lead to science—an organized body of knowledge based on theory and experiment. Astronomy is regarded as the oldest science but was limited to studying the night sky until the telescope was invented in 1608 and pointed skyward by Galileo a year later. Chemists, however, like to call their own discipline “The Central Science” because of its relationship to physics on one side and biology on the other. In the same way, among the various subdisciplines of chemistry, organic chemistry can be said to be central. It adapts the physical principles that underlie the content of general chemistry courses to the relationships between structure and properties of compounds based on carbon—the most versatile of all the elements.
+1-2-3『对上了一些数据，生命有 40 亿年历史，现代人类 10 万年历史。之前没概念的数据有：宇宙大爆炸 130 亿年前，猿类 1000 万年历史。演化的关键时间节点，做一张信息数据卡片。』——已完成
 
-This chapter begins your training toward understanding the relationship between structure and properties by reviewing the fundamentals of the Lewis approach to molecular structure and bonding and describes the various graphical ways molecular structures are presented. Principles of acid–base chemistry—emphasized in a quantitative way in introductory chemistry courses—are revisited qualitatively as a tool for introducing the effect of structure on properties. This structure/property relationship is what makes organic chemistry important. The same atom (carbon) is common to many structural types, countless compounds with different properties, and much variation in the degree to which a particular property is expressed. What is equally remarkable is the degree to which a relatively small group of principles suffice to connect the structure of a substance to its properties.
+A Neanderthal looking at the lights in the night sky, for example, is not science. But it can lead to science — an organized body of knowledge based on theory and experiment. Astronomy is regarded as the oldest science but was limited to studying the night sky until the telescope was invented in 1608 and pointed skyward by Galileo a year later. Chemists, however, like to call their own discipline「The Central Science」because of its relationship to physics on one side and biology on the other. In the same way, among the various subdisciplines of chemistry, organic chemistry can be said to be central. It adapts the physical principles that underlie the content of general chemistry courses to the relationships between structure and properties of compounds based on carbon — the most versatile of all the elements.
+
+1『这里有关物理、化学、生物的关系，以及有机化学在化学中的地位，阐述的真清晰，做一张任意卡片。』——已完成
+
+This chapter begins your training toward understanding the relationship between structure and properties by reviewing the fundamentals of the Lewis approach to molecular structure and bonding and describes the various graphical ways molecular structures are presented. Principles of acid–base chemistry — emphasized in a quantitative way in introductory chemistry courses — are revisited qualitatively as a tool for introducing the effect of structure on properties. This structure/property relationship is what makes organic chemistry important. The same atom (carbon) is common to many structural types, countless compounds with different properties, and much variation in the degree to which a particular property is expressed. What is equally remarkable is the degree to which a relatively small group of principles suffice to connect the structure of a substance to its properties.
+
+1-2『化学中一个核心理念：结构决定性质。做一张主题卡片，后续不断补充信息。（2021-01-19）』——已完成
 
 ## 1.1 Atoms, Electrons, and Orbitals
 
-Before discussing structure and bonding in molecules, let’s first review some fundamentals of atomic structure. Each element is characterized by a unique atomic number Z,* which is equal to the number of protons in its nucleus. A neutral atom has equal numbers of protons, which are positively charged, and electrons, which are negatively charged.
+Before discussing structure and bonding in molecules, let’s first review some fundamentals of atomic structure. Each element is characterized by a unique atomic number Z,`*` which is equal to the number of protons in its nucleus. A neutral atom has equal numbers of protons, which are positively charged, and electrons, which are negatively charged.
+
+1『原子的序号跟中子数挂钩。（2021-01-19）』
+
+
+
 
 Electrons were believed to be particles from the time of their discovery in 1897 until 1924, when the French physicist Louis de Broglie suggested that they have wavelike properties as well. Two years later Erwin Schrödinger took the next step and calculated the energy of an electron in a hydrogen atom by using equations that treated the electron as if it were a wave. Instead of a single energy, Schrödinger obtained a series of energies, each of which corresponded to a different mathematical description of the electron wave. These mathematical descriptions are called wave functions and are symbolized by the Greek letter ψ (psi).
 
@@ -16,21 +27,15 @@ According to the Heisenberg uncertainty principle, we can’t tell exactly where
 
 probability of finding an electron at a particular spot relative to an atom’s nucleus is given by the square of the wave function (ψ 2 ) at that point. Figure 1.1 illustrates the probability of finding an electron at various points in the lowest energy (most stable) state of a hydrogen atom. The darker the color in a region, the higher the probability. The probability of finding an electron at a particular point is greatest near the nucleus and decreases with increasing distance from the nucleus but never becomes zero.
 
-Figure 1.1
+Figure 1.1 Probability distribution (ψ 2 ) for an electron in a 1s orbital.
 
-Probability distribution (ψ 2 ) for an electron in a 1s orbital.
-
-Wave functions are also called orbitals. For convenience, chemists use the term “orbital” in several different ways. A drawing such as Figure 1.1 is often said to represent an orbital. We will see other kinds of drawings in this chapter, and use the word “orbital” to describe them too.
+Wave functions are also called orbitals. For convenience, chemists use the term「orbital」in several different ways. A drawing such as Figure 1.1 is often said to represent an orbital. We will see other kinds of drawings in this chapter, and use the word「orbital」to describe them too.
 
 Orbitals are described by specifying their size, shape, and directional properties. Spherically symmetrical ones such as shown in Figure 1.1 are called s orbitals. The letter s is preceded by the principal quantum number n (n = 1, 2, 3, etc.), which specifies the shell and is related to the energy of the orbital. An electron in a 1s orbital is likely to be found closer to the nucleus, is lower in energy, and is more strongly held than an electron in a 2s orbital.
 
-Instead of probability distributions, it is more common to represent orbitals by their boundary surfaces, as shown in Figure 1.2 for the 1s and 2s orbitals. The region enclosed by a boundary surface is arbitrary but is customarily the volume where the probability of finding an electron is high—on the order of 90–95%. Like the probability distribution plot from which it is derived, a picture of a boundary surface is usually described as a drawing of an orbital.
+Instead of probability distributions, it is more common to represent orbitals by their boundary surfaces, as shown in Figure 1.2 for the 1s and 2s orbitals. The region enclosed by a boundary surface is arbitrary but is customarily the volume where the probability of finding an electron is high — on the order of 90–95%. Like the probability distribution plot from which it is derived, a picture of a boundary surface is usually described as a drawing of an orbital.
 
-Figure 1.2
-
-Boundary surfaces of a 1s orbital and a 2s orbital.
-
-Page 4
+Figure 1.2 Boundary surfaces of a 1s orbital and a 2s orbital.
 
 A hydrogen atom (Z = 1) has one electron; a helium atom (Z = 2) has two. The single electron of hydrogen occupies a 1s orbital, as do the two electrons of helium. We write their electron configurations as
 
@@ -40,7 +45,7 @@ Hydrogen: 1s
 
 Helium: 1s 2
 
-In addition to being negatively charged, electrons possess the property of spin. The spin quantum number of an electron can have a value of either + I or - I . According to the Pauli ------- exclusion principle, two electrons may occupy the same orbital only when they have opposite, or “paired,” spins. For 2 2 --- this reason, no orbital can contain more than two electrons. Because two electrons fill the 1s orbital, the third electron in lithium (Z = 3) must occupy an orbital of higher energy. After 1s, the next higher energy orbital is 2s. The third electron in lithium therefore occupies the 2s orbital, and the electron configuration of lithium is
+In addition to being negatively charged, electrons possess the property of spin. The spin quantum number of an electron can have a value of either + I or - I . According to the Pauli ------- exclusion principle, two electrons may occupy the same orbital only when they have opposite, or「paired,」spins. For 2 2 --- this reason, no orbital can contain more than two electrons. Because two electrons fill the 1s orbital, the third electron in lithium (Z = 3) must occupy an orbital of higher energy. After 1s, the next higher energy orbital is 2s. The third electron in lithium therefore occupies the 2s orbital, and the electron configuration of lithium is
 
 Lithium: 1s 2 2s
 
@@ -52,7 +57,7 @@ The period (or row) of the periodic table in which an element appears correspond
 
 With beryllium (Z = 4), the 2s level becomes filled and, beginning with boron (Z = 5), the next orbitals to be occupied are 2p x , 2p y , and 2p z . These
 
-three orbitals (Figure 1.3) are of equal energy and are characterized by boundary surfaces that are usually described as “dumbbell-shaped.” The axes of the three 2p orbitals are at right angles to one another. Each orbital consists of two “lobes,” represented in Figure 1.3 by regions of different colors. Regions of a single orbital, in this case, each 2p orbital, may be separated by nodal surfaces where the wave function changes sign and the probability of finding an electron is zero.
+three orbitals (Figure 1.3) are of equal energy and are characterized by boundary surfaces that are usually described as「dumbbell-shaped.」The axes of the three 2p orbitals are at right angles to one another. Each orbital consists of two「lobes,」represented in Figure 1.3 by regions of different colors. Regions of a single orbital, in this case, each 2p orbital, may be separated by nodal surfaces where the wave function changes sign and the probability of finding an electron is zero.
 
 Other methods are also used to contrast the regions of an orbital where the signs of the wave function are different. Some mark one lobe of a p orbital + and the other −. Others shade one lobe and leave the other blank. When this level of detail isn’t necessary, no differentiation is made between the two lobes.
 
@@ -110,11 +115,11 @@ sodium occupies a 3s orbital. The electron configuration of sodium is 1s 2 2s 2 
 
 3s 1 .
 
-Neon, in the second period, and argon, in the third, have eight electrons in their valence shell; they are said to have a complete octet of electrons. Helium, neon, and argon belong to the class of elements known as noble gases or rare gases. The noble gases are characterized by an extremely stable “closed-shell” electron configuration and are very unreactive.
+Neon, in the second period, and argon, in the third, have eight electrons in their valence shell; they are said to have a complete octet of electrons. Helium, neon, and argon belong to the class of elements known as noble gases or rare gases. The noble gases are characterized by an extremely stable「closed-shell」electron configuration and are very unreactive.
 
 Structure determines properties and the properties of atoms depend on atomic structure. All of an element’s protons are in its nucleus, but the element’s electrons are distributed among orbitals of various energy and distance from the nucleus. More than anything else, we look at its electron configuration when we wish to understand how an element behaves. The next section illustrates this with a brief review of ionic bonding.
 
-1.2 Ionic Bonds
+## 1.2 Ionic Bonds
 
 Page 7
 
@@ -132,9 +137,9 @@ a(g)
 
 e
 
-Scxlium atom Scxlium ion Electron 1,.22.l2p6  [The symbol (g) indicates that the species is present in the gas phase.)
+Scxlium atom Scxlium ion Electron 1,.22.l2p6 [The symbol (g) indicates that the species is present in the gas phase.)
 
-1, 1 21 1 2p 0 3s1  Problem 1.3
+1, 1 21 1 2p 0 3s1 Problem 1.3
 
 Species that have the same number of electrons are described as isoelectronic. What +2 ion is isoelectronic with Na + ? What −2 ion?
 
@@ -196,7 +201,7 @@ quite large, amounting to +435 kJ/mol (+104 kcal/mol). The main contributor to t
 
 is the increased Coulombic
 
-force exerted on its two electrons. Each electron in H 2 “feels” the attractive force of two nuclei, rather than one as it would in an isolated hydrogen atom.
+force exerted on its two electrons. Each electron in H 2「feels」the attractive force of two nuclei, rather than one as it would in an isolated hydrogen atom.
 
 Only the electrons in an atom’s valence shell are involved in covalent bonding. Fluorine, for example, has nine electrons, but only seven are in its valence shell. Pairing a valence electron of one fluorine atom with one of a second fluorine gives a fluorine molecule (F 2 ) in which each
 
@@ -267,3 +272,4 @@ Pair the unpaired electron on carbon with the unpaired electron on oxygen to giv
 # 1.4 Polar Covalent Bonds, Electronegativity, and Bond Dipoles
 
 Electrons in covalent bonds are not necessarily shared equally by the two atoms that they connect. If one atom has a greater tendency to attract electrons toward itself than the other, the electron distribution is polarized, and the bond is described as polar covalent. The tendency of an atom to attract the electrons in a covalent bond toward itself defines its electronegativity. An electronegative element attracts electrons; an electropositive one donates them.
+
