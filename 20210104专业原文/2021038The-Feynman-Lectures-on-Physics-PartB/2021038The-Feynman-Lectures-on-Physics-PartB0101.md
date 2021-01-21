@@ -18,96 +18,57 @@ As we have seen, we should expect that it is a combination of electrical forcesa
 
 We have said that the electrical force, like a gravitational force, decreasesinversely as the square of the distance between charges. This relationship iscalled Coulomb’s law. But it is not precisely true when charges are moving—theelectrical forces depend also on the motions of the charges in a complicatedway. One part of the force between moving charges we call the magnetic force.It is really one aspect of an electrical eﬀect. That is why we call the subject「electromagnetism.」
 
-There is an important general principle that makes it possible to treat elec-tromagnetic forces in a relatively simple way. We ﬁnd, from experiment, that theforce that acts on a particular charge—no matter how many other charges thereare or how they are moving—depends only on the position of that particularcharge, on the velocity of the charge, and on the amount of charge. We can writethe force F on a charge q moving with a velocity v as
+There is an important general principle that makes it possible to treat elec-tromagnetic forces in a relatively simple way. We ﬁnd, from experiment, that theforce that acts on a particular charge—no matter how many other charges thereare or how they are moving—depends only on the position of that particularcharge, on the velocity of the charge, and on the amount of charge. We can writethe force F on a charge q moving with a velocity v as `F = q(E + v × B)`.
 
-F = q(E + v × B).
+We call E the electric ﬁeld and B the magnetic ﬁeld at the location of the charge.The important thing is that the electrical forces from all the other charges in theuniverse can be summarized by giving just these two vectors. Their values willdepend on where the charge is, and may change with time. Furthermore, if wereplace that charge with another charge, the force on the new charge will be just in proportion to the amount of charge so long as all the rest of the charges inthe world do not change their positions or motions. (In real situations, of course,each charge produces forces on all other charges in the neighborhood and maycause these other charges to move, and so in some cases the ﬁelds can change ifwe replace our particular charge by another.)We know from Vol. I how to ﬁnd the motion of a particle if we know the force
 
-(1.1)
+on it. Equation (1.1) can be combined with the equation of motion to give (1.2)
 
-We call E the electric ﬁeld and B the magnetic ﬁeld at the location of the charge.The important thing is that the electrical forces from all the other charges in theuniverse can be summarized by giving just these two vectors. Their values willdepend on where the charge is, and may change with time. Furthermore, if wereplace that charge with another charge, the force on the new charge will be just1-2
+![](./res/2021001.png)
 
-Lower case Greek lettersand commonly used capitals
+So if E and B are given, we can ﬁnd the motions. Now we need to know howthe E’s and B’s are produced.One of the most important simplifying principles about the way the ﬁelds areproduced is this: Suppose a number of charges moving in some manner wouldproduce a ﬁeld E1, and another set of charges would produce E2. If both sets ofcharges are in place at the same time (keeping the same locations and motionsthey had when considered separately), then the ﬁeld produced is just the sum `E = E1 + E2` (1.3). 
 
-
-alphabetagamma
-
-αβγδ ∆ deltaepsilonzetaζetaηθ Θ thetaiotaιkappaκλ Λ lambdaµνξoπ Π pirhoρσ Σ sigmaτυ Υ upsilonφ Φ phichi (khi)χψ Ψ psiω Ω omega
-
-munuxi (ksi)omicron
-
-tau
-
-in proportion to the amount of charge so long as all the rest of the charges inthe world do not change their positions or motions. (In real situations, of course,each charge produces forces on all other charges in the neighborhood and maycause these other charges to move, and so in some cases the ﬁelds can change ifwe replace our particular charge by another.)We know from Vol. I how to ﬁnd the motion of a particle if we know the force
-
-on it. Equation (1.1) can be combined with the equation of motion to give
-
-(cid:20)
-
-(cid:21)
-
-ddt
-
-mv
-
-(1 − v2/c2)1/2
-
-= F = q(E + v × B).
-
-(1.2)
-
-So if E and B are given, we can ﬁnd the motions. Now we need to know howthe E’s and B’s are produced.One of the most important simplifying principles about the way the ﬁelds areproduced is this: Suppose a number of charges moving in some manner wouldproduce a ﬁeld E1, and another set of charges would produce E2. If both sets ofcharges are in place at the same time (keeping the same locations and motionsthey had when considered separately), then the ﬁeld produced is just the sum
-
-E = E1 + E2.
-
-(1.3)This fact is called the principle of superposition of ﬁelds. It holds also for magneticﬁelds.This principle means that if we know the law for the electric and magneticﬁelds produced by a single charge moving in an arbitrary way, then all the laws ofelectrodynamics are complete. If we want to know the force on charge A we needonly calculate the E and B produced by each of the charges B, C, D, etc., andthen add the E’s and B’s from all the charges to ﬁnd the ﬁelds, and from themthe forces acting on charge A. If it had only turned out that the ﬁeld producedby a single charge was simple, this would be the neatest way to describe the lawsof electrodynamics. We have already given a description of this law (Chapter 28,Vol. I) and it is, unfortunately, rather complicated.
+This fact is called the principle of superposition of ﬁelds. It holds also for magneticﬁelds.This principle means that if we know the law for the electric and magneticﬁelds produced by a single charge moving in an arbitrary way, then all the laws ofelectrodynamics are complete. If we want to know the force on charge A we needonly calculate the E and B produced by each of the charges B, C, D, etc., andthen add the E’s and B’s from all the charges to ﬁnd the ﬁelds, and from themthe forces acting on charge A. If it had only turned out that the ﬁeld producedby a single charge was simple, this would be the neatest way to describe the lawsof electrodynamics. We have already given a description of this law (Chapter 28,Vol. I) and it is, unfortunately, rather complicated.
 
 It turns out that the form in which the laws of electrodynamics are simplestare not what you might expect. It is not simplest to give a formula for the forcethat one charge produces on another. It is true that when charges are standingstill the Coulomb force law is simple, but when charges are moving about therelations are complicated by delays in time and by the eﬀects of acceleration,among others. As a result, we do not wish to present electrodynamics onlythrough the force laws between charges; we ﬁnd it more convenient to consideranother point of view—a point of view in which the laws of electrodynamicsappear to be the most easily manageable.
 
 1-1 电力
 
-现在来考虑一种力，它也像引カ那样与距离平方成反比地变化，但比引力要强约一万亿亿亿倍。另外，还有一个区别，即存在两种我们可称之为正的和负的「物质」，种类相同的相斥，不同的相吸。这就不像引力，那里只存在吸引。这样，会出现什么情景呢？
+现在来考虑一种力，它也像引力那样与距离平方成反比地变化，但比引力要强约一万亿亿亿倍。另外，还有一个区别，即存在两种我们可称之为正的和负的「物质」，种类相同的相斥，不同的相吸。这就不像引力，那里只存在吸引。这样，会出现什么情景呢？
 
-堆正的物质会以巨力互相排斥，并向四面八方散开，一堆负的物质亦是如此。但一堆正、负物质的均匀混合物就完全不同了。相反的物质会以巨大的吸引力互相拉挽着，净结果将把那些可怕的斥力差不多完全抵消了，这是通过形成紧密而精致的正、负物质的混合体而达到的，而这样两堆分开着的混合体之间实际上就不再存在任何引力或斥力了。
+一堆正的物质会以巨力互相排斥，并向四面八方散开，一堆负的物质亦是如此。但一堆正、负物质的均匀混合物就完全不同了。相反的物质会以巨大的吸引力互相拉挽着，净结果将把那些可怕的斥力差不多完全抵消了，这是通过形成紧密而精致的正、负物质的混合体而达到的，而这样两堆分开着的混合体之间实际上就不再存在任何引力或斥力了。
 
-确实存在这样一种力 ー一 电力。世间万物都是由此种巨力互相吸引和排斥着的正的质子与负的电子所组成的混合物。然而，平衡竟是那么完善，以致当你站在别人旁边时也根本没有任何受力的感觉。这时，即使只有一点点不平衡，你都会觉察到。例如，要是你站在别人旁边相距只有一臂之遥，而且各自都具有比本身的质子仅多出百分之一的电子，那两人间的排斥力就会大得不得了！多大呢？足以举起那座帝国大厦「？不！举起珠穆朗玛峰？不！这个斥力应足以举起相当于整个地球的「重量」！
+确实存在这样一种力 ー一 电力。世间万物都是由此种巨力互相吸引和排斥着的正的质子与负的电子所组成的混合物。然而，平衡竟是那么完善，以致当你站在别人旁边时也根本没有任何受力的感觉。这时，即使只有一点点不平衡，你都会觉察到。例如，要是你站在别人旁边相距只有一臂之遥，而且各自都具有比本身的质子仅多出百分之一的电子，那两人间的排斥力就会大得不得了！多大呢？足以举起那座帝国大厦`*`？不！举起珠穆朗玛峰？不！这个斥力应足以举起相当于整个地球的「重量」！
 
-由于在这种致密混合物中这些巨力完善地达到了平衡，所以我们就不难理解：当物质试图保持其正、负电荷最细致的平衡时，它能具有多大的硬度与强度。例如，帝国大厦在风中之所以摇摆小于英寸，是因为电力把每一个电子与质子或多或少地保持在其适当位置上。另一方面，如果我们在一个足够小的尺度范围内观察物质，使得只能看到几个原子，那么任一小部分就往往不会有相等数目的正电荷和负电荷，从而会存在强大的剩余电力。即使在相邻两小部分中两种电荷的数目相等，也仍然有可能拥有巨大的净电力，因为各电荷之间的力是与距离的平方成反比的。如果一部分中的负电荷，与另一部分中的正电荷靠得较近、而与负电荷离得较远，则力就会产生。因此，吸引力可能大于排斥力，从而在两个不带额外电荷的小块中就有一个净吸引力存在。那种把各原子结合在一起的力，以及把各分子保持在一起的化学力，其实都是电力，它们在电荷的平衡不够完善、或在距离十分微小的那些区域里起作用。
+由于在这种致密混合物中这些巨力完善地达到了平衡，所以我们就不难理解：当物质试图保持其正、负电荷最细致的平衡时，它能具有多大的硬度与强度。例如，帝国大厦在风中之所以摇摆小于一英寸，是因为电力把每一个电子与质子或多或少地保持在其适当位置上。另一方面，如果我们在一个足够小的尺度范围内观察物质，使得只能看到几个原子，那么任一小部分就往往不会有相等数目的正电荷和负电荷，从而会存在强大的剩余电力。即使在相邻两小部分中两种电荷的数目相等，也仍然有可能拥有巨大的净电力，因为各电荷之间的力是与距离的平方成反比的。如果一部分中的负电荷，与另一部分中的正电荷靠得较近、而与负电荷离得较远，则力就会产生。因此，吸引力可能大于排斥力，从而在两个不带额外电荷的小块中就有一个净吸引力存在。那种把各原子结合在一起的力，以及把各分子保持在一起的化学力，其实都是电力，它们在电荷的平衡不够完善、或在距离十分微小的那些区域里才起作用。
 
-当然，你会知道，原子是由位于其核内的正的质子和核外的负电子所构成的。你也许会问：「如果这种电力那么厉害，为什么质子和电子不会正好一个紧挨着一个呢？如果它们想要形成一个紧密的混合体，为什么不会更紧密些呢？」这问题必须用量子效应来回答。要是试图把电子限制在一个很接近于质子的区域中，那么按照不确定性原理它们就得拥有一个均方动量，若我们把它们限制得越紧，这个均方动量就越大。正是这一种由量子力学规律所
+当然，你会知道，原子是由位于其核内的正的质子和核外的负电子所构成的。你也许会问：「如果这种电力那么厉害，为什么质子和电子不会正好一个紧挨着一个呢？如果它们想要形成一个紧密的混合体，为什么不会更紧密些呢？」这问题必须用量子效应来回答。要是试图把电子限制在一个很接近于质子的区域中，那么按照不确定性原理它们就得拥有一个均方动量，若我们把它们限制得越紧，这个均方动量就越大。正是这一种由量子力学规律所支配的运动，才使得电的吸引力不会把这两个电荷移得更接近些。
 
-帝国大厦指美国纽约市第五大街上的一座建筑物，地面上共 102 层，高 1454 英尺。一译者注
+还有一个问题。在原子核内有若干个质子，它们全都带着正电荷，为什么它们不会互相推开呢？「是什么东西把它们结合在一起的呢？」事实是，在原子核内部，除了电力之外还存在一种称为核力的非电力，它比电力还要大，因而尽管有电的排斥力，它仍然能够把那些质子维持在一起。然而，核力是短程力 ー一 该力下降得比 1/r^2 急剧得多。这就产生了一个重要后果：如果一个核所含质子过多，则该核就变得太大，它便不会持久维持。铀就是这么个例子，它含有 92 个质子。核力主要在每个质子（或中子）与其最近邻质子（或中子）之间起作用，而电力则在较大的距离范围内起作用，使每个质子与核内所有其他质子之间都具有排斥力。在一个核内质子的数目越多，这电的排斥作用就越强，直到铀那种情况，平衡是那么脆弱，以致于排斥性电力使得核几乎就要飞散了。这么ー个核，如果稍微「轻轻敲」一下（就像曾经送进一个慢中子那样），则它就会破裂成各带有正电荷的两片，而这些裂片由于电的排斥力而飞散开去。释放出来的能量就是原子弹的能量。这种能量通常称为「核」能，但实际上却是当电力克服了吸引性核力时所释放出来的「电」能。
 
-支配的运动，才使得电的吸引力不会把这两个电荷移得更接近些。
+最后，我们还可能会问，是什么东西把带负电的电子保持在一起呢（因为它没有核力）？如果电子全都是由一种物质构成的，那它的每一部分理应排斥其他各部分，但又为什么不会飞散呢？不过，电子是否还含有「各部分」？也许，我们应该说电子只是一个点，而电力只是在不同的点电荷之间起作用，以致电子不会作用于其本身。或许是这样吧。关于电子由什么东西束缚在一起，我们只能说到这里。这个问题对于试图建立一套完整的电磁学理论产生了不少困难，而且至今没有做出解答。我们将在以后某些章节中对这一课题多做些讨论，以为我们大家助兴。
 
-还有一个问题。在原子核内有若干个质子，它们全都带着正电荷，为什么它们不会互相推开呢？「是什么东西把它们结合在一起的呢？」事实是，在原子核内部，除了电力之外还存在一种称为核力的非电力，它比电力还要大，因而尽管有电的排斥力，它仍然能够把那些质子维持在一起。然而，核力是短程力 ー一 该力下降得比 12 急剧得多。这就产生了一个重要后果：如果一个核所含质子过多，则该核就变得太大，它便不会持久维持。铀就是这么个例子，它含有 92 个质子。核力主要在每个质子（或中子）与其最近邻质子（或中子）之间起作用，而电力则在较大的距离范围内起作用，使每个质子与核内所有其他质子之间都具有排斥力。在一个核内质子的数目越多，这电的排斥作用就越强，直到铀那种情况，平衡是那么脆弱，以致于排斥性电力使得核几乎就要飞散了。这么ー个核，如果稍微「轻轻敲」一下（就像曾经送进一个慢中子那样），则它就会破裂成各带有正电荷的两片，而这些裂片由于电的排斥力而飞散开去。释放出来的能量就是原子弹的能量。这种能量通常称为「核」能，但实际上却是当电力克服了吸引性核力时所释放出来的「电」能。
+正如我们已经见到的那样，应该指望电力与量子力学效应相结合来确定整块材料的细致结构，从而确定它们的特性。有的材料硬，有的材料软。有的是电的「导体」一一 因为它们中的电子能够自由运动；其他则是「绝缘体」—— 因为其中的电子被牢固地缚在各个原子内。这些性质是如何得来的？那是一个十分复杂的课题，我们将在以后加以讨论。因而现在仅就一些简单情况下的电力进行考察，也就是说，现在着手处理电方面 一一 也包括磁方面（那实际上是同一课题的另ー个部分）—— 的规律。
 
-最后，我们还可能会问，是什么东西把带负电的电子保持在一起呢（因为它没有核力）？如果电子全都是由一种物质构成的，那它的每一部分理应排斥其他各部分，但又为什么不会飞散呢？不过，电子是否还含有「各部分」？也许，我们应该说电子只是一个点，而电力只是在不同的点电荷之间起作用，以致电子不会作用于其本身。或许是这样吧。关于电子由什么东西東缚在一起，我们只能说到这里。这个问题对于试图建立一套完整的电磁学理论产生了不少困难，而且至今没有做出解答。我们将在以后某些章节中对这一课题多做些讨论，以为我们大家助兴。
+我们曾经说过，和引力相似，电力与电荷间距离的平方成反比地减弱，这一关系叫作库仑定律。但当电荷运动时，这一定律就不完全准确 一一 电力也以一种复杂的方式依赖于电荷的运动。运动电荷之间的作用力，有一部分我们称之为磁力，事实上，它是电效应的一个方面。这也是为什么要把这一课题叫作「电磁学」的缘故。
 
-正如我们已经见到的那样，应该指望电力与量子力学效应相结合来确定整块材料的细致结构，从而确定它们的特性。有的材料硬，有的材料软。有的是电的「导体」一一因为它们中的电子能够自由运动；其他则是「绝缘体」一因为其中的电子被牢固地缚在各个原子内。这些性质是如何得来的？那是一个十分复杂的课题，我们将在以后加以讨论。因而现在仅就一些简单情况下的电力进行考察，也就是说，现在着手处理电方面一一也包括磁方面（那实际上是同一课题的另ー个部分）一的规律。
-
-我们曾经说过，和引力相似，电力与电荷间距离的平方成反比地减弱，这一关系叫作库仑定律。但当电荷运动时，这一定律就不完全准确一一电力也以一种复杂的方式依赖于电荷的运动。运动电荷之间的作用力，有一部分我们称之为磁力，事实上，它是电效应的一个方面。这也是为什么要把这一课题叫作「电磁学」的缘故。
-
-由于存在着一个重要的普遍原理，因而有可能以相对简单的方式来处理电磁力。我们从实验发现，作用于某一特定电荷上的力 ー一 不管其他电荷的数量和运动方式如何一一只取决于该特定电荷的位置、速度以及所带的电荷量。我们可把作用于一个以速度 ν 运动的电荷上的力 F 写成：
-
-F=q (E+VX B). (1.1)
+由于存在着一个重要的普遍原理，因而有可能以相对简单的方式来处理电磁力。我们从实验发现，作用于某一特定电荷上的力 ー一 不管其他电荷的数量和运动方式如何 一一 只取决于该特定电荷的位置、速度以及所带的电荷量。我们可把作用于一个以速度 ν 运动的电荷上的力 F 写成：`F = q(E + v × B)`。
 
 式中 E 和 B 分别叫做电荷所在处的电场和磁场。重要的是，来自宇宙中所有其他电荷的力都可用刚才给出的这两个矢量叠加而成。它们的值将取决于这一电荷位于何处，并且可能随时间而改变。此外，如果我们用另一个电荷来代替该电荷，只要世界上所有其他电荷都不改变其位置和运动，则作用于这一新电荷上的力恰好与其电荷量成正比。当然，在实际情况中，每一电荷对邻近的所有其他电荷都产生力，从而可能引起这些电荷运动。所以在某些情况下，如果我们用另一个电荷来代替该特定电荷，则场可能改变。
 
-我们从第 1 卷已经懂得若知道了作用在一个质点上的力，应怎样去求出该质点的运动。可以把式（1.1) 和运动方程相结合而得出：
+我们从第 1 卷已经懂得，若知道了作用在一个质点上的力，应怎样去求出该质点的运动。可以把式（1.1）和运动方程相结合而得出：
 
-dL (1 ーマ /)
-
-=F=q (E+VX B)
+『公式详见原书。』
 
 因此若 E 和 B 已知，则可以求得运动。现在我们需要弄清楚 E 和 B 是怎样产生的。
 
-关于电磁场产生方法最重要的简化原理之一是：假设若干个以某种方式运动的电荷产生一个场 E1, 而另一组电荷产生场 E2, 而这两组电荷同时被置于原来的位置（保持它们被分别考虑时具有的相同的位置和相同的运动），那么所产生的场恰好是两个场的和，即
+关于电磁场产生方法最重要的简化原理之一是：假设若干个以某种方式运动的电荷产生一个场 E1，而另一组电荷产生场 E2，而这两组电荷同时被置于原来的位置（保持它们被分别考虑时具有的相同的位置和相同的运动），那么所产生的场恰好是两个场的和，即：`E = E1 + E2`。
 
-E=E+E (1.3) 这一个事实称为场的叠加原理。这原理也适用于磁场
+这一个事实称为场的叠加原理。这原理也适用于磁场。这一原理意味着，如果知道了关于以任意方式运动的单个电荷所产生的电场和磁场的规律，那么所有电动力学的规律就告齐全了。如果我们想要知道作用于电荷 A 上的力，就只需算出由 B、C、D 等各电荷所产生的 E 和 B，然后把所有电荷产生的 E 和 B 分别相加而求得总场，再从这两个总场求得作用于电荷 A 的力。只要结果证明，由单个电荷产生的场很简单，那么这就是描写电动力学规律的最简洁方法。可惜，我们已给出了这一定律的描述（第 1 卷第 28 章），那是相当复杂的。
 
-这一原理意味着，如果知道了关于以任意方式运动的单个电荷所产生的电场和磁场的规律，那么所有电动力学的规律就告齐全了。如果我们想要知道作用于电荷 A 上的力，就只需算出由 B, C, D 等各电荷所产生的 E 和 B，然后把所有电荷产生的 E 和 B 分别相加而求得总场，再从这两个总场求得作用于电荷 A 的力。只要结果证明，由单个电荷产生的场很简单，那么这就是描写电动力学规律的最简洁方法。可惜，我们已给出了这一定律的描述（第 1 卷第 28 章），那是相当复杂的。
+事实证明，电动力学规律在其中最为简单的那一种形式，并非是人们可以期望的。要写出一个电荷对另一个电荷所产生的力的公式，并非那么容易。的确，当电荷静止不动时，库仑力的定律是十分简单的。但当电荷运动时，由于时间上的延迟和加速度的影响以及其他些缘故，关系就变得复杂了。因此，我们并不希望仅仅凭作用于各电荷间的力的规律来介绍电动力学；而发现更方便的是去考虑另一个观点 一一 那是电动力学规律表现得最易于处理的一种观点。
 
-事实证明，电动力学规律在其中最为简单的那一种形式，并非是人们可以期望的。要写出一个电荷对另一个电荷所产生的力的公式，并非那么容易。的确，当电荷静止不动时，库仑力的定律是十分简单的。但当电荷运动时，由于时间上的延迟和加速度的影响以及其他些缘故，关系就变得复杂了。因此，我们并不希望仅仅凭作用于各电荷间的力的规律来介绍电动力学；而发现更方便的是去考虑另一个观点一一那是电动力学规律表现得最易于处理的一种观点。
+`*` 帝国大厦指美国纽约市第五大街上的一座建筑物，地面上共 102 层，高 1454 英尺。—— 译者注
 
 ## 1-2 Electric and magnetic ﬁelds
 
@@ -115,19 +76,31 @@ First, we must extend, somewhat, our ideas of the electric and magneticvectors, 
 
 It is precisely because E (or B) can be speciﬁed at every point in space that itis called a「ﬁeld.」A「ﬁeld」is any physical quantity which takes on diﬀerent valuesat diﬀerent points in space. Temperature, for example, is a ﬁeld—in this case ascalar ﬁeld, which we write as T(x, y, z). The temperature could also vary in time,and we would say the temperature ﬁeld is time-dependent, and write T(x, y, z, t).Another example is the「velocity ﬁeld」of a ﬂowing liquid. We write v(x, y, z, t)for the velocity of the liquid at each point in space at the time t. It is a vector ﬁeld.Returning to the electromagnetic ﬁelds—although they are produced bycharges according to complicated formulas, they have the following importantcharacteristic: the relationships between the values of the ﬁelds at one point andthe values at a nearby point are very simple. With only a few such relationshipsin the form of diﬀerential equations we can describe the ﬁelds completely. It is interms of such equations that the laws of electrodynamics are most simply written.There have been various inventions to help the mind visualize the behavior ofﬁelds. The most correct is also the most abstract: we simply consider the ﬁeldsas mathematical functions of position and time. We can also attempt to get amental picture of the ﬁeld by drawing vectors at many points in space, each ofwhich gives the ﬁeld strength and direction at that point. Such a representationis shown in Fig. 1-1. We can go further, however, and draw lines which areeverywhere tangent to the vectors—which, so to speak, follow the arrows andkeep track of the direction of the ﬁeld. When we do this we lose track of thelengths of the vectors, but we can keep track of the strength of the ﬁeld bydrawing the lines far apart when the ﬁeld is weak and close together when it isstrong. We adopt the convention that the number of lines per unit area at rightangles to the lines is proportional to the ﬁeld strength. This is, of course, only anapproximation, and it will require, in general, that new lines sometimes start upin order to keep the number up to the strength of the ﬁeld. The ﬁeld of Fig. 1-1is represented by ﬁeld lines in Fig. 1-2.
 
+![](./res/2021002.png)
+
+Fig. 1-1. A vector ﬁeld may be represented by drawing a set of arrows whose magnitudes and directions indicate the values of the vector ﬁeld at the points from which the arrows are drawn.
+
+![](./res/2021003.png)
+
+Fig. 1-2. A vector ﬁeld can be represented by drawing lines which are tangent to the direction of the ﬁeld vector at each point, and by drawing the density of lines proportional to the magnitude of the ﬁeld vector.
+
 1-2 电场和磁场
 
-首先，我们必须对电和磁矢量即 E 和 B 的概念稍做推广。依据一个电荷所感受到的
+首先，我们必须对电和磁矢量即 E 和 B 的概念稍做推广。依据一个电荷所感受到的力，我们已对 E 和 B 下了定义。现在我们想要谈谈即使没有电荷存在的某一点的电场和磁场。实际上，既然有力「作用在」电荷上，则当电荷移去时，那里仍存在「某种东西」。如果位于点 `(x, y, z)` 上的电荷、在时刻 t 感受到由式（1.1）所给出的力 F，则我们便可以把矢量 E 和 B 与空间中该点 `(x, y, z)` 联系起来。可以认为 `E(x, y, z, t)` 和 `B(x, y, z, t)` 给出了力，即可被位于 `(x, y, z)` 点的电荷、在时刻 t 体验到那个力，同时满足这样一个条件：在那里放置该电荷，并不扰动产生这场的所有其他电荷的位置或运动。
 
-力，我们已对 E 和 B 下了定义。现在我们想要谈谈即使没有电荷存在的某一点的电场和磁场。实际上，既然有力「作用在」电荷上，则当电荷移去时，那里仍存在「某种东西」。如果位于点（x, y，）上的电荷、在时刻な感受到由式（1.1) 所给出的力 F，则我们便可以把矢量 E 和 B 与空间中该点（x, y, x）联系起来。可以认为 E (x, y,，）和 B (x, y, x，）给出了力，即可被位于（x, y, x）点的电荷、在时刻 t 体验到那个力，同时满足这样一个条件：在那里放置该电荷，并不扰动产生这场的所有其他电荷的位置或运动。
+根据这一概念，我们把空间中每一点 `(x, y, z)` 与两个矢量 E 和 B 相联系，它们也可能会随时间而改变，于是，电场和磁场就可视作 x, y, x 和 t 的矢量函数。既然一个矢量由其各分量所确定，所以场 E 和 B 就代表了 x, y, x 和 t 的三个数学函数。
 
-根据这一概念，我们把空间中每一点（x, y, x）与两个矢量 E 和 B 相联系，它们也可能会随时间而改变，于是，电场和磁场就可视作 x, y, x 和的矢量函数。既然一个矢量由其各分量所确定，所以场 E 和 B 就代表了 x, y, x 和 t 的三个数学函数。
+正因为 E（或 B）可以在空间每一点被规定下来，所以它才被称为「场」。所谓「场」，就是在空间不同点上会取不同值的一种物理量。例如，温度就是一种场 一一 在这一情况下是一标量场，我们把它写成 `T(x, y, z)`。温度也可能随时间变化，那么我们应称温度场与时间有关，从而把它写成 `T(x, y, z, t)`。另一例为流动液体的「速度场」，我们把时刻 t 空间每一点的液体速度写成 `v(x, y, z, t)`，它是一个矢量场。
 
-正因为 E（或 B）可以在空间每一点被规定下来，所以它才被称为「场」。所谓「场」，就是在空间不同点上会取不同值的一种物理量。例如，温度就是一种场一一在这一情况下是一标量场，我们把它写成 T (x, y, x）。温度也可能随时间变化，那么我们应称温度场与时间有关，从而把它写成 T (x, y, x，）。另例为流动液体的「速度场」，我们把时刻 t 空间每点的液体速度写成 v (x, y, x,），它是一个矢量场。
+回到电磁场方面来，虽然它们是按复杂公式由电荷所产生的，但却具有如下重要特性：在空间一点的场值与一邻近点的场值之间存在十分简单的关系。仅凭几个以微分方程表达的这种关系，我们就能把场完整地描述出来。正是依靠这样的方程式，电动力学规律オ得以被最简洁地写出。
 
-回到电磁场方面来，虽然它们是按复杂公式由电荷所产生的，但却具有如下重要特性：在空间二点的场值与一邻近点的场值之间存在十分简单的关系。仅凭几个以微分方程表达的这种关系，我们就能把场完整地描述出来。正是依靠这样的方程式，电动力学规律オ得以被最简洁地写出。
+曾有过种种发明，试图帮助人们把场的行为形象化。其中最正确也最抽象的一种是：仅认为场是位置与时间的数学函数。
 
-曾有过种种发明，试图帮助人们把场的行为形象化。其中最正确也最抽象的一种是：仅认为场是位置与时间的数学函数。我们可以尝试通过在空间的许多点各画出些矢量来获得一个关于场的思维图像，其中每一矢量给出该点场的强度和方向。这表达方式如图 1-1 所示。另外，我们还可以进一步画出处处都与那些矢量相切的一些线，比如，这些线沿着那些箭头并跟踪着场的方向。当我们这样做时，就已丧失了矢量长度的痕迹，但可通过如下办法来记录场的强度即对于弱场把场线画得较疏，而对于强场则把场线画得较密。我们按惯例使通过垂直于线的每单面积的线数与场强成正比。当然，这只是一种近似，一般说来，有时还需要在某处画一些新线以保持线数与场强相配。这样，图 1-1 所示的场就可由图 1-2 所示的场线来表示。
+我们可以尝试通过在空间的许多点各画出一些矢量来获得一个关于场的思维图像，其中每一矢量给出该点场的强度和方向。这表达方式如图 1-1 所示。另外，我们还可以进一步画出处处都与那些矢量相切的一些线，比如，这些线沿着那些箭头并跟踪着场的方向。当我们这样做时，就已丧失了矢量长度的痕迹，但可通过如下办法来记录场的强度即对于弱场把场线画得较疏，而对于强场则把场线画得较密。我们按惯例使通过垂直于线的每单面积的线数与场强成正比。当然，这只是一种近似，一般说来，有时还需要在某处画一些新线以保持线数与场强相配。这样，图 1-1 所示的场就可由图 1-2 所示的场线来表示。
+
+图 1-1 矢量场可用一组箭头来表示。每支箭头的大小和方向为所画箭头的那一点的矢量场之值
+
+图 1-2 矢量场可用一些线来表示，这些线在每一点与场矢量的方向相切，而线的密度则与场矢量的大小成正比
 
 ## 1-3 Characteristics of vector ﬁelds
 
@@ -159,7 +132,7 @@ With just these two ideas—ﬂux and circulation—we can describe all the laws
 
 矢量场在数学上有两个重要性质，我们将利用它们从场的观点来描述电学定律。若我们想象某种闭合面，并试问是否有「某种东西」从里面流失；这就是说，该场是否有一个「流出」的量？例如，对于速度场，我们也许要问，该面上的速度是否总是向外，或更普遍地问，是否（每单位时间）流出的流体比流入的多。我们把单位时间流经该面的净流体量称为通过该面的「速度通量」。流经一个面积单元的流量恰好等于垂直该面积的速度分量乘以该面积。对于任一个闭合面，净流出量（或通量）等于速度向外的法向分量的平均值乘以该闭合曲面的面积：
 
-通量 =（平均法向分量）·（曲面的面积）. (1.4)
+通量 =（平均法向分量）·（曲面的面积）
 
 在电场的情况下，我们可以在数学上定义与流出量相类似的东西，又称作通量，但这当然不是任何物质的流动，因为电场并不是任何东西的速度。然而，事实证明，场法向分量的平均值这个数学上的量仍有其实用意义。于是，我们来谈谈电通量一一这也是由式 1.4) 定义的。最后，不仅谈论通过一个完全闭合曲面的通量，而且还谈论通过任一个有边界的曲面的通量这也是很有用处的。综上所述，通过这样一个面的通量被定义为矢量的法向分量的平均值乘以该曲面的面积。这些概念如图 1-3 所示
 
@@ -181,11 +154,7 @@ With just these two ideas—ﬂux and circulation—we can describe all the laws
 
 The ﬁrst law of electromagnetism describes the ﬂux of the electric ﬁeld:The ﬂux of E through any closed surface = the net charge inside
 
-,
-
 (1.6)
-
-0
 
 where 0 is a convenient constant. (The constant 0 is usually read as「epsilon-zero」or「epsilon-naught」.) If there are no charges inside the surface, even thoughthere are charges nearby outside the surface, the average normal component of Eis zero, so there is no net ﬂux through the surface. To show the power of thistype of statement, we can show that Eq. (1.6) is the same as Coulomb’s law,provided only that we also add the idea that the ﬁeld from a single charge isspherically symmetric. For a point charge, we draw a sphere around the charge.Then the average normal component is just the value of the magnitude of E atany point, since the ﬁeld must be directed radially and have the same strengthfor all points on the sphere. Our rule now says that the ﬁeld at the surface of thesphere, times the area of the sphere—that is, the outgoing ﬂux—is proportionalto the charge inside. If we were to make the radius of the sphere bigger, the areawould increase as the square of the radius. The average normal component ofthe electric ﬁeld times that area must still be equal to the same charge inside,and so the ﬁeld must decrease as the square of the distance—we get an「inversesquare」ﬁeld.
 
@@ -255,45 +224,12 @@ How does the wire push on the magnet? The current in the wire produces amagnetic
 
 Lines of Bfrom wire
 
-TO
-
-+ TERMINAL
-
-currentinwire
-
-TO
-
-− TERMINAL
-
-N
-
-F (on magnet)S BAR MAGNET
 
 Fig. 1-7. The magnetic ﬁeld of the wire
 
 exerts a force on the magnet.
 
 * We need only to add a remark about some conventions for the sign of the circulation.
-
-1-6
-
-+
-
-+
-
-current
-
-F
-
-F
-
-2
-
-1
-
-−
-
-−
 
 Fig. 1-8. Two wires, carrying current,
 
@@ -307,31 +243,9 @@ Now, we have said that a current through a wire produces a magnetic ﬁeld,and t
 
 In short, electrical currents, as well as magnets, make magnetic ﬁelds. Butwait, what is a magnet, anyway? If magnetic ﬁelds are produced by movingcharges, is it not possible that the magnetic ﬁeld from a piece of iron is really theresult of currents? It appears to be so. We can replace the bar magnet of ourexperiment with a coil of wire, as shown in Fig. 1-9. When a current is passedthrough the coil—as well as through the straight wire above it—we observe amotion of the wire exactly as before, when we had a magnet instead of a coil. Inother words, the current in the coil imitates a magnet. It appears, then, that apiece of iron acts as though it contains a perpetual circulating current. We can,in fact, understand magnets in terms of permanent currents in the atoms of theiron. The force on the magnet in Fig. 1-7 is due to the second term in Eq. (1.1).
 
-B
-
-(from coil)
-
-current
-
-TO
-
-+ TERMINAL
-
-F
-
-(on wire)
-
-TO
-
-− TERMINAL
-
-COIL OF WIRE
-
-currentin coil
 
 Fig. 1-9. The bar magnet of Fig. 1-6 canbe replaced by a coil carrying an electricalcurrent. A similar force acts on the wire.
 
-1-7
 
 Where do the currents come from? One possibility would be from the motionof the electrons in atomic orbits. Actually, that is not the case for iron, althoughit is for some materials. In addition to moving around in an atom, an electron alsospins about on its own axis—something like the spin of the earth—and it is thecurrent from this spin that gives the magnetic ﬁeld in iron. (We say「somethinglike the spin of the earth」because the question is so deep in quantum mechanicsthat the classical ideas do not really describe things too well.) In most substances,some electrons spin one way and some spin the other, so the magnetism cancelsout, but in iron—for a mysterious reason which we will discuss later—many ofthe electrons are spinning with their axes lined up, and that is the source of themagnetism.
 
@@ -342,8 +256,6 @@ Fig. 1-10. The circulation of B aroundthe curve C is given either by the current
 The ﬁrst term on the right-hand side of Eq. (1.9) was discovered theoreticallyby Maxwell and is of great importance. It says that changing electric ﬁeldsproduce magnetic eﬀects. In fact, without this term the equation would notmake sense, because without it there could be no currents in circuits that arenot complete loops. But such currents do exist, as we can see in the followingexample. Imagine a capacitor made of two ﬂat plates. It is being charged bya current that ﬂows toward one plate and away from the other, as shown inFig. 1-10. We draw a curve C around one of the wires and ﬁll it in with a surfacewhich crosses the wire, as shown by the surface S1 in the ﬁgure. According toEq. (1.9), the circulation of B around C (times c2) is given by the current in thewire (divided by 0). But what if we ﬁll in the curve with a diﬀerent surface S2,which is shaped like a bowl and passes between the plates of the capacitor, stayingalways away from the wire? There is certainly no current through this surface.But, surely, just changing the location of an imaginary surface is not going tochange a real magnetic ﬁeld! The circulation of B must be what it was before.The ﬁrst term on the right-hand side of Eq. (1.9) does, indeed, combine with thesecond term to give the same result for the two surfaces S1 and S2. For S2 thecirculation of B is given in terms of the rate of change of the ﬂux of E betweenthe plates of the capacitor. And it works out that the changing E is related tothe current in just the way required for Eq. (1.9) to be correct. Maxwell sawthat it was needed, and he was the ﬁrst to write the complete equation.
 
 With the setup shown in Fig. 1-6 we can demonstrate another of the laws ofelectromagnetism. We disconnect the ends of the hanging wire from the batteryand connect them to a galvanometer which tells us when there is a current throughthe wire. When we push the wire sideways through the magnetic ﬁeld of themagnet, we observe a current. Such an eﬀect is again just another consequence ofEq. (1.1)—the electrons in the wire feel the force F = qv× B. The electrons havea sidewise velocity because they move with the wire. This v with a vertical Bfrom the magnet results in a force on the electrons directed along the wire, whichstarts the electrons moving toward the galvanometer.
-
-1-8
 
 Suppose, however, that we leave the wire alone and move the magnet. Weguess from relativity that it should make no diﬀerence, and indeed, we observea similar current in the galvanometer. How does the magnetic ﬁeld produceforces on charges at rest? According to Eq. (1.1) there must be an electricﬁeld. A moving magnet must make an electric ﬁeld. How that happens is saidquantitatively by Eq. (1.7). This equation describes many phenomena of greatpractical interest, such as those that occur in electric generators and transformers.The most remarkable consequence of our equations is that the combination ofEq. (1.7) and Eq. (1.9) contains the explanation of the radiation of electromagneticeﬀects over large distances. The reason is roughly something like this: supposethat somewhere we have a magnetic ﬁeld which is increasing because, say, acurrent is turned on suddenly in a wire. Then by Eq. (1.7) there must be acirculation of an electric ﬁeld. As the electric ﬁeld builds up to produce itscirculation, then according to Eq. (1.9) a magnetic circulation will be generated.But the building up of this magnetic ﬁeld will produce a new circulation of theelectric ﬁeld, and so on. In this way ﬁelds work their way through space withoutthe need of charges or currents except at their source. That is the way we seeeach other! It is all in the equations of the electromagnetic ﬁelds.
 
