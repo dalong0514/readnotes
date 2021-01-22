@@ -116,6 +116,16 @@
 
 1『磁铁有磁场的原理，做一张信息数据卡片。』——已完成
 
+### 0605. 数据信息卡 —— 冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的
+
+We now return to our drop of water and look in another direction. Suppose that we decrease the temperature of our drop of water. Suppose that the jiggling of the molecules of the atoms in the water is steadily decreasing. We know that there are forces of attraction between the atoms, so that after a while they will not be able to jiggle so well. What will happen at very low temperatures is indicated in Fig. 1-4: the molecules lock into a new pattern which is ice. This particular schematic diagram of ice is wrong because it is in two dimensions, but it is right qualitatively. The interesting point is that the material has a deﬁnite place for every atom, and you can easily appreciate that if somehow or other we were to hold all the atoms at one end of the drop in a certain arrangement, each atom in a certain place, then because of the structure of interconnections, which is rigid, the other end miles away (at our magniﬁed scale) will have a deﬁnite location. So if we hold a needle of ice at one end, the other end resists our pushing it aside, unlike the case of water, in which the structure is broken down because of the increased jiggling so that the atoms all move around in diﬀerent ways. 
+
+The diﬀerence between solids and liquids is, then, that in a solid the atoms are arranged in some kind of an array, called a crystalline array, and they do not have a random position at long distances; the position of the atoms on one side of the crystal is determined by that of other atoms millions of atoms away on the other side of the crystal. 
+
+Figure 1-4 is an invented arrangement for ice, and although it contains many of the correct features of ice, it is not the true arrangement. One of the correct features is that there is a part of the symmetry that is hexagonal. You can see that if we turn the picture around an axis by 60◦, the picture returns to itself. So there is a symmetry in the ice which accounts for the six-sided appearance of snowﬂakes. Another thing we can see from Fig. 1-4 is why ice shrinks when it melts. The particular crystal pattern of ice shown here has many「holes」in it, as does the true ice structure. When the organization breaks down, these holes can be occupied by molecules. Most simple substances, with the exception of water and type metal, expand upon melting, because the atoms are closely packed in the solid crystal and upon melting need more room to jiggle around, but an open structure collapses, as in the case of water.
+
+2『冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的。做一张信息数据卡片。2021-01-22』——已完成
+
 ### 0701. 任意卡 —— 水里的软木塞，类比电磁场中的电荷
 
 于是我们就有了两条规则：1）电荷产生电场；2）电荷在电场中会受到力的作用而运动。如果我们讨论下述现象的话，建立这两条规则的理由就清楚了：假如我们使某物体（比方说梳子）带电，然后把一张带电的纸片放在一定距离之外，当我们来回移动梳子时，纸片就会有反应，并且总是指向梳子。如果我们使梳子晃动得快些，就会发现纸片的运动有点滞后，即作用有所延迟（起先，当我们相当慢地晃动梳子时，我们发现一种错综复杂的现象，这就是磁。磁的影响与作相对运动的电荷有关，所以磁力和电的作用力实际上可以归之于一个场，就像同一件事的两个不同的方面。变化的电场不能离开磁而存在）。假如我们把纸片移得更远，滞后就更大，这时能观察到一件有趣的事：虽然两个带电体之间的作用力应当与距离平方成反比，但是我们发现，当摇动一个电荷时，电作用的影响范围要比起初所猜想的大得多。这就是说，作用的减弱要比反平方的规则来得慢。
@@ -123,3 +133,9 @@
 这里有一个类比：如果我们在水池里，而在近处漂浮着一个软木塞，我们可以用另一个软木塞划水来「直接」移动那个木塞。如果现在你只注意两个软木塞，你能看到的将是一个立即响应另一个的运动 一一 在软木塞之间存在着某种「相互作用」。当然，我们实际上所做的只是搅动了水；然后水又去扰动另一个木塞。于是我们就能提出一条「定律」：如果稍微划下水，那么水中附近的物体就会移动。当然，假若第二个软木塞离得较远，则它将几乎不动，因为我们只是局部地搅动水。另一方面，假如我们晃动木塞，就会产生一个新的现象，即这部分水推动了那部分水，等等，于是波就传播开去，这样，由于晃动，就有一种波及十分远的影响和一种振荡的影响，这是无法用直接相互作用来理解的。所以那种直接作用的概念必须用水的存在来代替，或者，对于电的情形，用我们所谓的电磁场来代替。
 
 2『水里的软木塞，类比电磁场中的电荷，费曼这个隐喻太赞了。做一张任意卡片。』——已完成
+
+### 0702. 任意卡 —— 对临界温度临界压力的理解
+
+Now although ice has a「rigid」crystalline form, its temperature can change —  ice has heat. If we wish, we can change the amount of heat. What is the heat in the case of ice? The atoms are not standing still. They are jiggling and vibrating. So even though there is a deﬁnite order to the crystal — a deﬁnite structure — all of the atoms are vibrating「in place.」As we increase the temperature, they vibrate with greater and greater amplitude, until they shake themselves out of place. We call this melting. As we decrease the temperature, the vibration decreases and decreases until, at absolute zero, there is a minimum amount of vibration that the atoms can have, but not zero. This minimum amount of motion that atoms can have is not enough to melt a substance, with one exception: helium. Helium merely decreases the atomic motions as much as it can, but even at absolute zero there is still enough motion to keep it from freezing. Helium, even at absolute zero, does not freeze, unless the pressure is made so great as to make the atoms squash together. If we increase the pressure, we can make it solidify.
+
+1-2-3『这里跟常压下临界温度、临界压力的概念关联上了，比如一个物质的临界温度小于常温，你在常温下再怎么加压也没法使其液化，水的临界温度很高，所以水蒸气很容易冷凝。费曼这里说，氦气在常压下，再怎么降温，它也不会液化。直觉上跟临界温度临界压力是一个底层逻辑。做一张任意卡片，待验证。（2021-01-22）』——已完成
