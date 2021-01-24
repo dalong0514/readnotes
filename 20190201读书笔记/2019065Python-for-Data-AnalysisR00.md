@@ -4,15 +4,15 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——广播
+### 0201. 术语卡 —— 广播
 
 不同大小的数组之间的运算叫做广播（broadcasting），将在附录 A 中对其进行详细讨论。
 
-### 0202. 术语卡——结构化数据
+### 0202. 术语卡 —— 结构化数据
 
 When I say「data,」what am I referring to exactly? The primary focus is on structured data, a deliberately vague term that encompasses many different common forms of data, such as: 
 
@@ -30,9 +30,9 @@ This is by no means a complete list. Even though it may not always be obvious, a
 
 这绝不是一个完整的列表。大部分数据集都能被转化为更加适合分析和建模的结构化形式，虽然有时这并不是很明显。如果不行的话，也可以将数据集的特征提取为某种结构化形式。例如，一组新闻文章可以被处理为一张词频表，而这张词频表就可以用于情感分析。
 
-### 0203. 术语卡——
+### 0203. 术语卡 ——
 
-### 0301. 人名卡——Wes Mckinney
+### 0301. 人名卡 —— Wes Mckinney
 
 [wesm (Wes McKinney - GitHub)](https://github.com/wesm)
 
@@ -40,7 +40,7 @@ Wes Mckinney，本书作者，pandas 的创建者。
 
 Director of https://ursalabs.org/. Creator of Python pandas. Co-creator Apache Arrow. @apache Member and Apache Parquet PMC.
 
-### 0401. 任意卡——创建变量即创建了一个指向等号右边对象的引用
+### 0401. 任意卡 —— 创建变量即创建了一个指向等号右边对象的引用
 
 变量和参数传递。在 Python 中对一个变量（或者变量名）赋值时，你就创建了一个指向等号右边对象的引用。考虑一个整数列表；假设将 a 赋值给一个新变量 b，在某些语言中，会是数据 [1, 2, 3] 被拷贝的过程。但在 Python 中，a 和 b 实际上是指向了相同的对象，即原来的 [1, 2, 3]（在图 2-7 中示范）。你可以通过向 a 中添加一个元素，然后检查 b 来证明；理解 Python 引用语义中复制数据的时机、方法和原因的机制，对于利用 Python 处理大数据集尤其重要。
 
