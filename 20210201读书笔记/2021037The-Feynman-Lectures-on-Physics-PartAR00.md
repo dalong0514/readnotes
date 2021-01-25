@@ -10,6 +10,10 @@
 
 反常识：温度越低溶解度不一定越大。
 
+In passing, we mention that the concept of a molecule of a substance is only approximate and exists only for a certain class of substances. It is clear in the case of water that the three atoms are actually stuck together. It is not so clear in the case of sodium chloride in the solid. There is just an arrangement of sodium and chlorine ions in a cubic pattern. There is no natural way to group them as「molecules of salt.」
+
+Returning to our discussion of solution and precipitation, if we increase the temperature of the salt solution, then the rate at which atoms are taken away is increased, and so is the rate at which atoms are brought back. It turns out to be very difficult, in general, to predict which way it is going to go, whether more or less of the solid will dissolve. Most substances dissolve more, but some substances dissolve less, as the temperature increases.
+
 我们顺便说一下，物质的分子这个概念只是近似的，而且只是对某些种类的物质才有意义。很清楚，在水的情况下，三个原子彼此确实粘在一起，但是在固体的氯化钠情况下就不那么明确了。在氯化钠中钠离子和氯离子只是以立方体的形式排列。这里没有一种把它们自然分成「食盐分子」的方式。
 
 1『分子的概念只是近似的，这句话醍醐灌顶，解答了之前的困惑，总觉得晶体、金属这个固体物质，用「分子说」解释不通。其实「分子说」只是一种不错的模型，不需要局限于物质都是由分子构成的，是个模型就尤其局限性，目前个人的理解分子论比较适用的是液体和气体。（2021-01-18）』
@@ -93,6 +97,8 @@
 1-2『上面对原子尺寸的比喻真贴切，一下子有了感性认知，费曼 NB 就 NB 在这一点上，他总是能给你举一些很贴切的例子把高深的东西讲的特别通俗。做一张信息数据卡片。』——已完成
 
 ### 0602. 数据信息卡 —— 液体蒸发会导致冷却
+
+Here is something else: Which molecules leave? When a molecule leaves it is due to an accidental, extra accumulation of a little bit more than ordinary energy, which it needs if it is to break away from the attractions of its neighbors. Therefore, since those that leave have more energy than the average, the ones that are left have less average motion than they had before. So the liquid gradually cools if it evaporates. Of course, when a molecule of vapor comes from the air to the water below there is a sudden great attraction as the molecule approaches the surface. This speeds up the incoming molecule and results in generation of heat. So when they leave they take away heat; when they come back they generate heat. Of course when there is no net evaporation the result is nothing — the water is not changing temperature. If we blow on the water so as to maintain a continuous preponderance in the number evaporating, then the water is cooled. Hence, blow on soup to cool it!
 
 这里还有另一件事情：哪些分子会离开？一个分子能离开水面是由于它偶然比通常情况稍微多积累了一些能量，这样才能使它摆脱邻近分子的吸引。结果，由于离开水面的分子带走的能量比平均能量大，留在水中的分子的运动平均起来就比先前减弱。因此液体蒸发时会逐渐冷却。当然，当一个水蒸气分子从空气中跑向水面时，它一靠近水面就要突然受到一个很强的吸引。这就使它进入水中时具有更大的速度，结果就产生热量。所以当水分子离开水面时，它们带走了热量；而当它们回到水面时，则产生了热量。当然，如果不存在净的蒸发现象的话，什么结果也不会发生 —— 水的温度并不改变。如果我们向水面上吹风，使蒸发的分子数一直占优势，水就会冷却。因此，要使汤冷却就得不停地吹！
 

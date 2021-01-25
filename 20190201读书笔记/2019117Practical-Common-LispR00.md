@@ -489,10 +489,6 @@ However, sometimes it's convenient to be able to return from the middle of a fun
 
 在 autolisp 里总算找到了替代函数 [vl-exit-with-value (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-80622A39-A5E8-4E68-824E-E66BD8D3E9DE)。通过它可以实现函数的多个出口。
 
-```c
-
-```
-
 函数多出口的实现，做一张任意卡片。（2021-01-05）——已完成
 
 』
