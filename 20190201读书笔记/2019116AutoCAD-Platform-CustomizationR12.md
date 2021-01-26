@@ -56,33 +56,20 @@ An example of a command macro using the same input as the previous example might
 ^C^C._circle;\_d;0.125;
 ```
 
-As you can see, I used five special characters in the example macro that were not present as part of the original input entered at the command prompt: 
-
-```c
-^ (caret), . (period), _ (underscore), ; (semicolon), and \ (backslash). 
-```
+As you can see, I used five special characters in the example macro that were not present as part of the original input entered at the command prompt: `^ `(caret), `.` (period), `_` (underscore), `;` (semicolon), and `\` (backslash). 
 
 Table 5.1 explains the significance of each macro component.
 
-```c
-Macro Component Description
-
-^C^C Simulates the pressing of the Esc key twice.
-
-._circle Passes the circle command to the command prompt.
-
-; Simulates the pressing of the Enter key to start the circle command.
-
-\ Pauses for the user to specify the center point of the circle.
-
-_d Indicates that the Diameter option of the circle command will be used.
-
-; Simulates the pressing of the Enter key to accept the Diameter option.
-
-0.125 Specifies the value for the Diameter option.
-
-; Simulates the pressing of the Enter key to accept the diameter value. Since this is the last expected value, the circle command ends too.
-```
+| Macro Component |  Description |
+| --- | --- | --- |
+| `^C^C` |  Simulates the pressing of the Esc key twice. |
+| `._circle` | Passes the circle command to the command prompt. |
+| `;` | Simulates the pressing of the Enter key to start the circle command. |
+| `\` | Pauses for the user to specify the center point of the circle. |
+| `_d` | Indicates that the Diameter option of the circle command will be used. |
+| `; ` | Simulates the pressing of the Enter key to accept the Diameter option. |
+| 0.125 | Specifies the value for the Diameter option. |
+| `;` | Simulates the pressing of the Enter key to accept the diameter value. Since this is the last expected value, the circle command ends too. |
 
 Table 5.2 lists the most common special characters used in a command macro.
 
@@ -163,7 +150,6 @@ Press Enter again to end the mtext command and leave the command-line window ope
 What's That Hyphen? As I discussed earlier, commands that display dialog boxes or palettes should be avoided in macros when you want to use specific values. Adding a leading hyphen to many commands that normally display a dialog box or palette starts an alternate command that displays a series of prompts instead. For example, use -layer instead of layer when you want to create a layer from a command macro, or -insert instead of insert to insert a block. See Chapter 8,「Automating Repetitive Tasks,」for a listing of alternative commands and system variables that allow you to avoid opening dialog boxes and palettes.
 
 After you've worked through the process at the command prompt, you can use that information to convert the process to a macro. The next steps walk you through the process of converting input entered at the command prompt into a command macro:
-
 
 Press F2 to expand the command-line history or display the AutoCAD Text Window.
 
@@ -1004,19 +990,19 @@ Figure 5.29 Controlling the appearance and behavior of the Quick Properties pale
 
 Use the following steps to customize the properties displayed on the rollover tooltip (or Quick Properties palette) for a Hatch object:
 
-1. Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-2. In the Customizations In pane of the CUI Editor, select the Rollover Tooltips (or Quick Properties) node.
+2 In the Customizations In pane of the CUI Editor, select the Rollover Tooltips (or Quick Properties) node.
 
-3. In the Dynamic pane, select Hatch from the Object Type list (see Figure 5.30). If Hatch is not displayed, click Edit Object Type List at the top of the Object Type list. In the Edit Object Type List dialog box, click Hatch and then click OK.
+3 In the Dynamic pane, select Hatch from the Object Type list (see Figure 5.30). If Hatch is not displayed, click Edit Object Type List at the top of the Object Type list. In the Edit Object Type List dialog box, click Hatch and then click OK.
 
-4. In the Properties list, to the right of the Object Type list, click Area under the Geometry category.
+4 In the Properties list, to the right of the Object Type list, click Area under the Geometry category.
 
-5. Click OK to save the changes made.
+5 Click OK to save the changes made.
 
-6. Create a closed area and apply a hatch pattern to it.
+6 Create a closed area and apply a hatch pattern to it.
 
-7. Position the cursor over the hatch object, and you should see Area as a property on the rollover tooltip. If you customized the properties for the Quick Properties palette, select the hatch object and right-click. Click Quick Properties to display the Quick Properties palette if it is not already displayed.
+7 Position the cursor over the hatch object, and you should see Area as a property on the rollover tooltip. If you customized the properties for the Quick Properties palette, select the hatch object and right-click. Click Quick Properties to display the Quick Properties palette if it is not already displayed.
 
 1『
 
@@ -1046,71 +1032,69 @@ It is not uncommon to create multiple workspaces. For example, AutoCAD comes wit
 
 These steps explain how to create a new workspace based on the Drafting & Annotation workspace that is defined in the acad.cuix file:
 
-1. Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
+1 Display the CUI Editor if it is not open. On the ribbon, click Manage tab Customization panel User Interface.
 
-2. In the Customizations In pane of the CUI Editor, expand the Workspaces node and select the Drafting & Annotation workspace.
+2 In the Customizations In pane of the CUI Editor, expand the Workspaces node and select the Drafting & Annotation workspace.
 
-3. Right-click over the Drafting & Annotation workspace node and select Duplicate.
+3 Right-click over the Drafting & Annotation workspace node and select Duplicate.
 
-4. In the Properties pane, enter Custom Workspace in the Name field.
+4 In the Properties pane, enter Custom Workspace in the Name field.
 
-5. Optionally, in the Properties pane, change any of the other available properties for the workspace as needed.
+5 Optionally, in the Properties pane, change any of the other available properties for the workspace as needed.
 
-6. In the Workspace Contents pane, click Customize Workspace.
+6 In the Workspace Contents pane, click Customize Workspace.
 
-7. In the Customizations In pane, select the user-interface elements you want to display or deselect those you do not want displayed.
+7 In the Customizations In pane, select the user-interface elements you want to display or deselect those you do not want displayed.
 
-8. In the Workspace Contents pane, do any or all of the following, and then click Done: 
+8 In the Workspace Contents pane, do any or all of the following, and then click Done: 
     
-    - Select the Quick Access Toolbar node and specify if you want to display the QAT above or below the ribbon. 
+Select the Quick Access Toolbar node and specify if you want to display the QAT above or below the ribbon. 
     
-    - Expand the Toolbars node and select the first toolbar. Change the settings in the Properties pane as needed. Do this for each toolbar that is under the Toolbars node.
+Expand the Toolbars node and select the first toolbar. Change the settings in the Properties pane as needed. Do this for each toolbar that is under the Toolbars node.
 
-    - Expand the Menus node and drag to reorder the pull-down menus for the menu bar.
+Expand the Menus node and drag to reorder the pull-down menus for the menu bar.
 
-    - Expand the Palettes node and select the first palette. Change the settings in the Properties pane as needed. Do this for each palette that is under the Palettes node.
+Expand the Palettes node and select the first palette. Change the settings in the Properties pane as needed. Do this for each palette that is under the Palettes node.
 
-    - Expand the Ribbon Tabs node and select the first tab. Change the settings in the Properties pane as needed. Do this for each tab that is under the Ribbon Tabs node.
+Expand the Ribbon Tabs node and select the first tab. Change the settings in the Properties pane as needed. Do this for each tab that is under the Ribbon Tabs node.
 
-    - Expand the first ribbon tab node under Ribbon Tabs, and select the first panel. Change the settings in the Properties pane as needed. Do this for each panel that is on the selected ribbon tab, and then do this for each tab that is under the Ribbon Tabs node.
+Expand the first ribbon tab node under Ribbon Tabs, and select the first panel. Change the settings in the Properties pane as needed. Do this for each panel that is on the selected ribbon tab, and then do this for each tab that is under the Ribbon Tabs node.
 
-9. Click OK to save the changes to the workspace.
+9 Click OK to save the changes to the workspace.
 
 You can also change the display state and position of user-interface elements from the AutoCAD user interface and update a workspace by doing the following:
 
-1. With the CUI Editor closed, do any of the following: Quick Access toolbar: Right-click over a command or control, and then click Show Quick Access Toolbar Below/Above The Ribbon to move the QAT above or below the ribbon.
+1 With the CUI Editor closed, do any of the following: Quick Access toolbar: Right-click over a command or control, and then click Show Quick Access Toolbar Below/Above The Ribbon to move the QAT above or below the ribbon.
 
-    - Ribbon tabs: Right-click over a tab and click Show Tabs, and then click the tab you want to show/hide that is associated with the current workspace. You can also click and drag a tab on the ribbon to change its display order.
+Ribbon tabs: Right-click over a tab and click Show Tabs, and then click the tab you want to show/hide that is associated with the current workspace. You can also click and drag a tab on the ribbon to change its display order.
 
-    - Ribbon panels: Click a tab to set it as current and then right-click over the tab. Click Show Panel and then click the panel you want to show/hide that is associated with the tab. You can also click and drag a panel on the ribbon to change its display order, or even drag the panel outside of the ribbon to float the panel. When floating, the panel remains displayed even upon switching tabs.
+Ribbon panels: Click a tab to set it as current and then right-click over the tab. Click Show Panel and then click the panel you want to show/hide that is associated with the tab. You can also click and drag a panel on the ribbon to change its display order, or even drag the panel outside of the ribbon to float the panel. When floating, the panel remains displayed even upon switching tabs.
 
-    - Toolbars: On the ribbon, click View tab User Interface panel Toolbars drop-down menu <Customization Group Name> and then the name of the toolbar you want to show or hide. After a toolbar is displayed, drag it on the screen and along the inner edges of the application window to dock it.
+Toolbars: On the ribbon, click View tab User Interface panel Toolbars drop-down menu <Customization Group Name> and then the name of the toolbar you want to show or hide. After a toolbar is displayed, drag it on the screen and along the inner edges of the application window to dock it.
 
-    - Pull-down menus: On the Quick Access toolbar, click the Customization menu button located on the right side. Click Show/Hide Menu Bar to control the display of the menu bar and pull-down menus. The menubar system variable can also be used to display or hide the menu bar. You can't add or remove pull-down menus from the user interface unless you load a partial menu or use AutoLISP or a custom program.
+Pull-down menus: On the Quick Access toolbar, click the Customization menu button located on the right side. Click Show/Hide Menu Bar to control the display of the menu bar and pull-down menus. The menubar system variable can also be used to display or hide the menu bar. You can't add or remove pull-down menus from the user interface unless you load a partial menu or use AutoLISP or a custom program.
 
-    - Palettes: On the ribbon, click View tab Palettes and click the palettes you want to display as part of the workspace. After a palette is displayed, drag it on screen and along the edges of the application window to dock it.
+Palettes: On the ribbon, click View tab Palettes and click the palettes you want to display as part of the workspace. After a palette is displayed, drag it on screen and along the edges of the application window to dock it.
 
-    - Status bar: On the status bar, click the Application Status Bar Menu button and click Drawing Status Bar to control the state of the application and drawing-window status bars. You can also control the state of the status bar with the statusbar system variable.
+Status bar: On the status bar, click the Application Status Bar Menu button and click Drawing Status Bar to control the state of the application and drawing-window status bars. You can also control the state of the status bar with the statusbar system variable.
 
-2. On the QAT, from the Workspace drop-down list select Save Current As (or at the command prompt, type wssave and press Enter).
+2 On the QAT, from the Workspace drop-down list select Save Current As (or at the command prompt, type wssave and press Enter).
 
-3. In the Save Workspace dialog box, select a workspace from the drop-down list to update an existing workspace or enter a name to create a new workspace. Click Save. If you selected a workspace name, click Replace.
+3 In the Save Workspace dialog box, select a workspace from the drop-down list to update an existing workspace or enter a name to create a new workspace. Click Save. If you selected a workspace name, click Replace.
 
 TIP: The process for placing toolbars and palettes just where you want them can be tedious. After you finalize the position, use the Lock Toolbar/Window Positions control on the status bar to lock their position so they are not accidentally moved. You can also use the lockui system variable to lock toolbars and palettes in place.
 
 After you have created a workspace, you must set it as current before the changes to the user interface will take place. Use any of the following methods to set a workspace as current:
 
-```
-Select a workspace from the Workspace drop-down list on the QAT, or choose one from the Workspace Switching icon on the status bar.
+1 Select a workspace from the Workspace drop-down list on the QAT, or choose one from the Workspace Switching icon on the status bar.
 
-In the Customizations In pane of the CUI Editor, expand the Workspaces node and select the workspace you want to set as current. Right-click the workspace and select Set Current.
+2 In the Customizations In pane of the CUI Editor, expand the Workspaces node and select the workspace you want to set as current. Right-click the workspace and select Set Current.
 
-On the Workspace toolbar, select a workspace from the Workspace drop-down list.
+3 On the Workspace toolbar, select a workspace from the Workspace drop-down list.
 
-Prior to launching AutoCAD, you can use the /w command-line switch with a Desktop shortcut to set a specific workspace as current. For more information on command-line switches, see Chapter 4,「Manipulating the Drawing Environment.」
+4 Prior to launching AutoCAD, you can use the /w command-line switch with a Desktop shortcut to set a specific workspace as current. For more information on command-line switches, see Chapter 4,「Manipulating the Drawing Environment.」
 
-While AutoCAD is running, you can use the wscurrent system variable to see which workspace is current and even switch workspaces.
-```
+5 While AutoCAD is running, you can use the wscurrent system variable to see which workspace is current and even switch workspaces.
 
 TIP: If you want to retain any changes to the workspace that you make through the user interface before switching to a different workspace, make sure you change the When Switching Workspaces setting in the Workspace Settings dialog box (wssettings command). This dialog box also lets you specify the order in which workspaces appear on drop-down lists in the user interface.
 
@@ -1122,11 +1106,11 @@ Earlier AutoCAD releases shipped with files named acad.mnu and acad.cui, which w
 
 The AutoCAD user interface supports three types of customization files:
 
-1. Main. The main CUIx file should be writeable and typically contains most of, if not all, of the default AutoCAD user-interface elements. In most configurations, this is the acad.cuix file that ships with AutoCAD.
+1 Main. The main CUIx file should be writeable and typically contains most of, if not all, of the default AutoCAD user-interface elements. In most configurations, this is the acad.cuix file that ships with AutoCAD.
 
-2. Enterprise. The enterprise CUIx file is read-only by design and typically contains your corporate customization, but it could also be the acad.cuix file that ships with AutoCAD. When the acad.cuix file is designated as the enterprise CUIx file, then your corporate customization is often designated as your main CUIx file. The enterprise CUIx file itself might not be marked as read-only, but the CUI Editor does not allow you to make changes to it.
+2 Enterprise. The enterprise CUIx file is read-only by design and typically contains your corporate customization, but it could also be the acad.cuix file that ships with AutoCAD. When the acad.cuix file is designated as the enterprise CUIx file, then your corporate customization is often designated as your main CUIx file. The enterprise CUIx file itself might not be marked as read-only, but the CUI Editor does not allow you to make changes to it.
 
-3. Partial. Partial customization files, as the name implies, do not contain all of the elements that you might find in the standard AutoCAD user interface. The user-interface elements used by third-party utilities and plug-ins, and even the Express Tools user-interface elements, are often implemented with partial CUIx files. These typically contain a few toolbars, ribbon tabs and panels, and pull-down menus, but they can also contain dozens of additional user-interface elements.
+3 Partial. Partial customization files, as the name implies, do not contain all of the elements that you might find in the standard AutoCAD user interface. The user-interface elements used by third-party utilities and plug-ins, and even the Express Tools user-interface elements, are often implemented with partial CUIx files. These typically contain a few toolbars, ribbon tabs and panels, and pull-down menus, but they can also contain dozens of additional user-interface elements.
 
 No matter whether you use all three types of customization files or just a main CUIx file, consider storing your CUIx file in a centralized location so it can be shared with others. I recommend that you use a partial CUIx file at least for your personal and corporate customization so that you can share it with others in your company, and to make it easier to back up and transition to the latest release.
 
@@ -1136,39 +1120,39 @@ TIP: You can edit the elements of the enterprise CUIx file by setting it as the 
 
 No matter whether you are creating a main, enterprise, or partial CUIx file, the process is exactly the same. The contents and how the file is being loaded are what differentiate one from another. While you can copy and rename a CUIx file through Windows Explorer or File Explorer, you should avoid doing so because it does not change the customization group name inside the file. The following steps show how to create a new CUIx file named myui.cuix:
 
-1. On the ribbon, click Manage tab Customization panel User Interface.
+1 On the ribbon, click Manage tab Customization panel User Interface.
 
-2. In the CUI Editor, click the Transfer tab.
+2 In the CUI Editor, click the Transfer tab.
 
-3. In the Customizations In pane, on the right click Create A New Customization File.
+3 In the Customizations In pane, on the right click Create A New Customization File.
 
-4. Click Save The Current Customization File.
+4 Click Save The Current Customization File.
 
-5. In the Save As dialog box, browse to the folder that you created for this book and type myui in the File Name text box. Click Save.
+5 In the Save As dialog box, browse to the folder that you created for this book and type myui in the File Name text box. Click Save.
 
 If you want to create a new CUIx file from an existing CUIx file, you will want to open the file and then save it with a new name. Use these steps to open and save a CUIx file with a different name:
 
-1. On the ribbon, click Manage tab Customization panel User Interface.
+1 On the ribbon, click Manage tab Customization panel User Interface.
 
-2. In the CUI Editor, click the Transfer tab.
+2 In the CUI Editor, click the Transfer tab.
 
-3. On the right side of the Customizations In pane, click Open Customization File.
+3 On the right side of the Customizations In pane, click Open Customization File.
 
-4. In the Open dialog box, browse to and select the CUIx file you want to open. Click Open.
+4 In the Open dialog box, browse to and select the CUIx file you want to open. Click Open.
 
-5. Click Save The Current Customization File.
+5 Click Save The Current Customization File.
 
-6. In the Save As dialog box, browse to the folder that you want to save the new file to and enter a new name in the File Name text box. Click Save.
+6 In the Save As dialog box, browse to the folder that you want to save the new file to and enter a new name in the File Name text box. Click Save.
 
 #### 5.6.2 Loading CUIx Files
 
 After you create a CUIx file or obtain a CUIx file from a third-party developer or consultant, you must load it so the elements defined in the file can be accessed from the AutoCAD user interface. How you plan to use a CUIx file determines how the file needs to be loaded. You can load a CUIx file using one of the following options:
 
-1. Main Customization File. Click the Application Menu button and then click Options. In the Options dialog box, select the Files tab and expand the Customization Files node. Expand the Main Customization File node and select the path to the CUIx file. Click Browse. In the Select A File dialog box, browse to and select the CUIx file you want to load as the main customization file. Click Open, and then click OK to close the Options dialog box.
+1 Main Customization File. Click the Application Menu button and then click Options. In the Options dialog box, select the Files tab and expand the Customization Files node. Expand the Main Customization File node and select the path to the CUIx file. Click Browse. In the Select A File dialog box, browse to and select the CUIx file you want to load as the main customization file. Click Open, and then click OK to close the Options dialog box.
 
-2. Enterprise Customization File. Click the Application Menu button and then click Options. In the Options dialog box, select the Files tab and expand the Customization Files node. Expand the Enterprise Customization File node and select the path to the CUIx file. Click Browse. In the Select A File dialog box, browse to and select the CUIx file you want to load as the enterprise customization file. Click Open, and then click OK to close the Options dialog box.
+2 Enterprise Customization File. Click the Application Menu button and then click Options. In the Options dialog box, select the Files tab and expand the Customization Files node. Expand the Enterprise Customization File node and select the path to the CUIx file. Click Browse. In the Select A File dialog box, browse to and select the CUIx file you want to load as the enterprise customization file. Click Open, and then click OK to close the Options dialog box.
 
-3. Partial Customization File. On the ribbon, click Manage tab Customization panel User Interface. In the CUI Editor, select the Customize tab, and in the Customizations In pane, click Load Partial Customization File. In the Open dialog box, browse to and select the CUIx file that you want to load. Click Open. The CUIx file is added to the Partial Customization Files node of the main customization file.
+3 Partial Customization File. On the ribbon, click Manage tab Customization panel User Interface. In the CUI Editor, select the Customize tab, and in the Customizations In pane, click Load Partial Customization File. In the Open dialog box, browse to and select the CUIx file that you want to load. Click Open. The CUIx file is added to the Partial Customization Files node of the main customization file.
 
 #### 5.6.3 Transferring User-Interface Elements between CUIx Files
 
@@ -1178,11 +1162,11 @@ The CUI Editor not only allows you to create and modify elements for the user in
 
 It is not uncommon that the commands in your CUIx files might use functions or commands defined in an AutoLISP file. There are a few different methods that you can use to make sure that the AutoLISP programs your user-interface elements rely on are loaded for use by your CUIx file. The following outlines the methods you can use to load an AutoLISP file for use with a CUIx file:
 
-1. AutoCAD searches for an AutoLISP Menu (MNL) file that has the same name as a CUIx file that is being loaded. If the MNL file is located, AutoCAD loads it along with the CUIx file into each drawing that is created or opened while the CUIx file is loaded.
+1 AutoCAD searches for an AutoLISP Menu (MNL) file that has the same name as a CUIx file that is being loaded. If the MNL file is located, AutoCAD loads it along with the CUIx file into each drawing that is created or opened while the CUIx file is loaded.
 
-2. Using the CUI Editor, you can add AutoLISP (LSP) files to the LISP Files node. These files are loaded when the CUIx file is loaded and a new drawing is created or opened.
+2 Using the CUI Editor, you can add AutoLISP (LSP) files to the LISP Files node. These files are loaded when the CUIx file is loaded and a new drawing is created or opened.
 
-3. Using the Load/Unload Applications dialog box (appload command), you can manually load an AutoLISP (LSP) file or add it to the Startup Suite. The Startup Suite loads the files that are listed when a new drawing is created or an existing drawing file is opened.
+3 Using the Load/Unload Applications dialog box (appload command), you can manually load an AutoLISP (LSP) file or add it to the Startup Suite. The Startup Suite loads the files that are listed when a new drawing is created or an existing drawing file is opened.
 
 1『 lsp 文件名跟 cuix 文件名保持一致。』
 
@@ -1192,10 +1176,10 @@ AutoCAD supports two status bars: drawing and application window. By default, bo
 
 Unlike other user-interface elements, the settings that control the display of the tools on the toolbar are not stored in the CUIx file or controlled by the current workspace, with the exception of the current status-bar state (statusbar system variable). To control which tools are displayed on the status bar, do one of the following:
 
-1. Application Status Bar Menu. Click the Application Status Bar Menu button (see Figure 5.31) to control the display of the coordinates area and drafting aids on the status bar. You can also access controls related to layers, drawing views, workspaces, and display locking, among others. This menu allows you to display the Tray Settings dialog box and toggle the display of the drawing status bar.
+1 Application Status Bar Menu. Click the Application Status Bar Menu button (see Figure 5.31) to control the display of the coordinates area and drafting aids on the status bar. You can also access controls related to layers, drawing views, workspaces, and display locking, among others. This menu allows you to display the Tray Settings dialog box and toggle the display of the drawing status bar.
 
-2. Drawing Status Bar. Menu When the drawing status bar is displayed, it contains the controls related to annotation scaling and the system tray. Click the drawing status-bar menu to toggle which annotation scaling tools you want to display.
+2 Drawing Status Bar. Menu When the drawing status bar is displayed, it contains the controls related to annotation scaling and the system tray. Click the drawing status-bar menu to toggle which annotation scaling tools you want to display.
 
-3. Tray Settings Dialog Box. Controls the display of icons and notifications for services that are running in the application or current drawing. You can also specify the duration that a notification is displayed for, or whether it is displayed until you close it. The actual enabling or disabling of a service is not handled in this dialog box; you must do that on a feature-by-feature basis. For example, you can use the xrefnotify system variable to control the display of xref notifications or the layernotify system variable to display alerts for unreconciled new layers.
+3 Tray Settings Dialog Box. Controls the display of icons and notifications for services that are running in the application or current drawing. You can also specify the duration that a notification is displayed for, or whether it is displayed until you close it. The actual enabling or disabling of a service is not handled in this dialog box; you must do that on a feature-by-feature basis. For example, you can use the xrefnotify system variable to control the display of xref notifications or the layernotify system variable to display alerts for unreconciled new layers.
 
 Figure 5.31 Controlling the display of tools on the status bar
