@@ -24,6 +24,16 @@ Returning to our discussion of solution and precipitation, if we increase the te
 
 ### 0101. 主题卡 —— 验证猜测的三个方法
 
+How can we tell whether the rules which we「guess」at are really right if we cannot analyze the game very well? There are, roughly speaking, three ways. 
+
+2『补充进之前做的主题卡「验证猜测的三个方法」。（2021-01-27）』——已完成
+
+First, there may be situations where nature has arranged, or we arrange nature, to be simple and to have so few parts that we can predict exactly what will happen, and thus we can check how our rules work. (In one corner of the board there may be only a few chess pieces at work, and that we can ﬁgure out exactly.) 
+
+A second good way to check rules is in terms of less speciﬁc rules derived from them. For example, the rule on the move of a bishop on a chessboard is that it moves only on the diagonal. One can deduce, no matter how many moves may be made, that a certain bishop will always be on a red square. So, without being able to follow the details, we can always check our idea about the bishop’s motion by ﬁnding out whether it is always on a red square. Of course it will be, for a long time, until all of a sudden we ﬁnd that it is on a black square (what happened of course, is that in the meantime it was captured, another pawn crossed for queening, and it turned into a bishop on a black square). That is the way it is in physics. For a long time we will have a rule that works excellently in an over-all way, even when we cannot follow the details, and then some time we may discover a new rule. From the point of view of basic physics, the most interesting phenomena are of course in the new places, the places where the rules do not work — not the places where they do work! That is the way in which we discover new rules. 
+
+The third way to tell whether our ideas are right is relatively crude but probably the most powerful of them all. That is, by rough approximation. While we may not be able to tell why Alekhine moves this particular piece, perhaps we can roughly understand that he is gathering his pieces around the king to protect it, more or less, since that is the sensible thing to do in the circumstances. In the same way, we can often understand nature, more or less, without being able to see what every little piece is doing, in terms of our understanding of the game. 
+
 如果我们不能很好地分析这盘象棋游戏，那么又怎样来辨别我们「猜测」出的规则实际上是否正确呢？大致地讲，可以有三种办法。
 
 第一，可能有这种情况：大自然安排得，或者说我们将大自然安排得十分简单，只有少数几个组成部分，从而使我们能够正确地预测将要发生的事。在这种情况下，我们就能检验我们的规则是怎样起作用的（在棋盘角落里可能只有少数几个棋子在移动，所以我们能够正确地解决）。
@@ -35,6 +45,14 @@ Returning to our discussion of solution and precipitation, if we increase the te
 2『验证猜测的三个方法，做一张主题卡片。』——已完成
 
 ### 0102. 主题卡 —— 大一统理论
+
+At ﬁrst the phenomena of nature were roughly divided into classes, like heat, electricity, mechanics, magnetism, properties of substances, chemical phenomena, light or optics, x-rays, nuclear physics, gravitation, meson phenomena, etc. However, the aim is to see complete nature as diﬀerent aspects of one set of phenomena. That is the problem in basic theoretical physics, today — to ﬁnd the laws behind experiment; to amalgamate these classes. Historically, we have always been able to amalgamate them, but as time goes on new things are found. We were amalgamating very well, when all of a sudden x-rays were found. Then we amalgamated some more, and mesons were found. Therefore, at any stage of the game, it always looks rather messy. A great deal is amalgamated, but there are always many wires or threads hanging out in all directions. That is the situation today, which we shall try to describe.
+
+2『补充进之前做的主题卡「大统一理论」。（2021-01-27）』——已完成
+
+Some historic examples of amalgamation are the following. First, take heat and mechanics. When atoms are in motion, the more motion, the more heat the system contains, and so heat and all temperature eﬀects can be represented by the laws of mechanics. Another tremendous amalgamation was the discovery of the relation between electricity, magnetism, and light, which were found to be diﬀerent aspects of the same thing, which we call today the electromagnetic ﬁeld. Another amalgamation is the uniﬁcation of chemical phenomena, the various properties of various substances, and the behavior of atomic particles, which is in the quantum mechanics of chemistry. The question is, of course, is it going to be possible to amalgamate everything, and merely discover that this world represents diﬀerent aspects of one thing?
+
+Nobody knows. All we know is that as we go along, we ﬁnd that we can amalgamate pieces, and then we ﬁnd some pieces that do not ﬁt, and we keep trying to put the jigsaw puzzle together. Whether there are a ﬁnite number of pieces, and whether there is even a border to the puzzle, is of course unknown. It will never be known until we ﬁnish the picture, if ever. What we wish to do here is to see to what extent this amalgamation process has gone on, and what the situation is at present, in understanding basic phenomena in terms of the smallest set of principles. To express it in a simple manner, what are things made of and how few elements are there?
 
 人们首先把自然界中的现象大致分为几类，如热、电、力学、磁、物性、化学、光或光学、X 射线、核物理、引力、介子等等现象。然而，这样做的目的是将整个自然界看作是一系列现象的许多不同侧面。这就是今天基础理论物理面临的问题：发现隐匿在实验后的定律；把各类现象综合起来。在历史上，人们总能做到这一点，但随着时间的推移，新的事实发现了；我们曾经将现象综合得很好，突然，发现了射线，随后我们又融合了更多事实，但是又发现了介子。因此，在弈棋的任何一个阶段，看起来总是相当凌乱。大量事实被归并了，但总还有许多线索向一切方向延伸出去。这就是今天的状况，也就是我们将试图去描绘的现状。
 
@@ -132,6 +150,12 @@ Figure 1-4 is an invented arrangement for ice, and although it contains many of 
 
 2『冰溶解体积变小，而其他大部分固体，比如金属，溶解体积是增大的。做一张信息数据卡片。2021-01-22』——已完成
 
+### 0605. 数据信息卡 —— 量子具备的两大特性
+
+在 1920 年以前，我们的世界图像大致是这样的：宇宙活动的「舞台」是欧几里得所描绘的三维几何空间，一切事物在被称为「时间」的一种介质里变化，舞台上的基本元素是粒子，例如原子，它们具有某些特性。首先它具有惯性：如果一个粒子正在运动，它将沿着同一方向继续运动下去，除非有力作用其上。此外，第二个基本元素就是力，当时认为共有两类力。第一类力是一种极其复杂细致的相互作用，它们以复杂的方式将各种各样的原子约束在不同的组合之中，它们决定当温度升高时食盐是溶解得快些还是慢些；另一类已知的力是一种长程的相互作用，它是与距离平方成反比而变化的平缓的吸引力，称为万有引力。这条定律已为我们所知，它是很简单的。当然，为什么物体的运动一经开始就能保持下去，或者为什么存在一条万有引力定律，我们则不清楚。
+
+2『量子具备的两大特性：惯性和力。做一张信息数据卡片。（2021-01-27）』——已完成
+
 ### 0701. 任意卡 —— 水里的软木塞，类比电磁场中的电荷
 
 于是我们就有了两条规则：1）电荷产生电场；2）电荷在电场中会受到力的作用而运动。如果我们讨论下述现象的话，建立这两条规则的理由就清楚了：假如我们使某物体（比方说梳子）带电，然后把一张带电的纸片放在一定距离之外，当我们来回移动梳子时，纸片就会有反应，并且总是指向梳子。如果我们使梳子晃动得快些，就会发现纸片的运动有点滞后，即作用有所延迟（起先，当我们相当慢地晃动梳子时，我们发现一种错综复杂的现象，这就是磁。磁的影响与作相对运动的电荷有关，所以磁力和电的作用力实际上可以归之于一个场，就像同一件事的两个不同的方面。变化的电场不能离开磁而存在）。假如我们把纸片移得更远，滞后就更大，这时能观察到一件有趣的事：虽然两个带电体之间的作用力应当与距离平方成反比，但是我们发现，当摇动一个电荷时，电作用的影响范围要比起初所猜想的大得多。这就是说，作用的减弱要比反平方的规则来得慢。
@@ -145,3 +169,11 @@ Figure 1-4 is an invented arrangement for ice, and although it contains many of 
 Now although ice has a「rigid」crystalline form, its temperature can change —  ice has heat. If we wish, we can change the amount of heat. What is the heat in the case of ice? The atoms are not standing still. They are jiggling and vibrating. So even though there is a deﬁnite order to the crystal — a deﬁnite structure — all of the atoms are vibrating「in place.」As we increase the temperature, they vibrate with greater and greater amplitude, until they shake themselves out of place. We call this melting. As we decrease the temperature, the vibration decreases and decreases until, at absolute zero, there is a minimum amount of vibration that the atoms can have, but not zero. This minimum amount of motion that atoms can have is not enough to melt a substance, with one exception: helium. Helium merely decreases the atomic motions as much as it can, but even at absolute zero there is still enough motion to keep it from freezing. Helium, even at absolute zero, does not freeze, unless the pressure is made so great as to make the atoms squash together. If we increase the pressure, we can make it solidify.
 
 1-2-3『这里跟常压下临界温度、临界压力的概念关联上了，比如一个物质的临界温度小于常温，你在常温下再怎么加压也没法使其液化，水的临界温度很高，所以水蒸气很容易冷凝。费曼这里说，氦气在常压下，再怎么降温，它也不会液化。直觉上跟临界温度临界压力是一个底层逻辑。做一张任意卡片，待验证。（2021-01-22）』——已完成
+
+### 0703. 任意卡 —— 正、负电荷组成的原子相互离开较远与较近的场景
+
+那么，我们会得到什么结果呢？假定我们有两个异类电荷，一正一负，并且彼此十分靠近。现在，在若干距离之外，还有另一个电荷。它会感到吸引吗？实际上它几乎不会感到什么作用，因为如果前两个电荷的大小相等，来自一个电荷的吸引被来自另一个电荷的排斥所抵消，所以，在任何可估计的距离上只有很小的一点作用力。另一方面，如果我们使第三个电荷非常靠近前两个时，就会发生吸引作用。因为同类电荷的斥力与异类电荷的引力倾向于使异类电荷靠近而使同类电荷远离。这样，排斥作用就将小于吸引作用。这就是为什么由正、负电荷组成的原子相互离开较远时只感受到很小一点作用力（重力除外），而当它们彼此靠近时，就能够互相「看到内部」而重新安排其电荷，结果产生极强的相互作用的原因。
+
+2『看第二遍才算弄明白。假设有三个电荷 A、B、C，A 和 B 离的很近，基本可以作为一个整体 AB，那么 C 与 AB 的作用力很小的，因为 A、C 间的吸引力与 B、C 间的排斥力基本抵消了。当 C 离 AB 很近时，A、B、C 会重新组合形成一个新整体 ABC。正、负电荷组成的原子相互离开较远时只感受到很小一点作用力（重力除外），而当它们彼此靠近时，就能够互相「看到内部」而重新安排其电荷，结果产生极强的相互作用。做一张任意卡片。（2021-01-27）』——已完成
+
+原子间作用力的最终基础是电的作用。由于这种力是如此巨大，以致所有正的与负的电荷通常都以尽可能紧密的方式结合在一起。所有的事物，甚至我们自己，都由极精细的和彼此强烈作用着的正、负微粒所组成，所有正的微粒与所有负的微粒正好抵消。有时，碰巧我们「擦」去了一些负电荷或正电荷（通常擦去负电荷较为容易），在这种情况下将会发现电力不再平衡，于是就能看到电的吸引作用。
