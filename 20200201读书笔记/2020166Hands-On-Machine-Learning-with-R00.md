@@ -110,8 +110,6 @@ In a famous 1996 paper, [11] David Wolpert demonstrated that if you make absolut
 
 2『 No Free Lunch Theorem，做一张术语卡片。』——已完成
 
-### 0203. 术语卡——
-
 ### 0301. 人名卡——Aurélien Géron
 
 Aurélien Géron，本书作者，机器学习领域的大牛。文笔很好的作者。
@@ -126,7 +124,7 @@ A few fun facts: he taught his three children to count in binary with their fing
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡——
+### 0501. 信息数据卡——
 
 行动卡是能够指导自己的行动的卡。
 
@@ -166,11 +164,11 @@ This book assumes that you know close to nothing about Machine Learning. Its goa
 
 Rather than implementing our own toy versions of each algorithm, we will be using actual production-ready Python frameworks:
 
-1. Scikit-Learn is very easy to use, yet it implements many Machine Learning algorithms efficiently, so it makes for a great entry point to learn Machine Learning.
+1 Scikit-Learn is very easy to use, yet it implements many Machine Learning algorithms efficiently, so it makes for a great entry point to learn Machine Learning.
 
-2. TensorFlow is a more complex library for distributed numerical computation. It makes it possible to train and run very large neural networks efficiently by distributing the computations across potentially hundreds of multi-GPU servers. TensorFlow was created at Google and supports many of their large-scale Machine Learning applications. It was open sourced in November 2015.
+2 TensorFlow is a more complex library for distributed numerical computation. It makes it possible to train and run very large neural networks efficiently by distributing the computations across potentially hundreds of multi-GPU servers. TensorFlow was created at Google and supports many of their large-scale Machine Learning applications. It was open sourced in November 2015.
 
-3. Keras is a high level Deep Learning API that makes it very simple to train and run neural networks. It can run on top of either TensorFlow, Theano or Microsoft Cognitive Toolkit (formerly known as CNTK). TensorFlow comes with its own implementation of this API, called tf.keras, which provides support for some advanced TensorFlow features (e.g., to efficiently load data).
+3 Keras is a high level Deep Learning API that makes it very simple to train and run neural networks. It can run on top of either TensorFlow, Theano or Microsoft Cognitive Toolkit (formerly known as CNTK). TensorFlow comes with its own implementation of this API, called tf.keras, which provides support for some advanced TensorFlow features (e.g., to efficiently load data).
 
 The book favors a hands-on approach, growing an intuitive understanding of Machine Learning through concrete working examples and just a little bit of theory. While you can read this book without picking up your laptop, we highly recommend you experiment with the code examples available online as Jupyter notebooks at [ageron/handson-ml2: A series of Jupyter notebooks](https://github.com/ageron/handson-ml2).
 
@@ -188,43 +186,43 @@ If you don’t know Python yet, http://learnpython.org/ is a great place to star
 
 This book is organized in two parts. Part I, The Fundamentals of Machine Learning, covers the following topics:
 
-1. What is Machine Learning? What problems does it try to solve? What are the main categories and fundamental concepts of Machine Learning systems?
+1 What is Machine Learning? What problems does it try to solve? What are the main categories and fundamental concepts of Machine Learning systems?
 
-2. The main steps in a typical Machine Learning project.
+2 The main steps in a typical Machine Learning project.
 
-3. Learning by fitting a model to data.
+3 Learning by fitting a model to data.
 
-4. Optimizing a cost function.
+4 Optimizing a cost function.
 
-5. Handling, cleaning, and preparing data.
+5 Handling, cleaning, and preparing data.
 
-6. Selecting and engineering features.
+6 Selecting and engineering features.
 
-7. Selecting a model and tuning hyperparameters using cross-validation.
+7 Selecting a model and tuning hyperparameters using cross-validation.
 
-8. The main challenges of Machine Learning, in particular underfitting and overfitting (the bias/variance tradeoff).
+8 The main challenges of Machine Learning, in particular underfitting and overfitting (the bias/variance tradeoff).
 
-9. Reducing the dimensionality of the training data to fight the curse of dimensionality.
+9 Reducing the dimensionality of the training data to fight the curse of dimensionality.
 
-10. Other unsupervised learning techniques, including clustering, density estimation and anomaly detection.
+10 Other unsupervised learning techniques, including clustering, density estimation and anomaly detection.
 
-11. The most common learning algorithms: Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, and Ensemble methods.
+11 The most common learning algorithms: Linear and Polynomial Regression, Logistic Regression, k-Nearest Neighbors, Support Vector Machines, Decision Trees, Random Forests, and Ensemble methods.
 
 Part II, Neural Networks and Deep Learning, covers the following topics:
 
-1. What are neural nets? What are they good for?
+1 What are neural nets? What are they good for?
 
-2. Building and training neural nets using TensorFlow and Keras.
+2 Building and training neural nets using TensorFlow and Keras.
 
-3. The most important neural net architectures: feedforward neural nets, convolutional nets, recurrent nets, long short-term memory (LSTM) nets, autoencoders and generative adversarial networks (GANs).
+3 The most important neural net architectures: feedforward neural nets, convolutional nets, recurrent nets, long short-term memory (LSTM) nets, autoencoders and generative adversarial networks (GANs).
 
-4. Techniques for training deep neural nets.
+4 Techniques for training deep neural nets.
 
-5. Scaling neural networks for large datasets.
+5 Scaling neural networks for large datasets.
 
-6. Learning strategies with Reinforcement Learning.
+6 Learning strategies with Reinforcement Learning.
 
-7. Handling uncertainty with Bayesian Deep Learning.
+7 Handling uncertainty with Bayesian Deep Learning.
 
 The first part is based mostly on Scikit-Learn while the second part uses TensorFlow and Keras.
 
@@ -238,17 +236,17 @@ There are also many interesting websites about Machine Learning, including of co
 
 Of course there are also many other introductory books about Machine Learning, in particular:
 
-1. Joel Grus, Data Science from Scratch (O’Reilly). This book presents the fundamentals of Machine Learning, and implements some of the main algorithms in pure Python (from scratch, as the name suggests).
+1 Joel Grus, Data Science from Scratch (O’Reilly). This book presents the fundamentals of Machine Learning, and implements some of the main algorithms in pure Python (from scratch, as the name suggests).
 
-2. Stephen Marsland, Machine Learning: An Algorithmic Perspective (Chapman and Hall). This book is a great introduction to Machine Learning, covering a wide range of topics in depth, with code examples in Python (also from scratch, but using NumPy).
+2 Stephen Marsland, Machine Learning: An Algorithmic Perspective (Chapman and Hall). This book is a great introduction to Machine Learning, covering a wide range of topics in depth, with code examples in Python (also from scratch, but using NumPy).
 
-3. Sebastian Raschka, Python Machine Learning (Packt Publishing). Also a great introduction to Machine Learning, this book leverages Python open source libraries (Pylearn 2 and Theano).
+3 Sebastian Raschka, Python Machine Learning (Packt Publishing). Also a great introduction to Machine Learning, this book leverages Python open source libraries (Pylearn 2 and Theano).
 
-3. François Chollet, Deep Learning with Python (Manning). A very practical book that covers a large range of topics in a clear and concise way, as you might expect from the author of the excellent Keras library. It favors code examples over mathematical theory.
+3 François Chollet, Deep Learning with Python (Manning). A very practical book that covers a large range of topics in a clear and concise way, as you might expect from the author of the excellent Keras library. It favors code examples over mathematical theory.
 
-4. Yaser S. Abu-Mostafa, Malik Magdon-Ismail, and Hsuan-Tien Lin, Learning from Data (AMLBook). A rather theoretical approach to ML, this book provides deep insights, in particular on the bias/variance tradeoff (see Chapter 4).
+4 Yaser S. Abu-Mostafa, Malik Magdon-Ismail, and Hsuan-Tien Lin, Learning from Data (AMLBook). A rather theoretical approach to ML, this book provides deep insights, in particular on the bias/variance tradeoff (see Chapter 4).
 
-5. Stuart Russell and Peter Norvig, Artificial Intelligence: A Modern Approach, 3rd Edition (Pearson). This is a great (and huge) book covering an incredible amount of topics, including Machine Learning. It helps put ML into perspective.
+5 Stuart Russell and Peter Norvig, Artificial Intelligence: A Modern Approach, 3rd Edition (Pearson). This is a great (and huge) book covering an incredible amount of topics, including Machine Learning. It helps put ML into perspective.
 
 Finally, a great way to learn is to join ML competition websites such as Kaggle.com this will allow you to practice your skills on real-world problems, with help and insights from some of the best ML professionals out there.
 
@@ -286,11 +284,11 @@ Some chapters were added, others were rewritten and a few were reordered. Table 
 
 More specifically, here are the main changes for each 2 nd edition chapter (other than clarifications, corrections and code updates):
 
-Chapter 1 
+Chapter 1  
 
 — Added a section on handling mismatch between the training set and the validation & test sets.
 
-Chapter 2 
+Chapter 2  
 
 — Added how to compute a confidence interval.
 
