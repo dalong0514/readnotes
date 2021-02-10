@@ -62,6 +62,8 @@ Variation is everywhere. Individuals vary; repeated measurements on the same ind
 
 Statistics: Concepts and Controversies (SCC) is a book on statistics as a liberal discipline, that is, as part of the general education of「nonmathematical」students. The book grew out of one of the author’s experiences in developing and teaching a course for freshmen and sophomores from Purdue University’s School of Liberal Arts. We are pleased that other teachers have found SCC useful for unusually diverse audiences, extending as far as students of philosophy and medicine. This tenth edition is a revision of the text, with several new features. It retains, however, the goals of the original: to present statistics not as a technical tool but as part of the intellectual culture that educated people share.
 
+这是一本写给文科类学生的统计学教科书，也就是说，它是非数学专业学生通识教育的一部分。本书的内容，以本书作者之一在普渡大学文学院为一、二年级学生授课的经验为基础发展而来。我们很高兴地发现，其他教师也认为本书对于各类学生都有用处，甚至对哲学和药学专业的学生也是如此。本书第 8 版修订了文字，也增加了新的内容，但是目标仍和原版相同：不是把统计学当作技术工具展示给大家，而是作为受过教育的人应有的知识素养。
+
 ### 02. Statistics among the liberal arts
 
 Statistics has a widespread reputation as the least liberal of subjects. When statistics is praised, it is most often for its usefulness. Health professionals need statistics to read accounts of medical research; managers need statistics because efficient crunching of numbers will find its way to the bottom line; citizens need statistics to understand opinion polls and government statistics such as the unemployment rate and the Consumer Price Index. Because data and chance are omnipresent, as our propaganda line goes, everyone will find statistics useful, and perhaps even profitable.
@@ -72,11 +74,25 @@ There is, however, another justification for learning about statistical ideas: s
 
 SCC is shaped, as far as the limitations of the authors and the intended readers allow, by the view that statistics is an independent and fundamental intellectual method. The focus is on statistical thinking, on what others might call quantitative literacy or numeracy.
 
+统计学是人文科学的一部分
+
+作为最不「文科」的学科，统计学的这一名声已被广泛传播，要是有人说它的好话，多半是在说它的用处。医疗保健领域的专业人员必须拥有统计学知识，才能阅读医学研究报告；经理人也要懂统计学，因为需要对大量的数字进行统计分析，才能看得出所以然。普通老百姓只有了解统计学，才能看懂民意调查结果和政府发布的统计数据，例如失业率和居民消费价格指数（CPI）。因为数据和机会无处不在，所以本书的宣传语可以这样写：每个人都用得上的统计学，读者可以从中获利多多。
+
+这些都是事实。我甚至可以说，对于大多数学生来说，本书的通俗讲法要比一般教科书采用的以介绍方法为主的方式更能够为他们将来的统计学研究打好基础。美国统计协会和美国数学协会的联合课程委员会，就建议任何统计学入门课程都应该「强调如何进行统计思考」，而且要体现出「更多的数据和概念，少一点儿公式和推导过程」。本书就是这样做的，其风格贴近文科教育：更多的概念、更多的思考、简单的数据、很少的公式，而且没有正式的推导过程。
+
+应该掌握统计学的另一个理由是：统计学实际上属于人文学科。人文教育强调基本的知识技能，也就是适用于各种领域的通用分析方法。传统人文学科展示了这样的方法：文学和历史研究，政治和人类社会的社会分析，认识大自然的实验科学，数学中的抽象和演绎。之所以将统计学归入人文学科，是基于这样一个事实，即用不确定的经验数据推导得出结论，也是一种通用的思考方法。这本书的两个主题 —— 数据和机会，普遍存在于我们的日常经验中。尽管我们使用数学工具来处理数据和机会问题，但这些工具并不是纯数学的。实际上，心理学家提出了令人信服的观点，认为精通正规的数学方法对于提高我们对数据和机会进行有效推理的能力，并没有多大帮助。本书在作者能力和读者可接受的范围内，突出了统计学是一种独立且基本的思考方法的观点。本书的重点在于统计思维，也有人称之为量化或数据分析。
+
 ### 03. The nature of this book
 
 There are books on statistical theory and books on statistical methods. This is neither. It is a book on statistical ideas and statistical reasoning and on their relevance to public policy and to the human sciences from medicine to sociology. We have included many elementary graphical and numerical techniques to give flesh to the ideas and muscle to the reasoning. Students learn to think about data by working with data. We have not, however, allowed technique to dominate concepts. Our intention is to teach verbally rather than algebraically, to invite discussion and even argument rather than mere computation, though some computation remains essential. The coverage is considerably broader than one might traditionally cover in a one-term course, as the table of contents reveals. In the spirit of general education, we have preferred breadth to detail.
 
 Despite its informal nature, SCC is a textbook. It is organized for systematic study and has abundant exercises, many of which ask students to offer a discussion or make a judgment. Even those admirable individuals who seek pleasure in uncompelled reading should look at the exercises as well as the text. Teachers should be aware that the book is more serious than its low mathematical level suggests. The emphasis on ideas and reasoning asks more of the reader than many recipe-laden methods texts.
+
+本书的性质
+
+统计学的书，有些专谈理论，有些专讲方法，而本书不谈这些。本书讲的是统计思维和统计推断，统计学与公共政策，以及包括从药学到社会学在内的人文科学的关系。我加入了许多基础的图表和数据分析技术，以使思想更生动，推理更有力。学生通过处理数据，可以学到怎样去思考数据。但是，我们没有让技巧超越概念成为主角，我们的意图是用文字而不是代数来教学，我们鼓励讨论甚至争辩，而不是只教授如何计算。当然，有些计算仍然是必要的。本书涵盖的内容要比传统的学期课程更丰富，从通识教育的精神出发，宁可涵盖更广泛也不愿过于追求细节。
+
+虽然本书的风格并不那么正统，但仍然是一本教材。本书内容的编排是为了让学生们系统地学习，而且提供了很多练习，其中有不少需要学生们进行讨论或做出判断。即便那些喜欢从轻松阅读中获得快感的读者，也应该在读完正文后再做做练习。也请教师留意，尽管本书只用到了很简单的数学，但并不是一本轻松的教材。将重点放在观念和推理上，对于读者的要求反而要比通篇都是公式的教科书更高。
 
 ### 04. New in this edition
 
@@ -147,24 +163,6 @@ Instructors can also evaluate an aggregate view of their class’s performance o
 ### 11. Data Tools
 
 DATA FILES are available in JMP, ASCII, Excel, TI, Minitab, SPSS, R, and CSV formats.
-
-## 致读者
-
-这是一本写给文科类学生的统计学教科书，也就是说，它是非数学专业学生通识教育的一部分。本书的内容，以本书作者之一在普渡大学文学院为一、二年级学生授课的经验为基础发展而来。我们很高兴地发现，其他教师也认为本书对于各类学生都有用处，甚至对哲学和药学专业的学生也是如此。本书第 8 版修订了文字，也增加了新的内容，但是目标仍和原版相同：不是把统计学当作技术工具展示给大家，而是作为受过教育的人应有的知识素养。
-
-### 01. 统计学是人文科学的一部分
-
-作为最不「文科」的学科，统计学的这一名声已被广泛传播，要是有人说它的好话，多半是在说它的用处。医疗保健领域的专业人员必须拥有统计学知识，才能阅读医学研究报告；经理人也要懂统计学，因为需要对大量的数字进行统计分析，才能看得出所以然。普通老百姓只有了解统计学，才能看懂民意调查结果和政府发布的统计数据，例如失业率和居民消费价格指数（CPI）。因为数据和机会无处不在，所以本书的宣传语可以这样写：每个人都用得上的统计学，读者可以从中获利多多。
-
-这些都是事实。我甚至可以说，对于大多数学生来说，本书的通俗讲法要比一般教科书采用的以介绍方法为主的方式更能够为他们将来的统计学研究打好基础。美国统计协会和美国数学协会的联合课程委员会，就建议任何统计学入门课程都应该「强调如何进行统计思考」，而且要体现出「更多的数据和概念，少一点儿公式和推导过程」。本书就是这样做的，其风格贴近文科教育：更多的概念、更多的思考、简单的数据、很少的公式，而且没有正式的推导过程。
-
-应该掌握统计学的另一个理由是：统计学实际上属于人文学科。人文教育强调基本的知识技能，也就是适用于各种领域的通用分析方法。传统人文学科展示了这样的方法：文学和历史研究，政治和人类社会的社会分析，认识大自然的实验科学，数学中的抽象和演绎。之所以将统计学归入人文学科，是基于这样一个事实，即用不确定的经验数据推导得出结论，也是一种通用的思考方法。这本书的两个主题 —— 数据和机会，普遍存在于我们的日常经验中。尽管我们使用数学工具来处理数据和机会问题，但这些工具并不是纯数学的。实际上，心理学家提出了令人信服的观点，认为精通正规的数学方法对于提高我们对数据和机会进行有效推理的能力，并没有多大帮助。本书在作者能力和读者可接受的范围内，突出了统计学是一种独立且基本的思考方法的观点。本书的重点在于统计思维，也有人称之为量化或数据分析。
-
-### 02. 本书的性质
-
-统计学的书，有些专谈理论，有些专讲方法，而本书不谈这些。本书讲的是统计思维和统计推断，统计学与公共政策，以及包括从药学到社会学在内的人文科学的关系。我加入了许多基础的图表和数据分析技术，以使思想更生动，推理更有力。学生通过处理数据，可以学到怎样去思考数据。但是，我们没有让技巧超越概念成为主角，我们的意图是用文字而不是代数来教学，我们鼓励讨论甚至争辩，而不是只教授如何计算。当然，有些计算仍然是必要的。本书涵盖的内容要比传统的学期课程更丰富，从通识教育的精神出发，宁可涵盖更广泛也不愿过于追求细节。
-
-虽然本书的风格并不那么正统，但仍然是一本教材。本书内容的编排是为了让学生们系统地学习，而且提供了很多练习，其中有不少需要学生们进行讨论或做出判断。即便那些喜欢从轻松阅读中获得快感的读者，也应该在读完正文后再做做练习。也请教师留意，尽管本书只用到了很简单的数学，但并不是一本轻松的教材。将重点放在观念和推理上，对于读者的要求反而要比通篇都是公式的教科书更高。
 
 ## Prelude
 
