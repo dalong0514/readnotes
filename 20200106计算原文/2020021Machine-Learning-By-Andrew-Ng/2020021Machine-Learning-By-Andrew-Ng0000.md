@@ -2,6 +2,8 @@ www.ai-start.com 最后修改：2019-01-11
 
 ## 链接汇总
 
+[Machine Learning - Introduction | Coursera](https://www.coursera.org/learn/machine-learning/home/week/1)
+
 [Welcome | Coursera](https://www.coursera.org/learn/machine-learning/lecture/RKFpn/welcome)
 
 [Machine Learning - complete course notes](http://www.holehouse.org/mlclass/index.html)

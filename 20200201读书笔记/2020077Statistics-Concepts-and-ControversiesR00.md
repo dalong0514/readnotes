@@ -182,7 +182,7 @@ Statistics uses data to gain insight and to draw conclusions. The tools are grap
 
 Belief is no substitute for arithmetic. —— HENRY SPENCER
 
-An anecdote is a striking story that sticks in our minds exactly because it is striking. Anecdotes humanize an issue, so news reports usually start (and often stop) with anecdotes. But anecdotes are weak ground for making up your mind—they are often misleading exactly because they are striking. Always ask if a claim is backed by data, not just by an appealing personal story.
+An anecdote is a striking story that sticks in our minds exactly because it is striking. Anecdotes humanize an issue, so news reports usually start (and often stop) with anecdotes. But anecdotes are weak ground for making up your mind — they are often misleading exactly because they are striking. Always ask if a claim is backed by data, not just by an appealing personal story.
 
 Does living near power lines cause leukemia in children? The National Cancer Institute spent 5 years and `$5` million gathering data on the question. Result: no connection between leukemia and exposure to magnetic fields of the kind produced by power lines. The editorial that accompanied the study report in the New England Journal of Medicine thundered,「It is time to stop wasting our research resources」on the question.
 
@@ -215,6 +215,8 @@ Even the most reputable publications have not been immune to bad data. The Journ
 数字不会说谎，但说谎的人会算计。—— 查尔斯·格罗夫纳
 
 数据是数字，而数字总显得非常可信。其实有的数字是这样，有的却并非如此。任何统计研究中最重要的事，就是数据的来源。专栏作者安·兰德斯问她的读者，如果可以重新来过，是否还会生孩子？回答的人中有 70% 坚定地说「不要」。但是，你对于兰德斯从泪迹斑斑的信中，引述读者哭诉他们的孩子如何像野兽一样的话语，大可一笑置之。因为兰德斯从事的是娱乐业，她邀请读者回答这个问题时，回应最热烈的应该是那些后悔生孩子的父母。大部分的父母并不后悔生小孩。我们知道这个事实，是因为曾经有人对许多父母做过调查，而且为了规避偏见，受访的父母是随机抽取的。民意调查当然也不是没有瑕疵 —— 这点我们后面会谈到 —— 但它仍比邀请有一肚子不满的人来回答问题要好得多。
+
+1『所以数据源的抽取非常关键，不能用「带偏见」的数据。（2021-02-10）』
 
 即使是信誉卓著的期刊，也不一定能对坏数据免疫。《美国医学会杂志》刊登过一篇文章，声称用管子将冷却的液体输送进胃里，可以缓解溃疡症状。这种治疗对病人的确有效果，但那只是因为病人通常会信服医生的权威性。也就是说，安慰剂（placebo，虚拟治疗）发生了作用。后来终于有人产生了质疑，做了有控制组的比较研究 —— 有些病人接受了这项治疗，有些只使用了安慰剂 —— 结果表明安慰剂组（控制组）的「表现」更好。「没有比较，就没有结论」，这是判断医学研究好坏的一个很好的依据。比如，我对于最近突然流行的「自然疗法」就心存怀疑。在这些疗法当中，极少会通过比较实验来证明它们不只是装在贴着漂亮植物图片的瓶子里售卖的安慰剂。
 
