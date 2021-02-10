@@ -30,17 +30,7 @@ David S. Moore
 
 ### 0301. 人名卡——
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
-
-#### 01. 基本信息
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及著作
-
-### 0401. 金句卡——变异性无所不在
+### 0401. 金句卡 —— 变异性无所不在
 
 Many people join the stock market in overreacting to minor changes in data that are really nothing but background noise. Here is Arthur Nielsen, head of the country’s largest market research firm, describing his experience:
 
@@ -58,7 +48,7 @@ Variation is everywhere. Individuals vary; repeated measurements on the same ind
 
 变异性无所不在。个体之间有差别，对同一个个体多测量几次，结果也会不一样，并且几乎每件事都会随着时间的变化而变化。至于一些所谓的专家对每天股市变化背后的深入原因分析，或者对一场其实是最后一秒才定输赢的球赛，却硬要归咎于输球球队的能力或战术，你尽可以对这些嗤之以鼻。
 
-### 0501. 行动卡——
+### 0501. 信息数据卡——
 
 行动卡是能够指导自己的行动的卡。
 
@@ -178,11 +168,17 @@ DATA FILES are available in JMP, ASCII, Excel, TI, Minitab, SPSS, R, and CSV for
 
 ## Prelude
 
+了解统计学
+
 ### 01. Making Sense of Statistics
 
 Statistics is about data. Data are numbers, but they are not「just numbers.」Data are numbers with a context. The number 10.5, for example, carries no information by itself. But if we hear that a friend’s new baby weighed 10.5 pounds at birth, we congratulate her on the healthy size of the child. The context engages our background knowledge and allows us to make judgments. We know that a baby weighing 10.5 pounds is quite large, and that a human baby is unlikely to weigh 10.5 ounces or 10.5 kilograms. The context makes the number informative.
 
 Statistics uses data to gain insight and to draw conclusions. The tools are graphs and calculations, but the tools are guided by ways of thinking that amount to educated common sense. Let’s begin our study of statistics with a rapid and informal guide to coping with data and statistical studies in the news media and in the heat of political and social controversy. We will examine the examples introduced in this prelude in more detail later.
+
+统计学是关于数据的学问。数据就是数字，但又不仅仅是「数字」，数据是有上下文联系的数字。比如，数字 10.5 本身没任何意义，但是，假如我们听说一位朋友刚出生的孩子体重为 10.5 磅 [1]，那么我们会恭喜她生了一个健康的宝宝。结合数字的上下文联系和个人知识，就可以做出判断。我们知道，体重 10.5 磅的新生儿个头相当大，而新生儿的体重不太会是 10.5 盎司 [2] 或 10.5 千克。因此，上下文联系可以使数字含义明确。
+
+统计学通过数据获取真知灼见并且得出结论，所用的工具是图表和计算。但是，这些工具要在符合常识的思考方式下使用。让我们先快速地了解一下新闻媒体、热门政治和社会争议的数据和统计研究方面的丰富成果，迈出学习统计学旅程的第一步。在后文中，我们将对序言里列举的案例展开更为详细的研究。
 
 ### 02. Data beats anecdotes
 
@@ -196,6 +192,18 @@ Now compare the impact of a television news report of a 5-year, `$5` million inv
 
 We are tempted to add,「Data beat self-proclaimed experts.」The idea of balance held by much of the news industry is to present a quick statement by an「expert」on either side. We never learn that one expert expresses the consensus of an entire field of science and the other is a quack with a special-interest axe to grind. As a result of the media’s taste for conflict, the public now thinks that for every expert, there is an equal and opposite expert. If you really care about an issue, try to find out what the data say and how good the data are. Many issues do remain unsettled, but many others are unsettled only in the minds of people who don’t care about evidence. You can start by looking at the credentials of the「experts」and at whether the studies they cite have appeared in journals that require careful outside review before they publish a claim.
 
+数据胜过逸闻
+
+信仰不能取代算术。—— 亨利·斯宾塞
+
+一则逸闻就是一个引人入胜的故事，它之所以能够深入人心，就在于其内容能打动人。逸闻可以让事情人性化，所以新闻报道通常以逸闻开头（和结尾）。但是逸闻无法用作决策的依据，正是因其内容生动，所以也常常误导我们。我们判断一个说法可信与否的依据，是它是否有数据支持，而不是它是否来自一个动人的故事。
+
+住得离高压电缆太近，是否会导致儿童患上白血病？美国国家癌症研究所花了 5 年时间和 500 万美元，来收集有关这个问题的数据。结果发现，在白血病和暴露在高压电缆产生的电磁场之间没有任何相关性。和这篇研究报告同时发表在《新英格兰医学期刊》上的社评大声疾呼，是时候不要在这个问题上「再浪费我们的研究资源了」。
+
+比较一下两则报道产生的影响：一则是有关历时 5 年、花费 500 万美元的调查研究的电视新闻报道，另一则是对一位能说会道的母亲的电视采访，她患有白血病的孩子恰好住在高压电缆附近。在公众心目中，几乎每次都是逸闻胜出。但事实上，我们应该心存疑问，因为数据要比逸闻更可靠，数据可以系统地描绘出整体图景，而不是聚焦于个别事件。
+
+我还打算补充一句，「数据胜过自封的专家。」新闻行业通常所秉持的所谓公正的立场，就是各找一名正反方「专家」发表简短的评论。我们永远无法知道是否其中一方代表的是整个学科的共识，而另一方则是蝇营狗苟于某些特殊利益的骗子。媒体这种处理冲突的做法使现在的公众认为，对应每一位专家，都有一个持相反观点的专家。如果你真的关注某个话题，就应该尝试从数据中找出结论，还要判断数据的质量是否良好。很多问题确实还未得到解决，但也有很多问题，只在那些不重视证据的人的头脑中才悬而未决。你至少可以了解一下这些「专家」的背景，还有他们引用的研究结果是否曾刊载于那些文章必须先通过外部评审之后才能发表的严谨期刊上。
+
 ### 03. Where the data come from is important
 
 Figures won’t lie but liars will figure. —— CHARLES GROSVENOR
@@ -203,6 +211,14 @@ Figures won’t lie but liars will figure. —— CHARLES GROSVENOR
 Data are numbers, and numbers always seem solid. Some are and some are not. Where the data come from is the single most important fact about any statistical study. When Ann Landers asked readers of her advice column whether they would have chosen to have children again and 70% of those who replied shouted「No,」readers should have just amused themselves with Ann’s excerpts from tear-stained letters describing what beasts the writers’ children are. Ann Landers was in the entertainment business. Her invitation attracted parents who regretted having their children. Most parents don’t regret having children. We know this because opinion polls have asked large numbers of parents, chosen at random to avoid attracting one opinion or another. Opinion polls have their problems, as we will see, but they beat just asking upset people to write in their views.
 
 Even the most reputable publications have not been immune to bad data. The Journal of the American Medical Association once printed an article claiming that pumping refrigerated liquid through tubes in the stomach relieves ulcers. The patients did respond, but only because patients often respond to any treatment given with the authority of a trusted doctor. That is, placebos (dummy treatments) work. When a skeptic finally tried a properly controlled study in which some patients got the tube and some got a placebo, the placebo actually did a bit better.「No comparison, no conclusion」is a good starting point for judging medical studies. We would be skeptical about the ongoing interest in「natural remedies,」for example. Few of these have passed a comparative trial to show that they are more than just placebos sold in bottles bearing pretty pictures of plants.
+
+数据来源非常重要
+
+数字不会说谎，但说谎的人会算计。—— 查尔斯·格罗夫纳
+
+数据是数字，而数字总显得非常可信。其实有的数字是这样，有的却并非如此。任何统计研究中最重要的事，就是数据的来源。专栏作者安·兰德斯问她的读者，如果可以重新来过，是否还会生孩子？回答的人中有 70% 坚定地说「不要」。但是，你对于兰德斯从泪迹斑斑的信中，引述读者哭诉他们的孩子如何像野兽一样的话语，大可一笑置之。因为兰德斯从事的是娱乐业，她邀请读者回答这个问题时，回应最热烈的应该是那些后悔生孩子的父母。大部分的父母并不后悔生小孩。我们知道这个事实，是因为曾经有人对许多父母做过调查，而且为了规避偏见，受访的父母是随机抽取的。民意调查当然也不是没有瑕疵 —— 这点我们后面会谈到 —— 但它仍比邀请有一肚子不满的人来回答问题要好得多。
+
+即使是信誉卓著的期刊，也不一定能对坏数据免疫。《美国医学会杂志》刊登过一篇文章，声称用管子将冷却的液体输送进胃里，可以缓解溃疡症状。这种治疗对病人的确有效果，但那只是因为病人通常会信服医生的权威性。也就是说，安慰剂（placebo，虚拟治疗）发生了作用。后来终于有人产生了质疑，做了有控制组的比较研究 —— 有些病人接受了这项治疗，有些只使用了安慰剂 —— 结果表明安慰剂组（控制组）的「表现」更好。「没有比较，就没有结论」，这是判断医学研究好坏的一个很好的依据。比如，我对于最近突然流行的「自然疗法」就心存怀疑。在这些疗法当中，极少会通过比较实验来证明它们不只是装在贴着漂亮植物图片的瓶子里售卖的安慰剂。
 
 ### 04. Beware the lurking variable
 
@@ -213,6 +229,18 @@ You read that crime is higher in counties with gambling casinos. A college teach
 Crime is higher in counties with casinos, but it is also higher in urban counties and in poor counties. What kind of counties are casinos in? Did these counties have high crime rates before the casino arrived? The online students did better, but they were older and better prepared than the in-class students. No wonder they did better. Well-educated people do earn a lot. But educated people have (on the average) parents with more education and more money than the parents of poorly educated people have. They grew up in nicer places and went to better schools. These advantages help them get more education and would help them earn more even without that education.
 
 All these studies report a connection between two variables and invite us to conclude that one of these variables influences the other.「Casinos increase crime」and「Stay in school if you want to be rich」are the messages we hear. Perhaps these messages are true. But perhaps much of the connection is explained by other variables lurking in the background, such as the nature of counties that accept casinos and the advantages that highly educated people were born with. Good statistical studies look at lots of background variables. This is tricky, but you can at least find out if it was done.
+
+小心潜在变量
+
+我的钱足够我这辈子花了，只要我不买东西。—— 杰基·梅森
+
+有报道说，在美国，设有赌场的县犯罪率较高。有位大学教师说，在线上课的学生比在教室里上课的学生表现好。政府报告强调，受过良好教育的民众比受教育少的民众赚钱多。最好不要太快下结论，而要先问一句：「有没有什么是他们没告诉我的，却可以用来解释这些事？」
+
+1『确实，一定要有这个意思，有没有我们漏掉的信息，就如同飞机弹孔的例子，回来的飞机不等于全部的飞机，哪些引擎上中弹的飞机挂了，没飞回来。（2020-11-21）』
+
+有赌场的县的确犯罪率较高，但是在城市或是较穷的县，犯罪率也比较高。什么样的县会开设赌场呢？这些县是否在开设赌场之前，犯罪率就已经很高了呢？在线上课的学生学得比较好，但是和在教室里上课的学生比起来，前者的年龄比较大，底子也比较好，因此他们表现好很正常。受教育程度高的人的确赚钱多，但受教育多的人和受教育少的人相比，平均来说前者的父母受的教育也较多，也比较有钱。而且，前者在更好的环境中长大，上更好的学校。这些有利条件让他们接受到更多的教育，即使他们不接受这么多教育，这些有利条件也可能会帮他们赚到很多钱。
+
+以上这些案例，都涉及两个变量之间的相关性，并且引导我们得出结论，即其中一个变量影响了另一个变量。「赌场会增加犯罪率」和「想变富有就要多读点儿书」，是它们传达的信息。这些信息有可能是正确的，但我们看到的相关性，大部分说不定还可以由隐藏在背景中的一些变量来解释，比如开设赌场的县的本质，以及受教育程度高的人生来就具备的有利条件。好的统计研究会考虑许多的背景变量，这当然需要技巧，不过你至少可以找一找，看它们有没有这样做。
 
 ### 05. Variation is everywhere
 
@@ -226,6 +254,20 @@ Too many business people assign equal validity to all numbers printed on paper. 
 
 Variation is everywhere. Individuals vary; repeated measurements on the same individual vary; almost everything varies over time. Ignore the pundits who try to explain the deep reasons behind each day’s stock market moves, or who condemn a team’s ability and character after a game decided by a last-second shot that did or didn’t go in.
 
+变异性无所不在
+
+当事实改变时，我就改变主意。您呢？—— 约翰·梅纳德·凯恩斯
+
+如果你的舌下温度超过 37 摄氏度，是不是就代表你在发烧呢？也许不是，每个人的「正常」体温都存在差异。你自己的体温在一天当中也会有变化，早上 6 点时稍高，下午 6 点时稍低。美国政府宣布上个月的失业率上升 0.1 个百分点，而新屋开工率下降 3 个百分点，导致股市波动。股市波动常常是不理性的。政府的数据是根据那些给出乐观预测的样本得出的，是好的估计，但不是百分之百的事实。同样的调查再做一遍，结果会有一些差别。和经济有关的因素原本就会上下波动，影响它的因素包括气候、罢工事件、节假日以及各式各样的其他原因。
+
+很多人会像股市一样，对数据的一些微小变化做出过度反应，而事实上这些并不是实质性变化，根本微不足道。以下是全美最大的市场研究公司的领导人阿瑟·尼尔森的经验之谈：
+
+太多商界人士对白纸黑字印出来的数字都深信不疑。他们认为数字就代表「事实」，让他们用「概率」的视角来看事情有点儿困难。他们不了解，数字只是一种简化的表示方法，它描述了一个范围，这个范围表明我们在现有情况下对某个问题的实际了解有多少。
+
+1『尼尔森的话太精辟了。数字只是一种简化的表示方法，只能描述事实的一个范围，而这个范围只是表明了我们在现有的信息下，对某个问题实际了解的程度。随机性无处不在，做一张金句卡片。』——已完成
+
+变异性无所不在。个体之间有差别，对同一个个体多测量几次，结果也会不一样，并且几乎每件事都会随着时间的变化而变化。至于一些所谓的专家对每天股市变化背后的深入原因分析，或者对一场其实是最后一秒才定输赢的球赛，却硬要归咎于输球球队的能力或战术，你尽可以对这些嗤之以鼻。
+
 ### 06. Conclusions are not certain
 
 As far as the laws of mathematics refer to reality they are not certain, and as far as they are certain they do not refer to reality. —— ALBERT EINSTEIN
@@ -233,6 +275,16 @@ As far as the laws of mathematics refer to reality they are not certain, and as 
 Because variation is everywhere, statistical conclusions are not certain. Most women who reach middle age have regular mammograms to detect breast cancer. Do mammograms really reduce the risk of dying of breast cancer? Statistical studies of high quality find that mammograms reduce the risk of death in women aged 50 to 64 years by 26%. That’s an average over all women in the age group. Because variation is everywhere, the results are different for different women. Some women who have mammograms every year die of breast cancer, and some who never have mammograms live to 100 and die when they crash their motorcycles.
 
 What the summary study actually said was「mammography reduces the risk of dying of breast cancer by 26 percent (95 percent confidence interval, 17 to 34 percent).」That 26% is, in Arthur Nielsen’s words,「shorthand for a range that describes our actual knowledge of the underlying condition.」The range is 17% to 34%, and we are 95% confident that the truth lies in that range. We’re pretty sure, in other words, but not certain. Once you get beyond news reports, you can look for phrases like「95% confident」and「statistically significant」that tell us that a study did produce findings that, while not certain, are pretty sure.
+
+统计结论不是百分之百确定的
+
+数学定律不能百分之百地应用于现实生活，能百分之百地用数学定律来描述的就不是现实生活。—— 阿尔伯特·爱因斯坦
+
+1『爱因斯坦这句话其实很有深意的，目前的理解：数学是完全抽象的逻辑世界，是柏拉图式的世界，可以说数据世界是绝对的，关键是数学定理可以在现实世界里对应于一个个应用，这本身就是奇怪，根本毫无理由的。所以这里爱因斯坦说数据定理不能百分百应用于生活，能大部分应用于生活，我们已经很庆幸了，数学它没有义务跟我们现实生活一一对应。（2020-11-21）』
+
+因为变化无所不在，所以统计结论并不是绝对的。大部分中年妇女会定期做乳腺 X 线检查，以便能及早发现乳腺癌。但是，乳腺 X 线检查真的可以降低女性死于乳腺癌的风险吗？高质量的统计研究发现，对于 50-64 岁的妇女来说，乳腺 X 线检查可以减少 26% 的死亡率。但这个数字是该年龄阶段妇女的一个平均数字。因为总是存在着个体差异，所以对于不同的妇女来说，结果可能大不相同。有些每年做乳腺 X 线检查的妇女最后却死于乳腺癌，也有一辈子没做过这种检查的妇女却活到了 100 岁，最终死于车祸。
+
+该报告事实上说的是，「乳腺 X 线检查可以将乳腺癌死亡率减少 26%（置信度为 95%，置信区间为 17%-34%）」。而根据尼尔森的观点，26% 这个数字是「某个范围的简化说法，这个范围描述了我们对现时情况的实际了解程度」。在这个案例当中，这个范围是 17-34%，而且我们对它有 95% 的把握。也就是说，我们相当有把握，但不是百分之百确定。当你阅读新闻报道时，可以找找看有没有诸如「95% 的置信度」或「有统计学显著性」等字眼，如果有，就代表这个研究结果虽不能说百分之百确定，但有很大的把握。
 
 ### 07. Data reflect social values
 
@@ -245,6 +297,20 @@ Suicide rates, for example, vary greatly among nations. It appears that much of 
 Social values influence data on matters less sensitive than suicide. The percentage of people who are unemployed in the United States is measured each month by the Bureau of Labor Statistics, using a large and very professionally chosen sample of people across the country. But what does it mean to be「unemployed」? It means that you don’t have a job even though you want a job and have actively looked for work in the last four weeks. If you went four weeks without seeking work, you are not unemployed; you are「out of the labor force.」This definition of unemployment reflects the value we attach to working. A different definition might give a very different unemployment rate.
 
 Our point is not that you should mistrust the unemployment rate. The definition of「unemployment」has been stable over time, so that we can see trends. The definition is reasonably consistent across nations, so that we can make international comparisons. The data are produced by professionals free of political interference. The unemployment rate is important and useful information. Our point is that not everything important can be reduced to numbers and that reducing things to numbers is done by people influenced by many pressures, conscious and unconscious.
+
+数据可反映社会价值
+
+要用统计数据骗人很容易。但如果不用统计数据，骗人就更容易了。—— 弗里德里克·莫斯特勒
+
+好的数据确实胜过逸闻。比起逸闻和大声争论未来会发生什么，数据要客观得多。和其他的公开论述相比，统计数据建立在事实的基础上，而且比较科学和理性。对于存在争议的话题，统计数据应该比其他大部分证据受到更多的重视。不过，世界上没有百分之百客观这回事。社会环境会影响我们关于度量什么以及如何度量的决策，从而影响到统计数据。
+
+以自杀率为例，它在不同国家之间有很大的差别。各国公布的自杀率之所以存在差别，似乎大部分要归因于社会观念，而不是因为自杀率真的有差别。自杀人数是根据死亡证明书计算的。填写死亡证明书（证明书上的细节在不同的国家或不同的州之间有所不同）的官员，对于诸如没有目击证人的溺死或摔死事件，可以决定其是否算作自杀。在视自杀为耻辱的地方，就有较多的自杀被报告为意外死亡。比如，在大部分人信奉天主教的国家，其公布的自杀率就比其他国家低。在日本文化中，有遇到羞辱时就光荣自杀的传统，这种传统使人们不太将自杀视为耻辱，因此日本的自杀事件被报道的比例较高。在有些国家，因为社会价值观的改变，使得自杀事件的数量在增加。一个越来越普遍的看法是，抑郁症应该被视为生理上的疾病，而不是人性的弱点，自杀是这种疾病的悲剧性结局，而不是道德瑕疵。因此，死者家属和医生愿意把自杀列为死者的死因。
+
+在不像自杀那么敏感的问题上，社会价值观依然可能会影响统计数据。美国的失业率是每个月由美国劳工部劳工统计局用一个很大而且很专业的全国性样本计算出来的。但是，「失业」的定义是什么呢？它指的是，虽然你想工作却没有工作，而且过去两周在积极找工作。如果你过去两周没在找工作，你就不算失业人员，而只是「非劳动人口」。这样去定义失业率，反映了我们加诸工作的价值观。如果换一种定义，我们可能就会得到不一样的失业率数字。
+
+1『印象中，失业率的数据上，特朗普就玩过这种文字游戏。（2020-11-21）』
+
+我的意思并不是叫你不要相信失业率数字。失业率的定义已经使用了好一段时间，在各个国家之间，这个定义也大致吻合，所以我们可以在国家间做比较。失业率是由不受政治干扰的专业人士计算出来的，是重要且有用的信息。我要强调的是，并不是每件重要的事都可以用数字表示。此外把事情简化为数字的人，会受到各种压力的影响，不管有意的还是无意的。
 
 ### 08. Statistics and You
 
@@ -264,83 +330,7 @@ Ultimately, data are used to draw conclusions or make decisions. The process of 
 
 Statistical ideas and tools emerged only slowly from the struggle to work with data. Two centuries ago, astronomers and surveyors faced the problem of combining many observations that, despite the greatest care, did not exactly match. Their efforts to deal with variation in their data produced some of the first statistical tools. As the social sciences emerged in the nineteenth century, old statistical ideas were transformed and new ones were invented to describe the variation in individuals and societies. The study of heredity and of variable populations in biology brought more advances. The first half of the twentieth century gave birth to statistical designs for producing data and to statistical inference based on probability. By midcentury, it was clear that a new discipline had been born. As all fields of study place more emphasis on data and increasingly recognize that variability in data is unavoidable, statistics has become a central intellectual method. Every educated person should be acquainted with statistical reasoning. Reading this book will enable you to make that acquaintance.
 
-## 序言——了解统计学
-
-统计学是关于数据的学问。数据就是数字，但又不仅仅是「数字」，数据是有上下文联系的数字。比如，数字 10.5 本身没任何意义，但是，假如我们听说一位朋友刚出生的孩子体重为 10.5 磅 [1]，那么我们会恭喜她生了一个健康的宝宝。结合数字的上下文联系和个人知识，就可以做出判断。我们知道，体重 10.5 磅的新生儿个头相当大，而新生儿的体重不太会是 10.5 盎司 [2] 或 10.5 千克。因此，上下文联系可以使数字含义明确。
-
-统计学通过数据获取真知灼见并且得出结论，所用的工具是图表和计算。但是，这些工具要在符合常识的思考方式下使用。让我们先快速地了解一下新闻媒体、热门政治和社会争议的数据和统计研究方面的丰富成果，迈出学习统计学旅程的第一步。在后文中，我们将对序言里列举的案例展开更为详细的研究。
-
-### 01. 数据胜过逸闻
-
-信仰不能取代算术。—— 亨利·斯宾塞
-
-一则逸闻就是一个引人入胜的故事，它之所以能够深入人心，就在于其内容能打动人。逸闻可以让事情人性化，所以新闻报道通常以逸闻开头（和结尾）。但是逸闻无法用作决策的依据，正是因其内容生动，所以也常常误导我们。我们判断一个说法可信与否的依据，是它是否有数据支持，而不是它是否来自一个动人的故事。
-
-住得离高压电缆太近，是否会导致儿童患上白血病？美国国家癌症研究所花了 5 年时间和 500 万美元，来收集有关这个问题的数据。结果发现，在白血病和暴露在高压电缆产生的电磁场之间没有任何相关性。和这篇研究报告同时发表在《新英格兰医学期刊》上的社评大声疾呼，是时候不要在这个问题上「再浪费我们的研究资源了」。
-
-比较一下两则报道产生的影响：一则是有关历时 5 年、花费 500 万美元的调查研究的电视新闻报道，另一则是对一位能说会道的母亲的电视采访，她患有白血病的孩子恰好住在高压电缆附近。在公众心目中，几乎每次都是逸闻胜出。但事实上，我们应该心存疑问，因为数据要比逸闻更可靠，数据可以系统地描绘出整体图景，而不是聚焦于个别事件。
-
-我还打算补充一句，「数据胜过自封的专家。」新闻行业通常所秉持的所谓公正的立场，就是各找一名正反方「专家」发表简短的评论。我们永远无法知道是否其中一方代表的是整个学科的共识，而另一方则是蝇营狗苟于某些特殊利益的骗子。媒体这种处理冲突的做法使现在的公众认为，对应每一位专家，都有一个持相反观点的专家。如果你真的关注某个话题，就应该尝试从数据中找出结论，还要判断数据的质量是否良好。很多问题确实还未得到解决，但也有很多问题，只在那些不重视证据的人的头脑中才悬而未决。你至少可以了解一下这些「专家」的背景，还有他们引用的研究结果是否曾刊载于那些文章必须先通过外部评审之后才能发表的严谨期刊上。
-
-### 02. 数据来源非常重要
-
-数字不会说谎，但说谎的人会算计。—— 查尔斯·格罗夫纳
-
-数据是数字，而数字总显得非常可信。其实有的数字是这样，有的却并非如此。任何统计研究中最重要的事，就是数据的来源。专栏作者安·兰德斯问她的读者，如果可以重新来过，是否还会生孩子？回答的人中有 70% 坚定地说「不要」。但是，你对于兰德斯从泪迹斑斑的信中，引述读者哭诉他们的孩子如何像野兽一样的话语，大可一笑置之。因为兰德斯从事的是娱乐业，她邀请读者回答这个问题时，回应最热烈的应该是那些后悔生孩子的父母。大部分的父母并不后悔生小孩。我们知道这个事实，是因为曾经有人对许多父母做过调查，而且为了规避偏见，受访的父母是随机抽取的。民意调查当然也不是没有瑕疵 —— 这点我们后面会谈到 —— 但它仍比邀请有一肚子不满的人来回答问题要好得多。
-
-即使是信誉卓著的期刊，也不一定能对坏数据免疫。《美国医学会杂志》刊登过一篇文章，声称用管子将冷却的液体输送进胃里，可以缓解溃疡症状。这种治疗对病人的确有效果，但那只是因为病人通常会信服医生的权威性。也就是说，安慰剂（placebo，虚拟治疗）发生了作用。后来终于有人产生了质疑，做了有控制组的比较研究 —— 有些病人接受了这项治疗，有些只使用了安慰剂 —— 结果表明安慰剂组（控制组）的「表现」更好。「没有比较，就没有结论」，这是判断医学研究好坏的一个很好的依据。比如，我对于最近突然流行的「自然疗法」就心存怀疑。在这些疗法当中，极少会通过比较实验来证明它们不只是装在贴着漂亮植物图片的瓶子里售卖的安慰剂。
-
-### 03. 小心潜在变量
-
-我的钱足够我这辈子花了，只要我不买东西。—— 杰基·梅森
-
-有报道说，在美国，设有赌场的县犯罪率较高。有位大学教师说，在线上课的学生比在教室里上课的学生表现好。政府报告强调，受过良好教育的民众比受教育少的民众赚钱多。最好不要太快下结论，而要先问一句：「有没有什么是他们没告诉我的，却可以用来解释这些事？」
-
-1『确实，一定要有这个意思，有没有我们漏掉的信息，就如同飞机弹孔的例子，回来的飞机不等于全部的飞机，哪些引擎上中弹的飞机挂了，没飞回来。（2020-11-21）』
-
-有赌场的县的确犯罪率较高，但是在城市或是较穷的县，犯罪率也比较高。什么样的县会开设赌场呢？这些县是否在开设赌场之前，犯罪率就已经很高了呢？在线上课的学生学得比较好，但是和在教室里上课的学生比起来，前者的年龄比较大，底子也比较好，因此他们表现好很正常。受教育程度高的人的确赚钱多，但受教育多的人和受教育少的人相比，平均来说前者的父母受的教育也较多，也比较有钱。而且，前者在更好的环境中长大，上更好的学校。这些有利条件让他们接受到更多的教育，即使他们不接受这么多教育，这些有利条件也可能会帮他们赚到很多钱。
-
-以上这些案例，都涉及两个变量之间的相关性，并且引导我们得出结论，即其中一个变量影响了另一个变量。「赌场会增加犯罪率」和「想变富有就要多读点儿书」，是它们传达的信息。这些信息有可能是正确的，但我们看到的相关性，大部分说不定还可以由隐藏在背景中的一些变量来解释，比如开设赌场的县的本质，以及受教育程度高的人生来就具备的有利条件。好的统计研究会考虑许多的背景变量，这当然需要技巧，不过你至少可以找一找，看它们有没有这样做。
-
-### 04. 变异性无所不在
-
-当事实改变时，我就改变主意。您呢？—— 约翰·梅纳德·凯恩斯
-
-如果你的舌下温度超过 37 摄氏度，是不是就代表你在发烧呢？也许不是，每个人的「正常」体温都存在差异。你自己的体温在一天当中也会有变化，早上 6 点时稍高，下午 6 点时稍低。美国政府宣布上个月的失业率上升 0.1 个百分点，而新屋开工率下降 3 个百分点，导致股市波动。股市波动常常是不理性的。政府的数据是根据那些给出乐观预测的样本得出的，是好的估计，但不是百分之百的事实。同样的调查再做一遍，结果会有一些差别。和经济有关的因素原本就会上下波动，影响它的因素包括气候、罢工事件、节假日以及各式各样的其他原因。
-
-很多人会像股市一样，对数据的一些微小变化做出过度反应，而事实上这些并不是实质性变化，根本微不足道。以下是全美最大的市场研究公司的领导人阿瑟·尼尔森的经验之谈：
-
-太多商界人士对白纸黑字印出来的数字都深信不疑。他们认为数字就代表「事实」，让他们用「概率」的视角来看事情有点儿困难。他们不了解，数字只是一种简化的表示方法，它描述了一个范围，这个范围表明我们在现有情况下对某个问题的实际了解有多少。
-
-1『尼尔森的话太精辟了。数字只是一种简化的表示方法，只能描述事实的一个范围，而这个范围只是表明了我们在现有的信息下，对某个问题实际了解的程度。随机性无处不在，做一张金句卡片。』——已完成
-
-变异性无所不在。个体之间有差别，对同一个个体多测量几次，结果也会不一样，并且几乎每件事都会随着时间的变化而变化。至于一些所谓的专家对每天股市变化背后的深入原因分析，或者对一场其实是最后一秒才定输赢的球赛，却硬要归咎于输球球队的能力或战术，你尽可以对这些嗤之以鼻。
-
-### 05. 统计结论不是百分之百确定的
-
-数学定律不能百分之百地应用于现实生活，能百分之百地用数学定律来描述的就不是现实生活。—— 阿尔伯特·爱因斯坦
-
-1『爱因斯坦这句话其实很有深意的，目前的理解：数学是完全抽象的逻辑世界，是柏拉图式的世界，可以说数据世界是绝对的，关键是数学定理可以在现实世界里对应于一个个应用，这本身就是奇怪，根本毫无理由的。所以这里爱因斯坦说数据定理不能百分百应用于生活，能大部分应用于生活，我们已经很庆幸了，数学它没有义务跟我们现实生活一一对应。（2020-11-21）』
-
-因为变化无所不在，所以统计结论并不是绝对的。大部分中年妇女会定期做乳腺 X 线检查，以便能及早发现乳腺癌。但是，乳腺 X 线检查真的可以降低女性死于乳腺癌的风险吗？高质量的统计研究发现，对于 50-64 岁的妇女来说，乳腺 X 线检查可以减少 26% 的死亡率。但这个数字是该年龄阶段妇女的一个平均数字。因为总是存在着个体差异，所以对于不同的妇女来说，结果可能大不相同。有些每年做乳腺 X 线检查的妇女最后却死于乳腺癌，也有一辈子没做过这种检查的妇女却活到了 100 岁，最终死于车祸。
-
-该报告事实上说的是，「乳腺 X 线检查可以将乳腺癌死亡率减少 26%（置信度为 95%，置信区间为 17%-34%）」。而根据尼尔森的观点，26% 这个数字是「某个范围的简化说法，这个范围描述了我们对现时情况的实际了解程度」。在这个案例当中，这个范围是 17%-34%，而且我们对它有 95% 的把握。也就是说，我们相当有把握，但不是百分之百确定。当你阅读新闻报道时，可以找找看有没有诸如「95% 的置信度」或「有统计学显著性」等字眼，如果有，就代表这个研究结果虽不能说百分之百确定，但有很大的把握。
-
-### 06. 数据可反映社会价值
-
-要用统计数据骗人很容易。但如果不用统计数据，骗人就更容易了。—— 弗里德里克·莫斯特勒
-
-好的数据确实胜过逸闻。比起逸闻和大声争论未来会发生什么，数据要客观得多。和其他的公开论述相比，统计数据建立在事实的基础上，而且比较科学和理性。对于存在争议的话题，统计数据应该比其他大部分证据受到更多的重视。不过，世界上没有百分之百客观这回事。社会环境会影响我们关于度量什么以及如何度量的决策，从而影响到统计数据。
-
-以自杀率为例，它在不同国家之间有很大的差别。各国公布的自杀率之所以存在差别，似乎大部分要归因于社会观念，而不是因为自杀率真的有差别。自杀人数是根据死亡证明书计算的。填写死亡证明书（证明书上的细节在不同的国家或不同的州之间有所不同）的官员，对于诸如没有目击证人的溺死或摔死事件，可以决定其是否算作自杀。在视自杀为耻辱的地方，就有较多的自杀被报告为意外死亡。比如，在大部分人信奉天主教的国家，其公布的自杀率就比其他国家低。在日本文化中，有遇到羞辱时就光荣自杀的传统，这种传统使人们不太将自杀视为耻辱，因此日本的自杀事件被报道的比例较高。在有些国家，因为社会价值观的改变，使得自杀事件的数量在增加。一个越来越普遍的看法是，抑郁症应该被视为生理上的疾病，而不是人性的弱点，自杀是这种疾病的悲剧性结局，而不是道德瑕疵。因此，死者家属和医生愿意把自杀列为死者的死因。
-
-在不像自杀那么敏感的问题上，社会价值观依然可能会影响统计数据。美国的失业率是每个月由美国劳工部劳工统计局用一个很大而且很专业的全国性样本计算出来的。但是，「失业」的定义是什么呢？它指的是，虽然你想工作却没有工作，而且过去两周在积极找工作。如果你过去两周没在找工作，你就不算失业人员，而只是「非劳动人口」。这样去定义失业率，反映了我们加诸工作的价值观。如果换一种定义，我们可能就会得到不一样的失业率数字。
-
-1『印象中，失业率的数据上，特朗普就玩过这种文字游戏。（2020-11-21）』
-
-我的意思并不是叫你不要相信失业率数字。失业率的定义已经使用了好一段时间，在各个国家之间，这个定义也大致吻合，所以我们可以在国家间做比较。失业率是由不受政治干扰的专业人士计算出来的，是重要且有用的信息。我要强调的是，并不是每件重要的事都可以用数字表示。此外把事情简化为数字的人，会受到各种压力的影响，不管有意的还是无意的。
-
-### 07. 统计学与你
+统计学与你
 
 这不是一本关于统计工具的书，本书写的是统计学的观点及其对日常生活、公共政策和其他不同研究领域的影响。当然，你将会从本书中学到一些统计工具。如果你手上有一台内置了统计功能的计算器，你的生活将会容易很多，特别是这台计算器可以计算平均值、标准差和相关系数。找一台可以做「双变量统计」或「相关性分析」的计算器，如果你的电脑上有统计软件，就更好了。另一方面，你需要懂一点儿数学。如果你理解并会使用一些简单的方程式，就再好不过了。不过要记住，我们要求你学会思考，思考对于大脑的训练要远胜过数学公式。本书将从 4 个方面展现统计学思维方式：
 

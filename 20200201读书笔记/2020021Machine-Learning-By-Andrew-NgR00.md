@@ -12,7 +12,7 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——Machine Learning
+### 0201. 术语卡 —— Machine Learning
 
 Two definitions of Machine Learning are offered. Arthur Samuel described it as: "the field of study that gives computers the ability to learn without being explicitly programmed." This is an older, informal definition.
 
