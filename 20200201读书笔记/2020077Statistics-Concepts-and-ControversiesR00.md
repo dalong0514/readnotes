@@ -86,6 +86,16 @@ Statistical ideas and tools emerged only slowly from the struggle to work with d
 
 统计思维和工具在人们处理数据的过程中逐步显现。两个世纪前，天文学家和勘测员面对的问题是，即便把许多观察结果非常小心地拼凑起来，仍然发现它们无法很好地吻合。他们努力处理数据的变化，因而产生了最初的一些工具。当社会科学在 19 世纪出现时，旧的统计思维发生了转变，新思维被发现，用于描述个体和社会的变化。对遗传和生物学总体变量的研究推进了统计学的发展。20 世纪前半叶诞生了建立在概率之上的用于生成数据和进行统计推断的统计设计。直到 20 世纪中期，人们才清楚地看到了一门新学科的诞生。由于所有研究领域都更加注重数据，而且越来越明显地意识到数据变化是无法避免的，统计学已经成为核心知识。每个受过教育的人都应该了解统计推断，阅读本书，能够让你掌握这方面的知识。
 
+### 0103. 主题卡 —— 数据的两个来源
+
+In reasoning from data to a conclusion, we start with the data. Where the data come from is the first step in the argument. The nature and validity of the conclusion are affected by this first step. Two sources of data are observational studies and experiments. Observational studies are best suited for a conclusion that involves describing some group or situation without disturbing the scene we observe. Sample surveys are a type of observational study in which we draw conclusions about a population by observing only a part of the population (the sample). Experiments are best suited for a conclusion that involves determining if a treatment causes a change in a response.
+
+2『数据的两个来源：观察研究和试验，做一张主题卡片，需要后续不断补充信息。（2021-02-11）』——已完成
+
+In the next several chapters, we discuss these sources of data in more detail. We will see what makes for a good observational study and for a good experiment. And we will see how a bad observational study or experiment undermines the validity of the conclusions we wish to make.
+
+在依靠数据信息推导出结论的过程中，我们面临的第一个问题就是数据来自何处。统计研究结论的本质和有效性都取决于这一点。数据来自两个渠道：观察研究和实验。观察研究适合在无干扰的情况下描述某个群体或状况并得出结论。抽样调查是一种观察研究，我们通过观察总体的一部分（样本），得出有关总体的结论。实验适用于判断一种处理是否会产生不同的反应。在后面几章，我们将更深入地讨论数据的来源。我们将会看到怎样进行良好的观察研究和实验，我们还会看到糟糕的观察研究或实验是如何破坏我们想要获得的结论的有效性的。
+
 ### 0201. 术语卡——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
@@ -108,14 +118,61 @@ Statistical ideas and tools emerged only slowly from the struggle to work with d
 
 ## 目录
 
-PART I Producing Data
+### PART I Producing Data
 
 0101 Where Do Data Come From?
 
 0102 Samples, Good and Bad
 
+0103 What Do Samples Tell Us?
 
+0104 Sample Surverys in the Real World
 
+0105 Experiments, Good and Bad
+
+0106 Experiments in the Real World
+
+0107 Data Ethics
+
+0108 Measuring
+
+0109 Do the Numbers Make Sense?
+
+### PART II Organizing Data
+
+0201 Graphs, Good and Bad
+
+0202 Displaying Distributions with Graphs
+
+0203 Describing Distributions with Numbers
+
+0204 Normal Distributions
+
+0205 Describing Relationships: Scatterplots and Correlation
+
+0206 Describing Relationships: Regression, Prediction, and Causation
+
+0207 The Consumer Price Index and Government Statistics
+
+### PART III Chance
+
+0301 Thinking about Chance
+
+0302 Probability Models
+
+0303 Simulation
+
+0304 The House Edge: Expected Values
+
+### PART IV Inference
+
+0401 What Is a Confidence Interval?
+
+0402 What Is a Test of Significance?
+
+0403 Use and Abuse of Statistical Inference
+
+0404 Two-Way Tables and the Chi-Square Test*
 
 ## To the Teacher
 

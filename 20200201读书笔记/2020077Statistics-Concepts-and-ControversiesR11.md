@@ -50,6 +50,8 @@ This chapter summary will help you evaluate the Case Study.
 
 In reasoning from data to a conclusion, we start with the data. Where the data come from is the first step in the argument. The nature and validity of the conclusion are affected by this first step. Two sources of data are observational studies and experiments. Observational studies are best suited for a conclusion that involves describing some group or situation without disturbing the scene we observe. Sample surveys are a type of observational study in which we draw conclusions about a population by observing only a part of the population (the sample). Experiments are best suited for a conclusion that involves determining if a treatment causes a change in a response.
 
+2『数据的两个来源：观察研究和试验，做一张主题卡片，需要后续不断补充信息。（2021-02-11）』——已完成
+
 In the next several chapters, we discuss these sources of data in more detail. We will see what makes for a good observational study and for a good experiment. And we will see how a bad observational study or experiment undermines the validity of the conclusions we wish to make.
 
 在依靠数据信息推导出结论的过程中，我们面临的第一个问题就是数据来自何处。统计研究结论的本质和有效性都取决于这一点。数据来自两个渠道：观察研究和实验。观察研究适合在无干扰的情况下描述某个群体或状况并得出结论。抽样调查是一种观察研究，我们通过观察总体的一部分（样本），得出有关总体的结论。实验适用于判断一种处理是否会产生不同的反应。在后面几章，我们将更深入地讨论数据的来源。我们将会看到怎样进行良好的观察研究和实验，我们还会看到糟糕的观察研究或实验是如何破坏我们想要获得的结论的有效性的。
@@ -58,7 +60,7 @@ In the next several chapters, we discuss these sources of data in more detail. W
 
 Use what you have learned in this chapter to answer some basic questions about the data collected in the MLive poll described in the Case Study that opened the chapter. Start by reviewing the Chapter Summary. Then answer each of the following questions in complete sentences. Be sure to communicate clearly enough for any of your classmates to understand what you are saying.
 
-To participate in the poll, you had to go online to the MLive website and click on one of the possible responses. 1) Is the poll a sample survey, census, or experiment? 2) What is the population of interest? 3) What are the individuals in the poll?4) For each individual, what variable is measured? 5) Does this variable take numerical values?
+To participate in the poll, you had to go online to the MLive website and click on one of the possible responses. 1) Is the poll a sample survey, census, or experiment? 2) What is the population of interest? 3) What are the individuals in the poll? 4) For each individual, what variable is measured? 5) Does this variable take numerical values?
 
 In this chapter you have: 1) Learned the different types of studies used to collect data. 2) Understood the purpose of these different types of studies used to collect data. 3) Examined the types of data a study might collect.
 
@@ -68,7 +70,7 @@ In this chapter you have: 1) Learned the different types of studies used to coll
 
 For Exercise 1.1, see page 10; for Exercise 1.2, see page 13.
 
-1.3 Individuals and variables. A national survey by the Pew Research Center and USA Today, conducted August 16–Septermber 12, 2016, was based on web-based and mail responses of a national sample of 4538 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Those interviewed were asked to rate the job performance of police forces across the country for holding officers accountable when misconduct occurs. Possible ratings were「Excellent,」「Good,」「Only fair,」and「Poor.」Seventy percent of white respondents gave a rating of「Excellent」or「Good,」while only 31% of black respondents gave a rating of「Excellent」or「Good.」For this study, 
+1.3 Individuals and variables. A national survey by the Pew Research Center and USA Today, conducted August 16–Septermber 12, 2016, was based on web-based and mail responses of a national sample of 4538 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Those interviewed were asked to rate the job performance of police forces across the country for holding officers accountable when misconduct occurs. Possible ratings were「Excellent,」「Good,」「Only fair,」and「Poor.」Seventy percent of white respondents gave a rating of「Excellent」or「Good,」while only 31% of black respondents gave a rating of「Excellent」or「Good.」For this study,
 
 a) the individuals are the sample of 4538 adults interviewed. 
 
@@ -120,9 +122,11 @@ d) it attempts to answer questions about the opinions of all citizens of a parti
 
 1.8 Miles per gallon. Here is a small part of a data set that describes the fuel economy (in miles per gallon) of 2019 model motor vehicles:
 
-What are the individuals in this data set?
+a) What are the individuals in this data set?
 
-For each individual, what variables are given? Which of these variables take numerical values?
+b) For each individual, what variables are given? Which of these variables take numerical values?
+
+1.8 每加仑 [3] 英里 [4] 数。以下是描述 2011 年不同型号汽车的油耗状况（MPG，每加仑英里数）的数据集的一小部分。a）在这个数据集里，个体是什么？b）对于每个个体，该研究衡量了哪些变量？其中哪些变量的值是数字？
 
 1.9 Athletes’ salaries. Here is a small part of a data set that describes Major League Baseball players as of opening day of the 2018 season:
 
@@ -190,25 +194,13 @@ We would prefer a sample survey to using nonagenarians who volunteer for a study
 
 1.23 Choose your study type. What is the best way to answer each of the questions below: an experiment, a sample survey, or an observational study that is not a sample survey? Explain your choices.
 
-Is your school’s football team called for fewer penalties in home games than in away games?
+a) Is your school’s football team called for fewer penalties in home games than in away games?
 
-Are college students satisfied with the cost of textbooks that they are required to purchase?
+b) Are college students satisfied with the cost of textbooks that they are required to purchase?
 
-Do college students who have access to video recordings of course lectures perform better in the course than those who don’t?
+c) Do college students who have access to video recordings of course lectures perform better in the course than those who don’t?
 
-1.24 Choose your study purpose. Give an example of a question about pet owners, their behavior, or their opinions that would best be answered by
-
-a sample survey.
-
-an observational study that is not a sample survey.
-
-an experiment.
-
-Exploring the Web
-
-Access these exercises on the text website: macmillanlearning.com/scc10e.
-
-1.3 每加仑 [3] 英里 [4] 数。以下是描述 2011 年不同型号汽车的油耗状况（MPG，每加仑英里数）的数据集的一小部分。a）在这个数据集里，个体是什么？b）对于每个个体，该研究衡量了哪些变量？其中哪些变量的值是数字？
+1.24 Choose your study purpose. Give an example of a question about pet owners, their behavior, or their opinions that would best be answered by: a) a sample survey. b) an observational study that is not a sample survey. c) an experiment.
 
 1.4 美国棒球运动员的年薪。以下是美国职业棒球大联盟在 2011 赛季的第一天公布的部分球员资料：a）这个数据集描述的个体是什么？b）除了球员姓名外，这个数据集还包括哪几个变量？哪些变量的值是数字？
 

@@ -1,3 +1,7 @@
+# 0401. Sample Surveys in the Real World
+
+In this chapter you will:
+
 Discover that sampling errors occur in even the best samples.
 
 Learn that nonsampling errors may occur.
