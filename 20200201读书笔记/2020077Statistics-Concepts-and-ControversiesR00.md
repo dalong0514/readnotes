@@ -50,6 +50,42 @@ What the summary study actually said was「mammography reduces the risk of dying
 
 1-2『上面的信息补充进主题卡片「Variatioan is everywhere」，其实到现在「置信度」的概念还是没弄明白。（2021-02-11）』
 
+### 0102. 主题卡 —— 统计思维的四个组件
+
+What Lies Ahead in This Book. This isn’t a book about the tools of statistics. It is a book about statistical ideas and their impact on everyday life, public policy, and many different fields of study. You will learn some tools, of course. Life will be easier if you have in hand a calculator with built-in statistical functions. Specifically, you need a calculator that will find means, standard deviations, and correlations. Look for a calculator that claims to do「two-variable statistics」or mentions「correlation.」If you have access to a computer with statistical software, so much the better. On the other hand, you need little formal mathematics. If you can read and use simple equations, you are in good shape. Be warned, however, that you will be asked to think. Thinking exercises the mind more deeply than following mathematical recipes. Statistics: Concepts and Controversies presents statistical ideas in four parts:
+
+1『数据分布的 3 个关键参数出来了：平均值、方差和相关性（拟合度）。（2020-11-21）』
+
+1 Data production describes methods for producing data that can give clear answers to specific questions. Where the data come from really is important — basic concepts about how to select samples and design experiments are the most influential ideas in statistics.
+
+2 Data analysis concerns methods and strategies for exploring, organizing, and describing data using graphs and numerical summaries. You can learn to look at data intelligently even with quite simple tools.
+
+3 Probability is the language we use to describe chance, variation, and risk. Because variation is everywhere, probabilistic thinking helps separate reality from background noise.
+
+4 Statistical inference moves beyond the data in hand to draw conclusions about some wider universe, taking into account that variation is everywhere and that conclusions are uncertain.
+
+Ultimately, data are used to draw conclusions or make decisions. The process of reasoning from data consists of several steps that yield a case for the validity of the final conclusion. Each part of this book discusses issues that affect the quality of the steps in this process. It is easy to focus on mastering the details in each chapter and lose track of how these details contribute to the overall argument. To help you see how the individual chapters fit into the overall argument, we end each chapter with a section that we call Link It, which briefly describes how the contents of the chapter fit into the overall reasoning process. You will find this section within the Statistics in Summary subsection.
+
+Statistical ideas and tools emerged only slowly from the struggle to work with data. Two centuries ago, astronomers and surveyors faced the problem of combining many observations that, despite the greatest care, did not exactly match. Their efforts to deal with variation in their data produced some of the first statistical tools. As the social sciences emerged in the nineteenth century, old statistical ideas were transformed and new ones were invented to describe the variation in individuals and societies. The study of heredity and of variable populations in biology brought more advances. The first half of the twentieth century gave birth to statistical designs for producing data and to statistical inference based on probability. By midcentury, it was clear that a new discipline had been born. As all fields of study place more emphasis on data and increasingly recognize that variability in data is unavoidable, statistics has become a central intellectual method. Every educated person should be acquainted with statistical reasoning. Reading this book will enable you to make that acquaintance.
+
+统计学与你
+
+这不是一本关于统计工具的书，本书写的是统计学的观点及其对日常生活、公共政策和其他不同研究领域的影响。当然，你将会从本书中学到一些统计工具。如果你手上有一台内置了统计功能的计算器，你的生活将会容易很多，特别是这台计算器可以计算平均值、标准差和相关系数。找一台可以做「双变量统计」或「相关性分析」的计算器，如果你的电脑上有统计软件，就更好了。另一方面，你需要懂一点儿数学。如果你理解并会使用一些简单的方程式，就再好不过了。不过要记住，我们要求你学会思考，思考对于大脑的训练要远胜过数学公式。本书将从 4 个方面展现统计学思维方式：
+
+1、数据生产，讨论了数据产生的方法，可以对特定问题给出解决方案。数据来自何处至关重要，关于如何选择样本和设计实验的基本概念，是统计学中最有影响力的内容。
+
+2、数据分析，关注的是收集、组织，以及用图表、数字描述数据的方法和策略。你可以学会使用非常简单的工具聪明地分析数据。
+
+3、概率，是我们用来描述机会、变化和风险的语言。由于变化无处不在，概率思维有助于将现实与背景噪声区分开。
+
+4、统计推断，是指通过我们手中掌握的数据得出结论，考虑到变化无处不在，结论是不确定的。
+
+1-2『看到译者翻译的「变化」，脑子里用「随机」来替代。这里统计思维的四个组件：数据产生、数据分析、概率和统计推断，这四个部分也是本书的骨架，做一张主题卡片。（2021-02-11）』——已完成
+
+最终数据会被用于得出结论或做出决定。本书的各个部分讨论了影响这一过程各个步骤的质量问题。读者很容易把注意力放在每章的细节上，而忽略了这些细节背后的整体图景。为了帮助你避免这种见树不见林的问题，看清楚每章与整体图景的关系，我们在每章结尾处简短地说明这一章在整体图景中的位置。你可以在每章的小结中看到这部分内容。
+
+统计思维和工具在人们处理数据的过程中逐步显现。两个世纪前，天文学家和勘测员面对的问题是，即便把许多观察结果非常小心地拼凑起来，仍然发现它们无法很好地吻合。他们努力处理数据的变化，因而产生了最初的一些工具。当社会科学在 19 世纪出现时，旧的统计思维发生了转变，新思维被发现，用于描述个体和社会的变化。对遗传和生物学总体变量的研究推进了统计学的发展。20 世纪前半叶诞生了建立在概率之上的用于生成数据和进行统计推断的统计设计。直到 20 世纪中期，人们才清楚地看到了一门新学科的诞生。由于所有研究领域都更加注重数据，而且越来越明显地意识到数据变化是无法避免的，统计学已经成为核心知识。每个受过教育的人都应该了解统计推断，阅读本书，能够让你掌握这方面的知识。
+
 ### 0201. 术语卡——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
@@ -69,6 +105,17 @@ What the summary study actually said was「mammography reduces the risk of dying
 ### 0601. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
+
+## 目录
+
+PART I Producing Data
+
+0101 Where Do Data Come From?
+
+0102 Samples, Good and Bad
+
+
+
 
 ## To the Teacher
 
@@ -352,13 +399,15 @@ Statistical ideas and tools emerged only slowly from the struggle to work with d
 
 这不是一本关于统计工具的书，本书写的是统计学的观点及其对日常生活、公共政策和其他不同研究领域的影响。当然，你将会从本书中学到一些统计工具。如果你手上有一台内置了统计功能的计算器，你的生活将会容易很多，特别是这台计算器可以计算平均值、标准差和相关系数。找一台可以做「双变量统计」或「相关性分析」的计算器，如果你的电脑上有统计软件，就更好了。另一方面，你需要懂一点儿数学。如果你理解并会使用一些简单的方程式，就再好不过了。不过要记住，我们要求你学会思考，思考对于大脑的训练要远胜过数学公式。本书将从 4 个方面展现统计学思维方式：
 
-1、数据生产讨论了数据产生的方法，可以对特定问题给出解决方案。数据来自何处至关重要，关于如何选择样本和设计实验的基本概念，是统计学中最有影响力的内容。
+1、数据生产，讨论了数据产生的方法，可以对特定问题给出解决方案。数据来自何处至关重要，关于如何选择样本和设计实验的基本概念，是统计学中最有影响力的内容。
 
-2、数据分析关注的是收集、组织，以及用图表、数字描述数据的方法和策略。你可以学会使用非常简单的工具聪明地分析数据。
+2、数据分析，关注的是收集、组织，以及用图表、数字描述数据的方法和策略。你可以学会使用非常简单的工具聪明地分析数据。
 
-3、概率是我们用来描述机会、变化和风险的语言。由于变化无处不在，概率思维有助于将现实与背景噪声区分开。
+3、概率，是我们用来描述机会、变化和风险的语言。由于变化无处不在，概率思维有助于将现实与背景噪声区分开。
 
-4、统计推断是指通过我们手中掌握的数据得出结论，考虑到变化无处不在，结论是不确定的。
+4、统计推断，是指通过我们手中掌握的数据得出结论，考虑到变化无处不在，结论是不确定的。
+
+1-2『看到译者翻译的「变化」，脑子里用「随机」来替代。这里统计思维的四个方式：数据产生、数据分析、概率和统计推断，这四个部分也是本书的骨架，做一张主题卡片。（2021-02-11）』——已完成
 
 最终数据会被用于得出结论或做出决定。本书的各个部分讨论了影响这一过程各个步骤的质量问题。读者很容易把注意力放在每章的细节上，而忽略了这些细节背后的整体图景。为了帮助你避免这种见树不见林的问题，看清楚每章与整体图景的关系，我们在每章结尾处简短地说明这一章在整体图景中的位置。你可以在每章的小结中看到这部分内容。
 
