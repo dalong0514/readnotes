@@ -2,35 +2,19 @@
 
 Statistics: Concepts and Controversies
 
-© 2020, 2017, 2014, 2009 by W. H. Freeman and Company
-
-Tenth Edition
-
-中文目前只有第 8 版（2020-11-21）
+© 2020, 2017, 2014, 2009 by W. H. Freeman and Company, Tenth Edition
 
 David S. Moore
+
+中文目前只有第 8 版（2020-11-21）
 
 ## 记忆时间
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡 —— 随机无处不在（Variation is everywhere）
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
-
-### 0201. 术语卡——
-
-根据反常识，再补充三个证据——就产生三张术语卡。
-
-例子。
-
-### 0202. 术语卡——
-
-### 0203. 术语卡——
-
-### 0301. 人名卡——
-
-### 0401. 金句卡 —— 变异性无所不在（Variation is everywhere）
+If a thermometer under your tongue reads higher than 98.6°F, do you have a fever? Maybe not. People vary in their「normal」temperature. Your own temperature also varies — it is lower around 6 A.M. and higher around 6 P.M. The government announces that the unemployment rate rose a tenth of a percent last month and that new home starts fell by 3%. The stock market promptly jumps (or sinks). Stocks are jumpier than is sensible. The government data come from samples that give good estimates but not the exact truth. Another run of the same samples would give slightly different answers. And economic facts jump around anyway, due to weather, strikes, holidays, and all sorts of other reasons.
 
 Many people join the stock market in overreacting to minor changes in data that are really nothing but background noise. Here is Arthur Nielsen, head of the country’s largest market research firm, describing his experience:
 
@@ -38,15 +22,45 @@ Too many business people assign equal validity to all numbers printed on paper. 
 
 Variation is everywhere. Individuals vary; repeated measurements on the same individual vary; almost everything varies over time. Ignore the pundits who try to explain the deep reasons behind each day’s stock market moves, or who condemn a team’s ability and character after a game decided by a last-second shot that did or didn’t go in.
 
-当事实改变时，我就改变主意。您呢？—— 约翰·梅纳德·凯恩斯
+变异性无所不在
 
 如果你的舌下温度超过 37 摄氏度，是不是就代表你在发烧呢？也许不是，每个人的「正常」体温都存在差异。你自己的体温在一天当中也会有变化，早上 6 点时稍高，下午 6 点时稍低。美国政府宣布上个月的失业率上升 0.1 个百分点，而新屋开工率下降 3 个百分点，导致股市波动。股市波动常常是不理性的。政府的数据是根据那些给出乐观预测的样本得出的，是好的估计，但不是百分之百的事实。同样的调查再做一遍，结果会有一些差别。和经济有关的因素原本就会上下波动，影响它的因素包括气候、罢工事件、节假日以及各式各样的其他原因。
 
-很多人会像股市一样，对数据的一些微小变化做出过度反应，而事实上这些并不是实质性变化，根本微不足道。以下是全美最大的市场研究公司的领导人阿瑟·尼尔森的经验之谈：太多商界人士对白纸黑字印出来的数字都深信不疑。他们认为数字就代表「事实」，让他们用「概率」的视角来看事情有点儿困难。他们不了解，数字只是一种简化的表示方法，它描述了一个范围，这个范围表明我们在现有情况下对某个问题的实际了解有多少。
+很多人会像股市一样，对数据的一些微小变化做出过度反应，而事实上这些并不是实质性变化，根本微不足道。以下是全美最大的市场研究公司的领导人阿瑟·尼尔森的经验之谈：
 
-1『尼尔森的话太精辟了。数字只是一种简化的表示方法，只能描述事实的一个范围，而这个范围只是表明了我们在现有的信息下，对某个问题实际了解的程度。随机性无处不在，做一张金句卡片。回复：此时此刻再看，还是很震撼，数字只是一种简化的表示方法。（2021-02-10）』——已完成
+太多商界人士对白纸黑字印出来的数字都深信不疑。他们认为数字就代表「事实」，让他们用「概率」的视角来看事情有点儿困难。他们不了解，数字只是一种简化的表示方法，它描述了一个范围，这个范围表明我们在现有情况下对某个问题的实际了解有多少。
+
+1『尼尔森的话太精辟了。数字只是一种简化的表示方法，只能描述事实的一个范围，而这个范围只是表明了我们在现有的信息下，对某个问题实际了解的程度。随机性无处不在，做一张主题卡片。回复：此时此刻再看，还是很震撼，数字只是一种简化的表示方法。（2021-02-10）』——已完成
 
 变异性无所不在。个体之间有差别，对同一个个体多测量几次，结果也会不一样，并且几乎每件事都会随着时间的变化而变化。至于一些所谓的专家对每天股市变化背后的深入原因分析，或者对一场其实是最后一秒才定输赢的球赛，却硬要归咎于输球球队的能力或战术，你尽可以对这些嗤之以鼻。
+
+As far as the laws of mathematics refer to reality they are not certain, and as far as they are certain they do not refer to reality. —— ALBERT EINSTEIN
+
+Because variation is everywhere, statistical conclusions are not certain. Most women who reach middle age have regular mammograms to detect breast cancer. Do mammograms really reduce the risk of dying of breast cancer? Statistical studies of high quality find that mammograms reduce the risk of death in women aged 50 to 64 years by 26%. That’s an average over all women in the age group. Because variation is everywhere, the results are different for different women. Some women who have mammograms every year die of breast cancer, and some who never have mammograms live to 100 and die when they crash their motorcycles.
+
+What the summary study actually said was「mammography reduces the risk of dying of breast cancer by 26 percent (95 percent confidence interval, 17 to 34 percent).」That 26% is, in Arthur Nielsen’s words,「shorthand for a range that describes our actual knowledge of the underlying condition.」The range is 17% to 34%, and we are 95% confident that the truth lies in that range. We’re pretty sure, in other words, but not certain. Once you get beyond news reports, you can look for phrases like「95% confident」and「statistically significant」that tell us that a study did produce findings that, while not certain, are pretty sure.
+
+数学定律不能百分之百地应用于现实生活，能百分之百地用数学定律来描述的就不是现实生活。—— 阿尔伯特·爱因斯坦
+
+1『爱因斯坦这句话其实很有深意的，目前的理解：数学是完全抽象的逻辑世界，是柏拉图式的世界，可以说数据世界是绝对的，关键是数学定理可以在现实世界里对应于一个个应用，这本身就是奇怪，根本毫无理由的。所以这里爱因斯坦说数据定理不能百分百应用于生活，能大部分应用于生活，我们已经很庆幸了，数学它没有义务跟我们现实生活一一对应。（2020-11-21）』
+
+因为变化无所不在，所以统计结论并不是绝对的。大部分中年妇女会定期做乳腺 X 线检查，以便能及早发现乳腺癌。但是，乳腺 X 线检查真的可以降低女性死于乳腺癌的风险吗？高质量的统计研究发现，对于 50-64 岁的妇女来说，乳腺 X 线检查可以减少 26% 的死亡率。但这个数字是该年龄阶段妇女的一个平均数字。因为总是存在着个体差异，所以对于不同的妇女来说，结果可能大不相同。有些每年做乳腺 X 线检查的妇女最后却死于乳腺癌，也有一辈子没做过这种检查的妇女却活到了 100 岁，最终死于车祸。
+
+该报告事实上说的是，「乳腺 X 线检查可以将乳腺癌死亡率减少 26%（置信度为 95%，置信区间为 17-34%）」。而根据尼尔森的观点，26% 这个数字是「某个范围的简化说法，这个范围描述了我们对现时情况的实际了解程度」。在这个案例当中，这个范围是 17-34%，而且我们对它有 95% 的把握。也就是说，我们相当有把握，但不是百分之百确定。当你阅读新闻报道时，可以找找看有没有诸如「95% 的置信度」或「有统计学显著性」等字眼，如果有，就代表这个研究结果虽不能说百分之百确定，但有很大的把握。
+
+1-2『上面的信息补充进主题卡片「Variatioan is everywhere」，其实到现在「置信度」的概念还是没弄明白。（2021-02-11）』
+
+### 0201. 术语卡——
+
+根据反常识，再补充三个证据——就产生三张术语卡。
+
+### 0202. 术语卡——
+
+### 0203. 术语卡——
+
+### 0301. 人名卡——
+
+### 0401. 金句卡 —— 
 
 ### 0501. 信息数据卡——
 
@@ -236,7 +250,7 @@ All these studies report a connection between two variables and invite us to con
 
 有报道说，在美国，设有赌场的县犯罪率较高。有位大学教师说，在线上课的学生比在教室里上课的学生表现好。政府报告强调，受过良好教育的民众比受教育少的民众赚钱多。最好不要太快下结论，而要先问一句：「有没有什么是他们没告诉我的，却可以用来解释这些事？」
 
-1『确实，一定要有这个意思，有没有我们漏掉的信息，就如同飞机弹孔的例子，回来的飞机不等于全部的飞机，哪些引擎上中弹的飞机挂了，没飞回来。（2020-11-21）』
+1『确实，一定要有这个意识，有没有我们漏掉的信息，就如同飞机弹孔的例子，回来的飞机不等于全部的飞机，那些引擎上中弹的飞机挂了，没飞回来。（2020-11-21）』
 
 有赌场的县的确犯罪率较高，但是在城市或是较穷的县，犯罪率也比较高。什么样的县会开设赌场呢？这些县是否在开设赌场之前，犯罪率就已经很高了呢？在线上课的学生学得比较好，但是和在教室里上课的学生比起来，前者的年龄比较大，底子也比较好，因此他们表现好很正常。受教育程度高的人的确赚钱多，但受教育多的人和受教育少的人相比，平均来说前者的父母受的教育也较多，也比较有钱。而且，前者在更好的环境中长大，上更好的学校。这些有利条件让他们接受到更多的教育，即使他们不接受这么多教育，这些有利条件也可能会帮他们赚到很多钱。
 
@@ -246,7 +260,7 @@ All these studies report a connection between two variables and invite us to con
 
 When the facts change, I change my mind. What do you do, sir? —— JOHN MAYNARD KEYNES
 
-If a thermometer under your tongue reads higher than 98.6°F, do you have a fever? Maybe not. People vary in their「normal」temperature. Your own temperature also varies—it is lower around 6 A.M. and higher around 6 P.M. The government announces that the unemployment rate rose a tenth of a percent last month and that new home starts fell by 3%. The stock market promptly jumps (or sinks). Stocks are jumpier than is sensible. The government data come from samples that give good estimates but not the exact truth. Another run of the same samples would give slightly different answers. And economic facts jump around anyway, due to weather, strikes, holidays, and all sorts of other reasons.
+If a thermometer under your tongue reads higher than 98.6°F, do you have a fever? Maybe not. People vary in their「normal」temperature. Your own temperature also varies — it is lower around 6 A.M. and higher around 6 P.M. The government announces that the unemployment rate rose a tenth of a percent last month and that new home starts fell by 3%. The stock market promptly jumps (or sinks). Stocks are jumpier than is sensible. The government data come from samples that give good estimates but not the exact truth. Another run of the same samples would give slightly different answers. And economic facts jump around anyway, due to weather, strikes, holidays, and all sorts of other reasons.
 
 Many people join the stock market in overreacting to minor changes in data that are really nothing but background noise. Here is Arthur Nielsen, head of the country’s largest market research firm, describing his experience:
 
@@ -256,6 +270,8 @@ Variation is everywhere. Individuals vary; repeated measurements on the same ind
 
 变异性无所不在
 
+1『其实应该翻译为「随机无处不在」。（2021-02-11）』
+
 当事实改变时，我就改变主意。您呢？—— 约翰·梅纳德·凯恩斯
 
 如果你的舌下温度超过 37 摄氏度，是不是就代表你在发烧呢？也许不是，每个人的「正常」体温都存在差异。你自己的体温在一天当中也会有变化，早上 6 点时稍高，下午 6 点时稍低。美国政府宣布上个月的失业率上升 0.1 个百分点，而新屋开工率下降 3 个百分点，导致股市波动。股市波动常常是不理性的。政府的数据是根据那些给出乐观预测的样本得出的，是好的估计，但不是百分之百的事实。同样的调查再做一遍，结果会有一些差别。和经济有关的因素原本就会上下波动，影响它的因素包括气候、罢工事件、节假日以及各式各样的其他原因。
@@ -264,7 +280,7 @@ Variation is everywhere. Individuals vary; repeated measurements on the same ind
 
 太多商界人士对白纸黑字印出来的数字都深信不疑。他们认为数字就代表「事实」，让他们用「概率」的视角来看事情有点儿困难。他们不了解，数字只是一种简化的表示方法，它描述了一个范围，这个范围表明我们在现有情况下对某个问题的实际了解有多少。
 
-1『尼尔森的话太精辟了。数字只是一种简化的表示方法，只能描述事实的一个范围，而这个范围只是表明了我们在现有的信息下，对某个问题实际了解的程度。随机性无处不在，做一张金句卡片。回复：此时此刻再看，还是很震撼，数字只是一种简化的表示方法。（2021-02-10）』——已完成
+1『尼尔森的话太精辟了。数字只是一种简化的表示方法，只能描述事实的一个范围，而这个范围只是表明了我们在现有的信息下，对某个问题实际了解的程度。随机性无处不在，做一张主题卡片。回复：此时此刻再看，还是很震撼，数字只是一种简化的表示方法。（2021-02-10）』——已完成
 
 变异性无所不在。个体之间有差别，对同一个个体多测量几次，结果也会不一样，并且几乎每件事都会随着时间的变化而变化。至于一些所谓的专家对每天股市变化背后的深入原因分析，或者对一场其实是最后一秒才定输赢的球赛，却硬要归咎于输球球队的能力或战术，你尽可以对这些嗤之以鼻。
 
@@ -284,7 +300,9 @@ What the summary study actually said was「mammography reduces the risk of dying
 
 因为变化无所不在，所以统计结论并不是绝对的。大部分中年妇女会定期做乳腺 X 线检查，以便能及早发现乳腺癌。但是，乳腺 X 线检查真的可以降低女性死于乳腺癌的风险吗？高质量的统计研究发现，对于 50-64 岁的妇女来说，乳腺 X 线检查可以减少 26% 的死亡率。但这个数字是该年龄阶段妇女的一个平均数字。因为总是存在着个体差异，所以对于不同的妇女来说，结果可能大不相同。有些每年做乳腺 X 线检查的妇女最后却死于乳腺癌，也有一辈子没做过这种检查的妇女却活到了 100 岁，最终死于车祸。
 
-该报告事实上说的是，「乳腺 X 线检查可以将乳腺癌死亡率减少 26%（置信度为 95%，置信区间为 17%-34%）」。而根据尼尔森的观点，26% 这个数字是「某个范围的简化说法，这个范围描述了我们对现时情况的实际了解程度」。在这个案例当中，这个范围是 17-34%，而且我们对它有 95% 的把握。也就是说，我们相当有把握，但不是百分之百确定。当你阅读新闻报道时，可以找找看有没有诸如「95% 的置信度」或「有统计学显著性」等字眼，如果有，就代表这个研究结果虽不能说百分之百确定，但有很大的把握。
+该报告事实上说的是，「乳腺 X 线检查可以将乳腺癌死亡率减少 26%（置信度为 95%，置信区间为 17-34%）」。而根据尼尔森的观点，26% 这个数字是「某个范围的简化说法，这个范围描述了我们对现时情况的实际了解程度」。在这个案例当中，这个范围是 17-34%，而且我们对它有 95% 的把握。也就是说，我们相当有把握，但不是百分之百确定。当你阅读新闻报道时，可以找找看有没有诸如「95% 的置信度」或「有统计学显著性」等字眼，如果有，就代表这个研究结果虽不能说百分之百确定，但有很大的把握。
+
+1-2『上面的信息补充进主题卡片「Variatioan is everywhere」，其实到现在「置信度」的概念还是没弄明白。（2021-02-11）』
 
 ### 07. Data reflect social values
 
@@ -318,7 +336,7 @@ What Lies Ahead in This Book. This isn’t a book about the tools of statistics.
 
 1『数据分布的 3 个关键参数出来了：平均值、方差和相关性（拟合度）。（2020-11-21）』
 
-1 Data production describes methods for producing data that can give clear answers to specific questions. Where the data come from really is important—basic concepts about how to select samples and design experiments are the most influential ideas in statistics.
+1 Data production describes methods for producing data that can give clear answers to specific questions. Where the data come from really is important — basic concepts about how to select samples and design experiments are the most influential ideas in statistics.
 
 2 Data analysis concerns methods and strategies for exploring, organizing, and describing data using graphs and numerical summaries. You can learn to look at data intelligently even with quite simple tools.
 

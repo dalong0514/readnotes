@@ -1,4 +1,4 @@
-# 2020073Docker_The_Complete_R00
+# 2020073Docker-The-Complete-R00
 
 ## 记忆时间
 
@@ -20,7 +20,7 @@ Rise of Docker is nothing that short of spectacular. The containers are not new 
 
 Docker is designed for different applications and container. These containers are good for developers to develop codes and make their own assignments. There are different tools in docker for your assistance and you can use these tools to create different things. This open source program is good to automate the deployment of software and container with extra layer of abstraction and automation.
 
-## 01. Getting Started with Docker
+## 0101. Getting Started with Docker
 
 Docker is basically an open source and anyone can subsidize to Docker and expand it to your own needs. If you need additional features and these are not available, you can add them in the Docker. This tool is good for system administrators and developers. It is an important part of DevOps (developers and operations) tool chains. Developers can pay attention on the writing code without thinking about system that it may ultimately be run on.
 
@@ -56,7 +56,7 @@ With self-contained options, the risks of system-level modifications or updates 
 
 Dockerfiles. These are scripts with a series of consecutive instructions, commands and directions that can be executed to make one new docker image. Every executed command is translated to one new layer of onion and makes the end product. They can replace the procedure of undertaking everything repeatedly and manually. A Dockerfile may finish its execution and you may make one image to start one new container.
 
-## 02. Tips to Install Docker for Mac
+## 0201. Tips to Install Docker for Mac
 
 You have to run these important commands in your docker to check the version, such as docker, docker-compose & docker-machine. Make sure these all are compatible and updated to the Docker.app.
 
@@ -104,7 +104,7 @@ Reset or Uninstall. You can select —> options from your menu bar and hit Unins
 
 Bash completion Installation. If you want to use bash completion, including “homebrew-bash-completion on your Mac” and bash completion script for the docker compose, docker machine and docker is easy to find in the docker.app and you can get it in resources or contents folder. You can activate the completion of bash and these files should be symlinked or copied to the bash_completion.d directory. For instance, you can use Homebrew:
 
-## 03. Understand Container, Images and Storage Drives
+## 0301. Understand Container, Images and Storage Drives
 
 To effectively use your storage device, you should learn how docker creates and stores different images. You have to understand that these images will be utilized by containers. You should have short introduction to this technology to enable container and image operations.
 
@@ -180,11 +180,11 @@ All writes on the container are secured in one writable layer of container. The 
 
 As you modify the existing file in a container, the docker utilizes your storage driver to perform operation of CoW. This may specify the operations on the basis of storage driver. For OverlayFS and AUFS storage drivers, the CoW operations can be as follows:
 
-1. You can search through the layers of image to update file. This procedure starts at the top of your new layer and work in the downward direction to the foundation layer. It will work on one layer at a time.
+1 You can search through the layers of image to update file. This procedure starts at the top of your new layer and work in the downward direction to the foundation layer. It will work on one layer at a time.
 
-2. You can perform one "copy-up" operation on initial copy of your file. The copy up may copy your file up to the individual container with thin and writable layer.
+2 You can perform one "copy-up" operation on initial copy of your file. The copy up may copy your file up to the individual container with thin and writable layer.
 
-3. You can modify the copy of file in thin writable layer of your container.
+3 You can modify the copy of file in thin writable layer of your container.
 
 ZFS, Btrfs and many other drivers can handle the CoW (copy-on-write) contrarily.
 

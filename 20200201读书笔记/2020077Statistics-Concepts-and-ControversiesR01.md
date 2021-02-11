@@ -16,6 +16,240 @@ You can find data in the library or on the Internet (that’s where we found the
 
 In this chapter you will: 1) Learn the different types of studies used to collect data. 2) Understand the purpose of these different types of studies used to collect data. 3) Examine the types of data a study might collect.
 
+### Summary and Exercises
+
+#### Chapter 1: Statistics in Summary
+
+1 Any statistical study records data about some individuals (people, animals, or things) by giving the value of one or more variables for each individual.
+
+2 Some variables, such as age and income, take numerical values. Others, such as occupation and sex, do not. Be sure the variables in a study really do tell you what you want to know.
+
+3 The most important fact about any statistical study is how the data were produced. Observational studies try to gather information without disturbing the scene they are observing.
+
+4 Sample surveys are an important kind of observational study. A sample survey chooses a sample from a specific population and uses the sample to get information about the entire population.
+
+5 A census attempts to measure every individual in a population.
+
+6 Experiments actually do something to individuals in order to see how they respond. The goal of an experiment is usually to learn whether some treatment actually causes a certain response.
+
+This chapter summary will help you evaluate the Case Study.
+
+1、任何一个统计研究都会记录关于一些个体（人、动物或物品）的数据，也就是一个或多个变量的值。
+
+2、有些变量，比如年龄和收入，属于定量数据数值，而有些变量，比如职业或性别，则属于定性数据。要确保研究变量可以给你想要的信息。
+
+3、对于任何一项统计研究，你最需要知道的是数据是如何产生的。观察研究是指，在只观察而不造成干扰的情况下搜集信息。
+
+4、抽样调查是观察研究当中很重要的一种方式。抽样调查是从某个特定的总体中抽取样本，然后从样本中获得有关总体的信息。
+
+5、普查试图对总体中的每个个体进行测量。
+
+6、实验会对个体做某种处理，然后观察个体的反应。实验的目的通常是，了解某种处理是否会引起某种反应。
+
+#### Link It
+
+In reasoning from data to a conclusion, we start with the data. Where the data come from is the first step in the argument. The nature and validity of the conclusion are affected by this first step. Two sources of data are observational studies and experiments. Observational studies are best suited for a conclusion that involves describing some group or situation without disturbing the scene we observe. Sample surveys are a type of observational study in which we draw conclusions about a population by observing only a part of the population (the sample). Experiments are best suited for a conclusion that involves determining if a treatment causes a change in a response.
+
+In the next several chapters, we discuss these sources of data in more detail. We will see what makes for a good observational study and for a good experiment. And we will see how a bad observational study or experiment undermines the validity of the conclusions we wish to make.
+
+在依靠数据信息推导出结论的过程中，我们面临的第一个问题就是数据来自何处。统计研究结论的本质和有效性都取决于这一点。数据来自两个渠道：观察研究和实验。观察研究适合在无干扰的情况下描述某个群体或状况并得出结论。抽样调查是一种观察研究，我们通过观察总体的一部分（样本），得出有关总体的结论。实验适用于判断一种处理是否会产生不同的反应。在后面几章，我们将更深入地讨论数据的来源。我们将会看到怎样进行良好的观察研究和实验，我们还会看到糟糕的观察研究或实验是如何破坏我们想要获得的结论的有效性的。
+
+#### Case Study Evaluated
+
+Use what you have learned in this chapter to answer some basic questions about the data collected in the MLive poll described in the Case Study that opened the chapter. Start by reviewing the Chapter Summary. Then answer each of the following questions in complete sentences. Be sure to communicate clearly enough for any of your classmates to understand what you are saying.
+
+To participate in the poll, you had to go online to the MLive website and click on one of the possible responses. 1) Is the poll a sample survey, census, or experiment? 2) What is the population of interest? 3) What are the individuals in the poll?4) For each individual, what variable is measured? 5) Does this variable take numerical values?
+
+In this chapter you have: 1) Learned the different types of studies used to collect data. 2) Understood the purpose of these different types of studies used to collect data. 3) Examined the types of data a study might collect.
+
+用你从本章所学知识来回答本章开头的软糖民意调查案例中的几个基本问题。为了参加这项调查，人们必须走进商店，并从碗里选择一块软糖。1）这项调查是一个抽样调查、普查还是实验？2）调查的总体是谁？3）调查中的个体是谁？4）对于每个个体，该研究测量了什么变量？5）这些变量的值是数字吗？
+
+#### Check the Basics
+
+For Exercise 1.1, see page 10; for Exercise 1.2, see page 13.
+
+1.3 Individuals and variables. A national survey by the Pew Research Center and USA Today, conducted August 16–Septermber 12, 2016, was based on web-based and mail responses of a national sample of 4538 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Those interviewed were asked to rate the job performance of police forces across the country for holding officers accountable when misconduct occurs. Possible ratings were「Excellent,」「Good,」「Only fair,」and「Poor.」Seventy percent of white respondents gave a rating of「Excellent」or「Good,」while only 31% of black respondents gave a rating of「Excellent」or「Good.」For this study, 
+
+a) the individuals are the sample of 4538 adults interviewed. 
+
+b) the variable is the rating a respondent selected. 
+
+c) both (a) and (b). 
+
+d) neither (a) nor (b).
+
+1.4 Population and sample. For the survey described in the previous exercise, 
+
+a) the population is the 4538 adults interviewed and the sample are those who gave a rating of excellent or good. 
+
+b) the population is all adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia, and the sample is those who gave a rating of poor. 
+
+c) the population is all adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia, and the sample is the black and white respondents. 
+
+d) the population is all adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia, and the sample is the 4538 adults who provided responses.
+
+1.5 Observational studies and experiments. Researchers at UNLV studied whether the attractiveness of an instructor affected the performance of students. The researchers randomly assigned 131 UNLV students to one of several instructors. Students listened to a recording of an introductory physics lecture by their instructor, and each instructor delivered the same lecture. During the lecture, the students were shown different sets of photographs that they were told were images of the instructor. Some of the photographed people were good-looking, others less so. Students were quizzed after the lecture, and those with instructors deemed attractive performed better than those with unattractive instructors. Which of the following is true?
+
+a) This is an observational study, and participants were volunteers.
+
+b) This is an observational study, and participants were selected at random.
+
+c) This is an experiment, but participants themselves decided which instructor to listen to.
+
+d) This is an experiment, and participants were randomly assigned to treatments (instructors).
+
+1.6 Response variable. For the study described in the previous exercise, the response variable is which of the following?
+
+a) Scores on a quiz.
+
+b) Whether a subject was assigned to a group with an attractive or unattractive instructor.
+
+c) The recorded lecture.
+
+d) The 131 students.
+
+1.7 A census? A study is considered to be a census if
+
+a) the population of interest is very large.
+
+b) the study attempts to measure every individual in a population.
+
+c) all units in the study receive some treatment.
+
+d) it attempts to answer questions about the opinions of all citizens of a particular country.
+
+1.8 Miles per gallon. Here is a small part of a data set that describes the fuel economy (in miles per gallon) of 2019 model motor vehicles:
+
+What are the individuals in this data set?
+
+For each individual, what variables are given? Which of these variables take numerical values?
+
+1.9 Athletes’ salaries. Here is a small part of a data set that describes Major League Baseball players as of opening day of the 2018 season:
+
+What individuals does this data set describe?
+
+In addition to the player’s name, how many variables does the data set contain? Which of these variables take numerical values?
+
+What do you think are the units in which each of the numerical variables is expressed? For example, what does it mean to give Mike Trout’s annual salary as 34,083? (Hint: The average annual salary of a Major League Baseball player on opening day, 2018, was, with roundoff, `$`4,520,000.)
+
+1.10 Who recycles? In Example 1, weight is not a good measure of the participation of households in different neighborhoods in a city recycling program. What variables would you measure in its place?
+
+1.11 Sampling moms. Pregnant and breast-feeding women should eat at least 12 ounces of fish and seafood per week to ensure their babies’ optimal brain development, according to a coalition of top scientists from private groups and federal agencies. A nutritionist wants to know whether pregnant women are eating at least 12 ounces of fish per week. To do so, she obtains a list of the 340 members of a local chain of prenatal fitness clubs and mails a questionnaire to 60 of these women selected at random. Only 21 questionnaires are returned. What is the population in this study? What is the sample from which information is actually obtained? What percentage of the women whom the nutritionist tried to contact responded?
+
+1.12 The death penalty. A press release by the Gallup News Service says that, based on a poll conducted on October 5–11, 2017, it found that 55% of Americans respond Yes when asked this question:「Are you in favor of the death penalty for a person convicted of murder?」Toward the end of the article, you read:「Results for this Gallup poll are based on telephone interviews conducted October 5–11, 2017, with a random sample of 1,028 adults, aged 18 and older, living in all 50 U.S. states and the District of Columbia.」What variable did this poll measure? What population do you think Gallup wants information about? What was the sample?
+
+1.13 The political gender gap. There may be a「gender gap」in political party preference in the United States, with women more likely than men to prefer Democratic candidates. A political scientist interviews a large sample of registered voters, both men and women. She asks each voter whether he or she voted for the Democratic or the Republican candidate in the last presidential election. Is this study an experiment? Why or why not? What variables does the study measure?
+
+1.14 What is the population? For each of the following sampling situations, identify the population as exactly as possible. That is, say what kind of individuals the population consists of and say exactly which individuals fall in the population. If the information given is not sufficient, complete the description of the population by making reasonable assumptions about any missing information.
+
+An opinion poll contacts 972 American adults and asks them,「Would you rather have a job working for the government or working for business?」
+
+Video adapter cables have pins that plug into slots in a computer monitor. The adapter will not work if pins are bent or broken. A computer store buys video adapter cables in large lots from a supplier. The store chooses five cables from each lot and inspects the pins. If any of the cables have bent or broken pins, the entire lot is sent back.
+
+The American Community Survey contacts 3.5 million households, including some in every county in the United States. This Census Bureau survey asks each household questions about their housing, economic, and social status.
+
+1.15 What is the population? For each of the following sampling situations, identify the population as exactly as possible. That is, say what kind of individuals the population consists of and say exactly which individuals fall in the population. If the information given is not sufficient, complete the description of the population in a reasonable way.
+
+A sociologist is interested in determining what proportion of teens believe the drinking age should be lowered to 18 in all the states. She selects a sample of five high schools in a large city and interviews all 12th graders in each of the schools.
+
+A medical researcher is interested in the rate of dementia among former NFL football players. From a list of living, former players he selects a sample of 20 and interviews them to determine if signs of dementia are present.
+
+The host of a local radio talk show wonders if people who are actively religious are more likely to trust their neighbors than those who are not. The station receives calls from 51 listeners who voice their opinions.
+
+1.16 Teens sleep needs. A Washington Post article reported on a study about the sleep needs of teenagers. In the study, researchers measured the presence of the sleep-promoting hormone melatonin in teenagers’ saliva at different times of the day. They learned that the melatonin levels rise later at night than they do in children and adults and remain at a higher level later in the morning. The teenagers who took part in the study were volunteers. Higher levels of melatonin indicate sleepiness. The researchers recommended that high schools start later in the day to accommodate the sleep needs of teens. Is this study an experiment, a sample survey, or an observational study that is not a sample survey? Explain your answer.
+
+1.17 Power lines and leukemia. The study of power lines and leukemia in Example 3 compared two groups of individuals and measured many variables that might influence differences between the groups. Explain carefully why this study is not an experiment.
+
+1.18 Treating prostate disease. A large study used records from Canada’s national health care system to compare the effectiveness of two ways to treat prostate disease. The two treatments are traditional surgery and a new method that does not require surgery. The records described many patients whose doctors had chosen one or the other method. The study found that patients treated by the new method were more likely to die within eight years.
+
+Explain why this is an observational study, not an experiment.
+
+Briefly describe the nature of an experiment to compare the two ways to treat prostate disease.
+
+1.19 Walnuts and cholesterol. Does eating walnuts increase the level of good cholesterol (HDL) and reduce the level of bad cholesterol (LDL)? Here are two ways to study this question.
+
+Researchers in Australia recruited 58 adults with diabetes for a research study. These subjects were randomly assigned to two treatment groups: a low-modified-fat diet group and a low-modified-fat diet group that included a handful of walnuts each day. After six months, researchers compared changes in HDL and LDL levels for the two groups.
+
+Another team of researchers recruited 58 adults with diabetes who regularly eat walnuts as part of their diet. The researchers match each with a similar adult with diabetes who does not regularly eat walnuts. The researchers measured the HDL and LDL for each adult and compared the results for both groups. Explain why the first is an experiment and the second is an observational study.
+
+Why does the experiment give more useful information about whether walnuts increase HDL and reduce LDL?
+
+1.20 Alcohol and cancer in women. A Washington Post article reported on a study about alcohol consumption and cancer in women. Since 1996, a team of British researchers has been gathering detailed information from 1.28 million women aged 50 to 64. The researchers recorded how much alcohol the women reported consuming when they volunteered for the study and again three years later. The researchers then examined whether there was any link with the 68,775 cancers the women developed over an average of the next seven years. They found that even among women who consumed as little as 10 grams of alcohol a day on average (the equivalent of about one drink), the risk for cancer of the breast, liver, and rectum was elevated.
+
+Is this an experiment? Explain your answer.
+
+We would prefer a sample survey to using women who volunteer for a study. What population does it appear that the researchers were interested in? What variables did they measure?
+
+1.21 Alcohol and longevity. A Chicago Tribune article reported on a study about alcohol consumption and how long you live. The research tracked 1700 nonagenarians (adults in their 90s) enrolled in the study that began in 2003 to explore impacts of daily habits on longevity. The researchers discovered that subjects who drank about two glasses of beer or wine a day were 18% less likely to experience a premature death. Meanwhile, participants who exercised 15 to 45 minutes a day cut the same risk by 11%.
+
+Is this an experiment? Explain your answer.
+
+We would prefer a sample survey to using nonagenarians who volunteer for a study. What population does it appear that the researchers were interested in? What variables did they measure?
+
+1.22 Bullying. Researchers tracked 2668 people from early childhood through adulthood and found that 13-year-olds who are frequent targets of bullies were three times more likely than their nonvictimized peers to be depressed later as adults. What is the population in this study? What is the sample? What variables do the researchers measure?
+
+1.23 Choose your study type. What is the best way to answer each of the questions below: an experiment, a sample survey, or an observational study that is not a sample survey? Explain your choices.
+
+Is your school’s football team called for fewer penalties in home games than in away games?
+
+Are college students satisfied with the cost of textbooks that they are required to purchase?
+
+Do college students who have access to video recordings of course lectures perform better in the course than those who don’t?
+
+1.24 Choose your study purpose. Give an example of a question about pet owners, their behavior, or their opinions that would best be answered by
+
+a sample survey.
+
+an observational study that is not a sample survey.
+
+an experiment.
+
+Exploring the Web
+
+Access these exercises on the text website: macmillanlearning.com/scc10e.
+
+1.3 每加仑 [3] 英里 [4] 数。以下是描述 2011 年不同型号汽车的油耗状况（MPG，每加仑英里数）的数据集的一小部分。a）在这个数据集里，个体是什么？b）对于每个个体，该研究衡量了哪些变量？其中哪些变量的值是数字？
+
+1.4 美国棒球运动员的年薪。以下是美国职业棒球大联盟在 2011 赛季的第一天公布的部分球员资料：a）这个数据集描述的个体是什么？b）除了球员姓名外，这个数据集还包括哪几个变量？哪些变量的值是数字？
+
+1.5 谁在做资源回收？在例 1 当中我们提到在同一个城市的两个不同社区间比较资源回收的成效时，重量不是理想的变量。那么，你建议用什么变量来替代重量？
+
+1.6 在孕妇中做抽样调查。怀孕和哺乳期女性每周至少应该吃 12 盎司鱼类或海鲜，才能使她们的婴儿的大脑得到最好的发育。这是来自一个私营和联邦机构的顶级科学家小组的建议。一位营养学家想知道孕期女性是否每周都会吃至少 12 盎司鱼类。为此，她找到了一份当地孕妇健身俱乐部的 340 名会员的名单，从中随机选择了 60 名并给她们寄出了调查问卷，最终她只收回了 21 份问卷。该项研究的总体是什么？用于获取信息的样本是什么？在该营养师联络的女性中，寄回问卷的人占比多少？
+
+1.7 死刑。盖洛普新闻服务机构发布的一条消息说，根据 2011 年 10 月 6 日～2011 年 10 月 9 日所做的民意调查，他们发现当被问到「你赞成对谋杀犯处以死刑吗」的问题时，61% 的美国人回答「是」。在该消息的结尾，你会读到「这个结果是基于随机电话访谈全国 1005 名 18 岁及以上成年人得到的」。这个抽样调查测量的变量是什么？你认为盖洛普的这项民意调查的总体是什么？样本是什么？
+
+1.8 政治倾向的性别差异。在美国，政治倾向似乎存在性别差异，女性比男性更倾向于支持民主党。一位政治学者访问了许多选民，男性和女性都有。她问他们，上一次国会选举时把票投给了民主党还是共和党。这项研究是不是实验？你做出判断的理由是什么？该项研究测量了哪些变量？
+
+1.9 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。a）一项民意调查联络了 972 位成年人，问他们：「你更愿意为政府工作还是在公司工作？」b）视频接口线的一端有能插入电脑显示器插口的针型槽。如果里面的插针弯曲或损坏了，这条接口线就不能用了。一家电脑商店从供应商处批量采购视频接口线，从每批中抽出 5 条线检查插针情况。如果发现有插针弯曲或损坏的情况，则将整批接口线退回给供应商。c）美国社区调查计划联络 300 万个美国住户，全美每一个县中都有一些住户会被调查。该调查会询问每个住户关于居住状况、经济情况及社会地位等问题。
+
+1.10 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。a）一位社会学者想知道，有多大比例的青少年认为美国各州应把法定最低饮酒年龄降至 18 岁。她选择了一个样本，是一个大城市的 5 所高中，并访谈了每所学校所有的 12 年级学生。b）一名医学研究者想知道前美国国家橄榄球联盟（NFL）运动员中患阿尔茨海默病的比例。他从仍在世的人员名单中随机挑选了 20 名，并通过访谈来判断他们是否患有阿尔茨海默病的迹象。c）当地电台脱口秀主持人想知道有宗教信仰的人是否比没有宗教信仰的人更信任他们的邻居。电台收到了 51 个听众的电话反馈。
+
+1.11 青少年的睡眠需求。《华盛顿邮报》一篇文章报道了一个关于青少年睡眠需求的研究。实验人员测量了一天当中各个时间段青少年唾液中产生的促进睡眠的褪黑素的含量。他们发现，青少年的褪黑素水平在夜间要比成年人和儿童的褪黑素水平高，在早上仍保持在较高水平上。参加该项研究的青少年都是自愿的。褪黑素水平较高表明需要睡眠，因此实验人员建议高中生的上课时间应该推迟一些，以满足学生的睡眠需求。这项研究是一个实验、抽样调查还是观察研究？请给出答案并说明你的理由。
+
+1.12 高压电缆和白血病患儿。在例 3 对于高压电缆和白血病患儿关系的研究中，实验人员比较了两组个体，并且测量了许多可能关乎两组之间差异的变量。请详细说明为何这项研究不是实验。
+
+1.13 治疗前列腺疾病。一项大型研究使用了加拿大全民医疗系统的记录，来比较两种前列腺疾病治疗方法的有效性。其中一种是传统的手术治疗，另一种是不需要做手术的新疗法。记录中有许多病人的资料，这些病人，有的选择了手术治疗，有些选择了新疗法。研究显示，选择新疗法的病人在 8 年内的死亡率较高。请说明为何这是观察研究而非实验。
+
+1.14 燕麦和胆固醇。吃燕麦餐可以降低坏胆固醇（LDL）的水平？以下是研究这个问题的两种方法：
+
+第一种方法是：一位研究者找到 500 位 40 岁以上的成年人，他们都定期食用燕麦或燕麦类食品。他将每个人都和一位不定期食用燕麦或燕麦类食品的同龄成年人进行比较，测量他们的坏胆固醇水平。
+
+第二种方法是：另一位研究者找了 1000 位 40 岁以上的成年人，他们都没有定期食用燕麦或燕麦类食品，也都愿意参与这项研究。她随机安排其中 500 人每天早餐食用燕麦，而其他人继续按平时的习惯吃早餐。6 个月后，她比较了两组人的坏胆固醇水平。a）请说明为什么第一种研究方法是观察研究，而第二种研究方法是实验。b）为什么在燕麦是否可以降低坏胆固醇水平的问题上，实验可以提供更多的有效信息？
+
+1.15 酒精和女性癌症患者。《华盛顿邮报》有一篇关于女性饮酒与癌症的研究报道。从 1996 年起，一群英国的实验人员开始收集 128 万名 50~64 岁女性的详细信息。实验人员记录了三年中这些自愿参加该研究的女性报告的饮酒量，并探究了在平均 7 年后出现的 68775 个女性癌症患者与她们饮酒之间是否有关联。他们发现，即使这些女性每天平均只摄入 10 克酒精（大约相当于一杯酒），她们患乳腺癌、肝癌和直肠癌的风险也会增加。a）这是不是实验？请说明理由。b）我们更喜欢在志愿参加调查研究的人中做抽样调查。那么，实验人员感兴趣的总体是什么？他们测量了哪些变量？
+
+1.16 课本的成本。一名学生想知道一本教材的成本是否取决于其页数。于是，该学生走进校园书店，从书架上随机选择了一本教材，并记录下它的页数和价格。这项研究的总体是什么？样本是什么？该学生测量的变量是什么？
+
+1.17 选择你的研究类型。你认为，要回答下列三个问题，实验、抽样调查或观察研究，哪种方式最好？a）你们学校的篮球队在主场比赛中犯规次数多还是在客场比赛中犯规次数多？b）大学生对学校提供给他们的娱乐设施满意吗？c）可以进行课程录音的大学生是否比那些不能进行课程录音的学生表现更好？
+
+1.18 选择研究目标。研究一个有关大学生或其行为、想法的问题，最适合用以下哪种方法。a）抽样调查。b）观察研究。c）实验。
+
+1.19 网上练习。从例 4 到例 7 所提到的抽样调查都可以在网上找到：1）盖洛普民意调查（例 4）：www.gallup.com。2）当前人口调查（例 5）：www.bls.gov/cps。3）电视收视率调查（例 6）：www.nielsen.com/us/en/measurement/television-measurement.html。4）综合社会调查（例 7）：www.norc.org/Research/Projects/Pages/general-society-survey.aspx。
+
+我们建议读者浏览盖洛普网站，了解当前民意调查的结果和有关调查方法的说明。访问盖洛普调查网站，选择一个可供非订阅用户浏览的民意调查，判断其中的总体和样本是什么，以及样本中包含了多少人。
+
+1.20 网上练习。你可以在美国国家环境健康科学研究所（NIEHS）的网站（网址为：www.niehs.nih.gov/health/topics.agents/emf）上找到有关暴露在高压电缆下对健康的影响报告。尽管少量对于成年人暴露在高压电缆下的研究，表明成年人患癌症与住所的电磁场没有必然联系，但该网站上提到的 NIEHS 科学家对此问题的结论是什么？为什么？
+
 ### Case Study: An Online Poll
 
 You can read the newspaper and watch TV news for months without seeing an algebraic formula. No wonder algebra seems unconnected to life. You can’t go a day, however, without meeting data and statistical studies. You hear that last month’s unemployment rate was 3.9%. A news article says that 87% of AAAS (the American Association for the Advancement of Science) scientists agree that climate change is mostly due to human activity, while only 50% of all U.S. residents 18 years of age and over agree. A longer article says that low-income children who received high-quality day care did better on academic tests given years later and were more likely to go to college and hold good jobs than other similar children.
@@ -281,237 +515,3 @@ One of the big ideas of statistics is that experiments can give good evidence th
 福利救济的例子说明，实验比观察研究更有效。从原则上说，实验可以为「因果关系」（cause and effect）的存在与否提供良好的证据。如果我们适当地设计实验，就可以从两组较为相似的领取福利救济的母亲开始。她们之间当然会存在年龄、受教育程度、子女人数及其他方面的差别。但是，当我们检视两组中所有实验对象的年龄、受教育程度、子女人数时，发现这两个组的情况很接近。实验过程中，虽然她们的生活都不一样，但是两组实验对象之间只有一项「系统性差异」（systematic difference），那就是一组参加了工作培训，而另一组没有。大家都经过了同样的经济繁荣或不景气的状况，以及观念的改变，等等。如果参加培训的那一组在工作表现和赚钱方面都远胜另一组，我们就可以说参加工作培训确实带来了令人满意的结果。
 
 实验可以提供好的证据，证明某项处理的确产生了某种反应，这是统计学的一个重要概念。这个概念还附带了一个重要的提醒：统计结论是针对一群个体从「平均的角度」（on the average）得出的结论，而非针对任何特定的个体。从平均的角度看，参加工作培训的实验对象的收入比没参加的人高。这说明我们预期的目标达成了，但并不代表每个参加培训的人都会受益。这个概念也会引发一个大大的疑问：如果我们希望工作培训计划能增加实验对象的收入，那么，只让某些女性参加，却不让其他人参加，会不会有点儿不道德？在第 5 章和第 6 章中，我们将会说明怎样设计好的实验，在第 7 章中我们将会讨论相关的伦理问题。
-
-### Summary and Exercises
-
-#### Chapter 1: Statistics in Summary
-
-1 Any statistical study records data about some individuals (people, animals, or things) by giving the value of one or more variables for each individual.
-
-2 Some variables, such as age and income, take numerical values. Others, such as occupation and sex, do not. Be sure the variables in a study really do tell you what you want to know.
-
-3 The most important fact about any statistical study is how the data were produced. Observational studies try to gather information without disturbing the scene they are observing.
-
-4 Sample surveys are an important kind of observational study. A sample survey chooses a sample from a specific population and uses the sample to get information about the entire population.
-
-5 A census attempts to measure every individual in a population.
-
-6 Experiments actually do something to individuals in order to see how they respond. The goal of an experiment is usually to learn whether some treatment actually causes a certain response.
-
-This chapter summary will help you evaluate the Case Study.
-
-1、任何一个统计研究都会记录关于一些个体（人、动物或物品）的数据，也就是一个或多个变量的值。
-
-2、有些变量，比如年龄和收入，属于定量数据数值，而有些变量，比如职业或性别，则属于定性数据。要确保研究变量可以给你想要的信息。
-
-3、对于任何一项统计研究，你最需要知道的是数据是如何产生的。观察研究是指，在只观察而不造成干扰的情况下搜集信息。
-
-4、抽样调查是观察研究当中很重要的一种方式。抽样调查是从某个特定的总体中抽取样本，然后从样本中获得有关总体的信息。
-
-5、普查试图对总体中的每个个体进行测量。
-
-6、实验会对个体做某种处理，然后观察个体的反应。实验的目的通常是，了解某种处理是否会引起某种反应。
-
-#### Link It
-
-In reasoning from data to a conclusion, we start with the data. Where the data come from is the first step in the argument. The nature and validity of the conclusion are affected by this first step. Two sources of data are observational studies and experiments. Observational studies are best suited for a conclusion that involves describing some group or situation without disturbing the scene we observe. Sample surveys are a type of observational study in which we draw conclusions about a population by observing only a part of the population (the sample). Experiments are best suited for a conclusion that involves determining if a treatment causes a change in a response.
-
-In the next several chapters, we discuss these sources of data in more detail. We will see what makes for a good observational study and for a good experiment. And we will see how a bad observational study or experiment undermines the validity of the conclusions we wish to make.
-
-在依靠数据信息推导出结论的过程中，我们面临的第一个问题就是数据来自何处。统计研究结论的本质和有效性都取决于这一点。数据来自两个渠道：观察研究和实验。观察研究适合在无干扰的情况下描述某个群体或状况并得出结论。抽样调查是一种观察研究，我们通过观察总体的一部分（样本），得出有关总体的结论。实验适用于判断一种处理是否会产生不同的反应。在后面几章，我们将更深入地讨论数据的来源。我们将会看到怎样进行良好的观察研究和实验，我们还会看到糟糕的观察研究或实验是如何破坏我们想要获得的结论的有效性的。
-
-#### Case Study Evaluated
-
-Use what you have learned in this chapter to answer some basic questions about the data collected in the MLive poll described in the Case Study that opened the chapter. Start by reviewing the Chapter Summary. Then answer each of the following questions in complete sentences. Be sure to communicate clearly enough for any of your classmates to understand what you are saying.
-
-To participate in the poll, you had to go online to the MLive website and click on one of the possible responses. 1) Is the poll a sample survey, census, or experiment? 2) What is the population of interest? 3) What are the individuals in the poll?4) For each individual, what variable is measured? 5) Does this variable take numerical values?
-
-In this chapter you have: 1) Learned the different types of studies used to collect data. 2) Understood the purpose of these different types of studies used to collect data. 3) Examined the types of data a study might collect.
-
-用你从本章所学知识来回答本章开头的软糖民意调查案例中的几个基本问题。为了参加这项调查，人们必须走进商店，并从碗里选择一块软糖。1）这项调查是一个抽样调查、普查还是实验？2）调查的总体是谁？3）调查中的个体是谁？4）对于每个个体，该研究测量了什么变量？5）这些变量的值是数字吗？
-
-#### Check the Basics
-
-For Exercise 1.1, see page 10; for Exercise 1.2, see page 13.
-
-1.3 Individuals and variables. A national survey by the Pew Research Center and USA Today, conducted August 16–Septermber 12, 2016, was based on web-based and mail responses of a national sample of 4538 adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia. Those interviewed were asked to rate the job performance of police forces across the country for holding officers accountable when misconduct occurs. Possible ratings were「Excellent,」「Good,」「Only fair,」and「Poor.」Seventy percent of white respondents gave a rating of「Excellent」or「Good,」while only 31% of black respondents gave a rating of「Excellent」or「Good.」For this study, 
-
-a) the individuals are the sample of 4538 adults interviewed. 
-
-b) the variable is the rating a respondent selected. 
-
-c) both (a) and (b). 
-
-d) neither (a) nor (b).
-
-1.4 Population and sample. For the survey described in the previous exercise, 
-
-a) the population is the 4538 adults interviewed and the sample are those who gave a rating of excellent or good. 
-
-b) the population is all adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia, and the sample is those who gave a rating of poor. 
-
-c) the population is all adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia, and the sample is the black and white respondents. 
-
-d) the population is all adults, 18 years of age or older, living in all 50 U.S. states and the District of Columbia, and the sample is the 4538 adults who provided responses.
-
-1.5 Observational studies and experiments. Researchers at UNLV studied whether the attractiveness of an instructor affected the performance of students. The researchers randomly assigned 131 UNLV students to one of several instructors. Students listened to a recording of an introductory physics lecture by their instructor, and each instructor delivered the same lecture. During the lecture, the students were shown different sets of photographs that they were told were images of the instructor. Some of the photographed people were good-looking, others less so. Students were quizzed after the lecture, and those with instructors deemed attractive performed better than those with unattractive instructors. Which of the following is true?
-
-a) This is an observational study, and participants were volunteers.
-
-b) This is an observational study, and participants were selected at random.
-
-c) This is an experiment, but participants themselves decided which instructor to listen to.
-
-d) This is an experiment, and participants were randomly assigned to treatments (instructors).
-
-1.6 Response variable. For the study described in the previous exercise, the response variable is which of the following?
-
-a) Scores on a quiz.
-
-b) Whether a subject was assigned to a group with an attractive or unattractive instructor.
-
-c) The recorded lecture.
-
-d) The 131 students.
-
-1.7 A census? A study is considered to be a census if
-
-a) the population of interest is very large.
-
-b) the study attempts to measure every individual in a population.
-
-c) all units in the study receive some treatment.
-
-d) it attempts to answer questions about the opinions of all citizens of a particular country.
-
-1.8 Miles per gallon. Here is a small part of a data set that describes the fuel economy (in miles per gallon) of 2019 model motor vehicles:
-
-What are the individuals in this data set?
-
-For each individual, what variables are given? Which of these variables take numerical values?
-
-1.9 Athletes’ salaries. Here is a small part of a data set that describes Major League Baseball players as of opening day of the 2018 season:
-
-What individuals does this data set describe?
-
-In addition to the player’s name, how many variables does the data set contain? Which of these variables take numerical values?
-
-What do you think are the units in which each of the numerical variables is expressed? For example, what does it mean to give Mike Trout’s annual salary as 34,083? (Hint: The average annual salary of a Major League Baseball player on opening day, 2018, was, with roundoff, $4,520,000.)
-
-1.10 Who recycles? In Example 1, weight is not a good measure of the participation of households in different neighborhoods in a city recycling program. What variables would you measure in its place?
-
-1.11 Sampling moms. Pregnant and breast-feeding women should eat at least 12 ounces of fish and seafood per week to ensure their babies’ optimal brain development, according to a coalition of top scientists from private groups and federal agencies. A nutritionist wants to know whether pregnant women are eating at least 12 ounces of fish per week. To do so, she obtains a list of the 340 members of a local chain of prenatal fitness clubs and mails a questionnaire to 60 of these women selected at random. Only 21 questionnaires are returned. What is the population in this study? What is the sample from which information is actually obtained? What percentage of the women whom the nutritionist tried to contact responded?
-
-1.12 The death penalty. A press release by the Gallup News Service says that, based on a poll conducted on October 5–11, 2017, it found that 55% of Americans respond Yes when asked this question:「Are you in favor of the death penalty for a person convicted of murder?」Toward the end of the article, you read:「Results for this Gallup poll are based on telephone interviews conducted October 5–11, 2017, with a random sample of 1,028 adults, aged 18 and older, living in all 50 U.S. states and the District of Columbia.」What variable did this poll measure? What population do you think Gallup wants information about? What was the sample?
-
-1.13 The political gender gap. There may be a「gender gap」in political party preference in the United States, with women more likely than men to prefer Democratic candidates. A political scientist interviews a large sample of registered voters, both men and women. She asks each voter whether he or she voted for the Democratic or the Republican candidate in the last presidential election. Is this study an experiment? Why or why not? What variables does the study measure?
-
-1.14 What is the population? For each of the following sampling situations, identify the population as exactly as possible. That is, say what kind of individuals the population consists of and say exactly which individuals fall in the population. If the information given is not sufficient, complete the description of the population by making reasonable assumptions about any missing information.
-
-An opinion poll contacts 972 American adults and asks them,「Would you rather have a job working for the government or working for business?」
-
-Video adapter cables have pins that plug into slots in a computer monitor. The adapter will not work if pins are bent or broken. A computer store buys video adapter cables in large lots from a supplier. The store chooses five cables from each lot and inspects the pins. If any of the cables have bent or broken pins, the entire lot is sent back.
-
-The American Community Survey contacts 3.5 million households, including some in every county in the United States. This Census Bureau survey asks each household questions about their housing, economic, and social status.
-
-1.15 What is the population? For each of the following sampling situations, identify the population as exactly as possible. That is, say what kind of individuals the population consists of and say exactly which individuals fall in the population. If the information given is not sufficient, complete the description of the population in a reasonable way.
-
-A sociologist is interested in determining what proportion of teens believe the drinking age should be lowered to 18 in all the states. She selects a sample of five high schools in a large city and interviews all 12th graders in each of the schools.
-
-A medical researcher is interested in the rate of dementia among former NFL football players. From a list of living, former players he selects a sample of 20 and interviews them to determine if signs of dementia are present.
-
-The host of a local radio talk show wonders if people who are actively religious are more likely to trust their neighbors than those who are not. The station receives calls from 51 listeners who voice their opinions.
-
-1.16 Teens sleep needs. A Washington Post article reported on a study about the sleep needs of teenagers. In the study, researchers measured the presence of the sleep-promoting hormone melatonin in teenagers’ saliva at different times of the day. They learned that the melatonin levels rise later at night than they do in children and adults and remain at a higher level later in the morning. The teenagers who took part in the study were volunteers. Higher levels of melatonin indicate sleepiness. The researchers recommended that high schools start later in the day to accommodate the sleep needs of teens. Is this study an experiment, a sample survey, or an observational study that is not a sample survey? Explain your answer.
-
-1.17 Power lines and leukemia. The study of power lines and leukemia in Example 3 compared two groups of individuals and measured many variables that might influence differences between the groups. Explain carefully why this study is not an experiment.
-
-1.18 Treating prostate disease. A large study used records from Canada’s national health care system to compare the effectiveness of two ways to treat prostate disease. The two treatments are traditional surgery and a new method that does not require surgery. The records described many patients whose doctors had chosen one or the other method. The study found that patients treated by the new method were more likely to die within eight years.
-
-Explain why this is an observational study, not an experiment.
-
-Briefly describe the nature of an experiment to compare the two ways to treat prostate disease.
-
-1.19 Walnuts and cholesterol. Does eating walnuts increase the level of good cholesterol (HDL) and reduce the level of bad cholesterol (LDL)? Here are two ways to study this question.
-
-Researchers in Australia recruited 58 adults with diabetes for a research study. These subjects were randomly assigned to two treatment groups: a low-modified-fat diet group and a low-modified-fat diet group that included a handful of walnuts each day. After six months, researchers compared changes in HDL and LDL levels for the two groups.
-
-Another team of researchers recruited 58 adults with diabetes who regularly eat walnuts as part of their diet. The researchers match each with a similar adult with diabetes who does not regularly eat walnuts. The researchers measured the HDL and LDL for each adult and compared the results for both groups. Explain why the first is an experiment and the second is an observational study.
-
-Why does the experiment give more useful information about whether walnuts increase HDL and reduce LDL?
-
-1.20 Alcohol and cancer in women. A Washington Post article reported on a study about alcohol consumption and cancer in women. Since 1996, a team of British researchers has been gathering detailed information from 1.28 million women aged 50 to 64. The researchers recorded how much alcohol the women reported consuming when they volunteered for the study and again three years later. The researchers then examined whether there was any link with the 68,775 cancers the women developed over an average of the next seven years. They found that even among women who consumed as little as 10 grams of alcohol a day on average (the equivalent of about one drink), the risk for cancer of the breast, liver, and rectum was elevated.
-
-Is this an experiment? Explain your answer.
-
-We would prefer a sample survey to using women who volunteer for a study. What population does it appear that the researchers were interested in? What variables did they measure?
-
-1.21 Alcohol and longevity. A Chicago Tribune article reported on a study about alcohol consumption and how long you live. The research tracked 1700 nonagenarians (adults in their 90s) enrolled in the study that began in 2003 to explore impacts of daily habits on longevity. The researchers discovered that subjects who drank about two glasses of beer or wine a day were 18% less likely to experience a premature death. Meanwhile, participants who exercised 15 to 45 minutes a day cut the same risk by 11%.
-
-Is this an experiment? Explain your answer.
-
-We would prefer a sample survey to using nonagenarians who volunteer for a study. What population does it appear that the researchers were interested in? What variables did they measure?
-
-1.22 Bullying. Researchers tracked 2668 people from early childhood through adulthood and found that 13-year-olds who are frequent targets of bullies were three times more likely than their nonvictimized peers to be depressed later as adults. What is the population in this study? What is the sample? What variables do the researchers measure?
-
-1.23 Choose your study type. What is the best way to answer each of the questions below: an experiment, a sample survey, or an observational study that is not a sample survey? Explain your choices.
-
-Is your school’s football team called for fewer penalties in home games than in away games?
-
-Are college students satisfied with the cost of textbooks that they are required to purchase?
-
-Do college students who have access to video recordings of course lectures perform better in the course than those who don’t?
-
-1.24 Choose your study purpose. Give an example of a question about pet owners, their behavior, or their opinions that would best be answered by
-
-a sample survey.
-
-an observational study that is not a sample survey.
-
-an experiment.
-
-Exploring the Web
-
-Access these exercises on the text website: macmillanlearning.com/scc10e.
-
-1.3 每加仑 [3] 英里 [4] 数。以下是描述 2011 年不同型号汽车的油耗状况（MPG，每加仑英里数）的数据集的一小部分。a）在这个数据集里，个体是什么？b）对于每个个体，该研究衡量了哪些变量？其中哪些变量的值是数字？
-
-1.4 美国棒球运动员的年薪。以下是美国职业棒球大联盟在 2011 赛季的第一天公布的部分球员资料：a）这个数据集描述的个体是什么？b）除了球员姓名外，这个数据集还包括哪几个变量？哪些变量的值是数字？
-
-1.5 谁在做资源回收？在例 1 当中我们提到在同一个城市的两个不同社区间比较资源回收的成效时，重量不是理想的变量。那么，你建议用什么变量来替代重量？
-
-1.6 在孕妇中做抽样调查。怀孕和哺乳期女性每周至少应该吃 12 盎司鱼类或海鲜，才能使她们的婴儿的大脑得到最好的发育。这是来自一个私营和联邦机构的顶级科学家小组的建议。一位营养学家想知道孕期女性是否每周都会吃至少 12 盎司鱼类。为此，她找到了一份当地孕妇健身俱乐部的 340 名会员的名单，从中随机选择了 60 名并给她们寄出了调查问卷，最终她只收回了 21 份问卷。该项研究的总体是什么？用于获取信息的样本是什么？在该营养师联络的女性中，寄回问卷的人占比多少？
-
-1.7 死刑。盖洛普新闻服务机构发布的一条消息说，根据 2011 年 10 月 6 日～2011 年 10 月 9 日所做的民意调查，他们发现当被问到「你赞成对谋杀犯处以死刑吗」的问题时，61% 的美国人回答「是」。在该消息的结尾，你会读到「这个结果是基于随机电话访谈全国 1005 名 18 岁及以上成年人得到的」。这个抽样调查测量的变量是什么？你认为盖洛普的这项民意调查的总体是什么？样本是什么？
-
-1.8 政治倾向的性别差异。在美国，政治倾向似乎存在性别差异，女性比男性更倾向于支持民主党。一位政治学者访问了许多选民，男性和女性都有。她问他们，上一次国会选举时把票投给了民主党还是共和党。这项研究是不是实验？你做出判断的理由是什么？该项研究测量了哪些变量？
-
-1.9 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。a）一项民意调查联络了 972 位成年人，问他们：「你更愿意为政府工作还是在公司工作？」b）视频接口线的一端有能插入电脑显示器插口的针型槽。如果里面的插针弯曲或损坏了，这条接口线就不能用了。一家电脑商店从供应商处批量采购视频接口线，从每批中抽出 5 条线检查插针情况。如果发现有插针弯曲或损坏的情况，则将整批接口线退回给供应商。c）美国社区调查计划联络 300 万个美国住户，全美每一个县中都有一些住户会被调查。该调查会询问每个住户关于居住状况、经济情况及社会地位等问题。
-
-1.10 总体是什么？针对下面几个抽样调查，将总体尽可能明确地指出来。也就是说，总体是由哪些个体组成的，哪些个体属于总体？如果题目提供的信息不足，你可以做出合理的假设。a）一位社会学者想知道，有多大比例的青少年认为美国各州应把法定最低饮酒年龄降至 18 岁。她选择了一个样本，是一个大城市的 5 所高中，并访谈了每所学校所有的 12 年级学生。b）一名医学研究者想知道前美国国家橄榄球联盟（NFL）运动员中患阿尔茨海默病的比例。他从仍在世的人员名单中随机挑选了 20 名，并通过访谈来判断他们是否患有阿尔茨海默病的迹象。c）当地电台脱口秀主持人想知道有宗教信仰的人是否比没有宗教信仰的人更信任他们的邻居。电台收到了 51 个听众的电话反馈。
-
-1.11 青少年的睡眠需求。《华盛顿邮报》一篇文章报道了一个关于青少年睡眠需求的研究。实验人员测量了一天当中各个时间段青少年唾液中产生的促进睡眠的褪黑素的含量。他们发现，青少年的褪黑素水平在夜间要比成年人和儿童的褪黑素水平高，在早上仍保持在较高水平上。参加该项研究的青少年都是自愿的。褪黑素水平较高表明需要睡眠，因此实验人员建议高中生的上课时间应该推迟一些，以满足学生的睡眠需求。这项研究是一个实验、抽样调查还是观察研究？请给出答案并说明你的理由。
-
-1.12 高压电缆和白血病患儿。在例 3 对于高压电缆和白血病患儿关系的研究中，实验人员比较了两组个体，并且测量了许多可能关乎两组之间差异的变量。请详细说明为何这项研究不是实验。
-
-1.13 治疗前列腺疾病。一项大型研究使用了加拿大全民医疗系统的记录，来比较两种前列腺疾病治疗方法的有效性。其中一种是传统的手术治疗，另一种是不需要做手术的新疗法。记录中有许多病人的资料，这些病人，有的选择了手术治疗，有些选择了新疗法。研究显示，选择新疗法的病人在 8 年内的死亡率较高。请说明为何这是观察研究而非实验。
-
-1.14 燕麦和胆固醇。吃燕麦餐可以降低坏胆固醇（LDL）的水平？以下是研究这个问题的两种方法：
-
-第一种方法是：一位研究者找到 500 位 40 岁以上的成年人，他们都定期食用燕麦或燕麦类食品。他将每个人都和一位不定期食用燕麦或燕麦类食品的同龄成年人进行比较，测量他们的坏胆固醇水平。
-
-第二种方法是：另一位研究者找了 1000 位 40 岁以上的成年人，他们都没有定期食用燕麦或燕麦类食品，也都愿意参与这项研究。她随机安排其中 500 人每天早餐食用燕麦，而其他人继续按平时的习惯吃早餐。6 个月后，她比较了两组人的坏胆固醇水平。a）请说明为什么第一种研究方法是观察研究，而第二种研究方法是实验。b）为什么在燕麦是否可以降低坏胆固醇水平的问题上，实验可以提供更多的有效信息？
-
-1.15 酒精和女性癌症患者。《华盛顿邮报》有一篇关于女性饮酒与癌症的研究报道。从 1996 年起，一群英国的实验人员开始收集 128 万名 50~64 岁女性的详细信息。实验人员记录了三年中这些自愿参加该研究的女性报告的饮酒量，并探究了在平均 7 年后出现的 68775 个女性癌症患者与她们饮酒之间是否有关联。他们发现，即使这些女性每天平均只摄入 10 克酒精（大约相当于一杯酒），她们患乳腺癌、肝癌和直肠癌的风险也会增加。a）这是不是实验？请说明理由。b）我们更喜欢在志愿参加调查研究的人中做抽样调查。那么，实验人员感兴趣的总体是什么？他们测量了哪些变量？
-
-1.16 课本的成本。一名学生想知道一本教材的成本是否取决于其页数。于是，该学生走进校园书店，从书架上随机选择了一本教材，并记录下它的页数和价格。这项研究的总体是什么？样本是什么？该学生测量的变量是什么？
-
-1.17 选择你的研究类型。你认为，要回答下列三个问题，实验、抽样调查或观察研究，哪种方式最好？a）你们学校的篮球队在主场比赛中犯规次数多还是在客场比赛中犯规次数多？b）大学生对学校提供给他们的娱乐设施满意吗？c）可以进行课程录音的大学生是否比那些不能进行课程录音的学生表现更好？
-
-1.18 选择研究目标。研究一个有关大学生或其行为、想法的问题，最适合用以下哪种方法。a）抽样调查。b）观察研究。c）实验。
-
-1.19 网上练习。从例 4 到例 7 所提到的抽样调查都可以在网上找到：1）盖洛普民意调查（例 4）：www.gallup.com。2）当前人口调查（例 5）：www.bls.gov/cps。3）电视收视率调查（例 6）：www.nielsen.com/us/en/measurement/television-measurement.html。4）综合社会调查（例 7）：www.norc.org/Research/Projects/Pages/general-society-survey.aspx。
-
-我们建议读者浏览盖洛普网站，了解当前民意调查的结果和有关调查方法的说明。访问盖洛普调查网站，选择一个可供非订阅用户浏览的民意调查，判断其中的总体和样本是什么，以及样本中包含了多少人。
-
-1.20 网上练习。你可以在美国国家环境健康科学研究所（NIEHS）的网站（网址为：www.niehs.nih.gov/health/topics.agents/emf）上找到有关暴露在高压电缆下对健康的影响报告。尽管少量对于成年人暴露在高压电缆下的研究，表明成年人患癌症与住所的电磁场没有必然联系，但该网站上提到的 NIEHS 科学家对此问题的结论是什么？为什么？
