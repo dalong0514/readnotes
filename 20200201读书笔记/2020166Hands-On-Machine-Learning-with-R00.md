@@ -148,7 +148,7 @@ Fast-forward 10 years and Machine Learning has conquered the industry: it is now
 
 2 Despite the fact that Yann Lecun’s deep convolutional neural networks had worked well for image recognition since the 1990s, although they were not as general purpose.
 
-2『在 Hinton 的主页里，正巧看到他在 nature 上发表的深度学习相关的论文，已下载作为本书附件「2020166附件0101-Nature-Deep-Review」。』
+1-2『在 Hinton 的主页里，正巧看到他在 nature 上发表的深度学习相关的论文，已下载作为本书附件「2020166附件0101-Nature-Deep-Review」。补充：主页右侧有很多 Hinton 发表的论文，都值得研读。目前已经确认那篇影响深远的论文，谷歌学术里引用高达 14795，已下载论文「2021030A Fast Learning Algorithm for Deep Belief Nets」并存入 Zotero。不过目前的知识储备，这篇 Paper 还看不懂。（2021-02-12）』
 
 ### 02. Machine Learning in Your Projects
 
@@ -262,7 +262,7 @@ Geoffrey Hinton 的神经网络的课在 Coursera 上没找到，反而又看到
 
 [Deep Learning](http://deeplearning.net/)
 
-（2020-11-11）
+收集时间：2020-11-11。
 
 』
 
