@@ -2,7 +2,9 @@
 
 ## 记忆时间
 
-## 2020166Hands-On-Machine-Learning-with-0101.md
+PART I The Fundamentals of Machine Learning
+
+## 0101. The Machine Learning Landscape
 
 ### Exercises
 
@@ -45,10 +47,6 @@ In this chapter we have covered some of the most important concepts in Machine L
 18 What can go wrong if you tune hyperparameters using the test set?
 
 19 What is repeated cross-validation and why would you prefer it to using a single validation set?
-
-PART I The Fundamentals of Machine Learning
-
-## 0101. The Machine Learning Landscape
 
 When most people hear “Machine Learning,” they picture a robot: a dependable butler or a deadly Terminator depending on who you ask. But Machine Learning is not just a futuristic fantasy, it’s already here. In fact, it has been around for decades in some specialized applications, such as Optical Character Recognition (OCR). But the first ML application that really became mainstream, improving the lives of hundreds of millions of people, took over the world back in the 1990s: it was the spam filter. Not exactly a self-aware Skynet, but it does technically qualify as Machine Learning (it has actually learned so well that you seldom need to flag an email as spam anymore). It was followed by hundreds of ML applications that now quietly power hundreds of products and features that you use regularly, from better recommendations to voice search.
 
