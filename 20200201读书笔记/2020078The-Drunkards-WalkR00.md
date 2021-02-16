@@ -26,7 +26,7 @@ The fact that human intuition is ill suited to situations involving uncertainty 
 
 1-2『这个故事以前听过，但忘记在哪听过了。这里的信息补充进主题卡「人总是为每个事件都找一个确定的原因」。（2021-02-13）』——已完成
 
-人类的直觉不适合处理涉及不确定性的情势，这一事实迟至 20 世纪 30 年代就已为人所知。当时，研究者发现，人们既不能构造一个通过随机性检验的数列，也不能可靠地分辨某个给定数列是否是随机的产物。一个新的学术领域在过去几十年里逐浮出水面。这个领域研究的是当信息不完整或不完美时，人们如何进行判断与决策。研究证明，一旦偶然性牵涉其中，人们的思维处理通常就会表现出严重的缺陷。这些研究工作综合了许多学科，如数学与传統科学，乃至认知心理学、行为经済学以及现代神经科学。最近一次诺贝尔经学奖使该类研究成为经典，尽管如此，这些研究总结得出的经验教训，仍然未能跳出学术子进入普通人的认知。本书的目的就是试图改变这种情况，它讲述的是主宰偶然性的原理，这些思想的建立及它们在政治、商业、医学、经済、体育、休闲和其他涉及人类自身的领域中发挥作用的方式。本书同样谈到我们进行选择的方式，以及在面对随机性或不确定性时做出错误判断和糟糕决策的过程。
+人类的直觉不适合处理涉及不确定性的情势，这一事实迟至 20 世纪 30 年代就已为人所知。当时，研究者发现，人们既不能构造一个通过随机性检验的数列，也不能可靠地分辨某个给定数列是否是随机的产物。一个新的学术领域在过去几十年里逐浮出水面。这个领域研究的是当信息不完整或不完美时，人们如何进行判断与决策。研究证明，一旦偶然性牵涉其中，人们的思维处理通常就会表现出严重的缺陷。这些研究工作综合了许多学科，如数学与传統科学，乃至认知心理学、行为经济学以及现代神经科学。最近一次诺贝尔经学奖使该类研究成为经典，尽管如此，这些研究总结得出的经验教训，仍然未能跳出学术子进入普通人的认知。本书的目的就是试图改变这种情况，它讲述的是主宰偶然性的原理，这些思想的建立及它们在政治、商业、医学、经济、体育、休闲和其他涉及人类自身的领域中发挥作用的方式。本书同样谈到我们进行选择的方式，以及在面对随机性或不确定性时做出错误判断和糟糕决策的过程。
 
 ### 0201. 术语卡 ——
 
@@ -36,9 +36,9 @@ The fact that human intuition is ill suited to situations involving uncertainty 
 
 ### 0203. 术语卡 ——
 
-### 0301. 人名卡 —— 纳德·蒙洛迪诺
+### 0301. 人名卡 —— 列纳德·蒙洛迪诺
 
-纳德·蒙洛迪诺（Leonard Mlodinow）
+列纳德·蒙洛迪诺（Leonard Mlodinow）
 
 1-2-3『
 
@@ -68,43 +68,43 @@ The fact that human intuition is ill suited to situations involving uncertainty 
 
 Prologue
 
-Chapter 1: Peering through the Eyepiece of Randomness
+Chapter 1: Peering through the Eyepiece of Randomness.
 
 The hidden role of chance…when human beings can be outperformed by a rat.
 
-Chapter 2: The Laws of Truths and Half-Truths
+Chapter 2: The Laws of Truths and Half-Truths.
 
 The basic principles of probability and how they are abused…why a good story is often less likely to be true than a flimsy explanation.
 
-Chapter 3: Finding Your Way through a Space of Possibilities
+Chapter 3: Finding Your Way through a Space of Possibilities.
 
 A framework for thinking about random situations…from a gambler in plague-ridden Italy to Let's Make a Deal.
 
-Chapter 4: Tracking the Pathways to Success
+Chapter 4: Tracking the Pathways to Success.
 
 How to count the number of ways in which events can happen, and why it matters…the mathematical meaning of expectation.
 
-Chapter 5: The Dueling Laws of Large and Small Numbers
+Chapter 5: The Dueling Laws of Large and Small Numbers.
 
 The extent to which probabilities are reflected in the results we observe…Zeno's paradox, the concept of limits, and beating the casino at roulette.
 
-Chapter 6: False Positives and Positive Fallacies
+Chapter 6: False Positives and Positive Fallacies.
 
 How to adjust expectations in light of past events or new knowledge…mistakes in conditional probability from medical screening to the O. J. Simpson trial and the prosecutor's fallacy.
 
-Chapter 7: Measurement and the Law of Errors
+Chapter 7: Measurement and the Law of Errors.
 
 The meaning and lack of meaning in measurements…the bell curve and wine ratings, political polls, grades, and the position of planets.
 
-Chapter 8: The Order in Chaos
+Chapter 8: The Order in Chaos.
 
 How large numbers can wash out the disorder of randomness…or why 200,000,000 drivers form a creature of habit.
 
-Chapter 9: Illusions of Patterns and Patterns of Illusion
+Chapter 9: Illusions of Patterns and Patterns of Illusion.
 
 Why we are often fooled by the regularities in chance events…can a million consecutive zeroes or the success of Wall Street gurus be random?
 
-Chapter 10: The Drunkard's Walk
+Chapter 10: The Drunkard's Walk.
 
 Why chance is a more fundamental conception than causality…Bruce Willis, Bill Gates, and the normal accident theory of life.
 
@@ -304,7 +304,7 @@ The title The Drunkard's Walk comes from a mathematical term describing random m
 
 1-2『这个故事以前听过，但忘记在哪听过了。这里的信息补充进主题卡「人总是为每个事件都找一个确定的原因」。（2021-02-13）』——已完成
 
-人类的直觉不适合处理涉及不确定性的情势，这一事实迟至 20 世纪 30 年代就已为人所知。当时，研究者发现，人们既不能构造一个通过随机性检验的数列，也不能可靠地分辨某个给定数列是否是随机的产物。一个新的学术领域在过去几十年里逐浮出水面。这个领域研究的是当信息不完整或不完美时，人们如何进行判断与决策。研究证明，一旦偶然性牵涉其中，人们的思维处理通常就会表现出严重的缺陷。这些研究工作综合了许多学科，如数学与传統科学，乃至认知心理学、行为经済学以及现代神经科学。最近一次诺贝尔经学奖使该类研究成为经典，尽管如此，这些研究总结得出的经验教训，仍然未能跳出学术子进入普通人的认知。本书的目的就是试图改变这种情况，它讲述的是主宰偶然性的原理，这些思想的建立及它们在政治、商业、医学、经済、体育、休闲和其他涉及人类自身的领域中发挥作用的方式。本书同样谈到我们进行选择的方式，以及在面对随机性或不确定性时做出错误判断和糟糕决策的过程。
+人类的直觉不适合处理涉及不确定性的情势，这一事实迟至 20 世纪 30 年代就已为人所知。当时，研究者发现，人们既不能构造一个通过随机性检验的数列，也不能可靠地分辨某个给定数列是否是随机的产物。一个新的学术领域在过去几十年里逐浮出水面。这个领域研究的是当信息不完整或不完美时，人们如何进行判断与决策。研究证明，一旦偶然性牵涉其中，人们的思维处理通常就会表现出严重的缺陷。这些研究工作综合了许多学科，如数学与传統科学，乃至认知心理学、行为经济学以及现代神经科学。最近一次诺贝尔经学奖使该类研究成为经典，尽管如此，这些研究总结得出的经验教训，仍然未能跳出学术子进入普通人的认知。本书的目的就是试图改变这种情况，它讲述的是主宰偶然性的原理，这些思想的建立及它们在政治、商业、医学、经济、体育、休闲和其他涉及人类自身的领域中发挥作用的方式。本书同样谈到我们进行选择的方式，以及在面对随机性或不确定性时做出错误判断和糟糕决策的过程。
 
 信息的缺乏常常会带来互相矛盾的解释。为什么确认全球变暖会如此困难？为什么有的药品声称安全而之后又被召回？为什么有人会不出所料地不赞同我那个巧克力奶昔是维护心脏健康的必需饮食的观点？原因就在于此。对数据的误读会很不幸地来或大或小的负面结果。我们将会看到：医患双方常常错误地解读有关药品有效性和重要医学检结果的意义的计数据；家长、老师和学生误解了如 SAT（学术能力评估测试）这类测试得分的显著性，这也是品酒师给葡萄酒评分时犯下的错误；而投资人则从基金的以往业绩中得出并不成立的结论。
 
