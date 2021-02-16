@@ -1,4 +1,4 @@
-# 2020037Data-Mining-Concepts-R00.md
+# 2020037Data-Mining-ConceptsR00.md
 
 ## 记忆时间
 
@@ -18,19 +18,19 @@ What Is Data Mining? It is no surprise that data mining, as a truly interdiscipl
 
 Many people treat data mining as a synonym for another popularly used term, knowledge discovery from data, or KDD, while others view data mining as merely an essential step in the process of knowledge discovery. The knowledge discovery process is shown in Figure 1.4 as an iterative sequence of the following steps:
 
-1. Data cleaning (to remove noise and inconsistent data).
+1 Data cleaning (to remove noise and inconsistent data).
 
-2. Data integration (where multiple data sources may be combined). 3
+2 Data integration (where multiple data sources may be combined). 3
 
-3. Data selection (where data relevant to the analysis task are retrieved from the database).
+3 Data selection (where data relevant to the analysis task are retrieved from the database).
 
-4. Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations). 4
+4 Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations). 4
 
-5. Data mining (an essential process where intelligent methods are applied to extract data patterns).
+5 Data mining (an essential process where intelligent methods are applied to extract data patterns).
 
-6. Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6).
+6 Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6).
 
-7. Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users).
+7 Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users).
 
 ### 0203. 术语卡 —— data warehouse 
 
@@ -262,19 +262,19 @@ It is no surprise that data mining, as a truly interdisciplinary subject, can be
 
 Many people treat data mining as a synonym for another popularly used term, knowledge discovery from data, or KDD, while others view data mining as merely an essential step in the process of knowledge discovery. The knowledge discovery process is shown in Figure 1.4 as an iterative sequence of the following steps:
 
-1. Data cleaning (to remove noise and inconsistent data).
+1 Data cleaning (to remove noise and inconsistent data).
 
-2. Data integration (where multiple data sources may be combined). 3
+2 Data integration (where multiple data sources may be combined). 3
 
-3. Data selection (where data relevant to the analysis task are retrieved from the database).
+3 Data selection (where data relevant to the analysis task are retrieved from the database).
 
-4. Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations). 4
+4 Data transformation (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations). 4
 
-5. Data mining (an essential process where intelligent methods are applied to extract data patterns).
+5 Data mining (an essential process where intelligent methods are applied to extract data patterns).
 
-6. Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6).
+6 Pattern evaluation (to identify the truly interesting patterns representing knowledge based on interestingness measures — see Section 1.4.6).
 
-7. Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users).
+7 Knowledge presentation (where visualization and knowledge representation techniques are used to present mined knowledge to users).
 
 ### 1.3. What Kinds of Data Can Be Mined?
 

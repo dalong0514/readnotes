@@ -1,40 +1,36 @@
+# 2020025Python-Data-AnalysisR00
+
 ## 记忆时间
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——
+### 0201. 术语卡 ——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
 
-### 0202. 术语卡——
+### 0202. 术语卡 ——
 
-### 0203. 术语卡——
+### 0203. 术语卡 ——
 
-### 0301. 人名卡——
+### 0301. 人名卡 ——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-#### 01. 出生日期
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及经历
-
-#### 03. 论文及书籍
-
-#### 04. 演讲汇总
-
-找一个他的 TED 演讲，有的话。
-
-### 0401. 金句卡——
+### 0401. 金句卡 ——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 任意卡——
+### 0501. 行动卡 ——
+
+行动卡是能够指导自己的行动的卡。
+
+### 0601. 数据信息卡 ——
+
+### 0701. 任意卡 ——
 
 最后还有一张任意卡，记录个人阅读感想。
 
@@ -76,38 +72,37 @@ Appendix C, Online Resources, lists links to documentation, forums, articles, an
 
 This book is for people with basic knowledge of Python and Mathematics who want to learn how to use Python software to analyze data. We try to keep things simple, but it's not possible to cover all the topics in great detail. It may be useful for you to refresh your knowledge of Mathematics via Khan Academy, Coursera, or Wikipedia. I would recommend the following books by Packt Publishing for further reading:
 
-- Building Machine Learning Systems with Python, Willi Richert and Luis Pedro Coelho (2013)
+Building Machine Learning Systems with Python, Willi Richert and Luis Pedro Coelho (2013)
 
-- Learning Cython Programming, Philip Herron (2013)
+Learning Cython Programming, Philip Herron (2013)
 
-- Learning NumPy Array, Ivan Idris (2014)
+Learning NumPy Array, Ivan Idris (2014)
 
-- Learning scikit-learn: Machine Learning in Python, Raúl Garreta and Guillermo Moncecchi (2013)
+Learning scikit-learn: Machine Learning in Python, Raúl Garreta and Guillermo Moncecchi (2013)
 
-- Learning SciPy for Numerical and Scientific Computing, Francisco J. Blanco-Silva (2013)
+Learning SciPy for Numerical and Scientific Computing, Francisco J. Blanco-Silva (2013)
 
-- Matplotlib for Python Developers, Sandro Tosi (2009)
+Matplotlib for Python Developers, Sandro Tosi (2009)
 
-- NumPy Beginner's Guide - Second Edition, Ivan Idris (2013)
+NumPy Beginner's Guide - Second Edition, Ivan Idris (2013)
 
-- NumPy Cookbook, Ivan Idris (2012)
+NumPy Cookbook, Ivan Idris (2012)
 
-- Parallel Programming with Python, Jan Palach (2014)
+Parallel Programming with Python, Jan Palach (2014)
 
-- Python Data Visualization Cookbook, Igor Milovanović (2013)
+Python Data Visualization Cookbook, Igor Milovanović (2013)
 
-- Python for Finance, Yuxing Yan (2014)
+Python for Finance, Yuxing Yan (2014)
 
-- Python Text Processing with NLTK 2.0 Cookbook, Jacob Perkins (2010)
+Python Text Processing with NLTK 2.0 Cookbook, Jacob Perkins (2010)
 
 2『上面的书去收集。』——未完成
 
-## 07. Signal Processing and Time Series
+## 提炼汇总
 
-### 1. 逻辑脉络
+8、如何使用 sqlite3。先建立连接，再建个「光标」，通过方法 c.execute() 创建一个新表，List the SQLite tables，写入数据，提取数据，丢弃数据；通过 pandas 连接数据库；如何新建一个 SQLAlchemy，并且通过 SQLAlchemy 来操作、访问数据库；Pony ORM is another Python ORM package；Storing data in Redis，Redis 的特点是快，数据存储结构类似于 Python 里的字典；Apache Cassandra，面向「行」的，即表里每行的数据可以有不同的列。
 
-
-### 2. 摘录及评论
+## 0701. Signal Processing and Time Series
 
 In this chapter, the time series examples used annual sunspot cycles data. You learned that it's common to try to derive a relationship between a value and another data point or combination of data points a fixed number of periods in the past, in the same time series.
 
@@ -117,7 +112,7 @@ Cointegration is similar to correlation and is a metric to define the relatednes
 
 Signal processing is a field of engineering and applied mathematics that analyzes analog and digital signals, corresponding to variables that vary with time. One of the categories of signal processing techniques is time series analysis. A time series is an ordered list of data points starting with the oldest measurements first. The data points are usually equidistant, for instance, consistent with daily or annual sampling. In time series analysis, the order of the values is important. It's common to try to derive a relation between a value and another data point or combination of data points a fixed number of periods in the past, in the same time series. The time series examples in this chapter use annual sunspot cycles data. This data is provided by the statsmodels package (an open source Python project). The examples use NumPy/SciPy, pandas, and also statsmodels.
 
-1『time series analysis 是 Signal processing 的一个种类。这章的数据来源于开源包 statsmodels。』
+1『原来 time series analysis 是 Signal processing 的一个种类。这章的数据来源于开源包 statsmodels。』
 
 Moving averages are frequently used to analyze time series. A moving average specifies a window of data that is previously seen, which is averaged each time the window slides forward by one period; The different types of moving averages differ essentially in the weights used for averaging. The exponential moving average, for instance, has exponentially decreasing weights with time; This means that older values have less influence than newer values, which is sometimes desirable. The following code from the moving_average.py file in this book's code bundle plots the simple moving average for the 11- and 22-year sunspots cycles:
 
@@ -141,7 +136,7 @@ plt.show()
 
 3『
 
-rolling_mean 被取代的信息详见：
+`rolling_mean` 被取代的信息详见：
 
 [v0.18.0 (March 13, 2016) — pandas 1.0.1 documentation](https://pandas.pydata.org/docs/whatsnew/v0.18.0.html?highlight=rolling_mean)
 
@@ -155,13 +150,7 @@ rolling_mean 被取代的信息详见：
 
 』
 
-## 08. Working with Databases
-
-### 1. 逻辑脉络
-
-如何使用 sqlite3。先建立连接，再建个「光标」，通过方法 c.execute() 创建一个新表，List the SQLite tables，写入数据，提取数据，丢弃数据；通过 pandas 连接数据库；如何新建一个 SQLAlchemy，并且通过 SQLAlchemy 来操作、访问数据库；Pony ORM is another Python ORM package；Storing data in Redis，Redis 的特点是快，数据存储结构类似于 Python 里的字典；Apache Cassandra，面向「行」的，即表里每行的数据可以有不同的列。
-
-### 2. 摘录及评论
+## 0801. Working with Databases
 
 Databases are an important tool for data analysis. Relational databases have been around since the 1970s. Recently, NoSQL databases have become a viable alternative.
 
@@ -335,7 +324,12 @@ print(pd.read_json(blob))
 
 Apache Cassandra mixes features of key-value and traditional relational databases. In a conventional relational database, the columns of a table are fixed. In Cassandra, however, rows within the same table can have different columns. Cassandra is therefore column oriented, since it allows a flexible schema for each row. Columns are organized in so-called column families, which are equivalent to tables in relational databases. Joins and subqueries are not possible with Cassandra. Please refer to http://wiki.apache.org/cassandra/ GettingStarted to get started.
 
-1『Cassandra 表里每行的数据可以有不同的列；安装 Cassandra 需要先安装 Java，1.7 以上的版本。』
+1-3『
 
-3『[Download](http://cassandra.apache.org/download/); [Home - CASSANDRA - Apache Software Foundation](https://cwiki.apache.org/confluence/display/cassandra/)』
+Cassandra 表里每行的数据可以有不同的列；安装 Cassandra 需要先安装 Java，1.7 以上的版本。
 
+[Download](http://cassandra.apache.org/download/)
+
+[Home - CASSANDRA - Apache Software Foundation](https://cwiki.apache.org/confluence/display/cassandra/)
+
+』

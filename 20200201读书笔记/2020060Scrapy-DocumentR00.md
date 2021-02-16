@@ -1,3 +1,5 @@
+# 2020060Scrapy-DocumentR00
+
 ## 记忆时间
 
 ## 卡片
@@ -76,7 +78,7 @@ Even though Scrapy was originally designed for web scraping, it can also be used
 
 Walk-through of an example spider. In order to show you what Scrapy brings to the table, we’ll walk you through an example of a Scrapy Spider using the simplest way to run a spider. Here’s the code for a spider that scrapes famous quotes from website http://quotes.toscrape.com, following the pagination:
 
-```
+```py
 import scrapy
 
 class QuotesSpider(scrapy.Spider):
@@ -147,7 +149,7 @@ Our first Spider. Spiders are classes that you define and that Scrapy uses to sc
 
 定义 Item。Item 是保存爬取到的数据的容器；其使用方法和 python 字典类似。虽然您也可以在 Scrapy 中直接使用 dict，但是 Item 提供了额外保护机制来避免拼写错误导致的未定义字段错误。They can also be used with Item Loaders, a mechanism with helpers to conveniently populate Items. 类似在 ORM 中做的一样，您可以通过创建一个 scrapy.Item 类，并且定义类型为 scrapy.Field 的类属性来定义一个 Item。首先根据需要从 dmoz.org 获取到的数据对 item 进行建模。我们需要从 dmoz 中获取名字，url，以及网站的描述。对此，在 item 中定义相应的字段。编辑 tutorial 目录中的 items.py 文件：
 
-```
+```py
 import scrapy
 
 class DmozItem(scrapy.Item):
@@ -162,7 +164,7 @@ Spider 是用户编写用于从单个网站 (或者一些网站) 爬取数据的
 
 以下为我们的第一个 Spider 代码，保存在 tutorial/spiders 目录下的 dmoz_spider.py 文件中：
 
-```
+```py
 import scrapy
 
 class DmozSpider(scrapy.Spider):
@@ -203,7 +205,7 @@ Selectors 选择器简介。从网页中提取数据有很多方法。Scrapy 使
 
 同时，shell 根据 response 提前初始化了变量 sel 。该 selector 根据 response 的类型自动选择最合适的分析规则 (XML vs HTML)。让我们来试试:
 
-```
+```py
 In [1]: response.xpath('//title')
 Out[1]: [<Selector xpath='//title' data=u'<title>Open Directory - Computers: Progr'>]
 
@@ -222,7 +224,7 @@ Out[5]: [u'Computers', u'Programming', u'Languages', u'Python']
 
 提取数据。我们来尝试从这些页面中提取些有用的数据。您可以在终端中输入 response.body 来观察 HTML 源码并确定合适的 XPath 表达式。不过，这任务非常无聊且不易。您可以考虑使用 Firefox 的 Firebug 扩展来使得工作更为轻松。详情请参考[「使用 Firebug 进行爬取」](https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/firebug.html#topics-firebug)和[「借助 Firefox 来爬取」](https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/firefox.html#topics-firefox) 。
 
-在查看了网页的源码后，您会发现网站的信息是被包含在第二个 <ul> 元素中。我们可以通过这段代码选择该页面中网站列表里所有 <li> 元素：
+在查看了网页的源码后，您会发现网站的信息是被包含在第二个 `<ul>` 元素中。我们可以通过这段代码选择该页面中网站列表里所有 `<li>` 元素：
 
     response.xpath('//ul/li')
 
@@ -240,7 +242,7 @@ Out[5]: [u'Computers', u'Programming', u'Languages', u'Python']
 
 之前提到过，每个 .xpath () 调用返回 selector 组成的 list，因此我们可以拼接更多的 .xpath () 来进一步获取某个节点。我们将在下边使用这样的特性：
 
-```
+```py
 for sel in response.xpath('//ul/li'):
     title = sel.xpath('a/text()').extract()
     link = sel.xpath('a/@href').extract()
@@ -250,7 +252,7 @@ for sel in response.xpath('//ul/li'):
 
 注解：关于嵌套 selctor 的更多详细信息，请参考嵌套选择器 (selectors) 以及选择器 (Selectors) 文档中的使用相对 XPaths 部分。在我们的 spider 中加入这段代码：
 
-```
+```py
 import scrapy
 
 class DmozSpider(scrapy.Spider):
@@ -275,7 +277,7 @@ class DmozSpider(scrapy.Spider):
 
 使用 item。Item 对象是自定义的 python 字典。您可以使用标准的字典语法来获取到其每个字段的值。(字段即是我们之前用 Field 赋值的属性）：
 
-```
+```py
 >>> item = DmozItem()
 >>> item['title'] = 'Example title'
 >>> item['title']
@@ -284,7 +286,7 @@ class DmozSpider(scrapy.Spider):
 
 为了将爬取的数据返回，我们最终的代码将是：
 
-```
+```py
 import scrapy
 
 from tutorial.items import DmozItem
@@ -310,7 +312,7 @@ class DmozSpider(scrapy.Spider):
 
 追踪链接（Following links）。接下来，不仅仅满足于爬取 Books 及 Resources 页面，您想要获取获取所有 Python directory 的内容。既然已经能从页面上爬取数据了，为什么不提取您感兴趣的页面的链接，追踪他们，读取这些链接的数据呢？下面是实现这个功能的改进版 spider：
 
-```
+```py
 import scrapy
 
 from tutorial.items import DmozItem
@@ -340,7 +342,7 @@ class DmozSpider(scrapy.Spider):
 
 基于此方法，您可以根据您所定义的跟进链接的规则，创建复杂的 crawler，并且，根据所访问的页面，提取不同的数据。一种常见的方法是，回调函数负责提取一些 item，查找能跟进的页面的链接，并且使用相同的回调函数 yield 一个 Request：
 
-```
+```py
 def parse_articles_follow_next_page(self, response):
     for article in response.xpath("//article"):
         item = ArticleItem()

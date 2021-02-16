@@ -8,27 +8,33 @@ Copyright © 2018
 
 ## 卡片
 
-### 0101. 反常识卡——
+### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——
+### 0201. 术语卡 ——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
 
-### 0202. 术语卡——
+### 0202. 术语卡 ——
 
-### 0203. 术语卡——
+### 0203. 术语卡 ——
 
-### 0301. 人名卡——
+### 0301. 人名卡 ——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡——
+### 0401. 金句卡 ——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 任意卡——
+### 0501. 行动卡 ——
+
+行动卡是能够指导自己的行动的卡。
+
+### 0601. 数据信息卡 ——
+
+### 0701. 任意卡 ——
 
 最后还有一张任意卡，记录个人阅读感想。
 
@@ -36,29 +42,31 @@ Copyright © 2018
 
 This book is split into six chapters:
 
-1. Getting Started is to get you started with this book: you can learn what website scraping is and why it worth writing a book about this topic.
+1 Getting Started is to get you started with this book: you can learn what website scraping is and why it worth writing a book about this topic.
 
-2. Enter the Requirements introduces the requirements we will use to implement website scrapers in the follow-up chapters.
+2 Enter the Requirements introduces the requirements we will use to implement website scrapers in the follow-up chapters.
 
-3. Using Beautiful Soup introduces you to Beautiful Soup, an HTML content parser that you can use to write website scraper scripts. We will implement a scraper to gather the requirements of Chapter 2 using Beautiful Soup.
+3 Using Beautiful Soup introduces you to Beautiful Soup, an HTML content parser that you can use to write website scraper scripts. We will implement a scraper to gather the requirements of Chapter 2 using Beautiful Soup.
 
-4. Using Scrapy introduces you to Scrapy, the (in my opinion) best website scraping toolbox available for the Python programming language. We will use Scrapy to implement a website scraper to gather the requirements of Chapter 2.
+4 Using Scrapy introduces you to Scrapy, the (in my opinion) best website scraping toolbox available for the Python programming language. We will use Scrapy to implement a website scraper to gather the requirements of Chapter 2.
 
-5. Handling JavaScript shows you options for how you can deal with websites that utilize JavaScript to load data dynamically and through this, give users a better experience. Unfortunately, this makes basic website scraping a torture but there are options that you can rely on.
+5 Handling JavaScript shows you options for how you can deal with websites that utilize JavaScript to load data dynamically and through this, give users a better experience. Unfortunately, this makes basic website scraping a torture but there are options that you can rely on.
 
-6. Website Scraping in the Cloud moves your scrapers from running on your computer locally to remote computers in the Cloud. I'll show you free and paid providers where you can deploy your spiders and automate the scraping schedules.
+6 Website Scraping in the Cloud moves your scrapers from running on your computer locally to remote computers in the Cloud. I'll show you free and paid providers where you can deploy your spiders and automate the scraping schedules.
 
 You can read this book from cover to cover if you want to learn the different approaches of website scraping with Python. If you're interested only in a specific topic, like Scrapy for example, you can jump straight to Chapter 4, although I recommend reading Chapter 2 because it contains the description of the data gathering task we will implement in the vast part of the book.
 
 2『本书的源码：[Apress/website-scraping-w-python: Source code for 'Website Scraping with Python' by Gabor Laszlo Hajba](https://github.com/Apress/website-scraping-w-python)，然后追源到出版社 Apress 的 GitHub 仓库：[Apress](https://github.com/Apress?utf8=%E2%9C%93&q=&type=&language=)，那么同理其他出版社在 GitHub 上应该也有源码仓库。已下载源码「2020061Website_Scraping_with_Python源码」。』
 
-## 01. Getting Started
+## 提炼汇总
 
-### 1. 逻辑脉络
+1、网络爬虫的基本知识以及其准备工作。给了两个小案例，抓取网页里的子页地址以及地图地址。
 
-网络爬虫的基本知识以及其准备工作。给了两个小案例，抓取网页里的子页地址以及地图地址。
+2 you've met the requirements, analyzed the website to scrape, and identified where in the HTML code the fields of interest lay. And you implemented a simple scraper, mostly with basic Python tools, which navigates through the website.
 
-### 2. 摘录及评论
+3 how to use Beautiful Soup and requests together, and you created your first full scraper application.
+
+## 0101. Getting Started
 
 In this chapter you've gotten a basic introduction to website scraping and how to prepare for a scraping job. Besides the introduction, you created your first building blocks for scrapers that extracted information from a web page, like links and image sources. 
 
@@ -264,13 +272,7 @@ if __name__ == '__main__':
 
 If you take a close look, I modified just some variable names and the regular expression. I could have used the link extractor from the previous section and changed only the expression.
 
-## 02. Enter the Requirements
-
-### 1. 逻辑脉络
-
-you've met the requirements, analyzed the website to scrape, and identified where in the HTML code the fields of interest lay. And you implemented a simple scraper, mostly with basic Python tools, which navigates through the website.
-
-### 2. 摘录及评论
+## 0201. Enter the Requirements
 
 This chapter prepared you for the remaining parts of the book: you've met the requirements, analyzed the website to scrape, and identified where in the HTML code the fields of interest lay. And you implemented a simple scraper, mostly with basic Python tools, which navigates through the website. In the next chapter you will learn Beautiful Soup, a simple extractor library that helps you to forget regular expressions, and adds more features to traverse and extract HTML-trees like a boss.
 
@@ -338,7 +340,7 @@ If you ask me, both algorithms are good, and they deliver the same result. I cou
 
 Creating the Navigation. Implementing the navigation is simple if you look at the algorithms, because this is the only trick: implement the pseudo code. OK, I was a bit lazy, because you need to implement the link extraction too, which can be a bit complex, but you already have a building block from Chapter 1 and you are free to use it.
 
-```
+```py
 def extract_links(page):
     if not page:
         return []
@@ -356,7 +358,7 @@ The two functions shown extract the page, and the links still point to the Sains
 
 The extract_links function takes care of an empty or None page. urljoin wouldn't bleat about this but re.findall would throw an exception and you don't want that to happen. The get_links function returns all the links of the web page that point to the same host. To find out which host to use, you can utilize the urlparse function, 3 which returns a tuple. The second parameter of this tuple is the host extracted from the URL. Those were the basics; now come the two search algorithms. If you look at the two functions just shown, you will see only one difference in their code (hint: it's highlighted): how you put them into the queue, which is a stack.
 
-```
+```py
 def depth_first_search(start_url):
     from collections import deque
     visited = set()
@@ -391,7 +393,7 @@ With basic Python urlopen you can create simple requests and corresponding data,
 
 Getting Pages. Requesting pages is easy with the requests library: requests.get(url). This returns a response object that contains basic information, like status code and content. The content is most often the body of the website you requested, but if you requested some binary data (like images or sound files) or JSON, then you get that back. For this book, we will focus on HTML content. You can get the HTML content from the response by calling its text parameter:
 
-```
+```py
 import requests
 
 r = requests.get('http://wwww.baidu.com')
@@ -407,7 +409,7 @@ With this we are through the basics of the requests library. As I introduce more
 
 Switching to requests. Now it is time to finish the script and use the requests library for downloading the pages. By now you know already how to accomplish this, but here is the code anyway.
 
-```
+```py
 def download_page(url):
     try:
         return requests.get(url).text
@@ -419,13 +421,7 @@ I surrounded the requesting method call with a try-except block because it can h
 
 Putting the Code Together. Now if you put everything together and run both functions with 'https://www.sainsburys.co.uk/shop/gb/groceries/meat-fish' as starting_url, then you should get a similar result to this one. As you can see from the printed URLs, the current solution is rudimentary: the code navigates the whole website instead of focusing only on the “Meat & fish” department and nutrition details. One option would be to extend the filter to return only relevant links, but I don't like regular expressions because they are hard to read. Instead let's go ahead to the next chapter.
 
-## 03. Using Beautiful Soup
-
-### 1. 逻辑脉络
-
-how to use Beautiful Soup and requests together, and you created your first full scraper application.
-
-### 2. 摘录及评论
+## 0301. Using Beautiful Soup
 
 In this chapter you learned a lot, such as how to use Beautiful Soup and requests together, and you created your first full scraper application, which gathers the requirements from Chapter 2. The scraper exported the gathered results into different stores, like CSV, JSON, and databases. But every rose has its thorn: you learned about bottlenecks of this simpler solution, and applied some techniques to make it perform better. And with this you’ve learned how complex it can be to write your own scraper.
 
@@ -511,7 +507,7 @@ You can use regular expressions too to find tags that are of a specific type, an
 
 Moreover, the text of a tag is one of its attributes too. This means you can search for tags that contain a specific text (or just a fragment of a text).
 
-```
+```py
 soup.find_all('p', text='paragraph') 
 soup.find_all('p', text=re.compile('paragraph'))
 ```
@@ -520,7 +516,7 @@ The difference between the two preceding examples is their result. Because in th
 
 Finding Multiple Tags Based on Property. Previously, you have seen how to find one kind of tag (\<p>, \<img>) based on its properties. However, Beautiful Soup offers you other options too: for example, you can find multiple tags that share the same criteria. Look at the next example:
 
-```
+```py
 for tag in soup.find_all(re.compile('h')):
     print(tag.name)
 ```
@@ -539,7 +535,7 @@ Changing Content. I rarely use this function of Beautiful Soup, but valid use ca
 
 Adding Tags and Attributes. Adding tags to the HTML is easy, though it is seldom used. If you add a tag, you must take care where and how you do it. You can use two methods: insert and append. Both work on a tag of the soup. insert requires a position where to insert the new tag, and the new tag itself. append requires only the new tag to append the new tag to the parent tag’s end on which the method is called. Because the soup itself is a tag, you can use these methods on it too, but you must take care. For example, try out the following code:
 
-```
+```py
 h2 = soup.new_tag('h2') 
 h2.string = 'This is a second-level header' 
 soup.insert(0, h2)
@@ -575,14 +571,14 @@ Even though the preceding code doesn’t affect the rendered output, it added th
 
 Changing Tags and Attributes. Sometimes you don’t want to add new tags but want to change existing content. For example, you want to change the contents of paragraphs to be bold.
 
-```
+```py
 for p in soup.find_all('p', text=True):
     p.string.wrap(soup.new_tag('b'))
 ```
 
 If you would like to change the contents of a tag that contains some formatting (like bold or italic tags), but you want to retain the contents, you can use the unwrap function.
 
-```
+```py
 soup = BeautifulSoup('<p> This is a <b>new</b> paragraph!</p>') 
 p = soup.p.b.unwrap() 
 print(soup.p)
@@ -590,7 +586,7 @@ print(soup.p)
 
 Another example would be to change the id or the class of a tag. This works the same way as with adding new attributes: you can get the tag from the soup, and change the dictionary values.
 
-```
+```py
 for t in soup.findAll(True, id=True):
     t['class'] = 'withid' 
     print(t)
@@ -600,14 +596,14 @@ The preceding example changes (or adds) the class withid to all tags that have a
 
 Deleting Tags and Attributes. If you want to delete a tag, you can use either extract() or decompose() on the tag. extract() removes the tag from the tree and returns it, so you can use it in the future or add it to the HTML content at a different position. decompose() deletes the selected tag permanently. No return values, no later usage; it is gone forever.
 
-```
+```py
 print(soup.title.extract()) 
 print(soup.head)
 ```
 
 Running the preceding code example with the example HTML of this section results in the following lines:
 
-```
+```py
 <title>Your Title Here</title> 
 <head>
 </head>
@@ -615,14 +611,14 @@ Running the preceding code example with the example HTML of this section results
 
 Alternatively, you can change extract() to decompose().
 
-```
+```py
 print(soup.title.decompose()) 
 print(soup.head)
 ```
 
 Here, the result changes only in the first line where you don’t get back anything.
 
-```
+```py
 None <head>
 
 </head>
@@ -630,18 +626,20 @@ None <head>
 
 Deletion doesn’t only work for tags; you can remove attributes of tags too. Imagine, you have tags that have an attribute called display, and you want to remove this display attribute from each tag. You can do it the following way:
 
-```
+```py
 for tag in soup.find_all(True, display=True):
     del tag['display']
 ```
 
 If you now count the occurrences of tags having a display attribute, you will get 0.
 
-    print(len(soup.find_all(True, display=True)))
+```py
+print(len(soup.find_all(True, display=True)))
+```
 
 Finding Comments. Sometimes you need to find comments in HTML code to reverse-engineer JavaScript calls, because sometimes the content of a website is delivered in a comment and JavaScript renders it properly. The preceding code finds and prints contents of all comments. To make it work, you need to import Comments from the bs4 package too.
 
-```
+```py
 for comment in soup.find_all(text=lambda text:isinstance (text, Comment)):
     print(comment)
 ```
@@ -654,7 +652,7 @@ However, this results in the same string representation as you provided in the H
 
 This call results in (soup was created using the HTML from the beginning of this section)
 
-```
+```py
 <p> 
 This is a new paragraph! 
 </p>
@@ -665,7 +663,7 @@ Extracting the Required Information. Now it is time to prepare your fingers and 
 Identifying, Extracting, and Calling the Target URLs. The first step in creating the scraper is to identify the links that lead us to product pages. In Chapter 2 we used Chrome’s DevTools to find the corresponding links and their locations. Those links are in an unordered list (\<ul>), which has the class categories departments. You can extract them from the page with following code:
 
 
-```
+```py
 links = []
 ul = soup.find('ul', class_='categories departments')
 if ul:
@@ -679,7 +677,7 @@ You now have the links that lead to pages listing products, each showing 36 at m
 
 The navigation goes from “Chicken & turkey” to “Sauces, marinades & Yorkshire puddings,” which leads to the third layer of links. Therefore, your script should be able to navigate such chains too and get to the product listings.
 
-```
+```py
 product_pages = []
 visited = set()
 queue = deque()
@@ -711,7 +709,7 @@ The code looks first for shelves (categories shelf), which are the last layer of
 
 Navigating the Product Pages. In Chapter 2 you have seen that products can be listed on multiple pages. To gather information about every product, you need to navigate between these pages. If you are lazy like me, you might come up with the idea to use the filter and set the product count to 108 per page, just like in Figure 3-2. Even though this is a good idea, it can happen that a category holds at least 109 products — and in this case, you need to navigate your script.
 
-```
+```py
 product_pages = []
 visited = set()
 queue = deque()
@@ -743,13 +741,15 @@ Extracting the Information. You arrived at the product page. Now it is time to e
 
 Using Dictionaries. The first solution you create will store the extracted information of products in dictionaries. The keys in the dictionary will be the fields’ names (which will be later used as a header in a CSV [Comma Separated Value], for example), the value the extracted information. Because each product you extract has a URL, you can initialize the dictionary for a product as follows:
 
-    product = {'url': url}
+```py
+product = {'url': url}
+```
 
 I could list here how to extract all the information required, but I will only list the tricky parts. The other building blocks you should figure out yourself, as an exercise. You can take a break, put down the book and try to implement the extractor. if you struggle with nutrition information or product origin, you will find help below. if you are lazy, you can go ahead and find my whole solution later in this section or look at the source code provided for this book.
 
 For me, the most interesting and lazy part is the extraction of the nutrition information table. It is a lazy solution because I used the table row headings as keys in the dictionary to store the values. They match the requirements, and therefore there is no need to add custom code that reads the table headers and decides which value to use.
 
-```
+```py
 table = soup.find('table', class_='nutritionTable') 
 if table:
     rows = table.findAll('tr') 
@@ -764,7 +764,7 @@ if table:
 
 Extracting the product’s origin was the most complicated part, at least in my eyes. Here you needed to find a header (\<h3>) that contains a specific text and then its sibling. This sibling holds all the text but in a sheer format, which you need to make readable.
 
-```
+```py
 product_origin_header = soup.find('h3', class_='productDataItemHeader', text='Country of Origin')
 if product_origin_header:
     product_text = product_origin_header.find_next_sibling ('div', class_='productText') 
@@ -779,7 +779,7 @@ After implementing a solution, I hope you’ve got something similar to the foll
 
 As you can see in the preceding code, this is the biggest part of the scraper. But hey! You finished your very first scraper, which extracts meaningful information from a real website. What you have probably noticed is the caution implemented in the code: every HTML tag is verified. If it does not exist, no processing happens; it would be a disaster and the application would crash. The regular expressions to extract item codes and review counts is again a lazy way. Even though I am not a regex guru, I can create some simple patterns and use them for my purposes.
 
-```
+```py
 reviews_pattern = re.compile("Reviews \((\d+)\)") 
 item_code_pattern = re.compile("Item code: (\d+)")
 ```
@@ -794,7 +794,7 @@ What to do in such cases? Well, first, mention to your customer (if you have any
 
 In my case, I went with the easiest solution and exported all I could from those tables. This means my results have fields that are not in the requirements and some can be missing, like Total sugars. Moreover, because the sublist of fats and carbohydrates has awkward dashes before each entry, or there are rows that contain only the text “of which,” I adjusted the preceding code a bit to handle these cases.
 
-```
+```py
 table = soup.find('table', class_='nutritionTable') 
 if table:
     rows = table.findAll('tr') 
@@ -821,28 +821,28 @@ Quick Glance at the csv Module. Here you get a quick introduction into the csv m
 
 for the code examples, i assume you did import csv. Writing CSV files is easy: if you know how to write files, you are almost done. You must open a file-handle and create a CSV writer.
 
-```
+```py
 with open('result.csv', 'w') as outfile: 
     spamwriter = csv.writer(outfile)
 ```
 
 The preceding code example is the simplest example I can come up with. However, there are a lot more options to configure, which sometimes will be important for you.
 
-1. dialect: With the dialect parameter, you can specify formatting attributes grouped together to represent a common formatting. Such dialects are excel (the default dialect), excel_tab, or unix_dialect. You can define your own dialects too.
+1 dialect: With the dialect parameter, you can specify formatting attributes grouped together to represent a common formatting. Such dialects are excel (the default dialect), excel_tab, or unix_dialect. You can define your own dialects too.
 
-2. delimiter: If you do/don’t specify a dialect, you can customize the delimiter through this argument. This can be needed if you must use some special character for delimiting purposes because comma and escaping don’t do the trick, or your specifications are restrictive.
+2 delimiter: If you do/don’t specify a dialect, you can customize the delimiter through this argument. This can be needed if you must use some special character for delimiting purposes because comma and escaping don’t do the trick, or your specifications are restrictive.
 
-3. quotechar: As its name already mentions, you can override the default quoting. Sometimes your texts contain quote characters and escaping results in unwanted representations in MS Excel.
+3 quotechar: As its name already mentions, you can override the default quoting. Sometimes your texts contain quote characters and escaping results in unwanted representations in MS Excel.
 
-4. quoting: Quoting occurs automatically if the writer encounters the delimiter inside a field’s value. You can override the default behavior, and you can completely disable quoting (although I don’t encourage you to do this).
+4 quoting: Quoting occurs automatically if the writer encounters the delimiter inside a field’s value. You can override the default behavior, and you can completely disable quoting (although I don’t encourage you to do this).
 
-5. lineterminator: This setting enables you to change the character at the line’s ending. It defaults to '\r\n' but in Windows you don’t want this, just '\n'.
+5 lineterminator: This setting enables you to change the character at the line’s ending. It defaults to '\r\n' but in Windows you don’t want this, just '\n'.
 
 Most of the time, you are good to go without changing any of these settings (and relying on the Excel configuration). However, I encourage you to take some time and try out different settings. If something is wrong with your dataset and the export configuration, you’ll get an exception from the csv module—and this is bad if your script already scraped all the information and dies at the export.
 
 Line Endings. If you’re working in a Windows environment like I do most of the time, it is a recommended practice to set the line ending for your writer. If not, you will get unwanted results.
 
-```
+```py
 with open('result.csv', 'w') as outfile: 
     spamwriter = csv.writer(outfile) 
     spamwriter.writerow([1,2,3,4,5]) 
@@ -851,7 +851,7 @@ with open('result.csv', 'w') as outfile:
 
 The preceding code results in the CSV file in Figure 3-5. To fix this, set the lineterminator argument to the writer’s creation.
 
-```
+```py
 with open('result.csv', 'w') as outfile:
     spamwriter = csv.writer(outfile, lineterminator='\n') 
     spamwriter.writerow([1,2,3,4,5]) 
@@ -860,11 +860,10 @@ with open('result.csv', 'w') as outfile:
 
 Headers. What are CSV files without a header? Useful for those who know what to expect in which order, but if the order or number of columns changes, you can expect nothing good. Writing the header works the same as writing a row: you must do it manually.
 
-```
+```py
 with open('result.csv', 'w') as outfile:
     spamwriter = csv.writer(outfile, lineterminator='\n') 
     spamwriter.writerow(['average', 'mean', 'median', 'max', 'sum']) 
     spamwriter.writerow([1,2,3,4,5]) 
     spamwriter.writerow([6,7,8,9,10])
 ```
-

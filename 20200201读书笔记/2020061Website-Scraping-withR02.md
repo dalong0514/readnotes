@@ -6,13 +6,11 @@ Copyright © 2018
 
 2020-03-08
 
-## 04. Using Scrapy
+## 提炼汇总
 
-### 1. 逻辑脉络
+4、如何用 scrapy 框架抓取一个没有 JS 的静态网页里指定的元素。
 
-如何用 scrapy 框架抓取一个没有 JS 的静态网页里指定的元素。
-
-### 2. 摘录及评论
+## 0401. Using Scrapy
 
 In this chapter you learned about Scrapy, the tool for website scraping. You implemented the scraper for the requirements of Chapter 2 with Scrapy. You have seen that you need to write much less than when you use a homemade spider where you have to handle requests — just to mention one example. You learned some advanced topics too like writing your own middleware, pipelines, and extensions, and what the result is if you turn some knobs on the configuration panel.
 
@@ -337,7 +335,7 @@ SQLite. Similar to the MongoDB solution, when using a SQLite database, you have 
 
 As you can see, the class works almost the same as the MongoDB pipeline from the previous example. The interesting part comes when you insert it into the database. Because we have some nullable fields (and properties that don’t have to exist in the item), we have to ensure that we don’t encounter a Python error while saving. To test out the code, you have to add the pipeline to settings.py.
 
-```
+```py
 ITEM_PIPELINES = { 
     'sainsburys.pipelines.MongoDBPipeline': None 
     'sainsburys.pipelines.SQLitePipeline': 300 }
@@ -357,7 +355,7 @@ Filtering Duplicates. You remember the SQLite pipeline. There we defined INSERT 
 
 1『写入 SQLite 数据库的过程中可以方便的处理重复 items，还有其他的方法，即此处的主题。』
 
-```
+```py
 from scrapy.exceptions import DropItem
 
 class DuplicateItemFilter:
@@ -381,7 +379,7 @@ Silently Dropping Items. If you add the item filter from the previous section an
 
 One solution would be to raise the LOG_LEVEL to ERROR, but with this approach you end up skipping other warnings that can be useful in analyzing not expected behavior. The other solution would be to write your own log-formatter for dropped items.
 
-```
+```py
 from scrapy import logformatter
 import logging
 
@@ -615,15 +613,9 @@ If you want to debug which cookies are exchanged between the server and your spi
 
 This will log every sent cookie (the Cookie header in your request) and received cookie (the Set-Cookie header in the response) to the console, or the logging framework you specified.
 
-1『Cookie 还是用默认的激活，不然想豆瓣这种就抓取不了了。』
+1『 Cookie 还是用默认的激活，不然想豆瓣这种就抓取不了了。』
 
-## 05. Handling JavaScript
-
-### 1. 逻辑脉络
-
-用自己的话总结主题，梳理逻辑脉络，也就是这本书整个地图里这一章所在的节点。
-
-### 2. 摘录及评论
+## 0501. Handling JavaScript
 
 In this chapter we looked at some approaches to scrape websites that utilize JavaScript. We looked at the mainstream Selenium using a web browser to execute JavaScript and then went to the headless world, where you don’t need any window to execute JavaScript and this makes your scripts portable and easier to execute. Naturally, using another tool to get some extra rendering done takes time and provides overhead. If you don’t require JavaScript rendering, create your scripts without any add-ons like Splash or Selenium. You’ll benefit from the speed gain.
 
@@ -996,7 +988,7 @@ def get_page(url):
     return None
 ```
 
-## 06. Website Scraping in the Cloud
+## 0601. Website Scraping in the Cloud
 
 In this chapter we looked at options for how to run scrapers in the cloud. This is the solution if you don’t want to run your extractors every time manually, or you don’t want to have them run on your computer because they eat a lot of resources and your computer gets slow for a long time. We looked at Scraping Hub, which provides services specific for Scrapy and this makes it unique. Besides this, they’re the developers of Splash too and they have a solution for how you can run your Splash-based spiders in the cloud. As an alternative, we looked at PythonAnywhere, where you can upload Python scripts and execute them. This is not only useful for Scrapy but for scripts using Beautiful Soup too, and this moves your simple scrapers into the Cloud too.
 
@@ -1160,4 +1152,4 @@ After uploading, we can run the script. Running the script works as it would in 
 
     python3 berlin.py
 
-After the process finishes, you can access the results in the berlin_ sights.jl file. The first entry looks like this:
+After the process finishes, you can access the results in the `berlin_ sights.jl` file. The first entry looks like this:
