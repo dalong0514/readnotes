@@ -1,4 +1,4 @@
-False Positives and Positive Fallacies
+# 0601. False Positives and Positive Fallacies
 
 IN THE 1970S a psychology professor at Harvard had an odd-looking middle-aged student in his class. After the first few class meetings the student approached the professor to explain why he had enrolled in the class.1 In my experience teaching, though I have had some polite students come up to me to explain why they were dropping my course, I have never had a student feel the need to explain why he was taking it. That’s probably why I can get away with happily assuming that if asked, such a student would respond,「Because I am fascinated by the subject, and you are a fine lecturer.」But this student had other reasons. He said he needed help because strange things were happening to him: his wife spoke the words he was thinking before he could say them, and now she was divorcing him; a co-worker casually mentioned layoffs over drinks, and two days later the student lost his job. Over time, he reported, he had experienced dozens of misfortunes and what he considered to be disturbing coincidences.
 

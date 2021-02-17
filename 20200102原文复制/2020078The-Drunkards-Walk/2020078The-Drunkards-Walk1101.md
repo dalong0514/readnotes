@@ -1,194 +1,500 @@
-# 0201. The Laws of Truths and Half-Truths
+## Acknowledgements
 
-LOOKING TO THE SKY on a clear, moonless night, the human eye can detect thousands of twinkling sources of light. Nestled among those haphazardly scattered stars are patterns. A lion here, a dipper there. The ability to detect patterns can be both a strength and a weakness. Isaac Newton pondered the patterns of falling objects and created a law of universal gravitation. Others have noted a spike in their athletic performance when they are wearing dirty socks and thenceforth have refused to wear clean ones. Among all the patterns of nature, how do we distinguish the meaningful ones? Drawing that distinction is an inherently practical enterprise. And so it might not astonish you to learn that, unlike geometry, which arose as a set of axioms, proofs, and theorems created by a culture of ponderous philosophers, the theory of randomness sprang from minds focused on spells and gambling, figures we might sooner imagine with dice or a potion in hand than a book or a scroll.
+I ASSUME if you are reading this far, that you liked this book. For its good qualities, I’d like to claim all credit, but as Nixon once said, that would be wrong. And so I’d like to point out the people who, with their time, knowledge, talent, and/or patience, helped me to create a book that is better than any which I could have created alone. First, Donna Scott, Mark Hillery, and Matt Costello gave me constant encouragement. Mark, in particular, wanted me to write a book about entropy, but then listened (and read) patiently as I instead applied many of those same ideas to the everyday world. My agent, Susan Ginsburg, never wanted me to write a book about entropy, but, like Mark, was a source of unwaivering constructive input and encouragement. My friend Judith Croasdell was always supportive, and, when called upon, also worked a miracle or two. And my editor, Edward Kastenmeier, never grew tired of the long discussions I drew him into about the style and content of virtually every sentence, or more likely, was too polite to complain about it. I also owe a debt to Edward’s colleagues, Marty Asher, Dan Frank, and Tim O’Connell, who, along with Edward, nurtured this work and helped shape the text and to Janice Goldklang, Michiko Clark, Chris Gillespie, Keith Goldsmith, James Kimball, and Vannessa Schneider whose tireless efforts helped get this to you.
 
-The theory of randomness is fundamentally a codification of common sense. But it is also a field of subtlety, a field in which great experts have been famously wrong and expert gamblers infamously correct. What it takes to understand randomness and overcome our misconceptions is both experience and a lot of careful thinking. And so we begin our tour with some of the basic laws of probability and the challenges involved in uncovering, understanding, and applying them. One of the classic explorations of people’s intuition about those laws was an experiment conducted by the pair who did so much to elucidate our misconceptions, Daniel Kahneman and Amos Tversky.1 Feel free to take part—and learn something about your own probabilistic intuition.
+On the technical side, Larry Goldstein and Ted Hill inspired me in numerous fun and exciting mathematical debates and discussions, and gave me invaluable feedback on the manuscript. Fred Rose seemed to have left his job at The Wall Street Journal solely to free up time to lend me advice on the workings of the financial markets. Lyle Long applied his considerable expertise at data analysis to help create the graphs related to fund manager performance. And Christof Koch welcomed me into his lab at Caltech and opened my eyes to the exciting new developments in neuroscience that pepper these pages. Many other friends and colleagues read chapters, sometimes more than one draft, or otherwise provided useful suggestions or information. They include Jed Buchwald, Lynne Cox, Richard Cheverton, Rebecca Forster, Miriam Goodman, Catherine Keefe, Jeff Mackowiak, Cindy Mayer, Patricia McFall, Andy Meisler, Steve Mlodinow, Phil Reed, Seth Roberts, Laura Saari, Matt Salganik, Martin Smith, Steve Thomas, Diane Turner, and Jerry Webman. Thanks to you all. Finally, I owe a profound thank you to my family, Donna, Alexei, Nicolai, Olivia, and to my mother, Irene, from each of whom I often stole time in order that I might improve upon, or at least obsess over, this work.
 
-Imagine a woman named Linda, thirty-one years old, single, outspoken, and very bright. In college she majored in philosophy. While a student she was deeply concerned with discrimination and social justice and participated in antinuclear demonstrations. Tversky and Kahneman presented this description to a group of eighty-eight subjects and asked them to rank the following statements on a scale of 1 to 8 according to their probability, with 1 representing the most probable and 8 the least. Here are the results, in order from most to least probable:
+## Notes
 
-Statement
+## Prologue
 
-Average Probability Rank
+## Chapter 1: Peering through the Eyepiece of Randomness
 
-Linda is active in the feminist movement.
+## Chapter 2: The Laws of Truths and Half-Truths
 
-2.1
+## Chapter 3: Finding Your Way through a Space of Possibilities
 
-Linda is a psychiatric social worker.
+1. Alan Wykes, Doctor Cardano: Physician Extraordinary (London: Frederick Muller, 1969). See also Oystein Ore, Cardano: The Gambling Scholar, with a translation of Cardano’s Book on Games of Chance by Sydney Henry Gould (Princeton, N.J.: Princeton University Press, 1953).
 
-3.1
+2. Marilyn vos Savant,「Ask Marilyn,」Parade, September 9, 1990.
 
-Linda works in a bookstore and takes yoga classes.
+3. Bruce D. Burns and Mareike Wieth,「Causality and Reasoning: The Monty Hall Dilemma,」in Proceedings of the Twenty-fifth Annual Meeting of the Cognitive Science Society, ed. R. Alterman and D. Kirsh (Hillsdale, N.J.: Lawrence Erlbaum Associates, 2003), p. 198.
 
-3.3
+4. National Science Board, Science and Engineering Indicators—2002 (Arlington, Va.: National Science Foundation, 2002); http://www.nsf.gov/statistics/seind02/. See vol. 2, chap. 7, table 7-10.
 
-Linda is a bank teller and is active in the feminist movement.
+5. Gary P. Posner,「Nation’s Mathematicians Guilty of Innumeracy,」Skeptical Inquirer 15, no. 4 (Summer 1991).
 
-4.1
+6. Bruce Schechter, My Brain Is Open: The Mathematical Journeys of Paul Erdös (New York: Touchstone, 1998), pp. 107–9.
 
-Linda is a teacher in an elementary school.
+7. Ibid., pp. 189–90, 196–97.
 
-5.2
+8. John Tierney,「Behind Monty’s Doors: Puzzle, Debate and Answer?」New York Times, July 21, 1991.
 
-Linda is a member of the League of Women Voters.
+9. Robert S. Gottfried, The Black Death: Natural and Human Disaster in Medieval Europe (New York: Free Press, 1985).
 
-5.4
+10. Gerolamo Cardano, quoted in Wykes, Doctor Cardano, p. 18.
 
-Linda is a bank teller.
+11. Kline, Mathematical Thought, pp. 184–85, 259–60.
 
-6.2
+12.「Oprah’s New Shape: How She Got It,」O, the Oprah Magazine, January 2003.
 
-Linda is an insurance salesperson.
+13. Lorraine J. Daston, Classical Probability in the Enlightenment (Princeton, N.J.: Princeton University Press, 1998), p. 97.
 
-6.4
+14. Marilyn vos Savant,「Ask Marilyn,」Parade, March 3, 1996, p. 14.
 
-At first glance there may appear to be nothing unusual in these results: the description was in fact designed to be representative of an active feminist and unrepresentative of a bank teller or an insurance salesperson. But now let’s focus on just three of the possibilities and their average ranks, listed below in order from most to least probable. This is the order in which 85 percent of the respondents ranked the three possibilities:
+15. There are four tires on the car, so, letting RF signify「right front,」and so on, there are 16 possible combinations of responses by the two students. If the first response listed represents that of student 1 and the second that of student 2, the possible joint responses are (RF, RF), (RF, LF), (RF, RR), (RF, LR), (LF, RF), (LF, LF), (LF, RR), (LF, LR), (RR, RF), (RR, LF), (RR, RR), (RR, LR), (LR, RF), (LR, LF), (LR, RR), (LR, LR). Of these 16, 4 are in agreement: (RF, RF), (LF, LF), (RR, RR), (LR, LR). Hence the chances are 4 out of 16, or 1 in 4.
 
-Statement
+16. Martin Gardner,「Mathematical Games,」Scientific American, October 1959, pp. 180–82.
 
-Average Probability Rank
+17. Jerome Cardan, The Book of My Life: De Vita Propia Liber, trans. Jean Stoner (Whitefish, Mont.: Kessinger, 2004), p. 35.
 
-Linda is active in the feminist movement.
+18. Cardano, quoted in Wykes, Doctor Cardano, p. 57.
 
-2.1
+19. Cardano, quoted ibid.
 
-Linda is a bank teller and is active in the feminist movement.
+20. Cardano, quoted ibid., p. 172.
 
-4.1
+Chapter 4: Tracking the Pathways to Success
 
-Linda is a bank teller.
+1. Bengt Ankarloo and Stuart Clark, eds., Witchcraft and Magic in Europe: The Period of the Witch Trials (Philadelphia: University of Pennsylvania Press, 2002), pp. 99–104.
 
-6.2
+2. Meghan Collins,「Traders Ward Off Evil Spirits,」October 31, 2003, http://www.CNNMoney.com/2003/10/28/markets_trader_superstition/index.htm.
 
-If nothing about this looks strange, then Kahneman and Tversky have fooled you, for if the chance that Linda is a bank teller and is active in the feminist movement were greater than the chance that Linda is a bank teller, there would be a violation of our first law of probability, which is one of the most basic of all: The probability that two events will both occur can never be greater than the probability that each will occur individually. Why not? Simple arithmetic: the chances that event A will occur = the chances that events A and B will occur + the chance that event A will occur and event B will not occur.
+3. Henk Tijms, Understanding Probability: Chance Rules in Everyday Life (Cambridge: Cambridge University Press, 2004), p. 16.
 
-Kahneman and Tversky were not surprised by the result because they had given their subjects a large number of possibilities, and the connections among the three scenarios could easily have gotten lost in the shuffle. And so they presented the description of Linda to another group, but this time they presented only these possibilities:
+4. Ibid., p. 80.
 
-Linda is active in the feminist movement.
+5. David, Gods, Games and Gambling, p. 65.
 
-Linda is a bank teller and is active in the feminist movement.
+6. Blaise Pascal, quoted in Jean Steinmann, Pascal, trans. Martin Turnell (New York: Harcourt, Brace & World, 1962), p. 72.
 
-Linda is a bank teller.
+7. Gilberte Pascal, quoted in Morris Bishop, Pascal: The Life of a Genius (1936; repr., New York: Greenwood Press, 1968), p. 47.
 
-To their surprise, 87 percent of the subjects in this trial also ranked the probability that Linda is a bank teller and is active in the feminist movement higher than the probability that Linda is a bank teller. And so the researchers pushed further: they explicitly asked a group of thirty-six fairly sophisticated graduate students to consider their answers in light of our first law of probability. Even after the prompting, two of the subjects clung to the illogical response.
+8. Ibid., p. 137.
 
-The interesting thing that Kahneman and Tversky noticed about this stubborn misperception is that people will not make the same mistake if you ask questions that are unrelated to what they know about Linda. For example, suppose Kahneman and Tversky had asked which of these statements seems most probable:
+9. Gilberte Pascal, quoted ibid., p. 135.
 
-Linda owns an International House of Pancakes franchise.
+10. See A.W.F. Edwards, Pascal’s Arithmetical Triangle: The Story of a Mathematical Idea (Baltimore: Johns Hopkins University Press, 2002).
 
-Linda had a sex-change operation and is now known as Larry.
+11. Blaise Pascal, quoted in Herbert Westren Turnbull, The Great Mathematicians (New York: New York University Press, 1961), p. 131.
 
-Linda had a sex-change operation, is now known as Larry, and owns an International House of Pancakes franchise.
+12. Blaise Pascal, quoted in Bishop, Pascal, p. 196.
 
-In this case few people would choose the last option as more likely than either of the other two.
+13. Blaise Pascal, quoted in David, Gods, Games and Gambling, p. 252.
 
-Kahneman and Tversky concluded that because the detail「Linda is active in the feminist movement」rang true based on the initial description of her character, when they added that detail to the bank-teller speculation, it increased the scenario’s credibility. But a lot could have happened between Linda’s hippie days and her fourth decade on the planet. She might have undergone a conversion to a fundamentalist religious cult, married a skinhead and had a swastika tattooed on her left buttock, or become too busy with other aspects of her life to remain politically active. In each of these cases and many others she would probably not be active in the feminist movement. So adding that detail lowered the chances that the scenario was accurate even though it appeared to raise the chances of its accuracy.
+14. Bruce Martin,「Coincidences: Remarkable or Random?」Skeptical Inquirer 22, no. 5 (September/October 1998).
 
-If the details we are given fit our mental picture of something, then the more details in a scenario, the more real it seems and hence the more probable we consider it to be—even though any act of adding less-than-certain details to a conjecture makes the conjecture less probable. This inconsistency between the logic of probability and people’s assessments of uncertain events interested Kahneman and Tversky because it can lead to unfair or mistaken assessments in real-life situations. Which is more likely: that a defendant, after discovering the body, left the scene of the crime or that a defendant, after discovering the body, left the scene of the crime because he feared being accused of the grisly murder? Is it more probable that the president will increase federal aid to education or that he or she will increase federal aid to education with funding freed by cutting other aid to the states? Is it more likely that your company will increase sales next year or that it will increase sales next year because the overall economy has had a banner year? In each case, even though the latter is less probable than the former, it may sound more likely. Or as Kahneman and Tversky put it,「A good story is often less probable than a less satisfactory…[explanation].」
+15. Holland, What Are the Chances? pp. 86–89.
 
-Kahneman and Tversky found that even highly trained doctors make this error.2 They presented a group of internists with a serious medical problem: a pulmonary embolism (a blood clot in the lung). If you have that ailment, you might display one or more of a set of symptoms. Some of those symptoms, such as partial paralysis, are uncommon; others, such as shortness of breath, are probable. Which is more likely: that the victim of an embolism will experience only partial paralysis or that the victim will experience both partial paralysis and shortness of breath? Kahneman and Tversky found that 91 percent of the doctors believed a clot was less likely to cause just a rare symptom than it was to cause a combination of the rare symptom and a common one. (In the doctors’ defense, patients don’t walk into their offices and say things like「I have a blood clot in my lungs. Guess my symptoms.」)
+Chapter 5: The Dueling Laws of Large and Small Numbers
 
-Years later one of Kahneman’s students and another researcher found that attorneys fall prey to the same bias in their judgments.3 Whether involved in a criminal case or a civil case, clients typically depend on their lawyers to assess what may occur if their case goes to trial. What are the chances of acquittal or of a settlement or a monetary judgment in various amounts? Although attorneys might not phrase their opinions in terms of numerical probabilities, they offer advice based on their personal forecast of the relative likelihood of the possible outcomes. Here, too, the researchers found that lawyers assign higher probabilities to contingencies that are described in greater detail. For example, at the time of the civil lawsuit brought by Paula Jones against then president Bill Clinton, 200 practicing lawyers were asked to predict the probability that the trial would not run its full course. For some of the subjects that possibility was broken down into specific causes for the trial’s early end, such as settlement, withdrawal of the charges, or dismissal by the judge. In comparing the two groups—lawyers who had simply been asked to predict whether the trial would run its full course and lawyers who had been presented with ways in which the trial might reach a premature conclusion—the researchers found that the lawyers who had been presented with causes of a premature conclusion were much more likely than the other lawyers to predict that the trial would reach an early end.
+1. Tijms, Understanding Probability, p. 53.
 
-The ability to evaluate meaningful connections among different phenomena in our environment may be so important that it is worth seeing a few mirages. If a starving caveman sees an indistinct greenish blur on a distant rock, it is more costly to dismiss it as uninteresting when it is in reality a plump, tasty lizard than it is to race over and pounce on what turns out to be a few stray leaves. And so, that theory goes, we might have evolved to avoid the former mistake at the cost of sometimes making the latter.
+2. Scott Kinney,「Judge Sentences Kevin L. Lawrence to 20 Years Prison in Znetix/HMC Stock Scam,」Washington State Department of Financial Institutions, press release, November 25, 2003; http://www.dfi.wa.gov/sd/kevin_laurence_sentence.htm.
 
-IN THE STORY of mathematics the ancient Greeks stand out as the inventors of the manner in which modern mathematics is carried out: through axioms, proofs, theorems, more proofs, more theorems, and so on. In the 1930s, however, the Czech American mathematician Kurt Gödel—a friend of Einstein’s—showed this approach to be somewhat deficient: most of mathematics, he demonstrated, must be inconsistent or else must contain truths that cannot be proved. Still, the march of mathematics has continued unabated in the Greek style, the style of Euclid. The Greeks, geniuses in geometry, created a small set of axioms, statements to be accepted without proof, and proceeded from there to prove many beautiful theorems detailing the properties of lines, planes, triangles, and other geometric forms. From this knowledge they discerned, for example, that the earth is a sphere and even calculated its radius. One must wonder why a civilization that could produce a theorem such as proposition 29 of book 1 of Euclid’s Elements—「a straight line falling on two parallel straight lines makes the alternate angles equal to one another, the exterior angle equal to the interior and opposite angle, and the interior angles on the same side equal to two right angles」—did not create a theory showing that if you throw two dice, it would be unwise to bet your Corvette on their both coming up a 6.
+3. Interview with Darrell Dorrell, August 1, 2005.
 
-Actually, not only didn’t the Greeks have Corvettes, but they also didn’t have dice. They did have gambling addictions, however. They also had plenty of animal carcasses, and so what they tossed were astragali, made from heel bones. An astragalus has six sides, but only four are stable enough to allow the bone to come to rest on them. Modern scholars note that because of the bone’s construction, the chances of its landing on each of the four sides are not equal: they are about 10 percent for two of the sides and 40 percent for the other two. A common game involved tossing four astragali. The outcome considered best was a rare one, but not the rarest: the case in which all four astragali came up different. This was called a Venus throw. The Venus throw has a probability of about 384 out of 10,000, but the Greeks, lacking a theory of randomness, didn’t know that.
+4. Lee Berton,「He’s Got Their Number: Scholar Uses Math to Foil Financial Fraud,」Wall Street Journal, July 10, 1995.
 
-The Greeks also employed astragali when making inquiries of their oracles. From their oracles, questioners could receive answers that were said to be the words of the gods. Many important choices made by prominent Greeks were based on the advice of oracles, as evidenced by the accounts of the historian Herodotus, and writers like Homer, Aeschylus, and Sophocles. But despite the importance of astragali tosses in both gambling and religion, the Greeks made no effort to understand the regularities of astragali throws.
+5. Charles Sanders Peirce, Max Harold Fisch, and Christian J. W. Kloesel, Writings of Charles S. Peirce: A Chronological Edition (Bloomington: Indiana University Press, 1982), p. 427.
 
-Why didn’t the Greeks develop a theory of probability? One answer is that many Greeks believed that the future unfolded according to the will of the gods. If the result of an astragalus toss meant「marry the stocky Spartan girl who pinned you in that wrestling match behind the school barracks,」a Greek boy wouldn’t view the toss as the lucky (or unlucky) result of a random process; he would view it as the gods’ will. Given such a view, an understanding of randomness would have been irrelevant. Thus a mathematical prediction of randomness would have seemed impossible. Another answer may lie in the very philosophy that made the Greeks such great mathematicians: they insisted on absolute truth, proved by logic and axioms, and frowned on uncertain pronouncements. In Plato’s Phaedo, for example, Simmias tells Socrates that「arguments from probabilities are impostors」and anticipates the work of Kahneman and Tversky by pointing out that「unless great caution is observed in the use of them they are apt to be deceptive—in geometry, and in other things too.」4 And in Theaetetus, Socrates says that any mathematician「who argued from probabilities and likelihoods in geometry would not be worth an ace.」5 But even Greeks who believed that probabilists were worth an ace might have had difficulty working out a consistent theory in those days before extensive record keeping because people have notoriously poor memories when it comes to estimating the frequency—and hence the probability—of past occurrences.
+6. Rand Corporation, A Million Random Digits with 100,000 Normal Deviates (1955; repr., Santa Monica, Calif.: Rand, 2001), pp. ix–x. See also Lola L. Lopes,「Doing the Impossible: A Note on Induction and the Experience of Randomness,」Journal of Experimental Psychology: Learning, Memory, and Cognition 8, no. 6 (November 1982): 626–36.
 
-Which is greater: the number of six-letter English words having n as their fifth letter or the number of six-letter English words ending in ing? Most people choose the group of words ending in ing.6 Why? Because words ending in ing are easier to think of than generic six-letter words having n as their fifth letter. But you don’t have to survey the Oxford English Dictionary—or even know how to count—to prove that guess wrong: the group of six-letter words having n as their fifth letter words includes all six-letter words ending in ing. Psychologists call that type of mistake the availability bias because in reconstructing the past, we give unwarranted importance to memories that are most vivid and hence most available for retrieval.
+7. The account of Joseph Jagger (sometimes spelled Jaggers) is from John Grochowski,「House Has a Built-in Edge When Roulette Wheel Spins,」Chicago Sun-Times, February 21, 1997.
 
-The nasty thing about the availability bias is that it insidiously distorts our view of the world by distorting our perception of past events and our environment. For example, people tend to overestimate the fraction of homeless people who are mentally ill because when they encounter a homeless person who is not behaving oddly, they don’t take notice and tell all their friends about that unremarkable homeless person they ran into. But when they encounter a homeless person stomping down the street and waving his arms at an imaginary companion while singing「When the Saints Go Marching In,」they do tend to remember the incident.7 How probable is it that of the five lines at the grocery-store checkout you will choose the one that takes the longest? Unless you’ve been cursed by a practitioner of the black arts, the answer is around 1 in 5. So why, when you look back, do you get the feeling you have a supernatural knack for choosing the longest line? Because you have more important things to focus on when things go right, but it makes an impression when the lady in front of you with a single item in her cart decides to argue about why her chicken is priced at $1.50 a pound when she is certain the sign at the meat counter said $1.49.
+8. For details about the Bernoulli family and Jakob’s life, see E. S. Pearson, ed., The History of Statistics in the 17th and 18th Centuries against the Changing Background of Intellectual, Scientific and Religious Thought: Lectures by Karl Pearson Given at University College, London, during the Academic Sessions 1921–1933 (New York: Macmillan, 1978), pp. 221–37; J. O. Fleckenstein,「Johann und Jakob Bernoulli,」in Elemente der Mathematik, Beihefte zur Zeitschrift, no. 6 (Basel, 1949); and Stephen Stigler,「The Bernoullis of Basel,」Journal of Econometrics 75, no. 1 (1996): 7–13.
 
-One stark illustration of the effect the availability bias can have on our judgment and decision making came from a mock jury trial.8 In the study the jury was given equal doses of exonerating and incriminating evidence regarding the charge that a driver was drunk when he ran into a garbage truck. The catch is that one group of jurors was given the exonerating evidence in a「pallid」version:「The owner of the garbage truck stated under cross-examination that his garbage truck was difficult to see at night because it was gray in color.」The other group was given a more「vivid」form of the same evidence:「The owner of the garbage truck stated under cross-examination that his garbage truck was difficult to see at night because it was gray in color. The owner remarked his trucks are gray ‘because it hides the dirt. What do you want, I should paint ’em pink?’」The incriminating evidence was also presented in two ways, this time in a vivid form to the first group and in a pallid version to the second. When the jurors were asked to produce guilt/innocence ratings, the side with the more vivid presentation of the evidence always prevailed, and the effect was enhanced when there was a forty-eight-hour delay before rendering the verdict (presumably because the recall gap was even greater).
+9. Quoted in Pearson, The History of Statistics in the 17th and 18th Centuries, p. 224.
 
-By distorting our view of the past, the availability bias complicates any attempt to make sense of it. That was true for the ancient Greeks just as it is true for us. But there was one other major obstacle to an early theory of randomness, a very practical one: although basic probability requires only knowledge of arithmetic, the Greeks did not know arithmetic, at least not in a form that is easy to work with. In Athens in the fifth century B.C., for instance, at the height of Greek civilization, a person who wanted to write down a number used a kind of alphabetic code.9 The first nine of the twenty-four letters in the Greek alphabet stood for the numbers we call 1 through 9. The next nine letters stood for the numbers we call 10, 20, 30, and so on. And the last six letters plus three additional symbols stood for the first nine hundreds (100, 200, and so on, to 900). If you think you have trouble with arithmetic now, imagine trying to subtract from ! To make matters worse, the order in which the ones, tens, and hundreds were written didn’t really matter: sometimes the hundreds were written first, sometimes last, and sometimes all order was ignored. Finally, the Greeks had no zero.
+10. Stephen Stigler, The History of Statistics: The Measurement of Uncertainty before 1900 (Cambridge, Mass.: Harvard University Press, 1986), p. 65.
 
-The concept of zero came to Greece when Alexander invaded the Babylonian Empire in 331 B.C. Even then, although the Alexandrians began to use the zero to denote the absence of a number, it wasn’t employed as a number in its own right. In modern mathematics the number 0 has two key properties: in addition it is the number that, when added to any other number, leaves the other number unchanged, and in multiplication it is the number that, when multiplied by any other number, is itself unchanged. This concept wasn’t introduced until the ninth century, by the Indian mathematician Mahāvīra.
+11. Pearson, The History of Statistics in the 17th and 18th Centuries, p. 226.
 
-Even after the development of a usable number system it would be many more centuries before people came to recognize addition, subtraction, multiplication, and division as the fundamental arithmetic operations—and slowly realized that convenient symbols would make their manipulation far easier. And so it wasn’t until the sixteenth century that the Western world was truly poised to develop a theory of probability. Still, despite the handicap of an awkward system of calculation, it was the civilization that conquered the Greeks—the Romans—who made the first progress in understanding randomness.
+12. William H. Cropper, The Great Physicists: The Life and Times of Leading Physicists from Galileo to Hawking (London: Oxford University Press, 2001), p. 31.
 
-THE ROMANS generally scorned mathematics, at least the mathematics of the Greeks. In the words of the Roman statesman Cicero, who lived from 106 to 43 B.C.,「The Greeks held the geometer in the highest honor; accordingly, nothing made more brilliant progress among them than mathematics. But we have established as the limit of this art its usefulness in measuring and counting.」10 Indeed, whereas one might imagine a Greek textbook focused on the proof of congruences among abstract triangles, a typical Roman text focused on such issues as how to determine the width of a river when the enemy is occupying the other bank.11 With such mathematical priorities, it is not surprising that while the Greeks produced mathematical luminaries like Archimedes, Diophantus, Euclid, Eudoxus, Pythagoras, and Thales; the Romans did not produce even one mathematician.12 In Roman culture it was comfort and war, not truth and beauty, that occupied center stage. And yet precisely because they focused on the practical, the Romans saw value in understanding probability. So while finding little value in abstract geometry, Cicero wrote that「probability is the very guide of life.」13
+13. Johann Bernoulli, quoted in Pearson, The History of Statistics in the 17th and 18th Centuries, p. 232.
 
-Cicero was perhaps the greatest ancient champion of probability. He employed it to argue against the common interpretation of gambling success as due to divine intervention, writing that the「man who plays often will at some time or other make a Venus cast: now and then indeed he will make it twice and even thrice in succession. Are we going to be so feeble-minded then as to affirm that such a thing happened by the personal intervention of Venus rather than by pure luck?」14 Cicero believed that an event could be anticipated and predicted even though its occurrence would be a result of blind chance. He even used a statistical argument to ridicule the belief in astrology. Annoyed that although outlawed in Rome, astrology was nevertheless alive and well, Cicero noted that at Cannae in 216 B.C., Hannibal, leading about 50,000 Carthaginian and allied troops, crushed the much larger Roman army, slaughtering more than 60,000 of its 80,000 soldiers.「Did all the Romans who fell at Cannae have the same horoscope?」Cicero asked.「Yet all had one and the same end.」15 Cicero might have been encouraged to know that a couple of thousand years later in the journal Nature a scientific study of the validity of astrological predictions agreed with his conclusion.16 The New York Post, on the other hand, advises today that as a Sagittarius, I must look at criticisms objectively and make whatever changes seem necessary.
+14. This depends, of course, on what you identify as「the modern concept.」I am using the definition employed by Hankel’s 1871 history of the topic, described in great detail in Gert Schubring, Conflicts between Generalization, Rigor, and Intuition: Number Concepts Underlying the Development of Analysis in 17th–19th Century France and Germany (New York: Springer, 2005), pp. 22–32.
 
-In the end, Cicero’s principal legacy in the field of randomness is the term he used, probabilis, which is the origin of the term we employ today. But it is one part of the Roman code of law, the Digest, compiled by Emperor Justinian in the sixth century, that is the first document in which probability appears as an everyday term of art.17 To appreciate the Roman applications of mathematical thinking to legal theory, one must understand the context: Roman law in the Dark Ages was based on the practice of the Germanic tribes. It wasn’t pretty. Take, for example, the rules of testimony. The veracity of, say, a husband denying an affair with his wife’s toga maker would be determined not by hubby’s ability to withstand a grilling by prickly opposing counsel but by whether he’d stick to his story even after being pricked—by a red-hot iron. (Bring back that custom and you’ll see a lot more divorce cases settled out of court.) And if the defendant says the chariot never tried to stop but the expert witness says the hoof prints show that the brakes were applied, Germanic doctrine offered a simple prescription:「Let one man be chosen from each group to fight it out with shields and spears. Whoever loses is a perjurer and must lose his right hand.」18
+15. David Freedman, Robert Pisani, and Roger Purves, Statistics, 3rd ed. (New York: W. W. Norton, 1998), pp. 274–75.
 
-In replacing, or at least supplementing, the practice of trial by battle, the Romans sought in mathematical precision a cure for the deficiencies of their old, arbitrary system. Seen in this context, the Roman idea of justice employed advanced intellectual concepts. Recognizing that evidence and testimony often conflicted and that the best way to resolve such conflicts was to quantify the inevitable uncertainty, the Romans created the concept of half proof, which applied in cases in which there was no compelling reason to believe or disbelieve evidence or testimony. In some cases the Roman doctrine of evidence included even finer degrees of proof, as in the church decree that「a bishop should not be condemned except with seventy-two witnesses…a cardinal priest should not be condemned except with forty-four witnesses, a cardinal deacon of the city of Rome without thirty-six witnesses, a subdeacon, acolyte, exorcist, lector, or doorkeeper except with seven witnesses.」19 To be convicted under those rules, you’d have to have not only committed the crime but also sold tickets. Still, the recognition that the probability of truth in testimony can vary and that rules for combining such probabilities are necessary was a start. And so it was in the unlikely venue of ancient Rome that a systematic set of rules based on probability first arose.
+16. The Hacking quote is from Ian Hacking, The Emergence of Probability (Cambridge: Cambridge University Press, 1975), p. 143. The Bernoulli quote is from David, Gods, Games and Gambling, p. 136.
 
-Unfortunately it is hard to achieve quantitative dexterity when you’re juggling VIIIs and XIVs. In the end, though Roman law had a certain legal rationality and coherence, it fell short of mathematical validity. In Roman law, for example, two half proofs constituted a complete proof. That might sound reasonable to a mind unaccustomed to quantitative thought, but with today’s familiarity with fractions it invites the question, if two half proofs equal a complete certainty, what do three half proofs make? According to the correct manner of compounding probabilities, not only do two half proofs yield less than a whole certainty, but no finite number of partial proofs will ever add up to a certainty because to compound probabilities, you don’t add them; you multiply.
+17. For a discussion of what Bernoulli actually proved, see Stigler, The History of Statistics, pp. 63–78, and Ian Hacking, The Emergence of Probability, pp. 155–65.
 
-That brings us to our next law, the rule for compounding probabilities: If two possible events, A and B, are independent, then the probability that both A and B will occur is equal to the product of their individual probabilities. Suppose a married person has on average roughly a 1 in 50 chance of getting divorced each year. On the other hand, a police officer has about a 1 in 5,000 chance each year of being killed on the job. What are the chances that a married police officer will be divorced and killed in the same year? According to the above principle, if those events were independent, the chances would be roughly 1/50 × 1/5,000, which equals 1/250,000. Of course the events are not independent; they are linked: once you die, darn it, you can no longer get divorced. And so the chance of that much bad luck is actually a little less than 1 in 250,000.
+18. Amos Tversky and Daniel Kahneman,「Belief in the Law of Small Numbers,」Psychological Bulletin 76, no. 2 (1971): 105–10.
 
-Why multiply rather than add? Suppose you make a pack of trading cards out of the pictures of those 100 guys you’ve met so far through your Internet dating service, those men who in their Web site photos often look like Tom Cruise but in person more often resemble Danny DeVito. Suppose also that on the back of each card you list certain data about the men, such as honest (yes or no) and attractive (yes or no). Finally, suppose that 1 in 10 of the prospective soul mates rates a yes in each case. How many in your pack of 100 will pass the test on both counts? Let’s take honest as the first trait (we could equally well have taken attractive). Since 1 in 10 cards lists a yes under honest, 10 of the 100 cards will qualify. Of those 10, how many are attractive? Again, 1 in 10, so now you are left with 1 card. The first 1 in 10 cuts the possibilities down by 1/10, and so does the next 1 in 10, making the result 1 in 100. That’s why you multiply. And if you have more requirements than just honest and attractive, you have to keep multiplying, so…well, good luck.
+19. Jakob Bernoulli, quoted in L. E. Maistrov, Probability Theory: A Historical Sketch, trans. Samuel Kotz (New York: Academic Press, 1974), p. 68.
 
-Before we move on, it is worth paying attention to an important detail: the clause that reads if two possible events, A and B, are independent. Suppose an airline has 1 seat left on a flight and 2 passengers have yet to show up. Suppose that from experience the airline knows there is a 2 in 3 chance a passenger who books a seat will arrive to claim it. Employing the multiplication rule, the gate attendant can conclude there is a 2/3 × 2/3 or about a 44 percent chance she will have to deal with an unhappy customer. The chance that neither customer will show and the plane will have to fly with an empty seat, on the other hand, is 1/3 × 1/3, or only about 11 percent. But that assumes the passengers are independent. If, say, they are traveling together, then the above analysis is wrong. The chances that both will show up are 2 in 3, the same as the chances that one will show up. It is important to remember that you get the compound probability from the simple ones by multiplying only if the events are in no way contingent on each other.
+20. Stigler, The History of Statistics, p. 77.
 
-The rule we just applied could be applied to the Roman rule of half proofs: the chances of two independent half proofs’ being wrong are 1 in 4, so two half proofs constitute three-fourths of a proof, not a whole proof. The Romans added where they should have multiplied.
+21. E. T. Bell, Men of Mathematics (New York: Simon & Schuster, 1937), p. 134.
 
-There are situations in which probabilities should be added, and that is our next law. It arises when we want to know the chances of either one event or another occurring, as opposed to the earlier situation, in which we wanted to know the chance of one event and another event both happening. The law is this: If an event can have a number of different and distinct possible outcomes, A, B, C, and so on, then the probability that either A or B will occur is equal to the sum of the individual probabilities of A and B, and the sum of the probabilities of all the possible outcomes (A, B, C, and so on) is 1 (that is, 100 percent). When you want to know the chances that two independent events, A and B, will both occur, you multiply; if you want to know the chances that either of two mutually exclusive events, A or B, will occur, you add. Back to our airline: when should the gate attendant add the probabilities instead of multiplying them? Suppose she wants to know the chances that either both passengers or neither passenger will show up. In this case she should add the individual probabilities, which according to what we calculated above, would come to 55 percent.
+Chapter 6: False Positives and Positive Fallacies
 
-These three laws, simple as they are, form much of the basis of probability theory. Properly applied, they can give us much insight into the workings of nature and the everyday world. We employ them in our everyday decision making all the time. But like the Roman lawmakers, we don’t always use them correctly.
+1. The account of the Harvard student is from Hastie and Dawes, Rational Choice in an Uncertain World, pp. 320–21.
 
-IT IS EASY TO LOOK BACK, shake our heads, and write books with titles like The Rotten Romans (Scholastic, 1994). But lest we become unjustifiably self-congratulatory, I shall end this chapter with a look at some ways in which the basic laws I’ve discussed may be applied to our own legal system. As it turns out, that’s enough to sober up anyone drunk on feelings of cultural superiority.
+2. I was told a variant of this problem by Mark Hillery of the Physics Department at Hunter College, City University of New York, who heard it while on a trip to Bratislava, Slovakia.
 
-The good news is that we don’t have half proofs today. But we do have a kind of 999,000/1,000,000 proof. For instance, it is not uncommon for experts in DNA analysis to testify at a criminal trial that a DNA sample taken from a crime scene matches that taken from a suspect. How certain are such matches? When DNA evidence was first introduced, a number of experts testified that false positives are impossible in DNA testing. Today DNA experts regularly testify that the odds of a random person’s matching the crime sample are less than 1 in 1 million or 1 in 1 billion. With those odds one could hardly blame a juror for thinking, throw away the key. But there is another statistic that is often not presented to the jury, one having to do with the fact that labs make errors, for instance, in collecting or handling a sample, by accidentally mixing or swapping samples, or by misinterpreting or incorrectly reporting results. Each of these errors is rare but not nearly as rare as a random match. The Philadelphia City Crime Laboratory, for instance, admitted that it had swapped the reference sample of the defendant and the victim in a rape case, and a testing firm called Cellmark Diagnostics admitted a similar error.20 Unfortunately, the power of statistics relating to DNA presented in court is such that in Oklahoma a court sentenced a man named Timothy Durham to more than 3,100 years in prison even though eleven witnesses had placed him in another state at the time of the crime. It turned out that in the initial analysis the lab had failed to completely separate the DNA of the rapist and that of the victim in the fluid they tested, and the combination of the victim’s and the rapist’s DNA produced a positive result when compared with Durham’s. A later retest turned up the error, and Durham was released after spending nearly four years in prison.21
+3. Quoted in Stigler, The History of Statistics, p. 123.
 
-Estimates of the error rate due to human causes vary, but many experts put it at around 1 percent. However, since the error rate of many labs has never been measured, courts often do not allow testimony on this overall statistic. Even if courts did allow testimony regarding false positives, how would jurors assess it? Most jurors assume that given the two types of error—the 1 in 1 billion accidental match and the 1 in 100 lab-error match—the overall error rate must be somewhere in between, say 1 in 500 million, which is still for most jurors beyond a reasonable doubt. But employing the laws of probability, we find a much different answer.
+4. Ibid., pp. 121–31.
 
-The way to think of it is this: Since both errors are very unlikely, we can ignore the possibility that there is both an accidental match and a lab error. Therefore, we seek the probability that one error or the other occurred. That is given by our sum rule: it is the probability of a lab error (1 in 100) + the probability of an accidental match (1 in 1 billion). Since the latter is 10 million times smaller than the former, to a very good approximation the chance of both errors is the same as the chance of the more probable error—that is, the chances are 1 in 100. Given both possible causes, therefore, we should ignore the fancy expert testimony about the odds of accidental matches and focus instead on the much higher laboratory error rate—the very data courts often do not allow attorneys to present! And so the oft-repeated claims of DNA infallibility are exaggerated.
+5. U.S. Social Security Administration,「Popular Baby Names: Popular Names by Birth Year; Popularity in 1935,」http://www.ssa.gov/cgi-bin/popularnames.cgi.
 
-This is not an isolated issue. The use of mathematics in the modern legal system suffers from problems no less serious than those that arose in Rome so many centuries ago. One of the most famous cases illustrating the use and misuse of probability in law is People v. Collins, heard in 1968 by the California Supreme Court.22 Here are the facts of the case as presented in the court decision:
+6. Division of HIV/AIDS, Center for Infectious Diseases, HIV/AIDS Surveillance Report (Atlanta: Centers for Disease Control, January 1990). I calculated the statistic quoted from the data given but also had to use some estimates. In particular, the data quoted refers to AIDS cases, not HIV infection, but that suffices for the purpose of illustrating the concept.
 
-On June 18, 1964, about 11:30 a.m. Mrs. Juanita Brooks, who had been shopping, was walking home along an alley in the San Pedro area of the city of Los Angeles. She was pulling behind her a wicker basket carryall containing groceries and had her purse on top of the packages. She was using a cane. As she stooped down to pick up an empty carton, she was suddenly pushed to the ground by a person whom she neither saw nor heard approach. She was stunned by the fall and felt some pain. She managed to look up and saw a young woman running from the scene. According to Mrs. Brooks the latter appeared to weigh about 145 pounds, was wearing「something dark,」and had hair「between a dark blond and a light blond,」but lighter than the color of defendant Janet Collins’ hair as it appeared at the trial. Immediately after the incident, Mrs. Brooks discovered that her purse, containing between $35 and $40, was missing.
+7. To be precise, the probability that A will occur if B occurs is equal to the probability that B will occur if A occurs multiplied by a correction factor that equals the ratio of the probability of A to the probability of B.
 
-About the same time as the robbery, John Bass, who lived on the street at the end of the alley, was in front of his house watering his lawn. His attention was attracted by「a lot of crying and screaming」coming from the alley. As he looked in that direction, he saw a woman run out of the alley and enter a yellow automobile parked across the street from him. He was unable to give the make of the car. The car started off immediately and pulled wide around another parked vehicle so that in the narrow street it passed within six feet of Bass. The latter then saw that it was being driven by a male Negro, wearing a mustache and beard…. Other witnesses variously described the car as yellow, as yellow with an off-white top, and yellow with an egg-shell white top. The car was also described as being medium to large in size.
+8. Gerd Gigerenzer, Calculated Risks: How to Know When Numbers Deceive You (New York: Simon & Schuster, 2002), pp. 40–44.
 
-A few days after the incident a Los Angeles police officer spotted a yellow Lincoln with an off-white top in front of the defendants’ home and spoke with them, explaining that he was investigating a robbery. He noted that the suspects fit the description of the man and woman who had committed the crime, except that the man did not have a beard, though he admitted that he sometimes wore one. Later that day the Los Angeles police arrested the two suspects, Malcolm Ricardo Collins, and his wife, Janet.
+9. Donald A. Barry and LeeAnn Chastain,「Inferences About Testosterone Abuse Among Athletes,」Chance 17, no. 2 (2004): 5–8.
 
-The evidence against the couple was scant, and the case rested heavily on the identification by the victim and the witness, John Bass. Unfortunately for the prosecution, neither proved to be a star on the witness stand. The victim could not identify Janet as the perpetrator and hadn’t seen the driver at all. John Bass had not seen the perpetrator and said at the police lineup that he could not positively identify Malcolm Collins as the driver. And so, it seemed, the case was falling apart.
+10. John Batt, Stolen Innocence (London: Ebury Press, 2005).
 
-Enter the star witness, described in the California Supreme Court opinion only as「an instructor of mathematics at a state college.」This witness testified that the fact that the defendants were「a Caucasian woman with a blond ponytail…[and] a Negro with a beard and mustache」who drove a partly yellow automobile was enough to convict the couple. To illustrate its point, the prosecution presented this table, quoted here verbatim from the supreme court decision:
+11. Stephen J. Watkins,「Conviction by Mathematical Error? Doctors and Lawyers Should Get Probability Theory Right,」BMJ 320 (January 1, 2000): 2–3.
 
-Characteristic
+12.「Royal Statistical Society Concerned by Issues Raised in Sally Clark Case,」Royal Statistical Society, London, news release, October 23, 2001; www.rss.org.uk/PDF/RSS%20Statement%20regarding%20statistical%20issues%20in%20the%20Sally%20Clark%20case,%20October%2023rd%202001.pdf.
 
-Individual Probability
+13. Ray Hill,「Multiple Sudden Infant Deaths—Coincidence or beyond Coincidence?」Paediatric and Perinatal Epidemiology 18, no. 5 (September 2004): 320–26.
 
-Partly yellow automobile
+14. Quoted in Alan Dershowitz, Reasonable Doubts: The Criminal Justice System and the O. J. Simpson Case (New York: Simon & Schuster, 1996), p. 101.
 
-1/10
+15. Federal Bureau of Investigation,「Uniform Crime Reports,」http://www.fbi.gov/ucr/ucr.htm.
 
-Man with mustache
+16. Alan Dershowitz, The Best Defense (New York: Vintage, 1983), p. xix.
 
-1/4
+17. Pierre-Simon de Laplace, quoted in James Newman, ed., The World of Mathematics (Mineola, N.Y.: Dover Publications, 1956): 2:1323.
 
-Negro man with beard
+Chapter 7: Measurement and the Law of Errors
 
-1/10
+1. Sarah Kershaw and Eli Sanders,「Recounts and Partisan Bickering Bring Election Fatigue to Washington Voters,」New York Times, December 26, 2004; and Timothy Egan,「Trial for Governor’s Seat Set to Start in Washington,」New York Times, May 23, 2005.
 
-Girl with ponytail
+2. Jed Z. Buchwald,「Discrepant Measurements and Experimental Knowledge in the Early Modern Era,」Archive for History of Exact Sciences 60, no. 6 (November 2006): 565–649.
 
-1/10
+3. Eugene Frankel,「J. B. Biot and the Mathematization of Experimental Physics in Napoleonic France,」in Historical Studies in the Physical Sciences, ed. Russell McCormmach (Princeton, N.J.: Princeton University Press, 1977).
 
-Girl with blond hair
+4. Charles Coulston Gillispie, ed., Dictionary of Scientific Biography (New York: Charles Scribner’s Sons, 1981), p. 85.
 
-1/3
+5. For a discussion of the errors made by radar guns, see Nicole Weisensee Egan,「Takin’ Aim at Radar Guns,」Philadelphia Daily News, March 9, 2004.
 
-Interracial couple in car
+6. Charles T. Clotfelter and Jacob L. Vigdor,「Retaking the SAT」(working paper SAN01-20, Terry Sanford Institute of Public Policy, Duke University, Durham, N.C., July 2001).
 
-1/1,000
+7. Eduardo Porter,「Jobs and Wages Increased Modestly Last Month,」New York Times, September 2, 2006.
 
-The math instructor called by the prosecution said that the product rule applies to this data. By multiplying all the probabilities, one concludes that the chances of a couple fitting all these distinctive characteristics are 1 in 12 million. Accordingly, he said, one could infer that the chances that the couple was innocent were 1 in 12 million. The prosecutor then pointed out that these individual probabilities were estimates and invited the jurors to supply their own guesses and then do the math. He himself, he said, believed they were conservative estimates, and the probability he came up with employing the factors he assigned was more like 1 in 1 billion. The jury bought it and convicted the couple.
+8. Gene Epstein on「Mathemagicians,」On the Media, WNYC radio, broadcast August 25, 2006.
 
-What is wrong with this picture? For one thing, as we’ve seen, in order to find a compound probability by multiplying the component probabilities, the categories have to be independent, and in this case they clearly aren’t. For example, the table quotes the chance of observing a「Negro man with beard」as 1 in 10 and a「man with mustache」as 1 in 4. But most men with a beard also have a mustache, so if you observe a「Negro man with beard,」the chances are no longer 1 in 4 that the man you observe has a mustache—they are much higher. That issue can be remedied if you eliminate the category「Negro man with beard.」Then the product of the probabilities falls to about 1 in 1 million.
+9. Legene Quesenberry et al.,「Assessment of the Writing Component within a University General Education Program,」November 1, 2000; http://wac.colostate.edu/aw/articles/quesenberry2000/quesenberry2000.pdf.
 
-There is another error in the analysis: the relevant probability is not the one stated above—the probability that a couple selected at random will match the suspects’ description. Rather, the relevant probability is the chance that a couple matching all these characteristics is the guilty couple. The former might be 1 in 1 million. But as for the latter, the population of the area adjoining the one where the crime was committed was several million, so you might reasonably expect there to be 2 or 3 couples in the area who matched the description. In that case the probability that a couple who matched the description was guilty, based on this evidence alone (which is pretty much all the prosecution had), is only 1 in 2 or 3. Hardly beyond a reasonable doubt. For these reasons the supreme court overturned Collins’s conviction.
+10. Kevin Saunders,「Report to the Iowa State University Steering Committee on the Assessment of ISU Comm-English 105 Course Essays,」September 2004; www.iastate.edu/-isucomm/InYears/ISUcomm_essays.pdf (accessed 2005; site now discontinued).
 
-The use of probability and statistics in modern courtrooms is still a controversial subject. In the Collins case the California Supreme Court derided what it called「trial by mathematics,」but it left the door open to more「proper applications of mathematical techniques.」In the ensuing years, courts rarely considered mathematical arguments, but even when attorneys and judges don’t quote explicit probabilities or mathematical theorems, they do often employ this sort of reasoning, as do jurors when they weigh the evidence. Moreover, statistical arguments are becoming increasingly important because of the necessity of assessing DNA evidence. Unfortunately, with this increased importance has not come increased understanding on the part of attorneys, judges, or juries. As explained by Thomas Lyon, who teaches probability and the law at the University of Southern California,「Few students take a probability in law course, and few attorneys feel it has a place.」23 In law as in other realms, the understanding of randomness can reveal hidden layers of truth, but only to those who possess the tools to uncover them. In the next chapter we shall consider the story of the first man to study those tools systematically.
+11. University of Texas, Office of Admissions,「Inter-rater Reliability of Holistic Measures Used in the Freshman Admissions Process of the University of Texas at Austin,」February 22, 2005; http://www.utexas.edu/student/admissions/research/Inter-raterReliability2005.pdf.
 
-CHAPTER 3
+12. Emily J. Shaw and Glenn B. Milewski,「Consistency and Reliability in the Individualized Review of College Applicants,」College Board, Office of Research and Development, Research Notes RN-20 (October 2004): 3; http://www.collegeboard.com/research/pdf/RN-20.pdf.
+
+13. Gary Rivlin,「In Vino Veritas,」New York Times, August 13, 2006.
+
+14. William James, The Principles of Psychology (New York: Henry Holt, 1890), p. 509.
+
+15. Robert Frank and Jennifer Byram,「Taste-Smell Interactions Are Tastant and Odorant Dependent,」Chemical Senses 13 (1988): 445–55.
+
+16. A. Rapp,「Natural Flavours of Wine: Correlation between Instrumental Analysis and Sensory Perception,」Fresenius’ Journal of Analytic Chemistry 337, no. 7 (January 1990): 777–85.
+
+17. D. Laing and W. Francis,「The Capacity of Humans to Identify Odors in Mixtures,」Physiology and Behavior 46, no. 5 (November 1989): 809–14; and D. Laing et al.,「The Limited Capacity of Humans to Identify the Components of Taste Mixtures and Taste-Odour Mixtures,」Perception 31, no. 5 (2002): 617–35.
+
+18. For the rosé study, see Rose M. Pangborn, Harold W. Berg, and Brenda Hansen,「The Influence of Color on Discrimination of Sweetness in Dry Table-Wine,」American Journal of Psychology 76, no. 3 (September 1963): 492–95. For the anthocyanin study, see G. Morrot, F. Brochet, and D. Dubourdieu,「The Color of Odors,」Brain and Language 79, no. 2 (November 2001): 309–20.
+
+19. Hilke Plassman, John O’Doherty, Baba Shia, and Antonio Rongel,「Marketing Actions Can Modulate Neural Representations of Experienced Pleasantness,」Proceedings of the National Academy of Sciences, January 14, 2008; http://www.pnas.org.
+
+20. M. E. Woolfolk, W. Castellan, and C. Brooks,「Pepsi versus Coke: Labels, Not Tastes, Prevail,」Psychological Reports 52 (1983): 185–86.
+
+21. M. Bende and S. Nordin,「Perceptual Learning in Olfaction: Professional Wine Tasters Versus Controls,」Physiology and Behavior 62, no. 5 (November 1997): 1065–70.
+
+22. Gregg E. A. Solomon,「Psychology of Novice and Expert Wine Talk,」American Journal of Psychology 103, no. 4 (Winter 1990): 495–517.
+
+23. Rivlin,「In Vino Veritas.」
+
+24. Ibid.
+
+25. Hal Stern,「On the Probability of Winning a Football Game,」American Statistician 45, no. 3 (August 1991): 179–82.
+
+26. The graph is from Index Funds Advisors,「Index Funds.com: Take the Risk Capacity Survey,」http://www.indexfunds3.com/step3page2.php, where it is credited to Walter Good and Roy Hermansen, Index Your Way to Investment Success (New York: New York Institute of Finance, 1997). The performance of 300 mutual fund managers was tabulated for ten years (1987–1996), based on the Morningstar Principia database.
+
+27. Polling Report,「President Bush—Overall Job Rating,」http://pollingreport.com/BushJob.htm.
+
+28.「Poll: Bush Apparently Gets Modest Bounce,」CNN, September 8, 2004, http://www.cnn.com/2004/ALLPOLITICS/09/06/presidential.poll/index.htm.
+
+29.「Harold von Braunhut,」Telegraph, December 23, 2003; http://www.telegraph.co.uk/news/main.jhtml?xml=/news/2003/12/24/db2403.xml.
+
+30. James J. Fogarty,「Why Is Expert Opinion on Wine Valueless?」(discussion paper 02.17, Department of Economics, University of Western Australia, Perth, 2001).
+
+31. Stigler, The History of Statistics, p. 143.
+
+Chapter 8: The Order in Chaos
+
+1. Holland, What Are the Chances? p. 51.
+
+2. This is only an approximation, based on more recent American statistics. See U.S. Social Security Administration,「Actuarial Publications: Period Life Table.」The most recent table is available at http://www.ssa.gov/OACT/STATS/table4c6.htm.
+
+3. Immanuel Kant, quoted in Theodore Porter, The Rise of Statistical Thinking: 1820–1900 (Princeton, N.J.: Princeton University Press, 1988), p. 51.
+
+4. U.S. Department of Transportation, Federal Highway Administration,「Licensed Drivers, Vehicle Registrations and Resident Population,」http://www.fhwa.dot.gov/policy/ohim/hs03/htm/dlchrt.htm.
+
+5. U.S. Department of Transportation, Research and Innovative Technology Administration, Bureau of Transportation Statistics,「Motor Vehicle Safety Data,」http://www.bts.gov/publications/national_transportation_statistics/2002/html/table_02_17.htm.
+
+6.「The Domesday Book,」History Magazine, October/November 2001.
+
+7. For Graunt’s story, see Hacking, The Emergence of Probability, pp. 103–9; David, Gods, Games and Gambling, pp. 98–109; and Newman, The World of Mathematics, 3:1416–18.
+
+8. Hacking, The Emergence of Probability, p. 102.
+
+9. Theodore Porter, The Rise of Statistical Thinking, p. 19.
+
+10. For Graunt’s original table, see Hacking, The Emergence of Probability, p. 108. For the current data, see World Health Organization,「Life Tables for WHO Member States,」http://www.who.int/whosis/database/life_tables/life_tables.cfm. The figures quoted were taken from abridged tables and rounded.
+
+11. Ian Hacking, The Taming of Chance (Cambridge: Cambridge University Press, 1990), p. vii.
+
+12. H. A. David,「First (?) Occurrence of Common Terms in Statistics and Probability,」in Annotated Readings in the History of Statistics, ed. H. A. David and A.W.F. Edwards (New York: Springer, 2001), appendix B and pp. 219–28.
+
+13. Noah Webster, American Dictionary of the English Language (1828; facsimile of the 1st ed., Chesapeake, Va.: Foundation for American Christian Education, 1967).
+
+14. The material on Quételet is drawn mainly from Stigler, The History of Statistics, pp. 161–220; Stephen Stigler, Statistics on the Table: The History of Statistical Concepts and Methods (Cambridge, Mass.: Harvard University Press, 1999), pp. 51–66; and Theodore Porter, The Rise of Statistical Thinking, pp. 100–9.
+
+15. Louis Menand, The Metaphysical Club (New York: Farrar, Straus & Giroux, 2001), p. 187.
+
+16. Holland, What Are the Chances? pp. 41–42.
+
+17. David Yermack,「Good Timing: CEO Stock Option Awards and Company News Announcements,」Journal of Finance 52, no. 2 (June 1997): 449–76; and Erik Lie,「On the Timing of CEO Stock Option Awards,」Management Science 51, no. 5 (May 2005): 802–12. See also Charles Forelle and James Bandler,「The Perfect Payday—Some CEOs Reap Millions by Landing Stock Options When They Are Most Valuable: Luck—or Something Else?」Wall Street Journal, March 18, 2006.
+
+18. Justin Wolfers,「Point Shaving: Corruption in NCAA Basketball,」American Economic Review 96, no. 2 (May 2006): 279–83.
+
+19. Stern,「On the Probability of Winning a Football Game.」
+
+20. David Leonhardt,「Sad Suspicions about Scores in Basketball,」New York Times, March 8, 2006.
+
+21. Richard C. Hollinger et al., National Retail Security Survey: Final Report (Gainesville: Security Research Project, Department of Sociology and Center for Studies in Criminal Law, University of Florida, 2002–2006).
+
+22. Adolphe Quételet, quoted in Theodore Porter, The Rise of Statistical Thinking, p. 54.
+
+23. Quételet, quoted in Menand, The Metaphysical Club, p. 187.
+
+24. Jeffrey Kluger,「Why We Worry about the Things We Shouldn’t…and Ignore the Things We Should,」Time, December 4, 2006, pp. 65–71.
+
+25. Gerd Gigerenzer, Empire of Chance: How Probability Changed Science and Everyday Life (Cambridge: Cambridge University Press, 1989), p. 129.
+
+26. Menand, The Metaphysical Club, p. 193.
+
+27. De Vany, Hollywood Economics; see part IV,「A Business of Extremes.」
+
+28. See Derek William Forrest, Francis Galton: The Life and Work of a Victorian Genius (New York: Taplinger, 1974); Jeffrey M. Stanton,「Galton, Pearson, and the Peas: A Brief History of Linear Regression for Statistics Instructors,」Journal of Statistics Education 9, no. 3 (2001); and Theodore Porter, The Rise of Statistical Thinking, pp. 129–46.
+
+29. Francis Galton, quoted in Theodore Porter, The Rise of Statistical Thinking, p. 130.
+
+30. Peter Doskoch,「The Winning Edge,」Psychology Today, November/ December 2005, pp. 44–52.
+
+31. Deborah J. Bennett, Randomness (Cambridge, Mass.: Harvard University Press, 1998), p. 123.
+
+32. Abraham Pais, The Science and Life of Albert Einstein (London: Oxford University Press, 1982), p. 17; see also the discussion on p. 89.
+
+33. On Brown and the history of Brownian motion, see D. J. Mabberley, Jupiter Botanicus: Robert Brown of the British Museum (Braunschweig, Germany, and London: Verlag von J. Cramer / Natural History Museum, 1985); Brian J. Ford,「Brownian Movement in Clarkia Pollen: A Reprise of the First Observations,」Microscope 40, no. 4 (1992): 235–41; and Stephen Brush,「A History of Random Processes. I. Brownian Movement from Brown to Perrin,」Archive for History of Exact Sciences 5, no. 34 (1968).
+
+34. Pais, Albert Einstein, pp. 88–100.
+
+35. Albert Einstein, quoted in Ronald William Clark, Einstein: The Life and Times (New York: HarperCollins, 1984), p. 77.
+
+Chapter 9: Illusions of Patterns and Patterns of Illusion
+
+1. See Arthur Conan Doyle, The History of Spiritualism (New York: G. H. Doran, 1926); and R. L. Moore, In Search of White Crows: Spiritualism, Parapsychology, and American Culture (London: Oxford University Press, 1977).
+
+2. Ray Hyman,「Parapsychological Research: A Tutorial Review and Critical Appraisal,」Proceedings of the IEEE 74, no. 6 (June 1986): 823–49.
+
+3. Michael Faraday,「Experimental Investigation of Table-Moving,」Athenaeum, July 2, 1853, pp. 801–3.
+
+4. Michael Faraday, quoted in Hyman,「Parapsychological Research,」p. 826.
+
+5. Faraday, quoted ibid.
+
+6. See Frank H. Durgin,「The Tinkerbell Effect: Motion Perception and Illusion,」Journal of Consciousness Studies 9, nos. 5–6 (May–June 2002): 88–101.
+
+7. Christof Koch, The Quest for Consciousness: A Neurobiological Approach (Englewood, Colo.: Roberts, 2004), pp. 51–54.
+
+8. The study was D. O. Clegg et al.,「Glucosamine, Chondroitin Sulfate, and the Two in Combination for Painful Knee Osteoarthritis,」New England Journal of Medicine 354, no. 8 (February 2006): 795–808. The interview was「Slate’s Medical Examiner: Doubts on Supplements,」Day to Day, NPR broadcast, March 13, 2006.
+
+9. See Paul Slovic, Howard Kunreuther, and Gilbert F. White,「Decision Processes, Rationality, and Adjustment to Natural Hazards,」in Natural Hazards: Local, National, and Global, ed. G. F. White (London: Oxford University Press, 1974); see also Willem A. Wagenaar,「Generation of Random Sequences by Human Subjects: A Critical Survey of Literature,」Psychological Bulletin 77, no. 1 (January 1972): 65–72.
+
+10. See Hastie and Dawes, Rational Choice in an Uncertain World, pp. 19–23.
+
+11. George Spencer-Brown, Probability and Scientific Inference (London: Longmans, Green, 1957), pp. 55–56. Actually, 10 is a gross underestimate.
+
+12. Janet Maslin,「His Heart Belongs to (Adorable) iPod,」New York Times, October 19, 2006.
+
+13. Hans Reichenbach, The Theory of Probability, trans. E. Hutton and M. Reichenbach (Berkeley: University of California Press, 1934).
+
+14. The classic text expounding this point of view is Burton G. Malkiel, A Random Walk Down Wall Street, now completely revised in an updated 8th ed. (New York: W. W. Norton, 2003).
+
+15. John R. Nofsinger, Investment Blunders of the Rich and Famous—and What You Can Learn from Them (Upper Saddle River, N.J.: Prentice Hall, Financial Times, 2002), p. 62.
+
+16. Hemang Desai and Prem C. Jain,「An Analysis of the Recommendations of the ‘Superstar’ Money Managers at Barron’s Annual Roundtable,」Journal of Finance 50, no. 4 (September 1995): 1257–73.
+
+17. Jess Beltz and Robert Jennings,「Wall $treet Week with Louis Rukeyser’s Recommendations: Trading Activity and Performance,」Review of Financial Economics 6, no. 1 (1997): 15–27; and Robert A. Pari,「Wall $treet Week Recommendations: Yes or No?」Journal of Portfolio Management 14, no. 1 (1987): 74–76.
+
+18. Andrew Metrick,「Performance Evaluation with Transactions Data: The Stock Selection of Investment Newsletters, Journal of Finance 54, no. 5 (October 1999): 1743–75; and「The Equity Performance of Investment Newsletters」(discussion paper no. 1805, Harvard Institute of Economic Research, Cambridge, Mass., November 1997).
+
+19. James J. Choi, David Laibson, and Brigitte Madrian,「Why Does the Law of One Price Fail? An Experiment on Index Mutual Funds」(working paper no. W12261, National Bureau of Economic Research, Cambridge, Mass., May 4, 2006).
+
+20. Leonard Koppett,「Carrying Statistics to Extremes,」Sporting News, February 11, 1978.
+
+21. By some definitions, Koppett’s system would be judged to have failed in 1970; by others, to have passed. See CHANCE News 13.04, April 18, 2004–June 7, 2004, http://www.dartmouth.edu/-chance/chance_news/recent_news/chance_news_13.04.htm.
+
+22. As touted on the Legg Mason Capital Management Web site, http://www.leggmasoncapmgmt.com/awards.htm.
+
+23. Lisa Gibbs,「Miller: He Did It Again,」CNNMoney, January 11, 2004, http://money.cnn.com/2004/01/07/funds/ultimateguide_billmiller_0204.
+
+24. Thomas R. Gilovich, Robert Vallone, and Amos Tversky,「The Hot Hand in Basketball: On the Misperception of Random Sequences,」Cognitive Psychology 17, no. 3 (July 1985): 295–314.
+
+25. Purcell’s research is discussed in Gould,「The Streak of Streaks.」
+
+26. Mark Hulbert,「Not All Stocks Are Created Equal,」www.MarketWatch.com, January 18, 2005, accessed March 2005 (site now discontinued).
+
+27. Kunal Kapoor,「A Look at Who’s Chasing Bill Miller’s Streak,」Morningstar, December 30, 2004, http://www.morningstar.com.
+
+28. Michael Mauboussin and Kristen Bartholdson,「On Streaks: Perception, Probability, and Skill,」Consilient Observer (Credit Suisse–First Boston) 2, no. 8 (April 22, 2003).
+
+29. Merton Miller on「Trillion Dollar Bet,」NOVA, PBS broadcast, February 8, 2000.
+
+30. R. D. Clarke,「An Application of the Poisson Distribution,」Journal of the Institute of Actuaries 72 (1946): 48.
+
+31. Atul Gawande,「The Cancer Cluster Myth,」The New Yorker, February 28, 1998, pp. 34–37.
+
+32. Ibid.
+
+33. Bruno Bettelheim,「Individual and Mass Behavior in Extreme Situations,」Journal of Abnormal and Social Psychology 38 (1943): 417–52.
+
+34. Curt P. Richter,「On the Phenomenon of Sudden Death in Animals and Man,」Psychosomatic Medicine 19 (1957): 191–98.
+
+35. E. Stotland and A. Blumenthal,「The Reduction of Anxiety as a Result of the Expectation of Making a Choice,」Canadian Review of Psychology 18 (1964): 139–45.
+
+36. Ellen Langer and Judith Rodin,「The Effects of Choice and Enhanced Personal Responsibility for the Aged: A Field Experiment in an Institutional Setting,」Journal of Personality and Social Psychology 34, no. 2 (1976): 191–98.
+
+37. Ellen Langer and Judith Rodin,「Long-Term Effects of a Control-Relevant Intervention with the Institutionalized Aged,」Journal of Personality and Social Psychology 35, no. 12 (1977): 897–902.
+
+38. L. B. Alloy and L. Y. Abramson,「Judgment of Contingency in Depressed and Nondepressed Students: Sadder but Wiser?」Journal of Experimental Psychology: General 108, no. 4 (December 1979): 441–85.
+
+39. Durgin,「The Tinkerbell Effect.」
+
+40. Ellen Langer,「The Illusion of Control,」Journal of Personality and Social Psychology 32, no. 2 (1975): 311–28.
+
+41. Ellen Langer and Jane Roth,「Heads I Win, Tails It’s Chance: The Illusion of Control as a Function of Outcomes in a Purely Chance Task,」Journal of Personality and Social Psychology 32, no. 6 (1975): 951–55.
+
+42. Langer,「The Illusion of Control.」
+
+43. Ibid., p. 311.
+
+44. Raymond Fisman, Rakesh Khurana, and Matthew Rhodes-Kropf,「Governance and CEO Turnover: Do Something or Do the Right Thing?」(working paper no. 05-066, Harvard Business School, Cambridge, Mass., April 2005).
+
+45. P. C. Wason,「Reasoning about a Rule,」Quarterly Journal of Experimental Psychology 20 (1968): 273–81.
+
+46. Francis Bacon, Novum Organon, trans. by P. Urbach and J. Gibson (Chicago: Open Court, 1994), p. 57 (originally published in 1620).
+
+47. Charles G. Lord, Lee Ross, and Mark Lepper,「Biased Assimilation and Attitude Polarization: The Effects of Prior Theories on Subsequently Considered Evidence,」Journal of Personality and Social Psychology 37, no. 11 (1979): 2098–109.
+
+48. Matthew Rabin,「Psychology and Economics」(white paper, University of California, Berkeley, September 28, 1996).
+
+49. E. C. Webster, Decision Making in the Employment Interview (Montreal: Industrial Relations Centre, McGill University, 1964).
+
+50. Beth E. Haverkamp,「Confirmatory Bias in Hypothesis Testing for Client-Identified and Counselor Self-generated Hypotheses,」Journal of Counseling Psychology 40, no. 3 (July 1993): 303–15.
+
+51. David L. Hamilton and Terrence L. Rose,「Illusory Correlation and the Maintenance of Stereotypic Beliefs,」Journal of Personality and Social Psychology 39, no. 5 (1980): 832–45; Galen V. Bodenhausen and Robert S. Wyer,「Effects of Stereotypes on Decision Making and Information-Processing Strategies,」Journal of Personality and Social Psychology 48, no. 2 (1985): 267–82; and C. Stangor and D. N. Ruble,「Strength of Expectancies and Memory for Social Information: What We Remember Depends on How Much We Know,」Journal of Experimental Social Psychology 25, no. 1 (1989): 18–35.
+
+Chapter 10: The Drunkard’s Walk
+
+1. Pierre-Simon de Laplace, quoted in Stigler, Statistics on the Table, p. 56.
+
+2. James Gleick, Chaos: Making a New Science (New York: Penguin, 1987); see chap. 1.
+
+3. Max Born, Natural Philosophy of Cause and Chance (Oxford: Clarendon Press, 1948), p. 47. Born was referring to nature in general and quantum theory in particular.
+
+4. The Pearl Harbor analysis is from Roberta Wohlstetter, Pearl Harbor: Warning and Decision (Palo Alto, Calif.: Stanford University Press, 1962).
+
+5. Richard Henry Tawney, The Agrarian Problem in the Sixteenth Century (1912; repr., New York: Burt Franklin, 1961).
+
+6. Wohlstetter, Pearl Harbor, p. 387.
+
+7. The description of the events at Three Mile Island is from Charles Perrow, Normal Accidents: Living with High-Risk Technologies (Princeton, N.J.: Princeton University Press, 1999); and U.S. Nuclear Regulatory Commission,「Fact Sheet on the Three Mile Island Accident,」http://www.nrc.gov/reading-rm/doc-collections/fact-sheets/3mile-isle.htm.
+
+8. Perrow, Normal Accidents.
+
+9. W. Brian Arthur,「Positive Feedbacks in the Economy,」Scientific American, February 1990, pp. 92–99.
+
+10. Matthew J. Salganik, Peter Sheridan Dodds, and Duncan J. Watts,「Experimental Study of Inequality and Unpredictability in an Artificial Cultural Market,」Science 311 (February 10, 2006); and Duncan J. Watts,「Is Justin Timberlake a Product of Cumulative Advantage?」New York Times Magazine, April 15, 2007.
+
+11. Mlodinow,「Meet Hollywood’s Latest Genius.」
+
+12. John Steele Gordon and Michael Maiello,「Pioneers Die Broke,」Forbes, December 23, 2002; and「The Man Who Could Have Been Bill Gates,」BusinessWeek, October 25, 2004.
+
+13. Floyd Norris,「Trump Deal Fails, and Shares Fall Again,」New York Times, July 6, 2007.
+
+14. Melvin J. Lerner and Leo Montada,「An Overview: Advances in Belief in a Just World Theory and Methods,」in Responses to Victimizations and Belief in a Just World, ed. Leo Montada and Melvin J. Lerner (New York: Plenum Press, 1998), pp. 1–7.
+
+15. Melvin J. Lerner,「Evaluation of Performance as a Function of Performer’s Reward and Attractiveness,」Journal of Personality and Social Psychology 1 (1965): 355–60.
+
+16. Melvin J. Lerner and C. H. Simmons,「Observer’s Reactions to the ‘Innocent Victim’: Compassion or Rejection?」Journal of Personality and Social Psychology 4 (1966): 203–10.
+
+17. Lerner,「Evaluation of Performance as a Function of Performer’s Reward and Attractiveness.」
+
+18. Wendy Jean Harrod,「Expectations from Unequal Rewards,」Social Psychology Quarterly 43, no. 1 (March 1980): 126–30; Penni A. Stewart and James C. Moore Jr.,「Wage Disparities and Performance Expectations,」Social Psychology Quarterly 55, no. 1 (March 1992): 78–85; and Karen S. Cook,「Expectations, Evaluations and Equity,」American Sociological Review 40, no. 3 (June 1975): 372–88.
+
+19. Lerner and Simmons,「Observer’s Reactions to the ‘Innocent Victim.’」
+
+20. David L. Rosenhan,「On Being Sane in Insane Places,」Science 179 (January 19, 1973): 237–55.
+
+21. Elisha Y. Babad,「Some Correlates of Teachers’ Expectancy Bias,」American Educational Research Journal 22, no. 2 (Summer 1985): 175–83.
+
+22. Eric Asimov,「Spirits of the Times: A Humble Old Label Ices Its Rivals,」New York Times, January 26, 2005.
+
+23. Jonathan Calvert and Will Iredale,「Publishers Toss Booker Winners into the Reject Pile,」London Sunday Times, January 1, 2006.
+
+24. Peter Doskoch,「The Winning Edge,」Psychology Today, November/ December 2005, p. 44.
+
+25. Rosenhan,「On Being Sane in Insane Places,」p. 243.
+
+ALSO BY LEONARD MLODINOW
+
+A Briefer History of Time (with Stephen Hawking)
+
+Feynman’s Rainbow: A Search for Beauty in Physics and in Life
+
+Euclid’s Window: The Story of Geometry from Parallel Lines to Hyperspace
+
+For children (with Matt Costello)
+
+The Last Dinosaur
+
+Titanic Cat
+
+Copyright © 2008 by Leonard Mlodinow
+
+All rights reserved. Published in the United States by Pantheon Books, a division of Random House, Inc., New York, and in Canada by Random House of Canada Limited, Toronto.
+
+Pantheon Books and colophon are registered trademarks of Random House, Inc.
+
+Library of Congress Cataloging-in-Publication Data
+
+Mlodinow, Leonard, [date]
+
+The Drunkard’s walk: how randomness rules our lives / Leonard Mlodinow.
+
+p. cm.
+
+1. Random variables. 2. Probabilities. 3. Chance. I. Title.
+
+QA273.M63 2008
+
+519.2—dc22 2007042507
+
+www.pantheonbooks.com
+
+eISBN: 978-0-307-37754-8
+
+v3.0_r1
 

@@ -1,4 +1,4 @@
-The Order in Chaos
+# 0801. The Order in Chaos
 
 IN THE MID-1960S, some ninety years old and in great need of money to live on, a Frenchwoman named Jeanne Calment made a deal with a forty-seven-year-old lawyer: she sold him her apartment for the price of a low monthly subsistence payment with the agreement that the payments would stop upon her death, at which point she would be carried out and he could move in.1 The lawyer must have known that Ms. Calment had already exceeded the French life expectancy by more than ten years. He may not have been aware of Bayes’s theory, however, nor known that the relevant issue was not whether she should be expected to die in minus ten years but that her life expectancy, given that she had already made it to ninety, was about six more years.2 Still, he had to feel comfortable believing that any woman who as a teenager had met Vincent van Gogh in her father’s shop would soon be joining van Gogh in the hereafter. (For the record, she found the artist「dirty, badly dressed, and disagreeable.」)
 
