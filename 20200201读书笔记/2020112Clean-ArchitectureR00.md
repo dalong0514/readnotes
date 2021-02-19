@@ -92,7 +92,7 @@ Software — the stuff of computer programs — is composed of sequence, selecti
 
 下面我们来总结一下：1）结构化编程是对程序控制权的直接转移的限制。2）面向对象编程是对程序控制权的间接转移的限制。3）函数式编程是对程序中賦值操作的限制。
 
-这三个编程范式都对程序员提出了新的限制。每个范式都约束了某种编写代码的方式，没有一个编程范式是在增加新能力。也就是说，我们过去 50 年学到的东西主要是什么不应该做。我们必须面对这种不友好的现实：软件构建并不是一个迅速前进的技术。今天构建软件的规则和 1946 年阿兰图灵写下电子计算机的第一行代码时是一样的。尽管工具変化了，硬件变化了，但是软件编程的核心没有变。总而言之，软件，或者说计算机程序无一例外是由顺序结构、分支结构、循环结构和间接转移这几种行为组合而成的，无可增加，也缺一不可。
+这三个编程范式都对程序员提出了新的限制。每个范式都约束了某种编写代码的方式，没有一个编程范式是在增加新能力。也就是说，我们过去 50 年学到的东西主要是什么不应该做。我们必须面对这种不友好的现实：软件构建并不是一个迅速前进的技术。今天构建软件的规则和 1946 年阿兰图灵写下电子计算机的第一行代码时是一样的。尽管工具变化了，硬件变化了，但是软件编程的核心没有变。总而言之，软件，或者说计算机程序无一例外是由顺序结构、分支结构、循环结构和间接转移这几种行为组合而成的，无可增加，也缺一不可。
 
 ### 0103. 主题卡 —— 科学与数学的区别以及软件开发是科学范畴
 
@@ -127,6 +127,18 @@ Dijkstra 曾经说过「测试只能展示 Bug 的存在，并不能证明不存
 1-2『测试只能展示 Bug 的存在，并不能证明不存在 Bug，做一张金句卡，其展开的细节放在这里。（2020-12-24）』
 
 注意，这种证伪过程只能应用于可证明的程序上。某段程序如果是不可证明的，例如，其中采用了不加限制的 goto 语句，那么无论我们为它写多少测试，也不能够证明其正确性。结构化编程范式促使我们先将一段程序递归降解为一系列可证明的小函数，然后再编写相关的测试来试图证明这些函数是错误的。如果这些测试无法证伪这些函数，那么我们就可以认为这些函数是足够正确的，进而推导整个程序是正确的。
+
+### 0104. 主题卡 —— 分离控制和逻辑
+
+信息源自推荐序：
+
+耗子叔观点：无论是微观世界的代码，还是宏观层面的架构，无论是三种程范式还是微服务架构，它们都在解决一个问题 一一 分离控制和逻辑。所谓控制就是对程序流转的与业务逻辑无关的代码或系统的控制（如多线程、异步、服务发现、部署、弹性伸等），所调逻辑则是实实在在的业务逻辑，是解决用户问题逻辑。控制和逻辑构成了整体的件复杂度，有效地分离控制和逻辑会让你的系统得到最大的简化。
+
+2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』——已完成
+
+问题：如果你要成为一名架构师，你需要明确地区分几组词语（如何区分它们正是留给你的问题），否则你不可能成为一名合格的工程师或架构师。这几组词语是简单 VS 简陋、平衡 VS 妥协、迭代 VS 半成品。如果你不能很清楚地定义出其中的区別，那么你将很难做出正确的决定，也就不可能成为优秀的工程师或架构师。
+
+我相信这个观点和这组问题将有助于你更好地读并理解这本书，也会让你进行更多的思考，带着思考读这本书，会让你学到更多。
 
 ### 0201. 术语卡 —— 编程范式
 
@@ -288,13 +300,15 @@ SRP 是 SOLID 五大设计原则中最容易被误解的一个。也许是名字
 
 但是故事还没完，这些拥有工匠精神的工程师们还是难以解决某些题，这些人渐地发现，这个世界上有很多问题就像翘翘板一样，只能要一边，这一边上去了，另一边就下来了。就像要么用空间换时间，要么用时间换空间一样，你很难找到同时满足空间和时间要求的「双利解」；就像 CAP 的三选二的理论一样，这个世界不存在完美的解決方案，无论什么方案都有好的一面和不好的一面。而且，这些工程师还渐发现，每当引入一个新的技术来解決一个已有的问题时，这个新的技术就会带来更多的问题，问题就像有一个生命体一样，它们会不断地繁殖和进化。渐渐地，他们发现，问题的多少和系统的复杂度呈正比，而且不仅是线性正比，还可能呈级数正比，此时就越来越难做技术決定。但是有一些资深的工程师开始站出来挑战这些问题，有的基于业务分析给出平衡的方案，有的开始尝试设计更高级的技术，有的开始设计更灵活的系统，有的则开始简化和轻量化整个系统，这些高智商、经验足、不怕难的工程师们引领着整个行业前行。他们就是架构师！
 
-感觉 Bob 大叔的系列著作好像也在走这个过程，《代码整洁之道》教你写出易读、可扩展、可维护、可重用的代码，《代码整洁之道：程序员的职业素养》教你怎样変成一个有修养的程序员，而《架构整洁之道》基本上是在描述软件设计的一些理论知识。《架构整洁之道》大体分成三个部分：编程范式（结构化编程、面向对象编程和函数式编程），设计原则（主要是 SOLD），以及软件架构（其中讲了很多高屋建翎的内容）。总体来说，这本书中的内容可以让你从微观（代码层面）和宏观（架构层面）两个层面对整个软件设计有一个全面的了解。
+感觉 Bob 大叔的系列著作好像也在走这个过程，《代码整洁之道》教你写出易读、可扩展、可维护、可重用的代码，《代码整洁之道：程序员的职业素养》教你怎样变成一个有修养的程序员，而《架构整洁之道》基本上是在描述软件设计的一些理论知识。《架构整洁之道》大体分成三个部分：编程范式（结构化编程、面向对象编程和函数式编程），设计原则（主要是 SOLD），以及软件架构（其中讲了很多高屋建翎的内容）。总体来说，这本书中的内容可以让你从微观（代码层面）和宏观（架构层面）两个层面对整个软件设计有一个全面的了解。
 
-但是，如果你想从这本书里找到一些可以立马解决具体问题的工程架构和技术，恐怕你会感到失望。这本书中更多的是一些基础的理论知识，看完后你可能会比较「无感」，因为这些基础知识对于生活在这个高速发展的喜欢快餐文化的社会中的人来说，可能很难理解其中的价值一一大多数人的目标不是设计出一个优质的软件或架构，而是快速地解決一个具体的问题，完成自己的工作。然而，可能只有你碰过足够多的壁，掉过足够多的坑，经历过足够多的痛苦后，再来读这本书时，你オ会发现本书中的这些「陈旧的知识」是多么充满智慧。而且，如果有一天，你像我这个老家伙一样，看到今天很多很多公司和年轻的程序员还在不断地掉坑和挣扎，你就会明白这些知识的重要性了。
+但是，如果你想从这本书里找到一些可以立马解决具体问题的工程架构和技术，恐怕你会感到失望。这本书中更多的是一些基础的理论知识，看完后你可能会比较「无感」，因为这些基础知识对于生活在这个高速发展的喜欢快餐文化的社会中的人来说，可能很难理解其中的价值 一一 大多数人的目标不是设计出一个优质的软件或架构，而是快速地解決一个具体的问题，完成自己的工作。然而，可能只有你碰过足够多的壁，掉过足够多的坑，经历过足够多的痛苦后，再来读这本书时，你才会发现本书中的这些「陈旧的知识」是多么充满智慧。而且，如果有一天，你像我这个老家伙一样，看到今天很多很多公司和年轻的程序员还在不断地掉坑和挣扎，你就会明白这些知识的重要性了。
 
 我个人觉得，这本书是架构方面的入门级读物，但也并不适合经验不足的人员学习，这本书更适合的读者群是，有 3-5 年编程经验、需要入门软件设计和架构的工程师或程序员。最后，我想留下一个观点和一组问题。
 
 观点：无论是微观世界的代码，还是宏观层面的架构，无论是三种程范式还是微服务架构，它们都在解决一个问题 一一 分离控制和逻辑。所谓控制就是对程序流转的与业务逻辑无关的代码或系统的控制（如多线程、异步、服务发现、部署、弹性伸等），所调逻辑则是实实在在的业务逻辑，是解决用户问题逻辑。控制和逻辑构成了整体的件复杂度，有效地分离控制和逻辑会让你的系统得到最大的简化。
+
+2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』——已完成
 
 问题：如果你要成为一名架构师，你需要明确地区分几组词语（如何区分它们正是留给你的问题），否则你不可能成为一名合格的工程师或架构师。这几组词语是简单 VS 简陋、平衡 VS 妥协、迭代 VS 半成品。如果你不能很清楚地定义出其中的区別，那么你将很难做出正确的决定，也就不可能成为优秀的工程师或架构师。
 
@@ -302,7 +316,7 @@ SRP 是 SOLID 五大设计原则中最容易被误解的一个。也许是名字
 
 —— 陈皓，左耳朵耗子
 
-## 推荐序二  —  —  久远的教诲，古老的智慧
+## 推荐序二 —— 久远的教诲，古老的智慧
 
 如果让你接手一套不稳定但要紧的在线系统，这套系统还有各种问题：变量命名非常随意，依赖逻辑错综复杂，层次结构乱七八糟，部署流程一糊涂，监控系統一片空白。你该怎么办？
 
@@ -310,7 +324,7 @@ SRP 是 SOLID 五大设计原则中最容易被误解的一个。也许是名字
 
 怎么办？大家说了很多办法：把单元测试都补全，重构代码拆分核心功能和非核心功能，跟业务方谈暂停需求。这些办法都很对，但是，都需要时间才能见效，而我们最缺的就是时间。
 
-我提了一个很「笨」的办法：把所有「共享变量」都抽到 Redist 中进行读写，消灭本地副本，然后把稳定版本程序多部署几份，这样就可以多启动几个实例，将这些实例标记为 AB 两组。同时，在前面搭建代理服务，用于分流请求 一一 核心功能请求分配到 A 组（程序基本不更新），外围功能请求分配到 B 组（程序按业务需求更新）。这样做看起来有点多此一举  —  —  AB 两组都只有部分代码提供服务，而且要通过 Redis 共享状态，但是却实现了无论 B 组的程序如何更新，都不会影响 A 组所承载的核心服务的目的。
+我提了一个很「笨」的办法：把所有「共享变量」都抽到 Redist 中进行读写，消灭本地副本，然后把稳定版本程序多部署几份，这样就可以多启动几个实例，将这些实例标记为 AB 两组。同时，在前面搭建代理服务，用于分流请求 一一 核心功能请求分配到 A 组（程序基本不更新），外围功能请求分配到 B 组（程序按业务需求更新）。这样做看起来有点多此一举 —— AB 两组都只有部分代码提供服务，而且要通过 Redis 共享状态，但是却实现了无论 B 组的程序如何更新，都不会影响 A 组所承载的核心服务的目的。
 
 虽然当时不少人说「怎么能这样玩呢」，但它确实有效。当天部署，当天生效，在线服务迅速稳定下来，即便新开发的外围功能有问题，核心服务也不受任何影响。这样业务人员满意了，开发人员也可以安心对系统倣改造了。
 
@@ -358,21 +372,21 @@ But physical scale is something humans understand and look for in the world. Alt
 
 Although it might not make sense to talk about physics and physical scale in software architecture, we do appreciate and care about certain physical constraints. Processor speed and network bandwidth can deliver a harsh verdict on a system’s performance. Memory and storage can limit the ambitions of any code base. Software may be such stuff as dreams are made on, but it runs in the physical world.
 
-This is the monstrosity in love, lady, that the will is infinite, and the execution confined; that the desire is boundless, and the act a slave to limit.  —  —  William Shakespeare
+This is the monstrosity in love, lady, that the will is infinite, and the execution confined; that the desire is boundless, and the act a slave to limit. —— William Shakespeare
 
 The physical world is where we and our companies and our economies live. This gives us another calibration we can understand software architecture by, other less physical forces and quantities through which we can talk and reason.
 
-Architecture represents the significant design decisions that shape a system, where significant is measured by cost of  change.  —  —  Grady Booch
+Architecture represents the significant design decisions that shape a system, where significant is measured by cost of  change. —— Grady Booch
 
 Time, money, and effort give us a sense of scale to sort between the large and the small, to distinguish the architectural stuff from the rest. This measure also tells us how we can determine whether an architecture is good or not: Not only does a good architecture meet the needs of its users, developers, and owners at a given point in time, but it also meets them over time.
 
-If  you think good architecture is expensive, try bad architecture.  —  —  Brian Foote and Joseph Yoder
+If  you think good architecture is expensive, try bad architecture. —— Brian Foote and Joseph Yoder
 
 The kinds of changes a system’s development typically experiences should not be the changes that are costly, that are hard to make, that take managed projects of their own rather than being folded into the daily and weekly flow of work.
 
 That point leads us to a not-so-small physics-related problem: time travel. How do we know what those typical changes will be so that we can shape those significant decisions around them? How do we reduce future development effort and cost without crystal balls and time machines?
 
-Architecture is the decisions that you wish you could get right early in a project, but that you are not necessarily more likely to get them right than any other.  —  —  Ralph Johnson
+Architecture is the decisions that you wish you could get right early in a project, but that you are not necessarily more likely to get them right than any other. —— Ralph Johnson
 
 Understanding the past is hard enough as it is; our grasp of the present is slippery at best; predicting the future is nontrivial.
 
@@ -384,7 +398,7 @@ Down another path comes a strong smell of speculative generality. A route filled
 
 The path we are most interested is the cleanest one. It recognizes the softness of software and aims to preserve it as a first-class property of the system. It recognizes that we operate with incomplete knowledge, but it also understands that, as humans, operating with incomplete knowledge is something we do, something we’re good at. It plays more to our strengths than to our weaknesses. We create things and we discover things. We ask questions and we run experiments. A good architecture comes from understanding it more as a journey than as a destination, more as an ongoing process of enquiry than as a frozen artifact.
 
-Architecture is a hypothesis, that needs to be proven by implementation and measurement.  —  —  Tom Gilb
+Architecture is a hypothesis, that needs to be proven by implementation and measurement. —— Tom Gilb
 
 To walk this path requires care and attention, thought and observation, practice and principle. This might at first sound slow, but it’s all in the way that you walk.
 
@@ -416,7 +430,7 @@ Enjoy the journey.
 
 如果你觉得好架构的成本太高，那你可以试试选择差的架构加上返工重来的成本。——  Brian Foote and Joseph Yoder
 
-一个系统的常规变更不应该是成本高的，也不应该需要难以決策的大型设计调整，更不应该需要单独立项来推进。这些常规変更应该可以融入每日或者每周的日常系统维护中去完成。我们怎么能够预知某个系未来的变更需求，以便提前做准备呢？我们怎么能在没有水晶球与时光穿梭机的情况下，未卜先知，降低未来的变更成本呢？
+一个系统的常规变更不应该是成本高的，也不应该需要难以決策的大型设计调整，更不应该需要单独立项来推进。这些常规变更应该可以融入每日或者每周的日常系统维护中去完成。我们怎么能够预知某个系未来的变更需求，以便提前做准备呢？我们怎么能在没有水晶球与时光穿梭机的情况下，未卜先知，降低未来的变更成本呢？
 
 所软件架构，就是你希望在项目一开始就能对，但是却不一定能够做得对的决策的集合。 ——  Ralph Johnson
 
@@ -490,7 +504,7 @@ Register your copy of Clean Architecture on the InformIT site for convenient acc
 
 我正在用一个拥有 4 核 7 的 Macbook，每核 2.8GHz。这台笔记本电脑有 16GB 内存，1 TB SSD 硬盘，可以用 2880x1800 虹膜显示屏展现高清视频。二者计算能力上的差距真的是天壤之别。粗略分析可知，这台 Macbook 至少比我半个世纪以前用的计算机强大 1022 倍。
 
-22 个数量级的差距是非常非常巨大的，从地球到半人马星系也只有 102 埃（angstrom，长度单位，主要用来描述原子尺寸与波长），你口袋里的零钱加起来所包含的电子数量也差不多为 102 个。而这个数字（注意还是至少）是我在一生中，所亲身经历的计算能力的提升计算能力发生了这么巨大的变化，但对我所写软件的影响有多大呢？软件尺す当然变大了。我过去认为 2000 行的程序就很庞大了。毕竟这样的程序変成打孔卡片能装满一盒子，重量超过 10 磅。而现在，一个 10 万行的程序都不能算大程序了。
+22 个数量级的差距是非常非常巨大的，从地球到半人马星系也只有 102 埃（angstrom，长度单位，主要用来描述原子尺寸与波长），你口袋里的零钱加起来所包含的电子数量也差不多为 102 个。而这个数字（注意还是至少）是我在一生中，所亲身经历的计算能力的提升计算能力发生了这么巨大的变化，但对我所写软件的影响有多大呢？软件尺す当然变大了。我过去认为 2000 行的程序就很庞大了。毕竟这样的程序变成打孔卡片能装满一盒子，重量超过 10 磅。而现在，一个 10 万行的程序都不能算大程序了。
 
 同时，软件性能当然也有大幅提升。我们现在可以轻轻松松地完成那些 1960 年只能幻想的事情。电影 The Forbin Project、The Moon is a Harsh Mistressl 以及 2001: A Space Odyssey 都试图预言我们的现状，但是都没有成功。在这些电影中普遍展现的是获得了智能的巨型机器，而我们目前所拥有的计算机，虽然体积之小是当初难以想象的，却还仅仅只是机器。
 
@@ -498,13 +512,13 @@ Register your copy of Clean Architecture on the InformIT site for convenient acc
 
 哦，你可能会抗议说我们现在有更好的编程语以及更先进的编程范式了。毕竟，我们现在都是用 Java、C#、Ruby 语言编写程序，并且大量采用面向对象编程方式。这没错，但是最终产生的代码仍然只是顺序结构、分支结构、循环结构的组合，这方面和 20 世纪 60 年代甚至 50 年代的程序是一模一样。
 
-如果深入研究计算机程的本质，我们就会发现这 50 年来，计算机编程基本没有什么大的変化。编程语言稍微进步了ー点，工具的质量大大提升了，但是计算机程序的基本构造没有什么変化。
+如果深入研究计算机程的本质，我们就会发现这 50 年来，计算机编程基本没有什么大的变化。编程语言稍微进步了ー点，工具的质量大大提升了，但是计算机程序的基本构造没有什么变化。
 
 如果一个 1966 年的计算机程序员时空穿梭来到 2016 年，在我的 Macbook 上用 Intellij 写 Java 程序，她可能也就需要 24 小时来适应一下，然后很快就能照常工作了。Java 其实和 C 区别并不大，和 FORTRAN 也没那么大区别。同样，如果我把你 一一 读者传送回 1966 年，告诉你如何在一个每秒处理 10 个字符的终端上通过打孔纸带来编辑 PDP-8 代码，估计你最多也只需要 24 小时的适应时间。毕竟编程还是编程，代码并没有本质的变化。
 
 这就是秘密所在：计算机代码没有变化，软件架构的规则也就一直保持了一致。软件架构的规则其实就是排列组合代码块的规则。由于这些代码块本质上没有变化，因此排列组合它们的规则也就不会变化。
 
-年轻的一代程序员可能认为这些都是胡说。他们可能坚持认为现在所有东西都是崭新的、从来没有过的，过去的规则已经过时，不再适用了。这是一个非常大的错误。这些规则一直都没有変。虽然我们有了新的编程语言、新的编程框架、新的编程范式，但是软件架构的规则仍然和 1946 年阿兰·图灵写下第一行机器代码的时候一样。
+年轻的一代程序员可能认为这些都是胡说。他们可能坚持认为现在所有东西都是崭新的、从来没有过的，过去的规则已经过时，不再适用了。这是一个非常大的错误。这些规则一直都没有变。虽然我们有了新的编程语言、新的编程框架、新的编程范式，但是软件架构的规则仍然和 1946 年阿兰·图灵写下第一行机器代码的时候一样。
 
 当然，不样的是，那时候我们还不知道规则是什么。所以我们一次一次地颠覆了它，并且为此一次一次地付出了代价。半个世纪过去了，我们终于可以说，现在我们对这些规则有一定程度的了解了。
 

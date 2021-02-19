@@ -358,7 +358,9 @@ Another classic macro-writing MACRO: ONCE-ONLY
 
 Another classic macro-writing macro is once-only, which is used to generate code that evaluates certain macro arguments once only and in a particular order. Using once-only, you could write do-primes almost as simply as the original leaky version, like this:
 
+```c
 (defmacro do-primes ((var start end) &body body) (once-only (start end) `(do ((,var (next-prime ,start) (next-prime (1+ ,var)))) ((> ,var ,end)) ,@body)))
+```
 
 However, the implementation of once-only is a bit too involved for a blow-by-blow explanation, as it relies on multiple levels of backquoting and unquoting. If you really want to sharpen your macro chops, you can try to figure out how it works. It looks like this:
 
