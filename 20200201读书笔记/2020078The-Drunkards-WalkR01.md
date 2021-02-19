@@ -4,6 +4,10 @@
 
 ## 目录
 
+0101 Peering through the Eyepiece of Randomness
+
+0201 The Laws of Truths and Half-Truths
+
 # 0101. Peering through the Eyepiece of Randomness
 
 I remember, as a teenager, watching the yellow flame of the Sabbath candles dancing randomly above the white paraffin cylinders that fueled them. I was too young to think candlelight romantic, but still I found it magical — because of the flickering images created by the fire. They shifted and morphed, grew and waned, all without apparent cause or plan. Surely, I believed, there must be rhyme and reason underlying the flame, some pattern that scientists could predict and explain with their mathematical equations.「Life isn’t like that,」my father told me.「Sometimes things happen that cannot be foreseen.」He told me of the time when, in Buchenwald, the Nazi concentration camp in which he was imprisoned and starving, he stole a loaf of bread from the bakery. The baker had the Gestapo gather everyone who might have committed the crime and line the suspects up.「Who stole the bread?」the baker asked. When no one answered, he told the guards to shoot the suspects one by one until either they were all dead or someone confessed. My father stepped forward to spare the others. He did not try to paint himself in a heroic light but told me that he did it because he expected to be shot either way. Instead of having him killed, though, the baker gave my father a plum job, as his assistant.「A chance event,」my father said.「It had nothing to do with you, but had it happened differently, you would never have been born.」It struck me then that I have Hitler to thank for my existence, for the Germans had killed my father’s wife and two young children, erasing his prior life. And so were it not for the war, my father would never have emigrated to New York, never have met my mother, also a refugee, and never have produced me and my two brothers.
@@ -90,7 +94,7 @@ We can never know for certain whether Maris was a far better player in 1961 than
 
 When we look at extraordinary accomplishments in sports — or elsewhere — we should keep in mind that extraordinary events can happen without extraordinary causes. Random events often look like nonrandom events, and in interpreting human affairs we must take care not to confuse the two. Though it has taken many centuries, scientists have learned to look beyond apparent order and recognize the hidden randomness in both nature and everyday life. In this chapter I’ve presented a few glimpses of those workings. In the following chapters I shall consider the central ideas of randomness within their historical context and describe their relevance with the aim of offering a new perspective on our everyday surroundings and hence a better understanding of the connection between this fundamental aspect of nature and our own experience.
 
-## Notes
+### Notes
 
 1 Kerstin Preuschoff, Peter Bossaerts, and Steven R. Quartz,「Neural Differentiation of Expected Reward and Risk in Human Subcortical Structures,」Neuron 51 (August 3, 2006): 381–90.
 
@@ -223,3 +227,301 @@ When we look at extraordinary accomplishments in sports — or elsewhere — we 
 我们永远不能准确地知道，相较于其职业棒球生涯中的其他时间，1961 年的马里斯是一个水平好得多的球员，还是个仅仅受到幸运女神垂青的人。但古尔德或诺贝尔自然科学奖获得者珀塞尔等卓越的科学家对棒球和其他体育项目进行的细致分析表明，我描述的那个扔硬币模型与球员和球队的真实表现很吻合，包括他们的巅峰与低谷。
 
 因此，当我们再看到体育或其他领域的辉煌成就时，我们应该记住，非凡的成就不一定有非凡的原因。随机事件常常看似并非随机，但在解释这个林林总总的世界时，我们千万不要混淆这两者。在耗费了许多世纪的努力之后，科学家终于学会如何透过表面的秩序，去发现隐藏在自然界和日常生活的面纱之下的随机性。在这一章，我们不过对随机性运作方式投以匆匆数瞥。在下面的章节中，我将结合随机性的历史发展考察随机性的核心思想，并说明这些思想与我们的目标的关联性。我们的目标，是希望为你提供一个观察我们周遭世界的新视角，让你能够更好地理解随机性这一自然界的基本特征与我们自身体验的联系。
+
+## 0201. The Laws of Truths and Half-Truths
+
+LOOKING TO THE SKY on a clear, moonless night, the human eye can detect thousands of twinkling sources of light. Nestled among those haphazardly scattered stars are patterns. A lion here, a dipper there. The ability to detect patterns can be both a strength and a weakness. Isaac Newton pondered the patterns of falling objects and created a law of universal gravitation. Others have noted a spike in their athletic performance when they are wearing dirty socks and thenceforth have refused to wear clean ones. Among all the patterns of nature, how do we distinguish the meaningful ones? Drawing that distinction is an inherently practical enterprise. And so it might not astonish you to learn that, unlike geometry, which arose as a set of axioms, proofs, and theorems created by a culture of ponderous philosophers, the theory of randomness sprang from minds focused on spells and gambling, figures we might sooner imagine with dice or a potion in hand than a book or a scroll.
+
+The theory of randomness is fundamentally a codification of common sense. But it is also a field of subtlety, a field in which great experts have been famously wrong and expert gamblers infamously correct. What it takes to understand randomness and overcome our misconceptions is both experience and a lot of careful thinking. And so we begin our tour with some of the basic laws of probability and the challenges involved in uncovering, understanding, and applying them. One of the classic explorations of people's intuition about those laws was an experiment conducted by the pair who did so much to elucidate our misconceptions, Daniel Kahneman and Amos Tversky.1 Feel free to take part — and learn something about your own probabilistic intuition.
+
+Imagine a woman named Linda, thirty-one years old, single, outspoken, and very bright. In college she majored in philosophy. While a student she was deeply concerned with discrimination and social justice and participated in antinuclear demonstrations. Tversky and Kahneman presented this description to a group of eighty-eight subjects and asked them to rank the following statements on a scale of 1 to 8 according to their probability, with 1 representing the most probable and 8 the least. Here are the results, in order from most to least probable:
+
+| Statement | Average Probability Rank |
+| --- | --- |
+| Linda is active in the feminist movement. | 2.1 |
+| Linda is a psychiatric social worker. | 3.1 |
+| Linda works in a bookstore and takes yoga classes. | 3.3 |
+| Linda is a bank teller and is active in the feminist movement. | 4.1 |
+| Linda is a teacher in an elementary school. | 5.2 |
+| Linda is a member of the League of Women Voters. | 5.4 |
+| Linda is a bank teller. | 6.2 |
+| Linda is an insurance salesperson. | 6.4 |
+
+At first glance there may appear to be nothing unusual in these results: the description was in fact designed to be representative of an active feminist and unrepresentative of a bank teller or an insurance salesperson. But now let's focus on just three of the possibilities and their average ranks, listed below in order from most to least probable. This is the order in which 85 percent of the respondents ranked the three possibilities:
+
+| Statement | Average Probability Rank |
+| --- | --- |
+| Linda is active in the feminist movement. | 2.1 |
+| Linda is a bank teller and is active in the feminist movement. | 4.1 |
+| Linda is a bank teller. | 6.2 |
+
+If nothing about this looks strange, then Kahneman and Tversky have fooled you, for if the chance that Linda is a bank teller and is active in the feminist movement were greater than the chance that Linda is a bank teller, there would be a violation of our first law of probability, which is one of the most basic of all: The probability that two events will both occur can never be greater than the probability that each will occur individually. Why not? Simple arithmetic: the chances that event A will occur = the chances that events A and B will occur + the chance that event A will occur and event B will not occur.
+
+Kahneman and Tversky were not surprised by the result because they had given their subjects a large number of possibilities, and the connections among the three scenarios could easily have gotten lost in the shuffle. And so they presented the description of Linda to another group, but this time they presented only these possibilities:
+
+Linda is active in the feminist movement.
+
+Linda is a bank teller and is active in the feminist movement.
+
+Linda is a bank teller.
+
+To their surprise, 87 percent of the subjects in this trial also ranked the probability that Linda is a bank teller and is active in the feminist movement higher than the probability that Linda is a bank teller. And so the researchers pushed further: they explicitly asked a group of thirty-six fairly sophisticated graduate students to consider their answers in light of our first law of probability. Even after the prompting, two of the subjects clung to the illogical response.
+
+The interesting thing that Kahneman and Tversky noticed about this stubborn misperception is that people will not make the same mistake if you ask questions that are unrelated to what they know about Linda. For example, suppose Kahneman and Tversky had asked which of these statements seems most probable:
+
+Linda owns an International House of Pancakes franchise.
+
+Linda had a sex-change operation and is now known as Larry.
+
+Linda had a sex-change operation, is now known as Larry, and owns an International House of Pancakes franchise.
+
+In this case few people would choose the last option as more likely than either of the other two.
+
+Kahneman and Tversky concluded that because the detail「Linda is active in the feminist movement」rang true based on the initial description of her character, when they added that detail to the bank-teller speculation, it increased the scenario's credibility. But a lot could have happened between Linda's hippie days and her fourth decade on the planet. She might have undergone a conversion to a fundamentalist religious cult, married a skinhead and had a swastika tattooed on her left buttock, or become too busy with other aspects of her life to remain politically active. In each of these cases and many others she would probably not be active in the feminist movement. So adding that detail lowered the chances that the scenario was accurate even though it appeared to raise the chances of its accuracy.
+
+If the details we are given fit our mental picture of something, then the more details in a scenario, the more real it seems and hence the more probable we consider it to be — even though any act of adding less-than-certain details to a conjecture makes the conjecture less probable. This inconsistency between the logic of probability and people's assessments of uncertain events interested Kahneman and Tversky because it can lead to unfair or mistaken assessments in real-life situations. Which is more likely: that a defendant, after discovering the body, left the scene of the crime or that a defendant, after discovering the body, left the scene of the crime because he feared being accused of the grisly murder? Is it more probable that the president will increase federal aid to education or that he or she will increase federal aid to education with funding freed by cutting other aid to the states? Is it more likely that your company will increase sales next year or that it will increase sales next year because the overall economy has had a banner year? In each case, even though the latter is less probable than the former, it may sound more likely. Or as Kahneman and Tversky put it,「A good story is often less probable than a less satisfactory…[explanation].」
+
+Kahneman and Tversky found that even highly trained doctors make this error.2 They presented a group of internists with a serious medical problem: a pulmonary embolism (a blood clot in the lung). If you have that ailment, you might display one or more of a set of symptoms. Some of those symptoms, such as partial paralysis, are uncommon; others, such as shortness of breath, are probable. Which is more likely: that the victim of an embolism will experience only partial paralysis or that the victim will experience both partial paralysis and shortness of breath? Kahneman and Tversky found that 91 percent of the doctors believed a clot was less likely to cause just a rare symptom than it was to cause a combination of the rare symptom and a common one. (In the doctors' defense, patients don't walk into their offices and say things like「I have a blood clot in my lungs. Guess my symptoms.」)
+
+Years later one of Kahneman's students and another researcher found that attorneys fall prey to the same bias in their judgments.3 Whether involved in a criminal case or a civil case, clients typically depend on their lawyers to assess what may occur if their case goes to trial. What are the chances of acquittal or of a settlement or a monetary judgment in various amounts? Although attorneys might not phrase their opinions in terms of numerical probabilities, they offer advice based on their personal forecast of the relative likelihood of the possible outcomes. Here, too, the researchers found that lawyers assign higher probabilities to contingencies that are described in greater detail. For example, at the time of the civil lawsuit brought by Paula Jones against then president Bill Clinton, 200 practicing lawyers were asked to predict the probability that the trial would not run its full course. For some of the subjects that possibility was broken down into specific causes for the trial's early end, such as settlement, withdrawal of the charges, or dismissal by the judge. In comparing the two groups — lawyers who had simply been asked to predict whether the trial would run its full course and lawyers who had been presented with ways in which the trial might reach a premature conclusion — the researchers found that the lawyers who had been presented with causes of a premature conclusion were much more likely than the other lawyers to predict that the trial would reach an early end.
+
+The ability to evaluate meaningful connections among different phenomena in our environment may be so important that it is worth seeing a few mirages. If a starving caveman sees an indistinct greenish blur on a distant rock, it is more costly to dismiss it as uninteresting when it is in reality a plump, tasty lizard than it is to race over and pounce on what turns out to be a few stray leaves. And so, that theory goes, we might have evolved to avoid the former mistake at the cost of sometimes making the latter.
+
+IN THE STORY of mathematics the ancient Greeks stand out as the inventors of the manner in which modern mathematics is carried out: through axioms, proofs, theorems, more proofs, more theorems, and so on. In the 1930s, however, the Czech American mathematician Kurt Gödel — a friend of Einstein's — showed this approach to be somewhat deficient: most of mathematics, he demonstrated, must be inconsistent or else must contain truths that cannot be proved. Still, the march of mathematics has continued unabated in the Greek style, the style of Euclid. The Greeks, geniuses in geometry, created a small set of axioms, statements to be accepted without proof, and proceeded from there to prove many beautiful theorems detailing the properties of lines, planes, triangles, and other geometric forms. From this knowledge they discerned, for example, that the earth is a sphere and even calculated its radius. One must wonder why a civilization that could produce a theorem such as proposition 29 of book 1 of Euclid's Elements — 「a straight line falling on two parallel straight lines makes the alternate angles equal to one another, the exterior angle equal to the interior and opposite angle, and the interior angles on the same side equal to two right angles」 — did not create a theory showing that if you throw two dice, it would be unwise to bet your Corvette on their both coming up a 6.
+
+Actually, not only didn't the Greeks have Corvettes, but they also didn't have dice. They did have gambling addictions, however. They also had plenty of animal carcasses, and so what they tossed were astragali, made from heel bones. An astragalus has six sides, but only four are stable enough to allow the bone to come to rest on them. Modern scholars note that because of the bone's construction, the chances of its landing on each of the four sides are not equal: they are about 10 percent for two of the sides and 40 percent for the other two. A common game involved tossing four astragali. The outcome considered best was a rare one, but not the rarest: the case in which all four astragali came up different. This was called a Venus throw. The Venus throw has a probability of about 384 out of 10,000, but the Greeks, lacking a theory of randomness, didn't know that.
+
+The Greeks also employed astragali when making inquiries of their oracles. From their oracles, questioners could receive answers that were said to be the words of the gods. Many important choices made by prominent Greeks were based on the advice of oracles, as evidenced by the accounts of the historian Herodotus, and writers like Homer, Aeschylus, and Sophocles. But despite the importance of astragali tosses in both gambling and religion, the Greeks made no effort to understand the regularities of astragali throws.
+
+Why didn't the Greeks develop a theory of probability? One answer is that many Greeks believed that the future unfolded according to the will of the gods. If the result of an astragalus toss meant「marry the stocky Spartan girl who pinned you in that wrestling match behind the school barracks,」a Greek boy wouldn't view the toss as the lucky (or unlucky) result of a random process; he would view it as the gods' will. Given such a view, an understanding of randomness would have been irrelevant. Thus a mathematical prediction of randomness would have seemed impossible. Another answer may lie in the very philosophy that made the Greeks such great mathematicians: they insisted on absolute truth, proved by logic and axioms, and frowned on uncertain pronouncements. In Plato's Phaedo, for example, Simmias tells Socrates that「arguments from probabilities are impostors」and anticipates the work of Kahneman and Tversky by pointing out that「unless great caution is observed in the use of them they are apt to be deceptive — in geometry, and in other things too.」4 And in Theaetetus, Socrates says that any mathematician「who argued from probabilities and likelihoods in geometry would not be worth an ace.」5 But even Greeks who believed that probabilists were worth an ace might have had difficulty working out a consistent theory in those days before extensive record keeping because people have notoriously poor memories when it comes to estimating the frequency — and hence the probability — of past occurrences.
+
+Which is greater: the number of six-letter English words having n as their fifth letter or the number of six-letter English words ending in ing? Most people choose the group of words ending in ing.6 Why? Because words ending in ing are easier to think of than generic six-letter words having n as their fifth letter. But you don't have to survey the Oxford English Dictionary — or even know how to count — to prove that guess wrong: the group of six-letter words having n as their fifth letter words includes all six-letter words ending in ing. Psychologists call that type of mistake the availability bias because in reconstructing the past, we give unwarranted importance to memories that are most vivid and hence most available for retrieval.
+
+The nasty thing about the availability bias is that it insidiously distorts our view of the world by distorting our perception of past events and our environment. For example, people tend to overestimate the fraction of homeless people who are mentally ill because when they encounter a homeless person who is not behaving oddly, they don't take notice and tell all their friends about that unremarkable homeless person they ran into. But when they encounter a homeless person stomping down the street and waving his arms at an imaginary companion while singing「When the Saints Go Marching In,」they do tend to remember the incident.7 How probable is it that of the five lines at the grocery-store checkout you will choose the one that takes the longest? Unless you've been cursed by a practitioner of the black arts, the answer is around 1 in 5. So why, when you look back, do you get the feeling you have a supernatural knack for choosing the longest line? Because you have more important things to focus on when things go right, but it makes an impression when the lady in front of you with a single item in her cart decides to argue about why her chicken is priced at $1.50 a pound when she is certain the sign at the meat counter said $1.49.
+
+One stark illustration of the effect the availability bias can have on our judgment and decision making came from a mock jury trial.8 In the study the jury was given equal doses of exonerating and incriminating evidence regarding the charge that a driver was drunk when he ran into a garbage truck. The catch is that one group of jurors was given the exonerating evidence in a「pallid」version:「The owner of the garbage truck stated under cross-examination that his garbage truck was difficult to see at night because it was gray in color.」The other group was given a more「vivid」form of the same evidence:「The owner of the garbage truck stated under cross-examination that his garbage truck was difficult to see at night because it was gray in color. The owner remarked his trucks are gray ‘because it hides the dirt. What do you want, I should paint 'em pink?'」The incriminating evidence was also presented in two ways, this time in a vivid form to the first group and in a pallid version to the second. When the jurors were asked to produce guilt/innocence ratings, the side with the more vivid presentation of the evidence always prevailed, and the effect was enhanced when there was a forty-eight-hour delay before rendering the verdict (presumably because the recall gap was even greater).
+
+By distorting our view of the past, the availability bias complicates any attempt to make sense of it. That was true for the ancient Greeks just as it is true for us. But there was one other major obstacle to an early theory of randomness, a very practical one: although basic probability requires only knowledge of arithmetic, the Greeks did not know arithmetic, at least not in a form that is easy to work with. In Athens in the fifth century B.C., for instance, at the height of Greek civilization, a person who wanted to write down a number used a kind of alphabetic code.9 The first nine of the twenty-four letters in the Greek alphabet stood for the numbers we call 1 through 9. The next nine letters stood for the numbers we call 10, 20, 30, and so on. And the last six letters plus three additional symbols stood for the first nine hundreds (100, 200, and so on, to 900). If you think you have trouble with arithmetic now, imagine trying to subtract from ! To make matters worse, the order in which the ones, tens, and hundreds were written didn't really matter: sometimes the hundreds were written first, sometimes last, and sometimes all order was ignored. Finally, the Greeks had no zero.
+
+The concept of zero came to Greece when Alexander invaded the Babylonian Empire in 331 B.C. Even then, although the Alexandrians began to use the zero to denote the absence of a number, it wasn't employed as a number in its own right. In modern mathematics the number 0 has two key properties: in addition it is the number that, when added to any other number, leaves the other number unchanged, and in multiplication it is the number that, when multiplied by any other number, is itself unchanged. This concept wasn't introduced until the ninth century, by the Indian mathematician Mahāvīra.
+
+Even after the development of a usable number system it would be many more centuries before people came to recognize addition, subtraction, multiplication, and division as the fundamental arithmetic operations — and slowly realized that convenient symbols would make their manipulation far easier. And so it wasn't until the sixteenth century that the Western world was truly poised to develop a theory of probability. Still, despite the handicap of an awkward system of calculation, it was the civilization that conquered the Greeks — the Romans — who made the first progress in understanding randomness.
+
+THE ROMANS generally scorned mathematics, at least the mathematics of the Greeks. In the words of the Roman statesman Cicero, who lived from 106 to 43 B.C.,「The Greeks held the geometer in the highest honor; accordingly, nothing made more brilliant progress among them than mathematics. But we have established as the limit of this art its usefulness in measuring and counting.」10 Indeed, whereas one might imagine a Greek textbook focused on the proof of congruences among abstract triangles, a typical Roman text focused on such issues as how to determine the width of a river when the enemy is occupying the other bank.11 With such mathematical priorities, it is not surprising that while the Greeks produced mathematical luminaries like Archimedes, Diophantus, Euclid, Eudoxus, Pythagoras, and Thales; the Romans did not produce even one mathematician.12 In Roman culture it was comfort and war, not truth and beauty, that occupied center stage. And yet precisely because they focused on the practical, the Romans saw value in understanding probability. So while finding little value in abstract geometry, Cicero wrote that「probability is the very guide of life.」13
+
+Cicero was perhaps the greatest ancient champion of probability. He employed it to argue against the common interpretation of gambling success as due to divine intervention, writing that the「man who plays often will at some time or other make a Venus cast: now and then indeed he will make it twice and even thrice in succession. Are we going to be so feeble-minded then as to affirm that such a thing happened by the personal intervention of Venus rather than by pure luck?」14 Cicero believed that an event could be anticipated and predicted even though its occurrence would be a result of blind chance. He even used a statistical argument to ridicule the belief in astrology. Annoyed that although outlawed in Rome, astrology was nevertheless alive and well, Cicero noted that at Cannae in 216 B.C., Hannibal, leading about 50,000 Carthaginian and allied troops, crushed the much larger Roman army, slaughtering more than 60,000 of its 80,000 soldiers.「Did all the Romans who fell at Cannae have the same horoscope?」Cicero asked.「Yet all had one and the same end.」15 Cicero might have been encouraged to know that a couple of thousand years later in the journal Nature a scientific study of the validity of astrological predictions agreed with his conclusion.16 The New York Post, on the other hand, advises today that as a Sagittarius, I must look at criticisms objectively and make whatever changes seem necessary.
+
+In the end, Cicero's principal legacy in the field of randomness is the term he used, probabilis, which is the origin of the term we employ today. But it is one part of the Roman code of law, the Digest, compiled by Emperor Justinian in the sixth century, that is the first document in which probability appears as an everyday term of art.17 To appreciate the Roman applications of mathematical thinking to legal theory, one must understand the context: Roman law in the Dark Ages was based on the practice of the Germanic tribes. It wasn't pretty. Take, for example, the rules of testimony. The veracity of, say, a husband denying an affair with his wife's toga maker would be determined not by hubby's ability to withstand a grilling by prickly opposing counsel but by whether he'd stick to his story even after being pricked — by a red-hot iron. (Bring back that custom and you'll see a lot more divorce cases settled out of court.) And if the defendant says the chariot never tried to stop but the expert witness says the hoof prints show that the brakes were applied, Germanic doctrine offered a simple prescription:「Let one man be chosen from each group to fight it out with shields and spears. Whoever loses is a perjurer and must lose his right hand.」18
+
+In replacing, or at least supplementing, the practice of trial by battle, the Romans sought in mathematical precision a cure for the deficiencies of their old, arbitrary system. Seen in this context, the Roman idea of justice employed advanced intellectual concepts. Recognizing that evidence and testimony often conflicted and that the best way to resolve such conflicts was to quantify the inevitable uncertainty, the Romans created the concept of half proof, which applied in cases in which there was no compelling reason to believe or disbelieve evidence or testimony. In some cases the Roman doctrine of evidence included even finer degrees of proof, as in the church decree that「a bishop should not be condemned except with seventy-two witnesses…a cardinal priest should not be condemned except with forty-four witnesses, a cardinal deacon of the city of Rome without thirty-six witnesses, a subdeacon, acolyte, exorcist, lector, or doorkeeper except with seven witnesses.」19 To be convicted under those rules, you'd have to have not only committed the crime but also sold tickets. Still, the recognition that the probability of truth in testimony can vary and that rules for combining such probabilities are necessary was a start. And so it was in the unlikely venue of ancient Rome that a systematic set of rules based on probability first arose.
+
+Unfortunately it is hard to achieve quantitative dexterity when you're juggling VIIIs and XIVs. In the end, though Roman law had a certain legal rationality and coherence, it fell short of mathematical validity. In Roman law, for example, two half proofs constituted a complete proof. That might sound reasonable to a mind unaccustomed to quantitative thought, but with today's familiarity with fractions it invites the question, if two half proofs equal a complete certainty, what do three half proofs make? According to the correct manner of compounding probabilities, not only do two half proofs yield less than a whole certainty, but no finite number of partial proofs will ever add up to a certainty because to compound probabilities, you don't add them; you multiply.
+
+That brings us to our next law, the rule for compounding probabilities: If two possible events, A and B, are independent, then the probability that both A and B will occur is equal to the product of their individual probabilities. Suppose a married person has on average roughly a 1 in 50 chance of getting divorced each year. On the other hand, a police officer has about a 1 in 5,000 chance each year of being killed on the job. What are the chances that a married police officer will be divorced and killed in the same year? According to the above principle, if those events were independent, the chances would be roughly 1/50 × 1/5,000, which equals 1/250,000. Of course the events are not independent; they are linked: once you die, darn it, you can no longer get divorced. And so the chance of that much bad luck is actually a little less than 1 in 250,000.
+
+Why multiply rather than add? Suppose you make a pack of trading cards out of the pictures of those 100 guys you've met so far through your Internet dating service, those men who in their Web site photos often look like Tom Cruise but in person more often resemble Danny DeVito. Suppose also that on the back of each card you list certain data about the men, such as honest (yes or no) and attractive (yes or no). Finally, suppose that 1 in 10 of the prospective soul mates rates a yes in each case. How many in your pack of 100 will pass the test on both counts? Let's take honest as the first trait (we could equally well have taken attractive). Since 1 in 10 cards lists a yes under honest, 10 of the 100 cards will qualify. Of those 10, how many are attractive? Again, 1 in 10, so now you are left with 1 card. The first 1 in 10 cuts the possibilities down by 1/10, and so does the next 1 in 10, making the result 1 in 100. That's why you multiply. And if you have more requirements than just honest and attractive, you have to keep multiplying, so…well, good luck.
+
+Before we move on, it is worth paying attention to an important detail: the clause that reads if two possible events, A and B, are independent. Suppose an airline has 1 seat left on a flight and 2 passengers have yet to show up. Suppose that from experience the airline knows there is a 2 in 3 chance a passenger who books a seat will arrive to claim it. Employing the multiplication rule, the gate attendant can conclude there is a 2/3 × 2/3 or about a 44 percent chance she will have to deal with an unhappy customer. The chance that neither customer will show and the plane will have to fly with an empty seat, on the other hand, is 1/3 × 1/3, or only about 11 percent. But that assumes the passengers are independent. If, say, they are traveling together, then the above analysis is wrong. The chances that both will show up are 2 in 3, the same as the chances that one will show up. It is important to remember that you get the compound probability from the simple ones by multiplying only if the events are in no way contingent on each other.
+
+The rule we just applied could be applied to the Roman rule of half proofs: the chances of two independent half proofs' being wrong are 1 in 4, so two half proofs constitute three-fourths of a proof, not a whole proof. The Romans added where they should have multiplied.
+
+There are situations in which probabilities should be added, and that is our next law. It arises when we want to know the chances of either one event or another occurring, as opposed to the earlier situation, in which we wanted to know the chance of one event and another event both happening. The law is this: If an event can have a number of different and distinct possible outcomes, A, B, C, and so on, then the probability that either A or B will occur is equal to the sum of the individual probabilities of A and B, and the sum of the probabilities of all the possible outcomes (A, B, C, and so on) is 1 (that is, 100 percent). When you want to know the chances that two independent events, A and B, will both occur, you multiply; if you want to know the chances that either of two mutually exclusive events, A or B, will occur, you add. Back to our airline: when should the gate attendant add the probabilities instead of multiplying them? Suppose she wants to know the chances that either both passengers or neither passenger will show up. In this case she should add the individual probabilities, which according to what we calculated above, would come to 55 percent.
+
+These three laws, simple as they are, form much of the basis of probability theory. Properly applied, they can give us much insight into the workings of nature and the everyday world. We employ them in our everyday decision making all the time. But like the Roman lawmakers, we don't always use them correctly.
+
+IT IS EASY TO LOOK BACK, shake our heads, and write books with titles like The Rotten Romans (Scholastic, 1994). But lest we become unjustifiably self-congratulatory, I shall end this chapter with a look at some ways in which the basic laws I've discussed may be applied to our own legal system. As it turns out, that's enough to sober up anyone drunk on feelings of cultural superiority.
+
+The good news is that we don't have half proofs today. But we do have a kind of 999,000/1,000,000 proof. For instance, it is not uncommon for experts in DNA analysis to testify at a criminal trial that a DNA sample taken from a crime scene matches that taken from a suspect. How certain are such matches? When DNA evidence was first introduced, a number of experts testified that false positives are impossible in DNA testing. Today DNA experts regularly testify that the odds of a random person's matching the crime sample are less than 1 in 1 million or 1 in 1 billion. With those odds one could hardly blame a juror for thinking, throw away the key. But there is another statistic that is often not presented to the jury, one having to do with the fact that labs make errors, for instance, in collecting or handling a sample, by accidentally mixing or swapping samples, or by misinterpreting or incorrectly reporting results. Each of these errors is rare but not nearly as rare as a random match. The Philadelphia City Crime Laboratory, for instance, admitted that it had swapped the reference sample of the defendant and the victim in a rape case, and a testing firm called Cellmark Diagnostics admitted a similar error.20 Unfortunately, the power of statistics relating to DNA presented in court is such that in Oklahoma a court sentenced a man named Timothy Durham to more than 3,100 years in prison even though eleven witnesses had placed him in another state at the time of the crime. It turned out that in the initial analysis the lab had failed to completely separate the DNA of the rapist and that of the victim in the fluid they tested, and the combination of the victim's and the rapist's DNA produced a positive result when compared with Durham's. A later retest turned up the error, and Durham was released after spending nearly four years in prison.21
+
+Estimates of the error rate due to human causes vary, but many experts put it at around 1 percent. However, since the error rate of many labs has never been measured, courts often do not allow testimony on this overall statistic. Even if courts did allow testimony regarding false positives, how would jurors assess it? Most jurors assume that given the two types of error — the 1 in 1 billion accidental match and the 1 in 100 lab-error match — the overall error rate must be somewhere in between, say 1 in 500 million, which is still for most jurors beyond a reasonable doubt. But employing the laws of probability, we find a much different answer.
+
+The way to think of it is this: Since both errors are very unlikely, we can ignore the possibility that there is both an accidental match and a lab error. Therefore, we seek the probability that one error or the other occurred. That is given by our sum rule: it is the probability of a lab error (1 in 100) + the probability of an accidental match (1 in 1 billion). Since the latter is 10 million times smaller than the former, to a very good approximation the chance of both errors is the same as the chance of the more probable error — that is, the chances are 1 in 100. Given both possible causes, therefore, we should ignore the fancy expert testimony about the odds of accidental matches and focus instead on the much higher laboratory error rate — the very data courts often do not allow attorneys to present! And so the oft-repeated claims of DNA infallibility are exaggerated.
+
+This is not an isolated issue. The use of mathematics in the modern legal system suffers from problems no less serious than those that arose in Rome so many centuries ago. One of the most famous cases illustrating the use and misuse of probability in law is People v. Collins, heard in 1968 by the California Supreme Court.22 Here are the facts of the case as presented in the court decision:
+
+On June 18, 1964, about 11:30 a.m. Mrs. Juanita Brooks, who had been shopping, was walking home along an alley in the San Pedro area of the city of Los Angeles. She was pulling behind her a wicker basket carryall containing groceries and had her purse on top of the packages. She was using a cane. As she stooped down to pick up an empty carton, she was suddenly pushed to the ground by a person whom she neither saw nor heard approach. She was stunned by the fall and felt some pain. She managed to look up and saw a young woman running from the scene. According to Mrs. Brooks the latter appeared to weigh about 145 pounds, was wearing「something dark,」and had hair「between a dark blond and a light blond,」but lighter than the color of defendant Janet Collins' hair as it appeared at the trial. Immediately after the incident, Mrs. Brooks discovered that her purse, containing between $35 and $40, was missing.
+
+About the same time as the robbery, John Bass, who lived on the street at the end of the alley, was in front of his house watering his lawn. His attention was attracted by「a lot of crying and screaming」coming from the alley. As he looked in that direction, he saw a woman run out of the alley and enter a yellow automobile parked across the street from him. He was unable to give the make of the car. The car started off immediately and pulled wide around another parked vehicle so that in the narrow street it passed within six feet of Bass. The latter then saw that it was being driven by a male Negro, wearing a mustache and beard…. Other witnesses variously described the car as yellow, as yellow with an off-white top, and yellow with an egg-shell white top. The car was also described as being medium to large in size.
+
+A few days after the incident a Los Angeles police officer spotted a yellow Lincoln with an off-white top in front of the defendants' home and spoke with them, explaining that he was investigating a robbery. He noted that the suspects fit the description of the man and woman who had committed the crime, except that the man did not have a beard, though he admitted that he sometimes wore one. Later that day the Los Angeles police arrested the two suspects, Malcolm Ricardo Collins, and his wife, Janet.
+
+The evidence against the couple was scant, and the case rested heavily on the identification by the victim and the witness, John Bass. Unfortunately for the prosecution, neither proved to be a star on the witness stand. The victim could not identify Janet as the perpetrator and hadn't seen the driver at all. John Bass had not seen the perpetrator and said at the police lineup that he could not positively identify Malcolm Collins as the driver. And so, it seemed, the case was falling apart.
+
+Enter the star witness, described in the California Supreme Court opinion only as「an instructor of mathematics at a state college.」This witness testified that the fact that the defendants were「a Caucasian woman with a blond ponytail…[and] a Negro with a beard and mustache」who drove a partly yellow automobile was enough to convict the couple. To illustrate its point, the prosecution presented this table, quoted here verbatim from the supreme court decision:
+
+| Characteristic | Individual Probability |
+| --- | --- |
+| Partly yellow automobile | 1/10 |
+| Man with mustache | 1/4 |
+| Negro man with beard | 1/10 |
+| Girl with ponytail | 1/10 |
+| Girl with blond hair | 1/3 |
+| Interracial couple in car | 1/1,000 |
+
+The math instructor called by the prosecution said that the product rule applies to this data. By multiplying all the probabilities, one concludes that the chances of a couple fitting all these distinctive characteristics are 1 in 12 million. Accordingly, he said, one could infer that the chances that the couple was innocent were 1 in 12 million. The prosecutor then pointed out that these individual probabilities were estimates and invited the jurors to supply their own guesses and then do the math. He himself, he said, believed they were conservative estimates, and the probability he came up with employing the factors he assigned was more like 1 in 1 billion. The jury bought it and convicted the couple.
+
+What is wrong with this picture? For one thing, as we've seen, in order to find a compound probability by multiplying the component probabilities, the categories have to be independent, and in this case they clearly aren't. For example, the table quotes the chance of observing a「Negro man with beard」as 1 in 10 and a「man with mustache」as 1 in 4. But most men with a beard also have a mustache, so if you observe a「Negro man with beard,」the chances are no longer 1 in 4 that the man you observe has a mustache — they are much higher. That issue can be remedied if you eliminate the category「Negro man with beard.」Then the product of the probabilities falls to about 1 in 1 million.
+
+There is another error in the analysis: the relevant probability is not the one stated above — the probability that a couple selected at random will match the suspects' description. Rather, the relevant probability is the chance that a couple matching all these characteristics is the guilty couple. The former might be 1 in 1 million. But as for the latter, the population of the area adjoining the one where the crime was committed was several million, so you might reasonably expect there to be 2 or 3 couples in the area who matched the description. In that case the probability that a couple who matched the description was guilty, based on this evidence alone (which is pretty much all the prosecution had), is only 1 in 2 or 3. Hardly beyond a reasonable doubt. For these reasons the supreme court overturned Collins's conviction.
+
+The use of probability and statistics in modern courtrooms is still a controversial subject. In the Collins case the California Supreme Court derided what it called「trial by mathematics,」but it left the door open to more「proper applications of mathematical techniques.」In the ensuing years, courts rarely considered mathematical arguments, but even when attorneys and judges don't quote explicit probabilities or mathematical theorems, they do often employ this sort of reasoning, as do jurors when they weigh the evidence. Moreover, statistical arguments are becoming increasingly important because of the necessity of assessing DNA evidence. Unfortunately, with this increased importance has not come increased understanding on the part of attorneys, judges, or juries. As explained by Thomas Lyon, who teaches probability and the law at the University of Southern California,「Few students take a probability in law course, and few attorneys feel it has a place.」23 In law as in other realms, the understanding of randomness can reveal hidden layers of truth, but only to those who possess the tools to uncover them. In the next chapter we shall consider the story of the first man to study those tools systematically.
+
+### Notes
+
+1 Daniel Kahneman, Paul Slovic, and Amos Tversky, eds., Judgment under Uncertainty: Heuristics and Biases (Cambridge: Cambridge University Press, 1982), pp. 90–98.
+
+2 Amos Tversky and Daniel Kahneman,「Extensional versus Intuitive Reasoning: The Conjunction Fallacy in Probability Judgment,」Psychological Review 90, no. 4 (October 1983): 293–315.
+
+3 Craig R. Fox and Richard Birke,「Forecasting Trial Outcomes: Lawyers Assign Higher Probabilities to Possibilities That Are Described in Greater Detail,」Law and Human Behavior 26, no. 2 (April 2002): 159–73.
+
+4 Plato, The Dialogues of Plato, trans. Benjamin Jowett (Boston: Colonial Press, 1899), p. 116.
+
+5 Plato, Theaetetus (Whitefish, Mont.: Kessinger, 2004), p. 25.
+
+6 Amos Tversky and Daniel Kahneman,「Availability: A Heuristic for Judging Frequency and Probability,」Cognitive Psychology 5 (1973): 207–32.
+
+7 Reid Hastie and Robyn M. Dawes, Rational Choice in an Uncertain World: The Psychology and Judgement of Decision Making (Thousand Oaks, Calif.: Sage, 2001), p. 87.
+
+8 Robert M. Reyes, William C. Thompson, and Gordon H. Bower,「Judgmental Biases Resulting from Differing Availabilities of Arguments,」Journal of Personality and Social Psychology 39, no. 1 (1980): 2–12.
+
+9 Robert Kaplan, The Nothing That Is: A Natural History of Zero (London: Oxford University Press, 1999), pp. 15–17.
+
+10 Cicero, quoted in Morris Kline, Mathematical Thought from Ancient to Modern Times (London: Oxford University Press, 1972), 1:179.
+
+11 Morris Kline, Mathematics in Western Culture (London: Oxford University Press, 1953), p. 86.
+
+12 Kline, Mathematical Thought, pp. 178–79.
+
+13 Cicero, quoted in Warren Weaver, Lady Luck (Mineola, N.Y.: Dover Publications, 1982), p. 53.
+
+14 Cicero, quoted in F. N. David, Gods, Games and Gambling: A History of Probability and Statistical Ideas (Mineola, N.Y.: Dover Publications, 1998), pp. 24–26.
+
+15 Cicero, quoted in Bart K. Holland, What Are the Chances? Voodoo Deaths, Office Gossip, and Other Adventures in Probability (Baltimore: Johns Hopkins University Press, 2002), p. 24.
+
+16 Ibid., p. 25.
+
+17 James Franklin, The Science of Conjecture: Evidence and Probability before Pascal (Baltimore: Johns Hopkins University Press, 2001), pp. 4, 8.
+
+18 Quoted ibid., p. 13.
+
+19 Quoted ibid., p. 14.
+
+20 William C. Thompson, Franco Taroni, and Colin G. G. Aitken,「How the Probability of a False Positive Affects the Value of DNA Evidence,」Journal of Forensic Sciences 48, no. 1 (January 2003): 1–8.
+
+21 Ibid., p. 2. The story is recounted in Bill Braun,「Lawyers Seek to Overturn Rape Conviction,」Tulsa World, November 22, 1996. See also www.innocenceproject.org. (Durham was released in 1997.)
+
+22 People v. Collins, 68 Calif. 2d 319, 438 P.2d 33, 66 Cal. Rptr. 497 (1968).
+
+23 Thomas Lyon, private communication.
+
+0201真理与半真理的法则
+
+仰望晴朗无月的夜空，人的肉眼能看到数以千计闪烁的光点。随意散布于天空的星星，存在着许多模式：这里有一头狮子，那里是一个水斗。发现模式的能力既能够成为一种力量，也能够变成一种弱点。牛顿在思索物体下落的模式中创造了万有引力定律；另一些人则发现，当他们穿着某双脏袜子时，运动成绩会明显提高，于是不再穿干净的袜子。在自然界的所有模式中，我们怎样才能分辨哪些具有真正的意义？就本质而言，这个分辨能力的培养需要通过实践来完成，因此如下事实也许不会让你感到太过吃惊：相较于几何这个诞生于一帮榆木脑袋的哲学家创造的整套公理、证明和定理的学科，随机性的理论萌发自那些专注于咒语和赌博的脑袋。在随机性理论发展的历史场景中，我们更容易联想到的是骰子或魔法药水，而不是书本或卷轴。
+
+究其根本，随机性理论不过是一种成为文化的常识。但它同时也充满了种种微妙之处，在它的领域中，伟大的专家犯下了流传后世的错误，职业赌徒得到了正确的结论，尽管这些结论不得不就此与他们那狼藉的声名相伴。要理解随机性并克服我们的错误概念，需要的是经验和大量细致的思考。因此，作为本书阅读旅途的起点，我们将介绍概率论的若干基本法则，以及发现、理解和应用这些法则时面临的挑战。在上一章中，我们已经认识了卡尼曼和特沃斯基这两位专家，他们在阐明人们的错误概念方面做了大量的工作，而其中的一个实验，现在已经成为有关概率法则直觉理解方面的经典工作。请各位读者都加入这个实验，并以此了解你自己的一些概率直觉吧。
+
+设想有一位名叫琳达的女性，31 岁，单身，坦率敢言，非常聪明。她大学时主修哲学，其间非常关心歧视与社会公平方面的问题，并参加了反核武器游行。在对 88 名受试者进行了这样一番描述后，特沃斯基和卡尼曼让受试者根据自己认定的可能性，以 1 分（最可能）到 8 分（最不可能）给下列陈述评分。根据最可能到最不可能的顺序，排序后的结果如下：
+
+乍看之下，结果似乎没什么不寻常的地方：对琳达的描述本就是根据一名典型的女权主义者而非一名银行出纳或保险推销员设计的。但现在让我们注意其中的三种可能性和相应的得分，并按最可能到最不可能的顺序排列如下。这也是 85% 的实验结果给出的顺序：
+
+如果你觉得这些结果似乎没什么奇怪的，那么卡尼曼和特沃斯基成功地把你给愚弄了：因为琳达是一名银行出纳并在女权运动中表现活跃的可能性，比琳达是一名银行出纳的可能性还要大，而这违背了有关概率的第一条 —— 也是最基础的一条 —— 定律：两个事件同时发生的概率，永远不会比各事件单独发生的概率大。为什么呢？这只不过是最简单的算术：事件 A 发生的概率 = 事件 A 和事件 B 都发生的概率 + 事件 A 发生而事件 B 不发生的概率。
+
+卡尼曼和特沃斯基对此结果并不感到惊讶，因为受试者面对的是很多可能的情况，当这些可能的情况被打散后，上面三个陈述之间的联系很容易被人遗忘。因此，卡尼曼和特沃斯基向另一组受试者描述了琳达的情况，但只使用下面三个陈述进行打分：
+
+琳达在女权运动中表现活跃。
+
+琳达是一名银行出纳，并且在女权运动中表现活跃。
+
+琳达是一名银行出纳。
+
+令他们惊讶的是，87% 的受试者仍然认为琳达是一名银行出纳且在女权运动中表现活跃的可能性，比琳达是一名银行出纳的可能性要大。因此，两位研究者更进一步：他们明确要求 36 名还算有经验的研究生，在了解了概率第一定律之后，再来考虑他们的回答。可即使提示到这个程度，也有两名受试者执着于那个不合逻辑的答案。
+
+在这个顽固的错误中，卡尼曼和特沃斯基注意到一件有趣的事情：如果问题与受试者所了解的琳达的情况没什么关系，同样的错误就不会发生。例如，假设卡尼曼和特沃斯基问的是下列陈述中哪一个最可能：
+
+琳达拥有 IHOP（美国一家连锁餐厅）的特许经营权。
+
+琳达做了变性手术，现在名叫拉里。
+
+琳达做了变性手术，现在名叫拉里，并且拥有 IHOP 的特许经营权。
+
+这时几乎没人认为最后一个陈述比其余两个更可能。
+
+卡尼曼和特沃斯基由此得出结论，由于刚开始给琳达的特征描述使「琳达在女权运动中表现活跃」这一细节听起来很合理，因此当这一细节与银行出纳的猜想加在一起时，整个陈述的可信度就更高了。但在琳达的顽童岁月和她生活于我们星球上的第 40 个年头之间，许多事情可能会发生。她可能会皈依某个激进主义的宗教派别，可能与某个剃着平头的男人结了婚，并在左边屁股上文了一个纳粹万字符，或者因为忙于生活中的其他事情而不再积极参与政治活动。这些情况 —— 以及许多其他情况 —— 中的每一个都可能使她不再是女权运动的活跃分子。因此，额外加入的细节实际上减少了整个陈述发生的可能性，哪怕这个细节看来使得整个描述更显精确。
+
+假设一件事的细节与人们对这件事预设的场景相吻合，那么这样的细节越多看起来越真实，人们越觉得它可能会发生 —— 尽管任何不确定细节的加入，都会使总的描述变得更不可能。概率的逻辑与人们评价不确定性事件之间的这个矛盾，令卡尼曼和特沃斯基很感兴趣，因为在现实中，这可能会带来不公平或错误的评判。「一名被告在发现尸体后离开罪案现场」，或者「一名被告在发现尸体后离开罪案现场，他担心自己因这起令人毛骨悚然的谋杀案而被起诉」，这两个陈诉中哪一个更有可能？「总统将加大对教育的资助力度」，或者「总统将取消其他资助，用省下来的资金加大对教育的资助力度」，前者是不是比后者更有可能？「公司明年的销售额将会增长」，或者「由于今年是公司的丰收年，因此明年的销售额将增长」，前者是不是比后者更有可能？所有这些陈述中，尽管后者的发生概率总是小于前者，但它们听起来都好像更有可能发生。或者如卡尼曼和特沃斯基所说：「一个好的故事常常比一个不那么令人满意的（解释）更不可能。」
+
+卡尼曼和特沃斯基还发现，即使是受过严格训练的医生，也会犯同样的错误。他们俩给一群实习医生描述一个严重的病症：肺部血栓（在肺部的血液凝块）。人如果得了这个小毛病，就可能出现一系列症状中的一个或多个。某些症状 —— 如半身不遂 —— 并不常见，而另一些 —— 如呼吸急促 —— 很可能发生。下列情况中，哪一个更可能发生呢？是血栓患者只表现出半身不遂，还是患者同时表现出半身不遂且呼吸急促？卡尼曼和特沃斯基发现，91% 的医生相信，血栓仅仅导致一种罕见症状的可能性，要小于导致一种罕见症状加一种常见症状的可能性。（这些医生为自己辩解说，患者并不会走进诊室就跟医生说「我的肺里有个血栓，猜猜我有啥症状」之类的话。）
+
+多年后，卡尼曼的一名学生与另一名研究者一道，发现律师在进行案情判断时，也沦为这一谬误的受害者。不论是刑事案还是民事案，当事人一般都要通过律师了解进入审判程序后可能发生的情况。无罪或调解或数额不等的赔偿，各自的可能性有多少？尽管律师不会用具体的概率值表达意见，却会就各种结果的相对可能性做出个人的预估，并据此提出建议。在这种情况下，研究者同样发现，律师认为那些细节更丰富的描述，其发生概率更高。在葆拉·琼斯对时任总统克林顿的民事诉讼中，有人请 200 名执业律师对案子不会走完全部司法程序的可能性进行预测。对其中一些受试者，诉讼提前结束的可能性被分解为各种具体的原因，例如调解、撤回指控或被法官驳回；而对其他受试者，则只要求他们简单地进行是与否的预测。研究者通过对比发现，被提供了案子提前结束的具体原因的一组受试者，更倾向于预测审理将早早结束。
+
+对周围环境中各种现象之间有意义的联系进行评判的能力如此重要，以至在某些情况下，即使我们实际追寻的东西不过是海市蜃楼般的幻影，也值得我们为之付出。假设一个饥饿的穴居人看到远处岩石上有一点儿模糊的绿色，他可以选择置之不理，结果错过了一条肥美可口的蜥蜴；他也可以跑过去发起突袭，却发现那实际上只是几片稻草叶。不过前一种做法的代价显然更大。因此，根据这个理论，我们可能已经在进化的筛选下，以偶尔犯下第二种错误为代价，来避免后果更加严重的第一种错误。
+
+在数学发展的历程中，古希腊人扮演了现代数学处理方式发明人的角色。这种处理方式就是：公理、证明、定理、更多的证明、更多的定理，以此类推。但到了 20 世纪 30 年代，原籍奥地利的美国数学家哥德尔 —— 同时也是爱因斯坦的朋友 —— 证明了这种处理方式存在缺陷。根据他的证明，大多数数学要么自相矛盾，要么一定包含某些无法证明的真理。但数学仍然毫无争议地按照古希腊或欧几里得的方式前进着。古希腊这些几何天才创造了一个小小的公理集，也就是那些无须证明就被接受的陈述，然后根据它们，证明得到许多美丽的定理，详细给出线、面、三角形与其他几何形状的性质。比如，他们根据这些知识认识到地球是一个球体，甚至还计算出它的半径。人们一定会想，为什么这样一个文明能够产生诸如欧几里得《几何原本》第一卷之命题 29「一条直线与两条平行直线相交，则所成的内错角相等，同位角相等，且同旁内角之和等于两直角」这样的定理，却未能创造一个理论，证明在扔两个骰子时，把你的雪佛兰科尔维特跑车押在扔出两个 6 点上是个很不明智的做法。
+
+事实上，古希腊人没有科尔维特跑车，也没有骰子。不过他们确实有赌瘾，还有着数量足够的被宰杀的牲畜。因此，他们玩的是由牲畜的踵骨制成的距骨。一个距骨有 6 面，但落下后只能停在其中的 4 个面上。现代学者注意到，由于距骨本身的构造，它停在这 4 个面上的机会并不均等：停在其中两个面的机会大概各有 10%，而停在另两个面的机会各有 40%。一种常见的距骨游戏要使用 4 个距骨，而最好的结果是扔出的 4 个面都不相同（称一个维纳斯）。这种情况很罕见，但并非最罕见。扔出维纳斯的可能性约为 384/10000，不过缺少随机性理论的古希腊人并不知道这一点。
+
+在寻求神谕时，古希腊人也使用距骨。提问者能从神谕中得到据称是来自神灵本身的回答。历史学家希罗多德以及荷马、埃斯库罗斯和索福克勒斯这些作家的记述表明，许多杰出的古希腊人的许多重要抉择，都是根据神谕做出的。尽管距骨在赌博和宗教中的地位如此重要，但是古希腊人从未试图理解距骨游戏中的规律。
+
+为什么古希腊人没能发展出概率论？一个原因在于许多古希腊人相信，未来是按神的意志发展的。如果扔距骨的结果意味着「跟那个在学校木板房后的摔跤比赛中把你牢牢扣住的又矮又壮的斯巴达姑娘结婚」，古希腊人不会觉得这只不过是随机过程中的一个走运（或不走运）的结果，而只会视其为神的旨意。按照这种看法，通过理解随机性寻找答案的做法根本就是南辕北辙。因此在这种观念下，似乎不太可能诞生对随机性进行数学预测的理论。而另一个原因大概恰恰就是那个使古希腊人成为伟大数学家的哲学观念：他们执着于通过逻辑和公理证明所得的绝对真理，对不确定的命题却眉头紧蹙。例如，在柏拉图《对话录·斐多篇》中，西米阿斯对苏格拉底说，「有关似然性的论证都是骗人的东西」，并指出，「除非在使用过程中非常谨慎，否则它们很容易具有欺骗性 —— 不管是在几何中还是在其他事情上」。这个说法正好预见了卡尼曼和特沃斯基的工作。而在《泰阿泰德篇》中，苏格拉底说，任何「在几何中使用概率和似然性论证」的数学家「都称不上第一流」。不过，就算古希腊人认为概率学家能够配得上第一流的称号，但在无法保存大规模记录的当时，要创造出一个自洽的概率理论仍然十分困难，因为如果我们想根据过往的历史估计事件发生的频率以及概率，就会发现人的记忆力实在是差得可怜。
+
+所有长度为 6 个字母且第五个字母为 n 的英文单词，和所有以 ing 结尾的有 6 个字母的英文单词，哪一个更多？大多数人选择了后者。为什么呢？因为相较于一般的第五个字母为 n 的 6 个字母的单词，人们更容易记起以 ing 结尾的单词。但我们不必查《牛津英语词典》—— 甚至也不用知道如何数数 —— 就可以证明这个猜测是错误的：第五个字母为 n 的 6 个字母的单词必然包含所有以 ing 结尾的 6 个字母的单词。心理学家称这类错误为易取性偏误，因为在重构过去时，我们对那些最为生动从而也最容易回想起来的事物，赋予了无来由的重要性。
+
+易取性偏误的可恶之处，在于它扭曲了我们对过往以及周围事物的认知，从而偷偷地扭曲了我们对世界的看法。举例来说，人们总是倾向于高估无家可归者中精神疾病患者的比例，因为当我们碰到一个行为正常的无家可归者时，我们并不会留意他，跟朋友们聊天时也不会提到这个凑巧遇见的不起眼的人；但如果我们碰到的流浪者边走路边重重地跺脚，口中唱着《圣者进行曲》，还朝着并不存在的同伴挥舞手臂，那么我们的确更容易对他印象深刻。杂货店有 5 个收银台，而你正好排到了结账最慢的那一队，这种可能性有多大？除非你被下了咒，否则这个可能性大概是 1/5。可为什么在事后回想时，你总觉得有一种超自然的力量让你选中了那一队呢？那是因为当一切都天下太平时，你只会把注意力集中到其他更重要的事情上。但如果排在你前面的那位购物车里只放了一件商品的女士，一定要搞清楚为什么她买的鸡肉是 1.5 美元，而肉品柜台中的标价是 1.49 美元，那么这件事一定令你难以忘却。
+
+在一个模拟审判中，易取性偏误对判断和决策可能造成的影响得到彻底的展示。在这项研究中，一名司机被指控因醉驾撞上一辆垃圾车。在陪审团得到的证据里，支持和推翻这个指控的证据分量相等。关键在于其中一组陪审员得到的无罪证据十分「苍白」：垃圾车车主在质询中承认，他的车是灰色的，因此在夜间很难被看到。而另一组陪审员得到的是一个更「生动」的版本：垃圾车车主在质询中承认，他的车是灰色的，因此在夜间很难被看到。车主强调说，他的车之所以是灰色的，是因为「灰色不显脏，不然你想要我怎么样，把它漆成粉红色」？有罪证据同样有两个版本，只不过给第一组的是「生动版」，而第二组的是「苍白版」。这些陪审员被要求给出一个有罪 / 无罪的分值，而说明生动的一方总是会胜出。如果裁决时间被延期 48 小时，这种由于描述的生动性造成的影响就更加明显了（大概是因为此时需要回忆更为久远的事情）。
+
+如果我们希望从过去的事情中获得有意义的结果，那么易取性偏误通过扭曲对过去的看法使这一努力被复杂化了。对我们如此，对古希腊人也如此。不过古希腊人在通往可能出现的随机性理论的道路上，还另有一个重大也是非常实在的阻碍：尽管基本概率只需要用到算术，但是古希腊人不懂算术，至少不懂那种形式便于使用的算术。举例来说，公元前 5 世纪，在处于希腊文明巅峰的雅典，人们用字母代码来记数。希腊字母表的 24 个字母中，前 9 个字母代表了我们称为 1 到 9 的 9 个数字；接下去的 9 个字母则代表 10、20、30 等等；而最后的 6 个字母加上 3 个额外的符号代表前 9 个整百数（100、200…900）。如果你到现在仍然觉得做算术挺麻烦的，那么试试从 ΩΨΠ 中减去 ΔΓΘ 吧！更糟的是，当时根本没人在乎这些个位、十位和百位数的书写次序：有时百位数被写在最前面，有时又在最后面，有时根本就没什么次序。最后一点：古希腊没有数字 0。
+
+直到亚历山大大帝于公元前 331 年侵入巴比伦时，古希腊才有了 0 的概念，但即便亚历山大大帝已经开始用 0 表示一个数的缺失，它也没有被作为一个普通数字来使用。现代数学中的数字 0 有两个关键性质：在加法中，它是唯一不改变被加数值的数；而在乘法中，它是唯一与任何数相乘却不改变自身值的数。这个概念直到公元 9 世纪才由印度数学家摩诃毗罗引入。
+
+哪怕是在可用的记数方式出现之后，人们也需要若干世纪才开始将加减乘除作为算术的基本运算，并逐步认识到一个便利的符号系统能使这些运算变得更为容易。因此，直到 16 世纪，西方世界才真正为概率论的发展做好准备。不过，在理解随机性的方向上迈出第一步的，却是古希腊人的征服者 —— 罗马人，尽管他们笨拙的计算体系仍然是一个障碍。
+
+罗马人对数学通常是不屑一顾的，至少对古希腊人数学的态度是如此。用罗马政治家西塞罗（公元前 106 年至前 43 年）的话来说：「希腊人赋予几何学家以最高荣誉；相应地，在希腊人创造的事物中，没有什么是比数学更为辉煌的东西了。但作为数学这门技艺的极致，我们确立了它在测量与计数中的实用性。」的确，如果说古希腊人的教科书注重抽象三角形的全等性证明，那么一本典型的罗马教材会关注如何在敌人占据着对岸时确定河流宽度之类的事情。正是由于侧重点不同，当我们看到在古希腊人中诞生了阿基米德、丢番图、欧几里得、欧多克索斯、毕达哥拉斯和泰勒斯等数学巨星，而在罗马人中却没有产生哪怕一位数学家时，我们也就不觉得奇怪了。在罗马文化中，享乐与战争 —— 而非真理和美 —— 占据着中心地位。也正是因为注重实用，罗马人看到了概率的价值。一方面罗马人不觉得抽象几何有什么用处，另一方面西塞罗却写道：「偶然性正是生活之向导。」
+
+西塞罗或许是古典时期最伟大的概率大师。对于赌博的胜利来自神的干预这一当时为人普遍接受的解释，西塞罗使用概率加以反驳。他写道：「那些经常赌博的人迟早都会扔出一次维纳斯；而不时地，他们也的确能连着扔出两次甚至三次维纳斯。但我们难道就准备因此而低能地确信，这种事情的发生是因为维纳斯的亲自介入，而不是因为纯粹的好运气？」西塞罗相信，即使某事件的发生只是纯运气的结果，它也可以被预计和预测。他甚至使用统计论证奚落人们对星相学的迷信。尽管星相学在罗马是非法的，但它仍然活了下来，而且活得还很不错。这可惹恼了西塞罗。他注意到公元前 216 年在坎尼，汉尼拔率领约 5 万迦太基及其盟国部队，将一支人数远超自身的罗马军队击溃，并杀死了 8 万罗马士兵中的 6 万人。「难道所有在坎尼倒下的罗马人，他们的占星结果都一样？」西塞罗这样问道，「但他们最终的命运都相同。」数千年后，《自然》杂志上发表了一项关于星相学预测的正确性的研究，这项研究得出同样的结论。如果西塞罗知道这一点的话，他一定会大感振奋。另一方面，今天的《纽约邮报》却建议我要客观地看待批评，并相应做出或许必要的任何改变，仅仅因为我是射手座。
+
+西塞罗在随机性领域留下的主要遗产，就是他使用的 probabilis 这一术语 —— 我们现在使用的「概率」一词的词源。不过，查士丁尼大帝在公元 6 世纪编撰的《罗马民法大全》，才是概率一词作为领域常用语而出现的首份文本。要正确理解罗马人为何把数学思想应用到法律理论中，就必须了解有关历史的来龙去脉：黑暗时代的罗马法是依照日耳曼部落的做法制定的。说实话，这并没有什么不好。举个做证方面的例子，假设有一名丈夫现在被指控和为他妻子做外袍的织娘有染，但他对此完全否认，那么他的证词的真实性，并非取决于他能否经受住一场尖锐控辩中的种种严厉盘问，而是看他能不能一口咬定这个说法，哪怕当烧红的铁块烙在身上时也绝不改口。（如果我们把这个习俗再带回到现在的法律中，相信通过庭外调解来解决的离婚案会多很多。）如果一名被告说马车夫根本就没想让车停下来，而另一名专家证人却说，蹄印表明车夫已经勒住了马缰绳，那么日耳曼人的条令就为打破这种僵持给出一个简单的办法：让两边各挑出一个人来，用矛和盾干一仗，输者即做伪证者，要被砍去右手。
+
+为了给这种单纯基于武力的审判方式提供一种替代，或至少是提供一些补充，罗马人试图以数学的精确，来解救这种陈旧而武断的体系的不足。从这个历史背景来看，罗马人所持有的公正的概念中，已经包含了非常先进的智力理念。罗马人认识到证据和证词之间常常会互相矛盾，同时罗马人还认识到，解决这些矛盾的最好方法莫过于将无法避免的不确定性因素加以量化。正是基于这样的认识，罗马人创造出「半证据」的概念，并在那些没有完全可靠的理由被采信或被拒绝采信证言证据的案件中加以应用。在一些案件中，涉及证据的罗马律令甚至还包含更为精细的规定。例如教令规定：「主教不应被判有罪，除非有 72 名证人证明他有罪…… 司铎枢机不应被判有罪，除非有 44 名证人做证；罗马城的助祭枢机不应被判有罪，除非有 36 名证人做证；副助祭、侍僧、驱魔人、诵经人或看门人不应被判有罪，除非有 7 名证人做证。」犯罪嫌疑人如果自己想在这样的条文下被认定有罪，那么他不仅要犯下被指控的罪行，还得卖票请人到罪案现场观摩指点，才能凑齐足够的证人。不过，尽管存在这些不足，能够认识到不同证词的真实性也可能不同，并且认识到有必要找到规则对这些不同的真实性组合进行最终的判断，这本身就是一个很好的开端。于是，恰恰是在看来不大可能的罗马审判庭上，诞生了一套基于概率的系统化规则。
+
+不幸的是，蹒跚于 VIII 和 XIV 这样的数字之中的算术，仍然难以灵活地使用各种数量。尽管罗马法开始具备一定的法律理性和自洽性，但是最终还是缺乏数学上的有效性。例如，在罗马法中，两个「半证据」就可以构成一个完整的证据。对于一个还不习惯量化思考方式的头脑而言，这听起来还是蛮合理的。不过在分数运算已经为人熟知的今天，这就有问题了：如果两个半证据可以构成一个完全确定的证据，那么三个半证据会得出什么结果？根据概率组合的正确方式，不仅两个半证据只能给出一个仍然不确定的证据，而且任意有限多个只具有部分可靠性的证据加在一起，仍然不可能给出一个完全确定的证据：因为将概率组合起来的运算，不是加法，而是乘法。
+
+这就是我们的下一条定律 —— 概率组合规则： 如果两个可能事件 A 与 B 相互独立，则 A 与 B 同时发生的概率，等于各自单独发生的概率的乘积。假设一名已婚者平均每年有约 1/50 的可能性会离婚，而一名警察每年有约 1/5000 的机会殉职，那么一名已婚警察在同一年离婚并殉职的可能性有多大？根据上面的规则，如果这两个事件相互独立，则概率约为 1/50×1/5000=1/250000。当然这两个事件并非独立，而是互有关联的：如果你死了（真倒霉！）就没办法离婚了。因此，碰到这种霉运透顶的情况的可能性，实际要比二十五万分之一还要少一点儿。
+
+为什么是相乘而不是相加呢？现在让我们假设，你做了一套卡片，卡片上印着你迄今为止通过婚恋网站相亲见过面的 100 位男士。这些家伙在个人网页上挂着的照片个个如同汤姆·克鲁斯，实际却跟丹尼·德维托有的一拼；再假设在每张照片的背面，你都记下了与此人有关的一些数据，比如诚不诚实，或者有没有魅力等；最后，再假设这些你希望中的柏拉图式的恋人，在诚实和魅力等每一项指标上，都有 1/10 的可能性得到一个肯定的评价。那么，你收藏的这 100 个人，在诚实和魅力两项上都合格的人有多少呢？让我们先考查诚实这个指标。（当然，先考查魅力也是一样的。）既然有 1/10 的照片我们在诚实这一项的评分上是「是」，那么在 100 张照片中就有 10 张这类的照片；而在这 10 张照片中，被评价为有魅力的又有几张呢？那就再来 1/10，也就是硕果仅存的 1 张照片。第一个 1/10 将可能的选择减少到所有照片的 1/10，第二个 1/10 进一步将可能选择的数量降到了 1/10 的 1/10，也就是 1/100。这就是使用乘法的原因。因此，如果你的要求不仅仅是诚实和有魅力，你就得一直这样乘下去，所以…… 好吧，祝你好运！
+
+继续我们的话题之前，有一个重要的细节值得再看一次： 如果两个可能事件 A 与 B 相互独立 。假设航班上只剩下一个座位，但还有两名乘客可能会登机。进一步假设，由以往经验可知，预订了座位的旅客中，有 2/3 确实会乘坐航班。根据乘法规则，登机口的乘务人员可以算出，大概有 2/3×2/3 即约 44% 的可能性，她将面对一位满脸不快的顾客。另一方面，因为两名乘客都没来而使飞机带着一个空座位起飞的可能性是 1/3×1/3，或者只有约 11%。但这个结果是在两名乘客的到来与否相互独立的假设下得到的。如果他们是同路的旅伴，上面的分析就错了：两人同时乘机的可能性跟其中一个人来乘机的可能性是一样的，都是 2/3。因此，一定要记住，利用乘法将单个概率组合成复合概率的做法，只有在这些事件的发生不以任何方式相互依赖时，才是正确的。
+
+我们方才使用的规则，也可用于有关半证据的罗马法中：两个独立的半证据同时都不成立的可能性是 1/4，因此两个半证据构成的不是一个完整证据，而是完整证据的 3/4。在该用乘法的地方，罗马人用了加法。
+
+但在某些情况下，如果我们希望知道的是两个事件中至少有一个会发生的概率，而不是两者同时发生的概率，那么此时概率必须相加。这就是下一条定律： 如果一个事件有多个不同且互不重叠的可能结果 A 、 B 、 C 等，那么结果 A 或结果 B 发生的可能性，等于结果 A 和结果 B 各自单独发生的概率之和，而所有可能结果（ A 、 B 、 C 等）各自单独发生的概率之和等于 1（即 100%）。如果你想知道两个独立事件 A 与 B 同时发生的可能性，就用乘法；如果想知道两个互斥事件 A 或 B 发生的可能性，就用加法。回到客机的问题上：登机口的乘务员何时应该把概率相加而非相乘呢？如果她想知道的是两名乘客都来或都不来的可能性，就应该用加法将两个概率相加，根据之前的计算可知，这个概率是 55%。
+
+这三条定律虽然简单，却构成了概率论的大部分基础。如果使用得当，我们就能更好地洞察自然及日常世界的运作。在平时的决策中，我们一直在使用这些定律，但跟罗马人一样，我们的用法并不总是恰当的。
+
+看看过去，不以为然地摇摇头，然后写下《腐化堕落的罗马人》（美国学乐出版社，1994）这类标题的书，并不是什么难事。但为了不让我们毫无缘由地自满自得起来，现在来看看在司法系统中，我们迄今所讨论的这些基本定律的一些应用，并以之作为本章的结束。下面这些讨论所揭示的东西，应该足以让任何沉醉于文化优越感的人冷静下来。
+
+一个好消息是，我们不再有所谓半证据了。不过我们确实有着类似于 999000/1000000 证据这样的东西。举例来说，我们常常会看到 DNA（脱氧核糖核酸）分析专家在罪案庭审中出庭做证，称在罪案现场所获取的 DNA 样本与某犯罪嫌疑人的 DNA 样本相匹配。这些匹配有多确定呢？在最开始引入 DNA 证据时，不少专家证明说 DNA 检验不可能存在假阳性。如今的 DNA 专家一般认为，随机选一个人，其 DNA 与罪案中的样本匹配的可能性，不到百万分之一或十亿分之一。在这样的可能性下，如果法官产生「让这家伙死在牢里」的想法，那么人们也很难去责怪他。但是另外还有一个统计数据，这个数据通常是不会告知陪审团的，那就是整个实验操作过程中可能出错的数据。例如，在采集和使用样本时，样本无意间可能会被混到一起或颠倒了，或者实验结果被曲解，又或者结果报告出了错。这些错误都很少发生，却远非随机匹配那样罕见。例如费城犯罪实验室就承认，曾在一起强奸案中不慎对调了被告和受害人的参考样本，而基因检测公司 Cellmark Diagnostics 也承认犯过类似的错误。不幸的是，法庭出示的有关 DNA 匹配的统计数据如此有力，以致尽管有 11 名证人提供了不在场证据，俄克拉何马州的一个法庭仍将一位名叫蒂莫西·达拉谟的男子处以超过 3100 年的徒刑。后来才发现，在最初的分析中，实验室未能将强奸犯的 DNA 和达拉谟的 DNA 从被检液体中完全分离，当对两者的 DNA 进行比较时，就得出阳性结果。这个错误后来在重检中被发现，达拉谟因此获释，但此时他已经在监狱中待了近 4 年。
+
+关于人为因素造成的错误率，不同的人给出的估计值也有所不同，但许多专家认为它大致是百分之一左右。不过，由于许多实验室的错误率从未被测量，因此法庭通常不会接受此类统计值作为证据。就算法庭接受了这些有关假阳性的证据，陪审员又会怎样评判它们的效力呢？多数陪审员都会假设，在给定了两类错误概率 —— 十亿分之一的随机匹配概率和百分之一的因实验室误操作造成的匹配概率 —— 后，总错误率应是两者之间的某个值，比如五百万分之一，对大多数陪审员而言，这个概率仍不足以让人合理质疑。不过，通过概率论的计算法则，却能得到一个非常不同的结果。
+
+求解思路如下：既然两种错误都非常罕见，那么我们可以忽略随机匹配和实验室错误同时发生的可能性，只看发生其中一个或另一个错误的可能性。由加法法则可得，该可能性为实验室错误的概率（百分之一）+ 随机匹配的概率（十亿分之一）。由于前者比后者大 1000 万倍，因此，我们可以用两者中较大的概率，即百分之一，来很好地近似表示这两个概率之和。也就是说，在给定这两种可能的错误源后，我们应当忽视那些自负的专家给出的那个随机匹配错误率，而将注意力集中在可能性大得多的实验室人为错误上。可这恰恰就是法庭通常不允许律师提供的那个数据！因此，那些被再三重复的 DNA 检验是绝对可靠的说法，实际上是一种过分夸张的说法。
+
+这并非孤例。数学应用于现代法律体系时所碰到的问题，一点儿都不比几百年前罗马法庭碰到的问题小。最能展示概率在法律中的应用和误用的著名案例之一，就是 1968 年在加利福尼亚州最高法院审理的「人民诉柯林斯」案。以下就是法庭在裁决时所掌握的有关本案的一些事实。
+
+1964 年 6 月 18 日，大约上午 11：30，刚买完东西的胡安妮塔·布鲁克斯夫人，正沿着洛杉矶城圣佩德罗区的一条小巷回家。她当时拖着一个柳条筐小车，里面放着购买的杂货，钱包就放在购物袋顶上。她用一根藤条拖着小车。当弯腰去捡一个空硬纸盒时，她突然被人推倒在地。她既没有看见这个人，也没有听见其走近。她在摔倒时感到一阵晕眩和疼痛，但仍然挣扎着看到一名年轻女子正从现场跑开。根据布鲁克斯夫人的陈述，这名年轻女子看上去大约重 145 磅 ，穿着「深色的什么衣服」，有着「介于暗金黄色和亮金黄色」的发色，但比被告珍妮特·柯林斯上庭时的发色要深。事情发生后，布鲁克斯夫人马上发现她装有 35～40 美元现金的钱包不见了。
+
+与劫案发生差不多同一时间，居住在小巷街尾的约翰·巴斯，正在屋前给草坪浇水。小巷中传来的「许多喊声和尖叫声」吸引了他的注意。当朝那个方向看过去时，他见到一名女子从巷子里跑出来，并跳上了街对面的一辆黄色汽车。他无法给出这辆汽车的车牌号和型号。汽车马上发动，绕了一大圈绕过另一辆停着的车，而在这条窄路上绕圈时，它一度离巴斯仅 6 英尺 远。巴斯看到开车的是一名黑人男子，留着大胡子和小胡子…… 其他证人则分别描述该车为黄色、黄色带灰白车顶和黄色带蛋壳白色车顶。该车据描述为中到大型车。
+
+事情发生几天后，一名洛杉矶警官在柯林斯夫妇的家门前发现了一辆黄色带灰白车顶的林肯车，他与这对儿夫妻交谈，说明自己正在调查一起抢劫案。他注意到这对儿夫妻很符合目击者对那两个犯下罪行的男女的描述，只是现在这名男子没有大胡子，不过他承认他有时会留大胡子。当天晚些时候，洛杉矶警察逮捕了这两名犯罪嫌疑人 —— 马尔科姆·柯林斯和他的妻子珍妮特。
+
+指控夫妻俩的证据并不充分，因此，该案在很大程度上依赖于受害人与证人巴斯对犯罪嫌疑人的认定。对于检方而言很不幸的是，受害人与证人都算不上证人席上的模范。受害人无法认定珍妮特就是罪犯，也根本没见过那名开车的司机；巴斯没见过抢劫者，而且在警察局给出的一列待指认者中，也不能确认马尔科姆就是那名司机。这件案子看似无法进行下去了。
+
+随后，本案的明星证人登场了。根据加利福尼亚州最高法院判决书中的描述，该证人不过是「一所州立大学的数学讲师」。据其证词，被告是「一名金发梳马尾辫的白人女子……（以及）一名留有大胡子的黑人男子」这一事实，就足以给法庭上的夫妻俩定罪了。为了说明这一观点，检方给出下面的表格，我从最高法院判决中逐字引用如下：
+
+检方传唤的这名数学讲师，将乘法规则应用在这组数据中，由此得到的结论是，出现一对儿符合所有这些不同特征的夫妻，其概率是一千二百万分之一。证人据此认为，法庭上这对夫妻无辜的概率就是一千二百万分之一。检方随即指出，这些独立的概率都是估计值，并请陪审员用自己的估计值做做这道算术题。检察官称，他本人相信这些值都是相当保守的估计，如果用他自己的估计值，那么得到的概率更接近十亿分之一。陪审团接受了这一结果，认定夫妻俩罪名成立。
+
+这个计算错在何处呢？首先，正如我们已经看到的，要通过各组成概率相乘得到复合概率，这些组成概率对应的范畴应相互独立，而在本案中，所列特征明显不是相互独立的。例如，表中称看到一名「留大胡子的黑人男子」的可能性是 1/10，而看到一名「留小胡子的男子」的机会是 1/4，但大多数留大胡子的男子同样留小胡子。因此，如果你看到一名「留大胡子的黑人男子」，那么此人同时留着小胡子的可能性不再是 1/4，而是远大于这个值。我们可以通过剔除「留大胡子的黑人男子」这个特征纠正上述问题，此时得到的概率乘积约为百万分之一。
+
+法庭的分析还有一个错误：真正与案件有关的并不是上面所给的那个概率，即随机选出一对儿夫妻，他们符合对犯罪嫌疑人的描述的概率。真正相关的概率应该是，一对儿符合所有上述特征的夫妻，他们有罪的可能性到底是多少？前一个概率可能是百万分之一，但对后者而言，由于与案发地相邻的区域中有数百万人口，因此，我们可以合理地估计，这一地区有 2～3 对儿夫妻符合上述描述。此时，如果仅根据前面的证据（这些证据差不多也就是检方掌握的所有材料了）判决符合描述的夫妻有罪，这个判决正确的可能性不过是 1/2 或 1/3。这样的概率根本不足以对犯罪嫌疑人合理质疑。由于这些原因，最高法院最终推翻了对柯林斯的定罪。
+
+在现代法庭中使用概率和统计，这仍然是一个有争议的话题。在柯林斯案中，加利福尼亚州最高法院嘲弄了所谓的「数学审判」，却向更多「数学方法的恰当应用」敞开了大门。在其后的若干年里，法庭很少考虑数学论据。但即使律师与法官们没有显性地使用概率或数学定理，他们也确实经常采用这类推理，陪审员在判断证据的有力程度时的做法也一样。不仅如此，由于有必要对 DNA 证据的效力进行评价，统计论据正变得越来越重要。不幸的是，这种不断增长的重要性，并未促使律师、法官或陪审团对概率的理解随之增长。如同在南加利福尼亚州大学教授概率与法律学的托马斯·里昂解释的那样：「没有几个学生会在法律课上使用概率，也没有几个律师觉得概率在其中应该占有一席之地。」如同在其他领域一样，在法律中，对随机性的理解可以揭示隐藏的真理，但这只是对那些掌握了这个真理发掘工具的人才成立。下一章我们将聊聊系统化研究这些工具的第一人。

@@ -136,6 +136,8 @@ There is another error in the analysis: the relevant probability is not the one 
 
 The use of probability and statistics in modern courtrooms is still a controversial subject. In the Collins case the California Supreme Court derided what it called「trial by mathematics,」but it left the door open to more「proper applications of mathematical techniques.」In the ensuing years, courts rarely considered mathematical arguments, but even when attorneys and judges don't quote explicit probabilities or mathematical theorems, they do often employ this sort of reasoning, as do jurors when they weigh the evidence. Moreover, statistical arguments are becoming increasingly important because of the necessity of assessing DNA evidence. Unfortunately, with this increased importance has not come increased understanding on the part of attorneys, judges, or juries. As explained by Thomas Lyon, who teaches probability and the law at the University of Southern California,「Few students take a probability in law course, and few attorneys feel it has a place.」23 In law as in other realms, the understanding of randomness can reveal hidden layers of truth, but only to those who possess the tools to uncover them. In the next chapter we shall consider the story of the first man to study those tools systematically.
 
+## Notes
+
 1 Daniel Kahneman, Paul Slovic, and Amos Tversky, eds., Judgment under Uncertainty: Heuristics and Biases (Cambridge: Cambridge University Press, 1982), pp. 90–98.
 
 2 Amos Tversky and Daniel Kahneman,「Extensional versus Intuitive Reasoning: The Conjunction Fallacy in Probability Judgment,」Psychological Review 90, no. 4 (October 1983): 293–315.
