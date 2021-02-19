@@ -110,3 +110,106 @@ The human brain has evolved to be very efficient at pattern recognition, but as 
 
 Our journey through randomness is now almost at its end. We began with simple rules and went on to learn how they reflect themselves in complex systems. How great is the role of chance in that most important complex system of all — our personal destiny? That’s a difficult question, one that has infused much of what we have considered thus far. And though I can’t hope to answer it fully, I do hope to shed light on it. My conclusion is evident from the following chapter’s title, which is the same as that of this book:「The Drunkard’s Walk.」
 
+## Notes
+
+1 See Arthur Conan Doyle, The History of Spiritualism (New York: G. H. Doran, 1926); and R. L. Moore, In Search of White Crows: Spiritualism, Parapsychology, and American Culture (London: Oxford University Press, 1977).
+
+2 Ray Hyman,「Parapsychological Research: A Tutorial Review and Critical Appraisal,」Proceedings of the IEEE 74, no. 6 (June 1986): 823–49.
+
+3 Michael Faraday,「Experimental Investigation of Table-Moving,」Athenaeum, July 2, 1853, pp. 801–3.
+
+4 Michael Faraday, quoted in Hyman,「Parapsychological Research,」p. 826.
+
+5 Faraday, quoted ibid.
+
+6 See Frank H. Durgin,「The Tinkerbell Effect: Motion Perception and Illusion,」Journal of Consciousness Studies 9, nos. 5–6 (May–June 2002): 88–101.
+
+7 Christof Koch, The Quest for Consciousness: A Neurobiological Approach (Englewood, Colo.: Roberts, 2004), pp. 51–54.
+
+8 The study was D. O. Clegg et al.,「Glucosamine, Chondroitin Sulfate, and the Two in Combination for Painful Knee Osteoarthritis,」New England Journal of Medicine 354, no. 8 (February 2006): 795–808. The interview was「Slate’s Medical Examiner: Doubts on Supplements,」Day to Day, NPR broadcast, March 13, 2006.
+
+9 See Paul Slovic, Howard Kunreuther, and Gilbert F. White,「Decision Processes, Rationality, and Adjustment to Natural Hazards,」in Natural Hazards: Local, National, and Global, ed. G. F. White (London: Oxford University Press, 1974); see also Willem A. Wagenaar,「Generation of Random Sequences by Human Subjects: A Critical Survey of Literature,」Psychological Bulletin 77, no. 1 (January 1972): 65–72.
+
+10 See Hastie and Dawes, Rational Choice in an Uncertain World, pp. 19–23.
+
+11 George Spencer-Brown, Probability and Scientific Inference (London: Longmans, Green, 1957), pp. 55–56. Actually, 10 is a gross underestimate.
+
+12 Janet Maslin,「His Heart Belongs to (Adorable) iPod,」New York Times, October 19, 2006.
+
+13 Hans Reichenbach, The Theory of Probability, trans. E. Hutton and M. Reichenbach (Berkeley: University of California Press, 1934).
+
+14 The classic text expounding this point of view is Burton G. Malkiel, A Random Walk Down Wall Street, now completely revised in an updated 8th ed. (New York: W. W. Norton, 2003).
+
+15 John R. Nofsinger, Investment Blunders of the Rich and Famous—and What You Can Learn from Them (Upper Saddle River, N.J.: Prentice Hall, Financial Times, 2002), p. 62.
+
+16 Hemang Desai and Prem C. Jain,「An Analysis of the Recommendations of the ‘Superstar’ Money Managers at Barron’s Annual Roundtable,」Journal of Finance 50, no. 4 (September 1995): 1257–73.
+
+17 Jess Beltz and Robert Jennings,「Wall $treet Week with Louis Rukeyser’s Recommendations: Trading Activity and Performance,」Review of Financial Economics 6, no. 1 (1997): 15–27; and Robert A. Pari,「Wall $treet Week Recommendations: Yes or No?」Journal of Portfolio Management 14, no. 1 (1987): 74–76.
+
+18 Andrew Metrick,「Performance Evaluation with Transactions Data: The Stock Selection of Investment Newsletters, Journal of Finance 54, no. 5 (October 1999): 1743–75; and「The Equity Performance of Investment Newsletters」(discussion paper no. 1805, Harvard Institute of Economic Research, Cambridge, Mass., November 1997).
+
+19 James J. Choi, David Laibson, and Brigitte Madrian,「Why Does the Law of One Price Fail? An Experiment on Index Mutual Funds」(working paper no. W12261, National Bureau of Economic Research, Cambridge, Mass., May 4, 2006).
+
+20 Leonard Koppett,「Carrying Statistics to Extremes,」Sporting News, February 11, 1978.
+
+21 By some definitions, Koppett’s system would be judged to have failed in 1970; by others, to have passed. See CHANCE News 13.04, April 18, 2004–June 7, 2004, http://www.dartmouth.edu/-chance/chance_news/recent_news/chance_news_13.04.htm.
+
+22 As touted on the Legg Mason Capital Management Web site, http://www.leggmasoncapmgmt.com/awards.htm.
+
+23 Lisa Gibbs,「Miller: He Did It Again,」CNNMoney, January 11, 2004, http://money.cnn.com/2004/01/07/funds/ultimateguide_billmiller_0204.
+
+24 Thomas R. Gilovich, Robert Vallone, and Amos Tversky,「The Hot Hand in Basketball: On the Misperception of Random Sequences,」Cognitive Psychology 17, no. 3 (July 1985): 295–314.
+
+25 Purcell’s research is discussed in Gould,「The Streak of Streaks.」
+
+26 Mark Hulbert,「Not All Stocks Are Created Equal,」www.MarketWatch.com, January 18, 2005, accessed March 2005 (site now discontinued).
+
+27 Kunal Kapoor,「A Look at Who’s Chasing Bill Miller’s Streak,」Morningstar, December 30, 2004, http://www.morningstar.com.
+
+28 Michael Mauboussin and Kristen Bartholdson,「On Streaks: Perception, Probability, and Skill,」Consilient Observer (Credit Suisse–First Boston) 2, no. 8 (April 22, 2003).
+
+29 Merton Miller on「Trillion Dollar Bet,」NOVA, PBS broadcast, February 8, 2000.
+
+30 R. D. Clarke,「An Application of the Poisson Distribution,」Journal of the Institute of Actuaries 72 (1946): 48.
+
+31 Atul Gawande,「The Cancer Cluster Myth,」The New Yorker, February 28, 1998, pp. 34–37.
+
+32 Ibid.
+
+33 Bruno Bettelheim,「Individual and Mass Behavior in Extreme Situations,」Journal of Abnormal and Social Psychology 38 (1943): 417–52.
+
+34 Curt P. Richter,「On the Phenomenon of Sudden Death in Animals and Man,」Psychosomatic Medicine 19 (1957): 191–98.
+
+35 E. Stotland and A. Blumenthal,「The Reduction of Anxiety as a Result of the Expectation of Making a Choice,」Canadian Review of Psychology 18 (1964): 139–45.
+
+36 Ellen Langer and Judith Rodin,「The Effects of Choice and Enhanced Personal Responsibility for the Aged: A Field Experiment in an Institutional Setting,」Journal of Personality and Social Psychology 34, no. 2 (1976): 191–98.
+
+37 Ellen Langer and Judith Rodin,「Long-Term Effects of a Control-Relevant Intervention with the Institutionalized Aged,」Journal of Personality and Social Psychology 35, no. 12 (1977): 897–902.
+
+38 L. B. Alloy and L. Y. Abramson,「Judgment of Contingency in Depressed and Nondepressed Students: Sadder but Wiser?」Journal of Experimental Psychology: General 108, no. 4 (December 1979): 441–85.
+
+39 Durgin,「The Tinkerbell Effect.」
+
+40 Ellen Langer,「The Illusion of Control,」Journal of Personality and Social Psychology 32, no. 2 (1975): 311–28.
+
+41 Ellen Langer and Jane Roth,「Heads I Win, Tails It’s Chance: The Illusion of Control as a Function of Outcomes in a Purely Chance Task,」Journal of Personality and Social Psychology 32, no. 6 (1975): 951–55.
+
+42 Langer,「The Illusion of Control.」
+
+43 Ibid., p. 311.
+
+44 Raymond Fisman, Rakesh Khurana, and Matthew Rhodes-Kropf,「Governance and CEO Turnover: Do Something or Do the Right Thing?」(working paper no. 05-066, Harvard Business School, Cambridge, Mass., April 2005).
+
+45 P. C. Wason,「Reasoning about a Rule,」Quarterly Journal of Experimental Psychology 20 (1968): 273–81.
+
+46 Francis Bacon, Novum Organon, trans. by P. Urbach and J. Gibson (Chicago: Open Court, 1994), p. 57 (originally published in 1620).
+
+47 Charles G. Lord, Lee Ross, and Mark Lepper,「Biased Assimilation and Attitude Polarization: The Effects of Prior Theories on Subsequently Considered Evidence,」Journal of Personality and Social Psychology 37, no. 11 (1979): 2098–109.
+
+48 Matthew Rabin,「Psychology and Economics」(white paper, University of California, Berkeley, September 28, 1996).
+
+49 E. C. Webster, Decision Making in the Employment Interview (Montreal: Industrial Relations Centre, McGill University, 1964).
+
+50 Beth E. Haverkamp,「Confirmatory Bias in Hypothesis Testing for Client-Identified and Counselor Self-generated Hypotheses,」Journal of Counseling Psychology 40, no. 3 (July 1993): 303–15.
+
+51 David L. Hamilton and Terrence L. Rose,「Illusory Correlation and the Maintenance of Stereotypic Beliefs,」Journal of Personality and Social Psychology 39, no. 5 (1980): 832–45; Galen V. Bodenhausen and Robert S. Wyer,「Effects of Stereotypes on Decision Making and Information-Processing Strategies,」Journal of Personality and Social Psychology 48, no. 2 (1985): 267–82; and C. Stangor and D. N. Ruble,「Strength of Expectancies and Memory for Social Information: What We Remember Depends on How Much We Know,」Journal of Experimental Social Psychology 25, no. 1 (1989): 18–35.

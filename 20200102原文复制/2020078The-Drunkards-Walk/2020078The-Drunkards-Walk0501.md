@@ -127,3 +127,47 @@ When he was asked to complete his late brother’s manuscript, he had recently r
 Johann and Jakob had not gotten along for most of their adult lives. They would regularly trade insults in mathematics publications and in letters that, one mathematician wrote,「bristle with strong language that is usually reserved for horse thieves.」21 And so when the need arose to edit Jakob’s posthumous manuscript, the task fell further down the food chain, to Jakob’s nephew Nikolaus, the son of one of Jakob’s other brothers, also named Nikolaus. The younger Nikolaus was only eighteen at the time, but he had been one of Jakob’s pupils. Unfortunately he didn’t feel up to the task, possibly in part because he was aware of Leibniz’s opposition to his uncle’s ideas about applications of the theory. And so the manuscript lay dormant for eight years. The book was finally published in 1713 under the title Ars conjectandi, or The Art of Conjecture. Like Pascal’s Pensées, it is still in print.
 
 Jakob Bernoulli had shown that through mathematical analysis one could learn how the inner hidden probabilities that underlie natural systems are reflected in the data those systems produce. As for the question that Bernoulli did not answer—the question of how to infer, from the data produced, the underlying probability of events—the answer would not come for several decades more.
+
+## Notes
+
+1 Tijms, Understanding Probability, p. 53.
+
+2 Scott Kinney,「Judge Sentences Kevin L. Lawrence to 20 Years Prison in Znetix/HMC Stock Scam,」Washington State Department of Financial Institutions, press release, November 25, 2003; http://www.dfi.wa.gov/sd/kevin_laurence_sentence.htm.
+
+3 Interview with Darrell Dorrell, August 1, 2005.
+
+4 Lee Berton,「He’s Got Their Number: Scholar Uses Math to Foil Financial Fraud,」Wall Street Journal, July 10, 1995.
+
+5 Charles Sanders Peirce, Max Harold Fisch, and Christian J. W. Kloesel, Writings of Charles S. Peirce: A Chronological Edition (Bloomington: Indiana University Press, 1982), p. 427.
+
+6 Rand Corporation, A Million Random Digits with 100,000 Normal Deviates (1955; repr., Santa Monica, Calif.: Rand, 2001), pp. ix–x. See also Lola L. Lopes,「Doing the Impossible: A Note on Induction and the Experience of Randomness,」Journal of Experimental Psychology: Learning, Memory, and Cognition 8, no. 6 (November 1982): 626–36.
+
+7 The account of Joseph Jagger (sometimes spelled Jaggers) is from John Grochowski,「House Has a Built-in Edge When Roulette Wheel Spins,」Chicago Sun-Times, February 21, 1997.
+
+8 For details about the Bernoulli family and Jakob’s life, see E. S. Pearson, ed., The History of Statistics in the 17th and 18th Centuries against the Changing Background of Intellectual, Scientific and Religious Thought: Lectures by Karl Pearson Given at University College, London, during the Academic Sessions 1921–1933 (New York: Macmillan, 1978), pp. 221–37; J. O. Fleckenstein,「Johann und Jakob Bernoulli,」in Elemente der Mathematik, Beihefte zur Zeitschrift, no. 6 (Basel, 1949); and Stephen Stigler,「The Bernoullis of Basel,」Journal of Econometrics 75, no. 1 (1996): 7–13.
+
+9 Quoted in Pearson, The History of Statistics in the 17th and 18th Centuries, p. 224.
+
+10 Stephen Stigler, The History of Statistics: The Measurement of Uncertainty before 1900 (Cambridge, Mass.: Harvard University Press, 1986), p. 65.
+
+11 Pearson, The History of Statistics in the 17th and 18th Centuries, p. 226.
+
+12 William H. Cropper, The Great Physicists: The Life and Times of Leading Physicists from Galileo to Hawking (London: Oxford University Press, 2001), p. 31.
+
+13 Johann Bernoulli, quoted in Pearson, The History of Statistics in the 17th and 18th Centuries, p. 232.
+
+14 This depends, of course, on what you identify as「the modern concept.」I am using the definition employed by Hankel’s 1871 history of the topic, described in great detail in Gert Schubring, Conflicts between Generalization, Rigor, and Intuition: Number Concepts Underlying the Development of Analysis in 17th–19th Century France and Germany (New York: Springer, 2005), pp. 22–32.
+
+15 David Freedman, Robert Pisani, and Roger Purves, Statistics, 3rd ed. (New York: W. W. Norton, 1998), pp. 274–75.
+
+16 The Hacking quote is from Ian Hacking, The Emergence of Probability (Cambridge: Cambridge University Press, 1975), p. 143. The Bernoulli quote is from David, Gods, Games and Gambling, p. 136.
+
+17 For a discussion of what Bernoulli actually proved, see Stigler, The History of Statistics, pp. 63–78, and Ian Hacking, The Emergence of Probability, pp. 155–65.
+
+18 Amos Tversky and Daniel Kahneman,「Belief in the Law of Small Numbers,」Psychological Bulletin 76, no. 2 (1971): 105–10.
+
+19 Jakob Bernoulli, quoted in L. E. Maistrov, Probability Theory: A Historical Sketch, trans. Samuel Kotz (New York: Academic Press, 1974), p. 68.
+
+20 Stigler, The History of Statistics, p. 77.
+
+21 E. T. Bell, Men of Mathematics (New York: Simon & Schuster, 1937), p. 134.

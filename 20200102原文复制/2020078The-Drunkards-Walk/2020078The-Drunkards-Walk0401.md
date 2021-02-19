@@ -101,3 +101,35 @@ The members of the investment group made careful preparations. They filled out 1
 Several days passed after the winning ticket was announced, and no one came forward to present it. The consortium had won, but it took its members that long to find the winning ticket. Then, when state lottery officials discovered what the consortium had done, they balked at paying. A month of legal wrangling ensued before the officials concluded they had no valid reason to deny the group. Finally, they paid out the prize.
 
 To the study of randomness, Pascal contributed both his ideas about counting and the concept of mathematical expectation. Who knows what else he might have discovered, despite his renouncing mathematics, if his health had held up. But it did not. In July 1662, Pascal became seriously ill. His physicians prescribed the usual remedies: they bled him and administered violent purges, enemas, and emetics. He improved for a while, and then the illness returned, along with severe headaches, dizziness, and convulsions. Pascal vowed that if he survived, he would devote his life to helping the poor and asked to be moved to a hospital for the incurable, in order that, if he died, he would be in their company. He did die, a few days later, in August 1662. He was thirty-nine. An autopsy found the cause of death to be a brain hemorrhage, but it also revealed lesions in his liver, stomach, and intestines that accounted for the illnesses that had plagued him throughout his life.
+
+## Notes
+
+1 Bengt Ankarloo and Stuart Clark, eds., Witchcraft and Magic in Europe: The Period of the Witch Trials (Philadelphia: University of Pennsylvania Press, 2002), pp. 99–104.
+
+2 Meghan Collins,「Traders Ward Off Evil Spirits,」October 31, 2003, http://www.CNNMoney.com/2003/10/28/markets_trader_superstition/index.htm.
+
+3 Henk Tijms, Understanding Probability: Chance Rules in Everyday Life (Cambridge: Cambridge University Press, 2004), p. 16.
+
+4 Ibid., p. 80.
+
+5 David, Gods, Games and Gambling, p. 65.
+
+6 Blaise Pascal, quoted in Jean Steinmann, Pascal, trans. Martin Turnell (New York: Harcourt, Brace & World, 1962), p. 72.
+
+7 Gilberte Pascal, quoted in Morris Bishop, Pascal: The Life of a Genius (1936; repr., New York: Greenwood Press, 1968), p. 47.
+
+8 Ibid., p. 137.
+
+9 Gilberte Pascal, quoted ibid., p. 135.
+
+10 See A.W.F. Edwards, Pascal’s Arithmetical Triangle: The Story of a Mathematical Idea (Baltimore: Johns Hopkins University Press, 2002).
+
+11 Blaise Pascal, quoted in Herbert Westren Turnbull, The Great Mathematicians (New York: New York University Press, 1961), p. 131.
+
+12 Blaise Pascal, quoted in Bishop, Pascal, p. 196.
+
+13 Blaise Pascal, quoted in David, Gods, Games and Gambling, p. 252.
+
+14 Bruce Martin,「Coincidences: Remarkable or Random?」Skeptical Inquirer 22, no. 5 (September/October 1998).
+
+15 Holland, What Are the Chances? pp. 86–89.

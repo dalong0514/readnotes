@@ -96,5 +96,74 @@ The random motion of molecules in a fluid can be viewed, as we’ll note in chap
 
 In Einstein’s mathematical analysis the normal distribution again played a central role, reaching a new place of glory in the history of science. The drunkard’s walk, too, became established as one of the most fundamental—and soon one of the most studied—processes in nature. For as scientists in all fields began to accept the statistical approach as legitimate, they recognized the thumbprints of the drunkard’s walk in virtually all areas of study—in the foraging of mosquitoes through cleared African jungle, in the chemistry of nylon, in the formation of plastics, in the motion of free quantum particles, in the movement of stock prices, even in the evolution of intelligence over eons of time. We’ll examine the effects of randomness on our own paths through life in chapter 10. But as we’re about to see, though in random variation there are orderly patterns, patterns are not always meaningful. And as important as it is to recognize the meaning when it is there, it is equally important not to extract meaning when it is not there. Avoiding the illusion of meaning in random patterns is a difficult task. It is the subject of the following chapter.
 
-CHAPTER 9
+## Notes
 
+1 Holland, What Are the Chances? p. 51.
+
+2 This is only an approximation, based on more recent American statistics. See U.S. Social Security Administration,「Actuarial Publications: Period Life Table.」The most recent table is available at http://www.ssa.gov/OACT/STATS/table4c6.htm.
+
+3 Immanuel Kant, quoted in Theodore Porter, The Rise of Statistical Thinking: 1820–1900 (Princeton, N.J.: Princeton University Press, 1988), p. 51.
+
+4 U.S. Department of Transportation, Federal Highway Administration,「Licensed Drivers, Vehicle Registrations and Resident Population,」http://www.fhwa.dot.gov/policy/ohim/hs03/htm/dlchrt.htm.
+
+5 U.S. Department of Transportation, Research and Innovative Technology Administration, Bureau of Transportation Statistics,「Motor Vehicle Safety Data,」http://www.bts.gov/publications/national_transportation_statistics/2002/html/table_02_17.htm.
+
+6「The Domesday Book,」History Magazine, October/November 2001.
+
+7 For Graunt’s story, see Hacking, The Emergence of Probability, pp. 103–9; David, Gods, Games and Gambling, pp. 98–109; and Newman, The World of Mathematics, 3:1416–18.
+
+8 Hacking, The Emergence of Probability, p. 102.
+
+9 Theodore Porter, The Rise of Statistical Thinking, p. 19.
+
+10 For Graunt’s original table, see Hacking, The Emergence of Probability, p. 108. For the current data, see World Health Organization,「Life Tables for WHO Member States,」http://www.who.int/whosis/database/life_tables/life_tables.cfm. The figures quoted were taken from abridged tables and rounded.
+
+11 Ian Hacking, The Taming of Chance (Cambridge: Cambridge University Press, 1990), p. vii.
+
+12 H. A. David,「First (?) Occurrence of Common Terms in Statistics and Probability,」in Annotated Readings in the History of Statistics, ed. H. A. David and A.W.F. Edwards (New York: Springer, 2001), appendix B and pp. 219–28.
+
+13 Noah Webster, American Dictionary of the English Language (1828; facsimile of the 1st ed., Chesapeake, Va.: Foundation for American Christian Education, 1967).
+
+14 The material on Quételet is drawn mainly from Stigler, The History of Statistics, pp. 161–220; Stephen Stigler, Statistics on the Table: The History of Statistical Concepts and Methods (Cambridge, Mass.: Harvard University Press, 1999), pp. 51–66; and Theodore Porter, The Rise of Statistical Thinking, pp. 100–9.
+
+15 Louis Menand, The Metaphysical Club (New York: Farrar, Straus & Giroux, 2001), p. 187.
+
+16 Holland, What Are the Chances? pp. 41–42.
+
+17 David Yermack,「Good Timing: CEO Stock Option Awards and Company News Announcements,」Journal of Finance 52, no. 2 (June 1997): 449–76; and Erik Lie,「On the Timing of CEO Stock Option Awards,」Management Science 51, no. 5 (May 2005): 802–12. See also Charles Forelle and James Bandler,「The Perfect Payday—Some CEOs Reap Millions by Landing Stock Options When They Are Most Valuable: Luck—or Something Else?」Wall Street Journal, March 18, 2006.
+
+18 Justin Wolfers,「Point Shaving: Corruption in NCAA Basketball,」American Economic Review 96, no. 2 (May 2006): 279–83.
+
+19 Stern,「On the Probability of Winning a Football Game.」
+
+20 David Leonhardt,「Sad Suspicions about Scores in Basketball,」New York Times, March 8, 2006.
+
+21 Richard C. Hollinger et al., National Retail Security Survey: Final Report (Gainesville: Security Research Project, Department of Sociology and Center for Studies in Criminal Law, University of Florida, 2002–2006).
+
+22 Adolphe Quételet, quoted in Theodore Porter, The Rise of Statistical Thinking, p. 54.
+
+23 Quételet, quoted in Menand, The Metaphysical Club, p. 187.
+
+24 Jeffrey Kluger,「Why We Worry about the Things We Shouldn’t…and Ignore the Things We Should,」Time, December 4, 2006, pp. 65–71.
+
+25 Gerd Gigerenzer, Empire of Chance: How Probability Changed Science and Everyday Life (Cambridge: Cambridge University Press, 1989), p. 129.
+
+26 Menand, The Metaphysical Club, p. 193.
+
+27 De Vany, Hollywood Economics; see part IV,「A Business of Extremes.」
+
+28 See Derek William Forrest, Francis Galton: The Life and Work of a Victorian Genius (New York: Taplinger, 1974); Jeffrey M. Stanton,「Galton, Pearson, and the Peas: A Brief History of Linear Regression for Statistics Instructors,」Journal of Statistics Education 9, no. 3 (2001); and Theodore Porter, The Rise of Statistical Thinking, pp. 129–46.
+
+29 Francis Galton, quoted in Theodore Porter, The Rise of Statistical Thinking, p. 130.
+
+30 Peter Doskoch,「The Winning Edge,」Psychology Today, November/ December 2005, pp. 44–52.
+
+31 Deborah J. Bennett, Randomness (Cambridge, Mass.: Harvard University Press, 1998), p. 123.
+
+32 Abraham Pais, The Science and Life of Albert Einstein (London: Oxford University Press, 1982), p. 17; see also the discussion on p. 89.
+
+33 On Brown and the history of Brownian motion, see D. J. Mabberley, Jupiter Botanicus: Robert Brown of the British Museum (Braunschweig, Germany, and London: Verlag von J. Cramer / Natural History Museum, 1985); Brian J. Ford,「Brownian Movement in Clarkia Pollen: A Reprise of the First Observations,」Microscope 40, no. 4 (1992): 235–41; and Stephen Brush,「A History of Random Processes. I. Brownian Movement from Brown to Perrin,」Archive for History of Exact Sciences 5, no. 34 (1968).
+
+34 Pais, Albert Einstein, pp. 88–100.
+
+35 Albert Einstein, quoted in Ronald William Clark, Einstein: The Life and Times (New York: HarperCollins, 1984), p. 77.

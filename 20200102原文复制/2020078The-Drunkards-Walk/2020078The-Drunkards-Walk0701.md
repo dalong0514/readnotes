@@ -90,5 +90,66 @@ To illustrate how the central limit theorem explains why the normal distribution
 
 By the 1830s most scientists had come to believe that every measurement is a composite, subject to a great number of sources of deviation and hence to the error law. The error law and the central limit theorem thus allowed for a new and deeper understanding of data and their relation to physical reality. In the ensuing century, scholars interested in human society also grasped these ideas and found to their surprise that the variation in human characteristics and behavior often displays the same pattern as the error in measurement. And so they sought to extend the application of the error law from physical science to a new science of human affairs.
 
-CHAPTER 8
+## Notes
 
+1 Sarah Kershaw and Eli Sanders,「Recounts and Partisan Bickering Bring Election Fatigue to Washington Voters,」New York Times, December 26, 2004; and Timothy Egan,「Trial for Governor’s Seat Set to Start in Washington,」New York Times, May 23, 2005.
+
+2 Jed Z. Buchwald,「Discrepant Measurements and Experimental Knowledge in the Early Modern Era,」Archive for History of Exact Sciences 60, no. 6 (November 2006): 565–649.
+
+3 Eugene Frankel,「J. B. Biot and the Mathematization of Experimental Physics in Napoleonic France,」in Historical Studies in the Physical Sciences, ed. Russell McCormmach (Princeton, N.J.: Princeton University Press, 1977).
+
+4 Charles Coulston Gillispie, ed., Dictionary of Scientific Biography (New York: Charles Scribner’s Sons, 1981), p. 85.
+
+5 For a discussion of the errors made by radar guns, see Nicole Weisensee Egan,「Takin’ Aim at Radar Guns,」Philadelphia Daily News, March 9, 2004.
+
+6 Charles T. Clotfelter and Jacob L. Vigdor,「Retaking the SAT」(working paper SAN01-20, Terry Sanford Institute of Public Policy, Duke University, Durham, N.C., July 2001).
+
+7 Eduardo Porter,「Jobs and Wages Increased Modestly Last Month,」New York Times, September 2, 2006.
+
+8 Gene Epstein on「Mathemagicians,」On the Media, WNYC radio, broadcast August 25, 2006.
+
+9 Legene Quesenberry et al.,「Assessment of the Writing Component within a University General Education Program,」November 1, 2000; http://wac.colostate.edu/aw/articles/quesenberry2000/quesenberry2000.pdf.
+
+10 Kevin Saunders,「Report to the Iowa State University Steering Committee on the Assessment of ISU Comm-English 105 Course Essays,」September 2004; www.iastate.edu/-isucomm/InYears/ISUcomm_essays.pdf (accessed 2005; site now discontinued).
+
+11 University of Texas, Office of Admissions,「Inter-rater Reliability of Holistic Measures Used in the Freshman Admissions Process of the University of Texas at Austin,」February 22, 2005; http://www.utexas.edu/student/admissions/research/Inter-raterReliability2005.pdf.
+
+12 Emily J. Shaw and Glenn B. Milewski,「Consistency and Reliability in the Individualized Review of College Applicants,」College Board, Office of Research and Development, Research Notes RN-20 (October 2004): 3; http://www.collegeboard.com/research/pdf/RN-20.pdf.
+
+13 Gary Rivlin,「In Vino Veritas,」New York Times, August 13, 2006.
+
+14 William James, The Principles of Psychology (New York: Henry Holt, 1890), p. 509.
+
+15 Robert Frank and Jennifer Byram,「Taste-Smell Interactions Are Tastant and Odorant Dependent,」Chemical Senses 13 (1988): 445–55.
+
+16 A. Rapp,「Natural Flavours of Wine: Correlation between Instrumental Analysis and Sensory Perception,」Fresenius’ Journal of Analytic Chemistry 337, no. 7 (January 1990): 777–85.
+
+17 D. Laing and W. Francis,「The Capacity of Humans to Identify Odors in Mixtures,」Physiology and Behavior 46, no. 5 (November 1989): 809–14; and D. Laing et al.,「The Limited Capacity of Humans to Identify the Components of Taste Mixtures and Taste-Odour Mixtures,」Perception 31, no. 5 (2002): 617–35.
+
+18 For the rosé study, see Rose M. Pangborn, Harold W. Berg, and Brenda Hansen,「The Influence of Color on Discrimination of Sweetness in Dry Table-Wine,」American Journal of Psychology 76, no. 3 (September 1963): 492–95. For the anthocyanin study, see G. Morrot, F. Brochet, and D. Dubourdieu,「The Color of Odors,」Brain and Language 79, no. 2 (November 2001): 309–20.
+
+19 Hilke Plassman, John O’Doherty, Baba Shia, and Antonio Rongel,「Marketing Actions Can Modulate Neural Representations of Experienced Pleasantness,」Proceedings of the National Academy of Sciences, January 14, 2008; http://www.pnas.org.
+
+20 M. E. Woolfolk, W. Castellan, and C. Brooks,「Pepsi versus Coke: Labels, Not Tastes, Prevail,」Psychological Reports 52 (1983): 185–86.
+
+21 M. Bende and S. Nordin,「Perceptual Learning in Olfaction: Professional Wine Tasters Versus Controls,」Physiology and Behavior 62, no. 5 (November 1997): 1065–70.
+
+22 Gregg E. A. Solomon,「Psychology of Novice and Expert Wine Talk,」American Journal of Psychology 103, no. 4 (Winter 1990): 495–517.
+
+23 Rivlin,「In Vino Veritas.」
+
+24 Ibid.
+
+25 Hal Stern,「On the Probability of Winning a Football Game,」American Statistician 45, no. 3 (August 1991): 179–82.
+
+26 The graph is from Index Funds Advisors,「Index Funds.com: Take the Risk Capacity Survey,」http://www.indexfunds3.com/step3page2.php, where it is credited to Walter Good and Roy Hermansen, Index Your Way to Investment Success (New York: New York Institute of Finance, 1997). The performance of 300 mutual fund managers was tabulated for ten years (1987–1996), based on the Morningstar Principia database.
+
+27 Polling Report,「President Bush—Overall Job Rating,」http://pollingreport.com/BushJob.htm.
+
+28.「Poll: Bush Apparently Gets Modest Bounce,」CNN, September 8, 2004, http://www.cnn.com/2004/ALLPOLITICS/09/06/presidential.poll/index.htm.
+
+29「Harold von Braunhut,」Telegraph, December 23, 2003; http://www.telegraph.co.uk/news/main.jhtml?xml=/news/2003/12/24/db2403.xml.
+
+30 James J. Fogarty,「Why Is Expert Opinion on Wine Valueless?」(discussion paper 02.17, Department of Economics, University of Western Australia, Perth, 2001).
+
+31 Stigler, The History of Statistics, p. 143.

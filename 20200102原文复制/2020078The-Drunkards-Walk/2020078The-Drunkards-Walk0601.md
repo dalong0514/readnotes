@@ -98,5 +98,38 @@ Laplace’s analysis began with a paper in 1774 but spread over four decades. A 
 
 Laplace’s political dexterity was fortunate for mathematics, for in the end his analysis was richer and more complete than Bayes’s. With the foundation provided by Laplace’s work, in the next chapter we shall leave the realm of probability and enter that of statistics. Their joining point is one of the most important curves in all of mathematics and science, the bell curve, otherwise known as the normal distribution. That, and the new theory of measurement that came with it, are the subjects of the following chapter.
 
-CHAPTER 7
+## Notes
 
+1 The account of the Harvard student is from Hastie and Dawes, Rational Choice in an Uncertain World, pp. 320–21.
+
+2 I was told a variant of this problem by Mark Hillery of the Physics Department at Hunter College, City University of New York, who heard it while on a trip to Bratislava, Slovakia.
+
+3 Quoted in Stigler, The History of Statistics, p. 123.
+
+4 Ibid., pp. 121–31.
+
+5 U.S. Social Security Administration,「Popular Baby Names: Popular Names by Birth Year; Popularity in 1935,」http://www.ssa.gov/cgi-bin/popularnames.cgi.
+
+6 Division of HIV/AIDS, Center for Infectious Diseases, HIV/AIDS Surveillance Report (Atlanta: Centers for Disease Control, January 1990). I calculated the statistic quoted from the data given but also had to use some estimates. In particular, the data quoted refers to AIDS cases, not HIV infection, but that suffices for the purpose of illustrating the concept.
+
+7 To be precise, the probability that A will occur if B occurs is equal to the probability that B will occur if A occurs multiplied by a correction factor that equals the ratio of the probability of A to the probability of B.
+
+8 Gerd Gigerenzer, Calculated Risks: How to Know When Numbers Deceive You (New York: Simon & Schuster, 2002), pp. 40–44.
+
+9 Donald A. Barry and LeeAnn Chastain,「Inferences About Testosterone Abuse Among Athletes,」Chance 17, no. 2 (2004): 5–8.
+
+10 John Batt, Stolen Innocence (London: Ebury Press, 2005).
+
+11 Stephen J. Watkins,「Conviction by Mathematical Error? Doctors and Lawyers Should Get Probability Theory Right,」BMJ 320 (January 1, 2000): 2–3.
+
+12.「Royal Statistical Society Concerned by Issues Raised in Sally Clark Case,」Royal Statistical Society, London, news release, October 23, 2001; www.rss.org.uk/PDF/RSS%20Statement%20regarding%20statistical%20issues%20in%20the%20Sally%20Clark%20case,%20October%2023rd%202001.pdf.
+
+13 Ray Hill,「Multiple Sudden Infant Deaths—Coincidence or beyond Coincidence?」Paediatric and Perinatal Epidemiology 18, no. 5 (September 2004): 320–26.
+
+14 Quoted in Alan Dershowitz, Reasonable Doubts: The Criminal Justice System and the O. J. Simpson Case (New York: Simon & Schuster, 1996), p. 101.
+
+15 Federal Bureau of Investigation,「Uniform Crime Reports,」http://www.fbi.gov/ucr/ucr.htm.
+
+16 Alan Dershowitz, The Best Defense (New York: Vintage, 1983), p. xix.
+
+17 Pierre-Simon de Laplace, quoted in James Newman, ed., The World of Mathematics (Mineola, N.Y.: Dover Publications, 1956): 2:1323.
