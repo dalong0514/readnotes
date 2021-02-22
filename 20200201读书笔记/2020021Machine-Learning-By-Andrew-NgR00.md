@@ -1,9 +1,5 @@
 # 2020021Machine-Learning-By-Andrew-NgR00
 
-[Welcome | Coursera](https://www.coursera.org/learn/machine-learning/lecture/RKFpn/welcome)
-
-[Lecture 1.1 — What Is Machine Learning — [ Machine Learning | Andrew Ng ] - YouTube](https://www.youtube.com/watch?v=PPLop4L2eGk&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&index=1)
-
 ## 记忆时间
 
 ## 卡片
@@ -52,7 +48,7 @@ In this class, I hope to teach you about various different types of learning alg
 
 最后还有一张任意卡，记录个人阅读感想。
 
-### 链接汇总
+## 链接汇总
 
 [Welcome | Coursera](https://www.coursera.org/learn/machine-learning/lecture/RKFpn/welcome)
 
@@ -60,9 +56,9 @@ In this class, I hope to teach you about various different types of learning alg
 
 [Lecture 1.1 — What Is Machine Learning — [ Machine Learning | Andrew Ng ] - YouTube](https://www.youtube.com/watch?v=PPLop4L2eGk&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&index=1)
 
-### 课程概述
+## 课程概述
 
-这些课程专为已有一定基础（基本的编程知识，熟悉 Python、对机器学习有基本了解），想要尝试进入人工智能领域的计算机专业人士准备。介绍显示：「深度学习是科技业最热门 的技能之一，本课程将帮你掌握深度学习。」
+这些课程专为已有一定基础（基本的编程知识，熟悉 Python、对机器学习有基本了解），想要尝试进入人工智能领域的计算机专业人士准备。介绍显示：「深度学习是科技业最热门的技能之一，本课程将帮你掌握深度学习。」
 
 在这 5 堂课中，学生将可以学习到深度学习的基础，学会构建神经网络，并用在包括吴恩达本人在内的多位业界顶尖专家指导下创建自己的机器学习项目。Deep Learning Specialization 对卷积神经网络（CNN）、递归神经网络（RNN）、长短期记忆（LSTM）等深度学习常用的网络结构、工具和知识都有涉及。
 
@@ -76,7 +72,7 @@ In this class, I hope to teach you about various different types of learning alg
 
 目前我正在组织团队整理中文笔记，由热心的朋友无偿帮忙制作整理，并持续更新。我 们的团队的劳动致力于 AI 在国内的推广，不会损害 Coursera 以及吴恩达老师的商业利益。
 
-### 吴恩达的公开信
+## 吴恩达的公开信
 
 朋友们，我在做三个全新的 AI 项目。现在，我十分兴奋地宣布其中的第一个：deeplearning.ai，一个立志于扩散 AI 知识的项目。该项目在 Coursera 上发布了一系列深度学习课程，这些课程将帮助你掌握深度学习、对它高效地应用，并打造属于你自己的 AI 事业。
 
