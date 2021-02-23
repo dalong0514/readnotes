@@ -56,7 +56,7 @@ All right, maybe not the most interesting cocktail party, there's two people cou
 
 1『上面的 2 段录音超级有意思，可以时常去视频里听听，哈哈。（2020-11-18）』
 
-So we can do, is take these two microphone recorders and give them to an Unsupervised Learning algorithm called the cocktail party algorithm, and tell the algorithm - find structure in this data for you. And what the algorithm will do is listen to these audio recordings and say, you know it sounds like the two audio recordings are being added together or that have being summed together to produce these recordings that we had. Moreover, what the cocktail party algorithm will do is separate out these two audio sources that were being added or being summed together to form other recordings and, in fact, here's the first output of the cocktail party algorithm.
+So we can do, is take these two microphone recorders and give them to an Unsupervised Learning algorithm called the cocktail party algorithm, and tell the algorithm — find structure in this data for you. And what the algorithm will do is listen to these audio recordings and say, you know it sounds like the two audio recordings are being added together or that have being summed together to produce these recordings that we had. Moreover, what the cocktail party algorithm will do is separate out these two audio sources that were being added or being summed together to form other recordings and, in fact, here's the first output of the cocktail party algorithm.
 
 One, two, three, four, five, six, seven, eight, nine, ten.
 
@@ -64,7 +64,7 @@ So, I separated out the English voice in one of the recordings. And here's the s
 
 Not too bad, to give you one more example, here's another recording of another similar situation, here's the first microphone : One, two, three, four, five, six, seven, eight, nine, ten.
 
-OK so the poor guy's gone home from the cocktail party and he 's now sitting in a room by himself talking to his radio. Here's the second microphone recording.
+OK so the poor guy's gone home from the cocktail party and he's now sitting in a room by himself talking to his radio. Here's the second microphone recording.
 
 One, two, three, four, five, six, seven, eight, nine, ten.
 
@@ -78,7 +78,7 @@ Not too bad, in that second output it managed to get rid of the voice entirely. 
 
 So you might look at an Unsupervised Learning algorithm like this and ask how complicated this is to implement this, right? It seems like in order to, you know, build this application, it seems like to do this audio processing you need to write a ton of code or maybe link into like a bunch of synthesizer Java libraries that process audio, seems like a really complicated program, to do this audio, separating out audio and so on.
 
-It turns out the algorithm, to do what you just heard, that can be done with one line of code - shown right here.
+It turns out the algorithm, to do what you just heard, that can be done with one line of code — shown right here.
 
 ![](./res/2020011.png)
 
