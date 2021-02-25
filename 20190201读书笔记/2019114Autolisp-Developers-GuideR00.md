@@ -688,8 +688,6 @@ If this tutorial has sparked your interest in all things mapcar and lambda, the 
 
 1-2『感觉又捡到金子了，已下载「附件1-CP401-1-Lisp-Advance-Yourself」作为本书的附件。』
 
-### 0107. 主题卡—— 修改 CAD 实体数据的基本思路
-
 ### 0201. 术语卡 —— DXF group codes
 
 CAD 里实体对象的唯一标识。重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。
@@ -977,9 +975,9 @@ If an AutoLISP function is defined with a name of the form C:xxx, it can be issu
 
 To use functions as AutoCAD commands, be sure they adhere to the following rules:
 
-1. The function name must use the form C:xxx (upper- or lowercase characters). The C: portion of the name must always be present; the XXX portion is a command name of your choice. C:xxx functions can be used to override built-in AutoCAD commands. (See About Redefining AutoCAD Commands [AutoLISP].)
+1 The function name must use the form C:xxx (upper- or lowercase characters). The C: portion of the name must always be present; the XXX portion is a command name of your choice. C:xxx functions can be used to override built-in AutoCAD commands. (See About Redefining AutoCAD Commands [AutoLISP].)
 
-2. The function must be defined with no arguments. However, local variables are permitted and it is a good programming practice to use them.
+2 The function must be defined with no arguments. However, local variables are permitted and it is a good programming practice to use them.
 
 1『不能有参数，但可以使用局部变量。』
 
@@ -1446,13 +1444,13 @@ AutoLISP is based on the LISP programming language but was written by Autodesk s
 
 [Selection Set Processing | Lee Mac Programming](http://www.lee-mac.com/selsetprocessing.html)
 
-1. Create list of enames.
+1 Create list of enames.
 
-2. (vl-sort lst (function (lambda (a b) (> (cadr (assoc 10 (entget a))) (cadr (assoc 10 (entget b)))))))
+2 (vl-sort lst (function (lambda (a b) (> (cadr (assoc 10 (entget a))) (cadr (assoc 10 (entget b)))))))
 
-3. Create new selection set with ssadd.
+3 Create new selection set with ssadd.
 
-4. Step (foreach) through sorted (#2) list and ssadd enames to newly created selection set.
+4 Step (foreach) through sorted (#2) list and ssadd enames to newly created selection set.
 
 Thanks for the direction, I'm still having issues though. Perhaps I'm not building my list properly, but for some reason the lambda function grabs the first item, then tries to grab the entire rest of the list as the second item, That obviously doesnt work, as it cant grab the entdata from a list of entities. How do you suggest creating the list, I know that there are multiple ways of doing it, I'm using (setq lst (list ss lst)) which based on my results isnt the proper way to do it.
 here is the error I'm receiving

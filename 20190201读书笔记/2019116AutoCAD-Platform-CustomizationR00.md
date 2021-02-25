@@ -8,7 +8,7 @@
 
 ## 卡片
 
-### 0101. 主题卡——封装判断数据类型的函数
+### 0101. 主题卡 —— 封装判断数据类型的函数
 
 You can use the AutoLISP type function to identify the type of data retuned by a function or assigned to a variable. The following shows the syntax of the type function:
 
@@ -48,7 +48,7 @@ nil
 
 1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
 
-### 0102. 主题卡——如何获取用 entmake 函数新建一个实体对象所需的参数
+### 0102. 主题卡 —— 如何获取用 entmake 函数新建一个实体对象所需的参数
 
 For some objects it's easier to determine which properties are required; for example, a circle requires a center point and radius whereas a line requires a start and endpoint. The best way to figure out which properties are required when creating an object is to create a new object in a drawing of the type you want to create with the entmake function. Once the object is created, enter the following code at the AutoCAD Command prompt to see the entity data list associated with the object:
 
@@ -91,7 +91,7 @@ The entlist argument represents the entity data list of the object to be created
 
 做一张主题卡片。』——已完成
 
-### 0103. 主题卡——修改实体数据的 2 种方法
+### 0103. 主题卡 —— 修改实体数据的 2 种方法
 
 AutoLISP offers two different methods for modifying the properties of an object directly. The easier of the two methods is to use the object property functions that were introduced with AutoCAD 2012. These functions require less code than the legacy approach of getting and manipulating the entity data list of an object. The property-related functions are less cryptic than entity data list manipulation as well, because you don't need to understand the various DXF group codes associated with a specific object. The downside to these functions is that they work only with AutoCAD 2012 and later, so if you need to support an earlier release you will need to manipulate entity data lists (which I cover in the next section).
 
@@ -106,7 +106,7 @@ Table 16.6 lists the AutoLISP functions available in AutoCAD 2012 and later that
 
 1-2『看到这里才知道，之前一直用的传统方法：通过实体名称结合 `entget` 函数获取实体的「数据集」，通过替换数据集里的「点对」来实现修改属性。原来还有第二种方法，直接用 autolisp 封装好的函数，前提是只支持 AutoCAD 2012 以后的，可以接受。修改实体数据的 2 种方法，做一张主题卡片。』——已完成
 
-### 0104. 主题卡——获取并修改实体对象上的 XData
+### 0104. 主题卡 —— 获取并修改实体对象上的 XData
 
 XData that has been previously attached to an object can be queried and modified by following a process that is similar to the one used to attach XData to an object. The entget function, which I discussed earlier, is used to get the entity data list and any XData lists attached to an object. By default, the entget function only returns the entity data list for the entity name that it is passed. You use the optional appname argument of the entget function to return all of the XData lists attached to an object or the one associated with a specific application name.
 
@@ -149,13 +149,13 @@ The following example removes the XData list associated with an application name
 )
 ```
 
-### 0201. 术语卡——Dotted Pair
+### 0201. 术语卡 —— Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
 
 2『 Dotted Pair 做一张术语卡片。』——已完成
 
-### 0202. 术语卡——XData
+### 0202. 术语卡 —— XData
 
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
@@ -252,13 +252,13 @@ The resulting list is assigned to the entityData variable and should look simila
 
 The circle object won't look any different after the changes have been committed because the XData doesn't affect the appearance of the object. However, you can now differentiate this circle from those that might be created with the circle command. This makes it much easier to locate and update the radius of the circles that represent a drill hole in your drawing.
 
-### 0203. 术语卡——图形数据和非图形数据
+### 0203. 术语卡 —— 图形数据和非图形数据
 
 The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
 
 2『图形数据和非图形数据，做一张术语卡片。』——已完成
 
-### 0204. 术语卡——Block Definitions and Block References
+### 0204. 术语卡 —— Block Definitions and Block References
 
 Block references are often misunderstood by new (and even experienced) AutoLISP developers. Blocks are implemented as two separate objects: block definitions and block references. Block definitions are nongraphical objects that are stored in a drawing and contain the geometry and attribute definitions that make up how the block should appear and behave in the drawing area. A block definition can also contain custom properties and dynamic properties.
 
@@ -324,7 +324,7 @@ Listing 16.3 shows a custom function that demonstrates how to step through a blo
 
 1『目前无法生成完整的块实体，生成的块只有参照没属性值。用 `entmake` 结合 `ATTRIB` 无效。（2020-10-30）』
 
-### 0205. 术语卡——选择集
+### 0205. 术语卡 —— 选择集
 
 A selection set, sometimes known as a selection set name or ssname for short, is a temporary container that holds a reference to objects in a drawing. AutoLISP represents a selection set with the PICKFIRST data type. You get a selection set, commonly based on the objects in a drawing that the user wants to modify or interact with. For example, when you see the Select objects: prompt AutoCAD is asking you to select the objects in the drawing you want to work with and it gets a selection set containing the objects you selected in return.
 
@@ -332,11 +332,11 @@ In addition to getting a selection set based on user input, you can create a sel
 
 2『选择集的概念做一张术语卡片。』——已完成
 
-### 0301. 任意卡——生成 VLX 文件
+### 0301. 任意卡 —— 生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。
 
-### 0302. 任意卡——数据存到公共变量（内存）
+### 0302. 任意卡 —— 数据存到公共变量（内存）
 
 TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP `vl-bb-ref` and `vl-bb-set` functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
 
@@ -368,7 +368,7 @@ vl-propagate. Copies the value of a variable into all open document namespaces (
 
 函数 `vl-propagate` 相当于将一个变量直接变为「全图纸空间变量」。
 
-### 0303. 任意卡——宏命令里的悬停
+### 0303. 任意卡 —— 宏命令里的悬停
 
 When the command function is used, you can suspend the execution of an AutoLISP program and allow the user to provide input at the Command prompt. You use the predefined PAUSE variable or the "\\" ASCII character sequence to allow the user to provide a value. The following AutoLISP expression starts the circle command and then allows the user to specify a center point. Once a center point is specified, the circle's diameter is set to 3 units.
 
@@ -378,13 +378,13 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 
 2『宏命令里的悬停，做一张任意卡片。』——已完成
 
-### 0304. 任意卡——自定义命令变为内置命令
+### 0304. 任意卡 —— 自定义命令变为内置命令
 
 TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
 
 2『自定义命令变为内置命令的实现手段，做一张任意卡片。』——已完成
 
-### 0305. 任意卡——函数以 princ 结尾的真正用途
+### 0305. 任意卡 —— 函数以 princ 结尾的真正用途
 ```c
 ; Safely divides two numbers 
 ; Checks to make sure that one or both of the numbers are not zero 
@@ -414,13 +414,13 @@ TIP: Using the AutoLISP princ function in the last statement of a custom AutoLIS
 
 1『汇总：1）上面的写法更简洁，写条件语句的时候值得借鉴。2）算是搞明白函数结尾用 `(princ)` 的真正用途了，阻止返回最后一条语句返回的值。做一张任意卡片。（2020-10-08）』
 
-### 0306. 任意卡——调整窗口布局
+### 0306. 任意卡 —— 调整窗口布局
 
 Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
 
 1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』——已完成
 
-### 0307. 任意卡——加载显示窗口的 2 种方法
+### 0307. 任意卡 —— 加载显示窗口的 2 种方法
 
 You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
 
@@ -428,7 +428,7 @@ You can create a DCL file with Notepad or the Visual LISP Editor; you follow the
 
 回复：目前一直用的是第一种方法，即在 autolisp 里加载 dcl 文件。（2020-10-27）
 
-### 0308. 任意卡——通过特定的动作直接更新交互界面的下拉列表数据
+### 0308. 任意卡 —— 通过特定的动作直接更新交互界面的下拉列表数据
 
 Populating the Items of a `list_box` or `popup_list` Tile.
 
@@ -477,11 +477,11 @@ NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the
 
 1『注意几个函数的调用顺序。（2020-10-09）』
 
-### 0309. 任意卡——如何在一个 lsp 文件里调用另外一个 lsp 文件
+### 0309. 任意卡 —— 如何在一个 lsp 文件里调用另外一个 lsp 文件
 
 直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。
 
-### 0310. 任意卡——创建实体数据的 2 个方法
+### 0310. 任意卡 —— 创建实体数据的 2 个方法
 
 The command function is the most common method that AutoLISP programmers use to create and modify objects, but it isn't the most efficient when you are trying to modify individual properties of an object. Even creating lots of objects in the Autodesk® AutoCAD® program can be slower with the command function. Along with the command function, objects can be created and modified directly by setting property values as part of an entity data list. Extended data (XData) can also be attached to an object as a way to differentiate one object from another or, in some cases, to affect the way an object might look in the drawing area.
 
@@ -489,7 +489,7 @@ The command function is the most common method that AutoLISP programmers use to 
 
 Using AutoLISP, you can create a table using the entmake function while modifying and populating the table with the entget and entmod functions.
 
-### 0311. 任意卡——获取实体数据信息
+### 0311. 任意卡 —— 获取实体数据信息
 
 除了用选择集的方式，先获得选择集，通过选择集获取各个实体的实体名，再通过实体名获得实体的数据集。也可以通过下面的方式直接获取实体数据集（直接用 `entlast` 和 `entnext` 这些函数获取实体名，然后调 `entget` 获取数据集）。两种方法的区别在于如何获得实体名，一个是靠用户选择（选择集），一个是全部在后台完成。（2020-11-26）
 
@@ -547,7 +547,7 @@ The previous example used the entget function to return an entity data list of a
 
 1-2『这个例子看下来后，entlast、entnext 还有 entget 这几个函数结合起来可以做好多事，特别是 entnext 的用法灵活性很大。比如自动生成辅助流程里，又想到一个思路：1）先直接使用 entlast 获取图纸里的最后一个实体名保存下来。2）批量插入辅助流程组件块后，通过刚刚最后一个实体名外加 entnext 函数，可以获得所有批量插入的块的实体名列表。3）根据这个实体名列表批量修改属性值，这样又跟以前开发好的功能对接上了。把上面信息合并到「获取实体数据集的方式」任意卡里。』——已完成
 
-### 0312. 任意卡——Controlling a Command's Version
+### 0312. 任意卡 —— Controlling a Command's Version
 
 Internally each standard AutoCAD command is assigned a new version number when a change is made that affects an AutoLISP program, script, or command macro. You use the initcommandversion function to control which version of a command is used by the next use of the command or command-s function. The initcommandversion function doesn't require a value, but when one is provided it must be an integer value that represents the version of the command you want to use.
 
