@@ -67,19 +67,19 @@ Normally, loading an application file loads it in the current drawing only, but 
 
 Note: The vl-load-all function is useful for testing new functions in multiple documents, but in general you should use acaddoc.lsp to load files that are needed in every document.
 
-1. At the AutoCAD Command prompt, enter (load "yinyang.lsp") and press Enter.
+1 At the AutoCAD Command prompt, enter (load "yinyang.lsp") and press Enter.
 
-2. Invoke a function defined in the AutoLISP source (LSP) file. The function should work as expected.
+2 Invoke a function defined in the AutoLISP source (LSP) file. The function should work as expected.
 
-3. Create a new or open an existing drawing.
+3 Create a new or open an existing drawing.
 
-4. With the second drawing window active, try invoking the function again. The response will be an error message saying the function is not defined.
+4 With the second drawing window active, try invoking the function again. The response will be an error message saying the function is not defined.
 
-5. At the AutoCAD Command prompt, enter (vl-load-all "yinyang.lsp") and press Enter.
+5 At the AutoCAD Command prompt, enter (vl-load-all "yinyang.lsp") and press Enter.
 
-6. Create a new or open an existing drawing.
+6 Create a new or open an existing drawing.
 
-7. Invoke the function again. This time the function will work correctly because the vl-load-all function loads the contents of an AutoLISP file into all open documents, and into any documents opened later in the session.
+7 Invoke the function again. This time the function will work correctly because the vl-load-all function loads the contents of an AutoLISP file into all open documents, and into any documents opened later in the session.
 
 1『
 
@@ -111,13 +111,13 @@ An expression is the basic structure that is used when working with AutoLISP. Au
 
 Each expression:
 
-1. Begins with an open (left) parenthesis.
+1 Begins with an open (left) parenthesis.
 
-2. Consists of a function name and optional arguments for that function. Each argument can also be an expression.
+2 Consists of a function name and optional arguments for that function. Each argument can also be an expression.
 
-3. Ends with a close (right) parenthesis.
+3 Ends with a close (right) parenthesis.
 
-4. Returns a value that can be used by a surrounding expression. The value of the last interpreted expression is returned to the calling expression.
+4 Returns a value that can be used by a surrounding expression. The value of the last interpreted expression is returned to the calling expression.
 
 For example, the following code example involves three functions:
 
@@ -277,23 +277,23 @@ A list is a group of related values separated by spaces and enclosed in parenthe
 
 Examples of lists are (1.0 1.0 0.0), ("this" "that" "the other"), and (1 . "ONE"). AutoLISP provides many functions for working with lists. The following are some of the most commonly used functions:
 
-1. list - Creates a new list with any number of values.
+1 list - Creates a new list with any number of values.
 
-2. append - Appends values to an existing list, and returns a new list.
+2 append - Appends values to an existing list, and returns a new list.
 
-3. cons - Adds an element to the beginning of a list, or constructs a dotted list.
+3 cons - Adds an element to the beginning of a list, or constructs a dotted list.
 
-4. length - Returns an integer indicating the number of elements in a list.
+4 length - Returns an integer indicating the number of elements in a list.
 
-5. assoc - Searches an association list for an element and returns that association list entry.
+5 assoc - Searches an association list for an element and returns that association list entry.
 
-6. car - Returns the first element of a list.
+6 car - Returns the first element of a list.
 
-7. cdr - Returns a list containing all but the first element of the specified list.
+7 cdr - Returns a list containing all but the first element of the specified list.
 
-8. nth - Returns the nth element of a list.
+8 nth - Returns the nth element of a list.
 
-9. subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
+9 subst - Searches a list for an old item and returns a copy of the list with a new item substituted in place of every occurrence of the old item.
 
 1『以上都是一些常用的数组操作函数，牢记哦。』
 
@@ -417,19 +417,19 @@ An entity name is a numeric label assigned to objects in a drawing. It is actual
 
 Note: You can use the vlax-ename->vla-object function to convert an entity name to a VLA-object when working with ActiveX functions. The vlax-vla-object->ename function converts a VLA-object to an entity name. The following functions are useful when working with entity names:
 
-1. entget - Retrieves an object's (entity's) definition data.
+1 entget - Retrieves an object's (entity's) definition data.
 
-2. entlast - Returns the name of the last non-deleted main object (entity) in the drawing.
+2 entlast - Returns the name of the last non-deleted main object (entity) in the drawing.
 
-3. ssname - Returns the object (entity) name of the indexed element of a selection set.
+3 ssname - Returns the object (entity) name of the indexed element of a selection set.
 
-4. entsel - Prompts the user to select a single object (entity) by specifying a point.
+4 entsel - Prompts the user to select a single object (entity) by specifying a point.
 
-5. nentsel - Prompts the user to select an object (entity) by specifying a point, and provides access to the definition data contained within a complex object.
+5 nentsel - Prompts the user to select an object (entity) by specifying a point, and provides access to the definition data contained within a complex object.
 
-6. nentselp - Provides similar functionality to that of the nentsel function without the need for user input.
+6 nentselp - Provides similar functionality to that of the nentsel function without the need for user input.
 
-7. handent - Returns an object (entity) name based on its handle.
+7 handent - Returns an object (entity) name based on its handle.
 
 The following example uses the entlast function to get the name of the last object created in the drawing.
 
@@ -458,21 +458,21 @@ A file descriptor is a pointer to a file opened by the AutoLISP open function. T
 
 You use the following functions when working with a file:
 
-1. open - Opens a file for access by the AutoLISP I/O functions.
+1 open - Opens a file for access by the AutoLISP I/O functions.
 
-2. write-line - Writes a string to the screen or to an open file.
+2 write-line - Writes a string to the screen or to an open file.
 
-3. write-char - Writes one character to the screen or to an open file.
+3 write-char - Writes one character to the screen or to an open file.
 
-4. read-line - Reads a string from the keyboard or from an open file, until an end-of-line marker is encountered.
+4 read-line - Reads a string from the keyboard or from an open file, until an end-of-line marker is encountered.
 
-5. read-char - Returns the decimal ASCII code representing the character read from the keyboard input buffer or from an open file.
+5 read-char - Returns the decimal ASCII code representing the character read from the keyboard input buffer or from an open file.
 
-6. print – Prints an expression to the command line or writes an expression to an open file.
+6 print – Prints an expression to the command line or writes an expression to an open file.
 
-7. prin1 – Prints an expression to the command line or writes an expression to an open file.
+7 prin1 – Prints an expression to the command line or writes an expression to an open file.
 
-8. close – Closes a file opened with the open function.
+8 close – Closes a file opened with the open function.
 
 1『
 
@@ -522,11 +522,11 @@ Note: While AutoLISP source code is commonly saved in files with a .lsp or .mnl 
 
 #### Topics in this section
 
-1. About Formatting and Spaces in Code (AutoLISP). AutoLISP code can span multiple lines, and contain empty lines and extra spaces. Empty lines and extra spaces do not have any significant meaning, but can make your code easier to read.
+1 About Formatting and Spaces in Code (AutoLISP). AutoLISP code can span multiple lines, and contain empty lines and extra spaces. Empty lines and extra spaces do not have any significant meaning, but can make your code easier to read.
 
-2. About Comments in AutoLISP Program Files (AutoLISP). Comments are useful to both the programmer and future users who may need to revise a program to suit their needs.
+2 About Comments in AutoLISP Program Files (AutoLISP). Comments are useful to both the programmer and future users who may need to revise a program to suit their needs.
 
-3. To Create and Open AutoLISP Source Code Files (AutoLISP). AutoLISP source code files can be created and edited using a plain ASCII text editor.
+3 To Create and Open AutoLISP Source Code Files (AutoLISP). AutoLISP source code files can be created and edited using a plain ASCII text editor.
 
 #### 3.4.1 About Formatting and Spaces in Code (AutoLISP)
 
@@ -710,11 +710,11 @@ Another efficient programming practice is to use local variables whenever possib
 
 AutoLISP has several predefined variables that can be used with your custom functions and commands. You can change the value of these variables with the setq function. However, other applications might rely on their values being consistent; therefore, it is recommended that you do not modify these variables. The following variables are predefined for use with AutoLISP applications:
 
-1. PAUSE - Defined as a constant string of a double backslash (\\) character. This variable is used with the command function to pause for user input.
+1 PAUSE - Defined as a constant string of a double backslash (\\) character. This variable is used with the command function to pause for user input.
 
-2. PI - Defined as the constant p (pi). It evaluates to approximately 3.14159.
+2 PI - Defined as the constant p (pi). It evaluates to approximately 3.14159.
 
-3. T - Defined as the constant T. This is used as a non-nil value.
+3 T - Defined as the constant T. This is used as a non-nil value.
 
 Note: Visual LISP, by default, protects these variables from redefinition. You can override this protection through the Visual LISP Symbol Service feature or by setting a Visual LISP environment option. Visual LISP is available on Windows only.
 
@@ -747,17 +747,17 @@ A string is a group of characters surrounded by quotation marks. Within quoted s
 
 AutoLISP provides many functions for working with string values. The following are some of the most commonly used functions:
 
-1. strcat – Returns a string that is the concatenation of multiple strings.
+1 strcat – Returns a string that is the concatenation of multiple strings.
 
-2. strcase – Returns a string where all alphabetic characters have been converted to uppercase or lowercase.
+2 strcase – Returns a string where all alphabetic characters have been converted to uppercase or lowercase.
 
-3. strlen – Returns an integer that is the number of characters in a string.
+3 strlen – Returns an integer that is the number of characters in a string.
 
-4. substr – Returns a substring of a string.
+4 substr – Returns a substring of a string.
 
-5. vl-string-search – Searches for the specified pattern in a string.
+5 vl-string-search – Searches for the specified pattern in a string.
 
-6. vl-string-subst – Substitutes one string for another, within a string.
+6 vl-string-subst – Substitutes one string for another, within a string.
 
 1『字符串的常用操作函数，跟数组的一样，得牢记，哈哈。』
 
@@ -955,7 +955,7 @@ You can substitute all occurrences of an item in a list with a new item with the
 ("one" 1.0 "one" 1 "one")
 ```
 
-3『[帮助: cons (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B418E7-DB3D-4CBE-954E-F070F0A7CB2B)
+3『[cons (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B418E7-DB3D-4CBE-954E-F070F0A7CB2B)
 
 ```c
 (cons new-first-element list-or-atom)
@@ -1132,13 +1132,13 @@ Dotted pairs are an example of an "improper list." An improper list is one in wh
 
 The following functions are useful for handling dotted pairs:
 
-1. car - Returns the first member of the specified dotted pair.
+1 car - Returns the first member of the specified dotted pair.
 
-2. cdr - Returns the second member of the specified dotted pair.
+2 cdr - Returns the second member of the specified dotted pair.
 
-3. assoc - Searches an association list for a member and returns that association list entry.
+3 assoc - Searches an association list for a member and returns that association list entry.
 
-4. nth - Returns the nth element of a list.
+4 nth - Returns the nth element of a list.
 
 The following code creates an association list of dotted pairs:
 
@@ -1191,17 +1191,17 @@ These functions are discussed in the following linked topics. The remaining disp
 
 AutoLISP programs often need to inform the user of an error or request for input. Messages that are displayed should try and not interrupt the flow of a command, and when they do the text displayed should be short and precise as to what the problem is or the input that is being requested. AutoLISP offers the following functions to display messages to the user:
 
-1. prompt - Displays string at the AutoCAD Command prompt.
+1 prompt - Displays string at the AutoCAD Command prompt.
 
-2. princ - Displays a value at the AutoCAD Command prompt or to an open file. Strings are displayed without the enclosing quotation marks.
+2 princ - Displays a value at the AutoCAD Command prompt or to an open file. Strings are displayed without the enclosing quotation marks.
 
-3. prin1 - Displays a value at the AutoCAD Command prompt or to an open file. Strings are enclosed in quotation marks.
+3 prin1 - Displays a value at the AutoCAD Command prompt or to an open file. Strings are enclosed in quotation marks.
 
-4. print - Displays a value at the AutoCAD Command prompt or to an open file, but a blank line is placed before the value and a space is placed after the value. Strings are enclosed in quotation marks.
+4 print - Displays a value at the AutoCAD Command prompt or to an open file, but a blank line is placed before the value and a space is placed after the value. Strings are enclosed in quotation marks.
 
-5. alert - Displays a dialog box containing an error or warning message.
+5 alert - Displays a dialog box containing an error or warning message.
 
-6. terpri - Prints a newline to the AutoCAD Command prompt.
+6 terpri - Prints a newline to the AutoCAD Command prompt.
 
 The write-char, write-line, getXXX, and entsel functions can also display messages at the AutoCAD Command prompt.
 
@@ -1303,13 +1303,13 @@ A string can be compared to a wild-card pattern with the wcmatch function. This 
 
 The following rules apply to wild-card patterns:
 
-1. Alphabetic characters and numerals are treated literally in the pattern.
+1 Alphabetic characters and numerals are treated literally in the pattern.
 
-2. Brackets can be used to specify optional characters or a range of letters or digits.
+2 Brackets can be used to specify optional characters or a range of letters or digits.
 
-3. A question mark ( ? ) matches a single character.
+3 A question mark ( ? ) matches a single character.
 
-4. An asterisk ( * ) matches a sequence of characters; and, certain other special characters have special meanings within the pattern. When you use the * character at the beginning and end of the search pattern, you can locate the desired portion anywhere in the string.
+4 An asterisk ( * ) matches a sequence of characters; and, certain other special characters have special meanings within the pattern. When you use the * character at the beginning and end of the search pattern, you can locate the desired portion anywhere in the string.
 
 In the following examples, a string variable called matchme has been declared and initialized:
 
@@ -1437,9 +1437,9 @@ If an AutoLISP function is defined with a name of the form C:xxx, it can be issu
 
 To use functions as AutoCAD commands, be sure they adhere to the following rules:
 
-1. The function name must use the form C:xxx (upper- or lowercase characters). The C: portion of the name must always be present; the XXX portion is a command name of your choice. C:xxx functions can be used to override built-in AutoCAD commands. (See About Redefining AutoCAD Commands [AutoLISP].)
+1 The function name must use the form C:xxx (upper- or lowercase characters). The C: portion of the name must always be present; the XXX portion is a command name of your choice. C:xxx functions can be used to override built-in AutoCAD commands. (See About Redefining AutoCAD Commands [AutoLISP].)
 
-2. The function must be defined with no arguments. However, local variables are permitted and it is a good programming practice to use them.
+2 The function must be defined with no arguments. However, local variables are permitted and it is a good programming practice to use them.
 
 1『不能有参数，但可以使用局部变量。』
 
@@ -1889,15 +1889,15 @@ The AutoLISP language provides several functions for handling errors. The proper
 
 The following functions are useful to handle errors encountered by your programs:
 
-1. \*error* - A user-definable error-handling function.
+1 `\*error*` - A user-definable error-handling function.
 
-2. \*pop-error-mode* - Error-handling function that ends the previous call to \*push-error-using-command* or \*push-error-using-stack*.
+2 `\*pop-error-mode*` - Error-handling function that ends the previous call to \*push-error-using-command* or \*push-error-using-stack*.
 
-3. \*push-error-using-command* - Error-handling function that indicates the use of the command function within a custom \*error* handler.
+3 `\*push-error-using-command*` - Error-handling function that indicates the use of the command function within a custom \*error* handler.
 
-4. \*push-error-using-stack* - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom \*error* handler.
+4 `\*push-error-using-stack*` - Error-handling function that indicates the use of variables from the AutoLISP stack within a custom \*error* handler.
 
-5. vl-catch-all-apply - Passes a list of arguments to a specified function and traps any exceptions.
+5 `vl-catch-all-apply` - Passes a list of arguments to a specified function and traps any exceptions.
 
 If your program contains more than one error in the same expression, you cannot depend on the order in which AutoLISP detects the errors. For example, the inters function requires several arguments, each of which must be either a 2D or 3D point list. A call to inters like the following:
 
@@ -1989,15 +1989,15 @@ Selection sets are groups of one or more selected objects (entities). You can in
 
 AutoLISP provides a number of functions for handling selection sets. The following lists some of the functions available for working with selection sets: 
 
-1. ssget - Prompts the user to select objects (entities), and returns a selection set; 
+1 ssget - Prompts the user to select objects (entities), and returns a selection set; 
 
-2. ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
+2 ssadd - Adds an object (entity) to a selection set, or creates a new selection set; 
 
-3. ssdel - Removes an object (entity) from a selection set; 
+3 ssdel - Removes an object (entity) from a selection set; 
 
-4. ssname - Returns the object (entity) name of the indexed element of a selection set; 
+4 ssname - Returns the object (entity) name of the indexed element of a selection set; 
 
-5. sslength - Returns an integer containing the number of objects (entities) in a selection set.
+5 sslength - Returns an integer containing the number of objects (entities) in a selection set.
 
 1『获得选择集之后，需要靠 ssname，比如获取块选择集里第一个块的实体信息：`(setq ent (entget (ssname ss 0)))`。』
 
@@ -2232,19 +2232,19 @@ Unless otherwise specified, an equivalency is implied for each item in the filte
 
 The possible relational operators are shown in the following table. The use of relational operators depends on the kind of group code value you are testing:
 
-1. All relational operators except for the bitwise operators ("&" and "&=") are valid for both real- and integer-valued groups.
+1 All relational operators except for the bitwise operators ("&" and "&=") are valid for both real- and integer-valued groups.
 
-2. The bitwise operators "&" and "&=" are valid only for integer-valued groups.
+2 The bitwise operators "&" and "&=" are valid only for integer-valued groups.
 
-3. The bitwise AND, "&", is true if ((integer_group & filter) /= 0)—that is, if any of the bits set in the mask are also set in integer_group.
+3 The bitwise AND, "&", is true if ((integer_group & filter) /= 0)—that is, if any of the bits set in the mask are also set in integer_group.
 
-4. The bitwise masked equals, "&=", is true if ((integer_group & filter) = filter)—that is, if all bits set in the mask are also set in integer_group (other bits might be set in the integer_group but are not checked).
+4 The bitwise masked equals, "&=", is true if ((integer_group & filter) = filter)—that is, if all bits set in the mask are also set in integer_group (other bits might be set in the integer_group but are not checked).
 
-4. For point group codes, the X, Y, and Z tests can be combined into a single string, with each operator separated by commas (for example, ">,>,\*"). If an operator is omitted from the string (for example, "=,<>" leaves out the Z test), then the “anything goes” operator, "*", is assumed.
+4 For point group codes, the X, Y, and Z tests can be combined into a single string, with each operator separated by commas (for example, ">,>,\*"). If an operator is omitted from the string (for example, "=,<>" leaves out the Z test), then the “anything goes” operator, "*", is assumed.
 
-5. Direction vectors (group code 210) can be compared only with the operators "*", "=", and "!=" (or one of the equivalent “not equal” strings).
+5 Direction vectors (group code 210) can be compared only with the operators "*", "=", and "!=" (or one of the equivalent “not equal” strings).
 
-6. You cannot use the relational operators with string group codes; use wild-card tests instead.
+6 You cannot use the relational operators with string group codes; use wild-card tests instead.
 
 #### About Logical Grouping of Selection Filter Tests (AutoLISP)
 
@@ -2368,9 +2368,9 @@ AutoLISP provides functions for handling objects. The object-handling functions 
 
 1『AutoLISP 里有两类操作对象（objects）的函数：获取特定对象的实体名（entity name）；者获取或修改特定对象的实体数据（entity data）。』
 
-#### 5.2.1 About Accessing an Object’s Entity Name (AutoLISP)
+#### 5.2.1 About Accessing an Object's Entity Name (AutoLISP)
 
-An AutoLISP routine must obtain an object’s entity name to make subsequent calls to the entity data or selection set functions. The entsel and nentsel functions prompt the user to interactively select an object in the drawing area and return not only the selected object’s entity name but additional information for the routine's use. 
+An AutoLISP routine must obtain an object's entity name to make subsequent calls to the entity data or selection set functions. The entsel and nentsel functions prompt the user to interactively select an object in the drawing area and return not only the selected object's entity name but additional information for the routine's use. 
 
 1『提取 entity name 是很多操作的前提条件，可以用函数 entsel 和 nentsel  实现；nentsel 函数可以提取多段线和块这种复杂对象里的信息；entnext 函数默认参数是第一个实体的 entity name，如果传递给它一个实体的 entity name，那么返回的是该实体的下一个的 entity name；entlast 提取最后一个实体的 entity name，变相就是提取最近的实体信息，应该大有用处；提取对象 entity name 的函数汇总： entsel、nentsel、nentselp、entnext、entlast。』
 
@@ -2419,13 +2419,13 @@ For example, when the user selects a 3D polyline, nentsel returns a vertex suben
 
 Selecting an attribute within a block reference returns the name of the attribute and the pick point. When the selected object is a component of a block reference other than an attribute, nentsel returns a list containing the following elements:
 
-1. The selected entity's name.
+1 The selected entity's name.
 
-2. A list containing the coordinates of the point used to pick the object.
+2 A list containing the coordinates of the point used to pick the object.
 
-3. The Model to World Transformation Matrix. This is a list consisting of four sublists, each of which contains a set of coordinates. This matrix can be used to transform the entity definition data points from an internal coordinate system called the model coordinate system (MCS), to the World Coordinate System (WCS). The insertion point of the block that contains the selected entity defines the origin of the MCS. The orientation of the UCS when the block is created determines the direction of the MCS axes.
+3 The Model to World Transformation Matrix. This is a list consisting of four sublists, each of which contains a set of coordinates. This matrix can be used to transform the entity definition data points from an internal coordinate system called the model coordinate system (MCS), to the World Coordinate System (WCS). The insertion point of the block that contains the selected entity defines the origin of the MCS. The orientation of the UCS when the block is created determines the direction of the MCS axes.
 
-4. A list containing the entity name of the block that contains the selected object. If the selected object is in a nested block (a block within a block), the list also contains the entity names of all blocks in which the selected object is nested, starting with the innermost block and continuing outward until the name of the block that was inserted in the drawing is reported.
+4 A list containing the entity name of the block that contains the selected object. If the selected object is in a nested block (a block within a block), the list also contains the entity names of all blocks in which the selected object is nested, starting with the innermost block and continuing outward until the name of the block that was inserted in the drawing is reported.
 
 The list returned from selecting a block with nentsel is summarized as follows:
 
@@ -2506,13 +2506,13 @@ The following example code creates a circle on the MYLAYER layer:
 
 The following entmake restrictions apply to all entities:
 
-1. The first or second member in the list must specify the entity type. The type must be a valid DXF group code. If the first member does not specify the type, it can specify only the name of the entity: group -1 (the name is not saved in the database).
+1 The first or second member in the list must specify the entity type. The type must be a valid DXF group code. If the first member does not specify the type, it can specify only the name of the entity: group -1 (the name is not saved in the database).
 
-2. AutoCAD must recognize all objects that the entity list refers to. There is one exception: entmake accepts new layer names.
+2 AutoCAD must recognize all objects that the entity list refers to. There is one exception: entmake accepts new layer names.
 
-3. Any internal fields passed to entmake are ignored.
+3 Any internal fields passed to entmake are ignored.
 
-4. entmake cannot create viewport entities.
+4 entmake cannot create viewport entities.
 
 For entity types introduced in AutoCAD Release 13 and later releases, you must also specify subclass markers (DXF group code 100) when creating the entity. All AutoCAD entities have the AcDbEntity subclass marker, and this must be explicitly included in the entmake list. In addition, one or more subclass marker entries are required to identify the specific sub-entity type. These entries must follow group code 0 and must precede group codes that are specifically used to define entity properties in the entmake list. For example, the following is the minimum code required to create a MTEXT entity with entmake:
 
@@ -2705,11 +2705,11 @@ The following example code retrieves the definition data of the first entity in 
 
 There are restrictions on the changes to the database that entmod can make; entmod cannot change the following:
 
-1. The entity's type or handle.
+1 The entity's type or handle.
 
-2. Internal fields. (Internal fields are the values that AutoCAD assigns to certain group codes: -2, entity name reference; -1, entity name; 5, entity handle.) Any attempt to change an internal field—for example, the main entity name in a Seqend subentity (group code -2)—is ignored.
+2 Internal fields. (Internal fields are the values that AutoCAD assigns to certain group codes: -2, entity name reference; -1, entity name; 5, entity handle.) Any attempt to change an internal field—for example, the main entity name in a Seqend subentity (group code -2)—is ignored.
 
-3. Viewport entities. An attempt to change a viewport entity causes an error.
+3 Viewport entities. An attempt to change a viewport entity causes an error.
 
 Other restrictions apply when modifying dimensions and hatch patterns. AutoCAD must recognize all objects (except layers) that the entity list refers to. The name of any text style, linetype, shape, or block that appears in an entity list must be defined in the current drawing before the entity list is passed to entmod. The one exception is that entmod accepts new layer names. If the entity list refers to a layer name that has not been defined in the current drawing, entmod creates a new layer. The attributes of the new layer are the standard default values used by the New option of the AutoCAD LAYER command.
 
