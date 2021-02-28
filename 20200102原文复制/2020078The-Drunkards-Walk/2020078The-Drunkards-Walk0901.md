@@ -213,3 +213,4 @@ Our journey through randomness is now almost at its end. We began with simple ru
 50 Beth E. Haverkamp,「Confirmatory Bias in Hypothesis Testing for Client-Identified and Counselor Self-generated Hypotheses,」Journal of Counseling Psychology 40, no. 3 (July 1993): 303–15.
 
 51 David L. Hamilton and Terrence L. Rose,「Illusory Correlation and the Maintenance of Stereotypic Beliefs,」Journal of Personality and Social Psychology 39, no. 5 (1980): 832–45; Galen V. Bodenhausen and Robert S. Wyer,「Effects of Stereotypes on Decision Making and Information-Processing Strategies,」Journal of Personality and Social Psychology 48, no. 2 (1985): 267–82; and C. Stangor and D. N. Ruble,「Strength of Expectancies and Memory for Social Information: What We Remember Depends on How Much We Know,」Journal of Experimental Social Psychology 25, no. 1 (1989): 18–35.
+
