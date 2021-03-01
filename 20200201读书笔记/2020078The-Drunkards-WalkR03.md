@@ -138,7 +138,7 @@ Johann and Jakob had not gotten along for most of their adult lives. They would 
 
 Jakob Bernoulli had shown that through mathematical analysis one could learn how the inner hidden probabilities that underlie natural systems are reflected in the data those systems produce. As for the question that Bernoulli did not answer — the question of how to infer, from the data produced, the underlying probability of events — the answer would not come for several decades more.
 
-## Notes
+### Notes
 
 1 Tijms, Understanding Probability, p. 53.
 
@@ -418,7 +418,7 @@ Laplace's analysis began with a paper in 1774 but spread over four decades. A br
 
 Laplace's political dexterity was fortunate for mathematics, for in the end his analysis was richer and more complete than Bayes's. With the foundation provided by Laplace's work, in the next chapter we shall leave the realm of probability and enter that of statistics. Their joining point is one of the most important curves in all of mathematics and science, the bell curve, otherwise known as the normal distribution. That, and the new theory of measurement that came with it, are the subjects of the following chapter.
 
-## Notes
+### Notes
 
 1 The account of the Harvard student is from Hastie and Dawes, Rational Choice in an Uncertain World, pp. 320–21.
 

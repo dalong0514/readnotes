@@ -100,7 +100,7 @@ To illustrate how the central limit theorem explains why the normal distribution
 
 By the 1830s most scientists had come to believe that every measurement is a composite, subject to a great number of sources of deviation and hence to the error law. The error law and the central limit theorem thus allowed for a new and deeper understanding of data and their relation to physical reality. In the ensuing century, scholars interested in human society also grasped these ideas and found to their surprise that the variation in human characteristics and behavior often displays the same pattern as the error in measurement. And so they sought to extend the application of the error law from physical science to a new science of human affairs.
 
-## Notes
+### Notes
 
 1 Sarah Kershaw and Eli Sanders,「Recounts and Partisan Bickering Bring Election Fatigue to Washington Voters,」New York Times, December 26, 2004; and Timothy Egan,「Trial for Governor's Seat Set to Start in Washington,」New York Times, May 23, 2005.
 
@@ -362,7 +362,7 @@ The random motion of molecules in a fluid can be viewed, as we'll note in chapte
 
 In Einstein's mathematical analysis the normal distribution again played a central role, reaching a new place of glory in the history of science. The drunkard's walk, too, became established as one of the most fundamental — and soon one of the most studied — processes in nature. For as scientists in all fields began to accept the statistical approach as legitimate, they recognized the thumbprints of the drunkard's walk in virtually all areas of study — in the foraging of mosquitoes through cleared African jungle, in the chemistry of nylon, in the formation of plastics, in the motion of free quantum particles, in the movement of stock prices, even in the evolution of intelligence over eons of time. We'll examine the effects of randomness on our own paths through life in chapter 10. But as we're about to see, though in random variation there are orderly patterns, patterns are not always meaningful. And as important as it is to recognize the meaning when it is there, it is equally important not to extract meaning when it is not there. Avoiding the illusion of meaning in random patterns is a difficult task. It is the subject of the following chapter.
 
-## Notes
+### Notes
 
 1 Holland, What Are the Chances? p. 51.
 
