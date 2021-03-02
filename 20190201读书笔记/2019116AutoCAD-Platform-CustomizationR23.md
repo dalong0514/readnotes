@@ -137,11 +137,11 @@ tiles. The tiles argument is a list of optional tiles that define the controls t
 
 Table 23.1 Common attributes used with the dialog tile
 
-1. label. The title that is assigned to the dialog box.
+1 label. The title that is assigned to the dialog box.
 
-2. value. Alternative to the title attribute. This attribute can be set only with the `set_tile` function. I discuss the `set_tile` function later in this chapter, in the「Setting the Default Value of an Interactive Tile」section.
+2 value. Alternative to the title attribute. This attribute can be set only with the `set_tile` function. I discuss the `set_tile` function later in this chapter, in the「Setting the Default Value of an Interactive Tile」section.
 
-3. `initial_focus`. The key assigned to the tile in the dialog tile that should have focus by default when the dialog box is displayed.
+3 `initial_focus`. The key assigned to the tile in the dialog tile that should have focus by default when the dialog box is displayed.
 
 An example of a dialog tile was shown earlier in this chapter; see Listing 23.1 and Figure 23.1.
 
@@ -165,25 +165,25 @@ Table 23.2 Interactive tiles available with the dialog tile
 
 Table 23.2 lists and describes the interactive tiles that can be added to a dialog tile for getting input from the user when a dialog box is displayed.
 
-1. button. Push or command button that, when clicked, executes a function.
+1 button. Push or command button that, when clicked, executes a function.
 
-2. `edit_box`. Free-form text box in which the user can enter an alphanumeric value.
+2 `edit_box`. Free-form text box in which the user can enter an alphanumeric value.
 
-3. image. Container that displays a slide image. The slide image can be a stand-alone SLB file or one from a compiled slide library SLD file.
+3 image. Container that displays a slide image. The slide image can be a stand-alone SLB file or one from a compiled slide library SLD file.
 
-4. `image_button`. Graphical button that displays a slide image that, when clicked, executes a function.
+4 `image_button`. Graphical button that displays a slide image that, when clicked, executes a function.
 
-5. `list_box`. List box that contains a set of predefined items from which the user can select one or more items.
+5 `list_box`. List box that contains a set of predefined items from which the user can select one or more items.
 
-6. `popup_list`. Drop-down list that contains a set of predefined items from which the user can choose a single item.
+6 `popup_list`. Drop-down list that contains a set of predefined items from which the user can choose a single item.
 
-7. `radio_button`. Option button that allows for a single choice among multiple option buttons.
+7 `radio_button`. Option button that allows for a single choice among multiple option buttons.
 
-8. slider. Scroll bar–like control that allows the user to specify a value within a specific range.
+8 slider. Scroll bar–like control that allows the user to specify a value within a specific range.
 
-9. text. Label that displays information to the user or identifies the intention of a control.
+9 text. Label that displays information to the user or identifies the intention of a control.
 
-10. toggle. Check-box button that allows for multiple choices.
+10 toggle. Check-box button that allows for multiple choices.
 
 Table 23.3 Common attributes used with control tiles
 
@@ -425,33 +425,33 @@ NOTE: The DCL Preview feature requires you to have full read/write access to the
 
 In this exercise, you will create a DCL file based on the dialog box defined in Listing 23.4 and then preview it using the Visual LISP Editor:
 
-1. In AutoCAD, click the Manage tab Applications panel Visual LISP Editor.
+1 In AutoCAD, click the Manage tab Applications panel Visual LISP Editor.
 
-2. In the Visual LISP Editor, click File New File.
+2 In the Visual LISP Editor, click File New File.
 
-3. Click File Save As.
+3 Click File Save As.
 
-4. In the Save-as dialog box, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store DCL files.
+4 In the Save-as dialog box, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store DCL files.
 
-5. In the File Name text box, type ex_createLabelObject.
+5 In the File Name text box, type ex_createLabelObject.
 
-6. Click the Save As Type drop-down list and choose DCL Source Files.
+6 Click the Save As Type drop-down list and choose DCL Source Files.
 
-7. Click Save.
+7 Click Save.
 
-8. In the text editor window, type the following:
+8 In the text editor window, type the following:
 
-    ```c
-    Listing 23.4
-    ```
+```c
+Listing 23.4
+```
 
-9. Click File Save.
+9 Click File Save.
 
-10. Click Tools Interface Tools Preview DCL In Editor.
+10 Click Tools Interface Tools Preview DCL In Editor.
 
-11. In the Enter The Dialog Name dialog box, click OK. That dialog box lists all the dialog-box definitions in the DCL file that is open in the editor.
+11 In the Enter The Dialog Name dialog box, click OK. That dialog box lists all the dialog-box definitions in the DCL file that is open in the editor.
 
-12. Review the dialog box and click any control to return to the Visual LISP Editor. The dialog box you create should look like the one shown earlier, in Figure 23.4.
+12 Review the dialog box and click any control to return to the Visual LISP Editor. The dialog box you create should look like the one shown earlier, in Figure 23.4.
 
 ### 13.3 Loading and Displaying a Dialog Box
 
@@ -463,7 +463,7 @@ A DCL file must be loaded into the AutoCAD drawing environment before you can di
 
 The following shows the syntax of the load_dialog function:
 
-```
+```c
 (load_dialog dcl_filename)
 ```
 
@@ -471,7 +471,7 @@ The `dcl_filename` argument that the `load_dialog` function expects is a string 
 
 Here is an example that loads a DCL file named ex\_createLabelObject.dcl with the load\_dialog function and the return of the DCL file ID, in this instance a value of 101. You should always store the DCL file ID in a variable so that you can display and unload a dialog box defined in the DCL file. The DCL file was created as part of the exercise in the「Creating and Previewing a Dialog in a DCL File」section earlier in this chapter.
 
-```
+```c
 (setq id (load_dialog "ex_createLabelObject.dcl")) 
 // out
 101
@@ -479,13 +479,13 @@ Here is an example that loads a DCL file named ex\_createLabelObject.dcl with th
 
 The `unload_dialog` function unloads a dialog box definition from memory; the particular dialog is identified by the DCL file ID that was returned by the `load_dialog` function. The DCL file ID changes each time the DCL file is loaded, and the value returned should be stored in a variable until the dialog box is no longer needed in the current drawing session. A dialog box can be loaded more than once; each time a dialog box is loaded, a new instance of the dialog box is stored in memory until it is unloaded. The following shows the syntax of the `unload_dialog` function:
 
-```
+```c
 (unload_dialog dcl_file_id)
 ```
 
 The dcl\_file\_id argument that the `unload_dialog` function expects is the same value that was returned by the `load_dialog` function. The `unload_dialog` function always returns a value of nil, and that value has no significant meaning; successfully or unsuccessfully unloading the dialog box results in the same value of nil. Here is an example of the `unload_dialog` function:
 
-```
+```c
 (unload_dialog id) 
 // out
 nil
@@ -495,28 +495,21 @@ nil
 
 After a DCL file has been loaded, an instance of a dialog box contained in the loaded DCL file can be created and displayed with the `new_dialog` function. The `new_dialog` function is also used to specify a default action for all interactive tiles that don't have an action assigned to them, and the onscreen display location. The `new_dialog` function returns T if the dialog box was successfully created, or it returns nil if the dialog box couldn't be created. The following shows the syntax of the `new_dialog` function:
 
-```
+```c
 (new_dialog dialog_name dcl_file_id [action [point]])
 ```
 
 Here are its arguments:
 
-1. dialog\_name. The dialog\_name argument is a case-sensitive string that specifies the unique name of the dialog to create an instance of from the DCL file specified by the dcl\_file\_id argument. The value must exactly match the name applied to the dialog tile and is case sensitive.
+1 dialog\_name. The dialog\_name argument is a case-sensitive string that specifies the unique name of the dialog to create an instance of from the DCL file specified by the dcl\_file\_id argument. The value must exactly match the name applied to the dialog tile and is case sensitive.
 
-2. dcl\_file\_id. The dcl\_file\_id argument that the new\_dialog function expects is the value that was returned by the load\_dialog function.
+2 dcl\_file\_id. The dcl\_file\_id argument that the new\_dialog function expects is the value that was returned by the load\_dialog function.
 
-3. action. The action argument is an optional string that represents an AutoLISP expression. This expression is applied to the action attribute of all interactive tiles that aren't assigned an action as part of the DCL file; the function is executed when the tile is clicked. Provide "" when you want to specify the point argument but no default action.
+3 action. The action argument is an optional string that represents an AutoLISP expression. This expression is applied to the action attribute of all interactive tiles that aren't assigned an action as part of the DCL file; the function is executed when the tile is clicked. Provide "" when you want to specify the point argument but no default action.
 
-4. point. The point argument is an optional 2D point list that represents the onscreen location of the dialog box's upper-left corner. The dialog box is centered by default and can be specified with a value of ‘(-1 -1). The upper-left corner of the screen is 0,0.
+4 point. The point argument is an optional 2D point list that represents the onscreen location of the dialog box's upper-left corner. The dialog box is centered by default and can be specified with a value of ‘(-1 -1). The upper-left corner of the screen is 0,0.
 
 Once an instance of a dialog box has been created with the `new_dialog` function, the `start_dialog` function must eventually be called. The `start_dialog` function informs AutoCAD that the dialog box is ready for user interaction. Before `start_dialog` is executed, you should make sure that all initial default values and enabled states have been specified. The next section explains how to set the default values for and specify the enabled state of tiles, as well as initialize lists and images.
-
-1『
-
-数据流的源码如下：
-
-
-』
 
 The `start_dialog` function doesn't accept any arguments and returns a status value based on how the user exited the dialog box. A status value of 1 generally means the user clicked OK or a similar button, whereas a value of 0 indicates the user clicked Cancel or the Close button. The status value returned by a tile is determined by the value passed to the `done_dialog` function. I cover the `done_dialog` function later in this chapter, in the「Terminating or Closing a Dialog Box」section. You don't need to worry about executing the `done_dialog` function if you use one of the tile subassemblies that contains the OK or Cancel button mentioned earlier, in the「Adding Tiles」section.
 
@@ -930,9 +923,9 @@ NOTE: The sample DCL syntax and AutoLISP code can be found in the `ch23_ex_hidde
 
 In this section, you will create a DCL file that defines a dialog box for use with a version of the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」The dialog box replaces the width and height prompts and adds an option that controls the creation of the label. The key concepts I cover in this exercise are as follows:
 
-1. Creating a DCL File A DCL file is used to hold a dialog box definition that can be displayed with the AutoLISP programming language.
+1 Creating a DCL File A DCL file is used to hold a dialog box definition that can be displayed with the AutoLISP programming language.
 
-2. Displaying a Dialog Box A dialog box contained in a DCL file can be loaded and displayed in the AutoCAD drawing environment. Once the dialog box has been displayed, the user can interact with the tiles (or controls) on the dialog box. The choices a user makes can then be used to control the behavior and output of a custom program.
+2 Displaying a Dialog Box A dialog box contained in a DCL file can be loaded and displayed in the AutoCAD drawing environment. Once the dialog box has been displayed, the user can interact with the tiles (or controls) on the dialog box. The choices a user makes can then be used to control the behavior and output of a custom program.
 
 NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Deploying the drawplate Function」section of Chapter 20,「Authoring, Managing, and Loading AutoLISP Programs.」If you didn't complete the steps, do so now or start with the `ch23_drawplate.lsp` and `ch23_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the sample files are stored on your system, remove the characters `ch23_` from the name of each file.
 
@@ -942,29 +935,29 @@ Chapter 20 was the last chapter in which any changes were made to the drawplate 
 
 The following steps explain how to create the DCL file for the drawplate function:
 
-1. In AutoCAD, click the Manage tab Applications panel Visual LISP Editor.
+1 In AutoCAD, click the Manage tab Applications panel Visual LISP Editor.
 
-2. In the Visual LISP Editor, click File New File.
+2 In the Visual LISP Editor, click File New File.
 
-3. Click File Save As.
+3 Click File Save As.
 
-4. In the Save-as dialog box, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store DCL files.
+4 In the Save-as dialog box, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store DCL files.
 
-5. In the File Name text box, type drawplate.
+5 In the File Name text box, type drawplate.
 
-6. Click the Save As Type drop-down list and choose DCL Source Files.
+6 Click the Save As Type drop-down list and choose DCL Source Files.
 
-7. Click Save.
+7 Click Save.
 
-8. In the text editor window, type the following: souce code blow.
+8 In the text editor window, type the following: souce code blow.
 
-9. Click File Save.
+9 Click File Save.
 
-10. Click Tools Interface Tools Preview DCL In Editor.
+10 Click Tools Interface Tools Preview DCL In Editor.
 
-11. In the Enter The Dialog Name dialog box, choose drawplate and click OK.
+11 In the Enter The Dialog Name dialog box, choose drawplate and click OK.
 
-12. Review the dialog box (see Figure 23.5), and click any control to return to the Visual LISP Editor.
+12 Review the dialog box (see Figure 23.5), and click any control to return to the Visual LISP Editor.
 
 Figure 23.5 New dialog box for the drawplate function
 
@@ -1017,39 +1010,39 @@ AutoCAD has a few command-naming conventions, and one of those conventions inclu
 
 The following steps explain how to rename the drawplate function to -drawplate:
 
-1. In the Visual LISP Editor, click File Open File.
+1 In the Visual LISP Editor, click File Open File.
 
-2. In the Open File To Edit/View dialog box, click the Files Of Type drop-down list, and choose Lisp Source Files.
+2 In the Open File To Edit/View dialog box, click the Files Of Type drop-down list, and choose Lisp Source Files.
 
-3. Browse to and select the drawplate.lsp file and click Open.
+3 Browse to and select the drawplate.lsp file and click Open.
 
-4. In the text editor area, revise the boldface text:
+4 In the text editor area, revise the boldface text:
 
-    ```c
-    ; Draws a rectangular plate that is 5x2.75 
-    (defun c:-drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
-    ```
+```c
+; Draws a rectangular plate that is 5x2.75 
+(defun c:-drawplate ( / pt1 pt2 pt3 pt4 width height insPt textValue cenPt1 cenPt2 cenPt3 cenPt4 old_vars hole_list)
+```
 
-5. Revise the boldface text:
+5 Revise the boldface text:
 
-    ```c
-    ; Register the help file for F1/contextual help support 
-    (if (findfile "DrawPlate.htm") 
-      (setfunhelp "c:-drawplate" (findfile "DrawPlate.htm")) 
-    )
-    ```
+```c
+; Register the help file for F1/contextual help support 
+(if (findfile "DrawPlate.htm") 
+  (setfunhelp "c:-drawplate" (findfile "DrawPlate.htm")) 
+)
+```
 
-6. Click File Save.
+6 Click File Save.
 
 #### 13.4.3 Defining a New drawplate Function
 
 Now that you have renamed the existing drawplate function to `-drawplate` and defined the drawplate.dcl file, it is time to implement a new version of the drawplate function. The following steps explain how to add the new version of the drawplate function that will display the Draw Plate dialog box:
 
-1. Open the Visual LISP Editor and the drawplate.lsp file if they are not currently open.
+1 Open the Visual LISP Editor and the drawplate.lsp file if they are not currently open.
 
-2. In the text editor area, scroll to the bottom of the file and add the following code: source code below.
+2 In the text editor area, scroll to the bottom of the file and add the following code: source code below.
 
-3. Click File Save.
+3 Click File Save.
 
 ```c
 ; Load the utility.lsp file
@@ -1374,42 +1367,42 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 
 The following steps explain how to test the `-drawplate` function in the drawplate.lsp file:
 
-1. Create a new drawing.
+1 Create a new drawing.
 
-2. Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concern message box is displayed, click Load.
+2 Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concern message box is displayed, click Load.
 
-3. At the Command prompt, type `-drawplate` and press Enter.
+3 At the Command prompt, type `-drawplate` and press Enter.
 
-4. At the Specify base point for the plate or `[Width/Height]: prompt`, type w and press Enter.
+4 At the Specify base point for the plate or `[Width/Height]: prompt`, type w and press Enter.
 
-5. At the Specify the width of the plate `<5.0000>: prompt`, type 3 and press Enter.
+5 At the Specify the width of the plate `<5.0000>: prompt`, type 3 and press Enter.
 
-6. At the Specify base point for the plate or `[Width/Height]: prompt`, type h and press Enter.
+6 At the Specify base point for the plate or `[Width/Height]: prompt`, type h and press Enter.
 
-7. At the Specify the height of the plate `<2.7500>: prompt`, type 4 and press Enter.
+7 At the Specify the height of the plate `<2.7500>: prompt`, type 4 and press Enter.
 
-8. At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
+8 At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
 
-9. At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label. AutoCAD draws the completed plate, as expected.
+9 At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label. AutoCAD draws the completed plate, as expected.
 
 1-2『如何在一个 lsp 文件里调用另外一个 lsp 文件。直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。做一张任意卡片。』——已完成
 
 The following steps explain how to test the revised version of the drawplate function:
 
-1. At the Command prompt, type drawplate and press Enter. The Draw Plate dialog box is displayed and uses the width and height values specified by the -drawplate function.
+1 At the Command prompt, type drawplate and press Enter. The Draw Plate dialog box is displayed and uses the width and height values specified by the -drawplate function.
 
-2. In the Draw Plate dialog box, in the Width text box, enter 5.
+2 In the Draw Plate dialog box, in the Width text box, enter 5.
 
-3. In the Height text box, enter 5.
+3 In the Height text box, enter 5.
 
-4. Clear the Add Label check box.
+4 Clear the Add Label check box.
 
-5. Click Create.
+5 Click Create.
 
-6. At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified. AutoCAD draws the completed plate without the label, as expected.
+6 At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified. AutoCAD draws the completed plate without the label, as expected.
 
-7. At the Command prompt, type drawplate and press Enter.
+7 At the Command prompt, type drawplate and press Enter.
 
-8. In the Draw Plate dialog box, select Add Label.
+8 In the Draw Plate dialog box, select Add Label.
 
-9. Click Create, and specify the insertion point for the plate and label. AutoCAD draws the completed plate with a label this time.
+9 Click Create, and specify the insertion point for the plate and label. AutoCAD draws the completed plate with a label this time.

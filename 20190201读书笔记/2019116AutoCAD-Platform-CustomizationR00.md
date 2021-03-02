@@ -149,6 +149,97 @@ The following example removes the XData list associated with an application name
 )
 ```
 
+### 0105. 主题卡 —— 定位放大到一个特点的实体对象的坐标位置上
+
+信息源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+In AutoLISP you can define a special function named `s::startup`. This function is executed when you create or open a drawing in AutoCAD, as long as it has been defined in a loaded LSP file. Although more than one LSP file can contain an `s::startup` function, only the last loaded definition of the function is retained. The `s::startup` function is typically used to initialize system variables, insert title blocks, or draw and modify objects in the current drawing upon opening.
+
+Here is an example of the `s::startup` function:
+
+```c
+(defun s::startup ( / old_attreq) 
+  (setvar "osmode" 39) ; END, MID, CEN, and INT 
+  (setvar "pickfirst" 1) 
+  ; Create layer for title block 
+  (command "._-layer" "_m" "titleblk" "_c" "7" "" "") 
+  ; Insert title block at 0,0 
+  (setq old_attreq (getvar "attreq")) 
+  (setvar "attreq" 0) 
+  (command "._insert" "tb-c_size" "0,0" "1" "1" "0") 
+  (setvar "attreq" old_attreq) 
+  ; zoom to extents 
+  (command "._zoom" "_e")
+)
+```
+
+1-2『
+
+这里绝逼意外的挖了一个大宝藏：定位放大到一个特点的实体对象的坐标位置上。做一张主题卡片。（2021-03-02）
+
+```c
+(defun c:foo (/ ss) 
+  (setq ss (ssget))
+  (command "._zoom" "_o" ss "")
+)
+```
+
+用原生命名 `._zoom` 实现的，借用选项对象（o），感觉选项窗口也可以实现。这个功能实现后，那么数据流里的任何数据，我都可以通过通配符去搜索匹配，然后放大定位到匹配到的实体对象上去。
+
+另外的知识点：
+
+1、系统变量 `osmode`，即「草图设置」里的对象捕捉设置值。
+
+[Tutorial: Creating a New Custom Command and Controlling with System Variables (AutoLISP)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-1330DB99-DDFA-44D0-BDEB-676FF619EBE5)
+
+Accessing and Setting System Variable Values
+
+System variables control the behavior of commands, change the settings of the drawing environment, and specify the default property values of new objects and much more. You can query and set the value for a system variable using the following functions:
+
+getvar - Returns the current value of a system variable.
+
+setvar - Assigns a new value to a system variable.
+
+The following explain how to get and set the value of the OSMODE (Object Snap mode) system variable:
+
+1 At the Command prompt, enter:
+
+```
+(setq cur_osmode (getvar "osmode"))
+```
+
+The current value of the OSMODE system variable is returned and assigned to the user-defined variable of `cur_osmode`. While OSMODE returns an integer value, the value is the sum of multiple "bit-code" values. For example, the value 35 indicates that the Endpoint (1), Midpoint (2), and Intersection (32) running object snaps are enabled.
+
+2 At the Command prompt, enter: osnap.
+
+The Drafting Settings dialog box is displayed with the Object Snap tab current. This tab allows you to see which object snaps are enabled. The following image shows what the Drafting Settings dialog box looks like when the OSMODE system variable is set to a value of 35.
+
+3 In the Drafting Settings dialog box, change which object snaps are current and click OK.
+
+4 At the Command prompt, enter: 
+
+```c
+(getvar "osmode")
+```
+
+The current value of the OSMODE system variable is returned.
+
+5 At the Command prompt, enter:
+
+```c
+(setvar "osmode" cur_osmode)
+```
+
+The value of the OSMODE system variable is restored to the value that was previously assigned to the user-defined variable `cur_osmode`.
+
+6 Display the Drafting Settings dialog box again. You should see that the object snap settings have been restored.
+
+Note: Before you make a change to the drawing environment, it is good practice to store the values of any system variables, and then restore them before your program ends.
+
+2、修改系统环境变量值养成修改回原值的习惯。前面的备注（note）讲的就是这点，包括本书作者前面的例子里，有关「块」的系统变量 `attreq` 后面也改回去了。这个系统变量值以前用到过，插入块的命令是，如果改值为 0，就不会一个一个提示属性值。
+
+』
+
 ### 0201. 术语卡 —— Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
@@ -376,7 +467,7 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 (command "._circle" PAUSE "_d" 3)
 ```
 
-2『宏命令里的悬停，做一张任意卡片。』——已完成
+2『宏命令里的悬停，做一张任意卡片。补充：用空字符串 `""` 也可以实现。（2021-03-02）』——已完成
 
 ### 0304. 任意卡 —— 自定义命令变为内置命令
 
@@ -480,6 +571,26 @@ NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the
 ### 0309. 任意卡 —— 如何在一个 lsp 文件里调用另外一个 lsp 文件
 
 直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。
+
+信息源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+NOTE: LSP files that are loaded using one of the manual techniques described here are loaded only into the current drawing. You must load the LSP file into each and every drawing file where you want to use it. However, you can use the vl-load-all function to load a LSP file into all open and subsequently opened drawings for the current AutoCAD session.
+
+1-3『
+
+这里又意外解决一个老大难的问题，新打开的文件可以自动加载数据流的插件。补充进任意卡片「如何在一个 lsp 文件里调用另外一个 lsp 文件」。（2021-03-02）——已完成
+
+单独新建了一个启动文件 `startdataflow.lsp`。
+
+```c
+(defun s::startup ()
+  (vl-load-all "D:\\dataflowcad\\dataflow.VLX")
+)
+```
+
+前面正好讲到，函数 `s::startup` 是可以自动加载的。
+
+』
 
 ### 0310. 任意卡 —— 创建实体数据的 2 个方法
 
