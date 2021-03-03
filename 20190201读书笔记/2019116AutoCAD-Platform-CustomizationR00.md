@@ -673,6 +673,34 @@ Version 1 of the color command displays options at the Command prompt; version 2
 
 1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
 
+### 0313. 任意卡 —— 通过图层名判断是否存在该图层
+
+源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+1-2-3『
+
+自己在 CAD 里跑了下上面的源码，没问题，第一次知道多行注释可以这么写（`|`），很不错！这里还有一个很意外的收获，如何判断是否有某一个图层。那么同样的，应该可以判断某个块是否存在。待验证。做一张任意卡片。（2021-03-02）——已完成
+
+```c
+(defun createlayer (name color / ) 
+  ; Check to see if the layer exists before creating/modifying it 
+  (if (= (tblsearch "layer" name) nil) 
+    (command "._-layer" "_m" name "_c" color "" "") 
+    (setvar "clayer" name) 
+  ) 
+) 
+```
+
+[tblsearch (AutoLISP)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-2AEB84A6-E3D0-4DD9-A29C-54D4099ED925)
+
+验证过了，按块名称搜索，可行。（2021-03-03）
+
+```c
+(tblsearch "BLOCK" "Centrifuge")
+```
+
+』
+
 ## Introduction
 
 In 1996, Lee began learning the core concepts of customizing the AutoCAD user interface and AutoLISP. The introduction of VBA in AutoCAD R14 would once again redefine how Lee approached programming solutions for AutoCAD. VBA made it much easier to communicate with external databases and other applications that supported VBA. It transformed the way information could be moved between project management and manufacturing systems.

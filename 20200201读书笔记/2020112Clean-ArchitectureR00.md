@@ -96,9 +96,9 @@ Software — the stuff of computer programs — is composed of sequence, selecti
 
 ### 0103. 主题卡 —— 科学与数学的区别以及软件开发是科学范畴
 
-Science is fundamentally different from mathematics, in that scientific theories and laws cannot be proven correct. I cannot prove to you that Newton's second law of motion, F = ma, or law of gravity, F = Gm1m2/r2, are correct. I can demonstrate these laws to you, and I can make measurements that show them correct to many decimal places, but I cannot prove them in the sense of a mathematical proof. No matter how many experiments I conduct or how much empirical evidence I gather, there is always the chance that some experiment will show that those laws of motion and gravity are incorrect.
+Science is fundamentally different from mathematics, in that scientific theories and laws cannot be proven correct. I cannot prove to you that Newton's second law of motion, F = ma, or law of gravity, F = Gm1m2/r^2, are correct. I can demonstrate these laws to you, and I can make measurements that show them correct to many decimal places, but I cannot prove them in the sense of a mathematical proof. No matter how many experiments I conduct or how much empirical evidence I gather, there is always the chance that some experiment will show that those laws of motion and gravity are incorrect.
 
-That is the nature of scientific theories and laws: They are falsifiable but not provable. And yet we bet our lives on these laws every day. Every time you get into a car, you bet your life that F = ma is a reliable description of the way the world works. Every time you take a step, you bet your health and safety that F = Gm1m2/r 2 is correct.
+That is the nature of scientific theories and laws: They are falsifiable but not provable. And yet we bet our lives on these laws every day. Every time you get into a car, you bet your life that F = ma is a reliable description of the way the world works. Every time you take a step, you bet your health and safety that F = Gm1m2/r^2 is correct.
 
 Science does not work by proving statements true, but rather by proving statements false. Those statements that we cannot prove false, after much effort, we deem to be true enough for our purposes. Of course, not all statements are provable. The statement「This is a lie」is neither true nor false. It is one of the simplest examples of a statement that is not provable.
 
@@ -106,9 +106,9 @@ Ultimately, we can say that mathematics is the discipline of proving provable st
 
 1-2『有关科学与数学的区别，之前在很多地方看到过，比如吴军的数学通识课，但还是觉得这里作者将的相对通透，而且下面提到软件开发是科学范畴而非数学范畴，给自己醍醐灌顶的感觉。科学与数学的区别以及软件开发是科学范畴，做一张主题卡片。（2020-12-24）』——已完成
 
-科学和数学在证明方法上有着根本性的不同，科学理论和科学定律通常是无法被证明的，譬如我们并没有办法证明牛顿第二运动定律 F=ma 或者万有引カ定律 `F=Gmm2/r2` 是正确的，但我们可以用实际案例来演示这些定律的正确性，并通过高精度测量来证明当相关精度达到小数点后多少位时，被测量对象仍然一直满足这个定律。但我们始终没有办法像用数学方法一样推导出这个定律。而且，不管我们进行多少次正确的验，也无法排除今后会存在某一次实验可以推翻牛顿第二运动定律与万有引力定律的可能性。
+科学和数学在证明方法上有着根本性的不同，科学理论和科学定律通常是无法被证明的，譬如我们并没有办法证明牛顿第二运动定律 F=ma 或者万有引カ定律 F=Gm1m2/r^2 是正确的，但我们可以用实际案例来演示这些定律的正确性，并通过高精度测量来证明当相关精度达到小数点后多少位时，被测量对象仍然一直满足这个定律。但我们始终没有办法像用数学方法一样推导出这个定律。而且，不管我们进行多少次正确的验，也无法排除今后会存在某一次实验可以推翻牛顿第二运动定律与万有引力定律的可能性。
 
-这就是科学理论和科学定律的特点：它们可以被证伪，但是没有办法被证明。但是我们仍然每天都在依赖这些定律生活。开车的时候，我们就等于是在用性命担保 F=ma 是对世界运转方式的一个可靠的描述。每当我们迈出一步的时候，就等于在亲身证明 F=Gmm2/r2 是正确的。
+这就是科学理论和科学定律的特点：它们可以被证伪，但是没有办法被证明。但是我们仍然每天都在依赖这些定律生活。开车的时候，我们就等于是在用性命担保 F=ma 是对世界运转方式的一个可靠的描述。每当我们迈出一步的时候，就等于在亲身证明 F=Gm1m2/r^2 是正确的。
 
 科学方法论不需要证明某条结论是正确的，只需要想办法证明它是错误的。如果某个结论经过一定的努力无法证伪，我们则认为它在当下是足够正确的。当然，不是所有的结论都可以被证明或者证伪的。举一个最简单的不可证明的例子：「这句话是假的」，非真也非伪。最终，我们可以说数学是要将可证明的结论证明，而与之相反，科学研究则是要将可证明的结论证伪。
 
@@ -132,7 +132,7 @@ Dijkstra 曾经说过「测试只能展示 Bug 的存在，并不能证明不存
 
 信息源自推荐序：
 
-耗子叔观点：无论是微观世界的代码，还是宏观层面的架构，无论是三种程范式还是微服务架构，它们都在解决一个问题 一一 分离控制和逻辑。所谓控制就是对程序流转的与业务逻辑无关的代码或系统的控制（如多线程、异步、服务发现、部署、弹性伸等），所调逻辑则是实实在在的业务逻辑，是解决用户问题逻辑。控制和逻辑构成了整体的件复杂度，有效地分离控制和逻辑会让你的系统得到最大的简化。
+耗子叔观点：无论是微观世界的代码，还是宏观层面的架构，无论是三种程范式还是微服务架构，它们都在解决一个问题 一一 分离控制和逻辑。所谓控制就是对程序流转的与业务逻辑无关的代码或系统的控制（如多线程、异步、服务发现、部署、弹性伸缩等），所调逻辑则是实实在在的业务逻辑，是解决用户问题逻辑。控制和逻辑构成了整体的件复杂度，有效地分离控制和逻辑会让你的系统得到最大的简化。
 
 2『分离控制和逻辑，做一张主题卡片。（2021-02-19）』——已完成
 
@@ -190,7 +190,7 @@ If the modules in your system can be deployed independently, then they can be de
 
 7 Albeit indirectly.
 
-1-2『依赖倒置的核心是通过增加一个「接口」实现依赖的反转，这样的话任何「控制流」的流向都可以通过实际情况来调整。目前不明白的是，加「接口」跟「面向对象」编程范式有啥必要的联系，加接口就一定属于面向对象？这节的信息，让自己对依赖导致有了一个更深的印象。回复：前面的疑虑，关键点应该在「多态」上，继承是从子类的角度往上看父类，多态是从父类的角度往下看子类。依赖倒置做一张术语卡片。（2020-12-25）』——已完成
+1-2『依赖倒置的核心是通过增加一个「接口」实现依赖的反转，这样的话任何「控制流」的流向都可以通过实际情况来调整。目前不明白的是，加「接口」跟「面向对象」编程范式有啥必要的联系，加接口就一定属于面向对象？这节的信息，让自己对依赖倒置有了一个更深的印象。回复：前面的疑虑，关键点应该在「多态」上，继承是从子类的角度往上看父类，多态是从父类的角度往下看子类。依赖倒置做一张术语卡片。（2020-12-25）』——已完成
 
 我们可以想象一下在安全和便利的多态支持出现之前，软件是什么样子的。下面有一个典型的调用树的例子，main 函数调用了一些高层函数，这些高层函数又调用了一些中层函数，这些中层函数又继续调用了一些底层函数。在这里，源代码层面的依赖不可避免地要跟随程序的控制流（详见图 5.2）。
 

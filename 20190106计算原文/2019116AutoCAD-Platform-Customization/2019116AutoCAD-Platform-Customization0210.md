@@ -281,7 +281,23 @@ Usage: (createlayer "Doors" 2)
 )
 ```
 
-1『自己在 CAD 里跑了下上面的源码，没问题，第一次知道多行注释可以这么写，很不错！（2021-03-02）』
+1-2-3『
+
+自己在 CAD 里跑了下上面的源码，没问题，第一次知道多行注释可以这么写（`|`），很不错！这里还有一个很意外的收获，如何判断是否有某一个图层。那么同样的，应该可以判断某个块是否存在。待验证。做一张任意卡片。（2021-03-02）——已完成
+
+```c
+(defun createlayer (name color / ) 
+  ; Check to see if the layer exists before creating/modifying it 
+  (if (= (tblsearch "layer" name) nil) 
+    (command "._-layer" "_m" name "_c" color "" "") 
+    (setvar "clayer" name) 
+  ) 
+) 
+```
+
+[tblsearch (AutoLISP)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-2AEB84A6-E3D0-4DD9-A29C-54D4099ED925)
+
+』
 
 NOTE: Single-line and inline comments are the primary comment styles used in a LSP file, but the Visual LISP Integrated Development Environment (VLIDE) does support a few additional comment styles. I discuss these comment styles in Chapter 21.
 
