@@ -1,4 +1,24 @@
-# 0210. Authoring, Managing, and Loading AutoLISP Programs
+# 2019116AutoCAD-Platform-CustomizationR24
+
+## 记忆时间
+
+## 目录
+
+Part II AutoLISP: Productivity through Programming
+
+0208 —— Chapter 18: Working with the Operating System and External Files
+
+0209 —— Chapter 19: Catching and Handling Errors
+
+0210 —— Chapter 20: Authoring, Managing, and Loading AutoLISP Programs
+
+## 0208. Working with the Operating System and External Files
+
+The AutoLISP® programming language can be used to reach beyond the boundaries of the Autodesk® AutoCAD® application window and objects in the current open drawing. Using AutoLISP, you can access settings managed by the operating system and installed applications on Windows or by the application-level settings of AutoCAD on both Windows and Mac OS. You can access operating system– and application-level settings from the Windows Registry. On Mac OS, you can access application-level settings for AutoCAD from the Plist (property list) files.
+
+Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
+
+## 0210. Authoring, Managing, and Loading AutoLISP Programs
 
 Entering AutoLISP® expressions directly at the Autodesk® AutoCAD® Command prompt is a great way to start learning AutoLISP programming. However, if you want to use expressions multiple times or in different drawings, you will need to enter them over and over again.
 
@@ -6,7 +26,7 @@ Instead of entering AutoLISP expressions at the Command prompt, you can store th
 
 Before loading a LSP file, you need to let AutoCAD know where it is located and that the location it is stored in is safe to load executable (LSP/ARX/DVB) files from. Once AutoCAD knows where your LSP files are located, you can then load them manually as needed, automatically at startup, or on demand.
 
-## 10.1 Storing AutoLISP Expressions
+### 10.1 Storing AutoLISP Expressions
 
 Although you can enter AutoLISP expressions at the AutoCAD Command prompt, as part of a script file, or as a command macro used in the user interface, the most common method is to type them into a text editor and store them in a LSP file. AutoLISP programs are commonly stored in LSP files, but they can also be stored in menu AutoLISP (MNL) files. Menu AutoLISP files have the .mnl file extension.
 
@@ -18,7 +38,7 @@ NOTE: A LSP or MNL file must be saved to an ASCII text file, and it cannot inclu
 
 Once a LSP file has been created, the code stored in the file can then be loaded into the AutoCAD program when it is needed. I discuss the text editors that can be used to create a LSP file in the next section, and you'll learn how to load a LSP file later, in the「Loading AutoLISP Files」section.
 
-### 10.1.1 Selecting an Editing Environment
+#### 10.1.1 Selecting an Editing Environment
 
 You don't have to buy additional software to create and edit AutoLISP program files, regardless of whether you are using Windows or Mac OS. Any of the following applications can be used to create or edit AutoLISP expressions stored in a LSP or MNL file:
 
@@ -32,7 +52,7 @@ Throughout most of this book, I focus primarily on the core concepts of the Auto
 
 1『作者写书的时候估计没有 VScode，用这个 IDE 不要太舒服。（2021-03-02）』
 
-### 10.1.2 Creating an AutoLISP File
+#### 10.1.2 Creating an AutoLISP File
 
 As I previously mentioned, a LSP file is a plain ASCII text file. You can use Notepad on Windows or TextEdit on Mac OS to create a LSP file, but since both of these applications commonly are used to work with TXT files, you will need to be sure to add the .lsp file extension to the files you create with these applications. If you are on Windows and want to use the Visual LISP Editor, consult the instructions in Chapter 21 for creating a LSP file.
 
@@ -92,11 +112,11 @@ After saving the file, you can load it into AutoCAD using one of the techniques 
 
 Figure 20.1 Loading a custom program
 
-### 10.1.3 Editing an AutoLISP File
+#### 10.1.3 Editing an AutoLISP File
 
 You can edit LSP files using any of the applications described in the section「Selecting an Editing Environment」or any other application that supports editing plain ASCII text files. If the .lsp file extension has been associated with an ASCII text editor, you can simply double-click the file to open it in the associated editor. When no editor is associated with the LSP file type and you double-click on a file of that type, you are prompted to select an editor to open the file. Associate an editor with the LSP file type and make the changes to the file. Save the file as a plain ASCII text file and reload it in AutoCAD to test the code changes in the file.
 
-## 10.2 Writing Modular Code
+### 10.2 Writing Modular Code
 
 When you first start writing AutoLISP programs, you may tend to create large self-contained functions. As you write, you will notice similarities in the functions that you create, whether it is creating or modifying graphical and nongraphical objects, or working with system variables.
 
@@ -178,7 +198,7 @@ If the layer already exists, it is set as current by assigning the name of the l
 
 』
 
-## 10.3 Adding Comments
+### 10.3 Adding Comments
 
 As a veteran programmer of over 16 years, I can honestly say that I formed my fair share of bad habits early on when first learning to program. One of the habits that I had to correct was adding very few comments (or not adding any) to my code. Comments are nonexecutable expressions that are stored as part of a LSP file. The concept of comments is not specific to AutoLISP alone but is part of most modern programming languages. The syntax used to indicate a comment varies from language to language.
 
@@ -301,7 +321,7 @@ Usage: (createlayer "Doors" 2)
 
 NOTE: Single-line and inline comments are the primary comment styles used in a LSP file, but the Visual LISP Integrated Development Environment (VLIDE) does support a few additional comment styles. I discuss these comment styles in Chapter 21.
 
-## 10.4 Undefining and Redefining Standard AutoCAD Commands
+### 10.4 Undefining and Redefining Standard AutoCAD Commands
 
 When you create custom functions, they typically introduce new functionality. However, you can also disable or override the functionality of a standard AutoCAD command using the undefine and redefine commands. When undefining commands, you want to make sure that you document this properly, as it can affect scripts, AutoLISP programs, menu macros, and much more. The documentation that you create should include comments in the LSP file that redefines the command, along with external documentation such as a ReadMe or Help file related to your custom programs.
 
@@ -359,7 +379,7 @@ A command is undefined in a drawing while it remains open after the use of the u
 (command "._redefine" "explode")
 ```
 
-## 10.5 Defining a Startup Function
+### 10.5 Defining a Startup Function
 
 In AutoLISP you can define a special function named `s::startup`. This function is executed when you create or open a drawing in AutoCAD, as long as it has been defined in a loaded LSP file. Although more than one LSP file can contain an `s::startup` function, only the last loaded definition of the function is retained. The `s::startup` function is typically used to initialize system variables, insert title blocks, or draw and modify objects in the current drawing upon opening.
 
@@ -448,11 +468,11 @@ Note: Before you make a change to the drawing environment, it is good practice t
 
 』
 
-## 10.6 Loading AutoLISP Files
+### 10.6 Loading AutoLISP Files
 
 AutoLISP programs that are stored in a LSP file must be loaded into AutoCAD before they can be used. A number of methods can be used to load a LSP file. These fall into one of two categories: manual or automatic. Most LSP files are loaded using one of the manual techniques.
 
-### 10.6.1 Manually Loading an AutoLISP File
+#### 10.6.1 Manually Loading an AutoLISP File
 
 AutoCAD is a graphics- and resource-intensive application, and it loads components into memory only as each is needed. LSP files are typically rather small in size, but loading a large number of them into AutoCAD can impact performance. For this reason, you should load a LSP file only as it is needed. Once a LSP file is loaded into memory, it is not removed from memory until you close AutoCAD or the drawing from which the LSP file was loaded.
 
@@ -492,7 +512,7 @@ NOTE: LSP files that are loaded using one of the manual techniques described her
 
 』
 
-### 10.6.2 Automatically Loading an AutoLISP File
+#### 10.6.2 Automatically Loading an AutoLISP File
 
 Manually loading LSP files doesn't always create the best user experience, especially if you want certain functions to be available in each drawing file that is opened or created. Keep in mind, though, you don't want all of your LSP files to be loaded at startup because it takes away some of the computing resources from the operating system and AutoCAD.
 
@@ -527,7 +547,7 @@ Table 20.1 Automatically loaded LSP files
 | acaddoc.lsp | A LSP file that is loaded with each drawing file that is opened. The file acaddoc.lsp must be created if you want to use it since it is not part of the AutoCAD installation. |
 | `<filename>`.mnl | MNL files are associated with CUI/CUIx files that are used to define the AutoCAD user interface. When a CUI/CUIx file is loaded, AutoCAD looks for an MNL file with the same name and loads it if found. MNL files are loaded in the same order that CUI/CUIx files are. CUI/CUIx files are loaded in the order of partial files to the Main CUI/CUIx file, Main CUI/CUIx file, partial files to the Enterprise CUI/CUIx file, and then the Enterprise CUI/CUIx file. |
 
-### 10.6.3 Using the Load/Unload Applications Dialog Box to Load a LSP File
+#### 10.6.3 Using the Load/Unload Applications Dialog Box to Load a LSP File
 
 The Load/Unload Applications dialog box (appload command) is the easiest way to load a LSP file into AutoCAD on Windows or Mac OS. Many of the other methods provide better integration into a user's workflow, but they require you to define where the LSP files are located. I describe in the next section how to set up and identify the folders AutoCAD should look in for custom files.
 
@@ -597,7 +617,7 @@ You can use the following steps to add the LSP file named mylisp.lsp to the Star
 
 Figure 20.3 Adding a LSP file to the Startup Suite
 
-## 10.7 Managing the Locations of AutoLISP Files
+### 10.7 Managing the Locations of AutoLISP Files
 
 The LSP files that you create or download from the Internet can be placed in any folder on your local or network drive. I recommend placing all your custom LSP files in a single folder on a network drive so they can be accessed by anyone in your company who might need them. You might consider using the name LSP Files or AutoLISP Files for the folder that contains your LSP files.
 
@@ -609,7 +629,7 @@ Regardless of which folder name you use or where you choose to place your LSP fi
 
 NOTE: The following sections assume you have created a folder named MyCustomFiles in the Documents (or My Documents) folder for the exercises and sample files that are part of this book. (If you haven't already, you can download the files from www.sybex.com/go/autocadcustomization.) If you placed the sample files in a different folder or are using your own folder, select that folder instead when prompted to browse to a folder as part of the steps.
 
-### 10.7.1 Specifying Support File Search Paths
+#### 10.7.1 Specifying Support File Search Paths
 
 The support file search paths are used by AutoCAD to locate custom files, such as those that contain block definitions, linetype patterns, and AutoLISP programs. Use the Options dialog box on Windows and the Application Preferences dialog box on Mac OS to add the folders that contain LSP files to the support file search paths of AutoCAD.
 
@@ -665,7 +685,7 @@ You must place a semicolon before the location you are adding; including a semic
 
 NOTE: If the location added with the ACAD environment variable is invalid, AutoCAD doesn't remove the invalid location. You might receive a message when you make changes to the Options or Application Preferences dialog box. Although it is possible to add the same location more than once with the ACAD environment variable, AutoCAD removes the duplicate entries in most cases. You should avoid adding duplicate locations, since it can increase the time it takes AutoCAD to locate a file.
 
-### 10.7.2 Identifying Trusted Locations
+#### 10.7.2 Identifying Trusted Locations
 
 If you are using AutoCAD 2013 SP1 or later on Windows or AutoCAD 2014 on Mac OS, when you try to load a LSP file, AutoCAD checks to see if that LSP file is being loaded from a trusted location. A folder that you identify as a trusted location contains LSP files that are safe to be loaded without user interaction. Any LSP file that isn't loaded from a trusted location results in the File Loading — Security Concern message box (see Figure 20.4) being displayed.
 
@@ -717,7 +737,7 @@ In AutoCAD 2014, you can use the secureload system variable to control whether A
 
 1『原来加载插件的信任等级有一个系统变量（secureload）。（2021-03-05）』
 
-## 10.8 Deploying AutoLISP Files
+### 10.8 Deploying AutoLISP Files
 
 Deployment is the process or processes used to allow others to access the LSP and custom files that you create. You might only need to worry about getting your files into the hands of those working at your company, but you might also want to send your files out to the subcontractors that your company works with. Sharing your custom files with subcontractors can help shorten turnaround times and makes it easier to share drawings back and forth.
 
@@ -741,7 +761,7 @@ Deploying custom programs internally and externally are similar processes, but y
 
 6 Updating. Create a plan to keep files up to date. Updating is something you need to consider before you deploy your custom files the first time.
 
-### 10.8.1 Deployment Methods (Local vs. External)
+#### 10.8.1 Deployment Methods (Local vs. External)
 
 Releasing custom and LSP files to others in your company is often fairly straightforward because the files were developed around a set of known conditions; where files are located and which files are available is known, along with how AutoCAD was installed and configured. Internally, you can simply push your files to a location on the network and configure AutoCAD to look for the files there, as you learned earlier, in the「Managing the Locations of AutoLISP Files」section.
 
@@ -771,7 +791,7 @@ You can use one of three main methods to deploy your custom programs externally 
 
 NOTE: If you are using any of the specially named files — such as acad.lsp or acaddoc.lsp — that AutoCAD looks for at startup to load your custom LSP files, you will need to figure out a different way to get them loaded before deploying the files outside your company. You don't want to affect another company's custom programs when they try to use your custom programs, so consider using a bundle plug-in or CUI/CUIx with/without an MNL file to get your LSP files loaded into AutoCAD.
 
-### 10.8.2 Defining a Plug-in Bundle
+#### 10.8.2 Defining a Plug-in Bundle
 
 1-2『重点来了，实现付费的方法，意外收获，没想到在这里看到相关信息。插件式捆绑，做一张主题卡片。（2021-03-05）』—— 已完成
 
@@ -822,7 +842,7 @@ For additional information on the elements used to define a PackageContents.xml 
 
 NOTE: The appautoload system variable controls when bundles are loaded into AutoCAD. By default, bundles are loaded at startup, when a new drawing is opened, and when a plug-in is added to the ApplicationPlugins or ApplicationAddIns folder. You can use the appautoloader command to list which bundles are loaded or reload all the bundles that are available to AutoCAD.
 
-### 10.8.3 Implementing Help for Custom Functions
+#### 10.8.3 Implementing Help for Custom Functions
 
 Earlier in this chapter, I discussed the importance of using comments to document the AutoLISP expressions that make up your custom functions and AutoLISP programs. In addition to comments, when you create new functionality using AutoLISP you should create documentation for the users; the importance of user documentation is often overlooked by developers. Documentation can range from being as basic as a few sentences to something that is much more comprehensive and explains how to use all the functions that are exposed as part of your LSP files when they are loaded.
 
@@ -902,7 +922,7 @@ Here are some examples that demonstrate the use of the AutoLISP setfunhelp funct
 (setfunhelp "c:drawplate" "C:\\Program Files\\Common Files\\Autodesk Shared\\acadauto.chm" "idh_lightweightpolyline_object")
 ```
 
-## 10.9 Exercise: Deploying the drawplate Function
+### 10.9 Exercise: Deploying the drawplate Function
 
 In this section, you will continue to work with the drawplate function that was originally introduced in Chapter 12,「Understanding AutoLISP.」You worked with the drawplate function in Chapter 19 and added error handling and undo grouping to the function. The key concepts I cover in this exercise are as follows:
 
@@ -916,7 +936,7 @@ In this section, you will continue to work with the drawplate function that was 
 
 NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Handling Errors in the drawplate Function」section of Chapter 19. If you didn't complete the steps, do so now or start with the `ch20_drawplate.lsp` and `ch20_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. You will also need the packagecontents.xml and drawplate.htm sample files. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder or in the location you are using to store the LSP files. Once you've stored the sample files on your system, remove the characters ch20_ from the name of each file.
 
-### 10.9.1 Loading the utility.lsp File by Reference
+#### 10.9.1 Loading the utility.lsp File by Reference
 
 When an AutoLISP program relies on the functions defined in another LSP file, it is common practice to use the load function to ensure that the functions in the LSP file are made available. Up until now, you have been manually loading the utility.lsp file each time you wanted to use the functions that are defined in the file. The following steps explain how to load the utility.lsp file when drawplate.lsp is loaded into AutoCAD:
 
@@ -933,7 +953,7 @@ When an AutoLISP program relies on the functions defined in another LSP file, it
 
 NOTE: The load function can be used with a menu macro to load a LSP file from the AutoCAD user interface.
 
-### 10.9.2 Loading the drawplate.lsp File on Demand
+#### 10.9.2 Loading the drawplate.lsp File on Demand
 
 Loading all your AutoLISP programs at startup is an option using load statements in a LSP file such as acad.lsp or acaddoc.lsp, but you should load only the files when they are needed. The autoload function is a way to inform AutoCAD that you have a set of custom functions that are standing by and ready for use. Instead of using multiple load statements in acad.lsp or acaddoc.lsp, I recommend using autoload statements to make your functions available and load the associated LSP file upon the function's first use.
 
@@ -954,7 +974,7 @@ NOTE: If your company doesn't already have an acad.lsp file, you could rename my
 
 1『很赞，可以把自动加载数据流的语句直接放到文件「acad.lsp」里去。』
 
-### 10.9.3 Enabling Help Support for the drawplate Function
+#### 10.9.3 Enabling Help Support for the drawplate Function
 
 Providing basic help support for your programs can go a long way, especially if you leave the company someday or want to eventually sell your custom program.
 
@@ -971,7 +991,7 @@ In these steps, you enable contextual help for the drawplate function:
 
 3 Click File Save.
 
-### 10.9.4 Configuring the AutoCAD Support and Trusted Paths
+#### 10.9.4 Configuring the AutoCAD Support and Trusted Paths
 
 In order for the AutoLISP load and findfile functions to locate the files for your custom programs, AutoCAD needs to know where the files are located. To locate a custom file, AutoCAD uses the paths that have been added to the Support File Search Path and Trusted Locations settings in the Options dialog box (Windows) or the Application Preferences dialog box (Mac OS).
 
@@ -1027,7 +1047,7 @@ or
 (setvar "trustedpaths" trustedpath)
 ```
 
-### 10.9.5 Testing the Deployment of the drawplate Function
+#### 10.9.5 Testing the Deployment of the drawplate Function
 
 The time has come to put in motion everything that you have done up to this point. You have added statements that load the utility.lsp file from drawplate.lsp, defined an autoloader program, enabled contextual help for the drawplate function, and configured the support file search and trusted location paths. It is now time to see all of it in action. If all goes well, it will feel like you are hearing the climax of a movement being played by an orchestra. If something doesn't go right, you will have that meh moment, but don't feel discouraged; we have all been there.
 
@@ -1045,7 +1065,7 @@ Figure 20.5 Custom help for a custom function
 
 1-2『直接在 CAD 里调帮助文档，也不错的，有时间可以实现看看。web 的文档优势在于能放的东西更多，比如视频动图。（2021-03-05）』—— 未完成
 
-### 10.9.6 Creating DrawPlate.bundle
+#### 10.9.6 Creating DrawPlate.bundle
 
 Plug-in bundles are a relatively new concept in AutoCAD, but they make deploying your custom programs much easier. After all, a bundle is simply a folder structure that you can copy between machines no matter which operating system you are using. The following steps explain how to create a bundle named DrawPlate.bundle.
 
@@ -1070,7 +1090,7 @@ Table 20.2 Files for DrawPlate.bundle
 | drawplate.lsp | Contents |
 | drawplate.htm | Contents |
 
-### 10.9.7 Deploying and Testing the DrawPlate.bundle
+#### 10.9.7 Deploying and Testing the DrawPlate.bundle
 
 Plug-in bundles must be placed within a specific folder before they can be used. You learned which folders a bundle can be placed in earlier, in the section「Defining a Plug-in Bundle.」The following steps explain how to deploy a bundle named DrawPlate.bundle on Windows:
 

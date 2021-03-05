@@ -232,7 +232,7 @@ Open the Drafting Settings dialog box and verify that the state of the Intersect
 
 Type toggleint and press Enter. The previous state of the INTersection object snap mode is restored.
 
-## Manipulating Strings
+## 3.2 Manipulating Strings
 
 Strings are used for a variety of purposes in AutoLISP, from displaying command prompts and messages to creating annotations in a drawing. The string values in an AutoLISP program can have a static or fixed value that never changes during execution, or a value that is more dynamic and is changed by the use of string-manipulation functions. You can manipulate a string by
 
@@ -478,7 +478,7 @@ The following are examples of the vl-princ-to-string and vl-prin1-to-string func
 
 I discuss other AutoLISP functions that can be used to convert nonstring values to strings and strings to nonstring values next.
 
-## Converting Data Types
+## 3.3 Converting Data Types
 
 Variables in AutoLISP aren't defined to hold a specific data type, which allows the variable to be flexible and hold any valid type of data. However, data types are used by AutoLISP as a way to enforce data integrity and communicate the types of values an argument expects or a function might return. As your programs become more complex and you start requesting input from the user, there will be times when a function returns a value of one data type and you want to use that value with a function that expects a different data type.
 

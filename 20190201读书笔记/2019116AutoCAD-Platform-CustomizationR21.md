@@ -1,4 +1,4 @@
-# 2019116AutoCAD-Platform-CustomizationR02
+# 2019116AutoCAD-Platform-CustomizationR21
 
 ## 记忆时间
 
@@ -6,15 +6,11 @@
 
 Part II AutoLISP: Productivity through Programming
 
-0201——Chapter 11: Quick Start for New AutoLISP Programmers
+0201 —— Chapter 11: Quick Start for New AutoLISP Programmers
 
-0202——Chapter 12: Understanding AutoLISP
+0202 —— Chapter 12: Understanding AutoLISP
 
-0203——Chapter 13: Calculating and Working with Values
-
-0204——Chapter 14: Working with Lists
-
-0205——Chapter 15: Requesting Input and Using Conditional and Looping Expressions
+0203 —— Chapter 13: Calculating and Working with Values
 
 ## 0201. Quick Start for New AutoLISP Programmers
 
@@ -234,7 +230,7 @@ You can store and retrieve values using these techniques:
 
 In an AutoLISP program, it is not uncommon to want to use the same value more than once or to use a value returned by one function as a value for an argument in another function. Variables allow you to define a named location in memory to temporarily store a value. AutoLISP supports two types of variables: user-defined and predefined. 1) User-defined variables are those that you or another developer create for use in an AutoLISP program. 2) Predefined variables are those that are automatically defined and assigned a specific value by the AutoLISP environment for each drawing that is created or opened.
 
-#### 2.2.1.1 Defining and Using User-Defined Variables
+#### Defining and Using User-Defined Variables
 
 You can define a variable, called a user-defined variable, by using the AutoLISP setq function. By default each user-defined variable exists only in the context of the drawing in which it is defined; once the drawing is closed, the variable and its value are lost.
 
@@ -284,7 +280,7 @@ The following exercise demonstrates how to define two variables and use their va
 
 7 At the Specify radius of circle or [Diameter]: prompt, type !rad and press Enter. The value of the rad variable is returned and used for the circle's radius. The circle command ends and the circle is drawn.
 
-#### 2.2.1.2 Using Predefined Variables
+#### Using Predefined Variables
 
 In addition to the user-defined variables that you might create and use in AutoLISP expressions, the AutoLISP environment defines three variables that are assigned a specific value and are accessible from all drawing files that are opened. The variables that are predefined by the AutoLISP environment are as follows:
 
@@ -336,7 +332,7 @@ Although a variable can be defined with a global scope, a variable with the same
 
 TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP vl-bb-ref and vl-bb-set functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
 
-1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）』——已完成
+1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）』—— 已完成
 
 #### 2.2.4 Working with System Variables
 
@@ -402,7 +398,7 @@ The following steps show how to retrieve and set the value of the DefaultFormatF
 
 TIP: I created a list (though not complete or up to date) of the environment variables available in a number of earlier releases of AutoCAD. You can find this list here: http://www.hyperpics.com/downloads/resources/customization/autolisp/AutoCAD%20Environment%20Variables.pdf
 
-2『已下载「AutoCAD-Environment-Variables.pdf」作为本书的附件。』
+2『已下载「附件1201AutoCAD-Environment-Variables」作为本书的附件。』
 
 ### 2.3 Exploring Data Types
 
@@ -426,7 +422,7 @@ NOTE: The list data type in AutoLISP is similar to an array in other programming
 
 6 Entity Name. An entity name is an in-memory numeric label used to reference an object stored in a drawing. You will often work with an entity name to modify an object's properties or after a request to select objects in a drawing has been completed. See Chapters 16 and 17 to learn how to work with entity names.
 
-2『 Dotted Pair 做一张术语卡片。』——已完成
+2『 Dotted Pair 做一张术语卡片。』—— 已完成
 
 AutoLISP on Windows supports a few additional data types, and I discuss these additional data types in depth and how they are used in Chapter 22. The data types that are specifically used for working with ActiveX libraries are as follows:
 
@@ -472,7 +468,7 @@ T
 nil
 ```
 
-1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
+1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』—— 已完成
 
 ### 2.4 Leveraging AutoCAD and Third-Party Commands
 
@@ -529,7 +525,7 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 (command "._circle" PAUSE "_d" 3)
 ```
 
-2『宏命令里的悬停，做一张任意卡片。（2020-10-08）』——已完成
+2『宏命令里的悬停，做一张任意卡片。（2020-10-08）』—— 已完成
 
 ---
 
@@ -546,7 +542,7 @@ The following example uses version 1 of the color command:
 
 Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
 
-1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
+1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』—— 已完成
 
 ---
 
@@ -652,7 +648,7 @@ Functions used in a script or command macro for a user-interface element must fo
 
 TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
 
-2『自定义命令变为内置命令的实现手段，做一张任意卡片。』——已完成
+2『自定义命令变为内置命令的实现手段，做一张任意卡片。』—— 已完成
 
 ### 2.6 Example: Drawing a Rectangle
 
