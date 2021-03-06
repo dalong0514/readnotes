@@ -240,6 +240,254 @@ Note: Before you make a change to the drawing environment, it is good practice t
 
 』
 
+### 0106. 主题卡 —— Defining a Plug-in Bundle
+
+信息源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+1-2『重点来了，实现付费的方法，意外收获，没想到在这里看到相关信息。插件式捆绑，做一张主题卡片。（2021-03-05）』—— 已完成
+
+A plug-in bundle, as I previously mentioned, is one of the methods that can be used to deploy your LSP files. Fundamentally, a bundle is simply a folder structure with its topmost folder having `.bundle` appended to its name and a manifest file with the filename PackageContents.xml located in the topmost folder. You can use Windows Explorer or File Explorer on Windows, or Finder on Mac OS, to define and name the folder structure of a bundle. The PackageContents.xml file can be created with a plain ASCII text editor, such as Notepad on Windows or TextEdit on Mac OS.
+
+The following is an example PackageContents.xml file that defines the contents of a bundle named DrawPlate.bundle that contains three files: a help file named DrawPlate.htm, and two LSP files named DrawPlate.lsp and Utility.lsp:
+
+```
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE component PUBLIC "-//JWS//DTD WileyML 20110801 Vers 3Gv2.0//EN" "Wileyml3gv20-flat.dtd">
+  <Components Description="All OSs"> 
+    <RuntimeRequirements OS="Win32|Win64|Mac" SeriesMin="R19.0" Platform="AutoCAD*" SupportPath="./Contents/" /> 
+    <ComponentEntry Description="Main LSP file" AppName="DrawPlateMain" Version="1.0" ModuleName="./Contents/DrawPlate.lsp"> </ComponentEntry> 
+    <ComponentEntry Description="Utility LSP file" AppName="UtilityFunctions" Version="1.0" ModuleName="./Contents/Utility.lsp"> </ComponentEntry> 
+  </Components> 
+</ApplicationPackage>
+```
+
+The folder structure of the bundle that the PackageContents.xml file refers to looks like this:
+
+```
+DrawPlate.bundle 
+  PackageContents.xml 
+  Contents 
+    DrawPlate.lsp 
+    DrawPlate.htm 
+    Utility.lsp
+```
+
+I have provided the DrawPlate.bundle as part of the sample files for this book, but you will also learn how to create the DrawPlate.bundle yourself later in this chapter. To use the bundle with AutoCAD, copy the DrawPlate.bundle folder and all of its contents to one of the following locations so that all users can access the files:
+
+```
+%ALLUSERSPROFILE%\Application Data\Autodesk\ApplicationPlugIns (Windows XP)
+
+%ALLUSERSPROFILE%\Autodesk\ApplicationPlugIns (Windows 7 or Windows 8)
+
+/Applications/Autodesk/ApplicationAddIns (Mac OS)
+```
+
+If you want a bundle to be accessible only by a specific user, place that bundle into one of the following locations under that user's profile:
+
+```
+%APPDATA%\Autodesk\ApplicationPlugIns (Windows)
+
+˜/Autodesk/ApplicationAddIns (Mac OS)
+```
+
+For additional information on the elements used to define a PackageContents.xml file, perform a search in the AutoCAD Help system on the keyword「PackageContents.xml.」
+
+NOTE: The appautoload system variable controls when bundles are loaded into AutoCAD. By default, bundles are loaded at startup, when a new drawing is opened, and when a plug-in is added to the ApplicationPlugins or ApplicationAddIns folder. You can use the appautoloader command to list which bundles are loaded or reload all the bundles that are available to AutoCAD.
+
+### 0107. 主题卡 —— 函数收藏
+
+信息源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+1、求余数（rem）。
+
+NOTE: Dividing a number by 0 causes an error and returns this message: `; error: divide by zero`. If the error is not handled, the custom function that contains the error is terminated. You can use the `vl-catch-all-apply` function to keep the function from being terminated. I discuss the `vl-catch-all-apply` function in Chapter 19,「Catching and Handling Errors.」
+
+When dividing numbers, you can use the AutoLISP `rem` function to return the remainder of the first number after it has been divided by all the other numbers supplied to the function. The `rem` function can take any number of numeric values; the function returns 0 when no values are passed to it. The following demonstrates the rem function:
+
+```c
+(/ 10.0 3) 
+3.33333 
+(rem 10.0 3.0) 
+1.0
+```
+
+2、求最大公约数（gcd）。
+
+AutoLISP includes a function named `gcd` that can be used to return the greatest common denominator of two integer values. The gcd function requires two integer values, and it returns an integer that represents the greatest common denominator of the provided values. Here are two examples:
+
+1-2『这不是就是求最大公约数嘛，数学应用很广的，以后应该可以用到。函数 rem 和 gcd 收录进主题卡片「函数收藏」中。（2021-03-06）』—— 已完成
+
+```c
+(gcd 5 2) 
+1 
+(gcd 54 81) 
+27
+```
+
+3、求最大最小值函数（min and max）。
+
+The min and max functions accept any integer or real numeric values. The min function returns the smallest numeric value from those that are passed to it, whereas the max function returns the largest numeric value. A real value is returned by the function, except when the function is passed only integer values — in that case, an integer value is returned. If no numeric value is passed to either function, 0 is returned. The following are examples of the min and max functions:
+
+```c
+(min 9 1 1976 0.25 100 -25) 
+-25.0
+(max 9 1 1976 0.25 100 -25) 
+1976.0 
+(max 9 1 1976 100 -25) 
+1976
+```
+
+4、判断负值、判断零值（minusp and zerop）。
+
+The minusp and zerop functions accept an integer or real numeric value. The minusp function returns T if the value that it was passed is negative, or it returns nil if the value was positive. The zerop function also returns T or nil; T is returned if the value passed is equal to 0. The zerop function can help you avoid dividing a number by 0 or seeing if a system variable is set to 0. The following are examples of the minusp and zerop functions:
+
+```c
+(minusp 25) 
+nil 
+(minusp -25) 
+T 
+(zerop 25) 
+nil 
+(zerop 0) 
+T
+```
+
+For more information on the minusp and zerop functions, see the AutoCAD Help system.
+
+2『求最大最小值函数、判断负值、判断零值函数，收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
+
+5、高阶数学函数。
+
+In addition to basic math functions, AutoLISP offers a range of advanced math functions that aren't used as frequently. These advanced functions allow you to work with angular, exponential, natural logarithm, or square root numeric values. AutoLISP supports the advanced math functions listed in Table 13.1.
+
+1-2『真没想到，autolisp 里原生数学函数这么丰富。这些高阶函数都收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
+
+Table 13.1 AutoLISP advanced math functions
+
+| Function | Description |
+| --- | --- |
+| sin | Returns the sine of an angular value expressed in radians. |
+| atan | Calculates the arctangent of an angular value expressed in radians. |
+| cos | Returns the cosine of an angular value expressed in radians. |
+| exp | Returns a numeric value that has been raised to its natural antilogarithm. |
+| expt | Returns a numeric value after it has been raised by a specified power. |
+| log | Calculates the natural logarithm of a numeric value. |
+| sqrt | Gets the square root of a numeric value. |
+| - | - |
+
+For more information on these functions, see the AutoCAD Help system.
+
+7、logior and logand。
+
+Because a bit-coded value is represented by the integer data type, you can use the `+` and `–` functions to add or remove a bit value for the overall sum of a bit-coded value. AutoLISP also provides several useful functions that you can use when working with bit-coded values. The logior and logand functions help combine several bit-coded values and determine whether a bit is part of a bit-coded value. Let's take a closer look at the logior and logand functions.
+
+2『函数 logior、函数 logand，收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
+
+1 logior. The logior function allows you to combine several bits into a single bit-coded value and ensures that a bit is added only once to the resulting bit-coded value. Although you can use the `+` function to add several bits together, that function simply adds several values together and returns the resulting value, which might return a bit-coded value with a different meaning. For example, the bits 1 and 4 are equal to the bit-coded value of 5:
+
+```c
+; Final result is a bit-coded value of the bits 1 and 4 
+(logior 1 4) 
+5 
+; Final result is an integer of 5 
+(+ 1 4) 
+5
+```
+
+2 logand. The logand function is used to determine whether a specific bit or bit-coded value is part of another bit-coded value. This type of comparison in a program can be helpful when you need to handle specific conditions in the AutoCAD environment, such as making sure that the current layer is not frozen or locked when you're creating or selecting objects, or making sure a specific running object snap is set. Here is the syntax of the logand function:
+
+1-2『这里提供了实现自动锁图层的实现线索，待研究。之前开发建筑底图迁移功能时，已经通过 activeX 实现了，这里的信息如果实现，应该是另外一条途径。（2021-03-06）』
+
+The following examples use the logand function to determine if a bit is common with the provided bits or bit-coded values. Bit 2 represents the MIDpoint running object snap; a bit-coded value of 12 represents the CENter and QUAdrant running object snaps; and the bit-coded value of 34 represents the running object snaps MIDpoint and INTersection. The first example returns 0 because the bit 2 value is not part of the bit-coded value 12 (bit codes 4 and 8), whereas 2 is returned for the second example because bit 2 is part of the bit-coded value of 34 (bit codes 1, 2, and 32).
+
+```c
+; Returns 0 because no bit codes are in 
+; common with the two numbers 
+(logand 2 12) 
+0 
+; Returns 2 because it is the common bit code 
+; in common with both numbers 
+(logand 2 34) 
+2s
+```
+
+8、取负数。
+
+`˜` (Bitwise NOT). The `˜` (bitwise NOT) function accepts a bit (integer) value and converts it into a binary number before performing a bitwise negation. The negation changes any 1 in the binary value to a 0, and any 0 to a 1. For example, an integer value of 32 expressed as a binary value is as follows:
+
+The binary value is read from lower right to upper left. When the ˜ (bitwise NOT) function is applied to a bit value of 32, it becomes a bit value of -33 and is expressed as the binary value:
+
+The following is an example of the ˜ (bitwise NOT) function:
+
+```c
+(˜ 32) 
+-33
+```
+
+2『竟然还有这个取负数的函数，这样以后不用自己用 0 减生成负数了。收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
+
+9、布尔函数。
+
+boole. The AutoLISP boole function is used to perform a Boolean operation on two bit-coded (integer) values. The Boolean operations that can be performed are `AND(1)`, `XOR(6)`, `OR(7)`, and `NOR(8)`. For example, the AND Boolean operation can be used to see which bits are common between two bit-coded values. If an AND Boolean operation is performed on the bit-coded values 55 and 4135, a bit-coded value of 39 is returned.
+
+The following is an example of the boole function:
+
+```c
+(boole 1 55 4135) 
+39
+```
+
+1-2『选择器过滤条件的实现，底层原理应该靠的就是它，但目前没吃透。收录进主题卡片「函数收藏」。（2021-03-06』—— 已完成
+
+10、剔除字符串中特定的字符。
+
+Although the substr function is very helpful in pulling a string apart, it is not the most efficient function to use if you need to remove or trim specific characters from the left or right ends of a string. The AutoLISP `vl-string-trim`, `vl-string-left-trim`, and `vl-string-right-trim` functions are better suited to trimming specific characters, such as extra spaces or zeroes, from the ends of a string. The `vl-string-trim` function trims both ends of a string, whereas the `vl-string-left-trim` and `vl-string-right-trim` functions trim only the left and right ends of a string, respectively. Characters that are part of the `character_set` argument are trimmed from the respective ends of the string until a character that isn't a part of the `character_set` argument is encountered.
+
+1『每个语言都看到这 3 个剔除函数，底层的实现原理应该都一样。每个语言都有说明应用场景肯定多。（2021-03-06）』
+
+The following shows the syntax of the `vl-string-trim`, `vl-string-left-trim`, and `vl-string-right-trim` functions:
+
+```c
+(vl-string-trim character_set string) 
+(vl-string-left-trim character_set string) 
+(vl-string-right-trim character_set string)
+```
+
+11、结果转为字符串（Evaluating Values to Strings）。
+
+When working with strings, you may also want to concatenate a numeric value as part of a prompt string or response to the user. Before you can concatenate a nonstring value to a string, you must convert the nonstring value to a string. The quickest way to do so is to use the AutoLISP `vl-princ-to-string` and `vl-prin1-to-string` functions.
+
+The difference between the two functions is how quotation marks, backslashes, and other control characters are represented in the string that is returned. The `vl-prin1-to-string` function expands all control characters, whereas the `vl-princ-to-string` function doesn't. For more information on control characters that can be used in strings, search on the keywords「control characters」in the AutoCAD Help system.
+
+The following shows the syntax of the `vl-princ-to-string` and `vl-prin1-to-string` functions:
+
+```c
+(vl-princ-to-string atom) 
+(vl-prin1-to-string atom)
+```
+
+The atom argument represents the expression, variable, or value that should be converted to and returned as a string. The following are examples of the `vl-princ-to-string` and `vl-prin1-to-string` functions, and the values that are returned:
+
+```c
+(vl-princ-to-string 1.25) 
+"1.25" 
+(vl-princ-to-string (findfile (strcat (getvar "PROGRAM") ".exe"))) 
+"C:\\Program Files\\Autodesk\\AutoCAD 2014\\acad.exe" 
+(vl-prin1-to-string 1.25) 
+"1.25" 
+(vl-prin1-to-string (findfile (strcat (getvar "PROGRAM") ".exe"))) 
+"\"C:\\\\Program Files\\\\Autodesk\\\\AutoCAD 2014\\\\acad.exe\""
+```
+
+### 0108. 主题卡 —— 常用 DXF 码
+
+信息源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+1、图层状态。
+
+For example, the layer status property (DXF group code 70) of a layer is a bit-coded value that contains various flags used to specify whether the layer is frozen (1 bit), locked (4 bit), or dependent on an xref (16 bit). The osmode system variable is another example of a bit-coded value in AutoCAD. In the osmode system variable, the value indicates which running object snaps are currently enabled. Refer to the AutoCAD Help system to determine whether an object property or system variable is an integer or bit-coded value.
+
+1『这里意外获取到，图层锁定状态的 DXF 码，哈哈。收入进主题卡片「常用 DXF 码」。（2021-03-06）』
+
 ### 0201. 术语卡 —— Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
@@ -422,6 +670,63 @@ A selection set, sometimes known as a selection set name or ssname for short, is
 In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
 
 2『选择集的概念做一张术语卡片。』——已完成
+
+### 0206. 术语卡 —— bit-coded values
+
+信息源自「2019116AutoCAD-Platform-Customization0210.md」：
+
+Integer values can be used to represent what is known as a bit pattern or bit-coded value. A bit-coded value is the sum of one or more bits. A bit is a binary value; when one or more bits are combined they create a unique sum. AutoCAD uses bit-coded values for many different object properties (DXF group codes) and system variables.
+
+2『这里的 bit-coded values 做一张术语卡片。（2021-03-06）』—— 已完成
+
+For example, the layer status property (DXF group code 70) of a layer is a bit-coded value that contains various flags used to specify whether the layer is frozen (1 bit), locked (4 bit), or dependent on an xref (16 bit). The osmode system variable is another example of a bit-coded value in AutoCAD. In the osmode system variable, the value indicates which running object snaps are currently enabled. Refer to the AutoCAD Help system to determine whether an object property or system variable is an integer or bit-coded value.
+
+Because a bit-coded value is represented by the integer data type, you can use the + and – functions to add or remove a bit value for the overall sum of a bit-coded value. AutoLISP also provides several useful functions that you can use when working with bit-coded values. The logior and logand functions help combine several bit-coded values and determine whether a bit is part of a bit-coded value. Let's take a closer look at the logior and logand functions.
+
+3.1.8 Working with Bit-Coded Values
+
+The following exercise demonstrates how to work with bit-coded values. You'll create a custom function that allows you to toggle the state of the INTersection object snap. The current running object snap modes are stored in the osmode system variable, which contains a bit-coded value. The INTersection object snap is represented by the bit code 32.
+
+### 0207. 术语卡 —— Inline Variable Expansion
+
+信息源自「2019116AutoCAD-Platform-Customization0203.md」：
+
+Inline variable expansion is the process of defining a variable and then adding the name of the variable using the format `%VARIABLE_NAME%` (Windows) or `${VARIABLE_NAME}` (Mac OS) in a string. The name of the variable is then replaced with the variable's actual value when the expression containing the string is used. Inline variable expansion is not native functionality in AutoLISP, but it can be simulated. Inline variable expansion is supported by other programming languages and is often used with values that are defined by the operating system. Listing 13.1 in this section demonstrates one possible implementation of inline variable expansion in AutoLISP.
+
+1『太惊喜了，autolisp 里竟然也能模拟内联变量，那种很常用的，嵌入在字符串里的变量，感谢作者的源码，哈哈。做一张术语卡片。（2021-03-06）』
+
+Listing 13.1 is a custom function that mimics the use of inline variable expansion. When the function is executed, it attempts to match the text between % (percent) signs with a user-defined variable. If the variable is found, the inline variable is replaced by its current value.
+
+Listing 13.1: The ExpandVariable function
+
+```c
+; Custom implementation of expanding variables in AutoLISP 
+; To use: 
+; 1. Define a variable with the setq function. 
+; 2. Add the variable name with % symbols on both sides of the variable name. 
+; For example, the variable named *program* would appear as %*program*% in the string. 
+; 3. Use the function on the string that contains the variable. 
+(defun expandvariableUtils (string / start_pos next_pos var2expand expand_var) 
+  (while (wcmatch string "*%*%*") 
+         (progn 
+          (setq start_pos (1+ (vl-string-search "%" string))) 
+          (setq next_pos (vl-string-search "%" string start_pos)) 
+          (setq var2expand (substr string start_pos (- (+ next_pos 2) start_pos))) 
+          (setq expand_var (vl-princ-to-string (eval (read (vl-string-trim "%" var2expand))))) 
+          (if (/= expand_var nil) 
+            (setq string (vl-string-subst expand_var var2expand string)) 
+          ) 
+         ) 
+  ) 
+  string 
+) 
+
+; Define a global variable and string to expand 
+(setq *program* (getvar "PROGRAM") str2expand "PI=%PI% Program=%*program*%" ) 
+; Execute the custom function to expand the variables defined in the string 
+(expandvariable str2expand) 
+"PI=3.14159 Program=acad"
+```
 
 ### 0301. 任意卡 —— 生成 VLX 文件
 

@@ -4,7 +4,7 @@ The AutoLISP® functions you have learned up to this point have been, for the mo
 
 In this chapter, you will learn the basics of using ActiveX with AutoLISP and how to leverage the AutoCAD, Microsoft Windows, and Microsoft Office COM libraries. Although this chapter doesn't go into great depth, it will give you a starting point and a general understanding of the functions you need to become familiar with in order to use ActiveX and access COM libraries. The primary reasons to use COM are to monitor actions in AutoCAD with reactors, access external applications such as Microsoft Word or Excel, and work with complex objects, such as tables and multileaders.
 
-Understanding the Basics of ActiveX
+## 12.1 Understanding the Basics of ActiveX
 
 ActiveX is the technology that allows for the use of COM. It is often associated with Visual Basic for Applications (VBA) and Visual Basic (VB) scripting these days, but it can be used by many modern programming languages, such as VB.NET and C++. Although many people refer to ActiveX and COM as the same thing, they aren't. ActiveX is the technology that was developed by Microsoft to allow software developers to expose objects using COM, thereby letting programmers communicate with the programs in new ways.
 
@@ -250,7 +250,7 @@ vlax-safearray-get-u-bound Returns an integer that represents the index of the u
 
 vlax-safearray->list Returns a list containing the values of all elements in an array
 
-Importing COM Libraries
+## 12.2 Importing COM Libraries
 
 Although you can access the properties and methods of an object using the functions covered in the「Specifying Properties and Invoking Methods」section, importing a COM library can make coding easier. When you import a COM library, that library defines an AutoLISP function for the properties and methods of each class in the library. The newly defined functions that result from importing a COM library reduce the amount of code that needs to be written.
 
@@ -278,7 +278,7 @@ Although you can import a COM library more than once, you should avoid doing so,
 
 ; Imports the Windows Host Scripting Library (if (= wshLibImported nil) (progn (vlax-import-type-library :tlb-filename "c:\\windows\\system32\\wshom.ocx" :methods-prefix "wshm-" :properties-prefix "wshp-" :constants-prefix "wshk-" ) (setq wshLibImported T) ) (princ) )
 
-Using the AutoCAD COM Library
+## 12.3 Using the AutoCAD COM Library
 
 Once the AutoCAD COM library has been imported, you can use the newly exposed functions to do the following:
 
@@ -402,7 +402,7 @@ Learning about Other ActiveX-Related Functions
 
 As I mentioned earlier, this chapter provides an introduction to the various concepts required to get started with ActiveX in AutoLISP. There is a wide range of additional AutoLISP functions that I wasn't able to cover in this chapter. The names of these functions begin with the prefixes vla-, vlax- , and vlr-. You can learn more about the functions in the AutoCAD Help system by browsing to http://help.autodesk.com/view/ACD/2015/ENU/files/homepage_dev.htm, clicking the Functions By Name And Feature Reference link, and then using the links in the Visual LISP Extensions for AutoLISP (Windows only) section.
 
-Leveraging the Windows and Microsoft Office COM Libraries
+## 12.4 Leveraging the Windows and Microsoft Office COM Libraries
 
 The Microsoft ecosystem is full of hidden gems that can increase your productivity and improve everyday workflows. Many programs that are available for free or for purchase let you create proposals or manipulate information in a database, but Windows and Microsoft Office allow you to leverage what they do best by using the COM libraries that they expose. There aren't many companies that allow you to manipulate or access their programs programmatically like Microsoft does, so take advantage of these benefits whenever possible.
 
