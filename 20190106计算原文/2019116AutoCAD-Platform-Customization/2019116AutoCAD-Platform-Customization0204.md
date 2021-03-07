@@ -12,7 +12,7 @@ A grouping of related data, such as all the layers or layouts in a drawing
 
 In this chapter, you will learn to create and modify lists that represent coordinate values (points) and general data lists that contain one or more values. You will also learn to use geometric calculation functions that allow you to create new coordinate values from an existing coordinate values.
 
-What Are Lists?
+## 4.1 What Are Lists?
 
 Lists are a data structure that can contain one or more elements that are placed between opening and closing parentheses. A list is comparable to an array in other programming languages. The elements in a list can be an AutoLISP function name or values based on one of the supported data types that you learned about in Chapter 12,「Understanding AutoLISP.」The values in a list can be of the same or different data types. Although each AutoLISP expression is technically a list, in this chapter the lists referred to are those expressions that contain any number of values.
 
@@ -44,7 +44,7 @@ Now, on to the BOM. You create a BOM program that tabulates the objects and valu
 
 For today, AutoLISP lists are your best friend.
 
-Creating a List
+## 4.2 Creating a List
 
 When you want to define a point list, use the list function. The following code creates a 2D point list that represents the point 2.25, 6.5 in a drawing:
 
@@ -88,7 +88,7 @@ Type (setq UR (list width depth 0)) and press Enter.(60 30 0) is assigned to the
 
 Type (command "._line" LL UR "" "._zoom" "_e") and press Enter.The line command draws a line between the points specified by the LL and UR user-defined variables. The zoom command with the e option zooms to the extents of the objects in the drawing.
 
-Getting an Element from a List
+## 4.3 Getting an Element from a List
 
 A value in a list is known as an element. You can retrieve a specific element from a list by referencing the element's index, or step through a list and perform an action on each element. The first element of a list is not located at 1 as you might think, but rather at 0. The second element is at index 1, and so on. For example, in a 2D point list (X Y), the X coordinate value is located at index 0, whereas the Y coordinate value is located at index 1.
 
@@ -208,7 +208,7 @@ TIP
 
 You can also use the AutoLISP vl-list-length function to return the number of elements in a list. However, unlike the length function, the vl-list-length function doesn't produce an error if a list represents a dotted pair. You'll learn about dotted pairs in Chapter 16.
 
-Appending, Substituting, and Removing Elements
+## 4.4 Appending, Substituting, and Removing Elements
 
 The AutoLISP list and quote functions allow you to create a list based on a set of known values. However, there will be times when you want to create a list based on a set of unknown values. For example, you might want to create a list of objects that your program created in a drawing while the drawing remains open, or a list of the system variables that you have recently changed so they can be restored.
 
@@ -292,7 +292,7 @@ The following are examples of the vl-remove-if and vl-remove-if-not functions, a
 
 For more information on the AutoLISP vl-remove-if and vl-remove-if-not functions, see the AutoCAD Help system.
 
-Determining Whether an Item Exists in a List
+## 4.5 Determining Whether an Item Exists in a List
 
 When creating and modifying a list, you might want to search the list for the existence of an element with a specific value before trying to add or remove an element that would contain the same value. Although you could step through a list to determine whether an element with a specific value already exists, the AutoLISP member function is a more efficient way to search for a value in a list. The member function returns a list containing the element that matches the test expression along with all the elements after it; otherwise nil is returned.
 
@@ -332,7 +332,7 @@ The following are examples of the vl-some and vl-every functions, and the values
 
 For more information on the AutoLISP vl-member-if, vl-member-if-not, vl-some, and vl-every functions, see the AutoCAD Help system.
 
-Sorting the Elements of a List
+## 4.6 Sorting the Elements of a List
 
 Elements in a list often don't need to be in any specific order except when the list represents a coordinate or the list will be used to present information to the user. Lists can be stored alphabetically or numerically. It is even possible to sort nested values within a list.
 
@@ -358,7 +358,7 @@ TIP
 
 The acad_ strlsort function sorts all elements of a list in an ascending or alphabetic order. You can reverse the order of a list using the AutoLISP reverse function, which returns a new list of the items presented in the opposite order. If the list was previously sorted, this would give you a list that is now sorted in descending order.
 
-Using Point Lists to Calculate Geometric Values
+## 4.7 Using Point Lists to Calculate Geometric Values
 
 The math functions discussed in Chapter 13,「Calculating and Working with Values,」are great for calculating numeric values based on other numeric values, but they aren't specifically designed to work with point lists. Although you can use the functions described in the previous section to get the values of a point list and then manipulate the values with the math functions, AutoLISP does provide a set of functions that are designed specifically for working with point lists and other geometric values. AutoLISP contains functions that allow you to
 
@@ -522,7 +522,7 @@ The following are examples of the cal function, and the values that are returned
 
 (cal "1 + 2") 3 ; Calculates the midpoint between two user-specified ; points using the endpoint object snap (cal "(END+END)/2") Specify two endpoints on objects in the drawing area; the returned point list will be different than the following (8.2857 13.7603 0.0) ; Calculates the midpoint between the coordinates 0,0,0 and 3,3,0 (cal "([0,0,0]+[3,3,0])/2") (1.5 1.5 0.0)
 
-Converting Lists to Strings and Strings to Lists
+## 4.8 Converting Lists to Strings and Strings to Lists
 
 Lists are commonly used for coordinates, but they can also be used to represent the data that makes up an object or the characters that make up a string. A list of ASCII codes can be used to create a string, or a string can be converted into a list of ASCII codes. An ASCII code is an integer value equivalent to a character in a string. You saw how to work with and convert strings in Chapter 13.
 
@@ -538,7 +538,7 @@ The following are examples of the vl-string->list and vl-list->string functions,
 
 For more information on these functions, see the AutoCAD Help system.
 
-Exercise: Adding Holes to the Plate
+## 4.9 Exercise: Adding Holes to the Plate
 
 In this section, I expand on the drawplate and utility functions that were introduced in Chapter 13. I also apply some of the concepts that were introduced in this chapter. The key concepts that are covered in this exercise are as follows:
 
