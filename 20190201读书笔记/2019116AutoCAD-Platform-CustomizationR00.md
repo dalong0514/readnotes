@@ -295,188 +295,7 @@ NOTE: The appautoload system variable controls when bundles are loaded into Auto
 
 ### 0107. 主题卡 —— 函数收藏
 
-信息源自「2019116AutoCAD-Platform-Customization0210.md」：
-
-1、求余数（rem）。
-
-NOTE: Dividing a number by 0 causes an error and returns this message: `; error: divide by zero`. If the error is not handled, the custom function that contains the error is terminated. You can use the `vl-catch-all-apply` function to keep the function from being terminated. I discuss the `vl-catch-all-apply` function in Chapter 19,「Catching and Handling Errors.」
-
-When dividing numbers, you can use the AutoLISP `rem` function to return the remainder of the first number after it has been divided by all the other numbers supplied to the function. The `rem` function can take any number of numeric values; the function returns 0 when no values are passed to it. The following demonstrates the rem function:
-
-```c
-(/ 10.0 3) 
-3.33333 
-(rem 10.0 3.0) 
-1.0
-```
-
-2、求最大公约数（gcd）。
-
-AutoLISP includes a function named `gcd` that can be used to return the greatest common denominator of two integer values. The gcd function requires two integer values, and it returns an integer that represents the greatest common denominator of the provided values. Here are two examples:
-
-1-2『这不是就是求最大公约数嘛，数学应用很广的，以后应该可以用到。函数 rem 和 gcd 收录进主题卡片「函数收藏」中。（2021-03-06）』—— 已完成
-
-```c
-(gcd 5 2) 
-1 
-(gcd 54 81) 
-27
-```
-
-3、求最大最小值函数（min and max）。
-
-The min and max functions accept any integer or real numeric values. The min function returns the smallest numeric value from those that are passed to it, whereas the max function returns the largest numeric value. A real value is returned by the function, except when the function is passed only integer values — in that case, an integer value is returned. If no numeric value is passed to either function, 0 is returned. The following are examples of the min and max functions:
-
-```c
-(min 9 1 1976 0.25 100 -25) 
--25.0
-(max 9 1 1976 0.25 100 -25) 
-1976.0 
-(max 9 1 1976 100 -25) 
-1976
-```
-
-4、判断负值、判断零值（minusp and zerop）。
-
-The minusp and zerop functions accept an integer or real numeric value. The minusp function returns T if the value that it was passed is negative, or it returns nil if the value was positive. The zerop function also returns T or nil; T is returned if the value passed is equal to 0. The zerop function can help you avoid dividing a number by 0 or seeing if a system variable is set to 0. The following are examples of the minusp and zerop functions:
-
-```c
-(minusp 25) 
-nil 
-(minusp -25) 
-T 
-(zerop 25) 
-nil 
-(zerop 0) 
-T
-```
-
-For more information on the minusp and zerop functions, see the AutoCAD Help system.
-
-2『求最大最小值函数、判断负值、判断零值函数，收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
-
-5、高阶数学函数。
-
-In addition to basic math functions, AutoLISP offers a range of advanced math functions that aren't used as frequently. These advanced functions allow you to work with angular, exponential, natural logarithm, or square root numeric values. AutoLISP supports the advanced math functions listed in Table 13.1.
-
-1-2『真没想到，autolisp 里原生数学函数这么丰富。这些高阶函数都收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
-
-Table 13.1 AutoLISP advanced math functions
-
-| Function | Description |
-| --- | --- |
-| sin | Returns the sine of an angular value expressed in radians. |
-| atan | Calculates the arctangent of an angular value expressed in radians. |
-| cos | Returns the cosine of an angular value expressed in radians. |
-| exp | Returns a numeric value that has been raised to its natural antilogarithm. |
-| expt | Returns a numeric value after it has been raised by a specified power. |
-| log | Calculates the natural logarithm of a numeric value. |
-| sqrt | Gets the square root of a numeric value. |
-| - | - |
-
-For more information on these functions, see the AutoCAD Help system.
-
-7、logior and logand。
-
-Because a bit-coded value is represented by the integer data type, you can use the `+` and `–` functions to add or remove a bit value for the overall sum of a bit-coded value. AutoLISP also provides several useful functions that you can use when working with bit-coded values. The logior and logand functions help combine several bit-coded values and determine whether a bit is part of a bit-coded value. Let's take a closer look at the logior and logand functions.
-
-2『函数 logior、函数 logand，收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
-
-1 logior. The logior function allows you to combine several bits into a single bit-coded value and ensures that a bit is added only once to the resulting bit-coded value. Although you can use the `+` function to add several bits together, that function simply adds several values together and returns the resulting value, which might return a bit-coded value with a different meaning. For example, the bits 1 and 4 are equal to the bit-coded value of 5:
-
-```c
-; Final result is a bit-coded value of the bits 1 and 4 
-(logior 1 4) 
-5 
-; Final result is an integer of 5 
-(+ 1 4) 
-5
-```
-
-2 logand. The logand function is used to determine whether a specific bit or bit-coded value is part of another bit-coded value. This type of comparison in a program can be helpful when you need to handle specific conditions in the AutoCAD environment, such as making sure that the current layer is not frozen or locked when you're creating or selecting objects, or making sure a specific running object snap is set. Here is the syntax of the logand function:
-
-1-2『这里提供了实现自动锁图层的实现线索，待研究。之前开发建筑底图迁移功能时，已经通过 activeX 实现了，这里的信息如果实现，应该是另外一条途径。（2021-03-06）』
-
-The following examples use the logand function to determine if a bit is common with the provided bits or bit-coded values. Bit 2 represents the MIDpoint running object snap; a bit-coded value of 12 represents the CENter and QUAdrant running object snaps; and the bit-coded value of 34 represents the running object snaps MIDpoint and INTersection. The first example returns 0 because the bit 2 value is not part of the bit-coded value 12 (bit codes 4 and 8), whereas 2 is returned for the second example because bit 2 is part of the bit-coded value of 34 (bit codes 1, 2, and 32).
-
-```c
-; Returns 0 because no bit codes are in 
-; common with the two numbers 
-(logand 2 12) 
-0 
-; Returns 2 because it is the common bit code 
-; in common with both numbers 
-(logand 2 34) 
-2s
-```
-
-8、取负数。
-
-`˜` (Bitwise NOT). The `˜` (bitwise NOT) function accepts a bit (integer) value and converts it into a binary number before performing a bitwise negation. The negation changes any 1 in the binary value to a 0, and any 0 to a 1. For example, an integer value of 32 expressed as a binary value is as follows:
-
-The binary value is read from lower right to upper left. When the ˜ (bitwise NOT) function is applied to a bit value of 32, it becomes a bit value of -33 and is expressed as the binary value:
-
-The following is an example of the ˜ (bitwise NOT) function:
-
-```c
-(˜ 32) 
--33
-```
-
-2『竟然还有这个取负数的函数，这样以后不用自己用 0 减生成负数了。收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
-
-9、布尔函数。
-
-boole. The AutoLISP boole function is used to perform a Boolean operation on two bit-coded (integer) values. The Boolean operations that can be performed are `AND(1)`, `XOR(6)`, `OR(7)`, and `NOR(8)`. For example, the AND Boolean operation can be used to see which bits are common between two bit-coded values. If an AND Boolean operation is performed on the bit-coded values 55 and 4135, a bit-coded value of 39 is returned.
-
-The following is an example of the boole function:
-
-```c
-(boole 1 55 4135) 
-39
-```
-
-1-2『选择器过滤条件的实现，底层原理应该靠的就是它，但目前没吃透。收录进主题卡片「函数收藏」。（2021-03-06』—— 已完成
-
-10、剔除字符串中特定的字符。
-
-Although the substr function is very helpful in pulling a string apart, it is not the most efficient function to use if you need to remove or trim specific characters from the left or right ends of a string. The AutoLISP `vl-string-trim`, `vl-string-left-trim`, and `vl-string-right-trim` functions are better suited to trimming specific characters, such as extra spaces or zeroes, from the ends of a string. The `vl-string-trim` function trims both ends of a string, whereas the `vl-string-left-trim` and `vl-string-right-trim` functions trim only the left and right ends of a string, respectively. Characters that are part of the `character_set` argument are trimmed from the respective ends of the string until a character that isn't a part of the `character_set` argument is encountered.
-
-1『每个语言都看到这 3 个剔除函数，底层的实现原理应该都一样。每个语言都有说明应用场景肯定多。（2021-03-06）』
-
-The following shows the syntax of the `vl-string-trim`, `vl-string-left-trim`, and `vl-string-right-trim` functions:
-
-```c
-(vl-string-trim character_set string) 
-(vl-string-left-trim character_set string) 
-(vl-string-right-trim character_set string)
-```
-
-11、结果转为字符串（Evaluating Values to Strings）。
-
-When working with strings, you may also want to concatenate a numeric value as part of a prompt string or response to the user. Before you can concatenate a nonstring value to a string, you must convert the nonstring value to a string. The quickest way to do so is to use the AutoLISP `vl-princ-to-string` and `vl-prin1-to-string` functions.
-
-The difference between the two functions is how quotation marks, backslashes, and other control characters are represented in the string that is returned. The `vl-prin1-to-string` function expands all control characters, whereas the `vl-princ-to-string` function doesn't. For more information on control characters that can be used in strings, search on the keywords「control characters」in the AutoCAD Help system.
-
-The following shows the syntax of the `vl-princ-to-string` and `vl-prin1-to-string` functions:
-
-```c
-(vl-princ-to-string atom) 
-(vl-prin1-to-string atom)
-```
-
-The atom argument represents the expression, variable, or value that should be converted to and returned as a string. The following are examples of the `vl-princ-to-string` and `vl-prin1-to-string` functions, and the values that are returned:
-
-```c
-(vl-princ-to-string 1.25) 
-"1.25" 
-(vl-princ-to-string (findfile (strcat (getvar "PROGRAM") ".exe"))) 
-"C:\\Program Files\\Autodesk\\AutoCAD 2014\\acad.exe" 
-(vl-prin1-to-string 1.25) 
-"1.25" 
-(vl-prin1-to-string (findfile (strcat (getvar "PROGRAM") ".exe"))) 
-"\"C:\\\\Program Files\\\\Autodesk\\\\AutoCAD 2014\\\\acad.exe\""
-```
+详见「2019116AutoCAD-Platform-CustomizationR01.md」。
 
 ### 0108. 主题卡 —— 常用 DXF 码
 
@@ -487,6 +306,30 @@ The atom argument represents the expression, variable, or value that should be c
 For example, the layer status property (DXF group code 70) of a layer is a bit-coded value that contains various flags used to specify whether the layer is frozen (1 bit), locked (4 bit), or dependent on an xref (16 bit). The osmode system variable is another example of a bit-coded value in AutoCAD. In the osmode system variable, the value indicates which running object snaps are currently enabled. Refer to the AutoCAD Help system to determine whether an object property or system variable is an integer or bit-coded value.
 
 1『这里意外获取到，图层锁定状态的 DXF 码，哈哈。收入进主题卡片「常用 DXF 码」。（2021-03-06）』
+
+### 0109. 主题卡 —— entity name 跟 vla-object 相互转换
+
+信息源自「2019116AutoCAD-Platform-Customization0212.md」：
+
+The graphical and nongraphical objects stored in a drawing can be accessed using ActiveX. As defined by the drawing architecture, all graphical objects are stored in a Block object and can be accessed from the Blocks collection. Model space and paper space are special types of Block objects that you can manipulate without performing any special operation. The Blocks collection is just one of several collections that allow you to create and access nongraphical objects in a drawing.
+
+NOTE 22.5: The vla-object data type isn't compatible with the ename data type. You can convert vla-object values to an entity name (ename) by using the `vlax-vla-object->ename` function. The `vlax-ename->vla-object` function converts an ename to a vla-object data type. Additionally, you can use the `vla-get-handle` function to get an object's handle and then use the handent function to get an object's ename based on a valid handle. These functions are helpful if you are mixing the use of Classic AutoLISP functions that work with the ename data type, such as entget or ssname, and those used to work with objects of the AutoCAD COM library. Examples of these functions, with the exception of `vlax-vla-object->ename`, can be found in the `ch22_mswin_office.lsp` file, which you can download from this book's web page, www.sybex.com/go/autocadcustomization.
+
+1-2『大赞，entity name 跟 vla-object 之间可以相互转换，那么基本把之前学的操作 entity data 的知识可以直接跟现在操作 vla-object 打通掉。试场景自己选用哪条路径操作 CAD 里的数据。做一张主题卡片。（2021-03-07）』—— 已完成
+
+In the previous section, you learned how to get the object that represents the active document. The next example shows how to get the ModelSpace or PaperSpace object based on the active space. You can determine the correct active space by using the ActiveSpace property of the current document.
+
+```c
+; Get a reference to the current space in AutoCAD 
+(if (= (vla-get-activespace curDoc) acModelSpace) 
+  (setq space (vla-get-modelspace curDoc)) 
+  (setq space (vla-get-paperspace curDoc)) 
+)
+```
+
+1『上面的方法可以判断，打开的图纸是在模型空间里还是布局空间里，常规都是模型空间里，此判断可以忽略。（2021-03-07）』
+
+When you want to add an object, such as a Layer object, to a collection, you can use one of the many Add methods available through the AutoCAD COM library. The following exercise shows how to create a function that checks for the existence of a layer and that creates the layer if it's not found; it then sets the layer as current by using the AutoCAD COM library and ActiveX. The function is similar to the createlayer function that you defined in the utility.lsp file in the various exercises throughout this book.
 
 ### 0201. 术语卡 —— Dotted Pair
 
@@ -727,6 +570,48 @@ Listing 13.1: The ExpandVariable function
 (expandvariable str2expand) 
 "PI=3.14159 Program=acad"
 ```
+
+### 0208. 术语卡 —— ActiveX/COM
+
+信息源自「2019116AutoCAD-Platform-Customization0212.md」：
+
+The AutoLISP® functions you have learned up to this point have been, for the most part, platform neutral and are unofficially known as Classic AutoLISP or Core AutoLISP. Starting with the Autodesk® AutoCAD® 2000 program, AutoLISP saw an architecture change that allowed for the use of the Microsoft ActiveX technology. ActiveX is a technology that enables applications to communicate and exchange information. COM (Component Object Model) is a library of objects that let you make changes to or query exposed objects. COM is an example of ActiveX.
+
+1『这里 ActiveX/COM 本质上是一个库，做一张术语卡片。（2021-03-06）』
+
+In this chapter, you will learn the basics of using ActiveX with AutoLISP and how to leverage the AutoCAD, Microsoft Windows, and Microsoft Office COM libraries. Although this chapter doesn't go into great depth, it will give you a starting point and a general understanding of the functions you need to become familiar with in order to use ActiveX and access COM libraries. The primary reasons to use COM are to monitor actions in AutoCAD with reactors, access external applications such as Microsoft Word or Excel, and work with complex objects, such as tables and multileaders.
+
+ActiveX is the technology that allows for the use of COM. It is often associated with Visual Basic for Applications (VBA) and Visual Basic (VB) scripting these days, but it can be used by many modern programming languages, such as VB.NET and C++. Although many people refer to ActiveX and COM as the same thing, they aren't. ActiveX is the technology that was developed by Microsoft to allow software developers to expose objects using COM, thereby letting programmers communicate with the programs in new ways.
+
+In general, there are three concepts you need to understand about working with ActiveX in AutoLISP programs: 1) Classes, objects, and collections. 2) Methods and properties. 3) Variant and array data types.
+
+### 0209. 术语卡 —— Collections
+
+信息源自「2019116AutoCAD-Platform-Customization0212.md」：
+
+Collections are objects that can be queried and modified using properties and methods, but they are also containers that hold similar objects. A collection fundamentally is similar to a symbol table; you can work with a symbol table and add new objects to it, but you can't create a new symbol table. All the collections that you need in order to work with AutoCAD objects are defined as part of the AutoCAD ActiveX API. For example, a Layers collection contains all of the Layer objects in a drawing, and a Documents collection contains all the open drawings (or Document objects) in the current AutoCAD session. You can get an object from a collection using the Item method, add a new object to a collection using the Add method, and remove an object from a collection using the Delete method.
+
+1-2『这里的 Collections 概念很重要的，而且获取到两个关键数据集：图层的 Collections、CAD 当前打开的图纸的 Collections。Collections 做一张术语卡片。（2021-03-06）』—— 已完成
+
+If you want to step through a collection and perform a set of statements on each object, you can use the `vlax-for` AutoLISP function, which is similar to the `foreach` function. The following shows the syntax of the vlax-for function:
+
+```c
+(vlax-for var coll [expressionN …])
+```
+
+### 0210. 术语卡 —— Variants and Arrays
+
+信息源自「2019116AutoCAD-Platform-Customization0212.md」：
+
+vla-object isn't the only new data type that you will have to understand when working with ActiveX. Many methods and properties use what is known as a variant. The variant data type is the chameleon of data types; it can represent any supported data type. A variant in AutoLISP is represented by the vla-variant data type. Arrays are yet another type of data that you will need to become familiar with. An array is represented by the vla-array data type and is similar to the AutoLISP list data type.
+
+2『这里的 Variants and Arrays，做一张术语卡片。（2021-03-07）』—— 已完成
+
+Most properties and methods return or expect values of a specific type, but there will be times when you will need to assign a property or pass a method a variant value. Some data structures can represent multiple values, such as a point or Xdata, and in these situations the AutoCAD COM library is designed to return or accept a variant value. You define a variant by using the `vlax-make-variant` function. The following shows the syntax of the `vlax-make-variant` function:
+
+The array data type is similar to the AutoLISP list data type, but typically an array is made up of a specified number of elements. You will remember that a list can hold any number of elements. A common use for arrays with the AutoCAD COM library is to represent a point list. Arrays can also be used to pass multiple objects to a method or for times when you want to return more than one value from a custom function.
+
+The `vlax-make-safearray` function is used to create a new array based on a specific data type and number of elements. The following shows the syntax of the `vlax-make-safearray` function:
 
 ### 0301. 任意卡 —— 生成 VLX 文件
 
