@@ -1,5 +1,19 @@
 # 0201. Power and Influence: Central Position in Networks 
 
+0201权势和影响力：网络中的核心位置
+
+导读：
+
+1、今天是人气度的时代。名人网红的关注度直接左右着大众的观点、情感与抉择。
+
+2、社交中的「友谊悖论」，让最受欢迎的人出现在很多人的朋友圈中。时尚业以之推动潮流走向，中学生也容易由此「沾染恶习」……
+
+3、拥有人脉广泛的朋友比拥有为数众多的朋友更重要 —— 关键是你认识谁。朋友的朋友，朋友的朋友的朋友…… 如何通过特征向量中心度测算你的全部网络影响力 —— 这正是谷歌搜索成功的秘密。
+
+4、美第奇家族在文艺复兴时期的崛起，缘于他们在家族婚姻与商业网络中的绝好位置，有着独一无二的「中介中心度」。
+
+5、伟人不是生而伟大，而是越活越伟大。中心度带来更多中心度，朋友的数量会像复利那样增长。
+
 Sometimes, idealistic people are put off by the whole business of networking as something tainted by flattery and the pursuit of selfish advantage. But virtue in obscurity is rewarded only in Heaven. To succeed in this world you have to be known to people.
 
  —  SONIA SOTOMAYOR, MY BELOVED WORLD
@@ -22,7 +36,36 @@ When it comes to measuring power, this will not be the end of our story. Another
 
 Understanding how networks embody power and influence will be useful when we later discuss things like financial contagions, inequality, and polarization. We will start with a look at direct influence.
 
-Popularity: Degree Centrality
+有时候，富有理想的人会被整个业界圈子反感，被视为讨好卖乖和追求个人私利。可是，默默无闻的美德只有在天堂才会得到回报。要在这个世界上取得成功，你必须让人们知道你。
+
+—— 索尼娅·索托马约尔（Sonia Sotomayor，美国最高法院大法官），《我挚爱的世界》（ My Beloved World ）
+
+
+
+
+1930 年，圣雄甘地动员了数万人参与反抗英国统治的「食盐进军」（Salt March）。这是一场长度超过 200 英里 [1] 的步行运动，从甘地的基地到生产食盐的沿海城市丹迪，目的是抗议盐税。在当地的炎热气候下，食盐是必需品，消费量很大。高额的盐税于是成为英国殖民者给印度带来的苦难的特定象征。从更宽广的视角看，食盐进军发起的非暴力不合作运动最终结束了英国的统治。
+
+如果你发现英国对殖民地的税收在之前遇到过类似抗议，那并不稀奇。甘地同样注意到，一个多世纪前的波士顿茶党曾反抗英国的税收。他讲道：「美国依靠苦难、英勇战斗和牺牲赢得了独立，而印度应该依靠苦难、牺牲和非暴力在上帝眷顾下实现自由。」据说食盐进军后在伦敦同印度总督欧文爵士会面时，甘地被问及希望在茶水中加糖还是奶油，他回答说不，他希望加点盐，「好让我们回想起著名的波士顿茶党」。[2]
+
+食盐进军让我们瞥见了甘地后来将完成的壮举的冰山一角，他在 1930 年 4 月非法生产食盐的行动鼓励了数百人追随非暴力不合作运动。马丁·路德·金曾提及第一次读到甘地向大海进军时的感动。我们很容易看出这如何启发了他在发动民权运动与组织游行时的做法。
+
+有大量的案例表明，个人有能力直接或间接地激发千百万人的行动。极大的影响范围是甘地和马丁·路德·金最终成功改变世界的关键。很自然地，一个人的位势和影响力可以通过他发动或激励的人数来判断，因为这反映了他的作用范围。
+
+人类网络能帮助我们认清和测量这种作用范围。对作用范围的第一个测量指标是简单地数一个人认识多少人，或者有多少朋友或同事。在当今世界，我们可能还会询问，他在社交媒体上有多少关注者。我们将看到，一个人有多少朋友或关注者，对决定一个群体的认知和社交习俗有着微妙的影响。
+
+当然，有许多直接的朋友或熟人只是个人发挥影响力的一种方式，而本章的很大部分将用来探讨权势的其他人类网络根源。无论甘地还是马丁·路德·金，对于他们动员起来的民众都只直接认识其中很小一部分，也不可能都有个人接触。他们有着重要的同盟和朋友，并通过其行动产生的宣传影响更多人。食盐进军就是从少数追随者起步，随着运动的发展和宣传的扩大，才变得声势浩大。
+
+一个人的朋友或熟人可以很少，但如果这些朋友或熟人自身举足轻重，他也可能具有相当的影响力。此类间接作用的范围往往就是权势所在，我们能通过人类网络的概念非常清楚地看到这种影响力。借助显赫的友人来获取影响力是一种有迭代性、循环式的说法，但在人类网络的环境下，这很容易理解，并且带有许多启示。对权势和影响力的迭代的、基于网络的测量方法可以帮助我们弄清楚如何最好地启动扩散效应，以及是什么让谷歌成为极具创新性的搜索引擎。
+
+提到对权势的衡量，这不是我们要讲的故事的结尾。人们还可以用另一种方式变得更加重要 —— 在网络中显得尤其突出 —— 即成为关键的连接点或者说协调人。某人可以成为相互不直接认识的人们之中的桥梁或中介，使他处于协调其他人行动的独特位置，从而获取居间好处，强化其权势。这类权势既反映在《教父》那样的故事中，也可以用于解释美第奇家族通过人际网络在中世纪的佛罗伦萨的崛起。
+
+在之后探讨金融传染、不平等和极端化等现象时，理解人际网络如何赋予权势和影响力将非常有帮助。我们先从直接影响力入手。
+
+[1] 英制单位。1 英里约等于 1.609 公里。
+
+[2] 参阅 Adrija Roychowdhury,「How Mahatma Gandhi Drew Inspiration from the American Independence Struggle,」The Indian Express,2016 年 7 月 4 日。
+
+## 2.1 Popularity: Degree Centrality
 
 Although he did not mobilize people to march like Gandhi, Michael Jordan did mobilize people to buy shoes. His ability to influence huge numbers of people was unparalleled. It is not by accident that, just during his sports career, Michael Jordan was paid more than half a billion dollars by companies wanting to advertise their products. 2 He earned just over `$`90 million in salary from actually playing basketball. By that metric, his value in marketing was (and remains) much larger than his direct value as an athlete and entertainer. Michael Jordan’s incredible visibility enabled him to directly influence the decisions of millions of people around the globe. 3
 
@@ -276,41 +319,7 @@ Brokerage and Bridging — 「Betweenness Centrality」: Is someone a powerful b
 
 There is a sense in which popularity is a local measure — one just needs to count a person’s friends or acquaintances, while the other three concepts are more holistic, embodying information about larger parts of the network. Which centrality concept is appropriate, and how people wield power, depends on the context; and these concepts play important roles in contagions, inequality, and polarization, as we shall soon see.
 
-0201权势和影响力：网络中的核心位置
 
-导读
-
-◎今天是人气度的时代。名入网红的关注度直接左右着大众的观点、情感与抉择。
-
-◎社交中的「友谊悖论」，让最受欢迎的人出现在很多人的朋友圈中。时尚业以之推动潮流走向，中学生也容易由此「沾染恶习」……
-
-◎拥有人脉广泛的朋友比拥有为数众多的朋友更重要 —— 关键是你认识谁。朋友的朋友，朋友的朋友的朋友…… 如何通过特征向量中心度测算你的全部网络影响力 —— 这正是谷歌搜索成功的秘密。
-
-◎美第奇家族在文艺复兴时期的崛起，缘于他们在家族婚姻与商业网络中的绝好位置，有着独一无二的「中介中心度」。
-
-◎伟人不是生而伟大，而是越活越伟大。中心度带来更多中心度，朋友的数量会像复利那样增长。
-
-有时候，富有理想的人会被整个业界圈子反感，被视为讨好卖乖和追求个人私利。可是，默默无闻的美德只有在天堂才会得到回报。要在这个世界上取得成功，你必须让人们知道你。
-
-—— 索尼娅·索托马约尔（Sonia Sotomayor，美国最高法院大法官），《我挚爱的世界》（ My Beloved World ）
-
-1930 年，圣雄甘地动员了数万人参与反抗英国统治的「食盐进军」（Salt March）。这是一场长度超过 200 英里 [1] 的步行运动，从甘地的基地到生产食盐的沿海城市丹迪，目的是抗议盐税。在当地的炎热气候下，食盐是必需品，消费量很大。高额的盐税于是成为英国殖民者给印度带来的苦难的特定象征。从更宽广的视角看，食盐进军发起的非暴力不合作运动最终结束了英国的统治。
-
-如果你发现英国对殖民地的税收在之前遇到过类似抗议，那并不稀奇。甘地同样注意到，一个多世纪前的波士顿茶党曾反抗英国的税收。他讲道：「美国依靠苦难、英勇战斗和牺牲赢得了独立，而印度应该依靠苦难、牺牲和非暴力在上帝眷顾下实现自由。」据说食盐进军后在伦敦同印度总督欧文爵士会面时，甘地被问及希望在茶水中加糖还是奶油，他回答说不，他希望加点盐，「好让我们回想起著名的波士顿茶党」。[2]
-
-食盐进军让我们瞥见了甘地后来将完成的壮举的冰山一角，他在 1930 年 4 月非法生产食盐的行动鼓励了数百人追随非暴力不合作运动。马丁·路德·金曾提及第一次读到甘地向大海进军时的感动。我们很容易看出这如何启发了他在发动民权运动与组织游行时的做法。
-
-有大量的案例表明，个人有能力直接或间接地激发千百万人的行动。极大的影响范围是甘地和马丁·路德·金最终成功改变世界的关键。很自然地，一个人的位势和影响力可以通过他发动或激励的人数来判断，因为这反映了他的作用范围。
-
-人类网络能帮助我们认清和测量这种作用范围。对作用范围的第一个测量指标是简单地数一个人认识多少人，或者有多少朋友或同事。在当今世界，我们可能还会询问，他在社交媒体上有多少关注者。我们将看到，一个人有多少朋友或关注者，对决定一个群体的认知和社交习俗有着微妙的影响。
-
-当然，有许多直接的朋友或熟人只是个人发挥影响力的一种方式，而本章的很大部分将用来探讨权势的其他人类网络根源。无论甘地还是马丁·路德·金，对于他们动员起来的民众都只直接认识其中很小一部分，也不可能都有个人接触。他们有着重要的同盟和朋友，并通过其行动产生的宣传影响更多人。食盐进军就是从少数追随者起步，随着运动的发展和宣传的扩大，才变得声势浩大。
-
-一个人的朋友或熟人可以很少，但如果这些朋友或熟人自身举足轻重，他也可能具有相当的影响力。此类间接作用的范围往往就是权势所在，我们能通过人类网络的概念非常清楚地看到这种影响力。借助显赫的友人来获取影响力是一种有迭代性、循环式的说法，但在人类网络的环境下，这很容易理解，并且带有许多启示。对权势和影响力的迭代的、基于网络的测量方法可以帮助我们弄清楚如何最好地启动扩散效应，以及是什么让谷歌成为极具创新性的搜索引擎。
-
-提到对权势的衡量，这不是我们要讲的故事的结尾。人们还可以用另一种方式变得更加重要 —— 在网络中显得尤其突出 —— 即成为关键的连接点或者说协调人。某人可以成为相互不直接认识的人们之中的桥梁或中介，使他处于协调其他人行动的独特位置，从而获取居间好处，强化其权势。这类权势既反映在《教父》那样的故事中，也可以用于解释美第奇家族通过人际网络在中世纪的佛罗伦萨的崛起。
-
-在之后探讨金融传染、不平等和极端化等现象时，理解人际网络如何赋予权势和影响力将非常有帮助。我们先从直接影响力入手。
 
 人气度：中心度
 
@@ -564,9 +573,16 @@ BSS 银行推广的小额贷款揭示了网络中心度的重要性，以及中�
 
 从一定意义上讲，人气度是个局部性的指标，我们只需要数清一个人有多少朋友或熟人。而其他三个概念更具有全局性，包含更大范围的网络的信息。哪一种中心度的概念更适用，人们如何发挥力量，则取决于场合。我们很快将会看到，这些概念在传染、不平等和极端化等现象中起到了关键作用。
 
-[1] 英制单位。1 英里约等于 1.609 公里。
 
-[2] 参阅 Adrija Roychowdhury,「How Mahatma Gandhi Drew Inspiration from the American Independence Struggle,」The Indian Express,2016 年 7 月 4 日。
+
+
+
+
+
+
+
+
+
 
 [3] 仅耐克公司在当时就给他支付了 4.8 亿美元。
 
