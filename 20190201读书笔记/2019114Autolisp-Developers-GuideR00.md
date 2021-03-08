@@ -81,7 +81,19 @@ The append function takes any number of lists and runs them together as one list
 (1.0 "One" 1 "One")
 ```
 
-1『注意，append 函数的参数都必须是 list 数据类型。而 cons 函数的参数一个是单个元素，一个是 list 类型。（2020-10-06）』
+1『
+
+注意，append 函数的参数都必须是 list 数据类型。而 cons 函数的参数一个是单个元素，一个是 list 类型。（2020-10-06）
+
+补充：这里真的很容易弄错，append 的参数都是数组，而且自己之前存在一个误区，以为只能传 2 个数组作为参数拼接，看官方文档的说明（`(append [list ...])`），可以传多个数组的。这样的话其实就可以对一个大数组（包含多个小数组）直接调用 `apply` 函数，经试验可行的。下面的代码跑通了，这样的话之前自己很多功能的实现可以更加简洁。（2021-03-08）
+
+```c
+(defun c:foo ()
+  (apply 'append (list '(1 2 3) '(11 12 13) '(21 22 23)))
+)
+```
+
+』
 
 The cons function combines a single element with a list. You can add another string "One" to the beginning of a list, lst2, with the cons function.
 
@@ -226,7 +238,7 @@ AutoLISP provides many functions for working with string values. The following a
 
 With AutoLISP, many functions require you to pass them values. These values are known as arguments. There are functions that also accept no arguments, and some in which accept optional arguments. User-defined functions cannot have optional arguments. When you call a user-defined function that accepts arguments, you must provide values for all arguments.
 
-1『注意：自定义的函数是没法使用默认形参的，必须明确掉。』
+1『注意：自定义的函数是没法使用默认形参的，必须明确掉。回复：之前的理解有误，optional arguments 是指可选参数，而非默认参数。下面的信息也说明了，可以通过同一个函数名结合不同参数来实现「可选参数」。（2021-03-08）』
 
 Note: You can define multiple user functions with the same name, but have each definition accept a different number or type of arguments.
 
@@ -271,7 +283,7 @@ Now suppose you want to wrap that whole expression in a function that takes the 
 )
 ```
 
-Note how the anonymous function, which contains code that won't run until it's invoked in REMOVE-IF-NOT, can nonetheless refer to the variable artist. In this case the anonymous function doesn't just save you from having to write a regular function--it lets you write a function that derives part of its meaning--the value of artist--from the context in which it's embedded.
+Note how the anonymous function, which contains code that won't run until it's invoked in REMOVE-IF-NOT, can nonetheless refer to the variable artist. In this case the anonymous function doesn't just save you from having to write a regular function — it lets you write a function that derives part of its meaning — the value of artist — from the context in which it's embedded.
 
 1-2-3『
 
@@ -356,7 +368,32 @@ Remarks: The vl-member-if-not function passes each element in lst to the functio
 ((0 . "line") nil T)
 ```
 
-1「函数 `vl-member-if-not` 目前没吃透，不过直觉上感觉有大用途。（2020-10-22）」
+1『
+
+函数 `vl-member-if-not` 目前没吃透，不过直觉上感觉有大用途。（2020-10-22）
+
+补充：现在弄明白了。对一个数组里的各个元素用断言函数去判断，比如到第 3 个元素断言才为假，那么返回的数组是从第 3 个元素之后所有元素组成的数据。如果从头到尾断言均为真，那么返回 nil。那么这个函数就能够判断一个数组里的各个元素是否全部符合某个断言，只需判断结果是不是 nil，是的话即全部符合某个条件，印象中 JS 里也有一个这个函数。下面举了 2 个例子。（2021-03-08）
+
+```c
+(defun c:foo ()
+  (vl-member-if-not '(lambda (x) 
+                       (= x 1)
+                     ) 
+                     (list 1 1 2 1 3)
+  )
+)
+
+; 反的数组为 '(2 1 3)
+
+(defun c:foo ()
+  (vl-member-if-not '(lambda (x) 
+                       (= x 1)
+                     ) 
+                     (list 1 1 1 1)
+  )
+)
+; 返回 nil
+```
 
 』
 
@@ -393,7 +430,6 @@ Remarks. Use the lambda function when the overhead of defining a new function is
         ) 
         '(2 4 -6 10.2)
 )
-0
 (10 20 -30 51.0)
 ```
 
@@ -401,7 +437,7 @@ Remarks. Use the lambda function when the overhead of defining a new function is
 
 Returns a list that is the result of executing a function with a list (or lists) supplied as arguments to the function.
 
-```
+```c
 (mapcar function list1... listn)
 ```
 
@@ -411,7 +447,7 @@ list1... listn. Type: List. One or more lists. The number of lists must match th
 
 Return Values. Type: List. A list.
 
-```
+```c
 (setq a 10 b 20 c 30)
 30
 
@@ -533,6 +569,8 @@ Or using the function function to declare strcase as a function:
 _$ (mapcar (function strcase) (quote ("adam" "ben" "claire" "david")))
 ("ADAM" "BEN" "CLAIRE" "DAVID")
 ```
+
+1『这里收获了好几个知识点：1）the function strcase prefixed with an apostrophe so that the strcase symbol is not evaluated，理解了很多地方看到的 symbol 概念，`'strcase` 就是一个 symbol。2）函数名加了撇号后就不会执行改函数了，形成第一个知识点的 symbol。3）撇号也可以用函数 `quote` 或者 `function` 来代替。（2021-03-08）』
 
 Functions with More than One Argument
 
@@ -682,6 +720,8 @@ Observe that this behaviour could also be obtained by using a lambda function to
 )
 ```
 
+1『这个函数确实很烧脑，目前还是没有绕明白。但这个函数（多个数组取平均数）可以作为一个基础函数封装起来用。mark 一下。（2021-03-08）』
+
 Further Reading
 
 If this tutorial has sparked your interest in all things mapcar and lambda, the following publication from the Autodesk University written by Darren Young also provides an outline of mapcar, lambda and the apply function: LISP: Advance Yourself Beyond A Casual Programmer.
@@ -693,6 +733,8 @@ If this tutorial has sparked your interest in all things mapcar and lambda, the 
 CAD 里实体对象的唯一标识。重新打开文件，里面实体的名称会变，但它的 handle 是不会变的，是唯一的；一个实体的 handle，其 Group Code 为 5；handent 函数，通过传入实体的 handent 来获得实体的名称。
 
 The DXF Reference describes the drawing interchange format (DXF™) and the DXF group codes that identify attributes of AutoCAD objects. You might need to refer to the DXF Reference when working with association lists describing entity data. 
+
+1-2-3『多次见到「association lists」这个概念，印象中，书籍「2019117Practical-Common-Lisp」里也有相关介绍。查了下书籍第 11 章的章名就是「Collections」，后面详细去研究。（2021-03-08）』—— 未完成
 
 ### 0202. 术语卡 —— Entity Names
 
@@ -1357,438 +1399,6 @@ NOT returns true if it's argument is false and returns false if it's argument is
 ### 0307. 任意卡 —— AutoLisp 历史
 
 AutoLISP is based on the LISP programming language but was written by Autodesk specifically for AutoCAD. It was introduced with AutoCAD version 2.18 (a minor version update of AutoCAD 2.1) in January 1986. Autodesk continued to enhance and extend AutoLISP up to and including AutoCAD Release 13 in November 1994. From Release 14 onwards, Autodesk have not developed AutoLISP, choosing to focus efforts on the then new Visual LISP version of the language. Despite the fact that AutoLISP has not changed in almost two decades, it remains incredibly popular with AutoCAD users. This is mainly due to its ease of use and the massive productivity gains that can be earned through its implementation. See the AutoLISP Wikipedia article for more information.
-
-## 实战经验汇总
-
-### 01. 函数返回值的问题
-
-场景：获取仪表、设备、管道等选择集的时候想把这些选择集封装在一起，通过传入一个参数来返回特定的选择集。结果发现多个 if 语句后，导致一直返回 nil。
-
-解决方法：印象中是在书籍里「2019116AutoCAD-Platform-CustomizationR00」里看到过，可以人为的设置一个变量作为该函数的返回值。一个小插曲，开始的时候把该变量放在每个 if 语句内的，发现无效，还是要拿到 if 语句之外来。
-
-```c
-; get the select set
-(defun GetBlockSS (blockSSName / ss)
-  ; need to refactor
-  (if (= blockSSName "Pipe")
-    (progn
-      (setq ss (ssget '((0 . "INSERT") 
-            (-4 . "<OR")
-              (2 . "PipeArrowLeft")
-              (2 . "PipeArrowUp")
-            (-4 . "OR>")
-          )
-        )
-      )
-    )
-  )
-  (if (= blockSSName "Instrument")
-    (progn
-      (setq ss (ssget '((0 . "INSERT") 
-            (-4 . "<OR")
-              (2 . "InstrumentP")
-              (2 . "InstrumentL")
-            (-4 . "OR>")
-          )
-        )
-      )
-    )
-  )
-  ss
-)
-```
-
-### 02. 弹窗里下拉列表的第一个默认值自动获取不了数据
-
-场景：数据流开发时，发现弹窗里下拉列表的第一个默认值（流程图号），自动获取不了数据，必须切换到其他选项后再切换回来才行。
-
-解决方法：发现 `list_box` 或者 `popup_list` 这两个 tile，默认值不做任何动作时，它就是返回 nil，目前不知道是啥原因。加了一个 if 语句，是 nil 的话人为返回第一个选项的值（即 `"0"`）。
-
-```c
-(defun modifyBlockProperty (tileName blockSSName / dcl_id property_name property_value status selectedName ss)
-  (setq dcl_id (load_dialog (strcat "D:\\dataflowcad\\" "dataflow.dcl")))
-  (if (not (new_dialog tileName dcl_id))
-    (exit)
-  )
-  ; optional setting for the popup_list tile
-  (set_tile "property_name" "0")
-  ;the default value of input box
-  (set_tile "property_value" "")
-  (mode_tile "property_name" 2)
-  (mode_tile "property_value" 2)
-  (action_tile "property_name" "(setq property_name $value)")
-  (action_tile "property_value" "(setq property_value $value)")
-  ; the solution code for the bug
-  (if (= nil property_name)
-    (setq property_name "0")
-  )
-
-  (setq status (start_dialog))
-  (unload_dialog dcl_id)
-  
-  (if (= status 1)
-    (progn 
-      (setq selectedName (GetPropertyName property_name blockSSName))
-      (setq ss (GetBlockSS blockSSName))
-      (ModifyPropertyValue ss selectedName property_value)
-      (alert "更新数据成功")(princ)
-    )
-    ;(alert "取消选择")
-  )
-)
-```
-
-### 03. 选择集按坐标排序
-
-[Sort Selectionset by X coord](https://forums.augi.com/showthread.php?137837-Sort-Selectionset-by-X-coord)
-
-[Selection Set Processing | Lee Mac Programming](http://www.lee-mac.com/selsetprocessing.html)
-
-1 Create list of enames.
-
-2 (vl-sort lst (function (lambda (a b) (> (cadr (assoc 10 (entget a))) (cadr (assoc 10 (entget b)))))))
-
-3 Create new selection set with ssadd.
-
-4 Step (foreach) through sorted (#2) list and ssadd enames to newly created selection set.
-
-Thanks for the direction, I'm still having issues though. Perhaps I'm not building my list properly, but for some reason the lambda function grabs the first item, then tries to grab the entire rest of the list as the second item, That obviously doesnt work, as it cant grab the entdata from a list of entities. How do you suggest creating the list, I know that there are multiple ways of doing it, I'm using (setq lst (list ss lst)) which based on my results isnt the proper way to do it.
-here is the error I'm receiving
-
-```c
-; error: bad argument type: lentityp (nil)
-```
-
-Nevermind, I figured it out. I had to set each item as a list, then append my lists together. Works great!
-
-```c
-(setq ss (ssget '((0 . "TEXT") (8 . "C-ROAD-STAN-OFFS")))) ;_ select all objects
-  (setvar "osmode" 64)
-  (setq stp (getpoint "\nSelect insert point of first text obj")) ;_ select start point
-  (setq    count1 (sslength ss)
-    count  1
-    xcoord (- (car stp) 0.135)
-    ss1    (ssadd)
-    ss4    (list (ssname ss (1- count)))
-    ss6    (ssadd)
-  ) ;_ end of setq
-  (while (<= (1+ count) count1)        ;SORT LIST BY X COORD LOW TO HIGH
-    (setq ss3 (list (ssname ss count)))
-    (setq ss4 (append ss4 ss3))
-    (setq count (1+ count))
-  ) ;_ end of while
-  (vl-sort ss4
-       (function (lambda (a b) (> (cadr (assoc 11 (entget a))) (cadr (assoc 11 (entget b))))))
-  ) ;_ end of vl-sort
-  (setq    count 0
-    counta 1
-  ) ;_ end of setq
-  (foreach ss5 (reverse ss4)
-    (setq ss6 (ssadd ss5 ss6))
-  )
-```
-
-I like to segregate the functionality of each step of the function so that I can build very general toolbox functions that allow me to make changes. Like here I convert a selection set to a list, change the list into a list of sublists ivgncluding the xyz coordinates of the entities, sort by the x y and z coordinates (either up or down), convert the list of sublists back to a list of entities and then into a selection set. I like the list of sublists structure and use this sort function all the time.I also like storing selections sets as lists of entities or objects.
-
-```c
-(defun sortListofSublistsbyItemX (lstOfSublists intItem intDirection)
- (if (> intDirection 0)
-  (vl-sort lstOfSublists '(lambda (X Y) (< (nth intItem X) (nth intItem Y))))
-  (vl-sort lstOfSublists '(lambda (X Y) (> (nth intItem X) (nth intItem Y))))
- )
-)
-
-(defun SelectionSetToList (ssSelections / intCount lstReturn)
- (if (and ssSelections 
-          (= (type ssSelections) 'PICKSET)
-     )
-  (repeat (setq intCount (sslength ssSelections))
-   (setq intCount  (1- intCount)
-         lstReturn (cons (ssname ssSelections intCount) lstReturn)
-   )
-  )
- )
- (reverse lstReturn)
-)
-
-(defun ListToSelectionSet (lstOfEntities / ssReturn)
- (if lstOfEntities      
-  (foreach entItem lstOfEntities
-   (if (= (type entItem) 'ENAME)
-    (if ssReturn 
-     (setq ssReturn (ssadd entItem ssReturn))
-     (setq ssReturn (ssadd entItem))
-    )
-   )
-  )
- )
- ssReturn
-)
-
-(defun SortSelectionSetByXYZ (ssSelections /  lstOfSelections lstOfSublists lstSelections)
- (if
-  (and 
-   (setq lstSelections (SelectionSetToList ssSelections))
-   (setq lstOfSublists (mapcar '(lambda (X)(cons X (cdr (assoc 10 (entget X))))) lstSelections))
-   (setq lstOfSublists (sortlistofsublistsbyitemX lstOfSublists 3 1))
-   (setq lstOfSublists (sortlistofsublistsbyitemX lstOfSublists 2 1))
-   (setq lstOfSublists (sortlistofsublistsbyitemX lstOfSublists 1 1))
-   (setq ssSelections  (listtoselectionset (mapcar 'car lstOfSublists)))
-  )
-  ssSelections
- )
-)
-```
-
-## 函数库收集
-
-### 01. 替换字符串
-
-This subfunction will substitute all occurrences of a string for another string within a string. The functionality is similar to the Visual LISP vl-string-subst (and indeed uses this function), however, this subfunction performs a global replacement, hence all occurrences of the pattern string are replaced.
-
-```c
-;;--------------------=={ String Subst }==--------------------;;
-;;                                                            ;;
-;;  Substitutes a string for all occurrences of another       ;;
-;;  string within a string.                                   ;;
-;;------------------------------------------------------------;;
-;;  Author: Lee Mac, Copyright © 2011 - www.lee-mac.com       ;;
-;;------------------------------------------------------------;;
-;;  Arguments:                                                ;;
-;;  new - string to be substituted for 'old'                  ;;
-;;  old - string to be replaced                               ;;
-;;  str - the string to be searched                           ;;
-;;------------------------------------------------------------;;
-;;  Returns:  String with 'old' replaced with 'new'           ;;
-;;------------------------------------------------------------;;
-
-(defun StringSubst (new old str / inc len)
-    (setq len (strlen new)
-          inc 0
-    )
-    (while (setq inc (vl-string-search old str inc))
-        (setq str (vl-string-subst new old str inc)
-              inc (+ inc len)
-        )
-    )
-    str
-)
-```
-
-1『代码里 `inc (+ inc len)` 是有讲究的，替换一次后，往后移动一个步长 `strlen new` 是明智的。哈哈。（2020-10-12）』
-
-### 02. 按正则表达式提取字符串
-
-详见数据流源码。
-
-### 03. 数组去重
-
-[Unique & Duplicate List Functions | Lee Mac Programming](http://lee-mac.com/uniqueduplicate.html)
-
-Here are various subfunctions for manipulating lists in which items appear more than once. The list may be tested for or irradicated of all duplicate items, with a set of functions offering optional tolerances below which items are considered duplicate; or such duplicate items may instead be returned by the function. Alternatively, the number of occurrences of each item in a list may be displayed. Information about the purpose of each function is detailed in the comments above each function, and the required arguments and returns are demonstrated in the examples.
-
-详见数据流源码。
-
-## 搭建测试框架的记录
-
-找到一个 autolisp 大牛的相关资料：
-
-[jdsandifer/ALUnit: The only unit testing framework for AutoLISP available on GitHub (as of its publication).](https://github.com/jdsandifer/ALUnit)
-
-[jdsandifer/AutoLISP: Programs written to help drafters work faster and automate common tasks in AutoCAD. (Professional Experience)](https://github.com/jdsandifer/AutoLISP)
-
-[jdsandifer/Reading-List: See if I've read your favorite software development book or get ideas for your next read!](https://github.com/jdsandifer/Reading-List)
-
-fork 了他 2 个仓库，里面的代码值得仔细研读，感觉是个宝藏。
-
-### 2020-10-24
-
-直接用成品「ALUnit」一直没有跑通。幸好在作者的第二个项目仓库「jdsandifer/AutoLISP」里看到一个「TEST.lsp」文件，直接借鉴里面的代码。但作者的 `DL:CountBooleans` 有问题，自己重写后跑通了基本测试。同时把失败案例的提示单独拎出来了。
-
-### 2020-10-26
-
-遇到的一个问题：断言的传参列表里如果还嵌入列表，就有报错。
-
-比如 `(AssertEqual 'GetIndexforSearchMemberInListUtils (list "PL1101" (list "PL1101" "PL1102")) 0)` 报错：`函数错误："PL1101"`。如果改成 `(AssertEqual 'GetIndexforSearchMemberInListUtils '("PL1101" '("PL1101" "PL1102")) 0)`，跑测试后会出现 `failed...return nil instead of 1` 信息，还是报错 `错误：参数类型错误`。
-
-早上看成品「ALUnit」里「Assert.lsp」的代码，发现一个关键信息：作者用 `vl-catch-all-apply` 取代了原来的 `eval` 函数，原来测试代码里最关键的语句就是：
-
-```c
-(equal (setq actualReturn (eval (cons functionName argumentList)))
-			  expectedReturn)
-```
-
-作者替换成了：
-
-```c
-(equal (setq actualReturn (vl-catch-all-apply functionName argumentList))
-			  expectedReturn)
-```
-
-接着去官方文档了解了下该函数：[vl-catch-all-apply (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-E08CC2A6-787A-422F-8BD3-18812996794C)。
-
-Passes a list of arguments to a specified function and traps any exceptions.
-
-```c
-(vl-catch-all-apply 'function list)
-```
-
-'function. Type: Symbol. A function. The function argument can be either a symbol identifying a defun or lambda expression.
-
-list. Type: List. A list containing arguments to be passed to the function.
-
-Return Values. Type: Integer, Real, String, List, Ename (entity name), T, nil, or catch-all-apply-error.
-
-The result of the function call, if successful. If an error occurs, vl-catch-all-apply returns an error object.
-
-Examples:
-
-If the function invoked by vl-catch-all-apply completes successfully, it is the same as using apply, as the following examples show:
-
-```c
-(setq catchit (apply '/ '(50 5)))
-10
-
-(setq catchit (vl-catch-all-apply '/ '(50 5)))
-10
-```
-
-The benefit of using vl-catch-all-apply is that it allows you to intercept errors and continue processing. See what happens when you try to divide by zero using apply:
-
-```c
-(setq catchit (apply '/ '(50 0)))
-; error: divide by zero
-```
-
-When you use apply, an exception occurs and an error message displays. Here is the same operation using vl-catch-all-apply:
-
-```c
-(setq catchit (vl-catch-all-apply '/ '(50 0)))
-#<%catch-all-apply-error%>
-```
-
-The vl-catch-all-apply function traps the error and returns an error object. Use vl-catch-all-error-message to see the error message contained in the error object:
-
-```c
-(vl-catch-all-error-message catchit)
-"divide by zero"
-```
-
-1『看到这里基本上也理解了 `apply` 函数的用法，哈哈。（2020-10-26）』
-
-测试框架里用 `vl-catch-all-apply` 重构后，再使用 `(AssertEqual 'GetIndexforSearchMemberInListUtils (list "PL1101" (list "PL1101" "PL1102")) 0)` 跑测试就 OK 了。
-
-## 数据处理的高频操作
-
-### 01. 判断某个元素是否在该数据内
-
-2020-12-22
-
-使用内置函数 `member` 实现：[member (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-A2B08751-D966-44F5-9B02-1AAC4DA6AF59)。
-
-Searches a list for an occurrence of an expression and returns the remainder of the list, starting with the first occurrence of the expression.
-
-Signature:
-
-```c
-(member expr lst)
-```
-
-expr. Type: Integer, Real, String, List, Ename (entity name), T, or nil. The expression to be searched for.
-
-lst. Type: List. The list in which to search for expr.
-
-Return Values. Type: List or nil. A list; otherwise nil, if there is no occurrence of expr in lst.
-
-Examples:
-
-```c
-(member 'c '(a b c d e))
-(C D E)
-
-(member 'q '(a b c d e))
-nil
-```
-
-基本思路是通过函数 `member` 返回的是否为 nil 来判断是否在该数组里。一个使用场景是在开发接图图号块自动更新功能是，接图块绑定的数据 id 有可能不存在（设计人员把之前绑定的那个管子删掉了），所需必须考虑这种情况。
-
-```c
-; repair bug - JoinDrawArrow's relatedid may be not in the allPipeHandleList - 2020.12.22(defun GetRelatedPipeDataByJoinDrawArrowData (JoinDrawArrowData allPipeHandleList /)   (if (/= (member (cdr (assoc "relatedid" JoinDrawArrowData)) allPipeHandleList) nil)     (GetAllPropertyValueByEntityName (handent (cdr (assoc "relatedid" JoinDrawArrowData))))    (alert (strcat (cdr (assoc "fromto" JoinDrawArrowData)) "（" (cdr (assoc "drawnum" JoinDrawArrowData)) "）" "关联的管道数据id是不存在的！"))  ))
-```
-
-## 问题记录
-
-### 01. 编码问题
-
-最大的问题是编码，导出的无论是 txt 还 csv 电脑里打开是好的，上到服务器中文是乱码，cad 默认出来的是 gb2312 编码的，弄了好久好久才解决。
-
-[用 lisp 调用 vb 把 ANSI 编码的文件转换成 UTF-8 - AutoLISP/Visual LISP 编程技术](http://bbs.mjtd.com/thread-82886-1-1.html)
-
-### 02. VLAX-GET-ACAD-OBJECT
-
-自己电脑上跑没问题，但在公司电脑上跑（包括公司里其他人的电脑），报错：
-
-```
-error: no function definition: VLAX-GET-ACAD-OBJECT
-```
-
-解决方案：[error: no function definition: VLAX-GET-ACAD-OBJECT - AutoLISP, Visual LISP & DCL - AutoCAD Forums](https://www.cadtutor.net/forum/topic/19261-error-no-function-definition-vlax-get-acad-object/)
-
-文件开始的地方（函数之外）加下面一行代码：
-
-```
-(vl-load-com)
-```
-
-目前放在命令说明的语句下面的。
-
-回复：看到官方文档才明白为什么会出现这个 bug。因为自己的代码里会用到 ActiveX 相关的支持，得靠这个语句来加载关联上。
-
-[Pomoc: vl-load-com (AutoLISP/ActiveX)](http://help.autodesk.com/view/OARX/2018/PLK/?guid=GUID-6C7A8632-C12F-42BD-909E-68D804863AE2)
-
-Loads the extended AutoLISP functions related to ActiveX support.
-
-```c
-(vl-load-com)
-```
-
-No arguments.
-
-Return Values. Type: nil. Always returns nil.
-
-Remarks. This function loads the extended functions that implement ActiveX and AutoCAD reactor support for AutoLISP, and also provide ActiveX utility and data conversion, dictionary handling, and curve measurement functions. If the extensions are already loaded, vl-load-com does nothing.
-
-### 03. 仪表属性块内增加安装位置尺寸和方向属性后无法提取
-
-弄了半天才解决，奇怪的是发现仅仅是因为顺序的问题，把之前最后的正常流量拿到前面去，必须先安装尺寸再安装的方向。
-
-回复：目前找到的原因（不是很确定），lisp 里提取各个属性的顺序只要保持跟 cad 块中各属性的顺序相同即可。（2020-07-27）
-
-### 04. 有关生成单行文字实体对象的问题
-
-```c
-(defun GenerateTextByPositionAndContent (insPt textContent /)
-  (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 67 0) (cons 410 "Model") (cons 8 "管道编号") (cons 100 "AcDbText") 
-                  (cons 10 insPt) (cons 11 '(0.0 0.0 0.0)) (cons 40 3.0) (cons 1 textContent) (cons 50 1.5708) (cons 41 0.7) (cons 51 0.0) 
-                  (cons 7 "HZTXT") (cons 71 0) (cons 72 0) (cons 73 0) (cons 210 '(0.0 0.0 1.0)) (cons 100 "AcDbText") 
-             )
-  )(princ)
-)
-
-(defun GenerateEquipTagText (insPt textContent /)
-  (entmake (list (cons 0 "TEXT") (cons 100 "AcDbEntity") (cons 67 0) (cons 410 "Model") (cons 8 "设备位号") (cons 100 "AcDbText") 
-                  (cons 10 '(0.0 0.0 0.0)) (cons 11 insPt) (cons 40 3.0) (cons 1 textContent) (cons 50 0.0) (cons 41 0.7) (cons 51 0.0) 
-                  (cons 7 "HZTXT") (cons 71 0) (cons 72 1) (cons 73 0) (cons 210 '(0.0 0.0 1.0)) (cons 100 "AcDbText") 
-             )
-  )(princ)
-)
-```
-
-第一个函数是自动生成辅助流程时写文字的，竖直方向的、左对齐的。第二个函数是自动生成设备位号时用的，水平方向的、居中的。目前自己的理解。dxf code 71-73 是跟对其方式有关的：1）71、72、73 都为 0 的为左对齐；2）72 为 1，其余为 0 时为居中对齐；3）73 为 1，其余为 0 时为左下对齐。4）71 为 0，72、73 为 1 时为中下。那么其他对齐方式应该都可以通过这 3 个方式来组合实现。值得注意的时，对齐方式要跟插入点匹配。比如左对齐的时候，10 为插入点，11 设为 0 坐标，居中对其的时候，10 为 0 坐标，而 11 作为插入点。其中的规律目前没弄明白。（2020-10-30）
-
-### 05. 条件语句注意事项
-
-if 判断，结果为真后的语句有多个，经常忘记写 `progn` 语句。
 
 ## 0101Introduction.md
 
