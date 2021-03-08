@@ -4,6 +4,34 @@
 
 ## 卡片
 
+### 0001. 反常识卡 —— 架构和设计是一回事
+
+常识：架构是高层，设计是底部细节。
+
+反常识： 
+
+数据源自「0101. What Is Design and Architecture」：
+
+There has been a lot of confusion about design and architecture over the years. What is design? What is architecture? What are the differences between the two?
+
+One of the goals of this book is to cut through all that confusion and to define, once and for all, what design and architecture are. For starters, I'll assert that there is no difference between them. None at all.
+
+The word「architecture」is often used in the context of something at a high level that is divorced from the lower-level details, whereas「design」more often seems to imply structures and decisions at a lower level. But this usage is nonsensical when you look at what a real architect does.
+
+Consider the architect who designed my new home. Does this home have an architecture? Of course it does. And what is that architecture? Well, it is the shape of the home, the outward appearance, the elevations, and the layout of the spaces and rooms. But as I look through the diagrams that my architect produced, I see an immense number of low-level details. I see where every outlet, light switch, and light will be placed. I see which switches control which lights. I see where the furnace is placed, and the size and placement of the water heater and the sump pump. I see detailed depictions of how the walls, roofs, and foundations will be constructed.
+
+In short, I see all the little details that support all the high-level decisions. I also see that those low-level details and high-level decisions are part of the whole design of the house.
+
+And so it is with software design. The low-level details and the high-level structure are all part of the same whole. They form a continuous fabric that defines the shape of the system. You can't have one without the other; indeed, no clear dividing line separates them. There is simply a continuum of decisions from the highest to the lowest levels.
+
+一直以来，设计（Design）与架构（Architecture）这两个概念让大多数人十分迷惑。什么是设计？什么是架构？二者究有什么区别？本书的一个重要目标就是要清晰、明确地对二者进行定义。首先我要明确地说，二者没有任何区别。一丁点区别都没有！
+
+「架构」这个词往往使用于「高层级」的讨论中。这类讨论一般都把「底层」的实现细节排除在外。而「设计」一词，往往用来指代具体的系统底层组织结构和实现的细节。但是，从一个真正的系统架构师的日常工作来看，这样的区分是根本不成立的。
+
+以给我设计新房子的建筑设计师要做的事情为例。新房子当然是存在着既定架构的，但这个架构具体包含哪些内容呢？首先，它应该包括房屋的形状、外观设计、垂直高度、房间的布局，等等。但是，如果查看建筑设计师使用的图纸，会发现其中也充斥着大量的设计细节。如，我们可以看到每个插座、开关以及每个电灯具体的安装位置，同时也可以看到某个开关与所控制的电灯的具体连接信息；我们也能看到壁炉的具体安装位置，热水器的大小和位置信息，甚至是污水泵的位置；同时也可以看到关于墙体、屋顶和地基都有非常详细的建造说明。
+
+总的来说，架构图里实际上包含了所有的底层设计细节，这些细节信息共同支撑了顶层的架构设计，底层设计信息和顶层架构设计共同组成了整个房屋的架构文档。软件设计也是如此。底层设计细节和高层架构信息是不可分割的。它们组合在一起，共同定义了整个软件系，缺一不可。所谓的底层和高层本身就是一系列策组成的连续体，并没有清晰的分界线。
+
 ### 0101. 主题卡 —— The architecture rules are the same
 
 I've built a lot of apps. I've built a lot of systems. And from them all, and by taking them all into consideration, I've learned something startling.
@@ -154,7 +182,7 @@ Imagine what software was like before a safe and convenient mechanism for polymo
 
 Figure 5.1  Source code dependencies versus flow of control
 
-For main to call one of the high-level functions, it had to mention the name of the module that contained that function In C, this was a `#include`. In Java, it was an `import` statement. In C#, it was a `using` statement. Indeed, every caller was forced to mention the name of the module that contained the callee.
+For main to call one of the high-level functions, it had to mention the name of the module that contained that function. In C, this was a `#include`. In Java, it was an `import` statement. In C#, it was a `using` statement. Indeed, every caller was forced to mention the name of the module that contained the callee.
 
 This requirement presented the software architect with few, if any, options. The flow of control was dictated by the behavior of the system, and the source code dependencies were dictated by that flow of control.
 
@@ -192,7 +220,7 @@ If the modules in your system can be deployed independently, then they can be de
 
 1-2『依赖倒置的核心是通过增加一个「接口」实现依赖的反转，这样的话任何「控制流」的流向都可以通过实际情况来调整。目前不明白的是，加「接口」跟「面向对象」编程范式有啥必要的联系，加接口就一定属于面向对象？这节的信息，让自己对依赖倒置有了一个更深的印象。回复：前面的疑虑，关键点应该在「多态」上，继承是从子类的角度往上看父类，多态是从父类的角度往下看子类。依赖倒置做一张术语卡片。（2020-12-25）』——已完成
 
-我们可以想象一下在安全和便利的多态支持出现之前，软件是什么样子的。下面有一个典型的调用树的例子，main 函数调用了一些高层函数，这些高层函数又调用了一些中层函数，这些中层函数又继续调用了一些底层函数。在这里，源代码层面的依赖不可避免地要跟随程序的控制流（详见图 5.2）。
+我们可以想象一下在安全和便利的多态支持出现之前，软件是什么样子的。下面有一个典型的调用树的例子，main 函数调用了一些高层函数，这些高层函数又调用了一些中层函数，这些中层函数又继续调用了一些底层函数。在这里，源代码层面的依赖不可避免地要跟随程序的控制流（详见图 5.1）。
 
 如你所见，main 函数为了调用高层函数，它就必须能够看到这个函数所在的模块。在 C 中，我们会通过 #include 来实现，在 Java 中则通过 import 来实现，而在 C# 中则用的是 using 语句。总之，每个函数的调用方都必须要引用被调用方所在的模块。显然，这样做就导致了我们在软件架构上别无选择。在这里，系统行为决定了控制流，而控制流则决定了源代码依赖关系。但一旦我们使用了多态，情况就不一样了（详见图 5.2）。
 
@@ -202,7 +230,7 @@ If the modules in your system can be deployed independently, then they can be de
 
 这种能力有什么用呢？在下面的例子中，我们可以用它来让数据库模块和用户界面模块都依赖于业务逻辑模块（见图 5.3），而非相反。这意味着我们让用户界面和数据库都成为业务逻辑的插件。也就是说，业务逻辑模块的源代码不要引入用户界面和数据库这两个模块。
 
-这样一来，业务逻辑、用户界面以及数据库就可以被编译成三个独立的组件或者部暑单元（例如 jar 文件、DLL 文件、Gem 文件等）了，这些组件或者部署单元的依赖关系与源代码的依赖关系是一致的，业务逻辑组件也不会依赖于用户界面和数据库这两个组件于是，业务逻辑组件就可以独立于用户界面和数据库来进行部署了，我们对用户界面或者数据库的修改将不会对业务逻辑产生任何影响，这些组件都可以被分别、独立地部署简单来说，当某个组件的源代码需要修改时，仅仅需要重新部署该组件，不需要更改其他组件，这就是独立部署能力。如果系统中的所有组件都可以独立部暑，那它们就可以由不同的团队并行开发，这就是所谓的独立开发能力。
+这样一来，业务逻辑、用户界面以及数据库就可以被编译成三个独立的组件或者部暑单元（例如 jar 文件、DLL 文件、Gem 文件等）了，这些组件或者部署单元的依赖关系与源代码的依赖关系是一致的，业务逻辑组件也不会依赖于用户界面和数据库这两个组件。于是，业务逻辑组件就可以独立于用户界面和数据库来进行部署了，我们对用户界面或者数据库的修改将不会对业务逻辑产生任何影响，这些组件都可以被分别、独立地部署。简单来说，当某个组件的源代码需要修改时，仅仅需要重新部署该组件，不需要更改其他组件，这就是独立部署能力。如果系统中的所有组件都可以独立部暑，那它们就可以由不同的团队并行开发，这就是所谓的独立开发能力。
 
 ### 0203. 术语卡 —— 事件溯源
 

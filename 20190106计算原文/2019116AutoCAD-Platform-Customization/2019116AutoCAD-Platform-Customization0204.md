@@ -2,19 +2,24 @@
 
 In the AutoLISP® programming language, an atom can be a function name, string, integer, real number, or another supported data type or symbol. A list is an expression that contains one or more atoms enclosed in parentheses. Each AutoLISP expression is a list, with the exception of those that start with an exclamation point. Lists often represent the following:
 
-2D points or 3D points
+1 2D points or 3D points.
 
-Entity data that defines an object and its properties, commonly referred to as an association list containing dotted pairs
+2 Entity data that defines an object and its properties, commonly referred to as an association list containing dotted pairs.
 
-An object transformation matrix
+3 An object transformation matrix.
 
-A grouping of related data, such as all the layers or layouts in a drawing
+4 A grouping of related data, such as all the layers or layouts in a drawing.
 
 In this chapter, you will learn to create and modify lists that represent coordinate values (points) and general data lists that contain one or more values. You will also learn to use geometric calculation functions that allow you to create new coordinate values from an existing coordinate values.
 
 ## 4.1 What Are Lists?
 
 Lists are a data structure that can contain one or more elements that are placed between opening and closing parentheses. A list is comparable to an array in other programming languages. The elements in a list can be an AutoLISP function name or values based on one of the supported data types that you learned about in Chapter 12,「Understanding AutoLISP.」The values in a list can be of the same or different data types. Although each AutoLISP expression is technically a list, in this chapter the lists referred to are those expressions that contain any number of values.
+
+
+
+
+
 
 The two most common AutoLISP lists are point lists and entity data lists. A point list contains either two or three numeric values that represent the X and Y coordinate values along with an optional Z coordinate value for a point in a drawing. The following code shows a point list that represents the coordinate value of 2.25, 6.5, 0.0:
 

@@ -1348,42 +1348,42 @@ Now that you have renamed the existing drawplate function to `-drawplate` and de
 
 The following steps explain how to test the `-drawplate` function in the drawplate.lsp file:
 
-1. Create a new drawing.
+1 Create a new drawing.
 
-2. Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concern message box is displayed, click Load.
+2 Start the appload command. Load the LSP files drawplate.lsp and utility.lsp. If the File Loading - Security Concern message box is displayed, click Load.
 
-3. At the Command prompt, type `-drawplate` and press Enter.
+3 At the Command prompt, type `-drawplate` and press Enter.
 
-4. At the Specify base point for the plate or `[Width/Height]: prompt`, type w and press Enter.
+4 At the Specify base point for the plate or `[Width/Height]: prompt`, type w and press Enter.
 
-5. At the Specify the width of the plate `<5.0000>: prompt`, type 3 and press Enter.
+5 At the Specify the width of the plate `<5.0000>: prompt`, type 3 and press Enter.
 
-6. At the Specify base point for the plate or `[Width/Height]: prompt`, type h and press Enter.
+6 At the Specify base point for the plate or `[Width/Height]: prompt`, type h and press Enter.
 
-7. At the Specify the height of the plate `<2.7500>: prompt`, type 4 and press Enter.
+7 At the Specify the height of the plate `<2.7500>: prompt`, type 4 and press Enter.
 
-8. At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
+8 At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
 
-9. At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label. AutoCAD draws the completed plate, as expected.
+9 At the Specify label insertion point: prompt, pick a point in the drawing area below the plate to place the text label. AutoCAD draws the completed plate, as expected.
 
 1-2『如何在一个 lsp 文件里调用另外一个 lsp 文件。直接在 lsp 里写加载语句 `(load "utility.lsp")`，然后在 CAD 里用命令 `appload` 同时加载这两个函数即可。做一张任意卡片。』——已完成
 
 The following steps explain how to test the revised version of the drawplate function:
 
-1. At the Command prompt, type drawplate and press Enter. The Draw Plate dialog box is displayed and uses the width and height values specified by the -drawplate function.
+1 At the Command prompt, type drawplate and press Enter. The Draw Plate dialog box is displayed and uses the width and height values specified by the -drawplate function.
 
-2. In the Draw Plate dialog box, in the Width text box, enter 5.
+2 In the Draw Plate dialog box, in the Width text box, enter 5.
 
-3. In the Height text box, enter 5.
+3 In the Height text box, enter 5.
 
-4. Clear the Add Label check box.
+4 Clear the Add Label check box.
 
-5. Click Create.
+5 Click Create.
 
-6. At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified. AutoCAD draws the completed plate without the label, as expected.
+6 At the Specify base point for the plate or `[Width/Height]: prompt`, pick a point in the drawing area to draw the plate and holes based on the width and height values specified. AutoCAD draws the completed plate without the label, as expected.
 
-7. At the Command prompt, type drawplate and press Enter.
+7 At the Command prompt, type drawplate and press Enter.
 
-8. In the Draw Plate dialog box, select Add Label.
+8 In the Draw Plate dialog box, select Add Label.
 
-9. Click Create, and specify the insertion point for the plate and label. AutoCAD draws the completed plate with a label this time.
+9 Click Create, and specify the insertion point for the plate and label. AutoCAD draws the completed plate with a label this time.

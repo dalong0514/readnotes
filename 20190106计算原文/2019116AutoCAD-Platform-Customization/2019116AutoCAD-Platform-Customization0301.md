@@ -1,4 +1,4 @@
-# Part III
+Part III
 
 AutoCAD VBA: Programming with VBA and ActiveX (Windows only)
 
@@ -28,7 +28,7 @@ Chapter 35: Communicating with Other Applications
 
 Chapter 36: Handling Errors and Deploying VBA Projects
 
-# 2401. Understanding the AutoCAD VBA Environment
+# 0301. Understanding the AutoCAD VBA Environment
 
 More than 15 years ago, Visual Basic (VB) was the first modern programming language I learned. This knowledge was critical to taking my custom programs to a whole new level. VB allows you to develop stand-alone applications that can communicate with other programs using Microsoft's Object Linking and Embedding (OLE) and ActiveX technologies. Autodesk® AutoCAD® supports a variant of VB known as Visual Basic for Applications (VBA) that requires a host application to execute the programs you write; it can't be used to develop stand-alone executable files.
 
@@ -499,4 +499,3 @@ For example, you would use the string value firstproject.dvb!ThisDrawing.CCircle
 These steps explain how to execute the macro named hexbolt:
 
 On the ribbon, click the Manage tab Applications panel Run VBA Macro (or at the Command prompt, type vbarun and press Enter).
-
