@@ -2,7 +2,7 @@
 
 ## 记忆时间
 
-2020-10-06
+2020-10-06 | 2021-03-08
 
 ## 资源汇总
 
@@ -1164,7 +1164,7 @@ The code in this example looks for a user specified item within a list. The Auto
 var allNinjasAreNamed = ninjas.every(ninja => "name" in ninja);
 ```
 
-some 方法从数组的第 1 项开始执行回调函数，直到回调函数返回 true。如果有一项元素执行回调函数时，返回 true, some 方法返回 true；否则，some 方法返回 false。
+some 方法从数组的第 1 项开始执行回调函数，直到回调函数返回 true。如果有一项元素执行回调函数时，返回 true，some 方法返回 true；否则，some 方法返回 false。
 
 ```js
 const someNinjasAreArmed = ninjas.some(ninja => "weapon" in ninja);

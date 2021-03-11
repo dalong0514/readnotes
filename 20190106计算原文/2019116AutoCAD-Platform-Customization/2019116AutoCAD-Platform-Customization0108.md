@@ -1,5 +1,3 @@
-
-
 # Chapter 8 Automating Repetitive Tasks
 
 In Chapters 2 through 7, I discussed how to create custom elements and tools that could be accessed from the user interface. These elements and tools make it easy to execute command macros, which are often designed to start and pass values to the current command.

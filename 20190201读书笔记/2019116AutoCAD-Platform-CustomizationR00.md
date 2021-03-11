@@ -448,6 +448,8 @@ Understanding Block Definitions and Block References. You can think of a block d
 
 A block reference displays an instance, not a copy, of the geometry from a block definition; the geometry exists only as part of the block definition, with the exception of attributes. Attribute definitions that are part of a block definition are added to a block reference as attributes unless the attribute definition is defined as a constant attribute. Constant attributes are parts of the geometry inherited from a block definition and aren't part of the block reference.
 
+1-3『块定义和块参照，对应于面向对象的类和对象，块参照是块定义的实例化。（2021-03-10）』
+
 When creating a block reference with AutoLISP, as opposed to inserting it with the insert command, you are responsible for adding any attributes to the block reference that aren't designated as constant within the block definition. Like the old-style polyline, block references use the seqend object to designate the end of an insert object. Between the insert and seqend objects of a block reference are attrib objects that represent the attribute references that aren't set as constant and must be added to a block reference.
 
 Since attributes must be added to a block reference, it is possible to have a block definition that contains attribute definitions and a block reference that points to that block definition without any attributes. It is also possible to have a block reference that has attributes attached to it and a block reference that doesn't have any attribute definitions.
@@ -504,7 +506,7 @@ If you want to extract the values of the attributes attached to a block, you mus
 
 Listing 16.3 shows a custom function that demonstrates how to step through a block reference and its block definition with the while function. You must load the custom functions in Listing 16.2 before executing the code in Listing 16.3. The code in Listing 16.2 and Listing 16.3 can be found in the `ch16_code_listings.lsp` file that is available for download from this book's website.
 
-1『目前无法生成完整的块实体，生成的块只有参照没属性值。用 `entmake` 结合 `ATTRIB` 无效。（2020-10-30）』
+1『目前无法生成完整的块实体，生成的块只有参照没属性值。用 `entmake` 结合 `ATTRIB` 无效。（2020-10-30）补充：首先，用这种途径已经实现了生成块数据。其次，看到上面的信息后，对块定义和块参照、属性定义和属性参照的认识更深了。属性定义在 entity data 里对应于 attdef，属性参照在 entity data 里对应于 atttib。（2021-03-10）』
 
 ### 0205. 术语卡 —— 选择集
 
