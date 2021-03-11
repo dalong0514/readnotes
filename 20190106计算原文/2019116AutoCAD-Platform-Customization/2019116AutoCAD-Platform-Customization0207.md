@@ -1,16 +1,24 @@
 # 0207. Creating and Modifying Nongraphical Objects
 
-Nongraphical objects represent the block definitions, named styles, and other objects that are stored in a drawing but aren't present in model space or one of the named layouts. These objects can and typically do affect the display of graphical objects placed in model space or a named layout, though. While model space and named layouts are typically not thought of as nongraphical objects, they are. Model space is a special block definition, whereas a layout is an object that is based on a plot configuration—commonly called a page setup—with a reference to a block definition.
+Nongraphical objects represent the block definitions, named styles, and other objects that are stored in a drawing but aren't present in model space or one of the named layouts. These objects can and typically do affect the display of graphical objects placed in model space or a named layout, though. While model space and named layouts are typically not thought of as nongraphical objects, they are. Model space is a special block definition, whereas a layout is an object that is based on a plot configuration — commonly called a page setup — with a reference to a block definition.
+
+1-2『这里对模型空间（model space）以及布局（layout）定义很出乎意料，模型空间是一张特殊的块定义，布局是一个基于绘制设置的对象。做一张任意卡片。（2021-03-11）』
 
 A drawing file can contain two types of nongraphical objects: symbol tables and named dictionaries. Symbol tables represent the original named objects that were available in the AutoCAD® R12 release and earlier ones. Support for named dictionaries was added with AutoCAD R13 to handle new and custom objects without the need for a new drawing file format. In this chapter, you will learn to create, manage, and use symbol table and dictionary entries.
 
-Working with Symbol Tables
+1-2『symbol tables and named dictionaries，各做一张术语卡片。（2021-03-11）』
+
+## 7.1 Working with Symbol Tables
 
 Symbol tables are the oldest form of nongraphical objects used in drawing files and have been unchanged since AutoCAD R12. Although the features that use symbol tables have changed since AutoCAD R12, the additional information that those features use in later releases is attached as either XData or an extension dictionary on an entry or the symbol table.
 
-The Hidden Value of Nongraphical Objects
+1『原来 XData 是对 symbol tables 的替代。（2021-03-11）』
+
+#### The Hidden Value of Nongraphical Objects
 
 Have you opened a drawing from a client to find what seems like a spaghetti mess of layers, linetypes, and text styles that just don't work well with your standards? Maybe the Standard text style in the client's drawings uses a fixed height and different font than your company uses, which would affect the way your blocks and annotation might look like in the drawing. Using the AutoLIS® programming language, you can create or change nongraphical objects stored in symbol tables or dictionaries so they align with your company's standards. Aligning the standards in the drawings received from a client ensure that the objects you create and those in the drawings plot with a consistent appearance.
+
+1『哇塞，这个超级有用，自动去校准修改「非图形」对象，比如字体、图层等，保证「图纸设置」一致，这章的信息对设计的「标准化」绝对有大用。（2021-03-11）』
 
 For example, the transparency level and description of a layer is attached as XData to a layer table entry, and both layer states and filters are attached as extension dictionaries to the layer table. I covered XData in Chapter 16,「Creating and Modifying Graphical Objects」and will discuss dictionaries in the section「Working with Dictionaries」later in this chapter.
 
@@ -18,201 +26,318 @@ Table 17.1 lists the symbol-table names that are supported in all drawing files 
 
 Table 17.1 Symbol-table names
 
-Table name Description
+| Table name | Description |
+| --- | --- |
+| appid | Registered applications |
+| block | Block definitions |
+| dimstyle | Dimension styles |
+| layer | Layers |
+| ltype | Linetypes |
+| style | Text styles |
+| ucs | User coordinate systems |
+| view | Named views |
+| vport | Viewports |
 
-appid Registered applications
-
-block Block definitions
-
-dimstyle Dimension styles
-
-layer Layers
-
-ltype Linetypes
-
-style Text styles
-
-ucs User coordinate systems
-
-view Named views
-
-vport Viewports
-
-Accessing and Stepping through Symbol Tables
+### 7.1.1 Accessing and Stepping through Symbol Tables
 
 AutoLISP provides three functions that allow you to access the entries of a symbol table or determine if a specific entry exists in a symbol table. The tblnext function returns either the first or next entry in a specified symbol table. The tblnext function is similar to the entnext function that I discussed in Chapter 16.
 
-The following shows the syntax of the tblnext function:
+2『 `tblnext` 这个函数收录入主题卡片「函数收藏」。（2021-03-11）』—— 已完成
 
+The following shows the syntax of the `tblnext` function:
+
+```c
 (tblnext sym_table [next])
+```
 
 Its arguments are as follows:
 
-sym_table The sym_table argument is a string used to specify the symbol table which you want to query, and it must be one of the values listed in the first column of Table 17.1.
+1 `sym_table`. The `sym_table` argument is a string used to specify the symbol table which you want to query, and it must be one of the values listed in the first column of Table 17.1.
 
-next The next argument is optional, and specifies whether you want to get the first entry of a symbol table or the next symbol-table entry after the previous entry that was returned. Use a value of T to return the first value. When no argument or nil is provided, an entity data list of the next symbol table entry is returned.
+2 next. The next argument is optional, and specifies whether you want to get the first entry of a symbol table or the next symbol-table entry after the previous entry that was returned. Use a value of T to return the first value. When no argument or nil is provided, an entity data list of the next symbol table entry is returned.
 
-The following example code shows the tblnext function and the resulting list of layer names in a drawing:
+The following example code shows the `tblnext` function and the resulting list of layer names in a drawing:
 
-; Lists the layers in the drawing (defun c:listlayers ( / entityData) (prompt "\nLayers in this drawing:") (setq entityData (tblnext "layer" T)) (while entityData (prompt (strcat "\n" (cdr (assoc 2 entityData)))) (setq entityData (tblnext "layer")) ) (princ) ) Layers in this drawing: 0 Labels Panels Surfaces Storage Defpoints Dimensions BOM
+```c
+; Lists the layers in the drawing 
+(defun c:listlayers ( / entityData) 
+  (prompt "\nLayers in this drawing:") 
+  (setq entityData (tblnext "layer" T)) 
+  (while entityData 
+    (prompt (strcat "\n" (cdr (assoc 2 entityData)))) 
+    (setq entityData (tblnext "layer")) 
+  ) 
+  (princ) 
+) 
 
-To check for the existence of or get the entity data list of an entry in a symbol table, you can use the tblsearch function. If the name of the entry in the specified table exists, an entity data list is returned for the entry; otherwise, nil is returned. The tblobjname function can also be used to check for the existence of a symbol table entry, but unlike the tblsearch function, tblobjname returns the entity name (ename) of the entry if it is found; otherwise, it returns nil.
+Layers in this drawing: 
+0 
+Labels 
+Panels 
+Surfaces 
+Storage 
+Defpoints 
+Dimensions 
+BOM
+```
 
-The following shows the syntax of the tblsearch and tblobjname functions:
+To check for the existence of or get the entity data list of an entry in a symbol table, you can use the `tblsearch` function. If the name of the entry in the specified table exists, an entity data list is returned for the entry; otherwise, nil is returned. The `tblobjname` function can also be used to check for the existence of a symbol table entry, but unlike the `tblsearch` function, `tblobjname` returns the entity name (ename) of the entry if it is found; otherwise, it returns nil.
 
-(tblsearch sym_table entry [next]) (tblobjname sym_table entry)
+2『 `tblsearch` 和 `tblobjname` 这两个函数收录入主题卡片「函数收藏」。（2021-03-11）』—— 已完成
+
+The following shows the syntax of the `tblsearch` and `tblobjname` functions:
+
+```c
+(tblsearch sym_table entry [next]) 
+(tblobjname sym_table entry)
+```
 
 The arguments are as follows:
 
-sym_table The sym_table argument is a string that represents the symbol table you want to query, and it must be one of the values in the first column of Table 17.1.
+1 `sym_table`. The `sym_table` argument is a string that represents the symbol table you want to query, and it must be one of the values in the first column of Table 17.1.
 
-entry The entry argument is a string that represents the entry you want to check for in the symbol table specified by the sym_table argument.
+2 entry. The entry argument is a string that represents the entry you want to check for in the symbol table specified by the `sym_table` argument.
 
-next The next argument is optional and represents whether the next call to tblnext uses the results of the tblsearch function to determine its starting entry. Use a value of T to not affect the next call of the tblnext function in the current drawing. When no argument or nil is provided, the tblnext function bases the entity it returns on the position of the entry provided by the entry argument.
+3 next. The next argument is optional and represents whether the next call to tblnext uses the results of the `tblsearch` function to determine its starting entry. Use a value of T to not affect the next call of the `tblnext` function in the current drawing. When no argument or nil is provided, the `tblnext` function bases the entity it returns on the position of the entry provided by the entry argument.
 
-Here are some examples of the tblobjname and tblsearch functions, and their results:
+Here are some examples of the `tblobjname` and `tblsearch` functions, and their results:
 
-; Get the entity data list for layer 0 (tblsearch "layer" "0") ((0. "LAYER") (2. "0") (70. 0) (62. 7) (6. "Continuous")) ; Get the entity data list for the layer BOM (tblsearch "layer" "BOM") nil ; Get the entity name of layer 0 (tblobjname "layer" "0") <Entity name: 7ff6cde08900> ; Get the entity name of the BOM layer (tblobjname "layer" "BOM") nil ; Check for the existence of the BOM layer (if (tblobjname "layer" "BOM") (alert "BOM layer already exists in the current drawing.") )
+```c
+; Get the entity data list for layer 0 
+(tblsearch "layer" "0") 
+((0. "LAYER") (2. "0") (70. 0) (62. 7) (6. "Continuous")) 
+; Get the entity data list for the layer BOM 
+(tblsearch "layer" "BOM") 
+nil 
+; Get the entity name of layer 0 
+(tblobjname "layer" "0") 
+<Entity name: 7ff6cde08900> 
+; Get the entity name of the BOM layer 
+(tblobjname "layer" "BOM") 
+nil 
+; Check for the existence of the BOM layer 
+(if (tblobjname "layer" "BOM") 
+  (alert "BOM layer already exists in the current drawing.") 
+)
+```
 
-Adding and Modifying Entries in a Symbol Table
+1-3『
+
+看到上面的实例，才知道「图层」这种非图形对象，也是有 entity name，这个信息对自己非常重要，而且之前数据流实现核查是否有某个块时，用到了 `tblsearch` 这个函数。（2021-03-11）
+
+```c
+; 2021-03-03
+(defun VerifyGsLcBlockByName (blockName /) 
+  (if (= (tblsearch "BLOCK" blockName) nil) 
+    (StealGsLcBlockByNameList (list blockName))
+  )
+)
+```
+
+』
+
+### 7.1.2 Adding and Modifying Entries in a Symbol Table
 
 Most symbol table entries are inherited from the drawing template that was used to create a drawing file or are created as a result of inserting a block into a drawing. A drawing template should contain most of the layers, linetypes, and other nongraphical objects you might want to use in your drawing, but you can use AutoLISP to create and modify any additional system table entries you might need. The methods you use to create and modify nongraphical objects are the same as those for graphical objects (which I explained in Chapter 16).
 
 The symbol table entries you create or modify should follow your company's established CAD standards or those of the industry in which you work. Modifying existing table entries should be done with care, because the changes you make could have an adverse effect on existing objects in a drawing. For example, changing the height of a text style could affect dimensions and tables in your drawing.
 
-An Ounce of Prevention
+#### An Ounce of Prevention
 
 It is 3:00 p.m., and your boss just let you know that a set of drawings needs to be sent out by 6:00 p.m. for an initial bid. You output all of the drawings, only to discover that objects in some of the drawings weren't placed on the correct layers and text styles don't use the correct fonts. Everyone decided to take a half day today because they have been working frantically for the past two weeks on this project. Getting the project across the finish line now rests on your shoulders. The drawings need to be sent out for the initial bid, but their current state is less than ideal for a first impression to the new client.
 
 What to do?
 
-Take a deep breath and channel your inner AutoLISP to create a program that can be executed in each drawing to change the text styles to use the correct fonts—one problem down. Now, on to the layer issues.
+Take a deep breath and channel your inner AutoLISP to create a program that can be executed in each drawing to change the text styles to use the correct fonts — one problem down. Now, on to the layer issues.
 
 Using AutoLISP, you can verify whether the correct layer exists and, if not, create the new layer. With selection filters that you learned about in Chapter 16, you can select and move objects to their appropriate layers based on object type or current property values.
 
 Now that the drawings have been fixed, you output the revised drawings with minutes to spare. This battle is won, but the war for CAD excellence is not over yet. Custom programs created with AutoLISP can help you to enforce CAD standards in your office. Using the programs you create, a drafter can focus more on the elements of a design and less on switching to the correct layer and style before adding new objects.
 
-Adding an Entry
+1『
 
-You can add a new style table entry using the appropriate AutoCAD command with the command function. For example, you can use the -layer command to create a new layer, -block to create a new block, or -linetype to create or load a linetype pattern.
+看到上面的信心，想到更新一个 Symbol Table 对象的方法：获取到它的 entity data 后，用 `subst` 替换数据集，然后用函数 `entmod` 更新数据对象。下面代码供参考。（2021-03-11）
 
-As you learned in Chapter 16, you can use the command function with AutoCAD commands, but I recommend using the entmake or entmakex function to create new objects instead. Creating new objects with entity data lists gives you more control over the object that you create, but it requires you to learn the DXF group codes and values that each object expects. For information on the entmake and entmakex functions, see the「Adding Objects to a Drawing」section in Chapter 16.
+```c
+(entmod (subst newValue oldValue entityData))
 
-TIP
+; Update the object’s entity data list 
+(entmod entityData)
+; Refresh the object on-screen
+(entupd entityName)
+```
 
-You can use the tblobjname and entget functions to return the entity data list of an existing symbol table entry that you want to reproduce using AutoLISP. For example, (entget (tblobjname "ltype" "center")) returns the entity data list for the Center linetype if it is loaded in the current drawing.
+』
+
+#### Adding an Entry
+
+You can add a new style table entry using the appropriate AutoCAD command with the command function. For example, you can use the `-layer` command to create a new layer, `-block` to create a new block, or `-linetype` to create or load a linetype pattern.
+
+As you learned in Chapter 16, you can use the command function with AutoCAD commands, but I recommend using the `entmake` or `entmakex` function to create new objects instead. Creating new objects with entity data lists gives you more control over the object that you create, but it requires you to learn the DXF group codes and values that each object expects. For information on the `entmake` and `entmakex` functions, see the「Adding Objects to a Drawing」section in Chapter 16.
+
+TIP: You can use the `tblobjname` and entget functions to return the entity data list of an existing symbol table entry that you want to reproduce using AutoLISP. For example, `(entget (tblobjname "ltype" "center"))` returns the entity data list for the Center linetype if it is loaded in the current drawing.
+
+1『这里提供了一个筛选特定图层的新路径，用 `tblobjname` 函数。之前已经实现的路径是判断一个数据对象的 DXF 号（数值 8）的值是否为某个图层字符。比较来看，`tblobjname` 函数更加抽象（高层）。』
 
 This next code example attempts to create a new layer named Centerlines with the linetype Center:
 
-(entmake (list (cons 0 "LAYER") (cons 100 "AcDbSymbolTableRecord") (cons 100 "AcDbLayerTableRecord") (cons 2 "Centerlines") (cons 70 0) (cons 62 3) (cons 6 "Center"))) Error: Undefined line type Center in LayerTableRecord Centernil
+```c
+(entmake (list (cons 0 "LAYER") (cons 100 "AcDbSymbolTableRecord") 
+            (cons 100 "AcDbLayerTableRecord") (cons 2 "Centerlines") 
+            (cons 70 0) (cons 62 3) (cons 6 "Center"))
+) 
+Error: Undefined line type Center in LayerTableRecord Centernil
+```
 
 An error message and nil is returned if the Center linetype doesn't exist in the drawing prior to creating the layer. Before you create symbol table entries, you must make sure that all of the objects they depend on are present in the drawing. For example, a linetype must exist in a drawing before a layer that uses the linetype can be created. The same is true of dimension styles; the text style and linetypes that a dimension style might reference must exist in the drawing before you create the dimension style.
 
+1-3『目前使用的是 LeeMac 封装好的函数「202102StealV1-8.lsp」实现从已有的图纸里「偷」各种「Symbol Table」。（2021-03-11）』
+
 This example checks for the Center linetype and, if it doesn't exist, the linetype is created using the entmake function:
 
-(if (= (tblsearch "ltype" "center") nil) (entmake (list (cons 0 "LTYPE")(cons 100 "AcDbSymbolTableRecord") (cons 100 "AcDbLinetypeTableRecord") (cons 2 "CENTER") (cons 70 0) (cons 3 "Center ____ _ ____ _ ____ _ ____ _ ____ _ ____") (cons 72 65) (cons 73 4) (cons 40 2.0) (cons 49 1.25) (cons 74 0) (cons 49 -0.25) (cons 74 0) (cons 49 0.25) (cons 74 0) (cons 49 -0.25) (cons 74 0)) ) ) ((0. "LTYPE") (100. "AcDbSymbolTableRecord") (100. "AcDbLinetypeTableRecord") (2. "CENTER") (70. 0) (3. "Center ____ _ ____ _ ____ _ ____ _ ____ _ ____") (72. 65) (73. 4) (40. 2.0) (49. 1.25) (74. 0) (49. -0.25) (74. 0) (49. 0.25) (74. 0) (49. -0.25) (74. 0))
+```c
+(if (= (tblsearch "ltype" "center") nil) 
+  (entmake (list (cons 0 "LTYPE")(cons 100 "AcDbSymbolTableRecord") 
+    (cons 100 "AcDbLinetypeTableRecord") (cons 2 "CENTER") (cons 70 0) 
+    (cons 3 "Center ____ _ ____ _ ____ _ ____ _ ____ _ ____") (cons 72 65) 
+    (cons 73 4) (cons 40 2.0) (cons 49 1.25) (cons 74 0) (cons 49 -0.25) 
+    (cons 74 0) (cons 49 0.25) (cons 74 0) (cons 49 -0.25) (cons 74 0)) ) 
+) 
+
+((0. "LTYPE") (100. "AcDbSymbolTableRecord") (100. "AcDbLinetypeTableRecord") 
+(2. "CENTER") (70. 0) (3. "Center ____ _ ____ _ ____ _ ____ _ ____ _ ____") 
+(72. 65) (73. 4) (40. 2.0) (49. 1.25) (74. 0) (49. -0.25) (74. 0) (49. 0.25) (74. 0) (49. -0.25) (74. 0))
+```
 
 Using the previous example, you can ensure that the Center linetype exists in the drawing before you try to create the Centerlines layer. Now if you try to create the Centerlines layer with the following example, the new layer is created since the Center linetype is defined in the drawing.
 
-(entmake (list (cons 0 "LAYER") (cons 100 "AcDbSymbolTableRecord") (cons 100 "AcDbLayerTableRecord") (cons 2 "Centerlines") (cons 70 0) (cons 62 3) (cons 6 "Center"))) ((0. "LAYER") (100. "AcDbSymbolTableRecord") (100. "AcDbLayerTableRecord") (2. "Centerlines") (70. 0) (62. 3) (6. "Center"))
+```c
+(entmake (list (cons 0 "LAYER") (cons 100 "AcDbSymbolTableRecord") 
+          (cons 100 "AcDbLayerTableRecord") (cons 2 "Centerlines") 
+          (cons 70 0) (cons 62 3) (cons 6 "Center"))
+) 
+((0. "LAYER") (100. "AcDbSymbolTableRecord") (100. "AcDbLayerTableRecord") (2. "Centerlines") (70. 0) (62. 3) (6. "Center"))
+```
 
-Before creating a new symbol table entry with entmake or entmakex, you should verify that it doesn't already exist. If the symbol table entry already exists, entmake or entmakex will return nil. I also recommend checking the name of the symbol table entry you are trying to add with the snvalid function. The snvalid function verifies that the name doesn't contain any invalid characters and follows the naming rules based on the current value of the extnames system variable. For more information on the extnames system variable, see the AutoCAD Help system.
+Before creating a new symbol table entry with `entmake` or `entmakex`, you should verify that it doesn't already exist. If the symbol table entry already exists, entmake or entmakex will return nil. I also recommend checking the name of the symbol table entry you are trying to add with the `snvalid` function. The `snvalid` function verifies that the name doesn't contain any invalid characters and follows the naming rules based on the current value of the extnames system variable. For more information on the extnames system variable, see the AutoCAD Help system.
+
+2『 `snvalid ` 这个函数收录入主题卡片「函数收藏」。（2021-03-11）』—— 已完成
 
 The following shows the syntax of the snvalid function:
 
+```c
 (snvalid name [flag])
+```
 
 Here are its arguments:
 
-name The name argument is a string that represents the name of the symbol table entry you want to verify.
+1 name. The name argument is a string that represents the name of the symbol table entry you want to verify.
 
-flag The flag argument is an optional integer that determines whether the symbol table entry name can contain a vertical bar. 0 indicates that a vertical bar is not allowed, whereas 1 indicates that the vertical bar is a valid character as long as it isn't the first character in the entry name.
+2 flag. The flag argument is an optional integer that determines whether the symbol table entry name can contain a vertical bar. 0 indicates that a vertical bar is not allowed, whereas 1 indicates that the vertical bar is a valid character as long as it isn't the first character in the entry name.
 
 Here are some examples of using the snvalid function and the values that are returned:
 
-(snvalid "Centerlines") T (snvalid "Centerlines?") nil (snvalid "Detail|Centerlines" 0) nil (snvalid " Detail|Centerlines " 1) T
+```c
+(snvalid "Centerlines") 
+T 
+(snvalid "Centerlines?") 
+nil 
+(snvalid "Detail|Centerlines" 0) 
+nil 
+(snvalid " Detail|Centerlines " 1) 
+T
+```
 
-Modifying and Renaming an Entry
+#### Modifying and Renaming an Entry
 
 Symbol table entries can be modified and renamed using the same techniques that you learned in Chapter 16 for modifying graphical objects. You can use the AutoLISP functions listed in Table 17.2 to modify symbol table entries.
 
 Table 17.2 Functions that can be used to modify symbol table entries
 
-Function name Description
-
-entget Returns the entity data list for an object
-
-entmod Commits an entity data list to an object
-
-dumpallproperties Outputs the property names and their current values for an object
-
-getpropertyvalue Returns an object's property value
-
-ispropertyreadonly Determines whether an object's property is read-only
-
-setpropertyvalue Sets an object's property value
+| Function name | Description |
+| --- | --- |
+| entget | Returns the entity data list for an object |
+| entmod | Commits an entity data list to an object |
+| dumpallproperties | Outputs the property names and their current values for an object |
+| getpropertyvalue | Returns an object's property value |
+| ispropertyreadonly | Determines whether an object's property is read-only |
+| setpropertyvalue | Sets an object's property value |
 
 When modifying symbol table entries, you should understand that not all entries can be renamed or modified. For example, you can modify layer 0 but you can't rename the layer. The layers that you create, with the exception of those in an attached external reference, can be modified and renamed. Table 17.3 lists the symbol table entries that you can't rename and/or modify.
 
 Table 17.3 Symbol table entry name and modification limits
 
-Table name Entry name Description
-
-appid Nothing specific Entries can't be renamed, but they can be removed.
-
-block *model_space and
-
-*paper_space Model space and paper space block definitions can't be renamed or removed. Drawings can have more than one paper space block; these additional blocks have a numeric suffix starting at 1.
-
-dimstyle standard Can be modified but not renamed or removed.
-
-layer 0 Can be modified but not renamed or removed.
-
-ltype continuous Can't be modified, renamed, or removed.
-
-style standard Can be modified but not renamed or removed.
-
-ucs *active Can be modified but not renamed or removed.
-
-vport *active Can be modified but not renamed or removed.
+| Table name | Entry name | Description |
+| --- | --- | --- |
+| appid | Nothing specific | Entries can't be renamed, but they can be removed. |
+| block | `*model_space` and `*paper_space` | Model space and paper space block definitions can't be renamed or removed. Drawings can have more than one paper space block; these additional blocks have a numeric suffix starting at 1. |
+| dimstyle | standard | Can be modified but not renamed or removed. |
+| layer | 0 | Can be modified but not renamed or removed. |
+| ltype | continuous | Can't be modified, renamed, or removed. |
+| style | standard | Can be modified but not renamed or removed. |
+| ucs | `*active` | Can be modified but not renamed or removed. |
+| vport | `*active` | Can be modified but not renamed or removed. |
 
 Here's an example that shows how to rename a layer and its current color by using its entity data list. The name of a symbol table entry is designated with the dotted pair that has the DXF group code 2 key element.
 
-; Get the layer named "BOM" (setq entityName (tblobjname "layer" "BOM")) ; Get the entity data for the layer (setq entityData (entget entityName)) ; Rename the layer from "BOM" to "Bill of Materials" (setq entityData (subst (cons 2 "Bill of Materials") (assoc 2 entityData) entityData)) ; Change the layers color to 5 (setq entityData (subst (cons 62 5) (assoc 62 entityData) entityData)) ; Update the layer (entmod entityData)
+```c
+; Get the layer named "BOM" 
+(setq entityName (tblobjname "layer" "BOM")) 
+; Get the entity data for the layer 
+(setq entityData (entget entityName)) 
+; Rename the layer from "BOM" to "Bill of Materials" 
+(setq entityData (subst (cons 2 "Bill of Materials") (assoc 2 entityData) entityData)) 
+; Change the layers color to 5 
+(setq entityData (subst (cons 62 5) (assoc 62 entityData) entityData)) 
+; Update the layer 
+(entmod entityData)
+```
 
-The following example renames the layer「Bill of Materials」back to「BOM」and changes the layer color to 8 with the setpropertyvalue function:
+The following example renames the layer「Bill of Materials」back to「BOM」and changes the layer color to 8 with the `setpropertyvalue` function:
 
-; Get the layer named "Bill of Materials" (setq entityName (tblobjname "layer" "Bill of Materials")) ; Rename the layer from "Bill of Materials" to "BOM" (setpropertyvalue entityName "name" "BOM") ; Change the layer's color to 8 (setpropertyvalue entityName "color" 8)
+```c
+; Get the layer named "Bill of Materials" 
+(setq entityName (tblobjname "layer" "Bill of Materials")) 
+; Rename the layer from "Bill of Materials" to "BOM" 
+(setpropertyvalue entityName "name" "BOM") 
+; Change the layer's color to 8 
+(setpropertyvalue entityName "color" 8)
+```
 
-Using an Object
+#### Using an Object
 
 After a symbol table entry is created, you can use that entry in a number of ways based on the type of object it represents. The most common is to set it as current using a system variable before creating a new object so that the new object inherits the properties of the symbol table entry when possible. For example, you can use the clayer system variable to set the active layer in the drawing, or use celtype to indicate the linetype that new objects should inherit. You should refer to the setvar command and the AutoCAD Help system to identify the system variables your AutoCAD release supports and the properties they might affect.
 
-In addition to system variables, you can change the name of a symbol table entry assigned to an object using entity data lists with the entmod function or directly with the getpropertyvalue and setpropertyvalue functions. If you created a new named view, you can use the setview function to set the view current in a viewport. For more information on the setview function, see the AutoCAD Help system.
+In addition to system variables, you can change the name of a symbol table entry assigned to an object using entity data lists with the `entmod` function or directly with the `getpropertyvalue` and `setpropertyvalue` functions. If you created a new named view, you can use the `setview` function to set the view current in a viewport. For more information on the `setview` function, see the AutoCAD Help system.
 
-Removing an Entry That Is No Longer Needed
+#### Removing an Entry That Is No Longer Needed
 
-Since the same techniques can be used to create and modify both graphical and symbol table entries, you might think that removing a symbol table entry and a graphical object would also be the same in AutoLISP. The entdel function is used to remove graphical objects, but it cannot be used to remove symbol table entries. This is one of the very few times that you can't use「classic」AutoLISP to do something. Instead of using a specific AutoLISP function, you must use the command function with the -purge command to remove a symbol-table object.
+Since the same techniques can be used to create and modify both graphical and symbol table entries, you might think that removing a symbol table entry and a graphical object would also be the same in AutoLISP. The `entdel` function is used to remove graphical objects, but it cannot be used to remove symbol table entries. This is one of the very few times that you can't use「classic」AutoLISP to do something. Instead of using a specific AutoLISP function, you must use the command function with the `-purge` command to remove a symbol-table object.
 
-You can use the tblobjname and tblsearch functions to determine whether a specific symbol table entry exists in a drawing, and then use the -purge command to remove it. If the symbol table entry doesn't exist or cannot be removed because it is being used, the -purge command will end gracefully without any significant error messages that require user interaction to dismiss. Here's an example of how to remove a block named roomlabel from a drawing with the -purge command:
+You can use the `tblobjname` and `tblsearch` functions to determine whether a specific symbol table entry exists in a drawing, and then use the `-purge` command to remove it. If the symbol table entry doesn't exist or cannot be removed because it is being used, the `-purge` command will end gracefully without any significant error messages that require user interaction to dismiss. Here's an example of how to remove a block named roomlabel from a drawing with the `-purge` command:
 
+```c
 (command "._-purge" "_b" "roomlabel" "_n")
+```
 
-NOTE
+NOTE: On Windows only, you can use the AutoLISP `vla-delete` function after loading the AutoCAD ActiveX/COM interface with the `vl-load-com` function. I discuss the basics of using ActiveX with AutoLISP in Chapter 22,「Working with ActiveX/COM Libraries (Windows only).」
 
-On Windows only, you can use the AutoLISP vla-delete function after loading the AutoCAD ActiveX/COM interface with the vl-load-com function. I discuss the basics of using ActiveX with AutoLISP in Chapter 22,「Working with ActiveX/COM Libraries (Windows only).」
-
-Creating and Modifying Block Definitions
+### 7.1.3 Creating and Modifying Block Definitions
 
 Although some symbol table entries can seem complex at first, blocks are probably at the top of the list when it comes to complexity. When you initially create a block entry, the block entry contains no graphical objects. You add graphical objects to a block entry similar to how you add objects to a drawing with the entmake or entmakex function.
 
+
+
+
+
+
 A block definition has a beginning (header) of the block object type and an ending sequence of the endblk object type. The beginning sequence tells AutoCAD that a block definition is being created along with the following information (at minimum):
 
-Block name (DXF group code 2)
+Block name (DXF group code 2).
 
-Block-type flags as a bitcode (DXF group code 70)
+Block-type flags as a bitcode (DXF group code 70).
 
-Base point (DXF group code 10)
+Base point (DXF group code 10).
 
 The block-type flag is typically set to a value of 0 (which indicates that the block doesn't contain attribute definitions or that all of the attribute definitions are constant) or to a value of 2 (which indicates that the block contains nonconstant attributes). Once the block definition is started, use the entmake or entmakex function to add objects to the block definition. You can't add an attribute reference (attrib) object to a block definition. Instead, add attribute definition (attdef) objects to a block definition. These are used to define the attribute references that should be added to a block reference when it is inserted into model space or paper space with the insert command.
 
@@ -256,7 +381,7 @@ Select the new object in the drawing. Right-click and choose Properties.
 
 In the Properties palette (Windows) or Properties Inspector (Mac OS), you should notice that the object is a block named circ and that it has been placed on the hardware layer.
 
-Working with Dictionaries
+## 7.2 Working with Dictionaries
 
 Dictionaries are used to store custom information and objects in a drawing and can be thought of as symbol tables 2.0. Dictionaries were introduced with AutoCAD R13 as a way to introduce new symbol tables like objects without the need to change the drawing file format with each release. Although there is only one type of dictionary in a drawing, dictionaries can be stored in two different ways: per drawing or per object.
 
@@ -394,7 +519,7 @@ Here are examples that rename and remove a custom dictionary:
 
 ; Renames the key entry of a dictionary (dictrename (namedobjdict) "MY_CUSTOM_DICTIONARY" "MY_DICTIONARY") ; Removes the custom dictionary with the key entry "MY_DICTIONARY" (dictremove (namedobjdict) "MY_DICTIONARY")
 
-Exercise: Creating and Incrementing Room Labels
+## 7.3 Exercise: Creating and Incrementing Room Labels
 
 In this section, you will create several new functions that will be used to define and insert room-label blocks into a drawing. Room labels are used to identify areas in architectural drawings, but the same concept can be applied to callouts in mechanical drawings.
 

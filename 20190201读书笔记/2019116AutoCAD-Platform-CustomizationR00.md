@@ -615,6 +615,45 @@ The array data type is similar to the AutoLISP list data type, but typically an 
 
 The `vlax-make-safearray` function is used to create a new array based on a specific data type and number of elements. The following shows the syntax of the `vlax-make-safearray` function:
 
+### 0211. 术语卡 —— symbol tables
+
+源自「2019116AutoCAD-Platform-Customization0217.md」：
+
+A drawing file can contain two types of nongraphical objects: symbol tables and named dictionaries. Symbol tables represent the original named objects that were available in the AutoCAD® R12 release and earlier ones. Support for named dictionaries was added with AutoCAD R13 to handle new and custom objects without the need for a new drawing file format. In this chapter, you will learn to create, manage, and use symbol table and dictionary entries.
+
+1-2『symbol tables and named dictionaries，各做一张术语卡片。（2021-03-11）』
+
+Symbol tables are the oldest form of nongraphical objects used in drawing files and have been unchanged since AutoCAD R12. Although the features that use symbol tables have changed since AutoCAD R12, the additional information that those features use in later releases is attached as either XData or an extension dictionary on an entry or the symbol table.
+
+1『原来 XData 是对 symbol tables 的替代。（2021-03-11）』
+
+Have you opened a drawing from a client to find what seems like a spaghetti mess of layers, linetypes, and text styles that just don't work well with your standards? Maybe the Standard text style in the client's drawings uses a fixed height and different font than your company uses, which would affect the way your blocks and annotation might look like in the drawing. Using the AutoLIS® programming language, you can create or change nongraphical objects stored in symbol tables or dictionaries so they align with your company's standards. Aligning the standards in the drawings received from a client ensure that the objects you create and those in the drawings plot with a consistent appearance.
+
+1『哇塞，这个超级有用，自动去校准修改「非图形」对象，比如字体、图层等，保证「图纸设置」一致，这章的信息对设计的「标准化」绝对有大用。（2021-03-11）』
+
+For example, the transparency level and description of a layer is attached as XData to a layer table entry, and both layer states and filters are attached as extension dictionaries to the layer table. I covered XData in Chapter 16,「Creating and Modifying Graphical Objects」and will discuss dictionaries in the section「Working with Dictionaries」later in this chapter.
+
+Table 17.1 lists the symbol-table names that are supported in all drawing files created with AutoCAD R12 and later.
+
+Table 17.1 Symbol-table names
+
+| Table name | Description |
+| --- | --- |
+| appid | Registered applications |
+| block | Block definitions |
+| dimstyle | Dimension styles |
+| layer | Layers |
+| ltype | Linetypes |
+| style | Text styles |
+| ucs | User coordinate systems |
+| view | Named views |
+| vport | Viewports |
+
+### 0212. 术语卡 —— named dictionaries
+
+源自「2019116AutoCAD-Platform-Customization0217.md」：
+
+
 ### 0301. 任意卡 —— 生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。
@@ -893,6 +932,14 @@ Version 1 of the color command displays options at the Command prompt; version 2
 
 』
 
+### 0314. 任意卡 —— 对模型空间（model space）以及布局（layout）的理解
+
+源自「2019116AutoCAD-Platform-Customization0217.md」：
+
+Nongraphical objects represent the block definitions, named styles, and other objects that are stored in a drawing but aren't present in model space or one of the named layouts. These objects can and typically do affect the display of graphical objects placed in model space or a named layout, though. While model space and named layouts are typically not thought of as nongraphical objects, they are. Model space is a special block definition, whereas a layout is an object that is based on a plot configuration — commonly called a page setup — with a reference to a block definition.
+
+1-2『这里对模型空间（model space）以及布局（layout）定义很出乎意料，模型空间是一张特殊的块定义，布局是一个基于绘制设置的对象。做一张任意卡片。（2021-03-11）』
+
 ## Introduction
 
 In 1996, Lee began learning the core concepts of customizing the AutoCAD user interface and AutoLISP. The introduction of VBA in AutoCAD R14 would once again redefine how Lee approached programming solutions for AutoCAD. VBA made it much easier to communicate with external databases and other applications that supported VBA. It transformed the way information could be moved between project management and manufacturing systems.
@@ -949,7 +996,7 @@ Chapter 17: Creating and Modifying Nongraphical Objects In this chapter, you'll 
 
 Chapter 18: Working with the Operating System and External Files In this chapter, you will learn how to work with settings and files stored outside of the AutoCAD program. Settings can be stored in the Windows Registry and Plist files on Mac OS, and they can be used to affect the behavior of the AutoCAD program or persist values for your custom programs between AutoCAD sessions. Files and folders stored in the operating system can be accessed and manipulated from the AutoCAD program, which allows you to set up project folders or populate project information in the title block of a drawing from an external file.
 
-2『 16 和18 章里应该有，将数据导出的相关信息。结果发现 17 章里也有这方面的信息。最终竟然在第 3 章里找到解决办法，直接用命令 dataextraction 就可以提取块里面的属性信息，以 csv 或 txt 格式导出来。回复：用 dataextraction 很 low，而且中间步骤很多，现在已经实现了直接写数据。（2020-11-26）』
+2『 16 和18 章里应该有，将数据导出的相关信息。结果发现 17 章里也有这方面的信息。最终竟然在第 3 章里找到解决办法，直接用命令 dataextraction 就可以提取块里面的属性信息，以 csv 或 txt 格式导出来。回复：用 dataextraction 很 low，而且中间步骤很多，现在已经实现了直接读写数据。（2020-11-26）』
 
 Chapter 19: Catching and Handling Errors In this chapter, you will learn how to catch and handle errors that are caused by an AutoLISP function and keep an AutoLISP program from terminating early. AutoLISP provides functions that allow you to trace a function, see arguments as they are passed, catch an error and determine how it should be handled, and group functions together so all the actions performed can be rolled back as a single operation.
 

@@ -714,3 +714,138 @@ Although you can import a COM library more than once, you should avoid doing so,
 ```
 
 』
+
+### 19. 获取 Symbol Tables
+
+源自「2019116AutoCAD-Platform-Customization0217.md」：
+
+AutoLISP provides three functions that allow you to access the entries of a symbol table or determine if a specific entry exists in a symbol table. The tblnext function returns either the first or next entry in a specified symbol table. The tblnext function is similar to the entnext function that I discussed in Chapter 16.
+
+2『 `tblnext` 这个函数收录入主题卡片「函数收藏」。（2021-03-11）』—— 已完成
+
+The following shows the syntax of the `tblnext` function:
+
+```c
+(tblnext sym_table [next])
+```
+
+Its arguments are as follows:
+
+1 `sym_table`. The `sym_table` argument is a string used to specify the symbol table which you want to query, and it must be one of the values listed in the first column of Table 17.1.
+
+2 next. The next argument is optional, and specifies whether you want to get the first entry of a symbol table or the next symbol-table entry after the previous entry that was returned. Use a value of T to return the first value. When no argument or nil is provided, an entity data list of the next symbol table entry is returned.
+
+The following example code shows the `tblnext` function and the resulting list of layer names in a drawing:
+
+```c
+; Lists the layers in the drawing 
+(defun c:listlayers ( / entityData) 
+  (prompt "\nLayers in this drawing:") 
+  (setq entityData (tblnext "layer" T)) 
+  (while entityData 
+    (prompt (strcat "\n" (cdr (assoc 2 entityData)))) 
+    (setq entityData (tblnext "layer")) 
+  ) 
+  (princ) 
+) 
+
+Layers in this drawing: 
+0 
+Labels 
+Panels 
+Surfaces 
+Storage 
+Defpoints 
+Dimensions 
+BOM
+```
+
+### 20. 检测 Symbol Tables
+
+源自「2019116AutoCAD-Platform-Customization0217.md」：
+
+To check for the existence of or get the entity data list of an entry in a symbol table, you can use the `tblsearch` function. If the name of the entry in the specified table exists, an entity data list is returned for the entry; otherwise, nil is returned. The `tblobjname` function can also be used to check for the existence of a symbol table entry, but unlike the `tblsearch` function, `tblobjname` returns the entity name (ename) of the entry if it is found; otherwise, it returns nil.
+
+2『 `tblsearch` 和 `tblobjname` 这两个函数收录入主题卡片「函数收藏」。（2021-03-11）』—— 已完成
+
+The following shows the syntax of the `tblsearch` and `tblobjname` functions:
+
+```c
+(tblsearch sym_table entry [next]) 
+(tblobjname sym_table entry)
+```
+
+The arguments are as follows:
+
+1 `sym_table`. The `sym_table` argument is a string that represents the symbol table you want to query, and it must be one of the values in the first column of Table 17.1.
+
+2 entry. The entry argument is a string that represents the entry you want to check for in the symbol table specified by the `sym_table` argument.
+
+3 next. The next argument is optional and represents whether the next call to tblnext uses the results of the `tblsearch` function to determine its starting entry. Use a value of T to not affect the next call of the `tblnext` function in the current drawing. When no argument or nil is provided, the `tblnext` function bases the entity it returns on the position of the entry provided by the entry argument.
+
+Here are some examples of the `tblobjname` and `tblsearch` functions, and their results:
+
+```c
+; Get the entity data list for layer 0 
+(tblsearch "layer" "0") 
+((0. "LAYER") (2. "0") (70. 0) (62. 7) (6. "Continuous")) 
+; Get the entity data list for the layer BOM 
+(tblsearch "layer" "BOM") 
+nil 
+; Get the entity name of layer 0 
+(tblobjname "layer" "0") 
+<Entity name: 7ff6cde08900> 
+; Get the entity name of the BOM layer 
+(tblobjname "layer" "BOM") 
+nil 
+; Check for the existence of the BOM layer 
+(if (tblobjname "layer" "BOM") 
+  (alert "BOM layer already exists in the current drawing.") 
+)
+```
+
+1-3『
+
+看到上面的实例，才知道「图层」这种非图形对象，也是有 entity name，这个信息对自己非常重要，而且之前数据流实现核查是否有某个块时，用到了 `tblsearch` 这个函数。（2021-03-11）
+
+```c
+; 2021-03-03
+(defun VerifyGsLcBlockByName (blockName /) 
+  (if (= (tblsearch "BLOCK" blockName) nil) 
+    (StealGsLcBlockByNameList (list blockName))
+  )
+)
+```
+
+』
+
+### 21. snvalid
+
+Before creating a new symbol table entry with `entmake` or `entmakex`, you should verify that it doesn't already exist. If the symbol table entry already exists, entmake or entmakex will return nil. I also recommend checking the name of the symbol table entry you are trying to add with the `snvalid` function. The `snvalid` function verifies that the name doesn't contain any invalid characters and follows the naming rules based on the current value of the extnames system variable. For more information on the extnames system variable, see the AutoCAD Help system.
+
+2『 `snvalid ` 这个函数收录入主题卡片「函数收藏」。（2021-03-11）』—— 已完成
+
+The following shows the syntax of the snvalid function:
+
+```c
+(snvalid name [flag])
+```
+
+Here are its arguments:
+
+1 name. The name argument is a string that represents the name of the symbol table entry you want to verify.
+
+2 flag. The flag argument is an optional integer that determines whether the symbol table entry name can contain a vertical bar. 0 indicates that a vertical bar is not allowed, whereas 1 indicates that the vertical bar is a valid character as long as it isn't the first character in the entry name.
+
+Here are some examples of using the snvalid function and the values that are returned:
+
+```c
+(snvalid "Centerlines") 
+T 
+(snvalid "Centerlines?") 
+nil 
+(snvalid "Detail|Centerlines" 0) 
+nil 
+(snvalid " Detail|Centerlines " 1) 
+T
+```
