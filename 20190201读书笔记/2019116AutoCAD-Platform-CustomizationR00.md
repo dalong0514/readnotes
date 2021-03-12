@@ -46,7 +46,7 @@ T
 nil
 ```
 
-1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』——已完成
+1-2『完全可以自己做一些判断数据类型的函数，封装起来自己用，真切的感觉到，一切语法即为语法糖。封装判断数据类型的函数，做一张主题卡片。』—— 已完成
 
 ### 0102. 主题卡 —— 如何获取用 entmake 函数新建一个实体对象所需的参数
 
@@ -89,7 +89,7 @@ The entlist argument represents the entity data list of the object to be created
 
 先用半成品（command 实现）的命令，自动就生成一个块。然后再用 entlast 命令获取其数据信息。（2020-10-30）
 
-做一张主题卡片。』——已完成
+做一张主题卡片。』—— 已完成
 
 ### 0103. 主题卡 —— 修改实体数据的 2 种方法
 
@@ -104,7 +104,7 @@ Table 16.6 lists the AutoLISP functions available in AutoCAD 2012 and later that
 |  setpropertyvalue |  Assigns a value to an object's property |
 |  ispropertyreadonly |  Returns T or nil based on whether an object property is read-only |
 
-1-2『看到这里才知道，之前一直用的传统方法：通过实体名称结合 `entget` 函数获取实体的「数据集」，通过替换数据集里的「点对」来实现修改属性。原来还有第二种方法，直接用 autolisp 封装好的函数，前提是只支持 AutoCAD 2012 以后的，可以接受。修改实体数据的 2 种方法，做一张主题卡片。』——已完成
+1-2『看到这里才知道，之前一直用的传统方法：通过实体名称结合 `entget` 函数获取实体的「数据集」，通过替换数据集里的「点对」来实现修改属性。原来还有第二种方法，直接用 autolisp 封装好的函数，前提是只支持 AutoCAD 2012 以后的，可以接受。修改实体数据的 2 种方法，做一张主题卡片。』—— 已完成
 
 ### 0104. 主题卡 —— 获取并修改实体对象上的 XData
 
@@ -335,7 +335,7 @@ When you want to add an object, such as a Layer object, to a collection, you can
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
 
-2『 Dotted Pair 做一张术语卡片。』——已完成
+2『 Dotted Pair 做一张术语卡片。』—— 已完成
 
 ### 0202. 术语卡 —— XData
 
@@ -347,7 +347,7 @@ The values in an XData list and what they represent is up to you, the creator of
 
 In addition to XData, graphical and nongraphical objects support what are known as extension dictionaries. Extension dictionaries are kind of like record tables that can be attached to an object. For example, you could store revision history of a drawing in an extension dictionary that is attached to model space, and then populate that information in the drawing's title block. I discuss creating custom dictionaries in Chapter 17.
 
-2『 XData 做一张术语卡片。』——已完成
+2『 XData 做一张术语卡片。』—— 已完成
 
 Once you have defined an application name and registered it in a drawing, you can attach an XData list to an object within that drawing. An XData list is made up of two lists and has a total size limit of 16 KB per object (see the「Managing the Memory Used by XData for an Object」sidebar for information). The outer list contains a DXF group code -3 and an inner list that contains the application name and dotted pairs that represent the data values to store with the object. Each dotted pair contains a DXF group code that defines the type of data the pair represents and then the actual value of the pair.
 
@@ -438,7 +438,7 @@ The circle object won't look any different after the changes have been committed
 
 The AutoLISP® programming language is great for creating and modifying objects. There are two types of objects that you can create or modify: graphical and nongraphical. Graphical objects are those that you can see and interact with in the drawing area, whether in model or paper space. Nongraphical objects are those that you don't create in the drawing area but that can affect the appearance of graphical objects. I discuss working with nongraphical objects in Chapter 17,「Creating and Modifying Nongraphical Objects.」
 
-2『图形数据和非图形数据，做一张术语卡片。』——已完成
+2『图形数据和非图形数据，做一张术语卡片。』—— 已完成
 
 ### 0204. 术语卡 —— Block Definitions and Block References
 
@@ -514,7 +514,7 @@ A selection set, sometimes known as a selection set name or ssname for short, is
 
 In addition to getting a selection set based on user input, you can create a selection set manually and add objects to it. You might want to create a function that steps through a drawing and locates all the objects on a specific layer, and then returns a selection set that the next function can work with. Once a selection set is created, you can add additional objects or remove objects that don't meet the requirements you want to work with. A selection set makes it efficient to query and modify a large number of objects.
 
-2『选择集的概念做一张术语卡片。』——已完成
+2『选择集的概念做一张术语卡片。』—— 已完成
 
 ### 0206. 术语卡 —— bit-coded values
 
@@ -666,7 +666,7 @@ VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里�
 
 TIP: User-defined variables are normally accessible only from the drawing in which they are defined, but you can use the AutoLISP `vl-bb-ref` and `vl-bb-set` functions to define variables on what is known as the blackboard. The blackboard is a centralized location for defining variables that can be accessed from any open drawing. The AutoLISP vl-propagate function can also be used to define a variable with a specific value in all open drawings and any drawings that are subsequently opened in the AutoCAD session. You can learn more about these functions in the AutoCAD Help system.
 
-1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）回复：这个知识点确实很有用，目前准备用 `vl-bb-set` 和 `vl-bb-ref` 把流程图里的信息传递给布置图，对于复杂的逻辑，再结合读取本地数据库（直接以文本的形式存储）来实现。（2020-11-26）』——已完成
+1-2『上面的几个函数，可以实现把一些数据放到公共变量（内存）中，保证所有打开的图纸空间都可以访问到。这个可以帮助实现把数据从流程图迁移到设备布置图，功能待开发，哈哈。做一张任意卡片。（2020-10-08）回复：这个知识点确实很有用，目前准备用 `vl-bb-set` 和 `vl-bb-ref` 把流程图里的信息传递给布置图，对于复杂的逻辑，再结合读取本地数据库（直接以文本的形式存储）来实现。（2020-11-26）』—— 已完成
 
 [About Sharing Data Between Namespaces (AutoLISP)](http://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-0C8F8E36-7C10-45C4-9EF6-C284E56A8EA2)
 
@@ -702,13 +702,13 @@ When the command function is used, you can suspend the execution of an AutoLISP 
 (command "._circle" PAUSE "_d" 3)
 ```
 
-2『宏命令里的悬停，做一张任意卡片。补充：用空字符串 `""` 也可以实现。（2021-03-02）』——已完成
+2『宏命令里的悬停，做一张任意卡片。补充：用空字符串 `""` 也可以实现。（2021-03-02）补充：PAUSE 和空字符串应该是两个概念，PAUSE 参数间的衔接，空字符串是默认选项。（2021-03-12）』—— 已完成
 
 ### 0304. 任意卡 —— 自定义命令变为内置命令
 
 TIP: Although custom AutoLISP functions that have the C: prefix aren't recognized as native AutoCAD commands, you can use the AutoLISP vlax-add-cmd and vlax-remove-cmd functions to register a custom AutoLISP function as a built-in AutoCAD command. (These functions are available only on Windows.) There are a couple reasons you might want to do so. The first is so that your custom functions trigger events or reactors related to when a command starts or ends. The other reason is so that your custom function can be called with the command or command-s function. You can learn more about these functions in the AutoCAD Help system.
 
-2『自定义命令变为内置命令的实现手段，做一张任意卡片。』——已完成
+2『自定义命令变为内置命令的实现手段，做一张任意卡片。』—— 已完成
 
 ### 0305. 任意卡 —— 函数以 princ 结尾的真正用途
 ```c
@@ -744,13 +744,13 @@ TIP: Using the AutoLISP princ function in the last statement of a custom AutoLIS
 
 Tiles are stacked vertically in a dialog box by default, unless you use what are called cluster tiles. Cluster tiles are used to group and align tiles in rows and columns. Tiles also support several attributes that help you control their size and alignment in a dialog box. In addition to cluster tiles and attributes, spacer tiles can be used to control the size and alignment of tiles. A spacer tile allows for the insertion of empty space between tiles in a dialog box.
 
-1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』——已完成
+1-2『调整窗口布局的几种方式汇总：1）用 cluster tiles 控制。2）用 tile 里的属性控制。3）用 spacer tiles 控制。做一张任意卡片。』—— 已完成
 
 ### 0307. 任意卡 —— 加载显示窗口的 2 种方法
 
 You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
 
-1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』——已完成
+1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』—— 已完成
 
 回复：目前一直用的是第一种方法，即在 autolisp 里加载 dcl 文件。（2020-10-27）
 
@@ -786,7 +786,7 @@ After a tile key, mode, and index have been specified with the `start_list` func
 
 Once you have modified a list, use the `end_list` function. The `end_list` ends the modification of the list that was started with the `start_list` function. The `end_list` function returns a value of nil regardless of whether the list was successfully modified.
 
-1-2『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）回复：这个功能其实非常有用，比如想开发的功能，先根据某个属性值匹配通配符来筛选管道号块，筛出来的块只把属性值提取出来添加到这个列表让用户看到。第二部输入要替换的原字符以及新字符，这个功能一定要实现。（2020-10-10）做一张任意卡片。』——已完成
+1-2『目前还没想到，直接在交互界面里给下拉菜单添加元素的应用场景。回复：想到应用场景了，比如筛选选择集之后，将选集里的相关内容直接在交互界面上呈现出来，就跟 CAD 原生查询面板一样。（2020-10-09）回复：这个功能其实非常有用，比如想开发的功能，先根据某个属性值匹配通配符来筛选管道号块，筛出来的块只把属性值提取出来添加到这个列表让用户看到。第二部输入要替换的原字符以及新字符，这个功能一定要实现。（2020-10-10）做一张任意卡片。』—— 已完成
 
 The following code shows how to replace and assign a list of two values to a `popup_list` tile with the key of `list_layers`. The `list_layers` key refers to the Layer To Place Object On `popup_list` tile of the `ex_createLabelObject` dialog definition you created in the「Creating and Previewing a Dialog in a DCL File」section.
 
@@ -813,7 +813,7 @@ NOTE: LSP files that are loaded using one of the manual techniques described her
 
 1-3『
 
-这里又意外解决一个老大难的问题，新打开的文件可以自动加载数据流的插件。补充进任意卡片「如何在一个 lsp 文件里调用另外一个 lsp 文件」。（2021-03-02）——已完成
+这里又意外解决一个老大难的问题，新打开的文件可以自动加载数据流的插件。补充进任意卡片「如何在一个 lsp 文件里调用另外一个 lsp 文件」。（2021-03-02）—— 已完成
 
 单独新建了一个启动文件 `startdataflow.lsp`。
 
@@ -839,7 +839,7 @@ Using AutoLISP, you can create a table using the entmake function while modifyin
 
 除了用选择集的方式，先获得选择集，通过选择集获取各个实体的实体名，再通过实体名获得实体的数据集。也可以通过下面的方式直接获取实体数据集（直接用 `entlast` 和 `entnext` 这些函数获取实体名，然后调 `entget` 获取数据集）。两种方法的区别在于如何获得实体名，一个是靠用户选择（选择集），一个是全部在后台完成。（2020-11-26）
 
-AutoLISP provides two different techniques that can be used to select an individual object within a drawing—through code or via user interaction. When you want to work with the most recent object or step through all of the objects in a drawing, you don't need any input from the user. The AutoLISP functions entlast and entnext can be used to get an individual object without any input from the user. If you do want to allow the user to interactively select an individual object, you can use the entsel and nentsel functions.
+AutoLISP provides two different techniques that can be used to select an individual object within a drawing — through code or via user interaction. When you want to work with the most recent object or step through all of the objects in a drawing, you don't need any input from the user. The AutoLISP functions entlast and entnext can be used to get an individual object without any input from the user. If you do want to allow the user to interactively select an individual object, you can use the entsel and nentsel functions.
 
 The entlast function returns the entity name of the last graphical object added to a drawing and doesn't require any arguments. This function can be helpful in getting the entity name for a new object created with the entmake function.
 
@@ -891,7 +891,7 @@ ARC
 
 The previous example used the entget function to return an entity data list of an object. I explain how to use this function later, in the「Updating an Object's Properties with an Entity Data List」section.
 
-1-2『这个例子看下来后，entlast、entnext 还有 entget 这几个函数结合起来可以做好多事，特别是 entnext 的用法灵活性很大。比如自动生成辅助流程里，又想到一个思路：1）先直接使用 entlast 获取图纸里的最后一个实体名保存下来。2）批量插入辅助流程组件块后，通过刚刚最后一个实体名外加 entnext 函数，可以获得所有批量插入的块的实体名列表。3）根据这个实体名列表批量修改属性值，这样又跟以前开发好的功能对接上了。把上面信息合并到「获取实体数据集的方式」任意卡里。』——已完成
+1-2『这个例子看下来后，entlast、entnext 还有 entget 这几个函数结合起来可以做好多事，特别是 entnext 的用法灵活性很大。比如自动生成辅助流程里，又想到一个思路：1）先直接使用 entlast 获取图纸里的最后一个实体名保存下来。2）批量插入辅助流程组件块后，通过刚刚最后一个实体名外加 entnext 函数，可以获得所有批量插入的块的实体名列表。3）根据这个实体名列表批量修改属性值，这样又跟以前开发好的功能对接上了。把上面信息合并到「获取实体数据集的方式」任意卡里。补充：还有一种思路，生成实体对象后直接用函数 `entlast` 获取其 entity name 存起来。（2021-03-12）』—— 已完成
 
 ### 0312. 任意卡 —— Controlling a Command's Version
 
@@ -906,7 +906,7 @@ The following example uses version 1 of the color command:
 
 Version 1 of the color command displays options at the Command prompt; version 2 or later displays the Select Color dialog box instead. The -insert command is another command that is affected by the initcommandversion function. When using version 2 of the -insert command, the user can interact with the AutoCAD Properties palette in Windows while a preview of the block is being dragged in the drawing area.
 
-1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』——已完成
+1-2『真是巧了，昨天实现自动批量插入设备位号的时候才发现这个问题。当时是通过 `(setvar "ATTREQ" 1)` 实现插入块的时候交互输入属性值，插完后再将系统变量 ATTREQ 重置为 0。不过试验了下，改用 `(initcommandversion 2)` 实现了不了自动插入设备位号，目前原因不知。命令的版本号，做一张术语卡片。（2020-10-08）』—— 已完成
 
 ### 0313. 任意卡 —— 通过图层名判断是否存在该图层
 
@@ -914,7 +914,7 @@ Version 1 of the color command displays options at the Command prompt; version 2
 
 1-2-3『
 
-自己在 CAD 里跑了下上面的源码，没问题，第一次知道多行注释可以这么写（`|`），很不错！这里还有一个很意外的收获，如何判断是否有某一个图层。那么同样的，应该可以判断某个块是否存在。待验证。做一张任意卡片。（2021-03-02）——已完成
+自己在 CAD 里跑了下上面的源码，没问题，第一次知道多行注释可以这么写（`|`），很不错！这里还有一个很意外的收获，如何判断是否有某一个图层。那么同样的，应该可以判断某个块是否存在。待验证。做一张任意卡片。（2021-03-02）—— 已完成
 
 ```c
 (defun createlayer (name color / ) 
@@ -1024,17 +1024,21 @@ Chapter 27: Creating and Modifying Drawing Objects In this chapter, you'll learn
 
 Chapter 28: Interacting with the User and Controlling the Current View In this chapter, you'll learn to request input from an end-user and manipulate the current view of a drawing. Based on the values provided by the end-user, you can then determine the end result of the program. You can evaluate the objects created or consider how a drawing will be output, and use that information to create named views and adjust the current view in which objects are displayed.
 
-1-2『这章感觉有直接定位到选定的实体对象位置的相关实现，待确认。（2020-11-26）』——未完成
+1-2『这章感觉有直接定位到选定的实体对象位置的相关实现，待确认。（2020-11-26）补充：已经实现了。目前知道两种方法：1）选择集结合宏命令 ZOOM。2）用 ActiveX 方法 `(vla-ZoomAll acadObj)`，其中 acadObj 是一个 vla-object。（2021-03-12）』——未完成
 
 Chapter 29: Annotating Objects In this chapter, you'll learn how to create and modify annotation objects. Typically, annotation objects are not part of the final product that is built or manufactured based on the design in the drawing. Rather, annotation objects are used to communicate the features and measurements of a design. Annotation can be a single line of text that is used as a callout for a leader, a dimension that indicates the distance between two drill holes, or a table that contains quantities and information about the windows and doors in a design.
 
+1『 dimension 应该指标注线，那么开发标注线相关的功能可以去看 0209 章的内容。（2021-03-12）』
+
 Chapter 30: Working with Blocks and External References In this chapter, you'll learn how to create, modify, and manage block definitions. Model space in a drawing is a special named block definition, so working with block definitions will feel familiar. Once you create a block definition, you will learn how to insert a block reference and work with attributes along with dynamic properties. You complete the chapter by learning how to work with externally referenced files.
 
-1-2『上面这章应该有直接插入外部文件块的信息，待确认。（2020-11-26）』——未完成
+1-2『上面这章应该有直接插入外部文件块的信息，待确认。（2020-11-26）补充：已经实现了，通过引用 Lee Mac 封装好的模块。（2021-03-12）』—— 已完成
 
 Chapter 31: Outputting Drawings In this chapter, you will learn how to output the graphical objects in model space or on a named layout to a printer, plotter, or electronic file. Named layouts will be used to organize graphical objects for output, including title blocks, annotation, floating viewports, and many others. Floating viewports will be used to control the display of objects from model space on a layout at a specific scale. After you define and configure a layout, you learn to plot and preview a layout. The chapter wraps up with learning how to export and import file formats.
 
 Chapter 32: Storing and Retrieving Custom Data In this chapter, you will learn how to store custom information in a drawing or in the Windows Registry. Using extended data (Xdata), you will be able to store information that can be used to identify a graphical object created by your program or define a link to a record in an external database. In addition to attaching information to an object, you can store data in a custom dictionary that isn't attached to a specific graphical object in a drawing. Both Xdata and custom dictionaries can be helpful in making information available between drawing sessions; the Windows Registry can persist data between sessions.
+
+1『目前图纸里可以作为数据库的地方：字典、Xdata，还有上面信息提到的路径，待研读 32 章。（2021-03-12）』
 
 Chapter 33: Modifying the Application and Working with Events In this chapter, you will learn how to customize and manipulate the AutoCAD user interface. You also learn how to load and access externally defined custom programs and work with events. Events allow you to respond to an action that is performed by the end-user or the AutoCAD application. There are three main types of events that you can respond to: application, document, and object.
 
@@ -1042,7 +1046,18 @@ Chapter 34: Creating and Displaying User Forms In this chapter, you will learn h
 
 Chapter 35: Communicating with Other Applications In this chapter, you will learn how to work with libraries provided by other applications. These libraries can be used to access features of the Windows operating system, read and write content in an external text or XML file, and even work with the applications that make up Microsoft Office.
 
-1『这章涉及与其他 app 的交互，那么有提取 cad 数据直接进服务器的实现线索。（2020-06-25）』
+1-3『
+
+这章涉及与其他 app 的交互，那么有提取 cad 数据直接进服务器的实现线索。（2020-06-25）
+
+应该是可以实现的，找到了一些资料，还没来得及实操实现。（2021-03-12）
+
+
+[已解决: access internet/ remote directory - Autodesk Community - AutoCAD](https://forums.autodesk.com/t5/visual-lisp-autolisp-and-general/access-internet-remote-directory/m-p/9383094#M397309)
+
+[已解决: Make an API call with AutoLISP / VisualLISP - Autodesk Community - AutoCAD](https://forums.autodesk.com/t5/visual-lisp-autolisp-and-general/make-an-api-call-with-autolisp-visuallisp/td-p/9083202)
+
+』
 
 Chapter 36: Handling Errors and Deploying VBA Projects In this chapter, you will learn how to catch and handle errors that are caused by the incorrect use of a function or the improper handling of a value that is returned by a function. The Visual Basic Editor provides tools that allow you to debug code statements, evaluate values assigned to user-defined variables, identify where within a program an error has occurred, and determine how errors should be handled. The chapter wraps everything up with learning how to deploy a VBA project on other workstations for use by individuals at your company.
 
