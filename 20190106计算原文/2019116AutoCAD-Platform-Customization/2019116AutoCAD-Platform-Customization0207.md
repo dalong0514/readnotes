@@ -324,62 +324,113 @@ NOTE: On Windows only, you can use the AutoLISP `vla-delete` function after load
 
 ### 7.1.3 Creating and Modifying Block Definitions
 
-Although some symbol table entries can seem complex at first, blocks are probably at the top of the list when it comes to complexity. When you initially create a block entry, the block entry contains no graphical objects. You add graphical objects to a block entry similar to how you add objects to a drawing with the entmake or entmakex function.
-
-
-
-
-
+Although some symbol table entries can seem complex at first, blocks are probably at the top of the list when it comes to complexity. When you initially create a block entry, the block entry contains no graphical objects. You add graphical objects to a block entry similar to how you add objects to a drawing with the `entmake` or `entmakex` function.
 
 A block definition has a beginning (header) of the block object type and an ending sequence of the endblk object type. The beginning sequence tells AutoCAD that a block definition is being created along with the following information (at minimum):
 
-Block name (DXF group code 2).
+1 Block name (DXF group code 2).
 
-Block-type flags as a bitcode (DXF group code 70).
+2 Block-type flags as a bitcode (DXF group code 70).
 
-Base point (DXF group code 10).
+3 Base point (DXF group code 10).
 
-The block-type flag is typically set to a value of 0 (which indicates that the block doesn't contain attribute definitions or that all of the attribute definitions are constant) or to a value of 2 (which indicates that the block contains nonconstant attributes). Once the block definition is started, use the entmake or entmakex function to add objects to the block definition. You can't add an attribute reference (attrib) object to a block definition. Instead, add attribute definition (attdef) objects to a block definition. These are used to define the attribute references that should be added to a block reference when it is inserted into model space or paper space with the insert command.
+The block-type flag is typically set to a value of 0 (which indicates that the block doesn't contain attribute definitions or that all of the attribute definitions are constant) or to a value of 2 (which indicates that the block contains nonconstant attributes). Once the block definition is started, use the `entmake` or `entmakex` function to add objects to the block definition. You can't add an attribute reference (attrib) object to a block definition. Instead, add attribute definition (attdef) objects to a block definition. These are used to define the attribute references that should be added to a block reference when it is inserted into model space or paper space with the insert command.
 
-Here's a basic representation of the entity data lists that you need to create to define a block without any attributes or graphical objects. Passing the entity data lists to the entmake function will create an empty block.
+Here's a basic representation of the entity data lists that you need to create to define a block without any attributes or graphical objects. Passing the entity data lists to the `entmake` function will create an empty block.
 
-; Start block definition ((0. "BLOCK") (2. "some_block_name") (10 0.0 0.0 0.0) (70. 0)) ; Objects here with entmake ; End block definition ((0. "ENDBLK"))
+```c
+; Start block definition 
+((0. "BLOCK") (2. "some_block_name") (10 0.0 0.0 0.0) (70. 0)) 
+; Objects here with entmake 
+; End block definition 
+((0. "ENDBLK"))
+```
+
+1-3『
+
+数据流里生成「块参照」的代码示例。
+
+```c
+(defun GenerateOnePublicPipeUpArrow (insPt tagValue drawnumValue relatedIDValue /)
+  (GenerateBlockReference insPt "PublicPipeUpArrow" "DataFlow-GsLcPublicPipe")
+  (GenerateVerticallyBlockAttribute (MoveInsertPosition insPt -3.5 -11.5) "TAG" tagValue "0" 3)
+  (GenerateVerticallyBlockAttribute (MoveInsertPosition insPt 1.2 -11.5) "DRAWNUM" drawnumValue "0" 3)
+  (GenerateVerticallyBlockHiddenAttribute (MoveInsertPosition insPt 7 -11.5) "RELATEDID" relatedIDValue "DataFlow-GsLcPublicPipe" 3)
+  (entmake 
+    (list (cons 0 "SEQEND") (cons 100 "AcDbEntity"))
+  )
+  (princ)
+)
+```
+
+』
 
 If you want to revise the content of a block definition (also known as redefining a block), there are a couple of different processes. Choose the process you need based on how the block definition should be revised:
 
-Updating or Removing Objects Step through the objects of a block definition when you need to change the properties of or remove an existing object in a block definition. Get the entity name of the block definition with the tblobjname function and step through the block definition with the entnext function. Change the objects in the block definition as you would those in a model space or paper space. Use the entdel function to remove objects from a block definition.
+1 Updating or Removing Objects. Step through the objects of a block definition when you need to change the properties of or remove an existing object in a block definition. Get the entity name of the block definition with the `tblobjname` function and step through the block definition with the entnext function. Change the objects in the block definition as you would those in a model space or paper space. Use the `entdel` function to remove objects from a block definition.
 
-Adding Objects You must re-create the block definition by going through the process used to create the block. That is, to start the block definition, add the objects and then add the end block-definition marker. If you don't want to re-create all of the objects as part of the block definition, you can create a block reference in the drawing and explode it. Once it's exploded, you can add the new objects you want to add to the block in model space and then use the -block command to redefine the block definition.
+1『才意识到，也可以用 `tblobjname` 函数直接获取到 entity name，之前一直使用选择集过滤到想要的块，然后通过选择集来获取 entity name，现在又多个一种途径。（2021-03-11）』
 
-NOTE
+2 Adding Objects. You must re-create the block definition by going through the process used to create the block. That is, to start the block definition, add the objects and then add the end block-definition marker. If you don't want to re-create all of the objects as part of the block definition, you can create a block reference in the drawing and explode it. Once it's exploded, you can add the new objects you want to add to the block in model space and then use the `-block` command to redefine the block definition.
 
-On Windows only, you can use AutoLISP vla-add<object> functions to add objects directly to an existing block definition. I discuss the basics of using ActiveX with AutoLISP in Chapter 22.
+1-2『看到上面的信息，刚刚生成的实体对象，获取其 entity name 得到选择集，再结合「`command` + `-block`」应该可以自动定义一个块。待测试实现。（2021-03-11）』—— 未完成
+
+NOTE: On Windows only, you can use AutoLISP `vla-add<object>` functions to add objects directly to an existing block definition. I discuss the basics of using ActiveX with AutoLISP in Chapter 22.
+
+1『感觉通过上面的信息，可以获取到自动生成「块参照」的第三种实现路径。待研究。（2021-03-11）』—— 未完成
 
 In the following exercise, you'll create a new block definition and layer. The new block definition is named circ and it contains a single circle object with a base point of 0,0. The new layer is named hardware and has a color value of 3 (green).
 
-Create a new drawing.
+1 Create a new drawing.
 
-At the AutoCAD Command prompt, type the following and then press Enter to start the block definition for the circ block:(entmake (list (cons 0 "block")(cons 2 "circ") (cons 10 (list 0.0 0.0 0.0))(cons 70 0)))
+2 At the AutoCAD Command prompt, type the following and then press Enter to start the block definition for the circ block:
 
-Type the following and press Enter to add the circle at 0,0 with a radius of 2. The circle is placed on layer 0 so that it inherits the properties of the layer on which the block is placed.(entmake (list (cons 0 "circle")(cons 10 (list 0.0 0.0 0.0)) (cons 40 2)(cons 8 "0")))
+```c
+(entmake (list (cons 0 "block")(cons 2 "circ") 
+          (cons 10 (list 0.0 0.0 0.0))(cons 70 0))
+)
+```
 
-Type the following and press Enter to end the circ block definition:(entmake (list (cons 0 "endblk")))
+3 Type the following and press Enter to add the circle at 0,0 with a radius of 2. The circle is placed on layer 0 so that it inherits the properties of the layer on which the block is placed.
 
-Type the following and press Enter to create the layer named hardware with a color of 3 and a linetype of Continuous:(entmake (list (cons 0 "layer") (cons 100 "AcDbSymbolTableRecord") (cons 100 "AcDbLayerTableRecord") (cons 2 "hardware") (cons 70 0) (cons 62 3) (cons 6 "Continuous")))
+```c
+(entmake (list (cons 0 "circle")(cons 10 (list 0.0 0.0 0.0)) 
+          (cons 40 2)(cons 8 "0"))
+)
+```
 
-Type the following and press Enter to set the hardware layer as current:(setvar "clayer" "hardware")
+4 Type the following and press Enter to end the circ block definition:
 
-Type insert and press Enter to display the Insert (Windows) or Insert Block (Mac OS) dialog box.
+```c
+(entmake (list (cons 0 "endblk")))
+```
 
-When the Insert dialog box opens, click the Name drop-down list and select circ.
+5 Type the following and press Enter to create the layer named hardware with a color of 3 and a linetype of Continuous:
 
-Deselect all the check boxes under the Insert Point, Scale, and Rotation sections. Click OK (Windows) or Insert (Mac OS) to insert the block into the drawing.
+```c
+(entmake (list (cons 0 "layer") (cons 100 "AcDbSymbolTableRecord") 
+            (cons 100 "AcDbLayerTableRecord") (cons 2 "hardware") 
+            (cons 70 0) (cons 62 3) (cons 6 "Continuous"))
+)
+```
 
-Zoom to the extents of the drawing.
+6 Type the following and press Enter to set the hardware layer as current:
 
-Select the new object in the drawing. Right-click and choose Properties.
+```c
+(setvar "clayer" "hardware")
+```
 
-In the Properties palette (Windows) or Properties Inspector (Mac OS), you should notice that the object is a block named circ and that it has been placed on the hardware layer.
+7 Type `insert` and press Enter to display the Insert (Windows) or Insert Block (Mac OS) dialog box.
+
+8 When the Insert dialog box opens, click the Name drop-down list and select circ.
+
+9 Deselect all the check boxes under the Insert Point, Scale, and Rotation sections. Click OK (Windows) or Insert (Mac OS) to insert the block into the drawing.
+
+10 Zoom to the extents of the drawing.
+
+11 Select the new object in the drawing. Right-click and choose Properties.
+
+12 In the Properties palette (Windows) or Properties Inspector (Mac OS), you should notice that the object is a block named circ and that it has been placed on the hardware layer.
 
 ## 7.2 Working with Dictionaries
 
@@ -389,135 +440,250 @@ The main dictionary of a drawing contains nested dictionaries that store multile
 
 Custom dictionaries are great for storing custom program settings so that they persist across drawing sessions. You might also use a custom dictionary as a way to store drawing revision history or project information that can be used to track a drawing and populate a title block. In this section, you'll learn how to access, create, query, and modify information stored in a dictionary.
 
-Accessing and Stepping through Dictionaries
+### 7.2.1 Accessing and Stepping through Dictionaries
 
-The dictionary-related AutoLISP functions are similar to those used when working with symbol tables. Before you can access the entries in a dictionary, you must first get a dictionary. The namedobjdict function returns the entity name of the drawing's named-object dictionary. This is the main dictionary that contains all the dictionaries that aren't attached to an object as an extension dictionary. The namedobjdict function doesn't require any arguments.
+The dictionary-related AutoLISP functions are similar to those used when working with symbol tables. Before you can access the entries in a dictionary, you must first get a dictionary. The `namedobjdict` function returns the entity name of the drawing's named-object dictionary. This is the main dictionary that contains all the dictionaries that aren't attached to an object as an extension dictionary. The `namedobjdict` function doesn't require any arguments.
 
 Once you have the entity name of the named object dictionary, use the entget function to get an entity data list that contains the key entries and entity names for each dictionary. Each entry in the named object dictionary is represented by two dotted pairs. The first dotted pair represents the unique name of a dictionary and DXF group code 3. The second dotted pair contains the entity name for the dictionary and DXF group code 350.
 
 Here's an example of an entity data list for a named object dictionary:
 
-((-1. <Entity name: 7ff6646038c0>) (0. "DICTIONARY") (330. <Entity name: 0>) (5. "C") (100. "AcDbDictionary") (280. 0) (281. 1) (3. "ACAD_COLOR") (350. <Entity name: 7ff664603c30>) (3. "ACAD_GROUP") (350. <Entity name: 7ff6646038d0>) (3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>) (3. "ACAD_MATERIAL") (350. <Entity name: 7ff664603c20>))
+```c
+((-1. <Entity name: 7ff6646038c0>) (0. "DICTIONARY") (330. <Entity name: 0>) 
+(5. "C") (100. "AcDbDictionary") (280. 0) (281. 1) 
+(3. "ACAD_COLOR") (350. <Entity name: 7ff664603c30>) 
+(3. "ACAD_GROUP") (350. <Entity name: 7ff6646038d0>) 
+(3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>) 
+(3. "ACAD_MATERIAL") (350. <Entity name: 7ff664603c20>))
+```
 
-The third dictionary entry in the example entity data list is (3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>), and this entry allows you to access the visual styles of the current drawing. The code in Listing 17.1 returns the entity name for a ACAD_VISUALSTYLE dictionary.
+The third dictionary entry in the example entity data list is `(3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>)`, and this entry allows you to access the visual styles of the current drawing. The code in Listing 17.1 returns the entity name for a `ACAD_VISUALSTYLE` dictionary.
 
-Listing 17.1: Custom function that returns the Visual Styles dictionary
+#### Listing 17.1: Custom function that returns the Visual Styles dictionary
 
-; Custom function that returns the entity name of a specific dictionary entry (defun GetDictionaryByKeyEntry (dictionaryEntity dKeyEntry / entityData dKeyEntry dEntityName cnt) (setq entityData (entget dictionaryEntity)) (setq dEntityName nil) (setq cnt 0) (while (and (= dEntityName nil)(< cnt (length entityData))) (if (and (= (car (nth cnt entityData)) 3) (= (cdr (nth cnt entityData)) dKeyEntry)) (progn (setq dEntityName (cdr (nth (1+ cnt) entityData))) ) ) (setq cnt (1+ cnt)) ) dEntityName ) ; Example of using the custom function (GetDictionaryByKeyEntry (namedobjdict) "ACAD_VISUALSTYLE")
+```c
+; Custom function that returns the entity name of a specific dictionary entry 
+(defun GetDictionaryByKeyEntry (dictionaryEntity dKeyEntry / entityData dKeyEntry dEntityName cnt) 
+  (setq entityData (entget dictionaryEntity)) 
+  (setq dEntityName nil) 
+  (setq cnt 0) 
+  (while (and (= dEntityName nil)(< cnt (length entityData))) 
+    (if (and (= (car (nth cnt entityData)) 3) 
+             (= (cdr (nth cnt entityData)) dKeyEntry)) 
+      (progn 
+        (setq dEntityName (cdr (nth (1+ cnt) entityData))) 
+      ) 
+    ) 
+    (setq cnt (1+ cnt)) 
+  ) 
+  dEntityName 
+) 
+; Example of using the custom function 
+(GetDictionaryByKeyEntry (namedobjdict) "ACAD_VISUALSTYLE")
+```
 
-After you have the entity name for the dictionary you want to work with, you can use the dictnext function to return either the first or next item attached to the dictionary. The dictnext function is similar to the tblnext function, which I discussed earlier in this chapter.
+After you have the entity name for the dictionary you want to work with, you can use the `dictnext` function to return either the first or next item attached to the dictionary. The dictnext function is similar to the `tblnext` function, which I discussed earlier in this chapter. The following shows the syntax of the dictnext function:
 
-The following shows the syntax of the dictnext function:
-
+```c
 (dictnext ename [next])
+```
 
 Its arguments are as follows:
 
-ename The ename argument is an entity name that represents the dictionary you want to step through.
+1 ename. The ename argument is an entity name that represents the dictionary you want to step through.
 
-next The next argument is optional, and it specifies whether you want to get the first entry of a dictionary or the entry after the one that was returned by the last use of the dictnext function. Use a value of T to return the entity name of the first entry in the dictionary. When no argument or nil is provided, the entity name of the next entry is returned.
+2 next. The next argument is optional, and it specifies whether you want to get the first entry of a dictionary or the entry after the one that was returned by the last use of the dictnext function. Use a value of T to return the entity name of the first entry in the dictionary. When no argument or nil is provided, the entity name of the next entry is returned.
 
 The following example code uses the AutoLISP dictnext function and the GetDictionaryByKeyEntry function in Listing 17.1 to step through and list the names of each visual style in the drawing. The code is followed by an output listing from one of my drawings.
 
-; Lists the visual styles in the drawing (defun c:listvisualstyles ( / entityData dictionaryName) (setq dictionaryName (GetDictionaryByKeyEntry (namedobjdict) "ACAD_VISUALSTYLE")) (prompt "\nVisual styles in this drawing:") (setq entityData (dictnext dictionaryName T)) (while entityData (prompt (strcat "\n" (cdr (assoc 2 entityData)))) (setq entityData (dictnext dictionaryName)) ) (princ) ) Visual styles in this drawing: 2dWireframe Basic Brighten ColorChange Conceptual Dim EdgeColorOff Facepattern Flat FlatWithEdges Gouraud GouraudWithEdges Hidden JitterOff Linepattern OverhangOff Realistic Shaded Shaded with edges Shades of Gray Sketchy Thicken Wireframe X-Ray
+```c
+; Lists the visual styles in the drawing 
+(defun c:listvisualstyles ( / entityData dictionaryName) 
+  (setq dictionaryName (GetDictionaryByKeyEntry (namedobjdict) "ACAD_VISUALSTYLE")) 
+  (prompt "\nVisual styles in this drawing:") 
+  (setq entityData (dictnext dictionaryName T)) 
+  (while entityData 
+    (prompt (strcat "\n" (cdr (assoc 2 entityData)))) 
+    (setq entityData (dictnext dictionaryName)) 
+  ) 
+  (princ) 
+) 
 
-If you know (or want to check for the existence of) a key entry in a dictionary, you can use the dictsearch function. If the name of the key entry in the dictionary exists, the entity data list of the key entry is returned; otherwise, nil is returned. Here's an example of using the dictsearch function to get the entity data list associated with the ACAD_TABLESTYLE dictionary:
+Visual styles in this drawing: 
+2dWireframe
+Basic 
+Brighten 
+ColorChange 
+Conceptual 
+Dim 
+EdgeColorOff 
+Facepattern 
+Flat 
+FlatWithEdges 
+Gouraud 
+GouraudWithEdges 
+Hidden 
+JitterOff 
+Linepattern 
+OverhangOff 
+Realistic 
+Shaded 
+Shaded with edges 
+Shades of Gray 
+Sketchy 
+Thicken 
+Wireframe 
+X-Ray
+```
 
-(setq entityData (dictsearch (namedobjdict) "ACAD_TABLESTYLE")) ((-1. <Entity name: 7ff664603ce0>) (0. "DICTIONARY") (5. "86") (102. "{ACAD_REACTORS") (330. <Entity name: 7ff6646038c0>) (102. "}") (330. <Entity name: 7ff6646038c0>) (100. "AcDbDictionary") (280. 0) (281. 1) (3. "Standard") (350. <Entity name: 7ff664603cf0>))
+If you know (or want to check for the existence of) a key entry in a dictionary, you can use the `dictsearch` function. If the name of the key entry in the dictionary exists, the entity data list of the key entry is returned; otherwise, nil is returned. Here's an example of using the dictsearch function to get the entity data list associated with the `ACAD_TABLESTYLE` dictionary:
 
-Once you have the entity data list for the dictionary, you can use the assoc function to get the dictionary's entity name, which is associated with the DXF group code –1. After you get the entity name for the dictionary, you can then pass it to the dictsearch function to locate a specific key entry in the dictionary. The following shows how to get the Standard table style entry from the entity data list of the ACAD_TABLESTYLE dictionary:
+```c
+(setq entityData (dictsearch (namedobjdict) "ACAD_TABLESTYLE")) 
 
-(setq entityNameTS (cdr (assoc -1 entityData))) (setq entityDataTS (dictsearch entityNameTS "STANDARD")) ((-1. <Entity name: 7ff664603cf0>) (0. "TABLESTYLE") (5. "87") (102. "{ACAD_XDICTIONARY") (360. <Entity name: 7ff664605340>) (102. "}") (102. "{ACAD_REACTORS") (330. <Entity name: 7ff664603ce0>) (102. "}") (330. <Entity name: 7ff664603ce0>) (100. "AcDbTableStyle") (280. 0) (3. "Standard") … (68. 0) (279. -2) (289. 1) (69. 0))
+((-1. <Entity name: 7ff664603ce0>) (0. "DICTIONARY") (5. "86") 
+(102. "{ACAD_REACTORS") (330. <Entity name: 7ff6646038c0>) 
+(102. "}") (330. <Entity name: 7ff6646038c0>) 
+(100. "AcDbDictionary") (280. 0) (281. 1) (3. "Standard") 
+(350. <Entity name: 7ff664603cf0>))
+```
+
+Once you have the entity data list for the dictionary, you can use the assoc function to get the dictionary's entity name, which is associated with the DXF group code –1. After you get the entity name for the dictionary, you can then pass it to the dictsearch function to locate a specific key entry in the dictionary. The following shows how to get the Standard table style entry from the entity data list of the `ACAD_TABLESTYLE` dictionary:
+
+```c
+(setq entityNameTS (cdr (assoc -1 entityData))) 
+(setq entityDataTS (dictsearch entityNameTS "STANDARD")) 
+
+((-1. <Entity name: 7ff664603cf0>) (0. "TABLESTYLE") (5. "87") 
+(102. "{ACAD_XDICTIONARY") (360. <Entity name: 7ff664605340>) 
+(102. "}") (102. "{ACAD_REACTORS") (330. <Entity name: 7ff664603ce0>) 
+(102. "}") (330. <Entity name: 7ff664603ce0>) (100. "AcDbTableStyle") 
+(280. 0) (3. "Standard") 
+… 
+(68. 0) (279. -2) (289. 1) (69. 0))
+```
 
 Here's the syntax of the dictsearch function:
 
+```c
 (dictsearch ename entry)
+```
 
 Its arguments are as follows:
 
-ename The ename argument is an entity name that represents the dictionary you want to query to check for the existence of the key entry specified by the entry argument.
+1 ename. The ename argument is an entity name that represents the dictionary you want to query to check for the existence of the key entry specified by the entry argument.
 
-entry The entry argument is a string that represents the entry you want to check for in the dictionary specified by the ename argument.
+2 entry. The entry argument is a string that represents the entry you want to check for in the dictionary specified by the ename argument.
 
-NOTE
+NOTE: You can use the `layoutlist` function to get a list of the named layouts in the current drawing. For more information on this function, see the AutoCAD Help system.
 
-You can use the layoutlist function to get a list of the named layouts in the current drawing. For more information on this function, see the AutoCAD Help system.
+### 7.2.2 Creating a Custom Dictionary
 
-Creating a Custom Dictionary
-
-As I mentioned earlier, one of the benefits of dictionaries is that you can store custom information or settings related to the programs you create in a drawing. Before a custom dictionary can be used and entries added to it, it must first be created. The entmakex function, not entmake, is used to create a dictionary. Once created, the new dictionary can be attached to either the named object dictionary or an object as an extension dictionary. You attach the new dictionary to the drawing's named object dictionary with the dictadd function.
+As I mentioned earlier, one of the benefits of dictionaries is that you can store custom information or settings related to the programs you create in a drawing. Before a custom dictionary can be used and entries added to it, it must first be created. The `entmakex` function, not entmake, is used to create a dictionary. Once created, the new dictionary can be attached to either the named object dictionary or an object as an extension dictionary. You attach the new dictionary to the drawing's named object dictionary with the dictadd function.
 
 The following shows the syntax of the dictadd function:
 
+```c
 (dictadd ename key_entry dictionary)
+```
 
 Its arguments are as follows:
 
-ename The ename argument is an entity name that represents the object (named or object's extension dictionary). The dictionary that is specified by the dictionary argument is attached to the object.
+1 ename. The ename argument is an entity name that represents the object (named or object's extension dictionary). The dictionary that is specified by the dictionary argument is attached to the object.
 
-key_entry The key_entry argument is a string that represents the unique key entry name that you want to associate with the dictionary that is specified by the dictionary argument.
+2 `key_entry`. The `key_entry` argument is a string that represents the unique key entry name that you want to associate with the dictionary that is specified by the dictionary argument.
 
-dictionary The dictionary argument is an entity name that represents the dictionary that you want to attach to the entity name specified by the ename argument.
+3 dictionary. The dictionary argument is an entity name that represents the dictionary that you want to attach to the entity name specified by the ename argument.
 
-Here's an example that creates a dictionary named MY_CUSTOM_DICTIONARY and adds it to the named object dictionary:
+Here's an example that creates a dictionary named `MY_CUSTOM_DICTIONARY` and adds it to the named object dictionary:
 
-; Create dictionary object (setq entityName (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary")))) ; Add the dictionary to the named object dictionary (setq newdictionary (dictadd (namedobjdict) "MY_CUSTOM_DICTIONARY" entityName))
+```c
+; Create dictionary object 
+(setq entityName (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary")))) 
+; Add the dictionary to the named object dictionary 
+(setq newdictionary (dictadd (namedobjdict) "MY_CUSTOM_DICTIONARY" entityName))
+```
 
-In addition to adding a dictionary to the named object dictionary that is returned by the namedobjdict function, you can create an extension dictionary on a graphical object. The extension dictionary is similar to the named object dictionary of a drawing, and it can hold nested dictionaries of extended records. I discuss extended records (Xrecords) in the next section.
+1『可以把字典作为一个图纸的数据库。待实现。（2021-03-12）』
+
+In addition to adding a dictionary to the named object dictionary that is returned by the `namedobjdict` function, you can create an extension dictionary on a graphical object. The extension dictionary is similar to the named object dictionary of a drawing, and it can hold nested dictionaries of extended records. I discuss extended records (Xrecords) in the next section.
 
 This example adds an extension dictionary to the last object in a drawing:
 
-; Creates a new dictionary (setq dictionary (entmakex (list (cons 0 "DICTIONARY")(cons 100 "AcDbDictionary")))) ; Entity Data list of the extension dictionary (setq exDictionary (list (cons 102 "{ACAD_XDICTIONARY") (cons 360 dictionary)(cons 102 "}"))) ; Attach the extension dictionary to the last object (setq entityData (append (entget (entlast)) exDictionary)) (entmod entityData)
+```c
+; Creates a new dictionary 
+(setq dictionary (entmakex (list (cons 0 "DICTIONARY")(cons 100 "AcDbDictionary")))) 
+; Entity Data list of the extension dictionary 
+(setq exDictionary (list (cons 102 "{ACAD_XDICTIONARY") (cons 360 dictionary)(cons 102 "}"))) 
+; Attach the extension dictionary to the last object 
+(setq entityData (append (entget (entlast)) exDictionary)) 
+(entmod entityData)
 
-Once the extension dictionary is attached to the object, you can use the DXF group code 360 to get the entity name of the extension dictionary. With the entity name, you can then add dictionaries or Xrecords to the object's extension dictionary.
+```
 
-This example gets the entity name of the extension dictionary attached to the last object in the drawing:
+Once the extension dictionary is attached to the object, you can use the DXF group code 360 to get the entity name of the extension dictionary. With the entity name, you can then add dictionaries or Xrecords to the object's extension dictionary. This example gets the entity name of the extension dictionary attached to the last object in the drawing:
 
+```c
 (cdr (assoc 360 (entget (entlast))))
+```
 
 nil is returned if no extension dictionary has been added to the object.
 
-Storing Information in a Custom Dictionary
+### 7.2.3 Storing Information in a Custom Dictionary
 
-After a custom dictionary has been created, you add entries to a custom dictionary using the dictadd function. Entries of a custom dictionary are often of the extended record (also known as an Xrecord) object type. An Xrecord is similar to XData and can be attached to an object, but it contains DXF group codes that are in the same range as graphical objects. You create an Xrecord with the entmakex function before attaching it to the dictionary.
+After a custom dictionary has been created, you add entries to a custom dictionary using the `dictadd` function. Entries of a custom dictionary are often of the extended record (also known as an Xrecord) object type. An Xrecord is similar to XData and can be attached to an object, but it contains DXF group codes that are in the same range as graphical objects. You create an Xrecord with the `entmakex` function before attaching it to the dictionary.
 
-The following code creates an Xrecord and attaches it to MY_CUSTOM_DICTIONARY, which can be created using the example from the previous section, with the XR1 key entry. The Xrecord contains a string (DXF group code 1), a coordinate value (DXF group code 10), and an integer (DXF group code 71).
+The following code creates an Xrecord and attaches it to `MY_CUSTOM_DICTIONARY`, which can be created using the example from the previous section, with the XR1 key entry. The Xrecord contains a string (DXF group code 1), a coordinate value (DXF group code 10), and an integer (DXF group code 71).
 
-; Add the Xrecord to the dictionary (dictadd newdictionary "XR1" (entmakex (list (cons 0 "XRECORD")(cons 100 "AcDbXrecord") (cons 1 "Custom string")(cons 10 (list 5.0 5.0 0.0)) (cons 71 11))))
+```c
+; Add the Xrecord to the dictionary 
+(dictadd newdictionary "XR1" 
+  (entmakex (list (cons 0 "XRECORD")(cons 100 "AcDbXrecord") 
+                  (cons 1 "Custom string")(cons 10 (list 5.0 5.0 0.0)) (cons 71 11))
+  )
+)
+```
 
-If you need to make a change to the data contained in an Xrecord that has been attached to a dictionary, use the dictsearch function to get the entry's entity data list. The dotted pairs in the entity data list can be replaced with the assoc function as needed, just like updating a graphical object or symbol table entry. Entries can also be renamed from a custom dictionary; you'll learn how to rename and remove entries in the next section.
+If you need to make a change to the data contained in an Xrecord that has been attached to a dictionary, use the `dictsearch` function to get the entry's entity data list. The dotted pairs in the entity data list can be replaced with the assoc function as needed, just like updating a graphical object or symbol table entry. Entries can also be renamed from a custom dictionary; you'll learn how to rename and remove entries in the next section.
 
-Managing Custom Dictionaries and Entries
+### 7.2.4 Managing Custom Dictionaries and Entries
 
 After a dictionary or Xrecord object has been created and attached, you can change its key entry or remove it as needed. Although you can freely rename and remove the dictionaries and Xrecords you create, those created by AutoCAD can also be renamed and removed. I recommend being cautious about renaming or removing those created by AutoCAD, because doing so could cause problems. Not all dictionaries and objects attached to a dictionary can be removed since they may be referenced by other objects. When a dictionary is successfully renamed, the new name of the dictionary is returned (or nil is returned when the dictionary couldn't be renamed). Similarly, the ename of a dictionary is returned when a dictionary is removed or nil is returned if it couldn't be removed.
 
-You can use the dictrename function to change the current key entry to a new key entry value. The dictremove function can be used to remove a dictionary or an entry in a dictionary.
+You can use the dictrename function to change the current key entry to a new key entry value. The dictremove function can be used to remove a dictionary or an entry in a dictionary. The following shows the syntax of the dictrename function:
 
-The following shows the syntax of the dictrename function:
-
+```c
 (dictrename ename old_key_entry new_key_entry)
+```
 
 Its arguments are as follows:
 
-ename The ename argument is an entity name that represents the dictionary or entry whose current key entry name (old_key_entry argument) you want to change to the new key entry name (new_key_entry argument).
+1 ename. The ename argument is an entity name that represents the dictionary or entry whose current key entry name (`old_key_entry` argument) you want to change to the new key entry name (`new_key_entry` argument).
 
-old_key_entry The old_key_entry argument is a string that represents the current unique key entry name associated with the dictionary or entry that is specified by the ename argument.
+2 `old_key_entry`. The `old_key_entry` argument is a string that represents the current unique key entry name associated with the dictionary or entry that is specified by the ename argument.
 
-new_key_entry The new_key_entry argument is a string that represents the new unique key entry name that should replace the key entry specified by the old_key_entry argument.
+3 `new_key_entry`. The `new_key_entry` argument is a string that represents the new unique key entry name that should replace the key entry specified by the `old_key_entry` argument.
 
 The following shows the syntax of the dictremove function:
 
+```c
 (dictremove ename key_entry)
+```
 
 Its arguments are as follows:
 
-ename The ename argument is an entity name that represents the dictionary that has the dictionary or entry you want to remove.
+1 ename. The ename argument is an entity name that represents the dictionary that has the dictionary or entry you want to remove.
 
-key_entry The key_entry argument is a string that represents the unique key entry name of the dictionary or entry you want to remove from the object specified by the ename argument.
+2 `key_entry`. The `key_entry` argument is a string that represents the unique key entry name of the dictionary or entry you want to remove from the object specified by the ename argument.
 
 Here are examples that rename and remove a custom dictionary:
 
-; Renames the key entry of a dictionary (dictrename (namedobjdict) "MY_CUSTOM_DICTIONARY" "MY_DICTIONARY") ; Removes the custom dictionary with the key entry "MY_DICTIONARY" (dictremove (namedobjdict) "MY_DICTIONARY")
+```c
+; Renames the key entry of a dictionary 
+(dictrename (namedobjdict) "MY_CUSTOM_DICTIONARY" "MY_DICTIONARY") 
+; Removes the custom dictionary with the key entry "MY_DICTIONARY" 
+(dictremove (namedobjdict) "MY_DICTIONARY")
+```
 
 ## 7.3 Exercise: Creating and Incrementing Room Labels
 
@@ -525,105 +691,301 @@ In this section, you will create several new functions that will be used to defi
 
 As you insert a room label block with the custom program, a counter increments by 1 so you can place the next room label without having to manually enter a new value. Before the room-labeling program ends, the last calculated value is stored in a custom dictionary so it can be retrieved the next time the program is started (instead of using global variables). The key concepts covered in this exercise are as follows:
 
-Creating and Modifying Symbol Table Entries Symbol table entries in a drawing can affect the display of graphical objects in a drawing. Each drawing that you create contains a set number of symbol tables you can access using AutoLISP. You can then create or manipulate any of the entries that are in one of the symbol tables.
+1 Creating and Modifying Symbol Table Entries. Symbol table entries in a drawing can affect the display of graphical objects in a drawing. Each drawing that you create contains a set number of symbol tables you can access using AutoLISP. You can then create or manipulate any of the entries that are in one of the symbol tables.
 
-Using Symbol Table Entries As new objects are created, you can assign the names of symbol table entries to various properties of an object so that it inherits the symbol table entries' properties. You can change the value associated with the DXF group code 8 of an object to move the object between layers, or even change the value associated to the DXF group code 2 of a block reference to change which block definition it inherits its geometry from.
+2 Using Symbol Table Entries. As new objects are created, you can assign the names of symbol table entries to various properties of an object so that it inherits the symbol table entries' properties. You can change the value associated with the DXF group code 8 of an object to move the object between layers, or even change the value associated to the DXF group code 2 of a block reference to change which block definition it inherits its geometry from.
 
-Creating and Storing Information in a Custom Dictionary Values assigned to variables in a drawing are temporary, but you can use custom dictionaries to persist values across drawing sessions. The values stored in a drawing can then be recovered by your programs after the drawing is closed and reopened, similar to how system variables work.
+3 Creating and Storing Information in a Custom Dictionary. Values assigned to variables in a drawing are temporary, but you can use custom dictionaries to persist values across drawing sessions. The values stored in a drawing can then be recovered by your programs after the drawing is closed and reopened, similar to how system variables work.
 
-NOTE
+NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Creating, Querying, and Modifying Objects」section of Chapter 16. If you didn't complete these exercises, do so now or start with the `ch17_building_plan.dwg` and `ch17_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the files are stored on your system, remove ch17_ from the name of the LSP file.
 
-The steps in this exercise depend on the completion of the steps in the「Exercise: Creating, Querying, and Modifying Objects」section of Chapter 16. If you didn't complete these exercises, do so now or start with the ch17_building_plan.dwg and ch17_utility.lsp sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the files are stored on your system, remove ch17_ from the name of the LSP file.
+### 7.3.1 Revising the createlayer Function in utility.lsp
 
-Revising the createlayer Function in utility.lsp
-
-The changes you will make to the utility.lsp file update the createlayer function so that the function checks to see if the layer already exists before it creates the layer, instead of the current behavior of automatically creating/modifying the layer. With these changes, the function checks for the existence of the layer with the tblobjname function and creates the new layer (if it doesn't already exist) using the entmake function.
+The changes you will make to the utility.lsp file update the createlayer function so that the function checks to see if the layer already exists before it creates the layer, instead of the current behavior of automatically creating/modifying the layer. With these changes, the function checks for the existence of the layer with the `tblobjname` function and creates the new layer (if it doesn't already exist) using the entmake function.
 
 The following steps explain how to update the various functions in the utility.lsp file:
 
-Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS.
+1 Open the utility.lsp file in Notepad on Windows or TextEdit on Mac OS.
 
-In the text editor area, update the createrlayer function to match the code that follows:; CreateLayer function creates a layer and ; expects two argument values. (defun createlayer (name color / ) (if (= (tblobjname "layer" name) nil) (entmake (list (cons 0 "LAYER") (cons 100 "AcDbSymbolTableRecord") (cons 100 "AcDbLayerTableRecord") (cons 2 name) (cons 70 0) (cons 62 color) (cons 6 "Continuous"))) ) )
+2 In the text editor area, update the createrlayer function to match the code that follows:
 
-Click File Save.
+```c
+; CreateLayer function creates a layer and 
+; expects two argument values. 
+(defun createlayer (name color / ) 
+  (if (= (tblobjname "layer" name) nil) 
+    (entmake (list (cons 0 "LAYER") (cons 100 "AcDbSymbolTableRecord") 
+                   (cons 100 "AcDbLayerTableRecord") (cons 2 name) (cons 70 0) 
+                   (cons 62 color) (cons 6 "Continuous"))
+    ) 
+  ) 
+) 
+```
 
-Creating the Room Label Block Definition
+3 Click File Save.
+
+### 7.3.2 Creating the Room Label Block Definition
 
 Creating separate drawing files that your custom programs depend on has its advantages and disadvantages. The advantage of creating a separate drawing file is that you can use the AutoCAD user interface to create the block file. However, AutoCAD will need to know where the drawing file is stored so the custom program can use the file. The advantage of creating the block definition through code is that no separate drawing file needs to be maintained, making it easier to share your custom application with your clients or subcontractors.
 
-In these steps, you create a custom function named roomlabel_createblkdef that will be used to create the block definition for the room label block if it doesn't already exist in the drawing.
+In these steps, you create a custom function named `roomlabel_createblkdef` that will be used to create the block definition for the room label block if it doesn't already exist in the drawing.
 
-Create a new LSP file named roomlabel.lsp using Notepad (on Windows) or TextEdit (on Mac OS).
+1 Create a new LSP file named roomlabel.lsp using Notepad (on Windows) or TextEdit (on Mac OS).
 
-In the text editor area of the roomlabel.lsp file, type the following:; Creates the block definition roomlabel (defun RoomLabel_CreateBlkDef ( / ) (setvar "clayer" "0") ; Start block definition (entmake (list (cons 0 "BLOCK") (cons 2 "roomlabel") (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) ; Create the rectangle for around the block attribute (createrectangle (list 0.0 0.0 0.0) (list 36.0 0.0 0.0) (list 36.0 18.0 0.0) (list 0.0 18.0 0.0)) ; Add the attribute definition (entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") (cons 8 "Plan_RoomLabel_Anno") (cons 100 "AcDbText") (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") (cons 7 "Standard") (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) (cons 100 "AcDbAttributeDefinition") (cons 280 0) (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))) ; End block definition (entmake (list (cons 0 "ENDBLK"))) (princ) )
+2 In the text editor area of the roomlabel.lsp file, type the following:
 
-Click File Save. The block definition that will be created when the code is executed is shown in Figure 17.1.
+```c
+; Creates the block definition roomlabel 
+(defun RoomLabel_CreateBlkDef ( / ) 
+  (setvar "clayer" "0") 
+  ; Start block definition 
+  (entmake (list (cons 0 "BLOCK") (cons 2 "roomlabel") 
+                 (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
+  ; Create the rectangle for around the block attribute 
+  (createrectangle (list 0.0 0.0 0.0) (list 36.0 0.0 0.0) (list 36.0 18.0 0.0) (list 0.0 18.0 0.0)) 
+  ; Add the attribute definition 
+  (entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") 
+                 (cons 8 "Plan_RoomLabel_Anno") (cons 100 "AcDbText") 
+                 (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") 
+                 (cons 7 "Standard") (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) 
+                 (cons 100 "AcDbAttributeDefinition") (cons 280 0) 
+                 (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))) 
+  ; End block definition 
+  (entmake (list (cons 0 "ENDBLK"))) 
+  (princ) 
+)
+```
+
+3 Click File Save. The block definition that will be created when the code is executed is shown in Figure 17.1.
 
 Figure 17.1 RoomLabel block definition
 
-Inserting a Block Reference Based on the Room Label Block Definition
+### 7.3.3 Inserting a Block Reference Based on the Room Label Block Definition
 
 Once the block definition has been created and added to the block symbol table, it can be inserted into the drawing with the insert command or even used to define a block reference with the entmake function.
 
-In the next exercise steps, you will create three custom functions: addattrefs, changeattvalue, and roomlabel_insertblkref. The addattrefs function is a helper function used to add attribute references to a block reference based on the attribute definitions that are part of a block definition. The changeattvalue function allows you to revise the insertion point and value of an attribute reference attached to a block reference based on the attribute's tag. The roomlabel_insertblkref function creates a block reference based on the RoomLabel block definition that we created with the roomlabel_createblkdef function.
+In the next exercise steps, you will create three custom functions: `addattrefs`, `changeattvalue`, and `roomlabel_insertblkref`. The `addattrefs` function is a helper function used to add attribute references to a block reference based on the attribute definitions that are part of a block definition. The `changeattvalue` function allows you to revise the insertion point and value of an attribute reference attached to a block reference based on the attribute's tag. The `roomlabel_insertblkref` function creates a block reference based on the RoomLabel block definition that we created with the `roomlabel_createblkdef` function.
 
-Open the roomlabel.lsp file with Notepad (Windows) or TextEdit (Mac OS), if it is not already open.
+1 Open the roomlabel.lsp file with Notepad (Windows) or TextEdit (Mac OS), if it is not already open.
 
-In the text editor area of the roomlabel.lsp file, type the following:; Adds attribute references from a block definition to a block reference (defun AddAttRefs (blockName / entityName entityData) ; Gets the entity name for the block definition (setq entityName (tblobjname "block" blockName)) ; Steps through the block definition (while entityName ; Gets the entity data list for the entity (setq entityData (entget entityName)) ; Checks to see if the entity is an attribute definition (if (= (strcase (cdr (assoc 0 entityData))) "ATTDEF") ; Checks to see if the attribute definition is constant or not (if (/= (logand 2 (cdr (assoc 70 entityData)))) (progn ; Converts the object type from ATTDEF to ATTRIB (setq entityData (subst (cons 0 "ATTRIB") (assoc 0 entityData) entityData)) (setq entityData (subst (cons 100 "AcDbAttribute") (cons 100 "AcDbAttributeDefinition") entityData)) ; Removes the Handle, entity name, and owner from ; the entity data list (foreach dxfGroupCode (list -1 5 330 3) ; 67 210 (setq list_begin (reverse (cdr (member (assoc dxfGroupCode entityData) (reverse entityData))))) (setq list_end (cdr (member (assoc dxfGroupCode entityData) entityData))) (setq entityData (append list_begin list_end)) ) ; Creates the new attribute reference based on ; the attribute definition (entmake entityData) ) ) ) ; Gets the next block in the block definition (setq entityName (entnext entityName)) ) (princ) ) ; Changes the value of an attribute reference in a block reference (defun ChangeAttValue (blkRefEntityName insPt attTag newValue / entityName entityData) ; Gets the first object in a block reference (setq entityName (entnext blkRefEntityName)) ; Steps through the block reference (while entityName ; Gets the entity data list for the entity (setq entityData (entget entityName)) ; Checks to see if the entity is an attribute definition (if (= (strcase (cdr (assoc 0 entityData))) "ATTRIB") ; Checks to see if the attribute definition is constant or not (if (= (strcase (cdr (assoc 2 entityData))) (strcase attTag)) (progn ; Update the attribute value (entmod (setq entityData (subst (cons 1 newValue) (assoc 1 entityData) entityData))) ; Changes the position of the attribute (if (/= insPt nil) (progn (entmod (setq entityData (subst (cons 10 insPt) (assoc 10 entityData) entityData))) (entmod (setq entityData (subst (cons 11 insPt) (assoc 11 entityData) entityData))) ) ) (entupd entityName) ) ) ) ; Gets the next block in the block reference (setq entityName (entnext entityName)) ) (princ) ) ; Creates the block definition roomlabel (defun RoomLabel_InsertBlkRef (insPoint labelValue / blkLayer) (setq blkLayer "Plan_RoomLabel_Anno") ; Creates the "Plan_RoomLabel_Anno" layer (createlayer blkLayer 150) ; Checks to see if the block definition exists in the drawing; ; if not, the block definition is added (if (= (tblobjname "block" "roomlabel") nil) (RoomLabel_CreateBlkDef) ) ; Creates the block reference (entmake (list (cons 0 "INSERT") (cons 8 blkLayer) (cons 100 "AcDbEntity") (cons 100 "AcDbBlockReference") (cons 66 1) (cons 2 "roomlabel") (cons 10 insPoint))) ; Adds the attribute references to the block reference (AddAttRefs "roomlabel") ; Ends block reference (entmake (list (cons 0 "SEQEND") (cons 100 "AcDbEntity"))) ; Changes the attribute value of the "ROOM#" (ChangeAttValue (entlast) insPoint "ROOM#" labelValue) (princ) )
+2 In the text editor area of the roomlabel.lsp file, type the following:
 
-Click File Save.
+```c
+; Adds attribute references from a block definition to a block reference 
+(defun AddAttRefs (blockName / entityName entityData) 
+  ; Gets the entity name for the block definition 
+  (setq entityName (tblobjname "block" blockName)) 
+  ; Steps through the block definition 
+  (while entityName 
+    ; Gets the entity data list for the entity 
+    (setq entityData (entget entityName)) 
+    ; Checks to see if the entity is an attribute definition 
+    (if (= (strcase (cdr (assoc 0 entityData))) "ATTDEF") 
+      ; Checks to see if the attribute definition is constant or not 
+      (if (/= (logand 2 (cdr (assoc 70 entityData)))) 
+        (progn 
+          ; Converts the object type from ATTDEF to ATTRIB 
+          (setq entityData (subst (cons 0 "ATTRIB") (assoc 0 entityData) entityData)) 
+          (setq entityData (subst (cons 100 "AcDbAttribute") (cons 100 "AcDbAttributeDefinition") entityData)) 
+          ; Removes the Handle, entity name, and owner from 
+          ; the entity data list 
+          (foreach dxfGroupCode (list -1 5 330 3) ; 67 210 
+            (setq list_begin (reverse (cdr (member (assoc dxfGroupCode entityData) (reverse entityData))))) 
+            (setq list_end (cdr (member (assoc dxfGroupCode entityData) entityData))) 
+            (setq entityData (append list_begin list_end)
+          ) 
+        ) 
+        ; Creates the new attribute reference based on 
+        ; the attribute definition 
+        (entmake entityData) 
+      ) 
+    ) 
+  ) 
+  ; Gets the next block in the block definition 
+  (setq entityName (entnext entityName)) ) 
+  (princ) 
+) 
 
-Prompting the User for an Insertion Point and Room Number
+; Changes the value of an attribute reference in a block reference 
+(defun ChangeAttValue (blkRefEntityName insPt attTag newValue / entityName entityData) 
+  ; Gets the first object in a block reference 
+  (setq entityName (entnext blkRefEntityName)) 
+  ; Steps through the block reference 
+  (while entityName 
+    ; Gets the entity data list for the entity 
+    (setq entityData (entget entityName)) 
+    ; Checks to see if the entity is an attribute definition 
+    (if (= (strcase (cdr (assoc 0 entityData))) "ATTRIB") 
+      ; Checks to see if the attribute definition is constant or not 
+      (if (= (strcase (cdr (assoc 2 entityData))) (strcase attTag)) 
+        (progn 
+          ; Update the attribute value 
+          (entmod (setq entityData (subst (cons 1 newValue) (assoc 1 entityData) entityData))) 
+          ; Changes the position of the attribute 
+          (if (/= insPt nil) 
+            (progn 
+              (entmod (setq entityData (subst (cons 10 insPt) (assoc 10 entityData) entityData))) 
+              (entmod (setq entityData (subst (cons 11 insPt) (assoc 11 entityData) entityData))) 
+            ) 
+          ) 
+          (entupd entityName) ) 
+        ) 
+      ) 
+      ; Gets the next block in the block reference 
+      (setq entityName (entnext entityName)
+    ) 
+  ) 
+  (princ) 
+) 
+
+; Creates the block definition roomlabel 
+(defun RoomLabel_InsertBlkRef (insPoint labelValue / blkLayer) (setq blkLayer "Plan_RoomLabel_Anno") 
+  ; Creates the "Plan_RoomLabel_Anno" layer 
+  (createlayer blkLayer 150) 
+  ; Checks to see if the block definition exists in the drawing; 
+  ; if not, the block definition is added 
+  (if (= (tblobjname "block" "roomlabel") nil) 
+    (RoomLabel_CreateBlkDef) 
+  ) 
+  ; Creates the block reference 
+  (entmake (list (cons 0 "INSERT") (cons 8 blkLayer) 
+                 (cons 100 "AcDbEntity") (cons 100 "AcDbBlockReference") 
+                 (cons 66 1) (cons 2 "roomlabel") (cons 10 insPoint))) 
+  ; Adds the attribute references to the block reference 
+  (AddAttRefs "roomlabel") 
+  ; Ends block reference 
+  (entmake (list (cons 0 "SEQEND") (cons 100 "AcDbEntity"))) 
+  ; Changes the attribute value of the "ROOM#" 
+  (ChangeAttValue (entlast) insPoint "ROOM#" labelValue) 
+  (princ) 
+)
+```
+
+3 Click File Save.
+
+1『原来定义块、插入块参照、修改块属性的借鉴代码是在这里，之前没找到。好在后来通过其他途径找到了实现方法，具体详见设计流源码。这几个功能是「基石」性技术。（2021-03-12）』
+
+### 7.3.4 Prompting the User for an Insertion Point and Room Number
 
 Now that you have defined the functions for creating the block definition and inserting the block reference into a drawing, you need a function that prompts the user for input. The roomlabel function will allow the user to specify a point in the drawing, provide a new room number, or provide a new prefix. The roomlabel function uses the default number of 101 and a prefix of L.
 
-As you use the roomlabel function, it creates and uses a custom dictionary named My_Custom_Program_Settings with an entry RoomLabel. If the RoomLabel entry exists, it writes the number and prefix of the last room label that you placed. Closing and reopening the drawing results in the program picking up where you left off.
+As you use the `roomlabel` function, it creates and uses a custom dictionary named `My_Custom_Program_Settings` with an entry RoomLabel. If the RoomLabel entry exists, it writes the number and prefix of the last room label that you placed. Closing and reopening the drawing results in the program picking up where you left off.
 
 In these steps, you'll create the custom function roomlabel that uses all the functions that you defined in this exercise to place a RoomLabel block each time you specify a point in the drawing:
 
-Open the roomlabel.lsp file with Notepad (Windows) or TextEdit (Mac OS), if it is not already open.
+1 Open the roomlabel.lsp file with Notepad (Windows) or TextEdit (Mac OS), if it is not already open.
 
-In the text editor area of the roomlabel.lsp file, type the following:; Prompts the user for an insertion point and room number (defun c:RoomLabel ( / lastNumber lastPrefix entityName roomLabelEntry val newNumber newPrefix roomLabelEntry mySettings) ; Gets the custom dictionary "My_Custom_Program_Settings" if it exists (setq mySettings (cdr (assoc -1 (dictsearch (namedobjdict) "My_Custom_Program_Settings")))) ; Defines initial values (setq lastNumber 101 lastPrefix "L") ; If the dictionary exists, gets the last used room number (if (/= mySettings nil) (progn ; Gets the last room number from the "RoomLabel" key entry (if (/= (setq roomLabelEntry (dictsearch mySettings "RoomLabel")) nil) (progn ; Gets the previously stored number and prefix (setq lastNumber (cdr (assoc 71 roomLabelEntry))) (setq lastPrefix (cdr (assoc 1 roomLabelEntry))) ) ) ) (progn ; Creates the new "My_Custom_Program_Settings" (setq entityName (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary")))) (setq mySettings (dictadd (namedobjdict) "My_Custom_Program_Settings" entityName)) ) ) ; If no "RoomLabel" entry exists, creates one based on the defaults (if (= roomLabelEntry nil) (progn (dictadd mySettings "RoomLabel" (entmakex (list (cons 0 "XRECORD")(cons 100 "AcDbXrecord") (cons 1 lastPrefix)(cons 71 lastNumber)))) ) ) ; Displays current values (prompt (strcat "\nPrefix: " lastPrefix "\tNumber: " (itoa lastNumber))) (initget "Number Prefix") ; Prompts the user for an insertion point (while (setq val (getpoint (strcat "\nSpecify point for room label (" lastPrefix (itoa lastNumber) ") or change [Number/Prefix]: "))) ; Checks to see if the user provided a keyword or insertion point ; User provided a string (cond ((= (type val) 'STR) (if (= (strcase val) "NUMBER") ; User specified to enter a number (progn (setq newNumber (getint (strcat "\nEnter new room number <" (itoa lastNumber) ">: "))) (if newNumber (setq lastNumber newNumber)) ) ; User specified to enter a new prefix (progn (setq newPrefix (getstring (strcat "\nEnter new room number prefix <" lastPrefix ">: "))) (if newPrefix (setq lastPrefix newPrefix)) ) ) ) ; User provided a point: insert room label block based on values ((= (type val) 'LIST) (RoomLabel_InsertBlkRef val (strcat lastPrefix (itoa lastNumber))) ; Increments number by 1 (setq lastNumber (1+ lastNumber)) ) ) ; Removes and re-creates the "RoomLabel" dictionary entry (dictremove mySettings "RoomLabel") (dictadd mySettings "RoomLabel" (entmakex (list (cons 0 "XRECORD")(cons 100 "AcDbXrecord") (cons 1 lastPrefix)(cons 71 lastNumber)))) ; Displays current values (prompt (strcat "\nPrefix: " lastPrefix "\tNumber: " (itoa lastNumber))) (initget "Number Prefix") ) (princ) )
+2 In the text editor area of the roomlabel.lsp file, type the following:
 
-Click File Save.
+```c
+; Prompts the user for an insertion point and room number 
+(defun c:RoomLabel ( / lastNumber lastPrefix entityName roomLabelEntry val newNumber newPrefix roomLabelEntry mySettings) 
+  ; Gets the custom dictionary "My_Custom_Program_Settings" if it exists 
+  (setq mySettings (cdr (assoc -1 (dictsearch (namedobjdict) "My_Custom_Program_Settings")))) 
+  ; Defines initial values 
+  (setq lastNumber 101 lastPrefix "L") 
+  ; If the dictionary exists, gets the last used room number 
+  (if (/= mySettings nil) 
+    (progn 
+      ; Gets the last room number from the "RoomLabel" key entry 
+      (if (/= (setq roomLabelEntry (dictsearch mySettings "RoomLabel")) nil) 
+        (progn 
+          ; Gets the previously stored number and prefix 
+          (setq lastNumber (cdr (assoc 71 roomLabelEntry))) 
+          (setq lastPrefix (cdr (assoc 1 roomLabelEntry))) 
+        ) ) 
+    ) 
+    (progn 
+      ; Creates the new "My_Custom_Program_Settings" 
+      (setq entityName (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary")))) 
+      (setq mySettings (dictadd (namedobjdict) "My_Custom_Program_Settings" entityName)) 
+    ) 
+  ) 
+  ; If no "RoomLabel" entry exists, creates one based on the defaults 
+  (if (= roomLabelEntry nil) 
+    (progn 
+      (dictadd mySettings "RoomLabel" 
+        (entmakex (list (cons 0 "XRECORD")(cons 100 "AcDbXrecord") (cons 1 lastPrefix)(cons 71 lastNumber)))) 
+    ) 
+  ) 
+  ; Displays current values 
+  (prompt (strcat "\nPrefix: " lastPrefix "\tNumber: " (itoa lastNumber))) 
+  (initget "Number Prefix") 
+  ; Prompts the user for an insertion point 
+  (while (setq val (getpoint (strcat "\nSpecify point for room label (" lastPrefix (itoa lastNumber) ") or change [Number/Prefix]: "))) 
+    ; Checks to see if the user provided a keyword or insertion point 
+    ; User provided a string 
+    (cond 
+      ((= (type val) 'STR) 
+        (if (= (strcase val) "NUMBER") 
+          ; User specified to enter a number 
+          (progn 
+            (setq newNumber (getint (strcat "\nEnter new room number <" (itoa lastNumber) ">: "))) 
+            (if newNumber (setq lastNumber newNumber)) 
+          ) 
+          ; User specified to enter a new prefix 
+          (progn 
+            (setq newPrefix (getstring (strcat "\nEnter new room number prefix <" lastPrefix ">: "))) 
+            (if newPrefix (setq lastPrefix newPrefix)) 
+          ) 
+        ) 
+      ) 
+      ; User provided a point: insert room label block based on values 
+      ((= (type val) 'LIST) 
+        (RoomLabel_InsertBlkRef val (strcat lastPrefix (itoa lastNumber))) 
+        ; Increments number by 1 
+        (setq lastNumber (1+ lastNumber)) 
+      ) 
+    ) 
+      ; Removes and re-creates the "RoomLabel" dictionary entry 
+      (dictremove mySettings "RoomLabel") 
+      (dictadd mySettings "RoomLabel" 
+      (entmakex (list (cons 0 "XRECORD")(cons 100 "AcDbXrecord") (cons 1 lastPrefix)(cons 71 lastNumber)))) 
+      ; Displays current values 
+      (prompt (strcat "\nPrefix: " lastPrefix "\tNumber: " (itoa lastNumber))) 
+      (initget "Number Prefix") 
+  ) 
+  (princ) 
+)
+```
 
-Adding Room Labels to a Drawing
+3Click File Save.
+
+### 7.3.5 Adding Room Labels to a Drawing
 
 The roomlabel.lsp file contains the main roomlabel function, but some of the helper functions you defined in roomlabel.lsp use functions defined in the utility.lsp file.
 
-NOTE
-
-The following steps require a drawing file named ch17_building_plan.dwg. If you didn't download the sample files previously, download them now from this book's web page. Place these sample files in the MyCustomFiles folder within the Documents (or My Documents) folder.
+NOTE: The following steps require a drawing file named `ch17_building_plan.dwg`. If you didn't download the sample files previously, download them now from this book's web page. Place these sample files in the MyCustomFiles folder within the Documents (or My Documents) folder.
 
 The following steps explain how to use the roomlabel function that is in the roomlabel.lsp file:
 
-Open Ch17_Building_Plan.dwg. Figure 17.2 shows the plan drawing of the office building.
+1 Open `Ch17_Building_Plan.dwg`. Figure 17.2 shows the plan drawing of the office building.
 
-Start the appload command. Load the LSP files roomlabel.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
+2 Start the appload command. Load the LSP files roomlabel.lsp and utility.lsp. If the File Loading - Security Concerns message box is displayed, click Load.
 
-At the Command prompt, type roomlabel then press Enter.
+3 At the Command prompt, type roomlabel then press Enter.
 
-At the Specify point for room label (L101) or change [Number/Prefix]: prompt, specify a point inside the room in the lower-left corner of the building. The room-label definition block, Plan_RoomLabel_Anno layer, and My_Custom_Program_Settings custom dictionary are created the first time the roomlabel function is used. The RoomLabel block definition should look like Figure 17.3 when inserted into the drawing.
+4 At the Specify point for room label (L101) or change [Number/Prefix]: prompt, specify a point inside the room in the lower-left corner of the building. The room-label definition block, `Plan_RoomLabel_Anno` layer, and `My_Custom_Program_Settings` custom dictionary are created the first time the roomlabel function is used. The RoomLabel block definition should look like Figure 17.3 when inserted into the drawing.
 
-At the Specify point for room label (L101) or change [Number/Prefix]: prompt, type n and press Enter.
+5 At the Specify point for room label (L101) or change [Number/Prefix]: prompt, type n and press Enter.
 
-At the Enter new room number <102>: prompt, type 105 and press Enter.
+6 At the Enter new room number `<102>`: prompt, type 105 and press Enter.
 
-At the Specify point for room label (L105) or change [Number/Prefix]: prompt, type p and press Enter.
+7 At the Specify point for room label (L105) or change [Number/Prefix]: prompt, type p and press Enter.
 
-At the Enter new room number prefix <L>: prompt, type R and press Enter.
+8 At the Enter new room number prefix `<L>`: prompt, type R and press Enter.
 
-At the Specify point for room label (R105) or change [Number/Prefix]: prompt, specify a point in the large open area in the middle of the building.
+9 At the Specify point for room label (R105) or change [Number/Prefix]: prompt, specify a point in the large open area in the middle of the building.
 
-Press Enter to end roomlabel.
+10 Press Enter to end roomlabel.
 
-Save the drawing with the name RoomLabel Test.dwg , and then close the file.
+11 Save the drawing with the name RoomLabel Test.dwg , and then close the file.
 
-Open RoomLabel Test.dwg, and load the roomlabel.lsp and utility.lsp files.
+12 Open RoomLabel Test.dwg, and load the roomlabel.lsp and utility.lsp files.
 
-Start the roomlabel function. Press F2 on Windows or Fn-F2 on Mac OS. Notice the current values being used are 106 for the number and a prefix of R, which are the values you used before closing the drawing.
+13 Start the roomlabel function. Press F2 on Windows or Fn-F2 on Mac OS. Notice the current values being used are 106 for the number and a prefix of R, which are the values you used before closing the drawing.
 
-Add additional room labels and close the drawing when done.
+14 Add additional room labels and close the drawing when done.
 
 Figure 17.2 Plan view of the office building
 
