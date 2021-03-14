@@ -148,14 +148,28 @@ $$C^n_m = \frac{n!}{m!(n-m)!}$$
 
 本书的出发点是，你在网络中的位置如何决定你的权势和影响力，因为这将对后续的几乎一切讨论都产生作用。我们将分析你可能发挥影响力的多种不同渠道，并逐一观察它们如何依赖于你的人际网络。
 
+1 See Brummitt, Barnett, and D’Souza (2015) for more on the role of social media and the connections across the countries in the Arab Spring.
+
+2 This quote appears widely, and is usually attributed to Confucius. However there is no evidence of it appearing in his writings. Yiqing Xing pointed me to the closest variant of the quote in Chinese, which actually comes from the New Books of Tang AD 1040, which Yiqing translated as「Though peace reigns over the land, the stupid people create trouble for themselves.」In any case, the misattributed quote, from wherever it originates, captures how simple things can easily become complex — a theme here.
+
 [2] 这句话广为传播，并经常被当成孔子的名言，但并没有证据表明是出自他的著述。邢亦青告诉我，中文里最接近此说法的是来自 1060 年写成的《新唐书》：「世上本无事，庸人自扰之。」但无论这句话源自何处，它还是揭示了这里要阐述的主题：简单的事情如何轻易变得很复杂。
+
+3 The math shorthand for this is $2^{435}$, which is approximately the same as $10^{131}$.
 
 [3] 数学表达式为 $2^{435}$，大致相当于 $10^{131}$。
 
+4 Estimates of atoms in the known universe (within roughly 90 billion light-years of us) are on the order of 2 275 .
+
 [4] 我们已知的宇宙（大致在 900 亿光年范围内）中的所有原子的数量大致为 $2^{275}$。
+
+5 This network is discussed in more detail in Chapter 5. The data are from the Add Health Study (the National Longitudinal Study of Adolescent to Adult Health, a program project directed by Kathleen Mullan Harris and designed by J. Richard Udry, Peter S. Bearman, and Kathleen Mullan Harris at the University of North Carolina at Chapel Hill, and funded by grant P01-HD31921 from the Eunice Kennedy Shriver National Institute of Child Health and Human Development, with cooperative funding from twenty-three other federal agencies and foundations. Special acknowledgment is due Ronald R. Rindfuss and Barbara Entwisle for assistance in the original design. Information on how to obtain the Add Health data files is available on the Add Health Web site ( http://www.cpc.unc.edu/addhealth ). No direct support was received from grant P01-HD31921 for this analysis.
 
 [5] 本书第 5 章将详细介绍这一学生网络。数据来自 Add 健康研究项目（Add Health Study，针对青春期到成人健康的一个国家长期研究项目），由 Kathleen Mullan Harris 主持，J.Richard Udry、Peter S.Bearman 与 Kathleen Mullan Harris 设计（University of North Carolina at Chapel Hill），由尤妮丝·肯尼迪·施莱弗国家儿童健康与人类发展研究所（Eunice Kennedy Shriver,National Institute of Child Health and Human Development）提供资助（P01HD31921），以及来自 23 家其他联邦机构和基金会的联合资助。特别感谢 Ronald R.Rindfuss 与 Barbara Entwisle 对初始研究设计的支持。该项目的网站上有如何获取数据资料的信息（http://www.cpc.unc.edu/addhealth）。本书的分析并未接受该项目资金（P01-HD31921）的直接支持。
 
+6 Given the vast terrain that networks cover, there are many sources for background on networks from a variety of perspectives. Textbooks include Wasserman and Faust (1994, sociology, statistics); Watts (1999, complex systems, sociology); Diestel (2000, graph theory); Bollabás (2001, random graph theory); Goyal (2007, economics); Vega Redondo (2007, complex systems, economics); Jackson (2008a, economics, sociology, graph theory, complex systems); Easley and Kleinberg (2010, economics, computer science, complex systems); Barabási (2016, physics, complex systems); Borgatti, Everett, Johnson (2016, sociology, data collection, analysis). There are also several excellent books that are meant for broad audiences that discuss the importance of networks in our lives, such as Barabási (2003); Watts (2004); Christakis and Fowler (2009); and Ferguson (2018). Here, I synthesize and distill some concepts from this vast terrain, and also cover many subjects and applications that have been studied but do not appear in any of these books, together with facts about some important social and economic trends. In doing so, there are also new ideas developed and emphasized. I draw heavily from my own research, which is inevitable in writing such a book, but the spotlight is on our collective knowledge of networks.
+
 [6] 由于人际网络涉及的范围极广，有各种来自不同视角的背景材料可参考。教材包括：Wasserman and Faust（1994，社会学，统计学）；Watts（1999，复杂系统，社会学）；Diestel（2000，图论）；Bollabás（2001，随机图论）；Goyal（2007，经济学）；Vega Redondo（2007，复杂系统，经济学）；Jackson（2008a，经济学，社会学，图论，复杂系统）；Easley and Kleinberg（2010，经济学，计算机科学，复杂系统）；Barabási（2016，物理学，复杂系统）；Borgatti, Everett, Johnson（2016，物理学，数据收集，分析）。还有几本面向大众介绍人类网络对我们生活的重要性的出色作品，如 Barabási（2003），Watts（2004），Christakis and Fowler（2009），Ferguson（2018）。本书将对这一广泛领域中的某些概念做综合与提炼，另外也会涉及没有在上述著作中出现的若干主题和应用，以及其他重要的经济和社会发展趋势。在此过程中将发展和强调某些新的理念。在本书的撰写中，我不可避免地要大量依赖自己的研究，但重点还是大家对人类网络的集体认识。
+
+7 A common term among researchers describing networks of interaction among humans is「social networks.」That term also has a widespread lay interpretation that has come to mean Web-based platforms and a variety of associated social media. However, as humans are a naturally interactive and codependent species, social networks are prehistoric and embody much more than modern platforms for interaction. There is really no distinction that I will draw between human networks and social networks.
 
 [7] 学者用以描述人类交流网络的一个共同术语是「社交网络」（social networks）。这个词汇同时还有着更为普及的通俗含义，意指网络平台及其相关的各类社交媒体。其实人类天然属于互相交流与协作的物种，社交网络从史前便已出现，其内涵远远超过现代交流平台。因此，笔者对于这两个说法 —— 人类网络与社交网络 —— 不做区别。

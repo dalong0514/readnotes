@@ -2,7 +2,7 @@ There is much to be optimistic about. Economic productivity is at a historic hig
 
 We need to better understand the benefits and risks from ever-increasing financial entanglements and address those risks rather than ignoring them. We need to recognize that our network is highly connected when it comes to the transmission of diseases, including some that we have yet to encounter and that may spread more rapidly and widely than in our worst nightmares. We need to recognize the numerous externalities in our lives, as well as how networks shape our social norms and behaviors, including corruption and crime. We need to combat the damaging side-effects of homophily, as well as improve the incentives to collect and spread accurate and deep information, while learning to better filter the noise. Understanding the human network can ensure that our increased connectivity will improve our collective intelligence and productivity, instead of dividing society even more.
 
-ACKNOWLEDGMENTS
+## ACKNOWLEDGMENTS
 
 As we have seen in these pages, people are embedded in many different networks that combine to shape our views and actions. This is never truer than when writing a book. Stress also reveals much about your true friendships, and writing a book shines a bright light on relationships.
 
@@ -14,117 +14,11 @@ I am grateful to have had much of my research, which provided the background for
 
 I have drawn on a lot of social capital in the writing of this book. My family — my wife, Sara; my daughters, Lisa and Emilie; my parents, Sally and Hal; and my brother and sister, Mark and Kim — commented on many drafts, kept my morale high, and put up with outlandish hours. My academic「parents,」Hugo Sonnenschein, Salvador Barberà, and Darrell Duffie, have shaped me over the years, and their decades of friendship and mentoring are greatly appreciated. Salvador also provided very helpful comments on a draft, as did several of my academic「children,」Yiqing Xing, Eduardo Laguna Műggenburg, Isa Chaves, Sharon Shiao, and Evan Storms. My literary family — Tim Sullivan, Max Brockman, Erroll McDonald, and Nicholas Thomson — guided me and kept me moving through the long process of writing such a book. Erroll McDonald is a remarkable editor and his surgical cuts and suggestions are deeply appreciated.
 
-NOTES
+## NOTES
 
 1. INTRODUCTION: NETWORKS AND HUMAN BEHAVIOR
 
-1 . See Brummitt, Barnett, and D’Souza (2015) for more on the role of social media and the connections across the countries in the Arab Spring.
-
-2 . This quote appears widely, and is usually attributed to Confucius. However there is no evidence of it appearing in his writings. Yiqing Xing pointed me to the closest variant of the quote in Chinese, which actually comes from the New Books of Tang AD 1040, which Yiqing translated as「Though peace reigns over the land, the stupid people create trouble for themselves.」In any case, the misattributed quote, from wherever it originates, captures how simple things can easily become complex — a theme here.
-
-3 . The math shorthand for this is 2 435 , which is approximately the same as 10 131 .
-
-4 . Estimates of atoms in the known universe (within roughly 90 billion light-years of us) are on the order of 2 275 .
-
-5 . This network is discussed in more detail in Chapter 5. The data are from the Add Health Study (the National Longitudinal Study of Adolescent to Adult Health, a program project directed by Kathleen Mullan Harris and designed by J. Richard Udry, Peter S. Bearman, and Kathleen Mullan Harris at the University of North Carolina at Chapel Hill, and funded by grant P01-HD31921 from the Eunice Kennedy Shriver National Institute of Child Health and Human Development, with cooperative funding from twenty-three other federal agencies and foundations. Special acknowledgment is due Ronald R. Rindfuss and Barbara Entwisle for assistance in the original design. Information on how to obtain the Add Health data files is available on the Add Health Web site ( http://www.cpc.unc.edu/addhealth ). No direct support was received from grant P01-HD31921 for this analysis.
-
-6 . Given the vast terrain that networks cover, there are many sources for background on networks from a variety of perspectives. Textbooks include Wasserman and Faust (1994, sociology, statistics); Watts (1999, complex systems, sociology); Diestel (2000, graph theory); Bollabás (2001, random graph theory); Goyal (2007, economics); Vega Redondo (2007, complex systems, economics); Jackson (2008a, economics, sociology, graph theory, complex systems); Easley and Kleinberg (2010, economics, computer science, complex systems); Barabási (2016, physics, complex systems); Borgatti, Everett, Johnson (2016, sociology, data collection, analysis). There are also several excellent books that are meant for broad audiences that discuss the importance of networks in our lives, such as Barabási (2003); Watts (2004); Christakis and Fowler (2009); and Ferguson (2018). Here, I synthesize and distill some concepts from this vast terrain, and also cover many subjects and applications that have been studied but do not appear in any of these books, together with facts about some important social and economic trends. In doing so, there are also new ideas developed and emphasized. I draw heavily from my own research, which is inevitable in writing such a book, but the spotlight is on our collective knowledge of networks.
-
-7 . A common term among researchers describing networks of interaction among humans is「social networks.」That term also has a widespread lay interpretation that has come to mean Web-based platforms and a variety of associated social media. However, as humans are a naturally interactive and codependent species, social networks are prehistoric and embody much more than modern platforms for interaction. There is really no distinction that I will draw between human networks and social networks.
-
 2. POWER AND INFLUENCE: CENTRAL POSITIONS IN NETWORKS
-
-1 . Adrija Roychowdhury,「How Mahatma Gandhi Drew Inspiration from the American Independence Struggle,」 The Indian Express , July 4, 2016.
-
-2 . Nike alone paid him $480 million during that time.
-
-3 . Here I abstract from personal characteristics and other things that might affect why a person can reach so many others, and the extent to which someone can mobilize others. There are many features that make someone an important opinion leader beyond their network position — a subject that has been studied extensively since the seminal study of Katz and Lazarsfeld (1955). See Rogers (1995); Valente and Pumpuang (2007); Valente (2012) for detailed references; and Gladwell (2000) for a broad discussion.
-
-4 . Although it is not highlighted in this chapter or the others that follow, it should be clear that the type of connections and network we consider will change depending on the context. For instance, a politician’s ability to enact a piece of legislation will depend on connections to other legislators, while that same politician’s ability to mobilize voters also depends on connections to media, party, and staff (and their connections). Since two people who are connected or linked to each other in a network are not always「friends」in the true sense of the word, they are often called「neighbors」in network parlance, but we will slip back and forth in our parlance. For more on the differences and interplay among various networks, see Ferguson (2018).
-
-5 . Feld (1991).
-
-6 . Coleman (1961).
-
-7 . These are just two components (connected pieces) of the network. The larger network not pictured here also exhibits the same phenomenon. One hundred forty-six girls have friends (defined mutually). Of those, 80 have fewer friends than their friends on average, while 25 have the same number as their friends, and 41 have more friends than their friends.
-
-8 . To see similar examples illustrating biased estimation of opinions, see Lerman, Yan, and Wu (2015). One can also find examples in popular blogs (e.g., see Kevin Schaul’s Washington Post blog from October 9, 2015,「A Quick Puzzle to Tell Whether You Know What People Are Thinking」); and experiments by Kearns, Judd, Tan, and Wortman (2009).
-
-9 . Perkins, Meilman, Leichliter, Cashin, and Presley (1999).
-
-10 . See Table 2 in Perkins, Haines, and Rice (2005).
-
-11 . Valente, Unger, and Johnson (2005).
-
-12 . Tucker et al. (2013). See also Eom and Jo (2014) for a look at some other cases where popularity correlates with some characteristic or behavior.
-
-13 . See Jackson (2016) for a much more extensive discussion of these two effects.
-
-14 . With careful observation one can estimate the size of the feedback effect: how different an individual’s behavior is due to the fact that it takes place in a social context. For a variety of socially influenced activities these effects are more than 2 (e.g., see Glaeser, Sacerdote, and Scheinkman [2003]). In Chapter 8 we will come back to discuss these effects in a range of behaviors from criminal behavior and evading taxes to staying in school and seeking employment.
-
-15 . Hodas, Kooti, and Lerman (2013).
-
-16 . Frederick (2012).
-
-17 . There are variations of this quote attributed to different people. For instance, a close variant「If you torture the data long enough, it will confess to anything」is often attributed to Darrell Huff and his 1954 book How to Lie with Statistics. It does not appear in that text, although he may have said it, and certainly his book makes clear why it is true and why this quote is powerful. The important point from our perspective is how multifaceted most things are, and how different they can look from alternative angles.
-
-18 . If one does not know this reference, it relates to a series of skits on the comedy show Saturday Night Live , in which archetypal Chicago sports fans debate the relative godliness of various Chicago sports heroes, who, of course, could defeat any non-Chicago sports (or other) persona.
-
-19 . For an interesting insight into the value of such comparisons have a look at Matisse’s Blue Nude (Memory of Biskra) , which pushed Picasso and influenced his Les Demoiselles d’Avignon. Sebastian Smee’s The Art of the Rivalry provides an illuminating account of their rivalry and the interaction between their art.
-
-20 . There is a slight difference, in that now we may double count things — as one of Ella’s seven friends is Nanci, and so we count her as her own second-degree friend. The double counting actually makes the math a bit easier, as we just need to track the connections at each step and don’t have to remember which ones we have already visited. The impact of double counting is discussed in Banerjee, Chandrasekhar, Duflo, and Jackson (2013, 2015).
-
-21 . If you are wondering about the scale of the numbers in the figure, the squared centrality numbers sum to one, so the vector of centrality numbers is normalized in a standard mathematical sense (according to the L 2 or Euclidean norm).
-
-22 . Their algorithm also included some occasional random hops to a new node to restart the whole process to make sure it did not get stuck in some local neighborhood of pages that all just point to each other.
-
-23 . Search engines, including Google’s, have evolved rapidly as both computing power and our experiences with the Web have advanced. Such engines now incorporate much richer information about both the user and various Web pages, and more tailored network information about how people tend to navigate the Web and what they might really be searching for. Moreover, the Web is a moving target these days, with constantly evolving content. Nonetheless, conceptually the idea of PageRank was an important breakthrough, and one that nicely embodies network information.
-
-24 . Tracking connections beyond the first degree is important in many settings beyond search engines and spreading information. Variations on such iterative calculations for centrality, and using eigenvectors, were floating around in the social networks literature for several decades before Google came into existence, with pioneering work in the 1950s by Leo Katz, and later work formalizing such methods by Phil Bonacich in the 1970s. Variations on eigenvector centrality have been used in finding「key players」in networks of illegal activities, as crime has a social component: people learn from each other about illegal opportunities and encourage each other to engage in crime, and the most central people in such networks exert the most influence on others’ participation (e.g., see Lindquist and Zenou [2014]). Such centrality measures have also been used in studies of communication among investors to predict which investors earn the highest returns in a stock market (see Ozsoylev, Walden, Yavuz, and Bildik [2014]).
-
-25 . See Karlan and Valdivia (2011), for instance, for more on how impactful simple training can be in such settings.
-
-26 . I should be careful not to paint too rosy a picture, as with any large-scale innovation that works well, one can also find horror stories. There are reports from around the world of people who borrowed too much and were financially and personally ruined, similar to people getting into excessive credit card debt and declaring personal bankruptcy. The high repayment rates in microfinance have also led many companies to enter the business, some with aggressive tactics and less ethical intentions — again, not unlike the credit card and small loan businesses in the developed world. There has also been debate about the extent to which microfinance has led to improvements in the lives of the borrowers. Sizable increases in productivity may take years to emerge and are hard to disentangle from other trends and programs, and so despite the enormous spread of microfinance throughout the world, there is mixed evidence regarding whether there are significant increases in the wealth or incomes of those gaining access to microfinance (e.g., see Banerjee and Duflo [2014]; Crépon, Devoto, Duflo, and Parienté [2015]). Nonetheless, access to credit can still help people to smooth their consumption and expenditures, which can be extremely valuable to the very poor.
-
-27 . See Schaner (2015), for example, for some discussion about how the differences in how money comes into a household can affect how it is spent.
-
-28 . Self-help groups are informal groups within villages that often hold a joint bank account and/or engage in making regular payments into the group and then getting various forms of rotating payments or loans out.
-
-29 . In contrast, in large cities such as New York, London, Sydney, or Beijing, people may interact with some people in person, others via social media, and others via phone, and their acquaintances may be placed all over the city and the larger world. Getting a fairly complete picture of such a large and diverse network is almost impossible, while in the small villages capturing the networks was manageable. We measured networks via a series of questions about the different ways in which households tend to interact with each other: borrowing and lending money, providing advice, borrowing and lending kerosene (for cooking and heating), providing help in an emergency, and so forth. The villages averaged just over two hundred households each, and each household interacted with about 15 others on average when accounting for all of these forms of interaction, with significant variation across households (with nontrivial numbers having a degree of less than 10 as well as above 20).
-
-30 . In fact, a straight plot of eventual microfinance participation against the degree centrality of the initial seeds shows a slightly negative (but insignificant) slope. After controlling for a number of characteristics of the villages, one still finds no significant relationship. Details on the study can be found in the Table S3 of the supplement to Banerjee, Chandrasekhar, Duflo, and Jackson (2013).
-
-31 . Popularity of these seeds might have been much more important if this were a new product that people were uncertain about and wanted to see what others were doing before deciding themselves. For such situations, see studies by Cai, de Janvry, and Sadoulet (2015); and Kim et al. (2015).
-
-32 . There are many other things that might influence participation, including a friend’s decision to participate. In our statistical analysis of the data we carefully control for these factors (see Banerjee, Chandrasekhar, Duflo, and Jackson [2013] for details and techniques).
-
-33 . See the discussion in Banerjee, Chandrasekhar, Duflo, and Jackson (2015) for details on the calculations, some of which I am skipping here.
-
-34 . By allowing for the additional flexibility of estimating the rate of communication and the number of iterations, this kind of measure should be expected to outperform the other measures. But it turns out to do better in these villages even when one fixes the rate of communication and number of iterations before analyzing the diffusion. In order not to give diffusion centrality an advantage over the other measures, we fixed the frequency of interactions between households based on some basic network characteristics — setting them just at the threshold at which information has a chance to reach everyone in the network, and the number of iterations based on the amount of time that the people were exposed to microfinance during our study. Even doing that, diffusion centrality outperforms the other measures (see column [10] of Table S3 in the supplementary materials of Banerjee, Chandrasekhar, Duflo, and Jackson [2013]). The additional variation comes from comparing the R-squares at the bottom of that table — a measure of what fraction of the variation of microfinance participation across villages is explained by the various centrality measures (together with some controls). In fact, the marginal gain in R-square that diffusion centrality adds compared to what eigenvector centrality adds is more than a factor of three (e.g., Panel C, column (2)’s R-sq. minus column (3)’s is .173, versus column (4)’s minus column (3)’s is .055, where column (3)’s provides the fit with controls and degree centrality, and degree centrality accounts for almost nothing).
-
-35 . The term「political lieutenant」is borrowed from Dale Kent (1978), whose careful data collection in the 1970s underlies the networks analyzed here. Her data were later extended and further analyzed in terms of network patterns by John Padgett and Christopher Ansell (1993). The data in the figures here are from a study by Ronald Breiger and Pip Pattison (1986), who made use of Padgett’s data. The data include a different subset of families from Padgett and Ansell (1993). I have updated the data accordingly. This includes marriage and business connections between the Albizzi and Peruzzi, and an additional family, the Guasconi, on the side of the opposition to the Medici.
-
-36 . This is a point made by Padgett and Ansell (1993):「Medician political control was produced by network disjunctures within the elite, which the Medici alone spanned.」For more on this perspective, see Burt (1992, 2000, 2005).
-
-37 . The Pucci were strong supporters of the Medici, particularly in terms of helping Cosimo and his family while he was exiled. So although the data do not include a formal business dealing or marriage between the families, there was a strong tie between them and it continued. Also, I include the Salviati and the Barbadori on the side of the Medici, given their eventual positions in the conflict. Dropping them, and including the tie between the Pucci and the Medici, would make the Medici figure even more starlike.
-
-38 . The contrast between the Medici bloc and the other oligarchs is starkly illustrated in a final showdown in late September of 1434, just before Cosimo de’ Medici returned to Florence. Rinaldo degli Albizzi attempted to organize a takeover of the government, which was transitioning to one firmly leaning to the Medici. Rinaldo called on various other families, including the Strozzi, to send armed men; but the response to this call to arms flailed as the families debated among themselves. In contrast, Cosimo, from his central position — even in exile — easily rallied an armed force to protect the new Signoria.
-
-39 . It was introduced by Jac Anthonisse (1971) and by Linton Freeman (1977). For an illuminating discussion, see Ferguson’s (2018) analysis of the Nixon and Ford networks.
-
-40 . Barabási and Albert (1999). See also Price (1976); Krapivsky, Redner, and Leyvraz (2000); Mitzenmacher (2004); Jackson and Rogers (2007a); Clauset, Shalizi, and Newman (2009). This was something that they had observed when looking at how many links there were to different Web pages on the Notre Dame domain of the Internet. Albert, Jeong, and Barabási (1999).
-
-41 . For instance, see Akcigit, Caicedo, Miguelez, Stantcheva, and Sterzi (2016) for evidence from patent data that co-patenting with more connected individuals (measured by how many people they have co-patented with in the past) leads to more successful patents than co-patenting with less connected individuals.
-
-42 . Jackson and Rogers (2007a). Another possibility is that people copy others’ links or mix random and preferential attachment (Kleinberg, Kumar, Raghavan, Rajagopalan, and Tomkins (1999); Kumar, Raghavan, Rajagopalan, Sivakumar, Tomkins, and Upfal (2000); Pennock, Flake, Lawrence, Glover, and Giles (2002); Vázquez, (2003), which also leads to a similar distribution, with some differences in other network features.
-
-43 . For instance, see Fafchamps, van der Leij, and Goyal (2010), Chaney (2014), Jackson and Rogers (2007a).
-
-44 . Jackson and Rogers (2007a).
-
-45 . There are many more measures of centrality than those mentioned here. Some are conceptually similar, but involve slightly different calculations, while others involve other concepts. The mathematically inclined and endeavoring reader can find more background and references in Borgatti (2005); Jackson (2008a, 2017); Bloch, Jackson, and Tebaldi (2016); Jackson (2017).
-
-46 . This also relates to a measure called「closeness centrality,」which keeps track of how close an individual is to others.
 
 3. DIFFUSION AND CONTAGION
 
