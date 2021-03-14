@@ -653,11 +653,6 @@ Table 17.1 Symbol-table names
 
 源自「2019116AutoCAD-Platform-Customization0217.md」：
 
-
-
-
-
-
 ### 0301. 任意卡 —— 生成 VLX 文件
 
 VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。

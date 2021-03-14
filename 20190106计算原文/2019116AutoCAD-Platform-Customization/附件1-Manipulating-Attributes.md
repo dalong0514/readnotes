@@ -92,7 +92,7 @@ Along the same lines, you can shift the locations of the attributes under progra
 
 Do note that an attribute object can't exist in the drawing database unless it is attached to a block insertion. Attempting to use ENTMAKE to create an attribute object that is not part of a block insert sequence will not work, and there is no command that allows you to just create an attribute. All attribute objects will be found between an INSERT and SEQEND object set. But the contents of these attribute objects can vary to be whatever your drawing or application requirements need to be. This example set of utilities will help you work with AutoCAD drawings that contain attributes and are not an application by themselves.
 
-## GetAttributes for VBA
+## 03. GetAttributes for VBA
 
 VBA programmers will find that the task of obtaining attributes associated with a block reference is much easier. There is a method called GetAttributes associated with the BlockRef object that will return a variant array of AttributeRef objects. Changing the properties TextString and TagString can modify each AttributeRef object as needed. Additional properties are in the AttributeRef that can be modified just as the entity list manipulations have demonstrated. You can learn more about the AttributeRef and BlockRef objects via the Object Browser in the VBA editor (VBAIDE).
 

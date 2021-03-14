@@ -949,7 +949,7 @@ In these steps, you'll create the custom function roomlabel that uses all the fu
 )
 ```
 
-3Click File Save.
+3 Click File Save.
 
 ### 7.3.5 Adding Room Labels to a Drawing
 

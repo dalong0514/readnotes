@@ -18,6 +18,11 @@ The AutoLISP® programming language can be used to reach beyond the boundaries o
 
 Along with accessing operating system and application settings, you can read and write ASCII (plain text) files that are stored on a local or network drive. You can use content in an ASCII file to populate project information in a title block or as a means to export information from a drawing. Exported information can be used to create or update objects in a drawing or to generate a quote based on the values of attributes in blocks placed within a drawing. In addition to reading and writing ASCII files, you can use AutoLISP to manage and get general information about the files and directories on a local or network drive. In this chapter, you'll learn to persist values between AutoCAD sessions, write to and read from external files, and work with files in the operating system.
 
+## 0209. Catching and Handling Errors
+
+
+
+
 ## 0210. Authoring, Managing, and Loading AutoLISP Programs
 
 Entering AutoLISP® expressions directly at the Autodesk® AutoCAD® Command prompt is a great way to start learning AutoLISP programming. However, if you want to use expressions multiple times or in different drawings, you will need to enter them over and over again.
