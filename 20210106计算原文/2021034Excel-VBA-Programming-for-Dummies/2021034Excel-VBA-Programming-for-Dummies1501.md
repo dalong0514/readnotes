@@ -1,6 +1,6 @@
 Simple Dialog Boxes
 
-Y ou can’t use Excel very long without being exposed to dialog boxes. They
+Y ou can't use Excel very long without being exposed to dialog boxes. They
 
 seem to pop up all the time. Excel — like most Windows programs — uses
 
@@ -10,7 +10,7 @@ messages. If you develop VBA macros, you can create your own dialog boxes that
 
 work just like those built into Excel. Those custom dialog boxes are called UserForms in VBA.
 
-This chapter doesn’t tell you anything about creating UserForms. Rather, it
+This chapter doesn't tell you anything about creating UserForms. Rather, it
 
 describes some very useful techniques you might be able to use in  place of
 
@@ -44,7 +44,7 @@ VBA allows you to display several types of dialog boxes that you can sometimes
 
 use in place of a handcrafted UserForm. You can customize these built-in dialog
 
-boxes in some ways, but they certainly don’t offer the options available in a UserForm. In some cases, however, they’re just what the doctor ordered.
+boxes in some ways, but they certainly don't offer the options available in a UserForm. In some cases, however, they're just what the doctor ordered.
 
 In this chapter, you read about
 
@@ -64,15 +64,15 @@ built-in dialog boxes — the dialog boxes that Excel uses to get information fr
 
 The MsgBox Function
 
-By now, you’re probably familiar with the VBA MsgBox function; several of the
+By now, you're probably familiar with the VBA MsgBox function; several of the
 
 examples in the preceding chapters make use of the MsgBox function. The MsgBox
 
 function, whose main arguments are shown in Table 15-1, is handy for displaying
 
-information and getting simple user input. It’s able to accept user input because
+information and getting simple user input. It's able to accept user input because
 
-it’s a function. A function, as you probably know, returns a value. In the case of
+it's a function. A function, as you probably know, returns a value. In the case of
 
 the MsgBox function, it uses a dialog box to get the value that it returns. Keep
 
@@ -100,9 +100,9 @@ the message box (optional)
 
 Title
 
-The text that appears in the message box’s title bar (optional)
+The text that appears in the message box's title bar (optional)
 
-Here’s a simplified version of the syntax of the MsgBox function:
+Here's a simplified version of the syntax of the MsgBox function:
 
 MsgBox(prompt[, buttons][, title])
 
@@ -110,13 +110,13 @@ Displaying a simple message box
 
 You can use the MsgBox function in two ways:
 
-» To simply show a message to the user: In this case, you don’t care about the result returned by the function.
+» To simply show a message to the user: In this case, you don't care about the result returned by the function.
 
 » To get a response from the user: In this case, you do care about the result returned by the function. The result depends on the button that the user clicks.
 
-If you use the MsgBox function by itself, don’t include parentheses around the
+If you use the MsgBox function by itself, don't include parentheses around the
 
-arguments. The following example simply displays a message and doesn’t return
+arguments. The following example simply displays a message and doesn't return
 
 a result. When the message is displayed, the code stops until the user clicks OK.
 
@@ -136,9 +136,9 @@ The next section describes how to fix that.
 
 Getting a response from a message box
 
-If you display a message box that has more than just an OK button, you’ll probably
+If you display a message box that has more than just an OK button, you'll probably
 
-want to know which button the user clicks. You’re in luck. The MsgBox function
+want to know which button the user clicks. You're in luck. The MsgBox function
 
 returns a value that represents which button is clicked. You can assign the result
 
@@ -372,7 +372,7 @@ FIGURE 15-3:
 
 The MsgBox
 
-function’s buttons
+function's buttons
 
 argument
 
@@ -498,7 +498,7 @@ vbNo
 
 User clicked No.
 
-And that’s pretty much all you need to know about the MsgBox function. Use message boxes with caution, though. There’s usually no reason to display message
+And that's pretty much all you need to know about the MsgBox function. Use message boxes with caution, though. There's usually no reason to display message
 
 boxes that serve no purpose. For example, people tend to get annoyed when they
 
@@ -516,7 +516,7 @@ only one value.
 
 InputBox syntax
 
-Here’s a simplified version of the syntax of the InputBox function:
+Here's a simplified version of the syntax of the InputBox function:
 
 InputBox(prompt[, title][, default])
 
@@ -536,21 +536,21 @@ The text displayed in the input box
 
 Title
 
-The text displayed in the input box’s title bar (optional)
+The text displayed in the input box's title bar (optional)
 
 Default
 
-The default value for the user’s input (optional)
+The default value for the user's input (optional)
 
 246    PART 4  Communicating with Your Users
 
 An InputBox example
 
-Here’s a statement that shows how you can use the InputBox function:
+Here's a statement that shows how you can use the InputBox function:
 
 TheName = InputBox("What is your name?", "Greetings")
 
-When you execute this VBA statement, Excel displays the dialog box shown in Figure 15-5. Notice that this example uses only the first two arguments and doesn’t supply a default value. When the user enters a value and clicks OK, the
+When you execute this VBA statement, Excel displays the dialog box shown in Figure 15-5. Notice that this example uses only the first two arguments and doesn't supply a default value. When the user enters a value and clicks OK, the
 
 code assigns the value to the variable TheName.
 
@@ -564,7 +564,7 @@ this dialog box.
 
 The following example uses the third argument and provides a default value. The
 
-default value is the username stored by Excel (the Application object’s UserName
+default value is the username stored by Excel (the Application object's UserName
 
 property).
 
@@ -580,9 +580,9 @@ End Sub
 
 The InputBox always displays a Cancel button. If the user clicks Cancel, the InputBox function returns an empty string.
 
-VBA’s InputBox function always returns a string, so if you need to get a value, your code needs to do some additional checking. The following example uses the InputBox function to get a number. It uses the IsNumeric function to check whether
+VBA's InputBox function always returns a string, so if you need to get a value, your code needs to do some additional checking. The following example uses the InputBox function to get a number. It uses the IsNumeric function to check whether
 
-the string is a number. If the string does contain a number, all is fine. If the user’s entry cannot be interpreted as a number, the code displays a message box.
+the string is a number. If the string does contain a number, all is fine. If the user's entry cannot be interpreted as a number, the code displays a message box.
 
 Sub AddSheets()
 
@@ -632,7 +632,7 @@ function.
 
 Another type of InputBox
 
-The information presented in this section applies to VBA’s InputBox function.
+The information presented in this section applies to VBA's InputBox function.
 
 Microsoft seems to love confusion, so you also have access to the InputBox  method , which is a method of the Application object.
 
@@ -640,7 +640,7 @@ One big advantage of using the Application InputBox method is that your code can
 
 prompt for a range selection. The user can then select the range in the worksheet
 
-by highlighting the cells. Here’s a quick example that prompts the user to select a
+by highlighting the cells. Here's a quick example that prompts the user to select a
 
 range:
 
@@ -678,21 +678,21 @@ In this simple example, the code tells the user the address of the range that wa
 
 selected. In real life, your code would actually do something useful with the
 
-selected range. A nice thing about this example is that Excel takes care of the error handling. If you enter something that’s not a range, Excel tells you about it and
+selected range. A nice thing about this example is that Excel takes care of the error handling. If you enter something that's not a range, Excel tells you about it and
 
 lets you try again.
 
-The Application.InputBox method is similar to VBA’s InputBox function, but it
+The Application.InputBox method is similar to VBA's InputBox function, but it
 
 also has some differences. Check the Help system for complete details.
 
 The GetOpenFilename Method
 
-If your VBA procedure needs to ask the user for a filename, you  could use the InputBox function and have the user do some typing. An input box usually isn’t
+If your VBA procedure needs to ask the user for a filename, you  could use the InputBox function and have the user do some typing. An input box usually isn't
 
 the best tool for this job, however, because most users find it difficult to remem-
 
-ber paths, backslashes, filenames, and file extensions. In other words, it’s far too easy to screw up when typing a filename.
+ber paths, backslashes, filenames, and file extensions. In other words, it's far too easy to screw up when typing a filename.
 
 For a better solution to this problem, use the GetOpenFilename method of the Application object, which ensures that your code gets its hands on a valid filename, including its complete path. The GetOpenFilename method displays the
 
@@ -702,7 +702,7 @@ choose File ➪ Open ➪ Browse).
 
 CHAPTER 15  Simple Dialog Boxes    249
 
-The GetOpenFilename method doesn’t actually open the specified file. This method simply returns the user-selected filename as a string. Then you can write
+The GetOpenFilename method doesn't actually open the specified file. This method simply returns the user-selected filename as a string. Then you can write
 
 code to do whatever you want with the filename.
 
@@ -738,7 +738,7 @@ Determines which of the file filters the dialog box displays by default.
 
 Title
 
-Specifies the caption for the dialog box’s title bar.
+Specifies the caption for the dialog box's title bar.
 
 ButtonText
 
@@ -750,7 +750,7 @@ If True, the user can select multiple files.
 
 A GetOpenFilename example
 
-The FileFilter argument determines what appears in the dialog box’s Files of Type
+The FileFilter argument determines what appears in the dialog box's Files of Type
 
 drop-down list. This argument consists of pairs of file filter strings followed by
 
@@ -832,7 +832,7 @@ Figure 15-8 shows the dialog box Excel displays when you execute this procedure.
 
 The appearance may vary, depending on the version of Windows you use and the
 
-display options you’ve set.
+display options you've set.
 
 CHAPTER 15  Simple Dialog Boxes    251
 
@@ -850,7 +850,7 @@ dialog box and
 
 returns the
 
-selected file’s
+selected file's
 
 path and name.
 
@@ -878,7 +878,7 @@ method, but it displays the Excel Save As dialog box rather than its Open dialog
 
 box. The GetSaveAsFilename method gets a path and filename from the user but
 
-doesn’t do anything with that information. It’s up to you to write code that actu-
+doesn't do anything with that information. It's up to you to write code that actu-
 
 ally saves the file.
 
@@ -890,7 +890,7 @@ object.GetSaveAsFilename ([InitialFilename], [FileFilter],
 
 252    PART 4  Communicating with Your Users
 
-The GetSaveAsFilename method takes Table 15-6’s arguments, all of which are optional.
+The GetSaveAsFilename method takes Table 15-6's arguments, all of which are optional.
 
 TABLE 15-6
 
@@ -918,13 +918,13 @@ Determines which of the file filters Excel displays by default.
 
 Title
 
-Defines a caption for the dialog box’s title bar.
+Defines a caption for the dialog box's title bar.
 
 Getting a Folder Name
 
-Sometimes, you don’t need to get a filename; you just need to get a folder name.
+Sometimes, you don't need to get a filename; you just need to get a folder name.
 
-If that’s the case, the FileDialog object is just what the doctor ordered.
+If that's the case, the FileDialog object is just what the doctor ordered.
 
 The following procedure displays a dialog box that allows the user to select a
 
@@ -958,15 +958,15 @@ End Sub
 
 The FileDialog object lets you specify the starting directory by specifying a value
 
-for the InitialFileName property. In this case, the code uses Excel’s default file
+for the InitialFileName property. In this case, the code uses Excel's default file
 
 path as the starting directory.
 
 CHAPTER 15  Simple Dialog Boxes    253
 
-Displaying Excel’s Built-in Dialog Boxes
+Displaying Excel's Built-in Dialog Boxes
 
-One way to look at VBA is that it’s a tool that lets you mimic Excel commands. For
+One way to look at VBA is that it's a tool that lets you mimic Excel commands. For
 
 example, consider this VBA statement:
 
@@ -978,21 +978,21 @@ Names ➪ Define Name to display the New Name dialog box, typing MonthNames
 
 in the Name box and A1:A12 in the Refers to box, and clicking OK.
 
-When you execute the VBA statement, the New Name dialog box doesn’t appear.
+When you execute the VBA statement, the New Name dialog box doesn't appear.
 
-This is almost always what you want to happen; you don’t want dialog boxes
+This is almost always what you want to happen; you don't want dialog boxes
 
 flashing across the screen while your macro executes.
 
-In some cases, however, you may want your code to display one of Excel’s many
+In some cases, however, you may want your code to display one of Excel's many
 
 built-in dialog boxes and let the user make the choices in the dialog box. You can
 
-do this by using VBA to execute a Ribbon command. Here’s an example that
+do this by using VBA to execute a Ribbon command. Here's an example that
 
 displays the New Name dialog box. The address in the Refers To box represents
 
-the range that’s selected when the command is executed (see Figure 15-9).
+the range that's selected when the command is executed (see Figure 15-9).
 
 Application.CommandBars.ExecuteMso "NameDefine"
 
@@ -1000,23 +1000,23 @@ FIGURE 15-9:
 
 Displaying one of
 
-Excel’s dialog
+Excel's dialog
 
 boxes by
 
 using VBA.
 
-Your VBA code can’t get any information from the dialog box. For example, if you
+Your VBA code can't get any information from the dialog box. For example, if you
 
-execute the code to display the New Name dialog box, your code can’t get the
+execute the code to display the New Name dialog box, your code can't get the
 
-name entered by the user or the range that’s being named.
+name entered by the user or the range that's being named.
 
 The ExecuteMso is a method of the CommandBars object and accepts one
 
 argument: an idMso parameter that represents a Ribbon control. Unfortunately,
 
-these parameters aren’t listed in the Help system. And because the Ribbon hasn’t
+these parameters aren't listed in the Help system. And because the Ribbon hasn't
 
 254    PART 4  Communicating with Your Users
 
@@ -1024,19 +1024,19 @@ been around forever, code that uses the ExecuteMso method is not compatible
 
 with versions before Excel 2007.
 
-Here’s another example of using the ExecuteMso method. This statement, when
+Here's another example of using the ExecuteMso method. This statement, when
 
 executed, displays the Font tab of the Format Cells dialog box:
 
 Application.CommandBars.ExecuteMso "FormatCellsFontDialog"
 
-If you try to display a built-in dialog box in an incorrect context, Excel displays an error message. For example, here’s a statement that displays the Format Number
+If you try to display a built-in dialog box in an incorrect context, Excel displays an error message. For example, here's a statement that displays the Format Number
 
 dialog box:
 
 Application.CommandBars.ExecuteMso "NumberFormatsDialog"
 
-If you execute this statement when it’s not appropriate (for example, a Shape is
+If you execute this statement when it's not appropriate (for example, a Shape is
 
 selected), Excel displays an error message because that dialog box is appropriate
 
@@ -1050,7 +1050,7 @@ The quick way to get there is to right-click any Ribbon control and choose Custo
 
 in Excel is listed in the left panel. Find the command you need and hover your
 
-mouse over it, and you see its secret command name in the tooltip (it’s the part in
+mouse over it, and you see its secret command name in the tooltip (it's the part in
 
 parentheses). Figure 15-10 shows an example.
 

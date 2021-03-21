@@ -22,13 +22,13 @@ CHAPTER 17  Using UserForm Controls    275
 
 Adding controls
 
-Oddly enough, the VBE doesn’t have menu commands that allow you to add con-
+Oddly enough, the VBE doesn't have menu commands that allow you to add con-
 
 trols to a dialog box. You must use the floating Toolbox (described in Chapter 16)
 
 to add controls. Normally, the Toolbox pops up automatically when you activate a
 
-UserForm in the VBE. If it doesn’t, you can display the Toolbox by choosing View ➪ Toolbox.
+UserForm in the VBE. If it doesn't, you can display the Toolbox by choosing View ➪ Toolbox.
 
 Follow along to add a control to the UserForm:
 
@@ -56,7 +56,7 @@ added.
 
 A UserForm may contain vertical and horizontal grid lines, which help align the
 
-controls you add. When you add or move a control, it  snaps to the grid. If you don’t like this feature, you can turn off the grids by following these steps:
+controls you add. When you add or move a control, it  snaps to the grid. If you don't like this feature, you can turn off the grids by following these steps:
 
 1. Choose Tools  ➪ Options in the VBE.
 
@@ -68,21 +68,21 @@ Introducing control properties
 
 Every control that you add to a UserForm has properties that determine how the
 
-control looks and behaves. You can change a control’s properties at the following
+control looks and behaves. You can change a control's properties at the following
 
 two times:
 
 276    PART 4  Communicating with Your Users
 
-» At design time — when you’re designing the UserForm. You do so manually,
+» At design time — when you're designing the UserForm. You do so manually,
 
 using the Properties window.
 
 » At runtime — while your macro is running. You do so by writing VBA code.
 
-Changes made at runtime are always temporary; they’re made to the copy of
+Changes made at runtime are always temporary; they're made to the copy of
 
-the dialog box you’re showing, not to the actual UserForm object you designed.
+the dialog box you're showing, not to the actual UserForm object you designed.
 
 When you add a control to a UserForm, you almost always need to make some
 
@@ -106,15 +106,15 @@ design-time
 
 changes to a
 
-control’s
+control's
 
 properties.
 
-To change a control’s properties at runtime, you must write VBA code. For exam-
+To change a control's properties at runtime, you must write VBA code. For exam-
 
 ple, you may want to hide a particular control when the user clicks a check box. In
 
-such a case, you write code to change the control’s Visible property.
+such a case, you write code to change the control's Visible property.
 
 Each control has its own set of properties. All controls, however, have some com-
 
@@ -122,7 +122,7 @@ mon properties, such as Name, Width, and Height. Table 17-1 lists some of the
 
 common properties available for many controls.
 
-When you select a control, that control’s properties appear in the Properties window. To change a property, just select it in the Properties window and make
+When you select a control, that control's properties appear in the Properties window. To change a property, just select it in the Properties window and make
 
 the change. Some properties give you some help. For example, if you need to
 
@@ -142,7 +142,7 @@ What It Affects
 
 Accelerator
 
-The letter underlined in the control’s caption. The user presses this key in conjunction with the Alt key to select the control.
+The letter underlined in the control's caption. The user presses this key in conjunction with the Alt key to select the control.
 
 AutoSize
 
@@ -150,7 +150,7 @@ If True, the control resizes itself automatically based on the text in its capti
 
 BackColor
 
-The control’s background color.
+The control's background color.
 
 BackStyle
 
@@ -162,11 +162,11 @@ The text that appears on the control.
 
 Left and Top
 
-Values that determine the control’s position.
+Values that determine the control's position.
 
 Name
 
-The control’s name. By default, a control’s name is based on the control type. You can change the name to any valid name, but each control’s name must be unique within
+The control's name. By default, a control's name is based on the control type. You can change the name to any valid name, but each control's name must be unique within
 
 the dialog box.
 
@@ -176,7 +176,7 @@ A graphics image to display. The image can be from a graphics file, or you can s
 
 Value
 
-The control’s value.
+The control's value.
 
 Visible
 
@@ -184,7 +184,7 @@ If False, the control is hidden.
 
 Width and Height
 
-Values that determine the control’s width and height.
+Values that determine the control's width and height.
 
 FIGURE 17-3:
 
@@ -208,7 +208,7 @@ The following sections introduce each type of control you can use in custom dial
 
 boxes and discuss some of the most useful properties. Not every property for every
 
-control is included because that would require a book that’s about four times as
+control is included because that would require a book that's about four times as
 
 thick (and it would be a very boring book).
 
@@ -216,7 +216,7 @@ The Help system for controls and properties is thorough. To find complete detail
 
 for a particular property, select the property in the Properties window and press F1.
 
-All the examples in this section are available on this book’s website.
+All the examples in this section are available on this book's website.
 
 CheckBox control
 
@@ -230,7 +230,7 @@ Controls in a
 
 UserForm.
 
-Following are a CheckBox control’s most useful properties:
+Following are a CheckBox control's most useful properties:
 
 » Accelerator: A character that lets the user change the value of the control by using the keyboard. For example, if the accelerator is A, pressing Alt+A
 
@@ -240,17 +240,17 @@ from unchecked to checked). In the example shown in Figure 17-4, numbers
 
 are the accelerators (Alt+1, Alt+2, and so on).
 
-» ControlSource: The address of a worksheet cell that’s linked to the CheckBox.
+» ControlSource: The address of a worksheet cell that's linked to the CheckBox.
 
 The cell displays TRUE if the control is checked and FALSE if the control is not
 
 checked. This is optional. Most of the time, a CheckBox is not linked to a cell.
 
-» Value: If True, the CheckBox has a check mark. If False, the CheckBox doesn’t have a check mark.
+» Value: If True, the CheckBox has a check mark. If False, the CheckBox doesn't have a check mark.
 
-Don’t confuse CheckBox controls with OptionButton controls. They look similar,
+Don't confuse CheckBox controls with OptionButton controls. They look similar,
 
-but they’re used for different purposes.
+but they're used for different purposes.
 
 CHAPTER 17  Using UserForm Controls    279
 
@@ -260,7 +260,7 @@ A ComboBox control is similar to a ListBox control (described later in the「Lis
 
 control」section). A ComboBox, however, is a drop-down control. Another differ-
 
-ence is that the user may be allowed to enter a value that doesn’t appear in the list of items. Figure 17-5 shows two ComboBox controls. The control on the right (for
+ence is that the user may be allowed to enter a value that doesn't appear in the list of items. Figure 17-5 shows two ComboBox controls. The control on the right (for
 
 the year) is being used, so it has dropped down to display its list of options.
 
@@ -284,13 +284,13 @@ Following are some useful ComboBox control properties:
 
 » Style: Determines whether the control acts like a drop-down list or a
 
-ComboBox. A drop-down list doesn’t allow the user to enter a new value.
+ComboBox. A drop-down list doesn't allow the user to enter a new value.
 
 » Value: The text of the item selected by the user and displayed in the
 
 ComboBox.
 
-If your list of items isn’t in a worksheet, you can add items to a ComboBox control
+If your list of items isn't in a worksheet, you can add items to a ComboBox control
 
 by using the AddItem method. More information on this method is in Chapter 18.
 
@@ -316,7 +316,7 @@ controls.
 
 When a CommandButton is clicked, it executes an event-handler procedure with
 
-a name that consists of the CommandButton’s name, an underscore, and the word
+a name that consists of the CommandButton's name, an underscore, and the word
 
 Click. For example, if a CommandButton is named MyButton, clicking it executes
 
@@ -326,7 +326,7 @@ the UserForm.
 
 Following are some useful CommandButton control properties:
 
-» Cancel: If True, pressing Esc executes the macro attached to the button. Only one of the form’s buttons can have this option set to True.
+» Cancel: If True, pressing Esc executes the macro attached to the button. Only one of the form's buttons can have this option set to True.
 
 » Default: If True, pressing Enter executes the macro attached to the button.
 
@@ -340,17 +340,17 @@ control,」later in this chapter).
 
 The following list describes some useful Frame control properties:
 
-» BorderStyle: The frame’s appearance.
+» BorderStyle: The frame's appearance.
 
 » Caption: The text displayed at the top of the frame. The caption can be an
 
-empty string if you don’t want the control to display a caption.
+empty string if you don't want the control to display a caption.
 
 Image control
 
 An Image control displays an image. You may want to use an Image control to
 
-display your company’s logo in a dialog box. Figure 17-7 shows a dialog box with
+display your company's logo in a dialog box. Figure 17-7 shows a dialog box with
 
 an Image control that displays a photo of a cute little kitten.
 
@@ -366,13 +366,13 @@ The following list describes the most useful Image control properties:
 
 » Picture: The graphics image that is displayed.
 
-» PictureSizeMode: How the picture is displayed if the control size doesn’t
+» PictureSizeMode: How the picture is displayed if the control size doesn't
 
 match the image size.
 
-When you click the Picture property, you’re prompted for a filename. However,
+When you click the Picture property, you're prompted for a filename. However,
 
-the graphics image (after it’s retrieved) is stored in the workbook. That way, if you distribute your workbook to someone else, you don’t have to include a copy of the
+the graphics image (after it's retrieved) is stored in the workbook. That way, if you distribute your workbook to someone else, you don't have to include a copy of the
 
 graphics file.
 
@@ -390,7 +390,7 @@ to paste the copied image. Then you can delete the image from the worksheet.
 
 Some graphics images are very large and can make your workbook size increase
 
-dramatically. For best results, use an image that’s as small as possible.
+dramatically. For best results, use an image that's as small as possible.
 
 Label control
 
@@ -426,7 +426,7 @@ that holds the ListBox items, and the range can consist of multiple columns. Or
 
 you can fill the ListBox with items by using VBA code.
 
-If a ListBox isn’t tall enough to display all the items in the list, a scroll bar appears so the user can scroll down to see more items.
+If a ListBox isn't tall enough to display all the items in the list, a scroll bar appears so the user can scroll down to see more items.
 
 The following list is a description of the most useful ListBox control properties:
 
@@ -454,7 +454,7 @@ the ListBox.
 
 » Value: The text of the selected item in the ListBox.
 
-If the ListBox has its MultiSelect property set to 1 or 2, the user can select multiple items in the ListBox. In such a case, you can’t specify a ControlSource; you need
+If the ListBox has its MultiSelect property set to 1 or 2, the user can select multiple items in the ListBox. In such a case, you can't specify a ControlSource; you need
 
 to write a macro that determines which items are selected. Chapter 18 demon-
 
@@ -528,7 +528,7 @@ pressing Alt+C selects the control.
 
 with other option buttons with the same GroupName property.
 
-» ControlSource: The worksheet cell that’s linked to the option button.
+» ControlSource: The worksheet cell that's linked to the option button.
 
 The cell displays TRUE if the control is selected or FALSE if the control is
 
@@ -564,11 +564,11 @@ controls.
 
 The RefEdit control sometimes causes trouble in more complex UserForms. For
 
-best results, don’t place a RefEdit control inside a Frame or MultiPage control.
+best results, don't place a RefEdit control inside a Frame or MultiPage control.
 
 ScrollBar control
 
-When you add a ScrollBar control, you can make it horizontal or vertical. The ScrollBar control is similar to a SpinButton control (described later). The difference is that the user can drag the ScrollBar’s button to change the control’s value
+When you add a ScrollBar control, you can make it horizontal or vertical. The ScrollBar control is similar to a SpinButton control (described later). The difference is that the user can drag the ScrollBar's button to change the control's value
 
 in larger increments. Another difference is that when you click the up button on a
 
@@ -590,17 +590,17 @@ below it.
 
 Following are the most useful properties of a ScrollBar control:
 
-» Value: The control’s current value.
+» Value: The control's current value.
 
-» Min: The control’s minimum value.
+» Min: The control's minimum value.
 
-» Max: The control’s maximum value.
+» Max: The control's maximum value.
 
-» ControlSource: The worksheet cell that displays the control’s value.
+» ControlSource: The worksheet cell that displays the control's value.
 
-» SmallChange: The amount that the control’s value is changed by a click.
+» SmallChange: The amount that the control's value is changed by a click.
 
-» LargeChange: The amount that the control’s value is changed by clicking
+» LargeChange: The amount that the control's value is changed by clicking
 
 either side of the button.
 
@@ -632,23 +632,23 @@ The following descriptions explain the most useful properties of a SpinButton
 
 control:
 
-» Value: The control’s current value.
+» Value: The control's current value.
 
-» Min: The control’s minimum value.
+» Min: The control's minimum value.
 
-» Max: The control’s maximum value.
+» Max: The control's maximum value.
 
 CHAPTER 17  Using UserForm Controls    287
 
-» ControlSource: The worksheet cell that displays the control’s value.
+» ControlSource: The worksheet cell that displays the control's value.
 
-» SmallChange: The amount that the control’s value is changed by a click.
+» SmallChange: The amount that the control's value is changed by a click.
 
 Usually, this property is set to 1, but you can make it any value.
 
 If you use a ControlSource for a SpinButton, you should understand that the
 
-worksheet is recalculated every time the control’s value is changed. Therefore, if
+worksheet is recalculated every time the control's value is changed. Therefore, if
 
 the user changes the value from 0 to 12, the worksheet is calculated 12 times.
 
@@ -702,7 +702,7 @@ If 0, the number of characters is unlimited.
 
 When you add a TextBox control, its WordWrap property is set to True, and its
 
-MultiLine property is set to False. The net effect? Word wrap doesn’t work! So
+MultiLine property is set to False. The net effect? Word wrap doesn't work! So
 
 if you want the words to wrap in a TextBox control, make sure that you set the
 
@@ -736,7 +736,7 @@ After you place a control in a dialog box, you can move it and resize it by usin
 
 standard mouse techniques. Or for precise control, you can use the Properties
 
-window to enter a value for the control’s Height, Width, Left, or Top property.
+window to enter a value for the control's Height, Width, Left, or Top property.
 
 You can select multiple controls by Ctrl+clicking the controls. Or you can click and drag to 「lasso」 a group of controls. When multiple controls are selected, the Properties window displays only the properties common to all selected controls.
 
@@ -748,7 +748,7 @@ A control can hide another control; in other words, you can stack one control on
 
 top of another. Unless you have a good reason for doing so, make sure that you
 
-don’t overlap controls.
+don't overlap controls.
 
 Aligning and spacing controls
 
@@ -836,7 +836,7 @@ and move them all at one time.
 
 CHAPTER 17  Using UserForm Controls    291
 
-Rather than use the Tab Order dialog box, you can set a control’s position in the
+Rather than use the Tab Order dialog box, you can set a control's position in the
 
 tab order by using the Properties window. The first control in the tab order has
 
@@ -854,7 +854,7 @@ control before you choose the View ➪ Tab Order command.
 
 Setting hot keys
 
-Normally, you want to assign an accelerator key, or  hot key,  to dialog box controls. You do so by entering a letter for the Accelerator property in the Properties window. If a control doesn’t have an Accelerator property (a TextBox, for example), you can still allow direct keyboard access to it by using a Label control. That is, assign an accelerator key to the Label and put the Label directly before the TextBox in the tab order.
+Normally, you want to assign an accelerator key, or  hot key,  to dialog box controls. You do so by entering a letter for the Accelerator property in the Properties window. If a control doesn't have an Accelerator property (a TextBox, for example), you can still allow direct keyboard access to it by using a Label control. That is, assign an accelerator key to the Label and put the Label directly before the TextBox in the tab order.
 
 Figure 17-19 shows a UserForm with three TextBoxes. The Labels that describe the
 
@@ -872,7 +872,7 @@ provide direct
 
 access to controls
 
-that don’t have
+that don't have
 
 accelerator keys.
 
@@ -898,7 +898,7 @@ box is easy on the eye, has nicely sized and aligned controls, and its function 
 
 perfectly clear to the user. Bad-looking dialog boxes confuse the user, have
 
-misaligned controls, and give the impression that the developer didn’t have a plan
+misaligned controls, and give the impression that the developer didn't have a plan
 
 (or a clue).
 

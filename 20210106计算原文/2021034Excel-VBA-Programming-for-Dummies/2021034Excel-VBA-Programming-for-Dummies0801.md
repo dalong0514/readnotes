@@ -1,1276 +1,780 @@
-statements, they can consist of anything you want. You can insert a comment to
+for cells. Why do you need to know so much about Range objects? Because
 
-remind yourself why you did something or to clarify some particularly elegant
+much of the programming work you do in Excel focuses on Range objects.
 
-code you wrote.
+A Quick Review
 
-CHAPTER 7  Essential VBA Language Elements    93
+A  Range object represents a range contained in a Worksheet object. Range objects, like all other objects, have properties (which you can examine and sometimes
 
-Use comments liberally and extensively to describe what the code does (which isn’t always obvious from reading the code itself). Often, code that makes perfect
+change) and methods (which perform actions on the object).
 
-sense today mystifies you tomorrow. Been there. Done that.
+A Range object can be as small as a single cell (for example, B4) or as large as
 
-You begin a comment with an apostrophe (’). VBA ignores any text that follows an
+every one of the 17,179,869,184 cells in a worksheet (A1:XFD1048576).
 
-apostrophe in a line of code. You can use a complete line for your comment or
+When you refer to a Range object, the address is always surrounded by double
 
-insert your comment at the end of a line of code. The following example shows a
+quotes, like this:
 
-VBA procedure with four comments:
+Range("A1:C5")
 
-Sub FormatCells()
+CHAPTER 8  Working with Range Objects    115
 
-'  Exit if a range is not selected
+If the range consists of one cell, you still need the quotes:
 
-If TypeName(Selection) <> "Range" Then
+Range("K9")
 
-MsgBox "Select a range."
+If the range happens to have a name (created with Formulas
 
-Exit Sub
+➪ Defined
+
+Names ➪ Define Name ), you can refer to the range by its name (which is also in
+
+quotes):
+
+Range("PriceList")
+
+Unless you tell Excel otherwise by qualifying the range reference, it assumes that
+
+you're referring to a range on the active worksheet. If anything other than a work-
+
+sheet is active (such as a chart sheet), the range reference fails, and your macro
+
+displays an error message and grinds to a screeching halt.
+
+As shown in the following example, you can refer to a range outside the active
+
+sheet by qualifying the range reference with a worksheet name from the active
+
+workbook:
+
+Worksheets("Sheet1").Range("A1:C5")
+
+If you need to refer to a range in a different workbook (that is, any workbook other than the active workbook), you can use a statement like this:
+
+Workbooks("Budget.xlsx").Worksheets("Sheet1").Range("A1:C5") A Range object can consist of one or more entire rows or columns. You can refer to
+
+an entire row (in this case, row 3) by using syntax like this:
+
+Range("3:3")
+
+You can refer to an entire column (the fourth column in this example) like this:
+
+Range("D:D")
+
+In Excel, you select noncontiguous ranges by holding down Ctrl while selecting
+
+various ranges with your mouse. Figure 8-1 shows a noncontiguous range selec-
+
+tion. You shouldn't be surprised that VBA also allows you to work with noncon-
+
+tiguous ranges. The following expression refers to a two-area noncontiguous
+
+range. Notice that a comma separates the two areas.
+
+Range("A1:B8,D9:G16")
+
+116    PART 3  Programming Concepts
+
+FIGURE 8-1:
+
+A noncontiguous
+
+range selection.
+
+Be aware that some methods and properties cause havoc with noncontiguous
+
+ranges. You may have to process each area separately by using a loop.
+
+Other Ways to Refer to a Range
+
+The more you work with VBA, the more you realize that it's a fairly well-conceived
+
+language and is usually quite logical (despite what you may be thinking right
+
+now). Often, VBA provides multiple ways to perform an action. You can choose the
+
+most appropriate solution for your problem. This section discusses some of the
+
+other ways to refer to a range.
+
+This chapter barely scratches the surface for the Range object's properties and
+
+methods. As you work with VBA, you'll probably need to access other properties
+
+and methods. The Help system is the best place to find out about them, but it's also a good idea to record your actions and examine the code Excel generates. You're
+
+probably getting tired of hearing that advice by now, but it really is good advice.
+
+The Cells property
+
+Rather than use the VBA Range keyword, you can refer to a range via the Cells
+
+property.
+
+Although Cells may seem like an object (or a collection), it's really not. Rather,
+
+Cells is a property that VBA evaluates. VBA then returns an object (more specifi-
+
+cally, a Range object). If this seems strange, don't worry. Even Microsoft appears
+
+to be confused about this issue. In some earlier versions of Excel, the Cells prop-
+
+erty was known as the Cells method. Regardless of what it is, just understand that
+
+Cells is a handy way to refer to a range.
+
+CHAPTER 8  Working with Range Objects    117
+
+The Cells property takes two arguments: a row number and a column number.
+
+Both of these arguments are numbers, even though you usually refer to columns
+
+by using letters. For example, the following expression refers to cell C2 on Sheet2: Worksheets("Sheet2").Cells(2, 3)
+
+You can also use the Cells property to refer to a multicell range. The following
+
+example demonstrates the syntax you use:
+
+Range(Cells(1, 1), Cells(10, 8))
+
+This expression refers to an 80-cell range that extends from cell A1 (row 1, column
+
+1) to cell H10 (row 10, column 8).
+
+The following statements both produce the same result; they enter a value of 99
+
+into a 10-by-8 range of cells. More specifically, these statements set the Value
+
+property of the Range object:
+
+Range("A1:H10").Value = 99
+
+Range(Cells(1, 1), Cells(10, 8)).Value = 99
+
+The advantage of using the Cells property to refer to ranges becomes apparent
+
+when you use variables rather than actual numbers as the Cells arguments. And
+
+things really start to click when you understand looping, which is in Chapter 10.
+
+The Offset property
+
+The Offset property provides another handy means for referring to ranges. This
+
+property, which operates on a Range object and returns another Range object,
+
+allows you to refer to a cell that is a particular number of rows and columns away
+
+from another cell.
+
+Like the Cells property, the Offset property takes two arguments. The first argu-
+
+ment represents the number of rows to offset; the second represents the number
+
+of columns to offset.
+
+The following expression refers to a cell one row below cell A1 and two columns to
+
+the right of cell A1. In other words, this refers to the cell commonly known as C2:
+
+Range("A1").Offset(1, 2)
+
+118    PART 3  Programming Concepts
+
+The Offset property can also use negative arguments. A  negative row offset refers to a row above the range. A negative column offset refers to a column to the left of the range. The following example refers to cell A1:
+
+Range("C2").Offset(-1, -2)
+
+And as you may expect, you can use 0 as one or both of the arguments for Offset.
+
+The following expression refers to cell A1:
+
+Range("A1").Offset(0, 0)
+
+Here's a statement that inserts the time of day into the cell to the right of the
+
+active cell:
+
+ActiveCell.Offset(0,1) = Time
+
+When you record a macro in relative mode, Excel uses the Offset property quite a
+
+bit. Refer to Chapter 6 for an example.
+
+The Offset property is most useful when you use variables rather than actual val-
+
+ues for the arguments. Chapter 10 includes examples that demonstrate this.
+
+Some Useful Range Object Properties
+
+A Range object has dozens of properties. You can write VBA programs nonstop for
+
+the next 12 months and never use them all. This section briefly describes some of
+
+the most commonly used Range properties. For complete details, consult the Help
+
+system in the VBE.
+
+Some Range properties are  read-only properties, which means that your code can look at their values but can't change them ("Look, but don't touch"). For example, every Range object has an Address property, which holds the range's address. You
+
+can access this read-only property, but you can't change it — which makes per-
+
+fect sense when you think about it.
+
+By the way, the examples that follow are typically statements rather than com-
+
+plete procedures. If you'd like to try any of these (and you should), create a Sub
+
+procedure to do so. Also, many of these statements work properly only if a work-
+
+sheet is the active sheet.
+
+CHAPTER 8  Working with Range Objects    119
+
+The Value property
+
+The Value property represents the value contained in a cell. It's a read-write
+
+property, so your VBA code can either read or change the value.
+
+The following statement displays a message box that shows the value in cell A1 on
+
+Sheet1:
+
+MsgBox Worksheets("Sheet1").Range("A1").Value
+
+It stands to reason that you can read the Value property only for a single-cell
+
+Range object. For example, the following statement generates an error:
+
+MsgBox Worksheets("Sheet1").Range("A1:C3").Value
+
+You can, however, change the Value property for a range of any size. The following
+
+statement enters the number 123 into each cell in a range:
+
+Worksheets("Sheet1").Range("A1:C3").Value = 123
+
+Value is the default property for a Range object. In other words, if you omit a
+
+property for a Range, Excel uses its Value property. The following statements both
+
+enter a value of 75 into cell A1 of the active worksheet:
+
+Range("A1").Value = 75
+
+Range("A1") = 75
+
+ASSIGNING THE VALUES IN A MULTICELL
+
+RANGE TO A VARIABLE
+
+Even though you can read the Value property only for a single-cell Range object, you can assign the values in a multicell range to a variable, as long as the variable is a variant.
+
+That's because a variant can act like an array. Here's an example:
+
+Dim x As Variant
+
+x = Range("A1:C3").Value
+
+Then you can treat the x variable as though it were an array. This statement, for example, returns the value in cell B1:
+
+MsgBox x(1, 2)
+
+120    PART 3  Programming Concepts
+
+The Text property
+
+The Text property returns a string that represents the text as it's displayed in
+
+a cell — the formatted value. The Text property is read-only. Suppose that cell A1
+
+contains the value 12.3 and is formatted to display two decimals and a dollar sign
+
+($12.30). The following statement displays a message box containing $12.30:
+
+MsgBox Worksheets("Sheet1").Range("A1").Text
+
+But the next statement displays a message box containing 12.3:
+
+MsgBox Worksheets("Sheet1").Range("A1").Value
+
+If the cell contains a formula, the Text property returns the result of the formula.
+
+If a cell contains text, the Text property and the Value property always return the
+
+same thing, because text (unlike a number) can't be formatted to display
+
+differently.
+
+The Count property
+
+The Count property returns the number of cells in a range. It counts all cells, not
+
+just the nonblank cells. Count is a read-only property, just as you would expect.
+
+The following statement accesses a range's Count property and displays the result
+
+(9) in a message box:
+
+MsgBox Range("A1:C3").Count
+
+The Column and Row properties
+
+The Column property returns the column number of a single-cell range. Its side-
+
+kick, the Row property, returns the row number of a single-cell range. Both are
+
+read-only properties. For example, the following statement displays 6 because
+
+cell F3 is in the sixth column:
+
+MsgBox Sheets("Sheet1").Range("F3").Column
+
+The next expression displays 3 because cell F3 is in the third row:
+
+MsgBox Sheets("Sheet1").Range("F3").Row
+
+If the Range object consists of more than one cell, the Column property returns
+
+the column number of the first column in the range, and the Row property returns
+
+the row number of the first row in the range.
+
+CHAPTER 8  Working with Range Objects    121
+
+Don't confuse the Column and Row properties with the Columns and Rows prop-
+
+erties (discussed earlier in this chapter). The Column and Row properties return a
+
+single value. The Columns and Rows properties, on the other hand, return a Range
+
+object. What a difference an「s」makes.
+
+The Address property
+
+Address, a read-only property, displays the cell address for a Range object as an
+
+absolute reference (a dollar sign before the column letter and before the row num-
+
+ber). The following statement displays the message box shown in Figure 8-2:
+
+MsgBox Range(Cells(1, 1), Cells(5, 5)).Address
+
+FIGURE 8-2:
+
+This message box
+
+displays the
+
+Address property
+
+of a 5-by-5 range.
+
+The HasFormula property
+
+The HasFormula property (which is read-only) returns True if the single-cell
+
+range contains a formula. It returns False if the cell contains something other
+
+than a formula (or is empty). If the range consists of more than one cell, VBA
+
+returns True only if all cells in the range contain a formula or False if all cells in the range don't have a formula. The property returns Null if the range contains a
+
+mixture of formulas and nonformulas. Null is kind of a no-man's land: The
+
+answer is neither True nor False, and any cell in the range may or may not have a
+
+formula.
+
+You need to be careful when you work with properties that can return Null. More
+
+specifically, the only data type that can deal with Null is Variant.
+
+122    PART 3  Programming Concepts
+
+For example, assume that cell A1 contains a value and cell A2 contains a formula.
+
+The following statements generate an error because the range doesn't consist of
+
+all formulas or all nonformulas:
+
+Dim FormulaTest As Boolean
+
+FormulaTest = Range("A1:A2").HasFormula
+
+The Boolean data type can handle only True or False. Null causes Excel to com-
+
+plain and display an error message. To fix this type of situation, the best thing to do is make sure that the FormulaTest variable is declared as a Variant rather than
+
+as a Boolean. The following example uses VBA's handy TypeName function (along
+
+with an If-Then-Else construct) to determine the data type of the FormulaTest
+
+variable. If the range has a mixture of formulas and nonformulas, the message
+
+box displays  Mixed!  Otherwise, it displays  True or  False .
+
+Sub CheckForFormulas()
+
+Dim FormulaTest As Variant
+
+FormulaTest = Range("A1:A2").HasFormula
+
+If TypeName(FormulaTest) = "Null" Then
+
+MsgBox "Mixed!"
+
+Else
+
+MsgBox FormulaTest
 
 End If
 
-'  Format the cells
+End Sub
 
-With Selection
+See Chapter 10 for more about using the If-Then-Else construct.
 
-.HorizontalAlignment = xlRight
+The Font property
 
-.WrapText = False ' no wrap
+As noted earlier in this chapter (see「The Cells property」), a property can return
 
-.MergeCells = False ' no merged cells
+an object. The Font property of a Range object is another example of that concept
 
-End With
+at work. The Font property returns a Font object.
+
+A Font object, as you may expect, has many accessible properties. To change some
+
+aspect of a range's font, you must first access the range's Font object and then
+
+manipulate the properties of that object. This may be confusing, but perhaps this
+
+example will help.
+
+The following statement uses the Font property of the Range object to return a
+
+Font object. Then the Bold property of the Font object is set to True. In plain Eng-
+
+lish, this statement makes the cell display in boldface:
+
+Range("A1").Font.Bold = True
+
+CHAPTER 8  Working with Range Objects    123
+
+Truth is, you don't really need to know that you're working with a special Font object that's contained in a Range object. As long as you use the proper syntax, it
+
+works just fine. Often, recording your actions with the macro recorder tells you
+
+everything you need to know about the proper syntax.
+
+See Chapter 6 for more information about recording macros.
+
+The Interior property
+
+Here's yet another example of a property that returns an object. A Range object's
+
+Interior property returns an Interior object (strange name, but that's what it's
+
+called). This type of object referencing works the same way as the Font property
+
+(described in the preceding section).
+
+For example, the following statement changes the Color property of the Interior
+
+object contained in the Range object:
+
+Range("A1").Interior.Color = 8421504
+
+In other words, this statement changes the cell's background to middle gray. What's
+
+that? You didn't know that 8421504 is middle gray? For some insights into Excel's
+
+wonderful world of color, see the nearby sidebar「A quick-and-dirty color primer.」
+
+A QUICK-AND-DIRTY COLOR PRIMER
+
+Before Excel 2007, Microsoft tried to convince us that 56 colors were good enough for a spreadsheet. But things have changed, and we can use more than 16 million colors in a workbook — 16,777,216 colors, to be exact.
+
+Many objects have a Color property, and that property accepts color values that range from 0 to 16777215. Nobody can remember that many color values, so (fortunately)
+
+there's an easier way to specify colors: VBA's RGB function. This function takes advantage of the fact that any of these 16 million colors can be represented by various levels of red, green, and blue. The three arguments in the RGB function correspond to the color's red, green, and blue components, and each of these arguments can range from 0 to 255.
+
+Note that 256 x 256 x 256 = 16,777,216 — which happens to be the number of colors.
+
+Don't you just love it when the math works out?
+
+Here's a statement that changes a cell's background color to a random color:
+
+Range("A1").Interior.Color = Int(16777216 * Rnd)
+
+124    PART 3  Programming Concepts
+
+Following are a few examples that use the RGB function to change a cell's background color:
+
+Range("A1").Interior.Color = RGB(0, 0, 0) 'black
+
+Range("A1").Interior.Color = RGB(255, 0, 0) ' pure red
+
+Range("A1").Interior.Color = RGB(0, 0, 255) ' pure blue
+
+Range("A1").Interior.Color = RGB(198, 212, 60) ' ugly green
+
+Range("A1").Interior.Color = RGB(128, 128, 128) ' middle gray
+
+What's the exact value of RGB(128, 128, 128)? This statement tells you that it's 8421504: MsgBox RGB(128, 128, 128)
+
+If you need to use standard colors, you may prefer to use one of the built-in color
+
+constants: vbBlack, vbRed, vbGreen, vbYellow, vbBlue, vbMagenta, vbCyan, or vbWhite.
+
+For example, the following statement makes cell A1 yellow:
+
+Range("A1").Interior.Color = vbYellow
+
+Excel 2007 also introduced  theme colors.  These are the colors that appear when you use color control such as the Fill Color control in the Font group of the Home tab. Try recording a macro while you change colors, and you'll get something like this:
+
+Range("A1").Interior.ThemeColor = xlThemeColorAccent4
+
+Range("A1").Interior.TintAndShade = 0.399975585192419
+
+Yep, two more color-related properties to deal with. Here, you have a theme color (the basic color, specified as a built-in constant), plus a「tint and shade」value that represents how dark or light the color is. TintAndShade values range from –1.0 to +1.0. Positive values of the TintAndShade property make the color lighter, and negative values
+
+make the color darker. When you set a color by using the ThemeColor property, the
+
+color changes if you apply a different document theme (by choosing Page Layout ➪
+
+Themes ➪ Themes ).
+
+The Formula property
+
+The Formula property represents the formula in a cell. This is a read-write prop-
+
+erty, so you can access it to either view the formula in a cell or insert a formula into a cell. For example, the following statement enters a SUM formula into cell A13:
+
+Range("A13").Formula = "=SUM(A1:A12)"
+
+Notice that the formula is a text string and is enclosed in quotation marks. Also
+
+notice that the formula begins with an equal sign, as all formulas do.
+
+CHAPTER 8  Working with Range Objects    125
+
+If the formula itself contains quotation marks, things get a bit tricky. Say that you want to insert this formula by using VBA:
+
+=SUM(A1:A12)&" Stores"
+
+This formula displays a value followed by the word  Stores . To make this formula acceptable, you need to replace every quotation mark in the formula with two
+
+quotation marks. Otherwise, VBA gets confused and claims that there's a syntax
+
+error (because there is!). So here's a statement that enters a formula that contains quotes:
+
+Range("A13").Formula = "=SUM(A1:A12)&"" Stores"""
+
+By the way, you can access a cell's Formula property even if the cell doesn't have
+
+a formula. If a cell has no formula, the Formula property returns the same as its
+
+Value property.
+
+If you need to know whether a cell has a formula, use the HasFormula property
+
+(discussed earlier in this chapter).
+
+Be aware that VBA「speaks」U.S. English. This means that to put a formula in a
+
+cell, you must use the U.S. syntax. If you use a non-English version of Excel, read
+
+up on the FormulaLocal property in the Help system.
+
+The NumberFormat property
+
+The NumberFormat property represents the number format (expressed as a text
+
+string) of the Range object. This is a read-write property, so your VBA code can
+
+either examine the number format or change it. The following statement changes
+
+the number format of column A to a percentage with two decimal places:
+
+Columns("A:A").NumberFormat = "0.00%"
+
+Follow these steps to see a list of other number formats (better yet, turn on the
+
+macro recorder while you do this):
+
+1. Activate a worksheet.
+
+2. Press Ctrl+1 to access the Format Cells dialog box.
+
+3. Click the Number tab.
+
+4. Select the Custom category to view and apply some additional number
+
+format strings.
+
+126    PART 3  Programming Concepts
+
+Some Useful Range Object Methods
+
+As you know, a VBA method performs an action. A Range object has dozens of
+
+methods but, again, you won't need most of these. In this section, you explore
+
+some of the most commonly used Range object methods.
+
+The Select method
+
+Use the Select method to select a range of cells. The following statement selects a
+
+range in the active worksheet:
+
+Range("A1:C12").Select
+
+Before selecting a range, it's often a good idea to use one additional statement to
+
+ensure that the correct worksheet is active. For example, if Sheet1 contains the
+
+range you want to select, use the following statements to select the range:
+
+Sheets("Sheet1").Activate
+
+Range("A1:C12").Select
+
+Contrary to what you may expect, the following statement generates an error if
+
+Sheet1 is not already the active sheet. In other words, you must use two state-
+
+ments rather than just one: one to activate the sheet and another to select the
+
+range.
+
+Sheets("Sheet1").Range("A1:C12").Select
+
+If you use the GoTo method of the Application object to select a range, you can
+
+forget about selecting the correct worksheet first. This statement activates Sheet1
+
+and then selects the range:
+
+Application.Goto Sheets("Sheet1").Range("A1:C12")
+
+The GoTo method is the VBA equivalent of pressing F5 in Excel, which displays the
+
+GoTo dialog box.
+
+The Copy and Paste methods
+
+You can perform copy and paste operations in VBA by using the Copy and Paste
+
+methods. Note that two different objects come into play. The Copy method is applicable to the Range object, but the Paste method applies to the Worksheet
+
+object. It actually makes sense: You copy a range and paste it to a worksheet.
+
+CHAPTER 8  Working with Range Objects    127
+
+This short macro (courtesy of the macro recorder) copies range A1:A12 and pastes it into the same worksheet, beginning at cell C1:
+
+Sub CopyRange()
+
+Range("A1:A12").Select
+
+Selection.Copy
+
+Range("C1").Select
+
+ActiveSheet.Paste
 
 End Sub
 
-The「apostrophe indicates a comment」rule has one exception: VBA doesn’t inter-
+Notice that in the preceding example, the ActiveSheet object is used with the Paste
 
-pret an apostrophe inside a set of quotation marks as a comment indicator. For
+method. This is a special version of the Worksheet object that refers to the
 
-example, the following statement doesn’t contain a comment, even though it has
+currently active worksheet. Also notice that the macro selects the range before
 
-an apostrophe:
+copying it. However, you don't have to select a range before doing something with
 
-Msg = "Can't continue"
+it. In fact, the following procedure accomplishes the same task as the preceding
 
-When you’re writing code, you may want to test a procedure by  excluding a
+example by using a single statement:
 
-particular statement or group of statements. You  could delete the statements and then retype them later. But that’s a waste of time. A better solution is to simply
+Sub CopyRange2()
 
-turn those statements into comments by inserting apostrophes. VBA ignores
-
-statements beginning with apostrophes when executing a routine. To reactivate
-
-those「commented」statements, just remove the apostrophes.
-
-Here’s a quick way to convert a block of statements to comments. In the VBE,
-
-choose View ➪ Toolbars ➪ Edit to display the Edit toolbar. To convert a block of
-
-statements to comments, select the statements and click the Comment Block
-
-button. To remove the apostrophes, select the statements and click the Uncom-
-
-ment Block button.
-
-94    PART 3  Programming Concepts
-
-Everyone develops his or her own style of commenting. To be useful, however, comments should convey information that’s not immediately obvious from
-
-reading the code.
-
-The following tips can help you make effective use of comments:
-
-» Identify yourself as the author. This can be useful when you get promoted and the person who takes over your job has some questions.
-
-» Briefly describe the purpose of each Sub or Function procedure you write.
-
-» Use comments to keep track of changes you make to a procedure.
-
-» Use a comment to indicate that you’re using a function or a construct in an unusual or nonstandard manner.
-
-» Use comments to describe the variables you use, especially if you don’t use meaningful variable names.
-
-» Use a comment to describe any workarounds you develop to overcome bugs
-
-in Excel.
-
-» Write comments as you develop code instead of saving the task for a final
-
-step.
-
-» Depending on your work environment, consider adding a joke or two as a
-
-comment. The person who takes over your job when you get promoted might
-
-appreciate the humor.
-
-Using Variables, Constants,
-
-and Data Types
-
-VBA’s main purpose is to manipulate data. VBA stores the data in your computer’s
-
-memory, and the data may or may not end up on disk. Some data, such as work-
-
-sheet ranges, resides in objects. Other data is stored in variables that you create.
-
-Understanding variables
-
-A  variable is simply a named storage location in your computer’s memory that’s used by a program. You have lots of flexibility in naming your variables, so make
-
-the variable names as descriptive as possible. You assign a value to a variable by
-
-using the equal-sign operator. (More about this later in the「Using Assignment
-
-Statements」section.)
-
-CHAPTER 7  Essential VBA Language Elements    95
-
-Here are some examples of variables being assigned values. Note that the last example uses two variables.
-
-x = 1
-
-InterestRate = 0.075
-
-LoanPayoffAmount = 243089
-
-DataEntered = False
-
-x = x + 1
-
-UserName = "Bob Johnson"
-
-Date_Started = #3/14/2019#
-
-MyNum = YourNum * 1.25
-
-VBA enforces a few rules regarding variable names:
-
-» You can use letters, numbers, and some punctuation characters, but the first character must be a letter.
-
-» VBA doesn’t distinguish between uppercase and lowercase letters.
-
-» You can’t use any spaces, periods, or mathematical operators in a variable
-
-name.
-
-» You can’t use the following characters in a variable name: #, $, %, &, or !.
-
-» Variable names can be no longer than 255 characters. But nobody even gets
-
-close to that limit.
-
-To make variable names more readable, programmers often use mixed case (for
-
-example, InterestRate) or the underscore character (interest_rate).
-
-VBA has many reserved words that you can’t use for variable names or procedure
-
-names. These include words such as Sub, Dim, With, End, Next, and For. If you
-
-attempt to use one of these words as a variable, you may get a compile error
-
-(which means your code won’t run). So if an assignment statement produces an
-
-error message, double-check to make sure that the variable name isn’t a reserved
-
-word. An easy way to do that is to select the variable name and press F1. If your
-
-variable name is a reserved word, it will have an entry in the Help system.
-
-VBA does allow you to create variables with names that match names in Excel’s
-
-object model, such as Workbook and Range. But obviously, using names like that
-
-just increases the possibility of getting confused. Here’s a perfectly valid (but very confusing) macro that declares Range as a variable name and works with a cell
-
-named Range in a worksheet named Range:
-
-96    PART 3  Programming Concepts
-
-Sub RangeConfusion()
-
-Dim Range As Double
-
-Range = Sheets("Range").Range("Range").Value
-
-MsgBox Range
+Range("A1:A12").Copy Range("C1")
 
 End Sub
 
-So resist the urge to use a variable named Workbook or Range, and use something
+This procedure takes advantage of the fact that the Copy method can use an argu-
 
-like MyWorkbook or MyRange instead.
+ment that corresponds to the destination range for the copy operation. That's
 
-What are VBA’s data types?
+something that you can find out by checking with the Help system.
 
-When discussing programming languages, the term  data type refers to the manner in which a program stores data in memory — for example, as integers, real numbers, or strings. Although VBA can take care of these details automatically, it does so at a cost. (There’s no free lunch.) Letting VBA handle your data typing results
+The Clear method
 
-in slower execution and inefficient memory use. For small applications, this usu-
+The Clear method deletes the contents of a range, plus all the cell formatting. For
 
-ally doesn’t present much of a problem. But for large or complex applications, which may be slow or need to conserve every last byte of memory, you need to be
+example, if you want to zap everything in column D, the following statement does
 
-on familiar terms with data types.
+the trick:
 
-VBA automatically handles all the data details, which makes life easier for
+Columns("D:D").Clear
 
-programmers. Not all programming languages provide this luxury. For example,
+You should be aware of two related methods. The ClearContents method deletes
 
-some languages are  strictly typed,  which means the programmer must explicitly define the data type for every variable used.
+the contents of the range but leaves the formatting intact. The ClearFormats
 
-VBA doesn’t require that you declare the variables that you use, but it’s definitely a good practice. You see why later in this chapter.
+method deletes the formatting in the range but not the cell contents.
 
-VBA has a variety of built-in data types. Table 7-1 lists the most common types of
+The Delete method
 
-data that VBA can handle.
+Clearing a range differs from deleting a range. When you  delete a range, Excel shifts the remaining cells around to fill up the range you deleted.
 
-In general, choose the data type that uses the smallest number of bytes but can
+128    PART 3  Programming Concepts
 
-still handle all the data you want to store in the variable.
+The following example uses the Delete method to delete row 6:
 
-An exception to the「smallest number of bytes」rule is Long. Most VBA programmers
+Rows("6:6").Delete
 
-use Long instead of Integer because doing so offers a slight performance increase.
+When you delete a range that's not a complete row or column, Excel needs to
 
-But for small procedures, you would never notice any difference between Integer
+know how to shift the cells. (To see how this works, experiment with
 
-and Long data types.
+Home ➪ Cells ➪ Delete ➪ Delete Cells in Excel.)
 
-CHAPTER 7  Essential VBA Language Elements    97
+The following statement deletes a range and then fills the resulting gap by shift-
 
-TABLE 7-1
+ing the other cells to the left:
 
-VBA’s Built-In Data Types
+Range("C6:C10").Delete xlToLeft
 
-Data Type
+The Delete method uses an argument that indicates how Excel should shift the
 
-Bytes Used
+remaining cells. In this case, the built-in constant (xlToLeft) is used for the
 
-Range of Values
+argument.
 
-Byte
-
-1
-
-0 to 255
-
-Boolean
-
-2
-
-True or False
-
-Integer
-
-2
-
-–32,768 to 32,767
-
-Long
-
-4
-
-–2,147,483,648 to 2,147,483,647
-
-Single
-
-4
-
-–3.40E38 to –1.40E-45 for negative values;
-
-1.40E-45 to 3.40E38 for positive values
-
-Double
-
-8
-
-–1.79E308 to –4.94E-324 for negative values;
-
-4.94E-324 to 1.79E308 for positive values
-
-Currency
-
-8
-
-–922,337,203,685,477 to 922,337,203,685,477
-
-Date
-
-8
-
-1/1/0100 to 12/31/9999
-
-Object
-
-4
-
-Any object reference
-
-String
-
-1 per character
-
-Varies
-
-Variant
-
-Varies
-
-Varies
-
-Declaring and scoping variables
-
-If you read the preceding sections, you know a bit about variables and data types.
-
-In this section, you discover how to declare a variable as a certain data type.
-
-If you don’t declare the data type for a variable you use in a VBA routine, VBA uses the default data type: Variant. Data stored as a variant acts like a chameleon; it
-
-changes type depending on what you do with it. For example, if a variable is a
-
-Variant data type and contains a text string that looks like a number (such as「143」), you can use this variable for string manipulations as well as numeric calculations.
-
-VBA automatically handles the conversion. Letting VBA handle data types may
-
-seem like an easy way out — but remember that you sacrifice speed and increase
-
-memory used.
-
-Before you use variables in a procedure, it’s an excellent practice to  declare your variables — that is, tell VBA each variable’s data type. Declaring your variables
-
-makes your macro run faster and use memory more efficiently. The default data
-
-type, Variant, causes VBA to repeatedly perform time-consuming checks and
-
-98    PART 3  Programming Concepts
-
-reserve more memory than necessary. If VBA knows a variable’s data type, it doesn’t have to investigate and can reserve just enough memory to store the data.
-
-To force yourself to declare all the variables you use, include these two words as
-
-the first statement in your VBA module:
-
-Option Explicit
-
-When this statement is present, you won’t be able to run your code if it contains
-
-any undeclared variables.
-
-You need to use Option Explicit only once: at the beginning of your module, before
-
-the declaration of any procedures in the module. Keep in mind that the Option
-
-Explicit statement applies only to the module in which it resides. If you have more
-
-than one VBA module in a project, you need an Option Explicit statement for each
-
-module.
-
-Suppose that you use an undeclared variable (that is, a Variant) named Current-
-
-Rate. At some point in your routine, you insert the following statement:
-
-CurentRate = .075
-
-The variable name is misspelled (missing an r) and can be very difficult to spot.
-
-If you don’t notice it, Excel interprets it as a  different variable, and it will probably cause your routine to give incorrect results. If you use Option Explicit at the
-
-beginning of your module (forcing you to declare the CurrentRate variable), Excel
-
-generates an error if it encounters a misspelled variation of that variable.
-
-To ensure that the Option Explicit statement is inserted automatically whenever
-
-you insert a new VBA module, turn on the Require Variable Definition option.
-
-You find it on the Editor tab of the Options dialog box (in the VBE, choose Tools ➪ Options).
-
-Declaring your variables also allows you to take advantage of a shortcut that can
-
-save some typing. Just type the first two or three characters of the variable name
-
-and then press Ctrl+space bar. The VBE either completes the entry for you or — if
-
-the choice is ambiguous — shows you a list of matching words to choose among.
-
-In fact, this slick trick works with reserved words and functions, too. Figure 7-1
-
-shows an example of how this works.
-
-CHAPTER 7  Essential VBA Language Elements    99
-
-FIGURE 7-1:
-
-Pressing
-
-Ctrl+space bar
-
-displays a list of
-
-variable names,
-
-reserved words,
-
-and functions.
-
-You now know the advantages of declaring variables, but  how do you do it? The most common way is to use a Dim statement. Here are some examples of variables
-
-being declared:
-
-Dim YourName As String
-
-Dim January_Inventory As Double
-
-Dim AmountDue As Double
-
-Dim RowNumber As Long
-
-Dim X
-
-The first four variables are declared as a specific data type. The last variable, X, is not declared as a specific data type, so it’s treated as a Variant (it can be anything).
-
-Besides Dim, VBA has three keywords that are used to declare variables:
-
-» Static
-
-» Public
-
-» Private
-
-The Dim, Static, Public, and Private keywords later are discussed later, but first,
-
-two other topics are relevant here: a variable’s scope and a variable’s life.
-
-A workbook can have any number of VBA modules, and a VBA module can have
-
-any number of Sub and Function procedures. A variable’s  scope determines which modules and procedures can use the variable. Table 7-2 has the details.
-
-Confused? Keep turning the pages; some examples make this stuff crystal clear.
-
-100    PART 3  Programming Concepts
-
-TABLE 7-2
-
-Variable’s Scope
-
-Scope
-
-How the Variable Is Declared
-
-Procedure only
-
-By using a Dim or a Static statement in the procedure that uses the
-
-variable
-
-Module only
-
-By using a Dim or a Private statement before the first Sub or Function
-
-statement in the module
-
-All procedures in all modules
-
-By using a Public statement before the first Sub or Function statement
-
-in a module
-
-Procedure-only variables
-
-The lowest level of scope for a variable is at the procedure level. (A  procedure is either a Sub or a Function procedure.) Variables declared with this scope can be
-
-used only in the procedure in which they’re declared. When the procedure ends,
-
-the variable no longer exists, and Excel frees up its memory. If you execute the
-
-procedure again, the variable comes back to life, but its previous value is lost.
-
-The most common way to declare a procedure-only variable is with a Dim
-
-statement. Dim doesn’t refer to the mental capacity of the VBA designers. Rather,
-
-it’s an old programming term that’s short for  dimension,  which simply means you’re setting aside memory for a particular variable. You usually place Dim statements immediately after the Sub or Function statement and before the
-
-procedure’s code.
-
-The following example shows some procedure-only variables declared by using
-
-Dim statements:
-
-Sub MySub()
-
-Dim x As Integer
-
-Dim First As Long
-
-Dim InterestRate As Single
-
-Dim TodaysDate As Date
-
-Dim UserName As String
-
-Dim MyValue
-
-' ...   [The procedure's code goes here] ...
-
-End Sub
-
-Notice that the last Dim statement in the preceding example doesn’t declare a data
-
-type for the MyValue variable; it declares only the variable itself. The effect is that the variable MyValue is a Variant data type.
-
-CHAPTER 7  Essential VBA Language Elements    101
-
-Unlike some languages, VBA doesn’t allow you to declare a group of variables to be
-
-a particular data type by separating the variables with commas. For example,
-
-though valid, the following statement does  not declare all the variables as Integers: Dim i, j, k As Integer
-
-In this example, only k is declared to be an Integer; the other variables default to the Variant data type.
-
-If you declare a variable with procedure-only scope, other procedures in the same
-
-module can use the same variable name, but each instance of the variable is unique
-
-to its own procedure. In general, variables declared at the procedure level are the
-
-most efficient because VBA frees up the memory they use when the procedure ends.
-
-Module-only variables
-
-Sometimes, you want a variable to be available to all procedures in a module. If so, just declare the variable (using Dim or Private)  before the module’s first Sub or Function statement — outside any procedures. You do this in the Declarations section, at the beginning of your module. (This is also where the Option Explicit
-
-statement is located.)
-
-Figure 7-2 shows how you know when you’re working with the Declarations
-
-section. Use the drop-down menu on the right, and go directly to the Declarations
-
-section. Do not pass Go, and do not collect $200.
-
-FIGURE 7-2:
-
-Each VBA
-
-module has a
-
-Declarations
-
-section, which
-
-appears before
-
-any Sub or
-
-Function
-
-procedures.
-
-Suppose that you want to declare the CurrentValue variable so that it’s available to all the procedures in your module. All you need to do is use the Dim statement in
-
-the Declarations section:
-
-Dim CurrentValue As Double
-
-With this declaration in place — and in the proper place — the CurrentValue variable can be used from any other procedure within the module, and it retains
-
-its value from one procedure to another.
-
-102    PART 3  Programming Concepts
-
-Public variables
-
-If you need to make a variable available to all the procedures in all your VBA mod-
-
-ules in a workbook, declare the variable at the module level (in the Declarations
-
-section) by using the Public keyword. Here’s an example:
-
-Public CurrentRate As Long
-
-The Public keyword makes the CurrentRate variable available to any procedure in
-
-the workbook — even those in other VBA modules. You must insert this statement
-
-before the first Sub or Function statement in a module.
-
-If you’d like a variable to be available to modules in other workbooks, you must
-
-declare the variable as Public and establish a reference to the workbook that contains the variable declaration. Set up a reference by choosing Tools ➪ References in the VBE. In practice, sharing a variable across workbooks is hardly ever done.
-
-But it’s nice to know that it can be done, in case it ever comes up as a  Jeopardy!
-
-question.
-
-Static variables
-
-Normally, when a procedure ends, all the procedure’s variables are reset.  Static  variables are special cases because they retain their value even when the procedure ends. You declare a static variable at the procedure level. A static variable may be useful if you need to track the number of times you execute a procedure. You can
-
-declare a static variable and increment it each time you run the procedure.
-
-As shown in the following example, you declare static variables by using the Static
-
-keyword:
-
-Sub MySub()
-
-Static Counter As Integer
-
-Dim Msg As String
-
-Counter = Counter + 1
-
-Msg = "Number of executions: " & Counter
-
-MsgBox Msg
-
-End Sub
-
-The code keeps track of the number of times the procedure was executed and
-
-displays the number in a message box. The value of the Counter variable isn’t
-
-reset when the procedure ends, but it’s reset when you close and reopen the
-
-workbook.
-
-CHAPTER 7  Essential VBA Language Elements    103
-
-Even though the value of a variable declared as Static is retained after a variable ends, that variable is unavailable to other procedures. In the preceding MySub
-
-procedure example, the Counter variable and its value are available only within
-
-the MySub procedure. In other words, it’s a procedure-level variable.
-
-Life of variables
-
-Nothing lives forever, including variables. The scope of a variable not only
-
-determines where that variable may be used, but also affects the circumstances
-
-under which the variable is removed from memory.
-
-You can purge all variables from memory by using three methods:
-
-» Click the Reset toolbar button (the little blue square button on the Standard toolbar in the VBE).
-
-» Click End when a runtime error message dialog box shows up.
-
-» Include an End statement anywhere in your code. This is not the same as an
-
-End Sub or End Function statement.
-
-Otherwise, only procedure-level variables will be removed from memory when
-
-the macro code has completed running. Static variables, module-level variables,
-
-and global (public) variables all retain their values in between runs of your code.
-
-If you use module-level or global-level variables, make sure they have the values
-
-you expect them to have. You never know whether one of the situations just men-
-
-tioned may have caused your variables to lose their content!
-
-Working with constants
-
-A variable’s value may (and usually does) change while your procedure is execut-
-
-ing. That’s why they call it a  variable . Sometimes, you need to refer to a value or string that never changes. In such a case, you need a  constant — a named element whose value doesn’t change.
-
-As shown in the following examples, you declare constants by using the Const
-
-statement. The declaration statement also gives the constant its value:
-
-Const NumQuarters As Integer = 4
-
-Const Rate = .0725, Period = 12
-
-Const ModName As String = "Budget Macros"
-
-Public Const AppName As String = "Budget Application"
-
-104    PART 3  Programming Concepts
-
-Using constants in place of hard-coded values or strings is an excellent programming practice. For example, if your procedure needs to refer to a specific
-
-value (such as an interest rate) several times, it’s better to declare the value as a constant and refer to its name rather than the value. This makes your code more
-
-readable and easier to change. And if the interest rate changes, you have to change
-
-only one statement rather than several.
-
-Like variables, constants have a scope. Keep these points in mind:
-
-» To make a constant available within only a single procedure, declare the
-
-constant after the procedure’s Sub or Function statement.
-
-» To make a constant available to all procedures in a module, declare the
-
-constant in the Declarations section for the module.
-
-» To make a constant available to all modules in the workbook, use the Public keyword and declare the constant in the Declarations section of any module.
-
-Unlike a variable, the value of a constant doesn’t vary. If you attempt to change
-
-the value of a constant in a VBA routine, you get an error. This isn’t too surprising because the value of a constant must remain constant. If you need to change the
-
-value of a constant while your code is running, what you really need is a variable.
-
-Premade constants
-
-Excel and VBA contain many predefined constants, which you can use without the
-
-need to declare them yourself. The macro recorder usually uses constants rather
-
-than actual values. In general, you don’t need to know the value of these constants
-
-to use them. The following simple procedure uses a built-in constant (xlCalculation
-
-Manual) to change the Calculation property of the Application object (in other
-
-words, to change the Excel recalculation mode to manual):
-
-Sub CalcManual()
-
-Application.Calculation = xlCalculationManual
-
-End Sub
-
-If you look in Excel’s Help system for calculation modes, you’ll find this:
-
-Name
-
-Value
-
-Description
-
-xlCalculationAutomatic
-
-–4105
-
-Excel controls recalculation.
-
-xlCalculationManual
-
-–4135
-
-Calculation is done when the user requests it.
-
-xlCalculationSemiautomatic
-
-2
-
-Excel controls recalculation but ignores changes
-
-in tables.
-
-CHAPTER 7  Essential VBA Language Elements    105
-
-So the actual value of the built-in xlCalculationManual constant is –4135.
-
-Obviously, it’s easier to use the constant’s name than try to remember such an
-
-odd value. As you can see, many of the built-in constants are just arbitrary
-
-numbers that have special meaning to VBA.
-
-To find the actual value of a built-in constant, use the Immediate window in the
-
-VBE and execute a VBA statement such as the following:
-
-? xlCalculationAutomatic
-
-If the Immediate window isn’t visible, press Ctrl+G. The question mark is a short-
-
-cut for typing Print.
-
-Working with strings
-
-Excel can work with both numbers and text, so it should come as no surprise that
-
-VBA has this same power. Text is often referred to as a  string.  You can work with two types of strings in VBA:
-
-» Fixed-length strings are declared with a specified number of characters. The maximum length is 65,526 characters. That’s a lot of characters! As a point of
-
-reference, this chapter contains about half that many characters.
-
-» Variable-length strings theoretically can hold as many as two billion characters.
-
-If you type 5 characters per second, it would take you about 760 days to bang out
-
-2 billion characters — assuming you don’t take any breaks to eat or sleep.
-
-When declaring a string variable with a Dim statement, you can specify the maximum length if you know it (it’s a fixed-length string) or let VBA handle it
-
-dynamically (it’s a variable-length string). The following example declares the
-
-MyString variable as a string with a maximum length of 50 characters. (Use an
-
-asterisk to specify the number of characters, up to the 65,526-character limit.)
-
-YourString is also declared as a string, but its length is unspecified:
-
-Dim MyString As String * 50
-
-Dim YourString As String
-
-When declaring a fixed-length string that exceeds 999, don’t use a comma in the
-
-number that specifies the string size. In fact, never use commas when entering a
-
-numeric value in VBA. VBA doesn’t like that.
-
-106    PART 3  Programming Concepts
-
-Working with dates
-
-Another data type you may find useful is Date. You can use a string variable to
-
-store dates, but then you can’t perform date calculations. Using the Date data type
-
-gives your routines greater flexibility. For example, you might need to calculate
-
-the number of days between two dates. This would be impossible (or at least
-
-extremely challenging) if you used strings to hold your dates.
-
-A variable defined as a Date can hold dates ranging from January 1, 0100, to December 31, 9999. That’s a span of nearly 10,000 years and more than enough
-
-for even the most aggressive financial forecast. You can also use the Date data type to work with time data. (VBA lacks a Time data type.)
-
-These examples declare variables and constants as a Date data type:
-
-Dim Today As Date
-
-Dim StartTime As Date
-
-Const FirstDay As Date = #1/1/2019#
-
-Const Noon = #12:00:00#
-
-In VBA, place dates and times between two hash marks, as shown in the preceding
-
-examples.
-
-Date variables display dates according to your system’s short date format, and they display times according to your system’s time format (either 12- or 24-hour
-
-formatting). The Windows Registry stores these settings, and you can modify
-
-them via the Regional and Language Settings dialog box in the Windows Control
-
-Panel. Therefore, the VBA-displayed date or time format may vary, depending on
-
-the settings for the system on which the application is running.
-
-When writing VBA code, however, you must use one of the U.S. date formats (such
-
-as mm/dd/yyyy). So the following statement assigns a day in October (not
-
-November) to the MyDate variable (even if your system is set to use dd/mm/yyyy
-
-for dates):
-
-MyDate = #10/11/2019#
-
-When you display the variable (with the MsgBox function, for example), VBA
-
-shows MyDate using your system settings. So if your system uses the dd/mm/yyyy
-
-date format, MyDate is displayed as 11/10/2019.
-
-CHAPTER 7  Essential VBA Language Elements    107
-
-Using Assignment Statements
-
-An  assignment statement is a VBA statement that assigns the result of an expression to a variable or an object. Excel’s Help system defines the term expression as
-
-. . . a combination of keywords, operators, variables, and constants that yields a
-
-string, number, or object. An expression can be used to perform a calculation,
-
-manipulate characters, or test data.
-
-Much of your work in VBA involves developing (and debugging) expressions. If
-
-you know how to create formulas in Excel, you’ll have no trouble creating expres-
-
-sions. With a worksheet formula, Excel displays the result in a cell. A VBA expres-
-
-sion, on the other hand, can be assigned to a variable.
-
-Assignment statement examples
-
-In the assignment statement examples that follow, the expressions are to the
-
-right of the equal sign:
-
-x = 1
-
-x = x + 1
-
-x = (y * 2) / (z * 2)
-
-HouseCost = 375000
-
-FileOpen = True
-
-Range("TheYear").Value = 2019
-
-Expressions can be as complex as you need them to be; use the line continuation
-
-character (a space followed by an underscore) to make lengthy expressions easier
-
-to read.
-
-Often, expressions use functions: VBA’s built-in functions, Excel’s worksheet
-
-functions, or functions that you develop with VBA. Functions are discussed in Chapter 9.
-
-About that equal sign
-
-As you can see in the preceding example, VBA uses the equal sign as its assign-
-
-ment operator. You’re probably accustomed to using an equal sign as a mathe-
-
-matical symbol for equality. Therefore, an assignment statement like the following
-
-may cause you to raise your eyebrows:
-
-z = z + 1
-
-108    PART 3  Programming Concepts
-
-In what crazy universe is z equal to itself plus 1? Answer: No known universe. In this case, the assignment statement (when executed) increases the value of z by 1.
-
-So if z is 12, executing the statement makes z equal to 13. Just remember that an
-
-assignment uses the equal sign as an operator, not a symbol of equality.
-
-Smooth operators
-
-Operators play major roles in VBA. Besides the equal-sign operator (discussed in
-
-the previous section), VBA provides several operators. Table 7-3 lists these operators. These should be familiar to you because they’re the same operators
-
-used in worksheet formulas (except for the Mod operator).
-
-TABLE 7-3
-
-VBA’s Operators
-
-Function
-
-Operator Symbol
-
-Addition
-
-+
-
-Multiplication
-
-*
-
-Division
-
-/
-
-Subtraction
-
-–
-
-Exponentiation
-
-^
-
-String concatenation
-
-&
-
-Integer division (the result is always an integer)
-
-\
-
-Modulo arithmetic (returns the remainder of a division operation)
-
-Mod
-
-When you’re writing an Excel formula, you do modulo arithmetic by using the
-
-MOD function. For example, the following formula returns 2 (the remainder when
-
-you divide 12 by 5):
-
-=MOD(12,5)
-
-In VBA, the Mod operator is used like this (and z has a value of 2):
-
-z = 12 Mod 5
-
-The term  concatenation is programmer speak for「join together.」Thus, if you concatenate strings, you’re combining strings to make a new and improved string.
-
-CHAPTER 7  Essential VBA Language Elements    109
-
-As shown in Table 7-4, VBA also provides a full set of logical operators.
-
-TABLE 7-4
-
-VBA’s Logical Operators
-
-Operator
-
-What It Does
-
-Not
-
-Performs a logical negation on an expression
-
-And
-
-Performs a logical conjunction on two expressions
-
-Or
-
-Performs a logical disjunction on two expressions
-
-Xor
-
-Performs a logical exclusion on two expressions
-
-Eqv
-
-Performs a logical equivalence on two expressions
-
-Imp
-
-Performs a logical implication on two expressions
-
-The precedence order for operators in VBA is exactly the same as in Excel formulas.
-
-Exponentiation has the highest precedence. Multiplication and division come
-
-next, followed by addition and subtraction. You can use parentheses to change the natural precedence order, making whatever’s sandwiched in parentheses
-
-come before any operator. Take a look at this code:
-
-x = 3
-
-y = 2
-
-z = x + 5 * y
-
-When the preceding code is executed, what’s the value of z? If you answered 13,
-
-you get a gold star that proves you understand the concept of operator precedence.
-
-If you answered 16, read this: The multiplication operation (5 * y) is performed
-
-first, and that result is added to x.
-
-If you have trouble remembering the correct operator precedence, add parenthesis
-
-around the parts that get calculated first. For example, the previous assignment
-
-statement looks like this with parethesis:
-
-z = x + (5 * y)
-
-Don’t be shy about using parentheses even when they aren’t required — especially
-
-if doing so makes your code easier to understand. VBA doesn’t care if you use extra
-
-parentheses.
-
-110    PART 3  Programming Concepts
-
-Working with Arrays
-
-Like most programming languages, VBA supports arrays. An  array is a group of variables that share a name. You refer to a specific variable in the array by using
-
-the array name and an index number in parentheses. For example, you can define
-
-an array of 12 string variables to hold the names of the months of the year. If you
-
-name the array  MonthNames , you can refer to the first element of the array as MonthNames (1), the second element as MonthNames (2), and so on.
-
-Declaring arrays
-
-Before you can use an array, you  must declare it. No exceptions. Unlike with normal variables, VBA is very strict about this rule. You declare an array with a
-
-Dim statement, just as you declare a regular variable. However, you also need to
-
-specify the number of elements in the array. You do this by specifying the first
-
-index number, the keyword To, and the last index number — all inside parentheses.
-
-The following example shows how to declare an array of 100 integers:
-
-Dim MyArray(1 To 100) As Integer
-
-When you declare an array, you can choose to specify only the upper index. If you
-
-omit the lower index, VBA assumes that it’s 0. Therefore, both of the following
-
-statements declare the same 101-element array:
-
-Dim MyArray (0 To 100) As Integer
-
-Dim MyArray (100) As Integer
-
-If you want VBA to assume that 1 (rather than 0) is the lower index for your arrays, include the following statement in the Declarations section at the top of your module:
-
-Option Base 1
-
-This statement forces VBA to use 1 as the first index number for arrays that declare only the upper index. If this statement is present, the following statements are
-
-identical, both declaring a 100-element array:
-
-Dim MyArray (1 To 100) As Integer
-
-Dim MyArray (100) As Integer
-
-CHAPTER 7  Essential VBA Language Elements    111
-
-Multidimensional arrays
-
-The arrays created in the previous examples are all one-dimensional arrays. Think
-
-of one-dimensional arrays as a single line of values. Arrays you create in VBA can
-
-have as many as 60 dimensions — although you rarely need more than two or
-
-three dimensions in an array. The following example declares an 81-integer array
-
-with two dimensions:
-
-Dim MyArray (1 To 9, 1 To 9) As Integer
-
-You can think of this array as occupying a 9 x 9 matrix — perfect for storing all
-
-numbers in a Sudoku puzzle.
-
-To refer to a specific element in this array, you need to specify two index numbers
-
-(similar to its「row」and its「column」in the matrix). The following example
-
-shows how you can assign a value to an element in this array:
-
-MyArray (3, 4)= 125
-
-This statement assigns a value to a single element in the array. If you’re thinking
-
-of the array in terms of a 9 x 9 matrix, this assigns 125 to the element located in
-
-the third row and fourth column of the matrix.
-
-Here’s how to declare a three-dimensional array, with 1,000 elements:
-
-Dim My3DArray (1 To 10, 1 To 10, 1 To 10) As Integer
-
-You can think of a three-dimensional array as a cube. Visualizing an array of more
-
-than three dimensions is more difficult.
-
-Dynamic arrays
-
-You can also create  dynamic arrays. A dynamic array doesn’t have a preset number of elements. Declare a dynamic array with an empty set of parentheses:
-
-Dim MyArray () As Integer
-
-Before you can use this array, you must use the ReDim statement to tell VBA how
-
-many elements the array has. Usually, the number of elements in the array is
-
-determined while your code is running. You can use the ReDim statement any number of times, changing the array’s size as often as needed. The following example demonstrates how to change the number of elements in a dynamic array.
-
-112    PART 3  Programming Concepts
-
-It assumes that the NumElements variable contains a value, which your code calculated.
-
-ReDim MyArray (1 To NumElements)
-
-When you redimension an array by using ReDim, you wipe out any values
-
-currently stored in the array elements. You can avoid destroying the old values by
-
-using the Preserve keyword. The following example shows how you can preserve
-
-an array’s values when you redimension the array:
-
-ReDim Preserve MyArray (1 To NumElements)
-
-If MyArray currently has ten elements, and you execute the preceding statement
-
-with NumElements equaling 12, the first ten elements remain intact, and the array
-
-has room for two additional elements (up to the number contained in the variable
-
-NumElements). If NumElements equals 7 however, the first seven elements are
-
-retained but the remaining three elements meet their demise.
-
-The topic of arrays comes up again in Chapter 10, when you explore the concept of
-
-looping.
-
-Using Labels
-
-In early versions of BASIC, every line of code required a line number. For example,
-
-if you had written a BASIC program in the ’70s (dressed, of course, in your bell
-
-bottoms), it may have looked something like this:
-
-010: LET X=5
-
-020: LET Y=3
-
-030: LET Z=X*Y
-
-040: PRINT Z
-
-050: END
-
-VBA permits the use of such line numbers, and it even permits text labels. You
-
-don’t typically use a label for each line, but you may occasionally need to use a
-
-label. For example, insert a label if you use a GoTo statement (discussed in Chapter 10). A label must begin with the first nonblank character in a line and end
-
-with a colon.
-
-CHAPTER 7  Essential VBA Language Elements    113
+CHAPTER 8  Working with Range Objects    129
 
 IN THIS CHAPTER
 
-» Finding out why Range objects are so
+» Using functions to make your VBA
 
-important
+expressions more powerful
 
-» Understanding the various ways of
+» Using the VBA built-in functions
 
-referring to ranges
+» Using Excel worksheet functions in
 
-» Discovering some of the most useful
+your VBA code
 
-Range object properties
+» Writing custom functions
 
-» Uncovering some of the most useful
+Chapter 9
 
-Range object methods
+Using VBA and
 
-Chapter 8
-
-Working with Range
-
-Objects
-
-T his chapter digs a bit deeper into Excel’s dungeons and takes a closer look
-
-at Range objects. Excel is all about cells, and the Range object is a container
+Worksheet Functions
 

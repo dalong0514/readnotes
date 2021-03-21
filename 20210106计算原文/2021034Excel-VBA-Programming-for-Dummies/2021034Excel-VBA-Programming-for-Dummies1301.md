@@ -12,19 +12,19 @@ handle them gracefully.
 
 Types of Errors
 
-If you’ve tried any of the examples in this book, you have probably encountered
+If you've tried any of the examples in this book, you have probably encountered
 
 one or more error messages. Some of these errors result from bad VBA code. For
 
 example, you may spell a keyword incorrectly or type a statement with the wrong
 
-syntax. If you make such an error, you won’t even be able to execute the procedure
+syntax. If you make such an error, you won't even be able to execute the procedure
 
 until you correct it.
 
 CHAPTER 12  Error-Handling Techniques    187
 
-This chapter doesn’t deal with those types of errors. Instead, it focuses on runtime errors — the errors that occur while Excel executes your VBA code. More specifically, this chapter covers the following fascinating topics:
+This chapter doesn't deal with those types of errors. Instead, it focuses on runtime errors — the errors that occur while Excel executes your VBA code. More specifically, this chapter covers the following fascinating topics:
 
 » Identifying errors
 
@@ -34,7 +34,7 @@ This chapter doesn’t deal with those types of errors. Instead, it focuses on r
 
 » Creating intentional errors (Yes, sometimes an error can be a good thing.)
 
-The ultimate goal of error handling is to write code that avoids displaying Excel’s
+The ultimate goal of error handling is to write code that avoids displaying Excel's
 
 error messages as much as possible. In other words, you want to anticipate poten-
 
@@ -46,7 +46,7 @@ An Erroneous Example
 
 To get things started, take a look at the following macro. A macro this simple
 
-couldn’t produce any errors, right?
+couldn't produce any errors, right?
 
 Activate the VBE, insert a module, and enter the following code:
 
@@ -90,11 +90,11 @@ then assign the macro to the button. (Excel prompts you for the macro to assign.
 
 Then you can run the procedure by simply clicking the button.
 
-The macro’s not quite perfect
+The macro's not quite perfect
 
-Execute the code a couple of times to try it out. It works pretty well, doesn’t it?
+Execute the code a couple of times to try it out. It works pretty well, doesn't it?
 
-Now try entering a negative number when you’re prompted for a value. Oops.
+Now try entering a negative number when you're prompted for a value. Oops.
 
 Trying to calculate the square root of a negative number is illegal on this planet.
 
@@ -128,11 +128,11 @@ of a negative
 
 number.
 
-Most folks don’t find the Excel error messages (for example,  Invalid procedure call  or argument) particularly helpful. To improve the procedure, you need to anticipate this error and handle it more gracefully. In other words, you need to add some
+Most folks don't find the Excel error messages (for example,  Invalid procedure call  or argument) particularly helpful. To improve the procedure, you need to anticipate this error and handle it more gracefully. In other words, you need to add some
 
 error-handling code.
 
-Here’s a modified version of EnterSquareRoot:
+Here's a modified version of EnterSquareRoot:
 
 Sub EnterSquareRoot2()
 
@@ -172,7 +172,7 @@ So the modified EnterSquareRoot procedure is perfect, right? Not really. Try ent
 
 The following modified code uses the IsNumeric function to make sure that Num
 
-contains a numeric value. If the user doesn’t enter a number, the procedure
+contains a numeric value. If the user doesn't enter a number, the procedure
 
 displays a message and then stops. Also, notice that the Num variable is now
 
@@ -302,13 +302,13 @@ code. Yep, attempting to write to a protected worksheet generates yet another
 
 error. And there are probably another half-dozen errors that are impossible to
 
-predict. Keep reading for another way to deal with errors — even those you can’t
+predict. Keep reading for another way to deal with errors — even those you can't
 
 anticipate.
 
 Handling Errors Another Way
 
-How can you identify and handle every possible error? Often, you can’t. Fortu-
+How can you identify and handle every possible error? Often, you can't. Fortu-
 
 nately, VBA provides another way to deal with errors.
 
@@ -376,7 +376,7 @@ message.
 
 ON ERROR NOT WORKING?
 
-If an On Error statement isn’t working as advertised, you need to change one of your settings:
+If an On Error statement isn't working as advertised, you need to change one of your settings:
 
 1. Activate the VBE.
 
@@ -394,17 +394,17 @@ CHAPTER 12  Error-Handling Techniques    193
 
 About the On Error statement
 
-Using an On Error statement in your VBA code allows you to bypass Excel’s built-in
+Using an On Error statement in your VBA code allows you to bypass Excel's built-in
 
 error handling and use your own error-handling code. In the previous example, a
 
 runtime error causes macro execution to jump to the statement labeled BadEntry.
 
-As a result, you avoid Excel’s unfriendly error messages, and you can display your
+As a result, you avoid Excel's unfriendly error messages, and you can display your
 
 own message to the user.
 
-Notice that the example uses an Exit Sub statement right before the BadEntry label. This statement is necessary because you don’t want to execute the error-handling code if an error does  not occur.
+Notice that the example uses an Exit Sub statement right before the BadEntry label. This statement is necessary because you don't want to execute the error-handling code if an error does  not occur.
 
 Handling Errors: The Details
 
@@ -466,7 +466,7 @@ What It Does
 
 Resume
 
-Execution resumes with the statement that caused the error. Use this if your error-handling code corrects the problem and it’s okay to continue.
+Execution resumes with the statement that caused the error. Use this if your error-handling code corrects the problem and it's okay to continue.
 
 Resume Next
 
@@ -556,17 +556,17 @@ to-last statement in the preceding example:
 
 If Ans = vbYes Then GoTo TryAgain
 
-The code doesn’t work correctly if you use GoTo rather than Resume. To demon-
+The code doesn't work correctly if you use GoTo rather than Resume. To demon-
 
 strate, enter a negative number. You get the error prompt. Click Yes to try again
 
 and then enter  another negative number. This second error is not trapped because the original error condition was not cleared.
 
-This example is available on this book’s website.
+This example is available on this book's website.
 
 Error handling in a nutshell
 
-To help you keep all this error-handling business straight, here’s a quick-and-
+To help you keep all this error-handling business straight, here's a quick-and-
 
 dirty summary. A block of error-handling code has the following characteristics:
 
@@ -582,7 +582,7 @@ before the label.
 
 Knowing when to ignore errors
 
-In some cases, it’s perfectly okay to ignore errors. That’s when the On Error Resume Next statement comes into play.
+In some cases, it's perfectly okay to ignore errors. That's when the On Error Resume Next statement comes into play.
 
 The following example loops through each cell in the selected range and converts
 
@@ -604,7 +604,7 @@ Next cell
 
 End Sub
 
-In this case, you may want to simply skip any cell that contains a value you can’t
+In this case, you may want to simply skip any cell that contains a value you can't
 
 convert to a square root. You can create all sorts of error-checking capabilities by using If-Then structures, but you can devise a better (and simpler) solution by
 
@@ -644,7 +644,7 @@ error that occurs.
 
 CHAPTER 12  Error-Handling Techniques    197
 
-Every type of error has an official number. When an error occurs, Excel stores the error number in an Error object named Err. This object’s Number property contains the error number, and its Description property contains a description of the
+Every type of error has an official number. When an error occurs, Excel stores the error number in an Error object named Err. This object's Number property contains the error number, and its Description property contains a description of the
 
 error. For example, the following statement displays the error number, a colon,
 
@@ -666,7 +666,7 @@ root of a nonnumeric value (error 13). On the other hand, you need to inform the
 
 user if the worksheet is protected and the selection contains one or more locked
 
-cells. (Otherwise, the user may think the macro worked when it really didn’t.)
+cells. (Otherwise, the user may think the macro worked when it really didn't.)
 
 Attempting to write to a locked cell in a protected worksheet causes error 1004.
 
@@ -738,17 +738,17 @@ macro that works only if a particular workbook is open. How can you determine
 
 whether that workbook is open? One way is to write code that loops through the
 
-Workbooks collection, checking to determine whether the workbook you’re inter-
+Workbooks collection, checking to determine whether the workbook you're inter-
 
 ested in is in that collection.
 
-Here’s an easier way: using a general-purpose function that accepts one argu-
+Here's an easier way: using a general-purpose function that accepts one argu-
 
 ment (a workbook name) and returns True if the workbook is open or False if
 
-it’s not.
+it's not.
 
-Here’s the function:
+Here's the function:
 
 Function WorkbookIsOpen(book As String) As Boolean
 
@@ -768,9 +768,9 @@ WorkbookIsOpen = False
 
 End Function
 
-This function takes advantage of the fact that Excel generates an error if you refer to a workbook that isn’t open. For example, the following statement generates an
+This function takes advantage of the fact that Excel generates an error if you refer to a workbook that isn't open. For example, the following statement generates an
 
-error if a workbook named MyBook.xlsx isn’t open:
+error if a workbook named MyBook.xlsx isn't open:
 
 WBName = Workbooks("MyBook.xlsx").Name
 
@@ -778,13 +778,13 @@ In the WorkbookIsOpen function, the On Error statement tells VBA to continue the
 
 macro at the NotOpen statement if an error occurs. Therefore, an error means that
 
-the workbook isn’t open, and the function returns False. If the workbook  is open, no error occurs, and the function returns True.
+the workbook isn't open, and the function returns False. If the workbook  is open, no error occurs, and the function returns True.
 
 CHAPTER 12  Error-Handling Techniques    199
 
-Here’s another variation on the WorkbookIsOpen function. This version uses On Error Resume Next to ignore the error. But the code checks Err’s Number property. If Err.Number is 0, no error occurred, and the workbook is open. If Err.Number is anything else, it means that an error occurred (and the workbook
+Here's another variation on the WorkbookIsOpen function. This version uses On Error Resume Next to ignore the error. But the code checks Err's Number property. If Err.Number is 0, no error occurred, and the workbook is open. If Err.Number is anything else, it means that an error occurred (and the workbook
 
-isn’t open).
+isn't open).
 
 Function WorkbookIsOpen(book) As Boolean
 
@@ -830,7 +830,7 @@ user of that fact. If the workbook is open, the macro continues.
 
 Error handling can be a tricky proposition. After all, many errors can occur, and
 
-you can’t anticipate all of them. In general, you should trap errors and correct the situation before Excel intervenes, if possible. Writing effective error-trapping code requires a thorough knowledge of Excel and a clear understanding of how
+you can't anticipate all of them. In general, you should trap errors and correct the situation before Excel intervenes, if possible. Writing effective error-trapping code requires a thorough knowledge of Excel and a clear understanding of how
 
 VBA error handling works. Subsequent chapters contain more examples of error
 
@@ -852,7 +852,7 @@ you may encounter
 
 your code
 
-» Using the VBE’s built-in debugging
+» Using the VBE's built-in debugging
 
 tools
 
@@ -874,7 +874,7 @@ wipe them off the face of your module.
 
 Species of Bugs
 
-Welcome to Entomology 101. The term  program bug,  as you probably know, refers to a problem with software. In other words, if software doesn’t perform as
+Welcome to Entomology 101. The term  program bug,  as you probably know, refers to a problem with software. In other words, if software doesn't perform as
 
 expected, it has a bug. Fact is, all major software programs have bugs — lots of
 
@@ -902,7 +902,7 @@ has no cells).
 
 » Extreme-case bugs: These bugs rear their ugly heads when you encounter
 
-data you didn’t anticipate, such as very large or very small numbers.
+data you didn't anticipate, such as very large or very small numbers.
 
 » Wrong data-type bugs: This type of bug occurs when you try to process data
 
@@ -912,7 +912,7 @@ of the wrong type, such as attempting to take the square root of a text string.
 
 different Excel versions. For example, you may develop a workbook with Excel
 
-2019 and then find out that the workbook doesn’t work with Excel 2003. You
+2019 and then find out that the workbook doesn't work with Excel 2003. You
 
 can usually avoid such problems by not using version-specific features. Often,
 
@@ -932,27 +932,27 @@ known to cause problems.
 
 Debugging is the process of identifying and correcting bugs in your program.
 
-Developing debugging skills takes time, so don’t be discouraged if this process is
+Developing debugging skills takes time, so don't be discouraged if this process is
 
 difficult at first.
 
-It’s important to understand the distinction between  bugs and  syntax errors.  A syntax error is a language error. For example, you might misspell a keyword, omit the
+It's important to understand the distinction between  bugs and  syntax errors.  A syntax error is a language error. For example, you might misspell a keyword, omit the
 
 Next statement in a For-Next loop, or have a mismatched parenthesis. Before you
 
 can even execute the procedure, you must correct these syntax errors. A program
 
-bug is much subtler. You can execute the routine, but it doesn’t perform as expected.
+bug is much subtler. You can execute the routine, but it doesn't perform as expected.
 
 Identifying Bugs
 
 Before you can do any debugging, you must determine whether a bug actually
 
-exists. You can tell that your macro contains a bug if it doesn’t work the way
+exists. You can tell that your macro contains a bug if it doesn't work the way
 
 202    PART 3  Programming Concepts
 
-it should. (Gee, this book is just filled with insight, isn’t it?) Usually, but not always, you can easily discern this.
+it should. (Gee, this book is just filled with insight, isn't it?) Usually, but not always, you can easily discern this.
 
 A bug often (but not always) becomes apparent when Excel displays a runtime
 
@@ -976,13 +976,13 @@ A key fact known to all programmers is that bugs often appear when you least
 
 expect them. For example, just because your macro works fine with one data set
 
-doesn’t mean you can assume it works equally as well with all data sets.
+doesn't mean you can assume it works equally as well with all data sets.
 
 The best debugging approach is to start with thorough testing, under a variety of
 
 real-life conditions. And because any workbook changes made by your VBA code
 
-can’t be undone, it’s always a good idea to use a backup copy of the workbook that
+can't be undone, it's always a good idea to use a backup copy of the workbook that
 
 you use for testing.
 
@@ -1008,17 +1008,17 @@ Perhaps the most straightforward debugging technique is simply taking a close
 
 look at your code to see whether you can find the problem. This method, of course,
 
-requires knowledge and experience. In other words, you have to know what you’re
+requires knowledge and experience. In other words, you have to know what you're
 
-doing. If you’re lucky, the error jumps right out, and you slap your forehead and
+doing. If you're lucky, the error jumps right out, and you slap your forehead and
 
-say,「D’oh!」But often times, you discover errors when you have been working on
+say,「D'oh!」But often times, you discover errors when you have been working on
 
-your program for eight hours straight, it’s 2 a.m., and you’re running on caffeine
+your program for eight hours straight, it's 2 a.m., and you're running on caffeine
 
-and willpower. At times like that, you’re lucky if you can even see your code, let
+and willpower. At times like that, you're lucky if you can even see your code, let
 
-alone find the bugs. Thus, don’t be surprised if simply examining your code isn’t
+alone find the bugs. Thus, don't be surprised if simply examining your code isn't
 
 enough to make you find and expunge all the bugs it contains.
 
@@ -1036,9 +1036,9 @@ named CellCount, you can insert the following statement:
 
 MsgBox CellCount
 
-When you execute the routine, the MsgBox function displays CellCount’s value.
+When you execute the routine, the MsgBox function displays CellCount's value.
 
-It’s often helpful to display the values of two or more variables in the message
+It's often helpful to display the values of two or more variables in the message
 
 box. The following statement displays the current value of two variables:
 
@@ -1060,7 +1060,7 @@ displays three variables, each on a separate line (see Figure 13-2):
 
 MsgBox LoopIndex & vbNewLine & CellCount & vbNewLine & MyVal
 
-This technique isn’t limited to monitoring variables. You can use a message box to
+This technique isn't limited to monitoring variables. You can use a message box to
 
 display all sorts of useful information while your code is running. For example, if
 
@@ -1094,7 +1094,7 @@ Figure 13-3, you have four choices:
 
 » Click the Debug button. The VBE goes into Debug mode (explained a bit later in the section「About the Debugger」).
 
-» Click the Help button. A help screen tells you that you pressed Ctrl+Break. In other words, it’s not very helpful.
+» Click the Help button. A help screen tells you that you pressed Ctrl+Break. In other words, it's not very helpful.
 
 FIGURE 13-3:
 
@@ -1110,7 +1110,7 @@ you some
 
 choices.
 
-If your keyboard doesn’t have a Break key, try pressing Ctrl+ScrollLock.
+If your keyboard doesn't have a Break key, try pressing Ctrl+ScrollLock.
 
 Feel free to use MsgBox functions frequently when you debug your code. Just
 
@@ -1124,7 +1124,7 @@ As an alternative to using MsgBox functions in your code, you can insert one or
 
 more temporary Debug.Print statements. Use these statements to print the value
 
-of one or more variables in the Immediate window. Here’s an example that dis-
+of one or more variables in the Immediate window. Here's an example that dis-
 
 plays the values of three variables:
 
@@ -1136,7 +1136,7 @@ variables as you like with a single Debug.Print statement.
 
 Debug.Print sends output to the Immediate window even if that window is hidden.
 
-If VBE’s Immediate window is not visible, press Ctrl+G (or choose View ➪ Immediate
+If VBE's Immediate window is not visible, press Ctrl+G (or choose View ➪ Immediate
 
 Window). Figure 13-4 shows some output in the Immediate window.
 
@@ -1152,17 +1152,17 @@ Immediate
 
 window.
 
-Unlike MsgBox, Debug.Print statements don’t halt your code. So you need to keep
+Unlike MsgBox, Debug.Print statements don't halt your code. So you need to keep
 
-an eye on the Immediate window to see what’s going on.
+an eye on the Immediate window to see what's going on.
 
-After you’ve debugged your code, be sure to remove or comment out all the Debug.
+After you've debugged your code, be sure to remove or comment out all the Debug.
 
 Print statements. Even big companies like Microsoft occasionally forget to remove
 
 their Debug.Print statements. In several previous versions of Excel, every time the
 
-Analysis ToolPak add-in was opened, you’d see several strange messages in
+Analysis ToolPak add-in was opened, you'd see several strange messages in
 
 the Immediate window. That problem was finally fixed in Excel 2007.
 
@@ -1194,7 +1194,7 @@ sage box essentially halts your code in mid-execution, and clicking the OK butto
 
 resumes execution.
 
-Wouldn’t it be nice if you could halt a routine’s execution, take a look at the value of  any of your variables, and then continue execution? Well, that’s exactly what you can do by setting a breakpoint. You can set a breakpoint in your VBA code in
+Wouldn't it be nice if you could halt a routine's execution, take a look at the value of  any of your variables, and then continue execution? Well, that's exactly what you can do by setting a breakpoint. You can set a breakpoint in your VBA code in
 
 several ways:
 
@@ -1216,9 +1216,9 @@ line to remind you that you set a breakpoint there; it also inserts a large dot 
 
 When you execute the procedure, Excel goes into  Break mode before the line with the breakpoint is executed. In Break mode, the word [break] is displayed in the
 
-VBE’s title bar. To get out of Break mode and continue execution, press F5 or click
+VBE's title bar. To get out of Break mode and continue execution, press F5 or click
 
-the Run Sub/UserForm button on the VBE’s toolbar. See「Stepping through your
+the Run Sub/UserForm button on the VBE's toolbar. See「Stepping through your
 
 code」later in this chapter to find out more.
 
@@ -1284,7 +1284,7 @@ Break mode.
 
 Using the Immediate window
 
-The Immediate window may not be visible in the VBE. You can display the VBE’s
+The Immediate window may not be visible in the VBE. You can display the VBE's
 
 Immediate window at any time by pressing Ctrl+G.
 
@@ -1384,7 +1384,7 @@ you can select All Procedures and All Modules.
 
 choice here depends on the expression you enter. The first choice, Watch
 
-Expression, doesn’t cause a break; it simply displays the expression’s value
+Expression, doesn't cause a break; it simply displays the expression's value
 
 when a break occurs.
 
@@ -1394,13 +1394,13 @@ normally until your watch expression is satisfied (based on the Watch Type you
 
 specified). When that happens, Excel enters Break mode (you did set the Watch
 
-Type to Break When Value Is True, didn’t you?). From there, you can step through
+Type to Break When Value Is True, didn't you?). From there, you can step through
 
 the code or use the Immediate window to debug your code.
 
 When you create a watch, the VBE displays the Watches window, shown in
 
-Figure 13-8. This window displays the value of all watches that you’ve defined. In
+Figure 13-8. This window displays the value of all watches that you've defined. In
 
 this figure, the value of the Counter variable hit 900, which caused Excel to enter
 
@@ -1420,7 +1420,7 @@ from the shortcut menu.
 
 The best way to understand how this Watch business works is to use it and
 
-try various options. Before long, you’ll probably wonder how you ever got along
+try various options. Before long, you'll probably wonder how you ever got along
 
 without it.
 
@@ -1430,7 +1430,7 @@ Another useful debugging aid is the Locals window. You can show this window by
 
 choosing View ➪  Locals Window in the VBE. When you are in Break mode, this window shows a list of all variables that are local to the current procedure (see
 
-Figure 13-9). The nice thing about this window is that you don’t have to add a load
+Figure 13-9). The nice thing about this window is that you don't have to add a load
 
 of watches manually if you want to look at the content of many variables. The VBE
 
@@ -1474,7 +1474,7 @@ for example, consistent indentation helps you keep track of them all.
 
 causes Excel to ignore any errors and continue executing the routine. In some
 
-cases, using this statement causes Excel to ignore errors that it shouldn’t
+cases, using this statement causes Excel to ignore errors that it shouldn't
 
 ignore. Your code may have bugs, and you may not even realize it.
 
@@ -1492,11 +1492,11 @@ the debugging process.
 
 » Use the macro recorder to help identify properties and methods.  When
 
-you can’t remember the name or the syntax of a property or method, simply
+you can't remember the name or the syntax of a property or method, simply
 
 record a macro and look at the recorded code.
 
-» Understand Excel’s debugger.  Although it can be a bit daunting at first, the Excel debugger is a useful tool. Invest some time and get to know it.
+» Understand Excel's debugger.  Although it can be a bit daunting at first, the Excel debugger is a useful tool. Invest some time and get to know it.
 
 212    PART 3  Programming Concepts
 

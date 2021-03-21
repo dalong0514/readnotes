@@ -34,7 +34,7 @@ a perplexing list of topics that has nothing to do with the original topic being
 
 searched. The truth is, however, after you learn how to use the Excel Help system
 
-effectively, it’s often the fastest and easiest way to get extra help on a topic.
+effectively, it's often the fastest and easiest way to get extra help on a topic.
 
 You need to remember two basic tenets of the Excel Help system:
 
@@ -42,11 +42,11 @@ You need to remember two basic tenets of the Excel Help system:
 
 programming topics. Instead of doing a global search with your criteria, Excel
 
-throws your search criteria only against the Help system that’s relevant to your
+throws your search criteria only against the Help system that's relevant to your
 
 current location. This essentially means that the help you get is determined
 
-by the area of Excel in which you’re working. So, if you need help on a topic
+by the area of Excel in which you're working. So, if you need help on a topic
 
 that involves macros and VBA programming, you need to be in the VBE while
 
@@ -56,11 +56,11 @@ on the correct Help system.
 
 » Online help is better than offline help.  When you search for help on a
 
-topic, Excel checks to see if you’re connected to the Internet. If you are, Excel
+topic, Excel checks to see if you're connected to the Internet. If you are, Excel
 
-returns help results based on online content from Microsoft’s website. If you
+returns help results based on online content from Microsoft's website. If you
 
-aren’t, Excel uses the Help files that are locally stored with Microsoft Office.
+aren't, Excel uses the Help files that are locally stored with Microsoft Office.
 
 Online help is generally better because the content is often more detailed
 
@@ -82,13 +82,13 @@ about the code you can create from scratch, and more about how to take existing
 
 code and apply it creatively to a particular scenario.
 
-If you’re stuck trying to create a macro for a particular task, describe the task you’re trying to accomplish via your favorite search engine. For the best results,
+If you're stuck trying to create a macro for a particular task, describe the task you're trying to accomplish via your favorite search engine. For the best results,
 
 enter「Excel VBA」before your description.
 
-For example, if you’re trying to write a macro that deletes all blank rows in a worksheet, search for,「Excel VBA delete blank rows in a worksheet.」You can bet
+For example, if you're trying to write a macro that deletes all blank rows in a worksheet, search for,「Excel VBA delete blank rows in a worksheet.」You can bet
 
-two months’ salary that someone has tackled the same problem and posted exam-
+two months' salary that someone has tackled the same problem and posted exam-
 
 ple code that gives you the nugget of information you need to jump start ideas for
 
@@ -120,7 +120,7 @@ guidelines.
 
 » Check whether your question has already been asked and answered.
 
-Why not save time by leveraging the forum’s archive of questions? Take a
+Why not save time by leveraging the forum's archive of questions? Take a
 
 moment to search the forum to see whether your question has been asked
 
@@ -128,11 +128,11 @@ before.
 
 CHAPTER 23  Resources for VBA Help    379
 
-» Use concise and accurate subject titles for your questions.  Don’t create
+» Use concise and accurate subject titles for your questions.  Don't create
 
 forum questions with abstract titles like: Need advice, or Please Help.
 
-» Keep the scope of your questions as narrow as possible.  Don’t ask
+» Keep the scope of your questions as narrow as possible.  Don't ask
 
 questions like: How do I build an invoicing macro in Excel.
 
@@ -158,9 +158,9 @@ There are a few dedicated Excel Gurus that share their knowledge through blogs.
 
 These blogs are often treasure troves of tips and tricks, offering nuggets that can
 
-help build your skills. Best of all, they’re free!
+help build your skills. Best of all, they're free!
 
-Although these blogs won’t necessarily speak to your particular needs, they offer
+Although these blogs won't necessarily speak to your particular needs, they offer
 
 articles that advance your knowledge of Excel and can even provide general guid-
 
@@ -184,7 +184,7 @@ in Excel.」
 
 popular Excel site, http://www.contextures.com. With an alphabetized list
 
-of over 350 Excel topics, you’re sure to find something that will interest you.
+of over 350 Excel topics, you're sure to find something that will interest you.
 
 380    PART 6  The Part of Tens
 
@@ -192,7 +192,7 @@ of over 350 Excel topics, you’re sure to find something that will interest you
 
 http://www.dailydoseofexcel.com. He is the king of Excel VBA blogging
 
-with over ten years’ worth of articles and examples.
+with over ten years' worth of articles and examples.
 
 » MrExcel: Bill Jelen is the larger-than-life ambassador of Excel. This long-time Excel MVP offers over a thousand free videos and a huge library of training
 
@@ -204,7 +204,7 @@ If you find that you absorb video training better than articles, consider mining
 
 YouTube. Dozens of channels are run by amazing folks who have a passion for
 
-sharing knowledge. You’ll be surprised at how many free high-quality video tuto-
+sharing knowledge. You'll be surprised at how many free high-quality video tuto-
 
 rials you can find.
 
@@ -240,7 +240,7 @@ The Microsoft Office Dev Center is dedicated to helping new developers get a qui
 
 fp179694.aspx.
 
-Although the site can be a bit difficult to navigate, it’s worth a visit to see all the free resources, including sample code, tools, step-by-step instructions, and
+Although the site can be a bit difficult to navigate, it's worth a visit to see all the free resources, including sample code, tools, step-by-step instructions, and
 
 much more.
 
@@ -262,7 +262,7 @@ Do you have an Excel genius in your company, department, organization, or commun
 
 own personal Excel forum.
 
-Most Excel experts love sharing their knowledge. So don’t be afraid to approach
+Most Excel experts love sharing their knowledge. So don't be afraid to approach
 
 your local Excel Guru to ask questions or seek advice on how to tackle certain macro problems.
 
@@ -280,7 +280,7 @@ you should not do
 
 Chapter 24
 
-Ten VBA Do’s and Don’ts
+Ten VBA Do's and Don'ts
 
-I f you’re reading this final chapter, you’ve probably read most of the content of this book and are familiar with Excel VBA. Or maybe you just skipped to the end
+I f you're reading this final chapter, you've probably read most of the content of this book and are familiar with Excel VBA. Or maybe you just skipped to the end
 

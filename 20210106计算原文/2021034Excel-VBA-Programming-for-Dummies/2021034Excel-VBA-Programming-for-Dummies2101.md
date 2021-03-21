@@ -1,6 +1,6 @@
-I f you’re going to be spending time working the Visual Basic Editor, then why not take advantage of a few of the built-in tools that can make your job easier?
+I f you're going to be spending time working the Visual Basic Editor, then why not take advantage of a few of the built-in tools that can make your job easier?
 
-Whether you’re a fresh-faced analyst new to programming, or a jaded veteran
+Whether you're a fresh-faced analyst new to programming, or a jaded veteran
 
 living on Mountain Dew and sunflower seeds, these tips can greatly improve your
 
@@ -12,7 +12,7 @@ Applying Block Comments
 
 Placing a single apostrophe in front of any statement effectively tells Excel to skip that statement. This is called commenting out code. You can use the single apostrophe to also create comments or notes in your code (see Figure 22-1).
 
-It’s sometimes beneficial to comment out multiple lines of code. This way, you
+It's sometimes beneficial to comment out multiple lines of code. This way, you
 
 can test certain lines of code while telling Excel to ignore the commented lines.
 
@@ -70,7 +70,7 @@ holding down the Ctrl key on your keyboard while dragging the block where you
 
 need it. This is an old Windows trick that works even when you drag across modules.
 
-You know you’re dragging a copy when your mouse pointer shows a plus symbol
+You know you're dragging a copy when your mouse pointer shows a plus symbol
 
 next to it, as shown in Figure 22-3.
 
@@ -102,13 +102,13 @@ Teleporting to Your Functions
 
 When reviewing a macro, you may sometimes encounter a variable or function
 
-name that’s obviously pointing to some other piece of code. Instead of scouring
+name that's obviously pointing to some other piece of code. Instead of scouring
 
 through all the modules to find where that function or variable name comes from,
 
 you can simply place your cursor on that function/variable name and press Shift+F2.
 
-As Figure 22-4 shows, you’re instantly teleported to the origin of that function or
+As Figure 22-4 shows, you're instantly teleported to the origin of that function or
 
 variable name.
 
@@ -138,7 +138,7 @@ To avoid this nonsense, you can click the Procedure View button in the lower-lef
 
 hand corner of the VBE. (See Figure 22-5.) Clicking this button limits scrolling to
 
-only the procedure you’re in.
+only the procedure you're in.
 
 FIGURE 22-5:
 
@@ -164,7 +164,7 @@ ging means finding and correcting possible errors in code.
 
 One of the more useful debugging tools is the ability to step through your code one
 
-line at a time. When you step through code, you’re literally watching as each line
+line at a time. When you step through code, you're literally watching as each line
 
 executes.
 
@@ -172,7 +172,7 @@ To step through your code, place your cursor anywhere within your macro and
 
 press F8. Your macro goes into debug mode.
 
-The first line of code is highlighted and a small arrow appears in the Code window’s left margin (see Figure 22-6). Press F8 again to execute the highlighted
+The first line of code is highlighted and a small arrow appears in the Code window's left margin (see Figure 22-6). Press F8 again to execute the highlighted
 
 line of code and move to the next line. You can keep pressing F8 to watch each line
 
@@ -250,7 +250,7 @@ To set a breakpoint in your code, place your cursor where you want the breakpoin
 
 to start, and press F9. As Figure 22-8 shows, VBA clearly marks the breakpoint
 
-with a dot in the Code window’s left margin, and the code line itself is shaded
+with a dot in the Code window's left margin, and the code line itself is shaded
 
 maroon.
 
@@ -268,7 +268,7 @@ shaded text.
 
 374    PART 6  The Part of Tens
 
-When your macro hits a breakpoint, it’s effectively in debug mode. To get out of
+When your macro hits a breakpoint, it's effectively in debug mode. To get out of
 
 debug mode, choose Debug ➪  Step Out.
 
@@ -308,7 +308,7 @@ Turning Off Auto Syntax Check
 
 Oftentimes, while working on some code, you find that you need to go to another
 
-line to copy something. You’re not done with the line — you just need to leave it
+line to copy something. You're not done with the line — you just need to leave it
 
 for a second. But the VBE immediately stops you in your tracks with an error mes-
 
@@ -318,9 +318,9 @@ already know.
 
 CHAPTER 22  Ten Handy Visual Basic Editor Tips    375
 
-These message boxes force you to stop what you’re doing to acknowledge the
+These message boxes force you to stop what you're doing to acknowledge the
 
-error by clicking OK. After a half day of these abrupt message boxes, you’ll be ready to throw your computer against the wall.
+error by clicking OK. After a half day of these abrupt message boxes, you'll be ready to throw your computer against the wall.
 
 FIGURE 22-10:
 
@@ -356,7 +356,7 @@ messages
 
 while coding.
 
-Don’t worry about missing a legitimate mistake. Your code still turns red if you
+Don't worry about missing a legitimate mistake. Your code still turns red if you
 
 make a mistake, providing a visual indication that something is wrong.
 

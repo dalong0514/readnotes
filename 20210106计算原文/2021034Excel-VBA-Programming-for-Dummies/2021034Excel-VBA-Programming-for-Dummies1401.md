@@ -28,17 +28,17 @@ Most of your VBA programming probably involves worksheet ranges. (For some
 
 background on Range objects, refer to Chapter 8.) When you work with Range objects, keep the following points in mind:
 
-» Your VBA doesn’t need to  select a range to work with it.
+» Your VBA doesn't need to  select a range to work with it.
 
 » If your code does select a range, its worksheet must be active.
 
-» The macro recorder doesn’t always generate the most efficient code. Often,
+» The macro recorder doesn't always generate the most efficient code. Often,
 
 you can create your macro by using the recorder and then edit the code to
 
 make it more efficient.
 
-» It’s often a good idea to use named ranges in your VBA code. For example,
+» It's often a good idea to use named ranges in your VBA code. For example,
 
 using Range(「Total」) is better than using Range(「D45」). In the latter case, if you
 
@@ -50,7 +50,7 @@ Formulas ➪ Defined Names ➪ Define Name.
 
 » When running a macro that works on the current range selection, the user
 
-might select entire columns or rows. In most cases, you don’t want to loop
+might select entire columns or rows. In most cases, you don't want to loop
 
 through every cell in the selection; that could take a long time. Your macro
 
@@ -60,7 +60,7 @@ should create a subset of the selection consisting of only the nonblank cells.
 
 multiple selection and take appropriate actions.
 
-The examples in this section, which are available at this book’s website, demon-
+The examples in this section, which are available at this book's website, demon-
 
 strate these points.
 
@@ -104,9 +104,9 @@ range.
 
 This macro works fine, but you can copy a range more efficiently than this. You
 
-can produce the same result with the following one-line macro, which doesn’t
+can produce the same result with the following one-line macro, which doesn't
 
-select any cells (and also doesn’t require setting CutCopyMode to False):
+select any cells (and also doesn't require setting CutCopyMode to False):
 
 Sub CopyRange2()
 
@@ -130,7 +130,7 @@ End Sub
 
 Copying a variable-size range
 
-In many cases, you need to copy a range of cells but don’t know the exact row and
+In many cases, you need to copy a range of cells but don't know the exact row and
 
 column dimensions. For example, you might have a workbook that tracks weekly
 
@@ -138,9 +138,9 @@ sales. The number of rows changes as you add new data.
 
 Figure 14-1 shows a range in a worksheet. This range consists of several rows, and
 
-the number of rows changes from day to day. Because you don’t know the exact
+the number of rows changes from day to day. Because you don't know the exact
 
-range address at any given time, you need a way to write code that doesn’t use a
+range address at any given time, you need a way to write code that doesn't use a
 
 range address.
 
@@ -194,7 +194,7 @@ Sub CopyCurrentRegion2()
 
 Range("A1").CurrentRegion.Copy Sheets("Sheet2").Range("A1") End Sub
 
-It’s even a bit easier if the data is in the form of a table (created in Excel; choose Insert ➪ Tables ➪ Table). The table has a name (such as Table1) and expands automatically when new data is added.
+It's even a bit easier if the data is in the form of a table (created in Excel; choose Insert ➪ Tables ➪ Table). The table has a name (such as Table1) and expands automatically when new data is added.
 
 216    PART 3  Programming Concepts
 
@@ -204,7 +204,7 @@ Range("Table1").Copy Sheets("Sheet2").Range("A1")
 
 End Sub
 
-If you try this, you’ll find that the header row in the table is not copied because the name Table1 doesn’t include that row. If you need to include the header row,
+If you try this, you'll find that the header row in the table is not copied because the name Table1 doesn't include that row. If you need to include the header row,
 
 change the table reference to
 
@@ -212,7 +212,7 @@ Range("Table1[#All]")
 
 Selecting to the end of a row or column
 
-You’re probably in the habit of using key combinations such as Ctrl+Shift+right
+You're probably in the habit of using key combinations such as Ctrl+Shift+right
 
 arrow and Ctrl+Shift+down arrow to select a range that consists of everything
 
@@ -258,7 +258,7 @@ constants:
 
 CHAPTER 14  VBA Programming Examples    217
 
-Keep in mind that it’s not necessary to select a range before doing something with it. The following macro applies bold formatting to a variable-size (single-column) range without selecting the range:
+Keep in mind that it's not necessary to select a range before doing something with it. The following macro applies bold formatting to a variable-size (single-column) range without selecting the range:
 
 Sub MakeBold()
 
@@ -324,7 +324,7 @@ Looping through a range efficiently
 
 Many macros perform an operation on each cell in a range, or they perform
 
-selected actions based on each cell’s content. These macros usually include a
+selected actions based on each cell's content. These macros usually include a
 
 For-Next loop that processes each cell in the range.
 
@@ -344,7 +344,7 @@ Next Cell
 
 End Sub
 
-This example works, but what if the user’s selection consists of an entire column
+This example works, but what if the user's selection consists of an entire column
 
 or row? This is not uncommon because Excel lets you perform operations on entire
 
@@ -358,9 +358,9 @@ The following routine does just that by using the SpecialCells method. (Refer to
 
 the VBA Help system for specific details about its arguments.) This routine uses
 
-the Set keyword to create two new Range objects: the selection’s subset that
+the Set keyword to create two new Range objects: the selection's subset that
 
-consists of cells with constants and the selection’s subset that consists of cells
+consists of cells with constants and the selection's subset that consists of cells
 
 with formulas. The routine processes each of these subsets, with the net effect of
 
@@ -414,7 +414,7 @@ The SkipBlanks procedure works equally fast, regardless of what you select. For
 
 example, you can select the range, all columns in the range, all rows in the range,
 
-or even the entire worksheet. It’s a vast improvement over the ProcessCells pro-
+or even the entire worksheet. It's a vast improvement over the ProcessCells pro-
 
 cedure presented earlier in this section.
 
@@ -450,7 +450,7 @@ cells that two ranges have in common.
 
 220    PART 3  Programming Concepts
 
-Here’s a variation of the SkipBlanks procedure from the previous section:
+Here's a variation of the SkipBlanks procedure from the previous section:
 
 Sub SkipBlanks2()
 
@@ -472,15 +472,15 @@ Next cell
 
 End Sub
 
-The WorkRange object variable consists of cells that are common to the user’s selection and the worksheet’s used range. Therefore, if an entire column is
+The WorkRange object variable consists of cells that are common to the user's selection and the worksheet's used range. Therefore, if an entire column is
 
-selected, WorkRange contains only the cells that are in that column and also within the used area of the worksheet. It’s fast and efficient, with no time wasted
+selected, WorkRange contains only the cells that are in that column and also within the used area of the worksheet. It's fast and efficient, with no time wasted
 
-on processing cells that are outside the worksheet’s used area.
+on processing cells that are outside the worksheet's used area.
 
 Prompting for a cell value
 
-As shown in Figure 14-2, you can use VBA’s InputBox function to get a value from
+As shown in Figure 14-2, you can use VBA's InputBox function to get a value from
 
 the user. Then you can insert that value into a cell. The following procedure dem-
 
@@ -506,11 +506,11 @@ from the user.
 
 CHAPTER 14  VBA Programming Examples    221
 
-If you try this example, you’ll find that clicking the Cancel button in the InputBox erases the current value in cell A1. Erasing the user’s data isn’t very good programming practice. Clicking Cancel should do nothing at all.
+If you try this example, you'll find that clicking the Cancel button in the InputBox erases the current value in cell A1. Erasing the user's data isn't very good programming practice. Clicking Cancel should do nothing at all.
 
 The following macro demonstrates a better approach: using a variable (x) to store
 
-the value entered by the user. If the value is not empty (that is, the user didn’t
+the value entered by the user. If the value is not empty (that is, the user didn't
 
 click Cancel), the value of x is placed in cell A1. Otherwise, nothing happens.
 
@@ -572,11 +572,11 @@ As you know, Excel allows multiple selections by pressing Ctrl while choosing
 
 objects or ranges. This can cause problems with some macros. For example, you
 
-can’t copy a multiple selection that consists of nonadjacent cells. If you attempt to do so, Excel scolds you with the message shown in Figure 14-3.
+can't copy a multiple selection that consists of nonadjacent cells. If you attempt to do so, Excel scolds you with the message shown in Figure 14-3.
 
 FIGURE 14-3:
 
-Excel doesn’t like
+Excel doesn't like
 
 it when you try to
 
@@ -610,9 +610,9 @@ Changing Excel Settings
 
 Some of the most useful macros are simple procedures that change one or more of
 
-Excel’s settings. For example, if you find yourself making frequent trips to the
+Excel's settings. For example, if you find yourself making frequent trips to the
 
-Excel Options dialog box to change a setting, that’s a good candidate for a simple
+Excel Options dialog box to change a setting, that's a good candidate for a simple
 
 time-saving macro.
 
@@ -638,7 +638,7 @@ generates the following code:
 
 ActiveSheet.DisplayPageBreaks = False
 
-On the other hand, if page breaks aren’t visible when you record the macro, Excel
+On the other hand, if page breaks aren't visible when you record the macro, Excel
 
 generates the following code:
 
@@ -664,9 +664,9 @@ End Sub
 
 The first statement tells Excel to ignore any errors. For example, a chart sheet
 
-doesn’t display page breaks, so if you execute the macro when a chart sheet is
+doesn't display page breaks, so if you execute the macro when a chart sheet is
 
-active, you won’t see an error message.
+active, you won't see an error message.
 
 You can use this technique to toggle any settings that have Boolean (True or False)
 
@@ -712,7 +712,7 @@ can be a bit of a challenge due to some differences between versions of Excel.
 
 For instance, imagine you were to record a macro in Excel 2019 while you
 
-created a basic column chart. While still recording, you decide to delete the chart’s gridlines and change the chart’s title. Your recorded macro would look
+created a basic column chart. While still recording, you decide to delete the chart's gridlines and change the chart's title. Your recorded macro would look
 
 similar to this:
 
@@ -756,7 +756,7 @@ End Sub
 
 What does it all mean? It means that the macro recorded in Excel 2013 or later
 
-versions won’t work in Excel 2010. But the macro recorded in Excel 2010  will work in Excel 2013 and later. In other words, the Excel 2010 macro exhibits forward
+versions won't work in Excel 2010. But the macro recorded in Excel 2010  will work in Excel 2013 and later. In other words, the Excel 2010 macro exhibits forward
 
 compatibility. The Excel 2013 (and later) macro is not backward-compatible.
 
@@ -764,7 +764,7 @@ A typical Excel user would probably know nothing about macro compatibility as it
 
 relates to chart creation. But if you share your macro with someone who uses an
 
-earlier version, you’ll find out about it quickly. Bottom line? If you rely on the
+earlier version, you'll find out about it quickly. Bottom line? If you rely on the
 
 macro recorder for chart-related macros, make sure that you test the macros with
 
@@ -772,13 +772,13 @@ all versions of Excel that will be running the macros.
 
 AddChart versus AddChart2
 
-Here’s the official syntax of the AddChart method (which is compatible with Excel
+Here's the official syntax of the AddChart method (which is compatible with Excel
 
 2007 and later):
 
 .AddChart(Type, Left, Top, Width, Height)
 
-Here’s the syntax of the AddChart2 method (which is compatible only with Excel
+Here's the syntax of the AddChart2 method (which is compatible only with Excel
 
 2013 and later versions):
 
@@ -794,7 +794,7 @@ provided in additional statements.
 
 Examining the recorded code does reveal a few things that may be helpful in
 
-writing your own chart-related macros. If you’re curious, here’s a handcrafted
+writing your own chart-related macros. If you're curious, here's a handcrafted
 
 version of that macro that creates a chart from the selected range:
 
@@ -832,13 +832,13 @@ End With
 
 End Sub
 
-The macro is compatible with Excel 2007 and later. The chart that’s created is a
+The macro is compatible with Excel 2007 and later. The chart that's created is a
 
 clustered column chart with a legend and a title. This basic chart-creating macro
 
 can be customized easily. One way to do it is to record your actions while you modify the chart and then use the recorded code to guide you.
 
-By the way, have a look at the With End-With construct later in this chapter. It’s
+By the way, have a look at the With End-With construct later in this chapter. It's
 
 a handy way to save some typing and make your code easier to read.
 
@@ -866,17 +866,17 @@ When you click an embedded chart, Excel actually selects an object  inside the C
 
 Modifying the chart type
 
-Here’s a confusing statement for you: A ChartObject object acts as a container for
+Here's a confusing statement for you: A ChartObject object acts as a container for
 
 a Chart object. Read that a few times, and it might actually make sense.
 
-To modify a chart with VBA, you don’t have to activate the chart. Rather, the Chart
+To modify a chart with VBA, you don't have to activate the chart. Rather, the Chart
 
 method can return the chart contained in the ChartObject. Are you thoroughly confused yet? The following two procedures have the same effect: They change
 
 the chart named Chart 1 to an area chart. The first procedure activates the chart
 
-first and then works with the active chart. The second procedure doesn’t activate
+first and then works with the active chart. The second procedure doesn't activate
 
 the chart. Rather, it uses the Chart property to return the Chart object contained
 
@@ -964,13 +964,13 @@ Note that the Font object is contained in the Legend object, which is contained 
 
 the Chart object, which is contained in the ChartObjects collection. Now do you
 
-understand why it’s called an  object hierarchy?
+understand why it's called an  object hierarchy?
 
 Applying chart formatting
 
 This example applies several types of formatting to the active chart. Again, you
 
-don’t have to magically know all the syntax to use. This particular procedure was
+don't have to magically know all the syntax to use. This particular procedure was
 
 created by recording a macro, then cleaning the code to remove all the extraneous
 
@@ -1004,9 +1004,9 @@ chart sheet.
 
 To ensure that a chart is selected, you can add a statement to determine whether
 
-a chart is active. Here’s the modified macro, which displays a message (and ends)
+a chart is active. Here's the modified macro, which displays a message (and ends)
 
-if a chart isn’t activated:
+if a chart isn't activated:
 
 Sub ChartMods2()
 
@@ -1036,7 +1036,7 @@ ActiveChart.Legend.Position = xlBottom
 
 End Sub
 
-Here’s another version that uses the With-End With construct to save some typ-
+Here's another version that uses the With-End With construct to save some typ-
 
 ing and make the code a bit clearer. Flip ahead a few pages to read about the With
 
@@ -1078,11 +1078,11 @@ End Sub
 
 When it comes to using VBA to work with charts, this short section barely scratches
 
-the surface. There’s a lot more to it, of course, but at least this basic introduction can get you headed in the right direction.
+the surface. There's a lot more to it, of course, but at least this basic introduction can get you headed in the right direction.
 
 VBA Speed Tips
 
-VBA is fast, but it’s not always fast enough. (Computer programs are never fast
+VBA is fast, but it's not always fast enough. (Computer programs are never fast
 
 enough.) This section presents some programming examples you can use to speed
 
@@ -1094,7 +1094,7 @@ When executing a macro, you can sit back and watch all the onscreen action that
 
 occurs in the macro. Although doing this can be instructive, after you get the
 
-macro working properly, it’s often annoying and can slow the performance of
+macro working properly, it's often annoying and can slow the performance of
 
 your macro considerably. Fortunately, you can disable the screen updating that
 
@@ -1104,7 +1104,7 @@ following statement:
 
 Application.ScreenUpdating = False
 
-If you want the user to see what’s happening at any point during the macro, use
+If you want the user to see what's happening at any point during the macro, use
 
 the following statement to turn screen updating back on:
 
@@ -1146,13 +1146,13 @@ again:
 
 Application.ScreenUpdating = False
 
-The range is filled much faster, and you don’t see the result until the macro is finished running and screen updating is (automatically) set to True.
+The range is filled much faster, and you don't see the result until the macro is finished running and screen updating is (automatically) set to True.
 
-When you’re debugging code, program execution sometimes ends somewhere in
+When you're debugging code, program execution sometimes ends somewhere in
 
 the middle without your having turned Screen updating back on. This sometimes
 
-causes Excel’s application window to become totally unresponsive. The way out of
+causes Excel's application window to become totally unresponsive. The way out of
 
 this frozen state is simple: Go back to the VBE, and execute the following state-
 
@@ -1178,7 +1178,7 @@ Execute the next statement to set the calculation mode to automatic:
 
 Application.Calculation = xlCalculationAutomatic
 
-If your code uses cells with formula results, turning off calculation means that the cells aren’t recalculated unless you explicitly tell Excel to do so!
+If your code uses cells with formula results, turning off calculation means that the cells aren't recalculated unless you explicitly tell Excel to do so!
 
 232    PART 3  Programming Concepts
 
@@ -1194,7 +1194,7 @@ human response. For example, if your macro deletes a nonempty sheet, your code
 
 comes to a screeching halt while Excel waits for your response to the message
 
-shown in Figure 14-4. These types of messages mean that you can’t leave Excel
+shown in Figure 14-4. These types of messages mean that you can't leave Excel
 
 unattended while it executes your macro — unless you know the secret trick.
 
@@ -1222,7 +1222,7 @@ Excel executes the default operation for these types of messages. In the case of
 
 deleting a sheet, the default operation is Delete (which is just what you want to
 
-happen). If you’re not sure what the default operation is, perform a test to see
+happen). If you're not sure what the default operation is, perform a test to see
 
 what happens.
 
@@ -1272,7 +1272,7 @@ macros considerably; sometimes twice as fast.
 
 Declaring variable types
 
-You usually don’t have to worry about the type of data you assign to a variable.
+You usually don't have to worry about the type of data you assign to a variable.
 
 Excel handles all the details for you behind the scenes. For example, if you have a
 
@@ -1284,7 +1284,7 @@ If you want your procedures to execute as fast as possible (and avoid some poten
 
 tially nasty problems), tell Excel what type of data to assigned to each of your
 
-variables. This is known as  declaring a variable’s type. (Refer to Chapter 7 for complete details.) Get into the habit of declaring all variables that you use.
+variables. This is known as  declaring a variable's type. (Refer to Chapter 7 for complete details.) Get into the habit of declaring all variables that you use.
 
 In general, you should use the data type that requires the smallest number of
 
@@ -1298,7 +1298,7 @@ data. An exception to this is the Integer data type. If speed is critical, use t
 
 234    PART 3  Programming Concepts
 
-If you use an object variable (as described in the preceding section), you can declare the variable as a particular object type. Here’s an example:
+If you use an object variable (as described in the preceding section), you can declare the variable as a particular object type. Here's an example:
 
 Dim Rate as Range
 
@@ -1314,7 +1314,7 @@ you use the With-End With structure. An additional benefit is that your code may
 
 be easier to read.
 
-The following code doesn’t use With-End With:
+The following code doesn't use With-End With:
 
 Selection.HorizontalAlignment = xlCenter
 
@@ -1328,7 +1328,7 @@ Selection.ShrinkToFit = False
 
 Selection.MergeCells = False
 
-Here’s the same code, rewritten to use With-End With:
+Here's the same code, rewritten to use With-End With:
 
 With Selection
 
@@ -1346,7 +1346,7 @@ With Selection
 
 End With
 
-As you can see, this code tells tell Excel that the next few statements apply to the Selection object. This is why all the statements inside the With-End With structure begin with a dot. You’re simply avoiding the need to reference the same object
+As you can see, this code tells tell Excel that the next few statements apply to the Selection object. This is why all the statements inside the With-End With structure begin with a dot. You're simply avoiding the need to reference the same object
 
 over and over (in this case, the Selection object). This not only means less typing
 
@@ -1376,7 +1376,7 @@ Find out lots of useful tips and tricks for creating custom
 
 dialog boxes.
 
-Modify Excel’s user interface to make running your
+Modify Excel's user interface to make running your
 
 macros easier.
 

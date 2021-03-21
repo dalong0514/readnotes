@@ -6,9 +6,9 @@ In this chapter, you explore how to create add-ins by using only the tools built
 
 into Excel.
 
-Okay . . . So What’s an Add-In?
+Okay . . . So What's an Add-In?
 
-Glad you asked. An Excel  add-in is something you add to enhance Excel’s functionality. Some add-ins provide new worksheet functions you can use in formulas;
+Glad you asked. An Excel  add-in is something you add to enhance Excel's functionality. Some add-ins provide new worksheet functions you can use in formulas;
 
 other add-ins provide new commands or utilities. If the add-in is designed prop-
 
@@ -28,17 +28,17 @@ More specifically, an add-in is a normal XLSM workbook with the following differ
 
 » The IsAddin property of the Workbook object is True.
 
-» The workbook window is hidden and can’t be unhidden by choosing View ➪
+» The workbook window is hidden and can't be unhidden by choosing View ➪
 
 Window ➪ Unhide.
 
-» The workbook isn’t a member of the Workbooks collection. Rather, it’s in the AddIns collection.
+» The workbook isn't a member of the Workbooks collection. Rather, it's in the AddIns collection.
 
 You can convert any workbook file to an add-in, but not all workbooks are good
 
-candidates. Because add-ins are always hidden, you can’t display worksheets or
+candidates. Because add-ins are always hidden, you can't display worksheets or
 
-chart sheets contained in an add-in. However, you can access an add-in’s VBA Sub
+chart sheets contained in an add-in. However, you can access an add-in's VBA Sub
 
 and Function procedures and display dialog boxes contained on UserForms.
 
@@ -50,21 +50,21 @@ You might decide to convert your Excel application to an add-in for any of the
 
 following reasons:
 
-» Make it more difficult to access your code.  When you distribute an application as an add-in (and you protect its VBA project), casual users can’t view the
+» Make it more difficult to access your code.  When you distribute an application as an add-in (and you protect its VBA project), casual users can't view the
 
 sheets in the workbook. If you use proprietary techniques in your VBA code,
 
-you can make it more difficult for others to copy the code. Excel’s protection
+you can make it more difficult for others to copy the code. Excel's protection
 
-features aren’t perfect, though, and password-cracking utilities are available.
+features aren't perfect, though, and password-cracking utilities are available.
 
 » Avoid confusion.  If a user loads your application as an add-in, the file is invisible and therefore less likely to confuse novice users or get in the way.
 
-Unlike a hidden workbook, the contents of an add-in can’t be revealed.
+Unlike a hidden workbook, the contents of an add-in can't be revealed.
 
 » Simplify access to worksheet functions.  Custom worksheet functions that
 
-you store in an add-in don’t require the workbook name qualifier. For
+you store in an add-in don't require the workbook name qualifier. For
 
 example, if you store a custom function named MOVAVG in a workbook
 
@@ -76,7 +76,7 @@ function in a different workbook:
 
 356    PART 5  Putting It All Together
 
-But if this function is stored in an add-in file that’s open, you can use much simpler syntax because you don’t need to include the file reference:
+But if this function is stored in an add-in file that's open, you can use much simpler syntax because you don't need to include the file reference:
 
 =MOVAVG(A1:A50)
 
@@ -88,7 +88,7 @@ description of what it does. The user can easily enable or disable your add-in.
 
 » Gain better control over loading.  Add-ins can be opened automatically
 
-when Excel starts, regardless of the directory in which they’re stored.
+when Excel starts, regardless of the directory in which they're stored.
 
 » Avoid displaying prompts when unloading.  When an add-in is closed, the
 
@@ -116,11 +116,11 @@ from the Add-Ins dialog box by selecting or deselecting the check boxes.
 
 To add a new add-in to the list, click Browse and then locate the XLAM file.
 
-You can also open most add-in files (as though they were workbook files) by choosing File ➪ Open ➪ Browse. An add-in opened in this manner doesn’t appear in
+You can also open most add-in files (as though they were workbook files) by choosing File ➪ Open ➪ Browse. An add-in opened in this manner doesn't appear in
 
 the Add-Ins dialog box. In addition, if you open the add-in by choosing the Open
 
-command, you can’t close it by choosing File ➪ Close. You can remove the add-in
+command, you can't close it by choosing File ➪ Close. You can remove the add-in
 
 only by exiting and restarting Excel or by writing a macro to close the add-in.
 
@@ -132,7 +132,7 @@ or more new groups on an existing tab. For example, opening the Analysis ToolPak
 
 add-in gives you a new item on the Data tab: Analysis ➪ Data Analysis. If the add-in contains only custom worksheet functions, the new functions appear in the Insert
 
-Function dialog box, and you see no change in Excel’s user interface.
+Function dialog box, and you see no change in Excel's user interface.
 
 CHAPTER 21  Creating Excel Add-Ins    357
 
@@ -158,17 +158,17 @@ those with macros. For example, a workbook that consists of general-purpose
 
 macros (Sub and Function procedures) makes an ideal add-in.
 
-Creating an add-in isn’t difficult, but it does require a bit of extra work. Follow
+Creating an add-in isn't difficult, but it does require a bit of extra work. Follow
 
 these steps to create an add-in from a normal workbook file:
 
 1. Develop your application, and make sure that everything works properly.
 
-Don’t forget to include a method for executing the macro or macros. You might
+Don't forget to include a method for executing the macro or macros. You might
 
 want to define a shortcut key or customize the user interface in some way
 
-(see Chapter 19). If the add-in consists only of functions, there’s no need to
+(see Chapter 19). If the add-in consists only of functions, there's no need to
 
 include a method to execute them because they appear in the Insert Function
 
@@ -176,7 +176,7 @@ dialog box.
 
 2. Test the application by executing it when a  different workbook is active.
 
-Doing so simulates the application’s behavior when it’s used as an add-in
+Doing so simulates the application's behavior when it's used as an add-in
 
 because an add-in is never the active workbook.
 
@@ -194,7 +194,7 @@ Excel expands the list of properties displayed.
 
 5. Enter a brief descriptive title in the Title field and a longer description in  the Comments field.
 
-Steps 4 and 5 aren’t required but make the add-in easier to use, because the
+Steps 4 and 5 aren't required but make the add-in easier to use, because the
 
 descriptions you enter appear in the Add-Ins dialog box when your add-in is
 
@@ -224,7 +224,7 @@ This section discusses the basic steps involved in creating a useful add-in.
 
 The example is based on the Change Case text conversion utility described in Chapter 16.
 
-The XLSM version of this example is available at this book’s website. You can create an add-in from this workbook.
+The XLSM version of this example is available at this book's website. You can create an add-in from this workbook.
 
 Setting up the workbook
 
@@ -274,7 +274,7 @@ Unload UserForm1
 
 End Sub
 
-The code that’s executed when the OK button is clicked follows. This code does all
+The code that's executed when the OK button is clicked follows. This code does all
 
 the work:
 
@@ -402,9 +402,9 @@ want to use a copy.
 
 command from your Cell (or Row or Column) shortcut menu.
 
-If the Change Case command doesn’t appear on your shortcut menu, the most
+If the Change Case command doesn't appear on your shortcut menu, the most
 
-likely reason is that you didn’t enable macros when you opened the change case.
+likely reason is that you didn't enable macros when you opened the change case.
 
 xlsm workbook. Close the workbook and then reopen it — and make sure that you
 
@@ -412,7 +412,7 @@ enable macros.
 
 Adding descriptive information
 
-Although not required, it’s considered to be a best practice to enter a description
+Although not required, it's considered to be a best practice to enter a description
 
 of your add-in. Follow these steps to add a description:
 
@@ -478,7 +478,7 @@ Project window.
 
 Creating the add-in
 
-At this point, you’ve tested the change case.xlsm file, and it’s working correctly.
+At this point, you've tested the change case.xlsm file, and it's working correctly.
 
 The next step is creating the add-in. Follow these steps:
 
@@ -546,9 +546,9 @@ selected.
 
 Distributing the add-in
 
-If you’re in a generous mood, you can distribute this add-in to other Excel users
+If you're in a generous mood, you can distribute this add-in to other Excel users
 
-simply by giving them a copy of the XLAM file. (They don’t need the XLSM
+simply by giving them a copy of the XLAM file. (They don't need the XLSM
 
 version.) When they open the add-in, the new Change Case command appears on
 
@@ -564,15 +564,15 @@ Modifying the add-in
 
 An add-in can be edited just like any other workbook. You can edit the XLAM file
 
-directly (you don’t need to work with the original XLSM version) by following these steps:
+directly (you don't need to work with the original XLSM version) by following these steps:
 
-1. Open your XLAM file, if it’s not already open.
+1. Open your XLAM file, if it's not already open.
 
 2. Activate the VBE.
 
-3. Double-click the project’s name in the Project window.
+3. Double-click the project's name in the Project window.
 
-If you protected the code, you’re prompted for the password.
+If you protected the code, you're prompted for the password.
 
 4. Enter your password, and click OK.
 
@@ -582,11 +582,11 @@ If you protected the code, you’re prompted for the password.
 
 If you create an add-in that stores information in a worksheet, you must set the
 
-workbook’s IsAddIn property to False to view the workbook. You do this in the
+workbook's IsAddIn property to False to view the workbook. You do this in the
 
 Properties window when the ThisWorkbook object is selected (see Figure 21-5).
 
-After you’ve made your changes to the workbook, make sure that you set the
+After you've made your changes to the workbook, make sure that you set the
 
 IsAddIn property back to True before you save the file.
 
@@ -606,7 +606,7 @@ Discover tips on using the VBE.
 
 Expand your knowledge with Excel resources.
 
-Find out what you should and shouldn’t do in Excel VBA.
+Find out what you should and shouldn't do in Excel VBA.
 
 IN THIS CHAPTER
 

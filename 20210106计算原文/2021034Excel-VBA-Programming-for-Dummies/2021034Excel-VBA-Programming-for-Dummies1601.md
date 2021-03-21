@@ -10,7 +10,7 @@ required (for example, a Yes/No answer or a text string), one of the techniques 
 
 Chapter 15 may do the job. But if you need to obtain more information, you must
 
-create a UserForm. That’s what this chapter is all about.
+create a UserForm. That's what this chapter is all about.
 
 Knowing When to Use a UserForm
 
@@ -72,7 +72,7 @@ UserForm.
 
 In VBA, the official name for a dialog box is a UserForm. But a UserForm is really
 
-an object that contains what’s commonly known as a  dialog box.  This distinction isn’t important, so you’ll often here these terms used interchangeably.
+an object that contains what's commonly known as a  dialog box.  This distinction isn't important, so you'll often here these terms used interchangeably.
 
 Creating UserForms: An Overview
 
@@ -106,11 +106,11 @@ These procedures are stored in the Code window for the UserForm object.
 
 to the user.
 
-Don’t worry if some of these steps seem foreign. The following sections provide
+Don't worry if some of these steps seem foreign. The following sections provide
 
 more details, along with step-by-step instructions for creating a UserForm.
 
-When you’re designing a UserForm, you’re creating what developers call the Graphical User Interface (GUI) to your application. GUI also stands for Gaming Under the Influence, but that’s not relevant here.
+When you're designing a UserForm, you're creating what developers call the Graphical User Interface (GUI) to your application. GUI also stands for Gaming Under the Influence, but that's not relevant here.
 
 Take some time to consider what your form should look like and how your users
 
@@ -160,7 +160,7 @@ When you activate a UserForm, the VBE displays the Toolbox in a floating window
 
 (refer to Figure 16-2). You use the tools in the Toolbox to add controls to your
 
-UserForm. If, for some reason, the Toolbox doesn’t appear when you activate your
+UserForm. If, for some reason, the Toolbox doesn't appear when you activate your
 
 UserForm, choose View ➪ Toolbox.
 
@@ -302,7 +302,7 @@ these steps:
 
 1. Make sure that the correct control is selected in the UserForm.
 
-2. Make sure the Properties window is visible. (Press F4 if it’s not.)
+2. Make sure the Properties window is visible. (Press F4 if it's not.)
 
 3. In the Properties window, click the property that you want to change.
 
@@ -322,7 +322,7 @@ drag onto the UserForm. For example, if you change the Font property for the
 
 UserForm itself, controls that you subsequently add use that same font. Controls
 
-that are already on the UserForm aren’t affected.
+that are already on the UserForm aren't affected.
 
 Viewing the UserForm Code window
 
@@ -334,11 +334,11 @@ To view the Code module, press F7. The Code window is empty until you add some
 
 procedures. Press Shift+F7 to return to the UserForm.
 
-Here’s another way to switch between the Code window and the UserForm display:
+Here's another way to switch between the Code window and the UserForm display:
 
-Use the View Code and View Object buttons in the Project window’s title bar. Or
+Use the View Code and View Object buttons in the Project window's title bar. Or
 
-right-click the UserForm and choose View Code. If you’re viewing code, double-
+right-click the UserForm and choose View Code. If you're viewing code, double-
 
 click the UserForm name in the Project window to return to the UserForm.
 
@@ -346,7 +346,7 @@ click the UserForm name in the Project window to return to the UserForm.
 
 Displaying a UserForm
 
-You display a UserForm by using the UserForm’s Show method in a VBA
+You display a UserForm by using the UserForm's Show method in a VBA
 
 procedure.
 
@@ -366,7 +366,7 @@ End Sub
 
 When Excel displays the dialog box, the ShowDialogBox macro halts until the user closes the dialog box. Then VBA executes any remaining statements in the
 
-procedure. Most of the time, you won’t have any more code in the procedure. As
+procedure. Most of the time, you won't have any more code in the procedure. As
 
 you later see, you put your event-handler procedures in the Code window for the
 
@@ -376,7 +376,7 @@ UserForm.
 
 Using information from a UserForm
 
-The VBE provides a name for each control you add to a UserForm. The control’s
+The VBE provides a name for each control you add to a UserForm. The control's
 
 name corresponds to its Name property. Use this name to refer to a particular
 
@@ -390,9 +390,9 @@ write code to do it:
 
 UserForm1.CheckBox1.Value = True
 
-Most of the time, you write the code for a UserForm in the UserForm’s code mod-
+Most of the time, you write the code for a UserForm in the UserForm's code mod-
 
-ule. If that’s the case, you can omit the UserForm object qualifier and write the
+ule. If that's the case, you can omit the UserForm object qualifier and write the
 
 statement like this:
 
@@ -408,17 +408,17 @@ If CheckBox1.Value = True Then Call PrintReport
 
 CHAPTER 16  UserForm Basics    263
 
-It’s usually a good idea to change the default name the VBE gives to your controls to something more meaningful. You might consider naming the check box
+It's usually a good idea to change the default name the VBE gives to your controls to something more meaningful. You might consider naming the check box
 
 something like cbxPrintReport. Note the three-letter prefix (cbx). There is no technical reason for using cbx as the prefix. This is just one example of using a
 
 naming convention to differentiate objects in VBA. Using a naming convention like this makes your code easier to read. In the end, the convention you choose is
 
-a matter of what you’re comfortable with.
+a matter of what you're comfortable with.
 
 A UserForm Example
 
-This section’s UserForm example is an enhanced version of the ChangeCase macro
+This section's UserForm example is an enhanced version of the ChangeCase macro
 
 from the beginning of the chapter. The original version of this macro changes the
 
@@ -438,7 +438,7 @@ that does the work. Clicking the Cancel button causes the macro to finish withou
 
 doing anything.
 
-This workbook is available at the book’s website. However, you get more out of
+This workbook is available at the book's website. However, you get more out of
 
 this exercise if you follow the steps provided here and create it yourself.
 
@@ -452,7 +452,7 @@ steps:
 
 2. If multiple projects are in the Project window, select the project that
 
-corresponds to the workbook you’re using.
+corresponds to the workbook you're using.
 
 3. Choose Insert  ➪ UserForm.
 
@@ -460,7 +460,7 @@ The VBE inserts a new UserForm object with an empty dialog box.
 
 4. Press F4 to display the Properties window.
 
-5. In the Properties window, change the dialog box’s Caption property to
+5. In the Properties window, change the dialog box's Caption property to
 
 Change Case.
 
@@ -476,9 +476,9 @@ Ready to add two CommandButtons — OK and Cancel — to the dialog box? Follow
 
 along:
 
-1. Make sure that the Toolbox is displayed; if it isn’t, choose View  ➪ Toolbox.
+1. Make sure that the Toolbox is displayed; if it isn't, choose View  ➪ Toolbox.
 
-2. If the Properties window isn’t visible, press F4 to display it.
+2. If the Properties window isn't visible, press F4 to display it.
 
 3. In the Toolbox, drag a CommandButton into the dialog box to create a
 
@@ -548,9 +548,9 @@ Adding the OptionButtons
 
 In this section, you add three OptionButtons to the dialog box. Before adding the
 
-OptionButtons, you add a Frame object that contains the OptionButtons. The Frame isn’t necessary, but it makes the dialog box look a bit more professional so
+OptionButtons, you add a Frame object that contains the OptionButtons. The Frame isn't necessary, but it makes the dialog box look a bit more professional so
 
-users won’t think it was designed by an amateur.
+users won't think it was designed by an amateur.
 
 To add the OptionButtons, follow these steps:
 
@@ -558,7 +558,7 @@ To add the OptionButtons, follow these steps:
 
 This step creates a frame to hold the options buttons.
 
-2. Use the Properties window to change the frame’s caption to Options.
+2. Use the Properties window to change the frame's caption to Options.
 
 3. In the Toolbox, click the OptionButton tool and drag it into the dialog box
 
@@ -652,7 +652,7 @@ controls inside a
 
 Frame control.
 
-If you’d like a sneak preview to see what the UserForm looks like when it’s dis-
+If you'd like a sneak preview to see what the UserForm looks like when it's dis-
 
 played, press F5. None of the controls work yet, so you need to click the red X in
 
@@ -672,15 +672,15 @@ CHAPTER 16  UserForm Basics    267
 
 You may wonder why the OptionButtons have accelerator keys but the CommandButtons lack such a feature. Generally, OK and Cancel buttons never have accelerator keys because they can be accessed from the keyboard. Pressing
 
-Enter is equivalent to clicking OK because the control’s Default property is True.
+Enter is equivalent to clicking OK because the control's Default property is True.
 
-Pressing Esc is equivalent to clicking Cancel because the control’s Cancel property
+Pressing Esc is equivalent to clicking Cancel because the control's Cancel property
 
 is True.
 
 Adding event-handler procedures
 
-Now it’s time to make the UserForm actually do something. Here’s how to add an
+Now it's time to make the UserForm actually do something. Here's how to add an
 
 event-handler procedure for the Cancel and OK buttons:
 
@@ -698,9 +698,9 @@ The procedure named CancelButton_Click is executed when the Cancel button
 
 is clicked, but only when the dialog box is displayed. In other words, clicking the
 
-Cancel button when you’re designing the dialog box won’t execute the
+Cancel button when you're designing the dialog box won't execute the
 
-procedure. Because the Cancel button’s Cancel property is set to True, pressing
+procedure. Because the Cancel button's Cancel property is set to True, pressing
 
 Esc also triggers the CancelButton_Click procedure.
 
@@ -798,7 +798,7 @@ CHAPTER 16  UserForm Basics    269
 
 Creating a macro to display the dialog box
 
-You’re almost finished with this project. The only thing missing is a way to dis-
+You're almost finished with this project. The only thing missing is a way to dis-
 
 play the dialog box. Follow these steps to create the procedure that makes the dialog box appear:
 
@@ -824,7 +824,7 @@ End Sub
 
 This procedure is pretty simple. It checks to make sure that a range is selected. If so, the dialog box is displayed (using the Show method). The user then interacts
 
-with the dialog box, and the code stored in the UserForm’s Code pane is executed.
+with the dialog box, and the code stored in the UserForm's Code pane is executed.
 
 If a range is not selected, the user sees a MsgBox with the text Select a range.
 
@@ -918,7 +918,7 @@ The UserForm is
 
 in action.
 
-If you test this procedure when only one cell is selected, you’ll find that  all the cells on the worksheet are processed. That behavior is a byproduct of using the SpecialCells method. If you prefer to be able to process just one cell, change
+If you test this procedure when only one cell is selected, you'll find that  all the cells on the worksheet are processed. That behavior is a byproduct of using the SpecialCells method. If you prefer to be able to process just one cell, change
 
 the first block of code to this:
 
@@ -954,11 +954,11 @@ As long as the workbook is open, you can execute the macro from any other workbo
 
 longer has any function.
 
-If the macro doesn’t work properly, double-check the preceding steps to locate
+If the macro doesn't work properly, double-check the preceding steps to locate
 
-and correct the error. Don’t be alarmed; debugging is a normal part of developing
+and correct the error. Don't be alarmed; debugging is a normal part of developing
 
-macros. As a last resort, download the completed workbook from this book’s website and try to figure out where you went wrong.
+macros. As a last resort, download the completed workbook from this book's website and try to figure out where you went wrong.
 
 CHAPTER 16  UserForm Basics    273
 
@@ -968,7 +968,7 @@ IN THIS CHAPTER
 
 box control
 
-» Changing each control’s properties
+» Changing each control's properties
 
 » Manipulating dialog box controls in
 

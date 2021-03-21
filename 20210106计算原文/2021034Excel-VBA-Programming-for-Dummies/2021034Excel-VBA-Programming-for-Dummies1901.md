@@ -6,19 +6,19 @@ including Windows.
 
 You might expect to be able to create custom Ribbon commands using VBA. The
 
-bad news is that you can’t use VBA to modify the Ribbon. The good news is that
+bad news is that you can't use VBA to modify the Ribbon. The good news is that
 
-you’re not completely out of luck. This chapter describes some of the ways to work
+you're not completely out of luck. This chapter describes some of the ways to work
 
-with Excel’s user interface.
+with Excel's user interface.
 
 Customizing the Ribbon
 
 This section describes ways to customize the Ribbon. You can modify the Ribbon
 
-manually, but you can’t make changes to the Ribbon by using VBA. Sad, but true.
+manually, but you can't make changes to the Ribbon by using VBA. Sad, but true.
 
-For example, if you write an application and you’d like to add a few new buttons
+For example, if you write an application and you'd like to add a few new buttons
 
 CHAPTER 19  Accessing Your Macros through the User Interface    321
 
@@ -26,9 +26,9 @@ to the Ribbon, you need to program those changes outside Excel, using something 
 
 Customizing the Ribbon manually
 
-It’s very easy to make changes to the Ribbon manually, but you must be using
+It's very easy to make changes to the Ribbon manually, but you must be using
 
-Excel 2010 or later. If you use Excel 2007, you should just skip this section because it doesn’t apply to you.
+Excel 2010 or later. If you use Excel 2007, you should just skip this section because it doesn't apply to you.
 
 You can customize the Ribbon in these ways:
 
@@ -62,9 +62,9 @@ You can customize the Ribbon in these ways:
 
 •  Change the name of a group.
 
-That’s a fairly comprehensive list of customization options, but there are some
+That's a fairly comprehensive list of customization options, but there are some
 
-actions that you  can’t do (no matter how hard you try):
+actions that you  can't do (no matter how hard you try):
 
 » Remove built-in tabs — but you  can hide them.
 
@@ -146,7 +146,7 @@ group named
 
 Text To Speech.
 
-Although you can’t remove a built-in tab, you can hide the tab by clearing the
+Although you can't remove a built-in tab, you can hide the tab by clearing the
 
 check box next to its name on the Customize Ribbon tab.
 
@@ -172,7 +172,7 @@ If you add a button to the Ribbon that executes a macro, that Ribbon modificatio
 
 workbook. In other words, if you give your workbook to a colleague, the Ribbon
 
-customizations you made won’t appear on the colleague’s system.
+customizations you made won't appear on the colleague's system.
 
 Customizing the Ribbon with XML
 
@@ -184,7 +184,7 @@ using the Excel Options dialog box.
 
 You can make automatic changes to the Ribbon with Excel 2007 and later versions,
 
-but it’s not a simple task. Modifying the Ribbon involves writing XML code in a
+but it's not a simple task. Modifying the Ribbon involves writing XML code in a
 
 text editor, copying that XML file into the workbook file, editing a bunch of XML
 
@@ -198,11 +198,11 @@ you still need to be on familiar terms with XML.
 
 GETTING THE SOFTWARE
 
-If you’d like to follow along with the Ribbon customization example, you need to download a small program called Custom UI Editor for Microsoft Office. This free program greatly simplifies the process of customizing the Ribbon in Microsoft Office applications.
+If you'd like to follow along with the Ribbon customization example, you need to download a small program called Custom UI Editor for Microsoft Office. This free program greatly simplifies the process of customizing the Ribbon in Microsoft Office applications.
 
-Using this software still requires a lot of work, but it’s a lot easier than doing it manually.
+Using this software still requires a lot of work, but it's a lot easier than doing it manually.
 
-The download location tends to change, so search the web for  "Custom UI Editor for  Microsoft Office"  to find the software. It’s a small download, and it’s free.
+The download location tends to change, so search the web for  "Custom UI Editor for  Microsoft Office"  to find the software. It's a small download, and it's free.
 
 Explaining all the intricate details involved in customizing the Ribbon is well beyond the scope of this book. However, this chapter does walk you through a quick example that demonstrates the steps required to add a new Ribbon group to the Home tab. The new
 
@@ -212,7 +212,7 @@ Click Me. Clicking that button runs a VBA macro named ShowMessage.
 
 CHAPTER 19  Accessing Your Macros through the User Interface    325
 
-You can download a sample file from this book’s website, which contains this customization. If you’d like to create it yourself, follow these steps exactly:
+You can download a sample file from this book's website, which contains this customization. If you'd like to create it yourself, follow these steps exactly:
 
 1. Create a new Excel workbook.
 
@@ -222,7 +222,7 @@ You can download a sample file from this book’s website, which contains this c
 
 4. Launch the Custom UI Editor for Microsoft Office.
 
-If you don’t have this software, you need to find it and install it. Refer to the
+If you don't have this software, you need to find it and install it. Refer to the
 
 nearby sidebar「Getting the software.」
 
@@ -232,7 +232,7 @@ saved in Step 2.
 
 6. Choose Insert  ➪ Office 2007 Custom UI Part.
 
-Choose this command even if you’re using a Excel 2010 or a later version.
+Choose this command even if you're using a Excel 2010 or a later version.
 
 7. Type the following code in the code panel (named customUI.xml)
 
@@ -312,7 +312,7 @@ Ribbon button.
 
 12. Open the workbook in Excel, and click the Home tab.
 
-You should see the new Ribbon group and Ribbon button. But it doesn’t
+You should see the new Ribbon group and Ribbon button. But it doesn't
 
 work yet.
 
@@ -322,7 +322,7 @@ CHAPTER 19  Accessing Your Macros through the User Interface    327
 
 14. Insert a new VBA module; paste (or type) the callback procedure that was
 
-generated in Step 9; and add a MsgBox statement, so you’ll know whether
+generated in Step 9; and add a MsgBox statement, so you'll know whether
 
 the procedure is actually being executed.
 
@@ -356,7 +356,7 @@ In the Custom UI Editor, when you choose Insert ➪ Office 2007 Custom UI Part, 
 
 insert a UI part for Excel 2007. The Custom UI Editor also has an option to insert
 
-a UI part for Excel 2010 (this software hasn’t been updated for subsequent versions
+a UI part for Excel 2010 (this software hasn't been updated for subsequent versions
 
 of Office). For maximum compatibility, use the Excel 2007 Custom UI Part.
 
@@ -368,7 +368,7 @@ understand XML. If that sounds appealing to you, search the web or find a book
 
 devoted exclusively to customizing the Ribbon interface in Microsoft Office. This
 
-book isn’t one of them.
+book isn't one of them.
 
 328    PART 4  Communicating with Your Users
 
@@ -376,7 +376,7 @@ ADDING A BUTTON TO THE
 
 QUICK ACCESS TOOLBAR
 
-If you create a macro that you use frequently, you may want to add a new button to the Quick Access toolbar. Doing so is easy, but you must do it manually. The Quick Access toolbar is intended to be customized by end users only — not programmers. Here’s
+If you create a macro that you use frequently, you may want to add a new button to the Quick Access toolbar. Doing so is easy, but you must do it manually. The Quick Access toolbar is intended to be customized by end users only — not programmers. Here's
 
 how to do it:
 
@@ -398,11 +398,11 @@ display name.
 
 When you click a macro button on the Quick Access toolbar, the workbook that con-
 
-tains the macro is opened (if it’s not already open). And the macro can be executed
+tains the macro is opened (if it's not already open). And the macro can be executed
 
 when any workbook is open.
 
-You’ll also find an option to display the Quick Access toolbar button only when a
+You'll also find an option to display the Quick Access toolbar button only when a
 
 particular workbook is open. Before you add the macro, use the drop-down control at
 
@@ -414,9 +414,9 @@ If you have macros that are useful for many workbooks, storing them in your Pers
 
 Because this XML stuff is way too complex for the beginner VBA programmer, the
 
-remainder of this chapter focuses on UI customization that uses the  old method (VBA only): specifically, how to customize shortcut menus. It’s not as slick as the
+remainder of this chapter focuses on UI customization that uses the  old method (VBA only): specifically, how to customize shortcut menus. It's not as slick as the
 
-Ribbon, but it’s a lot easier, and it still provides quick access to your macros.
+Ribbon, but it's a lot easier, and it still provides quick access to your macros.
 
 Customizing Shortcut Menus
 
@@ -442,7 +442,7 @@ Add-Ins ➪ Custom Toolbars group. But customizing shortcut menus (which also
 
 uses the CommandBar object) still works as it always has — well, sort of. See
 
-「What’s different since Excel 2007?」later in this chapter.
+「What's different since Excel 2007?」later in this chapter.
 
 Bottom line? The CommandBar object is not very useful anymore, but it remains
 
@@ -462,7 +462,7 @@ Chapter 16 describes the Change Case utility. You can enhance that utility a bit
 
 making it available from the Cell shortcut menu.
 
-This example is available at this book’s website.
+This example is available at this book's website.
 
 The AddToShortcut procedure adds a new menu item to the Cell shortcut menu.
 
@@ -500,7 +500,7 @@ End Sub
 
 When you modify a shortcut menu, that modification remains in effect until you
 
-restart Excel. In other words, modified shortcut menus don’t reset themselves when you close the workbook that contains the VBA code. Therefore, if you write
+restart Excel. In other words, modified shortcut menus don't reset themselves when you close the workbook that contains the VBA code. Therefore, if you write
 
 code to modify a shortcut menu, you almost always write code to reverse the effect
 
@@ -542,13 +542,13 @@ menu item appears on the shortcut Cell menu. Try commenting out that line (put
 
 an apostrophe at the start of the line) and running the procedure a few times — but
 
-don’t get carried away! Right-click a cell, and you can see multiple instances of the CHAPTER 19  Accessing Your Macros through the User Interface    331
+don't get carried away! Right-click a cell, and you can see multiple instances of the CHAPTER 19  Accessing Your Macros through the User Interface    331
 
 Change Case menu item. Get rid of all the entries by running DeleteFromShortcut multiple times (once for each extra menu item).
 
 Finally, you need a way to add the shortcut menu item when the workbook is opened and to delete the menu item when the workbook is closed. Doing this is
 
-easy . . . if you’ve read Chapter 11. Just add these two event procedures to the ThisWorkbook code module:
+easy . . . if you've read Chapter 11. Just add these two event procedures to the ThisWorkbook code module:
 
 Private Sub Workbook_Open()
 
@@ -568,9 +568,9 @@ the Workbook_BeforeClose procedure is executed before the workbook is closed.
 
 Just what the doctor ordered.
 
-What’s different since Excel 2007?
+What's different since Excel 2007?
 
-If you’ve used VBA to work with shortcut menus in Excel 2007 or earlier, you need
+If you've used VBA to work with shortcut menus in Excel 2007 or earlier, you need
 
 to be aware of a significant change.
 
@@ -584,7 +584,7 @@ Excel 2013 and later versions use a single document interface, and that affects 
 
 workbook window. When you execute the code that modifies the shortcut menu,
 
-the shortcut menu for windows other than the active window aren’t changed. This
+the shortcut menu for windows other than the active window aren't changed. This
 
 is a radical departure from how things used to work.
 
@@ -612,7 +612,7 @@ Find out why you might want to create custom
 
 worksheet functions.
 
-Make your custom functions work just like Excel’s
+Make your custom functions work just like Excel's
 
 built-in functions.
 
@@ -650,7 +650,7 @@ Functions — and Living
 
 to Tell about It
 
-F or many macro mavens, VBA’s main attraction is the capability to create
+F or many macro mavens, VBA's main attraction is the capability to create
 
 customworksheetfunctions —functionsthatlook,work,andfeeljustlikethose that Microsoft built into Excel. A  custom function offers the addedadvantageofworkingexactlyhowyouwantitto(because you wroteit).Chapter 5introducestheconceptofcustomfunctions.Inthischapter,youtakeadeeperdivewithsomereal-worldexamples.
 
@@ -658,15 +658,15 @@ CHAPTER 20  Creating Worksheet Functions — and Living to Tell about It    335
 
 Why Create Custom Functions?
 
-You’reundoubtedlyfamiliarwithExcel’sworksheetfunctions;evenExcelnovicesknow how to use common worksheet functions such as SUM, AVERAGE, and
+You'reundoubtedlyfamiliarwithExcel'sworksheetfunctions;evenExcelnovicesknow how to use common worksheet functions such as SUM, AVERAGE, and
 
-IF. Excelcontainsmorethan450predefinedworksheetfunctions.Andifthat’snotenough,youcancreatefunctionsbyusingVBA.
+IF. Excelcontainsmorethan450predefinedworksheetfunctions.Andifthat'snotenough,youcancreatefunctionsbyusingVBA.
 
 WHAT CUSTOM WORKSHEET
 
-FUNCTIONS CAN’T DO
+FUNCTIONS CAN'T DO
 
-As you develop custom functions for use in your worksheet formulas, it’s important that you understand a key point. VBA worksheet Function procedures are essentially  passive.
+As you develop custom functions for use in your worksheet formulas, it's important that you understand a key point. VBA worksheet Function procedures are essentially  passive.
 
 For example, code within a Function procedure cannot manipulate ranges, change
 
@@ -674,11 +674,11 @@ formatting, or do many of the other things that are possible with a Sub procedur
 
 An example may help.
 
-It might be useful to create a function that changes the color of text in a cell based on the cell’s value. Try as you might, however, you can’t write such a function. It always returns an error value.
+It might be useful to create a function that changes the color of text in a cell based on the cell's value. Try as you might, however, you can't write such a function. It always returns an error value.
 
-Just remember this: A function used in a worksheet formula returns a value. It doesn’t perform actions with objects.
+Just remember this: A function used in a worksheet formula returns a value. It doesn't perform actions with objects.
 
-That said, this rule has a few exceptions. For example, here’s a Function procedure that changes the text in a cell comment:
+That said, this rule has a few exceptions. For example, here's a Function procedure that changes the text in a cell comment:
 
 Function ChangeComment(cell, NewText)
 
@@ -686,13 +686,13 @@ cell.Comment.Text NewText
 
 End Function
 
-And here’s a formula that uses the function. It works only if cell A1 already has a
+And here's a formula that uses the function. It works only if cell A1 already has a
 
 comment. When the formula is calculated, the comment is changed.
 
 =ChangeComment(A1,"I changed the comment!")
 
-It’s unclear whether this is an oversight or a feature. But it’s a rare example of a VBA function that changes something in a worksheet.
+It's unclear whether this is an oversight or a feature. But it's a rare example of a VBA function that changes something in a worksheet.
 
 336    PART 5  Putting It All Together
 
@@ -704,7 +704,7 @@ ingacustomfunction.Afterall,shorterformulasaremorereadableandeasiertowork with.
 
 Understanding VBA Function Basics
 
-A VBA  function isaprocedurethat’sstoredinaVBAmodule.YoucanusethesefunctionsinotherVBAproceduresorinyourworksheetformulas.Customfunctionscan’tbecreatedwiththemacrorecorder,althoughthemacrorecordercanhelpyouidentifyrelevantpropertiesandmethods.
+A VBA  function isaprocedurethat'sstoredinaVBAmodule.YoucanusethesefunctionsinotherVBAproceduresorinyourworksheetformulas.Customfunctionscan'tbecreatedwiththemacrorecorder,althoughthemacrorecordercanhelpyouidentifyrelevantpropertiesandmethods.
 
 A  module can contain any number of functions. You can use a custom function in aformulajustasthoughitwereabuilt-infunction.Ifthefunctionisdefinedin adifferentworkbook,however,youmustprecedethefunctionnamewiththeworkbook name. Suppose that you develop a function called DiscountPrice
 
@@ -718,7 +718,7 @@ Ifyouwanttousethisfunctionina different workbook, enter a formula such as this(a
 
 =pricing.xlsm!discountprice(A1)
 
-If the custom function is stored in an add-in, you don’t need to precede the
+If the custom function is stored in an add-in, you don't need to precede the
 
 function name with the workbook name. Chapter 21 provides an overview ofadd-ins.
 
@@ -728,9 +728,9 @@ CHAPTER 20  Creating Worksheet Functions — and Living to Tell about It    337
 
 Writing Functions
 
-Rememberthatafunction’snameactslikeavariable.Thefinalvalueofthisvari-
+Rememberthatafunction'snameactslikeavariable.Thefinalvalueofthisvari-
 
-ableisthevaluereturnedbythefunction.Todemonstrate,examinethefollowingfunction,whichreturnstheuser’sfirstname: Function FirstName()
+ableisthevaluereturnedbythefunction.Todemonstrate,examinethefollowingfunction,whichreturnstheuser'sfirstname: Function FirstName()
 
 Dim FullName As String
 
@@ -754,13 +754,13 @@ End Function
 
 ThisfunctionstartsbyassigningtheUserNamepropertyoftheApplicationobjecttoavariablenamedFullName.Next,itusestheVBAInStrfunctiontolocatethepositionofthefirstspaceinthename.Ifthereisnospace,FirstSpaceisequalto 0,andFirstNameisequaltotheentirename.IfFullName does have a space, the Left functionextractsthetexttotheleftofthespaceandassignsittoFirstName.
 
-NoticethatFirstNameisthenameofthefunctionandisalsousedasavariablename  in thefunction.ThefinalvalueofFirstNameisthevaluethat’sreturnedbythefunction.Severalintermediatecalculationsmaybegoingoninthefunction,butthefunctionalwaysreturnsthelastvalueassignedtothevariablethatisthesame as the function’s name.
+NoticethatFirstNameisthenameofthefunctionandisalsousedasavariablename  in thefunction.ThefinalvalueofFirstNameisthevaluethat'sreturnedbythefunction.Severalintermediatecalculationsmaybegoingoninthefunction,butthefunctionalwaysreturnsthelastvalueassignedtothevariablethatisthesame as the function's name.
 
-All the examples in this chapter are available at this book’s website.
+All the examples in this chapter are available at this book's website.
 
 Working with Function Arguments
 
-Toworkwithfunctions,youneedtounderstandhowtoworkwitharguments.Anargumentisnotadisagreementbetweenvariables.Rather,it’sinformationthatispassedtothefunctionandthenusedbythefunctiontodoitsthing.
+Toworkwithfunctions,youneedtounderstandhowtoworkwitharguments.Anargumentisnotadisagreementbetweenvariables.Rather,it'sinformationthatispassedtothefunctionandthenusedbythefunctiontodoitsthing.
 
 ThefollowingpointsapplytotheargumentsforExcelworksheetfunctionsandcustomVBAfunctions: 338    PART 5  Putting It All Together
 
@@ -776,11 +776,11 @@ The examples in this section demonstrate how to work with various types ofargume
 
 A function with no argument
 
-Somefunctionsdon’tuseanyarguments.Forexample,Excelhasafewbuilt-inworksheet functions that don’t use arguments. These include RAND, TODAY,andNOW.
+Somefunctionsdon'tuseanyarguments.Forexample,Excelhasafewbuilt-inworksheet functions that don't use arguments. These include RAND, TODAY,andNOW.
 
-Here’sanexampleofacustomfunctionwithnoarguments.Thefollowingfunc-
+Here'sanexampleofacustomfunctionwithnoarguments.Thefollowingfunc-
 
-tionreturnstheUserNamepropertyoftheApplicationobject.ThisnameappearsintheGeneraltaboftheExcelOptionsdialogbox.Thissimplebutusefulexampleshowstheonlywayyoucangettheuser’snametoappearinaworksheetcell: Function User()
+tionreturnstheUserNamepropertyoftheApplicationobject.ThisnameappearsintheGeneraltaboftheExcelOptionsdialogbox.Thissimplebutusefulexampleshowstheonlywayyoucangettheuser'snametoappearinaworksheetcell: Function User()
 
 '  Returns the name of the current user
 
@@ -788,7 +788,7 @@ User = Application.UserName
 
 End Function
 
-Whenyouenterthefollowingformulaintoaworksheetcell,thecelldisplaysthecurrentuser’sname:
+Whenyouenterthefollowingformulaintoaworksheetcell,thecelldisplaysthecurrentuser'sname:
 
 =User()
 
@@ -796,7 +796,7 @@ AswiththeExcelbuilt-infunctions,youmustincludeasetofemptyparentheseswhenusingafu
 
 A function with one argument
 
-Thesingle-argumentfunctioninthissectionisdesignedforsalesmanagerswhoneedtocalculatethecommissionsearnedbytheirsalespeople.Thecommissionrate depends on the monthly sales volume; those who sell more earn a highercommission rate. The function returns the commission amount based on themonthlysales(whichisthefunction’sonlyargument —arequiredargument).
+Thesingle-argumentfunctioninthissectionisdesignedforsalesmanagerswhoneedtocalculatethecommissionsearnedbytheirsalespeople.Thecommissionrate depends on the monthly sales volume; those who sell more earn a highercommission rate. The function returns the commission amount based on themonthlysales(whichisthefunction'sonlyargument —arequiredargument).
 
 ThecalculationsinthisexamplearebasedonTable 20-1.
 
@@ -842,7 +842,7 @@ A better approach is to create a table of commission values and use a LOOKUPtabl
 
 =VLOOKUP(A1,Table,2)*A1
 
-Anotherapproach,whichdoesn’trequireatableofcommissions,istocreateacustomfunction: Function Commission(Sales)
+Anotherapproach,whichdoesn'trequireatableofcommissions,istocreateacustomfunction: Function Commission(Sales)
 
 '  Calculates sales commissions
 
@@ -934,7 +934,7 @@ Theproceduresimplyaddsthesecondargument(Years)totheFunctionstate-
 
 mentandincludesanadditionalcomputationthatadjuststhecommissionbeforeexitingthefunction.Thisadditionalcomputationmultipliestheoriginalcommissionbythenumberofyearsinservices,dividesby100,andthenaddstheresulttotheoriginalcomputation.
 
-Here’s an example of how you can write a formula by using this function. (ItassumesthatthesalesamountisincellA1;cellB1specifiesthenumberofyearsthesalespersonhasworked.)
+Here's an example of how you can write a formula by using this function. (ItassumesthatthesalesamountisincellA1;cellB1specifiesthenumberofyearsthesalespersonhasworked.)
 
 =Commission2(A1,B1)
 
@@ -958,7 +958,7 @@ Usingaworksheetrangeasanargumentisnotatalltricky;Exceltakescareofthebehind-the-s
 
 342    PART 5  Putting It All Together
 
-Here’sasimplebutusefulfunctionthatconcatenatesthecontentsofarange.Ittakes two arguments: InRange (the worksheet range to be concatenated), and
+Here'sasimplebutusefulfunctionthatconcatenatesthecontentsofarange.Ittakes two arguments: InRange (the worksheet range to be concatenated), and
 
 Delim(oneormoredelimitercharacters,tobeinsertedbetweencells).
 
@@ -990,19 +990,19 @@ function to
 
 concatenate cells.
 
-Here’sanotherexampleofafunctionthatusesarangeargument.AssumethatyouwanttocalculatetheaverageofthefivelargestvaluesinarangenamedData.
+Here'sanotherexampleofafunctionthatusesarangeargument.AssumethatyouwanttocalculatetheaverageofthefivelargestvaluesinarangenamedData.
 
-Excel doesn’t have a function that can do this, so you would probably write aformula:
+Excel doesn't have a function that can do this, so you would probably write aformula:
 
 =(LARGE(Data,1)+LARGE(Data,2)+LARGE(Data,3)+
 
 LARGE(Data,4)+LARGE(Data,5))/5
 
-ThisformulausesExcel’sLARGEfunction,whichreturnsthe n thlargestvalueinarange.TheformulaaddsthefivelargestvaluesintherangenamedDataandthendividestheresultby5.Theformulaworksfine,butit’sratherunwieldy.Andwhatifyoudecidethatyouneedtocomputetheaverageofthetopsixvalues?Youwouldneedtorewritetheformula —andmakesurethatyouupdateallcopiesofthe formula.
+ThisformulausesExcel'sLARGEfunction,whichreturnsthe n thlargestvalueinarange.TheformulaaddsthefivelargestvaluesintherangenamedDataandthendividestheresultby5.Theformulaworksfine,butit'sratherunwieldy.Andwhatifyoudecidethatyouneedtocomputetheaverageofthetopsixvalues?Youwouldneedtorewritetheformula —andmakesurethatyouupdateallcopiesofthe formula.
 
 CHAPTER 20  Creating Worksheet Functions — and Living to Tell about It 343
 
-Wouldn’tthisbeeasierifExcelhadafunctionnamedTopAvg?Thenyoucouldcomputetheaveragebyusingthefollowing(nonexistent)function:
+Wouldn'tthisbeeasierifExcelhadafunctionnamedTopAvg?Thenyoucouldcomputetheaveragebyusingthefollowing(nonexistent)function:
 
 =TopAvg(Data,5)
 
@@ -1032,7 +1032,7 @@ Thisfunctiontakestwoarguments:InRange(whichisaworksheetrange)andN
 
 NotetheExcelLARGEfunctionwithintheloop.Finally,TopAvgisassignedthevalueoftheSumdividedby N .
 
-You can use all Excel worksheet functions in your VBA procedures  except those that haveequivalentsinVBA. Forexample,VBAhasaRndfunctionthatreturnsa random number. Therefore, you can’t use the Excel RAND function in a VBAprocedure.
+You can use all Excel worksheet functions in your VBA procedures  except those that haveequivalentsinVBA. Forexample,VBAhasaRndfunctionthatreturnsa random number. Therefore, you can't use the Excel RAND function in a VBAprocedure.
 
 A function with an optional argument
 
@@ -1046,7 +1046,7 @@ Thefirstargumentisrequired,butthesecond(insquarebrackets)isoptional.Ifyouomitthe
 
 344    PART 5  Putting It All Together
 
-ThecustomfunctionsyoudevelopinVBAalsocanhaveoptionalarguments.Youspecifyanoptionalargumentbyprecedingtheargument’snamewiththekeywordOptional.Theargument’snameisthenfollowedbyanequalsignandthedefaultvalue.Iftheoptionalargumentismissing,thecodeusesthedefaultvalue.
+ThecustomfunctionsyoudevelopinVBAalsocanhaveoptionalarguments.Youspecifyanoptionalargumentbyprecedingtheargument'snamewiththekeywordOptional.Theargument'snameisthenfollowedbyanequalsignandthedefaultvalue.Iftheoptionalargumentismissing,thecodeusesthedefaultvalue.
 
 One caveat: If you use optional arguments, they must always come after allrequiredargumentsintheargumentlist.
 
@@ -1072,7 +1072,7 @@ DEBUGGING CUSTOM FUNCTIONS
 
 Debugging a Function procedure can be a bit more challenging than debugging a Sub
 
-procedure. If you develop a function for use in worksheet formulas, you find that an error in the Function procedure simply results in an error display in the formula cell (usually, #VALUE!). In other words, you don’t receive the normal runtime error message that helps you locate the offending statement.
+procedure. If you develop a function for use in worksheet formulas, you find that an error in the Function procedure simply results in an error display in the formula cell (usually, #VALUE!). In other words, you don't receive the normal runtime error message that helps you locate the offending statement.
 
 You can choose among three methods for debugging custom functions:
 
@@ -1080,7 +1080,7 @@ You can choose among three methods for debugging custom functions:
 
 cute the procedure. Make sure that only one formula in the worksheet uses your
 
-function. Otherwise, the message boxes appear for each formula that’s evaluated —
+function. Otherwise, the message boxes appear for each formula that's evaluated —
 
 which could get very annoying.
 
@@ -1108,7 +1108,7 @@ Introducing Wrapper Functions
 
 Thissectioncontainssomerelativelysimplewrapperfunctionsthatcanbeusefulinawidearrayoftasks.
 
-Wrapperfunctionsconsistofcodethat’swrappedaroundintrinsicVBAelements.
+Wrapperfunctionsconsistofcodethat'swrappedaroundintrinsicVBAelements.
 
 Inotherwords,theyallowyoutouseVBAfunctionsinworksheetformulas.
 
@@ -1142,7 +1142,7 @@ End Function
 
 NoticetheuseofCell (1)?Ifamulticellrangeisusedasanargument,onlythefirstcellisused.
 
-Youcaneasilywritesimilarfunctionsthatreturnacell’stextcolor,backgroundcolor,font,andsoon.
+Youcaneasilywritesimilarfunctionsthatreturnacell'stextcolor,backgroundcolor,font,andsoon.
 
 The ExtractElement function
 
@@ -1154,7 +1154,7 @@ Thearguments,ofcourse,couldbecellreferences.
 
 =ExtractElement("dog horse cow cat", 3, " ")
 
-Here’sthecode,whichisawrapperforVBA’sSplitfunction:
+Here'sthecode,whichisawrapperforVBA'sSplitfunction:
 
 Function ExtractElement(Txt, n, Sep)
 
@@ -1198,19 +1198,19 @@ Application.Speech.Speak txt, True
 
 End Function
 
-Here’sanexample:
+Here'sanexample:
 
 =IF(C10>10000,SayIt("Over budget"),"OK")
 
-The formula checks cell C10. If the value is greater than 10,000, the functionspeaksthetext:「Overbudget.」Ifthevalueislessthan10,000,thefunctiondisplaysthetextOK(anddoesn’tsayanything).
+The formula checks cell C10. If the value is greater than 10,000, the functionspeaksthetext:「Overbudget.」Ifthevalueislessthan10,000,thefunctiondisplaysthetextOK(anddoesn'tsayanything).
 
 Usesparingly.Ifyouusethisfunctionmorethanonetime,itcanbeveryconfusing.
 
-Also,rememberthatthisfunctionisevaluatedeachtimetheworksheetiscalculated,sothevoicemaygetveryannoyingifyou’remakingmanychanges.Thisfunctionisprobablymoresuitedforamusementpurposes.
+Also,rememberthatthisfunctionisevaluatedeachtimetheworksheetiscalculated,sothevoicemaygetveryannoyingifyou'remakingmanychanges.Thisfunctionisprobablymoresuitedforamusementpurposes.
 
 The IsLike function
 
-VBA’sLikeoperatorisaveryflexiblewaytocomparetextstrings.Checkitoutinthe VBA Help system. This function brings that power to your worksheetformulas: Function IsLike(text, pattern)
+VBA'sLikeoperatorisaveryflexiblewaytocomparetextstrings.Checkitoutinthe VBA Help system. This function brings that power to your worksheetformulas: Function IsLike(text, pattern)
 
 '  Returns true if the first argument is like the second
 
@@ -1222,7 +1222,7 @@ Working with Functions That
 
 Return an Array
 
-ArrayformulasareoneofExcel’smostpowerfulfeatures.Ifyou’refamiliarwitharray formulas, you’ll be happy to know that you can create VBA functions that return an array.
+ArrayformulasareoneofExcel'smostpowerfulfeatures.Ifyou'refamiliarwitharray formulas, you'll be happy to know that you can create VBA functions that return an array.
 
 348    PART 5  Putting It All Together
 
@@ -1254,17 +1254,17 @@ return a
 
 array.
 
-Ifyouwantthemonthnamestodisplayinacolumn,select12cellsinacolumnandusethisarrayformula.(Don’tforgettoenteritbypressingCtrl+Shift+Enter.)
+Ifyouwantthemonthnamestodisplayinacolumn,select12cellsinacolumnandusethisarrayformula.(Don'tforgettoenteritbypressingCtrl+Shift+Enter.)
 
 =TRANSPOSE(MonthNames())
 
-Youcanalsopickoutasinglemonthfromthearray.Here’saformula(notanarrayformula)thatdisplaysthefourthelementofthearray:April.
+Youcanalsopickoutasinglemonthfromthearray.Here'saformula(notanarrayformula)thatdisplaysthefourthelementofthearray:April.
 
 =INDEX(MonthNames(),4)
 
 Returning a sorted list
 
-Supposethatyouhavealistofnamesyouwanttoshowinsortedorderinanotherrangeofcells.Wouldn’titbenicetohaveaworksheetfunctiondothatforyou?
+Supposethatyouhavealistofnamesyouwanttoshowinsortedorderinanotherrangeofcells.Wouldn'titbenicetohaveaworksheetfunctiondothatforyou?
 
 Thecustomfunctioninthissectiondoesjustthat:Ittakesasingle-columnrangeofcellsasitsargumentandthenreturnsanarrayofthosecellssorted.Figure 20-6showshowitworks.RangeA2:A13containssomenames.RangeC2:C13contains
 
@@ -1282,7 +1282,7 @@ function to return
 
 a sorted range.
 
-Here’sthecodefortheSortedfunction:
+Here'sthecodefortheSortedfunction:
 
 Function Sorted(Rng As Range)
 
@@ -1340,11 +1340,11 @@ End Function
 
 The Sorted function starts by creating an array named SortedData. This array
 
-contains all the nonblank values in the argument range. Next, the SortedDataarrayissorted,usingabubble-sortalgorithm.Becausethearrayisahorizontalarray,itmustbetransposedbeforeit’sreturnedbythefunction.
+contains all the nonblank values in the argument range. Next, the SortedDataarrayissorted,usingabubble-sortalgorithm.Becausethearrayisahorizontalarray,itmustbetransposedbeforeit'sreturnedbythefunction.
 
-TheSortedFunctionworkswitharangeofanysize,aslongasit’sinasinglecol-
+TheSortedFunctionworkswitharangeofanysize,aslongasit'sinasinglecol-
 
-umnorrow.Iftheunsorteddataisinarow,yourformulaneedstouseExcel’s
+umnorrow.Iftheunsorteddataisinarow,yourformulaneedstouseExcel's
 
 TRANSPOSEfunctiontodisplaythesorteddatahorizontally.Forexample:
 
@@ -1352,15 +1352,15 @@ TRANSPOSEfunctiontodisplaythesorteddatahorizontally.Forexample:
 
 Using the Insert Function Dialog Box
 
-TheExcelInsertFunctiondialogboxisahandytoolthatallowsyoutochooseaworksheet function from a list and prompts you for the function’s arguments.
+TheExcelInsertFunctiondialogboxisahandytoolthatallowsyoutochooseaworksheet function from a list and prompts you for the function's arguments.
 
 As notedearlierinthischapter,yourcustomworksheetfunctionsalsoappearinthe Insert Function dialog box. Custom functions appear in the User Definedcategory.
 
-FunctionproceduresdefinedwiththePrivatekeyworddon’tappearintheInsert
+FunctionproceduresdefinedwiththePrivatekeyworddon'tappearintheInsert
 
-Functiondialogbox.Therefore,ifyouwriteaFunctionprocedurethat’sdesignedtobeusedonlybyotherVBAprocedures(butnotinformulas),youshoulddeclarethefunctionasPrivate.
+Functiondialogbox.Therefore,ifyouwriteaFunctionprocedurethat'sdesignedtobeusedonlybyotherVBAprocedures(butnotinformulas),youshoulddeclarethefunctionasPrivate.
 
-Displaying the function’s description
+Displaying the function's description
 
 TheInsertFunctiondialogboxdisplaysadescriptionofeachbuilt-infunction.
 
@@ -1376,7 +1376,7 @@ Insert Function
 
 dialog box
 
-doesn’t provide a
+doesn't provide a
 
 description for
 
@@ -1392,9 +1392,9 @@ tiondialogbox,performafewadditional(nonintuitive)steps:
 
 The Macro dialog box appears.
 
-3. In the Macro Name field, type the function’s name.
+3. In the Macro Name field, type the function's name.
 
-Note that the function doesn’t appear in the list of macros; you must type the
+Note that the function doesn't appear in the list of macros; you must type the
 
 name.
 
@@ -1464,7 +1464,7 @@ CHAPTER 20  Creating Worksheet Functions — and Living to Tell about It    353
 
 Inthepast,itwasnotpossibletoaddargumentdescriptions.Butbeginningwith
 
-Excel 2010, Microsoft finally implemented this feature. You provide argumentdescriptions by using the MacroOptions method. Here’s an example that addsdescriptionsfortheargumentsusedbytheTopAvgfunction: Sub AddArgumentDescriptions()
+Excel 2010, Microsoft finally implemented this feature. You provide argumentdescriptions by using the MacroOptions method. Here's an example that addsdescriptionsfortheargumentsusedbytheTopAvgfunction: Sub AddArgumentDescriptions()
 
 Application.MacroOptions Macro:="TopAvg", _
 
@@ -1482,7 +1482,7 @@ mentdescriptionsarestoredintheworkbookandareassociatedwiththefunction.
 
 NoticethattheargumentdescriptionsappearasargumentsfortheArrayfunction.
 
-You must use the Array function even if you’re assigning a description for a
+You must use the Array function even if you're assigning a description for a
 
 functionthathasonlyoneargument.
 

@@ -1,1014 +1,599 @@
-deal about workbooks, formulas, charts, and other Excel goodies. Now it’s
+# 0401. Introducing the Excel
 
-time to expand your horizons and explore an entirely new aspect of Excel:
+In This Chapter: 1) Introducing the concept of objects. 2) Finding out about the Excel object hierarchy. 3) Understanding object collections. 4) Referring to specific objects in your VBA code. 5) Accessing or changing an object's properties. 6) Performing actions with an object's methods
 
-the Visual Basic Editor. In this chapter, you find out how to work with the Visual
+## 4.1 Object Model
 
-Basic Editor, and you get down to the nitty-gritty of writing some VBA code.
+E veryone is familiar with the word  object.  Well, folks, forget the definition you think you know. In the world of programming, the word  object has a different meaning. You often see it used as part of the expression  object-oriented  programming,  or  OOP for short. OOP is based on the idea that software deals with distinct objects that have attributes (or properties) and can be manipulated. These
 
-What Is the Visual Basic Editor?
+objects are not material things. Rather, they exist in the form of bits and bytes.
 
-The Visual Basic Editor (often refered to as the VBE) is a separate application
+In this chapter, you'll be introduced to the Excel object model, which is a hierar-
 
-where you write and edit your VBA macros. Beginning with Excel 2013, every
+chy of objects contained in Excel. By the time you finish this chapter, you'll have
 
-workbook displays in a separate window. However, there is only one VBE window,
+a pretty good feel for what OOP is all about — and why you need to understand
 
-and it works with all open Excel windows.
+this concept to become a VBA programmer. After all, Excel programming really
 
-You can’t run the VBE separately; Excel must be running for the VBE to run.
+boils down to manipulating the objects that make up Excel. It's as simple as that.
 
-CHAPTER 3  Working in the Visual Basic Editor    31
+CHAPTER 4  Introducing the Excel Object Model    51
 
-Activating the VBE
+Excel Is an Object?
 
-The quickest way to activate the VBE is to press Alt+F11 when Excel is active. To
+You've used Excel for quite a while, but you probably never thought of it as an
 
-return to Excel, press Alt+F11 again. Or you can just click the Close button on the
+object. The more you work with VBA, the more you view Excel in those terms.
 
-VBE’s title bar. When the VBE window closes, Excel is activated.
+You'll understand that Excel is an object and that it contains other objects. Those
 
-You can also activate the VBE by choosing Developer ➪ Code ➪ Visual Basic. If you
+objects, in turn, contain still more objects. In other words, VBA programming involves working with an object hierarchy.
 
-don’t have a Developer tab at the top of your Excel window, refer to Chapter 2,
+At the top of this hierarchy is the Application object — in this case, Excel itself
 
-where you learn how to get that handy Developer tab to show up.
+(the mother of all objects).
 
-Understanding VBE components
+Climbing Down the Object Hierarchy
 
-Figure 3-1 shows the VBE program, with some of the key parts identified.
+The Application object contains other objects. The following are some of the more
 
-FIGURE 3-1:
+useful objects contained in the Excel application:
 
-The VBE is your
+» Addin
 
-customizable
+» Window
 
-friend.
+» Workbook
 
-Chances are that your VBE program window won’t look exactly like what you see
+» WorksheetFunction
 
-in Figure 3-1. The VBE contains several windows, and it’s highly customizable.
+Each object contained in the Application object can contain other objects. For example, the following are some objects that can be contained in a Workbook object:
 
-You can hide windows, rearrange windows, dock windows, and so on.
+» Chart (which is a chart sheet)
 
-32    PART 2  How VBA Works with Excel
+» Name
 
-Menu bar
+» VBProject
 
-The VBE menu bar works just like every other menu bar you’ve encountered. It
+» Window
 
-contains commands that you use to do things with the various components in the
+» Worksheet
 
-VBE. You also find that many of the menu commands have shortcut keys associated
+In turn, each of these objects can contain still other objects. Consider a Worksheet object, which is contained in a Workbook object, which is contained in the Application object. Some of the objects that can be contained in a Worksheet object are
 
-with them.
+» Comment
 
-The VBE also features shortcut menus. You can right-click virtually anything in
+» Hyperlink
 
-the VBE and get a shortcut menu of common commands.
+52    PART 2  How VBA Works with Excel
 
-Toolbar
+» Name
 
-The Standard toolbar, which is directly below the menu bar by default (refer to
+» PageSetup
 
-Figure 3-1), is one of the four VBE toolbars available. You can customize the toolbars, move them around, display other toolbars, and so on. If you’re so
+» PivotTable
 
-inclined, choose View ➪ Toolbars to work with the VBE toolbars. Most people just
+» Range
 
-leave them as they are.
+Put another way, if you want to do something with a range on a particular work-
 
-Project window
+sheet, you may find it helpful to visualize that range in the following manner:
 
-The Project window displays a tree diagram that shows every workbook currently
+Range ➪ contained in Worksheet ➪ contained in Workbook ➪ contained in Excel
 
-open in Excel (including add-ins and hidden workbooks). Double-click items to
+Is this beginning to make sense?
 
-expand or contract them within the outline. See the upcoming「Working with the
+When you start digging around, you'll find that Excel has more objects than you
 
-Project Window」section for more detail.
+can shake a stick at. Even power users can get overwhelmed. The good news is that
 
-If the Project window is not visible, press Ctrl+R or choose View ➪ Project Explorer.
+you'll never have to actually deal with most of these objects. When you're working
 
-To hide the Project window, click the Close button on its title bar. Or right-click
+on a problem, you can just focus on a few relevant objects — which you can often
 
-anywhere in the Project window and choose Hide from the shortcut menu.
+discover by recording a macro.
 
-Code window
+Wrapping Your Mind around Collections
 
-A Code window is where you put your VBA code. Every object in a project has an
+Collections are another key concept in VBA programming. A  collection is a group of objects of the same type. And to add to the confusion, a collection is itself an object.
 
-associated Code window. To view an object’s Code window, double-click the object
+Here are a few examples of commonly used collections:
 
-in the Project window. For example, to view the Code window for the Sheet1 object
+» Workbooks: A collection of all currently open Workbook objects
 
-in Book1, double-click Sheet1 in the VBAProject for Book1. Unless you’ve added
+» Worksheets: A collection of all Worksheet objects contained in a particular Workbook object
 
-some VBA code, the Code window is empty.
+» Charts: A collection of all Chart objects (chart sheets) contained in a particular Workbook object
 
-You find out more about Code windows later in this chapter’s「Working with a
+» Sheets: A collection of all sheets (regardless of their type) contained in a particular Workbook object
 
-Code Window」section.
+You may notice that collection names are all plural, which makes sense.
 
-Immediate window
+CHAPTER 4  Introducing the Excel Object Model    53
 
-The Immediate window may or may not be visible. If it isn’t visible, press Ctrl+G
+「What are collections for?」you may rightfully ask. Well, for example, they're very useful when you want to work with not just one worksheet, but with a couple of
 
-or choose View ➪ Immediate Window. To close the Immediate window, click the
+them or all of them. As you'll see, your VBA code can loop through all members of
 
-Close button on its title bar (or right-click anywhere in the Immediate window
+a collection and do something to each one.
 
-and choose Hide from the shortcut menu).
+Referring to Objects
 
-CHAPTER 3  Working in the Visual Basic Editor    33
+Referring to an object is important because you must identify the object that you
 
-WHAT’S NEW IN THE VISUAL BASIC EDITOR?
+want to work with. After all, VBA can't read your mind — yet.
 
-Excel 2007 introduced a brand-new user interface. Menus and toolbars were replaced
+You can work with an entire collection of objects in one fell swoop. More often,
 
-with a slick new Ribbon user interface (UI). But the VBE never got the facelift and has kept the old-school menu and toolbar UI.
+however, you need to work with a specific object in a collection (such as a partic-
 
-The VBA programming language has been updated to accommodate the new Excel
+ular worksheet in a workbook). To reference a single object from a collection, you
 
-features, but nothing else has changed.
+put the object's name or index number in parentheses after the name of the col-
 
-One thing that  has changed is the Help system. In the past, help information was stored on your computer, and you had the option of accessing Help via the Internet. Beginning with Excel 2013, all help information is on the Internet and is displayed in your web browser. In other words, you must be connected to the Internet to access the Help
+lection, like this:
 
-system. You can, however, download your very own copy of the Help system from
+Worksheets("Sheet1")
 
-Microsoft’s site. Do a web search for  download excel vba documentation , and you’ll find it.
+Notice that the sheet's name is in quotation marks. If you omit the quotation marks, Excel won't be able to identify the object (and will assume that it's a variable name).
 
-The Immediate window is most useful for executing VBA statements directly and
+If you want to work with the first worksheet in the collection, you can also use the following reference:
 
-for debugging your code. If you’re just starting out with VBA, this window won’t
+Worksheets(1)
 
-be all that useful, so feel free to hide it and free some screen space for other
+In this case, the number is  not in quotation marks. Bottom line? If you refer to an object by using its name, use quotation marks. If you refer to an object by using its index number, use a plain number without quotation marks.
 
-things.
+What about chart sheets? A chart sheet contains a single chart. It has a sheet tab,
 
-Chapter 13 covers the Immediate window in detail. It may just become your good
+but it's not a worksheet. Well, as it turns out, the object model has a collection
 
-friend!
+called Charts. This collection contains all the chart sheet objects in a workbook
 
-Working with the Project Window
+(and does not include charts embedded in a worksheet). And just to keep things
 
-When you’re working in the VBE, each Excel workbook and add-in that’s open is
+logical, there's another collection called Sheets. The Sheets collection contains all sheets (worksheets and chart sheets) in a workbook. The Sheets collection is handy if you want to work with all sheets in a workbook and don't care if they are
 
-a project. You can think of a  project as a collection of objects arranged as an outline.
+worksheets or chart sheets.
 
-You can expand a project by clicking the plus sign (+) at the left of the project’s
+54    PART 2  How VBA Works with Excel
 
-name in the Project window. Collapse a project by clicking the minus sign (–) to
+So, a single worksheet named Sheet1 is a member of two collections: the Worksheets collection and the Sheets collection. You can refer to it in either of two ways:
 
-the left of a project’s name. Or you can double-click the items to expand them.
+Worksheets("Sheet1")
 
-If a project is password-protected, you’re prompted for the password when you
+Sheets("Sheet1")
 
-double-click a project name. If you don’t know the password, you can’t expand
+Navigating through the hierarchy
 
-the project — which means that you can’t view or modify any part of the project.
+If you want to work with Excel objects, they are all under the Application object.
 
-Figure 3-2 shows a Project window with four projects listed: an add-in named
+So start by typing Application .
 
-pup7.xlam, an unsaved workbook named Book1, a workbook named investments.
+Every other object in Excel's object model is under the Application object. You get
 
-xlsm, and the Personal Macro Workbook (which is always named PERSONAL.
+to these objects by moving down the hierarchy and connecting each object on your
 
-XLSB). Of the four, only the investments.xlsm project is expanded to show all of
+way with the dot (.) operator. To get to the Workbook object named Book1.xlsx,
 
-its objects.
+start with the Application object and navigate down to the Workbooks collection
 
-34    PART 2  How VBA Works with Excel
+object:
 
-FIGURE 3-2:
+Application.Workbooks("Book1.xlsx")
 
-This Project
+To navigate to a specific worksheet, add a dot operator and access the Worksheets
 
-window lists four
+collection object:
 
-projects. One of
+Application.Workbooks("Book1.xlsx").Worksheets(1)
 
-them is expanded
+Not far enough yet? If you really want to get the value from cell A1 on the first
 
-to show its
+Worksheet of the Workbook named Book1.xlsx, you need to navigate one more level to the Range object:
 
-objects.
+Application.Workbooks("Book1.xlsx").Worksheets(1).Range("A1").
 
-Every project expands to show at least one  node called Microsoft Excel Objects.
+Value
 
-This node expands to show an item for each sheet in the workbook (each sheet is
+When you refer to a Range object in this way, it's called a  fully qualified reference.
 
-considered an object) and another object called ThisWorkbook (which represents
+You've told Excel exactly which range you want, on which worksheet and in which
 
-the Workbook object). If the project has any VBA modules, the project listing also
+workbook, and have left nothing to the imagination. Imagination is good in people
 
-shows a Modules node. And as you find out in Part 4, a project may also contain a
+but not so good in computer programs.
 
-node called Forms, which contains UserForm objects (which hold custom dialog
+By the way, workbook names also have a dot to separate the filename from the extension (for example, Book1.xlsx). That's just a coincidence. The dot in a
 
-boxes).
+filename has nothing at all to do with the dot operator referred to a few paragraphs ago.
 
-The concept of objects may be a bit fuzzy for you. But don’t worry. Things become
+CHAPTER 4  Introducing the Excel Object Model    55
 
-much clearer in subsequent chapters. Don’t be too concerned if you don’t
+Simplifying object references
 
-understand what’s going on at this point.
+If you were required to fully qualify every object reference you make, your code
 
-Adding a new VBA module
+would get quite long, and it might be more difficult to read. Fortunately, Excel
 
-Follow these steps to add a new VBA module to a project:
+provides some shortcuts that can improve the readability (and save you some typing). For starters, the Application object is always assumed. There are only a
 
-1. In the VBE, select the project’s name in the Project window.
+few cases when it makes sense to type it. Omitting the Application object reference
 
-2. Choose Insert ➪ Module.
+shortens the example from the previous section to
 
-Or
+Workbooks("Book1.xlsx").Worksheets(1).Range("A1").Value
 
-1. Right-click the project’s name.
+That's a pretty good improvement. But wait, there's more. If you're sure that Book1.
 
-2. Choose Insert ➪ Module from the shortcut menu.
+xlsx is the active workbook, you can omit that reference, too. Now you're down to
 
-When you record a macro, Excel automatically inserts a VBA module to hold the
+Worksheets(1).Range("A1").Value
 
-recorded code. Which workbook holds the module for the recorded macro depends
+Now you're getting somewhere. Have you guessed the next shortcut? That's right.
 
-on where you chose to store the recorded macro, just before you started recording.
+If you know the first worksheet is the currently active worksheet, Excel assumes
 
-CHAPTER 3  Working in the Visual Basic Editor    35
+that reference and allows you to just type
 
-Removing a VBA module
+Range("A1").Value
 
-Sometimes, you need to remove a VBA module from a project. For example, it may
+Contrary to what some people may think, Excel does not have a Cell object. A  cell is simply a Range object that consists of just one element.
 
-contain code that you no longer need, or it’s empty because you inserted the
+The shortcuts described here are great, but they can also be dangerous. What if
 
-module and then changed your mind. To remove a VBA module from a project:
+you only  think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it's wrong. For that reason, it's often best to fully qualify your object references.
 
-1. Select the module’s name in the Project window.
+Chapter 14 discusses the With-End With structure, which helps you fully qualify
 
-2. Choose File ➪ Remove  xxx , where  xxx is the module name.
+your references but also helps to make the code more readable and cuts down on
 
-Or
+the typing. The best of both worlds!
 
-1. Right-click the module’s name.
+Diving into Object Properties and Methods
 
-2. Choose Remove  xxx from the shortcut menu.
+Although knowing how to refer to objects is important, you can't do anything useful by simply referring to an object (as in the examples in the preceding sections). To accomplish anything meaningful, you must do one of two things:
 
-Excel, always trying to keep you from doing something you’ll regret, asks
+» Read or modify an object's  properties.
 
-whether you want to export the code in the module before you delete it.
+» Specify a  method of action to be used with an object.
 
-Almost always, you don’t. (If you  do want to export the module, see the next section.)
+56    PART 2  How VBA Works with Excel
 
-You can remove VBA modules, but there is no way to remove the other code
+ANOTHER SLANT ON MCOBJECTS,
 
-modules — those for the Sheet objects or ThisWorkbook.
+MCPROPERTIES, AND MCMETHODS
 
-Exporting and importing objects
+Here's an analogy, comparing Excel to a fast-food chain, that may help you understand the relationships among objects, properties, and methods in VBA.
 
-Every object in a VBA project can be saved to a separate file. Saving an individual
+The basic unit of Excel is a Workbook object. In a fast-food chain, the basic unit is an individual restaurant. With Excel, you can add a workbook and close a workbook, and
 
-object in a project is known as  exporting.  It stands to reason that you can also import objects into a project. Exporting and importing objects might be useful if you want to use a particular object (such as a VBA module or a UserForm) in a
+all the open workbooks are known as Workbooks (a collection of Workbook objects).
 
-different project. Or maybe you want to send a co-worker a copy of a VBA module,
+Similarly, the management of a fast-food chain can add a restaurant and close a
 
-which she can then import into her project.
+restaurant, and all the restaurants in the chain can be viewed as the Restaurants
 
-Follow these steps to export an object:
+collection (a collection of Restaurant objects).
 
-1. Select an object in the Project window.
+An Excel workbook is an object, but it also contains other objects such as worksheets, chart sheets, VBA modules, and so on. Furthermore, each object in a workbook can
 
-2. Choose File ➪ Export File or press Ctrl+E.
+contain its own objects. For example, a Worksheet object can contain Range objects,
 
-You get a dialog box that asks for a filename. Note that the object remains in
+PivotTable objects, Shape objects, and so on.
 
-the project; only a copy of it is exported. Excel provides the file extension for
+Continuing with the analogy, a fast-food restaurant (like a workbook) contains objects such as the Kitchen, DiningArea, and Tables (a collection). Furthermore, management
 
-you, and the extension depends on what type of object you’re exporting. In all
+can add or remove objects from the Restaurant object. For example, management
 
-cases, the result is a text file. If you’re so inclined, you can open it with a text editor and take a look.
+may add more tables to the Tables collection. Each of these objects can contain other objects. For example, the Kitchen object has a Stove object, VentilationFan object, Chef object, Sink object, and so on.
 
-36    PART 2  How VBA Works with Excel
+So far, so good. This analogy seems to work.
 
-Importing a file to a project goes like this:
+Excel's objects have properties. For example, a Range object has properties such as
 
-1. Select the project’s name in the Explorer window.
+Value and Name, and a Shape object has properties such as Width, Height, and so on.
 
-2. Choose File ➪ Import File or press Ctrl+M.
+Not surprisingly, objects in a fast-food restaurant also have properties. The Stove
 
-You get a dialog box that asks for a file.
+object, for example, has properties such as Temperature and NumberofBurners.
 
-3. Locate the file, and click Open.
+The VentilationFan has its own set of properties (TurnedOn, RPM, and so on).
 
-You should import VBA object files only if you know who it came from. Otherwise,
+Besides properties, Excel's objects also have methods, which perform an operation
 
-you could be introducing macros that perform malicious actions.
+on an object. For example, the ClearContents method erases the contents of a Range
 
-Working with a Code Window
+object. An object in a fast-food restaurant also has methods. You can easily envision a ChangeThermostat method for a Stove object or a SwitchOn method for a
 
-As you become proficient with VBA, you spend lots of time working in Code windows. Macros that you record are stored in a module, and you can type VBA
+VentilationFan object.
 
-code directly in a VBA module.
+(continued)
 
-Minimizing and maximizing windows
+CHAPTER 4  Introducing the Excel Object Model    57
 
-If you have several projects open, the VBE may have lots of Code windows at any
+(continued)
 
-given time. Figure 3-3 shows an example.
+In Excel, methods sometimes change an object's properties. The ClearContents method
 
-FIGURE 3-3:
+for a Range changes the Range's Value property. Similarly, the ChangeThermostat
 
-Code window
+method on a Stove object affects its Temperature property. With VBA, you can write
 
-overload isn’t a
+procedures to manipulate Excel's objects. In a fast-food restaurant, the management
 
-pretty sight.
+can give orders to manipulate the objects in the restaurants (「Turn the stove on and switch the ventilation fan to high」).
 
-CHAPTER 3  Working in the Visual Basic Editor    37
+The next time you visit your favorite fast-food joint, just say,「Use the Grill method on a Burger object with the Onion property set to False.」
 
-Code windows are much like workbook windows in Excel. You can minimize them, maximize them, resize them, hide them, rearrange them, and so on. Most people
+Object properties
 
-find it much easier to maximize the Code window that they’re working on. Doing
+Every object has properties. You can think of  properties as attributes that describe the object. An object's properties determine how it looks, how it behaves, and even
 
-so lets you see more code and keeps you from getting distracted.
+whether it's visible. Using VBA, you can do two things with an object's properties:
 
-To maximize a Code window, click the Maximize button on its title bar (right
+» Examine the current setting for a property.
 
-next to the X). Or just double-click its title bar to maximize it. To restore a Code window to its original size, click the Restore button. When a window is maximized, its title bar isn’t visible, so you’ll find the Restore button below the VBE
+» Change the property's setting.
 
-title bar.
+For example, a single-cell Range object has a property called Value. The Value property stores the value contained in the cell. You can write VBA code to display the Value property, or you may write VBA code to set the Value property to a specific
 
-Sometimes, you may want to have two or more Code windows visible. For example,
+value. The following macro uses the VBA built-in MsgBox function to bring up a box
 
-you may want to compare the code in two modules or copy code from one module
+that displays the value in cell A1 on Sheet1 of the active workbook (see Figure 4-1): Sub ShowValue()
 
-to another. You can arrange the windows manually or choose Window ➪ Tile
+Contents = Worksheets("Sheet1").Range("A1").Value
 
-Horizontally or Window ➪ Tile Vertically to arrange them automatically.
-
-You can quickly switch among Code windows by pressing Ctrl+F6. If you repeat
-
-that key combination, you keep cycling through all the open Code windows. Press-
-
-ing Ctrl+Shift+F6 cycles through the windows in reverse order.
-
-Minimizing a Code window gets it out of the way. You can also click the window’s
-
-Close button (which displays X) on a Code window’s title bar to close the window.
-
-(Closing a window just hides it; you won’t lose anything.) To open it again, just
-
-double-click the appropriate object in the Project window. By the way, working
-
-with these Code windows  sounds more difficult than it really is.
-
-Creating a module
-
-In general, a VBA module can hold three types of code:
-
-» Declarations: One or more information statements that you provide to
-
-VBA. For example, you can declare the data type for variables you plan to use
-
-or set some other module-wide options. Declarations are basically house-
-
-keeping statements. They aren’t actually executed.
-
-» Sub procedures: A set of programming instructions that, when executed,
-
-performs some action.
-
-» Function procedures: A set of programming instructions that returns a single value (similar in concept to a worksheet function, such as SUM).
-
-A single VBA module can store any number of Sub procedures, Function procedures,
-
-and declarations. Well, there  is a limit — about 64,000 characters per module. It’s unlikely you’ll even get close to reaching the 64,000-character limit. But if you
-
-did, the solution is simple: Just insert a new module.
-
-38    PART 2  How VBA Works with Excel
-
-How you organize a VBA module is completely up to you. Some people prefer to keep all their VBA code for an application in a single VBA module; others like to
-
-split the code into several modules. It’s a personal choice, just like arranging
-
-furniture.
-
-Getting VBA code into a module
-
-An empty VBA module is like the fake food you see in the windows of some Chinese
-
-restaurants; it looks good but it doesn’t really do much for you. Before you can do
-
-anything meaningful, you must have some VBA code in the VBA module. You can
-
-get VBA code into a VBA module in three ways:
-
-» Enter the code directly.
-
-» Use the Excel macro recorder to record your actions and convert those
-
-actions to VBA code (see Chapter 6).
-
-» Copy the code from one module and paste it into another.
-
-Entering code directly
-
-Sometimes, the best route is the most direct one. Entering code directly
-
-involves . . . well, entering the code directly. In other words, you type the code by using your keyboard. Entering and editing text in a VBA module works as you
-
-might expect. You can select, copy, cut, paste, and do other things to the text.
-
-Use the Tab key to indent some of the lines to make your code easier to read.
-
-Indenting isn’t necessary, but it’s a good habit to acquire. As you study the code
-
-in this book, you’ll understand why indenting code lines is helpful.
-
-PAUSE FOR A TERMINOLOGY BREAK
-
-Throughout this book, you’ll see the terms  Sub procedure, routine, program, procedure , and  macro.  These terms are a bit confusing. Programming folks usually use the word procedure to describe an automated task. Technically, a procedure can be a Sub procedure or a Function procedure — both of which are sometimes called  routines — or even programs.  All these terms are used interchangeably. As detailed in later chapters, however, there is an important difference between Sub and Function procedures. For now, don’t worry about the terminology. Just try to understand the concepts.
-
-CHAPTER 3  Working in the Visual Basic Editor    39
-
-A single line of VBA code can be as long as you need it to be. However, you may want to use the line-continuation characters to break up lengthy lines of code. To
-
-continue a single line of code (also known as a  statement ) from one line to the next, end the first line with a space followed by an underscore (_). Then continue
-
-the statement on the next line. And don’t forget the space. An underscore character that’s not preceded by a space won’t do the job.
-
-Here’s an example of a single statement split into three lines:
-
-Selection.Sort Key1:=Range("A1"), _
-
-Order1:=xlAscending, Header:=xlGuess, _
-
-Orientation:=xlTopToBottom
-
-This statement would perform exactly the same way if it were entered in a single
-
-line (with no line-continuation characters). Notice that the second and third lines
-
-of this statement are indented. Indenting is optional, but it helps clarify the fact that these lines are not separate statements.
-
-The white-coated engineers who designed the VBE anticipated that people like us
-
-would be making mistakes. Therefore, the VBE has multiple levels of undo and
-
-redo. If you deleted a statement that you shouldn’t have, click the Undo button on
-
-the toolbar (or press Ctrl+Z) until the statement shows up again. After undoing,
-
-you can click the Redo button to perform the changes you’ve undone. Are you
-
-ready to enter some real-live code? Try the following steps:
-
-1. Create a new workbook in Excel.
-
-2. Press Alt+F11 to activate the VBE.
-
-3. Click the new workbook’s name in the Project window.
-
-4. Choose Insert ➪ Module to insert a VBA module into the project.
-
-5. Type the following code in the module:
-
-Sub GuessName()
-
-Msg = "Is your name " & Application.UserName & "?"
-
-Ans = MsgBox(Msg, vbYesNo)
-
-If Ans = vbNo Then MsgBox "Oh, never mind."
-
-If Ans = vbYes Then MsgBox "I must be psychic!"
+MsgBox Contents
 
 End Sub
 
-40    PART 2  How VBA Works with Excel
+FIGURE 4-1:
 
-6. Position the cursor anywhere within the text you typed and press F5 to
+This message box
 
-execute the procedure.
+displays a Range
 
-F5 is a shortcut for Run ➪ Run Sub/UserForm. If you entered the code correctly,
+object's Value
 
-Excel executes the procedure, and you can respond to the simple dialog box
+property.
 
-shown in Figure 3-4. The text in the dialog box will be different from the text
+58    PART 2  How VBA Works with Excel
 
-shown in the figure.
+By the way, MsgBox is a very useful function. You can use it to display results while Excel executes your VBA code. You find out more about this function in Chapter 15, so be patient (or just flip ahead and read all about it).
 
-FIGURE 3-4:
+The code in the preceding example displays the current setting of a cell's Value
 
-The GuessName
+property. What if you want to change the setting for that property? The following
 
-procedure
+macro changes the value in cell A1 by changing the cell's Value property:
 
-displays this
+Sub ChangeValue()
 
-dialog box.
-
-When you enter the code listed in Step 5, you might notice that the VBE makes
-
-some adjustments to the text you enter. For example, after you type the Sub
-
-statement, the VBE automatically inserts the End Sub statement. And if you omit
-
-the space before or after an equal sign, the VBE inserts the space for you. Also, the VBE changes the color and capitalization of some text. This is all perfectly normal.
-
-It’s just the VBE’s way of keeping things neat and readable.
-
-COMPILE ERROR?
-
-There’s a chance that the GuessName macro won’t work. When you try to run it, Excel
-
-may complain and pop up an error message: Compile Error: Variable Not
-
-Defined. Don’t worry; there’s an easy fix for that.
-
-If you get that error, look at the top of your module, and you’ll see this text: Option Explicit. Just delete that line, and the macro should work. That line, when present at the top of a module, means that you must「declare」all your variables. (See Chapter 7
-
-for more about variables). If that line was added, it means that your VBE is set up to add the line automatically. For now, don’t worry about it. Just delete the line and forget about the rude interruption.
-
-CHAPTER 3  Working in the Visual Basic Editor    41
-
-If you followed the previous steps, you just wrote a VBA Sub procedure, also known as a  macro.  When you press F5, Excel executes the code and follows the instructions.
-
-In other words, Excel evaluates each statement and does what you told it to do.
-
-(Don’t let this newfound power go to your head.) You can execute this macro any
-
-number of times — although it tends to lose its appeal after a few dozen times.
-
-For the record, this simple macro uses the following concepts, all of which are
-
-covered later in this book:
-
-» Defining a Sub procedure (the first line)
-
-» Assigning values to variables (Msg and Ans)
-
-»  Concatenating (joining) a string (using the & operator)
-
-» Using a built-in VBA function (MsgBox)
-
-» Using built-in VBA constants (vbYesNo, vbNo, and vbYes)
-
-» Using an If-Then construct (twice)
-
-» Ending a Sub procedure (the last line)
-
-Not bad for a beginner, eh?
-
-Using the macro recorder
-
-Another way you can get code into a VBA module is by recording your actions,
-
-using the Excel macro recorder. If you worked through the hands-on exercise in
-
-Chapter 2, you already have some experience with this technique.
-
-By the way, there is absolutely no way you can record the GuessName procedure
-
-shown in the preceding section. You can record only things that you can do directly
-
-in Excel. Displaying a message box is not in Excel’s normal repertoire. (It’s a VBA
-
-thing.) The macro recorder is useful, but in many cases, you’ll probably need to
-
-enter at least some code manually.
-
-Here’s a step-by-step example that shows how to record a macro that inserts a
-
-new worksheet and hides all but the first ten rows and all but the first ten columns.
-
-If you want to try this example, start with a new, blank workbook and follow these
-
-steps:
-
-1. Activate a worksheet in the workbook.
-
-Any worksheet will do.
-
-42    PART 2  How VBA Works with Excel
-
-2. Click the Developer tab, and make sure that Use Relative References is
-
-not highlighted.
-
-This macro is recorded using Absolute References.
-
-3. Choose Developer ➪ Code ➪ Record Macro, or click the icon next to the  Ready indicator on the left end of the status bar.
-
-Excel displays its Record Macro dialog box.
-
-4. In the Record Macro dialog box, name the macro TenByTen, specify that
-
-you want the macro stored in This Workbook, and press Shift+T for the
-
-shortcut key.
-
-The macro can be executed when you press Ctrl+Shift+T.
-
-5. Click OK to start recording.
-
-Excel automatically inserts a new VBA module into the project that corresponds
-
-to the active workbook. From this point on, Excel converts your actions to VBA
-
-code. While you’re recording, the icon in the status bar turns into a small
-
-square. This is a reminder that the macro recorder is running. You can also
-
-click that icon to stop the macro recorder.
-
-6. Click the New Sheet icon to the right of the last sheet tab.
-
-Excel inserts a new worksheet.
-
-7. Select the entire Column K (the 11th column) and press Ctrl+Shift+right
-
-arrow; then right-click any selected column and choose Hide from the
-
-shortcut menu.
-
-Excel hides all of the selected columns.
-
-8. Select the entire Row 11 and press Ctrl+Shift+down arrow; then right-
-
-click any selected row and choose Hide from the shortcut menu.
-
-Excel hides all of the selected columns.
-
-9. Select cell A1.
-
-10. Choose Developer ➪ Code ➪ Stop Recording, or click the Stop Recording  button on the status bar (the small square).
-
-Excel stops recording your actions.
-
-To view this newly recorded macro, press Alt+F11 to activate the VBE. Locate the
-
-workbook’s name in the Project window. You see that the project has a new module
-
-listed. The name of the module depends on whether you had any other modules in
-
-the workbook when you started recording the macro. If you didn’t, the module is
-
-named Module1. You can double-click the module to view the Code window for the
-
-module.
-
-CHAPTER 3  Working in the Visual Basic Editor    43
-
-Here’s the code generated by your actions:
-
-Sub TenByTen()
-
-'
-
-' TenByTen Macro
-
-'
-
-' Keyboard Shortcut: Ctrl+Shift+T
-
-'
-
-Sheets.Add After:=ActiveSheet
-
-Columns("K:K").Select
-
-Range(Selection, Selection.End(xlToRight)).Select
-
-Selection.EntireColumn.Hidden = True
-
-Rows("11:11").Select
-
-Range(Selection, Selection.End(xlDown)).Select
-
-Selection.EntireRow.Hidden = True
-
-Range("A1").Select
+Worksheets("Sheet1").Range("A1").Value = 994.92
 
 End Sub
 
-To try this macro, activate any worksheet and press the shortcut key that you
+After Excel executes this procedure, cell A1 on Sheet1 of the active workbook contains the value 994.92. If the active workbook doesn't have a sheet named Sheet1, the result of executing that macro is an error message. VBA just follows
 
-assigned in Step 4: Ctrl+Shift+T.
+instructions, and it can't work with a sheet that doesn't exist.
 
-If you didn’t assign a shortcut key to the macro, don’t worry. Here’s how to
+Each object has its own set of properties, although some properties are common
 
-display a list of all macros available and run the one you want:
+to many objects. For example, many (but not all) objects have a Visible property.
 
-1. Choose Developer ➪  Code ➪ Macros.
+Most objects also have a Name property.
 
-Keyboard fans can press Alt+F8. Either of these methods displays a dialog box
+Some object properties are read-only properties, which means that your code can
 
-that lists all the available macros.
+get the property's value, but it can't change it. For example, the Application object has a property called Version that returns the version number of the Excel that's
 
-2. Select the macro in the list (in this case, TenByTen).
+running. You can't change the Version property index; it's read-only.
 
-3. Click the Run button.
+As mentioned earlier in this chapter, a collection is also an object. This means that a collection also has properties. For example, you can determine how many workbooks are open by accessing the Count property of the Workbooks collection.
 
-Excel executes the macro, and you get a new worksheet with ten visible rows
+The following VBA procedure displays a message box that tells you how many workbooks are open:
 
-and ten visible columns.
+Sub CountBooks()
 
-You can execute any number of commands and perform any number of actions
+MsgBox Workbooks.Count
 
-while the macro recorder is running. Excel dutifully translates your mouse actions
+End Sub
 
-and keystrokes to VBA code.
+Object methods
 
-And, of course, you can also edit the macro after you record it. To test your new
+In addition to properties, objects have methods. A  method is an action you perform with an object. A method can change an object's properties or make the object do
 
-skills, try editing the macro so that it inserts a worksheet with nine visible rows
+something.
 
-and columns — perfect for a Sudoku puzzle.
+CHAPTER 4  Introducing the Excel Object Model    59
 
-44    PART 2  How VBA Works with Excel
+This simple example uses the ClearContents method on a Range object to erase the
 
-Copying VBA code
+contents of 12 cells on the active sheet:
 
-The final method for getting code into a VBA module is to copy it from another
+Sub ClearRange()
 
-module or from some other place (such as a website). For example, a Sub or
+Range("A1:A12").ClearContents
 
-Function procedure that you write for one project might also be useful in another
+End Sub
 
-project. Instead of wasting time reentering the code, you can activate the module
+Some methods take one or more arguments. An  argument is a value that further specifies the action to perform. You place the arguments for a method after the
 
-and use the normal Clipboard copy-and-paste procedures. (You’re probably rather
+method, separated by a space. Multiple arguments are separated by a comma.
 
-fond of the keyboard shortcuts Ctrl+C to copy and Ctrl+V to paste.) After pasting
+The following example activates Sheet1 (in the active workbook) and then copies
 
-the code into a VBA module, you can modify the code if necessary.
+the contents of cell A1 to cell B1 by using the Range object's Copy method. In this
 
-By the way, you’ll find lots of VBA code examples on the web. If you’d like to try
+example, the Copy method has one argument, which is the destination range for
 
-them, select the code in your browser and press Ctrl+C to copy it. Then activate a
+the copy operation:
 
-module and press Ctrl+V to paste it.
+Sub CopyOne()
 
-When you copy code from a website, it sometimes requires some fixing. For example, quote characters may be「smart quotes」and they must be converted to
+Worksheets("Sheet1").Activate
 
-simple quote characters. And sometimes, long lines wrap around. Erroneous
+Range("A1").Copy Range("B1")
 
-statements are easy to spot in the VBE because they appear in red.
+End Sub
 
-Customizing the VBA Environment
+Notice that the worksheet reference is omitted when referring to the Range objects. You can do this safely due to the statement to activate Sheet1 (using the
 
-If you’re serious about becoming an Excel programmer, you’ll spend a lot of time
+Activate method).
 
-with VBA modules on your screen. To help make things as comfortable as possible
+Another way to specify an argument for a method is to use the official name of the
 
-(no, please keep your shoes on), the VBE provides quite a few customization options.
+argument followed by a colon and an equal sign. Using named arguments is optional, but doing so can often make your code easier to understand. The second
 
-When the VBE is active, choose Tools ➪ Options. You’ll see a dialog box with four
+statement in the CopyOne procedure could be written like this:
 
-tabs: Editor, Editor Format, General, and Docking. Some of the most useful options
+Range("A1").Copy Destination:=Range("B1")
 
-are discussed in the sections that follow.
+In Figure 4-2, notice the little prompt as the statement is being typed. That prompt shows the official name of the argument.
 
-Using the Editor tab
+FIGURE 4-2:
 
-Figure 3-5 shows the options you can access by clicking the Editor tab of the Options dialog box. Use the options in the Editor tab to control how certain things
+The VBE
 
-work in the VBE.
+displays a list of
 
-Auto Syntax Check option
+arguments
 
-The Auto Syntax Check setting determines whether the VBE pops up a dialog box
+while you type.
 
-if it discovers a syntax error while you’re entering your VBA code. The dialog box
+60    PART 2  How VBA Works with Excel
 
-tells roughly what the problem is. If you don’t choose this setting, the VBE flags
+Because a collection is also an object, collections have methods. The following macro uses the Add method for the Workbooks collection:
 
-syntax errors by displaying them in a different color from the rest of the code, and you don’t have to deal with any dialog boxes popping up on your screen.
+Sub AddAWorkbook()
 
-CHAPTER 3  Working in the Visual Basic Editor    45
+Workbooks.Add
 
-FIGURE 3-5:
+End Sub
 
-The Editor tab of
+As you may expect, this statement creates a new workbook. In other words, it adds
 
-the Options
+a new workbook to the Workbooks collection. After you execute this macro, a fresh
 
-dialog box.
+workbook is the active workbook.
 
-Require Variable Declaration option
+Object events
 
-If the Require Variable Declaration option is set, VBE inserts the following state-
+This section briefly touches on one more topic that you need to know about: events. Objects respond to various  events that occur. For example, when you're working in Excel and you activate a different workbook, a Workbook Activate event occurs. You could, for example, have a VBA macro that is designed to execute whenever an Activate event occurs for a particular Workbook object.
 
-ment at the beginning of each new VBA module you insert:
+Excel supports many events, but not all objects can respond to all events. And some objects don't respond to any events. The only events you can use are those
 
-Option Explicit
+made available by the programmers of Microsoft Excel. The concept of an event
 
-Changing this setting affects only new modules, not existing modules. If this statement appears in your module, you must explicitly define each variable you
+becomes clear in Chapter 11 and also in Part 4.
 
-use. Chapter 7 goes into the details why you should develop this habit.
+Finding Out More
 
-Auto List Members option
+Consider yourself initiated into the wonderful world of objects, properties, meth-
 
-If the Auto List Members option is set, the VBE provides some help when you’re
+ods, and events. You find out more about these concepts in the chapters that fol-
 
-entering your VBA code. It displays a list that would logically complete the
+low. If you just can't get enough, you may also be interested in three other excellent tools:
 
-statement you’re typing. This bit of magic is sometimes called  IntelliSense.
+» VBA's Help system
 
-This is one of the best features of the VBE. Figure 3-6 shows an example (which
+» The Object Browser
 
-will make lots more sense when you start writing VBA code).
+» Auto List Members
 
-Auto Quick Info option
+Using VBA's Help system
 
-If the Auto Quick Info option is set, the VBE displays information about functions
+The VBA Help system describes every object, property, and method available to
 
-and their arguments as you type. This can be very helpful. Figure 3-7 shows this
+you, and also provides sample code. This is an excellent resource for finding out
 
-feature in action, telling you about the arguments for the MsgBox function.
+CHAPTER 4  Introducing the Excel Object Model    61
 
-46    PART 2  How VBA Works with Excel
+about VBA, and it's more comprehensive than any book on the market. But it's
 
-FIGURE 3-6:
+also very boring to read.
 
-An example of
+If you're using Excel 2013 or later, you must be connected to the Internet to use
 
-Auto List
+the VBA Help system (previous versions don't have this requirement). You can,
 
-Members.
+however, download the VBA Help system from Microsoft's website. Do a web
 
-FIGURE 3-7:
+search for  download excel vba documentation , and you'll find it.
 
-Auto Quick Info
+If you're working in a VBA module and want information about a particular object,
 
-offers help about
+method, or property, move the cursor to the word you're interested in and press
 
-the MsgBox
+F1. In a few seconds, you see the appropriate Help topic displayed in your web
 
-function.
+browser, complete with cross-references and perhaps even an example or two.
 
-Auto Data Tips option
+Figure 4-3 shows part of a screen from the VBA Help system — in this case, for a
 
-If the Auto Data Tips option is set, the VBE displays the value of the variable over which your cursor is placed when you’re debugging code. When you enter the
+Worksheet object.
 
-wonderful world of debugging, as described in Chapter 13, you’ll appreciate this
+FIGURE 4-3:
 
-option.
+An example
 
-Auto Indent setting
+from VBA's
 
-The Auto Indent setting determines whether the VBE automatically indents each
+Help system.
 
-new line of code the same as the previous line.
+Using the Object Browser
 
-Use the Tab key to indent your code, not the space bar. Also, you can press Shift+Tab to「unindent」a line of code. If you want to indent more than just one
+The VBE includes another tool known as the Object Browser. As the name implies,
 
-line, select all the lines you want to indent. Then press the Tab key.
+this tool lets you browse through the objects available to you. To access the Object Browser, press F2 when the VBE is active (or choose View ➪ Object Browser). You
 
-The VBE’s Edit toolbar (which is hidden by default) contains two useful buttons:
+see a window like the one shown in Figure 4-4.
 
-Indent and Outdent. These buttons let you quickly indent or「unindent」a block of
+The drop-down list at the top contains a list of all currently available object libraries. Figure 4-4 shows All Libraries. If you want to browse through Excel's
 
-code. Select the code and click one of these buttons to change the block’s indenting.
+objects, select Excel from the drop-down list.
 
-Drag-and-Drop Text Editing option
+62    PART 2  How VBA Works with Excel
 
-The Drag-and-Drop Text Editing option, when enabled, lets you copy and move
+FIGURE 4-4:
 
-text by dragging and dropping with your mouse.
+Browsing for
 
-CHAPTER 3  Working in the Visual Basic Editor    47
+objects with the
 
-Default to Full Module View option
+Object Browser.
 
-The Default to Full Module View option sets the default state for new modules. (It
+The second drop-down list is where you enter a search string. For example, if you
 
-doesn’t affect existing modules.) If this option is set, procedures in the Code window appear as a single scrollable list. If this option is turned off, you can see only one procedure at a time.
+want to look at all Excel objects that deal with comments, type  comment in the second field and click the Search button. (It has a pair of binoculars on it.) The Search Results window displays everything in the object library that contains the
 
-Procedure Separator option
+text  comment.  If you see something that looks like it may be of interest, select it and press F1 for more information online.
 
-When the Procedure Separator option is turned on, separator bars appear between
+Automatically listing properties
 
-procedures in a Code window.
+and methods
 
-Using the Editor Format tab
+Chapter 3 introduces you to a handy feature called Auto List Members. This feature provides a list of properties and methods as you type. Figure 4-5 shows an
 
-Figure 3-8 shows the Editor Format tab of the Options dialog box. With this tab,
+example for the Workbooks collection.
 
-you can customize the way the VBE looks.
+FIGURE 4-5:
 
-FIGURE 3-8:
+The Auto List
 
-Change the VBE’s
+Members feature
 
-looks with
+helps you identify
 
-the Editor
+properties and
 
-Format tab.
+methods for
 
-Code Colors option
+an object.
 
-The Code Colors option lets you set the text color and background color displayed
+After typing the dot after  workbooks,  the VBE volunteers to help by displaying a list of properties and methods for that collection. Typing the letter (like the letter  c ), narrows the list to items that begin with that letter. With each letter you type,
 
-for various elements of VBA code. This is largely a matter of personal preference.
+the VBE further narrows the list of choices. Highlight the item you need, press
 
-Font option
-
-The Font option lets you select the font that’s used in your VBA modules. For best
-
-results, stick with a fixed-width font such as Courier New. In a  fixed-width font, all characters are exactly the same width. This makes your code more readable
-
-48    PART 2  How VBA Works with Excel
-
-because the characters are nicely aligned vertically, and you can easily distinguish multiple spaces (which is sometimes useful).
-
-Size setting
-
-The Size setting specifies the point size of the font in the VBA modules. This setting is a matter of personal preference determined by your video display
-
-resolution and how many carrots you’ve been eating.
-
-Margin Indicator Bar option
-
-This option controls the display of the vertical margin indicator bar in your mod-
-
-ules. You should keep this turned on; otherwise, you won’t be able to see the help-
-
-ful graphical indicators when you’re debugging your code.
-
-Using the General tab
-
-Figure 3-9 shows the options available on the General tab of the Options dialog
-
-box. In almost every case, the default settings are just fine.
-
-FIGURE 3-9:
-
-The General tab
-
-of the Options
-
-dialog box.
-
-The most important setting is Error Trapping. It’s considered a best practice to
-
-use the Break on Unhandled Errors setting (which is the default). If you use a different setting, your error-handling code won’t work. You can read more about
-
-this in Chapter 12.
-
-If you’re really interested in these options, click the Help button for details.
-
-CHAPTER 3  Working in the Visual Basic Editor    49
-
-Using the Docking tab
-
-Figure 3-10 shows the Docking tab. These options determine how the various windows in the VBE behave. When a window is  docked,  it’s fixed in place along one of the edges of the VBE program window. This makes it much easier to identify
-
-and locate a particular window. If you turn off all docking, you have a big, confusing mess of windows. Generally, the default settings work fine.
-
-FIGURE 3-10:
-
-The Docking tab
-
-of the Options
-
-dialog box.
-
-Sometimes the VBE seems to have a mind of its own when you’re trying to dock a
-
-window. If docking doesn’t seem to work correctly, just stick with it, and you’ll
-
-get the hang of things.
-
-50    PART 2  How VBA Works with Excel
-
-IN THIS CHAPTER
-
-» Introducing the concept of objects
-
-» Finding out about the Excel object
-
-hierarchy
-
-» Understanding object collections
-
-» Referring to specific objects in your
-
-VBA code
-
-» Accessing or changing an object’s
-
-properties
-
-» Performing actions with an object’s
-
-methods
-
-Chapter 4
-
-Introducing the Excel
-
+Tab, and voilà! You've eliminated some typing — and also ensured that the property or method was spelled correctly.

@@ -1,1184 +1,1224 @@
-that you record always work like this. In many cases, however, you need to
+arrange for the Sub to be executed automatically. In this chapter, you
 
-control the flow of your code by skipping some statements, executing some state-
+explore the ins and outs of this potentially useful feature, explaining how
 
-ments multiple times, and testing conditions to determine what the procedure does next. Hang on to your hat and enjoy the ride, because you’re about to discover the essence of programming.
+to set things up so that a macro is executed automatically when a particular event
 
-Going with the Flow, Dude
+occurs. (No, this chapter is not about capital punishment.)
 
-Some programming newbies can’t understand how a dumb computer can make
+Preparing for the Big Event
 
-intelligent decisions. The secret is in several programming constructs that most
+An  event is basically something that happens Excel. Following are a few examples of the types of events that Excel can recognize:
 
-programming languages support. Table 10-1 provides a sneak preview of these constructs. (These are explained later in this chapter.)
+» A workbook is opened or closed.
 
-CHAPTER 10  Controlling Program Flow and Making Decisions    145
+» A window is activated or deactivated.
 
-TABLE 10-1
+» A worksheet is activated or deactivated.
 
-Programming Constructs for Making Decisions
+» Data is entered into a cell or the cell is edited.
 
-Construct
+CHAPTER 11  Automatic Procedures and Events    165
 
-How It Works
+» A workbook is saved.
 
-GoTo statement
+» An object, such as a button, is clicked.
 
-Jumps to a particular statement
+» A particular key or key combination is pressed.
 
-If-Then structure
+» A particular time of day occurs.
 
-Does something if something else is true
+» An error occurs.
 
-Select Case
+Dozens of different types of events are associated with all kinds of Excel objects,
 
-Does any of several things, depending on something’s value
+such as workbooks, worksheets, pivotTables, and even charts. To simplify things,
 
-For-Next loop
+you can use two other more common types of events: workbook events and work-
 
-Executes a series of statements a specified number of times
+sheet events.
 
-Do-While loop
+Table 11-1 lists some useful workbook-related events. If, for some reason, you need to see the complete list of workbook-related events, check out the Help system.
 
-Does something as long as something else remains true
+TABLE 11-1
 
-Do-Until loop
+Workbook Events
 
-Does something until something else becomes true
+Event
 
-The GoTo Statement
+When It's Triggered
 
-A GoTo statement offers the most straightforward means for changing a
+Activate
 
-program’s flow. The GoTo statement simply transfers program execution to a new statement, which is preceded by a label.
+The workbook is activated.
 
-Your VBA procedures can contain as many labels as you like. A  label is just a text string followed by a colon.
+BeforeClose
 
-The following procedure shows how a GoTo statement works:
+The command to close the workbook is given.
 
-Sub CheckUser()
+BeforePrint
 
-UserName = InputBox("Enter Your Name: ")
+The command to print is given.
 
-If UserName <> "Satya Nadella" Then GoTo WrongName
+BeforeSave
 
-MsgBox ("Welcome Satya...")
+The command to save the workbook is given.
 
-'   ...[More code here] ...
+Deactivate
 
-Exit Sub
+The workbook is deactivated.
 
-WrongName:
+NewSheet
 
-MsgBox "Sorry. Only Satya Nadella can run this."
+A new sheet is added to the workbook.
 
-End Sub
+Open
 
-The procedure uses the InputBox function to get the user’s name. Then a decision
+The workbook is opened.
 
-is made: If the user enters a name other than Satya Nadella, the program flow
+SheetActivate
 
-jumps to the WrongName label, displays an apologetic message, and the proce-
+A sheet in the workbook is activated.
 
-dure ends. On the other hand, if Mr. Nadella runs this macro and uses his real
+SheetBeforeDoubleClick
 
-name, the procedure displays a welcome message and then executes some
+A cell in the workbook is double-clicked.
 
-additional code (not shown in the example).
+SheetBeforeRightClick
 
-Notice that the Exit Sub statement ends the procedure before the second MsgBox
+A cell in the workbook is right-clicked.
 
-function has a chance to work. Without that Exit Sub statement, both MsgBox statements would be executed.
+SheetChange
 
-146    PART 3  Programming Concepts
+A change is made to a cell in the workbook.
 
-WHAT IS STRUCTURED PROGRAMMING?
+SheetDeactivate
 
-DOES IT MATTER?
+A sheet in the workbook is deactivated.
 
-If you hang around with programmers, sooner or later you hear the term  structured  programming . This term has been around for decades, and programmers generally agree that structured programs are superior to unstructured programs. So what is
+SheetSelectionChange
 
-structured programming? And can you do that using VBA?
+The selection is changed.
 
-The basic premise of structured programming is that a procedure or code segment
+WindowActivate
 
-should have only one entry point and one exit point. In other words, a block of code should be a stand-alone unit. A program cannot jump into the middle of this unit;
+The workbook window is activated.
 
-neither can it exit at any point except the single exit point. When you write structured code, your program progresses in an orderly manner and is easy to follow — unlike a
+WindowDeactivate
 
-program that jumps around in a haphazard fashion. This pretty much rules out using
+The workbook window is deactivated.
 
-the GoTo statement.
+166    PART 3  Programming Concepts
 
-In general, a structured program is easier to read and understand. More important,
+Table 11-2 lists some useful worksheet-related events.
 
-it’s also easier to modify when the need arises.
+TABLE 11-2
 
-VBA is indeed a structured language. It offers standard structured constructs such
+Worksheet Events
 
-as If-Then-Else, For-Next loops, Do-Until loops, Do-While loops, and Select Case
+Event
 
-structures. Furthermore, it fully supports module code constructions. If you’re new
+When It's Triggered
 
-to programming, you should try to develop good structure-programming habits
+Activate
 
-early on. End of lecture.
+The worksheet is activated.
 
-This simple procedure works, but VBA provides several better (and more
+BeforeDoubleClick
 
-structured) alternatives than GoTo. In general, you should use GoTo only when
+A cell in the worksheet is double-clicked.
 
-you have no other way to perform an action. In real life, the only time you  must use a GoTo statement is for trapping errors. (You get a detailed review of error
+BeforeRightClick
 
-handling in Chapter 12.)
+A cell in the worksheet is right-clicked.
 
-By the way, the CheckUser procedure simply demonstrates the GoTo statement.
+Change
 
-It’s not intended to demonstrate an effective security technique!
+A change is made to a cell in the worksheet.
 
-Many hard-core programming types have a deep-seated hatred for GoTo state-
+Deactivate
 
-ments because using them tends to result in difficult-to-read (and difficult-to-
+The worksheet is deactivated.
 
-maintain)「spaghetti code.」Therefore, you should never admit that you use GoTo
+SelectionChange
 
-statements when talking with other programmers.
+The selection is changed.
 
-CHAPTER 10  Controlling Program Flow and Making Decisions    147
+Are events useful?
 
-Decisions, Decisions
+At this point, you may be wondering how these events can be useful. Here's a quick example.
 
-As in many other aspects of life, effective decision-making is the key to success
+Suppose you have a workbook in which you enter values in column A. Your boss, a
 
-in writing Excel macros. This section reviews two programming structures
+very compulsive person, tells you that he needs to know exactly when each num-
 
-that can empower your VBA procedures with some impressive decision-making
+ber was entered. Entering data is an event: a WorksheetChange event. You can write a macro that responds to this event. That macro kicks in whenever the worksheet is changed. If the change was made in column A, the macro puts the
 
-capabilities: If-Then and Select Case.
+date and time in column B, next to the data point that was entered.
 
-The If-Then structure
+In case you're curious, here's what such a macro would look like. Probably a lot
 
-The If-Then structure is VBA’s most important control structure. You’ll probably
+simpler than you thought it would be, eh?
 
-use this command on a daily basis.
+Private Sub Worksheet_Change(ByVal Target As Range)
 
-Use the If-Then structure when you want to execute one or more statements conditionally. The optional Else clause, if included, lets you execute one or more
+If Target.Column = 1 Then
 
-statements if the condition you’re testing is  not true. Here’s the simple CheckUser procedure presented earlier in this chapter, recoded to use the If-Then-Else structure:
-
-Sub CheckUser2()
-
-UserName = InputBox("Enter Your Name: ")
-
-If UserName = "Satya Nadella" Then
-
-MsgBox ("Welcome Satya...")
-
-'    ...[More code here] ...
-
-Else
-
-MsgBox "Sorry. Only Satya Nadella can run this."
+Target.Offset(0, 1) = Now
 
 End If
 
 End Sub
 
-You would probably agree that this version is much easier to follow.
+By the way, macros that respond to events are very picky about where they are
 
-A workbook that contains this section’s examples can be downloaded from this
+stored. For example, this Worksheet_Change macro  must be in the Code module
 
-book’s website.
+for that worksheet. Put it somewhere else, and it won't work. More about this later
 
-If-Then examples
+(see「Where Does the VBA Code Go?」).
 
-The following procedure demonstrates the If-Then structure without the optional
+CHAPTER 11  Automatic Procedures and Events    167
 
-Else clause:
+Just because your workbook contains procedures that respond to events doesn't guarantee that those procedures will actually run. As you know, it's possible to
 
-Sub GreetMe()
+open a workbook with macros disabled. In such a case, all macros (even proce-
 
-If Time < 0.5 Then MsgBox "Good Morning"
+dures that respond to events) are turned off. Keep this fact in mind when you create workbooks that rely on event-handler procedures.
 
-End Sub
+Programming event-handler procedures
 
-148    PART 3  Programming Concepts
+A VBA procedure that executes in response to an event is called an  event-handler  procedure . These are always Sub procedures (as opposed to Function procedures).
 
-The GreetMe procedure uses VBA’s Time function to get the system time. If the current time is less than .5 (in other words, before noon), the procedure displays
+Writing these event-handlers is relatively straightforward after you understand
 
-a friendly greeting. If Time is greater than or equal to .5, the procedure ends, and nothing happens.
+how the process works.
 
-To display a different greeting if Time is greater than or equal to .5, you can add
+Creating event-handler procedures boils down to a few steps:
 
-another If-Then statement after the first one:
+1. Identify the event you want to trigger the procedure.
 
-Sub GreetMe2()
+2. Press Alt+F11 to activate the Visual Basic Editor.
 
-If Time < 0.5 Then MsgBox "Good Morning"
+3. In the VBE Project window, double-click the appropriate object listed
 
-If Time >= 0.5 Then MsgBox "Good Afternoon"
+under Microsoft Excel Objects.
 
-End Sub
+For workbook-related events, the object is ThisWorkbook. For a worksheet-
 
-Notice that the second If-Then statement uses >= (greater than or equal to). This ensures that the entire day is covered. Had it used > (greater than), no message
+related event, the object is a Worksheet object (such as Sheet1).
 
-would appear if this procedure were executed at precisely 12:00 noon. That’s pretty unlikely, but with an important program like this, you don’t want to take
+4. In the Code window for the object, write the event-handler procedure
 
-any chances.
+that is executed when the event occurs.
 
-An If-Then-Else example
-
-Another approach to the preceding problem uses the Else clause. Here’s the same
-
-procedure recoded to use the If-Then-Else structure:
-
-Sub GreetMe3()
-
-If Time < 0.5 Then MsgBox "Good Morning" Else _
-
-MsgBox "Good Afternoon"
-
-End Sub
-
-Notice the line continuation character (underscore) in the preceding example. The
-
-If-Then-Else statement is actually a single statement. VBA provides a slightly dif-
-
-ferent way of coding If-Then-Else constructs that use an End If statement. There-
-
-fore, the GreetMe procedure can be rewritten as
-
-Sub GreetMe4()
-
-If Time < 0.5 Then
-
-MsgBox "Good Morning"
-
-Else
-
-MsgBox "Good Afternoon"
-
-End If
-
-End Sub
-
-CHAPTER 10  Controlling Program Flow and Making Decisions    149
-
-In fact, you can insert any number of statements under the If part and any number of statements under the Else part. This syntax is easier to read and makes the statements shorter.
-
-What if you need to expand the GreetMe procedure to handle three conditions:
-
-morning, afternoon, and evening? You have two options: Use three If-Then
-
-statements or use a  nested  If-Then-Else structure.  Nesting means placing an If-Then-Else structure within another If-Then-Else structure. The first approach,
-
-using three If-Then statements, is simpler:
-
-Sub GreetMe5()
-
-Dim Msg As String
-
-If Time < 0.5 Then Msg = "Morning"
-
-If Time >= 0.5 And Time < 0.75 Then Msg = "Afternoon"
-
-If Time >= 0.75 Then Msg = "Evening"
-
-MsgBox "Good " & Msg
-
-End Sub
-
-Now, you can get fancy by using a variable. The Msg variable gets a different text
-
-value, depending on the time of day. The MsgBox statement displays the greeting:
-
-Good Morning, Good Afternoon, or Good Evening.
-
-The following procedure performs the same action but uses an If-Then-End If
-
-structure:
-
-Sub GreetMe6()
-
-Dim Msg As String
-
-If Time < 0.5 Then
-
-Msg = "Morning"
-
-End If
-
-If Time >= 0.5 And Time < 0.75 Then
-
-Msg = "Afternoon"
-
-End If
-
-If Time >= 0.75 Then
-
-Msg = "Evening"
-
-End If
-
-MsgBox "Good " & Msg
-
-End Sub
-
-Using ElseIf
-
-In the previous examples, every statement in the procedure is executed — even in
-
-the morning. A slightly more efficient structure would exit the procedure as soon
-
-as a condition is found to be true. In the morning, for example, the procedure should display the Good Morning message and then exit — without evaluating the
-
-other superfluous conditions.
-
-150    PART 3  Programming Concepts
-
-With a tiny procedure like this, you don’t have to worry about execution speed. But for larger applications in which speed is critical, you should know about another
-
-syntax for the If-Then structure: ElseIf.
-
-Here’s how you can rewrite the GreetMe procedure by using this syntax:
-
-Sub GreetMe7()
-
-Dim Msg As String
-
-If Time < 0.5 Then
-
-Msg = "Morning"
-
-ElseIf Time >= 0.5 And Time < 0.75 Then
-
-Msg = "Afternoon"
-
-Else
-
-Msg = "Evening"
-
-End If
-
-MsgBox "Good " & Msg
-
-End Sub
-
-When a condition is true, VBA executes the conditional statements, and the If structure ends. In other words, VBA doesn’t waste time evaluating the extraneous
-
-conditions, which makes this procedure a bit more efficient than the previous examples. The trade-off (there are always trade-offs) is that the code is more difficult to understand. (Of course, you already knew that.)
-
-Another If-Then example
-
-Here’s another example that uses the simple form of the If-Then structure. This
-
-procedure prompts the user for a quantity and then displays the appropriate discount, based on the quantity the user enters:
-
-Sub ShowDiscount()
-
-Dim Quantity As Long
-
-Dim Discount As Double
-
-Quantity = InputBox("Enter Quantity:")
-
-If Quantity > 0 Then Discount = 0.1
-
-If Quantity >= 25 Then Discount = 0.15
-
-If Quantity >= 50 Then Discount = 0.2
-
-If Quantity >= 75 Then Discount = 0.25
-
-MsgBox "Discount: " & Discount
-
-End Sub
-
-Notice that each If-Then statement in this procedure is executed, and the value
-
-for Discount can change as the statements are executed. However, the procedure
-
-ultimately displays the correct value for Discount because the If-Then statements
-
-are in order of ascending Discount values.
-
-CHAPTER 10  Controlling Program Flow and Making Decisions    151
-
-The following procedure performs the same tasks by using the alternative ElseIf syntax. In this case, the procedure ends immediately after executing the statements for a true condition:
-
-Sub ShowDiscount2()
-
-Dim Quantity As Long
-
-Dim Discount As Double
-
-Quantity = InputBox("Enter Quantity: ")
-
-If Quantity > 0 And Quantity < 25 Then
-
-Discount = 0.1
-
-ElseIf Quantity >= 25 And Quantity < 50 Then
-
-Discount = 0.15
-
-ElseIf Quantity >= 50 And Quantity < 75 Then
-
-Discount = 0.2
-
-ElseIf Quantity >= 75 Then
-
-Discount = 0.25
-
-End If
-
-MsgBox "Discount: " & Discount
-
-End Sub
-
-As important as the If-Then structure is to VBA, they become cumbersome when
-
-a decision involves three or more choices. Fortunately, the Select Case structure,
-
-discussed in the next section, offers a simpler and more efficient approach.
-
-The Select Case structure
-
-The Select Case structure is useful for decisions involving three or more options
-
-(although it also works with two options, providing an alternative to the If-Then-
-
-Else structure).
-
-The examples in this section are available at this book’s website.
-
-A Select Case example
-
-The following example shows how to use the Select Case structure. This also shows another way to code the examples presented in the previous section:
-
-Sub ShowDiscount3()
-
-Dim Quantity As Long
-
-Dim Discount As Double
-
-Quantity = InputBox("Enter Quantity: ")
-
-Select Case Quantity
-
-Case 0 To 24
-
-Discount = 0.1
-
-152    PART 3  Programming Concepts
-
-Case 25 To 49
-
-Discount = 0.15
-
-Case 50 To 74
-
-Discount = 0.2
-
-Case Is >= 75
-
-Discount = 0.25
-
-End Select
-
-MsgBox "Discount: " & Discount
-
-End Sub
-
-In this example, the Quantity variable is being evaluated. The procedure checks for
-
-four different cases (0–24, 25–49, 50–74, and 75 or greater).
-
-Any number of statements can follow each Case statement, and they all are executed if the case is true. If you use only one statement, as in this example,
-
-you can put the statement on the same line as the Case keyword, preceded by a
-
-colon — the VBA statement separator character. This tends to make your code more compact and a bit clearer. Here’s how the procedure looks in this format:
-
-Sub ShowDiscount4 ()
-
-Dim Quantity As Long
-
-Dim Discount As Double
-
-Quantity = InputBox("Enter Quantity: ")
-
-Select Case Quantity
-
-Case 0 To 24: Discount = 0.1
-
-Case 25 To 49: Discount = 0.15
-
-Case 50 To 74: Discount = 0.2
-
-Case Is >= 75: Discount = 0.25
-
-End Select
-
-MsgBox "Discount: " & Discount
-
-End Sub
-
-When VBA executes a Select Case structure, the structure is exited as soon as VBA
-
-finds a true case and executes the statements for that case.
-
-A nested Select Case example
-
-As demonstrated in the following example, you can nest Select Case structures.
-
-This procedure examines the active cell and displays a message describing the cell’s contents. Notice that the procedure has three Select Case structures, and each has its own End Select statement:
-
-Sub CheckCell()
-
-Dim Msg As String
-
-Select Case IsEmpty(ActiveCell)
-
-CHAPTER 10  Controlling Program Flow and Making Decisions    153
-
-Case True
-
-Msg = "is blank."
-
-Case Else
-
-Select Case ActiveCell.HasFormula
-
-Case True
-
-Msg = "has a formula"
-
-Case Else
-
-Select Case IsNumeric(ActiveCell)
-
-Case True
-
-Msg = "has a number"
-
-Case Else
-
-Msg = "has text"
-
-End Select
-
-End Select
-
-End Select
-
-MsgBox "Cell " & ActiveCell.Address & " " & Msg
-
-End Sub
-
-The logic goes something like this:
-
-1. Find out whether the cell is empty.
-
-2. If it’s not empty, see whether it contains a formula.
-
-3. If there’s no formula, find out whether it contains a numeric value or text.
-
-When the procedure ends, the Msg variable contains a string that describes the
-
-cell’s contents. As shown in Figure 10-1, the MsgBox function displays that message.
-
-You can nest Select Case structures as deeply as you need to, but make sure that
-
-each Select Case statement has a corresponding End Select statement.
-
-FIGURE 10-1:
-
-A message
-
-displayed by the
-
-CheckCell
+This procedure will have a special name that identifies it as an event-handler
 
 procedure.
 
-154    PART 3  Programming Concepts
+These steps become clearer as you progress through the chapter.
 
-If you’re still not convinced that indenting code is worth the effort, the previous listing serves as a good example. The indentations really make the nesting levels
+Where Does the VBA Code Go?
 
-clear. Take a look at the same procedure without any indentation:
+It's very important to understand where your event-handler procedures go. They
 
-Sub CheckCell()
+must reside in the Code window of an Object module. They do not go in a standard
+
+VBA module. If you put your event-handler procedure in the wrong place, it simply
+
+won't work. And you won't see any error messages, either.
+
+Figure 11-1 shows the VBE window with one project displayed in the Project window. (Refer to Chapter 3 for some background on the VBE.) Notice that the VBA
+
+project for Book1 is fully expanded and consists of several objects:
+
+168    PART 3  Programming Concepts
+
+» One object for each worksheet in the workbook (in this case, three
+
+Sheet objects)
+
+» An object labeled ThisWorkbook
+
+» A VBA module inserted manually (Choose Insert ➪ Module.)
+
+FIGURE 11-1:
+
+The Project
+
+window displays
+
+items for a single
+
+project.
+
+Double-clicking any of these objects displays the code associated with the item,
+
+if any.
+
+The event-handler procedures that you write go into the Code window for the ThisWorkbook item (for workbook-related events) or one of the Sheet objects (for
+
+worksheet-related events).
+
+In Figure 11-1, the Code window for the Sheet1 object is displayed, and it happens
+
+to have a single event-handler procedure defined. Notice the two drop-down con-
+
+trols at the top of the Code module? Keep reading to find out why those are useful.
+
+Writing an Event-Handler Procedure
+
+The VBE helps you out when you're ready to write an event-handler procedure; it
+
+displays a list of all events for the selected object.
+
+At the top of each Code window, you find two drop-down lists:
+
+» The Object drop-down list (the one on the left)
+
+» The Procedure drop-down list (the one on the right)
+
+By default, the Object drop-down list in the Code window displays General.
+
+If you're writing an event-handler for the ThisWorkbook object, you need to click
+
+ThisWorkbook in the Project window and then choose Workbook from the Object
+
+drop-down (it's the only other choice).
+
+CHAPTER 11  Automatic Procedures and Events    169
+
+If you're writing an event-handler for a Sheet object, you need to click the specific Sheet in the Project window and then choose Worksheet from the Object drop-down list (again, the only other choice).
+
+After you've made your choice from the Object drop-down list, you can choose the
+
+event from the Procedure drop-down list. Figure 11-2 shows some of the choices
+
+for a workbook-related event.
+
+FIGURE 11-2:
+
+Choosing an
+
+event in the Code
+
+window for the
+
+ThisWorkbook
+
+object.
+
+When you select an event from the list, the VBE automatically starts creating an
+
+event-handler procedure for you. This is a very useful feature, because it tells you exactly what the proper arguments are.
+
+Here's a little quirk. When you first select Workbook from the Object list, the VBE
+
+always assumes that you want to create an event-handler procedure for the Open
+
+event and creates it for you. If you're actually creating a Workbook_Open proce-
+
+dure, that's fine. But if you're creating a different event-procedure, you need to
+
+delete the empty Workbook_Open Sub that was created.
+
+The VBE's help goes only so far, however. It writes the Sub statement and the End Sub statement. Writing the VBA code that goes between these two statements is your job.
+
+You don't really have to use those two drop-down lists, but doing so makes your
+
+job easier because the name of the event-handler procedure is critically impor-
+
+tant. If you don't get the name exactly right, the procedure won't work. Also, some event-handler procedures use one or more arguments in the Sub statement.
+
+There's no way you can remember what those arguments are. For example, if you
+
+select SheetActivate from the event list for a Workbook object, the VBE writes the
+
+following Sub statement:
+
+Private Sub Workbook_SheetActivate(ByVal Sh As Object)
+
+In this case, Sh is the argument passed to the procedure and is a variable that
+
+represents the sheet in the activated workbook. Examples in this chapter clarify
+
+this point.
+
+170    PART 3  Programming Concepts
+
+Introductory Examples
+
+In this section, you find a few examples so that you can get the hang of this event-
+
+handling business.
+
+The Open event for a workbook
+
+One of the most commonly used events is the Workbook Open event. Assume that
+
+you have a workbook that you use every day. The Workbook_Open procedure in
+
+this example is executed every time the workbook is opened. The procedure checks
+
+the day of the week; if it's Friday, the code displays a reminder message for you.
+
+To create the procedure that is executed whenever the Workbook Open event occurs, follow these steps:
+
+1. Open the workbook.
+
+Any workbook will do.
+
+2. Press Alt+F11 to activate the VBE.
+
+3. Locate the workbook in the Project window.
+
+4. Double-click the project name to display its items, if necessary.
+
+5. Double-click the ThisWorkbook item.
+
+The VBE displays an empty Code window for the ThisWorkbook object.
+
+6. In the Code window, select Workbook from the Object (left) drop-down
+
+list.
+
+The VBE enters the beginning and ending statements for a Workbook_Open
+
+procedure.
+
+7. Enter the following statements, so the complete event-procedure looks
+
+like this:
+
+Private Sub Workbook_Open()
 
 Dim Msg As String
 
-Select Case IsEmpty(ActiveCell)
+If Weekday(Now) = 6 Then
 
-Case True
+Msg = "Today is Friday. Don't forget to "
 
-Msg = "is blank."
+Msg = Msg & "submit the TPS Report!"
 
-Case Else
+MsgBox Msg
 
-Select Case ActiveCell.HasFormula
-
-Case True
-
-Msg = "has a formula"
-
-Case Else
-
-Select Case IsNumeric(ActiveCell)
-
-Case True
-
-Msg = "has a number"
-
-Case Else
-
-Msg = "has text"
-
-End Select
-
-End Select
-
-End Select
-
-MsgBox "Cell " & ActiveCell.Address & " " & Msg
+End If
 
 End Sub
 
-Fairly incomprehensible, eh?
+The Code window should look like Figure 11-3.
 
-Knocking Your Code for a Loop
+CHAPTER 11  Automatic Procedures and Events    171
 
-The term  looping refers to repeating a block of VBA statements numerous times.
+FIGURE 11-3:
 
-Why use loops? Your code can . . .
+This event-
 
-» Loop through a range of cells, working with each cell individually.
+handler
 
-» Loop through all open workbooks (the Workbooks collection) and do some-
+procedure is
 
-thing with each one.
+executed when
 
-» Loop through all worksheets in a workbook (the Worksheets collection) and
+the workbook
 
-do something with each one.
+is opened.
 
-» Loop through all the elements in an array.
+Workbook_Open is executed automatically whenever the workbook is opened. It
 
-CHAPTER 10  Controlling Program Flow and Making Decisions    155
+uses the VBA's WeekDay function to determine the day of the week. If it's Friday
 
-» Loop through all characters in a cell.
+(day 6), a message box reminds the user to submit a report. If it's not Friday, nothing happens.
 
-» Loop through all charts on a worksheet (the ChartObjects collection) and do something with each chart.
+If today isn't Friday, you might have a hard time testing this procedure. You can
 
-VBA supports several types of loops, and the examples that follow demonstrate a
+just change the 6 to correspond to today's actual day number.
 
-few ways that you can use them.
+And of course, you can modify this procedure any way you like. For example, the
 
-For-Next loops
+following version displays a message every time the workbook is opened. This gets annoying after a while.
 
-The examples in this section are all available at this book’s website.
+Private Sub Workbook_Open()
 
-The simplest type of loop is a For-Next loop. The looping is controlled by a counter variable, which starts at one value and stops at another value. The statements between the For statement and the Next statement are the statements that get
+Msg = "This is Frank's cool workbook!"
 
-repeated in the loop. To see how this works, keep reading.
+MsgBox Msg
 
-A For-Next example
+End Sub
 
-The following example uses a For-Next loop to sum the first 1,000 positive numbers. The Total variable starts out as zero. Then the looping occurs. The variable Cnt is the loop counter. It starts out as 1 and is incremented by 1 each time
+A Workbook_Open procedure can do almost anything. These event-handlers are
 
-through the loop. The loop ends when Cnt is 1,000.
+often used for the following:
 
-This example has only one statement inside the loop. This statement adds the value of Cnt to the Total variable. When the loop finishes, a MsgBox displays the
+» Displaying welcome messages (such as in Frank's cool workbook)
 
-sum of the numbers.
+» Opening other workbooks
 
-Sub AddNumbers()
+» Activating a particular worksheet in the workbook
 
-Dim Total As Double
+» Setting up custom shortcut menus
+
+Here's a final example of a Workbook_Open procedure that uses the GetSetting
+
+and SaveSetting functions to keep track of how many times the workbook has been opened. The SaveSetting function writes a value to the Windows registry, and
+
+the GetSetting function retrieves that value (see the Help system for details).
+
+The following example retrieves the count from the registry, increments it, and
+
+then saves it back to the registry. It also tells the user the value of Cnt that corresponds to the number of times the workbook has been opened (see Figure 11-4).
+
+172    PART 3  Programming Concepts
+
+Private Sub Workbook_Open()
 
 Dim Cnt As Long
 
-Total = 0
+Cnt = GetSetting("MyApp", "Settings", "Open", 0)
 
-For Cnt = 1 To 1000
+Cnt = Cnt + 1
 
-Total = Total + Cnt
+SaveSetting "MyApp", "Settings", "Open", Cnt
 
-Next Cnt
-
-MsgBox Total
+MsgBox "This workbook has been opened " & Cnt & " times."
 
 End Sub
 
-Because the loop counter is a normal variable, you can write code to change its
+FIGURE 11-4:
 
-value within the block of code between the For and the Next statements. This, however, is a  very bad practice. Changing the counter within the loop can have unpredictable results. Take special precautions to ensure that your code doesn’t
+Using a
 
-change the value of the loop counter.
+Workbook_Open
 
-156    PART 3  Programming Concepts
+event-handler to
 
-For-Next examples with a Step
+keep track of how
 
-You can use a Step value to skip some counter values in a For-Next loop. Here’s the
+many times a
 
-previous example, rewritten to sum only the odd numbers between 1 and 1,000:
+workbook has
 
-Sub AddOddNumbers()
+been opened.
 
-Dim Total As Double
+The BeforeClose event for a workbook
 
-Dim Cnt As Long
+Here's an example of the Workbook_BeforeClose event-handler procedure, which
 
-Total = 0
+is executed automatically immediately before the workbook is closed. This proce-
 
-For Cnt = 1 To 1000 Step 2
+dure is located in the Code window for a ThisWorkbook object:
 
-Total = Total + Cnt
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
 
-Next Cnt
+Dim Msg As String
 
-MsgBox Total
+Dim Ans As Long
 
-End Sub
+Dim FName As String
 
-This time, Cnt starts out as 1 and then takes on values of 3, 5, 7, and so on. The
+Msg = "Would you like to make a backup of this file?"
 
-Step value determines how the counter is incremented. Notice that the upper loop
+Ans = MsgBox(Msg, vbYesNo)
 
-value (1000) is not actually used because the highest value of Cnt will be 999.
+If Ans = vbYes Then
 
-Here’s another example that uses a Step value of 3. This procedure works with the
+FName = "F:\BACKUP\" & ThisWorkbook.Name
 
-active sheet and applies light gray shading to every third row, from row 1 to row 100.
-
-Sub ShadeEveryThirdRow()
-
-Dim i As Long
-
-For i = 1 To 100 Step 3
-
-Rows(i).Interior.Color = RGB(200, 200, 200)
-
-Next i
-
-End Sub
-
-Figure 10-2 shows the result of running this macro.
-
-FIGURE 10-2:
-
-Using a loop to
-
-apply background
-
-shading to rows.
-
-CHAPTER 10  Controlling Program Flow and Making Decisions    157
-
-A For-Next example with an Exit For statement
-
-A For-Next loop can also include one or more Exit For statements within the loop.
-
-When VBA encounters this statement, the loop terminates immediately.
-
-The following example, available on the book’s website, demonstrates the Exit For
-
-statement. This procedure is a Function procedure, intended to be used in a work-
-
-sheet formula. The function accepts one argument (a variable named Str) and returns the characters to the left of the first numeric digit. For example, if the
-
-argument is「KBR98Z,」the function returns「KBR.」
-
-Function TextPart(Str)
-
-Dim i As Long
-
-TextPart = ""
-
-For i = 1 To Len(Str)
-
-If IsNumeric(Mid(Str, i, 1)) Then
-
-Exit For
-
-Else
-
-TextPart = TextPart & Mid(Str, i, 1)
+ThisWorkbook.SaveCopyAs FName
 
 End If
 
-Next i
+End Sub
 
-End Function
+This routine uses a message box to ask the user whether he would like to make a
 
-The For-Next loop starts with 1 and ends with the number that represents the
+backup copy of the workbook. If the answer is yes, the code uses the SaveCopyAs
 
-number of characters in the string. The code uses VBA’s Mid function to extract a
+method to save a backup copy of the file on drive F. If you adapt this procedure for your own use, you need to change the drive and path.
 
-single character within the loop. If a numeric character is found, the Exit For statement is executed, and the loop ends prematurely. If the character is not numeric, it’s appended to the returned value (which is the same as the function’s
+CHAPTER 11  Automatic Procedures and Events    173
 
-name). The only time the loop will examine every character is if the string passed
+Excel programmers often use a Workbook_BeforeClose procedure to clean up after themselves. For example, if you use a Workbook_Open procedure to change
 
-as the argument contains no numeric characters.
+some settings when you open a workbook (hiding the status bar, for example), it's
 
-Now, you might shout,「Hey, but you said something about always using a single
+only appropriate that you return the settings to their original state when you close the workbook. You can perform this electronic housekeeping with a Workbook_
 
-point of exit!」Well, you’re right, and obviously, you’re getting the hang of this
+BeforeClose procedure.
 
-structured programming business. But in some cases, ignoring that rule is a wise
+When using the Workbook_BeforeClose event, keep this in mind: If you close Excel and any open file has been changed since the last save, Excel shows its usual
 
-decision. In this example, it greatly speeds up your code because there’s no reason
+「Do you want to save your changes」 message box. Clicking the Cancel button cancels the entire closing process. But the Workbook_BeforeClose event will have
 
-to continue the loop after the first numeric digit is found.
+been executed anyway.
 
-A nested For-Next example
+The BeforeSave event for a workbook
 
-So far, all this chapter’s examples use relatively simple loops. However, you can
+The BeforeSave event, as its name implies, is triggered before a workbook is saved.
 
-have any number of statements in the loop and nest For-Next loops inside other
+This event occurs when you choose File ➪ Save or File ➪ Save As.
 
-For-Next loops.
+The following procedure, which is placed in the Code window for a ThisWorkbook
 
-The following example uses a nested For-Next loop to insert random numbers
+object, demonstrates the BeforeSave event. The routine updates the value in a cell
 
-into a 12-row-by-5-column range of cells, as shown in Figure 10-3. Notice that
+(cell A1 on Sheet1) every time the workbook is saved. In other words, cell A1 serves as a counter to keep track of the number of times the file was saved.
 
-the procedure executes the  inner loop (the loop with the Row counter) once for 158    PART 3  Programming Concepts
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI _
 
-each iteration of the  outer loop (the loop with the Col counter). In other words, the procedure executes the Cells(Row, Col) = Rnd statement 60 times.
+As Boolean, Cancel As Boolean)
 
-Sub FillRange()
+Dim Counter As Range
 
-Dim Col As Long
+Set Counter = Sheets("Sheet1").Range("A1")
 
-Dim Row As Long
-
-For Col = 1 To 5
-
-For Row = 1 To 12
-
-Cells(Row, Col) = Rnd
-
-Next Row
-
-Next Col
+Counter.Value = Counter.Value + 1
 
 End Sub
 
-FIGURE 10-3:
+Notice that the Workbook_BeforeSave procedure has two arguments: SaveAsUI
 
-These cells were
+and Cancel. To demonstrate how these arguments work, examine the following
 
-filled using a
+macro, which is executed before the workbook is saved. This procedure attempts
 
-nested For-Next
+to prevent the user from saving the workbook with a different name. If the user
 
-loop.
+chooses File ➪ Save As, the SaveAsUI argument is True.
 
-The next example uses nested For-Next loops to initialize a three-dimensional
+When the code executes, it checks the SaveAsUI value. If this variable is True, the
 
-array with the value 100. This procedure executes the statement in the middle of
+procedure displays a message and sets Cancel to True, which cancels the Save operation.
 
-all the loops (the assignment statement) 1,000 times (10 * 10 * 10), each time with
+174    PART 3  Programming Concepts
 
-a different combination of values for i, j, and k:
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI _
 
-Sub NestedLoops()
+As Boolean, Cancel As Boolean)
 
-Dim MyArray(10, 10, 10)
+If SaveAsUI Then
 
-Dim i As Long
+MsgBox "You cannot save a copy of this workbook!"
 
-Dim j As Long
-
-Dim k As Long
-
-For i = 1 To 10
-
-For j = 1 To 10
-
-For k = 1 To 10
-
-MyArray(i, j, k) = 100
-
-Next k
-
-Next j
-
-Next i
-
-' Other statements go here
-
-End Sub
-
-CHAPTER 10  Controlling Program Flow and Making Decisions    159
-
-Refer to Chapter 7 for information about arrays.
-
-Here’s a final example that uses nested For-Next loops, with a Step value. This
-
-procedure creates a checkerboard (or chessboard, if you prefer) by changing the
-
-background color of alternating cells (see Figure 10-4).
-
-FIGURE 10-4:
-
-Using loops to
-
-create a
-
-checkerboard
-
-pattern.
-
-The Row counter loops from 1 to 8. An If-Then construct determines which nested
-
-For-Next structure to use. For odd-numbered rows, the Col counter begins with 2.
-
-For even-numbered rows, the Col counter begins with 1. Both loops use a Step
-
-value of 2, so alternate cells are affected. Two additional statements make the cells square (just like a real checkerboard).
-
-Sub MakeCheckerboard()
-
-Dim R As Long, C As Long
-
-For R = 1 To 8
-
-If WorksheetFunction.IsOdd(R) Then
-
-For C = 2 To 8 Step 2
-
-Cells(R, C).Interior.Color = 255
-
-Next C
-
-Else
-
-For C = 1 To 8 Step 2
-
-Cells(R, C).Interior.Color = 255
-
-Next C
+Cancel = True
 
 End If
 
-Next R
+End Sub
 
-Rows("1:8").RowHeight = 35
+Note that this procedure won't really prevent anyone from saving a copy with a
 
-Columns("A:H").ColumnWidth = 6.5
+different name. If someone really wants to do it, he or she can just open the work-
+
+book with macros disabled. When macros are disabled, event-handler procedures
+
+are also disabled, which makes sense because they are, after all, macros.
+
+Examples of Activation Events
+
+Another category of events consists of activating and deactivating objects —
+
+specifically, sheets and workbooks.
+
+Activate and deactivate events in a sheet
+
+Excel can detect when a particular sheet is activated or deactivated and execute a
+
+macro when either of these events occurs. These event-handler procedures go in
+
+the Code window for the Sheet object.
+
+You can quickly access a sheet's Code window by right-clicking the sheet's tab
+
+and selecting View Code.
+
+The following example shows a simple procedure that is executed whenever a particular sheet is activated. This code simply pops up an annoying message box
+
+that displays the name of the active sheet:
+
+Private Sub Worksheet_Activate()
+
+MsgBox "You just activated " & ActiveSheet.Name
 
 End Sub
 
-160    PART 3  Programming Concepts
+Here's another example that activates cell A1 whenever the sheet is activated:
 
-Do-While loop
+Private Sub Worksheet_Activate()
 
-VBA supports another type of looping structure known as a Do-While loop. Unlike
-
-a For-Next loop, a Do-While loop continues until a specified condition is met.
-
-The following example uses a Do-While loop. This procedure uses the active cell
-
-as a starting point and then travels down the column, multiplying each cell’s value by 2. The loop continues until the procedure encounters an empty cell.
-
-Sub DoWhileDemo()
-
-Do While ActiveCell.Value <> Empty
-
-ActiveCell.Value = ActiveCell.Value * 2
-
-ActiveCell.Offset(1, 0).Select
-
-Loop
+Range("A1").Activate
 
 End Sub
 
-Do-Until loop
+CHAPTER 11  Automatic Procedures and Events    175
 
-The Do-Until loop structure is similar to the Do-While structure. The two struc-
+Although the code in these two procedures is about as simple as it gets, event-handler procedures can be as complex as you like.
 
-tures differ in their handling of the tested condition. A program continues to exe-
+The following procedure (which is stored in the Code window for the Sheet1 object)
 
-cute a Do-While loop  while the condition remains true. In a Do-Until loop, the program executes the loop  until the condition is true.
+uses the Deactivate event to prevent a user from activating any other sheet in the
 
-The following example is the same one presented for the Do-While loop but recoded to use a Do-Until loop:
+workbook. If Sheet1 is deactivated (that is, another sheet is activated), the user
 
-Sub DoUntilDemo()
+gets a message and Sheet1 is activated.
 
-Do Until IsEmpty(ActiveCell.Value)
+Private Sub Worksheet_Deactivate()
 
-ActiveCell.Value = ActiveCell.Value * 2
+MsgBox "You must stay on Sheet1"
 
-ActiveCell.Offset(1, 0).Select
-
-Loop
+Sheets("Sheet1").Activate
 
 End Sub
 
-Using For Each-Next Loops
+By the way, it's not a great idea to use VBA procedures, such as this one, to attempt to take over Excel. These so-called「dictator」applications can be very frustrating and confusing for the user. And of course, they can be defeated easily by disabling macros.
 
-with Collections
+Activate and deactivate events
 
-VBA supports yet another type of looping: looping through each object in a collec-
+in a workbook
 
-tion of objects. A collection, as you may know, consists of a number of objects of
+The previous examples use events associated with a specific worksheet. The ThisWorkbook object also handles events that deal with sheet activation and deactivation. The following procedure, which is stored in the Code window for the
 
-the same type. For example, Excel has a collection of all open workbooks (the Workbooks collection), and each workbook has a collection of worksheets (the Worksheets collection).
+ThisWorkbook object, is executed when  any sheet in the workbook is activated.
 
-CHAPTER 10  Controlling Program Flow and Making Decisions    161
+The code displays a message with the name of the activated sheet.
 
-The examples in this section are all available at this book’s website.
+Private Sub Workbook_SheetActivate(ByVal Sh As Object)
 
-When you need to loop through each object in a collection, use the For Each-Next
+MsgBox Sh.Name
 
-structure. The following example loops through each worksheet in the active workbook and deletes the worksheet if it’s empty:
+End Sub
 
-Sub DeleteEmptySheets()
+The Workbook_SheetActivate procedure uses the Sh argument. Sh is a variable
 
-Dim WkSht As Worksheet
+that represents the active Sheet object. The message box displays the Sheet object's Name property.
 
-Application.DisplayAlerts = False
+The next example is contained in a ThisWorkbook Code window. It consists of two
 
-For Each WkSht In ActiveWorkbook.Worksheets
+event-handler procedures:
 
-If WorksheetFunction.CountA(WkSht.Cells) = 0 Then
+» Workbook_SheetDeactivate: Executed when any sheet in the workbook is
 
-WkSht.Delete
+deactivated. It stores the sheet that is deactivated in an object variable — but
+
+only if the sheet is a worksheet. The Set keyword creates an object variable,
+
+which is available to all procedures in the module.
+
+176    PART 3  Programming Concepts
+
+» Workbook_SheetActivate: Executed when any sheet in the workbook
+
+is activated. It checks the type of sheet that is activated (using the
+
+TypeName function). If the sheet is a chart sheet, the user gets a message
+
+(see Figure 11-5). When the OK button in the message box is clicked, the
+
+previous worksheet (which is stored in the OldSheet variable) is reactivated.
+
+FIGURE 11-5:
+
+When a chart
+
+sheet is activated,
+
+the user sees a
+
+message like this.
+
+A workbook that contains this code is available at this book's website.
+
+Dim OldSheet As Object
+
+Private Sub Workbook_SheetDeactivate(ByVal Sh As Object)
+
+If TypeName(Sh) = "Worksheet" Then Set OldSheet = Sh
+
+End Sub
+
+Private Sub Workbook_SheetActivate(ByVal Sh As Object)
+
+Dim Msg As String
+
+If TypeName(Sh) = "Chart" Then
+
+Msg = "This chart contains "
+
+Msg = Msg & ActiveChart.SeriesCollection(1).Points.Count
+
+Msg = Msg & " data points." & vbNewLine
+
+Msg = Msg & "Click OK to return to " & OldSheet.Name
+
+MsgBox Msg
+
+OldSheet.Activate
 
 End If
 
-Next WkSht
+End Sub
 
-Application.DisplayAlerts = True
+CHAPTER 11  Automatic Procedures and Events    177
+
+Workbook activation events
+
+Excel also recognizes the event that occurs when you activate or deactivate a
+
+particular workbook. The following code, which is contained in the Code window
+
+for the ThisWorkbook object, is executed whenever the workbook is activated. The
+
+procedure simply maximizes the workbook's window.
+
+Private Sub Workbook_Activate()
+
+ActiveWindow.WindowState = xlMaximized
 
 End Sub
 
-In this example, the variable WkSht is an object variable that represents each worksheet in the workbook. Nothing is special about the variable name WkSht;
+An example of Workbook_Deactivate code appears next. This procedure is executed
 
-you can use any variable name that you like.
+when a workbook is deactivated. This procedure copies the selected range whenever
 
-The code loops through each worksheet and determines an empty sheet by count-
+the workbook is deactivated. It might be useful if you're copying data from lots of
 
-ing the nonblank cells. If that count is zero, the sheet is empty, and it’s deleted.
+areas and pasting them into a different workbook. When this event-procedure is
 
-Notice that the DisplayAlerts setting is turned off while the loop is doing its thing.
+in place, you can select the range to be copied, activate the other workbook, select the destination, and press Ctrl+V (or Enter) to paste the copied data.
 
-Without that statement, Excel displays a warning every time a sheet is about to be
+Private Sub Workbook_Deactivate()
 
-deleted.
+ThisWorkbook.Windows(1).RangeSelection.Copy
 
-If all the worksheets in the workbook are empty, you get an error when Excel attempts to delete the only sheet. Normally, you would write code to handle that
+End Sub
 
-situation.
+Other Worksheet-Related Events
 
-Here’s another For Each-Next example. This procedure uses a loop to hide all worksheets in the active workbook except the active sheet.
+The preceding section illustrated examples for worksheet activation and deactiva-
 
-Sub HideSheets()
+tion events. In this section, you find additional events that occur in worksheets:
 
-Dim Sht As Worksheet
+double-clicking a cell, right-clicking a cell, and changing a cell.
 
-For Each Sht In ActiveWorkbook.Worksheets
+The BeforeDoubleClick event
 
-If Sht.Name <> ActiveSheet.Name Then
+You can set up a VBA procedure to be executed when the user double-clicks a cell.
 
-Sht.Visible = xlSheetHidden
+In the following example (which is stored in the Code window for a Sheet object),
+
+double-clicking a cell in that sheet makes the cell bold (if it's not bold) or not bold (if it is bold):
+
+Private Sub Worksheet_BeforeDoubleClick _
+
+(ByVal Target As Excel.Range, Cancel As Boolean)
+
+Target.Font.Bold = Not Target.Font.Bold
+
+Cancel = True
+
+End Sub
+
+178    PART 3  Programming Concepts
+
+The Worksheet_BeforeDoubleClick procedure has two arguments: Target and Cancel. Target represents the cell (a Range object) that was double-clicked. If Cancel is set to True, the default double-click action doesn't occur.
+
+The default action for double-clicking a cell is to put Excel in cell edit mode. In
+
+this case, you don't necessarily want to edit the cell when double-clicking the cells, so set Cancel to True.
+
+The BeforeRightClick event
+
+The BeforeRightClick event is similar to the BeforeDoubleClick event except that it
+
+consists of right-clicking a cell. The following procedure checks to see whether
+
+the cell that was right-clicked contains a numeric value. If so, the code displays
+
+the Format Number dialog box and sets the Cancel argument to True (avoiding the
+
+normal shortcut menu display). If the cell doesn't contain a numeric value, noth-
+
+ing special happens; the shortcut menu is displayed as usual.
+
+Private Sub Worksheet_BeforeRightClick _
+
+(ByVal Target As Excel.Range, Cancel As Boolean)
+
+If IsNumeric(Target) And Not IsEmpty(Target) Then
+
+Application.CommandBars.ExecuteMso ("NumberFormatsDialog")
+
+Cancel = True
 
 End If
 
-Next Sht
+End Sub
+
+Notice that the code, which is available on this book's website, makes an addi-
+
+tional check to see if the cell isn't empty. This is because VBA considers empty
+
+cells to be numeric.
+
+The Change event
+
+The Change event occurs whenever any cell in the worksheet is changed. In the
+
+following example, the Worksheet_Change procedure effectively prevents a user
+
+from entering a nonnumeric value in cell A1. This code is stored in the Code window for a Sheet object.
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+If Target.Address = "$A$1" Then
+
+If Not IsNumeric(Target) Then
+
+MsgBox "Enter a number in cell A1."
+
+CHAPTER 11  Automatic Procedures and Events    179
+
+Range("A1").ClearContents
+
+Range("A1").Activate
+
+End If
+
+End If
 
 End Sub
 
-162    PART 3  Programming Concepts
+The single argument for the Worksheet_Change procedure (Target) represents
 
-The HideSheets procedure checks the sheet name. If it’s not the same as the active sheet’s name, the sheet is hidden. Notice that the Visible property isn’t Boolean.
+the range that was changed. The first statement checks whether the cell's address
 
-This property can actually take on any of  three values, and Excel provides three built-in constants. If you’re curious about the third possibility (xlVeryHidden),
+is $A$1. If so, the code uses the IsNumeric function to determine whether the cell
 
-check the Help system.
+contains a numeric value. If not, a message appears, and the cell's value is erased.
 
-What gets hidden must eventually get unhidden, so here’s a macro that unhides
+Cell A1 is then activated — useful if the cell pointer moved to a different cell after the entry was made. If the change occurs in any cell except A1, nothing happens.
 
-all worksheets in the active workbook:
+Why not use data validation?
 
-Sub UnhideSheets()
+You may be familiar with Data ➪ Data Tools ➪ Data Validation. This handy feature
 
-Dim Sht As Worksheet
+makes it easy to ensure that only data of the proper type is entered into a particular cell or range. Although Data ➪ Data Tools ➪ Data Validation is useful, it's definitely not foolproof.
 
-For Each Sht In ActiveWorkbook.Worksheets
+Try adding data validation to a cell. For example, you can set it up so the cell accepts only a numerical value. It works fine — until you copy another cell and
 
-Sht.Visible = xlSheetVisible
+paste it to the data validation cell. Pasting removes the data validation. It's as if it was never there. The severity of this flaw depends on your application.
 
-Next Sht
+Pasting wipes out data validation because Excel considers validation to be a format
+
+for a cell. Therefore, it's in the same classification as font size, color, or other similar attributes. When you paste a cell, you're replacing the formats in the target cell with those of the source cell. Unfortunately, those formats also include your
+
+validation rules.
+
+Preventing data validation from being destroyed
+
+The procedure in this section demonstrates how to prevent users from copying
+
+data and wiping out data validation rules. This example assumes that the work-
+
+sheet has a range named InputArea, and this input area contains data validation
+
+rules (set up by choosing Data ➪ Data Tools ➪ Data Validation). The range can have
+
+any validation rules you want.
+
+A workbook that contains this code is available at this book's website:
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+Dim VT As Long
+
+'Do all cells in the validation range
+
+'still have validation?
+
+180    PART 3  Programming Concepts
+
+On Error Resume Next
+
+VT = Range("InputRange").Validation.Type
+
+If Err.Number <> 0 Then
+
+Application.Undo
+
+MsgBox "Your last operation was canceled. " & _
+
+"It would have deleted data validation rules.", vbCritical
+
+End If
 
 End Sub
 
-Not surprisingly, you can create nested For Each-Next loops. The CountBold pro-
+The procedure is executed whenever a cell is changed. It checks the validation type
 
-cedure loops through every cell in the used range on each worksheet in every open
+of the range (named InputRange) that is  supposed to contain the data validation rules. If the VT variable contains an error, one or more cells in the InputRange no
 
-workbook and displays a count of the number of cells that are formatted as bold:
+longer have data validation. (The user probably copied some data over it.) If that's the case, the code executes the Undo method of the Application object and reverses
 
-Sub CountBold()
+the user's action. Then it displays a message box, as shown in Figure 11-6. See
 
-Dim WBook As Workbook
+Chapter 12 for more information about using On Error Resume Next.
 
-Dim WSheet As Worksheet
+FIGURE 11-6:
 
-Dim Cell As Range
+Performing data
 
-Dim Cnt As Long
+validation with an
 
-For Each WBook In Workbooks
+event procedure.
 
-For Each WSheet In WBook.Worksheets
+The net effect? It's impossible to wipe out the validation rules by copying data.
 
-For Each Cell In WSheet.UsedRange
+When Excel is broken, sometimes you can use VBA to fix it.
 
-If Cell.Font.Bold = True Then Cnt = Cnt + 1
+Events Not Associated with Objects
 
-Next Cell
+The events discussed previously in this chapter are associated with either a work-
 
-Next WSheet
+book object or a worksheet object. This section focuses on two types of events that
 
-Next WBook
+aren't associated with objects: time and keypresses.
 
-MsgBox Cnt & " bold cells found"
+Because time and keypresses aren't associated with a particular object such as a
+
+workbook or a worksheet, you program these events in a normal VBA module (unlike the other events discussed in this chapter).
+
+CHAPTER 11  Automatic Procedures and Events    181
+
+The OnTime event
+
+The OnTime event occurs when a particular time of day occurs. The following example demonstrates how to get Excel to execute a procedure when the 3 p.m.
+
+event occurs. In this case, a robot voice tells you to wake up, accompanied by a
+
+message box:
+
+Sub SetAlarm()
+
+Application.OnTime 0.625, "DisplayAlarm"
 
 End Sub
 
-CHAPTER 10  Controlling Program Flow and Making Decisions    163
+Sub DisplayAlarm()
+
+Application.Speech.Speak ("Hey, wake up")
+
+MsgBox " It's time for your afternoon break!"
+
+End Sub
+
+In this example, you use the OnTime method of the Application object. This method takes two arguments: the time (0.625, which is 3:00 p.m.) and the name
+
+of the Sub procedure to execute when the time event occurs (DisplayAlarm).
+
+This procedure is quite useful if you tend to get so wrapped up in your work that
+
+you forget about meetings and appointments. Just set an OnTime event to remind
+
+yourself.
+
+Most people find it difficult to think of time in terms of the Excel numbering system. Therefore, you may want to use the VBA TimeValue function to represent
+
+the time. TimeValue converts a string that looks like a time into a value that Excel can handle. The following statement shows an easier way to program an event for 3 p.m.:
+
+Application.OnTime TimeValue("3:00:00 pm"), "DisplayAlarm"
+
+If you want to schedule an event relative to the current time (for example,
+
+20 minutes from now), you can use a statement like this:
+
+Application.OnTime Now + TimeValue("00:20:00"), "DisplayAlarm"
+
+You can also use the OnTime method to run a VBA procedure on a particular day.
+
+You must make sure that your computer keeps running and that the workbook
+
+with the procedure is kept open. The following statement runs the DisplayAlarm
+
+procedure at 5 p.m. on December 31, 2019:
+
+Application.OnTime DateValue("12/31/2019 5:00 pm"), "DisplayAlarm"
+
+This particular code line could come in handy to warn you that you need to go
+
+home and get ready for the New Year's Eve festivities.
+
+182    PART 3  Programming Concepts
+
+Here's another example that uses the OnTime event. Executing the UpdateClock procedures writes the time to cell A1 and also programs another event five seconds
+
+later. This event reruns the UpdateClock procedure. The net effect is that cell A1 is updated with the current time every five seconds. To stop the events, execute the
+
+StopClock procedure (which cancels the event). Note that NextTick is a module-
+
+level variable that stores the time for the next event.
+
+Dim NextTick As Date
+
+Sub UpdateClock()
+
+'  Updates cell A1 with the current time
+
+ThisWorkbook.Sheets(1).Range("A1") = Time
+
+'  Set up the next event five seconds from now
+
+NextTick = Now + TimeValue("00:00:05")
+
+Application.OnTime NextTick, "UpdateClock"
+
+End Sub
+
+Sub StopClock()
+
+'  Cancels the OnTime event (stops the clock)
+
+On Error Resume Next
+
+Application.OnTime NextTick, "UpdateClock", , False
+
+End Sub
+
+The OnTime event persists even after the workbook is closed. In other words, if
+
+you close the workbook without running the StopClock procedure, the workbook
+
+reopens itself in five seconds (assuming that Excel is still running). To prevent
+
+this, use a Workbook_BeforeClose event procedure that contains the following statement:
+
+Call StopClock
+
+The OnTime method has two additional arguments. If you plan to use this method,
+
+you should refer to the Help system for complete details.
+
+The OnTime method has a ton of utility for all kinds of applications. Figure 11-7
+
+illustrates an analog-clock workbook that uses the OnTime method to tick every
+
+second. The clock face is actually a chart, and the chart is updated every second to display the time of day.
+
+Keypress events
+
+While you work, Excel constantly monitors what you type. Because of this, you can
+
+set up things so a keystroke or a key combination executes a procedure.
+
+CHAPTER 11  Automatic Procedures and Events    183
+
+FIGURE 11-7:
+
+An analog-clock
+
+application.
+
+Here's an example that reassigns the PgDn and PgUp keys:
+
+Sub Setup_OnKey()
+
+Application.OnKey "{PgDn}", "PgDn_Sub"
+
+Application.OnKey "{PgUp}", "PgUp_Sub"
+
+End Sub
+
+Sub PgDn_Sub()
+
+On Error Resume Next
+
+ActiveCell.Offset(1, 0).Activate
+
+End Sub
+
+Sub PgUp_Sub()
+
+On Error Resume Next
+
+ActiveCell.Offset(-1, 0).Activate
+
+End Sub
+
+After setting up the OnKey events by executing the Setup_OnKey procedure,
+
+pressing PgDn moves you down one row. Pressing PgUp moves you up one row.
+
+Notice that the key codes are enclosed in braces, not in parentheses. For a com-
+
+plete list of keyboard codes, consult the Help system. Search for  OnKey.
+
+In this example, On Error Resume Next ignores any errors that are generated. For
+
+example, if the active cell is in the first row, trying to move up one row causes an error that can safely be ignored. And if a chart sheet is active, there is no active cell.
+
+184    PART 3  Programming Concepts
+
+By executing the following routine, you cancel the OnKey events:
+
+Sub Cancel_OnKey()
+
+Application.OnKey "{PgDn}"
+
+Application.OnKey "{PgUp}"
+
+End Sub
+
+Using an empty string as the second argument for the OnKey method does  not
+
+cancel the OnKey event. Rather, it causes Excel to simply ignore the keystroke. For
+
+example, the following statement tells Excel to ignore Alt+F4. The percent sign
+
+represents the Alt key:
+
+Application.OnKey "%{F4}", ""
+
+Although you can use the OnKey method to assign a shortcut key for executing a
+
+macro, you should use the Macro Options dialog box for this task. For more details,
+
+see Chapter 5.
+
+If you close the workbook that contains the code and leave Excel open, the OnKey
+
+method doesn't reset. As a consequence, pressing the shortcut key causes Excel
+
+to automatically open the file with the macro. To prevent this from happening,
+
+you should include code in your Workbook_BeforeClose event code (shown earlier
+
+in this chapter) to reset the OnKey event.
+
+CHAPTER 11  Automatic Procedures and Events    185
 
 IN THIS CHAPTER
 
-» Knowing the event types that can
+» Understanding the difference
 
-trigger an execution
+between programming errors and
 
-» Finding out where to place your
+runtime errors
 
-event-handler VBA code
+» Trapping and handling runtime
 
-» Executing a macro when a workbook
+errors
 
-is opened or closed
+» Using On Error and Resume
 
-» Executing a macro when a workbook
+statements
 
-or worksheet is activated
+» Finding out how you can use an error
 
-Chapter 11
+to your advantage
 
-Automatic Procedures
+Chapter 12
 
-and Events
+Error-Handling
 
-Y ou have a number of ways to execute a VBA Sub procedure. One way is to
+Techniques
 

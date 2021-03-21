@@ -4,7 +4,7 @@ work, you need to take a close look at your data backup procedure. You do have a
 
 data backup procedure, right?
 
-CHAPTER 24  Ten VBA Do’s and Don’ts    387
+CHAPTER 24  Ten VBA Do's and Don'ts    387
 
 Index
 
@@ -1700,7 +1700,7 @@ contributions to the Excel community. You can find Mike at  www.datapig
 
 technologies.com .
 
-Publisher’s Acknowledgments
+Publisher's Acknowledgments
 
 Executive Editor: Katie Mohr
 
@@ -1772,7 +1772,7 @@ Chapter 2 Jumping Right In
 
 First Things First
 
-What You’ll Be Doing
+What You'll Be Doing
 
 Taking the First Steps
 
@@ -1856,7 +1856,7 @@ Object events
 
 Finding Out More
 
-Using VBA’s Help system
+Using VBA's Help system
 
 Using the Object Browser
 
@@ -1926,7 +1926,7 @@ Using Variables, Constants, and Data Types
 
 Understanding variables
 
-What are VBA’s data types?
+What are VBA's data types?
 
 Declaring and scoping variables
 
@@ -2090,7 +2090,7 @@ Types of Errors
 
 An Erroneous Example
 
-The macro’s not quite perfect
+The macro's not quite perfect
 
 The macro is still not perfect
 
@@ -2230,7 +2230,7 @@ The GetSaveAsFilename Method
 
 Getting a Folder Name
 
-Displaying Excel’s Built-in Dialog Boxes
+Displaying Excel's Built-in Dialog Boxes
 
 Chapter 16 UserForm Basics
 
@@ -2382,7 +2382,7 @@ Customizing Shortcut Menus
 
 Adding a new item to the Cell shortcut menu
 
-What’s different since Excel 2007?
+What's different since Excel 2007?
 
 Part 5 Putting It All Together
 
@@ -2424,13 +2424,13 @@ Returning a sorted list
 
 Using the Insert Function Dialog Box
 
-Displaying the function’s description
+Displaying the function's description
 
 Adding argument descriptions
 
 Chapter 21 Creating Excel Add-Ins
 
-Okay . . . So What’s an Add-In?
+Okay . . . So What's an Add-In?
 
 Why Create Add-Ins?
 
@@ -2500,27 +2500,27 @@ Dissecting the Other Excel Files in Your Organization
 
 Asking Your Local Excel Guru
 
-Chapter 24 Ten VBA Do’s and Don’ts
+Chapter 24 Ten VBA Do's and Don'ts
 
 Do Declare All Variables
 
-Don’t Confuse Passwords with Security
+Don't Confuse Passwords with Security
 
 Do Clean Up Your Code
 
-Don’t Put Everything in One Procedure
+Don't Put Everything in One Procedure
 
 Do Consider Other Software
 
-Don’t Assume That Everyone Enables Macros
+Don't Assume That Everyone Enables Macros
 
 Do Get in the Habit of Experimenting
 
-Don’t Assume That Your Code Will Work with Other Excel Versions
+Don't Assume That Your Code Will Work with Other Excel Versions
 
 Do Keep Your Users in Mind
 
-Don’t Forget About Backups
+Don't Forget About Backups
 
 Index
 

@@ -1,854 +1,1184 @@
-T here are three flavors of functions: those built into VBA (vanilla), those built into Excel (strawberry), and other functions written in VBA (chocolate).
+that you record always work like this. In many cases, however, you need to
 
-Previous chapters mention how you can use functions in your VBA expres-
+control the flow of your code by skipping some statements, executing some state-
 
-sions, and this chapter provides a full explanation. Functions can make your VBA
+ments multiple times, and testing conditions to determine what the procedure does next. Hang on to your hat and enjoy the ride, because you're about to discover the essence of programming.
 
-code perform some powerful feats, with little or no programming effort required.
+Going with the Flow, Dude
 
-If you like that idea, this chapter’s for you.
+Some programming newbies can't understand how a dumb computer can make
 
-What Is a Function?
+intelligent decisions. The secret is in several programming constructs that most
 
-Except for a few people who think Excel is a word processor, all Excel users incor-
+programming languages support. Table 10-1 provides a sneak preview of these constructs. (These are explained later in this chapter.)
 
-porate worksheet functions in their formulas. The most common worksheet func-
+CHAPTER 10  Controlling Program Flow and Making Decisions    145
 
-tion is the SUM function, and you have more than 500 others at your disposal.
+TABLE 10-1
 
-A  function essentially performs a calculation and returns a single value. The SUM
+Programming Constructs for Making Decisions
 
-function, of course, returns the sum of a range of values. The same holds true for
+Construct
 
-functions used in your VBA expressions: Each function does its thing and returns
+How It Works
 
-a single value.
+GoTo statement
 
-CHAPTER 9  Using VBA and Worksheet Functions    131
+Jumps to a particular statement
 
-The functions you use in VBA can come from three sources:
+If-Then structure
 
-» Built-in functions provided by VBA
+Does something if something else is true
 
-» Worksheet functions provided by Excel
+Select Case
 
-» Custom functions that you (or someone else) write, using VBA
+Does any of several things, depending on something's value
 
-The rest of this chapter clarifies the differences.
+For-Next loop
 
-Using Built-In VBA Functions
+Executes a series of statements a specified number of times
 
-VBA provides numerous built-in functions. Some of these functions take argu-
+Do-While loop
 
-ments, and some do not.
+Does something as long as something else remains true
 
-VBA function examples
+Do-Until loop
 
-This section presents a few examples of using VBA functions in code. In many of
+Does something until something else becomes true
 
-these examples, the MsgBox function displays a value in a message box. Yes, MsgBox is a VBA function — a rather unusual one, but a function nonetheless.
+The GoTo Statement
 
-This useful function displays a message in a dialog box and also returns a value.
+A GoTo statement offers the most straightforward means for changing a
 
-For more details about the MsgBox function, see Chapter 15.
+program's flow. The GoTo statement simply transfers program execution to a new statement, which is preceded by a label.
 
-A workbook that contains all the examples is available at this book’s website.
+Your VBA procedures can contain as many labels as you like. A  label is just a text string followed by a colon.
 
-Displaying the system date or time
+The following procedure shows how a GoTo statement works:
 
-The first example uses VBA’s Date function to display the current system date in
+Sub CheckUser()
 
-a message box:
+UserName = InputBox("Enter Your Name: ")
 
-Sub ShowDate()
+If UserName <> "Satya Nadella" Then GoTo WrongName
 
-MsgBox "Today is: " & Date
+MsgBox ("Welcome Satya...")
 
-End Sub
+'   ...[More code here] ...
 
-Notice that the Date function doesn’t use an argument. Unlike worksheet func-
+Exit Sub
 
-tions, a VBA function with no argument doesn’t require an empty set of parenthe-
+WrongName:
 
-ses. In fact, if you type an empty set of parentheses, the VBE promptly removes
-
-them.
-
-To get the system time, use the Time function. And if you want it all, use the Now
-
-function to return both the date and the time.
-
-132    PART 3  Programming Concepts
-
-Finding a string length
-
-The following procedure uses the VBA Len function, which returns the length of a
-
-text string. The Len function takes one argument: the string. When you execute
-
-this procedure, the message box displays your name, and the number of charac-
-
-ters in your name (see Figure 9-1).
-
-Sub GetLength()
-
-Dim MyName As String
-
-Dim StringLength As Long
-
-MyName = Application.UserName
-
-StringLength = Len(MyName)
-
-MsgBox MyName & " has " & StringLength & " characters."
+MsgBox "Sorry. Only Satya Nadella can run this."
 
 End Sub
 
-FIGURE 9-1:
+The procedure uses the InputBox function to get the user's name. Then a decision
 
-Calculating the
+is made: If the user enters a name other than Satya Nadella, the program flow
 
-length of your
+jumps to the WrongName label, displays an apologetic message, and the proce-
 
-name.
+dure ends. On the other hand, if Mr. Nadella runs this macro and uses his real
 
-Excel also has a LEN function, which you can use in your worksheet formulas. The
+name, the procedure displays a welcome message and then executes some
 
-Excel version and the VBA function work the same.
+additional code (not shown in the example).
 
-Displaying the name of a month
+Notice that the Exit Sub statement ends the procedure before the second MsgBox
 
-The following procedure uses the MonthName function, which returns the name
+function has a chance to work. Without that Exit Sub statement, both MsgBox statements would be executed.
 
-of a month. MonthName uses one argument: an integer between 1 and 12.
+146    PART 3  Programming Concepts
 
-Sub ShowMonthName()
+WHAT IS STRUCTURED PROGRAMMING?
 
-Dim ThisMonth As Long
+DOES IT MATTER?
 
-ThisMonth = Month(Date)
+If you hang around with programmers, sooner or later you hear the term  structured  programming . This term has been around for decades, and programmers generally agree that structured programs are superior to unstructured programs. So what is
 
-MsgBox MonthName(ThisMonth)
+structured programming? And can you do that using VBA?
+
+The basic premise of structured programming is that a procedure or code segment
+
+should have only one entry point and one exit point. In other words, a block of code should be a stand-alone unit. A program cannot jump into the middle of this unit;
+
+neither can it exit at any point except the single exit point. When you write structured code, your program progresses in an orderly manner and is easy to follow — unlike a
+
+program that jumps around in a haphazard fashion. This pretty much rules out using
+
+the GoTo statement.
+
+In general, a structured program is easier to read and understand. More important,
+
+it's also easier to modify when the need arises.
+
+VBA is indeed a structured language. It offers standard structured constructs such
+
+as If-Then-Else, For-Next loops, Do-Until loops, Do-While loops, and Select Case
+
+structures. Furthermore, it fully supports module code constructions. If you're new
+
+to programming, you should try to develop good structure-programming habits
+
+early on. End of lecture.
+
+This simple procedure works, but VBA provides several better (and more
+
+structured) alternatives than GoTo. In general, you should use GoTo only when
+
+you have no other way to perform an action. In real life, the only time you  must use a GoTo statement is for trapping errors. (You get a detailed review of error
+
+handling in Chapter 12.)
+
+By the way, the CheckUser procedure simply demonstrates the GoTo statement.
+
+It's not intended to demonstrate an effective security technique!
+
+Many hard-core programming types have a deep-seated hatred for GoTo state-
+
+ments because using them tends to result in difficult-to-read (and difficult-to-
+
+maintain)「spaghetti code.」Therefore, you should never admit that you use GoTo
+
+statements when talking with other programmers.
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    147
+
+Decisions, Decisions
+
+As in many other aspects of life, effective decision-making is the key to success
+
+in writing Excel macros. This section reviews two programming structures
+
+that can empower your VBA procedures with some impressive decision-making
+
+capabilities: If-Then and Select Case.
+
+The If-Then structure
+
+The If-Then structure is VBA's most important control structure. You'll probably
+
+use this command on a daily basis.
+
+Use the If-Then structure when you want to execute one or more statements conditionally. The optional Else clause, if included, lets you execute one or more
+
+statements if the condition you're testing is  not true. Here's the simple CheckUser procedure presented earlier in this chapter, recoded to use the If-Then-Else structure:
+
+Sub CheckUser2()
+
+UserName = InputBox("Enter Your Name: ")
+
+If UserName = "Satya Nadella" Then
+
+MsgBox ("Welcome Satya...")
+
+'    ...[More code here] ...
+
+Else
+
+MsgBox "Sorry. Only Satya Nadella can run this."
+
+End If
 
 End Sub
 
-This procedure uses the Month function to get the current month (as a value), and
+You would probably agree that this version is much easier to follow.
 
-this value is assigned to the ThisMonth variable. The MonthName function then
+A workbook that contains this section's examples can be downloaded from this
 
-converts the value to text. So if you run this procedure in April, the message box
+book's website.
 
-displays the text April.
+If-Then examples
 
-CHAPTER 9  Using VBA and Worksheet Functions    133
+The following procedure demonstrates the If-Then structure without the optional
 
-Actually, the ThisMonth variable isn’t required. You can get the same effect with this expression, which uses three VBA functions:
+Else clause:
 
-MonthName(Month(Date))
+Sub GreetMe()
 
-Here, the current date is passed as an argument to the Month function, which returns a value that’s passed as an argument to the MonthName function.
-
-Determining a file size
-
-The following Sub procedure displays the size, in bytes, of the Excel executable
-
-file. It finds this value by using the FileLen function:
-
-Sub GetFileSize()
-
-Dim TheFile As String
-
-TheFile = "C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE"
-
-MsgBox FileLen(TheFile)
+If Time < 0.5 Then MsgBox "Good Morning"
 
 End Sub
 
-Notice that this routine  hard-codes the filename (that is, explicitly states the path).
+148    PART 3  Programming Concepts
 
-This isn’t a good idea. The file may not be on the C drive, or the Excel folder may
+The GreetMe procedure uses VBA's Time function to get the system time. If the current time is less than .5 (in other words, before noon), the procedure displays
 
-have a different name. The following statement shows a better approach:
+a friendly greeting. If Time is greater than or equal to .5, the procedure ends, and nothing happens.
 
-TheFile = Application.Path & "\EXCEL.EXE"
+To display a different greeting if Time is greater than or equal to .5, you can add
 
-Path is a property of the Application object. It simply returns the name of the folder in which the application (that is, Excel) is installed (without a trailing backslash).
+another If-Then statement after the first one:
 
-Identifying the type of a selected object
+Sub GreetMe2()
 
-The following procedure uses the TypeName function, which returns the type of
+If Time < 0.5 Then MsgBox "Good Morning"
 
-the selection on the worksheet (as a string):
-
-Sub ShowSelectionType()
-
-Dim SelType As String
-
-SelType = TypeName(Selection)
-
-MsgBox SelType
+If Time >= 0.5 Then MsgBox "Good Afternoon"
 
 End Sub
 
-The selection could be a Range, a Picture, a Rectangle, a ChartArea, or any other
+Notice that the second If-Then statement uses >= (greater than or equal to). This ensures that the entire day is covered. Had it used > (greater than), no message
 
-type of object that can be selected.
+would appear if this procedure were executed at precisely 12:00 noon. That's pretty unlikely, but with an important program like this, you don't want to take
 
-134    PART 3  Programming Concepts
+any chances.
 
-The TypeName function is very versatile. You can also use this function to deter-
+An If-Then-Else example
 
-mine the data type of a variable.
+Another approach to the preceding problem uses the Else clause. Here's the same
 
-VBA functions that do more
+procedure recoded to use the If-Then-Else structure:
 
-than return a value
+Sub GreetMe3()
 
-A few VBA functions go above and beyond the call of duty. Rather than simply
+If Time < 0.5 Then MsgBox "Good Morning" Else _
 
-return a value, these functions have some useful side effects. Table 9-1 lists them.
-
-TABLE 9-1
-
-VBA Functions with Useful Side Benefits
-
-Function
-
-What It Does
-
-MsgBox
-
-Displays a handy dialog box containing a message and buttons. The function returns a code that identifies which button the user clicks. See Chapter 15 for details.
-
-InputBox
-
-Displays a simple dialog box that asks the user for some input. The function returns whatever the user enters in the dialog box. Chapter 15 explores the InputBox function.
-
-Shell
-
-Executes another program. The function returns the  task ID (a unique identifier) of the other program (or an error if the function can’t start the other program).
-
-Discovering VBA functions
-
-How do you find out which functions VBA provides? Good question. The best source is the Excel VBA system. Another way is to type VBA , followed by a period.
-
-You get a list of items, as shown in Figure 9-2. Those with a green icon are functions. If this feature isn’t working, choose VBE’s Tools ➪ Options, click the Editor tab, and place a check next to Auto List Members.
-
-FIGURE 9-2:
-
-A way to display
-
-a list of VBA
-
-functions.
-
-There are over 140 different functions available in VBA. Some are so specialized
-
-and obscure, you’ll never need them. Others, however, are quite useful for many
-
-applications. Table 9-2 lists some of the more useful functions.
-
-CHAPTER 9  Using VBA and Worksheet Functions    135
-
-TABLE 9-2
-
-VBA’s Most Useful Built-In Functions
-
-Function
-
-What It Does
-
-Abs
-
-Returns a number’s absolute value
-
-Array
-
-Returns a variant containing an array
-
-Choose
-
-Returns a value from a list of items
-
-Chr
-
-Converts an ANSI value to a string
-
-CurDir
-
-Returns the current path
-
-Date
-
-Returns the current system date
-
-DateAdd
-
-Returns a date to which a specified time interval has been added — for example, one
-
-month from a particular date
-
-DateDiff
-
-Returns an integer showing the number of specified time intervals between two dates —
-
-for example, the number of months between now and your birthday
-
-DatePart
-
-Returns an integer containing the specified part of a given date — for example, a date’s day of the year
-
-DateSerial
-
-Converts a date to a serial number
-
-DateValue
-
-Converts a string to a date
-
-Day
-
-Returns the day of the month from a date value
-
-Dir
-
-Returns the name of a file or directory that matches a pattern
-
-Err
-
-Returns the error number of an error condition
-
-Error
-
-Returns the error message that corresponds to an error number
-
-Exp
-
-Returns the base of the natural logarithm (e) raised to a power
-
-FileLen
-
-Returns the number of bytes in a file
-
-Fix
-
-Returns a number’s integer portion
-
-Format
-
-Displays an expression in a particular format
-
-GetSetting
-
-Returns a value from the Windows registry
-
-Hour
-
-Returns the hour portion of a time
-
-InputBox
-
-Displays a box to prompt a user for input
-
-InStr
-
-Returns the position of a string within another string (counting from the start)
-
-InStrRev
-
-Returns the position of a string within another string (counting from the end)
-
-Int
-
-Returns the integer portion of a number
-
-IsArray
-
-Returns True if a variable is an array
-
-IsDate
-
-Returns True if an expression is a date
-
-136    PART 3  Programming Concepts
-
-Function
-
-What It Does
-
-IsEmpty
-
-Returns True if a variable has not been initialized
-
-IsError
-
-Returns True if an expression is an error value
-
-IsMissing
-
-Returns True if an optional argument was not passed to a procedure
-
-IsNull
-
-Returns True if an expression contains no valid data
-
-IsNumeric
-
-Returns True if an expression can be evaluated as a number
-
-LBound
-
-Returns the smallest subscript for a dimension of an array
-
-LCase
-
-Returns a string converted to lowercase
-
-Left
-
-Returns a specified number of characters from the left of a string
-
-Len
-
-Returns the number of characters in a string
-
-Mid
-
-Returns a specified number of characters from a string
-
-Minute
-
-Returns the minutes portion of a time value
-
-Month
-
-Returns the month from a date value
-
-MsgBox
-
-Displays a message box and (optionally) returns a value
-
-Now
-
-Returns the current system date and time
-
-Replace
-
-Replaces a substring in a string with another substring
-
-RGB
-
-Returns a numeric RGB value representing a color
-
-Right
-
-Returns a specified number of characters from the right of a string
-
-Rnd
-
-Returns a random number between 0 and 1
-
-Second
-
-Returns the seconds portion of a time value
-
-Shell
-
-Runs an executable program
-
-Space
-
-Returns a string with a specified number of spaces
-
-Split
-
-Splits a string into parts, using a delimiting character
-
-Sqr
-
-Returns a number’s square root
-
-String
-
-Returns a repeating character or string
-
-Time
-
-Returns the current system time
-
-Timer
-
-Returns the number of seconds since midnight
-
-TimeSerial
-
-Returns the time for a specified hour, minute, and second
-
-TimeValue
-
-Converts a string to a time serial number
-
-(continued)
-
-CHAPTER 9  Using VBA and Worksheet Functions    137
-
-TABLE 9-2  (continued)
-
-Function
-
-What It Does
-
-Trim
-
-Returns a string without leading or trailing spaces
-
-TypeName
-
-Returns a string that describes a variable’s data type
-
-UBound
-
-Returns the largest available subscript for an array’s dimension
-
-UCase
-
-Converts a string to uppercase
-
-Val
-
-Returns the numbers contained in a string
-
-Weekday
-
-Returns a number representing a day of the week
-
-Year
-
-Returns the year from a date value
-
-For complete details on a particular function, type the function name in a VBA
-
-module, move the cursor anywhere in the text, and press F1.
-
-Using Worksheet Functions in VBA
-
-Although VBA offers a decent assortment of built-in functions, you might not always find exactly what you need. Fortunately, you can also use most of Excel’s
-
-worksheet functions in your VBA procedures. The only worksheet functions that
-
-you can’t use are those that have an equivalent VBA function. For example, you
-
-can’t use Excel’s RAND function (which generates a random number) because VBA
-
-has an equivalent function: Rnd.
-
-VBA makes Excel’s worksheet functions available through the WorksheetFunction
-
-object, which is contained in the Application object. Here’s an example of how you
-
-can use Excel’s SUM function in a VBA statement:
-
-Total = Application.WorksheetFunction.SUM(Range("A1:A12"))
-
-You can omit either the Application part or the WorksheetFunction part of the expression. In either case, VBA figures out what you’re doing. In other words, these three expressions all work exactly the same:
-
-Total = Application.WorksheetFunction.SUM(Range("A1:A12"))
-
-Total = WorksheetFunction.SUM(Range("A1:A12"))
-
-Total = Application.SUM(Range("A1:A12"))
-
-138    PART 3  Programming Concepts
-
-Worksheet function examples
-
-Many of Excel’s worksheet functions can be used in your VBA expressions. Think
-
-of worksheet functions as plug-ins you can use to extend the utility of your own
-
-procedures. In this section, you discover how to incorporate Excel worksheet functions into your VBA code.
-
-Finding the maximum value in a range
-
-Here’s an example that shows how to use Excel’s MAX worksheet function in a
-
-VBA procedure. This procedure displays the maximum value in column A of the
-
-active worksheet (see Figure 9-3):
-
-Sub ShowMax()
-
-Dim TheMax As Double
-
-TheMax = WorksheetFunction.MAX(Range("A:A"))
-
-MsgBox TheMax
+MsgBox "Good Afternoon"
 
 End Sub
 
-FIGURE 9-3:
+Notice the line continuation character (underscore) in the preceding example. The
 
-Using a
+If-Then-Else statement is actually a single statement. VBA provides a slightly dif-
 
-worksheet
+ferent way of coding If-Then-Else constructs that use an End If statement. There-
 
-function in
+fore, the GreetMe procedure can be rewritten as
 
-your VBA
+Sub GreetMe4()
 
-code.
+If Time < 0.5 Then
 
-You can use the MIN function to get the smallest value in a range. And as you
+MsgBox "Good Morning"
 
-might expect, you can use other worksheet functions in a similar manner. For example, you can use the LARGE function to determine the  k th-largest value in a range. The following expression demonstrates this:
+Else
 
-SecondHighest = WorksheetFunction.LARGE(Range("A:A"),2)
+MsgBox "Good Afternoon"
 
-Notice that the LARGE function uses two arguments. The second argument repre-
-
-sents the  k th part — 2, in this case (the second-largest value).
-
-CHAPTER 9  Using VBA and Worksheet Functions    139
-
-Calculating a mortgage payment
-
-The next example uses the PMT worksheet function to calculate a mortgage pay-
-
-ment. This procedure uses three variables to store the data that’s passed to the
-
-PMT function as arguments. A message box displays the calculated payment.
-
-Sub PmtCalc()
-
-Dim IntRate As Double
-
-Dim LoanAmt As Double
-
-Dim Periods As Long
-
-IntRate = 0.0625 / 12
-
-Periods = 30 * 12
-
-LoanAmt = 150000
-
-MsgBox WorksheetFunction.PMT(IntRate, Periods, -LoanAmt)
+End If
 
 End Sub
 
-As the following statement shows, you can also insert the values directly as the
+CHAPTER 10  Controlling Program Flow and Making Decisions    149
 
-function arguments:
+In fact, you can insert any number of statements under the If part and any number of statements under the Else part. This syntax is easier to read and makes the statements shorter.
 
-MsgBox WorksheetFunction.PMT(0.0625 /12, 360, -150000)
+What if you need to expand the GreetMe procedure to handle three conditions:
 
-However, using variables to store the parameters makes the code easier to read
+morning, afternoon, and evening? You have two options: Use three If-Then
 
-and modify, if necessary.
+statements or use a  nested  If-Then-Else structure.  Nesting means placing an If-Then-Else structure within another If-Then-Else structure. The first approach,
 
-Using a lookup function
+using three If-Then statements, is simpler:
 
-The following example uses VBA’s InputBox and MsgBox functions, plus Excel’s
+Sub GreetMe5()
 
-VLOOKUP function. It prompts for a part number and then gets the price from a
+Dim Msg As String
 
-lookup table. In Figure 9-4, range A1:B13 is named PriceList.
+If Time < 0.5 Then Msg = "Morning"
 
-Sub GetPrice()
+If Time >= 0.5 And Time < 0.75 Then Msg = "Afternoon"
 
-Dim PartNum As Variant
+If Time >= 0.75 Then Msg = "Evening"
 
-Dim Price As Double
-
-PartNum = InputBox("Enter the Part Number")
-
-Sheets("Prices").Activate
-
-Price = WorksheetFunction.VLOOKUP(PartNum, Range("PriceList"), 2, False)
-
-MsgBox PartNum & " costs " & Price
+MsgBox "Good " & Msg
 
 End Sub
 
-You can download this workbook from the book’s website.
+Now, you can get fancy by using a variable. The Msg variable gets a different text
 
-140    PART 3  Programming Concepts
+value, depending on the time of day. The MsgBox statement displays the greeting:
 
-FIGURE 9-4:
+Good Morning, Good Afternoon, or Good Evening.
 
-The range,
+The following procedure performs the same action but uses an If-Then-End If
 
-named PriceList,
+structure:
 
-contains prices
+Sub GreetMe6()
 
-for parts.
+Dim Msg As String
 
-Here’s how the GetPrice procedure works:
+If Time < 0.5 Then
 
-1. VBA’s InputBox function asks the user for a part number.
+Msg = "Morning"
 
-2. The part number the user enters is assigned to the PartNum variable.
+End If
 
-3. The next statement activates the Prices worksheet, just in case it’s not already the active sheet.
+If Time >= 0.5 And Time < 0.75 Then
 
-4. The code uses the VLOOKUP function to find the part number in the table.
+Msg = "Afternoon"
 
-Notice that the arguments you use in this statement are the same as those you
+End If
 
-would use with the function in a worksheet formula. This statement assigns
+If Time >= 0.75 Then
 
-the result of the function to the Price variable.
+Msg = "Evening"
 
-5. The code displays the price for the part via the MsgBox function.
+End If
 
-This procedure doesn’t have any error handling, and it fails miserably if you enter
+MsgBox "Good " & Msg
 
-a nonexistent part number. (Try it.) If this were an actual application that’s used
+End Sub
 
-in an actual business, you would want to add some statements that deal with errors more gracefully. Chapter 12 discusess error handling.
+Using ElseIf
 
-Entering worksheet functions
+In the previous examples, every statement in the procedure is executed — even in
 
-You can’t use the Excel Paste Function dialog box to insert a worksheet function
+the morning. A slightly more efficient structure would exit the procedure as soon
 
-into a VBA module. Instead, enter such functions the old-fashioned way: by hand.
+as a condition is found to be true. In the morning, for example, the procedure should display the Good Morning message and then exit — without evaluating the
 
-However, you  can use the Paste Function dialog box to identify the function you want to use and find out about its arguments.
+other superfluous conditions.
 
-CHAPTER 9  Using VBA and Worksheet Functions    141
+150    PART 3  Programming Concepts
 
-You can also take advantage of the VBE’s Auto List Members option, which dis-
+With a tiny procedure like this, you don't have to worry about execution speed. But for larger applications in which speed is critical, you should know about another
 
-plays a drop-down list of all worksheet functions. Just type Application.Work-
+syntax for the If-Then structure: ElseIf.
 
-sheetFunction , followed by a period. Then you see a list of the functions you can use, as shown in Figure 9-5. If this feature isn’t working, choose the VBE’s Tools ➪ Options, click the Editor tab, and place a check next to Auto List Members.
+Here's how you can rewrite the GreetMe procedure by using this syntax:
 
-FIGURE 9-5:
+Sub GreetMe7()
 
-Getting a list of
+Dim Msg As String
 
-worksheet
+If Time < 0.5 Then
 
-functions that
+Msg = "Morning"
 
-you can use in
+ElseIf Time >= 0.5 And Time < 0.75 Then
 
-your VBA code.
+Msg = "Afternoon"
 
-More about using worksheet functions
+Else
 
-Newcomers to VBA often confuse VBA’s built-in functions and Excel’s workbook
+Msg = "Evening"
 
-functions. A good rule to remember is that VBA doesn’t try to reinvent the wheel.
+End If
 
-For the most part, VBA doesn’t duplicate Excel worksheet functions.
+MsgBox "Good " & Msg
 
-For most worksheet functions that are unavailable as methods of the Worksheet-
+End Sub
 
-Function object, you can use an equivalent VBA built-in operator or function. For
+When a condition is true, VBA executes the conditional statements, and the If structure ends. In other words, VBA doesn't waste time evaluating the extraneous
 
-example, the MOD worksheet function is not available in the WorksheetFunction
+conditions, which makes this procedure a bit more efficient than the previous examples. The trade-off (there are always trade-offs) is that the code is more difficult to understand. (Of course, you already knew that.)
 
-object because VBA has an equivalent: its built-in Mod operator.
+Another If-Then example
 
-Bottom line? If you need to use a function, first determine whether VBA has some-
+Here's another example that uses the simple form of the If-Then structure. This
 
-thing that meets your needs. If not, check out the worksheet functions. If all else
+procedure prompts the user for a quantity and then displays the appropriate discount, based on the quantity the user enters:
 
-fails, you may be able to write a custom function by using VBA.
+Sub ShowDiscount()
 
-Using Custom Functions
+Dim Quantity As Long
 
-After you know how to handle VBA functions and Excel worksheet functions, you
+Dim Discount As Double
 
-can dive into the third category of functions you can use in your VBA procedures:
+Quantity = InputBox("Enter Quantity:")
 
-custom functions. A  custom function (also known as a User Defined Function, or UDF) is one you develop yourself by using (what else?) VBA. To use a custom function, you must define it in the workbook in which you use it — or else define the
+If Quantity > 0 Then Discount = 0.1
 
-functions in an add-in (see Chapter 21).
+If Quantity >= 25 Then Discount = 0.15
 
-142    PART 3  Programming Concepts
+If Quantity >= 50 Then Discount = 0.2
 
-Here’s an example of defining a simple Function procedure (MultiplyTwo) and then using it in a VBA Sub procedure (ShowResult):
+If Quantity >= 75 Then Discount = 0.25
 
-Function MultiplyTwo(num1, num2) As Double
+MsgBox "Discount: " & Discount
 
-MultiplyTwo = num1 * num2
+End Sub
+
+Notice that each If-Then statement in this procedure is executed, and the value
+
+for Discount can change as the statements are executed. However, the procedure
+
+ultimately displays the correct value for Discount because the If-Then statements
+
+are in order of ascending Discount values.
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    151
+
+The following procedure performs the same tasks by using the alternative ElseIf syntax. In this case, the procedure ends immediately after executing the statements for a true condition:
+
+Sub ShowDiscount2()
+
+Dim Quantity As Long
+
+Dim Discount As Double
+
+Quantity = InputBox("Enter Quantity: ")
+
+If Quantity > 0 And Quantity < 25 Then
+
+Discount = 0.1
+
+ElseIf Quantity >= 25 And Quantity < 50 Then
+
+Discount = 0.15
+
+ElseIf Quantity >= 50 And Quantity < 75 Then
+
+Discount = 0.2
+
+ElseIf Quantity >= 75 Then
+
+Discount = 0.25
+
+End If
+
+MsgBox "Discount: " & Discount
+
+End Sub
+
+As important as the If-Then structure is to VBA, they become cumbersome when
+
+a decision involves three or more choices. Fortunately, the Select Case structure,
+
+discussed in the next section, offers a simpler and more efficient approach.
+
+The Select Case structure
+
+The Select Case structure is useful for decisions involving three or more options
+
+(although it also works with two options, providing an alternative to the If-Then-
+
+Else structure).
+
+The examples in this section are available at this book's website.
+
+A Select Case example
+
+The following example shows how to use the Select Case structure. This also shows another way to code the examples presented in the previous section:
+
+Sub ShowDiscount3()
+
+Dim Quantity As Long
+
+Dim Discount As Double
+
+Quantity = InputBox("Enter Quantity: ")
+
+Select Case Quantity
+
+Case 0 To 24
+
+Discount = 0.1
+
+152    PART 3  Programming Concepts
+
+Case 25 To 49
+
+Discount = 0.15
+
+Case 50 To 74
+
+Discount = 0.2
+
+Case Is >= 75
+
+Discount = 0.25
+
+End Select
+
+MsgBox "Discount: " & Discount
+
+End Sub
+
+In this example, the Quantity variable is being evaluated. The procedure checks for
+
+four different cases (0–24, 25–49, 50–74, and 75 or greater).
+
+Any number of statements can follow each Case statement, and they all are executed if the case is true. If you use only one statement, as in this example,
+
+you can put the statement on the same line as the Case keyword, preceded by a
+
+colon — the VBA statement separator character. This tends to make your code more compact and a bit clearer. Here's how the procedure looks in this format:
+
+Sub ShowDiscount4 ()
+
+Dim Quantity As Long
+
+Dim Discount As Double
+
+Quantity = InputBox("Enter Quantity: ")
+
+Select Case Quantity
+
+Case 0 To 24: Discount = 0.1
+
+Case 25 To 49: Discount = 0.15
+
+Case 50 To 74: Discount = 0.2
+
+Case Is >= 75: Discount = 0.25
+
+End Select
+
+MsgBox "Discount: " & Discount
+
+End Sub
+
+When VBA executes a Select Case structure, the structure is exited as soon as VBA
+
+finds a true case and executes the statements for that case.
+
+A nested Select Case example
+
+As demonstrated in the following example, you can nest Select Case structures.
+
+This procedure examines the active cell and displays a message describing the cell's contents. Notice that the procedure has three Select Case structures, and each has its own End Select statement:
+
+Sub CheckCell()
+
+Dim Msg As String
+
+Select Case IsEmpty(ActiveCell)
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    153
+
+Case True
+
+Msg = "is blank."
+
+Case Else
+
+Select Case ActiveCell.HasFormula
+
+Case True
+
+Msg = "has a formula"
+
+Case Else
+
+Select Case IsNumeric(ActiveCell)
+
+Case True
+
+Msg = "has a number"
+
+Case Else
+
+Msg = "has text"
+
+End Select
+
+End Select
+
+End Select
+
+MsgBox "Cell " & ActiveCell.Address & " " & Msg
+
+End Sub
+
+The logic goes something like this:
+
+1. Find out whether the cell is empty.
+
+2. If it's not empty, see whether it contains a formula.
+
+3. If there's no formula, find out whether it contains a numeric value or text.
+
+When the procedure ends, the Msg variable contains a string that describes the
+
+cell's contents. As shown in Figure 10-1, the MsgBox function displays that message.
+
+You can nest Select Case structures as deeply as you need to, but make sure that
+
+each Select Case statement has a corresponding End Select statement.
+
+FIGURE 10-1:
+
+A message
+
+displayed by the
+
+CheckCell
+
+procedure.
+
+154    PART 3  Programming Concepts
+
+If you're still not convinced that indenting code is worth the effort, the previous listing serves as a good example. The indentations really make the nesting levels
+
+clear. Take a look at the same procedure without any indentation:
+
+Sub CheckCell()
+
+Dim Msg As String
+
+Select Case IsEmpty(ActiveCell)
+
+Case True
+
+Msg = "is blank."
+
+Case Else
+
+Select Case ActiveCell.HasFormula
+
+Case True
+
+Msg = "has a formula"
+
+Case Else
+
+Select Case IsNumeric(ActiveCell)
+
+Case True
+
+Msg = "has a number"
+
+Case Else
+
+Msg = "has text"
+
+End Select
+
+End Select
+
+End Select
+
+MsgBox "Cell " & ActiveCell.Address & " " & Msg
+
+End Sub
+
+Fairly incomprehensible, eh?
+
+Knocking Your Code for a Loop
+
+The term  looping refers to repeating a block of VBA statements numerous times.
+
+Why use loops? Your code can . . .
+
+» Loop through a range of cells, working with each cell individually.
+
+» Loop through all open workbooks (the Workbooks collection) and do some-
+
+thing with each one.
+
+» Loop through all worksheets in a workbook (the Worksheets collection) and
+
+do something with each one.
+
+» Loop through all the elements in an array.
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    155
+
+» Loop through all characters in a cell.
+
+» Loop through all charts on a worksheet (the ChartObjects collection) and do something with each chart.
+
+VBA supports several types of loops, and the examples that follow demonstrate a
+
+few ways that you can use them.
+
+For-Next loops
+
+The examples in this section are all available at this book's website.
+
+The simplest type of loop is a For-Next loop. The looping is controlled by a counter variable, which starts at one value and stops at another value. The statements between the For statement and the Next statement are the statements that get
+
+repeated in the loop. To see how this works, keep reading.
+
+A For-Next example
+
+The following example uses a For-Next loop to sum the first 1,000 positive numbers. The Total variable starts out as zero. Then the looping occurs. The variable Cnt is the loop counter. It starts out as 1 and is incremented by 1 each time
+
+through the loop. The loop ends when Cnt is 1,000.
+
+This example has only one statement inside the loop. This statement adds the value of Cnt to the Total variable. When the loop finishes, a MsgBox displays the
+
+sum of the numbers.
+
+Sub AddNumbers()
+
+Dim Total As Double
+
+Dim Cnt As Long
+
+Total = 0
+
+For Cnt = 1 To 1000
+
+Total = Total + Cnt
+
+Next Cnt
+
+MsgBox Total
+
+End Sub
+
+Because the loop counter is a normal variable, you can write code to change its
+
+value within the block of code between the For and the Next statements. This, however, is a  very bad practice. Changing the counter within the loop can have unpredictable results. Take special precautions to ensure that your code doesn't
+
+change the value of the loop counter.
+
+156    PART 3  Programming Concepts
+
+For-Next examples with a Step
+
+You can use a Step value to skip some counter values in a For-Next loop. Here's the
+
+previous example, rewritten to sum only the odd numbers between 1 and 1,000:
+
+Sub AddOddNumbers()
+
+Dim Total As Double
+
+Dim Cnt As Long
+
+Total = 0
+
+For Cnt = 1 To 1000 Step 2
+
+Total = Total + Cnt
+
+Next Cnt
+
+MsgBox Total
+
+End Sub
+
+This time, Cnt starts out as 1 and then takes on values of 3, 5, 7, and so on. The
+
+Step value determines how the counter is incremented. Notice that the upper loop
+
+value (1000) is not actually used because the highest value of Cnt will be 999.
+
+Here's another example that uses a Step value of 3. This procedure works with the
+
+active sheet and applies light gray shading to every third row, from row 1 to row 100.
+
+Sub ShadeEveryThirdRow()
+
+Dim i As Long
+
+For i = 1 To 100 Step 3
+
+Rows(i).Interior.Color = RGB(200, 200, 200)
+
+Next i
+
+End Sub
+
+Figure 10-2 shows the result of running this macro.
+
+FIGURE 10-2:
+
+Using a loop to
+
+apply background
+
+shading to rows.
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    157
+
+A For-Next example with an Exit For statement
+
+A For-Next loop can also include one or more Exit For statements within the loop.
+
+When VBA encounters this statement, the loop terminates immediately.
+
+The following example, available on the book's website, demonstrates the Exit For
+
+statement. This procedure is a Function procedure, intended to be used in a work-
+
+sheet formula. The function accepts one argument (a variable named Str) and returns the characters to the left of the first numeric digit. For example, if the
+
+argument is「KBR98Z,」the function returns「KBR.」
+
+Function TextPart(Str)
+
+Dim i As Long
+
+TextPart = ""
+
+For i = 1 To Len(Str)
+
+If IsNumeric(Mid(Str, i, 1)) Then
+
+Exit For
+
+Else
+
+TextPart = TextPart & Mid(Str, i, 1)
+
+End If
+
+Next i
 
 End Function
 
-Sub ShowResult()
+The For-Next loop starts with 1 and ends with the number that represents the
 
-Dim n1 As Double, n2 As Double
+number of characters in the string. The code uses VBA's Mid function to extract a
 
-Dim Result As Double
+single character within the loop. If a numeric character is found, the Exit For statement is executed, and the loop ends prematurely. If the character is not numeric, it's appended to the returned value (which is the same as the function's
 
-n1 = 123
+name). The only time the loop will examine every character is if the string passed
 
-n2 = 544
+as the argument contains no numeric characters.
 
-Result = MultiplyTwo(n1, n2)
+Now, you might shout,「Hey, but you said something about always using a single
 
-MsgBox Result
+point of exit!」Well, you're right, and obviously, you're getting the hang of this
+
+structured programming business. But in some cases, ignoring that rule is a wise
+
+decision. In this example, it greatly speeds up your code because there's no reason
+
+to continue the loop after the first numeric digit is found.
+
+A nested For-Next example
+
+So far, all this chapter's examples use relatively simple loops. However, you can
+
+have any number of statements in the loop and nest For-Next loops inside other
+
+For-Next loops.
+
+The following example uses a nested For-Next loop to insert random numbers
+
+into a 12-row-by-5-column range of cells, as shown in Figure 10-3. Notice that
+
+the procedure executes the  inner loop (the loop with the Row counter) once for 158    PART 3  Programming Concepts
+
+each iteration of the  outer loop (the loop with the Col counter). In other words, the procedure executes the Cells(Row, Col) = Rnd statement 60 times.
+
+Sub FillRange()
+
+Dim Col As Long
+
+Dim Row As Long
+
+For Col = 1 To 5
+
+For Row = 1 To 12
+
+Cells(Row, Col) = Rnd
+
+Next Row
+
+Next Col
 
 End Sub
 
-The custom function MultiplyTwo has two arguments. The ShowResult Sub pro-
+FIGURE 10-3:
 
-cedure uses this Function procedure by passing two arguments to it (in parenthe-
+These cells were
 
-ses). The ShowResult procedure then displays a message box showing the value
+filled using a
 
-returned by the MultiplyTwo function.
+nested For-Next
 
-Of course, most custom functions aren’t as trivial as the MultiplyTwo function.
+loop.
 
-But this example should give you an idea of how a Sub procedure can make use of
+The next example uses nested For-Next loops to initialize a three-dimensional
 
-a custom function.
+array with the value 100. This procedure executes the statement in the middle of
 
-You can also use custom functions in your worksheet formulas. For example, if
+all the loops (the assignment statement) 1,000 times (10 * 10 * 10), each time with
 
-MultiplyTwo is defined in your workbook, you can write a formula such as this one:
+a different combination of values for i, j, and k:
 
-=MultiplyTwo(A1,A2)
+Sub NestedLoops()
 
-This formula returns the product of the values in cells A1 and A2.
+Dim MyArray(10, 10, 10)
 
-Creating custom worksheet functions is an important (and very useful) topic. So
+Dim i As Long
 
-important (and useful) that Chapter 20 includes examples that are actually useful.
+Dim j As Long
 
-CHAPTER 9  Using VBA and Worksheet Functions    143
+Dim k As Long
+
+For i = 1 To 10
+
+For j = 1 To 10
+
+For k = 1 To 10
+
+MyArray(i, j, k) = 100
+
+Next k
+
+Next j
+
+Next i
+
+' Other statements go here
+
+End Sub
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    159
+
+Refer to Chapter 7 for information about arrays.
+
+Here's a final example that uses nested For-Next loops, with a Step value. This
+
+procedure creates a checkerboard (or chessboard, if you prefer) by changing the
+
+background color of alternating cells (see Figure 10-4).
+
+FIGURE 10-4:
+
+Using loops to
+
+create a
+
+checkerboard
+
+pattern.
+
+The Row counter loops from 1 to 8. An If-Then construct determines which nested
+
+For-Next structure to use. For odd-numbered rows, the Col counter begins with 2.
+
+For even-numbered rows, the Col counter begins with 1. Both loops use a Step
+
+value of 2, so alternate cells are affected. Two additional statements make the cells square (just like a real checkerboard).
+
+Sub MakeCheckerboard()
+
+Dim R As Long, C As Long
+
+For R = 1 To 8
+
+If WorksheetFunction.IsOdd(R) Then
+
+For C = 2 To 8 Step 2
+
+Cells(R, C).Interior.Color = 255
+
+Next C
+
+Else
+
+For C = 1 To 8 Step 2
+
+Cells(R, C).Interior.Color = 255
+
+Next C
+
+End If
+
+Next R
+
+Rows("1:8").RowHeight = 35
+
+Columns("A:H").ColumnWidth = 6.5
+
+End Sub
+
+160    PART 3  Programming Concepts
+
+Do-While loop
+
+VBA supports another type of looping structure known as a Do-While loop. Unlike
+
+a For-Next loop, a Do-While loop continues until a specified condition is met.
+
+The following example uses a Do-While loop. This procedure uses the active cell
+
+as a starting point and then travels down the column, multiplying each cell's value by 2. The loop continues until the procedure encounters an empty cell.
+
+Sub DoWhileDemo()
+
+Do While ActiveCell.Value <> Empty
+
+ActiveCell.Value = ActiveCell.Value * 2
+
+ActiveCell.Offset(1, 0).Select
+
+Loop
+
+End Sub
+
+Do-Until loop
+
+The Do-Until loop structure is similar to the Do-While structure. The two struc-
+
+tures differ in their handling of the tested condition. A program continues to exe-
+
+cute a Do-While loop  while the condition remains true. In a Do-Until loop, the program executes the loop  until the condition is true.
+
+The following example is the same one presented for the Do-While loop but recoded to use a Do-Until loop:
+
+Sub DoUntilDemo()
+
+Do Until IsEmpty(ActiveCell.Value)
+
+ActiveCell.Value = ActiveCell.Value * 2
+
+ActiveCell.Offset(1, 0).Select
+
+Loop
+
+End Sub
+
+Using For Each-Next Loops
+
+with Collections
+
+VBA supports yet another type of looping: looping through each object in a collec-
+
+tion of objects. A collection, as you may know, consists of a number of objects of
+
+the same type. For example, Excel has a collection of all open workbooks (the Workbooks collection), and each workbook has a collection of worksheets (the Worksheets collection).
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    161
+
+The examples in this section are all available at this book's website.
+
+When you need to loop through each object in a collection, use the For Each-Next
+
+structure. The following example loops through each worksheet in the active workbook and deletes the worksheet if it's empty:
+
+Sub DeleteEmptySheets()
+
+Dim WkSht As Worksheet
+
+Application.DisplayAlerts = False
+
+For Each WkSht In ActiveWorkbook.Worksheets
+
+If WorksheetFunction.CountA(WkSht.Cells) = 0 Then
+
+WkSht.Delete
+
+End If
+
+Next WkSht
+
+Application.DisplayAlerts = True
+
+End Sub
+
+In this example, the variable WkSht is an object variable that represents each worksheet in the workbook. Nothing is special about the variable name WkSht;
+
+you can use any variable name that you like.
+
+The code loops through each worksheet and determines an empty sheet by count-
+
+ing the nonblank cells. If that count is zero, the sheet is empty, and it's deleted.
+
+Notice that the DisplayAlerts setting is turned off while the loop is doing its thing.
+
+Without that statement, Excel displays a warning every time a sheet is about to be
+
+deleted.
+
+If all the worksheets in the workbook are empty, you get an error when Excel attempts to delete the only sheet. Normally, you would write code to handle that
+
+situation.
+
+Here's another For Each-Next example. This procedure uses a loop to hide all worksheets in the active workbook except the active sheet.
+
+Sub HideSheets()
+
+Dim Sht As Worksheet
+
+For Each Sht In ActiveWorkbook.Worksheets
+
+If Sht.Name <> ActiveSheet.Name Then
+
+Sht.Visible = xlSheetHidden
+
+End If
+
+Next Sht
+
+End Sub
+
+162    PART 3  Programming Concepts
+
+The HideSheets procedure checks the sheet name. If it's not the same as the active sheet's name, the sheet is hidden. Notice that the Visible property isn't Boolean.
+
+This property can actually take on any of  three values, and Excel provides three built-in constants. If you're curious about the third possibility (xlVeryHidden),
+
+check the Help system.
+
+What gets hidden must eventually get unhidden, so here's a macro that unhides
+
+all worksheets in the active workbook:
+
+Sub UnhideSheets()
+
+Dim Sht As Worksheet
+
+For Each Sht In ActiveWorkbook.Worksheets
+
+Sht.Visible = xlSheetVisible
+
+Next Sht
+
+End Sub
+
+Not surprisingly, you can create nested For Each-Next loops. The CountBold pro-
+
+cedure loops through every cell in the used range on each worksheet in every open
+
+workbook and displays a count of the number of cells that are formatted as bold:
+
+Sub CountBold()
+
+Dim WBook As Workbook
+
+Dim WSheet As Worksheet
+
+Dim Cell As Range
+
+Dim Cnt As Long
+
+For Each WBook In Workbooks
+
+For Each WSheet In WBook.Worksheets
+
+For Each Cell In WSheet.UsedRange
+
+If Cell.Font.Bold = True Then Cnt = Cnt + 1
+
+Next Cell
+
+Next WSheet
+
+Next WBook
+
+MsgBox Cnt & " bold cells found"
+
+End Sub
+
+CHAPTER 10  Controlling Program Flow and Making Decisions    163
 
 IN THIS CHAPTER
 
-» Discovering methods for controlling
+» Knowing the event types that can
 
-the flow of your VBA procedures
+trigger an execution
 
-» Finding out about the dreaded GoTo
+» Finding out where to place your
 
-statement
+event-handler VBA code
 
-» Using If-Then and Select Case
+» Executing a macro when a workbook
 
-structures
+is opened or closed
 
-» Performing looping in your
+» Executing a macro when a workbook
 
-procedures
+or worksheet is activated
 
-Chapter 10
+Chapter 11
 
-Controlling Program
+Automatic Procedures
 
-Flow and Making
+and Events
 
-Decisions
-
-S ome VBA procedures start at the code’s beginning and progress line by line
-
-to the end, never deviating from this top-to-bottom program flow. Macros
+Y ou have a number of ways to execute a VBA Sub procedure. One way is to
 

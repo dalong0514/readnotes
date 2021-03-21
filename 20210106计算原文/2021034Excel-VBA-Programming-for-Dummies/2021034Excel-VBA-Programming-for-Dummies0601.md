@@ -1,692 +1,6 @@
-Procedures
+# 0601. Using the Excel
 
-I n the preceding chapters, you’ve seen the term  Sub procedures and  Function  procedures . The differences between the two kinds of procedures are probably still a mystery to you at this point, but fear not. This chapter clears up any confusion you may have about these concepts.
-
-Understanding Subs versus Functions
-
-The VBA code that you write in the Visual Basic Editor is known as a  procedure.
-
-The two most common types of procedures are Sub procedures and Function
-
-procedures.
-
-» A  Sub procedure is a group of VBA statements that performs an action (or a sequence of actions) with Excel.
-
-» A  Function procedure is a group of VBA statements that performs a calculation and returns a single value (or, sometimes, an array).
-
-CHAPTER 5  VBA Sub and Function Procedures    65
-
-Most of the macros you write in VBA are Sub procedures. You can think of a Sub procedure as being like a command: Execute the Sub procedure, and something
-
-happens. (Of course, exactly  what  happens depends on the Sub procedure’s VBA code.)
-
-A Function is also a procedure, but it’s quite different from a Sub. You’re already
-
-familiar with the concept of a function. Excel includes many worksheet functions
-
-that you use every day (well, at least every weekday). Examples include SUM, PMT, and VLOOKUP. You use these worksheet functions in formulas. Each function
-
-takes one or more arguments (although a few functions don’t use any arguments).
-
-The function does some behind-the-scenes calculations using those arguments
-
-and then returns a single value. Function procedures that you develop with VBA
-
-work the same way.
-
-Looking at Sub procedures
-
-Every Sub procedure starts with the keyword Sub and ends with an End Sub statement. Here’s an example:
-
-Sub ShowMessage()
-
-MsgBox "That's all folks!"
-
-End Sub
-
-This example shows a procedure named ShowMessage. A set of parentheses
-
-follows the procedure’s name. In most cases, these parentheses are empty.
-
-However, you may pass arguments to Sub procedures from other procedures.
-
-If your Sub uses arguments, list them between the parentheses.
-
-When you record a macro with the Excel macro recorder, the result is always a Sub
-
-procedure that takes no arguments.
-
-As you see later in this chapter, Excel provides quite a few ways to execute a VBA
-
-Sub procedure.
-
-Looking at Function procedures
-
-Every Function procedure starts with the keyword Function and ends with an End
-
-Function statement. Here’s a simple example:
-
-Function CubeRoot(number)
-
-CubeRoot = number ^ (1 / 3)
-
-End Function
-
-66    PART 2  How VBA Works with Excel
-
-This function, named CubeRoot, takes one argument (a variable named  number) , which is enclosed in parentheses. Functions can have as many as 255 arguments
-
-or none at all. When you execute this function, it returns a single value — the cube root of the argument passed to the function.
-
-VBA allows you to specify what type of information (also known as  data type) is returned by a Function procedure. For example, a value can be a currency, date, or
-
-text string. Chapter 7 contains more information on specifying data types.
-
-You can execute a Function procedure in only two ways: You can execute it from
-
-another procedure (a Sub or another Function procedure) or use it in a worksheet
-
-formula.
-
-No matter how hard you try, you can’t use the Excel macro recorder to record a
-
-Function procedure. You must manually enter every Function procedure that you
-
-create.
-
-Naming Subs and Functions
-
-Like humans, pets, and hurricanes, every Sub and Function procedure must have
-
-a name. Although it’s perfectly acceptable to name your dog Hairball Harris, it’s
-
-usually not a good idea to use such a freewheeling attitude when naming proce-
-
-dures. When naming procedures, you must follow a few rules:
-
-» You can use letters, numbers, and some punctuation characters, but the first character must be a letter.
-
-» You can’t use any spaces or periods in the name.
-
-» VBA does not distinguish between uppercase and lowercase letters.
-
-» You can’t use any of the following characters in a procedure name: #, $, %, &,
-
-@, ^, *, or !. In other words, your procedure name can’t look like comic-strip
-
-curse words.
-
-» If you write a Function procedure for use in a formula, avoid using a name
-
-that looks like a cell address (for example, A1 or B52). Actually, Excel allows
-
-such function names, but why make things more confusing than they are
-
-already?
-
-» Procedure names can be no longer than 255 characters. (Of course, you
-
-would never make a procedure name this long.)
-
-CHAPTER 5  VBA Sub and Function Procedures    67
-
-Ideally, a procedure’s name describes the routine’s purpose. A good practice is to create a name by combining a verb and a noun — for example, ProcessData, PrintReport, Sort_Array, or CheckFilename.
-
-Some programmers prefer using sentencelike names that provide a complete
-
-description of the procedure. Some examples include WriteReportToTextFile and
-
-Get_Print_Options_and_Print_Report. The use of such lengthy names has pros
-
-and cons. On the one hand, such names are descriptive and usually unambiguous.
-
-On the other hand, they take longer to type. Everyone develops a naming style, but
-
-if your macro isn’t just a quick-and-dirty temporary macro, it’s a good idea to be
-
-descriptive and to avoid meaningless names such as DoIt, Update, Fix, and the
-
-ever-popular Macro1.
-
-Executing Sub procedures
-
-Although you may not know much about developing Sub procedures at this point,
-
-it’s important to know how to execute these procedures. A Sub procedure is worth-
-
-less unless you know how to execute it.
-
-By the way,  executing a Sub procedure means the same thing as  running or  calling a Sub procedure. You can use whatever terminology you like.
-
-You can execute a VBA Sub in many ways; that’s one reason you can do so many
-
-useful things with Sub procedures. Here’s an exhaustive list of the ways to execute
-
-a Sub procedure:
-
-» Choose Run ➪ Run Sub/UserForm (in the VBE). Excel executes the Sub procedure in which the cursor is located. This menu command has two alternatives: the
-
-F5 key and the Run Sub/UserForm button on the Standard toolbar in the VBE.
-
-These methods don’t work if the procedure requires one or more arguments.
-
-» Use Excel’s Macro dialog box. You open this box by choosing Developer ➪
-
-Code ➪ Macros or by choosing View ➪ Macros ➪ Macros. Or bypass the Ribbon
-
-and just press Alt+F8. When the Macro dialog box appears, select the Sub
-
-procedure you want and click Run. This dialog box lists only the procedures
-
-that don’t require an argument.
-
-» Press Ctrl+key (or Ctrl+Shift+key) assigned to the Sub procedure (assuming
-
-you assigned one).
-
-» Click a button or a shape on a worksheet. The button or shape must have a
-
-Sub procedure assigned to it — which is very easy to do.
-
-68    PART 2  How VBA Works with Excel
-
-» From another Sub procedure that you write.
-
-» Click a button that you’ve added to the Quick Access toolbar. (See Chapter 19.)
-
-» From a custom item you’ve added to the Ribbon. (See Chapter 19.)
-
-» When an event occurs. As explained later in Chapter 11, these events include opening the workbook, closing the workbook, saving the workbook, making a
-
-change to a cell, activating a sheet, and other things.
-
-» From the Immediate window in the VBE. Just type the name of the Sub
-
-procedure and press Enter.
-
-Some of these techniques are covered in the following sections. To follow along,
-
-you need to enter a Sub procedure in a VBA module:
-
-1. Start with a new workbook.
-
-2. Press Alt+F11 to activate the VBE.
-
-3. Select the workbook in the Project window.
-
-4. Choose Insert ➪ Module to insert a new module.
-
-5. Enter the following in the module:
-
-Sub ShowCubeRoot()
-
-Num = InputBox("Enter a positive number")
-
-MsgBox Num ^ (1/3) & " is the cube root."
-
-End Sub
-
-This procedure asks the user for a number and then displays that number’s cube
-
-root in a message box. Figures 5-1 and 5-2 show what happens when you execute
-
-this procedure.
-
-FIGURE 5-1:
-
-Using the built-in
-
-VBA InputBox
-
-function to get
-
-a number.
-
-CHAPTER 5  VBA Sub and Function Procedures    69
-
-FIGURE 5-2:
-
-Displaying the
-
-cube root of a
-
-number via the
-
-MsgBox function.
-
-By the way, ShowCubeRoot is not an example of a  good macro. It doesn’t check for errors, so it fails easily. Try clicking the Cancel button in the input box or entering a negative number. Either action results in an error message. Chapter 12 describes
-
-how to deal with these types of errors.
-
-Executing the Sub procedure directly
-
-One way to execute this procedure is by doing so directly from the VBA module in
-
-which you defined it. Follow these steps:
-
-1. Activate the VBE, and select the VBA module that contains the procedure.
-
-2. Move the cursor anywhere in the procedure’s code.
-
-3. Press F5 (or choose Run ➪ Run Sub/UserForm).
-
-4. Respond to the input box, and click OK.
-
-The procedure displays the cube root of the number you entered.
-
-You can’t use Run ➪ Run Sub/UserForm to execute a Sub procedure that uses
-
-arguments, because you have no way to pass the arguments to the procedure.
-
-If the procedure contains one or more arguments, the only way to execute it is to
-
-call it from another procedure — which must supply the argument(s).
-
-Executing the procedure from
-
-the Macro dialog box
-
-Most of the time, you execute Sub procedures from Excel, not from the VBE.
-
-The following steps describe how to execute a macro by using Excel’s Macro
-
-dialog box:
-
-70    PART 2  How VBA Works with Excel
-
-1. If you’re working in the VBE, activate Excel.
-
-Pressing Alt+F11 is the express route.
-
-2. Choose Developer ➪ Code ➪ Macros (or press Alt+F8).
-
-Excel displays the dialog box shown in Figure 5-3.
-
-3. Select the macro.
-
-4. Click Run (or double-click the macro’s name in the list box).
-
-FIGURE 5-3:
-
-The Macro dialog
-
-box lists all
-
-available Sub
-
-procedures.
-
-The Macro dialog box doesn’t display Sub procedures that use arguments. That’s
-
-because there is no way for you to specify the arguments.
-
-Executing a macro by using a shortcut key
-
-Another way to execute a macro is to press its shortcut key. But before you can use
-
-this method, you must assign a shortcut key to the macro.
-
-You have the opportunity to assign a shortcut key in the Record Macro dialog box
-
-when you begin recording a macro. If you create the procedure without using the
-
-macro recorder, you can assign a shortcut key (or change an existing shortcut key)
-
-by using the following steps:
-
-1. Choose Developer ➪ Code ➪ Macros.
-
-2. Select the Sub procedure name from the list box.
-
-In this example, the procedure is named ShowCubeRoot.
-
-CHAPTER 5  VBA Sub and Function Procedures    71
-
-3. Click the Options button.
-
-Excel displays the Macro Options dialog box shown in Figure 5-4.
-
-4. Click the Shortcut Key option and enter a letter in the box labeled Ctrl.
-
-The letter you enter corresponds to the key combination you want to use for
-
-executing the macro. For example, if you enter the lowercase letter  c,  you can execute the macro by pressing Ctrl+C. If you enter an uppercase letter, you
-
-need to add the Shift key to the key combination. For example, if you enter  C,
-
-you can execute the macro by pressing Ctrl+Shift+C.
-
-5. Click OK to close the Macro Options dialog box and then click Cancel to
-
-close the Macro dialog box.
-
-FIGURE 5-4:
-
-The Macro
-
-Options dialog
-
-box lets you set
-
-options for your
-
-macros.
-
-After you’ve assigned a shortcut key, you can press that key combination to execute the macro. A shortcut key doesn’t work if it’s assigned to a macro that
-
-uses an argument.
-
-The shortcut keys you assign to macros override Excel’s built-in shortcut keys.
-
-For example, Ctrl+C is the standard shortcut key to copy data. If you assign Ctrl+C
-
-to a macro, you can’t use Ctrl+C to copy. This is usually not a big deal because
-
-Excel almost always provides other ways to execute commands.
-
-Executing the procedure
-
-from a button or shape
-
-Sometimes, you might like the idea of assigning the macro to a button (or any
-
-other shape) on a worksheet. To assign the macro to a button, follow these steps:
-
-72    PART 2  How VBA Works with Excel
-
-1. Activate a worksheet.
-
-2. Add a button from the Form Controls group.
-
-To display the Form Controls group, choose Developer ➪ Controls ➪ Insert (see
-
-Figure 5-5).
-
-3. Click the Button tool in the Form Controls group.
-
-It’s the first button in the first row of controls.
-
-4. Drag in the worksheet to create the button.
-
-After you add the button to your worksheet, Excel reads your mind and
-
-displays the Assign Macro dialog box shown in Figure 5-6.
-
-5. Select the macro you want to assign to the button.
-
-6. Click OK.
-
-FIGURE 5-5:
-
-The Ribbon,
-
-showing the
-
-controls available
-
-when you click
-
-Insert on the
-
-Developer tab.
-
-FIGURE 5-6:
-
-When you add a
-
-button to a
-
-worksheet, Excel
-
-automatically
-
-displays the
-
-Assign Macro
-
-dialog box.
-
-CHAPTER 5  VBA Sub and Function Procedures    73
-
-After you’ve made the assignment, clicking the button executes the macro — just like magic.
-
-When you add a button, note that the drop-down box shows two sets of controls:
-
-Form Controls and ActiveX Controls. These two groups of controls look similar,
-
-but they are actually very different. In practice, the Form Controls are easier to use.
-
-You can also assign a macro to any other shape or object. For example, assume
-
-you’d like to execute a macro when the user clicks a Rectangle object. Follow these
-
-steps:
-
-1. Add the rectangle to the worksheet.
-
-Insert a rectangle by choosing Insert ➪ Illustrations ➪ Shapes.
-
-2. Right-click the rectangle.
-
-3. Choose Assign Macro from its shortcut menu.
-
-4. Select the macro in the Assign Macro dialog box.
-
-5. Click OK.
-
-After you’ve performed these steps, clicking the rectangle executes the assigned
-
-macro.
-
-Executing the procedure from
-
-another procedure
-
-You can also execute a procedure from another procedure. Follow these steps if
-
-you want to give this a try:
-
-1. Activate the VBA module that holds the ShowCubeRoot routine.
-
-2. Enter this new procedure (either above or below ShowCubeRoot code —
-
-it makes no difference):
-
-Sub NewSub()
-
-Call ShowCubeRoot
-
-End Sub
-
-3. Execute the NewSub macro.
-
-The easiest way to do this is to move the cursor anywhere within the NewSub
-
-code and press F5. Notice that this NewSub procedure simply executes the
-
-ShowCubeRoot procedure.
-
-74    PART 2  How VBA Works with Excel
-
-By the way, the keyword Call is optional. The statement can consist of only the Sub procedure’s name. However, using the Call keyword makes it perfectly clear that
-
-a procedure is being called.
-
-Executing Function procedures
-
-Functions, unlike Sub procedures, can be executed in only two ways:
-
-» By calling the function from another Sub procedure or Function procedure
-
-» By using the function in a worksheet formula
-
-Try this simple function. Enter it in a VBA module:
-
-Function CubeRoot(number)
-
-CubeRoot = number ^ (1 / 3)
-
-End Function
-
-This function is pretty wimpy; it merely calculates the cube root of the number
-
-passed to it as its argument. It does, however, provide a starting point for under-
-
-standing functions. It also illustrates an important concept about functions: how
-
-to return the value. (You do remember that a function returns a value, right?)
-
-Notice that the single line of code that makes up this Function procedure performs
-
-a calculation. The result of the math (number to the power of 1⁄3) is assigned to the variable CubeRoot. Not coincidentally, CubeRoot is also the name of the function.
-
-To tell the function what value to return, you assign that value to the name of the
-
-function.
-
-Calling the function from a Sub procedure
-
-Because you can’t execute a function directly, you must call it from another procedure. Enter the following simple procedure in the same VBA module that contains the CubeRoot function:
-
-Sub CallerSub()
-
-Ans = CubeRoot(125)
-
-MsgBox Ans
-
-End Sub
-
-When you execute the CallerSub procedure (using any of the methods described
-
-earlier in this chapter), Excel displays a message box that contains the value of the Ans variable, which is 5.
-
-CHAPTER 5  VBA Sub and Function Procedures    75
-
-Here’s what’s going on: The CubeRoot function is executed, and it receives an argument of 125. The calculation is performed by the function’s code (using the
-
-value passed as an argument), and the function’s returned value is assigned to
-
-the Ans variable. The MsgBox function then displays the value of the Ans variable.
-
-Try changing the argument that’s passed to the CubeRoot function and run the
-
-CallerSub macro again. It works just like it should — assuming that you give the
-
-function a valid argument (a positive number).
-
-By the way, the CallerSub procedure could be simplified a bit. The Ans variable is
-
-not really required unless your code will use that variable later. You could use this single statement to obtain the same result:
-
-MsgBox CubeRoot(125)
-
-Calling a function from
-
-a worksheet formula
-
-Now it’s time to call this VBA Function procedure from a worksheet formula.
-
-Activate a worksheet in the same workbook that holds the CubeRoot function definition. Then enter the following formula in any cell:
-
-=CubeRoot(1728)
-
-The cell displays 12, which is indeed the cube root of 1,728.
-
-As you might expect, you can use a cell reference as the argument for the CubeRoot
-
-function. For example, if cell A1 contains a value, you can enter =CubeRoot(A1) .
-
-In this case, the function returns the number obtained by calculating the cube root
-
-of the value in A1.
-
-You can use this function any number of times in the worksheet. Like Excel’s built-in functions, your custom functions appear in the Insert Function dialog box. Click the Insert Function toolbar button, and choose the User Defined category.
-
-As shown in Figure 5-7, the Insert Function dialog box lists your very own function.
-
-If you want the Insert Function dialog box to display a description of the function, follow these steps:
-
-1. Choose Developer ➪ Code ➪ Macros.
-
-Excel displays the Macro dialog box, but CubeRoot doesn’t appear in the list.
-
-(CubeRoot is a Function procedure, and this list shows only Sub procedures.)
-
-Don’t fret.
-
-76    PART 2  How VBA Works with Excel
-
-FIGURE 5-7:
-
-The CubeRoot
-
-function appears
-
-in the User
-
-Defined category
-
-of the Insert
-
-Function
-
-dialog box.
-
-2. Type the word CubeRoot in the Macro Name box.
-
-3. Click the Options button.
-
-4. Enter a description of the function in the Description box.
-
-5. Click OK to close the Macro Options dialog box.
-
-6. Close the Macro dialog box by clicking the Cancel button.
-
-This descriptive text now appears in the Insert Function dialog box.
-
-Figure 5-8 shows the CubeRoot function being used in worksheet formulas.
-
-FIGURE 5-8:
-
-Using the
-
-CubeRoot
-
-function in
-
-formulas.
-
-By now, things may be starting to come together for you. You’ve found out lots
-
-about Sub and Function procedures. You start creating macros in Chapter 6, which
-
-discusses the ins and outs of developing macros by using the Excel macro recorder.
-
-And Chapter 20 reveals even more about Function procedures.
-
-CHAPTER 5  VBA Sub and Function Procedures    77
-
-IN THIS CHAPTER
-
-» Recording your actions by using the
-
-Excel built-in macro recorder
-
-» Understanding the types of macros
-
-you can record
-
-» Setting the appropriate options for
-
-macro recording
-
-» Evaluating the efficiency of recorded
-
-macros
-
-Chapter 6
-
-Using the Excel
+In This Chapter: 1) Recording your actions by using the Excel built-in macro recorder. 2) Understanding the types of macros you can record. 3) Setting the appropriate options for macro recording. 4) Evaluating the efficiency of recorded macros.
 
 Macro Recorder
 
@@ -694,3 +8,701 @@ Y  ou can use two methods to create an Excel macro:
 
 » Record it by using the Excel macro recorder.
 
+
+» Write it manually.
+
+This chapter deals specifically with the ins and outs of using the Excel macro recorder. Recording a macro isn't always the best approach, and some macros simply can't be recorded, no matter how hard you try. You'll see, however, that
+
+the Excel macro recorder is very useful. Even if your recorded macro isn't quite
+
+what you want, the macro recorder can almost always lead you in the right direction.
+
+CHAPTER 6  Using the Excel Macro Recorder    79
+
+Recording Basics
+
+You take the following basic steps when recording a macro.
+
+1. Determine what you want the macro to do.
+
+2. Get things set up properly.
+
+This step determines how well your macro works.
+
+3. Determine whether you want cell references in your macro to be relative
+
+or absolute.
+
+4. Click the Record Macro button on the left side of the status bar
+
+(or choose Developer ➪ Code ➪ Record Macro).
+
+Excel displays its Record Macro dialog box.
+
+5. Enter a name, shortcut key, macro location, and description.
+
+Each of these items — with the exception of the name — is optional.
+
+6. Click OK in the Record Macro dialog box.
+
+Excel automatically inserts a VBA module in the workbook specified in the
+
+Store Macro In box. From this point, Excel converts your actions to VBA code.
+
+It also displays a square Stop Recording button on your status bar.
+
+7. Perform the actions you want to record by using the mouse or the
+
+keyboard.
+
+8. When you finish, click the Stop Recording button on the status bar
+
+(or choose Developer ➪ Code ➪ Stop Recording).
+
+Excel stops recording your actions.
+
+9. Test the macro to make sure it works correctly.
+
+10. (Optional) Clean up the code by removing extraneous statements or
+
+add some comments to your code to explain what it does.
+
+The macro recorder is best suited for simple, straightforward macros. For example,
+
+you may want a macro that applies formatting to a selected range of cells or that
+
+sets up row and column headings for a new worksheet.
+
+The macro recorder is for Sub procedures only. You can't use the macro recorder
+
+to create Function procedures.
+
+You may also find the macro recorder helpful for developing more complex
+
+macros. That is to say, you can record some actions and then copy the recorded
+
+code into another, more complex macro. In most cases, you need to edit the recorded code and add some new VBA statements.
+
+80    PART 2  How VBA Works with Excel
+
+The macro recorder  cannot generate code for any of the following tasks, which are described later in the book:
+
+» Performing any type of repetitive looping
+
+» Performing any type of conditional actions (using an If-Then statement)
+
+» Assigning values to variables
+
+» Specifying data types
+
+» Displaying pop-up messages
+
+» Displaying custom dialog boxes
+
+The macro recorder's limited capability certainly doesn't diminish its importance.
+
+Recording your actions is perhaps the best way to master VBA .  When in doubt, try recording. Although the result may not be exactly what you want, viewing the recorded code may reveal some objects, properties, and methods that you weren't
+
+aware of and steer you in the right direction.
+
+Preparing to Record
+
+Before you take the big step and turn on the macro recorder, spend a minute or
+
+two thinking about what you're going to do. You record a macro so that Excel can
+
+automatically repeat the actions you record, so you'll want those actions to be accurate.
+
+Ultimately, the success of a recorded macro depends on five factors:
+
+» How the workbook is set up while you record the macro
+
+» What is selected when you start recording
+
+» Whether you use absolute or relative recording mode
+
+» The accuracy of your recorded actions
+
+» The context in which you play back the recorded macro
+
+The importance of these factors becomes more clear as you go through the recording process.
+
+CHAPTER 6  Using the Excel Macro Recorder    81
+
+Relative or Absolute?
+
+When recording your actions, Excel normally records absolute references to cells.
+
+(This is the default recording mode.) But quite often, this is the  wrong recording mode. If you use absolute recording mode, Excel records actual cell references.
+
+If you use relative recording, Excel records  relative references to cells. Keep reading to see the difference.
+
+Recording in absolute mode
+
+Open a new workbook and follow these steps to record a simple macro in absolute
+
+mode. This macro simply enters three month names in a worksheet:
+
+1. Make sure that the Developer ➪ Code ➪ Use Relative References button is
+
+not highlighted and then choose Developer ➪ Code ➪ Record Macro.
+
+2. Type Absolute as the name for this macro.
+
+3. Click OK to begin recording.
+
+4. Activate cell B1, and type Jan in that cell.
+
+5. Move to cell C1, and type Feb.
+
+6. Move to cell D1, and type Mar.
+
+7. Click cell B1 to activate it again.
+
+8. Stop the macro recorder.
+
+9. Press Alt+F11 to activate the VBE.
+
+10. Examine the Module1 module.
+
+Excel generates the following code:
+
+Sub Absolute()
+
+'
+
+' Absolute Macro
+
+'
+
+Range("B1").Select
+
+ActiveCell.FormulaR1C1 = "Jan"
+
+Range("C1").Select
+
+ActiveCell.FormulaR1C1 = "Feb"
+
+Range("D1").Select
+
+82    PART 2  How VBA Works with Excel
+
+ActiveCell.FormulaR1C1 = "Mar"
+
+Range("B1").Select
+
+End Sub
+
+When executed, this macro selects cell B1 and inserts the three month names
+
+into the range B1:D1. Then the macro reactivates cell B1.
+
+These same actions occur regardless of which cell is active when you execute the
+
+macro. A macro recorded by using absolute references always produces the same
+
+results when it's executed. In this case, the macro always enters the names of the first three months in the range B1:D1 on the active worksheet.
+
+Recording in relative mode
+
+In some cases, you want your recorded macro to work with cell locations in a relative manner. You may want the macro to start entering the month names in the active cell. In such a case, you need to use relative recording.
+
+You can change the manner in which Excel records your actions by clicking the
+
+Use Relative References button in the Code group of the Developer tab. This button
+
+is a toggle button. When the button appears highlighted in a different color, the
+
+recording mode is relative. When the button appears normally, you're recording in
+
+absolute mode.
+
+You can change the recording method at any time, even in the middle of recording.
+
+To see how relative mode recording works, delete the contents of range B1:D1 and
+
+then perform the following steps:
+
+1. Activate cell B1.
+
+2. Choose Developer ➪ Code ➪ Record Macro.
+
+3. Name this macro Relative.
+
+4. Click OK to begin recording.
+
+5. Click the Use Relative References button to change the recording mode
+
+to relative.
+
+When you click this button, it changes to a different color from the rest of the
+
+ribbon.
+
+6. Type Jan in cell B1.
+
+7. Move to cell C1, and type Feb.
+
+CHAPTER 6  Using the Excel Macro Recorder    83
+
+8. Move to cell D1, and type Mar.
+
+9. Select cell B1.
+
+10. Stop the macro recorder.
+
+Notice that this procedure differs slightly from the previous example. In this example, you activate the beginning cell  before  you start recording. This is an important step when you record macros that use the active cell as a base.
+
+This macro always starts entering text in the active cell. Try it. Move the cell pointer to any cell and then execute the Relative macro. The month names are
+
+always entered beginning at the active cell.
+
+With the recording mode set to relative, the code that Excel generates is quite different from the code generated in absolute mode:
+
+Sub Relative()
+
+'
+
+' Relative Macro
+
+'
+
+ActiveCell.FormulaR1C1 = "Jan"
+
+ActiveCell.Offset(0, 1).Range("A1").Select
+
+ActiveCell.FormulaR1C1 = "Feb"
+
+ActiveCell.Offset(0, 1).Range("A1").Select
+
+ActiveCell.FormulaR1C1 = "Mar"
+
+ActiveCell.Offset(0, -2).Range("A1").Select
+
+End Sub
+
+To test this macro, activate any cell except B1. The month names are entered in
+
+three cells, beginning with the cell that you activated.
+
+Notice that the code generated by the macro recorder refers to cell A1. This may
+
+seem strange because you never used cell A1 during the recording of the macro.
+
+This is simply a byproduct of the way the macro recorder works. (This is discussed
+
+in more detail in Chapter 8, where you explore the Offset property.)
+
+What Gets Recorded?
+
+When you turn on the macro recorder, Excel converts your mouse and keyboard
+
+actions to valid VBA code. The best way to understand the process is to watch the
+
+macro recorder in action. (See Figure 6-1.)
+
+84    PART 2  How VBA Works with Excel
+
+FIGURE 6-1:
+
+A convenient
+
+window
+
+arrangement for
+
+watching the
+
+macro recorder
+
+do its thing.
+
+Follow these steps:
+
+1. Start with a blank workbook.
+
+2. Make sure that the Excel window is not maximized.
+
+3. Press Alt+F11 to activate the VBE (and make sure that  this program  window is not maximized).
+
+4. Resize and arrange the Excel window and the VBE window so that both
+
+are visible.
+
+For best results, position the Excel window above the VBE window and
+
+minimize any other applications that are running.
+
+5. Activate Excel, and choose Developer ➪ Code ➪ Record Macro.
+
+6. Click OK to start the macro recorder.
+
+Excel inserts a new module (named Module1) and starts recording in that
+
+module.
+
+7. Activate the VBE program window.
+
+8. In the Project Explorer window, double-click Module1 to display that
+
+module in the Code window.
+
+Jump back to Excel and play around for a while. Choose various Excel commands
+
+and watch the code being generated in the VBE window. Select cells, enter data,
+
+CHAPTER 6  Using the Excel Macro Recorder    85
+
+format cells, use the Ribbon commands, create a chart, change column widths,
+
+manipulate graphics objects, and so on — go crazy! You'll be enlightened as you
+
+watch Excel spit out the VBA code before your very eyes.
+
+If you happen to have a system with dual monitors, you might find it helpful to
+
+keep Excel on one monitor and the VBE window on the other one.
+
+Recording Options
+
+When recording your actions to create VBA code, you have several options. Recall
+
+that Developer ➪ Code ➪ Record Macro displays the Record Macro dialog box before
+
+recording begins, as shown in Figure 6-2.
+
+FIGURE 6-2:
+
+The Record
+
+Macro dialog
+
+box provides
+
+several options.
+
+The Record Macro dialog box allows you to specify a few aspects of your macro.
+
+The following sections dive into these options.
+
+Macro name
+
+You can enter a name for the Sub procedure that you're recording. By default, Excel uses the names Macro1, Macro2, and so on for each macro you record. Don't
+
+worry if you don't give your macro a friendly name in Record Macro dialog box.
+
+You can always give it a more descriptive name later by editing the recorded code
+
+in the VBE.
+
+86    PART 2  How VBA Works with Excel
+
+Shortcut key
+
+The Shortcut key option allows you to execute the macro by pressing a shortcut
+
+key combination. For example, if you enter w (lowercase), you can execute the macro by pressing Ctrl+W. If you enter  W  (uppercase), the macro comes alive when you press Ctrl+Shift+W.
+
+You can add or change a shortcut key at any time, so there's no real reason to set
+
+this option when recording a macro. For instructions on assigning a shortcut key
+
+to an existing macro, see Chapter 5.
+
+Store Macro In option
+
+The Store Macro In option tells Excel where to store the macro that it's recording.
+
+By default, Excel puts the recorded macro in a module in the active workbook. If
+
+you prefer, you can record it in a new workbook (Excel opens a blank workbook)
+
+or in your Personal Macro Workbook.
+
+Your Personal Macro Workbook is a hidden workbook that opens automatically
+
+when Excel starts. This is a good place to store macros that you'll use with mul-
+
+tiple workbooks. The Personal Macro Workbook is named PERSONAL.XLSB. This
+
+file doesn't exist until you specify it as the location for a recorded macro. If you've made any changes to this file, Excel prompts you to save it when you exit.
+
+Description
+
+If you'd like to add some descriptive comments to your macro, enter it in the Description box. You can put anything you like here, or nothing at all.
+
+Is This Thing Efficient?
+
+You might think that recording a macro would generate some award-winning VBA
+
+code — better than you could ever write manually. Think again. Because the macro
+
+recorder has to be generic enough to record virtually every combination of actions,
+
+it often generates extraneous code that works, but is less than efficient.
+
+To demonstrate just how inefficient the macro recorder's code can be, try this:
+
+1. Turn on the macro recorder.
+
+2. Choose Page Layout ➪ Page Setup ➪ Orientation ➪ Landscape.
+
+3. Turn off the macro recorder.
+
+CHAPTER 6  Using the Excel Macro Recorder    87
+
+To take a look at the macro, activate the Module1 sheet. This single (very simple) command generates the following code:
+
+Sub Macro1()
+
+Application.PrintCommunication = False
+
+With ActiveSheet.PageSetup
+
+.PrintTitleRows = ""
+
+.PrintTitleColumns = ""
+
+End With
+
+Application.PrintCommunication = True
+
+ActiveSheet.PageSetup.PrintArea = ""
+
+Application.PrintCommunication = False
+
+With ActiveSheet.PageSetup
+
+.LeftHeader = ""
+
+.CenterHeader = ""
+
+.RightHeader = ""
+
+.LeftFooter = ""
+
+.CenterFooter = ""
+
+.RightFooter = ""
+
+.LeftMargin = Application.InchesToPoints(0.7)
+
+.RightMargin = Application.InchesToPoints(0.7)
+
+.TopMargin = Application.InchesToPoints(0.75)
+
+.BottomMargin = Application.InchesToPoints(0.75)
+
+.HeaderMargin = Application.InchesToPoints(0.3)
+
+.FooterMargin = Application.InchesToPoints(0.3)
+
+.PrintHeadings = False
+
+.PrintGridlines = False
+
+.PrintComments = xlPrintNoComments
+
+.PrintQuality = 600
+
+.CenterHorizontally = False
+
+.CenterVertically = False
+
+.Orientation = xlLandscape
+
+.Draft = False
+
+.PaperSize = xlPaperLetter
+
+.FirstPageNumber = xlAutomatic
+
+.Order = xlDownThenOver
+
+.BlackAndWhite = False
+
+.Zoom = 100
+
+.PrintErrors = xlPrintErrorsDisplayed
+
+.OddAndEvenPagesHeaderFooter = False
+
+.DifferentFirstPageHeaderFooter = False
+
+.ScaleWithDocHeaderFooter = True
+
+88    PART 2  How VBA Works with Excel
+
+.AlignMarginsHeaderFooter = True
+
+.EvenPage.LeftHeader.Text = ""
+
+.EvenPage.CenterHeader.Text = ""
+
+.EvenPage.RightHeader.Text = ""
+
+.EvenPage.LeftFooter.Text = ""
+
+.EvenPage.CenterFooter.Text = ""
+
+.EvenPage.RightFooter.Text = ""
+
+.FirstPage.LeftHeader.Text = ""
+
+.FirstPage.CenterHeader.Text = ""
+
+.FirstPage.RightHeader.Text = ""
+
+.FirstPage.LeftFooter.Text = ""
+
+.FirstPage.CenterFooter.Text = ""
+
+.FirstPage.RightFooter.Text = ""
+
+End With
+
+Application.PrintCommunication = True
+
+End Sub
+
+You may be surprised by the amount of code generated by this single command.
+
+Although you changed only one print setting, Excel generated code that set many
+
+other print-related properties.
+
+This is a good example of macro-recording overkill. If you want a macro that just
+
+switches the page setup to landscape mode, you can simplify this macro consider-
+
+ably by deleting the extraneous code. This makes the macro a bit faster and a lot
+
+easier to read. Here's how the macro looks after deleting the irrelevant lines:
+
+Sub Macro1()
+
+With ActiveSheet.PageSetup
+
+.Orientation = xlLandscape
+
+End With
+
+End Sub
+
+The only line necessary is the one that sets the Orientation property. Actually, you can simplify this macro even more because you don't really need the With-End
+
+With construct (you find out more about this construct in Chapter 14):
+
+Sub Macro1()
+
+ActiveSheet.PageSetup.Orientation = xlLandscape
+
+End Sub
+
+In this case, the macro changes the Orientation property of the PageSetup object
+
+on the active sheet. All other properties are unchanged. By the way, xlLandscape
+
+CHAPTER 6  Using the Excel Macro Recorder    89
+
+is a built-in constant that makes your code easier to read. This constant has a value of 2, so the following statement works exactly the same (but isn't as easy
+
+to read):
+
+ActiveSheet.PageSetup.Orientation = 2
+
+Stay tuned for the built-in constants explanations in Chapter 7.
+
+Rather than record this macro, you can enter it directly in a VBA module. To do so,
+
+you have to know which objects, properties, and methods to use. Although the
+
+recorded macro isn't all that great, by recording it, you realize that the PageSetup object is contained in a Worksheet object and that the PageSetup object has an
+
+Orientation property. Armed with this knowledge and a quick trip to the Help system (and probably some experimentation), you can write the macro manually.
+
+This chapter nearly sums it up when it comes to using the macro recorder. The
+
+only thing missing is experience. Eventually, you discover which recorded
+
+statements you can safely delete. Better yet, you discover how to modify a recorded
+
+macro to make it more useful.
+
+90    PART 2  How VBA Works with Excel
+
+3Programming
+
+Concepts
+
+IN THIS PART . . .
+
+Discover the essential elements of Excel programming:
+
+variables, constants, data types, operators, arrays, and
+
+so on.
+
+Get acquainted with Range objects; you'll be glad
+
+you did.
+
+Find out why VBA functions (and also Excel worksheet
+
+functions) are important.
+
+Discover the essence of programming: decision-making
+
+and looping.
+
+See how to run code automatically when certain things
+
+occur.
+
+Find out about the different types of errors and why
+
+error handling is important.
+
+Know what to do when good code does bad things: Get
+
+initiated into the bug extermination club.
+
+IN THIS CHAPTER
+
+» Knowing when, why, and how to use
+
+comments in your code
+
+» Using variables and constants
+
+» Telling VBA what type of data you're
+
+using
+
+» Getting familiar with arrays
+
+» Knowing why you may need to use
+
+labels in your procedures
+
+Chapter 7
+
+Essential VBA Language
+
+Elements
+
+B ecause VBA is a real, live programming language, it uses many elements
+
+common to all programming languages. In this chapter, you're introduced
+
+to several of these elements: comments, variables, constants, data types,
+
+arrays, and a few other goodies. If you've programmed with other languages,
+
+some of this material will be familiar. If you're a programming newbie, it's time
+
+to roll up your sleeves and get busy.
+
+Using Comments in Your VBA Code
+
+A  comment is the simplest type of VBA statement. Because VBA ignores these

@@ -4,7 +4,7 @@ T he previous chapters show you how to insert a UserForm (which contains a
 
 custom dialog box), add controls to the UserForm, and adjust some of the
 
-control’s properties. These skills, however, won’t do you much good unless
+control's properties. These skills, however, won't do you much good unless
 
 you understand how to make use of UserForms in your VBA code. This chapter
 
@@ -22,11 +22,11 @@ code that does the following:
 
 » Initializes the UserForm controls. For example, you may write code that sets the default values for the controls.
 
-» Displays the dialog box by using the UserForm object’s Show method.
+» Displays the dialog box by using the UserForm object's Show method.
 
 » Responds to the events that occur for the various controls — such as clicking a CommandButton.
 
-» Validates the information provided by the user (if the user didn’t cancel the dialog box). This step is not always necessary.
+» Validates the information provided by the user (if the user didn't cancel the dialog box). This step is not always necessary.
 
 » Takes some action with the information provided by the user (if the information is valid).
 
@@ -36,7 +36,7 @@ A UserForm Example
 
 This example demonstrates the five points described in the preceding section. In
 
-this example, you use a dialog box to get two pieces of information: a person’s
+this example, you use a dialog box to get two pieces of information: a person's
 
 name and sex. The dialog box uses a TextBox control to get the name, and it uses
 
@@ -58,9 +58,9 @@ Insert  ➪ UserForm.
 
 An empty UserForm is added to the project.
 
-3. Change the UserForm’s Caption property to Get Name and Sex.
+3. Change the UserForm's Caption property to Get Name and Sex.
 
-If the Properties window isn’t visible, press F4.
+If the Properties window isn't visible, press F4.
 
 296    PART 4  Communicating with Your Users
 
@@ -238,7 +238,7 @@ TabIndex
 
 4
 
-If you’re following along on your computer (and you should be), take a few min-
+If you're following along on your computer (and you should be), take a few min-
 
 utes to create this UserForm by using the preceding information. Make sure to
 
@@ -248,13 +248,13 @@ create the Frame object before adding the OptionButtons to it.
 
 In some cases, you may find copying an existing control easier than creating a new one. To copy a control, press Ctrl while you drag the control.
 
-If you prefer to cut to the chase, you can download the example from this book’s
+If you prefer to cut to the chase, you can download the example from this book's
 
 website.
 
 Writing code to display the dialog box
 
-After you’ve added the controls to the UserForm, your next step is to develop some
+After you've added the controls to the UserForm, your next step is to develop some
 
 VBA code to display this dialog box:
 
@@ -268,7 +268,7 @@ UserForm1.Show
 
 End Sub
 
-This short procedure uses the UserForm object’s Show method to display the
+This short procedure uses the UserForm object's Show method to display the
 
 dialog box.
 
@@ -286,7 +286,7 @@ The Assign Macro dialog box appears.
 
 4. Assign the GetData macro to the button.
 
-5. Edit the button’s caption so that it reads Data Entry.
+5. Edit the button's caption so that it reads Data Entry.
 
 If you want to get really fancy, you can add an icon to your Quick Access toolbar.
 
@@ -314,11 +314,11 @@ The dialog box appears, as shown in Figure 18-2.
 
 3. Click Enter or Close.
 
-Nothing happens — which is understandable because you haven’t created any
+Nothing happens — which is understandable because you haven't created any
 
 procedures yet.
 
-4. Click the X button on the dialog box’s title bar to dismiss the dialog box.
+4. Click the X button on the dialog box's title bar to dismiss the dialog box.
 
 FIGURE 18-2:
 
@@ -334,7 +334,7 @@ dialog box.
 
 Adding event-handler procedures
 
-You’ill often want certain procedures to trigger when certain events occur with
+You'ill often want certain procedures to trigger when certain events occur with
 
 your dialog boxes. For example, you may want to run a procedure when a dialog
 
@@ -430,7 +430,7 @@ dialog box for
 
 data entry.
 
-Here’s how the EnterButton_Click procedure works:
+Here's how the EnterButton_Click procedure works:
 
 1. The code makes sure that the proper worksheet (Sheet1) is active.
 
@@ -444,13 +444,13 @@ column A and to determine the next blank cell in the column.
 
 5. The dialog box is reset to make it ready for the next entry.
 
-Notice that clicking the Enter button doesn’t close the dialog box, because the user will probably want to enter more data. To end data entry, click the Close button.
+Notice that clicking the Enter button doesn't close the dialog box, because the user will probably want to enter more data. To end data entry, click the Close button.
 
 Validating the data
 
-Play around with this routine some more, and you’ll find that the macro has a
+Play around with this routine some more, and you'll find that the macro has a
 
-small problem: It doesn’t ensure that the user actually enters a name in the Text-
+small problem: It doesn't ensure that the user actually enters a name in the Text-
 
 Box. The following code — which is inserted into the EnterButton_Click proce-
 
@@ -476,11 +476,11 @@ End If
 
 Now the dialog box works
 
-After making these modifications, the dialog box works flawlessly. In real life, you’d probably need to collect more information than just name and sex. However, the
+After making these modifications, the dialog box works flawlessly. In real life, you'd probably need to collect more information than just name and sex. However, the
 
 same basic principles apply. You just have to deal with more UserForm controls.
 
-One more thing to remember: If the data doesn’t begin in row 1 or if the data area
+One more thing to remember: If the data doesn't begin in row 1 or if the data area
 
 contains any blank rows, the counting for the NextRow variable will be wrong.
 
@@ -488,7 +488,7 @@ The COUNTA function is counting the number of cells in column A, and the
 
 assumption is that there are no blank cells above the last name in the column.
 
-Here’s another way of determining the next empty row:
+Here's another way of determining the next empty row:
 
 NextRow = Cells(Rows.Count, 1).End(xlUp).Row + 1
 
@@ -498,7 +498,7 @@ ing the up-arrow key, and then moving down one row. If you do that manually,
 
 the cell pointer will be in the next empty cell in column A — even if the data area
 
-doesn’t begin in row 1 and contains blank rows.
+doesn't begin in row 1 and contains blank rows.
 
 A ListBox Example
 
@@ -514,7 +514,7 @@ and methods:
 
 » ListIndex: This property returns the index number of the selected item or
 
-sets the item that’s selected (single selections only). The first item has a
+sets the item that's selected (single selections only). The first item has a
 
 ListIndex of 0 (not 1).
 
@@ -528,7 +528,7 @@ ListIndex of 0 (not 1).
 
 CHAPTER 18  UserForm Techniques and Tricks    303
 
-Most of the methods and properties that work with ListBoxes also work with ComboBoxes. So after you’ve figured out how to handle ListBoxes, you can transfer that knowledge to your work with ComboBoxes.
+Most of the methods and properties that work with ListBoxes also work with ComboBoxes. So after you've figured out how to handle ListBoxes, you can transfer that knowledge to your work with ComboBoxes.
 
 Filling a ListBox
 
@@ -536,7 +536,7 @@ To keep things simple, start with an empty workbook. The example in this section
 
 assumes the following:
 
-» You’ve added a UserForm.
+» You've added a UserForm.
 
 » The UserForm contains a ListBox control named ListBox1 .
 
@@ -630,7 +630,7 @@ Determining the selected item
 
 The preceding code merely displays a dialog box with a ListBox filled with month
 
-names. What’s missing is a procedure to determine which item in the ListBox is
+names. What's missing is a procedure to determine which item in the ListBox is
 
 selected.
 
@@ -664,9 +664,9 @@ If no item in the ListBox is selected, the ListIndex property returns –1. Howe
 
 this will never be the case for this particular ListBox, because code in the
 
-UserForm_Initialize procedure selected the first item. It’s impossible to unselect
+UserForm_Initialize procedure selected the first item. It's impossible to unselect
 
-an item without selecting another item. So there will  always be a selected item, if the user doesn’t actually select a month.
+an item without selecting another item. So there will  always be a selected item, if the user doesn't actually select a month.
 
 Figure 18-4 shows how this looks.
 
@@ -684,7 +684,7 @@ The first item in a ListBox has a ListIndex of 0, not 1 (as you might expect). T
 
 is always the case, even if you use an Option Base 1 statement to change the default lower bound for arrays.
 
-This example is available at this book’s website.
+This example is available at this book's website.
 
 Determining multiple selections
 
@@ -790,13 +790,13 @@ CHAPTER 18  UserForm Techniques and Tricks    307
 
 This routine uses a For-Next loop to cycle through each item in the ListBox. Notice
 
-that the loop starts with item 0 (the first item) and ends with the last item ( determined by the value of the ListCount property minus 1). If an item’s Selected
+that the loop starts with item 0 (the first item) and ends with the last item ( determined by the value of the ListCount property minus 1). If an item's Selected
 
 property is True, it means that the list item was selected. The code also uses a
 
 variable (Counter) to keep track of how many items are selected. An If-Then statement modifies the message if nothing is selected.
 
-This example is available at this book’s website.
+This example is available at this book's website.
 
 Selecting a Range
 
@@ -804,11 +804,11 @@ In some cases, you may want the user to select a range while a dialog box is dis
 
 dialog box, which is displayed when you choose Home ➪ Insert ➪ Tables ➪ Table.
 
-The Create Table dialog box has a range selector control that contains Excel’s guess regarding the range to be converted — but you can use this control to change the range by selecting cells in the worksheet.
+The Create Table dialog box has a range selector control that contains Excel's guess regarding the range to be converted — but you can use this control to change the range by selecting cells in the worksheet.
 
 To allow a range selection in your dialog box, add a RefEdit control. The following
 
-example displays a dialog box with the current region’s range address displayed
+example displays a dialog box with the current region's range address displayed
 
 in a RefEdit control, as shown in Figure 18-6. The current region is the block of
 
@@ -838,7 +838,7 @@ This example assumes the following:
 
 The code is stored in a VBA module and shown here. This code does two things:
 
-initializes the dialog box by assigning the current region’s address to the RefEdit
+initializes the dialog box by assigning the current region's address to the RefEdit
 
 control and displays the UserForm.
 
@@ -902,7 +902,7 @@ UserForm contains more than one set of OptionButtons, make sure that each set
 
 of OptionButtons works as a group. You can do so in either of two ways:
 
-» Enclose each set of OptionButtons in a Frame control. This approach is easier and also makes the dialog box look more organized. It’s easier to add the
+» Enclose each set of OptionButtons in a Frame control. This approach is easier and also makes the dialog box look more organized. It's easier to add the
 
 Frame before adding the OptionButtons. You can, however, also drag existing
 
@@ -912,7 +912,7 @@ OptionButtons into a Frame.
 
 (which you specify in the Properties box). If the OptionButtons are in a Frame,
 
-you don’t have to be concerned with the GroupName property.
+you don't have to be concerned with the GroupName property.
 
 FIGURE 18-7:
 
@@ -936,7 +936,7 @@ UserForm1.OptionButton1.Value = True
 
 310    PART 4  Communicating with Your Users
 
-This example is available at this book’s website. It also has code that displays the selected options when the user clicks OK.
+This example is available at this book's website. It also has code that displays the selected options when the user clicks OK.
 
 Using a SpinButton and a TextBox
 
@@ -946,13 +946,13 @@ trol consists only of arrows (no text), so you usually want a method to display 
 
 selected number. One option is to use a Label control, but this has a disadvantage:
 
-The user can’t type text in a Label. A better choice is to use a TextBox.
+The user can't type text in a Label. A better choice is to use a TextBox.
 
 A SpinButton control and TextBox control form a natural pair, and Excel uses them
 
-frequently. For example, check out Excel’s Page Setup dialog box for a few exam-
+frequently. For example, check out Excel's Page Setup dialog box for a few exam-
 
-ples. Ideally, the SpinButton and its TextBox are always in sync: If the user clicks the SpinButton, the SpinButton’s value should appear in the TextBox. And if the
+ples. Ideally, the SpinButton and its TextBox are always in sync: If the user clicks the SpinButton, the SpinButton's value should appear in the TextBox. And if the
 
 user enters a value directly into the TextBox, the SpinButton should take on that
 
@@ -982,9 +982,9 @@ The event-handler procedure for the SpinButton follows. This procedure handles
 
 the Change event, which is triggered whenever the SpinButton value is changed.
 
-When the SpinButton’s value changes (when it’s clicked), this procedure assigns
+When the SpinButton's value changes (when it's clicked), this procedure assigns
 
-the SpinButton’s value to the TextBox. To create this procedure, double-click the
+the SpinButton's value to the TextBox. To create this procedure, double-click the
 
 SpinButton to activate the Code window for the UserForm. Then enter this code:
 
@@ -1020,15 +1020,15 @@ End Sub
 
 This procedure uses a variable, which stores the text in the TextBox (converted to
 
-a value with the Val function). It then checks to ensure that the value is within the proper range. If so, the SpinButton is set to the value in the TextBox. The net effect is that the SpinButton’s value is always equal to the value in the TextBox (assuming that the SpinButton’s value is in the proper range).
+a value with the Val function). It then checks to ensure that the value is within the proper range. If so, the SpinButton is set to the value in the TextBox. The net effect is that the SpinButton's value is always equal to the value in the TextBox (assuming that the SpinButton's value is in the proper range).
 
-If you press F8 to single-step through the code in debugging mode, you’ll notice
+If you press F8 to single-step through the code in debugging mode, you'll notice
 
 that when the line SpinButton1.Value = NewVal is executed, the change event of
 
 the SpinButton immediately fires. In turn, the SpinButton1_Change event sets the
 
-value of TextBox1. Luckily, this in turn doesn’t fire the TextBox1_Change event,
+value of TextBox1. Luckily, this in turn doesn't fire the TextBox1_Change event,
 
 because its value is not actually changed by the SpinButton1_Change event. But
 
@@ -1038,7 +1038,7 @@ Confused? Just remember that if your code changes the Value of a control, the
 
 Change event of that control will fire.
 
-This example is available at this book’s website. It also has a few other bells and
+This example is available at this book's website. It also has a few other bells and
 
 whistles that you may find useful.
 
@@ -1046,7 +1046,7 @@ Using a UserForm as a Progress Indicator
 
 If you have a macro that takes a long time to run, you might want to display a
 
-progress meter so people won’t think Excel has crashed. You can use a UserForm
+progress meter so people won't think Excel has crashed. You can use a UserForm
 
 to create an attractive progress indicator, as shown in Figure 18-9. Such a use of
 
@@ -1076,7 +1076,7 @@ the progress while a macro inserts random numbers into 100 columns and
 
 1. Activate the VBE, and insert a new UserForm.
 
-2. Change the UserForm’s caption to Progress.
+2. Change the UserForm's caption to Progress.
 
 3. Add a Frame object, and set the following properties:
 
@@ -1272,7 +1272,7 @@ UserForm1 into the module variable named ProgressIndicator. Then it sets the wid
 
 (so the code will continue to run).
 
-The EnterRandomNumber procedure checks the active sheet. If it’s not a work-
+The EnterRandomNumber procedure checks the active sheet. If it's not a work-
 
 sheet, the UserForm (ProgressIndicator) is closed, and the procedure ends with no
 
@@ -1300,21 +1300,21 @@ because the code is doing additional work updating the UserForm. If speed is abs
 
 If you adapt this technique for your own use, you need to figure out how to deter-
 
-mine the macro’s progress, which varies depending on your macro. Then call the
+mine the macro's progress, which varies depending on your macro. Then call the
 
 UpdateProgress procedure at periodic intervals while your macro is executing.
 
-This example is available at this book’s website.
+This example is available at this book's website.
 
 Creating a Modeless Tabbed Dialog Box
 
 Tabbed dialog boxes are useful because they let you present information in small,
 
-organized chunks. Excel’s Format Cells dialog box (which is displayed when you
+organized chunks. Excel's Format Cells dialog box (which is displayed when you
 
 right-click a cell and choose Format Cells) is a good example. The dialog box in
 
-this example uses three tabs to help organize some of Excel’s display options.
+this example uses three tabs to help organize some of Excel's display options.
 
 Creating your own tabbed dialog boxes is relatively easy, thanks to the MultiPage
 
@@ -1334,7 +1334,7 @@ control.
 
 Notice that this is a modeless dialog box. In other words, the user can keep it displayed while working. Each of the controls has an immediate effect, so there is
 
-no need to have an OK button. Here’s the procedure that displays the UserForm so
+no need to have an OK button. Here's the procedure that displays the UserForm so
 
 it stays on top:
 
@@ -1354,7 +1354,7 @@ tabbed dialog box:
 
 » Right-click a tab on the MultiPage control to display a shortcut menu that lets you add, remove, rename, or move a tab.
 
-» At design time, click a tab to activate the page. After it’s activated, add other controls to the page by using normal procedures.
+» At design time, click a tab to activate the page. After it's activated, add other controls to the page by using normal procedures.
 
 CHAPTER 18  UserForm Techniques and Tricks    317
 
@@ -1376,17 +1376,17 @@ For example, if you write code to set the Value property to 0, the first page of
 
 the MultiPage control is displayed.
 
-This example is available at this book’s website.
+This example is available at this book's website.
 
 Displaying a Chart in a UserForm
 
-If you need to display a chart in a UserForm, you find that Excel doesn’t provide
+If you need to display a chart in a UserForm, you find that Excel doesn't provide
 
 any direct way to do so. Therefore, you need to get creative. This section describes a technique that allows you to display one or more charts in a UserForm.
 
 Figure 18-12 shows an example that displays three charts. The UserForm has an
 
-Image control. The trick is to use VBA code to save the chart as a GIF file and then specify that file as the Image control’s Picture property (which loads the image
+Image control. The trick is to use VBA code to save the chart as a GIF file and then specify that file as the Image control's Picture property (which loads the image
 
 from your disk). The Previous and Next buttons switch the displayed chart.
 
@@ -1398,7 +1398,7 @@ in a UserForm.
 
 318    PART 4  Communicating with Your Users
 
-In this example, which is also available on this book’s website, the three charts are on a sheet named Charts. The Previous and Next buttons determine which chart to
+In this example, which is also available on this book's website, the three charts are on a sheet named Charts. The Previous and Next buttons determine which chart to
 
 display, and this chart number is stored as a Public variable named ChartNum,
 
@@ -1444,7 +1444,7 @@ your end user. After all, dialog boxes are user interfaces.
 
 As you start designing you own user interfaces, run down this checklist to ensure
 
-you’re building dialog boxes that are both functional and intuitive:
+you're building dialog boxes that are both functional and intuitive:
 
 » Are the controls aligned with one another?
 
@@ -1472,7 +1472,7 @@ dialog box and access the controls sequentially.
 
 » Will your VBA code take appropriate action if the user cancels the dialog box, presses Esc, or uses the Close button?
 
-» Does the text contain any misspellings? Unfortunately, the Excel spell checker doesn’t work with UserForms, so you’re on your own when it comes to spelling.
+» Does the text contain any misspellings? Unfortunately, the Excel spell checker doesn't work with UserForms, so you're on your own when it comes to spelling.
 
 » Will your dialog box fit on the screen in the lowest resolution to be used
 
@@ -1490,9 +1490,9 @@ lower-resolution screen.
 
 » Do all ListBoxes have their MultiSelect property set properly?
 
-Start simply and experiment with the controls and their properties. And don’t
+Start simply and experiment with the controls and their properties. And don't
 
-forget about the Help system; it’s your best source for details about every control
+forget about the Help system; it's your best source for details about every control
 
 and property.
 
