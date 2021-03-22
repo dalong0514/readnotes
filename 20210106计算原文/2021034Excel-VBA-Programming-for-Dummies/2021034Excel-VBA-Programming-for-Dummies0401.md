@@ -1,214 +1,107 @@
-# 0401. Introducing the Excel
+# 0401. Introducing the Excel Object Model
 
 In This Chapter: 1) Introducing the concept of objects. 2) Finding out about the Excel object hierarchy. 3) Understanding object collections. 4) Referring to specific objects in your VBA code. 5) Accessing or changing an object's properties. 6) Performing actions with an object's methods
 
-## 4.1 Object Model
+Everyone is familiar with the word object. Well, folks, forget the definition you think you know. In the world of programming, the word object has a different meaning. You often see it used as part of the expression object-oriented programming, or OOP for short. OOP is based on the idea that software deals with distinct objects that have attributes (or properties) and can be manipulated. These objects are not material things. Rather, they exist in the form of bits and bytes.
 
-E veryone is familiar with the word  object.  Well, folks, forget the definition you think you know. In the world of programming, the word  object has a different meaning. You often see it used as part of the expression  object-oriented  programming,  or  OOP for short. OOP is based on the idea that software deals with distinct objects that have attributes (or properties) and can be manipulated. These
+In this chapter, you'll be introduced to the Excel object model, which is a hierarchy of objects contained in Excel. By the time you finish this chapter, you'll have a pretty good feel for what OOP is all about — and why you need to understand this concept to become a VBA programmer. After all, Excel programming really boils down to manipulating the objects that make up Excel. It's as simple as that.
 
-objects are not material things. Rather, they exist in the form of bits and bytes.
+## 4.1 Excel Is an Object?
 
-In this chapter, you'll be introduced to the Excel object model, which is a hierar-
+You've used Excel for quite a while, but you probably never thought of it as an object. The more you work with VBA, the more you view Excel in those terms. You'll understand that Excel is an object and that it contains other objects. Those objects, in turn, contain still more objects. In other words, VBA programming involves working with an object hierarchy.
 
-chy of objects contained in Excel. By the time you finish this chapter, you'll have
+At the top of this hierarchy is the Application object — in this case, Excel itself (the mother of all objects).
 
-a pretty good feel for what OOP is all about — and why you need to understand
+## 4.2 Climbing Down the Object Hierarchy
 
-this concept to become a VBA programmer. After all, Excel programming really
+The Application object contains other objects. The following are some of the more useful objects contained in the Excel application: 1) Addin. 2) Window. 3) Workbook. 4) WorksheetFunction.
 
-boils down to manipulating the objects that make up Excel. It's as simple as that.
+Each object contained in the Application object can contain other objects. For example, the following are some objects that can be contained in a Workbook object: 1) Chart (which is a chart sheet). 2) Name. 3) VBProject. 4) Window. 5) Worksheet.
 
-CHAPTER 4  Introducing the Excel Object Model    51
+In turn, each of these objects can contain still other objects. Consider a Worksheet object, which is contained in a Workbook object, which is contained in the Application object. Some of the objects that can be contained in a Worksheet object are: 1) Comment. 2) Hyperlink. 3) Name. 4) PageSetup. 5) PivotTable. 6) Range.
 
-Excel Is an Object?
+Put another way, if you want to do something with a range on a particular worksheet, you may find it helpful to visualize that range in the following manner:
 
-You've used Excel for quite a while, but you probably never thought of it as an
-
-object. The more you work with VBA, the more you view Excel in those terms.
-
-You'll understand that Excel is an object and that it contains other objects. Those
-
-objects, in turn, contain still more objects. In other words, VBA programming involves working with an object hierarchy.
-
-At the top of this hierarchy is the Application object — in this case, Excel itself
-
-(the mother of all objects).
-
-Climbing Down the Object Hierarchy
-
-The Application object contains other objects. The following are some of the more
-
-useful objects contained in the Excel application:
-
-» Addin
-
-» Window
-
-» Workbook
-
-» WorksheetFunction
-
-Each object contained in the Application object can contain other objects. For example, the following are some objects that can be contained in a Workbook object:
-
-» Chart (which is a chart sheet)
-
-» Name
-
-» VBProject
-
-» Window
-
-» Worksheet
-
-In turn, each of these objects can contain still other objects. Consider a Worksheet object, which is contained in a Workbook object, which is contained in the Application object. Some of the objects that can be contained in a Worksheet object are
-
-» Comment
-
-» Hyperlink
-
-52    PART 2  How VBA Works with Excel
-
-» Name
-
-» PageSetup
-
-» PivotTable
-
-» Range
-
-Put another way, if you want to do something with a range on a particular work-
-
-sheet, you may find it helpful to visualize that range in the following manner:
-
-Range ➪ contained in Worksheet ➪ contained in Workbook ➪ contained in Excel
+Range => contained in Worksheet => contained in Workbook => contained in Excel
 
 Is this beginning to make sense?
 
-When you start digging around, you'll find that Excel has more objects than you
+When you start digging around, you'll find that Excel has more objects than you can shake a stick at. Even power users can get overwhelmed. The good news is that you'll never have to actually deal with most of these objects. When you're working on a problem, you can just focus on a few relevant objects — which you can often discover by recording a macro.
 
-can shake a stick at. Even power users can get overwhelmed. The good news is that
+## 4.3 Wrapping Your Mind around Collections
 
-you'll never have to actually deal with most of these objects. When you're working
+Collections are another key concept in VBA programming. A collection is a group of objects of the same type. And to add to the confusion, a collection is itself an object. Here are a few examples of commonly used collections:
 
-on a problem, you can just focus on a few relevant objects — which you can often
+1 Workbooks: A collection of all currently open Workbook objects.
 
-discover by recording a macro.
+2 Worksheets: A collection of all Worksheet objects contained in a particular Workbook object.
 
-Wrapping Your Mind around Collections
+3 Charts: A collection of all Chart objects (chart sheets) contained in a particular Workbook object.
 
-Collections are another key concept in VBA programming. A  collection is a group of objects of the same type. And to add to the confusion, a collection is itself an object.
-
-Here are a few examples of commonly used collections:
-
-» Workbooks: A collection of all currently open Workbook objects
-
-» Worksheets: A collection of all Worksheet objects contained in a particular Workbook object
-
-» Charts: A collection of all Chart objects (chart sheets) contained in a particular Workbook object
-
-» Sheets: A collection of all sheets (regardless of their type) contained in a particular Workbook object
+4 Sheets: A collection of all sheets (regardless of their type) contained in a particular Workbook object.
 
 You may notice that collection names are all plural, which makes sense.
 
-CHAPTER 4  Introducing the Excel Object Model    53
+「What are collections for?」you may rightfully ask. Well, for example, they're very useful when you want to work with not just one worksheet, but with a couple of them or all of them. As you'll see, your VBA code can loop through all members of a collection and do something to each one.
 
-「What are collections for?」you may rightfully ask. Well, for example, they're very useful when you want to work with not just one worksheet, but with a couple of
+## 4.4 Referring to Objects
 
-them or all of them. As you'll see, your VBA code can loop through all members of
+Referring to an object is important because you must identify the object that you want to work with. After all, VBA can't read your mind — yet.
 
-a collection and do something to each one.
+You can work with an entire collection of objects in one fell swoop. More often, however, you need to work with a specific object in a collection (such as a particular worksheet in a workbook). To reference a single object from a collection, you put the object's name or index number in parentheses after the name of the collection, like this:
 
-Referring to Objects
-
-Referring to an object is important because you must identify the object that you
-
-want to work with. After all, VBA can't read your mind — yet.
-
-You can work with an entire collection of objects in one fell swoop. More often,
-
-however, you need to work with a specific object in a collection (such as a partic-
-
-ular worksheet in a workbook). To reference a single object from a collection, you
-
-put the object's name or index number in parentheses after the name of the col-
-
-lection, like this:
-
+```c
 Worksheets("Sheet1")
+```
 
-Notice that the sheet's name is in quotation marks. If you omit the quotation marks, Excel won't be able to identify the object (and will assume that it's a variable name).
+Notice that the sheet's name is in quotation marks. If you omit the quotation marks, Excel won't be able to identify the object (and will assume that it's a variable name). If you want to work with the first worksheet in the collection, you can also use the following reference:
 
-If you want to work with the first worksheet in the collection, you can also use the following reference:
-
+```c
 Worksheets(1)
+```
 
-In this case, the number is  not in quotation marks. Bottom line? If you refer to an object by using its name, use quotation marks. If you refer to an object by using its index number, use a plain number without quotation marks.
-
-What about chart sheets? A chart sheet contains a single chart. It has a sheet tab,
-
-but it's not a worksheet. Well, as it turns out, the object model has a collection
-
-called Charts. This collection contains all the chart sheet objects in a workbook
-
-(and does not include charts embedded in a worksheet). And just to keep things
-
-logical, there's another collection called Sheets. The Sheets collection contains all sheets (worksheets and chart sheets) in a workbook. The Sheets collection is handy if you want to work with all sheets in a workbook and don't care if they are
-
-worksheets or chart sheets.
-
-54    PART 2  How VBA Works with Excel
+In this case, the number is not in quotation marks. Bottom line? If you refer to an object by using its name, use quotation marks. If you refer to an object by using its index number, use a plain number without quotation marks. What about chart sheets? A chart sheet contains a single chart. It has a sheet tab, but it's not a worksheet. Well, as it turns out, the object model has a collection called Charts. This collection contains all the chart sheet objects in a workbook (and does not include charts embedded in a worksheet). And just to keep things logical, there's another collection called Sheets. The Sheets collection contains all sheets (worksheets and chart sheets) in a workbook. The Sheets collection is handy if you want to work with all sheets in a workbook and don't care if they are worksheets or chart sheets.
 
 So, a single worksheet named Sheet1 is a member of two collections: the Worksheets collection and the Sheets collection. You can refer to it in either of two ways:
 
+```c
 Worksheets("Sheet1")
-
 Sheets("Sheet1")
+```
 
-Navigating through the hierarchy
+### 4.4.1 Navigating through the hierarchy
 
-If you want to work with Excel objects, they are all under the Application object.
+If you want to work with Excel objects, they are all under the Application object. So start by typing Application.
 
-So start by typing Application .
+Every other object in Excel's object model is under the Application object. You get to these objects by moving down the hierarchy and connecting each object on your way with the dot (`.`) operator. To get to the Workbook object named Book1.xlsx, start with the Application object and navigate down to the Workbooks collection object:
 
-Every other object in Excel's object model is under the Application object. You get
-
-to these objects by moving down the hierarchy and connecting each object on your
-
-way with the dot (.) operator. To get to the Workbook object named Book1.xlsx,
-
-start with the Application object and navigate down to the Workbooks collection
-
-object:
-
+```c
 Application.Workbooks("Book1.xlsx")
+```
 
-To navigate to a specific worksheet, add a dot operator and access the Worksheets
+To navigate to a specific worksheet, add a dot operator and access the Worksheets collection object:
 
-collection object:
-
+```c
 Application.Workbooks("Book1.xlsx").Worksheets(1)
+```
 
-Not far enough yet? If you really want to get the value from cell A1 on the first
+Not far enough yet? If you really want to get the value from cell A1 on the first Worksheet of the Workbook named Book1.xlsx, you need to navigate one more level to the Range object:
 
-Worksheet of the Workbook named Book1.xlsx, you need to navigate one more level to the Range object:
+```c
+Application.Workbooks("Book1.xlsx").Worksheets(1).Range("A1").Value
+```
 
-Application.Workbooks("Book1.xlsx").Worksheets(1).Range("A1").
+When you refer to a Range object in this way, it's called a fully qualified reference. You've told Excel exactly which range you want, on which worksheet and in which workbook, and have left nothing to the imagination. Imagination is good in people but not so good in computer programs.
 
-Value
+By the way, workbook names also have a dot to separate the filename from the extension (for example, Book1.xlsx). That's just a coincidence. The dot in a filename has nothing at all to do with the dot operator referred to a few paragraphs ago.
 
-When you refer to a Range object in this way, it's called a  fully qualified reference.
 
-You've told Excel exactly which range you want, on which worksheet and in which
 
-workbook, and have left nothing to the imagination. Imagination is good in people
 
-but not so good in computer programs.
 
-By the way, workbook names also have a dot to separate the filename from the extension (for example, Book1.xlsx). That's just a coincidence. The dot in a
 
-filename has nothing at all to do with the dot operator referred to a few paragraphs ago.
 
-CHAPTER 4  Introducing the Excel Object Model    55
+
 
 Simplifying object references
 
@@ -238,11 +131,11 @@ that reference and allows you to just type
 
 Range("A1").Value
 
-Contrary to what some people may think, Excel does not have a Cell object. A  cell is simply a Range object that consists of just one element.
+Contrary to what some people may think, Excel does not have a Cell object. A cell is simply a Range object that consists of just one element.
 
 The shortcuts described here are great, but they can also be dangerous. What if
 
-you only  think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it's wrong. For that reason, it's often best to fully qualify your object references.
+you only think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it's wrong. For that reason, it's often best to fully qualify your object references.
 
 Chapter 14 discusses the With-End With structure, which helps you fully qualify
 
@@ -254,11 +147,11 @@ Diving into Object Properties and Methods
 
 Although knowing how to refer to objects is important, you can't do anything useful by simply referring to an object (as in the examples in the preceding sections). To accomplish anything meaningful, you must do one of two things:
 
-» Read or modify an object's  properties.
+» Read or modify an object's properties.
 
-» Specify a  method of action to be used with an object.
+» Specify a method of action to be used with an object.
 
-56    PART 2  How VBA Works with Excel
+56 PART 2 How VBA Works with Excel
 
 ANOTHER SLANT ON MCOBJECTS,
 
@@ -310,8 +203,6 @@ VentilationFan object.
 
 (continued)
 
-CHAPTER 4  Introducing the Excel Object Model    57
-
 (continued)
 
 In Excel, methods sometimes change an object's properties. The ClearContents method
@@ -328,7 +219,7 @@ The next time you visit your favorite fast-food joint, just say,「Use the Grill
 
 Object properties
 
-Every object has properties. You can think of  properties as attributes that describe the object. An object's properties determine how it looks, how it behaves, and even
+Every object has properties. You can think of properties as attributes that describe the object. An object's properties determine how it looks, how it behaves, and even
 
 whether it's visible. Using VBA, you can do two things with an object's properties:
 
@@ -357,8 +248,6 @@ displays a Range
 object's Value
 
 property.
-
-58    PART 2  How VBA Works with Excel
 
 By the way, MsgBox is a very useful function. You can use it to display results while Excel executes your VBA code. You find out more about this function in Chapter 15, so be patient (or just flip ahead and read all about it).
 
@@ -402,11 +291,9 @@ End Sub
 
 Object methods
 
-In addition to properties, objects have methods. A  method is an action you perform with an object. A method can change an object's properties or make the object do
+In addition to properties, objects have methods. A method is an action you perform with an object. A method can change an object's properties or make the object do
 
 something.
-
-CHAPTER 4  Introducing the Excel Object Model    59
 
 This simple example uses the ClearContents method on a Range object to erase the
 
@@ -418,7 +305,7 @@ Range("A1:A12").ClearContents
 
 End Sub
 
-Some methods take one or more arguments. An  argument is a value that further specifies the action to perform. You place the arguments for a method after the
+Some methods take one or more arguments. An argument is a value that further specifies the action to perform. You place the arguments for a method after the
 
 method, separated by a space. Multiple arguments are separated by a comma.
 
@@ -462,8 +349,6 @@ arguments
 
 while you type.
 
-60    PART 2  How VBA Works with Excel
-
 Because a collection is also an object, collections have methods. The following macro uses the Add method for the Workbooks collection:
 
 Sub AddAWorkbook()
@@ -480,7 +365,7 @@ workbook is the active workbook.
 
 Object events
 
-This section briefly touches on one more topic that you need to know about: events. Objects respond to various  events that occur. For example, when you're working in Excel and you activate a different workbook, a Workbook Activate event occurs. You could, for example, have a VBA macro that is designed to execute whenever an Activate event occurs for a particular Workbook object.
+This section briefly touches on one more topic that you need to know about: events. Objects respond to various events that occur. For example, when you're working in Excel and you activate a different workbook, a Workbook Activate event occurs. You could, for example, have a VBA macro that is designed to execute whenever an Activate event occurs for a particular Workbook object.
 
 Excel supports many events, but not all objects can respond to all events. And some objects don't respond to any events. The only events you can use are those
 
@@ -508,8 +393,6 @@ The VBA Help system describes every object, property, and method available to
 
 you, and also provides sample code. This is an excellent resource for finding out
 
-CHAPTER 4  Introducing the Excel Object Model    61
-
 about VBA, and it's more comprehensive than any book on the market. But it's
 
 also very boring to read.
@@ -520,7 +403,7 @@ the VBA Help system (previous versions don't have this requirement). You can,
 
 however, download the VBA Help system from Microsoft's website. Do a web
 
-search for  download excel vba documentation , and you'll find it.
+search for download excel vba documentation , and you'll find it.
 
 If you're working in a VBA module and want information about a particular object,
 
@@ -554,7 +437,7 @@ The drop-down list at the top contains a list of all currently available object 
 
 objects, select Excel from the drop-down list.
 
-62    PART 2  How VBA Works with Excel
+62 PART 2 How VBA Works with Excel
 
 FIGURE 4-4:
 
@@ -566,9 +449,9 @@ Object Browser.
 
 The second drop-down list is where you enter a search string. For example, if you
 
-want to look at all Excel objects that deal with comments, type  comment in the second field and click the Search button. (It has a pair of binoculars on it.) The Search Results window displays everything in the object library that contains the
+want to look at all Excel objects that deal with comments, type comment in the second field and click the Search button. (It has a pair of binoculars on it.) The Search Results window displays everything in the object library that contains the
 
-text  comment.  If you see something that looks like it may be of interest, select it and press F1 for more information online.
+text comment. If you see something that looks like it may be of interest, select it and press F1 for more information online.
 
 Automatically listing properties
 
@@ -592,7 +475,7 @@ methods for
 
 an object.
 
-After typing the dot after  workbooks,  the VBE volunteers to help by displaying a list of properties and methods for that collection. Typing the letter (like the letter  c ), narrows the list to items that begin with that letter. With each letter you type,
+After typing the dot after workbooks, the VBE volunteers to help by displaying a list of properties and methods for that collection. Typing the letter (like the letter c ), narrows the list to items that begin with that letter. With each letter you type,
 
 the VBE further narrows the list of choices. Highlight the item you need, press
 

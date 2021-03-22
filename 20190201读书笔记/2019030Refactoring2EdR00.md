@@ -76,7 +76,7 @@ Data is more awkward because I can't do that. If I move data around, I have to c
 
 So if I want to move widely accessed data, often the best approach is to first encapsulate it by routing all its access through functions. That way, I turn the difficult task of reorganizing data into the simpler task of reorganizing functions.
 
-1-2『这个思维妙，先以函数的形式封装所有对数据的访问，将重新组织数据转化为重新组织函数。封装数据，做一张主题卡片。（2020-10-05）』 —— 已完成
+1-2『这个思维妙，先以函数的形式封装所有对数据的访问，将重新组织数据转化为重新组织函数。封装数据，做一张主题卡片。（2020-10-05）补充：这个思维目前慢慢养成习惯，比如在数据流开发过程中，使用块对象的属性名称列表时，自然而然的构建了一个 `GetPropertyNameList` 函数。（2021-03-22）』 —— 已完成
 
 Encapsulating data is valuable for other things too. It provides a clear point to monitor changes and use of the data; I can easily add validation or consequential logic on the updates. It is my habit to make all mutable data encapsulated like this and only accessed through functions if its scope is greater than a single function. The greater the scope of the data, the more important it is to encapsulate. My approach with legacy code is that whenever I need to change or add a new reference to such a variable, I should take the opportunity to encapsulate it. That way I prevent the increase of coupling to commonly used data.
 

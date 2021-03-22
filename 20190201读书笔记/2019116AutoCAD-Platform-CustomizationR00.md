@@ -826,7 +826,7 @@ NOTE: LSP files that are loaded using one of the manual techniques described her
 
 The command function is the most common method that AutoLISP programmers use to create and modify objects, but it isn't the most efficient when you are trying to modify individual properties of an object. Even creating lots of objects in the Autodesk® AutoCAD® program can be slower with the command function. Along with the command function, objects can be created and modified directly by setting property values as part of an entity data list. Extended data (XData) can also be attached to an object as a way to differentiate one object from another or, in some cases, to affect the way an object might look in the drawing area.
 
-1-2『直接用 command，自己就遇到了瓶颈。1）确实效率低下。2）自动生成辅助流程组件，插进来的块，位置经常不是均匀的，目前一直找到不解决办法。正巧这里受到启发，改用直接创建实体数据的方法实现自动生成块。待实现。做一张任意卡片。（2020-10-29）回复：已经实现了，而且用起来真舒服，详见数据流的源码。（2020-11-26）』
+1-2『直接用 command，自己就遇到了瓶颈。1）确实效率低下。2）自动生成辅助流程组件，插进来的块，位置经常不是均匀的，目前一直找到不解决办法。正巧这里受到启发，改用直接创建实体数据的方法实现自动生成块。待实现。做一张任意卡片。（2020-10-29）回复：已经实现了，而且用起来真舒服，详见数据流的源码。（2020-11-26）补充：目前已习得通过 ActiveX 技术来生成 CAD 实体对象，详见数据流源码。（2021-03-22）』
 
 Using AutoLISP, you can create a table using the entmake function while modifying and populating the table with the entget and entmod functions.
 
