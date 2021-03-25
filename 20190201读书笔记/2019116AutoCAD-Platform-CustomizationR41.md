@@ -1,12 +1,20 @@
-# 0401. Bonus Chapter 3: Development Resources
+# 2019116AutoCAD-Platform-CustomizationR41
+
+## 记忆时间
+
+## 目录
+
+0401 —— Bonus Chapter 3: Development Resources
+
+## 0401. Bonus Chapter 3: Development Resources
 
 This book helps you build a solid foundation in customizing and programming the Autodesk® AutoCAD ® program, but it can't teach you everything. A wide range of resources are available to help you continue learning and expand your skills further. This appendix connects you with online and training resources, peer-to-peer forums, and additional files available for this book from the companion website.
 
-## 1.1 Online Resources
+### 1.1 Online Resources
 
 Although the Internet existed when I first started customizing and programming AutoCAD back in 1996, there weren't nearly as many resources available as there are today. You can now access a wide range of resources to learn about customization and programming features supported by AutoCAD. Along with the learning resources on the Internet, you can also access peer-to-peer sites; ask a question and get a response to your question.
 
-### 1.1.1 Locating AutoCAD Customization and Programming Resources
+#### 1.1.1 Locating AutoCAD Customization and Programming Resources
 
 Very little was known about the Internet more than two decades ago, but the same can't be said today. The Internet has affected our everyday lives and the way we consume and deliver content, such as cute kitty videos, articles dedicated to making daily life easier, and AutoCAD-related resources. AutoCAD-related resources range from the Autodesk website to private blogs. Another great resource on the Internet is peer-to-peer forums, which I'll discuss in the next section.
 
@@ -108,7 +116,7 @@ Table BC3.4: Blogs published by industry experts
 
 』
 
-### 1.1.2 Getting Help from Other Users
+#### 1.1.2 Getting Help from Other Users
 
 Peer-to-peer forums are sites where users openly participate to support fellow users. Questions posted on a peer-to-peer site are answered by other users in many cases, but you can also fi nd Autodesk employees answering questions on peer-to-peer sites. Table BC3.5 lists a few of the popular peer-to-peer sites for AutoCAD users. TRAINING RESOURCES AND EVENTS
 
@@ -123,11 +131,11 @@ Table BC3.5: Peer-to-peer sites
 
 NOTE: Ninety percent of all users on a peer-to-peer site are typically referred to as lurkers. A lurker is someone who just consumes or views content without participating in any discussion on a site. I encourage you to contribute to conversations when you have information or experience that adds value to the discussion; it is the only way peer-to-peer sites work.
 
-## 1.2 Training Resources and Events
+### 1.2 Training Resources and Events
 
 Attending online and local training sessions, and even industry events, can help you expand your knowledge and introduce you to individuals who are trying to solve similar problems.
 
-### 1.2.1 Learning from Resellers, ATCs, and Colleges
+#### 1.2.1 Learning from Resellers, ATCs, and Colleges
 
 Instructor-led sessions can provide huge benefits, from expanding skills to being introduced to new ways of approaching everyday problems. There are a number of resources that you might have access to in your local area that can help refine what you learn in this book and even help you excel further. Keep in mind that skills such as AutoLISP and VBA programming can be improved by learning about logic and flow charting and general programming concepts. 6
 
@@ -137,7 +145,7 @@ Autodesk Training Centers — also known as ATCs — are another great way to ge
 
 Colleges and universities play an important part in training the next generation of engineers and designers and provide sessions for veteran AutoCAD users who are looking to get more from their software. You will want to contact your local university to see if they offer any sessions that are specific to AutoCAD customization and programming. Even general programming sessions can be useful. If you can't find the time to attend a class in person, consider attending a virtual course. A great friend of mine and one of the technical editors for this book, Craig Black, is an instructor at Fox Valley Technical College ((www.fvtc.edu). He is the lead instructor of an online AutoLISP/Visual LISP session through the technical college. I have known Craig for 18+ years, and he helped reinforce what I taught myself about AutoLISP.
 
-### 1.2.2 Learning from Individuals with Similar Interests
+#### 1.2.2 Learning from Individuals with Similar Interests
 
 Local user groups — also known as LUGs — consist of members who are in the same or similar industries. Some LUGs meet virtually and others meet locally. A LUG can be a great place to locate an individual in your local geographic area who might be willing to be a mentor or help answer questions on AutoCAD customization and programming. You can learn about the LUGs in your area by going to www.augi.com/user-groups/local.
 
@@ -145,7 +153,7 @@ In addition to LUGs, industry events are often a great way to network with other
 
 In addition to the event in Las Vegas, there are also small Autodesk University events that occur around the world; these are between one and two days in length. I have been privileged to present sessions on basic AutoCAD customization, AutoLISP, VBA, and even more advanced programming technologies such as .NET and ObjectARXX ® at Autodesk University for more than 10 years. At au.autodesk.com you can learn about upcoming Autodesk University events and past sessions presented by industry experts.
 
-## 1.3 Accessing and Using the Companion Website
+### 1.3 Accessing and Using the Companion Website
 
 The AutoCAD Customization Platform: User Interface, AutoLISP, VBA, and Beyond companion website contains all of the sample and project files used for the exercises throughout the book. In addition to the files referenced in the exercises, there are bonus chapters that include information on working with complex 2D objects and the basics of 3D with VBA and the AutoCAD Object library.
 
@@ -153,7 +161,7 @@ The companion website is located here:
 
 [AutoCAD Platform Customization: User Interface, AutoLISP, VBA, and Beyond | Wiley](https://www.wiley.com/en-us/AutoCAD+Platform+Customization%3A+User+Interface%2C+AutoLISP%2C+VBA%2C+and+Beyond-p-9781118798904)
 
-### 1.3.1 Downloading the Sample Files
+#### 1.3.1 Downloading the Sample Files
 
 The sample files on the companion website are stored in zip files. Zip files make it easy to download multiple files at a time. To access the files in a zip file, you will need to download it to your local drive and then extract its files. The exercises in this book assume that all files are extracted to the MyCustomFiles folder within the Documents (or My Documents) folder.
 
@@ -171,7 +179,7 @@ The following steps explain how to download and extract the sample files:
 
 NOTE: See the front of the book for instructions on setting up the MyCustomFiles folder.
 
-### 1.3.2 What's on the Website
+#### 1.3.2 What's on the Website
 
 The following list provides an overview of the files that are located on the companion website:
 
@@ -179,7 +187,7 @@ Sample and Completed Project Files The files you will need to complete the exerc
 
 Bonus Chapters Due to space constraints and the desire to provide as much information as possible, some content is presented in bonus chapters that can be accessed from the companion website. Table BC3.6 lists these additional chapters. 
 
-### 1.3.3 Finding Bonus Chapter Content
+#### 1.3.3 Finding Bonus Chapter Content
 
 Table BC3.6 lists the bonus chapters that are available on the companion website.
 
@@ -191,7 +199,7 @@ Table BC3.6: Bonus chapters
 | Bonus Chapter 2 | Modeling in 3D Space |
 | Bonus Chapter 3 | Development Resources (this chapter) |
 
-### 1.3.4 Troubleshooting
+#### 1.3.4 Troubleshooting
 
 If you encounter any problems with downloading, opening, or extracting any of the files from the companion website, try the following solutions:
 
@@ -199,7 +207,7 @@ If you encounter any problems with downloading, opening, or extracting any of th
 
 2 Attempt to download the fi le again. The file might have been misplaced when you were prompted to specify a location for the file, or it could have become corrupted. Downloading the file again can often resolve the problem.
 
-### 1.3.5 Customer Care
+#### 1.3.5 Customer Care
 
 If you have trouble with the bonus chapters or downloads on the Wiley companion website, please contact Wiley Product Technical Support at 1-877-762-2974. If you are outside the United States, call 1-317-572-3993 or fax 1-317-572-4002. Wiley Product Technical Support can also be reached at www.wiley.com/techsupport. John Wiley & Sons will provide technical support only for extracting and accessing the files for this book.
 
