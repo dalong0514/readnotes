@@ -2860,13 +2860,15 @@ In the following exercise, you'll create a new block definition and layer. The n
 
 12 In the Properties palette (Windows) or Properties Inspector (Mac OS), you should notice that the object is a block named circ and that it has been placed on the hardware layer.
 
-## 7.2 Working with Dictionaries
+### 7.2 Working with Dictionaries
 
 Dictionaries are used to store custom information and objects in a drawing and can be thought of as symbol tables 2.0. Dictionaries were introduced with AutoCAD R13 as a way to introduce new symbol tables like objects without the need to change the drawing file format with each release. Although there is only one type of dictionary in a drawing, dictionaries can be stored in two different ways: per drawing or per object.
 
 The main dictionary of a drawing contains nested dictionaries that store multileader and table styles, and even the layouts used to output a drawing. Dictionaries attached to an object are known as extension dictionaries. Extension dictionaries are similar to XData but allow you to attach more information to a single object. AutoCAD uses extension dictionaries attached to the layer symbol table to store the information used for layer states and filters.
 
 Custom dictionaries are great for storing custom program settings so that they persist across drawing sessions. You might also use a custom dictionary as a way to store drawing revision history or project information that can be used to track a drawing and populate a title block. In this section, you'll learn how to access, create, query, and modify information stored in a dictionary.
+
+1『字典 dictionaries 做一张术语卡片。（2021-03-26）』—— 已完成
 
 ### 7.2.1 Accessing and Stepping through Dictionaries
 

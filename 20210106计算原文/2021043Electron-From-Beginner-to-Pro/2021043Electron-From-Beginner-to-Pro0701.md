@@ -1,10 +1,10 @@
-Working with the Dialog Module
+# 0701. Working with the Dialog Module
 
 The Electron dialog module provides us with the ability to display native system-level dialogs, including file open, file save, and various alerts. If you have written traditional web apps, you will know that these types of dialogs are not all available to you. In this chapter, we will look at the three dialog types and many of the parameters we can control.
 
 The Dialog module is restricted to the Main process, meaning to interact with it we will either need to call its methods from a menu event, via the Inter-Process Communication (IPC) module from the Renderer process, or by using the Remote module (as seen in a previous chapter).
 
-Getting Started
+## 7.1 Getting Started
 
 Let's clone a fresh copy of Electron so we have a clean starting point for exploring interacting with the Dialog Module.
 
@@ -29,12 +29,6 @@ Unlike using the File API to open and read a file, as we would in a traditional 
 We will begin by opening the index.html file and replace the content within the <body> tag with
 
 <button id="select-directory">Choose a directory</button><textarea id="selectedItem"></textarea>
-
-© Chris Griffith, Leif Wells 2017 C. Griffith, L. Wells, Electron: From Beginner to Pro, https://doi.org/10.1007/978-1-4842-2826-5_7
-
-103
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 This will give us control to trigger our File Open Dialog, and a container to display the results of the
 
@@ -77,10 +71,6 @@ ipc.on('open-directory-dialog', function (event) {})
 Within this function, we will make our call to the Dialog module to display the File Open dialog. This
 
 method has three optional parameters, but two of them will almost always be used.
-
-104
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 The first parameter is a reference to the BrowserWindow object. On macOS, it is common for dialogs to
 
@@ -128,10 +118,6 @@ ipc.on('selectedItem, function (event, path) { document.getElementById('selected
 
 This function will then write out the path to our textarea.
 
-105
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 Save the files and run our application using npm start.Clicking the ‘Choose a directory' button, then select a directory on your computer. The path
 
 information will then be sent from the Main process to the Renderer process and be displayed in the text area, as shown in Figure 7-1.
@@ -141,10 +127,6 @@ Figure 7-1. The select directory style dialog
 Additional Open Dialog PropertiesThe showOpenDialog has several other properties that can be set within the options object. The first is the title property.
 
 On Windows, this string will be displayed on the top of the dialog as shown in Figure 7-2.
-
-106
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 Figure 7-2. The title property being displayed
 
@@ -157,10 +139,6 @@ The next property that can be set allows you to define an initial path that the
 be very useful to pre-navigate the user to the proper directory. You will need to pass a properly constructed path. If we wanted to have our dialog start at our Documents directory, the call would look like this.
 
 dialog.showOpenDialog({ title: 'Select a workspace...', properties: [ 'openFile'], defaultPath: '/Users/<username>/Documents/',}, function (files) { if (files) event.sender.send('selectedItem, files)})
-
-107
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 Of course you will need to switch the path based on the platform. For example, here we define the user's document directory based on the platform. That's why you should prefer the use of dirname or ./, and use the path module rather than hard-code the default path.
 
@@ -188,10 +166,6 @@ if (process.platform === 'darwin') { startPath = '/Users/<username>/Documents/' 
 
 dialog.showOpenDialog({ title: 'Select a workspace...', properties: ['openFile'], defaultPath: startPath,
 
-108
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 buttonLabel: "Select...", }, function (files) { if (files) event.sender.send('selectedItem', files) })})
 
 This should look almost identical to the directory code from earlier. The only change is that the
@@ -210,10 +184,6 @@ On Windows, this information will be shown as a drop-down menu that will allow y
 
 filters (Figure 7-3).
 
-109
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 Figure 7-3. The Save as type option being displayed
 
 On macOS, this control is not shown, but the filter is still applied to the dialog. Please note we've
@@ -222,19 +192,11 @@ changed the ‘openDirectory' property to ‘openFile' in this instance.
 
 The BrowserWindow ParameterWe skipped the initial parameter that the showOpenDialog supports since it is optional. On macOS, it is quite common to have the Open dialog attach itself to the actual application window and not have it open in a separate window, as shown in Figure 7-4.
 
-110
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 Figure 7-4. The Open File dialog on macOS attached to the Application Window
 
 If you choose to not attach the dialog to the application window, note that the file dialog is not automatically centered, and you will need to programmatically position it. To attach a dialog to the application window, simply pass in the reference to the application window into the dialog's show method. Here is the basic code needed to display the dialog to select a file. Once the user has selected a file, the code will emit an IPC event to the renderer process with information on the selected files.
 
 dialog.showOpenDialog(mainWindow, { title: 'Select a file...', properties: ['openFile'], defaultPath: '/Users/<username>/Documents/', buttonLabel: "Select...", filters: [ { name: 'Images', extensions: ['jpg', 'png', 'gif'] }, { name: 'Text', extensions: ['txt'] } ]}, function (files) { if (files) event.sender.send('selected-directory', files)})
-
-111
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 Just remember, if your application is going to support multiple windows, you need to ensure that you
 
@@ -308,10 +270,6 @@ gives us:
 
 fs.Statsatime: Mon Mar 13 2017 15:13:31 GMT-0700 (PDT)birthtime: Mon Mar 13 2017 15:09:16 GMT-0700 (PDT)blksize: 4096blocks: 8ctime: Mon Mar 13 2017 15:13:12 GMT-0700 (PDT)dev: 16777220gid: 1859252656ino: 30007351mode: 33188mtime: Mon Mar 13 2017 15:13:12 GMT-0700 (PDT)
 
-113
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 nlink: 1rdev: 0size: 603uid: 224974590
 
 Got file info successfully!isFile ? trueisDirectory ? false
@@ -340,10 +298,6 @@ Reading FilesTo read a file from a user's computer, it can be done in two variat
 
 fs.readFile(filepath, 'utf-8', function (err, data) {  if(err){   alert("An error occurred reading the file :" + err.message)   return  }  //Display the file contents  console.log("The file content is : " + data)})
 
-114
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 If you want to read the file in synchronous mode, use fs.readFileSync() instead. If you need to perform a
 
 partial read of a file, refer to the documentation for the fs module, available at <nodejs.org/api/fs.html>.
@@ -361,10 +315,6 @@ Working DirectoriesIn all the previous examples, we were working with just files
 fs.mkdir(myDir, function(err){ if (err) {  console.log('mkdir err:'+err) }
 
 console.log('New Directory Created')})
-
-115
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 Reading the Directory ContentsOften, reading the entire contents of a directory is needed. To perform this action, use the fs.readdir() or fs.readdirSync() methods. The result of calling either method will be an array for files and directories contained within the parent directory. If we read the electron-quick-start directory using this code:
 
@@ -394,10 +344,6 @@ const saveFileBtn = document.getElementById('saveFile')
 
 saveFileBtn.addEventListener('click', function (event) { ipc.send('save-file-dialog')})
 
-116
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 Finally, in the main.js, we will add our IPC listener:
 
 ipc.on('save-file-dialog', function (event) {})
@@ -415,10 +361,6 @@ parameters should be familiar from the File Open dialog.
 ipc.on('save-file-dialog', function (event) { let startPath = '';
 
 if (process.platform === 'darwin') { startPath = '/Users/<username>/Documents/' }
-
-117
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 dialog.showSaveDialog({ title: 'Save file...',  defaultPath: '/Users/<username>/Documents/highscores.txt',  buttonLabel: "Save",  filters: [  { name: 'Text', extensions: ['txt'] } ] }, function (file) { console.log(file)
 
@@ -444,10 +386,6 @@ if (process.platform === 'darwin') { startPath = '/Users/<username>/Documents/' 
 
 dialog.showSaveDialog({ title: 'Save file...', defaultPath: startPath +'highscores.txt', buttonLabel: "Save", filters: [  { name: 'Text', extensions: ['txt'] } ] }, function (file) { console.log(file); if (file) {  let theData = "Chris,10000"  FS.writeFile(file, theData, function (err) {  if (err === null) {   console.log('It\'s saved!');
 
-118
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 } else {   //ERROR OCCURRED   console.log(err);  }  }); } })})
 
 The Message Dialog
@@ -456,19 +394,11 @@ In addition to the tandem File Open and File Save methods, the Dialog API also s
 
 Figure 7-6. A sample Message Dialog
 
-119
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 The showMessageBox method also follows the same general parameter sequence: browserWindow, options, and the callback function. There are four variations of the MessageBox; info, error, question, and none. These are defined by setting the type property in the options object. On macOS, there is no difference in display of these MessageBox types, but on Windows, the icon will change to reflect the type (see Figures 7-7 through 7-10).
 
 Figure 7-7. The Info type MessageBox on Windows
 
 Figure 7-8. The error type MessageBox on Windows
-
-120
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 Figure 7-9. The Warning type MessageBox on Windows
 
@@ -481,10 +411,6 @@ Let's extend our Electron Dialog sample to support displaying these types.In our
 In our renderer.js file, we will get the references to each of the buttons:
 
 const infoDialogBtn = document.getElementById('info')const errorDialogBtn = document.getElementById('error')const questionDialogBtn = document.getElementById('question')const noneDialogBtn = document.getElementById('none')
-
-121
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 then create the click EventListeners for each button:
 
@@ -510,10 +436,6 @@ This will cause our dialogs to look like this (without the title or description,
 
 yet) in Figure 7-11.
 
-122
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 Figure 7-11. A Message Dialog on macOS
 
 Another thing to note, on Windows: if this array contains the string ‘Cancel' or ‘No', then it will
@@ -538,10 +460,6 @@ The title property is only used on Windows, and it is displayed along the top of
 
 the preceding Mac OSX example.
 
-123
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 The final text display property is the detail string. This is what is shown in the body of the dialog. Here is
 
 our showMessageBox code so far:
@@ -552,11 +470,7 @@ This code will create a dialog that looks like Figure 7-12.
 
 Figure 7-12. The Message Dialog Box
 
-124
-
 Custom IconsOn Mac, the icon that is displayed with each dialog type is the application icon. If you want to have a custom icon, say a warning icon with your app icon overlaid over it, see what is shown in Figure 7-13.
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 Figure 7-13. A sample custom icon
 
@@ -574,10 +488,6 @@ Then in the dialog options, we can set the icon property to this value:
 
 ipc.on('display-dialog', function (event, dialogType) {dialog.showMessageBox({ type: dialogType, buttons: ['Save', 'Cancel', 'Don\'t Save'], defaultId: 0, cancelId: 1, title: 'Save Score', message: 'Backup your score file?', detail: 'Message detail', icon: warningIcon }, function (index) { console.log(index) });})
 
-125
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 So, now when we display our dialog, our custom icon is displayed instead of the default icon (Figure 7-14).
 
 Figure 7-14. The dialog using our custom icon
@@ -586,11 +496,7 @@ You might consider writing your dialog method to be more generic in nature, swit
 
 labels, and button text as needed via input parameters.
 
-126
-
 Handling the ResponseThe callback function will accept the index value of the response from the dialog.
-
-Chapter 7 ■ Working With the Dialog MoDule
 
 ipc.on('display-dialog', function (event, dialogType) { console.log(dialogType) dialog.showMessageBox({ type: dialogType, buttons: ['Save', 'Cancel', 'Don\'t Save'], defaultId: 0, cancelId: 1, title: 'Save Score', message: 'Backup your score file?', detail: 'Message detail', icon: warningIcon }, function (index) { console.log(index) })})
 
@@ -604,21 +510,12 @@ Although the showMessageBox does have an error type, there is an additional meth
 
 dialog.showErrorBox('Frak!', 'Cyclons reported on the port hanger deck!')
 
-127
-
-Chapter 7 ■ Working With the Dialog MoDule
-
 Figure 7-15. The Error message dialog. It will use the application's icon by default.
 
 This method does not support custom icons nor changing buttons options (there is a default ‘OK'
 
 button that will dismiss the box but cannot be customized). Also, note there is no callback function, since there is only the single response that can occur.
 
-Summary
+## Summary
 
 In this chapter, we explore the File Save and File Open dialogs and their display options. We also looked at the Message dialog as well. The variations of this method were examined, so you can display the proper type per the platform's user interface guidelines. Finally, we demonstrated the simple Error dialog method.
-
-128
-
-CHAPTER 8
-

@@ -1,172 +1,156 @@
-Adding Custom Menus
+# 0501. Adding Custom Menus
 
 Menus are also something that traditional web app have never had access to. The application menus were always that of the browsers. If the user accessed a contextual menu on the page, the default browser contextual menu would appear. Web apps had no ability to change either one. However, Electron gives you full control over creating both application-level menus, as well as contextual menus.
 
-We will explore creating both the application-level menus and the contextual menus. Electron uses the
+We will explore creating both the application-level menus and the contextual menus. Electron uses the Menu and the MenuItem modules together to create the custom menus that your application will use.
 
-Menu and the MenuItem modules together to create the custom menus that your application will use.
-
-Getting Started
+## 5.1 Getting Started
 
 Let's clone a fresh copy of the Electron Quick Start example.
 
+```
 git clone https://github.com/electron/electron-quick-start custom-menu-demo
+```
 
 Next, change your active directory to electron-quick-start.
 
+```
 cd custom-menu-demo
+```
 
 Now, we need to install the dependencies:
 
+```
 npm install
+```
 
-Finally, reset Git with
+Finally, reset Git with:
 
+```
 git init
+```
 
-You might have noticed that our previous Electron samples already included a standard application
-
-menu. In fact, it is a robust menu system with many of the standard functions already defined (Figure 5-1).
-
-© Chris Griffith, Leif Wells 2017 C. Griffith, L. Wells, Electron: From Beginner to Pro, https://doi.org/10.1007/978-1-4842-2826-5_5
-
-73
-
-Chapter 5 ■ adding Custom menus
+You might have noticed that our previous Electron samples already included a standard application menu. In fact, it is a robust menu system with many of the standard functions already defined (Figure 5-1).
 
 Figure 5-1. The default Electron menu
 
-But if we want to have a custom menu in our application, then the creation of the entire menu must be
+But if we want to have a custom menu in our application, then the creation of the entire menu must be defined by the developer. So, let's get started building our basic application menu. Figure 5-2 shows what our final menu structure will look like on macOS.
 
-defined by the developer. So, let's get started building our basic application menu. Figure 5-2 shows what our final menu structure will look like on macOS.
+1『这里的 menu 就是最顶部的菜单栏。（2021-03-26）』
 
-Electron
+Now the application menu is only available in the main process, so let's open the main.js file in our editor. Within our existing constants, we will define another for our Menu module:
 
-About electron-quick-start------Services------Hide electron-quick-startHide OthersShow All------Quit
-
-Edit
-
-UndoRedo------CutCopyPasteSelect All------Start DictationEmoji & Symbols
-
-Figure 5-2. Menu hierarchy diagram
-
-View
-
-ReloadToggle Full ScreenToggle Developer Tools------App Menu Demo
-
-Window
-
-MinimizeClose------Reopen Window------Being All to Front------Hello World
-
-Help
-
-SearchLearn More
-
-Now the application menu is only available in the main process, so let's open the main.js file in our
-
-editor. Within our existing constants, we will define another for our Menu module:
-
+```js
 const Menu = electron.Menu
-
-74
+```
 
 Then once our application is ready, we can attach our menu. Locate this function in main.js
 
-Chapter 5 ■ adding Custom menus
-
+```js
 app.on('ready', createWindow)
+```
 
 and replace it with this:
 
-app.on('ready', function () { const menu = Menu.buildFromTemplate(template) Menu.setApplicationMenu(menu) createWindow()})
+```js
+app.on('ready', function () {
+  const menu = Menu.buildFormTemplate(template)
+  Menu.setApplicationMenu(menu)
+  createWindow()
+})
+```
 
 One of the methods in the Menu module is the ability to create a menu object from a template. Rather than append each menu item one by one, Electron gives us the ability to create a menu template and have it properly generate our menu object for us. Once we have created our menu object, we can replace the default application menu that the Electron shell provides.
 
-if you run the application in its current state, you will encounter an error, as we have not defined a
+Note: if you run the application in its current state, you will encounter an error, as we have not defined a template yet.
 
-■ Note template yet.
-
-Menu Templates
+## 5.2 Menu Templates
 
 Let's start creating our menu template. For any modest application, you will have quite a lengthy template, so we are going to build up our template in steps to ensure that the formatting is correct.
 
-After we define the mainWindow variable, add this code block for a simple menu that will have two
+After we define the mainWindow variable, add this code block for a simple menu that will have two top-level menus, and each with a single menu item:
 
-top-level menus, and each with a single menu item:
+```js
+let template = [
+  { 
+  label: 'Menu 1', 
+  submenu: [{ label: 'Menu item 1' }]
+  }, 
+  { label: 'Menu 2', 
+    submenu: [
+      { label: 'Another Menu item' }, 
+      { label: 'One More Menu Item' }
+    ]
+  }
+]
+```
 
-let template = [{ label: 'Menu 1', submenu: [{ label: 'Menu item 1' }]}, { label: 'Menu 2', submenu: [{ label: 'Another Menu item' }, { label: 'One More Menu Item' }]}]
+The menu template is an array of objects. Each object will define an individual menu that will be shown in the application's menu bar. To define text that will be shown, we assign that value to its label property. In this code sample, we are defining two menus: Menu 1 and Menu 2.
 
-The menu template is an array of objects. Each object will define an individual menu that will be shown
+To define the menu items – the elements that are shown when a user selects that menu – we set the submenu property to an array of menu objects. For Menu 1, we only define one menu item with a label of Menu item 1. For the second menu, Menu 2, we will define two menu items: Another Menu Item and One More Menu Item. Before we test out our menu, we need to make a special adjustment for running on macOS.
 
-in the application's menu bar. To define text that will be shown, we assign that value to its label property. In this code sample, we are defining two menus: Menu 1 and Menu 2.
-
-To define the menu items – the elements that are shown when a user selects that menu – we set the submenu property to an array of menu objects. For Menu 1, we only define one menu item with a label of Menu item 1. For the second menu, Menu 2, we will define two menu items: Another Menu Item and One More Menu Item.
-
-Before we test out our menu, we need to make a special adjustment for running on macOS.
-
-75
-
-Chapter 5 ■ adding Custom menus
-
-macOS's Application Menu
+## 5.3 macOS's Application Menu
 
 Ignoring the Apple menu, which is systemwide, on macOS, the first menu item of the application menu is the application's name. Currently, this menu is labeled Electron, since that is the root application that we are using. Once we build our application for distribution, this label will reflect our actual application name. This application menu is where you will find the applications preference's menu, the ability to hide the application or other applications, and the quit menu. If we simply define our menu template without accommodating for this special menu, we will have an issue. Our first menu definition will be incorrectly displayed. The main menu label will not be shown, but the menu items will be inserted under the application menu.
 
-To solve this, we will need to shift our menus one position if we are running on macOS. After the
+To solve this, we will need to shift our menus one position if we are running on macOS. After the template definition in the main.js file, we can add this code to offset our template if we are running on a macOS system:
 
-template definition in the main.js file, we can add this code to offset our template if we are running on a macOS system:
+```js
+if (process.platform === 'darwin') { 
+  const name = electron.app.getName() 
+  template.unshift({ 
+    label: name, 
+    submenu: [{  
+      label: 'Quit',  
+      accelerator: 'Command+Q',  
+      click: function () {  
+        app.quit()  
+      } 
+    }] 
+  })
+}
+```
 
-if (process.platform === 'darwin') { const name = electron.app.getName() template.unshift({ label: name, submenu: [{  label: 'Quit',  accelerator: 'Command+Q',  click: function () {  app.quit()  } }] })}
+This will only adjust our menu structure. The traditional menu items that we typically would see in this menu will not be there. However, we did include the Quit menu item to make working with this sample a bit easier. We will address adding in the rest of the menu items for the macOS application menu later in the chapter. For now, let's explore expanding our menus.
 
-This will only adjust our menu structure. The traditional menu items that we typically would see in this
-
-menu will not be there. However, we did include the Quit menu item to make working with this sample a bit easier. We will address adding in the rest of the menu items for the macOS application menu later in the chapter. For now, let's explore expanding our menus.
-
-Defining Keyboard Shortcuts and Menu Item Roles
+## 5.4 Defining Keyboard Shortcuts and Menu Item Roles
 
 Let's replace our simple menu template with one that is more complex, like a standard Edit menu. Here is the template we will use:
 
 let template = [{ label: 'Edit App', submenu: [{ label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo' }, { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' }, { type: 'separator' }, {
 
-76
-
-Chapter 5 ■ adding Custom menus
-
 label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut' }, { label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy' }, { label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste' }, { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectall' }]}]
 
-We set the top-level menu's name through using the label property. Now, standard convention for the
 
-Edit menu is simply to call it Edit; we are changing it to Edit App so you can verify that the menu is your menu and not the predefined Electron Edit menu.
 
-You should always follow the platform convention for keyboard shortcuts and menu naming. refer to
 
-■ Note each platform's user interface guidelines forfurther information.
+We set the top-level menu's name through using the label property. Now, standard convention for the Edit menu is simply to call it Edit; we are changing it to Edit App so you can verify that the menu is your menu and not the predefined Electron Edit menu.
+
+Note: You should always follow the platform convention for keyboard shortcuts and menu naming. refer to each platform's user interface guidelines forfurther information.
 
 Next, we will set the submenu with an array of menu items. Let's look at the first submenu:
 
 { label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo'}
 
-Again, we set the menu's name through using the label property. Next, we define the accelerator. This is
+Again, we set the menu's name through using the label property. Next, we define the accelerator. This is an optional property, but this is how you define the keyboard shortcut for the menu item. We can listen for the following modifiers:
 
-an optional property, but this is how you define the keyboard shortcut for the menu item. We can listen for the following modifiers:
+1 Command (or Cmd for short)
 
-Alt
+2 Control (or Ctrl for short)
 
-•	 Command (or Cmd for short)•	 Control (or Ctrl for short)•	 CommandOrControl (or CmdOrCtrl for short)•	•	 Option•	•	•
+3 CommandOrControl (or CmdOrCtrl for short)
 
-Super
+4 Alt
 
-AltGr
+5 Option
 
-Shift
+6 AltGr
 
-77
+7 Shift
 
-Chapter 5 ■ adding Custom menus
+8 Super
 
-The modifier is then combined with a keycode to define our accelerator. In our snippet, our accelerator
-
-is set to be ‘CmdOrCtrl+Z'. This means that if the user presses either the Command key or the Control key (based on the platform) and the Z key, the menu item will be triggered.
+The modifier is then combined with a keycode to define our accelerator. In our snippet, our accelerator is set to be ‘CmdOrCtrl+Z'. This means that if the user presses either the Command key or the Control key (based on the platform) and the Z key, the menu item will be triggered.
 
 Since our Electron application will be running on a variety of platforms, we need a solution to properly
 
@@ -232,10 +216,6 @@ unhide - Map to the unhideAllApplications action
 
 startspeaking - Map to the startSpeaking action
 
-78
-
-Chapter 5 ■ adding Custom menus
-
 stopspeaking - Map to the stopSpeaking action
 
 front - Map to the arrangeInFront action
@@ -268,21 +248,13 @@ separator. This menu item will insert the horizontal line in the menu (Figure 5
 
 {  type: 'separator' }
 
-79
-
-Chapter 5 ■ adding Custom menus
-
 Figure 5-3. The Edit Menu
 
-Creating Submenus and Checkmarks
+## 5.5 Creating Submenus and Checkmarks
 
 Another menu type that you will use is the submenu. We already used it to define the menus under each menu name. But if you want to create a submenu from a menu item, this is the type you will use. After the Select All definition in our Edit App menu, let's add a demonstration of both the separator and a submenu:
 
 { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectall' }, { type: 'separator' }, { label: 'My Submenu', submenu: [  {  label: 'Item 1'  },
-
-80
-
-Chapter 5 ■ adding Custom menus
 
 {  label: 'Item 2'  } ] }
 
@@ -298,10 +270,6 @@ using a checkmark next to the menu name (see Figure 5-5). Electron offers two m
 
 { label: 'Item 1', type: 'checkbox', checked: true}
 
-81
-
-Chapter 5 ■ adding Custom menus
-
 Figure 5-5. The menuitem with a checkmark
 
 The toggling of the checkbox will be managed completely by your application.If your menu item is a part of collection of options, where one item must always be selected, then you
@@ -314,31 +282,19 @@ Electron will handle the switching of the checkmark between the menu items autom
 
 you will still need to handle the application logic of that selection yourself.
 
-82
-
-Completing the macOS's Application Menu
+## 5.6 Completing the macOS's Application Menu
 
 Earlier in this chapter, we added a brief bit of code, to adjust our menus on macOS to render correctly. Now, let's return to that code block and replace it with the completed version (see Figure 5-6).
-
-Chapter 5 ■ adding Custom menus
 
 if (process.platform === 'darwin') { let name = 'App Name' template.unshift({ label: name, submenu: [  {  label: `About ${name}`,  role: 'about',  },  { type: 'separator' },  {  label: 'Preferences',  accelerator: 'Command+,',  click: appPrefs  },  { type: 'separator' },  {  label: 'Services',  role: 'services',  submenu: [],  },  { type: 'separator' },  {  label: `Hide ${name}`,  accelerator: 'Command+H',  role: 'hide',  }, {  label: 'Hide Others',  accelerator: 'Command+Alt+H',  role: 'hideothers',
 
 }, {  label: 'Show All',  role: 'unhide',  },  { type: 'separator' },  {  label: `Quit ${name}`,  accelerator: 'Command+Q',  click: function () {    app.quit()    }  }] })}
-
-83
-
-Chapter 5 ■ adding Custom menus
 
 Figure 5-6. The application menu on macOS
 
 ■ Note the preferences menu calls a custom function, appprefs, which is not defined; the rest of the template can rely on the built menu roles. also, our quit menu item will perform an immediate quit. if your application needs to check if a file needs to be saved, you will need to expand this function to allow for that functionality.
 
 macOS's Window Menu ModificationsOSX also has another menu modification that is needed to align with its user interface guidelines. The ‘Window' menu has some additional menu items that need to be included, such as ‘Bring All to Front'. There is also the ability to close or minimize the current window from this menu as well.
-
-84
-
-Chapter 5 ■ adding Custom menus
 
 The standard Window menu will look like this:
 
@@ -347,10 +303,6 @@ The standard Window menu will look like this:
 Add this new menu to our template. Since the menu templates can get very lengthy and have complex nesting, we will assign each menu to its own variable then push it onto the template array. This helps keep the code a bit more manageable.
 
 let windowMenu = { label: 'Window', role: 'window', submenu: [{ label: 'Minimize', accelerator: 'CmdOrCtrl+M', role: 'minimize' }, { label: 'Close', accelerator: 'CmdOrCtrl+W', role: 'close' }, { type: 'separator' }, { label: 'Reopen Window', accelerator: 'CmdOrCtrl+Shift+T', enabled: false, key: 'reopenMenuItem',
-
-85
-
-Chapter 5 ■ adding Custom menus
 
 click: function () {  app.emit('activate') } }]}
 
@@ -362,11 +314,7 @@ before it. Since the template is just an array of objects, we can just select th
 
 Figure 5-7. The Bring All to Front menu inserted into the Window Menu
 
-86
-
 Then we simply push our two new menu items onto the submenu.
-
-Chapter 5 ■ adding Custom menus
 
 if (process.platform === 'darwin') { ...
 
@@ -376,15 +324,7 @@ Here is a complete starter menu system for your Electron application:
 
 let template = [{ label: 'Edit', submenu: [{ label: 'Undo', accelerator: 'CmdOrCtrl+Z', role: 'undo' }, { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', role: 'redo' }, { type: 'separator' }, { label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut' }, { label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy' }, { label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste' }, { label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectall' }]}, { label: 'View', submenu: [{ label: 'Reload', accelerator: 'CmdOrCtrl+R', click: function (item, focusedWindow) {
 
-87
-
-Chapter 5 ■ adding Custom menus
-
 if (focusedWindow) {  // on reload, start fresh and close any old  // open secondary windows  if (focusedWindow.id === 1) {   BrowserWindow.getAllWindows().forEach(function (win) {   if (win.id > 1) {    win.close()   }   })  }  focusedWindow.reload()  } } }, { label: 'Toggle Full Screen', accelerator: (function () {  if (process.platform === 'darwin') {  return 'Ctrl+Command+F'  } else {  return 'F11'  } })(), click: function (item, focusedWindow) {  if (focusedWindow) {  focusedWindow.setFullScreen(!focusedWindow.isFullScreen())  } } }, { label: 'Toggle Developer Tools', accelerator: (function () {  if (process.platform === 'darwin') {  return 'Alt+Command+I'  } else {  return 'Ctrl+Shift+I'  } })(), click: function (item, focusedWindow) {  if (focusedWindow) {  focusedWindow.toggleDevTools()  } } }]}, { label: 'Window', role: 'window', submenu: [{ label: 'Minimize', accelerator: 'CmdOrCtrl+M', role: 'minimize' }, {
-
-88
-
-Chapter 5 ■ adding Custom menus
 
 label: 'Close', accelerator: 'CmdOrCtrl+W', role: 'close' }, { type: 'separator' }, { label: 'Reopen Window', accelerator: 'CmdOrCtrl+Shift+T', enabled: false, key: 'reopenMenuItem', click: function () {  app.emit('activate') } }]}, { label: 'Help', role: 'help', submenu: [{ label: 'Learn More', click: function () {  electron.shell.openExternal('http://electron.atom.io') } }]}]
 
@@ -394,11 +334,7 @@ All to Front menuitem by one.
 
 template[3].submenu.push({ type: 'separator'}, { label: 'Bring All to Front', role: 'front' })
 
-89
-
-Chapter 5 ■ adding Custom menus
-
-Contextual Menus
+## 5.7 Contextual Menus
 
 Electron can also create a context, or right-click menu, with the Menu and MenuItem modules as well. Figure 5-8 shows what a contextual menu looks like.
 
@@ -413,10 +349,6 @@ Render process. Here is a simple contextual menu sample.
 const { remote } = require('electron')const { Menu } = remote
 
 const myContextMenu = Menu.buildFromTemplate ([ { label: 'Cut', role: 'cut' },
-
-90
-
-Chapter 5 ■ adding Custom menus
 
 { label: 'Copy', role: 'copy' }, { label: 'Paste', role: 'paste' }, { label: 'Select All', role: 'selectall' }, { type: 'separator' }, { label: 'Custom', click() { console.log('Custom Menu') } }])
 
@@ -440,25 +372,14 @@ Renderer Process [in renderer.js]const { remote, ipcRenderer } = require('electr
 
 window.addEventListener('contextmenu', (event) => { event.preventDefault() ipc.send('show-context-menu')})
 
-91
-
-Chapter 5 ■ adding Custom menus
-
 In this code sample, we are recreating the same menu from our first contextual menu sample using the direct menu style. Then we create an IPC event listener. This listener will listen for our custom event, ‘show-context-menu'. It will then resolve from which window our message came from, then trigger the contextual menu using the popup method.
 
 On the Renderer process, we have the same event listener for the contextmenu event. But instead of directly
 
 triggering the menu, we use the IPC send command to broadcast our custom event to the Main process.
 
-Summary
+## Summary
 
 In this chapter, we have explored the various options you have when creating your application's menu system. We covered how to assign key commands, or accelerators, to menu items; how to enable or disable an menuitem; and how to have it trigger either prebuilt actions or custom code.
 
-We also briefly looked at how to have custom context, or right-click, menus with our Electron
-
-application, giving it one more layer of a ‘native' feel.
-
-92
-
-CHAPTER 6
-
+We also briefly looked at how to have custom context, or right-click, menus with our Electron application, giving it one more layer of a ‘native' feel.

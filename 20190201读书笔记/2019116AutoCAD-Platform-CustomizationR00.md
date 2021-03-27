@@ -339,6 +339,8 @@ Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted
 
 ### 0202. 术语卡 —— XData
 
+信息源自「2019116AutoCAD-Platform-Customization0206.md」
+
 Each object in a drawing has a pre-established set of properties that define how that object should appear or behave. These properties are used to define the size of a circle or the location of a line within a drawing. Although you can't add a new property to an object with AutoLISP, you can append custom information to an object. The custom information that you can append to an object is known as extended data, or XData.
 
 XData is structured similar to an entity data list except the values must be within a specific range of DXF group codes. Each XData list must contain an application name to identify one XData list from another since several XData lists can be attached to an object. After the application name, an XData list can contain any valid values and be of any type of data that AutoLISP supports.
@@ -353,6 +355,17 @@ Once you have defined an application name and registered it in a drawing, you ca
 
 DXF group codes used for dotted pairs in an XData list must be within the range of 1000 to 1071. Each DXF group code value in that range represents a different type of data, and you can use each DXF group code more than once in an XData list. Table 16.8 lists some of the commonly used DXF group codes for XData.
 
+Table 16.8 XData-related DXF group codes
+
+|  DXF group code | Description  |
+|---|---|
+|  1000  |  String value |
+|  1001 |  Application name |
+|  1010  |  3D point |
+|  1040 |  Real numeric value |
+|  1070 |  16-bit (unsigned or signed) integer value |
+|  1071 |  32-bit signed integer value |
+
 The following AutoLISP statements were used to create the previous XData list:
 
 ```c
@@ -365,7 +378,7 @@ The following AutoLISP statements were used to create the previous XData list:
 )
 ```
 
-1『这里意外收获，通过系统函数获取时间，这个时间可以做一个时间戳，当作数据的临时 ID，时间戳基本不会重复的。（2020-10-31）』
+1『这里意外收获，通过系统函数获取时间，这个时间可以做一个时间戳，当作数据的临时 ID，时间戳基本不会重复的。（2020-10-31）补充：这里其实有一个重要知识点，取整函数 `fix` 其实很有用，之前没遇到过相关应用场景所以没概念。（2021-03-26）』
 
 Once an XData list has been defined, it can be appended to an entity data list returned by the AutoLISP entget function with the append function. I explained how to append lists together in Chapter 14. After an XData list is appended to an entity data list, you use the entmod function to commit changes to the object and entupd to update the object in the drawing area. I explained the entmod and entupd functions earlier in this chapter. This exercise shows how to attach an XData list to a circle:
 
@@ -653,9 +666,44 @@ Table 17.1 Symbol-table names
 
 源自「2019116AutoCAD-Platform-Customization0217.md」：
 
+Dictionaries are used to store custom information and objects in a drawing and can be thought of as symbol tables 2.0. Dictionaries were introduced with AutoCAD R13 as a way to introduce new symbol tables like objects without the need to change the drawing file format with each release. Although there is only one type of dictionary in a drawing, dictionaries can be stored in two different ways: per drawing or per object.
+
+The main dictionary of a drawing contains nested dictionaries that store multileader and table styles, and even the layouts used to output a drawing. Dictionaries attached to an object are known as extension dictionaries. Extension dictionaries are similar to XData but allow you to attach more information to a single object. AutoCAD uses extension dictionaries attached to the layer symbol table to store the information used for layer states and filters.
+
+Custom dictionaries are great for storing custom program settings so that they persist across drawing sessions. You might also use a custom dictionary as a way to store drawing revision history or project information that can be used to track a drawing and populate a title block. In this section, you'll learn how to access, create, query, and modify information stored in a dictionary.
+
+1『字典 dictionaries 做一张术语卡片。（2021-03-26）』—— 已完成
+
+The dictionary-related AutoLISP functions are similar to those used when working with symbol tables. Before you can access the entries in a dictionary, you must first get a dictionary. The `namedobjdict` function returns the entity name of the drawing's named-object dictionary. This is the main dictionary that contains all the dictionaries that aren't attached to an object as an extension dictionary. The `namedobjdict` function doesn't require any arguments.
+
+Once you have the entity name of the named object dictionary, use the entget function to get an entity data list that contains the key entries and entity names for each dictionary. Each entry in the named object dictionary is represented by two dotted pairs. The first dotted pair represents the unique name of a dictionary and DXF group code 3. The second dotted pair contains the entity name for the dictionary and DXF group code 350.
+
+Here's an example of an entity data list for a named object dictionary:
+
+```c
+((-1. <Entity name: 7ff6646038c0>) (0. "DICTIONARY") (330. <Entity name: 0>) 
+(5. "C") (100. "AcDbDictionary") (280. 0) (281. 1) 
+(3. "ACAD_COLOR") (350. <Entity name: 7ff664603c30>) 
+(3. "ACAD_GROUP") (350. <Entity name: 7ff6646038d0>) 
+(3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>) 
+(3. "ACAD_MATERIAL") (350. <Entity name: 7ff664603c20>))
+```
+
+先创建字典：
+
+As I mentioned earlier, one of the benefits of dictionaries is that you can store custom information or settings related to the programs you create in a drawing. Before a custom dictionary can be used and entries added to it, it must first be created. The `entmakex` function, not entmake, is used to create a dictionary. Once created, the new dictionary can be attached to either the named object dictionary or an object as an extension dictionary. You attach the new dictionary to the drawing's named object dictionary with the dictadd function.
+
+The following shows the syntax of the dictadd function:
+
+```c
+(dictadd ename key_entry dictionary)
+```
+
+1-2『信息待补充。因为目前个人觉得用 dictionary 还不如用 XData。（2021-03-26）』
+
 ### 0301. 任意卡 —— 生成 VLX 文件
 
-VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 -> 生成应用程序 -> 新建应用程序向导」，按步骤一步步来。
+VLX 文件是 LSP 文件编译后的成品文件。在 Visual LISP 编译器里，「文件 => 生成应用程序 => 新建应用程序向导」，按步骤一步步来。
 
 ### 0302. 任意卡 —— 数据存到公共变量（内存）
 

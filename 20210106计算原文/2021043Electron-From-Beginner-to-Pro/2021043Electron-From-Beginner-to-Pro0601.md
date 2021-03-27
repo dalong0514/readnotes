@@ -1,8 +1,8 @@
-Understanding the IPC Module
+# 0601. Understanding the IPC Module
 
 We briefly saw the use of the inter-process communication (IPC) module as one solution for having contextual menus in our application. In this chapter, we are going to explore this module in greater depth. Now, this is not the most glamorous part of API, but it is certainly the workhorse that much of our real-world applications will rely upon.
 
-Getting Started
+## 6.1 Getting Started
 
 Since Electron applications are broken into two separate processes (main and render), we need a system to communicate between them. That system is in the IPC module. This module allows you to send and receive synchronous and asynchronous messages between the processes. Each process has a specific module: ipcRenderer and ipcMain (Figure 6-1).
 
@@ -272,11 +272,6 @@ This method is available for both the Main and Renderer process. The method will
 
 specific channel. Once it has received the event, it will execute the listener function, then remove itself from the IPC listeners.
 
-Summary
+## Summary
 
 Although the IPC module does not have a lot of methods – just variations of sending and receiving – it is the backbone for our Electron processes to coexist. You will use this module to possibly start a third-party Node library in the Main process from a user action in the Renderer process. In our next chapter, we will be leveraging them quite a bit to work with Electron's dialog module.
-
-102
-
-CHAPTER 7
-

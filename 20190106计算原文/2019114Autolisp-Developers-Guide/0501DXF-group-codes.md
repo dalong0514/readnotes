@@ -2,23 +2,23 @@
 
 [DXF Group Codes | AfraLISP](https://www.afralisp.net/reference/dxf-group-codes.php)
 
--5——APP: persistent reactor chain
+-5 —— APP: persistent reactor chain
 
--4——APP: conditional operator (used only with ssget)
+-4 —— APP: conditional operator (used only with ssget)
 
--3——APP: extended data (XDATA) sentinel (fixed)
+-3 —— APP: extended data (XDATA) sentinel (fixed)
 
--2——APP: entity name reference (fixed)
+-2 —— APP: entity name reference (fixed)
 
--1——APP: entity name. This changes each time a drawing is opened. It is never saved. (fixed)
+-1 —— APP: entity name. This changes each time a drawing is opened. It is never saved. (fixed)
 
-0——Text string indicating the entity type (fixed)
+0 —— Text string indicating the entity type (fixed)
 
-1——Primary text value for an entity
+1 —— Primary text value for an entity
 
-2——Name (attribute tag, block name, and so on)
+2 —— Name (attribute tag, block name, and so on)
 
-3-4——Other textual or name values
+3-4 —— Other textual or name values
 
 5	Entity handle. Text string of up to 16 hexadecimal digits (fixed)
 
@@ -62,7 +62,7 @@
 
 69	APP: viewport identification number.
 
-70-78——Integer values, such as repeat counts, flag bits, or modes
+70-78 —— Integer values, such as repeat counts, flag bits, or modes
 
 90-99 32-bit integer values
 
@@ -94,43 +94,43 @@
 
 999	DXF: The 999 group code indicates that the line following it is a comment string. DXFOUT does not include such groups in a DXF output file, but DXFIN honors them and ignores the comments. You can use the 999 group to include comments in a DXF file that you've edited.
 
-1000	ASCII string (up to 255 bytes long) in extended data.
+1000 —— ASCII string (up to 255 bytes long) in extended data.
 
-1001	Registered application name (ASCII string up to 31 bytes long) for extended data.
+1001 —— Registered application name (ASCII string up to 31 bytes long) for extended data.
 
-1002	Extended data control string ("{"or "}").
+1002 —— Extended data control string (`"{"or "}"`).
 
-1003	Extended data layer name.
+1003 —— Extended data layer name.
 
-1004	Chunk of bytes (up to 127 bytes long) in extended data.
+1004 —— Chunk of bytes (up to 127 bytes long) in extended data.
 
-1005	Entity handle in extended data. Text string of up to 16 hexadecimal digits
+1005 —— Entity handle in extended data. Text string of up to 16 hexadecimal digits
 
-1010	A point in extended data. DXF: X value. (followed by 1020 and 1030 groups) APP: 3D point
+1010 —— A point in extended data. DXF: X value. (followed by 1020 and 1030 groups) APP: 3D point
 
-1011    	A 3D world space position in extended data. DXF: X value. (followed by 1021 and 1031 groups) APP: 3D point
+1011 —— A 3D world space position in extended data. DXF: X value. (followed by 1021 and 1031 groups) APP: 3D point
 
-1012	A 3D world space displacement in extended data. DXF: X value. (followed by 1022 and 1032 groups) APP: 3D vector
+1012 —— A 3D world space displacement in extended data. DXF: X value. (followed by 1022 and 1032 groups) APP: 3D vector
 
-1013	A 3D world space direction in extended data. DXF: X value. (followed by 1022 and 1032 groups) APP: 3D vector
+1013 —— A 3D world space direction in extended data. DXF: X value. (followed by 1022 and 1032 groups) APP: 3D vector
 
-1020, 1030	DXF: Y and Z values of a point
+1020, 1030 —— DXF: Y and Z values of a point
 
-1021, 1031	DXF: Y and Z values of a World space position
+1021, 1031 —— DXF: Y and Z values of a World space position
 
-1022, 1032	DXF: Y and Z values of a World space displacement
+1022, 1032 —— DXF: Y and Z values of a World space displacement
 
-1023, 1033	DXF: Y and Z values of a World space direction
+1023, 1033 —— DXF: Y and Z values of a World space direction
 
-1040	Extended data floating-point value.
+1040 —— Extended data floating-point value.
 
-1041	Extended data distance value.
+1041 —— Extended data distance value.
 
-1042	Extended data scale factor.
+1042 —— Extended data scale factor.
 
-1070	Extended data 16-bit signed integer.
+1070 —— Extended data 16-bit signed integer.
 
-1071	Extended data 32-bit signed long.
+1071 —— Extended data 32-bit signed long.
 
 ![](./res/2019020.png)
 
