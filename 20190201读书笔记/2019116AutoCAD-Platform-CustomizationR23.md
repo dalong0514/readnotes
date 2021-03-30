@@ -2562,6 +2562,24 @@ nil
 )
 ```
 
+```c
+; 2021-03-03
+(defun VerifyGsLcLayerByName (layerName /) 
+  (if (= (tblsearch "LAYER" layerName) nil) 
+    (StealGsLcLayerByNameList (list layerName))
+  )
+)
+```
+
+补充：通过上面的代码获取到实现判断图纸里是否有某个图层的另外一个实现途径（2021-03-30）：
+
+```c
+; Check for the existence of the BOM layer 
+(if (tblobjname "layer" "BOM") 
+  (alert "BOM layer already exists in the current drawing.") 
+)
+```
+
 』
 
 ### 7.1.2 Adding and Modifying Entries in a Symbol Table
@@ -2889,7 +2907,7 @@ Here's an example of an entity data list for a named object dictionary:
 
 The third dictionary entry in the example entity data list is `(3. "ACAD_VISUALSTYLE") (350. <Entity name: 7ff6646039a0>)`, and this entry allows you to access the visual styles of the current drawing. The code in Listing 17.1 returns the entity name for a `ACAD_VISUALSTYLE` dictionary.
 
-#### Listing 17.1: Custom function that returns the Visual Styles dictionary
+Listing 17.1: Custom function that returns the Visual Styles dictionary
 
 ```c
 ; Custom function that returns the entity name of a specific dictionary entry 
@@ -3048,7 +3066,6 @@ This example adds an extension dictionary to the last object in a drawing:
 ; Attach the extension dictionary to the last object 
 (setq entityData (append (entget (entlast)) exDictionary)) 
 (entmod entityData)
-
 ```
 
 Once the extension dictionary is attached to the object, you can use the DXF group code 360 to get the entity name of the extension dictionary. With the entity name, you can then add dictionaries or Xrecords to the object's extension dictionary. This example gets the entity name of the extension dictionary attached to the last object in the drawing:
@@ -3062,6 +3079,7 @@ nil is returned if no extension dictionary has been added to the object.
 ### 7.2.3 Storing Information in a Custom Dictionary
 
 After a custom dictionary has been created, you add entries to a custom dictionary using the `dictadd` function. Entries of a custom dictionary are often of the extended record (also known as an Xrecord) object type. An Xrecord is similar to XData and can be attached to an object, but it contains DXF group codes that are in the same range as graphical objects. You create an Xrecord with the `entmakex` function before attaching it to the dictionary.
+
 
 The following code creates an Xrecord and attaches it to `MY_CUSTOM_DICTIONARY`, which can be created using the example from the previous section, with the XR1 key entry. The Xrecord contains a string (DXF group code 1), a coordinate value (DXF group code 10), and an integer (DXF group code 71).
 

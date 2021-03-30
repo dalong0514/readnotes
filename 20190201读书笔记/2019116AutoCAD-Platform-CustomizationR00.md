@@ -331,6 +331,20 @@ In the previous section, you learned how to get the object that represents the a
 
 When you want to add an object, such as a Layer object, to a collection, you can use one of the many Add methods available through the AutoCAD COM library. The following exercise shows how to create a function that checks for the existence of a layer and that creates the layer if it's not found; it then sets the layer as current by using the AutoCAD COM library and ActiveX. The function is similar to the createlayer function that you defined in the utility.lsp file in the various exercises throughout this book.
 
+### 0110. 主题卡 —— 如何创建 2 类 dictionary
+
+信息源自「附件2-Dictionaries-and-XRecords.md」：
+
+Ok, so a Dictionary is a container that can hold a number of objects. Why not use existing structures like symbol tables instead of complicating things? Many reasons, but two reasons come to mind. Symbol tables are maintained by the people who implemented them and to expand them to hold every possible custom object is not an option. Secondly, Dictionaries can be customized in a way that is not possible with symbol tables, and that opens a range of possibilities only limited by imagination.
+
+Dictionaries and XRecords go hand in hand. Like Dictionaries, XRecords are handled as named objects and can be manipulated by the same functions that handle Dictionaries. In the following, we'll try to add our own Dictionary to the main dictionary. We will also create an XRecord to hold various informations and add it to our Dictionary.
+
+1『这里慢慢有点懂 XRecord 和 Dictionaries 的关系了。Dictionaries 是容器，XRecord 可以帮数据然后加进 Dictionaries 里。（2021-03-28）』
+
+When dealing with Dictionaries, at one point you will have to consider ownership. Which object is going to own the Dictionary? Will it hold generic data for your application or will it hold data that is specific for some entity or entities? In the first case you will probably use the main dictionary to save your data with the drawing. If your application is maintaining data for linetypes, you will probably add an extension dictionary to the linetype symbol table. Whatever the ownership, the Dictionary is initially created without ownership and for that purpose we'll use the function ENTMAKEX. It works like ENTMAKE, but it creates the entity without an owner — and it returns an entity name instead of an entity list. Let's make a function that adds our own Dictionary to the main dictionary. In this example we will name it "OUR_DICT" :
+
+1『想要的东西来了。可以创建 2 类字典：1）全局性的，不属于任何实体对象，直接添加到 main dictionary。2）绑在实体对象上的字典。如何创建 2 类 dictionary，做一张主题卡片。（2021-03-28）』—— 已完成
+
 ### 0201. 术语卡 —— Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.
