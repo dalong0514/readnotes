@@ -2444,7 +2444,7 @@ Symbol tables are the oldest form of nongraphical objects used in drawing files 
 
 #### The Hidden Value of Nongraphical Objects
 
-Have you opened a drawing from a client to find what seems like a spaghetti mess of layers, linetypes, and text styles that just don't work well with your standards? Maybe the Standard text style in the client's drawings uses a fixed height and different font than your company uses, which would affect the way your blocks and annotation might look like in the drawing. Using the AutoLIS® programming language, you can create or change nongraphical objects stored in symbol tables or dictionaries so they align with your company's standards. Aligning the standards in the drawings received from a client ensure that the objects you create and those in the drawings plot with a consistent appearance.
+Have you opened a drawing from a client to find what seems like a spaghetti mess of layers, linetypes, and text styles that just don't work well with your standards? Maybe the Standard text style in the client's drawings uses a fixed height and different font than your company uses, which would affect the way your blocks and annotation might look like in the drawing. Using the AutoLISP® programming language, you can create or change nongraphical objects stored in symbol tables or dictionaries so they align with your company's standards. Aligning the standards in the drawings received from a client ensure that the objects you create and those in the drawings plot with a consistent appearance.
 
 1『哇塞，这个超级有用，自动去校准修改「非图形」对象，比如字体、图层等，保证「图纸设置」一致，这章的信息对设计的「标准化」绝对有大用。（2021-03-11）』
 
@@ -2602,7 +2602,7 @@ Now that the drawings have been fixed, you output the revised drawings with minu
 
 1『
 
-看到上面的信心，想到更新一个 Symbol Table 对象的方法：获取到它的 entity data 后，用 `subst` 替换数据集，然后用函数 `entmod` 更新数据对象。下面代码供参考。（2021-03-11）
+看到上面的信息，想到更新一个 Symbol Table 对象的方法：获取到它的 entity data 后，用 `subst` 替换数据集，然后用函数 `entmod` 更新数据对象。下面代码供参考。（2021-03-11）
 
 ```c
 (entmod (subst newValue oldValue entityData))
@@ -2612,6 +2612,8 @@ Now that the drawings have been fixed, you output the revised drawings with minu
 ; Refresh the object on-screen
 (entupd entityName)
 ```
+
+这里无意中知道了 `(entupd entityName)` 的作用，类似于 `re` 命令，刷新数据对象。做一张任意卡片。（2021-03-30）
 
 』
 

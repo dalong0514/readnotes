@@ -1001,6 +1001,29 @@ Nongraphical objects represent the block definitions, named styles, and other ob
 
 1-2『这里对模型空间（model space）以及布局（layout）定义很出乎意料，模型空间是一张特殊的块定义，布局是一个基于绘制设置的对象。做一张任意卡片。（2021-03-11）』
 
+### 0315. 任意卡 —— entupd entityName 的作用
+
+源自「2019116AutoCAD-Platform-Customization0217.md」：
+
+Now that the drawings have been fixed, you output the revised drawings with minutes to spare. This battle is won, but the war for CAD excellence is not over yet. Custom programs created with AutoLISP can help you to enforce CAD standards in your office. Using the programs you create, a drafter can focus more on the elements of a design and less on switching to the correct layer and style before adding new objects.
+
+1『
+
+看到上面的信息，想到更新一个 Symbol Table 对象的方法：获取到它的 entity data 后，用 `subst` 替换数据集，然后用函数 `entmod` 更新数据对象。下面代码供参考。（2021-03-11）
+
+```c
+(entmod (subst newValue oldValue entityData))
+
+; Update the object’s entity data list 
+(entmod entityData)
+; Refresh the object on-screen
+(entupd entityName)
+```
+
+这里无意中知道了 `(entupd entityName)` 的作用，类似于 `re` 命令，刷新数据对象。做一张任意卡片。（2021-03-30）
+
+』
+
 ## Introduction
 
 In 1996, Lee began learning the core concepts of customizing the AutoCAD user interface and AutoLISP. The introduction of VBA in AutoCAD R14 would once again redefine how Lee approached programming solutions for AutoCAD. VBA made it much easier to communicate with external databases and other applications that supported VBA. It transformed the way information could be moved between project management and manufacturing systems.
