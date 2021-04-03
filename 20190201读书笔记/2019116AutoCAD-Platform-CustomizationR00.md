@@ -345,6 +345,76 @@ When dealing with Dictionaries, at one point you will have to consider ownership
 
 1『想要的东西来了。可以创建 2 类字典：1）全局性的，不属于任何实体对象，直接添加到 main dictionary。2）绑在实体对象上的字典。如何创建 2 类 dictionary，做一张主题卡片。（2021-03-28）』—— 已完成
 
+### 0111. 主题卡 —— 如何删除 symbol table 实体对象
+
+信息源自「2019116AutoCAD-Platform-Customization0207.md」
+
+Since the same techniques can be used to create and modify both graphical and symbol table entries, you might think that removing a symbol table entry and a graphical object would also be the same in AutoLISP. The `entdel` function is used to remove graphical objects, but it cannot be used to remove symbol table entries. This is one of the very few times that you can't use「classic」AutoLISP to do something. Instead of using a specific AutoLISP function, you must use the command function with the `-purge` command to remove a symbol-table object.
+
+You can use the `tblobjname` and `tblsearch` functions to determine whether a specific symbol table entry exists in a drawing, and then use the `-purge` command to remove it. If the symbol table entry doesn't exist or cannot be removed because it is being used, the `-purge` command will end gracefully without any significant error messages that require user interaction to dismiss. Here's an example of how to remove a block named roomlabel from a drawing with the `-purge` command:
+
+```c
+(command "._-purge" "_b" "roomlabel" "_n")
+```
+
+NOTE: On Windows only, you can use the AutoLISP `vla-delete` function after loading the AutoCAD ActiveX/COM interface with the `vl-load-com` function. I discuss the basics of using ActiveX with AutoLISP in Chapter 22,「Working with ActiveX/COM Libraries (Windows only).」
+
+1-2-3『
+
+如何删除 `symbol table` 实体对象做一张主题卡片。
+
+[PurgeAll Method (ActiveX)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-9FD38B4D-2554-419A-9A1F-916725A300F5)
+
+通过这里的 purge 搜到了官方文档里的函数 `purgeAll`。这是目前自己急需的一个功能，设计流开发中，很多 `symbol table` 实体对象是通过无差别「偷」来的，但偷懒的很多图形模块很多没用上，是冗余的，那么就可以用这个功能函数自动清理掉。那么正好封装成公共函数。
+
+```c
+; 2021-04-02
+(defun PurgeAllUtils (/ acadObj doc)
+  ;; This example removes all unused named references from the database
+  (setq acadObj (vlax-get-acad-object))
+  (setq doc (vla-get-ActiveDocument acadObj))
+  (vla-PurgeAll doc) 
+)
+```
+
+』
+
+### 0112. 主题卡 —— 自动生成块定义
+
+Creating separate drawing files that your custom programs depend on has its advantages and disadvantages. The advantage of creating a separate drawing file is that you can use the AutoCAD user interface to create the block file. However, AutoCAD will need to know where the drawing file is stored so the custom program can use the file. The advantage of creating the block definition through code is that no separate drawing file needs to be maintained, making it easier to share your custom application with your clients or subcontractors.
+
+In these steps, you create a custom function named `roomlabel_createblkdef` that will be used to create the block definition for the room label block if it doesn't already exist in the drawing.
+
+1 Create a new LSP file named roomlabel.lsp using Notepad (on Windows) or TextEdit (on Mac OS).
+
+2 In the text editor area of the roomlabel.lsp file, type the following:
+
+```c
+; Creates the block definition roomlabel 
+(defun RoomLabel_CreateBlkDef ( / ) 
+  (setvar "clayer" "0") 
+  ; Start block definition 
+  (entmake (list (cons 0 "BLOCK") (cons 2 "roomlabel") 
+                 (cons 10 (list 18.0 9.0 0.0)) (cons 70 2))) 
+  ; Create the rectangle for around the block attribute 
+  (createrectangle (list 0.0 0.0 0.0) (list 36.0 0.0 0.0) (list 36.0 18.0 0.0) (list 0.0 18.0 0.0)) 
+  ; Add the attribute definition 
+  (entmake (list (cons 0 "ATTDEF") (cons 100 "AcDbEntity") 
+                 (cons 8 "Plan_RoomLabel_Anno") (cons 100 "AcDbText") 
+                 (cons 10 (list 18.0 9.0 0.0)) (cons 40 9.0) (cons 1 "L000") 
+                 (cons 7 "Standard") (cons 72 1) (cons 11 (list 18.0 9.0 0.0)) 
+                 (cons 100 "AcDbAttributeDefinition") (cons 280 0) 
+                 (cons 3 "ROOM#") (cons 2 "ROOM#") (cons 70 0) (cons 74 2) (cons 280 1))) 
+  ; End block definition 
+  (entmake (list (cons 0 "ENDBLK"))) 
+  (princ) 
+)
+```
+
+3 Click File Save. The block definition that will be created when the code is executed is shown in Figure 17.1.
+
+1-2『自动生成块参照之前已经学会了 2 种后台方法，而上面是自动生成块定义的实现，目前块定义是人工去做好，然后存放在一个图形 dwg 库里的。如果以后遇到要自动生成块定义的场景，可参考此处的代码。做一张主题卡片。（2021-04-03）』
+
 ### 0201. 术语卡 —— Dotted Pair
 
 Dotted Pair. A dotted pair is a list of two values separated by a period. Dotted pairs are commonly used to represent property values for an object. The first value of a dotted pair is sometimes referred to as a DXF group code. For example, `(40 . 2.0)` represents the radius of a circle; DXF group code value 40 indicates the radius property, and 2.0 is the actual radius value for the circle. When you're assigning a dotted pair to a variable, either the pair must be preceded by an apostrophe, as in `(setq dxf_40 '(40 . 2))`, or you must use the AutoLISP cons function, as in `(setq dxf_40 (cons 40 2))`. You'll learn more about creating and manipulating dotted pairs in Chapter 16.

@@ -2,6 +2,8 @@
 
 ## 记忆时间
 
+2021-04-01
+
 ## 目录
 
 Part II AutoLISP: Productivity through Programming
@@ -2625,7 +2627,7 @@ As you learned in Chapter 16, you can use the command function with AutoCAD comm
 
 TIP: You can use the `tblobjname` and entget functions to return the entity data list of an existing symbol table entry that you want to reproduce using AutoLISP. For example, `(entget (tblobjname "ltype" "center"))` returns the entity data list for the Center linetype if it is loaded in the current drawing.
 
-1『这里提供了一个筛选特定图层的新路径，用 `tblobjname` 函数。之前已经实现的路径是判断一个数据对象的 DXF 号（数值 8）的值是否为某个图层字符。比较来看，`tblobjname` 函数更加抽象（高层）。』
+1『这里提供了一个筛选特定图层的新路径，用 `tblobjname` 函数。之前已经实现的路径是判断一个数据对象的 DXF 号（数值 8）的值是否为某个图层字符。比较来看，`tblobjname` 函数更加抽象（高层）。（2021-03-11）补充：这个时间点才意识到，`ltype` 是只中心线那种线型。（2021-04-02）』
 
 This next code example attempts to create a new layer named Centerlines with the linetype Center:
 
@@ -2639,7 +2641,7 @@ Error: Undefined line type Center in LayerTableRecord Centernil
 
 An error message and nil is returned if the Center linetype doesn't exist in the drawing prior to creating the layer. Before you create symbol table entries, you must make sure that all of the objects they depend on are present in the drawing. For example, a linetype must exist in a drawing before a layer that uses the linetype can be created. The same is true of dimension styles; the text style and linetypes that a dimension style might reference must exist in the drawing before you create the dimension style.
 
-1-3『目前使用的是 LeeMac 封装好的函数「202102StealV1-8.lsp」实现从已有的图纸里「偷」各种「Symbol Table」。（2021-03-11）』
+1-3『目前使用的是 LeeMac 封装好的函数「202102StealV1-8.lsp」。实现从已有的图纸里「偷」各种「Symbol Table」。（2021-03-11）补充：这里反复提及一个思想，在用一个 `symbol table` 实体对象之前，必须要确认图纸里是不是已经有了这个实体对象。（2021-04-02）』
 
 This example checks for the Center linetype and, if it doesn't exist, the linetype is created using the entmake function:
 
@@ -2752,6 +2754,8 @@ The following example renames the layer「Bill of Materials」back to「BOM」an
 (setpropertyvalue entityName "color" 8)
 ```
 
+1『其实以后可以渐渐的改用 `setpropertyvalue` 去设置属性值，它更抽象高级。（2021-04-02）』
+
 #### Using an Object
 
 After a symbol table entry is created, you can use that entry in a number of ways based on the type of object it represents. The most common is to set it as current using a system variable before creating a new object so that the new object inherits the properties of the symbol table entry when possible. For example, you can use the clayer system variable to set the active layer in the drawing, or use celtype to indicate the linetype that new objects should inherit. You should refer to the setvar command and the AutoCAD Help system to identify the system variables your AutoCAD release supports and the properties they might affect.
@@ -2769,6 +2773,26 @@ You can use the `tblobjname` and `tblsearch` functions to determine whether a sp
 ```
 
 NOTE: On Windows only, you can use the AutoLISP `vla-delete` function after loading the AutoCAD ActiveX/COM interface with the `vl-load-com` function. I discuss the basics of using ActiveX with AutoLISP in Chapter 22,「Working with ActiveX/COM Libraries (Windows only).」
+
+1-2-3『
+
+如何删除 `symbol table` 实体对象做一张主题卡片。
+
+[PurgeAll Method (ActiveX)](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-9FD38B4D-2554-419A-9A1F-916725A300F5)
+
+通过这里的 purge 搜到了官方文档里的函数 `purgeAll`。这是目前自己急需的一个功能，设计流开发中，很多 `symbol table` 实体对象是通过无差别「偷」来的，但偷懒的很多图形模块很多没用上，是冗余的，那么就可以用这个功能函数自动清理掉。那么正好封装成公共函数。
+
+```c
+; 2021-04-02
+(defun PurgeAllUtils (/ acadObj doc)
+  ;; This example removes all unused named references from the database
+  (setq acadObj (vlax-get-acad-object))
+  (setq doc (vla-get-ActiveDocument acadObj))
+  (vla-PurgeAll doc) 
+)
+```
+
+』
 
 ### 7.1.3 Creating and Modifying Block Definitions
 
@@ -2799,17 +2823,42 @@ Here's a basic representation of the entity data lists that you need to create t
 数据流里生成「块参照」的代码示例。
 
 ```c
-(defun GenerateOnePublicPipeUpArrow (insPt tagValue drawnumValue relatedIDValue /)
-  (GenerateBlockReference insPt "PublicPipeUpArrow" "DataFlow-GsLcPublicPipe")
-  (GenerateVerticallyBlockAttribute (MoveInsertPosition insPt -3.5 -11.5) "TAG" tagValue "0" 3)
-  (GenerateVerticallyBlockAttribute (MoveInsertPosition insPt 1.2 -11.5) "DRAWNUM" drawnumValue "0" 3)
-  (GenerateVerticallyBlockHiddenAttribute (MoveInsertPosition insPt 7 -11.5) "RELATEDID" relatedIDValue "DataFlow-GsLcPublicPipe" 3)
+(defun GenerateBlockReference (insPt blockName blockLayer /) 
+  (entmake 
+    (list (cons 0 "INSERT") (cons 100 "AcDbEntity") (cons 67 0) (cons 410 "Model") (cons 8 blockLayer) (cons 100 "AcDbBlockReference") 
+          (cons 66 1) (cons 2 blockName) (cons 10 insPt) (cons 41 1.0) (cons 42 1.0) (cons 43 1.0) (cons 50 0.0) (cons 70 0) (cons 71 0) 
+          (cons 44 0.0) (cons 45 0.0) (cons 210 '(0.0 0.0 1.0))
+    )
+  ) 
+  (princ)
+)
+
+; directionStatus: dxfcode 50; 0.0 Level - 1.57 Vertical
+; hiddenStatus dxfcode 70; 0 可见 - 1 隐藏
+; moveStatus: dxfcode 280; 1 固定 - 0 可移动
+(defun GenerateCenterBlockAttribute (insPt propertyName propertyValue blockLayer textHeight directionStatus hiddenStatus moveStatus /)
+  (entmake 
+    (list (cons 0 "ATTRIB") (cons 100 "AcDbEntity") (cons 67 0) (cons 410 "Model") (cons 8 blockLayer) (cons 100 "AcDbText") 
+          (cons 10 (MoveInsertPositionUtils insPt -5.8 0)) (cons 40 textHeight) (cons 1 propertyValue) (cons 50 directionStatus) 
+          (cons 41 0.7) (cons 51 0.0) (cons 7 "DataFlow") (cons 71 0) (cons 72 1) (cons 11 insPt) (cons 210 '(0.0 0.0 1.0)) 
+          (cons 100 "AcDbAttribute") (cons 280 0) (cons 2 propertyName) (cons 70 hiddenStatus) (cons 73 0) (cons 74 0) (cons 280 moveStatus)
+    )
+  )
+  (princ)
+)
+
+; 2021-02-07
+(defun GenerateOneFireFightElevation (insPt elevation textHeight /) 
+  (GenerateBlockReference insPt "FireFightElevation" "DataflowFireFightElevation")
+  (GenerateBlockAttribute (AddPositonOffSetUtils insPt '(-950 300 0)) "ELEVATION" elevation "0" textHeight)
   (entmake 
     (list (cons 0 "SEQEND") (cons 100 "AcDbEntity"))
   )
   (princ)
 )
 ```
+
+补充：前面一段文字里的信息比较密的。1）DXF 70，0 表示没有属性或属性值是常量。2 表示非常量的属性值。动态块感觉是用 2 做的，有待确认。2）属性参照是 attrib，属性定义是 attdef。联想到以前测试过的场景，后台自动生成块定义的时候就是要用 attdef，而目前图纸里生成一个块本质是属性只是引用的，所以用的是 attrib。（2021-04-02）
 
 』
 
@@ -2821,11 +2870,44 @@ If you want to revise the content of a block definition (also known as redefinin
 
 2 Adding Objects. You must re-create the block definition by going through the process used to create the block. That is, to start the block definition, add the objects and then add the end block-definition marker. If you don't want to re-create all of the objects as part of the block definition, you can create a block reference in the drawing and explode it. Once it's exploded, you can add the new objects you want to add to the block in model space and then use the `-block` command to redefine the block definition.
 
-1-2『看到上面的信息，刚刚生成的实体对象，获取其 entity name 得到选择集，再结合「`command` + `-block`」应该可以自动定义一个块。待测试实现。（2021-03-11）』—— 未完成
+1-2『看到上面的信息，刚刚生成的实体对象，获取其 entity name 得到选择集，再结合「`command` + `-block`」应该可以自动定义一个块。待测试实现。（2021-03-11）补充：完全可以实现，把建筑底部迁移到工艺布置图后，后台自动把建筑底部做成一个块。（2021-04-02）』—— 未完成
 
 NOTE: On Windows only, you can use AutoLISP `vla-add<object>` functions to add objects directly to an existing block definition. I discuss the basics of using ActiveX with AutoLISP in Chapter 22.
 
-1『感觉通过上面的信息，可以获取到自动生成「块参照」的第三种实现路径。待研究。（2021-03-11）』—— 未完成
+1-2-3『
+
+感觉通过上面的信息，可以获取到自动生成「块参照」的第三种实现路径。待研究。（2021-03-11）
+
+补充：那是后的直觉果然是真的，上面实现自动生成块的方法是采用了 ActiveX。已经实现了。
+
+```c
+; 2021-03-08
+(defun InsertBlockUtils (insPt blockName layerName propertyDictList / acadObj curDoc insertionPnt modelSpace blockRefObj blockAttributes)
+  (setq acadObj (vlax-get-acad-object))
+  (setq curDoc (vla-get-activedocument acadObj)) 
+  (setq insertionPnt (vlax-3d-point insPt))
+  (setq modelSpace (vla-get-ModelSpace curDoc))
+  (setq blockRefObj (vla-InsertBlock modelSpace insertionPnt blockName 1 1 1 0))
+  ;(vlax-dump-object blockRefObj T)
+  (vlax-put-property blockRefObj 'Layer layerName)
+  (setq blockAttributes (vlax-variant-value (vla-GetAttributes blockRefObj)))
+  ; another method get the blockAttributes
+  ;(setq blockAttributes (vlax-variant-value (vlax-invoke-method blockRefObj 'GetAttributes)))
+  ;(vlax-safearray->list blockAttributes)
+  ; setting block property value
+  (mapcar '(lambda (x) 
+            (vla-put-TextString (vlax-safearray-get-element blockAttributes (car x)) (cdr x))
+          ) 
+    propertyDictList
+  ) 
+  ;(vla-ZoomAll acadObj) 
+  (princ)
+)
+```
+
+总结一下目前已经掌握的自动生成块的方法：1）直接嫁接 CAD 原生命令，不推荐，数据多了会很慢。2）新建 entityData，在图纸里生成。3）ActiveX 方法。（2021-04-02）
+
+』—— 已完成
 
 In the following exercise, you'll create a new block definition and layer. The new block definition is named circ and it contains a single circle object with a base point of 0,0. The new layer is named hardware and has a color value of 3 (green).
 
@@ -3145,9 +3227,11 @@ As you insert a room label block with the custom program, a counter increments b
 
 2 Using Symbol Table Entries. As new objects are created, you can assign the names of symbol table entries to various properties of an object so that it inherits the symbol table entries' properties. You can change the value associated with the DXF group code 8 of an object to move the object between layers, or even change the value associated to the DXF group code 2 of a block reference to change which block definition it inherits its geometry from.
 
+1『这里提供了一个知识点：其实可以通过修改 DXF 为 2 的点值对（块名），来更新图形。块名可以理解为继承某个块定义的名片。（2021-04-03）』
+
 3 Creating and Storing Information in a Custom Dictionary. Values assigned to variables in a drawing are temporary, but you can use custom dictionaries to persist values across drawing sessions. The values stored in a drawing can then be recovered by your programs after the drawing is closed and reopened, similar to how system variables work.
 
-NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Creating, Querying, and Modifying Objects」section of Chapter 16. If you didn't complete these exercises, do so now or start with the `ch17_building_plan.dwg` and `ch17_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the files are stored on your system, remove ch17_ from the name of the LSP file.
+NOTE: The steps in this exercise depend on the completion of the steps in the「Exercise: Creating, Querying, and Modifying Objects」section of Chapter 16. If you didn't complete these exercises, do so now or start with the `ch17_building_plan.dwg` and `ch17_utility.lsp` sample files available for download from www.sybex.com/go/autocadcustomization. These sample files should be placed in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the LSP files. Once the files are stored on your system, remove `ch17_` from the name of the LSP file.
 
 #### 7.3.1 Revising the createlayer Function in utility.lsp
 
@@ -3208,6 +3292,8 @@ In these steps, you create a custom function named `roomlabel_createblkdef` that
 
 3 Click File Save. The block definition that will be created when the code is executed is shown in Figure 17.1.
 
+1-2『自动生成块参照之前已经学会了 2 种后台方法，而上面是自动生成块定义的实现，目前块定义是人工去做好，然后存放在一个图形 dwg 库里的。如果以后遇到要自动生成块定义的场景，可参考此处的代码。做一张主题卡片。（2021-04-03）』
+
 Figure 17.1 RoomLabel block definition
 
 #### 7.3.3 Inserting a Block Reference Based on the Room Label Block Definition
@@ -3248,11 +3334,12 @@ In the next exercise steps, you will create three custom functions: `addattrefs`
         ; Creates the new attribute reference based on 
         ; the attribute definition 
         (entmake entityData) 
+        ) 
       ) 
     ) 
+    ; Gets the next block in the block definition 
+    (setq entityName (entnext entityName))
   ) 
-  ; Gets the next block in the block definition 
-  (setq entityName (entnext entityName)) ) 
   (princ) 
 ) 
 
@@ -3266,7 +3353,7 @@ In the next exercise steps, you will create three custom functions: `addattrefs`
     (setq entityData (entget entityName)) 
     ; Checks to see if the entity is an attribute definition 
     (if (= (strcase (cdr (assoc 0 entityData))) "ATTRIB") 
-      ; Checks to see if the attribute definition is constant or not 
+      ; select attribute by attTag
       (if (= (strcase (cdr (assoc 2 entityData))) (strcase attTag)) 
         (progn 
           ; Update the attribute value 
@@ -3278,12 +3365,12 @@ In the next exercise steps, you will create three custom functions: `addattrefs`
               (entmod (setq entityData (subst (cons 11 insPt) (assoc 11 entityData) entityData))) 
             ) 
           ) 
-          (entupd entityName) ) 
+          (entupd entityName) 
         ) 
       ) 
-      ; Gets the next block in the block reference 
-      (setq entityName (entnext entityName)
     ) 
+    ; Gets the next block in the block reference 
+    (setq entityName (entnext entityName)) 
   ) 
   (princ) 
 ) 
@@ -3313,7 +3400,13 @@ In the next exercise steps, you will create three custom functions: `addattrefs`
 
 3 Click File Save.
 
-1『原来定义块、插入块参照、修改块属性的借鉴代码是在这里，之前没找到。好在后来通过其他途径找到了实现方法，具体详见设计流源码。这几个功能是「基石」性技术。（2021-03-12）』
+1『
+
+原来定义块、插入块参照、修改块属性的借鉴代码是在这里，之前没找到。好在后来通过其他途径找到了实现方法，具体详见设计流源码。这几个功能是「基石」性技术。（2021-03-12）
+
+补充：在 `AddAttRefs` 里收获的几个知识点：1）判断等式逻辑的简单写法：`(/= (logand 2 (cdr (assoc 70 entityData))))`。2）复制 entityData 时要去掉不要的 DXF 码（ -1 5 330 3），用过滤数组的函数比作者的实现更简洁，详见设计流里迁移建筑底图的代码。3）`while` 函数的使用场景很多的，脑子里要与这么跟弦。4）遍历获取块中各个属性的数据，关键函数是 `(entnext entityName)`。5）要记得先判断属性值的常量不可变还是可变的。（2021-04-03）
+
+』
 
 #### 7.3.4 Prompting the User for an Insertion Point and Room Number
 
