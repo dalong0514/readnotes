@@ -1,92 +1,82 @@
-When the Macros dialog box opens, click the Macros In drop-down list and choose ch24_hexbolt.dvb. Figure 24.9 shows the macro that is stored in and can be executed from the ch24_hexbolt.dvb file with the Macros dialog box.
-
-In the Macros list, choose basHexBolt.HexBolt and click Run. The Draw Hex Bolt View dialog box, shown in Figure 24.10, is displayed.
-
-In the Diameter list box, choose 3/8 and click Insert.
-
-At the Specify center of bolt head: prompt, specify a point in the drawing area to draw the top view of the hex bolt.
-
-When the Draw Hex Bolt View dialog box reappears, in the View section click the Side option or image. Click Insert.
-
-At the Specify middle of bolt head: prompt, specify a point in the drawing area to draw the side view of the hex bolt.
-
-When the Draw Hex Bolt View dialog box reappears again, click Cancel. Figure 24.11 shows the top and side views of the hex bolt that were drawn with the macro.
-
-Figure 24.9 Edit, debug, and execute macros from the Macros dialog box.
-
-Figure 24.10 Custom dialog box used to draw a top or side view of a hex bolt
-
-Figure 24.11 Views of the completed hex bolt
-
-Accessing the AutoCAD VBA Documentation
-
-The AutoCAD VBA documentation is available from the AutoCAD product Help landing page and the VBA Editor. The documentation is composed of two documentation sets: the AutoCAD Object Library Reference and the ActiveX Developer's Guide. Although this book is designed to make it easy to learn how to use the AutoCAD Object library and the VBA programming language, you will want to refer to the documentation that is provided with the AutoCAD product too, as it just isn't possible to cover every function and technique here.
-
-The topics of the AutoCAD Object Library Reference explain the classes, methods, properties, and constants that make up the AutoCAD Object library. The ActiveX Developer's Guide topics can be used to explore advanced techniques and features that aren't covered in this book.
-
-You can see the AutoCAD VBA and ActiveX documentation written for AutoCAD 2015 here:
-
-http://help.autodesk.com/view/ACD/2015/ENU/
-
-On the Autodesk AutoCAD 2015 Help landing page, click the Developer Home Page link. On the AutoCAD Developer Help Home Page, use the AutoCAD Object Library Reference and Developer's Guide links under the ActiveX/VBA section to access the AutoCAD VBA and ActiveX documentation.
-
-When working in the VBA Editor, you can access the AutoCAD Object Library Reference and Microsoft Visual Basic for Applications Help by doing the following:
-
-In a code editor window, highlight the keyword, statement, data type, method, property, or constant that you want to learn more about.
-
-Press F1.
-
-Help can also be accessed from the Object Browser. In the Object Browser, select a class, method, property, or constant and then press F1 to open the associated help topic. I discussed the Object Browser earlier, in the「Exploring Loaded Libraries with the Object Browser」section.
-
-Chapter 25
-
-Understanding Visual Basic for Applications
+# 0302. Understanding Visual Basic for Applications
 
 The Visual Basic for Applications (VBA) programming language is a variant of the Visual Basic 6 (VB6) programming language that was introduced in 1998. Though similar, VB6 isn't exactly the same as the current version of Visual Basic (known as VB.NET). Unlike VB6, which allows you to develop stand-alone applications, VBA programs require a host application. The host application provides the framework in which the VBA program can be executed; Microsoft Word and the Autodesk® AutoCAD® program are examples of host applications.
+
+1『醍醐灌顶，excel 和 AutoCAD 都只是 VBA 运行的环境，是运行的 host application。（2021-04-03）』
 
 VBA was first introduced as a preview technology and modern programming alternative to AutoLISP® and ObjectARX® with AutoCAD Release 14 back in 1997. It was not until after the release of AutoCAD R14.01 that VBA was officially supported. The implementation of VBA in the AutoCAD program at that time was huge to the industry, as the learning curve between AutoLISP and C++ was steep, and the number of developers who knew VBA was growing rapidly.
 
 Here are some of the reasons I recommend using VBA for your custom programs:
 
-Individuals with VB/VBA experience often can be found in-house (check in your company's IS/IT department); finding someone fluent in AutoLISP or ObjectARX is much rarer.
+1 Individuals with VB/VBA experience often can be found in-house (check in your company's IS/IT department); finding someone fluent in AutoLISP or ObjectARX is much rarer.
 
-VB/VBA resources are easier to locate—on the Internet or at your local library.
+2 VB/VBA resources are easier to locate — on the Internet or at your local library.
 
-Connecting to external applications and data sources is simpler using VB/VBA.
+3 Connecting to external applications and data sources is simpler using VB/VBA.
 
 VBA programs are relatively low maintenance; programs written for the last release of the AutoCAD program (even those written a decade ago) often run in the latest release with little to no change.
 
-Learning the Fundamentals of the VBA Language
+## 2.1 Learning the Fundamentals of the VBA Language
 
 Before you learn to use VBA to automate the AutoCAD drawing environment, it is essential to have a basic understanding of the VBA or VB6 programming language. If you are not familiar with the VBA or VB6 programming language, I recommend reading this chapter before moving on.
 
 In addition to this chapter, the Microsoft Visual Basic for Applications Help from the Help menu on the VBA Editor's menu bar and your favorite Internet search engine can be great resources for information on the VBA programming language. The following are a couple of web resources that can help you get started on locating additional information on VBA and VB6:
 
-Microsoft's Programming Resources for Visual Basic for Applications page (http://support.microsoft.com/kb/163435)
+1 Microsoft's Programming Resources for Visual Basic for Applications page (http://support.microsoft.com/kb/163435)
 
-Microsoft Developer Network: Visual Basic 6.0 Language Reference (http://msdn.microsoft.com/en-us/library/aa338033(v=vs.60).aspx)
+2 Microsoft Developer Network: Visual Basic 6.0 Language Reference (http://msdn.microsoft.com/en-us/library/aa338033(v=vs.60).aspx)
 
-Creating a Procedure
+1-3『
+
+上面的两个链接都已经失效了。不过发现了新的连接。
+
+[开发人员工具、技术文档和代码示例 | Microsoft Docs](https://docs.microsoft.com/zh-cn/)
+
+[Visual Basic 文档 - 入门、教程、参考。 | Microsoft Docs](https://docs.microsoft.com/zh-cn/dotnet/visual-basic/)
+
+』
+
+### 2.1.1 Creating a Procedure
 
 Most of the code you write in VBA will be grouped into a named code block called a procedure. If you are familiar with AutoLISP or another programming language, you might be familiar with the terms function or method. VBA supports two types of procedures:
 
-Subroutine (or Sub) A named code block that doesn't return a value
+1 Subroutine (or Sub). A named code block that doesn't return a value.
 
-Function A named code block that does return a value
+2 Function. A named code block that does return a value.
 
-The definition of a procedure always starts with the keyword Sub or Function followed by its designated name. The procedure name should be descriptive and should give you a quick idea of the purpose of the procedure. The naming of a procedure is personal preference—I like to use title casing for the names of the functions I define to help identify misspelled function names. For example, I use the name CreateLayer for a function that creates a new layer. If I enter createlayer in the VBA Editor window, the VBA Editor will change the typed text to CreateLayer to match the procedure's definition.
+1-3『这里把 Subroutine 和 Function 的区别讲的很清楚，一个返回值一个不返回值。之前看书籍「2021043ExcelVBA其实很简单」就没讲通透。（2021-04-03）』
+
+The definition of a procedure always starts with the keyword Sub or Function followed by its designated name. The procedure name should be descriptive and should give you a quick idea of the purpose of the procedure. The naming of a procedure is personal preference — I like to use title casing for the names of the functions I define to help identify misspelled function names. For example, I use the name CreateLayer for a function that creates a new layer. If I enter createlayer in the VBA Editor window, the VBA Editor will change the typed text to CreateLayer to match the procedure's definition.
 
 After the procedure name is a balanced set of parentheses that contains the arguments that the procedure expects. Arguments aren't required for a procedure, but the parentheses must be present. The End Sub or End Function keywords (depending on the type of procedure defined) must be placed after the last code statement of the procedure to indicate where the procedure ends.
 
 The following shows the basic structures of a Sub procedure:
 
-Sub ProcedureName() End Sub Sub ProcedureName(Arg1 As DataType, ArgN As DataType) End Sub
+```c
+Sub ProcedureName()
+End Sub 
 
-Here's an example of a custom procedure named MyDraftingAids that changes the values of two system variables—osmode to 35 and orthomode to 1.
+Sub ProcedureName(Arg1 As DataType, ArgN As DataType) 
+End Sub
+```
 
-Sub MyDraftingAids() ThisDrawing.SetVariable "osmode", 35 ThisDrawing.SetVariable "orthomode", 1 End Sub
+Here's an example of a custom procedure named MyDraftingAids that changes the values of two system variables — osmode to 35 and orthomode to 1.
+
+```c
+Sub MyDraftingAids() 
+  ThisDrawing.SetVariable "osmode", 35 
+  ThisDrawing.SetVariable "orthomode", 1 
+End Sub
+```
 
 When defining a procedure of the Function type, you must indicate the type of data that the procedure will return. In addition to indicating the type of data to return, at least one code statement in the procedure must return a value. You return a value by assigning the value to the procedure's name.
+
+
+
+
+
+
+
 
 The following shows the basic structures of a Function procedure:
 
@@ -106,9 +96,7 @@ Dim newLayer as AcadLayer Set newLayer = CreateLayer("Object", acWhite)
 
 Another concept that can be used when defining an optional argument is setting a default value. A default value is assigned to an argument using the equal symbol ( = ). In the previous example, the default value of the lyrColor argument is assigned the value of acGreen, which is a constant in the AutoCAD COM library that represents the integer value of 3. The optional value is used if no color value is passed to the CreateLayer function.
 
-NOTE
-
-The keywords Public and Private can be added in front of the Sub and Function keywords used to define a procedure. The Public keyword allows a procedure to be accessed across most code modules in a VBA project, whereas the Private keyword limits the procedure to be accessed only from the module in which it is defined. I explain these keywords further in the「Controlling the Scope of a Procedure or Variable」section later in this chapter.
+NOTE: The keywords Public and Private can be added in front of the Sub and Function keywords used to define a procedure. The Public keyword allows a procedure to be accessed across most code modules in a VBA project, whereas the Private keyword limits the procedure to be accessed only from the module in which it is defined. I explain these keywords further in the「Controlling the Scope of a Procedure or Variable」section later in this chapter.
 
 You Want Me to Measure Hungary? Really?
 
@@ -182,7 +170,7 @@ Forcing the Declaration of Variables
 
 The VBA environment supports a statement named Option. The Option statement is used to control several coding practices at the code module level. For example, entering the Option statement with the Explicit keyword in the General Declaration of a module forces you to declare all variables before they can be used. To force the declaration of variables, you type Option Explicit in the General Declaration; the keyword always follows the Option statement. The Option statement also supports the following keywords:
 
-Base—Specifies if the lower limit of an array should be 0 or 1. By default, arrays start at index 0 in VBA. I discuss arrays in the "Storing Data in Arrays" section. Example statement: Option Base 1 Compare—Specifies the default string comparison method used within a code module. Valid values are Binary, Database, or Text. Example statement: Option Compare Text Private—All procedures that are declared with the Public keyword in a code module are available only within the current project and are not accessible when the project is referenced by other projects.
+Base — Specifies if the lower limit of an array should be 0 or 1. By default, arrays start at index 0 in VBA. I discuss arrays in the "Storing Data in Arrays" section. Example statement: Option Base 1 Compare — Specifies the default string comparison method used within a code module. Valid values are Binary, Database, or Text. Example statement: Option Compare Text Private — All procedures that are declared with the Public keyword in a code module are available only within the current project and are not accessible when the project is referenced by other projects.
 
 Controlling the Scope of a Procedure or Variable
 
@@ -220,7 +208,7 @@ If you want to make a value accessible to multiple projects or between AutoCAD s
 
 Continuing Long Statements
 
-A code statement is typically a single line in the editor window that can result in relatively long and harder-to-read code statements. The underscore character can be placed anywhere within a code statement to let the VBA environment know a code statement continues to the next line. A space must be placed in front of the underscore character as well—otherwise the VBA editor will display an error message.
+A code statement is typically a single line in the editor window that can result in relatively long and harder-to-read code statements. The underscore character can be placed anywhere within a code statement to let the VBA environment know a code statement continues to the next line. A space must be placed in front of the underscore character as well — otherwise the VBA editor will display an error message.
 
 The following shows a code statement presented on a single line:
 
@@ -238,7 +226,7 @@ The following are common reasons why and when you might want to add comments to 
 
 To document when the program or component was created and who created it.
 
-To maintain a history of changes made to the program—what changes were made, when, and by whom.
+To maintain a history of changes made to the program — what changes were made, when, and by whom.
 
 To indicate copyright or legal statements related to the code contained in a code module.
 
@@ -266,7 +254,7 @@ Prior to the AutoCAD 2014 release, the AutoCAD COM library had separate procedur
 
 Because of potential problems with library and control references, I recommend creating a 32-bit and 64-bit version of your VBA projects. Then when you make changes in one project, export and import the changed code modules and UserForms between projects. The examples and exercises shown in this book are designed to work on 32-bit and 64-bit systems.
 
-Exploring Data Types
+## 2.2 Exploring Data Types
 
 Programming languages use data types to help you identify the type of data:
 
@@ -420,7 +408,7 @@ Storing Data in Arrays
 
 An array is not really a data type but a data structure that can contain multiple values. Unlike the objects in a collection, the elements of an array can be of different data types and do not all need to be of the same data type. The first element in an array typically starts at an index of 0, but you can specify the index of the first element using a range. Arrays are used to represent a coordinate value in a drawing, to specify the objects used to define a closed boundary when creating a Region or Hatch object, or to specify the data types and values that make up the XData attached to an object.
 
-The processes for declaring an array and variable are similar—with one slight difference. When declaring an array, you add opening and closing parentheses after the variable name. The value in the parentheses determines whether you declare a fixed-length or dynamic array.
+The processes for declaring an array and variable are similar — with one slight difference. When declaring an array, you add opening and closing parentheses after the variable name. The value in the parentheses determines whether you declare a fixed-length or dynamic array.
 
 NOTE
 
@@ -666,3 +654,418 @@ The following code statements use the vbLf constant to break a string into two l
 
 Converting Between Data Types
 
+Variables in VBA hold a specific data type, which helps to enforce data integrity and communicate the type of data an argument expects or a function might return. As your programs become more complex and you start requesting input from the user, there will be times when a function returns a value of one data type and you want to use that value with a function that expects a different data type. VBA supports a wide range of functions that can convert a string to a number, a number to a string, and most common data types to a specific data type.
+
+Table 25.5 lists many of the data conversion functions that you will use with VBA in this book.
+
+Table 25.5 VBA data conversion functions
+
+Function Description
+
+Abs Returns the absolute value of a numeric value, integer, or double number. The absolute value is a positive value — never negative.
+
+Syntax: retVal = Abs(number)
+
+Asc Returns an integer that represents the ASCII code value of the string character that is passed to the function.
+
+Syntax: retVal = Asc(string)
+
+CBool Converts a value to a Boolean value.
+
+Syntax: retVal = CBool(value)
+
+CByte Converts a value to a byte value.
+
+Syntax: retVal = CByte(value)
+
+CCur Converts a value to a currency value.
+
+Syntax: retVal = CCur(value)
+
+CDate Converts a value to a date value.
+
+Syntax: retVal = CDate(value)
+
+CDbl Converts a value to a double value.
+
+Syntax: retVal = CDbl(value)
+
+CDec Converts a value to a decimal value.
+
+Syntax: retVal = CDec(value)
+
+Chr Returns the character equivalent of the ASCII code value that is passed to the function.
+
+Syntax: retVal = Chr(number)
+
+CInt Converts a value to an integer value.
+
+Syntax: retVal = CInt(value)
+
+CLng Converts a value to a long value.
+
+Syntax: retVal = CLng(value)
+
+CLngLng Converts a value to a LongLong value that is valid on 64-bit systems only.
+
+Syntax: retVal = CLngLng(value)
+
+CLngPtr Converts a value to a long value on 32-bit systems or a LongLong value on 64-bit systems.
+
+Syntax: retVal = CLngPtr(value)
+
+CSng Converts a value to a single value.
+
+Syntax: retVal = CSng(value)
+
+CStr Converts a value to a string value.
+
+Syntax: retVal = CStr(value)
+
+CVar Converts a value to a variant value.
+
+Syntax: retVal = CVar(value)
+
+Fix Returns the nearest integer of a double number after discarding the fractional value after the decimal. When a negative double value is passed to the function, the first negative number greater than or equal to the number passed is returned.
+
+Syntax: retVal = Fix(number)
+
+Format Returns a string that contains a formatted numeric or date value.
+
+Syntax: retVal = Format(value[, format[,firstweekday[, firstweekofyear]]])
+
+The optional format argument controls the number or date formatting, and the optional firstweekday and firstweekofyear specify the first day of the week or first week of the year.
+
+Hex Returns a hexadecimal value as a string based on the number provided.
+
+Syntax: retVal = Hex(number)
+
+Int Returns the nearest integer of a double number after discarding the fractional value after the decimal. When a negative double value is passed to the function, the first negative number less than or equal to the number passed is returned.
+
+Syntax: retVal = Int(number)
+
+Oct Returns an octal value as a string based on the number provided.
+
+Syntax: retVal = Oct(number)
+
+For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
+
+## 2.3 Comparing Values
+
+As the complexity of a program grows, so too does the need to perform conditional tests, also referred to as test conditions. Test conditions are used to compare values or settings in the AutoCAD environment against a known condition. VBA operators and functions that are used to test conditions return a Boolean value of True or False. The VBA operators and functions used to test a condition allow you to
+
+Compare two values for equality
+
+Determine if a value is numeric, zero, or negative
+
+Compare two values to see which is greater or less than or equal to the other
+
+Check for a value being Nothing, an array, or an object
+
+Testing Values for Equality
+
+Testing for equality is probably the most common test condition you will perform in most of your programs. For example, you might want to see if the user provided any input with one of the GetXXXX functions that are part of the AutoCAD COM library. In this case, you could check to see if the value returned is expected. The VBA = (equal to) and <> (not equal to) operators are how values are commonly compared to each other. The = operator returns True if the values are equal; otherwise, False is returned. The <> operator returns True if the values are not equal; False is returned if the values are equal.
+
+The following shows the syntax of the = and <> operators:
+
+value1 = value2 value1 <> value2
+
+Here are examples of the = and <> operators:
+
+' Returns True, numbers are equal 1 = 1 1 = 1.0 ' Returns True, strings are equal "ABC" = "ABC" ' Returns False, numbers are not equal 1 <> 2 ' Returns False, strings are not equal "ABC" = "abc"
+
+In addition to the = operator, the Like operator can be used to compare string values. I discuss the Like operator in the next section.
+
+TIP
+
+The Not operator can be used to invert a Boolean value returned by an operator or function. A value of True is returned as False, whereas a value of False is returned as True.
+
+The = operator isn't ideal for comparing to see if two objects are the same. If you want to compare two objects for equality, you use the Is operator. The syntax for using the Is operator is the same as for using the = operator. A value of True is returned if both objects are the same when using the Is operator; otherwise, False is returned.
+
+Here are examples of the Is operator:
+
+' Gets the current layer of the drawing Dim objCurLayer as AcadLayer Set objCurLayer = ThisDrawing.ActiveLayer ' Creates a new layer Dim objNewLayer as AcadLayer Set objNewLayer = ThisDrawing.Layers.Add("ABC") ' Returns True since both objects are the same objCurLayer Is ThisDrawing.ActiveLayer ' Returns False since both objects are not the same objCurLayer Is objNewLayer
+
+Comparing String Values
+
+The = operator isn't the only way to compare two string values. The Like operator allows you to compare a string value to a string pattern that can contain one or more wildcard characters. If the string matches the pattern, True is returned, and False is returned if the string doesn't match the pattern.
+
+The following shows the syntax of the Like operator:
+
+retVal = string Like pattern
+
+Here are examples of the Like operator:
+
+' Returns True since both strings match "ABC" Like "ABC" ' Returns False since both strings don't match "ABC" Like "AC" ' Returns True since both strings match the pattern "DOOR_DEMO" Like "DOOR*"
+
+The StrComp and InStr functions can be used to compare two string values using an optional comparison mode. The StrComp and InStr functions don't return a Boolean value like the = operator; instead they return an integer value based on the comparison mode passed to the function. 0 is returned if the strings are equal, 1 is returned if the binary value of the first string is greater than the second string or the two strings are not equal when doing a textual comparison, and -1 is returned if the binary value of the first string is less than the second string.
+
+The following shows the syntax of the StrComp function:
+
+retVal = StrComp(string1, string2[, comparison])
+
+For more information on the StrComp function and a list of values that the comparison argument expects, see the Microsoft Visual Basic for Applications Help.
+
+The InStr function is similar to the StrComp function with one exception: it has an optional start argument, which specifies the location within the first string that the comparison should start. The following shows the syntax of the InStr function:
+
+retVal = InStr([start, ][string1, ][string2, ][comparison])
+
+Determining If a Value Is Greater or Less Than Another
+
+The values that a user provides or the settings that define the AutoCAD environment aren't always easily comparable for equality. Values such as the radius of a circle or the length of a line are often compared to see if a value is greater or less than another. The VBA > (greater than) and < (less than) operators can be used to ensure that a value is or isn't greater than or less than another value.
+
+These two operators are great for making sure a value is within a specific range, more than a value, or less than a value. You can also use the > and < operators with the Do and While statements to count down or up and make sure that while incrementing or decrementing a value you don't exceed a specific value. You might also use the > and < operators with a logical grouping operator to make sure a value is within a specific range of values. I discuss logical groupings in the「Grouping Comparisons」section.
+
+The > (greater than) operator returns True if the first number is greater than the second number; otherwise, False is returned. The < (less than) operator returns True if the first number is less than the second number; otherwise, False is returned. If the values being compared are equal, then False is returned.
+
+The following shows the syntax of the > and < operators:
+
+value1 > value2 value1 < value2
+
+In addition to comparing values to see if a value is greater or less than another, you can check for equality at the same time. The >= (greater than or equal to) and <= (less than or equal to) operators allow you to check to see if a value is greater or less than another or if the two values are equal. The syntax and return values for the >= and <= operators are the same as for the > and < operators, except True is returned if the values being compared are equal to each other.
+
+Here are examples of comparing values with the >, <, >=, and <= operators, along with the values that are returned:
+
+' Returns True as 2 is greater than 1 2 > 1 ' Returns False as the values are equal 1 > 1.0 ' Returns False as 2 is not less than 1 2 < 1 ' Returns False as the values are equal 1 < 1.0 ' Returns True as the values are equal 1 >= 1.0 ' Returns False as 1 is not greater than or equal to 2 1 >= 2 ' Returns True as the values are equal 1 <= 1.0 ' Returns True as 1 is less than or equal to 2 1 <= 2
+
+TIP
+
+You can compare a value within a range of values by using logical groupings, which I cover in the「Grouping Comparisons」section.
+
+Checking for Null, Empty, or Nothing Values
+
+Values assigned to a variable or returned by a statement can be checked to see whether they evaluate to null, empty, or nothing. A null value occurs when no valid data is assigned to a variable. The IsNull function returns True if a value is null; otherwise, False is returned. A variable can be set to a value of null using this syntax:
+
+variable = Null
+
+A variable declared with the variant data type can hold any type of data, but if it is not initialized and assigned a value, it is empty. The IsEmpty function returns True if a value is empty; otherwise, False is returned. A variable can be set to a value of empty using this syntax:
+
+variable = Empty
+
+Values that are of an object type can't be compared for a null or empty value, but rather you compare them against a value of nothing. Unlike checking for a null or empty value, there is no IsNothing function that can be used to check for a value of nothing. Checking for a Nothing value requires the use of the Is operator, which I mentioned in the「Testing Values for Equality」section. The following syntax shows how to compare an object for a value of nothing:
+
+' Creates new variable of the AcadLayer object type Dim objCurLayer as AcadLayer ' Evaluates to True since no object has been assigned to the variable objCurLayer Is Nothing ' Gets the current layer of the drawing Set objCurLayer = ThisDrawing.ActiveLayer ' Evaluates to False since the current layer has been assigned to the variable Debug.Print objCurLayer Is Nothing
+
+A variable can be set to a value of nothing using the syntax:
+
+Set variable = Nothing
+
+Validating Values
+
+Prior to using a variable, I recommend testing to see if the variable holds the type of value that you might reasonably expect. Although it does increase the complexity of a program, the additional statements used to test variables are worth the effort; they help to protect your programs from unexpected values. The following lists some of the functions that can be used to test the values of a variable:
+
+IsArray: Determines if a value represents a valid array; returns True or False.
+
+IsDate: Determines if a value represents a valid calendar date or time; returns True or False.
+
+IsMissing: Checks to see if an optional argument of a procedure was provided; returns True or False.
+
+IsNumeric: Determines if a value is a number; returns True or False.
+
+IsObject: Determines if a value is an object; returns True or False.
+
+Sgn: Determines the sign of a numeric value; 1 is returned if the value is greater than zero, 0 is returned if equal to zero, or –1 is returned if the number is less than zero.
+
+For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
+
+Grouping Comparisons
+
+There are many times when one test condition isn't enough to verify a value. One of the best examples of when you want to use more than one test condition is to see if a value is within a specific numeric range. Logical grouping operators are used to determine if the results of one or more test conditions evaluates to True.
+
+The And and Or operators are the two logical grouping operators that can be used to evaluate two or more test conditions. The And operator returns True if all test conditions in a grouping return True; otherwise, False is returned. The Or operator returns True if at least one test condition in a grouping returns True; otherwise it returns False.
+
+The following shows the syntax of the And and Or operators:
+
+test_condition1 And test_condition2 test_condition1 Or test_condition2
+
+The test_condition1 and test_condition2 arguments represent the test conditions that you want to group together and evaluate.
+
+Here are examples of the And and Or operators, along with the values that are returned:
+
+' Checks to see if a number is between 1 and 5 Dim num as Integer ' Evaluates to and displays True since num is 3 and between 1 and 5 num = 3 MsgBox 5 >= num And 1 <= num ' Evaluates to and displays False since num is 6 and is not between 1 and 5 num = 6 MsgBox 5 >= num And 1 <= num ' Checks to see if values are numeric or strings Dim val1, val2 val1 = 1.5: val2 = "1.5" ' Evaluates to and displays True since va11 is a double or integer MsgBox VarType(val1) = vbDouble Or VarType(val1) = vbInteger ' Evaluates to and displays False since va12 is not a double or integer MsgBox VarType(val2) = vbDouble Or VarType(val2) = vbInteger
+
+I discussed the VarType function in the「Exploring Data Types」section.
+
+## 2.4 Conditionalizing and Branching Statements
+
+The statements in a procedure are executed sequentially, in what is commonly known as a linear program. In a linear program, execution starts with the first statement and continues until the last statement is executed. Although statements are executed in a linear order, a procedure can contain branches. Think of a branch as a fork in the road.
+
+Branches allow a procedure to make a choice as to which statements should be executed next based on the results of a test condition. I covered test conditions in the「Comparing Values」section. The If and Select Case statements are used to branch the statements in a procedure.
+
+Evaluating If a Condition Is Met
+
+The operators and functions discussed in the previous sections allow a program to compare and test values to determine which expressions to execute by using a programming technique called branching. The most common branching method is the If…Then statement. Using the If…Then statement, a set of statements can be executed if the test condition is evaluated as True.
+
+The following shows the syntax of the If…Then statement:
+
+If test_condition Then true_statementsN End If
+
+Here are the arguments:
+
+test_condition The test_condition argument represents the test condition that you want to evaluate and determine which statements to execute.
+
+then_statementN The then_statementN argument represents the statements to evaluate if the test_condition argument evaluates to True.
+
+The If…Then statement supports an optional Else statement, which can be used to execute a set of statements when the test condition is evaluated as False. The following shows the syntax of the If…Then statement with the Else statement:
+
+If test_condition Then true_statementsN Else else_statementN End If
+
+The else_statementN argument represents the statements that should be executed if the test_condition argument evaluates to False. In addition to the Else statement, the If…Then statement can support one or more optional ElseIf statements. An ElseIf statement allows for the evaluation of additional test conditions. The following shows the syntax of the If…Then statement with the inclusion of the ElseIf and Else statements:
+
+If test_condition Then true_statementsN [ElseIf test_condition Then elseif_statementN] [Else else_statementN] End If
+
+When the test_condition argument of the If…Then statement evaluates to a value of False, the test_condition of the ElseIf statement is evaluated. If the test_condition of the ElseIf statement evaluates to a value of True, the set of statements after it is executed. If the test_condition of the ElseIf statement evaluates to a value of False, the next ElseIf statement is evaluated if one is present. If no other ElseIf statements are present, the Else statement is executed if one is present.
+
+The following is an example of an If…Then statement that uses the ElseIf and Else statements to compare the value of a number entered:
+
+' Prompts the user for a number Dim num As Integer num = CInt(InputBox("Enter a number: ")) ' Checks to see if the number is greater than, less than, or equal to 4 If num > 4 Then MsgBox "Number is greater than 4" ElseIf num < 4 Then MsgBox "Number is less than 4" Else MsgBox "Number is equal to 4" End If
+
+Validating for an Object of a Specific Type
+
+You can use the TypeOf object Is objecttype clause of the If statement to determine an object's type. This can be helpful if your program expects the user to select or work with a specific type of object. Selection filters, discussed in Chapter 28, can be used to allow only the user to select an object of a specific type.
+
+The following example displays one of two messages based on whether the first object in model space is a circle:
+
+' Gets the first object in model space Dim oFirstEnt As AcadEntity Set oFirstEnt = ThisDrawing.ModelSpace(0) ' Display a message based on if the ' first object is a circle or not If TypeOf oFirstEnt Is AcadCircle Then MsgBox "Object is a circle." Else MsgBox "The object isn't a circle." End If
+
+Testing Multiple Conditions
+
+The If…Then statement allows a procedure to execute one or more possible sets of statements based on the use of the ElseIf and Else statements. In addition to the If…Then statement, the Select Case statement can be used to evaluate multiple test conditions. The Select Case statement is a more efficient approach to testing multiple conditions when compared to the If…Then statement.
+
+Each test condition of a Select Case statement starts with the Case statement and can be used to compare more than one value. Similar to the If…Then statement, the Select Case statement also supports an optional statement if none of the test conditions are valued as True; the optional statement is named Case Else.
+
+The following shows the syntax of the Select Case statement:
+
+Select Case Case test_condition case_statementsN [Case test_condition case_statementsN] [Case Else else_statementN ] End Select
+
+test_condition The test_condition argument represents the test condition that you want to evaluate and determine which statements to execute.
+
+case_statementsN The case_statementsN argument represents the statements to evaluate if the test_condition argument evaluates to True.
+
+else_statementsN The else_statementsN argument represents the expressions to evaluate if none of the test conditions represented by the Case statements evaluates to True. The Case Else statement must also be used.
+
+The following is an example of the Select Case statement:
+
+' Displays a message based on the number entered Select Case CInt(InputBox("Enter a number: ")) Case 1 MsgBox "1 was entered" Case 2 To 4 MsgBox "2 to 4 was entered" Case 5, 6 MsgBox "5 or 6 was entered" Case Is >= 7 MsgBox "7 or greater was entered" Case Else MsgBox "0 or less was entered" End Select
+
+## 2.5 Repeating and Looping Expressions
+
+Repetition helps to form habits and learn how to perform a task, but repetition can also be counterproductive. If you know a task is repeated many times a day and you know how to complete that task, it is ideal to automate and simplify the process as much as possible, if not eliminate the process altogether. VBA — and most programming languages, for that matter — have no problem with repetition because they support a concept known as loops. Loops allow for a set of expressions to be executed either a finite number of times or infinitely while a condition is met.
+
+Repeating Expressions a Set Number of Times
+
+The easiest way to loop a set of expressions in VBA is to use the For statement. The first argument of the For statement is known as the counter, which is a variable name that is incremented or decremented each time the For statement is executed. The initial value of the counter and number of times the For statement should be executed are determined by a range of two values.
+
+Typically, the range starts with 0 or 1 and the difference between the start and ending of the range is used to specify how many times the For statement is executed. By default, the counter is incremented by 1 each time the For statement is executed. Optionally, the For statement supports the Step keyword, which can be used to specify a larger increment value than the default of 1 or a decrement value to count down instead of up.
+
+The following shows the syntax of the For statement:
+
+For counter = start To end [Step stepper] statementN Next [counter]
+
+Its arguments are as follows:
+
+counter The counter argument represents the variable name that is assigned to the current loop counter. The variable should be of a number data type, such as an integer or short. When the For statement is executed the first time, the counter variable is assigned the value passed to the start argument.
+
+start The start argument represents the start of the numeric range.
+
+end The end argument represents the end of the numeric range.
+
+stepper The stepper argument is optional and represents the numeric value that counter should be stepped each time the For statement is executed. Use a positive number to increment counter or a negative number to decrement counter.
+
+statementN The statementN argument represents the statements that should be executed each time the loop is started.
+
+NOTE
+
+The Exit For statement can be used to end a For statement before the counter reaches the end of the specified range.
+
+The following is an example of using the For statement:
+
+' Executes the statements 5 times, the variable ' cnt is incremented by 1 with each loop Dim cnt as Integer For cnt = 1 To 5 Debug.Print cnt Next cnt
+
+Here is the output that the previous statements create:
+
+1 2 3 4 5
+
+Stepping Through an Array or Collection
+
+The For Each statement is similar to the For statement described in the previous section. Instead of specifying a counter variable, a range, and an optional step, the For Each statement requires an element variable and a grouping, such as an array or a collection object. When the For Each statement is executed, the first value of the array or object of the collection is assigned to the element variable. As the For Each statement continues to be executed, the next value or object is assigned to the variable until all values or objects have been retrieved.
+
+The following shows the syntax of the For Each statement:
+
+For Each element In grouping statementN Next [element]
+
+Its arguments are as follows:
+
+element The element argument represents the variable name that is assigned to the current loop element. When the For Each statement is executed the first time, the element variable is assigned the first value or object of the grouping argument.
+
+grouping The grouping argument represents the array or collection object that you want to step through one value or object at a time.
+
+statementN The statementN argument represents the statements that should be executed each time the loop is started.
+
+NOTE
+
+The Exit For statement can be used to end a For statement before the last value or object in an array or a collection is retrieved.
+
+The following is an example of using the For Each statement:
+
+' Steps through all layer objects in the Layers collection ' of the current drawing and displays the names of each layer Dim objLayer as AcadLayer For Each objLayer In ThisDrawing.Layers Debug.Print objLayer.Name Next objLayer
+
+Here is the output that the previous statements create:
+
+0 Plan_Walls Plan_Doors Plan_Cabinets Plan_Furniture Labels Panels Surfaces Storage Defpoints Dimensions
+
+The order in which values or objects are retrieved is the same in which they were added to the array or collection.
+
+Performing a Task While or Until a Condition Is Met
+
+The For and For Each statements, as I mentioned in the previous sections, can be used to execute a set of statements a finite number of times. However, it isn't always easy to know just how many times a set of statements might need to be executed to get the desired results. When you are unsure of the number of times a set of statements might need to be executed, you can use the Do or While statement.
+
+The Do and While statements use a test condition, just like the If statement, to determine whether the set of statements should be executed. The set of statements are executed as long as the test condition returns True. The test conditions that can be used are the same ones mentioned earlier in the「Comparing Values」and「Grouping Comparisons」sections.
+
+There are two uses for the Do statement. The first is to evaluate a test condition before it executes any statements, whereas the other executes a set of statements and then evaluates a test condition to determine whether the statements should be executed again. Which version you use simply depends on whether you want to execute the statements at least once each time the Do statement is executed.
+
+A Do statement also requires the use of either the While or Until keyword. The While keyword indicates that the Do statement should execute until the test condition is no longer True, and the Until keyword indicates that the Do loop should execute while the test is False.
+
+The following shows the syntax of the Do statement that evaluates a test condition to determine whether the set of statements should be executed:
+
+Do [{While | Until} test_condition] statementN Loop
+
+The next example shows the syntax of the Do statement that executes a set of statements before evaluating a test condition:
+
+Do statementN Loop [{While | Until} test_condition]
+
+Its arguments are as follows:
+
+test_condition The test_condition argument represents the statement that should be used to determine if the expressions represented by the statementN argument should be executed or continue to be executed.
+
+statementN The statementN argument represents the statements that should be executed each time the loop is started.
+
+The following are examples of the Do function:
+
+' Executes the statements 5 times, the variable ' cnt is decremented by 1 with each loop Dim cnt As Integer cnt = 5 Do While cnt > 0 Debug.Print cnt cnt = cnt - 1 Loop
+
+Here is the output that the previous statements create:
+
+5 4 3 2 1 ' Executes the statements once since the test condition ' only returns True while cnt is greater than 4 Dim cnt As Integer cnt = 5 Do Debug.Print cnt cnt = cnt + 1 Loop Until cnt > 4
+
+Here is the output that the previous statements create:
+
+5
+
+NOTE
+
+The Exit Do statement can be used to end a Do statement before the test condition returns True or False based on whether the While or Until keyword is used.
+
+The While statement is similar to the Do statement with the While keyword when evaluating a test condition before it executes a set of statements. The one difference between the Do and While statements is that the While statement doesn't support the ability to end early with the use of the Exit statement. Ending a While statement early would require statements to manipulate the test condition being used to determine when to end the looping.
+
+The following shows the syntax of the While statement:
+
+While test_condition statementN Wend
+
+The test_condition and statement arguments are the same as those in the Do statement. Here is an example of the While function:
+
+' Executes the statements 5 times, the variable ' cnt is decremented by 1 with each loop Dim cnt As Integer cnt = 5 While cnt > 0 Debug.Print cnt cnt = cnt - 1 Wend
+
+Here is the output that the previous statements create:
+
+5 4 3 2 1

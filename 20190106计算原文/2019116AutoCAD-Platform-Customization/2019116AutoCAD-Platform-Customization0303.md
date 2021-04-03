@@ -1,422 +1,4 @@
-Variables in VBA hold a specific data type, which helps to enforce data integrity and communicate the type of data an argument expects or a function might return. As your programs become more complex and you start requesting input from the user, there will be times when a function returns a value of one data type and you want to use that value with a function that expects a different data type. VBA supports a wide range of functions that can convert a string to a number, a number to a string, and most common data types to a specific data type.
-
-Table 25.5 lists many of the data conversion functions that you will use with VBA in this book.
-
-Table 25.5 VBA data conversion functions
-
-Function Description
-
-Abs Returns the absolute value of a numeric value, integer, or double number. The absolute value is a positive value—never negative.
-
-Syntax: retVal = Abs(number)
-
-Asc Returns an integer that represents the ASCII code value of the string character that is passed to the function.
-
-Syntax: retVal = Asc(string)
-
-CBool Converts a value to a Boolean value.
-
-Syntax: retVal = CBool(value)
-
-CByte Converts a value to a byte value.
-
-Syntax: retVal = CByte(value)
-
-CCur Converts a value to a currency value.
-
-Syntax: retVal = CCur(value)
-
-CDate Converts a value to a date value.
-
-Syntax: retVal = CDate(value)
-
-CDbl Converts a value to a double value.
-
-Syntax: retVal = CDbl(value)
-
-CDec Converts a value to a decimal value.
-
-Syntax: retVal = CDec(value)
-
-Chr Returns the character equivalent of the ASCII code value that is passed to the function.
-
-Syntax: retVal = Chr(number)
-
-CInt Converts a value to an integer value.
-
-Syntax: retVal = CInt(value)
-
-CLng Converts a value to a long value.
-
-Syntax: retVal = CLng(value)
-
-CLngLng Converts a value to a LongLong value that is valid on 64-bit systems only.
-
-Syntax: retVal = CLngLng(value)
-
-CLngPtr Converts a value to a long value on 32-bit systems or a LongLong value on 64-bit systems.
-
-Syntax: retVal = CLngPtr(value)
-
-CSng Converts a value to a single value.
-
-Syntax: retVal = CSng(value)
-
-CStr Converts a value to a string value.
-
-Syntax: retVal = CStr(value)
-
-CVar Converts a value to a variant value.
-
-Syntax: retVal = CVar(value)
-
-Fix Returns the nearest integer of a double number after discarding the fractional value after the decimal. When a negative double value is passed to the function, the first negative number greater than or equal to the number passed is returned.
-
-Syntax: retVal = Fix(number)
-
-Format Returns a string that contains a formatted numeric or date value.
-
-Syntax: retVal = Format(value[, format[,firstweekday[, firstweekofyear]]])
-
-The optional format argument controls the number or date formatting, and the optional firstweekday and firstweekofyear specify the first day of the week or first week of the year.
-
-Hex Returns a hexadecimal value as a string based on the number provided.
-
-Syntax: retVal = Hex(number)
-
-Int Returns the nearest integer of a double number after discarding the fractional value after the decimal. When a negative double value is passed to the function, the first negative number less than or equal to the number passed is returned.
-
-Syntax: retVal = Int(number)
-
-Oct Returns an octal value as a string based on the number provided.
-
-Syntax: retVal = Oct(number)
-
-For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
-
-Comparing Values
-
-As the complexity of a program grows, so too does the need to perform conditional tests, also referred to as test conditions. Test conditions are used to compare values or settings in the AutoCAD environment against a known condition. VBA operators and functions that are used to test conditions return a Boolean value of True or False. The VBA operators and functions used to test a condition allow you to
-
-Compare two values for equality
-
-Determine if a value is numeric, zero, or negative
-
-Compare two values to see which is greater or less than or equal to the other
-
-Check for a value being Nothing, an array, or an object
-
-Testing Values for Equality
-
-Testing for equality is probably the most common test condition you will perform in most of your programs. For example, you might want to see if the user provided any input with one of the GetXXXX functions that are part of the AutoCAD COM library. In this case, you could check to see if the value returned is expected. The VBA = (equal to) and <> (not equal to) operators are how values are commonly compared to each other. The = operator returns True if the values are equal; otherwise, False is returned. The <> operator returns True if the values are not equal; False is returned if the values are equal.
-
-The following shows the syntax of the = and <> operators:
-
-value1 = value2 value1 <> value2
-
-Here are examples of the = and <> operators:
-
-' Returns True, numbers are equal 1 = 1 1 = 1.0 ' Returns True, strings are equal "ABC" = "ABC" ' Returns False, numbers are not equal 1 <> 2 ' Returns False, strings are not equal "ABC" = "abc"
-
-In addition to the = operator, the Like operator can be used to compare string values. I discuss the Like operator in the next section.
-
-TIP
-
-The Not operator can be used to invert a Boolean value returned by an operator or function. A value of True is returned as False, whereas a value of False is returned as True.
-
-The = operator isn't ideal for comparing to see if two objects are the same. If you want to compare two objects for equality, you use the Is operator. The syntax for using the Is operator is the same as for using the = operator. A value of True is returned if both objects are the same when using the Is operator; otherwise, False is returned.
-
-Here are examples of the Is operator:
-
-' Gets the current layer of the drawing Dim objCurLayer as AcadLayer Set objCurLayer = ThisDrawing.ActiveLayer ' Creates a new layer Dim objNewLayer as AcadLayer Set objNewLayer = ThisDrawing.Layers.Add("ABC") ' Returns True since both objects are the same objCurLayer Is ThisDrawing.ActiveLayer ' Returns False since both objects are not the same objCurLayer Is objNewLayer
-
-Comparing String Values
-
-The = operator isn't the only way to compare two string values. The Like operator allows you to compare a string value to a string pattern that can contain one or more wildcard characters. If the string matches the pattern, True is returned, and False is returned if the string doesn't match the pattern.
-
-The following shows the syntax of the Like operator:
-
-retVal = string Like pattern
-
-Here are examples of the Like operator:
-
-' Returns True since both strings match "ABC" Like "ABC" ' Returns False since both strings don't match "ABC" Like "AC" ' Returns True since both strings match the pattern "DOOR_DEMO" Like "DOOR*"
-
-The StrComp and InStr functions can be used to compare two string values using an optional comparison mode. The StrComp and InStr functions don't return a Boolean value like the = operator; instead they return an integer value based on the comparison mode passed to the function. 0 is returned if the strings are equal, 1 is returned if the binary value of the first string is greater than the second string or the two strings are not equal when doing a textual comparison, and -1 is returned if the binary value of the first string is less than the second string.
-
-The following shows the syntax of the StrComp function:
-
-retVal = StrComp(string1, string2[, comparison])
-
-For more information on the StrComp function and a list of values that the comparison argument expects, see the Microsoft Visual Basic for Applications Help.
-
-The InStr function is similar to the StrComp function with one exception: it has an optional start argument, which specifies the location within the first string that the comparison should start. The following shows the syntax of the InStr function:
-
-retVal = InStr([start, ][string1, ][string2, ][comparison])
-
-Determining If a Value Is Greater or Less Than Another
-
-The values that a user provides or the settings that define the AutoCAD environment aren't always easily comparable for equality. Values such as the radius of a circle or the length of a line are often compared to see if a value is greater or less than another. The VBA > (greater than) and < (less than) operators can be used to ensure that a value is or isn't greater than or less than another value.
-
-These two operators are great for making sure a value is within a specific range, more than a value, or less than a value. You can also use the > and < operators with the Do and While statements to count down or up and make sure that while incrementing or decrementing a value you don't exceed a specific value. You might also use the > and < operators with a logical grouping operator to make sure a value is within a specific range of values. I discuss logical groupings in the「Grouping Comparisons」section.
-
-The > (greater than) operator returns True if the first number is greater than the second number; otherwise, False is returned. The < (less than) operator returns True if the first number is less than the second number; otherwise, False is returned. If the values being compared are equal, then False is returned.
-
-The following shows the syntax of the > and < operators:
-
-value1 > value2 value1 < value2
-
-In addition to comparing values to see if a value is greater or less than another, you can check for equality at the same time. The >= (greater than or equal to) and <= (less than or equal to) operators allow you to check to see if a value is greater or less than another or if the two values are equal. The syntax and return values for the >= and <= operators are the same as for the > and < operators, except True is returned if the values being compared are equal to each other.
-
-Here are examples of comparing values with the >, <, >=, and <= operators, along with the values that are returned:
-
-' Returns True as 2 is greater than 1 2 > 1 ' Returns False as the values are equal 1 > 1.0 ' Returns False as 2 is not less than 1 2 < 1 ' Returns False as the values are equal 1 < 1.0 ' Returns True as the values are equal 1 >= 1.0 ' Returns False as 1 is not greater than or equal to 2 1 >= 2 ' Returns True as the values are equal 1 <= 1.0 ' Returns True as 1 is less than or equal to 2 1 <= 2
-
-TIP
-
-You can compare a value within a range of values by using logical groupings, which I cover in the「Grouping Comparisons」section.
-
-Checking for Null, Empty, or Nothing Values
-
-Values assigned to a variable or returned by a statement can be checked to see whether they evaluate to null, empty, or nothing. A null value occurs when no valid data is assigned to a variable. The IsNull function returns True if a value is null; otherwise, False is returned. A variable can be set to a value of null using this syntax:
-
-variable = Null
-
-A variable declared with the variant data type can hold any type of data, but if it is not initialized and assigned a value, it is empty. The IsEmpty function returns True if a value is empty; otherwise, False is returned. A variable can be set to a value of empty using this syntax:
-
-variable = Empty
-
-Values that are of an object type can't be compared for a null or empty value, but rather you compare them against a value of nothing. Unlike checking for a null or empty value, there is no IsNothing function that can be used to check for a value of nothing. Checking for a Nothing value requires the use of the Is operator, which I mentioned in the「Testing Values for Equality」section. The following syntax shows how to compare an object for a value of nothing:
-
-' Creates new variable of the AcadLayer object type Dim objCurLayer as AcadLayer ' Evaluates to True since no object has been assigned to the variable objCurLayer Is Nothing ' Gets the current layer of the drawing Set objCurLayer = ThisDrawing.ActiveLayer ' Evaluates to False since the current layer has been assigned to the variable Debug.Print objCurLayer Is Nothing
-
-A variable can be set to a value of nothing using the syntax:
-
-Set variable = Nothing
-
-Validating Values
-
-Prior to using a variable, I recommend testing to see if the variable holds the type of value that you might reasonably expect. Although it does increase the complexity of a program, the additional statements used to test variables are worth the effort; they help to protect your programs from unexpected values. The following lists some of the functions that can be used to test the values of a variable:
-
-IsArray: Determines if a value represents a valid array; returns True or False.
-
-IsDate: Determines if a value represents a valid calendar date or time; returns True or False.
-
-IsMissing: Checks to see if an optional argument of a procedure was provided; returns True or False.
-
-IsNumeric: Determines if a value is a number; returns True or False.
-
-IsObject: Determines if a value is an object; returns True or False.
-
-Sgn: Determines the sign of a numeric value; 1 is returned if the value is greater than zero, 0 is returned if equal to zero, or –1 is returned if the number is less than zero.
-
-For more information on these functions, see the Microsoft Visual Basic for Applications Help system.
-
-Grouping Comparisons
-
-There are many times when one test condition isn't enough to verify a value. One of the best examples of when you want to use more than one test condition is to see if a value is within a specific numeric range. Logical grouping operators are used to determine if the results of one or more test conditions evaluates to True.
-
-The And and Or operators are the two logical grouping operators that can be used to evaluate two or more test conditions. The And operator returns True if all test conditions in a grouping return True; otherwise, False is returned. The Or operator returns True if at least one test condition in a grouping returns True; otherwise it returns False.
-
-The following shows the syntax of the And and Or operators:
-
-test_condition1 And test_condition2 test_condition1 Or test_condition2
-
-The test_condition1 and test_condition2 arguments represent the test conditions that you want to group together and evaluate.
-
-Here are examples of the And and Or operators, along with the values that are returned:
-
-' Checks to see if a number is between 1 and 5 Dim num as Integer ' Evaluates to and displays True since num is 3 and between 1 and 5 num = 3 MsgBox 5 >= num And 1 <= num ' Evaluates to and displays False since num is 6 and is not between 1 and 5 num = 6 MsgBox 5 >= num And 1 <= num ' Checks to see if values are numeric or strings Dim val1, val2 val1 = 1.5: val2 = "1.5" ' Evaluates to and displays True since va11 is a double or integer MsgBox VarType(val1) = vbDouble Or VarType(val1) = vbInteger ' Evaluates to and displays False since va12 is not a double or integer MsgBox VarType(val2) = vbDouble Or VarType(val2) = vbInteger
-
-I discussed the VarType function in the「Exploring Data Types」section.
-
-Conditionalizing and Branching Statements
-
-The statements in a procedure are executed sequentially, in what is commonly known as a linear program. In a linear program, execution starts with the first statement and continues until the last statement is executed. Although statements are executed in a linear order, a procedure can contain branches. Think of a branch as a fork in the road.
-
-Branches allow a procedure to make a choice as to which statements should be executed next based on the results of a test condition. I covered test conditions in the「Comparing Values」section. The If and Select Case statements are used to branch the statements in a procedure.
-
-Evaluating If a Condition Is Met
-
-The operators and functions discussed in the previous sections allow a program to compare and test values to determine which expressions to execute by using a programming technique called branching. The most common branching method is the If…Then statement. Using the If…Then statement, a set of statements can be executed if the test condition is evaluated as True.
-
-The following shows the syntax of the If…Then statement:
-
-If test_condition Then true_statementsN End If
-
-Here are the arguments:
-
-test_condition The test_condition argument represents the test condition that you want to evaluate and determine which statements to execute.
-
-then_statementN The then_statementN argument represents the statements to evaluate if the test_condition argument evaluates to True.
-
-The If…Then statement supports an optional Else statement, which can be used to execute a set of statements when the test condition is evaluated as False. The following shows the syntax of the If…Then statement with the Else statement:
-
-If test_condition Then true_statementsN Else else_statementN End If
-
-The else_statementN argument represents the statements that should be executed if the test_condition argument evaluates to False. In addition to the Else statement, the If…Then statement can support one or more optional ElseIf statements. An ElseIf statement allows for the evaluation of additional test conditions. The following shows the syntax of the If…Then statement with the inclusion of the ElseIf and Else statements:
-
-If test_condition Then true_statementsN [ElseIf test_condition Then elseif_statementN] [Else else_statementN] End If
-
-When the test_condition argument of the If…Then statement evaluates to a value of False, the test_condition of the ElseIf statement is evaluated. If the test_condition of the ElseIf statement evaluates to a value of True, the set of statements after it is executed. If the test_condition of the ElseIf statement evaluates to a value of False, the next ElseIf statement is evaluated if one is present. If no other ElseIf statements are present, the Else statement is executed if one is present.
-
-The following is an example of an If…Then statement that uses the ElseIf and Else statements to compare the value of a number entered:
-
-' Prompts the user for a number Dim num As Integer num = CInt(InputBox("Enter a number: ")) ' Checks to see if the number is greater than, less than, or equal to 4 If num > 4 Then MsgBox "Number is greater than 4" ElseIf num < 4 Then MsgBox "Number is less than 4" Else MsgBox "Number is equal to 4" End If
-
-Validating for an Object of a Specific Type
-
-You can use the TypeOf object Is objecttype clause of the If statement to determine an object's type. This can be helpful if your program expects the user to select or work with a specific type of object. Selection filters, discussed in Chapter 28, can be used to allow only the user to select an object of a specific type.
-
-The following example displays one of two messages based on whether the first object in model space is a circle:
-
-' Gets the first object in model space Dim oFirstEnt As AcadEntity Set oFirstEnt = ThisDrawing.ModelSpace(0) ' Display a message based on if the ' first object is a circle or not If TypeOf oFirstEnt Is AcadCircle Then MsgBox "Object is a circle." Else MsgBox "The object isn't a circle." End If
-
-Testing Multiple Conditions
-
-The If…Then statement allows a procedure to execute one or more possible sets of statements based on the use of the ElseIf and Else statements. In addition to the If…Then statement, the Select Case statement can be used to evaluate multiple test conditions. The Select Case statement is a more efficient approach to testing multiple conditions when compared to the If…Then statement.
-
-Each test condition of a Select Case statement starts with the Case statement and can be used to compare more than one value. Similar to the If…Then statement, the Select Case statement also supports an optional statement if none of the test conditions are valued as True; the optional statement is named Case Else.
-
-The following shows the syntax of the Select Case statement:
-
-Select Case Case test_condition case_statementsN [Case test_condition case_statementsN] [Case Else else_statementN ] End Select
-
-test_condition The test_condition argument represents the test condition that you want to evaluate and determine which statements to execute.
-
-case_statementsN The case_statementsN argument represents the statements to evaluate if the test_condition argument evaluates to True.
-
-else_statementsN The else_statementsN argument represents the expressions to evaluate if none of the test conditions represented by the Case statements evaluates to True. The Case Else statement must also be used.
-
-The following is an example of the Select Case statement:
-
-' Displays a message based on the number entered Select Case CInt(InputBox("Enter a number: ")) Case 1 MsgBox "1 was entered" Case 2 To 4 MsgBox "2 to 4 was entered" Case 5, 6 MsgBox "5 or 6 was entered" Case Is >= 7 MsgBox "7 or greater was entered" Case Else MsgBox "0 or less was entered" End Select
-
-Repeating and Looping Expressions
-
-Repetition helps to form habits and learn how to perform a task, but repetition can also be counterproductive. If you know a task is repeated many times a day and you know how to complete that task, it is ideal to automate and simplify the process as much as possible, if not eliminate the process altogether. VBA—and most programming languages, for that matter—have no problem with repetition because they support a concept known as loops. Loops allow for a set of expressions to be executed either a finite number of times or infinitely while a condition is met.
-
-Repeating Expressions a Set Number of Times
-
-The easiest way to loop a set of expressions in VBA is to use the For statement. The first argument of the For statement is known as the counter, which is a variable name that is incremented or decremented each time the For statement is executed. The initial value of the counter and number of times the For statement should be executed are determined by a range of two values.
-
-Typically, the range starts with 0 or 1 and the difference between the start and ending of the range is used to specify how many times the For statement is executed. By default, the counter is incremented by 1 each time the For statement is executed. Optionally, the For statement supports the Step keyword, which can be used to specify a larger increment value than the default of 1 or a decrement value to count down instead of up.
-
-The following shows the syntax of the For statement:
-
-For counter = start To end [Step stepper] statementN Next [counter]
-
-Its arguments are as follows:
-
-counter The counter argument represents the variable name that is assigned to the current loop counter. The variable should be of a number data type, such as an integer or short. When the For statement is executed the first time, the counter variable is assigned the value passed to the start argument.
-
-start The start argument represents the start of the numeric range.
-
-end The end argument represents the end of the numeric range.
-
-stepper The stepper argument is optional and represents the numeric value that counter should be stepped each time the For statement is executed. Use a positive number to increment counter or a negative number to decrement counter.
-
-statementN The statementN argument represents the statements that should be executed each time the loop is started.
-
-NOTE
-
-The Exit For statement can be used to end a For statement before the counter reaches the end of the specified range.
-
-The following is an example of using the For statement:
-
-' Executes the statements 5 times, the variable ' cnt is incremented by 1 with each loop Dim cnt as Integer For cnt = 1 To 5 Debug.Print cnt Next cnt
-
-Here is the output that the previous statements create:
-
-1 2 3 4 5
-
-Stepping Through an Array or Collection
-
-The For Each statement is similar to the For statement described in the previous section. Instead of specifying a counter variable, a range, and an optional step, the For Each statement requires an element variable and a grouping, such as an array or a collection object. When the For Each statement is executed, the first value of the array or object of the collection is assigned to the element variable. As the For Each statement continues to be executed, the next value or object is assigned to the variable until all values or objects have been retrieved.
-
-The following shows the syntax of the For Each statement:
-
-For Each element In grouping statementN Next [element]
-
-Its arguments are as follows:
-
-element The element argument represents the variable name that is assigned to the current loop element. When the For Each statement is executed the first time, the element variable is assigned the first value or object of the grouping argument.
-
-grouping The grouping argument represents the array or collection object that you want to step through one value or object at a time.
-
-statementN The statementN argument represents the statements that should be executed each time the loop is started.
-
-NOTE
-
-The Exit For statement can be used to end a For statement before the last value or object in an array or a collection is retrieved.
-
-The following is an example of using the For Each statement:
-
-' Steps through all layer objects in the Layers collection ' of the current drawing and displays the names of each layer Dim objLayer as AcadLayer For Each objLayer In ThisDrawing.Layers Debug.Print objLayer.Name Next objLayer
-
-Here is the output that the previous statements create:
-
-0 Plan_Walls Plan_Doors Plan_Cabinets Plan_Furniture Labels Panels Surfaces Storage Defpoints Dimensions
-
-The order in which values or objects are retrieved is the same in which they were added to the array or collection.
-
-Performing a Task While or Until a Condition Is Met
-
-The For and For Each statements, as I mentioned in the previous sections, can be used to execute a set of statements a finite number of times. However, it isn't always easy to know just how many times a set of statements might need to be executed to get the desired results. When you are unsure of the number of times a set of statements might need to be executed, you can use the Do or While statement.
-
-The Do and While statements use a test condition, just like the If statement, to determine whether the set of statements should be executed. The set of statements are executed as long as the test condition returns True. The test conditions that can be used are the same ones mentioned earlier in the「Comparing Values」and「Grouping Comparisons」sections.
-
-There are two uses for the Do statement. The first is to evaluate a test condition before it executes any statements, whereas the other executes a set of statements and then evaluates a test condition to determine whether the statements should be executed again. Which version you use simply depends on whether you want to execute the statements at least once each time the Do statement is executed.
-
-A Do statement also requires the use of either the While or Until keyword. The While keyword indicates that the Do statement should execute until the test condition is no longer True, and the Until keyword indicates that the Do loop should execute while the test is False.
-
-The following shows the syntax of the Do statement that evaluates a test condition to determine whether the set of statements should be executed:
-
-Do [{While | Until} test_condition] statementN Loop
-
-The next example shows the syntax of the Do statement that executes a set of statements before evaluating a test condition:
-
-Do statementN Loop [{While | Until} test_condition]
-
-Its arguments are as follows:
-
-test_condition The test_condition argument represents the statement that should be used to determine if the expressions represented by the statementN argument should be executed or continue to be executed.
-
-statementN The statementN argument represents the statements that should be executed each time the loop is started.
-
-The following are examples of the Do function:
-
-' Executes the statements 5 times, the variable ' cnt is decremented by 1 with each loop Dim cnt As Integer cnt = 5 Do While cnt > 0 Debug.Print cnt cnt = cnt - 1 Loop
-
-Here is the output that the previous statements create:
-
-5 4 3 2 1 ' Executes the statements once since the test condition ' only returns True while cnt is greater than 4 Dim cnt As Integer cnt = 5 Do Debug.Print cnt cnt = cnt + 1 Loop Until cnt > 4
-
-Here is the output that the previous statements create:
-
-5
-
-NOTE
-
-The Exit Do statement can be used to end a Do statement before the test condition returns True or False based on whether the While or Until keyword is used.
-
-The While statement is similar to the Do statement with the While keyword when evaluating a test condition before it executes a set of statements. The one difference between the Do and While statements is that the While statement doesn't support the ability to end early with the use of the Exit statement. Ending a While statement early would require statements to manipulate the test condition being used to determine when to end the looping.
-
-The following shows the syntax of the While statement:
-
-While test_condition statementN Wend
-
-The test_condition and statement arguments are the same as those in the Do statement. Here is an example of the While function:
-
-' Executes the statements 5 times, the variable ' cnt is decremented by 1 with each loop Dim cnt As Integer cnt = 5 While cnt > 0 Debug.Print cnt cnt = cnt - 1 Wend
-
-Here is the output that the previous statements create:
-
-5 4 3 2 1
-
-Chapter 26
-
-Interacting with the Application and Documents Objects
+# 0303. Interacting with the Application and Documents Objects
 
 The top object in the AutoCAD® Object library is the AcadApplication object, which allows you to access and manipulate the AutoCAD application window. From the AcadApplication object, you can also access the AcadDocuments collection, which allows you to work with not only the current drawing but all open drawings in the current AutoCAD session. As mentioned in earlier chapters, the ThisDrawing object can be used to access the current drawing.
 
@@ -665,3 +247,275 @@ To query and set the Author and Comments properties of the AcadSummaryInfo objec
 Sub DWGSumInfo() Dim oSumInfo As AcadSummaryInfo Set oSumInfo = ThisDrawing.SummaryInfo MsgBox "Author: " & oSumInfo.Author & vbLf & _ "Comments: " & oSumInfo.Comments, _ vbInformation, "Drawing Properties" oSumInfo.Author = "Drafter" oSumInfo.Comments = "Phase 1: Demolishion of first floor" MsgBox "Author: " & oSumInfo.Author & vbLf & _ "Comments: " & oSumInfo.Comments, _ vbInformation, "Drawing Properties" End Sub
 
 For more information on the AcadSummaryInfo object, use the Object Browser in the VBA Editor or check the AutoCAD Help system.
+
+NOTE
+
+The Ch26_ExSamples.dvb sample file, which you can download from www.sybex.com/go/autocadcustomization, contains two procedures—named AssignSumInfo and QuerySumInfo—that demonstrate a more comprehensive solution for working with drawing properties. Place the file in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store the DVB files. Then load the VBA project into the AutoCAD drawing environment to use it.
+
+Manipulating a Drawing Window
+
+In addition to getting information about a drawing file, you can query and manipulate the window in which a drawing file is displayed. The Active property and the Activate method are helpful when you are working with the AcadDocuments collection object. You can use the Active property to determine whether a document is the current object, and the Activate method lets you set a document as current.
+
+Table 26.4 lists the AcadDocument object properties that can be used to resize and get information about a drawing window.
+
+Table 26.4 Drawing window–related properties
+
+Property Description
+
+Height Specifies the height of the drawing window. The value is an integer and represents the window height in pixels.
+
+Width Specifies the width of the drawing window. The value is an integer and represents the window width in pixels.
+
+WindowState Returns an integer value that represents the current state of the drawing window. The integer values allowed are defined as part of the AcWindowState enumerator. A value of 1 (or acNorm) indicates the window is neither minimized nor maximized, whereas a value of 2 (or acMin) or 3 (or acMax) indicates the window is minimized or maximized, respectively.
+
+WindowTitle Returns a string that contains the title of the drawing window. This property is read-only.
+
+For more information on these properties and methods, use the Object Browser in the VBA Editor or check the AutoCAD Help system.
+
+Working with System Variables
+
+System variables are used to alter the way commands work, describe the current state of a drawing or AutoCAD environment, and specify where support files are stored. Many of the settings that are exposed by system variables are associated with controls in dialog boxes and palettes; other settings are associated with various command options. For example, many of the settings in the Drafting Settings dialog box (which you display using the dsettings command) are accessible from system variables.
+
+A system variable can store any one of the basic data types that VBA supports (see「Exploring Data Types」in Chapter 25). You can see the hundreds of system variables and the type they hold by using the AutoCAD Help system. Whereas you might normally use the setvar command to list or change the value of a system variable at the AutoCAD Command prompt, with the AutoCAD Object library you use the GetVariable and SetVariable methods of an AcadDocument object to query and set the value of a system variable, respectively.
+
+Here's the syntax of the SetVariable and GetVariable methods:
+
+document.SetVariable sysvar_name, value retVal = document.GetVariable(sysvar_name)
+
+The arguments are as follows:
+
+sysvar_name The sysvar_name argument specifies the name of the system variable you want to query or set.
+
+value The value argument specifies the data that you want to assign to the system variable.
+
+retVal The retVal argument specifies the user-defined variable that you want to assign the current value of the system variable.
+
+The next exercise demonstrates how to query and set the value of the osmode system variable, which controls the object snap drafting aid that is currently running. This setting is available in the Drafting Settings dialog box:
+
+Create a new VBA project or use the empty VBA project that is available by default when the VBA Editor is started.
+
+In the Project Explorer, double-click the ThisDrawing component.
+
+In the code editor window, type the following:Sub WorkingWithSysVars() ' Get and store the current value of osmode Dim nCurOsmode As Integer nCurOsmode = ThisDrawing.GetVariable("osmode") MsgBox "Current value of osmode: " & CStr(nCurOsmode) ' Set osmode to a value of 33 ThisDrawing.SetVariable "osmode", 33 MsgBox "Current value of osmode: " & _ CStr(ThisDrawing.GetVariable("osmode")) ' Restore osmode to its previous value ThisDrawing.SetVariable "osmode", nCurOsmode MsgBox "Current value of osmode: " & _ CStr(ThisDrawing.GetVariable("osmode")) End Sub
+
+Switch to the AutoCAD application window.
+
+On the ribbon, click the Manage tab Applications panel Run VBA Macro.
+
+When the Macros dialog box opens, select the macro name that ends with WorkingWithSysVars. Click Run.
+
+Review the value in the message box and click OK to continue the execution of the procedure. The current value of the osmode system variable is displayed after the colon in the message box.
+
+Review the message and click OK in the next two message boxes. The value of the osmode system variable is changed to 33, and the change is reflected after the colon in the message box. The final message box reflects the original value.
+
+TIP
+
+The AutoCAD Help system is a great resource for learning about system variables. However, if you need to support multiple AutoCAD releases, you will need to reference the documentation for each release. To make it easier to identify which system variables are supported in the current and previous AutoCAD releases, Shaan Hurley (http://autodesk.blogs.com/between_the_lines/) and I compiled a list of system variables that spans AutoCAD releases from 2004 through the present; you can view the list here: www.hyperpics.com/system_variables/.
+
+Querying and Setting Application and Document Preferences
+
+System variables provide access to many application and document settings, but there are some settings that are not accessible using system variables. The AcadApplication and AcadDocument objects both offer a property named Preferences that allows you to access additional settings that are not accessible using system variables. The Preferences property of the AcadApplication object contains a reference to an AcadPreferences object. The AcadPreferences object provides access to 10 properties that provide access to different preference objects that are used to organize the available preferences. The 10 preference objects represent many of the tabs in the Options dialog box (which you open using the option command).
+
+Table 26.5 lists the preference objects that are used to organize application preferences.
+
+Table 26.5 Preference objects accessible from the application
+
+Class/Object Description
+
+AcadPreferencesDisplay Provides access to settings that control the display and color of user-interface elements, scroll bars, drawing windows, and crosshairs.
+
+AcadPreferencesDrafting Provides access to the AutoSnap and AutoTracking settings.
+
+AcadPreferencesFiles Provides access to the support-file locations, such as Support File Search Path and Drawing Template File Location.
+
+AcadPreferencesOpenSave Provides access to the default drawing format used when saving a drawing with the save and qsave commands, in addition to settings used to control the loading of Xrefs and ObjectARX applications.
+
+AcadPreferencesOutput Provides access to settings that control the plotting and publishing of drawing files.
+
+AcadPreferencesProfiles Provides access to methods used to manage profiles defined in the AutoCAD drawing environment, as well as a property used to get or switch the active profile.
+
+AcadPreferencesSelection Provides access to settings that control the display of grips and the pickbox.
+
+AcadPreferencesSystem Provides access to application settings that control the display of message boxes and whether the acad.lsp file is loaded once per AutoCAD session or into each drawing.
+
+AcadPreferencesUser Provides access to settings that control the default insertion units used with the insert command and the behavior of the shortcut menus in the drawing area.
+
+The Preferences property of the AcadDocument object doesn't provide access to a reference of an AcadPreferences object but instead provides access to an AcadDatabasePreferences object. The AcadDatabasePreferences object can be used to control the display of lineweights, object selection sorting, and the number of contour lines per surface, among many other settings.
+
+The following examples show how to query and set application and drawing preferences:
+
+' Sample used to control Application preferences With ThisDrawing.Application.Preferences ' Displays a message box with the current support file search paths MsgBox.Files.SupportPath ' Displays a message box with all available profiles Dim vName As Variant, vNames As Variant, strNames As String .Profiles.GetAllProfileNames vNames For Each vName In vNames strNames = strNames & vName & "," Next vName MsgBox "Available profile names: " & strNames ' Sets the crosshairs to 100 .Display.CursorSize = 100 ' Sets the background color of model space color to light gray .Display.GraphicsWinModelBackgrndColor = 12632256 End With ' Sample used to control Document preferences With ThisDrawing.Preferences ' Turns off solid fill mode .SolidFill = False ' Turns on quick text display mode .TextFrameDisplay = True End With
+
+Executing Commands
+
+The AutoCAD Object library allows you to automate most common tasks without the use of a command, but there might be times when you will need to use an AutoCAD or third-party command. A command can be executed using the SendCommand method of the AcadDocument object.
+
+NOTE
+
+While using a command might seem like a quick and easy choice over using the methods and properties of the objects in the AutoCAD Object library, you should avoid using commands whenever possible. The execution of an AutoCAD command can be slower and more limited than using the same approach with the AutoCAD Object library and VBA. The behavior of commands is affected by system variables, and ensuring system variables are set to specific values before calling a command can result in you having to write additional code statements that can complicate your programs.
+
+The SendCommand method expects a single string that represents the command, options, and values that would be entered at the Command prompt. A space in the string represents the single press of the Enter key. When the Enter key must be pressed, such as when providing a string value that supports spaces, use the vbCr constant.
+
+The following statements show how to draw a rectangle and a single-line text object using commands:
+
+' Draws a rectangle 0,0 to 10,4 ThisDrawing.SendCommand "._rectang 0,0 10,4 " ' Draws a single line text object with middle center justification ' at 5,2 with a height of 2.5 units and the text string D101 ThisDrawing.SendCommand "._-text _j _mc 5,2 2.5 0 D101" & vbCr
+
+Figure 26.1 shows the result of drawing a rectangle with the rectang command and single-line text placed inside the rectangle with the -text command.
+
+Figure 26.1 Rectangle and text drawn using commands
+
+The string sent by the SendCommand method to the AcadDocument object is executed immediately in most cases. Typically, the string isn't executed immediately when the SendCommand method is called from an event handler. I discuss event handlers in Chapter 33.
+
+Starting with AutoCAD 2015, you can postpone the execution of the commands and options in the string until after the VBA program finishes by using the PostCommand method instead of the SendCommand method. Unlike with the SendCommand method, you don't need to have all commands, options, and values in a single string.
+
+The following statements show how to draw a rectangle with the PostCommand method:
+
+' Draws a rectangle 0,0 to 10,4 ThisDrawing.PostCommand "._rectang " ThisDrawing.PostCommand "0,0 10,4 "
+
+Exercise: Setting Up a Project
+
+Before a product is manufactured or a building is constructed, it starts as an idea that must be documented. In AutoCAD, documenting is known as drafting or modeling. Similar to a Microsoft Word document, a drawing must be set up to ensure that what you want to design appears and outputs as intended. Although you can create a number of drawing template (DWT) files to use when creating a new drawing, it can be better and more flexible to design an application that can adapt to your company's needs instead of creating many DWT files to try to cover every type of drawing your company might create.
+
+In this section, you will create and set up a new drawing file using some of the concepts that have been introduced in this chapter. The key concepts that are covered in this exercise are as follows:
+
+Managing Documents Create and save a new drawing file.
+
+Assigning and Creating Drawing Properties Assign values to standard drawing properties and create custom drawing properties that can be used to populate text in a title block.
+
+Setting System Variables and Preferences Changes can be made to system variables and preferences that are stored with the application or a drawing to affect the behavior of drafting aids and other AutoCAD features.
+
+Performing Tasks with a Command AutoCAD commands can be used to create and modify graphical and nongraphical objects in a drawing.
+
+Creating the DrawingSetup Project
+
+A project is used to store any and all VBA code that is to be executed in the AutoCAD drawing environment. The following steps explain how to create a project named DrawingSetup and save it to a file named drawingsetup.dvb:
+
+On the ribbon, click the Manage tab Applications panel title bar and then click VBA Manager (or at the Command prompt, type vbaman and press Enter).
+
+When the VBA Manager opens, select the first project in the Projects list and click Unload. If prompted to save the changes, click Yes if you wish to save the changes, or click No to discard the changes.
+
+Repeat step 2 for each VBA project in the list.
+
+Click New. The new project is added to the list with a default name of ACADProject and a location of Global1, Global2, and so on based on how many projects have been created in the current AutoCAD session.
+
+Select the new project from the Projects list and click Save As.
+
+When the Save As dialog box opens, browse to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store custom program files.
+
+In the File Name text box, type drawingsetup and click Save.
+
+In the VBA Manager dialog box, click Visual Basic Editor.
+
+The next steps explain how to change the project name from ACADProject to DrawingSetup and add a new code module named basDrawingSetup:
+
+When the VBA Editor opens, select the project node labeled ACADProject (shown in Figure 26.2) from the Project Explorer. If the Project Explorer isn't displayed, click View Project Explorer on the menu bar in the VBA Editor.
+
+In the Properties window, select the field named (Name) and double-click in the text box adjacent to the field. If the Properties window isn't displayed, click View Properties Window on the menu bar in the VBA Editor.
+
+In the text box, type DrawingSetup and press Enter.
+
+On the menu bar, click Insert Module.
+
+In the Project Explorer, select the new module named Module1.
+
+In the Properties window, change the current value of the (Name) property to basDrawingSetup.
+
+On the menu bar, click File Save.
+
+Figure 26.2 Navigating the new project with the Project Explorer
+
+Creating and Saving a New Drawing from Scratch
+
+Designs created with the AutoCAD drawing environment are stored in a DWG file, which can then be shared with others in your organization or external vendors and clients. The New method of the AcadDocuments collection object gives you the most flexibility in creating a new drawing file.
+
+In the following steps, you define a procedure named newDWGFromScratch, which will be used to create a drawing from scratch with imperial units and return the AcadDocument object that represents the new drawing. Once the drawing is created, the SaveAs method of the new AcadDocument object is used to save the drawing with the name of ACP-D1.B.dwg to the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store files from this book.
+
+In the Project Explorer, double-click the code module named basDrawingSetup.
+
+When the code editor opens, type the following:' Creates a new drawing from scratch ' Function accepts an optional value of: ' 0 - Creates an imperial units based drawing ' 1 - Creates a metric units based drawing Private Function newDWGFromScratch _ (Optional nMeasureInit As Integer = 0) As AcadDocument ' Get the current value of the MEASUREINIT system variable Dim curMInit As Integer curMInit = ThisDrawing.GetVariable("measureinit") ' Set the measurement system for new drawings to metric ThisDrawing.SetVariable "measureinit", nMeasureInit ' Create a new drawing from scratch Dim newDWGFromScratch As AcadDocument Set newDWGFromScratch = Application.Documents.Add ' Restore the previous value ThisDrawing.SetVariable "measureinit", curMInit End Function
+
+On the menu bar, click File Save.
+
+Since the procedure newDWGFromScratch is designated as private, it can't be executed from the AutoCAD user interface with the vbarun command. In the next steps, you will create a public procedure named Main that will be used to execute the various procedures that will make up the final functionality of the DrawingSetup project.
+
+In the code editor, click after the End Function code statement of the newDWGFromScratch procedure and press Enter twice.
+
+Type the following:Public Sub Main() ' Executes the newDWGFromScratch to create a new drawing from sratch Dim newDWG As AcadDocument Set newDWG = newDWGFromScratch ' Saves the new drawing ThisDrawing.SaveAs ThisDrawing.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\acp-d1_b.dwg" End Sub
+
+On the menu bar, click File Save.
+
+In the code editor, click after the code statement that starts with Public Sub Main.
+
+On the menu bar, click Run Run Sub/UserForm. If the Macros dialog box opens, select Main and click Run. If you clicked inside the Main procedure definition, the Macro dialog box will not be displayed. The new drawing is created and saved to the file named acp-d1_b.dwg. If an error message is displayed, make sure that the MyCustomFiles folder exists under the Documents (or My Documents) folder, or update the code to reflect the folder you are using to store the files for this book.
+
+On the Windows taskbar, click the AutoCAD application icon and verify that the new drawing was created.
+
+Try executing the Main procedure again. This time an error message is displayed, as shown in Figure 26.3, which indicates that the drawing couldn't be saved. The drawing couldn't be saved because it was already open in AutoCAD and the file was locked on the local disc. I cover how to handle errors in Chapter 36.
+
+In the Microsoft Visual Basic error message box, click End to terminate the execution of the code.
+
+Figure 26.3 Error message generated as a result of AutoCAD not being able to save the drawing
+
+Inserting a Title Block with the insert Command
+
+The next steps insert a title block into the current drawing. The insert command is sent to the current drawing with the SendCommand method.
+
+NOTE
+
+From www.sybex.com/go/autocadcustomization you can download the drawing file b-tblk.dwg used by the insert command in the following steps. Place the file in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location you are using to store custom program files. If you are storing the files for this book in a different folder other than MyCustomFiles under the Documents (or My Documents) folder, update the code in the following steps as needed.
+
+In the code editor, click after the End Sub code statement of the Main procedure and press Enter twice.
+
+Type the following:Private Sub insertTitleBlock() With ThisDrawing ' Gets the current layer name Dim sLyrName As String sLyrName =.GetVariable("clayer") ' Creates a new layer named TBlk with the ACI value 8 .SendCommand "._-layer _m " & "TBlk" & vbCr & "_c 8 " & "TBlk" & vbCr & vbCr ' Inserts the title block drawing .SendCommand "._-insert " &.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\b-tblk" & vbCr & "0,0 1 1 0" & vbCr ' Zooms to the extents of the drawing .SendCommand "._zoom _e" & vbCr ' Restores the previous layer .SetVariable "clayer", sLyrName End With End Sub
+
+Scroll up and add the statements shown in bold to the Main procedure:Public Sub Main() ' Executes the newDWGFromScratch to create a new drawing from scratch Dim newDWG As AcadDocument Set newDWG = newDWGFromScratch ' Saves the new drawing ThisDrawing.SaveAs ThisDrawing.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\acp-d1_b.dwg" ' Insert the title block insertTitleBlock End Sub
+
+On the menu bar, click File Save.
+
+Close all open drawing files and then create a new drawing file.
+
+Execute the Main procedure with the vbarun command or by clicking Run Run Sub/UserForm from the VBA Editor menu bar. A new drawing should be created and the title block drawing b-tblk is inserted on the TBlk layer, as shown in Figure 26.4.
+
+Switch to the AutoCAD application to view the new drawing and title block.
+
+Figure 26.4 New drawing with a title block
+
+Adding Drawing Properties
+
+Drawing properties can be a great way to populate values of a title block using fields or even to help you locate a drawing file years later. (You will remember that drawing properties can be searched using the Search field in Windows Explorer and File Explorer, making it possible to find a drawing based on an assigned property value.) Drawing properties are stored with a DWG file and are accessible with the dwgprops command or the AcadSummaryInfo object of the AutoCAD Object library.
+
+In the following steps, you will define a procedure named addDWGProps, which adds some static values to some of the standard drawing properties and creates a few custom drawing properties. A few of the values are used by the fields in the title block that was inserted with the insertTitleBlock procedure added in the previous section.
+
+In the AutoCAD drawing window, zoom into the lower-right area of the title block. You should notice a few values with the text ----. This text is the default value of a field value that can't be resolved.
+
+In the code editor, click after the End Sub code statement of the insertTitleBlock procedure and press Enter twice.
+
+Type the following:Private Sub addDWGProps() With ThisDrawing.SummaryInfo ' Set the author and comment properties .Author = "[Replace this text with your initials here]" .Comments = "Phase 1: 1st Floor Furniture Plan" ' Add custom properties to a drawing Dim sProject As String Dim sPhase As String On Error Resume Next .GetCustomByKey "ProjectName", sProject If Err.Number <> 0 Then ' Property doesn't exist .AddCustomInfo "ProjectName", "ACP Renovation" Err.Clear Else ' Property exists, so update the value .SetCustomByKey "ProjectName", "ACP Renovation" End If End With ' Regen the drawing to update the fields ThisDrawing.Regen acActiveViewport End Sub
+
+Scroll up and add the statements shown in bold to the Main procedure:Public Sub Main() ' Executes the newDWGFromScratch to create a new drawing from scratch Dim newDWG As AcadDocument Set newDWG = newDWGFromScratch ' Saves the new drawing ThisDrawing.SaveAs ThisDrawing.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\acp-d1_b.dwg" ' Insert the title block insertTitleBlock ' Add the drawing properties addDWGProps End Sub
+
+On the menu bar, click File Save.
+
+Close all open drawing files and then create a new drawing file.
+
+Execute the Main procedure. The「project name」and「drafted by」values are populated in the title block by the property values assigned to the drawing. The property values of the drawing are assigned using the methods and properties of the AcadSummaryInfo object, as shown in Figure 26.5.
+
+Figure 26.5 Field values populated by drawing properties
+
+Setting the Values of Drafting-Related System Variables and Preferences
+
+System variables and the preferences of the application or drawing can be used to affect many of the commands and drafting aids in the AutoCAD drawing environment.
+
+In the following steps, you define a procedure named setDefDraftingAids, which specifies the values of system variables and application preferences.
+
+In the code editor, click after the End Sub code statement of the addDWGProps procedure and press Enter twice.
+
+Type the following:Private Sub setDefDraftingAids() ' Set the values of drafting-related system variables With ThisDrawing .SetVariable "orthomode", 1 .SetVariable "osmode", 35 .SetVariable "gridmode", 0 .SetVariable "snapmode", 0 .SetVariable "blipmode", 0 End With ' Set display-related preferences With ThisDrawing.Application.Preferences.Display .CursorSize = 100 End With ' Set drafting-related preferences With ThisDrawing.Application.Preferences.Drafting .AutoSnapAperture = True .AutoSnapApertureSize = 10 End With ' Set selection-related preferences With ThisDrawing.Application.Preferences.Selection .DisplayGrips = True .PickFirst = True End With End Sub
+
+Scroll up and add the statements shown in bold to the Main procedure:Public Sub Main() ' Executes the newDWGFromScratch to create a new drawing from scratch Dim newDWG As AcadDocument Set newDWG = newDWGFromScratch ' Saves the new drawing ThisDrawing.SaveAs ThisDrawing.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\acp-d1_b.dwg" ' Insert the title block insertTitleBlock ' Add the drawing properties addDWGProps ' Sets the values of system variables and application preferences setDefDraftingAids ' Saves the changes to the drawing ThisDrawing.Save End Sub
+
+On the menu bar, click File Save.
+
+Close all open drawing files and then create a new drawing file.
+
+Execute the Main procedure. The system variables and application preferences are changed, and the changes to the drawing file are saved.
