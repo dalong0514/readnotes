@@ -149,7 +149,7 @@ The following example removes the XData list associated with an application name
 )
 ```
 
-### 0105. 主题卡 —— 定位放大到一个特点的实体对象的坐标位置上
+### 0105. 主题卡 —— 定位放大到一个特定的实体对象的坐标位置上
 
 信息源自「2019116AutoCAD-Platform-Customization0210.md」：
 
@@ -175,7 +175,7 @@ Here is an example of the `s::startup` function:
 
 1-2『
 
-这里绝逼意外的挖了一个大宝藏：定位放大到一个特点的实体对象的坐标位置上。做一张主题卡片。（2021-03-02）
+这里绝逼意外的挖了一个大宝藏：定位放大到一个特定的实体对象的坐标位置上。做一张主题卡片。（2021-03-02）
 
 ```c
 (defun c:foo (/ ss) 
@@ -339,7 +339,7 @@ Ok, so a Dictionary is a container that can hold a number of objects. Why not us
 
 Dictionaries and XRecords go hand in hand. Like Dictionaries, XRecords are handled as named objects and can be manipulated by the same functions that handle Dictionaries. In the following, we'll try to add our own Dictionary to the main dictionary. We will also create an XRecord to hold various informations and add it to our Dictionary.
 
-1『这里慢慢有点懂 XRecord 和 Dictionaries 的关系了。Dictionaries 是容器，XRecord 可以帮数据然后加进 Dictionaries 里。（2021-03-28）』
+1『这里慢慢有点懂 XRecord 和 Dictionaries 的关系了。Dictionaries 是容器，XRecord 可以绑数据然后加进 Dictionaries 里。（2021-03-28）』
 
 When dealing with Dictionaries, at one point you will have to consider ownership. Which object is going to own the Dictionary? Will it hold generic data for your application or will it hold data that is specific for some entity or entities? In the first case you will probably use the main dictionary to save your data with the drawing. If your application is maintaining data for linetypes, you will probably add an extension dictionary to the linetype symbol table. Whatever the ownership, the Dictionary is initially created without ownership and for that purpose we'll use the function ENTMAKEX. It works like ENTMAKE, but it creates the entity without an owner — and it returns an entity name instead of an entity list. Let's make a function that adds our own Dictionary to the main dictionary. In this example we will name it "OUR_DICT" :
 

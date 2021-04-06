@@ -20,9 +20,6 @@ Along with accessing operating system and application settings, you can read and
 
 ## 0209. Catching and Handling Errors
 
-
-
-
 ## 0210. Authoring, Managing, and Loading AutoLISP Programs
 
 Entering AutoLISP® expressions directly at the Autodesk® AutoCAD® Command prompt is a great way to start learning AutoLISP programming. However, if you want to use expressions multiple times or in different drawings, you will need to enter them over and over again.
