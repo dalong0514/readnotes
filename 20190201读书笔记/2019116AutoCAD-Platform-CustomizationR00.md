@@ -545,7 +545,7 @@ Understanding Block Definitions and Block References. You can think of a block d
 
 A block reference displays an instance, not a copy, of the geometry from a block definition; the geometry exists only as part of the block definition, with the exception of attributes. Attribute definitions that are part of a block definition are added to a block reference as attributes unless the attribute definition is defined as a constant attribute. Constant attributes are parts of the geometry inherited from a block definition and aren't part of the block reference.
 
-1-3『块定义和块参照，对应于面向对象的类和对象，块参照是块定义的实例化。（2021-03-10）』
+1-3『块定义和块参照，对应于面向对象的类和对象，块参照是块定义的实例化。（2021-03-10）补充：这里的常量属性值（constant attribute）是指设了默认值的属性，那么引用块参照的时候不用对其赋值。（2021-04-06）』
 
 When creating a block reference with AutoLISP, as opposed to inserting it with the insert command, you are responsible for adding any attributes to the block reference that aren't designated as constant within the block definition. Like the old-style polyline, block references use the seqend object to designate the end of an insert object. Between the insert and seqend objects of a block reference are attrib objects that represent the attribute references that aren't set as constant and must be added to a block reference.
 
@@ -583,20 +583,15 @@ Once the block definition is created, you can then use the following code to add
 ```c
 ; Creates a block reference based on the block definition BlockNumber at 1.0,-0.5 
 (entmake '((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "roomnum") (10 1.0 -0.5 0.0))) 
-((0. "INSERT")(100. "AcDbEntity")(100. "AcDbBlockReference") (66. 1) (2. "RoomNum") (10 1.0 -0.5 0.0)) 
 
 ; Creates an attribute reference with the tag ROOM# and adds it to the block 
 (entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
   (40. 9.0) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
   (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
 ) 
-(entmake '((0. "ATTRIB") (100. "AcDbEntity") (100. "AcDbText") (10 0.533834 -0.7 0.0) 
-  (40. 0.4) (1. "101") (7. "Standard") (71. 0) (72. 1) (11 1.0 -0.5 0.0) 
-  (100. "AcDbAttribute") (280. 0) (2. "ROOM#") (70. 0) (74. 2) (280. 1))
-) 
 
 ; Adds the end marker for the block reference 
-(entmake ' ((0. "SEQEND") (100. "AcDbEntity"))) ((0. "SEQEND") (100. "AcDbEntity"))
+(entmake ' ((0. "SEQEND") (100. "AcDbEntity")))
 ```
 
 If you want to extract the values of the attributes attached to a block, you must get the constant attribute values from the block definition and the nonconstant attribute values that are attached as part of the block reference. You use the entnext function to step through each object in a block definition and block reference, collecting information from the reference objects. All attribute definitions (attdef) or attribute reference (attrib) objects must be read until the last or seqend object is encountered.
@@ -623,7 +618,7 @@ Integer values can be used to represent what is known as a bit pattern or bit-co
 
 For example, the layer status property (DXF group code 70) of a layer is a bit-coded value that contains various flags used to specify whether the layer is frozen (1 bit), locked (4 bit), or dependent on an xref (16 bit). The osmode system variable is another example of a bit-coded value in AutoCAD. In the osmode system variable, the value indicates which running object snaps are currently enabled. Refer to the AutoCAD Help system to determine whether an object property or system variable is an integer or bit-coded value.
 
-Because a bit-coded value is represented by the integer data type, you can use the + and – functions to add or remove a bit value for the overall sum of a bit-coded value. AutoLISP also provides several useful functions that you can use when working with bit-coded values. The logior and logand functions help combine several bit-coded values and determine whether a bit is part of a bit-coded value. Let's take a closer look at the logior and logand functions.
+Because a bit-coded value is represented by the integer data type, you can use the `+` and `–` functions to add or remove a bit value for the overall sum of a bit-coded value. AutoLISP also provides several useful functions that you can use when working with bit-coded values. The logior and logand functions help combine several bit-coded values and determine whether a bit is part of a bit-coded value. Let's take a closer look at the logior and logand functions.
 
 3.1.8 Working with Bit-Coded Values
 
@@ -679,6 +674,8 @@ The AutoLISP® functions you have learned up to this point have been, for the mo
 1『这里 ActiveX/COM 本质上是一个库，做一张术语卡片。（2021-03-06）』
 
 In this chapter, you will learn the basics of using ActiveX with AutoLISP and how to leverage the AutoCAD, Microsoft Windows, and Microsoft Office COM libraries. Although this chapter doesn't go into great depth, it will give you a starting point and a general understanding of the functions you need to become familiar with in order to use ActiveX and access COM libraries. The primary reasons to use COM are to monitor actions in AutoCAD with reactors, access external applications such as Microsoft Word or Excel, and work with complex objects, such as tables and multileaders.
+
+1『这里的信息超级重要。COM 的主要用途有三：1）在 CAD 用 reactors 监视动作。2）跟外部的 word 和 excel 交互。3）操作复杂对象，比如 tables and multileaders。（2021-04-06）』
 
 ActiveX is the technology that allows for the use of COM. It is often associated with Visual Basic for Applications (VBA) and Visual Basic (VB) scripting these days, but it can be used by many modern programming languages, such as VB.NET and C++. Although many people refer to ActiveX and COM as the same thing, they aren't. ActiveX is the technology that was developed by Microsoft to allow software developers to expose objects using COM, thereby letting programmers communicate with the programs in new ways.
 
@@ -783,7 +780,7 @@ The following shows the syntax of the dictadd function:
 (dictadd ename key_entry dictionary)
 ```
 
-1-2『信息待补充。因为目前个人觉得用 dictionary 还不如用 XData。（2021-03-26）』
+1-2『信息待补充。因为目前个人觉得用 dictionary 还不如用 XData。（2021-03-26）补充：反转了，dictionary 比 XData 好用很多。首先字典能储存的容量比 XData 多很多。其次，可以绑多个字符串信息，目前知道 XData 只能绑一个。这两个绑数据、更新数据的功能都已经实现了，详见设计流的源码。（2021-04-07）』
 
 ### 0301. 任意卡 —— 生成 VLX 文件
 
@@ -877,9 +874,7 @@ Tiles are stacked vertically in a dialog box by default, unless you use what are
 
 You can create a DCL file with Notepad or the Visual LISP Editor; you follow the same process you use to create a LSP file. The only difference is that you specify a file extension of .dcl instead of .lsp. Once you create a DCL file, you can add a dialog box definition to the file. To see what the dialog box looks like, you must load the DCL file in the AutoCAD drawing environment and display it. There are two approaches available for viewing a DCL file. The first is to create an AutoLISP program that loads and displays the file; the other involves using the Visual LISP Editor. (The second approach eliminates the need to write any code.) I discuss how to load a DCL file and display a dialog box in the next section.
 
-1『加载显示窗口（box）的 2 种方法，做一张任意卡片。』—— 已完成
-
-回复：目前一直用的是第一种方法，即在 autolisp 里加载 dcl 文件。（2020-10-27）
+1『加载显示窗口（box）的 2 种方法，做一张任意卡片。补充：目前一直用的是第一种方法，即在 autolisp 里加载 dcl 文件。（2020-10-27）』—— 已完成
 
 ### 0308. 任意卡 —— 通过特定的动作直接更新交互界面的下拉列表数据
 
@@ -923,7 +918,8 @@ The following code shows how to replace and assign a list of two values to a `po
 ; Add two items that represent the layers to allow 
 (add_list "A-Door") 
 (add_list "A-Window") 
-; End list modification (end_list)
+; End list modification 
+(end_list)
 ```
 
 NOTE: The `set_tile` and `mode_tile` functions shouldn't be executed between the use of the `start_list` and `end_list` functions. Execute the `start_list` and `end_list` functions before the `start_dialog` function to ensure that the list is updated before the dialog box is displayed.
@@ -1150,7 +1146,7 @@ Chapter 17: Creating and Modifying Nongraphical Objects In this chapter, you'll 
 
 Chapter 18: Working with the Operating System and External Files In this chapter, you will learn how to work with settings and files stored outside of the AutoCAD program. Settings can be stored in the Windows Registry and Plist files on Mac OS, and they can be used to affect the behavior of the AutoCAD program or persist values for your custom programs between AutoCAD sessions. Files and folders stored in the operating system can be accessed and manipulated from the AutoCAD program, which allows you to set up project folders or populate project information in the title block of a drawing from an external file.
 
-2『 16 和18 章里应该有，将数据导出的相关信息。结果发现 17 章里也有这方面的信息。最终竟然在第 3 章里找到解决办法，直接用命令 dataextraction 就可以提取块里面的属性信息，以 csv 或 txt 格式导出来。回复：用 dataextraction 很 low，而且中间步骤很多，现在已经实现了直接读写数据。（2020-11-26）』
+2『 16 和18 章里应该有，将数据导出的相关信息。结果发现 17 章里也有这方面的信息。最终竟然在第 3 章里找到解决办法，直接用命令 dataextraction 就可以提取块里面的属性信息，以 csv 或 txt 格式导出来。补充：用 dataextraction 很 low，而且中间步骤很多，现在已经实现了直接读写数据。（2020-11-26）』
 
 Chapter 19: Catching and Handling Errors In this chapter, you will learn how to catch and handle errors that are caused by an AutoLISP function and keep an AutoLISP program from terminating early. AutoLISP provides functions that allow you to trace a function, see arguments as they are passed, catch an error and determine how it should be handled, and group functions together so all the actions performed can be rolled back as a single operation.
 
@@ -1201,7 +1197,6 @@ Chapter 35: Communicating with Other Applications In this chapter, you will lear
 这章涉及与其他 app 的交互，那么有提取 cad 数据直接进服务器的实现线索。（2020-06-25）
 
 应该是可以实现的，找到了一些资料，还没来得及实操实现。（2021-03-12）
-
 
 [已解决: access internet/ remote directory - Autodesk Community - AutoCAD](https://forums.autodesk.com/t5/visual-lisp-autolisp-and-general/access-internet-remote-directory/m-p/9383094#M397309)
 
