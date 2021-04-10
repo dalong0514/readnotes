@@ -92,7 +92,7 @@ If you have done any web application developing, you no doubt understand the cha
 
 Figure 1-1. The FlexBox support table from caniuse.com
 
-No longer will referencing a feature on caniuse.com be disappointing but rather one of possibilities.As a general rule, Electron updates its Chromium module about two weeks after it is released to the public. The Node component typically takes a bit longer to update. As you begin to embark on larger Electron projects, you will want to also monitor the development process of both of these projects. There might be an issue that you need to be aware or feature added that can greatly make your life easier. But, don't worry – once you can package your application, those runtimes are baked into your application.
+No longer will referencing a feature on caniuse.com be disappointing but rather one of possibilities. As a general rule, Electron updates its Chromium module about two weeks after it is released to the public. The Node component typically takes a bit longer to update. As you begin to embark on larger Electron projects, you will want to also monitor the development process of both of these projects. There might be an issue that you need to be aware or feature added that can greatly make your life easier. But, don't worry – once you can package your application, those runtimes are baked into your application.
 
 #### 1.4.1 Electron's Advantages
 
@@ -115,6 +115,8 @@ This allows our Electron application much more freedom, but at the same time we 
 #### 1.4.3 Offline First Design
 
 With typical web application development, you can usually assume the user is online. Now this is changing with the increase in Progressive Web Apps, but some level of online capability is there for your web app to function. Electron applications have to take the opposite approach. You should not assume that you have an Internet connection. In fact, portions of this chapter were written at 35,000 feet on a plane without WiFi. But I was still able to write in a completely offline mode. Even if your application is dependent on communicating with a back end, you can design your application to function in an offline mode, and sync the data once a connection is reestablished. You will need to take some time to consider how this design pattern will affect the interaction and development of your Electron application.
+
+1『这里提供了一个意想不到的思路。用 Electron 实现的离线功能，断网的时候用本地数据，连线的时候再自动做一下同步功能。两不耽误。（2021-04-10）』
 
 ### 1.5 How Does Electron Work?
 
@@ -436,6 +438,8 @@ The electron constant is, as you'd expect, the Electron module. It gives you acc
 The app constant is the part of the Electron API that gives you access to the event life cycle of our application. We'll see examples of how app is used further down in the code.
 
 The BrowserWindow constant represents your Renderer Process. We will use BrowserWindow to create an instance of Chromium, the windows that make up the UIs of our application.
+
+1『跟脑子里的知识关联上了，这里实例化后 BrowserWindow 对象，代表两大核心线程里的渲染层（Renderer Process）。（2021-04-10）』
 
 The path and url constants represent Node modules, part of the Node API that is accessible by any Electron application. url is used to help with creating URLs. path helps with dealing with files and directories.
 

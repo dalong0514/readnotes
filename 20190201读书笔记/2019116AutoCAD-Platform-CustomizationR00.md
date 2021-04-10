@@ -1170,7 +1170,7 @@ Chapter 27: Creating and Modifying Drawing Objects In this chapter, you'll learn
 
 Chapter 28: Interacting with the User and Controlling the Current View In this chapter, you'll learn to request input from an end-user and manipulate the current view of a drawing. Based on the values provided by the end-user, you can then determine the end result of the program. You can evaluate the objects created or consider how a drawing will be output, and use that information to create named views and adjust the current view in which objects are displayed.
 
-1-2『这章感觉有直接定位到选定的实体对象位置的相关实现，待确认。（2020-11-26）补充：已经实现了。目前知道两种方法：1）选择集结合宏命令 ZOOM。2）用 ActiveX 方法 `(vla-ZoomAll acadObj)`，其中 acadObj 是一个 vla-object。（2021-03-12）』——未完成
+1-2『这章感觉有直接定位到选定的实体对象位置的相关实现，待确认。（2020-11-26）补充：已经实现了。目前知道两种方法：1）选择集结合宏命令 ZOOM。2）用 ActiveX 方法 `(vla-ZoomAll acadObj)`，其中 acadObj 是一个 vla-object。（2021-03-12）』—— 已完成
 
 Chapter 29: Annotating Objects In this chapter, you'll learn how to create and modify annotation objects. Typically, annotation objects are not part of the final product that is built or manufactured based on the design in the drawing. Rather, annotation objects are used to communicate the features and measurements of a design. Annotation can be a single line of text that is used as a callout for a leader, a dimension that indicates the distance between two drill holes, or a table that contains quantities and information about the windows and doors in a design.
 
@@ -1187,6 +1187,8 @@ Chapter 32: Storing and Retrieving Custom Data In this chapter, you will learn h
 1『目前图纸里可以作为数据库的地方：字典、Xdata，还有上面信息提到的路径，待研读 32 章。（2021-03-12）』
 
 Chapter 33: Modifying the Application and Working with Events In this chapter, you will learn how to customize and manipulate the AutoCAD user interface. You also learn how to load and access externally defined custom programs and work with events. Events allow you to respond to an action that is performed by the end-user or the AutoCAD application. There are three main types of events that you can respond to: application, document, and object.
+
+1-2『直觉上，第 33 章里有关响应「事件」，有自己需要的知识。（2021-04-10）』—— 未完成
 
 Chapter 34: Creating and Displaying User Forms In this chapter, you will learn how to create and display user forms. User forms provide a more visual approach to requesting input from the user.
 
@@ -1207,6 +1209,8 @@ Chapter 35: Communicating with Other Applications In this chapter, you will lear
 Chapter 36: Handling Errors and Deploying VBA Projects In this chapter, you will learn how to catch and handle errors that are caused by the incorrect use of a function or the improper handling of a value that is returned by a function. The Visual Basic Editor provides tools that allow you to debug code statements, evaluate values assigned to user-defined variables, identify where within a program an error has occurred, and determine how errors should be handled. The chapter wraps everything up with learning how to deploy a VBA project on other workstations for use by individuals at your company.
 
 Bonus Chapter 1: Working with 2D Objects and Object Properties In this chapter, you build on the concepts covered in Chapter 27,「Creating and Modifying Drawing Objects.」You will learn to create additional types of 2D objects and use advanced methods of modifying objects, you also learn to work with complex 2D objects, such as regions and hatch fills. The management of layers and linetypes and the control of the appearance of objects are also covered.
+
+1-2『这里的 regions and hatch fills 会不会就是天正建筑里，「房间」的那种实体对象。待验证（2021-04-10）』—— 未完成
 
 Bonus Chapter 2: Modeling in 3D Space In this chapter, you learn to work with objects in 3D space, and 3D objects. 3D objects can be used to create a model of a drawing which can be used to help visualize a design or detect potential design problems. 3D objects can be viewed from different angles and used to generate 2D views of a model that can be used to create assembly directions or shop drawings.
 
