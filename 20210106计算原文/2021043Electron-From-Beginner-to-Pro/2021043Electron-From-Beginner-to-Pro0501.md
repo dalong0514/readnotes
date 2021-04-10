@@ -1,5 +1,11 @@
 # 0501. Adding Custom Menus
 
+## Summary
+
+In this chapter, we have explored the various options you have when creating your application's menu system. We covered how to assign key commands, or accelerators, to menu items; how to enable or disable an menuitem; and how to have it trigger either prebuilt actions or custom code. We also briefly looked at how to have custom context, or right-click, menus with our Electron application, giving it one more layer of a ‘native' feel.
+
+## 5.0
+
 Menus are also something that traditional web app have never had access to. The application menus were always that of the browsers. If the user accessed a contextual menu on the page, the default browser contextual menu would appear. Web apps had no ability to change either one. However, Electron gives you full control over creating both application-level menus, as well as contextual menus.
 
 We will explore creating both the application-level menus and the contextual menus. Electron uses the Menu and the MenuItem modules together to create the custom menus that your application will use.
@@ -378,8 +384,3 @@ On the Renderer process, we have the same event listener for the contextmenu eve
 
 triggering the menu, we use the IPC send command to broadcast our custom event to the Main process.
 
-## Summary
-
-In this chapter, we have explored the various options you have when creating your application's menu system. We covered how to assign key commands, or accelerators, to menu items; how to enable or disable an menuitem; and how to have it trigger either prebuilt actions or custom code.
-
-We also briefly looked at how to have custom context, or right-click, menus with our Electron application, giving it one more layer of a ‘native' feel.

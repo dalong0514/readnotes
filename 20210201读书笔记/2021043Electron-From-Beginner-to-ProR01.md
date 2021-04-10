@@ -1192,6 +1192,12 @@ Please be responsible when you use transparent windows. You do not want the user
 
 ## 0601. Understanding the IPC Module
 
+### Summary
+
+Although the IPC module does not have a lot of methods — just variations of sending and receiving — it is the backbone for our Electron processes to coexist. You will use this module to possibly start a third-party Node library in the Main process from a user action in the Renderer process. In our next chapter, we will be leveraging them quite a bit to work with Electron's dialog module.
+
+### 6.0
+
 We briefly saw the use of the inter-process communication (IPC) module as one solution for having contextual menus in our application. In this chapter, we are going to explore this module in greater depth. Now, this is not the most glamorous part of API, but it is certainly the workhorse that much of our real-world applications will rely upon.
 
 ### 6.1 Getting Started
@@ -1534,7 +1540,3 @@ ipc.once(channel, listener)
 ```
 
 This method is available for both the Main and Renderer process. The method will listen on the specific channel. Once it has received the event, it will execute the listener function, then remove itself from the IPC listeners.
-
-### 6.5 Summary
-
-Although the IPC module does not have a lot of methods – just variations of sending and receiving – it is the backbone for our Electron processes to coexist. You will use this module to possibly start a third-party Node library in the Main process from a user action in the Renderer process. In our next chapter, we will be leveraging them quite a bit to work with Electron's dialog module.
