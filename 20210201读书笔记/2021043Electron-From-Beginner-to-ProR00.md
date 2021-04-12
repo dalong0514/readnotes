@@ -41,3 +41,5 @@ The CCM only focuses on the core needs to render a web page. Additional features
 ### 0701. 任意卡 ——
 
 最后还有一张任意卡，记录个人阅读感想。
+
+[electron/electron-quick-start: Clone to try a simple Electron app](https://github.com/electron/electron-quick-start)

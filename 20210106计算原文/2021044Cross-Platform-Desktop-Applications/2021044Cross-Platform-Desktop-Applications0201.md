@@ -1,6 +1,6 @@
 # 0201. Laying the foundation for your first desktop application
 
-This chapter covers: 1) Building a file explorer in both NW.js and Electron. 2) Setting up your application  Structuring your application's files  Understanding how the user interface of the application works  Accessing the filesystem in Node.js
+This chapter covers: 1) Building a file explorer in both NW.js and Electron. 2) Setting up your application. 3) Structuring your application's files. 4) Understanding how the user interface of the application works. 5) Accessing the filesystem in Node.js.
 
 As developers, we often forget how lucky we are to work in an industry where the tools are readily available and free or relatively inexpensive to get ahold of. In this chapter, we'll get to grips with building desktop applications through creating a file explorer application. We'll look at how the app is built with both NW.js and Electron so that we can compare and contrast the ways in which they approach desktop applications.
 
@@ -16,7 +16,7 @@ Grab a cup of tea or coffee, a pen and paper, and settle in for some programming
 
 ## 2.1 What we're going to build
 
-Whether you use a Windows PC, a Mac, or Linux, there are a few things common to all of them—they store files organized in folders, and they all have their own take on how to organize files in folders, as well as how you find and display those files to the user. This isn't a problem for people who use only one OS, but those who have to learn to use a new OS (such as when going to work at a new organization) can struggle to get their head around how to do simple tasks like rename a folder, or find out where the file that they saved to their computer is located.
+Whether you use a Windows PC, a Mac, or Linux, there are a few things common to all of them — they store files organized in folders, and they all have their own take on how to organize files in folders, as well as how you find and display those files to the user. This isn't a problem for people who use only one OS, but those who have to learn to use a new OS (such as when going to work at a new organization) can struggle to get their head around how to do simple tasks like rename a folder, or find out where the file that they saved to their computer is located.
 
 It feels fitting to approach the idea of making a file explorer that works the same across all OSs, so that's what we'll build: a file explorer.
 
@@ -30,9 +30,7 @@ It feels fitting to approach the idea of making a file explorer that works the s
 
 There's a common joke in developer circles that says naming things is the second hard problem in computer science (caching being the first hard problem). Sometimes it's nice to take inspiration from nature, so we'll name the file explorer Lorikeet, after the colorful native Australian bird.
 
-Lorikeet is a file explorer with the following goals:
-
- Allow users to browse folders and find files  Allow users to open the file(s) with their default app
+Lorikeet is a file explorer with the following goals: 1) Allow users to browse folders and find files. 2) Allow users to open the file(s) with their default app.
 
 These are relatively simple goals, but implementing features to support them will provide enough scope to help you become familiar with building a desktop application. Building Lorikeet will also help demonstrate the different approaches that NW.js and Electron offer for developing desktop applications.
 
@@ -42,7 +40,7 @@ You'll flesh out the features in the wireframes one by one, which helps to provi
 
 Figure 2.1 Wireframe of the file explorer app you'll build
 
-With this wireframe, you take the app and break it down into separate features, helping you to implement the app one feature at a time. The first feature to work on is where the user begins to use the app—in this case, the start screen. But before you can do that, you need to create an app to store the code in.
+With this wireframe, you take the app and break it down into separate features, helping you to implement the app one feature at a time. The first feature to work on is where the user begins to use the app — in this case, the start screen. But before you can do that, you need to create an app to store the code in.
 
 文件浏览器 —— Lorikeet 介绍
 
@@ -106,11 +104,15 @@ npm install -g electron
 
 The next step is to create a folder that will store the code for your app. Choose a location on your computer where you like to store your code work, and run the following command to create a folder named lorikeet-nwjs:
 
+```
 mkdir lorikeet-nwjs
+```
 
 Once the folder (or directory, as some developers call it) is created, the next step is to create a package.json file for the app. This is Node.js's equivalent of a manifest file, where you store configuration information for the app. First, create the file inside the application folder:
 
+```
 cd lorikeet-nwjs touch package.json
+```
 
 Running on Windows?
 
@@ -118,19 +120,13 @@ If so, there isn't a touch command. What you can do instead is simply create the
 
 Now that you have a package.json file that you can edit, you can use whatever text editor you like to open the package.json file and insert the following code into it:
 
-```
-{
-
-"name": "lorikeet", "version": "1.0.0", "main": "index.html"
-
-}
-```
-
-The package.json file follows the same conventions used for creating modules that are then used in Node.js applications via npm. The name field has the name of the application, and must not contain spaces. The version field contains the version of the software, which we call 1.0.0 in accordance with a versioning format known as semantic versioning (also known as SemVer). The main field is used to tell NW.js what file to load when it's booted—in this case, the index.html file. These are the minimum requirements that NW.js has for the package.json file before it can load an application. You haven't yet created the web page that's loaded by NW.js, so you should probably create that next.
+The package.json file follows the same conventions used for creating modules that are then used in Node.js applications via npm. The name field has the name of the application, and must not contain spaces. The version field contains the version of the software, which we call 1.0.0 in accordance with a versioning format known as semantic versioning (also known as SemVer). The main field is used to tell NW.js what file to load when it's booted — in this case, the index.html file. These are the minimum requirements that NW.js has for the package.json file before it can load an application. You haven't yet created the web page that's loaded by NW.js, so you should probably create that next.
 
 The index.html file is a pretty standard example for the moment. To create it, run the following command in your command-line tool (or create the file with Notepad++/Atom in Windows):
 
+```
 touch index.html
+```
 
 Once that's done, using your favorite text editor, insert the code in the following listing into the index.html file.
 
@@ -138,7 +134,16 @@ Listing 2.1
 
 Adding the index.html file's contents for the NW.js app
 
-<html> <head> <title>Lorikeet</title> </head> <body> <h1>Welcome to Lorikeet</h1> </body> </html>
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+  </head> 
+  <body> 
+    <h1>Welcome to Lorikeet</h1> 
+  </body> 
+</html>
+```
 
 Now that the index.html file is created, you're in a position to make NW.js run the app. To do that, simply run the following command in the Terminal, or your Command Prompt/PowerShell in Windows:
 
@@ -146,7 +151,7 @@ This will load the NW.js app. Because no further arguments were passed to the co
 
 Figure 2.2 NW.js running a bare-minimum app. The app displays the contents of the index.html file, which means it's working as expected so far. Later in the chapter, you'll replace this simple HTML with the UI that makes up the app.
 
-The title of the app window is loaded from the value inside the <title> element in the index.html file. You can edit the value of that field, save the change to the file, and run the application again from the command line to see the changes.
+The title of the app window is loaded from the value inside the `<title>` element in the index.html file. You can edit the value of that field, save the change to the file, and run the application again from the command line to see the changes.
 
 Can I load the index.html file in a web browser?
 
@@ -209,39 +214,101 @@ nw .
 
 The Electron version of the application starts off very much in the same fashion. You'll begin by creating a folder named lorikeet-electron. You can do this by running this command in the Terminal/Command Prompt:
 
+```
 mkdir lorikeet-electron
+```
 
 This will create a folder named lorikeet-electron. This is the main application folder for the application, and inside it will be the application's files. Now you'll create the next file needed by the application, the package.json file. In your terminal or via your text editor, create a file named package.json inside the lorikeet-electron folder:
 
+```
 cd lorikeet-electron touch package.json
+```
 
 Once you have an empty package.json file, you'll move on to populating the file with the configuration needed by Electron. Inside the package.json file, add the following JSON configuration:
 
+1『
+
+在自动生成的配置上修改后的：
+
+```
 {
-
-"name": "lorikeet", "version": "1.0.0", "main": "main.js"
-
+  "name": "lorikeet-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  }
 }
+```
+
+修改的地方：`"main": "main.js"` 以及 `"start": "electron ."`。（2021-04-12）
+
+』
 
 The package.json file looks almost identical to the package.json file used by the NW.js version of the application, with one exception: the main property is different. In NW.js, the file that's loaded is an HTML file. In Electron, the file that's loaded is a JavaScript file. The file you load in the case of the Electron version of the application is called main.js.
 
 The main.js file is responsible for loading the Electron application and any browser windows that it will display as part of that application. In your terminal or your text editor, create the file main.js and insert the following content.
 
+```js
+'use strict'
+
+const {app, BrowserWindow} = require('electron')
+
+// mainWindow 变量保存了对应用窗口的引用
+let mainWindow = null
+
+// 监听所有的视窗关闭的事件（Mac OS 不会触发该事件）
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+app.on('ready', () => {
+  // 创建一个新的应用窗口并将它赋值给 mainWindow 变量，以防止被 Node.js 进行垃圾回收时将视窗关闭
+  mainWindow = new BrowserWindow()
+  // 将 index.html 加载进应用视窗
+  mainWindow.loadURL(`file://${__dirname}/index.html`)
+  // 应用关闭时，释放 mainWindow 变量对应视窗的引用
+  mainWindow.on('closed', () => {
+    mainWindow =null
+  })
+})
+```
+
 The main.js file will result in loading the index.html file. Here, you create the index.html file and put the following contents into it:
 
-<html> <head> <title>Lorikeet</title> </head> <body> <h1>Welcome to Lorikeet</h1> </body> </html>
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+  </head> 
+  <body> 
+    <h1>Welcome to Lorikeet</h1> 
+  </body> 
+</html>
+```
 
 Once you've saved the index.html file, you're in a position to run the Electron application from the command line. Go to the Terminal or Command Prompt and type the following command inside the lorikeet-electron folder to run the application:
 
-cd lorikeet-electron electron .
+```
+cd lorikeet-electron 
+electron .
+```
 
 If you run the application now, you should see something like figure 2.3.
 
-Figure 2.3 The Lorikeet app running on Electron. This is what Electron apps look like by default—pretty much like the NW.js variant.
+Figure 2.3 The Lorikeet app running on Electron. This is what Electron apps look like by default — pretty much like the NW.js variant.
 
 The Electron app looks almost identical to the NW.js app. The index.html file is exactly the same as the one used for the NW.js variant of the Lorikeet app, and to load the application from the command line is practically the same.
 
-Having built the Lorikeet app's bare-bones application structure in both NW.js and Electron, you can see that they share some similar coding conventions—after all, as mentioned, Cheng Zhao worked on both NW.js and Electron. But they differ in terms of how they go about loading the app.
+Having built the Lorikeet app's bare-bones application structure in both NW.js and Electron, you can see that they share some similar coding conventions — after all, as mentioned, Cheng Zhao worked on both NW.js and Electron. But they differ in terms of how they go about loading the app.
 
 So far, I've shown you how to build and set up the Lorikeet app's skeleton of files and folders with both frameworks. The next stage is to start working on the first feature of the application that the user sees, as shown back in figure 2.1.
 
@@ -311,7 +378,11 @@ This is the first feature you'll flesh out in the UI and then implement in both 
 
 Three parts comprise this feature:
 
- The HTML that makes up the toolbar and the personal folder  The CSS that applies the layout and styling of the toolbar and the personal folder  The JavaScript that will discover what the user's personal folder is and display it in the UI
+1 The HTML that makes up the toolbar and the personal folder.
+
+2 The CSS that applies the layout and styling of the toolbar and the personal folder.
+
+3 The JavaScript that will discover what the user's personal folder is and display it in the UI.
 
 The good news is that the HTML, CSS, and even the JavaScript needed for this feature are exactly the same in both the NW.js and Electron versions of the Lorikeet app. In this case, you'll be able to show it once but use the same code in both applications. Let's start with the HTML.
 
@@ -351,7 +422,9 @@ To display the path of the user's personal folder, you need a way to discover it
 
 Thankfully, this is accommodated in Node.js's ecosystem on npm packages. An npm module called osenv by Isaac Schlueter (former Node.js lead maintainer and the founder of npm) has a function that discovers and returns the user's personal folder (or home folder, as it's also known). To use this, you need to install the npm module in the application. Run the following command in the Terminal or Command Prompt to install the library (make sure to do this for both versions of the Lorikeet app):
 
+```
 npm install osenv --save
+```
 
 The –-save flag at the end of the command tells the npm command to add the module as a dependency in the package.json manifest file. If you open the package.json manifest file (say, in this case, for the NW.js variant of the application), you'll see the change, as shown next.
 
@@ -359,6 +432,7 @@ Listing 2.6
 
 The modified package.json file
 
+```
 {
 
 "name": "lorikeet", "version": "1.0.0", "main": "index.html", "dependencies": { "osenv": "^0.1.3" }
@@ -366,6 +440,7 @@ The modified package.json file
 The new dependencies property, with osenv listed as module dependency for app
 
 }
+```
 
 You'll also notice that there's a new folder that appears in the application folders for both applications, a folder called node_modules. This folder contains any locally installed npm modules that are installed for the application. If you browse the node_modules folder, you'll see a folder named osenv. This is where the osenv module's code has been installed.
 
@@ -397,7 +472,206 @@ It does. Not only have you been able to call Node.js code inside a script tag in
 
 Now that you've implemented the display of the user's personal folder in the toolbar, we should move on to implementing the next feature in the UI: the display of the user's files and folders in their personal folder.
 
-2.3.2 Showing the user's files and folders in the UI
+2.3.1 在工具条中展示用户个人文件夹信息
+
+实现该功能可分为三部分内容：1）HTML 负责构建工具条和用户个人文件夹信息。2）CSS 负责布局工具条和用户个人文件夹展示上的布局以及样式。3）JavaScript 负责找到用户个人文件夹信息在哪里并在 UI 上展示出来。
+
+好在实现这个功能所用到的 HTML、CSS 和 JavaScript 内容在 NW.js 版本和 Electron 版本的 Lorikeet 应用中是一样的。在本例中，你将能够展示一次这部分代码，但在两个版本的应用中使用的是相同的代码。让我们从 HTML 代码开始。
+
+添加展示工具条和个人文件夹的 HTML 代码
+
+index.html 是用于展示我们 NW.js 和 Electron 两个版本应用的主屏幕。在文本编辑器中打开两个版本应用中的 index.html 文件，并将内容改为代码清单 2.3 所示的那样。
+
+代码清单 2.3 在 index.html 文件中添加展示工具条和与用户个人文件夹信息相关的内容
+
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+  </head> 
+  <body> 
+    <div id="toolbar">
+      <div id="current-folder"></div>
+    </div>
+  </body> 
+</html>
+```
+
+在两个版本的应用中都修改完成后，我们来创建 CSS 代码来控制工具条和用户个人文件夹信息展示时候的布局和样式。
+
+为工具条和用户个人文件夹信息添加 CSS 代码
+
+为桌面应用添加样式和为 Web 页面添加样式没什么区别。CSS 可以直接内嵌在页面的 HTML 中，不过最好还是把它放在另外一个单独的文件中，这样既可以在同一个地方看到所有的 CSS 代码，也可以保持 index.html 的可读性。
+
+我们先来创建一个名为 app.css 的文件，将其放在存放 index.html 文件的目录中。然后，将代码清单 2.4 中的内容插入 app.css 文件。
+
+```css
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica', 'Arial', 'sans';
+}
+
+#toolbar {
+  position: absolute;
+  background: red;
+  width: 100%;
+  padding: 1em;
+}
+
+#current {
+  float: left;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.5em 1em;
+  min-width: 10em;
+  border-radius: 0.2em;
+}
+```
+
+代码清单 2.4 在用于工具条和用户个人信息的 CSS 代码添加到 app.css 文件中
+
+现在要确保 app.css 文件会被 index.html 文件加载。在 index.html 文件中，如代码清单 2.5 所示添加一行代码。
+
+代码清单 2.5 在 index.html 文件中添加一个 link 标签，指向 app.css 文件
+
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+    <link rel="stylesheet" href="app.css">
+  </head> 
+  <body> 
+    <div id="toolbar">
+      <div id="current-folder"></div>
+    </div>
+  </body> 
+</html>
+```
+
+保存修改完的 index.html 文件，接下来你可以重新加载 NW.js 和 Electron 版应用（如果已经在运行了的话）或者从终端应用或者命令提示符应用输入如下命令再次运行：
+
+```
+cd lorikeet-electron && electron .
+cd lorikeet-nwjs && nw
+```
+
+使用最新代码重新运行后，你会看到界面发生了变化，如图 2.5 和图 2.6 所示。
+
+图 2.5 NW.js 版本的 Lorikeet 应用，包含了一个工具条和用户个人文件夹信息。其中用户个人文件夹信息还是空白的，不过我们很快就会让它显示内容
+
+图 2.6 Electron 版的 Lorikeet 应用，包含了工具条和用户个人文件夹信息
+
+工具条和用户个人文件夹信息都显示出来了，而且也有指定的样式，不过还需要找到用户个人文件夹的路径并将其显示在界面上。这部分内容接下来会做介绍。
+
+通过 Node.js 找到用户个人文件夹所在的路径
+
+要显示用户个人文件夹的路径，我们先得想办法获取到该路径，而且该方法要支持所有操作系统。在 Mac OS 中，用户个人文件夹位于 `/Users/<username>`，这里 username 是用户名（我的是 `/Users/pauljensen`）。在 Linux 中，用户个人文件夹位于 `/home/<username>`，在 Windows 10 中，则位于 C 盘的 `/Users/<username>`。不同操作系统位置不同！
+
+幸运的是，这个问题已经在 Node.js 生态中通过 npm 模块解决了。有一个 Isaac Schlueter （前 Node.js 维护者以及 npm 作者）开发的模块，叫 osenv，其中有一个函数会返回用户个人文件夹（或者叫 home 目录）。要使用该模块，你需要先在应用中安装它，在终端应用或者命令提示符应用中运行如下命令可进行安装（别忘了在两个版本的 Lorikeet 应用中都执行如下命令）：
+
+```
+npm install osenv --save
+```
+
+1『
+
+改用：`yarn add osenv --save`。（2021-04-12）
+
+```json
+{
+  "name": "lorikeet-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  },
+  "dependencies": {
+    "osenv": "^0.1.5"
+  }
+}
+```
+
+』
+
+命令最后的 `--save` 标志是告诉 npm 将该模块作为依赖的模块添加到 package. json 文件中。如果你打开 package.json 文件（以 NW.js 版本的应用为例），就会看到其内容发生了改变，如代码清单 2.6 所示。
+
+代码清单 2.6 修改后的 package.json 文件
+
+你还会发现在两个版本的应用文件夹下都多了一个新的名为 `node_modules` 的文件夹。所有为应用安装的本地 npm 模块都会放在这个文件夹中。如果打开 `node_modules` 文件夹，就会看到一个名为 osenv 的文件夹，这就是 osenv 模块安装的位置。
+
+安装好 osenv 模块后，我们就可以找到用户个人文件夹并将其信息在 index.html 文件中对应的界面上显示出来。这也证明了 NW.js 和 Electron 作为 Node.js 桌面应用开发框架独特的功能之一：可以在 index.html 文件中直接执行 Node.js 代码。不信？那就试试吧。将 index.html 文件修改为代码清单 2.7 所示的内容。
+
+代码清单 2.7 在 index.html 文件中显示用户个人文件夹信息
+
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+    <link rel="stylesheet" href="app.css">
+  </head> 
+  <body> 
+    <div id="toolbar">
+      <div id="current-folder">
+        <script>
+          document.write(require('osenv').home())
+        </script>
+      </div>
+    </div>
+  </body> 
+</html>
+```
+
+确保 NW.js 和 Electron 版的 Lorikeet 应用的 index.html 都修改了。保存修改后，根据此前介绍过的，运行如下命令重新启动应用：
+
+```
+cd lorikeet-electron && electron .
+
+cd lorikeet-nwjs && nw
+```
+
+现在应该能看到你的个人文件夹信息已经显示在应用中对应的界面上了，如图 2.7 和图 2.8 所示。
+
+图 2.7 NW.js 版的 Lorikeet 应用显示的用户个人文件夹信息
+
+图 2.7 显示得超赞。你可以在 index.html 的 `<script>` 标签中直接调用 Node.js。那么 Electron 怎么样的？是否也一样呢？请看图 2.8。
+
+图 2.8 Electron 版的 Lorikeet 应用显示的用户个人文件夹信息
+
+没错。正如你所见，不仅可以在 index.html 文件中的 `<script>` 标签中调用 Node.js 代码，还可以在前端代码中使用通过 npm 安装的 Node.js 模块。不仅如此，至此我们的 NW.js 和 Electron 都用了同样的代码，由此可见两者兼容性有多好，这也是为什么很多项目都可以很方便地从 NW.js 切换到 Electron（比如，Light Table 应用）。
+
+现在已经实现了在工具条中显示用户个人文件夹信息了，接下来实现下一个功能：将用户个人文件夹中的文件和文件夹显示出来。
+
+1『
+
+路径没显示出来，目前不知道为啥。待解决。（2021-04-12）
+
+解决方案：[javascript - Electron require() is not defined - Stack Overflow](https://stackoverflow.com/questions/44391448/electron-require-is-not-defined)
+
+mian.js 里修改：
+
+```js
+  mainWindow = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  })
+```
+
+其实原书的代码里也出给了解决答案，之前自己没去看。
+
+』
+
+### 2.3.2 Showing the user's files and folders in the UI
 
 In the preceding section, we started off by creating the UI elements first and then populated the user's personal folder path in the UI element. For this feature, we'll work on getting ahold of a list of the user's files and folders first and then figure out from there how we display them in the UI of the application. For a quick reminder, figure 2.9 shows the UI element we're looking to implement.
 
@@ -406,12 +680,6 @@ Figure 2.9
 The UI element we're looking to implement next in the app
 
 To implement this UI feature, you need to do the following:
-
-1
-
-2
-
-3
 
 Get the list of files and folders at the user's personal folder path For each file/folder listing, find out if it's a file or a folder Pass that list of files/folders to the UI to be rendered as files with icons
 
@@ -429,23 +697,7 @@ Listing 2.8
 
 Adding the app.js file to the index.html file
 
-<html>
-
-<head> <title>Lorikeet</title>
-
-<link rel="stylesheet" href="app.css" />
-
-<script src="app.js"></script>
-
-</head> <body>
-
-<div id="toolbar">
-
 Includes app.js as script tag in index.html
-
-<div id="current-folder">
-
-<script> document.write(getUsersHomeFolder()); </script> </div> </div> </body> </html>
 
 Calls app.js's getUsersHomeFolder function in place of direct call to Osenv module's home function
 
@@ -464,12 +716,6 @@ Figure 2.10 The Lorikeet Electron app showing the list of files being logged to 
 You now know that you can get at the list of files in the user's personal folder. The next challenge is to figure out what the name and file/folder type is for each file in the list and to then display these items in the UI as a list of files and folders with icons.
 
 Your goal is to be able to take a list of files and pass them through another function in Node.js's file system API. This will identify whether they're files or directories, as well as what their names and full file paths are. Do the following:
-
-1
-
-2
-
-3
 
 Use the fs.stat function method, as documented at http://mng.bz/46U5. Use the async module to handle calling a series of asynchronous functions and collecting their results.
 
@@ -533,89 +779,6 @@ The Lorikeet Electron app showing files and folders
 
 The Electron variant of the Lorikeet app looks almost identical to the NW.js version. All in all, the results look good, and that's the end of the exercise for this chapter.
 
-2.3.1 在工具条中展示用户个人文件夹信息
-
-实现该功能可分为三部分内容：1）HTML 负责构建工具条和用户个人文件夹信息。2）CSS 负责布局工具条和用户个人文件夹展示上的布局以及样式。3）JavaScript 负责找到用户个人文件夹信息在哪里并在 UI 上展示出来。
-
-
-
-
-
-
-好在实现这个功能所用到的 HTML、CSS 和 JavaScript 内容在 NW.js 版本和 Electron 版本的 Lorikeet 应用中是一样的。在本例中，你将能够展示一次这部分代码，但在两个版本的应用中使用的是相同的代码。让我们从 HTML 代码开始。
-
-添加展示工具条和个人文件夹的 HTML 代码
-
-index.html 是用于展示我们 NW.js 和 Electron 两个版本应用的主屏幕。在文本编辑器中打开两个版本应用中的 index.html 文件，并将内容改为代码清单 2.3 所示的那样。
-
-代码清单 2.3 在 index.html 文件中添加展示工具条和与用户个人文件夹信息相关的内容
-
-在两个版本的应用中都修改完成后，我们来创建 CSS 代码来控制工具条和用户个人文件夹信息展示时候的布局和样式。
-
-为工具条和用户个人文件夹信息添加 CSS 代码
-
-为桌面应用添加样式和为 Web 页面添加样式没什么区别。CSS 可以直接内嵌在页面的 HTML 中，不过最好还是把它放在另外一个单独的文件中，这样既可以在同一个地方看到所有的 CSS 代码，也可以保持 index.html 的可读性。
-
-我们先来创建一个名为 app.css 的文件，将其放在存放 index.html 文件的目录中。然后，将代码清单 2.4 中的内容插入 app.css 文件。
-
-代码清单 2.4 在用于工具条和用户个人信息的 CSS 代码添加到 app.css 文件中
-
-
-
-现在要确保 app.css 文件会被 index.html 文件加载。在 index.html 文件中，如代码清单 2.5 所示添加一行代码。
-
-代码清单 2.5 在 index.html 文件中添加一个 link 标签，指向 app.css 文件
-
-保存修改完的 index.html 文件，接下来你可以重新加载 NW.js 和 Electron 版应用（如果已经在运行了的话）或者从终端应用或者命令提示符应用输入如下命令再次运行：
-
-cd lorikeet-electron && electron .
-
-cd lorikeet-nwjs && nw
-
-使用最新代码重新运行后，你会看到界面发生了变化，如图 2.5 和图 2.6 所示。
-
-▲图 2.5 NW.js 版本的 Lorikeet 应用，包含了一个工具条和用户个人文件夹信息。其中用户个人文件夹信息还是空白的，不过我们很快就会让它显示内容
-
-图 2.6 Electron 版的 Lorikeet 应用，包含了工具条和用户个人文件夹信息
-
-工具条和用户个人文件夹信息都显示出来了，而且也有指定的样式，不过还需要找到用户个人文件夹的路径并将其显示在界面上。这部分内容接下来会做介绍。
-
-通过 Node.js 找到用户个人文件夹所在的路径
-
-要显示用户个人文件夹的路径，我们先得想办法获取到该路径，而且该方法要支持所有操作系统。在 Mac OS 中，用户个人文件夹位于 / Users/<username>，这里 username 是用户名（我的是 /Users/pauljensen）。在 Linux 中，用户个人文件夹位于 /home/<username>，在 Windows 10 中，则位于 C 盘的 /Users/<username>。不同操作系统位置不同！
-
-幸运的是，这个问题已经在 Node.js 生态中通过 npm 模块解决了。有一个 Isaac Schlueter （前 Node.js 维护者以及 npm 作者）开发的模块，叫 osenv，其中有一个函数会返回用户个人文件夹（或者叫 home 目录）。要使用该模块，你需要先在应用中安装它，在终端应用或者命令提示符应用中运行如下命令可进行安装（别忘了在两个版本的 Lorikeet 应用中都执行如下命令）：
-
-npm install osenv --save
-
-命令最后的 --save 标志是告诉 npm 将该模块作为依赖的模块添加到 package. json 文件中。如果你打开 package.json 文件（以 NW.js 版本的应用为例），就会看到其内容发生了改变，如代码清单 2.6 所示。
-
-代码清单 2.6 修改后的 package.json 文件
-
-你还会发现在两个版本的应用文件夹下都多了一个新的名为 node_modules 的文件夹。所有为应用安装的本地 npm 模块都会放在这个文件夹中。如果打开 node_modules 文件夹，就会看到一个名为 osenv 的文件夹，这就是 osenv 模块安装的位置。
-
-安装好 osenv 模块后，我们就可以找到用户个人文件夹并将其信息在 index.html 文件中对应的界面上显示出来。这也证明了 NW.js 和 Electron 作为 Node.js 桌面应用开发框架独特的功能之一：可以在 index.html 文件中直接执行 Node.js 代码。不信？那就试试吧。将 index.html 文件修改为代码清单 2.7 所示的内容。
-
-代码清单 2.7 在 index.html 文件中显示用户个人文件夹信息
-
-确保 NW.js 和 Electron 版的 Lorikeet 应用的 index.html 都修改了。保存修改后，根据此前介绍过的，运行如下命令重新启动应用：
-
-cd lorikeet-electron && electron .
-
-cd lorikeet-nwjs && nw
-
-现在应该能看到你的个人文件夹信息已经显示在应用中对应的界面上了，如图 2.7 和图 2.8 所示。
-
-图 2.7 NW.js 版的 Lorikeet 应用显示的用户个人文件夹信息
-
-图 2.7 显示得超赞。你可以在 index.html 的 <script> 标签中直接调用 Node.js。那么 Electron 怎么样的？是否也一样呢？请看图 2.8。
-
-图 2.8 Electron 版的 Lorikeet 应用显示的用户个人文件夹信息
-
-没错。正如你所见，不仅可以在 index.html 文件中的 <script> 标签中调用 Node.js 代码，还可以在前端代码中使用通过 npm 安装的 Node.js 模块。不仅如此，至此我们的 NW.js 和 Electron 都用了同样的代码，由此可见两者兼容性有多好，这也是为什么很多项目都可以很方便地从 NW.js 切换到 Electron（比如，Light Table 应用）。
-
-现在已经实现了在工具条中显示用户个人文件夹信息了，接下来实现下一个功能：将用户个人文件夹中的文件和文件夹显示出来。
-
 2.3.2 显示用户个人文件夹中的文件和文件夹
 
 在前面的内容中，我们先创建界面元素，然后将用户个人文件夹信息显示在界面上。对于这次这个功能，我们先要获取到用户个人文件夹中的文件和文件夹信息，再想办法把它们显示在界面上。回忆一下，图 2.9 显示的是我们要实现的样子。
@@ -624,23 +787,50 @@ cd lorikeet-nwjs && nw
 
 要实现该功能，我们需要做以下这些事情：
 
-1． 获取到用户个人文件夹中的文件和文件夹列表信息。
+1、获取到用户个人文件夹中的文件和文件夹列表信息。
 
-2． 对每个文件或者文件夹，判断它是文件还是文件夹。
+2、对每个文件或者文件夹，判断它是文件还是文件夹。
 
-3． 将文件或文件夹列表信息显示到界面上，并用对应的图标区分出来。
+3、将文件或文件夹列表信息显示到界面上，并用对应的图标区分出来。
 
-你已经获取到用户个人文件夹的路径了，现在需要做的就是想办法获取到该路径下的文件和文件夹列表信息。幸运的是，Node.js 提供了一个名为 fs 的标准库，可用来查询计算机中的文件系统。该标准库中有一个方法叫 readdir，用它来获取某个路径下的文件和文件夹信息，具体文档参见 http://mng.bz/YR5B。
+你已经获取到用户个人文件夹的路径了，现在需要做的就是想办法获取到该路径下的文件和文件夹列表信息。幸运的是，Node.js 提供了一个名为 fs 的标准库，可用来查询计算机中的文件系统。该标准库中有一个方法叫 readdir，用它来获取某个路径下的文件和文件夹信息，具体文档参见 [File System | Node.js v6.17.1 Documentation](https://nodejs.org/dist/latest-v6.x/docs/api/fs.html#fs_fs_readdir_path_options_callback)。
 
 对 NW.js 和 Electron 版的 Lorikeet 应用都创建一个 app.js 文件。该文件中的 JavaScript 代码可以调用 Node.js，也可以操作 DOM。我们将获取文件和文件夹列表信息的代码就放在这个文件中。
 
 首先，在 index.html 和 app.css 同目录下创建一个 app.js 文件。然后将获取用户个人文件夹信息的代码移到该文件中。将如下代码插入 app.js 文件：
 
+```js
+'use strict'
 
+const osenv = require('osenv')
 
-添加完上述代码后，接下来在 index.html 中用一个 <script> 标签将 app.js 文件加载进来，并在 DOM 位置调用 app.js 中的 getUsersHomeFolder 方法。将 index.html 修改为如代码清单 2.8 所示的内容。
+function getUsersHomeFolder() {
+  return osenv.home()
+}
+```
+
+添加完上述代码后，接下来在 index.html 中用一个 `<script>` 标签将 app.js 文件加载进来，并在 DOM 位置调用 app.js 中的 getUsersHomeFolder 方法。将 index.html 修改为如代码清单 2.8 所示的内容。
 
 代码清单 2.8 将 app.js 添加到 index.html 文件中
+
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+  </head> 
+  <body> 
+    <div id="toolbar">
+      <div id="current-folder">
+        <script>
+          document.write(getUsersHomeFolder())
+        </script>
+      </div>
+    </div>
+  </body> 
+</html>
+```
 
 重启应用就会发现，它们没有任何区别，和预期的一样。现在可以往 app.js 中添加代码来获取文件列表了。首先加载 Node.js 的文件系统模块，它是 Node.js 标准库的一部分，紧接着添加一个新的函数叫 getFilesInFolder，用来获取传进来的文件夹下面的文件列表信息。然后再创建一个 main 函数，调用该函数并将用户个人文件夹路径作为参数传递进去，再将获取到的包含所有文件绝对路径的列表在控制台打印出来。
 
@@ -648,27 +838,124 @@ cd lorikeet-nwjs && nw
 
 代码清单 2.9 将用户个人文件夹下的文件和文件夹列表打印出来
 
+```js
+'use strict'
+
+// Node.js’s fs module loads in the app
+const osenv = require('osenv')
+const fs = require('fs')
+
+function getUsersHomeFolder() {
+  return osenv.home()
+}
+
+// Simple wrapper around the fs.readdir function for getting list of files
+function getFilesInFolder(folderPath, cb) {
+  fs.readdir(folderPath, cb)
+}
+
+// Function that combines user’s personal folder path with getting its list of files
+function main() {
+  const folderPath = getUsersHomeFolder()
+  getFilesInFolder(folderPath, (err, files) => {
+    // Simple message to display in case of error loading folder’s files
+    if (err) return alert('Sorry, we could not load your home folder')
+    // For each file in list, logs full path for file to console
+    files.forEach(file => {
+      console.log(`${folderPath}/${file}`)
+    })
+  })
+}
+
+main()
+```
+
 保存好 app.js 文件后，接下来重启应用来看看效果。在 Electron 应用中，如果打开应用的开发者工具，就能在其 Console 选项卡中看到打印出来的文件列表，如图 2.10 所示。
 
 现在你已经知道如何获取用户个人文件夹下的文件列表了。接下来的问题是如何获取到文件名以及文件类型（是文件还是文件夹），并将它们以不同的图标在界面上显示出来。
 
 你的目标是能够接收文件列表作为参数并将它们传递给 Node.js 文件系统 API 中的另一个函数。该函数能够识别是文件还是文件夹以及它们的名字和完整的路径。你需要完成下面三件事情：
 
-1． 使用 fs.stat 函数，具体文档参见 http://mng.bz/46U5。
+1、使用 fs.stat 函数，具体文档参见 [File System | Node.js v6.17.1 Documentation](https://nodejs.org/dist/latest-v6.x/docs/api/fs.html#fs_fs_stat_path_callback)。
 
-2． 使用 async 模块来处理调用一系列异步函数的情况并收集它们的结果。
+2、使用 async 模块来处理调用一系列异步函数的情况并收集它们的结果。
 
-3． 将结果列表传递给另外一个函数将它们显示出来。
+3、将结果列表传递给另外一个函数将它们显示出来。
 
-图 2.10 Electron 版的 Lorikeet 应用在 Console 选项卡中将文件列表信息打印了出来。要在你的计算机中查看，单击 View->Toggle Developer Tools。
+图 2.10 Electron 版的 Lorikeet 应用在 Console 选项卡中将文件列表信息打印了出来。要在你的计算机中查看，单击 View => Toggle Developer Tools。
 
 在两个版本的 Lorikeet 应用的 app.js 文件中，通过终端应用或者命令提示符应用安装 async 模块：
 
+```
 npm install async --save
+
+yarn add async --save
+```
 
 为两个版本的应用都安装好 async 模块后，接下来修改 app.js 的代码，以实现获取用户个人文件夹中有哪些文件和文件夹的功能。将 app.js 的代码修改为如代码清单 2.10 所示的内容。
 
 代码清单 2.10 修改 app.js 代码实现检查文件类型的功能
+
+```js
+'use strict'
+
+// Node.js’s fs module loads in the app
+const osenv = require('osenv')
+const fs = require('fs')
+const async = require('async')
+const path = require('path')
+
+function getUsersHomeFolder() {
+  return osenv.home()
+}
+
+// Simple wrapper around the fs.readdir function for getting list of files
+function getFilesInFolder(folderPath, cb) {
+  fs.readdir(folderPath, cb)
+}
+
+// Uses path module to get name for file
+function inspectAndDescribeFile(filePath, cb) {
+  let result = {
+    file: path.basename(filePath),
+    path: filePath,
+    type: ''
+  }
+  // fs.stat call supplies an object you can query to find out file’s type
+  fs.stat(filePath, (err, stat) => {
+    if (err) cb(err)
+    if (stat.isFile()) result.type = 'file'
+    if (stat.isDirectory()) result.type = 'directory'
+    cb(err, result)
+  })
+}
+
+// Uses async module to call asynchronous function and collects results together
+function inspectAndDescribeFiles(folderPath, files, cb) {
+  async.map(files, (file, asyncCb) => {
+    let resolvedFilePath = path.resolve(folderPath, file)
+    inspectAndDescribeFile(resolvedFilePath, asyncCb)
+  }, cb)
+}
+
+// Creates displayFiles function to be end point where files will end up being displayed
+function displayFiles(err, files) {
+  if (err) return alert('Sorry, we could not display your files')
+  files.forEach(file => console.log(file))
+}
+
+// Function that combines user’s personal folder path with getting its list of files
+function main() {
+  const folderPath = getUsersHomeFolder()
+  getFilesInFolder(folderPath, (err, files) => {
+    // Simple message to display in case of error loading folder’s files
+    if (err) return alert('Sorry, we could not load your home folder')
+    inspectAndDescribeFiles(folderPath, files, displayFiles)
+  })
+}
+
+main()
+```
 
 保存 app.js 并重启应用后，就会从开发者工具中看到图 2.11 所示的结果。
 
@@ -684,40 +971,141 @@ npm install async --save
 
 代码清单 2.11 在 index.html 文件主内容区添加为展示文件信息的模板
 
+```html
+<html> 
+  <head> 
+    <title>Lorikeet</title> 
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+  </head> 
+  <body>
+    <template id="item-template">
+      <div class="item">
+        <img class="icon">
+        <div class="filename"></div>
+      </div>
+    </template>
+    <div id="toolbar">
+      <div id="current-folder">
+        <script>
+          document.write(getUsersHomeFolder())
+        </script>
+      </div>
+    </div>
+    <div id="main-area"></div>
+  </body> 
+</html>
+```
+
 上述 template 元素的目的是为每一个要渲染的文件信息定义一套 HTML 模板，真正被渲染的是模板实例中的 div 元素，它会将用户个人文件夹中的每个文件信息都显示出来。接下来需要在 app.js 中添加一些 JavaScript 代码，用来创建模板实例并添加到界面上。将 app.js 文件修改为如代码清单 2.12 所示的内容。
 
 代码清单 2.12 通过 app.js 文件在界面上渲染模板实例
+
+新增的代码：
+
+```js
+// Adds new function called displayFile that handles rendering template instance
+function displayFile(file) {
+  const mainArea = document.getElementById('main-area')
+  const template = document.querySelector('#item-template')
+  // Creates copy of template instance
+  let clone = document.importNode(template.content, true)
+  // Alters instance to include file’s name and icon
+  clone.querySelector('img').src = `images/${file.type}.svg`
+  clone.querySelector('.filename').innerText = file.file
+  // Appends template instance to "mainarea" div element
+  mainArea.appendChild(clone)
+}
+
+// Creates displayFiles function to be end point where files will end up being displayed
+function displayFiles(err, files) {
+  if (err) return alert('Sorry, we could not display your files')
+  files.forEach(displayFile)
+}
+```
 
 现在 HTML 已经添加好了，可以在应用中显示文件和文件夹信息了。接下来确保文件和文件夹信息以正确的样式显示，并且显示在栅格布局中。在 app.css 文件中，修改 CSS 代码为代码清单 2.13 所示的内容。
 
 代码清单 2.13 在 app.css 文件中添加 CSS 代码，为显示的文件和文件夹信息定义样式
 
+```css
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica', 'Arial', 'sans';
+}
+
+#toolbar {
+  top: 0px;
+  position: absolute;
+  background: red;
+  width: 100%;
+  padding: 1em;
+  z-index: 2;
+}
+
+#current {
+  float: left;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.5em 1em;
+  min-width: 10em;
+  border-radius: 0.2em;
+  margin: 1em;
+}
+
+#main-area {
+  clear: both;
+  margin: 2em;
+  margin-top: 3em;
+  z-index: 1;
+}
+
+.item {
+  position: relative;
+  float: left;
+  padding: 1em;
+  margin: 1em;
+  width: 6em;
+  height: 6em;
+  text-align: center;
+}
+
+.item .filename {
+  padding-top: 1em;
+  font-size: 10pt;
+}
+```
+
 上述 CSS 代码确保了列表项显示在一个整洁的栅格布局中，其中工具条始终固定在顶部，在显示文件列表的主区域 div 元素的上方，用户可以对主区域进行滚动。
 
 马上就要完成了。剩下的任务是在应用文件夹中为不同类型的文件添加对应的图标。使用终端应用或者命令提示符应用，通过运行如下命令，在应用文件夹中创建一个名为 images 的文件夹：
 
+```
 cd lorikeet-electron
+mkdir images
 
-mkdir imagescd ../lorikeet-nwjsmkdir images
+cd ../lorikeet-nwjs
+mkdir images
+```
 
 现在，你可以为文件和文件夹添加对应的图标了。在 images 文件夹中，添加两张名为 file.svg 和 directory.svg 的图片。这两张图片来自 OpenClipArt.org 网站，可以通过如下 URL 获取：
 
-■ https://openclipart.org/detail/137155/folder-icon
+[Folder icon - Openclipart](https://openclipart.org/detail/137155/folder-icon)
 
-■ https://openclipart.org/detail/83893/file-icon
+[File icon - Openclipart](https://openclipart.org/detail/83893/file-icon)
 
-在 images 文件夹中保存这两张图片（ 文件图标使用 file.svg，文件夹图标使用 directory.svg），然后重启应用就会看到如图 2.12 和图 2.13 所示的样子了。
+在 images 文件夹中保存这两张图片（文件图标使用 file.svg，文件夹图标使用 directory.svg），然后重启应用就会看到如图 2.12 和图 2.13 所示的样子了。
 
 图 2.12 NW.js 版的 Lorikeet 应用展示了文件和文件夹信息。这看上去像一个文件浏览器应用的样子了
+
+1『跑起来图标显示不出来，发现是两个图的命令问题，图片的文件名必须与 main.js 里 svg 的图片名一直，一个是 file.svg 一个是 directory.svg。（2021-04-13）』
 
 文件类型属性是用来决定使用文件图标还是文件夹图标的，这有助于你对文件和文件夹进行区分，而且文件和文件夹的名字是按照字母顺序进行排序的。在图 2.12 中，文件名以点开始的文件以及隐藏文件都显示出来了，而这些在其他文件浏览器应用中一般都不会显示。图 2.13 显示的是 Electron 版的 Lorikeet 应用。
 
 图 2.13 Electron 版的 Lorikeet 应用显示了文件和文件夹信息
 
 Electron 版和 NW.js 版的 Lorikeet 应用看上去几乎一模一样。总的来说，看上去还不错，至此，本章的练习就结束了。
-
-
-
 
 ## Summary
 
@@ -727,9 +1115,11 @@ In this chapter, you began using NW.js and Electron for building the type of app
 
 2 Good semantics is encouraged as a way to relate features to the underlying code that supports it.
 
-3 CSS is the prime way to style UI elements in NW.js and Electron desktop apps.  You can use Node.js and other third-party libraries with ease in your desktop application.
+3 CSS is the prime way to style UI elements in NW.js and Electron desktop apps. 
 
-4 The approaches of NW.js and Electron allow for them to use almost the same code, but Electron requires a bit more code and a slightly different configuration in the package.json file.
+4 You can use Node.js and other third-party libraries with ease in your desktop application.
+
+5 The approaches of NW.js and Electron allow for them to use almost the same code, but Electron requires a bit more code and a slightly different configuration in the package.json file.
 
 What's been great is that in using the same code across both NW.js and Electron variants of the Lorikeet app, you've been able to see how similar the desktop application frameworks are, as well as notice the areas where they're different. This should give you the confidence that should you choose one framework for your application and find that it's not the right one for you, then it won't be too difficult to switch to using the other framework.
 

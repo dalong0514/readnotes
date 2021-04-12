@@ -4,9 +4,15 @@
 
 ## 卡片
 
-### 0101. 主题卡 ——
+### 0101. 主题卡 —— 如何新建一个 Electron 项目
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+官方文档里快速创建 Electron 项目的操作（2021-04-12）：
+
+```
+mkdir my-electron-app && cd my-electron-app
+npm init -y
+npm i --save-dev electron
+```
 
 ### 0201. 术语卡 ——
 

@@ -104,29 +104,39 @@ WebTorrent 和 BitTorrent 很像，它是一款桌面应用，可以让你上传
 
 Web apps have thrived for a number of reasons:
 
- Internet speeds improved and access increased, and, importantly, the cost of internet access went down, making the user base grow massively, unlike most other communication channels.  Web browsers have benefitted from increased competition. As appealing alternatives to Internet Explorer emerged, new features were added to those browsers, which in turn enabled web apps to do new things.  The relative ease of learning HTML, CSS, and JavaScript lowered the barrier of entry for developers to make web apps, as opposed to learning lower-level languages like C and C++.  The rise of open source software meant that the cost of distributing and obtaining software declined significantly, meaning that developers with a bit of cash, time, and the right level of skill could build their own web apps.
+1 Internet speeds improved and access increased, and, importantly, the cost of internet access went down, making the user base grow massively, unlike most other communication channels. 
+
+2 Web browsers have benefitted from increased competition. As appealing alternatives to Internet Explorer emerged, new features were added to those browsers, which in turn enabled web apps to do new things. 
+
+3 The relative ease of learning HTML, CSS, and JavaScript lowered the barrier of entry for developers to make web apps, as opposed to learning lower-level languages like C and C++. 
+
+4 The rise of open source software meant that the cost of distributing and obtaining software declined significantly, meaning that developers with a bit of cash, time, and the right level of skill could build their own web apps.
 
 When you look at all this, you can see why the web is such an important platform for developers to make software for. That said, there are still things that challenge and limit the ability of web apps today:
 
- Internet access is not always available. If you're on a train and you go under a tunnel, chances are you'll lose internet access. If your web app depends on saving data, hopefully it will be able to store a local copy of the changes and allow for them to be synchronized via the internet when access resumes.  If your app has a lot of features, the amount of data it will need to transfer over the internet to run the app could be large and may slow down the loading of the app. If it takes too long, people load something else — something proven by research into the impact that slow web page loading times have on e-commerce transactions.  If you're working with large files (such as high-resolution images and videos) that are sitting on your desktop computer, then it might not make sense for them to be uploaded to the internet in order for a web app to edit them.
+1 Internet access is not always available. If you're on a train and you go under a tunnel, chances are you'll lose internet access. If your web app depends on saving data, hopefully it will be able to store a local copy of the changes and allow for them to be synchronized via the internet when access resumes. 
 
- Because of the security policy of the web browser, there are limits to what hardware/software features of the computer the web app can access.
+2 If your app has a lot of features, the amount of data it will need to transfer over the internet to run the app could be large and may slow down the loading of the app. If it takes too long, people load something else — something proven by research into the impact that slow web page loading times have on e-commerce transactions. 
 
- You have no control over what web browsers a user may use to visit your web app.
+3 If you're working with large files (such as high-resolution images and videos) that are sitting on your desktop computer, then it might not make sense for them to be uploaded to the internet in order for a web app to edit them.
+
+4 Because of the security policy of the web browser, there are limits to what hardware/software features of the computer the web app can access.
+
+5 You have no control over what web browsers a user may use to visit your web app.
 
 You have to use feature detection to cater to different web browsers, which restricts what features your app can use. The user experience (UX) can vary wildly.
 
 Web apps are essentially restricted by the limits of internet access and browser features. It is in these circumstances that a desktop app may be preferable to a web app. Some of the benefits include the following:
 
- You don't require internet access to start and run the app.
+1 You don't require internet access to start and run the app.
 
- Desktop apps start instantly, without having to wait for resources to download from the internet.
+2 Desktop apps start instantly, without having to wait for resources to download from the internet.
 
- Desktop apps have access to the computer's OS and hardware resources, including access to the files and folder on the user's computer.
+3 Desktop apps have access to the computer's OS and hardware resources, including access to the files and folder on the user's computer.
 
- You have greater control over the UX with the software. You don't have to worry about how different browsers handle CSS rules and what JavaScript features they support.
+4 You have greater control over the UX with the software. You don't have to worry about how different browsers handle CSS rules and what JavaScript features they support.
 
- Once a desktop app is installed on a user's computer, it's there. It doesn't depend on you running web servers to support the app, where you need to offer 24/7 support in case your web app goes down, or worse, your web-hosting provider encounters technical difficulties.
+5 Once a desktop app is installed on a user's computer, it's there. It doesn't depend on you running web servers to support the app, where you need to offer 24/7 support in case your web app goes down, or worse, your web-hosting provider encounters technical difficulties.
 
 Usually, desktop apps have required developers to be proficient in languages like C++, Objective-C, or C#, and knowing frameworks like .NET, Qt, Cocoa, or GTK. For some developers, that can be a barrier to entry and may discourage them from considering the possibility of building a desktop app.
 
@@ -278,9 +288,9 @@ CREATING THE HELLO WORLD APP
 
 The app is so small that you can create the files by hand. At the bare minimum, you only need two files:
 
- A file named package.json — This contains configuration information about the app, and is required by NW.js.
+1 A file named package.json — This contains configuration information about the app, and is required by NW.js.
 
- An HTML file — This file will be loaded by the package.json file and displayed in the app window. In this case, it's a file called index.html (but it can be named something else, such as app.html or main.html).
+2 An HTML file — This file will be loaded by the package.json file and displayed in the app window. In this case, it's a file called index.html (but it can be named something else, such as app.html or main.html).
 
 Start by creating a folder for the app's file. On your computer, go where you like to store your project source code and create a folder named hello-world-nwjs. Then you can create the package.json file that will be stored inside the hello-world-nwjs folder.
 
@@ -302,7 +312,9 @@ Inside the hello-world-nwjs folder, create a file named index.html and insert th
 
 Once you've saved the index.html file on your computer, you can run the app on your computer. Inside the hello-world-nwjs folder, run the following command on your terminal:
 
-nw
+```
+nw .
+```
 
 If you're running on Mac OS, figure 1.3 shows what you should see.
 
@@ -418,9 +430,11 @@ Windows 10、Mac OS 以及 Linux 版本的 NW.js 采用的启动应用方式相�
 
 NW.js has a set of features that makes it appealing for developers to use when building desktop apps. In a generic overview, they are as follows:
 
-A JavaScript API for creating and accessing native UIs and APIs to the OS: control windows, add menu items, tray menus, read/write files, access the clipboard, and more  The ability to use Node.js inside your app as well as install and use a huge
+1 A JavaScript API for creating and accessing native UIs and APIs to the OS: control windows, add menu items, tray menus, read/write files, access the clipboard, and more.
 
-library of Node.js modules via npm  Being able to build executables of the app for each OS from a single codebase
+2 The ability to use Node.js inside your app as well as install and use a huge library of Node.js modules via npm.
+
+3 Being able to build executables of the app for each OS from a single codebase.
 
 I'll explain each bullet point in more detail in the next sections.
 
@@ -430,7 +444,19 @@ A good desktop app integrates well into the user's OS: a music app will work wit
 
 NW.js provides a large API for getting access to OS features, which do the following:
 
- Control the size and behavior of the app's window  Display a native toolbar on the app window with menu items  Add context menus in the app window area on right-click  Add a tray app item in the OS's tray menu  Access the OS clipboard, read the contents, and even set the contents  Open files, folders, and URLs on the computer using their default apps  Insert notifications via the OS's notification system
+1 Control the size and behavior of the app's window. 
+
+2 Display a native toolbar on the app window with menu items.
+
+3 Add context menus in the app window area on right-click.
+
+4 Add a tray app item in the OS's tray menu.
+
+5 Access the OS clipboard, read the contents, and even set the contents.
+
+6 Open files, folders, and URLs on the computer using their default apps.
+
+7 Insert notifications via the OS's notification system.
 
 As you can see from the preceding list, there are a lot of things you can do within NW.js that web browsers cannot do. For example, web browsers don't have direct access to files on the desktop or the contents of the clipboard due to security restrictions that web browsers implement to protect users from sites with malicious intent. In the case of NW.js, because the app runs on the user's computer, it's granted a level of access where the user trusts the app. This means that you can do things like access the files that are on the user's computer, create new files and folders, and more. These features allow the developer to create desktop apps that fit well with the user's OS and do things that web apps can't do (or at least not as easily) — and the user trusts the app to be responsible and not do anything malicious.
 
@@ -542,21 +568,23 @@ Follow the instructions in the README.md file to get the app up and running. Alt
 
 Assuming that you've already installed Node.js on your computer (if not, see “Installing Node.js” in the appendix of this book), let's start by downloading a copy of Electron via npm. In your terminal or at the Command Prompt, run the following command:
 
+```
 npm install –g electron
+```
 
-This will install Electron as a global npm module, meaning that it will be available to other Node.js applications where you want to use it. Once you have installed the Electron module, we can take a look at what an example Hello World app's files consist of. Here's the bare minimum number of files required to run an Electron app:
-
- index.html  main.js  package.json
+This will install Electron as a global npm module, meaning that it will be available to other Node.js applications where you want to use it. Once you have installed the Electron module, we can take a look at what an example Hello World app's files consist of. Here's the bare minimum number of files required to run an Electron app: 1) index.html. 2) main.js. 3) package.json.
 
 You can create a folder named hello-world-electron to store the app's files. Create a folder with the suggested name, and then you'll add the required files inside it.
 
 We'll start with the package.json. Here's what an example package.json looks like:
 
+```json
 {
-
-"name" : "hello-world", "version" : "1.0.0", "main" : "main.js"
-
+  "name": "hello-world",
+  "version": "1.0.0",
+  "main": "main.js"
 }
+```
 
 You might notice that package.json looks almost identical to the package.json file used to load the Hello World app in NW.js. The only difference is that where an NW.js app's package.json field expects the main property to specify an HTML file as the app's entry point, Electron expects the main property to specify a JavaScript file.
 
@@ -576,7 +604,9 @@ This is the HTML file that will be loaded into the browser window by the main.js
 
 To execute the app from the command line, cd into the hello-world-electron directory, and run the following command:
 
+```
 electron .
+```
 
 Once you've run the command, click the Hello World button, and you can expect to see something like figure 1.8.
 
@@ -791,11 +821,29 @@ Electron 版本的 Hello World 示例应用在 Windows 和 Linux 中的运行结
 
 Although Electron is relatively young, it has managed to accumulate a number of useful APIs and features for building desktop apps:
 
- Creating multiple application windows with ease, each with its own JavaScript context  Integrating with desktop OS features through the shell and screen APIs  Tracking the power status of the computer  Blocking the OS from going into power-saving mode (useful for presentation
+1 Creating multiple application windows with ease, each with its own JavaScript context.
 
-apps)  Creating tray apps  Creating menus and menu items  Adding global keyboard shortcuts to the app  Updating the app's code automatically through app updates  Reporting crashes
+2 Integrating with desktop OS features through the shell and screen APIs.
 
- Customizing Dock menu items  Operating system notifications  Creating setup installers for your app
+3 Tracking the power status of the computer.
+
+4 Blocking the OS from going into power-saving mode (useful for presentation apps).
+
+5 Creating tray apps.
+
+6 Creating menus and menu items. 
+
+7 Adding global keyboard shortcuts to the app.
+
+8 Updating the app's code automatically through app updates.
+
+9 Reporting crashes.
+
+10 Customizing Dock menu items.
+
+11 Operating system notifications.
+
+12 Creating setup installers for your app.
 
 As you can see, a lot of features are on offer, and that isn't an exhaustive list of all of the framework's features. In particular, the crash-reporting feature is unique to Electron — there's currently no equivalent to it in NW.js. Electron has also recently come up with dedicated tools for app testing and debugging, called Spectron and Devtron, covered in later chapters.
 
@@ -861,8 +909,6 @@ Although Electron and NW.js are relatively young in terms of software, their use
 
 [sindresorhus/awesome-electron: Useful resources for creating apps with Electron](https://github.com/sindresorhus/awesome-electron)
 
-
-
 第一反应就是找资料列表里推荐的书籍：
 
 Developing an Electron Edge - Preview
@@ -919,8 +965,6 @@ Since its founding, the company has grown to five employees, and the game is bei
 
 Figure 1.14 Game Dev Tycoon, a game studio simulator
 
-1.5.3 Game Dev Tycoon
-
 Game Dev Tycoon 是一款模拟类游戏，有点像 Transport Tycoon 和 SimCity 这两款经典的模拟类游戏，不过这款游戏设计的场景是运营一个游戏开发工作室（这款游戏本身就是一家游戏开发工作室开发的，所以这个设定挺有意思）。开发这款游戏的是一家名为 Greenheart Games 的小公司，该公司由 Patrick 和 Daniel Klug 在 2012 年 7 月创立。
 
 这款游戏非常特别（而且更具讽刺意义），它旨在反击盗版。Patrick 知道迟早这款游戏都会被盗版的，于是为了解决盗版问题，他自己先在种子下载网站发布了破解版，不过破解版中有一个很有意思的设定：玩破解版的用户最终会发现自己没法赢。因为当他们玩的时候，他们会发现游戏中自己做的游戏很快就不赚钱了，因为游戏被盗版了。最终他们游戏中的工作室会破产倒闭。这种反盗版的做法非常具有娱乐性，吸引了很多玩家。
@@ -936,8 +980,6 @@ Gitter is a service that provides chat rooms for open source projects on GitHub,
 As a chat service, Gitter is available both via its website (gitter.im), as well as via desktop apps for Windows and Mac OS, which are built using NW.js. The app's look and feel is an exact replica of what you see in the web app and well demonstrates the principle of code reuse. During the beta period, Gitter attracted almost 25,000 developers to the service, delivering over 1.8 million messages, and is currently hosting over 7,000 chat rooms. It now offers paid plans for chat rooms, and the company is working on getting a version of the app to run on Linux as well.
 
 The main chat room for NW.js can be found on Gitter, a nice example of a product being used to support itself (figure 1.15).
-
-1.5.4 Gitter
 
 Gitter 是一种服务，为 GitHub 上的开源项目提供聊天室功能，NW.js 项目的官方聊天室也使用 Gitter。它可以让用户使用其 GitHub 账户登录，然后访问项目或者组织的聊天室。它被视为 Slack 替代品中最受欢迎的一款。
 
@@ -959,8 +1001,6 @@ Figure 1.16 features
 
 Macaw, a WYSIWYG web design tool that lets designers create websites using visual design
 
-1.5.5 Macaw
-
 Macaw（macaw.co）是一款创新的所见即所得（WYSIWYG）的 Web 设计工具。它可以让 Web 设计师直接为他们的网站做视觉设计，而以往，他们都要先在图片编辑软件中做好，然后再生成对应的 HTML 和 CSS 代码。它可以直接自动生成网站代码，省去了将视觉设计稿转成网站代码这一步。作为一款所见即所得的 Web 设计工具，Macaw 和微软的 FrontPage 以及 Adobe 的 Dreamweaver 不同，它从视觉设计稿输出的是语义化的 HTML 和 CSS 代码。
 
 这款产品（参见图 1.16）由 Tom Giannattasio 和 Adam Christ 创建，并且通过 Kickstarter 从超过 2700 位支持者中募集了超过 275 000 美元。自 2014 年 3 月起，Macaw 开始通过其官方网站进行销售。
@@ -976,8 +1016,6 @@ Hyper (hyper.is) is a minimal-looking terminal app authored by Guillermo Rauch, 
 It's one of the more unique types of desktop apps reimagined with Electron and shows Electron's minimal style title bar in use.
 
 Figure 1.17 Hyper running on Mac OS
-
-1.5.6 Hyper
 
 Hyper（hyper.is）是一款极简的终端应用，作者是 Guillermo Rauch，他在 Node 社区很出名，因为著名的 Node.js websocket 库 ——Socket.io 以及实时托管服务 ——Now 都是他开发的。作为一款用 HTML、CSS 和 JavaScript 开发的终端程序，Hyper 自身可扩展，可以对其外观和功能进行定制。开发者开发了插件（如 hyperpower）可以在输入文字时增加动画效果，还能支持在终端窗口中直接打开网站链接。图 1.17 展示了使用中的 Hyper 应用。
 
