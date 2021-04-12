@@ -1,4 +1,3 @@
-
 Part 1 Welcome to Node.js desktop application development
 
 Two frameworks prevail when it comes to building desktop applications with Node.js: NW.js and Electron. In the first part of the book, you'll be introduced to those frameworks and what advantages they have compared to other app frameworks, build a quick Hello World application with both NW.js and Electron, and then see what kinds of applications have been built.
@@ -21,13 +20,13 @@ In chapter 3, we'll continue to iterate on the file explorer app by adding more 
 
 ## Summary
 
-This chapter introduced you to NW.js and Electron and explained how they help web developers build desktop apps. We explored reasons why you might want to prefer Node.js desktop apps over building a web app, and how those frameworks help web developers by letting them use the same tools and technologies they’re already familiar with.
+This chapter introduced you to NW.js and Electron and explained how they help web developers build desktop apps. We explored reasons why you might want to prefer Node.js desktop apps over building a web app, and how those frameworks help web developers by letting them use the same tools and technologies they're already familiar with.
 
 We then looked at the way that a simple Hello World app works and looks with different frameworks, across different OSs. This gave you a chance to understand how easy it is to take a web page and turn it into a desktop app.
 
-We examined the features that make NW.js and Electron great frameworks for desktop app development, such as their use of the popular Node.js framework and the npm ecosystem, and the way they provide native executables for the different OSs from a single codebase. Finally, we explored a couple of real-life examples of NW.js and Electron in the wild and saw how apps have been successful in their own domains. This shows you what’s possible with Node.js desktop apps, and hopefully provides inspiration for any app ideas that you have.
+We examined the features that make NW.js and Electron great frameworks for desktop app development, such as their use of the popular Node.js framework and the npm ecosystem, and the way they provide native executables for the different OSs from a single codebase. Finally, we explored a couple of real-life examples of NW.js and Electron in the wild and saw how apps have been successful in their own domains. This shows you what's possible with Node.js desktop apps, and hopefully provides inspiration for any app ideas that you have.
 
-In the next chapter, we’ll get our hands dirty and start building a file explorer desktop app with both NW.js and Electron. This will help you understand how you go about building desktop apps with those frameworks as well as how they compare in their approaches to desktop app development.
+In the next chapter, we'll get our hands dirty and start building a file explorer desktop app with both NW.js and Electron. This will help you understand how you go about building desktop apps with those frameworks as well as how they compare in their approaches to desktop app development.
 
 本章介绍了 NW.js 和 Electron，以及它们如何帮助开发者构建桌面应用。还分析了为何相比构建 Web 应用更应该使用 Node.js 开发桌面应用的原因以及那些框架是如何通过让 Web 开发者使用他们熟悉的工具和技术帮助他们开发桌面应用的。紧接着，介绍了使用不同框架构建同一个简单的 Hello World 应用，在不同的操作系统中的工作机制和样子。这也为大家展示了把一个 Web 页面嵌入一个桌面应用是多么容易。
 
@@ -71,15 +70,15 @@ If reflecting on 16 years of software development shows anything, it's that ther
 
 Where does that leave desktop apps? Desktop apps have become one of a numberof computing platforms that we use in our day-to-day activities. But what has changedsince the 2000s is that where Microsoft Windows was the dominant OS for desktopcomputers back then, Apple has pared back that dominance with the popularity of itscomputers among creatives and professionals. Not only that, but Google's Chrome-books were the best-selling laptops in the U.S. in the first quarter of 2016. The year ofthe Linux desktop may have finally arrived. The point is this: you can't afford todevelop desktop apps that work on only Windows these days — there's a need for devel-oping apps that work across Mac OS and Linux as well.
 
-Cross-platform desktop apps aren’t a new concept; frameworks like Mono and Qt have provided a way to develop desktop apps that run across all three of the major OSs. Usually, developers with a background in programming languages like C, C++, and C# could come to grips with these frameworks and develop software for them. Other developers, like web developers, would need to learn a new language alongside a framework, and this would be a barrier to them developing desktop apps.
+Cross-platform desktop apps aren't a new concept; frameworks like Mono and Qt have provided a way to develop desktop apps that run across all three of the major OSs. Usually, developers with a background in programming languages like C, C++, and C# could come to grips with these frameworks and develop software for them. Other developers, like web developers, would need to learn a new language alongside a framework, and this would be a barrier to them developing desktop apps.
 
 When NW.js and Electron came about, they offered an opportunity to build desktop apps with the same code used to create web apps — and not only that, these desktop apps could operate across Windows, Mac OS, and Linux. It was a massive win for both code and skills reusability and unleashed a wave of new apps.
 
 In addition, the popularity of Node.js has meant that developers have been able to leverage a huge ecosystem of open source libraries to build their apps with. Node.js developers and web developers alike could suddenly make desktop apps, and some of the apps out there are truly fantastic. One that comes to mind is WebTorrent by Feross Aboukhadijeh, shown in figure 1.1.
 
-WebTorrent is a desktop app that allows you to upload files for other users to download, much in the same fashion as BitTorrent. It uses WebRTC to enable peer-to-peer connections, and to show you how portable the code is, the library used in the desktop app is the same as the one you can use in a web browser. It’s a truly fantastic piece of work.
+WebTorrent is a desktop app that allows you to upload files for other users to download, much in the same fashion as BitTorrent. It uses WebRTC to enable peer-to-peer connections, and to show you how portable the code is, the library used in the desktop app is the same as the one you can use in a web browser. It's a truly fantastic piece of work.
 
-The ability to support multiple OSs but write the software in a common and popular language has lots of pros because, as mentioned, desktop computing is still a major part of how people use computers today, even as new mobile computing platforms emerge. That’s why Node.js desktop apps have become an interesting way to deliver software. The next section elaborates on some of the reasons why you may consider building Node.js desktop apps over web apps.
+The ability to support multiple OSs but write the software in a common and popular language has lots of pros because, as mentioned, desktop computing is still a major part of how people use computers today, even as new mobile computing platforms emerge. That's why Node.js desktop apps have become an interesting way to deliver software. The next section elaborates on some of the reasons why you may consider building Node.js desktop apps over web apps.
 
 2000 年年初，绝大多数软件都是以桌面应用的形式存在的，它们被放在一个包装盒里，通过像百思买这样的商店进行售卖。你还得看它对系统的要求，确保它兼容你使用（绝大部分人用 Windows）的操作系统（OS）。然后，从包装盒中取出 CD 光盘，并将它安装到你的计算机中。
 
@@ -109,7 +108,7 @@ Web apps have thrived for a number of reasons:
 
 When you look at all this, you can see why the web is such an important platform for developers to make software for. That said, there are still things that challenge and limit the ability of web apps today:
 
- Internet access is not always available. If you’re on a train and you go under a tunnel, chances are you’ll lose internet access. If your web app depends on saving data, hopefully it will be able to store a local copy of the changes and allow for them to be synchronized via the internet when access resumes.  If your app has a lot of features, the amount of data it will need to transfer over the internet to run the app could be large and may slow down the loading of the app. If it takes too long, people load something else — something proven by research into the impact that slow web page loading times have on e-commerce transactions.  If you’re working with large files (such as high-resolution images and videos) that are sitting on your desktop computer, then it might not make sense for them to be uploaded to the internet in order for a web app to edit them.
+ Internet access is not always available. If you're on a train and you go under a tunnel, chances are you'll lose internet access. If your web app depends on saving data, hopefully it will be able to store a local copy of the changes and allow for them to be synchronized via the internet when access resumes.  If your app has a lot of features, the amount of data it will need to transfer over the internet to run the app could be large and may slow down the loading of the app. If it takes too long, people load something else — something proven by research into the impact that slow web page loading times have on e-commerce transactions.  If you're working with large files (such as high-resolution images and videos) that are sitting on your desktop computer, then it might not make sense for them to be uploaded to the internet in order for a web app to edit them.
 
  Because of the security policy of the web browser, there are limits to what hardware/software features of the computer the web app can access.
 
@@ -119,21 +118,21 @@ You have to use feature detection to cater to different web browsers, which rest
 
 Web apps are essentially restricted by the limits of internet access and browser features. It is in these circumstances that a desktop app may be preferable to a web app. Some of the benefits include the following:
 
- You don’t require internet access to start and run the app.
+ You don't require internet access to start and run the app.
 
  Desktop apps start instantly, without having to wait for resources to download from the internet.
 
- Desktop apps have access to the computer’s OS and hardware resources, including access to the files and folder on the user’s computer.
+ Desktop apps have access to the computer's OS and hardware resources, including access to the files and folder on the user's computer.
 
- You have greater control over the UX with the software. You don’t have to worry about how different browsers handle CSS rules and what JavaScript features they support.
+ You have greater control over the UX with the software. You don't have to worry about how different browsers handle CSS rules and what JavaScript features they support.
 
- Once a desktop app is installed on a user’s computer, it’s there. It doesn’t depend on you running web servers to support the app, where you need to offer 24/7 support in case your web app goes down, or worse, your web-hosting provider encounters technical difficulties.
+ Once a desktop app is installed on a user's computer, it's there. It doesn't depend on you running web servers to support the app, where you need to offer 24/7 support in case your web app goes down, or worse, your web-hosting provider encounters technical difficulties.
 
 Usually, desktop apps have required developers to be proficient in languages like C++, Objective-C, or C#, and knowing frameworks like .NET, Qt, Cocoa, or GTK. For some developers, that can be a barrier to entry and may discourage them from considering the possibility of building a desktop app.
 
-The great thing about Node.js desktop application frameworks like Electron and NW.js is that they have significantly lowered that barrier of entry for developers. By allowing developers to create apps using HTML, CSS, and JavaScript, they’ve opened the door for web developers to also be desktop app developers, with the added benefit of being able to use the same code across both the web app and desktop app platforms.
+The great thing about Node.js desktop application frameworks like Electron and NW.js is that they have significantly lowered that barrier of entry for developers. By allowing developers to create apps using HTML, CSS, and JavaScript, they've opened the door for web developers to also be desktop app developers, with the added benefit of being able to use the same code across both the web app and desktop app platforms.
 
-Now it’s time to introduce the frameworks. As mentioned earlier in the chapter, Electron and NW.js have something of a shared history, so I’ll touch on the origins of both frameworks and then cover each in some detail.
+Now it's time to introduce the frameworks. As mentioned earlier in the chapter, Electron and NW.js have something of a shared history, so I'll touch on the origins of both frameworks and then cover each in some detail.
 
 1.1.2 Node.js 桌面应用相比 Web 应用有什么优势
 
@@ -179,13 +178,13 @@ Web 应用主要受限于网络和浏览器特性。在这些方面，桌面应�
 
 ## 1.2 The origins of NW.js and Electron
 
-Back in 2011, Roger Wang managed to find a way to combine WebKit (the browser engine behind Safari, Konqueror, and Google Chrome at the time) with Node.js, so that you could access Node.js modules from the JavaScript code running inside a web page. This Node.js module was given the name node-webkit. He continued to work on the project at Intel’s Open Source Technology Center in China, which gave its support
+Back in 2011, Roger Wang managed to find a way to combine WebKit (the browser engine behind Safari, Konqueror, and Google Chrome at the time) with Node.js, so that you could access Node.js modules from the JavaScript code running inside a web page. This Node.js module was given the name node-webkit. He continued to work on the project at Intel's Open Source Technology Center in China, which gave its support
 
 to the project by letting Roger work on it full time. Not only that, he was allowed to hire others to work on it too.
 
 In the summer of 2012, a senior college student named Cheng Zhao joined Intel as an intern to work on node-webkit. He worked with Roger to help improve its internal architecture, which involved changing how Node.js and WebKit were combined. As the code evolved, node-webkit moved from being a mere Node.js module to becoming a framework for desktop apps. Node-webkit was given interesting uses within third-party apps. The Light Table editor was the first to make use of node-webkit to deliver its functionality and helped to promote the framework to other developers.
 
-In December of the same year, Cheng left Intel to work at GitHub as a contractor. He was tasked with helping to port GitHub’s Atom editor from using Chromium Embedded Framework and native JavaScript bindings to using node-webkit.
+In December of the same year, Cheng left Intel to work at GitHub as a contractor. He was tasked with helping to port GitHub's Atom editor from using Chromium Embedded Framework and native JavaScript bindings to using node-webkit.
 
 The efforts to port Atom to node-webkit encountered difficulties (see https:// github.com/atom/atom/pull/100), so they abandoned that approach. Instead, they decided to create a new native shell for Atom, which they called Atom Shell. This approach to combining WebKit with Node.js differed from the approach taken by node-webkit. Cheng Zhao focused all of his efforts into working on Atom Shell, which GitHub later open sourced shortly after open sourcing its text editor, Atom.
 
@@ -193,21 +192,21 @@ During this time, Node.js was going through a period of splintering — members 
 
 Although NW.js was the first Node.js desktop application framework, Electron has quickly emerged as a popular framework that has overshadowed NW.js, although both have been heavily worked on by the same developer at different points in time and share a lot of common code in terms of how users use their APIs for creating app features. Each has evolved a different approach to its internal architecture and has spawned separate communities that actively promote their respective projects.
 
-In this respect, this book essentially covers two frameworks that do the same thing in slightly different ways. It’s a fairly unique situation in that the frameworks share so much history and are similar enough to merit being evaluated together. There’s a natural inclination to pick whichever is the bigger of the two and go with that, and the answer to that would be Electron (if you go by popularity and momentum), but some prefer NW.js to Electron for its relative simplicity in how you execute code and load the app, as well as for supporting computing platforms like Google Chromebooks, and because of other matters of programming opinion. I prefer to provide the information and let you decide what you want to use. It’s more ground to cover, but you’ll be better informed.
+In this respect, this book essentially covers two frameworks that do the same thing in slightly different ways. It's a fairly unique situation in that the frameworks share so much history and are similar enough to merit being evaluated together. There's a natural inclination to pick whichever is the bigger of the two and go with that, and the answer to that would be Electron (if you go by popularity and momentum), but some prefer NW.js to Electron for its relative simplicity in how you execute code and load the app, as well as for supporting computing platforms like Google Chromebooks, and because of other matters of programming opinion. I prefer to provide the information and let you decide what you want to use. It's more ground to cover, but you'll be better informed.
 
-If you’re interested in digging into the history of both projects a bit more, the following links provide helpful pointers:
+If you're interested in digging into the history of both projects a bit more, the following links provide helpful pointers:
 
 [From node-webkit to Electron 1.0](http://cheng.guru/blog/2016/05/13/from-node-webkit-to-electron-1-0.html)
 
 [Question: Electron Origins · Issue #5172 · electron/electron](https://github.com/electron/electron/issues/5172#issuecomment-210697670)
 
-If you’re looking for posts that compare and contrast the frameworks, here are some good links to look at as well:
+If you're looking for posts that compare and contrast the frameworks, here are some good links to look at as well:
 
 http://electron.atom.io/docs/development/atom-shell-vs-node-webkit/
 
 [NW.js & Electron Compared (2016 Edition) - TangibleJS](https://tangiblejs.com/posts/nw-js-and-electron-compared-2016-edition)
 
-That’s a brief history of the two projects and how their paths have formed over time. We’ll now dive into each framework, starting with the first framework to emerge on the scene: NW.js.
+That's a brief history of the two projects and how their paths have formed over time. We'll now dive into each framework, starting with the first framework to emerge on the scene: NW.js.
 
 1.2 NW.js 和 Electron 的起源
 
@@ -241,11 +240,11 @@ http://electron.atom.io/docs/development/atom-shell-vs-node-webkit/
 
 ## 1.3 Introducing NW.js
 
-To recap, NW.js is a framework for building desktop apps with HTML, CSS, and JavaScript. It was created back in November 2011 by Roger Wang at Intel’s Open Source Technology Center in China. The idea was that by combining Node.js with WebKit (the web browser engine behind Chromium, an open source version of Google Chrome), you could create desktop apps using web technologies. This was the basis for the framework’s original name, node-webkit.
+To recap, NW.js is a framework for building desktop apps with HTML, CSS, and JavaScript. It was created back in November 2011 by Roger Wang at Intel's Open Source Technology Center in China. The idea was that by combining Node.js with WebKit (the web browser engine behind Chromium, an open source version of Google Chrome), you could create desktop apps using web technologies. This was the basis for the framework's original name, node-webkit.
 
-By combining Node.js with Chromium, Roger found a way to create apps that could not only load an HTML file with CSS and JavaScript inside an app window, but also could interact with the OS via a JavaScript API. This JavaScript API could then control visual aspects like window dimensions, toolbar, and menu items as well as provide access to local files on the desktop — things web apps couldn’t do.
+By combining Node.js with Chromium, Roger found a way to create apps that could not only load an HTML file with CSS and JavaScript inside an app window, but also could interact with the OS via a JavaScript API. This JavaScript API could then control visual aspects like window dimensions, toolbar, and menu items as well as provide access to local files on the desktop — things web apps couldn't do.
 
-To give you an idea of what this looks like, let’s walk through an example Hello World app for NW.js.
+To give you an idea of what this looks like, let's walk through an example Hello World app for NW.js.
 
 1.3 NW.js 介绍
 
@@ -257,19 +256,19 @@ To give you an idea of what this looks like, let’s walk through an example Hel
 
 ### 1.3.1 A Hello World app in NW.js
 
-This example application will give you a better understanding of what Node.js desktop apps are like with NW.js. Figure 1.2 show a design of the app we’ll build.
+This example application will give you a better understanding of what Node.js desktop apps are like with NW.js. Figure 1.2 show a design of the app we'll build.
 
 The code for this app is available in the GitHub repository for this book at http:// mng.bz/4W7Y.
 
-If you want to get the code to run the app and see it in action, follow the instructions in the README.md file there. It’s ready-made to go. But if you want to see how the sausage is made, then read on and we’ll build the app from scratch.
+If you want to get the code to run the app and see it in action, follow the instructions in the README.md file there. It's ready-made to go. But if you want to see how the sausage is made, then read on and we'll build the app from scratch.
 
-The first step is to check whether you have Node.js installed. If you already do, great — move on to the next section, “Installing NW.js,” but if not, you’ll find instructions for installing Node.js in the appendix.
+The first step is to check whether you have Node.js installed. If you already do, great — move on to the next section, “Installing NW.js,” but if not, you'll find instructions for installing Node.js in the appendix.
 
 INSTALLING NW.JS
 
 Node.js comes with a package management tool called npm that handles installing libraries for Node.js, and NW.js can be installed using it. On your computer, open the command-line program for your OS (Command Prompt or PowerShell on Windows, and Terminal on both Mac OS and Linux).
 
-After you’ve opened your command-line program, run the following command:
+After you've opened your command-line program, run the following command:
 
 npm install –g nw
 
@@ -281,9 +280,9 @@ The app is so small that you can create the files by hand. At the bare minimum, 
 
  A file named package.json — This contains configuration information about the app, and is required by NW.js.
 
- An HTML file — This file will be loaded by the package.json file and displayed in the app window. In this case, it’s a file called index.html (but it can be named something else, such as app.html or main.html).
+ An HTML file — This file will be loaded by the package.json file and displayed in the app window. In this case, it's a file called index.html (but it can be named something else, such as app.html or main.html).
 
-Start by creating a folder for the app’s file. On your computer, go where you like to store your project source code and create a folder named hello-world-nwjs. Then you can create the package.json file that will be stored inside the hello-world-nwjs folder.
+Start by creating a folder for the app's file. On your computer, go where you like to store your project source code and create a folder named hello-world-nwjs. Then you can create the package.json file that will be stored inside the hello-world-nwjs folder.
 
 In your text editor/IDE, create a file named package.json inside the hello-worldnwjs folder and insert the following code into it:
 
@@ -297,25 +296,25 @@ In your text editor/IDE, create a file named package.json inside the hello-world
 
 The package.json file consists of some configuration information about the app: its name, the main file to load when the app starts, and its version number. These fields are required by NW.js (though the version field is required by npm). The name field must contain lowercase alphanumeric characters only — there can be no space characters in the name.
 
-The main field contains the file path for the entry point of your app. In the case of NW.js, you have the option of loading either a JavaScript file or an HTML file, but HTML files tend to be the common choice for NW.js apps. The HTML file is loaded into the app window, and to demonstrate this, you’ll create an HTML file called index.html that will be loaded.
+The main field contains the file path for the entry point of your app. In the case of NW.js, you have the option of loading either a JavaScript file or an HTML file, but HTML files tend to be the common choice for NW.js apps. The HTML file is loaded into the app window, and to demonstrate this, you'll create an HTML file called index.html that will be loaded.
 
 Inside the hello-world-nwjs folder, create a file named index.html and insert the code in the following listing.
 
-Once you’ve saved the index.html file on your computer, you can run the app on your computer. Inside the hello-world-nwjs folder, run the following command on your terminal:
+Once you've saved the index.html file on your computer, you can run the app on your computer. Inside the hello-world-nwjs folder, run the following command on your terminal:
 
 nw
 
-If you’re running on Mac OS, figure 1.3 shows what you should see.
+If you're running on Mac OS, figure 1.3 shows what you should see.
 
-If you’re running Linux, figure 1.4 shows the same app running on openSUSE 13.2 (Linux has many distributions, and openSUSE is one of the well-known distributions).
+If you're running Linux, figure 1.4 shows the same app running on openSUSE 13.2 (Linux has many distributions, and openSUSE is one of the well-known distributions).
 
 The Windows 10, Mac OS, and Linux versions of NW.js all share the same way to get the app started, which is handy. Type the same command in your Command Prompt, and you should see something like figure 1.5 on a Windows 10 computer.
 
 Figure 1.5 The Hello World app running on Windows 10. The app looks almost identical to the app running on openSUSE Linux (minus the app window and a slight difference in font rendering).
 
-If you click the Say Hello button in the middle of the app screen, you’ll see an alert dialog that says “Hello World.” If you were to take the index.html file and load it in a web browser such as Google Chrome, Microsoft Edge, or Mozilla Firefox, you would see the same screen and get the same result. That’s the point — you can take an HTML page for a website and turn it into a desktop app with NW.js without having to change the code.
+If you click the Say Hello button in the middle of the app screen, you'll see an alert dialog that says “Hello World.” If you were to take the index.html file and load it in a web browser such as Google Chrome, Microsoft Edge, or Mozilla Firefox, you would see the same screen and get the same result. That's the point — you can take an HTML page for a website and turn it into a desktop app with NW.js without having to change the code.
 
-At this point you might say, “Well, if that’s the case, why don’t I use a desktop app template that renders an HTML page inside a window and make do with that?” That’s not a bad question, and some apps have taken this approach.
+At this point you might say, “Well, if that's the case, why don't I use a desktop app template that renders an HTML page inside a window and make do with that?” That's not a bad question, and some apps have taken this approach.
 
 The reasons against such an approach could boil down to ease of development. You might not know C++, or if you do, you may not want to be compelled to compile code every time you make a feature change. Also, you might want to use features that are only available natively to the desktop framework and are beyond what an HTML file embedded inside of an app window shell would be able to access. The other major reason is that as desktop app frameworks, both Electron and NW.js provide a rich feature set to support you in developing desktop apps, covered in the next section.
 
@@ -339,6 +338,8 @@ Node.js 内置了一款包管理器工具，名字叫 npm，可以用它来安�
 npm install -g nw
 ```
 
+1-2『这里直接用 brew 安装的 nw.js 套件：`brew cask install nwjs`。顺便知道了查看软件的命名：`brew cask list`。』
+
 完成后，NW.js 会以 Node.js 模块的形式安装在你的计算机中，所有的 Node.js 桌面应用都可以使用。
 
 构建 Hello World 应用
@@ -353,10 +354,13 @@ npm install -g nw
 
 在 hello-world-nwjs 文件夹中用你的文本编辑器或者 IDE 创建一个名为 package. json 的文件，并插入如下代码：
 
-
-
-
-
+```json
+{
+	"name" : "hello-world",
+	"version" : "1.0.0",
+	"main" : "main.js"
+}
+```
 
 package.json 文件包含了一些与应用相关的配置信息：应用的名字、应用启动时要加载的主文件以及版本号。这些字段是必需的（其中 version 字段是 npm 要求的）。name 字段只能包含小写的英文字母或者数字，且不能有空格。
 
@@ -370,6 +374,28 @@ main 字段指定了应用入口文件的路径。在 NW.js 中，这个文件�
 
 nw
 
+1『上
+
+面的命令没用，需要用 `nw .`。但前提需要设置别名和环境变量。
+
+```
+# 打开bash_profile环境变量配置文件
+vim ~/.bash_profile
+
+# 设置环境变量-nwjs的别名
+alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+
+# 应用环境变量
+source ~/.bash_profile
+
+#命令行输入 nw 回车启动即可（等同于桌面点击图标启动）
+nw
+```
+
+不要在 `.bash_profile` 里设置别名，在 `.zshrc` 里设置别名更好。经测试，可以跑起来了。
+
+』
+
 如果使用的是 Mac OS，会看到图 1.3 所示的样子。
 
 图 1.3 运行在 Mac OS 上的 Hello World 应用。这个应用截图和设计稿除了窗口大小之外几乎完全一样
@@ -382,7 +408,7 @@ Windows 10、Mac OS 以及 Linux 版本的 NW.js 采用的启动应用方式相�
 
 图 1.5 运行在 Windows 10 上的 Hello World 应用。它和 openSUSE Linux 上应用的样子几乎一样（除了应用视窗和字体渲染效果略有不同之外）
 
-如果单击屏幕中间的 Say Hello 按钮，会弹出一个写着「Hello World」的警示框。如果使用谷歌的 Chrome、微软的 Edge 或者 Mozilla 的 Firefox 浏览器打开 index. html 文件，也能看到同样的界面，单击按钮后也会看到同样的结果。这就是关键 —— 代码不需要修改，你就可以直接将网站的 HTML 页面转变为 NW.js 开发的桌面应用。
+如果单击屏幕中间的 Say Hello 按钮，会弹出一个写着「Hello World」的警示框。如果使用谷歌的 Chrome、微软的 Edge 或者 Mozilla 的 Firefox 浏览器打开 index.html 文件，也能看到同样的界面，单击按钮后也会看到同样的结果。这就是关键 —— 代码不需要修改，你就可以直接将网站的 HTML 页面转变为 NW.js 开发的桌面应用。
 
 关于这点你也许会说「好吧，那既然这样，我为什么不用这样一个方案呢 —— 用一个桌面应用模版，将 HTML 页面渲染在视窗中？」这个问题问得还不错，有些应用就是这么做的。
 
@@ -392,77 +418,139 @@ Windows 10、Mac OS 以及 Linux 版本的 NW.js 采用的启动应用方式相�
 
 NW.js has a set of features that makes it appealing for developers to use when building desktop apps. In a generic overview, they are as follows:
 
- A JavaScript API for creating and accessing native UIs and APIs to the OS: control windows, add menu items, tray menus, read/write files, access the clipboard, and more  The ability to use Node.js inside your app as well as install and use a huge
+A JavaScript API for creating and accessing native UIs and APIs to the OS: control windows, add menu items, tray menus, read/write files, access the clipboard, and more  The ability to use Node.js inside your app as well as install and use a huge
 
 library of Node.js modules via npm  Being able to build executables of the app for each OS from a single codebase
 
-I’ll explain each bullet point in more detail in the next sections.
+I'll explain each bullet point in more detail in the next sections.
 
 ACCESSING OS NATIVE UI AND API VIA JAVASCRIPT
 
-A good desktop app integrates well into the user’s OS: a music app will work with the media keyboard shortcuts on a user’s keyboard, a chat app may have a menu icon in the tray area of the OS, and a productivity app may provide notifications when actions have completed.
+A good desktop app integrates well into the user's OS: a music app will work with the media keyboard shortcuts on a user's keyboard, a chat app may have a menu icon in the tray area of the OS, and a productivity app may provide notifications when actions have completed.
 
 NW.js provides a large API for getting access to OS features, which do the following:
 
- Control the size and behavior of the app’s window  Display a native toolbar on the app window with menu items  Add context menus in the app window area on right-click  Add a tray app item in the OS’s tray menu  Access the OS clipboard, read the contents, and even set the contents  Open files, folders, and URLs on the computer using their default apps  Insert notifications via the OS’s notification system
+ Control the size and behavior of the app's window  Display a native toolbar on the app window with menu items  Add context menus in the app window area on right-click  Add a tray app item in the OS's tray menu  Access the OS clipboard, read the contents, and even set the contents  Open files, folders, and URLs on the computer using their default apps  Insert notifications via the OS's notification system
 
-As you can see from the preceding list, there are a lot of things you can do within NW.js that web browsers cannot do. For example, web browsers don’t have direct access to files on the desktop or the contents of the clipboard due to security restrictions that web browsers implement to protect users from sites with malicious intent. In the case of NW.js, because the app runs on the user’s computer, it’s granted a level of access where the user trusts the app. This means that you can do things like access the files that are on the user’s computer, create new files and folders, and more. These features allow the developer to create desktop apps that fit well with the user’s OS and do things that web apps can’t do (or at least not as easily) — and the user trusts the app to be responsible and not do anything malicious.
+As you can see from the preceding list, there are a lot of things you can do within NW.js that web browsers cannot do. For example, web browsers don't have direct access to files on the desktop or the contents of the clipboard due to security restrictions that web browsers implement to protect users from sites with malicious intent. In the case of NW.js, because the app runs on the user's computer, it's granted a level of access where the user trusts the app. This means that you can do things like access the files that are on the user's computer, create new files and folders, and more. These features allow the developer to create desktop apps that fit well with the user's OS and do things that web apps can't do (or at least not as easily) — and the user trusts the app to be responsible and not do anything malicious.
 
 USING NODE.JS AND NPM MODULES INSIDE YOUR APP
 
-NW.js provides access to the Node.js API in the app, as well as uses modules that are installed with npm. This means that you can install npm modules for use with your desktop apps, and you can even access them and Node.js core modules from the same code that’s interacting with the front end of the desktop app.
+NW.js provides access to the Node.js API in the app, as well as uses modules that are installed with npm. This means that you can install npm modules for use with your desktop apps, and you can even access them and Node.js core modules from the same code that's interacting with the front end of the desktop app.
 
-For example, you could write a bit of embedded JavaScript in the index.html file that uses the Node.js filesystem module to get a list of files and folders in a given directory, and then list those files as list items in the HTML. This shared JavaScript context between the front-end and back-end parts of the desktop app is an intriguing aspect of the way NW.js combines Node.js with Chromium. It’s something to keep in mind when you’re working with NW.js applications (as opposed to Electron applications). It’s quite different from how web apps work, as figure 1.6 demonstrates.
+For example, you could write a bit of embedded JavaScript in the index.html file that uses the Node.js filesystem module to get a list of files and folders in a given directory, and then list those files as list items in the HTML. This shared JavaScript context between the front-end and back-end parts of the desktop app is an intriguing aspect of the way NW.js combines Node.js with Chromium. It's something to keep in mind when you're working with NW.js applications (as opposed to Electron applications). It's quite different from how web apps work, as figure 1.6 demonstrates.
+
+![](./res/2021001.png)
 
 Figure 1.6 The difference between a web app and an NW.js desktop app. The separation between front-end and back-end code in an NW.js desktop is blurred, as the JavaScript context is shared between both parts of the code.
 
-To explore this a bit further, consider how traditional web apps work. Web apps tend to have a client/server model where the client requests a web page or makes an API request, and the server executes some code to then serve that data back to the client. The client in this case is a computer running a web browser. The web browser then loads the data, where, if it’s HTML, the rendering engine turns it into a web page; or, if it’s data like XML or JSON, the rendering engine displays it in raw form. The server does its job of executing back-end code to serve HTML pages or API requests, and the computer client running the web browser does its job of making HTML/API requests and rendering the response in the web browser. The web browser applies a strict security model to ensure that the front-end code executes within the context of the web page and nothing else. There's a clear separation of application state and responsibility.
+To explore this a bit further, consider how traditional web apps work. Web apps tend to have a client/server model where the client requests a web page or makes an API request, and the server executes some code to then serve that data back to the client. The client in this case is a computer running a web browser. The web browser then loads the data, where, if it's HTML, the rendering engine turns it into a web page; or, if it's data like XML or JSON, the rendering engine displays it in raw form. The server does its job of executing back-end code to serve HTML pages or API requests, and the computer client running the web browser does its job of making HTML/API requests and rendering the response in the web browser. The web browser applies a strict security model to ensure that the front-end code executes within the context of the web page and nothing else. There's a clear separation of application state and responsibility.
 
-In an NW.js app, the app window is essentially like an embedded web browser, but with the distinct difference that the code inside the web page has access to the computer’s resources and can execute server-side code. There's no separation of app state and responsibility. This means you can write code that's calling out to DOM elements in the web page and executing server-side code accessing the computer’s filesystem in the same place. Not only that, you’ll be able to use npm modules in your code as well.
+In an NW.js app, the app window is essentially like an embedded web browser, but with the distinct difference that the code inside the web page has access to the computer's resources and can execute server-side code. There's no separation of app state and responsibility. This means you can write code that's calling out to DOM elements in the web page and executing server-side code accessing the computer's filesystem in the same place. Not only that, you'll be able to use npm modules in your code as well.
 
-Being able to install npm modules and require them in your desktop app means you have access to over 400,000 libraries (as of January 2017) for use in your code. You’ll have plenty of options when it comes to using third-party libraries in your app. In fact, both NW.js and Electron have spawned a number of dedicated libraries for use with desktop apps, all of which you’ll be able to find at http://npmjs.com, and at https://github.com/nw-cn/awesome-nwjs and https://github.com/sindresorhus/awesome-electron.
+Being able to install npm modules and require them in your desktop app means you have access to over 400,000 libraries (as of January 2017) for use in your code. You'll have plenty of options when it comes to using third-party libraries in your app. In fact, both NW.js and Electron have spawned a number of dedicated libraries for use with desktop apps, all of which you'll be able to find at http://npmjs.com, and at [nw-cn/awesome-nwjs: Awesome NW.js (node-webkit)](https://github.com/nw-cn/awesome-nwjs) and [sindresorhus/awesome-electron: Useful resources for creating apps with Electron](https://github.com/sindresorhus/awesome-electron).
 
 BUILDING YOUR APP FOR MULTIPLE OSS FROM A SINGLE CODEBASE
 
-One of the most useful features of NW.js is that from a single codebase for your desktop app, you can build native executable apps for Windows, Mac OS, and Linux. This is a time saver when you’re developing an app that has to work across multiple platforms. It also means you can have greater control over how the app looks and feels, more so than you can when trying to support a website for multiple web browsers.
+One of the most useful features of NW.js is that from a single codebase for your desktop app, you can build native executable apps for Windows, Mac OS, and Linux. This is a time saver when you're developing an app that has to work across multiple platforms. It also means you can have greater control over how the app looks and feels, more so than you can when trying to support a website for multiple web browsers.
 
-The native executable is able to run on its own and doesn’t require the user to have any other software installed on their computer. This makes it easy to distribute the app to users, including on stores like Apple’s App store and the Steam store, where some NW.js apps and games are sold.
+The native executable is able to run on its own and doesn't require the user to have any other software installed on their computer. This makes it easy to distribute the app to users, including on stores like Apple's App store and the Steam store, where some NW.js apps and games are sold.
 
 The process of building an app for a specific OS involves a few command-line arguments, but there are some tools that simplify the process for you, such as the nw-builder tool, illustrated in figure 1.7.
 
-Taking an example desktop app, I’m able to use nw-builder’s nwbuild command in step 1 to automate the steps of turning our desktop app’s code into executable binaries for both Mac OS and Windows, as shown in step 3. This can save a lot of time (if you have to make both 32-bit and 64-bit builds of the app) and prevent mistakes when building the app.
+Taking an example desktop app, I'm able to use nw-builder's nwbuild command in step 1 to automate the steps of turning our desktop app's code into executable binaries for both Mac OS and Windows, as shown in step 3. This can save a lot of time (if you have to make both 32-bit and 64-bit builds of the app) and prevent mistakes when building the app.
 
-In the next section, we’ll turn our attention to Electron: how an example app works and looks with it, and what features it has.
+In the next section, we'll turn our attention to Electron: how an example app works and looks with it, and what features it has.
+
+1.3.2 NW.js 有哪些特性
+
+NW.js 为开发者构建桌面应用提供了一些非常好用的特性。概括来说，有以下这几点：
+
+1、一套可以创建和操作原生 UI 的 JavaScript API 以及和操作系统进行交互的 API：控制视窗、添加菜单项、托盘应用菜单、读写文件、访问剪贴板等。
+
+2、支持在应用中使用 Node.js，也可以通过 npm 安装和使用大量的 Node.js 模块。
+
+3、支持为同一套应用代码针对不同的操作系统构建各自可执行的文件。
+
+接下来我会详细介绍上述每一点内容。
+
+通过 JavaScript 访问操作系统原生的 UI 和 API
+
+一款好的桌面应用都和用户的操作系统高度集成：与音乐相关的应用支持用户使用键盘快捷键来控制音乐的播放、聊天应用会在操作系统的托盘区域放置自己的菜单图标，以及与效率相关的应用都可能会在某个动作完成之后进行系统提示。
+
+NW.js 提供了大量访问操作系统特性的 API，支持：1）控制应用视窗的大小和行为。2）在应用视窗中显示带菜单项的工具条。3）在用户右击的时候，在应用视窗中添加上下文菜单。4）在操作系统托盘菜单中添加应用的菜单项。5）访问操作系统的剪贴板，读写其中的内容。6）使用计算机中默认指定的应用打开文件、文件夹以及 URL。7）通过操作系统的通知系统显示通知。
+
+如上述列表中所提到的，使用 NW.js 可以做很多 Web 浏览器不支持的事情。比方说，Web 应用不能直接访问计算机中的文件，也不能访问剪贴板上的数据，这是因为浏览器有安全限制，为了保护用户免受包含恶意内容的网站侵害。在 NW.js 中，由于应用是运行在用户计算机中的，用户等于是信任了这个应用，给予其访问计算机中资源的权限。这意味着可以做诸如访问用户计算机中的文件、创建新文件和文件夹等事情。有了这些特性，开发者们就可以开发出很好贴合用户的系统的应用，并且可以进行一些 Web 应用无法进行（至少没那么容易进行）的操作。而且用户是信任你的应用不会作恶的。
+
+在你的应用中使用 Node.js 和 npm 应用
+
+NW.js 支持在应用中访问 Node.js API 和通过 npm 安装的用户模块。也就是说，你可以在桌面应用中安装 npm 模块，甚至可以使用这些模块以及 Node.js 内置的核心模块，这意味着你的桌面应用代码可以同时访问前后端资源。
+
+举例来说，你可以在 index.html 文件中嵌入一段 JavaScript 代码，这段代码使用 Node.js 的文件系统模块读取指定目录下的文件和目录信息，并且这些信息显示在 HTML 页面中。这段 JavaScript 代码之所以可以共享前后端上下文，正是由于 NW.js 整合了 Node.js 和 Chromium 后的神奇之处。当你用 NW.js 开发桌面应用的时候，这部分信息很重要，一定要牢记在心（不同于 Electron）。如图 1.6 所示，它和 Web 应用的工作机制截然不同。
+
+图 1.6 Web 应用与 NW.js 开发的桌面应用的区别。后者，前后端代码的界限很模糊，因为同一段 JavaScript 代码共享了前后端的上下文
+
+为了更深入地理解图 1.6，我们先来看看传统 Web 应用是怎么工作的。传统 Web 应用通常采用客户端 — 服务器模型，在这种模型中，客户端发起获取 Web 页面的请求或者 API 请求，服务器端执行一些代码并将数据返回给客户端。这里客户端指的就是运行 Web 浏览器的计算机。紧接着 Web 浏览器载入数据，如果该数据是 HTML，则渲染引擎会将它转变为 Web 页面，如果该数据是 XML 或者 JSON 形式的，渲染引擎就会直接以原生数据的形式进行显示。服务器端的职责就是执行后台代码来处理 HTML 页面请求或者 API 请求，运行着 Web 浏览器的客户端的职责就是发送 HTML/API 请求并把响应结果渲染在浏览器中。Web 浏览器遵循一套严格的安全模型来确保 JavaScript 代码只能在当前页面的上下文中被执行，不能干其他事情。在应用状态和职责之间有一个清晰的界限。
+
+在一个 NW.js 应用中，应用视窗就像一个内嵌的 Web 浏览器，不同之处在于，Web 页面中的代码可以访问计算机上的资源，还可以执行服务器端代码。应用状态和职责的界限没有了。这就意味着，你写的代码在同一个地方既可以访问 Web 页面上的 DOM 元素，又可以执行服务器端代码访问计算机的文件系统。不仅如此，还可以在你的代码上使用 npm 模块。
+
+可以在你的桌面应用中安装和使用 npm 模块，这意味着有超过 40 万个 npm 模块（截至 2017 年 1 月）可供使用，当要在你的应用中使用第三方库的时候选择就有很多。实际上，NW.js 和 Electron 都有一些专用库，可以访问 [nw-cn/awesome-nwjs: Awesome NW.js (node-webkit)](https://github.com/nw-cn/awesome-nwjs) 或者 [sindresorhus/awesome-electron: Useful resources for creating apps with Electron](https://github.com/sindresorhus/awesome-electron) 来找到。
+
+同一份代码构建出支持多操作系统的应用
+
+NW.js 提供的最有用的特性之一就是可以通过写一份代码，构建出同时支持 Windows、Mac OS 和 Linux 系统的原生可执行的桌面应用。当你要开发一款支持多平台的应用的时候，这节约了很多时间。这还意味着，在应用的样式方面相比要让一个网站支持多个 Web 浏览器时，现在可以有更好的控制。
+
+所谓原生可执行是指不需要用户在计算机中安装额外的软件就可以将应用运行起来。这让分发应用给用户变得更加简单，包括分发到应用商店，比如，苹果的应用商店以及 Steam 商店，有些 NW.js 应用和游戏都在上面售卖。为特定的操作系统构建应用时需要用到一些命令行参数，不过有些像 nwbuilder 这样的工具可以帮助简化流程，如图 1.7 所示。
+
+图 1.7 nw-builder 工具可以同时为 NW.js 应用构建出 Mac OS、Windows32 位和 64 位系统的原生可执行文件
+
+拿到一个示例桌面应用，在步骤 1 中，可以使用 nw-builder 的 nwbuild 命令自动将我们的桌面应用代码变成 Mac OS 和 Windows 各自平台的可执行二进制文件，如图中第 3 步所示。这大大节约了时间（特别是你还要同时制作 32 位和 64 位版本的时候），而且还可以避免构建应用时发生错误。
+
+接下来，我们会将注意力集中到 Electron，介绍使用 Electron 构建的应用是怎样的以及 Electron 有哪些特性。
 
 ## 1.4 Introducing Electron
 
-Electron is a desktop app framework from GitHub. It was built for GitHub’s text editor Atom and was originally known as Atom Shell. It allows you to build cross-platform desktop apps using HTML, CSS, and JavaScript. Since its release back in November 2013, it has become popular and is used by a number of startups and large businesses for their apps. Electron is used not only in Atom but also in the desktop clients of a chat app called Slack (www.slack.com), a startup that was valued at `$3.8` billion as of April 2016.
+Electron is a desktop app framework from GitHub. It was built for GitHub's text editor Atom and was originally known as Atom Shell. It allows you to build cross-platform desktop apps using HTML, CSS, and JavaScript. Since its release back in November 2013, it has become popular and is used by a number of startups and large businesses for their apps. Electron is used not only in Atom but also in the desktop clients of a chat app called Slack (www.slack.com), a startup that was valued at `$3.8` billion as of April 2016.
+
+1.4 Electron 介绍
+
+Electron 是 GitHub 开发的桌面应用开发框架。它最早的名字叫 Atom Shell，是为 GitHub 的文本编辑器 Atom 构建的。它支持使用 HTML、CSS 和 JavaScript 来构建跨平台的桌面应用。自它 2013 年 11 月发布以来，越来越流行，不少创业公司和大公司都纷纷用它来构建他们的桌面应用。不仅 Atom 在用 Electron，连聊天应用 Slack（https://www.slack.com）的桌面客户端应用也在用，这家创业公司截至 2016 年 4 月估值已达 38 亿美金。
 
 ### 1.4.1 How does Electron work and differ from NW.js?
 
-One of the things that Electron did differently from NW.js was the way it got Chromium and Node.js to work together. In NW.js, Chromium is patched so that Node.js and Chromium are sharing the same JavaScript context (or state, as you may call it in programming). In Electron, there’s no patching of Chromium involved; instead, it’s combined with Node.js through Chromium’s content API and the use of Node.js’s node_bindings.
+One of the things that Electron did differently from NW.js was the way it got Chromium and Node.js to work together. In NW.js, Chromium is patched so that Node.js and Chromium are sharing the same JavaScript context (or state, as you may call it in programming). In Electron, there's no patching of Chromium involved; instead, it's combined with Node.js through Chromium's content API and the use of Node.js's node_bindings.
 
 The implication of this approach is that Electron works differently from NW.js in terms of how it handles JavaScript contexts. Where NW.js maintains a single shared JavaScript context, Electron has separate JavaScript contexts — one for the back-end process that kicks off running the app window (referred to as the main process), and one for each app window (referred to as the renderer process). This is an important difference between the frameworks, and one that will be elaborated on further in the book through various examples.
 
-Another important difference between NW.js and Electron is that where NW.js usually uses an HTML file as the entry point for loading a desktop app, Electron uses a JavaScript file instead. Electron delegates the responsibility of loading an app window to code that’s executed inside the JavaScript file. You’ll see this in greater detail as we explore the Hello World app in Electron in the next section.
+Another important difference between NW.js and Electron is that where NW.js usually uses an HTML file as the entry point for loading a desktop app, Electron uses a JavaScript file instead. Electron delegates the responsibility of loading an app window to code that's executed inside the JavaScript file. You'll see this in greater detail as we explore the Hello World app in Electron in the next section.
+
+1.4.1 Electron 是如何工作的以及它和 NW.js 的区别是什么
+
+Electron 和 NW.js 的区别之一就是整合 Chromium 和 Node.js 的方式不同。在 NW.js 中，Chromium 是直接被打补丁打进去的，因此 Node.js 和 Chromium 共享了同一个 JavaScript 上下文（或者在编程中叫「状态」）。而在 Electron 中，并不是以补丁形式将 Chromium 整合进去的，而是通过 Chromium 的 Content API 以及使用了 Node.js 的 node_bindings。
+
+这种实现机制使得 Electron 在处理 JavaScript 上下文时和 NW.js 截然不同。NW.js 维护一个共享的 JavaScript 上下文，而 Electron 有多个独立的 JavaScript 上下文 —— 一个是后端进程负责启动运行应用的视窗（叫 main 进程），另外一个负责具体的应用视窗（叫 renderer 进程）。这是两者很重要的区别，在本书后续内容中我们会通过不同的例子来具体解释这种区别。
+
+还有一个重要的区别就是，NW.js 通常使用 HTML 作为入口文件，而 Electron 使用的是 JavaScript 文件。Electron 将加载应用视窗的职责委派给 JavaScript 代码。这在我们接下来介绍使用 Electron 构建 Hello World 应用时会进行详细介绍。
+
+1『解惑了，怪不得 Electron 项目是 main.js 启动的，最开始启动 nw.js 的时候拷错了，也是用 main.js 启动结果启动不了。（2021-04-12）』
 
 ### 1.4.2 A Hello World app in Electron
 
-Like the Hello World app in NW.js, I’ve also created the app that we’ll run through now. If you want to boot that up and play with it, you can grab a copy of the source at http://mng.bz/u4C0.
+Like the Hello World app in NW.js, I've also created the app that we'll run through now. If you want to boot that up and play with it, you can grab a copy of the source at http://mng.bz/u4C0.
 
-Follow the instructions in the README.md file to get the app up and running. Alternatively, if you want to bake the cake rather than merely eat it at the end, we’ll walk through that now.
+Follow the instructions in the README.md file to get the app up and running. Alternatively, if you want to bake the cake rather than merely eat it at the end, we'll walk through that now.
 
-Assuming that you’ve already installed Node.js on your computer (if not, see “Installing Node.js” in the appendix of this book), let’s start by downloading a copy of Electron via npm. In your terminal or at the Command Prompt, run the following command:
+Assuming that you've already installed Node.js on your computer (if not, see “Installing Node.js” in the appendix of this book), let's start by downloading a copy of Electron via npm. In your terminal or at the Command Prompt, run the following command:
 
 npm install –g electron
 
-This will install Electron as a global npm module, meaning that it will be available to other Node.js applications where you want to use it. Once you have installed the Electron module, we can take a look at what an example Hello World app’s files consist of. Here’s the bare minimum number of files required to run an Electron app:
+This will install Electron as a global npm module, meaning that it will be available to other Node.js applications where you want to use it. Once you have installed the Electron module, we can take a look at what an example Hello World app's files consist of. Here's the bare minimum number of files required to run an Electron app:
 
  index.html  main.js  package.json
 
-You can create a folder named hello-world-electron to store the app’s files. Create a folder with the suggested name, and then you’ll add the required files inside it.
+You can create a folder named hello-world-electron to store the app's files. Create a folder with the suggested name, and then you'll add the required files inside it.
 
-We’ll start with the package.json. Here’s what an example package.json looks like:
+We'll start with the package.json. Here's what an example package.json looks like:
 
 {
 
@@ -470,33 +558,33 @@ We’ll start with the package.json. Here’s what an example package.json looks
 
 }
 
-You might notice that package.json looks almost identical to the package.json file used to load the Hello World app in NW.js. The only difference is that where an NW.js app’s package.json field expects the main property to specify an HTML file as the app’s entry point, Electron expects the main property to specify a JavaScript file.
+You might notice that package.json looks almost identical to the package.json file used to load the Hello World app in NW.js. The only difference is that where an NW.js app's package.json field expects the main property to specify an HTML file as the app's entry point, Electron expects the main property to specify a JavaScript file.
 
-In Electron, the JavaScript file is responsible for loading an app’s windows, tray menus, and other items, as well as handling any system-level events that occur in the OS. For the Hello World example, it looks like the following.
+In Electron, the JavaScript file is responsible for loading an app's windows, tray menus, and other items, as well as handling any system-level events that occur in the OS. For the Hello World example, it looks like the following.
 
 What you can see in listing 1.2 is that where NW.js points to an HTML file in the package.json file, Electron requires a bit of code configuration to achieve the same result.
 
 The JavaScript code looks a bit funny
 
-If you’re fairly new to Node.js and haven’t touched JavaScript in a while, you may notice some new language features like the use of const and let for variable declaration, as well as => as a function shorthand. This is the next version of JavaScript, also known as ES6. It’s a fairly new version of JavaScript that's now integrated into Node.js and is actively used in Electron. To learn more about ES6, you can visit https://babeljs.io/learn-es2015/, http://es6-features.org, and https://es6.io/.
+If you're fairly new to Node.js and haven't touched JavaScript in a while, you may notice some new language features like the use of const and let for variable declaration, as well as => as a function shorthand. This is the next version of JavaScript, also known as ES6. It's a fairly new version of JavaScript that's now integrated into Node.js and is actively used in Electron. To learn more about ES6, you can visit [Learn ES2015 · Babel](https://babeljs.io/docs/en/learn/), [ECMAScript 6: New Features: Overview and Comparison](http://es6-features.org/#Constants), and https://es6.io/.
 
-If you prefer the traditional style of writing JavaScript, you can continue to use it for your Electron applications. The internet is full of opinions, but that doesn’t mean that you have to adopt them. My suggestion is to find what works for you and go from there.
+If you prefer the traditional style of writing JavaScript, you can continue to use it for your Electron applications. The internet is full of opinions, but that doesn't mean that you have to adopt them. My suggestion is to find what works for you and go from there.
 
-Having created the main.js file that’s the entry point to your app, you’ll now create the index.html file that the main.js file loads in an app window. Create a file named index.html, and insert the code shown next.
+Having created the main.js file that's the entry point to your app, you'll now create the index.html file that the main.js file loads in an app window. Create a file named index.html, and insert the code shown next.
 
-This is the HTML file that will be loaded into the browser window by the main.js file. It’s the same code that’s used in the NW.js example app’s index.html file (so we can compare the examples across both frameworks). With the files saved in the application folder, you can now run the app from the command line.
+This is the HTML file that will be loaded into the browser window by the main.js file. It's the same code that's used in the NW.js example app's index.html file (so we can compare the examples across both frameworks). With the files saved in the application folder, you can now run the app from the command line.
 
 To execute the app from the command line, cd into the hello-world-electron directory, and run the following command:
 
 electron .
 
-Once you’ve run the command, click the Hello World button, and you can expect to see something like figure 1.8.
+Once you've run the command, click the Hello World button, and you can expect to see something like figure 1.8.
 
 Figure 1.8 The Hello World example app running with Electron on Mac OS. It looks almost identical to the NW.js equivalent, except the window dimensions are different.
 
 The app for the most part looks identical to the one running on NW.js, with a few slight differences. In figure 1.9, you can see how it looks running on OpenSUSE Linux 13.2.
 
-The Hello World Electron example app looks a bit different from the version that runs on a Mac. This is because Mac OS handles displaying menus differently than Windows and Linux apps do. Where menus are attached to app windows on both Microsoft Windows and Linux apps, Mac OS displays a single menu in the OS’s toolbar that applies to all app windows, as shown for the Hello World Electron app’s Mac OS example in figure 1.10.
+The Hello World Electron example app looks a bit different from the version that runs on a Mac. This is because Mac OS handles displaying menus differently than Windows and Linux apps do. Where menus are attached to app windows on both Microsoft Windows and Linux apps, Mac OS displays a single menu in the OS's toolbar that applies to all app windows, as shown for the Hello World Electron app's Mac OS example in figure 1.10.
 
 Figure 1.9 The Hello World example app running with Electron on OpenSUSE Linux. Notice how the app displays a menu bar with some menu items by default.
 
@@ -504,11 +592,200 @@ Figure 1.10 Application menu on Mac OS. The application menu for the Hello World
 
 If you open the app in Windows 10, you can expect to see a result similar to the one displayed for the Linux app example, as shown in figure 1.11.
 
-The Hello World app with Electron and Windows 10 again looks quite similar to the app equivalents on Linux and Mac OS, minus where the application menu is displayed. The ability to write an app and have it work across three different OSs is a nice feature to have, though, and it’s one of the reasons why developers have been flocking to Electron for their desktop apps.
+The Hello World app with Electron and Windows 10 again looks quite similar to the app equivalents on Linux and Mac OS, minus where the application menu is displayed. The ability to write an app and have it work across three different OSs is a nice feature to have, though, and it's one of the reasons why developers have been flocking to Electron for their desktop apps.
 
-Besides what’s been shown so far, Electron has some other features to offer that make it a compelling choice, described in the next section.
+Besides what's been shown so far, Electron has some other features to offer that make it a compelling choice, described in the next section.
 
 Figure 1.11 The Hello World app running on Electron and Windows 10. Like the Linux app example, the Windows example displays a menu in the app window.
+
+1.4.2 使用 Electron 开发 HelloWorld 应用
+
+和使用 NW.js 开发 Hello World 应用一样，我也已经创建好了这个应用，现在就可以运行起来。如果你想试试，可以从 http://mng.bz/u4C0 获取到源代码。根据 README.md 文件中的说明就可以将应用运行起来。或者你想知道它是怎么实现的，而不只是看看它运行起来是怎样的，那我们就开始一步一步教你如何实现。
+
+假设你的计算机中已经安装好了 Node.js （如果还没有，可以参看本书的附录 A），那么先通过 npm 安装 Electron。在 terminal 或者 Command Prompt 软件中，运行如下命令：
+
+```
+npm install -g electron
+```
+
+上述命令会以全局 npm 模块形式安装 Electron，这意味着其他 Node.js 应用也可以使用。安装好 Electron 模块后，我们来看看 Hello World 示例应用包含哪些文件。下面是一个 Electron 应用必要的三个文件：
+
+```
+index.html
+main.js
+package.json
+```
+
+你可以创建一个名为 hello-world-electron 的文件夹来存放应用文件。创建完后，把这几个必要的文件放进去。
+
+1-3『
+
+官方文档里快速创建 Electron 项目的操作（2021-04-12）：
+
+```
+mkdir my-electron-app && cd my-electron-app
+npm init -y
+npm i --save-dev electron
+```
+
+』
+
+我们从 package.json 文件开始，来看一个例子：
+
+```json
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "main": "main.js"
+}
+```
+
+你可能注意到了，这个 package.json 文件和用 NW.js 开发 Hello World 应用的 package.json 看上去差不多。唯一的区别在于 NW.js 应用的 package.json 文件的 main 属性需要指定一个 HTML 文件作为应用入口，而 Electron 则需要指定一个 JavaScript 文件。
+
+在 Electron 中，这个 JavaScript 文件负责启动应用视窗、托盘菜单以及其他，除此之外还负责处理系统级别的事件。在我们的 Hello World 示例应用中，该文件如代码清单 1.2 所示。
+
+代码清单 1.2 Electron Hello World 应用中的 main.js 文件
+
+```js
+'use strict'
+
+const {app, BrowserWindow} = require('electron')
+
+// mainWindow 变量保存了对应用窗口的引用
+let mainWindow = null
+
+// 监听所有的视窗关闭的事件（Mac OS 不会触发该事件）
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+app.on('ready', () => {
+  // 创建一个新的应用窗口并将它赋值给 mainWindow 变量，以防止被 Node.js 进行垃圾回收时将视窗关闭
+  mainWindow = new BrowserWindow()
+  // 将 index.html 加载进应用视窗
+  mainWindow.loadURL(`file://${__dirname}/index.html`)
+  // 应用关闭时，释放 mainWindow 变量对应视窗的引用
+  mainWindow.on('closed', () => {
+    mainWindow =null
+  })
+})
+```
+
+如上述代码所示，NW.js 只要在 package.json 文件中指定一个 HTML 文件就可以了，而在 Electron 中则需要通过一点代码配置才能达到同样的效果。
+
+JavaScript 代码看起来有点意思
+
+如果你是 Node.js 新手或者有段时间不写 JavaScript 了，那么也许注意到了一些新的语言特性，如使用 const 和 let 进行变量声明，以及使用 => 简化函数声明。这是下一代 JavaScript，名为 ES6。这是新版本的 JavaScript，Node.js 已经对其支持并且在 Electron 中大量使用。要了解更多关于 ES6 的内容，可以参阅 [Learn ES2015 · Babel](https://babeljs.io/docs/en/learn/)、[ECMAScript 6: New Features: Overview and Comparison](http://es6-features.org/#Constants) 和 https://es6.io/。
+
+如果你还是更喜欢写传统风格的 JavaScript 代码，也可以在开发 Electron 应用时继续使用它。互联网的世界中充满了选择，你不一定非要接受具体哪一种。我的建议是选择最适合自己的。
+
+完成了应用入口 main.js 文件后，我们现在来创建在 main.js 文件中将其加载进应用视窗的 index.html 文件。新建一个 index.html 文件，并插入代码清单 1.3 所示的代码。
+
+代码清单 1.3 Electron 版 Hello World 应用中的 index.html 文件
+
+```html
+<html>
+  <head>
+    <title>Hello World</title>
+    <style>
+      body {
+        background-image: linear-gradient(45deg, #EAD790 0%, #EF8C53 100%);
+        text-align: center;
+      }
+
+      button {
+        background: rgba(0,0,0,0.40);
+        box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.50);
+        border-radius: 8px;
+        color: white;
+        padding: 1em 2em;
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 14pt;
+        position: relative;
+        top: 40%;
+        cursor: pointer;
+        outline: none;
+      }
+
+      button:hover {
+        background: rgba(0,0,0,0.30);
+      }
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css' />
+    <script>
+      function sayHello () {
+        alert('Hello World');
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="sayHello()">Say Hello</button>
+  </body>
+</html>
+```
+
+以上就是在 main.js 中被加载进浏览器视窗的 HTML 文件。这个文件的内容和 NW.js 示例中的 index.html 文件内容是一样的（因此我们可以对比这两个框架开发的示例）。在应用文件夹中保存好这个 HTML 文件后，现在就可以通过命令行运行这个应用了。
+
+要从命令行运行应用，先 cd 进入 hello-world-electron 目录，然后执行如下命令：
+
+```
+electron .
+```
+
+运行完上述命令后，单击应用中的 Say Hello 按钮，就会看到如图 1.8 所示的界面。
+
+1『
+
+有个小插曲，跑步起来。发现是以为配置文件 package.json 太简单了，还是改为系统自动生成的。
+
+```json
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  }
+}
+```
+
+命令 `yarn` 安装一下依赖包，然后直接命令 `yarn start` 跑起来。（2021-04-12）
+
+』
+
+除了一些小区别之外，应用大部分看上去都和用 NW.js 开发的差不多。图 1.9 展示了在 Open SUSE Linux 13.2 中运行的效果。
+
+图 1.8 使用 Electron 开发的 Hello World 应用运行在 Mac OS 上的效果。除了窗口大小有点不同之外，其他都和 NW.js 开发的版本差不多
+
+图 1.9 Electron 版 Hello World 示例应用在 OpenSUSE Linux 上的运行效果。注意图中菜单的显示方式以及默认的菜单项
+
+Electron 版本的 Hello World 示例应用在 Windows 和 Linux 中的运行结果和 Mac OS 中有点不同。这是因为 Mac OS 显示菜单的方式和其他两个系统有所不同。在 Windows 和 Linux 上，菜单是直接显示在应用视窗中的，而 Mac OS 是在操作系统的工具条上显示了一排菜单。所有的应用菜单都是显示在这个工具条上的，图 1.10 展示了 Hello World 示例应用的菜单在 Mac 工具条上的显示。
+
+图 1.10 Mac OS 上的应用程序菜单。Hello World 示例应用的菜单也同样是这些默认菜单项
+
+如果用 Windows 10 打开该应用，看上去和 Linux 中的也差不多，如图 1.11 所示。
+
+图 1.11 Electron 版 Hello World 应用在 Windows 10 中的运行效果。和 Linux 版本一样，菜单也显示在应用视窗内
+
+除了应用菜单的显示方式不同外，Electron 版的 Hello World 应用在 Windows 10 中的显示效果和它在 Linux 以及 Mac OS 中也差不多。能够支持开发一款应用可以同时在三个操作系统上运行，这是一个很赞的特性，这也是为什么开发者都喜欢用 Electron 开发桌面应用的原因之一。
+
+除了上述介绍的之外，Electron 还提供了其他一些有竞争力的特性，接下来为大家介绍。
 
 ### 1.4.3 What features does Electron have?
 
@@ -516,27 +793,105 @@ Although Electron is relatively young, it has managed to accumulate a number of 
 
  Creating multiple application windows with ease, each with its own JavaScript context  Integrating with desktop OS features through the shell and screen APIs  Tracking the power status of the computer  Blocking the OS from going into power-saving mode (useful for presentation
 
-apps)  Creating tray apps  Creating menus and menu items  Adding global keyboard shortcuts to the app  Updating the app’s code automatically through app updates  Reporting crashes
+apps)  Creating tray apps  Creating menus and menu items  Adding global keyboard shortcuts to the app  Updating the app's code automatically through app updates  Reporting crashes
 
  Customizing Dock menu items  Operating system notifications  Creating setup installers for your app
 
-As you can see, a lot of features are on offer, and that isn’t an exhaustive list of all of the framework’s features. In particular, the crash-reporting feature is unique to Electron — there’s currently no equivalent to it in NW.js. Electron has also recently come up with dedicated tools for app testing and debugging, called Spectron and Devtron, covered in later chapters.
+As you can see, a lot of features are on offer, and that isn't an exhaustive list of all of the framework's features. In particular, the crash-reporting feature is unique to Electron — there's currently no equivalent to it in NW.js. Electron has also recently come up with dedicated tools for app testing and debugging, called Spectron and Devtron, covered in later chapters.
 
-Demonstrating what Electron does and how it does it, the team behind Electron created a desktop app for demoing Electron’s APIs. It’s a neat way to browse through Electron’s APIs in a practical fashion, and can be downloaded from http://electron .atom.io/#get-started.
+Demonstrating what Electron does and how it does it, the team behind Electron created a desktop app for demoing Electron's APIs. It's a neat way to browse through Electron's APIs in a practical fashion, and can be downloaded from http://electron .atom.io/#get-started.
 
-A COOL WAY TO EXPLORE ELECTRON’S FEATURE SET
+A COOL WAY TO EXPLORE ELECTRON'S FEATURE SET
 
 The next section looks at what apps can be made with NW.js and Electron.
 
+1.4.3 Electron 有哪些特性
+
+尽管 Electron 相对还比较「年轻」，但是它已经陆陆续续提供了一些可使用的 API 和特性用于开发桌面应用：
+
+1、支持创建多视窗，而且每个视窗都有自己独立的 JavaScript 上下文。
+
+2、通过 shell 和 screen API 整合了桌面操作系统的特性。
+
+3、支持获取计算机电源状态。
+
+4、支持阻止操作系统进入省电模式（对于演示文稿类应用非常有用）。
+
+5、支持创建托盘应用。
+
+6、支持创建菜单和菜单项。
+
+7、支持为应用增加全局键盘快捷键。
+
+8、支持通过应用更新来自动更新应用代码。
+
+9、支持汇报程序崩溃。
+
+10、支持自定义 Dock 菜单项。
+
+11、支持操作系统通知。
+
+12、支持为应用创建启动安装器。
+
+你也看到了，Electron 支持大量特性，而上述列出来的只是其中一部分。其中，程序崩溃汇报是 Electron 独有的特性 —— NW.js 目前不支持这种特性。Electron 最近还发布了用于应用测试和调试的工具：Spectron 和 Devtron，后续章节会对它们进行介绍。
+
+查看 Electron 特性集的好办法
+
+为了展示 Electron 支持哪些特性以及如何使用这些特性，Electron 开发团队发布了一个用于展示 Electron API 的桌面应用。这种了解 Electron API 的方式真的很新颖，这个应用可以从 https://electron.atom.io/#get-started 进行下载。
+
+接下来的一节我们将介绍哪些应用可以用 NW.js 和 Electron 来构建。
+
+3『
+
+[Electron | 使用 JavaScript，HTML 和 CSS 构建跨平台的桌面应用程序。](https://www.electronjs.org/#get-started)
+
+[Releases · electron/electron-api-demos](https://github.com/electron/electron-api-demos/releases)
+
+』
+
 ## 1.5 What apps can you make with NW.js and Election?
 
-Although Electron and NW.js are relatively young in terms of software, their use in professional cases is rich and varied. On the NW.js GitHub repository, there’s a long list of example apps that have been built with NW.js, and for Electron there’s the Awesome Electron GitHub repository providing a long list of apps and resources at https://github.com/sindresorhus/awesome-electron. In this section, I discuss a couple of well-known examples that have been commercially successful, as well as ones that demonstrate the potential for what Electron and NW.js can do. We’ll start with one of the biggest success cases for Electron: Slack.
+Although Electron and NW.js are relatively young in terms of software, their use in professional cases is rich and varied. On the NW.js GitHub repository, there's a long list of example apps that have been built with NW.js, and for Electron there's the Awesome Electron GitHub repository providing a long list of apps and resources at https://github.com/sindresorhus/awesome-electron. In this section, I discuss a couple of well-known examples that have been commercially successful, as well as ones that demonstrate the potential for what Electron and NW.js can do. We'll start with one of the biggest success cases for Electron: Slack.
+
+1.5 NW.js 和 Electron 支持创建哪类应用
+
+作为一款软件，尽管 Electron 和 NW.js 都还相对比较「年轻」，但是它们在专业领域的应用却丰富多样。在 NW.js 的 GitHub 代码仓库中，有一个很长的列表，列举了很多使用 NW.js 开发的应用。对于 Electron 来说，也有一个叫 awesome-electron 的 GitHub 仓库：[sindresorhus/awesome-electron: Useful resources for creating apps with Electron](https://github.com/sindresorhus/awesome-electron)，里面有一长串列表，提供了使用 Electron 开发的应用以及一些有用的资源。在这部分内容中，我会介绍一些知名的应用，包括一些商业上很成功的产品，也包括一些展示 Electron 和 NW.js 潜力的。首先我们从一款使用 Electron 开发的应用开始 —— Slack。
+
+1-3『
+
+[sindresorhus/awesome-electron: Useful resources for creating apps with Electron](https://github.com/sindresorhus/awesome-electron)
+
+
+
+第一反应就是找资料列表里推荐的书籍：
+
+Developing an Electron Edge - Preview
+
+Electron in Action
+
+Cross-Platform Desktop Applications
+
+很赞的是第二本和第三本（本书）自己之前就下载了，说明眼光不错，哈哈。已下载书籍「2021058Electron-in-Action」、「2021044Cross-Platform-Desktop-Applications」。第一本书目前没找到。（2021-04-12）
+
+[Developing an Electron Edge – Bleeding Edge Press](https://bleedingedgepress.com/developing-an-electron-edge/)
+
+[adam-lynch/developing-an-electron-edge: The code examples and example apps to go along with the Developing an Electron Edge book by Adam Lynch and Max Gfeller (Bleeding Edge Press).](https://github.com/adam-lynch/developing-an-electron-edge)
+
+』
 
 ### 1.5.1 Slack
 
 Slack (slack.com) is a workplace communication and collaboration tool for businesses. Slack uses Electron to provide the desktop app and is advertising jobs for desktop app engineers who have experience with using Electron. The desktop user interface (UI) is practically identical to the web app interface — a shining example of what Electron can achieve. The app has expanded its feature set to allow for audio and video calls. Figure 1.12 shows Slack in use (note, I blanked out some of the message content and channels for privacy reasons).
 
 Slack recently expanded its offering with support for an app directory for Slack, allowing users to install third-party apps that run inside Slack. The company seems to have a good future ahead.
+
+1.5.1 Slack
+
+Slack（slack.com）是一款企业沟通协作工具。它的桌面客户端是用 Electron 开发的，而且还打广告招聘有 Electron 开发经验的工程师。其用户界面（UI）和 Web 版的一样 —— 充分展现了 Electron 的能力。它还支持音频和视频通话，图 1.12 展示了 Slack 使用中的样子 （注意，出于对隐私的保护，我隐藏了一些聊天内容和频道）。
+
+图 1.12 运行在 Mac OS 上的 Slack
+
+Slack 最近增加了一个新功能 —— 支持应用渠道，允许用户在 Slack 中安装和运行第三方应用。看来这家公司前途无量。
 
 ### 1.5.2 Light Table
 
@@ -546,43 +901,86 @@ The code editor initially supported Clojure but went on to support JavaScript an
 
 Figure 1.13 Light Table, a live interactive code editor. A 3D visualization written in JavaScript is being edited in the left-hand panel, and the results are being rendered live in the right-hand panel.
 
-1.5.3 Game Dev Tycoon
+1.5.2 Light Table
+
+Light Table（lighttable.com），这是一款代码编辑器，它和普通的 IDE 有所不同。它是由 Chris Granger 开发的，并在 Kickstarter 募集了超过 30 万美金的资金。它同时也是第一款使用了 NW.js 的第三方应用，在项目早期还帮助改进了 NW.js。
+
+这款代码编辑器最早支持 Clojure，后来又支持了 JavaScript 和 Python。Light Table 背后的哲学就是重新思考如何进行代码的编写。不同于只是在文件中逐行编写代码，Light Table 觉得重点应该在提供一个工作空间，在里面可以即时地执行编写的代码，而且文档也是直接显示在代码旁边，而不是还要去其他窗口查询文档，如图 1.13 所示。它提供了一种工作空间，开发者在里面可以边写代码边看执行结果，两者不是独立分开的。Light Table 最早是用 NW.js 开发的，最近切换到了 Electron 上。
+
+图 1.13 Light Table，一款在线交互式代码编辑器。图中展示了一个使用 JavaScript 编写的 3D 视觉效果，代码编辑在左侧完成，右侧直接显示渲染结果
+
+### 1.5.3 Game Dev Tycoon
 
 Game Dev Tycoon is a simulation game in the spirit of old simulations like Transport Tycoon and SimCity, but in this case themed around running a game development studio (an irony, given that it was created by a game development company). Behind it is a small company called Greenheart Games, founded in July 2012 by Patrick and Daniel Klug.
 
 The game was unique (and even more ironic) in its attempts to fight off piracy. Patrick anticipated that the game would eventually be pirated and countered this by releasing a cracked copy of the game onto Torrent sites, but with an interesting twist: people playing the game would find themselves losing in the game. As they played the game, they would find that suddenly their games would stop making money, because they were being pirated. Eventually they would go bankrupt as a result and lose. This antipiracy tactic attracted a lot of amusement and attention.
 
-Since its founding, the company has grown to five employees, and the game is being sold on the Steam game store. Shown in figure 1.14, it’s one of the best showcases for using NW.js to build a successful commercial project.
+Since its founding, the company has grown to five employees, and the game is being sold on the Steam game store. Shown in figure 1.14, it's one of the best showcases for using NW.js to build a successful commercial project.
 
-Figure 1.14
+Figure 1.14 Game Dev Tycoon, a game studio simulator
 
-Game Dev Tycoon, a game studio simulator
+1.5.3 Game Dev Tycoon
 
-1.5.4 Gitter
+Game Dev Tycoon 是一款模拟类游戏，有点像 Transport Tycoon 和 SimCity 这两款经典的模拟类游戏，不过这款游戏设计的场景是运营一个游戏开发工作室（这款游戏本身就是一家游戏开发工作室开发的，所以这个设定挺有意思）。开发这款游戏的是一家名为 Greenheart Games 的小公司，该公司由 Patrick 和 Daniel Klug 在 2012 年 7 月创立。
 
-Gitter is a service that provides chat rooms for open source projects on GitHub, including the official chat room for NW.js. It allows users to sign in with a GitHub account and to then access chat rooms based on projects and organizations. It’s seen as a popular alternative to Slack.
+这款游戏非常特别（而且更具讽刺意义），它旨在反击盗版。Patrick 知道迟早这款游戏都会被盗版的，于是为了解决盗版问题，他自己先在种子下载网站发布了破解版，不过破解版中有一个很有意思的设定：玩破解版的用户最终会发现自己没法赢。因为当他们玩的时候，他们会发现游戏中自己做的游戏很快就不赚钱了，因为游戏被盗版了。最终他们游戏中的工作室会破产倒闭。这种反盗版的做法非常具有娱乐性，吸引了很多玩家。
 
-As a chat service, Gitter is available both via its website (gitter.im), as well as via desktop apps for Windows and Mac OS, which are built using NW.js. The app’s look and feel is an exact replica of what you see in the web app and well demonstrates the principle of code reuse. During the beta period, Gitter attracted almost 25,000 developers to the service, delivering over 1.8 million messages, and is currently hosting over 7,000 chat rooms. It now offers paid plans for chat rooms, and the company is working on getting a version of the app to run on Linux as well.
+自成立以来，这家公司现在拥有 5 名员工，而且游戏也在 Steam 游戏商店中售卖。如图 1.14 所示，这是展现使用 NW.js 开发成功商业应用最好的例子之一了。
+
+图 1.14 Game Dev Tycoon，一款游戏工作室模拟游戏
+
+### 1.5.4 Gitter
+
+Gitter is a service that provides chat rooms for open source projects on GitHub, including the official chat room for NW.js. It allows users to sign in with a GitHub account and to then access chat rooms based on projects and organizations. It's seen as a popular alternative to Slack.
+
+As a chat service, Gitter is available both via its website (gitter.im), as well as via desktop apps for Windows and Mac OS, which are built using NW.js. The app's look and feel is an exact replica of what you see in the web app and well demonstrates the principle of code reuse. During the beta period, Gitter attracted almost 25,000 developers to the service, delivering over 1.8 million messages, and is currently hosting over 7,000 chat rooms. It now offers paid plans for chat rooms, and the company is working on getting a version of the app to run on Linux as well.
 
 The main chat room for NW.js can be found on Gitter, a nice example of a product being used to support itself (figure 1.15).
 
-1.5.5 Macaw
+1.5.4 Gitter
+
+Gitter 是一种服务，为 GitHub 上的开源项目提供聊天室功能，NW.js 项目的官方聊天室也使用 Gitter。它可以让用户使用其 GitHub 账户登录，然后访问项目或者组织的聊天室。它被视为 Slack 替代品中最受欢迎的一款。
+
+作为聊天服务，Gitter 不仅有网页版本（gitter.im），还为 Windows 和 Mac OS 提供了桌面应用，应用开发使用的是 NW.js。桌面应用看上去以及用起来和 Web 应用简直一模一样，这也充分体现了代码复用的原则。在公测阶段，Gitter 吸引了约 25 000 名开发者，发送了 180 万条消息，而且截至目前，一共有超过 7000 间聊天室。现在它还提供了付费版的聊天室，同时公司也正在开发 Linux 版本。
+
+NW.js 项目的聊天室可以在 Gitter 上找到，这是一个很好的例子，一款产品自己做出来自己用（参见图 1.15）。
+
+图 1.15 Gitter，一款集成 GitHub 的聊天室客户端
+
+### 1.5.5 Macaw
 
 Macaw (macaw.co) is an innovative WYSIWYG web design tool. It allows web designers to create a visual design for their websites, as they would normally do in an image editor, and generates the underlying HTML and CSS for that design. It helps eliminate the step of converting a visual design into a real website by automatically creating the website code. As a WYSIWYG web design tool, Macaw differs from predecessors like Microsoft FrontPage and Adobe Dreamweaver by outputting semantic HTML and CSS from the visual design.
 
-Founded by Tom Giannattasio and Adam Christ, the product (figure 1.16) was funded through a Kickstarter campaign that raised over $275,000 from more than 2,700 backers. Since March 2014, Macaw has gone on to become a product sold directly through Macaw’s website.
+Founded by Tom Giannattasio and Adam Christ, the product (figure 1.16) was funded through a Kickstarter campaign that raised over $275,000 from more than 2,700 backers. Since March 2014, Macaw has gone on to become a product sold directly through Macaw's website.
 
-Since I began writing the book, I’m pleased to say that Macaw was acquired by another web design application company called InVision — yet another example of a real-world desktop app becoming a success story.
+Since I began writing the book, I'm pleased to say that Macaw was acquired by another web design application company called InVision — yet another example of a real-world desktop app becoming a success story.
 
 Figure 1.16 features
 
 Macaw, a WYSIWYG web design tool that lets designers create websites using visual design
 
-1.5.6 Hyper
+1.5.5 Macaw
 
-Hyper (hyper.is) is a minimal-looking terminal app authored by Guillermo Rauch, a well-known figure in the Node.js community for his work on the Node.js websocket library, Socket.io, and for the real-time hosting service Now. As a terminal app written in HTML, CSS, and JavaScript, Hyper is an extensible app that can be configured to look and behave in lots of different ways. Developers have created plugins (such as hyperpower) that animate the text as it’s typed into the app and enable users to open URLs from within the terminal window. Figure 1.17 shows Hyper in use.
+Macaw（macaw.co）是一款创新的所见即所得（WYSIWYG）的 Web 设计工具。它可以让 Web 设计师直接为他们的网站做视觉设计，而以往，他们都要先在图片编辑软件中做好，然后再生成对应的 HTML 和 CSS 代码。它可以直接自动生成网站代码，省去了将视觉设计稿转成网站代码这一步。作为一款所见即所得的 Web 设计工具，Macaw 和微软的 FrontPage 以及 Adobe 的 Dreamweaver 不同，它从视觉设计稿输出的是语义化的 HTML 和 CSS 代码。
 
-It’s one of the more unique types of desktop apps reimagined with Electron and shows Electron’s minimal style title bar in use.
+这款产品（参见图 1.16）由 Tom Giannattasio 和 Adam Christ 创建，并且通过 Kickstarter 从超过 2700 位支持者中募集了超过 275 000 美元。自 2014 年 3 月起，Macaw 开始通过其官方网站进行销售。
+
+在开始写这本书的时候，我很高兴地获悉 Macaw 被另外一家名为 InVision 的 Web 设计应用公司收购了 —— 这又是一个桌面应用走向成功的例子。
+
+图 1.16 Macaw，一款所见即所得的 Web 设计工具，它可以让设计师使用视觉设计的特性来制作网站
+
+### 1.5.6 Hyper
+
+Hyper (hyper.is) is a minimal-looking terminal app authored by Guillermo Rauch, a well-known figure in the Node.js community for his work on the Node.js websocket library, Socket.io, and for the real-time hosting service Now. As a terminal app written in HTML, CSS, and JavaScript, Hyper is an extensible app that can be configured to look and behave in lots of different ways. Developers have created plugins (such as hyperpower) that animate the text as it's typed into the app and enable users to open URLs from within the terminal window. Figure 1.17 shows Hyper in use.
+
+It's one of the more unique types of desktop apps reimagined with Electron and shows Electron's minimal style title bar in use.
 
 Figure 1.17 Hyper running on Mac OS
 
+1.5.6 Hyper
+
+Hyper（hyper.is）是一款极简的终端应用，作者是 Guillermo Rauch，他在 Node 社区很出名，因为著名的 Node.js websocket 库 ——Socket.io 以及实时托管服务 ——Now 都是他开发的。作为一款用 HTML、CSS 和 JavaScript 开发的终端程序，Hyper 自身可扩展，可以对其外观和功能进行定制。开发者开发了插件（如 hyperpower）可以在输入文字时增加动画效果，还能支持在终端窗口中直接打开网站链接。图 1.17 展示了使用中的 Hyper 应用。
+
+这是一款使用 Electron 开发的非常独特的桌面应用，同时也展示了如何使用 Electron 配置极简的视窗标题条。
+
+图 1.17 运行在 Mac OS 上的 Hyper

@@ -170,53 +170,53 @@ This book has 18 chapters, organized into 4 parts.
 
 Part 1 is an introduction to the frameworks:
 
-■ Chapter 1 introduces NW.js and Electron, describing what they are, how they came about, what a Hello World app looks like in both frameworks, and some of the real-world apps that have been produced with them.
+Chapter 1 introduces NW.js and Electron, describing what they are, how they came about, what a Hello World app looks like in both frameworks, and some of the real-world apps that have been produced with them.
 
-■ Chapter 2 then explores a direct comparison of the frameworks by building a file explorer application in each one.
+Chapter 2 then explores a direct comparison of the frameworks by building a file explorer application in each one.
 
-■ Chapter 3 continues to flesh out some features of the file explorer application. 
+Chapter 3 continues to flesh out some features of the file explorer application. 
 
-■ Chapter 4 rounds off part 1 by building executable versions of the app for different OSs.
+Chapter 4 rounds off part 1 by building executable versions of the app for different OSs.
 
 By the end of the first part, you'll have seen how to build a full-feature app with both frameworks.
 
 Part 2 (chapters 5-6) looks at understanding the internals of NW.js and Electron from a technical perspective:
 
-■ Chapter 5 looks at Node.js, the programming framework behind both NW.jsand Electron. It covers how Node.js works, how asynchronous programming is different from synchronous programming, and the use of callbacks, streams, events, and modules.
+Chapter 5 looks at Node.js, the programming framework behind both NW.jsand Electron. It covers how Node.js works, how asynchronous programming is different from synchronous programming, and the use of callbacks, streams, events, and modules.
 
-■ Chapter 6 looks at how NW.js and Electron operate under the hood in terms of how they combine Chromium with NW.js, and how they handle state betweenthe back end and front end.
+Chapter 6 looks at how NW.js and Electron operate under the hood in terms of how they combine Chromium with NW.js, and how they handle state betweenthe back end and front end.
 
 This will help demystify the magic that NW.js and Electron perform to make their frame-works operate, and provide a useful guide to Node.js for those new to the framework.
 
 In part 3 of the book, we'll look at how to start fleshing out specific features of desktop apps with NW.js and Electron:
 
-■ Chapter 7 looks at controlling how the app can be displayed, in terms of the window dimensions and different screen modes, and how to toggle between them.
+Chapter 7 looks at controlling how the app can be displayed, in terms of the window dimensions and different screen modes, and how to toggle between them.
 
-■ Chapter 8 explores how to create tray applications that sit in the tray area of desktops.
+Chapter 8 explores how to create tray applications that sit in the tray area of desktops.
 
-■ Chapter 9 shows how to build app and context menus for integrating into your apps.
+Chapter 9 shows how to build app and context menus for integrating into your apps.
 
-■ Chapter 10 introduces dragging and dropping files into your app, and being able to craft the UI to have the same look and feel as other OSs.
+Chapter 10 introduces dragging and dropping files into your app, and being able to craft the UI to have the same look and feel as other OSs.
 
-■ Chapter 11 uses your computer's webcam to build a selfie app and to save the photos to your computer.
+Chapter 11 uses your computer's webcam to build a selfie app and to save the photos to your computer.
 
-■ Chapter 12 looks at ways in which you can store app data for your apps, as well as how to retrieve it.
+Chapter 12 looks at ways in which you can store app data for your apps, as well as how to retrieve it.
 
-■ Chapter 13 shows how to use the clipboard APIs of both NW.js and Electron to copy and paste contents to and from the OS's clipboard.
+Chapter 13 shows how to use the clipboard APIs of both NW.js and Electron to copy and paste contents to and from the OS's clipboard.
 
-■ Chapter 14 uses a 2D game to demonstrate how to add keyboard shortcuts toyour apps, as well as how to program global shortcuts that are accessible acrossthe entire OS.
+Chapter 14 uses a 2D game to demonstrate how to add keyboard shortcuts toyour apps, as well as how to program global shortcuts that are accessible acrossthe entire OS.
 
-■ Chapter 15 rounds off the part by exploring how to implement desktop notifications for a Twitter streaming client.
+Chapter 15 rounds off the part by exploring how to implement desktop notifications for a Twitter streaming client.
 
 This part demonstrates a broad range of features that both NW.js and Electron support, helping you to see how the frameworks go about providing those features, and giving you a chance to evaluate which framework suits your needs best.
 
 In the final part of the book, we'll look at things you can do to prepare your app for production: writing tests, debugging code, and finally, producing executable binaries for shipping to your customers:
 
-■ Chapter 16 looks at ways you can approach testing your desktop apps, and at different levels. It introduces the concepts of unit, functional, and integration testing, using Cucumber to document how your app features work, and using Spectron to automate testing your Electron apps at an integration level.
+Chapter 16 looks at ways you can approach testing your desktop apps, and at different levels. It introduces the concepts of unit, functional, and integration testing, using Cucumber to document how your app features work, and using Spectron to automate testing your Electron apps at an integration level.
 
-■ Chapter 17 explores ways you can debug your code to help spot performance bottlenecks and bugs, and covers tools like Devtron to help inspect your app ingreater detail.
+Chapter 17 explores ways you can debug your code to help spot performance bottlenecks and bugs, and covers tools like Devtron to help inspect your app ingreater detail.
 
-■ Chapter 18 finishes off the part by looking at various options for building executable binaries of your app, as well as creating setup installers for the different OSs.
+Chapter 18 finishes off the part by looking at various options for building executable binaries of your app, as well as creating setup installers for the different OSs.
 
 By the end of this part, you should be in a position to test your apps, debug any issues that may occur with them, and finally get them built and shipped to your customers.
 

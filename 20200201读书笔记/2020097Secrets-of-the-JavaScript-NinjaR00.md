@@ -4,23 +4,23 @@
 
 ## 卡片
 
-### 0101. 主题卡——
+### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——
+### 0201. 术语卡 ——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
 
-### 0202. 术语卡——
+### 0202. 术语卡 ——
 
-### 0301. 人名卡——
+### 0301. 人名卡 ——
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡——JS 里的 class 关键字是语法糖
+### 0401. 金句卡 —— JS 里的 class 关键字是语法糖
 
-### 0501. 任意卡——数组的常用操作
+### 0501. 任意卡 —— 数组的常用操作
 
 更详细的可以参考官方文档：[索引集合类 (Indexed collections) - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Indexed_collections#map%E6%95%B0%E7%BB%84)。
 
@@ -93,7 +93,7 @@ var a = function b(b) {
 a(); // Uncaught TypeError: Cannot read property 'name' of undefined
 ```
 
-而在将对象的属性指向一个函数时，如果将函数进行命名，那么其行为与函数表达式一样。这样的函数被称为内联命名函数。72 页的一段代码非常有趣，对象的方法可以调用数组原型方法，例如 Array.prototype.push.call(this, objectB)，然后如果这个对象有个 length 属性，那么这个原型方法呢就会将 length 值加 1，并且给对象添加一个数字属性，对象通过 [index] 访问这个数字属性，就可以访问到刚刚添加的对象 objectB。
+而在将对象的属性指向一个函数时，如果将函数进行命名，那么其行为与函数表达式一样。这样的函数被称为内联命名函数。72 页的一段代码非常有趣，对象的方法可以调用数组原型方法，例如 `Array.prototype.push.call(this, objectB)`，然后如果这个对象有个 length 属性，那么这个原型方法呢就会将 length 值加 1，并且给对象添加一个数字属性，对象通过 [index] 访问这个数字属性，就可以访问到刚刚添加的对象 objectB。
 
 4.4 函数重载方式。重载函数是函数的一种特殊情况，为方便使用，C++ 允许在同一范围中声明几个功能类似的同名函数，但是这些同名函数的形式参数（指参数的个数、类型或者顺序）必须不同，也就是说用同一个运算符完成不同的运算功能。这就是重载函数。重载函数常用来实现功能类似而所处理的数据类型不同的问题。—— 来自百度百科
 
@@ -273,7 +273,7 @@ var linkHref_3 = link.href;  // file:///Users/wzl/Desktop/test.html
 
 获取计算样式。广播一条 API：W3C 标准 API 里有一个可以获得元素的计算样式的方法：window.getComputedStyle(element)。IE > 8 可用。
 
-第 15 章，CSS 选择器引擎。W3C Selectors API，主要就是两个方法： querySelector() 和 querySelectorAll()。比较有趣的事情是这几个：
+第 15 章，CSS 选择器引擎。W3C Selectors API，主要就是两个方法：`querySelector()` 和 `querySelectorAll()`。比较有趣的事情是这几个：
 
 1、在今天来看，W3C Selectors API 其实已经有着非常好的浏览器覆盖率了。IE 系列是「Partial support in IE8」，其他浏览器基本百分比支持。
 
