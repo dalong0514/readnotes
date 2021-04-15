@@ -56,25 +56,25 @@ console.log(array1);
 // expected output: Array [1, 100000, 21, 30, 4]
 ```
 
-### 01. 语法
+### 1.1 语法
 
 ```js
 arr.sort([compareFunction])
 ```
 
-#### 1.1 参数
+#### 1.1.1 参数
 
 compareFunction，可选，用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的 Unicode 位点进行排序。
 
 firstEl，第一个用于比较的元素。secondEl，第二个用于比较的元素。
 
-#### 1.2 返回值
+#### 1.1.2 返回值
 
 排序后的数组。请注意，数组已原地排序，并且不进行复制。
 
-### 02. 描述
+### 1.2 描述
 
-如果没有指明 compareFunction ，那么元素会按照转换为的字符串的诸个字符的 Unicode 位点进行排序。例如 "Banana" 会被排列到 "cherry" 之前。当数字按由小到大排序时，9 出现在 80 之前，但因为（没有指明 compareFunction），比较的数字会先被转换为字符串，所以在Unicode顺序上 "80" 要比 "9" 要靠前。
+如果没有指明 compareFunction ，那么元素会按照转换为的字符串的诸个字符的 Unicode 位点进行排序。例如 "Banana" 会被排列到 "cherry" 之前。当数字按由小到大排序时，9 出现在 80 之前，但因为（没有指明 compareFunction），比较的数字会先被转换为字符串，所以在 Unicode 顺序上 "80" 要比 "9" 要靠前。
 
 如果指明了 compareFunction ，那么数组会按照调用该函数的返回值排序。即 a 和 b 是两个将要被比较的元素：1）如果 compareFunction(a, b) 小于 0 ，那么 a 会被排列到 b 之前；2）如果 compareFunction(a, b) 等于 0 ， a 和 b 的相对位置不变。备注： ECMAScript 标准并不保证这一行为，而且也不是所有浏览器都会遵守（例如 Mozilla 在 2003 年之前的版本）；3）如果 compareFunction(a, b) 大于 0 ， b 会被排列到 a 之前。4）compareFunction(a, b) 必须总是对相同的输入返回相同的比较结果，否则排序的结果将是不确定的。所以，比较函数格式如下：
 
@@ -154,9 +154,9 @@ items.sort(function(a, b) {
 });
 ```
 
-### 03. 示例
+### 1.3 示例
 
-#### 3.1 创建、显示及排序数组
+#### 1.3.1 创建、显示及排序数组
 
 下述示例创建了四个数组，并展示原数组。之后对数组进行排序。对比了数字数组分别指定与不指定比较函数的结果。
 
@@ -206,7 +206,7 @@ Sorted without a compare function: 1,200,40,5,700,80,9
 Sorted with compareNumbers: 1,5,9,40,80,200,700
 ```
 
-#### 3.2 对非 ASCII 字符排序
+#### 1.3.2 对非 ASCII 字符排序
 
 当排序非 ASCII 字符的字符串（如包含类似 e, é, è, a, ä 等字符的字符串）。一些非英语语言的字符串需要使用 String.localeCompare。这个函数可以将函数排序到正确的顺序。
 
@@ -219,11 +219,11 @@ items.sort(function (a, b) {
 // items is ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']
 ```
 
-#### 3.3 使用映射改善排序
+#### 1.3.3 使用映射改善排序
 
 compareFunction 可能需要对元素做多次映射以实现排序，尤其当 compareFunction 较为复杂，且元素较多的时候，某些 compareFunction 可能会导致很高的负载。使用 map 辅助排序将会是一个好主意。基本思想是首先将数组中的每个元素比较的实际值取出来，排序后再将数组恢复。
 
-1『这个思路很好，先把要排序的数据抽出来，拍完序再放回去。』
+1『这个思路很好，先把要排序的数据抽出来，排完序再放回去。』
 
 ```js
 // 需要被排序的数组
@@ -245,9 +245,9 @@ var result = mapped.map(function(el){
 });
 ```
 
-### 04. 应用场景收集
+### 1.4 应用场景收集
 
-#### 4.1 
+#### 1.4.1 
 
 数据流开发，cad 确认页面，按房间号进行排序数组中的数据。因房间号正好都是 101、102、103、201、202 之类的字符串，跟数字对应着的，所以直接用数值型的排序方式。
 
@@ -290,7 +290,7 @@ console.log(array1.reduce(reducer, 5));
 // expected output: 15
 ```
 
-### 01. 语法
+### 2.1 语法
 
 ```js
 arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
@@ -300,7 +300,7 @@ reducer 函数接收 4 个参数：`Accumulator (acc)`（累计器）、`Current
 
 返回值：函数累计处理的结果。
 
-### 02. 描述
+### 2.2 描述
 
 reduce 为数组中的每一个元素依次执行callback函数，不包括数组中被删除或从未被赋值的元素。
 
@@ -325,9 +325,9 @@ var maxCallback2 = ( max, cur ) => Math.max( max, cur );
 
 后面有很多例子，值得仔细研读。一个意外收获（数组去重）：如果你正在使用一个可以兼容 Set 和 Array.from() 的环境， 你可以使用 `let orderedArray = Array.from(new Set(myArray));` 来获得一个相同元素被移除的数组。这是收集到的数组去重第二个方法，第一个是用 Set() 后再用 `...` 运算符转会为数组。
 
-### 03. 示例
+### 2.3 示例
 
-#### 3.1 数组里所有值的和
+#### 2.3.1 数组里所有值的和
 
 ```js
 var sum = [0, 1, 2, 3].reduce(function (accumulator, currentValue) {
@@ -345,7 +345,7 @@ var total = [ 0, 1, 2, 3 ].reduce(
 );
 ```
 
-#### 3.2 累加对象数组里的值
+#### 2.3.2 累加对象数组里的值
 
 要累加对象数组中包含的值，必须提供初始值，以便各个 item 正确通过你的函数。
 
@@ -370,7 +370,7 @@ var sum = [{x: 1}, {x:2}, {x:3}].reduce(
 console.log(sum) // logs 6
 ```
 
-#### 3.3 将二维数组转化为一维
+#### 2.3.3 将二维数组转化为一维
 
 ```js
 var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
@@ -391,7 +391,7 @@ var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
 );
 ```
 
-#### 3.4 计算数组中每个元素出现的次数
+#### 2.3.4 计算数组中每个元素出现的次数
 
 ```js
 var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
@@ -409,7 +409,7 @@ var countedNames = names.reduce(function (allNames, name) {
 // { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
 ```
 
-#### 3.5 按属性对 object 分类
+#### 2.3.5 按属性对 object 分类
 
 ```js
 var people = [
@@ -442,7 +442,7 @@ var groupedPeople = groupBy(people, 'age');
 
 1『上面的实现很值得借鉴，按一个对象里某个属性值，对一个对象进行分类。（2020-09-26）』
 
-#### 3.6 使用扩展运算符和 initialValue 绑定包含在对象数组中的数组
+#### 2.3.6 使用扩展运算符和 initialValue 绑定包含在对象数组中的数组
 
 ```js
 // friends - 对象数组
@@ -474,7 +474,7 @@ var allbooks = friends.reduce(function(prev, curr) {
 // ]
 ```
 
-#### 3.7 数组去重
+#### 2.3.7 数组去重
 
 注意： 如果你正在使用一个可以兼容 Set 和 Array.from() 的环境， 你可以使用 `let orderedArray = Array.from(new Set(myArray));` 来获得一个相同元素被移除的数组。
 
@@ -498,7 +498,7 @@ let result = arr.sort().reduce((init, current) => {
 console.log(result); //[1,2,3,4,5]
 ```
 
-#### 3.8 按顺序运行 Promise
+#### 2.3.8 按顺序运行 Promise
 
 ```js
 /**
@@ -546,7 +546,7 @@ runPromiseInSequence(promiseArr, 10)
   .then(console.log);   // 1200
 ```
 
-#### 3.9 功能型函数管道
+#### 2.3.9 功能型函数管道
 
 ```js
 // Building-blocks to use for composition
@@ -575,7 +575,7 @@ multiply24(10); // 240
 
 1『上面的实现目前没弄明白。（2020-09-26）』
 
-#### 3.10 使用 reduce 实现 map
+#### 2.3.10 使用 reduce 实现 map
 
 ```js
 if (!Array.prototype.mapUsingReduce) {
@@ -591,4 +591,3 @@ if (!Array.prototype.mapUsingReduce) {
   (currentValue, index, array) => currentValue + index + array.length
 ) // [5, 7, , 10]
 ```
-
