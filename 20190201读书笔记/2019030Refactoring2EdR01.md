@@ -1,5 +1,3 @@
-# 2019030Refactoring2EdR01
-
 ## 记忆时间
 
 ## 0101. Refactoring: A First Example Topics

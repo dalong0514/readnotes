@@ -1,5 +1,3 @@
-# 2019116AutoCAD-Platform-CustomizationR00
-
 ## 记忆时间
 
 ## 资源汇总

@@ -1,6 +1,12 @@
-# 2019117Practical-Common-LispR01
-
 ## 记忆时间
+
+## 目录
+
+0201 Lather, Rinse, Repeat: A Tour of the REPL
+
+0301 Practical: A Simple Database
+
+0401 Syntax and Semantics
 
 ## 0201. Lather, Rinse, Repeat: A Tour of the REPL
 

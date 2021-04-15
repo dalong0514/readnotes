@@ -1,5 +1,3 @@
-# 2019030Refactoring2EdR11
-
 ## 记忆时间
 
 ## 0601. A First Set of Refactorings

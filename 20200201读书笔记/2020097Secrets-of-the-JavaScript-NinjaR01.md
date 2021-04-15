@@ -1,24 +1,22 @@
-# 2020097Secrets-of-the-JavaScript-NinjaR01
-
 ## 记忆时间
 
 ## 0601. Functions for the future: generators and promises
 
 ### Summary
 
-1. Generators are functions that generate sequences of values—not all at once, but on a per request basis.
+1 Generators are functions that generate sequences of values—not all at once, but on a per request basis.
 
-2. Unlike standard functions, generators can suspend and resume their execution. After a generator has generated a value, it suspends its execution without blocking the main thread and patiently waits for the next request.
+2 Unlike standard functions, generators can suspend and resume their execution. After a generator has generated a value, it suspends its execution without blocking the main thread and patiently waits for the next request.
 
-3. A generator is declared by putting an asterisk (\*) after the function keyword. Within the body of the generator, we can use the new yield keyword that yields a value and suspends the execution of the generator. If we want to yield to another generator, we use the yield\* operator.
+3 A generator is declared by putting an asterisk (\*) after the function keyword. Within the body of the generator, we can use the new yield keyword that yields a value and suspends the execution of the generator. If we want to yield to another generator, we use the yield\* operator.
 
-4. Calling a generator creates an iterator object through which we control the execution of the generator. We request new values from the generator by using the iterator’s next method, and we can even throw exceptions into the generator by calling the iterator’s throw method. In addition, the next method can be used to send in values to the generator.
+4 Calling a generator creates an iterator object through which we control the execution of the generator. We request new values from the generator by using the iterator’s next method, and we can even throw exceptions into the generator by calling the iterator’s throw method. In addition, the next method can be used to send in values to the generator.
 
-5. A promise is a placeholder for the results of a computation; it’s a guarantee that eventually we’ll know the result of the computation, most often an asynchronous computation. A promise can either succeed or fail, and after it has done so, there will be no more changes.
+5 A promise is a placeholder for the results of a computation; it’s a guarantee that eventually we’ll know the result of the computation, most often an asynchronous computation. A promise can either succeed or fail, and after it has done so, there will be no more changes.
 
-6. Promises significantly simplify our dealings with asynchronous tasks. We can easily work with sequences of interdependent asynchronous steps by using the then method to chain promises. Parallel handling of multiple asynchronous steps is also greatly simplified; we use the Promise.all method.
+6 Promises significantly simplify our dealings with asynchronous tasks. We can easily work with sequences of interdependent asynchronous steps by using the then method to chain promises. Parallel handling of multiple asynchronous steps is also greatly simplified; we use the Promise.all method.
 
-7. We can combine generators and promises to deal with asynchronous tasks with the simplicity of synchronous code.
+7 We can combine generators and promises to deal with asynchronous tasks with the simplicity of synchronous code.
 
 This chapter covers: 1) Continuing function execution with generators. 2) Handling asynchronous tasks with promises. 3) Achieving elegant asynchronous code by combining generators and promises.
 

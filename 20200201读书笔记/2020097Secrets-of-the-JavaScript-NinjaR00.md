@@ -1,5 +1,3 @@
-# 2020097Secrets-of-the-JavaScript-NinjaR00
-
 ## 记忆时间
 
 ## 卡片

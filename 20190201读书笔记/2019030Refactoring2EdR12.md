@@ -1,6 +1,10 @@
-# 2019030Refactoring2EdR12
-
 ## 记忆时间
+
+## 目录
+
+0901 Organizing Data
+
+1001 Simplifying Conditional Logic
 
 ## 0901. Organizing Data
 

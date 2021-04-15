@@ -1,5 +1,3 @@
-# 2019117Practical-Common-LispR00
-
 ## 记忆时间
 
 ## 基本信息

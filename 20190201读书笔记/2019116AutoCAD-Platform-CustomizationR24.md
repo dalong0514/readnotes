@@ -1,5 +1,3 @@
-# 2019116AutoCAD-Platform-CustomizationR24
-
 ## 记忆时间
 
 ## 目录

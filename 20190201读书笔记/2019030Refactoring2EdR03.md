@@ -1,5 +1,3 @@
-# 2019030Refactoring2EdR03
-
 ## 记忆时间
 
 ## 0301. Bad Smells in Code Topics

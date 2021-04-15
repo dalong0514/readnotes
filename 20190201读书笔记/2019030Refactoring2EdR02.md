@@ -1,5 +1,3 @@
-# 2019030Refactoring2EdR02
-
 ## 记忆时间
 
 ## 0201. Principles in Refactoring

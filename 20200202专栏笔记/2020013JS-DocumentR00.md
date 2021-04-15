@@ -323,7 +323,7 @@ var maxCallback2 = ( max, cur ) => Math.max( max, cur );
                         .reduce( maxCallback2, -Infinity );
 ```
 
-后面有很多例子，值得仔细研读。一个意外收获（数组去重）：如果你正在使用一个可以兼容 Set 和 Array.from() 的环境， 你可以使用 `let orderedArray = Array.from(new Set(myArray));` 来获得一个相同元素被移除的数组。这是收集到的数组去重第二个方法，第一个是用 Set() 后再用 `...` 运算符转会为数组。
+1『后面有很多例子，值得仔细研读。一个意外收获（数组去重）：如果你正在使用一个可以兼容 Set 和 Array.from() 的环境， 你可以使用 `let orderedArray = Array.from(new Set(myArray));` 来获得一个相同元素被移除的数组。这是收集到的数组去重第二个方法，第一个是用 Set() 后再用 `...` 运算符转会为数组。』
 
 ### 2.3 示例
 
@@ -384,7 +384,7 @@ var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
 
 你也可以写成箭头函数的形式：
 
-```
+```js
 var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
  ( acc, cur ) => acc.concat(cur),
  []
@@ -440,7 +440,7 @@ var groupedPeople = groupBy(people, 'age');
 // }
 ```
 
-1『上面的实现很值得借鉴，按一个对象里某个属性值，对一个对象进行分类。（2020-09-26）』
+1『上面的实现很值得借鉴，按一个对象里某个属性值，对一个对象进行分类。（2020-09-26）补充：PHP（统计仪表安装材料）、autolisp（设备定位功能时根据图号对设备分类），都已经实现了这个基础功能。（2021-04-15）』
 
 #### 2.3.6 使用扩展运算符和 initialValue 绑定包含在对象数组中的数组
 
