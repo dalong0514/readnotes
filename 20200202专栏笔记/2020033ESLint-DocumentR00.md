@@ -1,5 +1,3 @@
-# 2020033ESLint-DocumentR00
-
 ## 记忆时间
 
 ## 卡片
@@ -34,6 +32,16 @@
 
 行动卡是能够指导自己的行动的卡。
 
+## 个人配置
+
+```json
+    "rules": {
+        "space-before-function-paren": [2, "never"],
+        'semi': [2, 'never'],
+        "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+    }
+```
+
 ## 0101. Getting Started with ESLint
 
 [ESLint - Pluggable JavaScript linter](https://eslint.org/)
@@ -50,11 +58,25 @@ ESLint is a tool for identifying and reporting on patterns found in ECMAScript/J
 npm run lint
 ```
 
+补充：为啥这里用的是 `lint`，因为是墨菲自己设置的脚本命令（2021-04-16）。
+
+```
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build:prod": "vue-cli-service build",
+    "build:stage": "vue-cli-service build --mode staging",
+    "preview": "node build/index.js --preview",
+    "lint": "eslint --fix --ext .js,.vue src/views",
+    "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+    "new": "plop"
+  }
+```
+
 』
 
 ### 1.1 Installation and Usage
 
-Prerequisites: Node.js (^10.12.0, or >=12.0.0) built with SSL support. (If you are using an official Node.js distribution, SSL is always built in.) You can install ESLint using npm or yarn:
+Prerequisites: Node.js (`^10.12.0, or >=12.0.0`) built with SSL support. (If you are using an official Node.js distribution, SSL is always built in.) You can install ESLint using npm or yarn:
 
 ```
 npm install eslint --save-dev

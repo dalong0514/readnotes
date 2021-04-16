@@ -1,6 +1,12 @@
-# 0301. Building your first desktop application
+## 记忆时间
 
-## Summary
+## 目录
+
+0301 Building your first desktop application
+
+## 0301. Building your first desktop application
+
+### Summary
 
 In this chapter, you built on the beginnings of a desktop app and created some rich features that make the app a usable, minimally viable product. You also had a chance to explore how you can evolve a desktop app's codebase to remain readable, and how you can organize the code for a desktop app (because there's no convention-overconfiguration approach to doing this currently).
 
@@ -26,7 +32,7 @@ In chapter 4, you'll prepare the app for distribution: you'll hide the app devel
 
 在第 4 章中，我们要为应用分发做准备了：隐藏开发者工具、添加应用图标、对应用进行构建，使其可以在不同的操作系统中像原生桌面应用那样运行起来。
 
-## 3.0
+### 3.0
 
 This chapter covers: 1) Opening files from the file explorer. 2) Accessing the filesystem. 3) Refactoring code using Node.js's module functionality. 4) Implementing search features in the desktop app.
 
@@ -44,7 +50,7 @@ The goal is that not only will you have made the app's features by the end of th
 
 我们的目标不仅是在本章结束的时候完成应用的功能，你还要理解如何使用 NW.js 和 Electron 完成这些功能。这个过程也会让你积累足够的经验使用这些桌面应用开发框架去开发其他应用。你的脑子里总会迸发出很多奇思妙想，以前你不知道如何实现，现在你可以了。激动吗？好，准备一下，让我们进入第二回合。
 
-## 3.1 Exploring the folders
+### 3.1 Exploring the folders
 
 The main ingredients for making this happen are now in place: the files and folders for a given path can now be displayed visually in the window. Next you need to build the functionality so that when the user double-clicks a folder in the main area, the app navigates to that folder and displays its contents in the main area.
 
@@ -52,7 +58,7 @@ The main ingredients for making this happen are now in place: the files and fold
 
 实现这一功能的条件都已经满足了：指定路径下的文件和文件夹都已经显示在视窗中了。接下来，你需要实现这样一个功能：当用户在主区域中单击某个文件夹的时候，应用需要在主区域进一步显示该文件夹下的内容。
 
-### 3.1.1 Refactoring the code
+#### 3.1.1 Refactoring the code
 
 If you look at the app.js file now, you'll notice that it's beginning to look a bit muddled, and at this point it's worth refactoring the code so that it doesn't become overwhelming and difficult to manage. Refactoring the file requires organizing the code into logical groups, as shown in figure 3.1.
 
@@ -198,7 +204,7 @@ main()
 
 跑的时候报错，发现漏掉了一行代码：
 
-```
+```js
 userInterface.bindDocument(window)
 ```
 
@@ -260,7 +266,7 @@ fileSystem.js 文件包含了 getUsersHomeFolder、getFilesInFolder、inspectAnd
 
 保存修改后的文件内容。重构快完成了。接下来要支持当用户在文件浏览器中双击文件夹时，能显示该文件夹中的内容。
 
-### 3.1.2 Handling double-clicks on folders
+#### 3.1.2 Handling double-clicks on folders
 
 One of the common features of using a file explorer is navigating folders by doubleclicking the folder icon. You'll add this functionality to the Lorikeet app.
 
@@ -484,7 +490,7 @@ You can see here that you've been able to use plain vanilla JavaScript, HTML, an
 
 如你所见，你已经可以使用原生的 JavaScript、HTML 以及 CSS 实现一款看上去是真正的桌面应用了。在目前为止一切都不错，不过任务还没完成。接下来要为应用增加快速搜索功能。
 
-## 3.2 Implementing quick search
+### 3.2 Implementing quick search
 
 Figure 3.4 The quick search feature that you want to implement in the app
 
@@ -508,7 +514,7 @@ If you have a folder containing lots of files, searching through the entire list
 
 如果一个文件夹中包含非常多的文件，那么要在这些文件中查找某个文件是一件非常麻烦的事情。在线框图中，工具条的右上角增加了一个搜索框，要实现文件夹内的搜索功能相对比较容易。只需完成以下几件事情即可：1）在工具条的右上角增加一个搜索框。2）引入一个内存搜索库。3）将当前文件夹中的文件和文件夹信息加入搜索索引。4）用户开始搜索时，对主区域显示的文件进行过滤。
 
-### 3.2.1 Adding the search field in the toolbar
+#### 3.2.1 Adding the search field in the toolbar
 
 The first thing you need to do is add some HTML for the search field in the top toolbar. Insert the following HTML snippet into the index.html file, after the currentfolder div element:
 
@@ -544,7 +550,7 @@ Figure 3.5 The search field in the top toolbar, like the wireframe in figure 3.4
 
 图 3.5 上方工具条中的搜索框，和图 3.4 所示的线框图中的类似。有意思的是，search 类型的 input 标签中的 results 属性给文本框里面加入了一个放大镜图标
 
-### 3.2.2 Adding an in-memory search library
+#### 3.2.2 Adding an in-memory search library
 
 Now that the search field exists, you need a way to perform searching on the list of files and folders with a searching library. Thankfully, you don't need to write one, as this is a common need that has already been satisfied.
 
@@ -636,7 +642,7 @@ npm install lunr --save
 
 上述代码实现了三个函数：addToIndex 的作用是将文件添加到索引中，find 支持对索引进行查询，resetIndex 的作用是重置索引，当你需要浏览一个新文件夹时，需要将现有的索引全部清除。通过 module.exports 将这些函数都暴露出来，这样在 app.js 中就可以载入这个文件并访问到它们。
 
-### 3.2.3 Hooking up the search functionality with the UI 
+#### 3.2.3 Hooking up the search functionality with the UI 
 
 To have the search field trigger searching the file names, you need to be able to intercept the event of typing the query in the field. You can do this by adding a function to the userInterface.js file called bindSearchField, which will attach an event listener to the search field. In the userInterface.js file, add the following function to the file:
 
@@ -948,7 +954,7 @@ function addToIndex(file) {
 
 图 3.6 对 Atom 隐藏文件夹中的内容针对文件名进行搜索
 
-## 3.3 Enhancing navigation in the app
+### 3.3 Enhancing navigation in the app
 
 You've gotten to a stage where you can display the contents of the user's personal folder and allow them to traverse through those folders to see what other files and folders exist on their computer, as well as filter the files and folders by a search query. Now you'll help the user navigate backward as well, as there isn't currently a way to do that in the app.
 
@@ -958,7 +964,7 @@ To do this, you'll give the user the ability to navigate the folders via the cur
 
 你已经实现了显示用户个人文件夹内容、浏览文件夹中的具体内容、通过搜索来过滤要展示的文件夹和文件的功能。现在还需要支持回退，目前应用中还没有这个功能。要实现这个功能，你需要支持让用户单击显示当前文件夹路径的时候回退到上一级内容 —— 要将显示路径中每个表示文件夹的部分都变成可单击的。
 
-### 3.3.1 Making the current folder path clickable
+#### 3.3.1 Making the current folder path clickable
 
 Figure 3.7 shows what you want to do.
 
@@ -1068,7 +1074,7 @@ span 标签创建好后，这些 HTML 内容就以字符串的形式连起来并
 
 userInterface.js 文件很容易就扩展出了新功能，可以处理当用户单击当前文件夹路径上的文件名的情况了 —— 这真是很棒，因为只是对代码进行了简单的修改而不是大刀阔斧的改动就达到了目的。
 
-### 3.3.2 Getting the app to load at the folder path
+#### 3.3.2 Getting the app to load at the folder path
 
 This simple one-line change enables the functionality to work, and the last code change you want to do before you put it into action is to make the span elements show a pointer when the cursor passes over them. Add the following code to the app.css file:
 
@@ -1091,7 +1097,7 @@ Now that you've added that feature, the next step is to handle opening files wit
 
 现在你已经完成了这个功能，接下来要实现用系统默认的应用打开对应的文件。
 
-### 3.3.3 Opening files with their default application
+#### 3.3.3 Opening files with their default application
 
 So far in the app, you've focused a lot on interacting with folders, but now you need to look at how you can make the file explorer open files like images, videos, documents, and other items.
 
