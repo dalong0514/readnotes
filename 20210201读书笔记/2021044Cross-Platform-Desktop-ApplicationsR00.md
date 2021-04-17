@@ -1,6 +1,6 @@
-# 2021044Cross-Platform-Desktop-ApplicationsR00
-
 ## 记忆时间
+
+书籍的 GitHub 源码：[paulbjensen/cross-platform-desktop-applications: Code examples for the book "Cross Platform Desktop Applications"](https://github.com/paulbjensen/cross-platform-desktop-applications)
 
 ## 卡片
 
@@ -14,9 +14,73 @@ npm init -y
 npm i --save-dev electron
 ```
 
-### 0201. 术语卡 ——
+### 0102. 主题卡 —— 安装第三方包时 save 和 save-dev 的区别
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+[node.js - What is the difference between --save and --save-dev? - Stack Overflow](https://stackoverflow.com/questions/22891211/what-is-the-difference-between-save-and-save-dev)
+
+--save-dev is used to save the package for development purpose. Example: unit tests, minification.
+
+--save is used to save the package required for the application to run.
+
+he difference between --save and --save-dev may not be immediately noticeable if you have tried them both on your own projects. So here are a few examples...
+
+Let's say you were building an app that used the moment package to parse and display dates. Your app is a scheduler so it really needs this package to run, as in: cannot run without it. In this case you would use:
+
+```
+npm install moment --save
+```
+
+This would create a new value in your package.json
+
+```json
+"dependencies": {
+   ...
+   "moment": "^2.17.1"
+}
+```
+
+When you are developing, it really helps to use tools such as test suites and may need jasmine-core and karma. In this case you would use
+
+```
+npm install jasmine-core --save-dev
+npm install karma --save-dev
+```
+
+This would also create a new value in your package.json
+
+```json
+"devDependencies": {
+    ...
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.1",
+}
+```
+
+You do not need the test suite to run the app in its normal state, so it is a --save-dev type dependency, nothing more. You can see how if you do not understand what is really happening, it is a bit hard to imagine.
+
+By default, NPM simply installs a package under node_modules. When you're trying to install dependencies for your app/module, you would need to first install them, and then add them to the dependencies section of your package.json.
+
+--save-dev adds the third-party package to the package's development dependencies. It won't be installed when someone runs npm install directly to install your package. It's typically only installed if someone clones your source repository first and then runs npm install in it.
+
+--save adds the third-party package to the package's dependencies. It will be installed together with the package whenever someone runs npm install package.
+
+Dev dependencies are those dependencies that are only needed for developing the package. That can include test runners, compilers, packagers, etc. Both types of dependencies are stored in the package's package.json file. --save adds to dependencies, --save-dev adds to devDependencies.
+
+### 0201. 术语卡 —— Node.js
+
+信息源自「0501Using Node.js within NW.js and Electron」
+
+Node.js is a programming framework created by Ryan Dahl back in 2009. It provides a way to write server-side programs with JavaScript and uses an evented architecture to handle the execution of that code. The programming framework combines V8 (a JavaScript engine) with libuv, a library that provides access to the OS libraries in an asynchronous fashion.
+
+Because of this, JavaScript code is executed by Node.js in such a way that code executing on one line doesn't block the execution of the code on the next line. This is distinctly different from other languages where code on one line executes after the code on the previous line has finished executing. It's important to get familiar with how Node.js handles executing code. You'll tackle this in the next section.
+
+1『这里对 Node.js 的解释做一张术语卡片。（2021-04-16）』—— 已完成
+
+5.1 什么是 Node.js
+
+Node.js 是一个由 Ryan Dahl 在 2009 年创建的编程框架。它提供了一种使用 JavaScript 来编写服务端程序的方法，并且使用基于事件的架构来处理代码的执行。该编程框架整合了 V8（一种 JavaScript 引擎）和 libuv（一种编程库），提供了异步的方式来调用操作系统资源。
+
+正因如此，通过 Node.js 执行的 JavaScript 代码之间可以做到不阻塞对方。这是和其他语言相比最大的不同点，在其他语言中，一行代码执行完毕后才能执行下一行代码。了解 Node.js 如何处理代码执行这一点非常重要。下一节会做更多介绍。
 
 ### 0202. 术语卡 ——
 
@@ -26,21 +90,47 @@ npm i --save-dev electron
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-### 0401. 金句卡 ——
+### 0401. 数据信息卡 ——
+
+### 0501. 任意卡 ——
+
+信息源自「0501Using Node.js within NW.js and Electron」
+
+Notice the ^ preceding the version 1.10.1 of CoffeeScript. You've installed version 1.10.1 of CoffeeScript, but let's say a couple months later someone downloads a copy of the app's code from GitHub and runs npm install to download the dependencies. If CoffeeScript 1.11.0 comes out, or even 1.10.2, those will be downloaded instead of 1.10.1. The caret character indicates that you can install a more up-to-date version of the dependency, so long as the changes are only at patch level (the number of the version after the second dot, indicating a bug fix or change that doesn't affect existing functionality) or minor level (the number after the first dot in the version number, indicating a small change to the module which shouldn't cause breaking changes to your app). If CoffeeScript 2.0.0 is out, it won't install that version because that's a major-level change (indicating new features/changed API and therefore likely to cause breaking changes to your app).
+
+The idea behind this approach is to allow developers to pull in fixes and nonbreaking updates to their dependencies without having to manually update those numbers in the package.json file. This can work as long as the developers of Node.js modules follow the principles of semantic versioning, as well as take care not to introduce bugs during those updates. From a DevOps perspective, this can provide room for production errors to creep in (hence, the need for a comprehensive testing strategy, which I'll cover later in the book). You want control over the version of the dependencies.
+
+How do you lock down the versions of the dependencies? There are two ways you can do this. The first is to remove any ^ or ~ characters from the front of the version numbers of the dependencies listed in the package.json file. If you don't want to do that manually, the alternative approach is to use npm shrinkwrap.
+
+1-2『锁死 node.js 第三方包版本号的两种方法。做一张任意卡片。（2021-04-17）』—— 已完成
+
+npm's shrinkwrap command will lock down the version of dependencies that are installed with the module. Running npm shrinkwrap in the same working directory as the package.json file will produce a file called npm-shrinkwrap.json, a JSON file that has configuration information to specify exactly what version of the module should be installed, which looks like this:
+
+```json
+{
+    "name": "pkgjson", 
+    "version": "1.0.0", 
+    "dependencies": { "underscore": { "version": "1.8.3", "from": "underscore@", "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.8.3.tgz" } }
+}
+```
+
+This file helps npm know exactly what versions of the software should be installed for the module.
+
+Based on my experience working with Node.js since 2010, my suggestion is to use the approach of keeping dependencies in the package.json file up to date, keep the node_modules folder out of version control, and, when needed, use npm shrinkwrap to lock down the dependencies in use.
+
+注意，`^` 在 CoffeeScript 1.10.1 版本号的前面。你已经安装了 1.10.1 版本的 CoffeeScript，不过，假设几个月后，有人从 GitHub 上下载了一份应用代码，并运行 npm install 来安装依赖。如果 CoffeeScript 1.11.0 或者 1.10.2 已经发布了，那么安装的时候就会安装新发布的版本。脱字符号表示你可以安装更新版本的依赖模块，只要该新版本是在补丁级别的（版本号中第二个点后面的那个数字，代表了用于修复漏洞或者不影响功能的改动）或者是小版本级别的（版本号中第一个点后面的那个数字，表示改动不会要求你的应用更新后需要修改代码才能工作）。如果 CoffeeScript 2.0.0 发布了的话，它不会被安装，因为它属于主版本号的改动（意味着有新的功能 / 修改过的 API，会导致和你的应用不兼容，需要你的应用也跟着进行修改）。
+
+之所以使用这种方式是为了让开发者可以直接获得依赖模块的补丁和兼容的更新，而不需要手动在 package.json 中更新版本号来获取更新。只要模块的开发者遵循语义化版本号的原则，并且在更新过程中不引入漏洞，这套方式就可以很好地工作。从 DevOps 的角度来看，这为生产环境中的漏洞滋生提供了温室（因此，我们需要综合的测试策略，本书后续部分会做介绍）。你想要控制依赖模块的版本号。
+
+如何锁定依赖模块的版本号呢？这里有两种方法。第一种方法是将 package.json 文件中列出的依赖模块版本号前的 `^` 和 `~` 符号都去掉。如果你不想手动做的话，还有一个办法就是可以使用 `npm shrinkwrap` 命令。
+
+npm 的 shrinkwrap 命令会将安装的模块版本号锁定。在 package.json 文件同级目录下运行 npm shrinkwrap 命令时会产生一个名为 npm-shrinkwrap.json 文件，这个 JSON 文件包含了一些配置信息，指明了安装模块的具体版本号，如下所示：
+
+上述文件有助于让 npm 知道具体要安装哪个版本的模块。根据我从 2010 年就开始使用 Node.js 到现在的经验，我的建议是，保持 package.json 文件中的模块版本号最新、将 node_modules 文件夹从版本控制中移除以及如有必要，使用 npm shrinkwrap 将依赖的模块版本号锁定。
+
+### 0601. 金句卡 ——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
-
-### 0501. 行动卡 ——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 数据信息卡 ——
-
-### 0701. 任意卡 ——
-
-最后还有一张任意卡，记录个人阅读感想。
-
-[paulbjensen/cross-platform-desktop-applications: Code examples for the book "Cross Platform Desktop Applications"](https://github.com/paulbjensen/cross-platform-desktop-applications)
 
 ## 内容简介
 

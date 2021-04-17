@@ -76,6 +76,8 @@ Node.js is a programming framework created by Ryan Dahl back in 2009. It provide
 
 Because of this, JavaScript code is executed by Node.js in such a way that code executing on one line doesn't block the execution of the code on the next line. This is distinctly different from other languages where code on one line executes after the code on the previous line has finished executing. It's important to get familiar with how Node.js handles executing code. You'll tackle this in the next section.
 
+1『这里对 Node.js 的解释做一张术语卡片。（2021-04-16）』—— 已完成
+
 5.1 什么是 Node.js
 
 Node.js 是一个由 Ryan Dahl 在 2009 年创建的编程框架。它提供了一种使用 JavaScript 来编写服务端程序的方法，并且使用基于事件的架构来处理代码的执行。该编程框架整合了 V8（一种 JavaScript 引擎）和 libuv（一种编程库），提供了异步的方式来调用操作系统资源。
@@ -152,7 +154,9 @@ console.log('hi')
 When you run this with Node.js, you should see the following result in Terminal or Command Prompt:
 
 ```
-hi 56
+hi 
+
+56
 ```
 
 You'll notice that the console.log statement executed before the file count did, even though it was placed after it in the code. This is one of the aspects of asynchronous programming that newcomers to Node.js initially struggle to get their head around. The best way to illustrate it is with a diagram like figure 5.3.
@@ -261,6 +265,9 @@ If you run the example code along with the text of the book in your terminal, yo
 $> node findTerm.js 
 => term found: true
 ```
+
+1『这里学到了一个关键知识点：Node 环境里可以直接跑 JS 文件，大赞。（2021-04-17）』
+
 
 What you've achieved here is a way to read a Rich Text Format (RTF) document and find a term within. But you could have done the same thing with less code by using the file system API's readFile function, with the code shown next.
 
@@ -397,7 +404,7 @@ greeter.on('welcome', function () {
 greeter.emit('welcome')
 ```
 
-An event emitter instance called greeter is created, and you create an event on it with the name 'welcome', which when emitted will log 'hello'. You then emit the event 'welcome' on the greeter object. If you run the code in your Node.js REPL, you can see that the message “hello” is printed in the Terminal.
+An event emitter instance called greeter is created, and you create an event on it with the name 'welcome', which when emitted will log 'hello'. You then emit the event 'welcome' on the greeter object. If you run the code in your Node.js REPL, you can see that the message "hello" is printed in the Terminal.
 
 As you work through NW.js's and Electron's APIs, you'll see the event pattern in use and get a chance to work with it as you go through the examples in the book.
 
@@ -757,6 +764,8 @@ Notice the ^ preceding the version 1.10.1 of CoffeeScript. You've installed vers
 The idea behind this approach is to allow developers to pull in fixes and nonbreaking updates to their dependencies without having to manually update those numbers in the package.json file. This can work as long as the developers of Node.js modules follow the principles of semantic versioning, as well as take care not to introduce bugs during those updates. From a DevOps perspective, this can provide room for production errors to creep in (hence, the need for a comprehensive testing strategy, which I'll cover later in the book). You want control over the version of the dependencies.
 
 How do you lock down the versions of the dependencies? There are two ways you can do this. The first is to remove any ^ or ~ characters from the front of the version numbers of the dependencies listed in the package.json file. If you don't want to do that manually, the alternative approach is to use npm shrinkwrap.
+
+1-2『锁死 node.js 第三方包版本号的两种方法。做一张任意卡片。（2021-04-17）』—— 已完成
 
 npm's shrinkwrap command will lock down the version of dependencies that are installed with the module. Running npm shrinkwrap in the same working directory as the package.json file will produce a file called npm-shrinkwrap.json, a JSON file that has configuration information to specify exactly what version of the module should be installed, which looks like this:
 
