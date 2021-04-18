@@ -2,7 +2,7 @@ Part III
 
 AutoCAD VBA: Programming with VBA and ActiveX (Windows only)
 
-Chapter 24: Understanding the AutoCAD VBA Environment
+0301 —— Chapter 24: Understanding the AutoCAD VBA Environment
 
 Chapter 25: Understanding Visual Basic for Applications
 

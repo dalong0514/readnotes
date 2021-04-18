@@ -1,30 +1,30 @@
-Part II AutoLISP: Productivity through Programming
+Part III AutoCAD VBA: Programming with VBA and ActiveX (Windows only)
 
-Chapter 11: Quick Start for New AutoLISP Programmers
+0301 —— Chapter 24: Understanding the AutoCAD VBA Environment
 
-Chapter 12: Understanding AutoLISP
+0302 —— Chapter 25: Understanding Visual Basic for Applications
 
-Chapter 13: Calculating and Working with Values
+0303 —— Chapter 26: Interacting with the Application and Documents Objects
 
-Chapter 14: Working with Lists
+0304——Chapter 27: Creating and Modifying Drawing Objects
 
-Chapter 15: Requesting Input and Using Conditional and Looping Expressions
+0305 —— Chapter 28: Interacting with the User and Controlling the Current View
 
-Chapter 16: Creating and Modifying Graphical Objects
+0306 —— Chapter 29: Annotating Objects
 
-Chapter 17: Creating and Modifying Nongraphical Objects
+0307 —— Chapter 30: Working with Blocks and External References
 
-Chapter 18: Working with the Operating System and External Files
+0308 —— Chapter 31: Outputting Drawings
 
-Chapter 19: Catching and Handling Errors
+030 —— Chapter 32: Storing and Retrieving Custom Data
 
-Chapter 20: Authoring, Managing, and Loading AutoLISP Programs
+0310 —— Chapter 33: Modifying the Application and Working with Events
 
-Chapter 21: Using the Visual LISP Editor (Windows only)
+0311 —— Chapter 34: Creating and Displaying User Forms
 
-Chapter 22: Working with ActiveX/COM Libraries (Windows only)
+0312 —— Chapter 35: Communicating with Other Applications
 
-Chapter 23: Implementing Dialog Boxes (Windows only)
+0313 —— Chapter 36: Handling Errors and Deploying VBA Projects
 
 # 0201. Quick Start for New AutoLISP Programmers
 

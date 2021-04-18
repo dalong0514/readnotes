@@ -901,6 +901,8 @@ From a developer's view, NW.js is a combination of a programming framework (Node
 
 When Node.js was released in 2009, a year after Google Chrome, it combined a multiplatform support library called libuv with the V8 engine and provided a way to write asynchronous server-side programs in JavaScript. Because both Node.js and Chromium use V8 to execute their JavaScript, it provided a way to combine the two pieces of software, which Roger Wang came to understand and figure out. Figure 6.1 shows how those components are combined.
 
+1-2『这里，node.js 是将 V8 引擎和 libuv 结合起来的一个 JS 后端语言，补充进 node.js 的术语卡片。（2021-04-18）』—— 已完成
+
 Figure 6.1 Overview of NW.js's component architecture in relation to loading an app
 
 Looking at figure 6.1, you can see that Node.js is used in the back end to handle working with the OS, and that Blink (Chromium's rendering engine) is used to handle rendering the front-end part of the app, the bit that users see. Between them, both Node.js and Blink use V8 as the component that handles executing JavaScript, and it's this bit that's crucial in getting Node.js and Chromium to work together. There are three things necessary for Node.js and Chromium to work together: 1) Make Node.js and Chromium use the same instance of V8. 2) Integrate the main event loop. 3) Bridge the JavaScript context between Node and Chromium.

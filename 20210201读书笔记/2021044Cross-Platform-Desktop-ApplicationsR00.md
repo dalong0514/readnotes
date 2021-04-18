@@ -82,6 +82,14 @@ Node.js 是一个由 Ryan Dahl 在 2009 年创建的编程框架。它提供了�
 
 正因如此，通过 Node.js 执行的 JavaScript 代码之间可以做到不阻塞对方。这是和其他语言相比最大的不同点，在其他语言中，一行代码执行完毕后才能执行下一行代码。了解 Node.js 如何处理代码执行这一点非常重要。下一节会做更多介绍。
 
+信息源自「0601Exploring NW.js and Electron's internals」
+
+From a developer's view, NW.js is a combination of a programming framework (Node.js) with Chromium's browser engine through their common use of V8. V8 is a JavaScript engine created by Google for its web browser, Google Chrome. It's written in C++ and was designed with the goal of speeding up the execution of JavaScript in the web browser.
+
+When Node.js was released in 2009, a year after Google Chrome, it combined a multiplatform support library called libuv with the V8 engine and provided a way to write asynchronous server-side programs in JavaScript. Because both Node.js and Chromium use V8 to execute their JavaScript, it provided a way to combine the two pieces of software, which Roger Wang came to understand and figure out. Figure 6.1 shows how those components are combined.
+
+1-2『这里，node.js 是将 V8 引擎和 libuv 结合起来的一个 JS 后端语言，补充进 node.js 的术语卡片。（2021-04-18）』—— 已完成
+
 ### 0202. 术语卡 ——
 
 ### 0203. 术语卡 ——

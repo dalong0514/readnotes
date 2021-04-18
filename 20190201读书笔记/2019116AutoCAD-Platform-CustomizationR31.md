@@ -10,26 +10,6 @@ Part III AutoCAD VBA: Programming with VBA and ActiveX (Windows only)
 
 0303 —— Chapter 26: Interacting with the Application and Documents Objects
 
-0304——Chapter 27: Creating and Modifying Drawing Objects
-
-0305 —— Chapter 28: Interacting with the User and Controlling the Current View
-
-0306 —— Chapter 29: Annotating Objects
-
-0307 —— Chapter 30: Working with Blocks and External References
-
-0308 —— Chapter 31: Outputting Drawings
-
-030 —— Chapter 32: Storing and Retrieving Custom Data
-
-0310 —— Chapter 33: Modifying the Application and Working with Events
-
-0311 —— Chapter 34: Creating and Displaying User Forms
-
-0312 —— Chapter 35: Communicating with Other Applications
-
-0313 —— Chapter 36: Handling Errors and Deploying VBA Projects
-
 ## 0301. Understanding the AutoCAD VBA Environment
 
 More than 15 years ago, Visual Basic (VB) was the first modern programming language I learned. This knowledge was critical to taking my custom programs to a whole new level. VB allows you to develop stand-alone applications that can communicate with other programs using Microsoft's Object Linking and Embedding (OLE) and ActiveX technologies. Autodesk® AutoCAD® supports a variant of VB known as Visual Basic for Applications (VBA) that requires a host application to execute the programs you write; it can't be used to develop stand-alone executable files.
@@ -54,7 +34,7 @@ The AutoCAD VBA Editor is an integrated development environment (IDE) that allow
 
 The most recent generation of VB is known as VB.NET. Although VB and VB.NET have similar syntax, they are not the same. VBA, whether in AutoCAD or other programs such as Microsoft Word, is based on VB6 and not VB.NET. If you are looking for general information on VBA, search the Internet using the keywords VBA and VB6.
 
-#### If You Have Conversations Like This, You Can Code Like This
+#### 1.1.1 If You Have Conversations Like This, You Can Code Like This
 
 The summer intern had one job — add a layer and a confidentiality note to a series of 260 production drawings. September arrived, the intern left for school, and now your manager is in your cubicle.
 
@@ -202,7 +182,7 @@ The following explains how to add a new component to a VBA project and change it
 
 4 In the Properties window, in the (Name) field, type a new name and press Enter.
 
-#### Using Components in Multiple VBA Projects
+#### 05. Using Components in Multiple VBA Projects
 
 A component added to a VBA project can be exported, and then imported into another VBA project. Exporting a component creates a copy of that component; any changes to the component in the original VBA project don't affect the exported copy of the component. Importing the component into a VBA project creates a copy of the component in that VBA project.
 

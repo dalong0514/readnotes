@@ -847,3 +847,61 @@ nil
 (snvalid " Detail|Centerlines " 1) 
 T
 ```
+
+### 22. 浮点数转整数
+
+[帮助 | fix (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-93B5F13B-348E-49E0-A116-0861684506D5)
+
+[帮助 | Arithmetic Functions Reference (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-FC14467C-63B9-4400-8C6A-266D21C846AE)
+
+Returns the conversion of a real number into the nearest smaller integer.
+
+Signature:
+
+```
+(fix number)
+```
+
+number. Type: Integer or Real. A numeric value.
+
+Return Values. Type: Integer. The integer derived from number.
+
+If number is larger than the largest possible integer (+2,147,483,647 or -2,147,483,648 on a 32-bit platform), fix returns a truncated real (although integers transferred between AutoLISP and AutoCAD are restricted to 16-bit values).
+
+Remarks: The fixfunction truncates number to the nearest integer by discarding the fractional portion.
+
+Examples:
+
+```
+(fix 3)
+3
+
+(fix 3.7)
+3
+```
+
+### 23. 整数转浮点数
+
+[帮助 | float (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-93808F66-808C-49F7-9303-F12C55296080)
+
+Returns the conversion of a number into a real number.
+
+Signature:
+
+```
+(float number)
+```
+
+number, Type: Integer or Real. A numeric value.
+
+Return Values. Type: Real. The real number derived from number.
+
+Examples
+
+```
+(float 3)
+3.0
+
+(float 3.75)
+3.75
+```

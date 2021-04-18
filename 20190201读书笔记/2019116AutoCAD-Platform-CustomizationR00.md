@@ -1172,7 +1172,7 @@ Chapter 28: Interacting with the User and Controlling the Current View In this c
 
 Chapter 29: Annotating Objects In this chapter, you'll learn how to create and modify annotation objects. Typically, annotation objects are not part of the final product that is built or manufactured based on the design in the drawing. Rather, annotation objects are used to communicate the features and measurements of a design. Annotation can be a single line of text that is used as a callout for a leader, a dimension that indicates the distance between two drill holes, or a table that contains quantities and information about the windows and doors in a design.
 
-1『 dimension 应该指标注线，那么开发标注线相关的功能可以去看 0209 章的内容。（2021-03-12）』
+1『 dimension 应该指标注线，那么开发标注线相关的功能可以去看 0306 章的内容。（2021-03-12）』
 
 Chapter 30: Working with Blocks and External References In this chapter, you'll learn how to create, modify, and manage block definitions. Model space in a drawing is a special named block definition, so working with block definitions will feel familiar. Once you create a block definition, you will learn how to insert a block reference and work with attributes along with dynamic properties. You complete the chapter by learning how to work with externally referenced files.
 

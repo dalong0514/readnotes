@@ -1,144 +1,4 @@
-Multileader styles are not accessed directly through a collection object like AcadTextStyles for text styles and AcadDimStyles for dimension styles. Named multileader styles stored in a drawing are stored in the ACAD_MLEADERSTYLE dictionary, which is accessed from the AcadDictionaries collection object. Each multileader style in the ACAD_MLEADERSTYLE dictionary is represented by an AcadMLeaderStyle object.
-
-Use the AddObject function to create a new multileader style and the GetObject function to get an existing object that is in the dictionary. When using the AddObject function, you must specify two strings: the first is the name of the style you want to create and the second is the class name of AcDbMLeaderStyle. You can learn more about working with dictionaries in Chapter 32.
-
-The following code statements create a multileader style named Callouts if it doesn't already exist:
-
-On Error Resume Next ' Gets the multileader styles dictionary Dim oDict As AcadDictionary Set oDict = ThisDrawing.Dictionaries.Item("ACAD_MLEADERSTYLE") ' If no error, continue If Not oDict Is Nothing Then ' Gets the multileader style named Callouts Dim oMLStyle As AcadMLeaderStyle Set oMLStyle = oDict.GetObject("Callouts") ' If an error is returned, create the multileader style If Err Then Err.Clear ' Creates a new dimension style Set oStyle = oDict.AddObject("Callouts", "AcDbMLeaderStyle") End If ' Defines the landing settings for the multileader style oMLStyle.EnableLanding = True oMLStyle.LandingGap = 0.1 End If
-
-A multileader style that is no longer needed can be removed with the Remove method of the AcadDictionary object. For more information on the properties and methods of the AcadMLeaderStyle object, see the AutoCAD Help system or the Object Browser in the VBA Editor.
-
-Assigning a Multileader Style
-
-The active multileader style is assigned to a multileader when it is first added to a drawing, but the style assigned can be changed using the StyleName property. The StyleName property returns or accepts a string that represents the name of the current or multileader style to be assigned. When a new multileader object is created, the multileader style applied is inherited from the cmleaderstyle system variable of the drawing. You can use the SetVariable and GetVariable methods of an AcadDocument or a ThisDrawing object.
-
-The following code statement assigns the multileader style named Callouts to the cmleaderstyle system variable:
-
-' Sets the Callouts multileader style active ThisDrawing.SetVariable "cmleaderstyle", "callouts"
-
-Creating and Modifying Legacy Leaders
-
-Legacy leader objects are represented by an AcadLeader object and are added to a drawing with the AddLeader function. The AddLeader method is available from an AcadModelSpace, AcadPaperSpace, or AcadBlock collection object. When you create a leader with the AddLeader function, you can choose to add an attachment object or no attachment. The types of objects you can attach to an AcadLeader object are AcadMText, AcadTolerance, and AcadBlockReference. If you don't want to add an attachment to a leader object, pass the value of Nothing to the AddLeader function instead of the object that represents the attachment object.
-
-Unlike multileader objects, legacy leader objects inherit their format and appearance from a dimension style. Use the StyleName property of the AcadLeader object to assign a dimension style to the leader. The properties of the leader object can also be used to create an override.
-
-The leader object shown in Figure 29.7 can be created with the following code statements:
-
-' Defines the points of the leader line Dim points(0 To 8) As Double points(0) = 0: points(1) = 0: points(2) = 0 points(3) = 0.717: points(4) = 1.0239: points(5) = 0 points(6) = 1.217: points(7) = 1.0239: points(8) = 0 ' Defines the insertion point and height for the text object Dim dInsPt(2) As Double, dHeight As Double dInsPt(0) = points(6): dInsPt(1) = points(7): dInsPt(2) = points(8) ' Creates a new text object Dim oMText As AcadMText Set oMText = ThisDrawing.ModelSpace.AddMText(dInsPt, 4#, _ "TYP (4) Drill Holes") ' Sets the justification of the text to middle left oMText.AttachmentPoint = acAttachmentPointMiddleLeft ' Moves the alignment point of the justified text ' to the original insertion point oMText.InsertionPoint = dInsPt Dim annotationObject As AcadObject Set annotationObject = oMText ' Creates the leader object in model space Dim leaderObj As AcadLeader Set leaderObj = ThisDrawing.ModelSpace.AddLeader(points, _ annotationObject, acLineWithArrow)
-
-Figure 29.7 Legacy leader created with the AddLeader function
-
-For more information on legacy leaders, search on AcadLeader in the AutoCAD Help system.
-
-Organizing Data with Tables
-
-Data in a drawing can often be presented in a tabular form with a table. Tables can be helpful in creating schedules or a bill of materials (BOM), which provides a quantitative listing of the objects in a drawing. Tables were introduced in AutoCAD 2005 to simplify the process of creating tables, which commonly had been made up of lines and single-line text objects. A table object is represented by the AcadTable object and the initial appearance is controlled by a table style.
-
-The methods and properties of an AcadTable object allow you to add and modify the content of a table object. Just like other graphical objects, the AcadTable object inherits some of its properties and methods from an AcadEntity object.
-
-Inserting and Modifying a Table
-
-A table object is represented by the AcadTable object. The AddTable function allows you to create a table object based on an insertion point, number of rows and columns, as well as a row height and column width. The AddTable method is available from an AcadModelSpace, AcadPaperSpace, or AcadBlock collection object and returns an AcadTable object.
-
-The appearance of a table is defined by a table style and cell styles. The default table style assigned to a new table is based on the active table style of a drawing. I explain how to define and manage table styles in the「Formatting Tables」section later in this chapter. You can learn to apply a named table style in the「Assigning a Table Style」section.
-
-The following code statements add a table with five rows and three columns, and add labels to the header rows (see Figure 29.8):
-
-' Defines the insertion point of the table Dim dInsPt(2) As Double dInsPt(0) = 5: dInsPt(1) = 2.5: dInsPt(2) = 0 ' Adds the new table object Dim oTable As AcadTable Set oTable = ThisDrawing.ModelSpace.AddTable(dInsPt, 5, 3, 0.25, 2) ' Supresses the Title row and unmerge the cells in the first row oTable.TitleSuppressed = True oTable.UnmergeCells 0, 0, 0, 2 ' Sets the values of the header row oTable.SetCellValue 0, 0, "Qty" oTable.SetCellValue 0, 1, "Part" oTable.SetCellValue 0, 2, "Description" ' Sets the width of the third column oTable.SetColumnWidth 2, 10
-
-Figure 29.8 Empty BOM table
-
-Due to the complexities of tables, it isn't practical to cover everything that is possible. You can merge cells, add block references to a cell, and control the formatting of individual cells with the AutoCAD Object library and VBA. If you need to work with tables, I recommend referring to the AutoCAD Help system.
-
-Formatting Tables
-
-Table styles—like multileader styles—are not accessed directly through a collection object like AcadTextStyles for text styles and AcadDimStyles for dimension styles. Table styles are stored in the ACAD_TABLESTYLE dictionary, which is accessed from the AcadDictionaries collection object. Each table style in the ACAD_TABLESTYLE dictionary is represented by an AcadTableStyle object.
-
-New table styles are created with the AddObject function and the GetObject function is used to obtain an existing table style in a drawing. When using the AddObject function, you must specify two strings: the first is the name of the style you want to create and the second is the class name of AcDbTableStyle. You can learn more about working with dictionaries in Chapter 32.
-
-The following code statements create a table style named BOM if it doesn't already exist:
-
-On Error Resume Next ' Gets the table styles dictionary Dim oDict As AcadDictionary Set oDict = ThisDrawing.dictionaries.Item("ACAD_TABLESTYLE") ' If no error, continue If Not oDict Is Nothing Then ' Gets the table style named BOM Dim oTblStyle As AcadTableStyle Set oTblStyle = oDict.GetObject("BOM") ' If an error is returned, create the multileader style If Err Then Err.Clear ' Creates a new table style Set oTblStyle = oDict.AddObject("BOM", "AcDbTableStyle") End If ' Supresses the title row and displays the header row of the table style oTblStyle.TitleSuppressed = True oTblStyle.HeaderSuppressed = False ' Creates a new cell style oTblStyle.CreateCellStyle "BOM_Header" oTblStyle.SetCellClass "BOM_Header", 1 ' Sets the background color of the new cell style Dim oClr As AcadAcCmColor Set oClr = oTblStyle.GetBackgroundColor2("BOM_Header") oClr.ColorMethod = acColorMethodByACI oClr.ColorIndex = 9 oTblStyle.SetBackgroundColor2 "BOM_Header", oClr ' Sets the color of the text for the cell style oClr.ColorIndex = acBlue oTblStyle.SetColor2 "BOM_Header", oClr End If
-
-A table style that is no longer needed can be removed with the Remove method of the AcadDictionary object. For more information on the properties and methods of the AcadTableStyle object, see the AutoCAD Help system or the Object Browser in the VBA Editor.
-
-Assigning a Table Style
-
-You can change the style of a table once it has been added to a drawing with the StyleName property. The StyleName property returns or accepts a string that represents the name of the current or table style to be assigned. When a new table object is created, the style applied is inherited from the ctablestyle system variable. You can use the SetVariable and GetVariable methods of an AcadDocument or a ThisDrawing object.
-
-The following code statement assigns the table style named BOM to the ctablestyle system variable:
-
-' Sets the BOM style active ThisDrawing.SetVariable "ctablestyle", "BOM"
-
-Creating Fields
-
-Fields are used to add dynamic values to a text object based on the current value of an object's property, a drawing file property, date, system variable, table cell, and many other types of values stored in a drawing. A field can be added to a stand-alone text object, dimension, table cell, and even block attributes. Fields are implemented with the use of control codes. Typically, a field is added to a drawing using the Field dialog box displayed with the field command. In the lower-left corner of the Field dialog box is an area labeled Field Expression. The Field Expression area displays the text that you can assign to the TextString property of an annotation object or pass to the SetCellValue method of an AcadTable object to assign a value to a table cell. For example, the following is an example of the field expression used to add today's date to the drawing in an MText object with the MM/dd/yyyy format:
-
-%<\AcVar Date \f "MM/dd/yyyy">%
-
-To create a new MText object with the example field expression, the VBA code statements might look like the following:
-
-' Defines the insertion point and width for the text object Dim dInsPt(2) As Double, dWidth As Double dInsPt(0) = 0: dInsPt(1) = 0: dInsPt(2) = 0 dWidth = 2.5 ' Creates a new MText object with a field Dim oMText As AcadMText Set oMText = ThisDrawing.ModelSpace.AddMText(dInsPt, dWidth, _ "%<\AcVar Date \f ""MM/dd/yyyy"">%")
-
-NOTE
-
-The fieldeval and fielddisplay system variables affect when fields are evaluated and if fields are displayed with a gray background in the drawing. For more information on these system variables, see the AutoCAD Help system.
-
-Exercise: Adding a Label to the Plate
-
-In this section, you will continue to build on the DrawPlate project that was introduced in Chapter 27. Here is the key concept I cover in this exercise:
-
-Creating an MText Object Simple and complex text strings can be added to a drawing with an MText object. A single-line text object can also be used to add descriptive text or a label to a drawing.
-
-NOTE
-
-The steps in this exercise depend on the completion of the steps in the「Exercise: Getting Input from the User to Draw the Plate」section of Chapter 28,「Interacting with the User and Controlling the Current View.」If you didn't complete the steps, do so now or start with the ch29_drawplate.dvb sample file available for download from www.sybex.com/go/autocadcustomization. Place the sample file in the MyCustomFiles folder within the Documents (or My Documents) folder, or the location where you are storing the DVB files. Also, remove ch29_ from the filename before you begin working.
-
-Revising the CLI_DrawPlate Function
-
-These changes to the CLI_DrawPlate function add an MText object to display a basic label for the plate drawn. In the following steps you will update code statements in the CLI_DrawPlate function of the drawplate.dvb project file:
-
-Load the drawplate.dvb file into the AutoCAD drawing environment and display the VBA Editor.
-
-In the VBA Editor, in the Project Explorer, double-click the basDrawPlate component.
-
-In the code editor window, scroll to the bottom of the CLI_DrawPlate function, locate the following code statements, and add the code statements shown in boldface: ' Calculate and place the circle in the upper-left ' corner of the rectangle. dAng = myUtilities.Atn2(dPtList(6) - dPtList(0), _ dPtList(7) - dPtList(1)) cenPt4 = ThisDrawing.Utility.PolarPoint(cenPt1, dAng, dDist - 1) myUtilities.CreateCircle cenPt4, 0.1875 ' Get the insertion point for the text label Dim insPt As Variant insPt = Null insPt = ThisDrawing.Utility.GetPoint(, _ removeCmdPrompt & "Specify label insertion point " & _ "<or press Enter to cancel placement>: ") ' If a point was specified, placed the label If IsNull(insPt) = False Then ' Define the label to add Dim sTextVal As String sTextVal = "Plate Size: " & _ Format(ThisDrawing.Utility. _ RealToString(width, acDecimal, 4), "0.0###") & _ "x" & _ Format(ThisDrawing.Utility. _ RealToString(height, acDecimal, 4), "0.0###") ' Create label Set oLyr = myUtilities.CreateLayer("Label", acWhite) ThisDrawing.ActiveLayer = oLyr myUtilities.CreateText insPt, acAttachmentPointMiddleCenter, _ 0.5, 0#, sTextVal End If End If Loop Until IsNull(basePt) = True And sKeyword = "" ' Restore the saved system variable values myUtilities.SetSysvars sysvarNames, sysvarVals
-
-Click File Save.
-
-Revising the Utilities Class
-
-These changes to the Utilities class introduce a new function named CreateText. The CreateText function consolidates the creation of an MText object and the setting of specific properties and returns an AcadMText object. In the following steps you will add the constant value and two functions to the clsUtilities class module:
-
-In the VBA Editor, in the Project Explorer, double-click the clsUtilities component.
-
-Scroll to the bottom of the code editor window and click to the right of the last code statement. Press Enter twice.
-
-Type the following code statements; the comments are here for your information and don't need to be typed:' CreateText function draws a MText object. ' Function expects an insertion point, attachment style, ' text height and rotation, and a string. Public Function CreateText(insPoint As Variant, _ attachmentPt As AcAttachmentPoint, _ textHeight As Double, _ textRotation As Double, _ textString As String) As AcadMText Set CreateText = ThisDrawing.ActiveLayout.Block. _ AddMText(insPoint, 0, textString) ' Sets the text height, attachment point, and rotation of the MText object CreateText.height = textHeight CreateText.AttachmentPoint = attachmentPt CreateText.insertionPoint = insPoint CreateText.rotation = textRotation End Function
-
-Click File Save.
-
-Export the clsUtilities class model from the drawplate.dvb file to a file named clsUtilities.cls in the MyCustomFiles folder, as explained in Chapter 28.
-
-Using the Revised drawplate Function
-
-Now that the drawplate.dvb project file has been revised, you can test the changes that have been made. The following steps explain how to use the revised drawplate function:
-
-Switch to AutoCAD by clicking on its icon in the Windows taskbar or click View AutoCAD from the menu bar in the Visual Basic Editor.
-
-In AutoCAD, at the Command prompt, type vbarun and press Enter.
-
-When the Macros dialog box opens, select the DrawPlate.dvb!basDrawPlate.CLI_DrawPlate macro from the list and click Run.
-
-At the Specify base point for the plate or [Width/Height]: prompt, pick a point in the drawing area to draw the plate and holes based on the width and height values specified.
-
-At the Specify label insertion point <or press Enter to cancel placement>: prompt, pick a point below the plate to place the label.
-
-Press Enter to exit the macro when you are done.
-
-Chapter 30
-
-Working with Blocks and External References
+# Chapter 30 Working with Blocks and External References
 
 Most designs created with the AutoCAD® program start off with simple geometric objects, such as lines, circles, and arcs. The geometric objects are used to represent holes, bolts, motors, and even the outside of a building. As a design grows in complexity, elements often are repeated many times. For example, you might use several lines and circles to represent a bolt head or a desk with a grommet.
 
@@ -666,3 +526,234 @@ Dim oEnt As AcadEntity Set oEnt = ThisDrawing.ModelSpace(0) Select Case oEnt.Obj
 
 An underlay shares many properties in common with an AcadRaster object. The following properties are shared between underlays and raster images:
 
+ClippingEnabled
+
+Contrast
+
+FadeHeight
+
+Rotation
+
+ScaleFactor
+
+Width
+
+Table 30.8 lists the properties specific to an underlay. These properties can be used to control the display of the object and get information about the referenced file.
+
+Table 30.8 Underlay-related properties
+
+Property Description
+
+AdjustForBackground Returns True if the colors in the underlay are adjusted for the current background color of the viewport.
+
+File Specifies the full path to the external file that contains the objects for the underlay.
+
+ItemName Specifies the sheet or design model name in the underlay file you want to display. A sheet or design model is one of the pages or designs stored in the underlay file. For example, a PDF file can contain several pages, and you use ItemName to specify which page you want to display.
+
+Monochrome Returns True if the colors of the underlay are displayed as monochromatic.
+
+Position Specifies the insertion point of the underlay in the drawing and is an array of doubles.
+
+UnderlayLayerOverrideApplied Specifies whether layer overrides are applied to the underlay; a constant value of acNoOverrides means no overrides are applied, whereas acApplied indicates overrides are applied.
+
+UnderlayName Specifies the name of the underlay file.
+
+UnderlayVisibility Returns True if the objects in the underlay should be visible.
+
+Listing File Dependencies
+
+A drawing file relies on a number of support files to display objects accurately. These support files might be font files, plot styles, external referenced files, and much more. You can use the AcadFileDependencies collection object to access a listing of the files that need to be included when sharing your files with a subcontractor or archiving your designs. Each dependency in the AcadFileDependencies collection object is represented by an AcadFileDependency object.
+
+Although it is possible to directly add new entries for file dependencies to a drawing, I recommend letting the AutoCAD application and AutoCAD Object library do the work for you. Incorrectly defining a file dependency could have unexpected results on a drawing; objects might not display correctly or at all. Methods such as AttachExternalReference and AddRaster will add the appropriate file dependency entries to a drawing.
+
+If you want, you can use the CreateEntry, RemoveEntry, and UpdateEntry methods to manage the file dependencies of a drawing. See the AutoCAD Help system for information on the methods used to manage file dependencies. In most cases, you will simply want to query the file dependencies of a drawing to learn which files might be missing and help the user locate them if possible. Use the Item method or a For statement to step through the file dependencies of the AcadFileDependencies collection object.
+
+The following code statements display information about each file dependency at the Command prompt:
+
+Sub ListDependencies() Dim oFileDep As AcadFileDependency For Each oFileDep In ThisDrawing.FileDependencies ThisDrawing.Utility.Prompt _ vbLf & "Affects graphics: " & CStr(oFileDep.AffectsGraphics) & _ vbLf & "Feature: " & oFileDep.Feature & _ vbLf & "File name: " & oFileDep.FileName & _ vbLf & "File size (Bytes): " & CStr(oFileDep.FileSize) & _ vbLf & "Found path: " & oFileDep.FoundPath & _ vbLf Next oFileDep End Sub
+
+NOTE
+
+A drawing file must have been saved once before you access its file dependency entries with the AcadFileDependencies collection object. Using the file path returned by the FileName and FoundPath properties of an AcadFileDependency object, you can use the FileSystemObject object to get more information about the referenced file. I explain how to use the FileSystemObject object in Chapter 35.
+
+Here is an example of the output produced for a file dependency:
+
+Affects graphics: True Feature: Acad:Text File name: arial.ttf File size (Bytes): 895200 Found path: C:\WINDOWS\FONTS\
+
+Exercise: Creating and Querying Blocks
+
+In this section, you will create several new procedures that create and insert room label blocks into a drawing, move the blocks to specific layers based on their names, and extract the attributes of the blocks to produce a bill of materials (BOM). Room labels and blocks with attributes are often used in architectural drawings, but the same concepts can be applied to callouts and parts in mechanical drawings.
+
+As you insert a room label block with the custom program, a counter increments by 1 so you can place the next room label without needing to manually enter a new value. The last calculated value is stored in a custom dictionary so it can be retrieved the next time the program is started. The key concepts I cover in this exercise are:
+
+Creating and Modifying Block Definitions Block definitions are used to store a grouping of graphical objects that can be inserted into a drawing. Inserting a block definition creates a block reference that creates an instance of the objects defined in a block definition and not a copy of the objects.
+
+Modify and Extracting Attributes The attributes attached to a block reference can be modified to hold different values per block reference, and those values can be extracted to a database or even a table within the drawing. Attribute values can represent project information, part numbers and descriptions of the parts required to assemble a new project, and so on.
+
+NOTE
+
+The steps in this exercise depend on the completion of the steps in the「Exercise: Creating, Querying, and Modifying Objects」section of Chapter 27. If you didn't complete the steps, do so now or start with the ch30_clsUtilities.cls sample file available for download from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the DVB files. Also, remove the ch30_ prefix from the name of the CLS file. You will also be working with the ch30_building_plan.dwg from this chapter's sample files.
+
+Creating the RoomLabel Project
+
+The RoomLabel project will contain functions and a main procedure that allow you to create and insert a room label block based on end-user input. The number applied to the block is incremented each time the block is placed in the current drawing. The following steps explain how to create a project named RoomLabel and to save it to a file named roomlabel.dvb:
+
+Create a new VBA project with the name RoomLabel. Make sure to change the default project name (ACADProject) to RoomLabel in the VBA Editor.
+
+In the VBA Editor, in the Project Explorer, right-click the new project and choose Import File.
+
+When the Import File dialog box opens, browse to and select the clsUtilities.cls file in the MyCustomFiles folder. Click Open.The clsUtilities.cls file contains the utility procedures that you created as part of the DrawPlate project.
+
+In the Project Explorer, right-click the new project and choose Insert Module. Change the default name of the new module to basRoomLabel.
+
+On the menu bar, click File Save.
+
+Creating the RoomLabel Block Definition
+
+Creating separate drawing files that your custom programs depend on has advantages and disadvantages. One advantage of creating a separate drawing file is that you can use the AutoCAD user interface to create the block file. However, AutoCAD must be able to locate the drawing file so that the custom program can use the file. If AutoCAD can't locate the file, the custom program will have problems. Creating a block definition through code allows you to avoid the need of maintaining separate files for your blocks, thus making it easier to share a custom application with your clients or subcontractors. A disadvantage of using code to create your blocks is the time it takes to write the code for all your blocks and then having to maintain the code once it has been written.
+
+In these steps, you create a custom function named roomlabel_createblkdef that will be used to create the block definition for the room label block if it doesn't already exist in the drawing.
+
+In the Project Explorer, double-click the basRoomLabel component.
+
+In the text editor area of the basRoomLabel component, type the following. (The comments are here for your information and don't need to be typed.)Private myUtilities As New clsUtilities ' Constant for the removal of the "Command: " prompt msg Const removeCmdPrompt As String = vbBack & vbBack & vbBack & _ vbBack & vbBack & vbBack & _ vbBack & vbBack & vbBack & vbLf Private g_nLastNumber As Integer Private g_sLastPrefix As String ' Creates the block definition roomlabel Private Sub RoomLabel_CreateBlkDef() On Error Resume Next ' Check for the existence of the roomlabel block definition Dim oBlkDef As AcadBlock Set oBlkDef = ThisDrawing.Blocks("roomlabel") ' If an error was generated, create the block definition If Err Then Err.Clear ' Define the block's origin Dim dInsPt(2) As Double dInsPt(0) = 18: dInsPt(1) = 9: dInsPt(2) = 0 ' Create the block definition Set oBlkDef = ThisDrawing.Blocks.Add(dInsPt, "roomlabel") ' Add a rectangle to the block Dim dPtList(7) As Double dPtList(0) = 0: dPtList(1) = 0 dPtList(2) = 36: dPtList(3) = 0 dPtList(4) = 36: dPtList(5) = 18 dPtList(6) = 0: dPtList(7) = 18 Dim oLWPline As AcadLWPolyline Set oLWPline = oBlkDef.AddLightWeightPolyline(dPtList) oLWPline.Closed = True ' Add the attribute definition to the block Dim oAttDef As AcadAttribute Set oAttDef = oBlkDef.AddAttribute(9, acAttributeModeLockPosition, _ "ROOM#", dInsPt, "ROOM#", "L000") oAttDef.Layer = "Plan_RoomLabel_Anno" ' Set the alignment of the attribute oAttDef.Alignment = acAlignmentMiddleCenter oAttDef.TextAlignmentPoint = dInsPt End If End Sub
+
+Click File Save.
+
+Figure 30.3 shows the block definition that is created by this procedure. To see the contents of the block definition, use the bedit command and select the RoomLabel block. As an alternative, you can insert the RoomLabel block into the drawing and explode it.
+
+Figure 30.3 RoomLabel block definition
+
+Inserting a Block Reference Based on the RoomLabel Block Definition
+
+Once you've created the block definition and added it to the AcadBlocks collection object, you can insert it into the drawing by using the insert command or the InsertBlock function in the AutoCAD Object library.
+
+In these steps, you create two custom functions named changeattvalue and roomlabel_insertblkref. The changeattvalue function allows you to revise the insertion point and value of an attribute reference attached to a block reference based on the attribute's tag. The roomlabel_insertblkref function creates a block reference based on the RoomLabel block definition that was created with the roomlabel_createblkdef function.
+
+In the text editor area of the basRoomLabel component, scroll to the bottom of the last procedure and press Enter a few times. Then, type the following. (The comments are here for your information and don't need to be typed.)' Changes the value of an attribute reference in a block reference Private Sub ChangeAttValue(oBlkRef As AcadBlockReference, _ vInsPt As Variant, sAttTag As String, _ sNewValue As String) ' Check to see if the block reference has attribute references If oBlkRef.HasAttributes Then ' Get the attributes of the block reference Dim vAtts As Variant vAtts = oBlkRef.GetAttributes Dim nCnt As Integer ' Step through the attributes in the block reference Dim oAttRef As AcadAttributeReference For nCnt = 0 To UBound(vAtts) Set oAttRef = vAtts(nCnt) ' Compare the attributes tag with the tag ' passed to the function If UCase(oAttRef.TagString) = UCase(sAttTag) Then oAttRef.InsertionPoint = vInsPt oAttRef.TextAlignmentPoint = vInsPt oAttRef.textString = sNewValue ' Exit the For statement Exit For End If Next End If End Sub ' Creates the block definition roomlabel Private Sub RoomLabel_InsertBlkRef(vInsPt As Variant, _ sLabelValue As String) ' Add the layer Plan_RoomLabel_Anno myUtilities.CreateLayer "Plan_RoomLabel_Anno", 150 ' Create the "roomlabel" block definition RoomLabel_CreateBlkDef ' Insert the block into model space Dim oBlkRef As AcadBlockReference Set oBlkRef = ThisDrawing.ModelSpace. _ InsertBlock(vInsPt, "roomlabel", _ 1, 1, 1, 0) ' Changes the attribute value of the "ROOM#" ChangeAttValue oBlkRef, vInsPt, "ROOM#", sLabelValue End Sub
+
+Click File Save.
+
+Prompting the User for an Insertion Point and a Room Number
+
+Now that you have defined the functions to create the block definition and inserted the block reference into a drawing, the last function creates the main procedure that will prompt the user for input. The roomlabel procedure will allow the user to specify a point in the drawing, provide a new room number, or provide a new prefix. The roomlabel procedure uses the default number of 101 and prefix of L. As you use the roomlabel procedure, it increments the counter by 1 so that you can continue placing room labels.
+
+In these steps, you create the custom procedure named roomlabel that uses all of the functions that you defined in this exercise to place a RoomLabel block each time you specify a point in the drawing.
+
+In the text editor area of the basRoomLabel component, scroll to the bottom of the last procedure and press Enter a few times. Then, type the following. (The comments are here for your information and don't need to be typed.)' Prompts the user for an insertion point and room number Public Sub RoomLabel() On Error Resume Next ' Set the default values Dim nLastNumber As Integer, sLastPrefix As String If g_nLastNumber <> 0 Then nLastNumber = g_nLastNumber sLastPrefix = g_sLastPrefix Else nLastNumber = 101 sLastPrefix = "L" End If ' Display current values ThisDrawing.Utility.Prompt removeCmdPrompt & _ "Prefix: " & sLastPrefix & _ vbTab & "Number: " & CStr(nLastNumber) Dim basePt As Variant ' Continue to ask for input until a point is provided Do Dim sKeyword As String sKeyword = "" basePt = Null ' Setup default keywords ThisDrawing.Utility.InitializeUserInput 0, "Number Prefix" ' Prompt for a base point, number, or prefix value basePt = ThisDrawing.Utility.GetPoint(, _ removeCmdPrompt & "Specify point for room label (" & _ sLastPrefix & CStr(nLastNumber) & _ ") or change [Number/Prefix]: ") ' If an error occurs, the user entered a keyword or pressed Enter If Err Then Err.Clear sKeyword = ThisDrawing.Utility.GetInput Select Case sKeyword Case "Number" nLastNumber = ThisDrawing.Utility. _ GetInteger(removeCmdPrompt & _ "Enter new room number <" & _ CStr(nLastNumber) & ">: ") Case "Prefix" sLastPrefix = ThisDrawing.Utility. _ GetString(False, removeCmdPrompt & _ "Enter new room number prefix <" & _ sLastPrefix & ">: ") End Select End If ' If a base point was specified, then insert a block reference If IsNull(basePt) = False Then RoomLabel_InsertBlkRef basePt, sLastPrefix & CStr(nLastNumber) ' Increment number by 1 nLastNumber = nLastNumber + 1 End If Loop Until IsNull(basePt) = True And sKeyword = "" ' Store the latest values in the global variables g_nLastNumber = nLastNumber g_sLastPrefix = sLastPrefix End Sub
+
+Click File Save.
+
+Adding Room Labels to a Drawing
+
+The roomlabel.dvb file contains the main roomlabel procedure and some helper functions defined in the clsUtilities.cls file to define new layers.
+
+NOTE
+
+The following steps require a drawing file named ch30_building_plan.dwg. If you didn't download the sample files previously, download them now from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder.
+
+The following steps explain how to use the roomlabel procedure that is in the roomlabel.lsp file:
+
+Open Ch30_Building_Plan.dwg. Figure 30.4 shows the plan drawing of the office building.
+
+At the Command prompt, type vbarun and press Enter.
+
+When the Macros dialog box opens, select the RoomLabel.dvb!basRoomLabel.RoomLabel macro from the list and click Run.
+
+At the Specify point for room label (L101) or change [Number/Prefix]: prompt, specify a point inside the room in the lower-left corner of the building.The room label definition block and Plan_RoomLabel_Anno layer are created the first time the roomlabel procedure is used. The RoomLabel block definition should look like Figure 30.5 when inserted into the drawing.
+
+At the Specify point for room label (L101) or change [Number/Prefix]: prompt, type n and press Enter.
+
+At the Enter new room number <102>: prompt, type 105 and press Enter.
+
+At the Specify point for room label (L105) or change [Number/Prefix]: prompt, type p and press Enter.
+
+At the Enter new room number prefix <L>: prompt, type R and press Enter.
+
+At the Specify point for room label (R105) or change [Number/Prefix]: prompt, specify a point in the large open area in the middle of the building.
+
+Press Enter to end roomlabel.
+
+Close and discard the changes to the drawing file.
+
+Figure 30.4 Plan view of the office building
+
+Figure 30.5 Inserted RoomLabel block
+
+Creating the FurnTools Project
+
+The FurnTools project will contain several functions and main procedures that modify the properties and extract the attribute values of block references that have been inserted into a drawing. The following steps explain how to create a project named FurnTools and save it to a file named furntools.dvb:
+
+Create a new VBA project with the name FurnTools. Make sure to also change the default project name (ACADProject) to FurnTools in the VBA Editor.
+
+In the VBA Editor, in the Project Explorer, right-click the new project and choose Import File.
+
+When the Import File dialog box opens, browse to and select the clsUtilities.cls file in the MyCustomFiles folder. Click Open.The clsUtilities.cls file contains the utility procedures that you created as part of the DrawPlate project.
+
+In the Project Explorer, right-click the new project and choose Insert Module. Change the name of the new module to basFurnTools.
+
+On the menu bar, click File Save.
+
+Moving Objects to Correct Layers
+
+Not everyone will agree on the naming conventions, plot styles, and other various aspects of layers, but there are two things drafters can agree on when it comes to layers:
+
+Objects should inherit their properties, for the most part, from the objects in which they are placed.
+
+Objects should only be placed on layer 0 when creating blocks.
+
+Although I would like to think that all of the drawings I have ever created are perfect, I know they aren't. Rushed deadlines, changing project parameters, and other distractions impede perfection. Objects may have been placed on the wrong layer, or maybe it wasn't my fault and standards simply changed during the course of a project. With VBA and the AutoCAD Object library, you can identify potential problems in a drawing and let the user know about them so they can be fixed. You might even be able to fix the problems automatically without user input.
+
+In these steps, you will create a custom procedure named furnlayers that will be used to identify objects by type and value to ensure they are placed on the correct layer. This is achieved by using selection sets and entity data lists, along with looping and conditional statements.
+
+In the Project Explorer, double-click the basFurnTools component.
+
+In the text editor area of the basFurnTools component, type the following. (The comments are here for your information and don't need to be typed.)Private myUtilities As New clsUtilities ' Constants for PI Const PI As Double = 3.14159265358979 ' Moves objects to the correct layers based on a set of established rules Sub FurnLayers() On Error Resume Next ' Get the blocks to extract Dim oSSFurn As AcadSelectionSet Set oSSFurn = ThisDrawing.SelectionSets.Add("SSFurn") ' If an error is generated, selection set already exists If Err Then Err.Clear Set oSSFurn = ThisDrawing.SelectionSets("SSFurn") End If ' Define the selection set filter to select only blocks Dim nDXFCodes(3) As Integer, nValue(3) As Variant nDXFCodes(0) = -4: nValue(0) = "<OR": nDXFCodes(1) = 0: nValue(1) = "INSERT" nDXFCodes(2) = 0: nValue(2) = "DIMENSION" nDXFCodes(3) = -4: nValue(3) = "OR>" Dim vDXFCodes As Variant, vValues As Variant vDXFCodes = nDXFCodes vValues = nValue ' Allow the user to select objects in the drawing oSSFurn.SelectOnScreen vDXFCodes, vValues ' Proceed if oSSFurn is greater than 0 If oSSFurn.Count > 0 Then ' Step through each object in the selection set Dim oEnt As AcadEntity For Each oEnt In oSSFurn ' Check to see if the object is a block reference If oEnt.ObjectName = "AcDbBlockReference" Then Dim oBlkRef As AcadBlockReference Set oBlkRef = oEnt ' Get the name of the block, use EffectiveName because ' the block could be dynamic Dim sBlkName As String sBlkName = oBlkRef.EffectiveName ' If the block name starts with RD or CD, ' then place it on the surfaces layer If sBlkName Like "RD*" Or _ sBlkName Like "CD*" Then oBlkRef.Layer = "Surfaces" ' If the block name starts with PNL, PE, and PX, ' then place it on the panels layer ElseIf sBlkName Like "PNL*" Or _ sBlkName Like "PE*" Or _ sBlkName Like "PX*" Then oBlkRef.Layer = "Panels" ' If the block name starts with SF, ' then place it on the panels layer ElseIf sBlkName Like "SF*" Or _ sBlkName Like "FF*" Then oBlkRef.Layer = "Storage" End If ElseIf oEnt.ObjectName Like "AcDb*Dim*" Then oEnt.Layer = "Dimensions" End If Next oEnt ' Remove the selection set oSSFurn.Delete End If End Sub
+
+Click File Save.
+
+Creating a Basic Block Attribute Extraction Program
+
+The designs you create take time and often are a source of income or savings for your company. Based on the types of objects in a drawing, you can step through a drawing and get attribute information from blocks or even geometric values such as lengths and radii of circles. You can use the objects in a drawing to estimate the potential cost of a project or even provide information to manufacturing.
+
+In these steps, you create four custom functions named ExtAttsFurnBOM, SortArray, TableFurnBOM, and RowValuesFurnBOM. The ExtAttsFurnBOM function extracts the values of the attributes in the selected blocks and then uses the SortArray function to sort the attribute values before quantifying them. The TableFurnBOM and RowValuesFurnBOM functions are used to create a grid of lines containing the extracted values.
+
+In the text editor area of the basFurnTools component, scroll to the bottom of the last procedure and press Enter a few times. Then, type the following. (The comments are here for your information and don't need to be typed.)' ExtAttsFurnBOM - Extracts, sorts, and quantifies the attribute information Private Function ExtAttsFurnBOM(oSSFurn As AcadSelectionSet) As Variant Dim sList() As String Dim sPart As String, sLabel As String ' Step through each block in the selection set Dim oBlkRef As AcadBlockReference Dim nListCnt As Integer nListCnt = 0 For Each oBlkRef In oSSFurn ' Step through the objects that appear after ' the block reference, looking for attributes Dim vAtts As Variant vAtts = oBlkRef.GetAttributes ' Check to see if the block has attributes If oBlkRef.HasAttributes = True Then ' Get the attributes of the block reference Dim vAttRefs As Variant vAttRefs = oBlkRef.GetAttributes Dim oAttRef As AcadAttributeReference Dim nAttCnt As Integer For nAttCnt = LBound(vAttRefs) To UBound(vAttRefs) Set oAttRef = vAttRefs(nAttCnt) If UCase(oAttRef.TagString) = "PART" Then sPart = oAttRef.textString ElseIf UCase(oAttRef.TagString) = "LABEL" Then sLabel = oAttRef.textString End If Next End If ' Resize the array ReDim Preserve sList(nListCnt) ' Add the part and label values to the array sList(nListCnt) = sLabel & vbTab & sPart ' Increment the counter nListCnt = nListCnt + 1 Next oBlkRef ' Sort the array of parts and labels Dim vFurnListSorted As Variant vFurnListSorted = SortArray(sList) ' Quantify the list of parts and labels ' Step through each value in the sorted array Dim sFurnList() As String Dim vCurVal As Variant, sPreVal As String Dim sItems As Variant nCnt = 0: nListCnt = 0 For Each vCurVal In vFurnListSorted ' Check to see if the previous value is the same as the current value If CStr(vCurVal) = sPreVal Or sPreVal = "" Then ' Increment the counter by 1 nCnt = nCnt + 1 ' Values weren't the same, so record the quantity Else ' Split the values of the item sItems = Split(sPreVal, vbTab) ' Resize the array ReDim Preserve sFurnList(nListCnt) ' Add the part and label values to the array sFurnList(nListCnt) = CStr(nCnt) & vbTab & sItems(0) & vbTab & sItems(1) ' Increment the array counter nListCnt = nListCnt + 1 ' Reset the counter nCnt = 1 End If sPreVal = CStr(vCurVal) Next vCurVal ' Append the last item ' Split the values of the item sItems = Split(sPreVal, vbTab) ' Resize the array ReDim Preserve sFurnList(nListCnt) ' Add the part and label values to the array sFurnList(nListCnt) = CStr(nCnt) & vbTab & sItems(0) & vbTab & sItems(1) ' Return the sorted and quantified array ExtAttsFurnBOM = sFurnList End Function ' Performs a basic sort on the string values in an array, ' and returns the newly sorted array. Private Function SortArray(vArray As Variant) As Variant Dim nFIdx As Integer, nLIdx As Integer nFIdx = LBound(vArray): nLIdx = UBound(vArray) Dim nOuterCnt As Integer, nInnerCnt As Integer Dim sTemp As String For nOuterCnt = nFIdx To nLIdx - 1 For nInnerCnt = nOuterCnt + 1 To nLIdx If vArray(nOuterCnt) > vArray(nInnerCnt) Then sTemp = vArray(nInnerCnt) vArray(nInnerCnt) = vArray(nOuterCnt) vArray(nOuterCnt) = sTemp End If Next nInnerCnt Next nOuterCnt SortArray = vArray End Function ' Create the bill of materials table/grid Private Sub TableFurnBOM(vQtyList As Variant, dInsPt() As Double) ' Define the sizes of the table and grid Dim dColWidths(3) As Double dColWidths(0) = 0: dColWidths(1) = 15 dColWidths(2) = 45: dColWidths(3) = 50 Dim dTableWidth As Double, dTableHeight As Double dTableWidth = 0: dTableHeight = 0 Dim nRow As Integer nRow = 1 Dim dRowHeight As Double, dTextHeight As Double dRowHeight = 4: dTextHeight = dRowHeight - 1 ' Get the table width by adding all column widths Dim vColWidth As Variant For Each vColWidth In dColWidths dTableWidth = dTableWidth + CDbl(vColWidth) Next vColWidth ' Define the standard table headers Dim sHeaders(2) As String sHeaders(0) = "QTY": sHeaders(1) = "LABELS": sHeaders(2) = "PARTS" ' Create the top of the table Dim vInsPtRight As Variant vInsPtRight = ThisDrawing.Utility.PolarPoint( _ dInsPt, 0, dTableWidth) Dim oLine As AcadLine Set oLine = ThisDrawing.ModelSpace.AddLine(dInsPt, vInsPtRight) ' Get the bottom of the header row Dim vBottomRow As Variant vBottomRow = ThisDrawing.Utility.PolarPoint( _ dInsPt, ((PI / 2) * -1), dRowHeight) ' Add headers to the table RowValuesFurnBOM sHeaders, vBottomRow, dColWidths, dTextHeight ' Step through each item in the list Dim vItem As Variant For Each vItem In vQtyList nRow = nRow + 1 vBottomRow = ThisDrawing.Utility.PolarPoint( _ dInsPt, ((PI / 2) * -1), dRowHeight * nRow) RowValuesFurnBOM Split(vItem, vbTab), vBottomRow, dColWidths, dTextHeight Next vItem ' Create the vertical lines for each column dColWidthTotal = 0 For Each vColWidth In dColWidths ' Calculate the placement of each vertical line (left to right) dColWidthTotal = CDbl(vColWidth) + dColWidthTotal Dim vColBasePt As Variant vColBasePt = ThisDrawing.Utility.PolarPoint( _ dInsPt, 0, dColWidthTotal) Dim vColBottomPt As Variant vColBottomPt = ThisDrawing.Utility.PolarPoint( _ vColBasePt, ((PI / 2) * -1), _ myUtilities.Calc2DDistance(dInsPt(0), _ dInsPt(1), _ vBottomRow(0), _ vBottomRow(1))) ' Draw the vertical line Set oLine = ThisDrawing.ModelSpace.AddLine(vColBasePt, vColBottomPt) Next vColWidth End Sub ' Create a row and populate the data for the table Private Sub RowValuesFurnBOM(vItems As Variant, _ vBottomRow As Variant, _ vColWidths As Variant, _ dTextHeight As Double) ' Calculate the insertion point for the header text Dim dRowText(2) As Double dRowText(0) = 0.5 + vBottomRow(0) dRowText(1) = 0.5 + vBottomRow(1) dRowText(2) = vBottomRow(2) Dim dTableWidth As Double dTableWidth = 0 ' Get the table width by adding all column widths Dim vColWidth As Variant For Each vColWidth In vColWidths dTableWidth = dTableWidth + CDbl(vColWidth) Next vColWidth ' Lay out the text in each row Dim nCol As Integer, dColWidthTotal As Double nCol = 0: dColWidthTotal = 0 Dim vItem As Variant For Each vItem In vItems ' Calculate the placement of each text object (left to right) dColWidthTotal = dColWidthTotal + vColWidths(nCol) Dim vInsTextCol As Variant vInsTextCol = ThisDrawing.Utility.PolarPoint( _ dRowText, 0, dColWidthTotal) ' Draw the single-line text object Dim oText As AcadText Set oText = ThisDrawing.ModelSpace.AddText(CStr(vItem), _ vInsTextCol, dTextHeight) ' Create the row line Dim vBottomRowRight As Variant vBottomRowRight = ThisDrawing.Utility.PolarPoint( _ vBottomRow, 0, dTableWidth) Dim oLine As AcadLine Set oLine = ThisDrawing.ModelSpace.AddLine(vBottomRow, vBottomRowRight) ' Increment the counter nCol = nCol + 1 Next vItem End Sub ' Extracts, aggregates, and counts attributes from the furniture blocks Sub FurnBOM() On Error Resume Next ' Get the blocks to extract Dim oSSFurn As AcadSelectionSet Set oSSFurn = ThisDrawing.SelectionSets.Add("SSFurn") ' If an error is generated, selection set already exists If Err Then Err.Clear Set oSSFurn = ThisDrawing.SelectionSets("SSFurn") End If ' Define the selection set filter to select only blocks Dim nDXFCodes(0) As Integer, nValue(0) As Variant nDXFCodes(0) = 0 nValue(0) = "INSERT" Dim vDXFCodes As Variant, vValues As Variant vDXFCodes = nDXFCodes vValues = nValue ' Allow the user to select objects in the drawing oSSFurn.SelectOnScreen vDXFCodes, vValues ' Use the ExtAttsFurnBOM to extract and quantify the attributes in the blocks ' If a selection set was created, then look for attributes If oSSFurn.Count > 0 Then ' Extract and quantify the parts in the drawing Dim vAttList As Variant vAttList = ExtAttsFurnBOM(oSSFurn) ' Create the layer named BOM and set it current Dim oLayer As AcadLayer Set oLayer = myUtilities.CreateLayer("BOM", 8) Set ThisDrawing.ActiveLayer = oLayer.Name ' Prompt the user for the point to create the BOM Dim vInsPt As Variant vInsPt = ThisDrawing.Utility.GetPoint(, vbLf & _ "Specify upper-left corner of BOM: ") ' Start the function that creates the table grid Dim dInsPt(2) As Double dInsPt(0) = vInsPt(0): dInsPt(1) = vInsPt(1): dInsPt(2) = vInsPt(2) TableFurnBOM vAttList, dInsPt ' Remove the selection set oSSFurn.Delete End If End Sub
+
+Click File Save.
+
+Using the Procedures of the FurnTools Project
+
+The procedures you added to FurnTools project leverage some of the functions defined in clsUtilities.cls. These tools allow you to change the layers of objects in a drawing and extract information from the objects in a drawing as well. More specifically, they allow you to work with blocks that represent an office furniture layout.
+
+Although you might be working in a civil engineering– or mechanical design–related field, these concepts can and do apply to the work you do—just in different ways. Instead of extracting information from a furniture block, you could get and set information in a title block, a callout, or even an elevation marker. Making sure hatching is placed on the correct layers along with dimensions can improve the quality of output for the designs your company creates.
+
+NOTE
+
+The following steps require a drawing file named ch30_building_plan.dwg. If you didn't download the sample files previously, download them now from www.sybex.com/go/autocadcustomization. Place these sample files in the MyCustomFiles folder under the Documents (or My Documents) folder.
+
+The following steps explain how to use the FurnLayers procedure:
+
+Open ch30_building_plan.dwg.
+
+At the Command prompt, type vbarun and press Enter.
+
+When the Macros dialog box opens, select the FurnTools.dvb!basFurnTools.FurnLayers macro from the list and click Run.
+
+At the Select objects: prompt, select all the objects in the drawing and press Enter. The objects in the drawing are placed on the correct layers, and this can be seen as the objects were all previously placed on layer 0 and had a color of white (or black based on the background color of the drawing area).
+
+The following steps explain how to use the FurnBom procedure:
+
+At the Command prompt, type vbarun and press Enter.
+
+When the Macros dialog box opens, select the FurnTools.dvb!basFurnTools.FurnBOM macro from the list and click Run.
+
+At the Select objects: prompt, select all the objects in the drawing. Don't press Enter yet. Notice that the dimension objects aren't highlighted. As a result of the selection set filter being applied with the SelectOnScreen function, the SelectOnScreen function only allows block references (insert object types) to be selected.
+
+Press Enter to end the object selection.
+
+At the Specify upper-left corner of BOM: prompt, specify a point to the right of the furniture layout in the drawing. The bill of materials that represents the furniture blocks is placed in a table grid, as shown Figure 30.6.
+
+Close and discard the changes to the drawing file.
+
+Figure 30.6 Bill of materials generated from the office furniture layout
