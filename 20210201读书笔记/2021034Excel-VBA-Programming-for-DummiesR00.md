@@ -1,5 +1,3 @@
-# 2021034Excel-VBA-Programming-for-DummiesR00
-
 by Michael Alexander and John Walkenbach
 
 Excel® VBA Programming For Dummies®, 5th Edition
