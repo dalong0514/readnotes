@@ -284,7 +284,7 @@ Once an object is selected, a list of available events or procedures for the sel
 
 The margin indicator bar of the code editor window helps you know where a bookmark or breakpoint is inserted by displaying an oval for a bookmark or a circle for a breakpoint. I discuss more about breakpoints in Chapter 36,「Handling Errors and Deploying VBA Projects.」
 
-#### 1.3.3 Exploring Loaded Libraries with the Object Browser
+#### 04. Exploring Loaded Libraries with the Object Browser
 
 The Object Browser (see Figure 24.5) allows you to view the classes and enumerated constants defined in a referenced programming library. Each AutoCAD VBA project contains a reference to the VBA and AutoCAD Object libraries. I discuss referencing other libraries in Chapter 35,「Communicating with Other Applications.」You can display the Object Browser by clicking View Object Browser or pressing F2.
 
@@ -294,7 +294,7 @@ A class is used to create an instance of an object, which I discuss in the「Wor
 
 When the Object Browser is displayed, you can select a class or enumerated constant from the Classes list. The Classes list contains all the classes and enumerated constants of the referenced libraries in the VBA project. You can filter the list by selecting a referenced library from the Libraries drop-down list located at the top of the Object Browser. Select a class or enumerated constant from the Classes list to see its members, which are methods, properties, events, or constant values. Select a member to learn more about it and press F1 to display its associated help topic. I explain how to access the AutoCAD VBA documentation in the「Accessing the AutoCAD VBA Documentation」section later in this chapter.
 
-#### 1.3.4 Working with Other Windows
+#### 05. Working with Other Windows
 
 The four windows that I described in the previous sections are the main windows of the VBA Editor; they are used the most frequently. You will use some additional windows on occasion. These are primarily used for creating UserForms and debugging VBA statements. (I discuss creating UserForms in Chapter 34 and debugging in Chapter 36.)
 
@@ -308,7 +308,7 @@ Here are the windows you will use when creating UserForms and debugging:
 
 4 Toolbox Window. The Toolbox window contains the controls that can be added to a UserForm when displayed in the UserForm editor window. Click a tool and then drag it into the UserForm editor window to place an instance of the control. Right-click over one of the tools on the window and click Additional Controls to display the Additional Controls dialog box. Click any of the available controls to make it available for use in a UserForm. I explain how to add controls to a UserForm in Chapter 34.
 
-#### 1.3.5 Setting the VBA Environment Options
+#### 1.3.3 Setting the VBA Environment Options
 
 There are several settings that affect the behavior of the AutoCAD VBA environment and not just the currently loaded VBA projects. These settings can be changed in the Option dialog box of the VBA environment (see Figure 24.6), which can be displayed using one of the following methods:
 
@@ -414,7 +414,17 @@ The Load Project button in the VBA Manager and the `vbaload` command require inp
 
 2 Call the AutoLISP vl-vbaload function. The AutoLISP vl-vbaload function can be used to load a DVB file from a custom AutoLISP program. If the DVB file that is passed to the vl-vbaload function isn't found, an error is returned that should be captured with the AutoLISP vl-catch-all-apply function.
 
-1『原来用 autolisp 或者 CAD 的原生宏，都可以加载 VBA 程序。用 `vl-vbaload` 函数可以把加载的操作嵌入进 autolisp 里。（2021-04-03）』
+1『
+
+原来用 autolisp 或者 CAD 的原生宏，都可以加载 VBA 程序。用 `vl-vbaload` 函数可以把加载的操作嵌入进 autolisp 里。（2021-04-03）
+
+补充：下面的代码应该跑的通，待验证。（2021-04-19）
+
+```c
+(vl-vbaload "D:\\dataflowVBA\\ch24_HexBolt.dvb")
+```
+
+』
 
 3 Create a VBA project file named acad.dvb and place it in one of the AutoCAD support file search paths. AutoCAD looks for a file named acad.dvb during startup and if the file is found, that file is loaded automatically.
 

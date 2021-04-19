@@ -1,3 +1,65 @@
+# 0310. Creating and Displaying User Forms
+
+Input from end users is either the key to a flexible and efficient program or its Achilles' heel. It all depends on how you gather and use that input. Up to this point, the input that you have been getting from the user has been requested at the AutoCAD® Command prompt. There is nothing bad about getting input only from the Command prompt, but it can be a limiting approach.
+
+VBA programs support the ability to implement dialog boxes by adding a UserForm object to a project. Standard interactive controls that you are already familiar with from other Windows-based programs can be added to a user form to get input from the user. User forms allow a user to see values that might normally be hidden behind a set of prompts and provide input for only those options they are interested in changing. A user form can also be used to stitch multiple procedures together into a single, easy-to-use interface.
+
+Adding and Designing a User Form
+
+Many Windows-based programs use dialog boxes to get nonsequential input from the user and to provide feedback. A dialog box in a VBA project is known as a UserForm object. A user form, or dialog box, uses objects known as controls. A control can be of various types and sizes, and it usually accepts input from the mouse and/or keyboard that is attached to a workstation. In more recent years, input can come in the form of touch as well. Touch input is interpreted in a manner similar to mouse input. As a user clicks or types in a control, procedures known as events are executed. Events allow your program time to validate and manipulate the values provided through the control.
+
+Adding a User Form to a VBA Project
+
+With a VBA project loaded in the VBA Editor, a UserForm object can be added to the project. The default UserForm contains only a Close button in the upper-right corner, as shown in Figure 34.1. You can add a new UserForm object to a VBA project using one of the following methods:
+
+On the menu bar, click Insert UserForm.
+
+In the Project Explorer, right-click over the project and choose Insert UserForm.
+
+Figure 34.1 Default UserForm displayed in the UserForm editor window
+
+When a new UserForm object is added to a VBA project, it is displayed in the UserForm editor window. You can perform the following tasks with the UserForm editor window:
+
+Add controls from the Toolbox window; see the「Placing a Control on a User Form」section later in this chapter for more information.
+
+Reposition, resize, group, and align controls.
+
+Use the Properties window to change the appearance of the user form or controls; see the「Changing the Appearance of a User Form or Control」section later in this chapter.
+
+Define the behavior of the user form as it is being loaded or when the user interacts with controls; see the「Defining the Behavior of a User Form or Control」section later in this chapter.
+
+As I explained with naming variables in Chapter 25,「Understanding Visual Basic for Applications.」Hungarian notation should be used to help identify a variable's data type. Hungarian notation is also typically used with UserForm objects and controls. The standard Hungarian notation used for a UserForm object name is frm.
+
+TIP
+
+If you have a UserForm in another project that you want to reuse, export the UserForm to a form (FRM) file and then import it into your project. Right-click over a UserForm in the Project Explorer and choose Export File to export the component. To import a previously exported component, right-click over a project and choose Import File.
+
+Considering the Design of a User Form
+
+A user form often provides your users with their first impression of your program. Users typically don't see the code that is running behind the scenes where all the real magic happens. As in real life, first impressions can be hard to shake. The user forms you create for your programs should have a familiar feel, as if the user has been using them forever.
+
+When creating a user form, consider the following basic guidelines:
+
+Controls with the most importance should be placed in the upper-left corner, whereas the least frequently used should be located in the lower area of the user form.
+
+The flow in a user form should be top-down and left-to-right.
+
+Controls should be aligned along the top edge when placed horizontally or along their left edge when placed vertically.
+
+Controls of the same type should be of a similar size.
+
+Organize and group related options together.
+
+Don't crowd the controls on a user form—be sure to put some space between the controls. Be aware that too much space can make a user form feel empty.
+
+Keep text labels and messages short and meaningful.
+
+Buttons used to accept or cancel the changes made should be placed horizontally along the lower right or vertically along the right edge of the user form.
+
+The button used to accept changes should be to the left of or above the button used to cancel the changes made.
+
+
+
 You should also consider the following as you design a user form:
 
 Will the user form be used to get input or provide feedback? User forms used to get input are displayed temporarily and then dismissed, whereas those used to provide feedback remain onscreen until they are dismissed. A good comparison might be dialog boxes versus palettes in the AutoCAD program.
@@ -589,80 +651,4 @@ In the Draw Plate user form, select the Add Label check box.
 Click Create and specify the insertion point for the plate and label. AutoCAD draws the completed plate with a label this time. Figure 34.11 shows the results of the plates drawn with and without the label.
 
 Figure 34.11 Completed plates
-
-Chapter 35
-
-Communicating with Other Applications
-
-Everything up until this point has been focused on learning VBA, automating tasks in the AutoCAD® drawing environment, and manipulating the AutoCAD program itself. The VBA programming language also supports features that can be used to get information from outside of the AutoCAD program.
-
-Using VBA, you can read and write text files that are stored on disc and leverage other libraries registered on your workstation with the ActiveX technology. Microsoft Windows comes preinstalled with a number of libraries that can be used to parse the information stored in an XML file or manipulate the files and directories on the discs that are accessible from your workstation. If you have Microsoft Office installed, you can also access Microsoft Word, Excel, and Access to read and write information to DOC, DOCX, XLS, XLSX, ACCDB, or MDB files.
-
-Referencing a Programming Library
-
-When a new VBA project is created, the Microsoft VBA and AutoCAD Object libraries are referenced by default. You can reference other libraries that are installed and registered on your workstation using the References dialog box. Here are examples of other programming libraries:
-
-AutoCAD/ObjectDBX™ Common Type Library (axdb<version>enu.tlb) This library allows you to access the objects of a drawing without loading the drawing into the AutoCAD drawing environment first.
-
-AcSmComponents 1.0 Type Library (acsmcomponents<version>.tlb) Using this library, you can automate tasks related to the Sheet Set Manager in the AutoCAD drawing environment.
-
-Microsoft Excel Object Library (excel.exe) If you need to access the Excel application, use this library.
-
-Microsoft Word Object Library (msword<version>.olb) Using the Microsoft Word Object Library, you can access the Word application.
-
-Extending Nondrafting Workflows with VBA
-
-Your boss has just come from the latest conference. He's excited about agile systems and how implementing Agile processes can make projects go smoother. After sitting in a few meetings, you realize how much extra work this could be in the short term, but you can see how it will help deliver more projects on time in the long term. So, you decide to participate in the pilot project using Agile processes.
-
-One of the new processes that drafters will be responsible for is entering project team queries into an Excel spreadsheet. The spreadsheet will be used by the team to address issues during the daily meeting, report project status in Microsoft Project at each handoff point in a drawing, and notify the team of queries and handoffs by email. Using VBA, you help facilitate the information exchange. Your custom programs allow drafters to export status updates, handoffs, and queries to Excel and Project, and the interface in AutoCAD allows the drafters to respond to a query, send a request for more information, and update a project's status from within any drawing for the project.
-
-The following explains how to add a reference to a third-party library in a VBA project:
-
-In the VBA Editor, from the Project Explorer select a loaded project to set it as current.
-
-On the menu bar, click Tools References.
-
-When the References dialog box opens, scroll to the library you want to reference.
-
-Click the check box next to the programming library to reference. If the programming library you want to load is not referenced, click Browse and select the library to load. Click Open.
-
-Click OK.
-
-Creating and Getting an Instance of an Object
-
-Most of the objects that you have learned to work with were created using an object method defined in the AutoCAD Object library or using the New keyword. I explained how to use the New keyword to create a new instance of an object in the「Working with Objects」section of Chapter 25,「Understanding Visual Basic for Applications.」
-
-When using a library registered on your workstation, you can let VBA know that you want to use the library by referencing it first or simply creating an instance of an object that can be instantiated. Referencing a library as part of your VBA project is known as early binding. Early binding allows you to browse the objects and members of a library using the Object Browser in the VBA Editor as well as the IntelliSense (type-ahead) feature of the code editor windows. I mentioned how to reference a library in the「Referencing a Programming Library」section earlier.
-
-The alternative to early binding is known as late binding. Late binding is when you use a programming library without first adding a reference to the library in your project. Early binding is the more popular approach when working with a programming library, but it does have a limitation.
-
-Early binding forces your program to use a specific release of a programming library, whereas late binding allows you to work with any version of a programming library registered on your workstation. An example of when you might want to use late binding instead of early binding is when you want to create a program that can target and take advantage of the features in different releases of Word.
-
-NOTE
-
-Late binding is more flexible when deploying an application to workstations that could have different versions of a programming library than you are using. However, early binding does make development and debugging easier because you can take advantage of IntelliSense for the library in the VBA Editor.
-
-Creating a New Instance of an Object
-
-The New keyword can only be used when you use early binding. To create a new instance of an object with early or later binding, you can use the CreateObject function. The CreateObject function expects a class ID for the object you want to create. Class ID values are defined in the Windows Registry, but the vendor of the library should have these documented as part of the library's documentation.
-
-The following shows the syntax of the CreateObject function:
-
-retObj = CreateObject(classID [, servername])
-
-Its arguments are as follows:
-
-retObj The retObj argument represents the object that is returned.
-
-classID The classID argument is a string that represents the object to be created. The string is in the form of appname.objecttype[.version]. When the library has already been referenced in a project, the value of appname must match the name of the library you are calling exactly as it appears in the Libraries drop-down list in the Object Browser of the VBA Editor (see Figure 35.1). The value of objecttype specifies the type of object to be created, whereas version is an optional version number that could include a major and/or minor version number. Not all object types support a version number.
-
-An example of a major version number might be 19, and an example of a major and minor number might be 19.1. The AcadApplication object in the AutoCAD Object library supports both major and minor versions and is based on the release of AutoCAD. Table 35.1 lists some common class IDs for the Application object in the AutoCAD Object library.
-
-Be sure to refer to each library's documentation for object versioning information.
-
-servername The servername argument is an optional string that represents the name of the server on the network where the object should be created. If no value or a value of "" is provided, the object is created locally in memory on your workstation.
-
-Figure 35.1 Check the Libraries drop-down list in the Object Browser and use the appname listed there.
-
-Table 35.1 Common class IDs for the AutoCAD Object library Application object
 

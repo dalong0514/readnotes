@@ -1098,7 +1098,7 @@ Now that the drawings have been fixed, you output the revised drawings with minu
 
 3、打开 VBA 工程管理界面：`vbaman`。
 
-4、加载 VBA 工程：`VBAload`。
+4、加载 VBA 工程：`VBAload`。卸载 VBA 工程：`vbaunload`。
 
 5、运行 VBA 里的宏：`vbarun`。
 

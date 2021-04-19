@@ -1,100 +1,4 @@
-NOTE
-
-The steps in this exercise depend on the completion of the steps in the「Exercise: Setting Up a Project」section of Chapter 26. If you didn't complete the steps, do so now or start with the ch31_drawingsetup.dvb sample file available for download from www.sybex.com/go/autocadcustomization. Place this sample file in the MyCustomFiles folder under the Documents (or My Documents) folder, or the location you are using to store the DVB files. After the files are saved to the location you are using to store DVB files, remove ch31_ from the filename. You will also need the sample files ch31_building_plan.dwg, ch31_clsUtilities.cls, and b-tblk.dwg for this exercise.
-
-Creating the Layout
-
-A layout is used to organize objects from model space and the annotation required to communicate the design within viewports. Depending on the type of drawings you work with, there can be benefits to creating layouts dynamically as they are needed instead of manually adding them to your drawings. The following steps explain how to create a procedure named AddCheckPlotLayout to the drawingsetup.dvb project:
-
-Open the VBA Editor and load the drawingsetup.dvb file.
-
-In the VBA Editor Project Explorer, double-click the code module named basDrawingSetup.
-
-When the code editor window opens, scroll to the bottom and click after the last End Sub statement. Press Enter twice.
-
-Type the following; the comments are included for your information and don't need to be typed:' Adds a new layout based on the name passed to the function Private Function AddLayout(sLayoutName As String) As AcadLayout On Error Resume Next ' Get the layout Set AddLayout = ThisDrawing.Layouts(sLayoutName) ' If an error is generated, the layout doesn't exist If Err Then Err.Clear ' Add the layout Set AddLayout = ThisDrawing.Layouts.Add(sLayoutName) End If End Function
-
-On the menu bar, click File Save.
-
-Adding and Modifying a Plot Configuration
-
-Plot settings control how a layout is output to a device (printer, plotter, or file). You can modify the plot settings of a layout directly or create a named plot configuration and then copy those plot settings to a layout.
-
-The following steps define a procedure named AddPlotConfig, which is a helper function used to create a plot configuration based on a device and media size. You will use this function later to create a new plot configuration or return the plot configuration if it already exists in the drawing. The function returns an AcadPlotConfiguration object that represents the new plot configuration.
-
-In the code editor window, scroll to the bottom and click after the last End Function statement. Press Enter twice.
-
-Type the following; the comments are here for your information and don't need to be typed:' Adds a plot configuration based on the name and values ' passed to the function Private Function AddPlotConfig(sPltConfigName As String, _ sDeviceName As String, _ sMediaName As String, _ sPlotStyleName As String, _ bModelType As Boolean, _ nPlotType As AcPlotType, _ nPlotRotation As AcPlotRotation, _ ) As AcadPlotConfiguration On Error Resume Next ' Get the plot configuration Set AddPlotConfig = ThisDrawing. _ PlotConfigurations(sPltConfigName) ' If an error is generated, the plot configuration doesn't exist If Err Then Err.Clear ' Add the plot configuration Set AddPlotConfig = ThisDrawing. _ PlotConfigurations. _ Add(sPltConfigName, bModelType) ' Assign a device name AddPlotConfig.ConfigName = sDeviceName ' Assign a media name AddPlotConfig.CanonicalMediaName = sMediaName ' Assign a plot style name AddPlotConfig.StyleSheet = sPlotStyleName ' Assign the layout plot type AddPlotConfig.PlotType = nPlotType ' Assign the plot rotation AddPlotConfig.PlotRotation = nPlotRotation End If End Function
-
-On the menu bar, click File Save.
-
-Inserting a Title Block
-
-Title blocks are a form of annotation that is used to help identify and communicate the project with which the drawing is associated. Depending on your design, a title block might display the location of a building, the model number of a new part to be manufactured, revision history, and much more. In the exercises in Chapter 26, you inserted the title block b-tblk.dwg into a drawing using the insert command with the SendCommand method, but as I explained earlier in the book, using commands for this kind of operation has drawbacks.
-
-In the next steps, you will create a new procedure named AddBlkReference that will insert a title block onto a specified layout with a known location, rotation, and scale. The procedure will then be used later to insert that same block.
-
-In the code editor window, scroll to the bottom and click after the last End Function statement. Press Enter twice.
-
-Type the following; the comments are here for your information and don't need to be typed:' Insert a block onto a specified layout Private Function AddBlkReference(oLayout As AcadLayout, _ sBlkName As String, _ vInsPoint As Variant, _ dRotation As Double, _ dScale As Double _ ) As AcadBlockReference On Error Resume Next ' Insert the block Set AddBlkReference = oLayout.Block. _ InsertBlock(vInsPoint, _ sBlkName, _ dScale, dScale, dScale, _ dRotation) ' If an error is generated, return Nothing If Err Then Err.Clear Set AddBlkReference = Nothing End If End Function
-
-On the menu bar, click File Save.
-
-Displaying Model Space Objects with a Viewport
-
-The most common objects placed on a layout after annotation objects are viewports. Viewports are used to display model space objects at a specific scale.
-
-In the next steps, you will create a new procedure named AddFloatingViewport that adds a floating viewport to the specified paper space block with a known center, width, and height.
-
-In the code editor window, scroll to the bottom and click after the last End Function statement. Press Enter twice.
-
-Type the following; the comments are here for your information and don't need to be typed:' Add a floating viewport to a layout Private Function AddFloatingViewport(oPSpace As AcadPaperSpace, _ vCenterPoint As Variant, _ dWidth As Double, _ dHeight As Double _ ) As AcadPViewport On Error Resume Next ' Add the Viewport Set AddFloatingViewport = oPSpace. _ AddPViewport(vCenterPoint, _ dWidth, _ dHeight) ' If an error is generated, return Nothing If Err Then Err.Clear Set AddFloatingViewport = Nothing End If End Function
-
-On the menu bar, click File Save.
-
-Putting It All Together
-
-Now that you have defined functions that create a layout and plot configuration, insert a block, and add a floating viewport, it is time to put them all to work. In addition to using the functions defined in this exercise, you will use the createlayer function from the clsUtilities class to create a few new layers if they aren't present in the drawing file.
-
-In these steps, you'll import the class module named clsUtilities.cls and define a global variable, which will be used to access the procedures defined in the clsUtilities class:
-
-In the VBA Editor, in the Project Explorer, right-click the DrawingSetup project and choose Import File.
-
-When the Import File dialog box opens, browse to and select the clsUtilities.cls file in the MyCustomFiles folder. Click Open. The clsUtilities.cls file contains the utility procedures that you created as part of the DrawPlate project or downloaded as part of the sample files for this book.
-
-In the Project Explorer, double-click the code module named basDrawingSetup.
-
-In the text editor area of the basDrawingSetup component, scroll to the top and add the following on a new line: Private myUtilities As New clsUtilities
-
-The createlayer function is now available for use in the basDrawingSetup code module.
-
-In the next steps, you will create a new procedure named CheckPlot. This will be the main procedure that the end user executes from the AutoCAD user interface. This new procedure creates a layout and plot configuration named CheckPlot, inserts the title block stored in the drawing file named b-tblk.dwg, creates a new floating viewport, and outputs the layout using the assigned device to a file named checkplot.dwf.
-
-In the code editor window, scroll to the bottom and click after the last End Function statement. Press Enter twice.
-
-Type the following; the comments are here for your information and don't need to be typed:' Creates a function that creates a new layout named CheckPlot, ' sets the output device for the layout to the DWF ePlot.pc3 file, ' inserts a title block for a ANSI B size sheet of paper and ' plots the layout. Public Sub CheckPlot() On Error Resume Next ' Check to see if the CheckPlot layout already exists, ' and if so set it current Dim oLayout As AcadLayout Set oLayout = ThisDrawing.Layouts("CheckPlot") If Err Then Err.Clear ' Store and change the default for creating a viewport ' when a new layout is created Dim bFlag As Boolean bFlag = ThisDrawing.Application. _ Preferences.Display.LayoutCreateViewport ThisDrawing.Application. _ Preferences.Display.LayoutCreateViewport = False ' Use the AddLayout function to create ' the CheckPlot layout Set oLayout = AddLayout("CheckPlot") ' Set the new layout current ThisDrawing.ActiveLayout = oLayout ' Use the AddPlotConfig function to create ' the CheckPlot plot configuration Dim oPltConfig As AcadPlotConfiguration Set oPltConfig = AddPlotConfig("CheckPlot", "DWF6 ePlot.pc3", _ "ANSI_B_(17.00_x_11.00_Inches)", _ False, "acad.ctb", _ acLayout, ac0degrees) ' Assign the plot configuration to the layout oLayout.CopyFrom oPltConfig ' Use the AddBlkReference function to insert ' the title block named b-tblk.dwg onto the layout Dim sTitleBlkName As String sTitleBlkName = ThisDrawing.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\b-tblk.dwg" Dim dInsPt(2) As Double dInsPt(0) = 0: dInsPt(1) = 0: dInsPt(2) = 0 Dim oBlkRef As AcadBlockReference Set oBlkRef = AddBlkReference(oLayout, sTitleBlkName, _ dInsPt, 0, 1) ' If a block reference was returned, place it on the Tblk layer If Not oBlkRef Is Nothing Then ' Add the layer for the title block oBlkRef.Layer = myUtilities.CreateLayer("TBLK", 8).Name End If ' Add a viewport to the layout Dim dCPt(2) As Double dCPt(0) = 6.375: dCPt(1) = 4.875: dCPt(2) = 0 Dim oVport As AcadPViewport Set oVport = AddFloatingViewport(ThisDrawing.PaperSpace, _ dCPt, 12.55, 9.55) ' If a floating viewport was returned, place it on the Vport layer If Not oVport Is Nothing Then ' Turn the viewport On oVport.Display True ' Add the layer for the viewport and set it to not plottable Dim oLayer As AcadLayer Set oLayer = myUtilities.CreateLayer("Vport", 9) oLayer.Plottable = False ' Assign the layer for the viewport oVport.Layer = oLayer.Name ' Set the scale of the viewport to Fit oVport.StandardScale = acVpScaleToFit Else MsgBox "Warning: The viewport couldn't be created." End If ' Restore viewport creation for new layouts ThisDrawing.Application. _ Preferences.Display.LayoutCreateViewport = bFlag Else ' Set the new layout current ThisDrawing.ActiveLayout = oLayout End If ' Zoom to the extents of the layout ThisDrawing.Application.ZoomExtents ' Regen the drawing ThisDrawing.Regen acActiveViewport ' Re-establish the area to plot is the layout ThisDrawing.ActiveLayout.PlotType = acLayout ' Prompt the user if the check plot should be created now If MsgBox("Do you want to create the check plot?", _ vbYesNo) = vbYes Then With ThisDrawing.Plot ' Assign the CheckPlot layout for plotting .SetLayoutsToPlot Array(oLayout) ' Define the name of the DXF file to create Dim sDWFName As String sDWFName = ThisDrawing.GetVariable("mydocumentsprefix") & _ "\MyCustomFiles\checkplot.dwf" ' Plot the DWF file and display a message if the ' plot was unsuccessful If.PlotToFile(sDWFName) = False Then MsgBox "The CheckPlot layout couldn't be output." & _ vbLf & "Check the device and plot settings." End If End With End If End Sub
-
-On the menu bar, click File Save.
-
-Testing the CheckPlot Procedure
-
-The following steps explain how to test the CheckPlot procedure:
-
-Switch to the AutoCAD application window.
-
-Open Ch31_Building_Plan.dwg.
-
-At the Command prompt, type vbarun and press Enter.
-
-When the Macros dialog box opens, select the RoolLabel.dvb!basDrawingsetup.CheckPlot macro from the list and click Run. The new layout named CheckPlot is set as current, as shown in Figure 31.1.
-
-When the message box opens, click Yes to create the DWF file in the MyCustomFiles folder. Open the checkplot.dwf file that is generated with the Autodesk Design Review program (http://usa.autodesk.com/design-review/) or a similar program.
-
-Figure 31.1 New layout with a title block
-
-Chapter 32
-
-Storing and Retrieving Custom Data
+# 0309. Storing and Retrieving Custom Data
 
 There are times when it would be nice to have a custom program store values and then retrieve them at a later time. Although you can use a global variable to temporarily store a value while the custom program remains in memory, global variables do not persist across multiple sessions. Using the AutoCAD® Object library and VBA, you can store values so that they persist between drawing or AutoCAD sessions.
 
@@ -666,3 +570,14 @@ If you closed the RoomLabel Test - VBA.dwg file from the previous section, reope
 
 At the Command prompt, type vbarun and press Enter.
 
+When the Macros dialog box opens, select the RoolLabel.dvb!basRoomLabel.SelectRoomLabels macro from the list and click Run.
+
+At the Select objects: prompt, type all and press Enter twice.
+
+At the Command prompt, type erase and press Enter.
+
+At the Select objects: prompt, type p and press Enter twice. All of the room label blocks have been removed.
+
+At the Command prompt, type u and press Enter.
+
+Save and close the drawing file.

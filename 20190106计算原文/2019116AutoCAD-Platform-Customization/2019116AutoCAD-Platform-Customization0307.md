@@ -1,4 +1,4 @@
-# Chapter 30 Working with Blocks and External References
+# 0307. Working with Blocks and External References
 
 Most designs created with the AutoCAD® program start off with simple geometric objects, such as lines, circles, and arcs. The geometric objects are used to represent holes, bolts, motors, and even the outside of a building. As a design grows in complexity, elements often are repeated many times. For example, you might use several lines and circles to represent a bolt head or a desk with a grommet.
 

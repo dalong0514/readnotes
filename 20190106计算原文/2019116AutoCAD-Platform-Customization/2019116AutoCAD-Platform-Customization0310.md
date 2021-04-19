@@ -1,18 +1,4 @@
-When the Macros dialog box opens, select the RoolLabel.dvb!basRoomLabel.SelectRoomLabels macro from the list and click Run.
-
-At the Select objects: prompt, type all and press Enter twice.
-
-At the Command prompt, type erase and press Enter.
-
-At the Select objects: prompt, type p and press Enter twice. All of the room label blocks have been removed.
-
-At the Command prompt, type u and press Enter.
-
-Save and close the drawing file.
-
-Chapter 33
-
-Modifying the Application and Working with Events
+# 0310. Modifying the Application and Working with Events
 
 The ability to automate the creation and modification of objects in a drawing can be a huge productivity boost to any organization. As a programmer, you should always try to seamlessly integrate your custom programs into existing workflows and make it feel as if they were native to the AutoCAD® application.
 
@@ -603,66 +589,4 @@ Close the drawing.
 Reopen the ch33_exercise.dwg file. Notice the drawing opens in model space and the extents of the objects in the drawing are displayed. Figure 33.7 shows the results of the document and applications.
 
 Figure 33.7 Layers created as a result of the BeginCommand event and the use of the hatch and dimlinear commands
-
-Chapter 34
-
-Creating and Displaying User Forms
-
-Input from end users is either the key to a flexible and efficient program or its Achilles' heel. It all depends on how you gather and use that input. Up to this point, the input that you have been getting from the user has been requested at the AutoCAD® Command prompt. There is nothing bad about getting input only from the Command prompt, but it can be a limiting approach.
-
-VBA programs support the ability to implement dialog boxes by adding a UserForm object to a project. Standard interactive controls that you are already familiar with from other Windows-based programs can be added to a user form to get input from the user. User forms allow a user to see values that might normally be hidden behind a set of prompts and provide input for only those options they are interested in changing. A user form can also be used to stitch multiple procedures together into a single, easy-to-use interface.
-
-Adding and Designing a User Form
-
-Many Windows-based programs use dialog boxes to get nonsequential input from the user and to provide feedback. A dialog box in a VBA project is known as a UserForm object. A user form, or dialog box, uses objects known as controls. A control can be of various types and sizes, and it usually accepts input from the mouse and/or keyboard that is attached to a workstation. In more recent years, input can come in the form of touch as well. Touch input is interpreted in a manner similar to mouse input. As a user clicks or types in a control, procedures known as events are executed. Events allow your program time to validate and manipulate the values provided through the control.
-
-Adding a User Form to a VBA Project
-
-With a VBA project loaded in the VBA Editor, a UserForm object can be added to the project. The default UserForm contains only a Close button in the upper-right corner, as shown in Figure 34.1. You can add a new UserForm object to a VBA project using one of the following methods:
-
-On the menu bar, click Insert UserForm.
-
-In the Project Explorer, right-click over the project and choose Insert UserForm.
-
-Figure 34.1 Default UserForm displayed in the UserForm editor window
-
-When a new UserForm object is added to a VBA project, it is displayed in the UserForm editor window. You can perform the following tasks with the UserForm editor window:
-
-Add controls from the Toolbox window; see the「Placing a Control on a User Form」section later in this chapter for more information.
-
-Reposition, resize, group, and align controls.
-
-Use the Properties window to change the appearance of the user form or controls; see the「Changing the Appearance of a User Form or Control」section later in this chapter.
-
-Define the behavior of the user form as it is being loaded or when the user interacts with controls; see the「Defining the Behavior of a User Form or Control」section later in this chapter.
-
-As I explained with naming variables in Chapter 25,「Understanding Visual Basic for Applications.」Hungarian notation should be used to help identify a variable's data type. Hungarian notation is also typically used with UserForm objects and controls. The standard Hungarian notation used for a UserForm object name is frm.
-
-TIP
-
-If you have a UserForm in another project that you want to reuse, export the UserForm to a form (FRM) file and then import it into your project. Right-click over a UserForm in the Project Explorer and choose Export File to export the component. To import a previously exported component, right-click over a project and choose Import File.
-
-Considering the Design of a User Form
-
-A user form often provides your users with their first impression of your program. Users typically don't see the code that is running behind the scenes where all the real magic happens. As in real life, first impressions can be hard to shake. The user forms you create for your programs should have a familiar feel, as if the user has been using them forever.
-
-When creating a user form, consider the following basic guidelines:
-
-Controls with the most importance should be placed in the upper-left corner, whereas the least frequently used should be located in the lower area of the user form.
-
-The flow in a user form should be top-down and left-to-right.
-
-Controls should be aligned along the top edge when placed horizontally or along their left edge when placed vertically.
-
-Controls of the same type should be of a similar size.
-
-Organize and group related options together.
-
-Don't crowd the controls on a user form—be sure to put some space between the controls. Be aware that too much space can make a user form feel empty.
-
-Keep text labels and messages short and meaningful.
-
-Buttons used to accept or cancel the changes made should be placed horizontally along the lower right or vertically along the right edge of the user form.
-
-The button used to accept changes should be to the left of or above the button used to cancel the changes made.
 

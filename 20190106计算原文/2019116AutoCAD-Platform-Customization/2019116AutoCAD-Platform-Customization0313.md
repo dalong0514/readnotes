@@ -1,3 +1,23 @@
+# 0313. Handling Errors and Deploying VBA Projects
+
+What separates a good programmer from a great programmer is often the ability to implement error handling that catches an error and exits the program cleanly, thus avoiding system crashes and unwanted changes to a drawing.
+
+The ability to predict where something might go wrong in your program can help you locate potential problems—errors or bugs, as programmers commonly refer to them. If you hang around any programmers, you might have heard the term debugging; it is the industry-standard term used for the process of locating and resolving problems in a program. Conditional statements can be used to identify and work around potential problems by validating values and data types used in a program.
+
+Once you have tested a program for potential problems and handled the errors generated, you are ready to deploy the program for use.
+
+Catching and Identifying Errors
+
+The VBA programming language supports two statements that are designed to assist in handling errors. The On Error and Resume statements allow you to execute your code and specify the code statements that should be executed if an error occurs. Along with these two statements, the Err object can be used to get information about the error that was generated. You can use this information for evaluation and error handling or, when necessary, to pass an error forward from a custom function for the calling program to evaluate and handle.
+
+For example, you might have a procedure that works with a text file and accepts a string that contains the file it should work with. If the procedure is passed a string but it doesn't represent a proper filename, your procedure should handle the error but also raise the error so that the calling procedure can use the error handling of the VBA programming language to continue.
+
+Recovering and Altering Execution after an Error
+
+
+
+
+
 There is nothing more frustrating to end users than a program that misbehaves or terminates without warning and provides them with no information about what went wrong. No program is ever perfect, but you should make every attempt to ensure the users of your custom program the best possible experience by adding proper error handling.
 
 The On Error statement is what you will be using to catch and handle any errors that occur during the execution of a custom procedure. There are two variants of the On Error statement:

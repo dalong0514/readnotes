@@ -1,3 +1,81 @@
+# 0312. Communicating with Other Applications
+
+Everything up until this point has been focused on learning VBA, automating tasks in the AutoCAD® drawing environment, and manipulating the AutoCAD program itself. The VBA programming language also supports features that can be used to get information from outside of the AutoCAD program.
+
+Using VBA, you can read and write text files that are stored on disc and leverage other libraries registered on your workstation with the ActiveX technology. Microsoft Windows comes preinstalled with a number of libraries that can be used to parse the information stored in an XML file or manipulate the files and directories on the discs that are accessible from your workstation. If you have Microsoft Office installed, you can also access Microsoft Word, Excel, and Access to read and write information to DOC, DOCX, XLS, XLSX, ACCDB, or MDB files.
+
+Referencing a Programming Library
+
+When a new VBA project is created, the Microsoft VBA and AutoCAD Object libraries are referenced by default. You can reference other libraries that are installed and registered on your workstation using the References dialog box. Here are examples of other programming libraries:
+
+AutoCAD/ObjectDBX™ Common Type Library (axdb<version>enu.tlb) This library allows you to access the objects of a drawing without loading the drawing into the AutoCAD drawing environment first.
+
+AcSmComponents 1.0 Type Library (acsmcomponents<version>.tlb) Using this library, you can automate tasks related to the Sheet Set Manager in the AutoCAD drawing environment.
+
+Microsoft Excel Object Library (excel.exe) If you need to access the Excel application, use this library.
+
+Microsoft Word Object Library (msword<version>.olb) Using the Microsoft Word Object Library, you can access the Word application.
+
+Extending Nondrafting Workflows with VBA
+
+Your boss has just come from the latest conference. He's excited about agile systems and how implementing Agile processes can make projects go smoother. After sitting in a few meetings, you realize how much extra work this could be in the short term, but you can see how it will help deliver more projects on time in the long term. So, you decide to participate in the pilot project using Agile processes.
+
+One of the new processes that drafters will be responsible for is entering project team queries into an Excel spreadsheet. The spreadsheet will be used by the team to address issues during the daily meeting, report project status in Microsoft Project at each handoff point in a drawing, and notify the team of queries and handoffs by email. Using VBA, you help facilitate the information exchange. Your custom programs allow drafters to export status updates, handoffs, and queries to Excel and Project, and the interface in AutoCAD allows the drafters to respond to a query, send a request for more information, and update a project's status from within any drawing for the project.
+
+The following explains how to add a reference to a third-party library in a VBA project:
+
+In the VBA Editor, from the Project Explorer select a loaded project to set it as current.
+
+On the menu bar, click Tools References.
+
+When the References dialog box opens, scroll to the library you want to reference.
+
+Click the check box next to the programming library to reference. If the programming library you want to load is not referenced, click Browse and select the library to load. Click Open.
+
+Click OK.
+
+Creating and Getting an Instance of an Object
+
+Most of the objects that you have learned to work with were created using an object method defined in the AutoCAD Object library or using the New keyword. I explained how to use the New keyword to create a new instance of an object in the「Working with Objects」section of Chapter 25,「Understanding Visual Basic for Applications.」
+
+When using a library registered on your workstation, you can let VBA know that you want to use the library by referencing it first or simply creating an instance of an object that can be instantiated. Referencing a library as part of your VBA project is known as early binding. Early binding allows you to browse the objects and members of a library using the Object Browser in the VBA Editor as well as the IntelliSense (type-ahead) feature of the code editor windows. I mentioned how to reference a library in the「Referencing a Programming Library」section earlier.
+
+The alternative to early binding is known as late binding. Late binding is when you use a programming library without first adding a reference to the library in your project. Early binding is the more popular approach when working with a programming library, but it does have a limitation.
+
+Early binding forces your program to use a specific release of a programming library, whereas late binding allows you to work with any version of a programming library registered on your workstation. An example of when you might want to use late binding instead of early binding is when you want to create a program that can target and take advantage of the features in different releases of Word.
+
+NOTE
+
+Late binding is more flexible when deploying an application to workstations that could have different versions of a programming library than you are using. However, early binding does make development and debugging easier because you can take advantage of IntelliSense for the library in the VBA Editor.
+
+Creating a New Instance of an Object
+
+The New keyword can only be used when you use early binding. To create a new instance of an object with early or later binding, you can use the CreateObject function. The CreateObject function expects a class ID for the object you want to create. Class ID values are defined in the Windows Registry, but the vendor of the library should have these documented as part of the library's documentation.
+
+The following shows the syntax of the CreateObject function:
+
+retObj = CreateObject(classID [, servername])
+
+Its arguments are as follows:
+
+retObj The retObj argument represents the object that is returned.
+
+classID The classID argument is a string that represents the object to be created. The string is in the form of appname.objecttype[.version]. When the library has already been referenced in a project, the value of appname must match the name of the library you are calling exactly as it appears in the Libraries drop-down list in the Object Browser of the VBA Editor (see Figure 35.1). The value of objecttype specifies the type of object to be created, whereas version is an optional version number that could include a major and/or minor version number. Not all object types support a version number.
+
+An example of a major version number might be 19, and an example of a major and minor number might be 19.1. The AcadApplication object in the AutoCAD Object library supports both major and minor versions and is based on the release of AutoCAD. Table 35.1 lists some common class IDs for the Application object in the AutoCAD Object library.
+
+Be sure to refer to each library's documentation for object versioning information.
+
+servername The servername argument is an optional string that represents the name of the server on the network where the object should be created. If no value or a value of "" is provided, the object is created locally in memory on your workstation.
+
+Figure 35.1 Check the Libraries drop-down list in the Object Browser and use the appname listed there.
+
+Table 35.1 Common class IDs for the AutoCAD Object library Application object
+
+
+
+
+
 Class ID Specifies
 
 AutoCAD.Application Any version of AutoCAD
@@ -647,22 +725,3 @@ Open Windows Explorer or File Explorer, and browse to the location of the furnbo
 Open the file in Notepad or even an application like Microsoft Excel. Figure 35.3 shows the results of opening the furnbom.csv file in Excel.
 
 Figure 35.3 BOM content in Excel
-
-Chapter 36
-
-Handling Errors and Deploying VBA Projects
-
-What separates a good programmer from a great programmer is often the ability to implement error handling that catches an error and exits the program cleanly, thus avoiding system crashes and unwanted changes to a drawing.
-
-The ability to predict where something might go wrong in your program can help you locate potential problems—errors or bugs, as programmers commonly refer to them. If you hang around any programmers, you might have heard the term debugging; it is the industry-standard term used for the process of locating and resolving problems in a program. Conditional statements can be used to identify and work around potential problems by validating values and data types used in a program.
-
-Once you have tested a program for potential problems and handled the errors generated, you are ready to deploy the program for use.
-
-Catching and Identifying Errors
-
-The VBA programming language supports two statements that are designed to assist in handling errors. The On Error and Resume statements allow you to execute your code and specify the code statements that should be executed if an error occurs. Along with these two statements, the Err object can be used to get information about the error that was generated. You can use this information for evaluation and error handling or, when necessary, to pass an error forward from a custom function for the calling program to evaluate and handle.
-
-For example, you might have a procedure that works with a text file and accepts a string that contains the file it should work with. If the procedure is passed a string but it doesn't represent a proper filename, your procedure should handle the error but also raise the error so that the calling procedure can use the error handling of the VBA programming language to continue.
-
-Recovering and Altering Execution after an Error
-
