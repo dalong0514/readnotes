@@ -38,7 +38,7 @@ The most recent generation of VB is known as VB.NET. Although VB and VB.NET have
 
 The summer intern had one job — add a layer and a confidentiality note to a series of 260 production drawings. September arrived, the intern left for school, and now your manager is in your cubicle.
 
-「Half of these drawings are missing that confidentiality note Purchasing asked for. I need you to add that new layer, name it Disclaimer, and then add the confidentiality note as multiline text to model space. The note should be located on the new Disclaimer layer at 0.25,0.1.75,0 with a height of 0.5, and the text should read Confidential: This drawing is for use by internal employees and approved vendors only. Be sure to check to see if paper space is active. If it is, then set model space active per the new standards before you save each drawing,」he says.
+「Half of these drawings are missing that confidentiality note Purchasing asked for. I need you to add that new layer, name it Disclaimer, and then add the confidentiality note as multiline text to model space. The note should be located on the new Disclaimer layer at 0.25,1.75,0 with a height of 0.5, and the text should read Confidential: This drawing is for use by internal employees and approved vendors only. Be sure to check to see if paper space is active. If it is, then set model space active per the new standards before you save each drawing,」he says.
 
 「I can do that,」you respond.
 
@@ -54,17 +54,43 @@ With ThisDrawing
   Dim objMText As AcadMText 
   Dim insPt(2) As Double 
   insPt(0) = 0.25: insPt(1) = 1.75: insPt(2) = 0 
-  Set objMText =.ModelSpace.AddMText(insPt, 15, _
+  Set objMText = .ModelSpace.AddMText(insPt, 15, _
     "Confidential: This drawing is for use by internal" & _
     "employees and approved vendors only") 
   objMText.Layer = "Disclaimer"
   objMText.Height = 0.5 
   If.ActiveSpace = acPaperSpace Then 
     .ActiveSpace = acModelSpace 
-    End If 
+  End If 
   .Save 
 End With
 ```
+
+1『
+
+上面的实现语句必须放在 `Sub` 里，CAD 环境才能识别这个「宏」。
+
+```c
+Sub CreatMText()
+  With ThisDrawing
+    .Layers.Add "Disclaimer"
+    Dim objMText As AcadMText
+    Dim insPt(2) As Double
+    insPt(0) = 0.25: insPt(1) = 1.75: insPt(2) = 0
+    Set objMText = .ModelSpace.AddMText(insPt, 15, _
+      "Confidential: This drawing is for use by internal" & _
+      "employees and approved vendors only")
+    objMText.Layer = "Disclaimer"
+    objMText.height = 0.5
+    If .ActiveSpace = acPaperSpace Then
+      .ActiveSpace = acModelSpace
+    End If
+    .Save
+  End With
+End Sub
+```
+
+』
 
 ### 1.2 What You'll Need to Start
 

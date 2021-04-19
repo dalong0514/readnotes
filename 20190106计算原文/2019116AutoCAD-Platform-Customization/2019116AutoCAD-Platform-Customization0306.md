@@ -71,7 +71,18 @@ The properties of the AcadText and AcadMText objects can be used to adjust the j
 The following code statements add a new single-line text object to model space and center the text:
 
 ```c
-' Defines the insertion point and height for the text object Dim dInsPt(2) As Double, dHeight As Double dInsPt(0) = 5: dInsPt(1) = 5: dInsPt(2) = 0 dHeight = 0.25 ' Creates a new text object Dim oText As AcadText Set oText = ThisDrawing.ModelSpace.AddText( _ "Center Justified", dInsPt, dHeight) ' Sets the justification of the text to middle center oText.Alignment = acAlignmentMiddleCenter ' Moves the alignment point of the justified text ' to the original insertion point oText.TextAlignmentPoint = dInsPt
+' Defines the insertion point and height for the text object 
+Dim dInsPt(2) As Double, dHeight As Double 
+dInsPt(0) = 5: dInsPt(1) = 5: dInsPt(2) = 0 dHeight = 0.25 
+' Creates a new text object 
+Dim oText As AcadText 
+Set oText = ThisDrawing.ModelSpace.AddText( _ 
+  "Center Justified", dInsPt, dHeight) 
+' Sets the justification of the text to middle center 
+oText.Alignment = acAlignmentMiddleCenter 
+' Moves the alignment point of the justified text 
+' to the original insertion point 
+oText.TextAlignmentPoint = dInsPt
 ```
 
 NOTE: After changing the justification of an AcadText object, you will need to update the TextAlignmentPoint property to move the location to the correct position.
@@ -84,41 +95,50 @@ Alphanumeric characters are used to create the text string that an AcadText obje
 
 Table 29.1 Control codes for AcadText objects
 
-Control code Description
-
-%%c Adds a diameter symbol to the text.
-
-%%d Adds a degree symbol to the text.
-
-%%nnn Adds the ASCII character represented by the character value nnn. For example, %%169 adds the Copyright symbol.
-
-%%o Toggles the use of overscoring. The first instance of %%o in a text string turns overscoring on, and the second turns it off.
-
-%%p Adds a plus or minus symbol ( ± ) to the text.
-
-%%u Toggles the use of underscoring. The first instance of %%u in a text string turns underscoring on, and the second turns it off.
-
-%%% Adds a percent symbol to the text.
-
-%< and >% Defines the start and end of a field value. I discuss working with field values in in the「Creating Fields」section later in this chapter.
+| Control code | Description |
+| --- | --- |
+| %%c | Adds a diameter symbol to the text. |
+| %%d  | Adds a degree symbol to the text. |
+| %%nnn | Adds the ASCII character represented by the character value nnn. For example, %%169 adds the Copyright symbol. |
+| %%o | Toggles the use of overscoring. The first instance of %%o in a text string turns overscoring on, and the second turns it off. |
+| %%p | Adds a plus or minus symbol ( ± ) to the text. |
+| %%u | Toggles the use of underscoring. The first instance of %%u in a text string turns underscoring on, and the second turns it off. |
+| %%% | Adds a percent symbol to the text. |
+| %< and >% | Defines the start and end of a field value. I discuss working with field values in in the「Creating Fields」section later in this chapter. |
 
 The text string of an AcadMText object can be very basic, but it can be very complex as well. You can control the formatting of each character in a text string with special control codes. Unlike the special control codes that are supported by an AcadText object, those used by an AcadMText object are much more complicated and harder to figure out at first. However, the AutoCAD list command will be your friend if you want to create complexly formatted text strings.
 
 The best process for learning how to format the text string of an AcadMText object is to use the mtext command in AutoCAD and create a sample text string that you want to create with your VBA macro. Once the MText object is added to the drawing, use the list command and look at the value after the Contents label in the output. For example, the following is an example of the output displayed by the list command for an MText object that contains a numbered list with three items (see Figure 29.3):
 
-Contents: Numbered List\P\pxi-3,l3,t3;1. Item 1\P2. Item 2\P3. Item 3
+Contents: 
+
+```
+Numbered List\P\pxi-3,l3,t3;1. Item 1\P2. Item 2\P3. Item 3
+```
 
 Figure 29.3 Numbered list in an MText object
 
 The long spaces in the example are actually tab characters. To create the numbered list shown in Figure 29.3 with VBA, the code statements would look like the following:
 
-' Defines the insertion point and width for the MText object Dim dInsPt(2) As Double, dWidth As Double dInsPt(0) = 0: dInsPt(1) = 0: dInsPt(2) = 0 dWidth = 5.5 ' Creates a new MText object with a numbered list Dim oMText As AcadMText Set oMText = ThisDrawing.ModelSpace.AddMText(dInsPt, dWidth, _ "Numbered List\P\pxi-3,l3,t3;1." & vbTab & _ "Item 1\P2." & vbTab & "Item 2\P3." & vbTab & "Item 3")
+```c
+' Defines the insertion point and width for the MText object 
+Dim dInsPt(2) As Double, dWidth As Double 
+dInsPt(0) = 0: dInsPt(1) = 0: dInsPt(2) = 0 
+dWidth = 5.5 
+' Creates a new MText object with a numbered list 
+Dim oMText As AcadMText 
+Set oMText = ThisDrawing.ModelSpace.AddMText(dInsPt, dWidth, _ 
+  "Numbered List\P\pxi-3,l3,t3;1." & vbTab & _ 
+  "Item 1\P2." & vbTab & "Item 2\P3." & vbTab & "Item 3")
+```
 
-Most of the control codes you will need to use take a combination of the list and mtext commands to initially figure out, but there a few control codes that are much easier to add to the text string of MText. The AcadMText object supports the %%d, %%c, and %%p control codes that are also supported by the AcadText object. If you want to add a special character to a text string of an AcadMText object, use the control sequence of \U+nnn, which adds a character based on its Unicode value instead of the %%nnn that an AcadText object supports. For example, to insert the Copyright symbol you would use the sequence of \U+00A9.
+Most of the control codes you will need to use take a combination of the list and mtext commands to initially figure out, but there a few control codes that are much easier to add to the text string of MText. The AcadMText object supports the `%%d`, `%%c`, and `%%p` control codes that are also supported by the AcadText object. If you want to add a special character to a text string of an AcadMText object, use the control sequence of `\U+nnn`, which adds a character based on its Unicode value instead of the %%nnn that an AcadText object supports. For example, to insert the Copyright symbol you would use the sequence of `\U+00A9`.
 
 TIP: You can use the Windows Character Map to get the Unicode value of a character for a specific font. If you need to use a character from the font that isn't assigned to the text style applied to the MText object, you must provide the proper control codes to indicate the font you want to use for that character. For example, the following indicates that the Copyright symbol of the Arial font should be added:
 
+```
 {\fArial|b0|i0|c186|p34;\U+00A9}
+```
 
 As I mentioned before, it is best to use the mtext command to first create an MText object and then use the list command to see the contents of that object. Then you will know the code control codes and sequences required.
 
@@ -126,15 +146,15 @@ As I mentioned before, it is best to use the mtext command to first create an MT
 
 The AutoCAD Object library doesn't support the ability to check the spelling or grammar of a text string. However, with some help from the Microsoft Word Object library you can check the spelling and grammar of a text string. The following outlines an approach you can take using the Word Object library to check the spelling or grammar of a text string:
 
-Create a Word Document object.
+1 Create a Word Document object.
 
-Add the text you want to check.
+2 Add the text you want to check.
 
-Perform the spelling and grammar check.
+3 Perform the spelling and grammar check.
 
-Update the text in the drawing.
+4 Update the text in the drawing.
 
-Close and discard the changes to the Word Document object.
+5 Close and discard the changes to the Word Document object.
 
 I introduce how to work with the Word Object library in Chapter 35,「Communicating with Other Applications.」
 
@@ -150,37 +170,61 @@ The Item method accepts a string that represents the name of the text style you 
 
 The following sample code statements check for the existence of a text style named General; if the text style doesn't exist, it is created:
 
-On Error Resume Next ' Gets the TextStyles collection Dim oStyles As AcadTextStyles Set oStyles = ThisDrawing.TextStyles ' Gets the text style named General Dim oStyle As AcadTextStyle Set oStyle = oStyles("General") ' If an error is returned, create the text style If Err Then Err.Clear ' Creates a new text style Set oStyle = oStyles.Add("General") End If
+```c
+On Error Resume Next 
+' Gets the TextStyles collection 
+Dim oStyles As AcadTextStyles 
+Set oStyles = ThisDrawing.TextStyles 
+' Gets the text style named General 
+Dim oStyle As AcadTextStyle 
+Set oStyle = oStyles("General") 
+' If an error is returned, create the text style 
+If Err Then 
+  Err.Clear 
+  ' Creates a new text style 
+  Set oStyle = oStyles.Add("General") 
+End If
+```
 
-NOTE
-
-Although the Add method won't return an error if a text style with the same name already exists, I recommend using the Item method of the AcadTextStyles collection object to check whether a text style already exists.
+NOTE: Although the Add method won't return an error if a text style with the same name already exists, I recommend using the Item method of the AcadTextStyles collection object to check whether a text style already exists.
 
 After you have an AcadTextStyle object, you can get its current font and character set with the GetFont method. The SetFont method is used to set the font and character set among other settings of the text style. In addition to the GetFont and SetFont methods, you can use the fontFile and BigFontFile properties of the AcadTextStyle object to specify the TrueType font (TTF) and Shape (SHX) file that should be used by the text style. The BigFontFile property is helpful if you need to support the double-byte characters that are used mainly for Asian languages.
 
 If you want text to be drawn at a specific height each time the text style is used, you set the height value to the Height property of the text style. Other properties of a text style allow you to specify the oblique angle and direction in which the text should be drawn, among other settings with the properties of the AcadTextStyle object. For information on the properties of the two text objects, see the AutoCAD Help system or the Object Browser in the VBA Editor.
 
-NOTE
-
-Text styles are used by dimension, mleader, and table styles. If a text style will be used by other named annotation styles, I recommend that you set the Height property of the text style to 0. When you use a height of 0, the referencing named annotation style has control over the final text height.
+NOTE: Text styles are used by dimension, mleader, and table styles. If a text style will be used by other named annotation styles, I recommend that you set the Height property of the text style to 0. When you use a height of 0, the referencing named annotation style has control over the final text height.
 
 If you don't need a text style anymore, remove it from a drawing with the Delete method of the AcadTextStyle object and not the Delete method of the AcadTextStyles collection object. The PurgeAll method of an AcadDocument or ThisDrawing object can also be used to remove all unused text styles from a drawing. I discussed the PurgeAll method in Chapter 27.
 
 The following sample code statements set the font of the text style assigned to the oStyle variable, enable boldface, and set the oblique angle to 10:
 
-Dim sFont As String Dim bBold As Boolean, bItalic As Boolean Dim nCharSet As Long Dim nPitchandFamily As Long ' Sets the font, enables boldface, and assigns an ' oblique angle to the style based on the active style ThisDrawing.ActiveTextStyle.GetFont sFont, bBold, _ bItalic, nCharSet, nPitchandFamily oStyle.SetFont "Arial", True, False, nCharSet, nPitchandFamily oStyle.ObliqueAngle = 10
+```c
+Dim sFont As String 
+Dim bBold As Boolean, bItalic As Boolean 
+Dim nCharSet As Long 
+Dim nPitchandFamily As Long 
+' Sets the font, enables boldface, and assigns an 
+' oblique angle to the style based on the active style 
+ThisDrawing.ActiveTextStyle.GetFont sFont, bBold, _ 
+  bItalic, nCharSet, nPitchandFamily 
+oStyle.SetFont "Arial", True, False, nCharSet, nPitchandFamily 
+oStyle.ObliqueAngle = 10
+```
 
 #### Assigning a Text Style
 
 A text style can be assigned to an object directly or inherited by the active text style of the drawing. You assign a text style to an AcadText or AcadMText object with the StyleName property. The StyleName property returns or accepts a string that represents the name of current or the text style to be assigned. When a new text object is created, the text style applied is inherited from the ActiveTextStyle property of the AcadDocument or ThisDrawing object. The ActiveTextStyle property returns and expects an AcadTextStyle object.
 
-NOTE
-
-As an alternative to the ActiveTextStyle property, you can use the textstyle system variable. The textstyle system variable accepts a string that represents the name of the text style to be inherited by each newly created text object.
+NOTE: As an alternative to the ActiveTextStyle property, you can use the textstyle system variable. The textstyle system variable accepts a string that represents the name of the text style to be inherited by each newly created text object.
 
 The following code statements assign the text style named General to the ActiveTextStyle property:
 
-' Sets the General text style as the active text style Dim oStyle As AcadTextStyle Set oStyle = ThisDrawing.TextStyles("GENERAL") ThisDrawing.ActiveTextStyle = oStyle
+```c
+' Sets the General text style as the active text style 
+Dim oStyle As AcadTextStyle 
+Set oStyle = ThisDrawing.TextStyles("GENERAL") 
+ThisDrawing.ActiveTextStyle = oStyle
+```
 
 ## 6.2 Dimensioning Objects
 
@@ -607,8 +651,38 @@ These changes to the CLI_DrawPlate function add an MText object to display a bas
 3 In the code editor window, scroll to the bottom of the CLI_DrawPlate function, locate the following code statements, and add the code statements shown in boldface: 
 
 ```c
-' Calculate and place the circle in the upper-left ' corner of the rectangle. dAng = myUtilities.Atn2(dPtList(6) - dPtList(0), _ dPtList(7) - dPtList(1)) cenPt4 = ThisDrawing.Utility.PolarPoint(cenPt1, dAng, dDist - 1) myUtilities.CreateCircle cenPt4, 0.1875 ' Get the insertion point for the text label Dim insPt As Variant insPt = Null insPt = ThisDrawing.Utility.GetPoint(, _ removeCmdPrompt & "Specify label insertion point " & _ "<or press Enter to cancel placement>: ") ' If a point was specified, placed the label If IsNull(insPt) = False Then ' Define the label to add Dim sTextVal As String sTextVal = "Plate Size: " & _ Format(ThisDrawing.Utility. _ RealToString(width, acDecimal, 4), "0.0###") & _ "x" & _ Format(ThisDrawing.Utility. _ RealToString(height, acDecimal, 4), "0.0###") ' Create label Set oLyr = myUtilities.CreateLayer("Label", acWhite) ThisDrawing.ActiveLayer = oLyr myUtilities.CreateText insPt, acAttachmentPointMiddleCenter, _ 0.5, 0#, sTextVal End If End If Loop Until IsNull(basePt) = True And sKeyword = "" ' Restore the saved system variable values myUtilities.SetSysvars sysvarNames, sysvarVals
+' Calculate and place the circle in the upper-left 
+' corner of the rectangle. 
+dAng = myUtilities.Atn2(dPtList(6) - dPtList(0), dPtList(7) - dPtList(1)) 
+cenPt4 = ThisDrawing.Utility.PolarPoint(cenPt1, dAng, dDist - 1) 
+myUtilities.CreateCircle cenPt4, 0.1875 
+' Get the insertion point for the text label 
+Dim insPt As Variant 
+insPt = Null 
+insPt = ThisDrawing.Utility.GetPoint(, _ 
+  removeCmdPrompt & "Specify label insertion point " & _ 
+  "<or press Enter to cancel placement>: ") 
+' If a point was specified, placed the label 
+If IsNull(insPt) = False Then 
+  ' Define the label to add 
+  Dim sTextVal As String 
+  sTextVal = "Plate Size: " & _ 
+    Format(ThisDrawing.Utility. _ 
+    RealToString(width, acDecimal, 4), "0.0###") & _ "x" & _ 
+    Format(ThisDrawing.Utility. _ 
+    RealToString(height, acDecimal, 4), "0.0###") 
+  ' Create label 
+  Set oLyr = myUtilities.CreateLayer("Label", acWhite) 
+  ThisDrawing.ActiveLayer = oLyr 
+  myUtilities.CreateText insPt, acAttachmentPointMiddleCenter, 0.5, 0#, sTextVal 
+End If 
+End If 
+Loop Until IsNull(basePt) = True And sKeyword = "" 
+' Restore the saved system variable values 
+myUtilities.SetSysvars sysvarNames, sysvarVals
 ```
+
+1『上面代码的结构层次还没理清楚，待理清。（2021-04-19）』
 
 4 Click File Save.
 
