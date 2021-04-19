@@ -352,7 +352,7 @@ There are two ways to display the VBA Manager in AutoCAD:
 
 2 At the Command prompt, type `vbaman` and press Enter.
 
-1『个人还是喜欢用命令方法 `vbaman`。（2021-04-03）』
+1-2『个人还是喜欢用命令方法 `vbaman`。（2021-04-03）补充：把 VBA 相关的命令汇集一下，做一张任意卡片。（2021-04-19）』—— 已完成
 
 #### 1.4.1 Creating a New VBA Project
 

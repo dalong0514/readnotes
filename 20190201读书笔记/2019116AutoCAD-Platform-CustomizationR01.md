@@ -130,7 +130,7 @@ The following is an example of the ˜ (bitwise NOT) function:
 -33
 ```
 
-2『竟然还有这个取负数的函数，这样以后不用自己用 0 减生成负数了。收录进主题卡片「函数收藏」。（2021-03-06）』—— 已完成
+2『竟然还有这个取负数的函数，这样以后不用自己用 0 减生成负数了。收录进主题卡片「函数收藏」。（2021-03-06）这里的取负数不是自己想要的负数，它多减了 1，后来自己封装了一个取负数的公共函数，因为这个功能太常用了。（2021-04-19）』—— 已完成
 
 ### 08. 布尔函数
 
@@ -905,3 +905,34 @@ Examples
 (float 3.75)
 3.75
 ```
+
+### 24. 各个类型的数据转为字符串
+
+[帮助 | vl-princ-to-string (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B0CA43-84F2-46DE-88BE-8FFF22C83FAD)
+
+Returns the string representation of LISP data as if it were output by the princ function
+
+Signature:
+
+```
+(vl-princ-to-string data)
+```
+
+data. Type: Integer, Real, String, List, Ename (entity name), T, or nil. Any AutoLISP data.
+
+Return Values. Type: String. A string containing the printed representation of data as if displayed by princ.
+
+Examples:
+
+```
+(vl-princ-to-string "abc")
+"abc"
+
+(vl-princ-to-string "c:\\acadwin")
+"C:\\ACADWIN"
+
+(vl-princ-to-string 'my-var)
+"MY-VAR"
+```
+
+1『在 CAD 里测试了，转字符串的时候并没有被转为大写字母字符串。（2021-04-19）』

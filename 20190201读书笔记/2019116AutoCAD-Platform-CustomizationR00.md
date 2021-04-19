@@ -1088,6 +1088,26 @@ Now that the drawings have been fixed, you output the revised drawings with minu
 
 』
 
+### 0316. 任意卡 —— VBA 相关快捷命令
+
+源自「2019116AutoCAD-Platform-Customization0301.md」：
+
+1、打开 VBA 的 IDE：`vbaide`。
+
+2、新建 VBA 工程：`vbanew`。
+
+3、打开 VBA 工程管理界面：`vbaman`。
+
+4、加载 VBA 工程：`VBAload`。
+
+5、运行 VBA 里的宏：`vbarun`。
+
+### 0317. 任意卡 —— VBA 工程文件 dvb 可以加密
+
+源自「2019116AutoCAD-Platform-Customization0301.md」：
+
+NOTE: A DVB file can be password-protected to restrict the editing of the components and code stored in the file. I discuss how to assign a password to a VBA project in Chapter 36.
+
 ## Introduction
 
 In 1996, Lee began learning the core concepts of customizing the AutoCAD user interface and AutoLISP. The introduction of VBA in AutoCAD R14 would once again redefine how Lee approached programming solutions for AutoCAD. VBA made it much easier to communicate with external databases and other applications that supported VBA. It transformed the way information could be moved between project management and manufacturing systems.

@@ -210,3 +210,9 @@ If you encounter any problems with downloading, opening, or extracting any of th
 If you have trouble with the bonus chapters or downloads on the Wiley companion website, please contact Wiley Product Technical Support at 1-877-762-2974. If you are outside the United States, call 1-317-572-3993 or fax 1-317-572-4002. Wiley Product Technical Support can also be reached at www.wiley.com/techsupport. John Wiley & Sons will provide technical support only for extracting and accessing the files for this book.
 
 To place additional orders or to request information about Wiley products, please call 1-877-763-2974.
+
+## 资源池
+
+[AfraLisp | The AutoLisp & VBA resource for AutoCAD users](https://www.afralisp.net/archive/index.htm)
+
+[AutoCAD and Binaries - Page I](https://www.afralisp.net/archive/lisp/binary_I.htm)
