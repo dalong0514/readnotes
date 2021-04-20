@@ -22,7 +22,7 @@ VBA, which stands for Visual Basic for Applications, is a programming language d
 
 Imagine an intelligent robot that knows all about Excel. This robot can read instructions, and it can also operate Excel very fast and accurately. When you want the robot to do something in Excel, you write a set of robot instructions by using special codes. Then you tell the robot to follow your instructions while you sit back and drink a glass of lemonade. That's kind of what VBA is all about — a code language for robots. Note, however, that Excel does not come with a robot or lemonade.
 
-#### A Few Words About Terminology
+A Few Words About Terminology
 
 Excel programming terminology can be a bit confusing. For example, VBA is a programming language, but it also serves as a macro language. In this context, a macro is a set of instructions Excel performs to imitate keystrokes and mouse actions. What do you call something written in VBA and executed in Excel? Is it a macro, or is it a program? Excel's Help system often refers to VBA procedures as macros, so that terminology is used in this book. But you can also call this stuff a program.
 
@@ -333,7 +333,7 @@ At this point, the macro probably looks like Greek to you. Don't worry. Travel a
 
 The NameAndTime macro consists of several statements. Excel executes the statements one by one, from top to bottom. A statement that's preceded by an apostrophe (') is a comment. Comments are included only for your information and are ignored by Excel. In other words, Excel skips right over comments.
 
-#### HEY, I DIDN'T RECORD THAT!
+HEY, I DIDN'T RECORD THAT!
 
 The macro recorder is like recording sound on a recorder. When you play back a recording and listen to your own voice, you invariably say,「I don't sound like that.」And when you look at your recorded macro, you may see some actions that you didn't think you recorded.
 
@@ -439,33 +439,21 @@ Figure 3-1 shows the VBE program, with some of the key parts identified.
 
 Chances are that your VBE program window won't look exactly like what you see in Figure 3-1. The VBE contains several windows, and it's highly customizable. You can hide windows, rearrange windows, dock windows, and so on.
 
-### Menu bar
+Menu bar: The VBE menu bar works just like every other menu bar you've encountered. It contains commands that you use to do things with the various components in the VBE. You also find that many of the menu commands have shortcut keys associated with them. The VBE also features shortcut menus. You can right-click virtually anything in the VBE and get a shortcut menu of common commands.
 
-The VBE menu bar works just like every other menu bar you've encountered. It contains commands that you use to do things with the various components in the VBE. You also find that many of the menu commands have shortcut keys associated with them.
+Toolbar: The Standard toolbar, which is directly below the menu bar by default (refer to Figure 3-1), is one of the four VBE toolbars available. You can customize the toolbars, move them around, display other toolbars, and so on. If you're so inclined, choose View => Toolbars to work with the VBE toolbars. Most people just leave them as they are.
 
-The VBE also features shortcut menus. You can right-click virtually anything in the VBE and get a shortcut menu of common commands.
-
-### Toolbar
-
-The Standard toolbar, which is directly below the menu bar by default (refer to Figure 3-1), is one of the four VBE toolbars available. You can customize the toolbars, move them around, display other toolbars, and so on. If you're so inclined, choose View => Toolbars to work with the VBE toolbars. Most people just leave them as they are.
-
-### Project window
-
-The Project window displays a tree diagram that shows every workbook currently open in Excel (including add-ins and hidden workbooks). Double-click items to expand or contract them within the outline. See the upcoming「Working with the Project Window」section for more detail.
+Project window: The Project window displays a tree diagram that shows every workbook currently open in Excel (including add-ins and hidden workbooks). Double-click items to expand or contract them within the outline. See the upcoming「Working with the Project Window」section for more detail.
 
 If the Project window is not visible, press Ctrl+R or choose View => Project Explorer. To hide the Project window, click the Close button on its title bar. Or right-click anywhere in the Project window and choose Hide from the shortcut menu.
 
-### Code window
-
-A Code window is where you put your VBA code. Every object in a project has an associated Code window. To view an object's Code window, double-click the object in the Project window. For example, to view the Code window for the Sheet1 object in Book1, double-click Sheet1 in the VBAProject for Book1. Unless you've added some VBA code, the Code window is empty.
+Code window: A Code window is where you put your VBA code. Every object in a project has an associated Code window. To view an object's Code window, double-click the object in the Project window. For example, to view the Code window for the Sheet1 object in Book1, double-click Sheet1 in the VBAProject for Book1. Unless you've added some VBA code, the Code window is empty.
 
 You find out more about Code windows later in this chapter's「Working with a Code Window」section.
 
-### Immediate window
+Immediate window: The Immediate window may or may not be visible. If it isn't visible, press Ctrl+G or choose View => Immediate Window. To close the Immediate window, click the Close button on its title bar (or right-click anywhere in the Immediate window and choose Hide from the shortcut menu).
 
-The Immediate window may or may not be visible. If it isn't visible, press Ctrl+G or choose View => Immediate Window. To close the Immediate window, click the Close button on its title bar (or right-click anywhere in the Immediate window and choose Hide from the shortcut menu).
-
-#### WHAT'S NEW IN THE VISUAL BASIC EDITOR?
+WHAT'S NEW IN THE VISUAL BASIC EDITOR?
 
 Excel 2007 introduced a brand-new user interface. Menus and toolbars were replaced with a slick new Ribbon user interface (UI). But the VBE never got the facelift and has kept the old-school menu and toolbar UI. The VBA programming language has been updated to accommodate the new Excel features, but nothing else has changed.
 
@@ -756,15 +744,13 @@ When the VBE is active, choose Tools => Options. You'll see a dialog box with fo
 
 Figure 3-5 shows the options you can access by clicking the Editor tab of the Options dialog box. Use the options in the Editor tab to control how certain things work in the VBE.
 
-#### Auto Syntax Check option
+Auto Syntax Check option:
 
 The Auto Syntax Check setting determines whether the VBE pops up a dialog box if it discovers a syntax error while you're entering your VBA code. The dialog box tells roughly what the problem is. If you don't choose this setting, the VBE flags syntax errors by displaying them in a different color from the rest of the code, and you don't have to deal with any dialog boxes popping up on your screen.
 
 FIGURE 3-5: The Editor tab of the Options dialog box.
 
-#### Require Variable Declaration option
-
-If the Require Variable Declaration option is set, VBE inserts the following statement at the beginning of each new VBA module you insert:
+Require Variable Declaration option: If the Require Variable Declaration option is set, VBE inserts the following statement at the beginning of each new VBA module you insert:
 
 ```c
 Option Explicit
@@ -772,63 +758,39 @@ Option Explicit
 
 Changing this setting affects only new modules, not existing modules. If this statement appears in your module, you must explicitly define each variable you use. Chapter 7 goes into the details why you should develop this habit.
 
-#### Auto List Members option
+Auto List Members option: If the Auto List Members option is set, the VBE provides some help when you're entering your VBA code. It displays a list that would logically complete the statement you're typing. This bit of magic is sometimes called IntelliSense. This is one of the best features of the VBE. Figure 3-6 shows an example (which will make lots more sense when you start writing VBA code).
 
-If the Auto List Members option is set, the VBE provides some help when you're entering your VBA code. It displays a list that would logically complete the statement you're typing. This bit of magic is sometimes called IntelliSense.
-
-This is one of the best features of the VBE. Figure 3-6 shows an example (which will make lots more sense when you start writing VBA code).
-
-#### Auto Quick Info option
-
-If the Auto Quick Info option is set, the VBE displays information about functions and their arguments as you type. This can be very helpful. Figure 3-7 shows this feature in action, telling you about the arguments for the MsgBox function.
+Auto Quick Info option: If the Auto Quick Info option is set, the VBE displays information about functions and their arguments as you type. This can be very helpful. Figure 3-7 shows this feature in action, telling you about the arguments for the MsgBox function.
 
 FIGURE 3-6: An example of Auto List Members.
 
 FIGURE 3-7: Auto Quick Info offers help about the MsgBox function.
 
-#### Auto Data Tips option
+Auto Data Tips option: If the Auto Data Tips option is set, the VBE displays the value of the variable over which your cursor is placed when you're debugging code. When you enter the wonderful world of debugging, as described in Chapter 13, you'll appreciate this option.
 
-If the Auto Data Tips option is set, the VBE displays the value of the variable over which your cursor is placed when you're debugging code. When you enter the wonderful world of debugging, as described in Chapter 13, you'll appreciate this option.
-
-#### Auto Indent setting
+Auto Indent setting:
 
 The Auto Indent setting determines whether the VBE automatically indents each new line of code the same as the previous line. Use the Tab key to indent your code, not the space bar. Also, you can press Shift+Tab to「unindent」a line of code. If you want to indent more than just one line, select all the lines you want to indent. Then press the Tab key.
 
 The VBE's Edit toolbar (which is hidden by default) contains two useful buttons: Indent and Outdent. These buttons let you quickly indent or「unindent」a block of code. Select the code and click one of these buttons to change the block's indenting.
 
-#### Drag-and-Drop Text Editing option
+Drag-and-Drop Text Editing option: The Drag-and-Drop Text Editing option, when enabled, lets you copy and move text by dragging and dropping with your mouse.
 
-The Drag-and-Drop Text Editing option, when enabled, lets you copy and move text by dragging and dropping with your mouse.
+Default to Full Module View option: The Default to Full Module View option sets the default state for new modules. (It doesn't affect existing modules.) If this option is set, procedures in the Code window appear as a single scrollable list. If this option is turned off, you can see only one procedure at a time.
 
-#### Default to Full Module View option
+Procedure Separator option: When the Procedure Separator option is turned on, separator bars appear between procedures in a Code window.
 
-The Default to Full Module View option sets the default state for new modules. (It doesn't affect existing modules.) If this option is set, procedures in the Code window appear as a single scrollable list. If this option is turned off, you can see only one procedure at a time.
-
-#### Procedure Separator option
-
-When the Procedure Separator option is turned on, separator bars appear between procedures in a Code window.
-
-#### Using the Editor Format tab
-
-Figure 3-8 shows the Editor Format tab of the Options dialog box. With this tab, you can customize the way the VBE looks.
+Using the Editor Format tab: Figure 3-8 shows the Editor Format tab of the Options dialog box. With this tab, you can customize the way the VBE looks.
 
 FIGURE 3-8: Change the VBE's looks with the Editor Format tab.
 
-#### Code Colors option
+Code Colors option: The Code Colors option lets you set the text color and background color displayed for various elements of VBA code. This is largely a matter of personal preference.
 
-The Code Colors option lets you set the text color and background color displayed for various elements of VBA code. This is largely a matter of personal preference.
+Font option: The Font option lets you select the font that's used in your VBA modules. For best results, stick with a fixed-width font such as Courier New. In a fixed-width font, all characters are exactly the same width. This makes your code more readable because the characters are nicely aligned vertically, and you can easily distinguish multiple spaces (which is sometimes useful).
 
-#### Font option
+Size setting: The Size setting specifies the point size of the font in the VBA modules. This setting is a matter of personal preference determined by your video display resolution and how many carrots you've been eating.
 
-The Font option lets you select the font that's used in your VBA modules. For best results, stick with a fixed-width font such as Courier New. In a fixed-width font, all characters are exactly the same width. This makes your code more readable because the characters are nicely aligned vertically, and you can easily distinguish multiple spaces (which is sometimes useful).
-
-#### Size setting
-
-The Size setting specifies the point size of the font in the VBA modules. This setting is a matter of personal preference determined by your video display resolution and how many carrots you've been eating.
-
-#### Margin Indicator Bar option
-
-This option controls the display of the vertical margin indicator bar in your modules. You should keep this turned on; otherwise, you won't be able to see the helpful graphical indicators when you're debugging your code.
+Margin Indicator Bar option: This option controls the display of the vertical margin indicator bar in your modules. You should keep this turned on; otherwise, you won't be able to see the helpful graphical indicators when you're debugging your code.
 
 #### 3.4.2 Using the General tab
 

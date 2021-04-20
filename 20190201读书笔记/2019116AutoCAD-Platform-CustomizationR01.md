@@ -159,7 +159,43 @@ The following shows the syntax of the `vl-string-trim`, `vl-string-left-trim`, a
 (vl-string-right-trim character_set string)
 ```
 
-### 10. 结果转为字符串（Evaluating Values to Strings）
+### 10. 各数据类型间转化
+
+[帮助 | Conversion Functions Reference (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-5BDBD4BC-289E-4A49-9BB9-DF6A6147E0FC)
+
+1、整数转字符串。
+
+[帮助 | rtos (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-D03ABBC2-939A-44DB-8C93-FC63B64DE4A2)
+
+2、整数转浮点数。
+
+[帮助 | float (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-93808F66-808C-49F7-9303-F12C55296080)
+
+Returns the conversion of a number into a real number.
+
+Signature:
+
+```
+(float number)
+```
+
+number, Type: Integer or Real. A numeric value.
+
+Return Values. Type: Real. The real number derived from number.
+
+Examples
+
+```
+(float 3)
+3.0
+
+(float 3.75)
+3.75
+```
+
+3、各个类型的数据转为字符串。
+
+结果转为字符串（Evaluating Values to Strings）
 
 When working with strings, you may also want to concatenate a numeric value as part of a prompt string or response to the user. Before you can concatenate a nonstring value to a string, you must convert the nonstring value to a string. The quickest way to do so is to use the AutoLISP `vl-princ-to-string` and `vl-prin1-to-string` functions.
 
@@ -184,6 +220,75 @@ The atom argument represents the expression, variable, or value that should be c
 (vl-prin1-to-string (findfile (strcat (getvar "PROGRAM") ".exe"))) 
 "\"C:\\\\Program Files\\\\Autodesk\\\\AutoCAD 2014\\\\acad.exe\""
 ```
+
+[帮助 | vl-princ-to-string (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B0CA43-84F2-46DE-88BE-8FFF22C83FAD)
+
+Returns the string representation of LISP data as if it were output by the princ function
+
+Signature:
+
+```
+(vl-princ-to-string data)
+```
+
+data. Type: Integer, Real, String, List, Ename (entity name), T, or nil. Any AutoLISP data.
+
+Return Values. Type: String. A string containing the printed representation of data as if displayed by princ.
+
+Examples:
+
+```
+(vl-princ-to-string "abc")
+"abc"
+
+(vl-princ-to-string "c:\\acadwin")
+"C:\\ACADWIN"
+
+(vl-princ-to-string 'my-var)
+"MY-VAR"
+```
+
+1『在 CAD 里测试了，转字符串的时候并没有被转为大写字母字符串。（2021-04-19）』
+
+4、浮点数转整数。
+
+[帮助 | fix (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-93B5F13B-348E-49E0-A116-0861684506D5)
+
+[帮助 | Arithmetic Functions Reference (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-FC14467C-63B9-4400-8C6A-266D21C846AE)
+
+Returns the conversion of a real number into the nearest smaller integer.
+
+Signature:
+
+```
+(fix number)
+```
+
+number. Type: Integer or Real. A numeric value.
+
+Return Values. Type: Integer. The integer derived from number.
+
+If number is larger than the largest possible integer (+2,147,483,647 or -2,147,483,648 on a 32-bit platform), fix returns a truncated real (although integers transferred between AutoLISP and AutoCAD are restricted to 16-bit values).
+
+Remarks: The fixfunction truncates number to the nearest integer by discarding the fractional portion.
+
+Examples:
+
+```
+(fix 3)
+3
+
+(fix 3.7)
+3
+```
+
+5、字符串转浮点数。
+
+[帮助 | atof (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-8618A388-E4CF-40E1-813B-057367DD1840)
+
+6、字符串转整数。
+
+[帮助 | atoi (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-20EF237C-7079-4E29-860C-B8531D6C7F36)
 
 ### 11. 创建获取 ActiveX 对象
 
@@ -847,92 +952,3 @@ nil
 (snvalid " Detail|Centerlines " 1) 
 T
 ```
-
-### 22. 浮点数转整数
-
-[帮助 | fix (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-93B5F13B-348E-49E0-A116-0861684506D5)
-
-[帮助 | Arithmetic Functions Reference (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-FC14467C-63B9-4400-8C6A-266D21C846AE)
-
-Returns the conversion of a real number into the nearest smaller integer.
-
-Signature:
-
-```
-(fix number)
-```
-
-number. Type: Integer or Real. A numeric value.
-
-Return Values. Type: Integer. The integer derived from number.
-
-If number is larger than the largest possible integer (+2,147,483,647 or -2,147,483,648 on a 32-bit platform), fix returns a truncated real (although integers transferred between AutoLISP and AutoCAD are restricted to 16-bit values).
-
-Remarks: The fixfunction truncates number to the nearest integer by discarding the fractional portion.
-
-Examples:
-
-```
-(fix 3)
-3
-
-(fix 3.7)
-3
-```
-
-### 23. 整数转浮点数
-
-[帮助 | float (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-93808F66-808C-49F7-9303-F12C55296080)
-
-Returns the conversion of a number into a real number.
-
-Signature:
-
-```
-(float number)
-```
-
-number, Type: Integer or Real. A numeric value.
-
-Return Values. Type: Real. The real number derived from number.
-
-Examples
-
-```
-(float 3)
-3.0
-
-(float 3.75)
-3.75
-```
-
-### 24. 各个类型的数据转为字符串
-
-[帮助 | vl-princ-to-string (AutoLISP) | Autodesk](https://help.autodesk.com/view/OARX/2018/CHS/?guid=GUID-33B0CA43-84F2-46DE-88BE-8FFF22C83FAD)
-
-Returns the string representation of LISP data as if it were output by the princ function
-
-Signature:
-
-```
-(vl-princ-to-string data)
-```
-
-data. Type: Integer, Real, String, List, Ename (entity name), T, or nil. Any AutoLISP data.
-
-Return Values. Type: String. A string containing the printed representation of data as if displayed by princ.
-
-Examples:
-
-```
-(vl-princ-to-string "abc")
-"abc"
-
-(vl-princ-to-string "c:\\acadwin")
-"C:\\ACADWIN"
-
-(vl-princ-to-string 'my-var)
-"MY-VAR"
-```
-
-1『在 CAD 里测试了，转字符串的时候并没有被转为大写字母字符串。（2021-04-19）』
