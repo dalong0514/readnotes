@@ -1,6 +1,4 @@
-Chapter 1
-
-A Pragmatic Philosophy
+# 0101. A Pragmatic Philosophy
 
 This book is about you.
 
