@@ -28,7 +28,7 @@ Excel programming terminology can be a bit confusing. For example, VBA is a prog
 
 You'll see the term automate throughout this book. This term means that a series of steps are completed automatically. For example, if you write a macro that adds color to some cells, prints the worksheet, and then removes the color, you have automated those three steps.
 
-By the way, macro doesn't stand for M essy A nd C onfusing R epeated O peration. Rather, it comes from the Greek makros, which means large — which also describes your pay-check after you become an expert macro programmer.
+By the way, macro doesn't stand for Messy And Confusing Repeated Operation. Rather, it comes from the Greek makros, which means large — which also describes your pay-check after you become an expert macro programmer.
 
 ### 1.1 What Can You Do with VBA?
 
@@ -419,7 +419,7 @@ In This Chapter: 1) Understanding the Visual Basic Editor. 2) Discovering the Vi
 
 A s a more experienced-than-average Excel user, you probably know a good deal about workbooks, formulas, charts, and other Excel goodies. Now it's time to expand your horizons and explore an entirely new aspect of Excel: the Visual Basic Editor. In this chapter, you find out how to work with the Visual Basic Editor, and you get down to the nitty-gritty of writing some VBA code.
 
-#### 3.1.1 What Is the Visual Basic Editor?
+### 3.1 What Is the Visual Basic Editor?
 
 The Visual Basic Editor (often refered to as the VBE) is a separate application where you write and edit your VBA macros. Beginning with Excel 2013, every workbook displays in a separate window. However, there is only one VBE window, and it works with all open Excel windows.
 
@@ -427,13 +427,13 @@ You can't run the VBE separately; Excel must be running for the VBE to run.
 
 1『小知识点：VBE 不能独立运行，必须 Excel 打开的时候跑。（2021-03-21）』
 
-#### 3.1.2 Activating the VBE
+#### 3.1.1 Activating the VBE
 
 The quickest way to activate the VBE is to press Alt+F11 when Excel is active. To return to Excel, press Alt+F11 again. Or you can just click the Close button on the VBE's title bar. When the VBE window closes, Excel is activated.
 
 You can also activate the VBE by choosing Developer => Code => Visual Basic. If you don't have a Developer tab at the top of your Excel window, refer to Chapter 2, where you learn how to get that handy Developer tab to show up.
 
-#### 3.1.3 Understanding VBE components
+#### 3.1.2 Understanding VBE components
 
 Figure 3-1 shows the VBE program, with some of the key parts identified.
 
