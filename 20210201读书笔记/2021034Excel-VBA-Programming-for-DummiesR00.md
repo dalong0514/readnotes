@@ -40,9 +40,7 @@ Copyright © 2019 by John Wiley & Sons, Inc., Hoboken, New Jersey
 
 ## Introduction
 
-Greetings, prospective Excel programmer. . .
-
-You no doubt have your reasons for picking up a book on VBA programming. Maybe you got a new job (congratulations). Maybe you're trying to automate some of the repetitive data crunching tasks you have to do. Maybe you're just a nerd at heart. Whatever the reason, thank you for choosing this book.
+Greetings, prospective Excel programmer. You no doubt have your reasons for picking up a book on VBA programming. Maybe you got a new job (congratulations). Maybe you're trying to automate some of the repetitive data crunching tasks you have to do. Maybe you're just a nerd at heart. Whatever the reason, thank you for choosing this book.
 
 Inside, you find everything you need to get up and running with VBA fast. Even if you don't have the foggiest idea of what programming is all about, this book can help. Unlike most programming books, this one is filled with information designed to include just what you need to know to quickly ramp your VBA programming skillset.
 
@@ -65,6 +63,8 @@ These books are also available in editions for earlier versions of Excel.
 Notice that the title of this book isn't「 The Complete Guide to Excel VBA Programming For Dummies.」 This book doesn't cover all aspects of Excel programming — but then again, you probably don't want to know everything about this topic.
 
 If you consume this book and find that you're hungry for a more comprehensive Excel programming book, you might try Microsoft Excel 2019 Power Programming with VBA, also published by Wiley. And yes, editions for older versions of Excel are also available.
+
+2『已下载书籍「2021035Excel-2019-Power-Programming-with-VBA」。（2021-04-21）』
 
 ### 02. Obligatory Typographical Conventions Section
 
