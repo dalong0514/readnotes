@@ -1,5 +1,7 @@
 ## 记忆时间
 
+2021-04-21
+
 ## 目录
 
 0101 What Is VBA?
@@ -363,6 +365,8 @@ After you've made your changes, jump back to Excel and try the revised macro to 
 
 If you store one or more macros in a workbook, the file must be saved as a macro-enabled file type. In other words, the file must be saved with an XLSM extension rather than the normal XLSX extension.
 
+1『这个之前深有体会，压根没去看提示，一直不另存为 xlsm 文件，导致一直没保存宏，想想当时真 2。（2021-04-21）』
+
 For example, when you save the workbook that contains your NameAndTime macro, the file format in the Save As dialog box defaults to XLSX (a format that cannot contain macros). Unless you change the file format to XLSM, Excel displays the warning shown in Figure 2-4. You need to click No and then choose Excel Macro-Enabled Workbook (*.xlsm) from the Save As Type drop-down list.
 
 FIGURE 2-4: If your workbook contains macros, and you attempt to save it in a macro-free file format, Excel warns you.
@@ -388,6 +392,8 @@ Excel remembers when you've designated a workbook to be safe. So the next time y
 FIGURE 2-7: Excel's warning that the workbook just opened contains macros. You see this warning when the VBE isn't open.
 
 Perhaps the best way to handle macro security is to designate one or more folders as trusted locations. All the workbooks in a trusted location are opened without a macro warning. You designate trusted folders in the Trusted Locations section of the Trust Center dialog box.
+
+1『获取到的知识点：指定某一个特定的文件夹为「信任」级别，这里面的宏打开无需验证。（2021-04-21）』
 
 If you want to find out what the other macro security settings imply, press F1 while the Macro Settings section of the Trust Center dialog box is in view. You get a Help screen that describes the security settings.
 
@@ -417,7 +423,7 @@ In This Part: 1) See how to access the important part of the Visual Basic Editor
 
 In This Chapter: 1) Understanding the Visual Basic Editor. 2) Discovering the Visual Basic Editor parts. 3) Knowing what goes into a VBA module. 4) Understanding three ways to get VBA code into a module 5) Customizing the VBA environment.
 
-A s a more experienced-than-average Excel user, you probably know a good deal about workbooks, formulas, charts, and other Excel goodies. Now it's time to expand your horizons and explore an entirely new aspect of Excel: the Visual Basic Editor. In this chapter, you find out how to work with the Visual Basic Editor, and you get down to the nitty-gritty of writing some VBA code.
+As a more experienced-than-average Excel user, you probably know a good deal about workbooks, formulas, charts, and other Excel goodies. Now it's time to expand your horizons and explore an entirely new aspect of Excel: the Visual Basic Editor. In this chapter, you find out how to work with the Visual Basic Editor, and you get down to the nitty-gritty of writing some VBA code.
 
 ### 3.1 What Is the Visual Basic Editor?
 
@@ -565,6 +571,8 @@ In general, a VBA module can hold three types of code:
 
 3 Function procedures: A set of programming instructions that returns a single value (similar in concept to a worksheet function, such as SUM).
 
+1-2『这里第一次认识到 Sub 和 Function 的区别。Sub 是一系列「语句」的集合，而 Function 往往针对会返回一个「结果值」的场景。那么是不是可以理解：只有返回「结果值」的情况下才封装成 Function，其他情况都封装成 Sub。Sub 和 Function 的区别，做一张主题卡片。（2021-04-21）』—— 已完成
+
 A single VBA module can store any number of Sub procedures, Function procedures, and declarations. Well, there is a limit — about 64,000 characters per module. It's unlikely you'll even get close to reaching the 64,000-character limit. But if you did, the solution is simple: Just insert a new module.
 
 How you organize a VBA module is completely up to you. Some people prefer to keep all their VBA code for an application in a single VBA module; others like to split the code into several modules. It's a personal choice, just like arranging furniture.
@@ -581,15 +589,17 @@ An empty VBA module is like the fake food you see in the windows of some Chinese
 
 #### 3.3.4 Entering code directly
 
-Sometimes, the best route is the most direct one. Entering code directly involves . . . well, entering the code directly. In other words, you type the code by using your keyboard. Entering and editing text in a VBA module works as you might expect. You can select, copy, cut, paste, and do other things to the text.
+Sometimes, the best route is the most direct one. Entering code directly involves......well, entering the code directly. In other words, you type the code by using your keyboard. Entering and editing text in a VBA module works as you might expect. You can select, copy, cut, paste, and do other things to the text.
 
 Use the Tab key to indent some of the lines to make your code easier to read. Indenting isn't necessary, but it's a good habit to acquire. As you study the code in this book, you'll understand why indenting code lines is helpful.
 
-#### Pause For A Terminology Break
+PAUSE FOR A TERMINOLOGY BREAK
 
 Throughout this book, you'll see the terms Sub procedure, routine, program, procedure , and macro. These terms are a bit confusing. Programming folks usually use the word procedure to describe an automated task. Technically, a procedure can be a Sub procedure or a Function procedure — both of which are sometimes called routines — or even programs. All these terms are used interchangeably. As detailed in later chapters, however, there is an important difference between Sub and Function procedures. For now, don't worry about the terminology. Just try to understand the concepts.
 
-A single line of VBA code can be as long as you need it to be. However, you may want to use the line-continuation characters to break up lengthy lines of code. To continue a single line of code (also known as a statement ) from one line to the next, end the first line with a space followed by an underscore (_). Then continue the statement on the next line. And don't forget the space. An underscore character that's not preceded by a space won't do the job.
+A single line of VBA code can be as long as you need it to be. However, you may want to use the line-continuation characters to break up lengthy lines of code. To continue a single line of code (also known as a statement) from one line to the next, end the first line with a space followed by an underscore (_). Then continue the statement on the next line. And don't forget the space. An underscore character that's not preceded by a space won't do the job.
+
+1-2『第二次看到了换行写法的注意点：`_` 前面的空格一定不定漏，否则换行无效。做一张任意卡片。（2021-04-21）』—— 已完成
 
 Here's an example of a single statement split into three lines:
 
@@ -624,9 +634,13 @@ Sub GuessName()
 End Sub
 ```
 
+1『上面的 if 语句的写法就很简介，值得借鉴。（2021-04-21）』
+
 6 Position the cursor anywhere within the text you typed and press F5 to execute the procedure.
 
 F5 is a shortcut for Run => Run Sub/UserForm. If you entered the code correctly, Excel executes the procedure, and you can respond to the simple dialog box shown in Figure 3-4. The text in the dialog box will be different from the text shown in the figure.
+
+2『跑 Sub 的快捷键 F5，收录入主题卡片「快捷键」。（2021-04-21）』—— 已完成
 
 FIGURE 3-4: The GuessName procedure displays this dialog box.
 
@@ -634,11 +648,13 @@ When you enter the code listed in Step 5, you might notice that the VBE makes so
 
 It's just the VBE's way of keeping things neat and readable.
 
-#### Compile Error?
+COMPILE ERROR?
 
 There's a chance that the GuessName macro won't work. When you try to run it, Excel may complain and pop up an error message: Compile Error: Variable Not Defined. Don't worry; there's an easy fix for that.
 
 If you get that error, look at the top of your module, and you'll see this text: Option Explicit. Just delete that line, and the macro should work. That line, when present at the top of a module, means that you must「declare」all your variables. (See Chapter 7 for more about variables). If that line was added, it means that your VBE is set up to add the line automatically. For now, don't worry about it. Just delete the line and forget about the rude interruption.
+
+1『个人建议保留那行语句，强制声明变量，VBA 还是按静态语言方式编程比较好。（2021-04-21）』
 
 If you followed the previous steps, you just wrote a VBA Sub procedure, also known as a macro. When you press F5, Excel executes the code and follows the instructions. In other words, Excel evaluates each statement and does what you told it to do. (Don't let this newfound power go to your head.) You can execute this macro any number of times — although it tends to lose its appeal after a few dozen times.
 

@@ -8,9 +8,31 @@ Copyright © 2019 by John Wiley & Sons, Inc., Hoboken, New Jersey
 
 ## 卡片
 
-### 0101. 主题卡 ——
+### 0101. 主题卡 —— 快捷键汇总
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+1、跑 Sub 或 Function。
+
+信息源自「2021034Excel-VBA-Programming-for-Dummies0301.md」
+
+F5 is a shortcut for Run => Run Sub/UserForm. If you entered the code correctly, Excel executes the procedure, and you can respond to the simple dialog box shown in Figure 3-4. The text in the dialog box will be different from the text shown in the figure.
+
+2『跑 Sub 的快捷键 F5，收录入主题卡片「快捷键汇总」。（2021-04-21）』—— 已完成
+
+### 0102. 主题卡 —— Sub 和 Function 的区别
+
+信息源自「2021034Excel-VBA-Programming-for-Dummies0301.md」
+
+2 Sub procedures: A set of programming instructions that, when executed, performs some action.
+
+3 Function procedures: A set of programming instructions that returns a single value (similar in concept to a worksheet function, such as SUM).
+
+1-2『这里第一次认识到 Sub 和 Function 的区别。Sub 是一系列「语句」的集合，而 Function 往往针对会返回一个「结果值」的场景。那么是不是可以理解：只有返回「结果值」的情况下才封装成 Function，其他情况都封装成 Sub。Sub 和 Function 的区别，做一张主题卡片。（2021-04-21）』—— 已完成
+
+A single VBA module can store any number of Sub procedures, Function procedures, and declarations. Well, there is a limit — about 64,000 characters per module. It's unlikely you'll even get close to reaching the 64,000-character limit. But if you did, the solution is simple: Just insert a new module.
+
+How you organize a VBA module is completely up to you. Some people prefer to keep all their VBA code for an application in a single VBA module; others like to split the code into several modules. It's a personal choice, just like arranging furniture.
+
+As detailed in later chapters, however, there is an important difference between Sub and Function procedures. For now, don't worry about the terminology. Just try to understand the concepts.
 
 ### 0201. 术语卡 ——
 
@@ -28,15 +50,15 @@ Copyright © 2019 by John Wiley & Sons, Inc., Hoboken, New Jersey
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡 ——
+### 0501. 数据信息卡 ——
 
-行动卡是能够指导自己的行动的卡。
+### 0601. 任意卡 —— 换行语法注意点
 
-### 0601. 数据信息卡 ——
+信息源自「2021034Excel-VBA-Programming-for-Dummies0301.md」
 
-### 0701. 任意卡 ——
+A single line of VBA code can be as long as you need it to be. However, you may want to use the line-continuation characters to break up lengthy lines of code. To continue a single line of code (also known as a statement) from one line to the next, end the first line with a space followed by an underscore (_). Then continue the statement on the next line. And don't forget the space. An underscore character that's not preceded by a space won't do the job.
 
-最后还有一张任意卡，记录个人阅读感想。
+1-2『第二次看到了换行写法的注意点：`_` 前面的空格一定不定漏，否则换行无效。做一张任意卡片。（2021-04-21）』—— 已完成
 
 ## Introduction
 
