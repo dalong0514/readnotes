@@ -16,6 +16,8 @@ Most of the macros you write in VBA are Sub procedures. You can think of a Sub p
 
 A Function is also a procedure, but it's quite different from a Sub. You're already familiar with the concept of a function. Excel includes many worksheet functions that you use every day (well, at least every weekday). Examples include SUM, PMT, and VLOOKUP. You use these worksheet functions in formulas. Each function takes one or more arguments (although a few functions don't use any arguments). The function does some behind-the-scenes calculations using those arguments and then returns a single value. Function procedures that you develop with VBA work the same way.
 
+2『上面的信息补充进主题卡片「Sub 和 Function 的区别」。』—— 已完成
+
 ### 5.1.1 Looking at Sub procedures
 
 Every Sub procedure starts with the keyword Sub and ends with an End Sub statement. Here's an example:
@@ -36,7 +38,11 @@ As you see later in this chapter, Excel provides quite a few ways to execute a V
 
 Every Function procedure starts with the keyword Function and ends with an End Function statement. Here's a simple example:
 
-Function CubeRoot(number) CubeRoot = number ^ (1 / 3) End Function
+```c
+Function CubeRoot(number) 
+  CubeRoot = number ^ (1 / 3) 
+End Function
+```
 
 This function, named CubeRoot, takes one argument (a variable named number), which is enclosed in parentheses. Functions can have as many as 255 arguments or none at all. When you execute this function, it returns a single value — the cube root of the argument passed to the function.
 
@@ -50,17 +56,17 @@ No matter how hard you try, you can't use the Excel macro recorder to record a F
 
 Like humans, pets, and hurricanes, every Sub and Function procedure must have a name. Although it's perfectly acceptable to name your dog Hairball Harris, it's usually not a good idea to use such a freewheeling attitude when naming procedures. When naming procedures, you must follow a few rules:
 
-You can use letters, numbers, and some punctuation characters, but the first character must be a letter.
+1 You can use letters, numbers, and some punctuation characters, but the first character must be a letter.
 
-You can't use any spaces or periods in the name.
+2 You can't use any spaces or periods in the name.
 
-VBA does not distinguish between uppercase and lowercase letters.
+3 VBA does not distinguish between uppercase and lowercase letters.
 
-You can't use any of the following characters in a procedure name: #, $, %, &, @, ^, *, or !. In other words, your procedure name can't look like comic-strip curse words.
+4 You can't use any of the following characters in a procedure name: #, $, %, &, @, ^, *, or !. In other words, your procedure name can't look like comic-strip curse words.
 
-If you write a Function procedure for use in a formula, avoid using a name that looks like a cell address (for example, A1 or B52). Actually, Excel allows such function names, but why make things more confusing than they are already?
+5 If you write a Function procedure for use in a formula, avoid using a name that looks like a cell address (for example, A1 or B52). Actually, Excel allows such function names, but why make things more confusing than they are already?
 
-Procedure names can be no longer than 255 characters. (Of course, you would never make a procedure name this long.)
+6 Procedure names can be no longer than 255 characters. (Of course, you would never make a procedure name this long.)
 
 Ideally, a procedure's name describes the routine's purpose. A good practice is to create a name by combining a verb and a noun — for example, ProcessData, PrintReport, Sort_Array, or CheckFilename.
 
@@ -74,21 +80,21 @@ By the way, executing a Sub procedure means the same thing as running or calling
 
 You can execute a VBA Sub in many ways; that's one reason you can do so many useful things with Sub procedures. Here's an exhaustive list of the ways to execute a Sub procedure:
 
-Choose Run ➪ Run Sub/UserForm (in the VBE). Excel executes the Sub procedure in which the cursor is located. This menu command has two alternatives: the F5 key and the Run Sub/UserForm button on the Standard toolbar in the VBE. These methods don't work if the procedure requires one or more arguments.
+1 Choose Run => Run Sub/UserForm (in the VBE). Excel executes the Sub procedure in which the cursor is located. This menu command has two alternatives: the F5 key and the Run Sub/UserForm button on the Standard toolbar in the VBE. These methods don't work if the procedure requires one or more arguments.
 
-Use Excel's Macro dialog box. You open this box by choosing Developer ➪ Code ➪ Macros or by choosing View ➪ Macros ➪ Macros. Or bypass the Ribbon and just press Alt+F8. When the Macro dialog box appears, select the Sub procedure you want and click Run. This dialog box lists only the procedures that don't require an argument.
+2 Use Excel's Macro dialog box. You open this box by choosing Developer => Code => Macros or by choosing View => Macros => Macros. Or bypass the Ribbon and just press Alt+F8. When the Macro dialog box appears, select the Sub procedure you want and click Run. This dialog box lists only the procedures that don't require an argument.
 
-Press Ctrl+key (or Ctrl+Shift+key) assigned to the Sub procedure (assuming you assigned one).
+3 Press Ctrl+key (or Ctrl+Shift+key) assigned to the Sub procedure (assuming you assigned one).
 
-Click a button or a shape on a worksheet. The button or shape must have a Sub procedure assigned to it — which is very easy to do.
+4 Click a button or a shape on a worksheet. The button or shape must have a Sub procedure assigned to it — which is very easy to do.
 
-From another Sub procedure that you write.
+5 From another Sub procedure that you write.
 
-Click a button that you've added to the Quick Access toolbar. (See Chapter 19.) From a custom item you've added to the Ribbon. (See Chapter 19.)
+6 Click a button that you've added to the Quick Access toolbar. (See Chapter 19.) From a custom item you've added to the Ribbon. (See Chapter 19.)
 
-When an event occurs. As explained later in Chapter 11, these events include opening the workbook, closing the workbook, saving the workbook, making a change to a cell, activating a sheet, and other things.
+7 When an event occurs. As explained later in Chapter 11, these events include opening the workbook, closing the workbook, saving the workbook, making a change to a cell, activating a sheet, and other things.
 
-From the Immediate window in the VBE. Just type the name of the Sub procedure and press Enter.
+8 From the Immediate window in the VBE. Just type the name of the Sub procedure and press Enter.
 
 Some of these techniques are covered in the following sections. To follow along, you need to enter a Sub procedure in a VBA module:
 
@@ -98,7 +104,7 @@ Some of these techniques are covered in the following sections. To follow along,
 
 3 Select the workbook in the Project window.
 
-4 Choose Insert ➪ Module to insert a new module.
+4 Choose Insert => Module to insert a new module.
 
 5 Enter the following in the module:
 
@@ -125,13 +131,13 @@ One way to execute this procedure is by doing so directly from the VBA module in
 
 2 Move the cursor anywhere in the procedure's code.
 
-3 Press F5 (or choose Run ➪ Run Sub/UserForm).
+3 Press F5 (or choose Run => Run Sub/UserForm).
 
 4 Respond to the input box, and click OK.
 
 The procedure displays the cube root of the number you entered.
 
-You can't use Run ➪ Run Sub/UserForm to execute a Sub procedure that uses arguments, because you have no way to pass the arguments to the procedure. If the procedure contains one or more arguments, the only way to execute it is to call it from another procedure — which must supply the argument(s).
+You can't use Run => Run Sub/UserForm to execute a Sub procedure that uses arguments, because you have no way to pass the arguments to the procedure. If the procedure contains one or more arguments, the only way to execute it is to call it from another procedure — which must supply the argument(s).
 
 ### 5.2.3 Executing the procedure from the Macro dialog box
 
@@ -264,7 +270,7 @@ By the way, the CallerSub procedure could be simplified a bit. The Ans variable 
 MsgBox CubeRoot(125)
 ```
 
-### 5.2.7 Calling a function from a worksheet formula
+### 5.2.9 Calling a function from a worksheet formula
 
 Now it's time to call this VBA Function procedure from a worksheet formula. Activate a worksheet in the same workbook that holds the CubeRoot function definition. Then enter the following formula in any cell:
 
@@ -277,6 +283,8 @@ The cell displays 12, which is indeed the cube root of 1,728.
 As you might expect, you can use a cell reference as the argument for the CubeRoot function. For example, if cell A1 contains a value, you can enter =CubeRoot(A1). In this case, the function returns the number obtained by calculating the cube root of the value in A1.
 
 You can use this function any number of times in the worksheet. Like Excel's built-in functions, your custom functions appear in the Insert Function dialog box. Click the Insert Function toolbar button, and choose the User Defined category. As shown in Figure 5-7, the Insert Function dialog box lists your very own function.
+
+2『自定义函数作为内置函数的设置，做一张主题卡片。（2021-04-22）』—— 已完成
 
 If you want the Insert Function dialog box to display a description of the function, follow these steps:
 
@@ -299,7 +307,5 @@ FIGURE 5-7: The CubeRoot function appears in the User Defined category of the In
 This descriptive text now appears in the Insert Function dialog box.
 
 Figure 5-8 shows the CubeRoot function being used in worksheet formulas.
-
-FIGURE 5-8: Using the CubeRoot function in formulas.
 
 By now, things may be starting to come together for you. You've found out lots about Sub and Function procedures. You start creating macros in Chapter 6, which discusses the ins and outs of developing macros by using the Excel macro recorder. And Chapter 20 reveals even more about Function procedures.

@@ -34,6 +34,60 @@ How you organize a VBA module is completely up to you. Some people prefer to kee
 
 As detailed in later chapters, however, there is an important difference between Sub and Function procedures. For now, don't worry about the terminology. Just try to understand the concepts.
 
+信息源自「2021034Excel-VBA-Programming-for-Dummies0501.md」
+
+A Sub procedure is a group of VBA statements that performs an action (or a sequence of actions) with Excel.
+
+A Function procedure is a group of VBA statements that performs a calculation and returns a single value (or, sometimes, an array).
+
+Most of the macros you write in VBA are Sub procedures. You can think of a Sub procedure as being like a command: Execute the Sub procedure, and something happens. (Of course, exactly what happens depends on the Sub procedure's VBA code.)
+
+A Function is also a procedure, but it's quite different from a Sub. You're already familiar with the concept of a function. Excel includes many worksheet functions that you use every day (well, at least every weekday). Examples include SUM, PMT, and VLOOKUP. You use these worksheet functions in formulas. Each function takes one or more arguments (although a few functions don't use any arguments). The function does some behind-the-scenes calculations using those arguments and then returns a single value. Function procedures that you develop with VBA work the same way.
+
+2『上面的信息补充进主题卡片「Sub 和 Function 的区别」。』—— 已完成
+
+### 0102. 主题卡 —— 自定义函数作为内置函数的设置
+
+信息源自「2021034Excel-VBA-Programming-for-Dummies0501.md」
+
+Now it's time to call this VBA Function procedure from a worksheet formula. Activate a worksheet in the same workbook that holds the CubeRoot function definition. Then enter the following formula in any cell:
+
+```c
+=CubeRoot(1728)
+```
+
+The cell displays 12, which is indeed the cube root of 1,728.
+
+As you might expect, you can use a cell reference as the argument for the CubeRoot function. For example, if cell A1 contains a value, you can enter =CubeRoot(A1). In this case, the function returns the number obtained by calculating the cube root of the value in A1.
+
+You can use this function any number of times in the worksheet. Like Excel's built-in functions, your custom functions appear in the Insert Function dialog box. Click the Insert Function toolbar button, and choose the User Defined category. As shown in Figure 5-7, the Insert Function dialog box lists your very own function.
+
+2『自定义函数作为内置函数的设置，做一张主题卡片。（2021-04-22）』—— 已完成
+
+If you want the Insert Function dialog box to display a description of the function, follow these steps:
+
+1 Choose Developer => Code => Macros.
+
+Excel displays the Macro dialog box, but CubeRoot doesn't appear in the list. (CubeRoot is a Function procedure, and this list shows only Sub procedures.) Don't fret.
+
+FIGURE 5-7: The CubeRoot function appears in the User Defined category of the Insert Function dialog box.
+
+2 Type the word CubeRoot in the Macro Name box.
+
+3 Click the Options button.
+
+4 Enter a description of the function in the Description box.
+
+5 Click OK to close the Macro Options dialog box.
+
+6 Close the Macro dialog box by clicking the Cancel button.
+
+This descriptive text now appears in the Insert Function dialog box.
+
+Figure 5-8 shows the CubeRoot function being used in worksheet formulas.
+
+By now, things may be starting to come together for you. You've found out lots about Sub and Function procedures. You start creating macros in Chapter 6, which discusses the ins and outs of developing macros by using the Excel macro recorder. And Chapter 20 reveals even more about Function procedures.
+
 ### 0201. 术语卡 ——
 
 根据反常识，再补充三个证据——就产生三张术语卡。
