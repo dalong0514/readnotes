@@ -1,6 +1,6 @@
 # 0401. Introducing the Excel Object Model
 
-In This Chapter: 1) Introducing the concept of objects. 2) Finding out about the Excel object hierarchy. 3) Understanding object collections. 4) Referring to specific objects in your VBA code. 5) Accessing or changing an object's properties. 6) Performing actions with an object's methods
+In This Chapter: 1) Introducing the concept of objects. 2) Finding out about the Excel object hierarchy. 3) Understanding object collections. 4) Referring to specific objects in your VBA code. 5) Accessing or changing an object's properties. 6) Performing actions with an object's methods.
 
 Everyone is familiar with the word object. Well, folks, forget the definition you think you know. In the world of programming, the word object has a different meaning. You often see it used as part of the expression object-oriented programming, or OOP for short. OOP is based on the idea that software deals with distinct objects that have attributes (or properties) and can be manipulated. These objects are not material things. Rather, they exist in the form of bits and bytes.
 
@@ -39,6 +39,8 @@ Collections are another key concept in VBA programming. A collection is a group 
 3 Charts: A collection of all Chart objects (chart sheets) contained in a particular Workbook object.
 
 4 Sheets: A collection of all sheets (regardless of their type) contained in a particular Workbook object.
+
+1-2『 Sheets 和 Worksheets 是 2 个对象集合，印象中 Sheets 的概念更大，Sheet 包含 Worksheet 对象。做一张任意卡片。（2021-04-22）』—— 已完成
 
 You may notice that collection names are all plural, which makes sense.
 
@@ -99,17 +101,25 @@ By the way, workbook names also have a dot to separate the filename from the ext
 
 If you were required to fully qualify every object reference you make, your code would get quite long, and it might be more difficult to read. Fortunately, Excel provides some shortcuts that can improve the readability (and save you some typing). For starters, the Application object is always assumed. There are only a few cases when it makes sense to type it. Omitting the Application object reference shortens the example from the previous section to
 
+```c
 Workbooks("Book1.xlsx").Worksheets(1).Range("A1").Value
+```
 
 That’s a pretty good improvement. But wait, there’s more. If you’re sure that Book1. xlsx is the active workbook, you can omit that reference, too. Now you’re down to
 
+```c
 Worksheets(1).Range("A1").Value
+```
 
 Now you’re getting somewhere. Have you guessed the next shortcut? That’s right. If you know the first worksheet is the currently active worksheet, Excel assumes that reference and allows you to just type
 
+```c
 Range("A1").Value
+```
 
 Contrary to what some people may think, Excel does not have a Cell object. A cell is simply a Range object that consists of just one element.
+
+2『 Excel 里没有 cell 对象，做一张数据信息卡片。（2021-04-22）』—— 已完成
 
 The shortcuts described here are great, but they can also be dangerous. What if you only think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it’s wrong. For that reason, it’s often best to fully qualify your object references.
 
@@ -123,9 +133,7 @@ Read or modify an object’s properties.
 
 Specify a method of action to be used with an object.
 
-ANOTHER SLANT ON MCPROPERTIES, AND
-
-MCOBJECTS, MCMETHODS
+ANOTHER SLANT ON MCPROPERTIES, AND MCOBJECTS, MCMETHODS
 
 Here’s an analogy, comparing Excel to a fast-food chain, that may help you understand the relationships among objects, properties, and methods in VBA.
 
@@ -163,11 +171,11 @@ By the way, MsgBox is a very useful function. You can use it to display results 
 
 The code in the preceding example displays the current setting of a cell’s Value property. What if you want to change the setting for that property? The following macro changes the value in cell A1 by changing the cell’s Value property:
 
+```c
 Sub ChangeValue()
-
-Worksheets("Sheet1").Range("A1").Value = 994.92
-
+  Worksheets("Sheet1").Range("A1").Value = 994.92
 End Sub
+```
 
 After Excel executes this procedure, cell A1 on Sheet1 of the active workbook contains the value 994.92. If the active workbook doesn’t have a sheet named Sheet1, the result of executing that macro is an error message. VBA just follows instructions, and it can’t work with a sheet that doesn’t exist.
 
@@ -177,11 +185,11 @@ Some object properties are read-only properties, which means that your code can 
 
 As mentioned earlier in this chapter, a collection is also an object. This means that a collection also has properties. For example, you can determine how many workbooks are open by accessing the Count property of the Workbooks collection. The following VBA procedure displays a message box that tells you how many workbooks are open:
 
+```c
 Sub CountBooks()
-
-MsgBox Workbooks.Count
-
+  MsgBox Workbooks.Count
 End Sub
+```
 
 ### 4.5.2 Object methods
 
@@ -189,23 +197,29 @@ In addition to properties, objects have methods. A method is an action you perfo
 
 This simple example uses the ClearContents method on a Range object to erase the contents of 12 cells on the active sheet:
 
+```c
 Sub ClearRange()
-
-Range("A1:A12").ClearContents
-
+  Range("A1:A12").ClearContents
 End Sub
+```
 
 Some methods take one or more arguments. An argument is a value that further specifies the action to perform. You place the arguments for a method after the method, separated by a space. Multiple arguments are separated by a comma.
 
 The following example activates Sheet1 (in the active workbook) and then copies the contents of cell A1 to cell B1 by using the Range object’s Copy method. In this example, the Copy method has one argument, which is the destination range for the copy operation:
 
-Sub CopyOne() Worksheets("Sheet1").Activate Range("A1").Copy Range("B1") End Sub
+```c
+Sub CopyOne() 
+  Worksheets("Sheet1").Activate Range("A1").Copy Range("B1") 
+End Sub
+```
 
 Notice that the worksheet reference is omitted when referring to the Range objects. You can do this safely due to the statement to activate Sheet1 (using the Activate method).
 
 Another way to specify an argument for a method is to use the official name of the argument followed by a colon and an equal sign. Using named arguments is optional, but doing so can often make your code easier to understand. The second statement in the CopyOne procedure could be written like this:
 
+```c
 Range("A1").Copy Destination:=Range("B1")
+```
 
 In Figure 4-2, notice the little prompt as the statement is being typed. That prompt shows the official name of the argument.
 
@@ -213,11 +227,11 @@ FIGURE 4-2: The VBE displays a list of arguments while you type.
 
 Because a collection is also an object, collections have methods. The following macro uses the Add method for the Workbooks collection:
 
+```c
 Sub AddAWorkbook()
-
-Workbooks.Add
-
+  Workbooks.Add
 End Sub
+```
 
 As you may expect, this statement creates a new workbook. In other words, it adds a new workbook to the Workbooks collection. After you execute this macro, a fresh workbook is the active workbook.
 
@@ -243,9 +257,7 @@ If you’re working in a VBA module and want information about a particular obje
 
 Figure 4-3 shows part of a screen from the VBA Help system — in this case, for a Worksheet object.
 
-FIGURE 4-3:
-
-An example from VBA’s Help system.
+FIGURE 4-3: An example from VBA’s Help system.
 
 ### 4.6.2 Using the Object Browser
 
@@ -253,9 +265,7 @@ The VBE includes another tool known as the Object Browser. As the name implies, 
 
 The drop-down list at the top contains a list of all currently available object libraries. Figure 4-4 shows All Libraries. If you want to browse through Excel’s objects, select Excel from the drop-down list.
 
-FIGURE 4-4:
-
-Browsing for objects with the Object Browser.
+FIGURE 4-4: Browsing for objects with the Object Browser.
 
 The second drop-down list is where you enter a search string. For example, if you want to look at all Excel objects that deal with comments, type comment in the second field and click the Search button. (It has a pair of binoculars on it.) The Search Results window displays everything in the object library that contains the text comment. If you see something that looks like it may be of interest, select it and press F1 for more information online.
 

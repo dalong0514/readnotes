@@ -42,23 +42,52 @@ As detailed in later chapters, however, there is an important difference between
 
 ### 0203. 术语卡 ——
 
-### 0301. 人名卡 ——
+### 0301. 数据信息卡 —— Excel 里没有 cell 对象
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
+信息源自「2021034Excel-VBA-Programming-for-Dummies0401.md」
 
-### 0401. 金句卡 ——
+Contrary to what some people may think, Excel does not have a Cell object. A cell is simply a Range object that consists of just one element.
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
+2『 Excel 里没有 cell 对象，做一张数据信息卡片。（2021-04-22）』—— 已完成
 
-### 0501. 数据信息卡 ——
+The shortcuts described here are great, but they can also be dangerous. What if you only think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it’s wrong. For that reason, it’s often best to fully qualify your object references.
 
-### 0601. 任意卡 —— 换行语法注意点
+Chapter 14 discusses the With-End With structure, which helps you fully qualify your references but also helps to make the code more readable and cuts down on the typing. The best of both worlds!
+
+### 0401. 任意卡 —— 换行语法注意点
 
 信息源自「2021034Excel-VBA-Programming-for-Dummies0301.md」
 
 A single line of VBA code can be as long as you need it to be. However, you may want to use the line-continuation characters to break up lengthy lines of code. To continue a single line of code (also known as a statement) from one line to the next, end the first line with a space followed by an underscore (_). Then continue the statement on the next line. And don't forget the space. An underscore character that's not preceded by a space won't do the job.
 
 1-2『第二次看到了换行写法的注意点：`_` 前面的空格一定不定漏，否则换行无效。做一张任意卡片。（2021-04-21）』—— 已完成
+
+### 0402. 任意卡 —— Sheets 和 Worksheets 是 2 个对象集合
+
+信息源自「2021034Excel-VBA-Programming-for-Dummies0301.md」
+
+Collections are another key concept in VBA programming. A collection is a group of objects of the same type. And to add to the confusion, a collection is itself an object. Here are a few examples of commonly used collections:
+
+1 Workbooks: A collection of all currently open Workbook objects.
+
+2 Worksheets: A collection of all Worksheet objects contained in a particular Workbook object.
+
+3 Charts: A collection of all Chart objects (chart sheets) contained in a particular Workbook object.
+
+4 Sheets: A collection of all sheets (regardless of their type) contained in a particular Workbook object.
+
+1-2『 Sheets 和 Worksheets 是 2 个对象集合，印象中 Sheets 的概念更大，Sheet 包含 Worksheet 对象。做一张任意卡片。（2021-04-22）』
+
+本章信息追加：
+
+In this case, the number is not in quotation marks. Bottom line? If you refer to an object by using its name, use quotation marks. If you refer to an object by using its index number, use a plain number without quotation marks. What about chart sheets? A chart sheet contains a single chart. It has a sheet tab, but it's not a worksheet. Well, as it turns out, the object model has a collection called Charts. This collection contains all the chart sheet objects in a workbook (and does not include charts embedded in a worksheet). And just to keep things logical, there's another collection called Sheets. The Sheets collection contains all sheets (worksheets and chart sheets) in a workbook. The Sheets collection is handy if you want to work with all sheets in a workbook and don't care if they are worksheets or chart sheets.
+
+So, a single worksheet named Sheet1 is a member of two collections: the Worksheets collection and the Sheets collection. You can refer to it in either of two ways:
+
+```c
+Worksheets("Sheet1")
+Sheets("Sheet1")
+```
 
 ## Introduction
 
