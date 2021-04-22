@@ -210,7 +210,8 @@ The following example activates Sheet1 (in the active workbook) and then copies 
 
 ```c
 Sub CopyOne() 
-  Worksheets("Sheet1").Activate Range("A1").Copy Range("B1") 
+  Worksheets("Sheet1").Activate 
+  Range("A1").Copy Range("B1") 
 End Sub
 ```
 
@@ -244,9 +245,7 @@ Excel supports many events, but not all objects can respond to all events. And s
 
 ## 4.6 Finding Out More
 
-Consider yourself initiated into the wonderful world of objects, properties, methods, and events. You find out more about these concepts in the chapters that follow. If you just can't get enough, you may also be interested in three other excellent tools:
-
-VBA's Help system The Object Browser Auto List Members
+Consider yourself initiated into the wonderful world of objects, properties, methods, and events. You find out more about these concepts in the chapters that follow. If you just can't get enough, you may also be interested in three other excellent tools: 1) VBA's Help system. 2) The Object Browser. 3) Auto List Members.
 
 ### 4.6.1 Using VBA's Help system
 
@@ -262,7 +261,7 @@ FIGURE 4-3: An example from VBA's Help system.
 
 ### 4.6.2 Using the Object Browser
 
-The VBE includes another tool known as the Object Browser. As the name implies, this tool lets you browse through the objects available to you. To access the Object Browser, press F2 when the VBE is active (or choose View ➪ Object Browser). You see a window like the one shown in Figure 4-4.
+The VBE includes another tool known as the Object Browser. As the name implies, this tool lets you browse through the objects available to you. To access the Object Browser, press F2 when the VBE is active (or choose View => Object Browser). You see a window like the one shown in Figure 4-4.
 
 The drop-down list at the top contains a list of all currently available object libraries. Figure 4-4 shows All Libraries. If you want to browse through Excel's objects, select Excel from the drop-down list.
 
