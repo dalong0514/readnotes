@@ -105,13 +105,13 @@ If you were required to fully qualify every object reference you make, your code
 Workbooks("Book1.xlsx").Worksheets(1).Range("A1").Value
 ```
 
-That’s a pretty good improvement. But wait, there’s more. If you’re sure that Book1. xlsx is the active workbook, you can omit that reference, too. Now you’re down to
+That's a pretty good improvement. But wait, there's more. If you're sure that Book1. xlsx is the active workbook, you can omit that reference, too. Now you're down to
 
 ```c
 Worksheets(1).Range("A1").Value
 ```
 
-Now you’re getting somewhere. Have you guessed the next shortcut? That’s right. If you know the first worksheet is the currently active worksheet, Excel assumes that reference and allows you to just type
+Now you're getting somewhere. Have you guessed the next shortcut? That's right. If you know the first worksheet is the currently active worksheet, Excel assumes that reference and allows you to just type
 
 ```c
 Range("A1").Value
@@ -121,21 +121,21 @@ Contrary to what some people may think, Excel does not have a Cell object. A cel
 
 2『 Excel 里没有 cell 对象，做一张数据信息卡片。（2021-04-22）』—— 已完成
 
-The shortcuts described here are great, but they can also be dangerous. What if you only think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it’s wrong. For that reason, it’s often best to fully qualify your object references.
+The shortcuts described here are great, but they can also be dangerous. What if you only think Book1.xlsx is the active workbook? You could get an error, or worse, you could get the wrong value and not even realize it's wrong. For that reason, it's often best to fully qualify your object references.
 
 Chapter 14 discusses the With-End With structure, which helps you fully qualify your references but also helps to make the code more readable and cuts down on the typing. The best of both worlds!
 
 ## 4.5 Diving into Object Properties and Methods
 
-Although knowing how to refer to objects is important, you can’t do anything useful by simply referring to an object (as in the examples in the preceding sections). To accomplish anything meaningful, you must do one of two things:
+Although knowing how to refer to objects is important, you can't do anything useful by simply referring to an object (as in the examples in the preceding sections). To accomplish anything meaningful, you must do one of two things:
 
-Read or modify an object’s properties.
+Read or modify an object's properties.
 
 Specify a method of action to be used with an object.
 
 ANOTHER SLANT ON MCPROPERTIES, AND MCOBJECTS, MCMETHODS
 
-Here’s an analogy, comparing Excel to a fast-food chain, that may help you understand the relationships among objects, properties, and methods in VBA.
+Here's an analogy, comparing Excel to a fast-food chain, that may help you understand the relationships among objects, properties, and methods in VBA.
 
 The basic unit of Excel is a Workbook object. In a fast-food chain, the basic unit is an individual restaurant. With Excel, you can add a workbook and close a workbook, and all the open workbooks are known as Workbooks (a collection of Workbook objects). Similarly, the management of a fast-food chain can add a restaurant and close a restaurant, and all the restaurants in the chain can be viewed as the Restaurants collection (a collection of Restaurant objects).
 
@@ -145,17 +145,17 @@ Continuing with the analogy, a fast-food restaurant (like a workbook) contains o
 
 So far, so good. This analogy seems to work.
 
-Excel’s objects have properties. For example, a Range object has properties such as Value and Name, and a Shape object has properties such as Width, Height, and so on. Not surprisingly, objects in a fast-food restaurant also have properties. The Stove object, for example, has properties such as Temperature and NumberofBurners. The VentilationFan has its own set of properties (TurnedOn, RPM, and so on).
+Excel's objects have properties. For example, a Range object has properties such as Value and Name, and a Shape object has properties such as Width, Height, and so on. Not surprisingly, objects in a fast-food restaurant also have properties. The Stove object, for example, has properties such as Temperature and NumberofBurners. The VentilationFan has its own set of properties (TurnedOn, RPM, and so on).
 
-Besides properties, Excel’s objects also have methods, which perform an operation on an object. For example, the ClearContents method erases the contents of a Range object. An object in a fast-food restaurant also has methods. You can easily envision a ChangeThermostat method for a Stove object or a SwitchOn method for a VentilationFan object.
+Besides properties, Excel's objects also have methods, which perform an operation on an object. For example, the ClearContents method erases the contents of a Range object. An object in a fast-food restaurant also has methods. You can easily envision a ChangeThermostat method for a Stove object or a SwitchOn method for a VentilationFan object.
 
-In Excel, methods sometimes change an object’s properties. The ClearContents method for a Range changes the Range’s Value property. Similarly, the ChangeThermostat method on a Stove object affects its Temperature property. With VBA, you can write procedures to manipulate Excel’s objects. In a fast-food restaurant, the management can give orders to manipulate the objects in the restaurants (“Turn the stove on and switch the ventilation fan to high”).
+In Excel, methods sometimes change an object's properties. The ClearContents method for a Range changes the Range's Value property. Similarly, the ChangeThermostat method on a Stove object affects its Temperature property. With VBA, you can write procedures to manipulate Excel's objects. In a fast-food restaurant, the management can give orders to manipulate the objects in the restaurants (“Turn the stove on and switch the ventilation fan to high”).
 
 The next time you visit your favorite fast-food joint, just say, “Use the Grill method on a Burger object with the Onion property set to False.”
 
 ### 4.5.1 Object properties
 
-Every object has properties. You can think of properties as attributes that describe the object. An object’s properties determine how it looks, how it behaves, and even whether it’s visible. Using VBA, you can do two things with an object’s properties: 1) Examine the current setting for a property. 2) Change the property’s setting.
+Every object has properties. You can think of properties as attributes that describe the object. An object's properties determine how it looks, how it behaves, and even whether it's visible. Using VBA, you can do two things with an object's properties: 1) Examine the current setting for a property. 2) Change the property's setting.
 
 For example, a single-cell Range object has a property called Value. The Value property stores the value contained in the cell. You can write VBA code to display the Value property, or you may write VBA code to set the Value property to a specific value. The following macro uses the VBA built-in MsgBox function to bring up a box that displays the value in cell A1 on Sheet1 of the active workbook (see Figure 4-1):
 
@@ -166,11 +166,11 @@ Sub ShowValue()
 End Sub
 ```
 
-FIGURE 4-1: This message box displays a Range object’s Value property.
+FIGURE 4-1: This message box displays a Range object's Value property.
 
 By the way, MsgBox is a very useful function. You can use it to display results while Excel executes your VBA code. You find out more about this function in Chapter 15, so be patient (or just flip ahead and read all about it).
 
-The code in the preceding example displays the current setting of a cell’s Value property. What if you want to change the setting for that property? The following macro changes the value in cell A1 by changing the cell’s Value property:
+The code in the preceding example displays the current setting of a cell's Value property. What if you want to change the setting for that property? The following macro changes the value in cell A1 by changing the cell's Value property:
 
 ```c
 Sub ChangeValue()
@@ -178,11 +178,11 @@ Sub ChangeValue()
 End Sub
 ```
 
-After Excel executes this procedure, cell A1 on Sheet1 of the active workbook contains the value 994.92. If the active workbook doesn’t have a sheet named Sheet1, the result of executing that macro is an error message. VBA just follows instructions, and it can’t work with a sheet that doesn’t exist.
+After Excel executes this procedure, cell A1 on Sheet1 of the active workbook contains the value 994.92. If the active workbook doesn't have a sheet named Sheet1, the result of executing that macro is an error message. VBA just follows instructions, and it can't work with a sheet that doesn't exist.
 
 Each object has its own set of properties, although some properties are common to many objects. For example, many (but not all) objects have a Visible property. Most objects also have a Name property.
 
-Some object properties are read-only properties, which means that your code can get the property’s value, but it can’t change it. For example, the Application object has a property called Version that returns the version number of the Excel that’s running. You can’t change the Version property index; it’s read-only.
+Some object properties are read-only properties, which means that your code can get the property's value, but it can't change it. For example, the Application object has a property called Version that returns the version number of the Excel that's running. You can't change the Version property index; it's read-only.
 
 As mentioned earlier in this chapter, a collection is also an object. This means that a collection also has properties. For example, you can determine how many workbooks are open by accessing the Count property of the Workbooks collection. The following VBA procedure displays a message box that tells you how many workbooks are open:
 
@@ -194,7 +194,7 @@ End Sub
 
 ### 4.5.2 Object methods
 
-In addition to properties, objects have methods. A method is an action you perform with an object. A method can change an object’s properties or make the object do something.
+In addition to properties, objects have methods. A method is an action you perform with an object. A method can change an object's properties or make the object do something.
 
 This simple example uses the ClearContents method on a Range object to erase the contents of 12 cells on the active sheet:
 
@@ -206,7 +206,7 @@ End Sub
 
 Some methods take one or more arguments. An argument is a value that further specifies the action to perform. You place the arguments for a method after the method, separated by a space. Multiple arguments are separated by a comma.
 
-The following example activates Sheet1 (in the active workbook) and then copies the contents of cell A1 to cell B1 by using the Range object’s Copy method. In this example, the Copy method has one argument, which is the destination range for the copy operation:
+The following example activates Sheet1 (in the active workbook) and then copies the contents of cell A1 to cell B1 by using the Range object's Copy method. In this example, the Copy method has one argument, which is the destination range for the copy operation:
 
 ```c
 Sub CopyOne() 
@@ -238,33 +238,33 @@ As you may expect, this statement creates a new workbook. In other words, it add
 
 ### 4.5.3 Object events
 
-This section briefly touches on one more topic that you need to know about: events. Objects respond to various events that occur. For example, when you’re working in Excel and you activate a different workbook, a Workbook Activate event occurs. You could, for example, have a VBA macro that is designed to execute whenever an Activate event occurs for a particular Workbook object.
+This section briefly touches on one more topic that you need to know about: events. Objects respond to various events that occur. For example, when you're working in Excel and you activate a different workbook, a Workbook Activate event occurs. You could, for example, have a VBA macro that is designed to execute whenever an Activate event occurs for a particular Workbook object.
 
-Excel supports many events, but not all objects can respond to all events. And some objects don’t respond to any events. The only events you can use are those made available by the programmers of Microsoft Excel. The concept of an event becomes clear in Chapter 11 and also in Part 4.
+Excel supports many events, but not all objects can respond to all events. And some objects don't respond to any events. The only events you can use are those made available by the programmers of Microsoft Excel. The concept of an event becomes clear in Chapter 11 and also in Part 4.
 
 ## 4.6 Finding Out More
 
-Consider yourself initiated into the wonderful world of objects, properties, methods, and events. You find out more about these concepts in the chapters that follow. If you just can’t get enough, you may also be interested in three other excellent tools:
+Consider yourself initiated into the wonderful world of objects, properties, methods, and events. You find out more about these concepts in the chapters that follow. If you just can't get enough, you may also be interested in three other excellent tools:
 
-VBA’s Help system The Object Browser Auto List Members
+VBA's Help system The Object Browser Auto List Members
 
-### 4.6.1 Using VBA’s Help system
+### 4.6.1 Using VBA's Help system
 
-The VBA Help system describes every object, property, and method available to you, and also provides sample code. This is an excellent resource for finding out about VBA, and it’s more comprehensive than any book on the market. But it’s also very boring to read.
+The VBA Help system describes every object, property, and method available to you, and also provides sample code. This is an excellent resource for finding out about VBA, and it's more comprehensive than any book on the market. But it's also very boring to read.
 
-If you’re using Excel 2013 or later, you must be connected to the Internet to use the VBA Help system (previous versions don’t have this requirement). You can, however, download the VBA Help system from Microsoft’s website. Do a web search for download excel vba documentation, and you’ll find it.
+If you're using Excel 2013 or later, you must be connected to the Internet to use the VBA Help system (previous versions don't have this requirement). You can, however, download the VBA Help system from Microsoft's website. Do a web search for download excel vba documentation, and you'll find it.
 
-If you’re working in a VBA module and want information about a particular object, method, or property, move the cursor to the word you’re interested in and press F1. In a few seconds, you see the appropriate Help topic displayed in your web browser, complete with cross-references and perhaps even an example or two.
+If you're working in a VBA module and want information about a particular object, method, or property, move the cursor to the word you're interested in and press F1. In a few seconds, you see the appropriate Help topic displayed in your web browser, complete with cross-references and perhaps even an example or two.
 
 Figure 4-3 shows part of a screen from the VBA Help system — in this case, for a Worksheet object.
 
-FIGURE 4-3: An example from VBA’s Help system.
+FIGURE 4-3: An example from VBA's Help system.
 
 ### 4.6.2 Using the Object Browser
 
 The VBE includes another tool known as the Object Browser. As the name implies, this tool lets you browse through the objects available to you. To access the Object Browser, press F2 when the VBE is active (or choose View ➪ Object Browser). You see a window like the one shown in Figure 4-4.
 
-The drop-down list at the top contains a list of all currently available object libraries. Figure 4-4 shows All Libraries. If you want to browse through Excel’s objects, select Excel from the drop-down list.
+The drop-down list at the top contains a list of all currently available object libraries. Figure 4-4 shows All Libraries. If you want to browse through Excel's objects, select Excel from the drop-down list.
 
 FIGURE 4-4: Browsing for objects with the Object Browser.
 
@@ -276,4 +276,4 @@ Chapter 3 introduces you to a handy feature called Auto List Members. This featu
 
 FIGURE 4-5: The Auto List Members feature helps you identify properties and methods for an object.
 
-After typing the dot after workbooks, the VBE volunteers to help by displaying a list of properties and methods for that collection. Typing the letter (like the letter c), narrows the list to items that begin with that letter. With each letter you type, the VBE further narrows the list of choices. Highlight the item you need, press Tab, and voilà! You’ve eliminated some typing — and also ensured that the property or method was spelled correctly.
+After typing the dot after workbooks, the VBE volunteers to help by displaying a list of properties and methods for that collection. Typing the letter (like the letter c), narrows the list to items that begin with that letter. With each letter you type, the VBE further narrows the list of choices. Highlight the item you need, press Tab, and voilà! You've eliminated some typing — and also ensured that the property or method was spelled correctly.
