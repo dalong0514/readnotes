@@ -1,5 +1,3 @@
-# 2021043Electron-From-Beginner-to-ProR00
-
 ## 记忆时间
 
 ## 卡片
