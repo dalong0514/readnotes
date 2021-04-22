@@ -155,14 +155,15 @@ The next time you visit your favorite fast-food joint, just say, “Use the Gril
 
 ### 4.5.1 Object properties
 
-Every object has properties. You can think of properties as attributes that describe the object. An object’s properties determine how it looks, how it behaves, and even whether it’s visible. Using VBA, you can do two things with an object’s properties:
-
-Examine the current setting for a property. Change the property’s setting.
+Every object has properties. You can think of properties as attributes that describe the object. An object’s properties determine how it looks, how it behaves, and even whether it’s visible. Using VBA, you can do two things with an object’s properties: 1) Examine the current setting for a property. 2) Change the property’s setting.
 
 For example, a single-cell Range object has a property called Value. The Value property stores the value contained in the cell. You can write VBA code to display the Value property, or you may write VBA code to set the Value property to a specific value. The following macro uses the VBA built-in MsgBox function to bring up a box that displays the value in cell A1 on Sheet1 of the active workbook (see Figure 4-1):
 
 ```c
-Sub ShowValue() Contents = Worksheets("Sheet1").Range("A1").Value MsgBox Contents End Sub
+Sub ShowValue() 
+  Contents = Worksheets("Sheet1").Range("A1").Value 
+  MsgBox Contents 
+End Sub
 ```
 
 FIGURE 4-1: This message box displays a Range object’s Value property.
