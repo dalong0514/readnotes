@@ -16,9 +16,9 @@
 
 In This Part: 1) Get to know Visual Basic for Applications. 2) See examples of some of the things you can do with VBA. 3) Work through a real-live Excel programming session. 4) Get a handle on how Excel deals with macro security.
 
-In This Chapter: 1) Getting a conceptual overview of VBA. 2) Finding out what you can do with VBA. 3) Discovering the advantages and disadvantages of using VBA. 4) Getting the lowdown on what VBA is. 5) Staying Excel compatible.
-
 ## 0101. What Is VBA?
+
+In This Chapter: 1) Getting a conceptual overview of VBA. 2) Finding out what you can do with VBA. 3) Discovering the advantages and disadvantages of using VBA. 4) Getting the lowdown on what VBA is. 5) Staying Excel compatible.
 
 If you're eager to jump into VBA programming, hold your horses. This chapter is completely devoid of any hands-on training material. It does, however, contain some essential background information that assists you in becoming an Excel programmer. In other words, this chapter paves the way for everything else that follows and gives you a feel for how Excel programming fits into the overall scheme of the universe. It's not as boring as you might think, so please try to resist the urge to jump to Chapter 2.
 

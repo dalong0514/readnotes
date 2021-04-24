@@ -2,7 +2,9 @@ Programming Concepts
 
 # 0701. Essential VBA Language Elements
 
-IN THIS CHAPTER: 1) Knowing when, why, and how to use comments in your code Using variables and constants Telling VBA what type of data you're using Getting familiar with arrays Knowing why you may need to use labels in your procedures Because VBA is a real, live programming language, it uses many elements common to all programming languages. In this chapter, you're introduced to several of these elements: comments, variables, constants, data types, arrays, and a few other goodies. If you've programmed with other languages, some of this material will be familiar. If you're a programming newbie, it's time to roll up your sleeves and get busy.
+In this Chapter: 1) Knowing when, why, and how to use comments in your code. 2) Using variables and constants. 3) Telling VBA what type of data you're using. 3) Getting familiar with arrays. 4) Knowing why you may need to use labels in your procedures.
+
+Because VBA is a real, live programming language, it uses many elements common to all programming languages. In this chapter, you're introduced to several of these elements: comments, variables, constants, data types, arrays, and a few other goodies. If you've programmed with other languages, some of this material will be familiar. If you're a programming newbie, it's time to roll up your sleeves and get busy.
 
 ## 7.1 Using Comments in Your VBA Code
 
@@ -12,107 +14,83 @@ Use comments liberally and extensively to describe what the code does (which isn
 
 You begin a comment with an apostrophe ('). VBA ignores any text that follows an apostrophe in a line of code. You can use a complete line for your comment or insert your comment at the end of a line of code. The following example shows a VBA procedure with four comments:
 
+```c
 Sub FormatCells()
+  ' Exit if a range is not selected
+  If TypeName(Selection) <> "Range" Then
+    MsgBox "Select a range."
+    Exit Sub
+  End If
 
-'
-
-Exit if a range is not selected
-
-If TypeName(Selection) <> "Range" Then
-
-MsgBox "Select a range."
-
-Exit Sub
-
-End If
-
-'
-
-Format the cells
-
-With Selection
-
-.HorizontalAlignment = xlRight
-
-.WrapText = False ' no wrap
-
-.MergeCells = False ' no merged cells
-
-End With
-
+  ' Format the cells
+  With Selection
+    .HorizontalAlignment = xlRight
+    .WrapText = False ' no wrap
+    .MergeCells = False ' no merged cells
+  End With
 End Sub
+```
 
-The “apostrophe indicates a comment” rule has one exception: VBA doesn't interpret an apostrophe inside a set of quotation marks as a comment indicator. For example, the following statement doesn't contain a comment, even though it has an apostrophe:
+The "apostrophe indicates a comment" rule has one exception: VBA doesn't interpret an apostrophe inside a set of quotation marks as a comment indicator. For example, the following statement doesn't contain a comment, even though it has an apostrophe:
 
+```c
 Msg = "Can't continue"
+```
 
-When you're writing code, you may want to test a procedure by excluding a particular statement or group of statements. You could delete the statements and then retype them later. But that's a waste of time. A better solution is to simply turn those statements into comments by inserting apostrophes. VBA ignores statements beginning with apostrophes when executing a routine. To reactivate those “commented” statements, just remove the apostrophes.
+When you're writing code, you may want to test a procedure by excluding a particular statement or group of statements. You could delete the statements and then retype them later. But that's a waste of time. A better solution is to simply turn those statements into comments by inserting apostrophes. VBA ignores statements beginning with apostrophes when executing a routine. To reactivate those "commented" statements, just remove the apostrophes.
 
-Here's a quick way to convert a block of statements to comments. In the VBE, choose View ➪ Toolbars ➪ Edit to display the Edit toolbar. To convert a block of statements to comments, select the statements and click the Comment Block button. To remove the apostrophes, select the statements and click the Uncomment Block button.
+Here's a quick way to convert a block of statements to comments. In the VBE, choose View => Toolbars => Edit to display the Edit toolbar. To convert a block of statements to comments, select the statements and click the Comment Block button. To remove the apostrophes, select the statements and click the Uncomment Block button.
 
-Everyone develops his or her own style of commenting. To be useful, however, comments should convey information that's not immediately obvious from reading the code.
+Everyone develops his or her own style of commenting. To be useful, however, comments should convey information that's not immediately obvious from reading the code. The following tips can help you make effective use of comments:
 
-The following tips can help you make effective use of comments:
+1 Identify yourself as the author. This can be useful when you get promoted and the person who takes over your job has some questions.
 
-» » » » » » » »
+2 Briefly describe the purpose of each Sub or Function procedure you write.
 
-Identify yourself as the author. This can be useful when you get promoted and the person who takes over your job has some questions.
+3 Use comments to keep track of changes you make to a procedure.
 
-Briefly describe the purpose of each Sub or Function procedure you write.
+4 Use a comment to indicate that you're using a function or a construct in an unusual or nonstandard manner.
 
-Use comments to keep track of changes you make to a procedure.
+5 Use comments to describe the variables you use, especially if you don't use meaningful variable names.
 
-Use a comment to indicate that you're using a function or a construct in an unusual or nonstandard manner.
+6 Use a comment to describe any workarounds you develop to overcome bugs in Excel.
 
-Use comments to describe the variables you use, especially if you don't use meaningful variable names.
+7 Write comments as you develop code instead of saving the task for a final step.
 
-Use a comment to describe any workarounds you develop to overcome bugs in Excel.
+8 Depending on your work environment, consider adding a joke or two as a comment. The person who takes over your job when you get promoted might appreciate the humor.
 
-Write comments as you develop code instead of saving the task for a final step.
-
-Depending on your work environment, consider adding a joke or two as a comment. The person who takes over your job when you get promoted might appreciate the humor.
-
-## Using Variables, Constants, and Data Types
+## 7.2 Using Variables, Constants, and Data Types
 
 VBA's main purpose is to manipulate data. VBA stores the data in your computer's memory, and the data may or may not end up on disk. Some data, such as worksheet ranges, resides in objects. Other data is stored in variables that you create.
 
-Understanding variables
+### 7.2.1 Understanding variables
 
-A variable is simply a named storage location in your computer's memory that's used by a program. You have lots of flexibility in naming your variables, so make the variable names as descriptive as possible. You assign a value to a variable by using the equal-sign operator. (More about this later in the “Using Assignment Statements” section.)
+A variable is simply a named storage location in your computer's memory that's used by a program. You have lots of flexibility in naming your variables, so make the variable names as descriptive as possible. You assign a value to a variable by using the equal-sign operator. (More about this later in the "Using Assignment Statements" section.)
 
 Here are some examples of variables being assigned values. Note that the last example uses two variables.
 
+```c
 x = 1
-
 InterestRate = 0.075
-
 LoanPayoffAmount = 243089
-
 DataEntered = False
-
 x = x + 1
-
 UserName = "Bob Johnson"
-
 Date_Started = #3/14/2019#
-
 MyNum = YourNum * 1.25
+```
 
 VBA enforces a few rules regarding variable names:
 
-»
+1 You can use letters, numbers, and some punctuation characters, but the first character must be a letter.
 
-» »
+2 VBA doesn't distinguish between uppercase and lowercase letters.
 
-You can use letters, numbers, and some punctuation characters, but the first character must be a letter.
+3 You can't use any spaces, periods, or mathematical operators in a variable name.
 
-VBA doesn't distinguish between uppercase and lowercase letters.
+4 You can't use the following characters in a variable name: `#, $, %, &, or !`. 
 
-You can't use any spaces, periods, or mathematical operators in a variable name.
-
-» »
-
-You can't use the following characters in a variable name: `#, $, %, &, or !`. Variable names can be no longer than 255 characters. But nobody even gets close to that limit.
+5 Variable names can be no longer than 255 characters. But nobody even gets close to that limit.
 
 To make variable names more readable, programmers often use mixed case (for example, InterestRate) or the underscore character (interest_rate).
 
@@ -120,21 +98,24 @@ VBA has many reserved words that you can't use for variable names or procedure n
 
 VBA does allow you to create variables with names that match names in Excel's object model, such as Workbook and Range. But obviously, using names like that just increases the possibility of getting confused. Here's a perfectly valid (but very confusing) macro that declares Range as a variable name and works with a cell named Range in a worksheet named Range:
 
+```c
 Sub RangeConfusion()
-
-Dim Range As Double
-
-Range = Sheets("Range").Range("Range").Value
-
-MsgBox Range
-
+  Dim Range As Double
+  Range = Sheets("Range").Range("Range").Value
+  MsgBox Range
 End Sub
+```
 
 So resist the urge to use a variable named Workbook or Range, and use something like MyWorkbook or MyRange instead.
 
-## What are VBA's data types?
+### 7.2.2 What are VBA's data types?
 
 When discussing programming languages, the term data type refers to the manner in which a program stores data in memory — for example, as integers, real numbers, or strings. Although VBA can take care of these details automatically, it does so at a cost. (There's no free lunch.) Letting VBA handle your data typing results in slower execution and inefficient memory use. For small applications, this usually doesn't present much of a problem. But for large or complex applications, which may be slow or need to conserve every last byte of memory, you need to be on familiar terms with data types.
+
+
+
+
+
 
 VBA automatically handles all the data details, which makes life easier for programmers. Not all programming languages provide this luxury. For example, some languages are strictly typed, which means the programmer must explicitly define the data type for every variable used.
 
@@ -144,7 +125,7 @@ VBA has a variety of built-in data types. Table 7-1 lists the most common types 
 
 In general, choose the data type that uses the smallest number of bytes but can still handle all the data you want to store in the variable.
 
-An exception to the “smallest number of bytes” rule is Long. Most VBA programmers use Long instead of Integer because doing so offers a slight performance increase. But for small procedures, you would never notice any difference between Integer and Long data types.
+An exception to the "smallest number of bytes" rule is Long. Most VBA programmers use Long instead of Integer because doing so offers a slight performance increase. But for small procedures, you would never notice any difference between Integer and Long data types.
 
 TABLE 7-1
 
@@ -154,7 +135,7 @@ Declaring and scoping variables
 
 If you read the preceding sections, you know a bit about variables and data types. In this section, you discover how to declare a variable as a certain data type.
 
-If you don't declare the data type for a variable you use in a VBA routine, VBA uses the default data type: Variant. Data stored as a variant acts like a chameleon; it changes type depending on what you do with it. For example, if a variable is a Variant data type and contains a text string that looks like a number (such as “143”), you can use this variable for string manipulations as well as numeric calculations. VBA automatically handles the conversion. Letting VBA handle data types may seem like an easy way out — but remember that you sacrifice speed and increase memory used.
+If you don't declare the data type for a variable you use in a VBA routine, VBA uses the default data type: Variant. Data stored as a variant acts like a chameleon; it changes type depending on what you do with it. For example, if a variable is a Variant data type and contains a text string that looks like a number (such as "143"), you can use this variable for string manipulations as well as numeric calculations. VBA automatically handles the conversion. Letting VBA handle data types may seem like an easy way out — but remember that you sacrifice speed and increase memory used.
 
 Before you use variables in a procedure, it's an excellent practice to declare your variables — that is, tell VBA each variable's data type. Declaring your variables makes your macro run faster and use memory more efficiently. The default data type, Variant, causes VBA to repeatedly perform time-consuming checks and reserve more memory than necessary. If VBA knows a variable's data type, it doesn't have to investigate and can reserve just enough memory to store the data.
 
@@ -464,7 +445,7 @@ z = 12 Mod 5
 
 z = 12 Mod 5
 
-The term concatenation is programmer speak for “join together.” Thus, if you concatenate strings, you're combining strings to make a new and improved string.
+The term concatenation is programmer speak for "join together." Thus, if you concatenate strings, you're combining strings to make a new and improved string.
 
 As shown in Table 7-4, VBA also provides a full set of logical operators.
 
@@ -516,7 +497,7 @@ Dim MyArray (1 To 9, 1 To 9) As Integer
 
 You can think of this array as occupying a 9 x 9 matrix — perfect for storing all numbers in a Sudoku puzzle.
 
-To refer to a specific element in this array, you need to specify two index numbers (similar to its “row” and its “column” in the matrix). The following example shows how you can assign a value to an element in this array:
+To refer to a specific element in this array, you need to specify two index numbers (similar to its "row" and its "column" in the matrix). The following example shows how you can assign a value to an element in this array:
 
 MyArray (3, 4)= 125
 
