@@ -30,7 +30,7 @@
 
 除了本书，O'Reilly 还出版了其他一些值得入手的 MySQL 相关书籍。它主推的 MySQL 参考书是我写的《MySQL 核心技术手册》。如果需要解决现实中的常见问题，可参考 Paul DuBois 的《MySQL Cookbook（中文版）》。若是需要调优和性能监控方面的建议，如数据库备份，则可参考 Baron Schwartz、Peter Zaitsev 和 Vadim Tkachenko 合著的《高性能 MySQL》。
 
-安装新版时现实的信息：
+安装新版时显示的信息：
 
 ```
 ==> protobuf@3.7
@@ -72,7 +72,7 @@ Or, if you don't want/need a background service you can just run:
 mysql.server start
 ```
 
-账户安全相关的一系列设置可以通过命令「mysql_secure_installation」来完成。
+账户安全相关的一系列设置可以通过命令 `mysql_secure_installation` 来完成。
 
 ## 0201. 安装
 
@@ -82,19 +82,29 @@ mysql.server start
 
 2、Mac 上查看是否安装；
 
-命令行内输入命令 whereis mysql mysqld mysqld_safe
+命令行内输入命令 
 
-接着检查服务器 mysqld 有没有在运行，输入命令 ps aux | grep mysql
+```
+whereis mysql mysqld mysqld_safe
+```
+
+接着检查服务器 mysqld 有没有在运行，输入命令 
+
+```
+ps aux | grep mysql
+```
 
 如果没有运行的话，输入命令 /usr/bin/mysqld_safe & 以 root 身份启动它；
 
 3、Mac 上安装；
 
+```
 update user set password=password('') where user='root';
+```
 
-Mac 上用 brew 安装 mysql；安装后在 /usr/local/var/ 里面；
+Mac 上用 brew 安装 mysql，安装后在 `/usr/local/var/` 里面。
 
-安装完成后 mysql 是没有启动的；命令行里输入命令 mysql.server start 来启动；同理推测关闭服务器是 mysql.server stop；
+安装完成后 mysql 是没有启动的，命令行里输入命令 `mysql.server start `来启动；同理推测关闭服务器是 `mysql.server stop`。
 
 修改原始密码；输入命令 mysqladmin -u root -p flush-privileges password 修改，原始的是空的直接 enter 会让你连续 2 次输入新密码的 (dalongsql)；设置完之后会跳出；
 

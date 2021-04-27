@@ -18,8 +18,6 @@
 
 根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
 
-维基百科链接：有的话。找一个他的 TED 演讲，有的话。
-
 ### 0401. 金句卡——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
@@ -27,10 +25,6 @@
 ### 0501. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
-
-### 0601. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
 
 ## 个人配置
 
@@ -40,6 +34,24 @@
         'semi': [2, 'never'],
         "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
     }
+```
+
+## 问题汇总
+
+1、react 开发时，eslint 报错：
+
+```
+'value' is missing in props validation  react/prop-types
+```
+
+解决方法：禁用检测这条语法。
+
+[reactjs - How to disable ESLint react/prop-types rule in a file? - Stack Overflow](https://stackoverflow.com/questions/30948970/how-to-disable-eslint-react-prop-types-rule-in-a-file)
+
+Just put this on top of your file:
+
+```
+/* eslint-disable react/prop-types */
 ```
 
 ## 0101. Getting Started with ESLint
