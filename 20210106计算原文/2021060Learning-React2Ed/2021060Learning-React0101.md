@@ -46,6 +46,16 @@ As changes are made to React and related tools, sometimes there are breaking cha
 
 Beyond this book, you can stay on top of changes by following along with the official React blog. When new versions of React are released, the core team will write a detailed blog post and changelog about what's new. The blog has also been translated into an ever-expanding list of languages, so if English isn't your native language, you can find localized versions of the docs on the languages page of the docs site.
 
+1-3『
+
+所以官网的博客、社区要经常去看：
+
+[Introducing Zero-Bundle-Size React Server Components – React Blog](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html)
+
+[Where To Get Support – React](https://reactjs.org/community/support.html)
+
+』
+
 Learning React: Second Edition Changes
 
 This is the second edition of Learning React. We felt it was important to update the book because React has evolved quite a bit over the past few years. We intend to focus on all the current best practices that are advocated by the React team, but we'll also share information about deprecated React features. There's a lot of React code that was written years ago using old styles that still works well and must be maintained.
@@ -78,9 +88,7 @@ Figure 1-2. Inspecting the DOM with the React Developer Tools
 
 ### 1.3.3 Installing Node.js
 
-Node.js is a JavaScript runtime environment used to build full-stack applications. Node is open source and can be installed on Windows, macOS, Linux, and other platforms. We'll be using Node in Chapter 12
-
-when we build an Express server.
+Node.js is a JavaScript runtime environment used to build full-stack applications. Node is open source and can be installed on Windows, macOS, Linux, and other platforms. We'll be using Node in Chapter 12 when we build an Express server.
 
 You need to have Node installed, but you do not need to be a Node expert in order to use React. If you're not sure if Node.js is installed on your machine, you can open a Terminal or Command Prompt window and type:
 
@@ -88,11 +96,7 @@ You need to have Node installed, but you do not need to be a Node expert in orde
 node -v
 ```
 
-When you run this command, you should see a node version number returned to you, ideally 8.6.2 or higher. If you type the command and see an error message that says「Command not found,」Node.js is not
-
-installed. This is easily fixed by installing Node.js from the Node.js
-
-website. Just go through the installer's automated steps, and when you type in the node -v command again, you'll see the version number.
+When you run this command, you should see a node version number returned to you, ideally 8.6.2 or higher. If you type the command and see an error message that says「Command not found,」Node.js is not installed. This is easily fixed by installing Node.js from the Node.js website. Just go through the installer's automated steps, and when you type in the node -v command again, you'll see the version number.
 
 NPM
 
@@ -106,9 +110,7 @@ If you're starting your own project from scratch and want to include dependencie
 npm init -y
 ```
 
-This will initialize the project and create a package.json file. From there, you can install your own dependencies with npm. To install a
-
-package with npm, you'll run:
+This will initialize the project and create a package.json file. From there, you can install your own dependencies with npm. To install a package with npm, you'll run:
 
 ```
 npm install package-name
@@ -143,5 +145,7 @@ yarn remove package-name
 ```
 
 Yarn is used in production by Facebook and is included in projects like React, React Native, and Create React App. If you ever find a project that contains a yarn.lock file, the project uses yarn. Similar to the npm install command, you can install all the dependencies of the project by typing yarn.
+
+1-2『 npm 和 yarn 包管理，常用命令做一张主题卡片。（2021-04-29）』—— 已完成
 
 Now that you have your environment set up for React development, you're ready to start walking the path of learning React. In Chapter 2, we'll get up to speed with the latest JavaScript syntax that's most commonly found in React code.

@@ -2,9 +2,63 @@
 
 ## 卡片
 
-### 0101. 主题卡 ——
+### 0101. 主题卡 —— npm 和 yarn 包管理
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+信息源自「2021060Learning-React0101.md」
+
+用 npm 安装 yarn。
+
+```
+npm install -g yarn
+```
+
+1、初始化项目。
+
+If you're starting your own project from scratch and want to include dependencies, simply run the command:
+
+```
+npm init -y
+```
+
+2、安装、卸载依赖包。
+
+ To install a package with npm, you'll run:
+
+```
+npm install package-name
+```
+
+To remove a package with npm, you'll run:
+
+```
+npm remove package-name
+```
+
+To install a specific package with yarn, run:
+
+```
+yarn add package-name
+```
+
+To remove a dependency, the command is familiar, too:
+
+```
+yarn remove package-name
+```
+
+Yarn is used in production by Facebook and is included in projects like React, React Native, and Create React App. If you ever find a project that contains a yarn.lock file, the project uses yarn. Similar to the npm install command, you can install all the dependencies of the project by typing yarn.
+
+1-2『 npm 和 yarn 包管理，常用命令做一张主题卡片。（2021-04-29）』—— 已完成
+
+3、全部重新安装依赖包。
+
+```
+npm install
+```
+
+```
+yarn
+```
 
 ### 0201. 术语卡 ——
 
