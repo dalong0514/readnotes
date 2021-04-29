@@ -30,8 +30,8 @@
 
 ```json
     "rules": {
-        "space-before-function-paren": [2, "never"],
-        'semi': [2, 'never'],
+        "space-before-function-paren": ["warn", "never"],
+        'semi': ["warn", 'never'],
         "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
     }
 ```
@@ -52,6 +52,24 @@ Just put this on top of your file:
 
 ```
 /* eslint-disable react/prop-types */
+```
+
+2、跑的时候报错，说找不到 react 的版本号。
+
+```
+React version not specified in eslint-plugin-react settings
+```
+
+[[7.12.4]React version not specified in eslint-plugin-react settings · Issue #2157 · yannickcr/eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react/issues/2157)
+
+只需要在 .eslintrc.js 添加设置：
+
+```json
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
+      }
 ```
 
 ## 0101. Getting Started with ESLint
