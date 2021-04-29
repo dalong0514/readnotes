@@ -216,7 +216,7 @@ The result is the same, and You're doing great! is logged to the console.
 
 One thing to be aware of when deciding between a function declaration and a function expression is that function declarations are hoisted and function expressions are not. In other words, you can invoke a function before you write a function declaration. You cannot invoke a function created by a function expression. This will cause an error. For example:
 
-2『函数申明和函数表达式创建函数对象的区别，做一张信息数据卡片。（2021-04-29）』—— 已完成
+2『函数申明和函数表达式创建函数对象的区别，做一张信息数据卡片。（2021-04-29）』 —  —  已完成
 
 ```js
 // Invoking the function before it's declared
@@ -392,7 +392,7 @@ console.log(person("Flad", "Hanson"));
 
 These missing parentheses are the source of countless bugs in JavaScript and React apps, so it's important to remember this one!
 
-1『解惑了解惑了，很多地方看到了这种语句，箭头函数返回对象，做一张信息数据卡片。（2021-04-29）』—— 已完成
+1『解惑了解惑了，很多地方看到了这种语句，箭头函数返回对象，做一张信息数据卡片。（2021-04-29）』 —  —  已完成
 
 ### 2.2.8 Arrow Function And Scope
 
@@ -449,7 +449,7 @@ tahoe.print(); // Uncaught TypeError: Cannot read property 'join' of undefined
 
 Changing the print function to an arrow function means that this is actually the window.
 
-1-2-3『这里的知识点跟目前脑子的里的知识关联上了，箭头函数 this 值总是指向全局对象 window，但第二个、第三个例子放在一起目前就糊涂了，this 不是应该都可以指向 window 么。待研究。（2021-04-29）』—— 未完成
+1-2-3『这里的知识点跟目前脑子的里的知识关联上了，箭头函数 this 值总是指向全局对象 window，但第二个、第三个例子放在一起目前就糊涂了，this 不是应该都可以指向 window 么。待研究。（2021-04-29）』 —  —  未完成
 
 ## 2.3 Compiling JavaScript
 
@@ -579,6 +579,8 @@ lordify(regularPerson); // Phil of Canterbury
 
 Using the colon and nested curly braces, we can destructure the firstname from the spouse object.
 
+2『解构对象，做一张主题卡片。（2021-04-29）』 —  —  已完成
+
 ### 2.4.2 Destructuring Arrays
 
 Values can also be destructured from arrays. Imagine that we wanted to assign the first value of an array to a variable name:
@@ -597,448 +599,410 @@ console.log(thirdAnimal); // Cat
 
 Later in this section, we'll take this example a step farther by combining array destructuring and the spread operator.
 
+2『解构数组，做一张主题卡片。（2021-04-29）』 —  —  已完成
+
 ### 2.4.3 Object Literal Enhancement
 
 Object literal enhancement is the opposite of destructuring. It's the process of restructuring or putting the object back together. With object literal enhancement, we can grab variables from the global scope and add them to an object:
 
+```js
 const name = "Tallac";
-
 const elevation = 9738;
-
 const funHike = { name, elevation };
-
 console.log(funHike); // {name: "Tallac", elevation: 9738}
+```
 
-name and elevation are now keys of the funHike object.
+name and elevation are now keys of the funHike object. We can also create object methods with object literal enhancement or restructuring:
 
-We can also create object methods with object literal enhancement or restructuring:
-
+```js
 const name = "Tallac";
-
 const elevation = 9738;
-
 const print = function() {
-
-console.log(`Mt. ${this.name} is ${this.elevation} feet tall`);
-
+  console.log(`Mt. ${this.name} is ${this.elevation} feet tall`);
 };
-
 const funHike = { name, elevation, print };
+funHike.print(); // Mt. Tallac is 9738 feet tall 
+```
 
-funHike.print(); // Mt. Tallac is 9738 feet tall Notice we use this to access the object keys.
+Notice we use this to access the object keys. When defining object methods, it's no longer necessary to use the function keyword:
 
-When defining object methods, it's no longer necessary to use the function keyword:
-
+```js
 // Old
-
 var skier = {
-
-name: name,
-
-sound: sound,
-
-powderYell: function() {
-
-var yell = this.sound.toUpperCase();
-
-console.log(`${yell} ${yell} ${yell}!!!`);
-
-},
-
-speed: function(mph) {
-
-this.speed = mph;
-
-console.log("speed:", mph);
-
-}
-
+  name: name,
+  sound: sound,
+  powderYell: function() {
+    var yell = this.sound.toUpperCase();
+    console.log(`${yell} ${yell} ${yell}!!!`);
+  },
+  speed: function(mph) {
+    this.speed = mph;
+    console.log("speed:", mph);
+  }
 };
-
+  
 // New
-
 const skier = {
-
-name,
-
-sound,
-
-powderYell() {
-
-let yell = this.sound.toUpperCase();
-
-console.log(`${yell} ${yell} ${yell}!!!`);
-
-},
-
-speed(mph) {
-
-this.speed = mph;
-
-console.log("speed:", mph);
-
-}
-
+  name,
+  sound,
+  powderYell() {
+    let yell = this.sound.toUpperCase();
+    console.log(`${yell} ${yell} ${yell}!!!`);
+  },
+  speed(mph) {
+    this.speed = mph;
+    console.log("speed:", mph);
+  }
 };
+```
 
-Object literal enhancement allows us to pull global variables into
+Object literal enhancement allows us to pull global variables into objects and reduces typing by making the function keyword unnecessary.
 
-objects and reduces typing by making the function keyword unnecessary.
+2『对象强化，做一张主题卡片。（2021-04-29）』 —  —  已完成
 
-The Spread Operator
+### 2.4.4 The Spread Operator
 
 The spread operator is three dots (...) that perform several different tasks. First, the spread operator allows us to combine the contents of arrays. For example, if we had two arrays, we could make a third array that combines the two arrays into one:
 
-const peaks = ["Tallac", "Ralston", "Rose"]; const canyons = ["Ward", "Blackwood"]; const tahoe = [...peaks, ...canyons];
+```js
+const peaks = ["Tallac", "Ralston", "Rose"]; 
+const canyons = ["Ward", "Blackwood"]; 
+const tahoe = [...peaks, ...canyons];
 
-console.log(tahoe.join(", ")); // Tallac, Ralston, Rose, Ward, Blackwood All of the items from peaks and canyons are pushed into a new array called tahoe.
+console.log(tahoe.join(", ")); // Tallac, Ralston, Rose, Ward, Blackwood 
+```
+
+All of the items from peaks and canyons are pushed into a new array called tahoe.
 
 Let's take a look at how the spread operator can help us deal with a problem. Using the peaks array from the previous sample, let's imagine that we wanted to grab the last item from the array rather than the first. We could use the Array.reverse method to reverse the array in combination with array destructuring:
 
-const peaks = ["Tallac", "Ralston", "Rose"]; const [last] = peaks.reverse();
-
+```js
+const peaks = ["Tallac", "Ralston", "Rose"]; 
+const [last] = peaks.reverse();
 console.log(last); // Rose
+console.log(peaks.join(", ")); // Rose, Ralston, Tallac 
+```
 
-console.log(peaks.join(", ")); // Rose, Ralston, Tallac See what happened? The reverse function has actually altered or mutated the array. In a world with the spread operator, we don't have
+See what happened? The reverse function has actually altered or mutated the array. In a world with the spread operator, we don't have to mutate the original array. Instead, we can create a copy of the array and then reverse it:
 
-to mutate the original array. Instead, we can create a copy of the array and then reverse it:
-
-const peaks = ["Tallac", "Ralston", "Rose"]; const [last] = [...peaks].reverse();
-
+```js
+const peaks = ["Tallac", "Ralston", "Rose"]; 
+const [last] = [...peaks].reverse();
 console.log(last); // Rose
+console.log(peaks.join(", ")); // Tallac, Ralston, Rose 
+```
 
-console.log(peaks.join(", ")); // Tallac, Ralston, Rose Since we used the spread operator to copy the array, the peaks array is still intact and can be used later in its original form.
+1『大赞，Spread Operator 是实现「函数式编程范式」中数据不变性的一种手段。（2021-04-29）』
 
-The spread operator can also be used to get the remaining items in the array:
+Since we used the spread operator to copy the array, the peaks array is still intact and can be used later in its original form. The spread operator can also be used to get the remaining items in the array:
 
-const lakes = ["Donner", "Marlette", "Fallen Leaf", "Cascade"]; const [first, ...others] = lakes;
+```js
+const lakes = ["Donner", "Marlette", "Fallen Leaf", "Cascade"]; 
+const [first, ...others] = lakes;
+console.log(others.join(", ")); // Marlette, Fallen Leaf, Cascade 
+```
 
-console.log(others.join(", ")); // Marlette, Fallen Leaf, Cascade We can also use the three-dot syntax to collect function arguments as an array. When used in a function, these are called rest parameters.
+We can also use the three-dot syntax to collect function arguments as an array. When used in a function, these are called rest parameters. Here, we build a function that takes in n number of arguments using the spread operator, then uses those arguments to print some console messages:
 
-Here, we build a function that takes in n number of arguments using the spread operator, then uses those arguments to print some console messages:
-
+```js
 function directions(...args) {
-
-let [start, ...remaining] = args;
-
-let [finish, ...stops] = remaining.reverse();
-
-console.log(`drive through ${args.length} towns`);
-
-console.log(`start in ${start}`);
-
-console.log(`the destination is ${finish}`);
-
-console.log(`stopping ${stops.length} times in between`);
-
+  let [start, ...remaining] = args;
+  let [finish, ...stops] = remaining.reverse();
+  console.log(`drive through ${args.length} towns`);
+  console.log(`start in ${start}`);
+  console.log(`the destination is ${finish}`);
+  console.log(`stopping ${stops.length} times in between`);
 }
+  
+directions("Truckee", "Tahoe City", "Sunnyside", "Homewood", "Tahoma"); 
+```
 
-directions("Truckee", "Tahoe City", "Sunnyside", "Homewood", "Tahoma"); The directions function takes in the arguments using the spread operator. The first argument is assigned to the start variable. The last argument is assigned to a finish variable using Array.reverse. We then use the length of the arguments array to display how many towns we're going through. The number of stops is the length of the arguments array minus the finish stop. This provides incredible flexibility because we could use the directions function to handle any number of stops.
+The directions function takes in the arguments using the spread operator. The first argument is assigned to the start variable. The last argument is assigned to a finish variable using `Array.reverse`. We then use the length of the arguments array to display how many towns we're going through. The number of stops is the length of the arguments array minus the finish stop. This provides incredible flexibility because we could use the directions function to handle any number of stops.
 
 The spread operator can also be used for objects (see the GitHub page for Rest/Spread Properties). Using the spread operator with objects is similar to using it with arrays. In this example, we'll use it the same way we combined two arrays into a third array, but instead of arrays, we'll use objects:
 
+3『 [tc39/proposal-object-rest-spread: Rest/Spread Properties for ECMAScript](https://github.com/tc39/proposal-object-rest-spread) 』
+
+```js
 const morning = {
-
-breakfast: "oatmeal",
-
-lunch: "peanut butter and jelly"
-
+  breakfast: "oatmeal",
+  lunch: "peanut butter and jelly"
 };
-
+  
 const dinner = "mac and cheese";
-
 const backpackingMeals = {
-
-...morning,
-
-dinner
-
+  ...morning,
+  dinner
 };
-
+  
 console.log(backpackingMeals);
-
+  
 // {
-
 // breakfast: "oatmeal",
-
 // lunch: "peanut butter and jelly",
-
 // dinner: "mac and cheese"
-
 // }
+```
 
-Asynchronous JavaScript
+2『spread operator，做一张主题卡片。（2021-04-29）』 —  —  已完成
 
-The code samples that have been part of this chapter so far have been synchronous. When we write synchronous JavaScript code, we're providing a list of instructions that execute immediately in order. For example, if we wanted to use JavaScript to handle some simple DOM
+## 2.5 Asynchronous JavaScript
 
-manipulation, we'd write the code to do so like this:
+The code samples that have been part of this chapter so far have been synchronous. When we write synchronous JavaScript code, we're providing a list of instructions that execute immediately in order. For example, if we wanted to use JavaScript to handle some simple DOM manipulation, we'd write the code to do so like this:
 
-const header = document.getElementById("heading"); header.innerHTML = "Hey!";
+```js
+const header = document.getElementById("heading"); 
+header.innerHTML = "Hey!";
+```
 
 These are instructions.「Yo, go select that element with an id of heading. Then when you're done with that, how about you set that inner HTML to Hey.」It works synchronously. While each operation is happening, nothing else is happening.
 
 With the modern web, we need to perform asynchronous tasks. These tasks often have to wait for some work to finish before they can be completed. We might need to access a database. We might need to stream video or audio content. We might need to fetch data from an API. With JavaScript, asynchronous tasks do not block the main thread. JavaScript is free to do something else while we wait for the API to return data. JavaScript has evolved a lot over the past few years to make handling these asynchronous actions easier. Let's explore some of the features that make this possible.
 
-Simple Promises with Fetch
+### 2.5.1 Simple Promises with Fetch
 
-Making a request to a REST API used to be pretty cumbersome. We'd have to write 20+ lines of nested code just to load some data into our app. Then the fetch() function showed up and simplified our lives.
-
-Thanks to the ECMAScript committee for making fetch happen.
+Making a request to a REST API used to be pretty cumbersome. We'd have to write 20+ lines of nested code just to load some data into our app. Then the fetch() function showed up and simplified our lives. Thanks to the ECMAScript committee for making fetch happen.
 
 Let's get some data from the randomuser.me API. This API has information like email address, name, phone number, location, and so on for fake members and is great to use as dummy data. fetch takes in the URL for this resource as its only parameter:
 
-console.log(fetch("https://api.randomuser.me/?nat=US&results=1")); When we log this, we see that there is a pending promise. Promises give us a way to make sense out of asynchronous behavior in JavaScript. The promise is an object that represents whether the async operation is pending, has been completed, or has failed. Think of this like the browser saying,「Hey, I'm going to try my best to go get this data. Either way, I'll come back and let you know how it went.」
+```js
+console.log(fetch("https://api.randomuser.me/?nat=US&results=1")); 
+```
 
-So back to the fetch result. The pending promise represents a state before the data has been fetched. We need to chain on a function called
+When we log this, we see that there is a pending promise. Promises give us a way to make sense out of asynchronous behavior in JavaScript. The promise is an object that represents whether the async operation is pending, has been completed, or has failed. Think of this like the browser saying,「Hey, I'm going to try my best to go get this data. Either way, I'll come back and let you know how it went.」
 
-.then(). This function will take in a callback function that will run if the previous operation was successful. In other words, fetch some data, then do something else.
+So back to the fetch result. The pending promise represents a state before the data has been fetched. We need to chain on a function called `.then()`. This function will take in a callback function that will run if the previous operation was successful. In other words, fetch some data, then do something else.
 
-The something else we want to do is turn the response into JSON: fetch("https://api.randomuser.me/?nat=US&results=1").then(res => console.log(res.json())
+The something else we want to do is turn the response into JSON: 
 
+```js
+fetch("https://api.randomuser.me/?nat=US&results=1").then(res => 
+  console.log(res.json())
 );
+```
 
-The then method will invoke the callback function once the promise has resolved. Whatever you return from this function becomes the argument of the next then function. So we can chain together then functions to handle a promise that has been successfully resolved: fetch("https://api.randomuser.me/?nat=US&results=1")
+The then method will invoke the callback function once the promise has resolved. Whatever you return from this function becomes the argument of the next then function. So we can chain together then functions to handle a promise that has been successfully resolved: 
 
-.then(res => res.json())
-
-.then(json => json.results)
-
-.then(console.log)
-
-. catch(console.error);
+```js
+fetch("https://api.randomuser.me/?nat=US&results=1")
+  .then(res => res.json())
+  .then(json => json.results)
+  .then(console.log)
+  .catch(console.error);
+```
 
 First, we use fetch to make a GET request to randomuser.me. If the request is successful, we'll then convert the response body to JSON.
 
-Next, we'll take the JSON data and return the results, then we'll send the results to the console.log function, which will log them to the console. Finally, there is a catch function that invokes a callback if the fetch did not resolve successfully. Any error that occurred while fetching data from randomuser.me will be based on that callback. Here, we simply log the error to the console using console.error.
+Next, we'll take the JSON data and return the results, then we'll send the results to the console.log function, which will log them to the console. 
 
-Async/Await
+Finally, there is a catch function that invokes a callback if the fetch did not resolve successfully. Any error that occurred while fetching data from randomuser.me will be based on that callback. Here, we simply log the error to the console using console.error.
+
+### 2.5.2 Async/Await
 
 Another popular approach for handling promises is to create an async function. Some developers prefer the syntax of async functions because it looks more familiar, like code that's found in a synchronous function. Instead of waiting for the results of a promise to resolve and handling it with a chain of then functions, async functions can be told to wait for the promise to resolve before further executing any code found in the function.
 
-Let's make another API request but wrap the functionality with an
+Let's make another API request but wrap the functionality with an async function:
 
-async function:
-
+```js
 const getFakePerson = async () => {
-
-let res = await fetch("https://api.randomuser.me/?nat=US&results=1"); let { results } = res.json();
-
-console.log(results);
-
+  let res = await fetch("https://api.randomuser.me/?nat=US&results=1"); 
+  let { results } = res.json();
+  console.log(results);
 };
-
+  
 getFakePerson();
+```
 
 Notice that the getFakePerson function is declared using the async keyword. This makes it an asynchronous function that can wait for promises to resolve before executing the code any further. The await keyword is used before promise calls. This tells the function to wait for the promise to resolve. This code accomplishes the exact same task as the code in the previous section that uses then functions. Well, almost the exact same task…
 
+```js
 const getFakePerson = async () => {
-
-try {
-
-let res = await fetch("https://api.randomuser.me/?nat=US&results=1"); let { results } = res.json();
-
-console.log(results);
-
-} catch (error) {
-
-console.error(error);
-
-}
-
+  try {
+    let res = await fetch("https://api.randomuser.me/?nat=US&results=1"); 
+    let { results } = res.json();
+    console.log(results); 
+  } catch (error) {
+    console.error(error); 
+  }
 };
-
 getFakePerson();
+```
 
-There we go—now this code accomplishes the exact same task as the code in the previous section that uses then functions. If the fetch call is successful, the results are logged to the console. If it's unsuccessful, then we'll log the error to the console using console.error. When
+There we go — now this code accomplishes the exact same task as the code in the previous section that uses then functions. If the fetch call is successful, the results are logged to the console. If it's unsuccessful, then we'll log the error to the console using console.error. When
 
 using async and await, you need to surround your promise call in a try…catch block to handle any errors that may occur due to an unresolved promise.
 
-Building Promises
+### 2.5.3 Building Promises
 
 When making an asynchronous request, one of two things can happen: everything goes as we hope, or there's an error. There can be many different types of successful or unsuccessful requests. For example, we could try several ways to obtain the data to reach success. We could also receive multiple types of errors. Promises give us a way to simplify back to a simple pass or fail.
 
 The getPeople function returns a new promise. The promise makes a request to the API. If the promise is successful, the data will load. If the promise is unsuccessful, an error will occur:
 
+```js
 const getPeople = count =>
-
-new Promise((resolves, rejects) => {
-
-const api = `https://api.randomuser.me/?nat=US&results=${count}`; const request = new XMLHttpRequest();
-
-request.open("GET", api);
-
-request.onload = () =>
-
-request.status === 200
-
-? resolves(JSON.parse(request.response).results)
-
-: reject(Error(request.statusText));
-
-request.onerror = err => rejects(err);
-
-request.send();
-
+  new Promise((resolves, rejects) => {
+    const api = `https://api.randomuser.me/?nat=US&results=${count}`; 
+    const request = new XMLHttpRequest();
+    request.open("GET", api);
+    request.onload = () =>
+      request.status === 200
+        ? resolves(JSON.parse(request.response).results)
+        : reject(Error(request.statusText));
+    request.onerror = err => rejects(err);
+    request.send();
 });
+```
 
-With that, the promise has been created, but it hasn't been used yet. We can use the promise by calling the getPeople function and passing in the number of members that should be loaded. The then function can
+With that, the promise has been created, but it hasn't been used yet. We can use the promise by calling the getPeople function and passing in the number of members that should be loaded. The then function can be chained on to do something once the promise has been fulfilled.
 
-be chained on to do something once the promise has been fulfilled.
+When a promise is rejected, any details are passed back to the catch function, or the catch block if using async/await syntax: 
 
-When a promise is rejected, any details are passed back to the catch function, or the catch block if using async/await syntax: getPeople(5)
-
-.then(members => console.log(members))
-
-. catch(error => console.error(`getPeople failed: ${error.message}`))
-
-);
+```js
+getPeople(5)
+  .then(members => console.log(members))
+  . catch(error => console.error(`getPeople failed: ${error.message}`))
+```
 
 Promises make dealing with asynchronous requests easier, which is good, because we have to deal with a lot of asynchronicity in JavaScript. A solid understanding of asynchronous behavior is essential for the modern JavaScript engineer.
 
-Classes
+## 2.6 Classes
 
 Prior to ES2015, there was no official class syntax in the JavaScript spec. When classes were introduced, there was a lot of excitement about how similar the syntax of classes was to traditional object-oriented languages like Java and C++. The past few years saw the React library leaning on classes heavily to construct user interface components. Today, React is beginning to move away from classes, instead using functions to construct components. You'll still see classes all over the place, particularly in legacy React code and in the world of JavaScript, so let's take a quick look at them.
 
-JavaScript uses something called prototypical inheritance. This technique can be wielded to create structures that feel object-oriented.
+JavaScript uses something called prototypical inheritance. This technique can be wielded to create structures that feel object-oriented. For example, we can create a Vacation constructor that needs to be invoked with a new operator:
 
-For example, we can create a Vacation constructor that needs to be invoked with a new operator:
-
+```js
 function Vacation(destination, length) {
-
-this.destination = destination;
-
-this.length = length;
-
+  this.destination = destination;
+  this.length = length;
 }
-
+  
 Vacation.prototype.print = function() {
-
-console.log(this.destination + " | " + this.length + " days");
-
+  console.log(this.destination + " | " + this.length + " days");
 };
 
 const maui = new Vacation("Maui", 7); maui.print(); // Maui | 7 days
+```
 
-This code creates something that feels like a custom type in an object-oriented language. A Vacation has properties (destination, length), and it has a method (print). The maui instance inherits the print method through the prototype. If you are or were a developer accustomed to more standard classes, this might fill you with a deep rage. ES2015
+This code creates something that feels like a custom type in an object-oriented language. A Vacation has properties (destination, length), and it has a method (print). The maui instance inherits the print method through the prototype. If you are or were a developer accustomed to more standard classes, this might fill you with a deep rage. ES2015 introduced class declaration to quiet that rage, but the dirty secret is that JavaScript still works the same way. Functions are objects, and inheritance is handled through the prototype. Classes provide a syntactic sugar on top of that gnarly prototype syntax:
 
-introduced class declaration to quiet that rage, but the dirty secret is that JavaScript still works the same way. Functions are objects, and inheritance is handled through the prototype. Classes provide a syntactic sugar on top of that gnarly prototype syntax:
-
+```js
 class Vacation {
-
-constructor(destination, length) {
-
-this.destination = destination;
-
-this.length = length;
-
+  constructor(destination, length) {
+    this.destination = destination;
+    this.length = length;
+  }
+  
+  print() {
+    console.log(`${this.destination} will take ${this.length} days.`);
+  }  
 }
+```
 
-print() {
+When you're creating a class, the class name is typically capitalized. Once you've created the class, you can create a new instance of the class using the new keyword. Then you can call the custom method on the class:
 
-console.log(`${this.destination} will take ${this.length} days.`);
-
-}
-
-}
-
-When you're creating a class, the class name is typically capitalized.
-
-Once you've created the class, you can create a new instance of the class using the new keyword. Then you can call the custom method on the class:
-
-const trip = new Vacation("Santiago, Chile", 7); trip.print(); // Chile will take 7 days.
+```js
+const trip = new Vacation("Santiago, Chile", 7); 
+trip.print(); // Chile will take 7 days.
+```
 
 Now that a class object has been created, you can use it as many times as you'd like to create new vacation instances. Classes can also be extended. When a class is extended, the subclass inherits the properties and methods of the superclass. These properties and methods can be manipulated from here, but as a default, all will be inherited.
 
 You can use Vacation as an abstract class to create different types of vacations. For instance, an Expedition can extend the Vacation class to include gear:
 
+```js
 class Expedition extends Vacation {
-
-constructor(destination, length, gear) {
-
-super(destination, length);
-
-this.gear = gear;
-
+  constructor(destination, length, gear) {
+    super(destination, length);
+    this.gear = gear;
+  }
+  
+  print() {
+    super.print();
+    console.log(`Bring your ${this.gear.join(" and your ")}`);
+  }
 }
+```
 
-print() {
+That's simple inheritance: the subclass inherits the properties of the superclass. By calling the print method of Vacation, we can append some new content onto what is printed in the print method of Expedition. Creating a new instance works the exact same way — create a variable and use the new keyword:
 
-super.print();
-
-console.log(`Bring your ${this.gear.join(" and your ")}`);
-
-}
-
-}
-
-That's simple inheritance: the subclass inherits the properties of the superclass. By calling the print method of Vacation, we can append some new content onto what is printed in the print method of
-
-Expedition. Creating a new instance works the exact same way—
-
-create a variable and use the new keyword:
-
+```js
 const trip = new Expedition("Mt. Whitney", 3, [
-
-"sunglasses",
-
-"prayer flags",
-
-"camera"
-
+  "sunglasses",
+  "prayer flags",
+  "camera"
 ]);
-
+  
 trip.print();
-
 // Mt. Whitney will take 3 days.
+// Bring your sunglasses and your prayer flags and your camera 
+```
 
-// Bring your sunglasses and your prayer flags and your camera ES6 Modules
+## 2.7 ES6 Modules
 
 A JavaScript module is a piece of reusable code that can easily be incorporated into other JavaScript files without causing variable collisions. JavaScript modules are stored in separate files, one file per module. There are two options when creating and exporting a module: you can export multiple JavaScript objects from a single module or one JavaScript object per module.
 
 In text-helpers.js, two functions are exported:
 
-export const print=(message) => log(message, new Date()) export const log=(message, timestamp) => console.log(`${timestamp.toString()}: ${message}`)
+```js
+export const print=(message) => log(message, new Date()) 
+export const log=(message, timestamp) => 
+  console.log(`${timestamp.toString()}: ${message}`)
+```
 
 export can be used to export any JavaScript type that will be consumed in another module. In this example, the print function and log function are being exported. Any other variables declared in text-helpers.js will be local to that module.
 
 Modules can also export a single main variable. In these cases, you can use export default. For example, the mt-freel.js file can export a specific expedition:
 
-export default new Expedition("Mt. Freel", 2, ["water", "snack"]); export default can be used in place of export when you wish to export only one type. Again, both export and export default can be used on any JavaScript type: primitives, objects, arrays, and functions.
+```js
+export default new Expedition("Mt. Freel", 2, ["water", "snack"]); 
+```
+
+export default can be used in place of export when you wish to export only one type. Again, both export and export default can be used on any JavaScript type: primitives, objects, arrays, and functions.
 
 Modules can be consumed in other JavaScript files using the import statement. Modules with multiple exports can take advantage of object destructuring. Modules that use export default are imported into a single variable:
 
-import { print, log } from "./text-helpers"; import freel from "./mt-freel";
-
+```js
+import { print, log } from "./text-helpers"; 
+import freel from "./mt-freel";
 print("printing a message");
-
 log("logging a message");
-
 freel.print();
+```
 
 You can scope module variables locally under different variable names:
 
-import { print as p, log as l } from "./text-helpers"; p("printing a message");
-
+```js
+import { print as p, log as l } from "./text-helpers"; 
+p("printing a message");
 l("logging a message");
+```
 
-You can also import everything into a single variable using *: import * as fns from './text-helpers`
+You can also import everything into a single variable using `*`: 
+
+```js
+import * as fns from './text-helpers`
+```
 
 This import and export syntax is not yet fully supported by all browsers or by Node. However, like any emerging JavaScript syntax, it's supported by Babel. This means you can use these statements in your source code and Babel will know where to find the modules you want to include in your compiled JavaScript.
 
-CommonJS
+### 2.7.1 CommonJS
 
 CommonJS is the module pattern that's supported by all versions of Node (see the Node.js documentation on modules). You can still use these modules with Babel and webpack. With CommonJS, JavaScript objects are exported using module.exports.
 
 For example, in CommonJS, we can export the print and log functions as an object:
 
-const print(message) => log(message, new Date()) const log(message, timestamp) =>
-
-console.log(`${timestamp.toString()}: ${message}`}
-
+```js
+const print(message) => log(message, new Date()) 
+const log(message, timestamp) =>
+  console.log(`${timestamp.toString()}: ${message}`}
 module.exports = {print, log}
+```
 
 CommonJS does not support an import statement. Instead, modules are imported with the require function:
 
-const { log, print } = require("./txt-helpers"); JavaScript is indeed moving quickly and adapting to the increasing demands that engineers are placing on the language, and browsers are quickly implementing new features. For up-to-date compatibility
+```js
+const { log, print } = require("./txt-helpers"); 
+```
 
-information, see the ESNext compatibility table. Many of the features that are included in the latest JavaScript syntax are present because they support functional programming techniques. In functional JavaScript, we can think of our code as being a collection of functions that can be composed into applications. In the next chapter, we'll explore functional techniques in more detail and will discuss why you might want to use them.
+JavaScript is indeed moving quickly and adapting to the increasing demands that engineers are placing on the language, and browsers are quickly implementing new features. For up-to-date compatibility information, see the ESNext compatibility table. Many of the features that are included in the latest JavaScript syntax are present because they support functional programming techniques. In functional JavaScript, we can think of our code as being a collection of functions that can be composed into applications. In the next chapter, we'll explore functional techniques in more detail and will discuss why you might want to use them.

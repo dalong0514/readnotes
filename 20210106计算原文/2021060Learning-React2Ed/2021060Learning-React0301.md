@@ -16,7 +16,7 @@ Lisp implemented the concept of higher-order functions and functions as first-cl
 
 In this chapter, we're going to go over some of the key concepts of functional programming, and we'll cover how to implement functional techniques with JavaScript.
 
-What It Means to Be Functional
+## 3.1 What It Means to Be Functional
 
 JavaScript supports functional programming because JavaScript functions are first-class citizens. This means that functions can do the same things that variables can do. The latest JavaScript syntax adds language improvements that can beef up your functional programming techniques, including arrow functions, promises, and the spread operator.
 
@@ -1329,6 +1329,4 @@ In this chapter, we've introduced functional programming principles.
 Throughout the book when we discuss best practices in React, we'll continue to demonstrate how many React concepts are based in functional techniques. In the next chapter, we'll dive into React officially with an improved understanding of the principles that guided its development.
 
 Dana S. Scott,「λ-Calculus: Then & Now」.
-
-1
 
