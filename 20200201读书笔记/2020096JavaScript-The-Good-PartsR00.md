@@ -1,5 +1,3 @@
-# 2020096JavaScript-The-Good-PartsR00
-
 英文版出版时间是 2008 年。
 
 ## 记忆时间

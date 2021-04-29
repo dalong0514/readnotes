@@ -1,16 +1,20 @@
-# 2020096JavaScript-The-Good-PartsR01
-
 ## 记忆时间
 
 2020-04-21
 
+## 目录
+
+0201Grammar
+
+0301Objects
+
+0401Function
+
+0501Inheritance
+
 ## 0201. Grammar
 
-### 1. 逻辑脉络
-
 JS 的语法内容，包括空白符、命令规则、各基本类型、语句、表达式、字面量和函数。
-
-### 2. 摘录及评论
 
 This chapter introduces the grammar of the good parts of JavaScript, presenting a quick overview of how the language is structured. We will represent the grammar with railroad diagrams. The rules for interpreting these diagrams are simple: 1) You start on the left edge and follow the tracks to the right edge. 2) As you go, you will encounter literals in ovals, and rules or descriptions in rectangles.『图里面圆形的是 literals，矩形的是 rules or descriptions. 』3) Any sequence that can be made by following the tracks is legal. 4) Any sequence that cannot be made by following the tracks is not legal. 5) Railroad diagrams with one bar at each end allow whitespace to be inserted between any pair of tokens. Railroad diagrams with two bars at each end do not.
 
@@ -174,11 +178,7 @@ A function literal defines a function value. It can have an optional name that i
 
 ## 0301. Objects
 
-### 1. 逻辑脉络
-
 对象是一系列「属性」的集合，属性有属性名和属性值，属性名可以是字符串、空值和 symbol 类型，属性值可以是除 undefined 外的任何东西；对象是可变的，可以动态的添加属性；对象的传递是通过引用而非复制，比如「var x = stooge; 」是把 stooge 对象的引用复制给 x 变量，或者说 stooge 和 x 指向同一个对象，或者说将变量 x 绑定到 stooge 指向的对象上；所有的对象都是链接到其原型对象上的，创建的时候是从其原型对象上继承了所有属性。所有通过字面量创建的对象其原型对象都是「Object.prototype」。
-
-### 2. 摘录及评论
 
 The simple types of JavaScript are numbers, strings, booleans (true and false), null, and undefined. All other values are objects. Numbers, strings, and booleans are object-like in that they have methods, but they are immutable. Objects in JavaScript are mutable keyed collections. In JavaScript, arrays are objects, functions are objects, regular expressions are objects, and, of course, objects are objects.
 
@@ -1595,13 +1595,13 @@ One weakness of the inheritance patterns we have seen so far is that we get no p
 
 We start by making a function that will produce objects. We will give it a name that starts with a lowercase letter because it will not require the use of the new prefix. The function contains four steps:
 
-1. It creates a new object. There are lots of ways to make an object. It can make an object literal, or it can call a constructor function with the new prefix, or it can use the Object.create method to make a new instance from an existing object, or it can call any function that returns an object.
+1 It creates a new object. There are lots of ways to make an object. It can make an object literal, or it can call a constructor function with the new prefix, or it can use the Object.create method to make a new instance from an existing object, or it can call any function that returns an object.
 
-2. It optionally defines private instance variables and methods. These are just ordinary vars of the function.
+2 It optionally defines private instance variables and methods. These are just ordinary vars of the function.
 
-3. It augments that new object with methods. Those methods will have privileged access to the parameters and the vars defined in the second step.
+3 It augments that new object with methods. Those methods will have privileged access to the parameters and the vars defined in the second step.
 
-4. It returns that new object.
+4 It returns that new object.
 
 Here is a pseudocode template for a functional constructor (boldface text added for emphasis):
 

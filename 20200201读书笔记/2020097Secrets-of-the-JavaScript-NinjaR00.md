@@ -46,8 +46,8 @@ getMonomerData() {
 ```js
   let tempSystem = {};
   tempSystem.system_normal_exhaust = this.roomData.filter(item => item.is_system)
-  .map(item => item.min_frequency)
-  .reduce((aggregated, item) => aggregated + item, 0);
+    .map(item => item.min_frequency)
+    .reduce((aggregated, item) => aggregated + item, 0);
   this.systemData.push(tempSystem);
 ```
 

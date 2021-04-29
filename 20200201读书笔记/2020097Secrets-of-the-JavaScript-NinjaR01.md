@@ -33,5 +33,3 @@ Promises, on the other hand, are a new, built-in type of object that help you wo
 In this chapter, you’ll see how both generators and promises work, and we’ll finish off by exploring how to combine them to greatly simplify our dealings with asynchronous code. But before going into the specifics, let’s take a sneak peek into how much more elegant our asynchronous code can be.
 
 What are some common uses for a generator function? Why are promises better than simple callbacks for asyn-chronous code? Do you know? You start a number of long-running tasks with Promise .race. When does the promise resolve? When would it fail to resolve?
-
-

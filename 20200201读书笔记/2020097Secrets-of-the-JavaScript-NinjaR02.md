@@ -184,11 +184,11 @@ Then we put the function through its paces. First we call the function normally 
 
 Then we call the function via the new operator, invoking it as a constructor, and something completely different happens. The function is once again called, but this time a newly allocated object has been created and set as the context of the function (and is accessible through the this keyword). The result returned from the new operator is a reference to this new object. We then test that ninja2 has a reference to the newly created object, and that that object has a swingSword method that we can call. See figure 7.4 for a glimpse of the current application state. 
 
-1. Every function has a prototype object. 
+1 Every function has a prototype object. 
 
-2. A function’s prototype has a constructor property that references back to the function. 
+2 A function’s prototype has a constructor property that references back to the function. 
 
-3. The constructor object’s prototype is set as the prototype of the newly created object. 
+3 The constructor object’s prototype is set as the prototype of the newly created object. 
 
 1『每个构造函数，这里是 Ninja，都有一个原型对象。2 个要点：1）通过 Ninja 构造函数构造出来的对象 ninja2，其原型是构造函数的原型对象。2）Ninja 构造函数的原型对象里有一个 constructor 属性，其值是指向构造函数本身的。』
 
@@ -342,7 +342,7 @@ const ninja = new Ninja();
 // Tests the type of ninja via typeof. This tells us it’s an object, but not much else. 
 assert(typeof ninja === "object", "The type of the instance is object."); 
 
-// Tests the type of ninja via instanceof. This provides more information—that it was constructed from Ninja. 
+// Tests the type of ninja via instanceof. This provides more information — that it was constructed from Ninja. 
 assert(ninja instanceof Ninja, "instanceof identifies the constructor." ); 
 
 // Tests the type of ninja via the constructor reference. This gives a reference to the constructor function. 
@@ -405,7 +405,7 @@ assert(ninja instanceof Object, "... and the Object prototype" );
 
 Because the prototype of a function is an object, there are multiple ways of copying functionality (such as properties or methods) to effect inheritance. In this code, we define a Person and then a Ninja. And because a Ninja is clearly a person, we want Ninja to inherit the attributes of Person. We attempt to do so by copying the dance property of the Person prototype’s method to a similarly named property in the Ninja prototype. 
 
-Running our test reveals that although we may have taught the ninja to dance, we failed to make the Ninja a Person, as shown in figure 7.12. We taught the Ninja to mimic the dance of a person, but that hasn’t made the Ninja a Person. That’s not inheritance—it’s just copying. 
+Running our test reveals that although we may have taught the ninja to dance, we failed to make the Ninja a Person, as shown in figure 7.12. We taught the Ninja to mimic the dance of a person, but that hasn’t made the Ninja a Person. That’s not inheritance — it’s just copying. 
 
 Apart from the fact that this approach isn’t exactly working, we’d also need to copy each property of Person to the Ninja prototype individually. That’s no way to do inheritance. Let’s keep exploring. 
 
@@ -491,17 +491,17 @@ It’s up to us to fix this situation! But before we can do that, we have to tak
 
 In JavaScript, every object property is described with a property descriptor through which we can configure the following keys: 
 
-1. configurable—If set to true, the property’s descriptor can be changed and the property can be deleted. If set to false, we can do neither of these things. 
+1 configurable — If set to true, the property’s descriptor can be changed and the property can be deleted. If set to false, we can do neither of these things. 
 
-2. enumerable—If set to true, the property shows up during a for-in loop over the object’s properties (we’ll get to the for-in loop soon). 
+2 enumerable — If set to true, the property shows up during a for-in loop over the object’s properties (we’ll get to the for-in loop soon). 
 
-3. value—Specifies the value of the property. Defaults to undefined. 
+3 value — Specifies the value of the property. Defaults to undefined. 
 
-4. writable—If set to true, the property value can be changed by using an assignment. 
+4 writable — If set to true, the property value can be changed by using an assignment. 
 
-5. get—Defines the getter function, which will be called when we access the property. Can’t be defined in conjunction with value and writable. 
+5 get — Defines the getter function, which will be called when we access the property. Can’t be defined in conjunction with value and writable. 
 
-6. set—Defines the setter function, which will be called whenever an assignment is made to the property. Also can’t be defined in conjunction with value and writable. 
+6 set — Defines the setter function, which will be called whenever an assignment is made to the property. Also can’t be defined in conjunction with value and writable. 
 
 Say we create a property through a simple assignment, for example: 
 
@@ -629,7 +629,7 @@ assert(ninja instanceof Ninja, "Our ninja is a Ninja!");
 // Even though our ninja instance was created by the Ninja constructor, the instanceof operator now says that ninja isn’t an instance of Ninja anymore! 
 ```
 
-In this example, we again repeat all the basic steps of making a ninja instance, and our first test goes fine. But if we change the prototype of the Ninja constructor function after the creation of the ninja instance, and again test whether ninja is an instanceof Ninja, we’ll see that the situation has changed. This will surprise us only if we cling to the inaccurate assumption that the instanceof operator tells us whether an instance was created by a particular function constructor. If, on the other hand, we take the real semantics of the instanceof operator—that it checks only whether the prototype of the function on the right side is in the prototype chain of the object on the left side—we won’t be surprised. This situation is shown in figure 7.17. 
+In this example, we again repeat all the basic steps of making a ninja instance, and our first test goes fine. But if we change the prototype of the Ninja constructor function after the creation of the ninja instance, and again test whether ninja is an instanceof Ninja, we’ll see that the situation has changed. This will surprise us only if we cling to the inaccurate assumption that the instanceof operator tells us whether an instance was created by a particular function constructor. If, on the other hand, we take the real semantics of the instanceof operator — that it checks only whether the prototype of the function on the right side is in the prototype chain of the object on the left side — we won’t be surprised. This situation is shown in figure 7.17. 
 
 Figure 7.17 The instanceof operator checks whether the prototype of the function on the right is in the prototype chain of the object on the left. Be careful; the function’s prototype can be changed anytime! 
 
@@ -818,35 +818,35 @@ See how easy this is? There’s no need to think about prototypes or the side ef
 
 ### Summary
 
-1. We can monitor our objects with getters, setters, and proxies.
+1 We can monitor our objects with getters, setters, and proxies.
 
-2. By using accessor methods (getters and setters), we can control access to object properties.
+2 By using accessor methods (getters and setters), we can control access to object properties.
 
-    – Accessor properties can be defined by using the built-in Object.defineProperty method or with a special get and set syntax as parts of object literals or ES6 classes.
+– Accessor properties can be defined by using the built-in Object.defineProperty method or with a special get and set syntax as parts of object literals or ES6 classes.
 
-    – A get method is implicitly called whenever we try to read, whereas a set method is called whenever we assign a value to the matching object’s property.
+– A get method is implicitly called whenever we try to read, whereas a set method is called whenever we assign a value to the matching object’s property.
 
-    – Getter methods can be used to define computed properties, properties whose value is calculated on a per request basis, whereas setter methods can be used to achieve data validation and logging.
+– Getter methods can be used to define computed properties, properties whose value is calculated on a per request basis, whereas setter methods can be used to achieve data validation and logging.
 
-3. Proxies are an ES6 addition to JavaScript and are used to control other objects.
+3 Proxies are an ES6 addition to JavaScript and are used to control other objects.
 
-    – Proxies enable us to define custom actions that will be executed when an object is interacted with (for example, when a property is read or a function is called).
+– Proxies enable us to define custom actions that will be executed when an object is interacted with (for example, when a property is read or a function is called).
 
-    – All interactions have to go through the proxy, which has traps that are triggered when a specific action occurs.
+– All interactions have to go through the proxy, which has traps that are triggered when a specific action occurs.
 
-4. Use proxies to achieve elegant.
+4 Use proxies to achieve elegant.
 
-    – Logging.
+– Logging.
 
-    – Performance measurements.
+– Performance measurements.
 
-    – Data validation.
+– Data validation.
 
-    – Autopopulating object properties (thereby avoiding pesky null exceptions).
+– Autopopulating object properties (thereby avoiding pesky null exceptions).
 
-    – Negative array indexes. 
+– Negative array indexes. 
 
-5. Proxies aren’t fast, so be careful when using them in code that’s executed a lot. We recommend that you do performance testing.
+5 Proxies aren’t fast, so be careful when using them in code that’s executed a lot. We recommend that you do performance testing.
 
 This chapter covers: 1) Using getters and setters to control access to object properties. 2) Controlling access to objects through proxies. 3) Using proxies for cross-cutting concerns.
 
