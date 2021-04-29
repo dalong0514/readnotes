@@ -68,21 +68,81 @@ yarn
 
 ### 0203. 术语卡 ——
 
-### 0301. 人名卡 ——
-
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-### 0401. 金句卡 ——
+### 0301. 金句卡 ——
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 行动卡 ——
+### 0401. 数据信息卡 —— 函数申明和函数表达式创建函数对象的区别
 
-行动卡是能够指导自己的行动的卡。
+信息源自「2021060Learning-React0201.md」
 
-### 0601. 数据信息卡 ——
+One thing to be aware of when deciding between a function declaration and a function expression is that function declarations are hoisted and function expressions are not. In other words, you can invoke a function before you write a function declaration. You cannot invoke a function created by a function expression. This will cause an error. For example:
 
-### 0701. 任意卡 ——
+2『函数申明和函数表达式创建函数对象的区别，做一张信息数据卡片。（2021-04-29）』—— 已完成
+
+```js
+// Invoking the function before it's declared
+hey();
+// Function Declaration
+function hey() {
+  alert("hey!");
+}
+```
+
+This works. You'll see the alert appear in the browser. It works because the function is hoisted, or moved up, to the top of the file's scope. Trying the same exercise with a function expression will cause an error:
+
+```js
+// Invoking the function before it's declared
+hey();
+// Function Expression
+const hey = function() {
+  alert("hey!");
+};
+```
+
+```
+TypeError: hey is not a function
+```
+
+This is obviously a small example, but this TypeError can occasionally arise when importing files and functions in a project. If you see it, you can always refactor as a declaration.
+
+### 0401. 数据信息卡 —— 箭头函数返回对象
+
+信息源自「2021060Learning-React0201.md」
+
+What happens if you want to return an object? Consider a function called person that builds an object based on parameters passed in for firstName and lastName:
+
+```js
+const person = (firstName, lastName) => {
+  first: firstName,
+  last: lastName
+}
+
+console.log(person("Brad", "Janson")); 
+```
+
+As soon as you run this, you'll see the error: 
+
+```
+Uncaught SyntaxError: Unexpected token :. 
+```
+
+To fix this, just wrap the object you're returning with parentheses:
+
+```js
+const person = (firstName, lastName) => ({
+  first: firstName,
+  last: lastName
+});
+  
+console.log(person("Flad", "Hanson")); 
+```
+
+These missing parentheses are the source of countless bugs in JavaScript and React apps, so it's important to remember this one!
+
+1『解惑了解惑了，很多地方看到了这种语句，箭头函数返回对象，做一张信息数据卡片。（2021-04-29）』—— 已完成
+
+### 0601. 任意卡 ——
 
 最后还有一张任意卡，记录个人阅读感想。
 

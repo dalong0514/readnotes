@@ -1,4 +1,4 @@
-Chapter 4. How React Works
+# 0401. How React Works
 
 So far on your journey, you've brushed up on the latest syntax. You've reviewed the functional programming patterns that guided React's creation. These steps have prepared you to take the next step, to do what you came here to do: to learn how React works. Let's get into writing some real React code.
 
@@ -685,4 +685,3 @@ React.createElement("li", { key: i }, ingredient)
 It's still possible to create a React component using class syntax, but be
 
 forewarned that React.Component is on the path to deprecation as well. Although it's still supported, you can expect this to go the way of React.createClass, another old friend who shaped you but who you won't see as often because they moved away and you moved on. From now on, we'll use functions to create components in this book and only briefly point out older patterns for reference.
-

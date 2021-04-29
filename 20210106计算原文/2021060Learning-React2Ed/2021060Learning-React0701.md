@@ -1,4 +1,4 @@
-Components with Hooks
+# 0701. Enhancing Components with Hooks
 
 Rendering is the heartbeat of a React application. When something changes (props, state), the component tree rerenders, reflecting the latest data as a user interface. So far, useState has been our workhorse for describing how our components should be rendering. But we can do more. There are more Hooks that define rules about why and when rendering should happen. There are more Hooks that enhance rendering performance. There are always more Hooks to help us out.
 
@@ -1337,6 +1337,3 @@ Always make sure your app works and you're satisfied with the codebase before re
 might not be worth your time and focus to introduce these optimizations.
 
 In the last two chapters, we've introduced many of the Hooks that ship with React. You've seen use cases for each hook, and you've created your own custom Hooks by composing other Hooks. Next, we'll build on these foundational skills by incorporating additional libraries and advanced patterns.
-
-Chapter 8. Incorporating Data
-

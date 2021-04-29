@@ -1,4 +1,4 @@
-Chapter 9. Suspense
+# 0901. Suspense
 
 This is the least important chapter in this book. At least, that's what we've been told by the React team. They didn't specifically say,「this is the least important chapter, don't write it.」They've only issued a series of tweets warning educators and evangelists that much of their work in this area will very soon be outdated. All of this will change.
 
@@ -828,7 +828,4 @@ To use the GitHub example from earlier, each fiber represents a commit on a bran
 
 If this was all Fiber did, it would be a success, but there's even more to it than that! In addition to the performance benefits of breaking work into smaller units, the rewrite also sets up exciting possibilities for the future. Fiber provides the infrastructure for prioritizing updates. In the longer term, the developer may even be able to tweak the defaults and decide which types of tasks should be given the highest priority. The process of prioritizing units of work is called scheduling; this concept underlies the experimental concurrent mode, which will eventually allow these units of work to be performed in parallel.
 
-An understanding of Fiber is not vital to working with React in production, but the rewrite of its reconciliation algorithm provides
-
-interesting insight into how React works and how its contributors are thinking about the future.
-
+An understanding of Fiber is not vital to working with React in production, but the rewrite of its reconciliation algorithm provides interesting insight into how React works and how its contributors are thinking about the future.

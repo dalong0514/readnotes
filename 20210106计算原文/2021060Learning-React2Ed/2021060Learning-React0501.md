@@ -1,4 +1,4 @@
-Chapter 5. React with JSX
+# 0501. React with JSX
 
 In the last chapter, we dove deep into how React works, breaking down our React applications into small reusable pieces called components.
 
@@ -1292,9 +1292,4 @@ Create React App is a great tool for beginners and experienced React developers 
 
 In this chapter, we leveled up our React skills by learning about JSX.
 
-We created components. We broke those components into a project structure, and we learned more about Babel and webpack. Now we're ready to take our knowledge of components to the next level. It's time
-
-to talk about Hooks.
-
-Chapter 6. React State
-
+We created components. We broke those components into a project structure, and we learned more about Babel and webpack. Now we're ready to take our knowledge of components to the next level. It's time to talk about Hooks.

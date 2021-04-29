@@ -1,4 +1,4 @@
-Chapter 11. React Router
+# 1101. React Router
 
 When the web started, most websites consisted of a series of pages that users could navigate through by requesting and opening separate files.
 
@@ -899,8 +899,4 @@ The project has been starred over 20,000 times on GitHub.
 2
 
 See「Sites Using React Router」.
-
-3
-
-Chapter 12. React and the
 

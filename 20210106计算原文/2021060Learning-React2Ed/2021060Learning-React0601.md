@@ -1,4 +1,4 @@
-Management
+# 0601. React State Management
 
 Data is what makes our React components come to life. The user interface for recipes that we built in the last chapter is useless without the array of recipes. It's the recipes and the ingredients along with clear instructions that makes such an app worthwhile. Our user interfaces are tools that creators will use to generate content. In order to build the best tools possible for our content creators, we'll need to know how to effectively manipulate and change data.
 
@@ -1437,6 +1437,3 @@ Hooks provide software developers with the stimulation they need to stay motivat
 components only need to concern themselves with rendering other React components and keeping the user interface up to date. React Hooks can concern themselves with the logic required to make the app work. Both the UI and Hooks can be developed separately, tested separately, and even deployed separately. This is all very good news for React.
 
 We've only scratched the surface of what can be accomplished with Hooks. In the next chapter, we'll dive a little deeper.
-
-Chapter 7. Enhancing
-

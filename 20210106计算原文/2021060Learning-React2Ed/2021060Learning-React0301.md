@@ -1,4 +1,4 @@
-Programming with JavaScript
+# 0301. Functional Programming with JavaScript
 
 When you start to explore React, you'll likely notice that the topic of functional programming comes up a lot. Functional techniques are being used more and more in JavaScript projects, particularly React projects.
 

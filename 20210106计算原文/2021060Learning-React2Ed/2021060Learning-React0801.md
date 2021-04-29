@@ -1,3 +1,5 @@
+# 0801. Incorporating Data
+
 Data is the lifeblood of our applications. It flows like water, and it nourishes our components with value. The user interface components we've composed are vessels for data. We fill our applications with data from the internet. We collect, create, and send new data to the internet.
 
 The value of our applications is not the components themselves—it's the data that flows through those components.
@@ -2101,4 +2103,3 @@ This hook provides an array of chat messages, the websocket connection status, a
 When new messages are received, they're appended to the array of messages via the useReducer hook.
 
 In this chapter, we've discussed some techniques for handling asynchronous data in applications. This is a hugely important topic, and in the next chapter, we'll show how Suspense might lead to future changes in this area.
-

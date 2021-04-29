@@ -4,15 +4,9 @@ Since its release in 1995, JavaScript has gone through many changes.
 
 At first, we used JavaScript to add interactive elements to web pages: button clicks, hover states, form validation, etc.. Later, JavaScript got more robust with DHTML and AJAX. Today, with Node.js, JavaScript has become a real software language that's used to build full-stack applications. JavaScript is everywhere.
 
-JavaScript's evolution has been guided by a group of individuals from companies that use JavaScript, browser vendors, and community leaders. The committee in charge of shepherding the changes to JavaScript over the years is the European Computer Manufacturers Association (ECMA). Changes to the language are community-driven, originating from proposals written by community members. Anyone
+JavaScript's evolution has been guided by a group of individuals from companies that use JavaScript, browser vendors, and community leaders. The committee in charge of shepherding the changes to JavaScript over the years is the European Computer Manufacturers Association (ECMA). Changes to the language are community-driven, originating from proposals written by community members. Anyone can submit a proposal to the ECMA committee. The responsibility of the ECMA committee is to manage and prioritize these proposals to decide what's included in each spec.
 
-can submit a proposal to the ECMA committee. The responsibility of the ECMA committee is to manage and prioritize these proposals to decide what's included in each spec.
-
-The first release of ECMAScript was in 1997, ECMAScript1. This was followed in 1998 by ECMAScript2. ECMAScript3 came out in 1999, adding regular expressions, string handling, and more. The process of agreeing on an ECMAScript4 became a chaotic, political mess that proved to be impossible. It was never released. In 2009,
-
-ECMAScript5(ES5) was released, bringing features like new array
-
-methods, object properties, and library support for JSON.
+The first release of ECMAScript was in 1997, ECMAScript1. This was followed in 1998 by ECMAScript2. ECMAScript3 came out in 1999, adding regular expressions, string handling, and more. The process of agreeing on an ECMAScript4 became a chaotic, political mess that proved to be impossible. It was never released. In 2009, ECMAScript5(ES5) was released, bringing features like new array methods, object properties, and library support for JSON.
 
 Since then, there has been a lot more momentum in this space. After ES6 or ES2015 was released in, yes, 2015, there have been yearly releases of new JS features. Anything that's part of the stage proposals is typically called ESNext, which is a simplified way of saying this is the next stuff that will be part of the JavaScript spec.
 
@@ -24,629 +18,586 @@ When const was first introduced, you couldn't just write const in JavaScript cod
 
 Many of the features we'll discuss in this chapter are already supported by the newest browsers, but we'll also be covering how to compile your JavaScript code. This is the process of transforming new syntax that the browser doesn't recognize into older syntax that the browser understands. The kangax compatibility table is a great place to stay informed about the latest JavaScript features and their varying degrees of support by browsers.
 
-In this chapter, we'll show you all the JavaScript syntax we'll be using throughout the book. We hope to provide a good baseline of JavaScript
+In this chapter, we'll show you all the JavaScript syntax we'll be using throughout the book. We hope to provide a good baseline of JavaScript syntax knowledge that will carry you through all of your work with React. If you haven't made the switch to the latest syntax yet, now would be a good time to get started. If you're already comfortable with the latest language features, skip to the next chapter.
 
-syntax knowledge that will carry you through all of your work with React. If you haven't made the switch to the latest syntax yet, now would be a good time to get started. If you're already comfortable with the latest language features, skip to the next chapter.
-
-Declaring Variables
+## 2.1 Declaring Variables
 
 Prior to ES2015, the only way to declare a variable was with the var keyword. We now have a few different options that provide improved functionality.
 
-The const Keyword
+### 2.1.1 The const Keyword
 
 A constant is a variable that cannot be overwritten. Once declared, you cannot change its value. A lot of the variables that we create in JavaScript should not be overwritten, so we'll be using const a lot.
 
-Like other languages had done before it, JavaScript introduced constants with ES6.
+Like other languages had done before it, JavaScript introduced constants with ES6. Before constants, all we had were variables, and variables could be overwritten:
 
-Before constants, all we had were variables, and variables could be overwritten:
-
+```js
 var pizza = true;
-
 pizza = false;
-
 console.log(pizza); // false
+```
 
-We cannot reset the value of a constant variable, and it will generate a console error (as shown in Figure 2-1) if we try to overwrite the value: const pizza = true;
+We cannot reset the value of a constant variable, and it will generate a console error (as shown in Figure 2-1) if we try to overwrite the value: 
 
+```js
+const pizza = true;
 pizza = false;
+```
 
 Figure 2-1. An attempt at overwriting a constant
 
-The let Keyword
+### 2.1.2 The let Keyword
 
-JavaScript now has lexical variable scope. In JavaScript, we create code blocks with curly braces ({}). In functions, these curly braces block off the scope of any variable declared with var. On the other hand, consider if/else statements. If you're coming from other languages, you might assume that these blocks would also block variable scope. This was not the case until let came along.
+JavaScript now has lexical variable scope. In JavaScript, we create code blocks with curly braces (`{}`). In functions, these curly braces block off the scope of any variable declared with var. On the other hand, consider if/else statements. If you're coming from other languages, you might assume that these blocks would also block variable scope. This was not the case until let came along.
 
 If a variable is created inside of an if/else block, that variable is not scoped to the block:
 
+```js
 var topic = "JavaScript";
 
 if (topic) {
-
-var topic = "React";
-
-console.log("block", topic); // block React
-
+  var topic = "React";
+  console.log("block", topic); // block React
 }
 
-console.log("global", topic); // global React The topic variable inside the if block resets the value of topic outside of the block.
+console.log("global", topic); // global React 
+```
 
-With the let keyword, we can scope a variable to any code block.
+The topic variable inside the if block resets the value of topic outside of the block. With the let keyword, we can scope a variable to any code block. Using let protects the value of the global variable:
 
-Using let protects the value of the global variable:
-
+```js
 var topic = "JavaScript";
 
 if (topic) {
-
-let topic = "React";
-
-console.log("block", topic); // React
-
+  let topic = "React";
+  console.log("block", topic); // React
 }
 
-console.log("global", topic); // JavaScript The value of topic is not reset outside of the block.
+console.log("global", topic); // JavaScript 
+```
+
+The value of topic is not reset outside of the block.
 
 Another area where curly braces don't block off a variable's scope is in for loops:
 
+```js
 var div,
+  container = document.getElementById("container"); 
 
-container = document.getElementById("container"); for (var i = 0; i < 5; i++) {
-
-div = document.createElement("div");
-
-div.onclick = function() {
-
-alert("This is box #" + i);
-
-};
-
-container.appendChild(div);
-
+for (var i = 0; i < 5; i++) {
+  div = document.createElement("div");
+  div.onclick = function() {
+    alert("This is box #" + i);
+  };
+  container.appendChild(div);
 }
+```
 
 In this loop, we create five divs to appear within a container. Each div is assigned an onclick handler that creates an alert box to display the index. Declaring i in the for loop creates a global variable named i, then iterates over it until its value reaches 5. When you click on any of these boxes, the alert says that i is equal to 5 for all divs, because the current value for the global i is 5 (see Figure 2-2).
 
 Figure 2-2. i is equal to 5 for each box
 
-Declaring the loop counter i with let instead of var does block off the scope of i. Now clicking on any box will display the value for i that was scoped to the loop iteration (see Figure 2-3): const container = document.getElementById("container"); let div;
+Declaring the loop counter i with let instead of var does block off the scope of i. Now clicking on any box will display the value for i that was scoped to the loop iteration (see Figure 2-3): 
+
+```js
+const container = document.getElementById("container"); 
+let div;
 
 for (let i = 0; i < 5; i++) {
-
-div = document.createElement("div");
-
-div.onclick = function() {
-
-alert("This is box #: " + i);
-
-};
-
-container.appendChild(div);
-
+  div = document.createElement("div");
+  div.onclick = function() {
+    alert("This is box #: " + i);
+  };
+  container.appendChild(div);
 }
+```
 
 Figure 2-3. The scope of i is protected with let
 
 The scope of i is protected with let.
 
-Template Strings
+### 2.1.3 Template Strings
 
-Template strings provide us with an alternative to string concatenation.
-
-They also allow us to insert variables into a string. You'll hear these referred to as template strings, template literals, or string templates interchangeably.
+Template strings provide us with an alternative to string concatenation. They also allow us to insert variables into a string. You'll hear these referred to as template strings, template literals, or string templates interchangeably.
 
 Traditional string concatenation uses plus signs to compose a string using variable values and strings:
 
-console.log(lastName + ", " + firstName + " " + middleName); With a template, we can create one string and insert the variable values by surrounding them with ${ }:
+```js
+console.log(lastName + ", " + firstName + " " + middleName); 
+```
 
+With a template, we can create one string and insert the variable values by surrounding them with `${ }`:
+
+```js
 console.log(`${lastName}, ${firstName} ${middleName}`);
+```
 
-Any JavaScript that returns a value can be added to a template string between the ${ } in a template string.
-
-Template strings honor whitespace, making it easier to draft up email templates, code examples, or anything else that contains whitespace.
+Any JavaScript that returns a value can be added to a template string between the `${ }` in a template string. Template strings honor whitespace, making it easier to draft up email templates, code examples, or anything else that contains whitespace.
 
 Now you can have a string that spans multiple lines without breaking your code:
 
+```js
 const email = `
-
 Hello ${firstName},
 
 Thanks for ordering ${qty} tickets to ${event}.
 
 Order Details
-
 ${firstName} ${middleName} ${lastName}
-
-${qty} x $${price} = $${qty*price} to ${event}
+  ${qty} x $${price} = $${qty*price} to ${event}
 
 You can pick your tickets up 30 minutes before
-
 the show.
-
 Thanks,
 
 ${ticketAgent}
-
 `
+```
 
 Previously, using an HTML string directly in our JavaScript code was not so easy to do because we'd need to run it together on one line. Now that the whitespace is recognized as text, you can insert formatted HTML that is easy to read and understand:
 
+```js
 document.body.innerHTML = `
-
 <section>
-
-<header>
-
-<h1>The React Blog</h1>
-
-</header>
-
-<article>
-
-<h2>${article.title}</h2>
-
-${article.body}
-
-</article>
-
-<footer>
-
-<p>copyright ${new Date().getYear()} | The React Blog</p>
-
-</footer>
-
+  <header>
+    <h1>The React Blog</h1>
+  </header>
+  <article>
+    <h2>${article.title}</h2>
+    ${article.body}
+  </article>
+  <footer>
+    <p>copyright ${new Date().getYear()} | The React Blog</p>
+  </footer>
 </section>
-
 `;
+```
 
 Notice that we can include variables for the page title and article text as well.
 
-Creating Functions
+## 2.2 Creating Functions
 
 Any time you want to perform some sort of repeatable task with JavaScript, you can use a function. Let's take a look at some of the different syntax options that can be used to create a function and the anatomy of those functions.
 
-Function Declarations
+### 2.2.1 Function Declarations
 
-A function declaration or function definition starts with the function keyword, which is followed by the name of the function,
+A function declaration or function definition starts with the function keyword, which is followed by the name of the function, logCompliment. The JavaScript statements that are part of the function are defined between the curly braces:
 
-logCompliment. The JavaScript statements that are part of the function are defined between the curly braces:
-
+```js
 function logCompliment() {
-
-console.log("You're doing great!");
-
+  console.log("You're doing great!");
 }
+```
 
 Once you've declared the function, you'll invoke or call it to see it execute:
 
+```js
 function logCompliment() {
-
 console.log("You're doing great!");
-
 }
 
 logCompliment();
+```
 
 Once invoked, you'll see the compliment logged to the console.
 
-Function Expressions
+### 2.2.2 Function Expressions
 
 Another option is to use a function expression. This just involves creating the function as a variable:
 
+```js
 const logCompliment = function() {
-
-console.log("You're doing great!");
-
+  console.log("You're doing great!");
 };
 
 logCompliment();
+```
 
-The result is the same, and You're doing great! is logged to the
-
-console.
+The result is the same, and You're doing great! is logged to the console.
 
 One thing to be aware of when deciding between a function declaration and a function expression is that function declarations are hoisted and function expressions are not. In other words, you can invoke a function before you write a function declaration. You cannot invoke a function created by a function expression. This will cause an error. For example:
 
+2『函数申明和函数表达式创建函数对象的区别，做一张信息数据卡片。（2021-04-29）』—— 已完成
+
+```js
 // Invoking the function before it's declared
-
 hey();
-
 // Function Declaration
-
 function hey() {
-
-alert("hey!");
-
+  alert("hey!");
 }
+```
 
 This works. You'll see the alert appear in the browser. It works because the function is hoisted, or moved up, to the top of the file's scope. Trying the same exercise with a function expression will cause an error:
 
+```js
 // Invoking the function before it's declared
-
 hey();
-
 // Function Expression
-
 const hey = function() {
-
-alert("hey!");
-
+  alert("hey!");
 };
+```
 
+```
 TypeError: hey is not a function
+```
 
 This is obviously a small example, but this TypeError can occasionally arise when importing files and functions in a project. If you see it, you can always refactor as a declaration.
 
-PASSING ARGUMENTS
+### 2.2.3 Passing Arguments
 
-The logCompliment function currently takes in no arguments or parameters. If we want to provide dynamic variables to the function, we can pass named parameters to a function simply by adding them to the parentheses. Let's start by adding a firstName variable: const logCompliment = function(firstName) {
+The logCompliment function currently takes in no arguments or parameters. If we want to provide dynamic variables to the function, we can pass named parameters to a function simply by adding them to the parentheses. Let's start by adding a firstName variable: 
 
-console.log(`You're doing great, ${firstName}`);
-
+```js
+const logCompliment = function(firstName) {
+  console.log(`You're doing great, ${firstName}`);
 };
-
 logCompliment("Molly");
+```
 
-Now when we call the logCompliment function, the firstName value sent will be added to the console message.
+Now when we call the logCompliment function, the firstName value sent will be added to the console message. We could add to this a bit by creating another argument called message. Now, we won't hard-code the message. We'll pass in a dynamic value as a parameter:
 
-We could add to this a bit by creating another argument called message. Now, we won't hard-code the message. We'll pass in a dynamic value as a parameter:
-
+```js
 const logCompliment = function(firstName, message) {
-
-console.log(`${firstName}: ${message}`);
-
+  console.log(`${firstName}: ${message}`);
 };
+logCompliment("Molly", "You're so cool"); 
+```
 
-logCompliment("Molly", "You're so cool"); FUNCTION RETURNS
+### 2.2.4 Function Returns
 
 The logCompliment function currently logs the compliment to the console, but more often, we'll use a function to return a value. Let's add a return statement to this function. A return statement specifies the value returned by the function. We'll rename the function createCompliment:
 
+```js
 const createCompliment = function(firstName, message) {
-
-return `${firstName}: ${message}`;
-
+  return `${firstName}: ${message}`;
 };
+createCompliment("Molly", "You're so cool"); 
+```
 
-createCompliment("Molly", "You're so cool"); If you wanted to check to see if the function is executing as expected, just wrap the function call in a console.log:
+If you wanted to check to see if the function is executing as expected, just wrap the function call in a console.log:
 
-console.log(createCompliment("You're so cool", "Molly")); Default Parameters
+```js
+console.log(createCompliment("You're so cool", "Molly")); 
+```
 
-Languages including C++ and Python allow developers to declare default values for function arguments. Default parameters are included in the ES6 spec, so in the event that a value is not provided for the argument, the default value will be used.
+### 2.2.5 Default Parameters
 
-For example, we can set up default strings for the parameters name and activity:
+Languages including C++ and Python allow developers to declare default values for function arguments. Default parameters are included in the ES6 spec, so in the event that a value is not provided for the argument, the default value will be used. For example, we can set up default strings for the parameters name and activity:
 
+```js
 function logActivity(name = "Shane McConkey", activity = "skiing") {
-
-console.log(`${name} loves ${activity}`);
-
+  console.log(`${name} loves ${activity}`);
 }
+```
 
 If no arguments are provided to the logActivity function, it will run correctly using the default values. Default arguments can be any type, not just strings:
 
-const defaultPerson = {
-
-name: {
-
-first: "Shane",
-
-last: "McConkey"
-
-},
-
-favActivity: "skiing"
-
+```jsconst defaultPerson = {
+  name: {
+    first: "Shane",
+    last: "McConkey"
+  },
+  favActivity: "skiing"
 };
-
+  
 function logActivity(person = defaultPerson) {
-
-console.log(`${person.name.first} loves ${person.favActivity}`);
-
+  console.log(`${person.name.first} loves ${person.favActivity}`);
 }
+```
 
-Arrow Functions
+1『函数的默认参数也能是对象，赞。（2021-04-29）』
+
+### 2.2.6 Arrow Functions
 
 Arrow functions are a useful new feature of ES6. With arrow functions, you can create functions without using the function keyword. You also often do not have to use the return keyword. Let's consider a function that takes in a firstName and returns a string, turning the person into a lord. Anyone can be a lord:
 
+```js
 const lordify = function(firstName) {
-
-return `${firstName} of Canterbury`;
-
+  return `${firstName} of Canterbury`;
 };
 
-console.log(lordify("Dale")); // Dale of Canterbury console.log(lordify("Gail")); // Gail of Canterbury With an arrow function, we can simplify the syntax tremendously: const lordify = firstName => `${firstName} of Canterbury`; With the arrow, we now have an entire function declaration on one line. The function keyword is removed. We also remove return because the arrow points to what should be returned. Another benefit is that if the function only takes one argument, we can remove the parentheses around the arguments.
+console.log(lordify("Dale")); // Dale of Canterbury 
+console.log(lordify("Gail")); // Gail of Canterbury 
+```
 
-More than one argument should be surrounded by parentheses:
+With an arrow function, we can simplify the syntax tremendously: 
 
+```js
+const lordify = firstName => `${firstName} of Canterbury`; 
+```
+
+With the arrow, we now have an entire function declaration on one line. The function keyword is removed. We also remove return because the arrow points to what should be returned. Another benefit is that if the function only takes one argument, we can remove the parentheses around the arguments. More than one argument should be surrounded by parentheses:
+
+```js
 // Typical function
-
 const lordify = function(firstName, land) {
-
-return `${firstName} of ${land}`;
-
+  return `${firstName} of ${land}`;
 };
 
 // Arrow Function
+const lordify = (firstName, land) => `${firstName} of ${land}`; 
+console.log(lordify("Don", "Piscataway")); // Don of Piscataway 
+console.log(lordify("Todd", "Schenectady")); // Todd of Schenectady 
+```
 
-const lordify = (firstName, land) => `${firstName} of ${land}`; console.log(lordify("Don", "Piscataway")); // Don of Piscataway console.log(lordify("Todd", "Schenectady")); // Todd of Schenectady We can keep this as a one-line function because there is only one statement that needs to be returned. If there are multiple lines, you'll use curly braces:
+We can keep this as a one-line function because there is only one statement that needs to be returned. If there are multiple lines, you'll use curly braces:
 
+```js
 const lordify = (firstName, land) => {
-
-if (!firstName) {
-
-throw new Error("A firstName is required to lordify");
-
-}
-
-if (!land) {
-
-throw new Error("A lord must have a land");
-
-}
-
-return `${firstName} of ${land}`;
-
+  if (!firstName) {
+    throw new Error("A firstName is required to lordify");
+  }
+  if (!land) {
+    throw new Error("A lord must have a land");
+  }
+  return `${firstName} of ${land}`;
 };
-
-console.log(lordify("Kelly", "Sonoma")); // Kelly of Sonoma console.log(lordify("Dave")); // ! JAVASCRIPT ERROR
+  
+console.log(lordify("Kelly", "Sonoma")); // Kelly of Sonoma 
+console.log(lordify("Dave")); // ! JAVASCRIPT ERROR
+```
 
 These if/else statements are surrounded with brackets but still benefit from the shorter syntax of the arrow function.
 
-RETURNING OBJECTS
+### 2.2.7 Return Objects
 
-What happens if you want to return an object? Consider a function called person that builds an object based on parameters passed in for
+What happens if you want to return an object? Consider a function called person that builds an object based on parameters passed in for firstName and lastName:
 
-firstName and lastName:
-
-const person = (firstName, lastName) =>
-
-{
-
-first: firstName,
-
-last: lastName
-
+```js
+const person = (firstName, lastName) => {
+  first: firstName,
+  last: lastName
 }
 
-console.log(person("Brad", "Janson")); As soon as you run this, you'll see the error: Uncaught SyntaxError: Unexpected token :. To fix this, just wrap the object you're returning with parentheses:
+console.log(person("Brad", "Janson")); 
+```
 
+As soon as you run this, you'll see the error: 
+
+```
+Uncaught SyntaxError: Unexpected token :. 
+```
+
+To fix this, just wrap the object you're returning with parentheses:
+
+```js
 const person = (firstName, lastName) => ({
-
-first: firstName,
-
-last: lastName
-
+  first: firstName,
+  last: lastName
 });
+  
+console.log(person("Flad", "Hanson")); 
+```
 
-console.log(person("Flad", "Hanson")); These missing parentheses are the source of countless bugs in JavaScript and React apps, so it's important to remember this one!
+These missing parentheses are the source of countless bugs in JavaScript and React apps, so it's important to remember this one!
 
-ARROW FUNCTIONS AND SCOPE
+1『解惑了解惑了，很多地方看到了这种语句，箭头函数返回对象，做一张信息数据卡片。（2021-04-29）』—— 已完成
 
-Regular functions do not block this. For example, this becomes something else in the setTimeout callback, not the tahoe object: const tahoe = {
+### 2.2.8 Arrow Function And Scope
 
-mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"], print: function(delay = 1000) {
+Regular functions do not block this. For example, this becomes something else in the setTimeout callback, not the tahoe object: 
 
-setTimeout(function() {
-
-console.log(this.mountains.join(", "));
-
-}, delay);
-
-}
-
+```js
+const tahoe = {
+  mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"], 
+  print: function(delay = 1000) {
+    setTimeout(function() {
+      console.log(this.mountains.join(", "));
+    }, delay);
+  }
 };
-
+  
 tahoe.print(); // Uncaught TypeError: Cannot read property 'join' of undefined
+```
 
 This error is thrown because it's trying to use the .join method on what this is. If we log this, we'll see that it refers to the Window object:
 
+```js
 console.log(this); // Window {}
+```
 
 To solve this problem, we can use the arrow function syntax to protect the scope of this:
 
+```js
 const tahoe = {
-
-mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"], print: function(delay = 1000) {
-
-setTimeout(() => {
-
-console.log(this.mountains.join(", "));
-
-}, delay);
-
-}
-
+  mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"], 
+  print: function(delay = 1000) {
+    setTimeout(() => {
+      console.log(this.mountains.join(", "));
+    }, delay);
+  }
 };
+  
+tahoe.print(); // Freel, Rose, Tallac, Rubicon, Silver 
+```
 
-tahoe.print(); // Freel, Rose, Tallac, Rubicon, Silver This works as expected, and we can .join the resorts with a comma.
+This works as expected, and we can .join the resorts with a comma. Be careful that you're always keeping scope in mind. Arrow functions do not block off the scope of this:
 
-Be careful that you're always keeping scope in mind. Arrow functions do not block off the scope of this:
-
+```js
 const tahoe = {
-
-mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"], print: (delay = 1000) => {
-
-setTimeout(() => {
-
-console.log(this.mountains.join(", "));
-
-}, delay);
-
-}
-
+  mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"], 
+  print: (delay = 1000) => {
+    setTimeout(() => {
+      console.log(this.mountains.join(", "));
+    }, delay);
+  }
 };
-
+  
 tahoe.print(); // Uncaught TypeError: Cannot read property 'join' of undefined
+```
 
 Changing the print function to an arrow function means that this is actually the window.
 
-Compiling JavaScript
+1-2-3『这里的知识点跟目前脑子的里的知识关联上了，箭头函数 this 值总是指向全局对象 window，但第二个、第三个例子放在一起目前就糊涂了，this 不是应该都可以指向 window 么。待研究。（2021-04-29）』—— 未完成
 
-When a new JavaScript feature is proposed and gains support, the community often wants to use it before it's supported by all browsers.
+## 2.3 Compiling JavaScript
 
-The only way to be sure that your code will work is to convert it to more widely compatible code before running it in the browser. This process is called compiling. One of the most popular tools for JavaScript compilation is Babel.
+When a new JavaScript feature is proposed and gains support, the community often wants to use it before it's supported by all browsers. The only way to be sure that your code will work is to convert it to more widely compatible code before running it in the browser. This process is called compiling. One of the most popular tools for JavaScript compilation is Babel.
 
-In the past, the only way to use the latest JavaScript features was to wait weeks, months, or even years until browsers supported them.
-
-Now, Babel has made it possible to use the latest features of JavaScript right away. The compiling step makes JavaScript similar to other languages. It's not quite traditional compiling: our code isn't compiled to binary. Instead, it's transformed into syntax that can be interpreted by a wider range of browsers. Also, JavaScript now has source code, meaning that there will be some files that belong to your project that don't run in the browser.
+In the past, the only way to use the latest JavaScript features was to wait weeks, months, or even years until browsers supported them. Now, Babel has made it possible to use the latest features of JavaScript right away. The compiling step makes JavaScript similar to other languages. It's not quite traditional compiling: our code isn't compiled to binary. Instead, it's transformed into syntax that can be interpreted by a wider range of browsers. Also, JavaScript now has source code, meaning that there will be some files that belong to your project that don't run in the browser.
 
 As an example, let's look at an arrow function with some default arguments:
 
+```js
 const add = (x = 5, y = 10) => console.log(x + y);
+```
 
 If we run Babel on this code, it will generate the following:
 
+```js
 "use strict";
 
 var add = function add() {
-
-var x =
-
-arguments.length <= 0 || arguments[0] === undefined ? 5 : arguments[0];
-
-var y =
-
-arguments.length <= 1 || arguments[1] === undefined ? 10 : arguments[1];
-
-return console.log(x + y);
-
+  var x =
+    arguments.length <= 0 || arguments[0] === undefined ? 5 : arguments[0];
+  var y =
+    arguments.length <= 1 || arguments[1] === undefined ? 10 : arguments[1];
+  return console.log(x + y);
 };
+```
 
-Babel added a「use strict」declaration to run in strict mode. The variables x and y are defaulted using the arguments array, a technique you may be familiar with. The resulting JavaScript is more widely supported.
 
-A great way to learn more about how Babel works is to check out the
+Babel added a "use strict" declaration to run in strict mode. The variables x and y are defaulted using the arguments array, a technique you may be familiar with. The resulting JavaScript is more widely supported. A great way to learn more about how Babel works is to check out the Babel REPL on the documentation website. Type some new syntax on the left side, then see some older syntax created.
 
-Babel REPL on the documentation website. Type some new syntax on the left side, then see some older syntax created.
+3『 [Babel · The compiler for next generation JavaScript](https://babeljs.io/repl) 』
 
 The process of JavaScript compilation is typically automated by a build tool like webpack or Parcel. We'll discuss that in more detail later in the book.
 
-Objects and Arrays
+## 2.4 Objects and Arrays
 
-Since ES2016, JavaScript syntax has supported creative ways of scoping variables within objects and arrays. These creative techniques are widely used among the React community. Let's take a look at a few
+Since ES2016, JavaScript syntax has supported creative ways of scoping variables within objects and arrays. These creative techniques are widely used among the React community. Let's take a look at a few of them, including destructuring, object literal enhancement, and the spread operator.
 
-of them, including destructuring, object literal enhancement, and the spread operator.
-
-Destructuring Objects
+### 2.4.1 Destructuring Objects
 
 Destructuring assignment allows you to locally scope fields within an object and to declare which values will be used. Consider the sandwich object. It has four keys, but we only want to use the values of two. We can scope bread and meat to be used locally:
 
+```js
 const sandwich = {
-
-bread: "dutch crunch",
-
-meat: "tuna",
-
-cheese: "swiss",
-
-toppings: ["lettuce", "tomato", "mustard"]
-
+  bread: "dutch crunch",
+  meat: "tuna",
+  cheese: "swiss",
+  toppings: ["lettuce", "tomato", "mustard"]
 };
-
+  
 const { bread, meat } = sandwich;
-
 console.log(bread, meat); // dutch crunch tuna
+```
+
+1『又见解构赋值了，真香，哈哈。（2021-04-29）』
 
 The code pulls bread and meat out of the object and creates local variables for them. Also, since we declared these destructed variables using let, the bread and meat variables can be changed without changing the original sandwich:
 
+```js
 const sandwich = {
-
-bread: "dutch crunch",
-
-meat: "tuna",
-
-cheese: "swiss",
-
-toppings: ["lettuce", "tomato", "mustard"]
-
+  bread: "dutch crunch",
+  meat: "tuna",
+  cheese: "swiss",
+  toppings: ["lettuce", "tomato", "mustard"]
 };
-
+  
 let { bread, meat } = sandwich;
-
 bread = "garlic";
-
 meat = "turkey";
-
 console.log(bread); // garlic
-
 console.log(meat); // turkey
+console.log(sandwich.bread, sandwich.meat); // dutch crunch tuna 
+```
 
-console.log(sandwich.bread, sandwich.meat); // dutch crunch tuna We can also destructure incoming function arguments. Consider this function that would log a person's name as a lord:
+We can also destructure incoming function arguments. Consider this function that would log a person's name as a lord:
 
+```js
 const lordify = regularPerson => {
-
-console.log(`${regularPerson.firstname} of Canterbury`);
-
+  console.log(`${regularPerson.firstname} of Canterbury`);
 };
-
+  
 const regularPerson = {
-
-firstname: "Bill",
-
-lastname: "Wilson"
-
+  firstname: "Bill",
+  lastname: "Wilson"
 };
 
 lordify(regularPerson); // Bill of Canterbury
+```
 
 Instead of using dot notation syntax to dig into objects, we can destructure the values we need out of regularPerson:
 
+```js
 const lordify = ({ firstname }) => {
-
-console.log(`${firstname} of Canterbury`);
-
+  console.log(`${firstname} of Canterbury`);
 };
-
+  
 const regularPerson = {
-
-firstname: "Bill",
-
-lastname: "Wilson"
-
+  firstname: "Bill",
+  lastname: "Wilson"
 };
 
 lordify(regularPerson); // Bill of Canterbury
+```
 
-Let's take this one level farther to reflect a data change. Now, the
+Let's take this one level farther to reflect a data change. Now, the regularPerson object has a new nested object on the spouse key: 
 
-regularPerson object has a new nested object on the spouse key: const regularPerson = {
-
-firstname: "Bill",
-
-lastname: "Wilson",
-
-spouse: {
-
-firstname: "Phil",
-
-lastname: "Wilson"
-
-}
-
+```js
+const regularPerson = {
+  firstname: "Bill",
+  lastname: "Wilson",
+  spouse: {
+    firstname: "Phil",
+    lastname: "Wilson"
+  }
 };
+```
 
 If we wanted to lordify the spouse's first name, we'd adjust the function's destructured arguments slightly:
 
+```js
 const lordify = ({ spouse: { firstname } }) => {
-
-console.log(`${firstname} of Canterbury`);
-
+  console.log(`${firstname} of Canterbury`);
 };
-
+  
 lordify(regularPerson); // Phil of Canterbury
+```
 
 Using the colon and nested curly braces, we can destructure the firstname from the spouse object.
 
-Destructuring Arrays
+### 2.4.2 Destructuring Arrays
 
 Values can also be destructured from arrays. Imagine that we wanted to assign the first value of an array to a variable name:
 
-const [firstAnimal] = ["Horse", "Mouse", "Cat"]; console.log(firstAnimal); // Horse
+```js
+const [firstAnimal] = ["Horse", "Mouse", "Cat"]; 
+console.log(firstAnimal); // Horse
+```
 
-We can also pass over unnecessary values with list matching using commas. List matching occurs when commas take the place of elements that should be skipped. With the same array, we can access
+We can also pass over unnecessary values with list matching using commas. List matching occurs when commas take the place of elements that should be skipped. With the same array, we can access the last value by replacing the first two values with commas: 
 
-the last value by replacing the first two values with commas: const [, , thirdAnimal] = ["Horse", "Mouse", "Cat"]; console.log(thirdAnimal); // Cat
+```js
+const [, , thirdAnimal] = ["Horse", "Mouse", "Cat"];
+console.log(thirdAnimal); // Cat
+```
 
 Later in this section, we'll take this example a step farther by combining array destructuring and the spread operator.
 
-Object Literal Enhancement
+### 2.4.3 Object Literal Enhancement
 
 Object literal enhancement is the opposite of destructuring. It's the process of restructuring or putting the object back together. With object literal enhancement, we can grab variables from the global scope and add them to an object:
 
@@ -1091,6 +1042,3 @@ CommonJS does not support an import statement. Instead, modules are imported wit
 const { log, print } = require("./txt-helpers"); JavaScript is indeed moving quickly and adapting to the increasing demands that engineers are placing on the language, and browsers are quickly implementing new features. For up-to-date compatibility
 
 information, see the ESNext compatibility table. Many of the features that are included in the latest JavaScript syntax are present because they support functional programming techniques. In functional JavaScript, we can think of our code as being a collection of functions that can be composed into applications. In the next chapter, we'll explore functional techniques in more detail and will discuss why you might want to use them.
-
-Chapter 3. Functional
-

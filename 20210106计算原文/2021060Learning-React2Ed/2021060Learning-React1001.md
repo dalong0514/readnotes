@@ -1,4 +1,4 @@
-Chapter 10. React Testing
+# 1001. React Testing
 
 In order to keep up with our competitors, we must move quickly while ensuring quality. One vital tool that allows us to do this is unit testing.
 
