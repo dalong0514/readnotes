@@ -364,7 +364,13 @@ Header("Header() caused side effects");
 
 The Header function creates a heading — one element with specific text — and adds it to the DOM. This function is impure. It does not return a function or a value, and it causes side effects: a changed DOM.
 
-In React, the UI is expressed with pure functions. In the following sample, Header is a pure function that can be used to create h1 elements just like in the previous example. However, this function on its own does not cause side effects because it does not mutate the DOM. This function will create an h1 element, and it's up to some other part of the application to use that element to change the DOM: const Header = props => <h1>{props.title}</h1>; Pure functions are another core concept of functional programming.
+In React, the UI is expressed with pure functions. In the following sample, Header is a pure function that can be used to create h1 elements just like in the previous example. However, this function on its own does not cause side effects because it does not mutate the DOM. This function will create an h1 element, and it's up to some other part of the application to use that element to change the DOM: 
+
+```js
+const Header = props => <h1>{props.title}</h1>; 
+```
+
+Pure functions are another core concept of functional programming.
 
 They will make your life much easier because they will not affect your application's state. When writing functions, try to follow these three rules:
 
