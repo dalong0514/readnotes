@@ -828,9 +828,7 @@ const getFakePerson = async () => {
 getFakePerson();
 ```
 
-There we go — now this code accomplishes the exact same task as the code in the previous section that uses then functions. If the fetch call is successful, the results are logged to the console. If it's unsuccessful, then we'll log the error to the console using console.error. When
-
-using async and await, you need to surround your promise call in a try…catch block to handle any errors that may occur due to an unresolved promise.
+There we go — now this code accomplishes the exact same task as the code in the previous section that uses then functions. If the fetch call is successful, the results are logged to the console. If it's unsuccessful, then we'll log the error to the console using console.error. When using async and await, you need to surround your promise call in a try…catch block to handle any errors that may occur due to an unresolved promise.
 
 ### 2.5.3 Building Promises
 
@@ -860,7 +858,7 @@ When a promise is rejected, any details are passed back to the catch function, o
 ```js
 getPeople(5)
   .then(members => console.log(members))
-  . catch(error => console.error(`getPeople failed: ${error.message}`))
+  .catch(error => console.error(`getPeople failed: ${error.message}`))
 ```
 
 Promises make dealing with asynchronous requests easier, which is good, because we have to deal with a lot of asynchronicity in JavaScript. A solid understanding of asynchronous behavior is essential for the modern JavaScript engineer.
@@ -881,7 +879,8 @@ Vacation.prototype.print = function() {
   console.log(this.destination + " | " + this.length + " days");
 };
 
-const maui = new Vacation("Maui", 7); maui.print(); // Maui | 7 days
+const maui = new Vacation("Maui", 7); 
+maui.print(); // Maui | 7 days
 ```
 
 This code creates something that feels like a custom type in an object-oriented language. A Vacation has properties (destination, length), and it has a method (print). The maui instance inherits the print method through the prototype. If you are or were a developer accustomed to more standard classes, this might fill you with a deep rage. ES2015 introduced class declaration to quiet that rage, but the dirty secret is that JavaScript still works the same way. Functions are objects, and inheritance is handled through the prototype. Classes provide a syntactic sugar on top of that gnarly prototype syntax:
@@ -902,7 +901,7 @@ class Vacation {
 When you're creating a class, the class name is typically capitalized. Once you've created the class, you can create a new instance of the class using the new keyword. Then you can call the custom method on the class:
 
 ```js
-const trip = new Vacation("Santiago, Chile", 7); 
+const trip = new Vacation("Chile", 7); 
 trip.print(); // Chile will take 7 days.
 ```
 
@@ -945,8 +944,8 @@ A JavaScript module is a piece of reusable code that can easily be incorporated 
 In text-helpers.js, two functions are exported:
 
 ```js
-export const print=(message) => log(message, new Date()) 
-export const log=(message, timestamp) => 
+export const print = (message) => log(message, new Date()) 
+export const log = (message, timestamp) => 
   console.log(`${timestamp.toString()}: ${message}`)
 ```
 
@@ -996,7 +995,7 @@ For example, in CommonJS, we can export the print and log functions as an object
 const print(message) => log(message, new Date()) 
 const log(message, timestamp) =>
   console.log(`${timestamp.toString()}: ${message}`}
-module.exports = {print, log}
+module.exports = { print, log }
 ```
 
 CommonJS does not support an import statement. Instead, modules are imported with the require function:
@@ -1006,3 +1005,5 @@ const { log, print } = require("./txt-helpers");
 ```
 
 JavaScript is indeed moving quickly and adapting to the increasing demands that engineers are placing on the language, and browsers are quickly implementing new features. For up-to-date compatibility information, see the ESNext compatibility table. Many of the features that are included in the latest JavaScript syntax are present because they support functional programming techniques. In functional JavaScript, we can think of our code as being a collection of functions that can be composed into applications. In the next chapter, we'll explore functional techniques in more detail and will discuss why you might want to use them.
+
+3『 [ECMAScript Next compatibility table](http://kangax.github.io/compat-table/esnext/) 』
