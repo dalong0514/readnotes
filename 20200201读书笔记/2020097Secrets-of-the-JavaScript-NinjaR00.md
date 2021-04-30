@@ -140,7 +140,7 @@ addMethod(ninjas, 'find', function(str) {
 
 console.log(ninjas.find());  // ["a", "b", "c"]
 
-console.log(ninjas.find('c'));  // [c"]
+console.log(ninjas.find('c'));  // ["c"]
 ```
 
 Jhon Resig 自夸说：** 这是个绝佳的技巧，因为这些绑定函数实际上并没有存储于任何典型的数据结构中，而是在闭包里作为引用进行存储。的确很巧妙。
