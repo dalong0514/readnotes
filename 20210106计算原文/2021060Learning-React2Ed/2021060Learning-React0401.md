@@ -4,11 +4,9 @@ So far on your journey, you've brushed up on the latest syntax. You've reviewed 
 
 When you work with React, it's more than likely that you'll be creating your apps with JSX. JSX is a tag-based JavaScript syntax that looks a lot like HTML. It's a syntax we'll dive deep into in the next chapter and continue to use for the rest of the book. To truly understand React, though, we need to understand its most atomic units: React elements.
 
-From there, we'll get into React elements. From there, we'll get into React components by looking at how we can create custom
+From there, we'll get into React elements. From there, we'll get into React components by looking at how we can create custom components that compose other components and elements.
 
-components that compose other components and elements.
-
-Page Setup
+## 4.1 Page Setup
 
 In order to work with React in the browser, we need to include two libraries: React and ReactDOM. React is the library for creating views.
 
@@ -16,97 +14,15 @@ ReactDOM is the library used to actually render the UI in the browser.
 
 Both libraries are available as scripts from the unpkg CDN (links are included in the following code). Let's set up an HTML document:
 
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<meta charset="utf-8" />
-
-<title> React Samples</title>
-
-</head>
-
-<body>
-
-<!-- Target container -->
-
-<div id="root" ></div>
-
-<!-- React library & ReactDOM (Development Version)-->
-
-<script
-
-src="https://unpkg.com/react@16/umd/react.development.js" >
-
-</script>
-
-<script
-
-src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" >
-
-</script>
-
-<script>
-
-// Pure React and JavaScript code
-
-</script>
-
-</body>
-
-</html>
-
 These are the minimum requirements for working with React in the browser. You can place your JavaScript in a separate file, but it must be loaded somewhere in the page after React has been loaded. We're going to be using the development version of React to see all of the error messages and warnings in the browser console. You can choose to use the minified production version using react.production.min.js and react-dom.production.min.js, which will strip away those warnings.
 
-React Elements
+## 4.2 React Elements
 
 HTML is simply a set of instructions that a browser follows when constructing the DOM. The elements that make up an HTML
 
 document become DOM elements when the browser loads HTML and renders the user interface.
 
 Let's say you have to construct an HTML hierarchy for a recipe. A possible solution for such a task might look something like this:
-
-<section id="baked-salmon" >
-
-<h1> Baked Salmon</h1>
-
-<ul class="ingredients" >
-
-<li> 2 lb salmon</li>
-
-<li> 5 sprigs fresh rosemary</li>
-
-<li> 2 tablespoons olive oil</li>
-
-<li> 2 small lemons</li>
-
-<li> 1 teaspoon kosher salt</li>
-
-<li> 4 cloves of chopped garlic</li>
-
-</ul>
-
-<section class="instructions" >
-
-<h2> Cooking Instructions</h2>
-
-<p> Preheat the oven to 375 degrees. </p>
-
-<p> Lightly coat aluminum foil with oil. </p>
-
-<p> Place salmon on foil</p>
-
-<p> Cover with rosemary, sliced lemons, chopped garlic. </p>
-
-<p> Bake for 15-20 minutes until cooked through. </p>
-
-<p> Remove from oven. </p>
-
-</section>
-
-</section>
 
 In HTML, elements relate to one another in a hierarchy that resembles a family tree. We could say that the root element (in this case, a section) has three children: a heading, an unordered list of ingredients, and a section for the instructions.
 
@@ -118,9 +34,7 @@ In an SPA, the browser initially loads one HTML document. As users navigate thro
 
 JavaScript destroys and creates a new user interface as the user interacts with the application. It may feel as though you're jumping from page to page, but you're actually still on the same HTML page, and JavaScript is doing the heavy lifting.
 
-The DOM API is a collection of objects that JavaScript can use to interact with the browser to modify the DOM. If you've used document.createElement or document.appendChild, you've
-
-worked with the DOM API.
+The DOM API is a collection of objects that JavaScript can use to interact with the browser to modify the DOM. If you've used document.createElement or document.appendChild, you've worked with the DOM API.
 
 React is a library that's designed to update the browser DOM for us.
 
@@ -174,7 +88,7 @@ CREATING ELEMENTS
 
 We're taking a peek at the object that React.createElement returns. You won't actually create these elements by hand; instead, you'll use the React.createElement function.
 
-ReactDOM
+## 4.3 ReactDOM
 
 Once we've created a React element, we'll want to see it in the browser. ReactDOM contains the tools necessary to render React elements in the browser. ReactDOM is where we'll find the render method.
 
@@ -204,7 +118,7 @@ const dish = React.createElement("h1", null, "Baked Salmon"); const dessert = Re
 
 In the next section, we'll get an understanding of how to use props.children.
 
-Children
+### 4.3.1 Children
 
 React renders child elements using props.children. In the previous section, we rendered a text element as a child of the h1 element, and thus props.children was set to Baked Salmon. We could render
 
@@ -426,7 +340,7 @@ React.createElement("li", { key: i }, ingredient)
 
 We'll cover keys in more detail when we discuss JSX, but adding this to each list item will clear the console warning.
 
-React Components
+## 4.4 React Components
 
 No matter its size, its contents, or what technologies are used to create it, a user interface is made up of parts. Buttons. Lists. Headings. All of these parts, when put together, make up a user interface. Consider a recipe application with three different recipes. The data is different in each box, but the parts needed to create a recipe are the same (see
 
@@ -618,7 +532,7 @@ React.createElement("li", { key: i }, ingredient)
 
 Everything that's associated with the UI for IngredientsList is encapsulated into one component. Everything we need is right there.
 
-React Components: A Historical Tour
+### 4.4.1 React Components: A Historical Tour
 
 Before there were function components, there were other ways to create components. While we won't spend a great deal of time on these approaches, it's important to understand the history of React components, particularly when dealing with these APIs in legacy codebases. Let's take a little historical tour of React APIs of times gone by.
 
@@ -682,6 +596,4 @@ React.createElement("li", { key: i }, ingredient)
 
 }
 
-It's still possible to create a React component using class syntax, but be
-
-forewarned that React.Component is on the path to deprecation as well. Although it's still supported, you can expect this to go the way of React.createClass, another old friend who shaped you but who you won't see as often because they moved away and you moved on. From now on, we'll use functions to create components in this book and only briefly point out older patterns for reference.
+It's still possible to create a React component using class syntax, but be forewarned that React.Component is on the path to deprecation as well. Although it's still supported, you can expect this to go the way of React.createClass, another old friend who shaped you but who you won't see as often because they moved away and you moved on. From now on, we'll use functions to create components in this book and only briefly point out older patterns for reference.

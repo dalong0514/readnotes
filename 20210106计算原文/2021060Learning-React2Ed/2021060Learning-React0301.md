@@ -10,6 +10,10 @@ In the late 1950s, John McCarthy took the concepts derived from λ-calculus and 
 
 In this chapter, we're going to go over some of the key concepts of functional programming, and we'll cover how to implement functional techniques with JavaScript.
 
+Dana S. Scott, λ-Calculus: Then & Now.
+
+2『已下载附件「附件0301-03Lambda-Calculus-Timeline」』
+
 ## 3.1 What It Means to Be Functional
 
 JavaScript supports functional programming because JavaScript functions are first-class citizens. This means that functions can do the same things that variables can do. The latest JavaScript syntax adds language improvements that can beef up your functional programming techniques, including arrow functions, promises, and the spread operator.
@@ -105,6 +109,8 @@ If you see more than one arrow used during a function declaration, this means th
 
 Functional programming is a part of a larger programming paradigm: declarative programming. Declarative programming is a style of programming where applications are structured in a way that prioritizes describing what should happen over defining how it should happen.
 
+1『之前在耗子哥的专栏里有看到过「申明式」编程的概念，申明式编程做一张术语卡片。（2021-05-01）』—— 已完成
+
 In order to understand declarative programming, we'll contrast it with imperative programming, or a style of programming that's only concerned with how to achieve results with code. Let's consider a common task: making a string URL-friendly. Typically, this can be accomplished by replacing all of the spaces in a string with hyphens, since spaces are not URL-friendly. First, let's examine an imperative approach to this task:
 
 ```js
@@ -185,7 +191,9 @@ React is declarative. Here, the Welcome component describes the DOM that should 
 
 ## 3.3 Functional Concepts
 
-Now that you've been introduced to functional programming and what it means to be「functional」or「declarative,」we'll move on to introducing the core concepts of functional programming: immutability, purity, data transformation, higher-order functions, and recursion.
+Now that you've been introduced to functional programming and what it means to be 'functional' or 'declarative', we'll move on to introducing the core concepts of functional programming: immutability, purity, data transformation, higher-order functions, and recursion.
+
+2『函数式编程范式的 5 大核心特征，做一张主题卡片。（2021-05-01）』—— 已完成
 
 ### 3.3.1 Immutability
 
@@ -229,6 +237,8 @@ console.log(rateColor(color_lawn, 5).rating); // 5
 console.log(color_lawn.rating); // 0
 ```
 
+1『又看到了老朋友 `Object.assign()`，用的频率超级高。（2021-05-01）』
+
 Here, we used Object.assign to change the color rating. Object.assign is the copy machine. It takes a blank object, copies the color to that object, and overwrites the rating on the copy. Now we can have a newly rated color object without having to change the original.
 
 We can write the same function using an arrow function along with the object spread operator. This rateColor function uses the spread operator to copy the color into a new object and then overwrite its rating:
@@ -239,6 +249,8 @@ const rateColor = (color, rating) => ({
   rating
 });
 ```
+
+1『上面的写法真简洁优雅，牢记。（2021-05-01）』
 
 This version of the rateColor function is exactly the same as the previous one. It treats color as an immutable object, does so with less syntax, and looks a little bit cleaner. Notice that we wrap the returned object in parentheses. With arrow functions, this is a required step since the arrow can't just point to an object's curly braces.
 
@@ -380,11 +392,11 @@ They will make your life much easier because they will not affect your applicati
 
 3 The function should not change or mutate any of its arguments.
 
+1-3『纯函数核心的三样东西，这节的信息比郑烨专栏里讲纯函数要细致丰富很多，反复去看。（2021-05-01）』
+
 ### 3.3.3 Data Transformations
 
-How does anything change in an application if the data is immutable?
-
-Functional programming is all about transforming data from one form to another. We'll produce transformed copies using functions. These functions make our code less imperative and thus reduce complexity.
+How does anything change in an application if the data is immutable? Functional programming is all about transforming data from one form to another. We'll produce transformed copies using functions. These functions make our code less imperative and thus reduce complexity.
 
 You do not need a special framework to understand how to produce one dataset that is based upon another. JavaScript already has the necessary tools for this task built into the language. There are two core functions that you must master in order to be proficient with functional JavaScript: Array.map and Array.reduce.
 
@@ -405,7 +417,7 @@ console.log(schools.join(", "));
 
 Array.join is a built-in JavaScript array method that we can use to extract a delimited string from our array. The original array is still intact; join simply provides a different take on it. The details of how this string is produced are abstracted away from the programmer.
 
-If we wanted to create a function that creates a new array of the schools that begin with the letter「W,」we could use the Array.filter method:
+If we wanted to create a function that creates a new array of the schools that begin with the letter "W", we could use the Array.filter method:
 
 ```js
 const wSchools = schools.filter(school => school[0] === "W"); 
@@ -413,7 +425,7 @@ console.log(wSchools);
 // ["Washington & Liberty", "Wakefield"]
 ```
 
-Array.filter is a built-in JavaScript function that produces a new array from a source array. This function takes a predicate as its only argument. A predicate is a function that always returns a Boolean value: true or false. Array.filter invokes this predicate once for every item in the array. That item is passed to the predicate as an argument, and the return value is used to decide if that item will be added to the new array. In this case, Array.filter is checking every school to see if its name begins with a「W.」
+Array.filter is a built-in JavaScript function that produces a new array from a source array. This function takes a predicate as its only argument. A predicate is a function that always returns a Boolean value: true or false. Array.filter invokes this predicate once for every item in the array. That item is passed to the predicate as an argument, and the return value is used to decide if that item will be added to the new array. In this case, Array.filter is checking every school to see if its name begins with a "W".
 
 When it's time to remove an item from an array, we should use Array.filter over Array.pop or Array.splice because Array.filter is immutable. In this next sample, the cutSchool function returns new arrays that filter out specific school names:
 
@@ -427,7 +439,7 @@ console.log(schools.join("\n"));
 // Wakefield
 ```
 
-In this case, the cutSchool function is used to return a new array that does not contain「Washington & Liberty.」Then, the join function is used with this new array to create a string out of the remaining two school names. cutSchool is a pure function. It takes a list of schools and the name of the school that should be removed and returns a new array without that specific school.
+In this case, the cutSchool function is used to return a new array that does not contain "Washington & Liberty". Then, the join function is used with this new array to create a string out of the remaining two school names. cutSchool is a pure function. It takes a list of schools and the name of the school that should be removed and returns a new array without that specific school.
 
 Another array function that is essential to functional programming is Array.map. Instead of a predicate, the Array.map method takes a function as its argument. This function will be invoked once for every item in the array, and whatever it returns will be added to the new array:
 
@@ -443,7 +455,7 @@ console.log(schools.join("\n"));
 // Wakefield
 ```
 
-In this case, the map function was used to append「High School」to each school name. The schools array is still intact.
+In this case, the map function was used to append "High School" to each school name. The schools array is still intact.
 
 In the last example, we produced an array of strings from an array of strings. The map function can produce an array of objects, values, arrays, other functions — any JavaScript type. Here's an example of the map function returning an object for every school:
 
@@ -457,7 +469,9 @@ console.log(highSchools);
 // ]
 ```
 
-An array containing objects was produced from an array that contains strings. If you need to create a pure function that changes one object in an array of objects, map can be used for this, too. In the following example, we'll change the school with the name of「Stratford」to「HB Woodlawn」without mutating the schools array:
+1-3『看到这里再一次认识到，JS 里的 map 函数，等同于 lisp 里的 mapcar 函数。（2021-05-01）』
+
+An array containing objects was produced from an array that contains strings. If you need to create a pure function that changes one object in an array of objects, map can be used for this, too. In the following example, we'll change the school with the name of "Stratford" to "HB Woodlawn" without mutating the schools array:
 
 ```js
 let schools = [
@@ -494,6 +508,8 @@ const editName = (oldName, name, arr) =>
   arr.map(item => (item.name === oldName ? { ...item, name } : item)); 
 ```
 
+1-3『又一次感叹，上面的实现多么的简洁，越发觉得本书是「2019030Refactoring2Ed」很好的补充资料。（2021-05-01）』
+
 If you need to transform an array into an object, you can use Array.map in conjunction with Object.keys. Object.keys is a method that can be used to return an array of keys from an object. Let's say we needed to transform the schools object into an array of schools:
 
 ```js
@@ -526,6 +542,8 @@ console.log(schoolArray);
 ```
 
 In this example, Object.keys returns an array of school names, and we can use map on that array to produce a new array of the same length. The name of the new object will be set using the key, and wins is set equal to the value.
+
+1『赞，Object.keys 只是产生了对象的「索引」的数组，只是用 map 对这个索引数组进行处理，通过每个索引去读取 schools 对象里的「值」从而构成一个新的数组。（2021-05-01）』
 
 So far, we've learned that we can transform arrays with Array.map and Array.filter. We've also learned that we can change arrays into objects by combining Object.keys with Array.map. The final tool that we need in our functional arsenal is the ability to transform arrays into primitives and other objects.
 
@@ -620,6 +638,8 @@ console.log(hashColors);
 
 In this example, the second argument sent to the reduce function is an empty object. This is our initial value for the hash. During each iteration, the callback function adds a new key to the hash using bracket notation and sets the value for that key to the id field of the array. Array.reduce can be used in this way to reduce an array to a single value — in this case, an object.
 
+1-2『数组转变为一个「大」json 对象，这个实现逻辑很值得借鉴，思想可以用，这个功能直觉上 JS 应该有内置的 json 功能函数可以直接实现。（2021-04-30）』
+
 We can even transform arrays into completely different arrays using reduce. Consider reducing an array with multiple instances of the same value to an array of unique values. The reduce method can be used to accomplish this task:
 
 ```js
@@ -632,6 +652,8 @@ const uniqueColors = colors.reduce((unique, color) =>
 console.log(uniqueColors);
 // ["red", "green", "blue"]
 ```
+
+2『又获得了一个数组去重的实现，做一张任意卡片。（2021-05-01）』
 
 In this example, the colors array is reduced to an array of distinct values. The second argument sent to the reduce function is an empty array. This will be the initial value for distinct. When the distinct array does not already contain a specific color, it will be added.
 
@@ -654,9 +676,7 @@ invokeIf(true, showWelcome, showUnauthorized); // "Welcome!!!"
 invokeIf(false, showWelcome, showUnauthorized); // "Unauthorized!!!"
 ```
 
-invokeIf expects two functions: one for true and one for false. This is demonstrated by sending both showWelcome and showUnauthorized to invokeIf. When the condition is true, showWelcome is invoked.
-
-When it's false, showUnauthorized is invoked.
+invokeIf expects two functions: one for true and one for false. This is demonstrated by sending both showWelcome and showUnauthorized to invokeIf. When the condition is true, showWelcome is invoked. When it's false, showUnauthorized is invoked.
 
 Higher-order functions that return other functions can help us handle the complexities associated with asynchronicity in JavaScript. They can help us create functions that can be used or reused at our convenience.
 
@@ -682,11 +702,15 @@ getFakeMembers(20).then(
 // grandpa23 -> encountered an error loading members 
 ```
 
-userLogs is the higher-order function. The log function is produced from userLogs, and every time the log function is used,「grandpa23」is prepended to the message.
+userLogs is the higher-order function. The log function is produced from userLogs, and every time the log function is used, "grandpa23" is prepended to the message.
+
+1『目前上面的代码没看明白，关键是异步函数 getFakeMembers 的定义没找到。（2021-05-01）』
 
 ### 3.3.5 Recursion
 
 Recursion is a technique that involves creating functions that recall themselves. Often, when faced with a challenge that involves a loop, a recursive function can be used instead. Consider the task of counting down from 10. We could create a for loop to solve this problem, or we could alternatively use a recursive function. In this example, countdown is the recursive function:
+
+1『作者的意思，只要是循环语句，都可以通过「递归」来实现，我原以为只有特性的场景下才需要递归，那么以后循环逻辑都可以尝试用递归来实现，也训练训练自己的大脑，大赞。（2021-05-30）』
 
 ```js
 const countdown = (value, fn) => {
@@ -712,9 +736,7 @@ countdown expects a number and a function as arguments. In this example, it's in
 
 Recursion is a pattern that works particularly well with asynchronous processes. Functions can recall themselves when they're ready, like when the data is available or when a timer has finished.
 
-The countdown function can be modified to count down with a delay.
-
-This modified version of the countdown function can be used to create a countdown clock:
+The countdown function can be modified to count down with a delay. This modified version of the countdown function can be used to create a countdown clock:
 
 ```js
 const countdown = (value, fn, delay = 1000) => {
@@ -794,9 +816,7 @@ Recursion is a powerful functional technique that's fun to implement.
 
 ### 3.3.6 Composition
 
-Functional programs break up their logic into small, pure functions that are focused on specific tasks. Eventually, you'll need to put these
-
-smaller functions together. Specifically, you may need to combine them, call them in series or parallel, or compose them into larger functions until you eventually have an application.
+Functional programs break up their logic into small, pure functions that are focused on specific tasks. Eventually, you'll need to put these smaller functions together. Specifically, you may need to combine them, call them in series or parallel, or compose them into larger functions until you eventually have an application.
 
 When it comes to composition, there are a number of different implementations, patterns, and techniques. One that you may be familiar with is chaining. In JavaScript, functions can be chained together using dot notation to act on the return value of the previous function.
 
@@ -844,13 +864,97 @@ const compose = (...fns) => arg =>
   fns.reduce((composed, f) => f(composed), arg);
 ```
 
-compose takes in functions as arguments and returns a single function.
-
-In this implementation, the spread operator is used to turn those function arguments into an array called fns. A function is then returned that expects one argument, arg. When this function is invoked, the fns array is piped starting with the argument we want to send through the function. The argument becomes the initial value for compose, then each iteration of the reduced callback returns. Notice that the callback takes two arguments: composed and a function f.
+compose takes in functions as arguments and returns a single function. In this implementation, the spread operator is used to turn those function arguments into an array called fns. A function is then returned that expects one argument, arg. When this function is invoked, the fns array is piped starting with the argument we want to send through the function. The argument becomes the initial value for compose, then each iteration of the reduced callback returns. Notice that the callback takes two arguments: composed and a function f.
 
 Each function is invoked with compose, which is the result of the previous function's output. Eventually, the last function will be invoked and the last result returned.
 
 This is a simple example of a compose function designed to illustrate composition techniques. This function becomes more complex when it's time to handle more than one argument or deal with arguments that are not functions.
+
+3『
+
+[ES6 JavaScript compose function](https://gist.github.com/JamieMason/172460a36a0eaef24233e6edb2706f83)
+
+Definition
+
+```js
+const compose = (...fns) =>
+  fns.reduceRight((prevFn, nextFn) =>
+    (...args) => nextFn(prevFn(...args)),
+    value => value
+  );
+```
+
+Example
+
+Create the function, composed of three others:
+
+```
+const example = compose(
+  val => { console.log(1); return `1<${val}>`; },
+  val => { console.log(2); return `2<${val}>`; },
+  val => { console.log(3); return `3<${val}>`; }
+);
+```
+
+Console output is:
+
+```
+3
+2
+1
+"1<2<3<hello>>>"
+```
+
+搞了半天，compose 不是内置函数，是自己定义的。在 Electron 上跑通了。
+
+```js
+export default observer(() => {
+  const store = useLocalStore(() => new Store())
+
+  const compose = (...fns) =>
+    fns.reduceRight((prevFn, nextFn) =>
+      (...args) => nextFn(prevFn(...args)),
+      value => value
+    )
+
+  const example = compose(
+    val => {
+      console.log(1)
+      return `1<${val}>`
+    },
+    val => { 
+      console.log(2)
+      return `2<${val}>`
+    },
+    val => { 
+      console.log(3)
+      return `3<${val}>`
+    }
+  )
+
+  const testFun = () => {
+    console.log(example('dalong'))
+  }
+
+  return (
+    <div className={styles.homeContainer}>
+      <Button type='primary' onClick={testFun}>
+        测试
+      </Button>
+    </div>
+  )
+})
+```
+
+[Currying in JavaScript | Codementor](https://www.codementor.io/@michelre/currying-in-javascript-g6212s8qv)
+
+[Use function composition in JavaScript | Codementor](https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj)
+
+[Curry and Function Composition.  | JavaScript Scene | Medium](https://medium.com/javascript-scene/curry-and-function-composition-2c208d774983)
+
+前 2 篇文章作为本书的附件：「附件 0301-01Currying-in-JavaScript」「附件0301-02Use-function-composition-in-JavaScript」，后面的那篇 Medium 上的文档消化后放入 Medium 专栏里。
+
+』
 
 ### 3.3.7 Putting It All Together
 
@@ -957,7 +1061,7 @@ Next, we'll need a few higher-order functions:
 
 1 display. Takes a target function and returns a function that will send a time to the target. In this example, the target will be console.log.
 
-2 formatClock. Takes a template string and uses it to return clock time formatted based on the criteria from the string. In this example, the template is「hh:mm:ss tt」. From there, formatClock will replace the placeholders with hours, minutes, seconds, and time of day.
+2 formatClock. Takes a template string and uses it to return clock time formatted based on the criteria from the string. In this example, the template is "hh:mm:ss tt". From there, formatClock will replace the placeholders with hours, minutes, seconds, and time of day.
 
 3 prependZero. Takes an object's key as an argument and prepends a zero to the value stored under that object's key. It takes in a key to a specific field and prepends values with a zero if the value is less than 10.
 
@@ -1013,17 +1117,12 @@ const startTicking = () =>
   ),
   oneSecond()
   );
+
 startTicking();
 ```
 
-This declarative version of the clock achieves the same results as the imperative version. However, there quite a few benefits to this approach. First, all of these functions are easily testable and reusable.
-
-They can be used in future clocks or other digital displays. Also, this program is easily scalable. There are no side effects. There are no global variables outside of functions themselves. There could still be bugs, but they'll be easier to find.
+This declarative version of the clock achieves the same results as the imperative version. However, there quite a few benefits to this approach. First, all of these functions are easily testable and reusable. They can be used in future clocks or other digital displays. Also, this program is easily scalable. There are no side effects. There are no global variables outside of functions themselves. There could still be bugs, but they'll be easier to find.
 
 In this chapter, we've introduced functional programming principles.
 
 Throughout the book when we discuss best practices in React, we'll continue to demonstrate how many React concepts are based in functional techniques. In the next chapter, we'll dive into React officially with an improved understanding of the principles that guided its development.
-
-Dana S. Scott,「λ-Calculus: Then & Now」.
-
-2『已下载附件「Lambda-Calculus-Timeline」』
