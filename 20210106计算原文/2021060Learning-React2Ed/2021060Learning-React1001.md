@@ -1,10 +1,14 @@
 # 1001. React Testing
 
-In order to keep up with our competitors, we must move quickly while ensuring quality. One vital tool that allows us to do this is unit testing. Unit testing makes it possible to verify that every piece, or unit, of our application functions as intended.1
+In order to keep up with our competitors, we must move quickly while ensuring quality. One vital tool that allows us to do this is unit testing. Unit testing makes it possible to verify that every piece, or unit, of our application functions as intended.[1]
 
 One benefit of practicing functional techniques is that they lend themselves to writing testable code. Pure functions are naturally testable. Immutability is easily testable. Composing applications out of small functions designed for specific tasks produces testable functions or units of code.
 
 In this section, we'll demonstrate techniques that can be used to unit test React applications. This chapter will not only cover testing, but also tools that can be used to help evaluate and improve your code and your tests.
+
+For a brief introduction to unit testing, see Martin Fowler's article: [UnitTest](https://martinfowler.com/bliki/UnitTest.html).
+
+1-2『 Martin Fowler 这篇单元测试的文章一定要研读掉。（2021-05-01）』 —  —  未完成
 
 ## 10.1 ESLint
 
@@ -94,14 +98,16 @@ ESLint has performed a static analysis of our code and is reporting some issues 
 
 And finally, ESLint's default React warnings let us know that React must be in scope when using JSX.
 
-The command eslint . will lint our entire directory. To do this, we'll most likely require that ESLint ignore some JavaScript files. The .eslintignore file is where we can add files or directories for ESLint to ignore:
+The command `eslint .` will lint our entire directory. To do this, we'll most likely require that ESLint ignore some JavaScript files. The `.eslintignore` file is where we can add files or directories for ESLint to ignore:
+
+1『第一次知道，跟 git 忽略文件一样，也能设置 eslint 的忽略文件。（2021-05-01）』
 
 ```
 dist/assets/
 sample.js
 ```
 
-This .eslintignore file tells ESLint to ignore our new sample.js file as well as anything in the dist/assets folder. If we don't ignore the assets folder, ESLint will analyze the client bundle.js file, and it will probably find a lot to complain about in that file.
+This `.eslintignore` file tells ESLint to ignore our new sample.js file as well as anything in the dist/assets folder. If we don't ignore the assets folder, ESLint will analyze the client bundle.js file, and it will probably find a lot to complain about in that file.
 
 Let's add a script to our package.json file for running ESLint:
 
@@ -133,14 +139,14 @@ Then, open the .eslintrc.json file and add the following:
 
 ```json
 {
-"plugins": [
-// ...
-"react-hooks"
-],
-"rules": {
-"react-hooks/rules-of-hooks": "error",
-"react-hooks/exhaustive-deps": "warn"
-}
+    "plugins": [
+        // ...
+        "react-hooks"
+    ],
+    "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+    }
 }
 ```
 
@@ -184,23 +190,14 @@ Then we'll add to our config, .eslintrc.json:
 
 ```json
 {
-
-"extends" : [
-
-// ...
-
-"plugin:jsx-a11y/recommended"
-
-],
-
-"plugins" : [
-
-// ...
-
-"jsx-a11y"
-
-]
-
+    "extends" : [
+        // ...
+        "plugin:jsx-a11y/recommended"
+    ],
+    "plugins" : [
+        // ...
+        "jsx-a11y"
+    ]
 }
 ```
 
@@ -221,6 +218,8 @@ or an empty string for decorative images
 
 There are many other ESLint plug-ins you can use to statically analyze your code, and you could spend weeks tuning your ESLint config to perfection. If you're looking to take yours to the next level, there are many useful resources in the Awesome ESLint repository.
 
+[dustinspecker/awesome-eslint: A list of awesome ESLint plugins, configs, etc.](https://github.com/dustinspecker/awesome-eslint)
+
 ## 10.2 Prettier
 
 Prettier is an opinionated code formatter you can use on a range of projects. The effect Prettier has had on the day-to-day work of web developers since its release has been pretty incredible. Based on historical records, arguing over syntax filled 87% of an average JavaScript developer's day, but now Prettier handles code formatting and defining the rules around what code syntax should be used per project. The time savings are significant. Also, if you've ever unleashed Prettier on a Markdown table, the quick, crisp formatting that occurs is a pretty incredible sight to behold.
@@ -237,91 +236,91 @@ Now you can use Prettier anywhere on any project.
 
 ### 10.2.1 Configuring Prettier by Project
 
-To add a Prettier configuration file to your project, you can create a
+To add a Prettier configuration file to your project, you can create a `.prettierrc` file. This file will describe the project defaults:
 
-.prettierrc file. This file will describe the project defaults:
-
+```
 {
-
-"semi": true,
-
-"trailingComma": none,
-
-"singleQuote": false,
-
-"printWidth": 80
-
+    "semi": true,
+    "trailingComma": none,
+    "singleQuote": false,
+    "printWidth": 80
 }
+```
 
-These are our preferred defaults, but of course, choose what makes most sense to you. For more Prettier formatting options, check out
+These are our preferred defaults, but of course, choose what makes most sense to you. For more Prettier formatting options, check out Prettier's documentation.
 
-Prettier's documentation.
+[Options · Prettier](https://prettier.io/docs/en/options.html)
 
 Let's replace what currently lives in our sample.js file with some code to format:
 
+```js
 console.log("Prettier Test")
+```
 
 Now let's try running the Prettier CLI from the Terminal or Command Prompt:
 
+```js
 prettier --check "sample.js"
+```
 
-Prettier runs the test and shows us the following message: Code style issues found in the above file(s). Forgot to run
+Prettier runs the test and shows us the following message: Code style issues found in the above file(s). Forgot to run Prettier? To run it from the CLI, we can pass the write flag: 
 
-Prettier? To run it from the CLI, we can pass the write flag: prettier --write "sample.js"
+```
+prettier --write "sample.js"
+```
 
 Once we do this, we'll see an output of a certain number of milliseconds that it took Prettier to format the file. If we open the file, we'll see that the content has changed based on the defaults supplied in the .prettierrc file. If you're thinking that this process seems laborious and could be sped up, you're right. Let's start automating!
 
 First, we'll integrate ESLint and Prettier by installing a config tool and a plug-in:
 
-npm install eslint-config-prettier eslint-plugin-prettier --save-dev The config (eslint-config-prettier) turns off any ESLint rules that
+```
+npm install eslint-config-prettier eslint-plugin-prettier --save-dev 
+```
 
-could conflict with Prettier. The plug-in (eslint-plugin-prettier) integrates Prettier rules into ESLint rules. In other words, when we run our lint script, Prettier will run, too.
+The config (eslint-config-prettier) turns off any ESLint rules that could conflict with Prettier. The plug-in (eslint-plugin-prettier) integrates Prettier rules into ESLint rules. In other words, when we run our lint script, Prettier will run, too. We'll incorporate these tools into .eslintrc.json:
 
-We'll incorporate these tools into .eslintrc.json:
-
+```
 {
-
-"extends": [
-
-// ...
-
-"plugin:prettier/recommended"
-
-],
-
-"plugins": [
-
-//,
-
-"prettier"],
-
-"rules": {
-
-// ...
-
-"prettier/prettier": "error"
-
+    "extends": [
+        // ...
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+    //,
+    "prettier"],
+    "rules": {
+        // ...
+        "prettier/prettier": "error"
+    }
 }
-
-}
+```
 
 Make sure to break some formatting rules in your code to ensure that Prettier is working. For example, in sample.js:
 
+```js
 console.log("Prettier Test");
+```
 
 Running the lint command npm run lint will yield the following output:
 
+```
 1:13 error Replacè'Prettier·Test')` with `"Prettier·Test");`
-
 prettier/prettier
+```
 
 All of the errors were found. Now you can run the Prettier write command and sweep the formatting for one file:
 
+```
 prettier --write "sample.js"
+```
 
-Or for all of the JavaScript files in certain folders: prettier --write "src/*.js"
+Or for all of the JavaScript files in certain folders: 
 
-Prettier in VSCode
+```
+prettier --write "src/*.js"
+```
+
+### 10.2.2 Prettier in VSCode
 
 If you're using VSCode, it's highly recommended that you set up Prettier in your editor. Configuration is fairly quick and will save you a lot of time as you're writing code.
 
@@ -329,139 +328,111 @@ You'll first want to install the VSCode extension for Prettier. Just follow this
 
 To access these settings, select the Code menu, then Preferences, then Settings. (Or Command + comma on a Mac or Ctrl + comma on a PC, if you're in a hurry.) Then you can click on the small paper icon in the upper right-hand corner to open the VSCode settings as JSON. You'll want to add a few helpful keys here:
 
+```
 {
-
-"editor.formatOnSave" : true
-
+    "editor.formatOnSave" : true
 }
+```
 
-Now when you save any file, Prettier will format it based on the
+Now when you save any file, Prettier will format it based on the .prettierrc defaults! Pretty killer. You can also search Settings for Prettier options to set up defaults in your editor if you want to enforce formatting, even if your project doesn't contain a .prettierrc config file.
 
-.prettierrc defaults! Pretty killer. You can also search Settings for Prettier options to set up defaults in your editor if you want to enforce formatting, even if your project doesn't contain a .prettierrc config file.
+If you're using a different editor, Prettier likely supports that, too. For instructions specific to other code editors, check out the Editor Integration section of the docs.
 
-If you're using a different editor, Prettier likely supports that, too. For
-
-instructions specific to other code editors, check out the Editor
-
-Integration section of the docs.
-
-Typechecking for React Applications
+## 10.3 Typechecking for React Applications
 
 When you're working with a larger application, you may want to incorporate typechecking to help pinpoint certain types of bugs. There are three main solutions for typechecking in React apps: the prop-types library, Flow, and TypeScript. In the next section, we'll take a closer look at how you might set up these tools to increase code quality.
 
-PropTypes
+### 10.3.1 PropTypes
 
 In the first edition of this book, PropTypes were part of the core React library and were the recommended way to add typechecking to your application. Today, due to the emergence of other solutions like Flow and TypeScript, the functionality has been moved to its own library to make React's bundle size smaller. Still, PropTypes are a widely used solution.
 
-To add PropTypes to your app, install the prop-types library: npm install prop-types --save-dev
+To add PropTypes to your app, install the prop-types library: 
+
+```
+npm install prop-types --save-dev
+```
 
 We'll test this by creating a minimal App component that renders the name of a library:
 
+```js
 import React from "react";
-
 import ReactDOM from "react-dom";
 
 function App({ name }) {
-
-return (
-
-<div>
-
-<h1>{name}</h1>
-
-</div>
-
-);
-
+  return (
+    <div>
+      <h1>{name}</h1>
+    </div>
+  );
 }
 
 ReactDOM.render(
-
-<App name="React" />,
-
-document.getElementById("root")
-
+  <App name="React" />,
+  document.getElementById("root")
 );
+```
 
 Then we'll import the prop-types library and use App.propTypes to define which type each property should be:
 
+```js
 import PropTypes from "prop-types";
-
 function App({ name }) {
-
-return (
-
-<div>
-
-<h1>{name}</h1>
-
-</div>
-
-);
-
+  return (
+  <div>
+    <h1>{name}</h1>
+  </div>
+  );
 }
 
 App.propTypes = {
-
-name: PropTypes.string
-
+  name: PropTypes.string
 };
+```
 
 The App component has one property name and should always be a string. If an incorrect type value is passed as the name, an error will be thrown. For example, if we used a boolean:
 
+```js
 ReactDOM.render(
-
-<App name="React" />,
-
-document.getElementById("root")
-
+  <App name="React" />,
+  document.getElementById("root")
 );
+```
 
 Our console would report a problem back to us:
 
+```
 Warning: Failed prop type: Invalid prop name of type boolean supplied to App,
-
 expected string. in App
+```
 
-When a value of an incorrect type is provided for a property, the warning only appears in development mode. The warnings and broken renders won't appear in production.
+When a value of an incorrect type is provided for a property, the warning only appears in development mode. The warnings and broken renders won't appear in production. Other types are available, of course, when validating properties. We could add a boolean for whether or not a technology was used at a company:
 
-Other types are available, of course, when validating properties. We could add a boolean for whether or not a technology was used at a company:
-
+```js
 function App({ name, using }) {
-
-return (
-
-<div>
-
-<h1>{name}</h1>
-
-<p>
-
-{using ? "used here" : "not used here"}
-
-</p>
-
-</div>
-
-);
-
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>
+        {using ? "used here" : "not used here"}
+      </p>
+    </div>
+  );
 }
 
 App.propTypes = {
-
-name: PropTypes.string,
-
-using: PropTypes.bool
-
+  name: PropTypes.string,
+  using: PropTypes.bool
 };
 
 ReactDOM.render(
-
-<App name="React" using={true} />, document.getElementById("root")
-
+  <App name="React" using={true} />, 
+  document.getElementById("root")
 );
+```
 
-The longer list of type checks includes: PropTypes.array
+The longer list of type checks includes: 
+
+PropTypes.array
 
 PropTypes.object
 
@@ -477,209 +448,177 @@ PropTypes.symbol
 
 Additionally, if you want to ensure that a value was provided, you can chain .isRequired onto the end of any of these options. For example, if a string must be supplied, you'd use:
 
+```js
 App.propTypes = {
-
-name: PropTypes.string.isRequired
-
+  name: PropTypes.string.isRequired
 };
-
+  
 ReactDOM.render(
-
-<App />,
-
-document.getElementById("root")
-
+  <App />,
+  document.getElementById("root")
 );
+```
 
 Then, if you fail to provide a value for this field, the following warning will appear in the console:
 
+```
 index.js:1 Warning: Failed prop type: The prop name is marked as required in App,
-
 but its value is undefined.
+```
 
 There also may be situations where you don't care what the value is, as long as a value is provided. In that case, you can use any. For example:
 
+```js
 App.propTypes = {
-
-name: PropTypes.any.isRequired
-
+  name: PropTypes.any.isRequired
 };
+```
 
-This means that a boolean, string, number––anything––could be supplied. As long as name is not undefined, the typecheck will succeed.
+This means that a boolean, string, number––anything––could be supplied. As long as name is not undefined, the typecheck will succeed. In addition to the basic typechecks, there are a few other utilities that are useful for many real-world situations. Consider a component where there are two status options: Open and Closed:
 
-In addition to the basic typechecks, there are a few other utilities that are useful for many real-world situations. Consider a component where there are two status options: Open and Closed:
-
+```js
 function App({ status }) {
-
-return (
-
-<div>
-
-<h1>
-
-We're {status === "Open" ? "Open!" : "Closed!"}
-
-</h1>
-
-</div>
-
-);
-
+  return (
+    <div>
+      <h1>
+        We're {status === "Open" ? "Open!" : "Closed!"}
+      </h1>
+    </div>
+  );
 }
-
+  
 ReactDOM.render(
-
-<App status="Open" />,
-
-document.getElementById("root")
-
+  <App status="Open" />,
+  document.getElementById("root")
 );
+```
 
-Status is a string, so we might be inclined to use the string check: App.propTypes = {
+Status is a string, so we might be inclined to use the string check: 
 
-status: PropTypes.string.isRequired
-
-};
-
-That works well, but if other string values besides Open and Closed are passed in, the property will be validated. The type of check we actually
-
-want to enforce is an enum check. An enumeration type is a restricted list of options for a particular field or property. We'll adjust the propTypes object like so:
-
+```js
 App.propTypes = {
-
-status: PropTypes.oneOf(["Open", "Closed"])
-
+  status: PropTypes.string.isRequired
 };
+```
 
-Now if anything other than the values from the array that's passed to PropTypes.oneOf is supplied, a warning will appear.
+That works well, but if other string values besides Open and Closed are passed in, the property will be validated. The type of check we actually want to enforce is an enum check. An enumeration type is a restricted list of options for a particular field or property. We'll adjust the propTypes object like so:
 
-For all the options you can configure for PropTypes in your React app, check out the documentation.
+```js
+App.propTypes = {
+  status: PropTypes.oneOf(["Open", "Closed"])
+};
+```
 
-Flow
+Now if anything other than the values from the array that's passed to PropTypes.oneOf is supplied, a warning will appear. For all the options you can configure for PropTypes in your React app, check out the documentation.
+
+### 10.3.2 Flow
 
 Flow is a typechecking library that's used and maintained by Facebook Open Source. It's a tool that checks for errors via static type annotations. In other words, if you create a variable that's a particular type, Flow will check to be sure that that value used is the correct type.
 
 Let's fire up a Create React App project:
 
+```
 npx create-react-app in-the-flow
+```
 
 Then we'll add Flow to the project. Create React App doesn't assume you want to use Flow, so it doesn't ship with the library, but it's smooth to incorporate:
 
+```
 npm install --save flow-bin
+```
 
-Once installed, we'll add an npm script to run Flow when we type npm
+Once installed, we'll add an npm script to run Flow when we type npm run flow. In package.json, just add this to the scripts key:
 
-run flow. In package.json, just add this to the scripts key:
-
+```
 {
-
-"scripts" : {
-
-"start" : "react-scripts start",
-
-"build" : "react-scripts build",
-
-"test" : "react-scripts test",
-
-"eject" : "react-scripts eject",
-
-"flow" : "flow"
-
+    "scripts" : {
+        "start" : "react-scripts start",
+        "build" : "react-scripts build",
+        "test" : "react-scripts test",
+        "eject" : "react-scripts eject",
+        "flow" : "flow"
+    }
 }
+```
 
-}
+Now running the flow command will run typechecking on our files. Before we can use it, though, we need to create a .flowconfig file. To do so, we run:
 
-Now running the flow command will run typechecking on our files.
-
-Before we can use it, though, we need to create a .flowconfig file. To do so, we run:
-
+```
 npm run flow init
+```
 
 This creates a skeleton of a configuration file that looks like this:
 
+```
 [ignore]
-
 [include]
-
 [libs]
-
 [lints]
-
 [options]
-
 [strict]
+```
 
 In most cases, you'll leave this blank to use Flow's defaults. If you want to configure Flow beyond the basics, you can explore more options in the documentation.
 
-One of the coolest features of Flow is that you can adopt Flow
-
-incrementally. It can feel overwhelming to have to add typechecking to an entire project. With Flow, this isn't a requirement. All you need to do is add the line //@flow to the top of any files you want to typecheck, then Flow will automatically only check those files.
+One of the coolest features of Flow is that you can adopt Flow incrementally. It can feel overwhelming to have to add typechecking to an entire project. With Flow, this isn't a requirement. All you need to do is add the line //@flow to the top of any files you want to typecheck, then Flow will automatically only check those files.
 
 Another option is to add the VSCode extension for Flow to help with code completion and parameter hints. If you have Prettier or a linting tool set up, this will help your editor handle the unexpected syntax of Flow. You can find that in the marketplace.
 
 Let's open the index.js file and, for the sake of simplicity, keep everything in the same file. Make sure to add //@flow to the top of the file:
 
+```
 //@flow
-
 import React from "react";
-
 import ReactDOM from "react-dom";
-
 function App(props) {
-
 return (
-
 <div>
-
 <h1>{props.item}</h1>
-
 </div>
-
 );
-
 }
-
 ReactDOM.render(
-
 <App item="jacket" />,
-
 document.getElementById("root")
-
 );
+```
 
 Now we'll define the types for the properties:
 
+```
 type Props = {
-
 item: string
-
 };
-
 function App(props: Props) {
-
 //...
-
 }
+```
 
 Then run Flow npm run flow. In certain versions of Flow, you may see this warning:
 
+```
 Cannot call ReactDOM.render with root bound to container because null [1]
-
 is
-
 incompatible with Element [2]
+```
 
 This warning exists because if document.getElementById("root") returns null, the app will crash. To safeguard against this (and to clear the error), we can do one of two things. The first approach is to use an if statement to check to see that root is not null:
 
-const root = document.getElementById("root"); if (root !== null) {
-
-ReactDOM.render(<App item="jacket" />, root);
-
+```js
+const root = document.getElementById("root"); 
+if (root !== null) {
+  ReactDOM.render(<App item="jacket" />, root);
 }
+```
 
 Another option is to add a typecheck to the root constant using Flow syntax:
 
-const root = document.getElementById("root"); ReactDOM.render(<App item="jacket" />, root); In either case, you'll clear the error and see that your code is free of errors!
+```js
+const root = document.getElementById("root"); 
+ReactDOM.render(<App item="jacket" />, root); 
+```
+
+In either case, you'll clear the error and see that your code is free of errors!
 
 No errors!
 
@@ -687,18 +626,21 @@ We could trust this fully, but trying to break it feels like a good idea.
 
 Let's pass a different property type to the app:
 
+```js
 ReactDOM.render(<App item={3} />, root);
+```
 
 Cool, we broke it! Now we get an error that reads:
 
+```
 Cannot create App element because number [1] is incompatible with string
-
 [2]
-
 in property item.
+```
 
 Let's switch it back and add another property for a number. We'll also adjust the component and property definitions:
 
+```js
 type Props = {
 
 item: string,
@@ -730,354 +672,306 @@ ReactDOM.render(
 root
 
 );
+```
 
 Running this works, but what if we removed the cost value?
 
-ReactDOM.render(<App item="jacket" />, root); We'll immediately get an error:
+```js
+ReactDOM.render(<App item="jacket" />, root); 
+```
 
+We'll immediately get an error:
+
+```
 Cannot create App element because property cost is missing in props [1]
-
 but
-
 exists in Props [2].
+```
 
 If cost is truly not a required value, we can make it optional in the property definitions using the question mark after the property name, cost?:
 
+```js
 type Props = {
-
-item: string,
-
-cost?: number
-
+  item: string,
+  cost?: number
 };
+```
 
 If we run it again, we don't see the error.
 
 That's the tip of the iceberg with all of the different features that Flow has to offer. To learn more and to stay on top of the changes in the library, head over to the documentation site.
 
-TypeScript
+### 10.3.3 TypeScript
 
 TypeScript is another popular tool for typechecking in React applications. It's an open source superset of JavaScript, which means that it adds additional features to the language. Created at Microsoft, TypeScript is designed to be used for large apps to help developers find bugs and iterate more quickly on projects.
 
-TypeScript has a growing allegiance of supporters, so the tooling in the ecosystem continues to improve. One tool that we're already familiar
-
-with is Create React App, which has a TypeScript template we can use.
-
-Let's set up some basic typechecking, similar to what we did with PropTypes and Flow, to get a sense of how we can start using it in our own apps.
+TypeScript has a growing allegiance of supporters, so the tooling in the ecosystem continues to improve. One tool that we're already familiar with is Create React App, which has a TypeScript template we can use. Let's set up some basic typechecking, similar to what we did with PropTypes and Flow, to get a sense of how we can start using it in our own apps.
 
 We'll start by generating yet another Create React App, this time with some different flags:
 
+```
 npx create-react-app my-type --template typescript
+```
 
-Now let's tour the features of our scaffolded project. Notice in the src directory that the file extensions are .ts or .tsx now. We'll also find a
-
-.tsconfig.json file, which contains all of our TypeScript settings. More on that in a bit.
+Now let's tour the features of our scaffolded project. Notice in the src directory that the file extensions are .ts or .tsx now. We'll also find a `.tsconfig.json` file, which contains all of our TypeScript settings. More on that in a bit.
 
 Also, if you take a look at the package.json file, there are new dependencies listed and installed related to TypeScript, like the library itself and type definitions for Jest, React, ReactDOM, and more. Any dependency that starts with @types/ describes the type definitions for a library. That means that the functions and methods in the library are typed so that we don't have to describe all of the library's types.
 
-NOTE
+NOTE: If your project doesn't include the TypeScript features, you might be using an old version of Create React App. To get rid of this, you can run npm uninstall -g create-react-app.
 
-If your project doesn't include the TypeScript features, you might be using an old version of Create React App. To get rid of this, you can run npm uninstall -g create-react-app.
+Let's try dropping our component from the Flow lesson into our project. Just add the following to the index.ts file: 
 
-Let's try dropping our component from the Flow lesson into our
-
-project. Just add the following to the index.ts file: import React from "react";
-
+```js
+import React from "react";
 import ReactDOM from "react-dom";
 
 function App(props) {
-
-return (
-
-<div>
-
-<h1>{props.item}</h1>
-
-</div>
-
-);
-
+  return (
+    <div>
+      <h1>{props.item}</h1>
+    </div>
+  );
 }
 
 ReactDOM.render(
-
-<App item="jacket" />,
-
-document.getElementById("root")
-
+  <App item="jacket" />,
+  document.getElementById("root")
 );
+```
 
 If we run the project with npm start, we should see our first TypeScript error. This is to be expected at this point:
 
+```
 Parameter 'props' implicitly has an 'any' type.
+```
 
-This means we need to add type rules for this App component. We'll start by defining types just as we did earlier for the Flow component.
+This means we need to add type rules for this App component. We'll start by defining types just as we did earlier for the Flow component. The item is a string, so we'll add that to the AppProps type: 
 
-The item is a string, so we'll add that to the AppProps type: type AppProps = {
-
-item: string;
-
+```js
+type AppProps = {
+  item: string;
 };
-
+  
 ReactDOM.render(
-
-<App item="jacket" />,
-
-document.getElementById("root")
-
+  <App item="jacket" />,
+  document.getElementById("root")
 );
+```
 
 Then we'll reference AppProps in the component:
 
+```js
 function App(props: AppProps) {
-
-return (
-
-<div>
-
-<h1>{props.item}</h1>
-
-</div>
-
-);
-
+  return (
+    <div>
+      <h1>{props.item}</h1>
+    </div>
+  );
 }
+```
 
 Now the component will render with no TypeScript issues. It's also possible to destructure props if we'd like to:
 
+```js
 function App({ item }: AppProps) {
-
-return (
-
-<div>
-
-<h1>{item}</h1>
-
-</div>
-
-);
-
+  return (
+    <div>
+      <h1>{item}</h1>
+    </div>
+  ); 
 }
+```
 
 We can break this by passing a value of a different type as the item property:
 
+```js
 ReactDOM.render(
-
-<App item={1} />,
-
-document.getElementById("root")
-
+  <App item={1} />,
+  document.getElementById("root")
 );
+```
 
 This immediately triggers an error:
 
+```
 Type 'number' is not assignable to type 'string'.
+```
 
 The error also tells us the exact line where there's a problem. This is extremely useful as we're debugging.
 
-TypeScript helps with more than just property validation, though. We
+TypeScript helps with more than just property validation, though. We can use TypeScript's type inference to help us do typechecking on hook values. Consider a state value for a fabricColor with an initial state of purple. The component might look like this:
 
-can use TypeScript's type inference to help us do typechecking on hook values.
-
-Consider a state value for a fabricColor with an initial state of purple. The component might look like this:
-
+```js
 type AppProps = {
-
-item: string;
-
+  item: string;
 };
-
+  
 function App({ item }: AppProps) {
-
-const [fabricColor, setFabricColor] = useState(
-
-"purple"
-
-);
-
-return (
-
-<div>
-
-<h1>
-
-{fabricColor} {item}
-
-</h1>
-
-<button
-
-onClick={() => setFabricColor("blue")}
-
->
-
-Make the Jacket Blue
-
-</button>
-
-</div>
-
-);
-
+  const [fabricColor, setFabricColor] = useState(
+    "purple"
+  );
+  return (
+    <div>
+      <h1>
+        {fabricColor} {item}
+      </h1>
+      <button
+        onClick={() => setFabricColor("blue")}
+      >
+        Make the Jacket Blue
+      </button>
+    </div>
+  );
 }
+```
 
-Notice that we haven't added anything to the type definitions object.
+Notice that we haven't added anything to the type definitions object. Instead, TypeScript is inferring that the type for the fabricColor should match the type of its initial state. If we try setting the fabricColor with a number instead of another string color blue, an error will be thrown:
 
-Instead, TypeScript is inferring that the type for the fabricColor should match the type of its initial state. If we try setting the fabricColor with a number instead of another string color blue, an error will be thrown:
-
+```js
 <button onClick={() => setFabricColor(3)}>
+```
 
 The error looks like this:
 
+```
 Argument of type '3' is not assignable to parameter of type string.
+```
 
-TypeScript is hooking us up with some pretty low-effort typechecking for this value. Of course, you can customize this further, but this should give you a start toward adding typechecking to your applications.
+TypeScript is hooking us up with some pretty low-effort typechecking for this value. Of course, you can customize this further, but this should give you a start toward adding typechecking to your applications. For more on TypeScript, check out the official docs and the amazing React+TypeScript Cheatsheets on GitHub.
 
-For more on TypeScript, check out the official docs and the amazing
+[typescript-cheatsheets/react: Cheatsheets for experienced React developers getting started with TypeScript](https://github.com/typescript-cheatsheets/react)
 
-React+TypeScript Cheatsheets on GitHub.
+## 10.4 Test-Driven Development
 
-Test-Driven Development
+Test-driven development, or TDD, is a practice — not a technology. It does not mean that you simply have tests for your application. Rather, it's the practice of letting the tests drive the development process. In order to practice TDD, you should follow these steps:
 
-Test-driven development, or TDD, is a practice—not a technology. It does not mean that you simply have tests for your application. Rather, it's the practice of letting the tests drive the development process. In order to practice TDD, you should follow these steps:
+1 Write the tests first. This is the most critical step. You declare what you're building and how it should work first in a test. The steps you'll use to test are red, green, and gold.
 
-Write the tests first
+2 Run the tests and watch them fail (red). Run the tests and watch them fail before you write the code.
 
-This is the most critical step. You declare what you're building and how it should work first in a test. The steps you'll use to test are red, green, and gold.
+3 Write the minimal amount of code required to make the tests pass (green). Focus specifically on making each test pass; do not add any functionality beyond the scope of the test.
 
-Run the tests and watch them fail (red)
+4 Refactor both the code and the tests (gold). Once the tests pass, it's time to take a closer look at your code and your tests. Try to express your code as simply and as beautifully as possible. [2]
 
-Run the tests and watch them fail before you write the code.
+TDD gives us an excellent way to approach a React application, particularly when testing Hooks. It's typically easier to think about how a Hook should work before actually writing it. Practicing TDD will allow you to build and certify the entire data structure for a feature or application independent of the UI.
 
-Write the minimal amount of code required to make the tests pass (green)
+2 [RED, GREEN, REFACTOR - Professional Test-Driven Development with C#: Developing Real World Applications with TDD [Book]](https://www.oreilly.com/library/view/professional-test-driven-development/9780470643204/ch004-sec002.html)
 
-Focus specifically on making each test pass; do not add any functionality beyond the scope of the test.
-
-Refactor both the code and the tests (gold) Once the tests pass, it's time to take a closer look at your code and your tests. Try to express your code as simply and as beautifully as possible.2
-
-TDD gives us an excellent way to approach a React application, particularly when testing Hooks. It's typically easier to think about how a Hook should work before actually writing it. Practicing TDD
-
-will allow you to build and certify the entire data structure for a feature or application independent of the UI.
-
-TDD and Learning
+### 10.4.1 TDD and Learning
 
 If you're new to TDD, or new to the language you're testing, you may find it challenging to write a test before writing code. This is to be expected, and it's OK to write the code before the test until you get the hang of it. Try to work in small batches: a little bit of code, a few tests, and so on. Once you get used to writing tests, it will be easier to write the tests first.
 
 For the remainder of this chapter, we'll be writing tests for code that already exists. Technically, we're not practicing TDD. However, in the next section, we'll pretend that our code does not already exist so we can get a feel for the TDD workflow.
 
-Incorporating Jest
+## 10.5 Incorporating Jest
 
-Before we can get started writing tests, we'll need to select a testing framework. You can write tests for React with any JavaScript testing
-
-framework, but the official React docs recommend testing with Jest, a JavaScript test runner that lets you access the DOM via JSDOM.
+Before we can get started writing tests, we'll need to select a testing framework. You can write tests for React with any JavaScript testing framework, but the official React docs recommend testing with Jest, a JavaScript test runner that lets you access the DOM via JSDOM.
 
 Accessing the DOM is important because you want to be able to check what is rendered with React to ensure your application is working correctly.
 
-Create React App and Testing
+### 10.5.1 Create React App and Testing
 
 Projects that have been initialized with Create React App already come with the jest package installed. We can create another Create React App project to get started, or use an existing one:
 
+```
 npx create-react-app testing
+```
 
 Now we can start thinking about testing with a small example. We'll create two new files in the src folder: functions.js and functions.test.js.
 
-Remember, Jest is already configured and installed in Create React App, so all you need to do is start writing tests. In functions.test.js, we'll stub the tests. In other words, we'll write what we think the function should do.
+Remember, Jest is already configured and installed in Create React App, so all you need to do is start writing tests. In functions.test.js, we'll stub the tests. In other words, we'll write what we think the function should do. 
+
+1『怪不得在 package.json 里没看到 Jest，原来新建 React 项目的时候已经集成进来了。（2021-05-01）』
 
 We want our function to take in a value, multiply it by two, and return it. So we'll model that in the test. The test function is the function that Jest provides to test a single piece of functionality:
 
 functions.test.js
 
+```
 test("Multiplies by two", () => {
-
-expect();
-
+  expect();
 });
+```
 
 The first argument, Multiplies by two, is the test name. The second argument is the function that contains what should be tested and the third (optional) argument specifies a timeout. The default timeout is five seconds.
 
-The next thing we'll do is stub the function that will multiply numbers by two. This function will be referred to as our system under test ( SUT). In functions.js, create the function: export default function timesTwo() {...}
+The next thing we'll do is stub the function that will multiply numbers by two. This function will be referred to as our system under test (SUT). In functions.js, create the function: 
+
+```
+export default function timesTwo() {...}
+```
 
 We'll export it so that we can use the SUT in the test. In the test file, we want to import the function, and we'll use expect to write an assertion. In the assertion, we'll say that if we pass 4 to the timesTwo function, we expect that it should return 8:
 
-import { timesTwo } from "./functions";
+```js
+import { timeTwo } from './function'
 
-test("Multiplies by two", () => {
+test('Multipys by two', () => {
+  expect(timeTwo(4)).toBe(8)
+})
+```
 
-expect(timesTwo(4)).toBe(8);
+Jest「matchers」are returned by the expect function and used to verify results. To test the function, we'll use the `.toBe` matcher. This verifies that the resulting object matches the argument sent to `.toBe`. Let's run the tests and watch them fail using npm test or npm run test. Jest will provide specific details on each failure, including a stack trace:
 
-});
-
-Jest「matchers」are returned by the expect function and used to verify results. To test the function, we'll use the .toBe matcher. This verifies that the resulting object matches the argument sent to .toBe.
-
-Let's run the tests and watch them fail using npm test or npm run test. Jest will provide specific details on each failure, including a stack trace:
-
+```
 FAIL src/functions.test.js
-
 ✕ Multiplies by two (5ms)
-
 ● Multiplies by two
-
 expect(received).toBe(expected) // Object.is equality
-
 Expected: 8
-
 Received: undefined
-
 2 |
-
 3 | test("Multiplies by two", () => {
-
 > 4 | expect(timesTwo(4)).toBe(8);
-
 | ^
-
 5 | });
-
 6 |
-
 at Object.<anonymous> (src/functions.test.js:4:23)
 
 Test Suites: 1 failed, 1 total
-
 Tests: 1 failed, 1 total
-
 Snapshots: 0 total
-
 Time: 1.048s
-
 Ran all test suites related to changed files.
+```
 
-Taking the time to write the tests and run them to watch them fail shows us that our tests are working as intended. This failure feedback represents our to-do list. It's our job to write the minimal code required to make our tests pass.
+Taking the time to write the tests and run them to watch them fail shows us that our tests are working as intended. This failure feedback represents our to-do list. It's our job to write the minimal code required to make our tests pass. Now if we add the proper functionality to the functions.js file, we can make the tests pass:
 
-Now if we add the proper functionality to the functions.js file, we can make the tests pass:
-
+```js
 export function timesTwo(a) {
-
-return a * 2;
-
+  return a * 2;`
 }
+```
 
-The .toBe matcher has helped us test for equality with a single value.
+The .toBe matcher has helped us test for equality with a single value. If we want to test an object or array, we could use .toEqual. Let's go through another cycle with our tests. In the test file, we'll test for equality of an array of objects. We have a list of menu items from the Guy Fieri restaurant in Las Vegas. It's important that we build an object of their ordered items so the customer can get what they want and know what they're supposed to pay. We'll stub the test first:
 
-If we want to test an object or array, we could use .toEqual. Let's go through another cycle with our tests. In the test file, we'll test for equality of an array of objects.
-
-We have a list of menu items from the Guy Fieri restaurant in Las Vegas. It's important that we build an object of their ordered items so the customer can get what they want and know what they're supposed to pay. We'll stub the test first:
-
+```js
 test("Build an order object", () => {
-
-expect();
-
+  expect();
 });
+```
 
 Then we'll stub our function:
 
+```js
 export function order(items) {
-
-// ...
-
+  // ...
 }
+```
 
-Now we'll use the order function in the test file. We'll also assume that we have a starter list of data for an order that we need to transform: import { timesTwo, order } from "./functions"; const menuItems = [
+Now we'll use the order function in the test file. We'll also assume that we have a starter list of data for an order that we need to transform: 
+
+
+
+
+
+
+
+
+
+
+
+import { timesTwo, order } from "./functions"; const menuItems = [
 
 {
 
@@ -1213,7 +1107,7 @@ As you write more tests, grouping them in describe blocks might be a useful enha
 
 This process represents a typical TDD cycle. We wrote the tests first, then wrote code to make the tests pass. Once the tests pass, we can take a closer look at the code to see if there's anything that's worth refactoring for clarity or performance. This approach is very effective when working with JavaScript (or really any other language).
 
-Testing React Components
+## 10.6 Testing React Components
 
 Now that we have a basic understanding of the process behind writing tests, we can start to apply these techniques to component testing in React.
 
@@ -1281,7 +1175,7 @@ The documentation provides more detail about all of the custom matchers that are
 
 When you generated your React project, you may have noticed that a few packages from @testing-library were installed in addition to the basics like React and ReactDOM. React Testing Library is a project that was started by Kent C. Dodds as a way to enforce good testing practices and to expand the testing utilities that were part of the React ecosystem. Testing Library is an umbrella over many testing packages
 
-for libraries like Vue, Svelte, Reason, Angular, and more—it's not just for React.
+for libraries like Vue, Svelte, Reason, Angular, and more — it's not just for React.
 
 One potential reason you might choose React Testing Library is to get better error messages when a test fails. The current error we see when we test the assertion:
 
@@ -1373,10 +1267,11 @@ import "@testing-library/jest-dom/extend-expect";
 
 // learn more: https://github.com/testing-library/jest-dom import "@testing-library/jest-dom/extend-expect"; So if you're using Create React App, you don't even have to include the import in your test files.
 
-Queries
+### 10.6.1 Queries
 
-Queries are another feature of the React Testing Library that allow you to match based on certain criteria. In order to demonstrate using a query, let's adjust the Star component to include a title. This will allow us to write a common style of test—one that matches based on text:
+Queries are another feature of the React Testing Library that allow you to match based on certain criteria. In order to demonstrate using a query, let's adjust the Star component to include a title. This will allow us to write a common style of test — one that matches based on text:
 
+```js
 export default function Star({ selected = false }) {
 
 return (
@@ -1398,11 +1293,13 @@ color={selected ? "red" : "grey"}
 );
 
 }
+```
 
 Let's pause to think about what we're trying to test. We want the component to render, and now we want to test to see if the h1 contains the correct text. A function that's part of React Testing Library, render, will help us do just that. render will replace our need to use ReactDOM.render(), so the test will look a bit different. Start by importing render from React Testing Library:
 
 import { render } from "@testing-library/react"; render will take in one argument: the component or element that we want to render. The function returns an object of queries that can be used to check in with values in that component or element. The query we'll use is getByText, which will find the first matching node for a query and throw an error if no elements match. To return a list of all matching nodes, use getAllBy to return an array:
 
+```js
 test("renders an h1", () => {
 
 const { getByText } = render(<Star />);
@@ -1412,16 +1309,15 @@ const h1 = getByText(/Great Star/);
 expect(h1).toHaveTextContent("Great Star");
 
 });
+```
 
 getByText finds the h1 element via the regular expression that's passed to it. Then we use the Jest matcher toHaveTextContent to describe what text the h1 should include.
 
 Run the tests, and they'll pass. If we change the text passed to the toHaveTextContent() function, the test will fail.
 
-Testing Events
+### 10.6.2 Testing Events
 
-Another important part of writing tests is testing events that are part of components. Let's use and test the Checkbox component we created in
-
-Chapter 7:
+Another important part of writing tests is testing events that are part of components. Let's use and test the Checkbox component we created in Chapter 7:
 
 export function Checkbox() {
 
@@ -1513,9 +1409,7 @@ expect(checkbox.checked).toEqual(false);
 
 });
 
-In this case, selecting the checkbox is pretty easy. We have a label we can use to find the input we want to check. In the event that you don't have such an easy way to access a DOM element, Testing Library gives you another utility you can use to check in with any DOM
-
-element. You'll start by adding an attribute to the element you want to
+In this case, selecting the checkbox is pretty easy. We have a label we can use to find the input we want to check. In the event that you don't have such an easy way to access a DOM element, Testing Library gives you another utility you can use to check in with any DOM element. You'll start by adding an attribute to the element you want to
 
 select:
 
@@ -1545,39 +1439,36 @@ This will do the same thing but is particularly useful when reaching out to DOM 
 
 Once this Checkbox component is tested, we can confidently incorporate it into the rest of the application and reuse it.
 
-Using Code Coverage
+### 10.6.3 Using Code Coverage
 
 Code coverage is the process of reporting on how many lines of code have actually been tested. It provides a metric that can help you decide when you've written enough tests.
 
-Jest ships with Istanbul, a JavaScript tool used to review your tests and generate a report that describes how many statements, branches, functions, and lines have been covered.
+Jest ships with Istanbul, a JavaScript tool used to review your tests and generate a report that describes how many statements, branches, functions, and lines have been covered. To run Jest with code coverage, simply add the coverage flag when you run the jest command:
 
-To run Jest with code coverage, simply add the coverage flag when you run the jest command:
-
+```
 npm test -- --coverage
+```
+
+1『
+
+自己跑的是：
+
+```
+yarn test -- --coverage
+```
+
+』
 
 This report tells you how much of your code in each file has been executed during the testing process and reports on all files that have been imported into tests.
 
-Jest also generates a report that you can run in your browser, which provides more details about what code has been covered by tests. After running Jest with coverage reporting, you'll notice that a coverage folder has been added to the root. In a web browser, open this file:
+Jest also generates a report that you can run in your browser, which provides more details about what code has been covered by tests. After running Jest with coverage reporting, you'll notice that a coverage folder has been added to the root. In a web browser, open this file: /coverage/lcov-report/index.html. It will show you your code coverage in an interactive report.
 
-/coverage/lcov-report/index.html. It will show you your code coverage in an interactive report.
+1『太棒了，直接集成了看测试覆盖率的工具。（2021-05-01）』
 
-This report tells you how much of the code has been covered, as well as the individual coverage based on each subfolder. You can drill down into a subfolder to see how well the individual files within have been covered. If you select the components/ui folder, you'll see how well your user interface components are covered by testing.
+This report tells you how much of the code has been covered, as well as the individual coverage based on each subfolder. You can drill down into a subfolder to see how well the individual files within have been covered. If you select the components/ui folder, you'll see how well your user interface components are covered by testing. You can see which lines have been covered in an individual file by clicking on the filename.
 
-You can see which lines have been covered in an individual file by clicking on the filename.
-
-Code coverage is a great tool to measure the reach of your tests. It's one benchmark to help you understand when you've written enough unit tests for your code. It's not typical to have 100% code coverage in every project. Shooting for anything above 85% is a good target.3
+Code coverage is a great tool to measure the reach of your tests. It's one benchmark to help you understand when you've written enough unit tests for your code. It's not typical to have 100% code coverage in every project. Shooting for anything above 85% is a good target. [3]
 
 Testing can often feel like an extra step, but the tooling around React testing has never been better. Even if you don't test all of your code, starting to think about how to incorporate testing practices can help you save time and money when building production-ready applications.
 
-For a brief introduction to unit testing, see Martin Fowler's article,「Unit Testing」.
-
-1
-
-For more on this development pattern, see Jeff McWherter's and James Bender's「Red,
-
-2 Green, Refactor」.
-
-See Martin Fowler's article,「Test-Coverage」.
-
-3
-
+3 See Martin Fowler's article: [TestCoverage](https://martinfowler.com/bliki/TestCoverage.html).
