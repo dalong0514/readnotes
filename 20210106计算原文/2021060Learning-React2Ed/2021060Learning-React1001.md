@@ -1,34 +1,28 @@
 # 1001. React Testing
 
-In order to keep up with our competitors, we must move quickly while ensuring quality. One vital tool that allows us to do this is unit testing.
-
-Unit testing makes it possible to verify that every piece, or unit, of our application functions as intended.1
+In order to keep up with our competitors, we must move quickly while ensuring quality. One vital tool that allows us to do this is unit testing. Unit testing makes it possible to verify that every piece, or unit, of our application functions as intended.1
 
 One benefit of practicing functional techniques is that they lend themselves to writing testable code. Pure functions are naturally testable. Immutability is easily testable. Composing applications out of small functions designed for specific tasks produces testable functions or units of code.
 
 In this section, we'll demonstrate techniques that can be used to unit test React applications. This chapter will not only cover testing, but also tools that can be used to help evaluate and improve your code and your tests.
 
-ESLint
+## 10.1 ESLint
 
-In most programming languages, code needs to be compiled before you can run anything. Programming languages have pretty strict rules about coding style and will not compile until the code is formatted appropriately. JavaScript does not have those rules and does not come with a compiler. We write code, cross our fingers, and run it in the browser to see if it works or not. The good news is that there are tools
+In most programming languages, code needs to be compiled before you can run anything. Programming languages have pretty strict rules about coding style and will not compile until the code is formatted appropriately. JavaScript does not have those rules and does not come with a compiler. We write code, cross our fingers, and run it in the browser to see if it works or not. The good news is that there are tools we can use to analyze our code and make us stick to specific formatting guidelines.
 
-we can use to analyze our code and make us stick to specific formatting guidelines.
+The process of analyzing JavaScript code is called hinting or linting. JSHint and JSLint are the original tools used to analyze JavaScript and provide feedback about formatting. ESLint is the latest code linter that supports emerging JavaScript syntax. Additionally, ESLint is pluggable. This means we can create and share plug-ins that can be added to ESLint configurations to extend its capabilities.
 
-The process of analyzing JavaScript code is called hinting or linting.
-
-JSHint and JSLint are the original tools used to analyze JavaScript and provide feedback about formatting. ESLint is the latest code linter that supports emerging JavaScript syntax. Additionally, ESLint is pluggable. This means we can create and share plug-ins that can be added to ESLint configurations to extend its capabilities.
-
-ESLint is supported out of the box with Create React App, and we've already seen lint warnings and errors appear in the console.
-
-We'll be working with a plug-in called eslint-plugin-react. This plug-in will analyze our JSX and React syntax in addition to our JavaScript.
+ESLint is supported out of the box with Create React App, and we've already seen lint warnings and errors appear in the console. We'll be working with a plug-in called eslint-plugin-react. This plug-in will analyze our JSX and React syntax in addition to our JavaScript.
 
 Let's install eslint as a dev dependency. We can install eslint with npm:
 
+```
 npm install eslint --save-dev
 
 # or
 
 yarn add eslint --dev
+```
 
 Before we use ESLint, we'll need to define some configuration rules that we can agree to follow. We'll define these in a configuration file that's located in our project root. This file can be formatted as JSON or YAML. YAML is a data serialization formation like JSON but with less syntax, making it a little easier for humans to read.
 
@@ -36,6 +30,7 @@ ESLint comes with a tool that helps us set up configuration. There are several c
 
 We can create an ESLint configuration by running eslint --init and answering some questions about our coding style:
 
+```
 npx eslint --init
 
 How would you like to configure ESLint?
@@ -65,198 +60,109 @@ JSON
 Would you like to install them now with npm?
 
 Y
+```
 
 After npx eslint --init runs, three things happen:
 
-1. eslint-plugin-react is installed locally to the
+1 eslint-plugin-react is installed locally to the `./node_modules` folder.
 
-./node_modules folder.
+2 These dependencies are automatically added to the package.json file.
 
-2. These dependencies are automatically added to the
-
-package.json file.
-
-3. A configuration file, .eslintrc.json, is created and added to the
-
-root of our project.
+3 A configuration file, .eslintrc.json, is created and added to the root of our project.
 
 If we open .eslintrc.json, we'll see an object of settings:
-
-{
-
-"env" : {
-
-"browser" : true,
-
-"es6" : true
-
-},
-
-"extends" : [
-
-"eslint:recommended",
-
-"plugin:react/recommended"
-
-],
-
-"globals" : {
-
-"Atomics" : "readonly",
-
-"SharedArrayBuffer" : "readonly"
-
-},
-
-"parserOptions" : {
-
-"ecmaFeatures" : {
-
-"jsx" : true
-
-},
-
-"ecmaVersion" : 2018,
-
-"sourceType" : "module"
-
-},
-
-"plugins" : ["react"],
-
-"rules" : {}
-
-}
 
 Importantly, if we look at the extends key, we'll see that our --init command initalized defaults for eslint and react. This means that we don't have to manually configure all of the rules. Instead, those rules are provided to us.
 
 Let's test our ESLint configuration and these rules by creating a sample.js file:
 
-const gnar = "gnarly";
+This file has some issues, but nothing that would cause errors in the browser. Technically, this code works just fine. Let's run ESLint on this file and see what feedback we get based on our customized rules: 
 
-const info = ({
+```
+npx eslint sample.js
 
-file = __filename,
-
-dir = __dirname
-
-}) => (
-
-<p>
-
-{dir}: {file}
-
-</p>
-
-);
-
-switch (gnar) {
-
-default:
-
-console.log("gnarly");
-
-break;
-
-}
-
-This file has some issues, but nothing that would cause errors in the browser. Technically, this code works just fine. Let's run ESLint on this file and see what feedback we get based on our customized rules: npx eslint sample.js
-
-3:7 error 'info' is assigned a value but never used no-unused-vars 4:3 error 'file' is missing in props validation react/prop-types 4:10 error 'filename' is not defined no-undef
-
-5:3 error 'dir' is missing in props validation react/prop-types 5:9 error 'dirname' is not defined no-undef
-
+3:7 error 'info' is assigned a value but never used no-unused-vars 
+4:3 error 'file' is missing in props validation react/prop-types 
+4:10 error 'filename' is not defined no-undef
+5:3 error 'dir' is missing in props validation react/prop-types 
+5:9 error 'dirname' is not defined no-undef
 7:3 error 'React' must be in scope when using JSX react/react-in-jsx-scope
-
 ✖ 6 problems (6 errors, 0 warnings)
+```
 
-ESLint has performed a static analysis of our code and is reporting some issues based on our configuration choices. There are errors about property validation, and ESLint also complains about __filename and __dirname because it does not automatically include Node.js globals.
+ESLint has performed a static analysis of our code and is reporting some issues based on our configuration choices. There are errors about property validation, and ESLint also complains about `__filename` and `__dirname` because it does not automatically include Node.js globals.
 
-And finally, ESLint's default React warnings let us know that React
+And finally, ESLint's default React warnings let us know that React must be in scope when using JSX.
 
-must be in scope when using JSX.
+The command eslint . will lint our entire directory. To do this, we'll most likely require that ESLint ignore some JavaScript files. The .eslintignore file is where we can add files or directories for ESLint to ignore:
 
-The command eslint . will lint our entire directory. To do this, we'll most likely require that ESLint ignore some JavaScript files. The
-
-.eslintignore file is where we can add files or directories for ESLint to ignore:
-
+```
 dist/assets/
-
 sample.js
+```
 
 This .eslintignore file tells ESLint to ignore our new sample.js file as well as anything in the dist/assets folder. If we don't ignore the assets folder, ESLint will analyze the client bundle.js file, and it will probably find a lot to complain about in that file.
 
 Let's add a script to our package.json file for running ESLint:
 
+```json
 {
-
-"scripts" : {
-
-"lint" : "eslint ."
-
+  "scripts" : {
+    "lint" : "eslint ."
+  }
 }
-
-}
+```
 
 Now ESLint can be run any time we want with npm run lint, and it will analyze all of the files in our project except the ones we've ignored.
 
-ESLint Plug-Ins
+### 10.1.1 ESLint Plug-Ins
 
-There are a multitude of plug-ins that can be added to your ESLint configuration to help you as you're writing code. For a React project, you'll definitely want to install eslint-plugin-react-hooks, a plug-
-
-in to enforce the rules of React Hooks. This package was released by the React team to help fix bugs related to Hooks usage.
+There are a multitude of plug-ins that can be added to your ESLint configuration to help you as you're writing code. For a React project, you'll definitely want to install eslint-plugin-react-hooks, a plug-in to enforce the rules of React Hooks. This package was released by the React team to help fix bugs related to Hooks usage.
 
 Start by installing it:
 
+```
 npm install eslint-plugin-react-hooks --save-dev
 
 # OR
 
 yarn add eslint-plugin-react-hooks --dev
+```
 
 Then, open the .eslintrc.json file and add the following:
 
+```json
 {
-
 "plugins": [
-
 // ...
-
 "react-hooks"
-
 ],
-
 "rules": {
-
 "react-hooks/rules-of-hooks": "error",
-
 "react-hooks/exhaustive-deps": "warn"
-
 }
-
 }
+```
 
-This plug-in will check to ensure that functions that start with the word
+This plug-in will check to ensure that functions that start with the word "use" (assumed to be a hook) are following the rules of Hooks.
 
-「use」(assumed to be a hook) are following the rules of Hooks.
+Once this has been added, we'll write some sample code to test the plug-in. Adjust the code in sample.js. Even though this code won't run, we're testing to see if the plug-in is working appropriately: 
 
-Once this has been added, we'll write some sample code to test the plug-in. Adjust the code in sample.js. Even though this code won't run, we're testing to see if the plug-in is working appropriately: function gnar() {
-
-const [nickname, setNickname] = useState(
-
-"dude"
-
-);
-
-return <h1>gnarly</h1>;
-
+```js
+function gnar() {
+  const [nickname, setNickname] = useState(
+    "dude"
+  );
+  return <h1>gnarly</h1>;
 }
+```
 
 Several errors will pop up from this code, but most importantly, there's the error that lets us know we're trying to call useState in a function that isn't a component or a hook:
 
+```
 4:35 error React Hook "useState" is called in function "gnar" that is neither
-
 a React function component nor a custom React Hook function react-hooks/rules-of-hooks
+```
 
 These shoutouts will help us along the way as we learn the ins and outs of working with Hooks.
 
@@ -266,14 +172,17 @@ This plug-in will analyze your code and ensure that it's not breaking any access
 
 To install, we'll use npm or yarn again:
 
+```
 npm install eslint-plugin-jsx-a11y
 
 // or
 
 yarn add eslint-plugin-jsx-a11y
+```
 
 Then we'll add to our config, .eslintrc.json:
 
+```json
 {
 
 "extends" : [
@@ -293,38 +202,40 @@ Then we'll add to our config, .eslintrc.json:
 ]
 
 }
+```
 
 Now let's test it. We'll adjust our sample.js file to include an image tag that has no alt property. In order for an image to pass a lint check, it must have an alt prop or an empty string if the image doesn't affect the user's understanding of the content:
 
+```js
 function Image() {
-
-return <img src="/img.png" />;
-
+  return <img src="/img.png" />;
 }
+```
 
 If we run lint again with npm run lint, we'll see that there's a new error that's called by the jsx/a11y plug-in:
 
+```
 5:10 error img elements must have an alt prop, either with meaningful text,
-
 or an empty string for decorative images
+```
 
 There are many other ESLint plug-ins you can use to statically analyze your code, and you could spend weeks tuning your ESLint config to perfection. If you're looking to take yours to the next level, there are many useful resources in the Awesome ESLint repository.
 
-Prettier
+## 10.2 Prettier
 
-Prettier is an opinionated code formatter you can use on a range of
-
-projects. The effect Prettier has had on the day-to-day work of web developers since its release has been pretty incredible. Based on historical records, arguing over syntax filled 87% of an average JavaScript developer's day, but now Prettier handles code formatting and defining the rules around what code syntax should be used per project. The time savings are significant. Also, if you've ever unleashed Prettier on a Markdown table, the quick, crisp formatting that occurs is a pretty incredible sight to behold.
+Prettier is an opinionated code formatter you can use on a range of projects. The effect Prettier has had on the day-to-day work of web developers since its release has been pretty incredible. Based on historical records, arguing over syntax filled 87% of an average JavaScript developer's day, but now Prettier handles code formatting and defining the rules around what code syntax should be used per project. The time savings are significant. Also, if you've ever unleashed Prettier on a Markdown table, the quick, crisp formatting that occurs is a pretty incredible sight to behold.
 
 ESLint used to be in charge of code formatting for many projects, but now there's a clear delineation of responsibilities. ESLint handles code-quality concerns. Prettier handles code formatting.
 
 To make Prettier work with ESLint, we'll tinker with the configuration of our project a bit more. You can install Prettier globally to get started:
 
+```
 sudo npm install -g prettier
+```
 
 Now you can use Prettier anywhere on any project.
 
-Configuring Prettier by Project
+### 10.2.1 Configuring Prettier by Project
 
 To add a Prettier configuration file to your project, you can create a
 

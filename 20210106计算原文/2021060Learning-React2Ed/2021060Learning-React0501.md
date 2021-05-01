@@ -1,18 +1,14 @@
 # 0501. React with JSX
 
-In the last chapter, we dove deep into how React works, breaking down our React applications into small reusable pieces called components.
-
-These components render trees of elements and other components.
+In the last chapter, we dove deep into how React works, breaking down our React applications into small reusable pieces called components. These components render trees of elements and other components.
 
 Using the createElement function is a good way to see how React works, but as React developers, that's not what we do. We don't go around composing complex, barely readable trees of JavaScript syntax and call it fun. In order to work efficiently with React, we need one more thing: JSX.
 
-JSX combines the JS from JavaScript and the X from XML. It is a JavaScript extension that allows us to define React elements using a tag-based syntax directly within our JavaScript code. Sometimes JSX
-
-is confused with HTML because they look similar. JSX is just another way of creating React elements, so you don't have to pull your hair out looking for the missing comma in a complex createElement call.
+JSX combines the JS from JavaScript and the X from XML. It is a JavaScript extension that allows us to define React elements using a tag-based syntax directly within our JavaScript code. Sometimes JSX is confused with HTML because they look similar. JSX is just another way of creating React elements, so you don't have to pull your hair out looking for the missing comma in a complex createElement call.
 
 In this chapter, we're going to discuss how to use JSX to construct a React application.
 
-React Elements as JSX
+## 5.1 React Elements as JSX
 
 Facebook's React team released JSX when they released React to provide a concise syntax for creating complex DOM trees with attributes. They also hoped to make React more readable like HTML
 
@@ -1290,6 +1286,4 @@ This will create a production-ready bundle that has been transformed and minifie
 
 Create React App is a great tool for beginners and experienced React developers alike. As the tool evolves, more functionality will likely be added, so you can keep an eye on the changes on GitHub. Another way to get started with React without having to worry about setting up your own customized webpack build is to use CodeSandbox. CodeSandbox is an IDE that runs online at https://codesandbox.io.
 
-In this chapter, we leveled up our React skills by learning about JSX.
-
-We created components. We broke those components into a project structure, and we learned more about Babel and webpack. Now we're ready to take our knowledge of components to the next level. It's time to talk about Hooks.
+In this chapter, we leveled up our React skills by learning about JSX. We created components. We broke those components into a project structure, and we learned more about Babel and webpack. Now we're ready to take our knowledge of components to the next level. It's time to talk about Hooks.

@@ -256,9 +256,7 @@ You can now skip the second setup option, and go to the Overview section to get 
 
 Setup Option 2: Local Development Environment
 
-This is completely optional and not required for this tutorial!
-
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+This is completely optional and not required for this tutorial! This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
 
 1 Make sure you have a recent version of Node.js installed.
 
