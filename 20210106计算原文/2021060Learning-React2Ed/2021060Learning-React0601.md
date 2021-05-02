@@ -10,7 +10,7 @@ In this chapter, we're going to bring applications to life by introducing
 
 state. We'll learn to create stateful components and how state can be sent down a component tree and user interactions back up the component tree. We'll learn techniques for collecting form data from users. And we'll take a look at the various ways in which we can separate concerns within our applications by introducing stateful context providers.
 
-Building a Star Rating Component
+## 6.1 Building a Star Rating Component
 
 We would all be eating terrible food and watching terrible movies without the five-star rating system. If we plan on letting users drive the content on our website, we'll need a way to know if that content is any good or not. That makes the StarRating component one of the most important React components you'll ever build (see Figure 6-1).
 
@@ -18,33 +18,33 @@ Figure 6-1. StarRating component
 
 The StarRating component will allow users to rate content based on a specific number of stars. Content that's no good gets one star. Highly recommended content gets five stars. Users can set the rating for specific content by clicking on a specific star. First, we'll need a star, and we can get one from react-icons:
 
+```
 npm i react-icons
+```
 
 react-icons is an npm library that contains hundreds of SVG icons that are distributed as React components. By installing it, we just installed several popular icon libraries that contain hundreds of common SVG icons. You can browse all the icons in the library. We're going to use the star icon from the Font Awesome collection: import React from "react";
 
+```js
 import { FaStar } from "react-icons/fa"; export default function StarRating() {
-
-return [
-
-<FaStar color="red" />,
-
-<FaStar color="red" />,
-
-<FaStar color="red" />,
-
-<FaStar color="grey" />,
-
-<FaStar color="grey" />
-
-];
-
+  return [
+    <FaStar color="red" />,
+    <FaStar color="red" />,
+    <FaStar color="red" />,
+    <FaStar color="grey" />,
+    <FaStar color="grey" />
+  ];
 }
+```
 
-Here, we've created a StarRating component that renders five SVG
+Here, we've created a StarRating component that renders five SVG stars that we've imported from react-icons. The first three stars are filled in with red, and the last two are grey. We render the stars first because seeing them gives us a roadmap for what we'll have to build.
 
-stars that we've imported from react-icons. The first three stars are filled in with red, and the last two are grey. We render the stars first because seeing them gives us a roadmap for what we'll have to build.
+A selected star should be filled in with red, and a star that's not selected should be greyed out. Let's create a component that automatically files the stars based upon the selected property: 
 
-A selected star should be filled in with red, and a star that's not selected should be greyed out. Let's create a component that automatically files the stars based upon the selected property: const Star = ({ selected = false }) => (
+
+
+
+
+const Star = ({ selected = false }) => (
 
 <FaStar color={selected ? "red" : "grey"} />
 

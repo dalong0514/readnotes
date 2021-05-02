@@ -24,9 +24,13 @@ In the past, websites consisted of independent HTML pages. When the user navigat
 
 In an SPA, the browser initially loads one HTML document. As users navigate through the site, they actually stay on the same page. JavaScript destroys and creates a new user interface as the user interacts with the application. It may feel as though you're jumping from page to page, but you're actually still on the same HTML page, and JavaScript is doing the heavy lifting.
 
+2『 SPA 做一张术语卡片。（2021-05-02）』—— 已完成
+
 The DOM API is a collection of objects that JavaScript can use to interact with the browser to modify the DOM. If you've used document.createElement or document.appendChild, you've worked with the DOM API.
 
 React is a library that's designed to update the browser DOM for us. We no longer have to be concerned with the complexities associated with building high-performing SPAs because React can do that for us. With React, we do not interact with the DOM API directly. Instead, we provide instructions for what we want React to build, and React will take care of rendering and reconciling the elements we've instructed it to create.
+
+2『 DOM API（React DOM）是一个 JS 库，这个库帮我们跟浏览器的 DOM 打交道。React DOM 和 React elements 做一张术语卡片。（2021-05-02）』—— 已完成
 
 The browser DOM is made up of DOM elements. Similarly, the React DOM is made up of React elements. DOM elements and React elements may look the same, but they're actually quite different. A React element is a description of what the actual DOM element should look like. In other words, React elements are the instructions for how the browser DOM should be created.
 
@@ -98,6 +102,8 @@ ReactDOM.render([dish, dessert], document.getElementById("root"));
 ```
 
 This will render both of these elements as siblings inside of the root container. We hope you just clapped and screamed! In the next section, we'll get an understanding of how to use props.children.
+
+2『如何同时渲染多个 React Elements，做一张任意卡片。（2021-05-02）』
 
 ### 4.3.1 Children
 
@@ -239,6 +245,8 @@ React.createElement(
 );
 ```
 
+1-2『首次看到使用 map 函数生成 React Elements 数组，对我意义重大。做一张主题卡片。（2021-05-02）』—— 已完成
+
 This syntax creates a React element for each ingredient in the array. Each string is displayed in the list item's children as text. The value for each ingredient is displayed as the list item. When running this code, you'll see a console warning like the one shown in Figure 4-1.
 
 Figure 4-1. Console warning
@@ -266,7 +274,9 @@ In React, we describe each of these parts as a component. Components allow us to
 
 When considering a user interface you want to build with React, look for opportunities to break down your elements into reusable pieces. For example, the recipes in Figure 4-3 have a title, ingredients list, and instructions. All are part of a larger recipe or app component. We could create a component for each of the highlighted parts: ingredients, instructions, and so on.
 
-Figure 4-3. Each component is outlined: App, IngredientsList, Instructions Think about how scalable this is. If we want to display one recipe, our component structure will support this. If we want to display 10,000 recipes, we'll just create 10,000 new instances of that component.
+Figure 4-3. Each component is outlined: App, IngredientsList, Instructions 
+
+Think about how scalable this is. If we want to display one recipe, our component structure will support this. If we want to display 10,000 recipes, we'll just create 10,000 new instances of that component.
 
 We'll create a component by writing a function. That function will return a reusable part of a user interface. Let's create a function that returns an unordered list of ingredients. This time, we'll make dessert with a function called IngredientsList:
 
@@ -310,6 +320,8 @@ The component's name is IngredientsList, and the function outputs elements that 
 ```
 
 This is pretty cool, but we've hardcoded this data into the component. What if we could build one component and then pass data into that component as properties? And then what if that component could render the data dynamically? Maybe someday that will happen!
+
+2『下面有关创建 React Elements 时直接传递「数据」作为组件的属性，做一张主题卡片。（2021-05-02）』—— 已完成
 
 Just kidding — that day is now. Here's an array of secretIngredients needed to put together a recipe:
 

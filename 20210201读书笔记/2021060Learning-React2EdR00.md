@@ -1206,6 +1206,163 @@ In this chapter, we've introduced functional programming principles.
 
 Throughout the book when we discuss best practices in React, we'll continue to demonstrate how many React concepts are based in functional techniques. In the next chapter, we'll dive into React officially with an improved understanding of the principles that guided its development.
 
+### 0107. 主题卡 —— 使用 map 函数生成一系列 React Elements
+
+信息源自「2021060Learning-React0401.md」
+
+The major advantage of using React is its ability to separate data from UI elements. Since React is just JavaScript, we can add JavaScript logic to help us build the React component tree. For example, ingredients can be stored in an array, and we can map that array to the React elements.
+
+Let's go back and think about the unordered list for a moment: 
+
+```js
+React.createElement( 
+  "ul", 
+  null, 
+  React.createElement("li", null, "2 lb salmon"), 
+  React.createElement("li", null, "5 sprigs fresh rosemary"), 
+  React.createElement("li", null, "2 tablespoons olive oil"), 
+  React.createElement("li", null, "2 small lemons"), 
+  React.createElement("li", null, "1 teaspoon kosher salt"), 
+  React.createElement("li", null, "4 cloves of chopped garlic") 
+);
+```
+
+The data used in this list of ingredients can easily be represented using a JavaScript array:
+
+```js
+const items = [ 
+  "2 lb salmon", 
+  "5 sprigs fresh rosemary", 
+  "2 tablespoons olive oil", 
+  "2 small lemons", 
+  "1 teaspoon kosher salt", 
+  "4 cloves of chopped garlic" 
+];
+```
+
+We want to use this data to generate the correct number of list items without having to hard-code each one. We can map over the array and create list items for as many ingredients as there are:
+
+```js
+React.createElement( 
+  "ul", { className: "ingredients" }, 
+  items.map(ingredient => React.createElement("li", null, ingredient)) 
+);
+```
+
+1-2『首次看到使用 map 函数生成一系列 React Elements，对我意义重大。做一张主题卡片。（2021-05-02）』—— 已完成
+
+This syntax creates a React element for each ingredient in the array. Each string is displayed in the list item's children as text. The value for each ingredient is displayed as the list item. When running this code, you'll see a console warning like the one shown in Figure 4-1.
+
+Figure 4-1. Console warning
+
+When we build a list of child elements by iterating through an array, React likes each of those elements to have a key property. The key property is used by React to help it update the DOM efficiently. You can make this warning go away by adding a unique key property to each of the list item elements. You can use the array index for each ingredient as that unique value:
+
+```js
+React.createElement( 
+  "ul", 
+  { className: "ingredients" }, 
+  items.map((ingredient, i) => 
+    React.createElement("li", { key: i }, ingredient) ) 
+);
+```
+
+We'll cover keys in more detail when we discuss JSX, but adding this to each list item will clear the console warning.
+
+### 0108. 主题卡 —— 创建 React Elements 时直接传递「数据」作为组件的属性
+
+信息源自「2021060Learning-React0401.md」
+
+This is pretty cool, but we've hardcoded this data into the component. What if we could build one component and then pass data into that component as properties? And then what if that component could render the data dynamically? Maybe someday that will happen!
+
+2『下面有关创建 React Elements 时直接传递「数据」作为组件的属性，做一张主题卡片。（2021-05-02）』—— 已完成
+
+Just kidding — that day is now. Here's an array of secretIngredients needed to put together a recipe:
+
+```js
+const secretIngredients = [
+  "1 cup unsalted butter", 
+  "1 cup crunchy peanut butter", 
+  "1 cup brown sugar", 
+  "1 cup white sugar", 
+  "2 eggs", 
+  "2.5 cups all purpose flour", 
+  "1 teaspoon baking powder", 
+  "0.5 teaspoon salt" 
+];
+```
+
+Then we'll adjust the IngredientsList component to map over these items, constructing an li for however many items are in the items array:
+
+```js
+function IngredientsList() {
+  return React.createElement( 
+    "ul", 
+    { className: "ingredients" }, 
+    items.map((ingredient, i) => 
+      React.createElement("li", { key: i }, ingredient) 
+    ) 
+  );
+}
+```
+
+Then we'll pass those secretIngredients as a property called items, which is the second argument used in createElement:
+
+```js
+ReactDOM.render( 
+  React.createElement(IngredientsList, { items: secretIngredients }, null),
+  document.getElementById("root") 
+);
+```
+
+Now, let's look at the DOM. The data property items is an array with eight ingredients. Because we made the li tags using a loop, we were able to add a unique key using the index of the loop:
+
+```js
+<IngredientsList items="[...]">
+  <ul className="ingredients">
+    <li key="0">1 cup unsalted butter</li> 
+    <li key="1">1 cup crunchy peanut butter</li>
+    <li key="2">1 cup brown sugar</li>
+    <li key="3">1 cup white sugar</li>
+    <li key="4">2 eggs</li>
+    <li key="5">2.5 cups all purpose flour</li>
+    <li key="6">1 teaspoon baking powder</li>
+    <li key="7">0.5 teaspoon salt</li>
+  </ul> 
+</IngredientsList>
+```
+
+Creating our component this way will make the component more flexible. Whether the items array is one item or a hundred items long, the component will render each as a list item.
+
+Another adjustment we can make here is to reference the items array from React props. Instead of mapping over the global items, we'll make items available on the props object. Start by passing props to the function, then mapping over props.items:
+
+```js
+function IngredientsList(props) {
+  return React.createElement( 
+    "ul", 
+    { className: "ingredients" }, 
+    props.items.map((ingredient, i) => 
+      React.createElement("li", { key: i }, ingredient) 
+    ) 
+  );
+}
+```
+
+We could also clean up the code a bit by destructuring items from props:
+
+```js
+function IngredientsList({ items }) { 
+  return React.createElement( 
+    "ul", 
+    { className: "ingredients" }, 
+    items.map((ingredient, i) => 
+      React.createElement("li", { key: i }, ingredient) 
+    ) 
+  );
+}
+```
+
+Everything that's associated with the UI for IngredientsList is encapsulated into one component. Everything we need is right there.
+
 ### 0201. 术语卡 —— Declarative Programming and Imperative Programming
 
 信息源自「2021060Learning-React0301.md」
@@ -1295,9 +1452,65 @@ render(<Welcome />, document.getElementById("target"));
 
 React is declarative. Here, the Welcome component describes the DOM that should be rendered. The render function uses the instructions declared in the component to build the DOM, abstracting away the details of how the DOM is to be rendered. We can clearly see that we want to render our Welcome component into the element with the ID of target.
 
-### 0202. 术语卡 ——
+### 0202. 术语卡 —— SPA
 
-### 0203. 术语卡 ——
+信息源自「2021060Learning-React0401.md」
+
+In the past, websites consisted of independent HTML pages. When the user navigated these pages, the browser would request and load different HTML documents. The invention of AJAX (Asynchronous JavaScript and XML) brought us the single-page application, or SPA. Since browsers could request and load tiny bits of data using AJAX, entire web applications could now run out of a single page and rely on JavaScript to update the user interface.
+
+In an SPA, the browser initially loads one HTML document. As users navigate through the site, they actually stay on the same page. JavaScript destroys and creates a new user interface as the user interacts with the application. It may feel as though you're jumping from page to page, but you're actually still on the same HTML page, and JavaScript is doing the heavy lifting.
+
+2『 SPA 做一张术语卡片。（2021-05-02）』—— 已完成
+
+### 0203. 术语卡 —— React DOM 和 React elements
+
+React DOM 和 React elements 是 React 的核心。
+
+信息源自「2021060Learning-React0401.md」
+
+The DOM API is a collection of objects that JavaScript can use to interact with the browser to modify the DOM. If you've used document.createElement or document.appendChild, you've worked with the DOM API.
+
+React is a library that's designed to update the browser DOM for us. We no longer have to be concerned with the complexities associated with building high-performing SPAs because React can do that for us. With React, we do not interact with the DOM API directly. Instead, we provide instructions for what we want React to build, and React will take care of rendering and reconciling the elements we've instructed it to create.
+
+2『 DOM API（React DOM）是一个 JS 库，这个库帮我们跟浏览器的 DOM 打交道。React DOM 和 React elements 做一张术语卡片。（2021-05-02）』—— 已完成
+
+The browser DOM is made up of DOM elements. Similarly, the React DOM is made up of React elements. DOM elements and React elements may look the same, but they're actually quite different. A React element is a description of what the actual DOM element should look like. In other words, React elements are the instructions for how the browser DOM should be created.
+
+We can create a React element to represent an h1 using React.createElement:
+
+```js
+React.createElement("h1", { id: "recipe-0" }, "Baked Salmon"); 
+```
+
+The first argument defines the type of element we want to create. In this case, we want to create an h1 element. The second argument represents the element's properties. This h1 currently has an id of recipe-0. The third argument represents the element's children: any nodes that are inserted between the opening and closing tag (in this case, just some text).
+
+During rendering, React will convert this element to an actual DOM element:
+
+```html
+<h1 id="recipe-0" > Baked Salmon</h1> 
+```
+
+The properties are similarly applied to the new DOM element: the properties are added to the tag as attributes, and the child text is added as text within the element. A React element is just a JavaScript literal that tells React how to construct the DOM element. If you were to log this element, it would look like this:
+
+```json
+{
+  $$typeof: Symbol(React.element),
+  "type": "h1",
+  "key": null,
+  "ref": null,
+  "props": {id: "recipe-0", children: "Baked Salmon"},
+  "_owner": null,
+  "_store": {}
+}
+```
+
+This is the structure of a React element. There are fields that are used by React: `_owner`, `_store`, and `$$typeof`. The key and ref fields are important to React elements, but we'll introduce those later. For now, let's take a closer look at the type and props fields.
+
+The type property of the React element tells React what type of HTML or SVG element to create. The props property represents the data and child elements required to construct a DOM element. The children property is for displaying other nested elements as text.
+
+CREATING ELEMENTS
+
+We're taking a peek at the object that React.createElement returns. You won't actually create these elements by hand; instead, you'll use the React.createElement function.
 
 ### 0301. 金句卡 ——
 
@@ -1373,7 +1586,7 @@ These missing parentheses are the source of countless bugs in JavaScript and Rea
 
 1『解惑了解惑了，很多地方看到了这种语句，箭头函数返回对象，做一张信息数据卡片。（2021-04-29）』—— 已完成
 
-### 0601. 任意卡 —— 通过 reduce 实现数据去重
+### 0501. 任意卡 —— 通过 reduce 实现数据去重
 
 信息源自「2021060Learning-React0301.md」
 
@@ -1395,6 +1608,41 @@ console.log(uniqueColors);
 In this example, the colors array is reduced to an array of distinct values. The second argument sent to the reduce function is an empty array. This will be the initial value for distinct. When the distinct array does not already contain a specific color, it will be added.
 
 Otherwise, it will be skipped, and the current distinct array will be returned. map and reduce are the main weapons of any functional programmer, and JavaScript is no exception. If you want to be a proficient JavaScript engineer, then you must master these functions. The ability to create one dataset from another is a required skill and is useful for any type of programming paradigm.
+
+### 0502. 任意卡 —— 如何同时渲染多个 React Elements
+
+信息源自「2021060Learning-React0301.md」
+
+We can render a React element, including its children, to the DOM with ReactDOM.render. The element we want to render is passed as the first argument, and the second argument is the target node, where we should render the element:
+
+```js
+const dish = React.createElement("h1", null, "Baked Salmon"); 
+ReactDOM.render(dish, document.getElementById("root"));
+```
+
+Rendering the title element to the DOM would add an h1 element to the div with the id of root, which we would already have defined in our HTML. We build this div inside the body tag:
+
+```html
+<body>
+  <div id="root" >
+    <h1> Baked Salmon</h1>
+  </div>
+</body>
+```
+
+Anything related to rendering elements to the DOM is found in the ReactDOM package. In versions of React earlier than React 16, you could only render one element to the DOM. Today, it's possible to render arrays as well. When the ability to do this was announced at ReactConf 2017, everyone clapped and screamed. It was a big deal.
+
+This is what that looks like:
+
+```js
+const dish = React.createElement("h1", null, "Baked Salmon");
+const dessert = React.createElement("h2", null, "Coconut Cream Pie"); 
+ReactDOM.render([dish, dessert], document.getElementById("root")); 
+```
+
+This will render both of these elements as siblings inside of the root container. We hope you just clapped and screamed! In the next section, we'll get an understanding of how to use props.children.
+
+2『如何同时渲染多个 React Elements，做一张任意卡片。（2021-05-02）』
 
 ## Preface
 

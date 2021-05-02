@@ -6,7 +6,7 @@ In the last chapter, we introduced useState, useRef, and useContext, and we saw 
 
 We'll also look at useCallback and useMemo, which can help optimize our components for performance.
 
-Introducing useEffect
+## 7.1 Introducing useEffect
 
 We now have a good sense of what happens when we render a component. A component is simply a function that renders a user interface. Renders occur when the app first loads and when props and
 
