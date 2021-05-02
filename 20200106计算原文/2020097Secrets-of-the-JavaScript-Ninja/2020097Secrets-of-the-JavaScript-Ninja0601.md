@@ -400,10 +400,10 @@ next 函数调用后，生成器就开始执行代码，当代码执行到 yield
 
 
 
-执行这段代码后会输出 Sun Tzu、Hattori、Yoshi、Genghis Khan。第一个输出 Sun Tzu 不会让你感到意外，因为它就是 WarriorGenerator 生成器得到的第一个值。而对于第二个输出的值是 Hattori，我们需要解释一下了。在迭代器上使用 yield * 操作符，程序会跳转到另外一个生成器上执行。本例中，程序从 WarriorGenerator 跳转到一个新的 NinjaGenerator 生成器上，每次调用 WarriorGenerator 返回迭代器的 next 方法，都会使执行重新寻址到了 NinjaGenerator 上。该生成器会一直持有执行权直到无工作可做。所以我们本例中生成 Sun Tzu 之后紧接的是 Hattori 和 Yoshi。仅当 NinjaGenerator 的工作完成后，调用原来的迭代器才会继续输出值 Genghis Khan。注意，对于调用最初的迭代器代码来说，这一切都是透明的。for-of 循环不会关心 WarriorGenerator 委托到另一个生成器上，它只关心在 done 状态到来之前都一直调用 next 方法。现在，对于生成器一般的工作，以及如何代理到其他生成器的工作上，你都已经有所掌握了。让我们看看几个实践中的例子。
 
 
 
+执行这段代码后会输出 Sun Tzu、Hattori、Yoshi、Genghis Khan。第一个输出 Sun Tzu 不会让你感到意外，因为它就是 WarriorGenerator 生成器得到的第一个值。而对于第二个输出的值是 Hattori，我们需要解释一下了。在迭代器上使用 `yield *` 操作符，程序会跳转到另外一个生成器上执行。本例中，程序从 WarriorGenerator 跳转到一个新的 NinjaGenerator 生成器上，每次调用 WarriorGenerator 返回迭代器的 next 方法，都会使执行重新寻址到了 NinjaGenerator 上。该生成器会一直持有执行权直到无工作可做。所以我们本例中生成 Sun Tzu 之后紧接的是 Hattori 和 Yoshi。仅当 NinjaGenerator 的工作完成后，调用原来的迭代器才会继续输出值 Genghis Khan。注意，对于调用最初的迭代器代码来说，这一切都是透明的。for-of 循环不会关心 WarriorGenerator 委托到另一个生成器上，它只关心在 done 状态到来之前都一直调用 next 方法。现在，对于生成器一般的工作，以及如何代理到其他生成器的工作上，你都已经有所掌握了。让我们看看几个实践中的例子。
 
 ### 6.2.2 Using generators
 
@@ -870,6 +870,3 @@ Async functions will appear in the next installment of JavaScript. Currently no 
 ## 6.6 Exercises
 
 After running the following code, what are the values of variables a1 to a4?
-
-
-
