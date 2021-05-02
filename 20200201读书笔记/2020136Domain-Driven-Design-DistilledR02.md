@@ -1,8 +1,12 @@
-# 2020136Domain-Driven-Design-DistilledR02
-
-Copyright © 2016 Pearson Education, Inc.
-
 ## 记忆时间
+
+## 目录
+
+0501Tactical Design with Aggregates
+
+0601Tactical Design with Domain Events
+
+0701Acceleration and Management Tools
 
 ## 0501. Tactical Design with Aggregates
 
@@ -96,13 +100,13 @@ The main point to remember from this section is that business rules are the driv
 
 Let’s next consider the four basic rules of Aggregate design:
 
-1. Protect business invariants inside Aggregate boundaries.
+1 Protect business invariants inside Aggregate boundaries.
 
-2. Design small Aggregates.
+2 Design small Aggregates.
 
-3. Reference other Aggregates by identity only.
+3 Reference other Aggregates by identity only.
 
-4. Update other Aggregates using eventual consistency.
+4 Update other Aggregates using eventual consistency.
 
 1『聚合里的不变性，是有业务决定的；一致性边界就是聚合边界；标识符（类比于数据库表的主键）作为独一无二的外部引用。』
 

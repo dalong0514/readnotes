@@ -1,5 +1,3 @@
-# 2020082PHP-Objects-Patterns-PracticeR03
-
 ## 记忆时间
 
 ## 0305. Testing with PHPUnit

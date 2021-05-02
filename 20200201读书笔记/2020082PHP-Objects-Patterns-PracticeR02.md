@@ -1,5 +1,3 @@
-# 2020082PHP-Objects-Patterns-PracticeR02
-
 ## 记忆时间
 
 ## 0201. What Are Design Patterns? Why Use Them?

@@ -1,5 +1,3 @@
-# 2020112Clean-ArchitectureR00
-
 ## 记忆时间
 
 ## 卡片

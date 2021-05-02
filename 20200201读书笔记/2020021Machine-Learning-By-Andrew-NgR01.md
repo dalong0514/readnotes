@@ -1,5 +1,3 @@
-# 2020021Machine-Learning-By-Andrew-NgR01
-
 ## 记忆时间
 
 Introduction to Deep Learning

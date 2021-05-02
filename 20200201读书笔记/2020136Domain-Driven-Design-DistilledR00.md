@@ -1,12 +1,10 @@
-# 2020136Domain-Driven-Design-DistilledR00
-
 Copyright © 2016 Pearson Education, Inc.
 
 ## 记忆时间
 
 ## 卡片
 
-### 0101. 主题卡——DDD
+### 0101. 主题卡 —— DDD
 
 DDD 有两个内核：建立通用语言和模型驱动设计，而模型驱动设计分为战略设计和战术设计。理解战略设计的主线是划分业务以及落地成解决方案，理解战术设计的主线是按照故事模板寻找相应的模型。
 
@@ -20,7 +18,7 @@ What are these things called Bounded Contexts ? What’s the Ubiquitous Language
 
 核心域的识别是一个持续的精练过程，把一堆混杂在一起的组件分离，以某种形式提炼出最重要的内容，这种形式也将使核心域更具价值。一个严峻的现实是，我们不可能对所有的设计部分投入同等的资源进行优化，如同 MVP（Minimum Viable Product）产品原则所提倡的那样，产品研发需要聚焦在最小化可行产品上，不断获取用户反馈，并在这个最小化可行产品上持续快速选代，从而获得一个稳定的核心产品。在有限的资源下，为了使领域模型成为最有价值的资产，我们必须有效地梳理出模型的真正核心并完全根据这个核心来实现软件服务，这也是核心域的战略价值所在。一一译注
 
-### 0201. 术语卡——贫血模型和充血模型
+### 0201. 术语卡 —— 贫血模型和充血模型
 
 除了公有访问器之外，没有包含任何真正意义上的业务行为。
 
@@ -32,7 +30,7 @@ The basic symptom of an Anemic Domain Model is that at first blush it looks like
 
 』
 
-### 0202. 术语卡——Strategic Design
+### 0202. 术语卡 —— Strategic Design
 
 We begin with the all-important strategic design. You really cannot apply tactical design in an effective way unless you begin with strategic design. Strategic design is used like broad brushstrokes prior to getting into the details of implementation. It highlights what is strategically important to your business, how to divide up the work by importance, and how to best integrate as needed.
 
@@ -48,7 +46,7 @@ As you advance further into strategic design, you will learn about Subdomains an
 
 当进一步深入到战略设计中时，将会学到子域（Subdomain），并了解如何通过它处理遗留系统中无边界的复杂性，以及如何改进新项目上的成果。还会了解如何通过名为上下文映射（Context Mapping）的技术来集成多个限界上下文。上下文映射图（Context map）同时定义了两个进行集成的限界上下文之间的团队间关系及技术实现方式。
 
-### 0203. 术语卡——Tactical Design
+### 0203. 术语卡 —— Tactical Design
 
 After I have given you a sound foundation with strategic design, you will discover DDD’s most prominent tactical design tools. Tactical design is like using a thin brush to paint the fine details of your domain model. One of the more important tools is used to aggregate entities and value objects together into a right-sized cluster. It’s the Aggregate pattern.
 
@@ -58,7 +56,7 @@ DDD is all about modeling your domain in the most explicit way possible. Using D
 
 DDD 就是以最明确而又可行的方式对领域进行建模。使用领域事件（Domain Events）既可以让你明确地建立模型，也可把模型内部发生的事情分享给需要知道这一切的系统。这些相关的系统可能是你自己的本地限界上下文和其他的远程限界上下文。
 
-### 0204. 术语卡——限界上下文（Bounded Contexts）
+### 0204. 术语卡 —— 限界上下文（Bounded Contexts）
 
 First, a Bounded Context is a semantic contextual boundary. This means that within the boundary each component of the software model has a specific meaning and does specific things. The components inside a Bounded Context are context specific and semantically motivated. That’s simple enough.
 
@@ -78,7 +76,7 @@ Your solution space is where you actually implement the solution that your probl
 
 1 核心域的识别是一个持续的精练过程，把一堆混杂在一起的组件分离，以某种形式提炼出最重要的内容，这种形式也将使核心域更具价值。一个严峻的现实是，我们不可能对所有的设计部分投入同等的资源进行优化，如同 MVP (Minimum Viable Product）产品原则所提倡的那样，产品研发需要聚焦在最小化可行产品上，不断获取用户反馈，并在这个最小化可行产品上持续快速选代，从而获得一个稳定的核心产品。在有限的资源下，为了使领域模型成为最有价值的资产，我们必须有效地梳理出模型的真正核心并完全根据这个核心来实现软件服务，这也是核心域的战略价值所在。一一译注
 
-### 0205. 术语卡——通用语言（Ubiquitous Language）
+### 0205. 术语卡 —— 通用语言（Ubiquitous Language）
 
 The software model inside the context boundary reflects a language that is developed by the team working in the Bounded Context and is spoken by every member of the team that creates the software model that functions within that Bounded Context. The language is called the Ubiquitous Language because it is both spoken among the team members and implemented in the software model. Thus, it is necessary that the Ubiquitous Language be rigorous—strict, exact, stringent, and tight. In the diagram, the boxes inside the Bounded Context represent the concepts of the model, which may be implemented as classes. When the Bounded Context is being developed as a key strategic initiative of your organization, it’s called the Core Domain.
 
@@ -94,7 +92,7 @@ When you consider language in a software model, think of the various nations tha
 
 当你思考软件模型中的语言时，想一想组成欧洲的各个国家：整个欧洲大陆中的任何一个国家，使用的官方语言都是明确的。在这些国家的边境内，如德国、法国和意大利，官方语言是确定的。当你越过边境时，官方语言也会改变。同样的情况也适用于亚洲：被界线分开的日本、韩国和中国都使用着自己的语言。限界上下文也是如此。在 DDD 中通用语言就是软件模型团队日常交流时使用的语言，而软件模型的源代码就是这种语言的书面表达方式。
 
-### 0206. 术语卡——核心域
+### 0206. 术语卡 —— 核心域
 
 一个限界上下文被组织当作关键战略进行开发时，那么它就成为了一个核心域。
 
@@ -102,7 +100,7 @@ The software model inside the context boundary reflects a language that is devel
 
 团队在限界上下文中发展了一种语言用于表达其边界内的软件模型，这一语言由在该界上下文中开发软件模型的每个团队成员所使用。它之所以被称之为通用语言（Ubiquitous Language）2，是因为团队成员间交流用的是它，软件模型实现的也是它。因此，通用语言必须严谨、精确，并且紧湊。上图中，限界上下文中的方框所表示的概念模型可以用类来实现。当限界上下文被当作组织的关键战略举措进行开发时，即被称之为核心域。
 
-### 0207. 术语卡——子域（Subdomain）
+### 0207. 术语卡 —— 子域（Subdomain）
 
 Simply stated, a Subdomain is a sub-part of your overall business domain. You can think of a Subdomain as representing a single, logical domain model. Most business domains are usually too large and complex to reason about as a whole, so we generally concern ourselves only with the Subdomains that we must use within a single project. Subdomains can be used to logically break up your whole business domain so that you can understand your problem space on a large, complex project.
 
@@ -116,7 +114,7 @@ If DDD had been used to develop it, the Subdomain would have been implemented as
 
 如果通过 DDD 来创建子域，它将会被实现成一个清晰的限界上下文。特定业务的领域专家将会成为共建限界上下文团队中的一员。虽然使用 DDD 来建立一个清晰的限界上下文是最佳选择，但有时这只是我们一厢情愿的想法。
 
-### 0208. 术语卡—— Effective design
+### 0208. 术语卡 —— Effective design
 
 A word closely related to good is effective, and it possibly more accurately states what we should strive for in software design: effective design. Effective design meets the needs of the business organization to the extent that it can distinguish itself from its competition by means of software. Effective design forces the organization to understand what it must excel at and is used to guide the creation of the correct software model.
 
@@ -128,15 +126,15 @@ Most people make the mistake of thinking design is what it looks like. People th
 
 「设计，是让生活变得完美的艺术。」这是乔布斯的产品设计理念。对他而言，有效设计首先意味着「简洁」的产品（开箱即用）、「简洁」的战略（产品的专注）和「简洁」的沟通（高效的沟通）。其次有效设计允许不完美。任何产品都始于不完美，只有通过不断试错与修正的送代才可能逐步趋于完美在软件设计中，我们也可以借鉴这些理念：有效设计是简洁而非冗余，它也需要不断地演进与优化才能趋于完美。
 
-### 0209. 术语卡——上下文映射（Context Mapping）
+### 0209. 术语卡 —— 上下文映射（Context Mapping）
 
-### 0301. 人名卡——Vaughn Vernon
+### 0301. 人名卡 —— Vaughn Vernon
 
 沃恩·弗农（Vaughn Vernon），DDD 的布道者，著作《Implement-Domain-Driven-Design》、《Domain-Driven-Design-Distilled》以及《Reactive-Messaging-Patterns》。
 
 注：Google 上搜 Vaughn Vernon 可以获取不少有价值的信息，比如他的演讲视频。
 
-### 0401. 金句卡——It’s their mental model that we start with to form the foundation of the team’s Ubiquitous Language
+### 0401. 金句卡 —— It’s their mental model that we start with to form the foundation of the team’s Ubiquitous Language
 
 In your particular business, you also have Domain Experts. It’s not a job title but rather describes those who are primarily focused on the business. It’s their mental model that we start with to form the foundation of the team’s Ubiquitous Language.
 
@@ -146,11 +144,11 @@ On the other hand, developers are focused on software development. As depicted h
 
 1 在此过程中，开发人员会不由自主地进入「编码实现」的惯性思维模式，比如：这个概念应该设计怎样的关系型数据表，把这个概念设计成一个 REST 资源怎么样，这个概念需要使用一个抽象类来实现方便未来的扩展，等等。这些是过往的经验、对某种技术的偏好或者组织规范的要求而导致的，一点也不奇怪。但需要注意的是，我们在进行战略设计时，一定要暂时搁置这些关于实现的技术细节。一方面，这时通用语言（概念和需求）依然在发展过程中，我们会不断地质疑并修正它们，过早地思考针对这些概念和需求的实现没有任何意义。另一方面，如果在现阶段的讨论中就提及这样一些专业的技术术语，只会对领域专家造成干扰，浪费掉和他们协作的宝贵时间。不用着急，我们会在战术设计阶段再来考虑这些关于实现的细节问题。——译注
 
-### 0501. 任意卡——本书的内容框架
+### 0501. 任意卡 —— 本书的内容框架
 
 领域驱动设计（DDD）是时下软件设计领域中的热门话题，它通过指导我们构建领域模型，来表达丰富的软件功能需求，并由此实现可以满足用户真正需要的软件。然而在实践过程中，由于不同的角色对于 DDD 的核心概念和主要工具的理解不同，常常会造成协作上的不一致。为了帮助和指导面向对象的开发人员、系统分析人员和设计人员更加合理地组织工作，各有侧重、有条不紊地进行复杂系统的开发，并有效地建立丰富而实用的领域模型，本书的作者 Vaughn Vernon 将自己近年来在领域驱动设计领域的理解进一步提炼，并将本书以精粹的形式呈现给广大的读者。本书的内容包括：DDD 对于广大读者的意义、从战略层面进行设计、从战术层面进行设计，以及相关的辅助工具。当然，仅仅通过此书的阅读无法深入地掌握领域驱动设计的精髓，无论你是什么经验水平或角色，请阅读本书并在项目中实践 DDD。并在这之后，再重读此书，看看你从项目的经历中学到了什么。反复这样的循环，你将会获益匪浅。
 
-### 0502. 任意卡——软件开发过程中的十大问题
+### 0502. 任意卡 —— 软件开发过程中的十大问题
 
 1、软件开发被视为成本中心而非利润中心。
 
@@ -172,7 +170,7 @@ On the other hand, developers are focused on software development. As depicted h
 
 10、紧耦合服务群。
 
-### 0503. 任意卡——一个限界上下文中只能有一个团队
+### 0503. 任意卡 —— 一个限界上下文中只能有一个团队
 
 Bounded Contexts, Teams, and Source Code Repositories
 
@@ -188,7 +186,7 @@ It is especially important to be clear that one team works on a single Bounded C
 
 2 这并不是绝对的。事实上，很多上下文的代码仓库是开放的，并接受其他团队提交的代码。甚至，很多独角兽企业（如 Google 和 Facebook）在代码仓库上惊人一致地选择了单一仓库（monoreme）进行代码管理，即整个组织所有的产品代码放在唯一一个超大的代码仓库中。这些代码并不是铁板一块，它依然可以被分成多个服务甚至多个产品，由多个团队独立地构建、测试和维护。单一仓库和开放仓库一样更注重的是代码共有制带来的协作效率。代码共有制不会造成混乱，原因在于它们拥有完善的机制和工具对所有提交的代码进行准入控制和验证，而这些仓库的贡献者也对编写代码有着严格的自我要求。所以并不是要杜绝其他团队对代码仓库进行修改，而是要让这些修改可以预期且可以控制，这必须采取些适合团队的实践和工具来实现，例如频繁交流（如结对编程）、代码走查（如 Pull Request）和自动化验证（如契约测试）等。这些实践和手段往往由上下文映射关系决定，如共享内核关系就可以采用 Pull Request 的实践，而客户-供应商关系则可以采用契约测试的实践。关于映射关系的讨论请参考本书第 4 章的内容。——译注
 
-### 0504. 任意卡——避免过渡设计
+### 0504. 任意卡 —— 避免过渡设计
 
 抑制住过渡设计。采用战略设计中的「限界上下文」和「通用语言」可以避免过渡设计，只关注核心领域功能。
 
@@ -198,15 +196,15 @@ What tools are available with DDD to help us avoid such pitfalls? You need at le
 
 DDD 中有哪些工具可以帮助我们避免这些陷阱？你至少需要两种基本的战略设计工具，限界上下文和通用语言。采用限界上下文会迫使我们回答「什么是核心？」的问题。它应紧紧地抓住战略举措中所有的核心概念，并排除其他概念，剩下的都应该是团队通用语言的一部分。你将看到 DD 如何避免单体应用设计的产生。
 
-### 0505. 任意卡——三大类子域
+### 0505. 任意卡 —— 三大类子域
 
 There are three primary types of Subdomains within a project:
 
-1. Core Domain: This is where you are making a strategic investment in a single, well-defined domain model, committing significant resources for carefully crafting your Ubiquitous Language in an explicit Bounded Context. This is very high on your organization’s list of projects because it will distinguish it from all competitors. Since your organization can’t be distinguished in everything that it does, your Core Domain demarcates where it must excel. Achieving the level of deep learning and understanding required to make such a determination requires commitment, collaboration, and experimentation. It’s where the organization needs to invest most liberally in software. I provide the means to accelerate and manage such projects efficiently and effectively later in this book.
+1 Core Domain: This is where you are making a strategic investment in a single, well-defined domain model, committing significant resources for carefully crafting your Ubiquitous Language in an explicit Bounded Context. This is very high on your organization’s list of projects because it will distinguish it from all competitors. Since your organization can’t be distinguished in everything that it does, your Core Domain demarcates where it must excel. Achieving the level of deep learning and understanding required to make such a determination requires commitment, collaboration, and experimentation. It’s where the organization needs to invest most liberally in software. I provide the means to accelerate and manage such projects efficiently and effectively later in this book.
 
-2. Supporting Subdomain: This is a modeling situation that calls for custom development, because an off-the-shelf solution doesn’t exist. However, you will still not make the kind of investment that you have made for your Core Domain. You may want to consider outsourcing this kind of Bounded Context to avoid mistaking it for something strategically distinguishing, and thus investing heavily in it. This is still an important software model, because your Core Domain cannot be successful without it.
+2 Supporting Subdomain: This is a modeling situation that calls for custom development, because an off-the-shelf solution doesn’t exist. However, you will still not make the kind of investment that you have made for your Core Domain. You may want to consider outsourcing this kind of Bounded Context to avoid mistaking it for something strategically distinguishing, and thus investing heavily in it. This is still an important software model, because your Core Domain cannot be successful without it.
 
-3. Generic Subdomain: This kind of solution may be available for purchase off the shelf but may also be outsourced or even developed in house by a team that doesn’t have the kind of elite developers that you assign to your Core Domain or even a lesser Supporting Subdomain. Be careful not to mistake a Generic Subdomain for a Core Domain. You don’t want to make that kind of investment here.
+3 Generic Subdomain: This kind of solution may be available for purchase off the shelf but may also be outsourced or even developed in house by a team that doesn’t have the kind of elite developers that you assign to your Core Domain or even a lesser Supporting Subdomain. Be careful not to mistake a Generic Subdomain for a Core Domain. You don’t want to make that kind of investment here.
 
 When discussing a project where DDD is being employed, we are most likely discussing a Core Domain.
 
@@ -218,11 +216,11 @@ When discussing a project where DDD is being employed, we are most likely discus
 
 1 子域的划分，不仅仅涉及实现方式、投资规模，同时还会影响组织的架构、流程。因此，合理的子域划分，以及每个子域恰当的定位，是产品得以顺利发展的重要因素。因此我们需要更好地理解这三种子域的定位。核心域是产品独特的竞争力，它是产品之所以存在的根本。因此在产品的初期，没有经过市场的验证之前，我们需要遵循 MVP (Minimum Viable Product）的原则，快速地迭代以获取市场的反馈，一旦产品被市场证明，合理的重构即需要被发生。支撑子域不需要过度地考虑可扩展性和兼容性，可重用性并非其技术着力的方向，可替代性才是，这也要求我们需要对于支撑子域有着明确的契约规范和业务约束条件。通用子域内的业务规则相对明确，在很多产品和业务上下文中保持高度的重合度，因此我们需要通过快速的采购获取，我们对其定制化要求较低，而稳定性和兼容性则要求较高。——译注
 
-### 0506. 任意卡——测试驱动开发和行为测试开发的区别
+### 0506. 任意卡 —— 测试驱动开发和行为测试开发的区别
 
 此处所提及的红一绿（失败一通过）的形式正是测试驱动开发（Test Driven Development, TDD）所提倡的软件实现方式。测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种设计方法论。它的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析、设计、质量控实例化的过程。实际上行为驱动开发也是对测试驱动开发的响应，只不过测试驱动开发多发生在开发人员编写代码时，而行为驱动开发从更早的需求梳理阶段就开始了，参与其中的除了开发人员还有业务人员和测试。关于测试驱动开发的内容请参考 Kent Beck 所著的《测试驱动开发》——译注
 
-### 0507. 任意卡——函数式编程范式时推荐贫血模型
+### 0507. 任意卡 —— 函数式编程范式时推荐贫血模型
 
 When using functional programming, the rules change considerably. While an Anemic Domain Model is a bad idea when using object-oriented programming, it is somewhat the norm when applying functional programming. That’s because functional programming promotes the separation of data and behavior. Your data is designed as immutable data structures or record types, and your behavior is implemented as pure functions that operate on the immutable records of specific types. Rather than modifying the data that functions receive as arguments, the functions return new values. These new values may be the new state of an Aggregate or a Domain Event that represents a transition in an Aggregate ’s state.
 
@@ -230,7 +228,7 @@ I have largely addressed the object-oriented approach in this chapter because it
 
 当使用函数式程范式时，规则会发生明显的变化：尽管贫血领域模型在使用面向对象编程范式时不是一个好主意，但在使用函数式程范式时却可能成为规范标准。这是因为函数式编程范式宣扬的是数据和行为的分离。你的数据要设计成不变的数据结构或者记录类型，而你的行为将被设计成操作特定类型不变记录的纯函数。函敏将返回新的值，而不是直接修改其作为参数接收的数据。这些新的值可能就是聚合的新状态，或者是表示一次聚合状态转换的领域事件。本章中我还是主要着眼于面向对象方法，因为这种方法仍然应用得最广泛也被理解得更透彻。但如果你正在使用函数式编程语言并准备引入 DDD，注意这指南中有些规则并不适用，或者至少要重新定义才可以遵从。
 
-### 0508. 任意卡——对领域事件建模的思路
+### 0508. 任意卡 —— 对领域事件建模的思路
 
 对领域事件建模的整个思路。1）先命名好领域事件（类名）。2）通过找领域服务来倒推出领域事件模型中所包含的属性（类里面的属性）。领域事件是一个结果，通过这个结果去追溯是什么动作导致的这个结果，这个「动作」即领域服务，接着去看领域服务模型里的属性，将这些属性照搬到领域事件中去。作者的例子里，领域事件是橙色的卡片，领域服务是蓝色卡片，聚合是黄色卡片。
 
@@ -240,7 +238,7 @@ You must show care in how you name your Domain Event types. The words you use sh
 
 Your Domain Event type names should be a statement of a past occurrence, that is, a verb in the past tense. Here are some examples from the Agile Project Management Context : ProductCreated, for instance, states that a Scrum product was created at some past time. Other Domain Events are ReleaseScheduled, SprintScheduled, BacklogItemPlanned, and BacklogItemCommitted. Each of the names clearly and concisely states what happened in your Core Domain.
 
-### 0509. 任意卡——修改后的聚合和领域事件必须同时保存
+### 0509. 任意卡 —— 修改后的聚合和领域事件必须同时保存
 
 It’s important that the modified Aggregate and the Domain Event be saved together in the same transaction. If you are using an object-relational mapping tool, you would save the Aggregate to one table and the Domain Event to an event store table, and then commit the transaction. If you are using Event Sourcing, the state of the Aggregate is fully represented by the Domain Events themselves. I discuss Event Sourcing in the next section of this chapter. Either way, persisting the Domain Event in the event store preserves its causal ordering relative to what has happened across the domain model.
 
@@ -248,7 +246,7 @@ It’s important that the modified Aggregate and the Domain Event be saved toget
 
 Once your Domain Event is saved to the event store, it can be published to any interested parties. This might be within your own Bounded Context and to external Bounded Contexts. This is your way of telling the world that something noteworthy has occurred in your Core Domain.
 
-### 0510. 任意卡——三种学习模式
+### 0510. 任意卡 —— 三种学习模式
 
 听者、视者和触者。
 

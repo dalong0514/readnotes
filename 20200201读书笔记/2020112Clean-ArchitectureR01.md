@@ -1,5 +1,3 @@
-# 2020112Clean-ArchitectureR01
-
 ## 记忆时间
 
 ## 0101. What Is Design and Architecture?

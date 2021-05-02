@@ -1,5 +1,3 @@
-# 2020037Data-Mining-ConceptsR00.md
-
 ## 记忆时间
 
 ## 卡片

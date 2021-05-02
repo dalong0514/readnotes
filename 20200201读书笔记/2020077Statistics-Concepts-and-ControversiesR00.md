@@ -1,5 +1,3 @@
-# 2020077Statistics-Concepts-and-ControversiesR00
-
 Statistics: Concepts and Controversies
 
 © 2020, 2017, 2014, 2009 by W. H. Freeman and Company, Tenth Edition

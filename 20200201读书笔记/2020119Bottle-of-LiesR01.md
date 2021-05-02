@@ -1,5 +1,3 @@
-# 2020119Bottle-of-LiesR01
-
 ## 记忆时间
 
 Part I Shifting Ground

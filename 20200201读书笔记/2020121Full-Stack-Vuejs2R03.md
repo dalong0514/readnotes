@@ -1,5 +1,3 @@
-# 2020121Full-Stack-Vuejs2-R03
-
 ## 记忆时间
 
 ## 0801. Managing Your Application State with Vuex

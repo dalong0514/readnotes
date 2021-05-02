@@ -1,5 +1,3 @@
-# 2020166Hands-On-Machine-Learning-with-R00
-
 ## 记忆时间
 
 ## 卡片

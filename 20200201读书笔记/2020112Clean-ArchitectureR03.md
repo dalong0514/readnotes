@@ -1,5 +1,3 @@
-# 2020112Clean-ArchitectureR03
-
 ## 记忆时间
 
 ## Design Principles III

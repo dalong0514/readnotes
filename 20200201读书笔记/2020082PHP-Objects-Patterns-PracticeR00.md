@@ -1,5 +1,3 @@
-# 2020082PHP-Objects-Patterns-PracticeR00
-
 Copyright © 2016 by Matt Zandstra
 
 ## 记忆时间

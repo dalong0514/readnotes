@@ -1,5 +1,3 @@
-# 2020078The-Drunkards-WalkR02
-
 ## 记忆时间
 
 ## 目录

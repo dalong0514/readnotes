@@ -1,5 +1,3 @@
-# 2020082PHP-Objects-Patterns-PracticeR01
-
 ## 记忆时间
 
 ## 0103. Object Basics

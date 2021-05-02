@@ -1,16 +1,14 @@
-# 2020121Full-Stack-Vuejs2-R00
-
 ## 记忆时间
 
 ## 卡片
 
-### 0101. 主题卡——如何用 vue-router 搭建单页应用
+### 0101. 主题卡 —— 如何用 vue-router 搭建单页应用
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0102. 主题卡——如何用 vuex 搭建数据中心 store
+### 0102. 主题卡 —— 如何用 vuex 搭建数据中心 store
 
-### 0201. 术语卡——SPA
+### 0201. 术语卡 —— SPA
 
 Most websites are broken up into pages in order to make the information they contain easier to consume. Traditionally this is done with a server/client model, where each page must be loaded from the server with a different URL. To navigate to a new page, the browser must send a request to the URL of that page. The server will send the data back and the browser can unload the existing page and load the new one. For the average internet connection, this process will likely take a few seconds, during which the user must wait for the new page to load.
 
@@ -20,11 +18,11 @@ The advantage of the Single-Page Application architecture is that it can create 
 
 The disadvantage of the SPA architecture is that it makes the client app bulkier due to the added functionality, so gains from speeding up page changes may be negated by the fact that the user must download a large app on the first page load. Also, handling routes adds complexity to the app as multiple states must be managed, URLs must be handled, and a lot of default browser functionality must be recreated in the app.
 
-### 0202. 术语卡——Routers
+### 0202. 术语卡 —— Routers
 
 If you are going with an SPA architecture and your app design includes multiple pages, you'll want to use a router. A router, in this context, is a library that will mimic browser navigation through JavaScript and various native APIs so that the user gets an experience similar to that of a traditional multi-page app. Routers will typically include functionality to: 1) Handle navigation actions from within the page. 2) Match parts of the application to routes. 3) Manage the address bar. 4) Manage the browser history. 5) Manage scroll bar behavior.
 
-### 0203. 术语卡——组件里的 props
+### 0203. 术语卡 —— 组件里的 props
 
 发现一个很好的类比，函数。组件是 html 里的自定义标签，把标签当一个函数来看，标签的属性名称（对应于 props）就好比是这个函数的形参，其声明是在组件定义里的 props 属性里，是个列表对象。实参是这个标签里实际传递给组件的对象，最关键的是这个对象可以是 vue 实例里的数据对象（数据或方法）。
 
@@ -34,7 +32,7 @@ If you are going with an SPA architecture and your app design includes multiple 
 
 上面的例子里，title 是 props，dalong 是传递给这个组件的数据对象。注意 title 需要绑定一下。
 
-### 0204. 术语卡——watcher
+### 0204. 术语卡 —— watcher
 
 如何对跟 vue 实例平行的节点操作，还是得靠 DOM 的 API，但前提是 vue 能告知 DOM 相关信息，watcher 就是做这个的。
 
@@ -53,7 +51,7 @@ Vue 实例里增加 watch 方法调用浏览器的 API 从而操作与 vue 实�
     },
 ```
 
-### 0205. 术语卡——Flux application architecture
+### 0205. 术语卡 —— Flux application architecture
 
 Flux is not a library. You can't go to GitHub and download it. Flux is a set of guiding principles that describe a scalable frontend architecture that sufficiently mitigates this flaw. It is not just for a chat app, but for any complex UI with components which share state, like Vuebnb. Let's now explore the guiding principles of Flux.
 
@@ -75,7 +73,7 @@ It's much easier to debug state inconsistencies in an app that implements the ab
 
 But this ability would be undermined if our mutations were applied asynchronously. We'd know the order our commits came in, but we would not know the order in which our components committed them. Synchronous mutations ensure state is not dependent on the sequence and timing of unpredictable events.
 
-### 0206. 术语卡——AJAX
+### 0206. 术语卡 —— AJAX
 
 AJAX 即 Asynchronous JavaScript and XML（非同步的 JavaScript 与 XML 技术），指的是一套综合了多项技术的浏览器端网页开发技术。Ajax 的概念由杰西·詹姆士·贾瑞特所提出。
 
@@ -84,18 +82,6 @@ AJAX 即 Asynchronous JavaScript and XML（非同步的 JavaScript 与 XML 技�
 与此不同，AJAX 应用可以仅向服务器发送并取回必须的数据，并在客户端采用 JavaScript 处理来自服务器的回应。因为在服务器和浏览器之间交换的数据大量减少，服务器回应更快了。同时，很多的处理工作可以在发出请求的客户端机器上完成，因此 Web 服务器的负荷也减少了。
 
 类似于 DHTML 或 LAMP，AJAX 不是指一种单一的技术，而是有机地利用了一系列相关的技术。虽然其名称包含 XML，但实际上数据格式可以由 JSON 代替，进一步减少数据量，形成所谓的 AJAJ。而客户端与服务器也并不需要异步。一些基于 AJAX 的「派生／合成」式（derivative / composite）的技术也正在出现，如 AFLAX。
-
-### 0301. 人名卡——
-
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-### 0401. 金句卡——
-
-最后根据他写的非常震撼的话语——产生一张金句卡。
-
-### 0501. 任意卡——
-
-行动卡是能够指导自己的行动的卡。
 
 ## 总体
 

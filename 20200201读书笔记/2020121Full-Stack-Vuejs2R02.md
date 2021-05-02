@@ -1,5 +1,3 @@
-# 2020121Full-Stack-Vuejs2-R02
-
 ## 记忆时间
 
 ## 0601. Composing Widgets with Vue.js Components

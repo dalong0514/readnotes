@@ -1,5 +1,3 @@
-# 2020073Docker-The-CompleteR00
-
 ## 记忆时间
 
 ## 总体

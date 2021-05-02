@@ -1,5 +1,3 @@
-# 2020061Website-Scraping-with-PythonR02
-
 Copyright © 2018
 
 ## 记忆时间

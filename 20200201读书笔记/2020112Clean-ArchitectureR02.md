@@ -1,5 +1,3 @@
-# 2020112Clean-ArchitectureR02
-
 ## 记忆时间
 
 ## 0200. Starting with the Bricks: Programming Paradigms

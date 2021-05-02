@@ -1,5 +1,3 @@
-# 2020111Agile-Software-DevelopmentR00
-
 ## 记忆时间
 
 ## 卡片

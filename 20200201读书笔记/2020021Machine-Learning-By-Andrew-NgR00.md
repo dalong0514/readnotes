@@ -1,5 +1,3 @@
-# 2020021Machine-Learning-By-Andrew-NgR00
-
 ## 记忆时间
 
 ## 卡片

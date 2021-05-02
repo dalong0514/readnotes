@@ -1,5 +1,3 @@
-# 2020166Hands-On-Machine-Learning-with-R01
-
 ## 记忆时间
 
 PART I The Fundamentals of Machine Learning

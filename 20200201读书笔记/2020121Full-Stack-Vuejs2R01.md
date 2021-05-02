@@ -1,5 +1,3 @@
-# 2020121Full-Stack-Vuejs2-R01
-
 ## 记忆时间
 
 ## 0201. Prototyping Vuebnb, Your First Vue.js Project

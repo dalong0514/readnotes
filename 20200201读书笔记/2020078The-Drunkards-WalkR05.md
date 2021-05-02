@@ -1,5 +1,3 @@
-# 2020078The-Drunkards-WalkR05
-
 ## 记忆时间
 
 0901 Illusions of Patterns and Patterns of Illusion

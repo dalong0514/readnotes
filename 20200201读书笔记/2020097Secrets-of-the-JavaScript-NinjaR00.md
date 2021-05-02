@@ -2,6 +2,40 @@
 
 ## 卡片
 
+### 0001. 反常识卡 —— for 循环只是迭代器的语法糖
+
+Here we again create an iterator object by calling a generator function:
+
+```js
+const weaponsIterator = WeaponGenerator();
+```
+
+We also create an item variable in which we’ll store individual values produced by the generator. We continue by specifying a while loop with a slightly complicated looping condition, which we’ll break down a bit:
+
+```js
+while(!(item = weaponsIterator.next()).done) { 
+  assert(item !== null, item.value); 
+}
+```
+
+On each loop iteration, we fetch a value from the generator by calling the next method of our weaponsIterator, and we store that value in the item variable. Like all such objects, the object referenced by the item variable has a value property that stores the value returned from the generator, and a done property that signals whether the generator is finished producing values. If the generator isn’t done with its work, we go into another iteration of the loop; and if it is, we stop looping.
+
+And that’s how the for-of loop, from our first generator example, works. The for-of loop is syntactic sugar for iterating over iterators:
+
+```js
+for(var item of WeaponGenerator()){ 
+  assert(item !== null, item); 
+}
+```
+
+Instead of manually calling the next method of the matching iterator and always checking whether we’re finished, we can use the for-of loop to do the exact same thing, only behind the scenes.
+
+1-2『第一次知道 JS 中 for 循环只是迭代器的语法糖。冲击相当大啊，做一张反常识卡片。（2021-05-03）』—— 已完成
+
+在每次迭代中，我们通过调用迭代器 weaponsIterator 的 next 方法从生成器中取一个值，然后把值存放在 item 变量中。和所有 next 返回的对象一样，item 变量引用的对象中包含一个属性 value 为生成器返回的值，一个属性 done 指示生成器是否已经完成了值的生成。如果生成器中的值没有生成完毕，我们就会进入下次循环迭代，反之停止循环。这就是第一个生成器示例中 for-of 循环的原理。for-of 循环不过是对迭代器进行迭代的语法糖。
+
+不同于手动调用迭代器的 next 方法，for-of 循环同时还要查看生成器是否完成，它在后台自动做了完全相同的工作。把执行权交给下一个生成器正如在标准函数中调用另一个标准函数，我们需要把生成器的执行委托给另一个生成器。让我们看清单 6.4 的例子，生成器不仅生成了武器值也生成了「忍者」值。
+
 ### 0101. 主题卡 ——
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
@@ -12,13 +46,9 @@
 
 ### 0202. 术语卡 ——
 
-### 0301. 人名卡 ——
+### 0301. 金句卡 —— JS 里的 class 关键字是语法糖
 
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-### 0401. 金句卡 —— JS 里的 class 关键字是语法糖
-
-### 0501. 任意卡 —— 数组的常用操作
+### 0401. 任意卡 —— 数组的常用操作
 
 更详细的可以参考官方文档：[索引集合类 (Indexed collections) - JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Indexed_collections#map%E6%95%B0%E7%BB%84)。
 

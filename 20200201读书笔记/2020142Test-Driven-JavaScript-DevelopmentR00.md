@@ -6,45 +6,29 @@
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡——TDD microcycle
+### 0201. 术语卡 —— TDD microcycle
 
 There are only three steps in this microcycle: 1) Write a test that fails at the start (Red): First of all, simple test cases are written, which test the code yet to be implemented. At this step, the test will always fail (In the figure, it has been colored red).  2) Write just enough code to pass the test (Green): The developer then writes the code to pass the test. The code is written in the simplest manner and is just sufficient to pass the test. 3) Refactor the code (Refactor): Before implementing a new feature, developers refactor the old code, which just passed, for clarity and simplicity. This step improves the code quality. 
 
 This microcycle provides rapid feedback to the developer. As soon as a change is made to the system, it is tested. If there is any error, it's detected as soon as possible and fixed. 
 
-### 0202. 术语卡——Unit test
+### 0202. 术语卡 —— Unit test
 
 Unit test is a function or method, which invokes a unit of module in software and checks assumptions about the system that the developer has in mind. Unit test helps the developer test the logical functionality of any module. In other words, a unit is the testable piece of software. It can have more than one input and normally a single output. Sometimes, we treat a module of a system as a unit. 
 
 Unit test is only relevant to developers who are closely working with the code. A unit test is only applicable to test a logical piece of a code. Illogical code would not be tested with the use of unit testing. For example, getting and setting values in text field will not be considered in logical code. 
 
-### 0203. 术语卡——TDD and BDD
+### 0203. 术语卡 —— TDD and BDD
 
 Behavior-driven development (BDD) is a term introduced by Dan North to address this shortcoming. The terminology used by BDD focuses on the behavioral aspect of the system. In this chapter, you are going to learn about Jasmine in detail and note that the differences in nomenclature of TDD and BDD. Deep down, TDD and BDD would serve the same purpose, but using the vocabulary of BDD gives you a better set of tests and documents your system in a better way. 
 
 While TDD interface gives names such as suite(), test(), setup(), teardown(), suiteSetup(), suiteTearDown(), assert(), and so on. BDD offers describe(), context(), it(), beforeEach(), afterEach(), beforeAll(), afterAll(), expect(), and so on. A test suite in TDD is usually created using suite(),while BDD uses describe(); to create a unit test TDD uses test() and BDD uses it(). 
 
-### 0301. 人名卡——
-
-根据这些证据和案例，找出源头和提出术语的人是谁——产生一张人名卡，并且分析他为什么牛，有哪些作品，生平经历是什么。
-
-维基百科链接：有的话。
-
-#### 01. 基本信息
-
-用一句话描述你对这个大牛的印象。
-
-#### 02. 贡献及著作
-
-### 0401. 金句卡——TDD is about how code should be written while Agile is about the whole development process
+### 0301. 金句卡——TDD is about how code should be written while Agile is about the whole development process
 
 TDD is about how code should be written while Agile is about the whole development process, not just code and its testing. Agile does not tell you how to build the system. Agile methodology is a management process, which can use TDD as an integral part. Agile, when combined in practice with TDD, brings the best results. This combination minimizes risks, defects, cost, and results in a nearly zero-defect system.
 
-### 0501. 行动卡——
-
-行动卡是能够指导自己的行动的卡。
-
-### 0601. 任意卡——
+### 0401. 任意卡——
 
 最后还有一张任意卡，记录个人阅读感想。
 

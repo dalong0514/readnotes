@@ -287,6 +287,47 @@ Now we’ll take advantage of these facts to use a plain old while loop to itera
 
 Listing 6.3 Iterating over generator results with a while loop
 
+```js
+function* WeaponGenerator() { 
+  yield "Katana"; 
+  yield "Wakizashi"; 
+}
+
+const weaponsIterator = WeaponGenerator(); 
+let item; 
+while(!(item = weaponsIterator.next()).done) { 
+  assert(item !== null, item.value); 
+}
+```
+
+1『
+
+React 项目里实现：
+
+```js
+function* WeaponGenerator() { 
+  yield "Katana" 
+  yield "Wakizashi" 
+}
+
+const codeFun = () => {
+  // Creates an iterator
+  const weaponsIterator = WeaponGenerator() 
+  // Creates a variable in which we’ll store items of the generated sequence
+  let item 
+  // On each loop iteration, fetches one value from the generator and outputs its value. 
+  // Stops iterating when the generator has no more values to produce.
+  while(!(item = weaponsIterator.next()).done) { 
+    // assert(item !== null, item.value) 
+    if (item !== null) console.log(item.value)
+  }
+}
+
+export { codeFun }
+```
+
+』
+
 Here we again create an iterator object by calling a generator function:
 
 ```js
@@ -296,7 +337,9 @@ const weaponsIterator = WeaponGenerator();
 We also create an item variable in which we’ll store individual values produced by the generator. We continue by specifying a while loop with a slightly complicated looping condition, which we’ll break down a bit:
 
 ```js
-while(!(item = weaponsIterator.next()).done) { assert(item !== null, item.value) }
+while(!(item = weaponsIterator.next()).done) { 
+  assert(item !== null, item.value); 
+}
 ```
 
 On each loop iteration, we fetch a value from the generator by calling the next method of our weaponsIterator, and we store that value in the item variable. Like all such objects, the object referenced by the item variable has a value property that stores the value returned from the generator, and a done property that signals whether the generator is finished producing values. If the generator isn’t done with its work, we go into another iteration of the loop; and if it is, we stop looping.
@@ -304,16 +347,25 @@ On each loop iteration, we fetch a value from the generator by calling the next 
 And that’s how the for-of loop, from our first generator example, works. The for-of loop is syntactic sugar for iterating over iterators:
 
 ```js
-for(var item of WeaponGenerator ()){ assert(item !== null, item); }
+for(var item of WeaponGenerator()){ 
+  assert(item !== null, item); 
+}
 ```
 
 Instead of manually calling the next method of the matching iterator and always checking whether we’re finished, we can use the for-of loop to do the exact same thing, only behind the scenes.
+
+1-2『第一次知道 JS 中 for 循环只是迭代器的语法糖。冲击相当大啊，做一张反常识卡片。（2021-05-03）』—— 已完成
 
 YIELDING TO ANOTHER GENERATOR
 
 Just as we often call one standard function from another standard function, in certain cases we want to be able to delegate the execution of one generator to another. Let’s take a look at an example that generates both warriors and ninjas.
 
 Listing 6.4 Using yield* to delegate to another generator
+
+
+
+
+
 
 If you run this code, you’ll see that the output is Sun Tzu, Hattori, Yoshi, Genghis Khan. Generating Sun Tzu probably doesn’t catch you off guard; it’s the first value yielded by the WarriorGenerator. But the second output, Hattori, deserves an explanation.
 
@@ -329,21 +381,24 @@ Now that you have a grasp of how generators work in general and how delegating t
 
 迭代器用于控制生成器的执行。迭代器对象暴露的最基本接口是 next 方法。这个方法可以用来向生成器请求一个值，从而控制生成器：
 
+next 函数调用后，生成器就开始执行代码，当代码执行到 yield 关键字时，就会生成一个中间结果（生成值序列中的一项），然后返回一个新对象，其中封装了结果值和一个指示完成的指示器。每当生成一个当前值后，生成器就会非阻塞地挂起执行，随后耐心等待下一次值请求的到达。这是普通函数完全不具有的强大特性，后续的例子中它还会起到更大的作用。
 
+在本例中，第一次调用生成器的 next 方法让生成器代码执行到第一个 yield 表达式 yield "Katana"，然后返回了一个对象。该对象的属性 value 的值置为 Katana，属性 done 的值置为 false，表明之后还有值会生成。随后，通过再次调用 weaponIterator 的 next 方法，再次向生成器请求另一个值：
 
-
-
-
-
-
-
-next 函数调用后，生成器就开始执行代码，当代码执行到 yield 关键字时，就会生成一个中间结果（生成值序列中的一项），然后返回一个新对象，其中封装了结果值和一个指示完成的指示器。每当生成一个当前值后，生成器就会非阻塞地挂起执行，随后耐心等待下一次值请求的到达。这是普通函数完全不具有的强大特性，后续的例子中它还会起到更大的作用。在本例中，第一次调用生成器的 next 方法让生成器代码执行到第一个 yield 表达式 yield "Katana"，然后返回了一个对象。该对象的属性 value 的值置为 Katana，属性 done 的值置为 false，表明之后还有值会生成。随后，通过再次调用 weaponIterator 的 next 方法，再次向生成器请求另一个值：[插图] 该操作将生成器从挂起状态唤醒，中断执行的生成器从上次离开的位置继续执行代码，直到再次遇到另一个中间值：yield "Wakizashi"。随即生成了一个包含着值 Wakizashi 的对象，生成器挂起。最后，当第三次执行 next 方法后，生成器恢复执行。但这一次，没有更多可供它执行的代码了，所以生成器返回一个结果对象，属性 value 被置为 undefined，属性 done 被置为 true，表明它的工作已经完成了。
+该操作将生成器从挂起状态唤醒，中断执行的生成器从上次离开的位置继续执行代码，直到再次遇到另一个中间值：yield "Wakizashi"。随即生成了一个包含着值 Wakizashi 的对象，生成器挂起。最后，当第三次执行 next 方法后，生成器恢复执行。但这一次，没有更多可供它执行的代码了，所以生成器返回一个结果对象，属性 value 被置为 undefined，属性 done 被置为 true，表明它的工作已经完成了。
 
 现在你已经了解了如何通过迭代器控制生成器，希望你已经做好准备进入下一个学习阶段：如何迭代生成的值序列。对迭代器进行迭代通过调用生成器得到的迭代器，暴露出一个 next 方法能让我们向迭代器请求一个新值。next 方法返回一个携带着生成值的对象，而该对象中包含的另一个属性 done 也向我们指示了生成器是否还会追加生成值。现在，我们利用这一原理，试着用普通的 while 循环来迭代生成器生成的值序列，如清单 6.3 所示。
 
-本例中，我们通过调用生成器函数再次创建了一个迭代器对象：[插图] 我们还创建了一个变量 item，用于保存由生成器生成的单个值。随后，我们给 while 循环指定了条件，该条件有点复杂需要分解来看：[插图] 在每次迭代中，我们通过调用迭代器 weaponsIterator 的 next 方法从生成器中取一个值，然后把值存放在 item 变量中。和所有 next 返回的对象一样，item 变量引用的对象中包含一个属性 value 为生成器返回的值，一个属性 done 指示生成器是否已经完成了值的生成。如果生成器中的值没有生成完毕，我们就会进入下次循环迭代，反之停止循环。这就是第一个生成器示例中 for-of 循环的原理。for-of 循环不过是对迭代器进行迭代的语法糖。[插图] 不同于手动调用迭代器的 next 方法，for-of 循环同时还要查看生成器是否完成，它在后台自动做了完全相同的工作。
+本例中，我们通过调用生成器函数再次创建了一个迭代器对象：
 
-把执行权交给下一个生成器正如在标准函数中调用另一个标准函数，我们需要把生成器的执行委托给另一个生成器。让我们看清单 6.4 的例子，生成器不仅生成了武器值也生成了「忍者」值。
+我们还创建了一个变量 item，用于保存由生成器生成的单个值。随后，我们给 while 循环指定了条件，该条件有点复杂需要分解来看：
+
+在每次迭代中，我们通过调用迭代器 weaponsIterator 的 next 方法从生成器中取一个值，然后把值存放在 item 变量中。和所有 next 返回的对象一样，item 变量引用的对象中包含一个属性 value 为生成器返回的值，一个属性 done 指示生成器是否已经完成了值的生成。如果生成器中的值没有生成完毕，我们就会进入下次循环迭代，反之停止循环。这就是第一个生成器示例中 for-of 循环的原理。for-of 循环不过是对迭代器进行迭代的语法糖。
+
+不同于手动调用迭代器的 next 方法，for-of 循环同时还要查看生成器是否完成，它在后台自动做了完全相同的工作。把执行权交给下一个生成器正如在标准函数中调用另一个标准函数，我们需要把生成器的执行委托给另一个生成器。让我们看清单 6.4 的例子，生成器不仅生成了武器值也生成了「忍者」值。
+
+
+
 
 执行这段代码后会输出 Sun Tzu、Hattori、Yoshi、Genghis Khan。第一个输出 Sun Tzu 不会让你感到意外，因为它就是 WarriorGenerator 生成器得到的第一个值。而对于第二个输出的值是 Hattori，我们需要解释一下了。在迭代器上使用 yield * 操作符，程序会跳转到另外一个生成器上执行。本例中，程序从 WarriorGenerator 跳转到一个新的 NinjaGenerator 生成器上，每次调用 WarriorGenerator 返回迭代器的 next 方法，都会使执行重新寻址到了 NinjaGenerator 上。该生成器会一直持有执行权直到无工作可做。所以我们本例中生成 Sun Tzu 之后紧接的是 Hattori 和 Yoshi。仅当 NinjaGenerator 的工作完成后，调用原来的迭代器才会继续输出值 Genghis Khan。注意，对于调用最初的迭代器代码来说，这一切都是透明的。for-of 循环不会关心 WarriorGenerator 委托到另一个生成器上，它只关心在 done 状态到来之前都一直调用 next 方法。现在，对于生成器一般的工作，以及如何代理到其他生成器的工作上，你都已经有所掌握了。让我们看看几个实践中的例子。
 

@@ -1,5 +1,3 @@
-# 2020136Domain-Driven-Design-DistilledR01
-
 Copyright © 2016 Pearson Education, Inc.
 
 ## 记忆时间
