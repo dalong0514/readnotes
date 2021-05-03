@@ -20,12 +20,23 @@
 
 ## 个人配置
 
+1、规则收集。
+
 ```json
     "rules": {
         "space-before-function-paren": ["warn", "never"],
         'semi': ["warn", 'never'],
         "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
     }
+```
+
+2、忽略文件设置。
+
+在根目录下新建 `.eslintignore` 文件，里面设置不检测语法的文件。
+
+```
+dist/assets/
+sample.js
 ```
 
 ## 问题汇总

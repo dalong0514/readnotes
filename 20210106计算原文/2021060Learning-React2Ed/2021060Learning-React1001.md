@@ -8,7 +8,7 @@ In this section, we'll demonstrate techniques that can be used to unit test Reac
 
 For a brief introduction to unit testing, see Martin Fowler's article: [UnitTest](https://martinfowler.com/bliki/UnitTest.html).
 
-1-2『 Martin Fowler 这篇单元测试的文章一定要研读掉。（2021-05-01）』 —  —  未完成
+1-2『 Martin Fowler 这篇单元测试的文章一定要研读掉。（2021-05-01）补充：已经读完，后续反复再读。』 —— 已完成
 
 ## 10.1 ESLint
 
@@ -432,19 +432,15 @@ ReactDOM.render(
 
 The longer list of type checks includes: 
 
+```
 PropTypes.array
-
 PropTypes.object
-
 PropTypes.bool
-
 PropTypes.func
-
 PropTypes.number
-
 PropTypes.string
-
 PropTypes.symbol
+```
 
 Additionally, if you want to ensure that a value was provided, you can chain .isRequired onto the end of any of these options. For example, if a string must be supplied, you'd use:
 

@@ -40,67 +40,56 @@ Here, we've created a StarRating component that renders five SVG stars that we'v
 
 A selected star should be filled in with red, and a star that's not selected should be greyed out. Let's create a component that automatically files the stars based upon the selected property: 
 
-
-
-
-
+```js
 const Star = ({ selected = false }) => (
-
-<FaStar color={selected ? "red" : "grey"} />
-
+  <FaStar color={selected ? "red" : "grey"} />
 );
+```
 
-The Star component renders an individual star and uses the selected
-
-property to fill it with the appropriate color. If the selected property is not passed to this component, we'll assume that the star should not be selected and by default will be filled in with grey.
+The Star component renders an individual star and uses the selected property to fill it with the appropriate color. If the selected property is not passed to this component, we'll assume that the star should not be selected and by default will be filled in with grey.
 
 The 5-star rating system is pretty popular, but a 10-star rating system is far more detailed. We should allow developers to select the total number of stars they wish to use when they add this component to their app. This can be accomplished by adding a totalStars property to the StarRating component:
 
-const createArray = length => [...Array(length)]; export default function StarRating({ totalStars = 5 }) {
+```js
+const createArray = length => [...Array(length)]; 
 
-return createArray(totalStars).map((n, i) => <Star key={i} />);
-
+export default function StarRating({ totalStars = 5 }) {
+  return createArray(totalStars).map((n, i) => <Star key={i} />);
 }
+```
 
 Here, we added the createArray function from Chapter 2. All we have to do is supply the length of the array that we want to create and we get a new array at that length. We use this function with the totalStars property to create an array of a specific length. Once we have an array, we can map over it and render Star components. By default, totalStars is equal to 5, which means this component will render 5 grey stars, as shown in Figure 6-2.
 
 Figure 6-2. Five stars are displayed
 
-The useState Hook
+## 6.2 The useState Hook
 
-It's time to make the StarRating component clickable, which will allow our users to change the rating. Since the rating is a value that will change, we'll store and change that value using React state. We incorporate state into a function component using a React feature called Hooks. Hooks contain reusable code logic that is separate from the component tree. They allow us to hook up functionality to our components. React ships with several built-in hooks we can use out of the box. In this case, we want to add state to our React component, so the first hook we'll work with is React's useState hook. This hook is already available in the react package; we simply need to import it: import React, { useState } from "react"; import { FaStar } from "react-icons/fa"; The stars the user has selected represents the rating. We'll create a state variable called selectedStars, which will hold the user's rating.
+It's time to make the StarRating component clickable, which will allow our users to change the rating. Since the rating is a value that will change, we'll store and change that value using React state. We incorporate state into a function component using a React feature called Hooks. Hooks contain reusable code logic that is separate from the component tree. They allow us to hook up functionality to our components. React ships with several built-in hooks we can use out of the box. In this case, we want to add state to our React component, so the first hook we'll work with is React's useState hook. This hook is already available in the react package; we simply need to import it: 
 
-We'll create this variable by adding the useState hook directly to the StarRating component:
+```js
+import React, { useState } from "react"; 
+import { FaStar } from "react-icons/fa"; 
+```
 
+The stars the user has selected represents the rating. We'll create a state variable called selectedStars, which will hold the user's rating. We'll create this variable by adding the useState hook directly to the StarRating component:
+
+```js
 export default function StarRating({ totalStars = 5 }) {
-
-const [selectedStars] = useState(3);
-
-return (
-
-<>
-
-{createArray(totalStars).map((n, i) => (
-
-<Star key={i} selected={selectedStars > i} />
-
-))}
-
-<p>
-
-{selectedStars} of {totalStars} stars
-
-</p>
-
-</>
-
-);
-
+  const [selectedStars] = useState(3);
+  return (
+    <>
+      {createArray(totalStars).map((n, i) => (
+        <Star key={i} selected={selectedStars > i} />
+      ))}
+      <p>
+        {selectedStars} of {totalStars} stars
+      </p>
+    </>
+  );
 }
+```
 
-We just hooked this component up with state. The useState hook is a
-
-function that we can invoke to return an array. The first value of that array is the state variable we want to use. In this case, that variable is selectedStars, or the number of stars the StarRating will color red.
+We just hooked this component up with state. The useState hook is a function that we can invoke to return an array. The first value of that array is the state variable we want to use. In this case, that variable is selectedStars, or the number of stars the StarRating will color red.
 
 useState returns an array. We can take advantage of array destructuring, which allows us to name our state variable whatever we like. The value we send to the useState function is the default value for the state variable. In this case, selectedStars will initially be set to 3, as shown in Figure 6-3.
 
@@ -108,11 +97,11 @@ Figure 6-3. Three of five stars are selected
 
 In order to collect a different rating from the user, we'll need to allow them to click on any of our stars. This means we'll need to make the stars clickable by adding an onClick handler to the FaStar component:
 
+```js
 const Star = ({ selected = false, onSelect = f => f }) => (
-
-<FaStar color={selected ? "red" : "grey"} onClick={onSelect} />
-
+  <FaStar color={selected ? "red" : "grey"} onClick={onSelect} />
 );
+```
 
 Here, we modified the star to contain an onSelect property. Check it out: this property is a function. When a user clicks on the FaStar component, we'll invoke this function, which can notify its parent that a star has been clicked. The default value for this function is f => f.
 
@@ -120,45 +109,28 @@ This is simply a fake function that does nothing; it just returns whatever argum
 
 Now that our Star component is clickable, we'll use it to change the state of the StarRating:
 
+```js
 export default function StarRating({ totalStars = 5 }) {
-
-const [selectedStars, setSelectedStars] = useState(0); return (
-
-<>
-
-{createArray(totalStars).map((n, i) => (
-
-<Star
-
-key={i}
-
-selected={selectedStars > i}
-
-onSelect={() => setSelectedStars(i + 1)}
-
-/>
-
-))}
-
-<p>
-
-{selectedStars} of {totalStars} stars
-
-</p>
-
-</>
-
-);
-
+  const [selectedStars, setSelectedStars] = useState(0); return (
+  <>
+    {createArray(totalStars).map((n, i) => (
+      <Star
+        key={i}
+        selected={selectedStars > i}
+        onSelect={() => setSelectedStars(i + 1)}
+      />
+    ))}
+    <p>
+      {selectedStars} of {totalStars} stars
+    </p>
+  </>
+  );
 }
+```
 
-In order to change the state of the StarRating component, we'll need a function that can modify the value of selectedStars. The second item in the array that's returned by the useState hook is a function that can be used to change the state value. Again, by destructuring this
+In order to change the state of the StarRating component, we'll need a function that can modify the value of selectedStars. The second item in the array that's returned by the useState hook is a function that can be used to change the state value. Again, by destructuring this array, we can name that function whatever we like. In this case, we're calling it setSelectedStars, because that's what it does: it sets the value of selectedStars.
 
-array, we can name that function whatever we like. In this case, we're calling it setSelectedStars, because that's what it does: it sets the value of selectedStars.
-
-The most important thing to remember about Hooks is that they can cause the component they're hooked into to rerender. Every time we invoke the setSelectedStars function to change the value of selectedStars, the StarRating function component will be
-
-reinvoked by the hook, and it will render again, this time with a new value for selectedStars. This is why Hooks are such a killer feature.
+The most important thing to remember about Hooks is that they can cause the component they're hooked into to rerender. Every time we invoke the setSelectedStars function to change the value of selectedStars, the StarRating function component will be reinvoked by the hook, and it will render again, this time with a new value for selectedStars. This is why Hooks are such a killer feature.
 
 When data within the hook changes, they have the power to rerender the component they're hooked into with new data.
 
@@ -166,9 +138,7 @@ The StarRating component will be rerendered every time a user clicks a Star. Whe
 
 Figure 6-4. Hooks in React developer tools
 
-The React developer tools will show you which Hooks are
-
-incorporated with specific components. When we render the StarRating component in the browser, we can view debugging information about that component by selecting it in the developer tools.
+The React developer tools will show you which Hooks are incorporated with specific components. When we render the StarRating component in the browser, we can view debugging information about that component by selecting it in the developer tools.
 
 In the column on the right, we can see that the StarRating component incorporates a state Hook that has a value of 2. As we interact with the app, we can watch the state value change and the component tree rerender with the corresponding number of stars selected.
 
@@ -178,161 +148,109 @@ In previous versions of React, before v16.8.0, the only way to add state to a co
 
 The following code is a class component. This was the original StarRating component that was printed in the first edition of this book:
 
+```js
 import React, { Component } from "react";
 
 export default class StarRating extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      starsSelected: 0
+    };
+    this.change = this.change.bind(this);
+  }
 
-constructor(props) {
+  change(starsSelected) {
+    this.setState({ starsSelected });
+  }
 
-super(props);
-
-this.state = {
-
-starsSelected: 0
-
-};
-
-this.change = this.change.bind(this);
-
+  render() {
+    const { totalStars } = this.props;
+    const { starsSelected } = this.state;
+    return (
+      <div>
+        {[...Array(totalStars)].map((n, i) => (
+        <Star
+          key={i}
+          selected={i < starsSelected}
+          onClick={() => this.change(i + 1)}
+        />
+        ))}
+        <p>
+          {starsSelected} of {totalStars} stars
+        </p>
+      </div>
+    );
+  }
 }
+```
 
-change(starsSelected) {
-
-this.setState({ starsSelected });
-
-}
-
-render() {
-
-const { totalStars } = this.props;
-
-const { starsSelected } = this.state;
-
-return (
-
-<div>
-
-{[...Array(totalStars)].map((n, i) => (
-
-<Star
-
-key={i}
-
-selected={i < starsSelected}
-
-onClick={() => this.change(i + 1)}
-
-/>
-
-))}
-
-<p>
-
-{starsSelected} of {totalStars} stars
-
-</p>
-
-</div>
-
-);
-
-}
-
-}
-
-This class component does the same thing as our function component with noticeably more code.
-
-Additionally, it introduces more confusion thorough the use of the this keyword and function binding.
+This class component does the same thing as our function component with noticeably more code. Additionally, it introduces more confusion thorough the use of the this keyword and function binding.
 
 As of today, this code still works. We're no longer covering class components in this book because they're no longer needed. Function components and Hooks are the future of React, and we're not looking back. There could come a day where class components are officially deprecated, and this code will no longer be supported.
 
-Refactoring for Advanced Reusability
+## 6.3 Refactoring for Advanced Reusability
 
 Right now, the Star component is ready for production. You can use it across several applications when you need to obtain a rating from a user. However, if we were to ship this component to npm so that anyone in the world could use it to obtain ratings from users, we may want to consider handling a couple more use cases.
 
 First, let's consider the style property. This property allows you to add CSS styles to elements. It is highly possible that a future developer, even yourself, could come across the need to modify the style of your entire container. They may attempt to do something like this:
 
+```js
 export default function App() {
-
-return <StarRating style={{ backgroundColor: "lightblue" }} />;
-
+  return <StarRating style={{ backgroundColor: "lightblue" }} />;
 }
+```
 
-All React elements have style properties. A lot of components also
-
-have style properties. So attempting to modify the style for the entire component seems sensible.
+All React elements have style properties. A lot of components also have style properties. So attempting to modify the style for the entire component seems sensible.
 
 All we need to do is collect those styles and pass them down to the StarRating container. Currently, the StarRating does not have a single container because we are using a React fragment. To make this work, we'll have to upgrade from a fragment to a div element and pass the styles to that div:
 
+```js
 export default function StarRating({ style = {}, totalStars = 5 }) {
-
-const [selectedStars, setSelectedStars] = useState(0); return (
-
-<div style={{ padding: "5px", ...style }}>
-
-{createArray(totalStars).map((n, i) => (
-
-<Star
-
-key={i}
-
-selected={selectedStars > i}
-
-onSelect={() => setSelectedStars(i + 1)}
-
-/>
-
-))}
-
-<p>
-
-{selectedStars} of {totalStars} stars
-
-</p>
-
-</div>
-
-);
-
+  const [selectedStars, setSelectedStars] = useState(0); 
+  return (
+    <div style={{ padding: "5px", ...style }}>
+      {createArray(totalStars).map((n, i) => (
+        <Star
+          key={i}
+          selected={selectedStars > i}
+          onSelect={() => setSelectedStars(i + 1)}
+        />
+      ))}
+      <p>
+        {selectedStars} of {totalStars} stars
+      </p>
+    </div>
+  );
 }
+```
 
 In the code above, we replaced the fragment with a div element and then applied styles to that div element. By default we assign that div a padding of 5px, and then we use the spread operator to apply the rest of the properties from the style object to the div style.
 
 Additionally, we may find developers who attempt to implement other common properties properties to the entire star rating:
 
+```js
 export default function App() {
-
-return (
-
-<StarRating
-
-style={{ backgroundColor: "lightblue" }}
-
-onDoubleClick={e => alert("double click")}
-
-/>
-
-);
-
+  return (
+    <StarRating
+      style={{ backgroundColor: "lightblue" }}
+      onDoubleClick={e => alert("double click")}
+    />
+  );
 }
+```
 
 In this sample, the user is trying to add a double-click method to the entire StarRating component. If we feel it is necessary, we can also pass this method along with any other properties down to our containing div:
 
-export default function StarRating({ style = {}, totalStars = 5, ...props
-
-}) {
-
-const [selectedStars, setSelectedStars] = useState(0); return (
-
-<div style={{ padding: 5, ...style }} {...props}>
-
-...
-
-</div>
-
-);
-
+```js
+export default function StarRating({ style = {}, totalStars = 5, ...props}) {
+  const [selectedStars, setSelectedStars] = useState(0); return (
+    <div style={{ padding: 5, ...style }} {...props}>
+    ...
+    </div>
+  );
 }
+```
 
 The first step is to collect any and all properties that the user may be attempting to add to the StarRating. We gather these properties using the spread operator: ...props. Next, we'll pass all of these remaining properties down to the div element: {...props}.
 
@@ -342,445 +260,298 @@ This is not a blanket rule to apply to all of your components. In fact, it's onl
 
 The real point is that it's important to think about how the consumers of your component may try to use it in the future.
 
-State in Component Trees
+## 6.4 State in Component Trees
 
 It's not a great idea to use state in every single component. Having state data distributed throughout too many of your components will make it harder to track down bugs and make changes within your application. This occurs because it's hard to keep track of where the state values live within your component tree. It's easier to understand your application's state, or state for a specific feature, if you manage it from one location. There are several approaches to this methodology, and the first one we'll analyze is storing state at the root of the component tree and passing it down to child components via props.
 
-Let's build a small application that can be used to save a list of colors.
+Let's build a small application that can be used to save a list of colors. We'll call the app the「Color Organizer」, and it will allow users to associate a list of colors with a custom title and rating. To get started, a sample dataset may look like the following:
 
-We'll call the app the「Color Organizer」, and it will allow users to associate a list of colors with a custom title and rating. To get started, a sample dataset may look like the following:
-
+```js
 [
-
-{
-
-"id" : "0175d1f0-a8c6-41bf-8d02-df5734d829a4",
-
-"title" : "ocean at dusk",
-
-"color" : "#00c4e2",
-
-"rating" : 5
-
-},
-
-{
-
-"id" : "83c7ba2f-7392-4d7d-9e23-35adbe186046",
-
-"title" : "lawn",
-
-"color" : "#26ac56",
-
-"rating" : 3
-
-},
-
-{
-
-"id" : "a11e3995-b0bd-4d58-8c48-5e49ae7f7f23",
-
-"title" : "bright red",
-
-"color" : "#ff0000",
-
-"rating" : 0
-
-}
-
+  {
+    "id" : "0175d1f0-a8c6-41bf-8d02-df5734d829a4",
+    "title" : "ocean at dusk",
+    "color" : "#00c4e2",
+    "rating" : 5
+  },
+  {
+    "id" : "83c7ba2f-7392-4d7d-9e23-35adbe186046",
+    "title" : "lawn",
+    "color" : "#26ac56",
+    "rating" : 3
+  },
+  {
+    "id" : "a11e3995-b0bd-4d58-8c48-5e49ae7f7f23",
+    "title" : "bright red",
+    "color" : "#ff0000",
+    "rating" : 0
+  }
 ]
+```
 
 The color-data.json file contains an array of three colors. Each color has an id, title, color, and rating. First, we'll create a UI consisting of React components that will be used to display this data in a browser. Then we'll allow the users to add new colors as well as rate and remove colors from the list.
 
-Sending State Down a Component Tree
+### 6.4.1 Sending State Down a Component Tree
 
 In this iteration, we'll store state in the root of the Color Organizer, the App component, and pass the colors down to child components to handle the rendering. The App component will be the only component within our application that holds state. We'll add the list of colors to the App with the useState hook:
 
-import React, { useState } from "react"; import colorData from "./color-data.json"; import ColorList from "./ColorList.js";
+```js
+import React, { useState } from "react"; 
+import colorData from "./color-data.json"; 
+import ColorList from "./ColorList.js";
 
 export default function App() {
-
-const [colors] = useState(colorData);
-
-return <ColorList colors={colors} />;
-
+  const [colors] = useState(colorData);
+  return <ColorList colors={colors} />;
 }
+```
 
 The App component sits at the root of our tree. Adding useState to this component hooks it up with state management for colors. In this example, the colorData is the array of sample colors from above. The App component uses the colorData as the initial state for colors.
 
 From there, the colors are passed down to a component called the ColorList:
 
+```js
 import React from "react";
-
 import Color from "./Color";
 
 export default function ColorList({ colors = [] }) {
-
-if(!colors.length) return <div>No Colors Listed.</div>; return (
-
-<div>
-
-{
-
-colors.map(color => <Color key={color.id} {...color} />)
-
+  if(!colors.length) return <div>No Colors Listed.</div>; 
+  return (
+    <div>
+    {
+      colors.map(color => <Color key={color.id} {...color} />)
+    }
+    </div>
+  );
 }
+```
 
-</div>
+The ColorList receives the colors from the App component as props. If the list is empty, this component will display a message to our users. When we have a color array, we can map over it and pass the details about each color farther down the tree to the Color component: 
 
-);
-
+```js
+export default function Color({ title, color, rating }) {
+  return (
+    <section>
+      <h1>{title}</h1>
+      <div style={{ height: 50, backgroundColor: color }} />
+      <StarRating selectedStars={rating} />
+    </section>
+  );
 }
+```
 
-The ColorList receives the colors from the App component as props.
+The Color component expects three properties: title, color, and rating. These values are found in each color object and were passed to this component using the spread operator `<Color {...color} />`.
 
-If the list is empty, this component will display a message to our users.
+This takes each field from the color object and passes it to the Color component as a property with the same name as the object key. The Color component displays these values. The title is rendered inside of an h1 element. The color value is displayed as the backgroundColor for a div element. The rating is passed farther down the tree to the StarRating component, which will display the rating visually as selected stars:
 
-When we have a color array, we can map over it and pass the details about each color farther down the tree to the Color component: export default function Color({ title, color, rating }) {
-
-return (
-
-<section>
-
-<h1>{title}</h1>
-
-<div style={{ height: 50, backgroundColor: color }} />
-
-<StarRating selectedStars={rating} />
-
-</section>
-
-);
-
+```js
+export default function StarRating({ totalStars = 5, selectedStars = 0 }) {
+  return (
+    <>
+      {createArray(totalStars).map((n, i) => (
+        <Star
+          key={i}
+          selected={selectedStars > i}
+        />
+      ))}
+      <p>
+        {selectedStars} of {totalStars} stars
+      </p>
+    </>
+  );
 }
+```
 
-The Color component expects three properties: title, color, and rating. These values are found in each color object and were passed to this component using the spread operator <Color {...color} />.
+This StarRating component has been modified. We've turned it into a pure component. A pure component is a function component that does not contain state and will render the same user interface given the same props. We made this component a pure component because the state for color ratings are stored in the colors array at the root of the component tree. Remember that the goal of this iteration is to store state in a single location and not have it distributed through many different components within the tree.
 
-This takes each field from the color object and passes it to the Color component as a property with the same name as the object key. The Color component displays these values. The title is rendered inside of an h1 element. The color value is displayed as the
-
-backgroundColor for a div element. The rating is passed farther down the tree to the StarRating component, which will display the rating visually as selected stars:
-
-export default function StarRating({ totalStars = 5, selectedStars = 0 })
-
-{
-
-return (
-
-<>
-
-{createArray(totalStars).map((n, i) => (
-
-<Star
-
-key={i}
-
-selected={selectedStars > i}
-
-/>
-
-))}
-
-<p>
-
-{selectedStars} of {totalStars} stars
-
-</p>
-
-</>
-
-);
-
-}
-
-This StarRating component has been modified. We've turned it into a pure component. A pure component is a function component that does not contain state and will render the same user interface given the same props. We made this component a pure component because the state for color ratings are stored in the colors array at the root of the component tree. Remember that the goal of this iteration is to store
-
-state in a single location and not have it distributed through many different components within the tree.
-
-NOTE
-
-It is possible for the StarRating component to hold its own state and receive state from a parent component via props. This is typically necessary when distributing components for wider use by the community. We demonstrate this technique in the next chapter when we cover the useEffect hook.
+NOTE: It is possible for the StarRating component to hold its own state and receive state from a parent component via props. This is typically necessary when distributing components for wider use by the community. We demonstrate this technique in the next chapter when we cover the useEffect hook.
 
 At this point, we've finished passing state down the component tree from the App component all the way to each Star component that's filled red to visually represent the rating for each color. If we render the app based on the color-data.json file that was listed previously, we should see our colors in the browser, as shown in Figure 6-5.
 
-Figure 6-5. Color Organizer rendered in the browser Sending Interactions Back up a Component Tree
+Figure 6-5. Color Organizer rendered in the browser 
+
+### 6.4.2 Sending Interactions Back up a Component Tree
 
 So far, we've rendered a representation of the colors array as UI by composing React components and passing data down the tree from parent component to child component via props. What happens if we want to remove a color from the list or change the rating of a color in our list? The colors are stored in state at the root of our tree. We'll need to collect interactions from child components and send them back up the tree to the root component where we can change the state.
 
 For instance, let's say we wanted to add a Remove button next to each color's title that would allow users to remove colors from state. We would add that button to the Color component:
 
-import { FaTrash } from "react-icons/fa"; export default function Color({ id, title, color, rating, onRemove = f => f }) {
+```js
+import { FaTrash } from "react-icons/fa"; 
 
-return (
-
-<section>
-
-<h1>{title}</h1>
-
-<button onClick={() => onRemove(id)}>
-
-<FaTrash />
-
-</button>
-
-<div style={{ height: 50, backgroundColor: color }} />
-
-<StarRating selectedStars={rating} />
-
-</section>
-
-);
-
+export default function Color({ id, title, color, rating, onRemove = f => f }) {
+  return (
+    <section>
+      <h1>{title}</h1>
+      <button onClick={() => onRemove(id)}>
+        <FaTrash />
+      </button>
+      <div style={{ height: 50, backgroundColor: color }} />
+      <StarRating selectedStars={rating} />
+    </section>
+  );
 }
+```
 
-Here, we've modified the color by adding a button that will allow users to remove colors. First, we imported a trash can icon from react-
-
-icons. Next, we wrapped the FaTrash icon in a button. Adding an onClick handler to this button allows us to invoke the onRemove function property, which has been added to our list of properties along with the id. When a user clicks the Remove button, we'll invoke removeColor and pass it the id of the color that we want to remove.
+Here, we've modified the color by adding a button that will allow users to remove colors. First, we imported a trash can icon from react-icons. Next, we wrapped the FaTrash icon in a button. Adding an onClick handler to this button allows us to invoke the onRemove function property, which has been added to our list of properties along with the id. When a user clicks the Remove button, we'll invoke removeColor and pass it the id of the color that we want to remove.
 
 That is why the id value has also been gathered from the Color component's properties.
 
-This solution is great because we keep the Color component pure. It doesn't have state and can easily be reused in a different part of the app or another application altogether. The Color component is not concerned with what happens when a user clicks the Remove button.
+This solution is great because we keep the Color component pure. It doesn't have state and can easily be reused in a different part of the app or another application altogether. The Color component is not concerned with what happens when a user clicks the Remove button. All it cares about is notifying the parent that this event has occurred and passing the information about which color the user wishes to remove. It's now the parent's responsibility to handle this event: 
 
-All it cares about is notifying the parent that this event has occurred and passing the information about which color the user wishes to remove. It's now the parent's responsibility to handle this event: export default function ColorList({ colors = [], onRemoveColor = f => f
-
-}) {
-
-if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>; return (
-
-colors.map(color => (
-
-<Color key={color.id} {...color} onRemove={onRemoveColor} />
-
-)
-
+```js
+export default function ColorList({ colors = [], onRemoveColor = f => f }) {
+  if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>; 
+  return (
+    colors.map(color => (
+      <Color key={color.id} {...color} onRemove={onRemoveColor} />
+    ))
+  )
 }
+```
 
-</div>
-
-);
-
-}
-
-The Color component's parent is the ColorList. This component also doesn't have access to state. Instead of removing the color, it simply passes the event up to its parent. It accomplishes this by adding an
-
-onRemoveColor function property. If a Color component invokes the onRemove property, the ColorList will in turn invoke its
-
-onRemoveColor property and send the responsibility for removing the color up to its parent. The color's id is still being passed to the onRemoveColor function.
+The Color component's parent is the ColorList. This component also doesn't have access to state. Instead of removing the color, it simply passes the event up to its parent. It accomplishes this by adding an onRemoveColor function property. If a Color component invokes the onRemove property, the ColorList will in turn invoke its onRemoveColor property and send the responsibility for removing the color up to its parent. The color's id is still being passed to the onRemoveColor function.
 
 The parent of the ColorList is the App. This component is the component that has been hooked up with state. This is where we can capture the color id and remove the color in state:
 
+```js
 export default function App() {
-
-const [colors, setColors] = useState(colorData);
-
-return (
-
-<ColorList
-
-colors={colors}
-
-onRemoveColor={id => {
-
-const newColors = colors.filter(color => color.id !== id); setColors(newColors);
-
-}}
-
-/>
-
-);
-
+  const [colors, setColors] = useState(colorData);
+  return (
+    <ColorList
+      colors={colors}
+      onRemoveColor={id => {
+        const newColors = colors.filter(color => color.id !== id); 
+        setColors(newColors);
+      }}
+    />
+  );
 }
+```
 
 First, we add a variable for setColors. Remember that the second argument in the array returned by useState is a function we can use to modify the state. When the ColorList raises an onRemoveColor event, we capture the id of the color to remove from the arguments and use it to filter the list of colors to exclude the color the user wants to remove.
 
 Next, we change the state. We use the setColors function to change change the array of colors to the newly filtered array.
 
-Changing the state of the colors array causes the App component to be
-
-rerendered with the new list of colors. Those new colors are passed to the ColorList component, which is also rerendered. It will render Color components for the remaining colors and our UI will reflect the changes we've made by rendering one less color.
+Changing the state of the colors array causes the App component to be rerendered with the new list of colors. Those new colors are passed to the ColorList component, which is also rerendered. It will render Color components for the remaining colors and our UI will reflect the changes we've made by rendering one less color.
 
 If we want to rate the colors that are stored in the App components state, we'll have to repeat the process with an onRate event. First, we'll collect the new rating from the individual star that was clicked and pass that value to the parent of the StarRating:
 
+```js
 export default function StarRating({
-
-totalStars = 5,
-
-selectedStars = 0,
-
-onRate = f => f
-
-}) {
-
-return (
-
-<>
-
-{createArray(totalStars).map((n, i) => (
-
-<Star
-
-key={i}
-
-selected={selectedStars > i}
-
-onSelect={() => onRate(i + 1)}
-
-/>
-
-))}
-
-</>
-
-);
-
+  totalStars = 5,
+  selectedStars = 0,
+  onRate = f => f
+  }) {
+  return (
+    <>
+      {createArray(totalStars).map((n, i) => (
+        <Star
+          key={i}
+          selected={selectedStars > i}
+          onSelect={() => onRate(i + 1)}
+        />
+      ))}
+    </>
+  );
 }
+```
 
 Then, we'll grab the rating from the onRate handler we added to the StarRating component. We'll then pass the new rating along with the id of the color to be rated up to the Color component's parent via another onRate function property:
 
+```js
 export default function Color({
-
-id,
-
-title,
-
-color,
-
-rating,
-
-onRemove = f => f,
-
-onRate = f => f
-
-}) {
-
-return (
-
-<section>
-
-<h1>{title}</h1>
-
-<button onClick={() => onRemove(id)}>
-
-<FaTrash />
-
-</button>
-
-<div style={{ height: 50, backgroundColor: color }} />
-
-<StarRating
-
-selectedStars={rating}
-
-onRate={rating => onRate(id, rating)}
-
-/>
-
-</section>
-
-);
-
+  id,
+  title,
+  color,
+  rating,
+  onRemove = f => f,
+  onRate = f => f
+  }) {
+  return (
+    <section>
+      <h1>{title}</h1>
+      <button onClick={() => onRemove(id)}>
+        <FaTrash />
+      </button>
+      <div style={{ height: 50, backgroundColor: color }} />
+      <StarRating
+        selectedStars={rating}
+        onRate={rating => onRate(id, rating)}
+      />
+    </section>
+  );
 }
+```
 
 In the ColorList component, we'll have to capture the onRate event from individual color components and pass them up to its parent via the onRateColor function property:
 
+```js
 export default function ColorList({
-
-colors = [],
-
-onRemoveColor = f => f,
-
-onRateColor = f => f
-
-}) {
-
-if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>; return (
-
-<div className="color-list">
-
-{
-
-colors.map(color => (
-
-<Color
-
-key={color.id}
-
-{...color}
-
-onRemove={onRemoveColor}
-
-onRate={onRateColor}
-
-/>
-
-)
-
+  colors = [],
+  onRemoveColor = f => f,
+  onRateColor = f => f
+  }) {
+  if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>; 
+  return (
+    <div className="color-list">
+    {
+      colors.map(color => (
+        <Color
+          key={color.id}
+          {...color}
+          onRemove={onRemoveColor}
+          onRate={onRateColor}
+        />
+      ))
+    }
+    </div>
+  )
 }
-
-</div>
-
-);
-
-}
+```
 
 Finally, after passing the event up through all of these components, we'll arrive at the App, where state is stored and the new rating can be saved:
 
+```js
 export default function App() {
-
-const [colors, setColors] = useState(colorData);
-
-return (
-
-<ColorList
-
-colors={colors}
-
-onRateColor={(id, rating) => {
-
-const newColors = colors.map(color =>
-
-color.id === id ? { ...color, rating } : color
-
-);
-
-setColors(newColors);
-
-}}
-
-onRemoveColor={id => {
-
-const newColors = colors.filter(color => color.id !== id); setColors(newColors);
-
-}}
-
-/>
-
-);
-
+  const [colors, setColors] = useState(colorData);
+  return (
+    <ColorList
+      colors={colors}
+      onRateColor={(id, rating) => {
+        const newColors = colors.map(color =>
+          color.id === id ? { ...color, rating } : color
+        );
+        setColors(newColors);
+      }}
+      onRemoveColor={id => {
+        const newColors = colors.filter(color => color.id !== id); 
+        setColors(newColors);
+      }}
+    />
+  );
 }
+```
 
-The App component will change color ratings when the ColorList invokes the onRateColor property with the id of the color to rate and the new rating. We'll use those values to construct an array of new colors by mapping over the existing colors and changing the rating for the color that matches the id property. Once we send the newColors to
-
-the setColors function, the state value for colors will change and the App component will be invoked with a new value for the colors array.
+The App component will change color ratings when the ColorList invokes the onRateColor property with the id of the color to rate and the new rating. We'll use those values to construct an array of new colors by mapping over the existing colors and changing the rating for the color that matches the id property. Once we send the newColors to the setColors function, the state value for colors will change and the App component will be invoked with a new value for the colors array.
 
 Once the state of our colors array changes, the UI tree is rendered with the new data. The new rating is reflected back to the user via red stars. Just as we passed data down a component tree via props, interactions can be passed back up the tree along with data via function properties.
 
-Building Forms
+## 6.5 Building Forms
 
 For a lot of us, being a web developer means collecting large amounts of information from users with forms. If this sounds like your job, then you'll be building a lot of form components with React. All of the HTML form elements that are available to the DOM are also available as React elements, which means that you may already know how to render a form with JSX:
 
+```html
 <form>
-
-<input type="text" placeholder="color title..." required />
-
-<input type="color" required />
-
-<button> ADD</button>
-
+  <input type="text" placeholder="color title..." required />
+  <input type="color" required />
+  <button> ADD</button>
 </form>
+```
 
 This form element has three child elements: two input elements and a button. The first input element is a text input that will be used to collect the title value for new colors. The second input element is an HTML color input that will allow users to pick a color from a color wheel. We'll be using basic HTML form validation, so we've marked both inputs as required. The ADD button will be used to add a new color.
 
-Using Refs
+### 6.5.1 Using Refs
 
 When it's time to build a form component in React, there are several patterns available to you. One of these patterns involves accessing the DOM node directly using a React feature called refs. In React, a ref is an object that stores values for the lifetime of a component. There are several use cases that involve using refs. In this section, we'll look at how we can access a DOM node directly with a ref.
 

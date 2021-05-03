@@ -6,13 +6,13 @@ Using the createElement function is a good way to see how React works, but as Re
 
 JSX combines the JS from JavaScript and the X from XML. It is a JavaScript extension that allows us to define React elements using a tag-based syntax directly within our JavaScript code. Sometimes JSX is confused with HTML because they look similar. JSX is just another way of creating React elements, so you don't have to pull your hair out looking for the missing comma in a complex createElement call.
 
+2『 JSX 做一张术语卡片。（2021-05-03）』
+
 In this chapter, we're going to discuss how to use JSX to construct a React application.
 
 ## 5.1 React Elements as JSX
 
-Facebook's React team released JSX when they released React to provide a concise syntax for creating complex DOM trees with attributes. They also hoped to make React more readable like HTML
-
-and XML. In JSX, an element's type is specified with a tag. The tag's attributes represent the properties. The element's children can be added between the opening and closing tags.
+Facebook's React team released JSX when they released React to provide a concise syntax for creating complex DOM trees with attributes. They also hoped to make React more readable like HTML and XML. In JSX, an element's type is specified with a tag. The tag's attributes represent the properties. The element's children can be added between the opening and closing tags.
 
 You can also add other JSX elements as children. If you have an unordered list, you can add child list item elements to it with JSX tags.
 
@@ -31,6 +31,8 @@ It looks very similar to HTML:
 
 JSX works with components as well. Simply define the component using the class name. We pass an array of ingredients to the IngredientsList as a property with JSX, as shown in Figure 5-1.
 
+![](./res/2021001.png)
+
 Figure 5-1. Creating the IngredientsList with JSX
 
 When we pass the array of ingredients to this component, we need to surround it with curly braces. This is called a JavaScript expression, and we must use these when passing JavaScript values to components as properties. Component properties will take two types: either a string or a JavaScript expression. JavaScript expressions can include arrays, objects, and even functions. In order to include them, you must surround them in curly braces.
@@ -39,11 +41,9 @@ When we pass the array of ingredients to this component, we need to surround it 
 
 JSX might look familiar, and most of the rules result in syntax that's similar to HTML. However, there are a few considerations you should understand when working with JSX.
 
-NESTED COMPONENTS
+1 NESTED COMPONENTS
 
-JSX allows you to add components as children of other components.
-
-For example, inside the IngredientsList, we can render another component called Ingredient multiple times:
+JSX allows you to add components as children of other components. For example, inside the IngredientsList, we can render another component called Ingredient multiple times:
 
 ```html
 <IngredientsList>
@@ -53,7 +53,7 @@ For example, inside the IngredientsList, we can render another component called 
 </IngredientsList>
 ```
 
-CLASSNAME
+2 CLASSNAME
 
 Since class is a reserved word in JavaScript, className is used to define the class attribute instead:
 
@@ -61,7 +61,7 @@ Since class is a reserved word in JavaScript, className is used to define the cl
 <h1 className="fancy" > Baked Salmon</h1> 
 ```
 
-JAVASCRIPT EXPRESSIONS
+3 JAVASCRIPT EXPRESSIONS
 
 JavaScript expressions are wrapped in curly braces and indicate where variables will be evaluated and their resulting values returned. For example, if we want to display the value of the title property in an element, we can insert that value using a JavaScript expression. The variable will be evaluated and its value returned:
 
@@ -99,6 +99,8 @@ JSX looks clean and readable, but it can't be interpreted with a browser. All JS
 ## 5.2 Babel
 
 Many software languages require you to compile your source code. JavaScript is an interpreted language: the browser interprets the code as text, so there's no need to compile JavaScript. However, not all browsers support the latest JavaScript syntax, and no browser supports JSX syntax. Since we want to use the latest features of JavaScript along with JSX, we're going to need a way to convert our fancy source code into something that the browser can interpret. This process is called compiling, and it's what Babel is designed to do.
+
+1-2『本书作者给了自己很多醍醐灌顶的知识点，看到上面的信息才算弄明白 Babel 干啥的。虽然 JS 是解释性语言，但不是所有的浏览器都支持 JS 的最新相关语法（ES6、JSX 等），所需需要 Babel 来「翻译」。Babel 做一张术语卡片。（2021-05-03）』—— 已完成
 
 The first version of the project was called 6to5, and it was released in September 2014. 6to5 was a tool that could be used to convert ES6 syntax to ES5 syntax, which was more widely supported by web browsers. As the project grew, it aimed to be a platform to support all of the latest changes in ECMAScript. It also grew to support converting JSX into JavaScript. The project was renamed Babel in February 2015.
 
@@ -208,16 +210,18 @@ ReactDOM.render(
 );
 ```
 
+1『这里有个注意点。传递给下游组件的 props 里包含 2 个属性，一个是 recipes，其值是那个 json 数组，一个是 title，其值是个字符串。可以把 props 当作一个对象，所有后面的改进版，props 数据传递过去后可以用解构对象的语法 `{ recipes, title }` 来解构数据。感觉一下子弄清楚不少东西。（2021-05-03）』
+
 The React elements within the Menu component are expressed as JSX. Everything is contained within an article element. A header element, an h1 element, and a div.recipes element are used to describe the DOM for our menu. The value for the title property will be displayed as text within the h1:
 
 ```js
 function Menu(props) {
   return (
   <article>
-  <header>
-  <h1>{props.title}</h1>
-  </header>
-  <div className="recipes" />
+    <header>
+      <h1>{props.title}</h1>
+    </header>
+    <div className="recipes" />
   </article>
   );
 }
@@ -296,7 +300,7 @@ Each recipe has a string for the name, an array of objects for ingredients, and 
 
 The first JavaScript expression we see is being used to set the id attribute for the root section element. It's converting the recipe's name to a lowercase string and globally replacing spaces with dashes.
 
-The result is that "Baked Salmon" will be converted to "baked-salmon" (and likewise, if we had a recipe with the name "Boston Baked Beans", it would be converted to「boston-baked-beans」) before it's used as the id attribute in our UI. The value for name is also being displayed in an h1 as a text node.
+The result is that "Baked Salmon" will be converted to "baked-salmon" (and likewise, if we had a recipe with the name "Boston Baked Beans", it would be converted to "boston-baked-beans") before it's used as the id attribute in our UI. The value for name is also being displayed in an h1 as a text node.
 
 Inside of the unordered list, a JavaScript expression is mapping each ingredient to an li element that displays the name of the ingredient. Within our instructions section, we see the same pattern being used to return a paragraph element where each step is displayed. These map functions are returning arrays of child elements. The complete code for the application should look like this: 
 
@@ -382,6 +386,122 @@ ReactDOM.render(
 
 When we run this code in the browser, React will construct a UI using our instructions with the recipe data as shown in Figure 5-2.
 
+2『
+
+太爽了，上面的代码在自己新建的 React 项目（learn-react）里跑通了。
+
+最开始自己测试用的项目代码：
+
+```js
+class Game extends React.Component {
+  testFun() {
+    // console.log('dalong')
+    codeFun()
+  }
+
+  render() {
+    return (
+      <div>
+        <Button type="primary" onClick={this.testFun}>测试按钮</Button>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <Game />,
+  document.getElementById('root')
+)
+```
+
+融合后的代码：
+
+```js
+/* eslint-disable react/prop-types */
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import { Button } from 'antd'
+import { codeFun } from './testCode'
+
+const data = [
+  {
+    name: "Baked Salmon",
+    ingredients: [
+      { name: "Salmon", amount: 1, measurement: "l lb" },
+      { name: "Pine Nuts", amount: 1, measurement: "cup" },
+      { name: "Butter Lettuce", amount: 2, measurement: "cups" },
+    ],
+    steps: [
+      "Preheat the oven to 350 degrees.",
+      "Spread the olive oil around a glass baking dish.",
+    ]
+  },
+  
+  {
+    name: "Fish Tacos",
+    ingredients: [
+      { name: "Whitefish", amount: 1, measurement: "l lb" },
+      { name: "Cheese", amount: 1, measurement: "cup" },
+    ],
+    steps: [
+      "Cook the fish on the grill until cooked through.",
+      "Place the fish on the 3 tortillas.",
+    ]
+  }
+]
+
+// A function component for an individual Recipe
+function Recipe({ name, ingredients, steps }) {
+  return (
+    <section id={name.toLowerCase().replace(/ /g, "-")}>
+      <h1>{name}</h1>
+      <ul className="ingredients">
+        {ingredients.map((ingredient, i) => (
+          <li key={i}>{ingredient.name}</li>
+        ))}
+      </ul> 
+      <section className="instructions"> 
+        <h2>Cooking Instructions</h2>
+        {steps.map((step, i) => (
+          <p key={i}>{step}</p>
+        ))}
+      </section>
+    </section>
+  )
+}
+
+function Menu({ recipes, title}) {
+  const testFun = () => {
+    // console.log('dalong')
+    codeFun()
+  }
+  
+  return (
+    <>
+      <Button type="primary" onClick={testFun}>测试按钮</Button>
+      <article>
+        <header>
+          <h1>{title}</h1>
+        </header>
+        <div className="recipes">
+          {recipes.map((recipe, i) => (
+            <Recipe key={i} {...recipe}/>
+          ))}
+        </div>
+      </article>
+    </>
+  )
+}
+
+ReactDOM.render(
+  <Menu recipes={data} title="Delicious Recipes" />, 
+  document.getElementById("root")
+)
+```
+
+』
+
 If you're using Google Chrome and have the React Developer Tools Extension installed, you can take a look at the present state of the component tree. To do this, open the developer tools and select the Components tab, as shown in Figure 5-3.
 
 Here we can see the Menu and its child elements. The data array contains two objects for recipes, and we have two Recipe elements. Each Recipe element has properties for the recipe name, ingredients, and steps. The ingredients and steps are passed down to their own components as data.
@@ -418,9 +538,7 @@ function Cat({ name }) {
 }
 ```
 
-Immediately, we'll see an error in the console that reads Adjacent JSX elements must be wrapped in an enclosing tag and recommends using a fragment. This is where fragments come into play! React will not render two or more adjacent or sibling elements as a component, so we used to have to wrap these in an enclosing tag like a div. This led to a lot of unnecessary tags being created, though, and a bunch of wrappers without much purpose. If we use a React fragment,
-
-we can mimic the behavior of a wrapper without actually creating a new tag. Start by wrapping the adjacent tags, the h1 and p, with a React.Fragment tag:
+Immediately, we'll see an error in the console that reads Adjacent JSX elements must be wrapped in an enclosing tag and recommends using a fragment. This is where fragments come into play! React will not render two or more adjacent or sibling elements as a component, so we used to have to wrap these in an enclosing tag like a div. This led to a lot of unnecessary tags being created, though, and a bunch of wrappers without much purpose. If we use a React fragment, we can mimic the behavior of a wrapper without actually creating a new tag. Start by wrapping the adjacent tags, the h1 and p, with a React.Fragment tag:
 
 ```js
 function Cat({ name }) {
@@ -446,6 +564,8 @@ function Cat({ name }) {
 }
 ```
 
+1『大赞啊，上面的代码涨知识了，而且也解决了自己之前遇到的困惑。React Fragments 容纳多个组件，做一张信息数据卡片。（2021-05-03）』—— 已完成
+
 If you look at the DOM, the fragment is not visible in the resulting tree:
 
 ```js
@@ -467,6 +587,8 @@ The React ecosystem has matured to include tools like create-react-app, Gatsby, 
 
 Webpack is billed as a module bundler. A module bundler takes all of our different files (JavaScript, LESS, CSS, JSX, ESNext, and so on) and turns them into a single file. The two main benefits of bundling are modularity and network performance.
 
+12『这里的信息让自己对 Webpack 理解比以前深了些，但感觉还是云里雾里，没吃透。先做一张术语卡片。（2021-05-03）』—— 已完成
+
 Modularity will allow you to break down your source code into parts, or modules, that are easier to work with, especially in a team environment. Network performance is gained by only needing to load one dependency in the browser: the bundle. Each script tag makes an HTTP request, and there's a latency penalty for each HTTP request.
 
 Bundling all the dependencies into a single file allows you to load everything with one HTTP request, thereby avoiding additional latency.
@@ -481,9 +603,7 @@ Aside from code compilation, webpack also can handle:
 
 4 Hot Module Replacement (HMR): Watches for changes in source code. Changes only the updated modules immediately.
 
-The Recipes app we built earlier in this chapter has some limitations that webpack will help us alleviate. Using a tool like webpack to statically build client JavaScript makes it possible for teams to work together on large-scale web applications. We can also gain the
-
-following benefits by incorporating the webpack module bundler: 
+The Recipes app we built earlier in this chapter has some limitations that webpack will help us alleviate. Using a tool like webpack to statically build client JavaScript makes it possible for teams to work together on large-scale web applications. We can also gain the following benefits by incorporating the webpack module bundler: 
 
 1 Modularity: Using the module pattern to export modules that will later be imported or required by another part of the application makes source code more approachable. It allows development teams to work together, by allowing them to create and work with separate files that will be statically combined into a single file before sending to production.
 
@@ -504,9 +624,7 @@ cd recipes-app
 
 For this project, we're going to go through the following steps: 1) Create the project. 2) Break down the recipe app into components that live in different files. 3) Set up a webpack build that incorporates Babel.
 
-CREATE-REACT-APP
-
-There's a tool called Create React App that can be used to autogenerate a React project with all of this preconfigured. We're going to take a closer look at what's happening behind the scenes before abstracting these steps away with a tool.
+CREATE-REACT-APP: There's a tool called Create React App that can be used to autogenerate a React project with all of this preconfigured. We're going to take a closer look at what's happening behind the scenes before abstracting these steps away with a tool.
 
 1 CREATE THE PROJECT
 
@@ -606,7 +724,9 @@ Using the Ingredient component, we can construct an IngredientsList component th
 ```js
 // ./src/components/IngredientsList.js
 import React from "react";
-import Ingredient from "./Ingredient"; export default function IngredientsList({ list }) {
+import Ingredient from "./Ingredient"; 
+
+export default function IngredientsList({ list }) {
   return (
     <ul className="ingredients">
     {list.map((ingredient, i) => (
@@ -656,7 +776,10 @@ Now that we have components for ingredients and instructions, we can compose rec
 ```js
 // ./src/components/Recipe.js
 import React from "react";
-import IngredientsList from "./IngredientsList"; import Instructions from "./Instructions"; function Recipe({ name, ingredients, steps }) {
+import IngredientsList from "./IngredientsList"; 
+import Instructions from "./Instructions"; 
+
+function Recipe({ name, ingredients, steps }) {
   return (
     <section id={name.toLowerCase().replace(/ /g, "-")}>
       <h1>{name}</h1>
@@ -700,7 +823,8 @@ We still need to use ReactDOM to render the Menu component. The main file for th
 
 ```js
 // ./src/index.js
-import React from "react"; import { render } from "react-dom";
+import React from "react"; 
+import { render } from "react-dom";
 import Menu from "./components/Menu";
 import data from "./data/recipes.json";
 
@@ -751,6 +875,45 @@ All of our imported variables are local to the index.js file. When we render the
 ]
 ```
 
+1『
+
+目前也用 js 文件导出数据模块。
+
+```js
+// ./src/data/recipes.js
+
+const data = [
+  {
+    name: "Baked Salmon",
+    ingredients: [
+      { name: "Salmon", amount: 1, measurement: "l lb" },
+      { name: "Pine Nuts", amount: 1, measurement: "cup" },
+      { name: "Butter Lettuce", amount: 2, measurement: "cups" },
+    ],
+    steps: [
+      "Preheat the oven to 350 degrees.",
+      "Spread the olive oil around a glass baking dish.",
+    ]
+  },
+  
+  {
+    name: "Fish Tacos",
+    ingredients: [
+      { name: "Whitefish", amount: 1, measurement: "l lb" },
+      { name: "Cheese", amount: 1, measurement: "cup" },
+    ],
+    steps: [
+      "Cook the fish on the grill until cooked through.",
+      "Place the fish on the 3 tortillas.",
+    ]
+  }
+]
+
+export default data
+```
+
+』
+
 Now that we've pulled our code apart into separate modules and files, let's create a build process with webpack that will put everything back together into a single file. You may be thinking,「Wait, we just did all of that work to break everything apart, and now we're going to use a tool to put it back together? Why on Earth…?」Splitting projects into separate files typically makes larger projects easier to manage because team members can work on separate components without overlap. It also means that files can be easier to test.
 
 3 CREATING THE WEBPACK BUILD
@@ -759,6 +922,8 @@ In order to create a static build process with webpack, we'll need to install a 
 
 ```js
 npm install --save-dev webpack webpack-cli 
+
+yarn add --save-dev webpack webpack-cli 
 ```
 
 Remember that we've already installed React and ReactDOM.
@@ -767,27 +932,31 @@ For this modular Recipes app to work, we're going to need to tell webpack how to
 
 The starting file for our Recipes app is index.js. It imports React, ReactDOM, and the Menu.js file. This is what we want to run in the browser first. Wherever webpack finds an import statement, it will find the associated module in the filesystem and include it in the bundle. index.js imports Menu.js, Menu.js imports Recipe.js, Recipe.js imports Instructions.js and IngredientsList.js, and IngredientsList.js imports Ingredient.js. Webpack will follow this import tree and include all of these necessary modules in our bundle. Traversal through all these files creates what's called a dependency graph. A dependency is just something our app needs, like a component file, a library file like React, or an image. Picture each file we need as a circle on the graph, with webpack drawing all the lines between the circles to create the graph. That graph is the bundle.
 
-IMPORT STATEMENTS: We're using import statements, which are not presently supported by most browsers or by Node.js. The reason import statements work is that Babel will convert them into require('module/path'); statements in our final code. The require function is how CommonJS modules are typically loaded.
+2『这里的信息，补充进 webpack 术语卡片。（2021-05-03）』—— 已完成
+
+IMPORT STATEMENTS: We're using import statements, which are not presently supported by most browsers or by Node.js. The reason import statements work is that Babel will convert them into `require('module/path');` statements in our final code. The require function is how CommonJS modules are typically loaded.
 
 As webpack builds our bundle, we need to tell it to transform JSX to React elements. The webpack.config.js file is just another module that exports a JavaScript literal object that describes the actions webpack should take. The configuration file should be saved to the root folder of the project, right next to the index.js file:
 
 ```js
 // ./webpack.config.js
-var path = require("path");
+var path = require("path")
 module.exports = {
   entry: "./src/index.js",
   output: {
-  path: path.join(__dirname, "dist", "assets"), filename: "bundle.js"
+    path: path.join(__dirname, "dist", "assets"), filename: "bundle.js"
   }
-};
+}
 ```
 
-First, we tell webpack that our client entry file is ./src/index.js. It will automatically build the dependency graph based on import statements starting in that file. Next, we specify that we want to output a bundled JavaScript file to ./dist/bundle.js. This is where webpack will place the final packaged JavaScript.
+First, we tell webpack that our client entry file is `./src/index.js`. It will automatically build the dependency graph based on import statements starting in that file. Next, we specify that we want to output a bundled JavaScript file to `./dist/bundle.js`. This is where webpack will place the final packaged JavaScript.
 
 Next, let's install the necessary Babel dependencies. We'll need babel-loader and @babel/core:
 
 ```
 npm install babel-loader @babel/core --save-dev
+
+yarn add babel-loader @babel/core --save-dev
 ```
 
 The next set of instructions for webpack consists of a list of loaders to run on specified modules. This will be added to the config file under the module field:
@@ -812,6 +981,8 @@ At this point, we need to specify presets for running Babel. When we set a prese
 
 ```
 npm install @babel/preset-env @babel/preset-react --save-dev
+
+yarn add @babel/preset-env @babel/preset-react --save-dev
 ```
 
 Then create one more file at the root of the project: .babelrc:
@@ -826,7 +997,49 @@ All right! We've created something pretty cool: a project that resembles a real 
 
 ```
 npx webpack --mode development
+
+yarn run webpack --mode development
 ```
+
+1『
+
+报错：
+
+```
+ERROR in ./src/index.css 3:5
+Module parse failed: Unexpected token (3:5)
+```
+
+解决方法：[reactjs - .css Module parse failed - Stack Overflow](https://stackoverflow.com/questions/42530582/css-module-parse-failed)
+
+```
+npm install --save-dev style-loader css-loader
+
+yarn add --save-dev style-loader css-loader
+```
+
+接着修改 webpack 的配置文件：
+
+```js
+// ./webpack.config.js
+var path = require("path")
+module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.join(__dirname, "dist", "assets"), filename: "bundle.js"
+  },
+  module: {
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      { test: /\.css$/, loader: "style-loader!css-loader" }
+    ]
+  },
+}
+```
+
+搞了半天，才意识到目前在做的事情是用 webpack 把所有前端代码打包成一个静态文件，服务器上直接读这个静态文件即可。就是数据流前端开发后，在公司服务器上 `yarn build:prod` 或者阿里云上 `yarn build:stage` 在干的事情一样。真实恍然大悟的感觉。补充进 webpack 的术语卡片中。（2021-05-03）
+
+』
 
 Webpack will either succeed and create a bundle or fail and show you an error. Most errors have to do with broken import references. When debugging webpack errors, look closely at the filenames and file paths used in import statements. You can also add an npm script to your package.json file to create a shortcut:
 
@@ -907,9 +1120,9 @@ From within the my-react-project folder, you can run npm start. If you prefer, y
 
 You can run tests with npm test or yarn test. This runs all of the test files in the project in an interactive mode.
 
-You can also run the npm run build command. Using yarn, run yarn build.
+You can also run the npm run build command. Using yarn, run yarn build. This will create a production-ready bundle that has been transformed and minified.
 
-This will create a production-ready bundle that has been transformed and minified.
+1『搞了半天，自己最初就是用 `create-react-app my-project` 创建的项目，系统默认都已经配置好了，目前感觉没没必须自己配置。按本书一套走下来后，发现系统配置的 build、test、start 都用不了了，错误提示是 `Babel` 版本号跟系统之前配置的不不一致。即使把 node_modules 全删掉重新装系统默认的那个 Babel 版本还是解决不了问题。（2021-05-03）』
 
 Create React App is a great tool for beginners and experienced React developers alike. As the tool evolves, more functionality will likely be added, so you can keep an eye on the changes on GitHub. Another way to get started with React without having to worry about setting up your own customized webpack build is to use CodeSandbox. CodeSandbox is an IDE that runs online at https://codesandbox.io.
 

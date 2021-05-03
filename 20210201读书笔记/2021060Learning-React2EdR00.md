@@ -242,6 +242,8 @@ Object literal enhancement allows us to pull global variables into objects and r
 
 ### 0105. 主题卡 —— spread operator
 
+扩展符号的用途汇总：1）组合数据。2）复制一个数组。`[...array]` 表示基于 array 数组 copy 了一个新数组，这个可以实现「数据的不变性」。3）`const [first, ...others] = lakes`，截取除了首位元素的剩余数组部分，跟 Lisp 里的 `cdr` 函数功能相同。4）作为函数的「形参列表」。5）对「对象」的操作雷同对「数组」的操作。（2021-05-03）
+
 信息源自「2021060Learning-React0201.md」
 
 The spread operator is three dots (...) that perform several different tasks. First, the spread operator allows us to combine the contents of arrays. For example, if we had two arrays, we could make a third array that combines the two arrays into one:
@@ -1512,11 +1514,73 @@ CREATING ELEMENTS
 
 We're taking a peek at the object that React.createElement returns. You won't actually create these elements by hand; instead, you'll use the React.createElement function.
 
-### 0301. 金句卡 ——
+### 0204. 术语卡 —— JSX
 
-最后根据他写的非常震撼的话语——产生一张金句卡。
+信息源自「2021060Learning-React0501.md」
 
-### 0401. 数据信息卡 —— 函数申明和函数表达式创建函数对象的区别
+In the last chapter, we dove deep into how React works, breaking down our React applications into small reusable pieces called components. These components render trees of elements and other components.
+
+Using the createElement function is a good way to see how React works, but as React developers, that's not what we do. We don't go around composing complex, barely readable trees of JavaScript syntax and call it fun. In order to work efficiently with React, we need one more thing: JSX.
+
+JSX combines the JS from JavaScript and the X from XML. It is a JavaScript extension that allows us to define React elements using a tag-based syntax directly within our JavaScript code. Sometimes JSX is confused with HTML because they look similar. JSX is just another way of creating React elements, so you don't have to pull your hair out looking for the missing comma in a complex createElement call.
+
+2『 JSX 做一张术语卡片。（2021-05-03）』
+
+### 0205. 术语卡 —— Babel
+
+信息源自「2021060Learning-React0501.md」
+
+Many software languages require you to compile your source code. JavaScript is an interpreted language: the browser interprets the code as text, so there's no need to compile JavaScript. However, not all browsers support the latest JavaScript syntax, and no browser supports JSX syntax. Since we want to use the latest features of JavaScript along with JSX, we're going to need a way to convert our fancy source code into something that the browser can interpret. This process is called compiling, and it's what Babel is designed to do.
+
+1-2『本书作者给了自己很多醍醐灌顶的知识点，看到上面的信息才算弄明白 Babel 干啥的。虽然 JS 是解释性语言，但不是所有的浏览器都支持 JS 的最新相关语法（ES6、JSX 等），所需需要 Babel 来「翻译」。Babel 做一张术语卡片。（2021-05-03）』—— 已完成
+
+The first version of the project was called 6to5, and it was released in September 2014. 6to5 was a tool that could be used to convert ES6 syntax to ES5 syntax, which was more widely supported by web browsers. As the project grew, it aimed to be a platform to support all of the latest changes in ECMAScript. It also grew to support converting JSX into JavaScript. The project was renamed Babel in February 2015.
+
+Babel is used in production at Facebook, Netflix, PayPal, Airbnb, and more. Previously, Facebook had created a JSX transformer that was their standard, but it was soon retired in favor of Babel.
+
+There are many ways of working with Babel. The easiest way to get started is to include a link to the Babel CDN directly in your HTML, which will compile any code in script blocks that have a type of 'text/babel'. Babel will compile the source code on the client before running it. Although this may not be the best solution for production, it's a great way to get started with JSX:
+
+### 0206. 术语卡 —— Webpack
+
+搞了半天，才意识到目前在做的事情是用 webpack 把所有前端代码打包成一个静态文件，服务器上直接读这个静态文件即可。就是数据流前端开发后，在公司服务器上 `yarn build:prod` 或者阿里云上 `yarn build:stage` 在干的事情一样。真实恍然大悟的感觉。补充进 webpack 的术语卡片中。（2021-05-03）
+
+信息源自「2021060Learning-React0501.md」
+
+Once we start working with React in real projects, there are a lot of questions to consider: How do we want to deal with JSX and ESNext transformation? How can we manage our dependencies? How can we optimize our images and CSS?
+
+Many different tools have emerged to answer these questions, including Browserify, gulp, Grunt, Prepack, and more. Due to its features and widespread adoption by large companies, webpack has also emerged as one of the leading tools for bundling.
+
+The React ecosystem has matured to include tools like create-react-app, Gatsby, and Code Sandbox. When you use these tools, a lot of the details about how the code gets compiled are abstracted away. For the remainder of this chapter, we are going to set up our own webpack build. This day in age, understanding that your JavaScript/React code is being compiled by something like webpack is vital, but knowing how to compile your JavaScript/React with something like webpack is not as important. We understand if you want to skip ahead.
+
+Webpack is billed as a module bundler. A module bundler takes all of our different files (JavaScript, LESS, CSS, JSX, ESNext, and so on) and turns them into a single file. The two main benefits of bundling are modularity and network performance.
+
+12『这里的信息让自己对 Webpack 理解比以前深了些，但感觉还是云里雾里，没吃透。先做一张术语卡片。（2021-05-03）』—— 已完成
+
+Modularity will allow you to break down your source code into parts, or modules, that are easier to work with, especially in a team environment. Network performance is gained by only needing to load one dependency in the browser: the bundle. Each script tag makes an HTTP request, and there's a latency penalty for each HTTP request.
+
+Bundling all the dependencies into a single file allows you to load everything with one HTTP request, thereby avoiding additional latency.
+
+Aside from code compilation, webpack also can handle:
+
+1 Code splitting: Splits up your code into different chunks that can be loaded when you need them. Sometimes these are called rollups or layers; the aim is to break up code as needed for different pages or devices.
+
+2 Minification: Removes whitespace, line breaks, lengthy variable names, and unnecessary code to reduce the file size.
+
+3 Feature Flagging: Sends code to one or more — but not all — environments when testing out features.
+
+4 Hot Module Replacement (HMR): Watches for changes in source code. Changes only the updated modules immediately.
+
+The Recipes app we built earlier in this chapter has some limitations that webpack will help us alleviate. Using a tool like webpack to statically build client JavaScript makes it possible for teams to work together on large-scale web applications. We can also gain the following benefits by incorporating the webpack module bundler: 
+
+1 Modularity: Using the module pattern to export modules that will later be imported or required by another part of the application makes source code more approachable. It allows development teams to work together, by allowing them to create and work with separate files that will be statically combined into a single file before sending to production.
+
+2 Composition: With modules, we can build small, simple, reusable React components that we can compose efficiently into applications. Smaller components are easier to comprehend, test, and reuse. They're also easier to replace down the line when enhancing applications.
+
+3 Speed: Packaging all the application's modules and dependencies into a single client bundle will reduce the load time of an application because there's latency associated with each HTTP request. Packaging everything together in a single file means that the client will only need to make a single request. Minifying the code in the bundle will improve load time as well.
+
+4 Consistency: Since webpack will compile JSX and JavaScript, we can start using tomorrow's JavaScript syntax today. Babel supports a wide range of ESNext syntax, which means we don't have to worry about whether the browser supports our code. It allows developers to consistently use cutting-edge JavaScript syntax.
+
+### 0301. 数据信息卡 —— 函数申明和函数表达式创建函数对象的区别
 
 信息源自「2021060Learning-React0201.md」
 
@@ -1550,7 +1614,7 @@ TypeError: hey is not a function
 
 This is obviously a small example, but this TypeError can occasionally arise when importing files and functions in a project. If you see it, you can always refactor as a declaration.
 
-### 0401. 数据信息卡 —— 箭头函数返回对象
+### 0302. 数据信息卡 —— 箭头函数返回对象
 
 信息源自「2021060Learning-React0201.md」
 
@@ -1586,7 +1650,74 @@ These missing parentheses are the source of countless bugs in JavaScript and Rea
 
 1『解惑了解惑了，很多地方看到了这种语句，箭头函数返回对象，做一张信息数据卡片。（2021-04-29）』—— 已完成
 
-### 0501. 任意卡 —— 通过 reduce 实现数据去重
+### 0303. 数据信息卡 —— React Fragments 容纳多个组件
+
+信息源自「2021060Learning-React0501.md」
+
+In the previous section, we rendered the Menu component, a parent component that rendered the Recipe component. We want to take a moment to look at a small example of rendering two sibling components using a React fragment. Let's start by creating a new component called Cat that we'll render to the DOM at the root: 
+
+```js
+function Cat({ name }) {
+  return <h1>The cat's name is {name}</h1>;
+}
+  
+ReactDOM.render(
+  <Cat name="Jungle" />, 
+  document.getElementById("root")
+); 
+```
+
+This will render the h1 as expected, but what might happen if we added a p tag to the Cat component at the same level as the h1?
+
+```js
+function Cat({ name }) {
+  return (
+    <h1>The cat's name is {name}</h1>
+    <p>He's good.</p>
+  );
+}
+```
+
+Immediately, we'll see an error in the console that reads Adjacent JSX elements must be wrapped in an enclosing tag and recommends using a fragment. This is where fragments come into play! React will not render two or more adjacent or sibling elements as a component, so we used to have to wrap these in an enclosing tag like a div. This led to a lot of unnecessary tags being created, though, and a bunch of wrappers without much purpose. If we use a React fragment, we can mimic the behavior of a wrapper without actually creating a new tag. Start by wrapping the adjacent tags, the h1 and p, with a React.Fragment tag:
+
+```js
+function Cat({ name }) {
+  return (
+    <React.Fragment>
+      <h1>The cat's name is {name}</h1>
+      <p>He's good.</p>
+    </React.Fragment>
+  );
+}
+```
+
+Adding this clears the warning. You also can use a fragment shorthand to make this look even cleaner:
+
+```js
+function Cat({ name }) {
+  return (
+    <>
+      <h1>The cat's name is {name}</h1>
+      <p>He's good.</p>
+    </>
+  );
+}
+```
+
+1『大赞啊，上面的代码涨知识了，而且也解决了自己之前遇到的困惑。React Fragments 容纳多个组件，做一张信息数据卡片。（2021-05-03）』—— 已完成
+
+If you look at the DOM, the fragment is not visible in the resulting tree:
+
+```js
+<div id="root" >
+  <h1> The cat's name is Jungle</h1>
+  <p> He's good</p>
+</div>
+```
+
+Fragments are a relatively new feature of React and do away with the need for extra wrapper tags that can pollute the DOM.
+
+### 0401. 任意卡 —— 通过 reduce 实现数据去重
 
 信息源自「2021060Learning-React0301.md」
 
@@ -1609,7 +1740,7 @@ In this example, the colors array is reduced to an array of distinct values. The
 
 Otherwise, it will be skipped, and the current distinct array will be returned. map and reduce are the main weapons of any functional programmer, and JavaScript is no exception. If you want to be a proficient JavaScript engineer, then you must master these functions. The ability to create one dataset from another is a required skill and is useful for any type of programming paradigm.
 
-### 0502. 任意卡 —— 如何同时渲染多个 React Elements
+### 0402. 任意卡 —— 如何同时渲染多个 React Elements
 
 信息源自「2021060Learning-React0301.md」
 
@@ -1643,6 +1774,10 @@ ReactDOM.render([dish, dessert], document.getElementById("root"));
 This will render both of these elements as siblings inside of the root container. We hope you just clapped and screamed! In the next section, we'll get an understanding of how to use props.children.
 
 2『如何同时渲染多个 React Elements，做一张任意卡片。（2021-05-02）』
+
+### 0501. 金句卡 ——
+
+最后根据他写的非常震撼的话语——产生一张金句卡。
 
 ## Preface
 
