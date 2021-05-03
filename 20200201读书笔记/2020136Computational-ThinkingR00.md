@@ -88,10 +88,6 @@ While this may send a thrill up your neck, it ought also to send a shiver down y
 
 Our account of CT in this book encompasses all the flavors of CT from beginners to professionals, and in major subfields such as software engineering and computational science. We aim to describe CT in all its richness, breadth, and depth. We want to celebrate the work of expert professionals who take on the hard challenges of getting complex systems to perform reliably and safely, and the kinds of thinking they bring that enables them to have achieved such a good track record. We also want to celebrate the work of expert educators who are working to ease the first steps into computational thinking in K–12 schools and lay the foundation to provide everyone the means for coping in the digital world. Those two, basic CT for beginners and advanced CT for professionals, work together to produce a rich tapestry of computational thought.
 
-Peter J. Denning
+Peter J. Denning | Salinas, California, August 2018
 
-Salinas, California, August 2018
-
-Matti Tedre
-
-Joensuu, Finland, August 2018
+Matti Tedre | Joensuu, Finland, August 2018
