@@ -24,7 +24,7 @@ Behavior-driven development (BDD) is a term introduced by Dan North to address t
 
 While TDD interface gives names such as suite(), test(), setup(), teardown(), suiteSetup(), suiteTearDown(), assert(), and so on. BDD offers describe(), context(), it(), beforeEach(), afterEach(), beforeAll(), afterAll(), expect(), and so on. A test suite in TDD is usually created using suite(),while BDD uses describe(); to create a unit test TDD uses test() and BDD uses it(). 
 
-### 0301. 金句卡——TDD is about how code should be written while Agile is about the whole development process
+### 0301. 金句卡 —— TDD is about how code should be written while Agile is about the whole development process
 
 TDD is about how code should be written while Agile is about the whole development process, not just code and its testing. Agile does not tell you how to build the system. Agile methodology is a management process, which can use TDD as an integral part. Agile, when combined in practice with TDD, brings the best results. This combination minimizes risks, defects, cost, and results in a nearly zero-defect system.
 
@@ -34,7 +34,7 @@ TDD is about how code should be written while Agile is about the whole developme
 
 ## Preface
 
-Initially, all processing used to happen on the server's side and simple output was the response to web browsers. Nowadays, there are so many JavaScript frameworks and libraries that help readers to create charts, animations, simulations, and so on. By the time a project finishes or reaches a stable state, so much JavaScript code has already been written that changing and maintaining it further is tedious. At this point comes the importance of automated testing, and more specifically, developing all that code in a test-driven environment. Test-driven development is a methodology that makes testing the central part of the design process—before writing code, developers decide upon the conditions that code must meet to pass a test. The end goal is to help the readers understand the importance and process of using TDD as a part of the development.
+Initially, all processing used to happen on the server's side and simple output was the response to web browsers. Nowadays, there are so many JavaScript frameworks and libraries that help readers to create charts, animations, simulations, and so on. By the time a project finishes or reaches a stable state, so much JavaScript code has already been written that changing and maintaining it further is tedious. At this point comes the importance of automated testing, and more specifically, developing all that code in a test-driven environment. Test-driven development is a methodology that makes testing the central part of the design process — before writing code, developers decide upon the conditions that code must meet to pass a test. The end goal is to help the readers understand the importance and process of using TDD as a part of the development.
 
 This book starts with the details of test-driven development, its importance, need, and benefits. Later, the book introduces popular tools and frameworks, such as YUI, Karma, QUnit, DalekJS, JsUnit, and so on, to utilize Jasmine, Mocha, and Karma for advanced concepts such as feature detection, server-side testing, and patterns. We are going to understand, write, run tests, and further debug our programs. The book concludes with best practices in JavaScript testing. By the end of the book, the readers will know why they should test, how to do it most efficiently, and will have a number of versatile tests (and methods to devise new tests) so they can get to work immediately.
 
@@ -104,17 +104,17 @@ The life cycle of TDD can be divided into several steps. Each time a change is t
 
 The different phases of the life cycle of TDD can be explained as follows: 
 
-1. Write a test: After a set of requirements is captured, one requirement is picked and tests are written for that. Implementation of every new feature or every change begins with writing tests for it. The test can also be a modified version of an existing one. This is a major difference between TDD versus other techniques, where unit tests are written after the code is written. This makes the developer focus on the requirements before writing the code. This also makes it a test-first development approach. 
+1 Write a test: After a set of requirements is captured, one requirement is picked and tests are written for that. Implementation of every new feature or every change begins with writing tests for it. The test can also be a modified version of an existing one. This is a major difference between TDD versus other techniques, where unit tests are written after the code is written. This makes the developer focus on the requirements before writing the code. This also makes it a test-first development approach. 
 
-2. Run the test and see if the test fails: A new test should always require some code to be written to make it pass. This step validates that the new test should not pass without requiring new code. This also verifies whether the required feature already exists or not. This step helps the developer increase confidence that the unit test is testing the correct constraint, and passes only in the intended cases. 
+2 Run the test and see if the test fails: A new test should always require some code to be written to make it pass. This step validates that the new test should not pass without requiring new code. This also verifies whether the required feature already exists or not. This step helps the developer increase confidence that the unit test is testing the correct constraint, and passes only in the intended cases. 
 
-3. Write minimal production code that passes: In this step, the developer writes just enough code to pass the test. The code written in this stage is not supposed to be perfect. Since the code will be improved and cleaned at a later stage, the code as of now is acceptable. At this point, the only purpose of the written code is to pass the test. 
+3 Write minimal production code that passes: In this step, the developer writes just enough code to pass the test. The code written in this stage is not supposed to be perfect. Since the code will be improved and cleaned at a later stage, the code as of now is acceptable. At this point, the only purpose of the written code is to pass the test. 
 
-4. Run all tests: Now, we run all the test cases at once. If every test passes, the programmer can be confident that the new code works as required and does not break any existing functionality or degrade the system anyhow. If any of the tests fail, the new code must be corrected to make the test pass. Usually, all our tests should be atomic and should not fail even if a new code is added, but that's not always the case. It may happen that someone else in the team added some code or some changes were made to the existing code. So, it's always a good practice to run all tests to make sure everything works fine as it should have. 
+4 Run all tests: Now, we run all the test cases at once. If every test passes, the programmer can be confident that the new code works as required and does not break any existing functionality or degrade the system anyhow. If any of the tests fail, the new code must be corrected to make the test pass. Usually, all our tests should be atomic and should not fail even if a new code is added, but that's not always the case. It may happen that someone else in the team added some code or some changes were made to the existing code. So, it's always a good practice to run all tests to make sure everything works fine as it should have. 
 
-5. The cleanup code: At the end of development, there would be thousands of such test cases and code base that grows and can become complex if it is not cleaned up regularly. Refactoring is much needed. Duplicate code must be removed. Variables, functions, and so on should follow standards, and names should clearly represent their purpose and use. Code comments should be added for readability and documentation purpose. Removal of duplicate code applies to both production and test code. It is a must to ensure that refactoring does not break any existing features. 
+5 The cleanup code: At the end of development, there would be thousands of such test cases and code base that grows and can become complex if it is not cleaned up regularly. Refactoring is much needed. Duplicate code must be removed. Variables, functions, and so on should follow standards, and names should clearly represent their purpose and use. Code comments should be added for readability and documentation purpose. Removal of duplicate code applies to both production and test code. It is a must to ensure that refactoring does not break any existing features. 
 
-6. Repeat: The preceding steps give a somewhat stable code in just one iteration, which works for some defined functionalities. The whole process is now repeated for another requirement. In case new tests fail, the developer can revert the changes or undo the operation performed. This gives a rapid feedback to the developer about the progress and problems in the system. 
+6 Repeat: The preceding steps give a somewhat stable code in just one iteration, which works for some defined functionalities. The whole process is now repeated for another requirement. In case new tests fail, the developer can revert the changes or undo the operation performed. This gives a rapid feedback to the developer about the progress and problems in the system. 
 
 1『第 5 步的 cleanup code 其实就是重构。』
 
@@ -124,11 +124,11 @@ The TDD life cycle is also defined as Red-Green-Refactor, which is also called a
 
 There are only three steps in this microcycle: 
 
-1. Write a test that fails at the start (Red): First of all, simple test cases are written, which test the code yet to be implemented. At this step, the test will always fail (In the figure, it has been colored red). 
+1 Write a test that fails at the start (Red): First of all, simple test cases are written, which test the code yet to be implemented. At this step, the test will always fail (In the figure, it has been colored red). 
 
-2. Write just enough code to pass the test (Green): The developer then writes the code to pass the test. The code is written in the simplest manner and is just sufficient to pass the test. 
+2 Write just enough code to pass the test (Green): The developer then writes the code to pass the test. The code is written in the simplest manner and is just sufficient to pass the test. 
 
-3. Refactor the code (Refactor): Before implementing a new feature, developers refactor the old code, which just passed, for clarity and simplicity. This step improves the code quality. 
+3 Refactor the code (Refactor): Before implementing a new feature, developers refactor the old code, which just passed, for clarity and simplicity. This step improves the code quality. 
 
 This microcycle provides rapid feedback to the developer. As soon as a change is made to the system, it is tested. If there is any error, it's detected as soon as possible and fixed. 
 
@@ -152,21 +152,21 @@ Every methodology has its own benefits and myths. The following sections will an
 
 TDD has its own advantages over regular development approaches. There are a number of benefits, which help in making a decision of using TDD over the traditional approach. 
 
-1. Automated testing: If you have seen a website code, you know that it's not easy to maintain and test all the scripts manually and keep them working. A tester may leave a few checks, but automated tests won't. Manual testing is error-prone and slow. 
+1 Automated testing: If you have seen a website code, you know that it's not easy to maintain and test all the scripts manually and keep them working. A tester may leave a few checks, but automated tests won't. Manual testing is error-prone and slow. 
 
-2. Lower cost of overall development: With TDD, the number of debugs is significantly decreased. You develop some code, run tests; if you fail, redoing the development is significantly faster than debugging and fixing it. TDD aims at detecting defect and correcting them at an early stage, which costs much less than detecting and correcting at a later stage or post release. 
+2 Lower cost of overall development: With TDD, the number of debugs is significantly decreased. You develop some code, run tests; if you fail, redoing the development is significantly faster than debugging and fixing it. TDD aims at detecting defect and correcting them at an early stage, which costs much less than detecting and correcting at a later stage or post release. 
 
-    Also, now debugging is much less frequent and a significant amount of time is saved. With the help of tools/test runners like Karma, JSTestDriver, and so on, running every JavaScript tests on browser is not needed, which saves significant time in validation and verification while the development goes on. 
+Also, now debugging is much less frequent and a significant amount of time is saved. With the help of tools/test runners like Karma, JSTestDriver, and so on, running every JavaScript tests on browser is not needed, which saves significant time in validation and verification while the development goes on. 
 
-3. Increased productivity: Apart from time and financial benefits, TDD helps to increase productivity since the developer becomes more focused and tends to write quality code that passes and fulfills the requirement. 
+3 Increased productivity: Apart from time and financial benefits, TDD helps to increase productivity since the developer becomes more focused and tends to write quality code that passes and fulfills the requirement. 
 
-4. Clean, maintainable, and flexible code: Since tests are written first, production code is often very neat and simple. When a new piece of code is added, all the tests can be run at once to see if anything failed with the change. Since we try to keep our tests atomic, and our methods also address a single goal, the code automatically becomes clean. At the end of the application development, there will be thousands of test cases, which will guarantee that every piece of logic can be tested. 
+4 Clean, maintainable, and flexible code: Since tests are written first, production code is often very neat and simple. When a new piece of code is added, all the tests can be run at once to see if anything failed with the change. Since we try to keep our tests atomic, and our methods also address a single goal, the code automatically becomes clean. At the end of the application development, there will be thousands of test cases, which will guarantee that every piece of logic can be tested. 
 
-    The same test cases also act as documentation for users who are new to the development of the system, since these tests act as an example of how the code works. 
+The same test cases also act as documentation for users who are new to the development of the system, since these tests act as an example of how the code works. 
 
-5. Improved quality and reduced bugs: Complex codes invite bugs. when developers change anything in neat and simple code, they tend to leave fewer or no bugs at all. They tend to focus on the purpose and write code to fulfill the requirement. 
+5 Improved quality and reduced bugs: Complex codes invite bugs. when developers change anything in neat and simple code, they tend to leave fewer or no bugs at all. They tend to focus on the purpose and write code to fulfill the requirement. 
 
-6. Keeps technical debt to minimum: This is one of the major benefits of TDD. Not writing unit tests and documentation is a big part, as this increases the technical debt for a software/project. Since TDD encourages you to write tests first, and if they are well written they act as documentation, you keep the technical debt for these to a minimum. 
+6 Keeps technical debt to minimum: This is one of the major benefits of TDD. Not writing unit tests and documentation is a big part, as this increases the technical debt for a software/project. Since TDD encourages you to write tests first, and if they are well written they act as documentation, you keep the technical debt for these to a minimum. 
 
 As Wikipedia says, "A technical debt can be defined as tasks to be performed before a unit can be called complete. If the debt is not repaid, interest also adds up and makes it harder to make changes at a later stage". More about technical debt can be found at https://en.wikipedia.org/wiki/Technical_debt. 
 
@@ -174,19 +174,19 @@ As Wikipedia says, "A technical debt can be defined as tasks to be performed bef
  
 Along with the benefits, TDD has some myths as well. Let's check few of them: 
 
-1. Complete code coverage: TDD forces the writing of tests first, developers write the minimum amount of code to pass the test, and almost 100% code coverage is achieved. But that does not guarantee that nothing has been missed and the code is bug free. Code coverage tools do not cover all the paths. There can be infinite possibilities in loops. Of course it's not possible and feasible to check all the paths, but a developer is supposed to take care of major and critical paths. 
+1 Complete code coverage: TDD forces the writing of tests first, developers write the minimum amount of code to pass the test, and almost 100% code coverage is achieved. But that does not guarantee that nothing has been missed and the code is bug free. Code coverage tools do not cover all the paths. There can be infinite possibilities in loops. Of course it's not possible and feasible to check all the paths, but a developer is supposed to take care of major and critical paths. 
 
-    A developer is supposed to take care of business logic, flow, and process code most of the time. There is no need to test integration parts, setter-getter methods for properties, configurations, UI, and so on. Mocking and stubbing is to be used for integrations. 
+A developer is supposed to take care of business logic, flow, and process code most of the time. There is no need to test integration parts, setter-getter methods for properties, configurations, UI, and so on. Mocking and stubbing is to be used for integrations. 
 
-2. No need of debugging the code: Though test-first development makes one think that debugging is not needed, but it's not always true. You need to know the state of the system when a test failed. That will help you to correct and further develop the code. 
+2 No need of debugging the code: Though test-first development makes one think that debugging is not needed, but it's not always true. You need to know the state of the system when a test failed. That will help you to correct and further develop the code. 
 
-3. No need for QA: TDD cannot always cover everything. QA plays a very important role in testing. UI defects, integration defects, are more likely to be caught by a QA. Even though developers are excellent, there are chances for errors. QA will try every kind of input and unexpected behavior that even a programmer would not cover with test cases. They will always try to crash the system with random inputs, and discover defects. 
+3 No need for QA: TDD cannot always cover everything. QA plays a very important role in testing. UI defects, integration defects, are more likely to be caught by a QA. Even though developers are excellent, there are chances for errors. QA will try every kind of input and unexpected behavior that even a programmer would not cover with test cases. They will always try to crash the system with random inputs, and discover defects. 
 
-4. I can code faster without tests and can also validate for zero defect: While this may stand true for very small software and websites where the code is small and writing test cases may increase the overall time of development and delivery of the product. But for bigger products, it helps a lot to identify defects at a very early stage and provides a chance to correct them at a very low cost. As seen in the previous screenshots of the cost of fixing defects for phases and testing types, the cost of correcting a defect increases with time. Truly, whether TDD is required for a project or not depends on context. 
+4 I can code faster without tests and can also validate for zero defect: While this may stand true for very small software and websites where the code is small and writing test cases may increase the overall time of development and delivery of the product. But for bigger products, it helps a lot to identify defects at a very early stage and provides a chance to correct them at a very low cost. As seen in the previous screenshots of the cost of fixing defects for phases and testing types, the cost of correcting a defect increases with time. Truly, whether TDD is required for a project or not depends on context. 
 
-5. TDD ensures good design and architecture: TDD encourages developers to write quality code, but it is not a replacement for good design practice and quality code. Will a team of developers be enough to ensure a stable and scalable architecture? Design should still be done by following the standard practices. 
+5 TDD ensures good design and architecture: TDD encourages developers to write quality code, but it is not a replacement for good design practice and quality code. Will a team of developers be enough to ensure a stable and scalable architecture? Design should still be done by following the standard practices. 
 
-6. You need to write all tests first: Another myth says that you need to write all of the tests first and then the actual production code. Actually, generally an iterative approach is used. Write some tests first, then some code, run the tests, fix the code, run the tests, write more tests, and so on. With TDD, you always test parts of software and keep developing. 
+6 You need to write all tests first: Another myth says that you need to write all of the tests first and then the actual production code. Actually, generally an iterative approach is used. Write some tests first, then some code, run the tests, fix the code, run the tests, write more tests, and so on. With TDD, you always test parts of software and keep developing. 
 
 There are many myths, and covering all of them is not possible. The point is, TDD offers developers a better opportunity to deliver quality code. TDD helps organizations by delivering close to zero-defect products. 
 
@@ -220,13 +220,13 @@ Usually, every developer has a practice to use some or the other framework when 
 
 The most important step for any testing framework is collecting all the tests into suites and test cases. Test suites and test cases are part of many files; each test file typically contains tests for a single module. Normally, grouping all tests for a module in one test suite is considered as the best practice. The suite can contain many test cases; each test case includes testing of small aspects of any module. Using setUp and tearDown functions provided at the suite and test-case levels, you can easily handle any pretest setup and post-test teardown, such as resetting the state of a database. Sometimes, setUp and tearDown functions are referred to as follows: 
 
-1. beforeEach(): This function runs before each test. 
+1 beforeEach(): This function runs before each test. 
 
-2. afterEach(): This function runs after each test. 
+2 afterEach(): This function runs after each test. 
 
-3. before(): This function runs before all tests. Executes only once. 
+3  before(): This function runs before all tests. Executes only once. 
 
-4. after(): This function runs after all tests. Executes only once. 
+4 after(): This function runs after all tests. Executes only once. 
 
 setUp is usually called before running any test. When we want to run few statements before running test, we need to specify that in the setUp() method. For example, if we want to set some global variables, which is needed by test, then we can initialize those in the setUp() method. On the other hand, tearDown can be useful to clean up things after finishing your test, for example, if you want to reset a variable to some default value after test run is complete. We will understand this in more detail later on in this chapter. 
 
@@ -234,9 +234,11 @@ setUp is usually called before running any test. When we want to run few stateme
 
 YUI stands for Yahoo! User Interface, which has a component YUI Test. It is a testing framework to unit test your JavaScript code. You will be learning more about how to use this library while practicing TDD life cycle in this chapter. This library is available at [Test - YUI Library](https://yuilibrary.com/yui/docs/test/). You can use YUI Test library using http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js, which is a minified version of this library. 
 
-3『[Quick Start · yui/yui3 Wiki](https://github.com/yui/yui3/wiki/Quick-Start)
+3『
 
-#### 1.1 Copy and paste
+[Quick Start · yui/yui3 Wiki](https://github.com/yui/yui3/wiki/Quick-Start)
+
+1 Copy and paste
 
 ```html
 // Put the YUI seed file on your page.
@@ -245,7 +247,7 @@ YUI stands for Yahoo! User Interface, which has a component YUI Test. It is a te
 
 The YUI seed file is an ultra-small bit of JavaScript that enables you to load any YUI component on your page.
 
-#### 1.2 Start using YUI!
+2 Start using YUI!
 
 ```js
 <script>
@@ -269,7 +271,7 @@ Learn more: See All YUI Components（[YUI User Guides](https://yuilibrary.com/yu
 
 1『本节里的 YUI Tests 只是众多 YUI Components 中的一个。』
 
-#### 2.1 Work with the DOM
+3 Work with the DOM
 
 The Node component makes it quick and convenient to access, create, and manipulate DOM elements. Node APIs accept element references or selector queries for accessing DOM elements.
 
@@ -300,7 +302,7 @@ YUI().use('node', function (Y) {
 
 Learn more: The Node Component（[Node - YUI Library](https://yuilibrary.com/yui/docs/node/)）
 
-#### 3.1 Create UI Effects
+4 Create UI Effects
 
 The Transition component makes it easy to create CSS-based transitions that add polish and finesse to your user interactions.
 
@@ -323,7 +325,7 @@ YUI().use('transition', function (Y) {
 
 Learn more: The Transition Component（[Transition - YUI Library](https://yuilibrary.com/yui/docs/transition/)）
 
-#### 4.1 Load Content with Ajax
+5 Load Content with Ajax
 
 The Node.load() method (provided by the node-load module) makes it easy to populate your web page with dynamic content at runtime.
 
@@ -399,7 +401,7 @@ We have multiple options to display logs within the test console. We can opt to 
 
 We have already picked our requirement that we are going to write a piece of code for currency conversion. Let's follow the life cycle by writing a test. 
 
-#### 2.1.5.1 Writing a test 
+1 Writing a test 
 
 We will name our function convertCurrency(). As of now, our function will not have an implementation. But our test will be present at this moment. Let's take an example of conversion. We will try to convert INR100 to USD. We are given that 1 USD = 63 INR. The result of conversion comes to 1.587. If we round it off to 2 decimal points, it's 1.59. Now we have all required input and desired output for a test. Let's write the test then. 
 
@@ -442,7 +444,7 @@ After writing a test, our \<script> tag will be as follows:
 
 As of now, we have a dummy implementation of the convertCurrency() function with two parameters, one is the amount to be converted and the other is the rate of conversion. We added a test using new Y.Test.Case(). We created a function named testCurrencyConversion and added a line with an assertion call to Y.Assert.areEqual(). This method takes an expected value, actual value, or expression that will evaluate the actual value and an optional message, which can be printed when this test fails. Assertions are used as a checkpoint in our code to verify the trueness of our code. Here, we are checking if the value returned by the convertCurrency() function is correct or not by matching the output to the given value. You will learn more about assertions later in this chapter. 
 
-#### 2.1.5.2 Running the test and seeing if test fails 
+2 Running the test and seeing if test fails 
 
 Running this code will run our test and all messages will be put into the test console. If you note the preceding code, we used few properties while creating a test using new Y.Test.Console(). We used these to set the height and width of the test console. Let's run the file now: 
 
@@ -450,7 +452,7 @@ You can see from the result that the test failed. It shows the message we added.
 
 If you note the messages in the last run, you will see that TestRunner created a test suite for us and runs the test suite. Test suite is a collection of tests, which will run one by one when the test suite runs. You will learn more about test suites later in this chapter. 
 
-#### 2.1.5.3 Writing a production code 
+3 Writing a production code 
 
 Now when we already have the test, we know what is required to pass the test—a logic to calculate the converted currency amount. Let's take a look at the following code: 
 
@@ -499,17 +501,17 @@ toCurrencyAmount = parseFloat(toCurrencyAmount).toFixed(2);
 
 Please note that we added filters for pass, fail as true for console. Now the console will show fail and pass messages by default, and we don't need to check fail and pass in the UI. 
 
-#### 2.1.5.4 Running all tests 
+4 Running all tests 
 
 Now that the implementation is done, let's run the tests again and look at what happens. Look at the following screenshot after running the tests: 
 
 Our test is passed. At this point, we have only one test to run, but that is not the case while developing a project. There may be a good amount of tests already prepared. Our new implementation may cause failure of tests, which already passed. In this case, you will need to recheck your code and fix the implementation until all tests pass. This will ensure that our new implementation never breaks any code that is previously written and all tests passed for. 
 
-#### 2.1.5.5 Cleaning up the code 
+5 Cleaning up the code 
 
 If all tests are passed in the previous step, we must clean and refactor the code. This is a very necessary step since there would be thousands of tests, if we don't clean up, we may end up with duplicate code, unnecessary variables, unnecessary statements, and code will never be optimized. Code comments or logs must be added for readability purpose. Believe it or not, code comments help a lot in understanding the code when you revisit the code after months. 
 
-#### 2.1.5.6 Repeat
+6 Repeat
  
 After cleaning up the code, we pick a requirement again and repeat the whole process and keep going. All this ensures that whatever you developed so far, works as expected. 
 
@@ -605,19 +607,19 @@ You can download the example code files from your account at http://www.packtpub
 
 So far, we have seen very simple tests where only one type of assertion was used. In fact, there are a number of ways you can validate the data. Not only validate the data, but also perform some actions. You will learn about assertions and actions one by one in this section. 
 
-#### 2.1.9.1 Actions 
+Actions 
 
 TDD talks about automated testing, and when it comes to JavaScript, we often need to mock user-driven events. These events can be mouse movements, clicks, submitting a form, and so on. While testing, our code depends on other objects, modules, functions, or actions to be performed. It's not always possible or easy to make an actual call to the function. A mock can be used for this purpose. It will imitate the behavior of a real function being mocked. 
 
 With YUI, we use a node-event-simulate module to simulate native events that behave similar to user generated events. Each framework may define events in its own way, but we are going to see some common scenarios with simple examples in this section: 
 
-1. Mouse events: These events are what users can do with a mouse. There are in total seven events—click, double click, mouse up, mouse down, mouse over, mouse out, and mouse move. 
+1 Mouse events: These events are what users can do with a mouse. There are in total seven events—click, double click, mouse up, mouse down, mouse over, mouse out, and mouse move. 
 
-2. Key events: There are three events—key up, key down, and key press. 
+2 Key events: There are three events—key up, key down, and key press. 
 
-3. UI events: UI events are events which help us change the UI using select, change, blur, focus, scroll, and resize. 
+3 UI events: UI events are events which help us change the UI using select, change, blur, focus, scroll, and resize. 
 
-4. Touch gestures: Mobile-first sites are emerging a lot and it is essential to create a mobile site to be on the edge. JavaScript testing frameworks support gesture events testing as well. There are mainly two categories of gestures—single-touch and multi-touch gestures. While there can be a number of gestures, here is the list supported by YUI: single touch/tap, double tap, press, move, flick, two finger gestures—pinch and rotate. 
+4 Touch gestures: Mobile-first sites are emerging a lot and it is essential to create a mobile site to be on the edge. JavaScript testing frameworks support gesture events testing as well. There are mainly two categories of gestures—single-touch and multi-touch gestures. While there can be a number of gestures, here is the list supported by YUI: single touch/tap, double tap, press, move, flick, two finger gestures—pinch and rotate. 
 
 Let's look at the following example. This example showcases a click event on a button, which adds a class clicked to the button and also renders test console: 
 
@@ -631,11 +633,11 @@ In setUp(), we bind the click event on the button using this class as selector. 
 
 As we can see, the test passed. Class clicked was assigned to button and output of assertion was true. This is how a click event can be generated. Similarly, other events can be generated. 
 
-#### 2.1.9.2 Assertions 
+Assertions 
 
 Assertions are the key to perform unit tests and validate expression, function, value, state of an object, and so on. A good testing framework has a rich setup assertions. YUI Test has divided assertions into categories. These categories are: 
 
-1.Equity assertions: These are the simplest assertions, which have only two functions areEqual() and areNotEqual(). Both of these accept three parameters—expected value, actual value, and one optional parameter—error message. The last parameter is used when assertion fails. These assertions use the double equal operator (==) to compare and determine if two values are equal: 
+1 Equity assertions: These are the simplest assertions, which have only two functions areEqual() and areNotEqual(). Both of these accept three parameters—expected value, actual value, and one optional parameter—error message. The last parameter is used when assertion fails. These assertions use the double equal operator (==) to compare and determine if two values are equal: 
 
 ```js
 Y.Assert.areEqual(2, 2); // Pass 
@@ -644,14 +646,14 @@ Y.Assert.areNotEqual(2, 4); // Pass
 Y.Assert.areEqual(5, 7, "Five was expected."); // Fail 
 ```
 
-2.Sameness assertions: There are two assertions in this category: areSame() and areNotSame(). Similar to equity assertions, these also accept three parameters: expected value, actual value, and one optional parameter—error message. Unlike equity assertions, these functions use triple equals operator (===) to determine if values and types of two parameters are similar or not: 
+2 Sameness assertions: There are two assertions in this category: areSame() and areNotSame(). Similar to equity assertions, these also accept three parameters: expected value, actual value, and one optional parameter—error message. Unlike equity assertions, these functions use triple equals operator (===) to determine if values and types of two parameters are similar or not: 
 
 ```js
 Y.Assert.areSame(2, 2); // Pass 
 Y.Assert.areNotSame(3, "3", "3 was expected"); // Fail 
 ```
 
-3.Data type assertions: These assertions are useful when you want to check the data type of something before you move to the next step. The data type can be anything such as array, function, Boolean, number, string, and so on. The following are the assertions in this category: isArray(), isBoolean(), isFunction(), isNumber(), isString(), and isObject(). Each of these takes two parameters—the actual value and optional error message. 
+3 Data type assertions: These assertions are useful when you want to check the data type of something before you move to the next step. The data type can be anything such as array, function, Boolean, number, string, and so on. The following are the assertions in this category: isArray(), isBoolean(), isFunction(), isNumber(), isString(), and isObject(). Each of these takes two parameters—the actual value and optional error message. 
 
 ```js
 Y.Assert.isString("Test Driven Development Rocks!"); //Pass 
@@ -710,39 +712,51 @@ Karma runs on Node.js and it is available as a NPM package. To perform a setup o
 
 Once we installed Node.js, we can install Karma plugins with the use of command prompt. The best approach is to install Karma locally in our project directory. Open project path in command prompt and then use the following commands. Let's see how we can carry out setup for Karma in the following steps:
 
-1. Install Karma with the use of the command:
+1 Install Karma with the use of the command:
 
-    npm install karma –save-dev
+```
+npm install karma –save-dev
+```
 
-    This command will install Karma with Version 0.12.32
+This command will install Karma with Version 0.12.32
 
-2. Once Karma is installed, we will install Jasmine plugin for Karma here:
+2 Once Karma is installed, we will install Jasmine plugin for Karma here:
 
-    npm install karma-jasmine karma-chrome-launcher –save-dev
+```
+npm install karma-jasmine karma-chrome-launcher –save-dev
+```
 
-    These commands will install karma, karma-jasmine, and karma-chrome-launcher packages into node\_modules in your project directory. We can use many test frameworks with Karma, such as karma-jasmine, karmaquint, and many more. However here, we are using karma-jasmine to demonstrate examples. It will save development dependencies into package.json so that any other developer working on the project needs to run npm install in order to get dependencies installed.
+These commands will install karma, karma-jasmine, and karma-chrome-launcher packages into node\_modules in your project directory. We can use many test frameworks with Karma, such as karma-jasmine, karmaquint, and many more. However here, we are using karma-jasmine to demonstrate examples. It will save development dependencies into package.json so that any other developer working on the project needs to run npm install in order to get dependencies installed.
 
-3. We will install Karma globally with the use of cli plugin so that we can start Karma from anywhere:
+3 We will install Karma globally with the use of cli plugin so that we can start Karma from anywhere:
 
-    npm install –g karma-cli
+```
+npm install –g karma-cli
+```
 
-4. Now we can start Karma from anywhere. But to start with, we first need to initialize Karma configuration file.
+4 Now we can start Karma from anywhere. But to start with, we first need to initialize Karma configuration file.
 
-    karma init karma.conf.js
+```
+karma init karma.conf.js
+```
 
-5. Once we initialize configuration file, then we can start Karma with the use of the following command. This command will show results of test that we have written:
+5 Once we initialize configuration file, then we can start Karma with the use of the following command. This command will show results of test that we have written:
 
-    karma start karma.conf.js
+```
+karma start karma.conf.js
+```
 
 1『在 laravel 里应该可以用 yarn 安装。』
 
-3『[Jasmine Documentation](https://jasmine.github.io/)
+3『
+
+[Jasmine Documentation](https://jasmine.github.io/)
 
 上面的安装其实已经过时了，好好研读官方文档。竟然还有 python 版的，好赞！
 
 离线版下载：[Releases · jasmine/jasmine](https://github.com/jasmine/jasmine/releases)
 
-### JASMINE STANDALONE
+JASMINE STANDALONE
 
 The standalone distribution provides a simple way to run your specs in a web browser. You can download it from the releases page. Included is a sample app and sample specs. Open SpecRunner.html and run the included specs. Both the source files and their respective specs are linked in the \<head> of the SpecRunner.html.
 
@@ -750,11 +764,11 @@ To start using Jasmine, replace the source/spec files with your own. Then Load t
 
 1『双击 SpecRunner.html 发现打不开，需要在浏览器里点打开文件，选取该文件。』
 
-### Using Jasmine with node
+Using Jasmine with node
 
 The Jasmine node package contains helper code for developing and running Jasmine tests for node-based projects.
 
-1、Install. You can install Jasmine using npm locally in your project:
+1 Install. You can install Jasmine using npm locally in your project:
 
 ```
 npm install --save-dev jasmine
@@ -766,7 +780,7 @@ With the above local installation you can invoke the CLI tool using npx jasmine 
 npm install -g jasmine
 ```
 
-2、Init a Project. Initialize a project for Jasmine by creating a spec directory and configuration json for you.
+2 Init a Project. Initialize a project for Jasmine by creating a spec directory and configuration json for you.
 
 ```
 jasmine init
@@ -780,7 +794,7 @@ npx jasmine init
 
 1『初始化后，会生成一个文件「spec/support/jasmine.json」』
 
-3、Generate examples. Generate example spec and source files
+3 Generate examples. Generate example spec and source files
 
 ```
 npx jasmine examples
@@ -822,7 +836,7 @@ Randomized with seed 30956 (jasmine --random=true --seed=30956)
 
 』
 
-4、Configuration. Customize spec/support/jasmine.json to enumerate the source files and spec files you would like the Jasmine runner to include. You may use dir glob strings. Paths starting with ! are excluded, for example !\*\*/*nospec.js.
+4 Configuration. Customize spec/support/jasmine.json to enumerate the source files and spec files you would like the Jasmine runner to include. You may use dir glob strings. Paths starting with ! are excluded, for example !\*\*/*nospec.js.
 
 spec\_dir is used as a prefix for all spec\_files and helpers. Helpers are executed before specs. For an example of some helpers see the react tutorial.（[Testing a React app with Jasmine npm](https://jasmine.github.io/tutorials/react_with_npm)）
 
@@ -850,14 +864,14 @@ spec\_dir is used as a prefix for all spec\_files and helpers. Helpers are execu
 }
 ```
 
-5、Running tests. Once you have set up your jasmine.json, you can execute all your specs by running jasmine from the root of your project (or npx jasmine if you had installed it locally). If you want to just run one spec or only those whom file names match a certain glob pattern you can do it like this:
+5 Running tests. Once you have set up your jasmine.json, you can execute all your specs by running jasmine from the root of your project (or npx jasmine if you had installed it locally). If you want to just run one spec or only those whom file names match a certain glob pattern you can do it like this:
 
 ```
 jasmine spec/appSpec.js
 jasmine "**/model/**/critical/**/*Spec.js"
 ```
 
-6、CLI Options.
+6 CLI Options.
 
 后面是相关的配置，详见原文档。
 
@@ -916,7 +930,7 @@ jasmine 语法的相关知识去看文档：[Your_first_suite](https://jasmine.g
 
 Here, we are using Jasmine with Karma, so let's see how we can write test using Jasmine in Karma. You will learn more about Jasmine in the next chapter.
 
-1、The describe function: We can define different specifications together with the use of the describe function blocks:
+1 The describe function: We can define different specifications together with the use of the describe function blocks:
 
 ```js
 describe("A Specification Suite",function(){ …..
@@ -924,7 +938,7 @@ describe("A Specification Suite",function(){ …..
 });
 ```
 
-2、The it and expect function: Specifications are expressed with the use of the it function. Expectations can be expressed using the expect function:
+2 The it and expect function: Specifications are expressed with the use of the it function. Expectations can be expressed using the expect function:
 
 ```js
 describe("A Specification Suite",function(){ 
@@ -938,7 +952,7 @@ Matchers can be used to get Boolean comparison between the actual value and expe
 
 not、toBe、toEqual、toMatch、toBeDefined、toBeUndefined、toBeNull、toBeTruthy、toBeFalsy、toContain、toBeLessThan、toBeGreaterThan、toBeCloseTo、toThrow
 
-3、beforeEach: In Jasmine, to set up a test, the beforeEach() function is used:
+3 beforeEach: In Jasmine, to set up a test, the beforeEach() function is used:
 
 ```js
 describe("EveryDay.ToDoList",function(){
@@ -952,7 +966,7 @@ describe("EveryDay.ToDoList",function(){
 });
 ```
 
-4、afterEach: In Jasmine, to tear down a test, the afterEach() function is used:
+4 afterEach: In Jasmine, to tear down a test, the afterEach() function is used:
 
 ```js
 describe("EveryDay.ToDoList",function(){
@@ -969,7 +983,7 @@ describe("EveryDay.ToDoList",function(){
 });
 ```
 
-5、Custom matchers: Let's see how we can define custom matchers in Jasmine:
+5 Custom matchers: Let's see how we can define custom matchers in Jasmine:
 
 ```js
 beforeEach(function(){
@@ -986,7 +1000,7 @@ beforeEach(function(){
 });
 ```
 
-6、Asynchronous support: It includes the runs and waitsFor blocks and a latch function. The latch function polls until it returns true or the timeout expires, whichever comes first. If the timeout expires, the specifications fails with a message:
+6 Asynchronous support: It includes the runs and waitsFor blocks and a latch function. The latch function polls until it returns true or the timeout expires, whichever comes first. If the timeout expires, the specifications fails with a message:
 
 ```js
 runs(functionname); 
@@ -1178,11 +1192,11 @@ Here, expect is an expectation and toBe is a matcher. To evaluate negative asser
 expect(false).not.toBe(true); 
 ```
 
-### 4.4 Matchers 
+### 4.5 Matchers 
 
 Matchers are used to compare the expected and actual values or validation of the expected value. If a matcher is going to compare the expected value, it takes actual value as argument. Matchers are chained with expectations. There are a number of matchers provided by Jasmine. Here is a list of all matchers: 
 
-#### 4.4.1 toBe() 
+#### 4.5.1 toBe() 
 
 This matcher compares using the identity (===) operator. 
 
@@ -1194,7 +1208,7 @@ expect(a).not.toBe("5");
 
 The difference between the identity operator (===) and equality operator (==) is that in identity operator, no type conversion is done before comparison. 
 
-#### 4.4.2 toEqual()
+#### 4.5.2 toEqual()
 
 This matcher is used to compare simple literals, variables, and functions. 
 
@@ -1205,7 +1219,7 @@ expect(a).not.toEqual(3);
 
 For simple literals and variables, both toBe() and toEqual() can be used, but to compare objects only toEqual() is to be used. 
 
-#### 4.4.3 toMatch()
+#### 4.5.3 toMatch()
 
 This matcher is used for regular expressions. 
 
@@ -1215,7 +1229,7 @@ expect(strReg).toMatch(/The/);
 expect(strReg).not.toMatch(/jump/); 
 ```
 
-#### 4.4.4 toBeDefined()
+#### 4.5.4 toBeDefined()
 
 This matcher checks if a variable or a function is defined. Let's check for the function we defined for addition: 
 
@@ -1224,7 +1238,7 @@ expect(add).toBeDefined(); // will pass
 expect(add).not.toBeDefined(); // will not pass 
 ```
 
-#### 4.4.5 toBeUndefined()
+#### 4.5.5 toBeUndefined()
 
 This matcher does the opposite of toBeDefined(). 
 
@@ -1233,7 +1247,7 @@ expect(add).toBeUndefined(); // will not pass
 expect(add).not.toBeUndefined(); // will pass 
 ```
 
-#### 4.4.6 toBeNull()
+#### 4.5.6 toBeNull()
 
 This matcher checks if a variable is null. 
 
@@ -1242,7 +1256,7 @@ expect(a).not.toBeNull();
 expect(null).toBeNull(); 
 ```
 
-#### 4.4.7 toBeTruthy()
+#### 4.5.7 toBeTruthy()
 
 This matcher checks if a variable or expression is true. 
 
@@ -1254,7 +1268,7 @@ expect(a).not.toBeTruthy();
 expect(add(2,3)).toBeTruthy(); 
 ```
 
-#### 4.4.8 toBeFalsy()
+#### 4.5.8 toBeFalsy()
 
 This matcher checks if a value or expression is false. 
 
@@ -1263,7 +1277,7 @@ expect(add(0,0)).toBeFalsy();
 expect(b).not.toBeFalsy(); 
 ```
 
-#### 4.4.9 toContain()
+#### 4.5.9 toContain()
 
 This matcher checks if a collection (array) has an item or not. 
 
@@ -1272,7 +1286,7 @@ var fruits = ["apple", "orange", "grape","papaya", "peach", "banana" ];
 expect(fruits).toContain("apple"); 
 ```
 
-#### 4.4.10 toBeLessThan()
+#### 4.5.10 toBeLessThan()
 
 This matcher is for the comparison of numbers in mathematics. 
 
@@ -1284,7 +1298,7 @@ expect(c).not.toBeLessThan(a);
 
 In the first expect statement, it compares a to b and expects b would be greater than a. While in next statement, it expects c would not be less than a. 
 
-#### 4.4.11 toBeGreaterThan()
+#### 4.5.11 toBeGreaterThan()
 
 This matcher is the opposite of toBeLessThan(). 
 
@@ -1293,7 +1307,7 @@ expect(b).toBeGreaterThan(a);
 expect(b).not.toBeGreaterThan(c); 
 ```
 
-#### 4.4.12 toBeCloseTo()
+#### 4.5.12 toBeCloseTo()
 
 This matcher checks if a number is close to another number. This matcher takes two arguments, the first is the number and second is the decimal precision. Let's see the following example to understand this matcher: 
 
@@ -1304,7 +1318,7 @@ expect(c).not.toBeCloseTo(5.1, 2) // will pass
 
 Since c has a value 5.1234, it is compared to 5.1 that matches till the first digit. Thus, it passes for the first expectation. 
 
-#### 4.4.13 toThrow()
+#### 4.5.13 toThrow()
 
 This matcher checks if a function throws an exception. 
 
@@ -1319,7 +1333,7 @@ expect(f1).not.toThrow();
 expect(f2).toThrow(); 
 ```
 
-#### 4.4.14 toThrowError()
+#### 4.5.14 toThrowError()
 
 This matcher checks if an specific exception was thrown from a function. 
 
@@ -1344,7 +1358,7 @@ expect(f3).toThrowError(TypeError, /custom/); // will pass
 expect(f3).toThrowError(TypeError, "custom exception"); // will fail 
 ```
 
-#### 4.4.15 jasmine.any()
+#### 4.5.15 jasmine.any()
 
 Sometimes, we are unaware of the actual value of an expression, but know the type. In this case, we can match them using jasmine.any(). Let's see how this is used: 
 
@@ -1356,7 +1370,7 @@ expect(21312312).toEqual(jasmine.any(Number));
 
 As we can see, jasmine.any will match the expected value to a type of class. 
 
-#### 4.4.16 jasmine.objectContaining()
+#### 4.5.16 jasmine.objectContaining()
 
 We can also do partial match when it comes to key/pair values. Let's see the following example to see how it works: 
 
@@ -1378,7 +1392,7 @@ expect(employee).toEqual(jasmine.objectContaining({
 
 We can provide a key/value pair to match partially with an object. Sometimes, these default matchers are not enough to fulfill our requirements, and we need to create custom matchers. With Jasmine, we can create custom matchers, which you will learn later in this chapter. 
 
-### 4.5 Set up and tear down 
+### 4.6 Set up and tear down 
 
 Just like other frameworks, Jasmine also provides a way to set up and tear down. Jasmine provides global functions such as beforeEach—called before each spec, afterEach—called after each spec, beforeAll—called only once before all specs are run, and afterAll—called only once after all specs are done. Look at the following code to understand this: 
 
@@ -1449,7 +1463,7 @@ describe('Setup and Teardown', () => {
 
 Since the this keyword will be set to empty for the next spec, this.acceleration will not be defined. Running this suite will pass all the specs in it. 
 
-### 4.6 Spies 
+### 4.7 Spies 
 
 A spy is an emulation of a function or object, irrespective of which function/object is defined or not. There are times when we need stubs for the functions we need to use for performing testing. Jasmine has spies for this purpose. A spy can stub functions but can only exist within describe and it block if it is defined. 
 
@@ -1594,6 +1608,5 @@ After chaining with not, if you rerun the spec, it will pass.
 [Your_first_suite](https://jasmine.github.io/tutorials/your_first_suite.html)
 
 [Namespace: matchers](https://jasmine.github.io/api/3.5/matchers.html)
-
 
 』
