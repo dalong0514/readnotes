@@ -555,305 +555,224 @@ This form element has three child elements: two input elements and a button. The
 
 When it's time to build a form component in React, there are several patterns available to you. One of these patterns involves accessing the DOM node directly using a React feature called refs. In React, a ref is an object that stores values for the lifetime of a component. There are several use cases that involve using refs. In this section, we'll look at how we can access a DOM node directly with a ref.
 
-React provides us with a useRef hook that we can use to create a ref.
+React provides us with a useRef hook that we can use to create a ref. We'll use this hook when building the AddColorForm component: 
 
-We'll use this hook when building the AddColorForm component: import React, { useRef } from "react";
+```js
+import React, { useRef } from "react";
 
 export default function AddColorForm({ onNewColor = f => f }) {
-
-const txtTitle = useRef();
-
-const hexColor = useRef();
-
-const submit = e => { ... }
-
-return (...)
-
+  const txtTitle = useRef();
+  const hexColor = useRef();
+  const submit = e => { ... }
+  return (...)
 }
+```
 
-First, when creating this component, we'll also create two refs using the useRef hook. The txtTitle ref will be used to reference the text input we've added to the form to collect the color title. The hexColor ref will be used to access hexadecimal color values from the HTML
+First, when creating this component, we'll also create two refs using the useRef hook. The txtTitle ref will be used to reference the text input we've added to the form to collect the color title. The hexColor ref will be used to access hexadecimal color values from the HTML color input. We can set the values for these refs directly in JSX using the ref property:
 
-color input. We can set the values for these refs directly in JSX using the ref property:
-
+```js
 return (
-
-<form onSubmit={submit}>
-
-<input ref={txtTitle} type="text" placeholder="color title..."
-
-required />
-
-<input ref={hexColor} type="color" required />
-
-<button>ADD</button>
-
-</form>
-
-);
-
+  <form onSubmit={submit}>
+    <input ref={txtTitle} type="text" placeholder="color title..."
+    required />
+    <input ref={hexColor} type="color" required />
+    <button>ADD</button>
+  </form>
+  );
 }
+```
 
 Here, we set the value for the txtTitle and hexColor refs by adding the ref attribute to these input elements in JSX. This creates a current field on our ref object that references the DOM element directly. This provides us access to the DOM element, which means we can capture its value. When the user submits this form by clicking the ADD button, we'll invoke the submit function:
 
+```js
 const submit = e => {
-
-e.preventDefault();
-
-const title = txtTitle.current.value;
-
-const color = hexColor.current.value;
-
-onNewColor(title, color);
-
-txtTitle.current.value = "";
-
-hexColor.current.value = "";
-
+  e.preventDefault();
+  const title = txtTitle.current.value;
+  const color = hexColor.current.value;
+  onNewColor(title, color);
+  txtTitle.current.value = "";
+  hexColor.current.value = "";
 };
+```
 
 When we submit HTML forms, by default, they send a POST request to the current URL with the values of the form elements stored in the body. We don't want to do that. This is why the first line of code in the submit function is e.preventDefault(), which prevents the browser from trying to submit the form with a POST request.
 
 Next, we capture the current values for each of our form elements using their refs. These values are then passed up to this component's parent via the onNewColor function property. Both the title and the hexadecimal value for the new color are passed as function arguments.
 
-Finally, we reset the value attribute for both inputs to clear the data
-
-and prepare the form to collect another color.
+Finally, we reset the value attribute for both inputs to clear the data and prepare the form to collect another color.
 
 Did you notice the subtle paradigm shift that has occurred by using refs? We're mutating the value attribute of DOM nodes directly by setting them equal to "" empty strings. This is imperative code. The AddColorForm is now what we call an uncontrolled component because it uses the DOM to save the form values. Sometimes using uncontrolled component can get you out of problems. For instance, you may want to share access to a form and its values with code outside of React. However, a controlled component is a better approach.
 
-Controlled Components
+### 6.5.2 Controlled Components
 
-In a controlled component, the from values are managed by React and not the DOM. They do not require us to use refs. They do not require us to write imperative code. Adding features like robust form validation is much easier when working with a controlled component.
+In a controlled component, the from values are managed by React and not the DOM. They do not require us to use refs. They do not require us to write imperative code. Adding features like robust form validation is much easier when working with a controlled component. Let's modify the AddColorForm by giving it control over the form's state:
 
-Let's modify the AddColorForm by giving it control over the form's state:
+```js
+import React, { useState } from "react"; 
 
-import React, { useState } from "react"; export default function AddColorForm({ onNewColor = f => f }) {
-
-const [title, setTitle] = useState("");
-
-const [color, setColor] = useState("#000000"); const submit = e => { ... };
-
-return ( ... );
-
+export default function AddColorForm({ onNewColor = f => f }) {
+  const [title, setTitle] = useState("");
+  const [color, setColor] = useState("#000000"); 
+  const submit = e => { ... };
+  return ( ... );
 }
+```
 
-First, instead of using refs, we're going to save the values for the title
-
-and color using React state. We'll create variables for title and color. Additionally, we'll define the functions that can be used to change state: setTitle and setColor.
+First, instead of using refs, we're going to save the values for the title and color using React state. We'll create variables for title and color. Additionally, we'll define the functions that can be used to change state: setTitle and setColor.
 
 Now that the component controls the values for title and color, we can display them inside of the form input elements by setting the value attribute. Once we set the value attribute of an input element, we'll no longer be able to change with the form. The only way to change the value at this point would be to change the state variable every time the user types a new character in the input element. That's exactly what we'll do:
 
+```js
 <form onSubmit={submit}>
-
-<input
-
-value={title}
-
-onChange={event => setTitle(event.target.value)}
-
-type="text"
-
-placeholder="color title..."
-
-required
-
-/>
-
-<input
-
-value={color}
-
-onChange={event => setColor(event.target.value)}
-
-type="color"
-
-required
-
-/>
-
-<button>ADD</button>
-
+  <input
+    value={title}
+    onChange={event => setTitle(event.target.value)}
+    type="text"
+    placeholder="color title..."
+    required
+    />
+  <input
+    value={color}
+    onChange={event => setColor(event.target.value)}
+    type="color"
+    required
+  />
+  <button>ADD</button>
 </form>
-
 }
+```
 
-This controlled component now sets the value of both input elements using the title and color from state. Whenever these elements raise an onChange event, we can access the new value using the event argument. The event.target is a reference to the DOM element, so we can obtain the current value of that element with
-
-event.target.value. When the title changes, we'll invoke setTitle to change the title value in state. Changing that value will cause this component to rerender, and we can now display the new value for title inside the input element. Changing the color works exactly the same way.
+This controlled component now sets the value of both input elements using the title and color from state. Whenever these elements raise an onChange event, we can access the new value using the event argument. The event.target is a reference to the DOM element, so we can obtain the current value of that element with event.target.value. When the title changes, we'll invoke setTitle to change the title value in state. Changing that value will cause this component to rerender, and we can now display the new value for title inside the input element. Changing the color works exactly the same way.
 
 When it's time to submit the form, we can simply pass the state values for title and color to the onNewColor function property as arguments when we invoke it. The setTitle and setColor functions can be used to reset the values after the new color has been passed to the parent component:
 
+```js
 const submit = e => {
+  e.preventDefault();
+  onNewColor(title, color);
+  setTitle("");
+  setColor("");
+}; 
+```
 
-e.preventDefault();
+It's called a controlled component because React controls the state of the form. It's worth pointing out that controlled form components are rerendered, a lot. Think about it: every new character typed in the title field causes the AddColorForm to rerender. Using the color wheel in the color picker causes this component to rerender way more than the title field because the color value repeatedly changes as the user drags the mouse around the color wheel. This is OK—React is designed to handle this type of workload. Hopefully, knowing that controlled components are rerendered frequently will prevent you from adding some long and expensive process to this component. At the very least, this knowledge will come in handy when you're trying to optimize your React components.
 
-onNewColor(title, color);
-
-setTitle("");
-
-setColor("");
-
-};
-
-It's called a controlled component because React controls the state of the form. It's worth pointing out that controlled form components are rerendered, a lot. Think about it: every new character typed in the title field causes the AddColorForm to rerender. Using the color wheel in the color picker causes this component to rerender way more than the title field because the color value repeatedly changes as the user drags the mouse around the color wheel. This is OK—React is designed to handle this type of workload. Hopefully, knowing that controlled components are rerendered frequently will prevent you from adding some long and expensive process to this component. At the very least, this knowledge will come in handy when you're trying to
-
-optimize your React components.
-
-Creating Custom Hooks
+### 6.5.3 Creating Custom Hooks
 
 When you have a large form with a lot of input elements, you may be tempted to copy and paste these two lines of code:
 
+```js
 value={title}
-
 onChange={event => setTitle(event.target.value)}
+```
 
 It might seem like you're working faster by simply copying and pasting these properties into every form element while tweaking the variable names along the way. However, whenever you copy and paste code, you should hear a tiny little alarm sound in your head. Copying and pasting code suggests that there's something redundant enough to abstract away in a function.
 
 We can package the details necessary to create controlled form components into a custom hook. We could create our own useInput hook where we can abstract away the redundancy involved with creating controlled form inputs:
 
+```js
 import { useState } from "react";
 
 export const useInput = initialValue => {
-
-const [value, setValue] = useState(initialValue);
-
-return [
-
-{ value, onChange: e => setValue(e.target.value) },
-
-() => setValue(initialValue)
-
-];
-
+  const [value, setValue] = useState(initialValue);
+  return [
+    { value, onChange: e => setValue(e.target.value) },
+    () => setValue(initialValue)
+  ];
 };
+```
 
-This is a custom hook. It doesn't take a lot of code. Inside of this hook,
+This is a custom hook. It doesn't take a lot of code. Inside of this hook, we're still using the useState hook to create a state value. Next, we return an array. The first value of the array is the object that contains the same properties we were tempted to copy and paste: the value from state along with an onChange function property that changes that value in state. The second value in the array is a function that can be reused to reset the value back to its initial value. We can use our hook inside of the AddColorForm:
 
-we're still using the useState hook to create a state value. Next, we return an array. The first value of the array is the object that contains the same properties we were tempted to copy and paste: the value from state along with an onChange function property that changes that value in state. The second value in the array is a function that can be reused to reset the value back to its initial value. We can use our hook inside of the AddColorForm:
-
+```js
 import React from "react";
-
 import { useInput } from "./hooks";
 
 export default function AddColorForm({ onNewColor = f => f }) {
-
-const [titleProps, resetTitle] = useInput(""); const [colorProps, resetColor] = useInput("#000000"); const submit = event => { ... }
-
-return ( ... )
-
+  const [titleProps, resetTitle] = useInput(""); 
+  const [colorProps, resetColor] = useInput("#000000"); 
+  const submit = event => { ... }
+  return ( ... )
 }
+```
 
 The useState hook is encapsulated within our useInput hook. We can obtain the properties for both the title and the color by destructuring them from the first value of the returned array. The second value of this array contains a function we can use to reset the value property back to its initial value, an empty string. The titleProps and colorProps are ready to be spread into their corresponding input elements:
 
+```js
 return (
-
-<form onSubmit={submit}>
-
-<input
-
-{...titleProps}
-
-type="text"
-
-placeholder="color title..."
-
-required
-
-/>
-
-<input {...colorProps} type="color" required />
-
-<button>ADD</button>
-
-</form>
-
-);
-
+  <form onSubmit={submit}>
+    <input
+      {...titleProps}
+      type="text"
+      placeholder="color title..."
+      required
+      />
+    <input {...colorProps} type="color" required />
+    <button>ADD</button>
+  </form>
+  );
 }
+```
 
 Spreading these properties from our custom hook is much more fun than pasting them. Now both the title and the color inputs are receiving properties for their value and onChange events. We've used our hook to create controlled form inputs without worrying about the underlying implementation details. The only other change we need to make is when this form is submitted:
 
+```js
 const submit = event => {
-
-event.preventDefault();
-
-onNewColor(titleProps.value, colorProps.value);
-
-resetTitle();
-
-resetColor();
-
+  event.preventDefault();
+  onNewColor(titleProps.value, colorProps.value);
+  resetTitle();
+  resetColor();
 };
+```
 
 Within the submit function, we need to be sure to grab the value for both the title and the color from their properties. Finally, we can use the custom reset functions that were returned from the useInput hook.
 
 Hooks are designed to be used inside of React components. We can compose hooks within other hooks because eventually the customized hook will be used inside of a component. Changing the state within this hook still causes the AddColorForm to rerender with new values for titleProps or colorProps.
 
-Adding Colors to State
+### 6.5.4 Adding Colors to State
 
 Both the controlled form component and the uncontrolled from component pass the values for title and color to the parent component via the onNewColor function. The parent doesn't care whether we used a controlled component or an uncontrolled component; it only wants the values for the new color.
 
 Let's add the AddColorForm, whichever one you choose, to the the App component. When the onNewColor property is invoked, we'll save the new color in state:
 
-import React, { useState } from "react"; import colorData from "./color-data.json"; import ColorList from "./ColorList.js";
-
-import AddColorForm from "./AddColorForm"; import { v4 } from "uuid";
+```js
+import React, { useState } from "react"; 
+import colorData from "./color-data.json"; 
+import ColorList from "./ColorList.js";
+import AddColorForm from "./AddColorForm"; 
+import { v4 } from "uuid";
 
 export default function App() {
-
-const [colors, setColors] = useState(colorData);
-
-return (
-
-<>
-
-<AddColorForm
-
-onNewColor={(title, color) => {
-
-const newColors = [
-
-...colors,
-
-{
-
-id: v4(),
-
-rating: 0,
-
-title,
-
-color
-
+  const [colors, setColors] = useState(colorData);
+  return (
+    <>
+      <AddColorForm
+        onNewColor={(title, color) => {
+          const newColors = [
+            ...colors,
+            {
+              id: v4(),
+              rating: 0,
+              title,
+              color
+            }
+          ];
+          setColors(newColors);
+        }}
+      />
+      <ColorList .../>
+    </>
+  );
 }
+```
 
-];
-
-setColors(newColors);
-
-}}
-
-/>
-
-<ColorList .../>
-
-</>
-
-);
-
-}
-
-When a new color is added, the onNewColor property is invoked. The title and hexadecimal value for the new color are passed to this function as arguments. We use these arguments to create a new array of colors. First, we spread the current colors from state into the new array. Then we add an entirely new color object using the title and color values. Additionally, we set the rating of the new color to 0
-
-because it has not yet been rated. We also use the v4 function found in the uuid package to generate a new unique id for the color. Once we have an array of colors that contains our new color, we save it to state by invoking setColors. This causes the App component to rerender with a new array of colors. That new array will be used to update the UI. We'll see the new color at bottom of the list.
+When a new color is added, the onNewColor property is invoked. The title and hexadecimal value for the new color are passed to this function as arguments. We use these arguments to create a new array of colors. First, we spread the current colors from state into the new array. Then we add an entirely new color object using the title and color values. Additionally, we set the rating of the new color to 0 because it has not yet been rated. We also use the v4 function found in the uuid package to generate a new unique id for the color. Once we have an array of colors that contains our new color, we save it to state by invoking setColors. This causes the App component to rerender with a new array of colors. That new array will be used to update the UI. We'll see the new color at bottom of the list.
 
 With this change, we've completed the first iteration of the Color Organizer. Users can now add new colors to the list, remove colors from the list, and rate any existing color on that list.
 
-React Context
+## 6.6 React Context
 
-Storing state in one location at the root of our tree was an important pattern that helped us all be more successful with early versions of React. Learning to pass state both down and up a component tree via properties is a necessary right of passage for any React developer—it's something we should all know how to do. However, as React evolved and our component trees got larger, following this principle slowly became more unrealistic. It's hard for many developers to maintain state in a single location at the root of a component tree for a complex
-
-application. Passing state down and up the tree through dozens of components is tedious and bug ridden.
+Storing state in one location at the root of our tree was an important pattern that helped us all be more successful with early versions of React. Learning to pass state both down and up a component tree via properties is a necessary right of passage for any React developer—it's something we should all know how to do. However, as React evolved and our component trees got larger, following this principle slowly became more unrealistic. It's hard for many developers to maintain state in a single location at the root of a component tree for a complex application. Passing state down and up the tree through dozens of components is tedious and bug ridden.
 
 The UI elements that most of us work on are complex. The root of the tree is often very far from the leaves. This puts data the application depends on many layers away from the components that use the data.
 
@@ -867,105 +786,77 @@ It's obviously more efficient to fly from San Francisco to DC. This way, you don
 
 Figure 6-7. Flight from San Francisco to DC
 
-In React, context is like jet-setting for your data. You can place data in React context by creating a context provider. A context provider is a React component you can wrap around your entire component tree or
-
-specific sections of your component tree. The context provider is the departing airport where your data boards the plane. It's also the airline hub. All flights depart from that airport to different destinations. Each destination is a context consumer. The context consumer is the React component that retrieves the data from context. This is the destination airport where your data lands, deplanes, and goes to work.
+In React, context is like jet-setting for your data. You can place data in React context by creating a context provider. A context provider is a React component you can wrap around your entire component tree or specific sections of your component tree. The context provider is the departing airport where your data boards the plane. It's also the airline hub. All flights depart from that airport to different destinations. Each destination is a context consumer. The context consumer is the React component that retrieves the data from context. This is the destination airport where your data lands, deplanes, and goes to work.
 
 Using context still allows to us store state data in a single location, but it doesn't require us to pass that data through a bunch of components that don't need it.
 
-Placing Colors in Context
+### 6.6.1 Placing Colors in Context
 
 In order to use context in React, we must first place some data in a context provider and add that provider to our component tree. React comes with a function called createContext that we can use to create a new context object. This object contains two components: a context Provider and a Consumer.
 
 Let's place the default colors found in the color-data.json file into context. We'll add context to the index.js file, the entry point of our application:
 
+```js
 import React, { createContext } from "react";
-
 import colors from "./color-data";
-
 import { render } from "react-dom";
-
 import App from "./App";
 
 export const ColorContext = createContext();
-
 render(
-
-<ColorContext.Provider value={{ colors }}>
-
-<App />
-
-</ColorContext.Provider>,
-
-document.getElementById("root")
-
+  <ColorContext.Provider value={{ colors }}>
+    <App />
+  </ColorContext.Provider>,
+  document.getElementById("root")
 );
+```
 
 Using createContext, we created a new instance of React context that we named ColorContext. The color context contains two components: ColorContext.Provider and ColorContext.Consumer. We need to use the provider to place the colors in state. We add data to context by setting the value property of the Provider. In this scenario, we added an object containing the colors to context. Since we wrapped the entire App component with the provider, the array of colors will made available to any context consumers found in our entire component tree.
 
 It's important to notice that we've also exported the ColorContext from this location. This is necessary because we will need to access the ColorContext.Consumer when we want to obtain the colors from context.
 
-NOTE
+NOTE: A context Provider doesn't always have to wrap an entire application. It's not only OK to wrap specific sections components with a context Provider, it can make your application more efficient. The Provider will only provide context values to its children. It's OK to use multiple context providers. In fact, you may be using context providers in your React app already without even knowing it. Many npm packages designed to work with React use context behind the scenes.
 
-A context Provider doesn't always have to wrap an entire application. It's not only OK to wrap specific sections components with a context Provider, it can make your application more efficient. The Provider will only provide context values to its children.
-
-It's OK to use multiple context providers. In fact, you may be using context providers in your React app already without even knowing it. Many npm packages designed to work with React use context behind the scenes.
-
-Now that we're providing the colors value in context, the App component no longer needs to hold state and pass it down to its children as props. We've made the App component a「flyover」
-
-component. The Provider is the App component's parent, and it's
-
-providing the colors in context. The ColorList is the App component's child, and it can obtain the colors directly on its own. So the app doesn't need to touch the colors at all, which is great because the App component itself has nothing to do with colors. That responsibility has been delegated farther down the tree.
+Now that we're providing the colors value in context, the App component no longer needs to hold state and pass it down to its children as props. We've made the App component a「flyover」component. The Provider is the App component's parent, and it's providing the colors in context. The ColorList is the App component's child, and it can obtain the colors directly on its own. So the app doesn't need to touch the colors at all, which is great because the App component itself has nothing to do with colors. That responsibility has been delegated farther down the tree.
 
 We can remove a lot of lines of code from the App component. It only needs to render the AddColorForm and the ColorList. It no longer has to worry about the data:
 
+```js
 import React from "react";
-
 import ColorList from "./ColorList.js";
+import AddColorForm from "./AddColorForm"; 
 
-import AddColorForm from "./AddColorForm"; export default function App() {
-
-return (
-
-<>
-
-<AddColorForm />
-
-<ColorList />
-
-</>
-
-);
-
+export default function App() {
+  return (
+  <>
+    <AddColorForm />
+    <ColorList />
+  </>
+  );
 }
+```
 
-Retrieving Colors with useContext
+### 6.6.2 Retrieving Colors with useContext
 
-The addition of Hooks makes working with context a joy. The useContext hook is used to obtain values from context, and it obtains those values we need from the context Consumer. The ColorList component no longer needs to obtain the array of colors from its properties. It can access them directly via the useContext hook: import React, { useContext } from "react";
+The addition of Hooks makes working with context a joy. The useContext hook is used to obtain values from context, and it obtains those values we need from the context Consumer. The ColorList component no longer needs to obtain the array of colors from its properties. It can access them directly via the useContext hook: 
 
+```js
+import React, { useContext } from "react";
 import { ColorContext } from "./";
-
 import Color from "./Color";
 
 export default function ColorList() {
-
-const { colors } = useContext(ColorContext);
-
-if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>; return (
-
-<div className="color-list">
-
-{
-
-colors.map(color => <Color key={color.id} {...color} />)
-
+  const { colors } = useContext(ColorContext);
+  if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>; 
+  return (
+    <div className="color-list">
+      {
+        colors.map(color => <Color key={color.id} {...color} />)
+      }
+    </div>
+  );
 }
-
-</div>
-
-);
-
-}
+```
 
 Here, we've modified the ColorList component and removed the colors=[] property because the colors are being retrieved from context. The useContext hook requires the context instance to obtain values from it. The ColorContext instance is being imported from the index.js file where we create the context and add the provider to our component tree. The ColorList can now construct a user interface based on the data that has been provided in context.
 
@@ -973,238 +864,170 @@ USING CONTEXT CONSUMER
 
 The Consumer is accessed within the useContext hook, which means that we no longer have to work directly with the consumer component. Before Hooks, we would have to obtain the colors from context using a pattern called render props within the context consumer. Render props are passed as arguments to a child function. The following example is how you would use the consumer to obtain the colors from context:
 
+```js
 export default function ColorList() {
-
-return (
-
-<ColorContext.Consumer>
-
-{context => {
-
-if (!context.colors.length)
-
-return <div>No Colors Listed. (Add a Color)</div>; return (
-
-<div className="color-list">
-
-{
-
-context.colors.map(color =>
-
-<Color key={color.id} {...color} />)
-
+  return (
+    <ColorContext.Consumer>
+    {context => {
+      if (!context.colors.length) return <div>No Colors Listed. (Add a Color)</div>; 
+      return (
+        <div className="color-list">
+          {
+            context.colors.map(color =>
+              <Color key={color.id} {...color} />)
+          }
+        </div>
+      )
+    }}
+    </ColorContext.Consumer>
+  )
 }
+```
 
-</div>
-
-)
-
-}}
-
-</ColorContext.Consumer>
-
-)
-
-}
-
-Stateful Context Providers
+### 6.6.3 Stateful Context Providers
 
 The context provider can place an object into context, but it can't mutate the values in context on its own. It needs some help from a parent component. The trick is to create a stateful component that renders a context provider. When the state of the stateful component changes, it will rerender the context provider with new context data.
 
-Any of the context providers' children will also be rerendered with the new context data.
+Any of the context providers' children will also be rerendered with the new context data. The stateful component that renders the context provider is our custom provider. That is: that's the component that will be used when it's time to wrap our App with the provider. In a brand-new file, let's create a ColorProvider:
 
-The stateful component that renders the context provider is our custom provider. That is: that's the component that will be used when it's time to wrap our App with the provider. In a brand-new file, let's create a ColorProvider:
-
-import React, { createContext, useState } from "react"; import colorData from "./color-data.json";
-
+```js
+import React, { createContext, useState } from "react"; 
+import colorData from "./color-data.json";
 const ColorContext = createContext();
 
 export default function ColorProvider ({ children }) {
-
-const [colors, setColors] = useState(colorData);
-
-return (
-
-<ColorContext.Provider value={{ colors, setColors }}>
-
-{children}
-
-</ColorContext.Provider>
-
-);
-
+  const [colors, setColors] = useState(colorData);
+  return (
+    <ColorContext.Provider value={{ colors, setColors }}>
+      {children}
+    </ColorContext.Provider>
+  );
 };
+```
 
-The ColorProvider is a component that renders the
-
-ColorContext.Provider. Within this component, we've created a state variable for colors using the useState hook. The initial data for colors is still being populated from color-data.json. Next, the ColorProvider adds the colors from state to context using the value property of the ColorContext.Provider. Any children rendered within the ColorProvider will be wrapped by the
-
-ColorContext.Provider and will have access to the colors array from context.
+The ColorProvider is a component that renders the ColorContext.Provider. Within this component, we've created a state variable for colors using the useState hook. The initial data for colors is still being populated from color-data.json. Next, the ColorProvider adds the colors from state to context using the value property of the ColorContext.Provider. Any children rendered within the ColorProvider will be wrapped by the ColorContext.Provider and will have access to the colors array from context.
 
 You may have noticed that the setColors function is also being added to context. This gives context consumers the ability to change the value for colors. Whenever setColors is invoked, the colors array will change. This will cause the ColorProvider to rerender, and our UI will update itself to display the new colors array.
 
 Adding setColors to context may not be the best idea. It invites other developers and you to make mistakes later on down the road when using it. There are only three options when it comes to changing the value of the colors array: users can add colors, remove colors, or rate colors. It's a better idea to add functions for each of these operations to context. This way, you don't expose the setColors function to consumers; you only expose functions for the changes they're allowed to make:
 
+```js
 export default function ColorProvider ({ children }) {
-
-const [colors, setColors] = useState(colorData);
-
-const addColor = (title, color) =>
-
-setColors([
-
-...colors,
-
-{
-
-id: v4(),
-
-rating: 0,
-
-title,
-
-color
-
-}
-
-]);
-
-const rateColor = (id, rating) =>
-
-setColors(
-
-colors.map(color => (color.id === id ? { ...color, rating } : color))
-
-);
-
-const removeColor = id => setColors(colors.filter(color => color.id !==
-
-id));
-
-return (
-
-<ColorContext.Provider value={{ colors, addColor, removeColor, rateColor }}>
-
-{children}
-
-</ColorContext.Provider>
-
-);
-
+  const [colors, setColors] = useState(colorData);
+  const addColor = (title, color) =>
+  setColors([
+    ...colors,
+    {
+      id: v4(),
+      rating: 0,
+      title,
+      color
+    }
+  ]);
+  const rateColor = (id, rating) =>
+  setColors(
+    colors.map(color => (color.id === id ? { ...color, rating } : color))
+  );
+  const removeColor = id => setColors(colors.filter(color => color.id !== id));
+  return (
+    <ColorContext.Provider value={{ colors, addColor, removeColor, rateColor }}>
+      {children}
+    </ColorContext.Provider>
+  );
 };
+```
 
 That looks better. We added functions to context for all of the operations that can be made on the colors array. Now, any component within our tree can consume these operations and make changes to colors using simple functions that we can document.
 
-Custom Hooks with Context
+### 6.6.4 Custom Hooks with Context
 
 There's one more killer change we can make. The introduction of Hooks has made it so that we don't have to expose context to consumer components at all. Let's face it: context can be confusing for team members who aren't reading this book. We can make everything much easier for them by wrapping context in a custom hook. Instead of exposing the ColorContext instance, we can create a hook called useColors that returns the colors from context:
 
-import React, { createContext, useState, useContext } from "react"; import colorData from "./color-data.json"; import { v4 } from "uuid";
+```js
+import React, { createContext, useState, useContext } from "react"; 
+import colorData from "./color-data.json"; 
+import { v4 } from "uuid";
 
 const ColorContext = createContext();
+export const useColors = () => useContext(ColorContext); 
+```
 
-export const useColors = () => useContext(ColorContext); This one simple change has a huge impact on architecture. We've wrapped all of the functionality necessary to render and work with stateful colors in a single JavaScript module. Context is contained to this module yet exposed through a hook. This works because we return context using the useContext hook, which has access to the ColorContext locally in this file. It's now appropriate to rename this module color-hooks.js and distribute this functionality for wider use by the community.
+This one simple change has a huge impact on architecture. We've wrapped all of the functionality necessary to render and work with stateful colors in a single JavaScript module. Context is contained to this module yet exposed through a hook. This works because we return context using the useContext hook, which has access to the ColorContext locally in this file. It's now appropriate to rename this module color-hooks.js and distribute this functionality for wider use by the community.
 
 Consuming colors using the ColorProvider and the useColors hook is a joyous event. This is why we program. Let's take this hook out for a spin in the current Color Organizer app. First, we need to wrap our App component with the custom ColorProvider. We can do this in the index.js file:
 
+```js
 import React from "react";
-
-import { ColorProvider } from "./color-hooks.js"; import { render } from "react-dom";
-
+import { ColorProvider } from "./color-hooks.js"; 
+import { render } from "react-dom";
 import App from "./App";
 
 render(
-
-<ColorProvider>
-
-<App />
-
-</ColorProvider>,
-
-document.getElementById("root")
-
+  <ColorProvider>
+    <App />
+  </ColorProvider>,
+  document.getElementById("root")
 );
+```
 
 Now, any component that's a child of the App can obtain the colors from the useColors hook. The ColorList component needs to access the colors array to render the colors on the screen:
 
+```js
 import React from "react";
-
 import Color from "./Color";
+import { useColors } from "./color-hooks"; 
 
-import { useColors } from "./color-hooks"; export default function ColorList() {
-
-const { colors } = useColors();
-
-return ( ... );
-
+export default function ColorList() {
+  const { colors } = useColors();
+  return ( ... );
 }
+```
 
-We've removed any references to context from this component.
+We've removed any references to context from this component. Everything it needs is now being provided from our hook. The Color component could use our hook to obtain the functions for rating and removing colors directly:
 
-Everything it needs is now being provided from our hook. The Color component could use our hook to obtain the functions for rating and removing colors directly:
-
+```js
 import React from "react";
-
 import StarRating from "./StarRating";
+import { useColors } from "./color-hooks"; 
 
-import { useColors } from "./color-hooks"; export default function Color({ id, title, color, rating }) {
-
-const { rateColor, removeColor } = useColors();
-
-return (
-
-<section>
-
-<h1>{title}</h1>
-
-<button onClick={() => removeColor(id)}>X</button>
-
-<div style={{ height: 50, backgroundColor: color }} />
-
-<StarRating
-
-selectedStars={rating}
-
-onRate={rating => rateColor(id, rating)}
-
-/>
-
-</section>
-
-);
-
+export default function Color({ id, title, color, rating }) {
+  const { rateColor, removeColor } = useColors();
+  return (
+    <section>
+      <h1>{title}</h1>
+      <button onClick={() => removeColor(id)}>X</button>
+      <div style={{ height: 50, backgroundColor: color }} />
+      <StarRating
+        selectedStars={rating}
+        onRate={rating => rateColor(id, rating)}
+      />
+    </section>
+  );
 }
+```
 
 Now, the Color component no longer needs to pass events to the parent via function props. It has access to the rateColor and removeColor functions in context. They're easily obtained through the useColors hook. This is a lot of fun, but we're not finished yet. The AddColorForm can also benefit from the useColors hook:
 
+```js
 import React from "react";
-
 import { useInput } from "./hooks";
+import { useColors } from "./color-hooks"; 
 
-import { useColors } from "./color-hooks"; export default function AddColorForm() {
-
-const [titleProps, resetTitle] = useInput(""); const [colorProps, resetColor] = useInput("#000000"); const { addColor } = useColors();
-
-const submit = e => {
-
-e.preventDefault();
-
-addColor(titleProps.value, colorProps.value);
-
-resetTitle();
-
-resetColor();
-
-};
-
-return ( ... );
-
+export default function AddColorForm() {
+  const [titleProps, resetTitle] = useInput(""); 
+  const [colorProps, resetColor] = useInput("#000000"); const { addColor } = useColors();
+  const submit = e => {
+    e.preventDefault();
+    addColor(titleProps.value, colorProps.value);
+    resetTitle();
+    resetColor();
+  };
+  return ( ... );
 }
+```
 
 The AddColorForm component can add colors directly with the addColor function. When colors are added, rated, or removed, the state of the colors value in context will change. When this change happens, the children of the ColorProvider are rerendered with new context data. All of this is happening through a simple hook.
 
-Hooks provide software developers with the stimulation they need to stay motivated and enjoy frontend programming. This is primarily because they're an awesome tool for separating concerns. Now, React
-
-components only need to concern themselves with rendering other React components and keeping the user interface up to date. React Hooks can concern themselves with the logic required to make the app work. Both the UI and Hooks can be developed separately, tested separately, and even deployed separately. This is all very good news for React.
+Hooks provide software developers with the stimulation they need to stay motivated and enjoy frontend programming. This is primarily because they're an awesome tool for separating concerns. Now, React components only need to concern themselves with rendering other React components and keeping the user interface up to date. React Hooks can concern themselves with the logic required to make the app work. Both the UI and Hooks can be developed separately, tested separately, and even deployed separately. This is all very good news for React.
 
 We've only scratched the surface of what can be accomplished with Hooks. In the next chapter, we'll dive a little deeper.

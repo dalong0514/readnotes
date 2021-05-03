@@ -8,625 +8,518 @@ We'll also look at useCallback and useMemo, which can help optimize our componen
 
 ## 7.1 Introducing useEffect
 
-We now have a good sense of what happens when we render a component. A component is simply a function that renders a user interface. Renders occur when the app first loads and when props and
-
-state values change. But what happens when we need to do something after a render? Let's take a closer look.
+We now have a good sense of what happens when we render a component. A component is simply a function that renders a user interface. Renders occur when the app first loads and when props and state values change. But what happens when we need to do something after a render? Let's take a closer look.
 
 Consider a simple component, the Checkbox. We're using useState to set a checked value and a function to change the value of checked: setChecked. A user can check and uncheck the box, but how might we alert the user that the box has been checked? Let's try this with an alert, as it's a great way to block the thread:
 
-import React, { useState } from "react"; function Checkbox() {
-
-const [checked, setChecked] = useState(false); alert(`checked: ${checked.toString()}`);
-
-return (
-
-<>
-
-<input
-
-type="checkbox"
-
-value={checked}
-
-onChange={() => setChecked(checked => !checked)}
-
-/>
-
-{checked ? "checked" : "not checked"}
-
-</>
-
-);
-
+```js
+import React, { useState } from "react"; 
+function Checkbox() {
+  const [checked, setChecked] = useState(false); alert(`checked: ${checked.toString()}`);
+  return (
+    <>
+      <input
+        type="checkbox"
+        value={checked}
+        onChange={() => setChecked(checked => !checked)}
+      />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
 };
+```
 
 We've added the alert before the render to block the render. The component will not render until the user clicks the OK button on the alert box. Because the alert is blocking, we don't see the next state of the checkbox rendered until clicking OK.
 
 That isn't the goal, so maybe we should place the alert after the return?
 
+```js
 function Checkbox {
-
-const [checked, setChecked] = useState(false); return (
-
-<>
-
-<input
-
-type="checkbox"
-
-value={checked}
-
-onChange={() => setChecked(checked => !checked)}
-
-/>
-
-{checked ? "checked" : "not checked"}
-
-</>
-
-);
-
-alert(`checked: ${checked.toString()}`);
-
+  const [checked, setChecked] = useState(false); 
+  return (
+    <>
+      <input
+        type="checkbox"
+        value={checked}
+        onChange={() => setChecked(checked => !checked)}
+      />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
+  alert(`checked: ${checked.toString()}`);
 };
+```
 
-Scratch that. We can't call alert after the render because the code will never be reached. To ensure that we see the alert as expected, we can use useEffect. Placing the alert inside of the useEffect function means that the function will be called after the render, as a side effect: function Checkbox {
+Scratch that. We can't call alert after the render because the code will never be reached. To ensure that we see the alert as expected, we can use useEffect. Placing the alert inside of the useEffect function means that the function will be called after the render, as a side effect: 
 
-const [checked, setChecked] = useState(false); useEffect(() => {
-
-alert(`checked: ${checked.toString()}`);
-
-});
-
-return (
-
-<>
-
-<input
-
-type="checkbox"
-
-value={checked}
-
-onChange={() => setChecked(checked => !checked)}
-
-/>
-
-{checked ? "checked" : "not checked"}
-
-</>
-
-);
-
+```js
+function Checkbox {
+  const [checked, setChecked] = useState(false); 
+  useEffect(() => {
+    alert(`checked: ${checked.toString()}`);
+  });
+  return (
+    <>
+      <input
+        type="checkbox"
+        value={checked}
+        onChange={() => setChecked(checked => !checked)}
+      />
+      {checked ? "checked" : "not checked"}
+    </>
+  );
 };
+```
 
 We use useEffect when a render needs to cause side effects. Think of a side effect as something that a function does that isn't part of the return. The function is the Checkbox. The Checkbox function renders UI. But we might want the component to do more than that. Those things we want the component to do other than return UI are called effects.
 
 An alert, a console.log, or an interaction with a browser or native API is not part of the render. It's not part of the return. In a React app, though, the render affects the results of one of these events. We can use useEffect to wait for the render, then provide the values to an alert or a console.log:
 
+```js
 useEffect(() => {
-
-console.log(checked ? "Yes, checked" : "No, not checked");
-
+  console.log(checked ? "Yes, checked" : "No, not checked");
 });
+```
 
 Similarly, we could check in with the value of checked on render and then set that to a value in localStorage:
 
+```js
 useEffect(() => {
-
-localStorage.setItem("checkbox-value", checked);
-
+  localStorage.setItem("checkbox-value", checked);
 });
+```
 
 We might also use useEffect to focus on a specific text input that has been added to the DOM. React will render the output, then call useEffect to focus the element:
 
+```js
 useEffect(() => {
-
-txtInputRef.current.focus();
-
+  txtInputRef.current.focus();
 });
+```
 
 On render, the txtInputRef will have a value. We can access that value in the effect to apply the focus. Every time we render, useEffect has access to the latest values from that render: props, state, refs, etc.
 
-Think of useEffect as being a function that happens after a render.
+Think of useEffect as being a function that happens after a render. When a render fires, we can access the current state values within our component and use them to do something else. Then, once we render again, the whole thing starts over. New values, new renders, new effects.
 
-When a render fires, we can access the current state values within our component and use them to do something else. Then, once we render again, the whole thing starts over. New values, new renders, new effects.
+### 7.1.1 The Dependency Array
 
-The Dependency Array
+useEffect is designed to work in conjunction with other stateful Hooks like useState and the heretofore unmentioned useReducer, which we promise to discuss later in the chapter. React will rerender the component tree when the state changes. As we've learned, useEffect will be called after these renders. Consider the following, where the App component has two separate state values:
 
-useEffect is designed to work in conjunction with other stateful Hooks like useState and the heretofore unmentioned useReducer, which we promise to discuss later in the chapter. React will rerender the component tree when the state changes. As we've learned, useEffect will be called after these renders.
-
-Consider the following, where the App component has two separate state values:
-
-import React, { useState, useEffect } from "react"; import "./App.css";
+```js
+import React, { useState, useEffect } from "react"; 
+import "./App.css";
 
 function App() {
-
-const [val, set] = useState("");
-
-const [phrase, setPhrase] = useState("example phrase"); const createPhrase = () => {
-
-setPhrase(val);
-
-set("");
-
+  const [val, set] = useState("");
+  const [phrase, setPhrase] = useState("example phrase"); 
+  const createPhrase = () => {
+  setPhrase(val);
+  set("");
 };
 
 useEffect(() => {
-
-console.log(`typing "${val}"`);
-
+  console.log(`typing "${val}"`);
 });
 
 useEffect(() => {
-
-console.log(`saved phrase: "${phrase}"`);
-
+  console.log(`saved phrase: "${phrase}"`);
 });
 
 return (
-
-<>
-
-<label>Favorite phrase:</label>
-
-<input
-
-value={val}
-
-placeholder={phrase}
-
-onChange={e => set(e.target.value)}
-
-/>
-
-<button onClick={createPhrase}>send</button>
-
-</>
-
-);
-
+  <>
+    <label>Favorite phrase:</label>
+    <input
+      value={val}
+      placeholder={phrase}
+      onChange={e => set(e.target.value)}
+    />
+    <button onClick={createPhrase}>send</button>
+  </>
+  );
 }
+```
 
-val is a state variable that represents the value of the input field. The val changes every time the value of the input field changes. It causes the component to render every time the user types a new character.
-
-When the user clicks the Send button, the val of the text area is saved as the phrase, and the val is reset to "", which empties the text field.
+val is a state variable that represents the value of the input field. The val changes every time the value of the input field changes. It causes the component to render every time the user types a new character. When the user clicks the Send button, the val of the text area is saved as the phrase, and the val is reset to "", which empties the text field.
 
 This works as expected, but the useEffect hook is invoked more times than it should be. After every render, both useEffect Hooks are called:
 
-typing "" // First Render saved phrase: "example phrase" // First Render typing "S" // Second Render saved phrase: "example phrase" // Second Render typing "Sh" // Third Render saved phrase: "example phrase" // Third Render
+```
+typing "" // First Render 
+saved phrase: "example phrase" // First Render 
+typing "S" // Second Render 
+saved phrase: "example phrase" // Second Render 
+typing "Sh" // Third Render 
+saved phrase: "example phrase" // Third Render
+typing "Shr" // Fourth Render
+saved phrase: "example phrase" // Fourth Render 
+typing "Shre" // Fifth Render 
+saved phrase: "example phrase" // Fifth Render 
+typing "Shred" // Sixth Render 
+saved phrase: "example phrase" // Sixth Render 
+```
 
-typing "Shr" // Fourth Render saved phrase: "example phrase" // Fourth Render typing "Shre" // Fifth Render saved phrase: "example phrase" // Fifth Render typing "Shred" // Sixth Render saved phrase: "example phrase" // Sixth Render We don't want every effect to be invoked on every render. We need to associate useEffect hooks with specific data changes. To solve this problem, we can incorporate the dependency array. The dependency array can be used to control when an effect is invoked:
+We don't want every effect to be invoked on every render. We need to associate useEffect hooks with specific data changes. To solve this problem, we can incorporate the dependency array. The dependency array can be used to control when an effect is invoked:
 
+```js
 useEffect(() => {
-
-console.log(`typing "${val}"`);
-
+    console.log(`typing "${val}"`);
 }, [val]);
 
 useEffect(() => {
-
-console.log(`saved phrase: "${phrase}"`);
-
+  console.log(`saved phrase: "${phrase}"`);
 }, [phrase]);
+```
 
 We've added the dependency array to both effects to control when they're invoked. The first effect is only invoked when the val value has changed. The second effect is only invoked when the phrase value has changed. Now, when we run the app and take a look at the console, we'll see more efficient updates occurring:
 
-typing "" // First Render saved phrase: "example phrase" // First Render typing "S" // Second Render typing "Sh" // Third Render typing "Shr" // Fourth Render typing "Shre" // Fifth Render typing "Shred" // Sixth Render typing "" // Seventh Render saved phrase: "Shred" // Seventh Render Changing the val value by typing into the input only causes the first
+```
+typing "" // First Render 
+saved phrase: "example phrase" // First Render 
+typing "S" // Second Render typing "Sh" // Third Render 
+typing "Shr" // Fourth Render typing "Shre" // Fifth Render 
+typing "Shred" // Sixth Render typing "" // Seventh Render 
+saved phrase: "Shred" // Seventh Render 
+```
 
-effect to fire. When we click the button, the phrase is saved and the val is reset to "".
+Changing the val value by typing into the input only causes the first effect to fire. When we click the button, the phrase is saved and the val is reset to "". It's an array after all, so it's possible to check multiple values in the dependency array. Let's say we wanted to run a specific effect any time either the val or phrase has changed:
 
-It's an array after all, so it's possible to check multiple values in the dependency array. Let's say we wanted to run a specific effect any time either the val or phrase has changed:
-
+```js
 useEffect(() => {
-
-console.log("either val or phrase has changed");
-
+  console.log("either val or phrase has changed");
 }, [val, phrase]);
+```
 
 If either of those values changes, the effect will be called again. It's also possible to supply an empty array as the second argument to a useEffect function. An empty dependency array causes the effect to be invoked only once after the initial render:
 
+```js
 useEffect(() => {
-
-console.log("only once after initial render");
-
+  console.log("only once after initial render");
 }, []);
+```
 
 Since there are no dependencies in the array, the effect is invoked for the initial render. No dependencies means no changes, so the effect will never be invoked again. Effects that are only invoked on the first render are extremely useful for initialization:
 
+```js
 useEffect(() => {
-
-welcomeChime.play();
-
+  welcomeChime.play();
 }, []);
+```
 
 If you return a function from the effect, the function will be invoked when the component is removed from the tree:
 
+```js
 useEffect(() => {
-
-welcomeChime.play();
-
-return () => goodbyeChime.play();
-
+  welcomeChime.play();
+  return () => goodbyeChime.play();
 }, []);
+```
 
 This means that you can use useEffect for setup and teardown. The empty array means that the welcome chime will play once on first render. Then, we'll return a function as a cleanup function to play a goodbye chime when the component is removed from the tree.
 
-This pattern is useful in many situations. Perhaps we'll subscribe to a news feed on first render. Then we'll unsubscribe from the news feed with the cleanup function. More specifically, we'll start by creating a state value for posts and a function to change that value, called setPosts. Then we'll create a function, addPosts, that will take in the newest post and add it to the array. Then we can use useEffect to subscribe to the news feed and play the chime. Plus, we can return the cleanup functions, unsubscribing and playing the goodbye chime: const [posts, setPosts] = useState([]);
+This pattern is useful in many situations. Perhaps we'll subscribe to a news feed on first render. Then we'll unsubscribe from the news feed with the cleanup function. More specifically, we'll start by creating a state value for posts and a function to change that value, called setPosts. Then we'll create a function, addPosts, that will take in the newest post and add it to the array. Then we can use useEffect to subscribe to the news feed and play the chime. Plus, we can return the cleanup functions, unsubscribing and playing the goodbye chime: 
 
-const addPost = post => setPosts(allPosts => [post, ...allPosts]); useEffect(() => {
-
-newsFeed.subscribe(addPost);
-
-welcomeChime.play();
-
-return () => {
-
-newsFeed.unsubscribe(addPost);
-
-goodbyeChime.play();
-
-};
-
-}, []);
-
-This is a lot going on in useEffect, though. We might want to use a separate useEffect for the news feed events and another useEffect
-
-for the chime events:
+```js
+const [posts, setPosts] = useState([]);
+const addPost = post => setPosts(allPosts => [post, ...allPosts]); 
 
 useEffect(() => {
+  newsFeed.subscribe(addPost);
+  welcomeChime.play();
+  return () => {
+    newsFeed.unsubscribe(addPost);
+    goodbyeChime.play();
+  };
+}, []);
+```
 
-newsFeed.subscribe(addPost);
+This is a lot going on in useEffect, though. We might want to use a separate useEffect for the news feed events and another useEffect for the chime events:
 
-return () => newsFeed.unsubscribe(addPost);
-
+```js
+useEffect(() => {
+  newsFeed.subscribe(addPost);
+  return () => newsFeed.unsubscribe(addPost);
 }, []);
 
 useEffect(() => {
-
-welcomeChime.play();
-
-return () => goodbyeChime.play();
-
+  welcomeChime.play();
+  return () => goodbyeChime.play();
 }, []);
+```
 
 Splitting functionality into multiple useEffect calls is typically a good idea. But let's enhance this even further. What we're trying to create here is functionality for subscribing to a news feed that plays different jazzy sounds for subscribing, unsubscribing, and whenever there's a new post. Everyone loves lots of loud sounds right? This is a case for a custom hook. Maybe we should call it useJazzyNews:
 
+```js
 const useJazzyNews = () => {
+  const [posts, setPosts] = useState([]);
+  const addPost = post => setPosts(allPosts => [post, ...allPosts]); 
 
-const [posts, setPosts] = useState([]);
-
-const addPost = post => setPosts(allPosts => [post, ...allPosts]); useEffect(() => {
-
-newsFeed.subscribe(addPost);
-
-return () => newsFeed.unsubscribe(addPost);
-
-}, []);
-
-useEffect(() => {
-
-welcomeChime.play();
-
-return () => goodbyeChime.play();
-
-}, []);
-
-return posts;
-
+  useEffect(() => {
+    newsFeed.subscribe(addPost);
+    return () => newsFeed.unsubscribe(addPost);
+  }, []);
+  
+  useEffect(() => {
+    welcomeChime.play()
+    return () => goodbyeChime.play();
+  }, []);
+  return posts;
 };
+```
 
 Our custom hook contains all of the functionality to handle a jazzy news feed, which means that we can easily share this functionality with our components. In a new component called NewsFeed, we'll use the custom hook:
 
+```js
 function NewsFeed({ url }) {
-
-const posts = useJazzyNews();
-
-return (
-
-<>
-
-<h1>{posts.length} articles</h1>
-
-{posts.map(post => (
-
-<Post key={post.id} {...post} />
-
-))}
-
-</>
-
-);
-
+  const posts = useJazzyNews();
+  return (
+    <>
+      <h1>{posts.length} articles</h1>
+      {posts.map(post => (
+        <Post key={post.id} {...post} />
+      ))}
+    </>
+  );
 }
+```
 
-Deep Checking Dependencies
+### 7.1.2 Deep Checking Dependencies
 
-So far, the dependencies we've added to the array have been strings.
+So far, the dependencies we've added to the array have been strings. JavaScript primitives like strings, booleans, numbers, etc., are comparable. A string would equal a string as expected:
 
-JavaScript primitives like strings, booleans, numbers, etc., are comparable. A string would equal a string as expected:
-
+```js
 if ("gnar" === "gnar") {
-
-console.log("gnarly!!");
-
+  console.log("gnarly!!");
 }
+```
 
-However, when we start to compare objects, arrays, and functions, the comparison is different. For example, if we compared two arrays: if ([1, 2, 3] !== [1, 2, 3]) {
+However, when we start to compare objects, arrays, and functions, the comparison is different. For example, if we compared two arrays: 
 
-console.log("but they are the same");
-
+```
+if ([1, 2, 3] !== [1, 2, 3]) {
+  console.log("but they are the same");
 }
+```
 
-These arrays [1,2,3] and [1,2,3] are not equal, even though they look identical in length and in entries. This is because they are two different instances of a similar-looking array. If we create a variable to hold this array value and then compare, we'll see the expected output: const array = [1, 2, 3];
+These arrays [1,2,3] and [1,2,3] are not equal, even though they look identical in length and in entries. This is because they are two different instances of a similar-looking array. If we create a variable to hold this array value and then compare, we'll see the expected output:
 
+```js
+const array = [1, 2, 3];
 if (array === array) {
-
-console.log("because it's the exact same instance");
-
+  console.log("because it's the exact same instance");
 }
+```
 
 In JavaScript, arrays, objects, and functions are the same only when they're the exact same instance. So how does this relate to the useEffect dependency array? To demonstrate this, we're going to need a component we can force to render as much as we want. Let's build a hook that causes a component to render whenever a key is pressed:
 
+```js
 const useAnyKeyToRender = () => {
-
-const [, forceRender] = useState();
-
-useEffect(() => {
-
-window.addEventListener("keydown", forceRender); return () => window.removeEventListener("keydown", forceRender);
-
-}, []);
-
+  const [, forceRender] = useState();
+  useEffect(() => {
+    window.addEventListener("keydown", forceRender); 
+    return () => window.removeEventListener("keydown", forceRender);
+  }, []);
 };
+```
 
-At minimum, all we need to do to force a render is invoke a state change function. We don't care about the state value. We only want the state function: forceRender. (That's why we added the comma using array destructuring. Remember, from Chapter 2?) When the component first renders, we'll listen for keydown events. When a key is pressed, we'll force the component to render by invoking forceRender. As
-
-we've done before, we'll return a cleanup function where we stop listening to keydown events. By adding this hook to a component, we can force it to rerender simply by pressing a key.
+At minimum, all we need to do to force a render is invoke a state change function. We don't care about the state value. We only want the state function: forceRender. (That's why we added the comma using array destructuring. Remember, from Chapter 2?) When the component first renders, we'll listen for keydown events. When a key is pressed, we'll force the component to render by invoking forceRender. As we've done before, we'll return a cleanup function where we stop listening to keydown events. By adding this hook to a component, we can force it to rerender simply by pressing a key.
 
 With the custom hook built, we can use it in the App component (and any other component for that matter! Hooks are cool.):
 
+```js
 function App() {
-
-useAnyKeyToRender();
-
-useEffect(() => {
-
-console.log("fresh render");
-
-});
-
-return <h1>Open the console</h1>;
-
+  useAnyKeyToRender();
+  useEffect(() => {
+    console.log("fresh render");
+  });
+  return <h1>Open the console</h1>;
 }
+```
 
-Every time we press a key, the App component is rendered. useEffect demonstrates this by logging「fresh render」to the console every time the App is rendered. Let's adjust useEffect in the App component to reference the word value. If word changes, we'll rerender: const word = "gnar";
+Every time we press a key, the App component is rendered. useEffect demonstrates this by logging「fresh render」to the console every time the App is rendered. Let's adjust useEffect in the App component to reference the word value. If word changes, we'll rerender: 
 
+```js
+const word = "gnar";
 useEffect(() => {
-
-console.log("fresh render");
-
+  console.log("fresh render");
 }, [word]);
+```
 
-Instead of calling useEffect on every keydown event, we would only call this after first render and any time the word value changes. It doesn't change, so subsequent rerenders don't occur. Adding a primitive or a number to the dependency array works as expected. The effect is invoked once.
+Instead of calling useEffect on every keydown event, we would only call this after first render and any time the word value changes. It doesn't change, so subsequent rerenders don't occur. Adding a primitive or a number to the dependency array works as expected. The effect is invoked once. What happens if instead of a single word, we use an array of words?
 
-What happens if instead of a single word, we use an array of words?
-
-const words = ["sick", "powder", "day"]; useEffect(() => {
-
-console.log("fresh render");
-
+```js
+const words = ["sick", "powder", "day"]; 
+useEffect(() => {
+  console.log("fresh render");
 }, [words]);
+```
 
-The variable words is an array. Because a new array is declared with each render, JavaScript assumes that words has changed, thus invoking the「fresh render」effect every time. The array is a new instance each time, and this registers as an update that should trigger a rerender.
+The variable words is an array. Because a new array is declared with each render, JavaScript assumes that words has changed, thus invoking the「fresh render」effect every time. The array is a new instance each time, and this registers as an update that should trigger a rerender. Declaring words outside of the scope of the App would solve the problem:
 
-Declaring words outside of the scope of the App would solve the problem:
-
+```js
 const words = ["sick", "powder", "day"]; function App() {
-
-useAnyKeyToRender();
-
-useEffect(() => {
-
-console.log("fresh render");
-
-}, [words]);
-
-return <h1>component</h1>;
-
+  useAnyKeyToRender();
+  useEffect(() => {
+    console.log("fresh render");
+  }, [words]);
+  return <h1>component</h1>;
 }
+```
 
-The dependency array in this case refers to one instance of words that's declared outside of the function. The「fresh render」effect does not get called again after the first render because words is the same instance as the last render. This is a good solution for this example, but it's not always possible (or advisable) to have a variable defined outside of the scope of the function. Sometimes the value passed to the dependency array requires variables in scope. For example, we might need to create
+The dependency array in this case refers to one instance of words that's declared outside of the function. The「fresh render」effect does not get called again after the first render because words is the same instance as the last render. This is a good solution for this example, but it's not always possible (or advisable) to have a variable defined outside of the scope of the function. Sometimes the value passed to the dependency array requires variables in scope. For example, we might need to create the words array from a React property like children: 
 
-the words array from a React property like children: function WordCount({ children = "" }) {
-
-useAnyKeyToRender();
-
-const words = children.split(" ");
-
-useEffect(() => {
-
-console.log("fresh render");
-
-}, [words]);
-
-return (
-
-<>
-
-<p>{children}</p>
-
-<p>
-
-<strong>{words.length} - words</strong>
-
-</p>
-
-</>
-
-);
-
+```js
+function WordCount({ children = "" }) {
+  useAnyKeyToRender();
+  const words = children.split(" ");
+  useEffect(() => {
+    console.log("fresh render");
+  }, [words]);
+  return (
+    <>
+      <p>{children}</p>
+      <p>
+        <strong>{words.length} - words</strong>
+      </p>
+    </>
+  );
 }
 
 function App() {
-
-return <WordCount>You are not going to believe this but...</WordCount>;
-
+  return <WordCount>You are not going to believe this but...</WordCount>;
 }
+```
 
 The App component contains some words that are children of the WordCount component. The WordCount component takes in children as a property. Then we set words in the component equal to an array of those words that we've called .split on. We would hope that the component will rerender only if words changes, but as soon as we press a key, we see the dreaded「fresh render」words appearing in the console.
 
-Let's replace that feeling of dread with one of calm, because the React team has provided us a way to avoid these extra renders. They
-
-wouldn't hang us out to dry like that. The solution to this problem is, as you might expect, another hook: useMemo.
+Let's replace that feeling of dread with one of calm, because the React team has provided us a way to avoid these extra renders. They wouldn't hang us out to dry like that. The solution to this problem is, as you might expect, another hook: useMemo.
 
 useMemo invokes a function to calculate a memoized value. In computer science in general, memoization is a technique that's used to improve performance. In a memoized function, the result of a function call is saved and cached. Then, when the function is called again with the same inputs, the cached value is returned. In React, useMemo allows us to compare the cached value against itself to see if it has actually changed.
 
 The way useMemo works is that we pass it a function that's used to calculate and create a memoized value. useMemo will only recalculate that value when one of the dependencies has changed. First, let's import the useMemo hook:
 
-import React, { useEffect, useMemo } from "react"; Then we'll use the function to set words:
+```js
+import React, { useEffect, useMemo } from "react"; 
+```
 
+Then we'll use the function to set words:
+
+```js
 const words = useMemo(() => {
-
-const words = children.split(" ");
-
-return words;
-
+  const words = children.split(" ");
+  return words;
 }, []);
 
 useEffect(() => {
-
-console.log("fresh render");
-
+  console.log("fresh render");
 }, [words]);
+```
 
 useMemo invokes the function sent to it and sets words to the return value of that function. Like useEffect, useMemo relies on a dependency array:
 
-const words = useMemo(() => children.split(" ")); When we don't include the dependency array with useMemo, the words are calculated with every render. The dependency array controls when the callback function should be invoked. The second argument sent to the useMemo function is the dependency array and should contain the children value:
+```js
+const words = useMemo(() => children.split(" ")); 
+```
 
+When we don't include the dependency array with useMemo, the words are calculated with every render. The dependency array controls when the callback function should be invoked. The second argument sent to the useMemo function is the dependency array and should contain the children value:
+
+```js
 function WordCount({ children = "" }) {
-
-useAnyKeyToRender();
-
-const words = useMemo(() => children.split(" "), [children]); useEffect(() => {
-
-console.log("fresh render");
-
-}, [words]);
-
-return (...);
-
+  useAnyKeyToRender();
+  const words = useMemo(() => children.split(" "), [children]); 
+  useEffect(() => {
+    console.log("fresh render");
+  }, [words]);
+  return (...);
 }
+```
 
 The words array depends on the children property. If children changes, we should calculate a new value for words that reflects that change. At that point, useMemo will calculate a new value for words when the component initially renders and if the children property changes.
 
-The useMemo hook is a great function to understand when you're creating React applications.
+The useMemo hook is a great function to understand when you're creating React applications. useCallback can be used like useMemo, but it memoizes functions instead of values. For example:
 
-useCallback can be used like useMemo, but it memoizes functions instead of values. For example:
-
+```js
 const fn = () => {
-
-console.log("hello");
-
-console.log("world");
-
+  console.log("hello");
+  console.log("world");
 };
-
+  
 useEffect(() => {
-
-console.log("fresh render");
-
-fn();
-
+  console.log("fresh render");
+  fn();
 }, [fn]);
+```
 
-fn is a function that logs「Hello」then「World.」It is a dependency of useEffect, but just like words, JavaScript assumes fn is different every render. Therefore, it triggers the effect every render. This yields a
+fn is a function that logs「Hello」then「World.」It is a dependency of useEffect, but just like words, JavaScript assumes fn is different every render. Therefore, it triggers the effect every render. This yields a「fresh render」for every key press. It's not ideal. Start by wrapping the function with useCallback:
 
-「fresh render」for every key press. It's not ideal.
-
-Start by wrapping the function with useCallback:
-
+```js
 const fn = useCallback(() => {
-
-console.log("hello");
-
-console.log("world");
-
+  console.log("hello");
+  console.log("world");
 }, []);
-
+  
 useEffect(() => {
-
-console.log("fresh render");
-
-fn();
-
+  console.log("fresh render");
+  fn();
 }, [fn]);
+```
 
 useCallback memoizes the function value for fn. Just like useMemo and useEffect, it also expects a dependency array as the second argument. In this case, we create the memoized callback once because the dependency array is empty.
 
-Now that we have an understanding of the uses and differences between useMemo and useCallback, let's improve our useJazzyNews hook. Every time there's a new post, we'll call newPostChime.play().
+Now that we have an understanding of the uses and differences between useMemo and useCallback, let's improve our useJazzyNews hook. Every time there's a new post, we'll call newPostChime.play(). In this hook, posts are an array, so we'll need to use useMemo to memoize the value:
 
-In this hook, posts are an array, so we'll need to use useMemo to memoize the value:
-
+```js
 const useJazzyNews = () => {
-
-const [_posts, setPosts] = useState([]);
-
-const addPost = post => setPosts(allPosts => [post, ...allPosts]); const posts = useMemo(() => _posts, [_posts]);
-
-useEffect(() => {
-
-newPostChime.play();
-
-}, [posts]);
-
-useEffect(() => {
-
-newsFeed.subscribe(addPost);
-
-return () => newsFeed.unsubscribe(addPost);
-
-}, []);
-
-useEffect(() => {
-
-welcomeChime.play();
-
-return () => goodbyeChime.play();
-
-}, []);
-
-return posts;
-
+  const [_posts, setPosts] = useState([]);
+  const addPost = post => setPosts(allPosts => [post, ...allPosts]); 
+  const posts = useMemo(() => _posts, [_posts]);
+  useEffect(() => {
+    newPostChime.play();
+  }, [posts]);
+  useEffect(() => {
+    newsFeed.subscribe(addPost);
+    return () => newsFeed.unsubscribe(addPost);
+  }, []);
+  useEffect(() => {
+    welcomeChime.play();
+    return () => goodbyeChime.play();
+  }, []);
+  return posts;
 };
+```
 
-Now, the useJazzyNews hook plays a chime every time there's a new post. We made this happen with a few changes to the hook. First, const [posts, setPosts] was renamed to const [_posts,
-
-setPosts]. We'll calculate a new value for posts every time _posts change.
+Now, the useJazzyNews hook plays a chime every time there's a new post. We made this happen with a few changes to the hook. First, const [posts, setPosts] was renamed to const `[_posts, setPosts]`. We'll calculate a new value for posts every time `_posts` change.
 
 Next, we added the effect that plays the chime every time the post array changes. We're listening to the news feed for new posts. When a new post is added, this hook is reinvoked with _posts reflecting that
 
-new post. Then, a new value for post is memoized because _posts have changed. Then the chime plays because this effect is dependent on posts. It only plays when the posts change, and the list of posts only changes when a new one is added.
+new post. Then, a new value for post is memoized because `_posts` have changed. Then the chime plays because this effect is dependent on posts. It only plays when the posts change, and the list of posts only changes when a new one is added.
 
 Later in the chapter, we'll discuss the React Profiler, a browser extension for testing performance and rendering of React components.
 
 There, we'll dig into more detail about when to use useMemo and useCallback. (Spoiler alert: sparingly!)
 
-When to useLayoutEffect
+### 7.1.3 When to useLayoutEffect
 
 We understand that the render always comes before useEffect. The render happens first, then all effects run in order with full access to all of the values from the render. A quick look at the React docs will point out that there's another type of effect hook: useLayoutEffect.
 
 useLayoutEffect is called at a specific moment in the render cycle. The series of events is as follows:
 
-1. Render
+1 Render
 
-2. useLayoutEffect is called
+2 useLayoutEffect is called
 
-3. Browser paint: the time when the component's elements are actually added to the DOM
+3 Browser paint: the time when the component's elements are actually added to the DOM
 
-4. useEffect is called
+4 useEffect is called
 
-This can be observed by adding some simple console messages: import React, { useEffect, useLayoutEffect } from "react"; function App() {
+This can be observed by adding some simple console messages: 
+
+
+
+
+
+
+
+import React, { useEffect, useLayoutEffect } from "react"; function App() {
 
 useEffect(() => console.log("useEffect")); useLayoutEffect(() => console.log("useLayoutEffect")); return <div>ready</div>;
 
