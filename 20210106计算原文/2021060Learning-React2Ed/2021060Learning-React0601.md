@@ -4,11 +4,11 @@ Data is what makes our React components come to life. The user interface for rec
 
 In the last chapter, we constructed a component tree: a hierarchy of components that data was able to flow through as properties. Properties are half of the picture. State is the other half. The state of a React application is driven by data that has the ability to change. Introducing state to the recipe application could make it possible for chefs to create new recipes, modify existing recipes, and remove old ones.
 
+2『 State 和 Property 在 React 的数据「地图」上各占半壁江山。做一张主题卡片。（2021-05-04）』—— 已完成
+
 State and properties have a relationship with each other. When we work with React applications, we gracefully compose components that are tied together based on this relationship. When the state of a component tree changes, so do the properties. The new data flows through the tree, causing specific leaves and branches to render to reflect the new content.
 
-In this chapter, we're going to bring applications to life by introducing
-
-state. We'll learn to create stateful components and how state can be sent down a component tree and user interactions back up the component tree. We'll learn techniques for collecting form data from users. And we'll take a look at the various ways in which we can separate concerns within our applications by introducing stateful context providers.
+In this chapter, we're going to bring applications to life by introducing state. We'll learn to create stateful components and how state can be sent down a component tree and user interactions back up the component tree. We'll learn techniques for collecting form data from users. And we'll take a look at the various ways in which we can separate concerns within our applications by introducing stateful context providers.
 
 ## 6.1 Building a Star Rating Component
 
@@ -22,10 +22,12 @@ The StarRating component will allow users to rate content based on a specific nu
 npm i react-icons
 ```
 
-react-icons is an npm library that contains hundreds of SVG icons that are distributed as React components. By installing it, we just installed several popular icon libraries that contain hundreds of common SVG icons. You can browse all the icons in the library. We're going to use the star icon from the Font Awesome collection: import React from "react";
+react-icons is an npm library that contains hundreds of SVG icons that are distributed as React components. By installing it, we just installed several popular icon libraries that contain hundreds of common SVG icons. You can browse all the icons in the library. We're going to use the star icon from the Font Awesome collection: 
 
 ```js
-import { FaStar } from "react-icons/fa"; export default function StarRating() {
+import React from "react";
+import { FaStar } from "react-icons/fa"; 
+export default function StarRating() {
   return [
     <FaStar color="red" />,
     <FaStar color="red" />,
@@ -252,11 +254,9 @@ export default function StarRating({ style = {}, totalStars = 5, ...props}) {
 }
 ```
 
-The first step is to collect any and all properties that the user may be attempting to add to the StarRating. We gather these properties using the spread operator: ...props. Next, we'll pass all of these remaining properties down to the div element: {...props}.
+The first step is to collect any and all properties that the user may be attempting to add to the StarRating. We gather these properties using the spread operator: `...props`. Next, we'll pass all of these remaining properties down to the div element: `{...props}`.
 
-By doing this, we make two assumptions. First, we are assuming that users will add only those properties that are supported by the div element. Second, we are assuming that our user can't add malicious properties to the component.
-
-This is not a blanket rule to apply to all of your components. In fact, it's only a good idea to add this level of support in certain situations.
+By doing this, we make two assumptions. First, we are assuming that users will add only those properties that are supported by the div element. Second, we are assuming that our user can't add malicious properties to the component. This is not a blanket rule to apply to all of your components. In fact, it's only a good idea to add this level of support in certain situations.
 
 The real point is that it's important to think about how the consumers of your component may try to use it in the future.
 
@@ -655,7 +655,7 @@ const submit = e => {
 }; 
 ```
 
-It's called a controlled component because React controls the state of the form. It's worth pointing out that controlled form components are rerendered, a lot. Think about it: every new character typed in the title field causes the AddColorForm to rerender. Using the color wheel in the color picker causes this component to rerender way more than the title field because the color value repeatedly changes as the user drags the mouse around the color wheel. This is OK—React is designed to handle this type of workload. Hopefully, knowing that controlled components are rerendered frequently will prevent you from adding some long and expensive process to this component. At the very least, this knowledge will come in handy when you're trying to optimize your React components.
+It's called a controlled component because React controls the state of the form. It's worth pointing out that controlled form components are rerendered, a lot. Think about it: every new character typed in the title field causes the AddColorForm to rerender. Using the color wheel in the color picker causes this component to rerender way more than the title field because the color value repeatedly changes as the user drags the mouse around the color wheel. This is OK — React is designed to handle this type of workload. Hopefully, knowing that controlled components are rerendered frequently will prevent you from adding some long and expensive process to this component. At the very least, this knowledge will come in handy when you're trying to optimize your React components.
 
 ### 6.5.3 Creating Custom Hooks
 
@@ -772,7 +772,7 @@ With this change, we've completed the first iteration of the Color Organizer. Us
 
 ## 6.6 React Context
 
-Storing state in one location at the root of our tree was an important pattern that helped us all be more successful with early versions of React. Learning to pass state both down and up a component tree via properties is a necessary right of passage for any React developer—it's something we should all know how to do. However, as React evolved and our component trees got larger, following this principle slowly became more unrealistic. It's hard for many developers to maintain state in a single location at the root of a component tree for a complex application. Passing state down and up the tree through dozens of components is tedious and bug ridden.
+Storing state in one location at the root of our tree was an important pattern that helped us all be more successful with early versions of React. Learning to pass state both down and up a component tree via properties is a necessary right of passage for any React developer — it's something we should all know how to do. However, as React evolved and our component trees got larger, following this principle slowly became more unrealistic. It's hard for many developers to maintain state in a single location at the root of a component tree for a complex application. Passing state down and up the tree through dozens of components is tedious and bug ridden.
 
 The UI elements that most of us work on are complex. The root of the tree is often very far from the leaves. This puts data the application depends on many layers away from the components that use the data.
 
@@ -782,7 +782,7 @@ Passing state data through every component as props until it reaches the compone
 
 Figure 6-6. Train from San Francisco to DC
 
-It's obviously more efficient to fly from San Francisco to DC. This way, you don't have to pass through every state—you simply fly over them (Figure 6-7).
+It's obviously more efficient to fly from San Francisco to DC. This way, you don't have to pass through every state — you simply fly over them (Figure 6-7).
 
 Figure 6-7. Flight from San Francisco to DC
 

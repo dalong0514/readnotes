@@ -1365,6 +1365,18 @@ function IngredientsList({ items }) {
 
 Everything that's associated with the UI for IngredientsList is encapsulated into one component. Everything we need is right there.
 
+### 0109. 主题卡 —— State 和 Property 在 React 的数据「地图」上各占半壁江山
+
+信息源自「2021060Learning-React0601.md」
+
+In the last chapter, we constructed a component tree: a hierarchy of components that data was able to flow through as properties. Properties are half of the picture. State is the other half. The state of a React application is driven by data that has the ability to change. Introducing state to the recipe application could make it possible for chefs to create new recipes, modify existing recipes, and remove old ones.
+
+2『 State 和 Property 在 React 的数据「地图」上各占半壁江山。做一张主题卡片。（2021-05-04）』—— 已完成
+
+State and properties have a relationship with each other. When we work with React applications, we gracefully compose components that are tied together based on this relationship. When the state of a component tree changes, so do the properties. The new data flows through the tree, causing specific leaves and branches to render to reflect the new content.
+
+In this chapter, we're going to bring applications to life by introducing state. We'll learn to create stateful components and how state can be sent down a component tree and user interactions back up the component tree. We'll learn techniques for collecting form data from users. And we'll take a look at the various ways in which we can separate concerns within our applications by introducing stateful context providers.
+
 ### 0201. 术语卡 —— Declarative Programming and Imperative Programming
 
 信息源自「2021060Learning-React0301.md」
