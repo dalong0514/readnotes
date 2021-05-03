@@ -38,7 +38,7 @@ Computational thinking illuminates a fundamental difference in the ways that hum
 
 The MIT Press Essential Knowledge series offers accessible, concise, beautifully produced pocket-size books on topics of current interest. Written by leading thinkers, the books in this series deliver expert overviews of subjects that range from the cultural and the historical to the scientific and the technical.
 
-In today’s era of instant information gratification, we have ready access to opinions, rationalizations, and superficial descriptions. Much harder to come by is the foundational knowledge that informs a principled understanding of the world. Essential Knowledge books fill that need. Synthesizing specialized subject matter for nonspecialists and engaging critical topics through fundamentals, each of these compact volumes offers readers a point of access to complex ideas.
+In today's era of instant information gratification, we have ready access to opinions, rationalizations, and superficial descriptions. Much harder to come by is the foundational knowledge that informs a principled understanding of the world. Essential Knowledge books fill that need. Synthesizing specialized subject matter for nonspecialists and engaging critical topics through fundamentals, each of these compact volumes offers readers a point of access to complex ideas.
 
 2-3『
 
@@ -50,7 +50,7 @@ In today’s era of instant information gratification, we have ready access to o
 
 ## Preface
 
-A computer revolution is in full swing. The invasion of computing into every part of our lives has brought enormous benefits including email, internet, World Wide Web, Amazon’s e-commerce, Kahn Academy, Uber’s taxi hailing, Google’s maps, trip navigators, smartphones, real-time translators, and apps by the millions. At the same time it has also brought enormous concerns including possible loss of jobs to automation, mass surveillance, collapse of critical infrastructure, cyber war, mass sales of personal data, invasions of advertising, loss of privacy, polarization of politics, loss of civility and respectful listening, and exacerbated income inequality.
+A computer revolution is in full swing. The invasion of computing into every part of our lives has brought enormous benefits including email, internet, World Wide Web, Amazon's e-commerce, Kahn Academy, Uber's taxi hailing, Google's maps, trip navigators, smartphones, real-time translators, and apps by the millions. At the same time it has also brought enormous concerns including possible loss of jobs to automation, mass surveillance, collapse of critical infrastructure, cyber war, mass sales of personal data, invasions of advertising, loss of privacy, polarization of politics, loss of civility and respectful listening, and exacerbated income inequality.
 
 A lot of people are having trouble coming to grips with all this. Can they reap the benefits without the downside costs? Can they lead a meaningful life if computerization suddenly threatens to obsolete a lifetime of learning? What should their children learn about computing to enable them to move and prosper in the new world?
 
@@ -58,13 +58,13 @@ Computational thinking is a new term that has recently entered public discourse 
 
 We designed this book to be an edifying conversation to help you understand what computational thinking is so that you will be in a better position to answer these questions for yourself.
 
-The first thing to understand is that a substantial part of daily discourse is shaped by the wide adoption of computers. This is nothing new; our ancestors’ ways of thinking about the world were shaped by the technologies of previous revolutions. In the industrial age, for example, people regularly used expressions like:
+The first thing to understand is that a substantial part of daily discourse is shaped by the wide adoption of computers. This is nothing new; our ancestors' ways of thinking about the world were shaped by the technologies of previous revolutions. In the industrial age, for example, people regularly used expressions like:
 
-「He blew a gasket,」「I’m humming on all pistons,」「It’s a high pressure environment,」and「I had to blow off steam.」
+He blew a gasket, I'm humming on all pistons, It's a high pressure environment, and I had to blow off steam.
 
 Today we hear expressions like:
 
-「My DNA programs me to do it this way,」「Our laws are algorithms for running our society,」「My brain is hardware and my mind software,」and「My brain crashed, I need to reboot.」
+My DNA programs me to do it this way, Our laws are algorithms for running our society, My brain is hardware and my mind software, and My brain crashed, I need to reboot.
 
 Just as in the industrial age, the new idioms of the computer age reveal more about our popular culture than they do about the technology.
 
@@ -84,7 +84,7 @@ Computational thinking illuminates a fundamental difference in the ways that hum
 
 Think for a moment about the speed issue. A typical computer can, in 1 second, perform a billion calculations and draw a complex image on the screen. A human would need 100 years to carry out the same steps at human speed. Humans obviously draw pictures much faster than that, but machine designers have yet to imitate that human capacity. If humans had no help from computers, we would have no real time graphics. Nearly everything we see software doing is made possible by the incredible speeds of computers. These machines, not humans executing algorithms on their own, are the reason for the computer revolution. Computing machines do the humanly impossible.
 
-While this may send a thrill up your neck, it ought also to send a shiver down your spine. Modern aircraft are controlled by networks of computers performing billions of calculations per second. A mistake in an algorithm can cause the control system to send the aircraft into a death spiral long before the human pilot can react. Early Apollo missions and more recent Mars missions were aborted and lost due to errors in their software. Mistakes in algorithms can be deadly and costly. How can we know that the algorithms running critical systems can be trusted to work properly, bringing benefits and low risk of harm? We need clear thinking to help us find our way through this maze of complexity. This requires an advanced form of CT that is not learned from children’s simulation games.「CT for professionals」is deadly serious.
+While this may send a thrill up your neck, it ought also to send a shiver down your spine. Modern aircraft are controlled by networks of computers performing billions of calculations per second. A mistake in an algorithm can cause the control system to send the aircraft into a death spiral long before the human pilot can react. Early Apollo missions and more recent Mars missions were aborted and lost due to errors in their software. Mistakes in algorithms can be deadly and costly. How can we know that the algorithms running critical systems can be trusted to work properly, bringing benefits and low risk of harm? We need clear thinking to help us find our way through this maze of complexity. This requires an advanced form of CT that is not learned from children's simulation games.「CT for professionals」is deadly serious.
 
 Our account of CT in this book encompasses all the flavors of CT from beginners to professionals, and in major subfields such as software engineering and computational science. We aim to describe CT in all its richness, breadth, and depth. We want to celebrate the work of expert professionals who take on the hard challenges of getting complex systems to perform reliably and safely, and the kinds of thinking they bring that enables them to have achieved such a good track record. We also want to celebrate the work of expert educators who are working to ease the first steps into computational thinking in K–12 schools and lay the foundation to provide everyone the means for coping in the digital world. Those two, basic CT for beginners and advanced CT for professionals, work together to produce a rich tapestry of computational thought.
 
