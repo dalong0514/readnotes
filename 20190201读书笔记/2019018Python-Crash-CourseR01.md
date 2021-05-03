@@ -1,5 +1,3 @@
-# 2019018Python-Crash-CourseR01
-
 ## 记忆时间
 
 ## 0501. if 语句

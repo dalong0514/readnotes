@@ -10,7 +10,7 @@
 
 根据反常识，再补充三个证据——就产生三张术语卡。
 
-### 0202. 术语卡——两类知识
+### 0202. 术语卡 —— 两类知识
 
 As Samuel Johnson wrote, Knowledge is of two kinds. We know a subject ourselves, or we know where we can find information upon it. 1
 
@@ -28,7 +28,7 @@ While that’s true, the common version of his quote usually leaves off the rest
 
 最后根据他写的非常震撼的话语——产生一张金句卡。
 
-### 0501. 任意卡——调研的技能和态度
+### 0501. 任意卡 —— 调研的技能和态度
 
 I’ll also talk about the attitudes and research styles that will make you more productive and accurate. For instance, a common misconception is that you can search and learn about anything, starting with nothing. The reality is that many research quests are foiled by not knowing enough about how to search. There’s a bit of a skill here that we’ll talk about. I’ll talk about how to start learning something in an area about which you know almost nothing. Unsurprisingly, to learn something, you have to begin with something. But how do you do that when your knowledge is at zero? Chance favors the prepared mind. Why is that true? And how can you prepare your mind?
 

@@ -34,17 +34,17 @@ Many experienced programmers try to bend Python to fit patterns they learned fro
 
 This book covers:
 
-1. Python data model: understand how special methods are the key to the consistent behavior of objects.
+1 Python data model: understand how special methods are the key to the consistent behavior of objects.
 
-2. Data structures: take full advantage of built-in types, and understand the text vs bytes duality in the Unicode age.
+2 Data structures: take full advantage of built-in types, and understand the text vs bytes duality in the Unicode age.
 
-3. Functions as objects: view Python functions as first-class objects, and understand how this affects popular design patterns.
+3 Functions as objects: view Python functions as first-class objects, and understand how this affects popular design patterns.
 
-4. Object-oriented idioms: build classes by learning about references, mutability, interfaces, operator overloading, and multiple inheritance.
+4 Object-oriented idioms: build classes by learning about references, mutability, interfaces, operator overloading, and multiple inheritance.
 
-5. Control flow: leverage context managers, generators, coroutines, and concurrency with the concurrent futures and asyncio packages.
+5 Control flow: leverage context managers, generators, coroutines, and concurrency with the concurrent futures and asyncio packages.
 
-6. Metaprogramming: understand how properties, attribute descriptors, class decorators, and metaclasses work.
+6 Metaprogramming: understand how properties, attribute descriptors, class decorators, and metaclasses work.
 
 「Python is an easy to learn, powerful programming language.」Those are the first words of the official Python Tutorial. That is true, but there is a catch: because the language is easy to learn and put to use, many practicing Python programmers leverage only a fraction of its powerful features.
 
@@ -57,9 +57,6 @@ This book is not an A-to-Z exhaustive reference of Python. Its emphasis is on th
 1『这本书的内容只涉及 Python 独有的语言特性以及其内置包。』
 
 If you are just learning Python, this book is going to be hard to follow. Not only that, if you read it too early in your Python journey, it may give you the impression that every Python script should leverage special methods and metaprogramming tricks. Premature abstraction is as bad as premature optimization.
-
-
-
 
 
 

@@ -1,5 +1,3 @@
-# 2021037The-Feynman-Lectures-on-Physics-PartAR02
-
 ## 记忆时间
 
 ## 0101. Atoms in Motion

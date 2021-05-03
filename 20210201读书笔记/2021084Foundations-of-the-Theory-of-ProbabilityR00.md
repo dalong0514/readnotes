@@ -1,5 +1,3 @@
-# 2021084Foundations-of-the-Theory-of-ProbabilityR00
-
 ## 记忆时间
 
 ## 卡片

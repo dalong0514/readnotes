@@ -1,5 +1,3 @@
-# 2019018Python-Crash-CourseR02
-
 ## 记忆时间
 
 ## 提炼汇总

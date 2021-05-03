@@ -1,5 +1,3 @@
-# 2019065Python-for-Data-AnalysisR01
-
 ## 记忆时间
 
 ## 0101. Preliminaries

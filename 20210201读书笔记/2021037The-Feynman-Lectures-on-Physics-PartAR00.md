@@ -1,5 +1,3 @@
-# 2021037The-Feynman-Lectures-on-Physics-PartAR00
-
 ## 记忆时间
 
 ## 卡片

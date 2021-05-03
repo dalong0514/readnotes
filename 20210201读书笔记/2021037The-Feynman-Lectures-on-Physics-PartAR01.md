@@ -1,5 +1,3 @@
-# 2021037The-Feynman-Lectures-on-Physics-PartAR01
-
 ## 记忆时间
 
 ## 译者序

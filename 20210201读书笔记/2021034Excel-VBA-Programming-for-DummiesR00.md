@@ -1,5 +1,3 @@
-by Michael Alexander and John Walkenbach
-
 Excel® VBA Programming For Dummies®, 5th Edition
 
 Copyright © 2019 by John Wiley & Sons, Inc., Hoboken, New Jersey
