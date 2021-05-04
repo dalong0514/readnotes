@@ -46,9 +46,11 @@ Promises, on the other hand, are a new, built-in type of object that help you wo
 
 In this chapter, you'll see how both generators and promises work, and we'll finish off by exploring how to combine them to greatly simplify our dealings with asynchronous code. But before going into the specifics, let's take a sneak peek into how much more elegant our asynchronous code can be.
 
-What are some common uses for a generator function? Why are promises better than simple callbacks for asyn-chronous code? Do you know?
+Do you know?
 
-You start a number of long-running tasks with Promise .race. When does the promise resolve? When would it fail to resolve?
+What are some common uses for a generator function? Why are promises better than simple callbacks for asyn-chronous code? 
+
+You start a number of long-running tasks with Promise.race. When does the promise resolve? When would it fail to resolve?
 
 本章包括以下内容：1）通过生成器让函数持续执行。2）使用 promise 处理异步任务。3）使用生成器和 promise 书写优雅代码。
 
@@ -172,6 +174,8 @@ On the right side of the for-of loop, we've placed the result of invoking our ge
 
 The truth is that generators are quite unlike standard functions. For starters, calling a generator doesn't execute the generator function; instead it creates an object called an iterator. Let's explore that object.
 
+2『迭代器对象（Iterator）做一张术语卡片。（2021-05-04）』
+
 1『
 
 Electron 里的代码实现：
@@ -204,9 +208,9 @@ export default observer(() => {
 
 』
 
-6.2 使用生成器函数生成器函数
+6.2 使用生成器函数
 
-几乎是一个完全崭新的函数类型，它和标准的普通函数完全不同。生成器（generator）函数能生成一组值的序列，但每个值的生成是基于每次请求，并不同于标准函数那样立即生成。我们必须显示地向生成器请求一个新的值，随后生成器要么响应一个新生成的值，要么就告诉我们它之后都不会再生成新值。更让人好奇的是，每当生成器函数生成了一个值，它都不会像普通函数一样停止执行。相反，生成器几乎从不挂起。随后，当对另一个值的请求到来后，生成器就会从上次离开的位置恢复执行。
+生成器函数几乎是一个完全崭新的函数类型，它和标准的普通函数完全不同。生成器（generator）函数能生成一组值的序列，但每个值的生成是基于每次请求，并不同于标准函数那样立即生成。我们必须显示地向生成器请求一个新的值，随后生成器要么响应一个新生成的值，要么就告诉我们它之后都不会再生成新值。更让人好奇的是，每当生成器函数生成了一个值，它都不会像普通函数一样停止执行。相反，生成器几乎从不挂起。随后，当对另一个值的请求到来后，生成器就会从上次离开的位置恢复执行。
 
 清单 6.1 提供了一个简单例子，它使用生成器函数生成了一系列武器数据。
 
@@ -362,10 +366,52 @@ Just as we often call one standard function from another standard function, in c
 
 Listing 6.4 Using `yield*` to delegate to another generator
 
+```js
+function* WarriorGenerator() { 
+  yield "Sun Tzu"; 
+  // yield* delegates to another generator.
+  yield* NinjaGenerator(); 
+  yield "Genghis Khan"; 
+}
 
+function* NinjaGenerator() { 
+  yield "Hattori"; 
+  yield "Yoshi"; 
+}
 
+for(let warrior of WarriorGenerator()) { 
+  assert(warrior !== null, warrior); 
+}
+```
 
+1『
 
+React 项目里实现：
+
+```js
+function* WarriorGenerator() { 
+  yield "Sun Tzu" 
+  yield* NinjaGenerator() 
+  yield "Genghis Khan" 
+}
+
+function* NinjaGenerator() { 
+  yield "Hattori" 
+  yield "Yoshi" 
+}
+
+const codeFun = () => {
+  // Creates an iterator
+  const weaponsIterator = WarriorGenerator() 
+  for (let warrior of weaponsIterator) {
+    if (warrior !== null) console.log(warrior)
+  }
+}
+
+export { codeFun }
+```
+
+』
 
 If you run this code, you'll see that the output is Sun Tzu, Hattori, Yoshi, Genghis Khan. Generating Sun Tzu probably doesn't catch you off guard; it's the first value yielded by the WarriorGenerator. But the second output, Hattori, deserves an explanation.
 
@@ -397,12 +443,6 @@ next 函数调用后，生成器就开始执行代码，当代码执行到 yield
 
 不同于手动调用迭代器的 next 方法，for-of 循环同时还要查看生成器是否完成，它在后台自动做了完全相同的工作。把执行权交给下一个生成器正如在标准函数中调用另一个标准函数，我们需要把生成器的执行委托给另一个生成器。让我们看清单 6.4 的例子，生成器不仅生成了武器值也生成了「忍者」值。
 
-
-
-
-
-
-
 执行这段代码后会输出 Sun Tzu、Hattori、Yoshi、Genghis Khan。第一个输出 Sun Tzu 不会让你感到意外，因为它就是 WarriorGenerator 生成器得到的第一个值。而对于第二个输出的值是 Hattori，我们需要解释一下了。在迭代器上使用 `yield *` 操作符，程序会跳转到另外一个生成器上执行。本例中，程序从 WarriorGenerator 跳转到一个新的 NinjaGenerator 生成器上，每次调用 WarriorGenerator 返回迭代器的 next 方法，都会使执行重新寻址到了 NinjaGenerator 上。该生成器会一直持有执行权直到无工作可做。所以我们本例中生成 Sun Tzu 之后紧接的是 Hattori 和 Yoshi。仅当 NinjaGenerator 的工作完成后，调用原来的迭代器才会继续输出值 Genghis Khan。注意，对于调用最初的迭代器代码来说，这一切都是透明的。for-of 循环不会关心 WarriorGenerator 委托到另一个生成器上，它只关心在 done 状态到来之前都一直调用 next 方法。现在，对于生成器一般的工作，以及如何代理到其他生成器的工作上，你都已经有所掌握了。让我们看看几个实践中的例子。
 
 ### 6.2.2 Using generators
@@ -415,27 +455,49 @@ When creating certain objects, often we need to assign a unique ID to each objec
 
 Listing 6.5 Using generators for generating IDs
 
-This example starts with a generator that has one local variable, id, which represents our ID counter. The id variable is local to our generator; there's no fear that someone will accidently modify it from somewhere else in the code. This is followed by an infinite while loop, which at each iteration yields a new id value and suspends its execution until a request for another ID comes along:
-
-function *IdGenerator(){
-
-let id = 0;
-
-while(true){ yield ++id; }
-
+```js
+function *IdGenerator() { 
+  let id = 0; 
+  while(true) { 
+    yield ++id;
+  }
 }
-
-Writing infinite loops isn't something that we generally want to do in a standard function. But with generators, everything is fine! Whenever the generator encounters a yield statement, the generator execution is suspended until the next method is called again. So every next call executes only one iteration of our infinite while loop and sends back the next ID value.
-
-NOTE
-
-After defining the generator, we create an iterator object:
 
 const idIterator = IdGenerator();
 
+const ninja1 = { id: idIterator.next().value }; 
+const ninja2 = { id: idIterator.next().value }; 
+const ninja3 = { id: idIterator.next().value };
+
+assert(ninja1.id === 1, "First ninja has id 1"); 
+assert(ninja2.id === 2, "Second ninja has id 2"); 
+assert(ninja3.id === 3, "Third ninja has id 3");
+```
+
+This example starts with a generator that has one local variable, id, which represents our ID counter. The id variable is local to our generator; there's no fear that someone will accidently modify it from somewhere else in the code. This is followed by an infinite while loop, which at each iteration yields a new id value and suspends its execution until a request for another ID comes along:
+
+```js
+function *IdGenerator(){
+  let id = 0;
+  while(true){ 
+    yield ++id; 
+  }
+}
+```
+
+NOTE: Writing infinite loops isn't something that we generally want to do in a standard function. But with generators, everything is fine! Whenever the generator encounters a yield statement, the generator execution is suspended until the next method is called again. So every next call executes only one iteration of our infinite while loop and sends back the next ID value.
+
+After defining the generator, we create an iterator object:
+
+```js
+const idIterator = IdGenerator();
+```
+
 This allows us to control the generator with calls to the idIterator.next() method. This executes the generator until a yield is encountered, returning a new ID value that we can use for our objects:
 
+```js
 const ninja1 = { id: idIterator.next().value };
+```
 
 See how simple this is? No messy global variables whose value can be accidentally changed. Instead, we use an iterator to request values from a generator. In addition, if later we need another iterator for tracking the IDs of, for example, samurai, we can initialize a new generator for that.
 
@@ -445,11 +507,50 @@ As you saw in chapter 2, the layout of a web page is based on the DOM, a tree-li
 
 Listing 6.6 Recursive DOM traversal 
 
-In this example, we use a recursive function to traverse all descendants of the element with the id subtree, in the process logging each type of node that we visit. In this case, the code outputs DIV, FORM, INPUT, P, and SPAN.
+```js
+<div id="subTree">
+  <form>
+    <input type="text"/>
+  </form> 
+  <p>Paragraph</p> 
+  <span>Span</span> 
+</div>
 
-We've been writing such DOM traversal code for a while now, and it has served us perfectly fine. But now that we have generators at our disposal, we can do it differently; see the following code.
+<script> 
+  function traverseDOM(element, callback) { 
+    callback(element); 
+    element = element.firstElementChild; 
+    while (element) { 
+      traverseDOM(element, callback); 
+      element = element.nextElementSibling; 
+    } 
+  } 
+  const subTree = document.getElementById("subTree"); 
+  traverseDOM(subTree, function(element) { 
+    assert(element !== null, element.nodeName); 
+  }); 
+</script>
+```
+
+In this example, we use a recursive function to traverse all descendants of the element with the id subtree, in the process logging each type of node that we visit. In this case, the code outputs DIV, FORM, INPUT, P, and SPAN. We've been writing such DOM traversal code for a while now, and it has served us perfectly fine. But now that we have generators at our disposal, we can do it differently; see the following code.
 
 Listing 6.7 Iterating over a DOM tree with generators
+
+```js
+function* DomTraversal(element){
+  yield element; 
+  element = element.firstElementChild; 
+  while (element) {
+    yield* DomTraversal(element);
+    element = element.nextElementSibling;
+  }
+}
+
+const subTree = document.getElementById("subTree"); 
+for(let element of DomTraversal(subTree)) { 
+  assert(element !== null, element.nodeName); 
+}
+```
 
 This listing shows that we can achieve DOM traversals with generators, just as easily as with standard recursion, but with the aditional benefit of not having to use the slightly awkward syntax of callbacks. Instead of processing the subtree of each visited node by recursing another level, we create one generator function for each visited node and yield to it. This enables us to write what's conceptually recursive code in iterable fashion. The benefit is that we can consume the generated sequence of nodes with a simple for-of loop, without resorting to nasty callbacks.
 
@@ -457,7 +558,29 @@ This example is a particulary good one, because it also shows how to use generat
 
 Now that we've explored some practical aspects of generators, let's go back to a slighty more theoretical topic and see how to exchange data with a running generator.
 
+6.2.2 使用生成器
 
+尽管前面例子中生成的序列都不错，但现在来看一个更实际的简单例子，生成唯一 ID 值。
+
+用生成器生成 ID 序列
+
+在创建某些对象时，我们经常需要为每个对象赋一个唯一的 ID 值。最简单的方式是通过一个全局的计数器变量，但这是一种丑陋的写法，因为这个计数器变量很容易就会不慎淹没在混乱的代码中。另外一种方式则是使用生成器，如清单 6.5 所示。
+
+本例开始的迭代器中包含一个局部变量 id，其代表了 ID 计数器。局部变量 id 仅能在该生成器中被访问，故而完全不必担心有人会不小心在代码的其他地方修改 id 值。随后是一个无限的 while 循环，其每次迭代都能生成一个新 id 值并挂起执行，直到下一次 ID 请求到达：
+
+注意：标准函数中一般不应该书写无限循环的代码。但在生成器中没问题！当生成器遇到了一个 yield 语句，它就会一直挂起执行直到下次调用 next 方法，所以只有每次调用一次 next 方法，while 循环才会迭代一次并返回下一个 ID 值。
+
+定义了生成器之后，又创建了一个迭代器对象：
+
+我们能够调用 `idIterator.next()` 方法来控制生成器执行。每当遇到一次 yield 语句生成器就会停止执行，返回一个新的 ID 值可以用于给我们的对象赋值：
+
+看到这个方法多么简单了吧？代码中没有任何会被不小心修改的全局变量。相反，我们使用迭代器从生成器中请求值。另外，如果还需要用另外一个迭代器来记录 ID 序列，例如迭代器 samurai，我们只需要直接再初始化一个新迭代器就可以了。
+
+使用迭代器遍历 DOM 树如第 2 章中所示，网页的布局是基于 DOM 结构的，它是由 HTML 节点组成的树形结构，除了根节点的每个节点都只有一个父节点，而且可以有 0 个或多个孩子节点。由于 DOM 是网页开发中的基础，所以我们大部分代码都是围绕着对它的遍历。遍历 DOM 的相对简单的方式就是实现一个递归函数，在每次访问节点的时候都会被执行，如清单 6.6 所示。
+
+这个例子使用一个递归函数来遍历 id 为 subtree 的所有节点，在访问每个节点的过程中我们还记录了该节点的类型。本例中分别输出了 DIV、FORM、INPUT、P 和 SPAN。很久以来我们都在编写这种 DOM 遍历代码，它一直能满足我们的需要。但现在我们可以使用生成器了，故而可以换一种方式来实现它，请看清单 6.7。
+
+这个清单展示了我们可以通过生成器实现 DOM 遍历，就像标准递归一样简单，但它不必书写丑陋的回调函数代码。不同于在下一层递归处理每个访问过的节点子树，我们为每个访问过的节点创建了一个生成器并将执行权交给它，从而使我们能够以迭代的方式书写概念上递归的代码。它的好处在于我们能够不凭借讨厌的回调函数，仅仅以一个简单的 for-of 循环就能处理生成的节点。这个案例是一个相当好的例子，因为它还告诉了我们如何在不必使用回调函数的情况下，使用生成器函数来解耦代码，从而将生产值（本例中是 HTML 节点）的代码和消费值（本例中的 for-of 循环打印、访问过的节点）的代码分隔开。除此之外，在很多场景下，使用迭代器比使用递归都要自然，所以保持一个开放的思路很重要。现在我们已经看过生成器的一些实战中的例子了，让我们再看看更理论化一点的主题，并看看如何使用运行中的生成器来交换数据。
 
 ### 6.2.3 Communicating with a generator
 
@@ -467,9 +590,21 @@ SENDING VALUES AS GENERATOR FUNCTION ARGUMENTS
 
 The easiest way to send data to a generator is by treating it like any other function and using function call arguments. Take a look at the following listing.
 
-Listing 6.8
+Listing 6.8 Sending data to and receiving data from a generator
 
-Sending data to and receiving data from a generator
+```js
+function* NinjaGenerator(action) { 
+  const imposter = yield ("Hattori " + action);
+  assert(imposter === "Hanzo", "The generator has been infiltrated");
+  yield ("Yoshi (" + imposter + ") " + action);
+}
+
+const ninjaIterator = NinjaGenerator("skulk");
+const result1 = ninjaIterator.next(); 
+assert(result1.value === "Hattori skulk", "Hattori is skulking");
+const result2 = ninjaIterator.next("Hanzo"); 
+assert(result2.value === "Yoshi (Hanzo) skulk", "We have an imposter!");
+```
 
 A function receiving data is nothing special; plain old functions do it all the time. But remember, generators have this amazing power; they can be suspended and resumed. And it turns out that, unlike standard functions, generators can even receive data after their execution has started, whenever we resume them by requesting the next value.
 
@@ -485,27 +620,58 @@ The interesting thing happens on the second call to the ninjaIterator's next met
 
 That's how we achieve two-way communication with a generator. We use yield to return data from a generator, and the iterator's next() method to pass data back to the generator.
 
-The next method supplies the value to the waiting yield expression, so if there's no yield expression waiting, there's nothing to supply the value to. For this reason, we can't supply values over the first call to the next method. But remember, if you need to supply an initial value to the generator, you can do so when calling the generator itself, as we did with NinjaGenerator("skulk").
-
-NOTE
+NOTE: The next method supplies the value to the waiting yield expression, so if there's no yield expression waiting, there's nothing to supply the value to. For this reason, we can't supply values over the first call to the next method. But remember, if you need to supply an initial value to the generator, you can do so when calling the generator itself, as we did with NinjaGenerator("skulk").
 
 THROWING EXCEPTIONS
 
 There's another, slightly less orthodox, way to supply a value to a generator: by throwing an exception. Each iterator, in addition to having a next method, has a throw method that we can use to throw an exception back to the generator. Again, let's look at a simple example.
 
-Listing 6.9
+Listing 6.9 Throwing exceptions to generators
 
-Throwing exceptions to generators
+```js
+function* NinjaGenerator() { 
+  try {
+    yield "Hattori";
+    fail("The expected exception didn't occur"); 
+  }
+  
+  catch(e) { 
+    assert(e === "Catch this!", "Aha! We caught an exception"); 
+  }
+}
+
+const ninjaIterator = NinjaGenerator();
+const result1 = ninjaIterator.next();
+assert(result1.value === "Hattori", "We got Hattori");
+ninjaIterator.throw("Catch this!");
+```
 
 Listing 6.9 starts similarly to listing 6.8, by specifying a generator called NinjaGenerator. But this time, the body of the generator is slightly different. We've surrounded the whole function body code with a try-catch block:
 
+```js
+function* NinjaGenerator() {
+  try { 
+    yield "Hattori"; 
+    fail("The expected exception didn't occur"); 
+  } 
+  catch(e) {
+    assert(e === "Catch this!", "Aha! We caught an exception"); 
+  }
+}
+```
+
 We then continue by creating an iterator, and getting one value from the generator:
 
-const ninjaIterator = NinjaGenerator(); const result1 = ninjaIterator.next();
+```js
+const ninjaIterator = NinjaGenerator(); 
+const result1 = ninjaIterator.next();
+```
 
 Finally, we use the throw method, available on all iterators, to throw an exception back to the generator:
 
+```js
 ninjaIterator.throw("Catch this!");
+```
 
 By running this listing, we can see that our exception throwing works as expected, as shown in figure 6.4.
 
@@ -515,110 +681,17 @@ Figure 6.4 We can throw exceptions to generators Just be patient a bit longer. f
 
 Now that you've seen several aspects of generators, we're ready to take a look under the hood to see how generators work.
 
-### 6.2.4 Exploring generators under the hood
-
-So far we know that calling a generator doesn't execute it. Instead, it creates a new iterator that we can use to request values from the generator. After a generator produces (or yields) a value, it suspends its execution and waits for the next request. So in a way, a generator works almost like a small program, a state machine that moves between states:
-
-■ Suspended start — When the generator is created, it starts in this state. None of the generator's code is executed.
-
-■ Executing — The state in which the code of the generator is executed. The execution continues either from the beginning or from where the generator was last suspended. A generator moves to this state when the matching iterator's next method is called, and there exists code to be executed.
-
-■ Suspended yield — During execution, when a generator reaches a yield expression, it creates a new object carrying the return value, yields it, and suspends its execution. This is the state in which the generator is paused and is waiting to continue its execution.
-
-■ Completed — If during execution the generator either runs into a return statement or runs out of code to execute, the generator moves into this state.
-
-Figure 6.5 illustrates these states.
-
-Now let's supplement this on an even deeper level, by seeing how the execution of generators is tracked with execution contexts.
-
-const ninjaIterator = NinjaGenerator(); Create a new generator in the Suspended start state.
-
-const result1 = ninjaIterator.next(); Activate generator. Move from Suspended start to Executing. Execute up to yield "Hattori" and pause. Move to the Suspended yield state. Return a new object: {value: "Hattori", done: false}.
-
-const result2 = ninjaIterator.next(); Reactivate generator. Move from Suspended yield to Executing. Execute up to yield "Yoshi" and pause. Move to the Suspended yield state. Return a new object: {value: "Yoshi", done: false}.
-
-const result3 = ninjaIterator.next(); Reactivate generator. Move from Suspended yield to Executing. No more code to execute. Move to the Completed state. Return a new object: {value: undefined, done: true}.
-
-Figure 6.5 During execution, a generator moves between states triggered by calls to the matching iterator's next method.
-
-TRACKING GENERATORS WITH EXECUTION CONTEXTS
-
-In the previous chapter, we introduced the execution context, an internal JavaScript mechanism used to track the execution of functions. Although somewhat special, generators are still functions, so let's take a closer look by exploring the relationship between them and execution contexts. We'll start with a simple code fragment:
-
-function* NinjaGenerator(action) { yield "Hattori " + action; return "Yoshi " + action; }
-
-const ninjaIterator = NinjaGenerator("skulk"); const result1 = ninjaIterator.next(); const result2 = ninjaIterator.next();
-
-Here we reuse our generator that produces two values: Hattori skulk and Yoshi skulk.
-
-Now, we'll explore the state of the application, the execution context stack at various points in the application execution. Figure 6.6 gives a snapshot at two positions in the application execution. The first snapshot shows the state of the application execution before calling the NinjaGenerator function B . Because we're executing global code, the execution context stack contains only the global execution context, which references the global environment in which our identifiers are kept. Only the NinjaGenerator identifier references a function, while the values of all other identifiers are undefined.
-
-When we make the call to the NinjaGenerator function C
-
-const ninjaIterator = NinjaGenerator("skulk");
-
-the control flow enters the generator and, as it happens when we enter any other function, a new NinjaGenerator execution context item is created (alongside the matching lexical environment) and pushed onto the stack. But because generators are special, none of the function code is executed. Instead, a new iterator, which we'll refer to in the code as ninjaIterator, is created and returned. Because the iterator is used to control the execution of the generator, the iterator gets a reference to the execution context in which it was created.
-
-An interesting thing happens when the program execution leaves the generator, as shown in figure 6.7. Typically, when program execution returns from a standard function, the matching execution context is popped from the stack and completely discarded. But this isn't the case with generators.
-
-Figure 6.6 The state of the execution context stack before calling the NinjaGenerator calling the NinjaGenerator function
-
-Figure 6.7
-
-The state of the application when returning from the NinjaGenerator call
-
-The matching NinjaGenerator stack item is popped from the stack, but it's not discarded, because the ninjaIterator keeps a reference to it. You can see it as an analogue to closures. In closures, we need to keep alive the variables that are alive at the moment the function closure is created, so our functions keep a reference to the environment in which they were created. In this way, we make sure that the environment and its variables are alive as long as the function itself. Generators, on the other hand, have to be able to resume their execution. Because the execution of all functions is handled by execution contexts, the iterator keeps a reference to its execution context, so that it's alive for as long as the iterator needs it.
-
-Another interesting thing happens when we call the next method on the iterator:
-
-const result1 = ninjaIterator.next();
-
-If this was a standard straightforward function call, this would cause the creation of a new next() execution context item, which would be placed on the stack. But as you might have noticed, generators are anything but standard, and a call to the next method of an iterator behaves a lot differently. It reactivates the matching execution context, in this case, the NinjaGenerator context, and places it on top of the stack, continuing the execution where it left off, as shown in figure 6.8.
-
-Figure 6.8 illustrates a crucial difference between standard functions and generators. Standard functions can only be called anew, and each call creates a new execution context. In contrast, the execution context of a generator can be temporarily suspended and resumed at will.
-
-In our example, because this is the first call to the next method, and the generator hasn't started executing, the generator starts its execution and moves to the Executing state. The next interesting thing happens when our generator function reaches this point:
-
-yield "Hattori " + action
-
-Figure 6.8 Calling the iterator's next method reactivates the execution context stack item of the matching generator, pushes it on the stack, and continues where it left off the last time.
-
-The generator determines that the expression equals Hattori skulk, and the evaluation reaches the yield keyword. This means that Hattori skulk is the first intermediary result of our generator and that we want to suspend the execution of the generator and return that value. In terms of the application state, a similar thing happens as before: the NinjaGenerator context is taken off the stack, but it's not completely discarded, because ninjaIterator keeps a reference to it. The generator is now suspended, and has moved to the Suspended Yield state, without blocking. The program execution resumes in global code, by storing the yielded value to result1. The current state of the application is shown in figure 6.9.
-
-The code continues by reaching another iterator call:
-
-const result2 = ninjaIterator.next();
-
-Figure 6.9 After yielding a value, the generator's execution context is popped from the stack (but isn't discarded, because ninjaIterator keeps a reference to it), and the generator execution is suspended (the generator moves to the Suspended yield state).
-
-At this point, we go through the whole procedure once again: we reactivate the NinjaGenerator context referenced by ninjaIterator, push it onto the stack, and continue the execution where we left off. In this case, the generator evaluates the expression "Yoshi " + action. But this time there's no yield expression, and instead the program encounters a return statement. This returns the value Yoshi skulk and completes the generator's execution by moving the generator into the Completed state.
-
-Uff, this was something! We went deep into how generators work under the hood to show you that all the wonderful benefits of generators are a side effect of the fact that a generator's execution context is kept alive if we yield from a generator, and not destroyed as is the case with return values and standard functions.
-
-Now we recommend that you take a quick breather before continuing on to the second key ingredient required for writing elegant asynchronous code: promises.
-
-
-6.2.2 使用生成器
-
-尽管前面例子中生成的序列都不错，但现在来看一个更实际的简单例子，生成唯一 ID 值。
-
-用生成器生成 ID 序列
-
-在创建某些对象时，我们经常需要为每个对象赋一个唯一的 ID 值。最简单的方式是通过一个全局的计数器变量，但这是一种丑陋的写法，因为这个计数器变量很容易就会不慎淹没在混乱的代码中。另外一种方式则是使用生成器，如清单 6.5 所示。
-
-本例开始的迭代器中包含一个局部变量 id，其代表了 ID 计数器。局部变量 id 仅能在该生成器中被访问，故而完全不必担心有人会不小心在代码的其他地方修改 id 值。随后是一个无限的 while 循环，其每次迭代都能生成一个新 id 值并挂起执行，直到下一次 ID 请求到达：
-
-注意 标准函数中一般不应该书写无限循环的代码。但在生成器中没问题！当生成器遇到了一个 yield 语句，它就会一直挂起执行直到下次调用 next 方法，所以只有每次调用一次 next 方法，while 循环才会迭代一次并返回下一个 ID 值。定义了生成器之后，又创建了一个迭代器对象：[插图] 我们能够调用 idIterator.next () 方法来控制生成器执行。每当遇到一次 yield 语句生成器就会停止执行，返回一个新的 ID 值可以用于给我们的对象赋值：[插图] 看到这个方法多么简单了吧？代码中没有任何会被不小心修改的全局变量。相反，我们使用迭代器从生成器中请求值。另外，如果还需要用另外一个迭代器来记录 ID 序列，例如迭代器 samurai，我们只需要直接再初始化一个新迭代器就可以了。使用迭代器遍历 DOM 树如第 2 章中所示，网页的布局是基于 DOM 结构的，它是由 HTML 节点组成的树形结构，除了根节点的每个节点都只有一个父节点，而且可以有 0 个或多个孩子节点。由于 DOM 是网页开发中的基础，所以我们大部分代码都是围绕着对它的遍历。遍历 DOM 的相对简单的方式就是实现一个递归函数，在每次访问节点的时候都会被执行，如清单 6.6 所示。
-
-这个例子使用一个递归函数来遍历 id 为 subtree 的所有节点，在访问每个节点的过程中我们还记录了该节点的类型。本例中分别输出了 DIV、FORM、INPUT、P 和 SPAN。很久以来我们都在编写这种 DOM 遍历代码，它一直能满足我们的需要。但现在我们可以使用生成器了，故而可以换一种方式来实现它，请看清单 6.7。
-
-这个清单展示了我们可以通过生成器实现 DOM 遍历，就像标准递归一样简单，但它不必书写丑陋的回调函数代码。不同于在下一层递归处理每个访问过的节点子树，我们为每个访问过的节点创建了一个生成器并将执行权交给它，从而使我们能够以迭代的方式书写概念上递归的代码。它的好处在于我们能够不凭借讨厌的回调函数，仅仅以一个简单的 for-of 循环就能处理生成的节点。这个案例是一个相当好的例子，因为它还告诉了我们如何在不必使用回调函数的情况下，使用生成器函数来解耦代码，从而将生产值（本例中是 HTML 节点）的代码和消费值（本例中的 for-of 循环打印、访问过的节点）的代码分隔开。除此之外，在很多场景下，使用迭代器比使用递归都要自然，所以保持一个开放的思路很重要。现在我们已经看过生成器的一些实战中的例子了，让我们再看看更理论化一点的主题，并看看如何使用运行中的生成器来交换数据。6.2.3 与生成器交互
+6.2.3 与生成器交互
 
 从目前已经展示的例子来看，你已经看到了如何通过使用 yield 表达式从生成器中返回多个值。但生成器远比这强大！我们还能向生成器发送值，从而实现双向通信！使用生成器我们能够生成中间结果，在生成器以外我们也能够使用该结果进行任何什么操作，然后，一旦准备好了，就能够把整个新计算得到的数据再完完全全返回给生成器，本章的最后我们会利用这个特性来实现异步代码，但现在先学点儿简单的。作为生成器函数参数发送值向生成器发送值的最简方法如其他函数一样，调用函数并传入实参，如清单 6.8 所示。
 
-使用 next 方法向生成器发送值除了在第一次调用生成器的时候向生成器提供数据，我们还能通过 next 方法向生成器传入参数。在这个过程中，我们把生成器函数从挂起状态恢复到了执行状态。在当前挂起的生成器中，生成器把这个传入的值用于整个 yield 表达式，如图 6.3 所示。这个例子中我们调用了两次 ninjaIterator 的 next 方法。第一次调用 ninjaIterator.next (), 请求了生成器的第一个值。由于生成器还没开始执行，这次调用则启动了生成器，对表达式 "Hattori" + action 进行求值，得到了值 "Hattori skulk"，并将该生成器的执行挂起。这一点没什么特别的，类似的事情我们已经做过很多次了。
+使用 next 方法向生成器发送值除了在第一次调用生成器的时候向生成器提供数据，我们还能通过 next 方法向生成器传入参数。在这个过程中，我们把生成器函数从挂起状态恢复到了执行状态。在当前挂起的生成器中，生成器把这个传入的值用于整个 yield 表达式，如图 6.3 所示。这个例子中我们调用了两次 ninjaIterator 的 next 方法。第一次调用 `ninjaIterator.next(),` 请求了生成器的第一个值。由于生成器还没开始执行，这次调用则启动了生成器，对表达式 `"Hattori" + action` 进行求值，得到了值 "Hattori skulk"，并将该生成器的执行挂起。这一点没什么特别的，类似的事情我们已经做过很多次了。
 
-图 6.3 首次调用 ninjaIterator.next () 向生成器请求了一个新值，在 yield 表达式的位置返回了 Hattoriskulk，并挂起执行。第二次调用 ninjaIterator.next ("Hanzo") 又请求了一个新值，但它同时向生成器发送了实参 Hanzo。这个只会在整个 yield 表达式中使用，同时，imposter 变量也就包含了字符串 Hanzo 然而第二次调用 ninjaIterator 的 next 方法则发生了有趣的事：ninjaIterator.next ("Hanzo")。这一次，我们使用 next 方法将计算得到的值又传递回生成器。生成器函数耐心地等待着，在表达式 yield ("Hattori" + action) 位置挂起，故而值 Hanzo 作为参数传入了 next () 方法，并用作整个 yield 表达式的值。本例中，也就是表示语句 imposter = yield ("Hattori" + action) 中的变量 imposter 会以值 Hanzo 作为结尾。以上展示了如何在生成器中双向通信。我们通过 yield 语句从生成器中返回值，再使用迭代器的 next () 方法把值传回生成器。注意 next 方法为等待中的 yield 表达式提供了值，所以，如果没有等待中的 yield 表达式，也就没有什么值能应用的。基于这个原因，我们无法通过第一次调用 next 方法来向生成器提供该值。但记住，如果你需要为生成器提供一个初始值，你可以调用生成器自身，就像 NinjaGenerator ("skulk")。抛出异常还有一种稍微不那么正统的方式将值应用到生成器上：通过抛出一个异常。每个迭代器除了有一个 next 方法，还抛出一个方法，让我们再来看一个简单的例子。
+图 6.3 首次调用 `ninjaIterator.next() `向生成器请求了一个新值，在 yield 表达式的位置返回了 Hattoriskulk，并挂起执行。第二次调用 `ninjaIterator.next ("Hanzo")` 又请求了一个新值，但它同时向生成器发送了实参 Hanzo。这个只会在整个 yield 表达式中使用，同时，imposter 变量也就包含了字符串 Hanzo 然而第二次调用 ninjaIterator 的 next 方法则发生了有趣的事：`ninjaIterator.next ("Hanzo")`。
+
+这一次，我们使用 next 方法将计算得到的值又传递回生成器。生成器函数耐心地等待着，在表达式 `yield ("Hattori" + action)` 位置挂起，故而值 Hanzo 作为参数传入了  next() 方法，并用作整个 yield 表达式的值。本例中，也就是表示语句 `imposter = yield ("Hattori" + action)` 中的变量 imposter 会以值 Hanzo 作为结尾。
+
+以上展示了如何在生成器中双向通信。我们通过 yield 语句从生成器中返回值，再使用迭代器的 next() 方法把值传回生成器。注意 next 方法为等待中的 yield 表达式提供了值，所以，如果没有等待中的 yield 表达式，也就没有什么值能应用的。基于这个原因，我们无法通过第一次调用 next 方法来向生成器提供该值。但记住，如果你需要为生成器提供一个初始值，你可以调用生成器自身，就像 NinjaGenerator ("skulk")。抛出异常还有一种稍微不那么正统的方式将值应用到生成器上：通过抛出一个异常。每个迭代器除了有一个 next 方法，还抛出一个方法，让我们再来看一个简单的例子。
 
 清单 6.9 与清单 6.8 的开始部分很相似，都是声明了一个叫作 NinjaGenerator 的生成器。但这次，生成器函数体内则稍有不同。我们把整个函数体用一个 try-catch 块包裹了起来：
 
@@ -628,15 +701,127 @@ Now we recommend that you take a quick breather before continuing on to the seco
 
 运行了这个清单中的代码后，可以看到异常的抛出情况如我们所料，如图 6.4 所示。这个能让我们把异常抛回生成器的特性初看可能有点奇怪。为什么要进行这样的操作呢？不必担心，我们不会让你一直蒙在鼓里。本章的最后部分，我们将使用这个特性来改善异步服务器端的通信。暂且多点儿耐心。现在你已经看过了许多生成器的例子，我们已经做好准备来看一看生成器的内部是如何工作的了。
 
-图 6.4 我们可以从生成器外部向其抛出异常 6.2.4 探索生成器内部构成我们已经知道了调用一个生成器不会实际执行它。相反，它创建了一个新的迭代器，通过该迭代器我们才能从生成器中请求值。在生成器生成（或让渡）了一个值后，生成器会挂起执行并等待下一个请求的到来。在某种方面来说，生成器的工作更像是一个小程序，一个在状态中运动的状态机。
+图 6.4 我们可以从生成器外部向其抛出异常 
 
-● 挂起开始 —— 创建了一个生成器后，它最先以这种状态开始。其中的任何代码都未执行。
+### 6.2.4 Exploring generators under the hood
 
-● 执行 —— 生成器中的代码已执行。执行要么是刚开始，要么是从上次挂起的时候继续的。当生成器对应的迭代器调用了 next 方法，并且当前存在可执行的代码时，生成器都会转移到这个状态。
+So far we know that calling a generator doesn't execute it. Instead, it creates a new iterator that we can use to request values from the generator. After a generator produces (or yields) a value, it suspends its execution and waits for the next request. So in a way, a generator works almost like a small program, a state machine that moves between states:
 
-● 挂起让渡 —— 当生成器在执行过程中遇到了一个 yield 表达式，它会创建一个包含着返回值的新对象，随后再挂起执行。生成器在这个状态暂停并等待继续执行。
+1 Suspended start — When the generator is created, it starts in this state. None of the generator's code is executed.
 
-● 完成 —— 在生成器执行期间，如果代码执行到 return 语句或者全部代码执行完毕，生成器就进入该状态。让我们更进一步补充一些知识，看看生成器是如何跟随执行环境上下文的，如图 6.5 所示。
+2 Executing — The state in which the code of the generator is executed. The execution continues either from the beginning or from where the generator was last suspended. A generator moves to this state when the matching iterator's next method is called, and there exists code to be executed.
+
+3 Suspended yield — During execution, when a generator reaches a yield expression, it creates a new object carrying the return value, yields it, and suspends its execution. This is the state in which the generator is paused and is waiting to continue its execution.
+
+4 Completed — If during execution the generator either runs into a return statement or runs out of code to execute, the generator moves into this state.
+
+Figure 6.5 illustrates these states.
+
+Now let's supplement this on an even deeper level, by seeing how the execution of generators is tracked with execution contexts.
+
+```
+const ninjaIterator = NinjaGenerator(); 
+Create a new generator in the Suspended start state.
+
+const result1 = ninjaIterator.next(); 
+Activate generator. Move from Suspended start to Executing. 
+Execute up to yield "Hattori" and pause. 
+Move to the Suspended yield state. 
+Return a new object: {value: "Hattori", done: false}.
+
+const result2 = ninjaIterator.next(); 
+Reactivate generator. Move from Suspended yield to Executing. 
+Execute up to yield "Yoshi" and pause. Move to the Suspended yield state. 
+Return a new object: {value: "Yoshi", done: false}.
+
+const result3 = ninjaIterator.next(); 
+Reactivate generator. Move from Suspended yield to Executing. 
+No more code to execute. Move to the Completed state. 
+Return a new object: {value: undefined, done: true}.
+```
+
+Figure 6.5 During execution, a generator moves between states triggered by calls to the matching iterator's next method.
+
+TRACKING GENERATORS WITH EXECUTION CONTEXTS
+
+In the previous chapter, we introduced the execution context, an internal JavaScript mechanism used to track the execution of functions. Although somewhat special, generators are still functions, so let's take a closer look by exploring the relationship between them and execution contexts. We'll start with a simple code fragment:
+
+```js
+function* NinjaGenerator(action) { 
+  yield "Hattori " + action; 
+  return "Yoshi " + action; 
+}
+
+const ninjaIterator = NinjaGenerator("skulk"); 
+const result1 = ninjaIterator.next(); 
+const result2 = ninjaIterator.next();
+```
+
+Here we reuse our generator that produces two values: Hattori skulk and Yoshi skulk.
+
+Now, we'll explore the state of the application, the execution context stack at various points in the application execution. Figure 6.6 gives a snapshot at two positions in the application execution. The first snapshot shows the state of the application execution before calling the NinjaGenerator function B . Because we're executing global code, the execution context stack contains only the global execution context, which references the global environment in which our identifiers are kept. Only the NinjaGenerator identifier references a function, while the values of all other identifiers are undefined.
+
+When we make the call to the NinjaGenerator function
+
+```js
+const ninjaIterator = NinjaGenerator("skulk");
+```
+
+the control flow enters the generator and, as it happens when we enter any other function, a new NinjaGenerator execution context item is created (alongside the matching lexical environment) and pushed onto the stack. But because generators are special, none of the function code is executed. Instead, a new iterator, which we'll refer to in the code as ninjaIterator, is created and returned. Because the iterator is used to control the execution of the generator, the iterator gets a reference to the execution context in which it was created.
+
+An interesting thing happens when the program execution leaves the generator, as shown in figure 6.7. Typically, when program execution returns from a standard function, the matching execution context is popped from the stack and completely discarded. But this isn't the case with generators.
+
+Figure 6.6 The state of the execution context stack before calling the NinjaGenerator calling the NinjaGenerator function
+
+Figure 6.7 The state of the application when returning from the NinjaGenerator call
+
+The matching NinjaGenerator stack item is popped from the stack, but it's not discarded, because the ninjaIterator keeps a reference to it. You can see it as an analogue to closures. In closures, we need to keep alive the variables that are alive at the moment the function closure is created, so our functions keep a reference to the environment in which they were created. In this way, we make sure that the environment and its variables are alive as long as the function itself. Generators, on the other hand, have to be able to resume their execution. Because the execution of all functions is handled by execution contexts, the iterator keeps a reference to its execution context, so that it's alive for as long as the iterator needs it.
+
+Another interesting thing happens when we call the next method on the iterator:
+
+```js
+const result1 = ninjaIterator.next();
+```
+
+If this was a standard straightforward function call, this would cause the creation of a new next() execution context item, which would be placed on the stack. But as you might have noticed, generators are anything but standard, and a call to the next method of an iterator behaves a lot differently. It reactivates the matching execution context, in this case, the NinjaGenerator context, and places it on top of the stack, continuing the execution where it left off, as shown in figure 6.8.
+
+Figure 6.8 illustrates a crucial difference between standard functions and generators. Standard functions can only be called anew, and each call creates a new execution context. In contrast, the execution context of a generator can be temporarily suspended and resumed at will.
+
+In our example, because this is the first call to the next method, and the generator hasn't started executing, the generator starts its execution and moves to the Executing state. The next interesting thing happens when our generator function reaches this point:
+
+```js
+yield "Hattori " + action
+```
+
+Figure 6.8 Calling the iterator's next method reactivates the execution context stack item of the matching generator, pushes it on the stack, and continues where it left off the last time.
+
+The generator determines that the expression equals Hattori skulk, and the evaluation reaches the yield keyword. This means that Hattori skulk is the first intermediary result of our generator and that we want to suspend the execution of the generator and return that value. In terms of the application state, a similar thing happens as before: the NinjaGenerator context is taken off the stack, but it's not completely discarded, because ninjaIterator keeps a reference to it. The generator is now suspended, and has moved to the Suspended Yield state, without blocking. The program execution resumes in global code, by storing the yielded value to result1. The current state of the application is shown in figure 6.9.
+
+The code continues by reaching another iterator call:
+
+```js
+const result2 = ninjaIterator.next();
+```
+
+Figure 6.9 After yielding a value, the generator's execution context is popped from the stack (but isn't discarded, because ninjaIterator keeps a reference to it), and the generator execution is suspended (the generator moves to the Suspended yield state).
+
+At this point, we go through the whole procedure once again: we reactivate the NinjaGenerator context referenced by ninjaIterator, push it onto the stack, and continue the execution where we left off. In this case, the generator evaluates the expression "Yoshi " + action. But this time there's no yield expression, and instead the program encounters a return statement. This returns the value Yoshi skulk and completes the generator's execution by moving the generator into the Completed state.
+
+Uff, this was something! We went deep into how generators work under the hood to show you that all the wonderful benefits of generators are a side effect of the fact that a generator's execution context is kept alive if we yield from a generator, and not destroyed as is the case with return values and standard functions.
+
+Now we recommend that you take a quick breather before continuing on to the second key ingredient required for writing elegant asynchronous code: promises.
+
+6.2.4 探索生成器内部构成
+
+我们已经知道了调用一个生成器不会实际执行它。相反，它创建了一个新的迭代器，通过该迭代器我们才能从生成器中请求值。在生成器生成（或让渡）了一个值后，生成器会挂起执行并等待下一个请求的到来。在某种方面来说，生成器的工作更像是一个小程序，一个在状态中运动的状态机。
+
+1、挂起开始 —— 创建了一个生成器后，它最先以这种状态开始。其中的任何代码都未执行。
+
+2、执行 —— 生成器中的代码已执行。执行要么是刚开始，要么是从上次挂起的时候继续的。当生成器对应的迭代器调用了 next 方法，并且当前存在可执行的代码时，生成器都会转移到这个状态。
+
+3、挂起让渡 —— 当生成器在执行过程中遇到了一个 yield 表达式，它会创建一个包含着返回值的新对象，随后再挂起执行。生成器在这个状态暂停并等待继续执行。
+
+4、完成 —— 在生成器执行期间，如果代码执行到 return 语句或者全部代码执行完毕，生成器就进入该状态。让我们更进一步补充一些知识，看看生成器是如何跟随执行环境上下文的，如图 6.5 所示。
 
 图 6.5 在执行过程中，生成器在相对应的生成器调用 next 函数之间移动状态通过执行上下文跟踪生成器函数在前面的例子中，我们介绍了执行环境上下文。它是一个用于跟踪函数的执行的 JavaScript 内部机制。尽管有些特别，生成器依然是一种函数，所以让我们仔细看看它们和执行环境上下文之间的关系吧。首先从一个简单的代码片段开始：
 
@@ -648,7 +833,11 @@ Now we recommend that you take a quick breather before continuing on to the seco
 
 图 6.8 调用生成器的 next 方法会重新激活执行上下文栈中与该生成器相对应的项，首先将该项入栈，然后从它上次退出的位置继续执行图 6.8 阐述了函数和生成器之间的关键不同。标准函数仅仅会被重复调用，每次调用都会创建一个新的执行环境上下文。相比之下，生成器的执行环境上下文则会暂时挂起并在将来恢复。在我们的例子中，由于是第一次调用 next 方法，而生成器之前并没执行过，所以生成器开始执行并进入执行状态。当生成器函数运行到这个位置的时候，又会发生一件有趣的事：[插图] 生成器函数运行得到的表达式的结果为 Hattori skulk，然后执行中又遇到了 yield 关键字。这种情况表明了 Hattori skulk 是该生成器的第一个中间值，所以需要挂起生成器的执行并返回该值。从应用状态的角度来看，发生了一件类似前面的事情：NinjaGenerator 上下文离开了调用栈，但由于 ninjaIterator 还持有着对它的引用，故而它并未被销毁。现在生成器挂起了，又在非阻塞的情况下移动到了挂起让渡状态。程序在全局代码中恢复执行，并将生产出的值存入变量 result1。应用的当前状态如图 6.9 所示。
 
-图 6.9 在产生了一个值之后，生成器的执行环境上下文就会从栈中弹出（但由于 ninjaIterator 保存着对它的引用所以它不会被销毁），生成器挂起执行（生成器进入挂起让渡状态）当遇到另一个迭代器调用时，代码继续运行：[插图]● 生成器处于挂起让渡状态。● 生成器的执行环境上下文从栈中弹出，但由于 ninjaIterator 保存着对它的引用所以它不会被销毁。在这个位置，我们又把整个流程走了一遍：首先通过 ninjaIterator 激活 NinjaGenerator 的上下文引用，将其入栈，在上次离开的位置继续执行。本例中，生成器计算表达式 "Yoshi" + action。但这一次没再遇到 yield 表达式，而是遇到了一个 return 语句。这个语句会返回值 Yoshi skulk 并结束生成器的执行，随之生成器进入结束状态。看，这很强大吧！我们深入挖掘生成器的工作原理后可以发现，生成器所有不可思议的特点实际都来源于一点，即当我们从生成器中取得控制权后，生成器的执行环境上下文一直是保存的，而不是像标准函数一样退出后销毁。现在我建议你平静一下心情，继续书写优雅异步代码的第二个关键点：promise。
+图 6.9 在产生了一个值之后，生成器的执行环境上下文就会从栈中弹出（但由于 ninjaIterator 保存着对它的引用所以它不会被销毁），生成器挂起执行（生成器进入挂起让渡状态）当遇到另一个迭代器调用时，代码继续运行：
+
+生成器处于挂起让渡状态。生成器的执行环境上下文从栈中弹出，但由于 ninjaIterator 保存着对它的引用所以它不会被销毁。在这个位置，我们又把整个流程走了一遍：首先通过 ninjaIterator 激活 NinjaGenerator 的上下文引用，将其入栈，在上次离开的位置继续执行。本例中，生成器计算表达式 "Yoshi" + action。但这一次没再遇到 yield 表达式，而是遇到了一个 return 语句。这个语句会返回值 Yoshi skulk 并结束生成器的执行，随之生成器进入结束状态。看，这很强大吧！
+
+我们深入挖掘生成器的工作原理后可以发现，生成器所有不可思议的特点实际都来源于一点，即当我们从生成器中取得控制权后，生成器的执行环境上下文一直是保存的，而不是像标准函数一样退出后销毁。现在我建议你平静一下心情，继续书写优雅异步代码的第二个关键点：promise。
 
 ## 6.3 Working with promises
 
@@ -658,9 +847,7 @@ A promise is a placeholder for a value that we don't have now but will have late
 
 Creating a new promise is easy, as you can see in the following example.
 
-Listing 6.10
-
-Creating a simple promise
+Listing 6.10 Creating a simple promise
 
 To create a promise, we use the new, built-in Promise constructor, to which we pass a function, in this case an arrow function (but we could just as easily use a function expression). This function, called an executor function, has two parameters: resolve and reject. The executor is called immediately when constructing the Promise object with two built-in functions as arguments: resolve, which we manually call if we want the promise to resolve successfully, and reject, which we call if an error occurs.
 
@@ -682,7 +869,9 @@ We use asynchronous code because we don't want to block the execution of our app
 
 For example, fetching a JSON file from a server is a long-running task, during which we don't want to make the application unresponsive for our users. Therefore, we provide a callback that will be invoked when the task is done:
 
+```js
 getJSON("data/ninjas.json", function() { /*Handle results*/ });
+```
 
 Naturally, during this long-running task, errors can happen. And the problem with callbacks is that you can't use built-in language constructs, such as try-catch statements, in the following way:
 
@@ -692,7 +881,9 @@ As a consequence, errors usually get lost. Many libraries, therefore, define the
 
 After we've performed a long-running task, we often want to do something with the obtained data. This can lead to starting another long-running task, which can eventually trigger yet another long-running task, and so on — leading to a series of interdependent, asynchronous, callback-processed steps. For example, if we want to execute a sneaky plan to find all ninjas at our disposal, get the location of the first ninja, and send him some orders, we'd end up with something like this:
 
+```js
 getJSON("data/ninjas.json", function(err, ninjas){ getJSON(ninjas[0].location, function(err, locationInfo){ sendOrder(locationInfo, function(err, status){ /*Process status*/ }) }) });
+```
 
 You've probably ended up, at least once or twice, with similarly structured code — a bunch of nested callbacks that represent a series of steps that have to be made. You might notice that this code is difficult to understand, inserting new steps is a pain, and error handling complicates your code significantly. You get this “pyramid of doom” that keeps growing and is difficult to manage. This leads us to the second problem with callbacks: performing sequences of steps is tricky.
 
@@ -722,17 +913,13 @@ A promise is an object that serves as a placeholder for a result of an asynchron
 
 A promise starts in the pending state, in which we know nothing about our promised value. That's why a promise in the pending state is also called an unresolved promise. During program execution, if the promise's resolve function is called, the
 
-Figure 6.10
-
-States of a promise
+Figure 6.10 States of a promise
 
 promise moves into the fulfilled state, in which we've successfully obtained the promised value. On the other hand, if the promise's reject function is called, or if an unhandled exception occurs during promise handling, the promise moves into the rejected state, in which we weren't able to obtain the promised value, but in which we at least know why. Once a promise has reached either the fulfilled state or the rejected state, it can't switch (a promise can't go from fulfilled to rejected or vice versa), and it always stays in that state. We say that a promise is resolved (either successfully or not).
 
 The following listing provides a closer look at what's going on when we use promises.
 
-Listing 6.11
-
-A closer look at promise order of execution
+Listing 6.11 A closer look at promise order of execution
 
 The code in listing 6.11 outputs the results shown in figure 6.11. As you can see, the code starts by logging the “At code start” message by using our custom-made report function (appendix C) that outputs the message onscreen. This enables us to easily track the order of execution.
 
@@ -744,9 +931,7 @@ The timeout will resolve the promise after 500ms. This could have been any other
 
 After the ninjaDelayedPromise has been created, it still doesn't know the value that it will eventually have, or whether it will even be successful. (Remember, it's still waiting for the timeout that will resolve it.) So after construction, the ninjaDelayedPromise is in the first promise state, pending.
 
-Figure 6.11
-
-The result of executing listing 6.11
+Figure 6.11 The result of executing listing 6.11
 
 Next we use the then method on the ninjaDelayedPromise to schedule a callback to be executed when the promise successfully resolves:
 
@@ -768,7 +953,6 @@ Promises are designed to deal with asynchronous actions, so the JavaScript engin
 
 In this example, for the sake of simplicity, we've worked only with the rosy scenario in which everything goes great. But the real world isn't all sunshine and rainbows, so let's see how to deal with all sorts of crazy problems that can occur.
 
-
 6.3.2 深入研究 promise
 
 promise 对象用于作为异步任务结果的占位符。它代表了一个我们暂时还没获得但在未来有希望获得的值。基于这点原因，在一个 promise 对象的整个生命周期中，它会经历多种状态，如图 6.10 所示。一个 promise 对象从等待（pending）状态开始，此时我们对承诺的值一无所知。因此一个等待状态的 promise 对象也称为未实现（unresolved）的 promise。在程序执行的过程中，如果 promise 的 resolve 函数被调用，promise 就会进入完成（fulfilled）状态，在该状态下我们能够成功获取到承诺的值。
@@ -777,7 +961,9 @@ promise 对象用于作为异步任务结果的占位符。它代表了一个我
 
 清单 6.11 的代码输出了图 6.11 中的值。你可以看到，当代码从打印日志「At code start」开始，通过使用我们自定义的 report 函数（见附录 B）将信息输出至屏幕，从而我们能够轻易地跟踪函数的执行过程。下一步则通过调用 Promise 构造函数创建了一个新的 promise 对象。它会立即调用执行函数并建立一个计时器：[插图] 计时器会在 500ms 之后调用 promise 的 resolve 方法。这里可以是任何异步任务，简单起见本处选择了定时器。
 
-图 6.11 清单 6.11 的输出结果在 ninjaDelayedPromise 被创建后，依然无法得知最终会得到什么值，或者无法保证 promise 会成功进入完成状态。（记住，它会一直等待计时器到时后调用 resolve 函数）所以在构造函数调用后，ninjaDelayedPromise 就进入了 promise 的第一个状态 —— 等待状态。然后调用 ninjaDelayedPromise 的 then 方法，用于建立一个预计在 promise 被成功实现后执行的回调函数：[插图] 这个回调函数总会被异步调用，无论 promise 当前是什么状态。我们继续创建另一个 promise——ninjaImmediatePromise，它会在对象构造阶段立刻调用 promise 的 resolve 函数，立即完成承诺。不同于 ninjaDelayedPromise 对象在构造后进入等待状态，ninjaImmediatePromise 对象在解决状态下完成了对象的构造，所以该 promise 对象就已经获得了值 Yoshi。然后，通过调用 ninjaImmediatePromise 的 then 方法，我们为其注册了一个回调函数，用于在 promise 成功被解决后调用。然而此时 promise 已经被解决了，难道这意味着这个成功回调函数会被立即调用，或者被忽略吗？答案是两者都不。
+图 6.11 清单 6.11 的输出结果在 ninjaDelayedPromise 被创建后，依然无法得知最终会得到什么值，或者无法保证 promise 会成功进入完成状态。（记住，它会一直等待计时器到时后调用 resolve 函数）所以在构造函数调用后，ninjaDelayedPromise 就进入了 promise 的第一个状态 —— 等待状态。然后调用 ninjaDelayedPromise 的 then 方法，用于建立一个预计在 promise 被成功实现后执行的回调函数：
+
+这个回调函数总会被异步调用，无论 promise 当前是什么状态。我们继续创建另一个 promise——ninjaImmediatePromise，它会在对象构造阶段立刻调用 promise 的 resolve 函数，立即完成承诺。不同于 ninjaDelayedPromise 对象在构造后进入等待状态，ninjaImmediatePromise 对象在解决状态下完成了对象的构造，所以该 promise 对象就已经获得了值 Yoshi。然后，通过调用 ninjaImmediatePromise 的 then 方法，我们为其注册了一个回调函数，用于在 promise 成功被解决后调用。然而此时 promise 已经被解决了，难道这意味着这个成功回调函数会被立即调用，或者被忽略吗？答案是两者都不。
 
 Promise 是设计用来处理异步任务的，所以 JavaScript 引擎经常会凭借异步处理使 promise 的行为得以预见。JavaScript 通过在本次时间循环中的所有代码都执行完毕后，调用 then 回调函数来处理 promise。因此，如果我们研究了图 6.11 中的输出，我们会看到首先是日志「At code end」，然后我们记录了 ninjaImmediatePromise 已经被解决。最后，经过了 500ms, ninjaDelayedPromise 也被解决，从而响应的回调函数被调用。本例中，简单起见，我们选择的场景都很乐观，所以一切都进行得很完美。但现实世界并不总是有阳光和彩虹，让我们来看看如何处理所有可能遇到的问题吧。
 
@@ -785,9 +971,7 @@ Promise 是设计用来处理异步任务的，所以 JavaScript 引擎经常会
 
 There are two ways of rejecting a promise: explicitly, by calling the passed-in reject method in the executor function of a promise, and implicitly, if during the handling of a promise, an unhandled exception occurs. Let's start our exploration with the following listing.
 
-Listing 6.12
-
-Explicitly rejecting promises
+Listing 6.12 Explicitly rejecting promises
 
 We can explicitly reject a promise, by calling the passed-in reject method: reject("Explicitly reject a promise!"). If a promise is rejected, when registering callbacks through the then method, the second, error, callback will always be invoked.
 
@@ -797,9 +981,7 @@ As listing 6.13 shows, we can chain in the catch method after the then method, t
 
 In addition to explicit rejection (via the reject call), a promise can also be rejected implicitly, if an exception occurs during its processing. Take a look at the following example.
 
-Listing 6.14
-
-Exceptions implicitly reject a promise
+Listing 6.14 Exceptions implicitly reject a promise
 
 Within the body of the promise executor, we try to increment undeclaredVariable, a variable that isn't defined in our program. As expected, this results in an exception. Because there's no try-catch statement within the body of the executor, this results in an implicit rejection of the current promise, and the catch callback is eventually invoked. In this situation, we could have just as easily supplied the second callback to the then method, and the end effect would be the same.
 
@@ -819,9 +1001,7 @@ Now that we understand how promises work, and how to schedule success and failur
 
 One of the most common asynchronous actions on the client is fetching data from the server. As such, this is an excellent little case study on the use of promises. For the underlying implementation, we'll use the built-in XMLHttpRequest object.
 
-Listing 6.15
-
-Creating a getJSON promise
+Listing 6.15 Creating a getJSON promise
 
 NOTE
 
@@ -861,9 +1041,7 @@ You've already seen how handling a sequence of interdependent steps leads to the
 
 Earlier in the chapter, you saw how, by using the then method on a promise, we can register a callback that will be executed if a promise is successfully resolved. What we didn't tell you is that calling the then method also returns a new promise. So there's nothing stopping us from chaining as many then methods as we want; see the following code.
 
-Listing 6.16
-
-Chaining promises with then
+Listing 6.16 Chaining promises with then
 
 This creates a sequence of promises that will be, if everything goes according to plan, resolved one after another. First, we use the getJSON("data/ninjas.json") method to fetch a list of ninjas from the file on the server. After we receive that list, we take the information about the first ninja, and we request a list of missions the ninja is assigned to: getJSON(ninjas[0].missionsUrl). Later, when these missions come in, we make yet another request for the details of the first mission: getJSON(missions[0].detailsUrl). Finally, we log the details of the mission.
 
@@ -913,8 +1091,6 @@ So far you've seen how promises work, and how we can use them to greatly simplif
 
 如你所见，我们不必关心任务执行的顺序，以及它们是不是都已经进入完成态。通过使用内置方法 Promise.all 可以等待多个 promise。这个方法将一个 promise 数组作为参数，然后创建一个新的 promise 对象，一旦数组中的 promise 全部被解决，这个返回的 promise 就会被解决，而一旦其中有一个 promise 失败了，那么整个新 promise 对象也会被拒绝。后续的回调函数接收成功值组成的数组，数组中的每一项都对应 promise 数组中的对应项。花一分钟欣赏一下处理多个并行的异步任务的代码是多么优雅。Promise.all 方法等待列表中的所有 promise。但如果我们只关心第一个成功（或失败）的 promise，可以认识一下 Promise.race 方法。
 
-
-
 6.3.7 promise 竞赛
 
 假设我们可以支配一队「忍者」，我们希望给第一个回答命令的「忍者」分配一个任务。如清单 6.18 所示，为了完成上述任务，我们可以书写类似的代码。
@@ -951,17 +1127,17 @@ This process is repeated as long as there are asynchronous tasks in the generato
 
 This was a tad on the complex side, but we like this example because it combines a lot of things that you've learned so far:
 
-■ Functions as first-class objects — We send a function as an argument to the async function.
+1 Functions as first-class objects — We send a function as an argument to the async function.
 
-■ Generator functions — We use their ability to suspend and resume execution.
+2 Generator functions — We use their ability to suspend and resume execution.
 
-■ Promises — They help us deal with asynchronous code.
+3 Promises — They help us deal with asynchronous code.
 
-■ Callbacks — We register success and failure callbacks on our promises.
+4 Callbacks — We register success and failure callbacks on our promises.
 
-■ Arrow functions — Because of their simplicity, for callbacks we use arrow functions.
+5 Arrow functions — Because of their simplicity, for callbacks we use arrow functions.
 
-■ Closures — The iterator, through which we control the generator, is created in the async function, and we access it, through closures, in the promise callbacks.
+6 Closures — The iterator, through which we control the generator, is created in the async function, and we access it, through closures, in the promise callbacks.
 
 Now that we've gone through the whole process, let's take a minute to appreciate how much more elegant the code that implements our business logic is. Consider this:
 
@@ -987,8 +1163,6 @@ We use the async keyword in front of the function keyword to specify that this f
 
 Async functions will appear in the next installment of JavaScript. Currently no browser supports it, but you can use transpilers such as Babel or Traceur if you wish to use async in your code today.
 
-
-
 6.4 把生成器和 promise 相结合
 
 本节中，我们将结合生成器（以及生成器暂停和恢复执行的能力）和 promise，来实现更加优雅的异步代码。下面的例子展示了被最受欢迎「忍者」完成率最高的任务详情。它包含了「忍者」、任务总结，以及任务详情。这些数据都被存放在远程服务器上，并以 JSON 形式编码。所有这些子任务都是长期运行且相互依赖的。如果用同步的方式来实现可以得到如下的代码。
@@ -1003,19 +1177,21 @@ async 函数获取了一个生成器，调用它并创建了一个迭代器用�
 
 函数是第一类对象 —— 我们向 async 函数传入了一个参数，该参数也是函数。
 
-● 生成器函数 —— 用它的特性来挂起和恢复执行。
+1、生成器函数 —— 用它的特性来挂起和恢复执行。
 
-● promise—— 帮我们处理异步代码。
+2、promise—— 帮我们处理异步代码。
 
-● 回调函数 —— 在 promise 对象上注册成功和失败的回调函数。
+3、回调函数 —— 在 promise 对象上注册成功和失败的回调函数。
 
-● 箭头函数 —— 箭头函数的简洁适合用在回调函数上。
+4、箭头函数 —— 箭头函数的简洁适合用在回调函数上。
 
-● 闭包 —— 在我们控制生成器的过程中，迭代器在 async 函数内被创建，随之我们在 promise 的回调函数内通过闭包来获取该迭代器。
+5、闭包 —— 在我们控制生成器的过程中，迭代器在 async 函数内被创建，随之我们在 promise 的回调函数内通过闭包来获取该迭代器。
 
 现在我们已经看过了所有过程，花一分钟欣赏一下实现业务逻辑的代码是多么优雅吧。看这段代码：
 
-不同于把错误处理和控制流混合在一起，我们使用类似以下写法结束了代码的凌乱：[插图] 最终结果结合了同步代码和异步代码的优点。有了同步代码，我们能更容易地理解、使用标准控制流以及异常处理机制、try-catch 语句的能力。而对于异步代码来说，我们有着天生的非阻塞：当等待长时间运行的异步任务时，应用的执行不会被阻塞。面向未来的 async 函数可以看到我们仍然需要书写一些样板代码，所以我们此时需要一个 async 函数能够管理所有 promise 函数的调用，还要管理所有向生成器发出的请求。虽然我们可以在代码中只书写一次这个过程，然后每次需要的时候对其进行复用，但如果我们完全不用关心这个问题就更好了。负责维护 JavaScript 的人们也注意到了将生成器和 promise 相结合的强大效果，因而他们也希望直接借助语言层面来支持这个特性，从而使我们的开发更便捷。在这种形势下，当前的 JavaScript 标准计划新增了两个关键字，用于替代上述样板代码。很快我们就能以类似下面的形式书写代码了：
+不同于把错误处理和控制流混合在一起，我们使用类似以下写法结束了代码的凌乱：
+
+最终结果结合了同步代码和异步代码的优点。有了同步代码，我们能更容易地理解、使用标准控制流以及异常处理机制、try-catch 语句的能力。而对于异步代码来说，我们有着天生的非阻塞：当等待长时间运行的异步任务时，应用的执行不会被阻塞。面向未来的 async 函数可以看到我们仍然需要书写一些样板代码，所以我们此时需要一个 async 函数能够管理所有 promise 函数的调用，还要管理所有向生成器发出的请求。虽然我们可以在代码中只书写一次这个过程，然后每次需要的时候对其进行复用，但如果我们完全不用关心这个问题就更好了。负责维护 JavaScript 的人们也注意到了将生成器和 promise 相结合的强大效果，因而他们也希望直接借助语言层面来支持这个特性，从而使我们的开发更便捷。在这种形势下，当前的 JavaScript 标准计划新增了两个关键字，用于替代上述样板代码。很快我们就能以类似下面的形式书写代码了：
 
 通过在关键字 function 之前使用关键字 async，可以表明当前的函数依赖一个异步返回的值。在每个调用异步任务的位置上，都要放置一个 await 关键字，用来告诉 JavaScript 引擎，请在不阻塞应用执行的情况下在这个位置上等待执行结果。在这个过程背后，其实发生着本章前面所讨论内容，但现在我们不必关心这个过程的内部细节。注意 在 JavaScript 的下一个版本中将会新增 async 函数。现阶段还没有浏览器对其进行支持，但通过 Babel 或者 Traceur 转译代码后，你可以在代码中使用 async 语法。
 

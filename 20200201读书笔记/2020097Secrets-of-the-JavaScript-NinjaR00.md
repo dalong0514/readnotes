@@ -40,9 +40,68 @@ Instead of manually calling the next method of the matching iterator and always 
 
 这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
 
-### 0201. 术语卡 ——
+### 0201. 术语卡 —— 迭代器对象（Iterator）
 
-根据反常识，再补充三个证据——就产生三张术语卡。
+信息源自「2020097Secrets-of-the-JavaScript-Ninja0601.md」
+
+On the right side of the for-of loop, we've placed the result of invoking our generator. But if you take a closer look at the body of the WeaponGenerator function, you'll see that there's no return statement. What's up with that? In this case, shouldn't the right side of the for-of loop evaluate to undefined, as would be the case if we were dealing with a standard function? The truth is that generators are quite unlike standard functions. For starters, calling a generator doesn't execute the generator function; instead it creates an object called an iterator. Let's explore that object.
+
+2『迭代器对象（Iterator）做一张术语卡片。（2021-05-04）』
+
+图 6.2 迭代函数 WeaponGenerator() 得到的结果我们把执行生成器得到的结果放在 for-of 循环的右边。但如果你仔细看看 WeaponGenerator 函数的函数体，你会发现其中并没有 return 语句。这是为什么？这个例子中，for-of 循环的右边不是应该得到 undefined，就像我们处理一个标准函数一样吗？真相是生成器函数和标准函数非常不同。对初学者来说，调用生成器并不会执行生成器函数，相反，它会创建一个叫作迭代器（iterator）的对象。让我们来探索这个对象吧。
+
+Controlling the generator through the iterator object. Making a call to a generator doesn't mean that the body of the generator function will be executed. Instead, an iterator object is created, an object through which we can communicate with the generator. For example, we can use the iterator to request additional values. Let's adjust our previous example to explore how the iterator object works.
+
+```js
+  const WeaponGenerator = function* () { 
+    yield "Katana"
+    yield "Wakizashi"
+    yield "Kusarigama"
+  }
+
+  const testFun = () => {
+    const weaponsIterator = WeaponGenerator()
+    const result1 = weaponsIterator.next()
+    console.log(result1)
+    console.log(typeof result1)
+    const result2 = weaponsIterator.next()
+    console.log(result2)
+    console.log(typeof result2)
+    const result3 = weaponsIterator.next()
+    console.log(result3)
+    console.log(typeof result3)
+  }
+```
+
+As you can see, when we call a generator, a new iterator is created:
+
+```js
+const weaponsIterator = WeaponGenerator();
+```
+
+The iterator is used to control the execution of the generator. One of the fundamental things that the iterator object exposes is the next method, which we can use to control the generator by requesting a value from it:
+
+```js
+const result1 = weaponsIterator.next();
+```
+
+As a response to that call, the generator executes its code until it reaches a yield keyword that produces an intermediary result (one item in the generated sequence of items), and returns a new object that encapsulates that result and tells us whether its work is done.
+
+As soon as the current value is produced, the generator suspends its execution without blocking and patiently waits for another value request. This is an incredibly powerful feature that standard functions don't have, a feature that we'll use later to great effect.
+
+In this case, the first call to the iterator's next method executes the generator code to the first yield expression, yield "Katana", and returns an object with the property value set to Katana and the property done set to false, signaling that there are more values to produce.
+
+Later, we request another value from the generator, by making another call to the weaponIterator's next method:
+
+```js
+const result2 = weaponsIterator.next();
+```
+
+This wakes up the generator from suspension, and the generator continues where it left off, executing its code until another intermediary value is reached: yield "Wakizashi". This suspends the generator and produces an object carrying Wakizashi.
+
+Finally, when we call the next method for the third time, the generator resumes its execution. But this time there's no more code to execute, so the generator returns an object with value set to undefined, and done set to true, signaling that it's done with its work.
+
+Now that you've seen how to control generators through iterators, you're ready to learn how to iterate over the produced values.
 
 ### 0202. 术语卡 ——
 
