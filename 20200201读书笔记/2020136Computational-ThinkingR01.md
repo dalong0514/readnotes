@@ -1,4 +1,10 @@
-# 0101. What Is Computational Thinking?
+## 记忆时间
+
+## 目录
+
+0101 What Is Computational Thinking?
+
+## 0101. What Is Computational Thinking?
 
 An algorithm is a set of rules for getting a specific output from a specific input. Each step must be so precisely defined that it can be translated into computer language and executed by machine.
 
@@ -8,7 +14,7 @@ What is a computer? Most people will answer it is an electronic black box that d
 
 How shall we think about all this? What do we need to understand about computers? What must we do to put a computer to work for us? How do computers shape the way we see the world? What new do we see? What is the role of programming? What are computers not good for?
 
-## 1.1 The Power and Value of Computation
+### 1.1 The Power and Value of Computation
 
 Computational thinking (here abbreviated CT) offers some answers to these questions. Much of CT is specifically oriented on figuring out how to get a computer to do a job for us — how to control a complex electronic device to do a job reliably without causing damage or harm. Algorithms are the procedures that specify how the computer should do a job. Although humans can carry out algorithms, they cannot do so nearly as fast as a machine; modern computers can do a trillion steps in the time it takes a human to do one step. The magic is nothing more than a machine executing large numbers of very simple computations very fast. Programs are the bridge: algorithms encoded in special-purpose languages that translate to machine instructions that control a computer.
 
@@ -18,7 +24,7 @@ CT also advises us about jobs that computers cannot do in any reasonable amount 
 
 Obviously, designing a program or a machine to do so much in such a short time is a daunting design task that demands its own way of thinking if we are to have any confidence that the machine does the job without error. Indeed, understanding users, and designing systems specifically for them, turns out to be one of the great challenges of modern computing. Design is one of the central concerns of CT.
 
-## 1.2 Defining Computational Thinking
+### 1.2 Defining Computational Thinking
 
 Computational thinking has become a buzzword with a multitude of definitions. We have distilled the spirit of the multitude into this definition used throughout this book:
 
@@ -42,7 +48,7 @@ We do not equate「doing a job」with automation. Well-defined, routine jobs can
 
 There is clearly a special thinking skill required to successfully design programs and machines capable of enormous computations and to understand natural information processes through computation. This skill — computational thinking, or CT — is not a set of concepts for programming. Instead, CT comprises ways of thinking and practicing that are sharpened and honed through practice. CT is a very rich skill set: at the end of this chapter we outline the six dimensions of computational thinking that you will encounter in this book: machines, methods, computing education, software engineering, design, and computational science.
 
-## 1.3 Wishful Thinking
+### 1.3 Wishful Thinking
 
 In our enthusiasm for computational thinking, we need to be careful to avoid wishful thinking. Perhaps the first and most common wish is that we can get computers to do any job we can conceive of. This wish cannot be realized because there are many jobs that are impossible for computers. For example, there is no algorithm that will inspect another algorithm and tell us whether it terminates or loops forever. Every programming student longs for such an algorithm to help with debugging. It was logically impossible in 1936 when Alan Turing proved it so, and it is still impossible today.
 
@@ -64,7 +70,7 @@ A fourth example of wishful thinking is to believe the computer is smart. If you
 
 We advise you to approach CT with humility. It is a learned skill. Our brains do not naturally think computationally. Keep your perspective on the capabilities of computers and algorithms to do jobs, on the need to learn something about the application domain you want to design for, on the dependency of computation on computers, and the abject lack of intelligence in the machine.
 
-## 1.4 Emergence of CT over Millennia
+### 1.4 Emergence of CT over Millennia
 
 It might seem that CT is a product of the electronic computer age that began in the 1940s. Well, not really. Before the modern computer age there was a profession of mathematically trained experts who performed complex calculations as teams. They were called「computers.」They were by no means the first: the term「computer,」meaning「one who computes,」dates back to the early 1600s. The first electronic computing machines were called automatic computers to distinguish them from the human variety. Human computers and, even more so, the leaders of human computing teams, obviously engaged in computational thinking. So, many aspects of CT existed before electronic computers. Well before.
 
@@ -80,7 +86,7 @@ Seeds of computational thinking advanced in sophistication over those many centu
 
 Throughout this book, we present many examples from the history of computing to illustrate the needs to which CT responded, the new possibilities for actions CT enabled, and the dramatic mind shifts CT caused in how we see automation, science, and the world. Although CT as a way of thinking has existed for thousands of years, the term「computational thinking」is relatively new: the first occurrence we are aware of is from 1980.
 
-## 1.5 Emergence of Education Movement for CT in K–12 Schools
+### 1.5 Emergence of Education Movement for CT in K–12 Schools
 
 The first computer science (CS) department was founded at Purdue in 1962. Academic computer science matured along a bumpy and challenging path. Many universities were initially skeptical whether the new field was really new or scholarly enough; it looked rather like a branch of electrical engineering or applied mathematics. Many computer science departments were formed only after pitched political battles in their universities. Despite the political difficulties, the growth was steady. By 1980 there were about 120 CS departments in the US alone. Today all major and many smaller universities have one.
 
@@ -94,7 +100,7 @@ A turning point came in 2006 when Jeannette Wing, then starting as an assistant 
 
 The definitions of CT that have emerged from the post-2006 CT movement have moved conspicuously into the public view. But many public definitions, especially as interpreted to us by policymakers, are quite narrow compared to the notions of CT developed over the earlier centuries of computing. Mainstream media occasionally give a misinformed view of the scope and influence of computing. They have led people unfamiliar with computing to make inflated claims about the power of CT that will mislead students and others into making promises about computers they cannot deliver.
 
-## 1.6 Our Objectives in This Book
+### 1.6 Our Objectives in This Book
 
 Our objective in this book is to lay out the magnificent fullness of computational thinking and its precepts about computation and to dispel misunderstandings about the strengths and limits of computing.
 

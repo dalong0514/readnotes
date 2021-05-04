@@ -1,44 +1,44 @@
-# Epilogue: Lessons Learned
+## Epilogue: Lessons Learned
 
 In the research for this book, we learned a few lessons that are worth summarizing here.
 
-Lesson 1: CT is an addition, not a replacement.
+### Lesson 1: CT is an addition, not a replacement
 
-Everyone thinks their own field’s ways of thinking (and practicing) are valuable and worthy of learning in many other fields. Enthusiasts want to spread the gospel of success to other disciplines. The list of「thinkings」to be spread is long: computational thinking, logical thinking, economic thinking, systems thinking, physics thinking, mathematical thinking, engineering thinking, design thinking, computational thinking, and more.
+Everyone thinks their own field's ways of thinking (and practicing) are valuable and worthy of learning in many other fields. Enthusiasts want to spread the gospel of success to other disciplines. The list of「thinkings」to be spread is long: computational thinking, logical thinking, economic thinking, systems thinking, physics thinking, mathematical thinking, engineering thinking, design thinking, computational thinking, and more.
 
 Our conclusion is that computational thinking is often a welcome addition to other fields, but not a replacement for their ways of thinking and not a meta-skill for all fields.
 
-Lesson 2: CT is an old, well studied, and diverse topic.
+### Lesson 2: CT is an old, well studied, and diverse topic
 
 The term「computational thinking」(CT) became popular after the US National Science Foundation included it in a funding call in 2007. For many people it was the first time they heard arguments about the value of computing in education. CT seemed to be a new invention, a breakthrough portending a revolution in K–12 education. The truth is, human beings have been doing CT for over 4500 years. It has been advocated for K–12 education since the 1960s.
 
 Some of the first「CT for K–12」curriculum designers attempted to build a「body of knowledge」for CT from scratch without being informed by the long history of computational thinking, including similar attempts to bring computing to schools. They unwittingly created some conceptual errors in their claims about the capabilities and character of CT. We are concerned because inflated expectations and conceptual problems can easily become a part of the CT folklore, and it may take years to dispel them. We urge computing educators to turn to the massive existing body of computing education research to clean this up.
 
-Lesson 3: The speed of computers is the main enabler of the computing revolution.
+### Lesson 3: The speed of computers is the main enabler of the computing revolution
 
 Most of what software does for us is made possible by the incomprehensible speed gap between computers and humans—billions to trillions times faster. Even though humans can execute computational steps, they could not carry out most of these computations in their lifetimes. The machines can literally do the humanly impossible. While it is true that humans can personally perform algorithms for some information processing tasks, the revolutions of the computer age are not about where people can perform algorithms in their own lives, but about what computers are able to do for them.
 
-Lesson 4: Advanced CT is domain dependent.
+### Lesson 4: Advanced CT is domain dependent
 
-For advanced tasks, you need to understand the domain in which you want to figure out how to get a computer to do a job for you. For example, an expert programmer who knows nothing about quantum physics will have little to offer to a team of physicists working on a quantum computer. Similarly, working with the nature’s complex algorithms in biology requires considerable understanding of biological processes. Algorithmic models in chemistry require deep familiarity with the corresponding chemical processes. Building an information system for a hospital requires extensive understanding of the institutional, informational, and workflow processes in the hospital context. Much of advanced computational thinking is context-specific and tightly tied to the application domain.
+For advanced tasks, you need to understand the domain in which you want to figure out how to get a computer to do a job for you. For example, an expert programmer who knows nothing about quantum physics will have little to offer to a team of physicists working on a quantum computer. Similarly, working with the nature's complex algorithms in biology requires considerable understanding of biological processes. Algorithmic models in chemistry require deep familiarity with the corresponding chemical processes. Building an information system for a hospital requires extensive understanding of the institutional, informational, and workflow processes in the hospital context. Much of advanced computational thinking is context-specific and tightly tied to the application domain.
 
-Lesson 5: CT has changed the tools, methods, and epistemology of science.
+### Lesson 5: CT has changed the tools, methods, and epistemology of science
 
 Computational thinking has fostered a revolution in science. Scientists in all fields have found that CT is a new method of doing science, different from the classic methods of theory and experiment. They came to this discovery in the 1980s when they began using supercomputers to crack scientific「grand challenges.」This was a profound paradigm shift that enabled many new scientific discoveries. Each field developed its own strain of CT that was not imported from computer science. Computer science CT has been enriched by its collaboration with the computational sciences.
 
-Lesson 6: The public face of CT is that of elementary CT.
+### Lesson 6: The public face of CT is that of elementary CT
 
 CT is billed for K–12 curriculum purposes as a set of concepts and rules for programming. But many professionals see CT as a design skill, and many natural scientists see it as an advanced method of scientific interpretation. Like all skills, you can be a beginner, advanced beginner, competent, proficient, expert, or master. Many debates about what CT「really」is seem to collapse different skill levels of CT within the same debate. For example, K–12 teachers argue for curricula that are almost solely aimed at beginners and that contain a small, teachable set of CT insights, practices, and skills. Other advocates argue for CT as advanced, professional skills that require many years of practice and experience. Failing to make the distinction leads to conflicts—for example, the hype about how learning programming opens career paths is silent about what professional computational designers do. Education efforts are important on all levels from K–12 through university and beyond.
 
-Lesson 7: Beginner and professional CT together comprise a rich tapestry of computational thought.
+### Lesson 7: Beginner and professional CT together comprise a rich tapestry of computational thought
 
 Educators in K–12 schools have developed an impressive「CT for beginners」—insights and methods for teaching computing to newcomers. Professional software systems designers and scientists have developed an impressive「CT for professionals」—advanced methods for designing and building complex software that works reliably and safely, and for conducting scientific investigations. The synergy between these two aspects of computational thinking has propelled the computer revolution.
 
-Lesson 8: Change is an inseparable part of CT.
+### Lesson 8: Change is an inseparable part of CT
 
 There has never been a consensus about what computational thinking「really」is. There may never be a full consensus. During every decade in the modern history of computing there would be different answers to questions about the essence of computational thinking. Advances in computing keep computational thinking in constant change. We should embrace the lack of a fixed definition as a sign of the vitality of the field rather than our own failure to understand an eternal truth.
 
-Glossary
+## Glossary
 
 Abstraction
 
@@ -102,7 +102,7 @@ Breaking a complex thing down to simpler, smaller parts that are easier to manag
 
 Digitization
 
-The work of constructing a binary coded representation of an entity. The representation could be processed by a computer. For example, the wave form of speech can be sampled 20,000 times a second, each sample producing a reading of the wave’s amplitude and encoding it as a 16-bit value. The digitized speech can then be stored and processed on a computer.
+The work of constructing a binary coded representation of an entity. The representation could be processed by a computer. For example, the wave form of speech can be sampled 20,000 times a second, each sample producing a reading of the wave's amplitude and encoding it as a 16-bit value. The digitized speech can then be stored and processed on a computer.
 
 DRUSS objectives
 
@@ -288,7 +288,7 @@ Chapter 9
 
 2. McGeoch (2014).
 
-3. See Walter Tichy’s interview with Catherine McGeoch, Ubiquity July 2017, for a worked example of an Ising equation and its encoding into a form for the D-wave machine to solve, https://ubiquity.acm.org/article.cfm?id=3084688.
+3. See Walter Tichy's interview with Catherine McGeoch, Ubiquity July 2017, for a worked example of an Ising equation and its encoding into a form for the D-wave machine to solve, https://ubiquity.acm.org/article.cfm?id=3084688.
 
 4. Adleman (1994).
 
@@ -364,7 +364,7 @@ Ensmenger, Nathan L. (2010). The Computer Boys Take Over: Computers, Programmers
 
 Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. (1994). Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley.
 
-Koen, Billy V. (2003). Discussion of the Method: Conducting the Engineer’s Approach to Problem Solving. Oxford University Press.
+Koen, Billy V. (2003). Discussion of the Method: Conducting the Engineer's Approach to Problem Solving. Oxford University Press.
 
 Lampson, Butler. (1983). Hints for computer system design. Proc. ACM Symposium on Operating Systems Principles, 33–48.
 
@@ -374,7 +374,7 @@ Mitcham, Carl. (1994). Thinking Through Technology: The Path Between Engineering
 
 Saltzer, Jerome H., and Michael D. Schroeder. (1975). Protection of information computer systems. Proceedings of the IEEE 63 (9) (September): 1278–1308.
 
-Stokes, Donald E. (1997). Pasteur’s Quadrant—Basic Science and Technological Innovation. Brookings Institution Press.
+Stokes, Donald E. (1997). Pasteur's Quadrant—Basic Science and Technological Innovation. Brookings Institution Press.
 
 Wirth, Niklaus. (2008). A brief history of software engineering. IEEE Annals of the History of Computing, 30 (3): 32–39.
 
@@ -384,9 +384,9 @@ Brooks, Frederick P. Jr. (1975). The Mythical Man-Month. (20th anniversary editi
 
 Denning, Peter. (2016). Software quality. Communications of ACM 59 (9) (September): 23–25.
 
-Forsythe, George E. (1966). A University’s Educational Program in Computer Science. Technical Report No. CS39, May 18, 1966. Stanford University: Computer Science Department, School of Humanities and Sciences.
+Forsythe, George E. (1966). A University's Educational Program in Computer Science. Technical Report No. CS39, May 18, 1966. Stanford University: Computer Science Department, School of Humanities and Sciences.
 
-Grudin, Jonathan. (1990). The computer reaches out: The historical continuity of interface design. In CHI ’90: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, 261–268. ACM.
+Grudin, Jonathan. (1990). The computer reaches out: The historical continuity of interface design. In CHI '90: Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, 261–268. ACM.
 
 Landwehr, Carl, et al. 2017. Software Systems Engineering Programmes: A Capability Approach. Journal of Systems and Software 125: 354–364.
 
@@ -418,7 +418,7 @@ Chapter 8
 
 Abelson, Harold, and Gerald J. Sussman. (1996). Structure and Interpretation of Computer Programs. 2nd edition. MIT Press.
 
-Bolter, J. David. (1984). Turing’s Man: Western Culture in the Computer Age. University of North Carolina Press.
+Bolter, J. David. (1984). Turing's Man: Western Culture in the Computer Age. University of North Carolina Press.
 
 Denning, Peter. (2017). Remaining trouble spots with computational thinking. Communications of the ACM 60 (6) (June): 33–39.
 
@@ -752,7 +752,7 @@ Dijkstra, Edsger, 83
 
 DNA computing, 195, 196
 
-Doctor’s waiting room, 166–167
+Doctor's waiting room, 166–167
 
 Domain dependence, 8
 
@@ -788,7 +788,7 @@ representation, 32
 
 round off, 32
 
-Euclid’s algorithm, 24
+Euclid's algorithm, 24
 
 Explainability, 172
 
@@ -972,7 +972,7 @@ Modularity, 118
 
 Moore School, 53, 76, 153
 
-Moore’s law, 65, 150, 154, 194, 195, 203, 204
+Moore's law, 65, 150, 154, 194, 195, 203, 204
 
 Musa al Khwarizmi, Muhammad ibn, 11
 
@@ -1293,4 +1293,3 @@ Waves, Frederic Raichlen
 Peter J. Denning is Distinguished Professor of Computer Science, Chair of Computer Science Department, Naval Postgraduate School, Monterey, CA.
 
 Matti Tedre is Professor of Computer Science, University of Eastern Finland.
-
