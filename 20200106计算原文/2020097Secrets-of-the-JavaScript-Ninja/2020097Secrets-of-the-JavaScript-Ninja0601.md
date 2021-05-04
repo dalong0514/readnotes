@@ -4,17 +4,17 @@
 
 1 Generators are functions that generate sequences of values — not all at once, but on a per request basis.
 
-1 Unlike standard functions, generators can suspend and resume their execution. After a generator has generated a value, it suspends its execution without blocking the main thread and patiently waits for the next request.
+2 Unlike standard functions, generators can suspend and resume their execution. After a generator has generated a value, it suspends its execution without blocking the main thread and patiently waits for the next request.
 
-2 A generator is declared by putting an asterisk (`*`) after the function keyword. Within the body of the generator, we can use the new yield keyword that yields a value and suspends the execution of the generator. If we want to yield to another generator, we use the `yield*` operator.
+3 A generator is declared by putting an asterisk (`*`) after the function keyword. Within the body of the generator, we can use the new yield keyword that yields a value and suspends the execution of the generator. If we want to yield to another generator, we use the `yield*` operator.
 
-3 Calling a generator creates an iterator object through which we control the execution of the generator. We request new values from the generator by using the iterator’s next method, and we can even throw exceptions into the generator by calling the iterator’s throw method. In addition, the next method can be used to send in values to the generator.
+4 Calling a generator creates an iterator object through which we control the execution of the generator. We request new values from the generator by using the iterator's next method, and we can even throw exceptions into the generator by calling the iterator's throw method. In addition, the next method can be used to send in values to the generator.
 
-4 A promise is a placeholder for the results of a computation; it’s a guarantee that eventually we’ll know the result of the computation, most often an asynchronous computation. A promise can either succeed or fail, and after it has done so, there will be no more changes.
+5 A promise is a placeholder for the results of a computation; it's a guarantee that eventually we'll know the result of the computation, most often an asynchronous computation. A promise can either succeed or fail, and after it has done so, there will be no more changes.
 
-5 Promises significantly simplify our dealings with asynchronous tasks. We can easily work with sequences of interdependent asynchronous steps by using the then method to chain promises. Parallel handling of multiple asynchronous steps is also greatly simplified; we use the Promise.all method.
+6 Promises significantly simplify our dealings with asynchronous tasks. We can easily work with sequences of interdependent asynchronous steps by using the then method to chain promises. Parallel handling of multiple asynchronous steps is also greatly simplified; we use the Promise.all method.
 
-6 We can combine generators and promises to deal with asynchronous tasks with the simplicity of synchronous code.
+7 We can combine generators and promises to deal with asynchronous tasks with the simplicity of synchronous code.
 
 1、生成器是一种不会在同时输出所有值序列的函数，而是基于每次的请求生成值。
 
@@ -34,17 +34,17 @@
 
 This chapter covers: 1) Continuing function execution with generators. 2) Handling asynchronous tasks with promises. 3) Achieving elegant asynchronous code by combining generators and promises.
 
-In the previous three chapters, we focused on functions, specifically on how to define functions and how to use them to great effect. Although we’ve introduced some ES6 features, such as arrow functions and block scopes, we’ve mostly been exploring features that have been part of JavaScript for quite some time. This chapter tackles the cutting edge of ES6 by presenting generators and promises, two completely new JavaScript features. Generators and promises are both introduced by ES6. You can check out current browser support at http://mng.bz/sOs4 and [[ECMAScript 6 compatibility table](http://kangax.github.io/compat-table/es6/#test-Promise)].
+In the previous three chapters, we focused on functions, specifically on how to define functions and how to use them to great effect. Although we've introduced some ES6 features, such as arrow functions and block scopes, we've mostly been exploring features that have been part of JavaScript for quite some time. This chapter tackles the cutting edge of ES6 by presenting generators and promises, two completely new JavaScript features. Generators and promises are both introduced by ES6. You can check out current browser support at http://mng.bz/sOs4 and [[ECMAScript 6 compatibility table](http://kangax.github.io/compat-table/es6/#test-Promise)].
 
 1『作者在 6.3.4 小结里讲解了如何用 promise 对象实现从后端请求数据，值得反复研究。』
 
 Generators are a special type of function. Whereas a standard function produces at most a single value while running its code from start to finish, generators produce multiple values, on a per request basis, while suspending their execution between these requests. Although new in JavaScript, generators have existed for quite some time in Python, PHP, and C#.
 
-Generators are often considered an almost weird or fringe language feature not often used by the average programmer. Though most of this chapter’s examples are designed to teach you how generator functions work, we’ll also explore some practical aspects of generators. You’ll see how to use generators to simplify convoluted loops and how to take advantage of generators’ capability to suspend and resume their execution, which can help you write simpler and more elegant asynchronous code.
+Generators are often considered an almost weird or fringe language feature not often used by the average programmer. Though most of this chapter's examples are designed to teach you how generator functions work, we'll also explore some practical aspects of generators. You'll see how to use generators to simplify convoluted loops and how to take advantage of generators' capability to suspend and resume their execution, which can help you write simpler and more elegant asynchronous code.
 
-Promises, on the other hand, are a new, built-in type of object that help you work with asynchronous code. A promise is a placeholder for a value that we don’t have yet but will at some later point. They’re especially good for working with multiple asynchronous steps.
+Promises, on the other hand, are a new, built-in type of object that help you work with asynchronous code. A promise is a placeholder for a value that we don't have yet but will at some later point. They're especially good for working with multiple asynchronous steps.
 
-In this chapter, you’ll see how both generators and promises work, and we’ll finish off by exploring how to combine them to greatly simplify our dealings with asynchronous code. But before going into the specifics, let’s take a sneak peek into how much more elegant our asynchronous code can be.
+In this chapter, you'll see how both generators and promises work, and we'll finish off by exploring how to combine them to greatly simplify our dealings with asynchronous code. But before going into the specifics, let's take a sneak peek into how much more elegant our asynchronous code can be.
 
 What are some common uses for a generator function? Why are promises better than simple callbacks for asyn-chronous code? Do you know?
 
@@ -64,7 +64,7 @@ You start a number of long-running tasks with Promise .race. When does the promi
 
 ## 6.1 Making our async code elegant with generators and promises
 
-Imagine that you’re a developer working at freelanceninja.com, a popular freelance ninja recruitment site enabling customers to hire ninjas for stealth missions. Your task is to implement a functionality that lets users get details about the highest-rated mission done by the most popular ninja. The data representing the ninjas, the summaries of their missions, as well as the details of the missions are stored on a remote server, encoded in JSON. You might write something like this:
+Imagine that you're a developer working at freelanceninja.com, a popular freelance ninja recruitment site enabling customers to hire ninjas for stealth missions. Your task is to implement a functionality that lets users get details about the highest-rated mission done by the most popular ninja. The data representing the ninjas, the summaries of their missions, as well as the details of the missions are stored on a remote server, encoded in JSON. You might write something like this:
 
 ```js
 try { 
@@ -79,7 +79,7 @@ catch(e){
 }
 ```
 
-This code is relatively easy to understand, and if an error occurs in any of the steps, we can easily catch it in the catch block. But unfortunately, this code has a big problem. Getting data from a server is a long-running operation, and because JavaScript relies on a single-threaded execution model, we’ve just blocked our UI until the long-running operations finish. This leads to unresponsive applications and disappointed users. To solve this problem, we can rewrite it with callbacks, which will be invoked when a task finishes, without blocking the UI:
+This code is relatively easy to understand, and if an error occurs in any of the steps, we can easily catch it in the catch block. But unfortunately, this code has a big problem. Getting data from a server is a long-running operation, and because JavaScript relies on a single-threaded execution model, we've just blocked our UI until the long-running operations finish. This leads to unresponsive applications and disappointed users. To solve this problem, we can rewrite it with callbacks, which will be invoked when a task finishes, without blocking the UI:
 
 ```js
 getJSON("ninjas.json", function(err, ninjas) { 
@@ -102,7 +102,7 @@ getJSON("ninjas.json", function(err, ninjas) {
 });
 ```
 
-Although this code will be much better received by our users, you’ll probably agree that it’s messy, it adds a lot of boilerplate error-handling code, and it’s plain ugly. This is where generators and promises jump in. By combining them, we can turn the nonblocking but awkward callback code into something much more elegant:
+Although this code will be much better received by our users, you'll probably agree that it's messy, it adds a lot of boilerplate error-handling code, and it's plain ugly. This is where generators and promises jump in. By combining them, we can turn the nonblocking but awkward callback code into something much more elegant:
 
 ```js
 async(function*() { 
@@ -122,9 +122,9 @@ A generator function is defined by putting an asterisk right after the function 
 
 The promises are hidden within the getJSON method.
 
-Don’t worry if this example doesn’t make much sense or if you find some of the syntax (such as function* or yield) unfamiliar. By the end of this chapter, you’ll meet all the necessary ingredients. For now, it’s enough that you compare the elegance (or the lack thereof) of the nonblocking callback code and the nonblocking generators and promises code.
+Don't worry if this example doesn't make much sense or if you find some of the syntax (such as function* or yield) unfamiliar. By the end of this chapter, you'll meet all the necessary ingredients. For now, it's enough that you compare the elegance (or the lack thereof) of the nonblocking callback code and the nonblocking generators and promises code.
 
-Let’s start slowly by exploring generator functions, the first stepping stone toward elegant asynchronous code.
+Let's start slowly by exploring generator functions, the first stepping stone toward elegant asynchronous code.
 
 6.1 使用生成器和 promise 编写优雅的异步代码
 
@@ -138,7 +138,7 @@ Let’s start slowly by exploring generator functions, the first stepping stone 
 
 ## 6.2 Working with generator functions
 
-Generators are a completely new type of function and are significantly different from standard, run-of-the-mill functions. A generator is a function that generates a sequence of values, but not all at once, as a standard function would, but on a per request basis. We have to explicitly ask the generator for a new value, and the generator will either respond with a value or notify us that it has no more values to produce. What’s even more curious is that after a value is produced, a generator function doesn’t end its execution, as a normal function would. Instead, a generator is merely suspended. Then, when a request for another value comes along, the generator resumes where it left off.
+Generators are a completely new type of function and are significantly different from standard, run-of-the-mill functions. A generator is a function that generates a sequence of values, but not all at once, as a standard function would, but on a per request basis. We have to explicitly ask the generator for a new value, and the generator will either respond with a value or notify us that it has no more values to produce. What's even more curious is that after a value is produced, a generator function doesn't end its execution, as a normal function would. Instead, a generator is merely suspended. Then, when a request for another value comes along, the generator resumes where it left off.
 
 The following listing provides a simple example of using a generator to generate a sequence of weapons.
 
@@ -166,11 +166,11 @@ for(let weapon of WeaponGenerator()) {
 }
 ```
 
-The result of invoking this for-of loop is shown in figure 6.2. (For now, don’t worry much about the for-of loop, as we’ll explore it later.)
+The result of invoking this for-of loop is shown in figure 6.2. (For now, don't worry much about the for-of loop, as we'll explore it later.)
 
-On the right side of the for-of loop, we’ve placed the result of invoking our generator. But if you take a closer look at the body of the WeaponGenerator function, you’ll see that there’s no return statement. What’s up with that? In this case, shouldn’t the right side of the for-of loop evaluate to undefined, as would be the case if we were dealing with a standard function?
+On the right side of the for-of loop, we've placed the result of invoking our generator. But if you take a closer look at the body of the WeaponGenerator function, you'll see that there's no return statement. What's up with that? In this case, shouldn't the right side of the for-of loop evaluate to undefined, as would be the case if we were dealing with a standard function?
 
-The truth is that generators are quite unlike standard functions. For starters, calling a generator doesn’t execute the generator function; instead it creates an object called an iterator. Let’s explore that object.
+The truth is that generators are quite unlike standard functions. For starters, calling a generator doesn't execute the generator function; instead it creates an object called an iterator. Let's explore that object.
 
 1『
 
@@ -226,7 +226,7 @@ for-of 循环的执行结果如图 6.2 所示（现在不必太关心 for-of 循
 
 ### 6.2.1 Controlling the generator through the iterator object
 
-Making a call to a generator doesn’t mean that the body of the generator function will be executed. Instead, an iterator object is created, an object through which we can communicate with the generator. For example, we can use the iterator to request additional values. Let’s adjust our previous example to explore how the iterator object works.
+Making a call to a generator doesn't mean that the body of the generator function will be executed. Instead, an iterator object is created, an object through which we can communicate with the generator. For example, we can use the iterator to request additional values. Let's adjust our previous example to explore how the iterator object works.
 
 ```js
   const WeaponGenerator = function* () { 
@@ -263,11 +263,11 @@ const result1 = weaponsIterator.next();
 
 As a response to that call, the generator executes its code until it reaches a yield keyword that produces an intermediary result (one item in the generated sequence of items), and returns a new object that encapsulates that result and tells us whether its work is done.
 
-As soon as the current value is produced, the generator suspends its execution without blocking and patiently waits for another value request. This is an incredibly powerful feature that standard functions don’t have, a feature that we’ll use later to great effect.
+As soon as the current value is produced, the generator suspends its execution without blocking and patiently waits for another value request. This is an incredibly powerful feature that standard functions don't have, a feature that we'll use later to great effect.
 
-In this case, the first call to the iterator’s next method executes the generator code to the first yield expression, yield "Katana", and returns an object with the property value set to Katana and the property done set to false, signaling that there are more values to produce.
+In this case, the first call to the iterator's next method executes the generator code to the first yield expression, yield "Katana", and returns an object with the property value set to Katana and the property done set to false, signaling that there are more values to produce.
 
-Later, we request another value from the generator, by making another call to the weaponIterator’s next method:
+Later, we request another value from the generator, by making another call to the weaponIterator's next method:
 
 ```js
 const result2 = weaponsIterator.next();
@@ -275,15 +275,15 @@ const result2 = weaponsIterator.next();
 
 This wakes up the generator from suspension, and the generator continues where it left off, executing its code until another intermediary value is reached: yield "Wakizashi". This suspends the generator and produces an object carrying Wakizashi.
 
-Finally, when we call the next method for the third time, the generator resumes its execution. But this time there’s no more code to execute, so the generator returns an object with value set to undefined, and done set to true, signaling that it’s done with its work.
+Finally, when we call the next method for the third time, the generator resumes its execution. But this time there's no more code to execute, so the generator returns an object with value set to undefined, and done set to true, signaling that it's done with its work.
 
-Now that you’ve seen how to control generators through iterators, you’re ready to learn how to iterate over the produced values.
+Now that you've seen how to control generators through iterators, you're ready to learn how to iterate over the produced values.
 
 ITERATING THE ITERATOR
 
 The iterator, created by calling a generator, exposes a next method through which we can request a new value from the generator. The next method returns an object that carries the value produced by the generator, as well as the information stored in the done property that tells us whether the generator has additional values to produce.
 
-Now we’ll take advantage of these facts to use a plain old while loop to iterate over values produced by a generator. See the following listing.
+Now we'll take advantage of these facts to use a plain old while loop to iterate over values produced by a generator. See the following listing.
 
 Listing 6.3 Iterating over generator results with a while loop
 
@@ -313,7 +313,7 @@ function* WeaponGenerator() {
 const codeFun = () => {
   // Creates an iterator
   const weaponsIterator = WeaponGenerator() 
-  // Creates a variable in which we’ll store items of the generated sequence
+  // Creates a variable in which we'll store items of the generated sequence
   let item 
   // On each loop iteration, fetches one value from the generator and outputs its value. 
   // Stops iterating when the generator has no more values to produce.
@@ -334,7 +334,7 @@ Here we again create an iterator object by calling a generator function:
 const weaponsIterator = WeaponGenerator();
 ```
 
-We also create an item variable in which we’ll store individual values produced by the generator. We continue by specifying a while loop with a slightly complicated looping condition, which we’ll break down a bit:
+We also create an item variable in which we'll store individual values produced by the generator. We continue by specifying a while loop with a slightly complicated looping condition, which we'll break down a bit:
 
 ```js
 while(!(item = weaponsIterator.next()).done) { 
@@ -342,9 +342,9 @@ while(!(item = weaponsIterator.next()).done) {
 }
 ```
 
-On each loop iteration, we fetch a value from the generator by calling the next method of our weaponsIterator, and we store that value in the item variable. Like all such objects, the object referenced by the item variable has a value property that stores the value returned from the generator, and a done property that signals whether the generator is finished producing values. If the generator isn’t done with its work, we go into another iteration of the loop; and if it is, we stop looping.
+On each loop iteration, we fetch a value from the generator by calling the next method of our weaponsIterator, and we store that value in the item variable. Like all such objects, the object referenced by the item variable has a value property that stores the value returned from the generator, and a done property that signals whether the generator is finished producing values. If the generator isn't done with its work, we go into another iteration of the loop; and if it is, we stop looping.
 
-And that’s how the for-of loop, from our first generator example, works. The for-of loop is syntactic sugar for iterating over iterators:
+And that's how the for-of loop, from our first generator example, works. The for-of loop is syntactic sugar for iterating over iterators:
 
 ```js
 for(var item of WeaponGenerator()){ 
@@ -352,13 +352,13 @@ for(var item of WeaponGenerator()){
 }
 ```
 
-Instead of manually calling the next method of the matching iterator and always checking whether we’re finished, we can use the for-of loop to do the exact same thing, only behind the scenes.
+Instead of manually calling the next method of the matching iterator and always checking whether we're finished, we can use the for-of loop to do the exact same thing, only behind the scenes.
 
 1-2『第一次知道 JS 中 for 循环只是迭代器的语法糖。冲击相当大啊，做一张反常识卡片。（2021-05-03）』—— 已完成
 
 YIELDING TO ANOTHER GENERATOR
 
-Just as we often call one standard function from another standard function, in certain cases we want to be able to delegate the execution of one generator to another. Let’s take a look at an example that generates both warriors and ninjas.
+Just as we often call one standard function from another standard function, in certain cases we want to be able to delegate the execution of one generator to another. Let's take a look at an example that generates both warriors and ninjas.
 
 Listing 6.4 Using `yield*` to delegate to another generator
 
@@ -367,11 +367,11 @@ Listing 6.4 Using `yield*` to delegate to another generator
 
 
 
-If you run this code, you’ll see that the output is Sun Tzu, Hattori, Yoshi, Genghis Khan. Generating Sun Tzu probably doesn’t catch you off guard; it’s the first value yielded by the WarriorGenerator. But the second output, Hattori, deserves an explanation.
+If you run this code, you'll see that the output is Sun Tzu, Hattori, Yoshi, Genghis Khan. Generating Sun Tzu probably doesn't catch you off guard; it's the first value yielded by the WarriorGenerator. But the second output, Hattori, deserves an explanation.
 
-By using the yield* operator on an iterator, we yield to another generator. In this example, from a WarriorGenerator we’re yielding to a new NinjaGenerator; all calls to the current WarriorGenerator iterator’s next method are rerouted to the NinjaGenerator. This holds until the NinjaGenerator has no work left to do. So in our example, after Sun Tzu, the program generates Hattori and Yoshi. Only when the NinjaGenerator is done with its work will the execution of the original iterator continue by outputting Genghis Khan. Notice that this is happening transparently to the code that calls the original generator. The for-of loop doesn’t care that the WarriorGenerator yields to another generator; it keeps calling next until it’s done.
+By using the yield* operator on an iterator, we yield to another generator. In this example, from a WarriorGenerator we're yielding to a new NinjaGenerator; all calls to the current WarriorGenerator iterator's next method are rerouted to the NinjaGenerator. This holds until the NinjaGenerator has no work left to do. So in our example, after Sun Tzu, the program generates Hattori and Yoshi. Only when the NinjaGenerator is done with its work will the execution of the original iterator continue by outputting Genghis Khan. Notice that this is happening transparently to the code that calls the original generator. The for-of loop doesn't care that the WarriorGenerator yields to another generator; it keeps calling next until it's done.
 
-Now that you have a grasp of how generators work in general and how delegating to another generator works, let’s look at a couple of practical examples.
+Now that you have a grasp of how generators work in general and how delegating to another generator works, let's look at a couple of practical examples.
 
 6.2.1 通过迭代器对象控制生成器
 
@@ -407,15 +407,15 @@ next 函数调用后，生成器就开始执行代码，当代码执行到 yield
 
 ### 6.2.2 Using generators
 
-Generating sequences of items is all nice and dandy, but let’s get more practical, starting with a simple case of generating unique IDs.
+Generating sequences of items is all nice and dandy, but let's get more practical, starting with a simple case of generating unique IDs.
 
 USING GENERATORS TO GENERATE IDS
 
-When creating certain objects, often we need to assign a unique ID to each object. The easiest way to do this is through a global counter variable, but that’s kind of ugly because the variable can be accidently messed up from anywhere in our code. Another option is to use a generator, as shown in the following listing.
+When creating certain objects, often we need to assign a unique ID to each object. The easiest way to do this is through a global counter variable, but that's kind of ugly because the variable can be accidently messed up from anywhere in our code. Another option is to use a generator, as shown in the following listing.
 
 Listing 6.5 Using generators for generating IDs
 
-This example starts with a generator that has one local variable, id, which represents our ID counter. The id variable is local to our generator; there’s no fear that someone will accidently modify it from somewhere else in the code. This is followed by an infinite while loop, which at each iteration yields a new id value and suspends its execution until a request for another ID comes along:
+This example starts with a generator that has one local variable, id, which represents our ID counter. The id variable is local to our generator; there's no fear that someone will accidently modify it from somewhere else in the code. This is followed by an infinite while loop, which at each iteration yields a new id value and suspends its execution until a request for another ID comes along:
 
 function *IdGenerator(){
 
@@ -425,7 +425,7 @@ while(true){ yield ++id; }
 
 }
 
-Writing infinite loops isn’t something that we generally want to do in a standard function. But with generators, everything is fine! Whenever the generator encounters a yield statement, the generator execution is suspended until the next method is called again. So every next call executes only one iteration of our infinite while loop and sends back the next ID value.
+Writing infinite loops isn't something that we generally want to do in a standard function. But with generators, everything is fine! Whenever the generator encounters a yield statement, the generator execution is suspended until the next method is called again. So every next call executes only one iteration of our infinite while loop and sends back the next ID value.
 
 NOTE
 
@@ -447,21 +447,21 @@ Listing 6.6 Recursive DOM traversal
 
 In this example, we use a recursive function to traverse all descendants of the element with the id subtree, in the process logging each type of node that we visit. In this case, the code outputs DIV, FORM, INPUT, P, and SPAN.
 
-We’ve been writing such DOM traversal code for a while now, and it has served us perfectly fine. But now that we have generators at our disposal, we can do it differently; see the following code.
+We've been writing such DOM traversal code for a while now, and it has served us perfectly fine. But now that we have generators at our disposal, we can do it differently; see the following code.
 
 Listing 6.7 Iterating over a DOM tree with generators
 
-This listing shows that we can achieve DOM traversals with generators, just as easily as with standard recursion, but with the aditional benefit of not having to use the slightly awkward syntax of callbacks. Instead of processing the subtree of each visited node by recursing another level, we create one generator function for each visited node and yield to it. This enables us to write what’s conceptually recursive code in iterable fashion. The benefit is that we can consume the generated sequence of nodes with a simple for-of loop, without resorting to nasty callbacks.
+This listing shows that we can achieve DOM traversals with generators, just as easily as with standard recursion, but with the aditional benefit of not having to use the slightly awkward syntax of callbacks. Instead of processing the subtree of each visited node by recursing another level, we create one generator function for each visited node and yield to it. This enables us to write what's conceptually recursive code in iterable fashion. The benefit is that we can consume the generated sequence of nodes with a simple for-of loop, without resorting to nasty callbacks.
 
-This example is a particulary good one, because it also shows how to use generators in order to separate the code that’s producing values (in this case, HTML nodes) from the code that’s consuming the sequence of generated values (in this case, the for-of loop that logs the visited nodes), without having to resort to callbacks. In addition, using iterations is, in certain cases, much more natural than recursion, so it’s always good to have our options open.
+This example is a particulary good one, because it also shows how to use generators in order to separate the code that's producing values (in this case, HTML nodes) from the code that's consuming the sequence of generated values (in this case, the for-of loop that logs the visited nodes), without having to resort to callbacks. In addition, using iterations is, in certain cases, much more natural than recursion, so it's always good to have our options open.
 
-Now that we’ve explored some practical aspects of generators, let’s go back to a slighty more theoretical topic and see how to exchange data with a running generator.
+Now that we've explored some practical aspects of generators, let's go back to a slighty more theoretical topic and see how to exchange data with a running generator.
 
 
 
 ### 6.2.3 Communicating with a generator
 
-In the examples presented so far, you’ve seen how to return multiple values from a generator by using yield expressions. But generators are even more powerful than that! We can also send data to a generator, thereby achieving two-way communication! With a generator, we can produce an intermediary result, use that result to calculate something else from outside the generator, and then, whenever we’re ready, send completely new data back to the generator and resume its execution. We’ll use this feature to great effect at the end of the chapter to deal with asynchronous code, but for now, let’s keep it simple.
+In the examples presented so far, you've seen how to return multiple values from a generator by using yield expressions. But generators are even more powerful than that! We can also send data to a generator, thereby achieving two-way communication! With a generator, we can produce an intermediary result, use that result to calculate something else from outside the generator, and then, whenever we're ready, send completely new data back to the generator and resume its execution. We'll use this feature to great effect at the end of the chapter to deal with asynchronous code, but for now, let's keep it simple.
 
 SENDING VALUES AS GENERATOR FUNCTION ARGUMENTS
 
@@ -477,27 +477,27 @@ USING THE NEXT METHOD TO SEND VALUES INTO A GENERATOR
 
 In addition to providing data when first invoking the generator, we can send data into a generator by passing arguments to the next method. In the process, we wake up the generator from suspension and resume its execution. This passed-in value is used by the generator as the value of the whole yield expression, in which the generator was currently suspended, as shown in figure 6.3.
 
-In this example, we have two calls to the ninjaIterator’s next method. The first call, ninjaIterator.next(), requests the first value from the generator. Because our generator hasn’t started executing, this call starts the generator, which calculates the value of the expression "Hattori " + action, yields the Hattori skulk value, and suspends the generator’s execution. There’s nothing special about this; we’ve done something similar multiple times throughout this chapter.
+In this example, we have two calls to the ninjaIterator's next method. The first call, ninjaIterator.next(), requests the first value from the generator. Because our generator hasn't started executing, this call starts the generator, which calculates the value of the expression "Hattori " + action, yields the Hattori skulk value, and suspends the generator's execution. There's nothing special about this; we've done something similar multiple times throughout this chapter.
 
 Figure 6.3 The first call to ninjaIterator.next() requests a new value from the generator, which returns Hattori skulk and suspends the execution of the generator at the yield expression. The second call to ninjaIterator.next("Hanzo") requests a new value, but also sends the argument Hanzo into the generator. This value will be used as the value of the whole yield expression, and the variable imposter will now carry the value Hanzo.
 
-The interesting thing happens on the second call to the ninjaIterator’s next method: ninjaIterator.next("Hanzo"). This time, we’re using the next method to pass data back to the generator. Our generator function is patiently waiting, suspended at the expression yield ("Hattori " + action), so the value Hanzo, passed as the argument to next(), is used as the value of the whole yield expression. In our case, this means that the variable imposter in imposter = yield ("Hattori " + action) will end up with the value Hanzo.
+The interesting thing happens on the second call to the ninjaIterator's next method: ninjaIterator.next("Hanzo"). This time, we're using the next method to pass data back to the generator. Our generator function is patiently waiting, suspended at the expression yield ("Hattori " + action), so the value Hanzo, passed as the argument to next(), is used as the value of the whole yield expression. In our case, this means that the variable imposter in imposter = yield ("Hattori " + action) will end up with the value Hanzo.
 
-That’s how we achieve two-way communication with a generator. We use yield to return data from a generator, and the iterator’s next() method to pass data back to the generator.
+That's how we achieve two-way communication with a generator. We use yield to return data from a generator, and the iterator's next() method to pass data back to the generator.
 
-The next method supplies the value to the waiting yield expression, so if there’s no yield expression waiting, there’s nothing to supply the value to. For this reason, we can’t supply values over the first call to the next method. But remember, if you need to supply an initial value to the generator, you can do so when calling the generator itself, as we did with NinjaGenerator("skulk").
+The next method supplies the value to the waiting yield expression, so if there's no yield expression waiting, there's nothing to supply the value to. For this reason, we can't supply values over the first call to the next method. But remember, if you need to supply an initial value to the generator, you can do so when calling the generator itself, as we did with NinjaGenerator("skulk").
 
 NOTE
 
 THROWING EXCEPTIONS
 
-There’s another, slightly less orthodox, way to supply a value to a generator: by throwing an exception. Each iterator, in addition to having a next method, has a throw method that we can use to throw an exception back to the generator. Again, let’s look at a simple example.
+There's another, slightly less orthodox, way to supply a value to a generator: by throwing an exception. Each iterator, in addition to having a next method, has a throw method that we can use to throw an exception back to the generator. Again, let's look at a simple example.
 
 Listing 6.9
 
 Throwing exceptions to generators
 
-Listing 6.9 starts similarly to listing 6.8, by specifying a generator called NinjaGenerator. But this time, the body of the generator is slightly different. We’ve surrounded the whole function body code with a try-catch block:
+Listing 6.9 starts similarly to listing 6.8, by specifying a generator called NinjaGenerator. But this time, the body of the generator is slightly different. We've surrounded the whole function body code with a try-catch block:
 
 We then continue by creating an iterator, and getting one value from the generator:
 
@@ -509,19 +509,19 @@ ninjaIterator.throw("Catch this!");
 
 By running this listing, we can see that our exception throwing works as expected, as shown in figure 6.4.
 
-This feature that enables us to throw exceptions back to generators might feel a bit strange at first. Why would we even want to do that? Don’t worry; we won’t keep you in the dark for long. At the end of this chapter, we’ll use this feature to improve asynchronous server-side communication.
+This feature that enables us to throw exceptions back to generators might feel a bit strange at first. Why would we even want to do that? Don't worry; we won't keep you in the dark for long. At the end of this chapter, we'll use this feature to improve asynchronous server-side communication.
 
 Figure 6.4 We can throw exceptions to generators Just be patient a bit longer. from outside a generator.
 
-Now that you’ve seen several aspects of generators, we’re ready to take a look under the hood to see how generators work.
+Now that you've seen several aspects of generators, we're ready to take a look under the hood to see how generators work.
 
 ### 6.2.4 Exploring generators under the hood
 
-So far we know that calling a generator doesn’t execute it. Instead, it creates a new iterator that we can use to request values from the generator. After a generator produces (or yields) a value, it suspends its execution and waits for the next request. So in a way, a generator works almost like a small program, a state machine that moves between states:
+So far we know that calling a generator doesn't execute it. Instead, it creates a new iterator that we can use to request values from the generator. After a generator produces (or yields) a value, it suspends its execution and waits for the next request. So in a way, a generator works almost like a small program, a state machine that moves between states:
 
-■ Suspended start — When the generator is created, it starts in this state. None of the generator’s code is executed.
+■ Suspended start — When the generator is created, it starts in this state. None of the generator's code is executed.
 
-■ Executing — The state in which the code of the generator is executed. The execution continues either from the beginning or from where the generator was last suspended. A generator moves to this state when the matching iterator’s next method is called, and there exists code to be executed.
+■ Executing — The state in which the code of the generator is executed. The execution continues either from the beginning or from where the generator was last suspended. A generator moves to this state when the matching iterator's next method is called, and there exists code to be executed.
 
 ■ Suspended yield — During execution, when a generator reaches a yield expression, it creates a new object carrying the return value, yields it, and suspends its execution. This is the state in which the generator is paused and is waiting to continue its execution.
 
@@ -529,7 +529,7 @@ So far we know that calling a generator doesn’t execute it. Instead, it create
 
 Figure 6.5 illustrates these states.
 
-Now let’s supplement this on an even deeper level, by seeing how the execution of generators is tracked with execution contexts.
+Now let's supplement this on an even deeper level, by seeing how the execution of generators is tracked with execution contexts.
 
 const ninjaIterator = NinjaGenerator(); Create a new generator in the Suspended start state.
 
@@ -539,11 +539,11 @@ const result2 = ninjaIterator.next(); Reactivate generator. Move from Suspended 
 
 const result3 = ninjaIterator.next(); Reactivate generator. Move from Suspended yield to Executing. No more code to execute. Move to the Completed state. Return a new object: {value: undefined, done: true}.
 
-Figure 6.5 During execution, a generator moves between states triggered by calls to the matching iterator’s next method.
+Figure 6.5 During execution, a generator moves between states triggered by calls to the matching iterator's next method.
 
 TRACKING GENERATORS WITH EXECUTION CONTEXTS
 
-In the previous chapter, we introduced the execution context, an internal JavaScript mechanism used to track the execution of functions. Although somewhat special, generators are still functions, so let’s take a closer look by exploring the relationship between them and execution contexts. We’ll start with a simple code fragment:
+In the previous chapter, we introduced the execution context, an internal JavaScript mechanism used to track the execution of functions. Although somewhat special, generators are still functions, so let's take a closer look by exploring the relationship between them and execution contexts. We'll start with a simple code fragment:
 
 function* NinjaGenerator(action) { yield "Hattori " + action; return "Yoshi " + action; }
 
@@ -551,15 +551,15 @@ const ninjaIterator = NinjaGenerator("skulk"); const result1 = ninjaIterator.nex
 
 Here we reuse our generator that produces two values: Hattori skulk and Yoshi skulk.
 
-Now, we’ll explore the state of the application, the execution context stack at various points in the application execution. Figure 6.6 gives a snapshot at two positions in the application execution. The first snapshot shows the state of the application execution before calling the NinjaGenerator function B . Because we’re executing global code, the execution context stack contains only the global execution context, which references the global environment in which our identifiers are kept. Only the NinjaGenerator identifier references a function, while the values of all other identifiers are undefined.
+Now, we'll explore the state of the application, the execution context stack at various points in the application execution. Figure 6.6 gives a snapshot at two positions in the application execution. The first snapshot shows the state of the application execution before calling the NinjaGenerator function B . Because we're executing global code, the execution context stack contains only the global execution context, which references the global environment in which our identifiers are kept. Only the NinjaGenerator identifier references a function, while the values of all other identifiers are undefined.
 
 When we make the call to the NinjaGenerator function C
 
 const ninjaIterator = NinjaGenerator("skulk");
 
-the control flow enters the generator and, as it happens when we enter any other function, a new NinjaGenerator execution context item is created (alongside the matching lexical environment) and pushed onto the stack. But because generators are special, none of the function code is executed. Instead, a new iterator, which we’ll refer to in the code as ninjaIterator, is created and returned. Because the iterator is used to control the execution of the generator, the iterator gets a reference to the execution context in which it was created.
+the control flow enters the generator and, as it happens when we enter any other function, a new NinjaGenerator execution context item is created (alongside the matching lexical environment) and pushed onto the stack. But because generators are special, none of the function code is executed. Instead, a new iterator, which we'll refer to in the code as ninjaIterator, is created and returned. Because the iterator is used to control the execution of the generator, the iterator gets a reference to the execution context in which it was created.
 
-An interesting thing happens when the program execution leaves the generator, as shown in figure 6.7. Typically, when program execution returns from a standard function, the matching execution context is popped from the stack and completely discarded. But this isn’t the case with generators.
+An interesting thing happens when the program execution leaves the generator, as shown in figure 6.7. Typically, when program execution returns from a standard function, the matching execution context is popped from the stack and completely discarded. But this isn't the case with generators.
 
 Figure 6.6 The state of the execution context stack before calling the NinjaGenerator calling the NinjaGenerator function
 
@@ -567,7 +567,7 @@ Figure 6.7
 
 The state of the application when returning from the NinjaGenerator call
 
-The matching NinjaGenerator stack item is popped from the stack, but it’s not discarded, because the ninjaIterator keeps a reference to it. You can see it as an analogue to closures. In closures, we need to keep alive the variables that are alive at the moment the function closure is created, so our functions keep a reference to the environment in which they were created. In this way, we make sure that the environment and its variables are alive as long as the function itself. Generators, on the other hand, have to be able to resume their execution. Because the execution of all functions is handled by execution contexts, the iterator keeps a reference to its execution context, so that it’s alive for as long as the iterator needs it.
+The matching NinjaGenerator stack item is popped from the stack, but it's not discarded, because the ninjaIterator keeps a reference to it. You can see it as an analogue to closures. In closures, we need to keep alive the variables that are alive at the moment the function closure is created, so our functions keep a reference to the environment in which they were created. In this way, we make sure that the environment and its variables are alive as long as the function itself. Generators, on the other hand, have to be able to resume their execution. Because the execution of all functions is handled by execution contexts, the iterator keeps a reference to its execution context, so that it's alive for as long as the iterator needs it.
 
 Another interesting thing happens when we call the next method on the iterator:
 
@@ -577,23 +577,23 @@ If this was a standard straightforward function call, this would cause the creat
 
 Figure 6.8 illustrates a crucial difference between standard functions and generators. Standard functions can only be called anew, and each call creates a new execution context. In contrast, the execution context of a generator can be temporarily suspended and resumed at will.
 
-In our example, because this is the first call to the next method, and the generator hasn’t started executing, the generator starts its execution and moves to the Executing state. The next interesting thing happens when our generator function reaches this point:
+In our example, because this is the first call to the next method, and the generator hasn't started executing, the generator starts its execution and moves to the Executing state. The next interesting thing happens when our generator function reaches this point:
 
 yield "Hattori " + action
 
-Figure 6.8 Calling the iterator’s next method reactivates the execution context stack item of the matching generator, pushes it on the stack, and continues where it left off the last time.
+Figure 6.8 Calling the iterator's next method reactivates the execution context stack item of the matching generator, pushes it on the stack, and continues where it left off the last time.
 
-The generator determines that the expression equals Hattori skulk, and the evaluation reaches the yield keyword. This means that Hattori skulk is the first intermediary result of our generator and that we want to suspend the execution of the generator and return that value. In terms of the application state, a similar thing happens as before: the NinjaGenerator context is taken off the stack, but it’s not completely discarded, because ninjaIterator keeps a reference to it. The generator is now suspended, and has moved to the Suspended Yield state, without blocking. The program execution resumes in global code, by storing the yielded value to result1. The current state of the application is shown in figure 6.9.
+The generator determines that the expression equals Hattori skulk, and the evaluation reaches the yield keyword. This means that Hattori skulk is the first intermediary result of our generator and that we want to suspend the execution of the generator and return that value. In terms of the application state, a similar thing happens as before: the NinjaGenerator context is taken off the stack, but it's not completely discarded, because ninjaIterator keeps a reference to it. The generator is now suspended, and has moved to the Suspended Yield state, without blocking. The program execution resumes in global code, by storing the yielded value to result1. The current state of the application is shown in figure 6.9.
 
 The code continues by reaching another iterator call:
 
 const result2 = ninjaIterator.next();
 
-Figure 6.9 After yielding a value, the generator’s execution context is popped from the stack (but isn’t discarded, because ninjaIterator keeps a reference to it), and the generator execution is suspended (the generator moves to the Suspended yield state).
+Figure 6.9 After yielding a value, the generator's execution context is popped from the stack (but isn't discarded, because ninjaIterator keeps a reference to it), and the generator execution is suspended (the generator moves to the Suspended yield state).
 
-At this point, we go through the whole procedure once again: we reactivate the NinjaGenerator context referenced by ninjaIterator, push it onto the stack, and continue the execution where we left off. In this case, the generator evaluates the expression "Yoshi " + action. But this time there’s no yield expression, and instead the program encounters a return statement. This returns the value Yoshi skulk and completes the generator’s execution by moving the generator into the Completed state.
+At this point, we go through the whole procedure once again: we reactivate the NinjaGenerator context referenced by ninjaIterator, push it onto the stack, and continue the execution where we left off. In this case, the generator evaluates the expression "Yoshi " + action. But this time there's no yield expression, and instead the program encounters a return statement. This returns the value Yoshi skulk and completes the generator's execution by moving the generator into the Completed state.
 
-Uff, this was something! We went deep into how generators work under the hood to show you that all the wonderful benefits of generators are a side effect of the fact that a generator’s execution context is kept alive if we yield from a generator, and not destroyed as is the case with return values and standard functions.
+Uff, this was something! We went deep into how generators work under the hood to show you that all the wonderful benefits of generators are a side effect of the fact that a generator's execution context is kept alive if we yield from a generator, and not destroyed as is the case with return values and standard functions.
 
 Now we recommend that you take a quick breather before continuing on to the second key ingredient required for writing elegant asynchronous code: promises.
 
@@ -652,9 +652,9 @@ Now we recommend that you take a quick breather before continuing on to the seco
 
 ## 6.3 Working with promises
 
-In JavaScript, we rely a lot on asynchronous computations, computations whose results we don’t have yet but will at some later point. So ES6 has introduced a new concept that makes handling asynchronous tasks easier: promises.
+In JavaScript, we rely a lot on asynchronous computations, computations whose results we don't have yet but will at some later point. So ES6 has introduced a new concept that makes handling asynchronous tasks easier: promises.
 
-A promise is a placeholder for a value that we don’t have now but will have later; it’s a guarantee that we’ll eventually know the result of an asynchronous computation. If we make good on our promise, our result will be a value. If a problem occurs, our result will be an error, an excuse for why we couldn’t deliver. One great example of using promises is fetching data from a server; we promise that we’ll eventually get the data, but there’s always a chance that problems will occur.
+A promise is a placeholder for a value that we don't have now but will have later; it's a guarantee that we'll eventually know the result of an asynchronous computation. If we make good on our promise, our result will be a value. If a problem occurs, our result will be an error, an excuse for why we couldn't deliver. One great example of using promises is fetching data from a server; we promise that we'll eventually get the data, but there's always a chance that problems will occur.
 
 Creating a new promise is easy, as you can see in the following example.
 
@@ -664,11 +664,11 @@ Creating a simple promise
 
 To create a promise, we use the new, built-in Promise constructor, to which we pass a function, in this case an arrow function (but we could just as easily use a function expression). This function, called an executor function, has two parameters: resolve and reject. The executor is called immediately when constructing the Promise object with two built-in functions as arguments: resolve, which we manually call if we want the promise to resolve successfully, and reject, which we call if an error occurs.
 
-This code uses the promise by calling the built-in then method on the Promise object, a method to which we pass two callback functions: a success callback and a failure callback. The former is called if the promise is resolved successfully (if the resolve function is called on the promise), and the latter is called if there’s a problem (either an unhandled exception occurs or the reject function is called on a promise).
+This code uses the promise by calling the built-in then method on the Promise object, a method to which we pass two callback functions: a success callback and a failure callback. The former is called if the promise is resolved successfully (if the resolve function is called on the promise), and the latter is called if there's a problem (either an unhandled exception occurs or the reject function is called on a promise).
 
 In our example code, we create a promise and immediately resolve it by calling the resolve function with the argument Hattori. Therefore, when we call the then method, the first, success, callback is executed and the test that outputs We were promised Hattori! passes.
 
-Now that we have a general idea of what promises are and how they work, let’s take a step back to see some of the problems that promises tackle.
+Now that we have a general idea of what promises are and how they work, let's take a step back to see some of the problems that promises tackle.
 
 6.3 使用 promise 
 
@@ -678,33 +678,33 @@ Now that we have a general idea of what promises are and how they work, let’s 
 
 ### 6.3.1 Understanding the problems with simple callbacks 
 
-We use asynchronous code because we don’t want to block the execution of our application (thereby disappointing our users) while long-running tasks are executing. Currently, we solve this problem with callbacks: To a long-running task we provide a function, a callback that’s invoked when the task is finally done.
+We use asynchronous code because we don't want to block the execution of our application (thereby disappointing our users) while long-running tasks are executing. Currently, we solve this problem with callbacks: To a long-running task we provide a function, a callback that's invoked when the task is finally done.
 
-For example, fetching a JSON file from a server is a long-running task, during which we don’t want to make the application unresponsive for our users. Therefore, we provide a callback that will be invoked when the task is done:
+For example, fetching a JSON file from a server is a long-running task, during which we don't want to make the application unresponsive for our users. Therefore, we provide a callback that will be invoked when the task is done:
 
 getJSON("data/ninjas.json", function() { /*Handle results*/ });
 
-Naturally, during this long-running task, errors can happen. And the problem with callbacks is that you can’t use built-in language constructs, such as try-catch statements, in the following way:
+Naturally, during this long-running task, errors can happen. And the problem with callbacks is that you can't use built-in language constructs, such as try-catch statements, in the following way:
 
-This happens because the code invoking the callback usually isn’t executed in the same step of the event loop as the code that starts the long-running task (you’ll see exactly what this means when you learn more about the event loop in chapter 13).
+This happens because the code invoking the callback usually isn't executed in the same step of the event loop as the code that starts the long-running task (you'll see exactly what this means when you learn more about the event loop in chapter 13).
 
 As a consequence, errors usually get lost. Many libraries, therefore, define their own conventions for reporting errors. For example, in the Node.js world, callbacks customarily take two arguments, err and data, where err will be a non-null value if an error occurs somewhere along the way. This leads to the first problem with callbacks: difficult error handling.
 
-After we’ve performed a long-running task, we often want to do something with the obtained data. This can lead to starting another long-running task, which can eventually trigger yet another long-running task, and so on — leading to a series of interdependent, asynchronous, callback-processed steps. For example, if we want to execute a sneaky plan to find all ninjas at our disposal, get the location of the first ninja, and send him some orders, we’d end up with something like this:
+After we've performed a long-running task, we often want to do something with the obtained data. This can lead to starting another long-running task, which can eventually trigger yet another long-running task, and so on — leading to a series of interdependent, asynchronous, callback-processed steps. For example, if we want to execute a sneaky plan to find all ninjas at our disposal, get the location of the first ninja, and send him some orders, we'd end up with something like this:
 
 getJSON("data/ninjas.json", function(err, ninjas){ getJSON(ninjas[0].location, function(err, locationInfo){ sendOrder(locationInfo, function(err, status){ /*Process status*/ }) }) });
 
-You’ve probably ended up, at least once or twice, with similarly structured code — a bunch of nested callbacks that represent a series of steps that have to be made. You might notice that this code is difficult to understand, inserting new steps is a pain, and error handling complicates your code significantly. You get this “pyramid of doom” that keeps growing and is difficult to manage. This leads us to the second problem with callbacks: performing sequences of steps is tricky.
+You've probably ended up, at least once or twice, with similarly structured code — a bunch of nested callbacks that represent a series of steps that have to be made. You might notice that this code is difficult to understand, inserting new steps is a pain, and error handling complicates your code significantly. You get this “pyramid of doom” that keeps growing and is difficult to manage. This leads us to the second problem with callbacks: performing sequences of steps is tricky.
 
-Sometimes, the steps that we have to go through to get to the final result don’t depend on each other, so we don’t have to make them in sequence. Instead, to save precious milliseconds, we can do them in parallel. For example, if we want to set a plan in motion that requires us to know which ninjas we have at our disposal, the plan itself, and the location where our plan will play out, we could take advantage of jQuery’s get method and write something like this:
+Sometimes, the steps that we have to go through to get to the final result don't depend on each other, so we don't have to make them in sequence. Instead, to save precious milliseconds, we can do them in parallel. For example, if we want to set a plan in motion that requires us to know which ninjas we have at our disposal, the plan itself, and the location where our plan will play out, we could take advantage of jQuery's get method and write something like this:
 
-In this code, we execute the actions of getting the ninjas, getting the map info, and getting the plan in parallel, because these actions don’t depend on each other. We only care that, in the end, we have all the data at our disposal. Because we don’t know the order in which the data is received, every time we get some data, we have to check whether it’s the last piece of the puzzle that we’re missing. Finally, when all pieces are in place, we can set our plan in motion. Notice that we have to write a lot of boilerplate code just to do something as common as executing a number of actions in parallel. This leads us to the third problem with callbacks: performing a number of steps in parallel is also tricky.
+In this code, we execute the actions of getting the ninjas, getting the map info, and getting the plan in parallel, because these actions don't depend on each other. We only care that, in the end, we have all the data at our disposal. Because we don't know the order in which the data is received, every time we get some data, we have to check whether it's the last piece of the puzzle that we're missing. Finally, when all pieces are in place, we can set our plan in motion. Notice that we have to write a lot of boilerplate code just to do something as common as executing a number of actions in parallel. This leads us to the third problem with callbacks: performing a number of steps in parallel is also tricky.
 
-When presenting the first problem with callbacks — dealing with errors — we showed how we can’t use some of the fundamental language constructs, such as trycatch statements. A similar thing holds with loops: If you want to perform asynchronous actions for each item in a collection, you have to jump through some more hoops to get it done.
+When presenting the first problem with callbacks — dealing with errors — we showed how we can't use some of the fundamental language constructs, such as trycatch statements. A similar thing holds with loops: If you want to perform asynchronous actions for each item in a collection, you have to jump through some more hoops to get it done.
 
-It’s true that you can make a library to simplify dealing with all these problems (and many people have). But this often leads to a lot of slightly different ways of dealing with the same problems, so the people behind JavaScript have bestowed upon us promises, a standard approach for dealing with asynchronous computation.
+It's true that you can make a library to simplify dealing with all these problems (and many people have). But this often leads to a lot of slightly different ways of dealing with the same problems, so the people behind JavaScript have bestowed upon us promises, a standard approach for dealing with asynchronous computation.
 
-Now that you understand most of the reasons behind the introduction of promises, as well as have a basic understanding of them, let’s take it up a notch.
+Now that you understand most of the reasons behind the introduction of promises, as well as have a basic understanding of them, let's take it up a notch.
 
 6.3.1 理解简单回调函数所带来的问题
 
@@ -718,17 +718,17 @@ Now that you understand most of the reasons behind the introduction of promises,
 
 ### 6.3.2 Diving into promises
 
-A promise is an object that serves as a placeholder for a result of an asynchronous task. It represents a value that we don’t have but hope to have in the future. For this reason, during its lifetime, a promise can go through a couple of states, as shown in figure 6.10.
+A promise is an object that serves as a placeholder for a result of an asynchronous task. It represents a value that we don't have but hope to have in the future. For this reason, during its lifetime, a promise can go through a couple of states, as shown in figure 6.10.
 
-A promise starts in the pending state, in which we know nothing about our promised value. That’s why a promise in the pending state is also called an unresolved promise. During program execution, if the promise’s resolve function is called, the
+A promise starts in the pending state, in which we know nothing about our promised value. That's why a promise in the pending state is also called an unresolved promise. During program execution, if the promise's resolve function is called, the
 
 Figure 6.10
 
 States of a promise
 
-promise moves into the fulfilled state, in which we’ve successfully obtained the promised value. On the other hand, if the promise’s reject function is called, or if an unhandled exception occurs during promise handling, the promise moves into the rejected state, in which we weren’t able to obtain the promised value, but in which we at least know why. Once a promise has reached either the fulfilled state or the rejected state, it can’t switch (a promise can’t go from fulfilled to rejected or vice versa), and it always stays in that state. We say that a promise is resolved (either successfully or not).
+promise moves into the fulfilled state, in which we've successfully obtained the promised value. On the other hand, if the promise's reject function is called, or if an unhandled exception occurs during promise handling, the promise moves into the rejected state, in which we weren't able to obtain the promised value, but in which we at least know why. Once a promise has reached either the fulfilled state or the rejected state, it can't switch (a promise can't go from fulfilled to rejected or vice versa), and it always stays in that state. We say that a promise is resolved (either successfully or not).
 
-The following listing provides a closer look at what’s going on when we use promises.
+The following listing provides a closer look at what's going on when we use promises.
 
 Listing 6.11
 
@@ -742,7 +742,7 @@ setTimeout(() => { report("Resolving ninjaDelayedPromise"); resolve("Hattori"); 
 
 The timeout will resolve the promise after 500ms. This could have been any other asynchronous task, but we chose the humble timeout because of its simplicity.
 
-After the ninjaDelayedPromise has been created, it still doesn’t know the value that it will eventually have, or whether it will even be successful. (Remember, it’s still waiting for the timeout that will resolve it.) So after construction, the ninjaDelayedPromise is in the first promise state, pending.
+After the ninjaDelayedPromise has been created, it still doesn't know the value that it will eventually have, or whether it will even be successful. (Remember, it's still waiting for the timeout that will resolve it.) So after construction, the ninjaDelayedPromise is in the first promise state, pending.
 
 Figure 6.11
 
@@ -762,11 +762,11 @@ This callback will always be called asynchronously, regardless of the current st
 
 We continue by creating another promise, ninjaImmediatePromise, which is resolved immediately during its construction, by calling the resolve function. Unlike the ninjaDelayedPromise, which after construction is in the pending state, the ninjaImmediatePromise finishes construction in the resolved state, and the promise already has the value Yoshi.
 
-Afterward, we use the ninjaImmediatePromise’s then method to register a callback that will be executed when the promise successfully resolves. But our promise is already settled; does this mean that the success callback will be immediately called or that it will be ignored? The answer is neither.
+Afterward, we use the ninjaImmediatePromise's then method to register a callback that will be executed when the promise successfully resolves. But our promise is already settled; does this mean that the success callback will be immediately called or that it will be ignored? The answer is neither.
 
-Promises are designed to deal with asynchronous actions, so the JavaScript engine always resorts to asynchronous handling, to make the promise behavior predictable. The engine does this by executing the then callbacks after all the code in the current step of the event loop is executed (once again, we’ll explore exactly what this means in chapter 13). For this reason, if we study the output in figure 6.11, we’ll see that we first log “At code end” and then we log that the ninjaImmediatePromise was resolved. In the end, after the 500ms timeout expires, the ninjaDelayedPromise is resolved, which causes the execution of the matching then callback.
+Promises are designed to deal with asynchronous actions, so the JavaScript engine always resorts to asynchronous handling, to make the promise behavior predictable. The engine does this by executing the then callbacks after all the code in the current step of the event loop is executed (once again, we'll explore exactly what this means in chapter 13). For this reason, if we study the output in figure 6.11, we'll see that we first log “At code end” and then we log that the ninjaImmediatePromise was resolved. In the end, after the 500ms timeout expires, the ninjaDelayedPromise is resolved, which causes the execution of the matching then callback.
 
-In this example, for the sake of simplicity, we’ve worked only with the rosy scenario in which everything goes great. But the real world isn’t all sunshine and rainbows, so let’s see how to deal with all sorts of crazy problems that can occur.
+In this example, for the sake of simplicity, we've worked only with the rosy scenario in which everything goes great. But the real world isn't all sunshine and rainbows, so let's see how to deal with all sorts of crazy problems that can occur.
 
 
 6.3.2 深入研究 promise
@@ -783,7 +783,7 @@ Promise 是设计用来处理异步任务的，所以 JavaScript 引擎经常会
 
 ### 6.3.3 Rejecting promises
 
-There are two ways of rejecting a promise: explicitly, by calling the passed-in reject method in the executor function of a promise, and implicitly, if during the handling of a promise, an unhandled exception occurs. Let’s start our exploration with the following listing.
+There are two ways of rejecting a promise: explicitly, by calling the passed-in reject method in the executor function of a promise, and implicitly, if during the handling of a promise, an unhandled exception occurs. Let's start our exploration with the following listing.
 
 Listing 6.12
 
@@ -793,7 +793,7 @@ We can explicitly reject a promise, by calling the passed-in reject method: reje
 
 In addition, we can use an alternative syntax for handling promise rejections, by using the built-in catch method, as shown in the following listing.
 
-As listing 6.13 shows, we can chain in the catch method after the then method, to also provide an error callback that will be invoked when a promise gets rejected. In this example, this is a matter of personal style. Both options work equally well, but later, when working with chains of promises, we’ll see an example in which chaining the catch method is useful.
+As listing 6.13 shows, we can chain in the catch method after the then method, to also provide an error callback that will be invoked when a promise gets rejected. In this example, this is a matter of personal style. Both options work equally well, but later, when working with chains of promises, we'll see an example in which chaining the catch method is useful.
 
 In addition to explicit rejection (via the reject call), a promise can also be rejected implicitly, if an exception occurs during its processing. Take a look at the following example.
 
@@ -801,11 +801,11 @@ Listing 6.14
 
 Exceptions implicitly reject a promise
 
-Within the body of the promise executor, we try to increment undeclaredVariable, a variable that isn’t defined in our program. As expected, this results in an exception. Because there’s no try-catch statement within the body of the executor, this results in an implicit rejection of the current promise, and the catch callback is eventually invoked. In this situation, we could have just as easily supplied the second callback to the then method, and the end effect would be the same.
+Within the body of the promise executor, we try to increment undeclaredVariable, a variable that isn't defined in our program. As expected, this results in an exception. Because there's no try-catch statement within the body of the executor, this results in an implicit rejection of the current promise, and the catch callback is eventually invoked. In this situation, we could have just as easily supplied the second callback to the then method, and the end effect would be the same.
 
 This way of treating all problems that happen while working with promises in a uniform way is extremely handy. Regardless of how the promise was rejected, whether explicitly by calling the reject method or even implicitly, if an exception occurs, all errors and rejection reasons are directed to our rejection callback. This makes our lives as developers a little easier.
 
-Now that we understand how promises work, and how to schedule success and failure callbacks, let’s take a real-world scenario, getting JSON-formatted data from a server, and “promisify” it.
+Now that we understand how promises work, and how to schedule success and failure callbacks, let's take a real-world scenario, getting JSON-formatted data from a server, and “promisify” it.
 
 6.3.3 拒绝 promise 
 
@@ -817,7 +817,7 @@ Now that we understand how promises work, and how to schedule success and failur
 
 ### 6.3.4 Creating our first real-world promise
 
-One of the most common asynchronous actions on the client is fetching data from the server. As such, this is an excellent little case study on the use of promises. For the underlying implementation, we’ll use the built-in XMLHttpRequest object.
+One of the most common asynchronous actions on the client is fetching data from the server. As such, this is an excellent little case study on the use of promises. For the underlying implementation, we'll use the built-in XMLHttpRequest object.
 
 Listing 6.15
 
@@ -827,13 +827,13 @@ NOTE
 
 Our goal is to create a getJSON function that returns a promise that will enable us to register success and failure callbacks for asynchronously getting JSON-formatted data from the server. For the underlying implementation, we use the built-in XMLHttpRequest object that offers two events: onload and onerror. The onload event is triggered when the browser receives a response from the server, and onerror is triggered when an error in communication happens. These event handlers will be called asynchronously by the browser, as they occur.
 
-If an error in the communication happens, we definitely won’t be able to get our data from the server, so the honest thing to do is to reject our promise:
+If an error in the communication happens, we definitely won't be able to get our data from the server, so the honest thing to do is to reject our promise:
 
 request.onerror = function(){ reject(this.status + " " + this.statusText); };
 
-If we receive a response from the server, we have to analyze that response and consider the exact situation. Without going into too much detail, a server can respond with various things, but in this case, we care only that the response is successful (status 200). If it isn’t, again we reject the promise.
+If we receive a response from the server, we have to analyze that response and consider the exact situation. Without going into too much detail, a server can respond with various things, but in this case, we care only that the response is successful (status 200). If it isn't, again we reject the promise.
 
-Even if the server has successfully responded with data, this still doesn’t mean that we’re in the clear. Because our goal was to get JSON-formatted objects from the server, the JSON code could always have syntax errors. This is why, when calling the JSON.parse method, we surround the code with a try-catch statement. If an exception occurs while parsing the server response, we also reject the promise. With this, we’ve taken care of all bad scenarios that can happen.
+Even if the server has successfully responded with data, this still doesn't mean that we're in the clear. Because our goal was to get JSON-formatted objects from the server, the JSON code could always have syntax errors. This is why, when calling the JSON.parse method, we surround the code with a try-catch statement. If an exception occurs while parsing the server response, we also reject the promise. With this, we've taken care of all bad scenarios that can happen.
 
 If everything goes according to plan, and we successfully obtain our objects, we can safely resolve the promise. Finally, we can use our getJSON function to fetch ninjas from the server:
 
@@ -841,9 +841,9 @@ getJSON("data/ninjas.json").then(ninjas => { assert(ninjas !== null, "Ninjas obt
 
 }).catch(e => fail("Shouldn't be here:" + e));
 
-In this case, we have three potential sources of errors: errors in establishing the communication between the server and the client, the server responding with unanticipated data (invalid response status), and invalid JSON code. But from the perspective of the code that uses the getJSON function, we don’t care about the specifics of error sources. We only supply a callback that gets triggered if everything goes okay and the data is properly received, and a callback that gets triggered if any error occurs. This makes our lives as developers so much easier.
+In this case, we have three potential sources of errors: errors in establishing the communication between the server and the client, the server responding with unanticipated data (invalid response status), and invalid JSON code. But from the perspective of the code that uses the getJSON function, we don't care about the specifics of error sources. We only supply a callback that gets triggered if everything goes okay and the data is properly received, and a callback that gets triggered if any error occurs. This makes our lives as developers so much easier.
 
-Now we’re going to take it up a notch and explore another big advantage of promises: their elegant composition. We’ll start by chaining several promises in a series of distinct steps.
+Now we're going to take it up a notch and explore another big advantage of promises: their elegant composition. We'll start by chaining several promises in a series of distinct steps.
 
 6.3.4 创建第一个真实 promise 
 
@@ -857,9 +857,9 @@ Now we’re going to take it up a notch and explore another big advantage of pro
 
 ### 6.3.5 Chaining promises
 
-You’ve already seen how handling a sequence of interdependent steps leads to the pyramid of doom, a deeply nested and difficult-to-maintain sequence of callbacks. Promises are a step toward solving that problem, because they have the ability to be chained.
+You've already seen how handling a sequence of interdependent steps leads to the pyramid of doom, a deeply nested and difficult-to-maintain sequence of callbacks. Promises are a step toward solving that problem, because they have the ability to be chained.
 
-Earlier in the chapter, you saw how, by using the then method on a promise, we can register a callback that will be executed if a promise is successfully resolved. What we didn’t tell you is that calling the then method also returns a new promise. So there’s nothing stopping us from chaining as many then methods as we want; see the following code.
+Earlier in the chapter, you saw how, by using the then method on a promise, we can register a callback that will be executed if a promise is successfully resolved. What we didn't tell you is that calling the then method also returns a new promise. So there's nothing stopping us from chaining as many then methods as we want; see the following code.
 
 Listing 6.16
 
@@ -867,7 +867,7 @@ Chaining promises with then
 
 This creates a sequence of promises that will be, if everything goes according to plan, resolved one after another. First, we use the getJSON("data/ninjas.json") method to fetch a list of ninjas from the file on the server. After we receive that list, we take the information about the first ninja, and we request a list of missions the ninja is assigned to: getJSON(ninjas[0].missionsUrl). Later, when these missions come in, we make yet another request for the details of the first mission: getJSON(missions[0].detailsUrl). Finally, we log the details of the mission.
 
-Writing such code using standard callbacks would result in a deeply nested sequence of callbacks. Identifying the exact sequence of steps wouldn’t be easy, and God forbid we decide to add in an extra step somewhere in the middle.
+Writing such code using standard callbacks would result in a deeply nested sequence of callbacks. Identifying the exact sequence of steps wouldn't be easy, and God forbid we decide to add in an extra step somewhere in the middle.
 
 CATCHING ERRORS IN CHAINED PROMISES
 
@@ -877,7 +877,7 @@ When dealing with sequences of asynchronous steps, an error can occur in any ste
 
 If a failure occurs in any of the previous promises, the catch method catches it. If no error occurs, the program flow continues through it, unobstructed.
 
-Dealing with a sequence of steps is much nicer with promises than with regular callbacks, wouldn’t you agree? But it’s still not as elegant as it could be. We’ll get to that soon, but first let’s see how to use promises to take care of parallel asynchronous steps.
+Dealing with a sequence of steps is much nicer with promises than with regular callbacks, wouldn't you agree? But it's still not as elegant as it could be. We'll get to that soon, but first let's see how to use promises to take care of parallel asynchronous steps.
 
 6.3.5 链式调用 promise 
 
@@ -889,11 +889,11 @@ Dealing with a sequence of steps is much nicer with promises than with regular c
 
 ### 6.3.6 Waiting for a number of promises
 
-In addition to helping us deal with sequences of interdependent, asynchronous steps, promises significantly reduce the burden of waiting for several independent asynchronous tasks. Let’s revisit our example in which we want to, in parallel, gather information about the ninjas at our disposal, the intricacies of the plan, and the map of the location where the plan will be set in motion. With promises, this is as simple as shown in the following listing.
+In addition to helping us deal with sequences of interdependent, asynchronous steps, promises significantly reduce the burden of waiting for several independent asynchronous tasks. Let's revisit our example in which we want to, in parallel, gather information about the ninjas at our disposal, the intricacies of the plan, and the map of the location where the plan will be set in motion. With promises, this is as simple as shown in the following listing.
 
 Listing 6.17 Waiting for a number of promises with Promise.all
 
-As you can see, we don’t have to care about the order in which tasks are executed, and whether some of them have finished, while others didn’t. We state that we want to wait for a number of promises by using the built-in Promise.all method. This method takes in an array of promises and creates a new promise that successfully resolves when all passed-in promises resolve, and rejects if even one of the promises fails. The succeed callback receives an array of succeed values, one for each of the passed-in promises, in order. Take a minute to appreciate the elegance of code that processes multiple parallel asynchronous tasks with promises.
+As you can see, we don't have to care about the order in which tasks are executed, and whether some of them have finished, while others didn't. We state that we want to wait for a number of promises by using the built-in Promise.all method. This method takes in an array of promises and creates a new promise that successfully resolves when all passed-in promises resolve, and rejects if even one of the promises fails. The succeed callback receives an array of succeed values, one for each of the passed-in promises, in order. Take a minute to appreciate the elegance of code that processes multiple parallel asynchronous tasks with promises.
 
 The Promise.all method waits for all promises in a list. But at times we have numerous promises, but we care only about the first one that succeeds (or fails). Meet the Promise.race method.
 
@@ -903,9 +903,9 @@ Imagine that we have a group of ninjas at our disposal, and that we want to give
 
 Listing 6.18 Racing promises with Promise.race
 
-It’s simple as that. There’s no need for manually tracking everything. We use the Promise.race method to take an array of promises and return a completely new promise that resolves or rejects as soon as the first of the promises resolves or rejects.
+It's simple as that. There's no need for manually tracking everything. We use the Promise.race method to take an array of promises and return a completely new promise that resolves or rejects as soon as the first of the promises resolves or rejects.
 
-So far you’ve seen how promises work, and how we can use them to greatly simplify dealing with a series of asynchronous steps, either in series or in parallel. Although the improvements, when compared to plain old callbacks in terms of error handling and code elegance, are great, promisified code still isn’t on the same level of elegance as simple synchronous code. In the next section, the two big concepts that we’ve introduced in this chapter, generators and promises, come together to provide the simplicity of synchronous code with the nonblocking nature of asynchronous code.
+So far you've seen how promises work, and how we can use them to greatly simplify dealing with a series of asynchronous steps, either in series or in parallel. Although the improvements, when compared to plain old callbacks in terms of error handling and code elegance, are great, promisified code still isn't on the same level of elegance as simple synchronous code. In the next section, the two big concepts that we've introduced in this chapter, generators and promises, come together to provide the simplicity of synchronous code with the nonblocking nature of asynchronous code.
 
 6.3.6 等待多个 promise 
 
@@ -923,33 +923,33 @@ So far you’ve seen how promises work, and how we can use them to greatly simpl
 
 ## 6.4 Combining generators and promises
 
-In this section, we’ll combine generators (and their capability to pause and resume their execution) with promises, in order to achieve more elegant asynchronous code. We’ll use the example of a functionality that enables users to get details of the highestrated mission done by the most popular ninja. The data representing the ninjas, the summaries of their missions, as well as the details of the missions are stored on a remote server, encoded in JSON.
+In this section, we'll combine generators (and their capability to pause and resume their execution) with promises, in order to achieve more elegant asynchronous code. We'll use the example of a functionality that enables users to get details of the highestrated mission done by the most popular ninja. The data representing the ninjas, the summaries of their missions, as well as the details of the missions are stored on a remote server, encoded in JSON.
 
-All of these subtasks are long-running and mutually dependent. If we were to implement them in a synchronous fashion, we’d get the following straightforward code:
+All of these subtasks are long-running and mutually dependent. If we were to implement them in a synchronous fashion, we'd get the following straightforward code:
 
 try { const ninjas = syncGetJSON("data/ninjas.json"); const missions = syncGetJSON(ninjas[0].missionsUrl); const missionDetails = syncGetJSON(missions[0].detailsUrl); //Study the mission description } catch(e){ //Oh no, we weren't able to get the mission details }
 
-Although this code is great for its simplicity and error handling, it blocks the UI, which results in unhappy users. Ideally, we’d like to change this code so that no blocking occurs during a long-running task. One way of doing this is by combining generators and promises.
+Although this code is great for its simplicity and error handling, it blocks the UI, which results in unhappy users. Ideally, we'd like to change this code so that no blocking occurs during a long-running task. One way of doing this is by combining generators and promises.
 
-As we know, yielding from a generator suspends the execution of the generator without blocking. To wake up the generator and continue its execution, we have to call the next method on the generator’s iterator. Promises, on the other hand, allow us to specify a callback that will be triggered in case we were able to obtain the promised value, and a callback that will be triggered in case an error has occurred.
+As we know, yielding from a generator suspends the execution of the generator without blocking. To wake up the generator and continue its execution, we have to call the next method on the generator's iterator. Promises, on the other hand, allow us to specify a callback that will be triggered in case we were able to obtain the promised value, and a callback that will be triggered in case an error has occurred.
 
-The idea, then, is to combine generators and promises in the following way: We put the code that uses asynchronous tasks in a generator, and we execute that generator function. When we reach a point in the generator execution that calls an asynchronous task, we create a promise that represents the value of that asynchronous task. Because we have no idea when that promise will be resolved (or even if it will be resolved), at this point of generator execution, we yield from the generator, so that we don’t cause blocking. After a while, when the promise gets settled, we continue the execution of our generator by calling the iterator’s next method. We do this as many times as necessary. See the following listing for a practical example.
+The idea, then, is to combine generators and promises in the following way: We put the code that uses asynchronous tasks in a generator, and we execute that generator function. When we reach a point in the generator execution that calls an asynchronous task, we create a promise that represents the value of that asynchronous task. Because we have no idea when that promise will be resolved (or even if it will be resolved), at this point of generator execution, we yield from the generator, so that we don't cause blocking. After a while, when the promise gets settled, we continue the execution of our generator by calling the iterator's next method. We do this as many times as necessary. See the following listing for a practical example.
 
-The async function takes a generator, calls it, and creates an iterator that will be used to resume the generator execution. Inside the async function, we declare a handle function that handles one return value from the generator — one “iteration” of our iterator. If the generator result is a promise that gets resolved successfully, we use the iterator’s next method to send the promised value back to the generator and resume the generator’s execution. If an error occurs and the promise gets rejected, we throw that error to the generator by using the iterator’s throw method (told you it would come in handy). We keep doing this until the generator says it’s done.
+The async function takes a generator, calls it, and creates an iterator that will be used to resume the generator execution. Inside the async function, we declare a handle function that handles one return value from the generator — one “iteration” of our iterator. If the generator result is a promise that gets resolved successfully, we use the iterator's next method to send the promised value back to the generator and resume the generator's execution. If an error occurs and the promise gets rejected, we throw that error to the generator by using the iterator's throw method (told you it would come in handy). We keep doing this until the generator says it's done.
 
-This is a rough sketch, a minimum amount of code needed to combine generators and promises. We don’t recommend that you use this code in production.
+This is a rough sketch, a minimum amount of code needed to combine generators and promises. We don't recommend that you use this code in production.
 
-NOTE: Now let’s take a closer look at the generator. On the first invocation of the iterator’s next method, the generator executes up to the first getJSON("data/ninjas.json")
+NOTE: Now let's take a closer look at the generator. On the first invocation of the iterator's next method, the generator executes up to the first getJSON("data/ninjas.json")
 
-call. This call creates a promise that will eventually contain the list of information about our ninjas. Because this value is fetched asynchronously, we have no idea how much time it will take the browser to get it. But we know one thing: We don’t want to block the application execution while we’re waiting. For this reason, at this moment of execution, the generator yields control, which pauses the generator, and returns the control flow to the invocation of the handle function. Because the yielded value is a getJSON promise, in the handle function, by using the then and catch methods of the promise, we register a success and an error callback, and continue execution. With this, the control flow leaves the execution of the handle function and the body of the async function, and continues after the call to the async function (in our case, there’s no more code after, so it idles). During this time, our generator function patiently waits suspended, without blocking the program execution.
+call. This call creates a promise that will eventually contain the list of information about our ninjas. Because this value is fetched asynchronously, we have no idea how much time it will take the browser to get it. But we know one thing: We don't want to block the application execution while we're waiting. For this reason, at this moment of execution, the generator yields control, which pauses the generator, and returns the control flow to the invocation of the handle function. Because the yielded value is a getJSON promise, in the handle function, by using the then and catch methods of the promise, we register a success and an error callback, and continue execution. With this, the control flow leaves the execution of the handle function and the body of the async function, and continues after the call to the async function (in our case, there's no more code after, so it idles). During this time, our generator function patiently waits suspended, without blocking the program execution.
 
-Much, much later, when the browser receives a response (either a positive or a negative one), one of the promise callbacks is invoked. If the promise was resolved successfully, the success callback is invoked, which in turn causes the execution of the iterator’s next method, which asks the generator for another value. This brings back the generator from suspension and sends to it the value passed in by the callback. This means that we reenter the body of our generator, after the first yield expression, whose value becomes the ninjas list that was asynchronously fetched from the server. The execution of the generator function continues, and the value is assigned to the plan variable.
+Much, much later, when the browser receives a response (either a positive or a negative one), one of the promise callbacks is invoked. If the promise was resolved successfully, the success callback is invoked, which in turn causes the execution of the iterator's next method, which asks the generator for another value. This brings back the generator from suspension and sends to it the value passed in by the callback. This means that we reenter the body of our generator, after the first yield expression, whose value becomes the ninjas list that was asynchronously fetched from the server. The execution of the generator function continues, and the value is assigned to the plan variable.
 
-In the next line of the generator, we use some of the obtained data, ninjas[0] .missionUrl, to make another getJSON call that creates another promise that should eventually contain a list of missions done by the most popular ninja. Again, because this is an asynchronous task, we have no idea how long it’s going to take, so we again yield the execution and repeat the whole process.
+In the next line of the generator, we use some of the obtained data, ninjas[0] .missionUrl, to make another getJSON call that creates another promise that should eventually contain a list of missions done by the most popular ninja. Again, because this is an asynchronous task, we have no idea how long it's going to take, so we again yield the execution and repeat the whole process.
 
 This process is repeated as long as there are asynchronous tasks in the generator.
 
-This was a tad on the complex side, but we like this example because it combines a lot of things that you’ve learned so far:
+This was a tad on the complex side, but we like this example because it combines a lot of things that you've learned so far:
 
 ■ Functions as first-class objects — We send a function as an argument to the async function.
 
@@ -963,7 +963,7 @@ This was a tad on the complex side, but we like this example because it combines
 
 ■ Closures — The iterator, through which we control the generator, is created in the async function, and we access it, through closures, in the promise callbacks.
 
-Now that we’ve gone through the whole process, let’s take a minute to appreciate how much more elegant the code that implements our business logic is. Consider this:
+Now that we've gone through the whole process, let's take a minute to appreciate how much more elegant the code that implements our business logic is. Consider this:
 
 Instead of mixed control-flow and error handling, and slightly confusing code, we end up with something like this:
 
@@ -975,15 +975,15 @@ try { const ninjas = yield getJSON("data/ninjas.json"); const missions = yield g
 
 } catch(e) { //An error has occurred } });
 
-This end result combines the advantages of synchronous and asynchronous code. From synchronous code, we have the ease of understanding, and the ability to use all standard control-flow and exception-handling mechanisms such as loops and try-catch statements. From asynchronous code, we get the nonblocking nature; the execution of our application isn’t blocked while waiting for long-running asynchronous tasks.
+This end result combines the advantages of synchronous and asynchronous code. From synchronous code, we have the ease of understanding, and the ability to use all standard control-flow and exception-handling mechanisms such as loops and try-catch statements. From asynchronous code, we get the nonblocking nature; the execution of our application isn't blocked while waiting for long-running asynchronous tasks.
 
 6.4.1 Looking forward — the async function 
 
-Notice that we still had to write some boilerplate code; we had to develop an async function that takes care of handling promises and requesting values from the generator. Although we can write this function only once and then reuse it throughout our code, it would be even nicer if we didn’t have to think about it. The people in charge of JavaScript are well aware of the usefulness of the combination of generators and promises, and they want to make our lives even easier by building in direct language support for mixing generators and promises.
+Notice that we still had to write some boilerplate code; we had to develop an async function that takes care of handling promises and requesting values from the generator. Although we can write this function only once and then reuse it throughout our code, it would be even nicer if we didn't have to think about it. The people in charge of JavaScript are well aware of the usefulness of the combination of generators and promises, and they want to make our lives even easier by building in direct language support for mixing generators and promises.
 
-For these situations, the current plan is to include two new keywords, async and await, that would take care of this boilerplate code. Soon, we’ll be able to write something like this:
+For these situations, the current plan is to include two new keywords, async and await, that would take care of this boilerplate code. Soon, we'll be able to write something like this:
 
-We use the async keyword in front of the function keyword to specify that this function relies on asynchronous values, and at every place where we call an asynchronous task, we place the await keyword that says to the JavaScript engine, please wait for this result without blocking. In the background, everything happens as we’ve discussed previously throughout the chapter, but now we don’t need to worry about it.
+We use the async keyword in front of the function keyword to specify that this function relies on asynchronous values, and at every place where we call an asynchronous task, we place the await keyword that says to the JavaScript engine, please wait for this result without blocking. In the background, everything happens as we've discussed previously throughout the chapter, but now we don't need to worry about it.
 
 Async functions will appear in the next installment of JavaScript. Currently no browser supports it, but you can use transpilers such as Babel or Traceur if you wish to use async in your code today.
 
