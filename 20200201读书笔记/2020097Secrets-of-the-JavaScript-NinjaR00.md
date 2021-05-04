@@ -36,9 +36,19 @@ Instead of manually calling the next method of the matching iterator and always 
 
 不同于手动调用迭代器的 next 方法，for-of 循环同时还要查看生成器是否完成，它在后台自动做了完全相同的工作。把执行权交给下一个生成器正如在标准函数中调用另一个标准函数，我们需要把生成器的执行委托给另一个生成器。让我们看清单 6.4 的例子，生成器不仅生成了武器值也生成了「忍者」值。
 
-### 0101. 主题卡 ——
+### 0101. 主题卡 —— 生成器异常强大的核心原因
 
-这本书的主题核心，就是最大的反常识卡，并且注意时间脉络。
+信息源自「2020097Secrets-of-the-JavaScript-Ninja0601.md」
+
+At this point, we go through the whole procedure once again: we reactivate the NinjaGenerator context referenced by ninjaIterator, push it onto the stack, and continue the execution where we left off. In this case, the generator evaluates the expression "Yoshi " + action. But this time there's no yield expression, and instead the program encounters a return statement. This returns the value Yoshi skulk and completes the generator's execution by moving the generator into the Completed state.
+
+Uff, this was something! We went deep into how generators work under the hood to show you that all the wonderful benefits of generators are a side effect of the fact that a generator's execution context is kept alive if we yield from a generator, and not destroyed as is the case with return values and standard functions.
+
+1-2『这一小节的内容要反复反复研读，特别是原文里的几张图，涉及到 JS 的执行上下文，一下子把之前研读有关亚历山大（一个  CEO）的系列文章全部串起来了，太 NB 了。生成器异常强大的核心原因，做一张主题卡片。（2021-05-04）』—— 已完成
+
+在这个位置，我们又把整个流程走了一遍：首先通过 ninjaIterator 激活 NinjaGenerator 的上下文引用，将其入栈，在上次离开的位置继续执行。本例中，生成器计算表达式 "Yoshi" + action。但这一次没再遇到 yield 表达式，而是遇到了一个 return 语句。这个语句会返回值 Yoshi skulk 并结束生成器的执行，随之生成器进入结束状态。看，这很强大吧！
+
+我们深入挖掘生成器的工作原理后可以发现，生成器所有不可思议的特点实际都来源于一点，即当我们从生成器中取得控制权后，生成器的执行环境上下文一直是保存的，而不是像标准函数一样退出后销毁。现在我建议你平静一下心情，继续书写优雅异步代码的第二个关键点：promise。
 
 ### 0201. 术语卡 —— 迭代器对象（Iterator）
 
